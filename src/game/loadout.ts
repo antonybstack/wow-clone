@@ -36,11 +36,11 @@ export const ITEMS: Record<string, Item> = {
     duskweave_robe: {
         id: "duskweave_robe", name: "Duskweave Robe", slot: "chest",
         tags: ["seer", "moon"],
-        // Midnight indigo — warlock plate. Mantle darker than the robe so the
-        // shoulders read as a second layer; both stay under the staff's purple
-        // key so the glow, not the cloth, carries the frame.
-        robe: [0.095, 0.052, 0.135],
-        mantle: [0.058, 0.044, 0.078],
+        // Near-black indigo under a pale grey-lavender cloak. The two-stop gap
+        // between them is the silhouette — see the note on `PALETTE`, and keep
+        // the two in step, because this overwrites it on the first frame.
+        robe: [0.062, 0.040, 0.098],
+        mantle: [0.300, 0.290, 0.380],
     },
     trail_leathers: {
         id: "trail_leathers", name: "Trail Leathers", slot: "chest",

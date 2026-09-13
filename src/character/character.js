@@ -102,18 +102,39 @@ const CHAR_CASCADES = 2;
  * overwritten on the first frame.
  */
 const PALETTE = [
-    // rgb, roughness — warlock plate: deep indigo wool, not ember daywear.
-    // Authored cooler than they render: sky fill is blue-heavy, so B is kept
-    // from racing ahead of R/G into lavender candy.
-    [0.095, 0.052, 0.135, 0.84], // 0 robe, midnight indigo
-    [0.058, 0.044, 0.078, 0.74], // 1 mantle, charcoal-violet (darker than robe)
+    // rgb, roughness. Authored cooler than they render: the sky fill is
+    // blue-heavy, so B is kept from racing ahead of R/G into lavender candy.
+    //
+    // The split between slots 0 and 1 is the whole design. Every earlier pass
+    // here spent its value budget *within* the costume — half a stop between
+    // six garments — and the figure came back as one dark mass with seams in
+    // it. This spends it between two layers instead: the mantle at 0.18
+    // luminance against a robe at 0.05, nearly two stops, so from across the
+    // glade the read is a pale wedge of shoulder standing over a silhouette.
+    // Two shapes, and the eye resolves a tall figure out of them. Six shapes
+    // half a stop apart resolve into none.
+    //
+    // The robe can afford to be this dark because the shader's value ramp only
+    // takes it *further* down toward the hem — the number here is the brightest
+    // the robe ever gets, at the waist, where the mantle is about to cover it
+    // anyway.
+    // 0.185 on the mantle was chosen as "the brightest a garment gets before it
+    // reads as an apron", which was the right rule for a short cape on a lit
+    // figure and the wrong one here. At night, keyed by a violet point light
+    // with no fill to speak of, a 0.185 wool lands in the same few percent of
+    // the display range as the robe and the two-stop ladder collapses back into
+    // one purple mass. This is a pale wool — concrete, near enough — and it has
+    // to be, because the only thing establishing that the figure has a light
+    // half is this panel's own value.
+    [0.062, 0.040, 0.098, 0.84], // 0 robe, near-black indigo
+    [0.300, 0.290, 0.380, 0.86], // 1 mantle, pale grey-lavender wool
     [0.070, 0.062, 0.078, 0.80], // 2 under-tunic, shadowed linen
     [0.028, 0.022, 0.020, 0.48], // 3 leather, near-black hide
     // Face is a void under the cowl — keep skin dark enough that the opening
     // reads as shadow, not a mannequin. Staff light paints the rim, not the face.
     [0.095, 0.062, 0.052, 0.68], // 4 skin (dim)
-    [0.048, 0.028, 0.055, 0.76], // 5 trim / scarf, dark violet wool
-    [0.090, 0.095, 0.120, 0.85], // 6 fur
+    [0.052, 0.032, 0.068, 0.76], // 5 trim / scarf, dark violet wool
+    [0.130, 0.132, 0.165, 0.85], // 6 fur
     [0.100, 0.100, 0.100, 0.80], // 7 spare
 ];
 
@@ -143,7 +164,12 @@ const PARAMS = [
     // an already-light russet into a pale dusty pink and took the shoulders
     // with it. Sheen is fibre scatter and it belongs at the edge, not over the
     // whole panel.
-    [0.20, 0.32, 0.06, 0.80],
+    //
+    // It is now held nearly two stops above the robe, which makes every gloss
+    // term on it twice as visible as it was — a broad soft highlight across a
+    // pale panel is the read that says vinyl. Rougher, and the anisotropy down
+    // with it: heavy wool, seen from across a glade.
+    [0.14, 0.18, 0.06, 0.86],
     // The under-tunic is the deepest weave on the model and it shows as a narrow
     // band in the mantle's shadow, where the display curve is steepest — so a
     // thread pattern that is invisible on a lit sleeve came out as visible net
@@ -170,7 +196,14 @@ const _screen = new Vector2();
 // mantle and well above the robe — which put the eye on the cuffs and, worse,
 // ringed the face in the one thing brighter than it. A pelt is not the subject;
 // the face is. This is a slate grey that sits under the mantle it borders.
-const _furCol = new Color3(0.090, 0.095, 0.120);
+//
+// It borders the cowl now rather than the mantle. The instinct is to bring it
+// up, since the cowl is dark and a light edge around the opening would frame
+// the void — but the band's strands point inward as much as outward, so at any
+// real brightness what it frames the void with is a pale dome sitting inside
+// the hood where the head is. Dimmer than the cowl's own rim, and it does its
+// only remaining job: keeping the silhouette's edge off a hard geometric line.
+const _furCol = new Color3(0.062, 0.064, 0.082);
 
 export class Character {
     /**
@@ -264,6 +297,8 @@ export class Character {
         this._cameraPos = new Vector3();
         this._splits = new Vector4(0, 0, 0, 0);
         this._needSettle = true;
+        /** Seconds since load, for the garment motes' pulse. */
+        this._time = 0;
 
         this._visible = true;
         this.setVisible(S.showCharacter !== false);
@@ -283,7 +318,7 @@ export class Character {
             "matAlbedo", "matParams",
             "fogDensity", "fogHeightFalloff", "fogStart", "aerialStrength",
             "ambientIntensity", "sssStrength", "weaveDensity",
-            "screenSize",
+            "screenSize", "time",
             ...SPELL_LIGHT_UNIFORMS,
         ];
         const attributes = isCloth
@@ -420,6 +455,7 @@ export class Character {
      */
     update(dt) {
         const ch = this.controller;
+        this._time += dt;
         this.figure.update(dt, ch);
         if (this._needSettle) {
             this._settleCloth();
@@ -557,6 +593,7 @@ export class Character {
             m.setArray4("matParams", this._matParams);
             m.setFloat("sssStrength", S.sssStrength);
             m.setVector2("screenSize", _screen);
+            m.setFloat("time", this._time);
             // Threads per metre. 210 is a 4.8 mm thread, which is not wool, it
             // is hessian — and in a close-up it read as one: a regular open grid
             // over the cape and sleeves that looked like screen door rather than

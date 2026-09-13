@@ -621,15 +621,27 @@ function buildHood(B) {
             const sa = Math.sin(a), ca = Math.cos(a);
             // Pointed crown: push the peak up and back harder at s≈0.
             let nx = sa * 1.0;
-            let ny = ca * 0.95 + 0.35 * Math.max(0, ca);
+            let ny = ca * 0.95 + 0.52 * Math.max(0, ca);
             let nz = ca * -0.62;
             const nl = Math.hypot(nx, ny, nz) || 1;
             nx /= nl; ny /= nl; nz /= nl;
-            // Tall peak over the crown, tight throat — warlock silhouette.
-            const rad = 0.195 + 0.115 * Math.max(0, ca) + 0.028 * ca;
+            // Tall peak over the crown, tight throat. The extra height is doing
+            // proportion work, not decoration: the skeleton is a fixed 1.55 m to
+            // the crown, and lengthening the cowl above it and the robe below it
+            // is how the figure gets the drawn-out, top-heavy read of the
+            // reference without touching the rig the gait solve depends on.
+            //
+            // Height goes in the lift, not the radius. Widening the crown to
+            // raise it is what produced the bulb the last pass ended up with: a
+            // cone is a cone because its base is narrow, and a control point
+            // pushed 18 cm outboard over the skull rounds the whole thing off
+            // however far up it goes.
+            const rad = 0.186 + 0.062 * Math.max(0, ca) + 0.028 * ca;
             const mx = HEAD_C[0] + nx * rad;
-            const my = HEAD_C[1] + ny * rad + 0.055 * Math.max(0, ca);
-            const mz = HEAD_C[2] + nz * rad;
+            const my = HEAD_C[1] + ny * rad + 0.215 * Math.max(0, ca);
+            // The peak tips forward over the face rather than standing straight
+            // up — a vertical cone reads as a party hat.
+            const mz = HEAD_C[2] + nz * rad + 0.052 * Math.max(0, ca);
 
             const it = 1 - t;
             const px = it * it * rim[0] + 2 * it * t * mx + t * t * base[0];
@@ -654,8 +666,11 @@ function buildHood(B) {
 //  Fur
 // -----------------------------------------------------------------------------
 
-/** Shells per fur band. Below about 18 the layering is visible as banding. */
-const HOOD_SHELLS = 16;
+/**
+ * Shells per band. Below about 18 the layering is visible as banding — which is
+ * exactly what the cowl fringe wants and exactly what a cuff does not.
+ */
+const HOOD_SHELLS = 10;
 const CUFF_SHELLS = 18;
 
 /**
@@ -696,8 +711,12 @@ export function buildFur(scene) {
         const l2 = Math.hypot(dx, dy, dz) || 1;
         outs[c * 3] = dx / l2; outs[c * 3 + 1] = dy / l2; outs[c * 3 + 2] = dz / l2;
     }
-    // Short plush rim — long pile fights the pointed warlock silhouette.
-    emitFurBand(B, cols, bases, outs, 0.016, 0.018, HOOD_SHELLS, B_HOOD, 0.42);
+    // Not fur any more — a frayed thread fringe. The reference has no trim on
+    // the cowl, but a rim that ends on a hard geometric edge reads as moulded
+    // plastic. Ten sparse shells of longer, thinner strands give the edge the
+    // broken-up terminator of worn cloth; the gaps between shells are the
+    // point, not an artefact of running out of them.
+    emitFurBand(B, cols, bases, outs, 0.008, 0.030, HOOD_SHELLS, B_HOOD, 0.30);
 
     // ---- cuffs ------------------------------------------------------------
     for (let a = 0; a < 2; a++) {

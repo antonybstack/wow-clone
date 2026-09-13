@@ -121,9 +121,33 @@ function curve(table, t) {
 }
 
 /**
- * The robe: a long tube from the waist, flaring to a hem that is cut high at
- * the front so the boots read, and trails behind. The asymmetry is what makes
- * the silhouette move when the figure turns.
+ * Per-column rag depth, metres, in [0, RAG_MAX].
+ *
+ * The reference silhouette does not end at a hem — it dissolves. Four
+ * incommensurate frequencies rectified to one side give lobes of very
+ * different length with no repeat around the tube, and the sharp `pow` is what
+ * separates them into hanging tongues instead of a gentle scallop.
+ *
+ * Frequencies stay under a quarter of the column count: the render surface is
+ * reconstructed with Catmull-Rom, so anything finer than four columns per lobe
+ * comes back as a wobble rather than a tear.
+ */
+function ragDepth(a) {
+    const n =
+        0.50 + 0.28 * Math.sin(a * 5 + 1.7) +
+        0.24 * Math.sin(a * 8 + 4.1) +
+        0.16 * Math.sin(a * 13 + 0.3) +
+        0.10 * Math.sin(a * 3 - 2.2);
+    return Math.pow(Math.min(1, Math.max(0, n)), 1.7);
+}
+
+/**
+ * The robe: a long tube from the waist that flares to the floor and ends in
+ * torn tongues of fabric rather than a hem.
+ *
+ * It is cut *below* the ground at the back on purpose. The bottom rows collide
+ * with the snow, so the surplus does not sink — it pools, and a garment that
+ * pools is the single strongest cue that the figure has weight.
  */
 function makeRobe() {
     const p = new ClothPanel({
@@ -131,15 +155,33 @@ function makeRobe() {
         // pleats need four samples each to survive the grid at all, and the
         // Catmull-Rom reconstruction turns four samples per fold into a clean
         // wave. Twenty columns aliased them into a wobble.
-        name: "robe", cols: 36, rows: 12, matId: M_ROBE,
-        renderCols: 72, renderRows: 32,
+        name: "robe", cols: 36, rows: 17, matId: M_ROBE,
+        renderCols: 72, renderRows: 46,
         // Metres of surface, so the shader's weave and slub scales are physical.
-        weaveU: 1.75, weaveV: 1.05,
-        aoTop: 0.55, aoBottom: 0.42,
-        collide: C_TORSO | C_LEGS, groundRows: 2,
+        weaveU: 1.75, weaveV: 1.62,
+        // The hem bake goes almost black: the reference's lower half is a
+        // silhouette, and the shader's value ramp finishes the job.
+        aoTop: 0.55, aoBottom: 0.20,
+        collide: C_TORSO | C_LEGS, groundRows: 5,
     });
 
-    const RATE = [Infinity, 30, 10, 4, 1.6, 0.9, 0.55, 0.4, 0.35, 0.3, 0.3, 0.3];
+    // The instinct with an extra four rows of fabric is to pin them even more
+    // loosely than the short robe's hem, since the extra length is all below
+    // the knee and wants to trail. That is wrong, and a run at seven metres a
+    // second shows why: apparent wind scales with the *square* of speed and the
+    // hem's leverage scales with its length, so a metre of near-free fabric
+    // does not trail, it lifts — the whole garment came off the legs and read
+    // as a flat wing with a figure in front of it.
+    //
+    // So the floor is held at shape-memory-plus, around 0.8. It is enough of a
+    // restoring pull that the rest shape — a column — survives a sprint, and
+    // still loose enough that the hem lags a turn by a visible beat. Heavy wool
+    // is also simply what this is: a floor-length robe weighs several kilos and
+    // does not behave like a cape.
+    const RATE = [
+        Infinity, 30, 10, 4, 2.0, 1.5, 1.2, 1.05,
+        0.95, 0.90, 0.88, 0.86, 0.84, 0.82, 0.80, 0.80, 0.78,
+    ];
 
     for (let j = 0; j < p.rows; j++) {
         const v = j / (p.rows - 1);
@@ -170,14 +212,15 @@ function makeRobe() {
             // the crest of a fold, where there is most fabric to hang — in
             // phase with the pleat it produced a row of hard spikes instead.
             //
-            // Cut high at the front and long at the back. Ankle length all the
-            // way round hides the boots, and with the boots hidden the entire
-            // foot-planting solve is invisible.
-            const hemY = 0.300 + 0.200 * ca - 0.048 * Math.sin(a * 7 + 0.6);
+            // Floor length front and back now, with the rags reaching further
+            // still. The boots are gone from the silhouette entirely, which is
+            // what lets the figure read as a column rather than as legs.
+            const hemY = 0.045 + 0.075 * ca - 0.030 * Math.sin(a * 7 + 0.6)
+                - 0.26 * ragDepth(a);
             const y = 0.990 + (hemY - 0.990) * v;
 
-            const rx = (0.158 + (0.345 - 0.158) * f) * pleat;
-            const rz = (0.128 + (0.318 - 0.128) * f * (1 - 0.12 * ca)) * pleat;
+            const rx = (0.158 + (0.412 - 0.158) * f) * pleat;
+            const rz = (0.128 + (0.384 - 0.128) * f * (1 - 0.14 * ca)) * pleat;
 
             const o = (j * p.cols + i) * 3;
             p.bindPos[o] = rx * sa;
@@ -192,37 +235,60 @@ function makeRobe() {
 }
 
 /**
- * The over-mantle: a short cape that clears the shoulders and falls to the
- * small of the back. Its job is to break up the vertical line of the robe and
- * to catch the light on the shoulders, which is the read that says "layered"
- * from fifteen metres.
+ * The over-mantle: the heavy cloak that carries the whole silhouette.
+ *
+ * This is the lightest-valued thing on the figure and the widest, so it is what
+ * the eye reads first: a broad wedge of grey-lavender over the shoulders that
+ * falls past the hips and tears out into tongues over a near-black robe. The
+ * value split between the two layers is the design — a mantle the same value as
+ * the robe collapses the figure into one dark mass no matter how it is cut.
+ *
+ * It stays clear of the forearms so the staff arm still reads, but it is long
+ * enough now that its rags overlap the robe's, which is what makes the two
+ * layers look like one ruined garment rather than two costume pieces.
  */
 function makeMantle() {
     const p = new ClothPanel({
-        name: "mantle", cols: 28, rows: 7, matId: M_MANTLE,
-        renderCols: 64, renderRows: 22,
-        weaveU: 1.35, weaveV: 0.72,
-        aoTop: 0.85, aoBottom: 0.6,
-        collide: C_TORSO | C_ARM_L | C_ARM_R,
+        // Forty-four columns, where the old short cape ran on twenty-eight.
+        // The count is set by the fold count and the fold count by the drawing:
+        // eleven narrow folds around a cloak, not four broad ones, and eleven
+        // folds need four columns each to survive the grid. Twenty-eight
+        // columns cannot carry eleven folds at any amplitude — they alias into
+        // a slow wobble, which is exactly what the pale satin sheet was.
+        name: "mantle", cols: 44, rows: 11, matId: M_MANTLE,
+        renderCols: 88, renderRows: 34,
+        weaveU: 1.55, weaveV: 1.20,
+        aoTop: 0.92, aoBottom: 0.34,
+        // The streamers reach the floor, so the bottom rows have to ride the
+        // snow like the robe's do.
+        collide: C_TORSO | C_ARM_L | C_ARM_R, groundRows: 3,
     });
 
-    const RATE = [Infinity, 40, 12, 4, 1.5, 0.8, 0.45];
+    // Held to the same floor as the robe's, and for the same reason — see the
+    // note there. The streamers hang to the knee, which is more leverage than
+    // anything else on the figure has.
+    const RATE = [
+        Infinity, 40, 12, 4, 1.8, 1.3, 1.05, 0.95, 0.88, 0.84, 0.80,
+    ];
     // The collar has to clear the torso it sits on: start it inside the
     // shoulders (0.176 across) and the top of the mantle only emerges at the
     // shoulder line, which reads as a flat plate bolted to the chest.
+    //
+    // Past the shoulders it keeps widening. The reference's cloak is markedly
+    // wider than the body at the hip — that overhang is what makes the figure
+    // read as tall, because it narrows the apparent waist by comparison.
     const RAD = [
         [0.00, 0.176, 0.148],
-        [0.20, 0.222, 0.176],
-        [0.55, 0.235, 0.196],
-        [1.00, 0.246, 0.214],
+        [0.18, 0.226, 0.180],
+        [0.45, 0.262, 0.222],
+        [0.72, 0.300, 0.262],
+        [1.00, 0.332, 0.296],
     ];
-    // Stops around the elbow, so the sleeves and their fur cuffs stay visible
-    // below it. A mantle long enough to cover the forearms swallows the whole
-    // silhouette into one dark mass.
     const YT = [
         [0.00, 1.442, 0],
-        [0.20, 1.352, 0],
-        [0.55, 1.220, 0],
+        [0.18, 1.348, 0],
+        [0.45, 1.180, 0],
+        [0.72, 0.980, 0],
         [1.00, 0.000, 0], // filled per column below
     ];
 
@@ -232,16 +298,43 @@ function makeMantle() {
         for (let i = 0; i < p.cols; i++) {
             const a = (i / p.cols) * Math.PI * 2;
             const sa = Math.sin(a), ca = Math.cos(a);
-            // Front hangs shorter than the back, and the edge scallops with the
-            // folds rather than cutting a clean arc.
-            YT[3][1] = 1.045 + 0.115 * ca + 0.035 * Math.sin(a * 7 + 1.4);
+            // Front hangs shorter than the back, and the edge tears out into
+            // the same rag field the robe uses — one storm, one garment.
+            // Streamers. A hem that tears evenly all the way round reads as a
+            // fringe; the reference has two or three narrow tongues hanging far
+            // below the rest, and those are what sell "ruined" over "trimmed".
+            // Rectified low-frequency lobes, so most of the tube is untouched
+            // and a couple of places drop most of a metre.
+            const streamer = 0.62 * Math.pow(
+                Math.max(0, Math.sin(a * 2 + 0.9)), 6
+            ) + 0.44 * Math.pow(Math.max(0, Math.sin(a * 3 - 1.8)), 8);
+            YT[4][1] = 0.700 + 0.130 * ca + 0.030 * Math.sin(a * 7 + 1.4)
+                - 0.30 * ragDepth(a + 1.1) - streamer;
             const y = curve(YT, v)[0];
-            const pleat = 1 + v * (0.062 * Math.sin(a * 7 + 1.4) + 0.026 * Math.sin(a * 11 + 3.0));
+            // Folds twice as deep as the old short cape carried, and three
+            // times as many. The cloak is now the lightest large surface on the
+            // figure, and a light surface with shallow folds is the one
+            // combination that reads as moulded plastic: enough light on it to
+            // see the shape, not enough shape to see.
+            //
+            // The 0.055 term is not scaled by `v`. Everything else here fades
+            // out at the collar, which is right for a hem fold and wrong for the
+            // shoulder — a cloak gathers where it is fastened, and leaving the
+            // top perfectly round is what made the shoulders read as a moulded
+            // yoke with cloth hanging off it.
+            const pleat = 1
+                + 0.055 * Math.sin(a * 11 + 1.4)
+                + v * (0.125 * Math.sin(a * 11 + 1.4) + 0.068 * Math.sin(a * 7 - 0.6));
+            // There is no cloth-cloth collision, so a streamer that hangs to
+            // the knee has to be cut *outside* the robe's flare or it spends
+            // half its life inside it. Widening only the streamer columns keeps
+            // the rest of the mantle where it belongs.
+            const flare = 1 + v * streamer * 0.58;
 
             const o = (j * p.cols + i) * 3;
-            p.bindPos[o] = rx * sa * pleat;
+            p.bindPos[o] = rx * sa * pleat * flare;
             p.bindPos[o + 1] = y;
-            p.bindPos[o + 2] = rz * ca * pleat - 0.012;
+            p.bindPos[o + 2] = rz * ca * pleat * flare - 0.012;
             p.bone[j * p.cols + i] = B_CHEST;
             p.pinRate[j * p.cols + i] = RATE[j];
         }
@@ -411,7 +504,12 @@ export class ClothSolver {
         // case anywhere.
         const wx = this._wind[0], wy = this._wind[1], wz = this._wind[2];
         const wmag = Math.hypot(wx, wy, wz);
-        const drag = 0.085 * wmag;
+        // Drag per unit of apparent wind, so the force below is quadratic in it.
+        // Down from 0.085, which was tuned when the garments were a knee-length
+        // robe and a shoulder cape. Both are now floor-length heavy wool, and
+        // the coefficient here stands in for area over mass — which went the
+        // wrong way for the old number when the mass tripled.
+        const drag = 0.055 * wmag;
         const damp = Math.pow(0.90, h * 60);
         const h2 = h * h;
 

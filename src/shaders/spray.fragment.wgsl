@@ -116,8 +116,12 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     var albedo = vec3f(0.92, 0.94, 0.98);
     var emit = vec3f(0.0);
     if (kind > 1.5 && kind < 2.5) {
-        albedo = vec3f(0.55, 0.22, 0.95);
-        emit = vec3f(0.85, 0.25, 1.6);
+        // Blue-violet, not magenta. Red and blue at similar strength comes out
+        // of the tone curve as pink, and a pink mote reads as a falling petal —
+        // which is what the plume looked like. Held well off the red axis it
+        // reads as light again, and it matches the orb these came off.
+        albedo = vec3f(0.42, 0.20, 0.98);
+        emit = vec3f(0.48, 0.22, 1.85);
     } else if (kind > 2.5) {
         albedo = vec3f(1.0, 0.45, 0.08);
         emit = vec3f(1.6, 0.55, 0.05);

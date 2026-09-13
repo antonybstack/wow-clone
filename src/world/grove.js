@@ -22,8 +22,8 @@ const _base = new Float32Array(3);
 const _splits = new Vector4(0, 0, 0, 0);
 
 /** Local tip / butt of the held staff, metres from the right-hand grip. */
-const STAFF_TIP_Y = 1.72;
-const STAFF_BASE_Y = -0.58;
+const STAFF_TIP_Y = 1.98;
+const STAFF_BASE_Y = -0.84;
 const STAFF_PITCH = -0.18;
 
 /**
@@ -413,14 +413,23 @@ export function buildGrove(scene, sky, terrain, shadows) {
 
     // Held warlock staff — gnarled shaft + separate glowing crystal tip.
     // Follows the right hand each frame; tip/base drive spell lights + embers.
+    // Planted on the ground and taller than the figure. Both matter: a staff
+    // held clear of the snow has nothing to cast the warm pool off, and a staff
+    // that tops out below the cowl puts the brightest thing in the frame behind
+    // the darkest, which is the one place it cannot be.
     const heldBuf = new MeshBuf();
-    heldBuf.cylinder(0.00, -0.55, 0.00, 0.018, 0.10, -0.012, 0.030, 6);
-    heldBuf.cylinder(0.018, 0.10, -0.012, -0.014, 0.55, 0.010, 0.027, 6);
-    heldBuf.cylinder(-0.014, 0.55, 0.010, 0.012, 1.05, -0.008, 0.025, 6);
-    heldBuf.cylinder(0.012, 1.05, -0.008, -0.006, 1.42, 0.006, 0.028, 6);
-    heldBuf.cylinder(-0.006, 1.42, 0.006, 0.000, 1.58, 0.000, 0.036, 7);
-    heldBuf.ellipsoid(0.022, 0.72, 0.018, 0.038, 0.055, 0.038, 5, 4);
-    heldBuf.ellipsoid(-0.020, 1.18, -0.016, 0.032, 0.048, 0.032, 5, 4);
+    heldBuf.cylinder(0.010, -0.86, 0.020, 0.022, -0.34, -0.010, 0.032, 6);
+    heldBuf.cylinder(0.022, -0.34, -0.010, -0.016, 0.14, 0.014, 0.029, 6);
+    heldBuf.cylinder(-0.016, 0.14, 0.014, 0.020, 0.62, -0.012, 0.027, 6);
+    heldBuf.cylinder(0.020, 0.62, -0.012, -0.014, 1.10, 0.012, 0.025, 6);
+    heldBuf.cylinder(-0.014, 1.10, 0.012, 0.018, 1.52, -0.010, 0.027, 6);
+    // The crook. A straight pole reads as a broom handle; the kink under the
+    // orb is what makes it a grown thing that was cut and kept.
+    heldBuf.cylinder(0.018, 1.52, -0.010, -0.026, 1.74, 0.022, 0.030, 6);
+    heldBuf.cylinder(-0.026, 1.74, 0.022, 0.000, 1.86, 0.000, 0.038, 7);
+    heldBuf.ellipsoid(0.024, 0.38, 0.020, 0.040, 0.058, 0.040, 5, 4);
+    heldBuf.ellipsoid(-0.022, 0.88, -0.018, 0.034, 0.050, 0.034, 5, 4);
+    heldBuf.ellipsoid(0.026, 1.34, 0.022, 0.030, 0.044, 0.030, 5, 4);
     const held = heldBuf.finish(scene, "heldStaff");
     held.material = bark;
     held.renderingGroupId = 1;
@@ -440,11 +449,19 @@ export function buildGrove(scene, sky, terrain, shadows) {
     const beadMat = mk("groveBead", 7, [1.2, 0.35, 2.0]);
     beadMat.alphaMode = 1;
     beadMat.disableDepthWrite = true;
+    // A hanging chain rather than a cluster. It runs down the front of the
+    // mantle into the dark half of the robe, which is the only thing putting
+    // light down there — the value ramp has taken the cloth itself to
+    // silhouette by that height, and an unbroken silhouette that tall is a
+    // shape, not a figure.
     const beadBuf = new MeshBuf();
     beadBuf.ellipsoid(0, 0, 0, 0.028, 0.028, 0.028, 8, 6);
-    beadBuf.ellipsoid(0.055, -0.04, 0.01, 0.018, 0.018, 0.018, 6, 5);
-    beadBuf.ellipsoid(-0.048, -0.06, -0.01, 0.015, 0.015, 0.015, 6, 5);
-    beadBuf.ellipsoid(0.02, -0.11, 0.02, 0.012, 0.012, 0.012, 5, 4);
+    beadBuf.ellipsoid(0.058, -0.05, 0.012, 0.019, 0.019, 0.019, 6, 5);
+    beadBuf.ellipsoid(-0.050, -0.09, -0.012, 0.016, 0.016, 0.016, 6, 5);
+    beadBuf.ellipsoid(0.030, -0.17, 0.020, 0.014, 0.014, 0.014, 5, 4);
+    beadBuf.ellipsoid(-0.026, -0.27, 0.014, 0.012, 0.012, 0.012, 5, 4);
+    beadBuf.ellipsoid(0.044, -0.36, -0.010, 0.010, 0.010, 0.010, 5, 4);
+    beadBuf.ellipsoid(-0.014, -0.46, 0.018, 0.009, 0.009, 0.009, 5, 4);
     const beads = beadBuf.finish(scene, "heldBeads");
     beads.material = beadMat;
     beads.renderingGroupId = 2;
@@ -525,9 +542,12 @@ export function buildGrove(scene, sky, terrain, shadows) {
          */
         declareHeldLights(lights) {
             // Cool violet key: tight, intense, lights the cowl and shoulder.
-            lights.add(_tip[0], _tip[1], _tip[2], 2.8, 0.72, 0.28, 1.15, 5.2);
-            // Warm ember pool at the butt — grounds the silhouette.
-            lights.add(_base[0], _base[1] + 0.08, _base[2], 1.9, 1.0, 0.48, 0.10, 2.4);
+            lights.add(_tip[0], _tip[1], _tip[2], 3.1, 0.72, 0.28, 1.15, 5.6);
+            // Warm ember pool where the staff meets the snow. It is the only
+            // warm source in the scene and it is at ground level, so it underlits
+            // the hem — the counter-key that keeps a floor-length robe from
+            // merging with the ground it is standing on.
+            lights.add(_base[0], _base[1] + 0.10, _base[2], 2.2, 1.0, 0.48, 0.10, 3.1);
         },
         /**
          * Magic dust off the crystal + warm embers at the butt.
@@ -535,20 +555,49 @@ export function buildGrove(scene, sky, terrain, shadows) {
          * @param {number} dt
          */
         emitAura(spray, dt) {
-            const nDust = Math.min(4, Math.max(1, Math.floor(dt * 55)));
+            // The plume. In the reference this is the tallest element in the
+            // frame after the staff itself — it leaves the orb and keeps going,
+            // well past the top of the canvas. Long lives and a real upward
+            // velocity, with the lateral spread deliberately narrow so it reads
+            // as a column of light rather than a puff around the orb.
+            const nDust = Math.min(5, Math.max(1, Math.floor(dt * 70)));
             for (let i = 0; i < nDust; i++) {
-                const jx = (Math.random() - 0.5) * 0.18;
-                const jy = (Math.random() - 0.5) * 0.18;
-                const jz = (Math.random() - 0.5) * 0.18;
+                const jx = (Math.random() - 0.5) * 0.14;
+                const jy = (Math.random() - 0.5) * 0.14;
+                const jz = (Math.random() - 0.5) * 0.14;
                 spray.emit(
                     _tip[0] + jx, _tip[1] + jy, _tip[2] + jz,
-                    (Math.random() - 0.5) * 0.25,
-                    0.15 + Math.random() * 0.35,
-                    (Math.random() - 0.5) * 0.25,
-                    0.012 + Math.random() * 0.018,
-                    0.7 + Math.random() * 1.1,
+                    (Math.random() - 0.5) * 0.20,
+                    0.75 + Math.random() * 0.95,
+                    (Math.random() - 0.5) * 0.20,
+                    0.012 + Math.random() * 0.020,
+                    1.3 + Math.random() * 1.5,
                     2, // purple magic
-                    1.4
+                    1.1
+                );
+            }
+
+            // Motes hanging in the air around the figure. The cloth carries its
+            // own (see `char.fragment.wgsl`), but those stop at the silhouette,
+            // and the reference's motes are in the *space* around the figure —
+            // which is what gives the air between camera and subject something
+            // in it and stops the glade reading as a backdrop. Near-zero
+            // velocity and a long life: they drift, they do not spray.
+            const nHalo = Math.min(3, Math.max(1, Math.floor(dt * 26)));
+            for (let i = 0; i < nHalo; i++) {
+                const a = Math.random() * Math.PI * 2;
+                const r = 0.35 + Math.random() * 1.15;
+                spray.emit(
+                    _base[0] + Math.cos(a) * r,
+                    _base[1] + 0.15 + Math.random() * 1.85,
+                    _base[2] + Math.sin(a) * r,
+                    (Math.random() - 0.5) * 0.09,
+                    0.06 + Math.random() * 0.16,
+                    (Math.random() - 0.5) * 0.09,
+                    0.008 + Math.random() * 0.012,
+                    2.2 + Math.random() * 2.4,
+                    2, // purple magic
+                    0.35
                 );
             }
             const nEmber = Math.min(3, Math.max(1, Math.floor(dt * 35)));

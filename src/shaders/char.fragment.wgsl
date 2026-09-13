@@ -74,6 +74,8 @@ uniform sssStrength: f32;
 /// only place the physical scale of the cloth is decided.
 uniform weaveDensity: f32;
 uniform screenSize: vec2f;
+/// Seconds since load. Only the garment motes use it.
+uniform time: f32;
 
 uniform spellLightPos: array<vec4f, 4>;
 uniform spellLightCol: array<vec4f, 4>;
@@ -234,8 +236,85 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     // ramp's top there keeps the darkening inside a single quad of the face and
     // lets the interpolation across it do the soft edge a lid actually has.
     if (slot == 4) {
-        // Warlock face void: deep cowl occlusion collapses skin toward black.
-        albedo *= mix(0.06, 1.0, smoothstep(0.08, 0.48, input.vAux.y));
+        // There is no face in the reference. Not a shadowed face — nothing, an
+        // opening with dark in it, and the frame is better for it: a hood with
+        // a void under it is the strongest thing in that drawing and it is
+        // strong precisely because the eye keeps going back to check.
+        //
+        // So the ramp is pushed above the whole range the head's occlusion bake
+        // actually occupies (0.16 at the crown to 0.38 at the chin), which
+        // leaves every part of the skull at a few percent of its reflectance.
+        // The eye sculpt in `sculptFace` is still in the mesh and no longer has
+        // anything to say, which is correct — an eye that reads is an eye that
+        // has to be good, and at this distance it never will be.
+        albedo *= mix(0.03, 1.0, smoothstep(0.30, 0.80, input.vAux.y));
+    }
+
+    // -------------------------------------------------- garment value ramp
+    // The reference is a value design before it is anything else: a pale
+    // grey-lavender cowl and shoulder standing over a hem that has gone to
+    // pure silhouette. Albedo is the only honest place to put that. Lighting
+    // cannot do it — the night fill is near-uniform over a two-metre figure, so
+    // darkening the bottom through shading means inventing an occluder that is
+    // not there, and the folds go with it.
+    //
+    // `vUV.y` is metres of fabric down the panel rather than a normalised
+    // coordinate, so the same ramp serves a robe cut to 1.6 m, a mantle cut to
+    // 1.2, and a cowl that only ever reaches 0.45 — the cowl gets the top of
+    // the ramp for free because it is physically short, not because it is
+    // special-cased. Sleeves and limbs are separate lofts that restart their
+    // arc length, which is why the staff arm keeps its value.
+    // The two layers ramp differently, and that difference is the point. The
+    // robe falls away from the waist down, because it is the dark half of the
+    // read and the eye should never find its hem. The cloak holds its value
+    // over nearly all of its area and only lets go across the torn bottom
+    // edge — it is the *light* half, and the eye measures that value from the
+    // broad panels, so a ramp that starts at the collar (which is what the
+    // robe's curve does if you share it) simply deletes the light half and
+    // leaves one purple mass with seams in it.
+    if (slot == 0) {
+        let drop = clamp(input.vUV.y * 0.66, 0.0, 1.0);
+        albedo *= mix(1.0, 0.13, drop * drop);
+    } else if (slot == 1) {
+        albedo *= mix(1.0, 0.18, smoothstep(0.86, 1.22, input.vUV.y));
+    }
+
+    // ------------------------------------------------------------------ motes
+    // In the reference the purple flecks are not a particle layer floating in
+    // front of the figure — they are *on* the cloth, points of the staff's
+    // colour settled into the weave, and they are most of what keeps the
+    // near-black lower half from reading as a hole cut in the frame.
+    //
+    // Hashed over the same fabric UVs the weave uses, so density is per metre
+    // of cloth and a mote stays put on the garment while it swings, instead of
+    // sliding across it the way anything screen- or world-space would.
+    var mote = vec3f(0.0);
+    if (slot == 0 || slot == 1 || slot == 5) {
+        let mg = input.vUV * vec2f(9.0, 12.0);
+        let cell = floor(mg);
+        let h = hash21(cell);
+        if (h > 0.88) {
+            // The centre is pushed off-grid per cell and the radius varies with
+            // it. An even lattice of identical dots is the one thing that would
+            // announce the whole effect as a texture.
+            let c = fract(mg) - vec2f(0.30 + 0.40 * hash21(cell + 17.3));
+            // Small. At three times this radius they stopped being glints
+            // caught in the cloth and became confetti stuck to it — the size is
+            // what decides whether the eye reads "light" or "object".
+            let r = 0.055 + 0.050 * h;
+            let d = 1.0 - smoothstep(r * 0.35, r, length(c));
+            // Each mote breathes on its own phase. In unison the garment pulses
+            // like a warning light.
+            let ph = uniforms.time * 1.7 + h * 62.0;
+            // Well off the red axis. At equal energy a magenta mote reads as a
+            // pink petal and a blue-violet one reads as a spark, and the staff
+            // it is supposed to have come from is blue-violet.
+            // Over 1.0 in blue on purpose: these have to clear the bloom
+            // threshold or they are pale specks painted on the cloth rather
+            // than lights sitting in it, and a mote a few pixels across has
+            // only its bloom to read by.
+            mote = vec3f(0.72, 0.26, 2.85) * d * (0.30 + 0.70 * (0.5 + 0.5 * sin(ph)));
+        }
     }
 
     // Fold occlusion from surface curvature.
@@ -270,7 +349,11 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     let dNy = dpdy(geoN);
     let curvature = dot(dNx, dp1) / max(dot(dp1, dp1), 1e-12)
                   + dot(dNy, dp2) / max(dot(dp2, dp2), 1e-12);
-    ao *= 1.0 - 0.42 * smoothstep(0.0, 1.0, -curvature * 0.030);
+    // Raised from 0.42 with the mantle's repalette. The term's visible effect
+    // scales with the albedo it multiplies, so the number that put readable
+    // creases in a 0.06 robe puts almost nothing in a 0.30 cloak, and the cloak
+    // is now the surface whose folds the whole silhouette depends on.
+    ao *= 1.0 - 0.52 * smoothstep(0.0, 1.0, -curvature * 0.030);
 
     // A shell's inside sees a fraction of the sky its outside does, and the hood
     // is one swept sheet: a single baked value at a vertex has to serve both
@@ -441,6 +524,11 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
             uniforms.spellLightPos, uniforms.spellLightCol, uniforms.spellLightCount
         ) * ao;
     }
+
+    // Motes go in after the lighting and before the fog: they are emitters, so
+    // nothing above should shade them, and the haze between here and the camera
+    // should still eat them at distance like any other light in the scene.
+    color += mote;
 
     // ------------------------------------------------------- aerial perspective
     let fogAmt = smoothstep(40.0, 95.0, length(world - uniforms.cameraPos));
