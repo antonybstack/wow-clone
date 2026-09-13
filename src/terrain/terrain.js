@@ -11,6 +11,7 @@ import { Color3 } from "@babylonjs/core/Maths/math.color";
 import { ShaderMaterial } from "@babylonjs/core/Materials/shaderMaterial";
 import { ShaderLanguage } from "@babylonjs/core/Materials/shaderLanguage";
 import { ProceduralTexture } from "@babylonjs/core/Materials/Textures/Procedurals/proceduralTexture";
+import { RawTexture } from "@babylonjs/core/Materials/Textures/rawTexture";
 import { Constants } from "@babylonjs/core/Engines/constants";
 
 import { Heightfield, WORLD_SIZE } from "./heightfield.js";
@@ -72,6 +73,7 @@ export class Terrain {
         this.detailTex.wrapU = Constants.TEXTURE_WRAP_ADDRESSMODE;
         this.detailTex.wrapV = Constants.TEXTURE_WRAP_ADDRESSMODE;
         this.detailTex.refreshRate = 0;
+        this.grassTex = makeGrassAtlas(scene);
 
         this.mesh = buildClipmapMesh(scene);
 
@@ -109,7 +111,7 @@ export class Terrain {
                     ...SPELL_LIGHT_UNIFORMS,
                 ],
                 samplers: [
-                    "heightTex", "auxTex", "detailTex", "skyLUT",
+                    "heightTex", "auxTex", "detailTex", "skyLUT", "grassTex",
                     "cascade0", "cascade1", "cascade2", "deformTex",
                 ],
                 shaderLanguage: ShaderLanguage.WGSL,
@@ -121,6 +123,7 @@ export class Terrain {
         mat.setTexture("auxTex", this.heightfield.auxTex);
         mat.setTexture("detailTex", this.detailTex);
         mat.setTexture("skyLUT", this.sky.lut);
+        mat.setTexture("grassTex", this.grassTex);
         for (let i = 0; i < CASCADE_COUNT; i++) {
             mat.setTexture("cascade" + i, this.shadows.maps[i]);
         }
@@ -290,7 +293,7 @@ export class Terrain {
 
         m.setVector3("sunDir", this.sky.sunDir);
         m.setColor3("sunRadiance", this.sky.sunRadiance);
-        m.setArray4("shR", this.sky.sh);
+        m.setArray4("shR", this.sky.shForShaders());
 
         bindMatrixArray(m, "cascadeMatrices", this.shadows.matrixData);
         _splits.set(
@@ -300,7 +303,7 @@ export class Terrain {
         m.setVector4("cascadeSplits", _splits);
         m.setArray4("cascadeParams", this.shadows.paramData);
         m.setFloat("shadowTexel", this.shadows.texelSize);
-        m.setFloat("shadowSoftness", 1.8);
+        m.setFloat("shadowSoftness", 2.4);
         // Metres. Snow has no thin geometry to peter-pan, so this can stay
         // small and keep contact shadows attached.
         m.setFloat("shadowBias", 0.022);
@@ -385,7 +388,52 @@ export class Terrain {
         this.mesh.dispose();
         this.material.dispose();
         this.detailTex.dispose();
+        this.grassTex.dispose();
         this.deform.dispose();
         this.heightfield.dispose();
     }
+}
+
+function makeGrassAtlas(scene) {
+    const w = 256;
+    const h = 256;
+    const data = new Uint8Array(w * h * 4);
+    const n2 = (x, y) => {
+        const s = Math.sin(x * 127.1 + y * 311.7) * 43758.5453;
+        return s - Math.floor(s);
+    };
+    for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+            const u = x / w;
+            const v = y / h;
+            const i = (y * w + x) * 4;
+            const blade = n2(u * 12.0, v * 14.0);
+            const clump = n2(u * 3.2 + 2.0, v * 2.8);
+            const fleck = n2(u * 18.0 + 8.0, v * 16.0);
+            let r = 0.08 + clump * 0.08 + blade * 0.06;
+            let g = 0.22 + clump * 0.20 + blade * 0.14;
+            let b = 0.05 + clump * 0.05;
+            if (fleck > 0.92) {
+                r = 0.52;
+                g = 0.18;
+                b = 0.40;
+            } else if (fleck > 0.88) {
+                r = 0.46;
+                g = 0.36;
+                b = 0.12;
+            }
+            data[i] = Math.min(255, r * 255) | 0;
+            data[i + 1] = Math.min(255, g * 255) | 0;
+            data[i + 2] = Math.min(255, b * 255) | 0;
+            data[i + 3] = 255;
+        }
+    }
+    const tex = RawTexture.CreateRGBATexture(
+        data, w, h, scene,
+        false, false,
+        Constants.TEXTURE_BILINEAR_SAMPLINGMODE
+    );
+    tex.wrapU = Constants.TEXTURE_WRAP_ADDRESSMODE;
+    tex.wrapV = Constants.TEXTURE_WRAP_ADDRESSMODE;
+    return tex;
 }

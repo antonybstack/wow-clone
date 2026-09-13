@@ -60,10 +60,12 @@ export class Sky {
         this.sunRadiance = new Color3(1, 1, 1);
         /** Shared radiometric scale for the sun and the baked sky. */
         this.sunScale = 1;
-        /** Radiance leaving the snow field, solved iteratively. */
+        /** Radiance leaving the glade lawn, solved iteratively. */
         this.groundBounce = new Color3(0, 0, 0);
         /** 36 floats: 9 SH coefficients as vec4, for the shader UBO. */
         this.sh = new Float32Array(36);
+        /** SH with `ambientBlue` applied — what materials actually bind. */
+        this._shUpload = new Float32Array(36);
 
         this._dirty = true;
 
@@ -168,11 +170,10 @@ export class Sky {
 
         this.sunScale = S.sunIntensity * SUN_SCALE_BASE;
 
-        // Direct sunlight reddens as it grazes: the lower the sun, the longer
-        // the path through the atmosphere and the more of the blue end is
-        // scattered out of the beam. At 13 degrees the beam has already lost
-        // most of its blue, which is what makes the warm-light / cool-shadow
-        // split physical rather than an art choice.
+        // Direct moonlight reddens only when Warmth is dialled up. At the
+        // dusk default (near zero) the beam stays cool cyan-white so the key
+        // and the cool SH fill stay in one family — sunTempWarm 0.32 under an
+        // indigo dome was the dual-lit look the glade had after the palette pass.
         const zenithDeg = (Math.acos(clamp(this.sunDir.y, -1, 1)) * 180) / Math.PI;
 
         // Kasten-Young air mass — stays finite at the horizon, unlike 1/cos.
@@ -240,9 +241,9 @@ export class Sky {
         await this.projectSH();
     }
 
-    /** Radiance leaving the snow, from everything currently landing on it. */
+    /** Radiance leaving the glade lawn, from everything currently landing on it. */
     _updateGroundBounce() {
-        // Irradiance arriving on horizontal ground: direct sun (cosine-weighted)
+        // Irradiance arriving on horizontal ground: direct moon (cosine-weighted)
         // plus the whole sky hemisphere, which the SH already integrates.
         const up = this._irradianceUp();
         const c = Math.max(0, this.sunDir.y);
@@ -251,12 +252,33 @@ export class Sky {
         const eb = this.sunRadiance.b * c + up[2];
 
         // Lambertian re-emission: L = albedo * E / PI.
+        // Dark moss/glade turf — the previous SNOW_ALBEDO (~0.22–0.36) bounced
+        // too much green-white fill into a lawn whose actual albedo is ~0.05–0.13.
         const k = 1 / Math.PI;
         this.groundBounce.set(
-            SNOW_ALBEDO[0] * er * k,
-            SNOW_ALBEDO[1] * eg * k,
-            SNOW_ALBEDO[2] * eb * k
+            GRASS_ALBEDO[0] * er * k,
+            GRASS_ALBEDO[1] * eg * k,
+            GRASS_ALBEDO[2] * eb * k
         );
+    }
+
+    /**
+     * SH coefficients for material upload, with `ambientBlue` on the B channel.
+     * The raw `sh` buffer stays unscaled so ground-bounce iteration stays honest.
+     * @returns {Float32Array}
+     */
+    shForShaders() {
+        const sh = this.sh;
+        const out = this._shUpload;
+        const blue = S.ambientBlue;
+        for (let i = 0; i < 9; i++) {
+            const o = i * 4;
+            out[o] = sh[o];
+            out[o + 1] = sh[o + 1];
+            out[o + 2] = sh[o + 2] * blue;
+            out[o + 3] = sh[o + 3];
+        }
+        return out;
     }
 
     /** SH irradiance for an up-facing normal. */
@@ -359,7 +381,7 @@ export class Sky {
         // The far range. Lit by the same radiance and the same SH the snow is —
         // see `shadeRidge` in the fragment shader.
         m.setColor3("sunRadiance", this.sunRadiance);
-        m.setArray4("shR", this.sh);
+        m.setArray4("shR", this.shForShaders());
         m.setFloat("ambientIntensity", S.ambientIntensity);
         m.setFloat("ridgeAmp", S.showMountains ? S.mountainHeight : 0);
 
@@ -383,5 +405,10 @@ const _shBasis = new Float32Array(9);
 const _irrTmp = new Float32Array(3);
 const _wind = new Vector2(0, 1);
 
-/** Fresh snow reflects most of what hits it, slightly more at the blue end. */
-const SNOW_ALBEDO = [0.83, 0.86, 0.91];
+/**
+ * Dark moss turf — has to match the glade lawn's own albedo band in
+ * `snow.fragment.wgsl`, or the bounce puts back a colour the ground never
+ * reflected. Cooled and dropped a third in step with that surface once the moon
+ * cleared the canopy.
+ */
+const GRASS_ALBEDO = [0.044, 0.074, 0.050];

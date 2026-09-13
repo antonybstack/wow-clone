@@ -169,7 +169,7 @@ export class SnowContact {
      */
     _walk(dt, moved) {
         const ch = this.character;
-        if (ch.speed < 0.25) return;
+        if (!ch.grounded || ch.speed < 0.25) return;
 
         const w = 1 - ch.surf;
         // Scaled by distance travelled, not by dt, so the groove has the same

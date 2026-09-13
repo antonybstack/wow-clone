@@ -66,6 +66,10 @@ import wakePrepassVert from "./wakePrepass.vertex.wgsl?raw";
 import wakePrepassFrag from "./wakePrepass.fragment.wgsl?raw";
 import crystalPrepassVert from "./crystalPrepass.vertex.wgsl?raw";
 
+import groveVert from "./grove.vertex.wgsl?raw";
+import groveFrag from "./grove.fragment.wgsl?raw";
+import groveDepthVert from "./groveDepth.vertex.wgsl?raw";
+
 
 const INCLUDES = {
     snowNoise: noiseLib,
@@ -129,6 +133,10 @@ const SHADERS = {
     wakePrepassVertexShader: wakePrepassVert,
     wakePrepassPixelShader: wakePrepassFrag,
     crystalPrepassVertexShader: crystalPrepassVert,
+
+    groveVertexShader: groveVert,
+    grovePixelShader: groveFrag,
+    groveDepthVertexShader: groveDepthVert,
 };
 
 let registered = false;

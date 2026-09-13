@@ -1,5 +1,5 @@
 /**
- * SNOWFLOW — entry point and frame orchestration.
+ * DUSKWELL — entry point and frame orchestration.
  *
  * WebGPU only, by design. No WebGL path, no feature-detect branches: if the
  * adapter isn't there we say so once and stop.
@@ -12,6 +12,7 @@ import { WebGPUEngine } from "@babylonjs/core/Engines/webgpuEngine";
 import "@babylonjs/core/Engines/AbstractEngine/abstractEngine.timeQuery";
 import { Scene } from "@babylonjs/core/scene";
 import { Vector3, Color3, Color4 } from "@babylonjs/core/Maths/math";
+import { Matrix } from "@babylonjs/core/Maths/math.vector";
 
 import { registerShaders } from "./shaders/registry.js";
 import { S, onChange } from "./core/settings.js";
@@ -34,9 +35,17 @@ import { DepthPass } from "./render/depthPass.js";
 import { PostChain } from "./post/postChain.js";
 import { whenReady } from "./core/gpuUtil.js";
 import * as loading from "./core/loading.js";
+import { emitIntent } from "./net/intents";
+import { Loadout } from "./game/loadout";
+import { Targeting } from "./game/targeting";
+import { buildGrove } from "./world/grove.js";
+import { Hud } from "./ui/hud.js";
 
 // ------------------------------------------------------- module-scope scratch
 const _vel = new Vector3();
+const _scr = new Vector3();
+const _ident = Matrix.Identity();
+const _clickPos = new Vector3();
 
 async function boot() {
     const canvas = /** @type {HTMLCanvasElement} */ (document.getElementById("view"));
@@ -125,8 +134,11 @@ async function boot() {
     await loading.phase("placing character", 0.62);
 
     const character = new CharacterController(terrain);
-    character.position.set(0, 0, 0);
-    character.position.y = terrain.heightAt(0, 0);
+    // South of Aethril, facing the tree — Shadowglen's path, not the origin.
+    character.position.set(2.4, 0, 18.5);
+    character.position.y = terrain.heightAt(2.4, 18.5);
+    character.facing = Math.atan2(-2.4, -18.5);
+    rig.yaw = character.facing;
 
     // The figure: skeleton, garment simulation, shell fur.
     const figure = new Character(scene, terrain, sky, shadows, character);
@@ -165,12 +177,57 @@ async function boot() {
     const overlay = new Overlay({ rig, character });
     initInput(canvas, { onToggleOverlay: () => overlay.toggle() });
 
+    const grove = buildGrove(scene, sky, terrain, shadows);
+    // Staff tip/base must declare into the same light pool as spells, after the
+    // hand pose is known and before consumers upload — so sync the held mesh
+    // here and skip the later duplicate.
+    spells.onBeforeApplyLights = (lights) => {
+        grove.syncHeld(figure, character.facing);
+        grove.declareHeldLights(lights);
+    };
+    const loadout = new Loadout();
+    figure.applyLoadout(loadout);
+    const targeting = new Targeting();
+    targeting.list = grove.npcs;
+
+    const project = (world, out) => {
+        const vp = rig.camera.viewport.toGlobal(
+            engine.getRenderWidth(), engine.getRenderHeight()
+        );
+        Vector3.ProjectToRef(world, _ident, scene.getTransformMatrix(), vp, out);
+        return out.z > 0 && out.z < 1 &&
+            out.x > -40 && out.x < vp.width + 40 &&
+            out.y > -40 && out.y < vp.height + 40;
+    };
+
+    const hud = new Hud(loadout, targeting, () => {
+        figure.applyLoadout(loadout);
+        emitIntent({ t: "equip", itemId: "sync", slot: "auto" });
+    }, project);
+
     // ------------------------------------------------------------- warm-up
     // Everything that can compile, compiles here — behind the loading screen.
     await loading.phase("compiling pipelines", 0.78);
     shadows.update(rig.camera, sky.sunDir);
     sky.render(rig, 0);
     await terrain.warmUp();
+    for (let i = 0; i < grove.mats.length; i++) {
+        const mat = grove.mats[i];
+        let mesh = grove.meshes[0];
+        for (let j = 0; j < grove.meshes.length; j++) {
+            if (grove.meshes[j].material === mat) {
+                mesh = grove.meshes[j];
+                break;
+            }
+        }
+        await whenReady(mat, "grove:" + mat.name, [mesh, false]);
+    }
+    for (let i = 0; i < grove.depthMats.length; i++) {
+        const mat = grove.depthMats[i];
+        const name = mat.name.replace(/^groveDepth_/, "").replace(/[01]$/, "");
+        const mesh = scene.getMeshByName(name) || grove.meshes[0];
+        await whenReady(mat, "groveDepth:" + mat.name, [mesh, false]);
+    }
     terrain.update(rig.camera.position, character.position, 0);
     figure.update(0);
     figure.sync(rig.camera.position);
@@ -204,6 +261,7 @@ async function boot() {
     let prev = performance.now();
     let time = 0;
 
+    loading.releaseInput();
     engine.runRenderLoop(() => {
         const now = performance.now();
         let dtMs = now - prev;
@@ -213,6 +271,48 @@ async function boot() {
         time += dt;
 
         pollInput();
+        // Mouse look before locomotion so RMB facing matches this frame.
+        rig.applyLook();
+
+        if (input.tabPressed || input.tabBack) {
+            rig.getFlatForward(_vel);
+            const t = targeting.tab(character.position, _vel, input.tabBack);
+            emitIntent({ t: "tab" });
+            emitIntent({ t: "select", id: t ? t.id : null });
+        }
+        if (input.clicked) {
+            let best = null;
+            let bestD = 40 * 40;
+            for (let i = 0; i < grove.npcs.length; i++) {
+                const n = grove.npcs[i];
+                _clickPos.copyFrom(n.position);
+                _clickPos.y += 1.1;
+                if (!project(_clickPos, _scr)) continue;
+                const dx = _scr.x - input.clickX;
+                const dy = _scr.y - input.clickY;
+                const d = dx * dx + dy * dy;
+                if (d < bestD) {
+                    bestD = d;
+                    best = n;
+                }
+            }
+            targeting.select(best ? best.id : null);
+            emitIntent({ t: "select", id: best ? best.id : null });
+        }
+        if (input.toggleBag) hud.toggleBag();
+        if (input.togglePaper) hud.togglePaper();
+        if (input.escape) {
+            if (!hud.closeTop()) {
+                targeting.clear();
+                emitIntent({ t: "select", id: null });
+            }
+        }
+        if (input.moving) {
+            emitIntent({ t: "move", x: input.strafe, z: input.forward, sprint: input.sprint });
+        }
+        if (input.jump && character.grounded) {
+            emitIntent({ t: "jump" });
+        }
 
         // Per-system CPU timing. Babylon's WebGPU timestamp queries are
         // whole-frame, so the GPU row is a total and these are not subdivisions
@@ -220,6 +320,9 @@ async function boot() {
         const tFrame = performance.now();
 
         character.update(dt, rig);
+        if (input.lmb || input.rmb || input.turn !== 0) {
+            emitIntent({ t: "look", yaw: rig.yaw, pitch: rig.pitch });
+        }
         terrain.heightfield.clampToPlayArea(character.position);
         // Pose and simulate before the contact pass: the footprints are stamped
         // at the boot's actual planted position, which only exists once the
@@ -245,10 +348,13 @@ async function boot() {
         spells.update(dt, rig.camera.position);
         const tSpells = performance.now();
         terrain.update(rig.camera.position, character.position, dt);
+        grove.update(rig.camera, time);
+        hud.update(character.position);
         const tTerrain = performance.now();
         // After the shadow refit, so the figure's uniforms carry this frame's
         // cascade matrices rather than last frame's.
         figure.sync(rig.camera.position);
+        grove.emitAura(spray, dt);
         // Before the spray: the wake decides where its own lip is, and the
         // grains it sheds have to be in the pool before the pool is uploaded.
         wake.update(dt, rig.camera.position);
@@ -273,6 +379,7 @@ async function boot() {
             (S.showCharacter ? figure.triangles : 0) +
             (wake.mesh.isVisible ? wake.mesh.metadata.triangles : 0) +
             spells.triangles +
+            grove.triangles +
             spray.liveCount * 2;
 
         sample(dtMs);
@@ -288,8 +395,10 @@ async function boot() {
     globalThis.SNOWFLOW = {
         engine, scene, rig, character, figure, contact, spray, wake, spells,
         overlay, terrain, sky, shadows, post, depthPass,
+        grove, loadout, targeting, hud,
         S, input, perfStats: stats,
     };
+    globalThis.DUSKWELL = globalThis.SNOWFLOW;
 }
 
 boot().catch((err) => {

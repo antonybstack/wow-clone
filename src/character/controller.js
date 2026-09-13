@@ -1,16 +1,10 @@
 /**
- * Character locomotion + snow-surf physics.
+ * Character locomotion. Motion only — the figure reads this state.
  *
- * This owns motion only — the visual rig, cloth and fur read the state this
- * produces. Two modes share one integrator:
- *
- *  - WALK: camera-relative desired velocity, eased facing, distance-driven gait
- *    phase so footfalls land where the feet actually are (no sliding).
- *  - SURF: momentum-carrying. Thrust along facing, steering from mouse yaw,
- *    strong lateral grip that bleeds into a drift as you push the carve, and
- *    slope-driven acceleration so dropping down a dune face feels like a gain.
- *
- * Blending between them is eased in both directions; there is no snap.
+ * WoW keyboard: W/S along facing, A/D turn (camera follows unless LMB
+ * is orbiting), Q/E strafe. RMB snaps facing to the camera and A/D strafe.
+ * Start and stop are instant. Default is a run; Shift walks.
+ * Space jumps; hold Space to hop again on landing. Gravity owns Y in the air.
  */
 
 import { Vector3 } from "@babylonjs/core/Maths/math.vector";
@@ -25,9 +19,17 @@ const _tmp = new Vector3();
 const _n = new Vector3();
 
 const WALK_SPEED = 2.5;
-const RUN_SPEED = 5.4;
-const WALK_ACCEL = 26;
-const WALK_DECEL = 30;
+const RUN_SPEED = 7.0;
+const TURN_RATE = 2.55;
+/**
+ * Straight up. 6.6 m/s against this gravity is a 1.05 m apex over 0.63 s.
+ *
+ * Was 8.4, which is 1.70 m — a figure 1.79 m tall clearing its own shoulders,
+ * and high enough that the legs had nothing to do for most of the arc.
+ */
+const JUMP_SPEED = 6.6;
+const GRAVITY = 20.8;
+const GROUND_SNAP = 0.06;
 
 const SURF_MAX = 19.5;
 const SURF_THRUST = 11.0;
@@ -35,8 +37,46 @@ const SURF_DRAG = 0.42;
 const SURF_TURN = 2.35; // rad/s at full steer
 const SURF_GRIP = 7.5;
 
-/** Gait: metres of travel per full stride cycle, scaled by speed. */
-const STRIDE_BASE = 1.55;
+/**
+ * Gait: cadence in full stride cycles per second, at walking and running pace.
+ *
+ * Stride *length* is derived from cadence here rather than the other way round,
+ * because cadence is what the eye actually reads. A fixed 1.55 m stride cycled
+ * the legs 4.5 times a second at the 7 m/s run — nine footfalls a second, a
+ * blur, and a step the legs could not physically reach. Between a stroll and a
+ * hard run a real cadence barely doubles; it is the stride that stretches.
+ */
+const CADENCE_WALK = 1.18;
+const CADENCE_RUN = 2.05;
+
+/**
+ * Duty factor: the fraction of a cycle each foot carries weight.
+ *
+ * A walk overlaps (both feet down through the middle of it), a run has a flight
+ * phase and no overlap at all. This is also the lever that lets a run cover a
+ * 3.4 m stride on a 0.81 m leg: the stance only has to reach across
+ * `duty * stride`, and the rest of the ground is covered in the air.
+ */
+const DUTY_WALK = 0.62;
+const DUTY_RUN = 0.30;
+
+/** Shortest stride worth holding at a crawl, metres. */
+const STRIDE_MIN = 0.85;
+
+/** Share of the stance excursion that sits in front of the hip at touchdown. */
+export const CONTACT_SHARE = 0.42;
+
+/** How far along the travel direction the grade is measured, metres. */
+const GRADE_PROBE = 0.7;
+
+/**
+ * How hard a grade shortens the stride.
+ *
+ * Tuned to the least that holds the leg together: at 1.0 a 37° face was costing
+ * 43% of the stride and cycling the legs six times a second, where 0.5 covers
+ * the same slope with reach to spare.
+ */
+const GRADE_COST = 0.5;
 
 export class CharacterController {
     /**
@@ -84,6 +124,30 @@ export class CharacterController {
 
         // ------------------------------------------------------------- gait
         this.gaitPhase = 0;
+        /** Speed as a fraction of a full run. The figure poses off this. */
+        this.run01 = 0;
+        /**
+         * Metres of travel per full stride cycle, and the fraction of that
+         * cycle a foot is down.
+         *
+         * Published rather than re-derived in the figure: the phase that decides
+         * *when* a foot plants and the offset that decides *where* have to come
+         * out of the same two numbers, or the feet skate.
+         */
+        this.stride = STRIDE_MIN;
+        this.duty = DUTY_WALK;
+        /** Damped grade along the direction of travel, rise over run. */
+        this.grade = 0;
+        /** How far ahead of the body a foot touches down, metres. */
+        this.stepAhead = 0;
+        /**
+         * Unit direction of travel — the axis the gait steps along.
+         *
+         * Not the same thing as the facing, and the difference is the whole of
+         * strafing and backpedalling. Falls back to the facing when stopped.
+         */
+        this.moveDirX = 0;
+        this.moveDirZ = 1;
         /**
          * True when the legs should be running a gait at all.
          *
@@ -103,6 +167,13 @@ export class CharacterController {
 
         this.groundY = 0;
         this.groundNormal = new Vector3(0, 1, 0);
+        this.grounded = true;
+
+        /** Seconds airborne, and seconds since the last landing. */
+        this.airTime = 0;
+        this.landTime = 10;
+        /** 0..1 how hard the last landing was, from the vertical speed at contact. */
+        this.landImpact = 0;
 
         this._prevSpeed = 0;
     }
@@ -115,16 +186,10 @@ export class CharacterController {
         const h = Math.min(dt, 1 / 30);
 
         this.prevVelocity.copyFrom(this.velocity);
-        this.surfActive = input.surf;
+        this.surfActive = false;
+        this.surf = 0;
 
-        // Ease the surf blend — entering and exiting are transitions, not switches.
-        this.surf = expDamp(this.surf, this.surfActive ? 1 : 0, this.surfActive ? 2.6 : 3.4, h);
-
-        rig.getFlatForward(_fwd);
-        rig.getFlatRight(_right);
-
-        if (this.surf > 0.5) this._surfStep(h, rig);
-        else this._walkStep(h);
+        this._walkStep(h, rig);
 
         // ---------------------------------------------------- integrate + snap
         this.position.x += this.velocity.x * h;
@@ -132,8 +197,7 @@ export class CharacterController {
 
         this.groundY = this.terrain.heightAt(this.position.x, this.position.z);
         this.terrain.normalAt(this.position.x, this.position.z, this.groundNormal);
-        // Snap with a little softness so micro-ripples don't jitter the rig.
-        this.position.y = expDamp(this.position.y, this.groundY, 26, h);
+        this._vertical(h);
 
         // --------------------------------------------------------- bookkeeping
         this.speed = Math.hypot(this.velocity.x, this.velocity.z);
@@ -142,48 +206,84 @@ export class CharacterController {
         this.acceleration.x = (this.velocity.x - this.prevVelocity.x) / h;
         this.acceleration.z = (this.velocity.z - this.prevVelocity.z) / h;
 
-        // Lateral acceleration → lean. Project accel onto the character's right.
-        const rx = Math.cos(this.facing);
-        const rz = -Math.sin(this.facing);
-        const latAcc = this.acceleration.x * rx + this.acceleration.z * rz;
-        const leanWant = Scalar.Clamp(latAcc / 26, -1, 1) * (0.35 + 0.65 * this.surf);
-        this.lean = expDamp(this.lean, leanWant, 6.5, h);
-        this.carve = expDamp(this.carve, leanWant, 9, h);
+        this.lean = expDamp(this.lean, 0, 10, h);
+        this.carve = 0;
 
         this.streak01 = this.surf * Scalar.Clamp((this.speed - 7) / 11, 0, 1);
 
         this._gait(h);
     }
 
-    _walkStep(h) {
-        const maxSpeed = input.sprint ? RUN_SPEED : WALK_SPEED;
+    _walkStep(h, rig) {
+        if (input.rmb) {
+            // The rig already took `input.lookX` this frame, so taking the same
+            // delta turns the body and the camera in lockstep.
+            //
+            // Assigning `facing = rig.yaw` instead snapped the character on the
+            // frame RMB went down, by whatever gap an earlier LMB orbit had
+            // opened between the two — which reads as the view jerking sideways
+            // the instant you press the button. Any residual gap is closed by
+            // the damp below rather than in one frame.
+            this.facing += input.lookX;
+            this.facing = angleDamp(this.facing, rig.yaw, 9, h);
+        } else if (input.turn !== 0) {
+            const d = input.turn * TURN_RATE * h;
+            this.facing += d;
+            // Keyboard turn yaws the camera too, unless LMB is orbiting.
+            if (!input.lmb) rig.yaw += d;
+        }
+
+        const maxSpeed = input.walk ? WALK_SPEED : RUN_SPEED;
+        const fx = Math.sin(this.facing);
+        const fz = Math.cos(this.facing);
+        const rx = Math.cos(this.facing);
+        const rz = -Math.sin(this.facing);
 
         _wish.set(
-            _fwd.x * input.moveZ + _right.x * input.moveX,
+            fx * input.forward + rx * input.strafe,
             0,
-            _fwd.z * input.moveZ + _right.z * input.moveX
+            fz * input.forward + rz * input.strafe
         );
 
         const wishLen = Math.hypot(_wish.x, _wish.z);
         if (wishLen > 0.001) {
-            _wish.x = (_wish.x / wishLen) * maxSpeed;
-            _wish.z = (_wish.z / wishLen) * maxSpeed;
-
-            const a = WALK_ACCEL * h;
-            this.velocity.x += Scalar.Clamp(_wish.x - this.velocity.x, -a, a);
-            this.velocity.z += Scalar.Clamp(_wish.z - this.velocity.z, -a, a);
-
-            // Face the direction of travel, eased.
-            const want = Math.atan2(_wish.x, _wish.z);
-            this.facing = angleDamp(this.facing, want, 11, h);
+            this.velocity.x = (_wish.x / wishLen) * maxSpeed;
+            this.velocity.z = (_wish.z / wishLen) * maxSpeed;
         } else {
-            const d = WALK_DECEL * h;
-            const s = Math.hypot(this.velocity.x, this.velocity.z);
-            if (s > 0.0001) {
-                const k = Math.max(0, s - d) / s;
-                this.velocity.x *= k;
-                this.velocity.z *= k;
+            this.velocity.x = 0;
+            this.velocity.z = 0;
+        }
+    }
+
+    _vertical(h) {
+        if (this.grounded) {
+            this.landTime += h;
+            this.airTime = 0;
+            if (input.jump) {
+                this.velocity.y = JUMP_SPEED;
+                this.grounded = false;
+                this.position.y = this.groundY;
+                return;
             }
+            this.velocity.y = 0;
+            this.position.y = expDamp(this.position.y, this.groundY, 26, h);
+            if (this.position.y <= this.groundY + GROUND_SNAP) {
+                this.position.y = this.groundY;
+            }
+            return;
+        }
+
+        this.airTime += h;
+        this.velocity.y -= GRAVITY * h;
+        this.position.y += this.velocity.y * h;
+        if (this.position.y <= this.groundY && this.velocity.y <= 0) {
+            // Landing. The figure reads `landImpact` and `landTime` to absorb
+            // through the knees instead of arriving rigid.
+            this.landImpact = Scalar.Clamp(-this.velocity.y / JUMP_SPEED, 0, 1.2);
+            this.landTime = 0;
+            this.position.y = this.groundY;
+            this.velocity.y = 0;
+            this.grounded = true;
         }
     }
 
@@ -247,6 +347,42 @@ export class CharacterController {
      */
     _gait(h) {
         this.footfall = false;
+        this.run01 = Scalar.Clamp(this.speed / RUN_SPEED, 0, 1);
+
+        if (this.speed > 0.05) {
+            this.moveDirX = this.velocity.x / this.speed;
+            this.moveDirZ = this.velocity.z / this.speed;
+        } else {
+            this.moveDirX = Math.sin(this.facing);
+            this.moveDirZ = Math.cos(this.facing);
+        }
+
+        // Cadence rises with pace, duty falls, and the stride is whatever
+        // distance those two imply. Kept outside the `stepping` gate below so
+        // the figure always has a sane pair of numbers to pose from.
+        const cadence = CADENCE_WALK + (CADENCE_RUN - CADENCE_WALK) * this.run01;
+        this.duty = DUTY_WALK + (DUTY_RUN - DUTY_WALK) * this.run01;
+        // Shorter steps on a grade — what a person does, and what the leg can
+        // afford. The stance excursion runs along the direction of travel, so a
+        // slope along that direction costs the leg `grade * excursion` of
+        // vertical span on top of the horizontal reach it already owes. Left to
+        // its full length, a stride taken downhill put the trailing foot half a
+        // metre below the hip and the leg simply could not span it.
+        //
+        // Damped, because this is a single point sample of a noisy heightfield
+        // and the stride it feeds sets the rate the gait phase advances at — an
+        // undamped grade pops the cadence frame to frame. Flat ground leaves
+        // this at exactly 1.
+        const probeX = this.position.x + this.moveDirX * GRADE_PROBE;
+        const probeZ = this.position.z + this.moveDirZ * GRADE_PROBE;
+        const sample = Math.abs(this.terrain.heightAt(probeX, probeZ) - this.groundY) / GRADE_PROBE;
+        this.grade = expDamp(this.grade, sample, 6, h);
+        this.stride = Math.max(STRIDE_MIN, this.speed / cadence / (1 + GRADE_COST * this.grade));
+        // The body travels `duty * stride` while a foot is down, so that is how
+        // far the foot must travel backwards relative to the hip. Splitting it
+        // slightly behind-heavy puts contact ahead of the hip and toe-off well
+        // behind it, which is where a real foot spends its stance.
+        this.stepAhead = this.duty * this.stride * CONTACT_SHARE;
 
         // Feet stay on the board while surfing — and for the run-out afterwards.
         //
@@ -255,16 +391,15 @@ export class CharacterController {
         // travelling at nineteen metres a second. The gait is distance-driven, so
         // it answered that with a twelve-hertz cadence and the legs blurred. A
         // sprint is the fastest thing anyone walks at; above it, glide.
-        this.stepping = this.surf <= 0.5 && this.speed <= RUN_SPEED * 1.2;
+        this.stepping = this.grounded && this.surf <= 0.5 && this.speed <= RUN_SPEED * 1.2;
         if (!this.stepping) {
             this.gaitPhase = 0;
             return;
         }
 
         const dist = this.speed * h;
-        const stride = STRIDE_BASE * (0.72 + 0.28 * Math.min(1, this.speed / RUN_SPEED));
         const prev = this.gaitPhase;
-        this.gaitPhase = (this.gaitPhase + dist / stride) % 1;
+        this.gaitPhase = (this.gaitPhase + dist / this.stride) % 1;
 
         if (this.speed < 0.15) return;
 
@@ -277,14 +412,20 @@ export class CharacterController {
         this.footIndex = this.gaitPhase < 0.5 ? 0 : 1;
         this.footImpact = Scalar.Clamp(0.35 + this.speed / RUN_SPEED, 0, 1.3);
 
-        // Offset the plant to the correct side of the body.
-        const side = this.footIndex === 0 ? -0.17 : 0.17;
-        const rx = Math.cos(this.facing);
-        const rz = -Math.sin(this.facing);
+        // Where the foot actually lands: `stepAhead` along the direction of
+        // travel, offset to the correct side of it. Placing this under the body
+        // left the footprints trailing the boots by most of a step at a run.
+        //
+        // Both terms use the travel frame, matching the figure — see the step
+        // axis note in `_updateFeet` there.
+        const side = this.footIndex === 0 ? -0.105 : 0.105;
+        // Centred under the stepping hip, matching the figure.
+        const hipAlong = Math.cos(this.facing) * this.moveDirX - Math.sin(this.facing) * this.moveDirZ;
+        const ahead = this.stepAhead + hipAlong * (this.footIndex === 0 ? -0.10 : 0.10);
         this.footPos.set(
-            this.position.x + rx * side,
+            this.position.x + this.moveDirX * ahead + this.moveDirZ * side,
             this.position.y,
-            this.position.z + rz * side
+            this.position.z + this.moveDirZ * ahead - this.moveDirX * side
         );
     }
 }

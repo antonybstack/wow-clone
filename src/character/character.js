@@ -39,50 +39,120 @@ const CHAR_CASCADES = 2;
 
 /**
  * Material palette. Eight slots, uploaded as two vec4 arrays so every value is
- * live-tunable and nothing is baked into the shader: deep indigo wool, a
- * lighter blue-grey mantle, a pale under-layer at the collar, dark leather.
+ * live-tunable and nothing is baked into the shader.
  *
- * Two properties of these numbers are deliberate and were measured off the
- * render rather than picked as colours.
+ * Warm, and alone in being warm. The glade is cool blue-grey through moss to a
+ * dusty rose, so an ember hero separates from the grass, from the canopy and
+ * from the sky at any distance — where the old violet robe sat in the same hue
+ * band as all three and read as a dark smudge.
  *
- * They are *very* saturated. At thirteen degrees the sun has lost most of its
- * blue — the direct beam here is roughly 17:13:6 — so a merely blue-ish albedo
- * comes back out of the multiply as warm grey. The blue has to be about four
- * times the red in the albedo just to survive to two-to-one in the lit areas.
+ * The constraint that actually sets these numbers is *value spread*, not hue.
+ * An earlier pass picked six tones that were all handsome and all within a
+ * third of a stop of each other, and the figure came back as a single orange
+ * silhouette with a seam where the mantle should have been: at night the fill
+ * is broad and nearly directionless, so a garment boundary is only visible if
+ * the two albedos differ in brightness. Read down the luminances here and they
+ * step about half a stop at a time — leather 0.022, scarf 0.033, under-tunic
+ * 0.035, robe 0.053, mantle 0.108, skin 0.138 — which is what makes the
+ * shoulders sit in front of the chest and the chest in front of the sleeves.
  *
- * They are *very* dark. AgX compresses hard, so an eighth of the snow's albedo
- * is only about three stops down and lands near mid grey on screen. Anything
- * lighter stops reading as a silhouette against the field, which is the one
- * thing the figure has to do at fifteen metres.
+ * Skin is the brightest slot and that is deliberate. It is also carrying the
+ * heaviest baked occlusion in the mesh, so what survives is a sliver of lit
+ * brow inside a dark cowl: the eye goes to the face because it is the one
+ * high-key note on the model, without the face itself ever being bright.
+ *
+ * The absolute level is set by the tone curve, and getting it wrong is what
+ * every previous pass here got wrong. Successive rounds of "the robe looks hot"
+ * walked the reflectances down until the robe sat at 0.053 luminance — darker
+ * than charcoal, and darker than the lawn it stands on. Measured off a frame
+ * with the figure in full key light, the entire costume then spanned 0.016 to
+ * 0.037 linear: one and a quarter stops, all of it inside AgX's toe, where the
+ * curve's slope is low enough that shading is compressed to nothing on the way
+ * to the display. That is what "the character looks flat" was. It was never a
+ * shading problem — there was nothing wrong with the BRDF, the light or the
+ * shadows. There was simply no reflectance for any of them to act on.
+ *
+ * So these are stated as reflectances a dyed wool garment actually has, and the
+ * ladder is in luminance: leather 0.042, scarf 0.088, under-tunic 0.095, robe
+ * 0.115, mantle 0.180, skin 0.289. Darkest to brightest is two and three
+ * quarter stops of albedo alone, and with a terminator on top the figure covers
+ * a little over four — which is enough for the light side, the turn and the
+ * shadow side to be three distinguishable things.
+ *
+ * The order at the top of that list is composition, not realism. Skin is the
+ * brightest slot by two thirds of a stop over the next one down, because the
+ * face is what the frame is about and it is also the smallest thing on the
+ * model: the mantle is twenty times its area, so at equal value the cape wins
+ * on area alone and the eye never arrives at the head. An earlier pass had the
+ * mantle at 0.215 and that is precisely what happened — a pale trapezoid across
+ * the chest that read as an apron and took the whole silhouette with it.
+ *
+ * Hue does one job here that value cannot, which is to keep the face off the
+ * cape. An earlier version of this ladder had the mantle at a russet so close
+ * to skin that the two were within a few percent in every channel, and since
+ * the mantle is twenty times the area of the visible face, the face simply
+ * joined it — a head-shaped continuation of the shoulders. The mantle is now a
+ * greige wool: it is still the second brightest thing on the model, but it is
+ * neutral, so the two warm notes on the figure are the ember robe and the face,
+ * and nothing competes with them on hue.
+ *
+ * Slots 0, 1 and 3 are only the unequipped defaults: `Loadout.applyToFigure`
+ * writes over robe, mantle and leather from whatever gear is on. Any change to
+ * the value hierarchy here has to be made in `ITEMS` as well or it will be
+ * overwritten on the first frame.
  */
 const PALETTE = [
-    // rgb, roughness
-    [0.030, 0.048, 0.125, 0.80], // 0 robe, deep indigo
-    [0.075, 0.105, 0.185, 0.74], // 1 mantle, blue-grey
-    [0.230, 0.225, 0.205, 0.82], // 2 collar lining, warm pale
-    [0.048, 0.033, 0.024, 0.60], // 3 leather
-    [0.135, 0.095, 0.072, 0.85], // 4 skin, deep in shade
-    [0.120, 0.195, 0.310, 0.70], // 5 trim / scarf, pale blue
-    [0.700, 0.720, 0.760, 0.85], // 6 fur (unused by the fabric shader)
+    // rgb, roughness — warlock plate: deep indigo wool, not ember daywear.
+    // Authored cooler than they render: sky fill is blue-heavy, so B is kept
+    // from racing ahead of R/G into lavender candy.
+    [0.095, 0.052, 0.135, 0.84], // 0 robe, midnight indigo
+    [0.058, 0.044, 0.078, 0.74], // 1 mantle, charcoal-violet (darker than robe)
+    [0.070, 0.062, 0.078, 0.80], // 2 under-tunic, shadowed linen
+    [0.028, 0.022, 0.020, 0.48], // 3 leather, near-black hide
+    // Face is a void under the cowl — keep skin dark enough that the opening
+    // reads as shadow, not a mannequin. Staff light paints the rim, not the face.
+    [0.095, 0.062, 0.052, 0.68], // 4 skin (dim)
+    [0.048, 0.028, 0.055, 0.76], // 5 trim / scarf, dark violet wool
+    [0.090, 0.095, 0.120, 0.85], // 6 fur
     [0.100, 0.100, 0.100, 0.80], // 7 spare
 ];
 
 /**
  * (sheen, anisotropy, transmission, weave depth) per slot.
  *
- * Transmission is the number to be careful with. Sunlight through a *blue*
- * robe, multiplied by a *warm* sun, comes back grey — so a generous
+ * Transmission is the number to be careful with. Moonlight through a *warm*
+ * robe, multiplied by a *cool* beam, comes back grey — so a generous
  * transmission term does not make the garment glow, it desaturates it to the
  * point where the albedo stops mattering. Heavy wool is close to opaque; only
  * the thin under-layer gets a real value.
+ *
+ * Weave depth is zero on skin and near zero on leather. Running the fabric
+ * weave over both was most of why the face read as a cloth panel: the same
+ * thread ridges that sell wool turn a cheek into upholstery.
+ *
+ * Anisotropy is the other one. It stretches the GGX lobe along the weave's warp
+ * direction, which is correct and which at 0.55 drew a hard bright stripe down
+ * every thread row on a lit sleeve — a metre of arm came back as corduroy. The
+ * weave is 210 threads to the metre, so in a close shot each of those stripes
+ * is several pixels wide and there is nothing to break them up.
  */
 const PARAMS = [
-    [0.22, 0.55, 0.05, 1.00],
-    [0.28, 0.45, 0.07, 0.90],
-    [0.35, 0.30, 0.22, 1.10],
-    [0.06, 0.20, 0.01, 0.35],
-    [0.05, 0.00, 0.08, 0.00],
-    [0.25, 0.60, 0.12, 1.00],
+    [0.26, 0.36, 0.05, 0.85],
+    // The mantle is the one garment held a stop above the robe, so it is also
+    // the one where a white sheen veil does the most damage: at 0.34 it lifted
+    // an already-light russet into a pale dusty pink and took the shoulders
+    // with it. Sheen is fibre scatter and it belongs at the edge, not over the
+    // whole panel.
+    [0.20, 0.32, 0.06, 0.80],
+    // The under-tunic is the deepest weave on the model and it shows as a narrow
+    // band in the mantle's shadow, where the display curve is steepest — so a
+    // thread pattern that is invisible on a lit sleeve came out as visible net
+    // across the one part of the costume that is nearly black. Depth has to be
+    // read against what the fabric is lit by, not against how thin it is.
+    [0.30, 0.22, 0.20, 0.62],
+    [0.05, 0.18, 0.01, 0.22],
+    [0.04, 0.00, 0.10, 0.00],
+    [0.28, 0.40, 0.14, 0.90],
     [1.00, 0.00, 0.90, 0.00],
     [0.20, 0.00, 0.00, 0.50],
 ];
@@ -90,7 +160,17 @@ const PARAMS = [
 // ------------------------------------------------------- module-scope scratch
 const _droop = new Vector3();
 const _screen = new Vector2();
-const _furCol = new Color3(0.74, 0.755, 0.795);
+// Wolf-grey, not white. An albedo of 0.74 is snow, and with a wrapped diffuse,
+// a back-scatter lobe and the sky fill all stacked on it the trim came out of
+// AgX pinned at the top of the curve — a blown white band that drew the eye off
+// the face and away from the one warm accent the model has.
+//
+// It has to be read against the rest of the costume, not on its own. Measured
+// on a frame, the trim was the single brightest thing on the figure — above the
+// mantle and well above the robe — which put the eye on the cuffs and, worse,
+// ringed the face in the one thing brighter than it. A pelt is not the subject;
+// the face is. This is a slate grey that sits under the mantle it borders.
+const _furCol = new Color3(0.090, 0.095, 0.120);
 
 export class Character {
     /**
@@ -449,7 +529,7 @@ export class Character {
             m.setVector3("cameraPos", this._cameraPos);
             m.setVector3("sunDir", sky.sunDir);
             m.setColor3("sunRadiance", sky.sunRadiance);
-            m.setArray4("shR", sky.sh);
+            m.setArray4("shR", sky.shForShaders());
 
             bindMatrixArray(m, "cascadeMatrices", sh.matrixData);
             m.setVector4("cascadeSplits", this._splits);
@@ -477,15 +557,21 @@ export class Character {
             m.setArray4("matParams", this._matParams);
             m.setFloat("sssStrength", S.sssStrength);
             m.setVector2("screenSize", _screen);
-            // Threads per metre. Coarse hand-woven wool, which is what puts the
-            // weave right at the edge of visibility at the distance the figure
-            // is normally framed — present in a close-up, gone by ten metres.
-            m.setFloat("weaveDensity", 210);
+            // Threads per metre. 210 is a 4.8 mm thread, which is not wool, it
+            // is hessian — and in a close-up it read as one: a regular open grid
+            // over the cape and sleeves that looked like screen door rather than
+            // cloth. Coarse homespun is nearer 2 mm, which is fine enough that
+            // the pixel-footprint fade takes the weave out over the first metre
+            // and a half and leaves the slub to carry the cloth beyond that.
+            m.setFloat("weaveDensity", 520);
         }
         this.clothMat.setArray4("panelParams", this._panelParams);
 
         this.furMat.setVector3("furDroop", _droop);
-        this.furMat.setFloat("furDensity", 250);
+        // Strand cells per metre. Shorter pile needs a finer pitch to stay
+        // dense: at 250 (4 mm) the shorter strands left visible gaps between
+        // them, and gaps in fur read as noise.
+        this.furMat.setFloat("furDensity", 360);
         this.furMat.setColor3("furColor", _furCol);
     }
 
@@ -506,6 +592,14 @@ export class Character {
                 await whenReady(m, m.name, [mesh, false]);
             }
         }
+    }
+
+    /**
+     * Live palette write from equipped gear.
+     * @param {{ applyToFigure(fig:{_matAlbedo:Float32Array}): void }} loadout
+     */
+    applyLoadout(loadout) {
+        loadout.applyToFigure(this);
     }
 
     dispose() {

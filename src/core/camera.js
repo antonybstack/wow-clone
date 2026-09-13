@@ -1,13 +1,9 @@
 /**
- * Third-person spring-arm rig — action-MMO framing.
+ * Third-person spring-arm — WoW framing.
  *
- * The arm is deliberately *not* rigid: the pivot chases the character through a
- * critically-damped spring, so hard acceleration pulls the camera back and the
- * character drifts forward in frame. FOV widens with speed, the rig banks into
- * carves, and everything eases. Nothing here snaps.
- *
- * Open snow field, so there is no obstacle collision solve — only the ground
- * itself pushes the arm up, which buys a rig that never pops through a drift.
+ * Pivot is glued to the character. LMB orbits without turning the body; RMB
+ * is mouselook. Keyboard turn (A/D) yaws the camera with the character.
+ * No surf lead, bank, or FOV punch.
  */
 
 import { Vector3, Matrix, Quaternion } from "@babylonjs/core/Maths/math.vector";
@@ -21,15 +17,23 @@ const _desired = new Vector3();
 const _fwd = new Vector3();
 const _right = new Vector3();
 const _up = new Vector3();
+/**
+ * The camera's *upward* up.
+ *
+ * Kept separate from `_up`, which is `cross(_right, _fwd)` and therefore points
+ * down — the offset below and `rig.up` are both tuned around that sign, so this
+ * one is derived on its own rather than by flipping theirs.
+ */
+const _camUp = new Vector3();
 const _tmp = new Vector3();
 
 /** Height probes taken along the spring arm each frame. */
 const ARM_SAMPLES = 5;
 
-const PITCH_MIN = -0.62; // looking up
-const PITCH_MAX = 1.05; // looking down
-const DIST_MIN = 2.6;
-const DIST_MAX = 11.0;
+const PITCH_MIN = -0.72; // looking up
+const PITCH_MAX = 1.15; // looking down
+const DIST_MIN = 1.5;
+const DIST_MAX = 26.0;
 
 export class CameraRig {
     /**
@@ -49,17 +53,17 @@ export class CameraRig {
         this.scene = scene;
 
         this.yaw = 2.4;
-        this.pitch = 0.17;
+        this.pitch = 0.20;
 
-        this.distance = 6.2;
-        this.distanceTarget = 6.2;
+        this.distance = 9.4;
+        this.distanceTarget = 9.4;
 
-        /** Smoothed pivot position (the thing the spring chases). */
+        /** Pivot on the character — WoW does not spring the arm. */
         this.pivot = new Vector3(0, 0, 0);
         this.pivotVel = new Vector3(0, 0, 0);
 
-        /** Over-the-shoulder offset, in camera space. */
-        this.shoulder = 0.85;
+        /** Slight shoulder so the body isn't dead-centre. */
+        this.shoulder = 0.18;
         this.pivotHeight = 1.62;
 
         this.baseFov = 1.02;
@@ -100,52 +104,37 @@ export class CameraRig {
         this.trauma = Math.min(1, this.trauma + amount);
     }
 
+    /** Mouse look — call before locomotion so RMB facing matches this frame. */
+    applyLook() {
+        if (input.looking || input.lmb || input.rmb) {
+            this.yaw += input.lookX;
+            this.pitch = Scalar.Clamp(this.pitch + input.lookY, PITCH_MIN, PITCH_MAX);
+        }
+    }
+
     /**
      * @param {number} dt seconds
      * @param {Vector3} targetPos character world position (feet)
-     * @param {Vector3} targetVel character world velocity
-     * @param {number} lean signed lean amount, -1..1, for banking
-     * @param {number} speed01 normalised speed for FOV widening
+     * @param {Vector3} [_targetVel]
+     * @param {number} [_lean]
+     * @param {number} [_speed01]
      */
-    update(dt, targetPos, targetVel, lean, speed01) {
-        // ------------------------------------------------------------- look
-        this.yaw += input.lookX;
-        this.pitch = Scalar.Clamp(this.pitch + input.lookY, PITCH_MIN, PITCH_MAX);
-
-        // ------------------------------------------------------------- zoom
+    update(dt, targetPos, _targetVel, _lean, _speed01) {
         this.distanceTarget = Scalar.Clamp(
             this.distanceTarget + input.zoomDelta * (this.distanceTarget * 0.35),
             DIST_MIN,
             DIST_MAX
         );
-        // Eased zoom — expDamp is framerate-independent.
-        this.distance = expDamp(this.distance, this.distanceTarget, 9, dt);
+        this.distance = expDamp(this.distance, this.distanceTarget, 14, dt);
 
-        // ------------------------------------------------------------ pivot
-        _pivot.copyFrom(targetPos);
-        _pivot.y += this.pivotHeight;
+        this.pivot.copyFrom(targetPos);
+        this.pivot.y += this.pivotHeight;
+        this.pivotVel.set(0, 0, 0);
+        this._first = false;
 
-        // Lead the camera slightly into the direction of travel so fast motion
-        // shows more of what's ahead.
-        const lead = Math.min(1, speed01) * 1.35;
-        _pivot.x += targetVel.x * lead * 0.09;
-        _pivot.z += targetVel.z * lead * 0.09;
-
-        if (this._first) {
-            this.pivot.copyFrom(_pivot);
-            this._first = false;
-        } else {
-            // Softer spring under acceleration = the arm stretches, then recovers.
-            springDamp(this.pivot, this.pivotVel, _pivot, 7.5, 1.0, dt);
-        }
-
-        // -------------------------------------------------------------- fov
-        const fovWant = this.baseFov * (1 + speed01 * 0.19);
-        this.fov = expDamp(this.fov, fovWant, 3.2, dt);
-
-        // ------------------------------------------------------------- bank
-        this.rollTarget = -lean * 0.085;
-        this.roll = expDamp(this.roll, this.rollTarget, 5.0, dt);
+        this.fov = this.baseFov;
+        this.roll = 0;
+        this.rollTarget = 0;
 
         // ------------------------------------------------------------ shake
         this.trauma = Math.max(0, this.trauma - dt * 1.15);
@@ -162,6 +151,8 @@ export class CameraRig {
         _right.set(Math.cos(this.yaw), 0, -Math.sin(this.yaw));
         Vector3.CrossToRef(_right, _fwd, _up);
         _up.normalize();
+        Vector3.CrossToRef(_fwd, _right, _camUp);
+        _camUp.normalize();
 
         this.forward.copyFrom(_fwd);
         this.right.copyFrom(_right);
@@ -209,11 +200,37 @@ export class CameraRig {
         const cam = this.camera;
         cam.position.copyFrom(_desired);
         cam.fov = this.fov;
-        cam.rotation.set(
-            this.pitch + (shake > 0.0001 ? (noise1(this.shakeTime * 31 + 11) * 2 - 1) * shake * 0.02 : 0),
-            this.yaw + (shake > 0.0001 ? (noise1(this.shakeTime * 29 + 53) * 2 - 1) * shake * 0.02 : 0),
-            this.roll + (shake > 0.0001 ? (noise1(this.shakeTime * 23 + 97) * 2 - 1) * shake * 0.05 : 0)
-        );
+
+        const shaking = shake > 0.0001;
+        const shakePitch = shaking ? (noise1(this.shakeTime * 31 + 11) * 2 - 1) * shake * 0.02 : 0;
+        const shakeYaw = shaking ? (noise1(this.shakeTime * 29 + 53) * 2 - 1) * shake * 0.02 : 0;
+        const roll = this.roll + (shaking ? (noise1(this.shakeTime * 23 + 97) * 2 - 1) * shake * 0.05 : 0);
+
+        // Roll goes through the up vector, and `rotation.z` stays pinned at zero.
+        //
+        // Babylon's TargetCamera builds its view matrix as `LookAt(position,
+        // target, upVector)`, and it only rebuilds `upVector` from the Euler
+        // angles when `rotation.z` *changes*. This rig's roll is a constant zero
+        // except during a shake, so the vector stayed frozen at whichever yaw it
+        // was last rebuilt at, and every turn after that tilted the horizon by
+        // asin(sin(pitch) * sin(yaw - frozen yaw)) — at a 90 degree turn and this
+        // pitch, eleven degrees of it. A cast was "fixing" it only because the
+        // shake jittered `rotation.z` and tripped Babylon's cache.
+        //
+        // `_camUp` is recomputed from this frame's yaw and pitch above, so owning
+        // the vector here keeps that cache out of the picture entirely.
+        if (roll !== 0) {
+            const cr = Math.cos(roll);
+            const sr = Math.sin(roll);
+            cam.upVector.set(
+                _camUp.x * cr + _right.x * sr,
+                _camUp.y * cr + _right.y * sr,
+                _camUp.z * cr + _right.z * sr
+            );
+        } else {
+            cam.upVector.copyFrom(_camUp);
+        }
+        cam.rotation.set(this.pitch + shakePitch, this.yaw + shakeYaw, 0);
     }
 
     /** Flat camera-space forward on the XZ plane, for movement. Writes to `out`. */

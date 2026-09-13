@@ -82,10 +82,46 @@ const FORE_LEN = 0.26;
 /** Pelvis height above the feet in the bind pose. */
 const HIP_HEIGHT = 0.95;
 
+/** What a leg can actually span, hip joint to ankle joint. */
+const LEG_REACH = (THIGH_LEN + SHIN_LEN) * 0.995;
+/** Ankle height above the sole, from the bind table. */
+const ANKLE_H = 0.09;
+/** Half the distance between the feet — the stance width. */
+const STANCE_HALF = 0.105;
+/** Half the distance between the hip joints. Must match the bind table. */
+const HIP_HALF = 0.10;
+/** How low the pelvis solve may go, as a fraction of the bind-pose height. */
+const HIP_FLOOR = 0.62;
+/**
+ * How fast an unreachable plant is dragged back into range, m/s.
+ *
+ * A walking pace: fast enough to recover inside a tenth of a second, slow
+ * enough to read as a foot scuffing round rather than teleporting.
+ */
+const RESCUE_RATE = 2.5;
+
+/**
+ * The ankle's path over a fixed contact point: heel strike, flat, heel off.
+ *
+ * This is what pays for a long stride. The contact point never moves during
+ * stance — that part of the rig is untouched — but the ankle above it rises and
+ * pitches over the toe on the way out, and an ankle 13 cm higher is an ankle the
+ * hip can be 24 cm further away from. Without it a 0.81 m leg under a 0.86 m hip
+ * can only swing the foot ±13 cm before the IK gives out, which is what turned
+ * the run into the splits.
+ */
+const HEEL_STRIKE_LIFT = 0.035;
+const HEEL_OFF = 0.13;
+/** Stance fraction where the foot is flat: heel down before it, rolling after. */
+const FLAT_AT = 0.45;
+/** Foot pitch, radians. Negative is toe-up. */
+const TOE_UP = -0.20;
+const TOE_OFF = 0.62;
+
 // ------------------------------------------------------- module-scope scratch
 const _axes = new Float32Array(9);   // X, Y, Z of a composed basis
-const _p = new Float32Array(3);
-const _knee = new Float32Array(3);
+const _p = new Float32Array(6);      // IK: mid joint, then the reached end
+const _knee = new Float32Array(6);
 const _hip = new Float32Array(3);
 const _sh = new Float32Array(3);
 
@@ -122,18 +158,32 @@ function composeBasis(yaw, pitch, roll) {
 
 /**
  * Two-bone IK. Given a root joint, an end target and a pole direction, writes
- * the middle joint's world position into `out`.
+ * the middle joint's world position into `out[0..2]` and the position the end
+ * joint *actually* reached into `out[3..5]`.
  *
  * The target is pulled inside reach rather than clamped at it: a fully extended
  * leg reads as a stiff peg, and the last centimetre of reach is where all the
  * knee-lock artefacts live.
+ *
+ * Returning the reached point matters as much as the solve. Callers used to draw
+ * the end bone at the *requested* target, so an out-of-reach ask left the boot
+ * floating clear of the shin with the leg geometry smeared across the gap — a
+ * quarter of a metre of it at a run. Nothing can ask for that now: the end bone
+ * goes where the limb can put it.
  */
 function solveTwoBone(rx, ry, rz, tx, ty, tz, px, py, pz, l1, l2, out) {
     let dx = tx - rx, dy = ty - ry, dz = tz - rz;
     let dist = Math.hypot(dx, dy, dz);
     const maxReach = (l1 + l2) * 0.995;
+    // A two-bone chain cannot fold tighter than the difference of its segments
+    // either. Inside that radius the cosine rule puts the middle joint *beyond*
+    // the first segment's length and the limb comes apart: the cast pose can
+    // collapse the trailing hand's target onto its own shoulder when the aim is
+    // across the body, which stretched that upper arm from 0.28 m to 0.40 m.
+    const minReach = Math.abs(l1 - l2) + 1e-3;
     if (dist < 1e-4) { dx = 0; dy = -1; dz = 0; dist = 1e-4; }
     if (dist > maxReach) dist = maxReach;
+    else if (dist < minReach) dist = minReach;
     const inv = 1 / Math.hypot(dx, dy, dz);
     dx *= inv; dy *= inv; dz *= inv;
 
@@ -153,6 +203,10 @@ function solveTwoBone(rx, ry, rz, tx, ty, tz, px, py, pz, l1, l2, out) {
     out[0] = rx + dx * a + ox * h;
     out[1] = ry + dy * a + oy * h;
     out[2] = rz + dz * a + oz * h;
+
+    out[3] = rx + dx * dist;
+    out[4] = ry + dy * dist;
+    out[5] = rz + dz * dist;
 }
 
 /** Framerate-independent exponential approach. */
@@ -162,6 +216,12 @@ function damp(cur, target, rate, dt) {
 
 function clamp(v, lo, hi) {
     return v < lo ? lo : v > hi ? hi : v;
+}
+
+/** Smoothstep on an already-normalised 0..1 input. */
+function ease(t) {
+    const x = t < 0 ? 0 : t > 1 ? 1 : t;
+    return x * x * (3 - 2 * x);
 }
 
 export class Figure {
@@ -197,8 +257,17 @@ export class Figure {
         // ------------------------------------------------------------- gait
         /** Where each foot is planted, world. Frozen for the whole stance phase. */
         this.plant = new Float32Array(6);
-        /** Live foot position (equals `plant` during stance). */
+        /**
+         * Live sole position (equals `plant` during stance).
+         *
+         * This is the contact point, and the contact and deformation systems
+         * read it — so it stays the sole, not the ankle, however the foot rolls.
+         */
         this.footPos = new Float32Array(6);
+        /** Ankle joint per foot — the point the leg IK is actually solved to. */
+        this.ankle = new Float32Array(6);
+        /** Foot pitch per foot, radians. Negative is toe-up. */
+        this.footPitch = new Float32Array(2);
         /** Ground normal under each planted foot. */
         this.footNormal = new Float32Array([0, 1, 0, 0, 1, 0]);
         /** 1 while the foot carries weight, 0 mid-swing. Eased. */
@@ -206,6 +275,14 @@ export class Figure {
         this._wasStance = [true, true];
         /** Set for one frame when a foot touches down. Drives spray and splats. */
         this.touchdown = [false, false];
+        /**
+         * The step axis each plant was made against, two floats per foot.
+         *
+         * A plant is only valid for the direction of travel it was made in. Turn
+         * hard enough mid-stance and it is not somewhere the leg can reach any
+         * more — see the re-plant in `_updateFeet`.
+         */
+        this.plantDir = new Float32Array([0, 1, 0, 1]);
 
         // ------------------------------------------------- smoothed pose state
         this.hipY = HIP_HEIGHT;
@@ -222,6 +299,17 @@ export class Figure {
 
         this._t = 0;
         this._prevGait = 0;
+        this._first = true;
+    }
+
+    /**
+     * Foot / hip support height. In the air, hang under the body instead of
+     * stretching down to the heightfield.
+     * @param {import("./controller.js").CharacterController} ch
+     */
+    _supportY(ch, x, z) {
+        if (!ch.grounded) return ch.position.y + 0.06;
+        return this.terrain.heightAt(x, z) - this.sink * 0.7;
     }
 
     /**
@@ -235,7 +323,11 @@ export class Figure {
 
         const surf = ch.surf;
         const speed = ch.speed;
-        const run = Math.min(1, speed / 5.4);
+        // The controller's own normalisation, against the real run speed. This
+        // used to divide by 5.4 against a RUN_SPEED of 7.0, so everything keyed
+        // off it — lean, crouch, arm swing, foot lift — saturated at four fifths
+        // of a run and then stopped responding.
+        const run = ch.run01;
 
         // ---------------------------------------------------------- footfalls
         // Stance/swing is derived from the same distance-driven phase the
@@ -252,10 +344,12 @@ export class Figure {
         // order of magnitude larger than anything walking produces: letting go at
         // top speed decelerates at 30 m/s^2, which unclamped throws the torso
         // twenty degrees backwards and reads as a fall rather than as a scrub.
+        const air = ch.grounded ? 0 : clamp(ch.velocity.y, -10, 10) * 0.018;
         const pitchWant =
             0.10 * run
             + 0.012 * clamp(fwdAcc, -9, 22)
-            + surf * (0.30 + 0.16 * ch.speed01);
+            + surf * (0.30 + 0.16 * ch.speed01)
+            + air;
         this.pitch = damp(this.pitch, pitchWant, 7, h);
 
         const rollWant = ch.lean * (0.16 + 0.34 * surf);
@@ -264,12 +358,19 @@ export class Figure {
         // Vertical bob: the pelvis drops through each stance and rises over the
         // supporting leg, twice per stride. Suppressed while surfing, where the
         // stance is a static crouch.
-        const bobWant =
-            (1 - surf) * (-0.028 * run * (0.5 - 0.5 * Math.cos(4 * Math.PI * ch.gaitPhase)));
+        const bobWant = ch.grounded
+            ? (1 - surf) * (-0.028 * run * (0.5 - 0.5 * Math.cos(4 * Math.PI * ch.gaitPhase)))
+            : 0;
         this.bob = damp(this.bob, bobWant, 18, h);
 
-        // Crouch: a little at running speed, a lot on the board.
-        const crouch = 0.035 * run + surf * (0.13 + 0.05 * ch.speed01);
+        // Crouch: a little at running speed, a lot on the board, and a dip to
+        // absorb a landing. Without the landing term the figure arrives from a
+        // metre up with straight legs and stops dead, which reads as a dropped
+        // prop rather than as a person.
+        const absorb = ch.grounded
+            ? 0.17 * ch.landImpact * Math.exp(-ch.landTime * 6.5)
+            : 0;
+        const crouch = 0.035 * run + surf * (0.13 + 0.05 * ch.speed01) + absorb;
         this.hipY = damp(this.hipY, HIP_HEIGHT - crouch, 9, h);
 
         // The figure settles into the snow it is standing on. Reading the real
@@ -280,14 +381,17 @@ export class Figure {
         // ------------------------------------------------------------- spine
         const gx = ch.position.x;
         const gz = ch.position.z;
-        const groundY = this.terrain.heightAt(gx, gz);
-
-        const rootY = groundY - this.sink + this.hipY + this.bob;
 
         composeBasis(ch.facing, this.pitch, this.roll);
         const rX = _axes[0], rY = _axes[1], rZ = _axes[2];
         const uX = _axes[3], uY = _axes[4], uZ = _axes[5];
         const fX = _axes[6], fY = _axes[7], fZ = _axes[8];
+
+        this._capHipToReach(ch, gx, gz, rX, rY, rZ, uX, uY, uZ);
+
+        // Controller owns world Y (ground snap + jump). Do not re-sample
+        // the heightfield here or a jump lifts the camera and leaves the mesh.
+        const rootY = ch.position.y - this.sink + this.hipY + this.bob;
 
         // Pelvis. Its yaw counter-rotates against the shoulders during a stride,
         // which is most of what stops a procedural walk reading as a shop dummy.
@@ -348,6 +452,41 @@ export class Figure {
         }
     }
 
+    /**
+     * Lower the pelvis until both ankles are inside the legs' reach.
+     *
+     * Dropping the hips is what a person does when their feet are far apart, and
+     * it is what lets this rig hold a 1.4 m stride on a 0.81 m leg. Without it
+     * the IK simply ran out: at a run the hip was asking for an ankle 1.08 m
+     * away, the solver clamped at 0.805, and the leg pointed at a boot it could
+     * not reach.
+     *
+     * Applied to the damped height rather than to its target, so it holds on the
+     * frame it is needed instead of a tenth of a second later. The pelvis then
+     * bobbing twice a stride is not a separate effect — it is this, and a real
+     * one falls out of the same geometry.
+     */
+    _capHipToReach(ch, gx, gz, rX, rY, rZ, uX, uY, uZ) {
+        let cap = Infinity;
+        for (let f = 0; f < 2; f++) {
+            const side = f === 0 ? -HIP_HALF : HIP_HALF;
+            const hx = gx + rX * side - uX * 0.05;
+            const hz = gz + rZ * side - uZ * 0.05;
+            const dx = this.ankle[f * 3] - hx;
+            const dz = this.ankle[f * 3 + 2] - hz;
+            const flat = Math.hypot(dx, dz);
+            // The most vertical drop the leg has left once the horizontal
+            // distance is paid for.
+            const maxV = Math.sqrt(Math.max(0, LEG_REACH * LEG_REACH - flat * flat));
+            const c = this.ankle[f * 3 + 1] + maxV - rY * side + uY * 0.05
+                - ch.position.y + this.sink - this.bob;
+            if (c < cap) cap = c;
+        }
+        // Floored: a foot planted somewhere genuinely impossible must not fold
+        // the figure into the ground.
+        if (this.hipY > cap) this.hipY = Math.max(cap, HIP_HEIGHT * HIP_FLOOR);
+    }
+
     _setBone(b, px, py, pz, yx, yy, yz, zx, zy, zz) {
         // X = Y x Z, completing the frame from the bone axis and its front
         // reference. Both are already orthonormal at every call site.
@@ -357,47 +496,118 @@ export class Figure {
     /**
      * Advance the stance/swing state machine and place both ankles.
      *
-     * Stance is the whole point. `plant` is written exactly once, on touchdown,
-     * and read unchanged for the rest of the stance — so no amount of body
-     * motion, camera motion or frame-rate variation can move a planted foot.
+     * Stance is the whole point. `plant` is written on touchdown and read
+     * unchanged for the rest of the stance, so no amount of body motion, camera
+     * motion or frame-rate variation can move a planted foot. The three
+     * exceptions all announce themselves below: standing squares the feet up
+     * under the hips, a hard change of direction re-plants outright, and a plant
+     * the leg cannot reach scuffs in rather than tearing the boot off the shin.
      */
     _updateFeet(h, ch) {
         const surf = ch.surf;
         const speed = ch.speed;
-        const run = Math.min(1, speed / 5.4);
-        // Duty factor: a walk keeps both feet down for a moment, a run has a
-        // flight phase. Interpolating between them is what makes the transition
-        // from walk to run read as a gait change and not a speed change.
-        const duty = 0.66 - 0.20 * run;
+        const run = ch.run01;
 
         const fwdX = Math.sin(ch.facing), fwdZ = Math.cos(ch.facing);
         const rgtX = Math.cos(ch.facing), rgtZ = -Math.sin(ch.facing);
 
-        // Half a stride ahead, scaled by speed — this is the step length, and it
-        // has to match the controller's stride or the feet skate.
-        const half = 0.34 + 0.42 * run;
+        // Feet start under the character rather than at the world origin, so the
+        // pelvis solve below is not handed an impossible first frame.
+        if (this._first) {
+            this._first = false;
+            for (let f = 0; f < 2; f++) {
+                const o = f * 3;
+                const side = f === 0 ? -STANCE_HALF : STANCE_HALF;
+                const x = ch.position.x + rgtX * side;
+                const z = ch.position.z + rgtZ * side;
+                const y = this._supportY(ch, x, z);
+                this.plant[o] = x; this.plant[o + 1] = y; this.plant[o + 2] = z;
+                this.footPos[o] = x; this.footPos[o + 1] = y; this.footPos[o + 2] = z;
+                this.ankle[o] = x; this.ankle[o + 1] = y + ANKLE_H; this.ankle[o + 2] = z;
+                this.plantDir[f * 2] = fwdX;
+                this.plantDir[f * 2 + 1] = fwdZ;
+            }
+        }
+
+        // Airborne legs are their own problem — see below.
+        if (!ch.grounded && surf <= 0.001) {
+            this._airFeet(h, ch, fwdX, fwdZ, rgtX, rgtZ);
+            return;
+        }
+
+        // Step geometry, straight from the controller. Re-deriving either of
+        // these here is how the offset a foot is aimed at and the phase that
+        // decides when to aim there end up disagreeing.
+        const duty = ch.duty;
+        const half = ch.stepAhead;
+
+        // ---- the step axis is the direction of travel, not the facing -------
+        //
+        // Stepping along the facing while the body moved sideways stranded the
+        // planted foot up to a full excursion — a metre at speed — out to the
+        // side of its hip, and the pelvis solve then dropped the hips to their
+        // floor trying to keep the leg in reach. That is why a strafe crouched
+        // continuously and never stood back up.
+        const stepX = ch.moveDirX, stepZ = ch.moveDirZ;
+        // Stance width straddles the travel line. For forward motion this is
+        // exactly the body's right axis as before; for a side-step it puts one
+        // foot ahead of the other rather than both on the same line, where the
+        // legs would have to pass through each other.
+        const perpX = stepZ, perpZ = -stepX;
+        // How much of the travel is actually forward. The heel-to-toe roll is
+        // only meaningful when it is: side-stepping onto a pointed toe looks
+        // like a ballet step, so the pitch fades out while the lift — which is
+        // what buys the reach — stays.
+        const along01 = clamp(stepX * fwdX + stepZ * fwdZ, 0, 1);
+        // The excursion belongs to the leg, so it is centred under that leg's
+        // hip rather than under the body. Walking forward the hips sit square
+        // across the step axis and this is exactly zero; side-stepping they sit
+        // along it, and without this the trailing leg pays for both its own
+        // excursion and the 20 cm between the hips while the leading one pays
+        // for neither.
+        const hipAlong = rgtX * stepX + rgtZ * stepZ;
+        // How far the body travels while a foot is down, and therefore the
+        // offset behind the hip that the foot pushes off from.
+        const excursion = duty * ch.stride;
+        const liftAlong = half - excursion;
+        /** Ankle height at toe-off — where the swing has to start from. */
+        const toeOffH = HEEL_OFF * (0.55 + 0.45 * run);
         // The controller owns this decision — see `stepping` there. Re-deriving
         // it from `surf` here is how the feet and the footprints end up
         // disagreeing about whether the character is walking.
         const moving = speed > 0.2 && ch.stepping;
 
         for (let f = 0; f < 2; f++) {
-            const side = f === 0 ? -0.105 : 0.105;
+            const o = f * 3;
+            const side = f === 0 ? -STANCE_HALF : STANCE_HALF;
+            const shift = hipAlong * (f === 0 ? -HIP_HALF : HIP_HALF);
             // Left foot leads; the right is half a cycle behind.
             const ph = (ch.gaitPhase + (f === 0 ? 0 : 0.5)) % 1;
             const stance = !moving || ph < duty;
 
             // Where this foot would land if it touched down right now.
-            const nx = ch.position.x + fwdX * half + rgtX * side;
-            const nz = ch.position.z + fwdZ * half + rgtZ * side;
+            const nx = ch.position.x + stepX * (half + shift) + perpX * side;
+            const nz = ch.position.z + stepZ * (half + shift) + perpZ * side;
 
             if (stance) {
-                if (!this._wasStance[f]) {
-                    // Touchdown. This is the only line in the file that writes a
-                    // plant position.
+                // A plant only makes sense for the direction it was made in.
+                // Reverse at a run — 7 m/s one way to 7 m/s the other, which the
+                // controller does in a single frame — and the foot behind you is
+                // suddenly the foot in front of you, half a metre past anything
+                // the leg can span, with the gap growing faster than any scuff
+                // can close it. So the stance ends: the foot picks up and plants
+                // again in the new frame, which is what a person does when they
+                // change their mind at speed.
+                const stale = moving
+                    && stepX * this.plantDir[f * 2] + stepZ * this.plantDir[f * 2 + 1] < 0;
+
+                if (!this._wasStance[f] || stale) {
+                    // Touchdown.
                     this.plant[f * 3] = nx;
-                    this.plant[f * 3 + 1] = this.terrain.heightAt(nx, nz) - this.sink * 0.7;
+                    this.plant[f * 3 + 1] = this._supportY(ch, nx, nz);
                     this.plant[f * 3 + 2] = nz;
+                    this.plantDir[f * 2] = stepX;
+                    this.plantDir[f * 2 + 1] = stepZ;
                     this.touchdown[f] = true;
                 } else {
                     this.touchdown[f] = false;
@@ -405,34 +615,111 @@ export class Figure {
                 if (!moving) {
                     // Standing: ease the feet back under the hips rather than
                     // leaving them wherever the last stride dropped them.
+                    // Squared up on the body's own axes, not the travel ones,
+                    // which are stale by definition once it has stopped.
                     const sx = ch.position.x + rgtX * side + fwdX * 0.02;
                     const sz = ch.position.z + rgtZ * side + fwdZ * 0.02;
                     this.plant[f * 3] = damp(this.plant[f * 3], sx, 7, h);
                     this.plant[f * 3 + 2] = damp(this.plant[f * 3 + 2], sz, 7, h);
                     this.plant[f * 3 + 1] = damp(
                         this.plant[f * 3 + 1],
-                        this.terrain.heightAt(this.plant[f * 3], this.plant[f * 3 + 2]) - this.sink * 0.7,
+                        this._supportY(ch, this.plant[f * 3], this.plant[f * 3 + 2]),
                         7, h
                     );
                 }
+                // Rescue. Turning hard mid-stance leaves a foot planted for a
+                // direction of travel the body has already abandoned, and no
+                // amount of dropping the hips can reach it — a run that cut
+                // from forward to a pure side-step left the boot 14 cm off the
+                // end of the shin. So the plant scuffs in toward its hip, at a
+                // bounded rate, until it is back inside the leg's envelope.
+                //
+                // This is the only place a plant moves during a stance, and it
+                // only moves when the alternative is a detached leg.
+                const hipSide = f === 0 ? -HIP_HALF : HIP_HALF;
+                const hx = ch.position.x + rgtX * hipSide;
+                const hz = ch.position.z + rgtZ * hipSide;
+                const dx = this.plant[o] - hx;
+                const dz = this.plant[o + 2] - hz;
+                const flat = Math.hypot(dx, dz);
+                if (flat > 1e-4) {
+                    // Measured against the lowest the pelvis is allowed to go,
+                    // so this only fires once the pelvis solve has run out too.
+                    const vert = ch.position.y - this.sink + HIP_HEIGHT * HIP_FLOOR - 0.05
+                        - (this.plant[o + 1] + ANKLE_H);
+                    const maxFlat = Math.sqrt(Math.max(0, LEG_REACH * LEG_REACH - vert * vert));
+                    if (flat > maxFlat) {
+                        const pull = Math.min(flat - maxFlat, RESCUE_RATE * h) / flat;
+                        this.plant[o] -= dx * pull;
+                        this.plant[o + 2] -= dz * pull;
+                        this.plant[o + 1] = this._supportY(ch, this.plant[o], this.plant[o + 2]);
+                    }
+                }
+
                 this.footPos[f * 3] = this.plant[f * 3];
                 this.footPos[f * 3 + 1] = this.plant[f * 3 + 1];
                 this.footPos[f * 3 + 2] = this.plant[f * 3 + 2];
                 this.footWeight[f] = damp(this.footWeight[f], 1, 22, h);
+
+                // Heel strike, flat, then the heel lifts and the foot pivots on
+                // the toe. The sole stays exactly where it was planted for the
+                // whole stance — only the ankle above it moves, which is a pivot
+                // and not a slide.
+                const s = moving ? clamp(ph / duty, 0, 1) : FLAT_AT;
+                let lift, pitch;
+                if (s < FLAT_AT) {
+                    const k = 1 - s / FLAT_AT;
+                    lift = HEEL_STRIKE_LIFT * k;
+                    pitch = TOE_UP * k * (0.35 + 0.65 * run);
+                } else {
+                    const k = ease((s - FLAT_AT) / (1 - FLAT_AT));
+                    lift = HEEL_OFF * k * (0.55 + 0.45 * run);
+                    pitch = TOE_OFF * k;
+                }
+                this.ankle[o] = this.footPos[o] + stepX * lift * 0.45;
+                this.ankle[o + 1] = this.footPos[o + 1] + ANKLE_H + lift;
+                this.ankle[o + 2] = this.footPos[o + 2] + stepZ * lift * 0.45;
+                this.footPitch[f] = damp(this.footPitch[f], pitch * along01, 20, h);
             } else {
                 this.touchdown[f] = false;
-                // Swing: from the plant it is leaving to the plant it is heading
-                // for, on an arc. `nx/nz` keeps updating as the body moves, so
-                // the foot is always aimed at where the body will actually be.
+                // Swing, measured against the body rather than between two fixed
+                // world points: the foot travels from the offset it pushed off
+                // at, behind the hip, to the one it will touch down at, in front
+                // of it.
+                //
+                // Easing a world-space gap instead let the body outrun the
+                // swing. At 7 m/s the foot was still 0.92 m behind the hip a
+                // third of the way through — 17 cm past anything a 0.81 m leg
+                // can span — and the pelvis solve bottomed out trying to cover
+                // it. A foot in the air is the one thing in this rig that is
+                // *allowed* to move with the body, and this is why.
                 const s = (ph - duty) / (1 - duty);
-                const e = s * s * (3 - 2 * s);
-                const ny = this.terrain.heightAt(nx, nz) - this.sink * 0.7;
-                const px = this.plant[f * 3], py = this.plant[f * 3 + 1], pz = this.plant[f * 3 + 2];
-                this.footPos[f * 3] = px + (nx - px) * e;
-                this.footPos[f * 3 + 2] = pz + (nz - pz) * e;
-                this.footPos[f * 3 + 1] =
-                    py + (ny - py) * e + Math.sin(Math.PI * s) * (0.055 + 0.12 * run);
+                const e = ease(s);
+                // Both ends are continuous with the stance either side of them:
+                // it leaves pitched up over the toe at the heel-off height, and
+                // arrives with the heel a little high, ready to strike.
+                const fade = 1 - ease(s / 0.35);
+                const along = liftAlong + toeOffH * 0.45 * fade + (half - liftAlong) * e;
+                const lift = toeOffH * fade
+                    + HEEL_STRIKE_LIFT * ease((s - 0.6) / 0.4)
+                    + Math.sin(Math.PI * s) * (0.055 + 0.12 * run);
+
+                const sx = ch.position.x + stepX * (along + shift) + perpX * side;
+                const sz = ch.position.z + stepZ * (along + shift) + perpZ * side;
+                this.footPos[o] = sx;
+                this.footPos[o + 1] = this._supportY(ch, sx, sz) + lift;
+                this.footPos[o + 2] = sz;
                 this.footWeight[f] = damp(this.footWeight[f], 0, 22, h);
+
+                // Out of the push-off toe-down, rolling back through neutral to
+                // toe-up in time for the next heel strike.
+                const pitch = s < 0.5
+                    ? TOE_OFF * (1 - s / 0.5) * 0.8
+                    : TOE_UP * ease((s - 0.5) / 0.5) * (0.35 + 0.65 * run);
+                this.footPitch[f] = damp(this.footPitch[f], pitch * along01, 14, h);
+                this.ankle[o] = this.footPos[o];
+                this.ankle[o + 1] = this.footPos[o + 1] + ANKLE_H;
+                this.ankle[o + 2] = this.footPos[o + 2];
             }
 
             this._wasStance[f] = stance;
@@ -448,13 +735,65 @@ export class Figure {
                 const along = f === 0 ? 0.11 : -0.11;
                 const sx = ch.position.x + fwdX * along + rgtX * lateral;
                 const sz = ch.position.z + fwdZ * along + rgtZ * lateral;
-                const sy = this.terrain.heightAt(sx, sz) - this.sink;
+                const sy = this._supportY(ch, sx, sz);
                 const o = f * 3;
                 this.footPos[o] += (sx - this.footPos[o]) * surf;
                 this.footPos[o + 1] += (sy - this.footPos[o + 1]) * surf;
                 this.footPos[o + 2] += (sz - this.footPos[o + 2]) * surf;
                 this.footWeight[f] = Math.max(this.footWeight[f], surf);
+                // Flat on the board, and the ankle follows the blended sole.
+                this.ankle[o] = this.footPos[o];
+                this.ankle[o + 1] = this.footPos[o + 1] + ANKLE_H;
+                this.ankle[o + 2] = this.footPos[o + 2];
+                this.footPitch[f] *= 1 - surf;
             }
+        }
+    }
+
+    /**
+     * Legs in the air: tuck on the way up, reach for the ground on the way down.
+     *
+     * Written straight rather than damped toward. The old path left the feet on
+     * the ground state machine, easing them under the hips at a fixed rate while
+     * the body climbed at 6 m/s — so they hung 13 cm below where the legs could
+     * reach and the limbs stretched for the whole ascent. A jump is also the one
+     * moment the legs are fully visible, so a tuck is worth having.
+     */
+    _airFeet(h, ch, fwdX, fwdZ, rgtX, rgtZ) {
+        const vy = clamp(ch.velocity.y, -9, 9);
+        // Rising: knees come up. Falling: the legs extend to meet the ground.
+        const tuck = clamp(vy * 0.032, -0.05, 0.26);
+        // And they split fore and aft, so it is a stride in the air rather than
+        // a pair of scissors closed on the centreline.
+        const split = clamp(vy * 0.016, -0.10, 0.10);
+
+        for (let f = 0; f < 2; f++) {
+            const o = f * 3;
+            const side = f === 0 ? -STANCE_HALF : STANCE_HALF;
+            const lead = f === 0 ? 1 : -0.75;
+            const along = split * lead + 0.02;
+            const up = tuck * (f === 0 ? 1 : 0.62);
+
+            const x = ch.position.x + rgtX * side + fwdX * along;
+            const z = ch.position.z + rgtZ * side + fwdZ * along;
+            this.footPos[o] = x;
+            this.footPos[o + 1] = ch.position.y + 0.02 + up;
+            this.footPos[o + 2] = z;
+            this.ankle[o] = x;
+            this.ankle[o + 1] = this.footPos[o + 1] + ANKLE_H;
+            this.ankle[o + 2] = z;
+
+            // Toes pointed, a little more so on the tucked leg.
+            this.footPitch[f] = damp(this.footPitch[f], 0.30 + up * 0.9, 10, h);
+            this.footWeight[f] = damp(this.footWeight[f], 0, 14, h);
+            this.touchdown[f] = false;
+            // So the first ground frame after landing reads as a touchdown.
+            this._wasStance[f] = false;
+            this.plant[o] = x;
+            this.plant[o + 1] = this.footPos[o + 1];
+            this.plant[o + 2] = z;
+            this.plantDir[f * 2] = ch.moveDirX;
+            this.plantDir[f * 2 + 1] = ch.moveDirZ;
         }
     }
 
@@ -466,7 +805,7 @@ export class Figure {
      * wide of the hip.
      */
     _poseLeg(f, rootX, rootY, rootZ, rX, rY, rZ, uX, uY, uZ, fX, fY, fZ) {
-        const side = f === 0 ? -0.10 : 0.10;
+        const side = f === 0 ? -HIP_HALF : HIP_HALF;
         const hipB = f === 0 ? B_THIGH_L : B_THIGH_R;
         const shinB = f === 0 ? B_SHIN_L : B_SHIN_R;
         const footB = f === 0 ? B_FOOT_L : B_FOOT_R;
@@ -476,9 +815,9 @@ export class Figure {
         _hip[1] = rootY + rY * side - uY * 0.05;
         _hip[2] = rootZ + rZ * side - uZ * 0.05;
 
-        const ax = this.footPos[f * 3];
-        const ay = this.footPos[f * 3 + 1] + 0.09; // ankle sits above the sole
-        const az = this.footPos[f * 3 + 2];
+        const ax = this.ankle[f * 3];
+        const ay = this.ankle[f * 3 + 1];
+        const az = this.ankle[f * 3 + 2];
 
         const outward = f === 0 ? -0.22 : 0.22;
         solveTwoBone(
@@ -486,6 +825,10 @@ export class Figure {
             fX + rX * outward, fY + rY * outward, fZ + rZ * outward,
             THIGH_LEN, SHIN_LEN, _knee
         );
+        // Where the ankle actually ended up. The pelvis solve above keeps this
+        // equal to the target in every normal frame; on the rare one where it
+        // cannot, the leg stays whole and the foot gives a little instead.
+        const ex = _knee[3], ey = _knee[4], ez = _knee[5];
 
         this._setBone(
             hipB, _hip[0], _hip[1], _hip[2],
@@ -494,18 +837,17 @@ export class Figure {
         );
         this._setBone(
             shinB, _knee[0], _knee[1], _knee[2],
-            ax - _knee[0], ay - _knee[1], az - _knee[2],
+            ex - _knee[0], ey - _knee[1], ez - _knee[2],
             fX, fY, fZ
         );
 
-        // The foot rolls: flat while loaded, toe-down through the swing. The
-        // ground normal is folded in so a foot on a dune face lies along it.
-        const w = this.footWeight[f];
-        const toeDown = (1 - w) * 0.55;
-        const c = Math.cos(toeDown), s = Math.sin(toeDown);
+        // The foot carries the pitch the gait solved for it: toe-up into a heel
+        // strike, flat under load, toe-down over the push-off and the swing.
+        const pitch = this.footPitch[f];
+        const c = Math.cos(pitch), s = Math.sin(pitch);
         // Rotate the foot's forward axis down about the body's right axis.
         const dx = fX * c - uX * s, dy = fY * c - uY * s, dz = fZ * c - uZ * s;
-        this._setBone(footB, ax, ay, az, dx, dy, dz, uX, uY, uZ);
+        this._setBone(footB, ex, ey, ez, dx, dy, dz, uX, uY, uZ);
     }
 
     /**
@@ -516,7 +858,7 @@ export class Figure {
      */
     _poseArms(h, ch, cx, cy, cz, rX, rY, rZ, uX, uY, uZ, fX, fY, fZ) {
         const surf = ch.surf;
-        const run = Math.min(1, ch.speed / 5.4);
+        const run = ch.run01;
         const swing = Math.sin(2 * Math.PI * ch.gaitPhase) * (0.20 + 0.42 * run) * (1 - surf);
         // Slow idle drift so a standing figure is never perfectly still.
         const idle = Math.sin(this._t * 0.9) * 0.02 + Math.sin(this._t * 1.7 + 1.3) * 0.012;
@@ -591,6 +933,12 @@ export class Figure {
                 UPPER_LEN, FORE_LEN, _p
             );
 
+            // Where the wrist actually reached. The cast target sits a good
+            // 30 cm past full extension on purpose — it is an aim, not a
+            // position — so drawing the hand at it tore the hand off the
+            // forearm for the whole cast.
+            const wx = _p[3], wy = _p[4], wz = _p[5];
+
             this._setBone(
                 upperB, _sh[0], _sh[1], _sh[2],
                 _p[0] - _sh[0], _p[1] - _sh[1], _p[2] - _sh[2],
@@ -598,14 +946,14 @@ export class Figure {
             );
             this._setBone(
                 foreB, _p[0], _p[1], _p[2],
-                tx - _p[0], ty - _p[1], tz - _p[2],
+                wx - _p[0], wy - _p[1], wz - _p[2],
                 fX, fY, fZ
             );
             // The hand continues the forearm, rolled palm-inward.
-            let hx = tx - _p[0], hy = ty - _p[1], hz = tz - _p[2];
+            let hx = wx - _p[0], hy = wy - _p[1], hz = wz - _p[2];
             const hl = Math.hypot(hx, hy, hz) || 1;
             hx /= hl; hy /= hl; hz /= hl;
-            this._setBone(handB, tx, ty, tz, hx, hy, hz, fX, fY, fZ);
+            this._setBone(handB, wx, wy, wz, hx, hy, hz, fX, fY, fZ);
         }
     }
 

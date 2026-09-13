@@ -119,7 +119,12 @@ fn weave(uv: vec2f) -> vec3f {
     let nx = cos(p.x) * mix(0.30, 1.0, over);
     let ny = cos(p.y) * mix(1.0, 0.30, over);
     // Cavity is deepest where neither thread is at its crown.
-    let cav = 0.55 + 0.45 * max(abs(warp), abs(weft));
+    //
+    // A 45% swing between crown and interstice is a value modulation you can
+    // read across a room, and it is what turned the weave from a texture into a
+    // visible lattice drawn over the garment. The gap between two threads is
+    // shadowed, not unlit.
+    let cav = 0.80 + 0.20 * max(abs(warp), abs(weft));
     return vec3f(nx, ny, cav);
 }
 
@@ -193,8 +198,8 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     var cavity = 1.0;
     if (weaveDepth > 0.001 && weaveFade > 0.001) {
         let w = weave(wuv);
-        N = normalize(N + (TBN[0] * w.x + TBN[1] * w.y) * weaveDepth * weaveFade * 0.5);
-        cavity = mix(1.0, w.z, weaveFade * 0.8);
+        N = normalize(N + (TBN[0] * w.x + TBN[1] * w.y) * weaveDepth * weaveFade * 0.32);
+        cavity = mix(1.0, w.z, weaveFade * 0.7);
     }
 
     // Slub: real yarn is not uniform, and a little variation in the base tone
@@ -206,9 +211,81 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     roughness = clamp(roughness * (0.94 + 0.12 * slub), 0.05, 1.0);
 
     // Baked at the vertex, times the weave cavity. No screen-space occlusion:
-    // it is a two-metre silhouette against forty metres of snow, and the pass
+    // it is a two-metre silhouette against forty metres of lawn, and the pass
     // does not pay for itself on this content.
     var ao = input.vAux.y * cavity;
+
+    // The eyes, on the one slot where the occlusion bake is carrying a feature
+    // rather than broad shading.
+    //
+    // An eye is not dark because it is recessed. A socket a centimetre deep
+    // moves N·L by a couple of degrees and shifts the fill by a few percent,
+    // which is why a face with sockets sculpted into it still came back a bare
+    // egg — the darkness of an eye is a statement about lashes, iris and pupil,
+    // and that is albedo. But occlusion is the only per-vertex channel the mesh
+    // carries, so `sculptFace` writes the eyes into it and this reads the bottom
+    // of its range back out as a tint. It is safe because it is scoped to skin,
+    // and on skin nothing but the sculpt ever reaches down here: the deepest
+    // honest value on the skin slot is the crown of the cowl at 0.46 and the
+    // base of the neck at 0.45, and the eye centres are at 0.14.
+    //
+    // The upper end of the ramp is what draws the eye rather than a bruise. A
+    // vertex one segment outboard of an eye centre sits at 0.44, so putting the
+    // ramp's top there keeps the darkening inside a single quad of the face and
+    // lets the interpolation across it do the soft edge a lid actually has.
+    if (slot == 4) {
+        // Warlock face void: deep cowl occlusion collapses skin toward black.
+        albedo *= mix(0.06, 1.0, smoothstep(0.08, 0.48, input.vAux.y));
+    }
+
+    // Fold occlusion from surface curvature.
+    //
+    // The cloth sim produces real folds, and they were invisible. A Lambert
+    // term across a smooth fold is very nearly flat — the normal turns by a few
+    // degrees over a centimetre, and under a broad night fill that is a percent
+    // or two of shading. What the eye actually reads as a crease is the *second*
+    // derivative, and nothing in the pipeline was looking at it, so a simulated
+    // robe came back as a smooth orange cone.
+    //
+    // The divergence of the normal over the surface is mean curvature, and it is
+    // signed: negative in a valley, positive on a ridge. Projecting each screen
+    // derivative of the normal onto the matching derivative of world position
+    // and normalising by its length squared gives it in 1/m, so the reciprocal
+    // of the scale below is a fold radius.
+    //
+    // The scale is set by the smallest thing that has to register, which is an
+    // eye socket: a 2 cm dish a centimetre deep has a curvature near 20 1/m. A
+    // first pass put full effect at 100 1/m — a 1 cm fold — on the theory that
+    // only tight creases should darken, and the result was that nothing on the
+    // model darkened at all. The sockets came back at 4%, which is to say the
+    // face was still an egg. 0.030 puts a socket and a robe pleat both solidly
+    // on the curve.
+    //
+    // Two details matter. It uses the geometric normal, before the weave
+    // perturbs it, or the weave's own ridges get counted as folds and the
+    // garment gains a second layer of grime at thread scale. And the darkening
+    // is clamped, because derivatives blow up across a UV seam or a silhouette
+    // edge and an unbounded version draws black outlines around everything.
+    let dNx = dpdx(geoN);
+    let dNy = dpdy(geoN);
+    let curvature = dot(dNx, dp1) / max(dot(dp1, dp1), 1e-12)
+                  + dot(dNy, dp2) / max(dot(dp2, dp2), 1e-12);
+    ao *= 1.0 - 0.42 * smoothstep(0.0, 1.0, -curvature * 0.030);
+
+    // A shell's inside sees a fraction of the sky its outside does, and the hood
+    // is one swept sheet: a single baked value at a vertex has to serve both
+    // faces of it, so it can only ever be a compromise between a lit crown and
+    // a dark cavity. The facing test is the missing half of that. It applies to
+    // the open garment panels too, and correctly — the inside of a sleeve or a
+    // robe hem really is occluded.
+    //
+    // Ramped rather than branched. `twoSided` flips state exactly where the
+    // normal turns away from the eye, so using it directly drew a hard-edged
+    // black crescent along the inside of the cowl — the one place on the model
+    // where the surface curls past the silhouette in full view. Fading over a
+    // narrow band around grazing puts the occlusion in without the edge.
+    let facing = dot(normalize(input.vNormal), V);
+    ao *= mix(1.0, 0.42, smoothstep(0.06, -0.06, facing));
 
     // ------------------------------------------------------------- lighting
     let NdotL = dot(N, L);
@@ -219,6 +296,17 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     if (NdotL > -0.4) {
         shadow = sunShadow(world, geoN, input.vViewDist, noiseRot);
     }
+    // Night shadow floor — robe weave must remain visible in shade.
+    //
+    // This floor and the fill below were both doing the same job, and between
+    // them they were paying for the figure's form twice. A floor of 0.26 leaves
+    // under a 4:1 ratio across a cast shadow edge before the ambient is added,
+    // and once it is there is barely 2:1 left — which over a body that is
+    // mostly smooth tubes is not a terminator, it is a wash. Keeping shade
+    // legible is the fill's job, because the fill is broad and can be raised
+    // without flattening anything; the floor's only job is to stop the darkest
+    // garment going to absolute black.
+    shadow = mix(0.10, 1.0, shadow);
 
     let sun = uniforms.sunRadiance;
     const INV_PI: f32 = 0.31830988618;
@@ -226,7 +314,15 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     // --- diffuse -----------------------------------------------------------
     // Wrapped a little: fabric is not opaque at fibre scale, and the terminator
     // on a sleeve is genuinely soft.
-    let diff = wrapDiffuse(NdotL, 0.18);
+    //
+    // "A little" is the operative word and 0.32 was not it. Wrap pushes the
+    // terminator round past the geometric one and flattens the gradient leading
+    // up to it, which is the same gradient that tells the eye a sleeve is a
+    // cylinder: at 0.32 a fully lit face was only four times a face at right
+    // angles to the moon, so an arm turned through ninety degrees changed value
+    // by less than the slub noise laid over it. 0.14 is still soft enough for
+    // wool — it is a couple of degrees of bleed, not twenty.
+    let diff = wrapDiffuse(NdotL, 0.14);
     var color = albedo * INV_PI * sun * diff * shadow;
 
     // --- transmission through thin cloth -----------------------------------
@@ -268,26 +364,56 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
         // than into it.
         let sheenTint = mix(vec3f(1.0), normalize(albedo + 1e-4), 0.35);
         let ds = dCharlie(NdotH, 0.42);
-        let graze = 0.16 + 0.84 * pow(1.0 - NdotV, 2.0);
+        // The constant is a veil over the whole panel — Charlie is near its peak
+        // everywhere except the mirror direction, so whatever fraction is not
+        // gated by grazing lands flat across the garment and subtracts directly
+        // from its modelling. Enough to keep the broad faces from reading as
+        // matte paper, no more.
+        let graze = 0.06 + 0.94 * pow(1.0 - NdotV, 2.0);
         let sheenLobe = min(ds * vAshikhmin(NdotV, max(NdotL, 1e-4)) * NdotL, 0.25);
         color += sun * sheenTint * sheenLobe * graze * sheenAmt * shadow;
     }
 
     // --- ambient ------------------------------------------------------------
     var irradiance = shIrradiance(N, uniforms.shR) * uniforms.ambientIntensity;
-    // Bounce off the snow. A figure standing on an 85%-albedo field is lit from
-    // below almost as much as from above, and leaving it out is what makes
-    // characters composited into snow scenes look cut out.
+    // Ground bounce: light coming back off the lawn, so it lands on downward
+    // faces — the underside of the mantle, the inside of a sleeve. Directional,
+    // so it adds shape rather than removing it.
     let up = clamp(-N.y * 0.5 + 0.5, 0.0, 1.0);
     irradiance += shIrradiance(vec3f(0.0, 1.0, 0.0), uniforms.shR)
-                * uniforms.ambientIntensity * 0.40 * up;
+                * uniforms.ambientIntensity * 0.26 * up;
+    // A flat pedestal, and the one term here with no direction in it at all, so
+    // every unit of it is pure contrast loss. It was at 0.20 — against an SH
+    // irradiance whose own swing top to bottom is not much larger, which meant
+    // roughly a third of the fill on the model was arriving from nowhere in
+    // particular. Enough to keep the darkest robe off black, no more, and with
+    // the costume's reflectances now where they should be that takes very
+    // little: the darkest slot is leather at 0.048, and it only has to clear
+    // the point where the display quantises it into the black.
+    irradiance += shIrradiance(vec3f(0.0, 1.0, 0.0), uniforms.shR)
+                * uniforms.ambientIntensity * 0.025;
 
     color += albedo * INV_PI * irradiance * ao;
 
-    // Ambient sheen: the sky wrapping around a fuzzy silhouette. Cheap, and it
-    // is most of what reads as "fuzz" when the sun is behind the figure. Kept
-    // deliberately small — this term is albedo-independent, so any generosity
-    // here erases the difference between a dark robe and a light one.
+    // Moon rim — Elden-style silhouette separation. Cool key along the Fresnel
+    // edge even when the face is in shadow, so the figure never dissolves into
+    // the canopy behind it. Independent of sheen so leather and robe both get it.
+    //
+    // A rim is only a rim while it stays on the edge. At an exponent of 2.8 and
+    // a third of the sun's radiance this one reached a long way inboard and
+    // became a uniform pale halo over the whole model — the term that did more
+    // than any other to make the costume look like one moulded piece. Narrower
+    // and dimmer: a bright line on the contour, nothing on the broad faces.
+    //
+    // This term is additive and does not scale with albedo, so its weight is
+    // relative to whatever the garment underneath happens to be. Against the
+    // old near-black costume 0.22 of the moon's radiance was several times the
+    // surface it sat on and read as a chrome edge; against a robe at its proper
+    // reflectance it only has to be a highlight.
+    let moonRim = pow(1.0 - NdotV, 4.2);
+    color += sun * moonRim * 0.16 * ao;
+
+    // Ambient sheen: the sky wrapping around a fuzzy silhouette.
     let rim = pow(1.0 - NdotV, 4.0);
     let skyAmb = shIrradiance(N, uniforms.shR) * uniforms.ambientIntensity * INV_PI;
     color += skyAmb * rim * sheenAmt * 0.55 * ao;
@@ -317,11 +443,12 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     }
 
     // ------------------------------------------------------- aerial perspective
+    let fogAmt = smoothstep(40.0, 95.0, length(world - uniforms.cameraPos));
     color = applyAerial(
         color, uniforms.cameraPos, world, -V, L,
         skyLUT, skyLUTSampler, sun,
         uniforms.fogDensity, uniforms.fogHeightFalloff, uniforms.fogStart,
-        uniforms.aerialStrength
+        uniforms.aerialStrength * fogAmt
     );
 
     fragmentOutputs.color = vec4f(color, 1.0);

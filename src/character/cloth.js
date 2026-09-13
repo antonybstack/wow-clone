@@ -382,12 +382,12 @@ export class ClothSolver {
 
         for (let s = 0; s < steps; s++) {
             for (let i = 0; i < this.panels.length; i++) {
-                this._step(this.panels[i], h, fig);
+                this._step(this.panels[i], h, fig, ch.grounded);
             }
         }
     }
 
-    _step(p, h, fig) {
+    _step(p, h, fig, grounded) {
         const n = p.count;
         const pos = p.pos;
         const prev = p.prev;
@@ -444,7 +444,7 @@ export class ClothSolver {
             this._anchors(p, h);
             this._distance(p, it);
         }
-        this._collide(p, fig);
+        this._collide(p, fig, grounded);
     }
 
     /** Pull each particle toward its skinned target at its own rate. */
@@ -502,7 +502,7 @@ export class ClothSolver {
     }
 
     /** Push particles out of the body capsules and off the snow. */
-    _collide(p, fig) {
+    _collide(p, fig, grounded) {
         const n = p.count;
         const pos = p.pos;
         const joint = fig.joint;
@@ -536,7 +536,7 @@ export class ClothSolver {
         // The hem rides on the snow rather than through it. Only the bottom rows
         // check, because that is the only place it can happen and `heightAt` is
         // a filtered lookup, not free.
-        if (p.groundRows > 0) {
+        if (p.groundRows > 0 && grounded !== false) {
             const start = (p.rows - p.groundRows) * p.cols;
             for (let k = start; k < n; k++) {
                 const o = k * 3;

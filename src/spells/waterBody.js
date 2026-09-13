@@ -286,7 +286,7 @@ export class WaterBody {
 
         m.setVector3("sunDir", sky.sunDir);
         m.setColor3("sunRadiance", sky.sunRadiance);
-        m.setArray4("shR", sky.sh);
+        m.setArray4("shR", sky.shForShaders());
 
         bindMatrixArray(m, "cascadeMatrices", sh.matrixData);
         _splits.set(sh.splits[0], sh.splits[1], sh.splits[2], sh.splits[3]);

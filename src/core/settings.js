@@ -14,22 +14,41 @@ export const S = {
     preset: "ultra",
     resolutionScale: 1.0,
 
-    // ------------------------------------------------------------------- sun
-    sunAzimuth: 118, // degrees, compass bearing of the sun
-    // Low enough for long raking shadows, high enough that the beam still
-    // carries real energy — below ~10 degrees the air mass eats so much of it
-    // that the scene goes flat and sky-lit.
-    sunElevation: 13.0,
-    sunIntensity: 4.2,
-    sunTempWarm: 1.0, // 0 = neutral white, 1 = full warm low-sun tint
-    ambientIntensity: 1.0,
-    ambientBlue: 1.0, // strength of the cool shadow shift
+    // ------------------------------------------------------------------- moon
+    // Readable night (Elden-style), not photometric dusk.
+    //
+    // Elevation is the number that matters here, and it is not a mood setting —
+    // it is geometry. This is a glade in a forest of ten-metre trees, and a key
+    // light at fourteen degrees cannot get into it: the canopy casts a forty
+    // metre shadow and the entire hollow sits inside it. Measured against a
+    // readback of cascade 0, every point on the lawn projected 39 m behind the
+    // nearest occluder, which is to say the whole playable area was flagged
+    // shadowed and clamped to the shadow floor. Nothing in the scene received a
+    // direct beam. That is what "the lighting looks off" was: no key light
+    // anywhere, so no terminator on the character, no cast shadow under it, and
+    // no shape in the terrain — every surface lit by fill alone, from every
+    // direction at once, which is the definition of flat.
+    //
+    // Forty-six degrees clears the canopy. It also triples N·L on a level lawn
+    // (sin 14° = 0.24, sin 46° = 0.72) while the beam's own radiance barely
+    // moves — Kasten-Young only buys back 7% over that span — so the direct
+    // term got three times stronger and `sunIntensity` and `ambientIntensity`
+    // both come down to pay for it. The ratio is the point: the fill used to be
+    // most of the light in the frame and now it is a minority of it, which is
+    // what lets a shadow read as a shadow.
+    sunAzimuth: 208,
+    sunElevation: 46.0,
+    sunIntensity: 0.28,
+    sunTempWarm: 0.04,
+    ambientIntensity: 1.15,
+    ambientBlue: 1.45,
 
     // ------------------------------------------------------------- atmosphere
-    fogDensity: 0.0072,
-    fogHeightFalloff: 0.045,
-    fogStart: 24,
-    aerialStrength: 1.0,
+    // Near hollow stays readable at night; haze only owns the forest wall.
+    fogDensity: 0.016,
+    fogHeightFalloff: 0.014,
+    fogStart: 36,
+    aerialStrength: 0.42,
     // Degrees. Drives sastrugi shear and dune orientation. Held 70-80 degrees
     // away from `sunAzimuth`: sastrugi ridges run along the wind, so when the
     // two align the sun rakes down every ridge, lights both flanks identically
@@ -37,22 +56,33 @@ export const S = {
     windDirection: 42,
     windStrength: 1.0,
     /** Far-field mountain range on the skybox. */
-    showMountains: true,
+    showMountains: false,
     /** Peak height of that range, metres. */
-    mountainHeight: 2150,
-    /** Strength of the volumetric shafts spilling past dune crests. */
-    shaftStrength: 0.30,
+    mountainHeight: 780,
+    /** Soft cool shafts — thinner so they do not carve the lawn into chalk planes. */
+    shaftStrength: 0.040,
 
     // ------------------------------------------------------------------- snow
-    glintIntensity: 0.55,
-    glintGrazing: 0.72, // how hard the grazing-angle gate bites
-    sssStrength: 1.0,
-    sssRadius: 1.0,
-    detailNormalStrength: 1.0,
-    macroHeightScale: 1.0,
-    sastrugiStrength: 1.0,
+    glintIntensity: 0.0,
+    glintGrazing: 0.40,
+    // Turf, not snow — snow SSS on a lawn soft-glows moonlit edges into chalk.
+    sssStrength: 0.05,
+    sssRadius: 0.7,
+    detailNormalStrength: 0.85,
+    macroHeightScale: 0.16,
+    sastrugiStrength: 0.06,
 
     // ----------------------------------------------------------- deformation
+    /**
+     * Whether anything may carve the ground.
+     *
+     * Off for Duskwell. The deformation field is a snow system — it cuts
+     * trenches, throws berms, packs and ices — and the glade is a grass lawn,
+     * so every spell cast left a crater of bare snow-logic across it. Kept as a
+     * toggle rather than deleted: the field itself is still what feet, the surf
+     * wake and the spells all write through, and it is correct on a snowfield.
+     */
+    deformEnabled: false,
     deformDepth: 1.0,
     deformBerm: 1.0,
     refillRate: 1.0,
@@ -83,26 +113,26 @@ export const S = {
 
     // ------------------------------------------------------------------ post
     taa: true,
-    ssr: true,
-    dof: true,
+    ssr: false,
+    dof: false,
     bloom: true,
     grain: true,
     sharpen: true,
     tonemap: "agx", // "agx" | "aces" | "none"
-    // Measured, not guessed: sunlit snow here sits around 12 in linear, and at
-    // this exposure it lands near AgX normalised 0.79, where the curve's slope
-    // is 0.09 per stop. Higher exposures push it into the shoulder, where the
-    // slope collapses and every lit slope resolves to the same flat white.
-    exposure: 0.105,
-    contrast: 1.14,
-    bloomStrength: 0.22,
+    // Stylised night midtones. The exposure lift and contrast ease were both
+    // propping up a scene with no key light in it; with the moon above the
+    // canopy the frame carries its own range and needs less help, so contrast
+    // comes back toward neutral.
+    exposure: 0.82,
+    contrast: 1.00,
+    bloomStrength: 0.32,
     grainStrength: 0.022,
     sharpenStrength: 0.55,
 
     // --------------------------------------------------------------- systems
     showTerrain: true,
     showCharacter: true,
-    showWake: true,
+    showWake: false,
     showLightShafts: true,
     wireframe: false,
     freezeTime: false,
@@ -117,10 +147,13 @@ export const S = {
  */
 export const SCHEMA = [
     {
-        group: "Sun & Sky",
+        group: "Moon & Sky",
         items: [
             { k: "sunAzimuth", l: "Azimuth", t: "f", min: 0, max: 360, step: 1 },
-            { k: "sunElevation", l: "Elevation", t: "f", min: 0.5, max: 45, step: 0.1 },
+            // The top of the old range was 45, which put every usable value for
+            // this scene below the tree line. Anything under about 30 puts the
+            // glade back inside the canopy shadow.
+            { k: "sunElevation", l: "Elevation", t: "f", min: 0.5, max: 75, step: 0.1 },
             { k: "sunIntensity", l: "Intensity", t: "f", min: 0, max: 10, step: 0.05 },
             { k: "sunTempWarm", l: "Warmth", t: "f", min: 0, max: 1, step: 0.01 },
             { k: "ambientIntensity", l: "Ambient", t: "f", min: 0, max: 3, step: 0.01 },
@@ -156,6 +189,7 @@ export const SCHEMA = [
     {
         group: "Deformation",
         items: [
+            { k: "deformEnabled", l: "Carve ground", t: "b" },
             { k: "deformDepth", l: "Depth", t: "f", min: 0, max: 3, step: 0.01 },
             { k: "deformBerm", l: "Berm mass", t: "f", min: 0, max: 3, step: 0.01 },
             { k: "refillRate", l: "Refill rate", t: "f", min: 0, max: 4, step: 0.01 },
@@ -190,7 +224,7 @@ export const SCHEMA = [
             { k: "grain", l: "Film grain", t: "b" },
             { k: "sharpen", l: "Sharpen", t: "b" },
             { k: "tonemap", l: "Tonemap", t: "e", opts: ["agx", "aces", "none"] },
-            { k: "exposure", l: "Exposure", t: "f", min: 0.01, max: 0.6, step: 0.005 },
+            { k: "exposure", l: "Exposure", t: "f", min: 0.01, max: 1.2, step: 0.005 },
             { k: "contrast", l: "Contrast", t: "f", min: 0.5, max: 2, step: 0.01 },
             { k: "bloomStrength", l: "Bloom amt", t: "f", min: 0, max: 1, step: 0.005 },
             { k: "grainStrength", l: "Grain amt", t: "f", min: 0, max: 0.1, step: 0.001 },
@@ -217,7 +251,7 @@ export const SCHEMA = [
 /** Quality presets. Only the keys that differ from `ultra` need listing. */
 export const PRESETS = {
     ultra: {},
-    high: { deformResolution: 2048, resolutionScale: 1.0, ssr: true, dof: true },
+    high: { deformResolution: 2048, resolutionScale: 1.0, ssr: false, dof: true },
     balanced: {
         deformResolution: 1024, resolutionScale: 0.85,
         ssr: false, dof: false,

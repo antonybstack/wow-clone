@@ -1,7 +1,7 @@
 {
-  "name": "snowflow",
+  "name": "duskwell",
   "version": "1.0.0",
-  "description": "Real-time procedural snow rendering tech demo (Babylon.js / WebGPU)",
+  "description": "Third-person classless MMORPG slice on Vaelithil (Babylon.js 9 / WebGPU)",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -23,6 +23,7 @@
     "@babylonjs/materials": "^9.25.0"
   },
   "devDependencies": {
+    "typescript": "^5.9.2",
     "vite": "^8.2.2"
   }
 }

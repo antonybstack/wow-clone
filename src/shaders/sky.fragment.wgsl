@@ -49,8 +49,8 @@ fn shadeRidge(hit: RidgeHit, dir: vec3f) -> vec3f {
     let steep = 1.0 - N.y;
     let snowMask = clamp(1.0 - smoothstep(0.46, 0.80, steep), 0.0, 1.0);
 
-    let rock = vec3f(0.052, 0.055, 0.066);
-    let snow = vec3f(0.855, 0.885, 0.945);
+    let rock = vec3f(0.045, 0.038, 0.032);
+    let snow = vec3f(0.07, 0.13, 0.08);
     let albedo = mix(rock, snow, snowMask);
 
     let shadow = ridgeShadow(hit.pos, hit.height, L, uniforms.ridgeAmp);
@@ -158,19 +158,62 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
         }
     }
 
-    // ---------------------------------------------------------- solar disc
-    // ~0.53 degrees across, with limb darkening. The glow around it is the
-    // aureole: forward-scattered light in the first few degrees, which at this
-    // sun elevation is a large part of why the horizon reads warm.
-    let mu = dot(dir, uniforms.sunDir);
-    let discCos = cos(0.0046);
-    if (mu > discCos) {
-        let r = sqrt(max(0.0, 1.0 - mu * mu)) / 0.0046;
-        let limb = pow(max(0.0, 1.0 - r * r * 0.72), 0.42);
-        col += uniforms.sunColor * uniforms.sunIntensity * 42.0 * limb;
+    // ------------------------------------------------------------- stars
+    // Hashed one candidate per direction-space cell, so they are fixed to the
+    // sky rather than to the screen and cost a single hash per pixel.
+    //
+    // Deliberately before the moon and the cirrus: both have to be able to
+    // wash stars out, which is most of what sells a field of them as being
+    // *behind* the rest of the sky.
+    if (dir.y > 0.0) {
+        let sc = dir * 210.0;
+        let cell = floor(sc);
+        let frac = sc - cell;
+        let h3 = hash33(cell);
+        // Roughly one cell in fifty lights up. Denser than this and a night sky
+        // stops reading as stars and starts reading as sensor noise.
+        let lit = step(0.980, h3.x);
+        let centre = vec3f(0.5) + (h3 - vec3f(0.5)) * 0.5;
+        let core = 1.0 - smoothstep(0.0, 0.34, length(frac - centre));
+        let twinkle = 0.70 + 0.30 * sin(uniforms.time * (1.3 + h3.y * 2.4) + h3.z * 6.283);
+        // Gone into the horizon haze, where the air path is longest.
+        let alt = smoothstep(0.015, 0.28, dir.y);
+        let star = lit * core * core * twinkle * alt * (0.30 + 0.70 * h3.y);
+        col += vec3f(0.70, 0.79, 1.0) * star * 0.9;
     }
-    let aureole = pow(max(0.0, mu), 1400.0) * 5.5 + pow(max(0.0, mu), 64.0) * 0.28;
-    col += uniforms.sunColor * uniforms.sunIntensity * aureole * 0.5;
+
+    // ----------------------------------------------------------- moon disc
+    // The scene's one light source, and the reason the ground is lit at all.
+    //
+    // ~1.9 degrees across: nearly four times the true angular size, which is
+    // the same lie every stylised night sky tells. At a truthful 0.53 degrees
+    // a moon is four pixels across and reads as a dead spot rather than as the
+    // body casting the shadows stretching across the glade.
+    let mu = dot(dir, uniforms.sunDir);
+    const MOON_SIN: f32 = 0.0332;          // sin(1.9 deg)
+    const MOON_COS: f32 = 0.99945;         // cos(1.9 deg)
+    if (mu > MOON_COS) {
+        let r = sqrt(max(0.0, 1.0 - mu * mu)) / MOON_SIN;
+        // Mare, sampled in world direction rather than in a disc-local frame:
+        // the moon keeps one face to us, so the mottling should not swim when
+        // the sun setting moves the disc across the dome.
+        //
+        // Faded out towards the rim, and kept shallow. At full strength across
+        // the whole face the mottling moved where the disc crossed the clipping
+        // point, and the moon came out with a visibly lumpy, polygonal edge.
+        let mare = noise3(dir * 95.0) * 0.5 + 0.5;
+        let face = mix(0.90, 1.0, mare * (1.0 - smoothstep(0.45, 0.95, r)));
+        // Soft only in the last fifth, so it stays a disc and not a smudge.
+        let edge = 1.0 - smoothstep(0.80, 1.0, r);
+        col += uniforms.sunRadiance * 0.48 * face * edge;
+    }
+
+    // Halo — forward scatter in the first few degrees. Most of why the sky
+    // immediately around a moon reads milky rather than black.
+    // Same radiance family as the ground key (`sunRadiance`), not a separate
+    // sunColor*intensity display path that could disagree once warmth changes.
+    let halo = pow(max(0.0, mu), 2200.0) * 1.7 + pow(max(0.0, mu), 48.0) * 0.11;
+    col += uniforms.sunRadiance * halo * 0.10;
 
     // ------------------------------------------------------------- cirrus
     // Thin, high, wind-aligned. Restrained on purpose: the reference skies are
@@ -192,10 +235,16 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
         cloud *= smoothstep(0.0, 0.22, dir.y) * (1.0 - smoothstep(0.55, 1.0, dir.y) * 0.45);
         cloud *= uniforms.cloudAmount;
 
-        // Lit from below-ish by a low sun, so the underside catches warmth.
+        // Same radiance scale as the dusk LUT. Display-referred greys (~0.5)
+        // mixed into a 0.05 dome are what washed the sky to chalk lavender.
+        //
+        // The unlit body is cool and only just above the dome, so the band
+        // reads as thin cloud catching moonlight rather than as a grey stain:
+        // at 0.40 coverage against the old near-black cloud colour it was not
+        // visible at all, which left the upper sky a dead flat wash.
         let sunLit = pow(max(0.0, mu * 0.5 + 0.5), 3.0);
-        let cloudCol = mix(vec3f(0.52, 0.60, 0.74), uniforms.sunColor * 1.35, sunLit * 0.75);
-        col = mix(col, cloudCol * (0.55 + uniforms.sunIntensity * 0.06), cloud * 0.62);
+        let cloudCol = mix(vec3f(0.026, 0.034, 0.062), uniforms.sunColor * 0.30, sunLit * 0.80);
+        col = mix(col, cloudCol, cloud * 0.55);
     }
 
     fragmentOutputs.color = vec4f(col, 1.0);

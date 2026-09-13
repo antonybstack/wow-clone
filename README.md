@@ -14,15 +14,23 @@ no meshes, no HDRIs and no animation data in this repository.
 
 ## Controls
 
-|                        |                                                     |
-| ---------------------- | --------------------------------------------------- |
-| Click                  | capture the pointer                                 |
-| `W` `A` `S` `D`        | move, relative to the camera                        |
-| Mouse                  | look · **Wheel** zoom                               |
-| `Shift`                | sprint                                              |
-| **Right mouse (hold)** | snow-surf — carve across the field and throw a wake |
-| `1` – `5`              | the five spells (`2` is a held cast)                |
-| `F1` or `` ` ``        | settings and performance overlay                    |
+|                        |                                                              |
+| ---------------------- | ------------------------------------------------------------ |
+| `W` `S`                | forward / back along facing                                  |
+| `A` `D`                | turn (strafe while RMB is held)                              |
+| `Q` `E`                | strafe                                                       |
+| `Space`                | jump (hold to hop again on landing)                          |
+| **Right mouse**        | hold to look — face the camera; A/D strafe                   |
+| **Left mouse**         | orbit without turning; click a unit to select                |
+| Both buttons           | run forward + look                                           |
+| `Shift`                | walk (default is a run)                                      |
+| `=` / NumLock / MMB    | autorun (`S` cancels)                                        |
+| `Tab` / Shift+Tab      | cycle hostiles                                               |
+| `Esc`                  | close bag / paper doll, then clear target                    |
+| `1` – `5`              | abilities (`2` is a held cast)                               |
+| `B` / `C`              | bag / character                                              |
+| Wheel                  | zoom                                                         |
+| `F1` or `` ` ``        | settings and performance overlay                             |
 
 The overlay exposes every art parameter as a live slider — sun angle, wind
 bearing, subsurface radius, deformation depth, tonemap curve, exposure — plus a

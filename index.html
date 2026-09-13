@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>SNOWFLOW</title>
+<title>Duskwell</title>
 <style>
     :root {
         /* Cool-shadow palette pulled from the Horizon reference. */
@@ -24,6 +24,8 @@
         color: var(--frost);
         font-family: ui-sans-serif, "Inter", "Segoe UI", system-ui, sans-serif;
         -webkit-font-smoothing: antialiased;
+        user-select: none;
+        -webkit-user-select: none;
     }
 
     #view {
@@ -102,7 +104,9 @@
         to   { opacity: 1; transform: none; }
     }
 
-    .bar {
+    /* Scoped to #boot: unscoped, this `width:100%; height:1px; overflow:hidden`
+       also matched the HUD's action bar and clipped it to an invisible sliver. */
+    #boot .bar {
         position: relative;
         margin: 3.6em auto 0;
         width: 100%;
@@ -111,7 +115,7 @@
         overflow: hidden;
     }
 
-    .bar-fill {
+    #boot .bar-fill {
         position: absolute;
         inset: 0 auto 0 0;
         width: 0%;
@@ -175,12 +179,12 @@
 <body>
     <canvas id="view" tabindex="0"></canvas>
 
-    <div id="hint">click to look &nbsp;·&nbsp; wasd to move &nbsp;·&nbsp; f1 for settings</div>
+    <div id="hint">Hold RMB to look &nbsp;·&nbsp; A/D turn &nbsp;·&nbsp; Space jump &nbsp;·&nbsp; Q/E strafe &nbsp;·&nbsp; Tab target</div>
 
     <div id="boot">
         <div class="boot-inner">
-            <div class="wordmark">SNOWFLOW</div>
-            <div class="tagline">a study in snow</div>
+            <div class="wordmark">DUSKWELL</div>
+            <div class="tagline">a glade on Vaelithil</div>
             <div class="bar"><div class="bar-fill" id="boot-bar"></div></div>
             <div class="phase" id="boot-phase">initialising</div>
         </div>

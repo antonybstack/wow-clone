@@ -29,6 +29,11 @@ export async function phase(text, to) {
     await nextFrame();
 }
 
+/** Stop the boot screen eating clicks; the fade can continue. */
+export function releaseInput() {
+    root?.classList.add("gone");
+}
+
 export async function done() {
     await phase("ready", 1);
     // Let the bar visibly land before the fade starts.

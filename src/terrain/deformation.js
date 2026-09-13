@@ -145,6 +145,7 @@ export class DeformationField {
      * @param {number} [edge] 0..1 rim roughness; 0 is a clean bevel
      */
     brush(x, z, radius, depth, berm, compression, ice, yaw, elongation, edge) {
+        if (!S.deformEnabled) return;
         if (this._brushCount >= MAX_BRUSHES) return;
         if (radius <= 0) return;
 

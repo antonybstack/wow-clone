@@ -83,12 +83,16 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     let edge = mix(
         pow(clamp(1.0 - r * r, 0.0, 1.0), 1.6),
         smoothstep(1.0, 0.65, r),
-        kind
+        clamp(kind, 0.0, 1.0)
     );
     // Powder is close to transparent on its own; density has to come from many
     // grains overlapping, or a single one turns into a decal. 0.26 was low enough
     // that even fifteen hundred live grains read as haze rather than as spray.
-    var alpha = state.w * edge * mix(0.36, 0.55, kind);
+    // Magic dust / embers (kind >= 2) stay brighter — they are the plate's FX.
+    var alpha = state.w * edge * mix(0.36, 0.55, clamp(kind, 0.0, 1.0));
+    if (kind > 1.5) {
+        alpha = state.w * edge * mix(0.55, 0.72, step(2.5, kind));
+    }
     if (alpha < 0.004) { discard; }
 
     // Spherical normal from the billboard's own coordinates.
@@ -108,9 +112,19 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
 
     // Snow crystals in air scatter almost isotropically at the surface and very
     // strongly forward through the volume, so both terms are needed.
-    let albedo = vec3f(0.92, 0.94, 0.98);
+    // kind 2 = violet magic dust, kind 3 = warm ember — emissive-leaning.
+    var albedo = vec3f(0.92, 0.94, 0.98);
+    var emit = vec3f(0.0);
+    if (kind > 1.5 && kind < 2.5) {
+        albedo = vec3f(0.55, 0.22, 0.95);
+        emit = vec3f(0.85, 0.25, 1.6);
+    } else if (kind > 2.5) {
+        albedo = vec3f(1.0, 0.45, 0.08);
+        emit = vec3f(1.6, 0.55, 0.05);
+    }
     let diff = wrapDiffuse(dot(N, L), 0.75);
     var color = albedo * INV_PI * sun * diff * shadow;
+    color += emit * (0.55 + 0.45 * edge);
 
     // Forward scatter through the puff. `mu` is 1 looking straight into the sun.
     //
@@ -122,7 +136,7 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     // white.
     let mu = dot(-V, L);
     let fwd = phaseMie(mu, 0.55) * 0.85;
-    color += sun * albedo * fwd * mix(0.25, 1.0, shadow) * (1.0 - kind * 0.5);
+    color += sun * albedo * fwd * mix(0.25, 1.0, shadow) * (1.0 - clamp(kind, 0.0, 1.0) * 0.5);
 
     // Sky, which is what fills the shadowed side and keeps it blue.
     color += albedo * INV_PI * shIrradiance(N, uniforms.shR) * uniforms.ambientIntensity;

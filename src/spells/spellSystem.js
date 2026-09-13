@@ -92,6 +92,13 @@ export class SpellSystem {
         this.crystallize = new Crystallize(this.ctx);
         this.vortex = new Vortex(this.ctx);
 
+        /**
+         * Optional hook that runs after spells declare lights and before the
+         * pool is uploaded — held staff glow, ambient emitters, etc.
+         * @type {((lights: SpellLights) => void) | null}
+         */
+        this.onBeforeApplyLights = null;
+
         this.spells = [this.sweep, this.ribbon, this.bloom, this.crystallize, this.vortex];
 
         /**
@@ -181,6 +188,10 @@ export class SpellSystem {
         ch.castAimX = this.aim.x;
         ch.castAimY = this.aim.y;
         ch.castAimZ = this.aim.z;
+
+        // Held weapons / ambient emitters declare here so they share the pool
+        // with active spells (and lose gracefully when the pool is full).
+        if (this.onBeforeApplyLights) this.onBeforeApplyLights(this.lights);
 
         // Everything outside the spell system that answers a spell light, after
         // the last declaration and before anything renders.

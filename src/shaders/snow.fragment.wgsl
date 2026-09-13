@@ -33,6 +33,8 @@ var auxTex: texture_2d<f32>;
 var auxTexSampler: sampler;
 var detailTex: texture_2d<f32>;
 var detailTexSampler: sampler;
+var grassTex: texture_2d<f32>;
+var grassTexSampler: sampler;
 var skyLUT: texture_2d<f32>;
 var skyLUTSampler: sampler;
 var cascade0: texture_2d<f32>;
@@ -317,18 +319,58 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     // Snow albedo sits in a narrow, high, slightly blue band. It is never 1.0:
     // pushing albedo to white is what produces the blown-out clipped highlights
     // that read as "untextured white blob" rather than as snow.
-    var albedo = vec3f(0.855, 0.885, 0.945);
-    var roughness = 0.62;
+    // Duskwell turf — saturated glade grass. Clump-scale variation so the
+    // hollow is a carpet, not a pale sheet or a polar dune.
+    let clump = noise2(world.xz * 0.11) * 0.5 + 0.5;
+    let sward = noise2(world.xz * 0.42 + vec2f(4.0, 1.0)) * 0.5 + 0.5;
+    let thatch = noise2(world.xz * 3.2 + vec2f(2.0, 9.0)) * 0.5 + 0.5;
+    let broad = noise2(world.xz * 0.19);
+    // Darker and less saturated than daylight turf. Under a cool moon a lawn
+    // reads as a deep blue-green, not as billiard felt — and this surface fills
+    // the bottom half of most frames, so its chroma sets the whole scene's.
+    //
+    // Down again, by about a third, and cooler. These were set while the glade
+    // was inside the canopy's shadow and every one of them was arriving at the
+    // eye multiplied by the shadow floor; raising the moon over the tree line
+    // tripled N·L on level ground and the lawn came back as vivid daylight
+    // felt, which is a strange thing to be standing on under a crescent moon.
+    // Green is pulled down harder than red and blue, because it was the green
+    // channel alone that was carrying the daylight read.
+    var albedo = mix(vec3f(0.044, 0.074, 0.048), vec3f(0.094, 0.072, 0.040), smoothstep(0.44, 0.60, broad));
+    albedo = mix(albedo, vec3f(0.030, 0.058, 0.040), sward * 0.36);
+    albedo *= 0.86 + 0.24 * thatch * clump;
+    let turfUv = fract(world.xz * 0.28);
+    let turfS = textureSample(grassTex, grassTexSampler, turfUv).rgb;
+    // Second lookup at an incommensurate scale and a rotation. One tile at
+    // 3.6 m repeated visibly enough to draw a grid across the open lawn, which
+    // is the one place in the scene with nothing else to hide it.
+    let turfUv2 = fract(rot2(0.9) * world.xz * 0.113 + vec2f(0.37, 0.61));
+    let turfS2 = textureSample(grassTex, grassTexSampler, turfUv2).rgb;
+    albedo = mix(albedo, albedo * mix(turfS, turfS2, 0.5) * 1.08, 0.38);
+    let bare = noise2(world.xz * 0.07 + vec2f(20.0, 7.0));
+    albedo = mix(albedo, vec3f(0.064, 0.048, 0.028), smoothstep(0.52, 0.82, bare) * 0.42);
+    // Deep moss in the hollows of the sward. This was a magenta fleck, which
+    // put the sky's violet into the one surface that most needed to read green.
+    let fleck = noise2(world.xz * 3.4 + vec2f(19.0, 4.0));
+    albedo = mix(albedo, vec3f(0.034, 0.060, 0.048), smoothstep(0.80, 0.92, fleck) * 0.40);
+    let fleck2 = noise2(world.xz * 2.6 + vec2f(3.0, 22.0));
+    albedo = mix(albedo, vec3f(0.052, 0.058, 0.040), smoothstep(0.86, 0.95, fleck2) * 0.22);
+    // South path — cool packed earth under moonlight (warm dirt fought the
+    // cool key and read as a second light source at the hero's feet).
+    let trail = exp(-world.x * world.x * 0.075) * smoothstep(2.0, 6.5, world.z) * (1.0 - smoothstep(16.5, 20.8, world.z));
+    let ruts = 0.68 + 0.32 * (noise2(world.xz * 1.4 + vec2f(6.0, 1.0)) * 0.5 + 0.5);
+    albedo = mix(albedo, vec3f(0.16, 0.14, 0.12) * ruts, clamp(trail, 0.0, 1.0) * 0.85);
+    var roughness = 0.74;
     var f0 = vec3f(0.028);
     var thickness = 1.0; // 1 = deep drift, 0 = thin crust
 
     // Compressed snow: denser, darker, tighter specular, scatters less.
-    albedo = mix(albedo, vec3f(0.62, 0.665, 0.755), compression * 0.85);
+    albedo = mix(albedo, vec3f(0.10, 0.14, 0.09), compression * 0.85);
     roughness = mix(roughness, 0.34, compression);
     thickness = mix(thickness, 0.35, compression);
 
     // Refrozen ice: smooth and genuinely reflective.
-    albedo = mix(albedo, vec3f(0.42, 0.56, 0.70), iceAmount * 0.8);
+    albedo = mix(albedo, vec3f(0.22, 0.28, 0.20), iceAmount * 0.8);
     roughness = mix(roughness, 0.07, iceAmount);
     f0 = mix(f0, vec3f(0.045), iceAmount);
     thickness = mix(thickness, 0.15, iceAmount);
@@ -368,7 +410,7 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     //     sky out of it.
     if (deformBerm > 0.002) {
         let loose = clamp(deformBerm * 5.0, 0.0, 1.0);
-        albedo = mix(albedo, vec3f(0.895, 0.920, 0.965), loose * 0.55);
+        albedo = mix(albedo, vec3f(0.18, 0.16, 0.10), loose * 0.55);
         roughness = mix(roughness, 0.78, loose * 0.7);
         thickness = mix(thickness, 1.0, loose * 0.6);
         // Broken snow has crystal faces pointing everywhere, which is where the
@@ -387,8 +429,8 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     // find and what it returns is dominated by its own view-dependent bias — a
     // broad, soft darkening keyed to distance from the camera, which slides
     // across the ground when the camera moves and nothing else does.
-    var ao = mix(1.0, cavity, 0.35 * (1.0 - smoothstep(0.02, 0.25, footprint)))
-           * (1.0 - clamp(deformDepth * 1.9, 0.0, 1.0) * 0.38);
+    var ao = mix(1.0, cavity, 0.16 * (1.0 - smoothstep(0.02, 0.25, footprint)))
+           * (1.0 - clamp(deformDepth * 1.9, 0.0, 1.0) * 0.22);
 
     // ------------------------------------------------------------- lighting
     let NdotL = dot(N, L);
@@ -403,27 +445,41 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     if (NdotL > -0.35) {
         shadow = sunShadow(world, geoN, viewDist, noiseRot);
     }
+    // Stylised night shadow floor. Photometric CSM goes to ~0 and crushes the
+    // lawn to unreadable black; AAA night keeps indigo midtones in shade so
+    // grass texture and path remain playable.
+    //
+    // The floor is also the only thing grounding the character, and 0.42 was
+    // paying for lawn readability with the figure's contact shadow. A cast
+    // shadow that only darkens the grass by a factor of two, under a fill this
+    // broad, does not read as an object sitting on the ground — the hero looked
+    // pasted onto the glade rather than standing in it. 0.30 is a visible
+    // pool under the boots while still leaving the grass blades legible, and
+    // the readability it gives up comes back from S.ambientIntensity, which
+    // lifts shade without erasing the shadow's own edge.
+    shadow = mix(0.30, 1.0, shadow);
 
     let sunRadiance = uniforms.sunRadiance;
     const INV_PI: f32 = 0.31830988618;
 
     // --- direct diffuse, wrapped -------------------------------------------
-    // Snow's mean free path is millimetres, so light wraps well past the
-    // geometric terminator. This is why snow shadow edges are soft even where
-    // the shadow map is pin sharp.
-    let wrapAmount = mix(0.62, 0.15, max(compression, rockExposed));
+    // Snow's mean free path is millimetres; turf is not snow. Wrap stays mild
+    // so moonlit grass edges do not chalk out past the terminator.
+    let wrapAmount = mix(0.18, 0.08, max(compression, rockExposed));
     let diff = wrapDiffuse(NdotL, wrapAmount);
     var direct = albedo * INV_PI * sunRadiance * diff * shadow;
 
     // --- subsurface --------------------------------------------------------
+    // Tuned down for the glade (see S.sssStrength). Residual snow SSS on turf
+    // soft-glowed every lit crest into a milky rim under moonlight.
     let sss = snowSubsurface(
         N, L, V, sunRadiance, thickness,
-        uniforms.sssStrength * (1.0 - rockExposed), uniforms.sssRadius
+        uniforms.sssStrength * 0.08 * (1.0 - rockExposed), uniforms.sssRadius
     );
     // Only partly shadowed: scattered light arrives through the snow, so a
     // shadowed drift lip still glows. Killing this with the shadow term is what
     // makes shadowed snow go flat and grey.
-    direct += sss * albedo * mix(0.42, 1.0, shadow);
+    direct += sss * albedo * mix(0.34, 1.0, shadow);
 
     // --- direct specular ---------------------------------------------------
     if (NdotL > 0.0) {
@@ -441,11 +497,10 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     // half of the warm-light / cool-shadow split that sells snow.
     var irradiance = shIrradiance(N, uniforms.shR) * uniforms.ambientIntensity;
 
-    // Snow bounces onto itself: a huge, bright, near-white surround. Without a
-    // bounce term the troughs go far too dark for a material with 0.85 albedo.
+    // Richer shade fill so shadowed turf stays navy-green, not a black hole.
     let bounceUp = clamp(-N.y * 0.5 + 0.5, 0.0, 1.0);
-    irradiance += shIrradiance(vec3f(0.0, 1.0, 0.0), uniforms.shR)
-                * uniforms.ambientIntensity * 0.28 * bounceUp * albedo;
+    irradiance += vec3f(0.055, 0.095, 0.078) * uniforms.ambientIntensity * 0.85;
+    irradiance += vec3f(0.035, 0.062, 0.048) * uniforms.ambientIntensity * bounceUp;
 
     var ambient = albedo * INV_PI * irradiance;
 
@@ -508,15 +563,15 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     //     is blue and not grey. The tint is the same `deepTint` the subsurface
     //     term uses, and tying it to the darkening rather than to `deformDepth`
     //     means the two can never drift apart.
-    let caveTint = mix(vec3f(1.0), vec3f(0.55, 0.72, 1.0), (1.0 - ao) * 0.95);
-    color *= ao * caveTint;
+    let caveTint = mix(vec3f(1.0), vec3f(0.78, 0.90, 0.80), (1.0 - ao) * 0.35);
+    color *= mix(1.0, ao, 0.55) * caveTint;
 
     // ------------------------------------------------------- aerial perspective
     color = applyAerial(
         color, uniforms.cameraPos, world, -V, L,
         skyLUT, skyLUTSampler, sunRadiance,
         uniforms.fogDensity, uniforms.fogHeightFalloff, uniforms.fogStart,
-        uniforms.aerialStrength
+        uniforms.aerialStrength * 0.58
     );
 
     // ------------------------------------------------------------------ debug

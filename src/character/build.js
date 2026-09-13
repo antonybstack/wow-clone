@@ -32,12 +32,12 @@ import {
 } from "./figure.js";
 
 // ------------------------------------------------------------- material slots
-export const M_ROBE = 0;     // deep indigo wool
-export const M_MANTLE = 1;   // lighter blue-grey over-mantle
-export const M_TUNIC = 2;    // pale cream under-layer
-export const M_LEATHER = 3;  // belt and boots
+export const M_ROBE = 0;     // ember duskweave wool
+export const M_MANTLE = 1;   // lighter russet over-mantle
+export const M_TUNIC = 2;    // undyed linen under-layer
+export const M_LEATHER = 3;  // belt, boots and hands
 export const M_SKIN = 4;     // face, deep in shade
-export const M_TRIM = 5;     // pale blue banding
+export const M_TRIM = 5;     // dark banding and face scarf
 export const M_FUR = 6;      // hood and cuff trim
 
 /** Segments around a limb. 14 is smooth at the distances this is seen from. */
@@ -126,8 +126,17 @@ function computeNormals(pos, idx) {
  * @param {number[][]} rings
  * @param {number} matId
  * @param {[number,number,number]} ref reference axis the section frame avoids
+ * @param {boolean} capStart
+ * @param {boolean} capEnd
+ * @param {{seg?: number, sculpt?: (p: number[]) => void}} [opts]
+ *   `seg` overrides the ring segment count for parts that need more than a limb
+ *   does. `sculpt` gets each vertex position in world space and may move it in
+ *   place, before normals are derived — so a displaced surface still gets the
+ *   normals of the shape it actually is, not of the tube it started as.
  */
-function loft(B, rings, matId, ref, capStart, capEnd) {
+function loft(B, rings, matId, ref, capStart, capEnd, opts) {
+    const seg = opts?.seg ?? SEG;
+    const sculpt = opts?.sculpt;
     const n = rings.length;
     const first = [];
     let prevRow = null;
@@ -163,22 +172,24 @@ function loft(B, rings, matId, ref, capStart, capEnd) {
         const circ = Math.PI * (cur[3] + cur[4]);
 
         const row = [];
-        for (let s = 0; s < SEG; s++) {
-            const a = (s / SEG) * Math.PI * 2;
+        for (let s = 0; s < seg; s++) {
+            const a = (s / seg) * Math.PI * 2;
             const ca = Math.cos(a), sa = Math.sin(a);
-            const px = cur[0] + ux * cur[3] * sa + wx * cur[4] * ca;
-            const py = cur[1] + uy * cur[3] * sa + wy * cur[4] * ca;
-            const pz = cur[2] + uz * cur[3] * sa + wz * cur[4] * ca;
+            _lp[0] = cur[0] + ux * cur[3] * sa + wx * cur[4] * ca;
+            _lp[1] = cur[1] + uy * cur[3] * sa + wy * cur[4] * ca;
+            _lp[2] = cur[2] + uz * cur[3] * sa + wz * cur[4] * ca;
+            _lpAo = 1;
+            if (sculpt) sculpt(_lp);
             row.push(B.vert(
-                px, py, pz,
-                (s / SEG) * circ, vAcc,
-                matId, cur[5], cur[6], cur[7], cur[8], cur[9]
+                _lp[0], _lp[1], _lp[2],
+                (s / seg) * circ, vAcc,
+                matId, cur[5] * _lpAo, cur[6], cur[7], cur[8], cur[9]
             ));
         }
 
         if (prevRow) {
-            for (let s = 0; s < SEG; s++) {
-                const s2 = (s + 1) % SEG;
+            for (let s = 0; s < seg; s++) {
+                const s2 = (s + 1) % seg;
                 B.quad(prevRow[s], prevRow[s2], row[s2], row[s]);
             }
         }
@@ -187,24 +198,159 @@ function loft(B, rings, matId, ref, capStart, capEnd) {
     }
 
     // Caps: a fan to a centre vertex placed on the ring's own axis.
-    if (capStart) capRing(B, rings[0], rings[1], first, matId, true);
-    if (capEnd) capRing(B, rings[n - 1], rings[n - 2], prevRow, matId, false);
+    if (capStart) capRing(B, rings[0], rings[1], first, matId, true, seg, sculpt);
+    if (capEnd) capRing(B, rings[n - 1], rings[n - 2], prevRow, matId, false, seg, sculpt);
 }
 
-function capRing(B, ring, neighbour, row, matId, isStart) {
+const _lp = [0, 0, 0];
+/**
+ * Occlusion multiplier a sculpt callback may write for the vertex it was just
+ * handed, on top of whatever its ring carries.
+ *
+ * A ring's AO is one number for the whole loop, which is all a limb needs and
+ * nowhere near enough for a face: an eye is dark because it is a recess *and*
+ * because what is in the recess is not skin, and neither of those is something
+ * a horizontal slice of the skull can express. Geometry alone does not get
+ * there either — a socket a centimetre deep only moves the shading by a few
+ * percent under a fill this broad, which is why the sculpted face still read as
+ * a bare egg.
+ */
+let _lpAo = 1;
+
+function capRing(B, ring, neighbour, row, matId, isStart, seg, sculpt) {
     let ax = ring[0] - neighbour[0], ay = ring[1] - neighbour[1], az = ring[2] - neighbour[2];
     const al = Math.hypot(ax, ay, az) || 1;
     ax /= al; ay /= al; az /= al;
     const ext = Math.max(ring[3], ring[4]) * 0.7;
+    _lp[0] = ring[0] + ax * ext;
+    _lp[1] = ring[1] + ay * ext;
+    _lp[2] = ring[2] + az * ext;
+    _lpAo = 1;
+    if (sculpt) sculpt(_lp);
     const c = B.vert(
-        ring[0] + ax * ext, ring[1] + ay * ext, ring[2] + az * ext,
-        0.5, 0.5, matId, ring[5], ring[6], ring[7], ring[8], ring[9]
+        _lp[0], _lp[1], _lp[2],
+        0.5, 0.5, matId, ring[5] * _lpAo, ring[6], ring[7], ring[8], ring[9]
     );
-    for (let s = 0; s < SEG; s++) {
-        const s2 = (s + 1) % SEG;
+    for (let s = 0; s < seg; s++) {
+        const s2 = (s + 1) % seg;
         if (isStart) B.tri(c, row[s2], row[s]);
         else B.tri(c, row[s], row[s2]);
     }
+}
+
+// ----------------------------------------------------------------- face sculpt
+//
+// Semi-axes of the bare skull, so the sculpt below can work in units of head
+// rather than in metres and stay correct if the head is ever resized.
+const HEAD_RX = 0.089;
+const HEAD_RY = 0.105;
+const HEAD_RZ = 0.096;
+
+/** Unit-height Gaussian, `w` being its half-width. */
+function bump(t, w) {
+    const x = t / w;
+    return Math.exp(-x * x);
+}
+
+/**
+ * Push a brow, two eye sockets, a nose and cheekbones out of the front of the
+ * skull, displacing along +Z (which `FACE_DIR` points along).
+ *
+ * The head was a bare ellipsoid, and under a hood with no key light that was
+ * defensible — it read as a dark void. It does not survive a key light. With
+ * the moon above the canopy the cowl's interior gets a real grazing beam, and
+ * what it lit was a smooth egg: the single most artificial thing left on the
+ * model, and unmistakably a mannequin at conversation distance.
+ *
+ * This is deliberately structure and not features. There are no eyeballs, no
+ * lips, no nostrils — the scarf covers everything below the cheekbone anyway,
+ * and the parts that would be hardest to get right are the parts it hides. What
+ * is here is the set of planes that make a head read as a head in raking light:
+ * a brow that casts down into the sockets, sockets deep enough for the curvature
+ * occlusion in the fabric shader to find, a nose bridge to break the centre line,
+ * and cheekbones to give the silhouette a corner. Millimetres, all of it — the
+ * brow is 7.5 mm and the nose 13.5 mm, which on a 19 cm skull is life-size and
+ * slightly over.
+ *
+ * Slightly over on purpose. A first pass at anatomically honest depths was
+ * invisible: the face points away from the moon for most of the day, so it is
+ * lit by cowl-filtered fill almost all the time, and fill has no terminator to
+ * catch a 3 mm step. These depths are what it takes for the features to survive
+ * being lit by nothing but a patch of sky.
+ *
+ * Displacement falls off with `lz`, so it is zero by the ears and nothing wraps
+ * onto the back of the skull.
+ */
+function sculptFace(p) {
+    const lx = (p[0] - HEAD_C[0]) / HEAD_RX;
+    const ly = (p[1] - HEAD_C[1]) / HEAD_RY;
+    const lz = (p[2] - HEAD_C[2]) / HEAD_RZ;
+    if (lz <= 0) return;
+    const ax = Math.abs(lx);
+
+    // Every feature below is centred on a ring, and that is not cosmetic.
+    //
+    // The head is sixteen rings of a half-turn, so its rows land at ly of 0 and
+    // ±0.195 and ±0.383 and nowhere in between. A feature centred off a row
+    // never puts its peak on a vertex: the eyes were at 0.10, midway between the
+    // row at 0 and the row at 0.195, and both rows sampled the mask at about 0.4
+    // of full depth. Half strength, split across two rows, is a smudge — which
+    // is exactly what the face came back as. Anatomy agrees anyway; eyes sit at
+    // the vertical midpoint of a skull, which is the row at 0.
+
+    // Brow ridge. Strongest over each eye and slightly relieved at the centre,
+    // which is the glabella and the thing that stops a brow reading as a shelf.
+    const brow = 0.0075 * bump(ly - 0.195, 0.16)
+               * (0.58 + 0.42 * bump(ax - 0.40, 0.32));
+
+    // Eye sockets, under the brow and inboard of the temples. These are the only
+    // concave feature on the model, so they are also the only place the fold
+    // occlusion term has anything to bite on above the shoulders.
+    const socket = -0.0110 * bump(ly, 0.15)
+                 * (bump(lx - 0.44, 0.25) + bump(lx + 0.44, 0.25));
+
+    // Nose. Narrow at the bridge and wider toward the tip, and centred low
+    // enough that the last third of it emerges over the top edge of the scarf.
+    const noseW = 0.105 + 0.075 * Math.max(0, 0.20 - ly);
+    const nose = 0.0135 * bump(lx, noseW) * bump(ly + 0.10, 0.26);
+
+    // Cheekbones: the corner in the silhouette just below the sockets.
+    const cheek = 0.0045 * bump(ly + 0.195, 0.20)
+                * (bump(lx - 0.62, 0.27) + bump(lx + 0.62, 0.27));
+
+    // Temple hollow, which is what keeps the brow from looking bolted on.
+    const temple = -0.0030 * bump(ly - 0.195, 0.22) * bump(ax - 0.92, 0.26);
+
+    const fade = Math.pow(lz, 0.8);
+    p[2] += (brow + socket + nose + cheek + temple) * fade;
+
+    // The eyes.
+    //
+    // Not modelled — baked, as occlusion, on a mask tighter than the socket that
+    // carries it. A socket is a 4 cm dish and an eye is a 1.5 cm dark spot in
+    // the top half of it, so the two cannot share a falloff: widen the dark part
+    // to the socket's width and the face gets two bruises instead of two eyes.
+    //
+    // This is the one feature on the figure that is a cheat rather than a shape,
+    // and it earns it. Everything else about the head can be carried by planes
+    // catching a grazing beam, but an eye is defined by being darker than the
+    // skin around it at every angle and in every light, which is a statement
+    // about what is in the socket and not about how the socket is lit. Without
+    // it the head is a mannequin at any distance, and at the distance the game
+    // actually frames the figure it is the *only* facial feature large enough to
+    // resolve — twenty pixels of head gets two dark marks and a nose shadow, and
+    // that is enough for the eye to accept a face.
+    // Narrow vertically — 0.13 of a head radius is 1.4 cm — so that the row it
+    // sits on takes nearly all of it and the rows above and below take almost
+    // none. A wider falloff spreads the same darkening over three rows and
+    // reads as a blindfold rather than as two eyes.
+    const eye = bump(ly, 0.13)
+              * (bump(lx - 0.44, 0.17) + bump(lx + 0.44, 0.17));
+    // A lash line: the upper lid sits proud of the eye and shades the top of it,
+    // so the mark is heaviest just under the brow rather than centred.
+    const lash = bump(ly - 0.195, 0.10)
+               * (bump(lx - 0.44, 0.19) + bump(lx + 0.44, 0.19));
+    _lpAo = 1 - (0.82 * Math.min(1, eye) + 0.22 * Math.min(1, lash)) * fade;
 }
 
 /** Bone blend along the spine, by bind-pose height. */
@@ -268,7 +414,10 @@ export function buildBody(scene) {
         const [y, rx, rz] = TORSO[i];
         torso.push(ring(0, y, 0, rx, rz, 0.72, spineBones(y)));
     }
-    loft(B, torso, M_TRIM, [0, 0, 1], true, false);
+    // The under-tunic, not the scarf material it used to share. It shows at the
+    // mantle's notch and at the waist above the belt, and those are the two
+    // places the eye needs a darker layer behind the robe to read depth.
+    loft(B, torso, M_TUNIC, [0, 0, 1], true, false);
 
     // ---- belt -------------------------------------------------------------
     const belt = [
@@ -279,36 +428,58 @@ export function buildBody(scene) {
     loft(B, belt, M_LEATHER, [0, 0, 1], false, false);
 
     // ---- neck + head ------------------------------------------------------
+    // The neck shares the skin slot with the head, so its occlusion has to stay
+    // out of the band the fabric shader reads as an eye. It was at 0.28-0.35,
+    // which is squarely inside it.
     const neck = [
-        ring(0, 1.42, -0.005, 0.062, 0.058, 0.35, [B_NECK, 1, B_HEAD, 0]),
-        ring(0, 1.50, 0.000, 0.058, 0.055, 0.30, [B_NECK, 0.5, B_HEAD, 0.5]),
-        ring(0, 1.56, 0.002, 0.062, 0.060, 0.28, [B_HEAD, 1, 0, 0]),
+        ring(0, 1.42, -0.005, 0.062, 0.058, 0.50, [B_NECK, 1, B_HEAD, 0]),
+        ring(0, 1.50, 0.000, 0.058, 0.055, 0.47, [B_NECK, 0.5, B_HEAD, 0.5]),
+        ring(0, 1.56, 0.002, 0.062, 0.060, 0.45, [B_HEAD, 1, 0, 0]),
     ];
     loft(B, neck, M_SKIN, [0, 0, 1], false, false);
 
     // The skull. Deliberately featureless: the face stays in shadow under the
-    // cowl, and a half-finished face is far worse than a silhouette. It carries
-    // a heavy baked occlusion so the cavity reads dark even when the sun swings
-    // round to face it.
+    // cowl, and a half-finished face is far worse than a silhouette.
+    //
+    // The occlusion here went down to a tenth at one point, on the argument that
+    // a cowl interior sees only a few percent of the sky. That is true of the
+    // crown, and it was the wrong number to apply to a face: with the moon above
+    // the canopy the face is lit mostly by the beam, which AO does not touch, so
+    // all a tenth bought was a face whose *fill* was switched off — and fill is
+    // the only thing lighting it whenever the figure turns away from the moon.
+    // It rises toward the crown, which is genuinely deeper in the cowl than the
+    // chin is.
+    //
+    // The other reason it cannot go that low is that `sculptFace` writes the
+    // eyes into this same channel, and the fabric shader reads the bottom of the
+    // range on skin as "this is not skin". Legitimate cowl occlusion has to stay
+    // clear of that band or the crown starts reading as an eye socket.
+    //
+    // Sixteen rings and thirty segments, where the rest of the body runs on
+    // nine and fourteen. A limb is a smooth tube and fourteen segments is more
+    // than it needs; an eye socket is a 2 cm dish and at fourteen segments the
+    // whole face spans five vertices, which is not enough to put a feature in.
+    const HEAD_RINGS = 16;
     const head = [];
-    for (let i = 0; i <= 8; i++) {
-        const a = (i / 8) * Math.PI;
-        const y = HEAD_C[1] - Math.cos(a) * 0.105;
+    for (let i = 0; i <= HEAD_RINGS; i++) {
+        const a = (i / HEAD_RINGS) * Math.PI;
+        const y = HEAD_C[1] - Math.cos(a) * HEAD_RY;
         const r = Math.sin(a);
         head.push(ring(
             0, y, HEAD_C[2] + r * 0.006,
-            0.089 * r + 0.004, 0.096 * r + 0.004,
-            0.22, [B_HEAD, 1, 0, 0]
+            HEAD_RX * r + 0.004, HEAD_RZ * r + 0.004,
+            // Face void: deep cowl occlusion so the opening reads as shadow,
+            // not a lit mannequin head. Eye marks still live below ~0.35.
+            0.38 - 0.22 * (i / HEAD_RINGS), [B_HEAD, 1, 0, 0]
         ));
     }
-    loft(B, head, M_SKIN, [0, 0, 1], true, true);
+    loft(B, head, M_SKIN, [0, 0, 1], true, true, { seg: 30, sculpt: sculptFace });
 
-    // A scarf across the lower face, as in the reference. It is what stops the
-    // shadowed skull reading as an empty hood.
+    // Dark wrap across the lower face — fills the void without bright skin.
     const scarf = [
-        ring(0, 1.560, 0.010, 0.086, 0.092, 0.30, [B_HEAD, 1, 0, 0]),
-        ring(0, 1.600, 0.012, 0.094, 0.100, 0.34, [B_HEAD, 1, 0, 0]),
-        ring(0, 1.638, 0.008, 0.092, 0.098, 0.30, [B_HEAD, 1, 0, 0]),
+        ring(0, 1.560, 0.010, 0.086, 0.092, 0.10, [B_HEAD, 1, 0, 0]),
+        ring(0, 1.600, 0.012, 0.094, 0.100, 0.12, [B_HEAD, 1, 0, 0]),
+        ring(0, 1.638, 0.008, 0.092, 0.098, 0.09, [B_HEAD, 1, 0, 0]),
     ];
     loft(B, scarf, M_TRIM, [0, 0, 1], false, false);
 
@@ -396,10 +567,12 @@ export function buildBody(scene) {
  * never drift apart.
  */
 const HOOD_COLS = 34;
-const HOOD_ROWS = 9;
+const HOOD_ROWS = 11;
 const HEAD_C = [0, 1.655, 0.005];
 const FACE_DIR = (() => {
-    const v = [0, -0.28, 0.96];
+    // More forward than the old cowl — the opening sits ahead of the skull so
+    // the face falls into a real cavity (warlock plate: face void).
+    const v = [0, -0.18, 0.98];
     const l = Math.hypot(v[0], v[1], v[2]);
     return [v[0] / l, v[1] / l, v[2] / l];
 })();
@@ -412,20 +585,22 @@ export function hoodRimPoint(s, out) {
     const wx = FACE_DIR[1] * uz - FACE_DIR[2] * uy;
     const wy = FACE_DIR[2] * ux - FACE_DIR[0] * uz;
     const wz = FACE_DIR[0] * uy - FACE_DIR[1] * ux;
-    const cx = HEAD_C[0] + FACE_DIR[0] * 0.105;
-    const cy = HEAD_C[1] + FACE_DIR[1] * 0.105;
-    const cz = HEAD_C[2] + FACE_DIR[2] * 0.105;
-    out[0] = cx + ux * 0.152 * Math.sin(a) + wx * 0.163 * Math.cos(a);
-    out[1] = cy + uy * 0.152 * Math.sin(a) + wy * 0.163 * Math.cos(a);
-    out[2] = cz + uz * 0.152 * Math.sin(a) + wz * 0.163 * Math.cos(a);
+    // Rim sits only slightly ahead of the skull — deep cowl, not a funnel.
+    const cx = HEAD_C[0] + FACE_DIR[0] * 0.042;
+    const cy = HEAD_C[1] + FACE_DIR[1] * 0.042;
+    const cz = HEAD_C[2] + FACE_DIR[2] * 0.042;
+    // Narrower opening than the old plush rim — pointed warlock hood.
+    out[0] = cx + ux * 0.128 * Math.sin(a) + wx * 0.148 * Math.cos(a);
+    out[1] = cy + uy * 0.128 * Math.sin(a) + wy * 0.148 * Math.cos(a);
+    out[2] = cz + uz * 0.128 * Math.sin(a) + wz * 0.148 * Math.cos(a);
     return out;
 }
 
 function hoodBasePoint(s, out) {
     const a = s * Math.PI * 2;
-    out[0] = 0.212 * Math.sin(a);
-    out[1] = 1.352;
-    out[2] = -0.012 - 0.182 * Math.cos(a);
+    out[0] = 0.225 * Math.sin(a);
+    out[1] = 1.340;
+    out[2] = -0.020 - 0.195 * Math.cos(a);
     return out;
 }
 
@@ -442,30 +617,18 @@ function buildHood(B) {
             hoodRimPoint(s, rim);
             hoodBasePoint(s, base);
 
-            // Control point.
-            //
-            // Not the chord's midpoint pushed away from the skull: at the crown
-            // the chord runs from a rim point above and in front of the head to
-            // a base point below and behind it, straight through the skull, so
-            // its midpoint is already inside the head and "away from the head
-            // centre" points down into the shoulders.
-            //
-            // The control direction has to be stated, not derived. It sweeps
-            // from up-and-back over the crown, through sideways at the temples,
-            // to down-and-forward under the chin — which is the same sweep the
-            // rim parameter already makes, so it comes straight off `s`.
             const a = s * Math.PI * 2;
             const sa = Math.sin(a), ca = Math.cos(a);
+            // Pointed crown: push the peak up and back harder at s≈0.
             let nx = sa * 1.0;
-            let ny = ca * 0.84;
-            let nz = ca * -0.54;
+            let ny = ca * 0.95 + 0.35 * Math.max(0, ca);
+            let nz = ca * -0.62;
             const nl = Math.hypot(nx, ny, nz) || 1;
             nx /= nl; ny /= nl; nz /= nl;
-            // Radius out from the head: widest over the crown, tightest at the
-            // throat, which is what gives the cowl its peak.
-            const rad = 0.205 + 0.062 * ca;
+            // Tall peak over the crown, tight throat — warlock silhouette.
+            const rad = 0.195 + 0.115 * Math.max(0, ca) + 0.028 * ca;
             const mx = HEAD_C[0] + nx * rad;
-            const my = HEAD_C[1] + ny * rad;
+            const my = HEAD_C[1] + ny * rad + 0.055 * Math.max(0, ca);
             const mz = HEAD_C[2] + nz * rad;
 
             const it = 1 - t;
@@ -473,11 +636,8 @@ function buildHood(B) {
             const py = it * it * rim[1] + 2 * it * t * my + t * t * base[1];
             const pz = it * it * rim[2] + 2 * it * t * mz + t * t * base[2];
 
-            // Occlusion: the inside of a cowl sees almost no sky. It is the
-            // single cheapest thing that makes a hood read as deep.
-            const ao = 0.34 + 0.55 * Math.min(1, t * 2.2);
-            // UVs in metres: the rim is about a metre round and the sweep from
-            // rim to shoulder about 45 cm.
+            // Deep cowl interior — almost no sky reaches the face plane.
+            const ao = 0.22 + 0.58 * Math.min(1, t * 2.0);
             row.push(B.vert(px, py, pz, s * 1.02, t * 0.45, M_ROBE, ao, B_HOOD, 1, 0, 0));
         }
         if (prevRow) {
@@ -495,7 +655,7 @@ function buildHood(B) {
 // -----------------------------------------------------------------------------
 
 /** Shells per fur band. Below about 18 the layering is visible as banding. */
-const HOOD_SHELLS = 22;
+const HOOD_SHELLS = 16;
 const CUFF_SHELLS = 18;
 
 /**
@@ -536,7 +696,8 @@ export function buildFur(scene) {
         const l2 = Math.hypot(dx, dy, dz) || 1;
         outs[c * 3] = dx / l2; outs[c * 3 + 1] = dy / l2; outs[c * 3 + 2] = dz / l2;
     }
-    emitFurBand(B, cols, bases, outs, 0.024, 0.048, HOOD_SHELLS, B_HOOD, 0.62);
+    // Short plush rim — long pile fights the pointed warlock silhouette.
+    emitFurBand(B, cols, bases, outs, 0.016, 0.018, HOOD_SHELLS, B_HOOD, 0.42);
 
     // ---- cuffs ------------------------------------------------------------
     for (let a = 0; a < 2; a++) {
@@ -558,7 +719,7 @@ export function buildFur(scene) {
             cb[c * 3 + 2] = 0.012 + rz * 0.064;
             co[c * 3] = rx; co[c * 3 + 1] = 0; co[c * 3 + 2] = rz;
         }
-        emitFurBand(B, n, cb, co, 0.015, 0.032, CUFF_SHELLS, bone, 0.52);
+        emitFurBand(B, n, cb, co, 0.013, 0.020, CUFF_SHELLS, bone, 0.44);
     }
 
     return finishSkinned(scene, "charFur", B, true);
