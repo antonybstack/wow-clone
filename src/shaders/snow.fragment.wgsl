@@ -339,14 +339,19 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     var albedo = mix(vec3f(0.044, 0.074, 0.048), vec3f(0.094, 0.072, 0.040), smoothstep(0.44, 0.60, broad));
     albedo = mix(albedo, vec3f(0.030, 0.058, 0.040), sward * 0.36);
     albedo *= 0.86 + 0.24 * thatch * clump;
-    let turfUv = fract(world.xz * 0.28);
+    // Macro mottling so the open lawn does not rely on a tiled grass map for
+    // interest — the tile was drawing a grid across the hollow.
+    let macroMottle = noise2(world.xz * 0.055 + vec2f(11.0, 3.0)) * 0.5 + 0.5;
+    let vein = noise2(world.xz * 0.85 + vec2f(2.0, 17.0)) * 0.5 + 0.5;
+    albedo *= 0.82 + 0.28 * macroMottle;
+    albedo = mix(albedo, albedo * vec3f(0.92, 1.05, 0.88), vein * 0.18);
+    let turfUv = fract(world.xz * 0.19);
     let turfS = textureSample(grassTex, grassTexSampler, turfUv).rgb;
-    // Second lookup at an incommensurate scale and a rotation. One tile at
-    // 3.6 m repeated visibly enough to draw a grid across the open lawn, which
-    // is the one place in the scene with nothing else to hide it.
-    let turfUv2 = fract(rot2(0.9) * world.xz * 0.113 + vec2f(0.37, 0.61));
+    // Second lookup at an incommensurate scale and a rotation. Kept soft —
+    // strong tile mix was the grid across the open lawn.
+    let turfUv2 = fract(rot2(0.9) * world.xz * 0.071 + vec2f(0.37, 0.61));
     let turfS2 = textureSample(grassTex, grassTexSampler, turfUv2).rgb;
-    albedo = mix(albedo, albedo * mix(turfS, turfS2, 0.5) * 1.08, 0.38);
+    albedo = mix(albedo, albedo * mix(turfS, turfS2, 0.5) * 1.04, 0.18);
     let bare = noise2(world.xz * 0.07 + vec2f(20.0, 7.0));
     albedo = mix(albedo, vec3f(0.064, 0.048, 0.028), smoothstep(0.52, 0.82, bare) * 0.42);
     // Deep moss in the hollows of the sward. This was a magenta fleck, which
@@ -565,6 +570,17 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     //     means the two can never drift apart.
     let caveTint = mix(vec3f(1.0), vec3f(0.78, 0.90, 0.80), (1.0 - ao) * 0.35);
     color *= mix(1.0, ao, 0.55) * caveTint;
+
+    // Ground mist — cool lift near the lawn that softens the horizon line and
+    // attaches the figure's feet to the glade. Strongest in the hollow, fades
+    // with height and with distance so it does not milk the mid-field.
+    {
+        let mistH = exp(-max(0.0, world.y - uniforms.cameraPos.y + 0.35) * 1.35);
+        let mistD = smoothstep(6.0, 28.0, length(world.xz - uniforms.cameraPos.xz));
+        let mist = mistH * mistD * 0.12;
+        let mistCol = vec3f(0.045, 0.062, 0.095);
+        color = mix(color, mistCol, mist);
+    }
 
     // ------------------------------------------------------- aerial perspective
     color = applyAerial(

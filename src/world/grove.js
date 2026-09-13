@@ -221,6 +221,8 @@ export function buildGrove(scene, sky, terrain, shadows) {
     const rocks = [
         [3.8, 13.2, 0.38], [6.2, 11.0, 0.46], [-3.4, 12.6, 0.34],
         [9.8, 9.6, 0.42], [-1.2, 15.5, 0.28], [2.2, 10.4, 0.36],
+        [4.8, 17.6, 0.32], [-6.2, 14.8, 0.40], [1.4, 12.2, 0.26],
+        [7.6, 14.8, 0.30], [-2.8, 18.2, 0.34], [10.4, 12.4, 0.36],
     ];
     for (let i = 0; i < rocks.length; i++) {
         const x = rocks[i][0];
@@ -228,6 +230,29 @@ export function buildGrove(scene, sky, terrain, shadows) {
         const s = rocks[i][2];
         const y = terrain.heightAt(x, z);
         stoneBuf.ellipsoid(x, y + s * 0.28, z, s, s * 0.42, s * 0.78, 5, 4);
+    }
+
+    // Path ferns — low leaf cards that fill the empty lawn without blocking play.
+    for (let i = 0; i < 28; i++) {
+        const a = hash(i + 900) * Math.PI * 2;
+        const r = 3.2 + hash(i + 901) * 11.5;
+        const x = Math.cos(a) * r + (hash(i + 902) - 0.5) * 2.4;
+        const z = 8.5 + Math.sin(a) * r * 0.55 + hash(i + 903) * 8.0;
+        if (Math.hypot(x, z - 14) < 2.2) continue;
+        const y = terrain.heightAt(x, z);
+        const s = 0.22 + hash(i + 904) * 0.28;
+        const buf = hash(i + 905) > 0.55 ? greenBuf : leafBuf;
+        buf.card(x, y + 0.12, z, s, a, 1.35 + hash(i + 906) * 0.35);
+        if (hash(i + 907) > 0.45) {
+            buf.card(
+                x + Math.cos(a + 1.1) * 0.18,
+                y + 0.10,
+                z + Math.sin(a + 1.1) * 0.18,
+                s * 0.72,
+                a + 1.1,
+                1.45
+            );
+        }
     }
 
     // Door trees — long limbs over the south path so the first look is a
@@ -624,6 +649,21 @@ function addTree(barkBuf, leafBuf, goldBuf, greenBuf, x, y, z, h, rad, seed) {
         addCrown(leafBuf, goldBuf, greenBuf, x1, y1 + 0.15, z1, 2.6 + hash(seed + k + 4) * 1.2, seed + k * 17, species);
     }
     addCrown(leafBuf, goldBuf, greenBuf, x, y + h * 0.94, z, 4.0 + hash(seed + 9) * 1.6, seed + 3, species);
+
+    // Undergrowth at the butt — breaks the trunk-on-lawn contact line.
+    const under = species === 2 ? greenBuf : leafBuf;
+    for (let k = 0; k < 4; k++) {
+        const a = (k / 4) * Math.PI * 2 + hash(seed + k + 50) * 0.7;
+        const r = rad * (1.6 + hash(seed + k + 51) * 1.8);
+        under.card(
+            x + Math.cos(a) * r,
+            y + 0.18 + hash(seed + k + 52) * 0.22,
+            z + Math.sin(a) * r,
+            0.28 + hash(seed + k + 53) * 0.22,
+            a + 0.3,
+            1.25 + hash(seed + k + 54) * 0.4
+        );
+    }
 }
 
 /**
@@ -651,30 +691,46 @@ function addCrown(leafBuf, goldBuf, greenBuf, x, y, z, scale, seed, species) {
     // neighbours have not.
     const primary = species === 1 ? goldBuf : (species === 2 ? greenBuf : leafBuf);
     const accent = species === 1 ? leafBuf : goldBuf;
-    const pick = (k) => (hash(seed + k + 19) > 0.82 ? accent : primary);
-    // Umbrella silhouette built from flattened leaf puffs — not a disc lid
-    // and not a candy sphere.
-    const n = 5;
-    for (let k = 0; k < n; k++) {
-        const a = (k / n) * Math.PI * 2 + hash(seed + k) * 0.5;
-        const r = scale * (0.38 + hash(seed + k + 2) * 0.42);
-        const s = scale * (0.22 + hash(seed + k + 4) * 0.12);
-        pick(k).ellipsoid(
-            x + Math.cos(a) * r,
-            y + (hash(seed + k + 3) - 0.2) * scale * 0.28,
-            z + Math.sin(a) * r,
-            s, s * 0.70, s, 6, 4
-        );
+    const pick = (k) => (hash(seed + k + 19) > 0.86 ? accent : primary);
+
+    // Soft volumetric core so distant crowns stay opaque (cards alone go
+    // lacey past ~30 m). Flattened umbrellas, not candy spheres.
+    primary.umbrella(x, y + scale * 0.02, z, scale * 0.92, scale * 0.20, seed);
+    primary.umbrella(x, y - scale * 0.14, z, scale * 0.58, scale * 0.12, seed + 5);
+
+    // Layered leaf cards — the silhouette that kills the "ball cluster" read.
+    const shells = 3;
+    for (let shell = 0; shell < shells; shell++) {
+        const t = (shell + 0.35) / shells;
+        const n = 9 + shell * 7;
+        const shellR = scale * (0.32 + t * 0.62);
+        const shellY = y + (0.42 - t) * scale * 0.55;
+        for (let k = 0; k < n; k++) {
+            const a = (k / n) * Math.PI * 2 + hash(seed + shell * 47 + k) * 0.85;
+            const elev = (hash(seed + k * 3 + shell * 13) - 0.45) * 1.15;
+            const r = shellR * (0.62 + hash(seed + k + 3) * 0.55);
+            const px = x + Math.cos(a) * r;
+            const py = shellY + elev * scale * 0.28 + (hash(seed + k + 8) - 0.5) * scale * 0.12;
+            const pz = z + Math.sin(a) * r;
+            const s = scale * (0.11 + hash(seed + k + 11) * 0.13);
+            const yaw = a + (hash(seed + k + 14) - 0.5) * 1.6;
+            const tilt = 0.45 + hash(seed + k + 17) * 1.05;
+            pick(k).card(px, py, pz, s, yaw, tilt);
+        }
     }
-    for (let k = 0; k < 2; k++) {
+
+    // Drip fringe under the umbrella — breaks the hard lower rim.
+    const drips = 5 + ((seed * 3) | 0) % 3;
+    for (let k = 0; k < drips; k++) {
         const a = hash(seed + k + 30) * Math.PI * 2;
-        greenBuf.card(
-            x + Math.cos(a) * scale * 0.20,
-            y - scale * 0.20,
-            z + Math.sin(a) * scale * 0.20,
-            scale * 0.16,
-            a,
-            1.42
+        const r = scale * (0.25 + hash(seed + k + 31) * 0.45);
+        pick(k + 40).card(
+            x + Math.cos(a) * r,
+            y - scale * (0.22 + hash(seed + k + 32) * 0.18),
+            z + Math.sin(a) * r,
+            scale * (0.10 + hash(seed + k + 33) * 0.08),
+            a + 0.4,
+            1.15 + hash(seed + k + 34) * 0.55
         );
     }
 }

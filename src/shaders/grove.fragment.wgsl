@@ -105,33 +105,38 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
             albedo = mix(albedo, vec3f(0.055, 0.115, 0.058), moss * 0.32);
             roughness = 0.88;
         } else if (kind < 1.5) {
-            // Dusk umbrellas — dusty rose / muted amber / moss.
-            //
-            // Saturation is the whole fix here. The old rose was a 0.36 red
-            // against a 0.055 green, which under a magenta fill came out as
-            // bubblegum and made the canopy read as a bowl of sweets. These sit
-            // at roughly a third of that chroma, in the AgX midtones, and let
-            // the moss variant actually read as a different species rather
-            // than as a stray green pixel.
+            // Foliage: umbrella core + leaf cards share this branch.
+            // Sample the leaf half of the grove atlas so cards carry splotch
+            // detail instead of flat tint — that is what stops a crown reading
+            // as a cluster of clay balls at mid-range.
             let cell = floor(world.xz * 0.52 + vec2f(world.y * 0.14));
             let hue = fract(sin(dot(cell, vec2f(127.1, 311.7))) * 43758.5453);
-            let rose = vec3f(0.225, 0.105, 0.150);
-            let gold = vec3f(0.215, 0.150, 0.070);
-            let green = vec3f(0.080, 0.145, 0.075);
+            let rose = vec3f(0.195, 0.095, 0.135);
+            let gold = vec3f(0.185, 0.130, 0.065);
+            let green = vec3f(0.070, 0.125, 0.068);
             albedo = mix(rose, gold, step(0.52, hue));
             albedo = mix(albedo, green, step(0.80, hue));
-            albedo = mix(albedo, uniforms.tint, 0.22);
-            let speckle = noise2(world.xz * 7.5 + world.y * 2.2) * 0.5 + 0.5;
-            albedo *= 0.72 + 0.38 * speckle;
-            // The canopy has a top and a bottom. Without this every puff shades
-            // identically all the way round and the crown reads as a cluster of
-            // free-floating spheres instead of as foliage over a glade.
-            albedo *= 0.60 + 0.40 * clamp(N.y * 0.5 + 0.5, 0.0, 1.0);
+            albedo = mix(albedo, uniforms.tint, 0.28);
+            // Atlas leaf splotches (right half of groveAtlas).
+            let leafUv = vec2f(
+                fract(world.x * 0.55 + world.z * 0.22) * 0.49 + 0.505,
+                fract(world.y * 0.85)
+            );
+            let leafS = textureSample(groveAtlas, groveAtlasSampler, leafUv).rgb;
+            albedo = mix(albedo, albedo * leafS * 1.15, 0.48);
+            let speckle = noise2(world.xz * 9.5 + world.y * 3.2) * 0.5 + 0.5;
+            albedo *= 0.68 + 0.42 * speckle;
+            // Top of canopy lit, underside deep — cards and umbrellas both.
+            albedo *= 0.52 + 0.48 * clamp(N.y * 0.55 + 0.48, 0.0, 1.0);
+            // Soft card edges: grazing faces fall off so discs don't read as
+            // hard plastic coins against the sky.
+            let edge = pow(max(abs(dot(N, V)), 0.0), 0.55);
+            albedo *= 0.55 + 0.45 * edge;
             if (dot(N, V) < 0.0) {
-                albedo *= 0.42;
+                albedo *= 0.38;
                 N = -N;
             }
-            roughness = 0.90;
+            roughness = 0.92;
         } else if (kind < 2.5) {
             // Moonwell: deep water that mostly shows the sky it reflects, with
             // only a breath of its own light. A flat 0.32 emissive over a cyan

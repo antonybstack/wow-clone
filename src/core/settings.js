@@ -44,11 +44,12 @@ export const S = {
     ambientBlue: 1.45,
 
     // ------------------------------------------------------------- atmosphere
-    // Near hollow stays readable at night; haze only owns the forest wall.
-    fogDensity: 0.016,
-    fogHeightFalloff: 0.014,
-    fogStart: 36,
-    aerialStrength: 0.42,
+    // Near hollow stays readable; haze owns the forest wall sooner so the
+    // glade reads as a room rather than an infinite lawn under stars.
+    fogDensity: 0.019,
+    fogHeightFalloff: 0.022,
+    fogStart: 20,
+    aerialStrength: 0.52,
     // Degrees. Drives sastrugi shear and dune orientation. Held 70-80 degrees
     // away from `sunAzimuth`: sastrugi ridges run along the wind, so when the
     // two align the sun rakes down every ridge, lights both flanks identically
@@ -59,8 +60,8 @@ export const S = {
     showMountains: false,
     /** Peak height of that range, metres. */
     mountainHeight: 780,
-    /** Soft cool shafts — thinner so they do not carve the lawn into chalk planes. */
-    shaftStrength: 0.040,
+    /** Soft cool shafts through canopy gaps. */
+    shaftStrength: 0.085,
 
     // ------------------------------------------------------------------- snow
     glintIntensity: 0.0,
