@@ -84,11 +84,19 @@ const CSS = `
 #hud .pane.on { display:block; }
 #hud .pane h3 { margin:0 0 10px; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:#8aa; }
 #hud .row { display:flex; justify-content:space-between; gap:8px; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+#hud .row[data-slot], #hud .row[data-item] { cursor:pointer; }
+#hud .row[data-slot]:hover, #hud .row[data-item]:hover { background:rgba(255,255,255,0.05); }
+#hud .row .muted { color:#8aa; font-size:10px; }
 #hud .hint {
   position:absolute; left:16px; bottom:16px; max-width:46vw;
   font-size:11px; color:#9ec9b4; text-shadow:0 1px 8px #000; opacity:0.82;
 }
 #hud .hint.off { display:none; }
+#hud .look {
+  position:absolute; right:16px; bottom:16px;
+  font-size:11px; color:#c8e8d4; letter-spacing:0.04em;
+  text-shadow:0 1px 8px #000; opacity:0.88;
+}
 `;
 
 const _scr = { x: 0, y: 0 };
@@ -146,6 +154,9 @@ export class Hud {
      *   spells: { gcdLeft: number, ribbon?: { held?: boolean } },
      *   camera: object,
      *   canvas: HTMLCanvasElement,
+     *   appearance?: { label: () => string, state?: object },
+     *   equipment?: { label: () => string, worn: object, items?: object, equip?: Function, unequip?: Function },
+     *   body?: { getClipLabel?: () => string },
      * }} opts
      */
     constructor(opts) {
@@ -154,6 +165,9 @@ export class Hud {
         this.spells = opts.spells;
         this.camera = opts.camera;
         this.canvas = opts.canvas;
+        this.appearance = opts.appearance || null;
+        this.equipment = opts.equipment || null;
+        this.body = opts.body || null;
 
         const style = document.createElement("style");
         style.textContent = CSS;
@@ -254,14 +268,42 @@ export class Hud {
         this.paper.innerHTML =
             "<h3>Character</h3>" +
             "<div class='row'><span>" + PLAYER_NAME + "</span><span>Seer</span></div>" +
-            "<div class='row'><span>Worn</span><span>—</span></div>";
+            "<div class='row'><span>Height</span><span data-look='height'>—</span></div>" +
+            "<div class='row'><span>Skin</span><span data-look='skin'>—</span></div>" +
+            "<div class='row' data-slot='head'><span>Head</span><span data-worn='head'>—</span></div>" +
+            "<div class='row' data-slot='back'><span>Back</span><span data-worn='back'>—</span></div>" +
+            "<div class='row' data-slot='torso'><span>Torso</span><span data-worn='torso'>—</span></div>" +
+            "<div class='row' data-slot='mainHand'><span>Main Hand</span><span data-worn='mainHand'>—</span></div>" +
+            "<div class='row' data-slot='offHand'><span>Off Hand</span><span data-worn='offHand'>—</span></div>" +
+            "<div class='row' data-slot='leftArm'><span>Left Arm</span><span data-worn='leftArm'>—</span></div>" +
+            "<div class='row' data-slot='rightArm'><span>Right Arm</span><span data-worn='rightArm'>—</span></div>" +
+            "<div class='row' data-slot='leftForeArm'><span>Left Forearm</span><span data-worn='leftForeArm'>—</span></div>" +
+            "<div class='row' data-slot='rightForeArm'><span>Right Forearm</span><span data-worn='rightForeArm'>—</span></div>" +
+            "<div class='row' data-slot='leftFoot'><span>Left Foot</span><span data-worn='leftFoot'>—</span></div>" +
+            "<div class='row' data-slot='rightFoot'><span>Right Foot</span><span data-worn='rightFoot'>—</span></div>" +
+            "<h3>Catalog</h3>" +
+            "<div class='muted' style='padding:4px 0 8px'>Click a slot or item to cycle. Empty shows Mixamo dummy.</div>" +
+            "<div id='hud-catalog'></div>";
+        this.paperSlots = {};
+        for (const row of this.paper.querySelectorAll("[data-slot]")) {
+            this.paperSlots[row.dataset.slot] = row.querySelector("[data-worn]");
+        }
+        this.lookHeight = this.paper.querySelector("[data-look='height']");
+        this.lookSkin = this.paper.querySelector("[data-look='skin']");
+        this.catalogEl = this.paper.querySelector("#hud-catalog");
+        this.paper.addEventListener("click", (event) => this._onPaperClick(event));
         el.appendChild(this.paper);
 
         this.hint = document.createElement("div");
         this.hint.className = "hint";
         this.hint.id = "hud-hint";
-        this.hint.textContent = "WASD move · RMB look · 1–5 spells · Tab target · B bag · C character · H hint";
+        this.hint.textContent = "Rest Spell_Simple_Idle_Loop · W Sprint_Loop · Shift+W Walk_Loop · C 2 helms / 2 staves";
         el.appendChild(this.hint);
+
+        this.lookEl = document.createElement("div");
+        this.lookEl.className = "look";
+        this.lookEl.id = "hud-look";
+        el.appendChild(this.lookEl);
 
         this.plates = document.createElement("div");
         this.plates.className = "plates";
@@ -269,6 +311,71 @@ export class Hud {
         el.appendChild(this.plates);
 
         this._hintOn = true;
+        this._catalogSig = "";
+    }
+
+    _cycleSlot(slot) {
+        const gear = this.equipment;
+        if (!gear?.items || !gear.equip || !gear.unequip) {
+            return;
+        }
+        const ids = Object.values(gear.items)
+            .filter((item) => item.slot === slot)
+            .map((item) => item.id);
+        if (!ids.length) {
+            return;
+        }
+        const cur = gear.worn?.[slot]?.item?.id;
+        const idx = ids.indexOf(cur);
+        if (idx < 0) {
+            gear.equip(slot, ids[0]);
+        } else if (idx === ids.length - 1) {
+            gear.unequip(slot);
+        } else {
+            gear.equip(slot, ids[idx + 1]);
+        }
+    }
+
+    _onPaperClick(event) {
+        const itemEl = event.target.closest("[data-item]");
+        const row = event.target.closest("[data-slot]");
+        const gear = this.equipment;
+        if (!gear) {
+            return;
+        }
+        if (itemEl) {
+            const id = itemEl.dataset.item;
+            const def = gear.items?.[id];
+            if (def && gear.toggle) {
+                gear.toggle(def.slot, id);
+            }
+            return;
+        }
+        if (row?.dataset.slot) {
+            this._cycleSlot(row.dataset.slot);
+        }
+    }
+
+    _renderCatalog() {
+        if (!this.catalogEl || !this.equipment?.items) {
+            return;
+        }
+        const worn = this.equipment.wornMap ? this.equipment.wornMap() : {};
+        const ids = Object.keys(this.equipment.items);
+        const sig = ids.join(",") + "|" + JSON.stringify(worn);
+        if (sig === this._catalogSig) {
+            return;
+        }
+        this._catalogSig = sig;
+        let html = "";
+        for (const id of ids) {
+            const def = this.equipment.items[id];
+            const on = worn[def.slot] === id;
+            html += "<div class='row' data-item='" + id + "'><span>" +
+                def.name + "</span><span class='muted'>" +
+                def.slot + (on ? " · on" : "") + "</span></div>";
+        }
+        this.catalogEl.innerHTML = html;
     }
 
     toggleBag() {
@@ -311,7 +418,36 @@ export class Hud {
             input.toggleHint = false;
         }
 
-        this.stanceEl.textContent = input.autorun ? "Autorun" : "";
+        const clip = this.body?.getClipLabel?.() || "";
+        const bits = [];
+        if (input.autorun) {
+            bits.push("Autorun");
+        }
+        if (clip) {
+            bits.push(clip);
+        }
+        this.stanceEl.textContent = bits.join(" · ");
+        const look = [];
+        if (this.appearance?.label) {
+            look.push(this.appearance.label());
+        }
+        if (this.equipment?.label) {
+            look.push(this.equipment.label());
+        }
+        this.lookEl.textContent = look.join("  ·  ");
+        if (this.lookHeight && this.appearance?.state) {
+            this.lookHeight.textContent = this.appearance.state.height.toFixed(2);
+        }
+        if (this.lookSkin && this.appearance?.state) {
+            this.lookSkin.textContent = String(this.appearance.state.skin);
+        }
+        if (this.equipment?.worn && this.paperSlots) {
+            for (const slot of Object.keys(this.paperSlots)) {
+                const item = this.equipment.worn[slot]?.item;
+                this.paperSlots[slot].textContent = item ? item.name : "—";
+            }
+        }
+        this._renderCatalog();
 
         const p = this.player;
         const pMax = p?.hpMax || 100;

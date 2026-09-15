@@ -30,6 +30,7 @@ import { SpellSystem } from "./spells/spellSystem.js";
 import { Overlay } from "./ui/overlay.js";
 import { Sky } from "./render/sky.js";
 import { ShadowSystem } from "./render/shadows.js";
+import { LocalShadow } from "./render/localShadow.js";
 import { Terrain } from "./terrain/terrain.js";
 import { DepthPass } from "./render/depthPass.js";
 import { PostChain } from "./post/postChain.js";
@@ -40,6 +41,7 @@ import { Loadout } from "./game/loadout";
 import { Targeting } from "./game/targeting";
 import { buildGrove } from "./world/grove.js";
 import { Hud } from "./ui/hud.js";
+import { attachInspector } from "./debug/inspector.js";
 
 // ------------------------------------------------------- module-scope scratch
 const _vel = new Vector3();
@@ -140,8 +142,11 @@ async function boot() {
     character.facing = Math.atan2(-2.4, -18.5);
     rig.yaw = character.facing;
 
+    const localShadow = new LocalShadow(scene);
+    terrain.localShadow = localShadow;
+
     // The figure: skeleton, garment simulation, shell fur.
-    const figure = new Character(scene, terrain, sky, shadows, character);
+    const figure = new Character(scene, terrain, sky, shadows, character, localShadow);
     onChange("showCharacter", (v) => figure.setVisible(v));
     figure.registerPrepass(depthPass);
 
@@ -346,6 +351,7 @@ async function boot() {
         // cascade matrices; before the terrain, so the brushes every spell
         // writes are in the staging array when the simulation pass runs.
         spells.update(dt, rig.camera.position);
+        localShadow.update(grove.tip[0], grove.tip[1], grove.tip[2]);
         const tSpells = performance.now();
         terrain.update(rig.camera.position, character.position, dt);
         grove.update(rig.camera, time);
@@ -394,11 +400,12 @@ async function boot() {
 
     globalThis.SNOWFLOW = {
         engine, scene, rig, character, figure, contact, spray, wake, spells,
-        overlay, terrain, sky, shadows, post, depthPass,
+        overlay, terrain, sky, shadows, localShadow, post, depthPass,
         grove, loadout, targeting, hud,
         S, input, perfStats: stats,
     };
     globalThis.DUSKWELL = globalThis.SNOWFLOW;
+    attachInspector(scene);
 }
 
 boot().catch((err) => {

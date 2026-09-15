@@ -36,6 +36,11 @@ export const input = {
     toggleBag: false,
     togglePaper: false,
     toggleHint: false,
+    heightUp: false,
+    heightDown: false,
+    cycleSkin: false,
+    toggleHelm: false,
+    unequipHelm: false,
     escape: false,
     clicked: false,
     clickX: 0,
@@ -335,6 +340,21 @@ export function initInput(canvas) {
             }
             if (event.code === "KeyH") {
                 input.toggleHint = true;
+            }
+            if (event.code === "BracketRight") {
+                input.heightUp = true;
+            }
+            if (event.code === "BracketLeft") {
+                input.heightDown = true;
+            }
+            if (event.code === "KeyP") {
+                input.cycleSkin = true;
+            }
+            if (event.code === "KeyN") {
+                input.toggleHelm = true;
+            }
+            if (event.code === "KeyU") {
+                input.unequipHelm = true;
             }
         }
         const n = SPELL_KEYS[event.code];

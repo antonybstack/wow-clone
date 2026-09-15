@@ -25,6 +25,7 @@ import {
 import { S } from "../core/settings.js";
 import { CASCADE_COUNT } from "../render/shadows.js";
 import { SPELL_LIGHT_UNIFORMS } from "../spells/spellLights.js";
+import { LOCAL_SHADOW_UNIFORMS, LOCAL_SHADOW_SAMPLERS } from "../render/localShadow.js";
 import { bakeOnce, whenReady, bindMatrixArray } from "../core/gpuUtil.js";
 
 const DETAIL_RES = 1024;
@@ -49,6 +50,8 @@ export class Terrain {
         this.scene = scene;
         this.sky = sky;
         this.shadows = shadows;
+        /** @type {import("../render/localShadow.js").LocalShadow | null} */
+        this.localShadow = null;
 
         this.heightfield = new Heightfield(scene);
 
@@ -109,10 +112,12 @@ export class Terrain {
                     "deformCenter", "deformSize", "deformTexel", "deformDepthScale",
                     "ambientIntensity", "debugMode", "screenSize",
                     ...SPELL_LIGHT_UNIFORMS,
+                    ...LOCAL_SHADOW_UNIFORMS,
                 ],
                 samplers: [
                     "heightTex", "auxTex", "detailTex", "skyLUT", "grassTex",
                     "cascade0", "cascade1", "cascade2", "deformTex",
+                    ...LOCAL_SHADOW_SAMPLERS,
                 ],
                 shaderLanguage: ShaderLanguage.WGSL,
             }
@@ -319,6 +324,10 @@ export class Terrain {
         m.setFloat("fogStart", S.fogStart);
         m.setFloat("aerialStrength", S.aerialStrength);
         m.setFloat("ambientIntensity", S.ambientIntensity);
+
+        if (this.localShadow) {
+            this.localShadow.bindReceiver(m, S.localShadow !== false);
+        }
 
         m.setVector2("deformCenter", deformCenter);
         m.setFloat("deformSize", deformSize);

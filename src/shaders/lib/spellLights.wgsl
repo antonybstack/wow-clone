@@ -87,6 +87,46 @@ fn spellLighting(
     return acc;
 }
 
+/// Snow response with the staff-tip cube shadow applied to the key light.
+fn spellLightingOccluded(
+    world: vec3f,
+    N: vec3f,
+    V: vec3f,
+    albedo: vec3f,
+    thickness: f32,
+    sssStrength: f32,
+    sssRadius: f32,
+    lightPos: array<vec4f, 4>,
+    lightCol: array<vec4f, 4>,
+    count: f32,
+    keyPos: vec3f,
+    occl: f32
+) -> vec3f {
+    var acc = vec3f(0.0);
+    let n = i32(count);
+
+    for (var i = 0; i < SPELL_LIGHT_MAX; i++) {
+        if (i >= n) { break; }
+
+        let p = lightPos[i];
+        let d = p.xyz - world;
+        let dist2 = dot(d, d);
+        let att = spellAttenuation(dist2, p.w);
+        if (att <= 0.0) { continue; }
+
+        let L = d * inverseSqrt(max(dist2, 1e-8));
+        var sh = 1.0;
+        let kp = p.xyz - keyPos;
+        if (dot(kp, kp) < 0.09) { sh = occl; }
+        let radiance = lightCol[i].rgb * lightCol[i].w * att * sh;
+
+        acc += albedo * (1.0 / PI) * wrapDiffuse(dot(N, L), 0.66) * radiance;
+        acc += snowSubsurface(N, L, V, radiance, thickness, sssStrength, sssRadius) * albedo;
+    }
+
+    return acc;
+}
+
 /// The same lights, for a surface that is not snow — fabric, fur, water, ice.
 ///
 /// Diffuse plus a GGX lobe, with a wrap term that the caller sizes: wool wraps a
@@ -120,6 +160,55 @@ fn spellLightingSurface(
 
         let L = d * inverseSqrt(max(dist2, 1e-8));
         let radiance = lightCol[i].rgb * lightCol[i].w * att;
+
+        acc += albedo * (1.0 / PI) * wrapDiffuse(dot(N, L), wrap) * radiance;
+
+        let NdotL = dot(N, L);
+        if (NdotL > 0.0) {
+            let H = normalize(V + L);
+            let D = distributionGGX(clamp(dot(N, H), 0.0, 1.0), roughness);
+            let Vis = visSmithGGXCorrelated(NdotV, NdotL, roughness);
+            let F = fresnelSchlick(clamp(dot(V, H), 0.0, 1.0), f0);
+            acc += radiance * D * Vis * F * NdotL;
+        }
+    }
+
+    return acc;
+}
+
+/// Fabric / water / ice, with the staff-tip cube shadow on the key light.
+fn spellLightingSurfaceOccluded(
+    world: vec3f,
+    N: vec3f,
+    V: vec3f,
+    albedo: vec3f,
+    f0: vec3f,
+    roughness: f32,
+    wrap: f32,
+    lightPos: array<vec4f, 4>,
+    lightCol: array<vec4f, 4>,
+    count: f32,
+    keyPos: vec3f,
+    occl: f32
+) -> vec3f {
+    var acc = vec3f(0.0);
+    let n = i32(count);
+    let NdotV = clamp(dot(N, V), 1e-4, 1.0);
+
+    for (var i = 0; i < SPELL_LIGHT_MAX; i++) {
+        if (i >= n) { break; }
+
+        let p = lightPos[i];
+        let d = p.xyz - world;
+        let dist2 = dot(d, d);
+        let att = spellAttenuation(dist2, p.w);
+        if (att <= 0.0) { continue; }
+
+        let L = d * inverseSqrt(max(dist2, 1e-8));
+        var sh = 1.0;
+        let kp = p.xyz - keyPos;
+        if (dot(kp, kp) < 0.09) { sh = occl; }
+        let radiance = lightCol[i].rgb * lightCol[i].w * att * sh;
 
         acc += albedo * (1.0 / PI) * wrapDiffuse(dot(N, L), wrap) * radiance;
 

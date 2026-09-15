@@ -38,8 +38,7 @@ const GRAVITY_Y = 20.8;
 const DOWN = { x: 0, y: -1, z: 0 };
 const CAPSULE = { height: 1.55, radius: 0.28 };
 const FACE_DAMP = 9;
-const KINEMATIC_GROUND_Y = 0.9;
-const KINEMATIC_MAX_R = 10.4;
+const KINEMATIC_MAX_R = 72;
 
 function angleDelta(a, b) {
     let d = b - a;
@@ -74,11 +73,73 @@ function localSize(mesh) {
     return { dx: Math.abs(bx - ax), dy: Math.abs(by - ay), dz: Math.abs(bz - az) };
 }
 
+function worldTRS(mesh) {
+    const m = mesh.worldMatrix;
+    if (!m || m.length < 16) {
+        return null;
+    }
+    const sx = Math.hypot(m[0], m[1], m[2]) || 1;
+    const sy = Math.hypot(m[4], m[5], m[6]) || 1;
+    const sz = Math.hypot(m[8], m[9], m[10]) || 1;
+    const r00 = m[0] / sx;
+    const r10 = m[1] / sx;
+    const r20 = m[2] / sx;
+    const r01 = m[4] / sy;
+    const r11 = m[5] / sy;
+    const r21 = m[6] / sy;
+    const r02 = m[8] / sz;
+    const r12 = m[9] / sz;
+    const r22 = m[10] / sz;
+    const t = r00 + r11 + r22;
+    let qx;
+    let qy;
+    let qz;
+    let qw;
+    if (t > 0) {
+        const s = Math.sqrt(t + 1) * 2;
+        qw = 0.25 * s;
+        qx = (r21 - r12) / s;
+        qy = (r02 - r20) / s;
+        qz = (r10 - r01) / s;
+    } else if (r00 > r11 && r00 > r22) {
+        const s = Math.sqrt(1 + r00 - r11 - r22) * 2;
+        qw = (r21 - r12) / s;
+        qx = 0.25 * s;
+        qy = (r01 + r10) / s;
+        qz = (r02 + r20) / s;
+    } else if (r11 > r22) {
+        const s = Math.sqrt(1 + r11 - r00 - r22) * 2;
+        qw = (r02 - r20) / s;
+        qx = (r01 + r10) / s;
+        qy = 0.25 * s;
+        qz = (r12 + r21) / s;
+    } else {
+        const s = Math.sqrt(1 + r22 - r00 - r11) * 2;
+        qw = (r10 - r01) / s;
+        qx = (r02 + r20) / s;
+        qy = (r12 + r21) / s;
+        qz = 0.25 * s;
+    }
+    return {
+        x: m[12],
+        y: m[13],
+        z: m[14],
+        sx,
+        sy,
+        sz,
+        qx,
+        qy,
+        qz,
+        qw,
+    };
+}
+
 function colliderKind(mesh) {
     const name = (mesh.name || "").toLowerCase();
     if (
         name.startsWith("player")
         || name.startsWith("walkslab")
+        || name.startsWith("phys_")
         || name.startsWith("tree")
         || name.includes("island_tree")
         || name.startsWith("mesh.")
@@ -92,8 +153,24 @@ function colliderKind(mesh) {
         || name.startsWith("fencepost")
         || name.startsWith("hamletkerb")
         || name.startsWith("hamletring")
-        || name.startsWith("Spell")
+        || name.startsWith("ruinslook")
+        || name === "ground"
+        || name.startsWith("dirtring")
+        || name.startsWith("kerb_")
         || name.startsWith("spell")
+        || name.startsWith("staff")
+        || name.startsWith("hood")
+        || name.startsWith("cowl")
+        || name.startsWith("cape")
+        || name.startsWith("tunic")
+        || name.startsWith("robe")
+        || name.startsWith("sleeve")
+        || name.startsWith("boot")
+        || name.startsWith("dummy")
+        || name.startsWith("alpha_")
+        || name.includes("proto")
+        || name.includes("ramp_")
+        || name.startsWith("eldenramp")
     ) {
         return null;
     }
@@ -101,21 +178,34 @@ function colliderKind(mesh) {
     if (!size) {
         return null;
     }
-    const xz = Math.max(size.dx, size.dz);
-    if (xz < 0.12 && size.dy < 0.15) {
+    const trs = worldTRS(mesh);
+    const sx = trs?.sx ?? 1;
+    const sy = trs?.sy ?? 1;
+    const sz = trs?.sz ?? 1;
+    const w = size.dx * sx;
+    const h = size.dy * sy;
+    const d = size.dz * sz;
+    const xz = Math.max(w, d);
+    if (xz < 0.15 && h < 0.15) {
         return null;
     }
-    // Wide thin discs / paths — MESH so the AABB does not fill the courtyard.
-    if (xz >= 1.5 && size.dy < 0.5) {
+    if (trs && trs.y < -40) {
+        return null;
+    }
+    // Huge displaced floor: always triangle mesh. A BOX AABB fills the map.
+    if (name.startsWith("ruinfloor") || name.startsWith("plane") || xz >= 40) {
+        return "mesh";
+    }
+    if (xz >= 1.5 && h < 0.55) {
         return "mesh";
     }
     return "box";
 }
 
 function addGroundSlab(engine, scene, world) {
-    const slab = createBox(engine, { width: 56, height: 0.4, depth: 56 });
+    const slab = createBox(engine, { width: 160, height: 0.4, depth: 160 });
     slab.name = "WalkSlab";
-    slab.position.y = -0.2;
+    slab.position.y = -10.0;
     slab.visible = false;
     addToScene(scene, slab);
     createPhysicsAggregate(world, slab, PhysicsShapeType.BOX, {
@@ -127,15 +217,15 @@ function addGroundSlab(engine, scene, world) {
 
 /** Invisible BOX ring at world positions — glTF-baked fence meshes sit at local origin. */
 function addHamletRing(engine, scene, world) {
-    const radius = 10.6;
-    const count = 48;
-    const size = 1.5;
+    const radius = 78;
+    const count = 64;
+    const size = 2.4;
     for (let i = 0; i < count; i++) {
         const a = (i / count) * Math.PI * 2;
-        const wall = createBox(engine, { width: size, height: 1.7, depth: size });
+        const wall = createBox(engine, { width: size, height: 28, depth: size });
         wall.name = "HamletRing";
         wall.position.x = Math.cos(a) * radius;
-        wall.position.y = 0.85;
+        wall.position.y = 12.0;
         wall.position.z = Math.sin(a) * radius;
         wall.visible = false;
         addToScene(scene, wall);
@@ -147,7 +237,7 @@ function addHamletRing(engine, scene, world) {
     }
 }
 
-function addStaticColliders(world, meshes) {
+function addStaticColliders(engine, scene, world, meshes) {
     let meshCount = 0;
     let boxCount = 0;
     for (const mesh of meshes) {
@@ -168,14 +258,35 @@ function addStaticColliders(world, meshes) {
                     shape,
                 });
                 meshCount += 1;
-            } else {
-                createPhysicsAggregate(world, mesh, PhysicsShapeType.BOX, {
-                    mass: 0,
-                    friction: 0.8,
-                    restitution: 0,
-                });
-                boxCount += 1;
+                continue;
             }
+            const size = localSize(mesh);
+            const trs = worldTRS(mesh);
+            if (!size || !trs) {
+                continue;
+            }
+            const width = Math.max(size.dx * trs.sx, 0.2);
+            const height = Math.max(size.dy * trs.sy, 0.2);
+            const depth = Math.max(size.dz * trs.sz, 0.2);
+            if (width > 80 && depth > 80) {
+                continue;
+            }
+            const box = createBox(engine, { width, height, depth });
+            box.name = `Phys_${mesh.name || "box"}`;
+            box.visible = false;
+            box.position.x = trs.x;
+            box.position.y = trs.y;
+            box.position.z = trs.z;
+            if (box.rotationQuaternion?.set) {
+                box.rotationQuaternion.set(trs.qx, trs.qy, trs.qz, trs.qw);
+            }
+            addToScene(scene, box);
+            createPhysicsAggregate(world, box, PhysicsShapeType.BOX, {
+                mass: 0,
+                friction: 0.8,
+                restitution: 0,
+            });
+            boxCount += 1;
         } catch (err) {
             console.warn("collider skipped", mesh.name, err);
         }
@@ -209,7 +320,7 @@ function createAvatar(engine, scene) {
     addToScene(scene, head);
     setParent(head, body);
 
-    return body;
+    return { body, head };
 }
 
 async function loadHavok() {
@@ -255,7 +366,7 @@ function applyLocomotion(rig, dt, state) {
 }
 
 export async function setupPlayer(engine, scene, rig) {
-    const body = createAvatar(engine, scene);
+    const { body, head } = createAvatar(engine, scene);
     body.position.x = 0;
     body.position.y = 1.1;
     body.position.z = 2.15;
@@ -277,6 +388,27 @@ export async function setupPlayer(engine, scene, rig) {
     let controller = null;
     let usingPhysics = false;
     let onPose = null;
+    let heightScale = 1;
+
+    const capsuleHeightOf = () => CAPSULE.height * heightScale;
+    const kinematicGroundY = () => capsuleHeightOf() * 0.5 + 0.125;
+
+    const setHeightScale = (scale) => {
+        const next = Math.min(1.15, Math.max(0.9, scale));
+        if (Math.abs(next - heightScale) < 1e-4) {
+            return capsuleHeightOf();
+        }
+        heightScale = next;
+        const height = capsuleHeightOf();
+        const radius = CAPSULE.radius * heightScale;
+        if (controller) {
+            controller.setShapeOptions({ capsuleHeight: height, capsuleRadius: radius }, true);
+        }
+        if (head?.position) {
+            head.position.y = height * 0.28;
+        }
+        return height;
+    };
 
     const poseBody = (x, y, z, dt) => {
         body.position.x = x;
@@ -292,7 +424,7 @@ export async function setupPlayer(engine, scene, rig) {
         const world = createHavokWorld(scene, hknp, GRAVITY);
         addGroundSlab(engine, scene, world);
         addHamletRing(engine, scene, world);
-        const counts = addStaticColliders(world, scene.meshes ?? []);
+        const counts = addStaticColliders(engine, scene, world, scene.meshes ?? []);
         console.log("physics colliders", counts);
         controller = createPhysicsCharacterController(world, spawn, {
             capsuleHeight: CAPSULE.height,
@@ -362,7 +494,13 @@ export async function setupPlayer(engine, scene, rig) {
     return {
         body,
         usingPhysics,
-        capsuleHeight: CAPSULE.height,
+        get capsuleHeight() {
+            return capsuleHeightOf();
+        },
+        get heightScale() {
+            return heightScale;
+        },
+        setHeightScale,
         hp: 100,
         hpMax: 100,
         getFacing: () => state.facing,
@@ -384,6 +522,15 @@ export async function setupPlayer(engine, scene, rig) {
             walk: input.walk,
             castBlend: state.castBlend,
         }),
+        getVy: () => state.vy,
+        setWorldPos: (x, y, z) => {
+            if (controller) {
+                controller.setPosition({ x, y, z });
+            }
+            body.position.x = x;
+            body.position.y = y;
+            body.position.z = z;
+        },
         setOnPose: (cb) => {
             onPose = cb;
         },
@@ -401,8 +548,8 @@ export async function setupPlayer(engine, scene, rig) {
                 state.wasAirborne = true;
                 state.vy -= GRAVITY_Y * h;
                 body.position.y += state.vy * h;
-                if (body.position.y <= KINEMATIC_GROUND_Y && state.vy <= 0) {
-                    body.position.y = KINEMATIC_GROUND_Y;
+                if (body.position.y <= kinematicGroundY() && state.vy <= 0) {
+                    body.position.y = kinematicGroundY();
                     state.vy = 0;
                     state.grounded = true;
                 }
@@ -411,7 +558,7 @@ export async function setupPlayer(engine, scene, rig) {
                 body.position.y += state.vy * h;
             } else if (state.jumpLocked && !state.wasAirborne) {
                 state.vy = 0;
-                body.position.y = KINEMATIC_GROUND_Y;
+                body.position.y = kinematicGroundY();
                 if (!input.jump) {
                     state.jumpLocked = false;
                 }
@@ -424,7 +571,7 @@ export async function setupPlayer(engine, scene, rig) {
                 state.vy = 0;
                 state.jumpLocked = false;
                 state.wasAirborne = false;
-                body.position.y = KINEMATIC_GROUND_Y;
+                body.position.y = kinematicGroundY();
             }
             body.position.x += vx * h;
             body.position.z += vz * h;

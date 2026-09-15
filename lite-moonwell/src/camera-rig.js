@@ -10,7 +10,7 @@ import { input } from "./input.js";
 const PITCH_MIN = -0.72;
 const PITCH_MAX = 1.15;
 const DIST_MIN = 2.2;
-const DIST_MAX = 24;
+const DIST_MAX = 42;
 const PIVOT_HEIGHT = 0.55;
 const ZOOM_DAMP = 14;
 

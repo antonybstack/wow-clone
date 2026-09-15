@@ -13,7 +13,8 @@
     "export:safe": "node scripts/export-glb.mjs --strip-transmission",
     "save": "node scripts/save-blend.mjs",
     "status": "node scripts/status.mjs",
-    "shot": "node scripts/shot.mjs"
+    "shot": "node scripts/shot.mjs",
+    "ve": "bash scripts/ve-upload.sh"
   },
   "dependencies": {
     "@babylonjs/havok": "^1.3.14",

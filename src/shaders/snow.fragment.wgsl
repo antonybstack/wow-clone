@@ -45,6 +45,18 @@ var cascade2: texture_2d<f32>;
 var cascade2Sampler: sampler;
 var deformTex: texture_2d<f32>;
 var deformTexSampler: sampler;
+var local0: texture_2d<f32>;
+var local0Sampler: sampler;
+var local1: texture_2d<f32>;
+var local1Sampler: sampler;
+var local2: texture_2d<f32>;
+var local2Sampler: sampler;
+var local3: texture_2d<f32>;
+var local3Sampler: sampler;
+var local4: texture_2d<f32>;
+var local4Sampler: sampler;
+var local5: texture_2d<f32>;
+var local5Sampler: sampler;
 
 // ------------------------------------------------------------------ uniforms
 uniform cameraPos: vec3f;
@@ -93,11 +105,17 @@ uniform spellLightPos: array<vec4f, 4>;
 uniform spellLightCol: array<vec4f, 4>;
 uniform spellLightCount: f32;
 
+uniform localShadowPos: vec4f;
+uniform localShadowBias: f32;
+uniform localShadowEnabled: f32;
+uniform localShadowMatrices: array<mat4x4f, 6>;
+
 // The cascade projection and PCSS selection live in a shared include, because
 // the character material has to run the byte-identical lookup — the Y-flip
 // convention and the receiver-plane gradient are exactly the sort of thing that
 // two copies would quietly disagree about.
 #include<snowShadowLookup>
+#include<snowLocalShadow>
 
 // -----------------------------------------------------------------------------
 
@@ -528,10 +546,12 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     // into an open field and a spell casting into the bottom of its own crater
     // are lighting very different amounts of visible snow.
     if (uniforms.spellLightCount > 0.5) {
-        color += spellLighting(
+        let tipOccl = localShadowAt(world, N);
+        color += spellLightingOccluded(
             world, N, V, albedo, thickness,
             uniforms.sssStrength * (1.0 - rockExposed), uniforms.sssRadius,
-            uniforms.spellLightPos, uniforms.spellLightCol, uniforms.spellLightCount
+            uniforms.spellLightPos, uniforms.spellLightCol, uniforms.spellLightCount,
+            uniforms.localShadowPos.xyz, tipOccl
         );
     }
 

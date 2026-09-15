@@ -4,15 +4,15 @@ import { createArcRotateCamera, createDirectionalLight, createPointLight } from 
 export const LIGHT_INTENSITY = {
     WellGlow: 2.4,
     CrystalKey: 1.4,
-    LanternA_L: 1.8,
-    LanternB_L: 1.8,
-    LanternC_L: 1.55,
-    LanternD_L: 1.55,
-    LanternE_L: 1.6,
-    LanternF_L: 1.5,
-    Fill: 0.7,
-    Rim: 0.9,
-    MoonSun: 2.6,
+    LanternA_L: 0.35,
+    LanternB_L: 0.35,
+    LanternC_L: 0.28,
+    LanternD_L: 0.28,
+    LanternE_L: 0.25,
+    LanternF_L: 0.22,
+    Fill: 0.85,
+    Rim: 1.05,
+    MoonSun: 2.55,
 };
 
 const POINT_ENERGY_SCALE = 0.08;

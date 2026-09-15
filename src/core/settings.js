@@ -135,6 +135,15 @@ export const S = {
     showCharacter: true,
     showWake: false,
     showLightShafts: true,
+
+    // ---------------------------------------------------------- figure light
+    // Staff-tip *illumination* (the crystal's own emission is separate).
+    staffTipIntensity: 2.4,
+    staffTipRadius: 2.2,
+    staffTipSat: 0.28,
+    staffBaseIntensity: 2.6,
+    charAmbientScale: 0.85,
+    localShadow: true,
     wireframe: false,
     freezeTime: false,
 
@@ -204,6 +213,17 @@ export const SCHEMA = [
             { k: "windStreaks", l: "Speed streaks", t: "b" },
             { k: "streakStrength", l: "Streak amt", t: "f", min: 0, max: 2, step: 0.01 },
             { k: "showWake", l: "Wake mesh", t: "b" },
+        ],
+    },
+    {
+        group: "Figure light",
+        items: [
+            { k: "staffTipIntensity", l: "Tip intensity", t: "f", min: 0, max: 8, step: 0.05 },
+            { k: "staffTipRadius", l: "Tip radius", t: "f", min: 0.4, max: 6, step: 0.05 },
+            { k: "staffTipSat", l: "Tip chroma", t: "f", min: 0, max: 1, step: 0.01 },
+            { k: "staffBaseIntensity", l: "Ember intensity", t: "f", min: 0, max: 6, step: 0.05 },
+            { k: "charAmbientScale", l: "Char ambient", t: "f", min: 0, max: 1.2, step: 0.01 },
+            { k: "localShadow", l: "Orb cube shadow", t: "b" },
         ],
     },
     {

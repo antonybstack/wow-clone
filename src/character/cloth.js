@@ -425,7 +425,7 @@ export function makePanels() {
 const ITERATIONS = 6;
 
 /** Capsule table: [boneA, boneB, radius, mask]. Rebuilt from joints each frame. */
-const CAPSULES = [
+export const BODY_CAPSULES = [
     [B_ROOT, B_NECK, 0.175, C_TORSO],
     [B_THIGH_L, B_SHIN_L, 0.125, C_LEGS],
     [B_SHIN_L, B_FOOT_L, 0.098, C_LEGS],
@@ -605,8 +605,8 @@ export class ClothSolver {
         const pos = p.pos;
         const joint = fig.joint;
 
-        for (let c = 0; c < CAPSULES.length; c++) {
-            const cap = CAPSULES[c];
+        for (let c = 0; c < BODY_CAPSULES.length; c++) {
+            const cap = BODY_CAPSULES[c];
             if ((p.collide & cap[3]) === 0) continue;
             const a = cap[0] * 3, b = cap[1] * 3;
             const ax = joint[a], ay = joint[a + 1], az = joint[a + 2];

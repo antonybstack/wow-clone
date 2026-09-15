@@ -10,9 +10,11 @@ import {
     createEngine,
     createHemisphericLight,
     createPcfDirectionalShadowGenerator,
+    captureScreenshot,
     createSceneContext,
     decodeError,
     enableErrorDecoding,
+    enableBoneControl,
     loadGltf,
     loadHdrEnvironment,
     onBeforeRender,
@@ -33,7 +35,11 @@ import { CameraRig } from "./camera-rig.js";
 import { collectDummies, syncDummies } from "./dummy.js";
 import { glbUrl, runtimeUrl } from "./glb-meta.js";
 import { initInput, input } from "./input.js";
-import { attachHero } from "./hero.js";
+import { createAppearance } from "./character/appearance.js";
+import { attachBody } from "./character/body.js";
+import { createEquipment } from "./character/equipment.js";
+import { attachCrowd, attachGreeter } from "./character/npc.js";
+import { attachSockets } from "./character/sockets.js";
 import { setupPlayer } from "./player.js";
 import { createSpellSystem } from "./spells/spellSystem.js";
 import { Targeting } from "./targeting.js";
@@ -67,9 +73,9 @@ function showError(err) {
 async function main() {
     const engine = await createEngine(canvas, { msaaSamples: 4 });
     const scene = createSceneContext(engine);
-    scene.clearColor = { r: 0.004, g: 0.006, b: 0.012, a: 1 };
-    scene.imageProcessing.exposure = 0.88;
-    scene.imageProcessing.contrast = 1.18;
+    scene.clearColor = { r: 0.07, g: 0.09, b: 0.10, a: 1 };
+    scene.imageProcessing.exposure = 1.05;
+    scene.imageProcessing.contrast = 1.12;
     scene.imageProcessing.toneMappingEnabled = true;
     scene.imageProcessing.toneMapping = AcesToneMapping;
 
@@ -90,11 +96,14 @@ async function main() {
         if (name.startsWith("FenceWall")) {
             mesh.visible = false;
         }
+        if (/ramp_/i.test(name) || name.startsWith("EldenRamp")) {
+            mesh.visible = false;
+        }
     }
 
-    const hemi = createHemisphericLight([0.2, 1, 0.15], 0.08);
-    hemi.diffuseColor = [0.35, 0.48, 0.75];
-    hemi.groundColor = [0.03, 0.04, 0.02];
+    const hemi = createHemisphericLight([0.18, 1, 0.22], 0.11);
+    hemi.diffuseColor = [0.32, 0.40, 0.58];
+    hemi.groundColor = [0.04, 0.05, 0.06];
     addToScene(scene, hemi);
 
     let moon;
@@ -108,20 +117,20 @@ async function main() {
     try {
         await loadHdrEnvironment(scene, "/env/dikhololo_night_2k.hdr", {
             faceSize: 512,
-            useCubemapSkybox: true,
+            useCubemapSkybox: false,
             skipGround: true,
-            skyboxSize: 120,
+            skyboxSize: 480,
         });
     } catch (err) {
         console.warn("HDRI failed, continuing without IBL", err);
     }
 
     setFog(scene, {
-        mode: 3,
-        density: 0.022,
-        start: 12,
-        end: 48,
-        color: [0.015, 0.02, 0.035],
+        mode: 1,
+        density: 0.008,
+        start: 40,
+        end: 140,
+        color: [0.08, 0.11, 0.12],
     });
 
     if (moon) {
@@ -129,7 +138,7 @@ async function main() {
             mapSize: 2048,
             bias: 0.003,
             normalBias: 0.02,
-            darkness: 0.62,
+            darkness: 0.42,
         });
         moon.shadowGenerator = shadows;
         const casters = (scene.meshes ?? []).filter((mesh) => {
@@ -148,12 +157,14 @@ async function main() {
     camera.farPlane = 90;
     camera.wheelPrecision = 40;
     camera.radius = 5.2;
+    camera.nearPlane = 0.15;
+    camera.farPlane = 420;
     camera.inertia = 0;
     camera.panningInertia = 0;
     scene.camera = camera;
     setCameraLimits(camera, {
         lowerRadiusLimit: 2.2,
-        upperRadiusLimit: 24,
+        upperRadiusLimit: 42,
         lowerBetaLimit: 0.35,
         upperBetaLimit: 2.29,
     });
@@ -165,11 +176,29 @@ async function main() {
     initInput(canvas);
 
     const player = await setupPlayer(engine, scene, rig);
-    const hero = await attachHero(engine, scene, player, player.capsuleHeight).catch((err) => {
-        console.warn("hero glTF failed", err);
+    enableBoneControl();
+    const body = await attachBody(engine, scene, player, player.capsuleHeight).catch((err) => {
+        console.warn("character glTF failed", err);
         player.body.visible = true;
         return null;
     });
+    const sockets = body ? attachSockets(engine, scene, player, body) : null;
+    const appearance = body ? createAppearance({ scene, body, player }) : null;
+    const equipment = body && sockets
+        ? await createEquipment({ engine, scene, player, body, sockets })
+        : null;
+    const hero = equipment ? { tip: equipment.tip } : null;
+    const greeter = await attachGreeter(engine, scene).catch((err) => {
+        console.warn("greeter Mixamo failed", err);
+        return null;
+    });
+    const crowdCount = Number.parseInt(new URLSearchParams(location.search).get("crowd") ?? "", 10);
+    const crowd = Number.isFinite(crowdCount) && crowdCount > 0
+        ? await attachCrowd(engine, scene, crowdCount).catch((err) => {
+            console.warn("crowd failed", err);
+            return [];
+        })
+        : [];
     if (moon) {
         const casters = (scene.meshes ?? []).filter((mesh) => {
             const name = mesh.name || "";
@@ -195,7 +224,7 @@ async function main() {
     const targeting = new Targeting();
     targeting.list = collectDummies(scene);
     const spells = createSpellSystem({ engine, scene, player, hero, targeting, rig });
-    const hud = new Hud({ player, targeting, spells, camera, canvas });
+    const hud = new Hud({ player, targeting, spells, camera, canvas, appearance, equipment, body });
     const camForward = { x: 0, y: 0, z: 1 };
 
     const processTargeting = () => {
@@ -223,7 +252,14 @@ async function main() {
     onBeforeRender(scene, (deltaMs) => {
         const dt = deltaMs / 1000;
         player.kinematicStep(dt);
-        hero?.syncLights?.();
+        body?.update?.(dt);
+        greeter?.update?.(dt);
+        for (let i = 0; i < crowd.length; i++) {
+            crowd[i].update?.(dt);
+        }
+        sockets?.sync?.();
+        appearance?.update?.();
+        equipment?.update?.();
         processTargeting();
         spells.update(dt);
         hud.update();
@@ -240,10 +276,17 @@ async function main() {
         scene,
         input,
         hero,
+        body,
+        sockets,
+        appearance,
+        equipment,
         targeting,
         spells,
         hud,
         dummy: targeting.list[0] || null,
+        greeter,
+        crowd,
+        capture: () => captureScreenshot(engine),
     };
 
     await registerSceneWithShadowSupport(scene);

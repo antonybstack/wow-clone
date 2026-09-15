@@ -68,7 +68,7 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
         let pulse = 0.72 + 0.28 * (0.5 + 0.5 * sin(uniforms.time * 5.5));
         let core = pow(max(dot(N, V), 0.0), 1.15);
         let rim = pow(1.0 - max(dot(N, V), 0.0), 2.8);
-        let rgb = uniforms.tint * pulse * (0.55 + 2.4 * core) + uniforms.tint * rim * 0.85;
+        let rgb = uniforms.tint * pulse * (0.70 + 3.4 * core) + uniforms.tint * rim * 1.05;
         fragmentOutputs.color = vec4f(rgb, clamp(0.35 + 0.55 * core, 0.0, 0.92));
     } else {
         if (kind < 0.5) {

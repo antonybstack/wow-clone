@@ -21,10 +21,10 @@ function meshList(scene) {
 
 function isHeroMesh(mesh) {
     const name = mesh.name || "";
-    return name.startsWith("Hero") || name.includes("Hero");
+    return name.startsWith("Hero") || name.startsWith("A_") || name.includes("Hero");
 }
 
-const HEIGHT_IGNORE = /Staff|Flame|Band|Crystal|Bead|Charm|Tip|Wrap|Chain|Brooch|Pendant|Prong|Rag/;
+const HEIGHT_IGNORE = /Staff|Flame|Band|Crystal|Bead|Charm|Tip|Wrap|Chain|Brooch|Pendant|Prong|Rag|Studio|LookPlate|Collision|Void/;
 
 function isHeroBodyMesh(mesh) {
     if (!isHeroMesh(mesh)) {
@@ -125,13 +125,17 @@ export async function attachHero(engine, scene, player, capsuleHeight) {
 
     const tip = meshList(scene).find((mesh) => {
         const name = mesh.name || "";
-        return name.includes("StaffTip") || name.includes("HeroFlame") || name === "HeroFlame";
+        return name.includes("StaffTip")
+            || name.includes("HeroFlame")
+            || name.includes("A_Flame")
+            || name === "HeroFlame"
+            || name === "A_Flame";
     });
 
-    const staffLight = createPointLight([0, 1.7, 0], 0.28);
+    const staffLight = createPointLight([0, 1.7, 0], 0.16);
     staffLight.diffuse = [0.52, 0.22, 1.0];
     staffLight.specular = [0.4, 0.16, 0.85];
-    staffLight.range = 1.35;
+    staffLight.range = 1.0;
     addToScene(scene, staffLight);
 
     const ember = createPointLight([0, 0.2, 0], 0.10);

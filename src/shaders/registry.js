@@ -21,6 +21,7 @@ import deformLib from "./lib/deform.wgsl?raw";
 import charSkinLib from "./lib/charSkin.wgsl?raw";
 import wakeLib from "./lib/wake.wgsl?raw";
 import spellLightsLib from "./lib/spellLights.wgsl?raw";
+import localShadowLib from "./lib/localShadow.wgsl?raw";
 import waterLib from "./lib/water.wgsl?raw";
 import crystalLib from "./lib/crystal.wgsl?raw";
 import postCommonLib from "./lib/postCommon.wgsl?raw";
@@ -82,6 +83,7 @@ const INCLUDES = {
     snowCharSkin: charSkinLib,
     snowWake: wakeLib,
     snowSpellLights: spellLightsLib,
+    snowLocalShadow: localShadowLib,
     snowWater: waterLib,
     snowCrystal: crystalLib,
     snowPostCommon: postCommonLib,

@@ -46,6 +46,18 @@ var cascade1: texture_2d<f32>;
 var cascade1Sampler: sampler;
 var cascade2: texture_2d<f32>;
 var cascade2Sampler: sampler;
+var local0: texture_2d<f32>;
+var local0Sampler: sampler;
+var local1: texture_2d<f32>;
+var local1Sampler: sampler;
+var local2: texture_2d<f32>;
+var local2Sampler: sampler;
+var local3: texture_2d<f32>;
+var local3Sampler: sampler;
+var local4: texture_2d<f32>;
+var local4Sampler: sampler;
+var local5: texture_2d<f32>;
+var local5Sampler: sampler;
 
 uniform cameraPos: vec3f;
 uniform sunDir: vec3f;
@@ -81,7 +93,22 @@ uniform spellLightPos: array<vec4f, 4>;
 uniform spellLightCol: array<vec4f, 4>;
 uniform spellLightCount: f32;
 
+uniform localShadowPos: vec4f;
+uniform localShadowBias: f32;
+uniform localShadowEnabled: f32;
+uniform localShadowMatrices: array<mat4x4f, 6>;
+
+/// Character fill is a fraction of scene SH so the orb can actually model the
+/// costume instead of sitting on a directionless pedestal.
+uniform charAmbientScale: f32;
+
+/// Body capsules: xyz = endpoint, A.w = radius. Used as cheap cloth-to-body AO.
+uniform capsuleA: array<vec4f, 9>;
+uniform capsuleB: array<vec4f, 9>;
+uniform capsuleCount: f32;
+
 #include<snowShadowLookup>
+#include<snowLocalShadow>
 
 /// Charlie sheen distribution. `roughness` here is the fibre roughness, and it
 /// wants to be high — 0.3 or below turns the rim into a hard line.
@@ -370,6 +397,28 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     let facing = dot(normalize(input.vNormal), V);
     ao *= mix(1.0, 0.42, smoothstep(0.06, -0.06, facing));
 
+    // Cloth-to-body capsule AO. The sim already collides against these
+    // capsules; shading them darkens the wrap at the torso and arms without a
+    // screen-space pass. Skin/leather skip it — they *are* the capsules.
+    if (slot == 0 || slot == 1 || slot == 5) {
+        var capAo = 1.0;
+        let nCap = i32(uniforms.capsuleCount);
+        for (var ci = 0; ci < 9; ci++) {
+            if (ci >= nCap) { break; }
+            let ca = uniforms.capsuleA[ci];
+            let cb = uniforms.capsuleB[ci].xyz;
+            let radius = ca.w;
+            let pa = world - ca.xyz;
+            let ba = cb - ca.xyz;
+            let h = clamp(dot(pa, ba) / max(dot(ba, ba), 1e-5), 0.0, 1.0);
+            let d = length(pa - ba * h);
+            // Floor at 0.55 — the cloak *sits* on these capsules, so a 0
+            // contact would paint the whole mantle black.
+            capAo *= mix(0.55, 1.0, smoothstep(radius * 1.05, radius * 2.1, d));
+        }
+        ao *= mix(1.0, capAo, 0.45);
+    }
+
     // ------------------------------------------------------------- lighting
     let NdotL = dot(N, L);
     let NdotV = clamp(dot(N, V), 1e-4, 1.0);
@@ -458,47 +507,28 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     }
 
     // --- ambient ------------------------------------------------------------
-    var irradiance = shIrradiance(N, uniforms.shR) * uniforms.ambientIntensity;
-    // Ground bounce: light coming back off the lawn, so it lands on downward
-    // faces — the underside of the mantle, the inside of a sleeve. Directional,
-    // so it adds shape rather than removing it.
+    // Figure fill is a fraction of the scene SH. The grove can stay readable
+    // under a broad night fill; the costume cannot — that fill was painting
+    // every fold the same violet-grey and killing the orb's modelling.
+    let amb = uniforms.ambientIntensity * uniforms.charAmbientScale;
+    var irradiance = shIrradiance(N, uniforms.shR) * amb;
     let up = clamp(-N.y * 0.5 + 0.5, 0.0, 1.0);
     irradiance += shIrradiance(vec3f(0.0, 1.0, 0.0), uniforms.shR)
-                * uniforms.ambientIntensity * 0.26 * up;
-    // A flat pedestal, and the one term here with no direction in it at all, so
-    // every unit of it is pure contrast loss. It was at 0.20 — against an SH
-    // irradiance whose own swing top to bottom is not much larger, which meant
-    // roughly a third of the fill on the model was arriving from nowhere in
-    // particular. Enough to keep the darkest robe off black, no more, and with
-    // the costume's reflectances now where they should be that takes very
-    // little: the darkest slot is leather at 0.048, and it only has to clear
-    // the point where the display quantises it into the black.
+                * amb * 0.22 * up;
     irradiance += shIrradiance(vec3f(0.0, 1.0, 0.0), uniforms.shR)
-                * uniforms.ambientIntensity * 0.025;
+                * amb * 0.008;
 
     color += albedo * INV_PI * irradiance * ao;
 
-    // Moon rim — Elden-style silhouette separation. Cool key along the Fresnel
-    // edge even when the face is in shadow, so the figure never dissolves into
-    // the canopy behind it. Independent of sheen so leather and robe both get it.
-    //
-    // A rim is only a rim while it stays on the edge. At an exponent of 2.8 and
-    // a third of the sun's radiance this one reached a long way inboard and
-    // became a uniform pale halo over the whole model — the term that did more
-    // than any other to make the costume look like one moulded piece. Narrower
-    // and dimmer: a bright line on the contour, nothing on the broad faces.
-    //
-    // This term is additive and does not scale with albedo, so its weight is
-    // relative to whatever the garment underneath happens to be. Against the
-    // old near-black costume 0.22 of the moon's radiance was several times the
-    // surface it sat on and read as a chrome edge; against a robe at its proper
-    // reflectance it only has to be a highlight.
-    let moonRim = pow(1.0 - NdotV, 4.2);
-    color += sun * moonRim * 0.16 * ao;
+    // Camera-relative cool rim. Independent of the saturated spell light so
+    // the silhouette still separates when the orb is occluded in a fold.
+    let moonRim = pow(1.0 - NdotV, 5.0);
+    let rimCol = vec3f(0.38, 0.50, 0.72) * length(sun);
+    color += rimCol * moonRim * 0.22 * ao;
 
     // Ambient sheen: the sky wrapping around a fuzzy silhouette.
     let rim = pow(1.0 - NdotV, 4.0);
-    let skyAmb = shIrradiance(N, uniforms.shR) * uniforms.ambientIntensity * INV_PI;
+    let skyAmb = shIrradiance(N, uniforms.shR) * amb * INV_PI;
     color += skyAmb * rim * sheenAmt * 0.55 * ao;
 
     // Ambient specular from the sky at a roughness-selected mip.
@@ -506,7 +536,7 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     let mip = sqrt(roughness) * 6.0;
     let skyRefl = textureSampleLevel(skyLUT, skyLUTSampler, dirToLatLong(R), mip).rgb;
     color += skyRefl * envBRDFApprox(vec3f(0.035), roughness, NdotV)
-           * uniforms.ambientIntensity * ao;
+           * amb * ao;
 
     // --- spell light --------------------------------------------------------
     // The caster is standing inside the thing they are casting, so this is the
@@ -519,9 +549,11 @@ fn main(input: FragmentInputs) -> FragmentOutputs {
     // is a broad source rather than a point, and thin cloth over a bright
     // emitter genuinely does carry light around the fold.
     if (uniforms.spellLightCount > 0.5) {
-        color += spellLightingSurface(
-            world, N, V, albedo, vec3f(0.035), roughness, 0.35,
-            uniforms.spellLightPos, uniforms.spellLightCol, uniforms.spellLightCount
+        let tipOccl = localShadowAt(world, geoN);
+        color += spellLightingSurfaceOccluded(
+            world, N, V, albedo, vec3f(0.035), roughness, 0.16,
+            uniforms.spellLightPos, uniforms.spellLightCol, uniforms.spellLightCount,
+            uniforms.localShadowPos.xyz, tipOccl
         ) * ao;
     }
 

@@ -541,13 +541,24 @@ export function buildGrove(scene, sky, terrain, shadows) {
          * @param {{ add(x:number,y:number,z:number,radius:number,r:number,g:number,b:number,intensity:number):void }} lights
          */
         declareHeldLights(lights) {
-            // Cool violet key: tight, intense, lights the cowl and shoulder.
-            lights.add(_tip[0], _tip[1], _tip[2], 3.1, 0.72, 0.28, 1.15, 5.6);
-            // Warm ember pool where the staff meets the snow. It is the only
-            // warm source in the scene and it is at ground level, so it underlits
-            // the hem — the counter-key that keeps a floor-length robe from
-            // merging with the ground it is standing on.
-            lights.add(_base[0], _base[1] + 0.10, _base[2], 2.2, 1.0, 0.48, 0.10, 3.1);
+            // Illumination is desaturated on purpose. The crystal's own
+            // emission (grove kind 7) stays saturated HDR for bloom; this
+            // pool is what paints the cloth, and a chroma-matched key was
+            // turning the whole mantle into one violet sheet.
+            const sat = S.staffTipSat;
+            const tipI = S.staffTipIntensity;
+            const tipR = S.staffTipRadius;
+            lights.add(
+                _tip[0], _tip[1], _tip[2], tipR,
+                0.42 + 0.30 * sat, 0.40 + 0.12 * sat, 0.48 + 0.67 * sat,
+                tipI
+            );
+            const baseI = S.staffBaseIntensity;
+            lights.add(
+                _base[0], _base[1] + 0.10, _base[2], 2.2,
+                0.78, 0.52, 0.34,
+                baseI
+            );
         },
         /**
          * Magic dust off the crystal + warm embers at the butt.

@@ -21,12 +21,13 @@ import { Constants } from "@babylonjs/core/Engines/constants";
 import { Vector2, Vector3, Vector4, Color3 } from "@babylonjs/core/Maths/math";
 
 import { Figure, BONE_COUNT } from "./figure.js";
-import { makePanels, ClothSolver } from "./cloth.js";
+import { makePanels, ClothSolver, BODY_CAPSULES } from "./cloth.js";
 import { buildBody, buildFur, buildClothMesh } from "./build.js";
 import { S } from "../core/settings.js";
 import { whenReady, bindMatrixArray } from "../core/gpuUtil.js";
 import { CASCADE_COUNT } from "../render/shadows.js";
 import { SPELL_LIGHT_UNIFORMS } from "../spells/spellLights.js";
+import { LOCAL_SHADOW_UNIFORMS, LOCAL_SHADOW_SAMPLERS } from "../render/localShadow.js";
 
 /** Transform texture geometry. Width covers the widest of bones or panel cols. */
 const TEX_W = 48;
@@ -212,13 +213,15 @@ export class Character {
      * @param {import("../render/sky.js").Sky} sky
      * @param {import("../render/shadows.js").ShadowSystem} shadows
      * @param {import("./controller.js").CharacterController} controller
+     * @param {import("../render/localShadow.js").LocalShadow} [localShadow]
      */
-    constructor(scene, terrain, sky, shadows, controller) {
+    constructor(scene, terrain, sky, shadows, controller, localShadow) {
         this.scene = scene;
         this.terrain = terrain;
         this.sky = sky;
         this.shadows = shadows;
         this.controller = controller;
+        this.localShadow = localShadow || null;
 
         this.figure = new Figure(terrain);
         this.panels = makePanels();
@@ -284,6 +287,16 @@ export class Character {
         shadows.registerCaster(
             this.clothMesh, (c) => this._makeDepthMaterial("clothDepth", c, true), CHAR_CASCADES
         );
+        if (this.localShadow) {
+            this.localShadow.registerCaster(
+                this.bodyMesh, (f) => this._makeDepthMaterial("charDepth", "l" + f, false)
+            );
+            this.localShadow.registerCaster(
+                this.clothMesh, (f) => this._makeDepthMaterial("clothDepth", "l" + f, true)
+            );
+        }
+        this._capA = new Float32Array(BODY_CAPSULES.length * 4);
+        this._capB = new Float32Array(BODY_CAPSULES.length * 4);
         // Fur is not registered as a caster. Its shadow lands inside the hood's
         // own, an alpha-tested 22-shell depth pass is not cheap, and what it
         // would contribute is a slightly fuzzier edge on a shadow already an
@@ -318,8 +331,10 @@ export class Character {
             "matAlbedo", "matParams",
             "fogDensity", "fogHeightFalloff", "fogStart", "aerialStrength",
             "ambientIntensity", "sssStrength", "weaveDensity",
-            "screenSize", "time",
+            "screenSize", "time", "charAmbientScale",
+            "capsuleA", "capsuleB", "capsuleCount",
             ...SPELL_LIGHT_UNIFORMS,
+            ...LOCAL_SHADOW_UNIFORMS,
         ];
         const attributes = isCloth
             ? ["position", "uv", "aux"]
@@ -333,6 +348,7 @@ export class Character {
                 uniforms,
                 samplers: [
                     "charTex", "skyLUT", "cascade0", "cascade1", "cascade2",
+                    ...LOCAL_SHADOW_SAMPLERS,
                 ],
                 shaderLanguage: ShaderLanguage.WGSL,
             }
@@ -345,6 +361,11 @@ export class Character {
         mat.setTexture("skyLUT", this.sky.lut);
         for (let i = 0; i < CASCADE_COUNT; i++) {
             mat.setTexture("cascade" + i, this.shadows.maps[i]);
+        }
+        if (this.localShadow) {
+            for (let i = 0; i < 6; i++) {
+                mat.setTexture("local" + i, this.localShadow.maps[i]);
+            }
         }
         return mat;
     }
@@ -585,6 +606,26 @@ export class Character {
             m.setFloat("ambientIntensity", S.ambientIntensity);
         }
 
+        if (this.localShadow) {
+            const on = S.localShadow !== false;
+            this.localShadow.bindReceiver(this.bodyMat, on);
+            this.localShadow.bindReceiver(this.clothMat, on);
+        }
+
+        const j = this.figure.joint;
+        for (let i = 0; i < BODY_CAPSULES.length; i++) {
+            const cap = BODY_CAPSULES[i];
+            const ao = cap[0] * 3, bo = cap[1] * 3, o = i * 4;
+            this._capA[o] = j[ao];
+            this._capA[o + 1] = j[ao + 1];
+            this._capA[o + 2] = j[ao + 2];
+            this._capA[o + 3] = cap[2];
+            this._capB[o] = j[bo];
+            this._capB[o + 1] = j[bo + 1];
+            this._capB[o + 2] = j[bo + 2];
+            this._capB[o + 3] = 0;
+        }
+
         const eng = this.scene.getEngine();
         _screen.set(eng.getRenderWidth(), eng.getRenderHeight());
 
@@ -601,6 +642,10 @@ export class Character {
             // the pixel-footprint fade takes the weave out over the first metre
             // and a half and leaves the slub to carry the cloth beyond that.
             m.setFloat("weaveDensity", 520);
+            m.setFloat("charAmbientScale", S.charAmbientScale);
+            m.setArray4("capsuleA", this._capA);
+            m.setArray4("capsuleB", this._capB);
+            m.setFloat("capsuleCount", BODY_CAPSULES.length);
         }
         this.clothMat.setArray4("panelParams", this._panelParams);
 
@@ -629,6 +674,7 @@ export class Character {
                 await whenReady(m, m.name, [mesh, false]);
             }
         }
+        if (this.localShadow) await this.localShadow.warmUp();
     }
 
     /**
