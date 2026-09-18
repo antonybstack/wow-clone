@@ -1,12 +1,12 @@
 // CDP screencast includes DOM health/cooldown/damage, unlike canvas.captureStream.
 import {chromium} from 'playwright';import fs from 'node:fs/promises';
 const graveweaver=process.argv.includes('--graveweaver'),mixed=process.argv.includes('--mixed'),equipment=graveweaver||mixed||process.argv.includes('--equipment');
-const dir=`ve-capture/ashen-reach/${graveweaver?'graveweaver':mixed?'mixed-equipment':equipment?'equipment':'armory'}/video`;await fs.mkdir(dir+'/frames',{recursive:true});
+const dir=process.env.ASHEN_CAPTURE_DIR||`ve-capture/ashen-reach/${graveweaver?'graveweaver':mixed?'mixed-equipment':equipment?'equipment':'armory'}/video`;await fs.mkdir(dir+'/frames',{recursive:true});
 const browser=await chromium.connectOverCDP('http://127.0.0.1:9337');const page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach.html'));
 let cdp,recording=false;const frames=[],writes=[],errors=[],timeline=[];page.on('pageerror',e=>errors.push(e.message));
 const wait=ms=>page.waitForTimeout(ms),key=k=>page.keyboard.press(k);
 try{
- await page.bringToFront();await page.goto('http://127.0.0.1:5173/ashen-reach.html?play&clean',{waitUntil:'commit'});await page.waitForFunction(()=>window.ASHEN?.ready,null,{timeout:60000});await wait(1500);await key('Tab');
+ await page.bringToFront();await page.goto((process.env.ASHEN_URL||'http://127.0.0.1:5173/ashen-reach.html?play&clean'),{waitUntil:'commit'});await page.waitForFunction(()=>window.ASHEN?.ready,null,{timeout:60000});await wait(1500);await key('Tab');
  const audioStart=await page.evaluate(()=>{
   const capture=ASHEN.combat.audio.capture(),recorder=new MediaRecorder(capture.stream,{mimeType:'audio/webm;codecs=opus'}),chunks=[];
   const done=new Promise(resolve=>recorder.onstop=resolve);recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data);};
@@ -26,12 +26,12 @@ try{
   mark('Independent boot and weapon selection');await page.locator('[data-equipment="boots"]').selectOption('');await wait(700);await page.locator('[data-equipment="boots"]').selectOption('wayfarerBoots');await page.locator('[data-equipment="mainHand"]').selectOption('ironSword');await wait(800);await page.locator('[data-view="side"]').click();await wait(900);await page.screenshot({path:dir+'/sword-side.png'});await page.locator('[data-view="front"]').click();
  }
  if(graveweaver){
-  mark('Complete Graveweaver magic outfit');await page.locator('[data-outfit="graveweaver"]').click();await wait(1800);
+  mark('Complete Graveweaver magic outfit');await page.locator('[data-outfit="graveweaver"]').click();await page.waitForFunction(()=>!ASHEN.equipment.getStatus?.().pending);await wait(1800);
   mark('Independent hood, gloves and grimoire');
   for(const [slot,id] of [['helmet','graveweaverHood'],['gloves','graveweaverGloves'],['offHand','graveweaverBook']]){await page.locator(`[data-equipment="${slot}"]`).selectOption('');await wait(550);await page.locator(`[data-equipment="${slot}"]`).selectOption(id);await wait(550);}
   mark('Mix robe skirt with Pilgrim top');await page.locator('[data-equipment="torso"]').selectOption('pilgrimTunic');await wait(1100);
   mark('Mix armored vestment with trousers');await page.locator('[data-equipment="torso"]').selectOption('graveweaverTop');await page.locator('[data-equipment="legs"]').selectOption('wayfarerTrousers');await wait(1100);
-  await page.locator('[data-outfit="graveweaver"]').click();await page.locator('[data-view="side"]').click();await wait(1100);await page.screenshot({path:dir+'/staff-side.png'});await page.locator('[data-view="full"]').click();
+  await page.locator('[data-outfit="graveweaver"]').click();await page.waitForFunction(()=>!ASHEN.equipment.getStatus?.().pending);await page.locator('[data-view="side"]').click();await wait(1100);await page.screenshot({path:dir+'/staff-side.png'});await page.locator('[data-view="full"]').click();
  }
  if(mixed){
   mark('Mix the cloth torso with existing trousers and boots');await page.locator('[data-equipment="torso"]').selectOption('pilgrimTunic');await wait(1100);

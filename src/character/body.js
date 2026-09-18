@@ -10,7 +10,6 @@ import {
     playAnimation,
     setAnimationWeight,
     stopAnimation,
-    updateAnimationManager,
 } from "@babylonjs/lite";
 
 import { input } from "../input.js";
@@ -45,6 +44,7 @@ import { applyArmedMage, armedMageGrip, armedMagePlayback } from "./runtime/arme
 import { fileSha256 } from "./runtime/fit-contract.js";
 import { advanceGaitPhase, gaitTime, landingWeight } from "./runtime/gait-phase.js";
 
+import { evaluateHandAnimation } from './runtime/hand-grip.js';
 import { createInspectionPreview } from './runtime/inspection-preview.js';
 
 export const BODY_URL = "/characters/base.glb";
@@ -692,7 +692,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             }
         }
         if (groups.length) {
-            updateAnimationManager(manager, h * 1000);
+            evaluateHandAnimation(visual, h * 1000);
         }
     };
 
@@ -844,6 +844,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
         get root() { return visual?.root; },
         get container() { return visual?.container; },
         get skeleton() { return visual?.skeleton; },
+        setHandGripProvider(provider) { if (visual) visual.handGrips = provider; },
         get armedGrip() { return armedGrip; },
         get animationGroups() { return visual?.groups; },
         get idle() { return visual?.idle; },
@@ -886,7 +887,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             state.channeling = false; state.channelPhase = ""; state.channelBlocked = false;
             setLocoOverlay(false);
             playLoop(visual.idle);
-            updateAnimationManager(visual.manager, 0);
+            evaluateHandAnimation(visual, 0);
         },
         cancelCast() { if (def.castMotion && state.castingShoot) castCancelTime = .16; },
         setLoadout,

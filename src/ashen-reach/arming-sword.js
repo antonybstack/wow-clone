@@ -12,8 +12,8 @@ export function createArmingSword(engine,scene,socket,gripRotation){
     steel.box([0,.095,0],[.23,.03,.035],white);
     steel.box([-.105,.08,0],[.025,.05,.035],white);steel.box([.105,.08,0],[.025,.05,.035],white);
     steel.tube([0,-.14,0],[0,-.105,0],.039,.031,white,6);steel.box([0,-.139,0],[.04,.012,.04],white);
-    leather.tube([0,-.11,0],[0,.075,0],.022,.023,white,6);
-    for(let i=0;i<7;i++)leather.tube([0,-.10+i*.025,0],[0,-.092+i*.025,0],.025,.025,white,6);
+    leather.tube([0,-.11,0],[0,.075,0],.016,.017,white,6);
+    for(let i=0;i<7;i++)leather.tube([0,-.10+i*.025,0],[0,-.092+i*.025,0],.019,.019,white,6);
     const meshes=[steel.commit(engine,scene,createPbrMaterial({baseColorFactor:[.50,.49,.43,1],metallicFactor:.25,roughnessFactor:.63,doubleSided:true})),leather.commit(engine,scene,createPbrMaterial({baseColorFactor:[.11,.065,.035,1],metallicFactor:0,roughnessFactor:1,doubleSided:true}))];
     for(const mesh of meshes){setParent(mesh,root);mesh.position.set(0,0,0);mesh.rotationQuaternion.set(0,0,0,1);mesh.scaling.set(1,1,1);}
     return {root,meshes};

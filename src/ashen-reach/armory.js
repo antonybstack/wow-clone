@@ -19,7 +19,7 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
         <div class="armory-panel-title"><span>Character & equipment</span><button data-close aria-label="Close armory">×</button></div>
         <label class="armory-field">Race<select data-race><option value="human">Human</option><option value="orc" disabled>Orc — fit not ready</option><option value="undead" disabled>Undead — fit not ready</option></select></label>
         <p class="armory-note">Human is available. Additional races will unlock with their fitted equipment.</p>
-        <h2>Equipment</h2><div class="armory-presets">${Object.entries(equipment.presets).map(([id,preset])=>`<button data-outfit="${id}">${preset.name}</button>`).join('')}</div>
+        <h2>Equipment</h2><p class="armory-note" data-equipment-status role="status" aria-live="polite"></p><div class="armory-presets">${Object.entries(equipment.presets).map(([id,preset])=>`<button data-outfit="${id}">${preset.name}</button>`).join('')}</div>
         <div class="armory-slots">${[['helmet','Helmet','Unequipped'],['torso','Torso','Base appearance'],['legs','Legs','Charcoal trousers'],['boots','Boots','Base appearance'],['gloves','Gloves','Unequipped'],['mainHand','Main hand','Unequipped'],['offHand','Off-hand','Unequipped']].map(([slot,label,value])=>`<button data-slot="${slot}" disabled><span>${label}</span><strong>${value}</strong><small>Items coming next</small></button>`).join('')}</div>
         <p class="armory-note">Select a fitted item or unequip it. Your selection stays equipped in the churchyard.</p>
         <label class="armory-check"><input type="checkbox" data-light> Inspection fill light</label>
@@ -36,10 +36,21 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
     for(const slot of ['helmet','torso','legs','boots','gloves','mainHand','offHand']){
         const old=element.querySelector(`[data-slot="${slot}"]`),field=document.createElement('label');field.className='armory-equip';
         field.innerHTML=`<span>${{helmet:'Head',torso:'Torso',legs:'Legs',boots:'Boots',gloves:'Gloves',mainHand:'Main hand',offHand:'Off-hand'}[slot]}</span><select data-equipment="${slot}" aria-label="${slot} equipment"><option value="">Unequipped</option>${Object.values(equipment.items).filter(item=>item.slot===slot).map(item=>`<option value="${item.id}">${item.name}</option>`).join('')}</select>`;
-        old.replaceWith(field);const select=field.querySelector('select');select.value=equipment.getState()[slot]||'';select.onchange=()=>equipment.equip(slot,select.value||null);
+        old.replaceWith(field);const select=field.querySelector('select');select.value=equipment.getState()[slot]||'';select.onchange=()=>changeEquipment(()=>equipment.equip(slot,select.value||null));
     }
-    for(const button of element.querySelectorAll('[data-outfit]'))button.onclick=()=>{equipment.equipPreset(button.dataset.outfit);for(const select of element.querySelectorAll('[data-equipment]'))select.value=equipment.getState()[select.dataset.equipment]||'';face('full');};
-    let open=false, priorView='play', focusHeight=.78, drag=null, lastPaint=0;
+    for(const button of element.querySelectorAll('[data-outfit]'))button.onclick=()=>changeEquipment(()=>equipment.equipPreset(button.dataset.outfit),true);
+    async function changeEquipment(action,frame=false){
+  const label=element.querySelector('[data-equipment-status]');label.textContent='Preparing equipment…';
+  try{
+   const result=await action();
+   if(result?.status==='superseded')return;
+   label.textContent=result?.status==='failed'?'Could not equip that item. Your current outfit is unchanged.':'';
+   const selection=equipment.getStatus?.().pending?equipment.getStatus().desired:equipment.getState();
+   for(const select of element.querySelectorAll('[data-equipment]'))select.value=selection[select.dataset.equipment]||'';
+   if(frame&&result?.status!=='failed')face('full');
+  }catch(error){label.textContent='Could not equip that item. Your current outfit is unchanged.';}
+ }
+ let open=false, priorView='play', focusHeight=.78, drag=null, lastPaint=0;
     const face = kind => {
         const facing=player.getFacing();
         if(kind==='front') camera.alpha=Math.PI/2-facing;

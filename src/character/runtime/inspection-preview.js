@@ -1,4 +1,5 @@
-import {playAnimation, stopAnimation, setAnimationWeight, updateAnimationManager} from '@babylonjs/lite';
+import { evaluateHandAnimation } from './hand-grip.js';
+import {playAnimation, stopAnimation, setAnimationWeight} from '@babylonjs/lite';
 
 /** Diagnostic playback on the actor's existing manager; never owns gameplay input. */
 export function createInspectionPreview(visual) {
@@ -25,7 +26,7 @@ export function createInspectionPreview(visual) {
             const weight = selected.layered && index > 0 ? ease(time/.09)*ease((duration()-time)/.18) : 1;
             setAnimationWeight(group, weight);
         });
-        updateAnimationManager(visual.manager, 0);
+        evaluateHandAnimation(visual, 0);
     };
     const select = id => {
         const option = options.find(item => item.id === id);

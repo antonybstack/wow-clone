@@ -1,3 +1,4 @@
+import { installEquipmentGrips } from './equipment-grips.js';
 import {validateEquipmentCatalogue} from './equipment-contract.js';
 import {createMageProp} from './mage-props.js';
 import {createArmingSword} from './arming-sword.js';
@@ -14,7 +15,7 @@ export function createEquipment(engine,scene,body,sockets){
     for(const [name,meshes]of Object.entries(bindings))if(!meshes.length)throw Error('Missing equipment mesh/coverage: '+name);
     const props=Object.values(EQUIPMENT_ITEMS).filter(item=>item.factory).map(item=>{
         const prop=item.factory==='sword'?createArmingSword(engine,scene,sockets.sockets[item.slot].node,item.gripRotation):createMageProp(engine,scene,item.factory);
-        setParent(prop.root,sockets.sockets[item.slot].node);prop.root.position.set(0,0,0);prop.root.rotationQuaternion.set(...item.gripRotation);prop.root.scaling.set(1,1,1);
+        setParent(prop.root,sockets.sockets[item.slot].node);prop.root.position.set(...(item.gripPosition||[0,0,0]));prop.root.rotationQuaternion.set(...item.gripRotation);prop.root.scaling.set(1,1,1);
         return{...prop,item,attachment:'hand'};
     });
     const weaponSockets=[sockets.sockets.mainHand,sockets.sockets.offHand,sockets.sockets.back];
@@ -25,6 +26,7 @@ export function createEquipment(engine,scene,body,sockets){
     };
     const setLoadout=patch=>{const next={...selected,...patch};validateLoadout(next);Object.assign(selected,next);apply();};
     apply();
+    installEquipmentGrips(body,()=>selected);
     return {items:EQUIPMENT_ITEMS,presets:EQUIPMENT_PRESETS,setLoadout,
         equipPreset(id){if(!Object.hasOwn(EQUIPMENT_PRESETS,id))throw Error('Unknown outfit');setLoadout(EQUIPMENT_PRESETS[id].loadout);},
         equip(slot,id){setLoadout({[slot]:id});},
@@ -37,7 +39,7 @@ export function createEquipment(engine,scene,body,sockets){
                 const item=prop.item;if(selected[item.slot]!==item.id||next===prop.attachment)continue;
                 prop.attachment=next;const stow=next==='back';
                 setParent(prop.root,stow?sockets.sockets.back.node:sockets.sockets[item.slot].node);
-                prop.root.position.set(...(stow?item.stow.position:[0,0,0]));
+                prop.root.position.set(...(stow?item.stow.position:(item.gripPosition||[0,0,0])));
                 prop.root.rotationQuaternion.set(...(stow?item.stow.rotation:item.gripRotation));prop.root.scaling.set(1,1,1);
             }
         },

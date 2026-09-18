@@ -88,7 +88,7 @@ Do not call recolored body regions or generic offset shells a finished modular o
 - [x] Add a second visually distinct, compatible outfit and actual weapon/off-hand alternatives. Graveweaver adds hood, armored robe top, long skirt, gloves, staff and grimoire; boots remain shared.
 - [ ] Standardize seam boundaries, layer precedence, hair/face hiding, grip metadata and two-handed exclusions.
 - [x] Exercise representative mixed combinations and edge cases; adding an item should use the catalogue/asset pipeline rather than a new renderer branch.
-- [ ] Latest-request-wins swaps; failed load keeps the previous equipment; bounded resource ownership and reuse.
+- [x] Latest-request-wins swaps; failed load keeps the previous equipment; bounded resource ownership and reuse.
 - [x] Meaningful fit/slot tests plus real-game visual/performance checks.
 
 ### D — Cross-race proof
@@ -181,7 +181,7 @@ The recorder writes raw JPEG frames, ffconcat timing, engine audio and timeline 
 - Added independent hair hiding under the hood and a hand/finger-weight body partition under gloves. Robe skirt shares the existing trouser underlayer and boot-cuff precedence. Side/back review drove additional lower-panel clearance. Cut vents produced enclosed gaps and loose-looking strips; the final skirt keeps the continuous authored hem. Deep jump folds remain ordinary skinned deformation.
 - Staff and grimoire use separate evaluated palm transforms. Both stow during Fire/Lava preview and live recovery, then return to their own hands. The current staff is one-handed. No two-handed conflict rule or shield has been implemented. Full-body inspection framing accommodates the tall staff.
 - The browser checks cover all slots, complete and mixed outfits, hair/hand restoration, atomic rejection, thirty preset swaps without mesh/bone/phase changes, both evaluated palm positions, resumed movement, Fire Blast damage, Lava Ball jump interruption and recovery, and no runtime errors.
-- **Still open in Stage C:** general fit/seam contracts, two-handed occupancy when a two-handed item arrives, on-demand composition/cache ownership and failed-load/latest-request-wins semantics. The small catalogue remains preloaded. Human only; race fitting is a separate Stage D proof. Long hems use ordinary skinning with visibly stretched deep jump folds; no cloth simulation or bespoke staff locomotion. Stow/draw remains instantaneous.
+- **Open at the time of this magic-set pass (see streaming update below):** general fit/seam contracts, two-handed occupancy when a two-handed item arrives, on-demand composition/cache ownership and failed-load/latest-request-wins semantics. The small catalogue remains preloaded. Human only; race fitting is a separate Stage D proof. Long hems use ordinary skinning with visibly stretched deep jump folds; no cloth simulation or bespoke staff locomotion. Stow/draw remains instantaneous.
 
 Reproduce the magic-set pass from `the repository root` (browser commands run sequentially):
 
@@ -201,15 +201,7 @@ npm run build
 
 ## Next focused deliverable
 
-Before authoring Orc or adding more costumes, make the Human catalogue architecture repeatable beyond the current preloaded demonstration:
-
-1. Extract seam boundaries, coverage precedence, hair/hand masks, item fit metadata and hand occupancy into explicit validated contracts.
-2. Add bounded on-demand prepared-item loading with cache ownership, latest-request-wins behavior, failure recovery that preserves the current loadout, and disposal tests. Keep the current synchronous catalogue as the fallback while this path is proven.
-3. Add one two-handed prop contract and a small transition state for draw/stow, then verify that staff/book/sword occupancy rules remain coherent.
-4. Re-run the representative Graveweaver, Pilgrim and Wayfarer combinations in the live armory and measure swap latency, resource retention, draw count and frame-time tails.
-
-Completion means the next item can be added through the catalogue and preparation pipeline without a renderer-specific branch, while the current seven-slot Human experience remains visually intact. After that proof, Stage D begins with a genuinely distinct Orc body and corrected fits for the existing logical items.
-
+On-demand Human equipment is implemented and reviewed (streaming pass below). Next, prove one actual two-handed prop with a suitable held pose and readable draw/stow transition, including off-hand conflict behavior and both spell recoveries. Continue correcting observed seam defects on real mixed outfits. Then Stage D demonstrates the same logical items on a distinct Orc. Semantic fit declarations alone do not establish that cross-race proof.
 
 ### Stage C fit-contract increment — 2026-09-18
 
@@ -219,3 +211,31 @@ Completion means the next item can be added through the catalogue and preparatio
 - Validation: 15 automated equipment/contract tests, 19 live Graveweaver browser checks, and production build passed. Live checks exercise mixed garments, 30 preset swaps without mesh/pose changes, hair/hand restoration, movement, Fire Blast, interrupted and successful Lava Ball. No captured runtime errors. Reviewed the live front capture at `ve-capture/ashen-reach/fit-contracts/equipped-front.png`.
 - Live verification used port 5175 because an old process still owned 5173 from the removed `lite-moonwell` directory. Root application default remains 5173. No new performance claim from this validation pass.
 - Next: replace eager catalogue preparation with bounded prepared-item ownership and atomic asynchronous swaps. Keep the working synchronous actor path while implementing cache eviction, latest-request-wins and failed-load recovery. Stage C remains open; geometric seam qualification, actual two-handed pose/transition work and distinct Orc fits are still outstanding.
+
+
+### Stage C on-demand equipment — 2026-09-18
+
+- Default gameplay loads `equipment/body.glb` plus only selected garment assets. `npm run prepare:equipment` derives the body and eight individual garments from the reviewed `wanderer-equipment.glb`; original source/provenance remains authoritative. `?preloadedEquipment` retains the prior synchronous path for comparison/recovery.
+- One existing actor/mixer owns all 54 clips. Each loaded garment keeps its own vertex skin buffers and borrows the actor's evaluated bone palette. Split validation proves exact joint order, inverse binds, mesh bind frame and vertex attributes. Before native Lite removal, restore the garment's owned skeleton so eviction cannot destroy the actor palette. This deliberately supports the current source-compatible Human only.
+- Full-loadout changes stage invisibly, then commit together. Current outfit remains visible during loading; UI reports failure and retains it. New requests merge with the latest desired selection, abort stale fetches and supersede old results. Preparation is serialized with a 15-second per-item timeout; late cancelled resources are retired. Equipment disposal is idempotent.
+- Cache retains equipped entries plus at most two unused entries; during preparation, the old and candidate outfits may coexist. Garment downloads are limited to 16 MiB each. These are resource-count and compressed-asset limits, not a measured GPU-byte budget. Item textures and data can be duplicated across fits; this is not yet crowd-scale memory validation or a faster-startup claim.
+- Validation: **21 automated equipment tests**, **19 live outfit/motion/spell checks**, **8 live streaming checks**, production build. Injected HTTP 503, delayed fetch supersession, retry, repeated evictions and retained actor/palette all passed. Source skin/geometry and all original animation curves remain exact. No captured runtime errors.
+- Foreground Chrome, no recording, **1521×990 buffer**: 792 frames (~5.5s) each for gameplay and running armory, **144 FPS**, p95 **7.6 ms**, worst **7.8/7.9 ms**, max **47 draws**, zero frames above 16.67ms. Separate 12-swap sample: cached selection **0.3–0.6 ms**, garment re-preparation **23.4–49 ms** elapsed asynchronously; 205 sampled frames, p95 **7.6 ms**, worst **7.8 ms**, zero over 16.67ms. Local warmed HTTP cache, single actor; not wide-area download or crowd performance.
+- Reviewed front/run captures and sampled frames of a **29.3-second** live CDP walkthrough with engine audio: [streamed equipment walkthrough](https://ve.sparkify.dev/wow-clone/ashen-reach/streamed-equipment/2026-09-18-walkthrough.mp4). Public object verified HTTP 200, video/mp4, 17,866,885 bytes and HTTP 206 byte ranges. Evidence: `ve-capture/ashen-reach/streamed-equipment/`.
+- Reproduce: `npm run test:equipment`, `node scripts/ashen-reach/check-equipment-stream.mjs`, `node scripts/ashen-reach/check-graveweaver.mjs`, `node scripts/ashen-reach/measure-armory.mjs --graveweaver`. Browser checks/recording accept `ASHEN_URL` for an explicitly selected server; run browser tasks sequentially. Captures can use `ASHEN_CAPTURE_DIR`.
+- Still open: actual two-handed prop/pose and draw/stow animation, geometric seam qualification beyond current fits, Orc/Undead and body sliders, persistence across reload, and many-actor resource budgeting. Current staff remains one-handed, and stow remains instantaneous.
+
+Delivery: reviewed MP4 sent to the authorized Telegram chat (message 554); HTTP MIME/length/range verification completed before sharing.
+
+### User-prioritized correction: hands and held props (2026-09-18)
+
+- [x] Diagnose on bare hands as well as gloves: source fist over-curl plus misaligned prop orientation/position caused the reported artifacts.
+- [x] Add source-derived, finger-only equipment grip poses through the existing Lite mixer. Relax empty hands; release for original spell motion.
+- [x] Fit the staff across the palm, give the grimoire a leather carrying strap, and align prop offsets in evaluated socket coordinates. Match sword grip to the same fitted hand.
+- [x] Apply to both streamed and preloaded equipment; retain native whole-body locomotion and casting.
+- [x] Pass 21 equipment unit/asset tests, 19 existing live equipment/spell checks, and 19 new grip checks across both loading paths. Review gloved/bare close-ups and gameplay video.
+- [x] Measure without recording: roughly 144 FPS at 1521×990, foreground Chrome, single equipped actor, idle gameplay and running Armory preview (46 draws). This is not crowd-scale evidence.
+
+This is a fitted one-handed contact correction, not a two-handed IK/draw animation system. The next separately scoped equipment deliverable remains a real two-handed prop/pose with convincing transitions, followed by distinct Orc fitting. Do not treat the Human grip samples as universally reusable race data.
+
+Reviewed 21-second [grip correction video](https://ve.sparkify.dev/wow-clone/ashen-reach/grips/2026-09-18-grip-review.mp4), also delivered with close-up stills through Telegram. Silent raw game capture; first section uses the Armory inspection light and diagnostic close-up cameras, followed by normal gameplay. Local reproducible evidence: `ve-capture/ashen-reach/grips/` (ignored).

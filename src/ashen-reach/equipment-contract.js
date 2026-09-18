@@ -38,7 +38,8 @@ export function validateEquipmentCatalogue(items, {slots, baseMeshes, fit = HUMA
             }
         }
         if (item.factory) {
-            for (const [label, values, size] of [['grip', item.gripRotation, 4], ['stow position', item.stow?.position, 3], ['stow rotation', item.stow?.rotation, 4]]) {
+            if (item.gripPose !== 'shaft') throw Error(`Unsupported grip pose: ${id}`);
+            for (const [label, values, size] of [['grip position', item.gripPosition, 3], ['grip', item.gripRotation, 4], ['stow position', item.stow?.position, 3], ['stow rotation', item.stow?.rotation, 4]]) {
                 if (!Array.isArray(values) || values.length !== size || !values.every(Number.isFinite)) throw Error(`Invalid ${label}: ${id}`);
                 if (size === 4 && Math.abs(Math.hypot(...values) - 1) > .01) throw Error(`Unnormalized ${label}: ${id}`);
             }

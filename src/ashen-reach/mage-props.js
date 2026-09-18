@@ -6,7 +6,8 @@ export function createMageProp(engine,scene,kind){
  const root=createTransformNode(kind),wood=new Batch(kind+'Wood'),metal=new Batch(kind+'Metal'),accent=new Batch(kind+'Accent'),white=[1,1,1,1];
  if(kind==='staff'){
   const shaft=[[0,-.72,0],[.025,-.35,.015],[0,.12,0],[-.025,.54,.01],[0,.86,0]];
-  for(let i=0;i<shaft.length-1;i++)wood.tube(shaft[i],shaft[i+1],.026,.021,white,6);
+  const radii=[.023,.019,.017,.022,.024];
+  for(let i=0;i<shaft.length-1;i++)wood.tube(shaft[i],shaft[i+1],radii[i],radii[i+1],white,6);
   for(const side of [-1,1]){
    const fork=[[0,.79,0],[side*.08,.92,.01],[side*.075,1.08,.015],[side*.028,1.18,0]];
    for(let i=0;i<3;i++)wood.tube(fork[i],fork[i+1],.027-i*.006,.020-i*.006,white,5);
@@ -19,6 +20,10 @@ export function createMageProp(engine,scene,kind){
   accent.box([.11,-.13,0],[.225,.282,.058],white);
   for(const x of [.012,.208])for(const y of [.002,-.262])metal.box([x,y,.054],[.034,.034,.009],white);
   metal.box([.105,-.13,.055],[.06,.085,.013],white,0);metal.box([.105,-.13,-.055],[.026,.29,.009],white);
+  // Raised leather carrying strap on the back cover: an actual grip surface.
+  const handle=[[.025,-.13,-.052],[.055,-.13,-.115],[.155,-.13,-.115],[.185,-.13,-.052]];
+  for(let i=0;i<3;i++)wood.tube(handle[i],handle[i+1],.015,.015,white,4);
+  for(const x of [.025,.185])metal.box([x,-.13,-.054],[.030,.045,.012],white);
   for(const y of [-.045,-.105,-.165,-.225])wood.box([.23,y,0],[.003,.004,.045],white);
  }
  const materials=kind==='staff'?[

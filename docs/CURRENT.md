@@ -18,7 +18,7 @@ Use [Dream Loop](../.agents/skills/dream-loop/SKILL.md): **inspect → bounded r
 
 The parent implements and reviews by default. Grok delegation is an optional tool when requested or useful within current authorization; the former Grok-only and subscription-tier mandates are superseded. Read the [workflow retrospective](reference-led-workflow-2026-09-17.md) for the evidence behind this choice.
 
-Choose one consequential deliverable from the latest user request. The next tracked deliverable is the catalogue architecture pass in [the armory plan](armory-and-equipment-plan.md): explicit fit/occupancy contracts, bounded on-demand item loading and swap failure recovery, followed by the first distinct Orc fit. Preserve approved work, but replace design/code that contradicts a new explicit target. Do not pursue old milestone lists, build generalized infrastructure ahead of a convincing playable slice, or confuse passing tests with visual acceptance.
+Choose one consequential deliverable from the latest user request. The next tracked deliverable is the catalogue architecture pass in [the armory plan](armory-and-equipment-plan.md): real two-handed prop/pose and draw/stow proof, followed by the first distinct Orc fit. Fit contracts and bounded on-demand loading are implemented; details and limits are in the plan. Preserve approved work, but replace design/code that contradicts a new explicit target. Do not pursue old milestone lists, build generalized infrastructure ahead of a convincing playable slice, or confuse passing tests with visual acceptance.
 
 ## Active initiative
 
@@ -30,7 +30,7 @@ Choose one consequential deliverable from the latest user request. The next trac
 | --- | --- |
 | Engine | `@babylonjs/lite`, WebGPU; Vite 5173. No `@babylonjs/core`/Classic runtime APIs. |
 | Scene | `src/ashen-reach/{main,scene,geometry,materials}.js`; standalone churchyard with new composition and foliage, textured diffuse WGSL surfaces, fog, lamps, wind and cloud motion. |
-| Character | `public/ashen-reach/wanderer-equipment.glb`, source-compatible Human, original 65-joint bind/54 clips; fitted CC0 mail/cloth/magic garments, trousers, boots, hood and gloves, plus evaluated sword/staff/book attachments. Unequipping restores base appearance. |
+| Character | `public/ashen-reach/equipment/body.glb` plus streamed fitted garments (derived from `wanderer-equipment.glb`), source-compatible Human, original 65-joint bind/54 clips; fitted CC0 mail/cloth/magic garments, trousers, boots, hood and gloves, plus evaluated sword/staff/book attachments. Unequipping restores base appearance. |
 | Motion | Shared `src/character/body.js`, native Lite mixer; 45 original clips retained, five authored directional imports, two Fire Blast layers, two Lava Ball layers: **54 clips**. [Gait/contact report](gait-contact-and-landing-2026-09-17.md). |
 | Physics/input | Existing Havok controller and WoW controls: W/S, A/D turn, Q/E strafe, RMB look, Shift walk, Space jump. Physics owns movement; animation presents it. |
 | Fire Blast | **1**; .28s wind-up, 120 damage, 20m range, 3s cooldown at release. Moving casts supported. [Body motion](fire-blast-body-animation-2026-09-17.md). |
@@ -55,4 +55,8 @@ Character anatomy/clothing quality, terrain-aware foot contact, full Human/Orc/U
 
 Progression and SpacetimeDB integration remain out of scope until the client slice is ready. User approval of this workflow and the recent output is not a claim that the game is pixel-identical to the reference, AAA complete, or that every long-term milestone passed.
 
-Equipment follow-up (2026-09-18): explicit immutable fit/coverage/occupancy declarations and atomic conflict validation are implemented; 15 equipment tests and 19 live armory/spell checks pass. See the latest Stage C entry in the living plan. On-demand loading and real two-handed transitions remain next.
+Equipment follow-up (2026-09-18): explicit immutable fit/coverage/occupancy declarations and atomic conflict validation are implemented; 15 equipment tests and 19 live armory/spell checks pass. See the latest Stage C entry in the living plan. On-demand loading is now implemented (see below); real two-handed transitions remain next.
+
+Equipment streaming update (2026-09-18): default gameplay loads `public/ashen-reach/equipment/body.glb` and selected garment assets on demand; the combined pack remains the authoring source and `?preloadedEquipment` fallback. Actor/pose are retained, failed loads preserve the current outfit, new selections supersede/abort old requests, and at most two unused items remain cached. 21 automated and 27 live checks passed. Latest measurement: ~144 FPS at 1521×990, single actor, without recording. Reviewed [walkthrough](https://ve.sparkify.dev/wow-clone/ashen-reach/streamed-equipment/2026-09-18-walkthrough.mp4). Next: real two-handed pose/prop and draw/stow proof, then Orc fitting. See the living plan for limits and measured swap latency.
+
+Hand-contact correction (2026-09-18, user screenshot priority): staff/book floating and contorted fingers addressed with source-derived finger-only grip poses, per-item evaluated-socket offsets, fitted shaft thickness, and a physical grimoire carrying strap. Empty hands relax; spells retain original finger animation while props stow. Both loading paths pass contact-stability and cast/return checks. See the held-item section in [equipment authoring](ashen-equipment-authoring.md) before changing grips. This precedes, but does not complete, the separate two-handed milestone.

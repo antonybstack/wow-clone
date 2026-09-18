@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "sourceSha256": "064820476771a5e8e3fdd5f005ad493b0994d987502cc780290085e70a772907",
+  "items": {
+    "body": {
+      "url": "/ashen-reach/equipment/body.glb",
+      "bytes": 19402284,
+      "sha256": "ab8250e460b321755f7fb73f299c9ac19fff7c613f48270e810e30e3b1a8617b",
+      "meshes": [
+        "BodyExposed",
+        "BodyUnderTunic",
+        "BodyUnderBoots",
+        "BodyUnderLegs",
+        "BodyWaist",
+        "BodyHands",
+        "HumanHair"
+      ]
+    },
+    "graveweaverHood": {
+      "url": "/ashen-reach/equipment/graveweaverHood.glb",
+      "bytes": 2101952,
+      "sha256": "d4582d507e1eb3d0b55166df363dc94bc8ea27593ad95f02016cbeecbd1a0dcb",
+      "meshes": [
+        "GraveweaverHood"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "graveweaverTop": {
+      "url": "/ashen-reach/equipment/graveweaverTop.glb",
+      "bytes": 2017364,
+      "sha256": "8f8fb35a1e327ded2b3a4f84818e3be89537fd7ce0382a82bbaa4e1491b95c90",
+      "meshes": [
+        "GraveweaverTop",
+        "GraveweaverPendant"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "graveweaverSkirt": {
+      "url": "/ashen-reach/equipment/graveweaverSkirt.glb",
+      "bytes": 2206760,
+      "sha256": "bb18124fad59a75549681e3e3acfb5576a2e7c9b04167e569bad4296ec921ca8",
+      "meshes": [
+        "GraveweaverSkirt",
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "graveweaverGloves": {
+      "url": "/ashen-reach/equipment/graveweaverGloves.glb",
+      "bytes": 1916628,
+      "sha256": "d00015550da93cb219449406e17f1a595c43d06a7c8202df5cfc0d68d9a70f17",
+      "meshes": [
+        "GraveweaverGloves"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "wayfarerTunic": {
+      "url": "/ashen-reach/equipment/wayfarerTunic.glb",
+      "bytes": 2030608,
+      "sha256": "9e3ecf6c5ea06f5245c4364dec187764aae5b381f07b2d66a6e2923239fa12ea",
+      "meshes": [
+        "WayfarerTunic"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "pilgrimTunic": {
+      "url": "/ashen-reach/equipment/pilgrimTunic.glb",
+      "bytes": 2383208,
+      "sha256": "7adf9b6a008c43a3d951a3b26c2a0b1404d340ad3449975a5bcbfe3b356c65c6",
+      "meshes": [
+        "PilgrimTunic"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "wayfarerTrousers": {
+      "url": "/ashen-reach/equipment/wayfarerTrousers.glb",
+      "bytes": 1897520,
+      "sha256": "3e1505df2c6abfc88e244872fb260328e73fd5f5895bdf593506788722070f13",
+      "meshes": [
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "wayfarerBoots": {
+      "url": "/ashen-reach/equipment/wayfarerBoots.glb",
+      "bytes": 2026536,
+      "sha256": "5252632cd97f580eeca59fff03db0aba817dbde724dc1d43a52d9bdaa2fe3978",
+      "meshes": [
+        "WayfarerBoots"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    }
+  },
+  "bindSha256": "1edfeed2c3017054c6e591ea758e97e9135f9745b82f32b5c6889e6b6f51e506"
+}

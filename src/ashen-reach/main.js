@@ -1,3 +1,4 @@
+import {createStreamedEquipment} from './equipment-stream.js';
 import {createEngine,createSceneContext,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,startEngine,onBeforeRender,enableBoneControl,enableErrorDecoding,decodeError,setFog,captureScreenshot,setMeshVisible} from '@babylonjs/lite';
 import {createEquipment} from './equipment.js';
 import {createArmory} from './armory.js';
@@ -26,7 +27,8 @@ async function main(){
  scene.camera=reference;
  const world=await buildChurchyard(engine,scene);initInput(canvas);
  const sourceBody=resolvePlayableBody('?character=human-source');
- const playable={...sourceBody,assetURL:'/ashen-reach/wanderer-equipment.glb',directionalSpeed:3.5,
+ const preloadedEquipment=new URLSearchParams(location.search).has('preloadedEquipment');
+ const playable={...sourceBody,assetURL:preloadedEquipment?'/ashen-reach/wanderer-equipment.glb':'/ashen-reach/equipment/body.glb',directionalSpeed:3.5,
   // Left-foot low-contact phases measured on this fitted GLB by audit-gaits.mjs.
   gaitContacts:{Walk_Loop:.233333,Sprint_Loop:.175,Jog_Bwd_Loop:.333333,Jog_Left_Loop:.208333,Jog_Right_Loop:.983333},
   landing:{duration:.42,standingWeight:.4,movingWeight:.23},
@@ -38,7 +40,7 @@ async function main(){
  const player=await setupPlayer(engine,scene,rig,{spawn:plantSpawnOnTerrain(world.spawn,capsule,height),colliders:world.colliders,groundHeight:height,boundsRadius:85,capsule});
  enableBoneControl();const body=await attachBody(engine,scene,player,player.capsuleHeight,playable);
  const combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig);
- const equipment=createEquipment(engine,scene,body,combat.fx.sockets);
+ const equipment=preloadedEquipment?createEquipment(engine,scene,body,combat.fx.sockets):await createStreamedEquipment(engine,scene,body,combat.fx.sockets);
  let view='reference',elapsed=0;const samples=[];
  const setView=v=>{view=v;scene.camera=v==='reference'?reference:camera;setMeshVisible(body.root,v==='play');equipment.setVisible(v==='play');combat.setVisible(v==='play');};
  const reset=()=>{player.setWorldPos(0,height(0,0)+capsule.height/2,0);player.setFacing(0);rig.yaw=0;rig.pitch=.04;setView('reference');};

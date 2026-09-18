@@ -19,7 +19,8 @@ Run from `the repository root`. Existing base MakeHuman sources and original sou
 python3 scripts/ashen-reach/fetch-equipment-assets.py
 /Applications/Blender.app/Contents/MacOS/Blender --background --python scripts/ashen-reach/fit-armory-clothes.py
 node scripts/ashen-reach/prepare-equipment.mjs
-node --test scripts/test-ashen-equipment.mjs
+npm run prepare:equipment
+npm run test:equipment
 ```
 
 Fetcher verifies the downloaded pack SHA-256 values before extracting the six selected source garments. If upstream changes, investigate rather than bypassing the checksum. Background Blender operates on its own scene; it does not clear the interactive Blender/MCP scene. Read Blender output: process exit code alone can miss Python exceptions.
@@ -30,9 +31,9 @@ Preparation remaps garment joint indices by name, rejects unmapped weighted join
 
 ## Runtime contract
 
-`equipment-catalog.js` has stable item IDs (`wayfarerTunic`, `pilgrimTunic`, `wayfarerTrousers`, `wayfarerBoots`, `ironSword`) independent of UI labels. All seven slots (head, torso, legs, boots, gloves, main hand, off-hand) are supported now. The fitted garments are preloaded in one prepared GLB; equip changes visibility and corresponding body coverage synchronously. Unequipping restores underlying body triangles. Swapping neither rebuilds the actor nor restarts animation. The current selection survives closing the armory but is not saved across page reloads.
+`equipment-catalog.js` owns stable IDs for all seven slots. Default gameplay streams selected garment GLBs from `public/ashen-reach/equipment/` through `equipment-stream.js` and `equipment-loader.js`. The combined pack remains the authoring source and `?preloadedEquipment` fallback. Selection survives closing armory, but not page reload.
 
-This small preloaded catalogue proves one shared pose and fit. **Do not preload hundreds of garments this way.** Stage C must establish compatible on-demand composition/cache ownership, failure recovery and latest-request-wins semantics before a large catalogue. Older garment loaders target other binds and cannot be enabled blindly.
+The splitter preserves the exact source skin and identity mesh bind frame; `test-streamed-assets.mjs` checks that boundary. Do not share pose palettes across different binds/orders/mesh frames. Full selections stage invisibly then commit; failures retain the prior outfit, newer requests abort/supersede older requests, and the cache keeps at most two unused entries. Garments restore their owned skeleton before native Lite disposal to protect the shared actor palette. See the living plan for measured swap latency and resource limits.
 
 The sword uses the existing evaluated socket host shared with cast effects. `setParent` in installed Lite **preserves world transforms**; restore authored local position/quaternion/scale after parenting. A green equip check did not catch the initial displaced sword; side-view review did. Each item's local grip orientation belongs to the item/fit contract, not a world-up correction in the socket solver.
 
@@ -80,3 +81,15 @@ Ahrim's OSRS hood/robe/skirt/staff silhouette is reference only: https://diamond
 - The armory's Graveweaver preset button equips all seven slots and widens full-body framing for the tall staff. Individual controls remain independent; closing keeps the chosen combination.
 
 Verified combinations include magic top with trousers, cloth top with robe skirt, complete magic set, no hood, no gloves, and no off-hand. Thirty complete preset swaps retain resource counts and paused phase. Human-only fits, preloading, instant stow/draw and generic source weapon locomotion remain explicit limitations. Future two-hand gear needs occupancy/conflict rules before being added.
+
+## Held-item contact (2026-09-18)
+
+Props declare `gripPosition`, `gripRotation` and `gripPose` in `equipment-catalog.js`. Positions are metres in the **evaluated socket frame**, not source bone axes. On this mirrored Human, socket-local +Y points toward the wrist; do not assume a positive Y offset moves toward the fingertips. The shaft must cross the curled fingers, not run along the palm. Inspect front, palm, underside and normal gameplay views with gloves both on and off.
+
+`src/character/runtime/hand-grip.js` adjusts only the 30 finger joints using rest/closed samples from the shipped source `Idle_Loop`. The fitted bind already has finger curvature; playing the original roughly 78-degree bend at all three segments folds the tips into the palm. Equipment uses a reduced curl, empty hands relax, and casting releases the finger masks to the original spell clips. Both gameplay and Armory call the same evaluator. Whole-body source clips remain unchanged.
+
+Use native Lite `setBonePoseDeferred` **before** the native animation-manager evaluation, with the affected finger channels excluded from the current clip masks; restore those masks afterward. `bakeSkeleton` after animation would reset the entire body to rest. Do not create a second animation clock or manually update the GPU palette. Streamed gloves continue to borrow the body palette.
+
+Regenerate the source samples with `node scripts/ashen-reach/prepare-hand-poses.mjs` if the reviewed source asset changes. These translations/rotations fit **Human source-65, bind 1 / shape 1**; they are not a universal race-independent grip fit. New race binds need reviewed grip data and offsets. The book has a raised rear leather strap to provide a real surface for the fingers to enclose; staff/sword grip thicknesses are fitted to the same hand.
+
+`node scripts/ashen-reach/check-grips.mjs` checks contact stability through idle/walk/run/jump/land, cast release/regrip, empty hands and glove removal in streamed and preloaded modes. `record-grips.mjs` captures close-ups plus actual gameplay. Both accept `ASHEN_URL`; captures accept `ASHEN_CAPTURE_DIR`. Contact stability checks do not establish visual contact by themselves: review the actual capture.
