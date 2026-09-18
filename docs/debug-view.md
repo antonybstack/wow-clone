@@ -43,7 +43,23 @@ node scripts/ashen-reach/check-fire-blast-polish.mjs
 node scripts/ashen-reach/check-lava-ball.mjs
 node scripts/ashen-reach/measure-lava-ball.mjs
 node scripts/ashen-reach/record-lava-ball.mjs
+node scripts/ashen-reach/check-two-handed.mjs
+node scripts/ashen-reach/measure-armory.mjs --warden
 ```
+
+Browser scripts accept `ASHEN_URL` to select an explicitly chosen server and share one CDP target; run them sequentially.
+
+## See an image when tool results are OCR'd
+
+In this environment, image tool results (reading a PNG, `browser_take_screenshot`) can arrive as `[OCR from image]` text only, so do not review visuals from them or equate them with acceptance. The active model is multimodal; to actually see an image, run a nested, tool-free call and read its text:
+
+```sh
+opencode run --pure -m opencode-go/deepseek-v4.1-flash "Answer from the attached image only; do not call any tools. <question>" -f ve-capture/ashen-reach/<pass>/<frame>.png
+```
+
+Put the message before `-f` (`-f` is a greedy array). Use `--pure` to skip plugins, and cross-check several camera angles because the spatial read can be inconsistent. `node scripts/ashen-reach/solve-two-hand-pose.mjs` is the two-handed arm-pose solver.
+
+Recording to MP4: `ffmpeg` is not on PATH. Use the bundled `/Applications/BabylonJS Editor.app/Contents/bin/ffmpeg` (7.1, libx264/aac). `scripts/ashen-reach/record-two-handed.mjs` writes timestamped JPEG frames, `frames.ffconcat`, `audio.webm` and `recording.json` (with `audioOffset`); encode with `-f concat -safe 0 -i frames.ffconcat -ss <audioOffset> -i audio.webm -c:v libx264 -pix_fmt yuv420p -fps_mode vfr -c:a aac -movflags +faststart -shortest`, then publish with `scripts/ve-upload.sh`.
 
 Record errors and failure evidence, not just successful assertions. Never replace a failed assertion with a tautology or accept nullable counters as evidence. A black screenshot is a failure even when a structural test passes.
 

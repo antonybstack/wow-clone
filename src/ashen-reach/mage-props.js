@@ -4,15 +4,16 @@ import {Batch} from './geometry.js';
 /** Original low-poly props; each origin is its authored hand grip. */
 export function createMageProp(engine,scene,kind){
  const root=createTransformNode(kind),wood=new Batch(kind+'Wood'),metal=new Batch(kind+'Metal'),accent=new Batch(kind+'Accent'),white=[1,1,1,1];
- if(kind==='staff'){
-  const shaft=[[0,-.72,0],[.025,-.35,.015],[0,.12,0],[-.025,.54,.01],[0,.86,0]];
-  const radii=[.023,.019,.017,.022,.024];
+ if(kind==='staff'||kind==='greatstaff'){
+  const twoHanded=kind==='greatstaff';
+  const shaft=twoHanded?[[0,-.98,0],[.03,-.62,.02],[.03,-.34,.015],[0,.12,0],[-.025,.54,.01],[0,.86,0]]:[[0,-.72,0],[.025,-.35,.015],[0,.12,0],[-.025,.54,.01],[0,.86,0]];
+  const radii=twoHanded?[.026,.023,.020,.017,.022,.024]:[.023,.019,.017,.022,.024];
   for(let i=0;i<shaft.length-1;i++)wood.tube(shaft[i],shaft[i+1],radii[i],radii[i+1],white,6);
   for(const side of [-1,1]){
    const fork=[[0,.79,0],[side*.08,.92,.01],[side*.075,1.08,.015],[side*.028,1.18,0]];
    for(let i=0;i<3;i++)wood.tube(fork[i],fork[i+1],.027-i*.006,.020-i*.006,white,5);
   }
-  for(const y of [-.67,-.09,.08,.75])metal.tube([0,y-.018,0],[0,y+.018,0],.033,.033,white,6);
+  for(const y of [-.93,-.67,-.09,.08,.75])metal.tube([0,y-.018,0],[0,y+.018,0],.033,.033,white,6);
   const a=[0,1.09,0],b=[0,.88,0],r=[[.047,.985,0],[0,.985,.038],[-.047,.985,0],[0,.985,-.038]];
   for(let i=0;i<4;i++){accent.tri(a,r[i],r[(i+1)%4],undefined,white);accent.tri(b,r[(i+1)%4],r[i],undefined,white);}
  }else{
@@ -26,7 +27,7 @@ export function createMageProp(engine,scene,kind){
   for(const x of [.025,.185])metal.box([x,-.13,-.054],[.030,.045,.012],white);
   for(const y of [-.045,-.105,-.165,-.225])wood.box([.23,y,0],[.003,.004,.045],white);
  }
- const materials=kind==='staff'?[
+ const materials=kind==='staff'||kind==='greatstaff'?[
   {baseColorFactor:[.085,.075,.063,1],roughnessFactor:.9},
   {baseColorFactor:[.40,.36,.24,1],metallicFactor:.55,roughnessFactor:.67},
   {baseColorFactor:[.40,.30,.53,1],emissiveFactor:[.14,.065,.22],roughnessFactor:.35},

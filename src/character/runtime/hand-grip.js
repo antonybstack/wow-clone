@@ -1,6 +1,9 @@
 /** Source-65 fitted-hand grips. Keep native body curves; mask only the finger joints.
  * Rest/closed samples are from the shipped source Idle_Loop, in its original units.
  * The fitted fingers already bend in bind pose, so its full closed fist over-curls.
+ *
+ * The two-handed carry pose is a retargeted CC0 clip (`Walk_Carry_Loop`, see
+ * scripts/ashen-reach/append-carry.mjs), not an authored arm override.
  */
 import {createAnimationGroupMask, getBoneByName, setBonePoseDeferred, updateAnimationManager} from '@babylonjs/lite';
 import samples from './source-hand-poses.json';

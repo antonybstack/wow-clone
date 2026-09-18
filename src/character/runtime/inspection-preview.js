@@ -13,6 +13,7 @@ export function createInspectionPreview(visual) {
         {id:'land', label:'Landing', clips:[visual.jumpLand]},
         {id:'fire', label:'Fire Blast', clips:[visual.idle, visual.spellShoot, visual.castLower], layered:true},
         {id:'lava', label:'Lava Ball', clips:[visual.idle, visual.castMotions?.lava?.upper, visual.castMotions?.lava?.lower], layered:true},
+        {id:'carry', label:'Two-handed carry', clips:[visual.twoHand]},
     ].filter(option => option.clips.every(Boolean));
     let selected, time = 0, paused = false;
     const halt = () => { for (const group of groups) { stopAnimation(group); setAnimationWeight(group, 0); } };

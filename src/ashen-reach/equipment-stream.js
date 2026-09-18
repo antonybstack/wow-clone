@@ -1,9 +1,11 @@
 import { installEquipmentGrips } from './equipment-grips.js';
 import {loadGltf,getContainerMeshes,setMeshVisible,setParent,addToScene,removeFromScene} from '@babylonjs/lite';
 import {EQUIPMENT_ITEMS,BASE_VISIBLE_MESHES,validateLoadout,resolveEquipmentVisibility,EQUIPMENT_PRESETS} from './equipment-catalog.js';
+import {resolveHandEquip} from './equipment-contract.js';
 import {createEquipmentLoader} from './equipment-loader.js';
 import {createArmingSword} from './arming-sword.js';
 import {createMageProp} from './mage-props.js';
+import {advancePropTransition,beginPropTransition} from './prop-transition.js';
 
 export async function createStreamedEquipment(engine,scene,body,sockets){
     const response=await fetch('/ashen-reach/equipment/manifest.json');
@@ -18,9 +20,13 @@ export async function createStreamedEquipment(engine,scene,body,sockets){
     function setAttachment(entry,stow){
         const item=entry.item;if(!item.factory)return;
         const where=stow?'back':'hand';if(entry.attachment===where)return;
+        const target=stow?item.stow:{position:item.gripPosition||[0,0,0],rotation:item.gripRotation};
+        const first=entry.attachment===null;
         setParent(entry.root,sockets.sockets[stow?'back':item.slot].node);
-        entry.root.position.set(...(stow?item.stow.position:(item.gripPosition||[0,0,0])));
-        entry.root.rotationQuaternion.set(...(stow?item.stow.rotation:item.gripRotation));entry.root.scaling.set(1,1,1);entry.attachment=where;
+        const q=entry.root.rotationQuaternion,from={position:[entry.root.position.x,entry.root.position.y,entry.root.position.z],rotation:[q.x,q.y,q.z,q.w]};
+        entry.attachment=where;entry.root.scaling.set(1,1,1);
+        if(first){entry.root.position.set(...target.position);entry.root.rotationQuaternion.set(...target.rotation);entry.transition=null;}
+        else beginPropTransition(entry,from.position,from.rotation,target);
     }
     async function prepare(id,requestSignal){
         const signal=AbortSignal.any([requestSignal,AbortSignal.timeout(15000)]);signal.throwIfAborted();
@@ -78,15 +84,17 @@ export async function createStreamedEquipment(engine,scene,body,sockets){
     }
     const loader=createEquipmentLoader({initial,validate:validateLoadout,prepare,commit(next){try{apply(next);}catch(error){apply(loader.getState());throw error;}},maxIdle:2});
     const equipment={items:EQUIPMENT_ITEMS,presets:EQUIPMENT_PRESETS,
-        setLoadout:loader.request,equip:(slot,id)=>loader.request({[slot]:id}),
+        setLoadout:patch=>loader.request(resolveHandEquip(loader.getState(),patch,EQUIPMENT_ITEMS)),
+        equip:(slot,id)=>loader.request(resolveHandEquip(loader.getState(),{[slot]:id},EQUIPMENT_ITEMS)),
         equipPreset(id){if(!Object.hasOwn(EQUIPMENT_PRESETS,id))return Promise.resolve({status:'failed',error:'Unknown outfit'});return loader.request(EQUIPMENT_PRESETS[id].loadout);},
         getState:loader.getState,getStatus:loader.getStatus,
         setVisible(value){visible=value;apply(loader.getState());},
-        update(){
+        update(dt=0){
             const selected=loader.getState();const preview=body.inspection?.getState(),casting=preview?['fire','lava'].includes(preview.id):body.getState().castingShoot;
             if(!visible)return;
             sockets.sync([sockets.sockets.mainHand,sockets.sockets.offHand,sockets.sockets.back]);
             for(const entry of entries.values())if(selected[entry.item.slot]===entry.item.id)setAttachment(entry,casting);
+            for(const entry of entries.values())if(selected[entry.item.slot]===entry.item.id)advancePropTransition(entry,dt);
         },
         get attachment(){return entries.get(loader.getState().mainHand)?.attachment||'hand';},
         dispose(){stopped=true;loader.dispose();},

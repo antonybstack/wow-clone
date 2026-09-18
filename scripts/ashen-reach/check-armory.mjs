@@ -3,14 +3,15 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 const dir='ve-capture/ashen-reach/armory';await fs.mkdir(dir,{recursive:true});
 const browser=await chromium.connectOverCDP('http://127.0.0.1:9337');
-const page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach.html'));
+const context=browser.contexts()[0];
+const page=context.pages().find(p=>p.url().includes('ashen-reach.html'))||await context.newPage();
 const checks=[],errors=[];
 page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
 const check=(name,ok)=>{checks.push({name,ok:!!ok});assert.ok(ok,name);console.log('PASS',name);};
 const read=()=>page.evaluate(()=>({armory:ASHEN.armory.getState(),position:{x:ASHEN.player.body.position.x,y:ASHEN.player.body.position.y,z:ASHEN.player.body.position.z},facing:ASHEN.player.getFacing(),hp:ASHEN.combat.dummy.hp,casts:ASHEN.combat.spell.casts,lavaCasts:ASHEN.combat.lava.casts,pending:ASHEN.combat.pendingSpell,sceneMeshes:ASHEN.scene.meshes.length,bodyState:ASHEN.body.getState(),clips:ASHEN.body.getPlaying(),pointerLock:!!document.pointerLockElement,rig:{yaw:ASHEN.rig.yaw,pitch:ASHEN.rig.pitch,distance:ASHEN.rig.distanceTarget},camera:ASHEN.scene.camera===ASHEN.armory.camera?'armory':ASHEN.scene.camera===ASHEN.camera?'play':'reference',alpha:ASHEN.armory.camera.alpha,radius:ASHEN.armory.camera.radius}));
 const bones=()=>page.evaluate(()=>{const stack=[ASHEN.body.root];while(stack.length){const node=stack.pop();if(node.skeleton?.boneMatrices)return Array.from(node.skeleton.boneMatrices);stack.push(...(node.children||[]));}throw new Error('No evaluated skin binding');});
 try{
- await page.bringToFront();await page.goto('http://127.0.0.1:5173/ashen-reach.html?play&clean',{waitUntil:'commit'});await page.waitForFunction(()=>globalThis.ASHEN?.ready,null,{timeout:60000});await page.waitForTimeout(700);
+ await page.bringToFront();await page.goto(process.env.ASHEN_URL||'http://127.0.0.1:5173/ashen-reach.html?play&clean',{waitUntil:'commit'});await page.waitForFunction(()=>globalThis.ASHEN?.ready,null,{timeout:60000});await page.waitForTimeout(700);
  const baseline=await read();
  await page.locator('#armory-launch').click();await page.waitForTimeout(150);let s=await read();check('Button opens armory on existing actor',s.armory.open&&s.camera==='armory'&&s.sceneMeshes===baseline.sceneMeshes);
  check('Unsupported races disabled',await page.locator('[data-race] option:disabled').count()===2);

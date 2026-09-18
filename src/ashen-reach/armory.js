@@ -57,7 +57,7 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
         if(kind==='back') camera.alpha=-Math.PI/2-facing;
         if(kind==='side') camera.alpha=-facing;
         if(kind==='face'){focusHeight=1.56;camera.radius=1.6;camera.beta=1.46;}
-        else if(kind==='full'){const staff=equipment.getState().mainHand==='graveweaverStaff';focusHeight=staff?.93:.78;camera.radius=staff?5.35:4.8;camera.beta=1.36;}
+        else if(kind==='full'){const main=equipment.getState().mainHand;const tall=main==='graveweaverStaff'||main==='graveweaverGreatstaff';focusHeight=tall?.93:.78;camera.radius=tall?5.35:4.8;camera.beta=1.36;}
     };
     const close = () => {
         if(!open)return;

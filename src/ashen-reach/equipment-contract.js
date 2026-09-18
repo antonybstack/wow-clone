@@ -62,6 +62,24 @@ export function validateEquipmentSelection(loadout, items, slots) {
     }
 }
 
+/**
+ * Hand exclusivity helper for interactive selection: a two-handed item occupies
+ * both hands, so the most recent hand change wins instead of erroring. Direct
+ * loadout validation (validateEquipmentSelection) still rejects real conflicts.
+ */
+export function resolveHandEquip(current, patch, items) {
+    const next = { ...current, ...patch };
+    const changedOff = Object.hasOwn(patch, 'offHand');
+    const changedMain = Object.hasOwn(patch, 'mainHand');
+    const currentMain = current.mainHand ? items[current.mainHand] : null;
+    if (changedOff && !changedMain && patch.offHand && currentMain?.occupies?.includes('offHand')) {
+        next.mainHand = null;
+    } else if (next.mainHand && items[next.mainHand]?.occupies?.includes('offHand')) {
+        next.offHand = null;
+    }
+    return next;
+}
+
 export function freezeEquipment(value) {
     if (value && typeof value === 'object' && !Object.isFrozen(value)) {
         for (const child of Object.values(value)) freezeEquipment(child);

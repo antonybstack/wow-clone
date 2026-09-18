@@ -461,7 +461,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
     };
 
     const updateLoco = (dt, motion) => {
-        const { idle, idleArmed, walk, walkBack, strafeL, strafeR, turnL, turnR, sprint, samba } = visual;
+        const { idle, idleArmed, walk, walkBack, strafeL, strafeR, turnL, turnR, sprint, samba, twoHand } = visual;
         const forward = motion.forward ?? 0;
         const strafe = motion.strafe ?? 0;
         const wish = Math.abs(forward) > 0.01 || Math.abs(strafe) > 0.01;
@@ -517,8 +517,16 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             const secondaryRate = diagonalWeight ? lateral.speedRatio / lateral.duration : primaryRate;
             gaitFrequency = primaryRate * (1 - diagonalWeight) + secondaryRate * diagonalWeight;
         } else gaitFrequency = 0;
+        // Two-handed carry uses the retargeted CC0 `Walk_Carry_Loop` clip as the
+        // single locomotion pose: it walks in place while moving and freezes at
+        // speedRatio 0 while stationary. Casts/jumps release it like any loco.
+        if (twoHand && visual.handGrips?.()?.twoHanded) {
+            target = twoHand;
+            state.locoName = twoHand.name;
+            twoHand.speedRatio = wish ? (walking ? WALK_RATIO : RUN_RATIO) : 0;
+        }
         if (poseTransition) return target;
-        const stance = [...new Set([idle, idleArmed, walk, walkBack, sprint, strafeL, strafeR, turnL, turnR].filter(Boolean))];
+        const stance = [...new Set([idle, idleArmed, walk, walkBack, sprint, strafeL, strafeR, turnL, turnR, twoHand].filter(Boolean))];
         for (const clip of stance) {
             blendClip(clip, clip === target ? 1 - diagonalWeight : clip === lateral ? diagonalWeight : 0, dt);
         }
@@ -534,6 +542,9 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
         }
         return target;
     };
+
+    // The two-handed carry pose is the retargeted CC0 `Walk_Carry_Loop` clip
+    // (scripts/ashen-reach/append-carry.mjs); no authored arm override is used.
 
     const flushCommitWaiters = () => {
         while (commitWaiters.length) {
@@ -691,6 +702,8 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
                 if (clip.currentTime < 0) clip.currentTime += clip.duration;
             }
         }
+        const castOverlay = !visual.additiveCast && ((state.castingShoot && !visual.definition?.castMotion) || !!state.channelPhase);
+        applyLocoOverlay(visual, castOverlay);
         if (groups.length) {
             evaluateHandAnimation(visual, h * 1000);
         }

@@ -6,6 +6,8 @@ export function installEquipmentGrips(body,getLoadout) {
         const preview=body.inspection?.getState();
         if(preview?['fire','lava'].includes(preview.id):body.getState().castingShoot)return null;
         const selected=getLoadout();
-        return {right:EQUIPMENT_ITEMS[selected.mainHand]?.gripPose||'relaxed',left:EQUIPMENT_ITEMS[selected.offHand]?.gripPose||'relaxed'};
+        const main=EQUIPMENT_ITEMS[selected.mainHand],off=EQUIPMENT_ITEMS[selected.offHand];
+        const twoHanded=!!main?.twoHanded;
+        return {right:main?.gripPose||'relaxed',left:(twoHanded?main:off)?.gripPose||'relaxed',twoHanded};
     });
 }

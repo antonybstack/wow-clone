@@ -8,7 +8,7 @@ Stages B and the Human magic-set Stage C increment of [the living plan](armory-a
 - MakeHuman gloves01 **CC0** short gloves by **Margaret Toigo** (original header MRT): https://static.makehumancommunity.org/assets/assetpacks/gloves01.html . `gloves-provenance.json` retains the archive and extracted-file hashes.
 - Original procedural sword: `src/ashen-reach/arming-sword.js`. No downloaded sword dependency. `mage-props.js` authors the staff/grimoire; the fitting script authors the small bronze/amethyst pendant.
 - Existing Human base: `public/ashen-reach/wanderer.glb`. Its actor/rig/animation provenance continues to apply separately; garment CC0 does not relicense those assets.
-- Prepared playable pack: `public/ashen-reach/wanderer-equipment.glb`, with `equipment-provenance.json`. Current 65-joint bind and all 54 animation clips remain exact.
+- Prepared playable pack: `public/ashen-reach/wanderer-equipment.glb`, with `equipment-provenance.json`. Current 65-joint bind and all 55 animation clips remain exact.
 - Editable fitted garments: `blender/characters/ashen-wayfarer.blend`, textures packed. This file contains a temporary export palette, not the final animation rig. Final skin assembly happens in glTF Transform.
 
 ## Rebuild
@@ -57,7 +57,19 @@ Latest evidence: `ve-capture/ashen-reach/graveweaver/`; Stage B evidence remains
 
 ## Next useful expansion
 
-All seven slots, contrasting cloth/mail/magic outfits and staff/sword/book choices are implemented. The current staff is deliberately one-handed; no two-handed weapon or shield exists yet. Standardize seam/coverage rules and item fit metadata while exercising mixed combinations. Preserve a compact catalogue until a visibly distinct Orc proves the same logical items on another body. Human-only success does not establish Orc/Undead fitting or arbitrary body-slider support.
+All seven slots, contrasting cloth/mail/magic outfits and staff/sword/book choices are implemented. The `graveweaverGreatstaff` is a real two-handed variant (see below); a shield does not exist yet. Standardize seam/coverage rules and item fit metadata while exercising mixed combinations. Preserve a compact catalogue until a visibly distinct Orc proves the same logical items on another body. Human-only success does not establish Orc/Undead fitting or arbitrary body-slider support.
+
+## Two-handed hold and eased stow/draw (2026-09-18)
+
+- `graveweaverGreatstaff` uses `factory:'greatstaff'` (a longer shaft/fork variant of `createMageProp('staff')`), `twoHanded:true`, and `occupies:['mainHand','offHand']`. Its `gripPosition`/`gripRotation` are authored in the **evaluated right-hand socket frame** so the shaft passes through the right wrist and the left hand. Current values (derived from the carry clip, frame 0): `gripPosition:[.00572,.02636,-.01291]`, `gripRotation:[-.353791,0,-.362037,.862416]`. Re-derive them whenever the carry pose or weapon changes.
+- The carry pose is a **retargeted CC0 animation**, not a hand-authored override. `node scripts/ashen-reach/append-carry.mjs` imports Quaternius UAL2 `Walk_Carry_Loop` (CC0; `.cache/animation-research/ual2/UAL2_Standard.glb`) onto the source rig with the vendored MIT retargeter and records provenance in `animation-provenance.json`. `body.js` uses it as the locomotion pose while the greatstaff is equipped: `speedRatio 0` when stationary, `WALK_RATIO`/`RUN_RATIO` while moving, blended out for jumps and casts. `scripts/ashen-reach/sync-equipment-clips.mjs` copies a clip into `wanderer-equipment.glb` when only animation changed (avoids the Blender/garment recomposition), then `npm run prepare:equipment` re-splits the streamed assets. The earlier numeric solver (`solve-two-hand-pose.mjs`), Blender IK exporter and `two-hand-carry-pose.json` are **superseded** — do not restore them or a `Pistol_Idle_Loop`/`Push_Loop` overlay (a source arm pose re-pitches when applied over locomotion).
+- Adding a clip changes the count asserted by `scripts/test-ashen-equipment.mjs` (currently **55**) and the `CURRENT.md` motion row; keep them in sync.
+- The greatstaff owns a raised `stow` transform; the one-handed staff's stow put the longer butt at ~0.07 m and clipped the ground. Stowed butt is now ~0.39 m above the feet.
+- Review the carry with the nested-run vision path (`opencode run --pure -m opencode-go/deepseek-v4.1-flash "<prompt>" -f <png>`), because image tool-results in this session arrive as OCR text. Current honest status: front reads two-handed with no clipping; side/third-person remain ambiguous (dark robe hides hands) and the generic clip's hands drift up to ~1 cm off the shaft over the cycle.
+- `resolveHandEquip(current, patch, items)` in `equipment-contract.js` implements interactive hand exclusivity (most recent hand change wins). Direct `validateEquipmentSelection` still rejects a genuine two-handed/off-hand conflict, which the contract test relies on.
+- Stow/draw is an eased **0.35 s** travel implemented in `prop-transition.js` and applied in both `equipment.js` and `equipment-stream.js`. The prop reparents to the destination socket immediately (so `equipment.attachment` and the socket parent are committed at once) and only its local transform animates. `equipment.update(dt)` now takes the frame delta from `main.js`.
+- Verify with `node scripts/ashen-reach/check-two-handed.mjs` (contact on the evaluated shaft axis within 2 cm, carry release, eased travel, both spell recoveries, conflicts). Contact is a numerical axis distance, not proof of good tailoring; check the actual captures. `measure-armory.mjs --warden` measures performance.
+
 
 
 ## First mixed-set rules

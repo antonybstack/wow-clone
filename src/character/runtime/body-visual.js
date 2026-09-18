@@ -139,9 +139,10 @@ export function resolveVisualClips(groups, definition) {
     const spellLoop = exact ? byName(exact.clips.spellLoop) : findGroup(groups, ['Spell_Simple_Idle_Loop', 'spell_simple_idle']);
     const spellEnter = exact ? byName(exact.clips.spellEnter) : findGroup(groups, ['Spell_Simple_Enter', 'spell_simple_enter']);
     const spellExit = exact ? byName(exact.clips.spellExit) : findGroup(groups, ['Spell_Simple_Exit', 'spell_simple_exit']);
+    const twoHand = exact ? byName(exact.clips.twoHand) : findGroup(groups, ['Pistol_Idle_Loop', 'Pistol_Aim_Neutral', 'rifle_idle']);
     return {
         idle, idleArmed, walk, walkBack, strafeL, strafeR, turnL, turnR, sprint, samba,
-        jumpStart, jumpLoop, jumpLand, spellShoot, spellLoop, spellEnter, spellExit,
+        jumpStart, jumpLoop, jumpLand, spellShoot, spellLoop, spellEnter, spellExit, twoHand,
     };
 }
 
@@ -160,6 +161,7 @@ export function applyVisualMasks(visual, definition) {
     visual.spellMask = spellMask;
     visual.locoMask = locoMask;
     visual.legNames = legNames;
+    if (visual.twoHand) visual.twoHand.loopAnimation = true;
     // The authored Fire Blast adaptation starts in Idle, so Lite can subtract
     // that pose and smoothly layer independent upper/lower contributions.
     if (definition?.castMotion) {
@@ -387,7 +389,7 @@ export function assembleBodyVisual(opts) {
         inScene: true,
         retired: false,
         ...clips,
-        locoClips: [clips.idle, clips.idleArmed, clips.walk, clips.walkBack, clips.sprint, clips.strafeL, clips.strafeR, clips.turnL, clips.turnR].filter(Boolean),
+        locoClips: [clips.idle, clips.idleArmed, clips.walk, clips.walkBack, clips.sprint, clips.strafeL, clips.strafeR, clips.turnL, clips.turnR, clips.twoHand].filter(Boolean),
         jumpClips: [clips.jumpStart, clips.jumpLoop, clips.jumpLand].filter(Boolean),
         spellClips: [clips.spellShoot, clips.spellLoop, clips.spellEnter, clips.spellExit].filter(Boolean),
     };

@@ -48,7 +48,7 @@ async function main(){
  document.addEventListener('keydown',e=>{if(armory.isOpen)return;if(e.code==='KeyV'){setView(view==='reference'?'play':'reference');}if(e.code==='KeyR')reset();if(e.code==='KeyH')document.body.classList.toggle('clean');if(['KeyW','KeyA','KeyS','KeyD','Space','Tab','Digit1','Digit2'].includes(e.code))setView('play');});
  if(new URLSearchParams(location.search).has('clean'))document.body.classList.add('clean');
  setView(new URLSearchParams(location.search).has('play')?'play':'reference');
- onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);elapsed+=dt;player.kinematicStep(dt);combat.beforeAnimation(dt);body.update(dt);world.update(elapsed);combat.afterAnimation(dt);equipment.update();armory.update(dt);if(elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();}});
+ onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);elapsed+=dt;player.kinematicStep(dt);combat.beforeAnimation(dt);body.update(dt);world.update(elapsed);combat.afterAnimation(dt);equipment.update(dt);armory.update(dt);if(elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();}});
  const summary=()=>{const a=[...samples].sort((a,b)=>a-b),mean=a.reduce((s,x)=>s+x,0)/(a.length||1);return{fps:1000/mean,meanMs:mean,p95Ms:a[Math.floor(a.length*.95)],samples:a.length,drawCalls:engine.drawCallCount,resolution:[canvas.width,canvas.height],...world.stats};};
  globalThis.ASHEN={engine,scene,camera,reference,rig,player,body,world,combat,armory,equipment,input,setView,reset,metrics:{summary},capture:()=>captureScreenshot(engine)};
  await registerScene(scene);await startEngine(engine);globalThis.ASHEN.ready=true;document.getElementById('loading').remove();

@@ -66,5 +66,24 @@
     "duration": 2.3,
     "releaseTime": 1.5,
     "outputSha256": "ff503dd0e5b0dc3b41d9892a3e89f75f798a8d47b0c698d58f0ea99007df9784"
+  },
+  "carry": {
+    "sourceURL": "https://opengameart.org/sites/default/files/universal_animation_library_2standard.zip",
+    "sourceSha256": "0815dd05531cae9bc313fc9c0ba81330bc72f8e19ec45f73738e74ddc5796a43",
+    "clip": "Walk_Carry_Loop",
+    "assetAuthor": "Quaternius",
+    "assetLicense": "CC0-1.0",
+    "licenseSource": "https://quaternius.com/packs/universalanimationlibrary2.html",
+    "retargeter": "https://github.com/crazyramirez/BJS_Character_Controller_V2",
+    "retargeterCommit": "869170ff94380b44b6f76753feee77c17c468819",
+    "retargeterLicense": "MIT",
+    "outputSha256": "aa9bc4cf04c53d84fbea574d04eee03f659889772d380ec130e892f5a9609da9",
+    "inventory": [
+      {
+        "name": "Walk_Carry_Loop",
+        "channels": 53
+      }
+    ],
+    "scope": "Ashen Reach source-compatible Human only. Original geometry, bind and clips retained."
   }
 }

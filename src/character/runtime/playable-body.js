@@ -34,7 +34,8 @@ const AUTHORED_CLIPS = Object.freeze({
 // Recovery comparison: original library clips on source/candidate visuals.
 const SOURCE_CLIPS = Object.freeze({idle:'Idle_Loop',walk:'Walk_Loop',run:'Sprint_Loop',
     jumpStart:'Jump_Start',jumpLoop:'Jump_Loop',jumpLand:'Jump_Land',cast:'Spell_Simple_Shoot',
-    spellEnter:'Spell_Simple_Enter',spellLoop:'Spell_Simple_Idle_Loop',spellExit:'Spell_Simple_Exit'});
+    spellEnter:'Spell_Simple_Enter',spellLoop:'Spell_Simple_Idle_Loop',spellExit:'Spell_Simple_Exit',
+    twoHand:'Walk_Carry_Loop'});
 
 const AUTHORED_PALMS = Object.freeze({
     mainHand: Object.freeze(['finger3-1.R', 'finger2-1.R', 'RightHandMiddle1']),
