@@ -10,7 +10,7 @@ Give the worker exact files, stable API, known invariants, a runnable command, a
 
 ## Make the harness trustworthy
 
-- Use the exact game's Vite/Lite module URL, including query, and assert function identity before scene mutation. See [the browser guide](../../../../lite-moonwell/docs/debug-view.md). Do not mix raw package modules with optimized game modules.
+- Use the exact game's Vite/Lite module URL, including query, and assert function identity before scene mutation. See [the browser guide](../../../../docs/debug-view.md). Do not mix raw package modules with optimized game modules.
 - Check the actual exported namespace, not only declarations/internal source.
 - A GLB named node may be a transform with multiple primitive meshes. Inspect connected material-bearing descendants or public `getContainerMeshes`; do not require the parent to have a material or assume flat `container.entities` is the complete mesh list. Lite visibility is `visible`.
 - Begin with bounded boot/one-transition/screenshot stages. Reuse established lifecycle helpers. Expand a small working harness rather than generating a large new one before the first run.

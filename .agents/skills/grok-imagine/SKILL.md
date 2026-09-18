@@ -47,10 +47,6 @@ Requires: `grok` on PATH, logged-in CLI, network. `--tools image_gen,image_edit`
 
 ## This repo
 
-Inspect **existing files** before writing a target. Paths differ:
+Use the approved gameplay references linked from [current direction](../../../docs/CURRENT.md). Historical generated target plates are not the current art brief. Store new asset experiments under a task-specific ignored working directory and label generated images separately from live captures.
 
-- World landscape plate: repo-root `.dream-loop/target.png` (do not overwrite when generating character sheets).
-- Character AI sheets: `lite-moonwell/.dream-loop/character/` (`human-anatomical-target.png`, `moonwell-mage-kit-target.png`). These are **not** live Lite or Blender screenshots and are not orthographic topology.
-- Older look plates: `lite-moonwell/blender/ref/`.
-
-Phone VE of the **running game** is `npm run ve` (R2), not Imagine. Do not generate HUD text, numbers, or diagrams — build those in code. Do not treat left/right staff hands on a back plate as a verified mesh bug without checking anatomical vs image-space right.
+For phone evidence, capture the running game and use the authorized Telegram helper; use `scripts/ve-upload.sh` when a public media URL is needed. Image generation does not capture gameplay.

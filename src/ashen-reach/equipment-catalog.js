@@ -1,7 +1,8 @@
+import {HUMAN_EQUIPMENT_FIT, freezeEquipment, validateEquipmentCatalogue, validateEquipmentSelection} from './equipment-contract.js';
 /** Current Human fits. Item identity is separate from authored mesh and coverage. */
 export const BODY_REGIONS=['BodyExposed','BodyUnderTunic','BodyUnderBoots','BodyUnderLegs','BodyWaist','BodyHands'];
 export const BASE_VISIBLE_MESHES=[...BODY_REGIONS,'HumanHair'];
-export const EQUIPMENT_ITEMS=Object.freeze({
+const authoredItems={
     graveweaverHood:{id:'graveweaverHood',slot:'helmet',name:'Graveweaver hood',parts:[{mesh:'GraveweaverHood'}],coverage:['HumanHair']},
     graveweaverTop:{id:'graveweaverTop',slot:'torso',name:'Graveweaver mail vestment',parts:[{mesh:'GraveweaverTop'},{mesh:'GraveweaverPendant'}],coverage:['BodyUnderTunic','BodyWaist']},
     graveweaverSkirt:{id:'graveweaverSkirt',slot:'legs',name:'Graveweaver robe skirt',parts:[{mesh:'GraveweaverSkirt'},{mesh:'WayfarerTrousers'},{mesh:'WayfarerTrousersCuffs',hideWhenSlots:['boots']}],coverage:['BodyUnderLegs','BodyWaist']},
@@ -13,9 +14,12 @@ export const EQUIPMENT_ITEMS=Object.freeze({
     pilgrimTunic:{id:'pilgrimTunic',slot:'torso',name:'Pilgrim cloth tunic',parts:[{mesh:'PilgrimTunic'}],coverage:['BodyUnderTunic','BodyWaist']},
     wayfarerTrousers:{id:'wayfarerTrousers',slot:'legs',name:'Wayfarer trousers',parts:[{mesh:'WayfarerTrousers'},{mesh:'WayfarerTrousersCuffs',hideWhenSlots:['boots']}],coverage:['BodyUnderLegs','BodyWaist']},
     wayfarerBoots:{id:'wayfarerBoots',slot:'boots',name:'Wayfarer boots',parts:[{mesh:'WayfarerBoots'}],coverage:['BodyUnderBoots']},
-});
+};
+const seamsBySlot={helmet:['neck'],torso:['neck','waist','wrists'],legs:['waist','ankles'],boots:['ankles'],gloves:['wrists'],mainHand:[],offHand:[]};
+export const EQUIPMENT_ITEMS=freezeEquipment(Object.fromEntries(Object.entries(authoredItems).map(([id,item])=>[id,{...item,fit:{...HUMAN_EQUIPMENT_FIT},seams:seamsBySlot[item.slot],occupies:[item.slot]}])));
 /** Union coverage once: an unequipped item must never reveal another item's mask. */
 export function resolveEquipmentVisibility(selected){
+    validateLoadout(selected);
     const visibility=Object.fromEntries(BASE_VISIBLE_MESHES.map(name=>[name,true]));
     for(const item of Object.values(EQUIPMENT_ITEMS))for(const part of item.parts||[])visibility[part.mesh]=false;
     for(const [slot,id]of Object.entries(selected)){
@@ -35,8 +39,6 @@ export const EQUIPMENT_PRESETS={
     graveweaver:{name:'Graveweaver',loadout:outfit({helmet:'graveweaverHood',torso:'graveweaverTop',legs:'graveweaverSkirt',boots:'wayfarerBoots',gloves:'graveweaverGloves',mainHand:'graveweaverStaff',offHand:'graveweaverBook'})},
 };
 export function validateLoadout(loadout){
-    for(const [slot,id]of Object.entries(loadout)){
-        if(!EQUIPMENT_SLOTS.includes(slot))throw Error('Unsupported equipment slot: '+slot);
-        if(id!==null&&(!Object.hasOwn(EQUIPMENT_ITEMS,id)||EQUIPMENT_ITEMS[id].slot!==slot))throw Error('Item does not fit this slot');
-    }
+    validateEquipmentSelection(loadout,EQUIPMENT_ITEMS,EQUIPMENT_SLOTS);
 }
+validateEquipmentCatalogue(EQUIPMENT_ITEMS,{slots:EQUIPMENT_SLOTS,baseMeshes:BASE_VISIBLE_MESHES});

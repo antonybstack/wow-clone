@@ -1,12 +1,14 @@
+import {validateEquipmentCatalogue} from './equipment-contract.js';
 import {createMageProp} from './mage-props.js';
 import {createArmingSword} from './arming-sword.js';
 import {getContainerMeshes,setMeshVisible,setParent} from '@babylonjs/lite';
 
-import {EQUIPMENT_ITEMS,EQUIPMENT_PRESETS,BASE_VISIBLE_MESHES,resolveEquipmentVisibility,validateLoadout} from './equipment-catalog.js';
+import {EQUIPMENT_ITEMS,EQUIPMENT_PRESETS,EQUIPMENT_SLOTS,BASE_VISIBLE_MESHES,resolveEquipmentVisibility,validateLoadout} from './equipment-catalog.js';
 export {EQUIPMENT_ITEMS} from './equipment-catalog.js';
 /** Prepared small catalogue; selection never reloads the actor or its pose. */
 export function createEquipment(engine,scene,body,sockets){
     const meshes=getContainerMeshes(body.container),named=name=>meshes.filter(m=>m.name===name);
+    validateEquipmentCatalogue(EQUIPMENT_ITEMS,{slots:EQUIPMENT_SLOTS,baseMeshes:BASE_VISIBLE_MESHES,meshNames:new Set(meshes.map(mesh=>mesh.name))});
     const names=[...BASE_VISIBLE_MESHES,...Object.values(EQUIPMENT_ITEMS).flatMap(item=>(item.parts||[]).map(part=>part.mesh))];
     const bindings=Object.fromEntries(names.map(name=>[name,named(name)]));
     for(const [name,meshes]of Object.entries(bindings))if(!meshes.length)throw Error('Missing equipment mesh/coverage: '+name);

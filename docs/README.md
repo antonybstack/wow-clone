@@ -22,3 +22,5 @@ Retained dated reports describe the endorsed scene/motion/combat implementation 
 [Cleanup audit](documentation-cleanup-2026-09-17.md) records what was removed and retained. Do not rebuild a historical task queue or recursively load every report to resume a focused task.
 
 Local `ve-capture/`, browser session files and Blender POC exports are ignored working evidence. Keep only the current pass locally when reviewing it; published walkthroughs are linked from the living reports.
+
+The local Dream Loop skill is an ignored nested checkout. The tracked [endorsed workflow](reference-led-workflow-2026-09-17.md) is the fallback for a fresh clone without that skill.

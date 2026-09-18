@@ -1,6 +1,6 @@
 ---
 name: grok-delegation
-description: Optional Grok CLI or Cursor delegation for a requested, bounded subtask in wow-clone/lite-moonwell. Use when launching or reviewing Grok workers; direct parent implementation remains the default.
+description: Optional Grok CLI or Cursor delegation for a requested, bounded subtask in wow-clone. Use when launching or reviewing Grok workers; direct parent implementation remains the default.
 ---
 
 # Optional Grok delegation

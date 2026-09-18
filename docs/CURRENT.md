@@ -22,7 +22,7 @@ Choose one consequential deliverable from the latest user request. The next trac
 
 ## Active initiative
 
-[Armory and modular equipment living plan](armory-and-equipment-plan.md) is active. **C / Armory** opens the actual Human for orbit/zoom, animation preview and all seven equipment slots. Wayfarer, Pilgrim and **Graveweaver** outfit buttons support immediate selection and individual mixed pieces. The new original Ahrim-inspired magic set has a hood, mail vestment with amethyst clasp, long robe skirt, gloves, forked staff and grimoire; boots are shared. Selections remain equipped on return to play, and both held props stow during casts. Human is the only enabled race. Stage C remains open for general fit contracts and on-demand catalogue composition; then Stage D proves a distinct Orc with corrected fits. [Equipment authoring and limitations](ashen-equipment-authoring.md).
+[Armory and modular equipment living plan](armory-and-equipment-plan.md) is active. **C / Armory** opens the actual Human for orbit/zoom, animation preview and all seven equipment slots. Wayfarer, Pilgrim and **Graveweaver** outfit buttons support immediate selection and individual mixed pieces. The new original Ahrim-inspired magic set has a hood, mail vestment with amethyst clasp, long robe skirt, gloves, forked staff and grimoire; boots are shared. Selections remain equipped on return to play, and both held props stow during casts. Human is the only enabled race. Stage C now validates explicit fit metadata, masks, seam declarations and hand occupancy; on-demand catalogue composition remains open; then Stage D proves a distinct Orc with corrected fits. [Equipment authoring and limitations](ashen-equipment-authoring.md).
 
 ## Current implementation
 
@@ -54,3 +54,5 @@ Do not assume key 2 is a held channel in normal Ashen play; that is an older dia
 Character anatomy/clothing quality, terrain-aware foot contact, full Human/Orc/Undead migration and modular armor, moving enemies/encounters, richer world dressing, and broader performance validation remain unfinished. Long-term race/equipment contracts are in [the character architecture roadmap](character-system-north-star.md), which now retains contracts and goals without the obsolete milestone queue/art targets.
 
 Progression and SpacetimeDB integration remain out of scope until the client slice is ready. User approval of this workflow and the recent output is not a claim that the game is pixel-identical to the reference, AAA complete, or that every long-term milestone passed.
+
+Equipment follow-up (2026-09-18): explicit immutable fit/coverage/occupancy declarations and atomic conflict validation are implemented; 15 equipment tests and 19 live armory/spell checks pass. See the latest Stage C entry in the living plan. On-demand loading and real two-handed transitions remain next.

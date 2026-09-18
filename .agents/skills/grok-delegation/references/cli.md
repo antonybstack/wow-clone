@@ -32,4 +32,4 @@ The judge may **read** image files and write a verdict markdown under the task-s
 
 Verify with the tool/subprocess return code. Do not assume fish `$status` / `or` work inside a wrapped shell.
 
-Select checks for the changed behavior from `lite-moonwell/package.json`. `npm run audit:character` is a legacy lab audit, not proof of current Ashen gameplay. For live Ashen verification and an owned CDP target, use [the browser guide](../../../../lite-moonwell/docs/debug-view.md). Leave unrelated user Chrome sessions alone.
+Select checks for the changed behavior from `package.json`. Diagnostic lab checks are not proof of current Ashen gameplay. For live Ashen verification and an owned CDP target, use [the browser guide](../../../../docs/debug-view.md). Leave unrelated user Chrome sessions alone.

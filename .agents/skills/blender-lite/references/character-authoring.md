@@ -1,6 +1,6 @@
 # Character authoring and motion — current contracts
 
-Use for actual rig, mesh, garment or animation work. Start with [current direction](../../../../lite-moonwell/docs/CURRENT.md) and [character contracts](../../../../lite-moonwell/docs/character-system-north-star.md). The old mage/procedural-motion and judge-loop recipes have been removed.
+Use for actual rig, mesh, garment or animation work. Start with [current direction](../../../../docs/CURRENT.md) and [character contracts](../../../../docs/character-system-north-star.md). The old mage/procedural-motion and judge-loop recipes have been removed.
 
 ## Preserve the compatible source foundation
 
@@ -29,4 +29,4 @@ A valid joint trace does not prove mesh quality. Inspect the actual mesh at matc
 
 Blender is useful for authoring/rebinding; it is not required to reuse glTF animation curves or build effects. Keep character work isolated from the live shrine. The actual Lite game is the visual authority. Reuse relevant rig/asset tests, then play and inspect video; do not substitute a validator or Blender still for gameplay quality.
 
-Detailed evidence: [source recovery](../../../../lite-moonwell/docs/source-motion-recovery-implementation-2026-09-17.md), [gait/contact](../../../../lite-moonwell/docs/gait-contact-and-landing-2026-09-17.md), [Fire Blast](../../../../lite-moonwell/docs/fire-blast-body-animation-2026-09-17.md), [Lava Ball](../../../../lite-moonwell/docs/lava-ball-first-spell-2026-09-17.md).
+Detailed evidence: [source recovery](../../../../docs/source-motion-recovery-implementation-2026-09-17.md), [gait/contact](../../../../docs/gait-contact-and-landing-2026-09-17.md), [Fire Blast](../../../../docs/fire-blast-body-animation-2026-09-17.md), [Lava Ball](../../../../docs/lava-ball-first-spell-2026-09-17.md).

@@ -10,7 +10,7 @@ Task:
   environment: local               # never cloud / best-of-n (HEAD worktrees)
   prompt: follow this handoff file exactly: <abs path>
           + allowed/forbidden paths
-          + working dir lite-moonwell
+          + working dir /Users/antbly/dev/wow-clone
           + no git reset/stash/clean/commit
           + no Telegram / no spawning agents
 ```

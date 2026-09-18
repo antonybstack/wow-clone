@@ -88,3 +88,14 @@ Latest reported delivery evidence: 98 automated checks, 49 browser checks, build
 ## How this was made discoverable
 
 [CURRENT.md](CURRENT.md) owns current product facts. [Dream Loop](../.agents/skills/dream-loop/SKILL.md) owns the repeatable process. [The docs index](README.md), the product README, local AGENTS entry and skill routing point there. Following the user's stronger cleanup instruction, conflicting milestone plans, rejected POC briefs, handoffs, judge/session logs and obsolete skill variants were removed outright. No replacement archive of those instructions is retained. Useful technical contracts and source/license provenance remain in focused current documents. See [cleanup audit](documentation-cleanup-2026-09-17.md).
+
+
+## Resumption correction — 2026-09-18
+
+The root migration does not change the endorsed loop. Read CURRENT, the relevant living plan, and only the skill/reference needed for the next outcome. Use the current code and installed APIs; avoid repeating broad research or reloading historical reports.
+
+An internal contract increment is an implementation checkpoint, not completion of the agreed equipment milestone. Continue through the authorized integration and review work without asking the user to restart each substep. If a task is redirected, record the exact remaining work. For the current equipment initiative, prove on-demand equip/unequip on the actual actor, retained pose, rapid selection changes, failed-load recovery and bounded resources before expanding the catalogue. A synthetic two-handed occupancy test does not establish a two-handed pose or draw animation.
+
+Complete delivery includes reviewing the appropriate live media and sending useful progression evidence through the authorized Telegram channel. Poll at active-work boundaries; do not imply monitoring after the turn ends. A static contract change may need a regression still, while motion changes need video review. Measure performance when the changed runtime path can affect it, separately from recording; do not repeat the whole test matrix without a reason.
+
+Local `.agents/skills/dream-loop/` is an ignored nested checkout. This tracked workflow document preserves project decisions for fresh clones; if the local skill is absent, follow this document directly. Other project skills must link to root `docs/`, use port 5173 and avoid removed Moonwell export commands.

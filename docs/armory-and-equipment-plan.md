@@ -209,3 +209,13 @@ Before authoring Orc or adding more costumes, make the Human catalogue architect
 4. Re-run the representative Graveweaver, Pilgrim and Wayfarer combinations in the live armory and measure swap latency, resource retention, draw count and frame-time tails.
 
 Completion means the next item can be added through the catalogue and preparation pipeline without a renderer-specific branch, while the current seven-slot Human experience remains visually intact. After that proof, Stage D begins with a genuinely distinct Orc body and corrected fits for the existing logical items.
+
+
+### Stage C fit-contract increment — 2026-09-18
+
+- Added `src/ashen-reach/equipment-contract.js` and immutable per-item declarations for Human body, source-65 rig, bind/shape version, seam names and occupied slots. Catalogue startup checks catch coverage typos, invalid cuff precedence, missing garment meshes and invalid grip/stow transforms before creating props.
+- Entire candidate loadouts are checked for occupied-slot conflicts before changing selection or mesh visibility. A two-handed contract rejects an off-hand item in either selection order. This is tested using a synthetic catalogue entry; the shipped Graveweaver staff remains one-handed. No new two-handed animation or prop is claimed.
+- Existing union coverage and boot/cuff rules are retained. Seam names describe authoring boundaries; they do not prove geometric seam closure or eliminate clipping. Bind identity remains a semantic authoring contract, backed by the existing exact bind/animation asset tests, not a new runtime skeleton fingerprint.
+- Validation: 15 automated equipment/contract tests, 19 live Graveweaver browser checks, and production build passed. Live checks exercise mixed garments, 30 preset swaps without mesh/pose changes, hair/hand restoration, movement, Fire Blast, interrupted and successful Lava Ball. No captured runtime errors. Reviewed the live front capture at `ve-capture/ashen-reach/fit-contracts/equipped-front.png`.
+- Live verification used port 5175 because an old process still owned 5173 from the removed `lite-moonwell` directory. Root application default remains 5173. No new performance claim from this validation pass.
+- Next: replace eager catalogue preparation with bounded prepared-item ownership and atomic asynchronous swaps. Keep the working synchronous actor path while implementing cache eviction, latest-request-wins and failed-load recovery. Stage C remains open; geometric seam qualification, actual two-handed pose/transition work and distinct Orc fits are still outstanding.
