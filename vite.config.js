@@ -1,15 +1,26 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-    server: {
-        port: 5173,
-        strictPort: true,
-        host: "127.0.0.1",
+  build: {
+    rollupOptions: {
+      input: { index: 'index.html', ashenReach: 'ashen-reach.html', characterLab: 'character-lab.html', bodyPreview: 'body-preview.html' },
     },
-    build: {
-        target: "esnext",
-        sourcemap: true,
+  },
+  optimizeDeps: {
+    include: ["@babylonjs/havok"],
+  },
+  server: {
+    port: 5173,
+    strictPort: true,
+  },
+  plugins: [
+    {
+      name: "reload-on-blender-export",
+      handleHotUpdate({ file, server }) {
+        if (file.endsWith(".glb")) {
+          server.ws.send({ type: "full-reload" });
+        }
+      },
     },
-    // .wgsl imported via ?raw
-    assetsInclude: ["**/*.hdr", "**/*.env"],
+  ],
 });

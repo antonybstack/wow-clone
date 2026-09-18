@@ -1,31 +1,28 @@
 {
-  "name": "duskwell",
+  "name": "ashen-reach",
   "version": "1.0.0",
-  "description": "Third-person classless MMORPG slice on Vaelithil (Babylon.js 9 / WebGPU)",
+  "private": true,
+  "description": "Ashen Reach Babylon Lite third-person MMORPG starter scene",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "plate": "node scripts/plate.mjs"
+    "ve": "bash scripts/ve-upload.sh",
+    "test:character": "node --test scripts/test-character-fixture.mjs scripts/test-rig-contract.mjs scripts/test-body-validation.mjs scripts/test-retarget-contract.mjs scripts/test-body-profile-meta.mjs scripts/test-playable-body.mjs scripts/test-starter-outfit.mjs scripts/test-loadout-controller.mjs",
+    "validate:character-body": "node scripts/validate-character-body.mjs"
   },
-  "keywords": [
-    "webgpu",
-    "babylonjs",
-    "wgsl",
-    "snow",
-    "terrain",
-    "procedural",
-    "graphics"
-  ],
-  "license": "MIT",
   "dependencies": {
-    "@babylonjs/core": "^9.25.0",
-    "@babylonjs/materials": "^9.25.0"
+    "@babylonjs/havok": "^1.3.14",
+    "@babylonjs/lite": "^1.28.0"
   },
   "devDependencies": {
-    "@babylonjs/inspector": "^9.26.0",
-    "typescript": "^5.9.2",
+    "@gltf-transform/core": "4.4.2",
+    "@gltf-transform/extensions": "4.4.2",
+    "@gltf-transform/functions": "4.4.2",
+    "draco3dgltf": "1.5.7",
+    "gl-matrix": "3.4.4",
+    "playwright": "^1.63.0",
     "vite": "^8.2.2"
   }
 }

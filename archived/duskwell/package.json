@@ -1,0 +1,31 @@
+{
+  "name": "duskwell",
+  "version": "1.0.0",
+  "description": "Third-person classless MMORPG slice on Vaelithil (Babylon.js 9 / WebGPU)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "plate": "node scripts/plate.mjs"
+  },
+  "keywords": [
+    "webgpu",
+    "babylonjs",
+    "wgsl",
+    "snow",
+    "terrain",
+    "procedural",
+    "graphics"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@babylonjs/core": "^9.25.0",
+    "@babylonjs/materials": "^9.25.0"
+  },
+  "devDependencies": {
+    "@babylonjs/inspector": "^9.26.0",
+    "typescript": "^5.9.2",
+    "vite": "^8.2.2"
+  }
+}

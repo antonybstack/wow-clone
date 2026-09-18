@@ -1,13 +1,30 @@
-# wow-clone
+# Ashen Reach
 
-Active development is the **Ashen Reach** third-person game in [lite-moonwell](lite-moonwell/README.md), using **Babylon Lite + WebGPU**.
+Ashen Reach is the active root game: a reference-led, low-poly textured third-person MMORPG starter built with Babylon Lite and WebGPU.
+
+## Run the game
+
+From the repository root:
 
 ```sh
-cd lite-moonwell
 npm install
 npm run dev
 ```
 
-Open `http://localhost:5180/ashen-reach.html?play&clean`. Tab targets the training dummy; 1 casts Fire Blast; 2 charges Lava Ball.
+Open [http://127.0.0.1:5173/](http://127.0.0.1:5173/) or [http://127.0.0.1:5173/ashen-reach.html?play&clean](http://127.0.0.1:5173/ashen-reach.html?play&clean).
 
-Start with [current direction](lite-moonwell/docs/CURRENT.md) and [the endorsed implementation workflow](lite-moonwell/docs/reference-led-workflow-2026-09-17.md). The root source tree contains the older application; its previous snow-demo description is not the active game's architecture or art brief. Runtime source and assets have been retained.
+Controls:
+
+- W/S move; A/D turn; Q/E strafe; RMB look; Shift walk; Space jump.
+- Tab targets the training dummy; Escape clears targeting.
+- **1** casts Fire Blast; **2** charges Lava Ball.
+- **C** opens the developer armory; **V** toggles the camera view; **R** resets; **H** hides controls.
+
+The character lab and body preview are development tools:
+
+- `/character-lab.html`
+- `/body-preview.html`
+
+Read [docs/CURRENT.md](docs/CURRENT.md) for the active direction and [docs/reference-led-workflow-2026-09-17.md](docs/reference-led-workflow-2026-09-17.md) for the endorsed implementation workflow.
+
+The former Duskwell application is preserved in [archived/duskwell](archived/duskwell). It is not part of the active build or runtime.
