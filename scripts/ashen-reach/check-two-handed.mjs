@@ -20,7 +20,7 @@ const axisDistances=()=>page.evaluate(()=>{
 });
 const propState=()=>page.evaluate(()=>{
   const root=ASHEN.scene.meshes.find(m=>m.name==='greatstaffWood').parent,stow=ASHEN.equipment.items.graveweaverGreatstaff.stow.position,p=root.position;
-  return {parent:root.parent?.name,dist:Math.hypot(p.x-stow[0],p.y-stow[1],p.z-stow[2]),attachment:ASHEN.equipment.attachment,two:+(ASHEN.body.animationGroups.find(g=>g.name==='Pistol_Idle_Loop')?.weight??-1).toFixed(3)};
+  return {parent:root.parent?.name,dist:Math.hypot(p.x-stow[0],p.y-stow[1],p.z-stow[2]),attachment:ASHEN.equipment.attachment,two:+(ASHEN.body.animationGroups.find(g=>g.name==='Walk_Carry_Loop')?.weight??-1).toFixed(3)};
 });
 try{
   await page.bringToFront();await page.goto((process.env.ASHEN_URL||'http://127.0.0.1:5173/ashen-reach.html?play&clean'),{waitUntil:'commit',timeout:60000});

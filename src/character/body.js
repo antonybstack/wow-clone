@@ -55,6 +55,12 @@ const BLEND_SPEED = 4;
 const WALK_RATIO = 1;
 const BACK_RATIO = 0.85;
 const RUN_RATIO = 1.4;
+// Stationary two-handed hold: most neutral phase of `Walk_Carry_Loop`
+// (seconds into the loop), from scripts/ashen-reach/scan-carry-neutral.mjs.
+// A staff is not a heavy weapon, so the freeze eases there within
+// TWO_HAND_SETTLE instead of parking a lean-back walk extreme.
+const TWO_HAND_STILL_TIME = 0.9;
+const TWO_HAND_SETTLE = 0.25;
 const JUMP_UP = 1.5;
 const ONESHOT_SLACK = 0.03;
 // Lite 1.28's mixer only selects weighted evaluation when a live clip has a
@@ -517,13 +523,25 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             const secondaryRate = diagonalWeight ? lateral.speedRatio / lateral.duration : primaryRate;
             gaitFrequency = primaryRate * (1 - diagonalWeight) + secondaryRate * diagonalWeight;
         } else gaitFrequency = 0;
-        // Two-handed carry uses the retargeted CC0 `Walk_Carry_Loop` clip as the
-        // single locomotion pose: it walks in place while moving and freezes at
-        // speedRatio 0 while stationary. Casts/jumps release it like any loco.
+        // Two-handed carry uses the retargeted CC0 `Walk_Carry_Loop` clip while
+        // moving. Stationary, the cycle eases to its most neutral phase
+        // instead of parking whatever lean-back extreme the playhead stopped
+        // at. Casts/jumps release it like any loco.
         if (twoHand && visual.handGrips?.()?.twoHanded) {
             target = twoHand;
             state.locoName = twoHand.name;
-            twoHand.speedRatio = wish ? (walking ? WALK_RATIO : RUN_RATIO) : 0;
+            if (wish) {
+                twoHand.speedRatio = walking ? WALK_RATIO : RUN_RATIO;
+            } else {
+                twoHand.speedRatio = 0;
+                const dur = twoHand.duration || 1;
+                let d = (TWO_HAND_STILL_TIME - twoHand.currentTime) % dur;
+                if (d > dur / 2) d -= dur;
+                if (d < -dur / 2) d += dur;
+                const step = dur * dt / TWO_HAND_SETTLE;
+                const settled = Math.abs(d) <= step ? TWO_HAND_STILL_TIME : twoHand.currentTime + Math.sign(d) * step;
+                twoHand.currentTime = ((settled % dur) + dur) % dur;
+            }
         }
         if (poseTransition) return target;
         const stance = [...new Set([idle, idleArmed, walk, walkBack, sprint, strafeL, strafeR, turnL, turnR, twoHand].filter(Boolean))];
@@ -545,6 +563,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
 
     // The two-handed carry pose is the retargeted CC0 `Walk_Carry_Loop` clip
     // (scripts/ashen-reach/append-carry.mjs); no authored arm override is used.
+    // Stationary it rests at TWO_HAND_STILL_TIME, the loop's neutral phase.
 
     const flushCommitWaiters = () => {
         while (commitWaiters.length) {
