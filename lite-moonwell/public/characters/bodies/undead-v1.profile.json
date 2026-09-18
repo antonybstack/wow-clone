@@ -1,0 +1,24 @@
+{
+  "id": "undead-male-v1",
+  "grip": {
+    "rightHand": {
+      "translation": [0.0024, 0.0582, 0.0028],
+      "rotation": [0, 0, 0, 1],
+      "scale": [1, 1, 1]
+    },
+    "leftHand": {
+      "translation": [-0.0032, 0.0578, 0.0031],
+      "rotation": [0, 0, 0, 1],
+      "scale": [1, 1, 1]
+    }
+  },
+  "sole": {
+    "heelL": { "joint": "LeftFoot", "offsetY": -0.0625 },
+    "heelR": { "joint": "RightFoot", "offsetY": -0.0625 },
+    "toeL": { "joint": "LeftToeBase", "offsetY": -0.0319 },
+    "toeR": { "joint": "RightToeBase", "offsetY": -0.0319 }
+  },
+  "capsule": { "height": 1.66, "radius": 0.24 },
+  "eyeHeight": 1.5521,
+  "cameraPivot": { "x": 0, "y": 1.5521, "z": 0 }
+}

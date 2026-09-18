@@ -1,0 +1,70 @@
+{
+  "sourceURL": "https://cdn.tosijs.net/quaternius/UAL1_core.glb",
+  "sourceSha256": "8cfeaffa72992985e7104140e1f9eaf330fb419a025fdcb2cc376a4e5b825005",
+  "assetAuthor": "Quaternius",
+  "assetLicense": "CC0-1.0",
+  "licenseSource": "https://quaternius.itch.io/universal-animation-library",
+  "distributionReference": "https://3d.tosijs.net/CHANGELOG/",
+  "retargeter": "https://github.com/crazyramirez/BJS_Character_Controller_V2",
+  "retargeterCommit": "869170ff94380b44b6f76753feee77c17c468819",
+  "retargeterLicense": "MIT",
+  "outputSha256": "ff503dd0e5b0dc3b41d9892a3e89f75f798a8d47b0c698d58f0ea99007df9784",
+  "inventory": [
+    {
+      "name": "Jog_Bwd_Loop",
+      "channels": 53
+    },
+    {
+      "name": "Jog_Left_Loop",
+      "channels": 53
+    },
+    {
+      "name": "Jog_Right_Loop",
+      "channels": 53
+    },
+    {
+      "name": "Turn90_L",
+      "channels": 53
+    },
+    {
+      "name": "Turn90_R",
+      "channels": 53
+    }
+  ],
+  "scope": "Ashen Reach source-compatible Human only. Original geometry, bind and 45 clips retained.",
+  "derivedCast": {
+    "author": "Quaternius (source motion); project adaptation",
+    "license": "CC0-1.0",
+    "sourceClips": [
+      "Punch_Cross",
+      "Idle_Loop"
+    ],
+    "sourceAsset": "public/characters/candidates/human-source-v1.glb",
+    "changes": "Retimed right-arm strike; eased idle entry/recovery; open striking fingers from bind pose; split upper/lower channels for native additive layering.",
+    "duration": 1.1,
+    "releaseTime": 0.28,
+    "hand": "mainHand",
+    "outputSha256": "ff503dd0e5b0dc3b41d9892a3e89f75f798a8d47b0c698d58f0ea99007df9784",
+    "clips": [
+      {
+        "name": "FireBlast_Upper",
+        "channels": 43
+      },
+      {
+        "name": "FireBlast_Lower",
+        "channels": 10
+      }
+    ]
+  },
+  "derivedLavaCast": {
+    "license": "CC0-1.0",
+    "sourceClips": [
+      "Punch_Cross",
+      "Idle_Loop"
+    ],
+    "changes": "Extended anticipation, open right fingers, sharp release at 1.5 seconds, eased recovery; disjoint native additive layers.",
+    "duration": 2.3,
+    "releaseTime": 1.5,
+    "outputSha256": "ff503dd0e5b0dc3b41d9892a3e89f75f798a8d47b0c698d58f0ea99007df9784"
+  }
+}

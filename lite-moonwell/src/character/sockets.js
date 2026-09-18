@@ -23,6 +23,8 @@ import {
     setParent,
 } from "@babylonjs/lite";
 
+import { gripOffsetForSlot, palmBoneNames } from "./runtime/playable-body.js";
+
 export const SLOT_BONES = {
     head: ["mixamorig:Head", "Head", "head"],
     back: ["mixamorig:Spine2", "Spine2"],
@@ -195,19 +197,25 @@ export function jointWorldMatrix(groups, bone) {
  * @param {{ skeleton?: object, root?: object, animationGroups?: object[] }} body
  */
 export function attachSockets(engine, scene, player, body) {
-    const skeleton = body?.skeleton;
-    const groups = body?.animationGroups ?? [];
+    let skeleton = body?.skeleton;
+    let groups = body?.animationGroups ?? [];
+    const definition = body?.definition;
     if (skeleton) {
         bakeSkeleton(skeleton);
     }
 
     const feet = mat4Translation(0, -(player.capsuleHeight ?? 1.55) * 0.5, 0);
-    const skinned = findSkinnedMesh(body.root);
+    let skinned = findSkinnedMesh(body.root);
     const sockets = {};
+    const authoredGrip = {
+        mainHand: gripOffsetForSlot(definition, "mainHand"),
+        offHand: gripOffsetForSlot(definition, "offHand"),
+    };
 
     for (const [slot, names] of Object.entries(SLOT_BONES)) {
         const bone = resolveBone(skeleton, names);
-        const palm = PALM_BONES[slot] ? resolveBone(skeleton, PALM_BONES[slot]) : undefined;
+        const palmNames = palmBoneNames(definition, slot, PALM_BONES[slot]);
+        const palm = palmNames ? resolveBone(skeleton, palmNames) : undefined;
         const node = createTransformNode(`${slot}Socket`);
         setParent(node, player.body);
         sockets[slot] = {
@@ -247,9 +255,10 @@ export function attachSockets(engine, scene, player, body) {
         };
     };
 
-    const sync = () => {
+    const allSockets = Object.values(sockets);
+    const sync = (selectedSockets = allSockets) => {
         const h = Math.abs(body.root?.scaling?.y ?? 1);
-        for (const sock of Object.values(sockets)) {
+        for (const sock of selectedSockets) {
             const wrist = toCapsule(sock.bone);
             if (!wrist) {
                 continue;
@@ -262,21 +271,29 @@ export function attachSockets(engine, scene, player, body) {
             let rz = wrist.r.z;
             let rw = wrist.r.w;
             if (sock.follow === "grip") {
-                if (sock.palm) {
-                    const finger = toCapsule(sock.palm);
-                    if (finger) {
-                        const t = PALM_BLEND;
-                        px = wrist.x + (finger.x - wrist.x) * t;
-                        py = wrist.y + (finger.y - wrist.y) * t;
-                        pz = wrist.z + (finger.z - wrist.z) * t;
-                    }
-                }
-                const local = GRIP_LOCAL[sock.slot];
-                if (local) {
-                    const d = quatRotate(rx, ry, rz, rw, local.x, local.y, local.z);
+                const authored = authoredGrip[sock.slot];
+                if (authored) {
+                    const d = quatRotate(rx, ry, rz, rw, authored.x, authored.y, authored.z);
                     px += d.x;
                     py += d.y;
                     pz += d.z;
+                } else {
+                    if (sock.palm) {
+                        const finger = toCapsule(sock.palm);
+                        if (finger) {
+                            const t = PALM_BLEND;
+                            px = wrist.x + (finger.x - wrist.x) * t;
+                            py = wrist.y + (finger.y - wrist.y) * t;
+                            pz = wrist.z + (finger.z - wrist.z) * t;
+                        }
+                    }
+                    const local = GRIP_LOCAL[sock.slot];
+                    if (local) {
+                        const d = quatRotate(rx, ry, rz, rw, local.x, local.y, local.z);
+                        px += d.x;
+                        py += d.y;
+                        pz += d.z;
+                    }
                 }
             }
             sock.node.position.set(px, py, pz);
@@ -286,18 +303,49 @@ export function attachSockets(engine, scene, player, body) {
     };
     sync();
 
-    console.log("sockets", Object.fromEntries(
-        Object.entries(sockets).map(([slot, sock]) => [slot, sock.bone?.name ?? null]),
-    ), "skinned", skinned?.name ?? null);
-
-    return {
-        skeleton,
+    const host = {
+        get skeleton() { return skeleton; },
         sockets,
-        head: sockets.head?.bone,
-        rightHand: sockets.mainHand?.bone,
+        get head() { return sockets.head?.bone; },
+        get rightHand() { return sockets.mainHand?.bone; },
         bind: "mesh-local * runtime mesh world (BodyRoot.scaling.x = -1)",
-        skinned,
+        get skinned() { return skinned; },
         sync,
         toCapsule,
+        rebind(nextBody) {
+            const nextSkeleton = nextBody?.skeleton;
+            const hand = resolveBone(nextSkeleton, SLOT_BONES.mainHand);
+            if (!hand) {
+                throw new Error("MISSING_HAND: required mainHand bone missing");
+            }
+            if (nextSkeleton) {
+                bakeSkeleton(nextSkeleton);
+            }
+            skeleton = nextSkeleton;
+            groups = nextBody?.animationGroups ?? [];
+            skinned = findSkinnedMesh(nextBody?.root);
+            for (const [slot, names] of Object.entries(SLOT_BONES)) {
+                const sock = sockets[slot];
+                sock.bone = resolveBone(skeleton, names);
+                const palmNames = palmBoneNames(definition, slot, PALM_BONES[slot]);
+                sock.palm = palmNames ? resolveBone(skeleton, palmNames) : undefined;
+            }
+            console.log("sockets rebind", Object.fromEntries(
+                Object.entries(sockets).map(([slot, sock]) => [slot, {
+                    bone: sock.bone?.name ?? null,
+                    palm: sock.palm?.name ?? null,
+                }]),
+            ), "skinned", skinned?.name ?? null);
+            return host;
+        },
     };
+
+    console.log("sockets", Object.fromEntries(
+        Object.entries(sockets).map(([slot, sock]) => [slot, {
+            bone: sock.bone?.name ?? null,
+            palm: sock.palm?.name ?? null,
+        }]),
+    ), "skinned", skinned?.name ?? null, "grip", authoredGrip);
+
+    return host;
 }

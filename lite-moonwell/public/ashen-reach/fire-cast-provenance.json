@@ -1,0 +1,24 @@
+{
+  "author": "Quaternius (source motion); project adaptation",
+  "license": "CC0-1.0",
+  "sourceClips": [
+    "Punch_Cross",
+    "Idle_Loop"
+  ],
+  "sourceAsset": "public/characters/candidates/human-source-v1.glb",
+  "changes": "Retimed right-arm strike; eased idle entry/recovery; open striking fingers from bind pose; split upper/lower channels for native additive layering.",
+  "duration": 1.1,
+  "releaseTime": 0.28,
+  "hand": "mainHand",
+  "outputSha256": "ff503dd0e5b0dc3b41d9892a3e89f75f798a8d47b0c698d58f0ea99007df9784",
+  "clips": [
+    {
+      "name": "FireBlast_Upper",
+      "channels": 43
+    },
+    {
+      "name": "FireBlast_Lower",
+      "channels": 10
+    }
+  ]
+}

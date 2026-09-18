@@ -1,1 +1,0 @@
-See session plan: Lite MMO character = canonical skinned glTF + Lite enableBoneControl + sockets, not procedural lathe. Sources: doc.babylonjs.com/lite/architecture/07-animation, 13-skeleton; playground #92Y727#463 mapped to playAnimation; ~/dev/ThirdPersonTemplate; ~/dev/BJS_Character_Controller_V2.

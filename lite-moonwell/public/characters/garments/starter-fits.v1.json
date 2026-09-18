@@ -1,0 +1,314 @@
+{
+  "schema": 1,
+  "version": 1,
+  "generatedBy": "scripts/bake-starter-fits.mjs",
+  "shapeId": "identity",
+  "bodies": {
+    "human-v1": {
+      "asset": "/characters/bodies/human-animated-v1.glb",
+      "bindSignature": "bind-v1:3b89386c1675e4c6ab596532ab87ac5c90799776c26b96c85621b2c033a21e24",
+      "sourceGeometrySignature": "geom-v1:f961292c01c4b9ce8f0ae67838949610fc3de5b7bd4fe5b77544c5f8603877b1",
+      "sourceBodySha256": "sha256:6e87eb1b31c301d8adccf134043dca7983786c48e931f0d94f185aaa93dddbe9",
+      "sourceMesh": "HumanBody",
+      "sourceSkin": 0,
+      "byteLength": 17958208
+    },
+    "orc-v1": {
+      "asset": "/characters/bodies/orc-animated-v1.glb",
+      "bindSignature": "bind-v1:766c0659346b31c4aacd555e62f9870f94753e0635e5c8081a7b4ab860656154",
+      "sourceGeometrySignature": "geom-v1:f0d5e7e819c0569c7bd99be015af52fbcb167b64fa1f58b9de1d70185312f188",
+      "sourceBodySha256": "sha256:3b817c2ed69f59fa7946a35a900a3ae817c6b50ae3a3f0c6d339b2856b61389e",
+      "sourceMesh": "OrcV1Body",
+      "sourceSkin": 0,
+      "byteLength": 13700296
+    },
+    "undead-v1": {
+      "asset": "/characters/bodies/undead-animated-v1.glb",
+      "bindSignature": "bind-v1:376847b27cbc085039315b7b80743303a1507d25b937ba98b0efbaa5631f183c",
+      "sourceGeometrySignature": "geom-v1:899f77be155b46fbd6159e43ce0af1e9318107fce54dd09fd4838b6e83e164de",
+      "sourceBodySha256": "sha256:59891e708862f86e96fef5daa3119365fb02dacb2238d1026631a25856d9251f",
+      "sourceMesh": "UndeadV1Body",
+      "sourceSkin": 0,
+      "byteLength": 12622476
+    }
+  },
+  "items": {
+    "starterShirt": {
+      "id": "starterShirt",
+      "slot": "chest",
+      "renderClass": "skinned-garment",
+      "layer": "clothing",
+      "covers": [
+        "torso",
+        "upperArmL",
+        "upperArmR",
+        "lowerArmL",
+        "lowerArmR"
+      ],
+      "conflictsWith": [
+        "starterShirt"
+      ],
+      "component": "shirt",
+      "meshName": "StarterShirt",
+      "hideShorts": false,
+      "variants": {
+        "human-v1": {
+          "profileId": "human-v1",
+          "bindSignature": "bind-v1:3b89386c1675e4c6ab596532ab87ac5c90799776c26b96c85621b2c033a21e24",
+          "sourceGeometrySignature": "geom-v1:f961292c01c4b9ce8f0ae67838949610fc3de5b7bd4fe5b77544c5f8603877b1",
+          "sourceBodySha256": "sha256:6e87eb1b31c301d8adccf134043dca7983786c48e931f0d94f185aaa93dddbe9",
+          "glb": "/characters/garments/starterShirt.human-v1.v1.glb",
+          "file": "starterShirt.human-v1.v1.glb",
+          "shapeId": "identity",
+          "version": 1,
+          "cacheKey": "human-v1|bind-v1:3b89386c1675e4c6ab596532ab87ac5c90799776c26b96c85621b2c033a21e24|geom-v1:f961292c01c4b9ce8f0ae67838949610fc3de5b7bd4fe5b77544c5f8603877b1|identity|starterShirt@1",
+          "byteLength": 476444,
+          "sha256": "sha256:183d61d40a45e365a4a17df2e22bffe904acc21ec59293a6ff4ad2a2e9e5ce18",
+          "hideNodes": [],
+          "coverageCount": 4754
+        },
+        "orc-v1": {
+          "profileId": "orc-v1",
+          "bindSignature": "bind-v1:766c0659346b31c4aacd555e62f9870f94753e0635e5c8081a7b4ab860656154",
+          "sourceGeometrySignature": "geom-v1:f0d5e7e819c0569c7bd99be015af52fbcb167b64fa1f58b9de1d70185312f188",
+          "sourceBodySha256": "sha256:3b817c2ed69f59fa7946a35a900a3ae817c6b50ae3a3f0c6d339b2856b61389e",
+          "glb": "/characters/garments/starterShirt.orc-v1.v1.glb",
+          "file": "starterShirt.orc-v1.v1.glb",
+          "shapeId": "identity",
+          "version": 1,
+          "cacheKey": "orc-v1|bind-v1:766c0659346b31c4aacd555e62f9870f94753e0635e5c8081a7b4ab860656154|geom-v1:f0d5e7e819c0569c7bd99be015af52fbcb167b64fa1f58b9de1d70185312f188|identity|starterShirt@1",
+          "byteLength": 474156,
+          "sha256": "sha256:6a1e746e5931d301fd8f779df2b5558c8ca3a55944532356c00763aeb554073a",
+          "hideNodes": [],
+          "coverageCount": 4732
+        },
+        "undead-v1": {
+          "profileId": "undead-v1",
+          "bindSignature": "bind-v1:376847b27cbc085039315b7b80743303a1507d25b937ba98b0efbaa5631f183c",
+          "sourceGeometrySignature": "geom-v1:899f77be155b46fbd6159e43ce0af1e9318107fce54dd09fd4838b6e83e164de",
+          "sourceBodySha256": "sha256:59891e708862f86e96fef5daa3119365fb02dacb2238d1026631a25856d9251f",
+          "glb": "/characters/garments/starterShirt.undead-v1.v1.glb",
+          "file": "starterShirt.undead-v1.v1.glb",
+          "shapeId": "identity",
+          "version": 1,
+          "cacheKey": "undead-v1|bind-v1:376847b27cbc085039315b7b80743303a1507d25b937ba98b0efbaa5631f183c|geom-v1:899f77be155b46fbd6159e43ce0af1e9318107fce54dd09fd4838b6e83e164de|identity|starterShirt@1",
+          "byteLength": 474920,
+          "sha256": "sha256:1bac02e2e8d660b6b5289ac4b019c5b834f1dd92aecd0dfe9e8dc01738015ae7",
+          "hideNodes": [],
+          "coverageCount": 4730
+        }
+      }
+    },
+    "starterTrousers": {
+      "id": "starterTrousers",
+      "slot": "legs",
+      "renderClass": "skinned-garment",
+      "layer": "clothing",
+      "covers": [
+        "pelvis",
+        "thighL",
+        "thighR",
+        "calfL",
+        "calfR"
+      ],
+      "conflictsWith": [
+        "starterTrousers"
+      ],
+      "component": "trousers",
+      "meshName": "StarterTrousers",
+      "hideShorts": true,
+      "variants": {
+        "human-v1": {
+          "profileId": "human-v1",
+          "bindSignature": "bind-v1:3b89386c1675e4c6ab596532ab87ac5c90799776c26b96c85621b2c033a21e24",
+          "sourceGeometrySignature": "geom-v1:f961292c01c4b9ce8f0ae67838949610fc3de5b7bd4fe5b77544c5f8603877b1",
+          "sourceBodySha256": "sha256:6e87eb1b31c301d8adccf134043dca7983786c48e931f0d94f185aaa93dddbe9",
+          "glb": "/characters/garments/starterTrousers.human-v1.v1.glb",
+          "file": "starterTrousers.human-v1.v1.glb",
+          "shapeId": "identity",
+          "version": 1,
+          "cacheKey": "human-v1|bind-v1:3b89386c1675e4c6ab596532ab87ac5c90799776c26b96c85621b2c033a21e24|geom-v1:f961292c01c4b9ce8f0ae67838949610fc3de5b7bd4fe5b77544c5f8603877b1|identity|starterTrousers@1",
+          "byteLength": 268572,
+          "sha256": "sha256:f4e9ec790b4f10fec814203f56e7ec81be92c87c67e1caa81f24b84f2cdc22ae",
+          "hideNodes": [
+            "HumanShorts"
+          ],
+          "coverageCount": 2374
+        },
+        "orc-v1": {
+          "profileId": "orc-v1",
+          "bindSignature": "bind-v1:766c0659346b31c4aacd555e62f9870f94753e0635e5c8081a7b4ab860656154",
+          "sourceGeometrySignature": "geom-v1:f0d5e7e819c0569c7bd99be015af52fbcb167b64fa1f58b9de1d70185312f188",
+          "sourceBodySha256": "sha256:3b817c2ed69f59fa7946a35a900a3ae817c6b50ae3a3f0c6d339b2856b61389e",
+          "glb": "/characters/garments/starterTrousers.orc-v1.v1.glb",
+          "file": "starterTrousers.orc-v1.v1.glb",
+          "shapeId": "identity",
+          "version": 1,
+          "cacheKey": "orc-v1|bind-v1:766c0659346b31c4aacd555e62f9870f94753e0635e5c8081a7b4ab860656154|geom-v1:f0d5e7e819c0569c7bd99be015af52fbcb167b64fa1f58b9de1d70185312f188|identity|starterTrousers@1",
+          "byteLength": 267784,
+          "sha256": "sha256:14253f92de67ad324b070b2dc8b0389a6cb0d6b95e0b97ff40cc95a2df356133",
+          "hideNodes": [
+            "OrcV1Shorts"
+          ],
+          "coverageCount": 2322
+        },
+        "undead-v1": {
+          "profileId": "undead-v1",
+          "bindSignature": "bind-v1:376847b27cbc085039315b7b80743303a1507d25b937ba98b0efbaa5631f183c",
+          "sourceGeometrySignature": "geom-v1:899f77be155b46fbd6159e43ce0af1e9318107fce54dd09fd4838b6e83e164de",
+          "sourceBodySha256": "sha256:59891e708862f86e96fef5daa3119365fb02dacb2238d1026631a25856d9251f",
+          "glb": "/characters/garments/starterTrousers.undead-v1.v1.glb",
+          "file": "starterTrousers.undead-v1.v1.glb",
+          "shapeId": "identity",
+          "version": 1,
+          "cacheKey": "undead-v1|bind-v1:376847b27cbc085039315b7b80743303a1507d25b937ba98b0efbaa5631f183c|geom-v1:899f77be155b46fbd6159e43ce0af1e9318107fce54dd09fd4838b6e83e164de|identity|starterTrousers@1",
+          "byteLength": 269084,
+          "sha256": "sha256:8268f1cb4b5f08a7e2bacfba22a9e38e27e2ae00ed1538eb244976595b2f051f",
+          "hideNodes": [
+            "UndeadV1Shorts"
+          ],
+          "coverageCount": 2386
+        }
+      }
+    },
+    "starterBoots": {
+      "id": "starterBoots",
+      "slot": "feet",
+      "renderClass": "skinned-garment",
+      "layer": "clothing",
+      "covers": [
+        "footL",
+        "footR"
+      ],
+      "conflictsWith": [
+        "starterBoots"
+      ],
+      "component": "boots",
+      "meshName": "StarterBoots",
+      "hideShorts": false,
+      "variants": {
+        "human-v1": {
+          "profileId": "human-v1",
+          "bindSignature": "bind-v1:3b89386c1675e4c6ab596532ab87ac5c90799776c26b96c85621b2c033a21e24",
+          "sourceGeometrySignature": "geom-v1:f961292c01c4b9ce8f0ae67838949610fc3de5b7bd4fe5b77544c5f8603877b1",
+          "sourceBodySha256": "sha256:6e87eb1b31c301d8adccf134043dca7983786c48e931f0d94f185aaa93dddbe9",
+          "glb": "/characters/garments/starterBoots.human-v1.v1.glb",
+          "file": "starterBoots.human-v1.v1.glb",
+          "shapeId": "identity",
+          "version": 1,
+          "cacheKey": "human-v1|bind-v1:3b89386c1675e4c6ab596532ab87ac5c90799776c26b96c85621b2c033a21e24|geom-v1:f961292c01c4b9ce8f0ae67838949610fc3de5b7bd4fe5b77544c5f8603877b1|identity|starterBoots@1",
+          "byteLength": 493776,
+          "sha256": "sha256:96fdc8a7e5e130de5ea570d96764d5b67ded52897c79bb62b878cfcdb4fb72d5",
+          "hideNodes": [],
+          "coverageCount": 4648
+        },
+        "orc-v1": {
+          "profileId": "orc-v1",
+          "bindSignature": "bind-v1:766c0659346b31c4aacd555e62f9870f94753e0635e5c8081a7b4ab860656154",
+          "sourceGeometrySignature": "geom-v1:f0d5e7e819c0569c7bd99be015af52fbcb167b64fa1f58b9de1d70185312f188",
+          "sourceBodySha256": "sha256:3b817c2ed69f59fa7946a35a900a3ae817c6b50ae3a3f0c6d339b2856b61389e",
+          "glb": "/characters/garments/starterBoots.orc-v1.v1.glb",
+          "file": "starterBoots.orc-v1.v1.glb",
+          "shapeId": "identity",
+          "version": 1,
+          "cacheKey": "orc-v1|bind-v1:766c0659346b31c4aacd555e62f9870f94753e0635e5c8081a7b4ab860656154|geom-v1:f0d5e7e819c0569c7bd99be015af52fbcb167b64fa1f58b9de1d70185312f188|identity|starterBoots@1",
+          "byteLength": 493908,
+          "sha256": "sha256:3ff6fce72dc61140ada08ff9cfd92f966fe8e93cc02f6f43a9f1c93f86a9a1ae",
+          "hideNodes": [],
+          "coverageCount": 4648
+        },
+        "undead-v1": {
+          "profileId": "undead-v1",
+          "bindSignature": "bind-v1:376847b27cbc085039315b7b80743303a1507d25b937ba98b0efbaa5631f183c",
+          "sourceGeometrySignature": "geom-v1:899f77be155b46fbd6159e43ce0af1e9318107fce54dd09fd4838b6e83e164de",
+          "sourceBodySha256": "sha256:59891e708862f86e96fef5daa3119365fb02dacb2238d1026631a25856d9251f",
+          "glb": "/characters/garments/starterBoots.undead-v1.v1.glb",
+          "file": "starterBoots.undead-v1.v1.glb",
+          "shapeId": "identity",
+          "version": 1,
+          "cacheKey": "undead-v1|bind-v1:376847b27cbc085039315b7b80743303a1507d25b937ba98b0efbaa5631f183c|geom-v1:899f77be155b46fbd6159e43ce0af1e9318107fce54dd09fd4838b6e83e164de|identity|starterBoots@1",
+          "byteLength": 493908,
+          "sha256": "sha256:f67f67cd82aabae097bc96686d76222b670aeeb2285e5746a428275cc4e2df01",
+          "hideNodes": [],
+          "coverageCount": 4648
+        }
+      }
+    },
+    "mageCoat": {
+      "id": "mageCoat",
+      "slot": "chest",
+      "renderClass": "skinned-garment",
+      "layer": "clothing",
+      "covers": [
+        "torso",
+        "upperArmL",
+        "upperArmR",
+        "lowerArmL",
+        "lowerArmR"
+      ],
+      "conflictsWith": [
+        "starterShirt",
+        "mageCoat"
+      ],
+      "component": "shirt",
+      "meshName": "MageCoat",
+      "hideShorts": false,
+      "variants": {
+        "human-v1": {
+          "profileId": "human-v1",
+          "bindSignature": "bind-v1:3b89386c1675e4c6ab596532ab87ac5c90799776c26b96c85621b2c033a21e24",
+          "sourceGeometrySignature": "geom-v1:f961292c01c4b9ce8f0ae67838949610fc3de5b7bd4fe5b77544c5f8603877b1",
+          "sourceBodySha256": "sha256:6e87eb1b31c301d8adccf134043dca7983786c48e931f0d94f185aaa93dddbe9",
+          "glb": "/characters/garments/mageCoat.human-v1.v1.glb",
+          "file": "mageCoat.human-v1.v1.glb",
+          "shapeId": "identity",
+          "version": 1,
+          "cacheKey": "human-v1|bind-v1:3b89386c1675e4c6ab596532ab87ac5c90799776c26b96c85621b2c033a21e24|geom-v1:f961292c01c4b9ce8f0ae67838949610fc3de5b7bd4fe5b77544c5f8603877b1|identity|mageCoat@1",
+          "byteLength": 8649668,
+          "sha256": "sha256:c69b392f07c8835ea2bf8cf3c52bea04bbe904d8234533c66ebc374d5ae495fa",
+          "hideNodes": [],
+          "coverageCount": 4754
+        }
+      }
+    },
+    "mageBoots": {
+      "id": "mageBoots",
+      "slot": "feet",
+      "renderClass": "skinned-garment",
+      "layer": "clothing",
+      "covers": [
+        "footL",
+        "footR"
+      ],
+      "conflictsWith": [
+        "starterBoots",
+        "mageBoots"
+      ],
+      "component": "boots",
+      "meshName": "MageBoots",
+      "hideShorts": false,
+      "variants": {
+        "human-v1": {
+          "profileId": "human-v1",
+          "bindSignature": "bind-v1:3b89386c1675e4c6ab596532ab87ac5c90799776c26b96c85621b2c033a21e24",
+          "sourceGeometrySignature": "geom-v1:f961292c01c4b9ce8f0ae67838949610fc3de5b7bd4fe5b77544c5f8603877b1",
+          "sourceBodySha256": "sha256:6e87eb1b31c301d8adccf134043dca7983786c48e931f0d94f185aaa93dddbe9",
+          "glb": "/characters/garments/mageBoots.human-v1.v1.glb",
+          "file": "mageBoots.human-v1.v1.glb",
+          "shapeId": "identity",
+          "version": 1,
+          "cacheKey": "human-v1|bind-v1:3b89386c1675e4c6ab596532ab87ac5c90799776c26b96c85621b2c033a21e24|geom-v1:f961292c01c4b9ce8f0ae67838949610fc3de5b7bd4fe5b77544c5f8603877b1|identity|mageBoots@1",
+          "byteLength": 4265500,
+          "sha256": "sha256:1a329901daffbd5bac195003ffbe17659cb174a5cce73063a89c24f2af2746c0",
+          "hideNodes": [],
+          "coverageCount": 4648
+        }
+      }
+    }
+  },
+  "hashesBefore": {
+    "human-v1": "sha256:6e87eb1b31c301d8adccf134043dca7983786c48e931f0d94f185aaa93dddbe9",
+    "orc-v1": "sha256:3b817c2ed69f59fa7946a35a900a3ae817c6b50ae3a3f0c6d339b2856b61389e",
+    "undead-v1": "sha256:59891e708862f86e96fef5daa3119365fb02dacb2238d1026631a25856d9251f"
+  }
+}

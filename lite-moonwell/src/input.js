@@ -61,6 +61,21 @@ const SPELL_KEYS = {
 };
 
 const keys = Object.create(null);
+let inputEnabled = true;
+
+/** Modal game tools release held input on both entry and exit. */
+export function setInputEnabled(enabled) {
+    inputEnabled = !!enabled;
+    for (const code of Object.keys(keys)) delete keys[code];
+    for (const key of Object.keys(input)) {
+        if (typeof input[key] === 'boolean') input[key] = false;
+        else if (typeof input[key] === 'number') input[key] = 0;
+    }
+    input.castSpell = null;
+    releaseButtons();
+    exitPointerLock();
+}
+
 const LOOK_SCALE = 0.0036;
 export const CLICK_SLOP = 16;
 
@@ -81,7 +96,17 @@ function isHudWidget(el) {
     if (!el || !/** @type {Element} */ (el).closest) {
         return false;
     }
-    return !!(/** @type {Element} */ (el).closest("#hud .bar, #hud .pane, #hud .slot"));
+    return !!(/** @type {Element} */ (el).closest(
+        "#hud-paper, #hud-hint, #hud-bag, #hud-bar, #hud-actions, #hud .action-bar, #hud .simple-pane, #hud .help-pane, #hud .hud-actions, #hud button, #hud select, #hud input, #hud textarea, #hud label",
+    ));
+}
+
+function isFormControl(el) {
+    if (!el || el === document.body || el === document.documentElement) {
+        return false;
+    }
+    const tag = el.tagName;
+    return tag === "SELECT" || tag === "TEXTAREA" || tag === "INPUT" || tag === "BUTTON" || tag === "OPTION" || !!el.isContentEditable;
 }
 
 function syncLooking() {
@@ -161,7 +186,7 @@ export function initInput(canvas) {
     const down = (event) => {
         // Action bar / panes own the press; #hud itself is pointer-events:none
         // so empty chrome never eats look.
-        if (isHudWidget(event.target) || event.target !== canvas) {
+        if (!inputEnabled || isHudWidget(event.target) || event.target !== canvas) {
             return;
         }
         if (event.button !== 0 && event.button !== 1 && event.button !== 2) {
@@ -221,6 +246,7 @@ export function initInput(canvas) {
     };
 
     const move = (event) => {
+        if (!inputEnabled) return;
         let healed = false;
         if (!(event.buttons & 1) && input.lmb) {
             input.lmb = false;
@@ -287,23 +313,13 @@ export function initInput(canvas) {
         "wheel",
         (event) => {
             event.preventDefault();
-            input.zoomDelta += event.deltaY * 0.0016;
+            if (inputEnabled) input.zoomDelta += event.deltaY * 0.0016;
         },
         { passive: false },
     );
 
     window.addEventListener("keydown", (event) => {
-        if (event.code === "Tab") {
-            event.preventDefault();
-            if (!event.repeat) {
-                if (event.shiftKey) {
-                    input.tabBack = true;
-                } else {
-                    input.tabPressed = true;
-                }
-            }
-            return;
-        }
+        if (!inputEnabled) return;
         if (event.code === "Escape") {
             if (document.pointerLockElement) {
                 exitPointerLock();
@@ -314,6 +330,20 @@ export function initInput(canvas) {
             }
             if (!event.repeat) {
                 input.escape = true;
+            }
+            return;
+        }
+        if (isFormControl(document.activeElement)) {
+            return;
+        }
+        if (event.code === "Tab") {
+            event.preventDefault();
+            if (!event.repeat) {
+                if (event.shiftKey) {
+                    input.tabBack = true;
+                } else {
+                    input.tabPressed = true;
+                }
             }
             return;
         }
@@ -391,6 +421,7 @@ export function initInput(canvas) {
 }
 
 export function pollInput() {
+    if (!inputEnabled) return;
     let forward = 0;
     let turn = 0;
     let strafe = 0;

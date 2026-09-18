@@ -9,12 +9,28 @@ dist/
 *.log
 .env
 .env.*
+.dream-loop/
 
 # editor / OS cruft
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
+
+# Dream Loop working files
+.dream-loop/
+
+# Local browser/debug output and progression evidence. Published review media
+# lives at ve.sparkify.dev and is referenced from the living docs instead.
+ve-capture/
+.shots/
+.playwright-mcp/
+
+# Blender autosave/backup files and generated POC exports.
+**/*.blend1
+blender/retro-pocs/
+blender/grounded-poc/
+public/retro-pocs/
 
 # the repo is source only — no binaries, no captures
 *.png
@@ -24,3 +40,4 @@ Thumbs.db
 *.webp
 *.mp4
 *.webm
+.playwright-mcp/page-2026-09-13T17-05-01-272Z.yml

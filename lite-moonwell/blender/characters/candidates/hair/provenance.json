@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "job": "m2-hair-proxy-preflight",
+  "recommend": "short02",
+  "hm08Verts": 13380,
+  "failedProxy": {
+    "name": "short01",
+    "why": "200 connected components / 1890 boundary edges; 110 of 118 ymax verts on boundary (open crown). Opaque-fill of card alpha produced the r9 helmet."
+  },
+  "candidates": [
+    {
+      "id": "short02",
+      "role": "recommended",
+      "author": ["Data Collection AB", "Joel Palmius", "Jonas Hauquier"],
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licenseInFile": "explicit CC0 release September 2020 (mhclo/mhmat headers)",
+      "sourceUrl": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
+      "sourceMirror": "https://files2.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
+      "zipSha256": "b542127a8e25547c7c29c19f2d1d2adb9a664c80396ecd694095dbc8028a0107",
+      "basemesh": "hm08",
+      "uuid": "c104cd4a-1edc-43f9-8b94-f63345a44638",
+      "tags": ["Short", "Male"],
+      "inspect": {
+        "verts": 1755,
+        "tris": 3344,
+        "uvs": 2061,
+        "materials": 1,
+        "baryMaps": 1755,
+        "helperMaps": 0,
+        "maxHm08Idx": 12366,
+        "mappingEqualsVerts": true,
+        "components": 1,
+        "boundaryEdges": 164,
+        "boundaryLoops": 1,
+        "ymaxVerts": 38,
+        "ymaxVertsOnBoundary": 0,
+        "boundaryNearCrownTop15pct": 0,
+        "boundaryNearLowBot25pct": 74,
+        "facesTop20pctHeight": 329,
+        "nonmanifold": 0
+      },
+      "texture": {
+        "diffuse": "short02_diffuse.png",
+        "normal": "short02_normal.png",
+        "alpha": "RGBA; 57.91% a=0 unused UV, 37.54% a=255, 4.54% mid (hairline fringe). mhmat transparent True.",
+        "meanRgbAgt16": [75.8, 60.6, 50.0]
+      },
+      "files": [
+        {"path": "short02/short02.mhclo", "zipMember": "hair/short02/short02.mhclo", "sha256": "625736cdb73e6d094df6e5a2df18f371781f1d2cd37b0ae15795c5d7051c3ec2"},
+        {"path": "short02/short02.obj", "zipMember": "hair/short02/short02.obj", "sha256": "48f979114adfa712165a69cc55c45a70831af1fb3cba8e2a89120f0c87407b64"},
+        {"path": "short02/short02.mhmat", "zipMember": "hair/short02/short02.mhmat", "sha256": "2ed04c8aad9c1a35d858ca72091525d32b1da3b61b5a031634dd528fd8530f6d"},
+        {"path": "short02/short02.thumb", "zipMember": "hair/short02/short02.thumb", "sha256": "af21a0e84bfcc294b9840d90a04f1b6655ad909bc09328251886adffbc0727e8"},
+        {"path": "short02/short02_diffuse.png", "zipMember": "hair/short02/short02_diffuse.png", "sha256": "47fe33831a3929567c733356dd66243116e05df2ace1f884ddca0080b728229f"},
+        {"path": "short02/short02_normal.png", "zipMember": "hair/short02/short02_normal.png", "sha256": "2cfac7619f8eec77dd90df979d912415058f4f0fc16940cba40a8eb1ae6d74b5"},
+        {"path": "short02/CC0-1.0.txt", "note": "copied from blender/characters/sources/LICENSE.ASSETS.md", "sha256": "f6089cba01cb570a24712b41ab8a586ccd3cc5ef53dc266ca50b95c288956d2c"}
+      ]
+    },
+    {
+      "id": "mhair02",
+      "role": "staged-not-ship",
+      "listingAuthor": "culturalibre",
+      "listingUrl": "http://www.makehumancommunity.org/clothes/mhair02.html",
+      "listingLicense": "CC0 - Creative Commons Zero",
+      "fileHeaderAuthor": "MHteam",
+      "fileHeaderLicense": "AGPL3 (http://www.makehuman.org/node/320)",
+      "licenseStatus": "conflict; AGPL3 in mhclo is not verified as a shipping-compatible graphics license",
+      "basemesh": "hm08",
+      "uuid": "f81a4e9a-e3d7-4ecb-bdf0-16d7fd9070a4",
+      "inspect": {
+        "verts": 2314,
+        "tris": 3460,
+        "uvs": 2541,
+        "baryMaps": 2314,
+        "maxHm08Idx": 12367,
+        "mappingEqualsVerts": true,
+        "components": 75,
+        "boundaryEdges": 1018,
+        "boundaryLoops": 75,
+        "ymaxVerts": 132,
+        "ymaxVertsOnBoundary": 80,
+        "boundaryNearCrownTop15pct": 358,
+        "boundaryNearLowBot25pct": 39
+      },
+      "files": [
+        {"path": "mhair02/mhair02.mhclo", "url": "http://www.makehumancommunity.org/sites/default/files/clothes/4881/1207244947/mhair02.mhclo", "sha256": "67933350d1e006957decb905c58c4643f7aea911237077f9a269624607124b44"},
+        {"path": "mhair02/mhair02.obj", "url": "http://www.makehumancommunity.org/sites/default/files/clothes/4881/1777258466/mhair02.obj", "sha256": "d8aa9a81cd2d49134c76906a2a50efae578d36ff26883795993d326daa804725"},
+        {"path": "mhair02/mhair02.mhmat", "url": "http://www.makehumancommunity.org/sites/default/files/clothes/4881/412292177/mhair02.mhmat", "sha256": "fa98c1df99efa670eeb0271b26e5327a16aec0eebc650c08f8fcdd72a22fd668"},
+        {"path": "mhair02/mhair02.thumb", "url": "http://www.makehumancommunity.org/sites/default/files/clothes/4881/238593275/mhair02.thumb", "sha256": "8c3c8350cad7876969e5c7724c0cc1220ff309931045d4a1a9684645b55fd6e4"},
+        {"path": "mhair02/mhair02.png", "url": "http://www.makehumancommunity.org/sites/default/files/clothes/4881/1020592703/mhair02.png", "sha256": "9743c5f6d724df0cd681454a4e57db9118ea9976d8c5caa87f62844518809349"},
+        {"path": "mhair02/mhair02-illustration.png", "url": "http://www.makehumancommunity.org/sites/default/files/clothes/4881/828556555/mhair02%20image.png", "sha256": "3467060c9f4fb1f11c41419239e24616e490b4d0ba0627563029917db325ae2c"},
+        {"path": "mhair02/source-page.html", "url": "http://www.makehumancommunity.org/clothes/mhair02.html", "sha256": "4d6e213b7e1c8a62d158da6c18923b03bdf931fab84fc722fd51ebea53c3d3d4"}
+      ]
+    }
+  ]
+}

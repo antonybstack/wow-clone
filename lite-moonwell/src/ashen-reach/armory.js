@@ -1,0 +1,113 @@
+import {createArcRotateCamera, createPointLight, addToScene} from '@babylonjs/lite';
+import {setInputEnabled} from '../input.js';
+import './armory.css';
+
+/** In-scene developer inspection. The renderer, actor and animation manager are shared. */
+export function createArmory({scene, canvas, player, body, combat, equipment, getView, setView}) {
+    const camera = createArcRotateCamera(Math.PI/2,1.36,4.8,{x:0,y:1,z:0});
+    camera.fov=.56;camera.nearPlane=.05;camera.farPlane=450;
+    const key = createPointLight([0,3,0],0);key.diffuse=[.96,.90,.78];key.range=8;addToScene(scene,key);
+    const launcher = document.createElement('button');
+    launcher.id='armory-launch';launcher.textContent='Armory';launcher.title='Developer armory (C)';
+    launcher.setAttribute('aria-keyshortcuts','C');launcher.setAttribute('aria-expanded','false');
+    const element = document.createElement('section');
+    element.id='armory';element.hidden=true;element.setAttribute('role','dialog');element.setAttribute('aria-modal','true');element.setAttribute('aria-labelledby','armory-title');
+    element.innerHTML=`
+      <div class="armory-stage" aria-label="Character view. Drag to orbit; scroll to zoom."></div>
+      <header class="armory-heading"><small>ASHEN REACH / DEVELOPER TOOLS</small><h1 id="armory-title">The Armory</h1><p>Your character. The same world.</p></header>
+      <aside class="armory-panel">
+        <div class="armory-panel-title"><span>Character & equipment</span><button data-close aria-label="Close armory">×</button></div>
+        <label class="armory-field">Race<select data-race><option value="human">Human</option><option value="orc" disabled>Orc — fit not ready</option><option value="undead" disabled>Undead — fit not ready</option></select></label>
+        <p class="armory-note">Human is available. Additional races will unlock with their fitted equipment.</p>
+        <h2>Equipment</h2><div class="armory-presets">${Object.entries(equipment.presets).map(([id,preset])=>`<button data-outfit="${id}">${preset.name}</button>`).join('')}</div>
+        <div class="armory-slots">${[['helmet','Helmet','Unequipped'],['torso','Torso','Base appearance'],['legs','Legs','Charcoal trousers'],['boots','Boots','Base appearance'],['gloves','Gloves','Unequipped'],['mainHand','Main hand','Unequipped'],['offHand','Off-hand','Unequipped']].map(([slot,label,value])=>`<button data-slot="${slot}" disabled><span>${label}</span><strong>${value}</strong><small>Items coming next</small></button>`).join('')}</div>
+        <p class="armory-note">Select a fitted item or unequip it. Your selection stays equipped in the churchyard.</p>
+        <label class="armory-check"><input type="checkbox" data-light> Inspection fill light</label>
+        <button class="armory-return" data-close>Return to the churchyard <kbd>Esc</kbd></button>
+      </aside>
+      <footer class="armory-tools">
+        <div class="armory-views" role="group" aria-label="Camera views"><button data-view="front">Front</button><button data-view="side">Side</button><button data-view="back">Back</button><button data-view="face">Face</button><button data-view="full">Full body</button></div>
+        <div class="armory-animation"><label>Motion<select data-motion></select></label><button data-pause>Pause</button><output data-time></output></div>
+        <input data-time-slider type="range" min="0" max="1" step="0.001" value="0" aria-label="Animation time">
+        <p>Drag to orbit · Scroll to zoom · Pose previews do not move or deal damage</p>
+      </footer>`;
+    document.body.append(launcher,element);
+    const stage=element.querySelector('.armory-stage'),motion=element.querySelector('[data-motion]'),slider=element.querySelector('[data-time-slider]'),pause=element.querySelector('[data-pause]'),timeLabel=element.querySelector('[data-time]');
+    for(const slot of ['helmet','torso','legs','boots','gloves','mainHand','offHand']){
+        const old=element.querySelector(`[data-slot="${slot}"]`),field=document.createElement('label');field.className='armory-equip';
+        field.innerHTML=`<span>${{helmet:'Head',torso:'Torso',legs:'Legs',boots:'Boots',gloves:'Gloves',mainHand:'Main hand',offHand:'Off-hand'}[slot]}</span><select data-equipment="${slot}" aria-label="${slot} equipment"><option value="">Unequipped</option>${Object.values(equipment.items).filter(item=>item.slot===slot).map(item=>`<option value="${item.id}">${item.name}</option>`).join('')}</select>`;
+        old.replaceWith(field);const select=field.querySelector('select');select.value=equipment.getState()[slot]||'';select.onchange=()=>equipment.equip(slot,select.value||null);
+    }
+    for(const button of element.querySelectorAll('[data-outfit]'))button.onclick=()=>{equipment.equipPreset(button.dataset.outfit);for(const select of element.querySelectorAll('[data-equipment]'))select.value=equipment.getState()[select.dataset.equipment]||'';face('full');};
+    let open=false, priorView='play', focusHeight=.78, drag=null, lastPaint=0;
+    const face = kind => {
+        const facing=player.getFacing();
+        if(kind==='front') camera.alpha=Math.PI/2-facing;
+        if(kind==='back') camera.alpha=-Math.PI/2-facing;
+        if(kind==='side') camera.alpha=-facing;
+        if(kind==='face'){focusHeight=1.56;camera.radius=1.6;camera.beta=1.46;}
+        else if(kind==='full'){const staff=equipment.getState().mainHand==='graveweaverStaff';focusHeight=staff?.93:.78;camera.radius=staff?5.35:4.8;camera.beta=1.36;}
+    };
+    const close = () => {
+        if(!open)return;
+        open=false;drag=null;key.intensity=0;
+        element.hidden=true;document.body.classList.remove('armory-open');launcher.setAttribute('aria-expanded','false');
+        body.endInspection();setInputEnabled(true);setView(priorView);
+        // Canvas focus is necessary for immediate movement/spell keys after a button click.
+        canvas.focus();
+    };
+    const show = () => {
+        if(open)return;
+        priorView=getView();
+        for(const select of element.querySelectorAll('[data-equipment]'))select.value=equipment.getState()[select.dataset.equipment]||'';
+        combat.interrupt('Armory opened');setInputEnabled(false);setView('play');combat.setVisible(false);
+        const preview=body.beginInspection();
+        motion.innerHTML=preview.options.map(({id,label})=>`<option value="${id}">${label}</option>`).join('');
+        slider.value='0';pause.textContent='Pause';focusHeight=.78;camera.radius=4.8;camera.beta=1.36;face('front');
+        open=true;scene.camera=camera;element.hidden=false;launcher.setAttribute('aria-expanded','true');
+        document.body.classList.add('armory-open');element.querySelector('[data-close]').focus();update(0);
+    };
+    launcher.addEventListener('click',show);
+    for(const button of element.querySelectorAll('[data-close]'))button.onclick=close;
+    for(const button of element.querySelectorAll('[data-view]'))button.onclick=()=>face(button.dataset.view);
+    motion.onchange=()=>{body.inspection?.select(motion.value);update(0);};
+    pause.onclick=()=>{const preview=body.inspection;if(preview){preview.setPaused(!preview.getState().paused);update(0);}};
+    slider.oninput=()=>body.inspection?.seek(Number(slider.value));
+    stage.tabIndex=-1;
+    stage.onpointerdown=e=>{stage.focus();if(e.button!==0&&e.button!==2)return;stage.setPointerCapture(e.pointerId);drag={x:e.clientX,y:e.clientY};e.preventDefault();};
+    stage.onpointermove=e=>{if(!drag)return;camera.alpha-=(e.clientX-drag.x)*.008;camera.beta=Math.max(.35,Math.min(2.55,camera.beta+(e.clientY-drag.y)*.006));drag={x:e.clientX,y:e.clientY};};
+    stage.onpointerup=stage.onpointercancel=()=>{drag=null;};
+    stage.addEventListener('wheel',e=>{e.preventDefault();camera.radius=Math.max(.8,Math.min(6,camera.radius*Math.exp(e.deltaY*.001)));},{passive:false});
+    // Capture before the shared gameplay key handlers, including V/R/H and spells.
+    window.addEventListener('keydown',e=>{
+        if(!open){
+            if(e.code==='KeyC'&&!e.repeat&&!e.metaKey&&!e.ctrlKey&&!e.altKey&&!/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)){e.preventDefault();e.stopImmediatePropagation();show();}
+            return;
+        }
+        if(e.code==='Escape'||(e.code==='KeyC'&&!/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))){e.preventDefault();e.stopImmediatePropagation();if(!e.repeat)close();return;}
+        // Let native controls use arrows/space; never let their keys reach gameplay.
+        e.stopPropagation();
+        if(e.code==='Tab'){
+            const controls=[...element.querySelectorAll('button:not(:disabled),select,input')],i=controls.indexOf(document.activeElement);
+            if(e.shiftKey&&i<=0){e.preventDefault();controls.at(-1).focus();}
+            else if(!e.shiftKey&&(i===controls.length-1||i<0)){e.preventDefault();controls[0].focus();}
+        }
+    },true);
+    const update = dt => {
+        if(!open)return;
+        const p=player.body.position,feet=p.y-player.capsuleHeight/2;
+        // Offset toward the panel to keep the character centered in the usable stage.
+        const offset=innerWidth>760?.38:0;
+        camera.target.x=p.x-Math.sin(camera.alpha)*offset;
+        camera.target.z=p.z+Math.cos(camera.alpha)*offset;
+        camera.target.y=feet+focusHeight;
+        key.position.set(p.x+Math.cos(camera.alpha)*2,feet+2.4,p.z+Math.sin(camera.alpha)*2);
+        key.intensity=element.querySelector('[data-light]').checked?1.5:0;
+        lastPaint+=dt;if(lastPaint<.05&&dt!==0)return;lastPaint=0;
+        const state=body.inspection?.getState();if(!state)return;
+        slider.max=String(state.duration);slider.value=String(state.time);
+        timeLabel.textContent=`${state.time.toFixed(2)} / ${state.duration.toFixed(2)} s`;
+        pause.textContent=state.paused?'Play':'Pause';pause.setAttribute('aria-pressed',String(state.paused));
+    };
+    return {open:show,close,update,camera,get isOpen(){return open;},getState:()=>({open, race:'human',preview:body.inspection?.getState()||null})};
+}

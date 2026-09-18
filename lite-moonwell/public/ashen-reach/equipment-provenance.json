@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "bodyProfile": "human-source-v1",
+  "rigJoints": 65,
+  "clips": 54,
+  "items": [
+    {
+      "name": "GraveweaverGloves",
+      "vertices": 2596,
+      "min": [
+        -0.9681980609893799,
+        1.3337215185165405,
+        -0.06093364208936691
+      ],
+      "max": [
+        0.9682038426399231,
+        1.425602674484253,
+        0.09429846704006195
+      ]
+    },
+    {
+      "name": "GraveweaverHood",
+      "vertices": 4723,
+      "min": [
+        -0.11097930371761322,
+        1.4543555974960327,
+        -0.14121104776859283
+      ],
+      "max": [
+        0.10917956382036209,
+        1.7537131309509277,
+        0.2575684189796448
+      ]
+    },
+    {
+      "name": "GraveweaverPendant",
+      "vertices": 48,
+      "min": [
+        -0.09099999815225601,
+        1.2829999923706055,
+        0.14000000059604645
+      ],
+      "max": [
+        0.09099999815225601,
+        1.5,
+        0.2280000001192093
+      ]
+    },
+    {
+      "name": "GraveweaverSkirt",
+      "vertices": 3463,
+      "min": [
+        -0.32428449392318726,
+        0.11999993771314621,
+        -0.17937198281288147
+      ],
+      "max": [
+        0.2824954390525818,
+        0.9900000095367432,
+        0.2689002454280853
+      ]
+    },
+    {
+      "name": "GraveweaverTop",
+      "vertices": 3497,
+      "min": [
+        -0.7855891585350037,
+        0.8399999737739563,
+        -0.11647816002368927
+      ],
+      "max": [
+        0.7859432697296143,
+        1.5164830684661865,
+        0.19036071002483368
+      ]
+    },
+    {
+      "name": "PilgrimTunic",
+      "vertices": 8960,
+      "min": [
+        -0.7988780736923218,
+        0.7599999904632568,
+        -0.13938069343566895
+      ],
+      "max": [
+        0.7988088130950928,
+        1.5317375659942627,
+        0.2315165251493454
+      ]
+    },
+    {
+      "name": "WayfarerBoots",
+      "vertices": 3530,
+      "min": [
+        -0.2625035047531128,
+        -0.01039090659469366,
+        -0.09241664409637451
+      ],
+      "max": [
+        0.26323527097702026,
+        0.3604010343551636,
+        0.2343578338623047
+      ]
+    },
+    {
+      "name": "WayfarerTrousers",
+      "vertices": 1380,
+      "min": [
+        -0.2531719505786896,
+        0.13778337836265564,
+        -0.10054701566696167
+      ],
+      "max": [
+        0.2636840343475342,
+        1.0022691488265991,
+        0.1408304125070572
+      ]
+    },
+    {
+      "name": "WayfarerTunic",
+      "vertices": 3776,
+      "min": [
+        -0.7855891585350037,
+        0.719642162322998,
+        -0.12586709856987
+      ],
+      "max": [
+        0.7859432697296143,
+        1.5164830684661865,
+        0.1934708207845688
+      ]
+    }
+  ],
+  "coverageTriangles": {
+    "BodyExposed": 9593,
+    "BodyUnderTunic": 3895,
+    "BodyWaist": 554,
+    "BodyHands": 6290,
+    "BodyUnderLegs": 1736,
+    "BodyUnderBoots": 4688
+  },
+  "sourceSha256": "ff503dd0e5b0dc3b41d9892a3e89f75f798a8d47b0c698d58f0ea99007df9784",
+  "outputSha256": "064820476771a5e8e3fdd5f005ad493b0994d987502cc780290085e70a772907",
+  "source": "Rehman Polanski Viking garments; Donitz Monk robe/hood; Margaret Toigo short gloves. CC0 MakeHuman suits02 and gloves01 packs",
+  "license": "CC0-1.0 (garments only; actor/rig retain existing licenses)",
+  "sourcePage": "https://static.makehumancommunity.org/assets/assetpacks/suits02.html",
+  "archiveSha256": "437f4d7ab92b698c1fb1047e7d62b22c11f195b2473e936118661dc8e6b7eb7a",
+  "additionalSources": [
+    {
+      "sourcePage": "https://static.makehumancommunity.org/assets/assetpacks/gloves01.html",
+      "archiveSha256": "ecdaee1d02749d17352791d415cb622a883350cc8a4b90eda3725aef35d9afb2",
+      "author": "Margaret Toigo",
+      "asset": "short gloves",
+      "license": "CC0-1.0"
+    },
+    {
+      "author": "Project-original",
+      "asset": "Graveweaver pendant, runtime staff and grimoire",
+      "method": "Authored low-poly geometry; OSRS Ahrim silhouette reference only, no copied game assets."
+    }
+  ],
+  "method": "MakeClothes fitting/weight interpolation; existing Human rest/repose; original source skin and clips; bounded prewarmed catalogue."
+}

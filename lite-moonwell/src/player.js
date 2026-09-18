@@ -1,589 +1,384 @@
 /**
- * Walkable character using Babylon Lite's Havok Physics V2 controller.
- * WoW locomotion: instant wish velocity, facing-relative WASD, Havok collide-and-slide.
- *
- *   createHavokWorld → static colliders → createPhysicsCharacterController
- *   onPhysicsAfterStep: checkSupport → setVelocity(wish) → integrate
+ * Facing-relative MMORPG movement using the Babylon Lite Havok controller.
+ * World collision is authored explicitly: decorative meshes never become walls.
  */
 import HavokPhysics from "@babylonjs/havok";
 import {
-    CharacterSupportedState,
-    PhysicsShapeType,
-    addToScene,
-    createBox,
-    createCapsule,
-    createHavokWorld,
-    createPbrMaterial,
-    createPhysicsAggregate,
-    createPhysicsCharacterController,
-    createPhysicsShape,
-    createSphere,
-    onPhysicsAfterStep,
-    setParent,
+    CharacterSupportedState, PhysicsShapeType, addToScene, createCapsule,
+    createHavokWorld, createPbrMaterial, createPhysicsAggregate,
+    createPhysicsCharacterController, createPhysicsShape, createSphere,
+    createTransformNode, onPhysicsAfterStep, setParent, physicsRaycast,
 } from "@babylonjs/lite";
-
 import { input, pollInput, endFrame } from "./input.js";
 
 const WALK_SPEED = 2.5;
-const RUN_SPEED = 7.0;
+const RUN_SPEED = 7;
+const BACK_SPEED = 3.5;
 const TURN_RATE = 2.55;
-/**
- * 6.6 m/s against 20.8 m/s² is a 1.05 m apex (v²/2g, 0.63 s hang).
- * Havok can stay SUPPORTED for a frame after takeoff — gravity still owns Y
- * then, and jump is not re-applied until a real landing (`jumpLocked`).
- */
 const JUMP_SPEED = 6.6;
 const GRAVITY = { x: 0, y: -20.8, z: 0 };
-const GRAVITY_Y = 20.8;
 const DOWN = { x: 0, y: -1, z: 0 };
-const CAPSULE = { height: 1.55, radius: 0.28 };
-const FACE_DAMP = 9;
-const KINEMATIC_MAX_R = 72;
+/** Legacy Mixamo default. Never mutate; per-instance specs are copies. */
+export const DEFAULT_CAPSULE = Object.freeze({ height: 1.55, radius: 0.28 });
 
-function angleDelta(a, b) {
-    let d = b - a;
-    while (d > Math.PI) {
-        d -= Math.PI * 2;
+/**
+ * Lite Havok capsule uses pointA/B at ±(height/2 − radius). Height must be ≥ 2×radius.
+ * @param {{ height?: number, radius?: number } | null | undefined} capsule
+ */
+export function resolveCapsule(capsule) {
+    if (capsule == null) {
+        return { height: DEFAULT_CAPSULE.height, radius: DEFAULT_CAPSULE.radius };
     }
-    while (d < -Math.PI) {
-        d += Math.PI * 2;
+    const height = Number(capsule.height);
+    const radius = Number(capsule.radius);
+    if (!Number.isFinite(height) || height <= 0 || !Number.isFinite(radius) || radius <= 0) {
+        throw new Error(`Invalid capsule dimensions: height=${capsule.height} radius=${capsule.radius}`);
     }
-    return d;
+    if (height < 2 * radius) {
+        throw new Error(`Invalid capsule dimensions: height ${height} < 2*radius ${2 * radius}`);
+    }
+    return { height, radius };
 }
 
-function angleDamp(cur, target, rate, dt) {
-    return cur + angleDelta(cur, target) * (1 - Math.exp(-rate * dt));
+/**
+ * Preserve an explicit finite spawn center. Clamp upward only if it would sit
+ * below ground + half capsule (embedded). Floor+half only when Y is missing.
+ * @param {{x?:number,y?:number,z?:number}|null|undefined} spawn
+ * @param {{height:number,radius:number}} spec
+ * @param {(x:number,z:number)=>number} [groundHeight]
+ */
+export function resolveSpawnCenter(spawn, spec, groundHeight) {
+    const x = Number.isFinite(spawn?.x) ? spawn.x : 0;
+    const z = Number.isFinite(spawn?.z) ? spawn.z : 2.15;
+    const sampled = typeof groundHeight === "function" ? groundHeight(x, z) : 0.125;
+    const ground = Number.isFinite(sampled) ? sampled : 0.125;
+    const floorCenter = ground + spec.height * 0.5;
+    const yIn = spawn?.y;
+    if (!Number.isFinite(yIn)) {
+        return { x, y: floorCenter, z, ground, floorCenter, clamped: true };
+    }
+    const y = yIn < floorCenter ? floorCenter : yIn;
+    return { x, y, z, ground, floorCenter, clamped: y !== yIn };
 }
 
-function localSize(mesh) {
-    const a = mesh.boundMin;
-    const b = mesh.boundMax;
-    if (!a || !b) {
-        return null;
-    }
-    const ax = a.x ?? a[0];
-    const ay = a.y ?? a[1];
-    const az = a.z ?? a[2];
-    const bx = b.x ?? b[0];
-    const by = b.y ?? b[1];
-    const bz = b.z ?? b[2];
-    if (![ax, ay, az, bx, by, bz].every(Number.isFinite)) {
-        return null;
-    }
-    return { dx: Math.abs(bx - ax), dy: Math.abs(by - ay), dz: Math.abs(bz - az) };
+/**
+ * Starter-zone plant: this layout's spawn means "on the terrain", not a hover.
+ * Does not change resolveSpawnCenter's elevated-Y contract.
+ */
+export function plantSpawnOnTerrain(spawn, spec, groundHeight) {
+    const x = Number.isFinite(spawn?.x) ? spawn.x : 0;
+    const z = Number.isFinite(spawn?.z) ? spawn.z : -6;
+    const sampled = typeof groundHeight === "function" ? groundHeight(x, z) : 0;
+    const ground = Number.isFinite(sampled) ? sampled : 0;
+    return { x, y: ground + spec.height * 0.5, z, ground };
+}
+const JUMP_BUFFER = 0.12;
+const COYOTE_TIME = 0.085;
+
+// A supported capsule can have positive Y velocity while climbing a slope or
+// resolving contact penetration. Only an actual jump impulse rejects support
+// during ascent; ordinary uphill motion must remain grounded.
+export function hasGroundSupport(supported, verticalSpeed, jumpInFlight) {
+    return supported && !(jumpInFlight && verticalSpeed > 0.15);
 }
 
-function worldTRS(mesh) {
-    const m = mesh.worldMatrix;
-    if (!m || m.length < 16) {
-        return null;
-    }
-    const sx = Math.hypot(m[0], m[1], m[2]) || 1;
-    const sy = Math.hypot(m[4], m[5], m[6]) || 1;
-    const sz = Math.hypot(m[8], m[9], m[10]) || 1;
-    const r00 = m[0] / sx;
-    const r10 = m[1] / sx;
-    const r20 = m[2] / sx;
-    const r01 = m[4] / sy;
-    const r11 = m[5] / sy;
-    const r21 = m[6] / sy;
-    const r02 = m[8] / sz;
-    const r12 = m[9] / sz;
-    const r22 = m[10] / sz;
-    const t = r00 + r11 + r22;
-    let qx;
-    let qy;
-    let qz;
-    let qw;
-    if (t > 0) {
-        const s = Math.sqrt(t + 1) * 2;
-        qw = 0.25 * s;
-        qx = (r21 - r12) / s;
-        qy = (r02 - r20) / s;
-        qz = (r10 - r01) / s;
-    } else if (r00 > r11 && r00 > r22) {
-        const s = Math.sqrt(1 + r00 - r11 - r22) * 2;
-        qw = (r21 - r12) / s;
-        qx = 0.25 * s;
-        qy = (r01 + r10) / s;
-        qz = (r02 + r20) / s;
-    } else if (r11 > r22) {
-        const s = Math.sqrt(1 + r11 - r00 - r22) * 2;
-        qw = (r02 - r20) / s;
-        qx = (r01 + r10) / s;
-        qy = 0.25 * s;
-        qz = (r12 + r21) / s;
-    } else {
-        const s = Math.sqrt(1 + r22 - r00 - r11) * 2;
-        qw = (r10 - r01) / s;
-        qx = (r02 + r20) / s;
-        qy = (r12 + r21) / s;
-        qz = 0.25 * s;
-    }
-    return {
-        x: m[12],
-        y: m[13],
-        z: m[14],
-        sx,
-        sy,
-        sz,
-        qx,
-        qy,
-        qz,
-        qw,
-    };
+export function surfaceVerticalSpeed(vx, vz, normal, surfaceVelocity) {
+    if (!normal || normal.y <= 0.001) return 0;
+    const sx = surfaceVelocity?.x || 0, sy = surfaceVelocity?.y || 0, sz = surfaceVelocity?.z || 0;
+    return sy - (normal.x * (vx - sx) + normal.z * (vz - sz)) / normal.y;
 }
 
-function colliderKind(mesh) {
-    const name = (mesh.name || "").toLowerCase();
-    if (
-        name.startsWith("player")
-        || name.startsWith("walkslab")
-        || name.startsWith("phys_")
-        || name.startsWith("tree")
-        || name.includes("island_tree")
-        || name.startsWith("mesh.")
-        || name.startsWith("firefly")
-        || name.startsWith("shroom")
-        || name === "moon"
-        || name.includes("aim")
-        || name.includes("windowglow")
-        || name.includes("_flame")
-        || name.startsWith("fencewall")
-        || name.startsWith("fencepost")
-        || name.startsWith("hamletkerb")
-        || name.startsWith("hamletring")
-        || name.startsWith("ruinslook")
-        || name === "ground"
-        || name.startsWith("dirtring")
-        || name.startsWith("kerb_")
-        || name.startsWith("spell")
-        || name.startsWith("staff")
-        || name.startsWith("hood")
-        || name.startsWith("cowl")
-        || name.startsWith("cape")
-        || name.startsWith("tunic")
-        || name.startsWith("robe")
-        || name.startsWith("sleeve")
-        || name.startsWith("boot")
-        || name.startsWith("dummy")
-        || name.startsWith("alpha_")
-        || name.includes("proto")
-        || name.includes("ramp_")
-        || name.startsWith("eldenramp")
-    ) {
-        return null;
-    }
-    const size = localSize(mesh);
-    if (!size) {
-        return null;
-    }
-    const trs = worldTRS(mesh);
-    const sx = trs?.sx ?? 1;
-    const sy = trs?.sy ?? 1;
-    const sz = trs?.sz ?? 1;
-    const w = size.dx * sx;
-    const h = size.dy * sy;
-    const d = size.dz * sz;
-    const xz = Math.max(w, d);
-    if (xz < 0.15 && h < 0.15) {
-        return null;
-    }
-    if (trs && trs.y < -40) {
-        return null;
-    }
-    // Huge displaced floor: always triangle mesh. A BOX AABB fills the map.
-    if (name.startsWith("ruinfloor") || name.startsWith("plane") || xz >= 40) {
-        return "mesh";
-    }
-    if (xz >= 1.5 && h < 0.55) {
-        return "mesh";
-    }
-    return "box";
-}
-
-function addGroundSlab(engine, scene, world) {
-    const slab = createBox(engine, { width: 160, height: 0.4, depth: 160 });
-    slab.name = "WalkSlab";
-    slab.position.y = -10.0;
-    slab.visible = false;
-    addToScene(scene, slab);
-    createPhysicsAggregate(world, slab, PhysicsShapeType.BOX, {
-        mass: 0,
-        friction: 0.9,
-        restitution: 0,
-    });
-}
-
-/** Invisible BOX ring at world positions — glTF-baked fence meshes sit at local origin. */
-function addHamletRing(engine, scene, world) {
-    const radius = 78;
-    const count = 64;
-    const size = 2.4;
-    for (let i = 0; i < count; i++) {
-        const a = (i / count) * Math.PI * 2;
-        const wall = createBox(engine, { width: size, height: 28, depth: size });
-        wall.name = "HamletRing";
-        wall.position.x = Math.cos(a) * radius;
-        wall.position.y = 12.0;
-        wall.position.z = Math.sin(a) * radius;
-        wall.visible = false;
-        addToScene(scene, wall);
-        createPhysicsAggregate(world, wall, PhysicsShapeType.BOX, {
-            mass: 0,
-            friction: 0.9,
-            restitution: 0,
-        });
-    }
-}
-
-function addStaticColliders(engine, scene, world, meshes) {
-    let meshCount = 0;
-    let boxCount = 0;
-    for (const mesh of meshes) {
-        const kind = colliderKind(mesh);
-        if (!kind) {
-            continue;
-        }
+/** A collision proxy is a transform only, with no GPU geometry or draw call. */
+function addStaticColliders(world, descriptors) {
+    const counts = { meshCount: 0, boxCount: 0, skipped: 0 };
+    for (const entry of descriptors) {
+        const mesh = entry.mesh || (entry._cpuPositions ? entry : null);
+        const type = entry.type || mesh?.metadata?.collider || "box";
         try {
-            if (kind === "mesh") {
-                const shape = createPhysicsShape(world, {
-                    type: PhysicsShapeType.MESH,
-                    mesh,
-                });
-                createPhysicsAggregate(world, mesh, PhysicsShapeType.MESH, {
-                    mass: 0,
-                    friction: 0.9,
-                    restitution: 0,
-                    shape,
-                });
-                meshCount += 1;
+            if (type === "mesh") {
+                if (!mesh) throw new Error("Triangle collision requires a mesh");
+                const shape = createPhysicsShape(world, { type: PhysicsShapeType.MESH, mesh });
+                // Procedural terrain is authored in world space or has a root transform.
+                createPhysicsAggregate(world, mesh, PhysicsShapeType.MESH,
+                    { mass: 0, friction: 0.9, restitution: 0, shape });
+                counts.meshCount++;
                 continue;
             }
-            const size = localSize(mesh);
-            const trs = worldTRS(mesh);
-            if (!size || !trs) {
-                continue;
+            let position = entry.position;
+            let size = entry.size;
+            let rotation = entry.rotation;
+            if (mesh) {
+                const min = mesh.boundMin;
+                const max = mesh.boundMax;
+                const m = mesh.worldMatrix;
+                if (!min || !max || !m) throw new Error("Box collider has no bounds");
+                const value = (a, i, key) => a[key] ?? a[i];
+                const cx = (value(min, 0, "x") + value(max, 0, "x")) * 0.5;
+                const cy = (value(min, 1, "y") + value(max, 1, "y")) * 0.5;
+                const cz = (value(min, 2, "z") + value(max, 2, "z")) * 0.5;
+                position = { x: m[0] * cx + m[4] * cy + m[8] * cz + m[12],
+                    y: m[1] * cx + m[5] * cy + m[9] * cz + m[13],
+                    z: m[2] * cx + m[6] * cy + m[10] * cz + m[14] };
+                const sx = Math.hypot(m[0], m[1], m[2]);
+                const sy = Math.hypot(m[4], m[5], m[6]);
+                const sz = Math.hypot(m[8], m[9], m[10]);
+                size = { x: (value(max, 0, "x") - value(min, 0, "x")) * sx,
+                    y: (value(max, 1, "y") - value(min, 1, "y")) * sy,
+                    z: (value(max, 2, "z") - value(min, 2, "z")) * sz };
+                // Architectural collision proxies are upright; yaw follows the world transform.
+                rotation = { y: Math.atan2(m[8] / (sz || 1), m[10] / (sz || 1)) };
             }
-            const width = Math.max(size.dx * trs.sx, 0.2);
-            const height = Math.max(size.dy * trs.sy, 0.2);
-            const depth = Math.max(size.dz * trs.sz, 0.2);
-            if (width > 80 && depth > 80) {
-                continue;
+            if (!position || !size) throw new Error("Box collider needs position and size");
+            const node = createTransformNode(`Collision_${mesh?.name || counts.boxCount}`,
+                position.x, position.y, position.z);
+            node.metadata = { colliderId: entry.id ?? null };
+            if (rotation?.w !== undefined) {
+                node.rotationQuaternion.set(rotation.x, rotation.y, rotation.z, rotation.w);
+            } else if (rotation) {
+                node.rotation.set(rotation.x || 0, rotation.y || 0, rotation.z || 0);
             }
-            const box = createBox(engine, { width, height, depth });
-            box.name = `Phys_${mesh.name || "box"}`;
-            box.visible = false;
-            box.position.x = trs.x;
-            box.position.y = trs.y;
-            box.position.z = trs.z;
-            if (box.rotationQuaternion?.set) {
-                box.rotationQuaternion.set(trs.qx, trs.qy, trs.qz, trs.qw);
-            }
-            addToScene(scene, box);
-            createPhysicsAggregate(world, box, PhysicsShapeType.BOX, {
-                mass: 0,
-                friction: 0.8,
-                restitution: 0,
+            createPhysicsAggregate(world, node, PhysicsShapeType.BOX, {
+                mass: 0, friction: 0.8, restitution: 0,
+                extents: { x: Math.max(0.02, size.x ?? size.width),
+                    y: Math.max(0.02, size.y ?? size.height),
+                    z: Math.max(0.02, size.z ?? size.depth) },
             });
-            boxCount += 1;
+            counts.boxCount++;
         } catch (err) {
-            console.warn("collider skipped", mesh.name, err);
+            counts.skipped++;
+            console.warn("Collision skipped", mesh?.name || entry, err);
         }
     }
-    return { meshCount, boxCount };
+    return counts;
 }
 
-function createAvatar(engine, scene) {
+function createAvatar(engine, scene, spec) {
     const body = createCapsule(engine, {
-        height: CAPSULE.height,
-        radius: CAPSULE.radius,
-        tessellation: 14,
-        capSubdivisions: 6,
+        height: spec.height, radius: spec.radius, tessellation: 12, capSubdivisions: 5,
     });
     body.name = "Player";
     body.material = createPbrMaterial({
-        baseColorFactor: [0.12, 0.38, 0.34, 1],
-        metallicFactor: 0.08,
-        roughnessFactor: 0.48,
+        baseColorFactor: [0.12, 0.28, 0.3, 1], metallicFactor: 0.08, roughnessFactor: 0.6,
     });
-    if ("emissiveColor" in body.material) {
-        body.material.emissiveColor = [0.05, 0.22, 0.18];
-        body.material.emissiveIntensity = 0.35;
-    }
     addToScene(scene, body);
-
-    const head = createSphere(engine, { diameter: 0.34, segments: 12 });
+    const head = createSphere(engine, { diameter: 0.34, segments: 10 });
     head.name = "PlayerHead";
     head.material = body.material;
-    head.position.y = CAPSULE.height * 0.28;
+    head.position.y = spec.height * 0.28;
     addToScene(scene, head);
     setParent(head, body);
-
     return { body, head };
 }
 
-async function loadHavok() {
-    return HavokPhysics({
-        locateFile: (file) => (file.endsWith(".wasm") ? "/HavokPhysics.wasm" : file),
-    });
-}
-
 /**
+ * @param {object} engine
+ * @param {object} scene
  * @param {import("./camera-rig.js").CameraRig} rig
- * @param {number} dt
- * @param {{ facing: number, grounded: boolean, vy: number }} state
+ * @param {{spawn?:{x:number,y:number,z:number},colliders?:object[],groundHeight?:(x:number,z:number)=>number,boundsRadius?:number,capsule?:{height:number,radius:number}}} options
+ * Spawn is the capsule center. Explicit finite Y is kept unless it would embed the capsule.
  */
-function applyLocomotion(rig, dt, state) {
-    const h = Math.min(dt, 1 / 30);
-
-    if (input.rmb) {
-        state.facing += input.lookX;
-        state.facing = angleDamp(state.facing, rig.yaw, FACE_DAMP, h);
-    } else if (input.turn !== 0) {
-        const d = input.turn * TURN_RATE * h;
-        state.facing += d;
-        if (!input.lmb) {
-            rig.yaw += d;
-        }
-    }
-
-    const maxSpeed = input.walk ? WALK_SPEED : RUN_SPEED;
-    const fx = Math.sin(state.facing);
-    const fz = Math.cos(state.facing);
-    const rx = Math.cos(state.facing);
-    const rz = -Math.sin(state.facing);
-    const wx = fx * input.forward + rx * input.strafe;
-    const wz = fz * input.forward + rz * input.strafe;
-    const wishLen = Math.hypot(wx, wz);
-    let vx = 0;
-    let vz = 0;
-    if (wishLen > 0.001) {
-        vx = (wx / wishLen) * maxSpeed;
-        vz = (wz / wishLen) * maxSpeed;
-    }
-    return { vx, vz, h };
-}
-
-export async function setupPlayer(engine, scene, rig) {
-    const { body, head } = createAvatar(engine, scene);
-    body.position.x = 0;
-    body.position.y = 1.1;
-    body.position.z = 2.15;
-    body.receiveShadows = true;
-
-    const spawn = { x: 0, y: 1.15, z: 2.15 };
-    const state = {
-        facing: rig.yaw,
-        grounded: true,
-        vy: 0,
-        support: -1,
-        speed: 0,
-        vx: 0,
-        vz: 0,
-        castBlend: 0,
-        jumpLocked: false,
-        wasAirborne: false,
-    };
+export async function setupPlayer(engine, scene, rig, options = {}) {
+    const spec = resolveCapsule(options.capsule);
+    const { body, head } = createAvatar(engine, scene, spec);
+    const groundHeight = options.groundHeight || (() => 0.125);
+    const spawn = resolveSpawnCenter(options.spawn || { x: 0, y: 1.15, z: 2.15 }, spec, groundHeight);
+    const boundsRadius = options.boundsRadius ?? 180;
+    const state = { facing: rig.yaw, grounded: false, vy: 0, support: -1,
+        speed: 0, vx: 0, vz: 0, castBlend: 0, jumps: 0, landings: 0, recoveries: 0,
+        jumpInFlight: false, airTime: 0 };
+    const velocity = { x: 0, y: 0, z: 0 };
+    const motion = {};
     let controller = null;
+    let physicsWorld = null;
     let usingPhysics = false;
-    let onPose = null;
     let heightScale = 1;
+    let onPose = null;
+    let jumpBuffer = 0;
+    let coyote = 0;
+    let previousJump = false;
+    let counts = { meshCount: 0, boxCount: 0, skipped: 0 };
+    body.position.set(spawn.x, spawn.y, spawn.z);
+    body.receiveShadows = true;
+    rig.setGroundHeight?.(groundHeight);
 
-    const capsuleHeightOf = () => CAPSULE.height * heightScale;
-    const kinematicGroundY = () => capsuleHeightOf() * 0.5 + 0.125;
-
-    const setHeightScale = (scale) => {
-        const next = Math.min(1.15, Math.max(0.9, scale));
-        if (Math.abs(next - heightScale) < 1e-4) {
-            return capsuleHeightOf();
-        }
-        heightScale = next;
-        const height = capsuleHeightOf();
-        const radius = CAPSULE.radius * heightScale;
-        if (controller) {
-            controller.setShapeOptions({ capsuleHeight: height, capsuleRadius: radius }, true);
-        }
-        if (head?.position) {
-            head.position.y = height * 0.28;
-        }
-        return height;
+    const capsuleHeightOf = () => spec.height * heightScale;
+    const teleport = (x, y, z) => {
+        velocity.x = velocity.y = velocity.z = 0;
+        controller?.setPosition({ x, y, z });
+        controller?.setVelocity(velocity);
+        body.position.set(x, y, z);
+        state.vx = state.vy = state.vz = state.speed = 0;
+        state.grounded = false;
+        state.support = -1;
+        state.jumpInFlight = false;
+        state.airTime = 0;
+        coyote = jumpBuffer = 0;
+        rig.update(0, body.position);
     };
 
-    const poseBody = (x, y, z, dt) => {
-        body.position.x = x;
-        body.position.y = y;
-        body.position.z = z;
+    const step = (dt) => {
+        const h = Math.min(Math.max(dt, 0), 0.05);
+        if (h <= 0) return;
+        pollInput();
+        rig.applyLook();
+        if (input.rmb) {
+            state.facing = rig.yaw;
+        } else if (input.turn) {
+            const turn = input.turn * TURN_RATE * h;
+            state.facing += turn;
+            if (!input.lmb) rig.yaw += turn;
+        }
+        const speed = input.walk ? WALK_SPEED : input.forward < 0 ? BACK_SPEED : RUN_SPEED;
+        const sin = Math.sin(state.facing);
+        const cos = Math.cos(state.facing);
+        const wx = sin * input.forward + cos * input.strafe;
+        const wz = cos * input.forward - sin * input.strafe;
+        const length = Math.max(1, Math.hypot(wx, wz));
+        velocity.x = wx * speed / length;
+        velocity.z = wz * speed / length;
+        const oldX = body.position.x;
+        const oldY = body.position.y;
+        const oldZ = body.position.z;
+        const wasGrounded = state.grounded;
+        let support = null;
+        let supported;
+        if (controller) {
+            support = controller.checkSupport(h, DOWN);
+            state.support = support.supportedState;
+            supported = support.supportedState === CharacterSupportedState.SUPPORTED;
+            state.vy = controller.getVelocity().y;
+        } else {
+            const floor = groundHeight(oldX, oldZ) + capsuleHeightOf() * 0.5;
+            supported = oldY <= floor + 0.06 && state.vy <= 0;
+            state.support = supported ? CharacterSupportedState.SUPPORTED : CharacterSupportedState.UNSUPPORTED;
+        }
+        state.grounded = hasGroundSupport(supported, state.vy, state.jumpInFlight);
+        if (state.grounded) state.jumpInFlight = false;
+        coyote = state.grounded ? COYOTE_TIME : Math.max(0, coyote - h);
+        if (input.jumpPressed || (input.jump && !previousJump)) jumpBuffer = JUMP_BUFFER;
+        else jumpBuffer = Math.max(0, jumpBuffer - h);
+        previousJump = input.jump;
+        if (jumpBuffer > 0 && coyote > 0) {
+            state.vy = JUMP_SPEED;
+            state.grounded = false;
+            jumpBuffer = coyote = 0;
+            state.jumps++;
+            state.jumpInFlight = true;
+        } else if (state.grounded) {
+            // Follow the walkable support plane in both directions. Zeroing Y
+            // every frame repeatedly launched the capsule off downhill terrain.
+            state.vy = surfaceVerticalSpeed(velocity.x, velocity.z,
+                support?.averageSurfaceNormal, support?.averageSurfaceVelocity);
+        } else {
+            state.vy += GRAVITY.y * h;
+        }
+        velocity.y = state.vy;
+        if (controller) {
+            controller.setVelocity(velocity);
+            controller.integrate(h, support, GRAVITY);
+            const p = controller.getPosition();
+            body.position.set(p.x, p.y, p.z);
+        } else {
+            body.position.x += velocity.x * h;
+            body.position.y += velocity.y * h;
+            body.position.z += velocity.z * h;
+            const floor = groundHeight(body.position.x, body.position.z) + capsuleHeightOf() * 0.5;
+            if (body.position.y <= floor && state.vy <= 0) {
+                body.position.y = floor;
+                state.vy = 0;
+                state.grounded = true;
+            }
+        }
+        const radius = Math.hypot(body.position.x, body.position.z);
+        if (Number.isFinite(boundsRadius) && radius > boundsRadius) {
+            body.position.x *= boundsRadius / radius;
+            body.position.z *= boundsRadius / radius;
+            controller?.setPosition(body.position);
+        }
+        const floor = groundHeight(body.position.x, body.position.z);
+        if (!Number.isFinite(body.position.y) || body.position.y < floor - 4 || body.position.y < -120) {
+            state.recoveries++;
+            teleport(spawn.x, spawn.y, spawn.z);
+        }
+        state.airTime = state.grounded ? 0 : state.airTime + h;
+        if (state.grounded) state.jumpInFlight = false;
+        if (state.grounded && !wasGrounded) state.landings++;
+        state.vx = (body.position.x - oldX) / h;
+        state.vz = (body.position.z - oldZ) / h;
+        state.speed = Math.hypot(state.vx, state.vz);
         body.rotation.y = state.facing;
-        rig.update(dt, body.position);
-        onPose?.(dt);
+        rig.update(h, body.position);
+        onPose?.(h);
+        endFrame();
     };
 
     try {
-        const hknp = await loadHavok();
+        const hknp = await HavokPhysics({
+            locateFile: (file) => file.endsWith(".wasm") ? "/HavokPhysics.wasm" : file,
+        });
         const world = createHavokWorld(scene, hknp, GRAVITY);
-        addGroundSlab(engine, scene, world);
-        addHamletRing(engine, scene, world);
-        const counts = addStaticColliders(engine, scene, world, scene.meshes ?? []);
-        console.log("physics colliders", counts);
-        controller = createPhysicsCharacterController(world, spawn, {
-            capsuleHeight: CAPSULE.height,
-            capsuleRadius: CAPSULE.radius,
-        });
-        controller.maxCharacterSpeedForSolver = 16;
-        usingPhysics = true;
-        const p0 = controller.getPosition();
-        body.position.x = p0.x;
-        body.position.y = p0.y;
-        body.position.z = p0.z;
-
-        onPhysicsAfterStep(world, (dt) => {
-            pollInput();
-            rig.applyLook();
-            const { vx, vz } = applyLocomotion(rig, dt, state);
-            state.vx = vx;
-            state.vz = vz;
-            state.speed = Math.hypot(vx, vz);
-            const support = controller.checkSupport(dt, DOWN);
-            const supported = support.supportedState === CharacterSupportedState.SUPPORTED;
-            state.support = support.supportedState;
-            state.grounded = supported;
-            const vel = controller.getVelocity();
-            let vy = vel.y;
-            const h = Math.min(dt, 1 / 30);
-            if (!supported) {
-                // Lite integrate() does not add gravity to the character; it only
-                // uses the gravity vector when pushing dynamic bodies.
-                state.wasAirborne = true;
-                vy += GRAVITY.y * h;
-                state.grounded = false;
-            } else if (vy > 0.15) {
-                // Lingering SUPPORTED on the way up: gravity owns Y, do not re-apply.
-                vy += GRAVITY.y * h;
-                state.grounded = false;
-            } else if (state.jumpLocked && !state.wasAirborne) {
-                vy = 0;
-                if (!input.jump) {
-                    state.jumpLocked = false;
-                }
-            } else if (input.jump) {
-                vy = JUMP_SPEED;
-                state.jumpLocked = true;
-                state.wasAirborne = false;
-                state.grounded = false;
-            } else {
-                vy = 0;
-                state.jumpLocked = false;
-                state.wasAirborne = false;
-            }
-            state.vy = vy;
-            controller.setVelocity({ x: vx, y: vy, z: vz });
-            controller.integrate(dt, support, GRAVITY);
-            const p = controller.getPosition();
-            poseBody(p.x, p.y, p.z, dt);
-            endFrame();
-        });
-    } catch (err) {
-        console.warn("Havok unavailable, using kinematic walk", err);
-        usingPhysics = false;
+        physicsWorld = world;
+        const descriptors = options.colliders || (scene.meshes || [])
+            .filter((mesh) => mesh.metadata?.collider)
+            .map((mesh) => ({ mesh, type: mesh.metadata.collider }));
+        counts = addStaticColliders(world, descriptors);
+        // A missing collision asset is explicit in diagnostics; fallback still follows terrain.
+        if (!counts.meshCount && !counts.boxCount) {
+            world._stopStep?.();
+            console.warn("No authored colliders; using terrain locomotion");
+        } else {
+            controller = createPhysicsCharacterController(world, spawn, {
+                capsuleHeight: spec.height, capsuleRadius: spec.radius,
+            });
+            controller.maxCharacterSpeedForSolver = 18;
+            controller.maxSlopeCosine = Math.cos(Math.PI * 0.27);
+            controller.keepDistance = 0.035;
+            usingPhysics = true;
+            onPhysicsAfterStep(world, step);
+        }
+    } catch (error) {
+        console.warn("Havok unavailable; using terrain locomotion", error);
     }
-
-    body.rotation.y = state.facing;
+    console.info("physics colliders", counts);
     rig.update(0, body.position);
 
     return {
-        body,
-        usingPhysics,
-        get capsuleHeight() {
-            return capsuleHeightOf();
+        body, usingPhysics, hp: 100, hpMax: 100,
+        raycast: (from, to) => usingPhysics && physicsWorld ? physicsRaycast(physicsWorld, from, to) : null,
+        get capsuleHeight() { return capsuleHeightOf(); },
+        get heightScale() { return heightScale; },
+        setHeightScale(scale) {
+            const next = Math.min(1.15, Math.max(0.9, scale));
+            if (!Number.isFinite(next) || Math.abs(next - heightScale) < 1e-4) return capsuleHeightOf();
+            const oldHeight = capsuleHeightOf();
+            heightScale = next;
+            const height = capsuleHeightOf();
+            if (controller) {
+                controller.setShapeOptions({ capsuleHeight: height, capsuleRadius: spec.radius * heightScale }, true);
+                const p = controller.getPosition();
+                body.position.set(p.x, p.y, p.z);
+            } else body.position.y += (height - oldHeight) * 0.5;
+            head.position.y = height * 0.28;
+            return height;
         },
-        get heightScale() {
-            return heightScale;
-        },
-        setHeightScale,
-        hp: 100,
-        hpMax: 100,
         getFacing: () => state.facing,
-        setFacing: (yaw) => {
-            state.facing = yaw;
-            body.rotation.y = yaw;
-        },
-        setCastBlend: (value) => {
-            state.castBlend = value;
-        },
+        setFacing(yaw) { if (Number.isFinite(yaw)) body.rotation.y = state.facing = yaw; },
+        setCastBlend(value) { state.castBlend = value; },
         getGrounded: () => state.grounded,
         getSupport: () => state.support,
-        getMotion: () => ({
-            speed: state.speed,
-            forward: input.forward,
-            strafe: input.strafe,
-            grounded: state.grounded,
-            vy: state.vy,
-            walk: input.walk,
-            castBlend: state.castBlend,
-        }),
         getVy: () => state.vy,
-        setWorldPos: (x, y, z) => {
-            if (controller) {
-                controller.setPosition({ x, y, z });
-            }
-            body.position.x = x;
-            body.position.y = y;
-            body.position.z = z;
+        getMotion() {
+            motion.speed = state.speed; motion.forward = input.forward; motion.strafe = input.strafe;
+            motion.grounded = state.grounded; motion.vy = state.vy; motion.walk = input.walk;
+            motion.castBlend = state.castBlend;
+            motion.jumpInFlight = state.jumpInFlight; motion.airTime = state.airTime;
+            return motion;
         },
-        setOnPose: (cb) => {
-            onPose = cb;
-        },
-        kinematicStep: (dt) => {
-            if (usingPhysics) {
-                return;
-            }
-            pollInput();
-            rig.applyLook();
-            const { vx, vz, h } = applyLocomotion(rig, dt, state);
-            state.vx = vx;
-            state.vz = vz;
-            state.speed = Math.hypot(vx, vz);
-            if (!state.grounded) {
-                state.wasAirborne = true;
-                state.vy -= GRAVITY_Y * h;
-                body.position.y += state.vy * h;
-                if (body.position.y <= kinematicGroundY() && state.vy <= 0) {
-                    body.position.y = kinematicGroundY();
-                    state.vy = 0;
-                    state.grounded = true;
-                }
-            } else if (state.vy > 0.15) {
-                state.vy -= GRAVITY_Y * h;
-                body.position.y += state.vy * h;
-            } else if (state.jumpLocked && !state.wasAirborne) {
-                state.vy = 0;
-                body.position.y = kinematicGroundY();
-                if (!input.jump) {
-                    state.jumpLocked = false;
-                }
-            } else if (input.jump) {
-                state.vy = JUMP_SPEED;
-                state.jumpLocked = true;
-                state.wasAirborne = false;
-                state.grounded = false;
-            } else {
-                state.vy = 0;
-                state.jumpLocked = false;
-                state.wasAirborne = false;
-                body.position.y = kinematicGroundY();
-            }
-            body.position.x += vx * h;
-            body.position.z += vz * h;
-            const r = Math.hypot(body.position.x, body.position.z);
-            if (r > KINEMATIC_MAX_R) {
-                body.position.x *= KINEMATIC_MAX_R / r;
-                body.position.z *= KINEMATIC_MAX_R / r;
-            }
-            body.rotation.y = state.facing;
-            rig.update(h, body.position);
-            onPose?.(h);
-            endFrame();
-        },
+        getDebugState: () => ({ ...state, position: { x: body.position.x, y: body.position.y, z: body.position.z },
+            usingPhysics, colliders: { ...counts }, capsuleHeight: capsuleHeightOf() }),
+        groundHeight,
+        setWorldPos: teleport,
+        setOnPose(cb) { onPose = cb; },
+        kinematicStep(dt) { if (!usingPhysics) step(dt); },
     };
 }

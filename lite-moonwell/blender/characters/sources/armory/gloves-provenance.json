@@ -1,0 +1,29 @@
+{
+  "author": "Margaret Toigo",
+  "license": "CC0-1.0",
+  "archive": "https://files.makehumancommunity.org/asset_packs/gloves01/gloves01_cc0.zip",
+  "archiveSha256": "ecdaee1d02749d17352791d415cb622a883350cc8a4b90eda3725aef35d9afb2",
+  "assetPage": "https://static.makehumancommunity.org/assets/assetpacks/gloves01.html",
+  "files": [
+    {
+      "path": "gloves_hand.obj",
+      "sha256": "a8b6fdd27ccb8f912dfe970ee59e7d19b242611aab9ba849f9ad074742c1a7b3"
+    },
+    {
+      "path": "toigo_gloves_short.thumb",
+      "sha256": "f8d41f7a86e3273696bc44def9c42fa03611def04e5306d42c180d5f5a0ca74e"
+    },
+    {
+      "path": "Gloves03UV.png",
+      "sha256": "968a107a7bb51130a2bced729867071283f621445d49a5e6481b31a615f5c753"
+    },
+    {
+      "path": "toigo_gloves_short.mhclo",
+      "sha256": "cf06eb65ea34018b629a735c879930e5c41c06737b6fc6794dcd2bb1237b1659"
+    },
+    {
+      "path": "gloves_hand.mhmat",
+      "sha256": "dc0ab8dc8fd1d18f5d84990bd995cf115ca0fac6fbd553316ca04f58de2116ad"
+    }
+  ]
+}

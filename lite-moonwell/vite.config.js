@@ -1,6 +1,11 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      input: { ashenReach: 'ashen-reach.html', characterLab: 'character-lab.html', bodyPreview: 'body-preview.html' },
+    },
+  },
   optimizeDeps: {
     include: ["@babylonjs/havok"],
   },
@@ -12,7 +17,7 @@ export default defineConfig({
     {
       name: "reload-on-blender-export",
       handleHotUpdate({ file, server }) {
-        if (file.endsWith(".glb") || file.endsWith("moonwell-runtime.json") || file.endsWith("glb-meta.js") || file.endsWith("hero.js")) {
+        if (file.endsWith(".glb")) {
           server.ws.send({ type: "full-reload" });
         }
       },

@@ -1,0 +1,24 @@
+{
+  "id": "human-male-v1",
+  "grip": {
+    "rightHand": {
+      "translation": [0.0051, 0.0696, 0.0011],
+      "rotation": [0, 0, 0, 1],
+      "scale": [1, 1, 1]
+    },
+    "leftHand": {
+      "translation": [-0.0044, 0.0697, 0.0006],
+      "rotation": [0, 0, 0, 1],
+      "scale": [1, 1, 1]
+    }
+  },
+  "sole": {
+    "heelL": { "joint": "LeftFoot", "offsetY": -0.0723 },
+    "heelR": { "joint": "RightFoot", "offsetY": -0.0723 },
+    "toeL": { "joint": "LeftToeBase", "offsetY": -0.0314 },
+    "toeR": { "joint": "RightToeBase", "offsetY": -0.0314 }
+  },
+  "capsule": { "height": 1.748, "radius": 0.28 },
+  "eyeHeight": 1.6385,
+  "cameraPivot": { "x": 0, "y": 1.6385, "z": 0 }
+}

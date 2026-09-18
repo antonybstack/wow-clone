@@ -1,0 +1,15 @@
+import { chromium } from 'playwright';
+import fs from 'node:fs/promises';
+const browser=await chromium.connectOverCDP('http://127.0.0.1:9337');
+const context=browser.contexts()[0];
+let page=context.pages().find(p=>p.url().includes('ashen-reach.html'))||await context.newPage();
+await page.setViewportSize({width:1280,height:720});
+const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+await page.goto('http://127.0.0.1:5180/ashen-reach.html?clean',{waitUntil:'domcontentloaded'});
+await page.bringToFront();
+await page.waitForFunction(()=>window.ASHEN?.ready,null,{timeout:120000});
+await page.waitForTimeout(6000);
+await page.screenshot({path:'ve-capture/ashen-reach/reference.png'});
+console.log(JSON.stringify({errors,body:await page.locator('body').innerText(),metrics:await page.evaluate(()=>window.ASHEN?.metrics.summary())},null,2));
+await fs.writeFile('ve-capture/ashen-reach/browser.json',JSON.stringify({errors,metrics:await page.evaluate(()=>window.ASHEN?.metrics.summary())},null,2));
+await browser.close();

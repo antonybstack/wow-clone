@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "asset": "human-v1",
+  "sourceProject": "makehumancommunity/makehuman",
+  "pinnedCommit": "a8bc2d54ff0ac92e78ff71431b1023eda42bf482",
+  "pinnedCommitDate": "2024-06-26T08:28:37Z",
+  "license": {
+    "graphicalAssets": "CC0 1.0 Universal",
+    "sourceCode": "AGPL-3.0 (MakeHuman) / GPL (MPFB). Not copied into this repo or the browser runtime.",
+    "urls": [
+      "https://static.makehumancommunity.org/about/license.html",
+      "https://static.makehumancommunity.org/mpfb/faq/is_it_really_free.html",
+      "https://github.com/makehumancommunity/makehuman/blob/master/LICENSE.ASSETS.md",
+      "https://github.com/makehumancommunity/makehuman/blob/master/LICENSE.md"
+    ]
+  },
+  "files": [
+    {
+      "path": "blender/characters/sources/base.obj",
+      "url": "https://raw.githubusercontent.com/makehumancommunity/makehuman/a8bc2d54ff0ac92e78ff71431b1023eda42bf482/makehuman/data/3dobjs/base.obj",
+      "sha256": "8e761e6624b8f54536409135d1636da63b32486a90d4897f84e121d144f6fb4c"
+    },
+    {
+      "path": "blender/characters/sources/caucasian-male-young.target",
+      "url": "https://raw.githubusercontent.com/makehumancommunity/makehuman/a8bc2d54ff0ac92e78ff71431b1023eda42bf482/makehuman/data/targets/macrodetails/caucasian-male-young.target",
+      "sha256": "70e228ba7164737dae664454394536fc5935fa48d333c1a97d77e2dc6eacc5f5"
+    },
+    {
+      "path": "blender/characters/sources/default.mhskel",
+      "url": "https://raw.githubusercontent.com/makehumancommunity/makehuman/a8bc2d54ff0ac92e78ff71431b1023eda42bf482/makehuman/data/rigs/default.mhskel",
+      "sha256": "99f179bce0aa850b45d4191a1d0d234c5851f881c057439470ded3bddf729a24"
+    },
+    {
+      "path": "blender/characters/sources/default_weights.mhw",
+      "url": "https://raw.githubusercontent.com/makehumancommunity/makehuman/a8bc2d54ff0ac92e78ff71431b1023eda42bf482/makehuman/data/rigs/default_weights.mhw",
+      "sha256": "0f3641d651ae3d00ad6b4ccee43142edb109d3bd909d27d9e4139ef1beed8625"
+    },
+    {
+      "path": "blender/characters/sources/LICENSE.ASSETS.md",
+      "url": "https://raw.githubusercontent.com/makehumancommunity/makehuman/a8bc2d54ff0ac92e78ff71431b1023eda42bf482/LICENSE.ASSETS.md",
+      "sha256": "f6089cba01cb570a24712b41ab8a586ccd3cc5ef53dc266ca50b95c288956d2c"
+    },
+    {
+      "path": "blender/characters/sources/LICENSE.md",
+      "url": "https://raw.githubusercontent.com/makehumancommunity/makehuman/a8bc2d54ff0ac92e78ff71431b1023eda42bf482/LICENSE.md",
+      "sha256": "edd99571ca62698f78c943fd4fffb159a413c315fa0d4819d3cec5cadaf8b4f1"
+    }
+  ],
+  "notes": "Core MakeHuman graphical assets are CC0. Addon/application code is AGPL/GPL and is not vendored. Average young Caucasian male target is applied at weight 1.0 onto hm08 base.obj. Helpers (joints, tights, genitals, etc.) are stripped from the runtime mesh."
+}

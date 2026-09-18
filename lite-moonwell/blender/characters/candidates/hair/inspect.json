@@ -1,0 +1,430 @@
+{
+  "short02": {
+    "dir": "short02",
+    "files": [
+      {
+        "name": "short02.mhclo",
+        "bytes": 119240,
+        "sha256": "625736cdb73e6d094df6e5a2df18f371781f1d2cd37b0ae15795c5d7051c3ec2"
+      },
+      {
+        "name": "short02.mhmat",
+        "bytes": 1323,
+        "sha256": "2ed04c8aad9c1a35d858ca72091525d32b1da3b61b5a031634dd528fd8530f6d"
+      },
+      {
+        "name": "short02.obj",
+        "bytes": 139742,
+        "sha256": "48f979114adfa712165a69cc55c45a70831af1fb3cba8e2a89120f0c87407b64"
+      },
+      {
+        "name": "short02.thumb",
+        "bytes": 41127,
+        "sha256": "af21a0e84bfcc294b9840d90a04f1b6655ad909bc09328251886adffbc0727e8"
+      },
+      {
+        "name": "short02_diffuse.png",
+        "bytes": 3553543,
+        "sha256": "47fe33831a3929567c733356dd66243116e05df2ace1f884ddca0080b728229f"
+      },
+      {
+        "name": "short02_normal.png",
+        "bytes": 1626745,
+        "sha256": "2cfac7619f8eec77dd90df979d912415058f4f0fc16940cba40a8eb1ae6d74b5"
+      }
+    ],
+    "mhclo": {
+      "headerComments": [
+        "# This is a clothes file for MakeHuman",
+        "#",
+        "# This asset was explicitly released as CC0 in september 2020. The license",
+        "# text for CC0 can be found in the root of this repository.",
+        "#",
+        "# The copyright holders at the point of the release to CC0 were:",
+        "#",
+        "# Copyright (C) 2020 Data Collection AB, https://www.datacollection.se",
+        "# Copyright (C) 2020 Joel Palmius",
+        "# Copyright (C) 2020 Jonas Hauquier",
+        "#",
+        "# The primary legal contact for MakeHuman is Data Collection AB.",
+        "#",
+        "# For more information, see homepage at http://www.makehumancommunity.org"
+      ],
+      "uuid": "c104cd4a-1edc-43f9-8b94-f63345a44638",
+      "basemesh": "hm08",
+      "tags": [
+        "MakeHuman\u2122",
+        "Short",
+        "Male"
+      ],
+      "material": "short02.mhmat",
+      "name": "short02",
+      "obj": "short02.obj",
+      "bary": 1755,
+      "helper": 0,
+      "total": 1755,
+      "max_hm08_idx": 12366
+    },
+    "obj": {
+      "verts": 1755,
+      "used": 1755,
+      "uvs": 2061,
+      "used_uv": 2061,
+      "faces": 1672,
+      "tris": 3344,
+      "groups": {
+        "none": 1672
+      },
+      "mtls": {
+        "none": 1672
+      },
+      "edges": 3426,
+      "boundary_edges": 164,
+      "boundary_verts": 164,
+      "boundary_loops": 1,
+      "nonmanifold": 0,
+      "components": 1,
+      "comp_sizes_top": [
+        [
+          1713,
+          1755
+        ]
+      ],
+      "bbox": {
+        "x": [
+          -0.9037,
+          0.8483
+        ],
+        "y": [
+          7.4353,
+          9.4537
+        ],
+        "z": [
+          -0.4742,
+          1.7029
+        ]
+      },
+      "dims": [
+        1.752,
+        2.0184,
+        2.1771
+      ],
+      "uv_range": [
+        [
+          0.0647,
+          0.9246
+        ],
+        [
+          0.0122,
+          0.969
+        ]
+      ],
+      "face_n": {
+        "4": 1672
+      },
+      "boundary_y": [
+        7.4353,
+        8.547
+      ],
+      "boundary_z": [
+        -0.229,
+        1.5712
+      ],
+      "boundary_x": [
+        -0.8151,
+        0.7825
+      ],
+      "boundary_y_mean": 7.9838,
+      "mesh_y_mean": 8.4832,
+      "boundary_near_crown_top15pct": 0,
+      "boundary_near_low_bot25pct": 74,
+      "verts_within_0.05_ymax": 38,
+      "of_which_boundary": 0,
+      "faces_top20pct_height": 329,
+      "boundary_centroid_y": 7.9838,
+      "boundary_centroid_z": 0.6406,
+      "mesh_centroid_y": 8.4832,
+      "mesh_centroid_z": 0.4482,
+      "mappingMatch": true
+    },
+    "textures": {
+      "short02_diffuse.png": {
+        "w": 2048,
+        "h": 2048,
+        "bit": 8,
+        "color": 6,
+        "colorName": "rgba",
+        "alphaZero": 2429118,
+        "alphaZeroPct": 57.91,
+        "alphaFull": 1574567,
+        "alphaFullPct": 37.54,
+        "alphaMid": 190619,
+        "alphaMidPct": 4.54,
+        "alphaUnique": 237,
+        "meanRgbAgt16": [
+          75.8,
+          60.6,
+          50.0
+        ],
+        "opaqueish": 1751139
+      },
+      "short02_normal.png": {
+        "w": 2048,
+        "h": 2048,
+        "bit": 8,
+        "color": 2,
+        "colorName": "rgb",
+        "noAlpha": true,
+        "meanRgb": [
+          127.0,
+          126.4,
+          253.6
+        ]
+      },
+      "short02.thumb": {
+        "w": 256,
+        "h": 256,
+        "bit": 8,
+        "color": 6,
+        "colorName": "rgba",
+        "alphaZero": 48013,
+        "alphaZeroPct": 73.26,
+        "alphaFull": 15431,
+        "alphaFullPct": 23.55,
+        "alphaMid": 2092,
+        "alphaMidPct": 3.19,
+        "alphaUnique": 255,
+        "meanRgbAgt16": [
+          66.8,
+          59.9,
+          58.3
+        ],
+        "opaqueish": 17163
+      }
+    }
+  },
+  "mhair02": {
+    "dir": "mhair02",
+    "files": [
+      {
+        "name": "mhair02-illustration.png",
+        "bytes": 457774,
+        "sha256": "3467060c9f4fb1f11c41419239e24616e490b4d0ba0627563029917db325ae2c"
+      },
+      {
+        "name": "mhair02.mhclo",
+        "bytes": 156218,
+        "sha256": "67933350d1e006957decb905c58c4643f7aea911237077f9a269624607124b44"
+      },
+      {
+        "name": "mhair02.mhmat",
+        "bytes": 824,
+        "sha256": "fa98c1df99efa670eeb0271b26e5327a16aec0eebc650c08f8fcdd72a22fd668"
+      },
+      {
+        "name": "mhair02.obj",
+        "bytes": 163203,
+        "sha256": "d8aa9a81cd2d49134c76906a2a50efae578d36ff26883795993d326daa804725"
+      },
+      {
+        "name": "mhair02.png",
+        "bytes": 3926942,
+        "sha256": "9743c5f6d724df0cd681454a4e57db9118ea9976d8c5caa87f62844518809349"
+      },
+      {
+        "name": "mhair02.thumb",
+        "bytes": 181162,
+        "sha256": "8c3c8350cad7876969e5c7724c0cc1220ff309931045d4a1a9684645b55fd6e4"
+      },
+      {
+        "name": "source-page.html",
+        "bytes": 19162,
+        "sha256": "4d6e213b7e1c8a62d158da6c18923b03bdf931fab84fc722fd51ebea53c3d3d4"
+      }
+    ],
+    "mhclo": {
+      "headerComments": [
+        "# Exported from MakeClothes (TM)",
+        "# author MHteam",
+        "# license AGPL3 (see also http://www.makehuman.org/node/320)",
+        "# homepage http://www.makehuman.org/"
+      ],
+      "headerAuthor": "MHteam",
+      "headerLicense": "AGPL3 (see also http://www.makehuman.org/node/320)",
+      "uuid": "f81a4e9a-e3d7-4ecb-bdf0-16d7fd9070a4",
+      "basemesh": "hm08",
+      "name": "mhair02",
+      "obj": "mhair02.obj",
+      "material": "mhair02.mhmat",
+      "bary": 2314,
+      "helper": 0,
+      "total": 2314,
+      "max_hm08_idx": 12367
+    },
+    "obj": {
+      "verts": 2314,
+      "used": 2314,
+      "uvs": 2541,
+      "used_uv": 2541,
+      "faces": 1730,
+      "tris": 3460,
+      "groups": {
+        "none": 1730
+      },
+      "mtls": {
+        "none": 1730
+      },
+      "edges": 3969,
+      "boundary_edges": 1018,
+      "boundary_verts": 1018,
+      "boundary_loops": 75,
+      "nonmanifold": 0,
+      "components": 75,
+      "comp_sizes_top": [
+        [
+          927,
+          1371
+        ],
+        [
+          1733,
+          24
+        ],
+        [
+          1967,
+          21
+        ],
+        [
+          2252,
+          21
+        ],
+        [
+          1414,
+          18
+        ],
+        [
+          1435,
+          18
+        ],
+        [
+          1773,
+          18
+        ],
+        [
+          2266,
+          18
+        ]
+      ],
+      "bbox": {
+        "x": [
+          -0.79,
+          0.7833
+        ],
+        "y": [
+          7.3652,
+          9.3954
+        ],
+        "z": [
+          -0.4955,
+          1.6244
+        ]
+      },
+      "dims": [
+        1.5733,
+        2.0302,
+        2.1199
+      ],
+      "uv_range": [
+        [
+          0.0039,
+          0.9925
+        ],
+        [
+          0.0039,
+          0.9961
+        ]
+      ],
+      "face_n": {
+        "4": 1730
+      },
+      "boundary_y": [
+        7.3652,
+        9.3949
+      ],
+      "boundary_z": [
+        -0.4748,
+        1.5833
+      ],
+      "boundary_x": [
+        -0.7749,
+        0.7833
+      ],
+      "boundary_y_mean": 8.8578,
+      "mesh_y_mean": 8.7496,
+      "boundary_near_crown_top15pct": 358,
+      "boundary_near_low_bot25pct": 39,
+      "verts_within_0.05_ymax": 132,
+      "of_which_boundary": 80,
+      "faces_top20pct_height": 633,
+      "boundary_centroid_y": 8.8578,
+      "boundary_centroid_z": 0.3824,
+      "mesh_centroid_y": 8.7496,
+      "mesh_centroid_z": 0.3771,
+      "mappingMatch": true
+    },
+    "textures": {
+      "mhair02.png": {
+        "w": 2048,
+        "h": 2048,
+        "bit": 8,
+        "color": 6,
+        "colorName": "rgba",
+        "alphaZero": 1962979,
+        "alphaZeroPct": 46.8,
+        "alphaFull": 1054126,
+        "alphaFullPct": 25.13,
+        "alphaMid": 1177199,
+        "alphaMidPct": 28.07,
+        "alphaUnique": 256,
+        "meanRgbAgt16": [
+          46.7,
+          43.1,
+          38.9
+        ],
+        "opaqueish": 2033581
+      },
+      "mhair02.thumb": {
+        "w": 618,
+        "h": 555,
+        "bit": 8,
+        "color": 2,
+        "colorName": "rgb",
+        "noAlpha": true,
+        "meanRgb": [
+          76.2,
+          56.7,
+          50.3
+        ]
+      },
+      "mhair02-illustration.png": {
+        "w": 800,
+        "h": 600,
+        "bit": 8,
+        "color": 6,
+        "colorName": "rgba",
+        "alphaZero": 0,
+        "alphaZeroPct": 0.0,
+        "alphaFull": 480000,
+        "alphaFullPct": 100.0,
+        "alphaMid": 0,
+        "alphaMidPct": 0.0,
+        "alphaUnique": 1,
+        "meanRgbAgt16": [
+          80.8,
+          56.9,
+          49.0
+        ],
+        "opaqueish": 480000
+      }
+    }
+  }
+}

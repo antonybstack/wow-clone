@@ -1,0 +1,24 @@
+{
+  "id": "orc-male-v1",
+  "grip": {
+    "rightHand": {
+      "translation": [-0.0008, 0.0952, 0.0057],
+      "rotation": [0, 0, 0, 1],
+      "scale": [1, 1, 1]
+    },
+    "leftHand": {
+      "translation": [0.0023, 0.0952, 0.0055],
+      "rotation": [0, 0, 0, 1],
+      "scale": [1, 1, 1]
+    }
+  },
+  "sole": {
+    "heelL": { "joint": "LeftFoot", "offsetY": -0.0985 },
+    "heelR": { "joint": "RightFoot", "offsetY": -0.0985 },
+    "toeL": { "joint": "LeftToeBase", "offsetY": -0.0369 },
+    "toeR": { "joint": "RightToeBase", "offsetY": -0.0369 }
+  },
+  "capsule": { "height": 2.1, "radius": 0.38 },
+  "eyeHeight": 1.9353,
+  "cameraPivot": { "x": 0, "y": 1.9353, "z": 0 }
+}

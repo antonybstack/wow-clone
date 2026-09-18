@@ -1,0 +1,8 @@
+{
+  "source": "fireball-julien-matthey.wav",
+  "author": "Julien Matthey",
+  "license": "CC0-1.0",
+  "sourcePage": "https://opengameart.org/content/fireball-1",
+  "recipe": "areverse,atrim=duration=1.5,lowpass=f=1400,afade=t=in:d=0.7,afade=t=out:st=1.38:d=0.12",
+  "outputSha256": "69792f0c4e89af3b11a152695a48bc6906b14f95878ec92dfe46d2576cd84d42"
+}

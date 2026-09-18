@@ -2,6 +2,9 @@
 description: Export the live Blender moonwell scene to lite-moonwell GLB and reload Lite
 ---
 
+This command concerns the legacy Moonwell shrine only. For Ashen Reach changes, use [current direction](../../lite-moonwell/docs/CURRENT.md). Read [the export boundaries](../skills/blender-lite/SKILL.md) before invoking a save/export; verify the connected file and shrine markers first.
+
+
 Export the connected Blender scene into the Babylon Lite demo.
 
 1. From `lite-moonwell/`, run `npm run export`. If the user asked to persist the .blend, add `-- --save-blend`. If Lite last crashed on transmission, use `npm run export:safe`.

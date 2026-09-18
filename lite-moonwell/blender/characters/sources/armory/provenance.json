@@ -1,0 +1,148 @@
+{
+  "authors": [
+    "Rehman Polanski",
+    "Donitz"
+  ],
+  "license": "CC0-1.0",
+  "archive": "https://files2.makehumancommunity.org/asset_packs/suits02/suits02_cc0.zip",
+  "archiveSha256": "437f4d7ab92b698c1fb1047e7d62b22c11f195b2473e936118661dc8e6b7eb7a",
+  "assetPage": "https://static.makehumancommunity.org/assets/assetpacks/suits02.html",
+  "licenseEvidence": "Pack page and original .mhclo headers identify CC0 and author.",
+  "files": [
+    {
+      "path": "donitz_monk_robe_hood.mhclo",
+      "archivePath": "clothes/donitz_monk_robe_hood/donitz_monk_robe_hood.mhclo",
+      "sha256": "5f32a69d26f68b9c5dd9076e9b6859c154291759726831def4bc5c7afc315aa7"
+    },
+    {
+      "path": "monks_robe_brown.mhmat",
+      "archivePath": "clothes/donitz_monk_robe_hood/monks_robe_brown.mhmat",
+      "sha256": "605e05e538f3d2160d62724dd07bd736efda01c055bfcb4c4de13bd90214f4ce"
+    },
+    {
+      "path": "donitz_monk_robe_hood.thumb",
+      "archivePath": "clothes/donitz_monk_robe_hood/donitz_monk_robe_hood.thumb",
+      "sha256": "0dd5567b3d4160481476a1293ce61e10161913c6609288f005dfcff87fade869"
+    },
+    {
+      "path": "robe_brown__diffuse.png",
+      "archivePath": "clothes/donitz_monk_robe_hood/robe_brown__diffuse.png",
+      "sha256": "244f344a4ba574aa4e36b63919d36e5c6bb1ac6b7d0b92ef6815a709c5bc9bb9"
+    },
+    {
+      "path": "Monks_Hood.obj",
+      "archivePath": "clothes/donitz_monk_robe_hood/Monks_Hood.obj",
+      "sha256": "989f2632ccce50d4cf99973167ecc10e6f33911a60e8e378d50d8b30d06306fc"
+    },
+    {
+      "path": "robe__normal_gl.png",
+      "archivePath": "clothes/donitz_monk_robe_hood/robe__normal_gl.png",
+      "sha256": "0ec059f6732c37c234af409c4467eabe1c8865292fdac0755a653ea6f9110859"
+    },
+    {
+      "path": "rehmanpolanski_viking_pants.mhclo",
+      "archivePath": "clothes/rehmanpolanski_viking_pants/rehmanpolanski_viking_pants.mhclo",
+      "sha256": "2afe050edefda93d4e47a58b31e6e65a14ac09e0d466d9debcacbe376f956c0f"
+    },
+    {
+      "path": "pantsviking.obj",
+      "archivePath": "clothes/rehmanpolanski_viking_pants/pantsviking.obj",
+      "sha256": "44644ac6aeec9cb56fbfd77225eaa8b02613b2587cd809fe6f3755bef7e2d709"
+    },
+    {
+      "path": "pantsviking.mhmat",
+      "archivePath": "clothes/rehmanpolanski_viking_pants/pantsviking.mhmat",
+      "sha256": "a4e8f761f524b7a3f6d0aaa37ece5a88282e05c424071c018473bbc81922d7ee"
+    },
+    {
+      "path": "PantsViking.png",
+      "archivePath": "clothes/rehmanpolanski_viking_pants/PantsViking.png",
+      "sha256": "15b5d55a6f6b8f6d42bda782aa2db93cb7d17c88e6a13fb1a52cbcbf6d4b34e6"
+    },
+    {
+      "path": "rehmanpolanski_viking_pants.thumb",
+      "archivePath": "clothes/rehmanpolanski_viking_pants/rehmanpolanski_viking_pants.thumb",
+      "sha256": "6704d38d19a3fd3358dd40837f96430cdee6c8fece3b9e23cf9bbdfe7e09b848"
+    },
+    {
+      "path": "Monks_Robe.obj",
+      "archivePath": "clothes/donitz_monk_robe/Monks_Robe.obj",
+      "sha256": "12ab7c180f724c1a50d3b2217d0d37ef03758ed387e22abb3933fe93269b90cc"
+    },
+    {
+      "path": "monks_robe_brown.mhmat",
+      "archivePath": "clothes/donitz_monk_robe/monks_robe_brown.mhmat",
+      "sha256": "605e05e538f3d2160d62724dd07bd736efda01c055bfcb4c4de13bd90214f4ce"
+    },
+    {
+      "path": "donitz_monk_robe.mhclo",
+      "archivePath": "clothes/donitz_monk_robe/donitz_monk_robe.mhclo",
+      "sha256": "7f0cf2903c602bd817e8a3a38d4b6201313ab0c156702f9dcc3e440897b0a4c8"
+    },
+    {
+      "path": "robe_brown__diffuse.png",
+      "archivePath": "clothes/donitz_monk_robe/robe_brown__diffuse.png",
+      "sha256": "244f344a4ba574aa4e36b63919d36e5c6bb1ac6b7d0b92ef6815a709c5bc9bb9"
+    },
+    {
+      "path": "donitz_monk_robe.thumb",
+      "archivePath": "clothes/donitz_monk_robe/donitz_monk_robe.thumb",
+      "sha256": "8f338fcec830c14436f1f360b4798de7908c217d7f5ad768a9b1cd3847cc3d92"
+    },
+    {
+      "path": "robe__normal_gl.png",
+      "archivePath": "clothes/donitz_monk_robe/robe__normal_gl.png",
+      "sha256": "0ec059f6732c37c234af409c4467eabe1c8865292fdac0755a653ea6f9110859"
+    },
+    {
+      "path": "tunicviking.mhmat",
+      "archivePath": "clothes/rehmanpolanski_viking_tunic/tunicviking.mhmat",
+      "sha256": "8b69e430954fe0df4ea832bdb60f3786244118e4ac2e539a782e32a38c51f3dd"
+    },
+    {
+      "path": "rehmanpolanski_viking_tunic.thumb",
+      "archivePath": "clothes/rehmanpolanski_viking_tunic/rehmanpolanski_viking_tunic.thumb",
+      "sha256": "5146814cfe8e6555567a9833f439ce9e146a5b3f2d9d821e7895566a93de33f5"
+    },
+    {
+      "path": "tunicviking.obj",
+      "archivePath": "clothes/rehmanpolanski_viking_tunic/tunicviking.obj",
+      "sha256": "78c593d23151c4f9cd63481bd7f5101cae920623404bbf5f3daa01a5f2ea050b"
+    },
+    {
+      "path": "TUNIC_Viking.png",
+      "archivePath": "clothes/rehmanpolanski_viking_tunic/TUNIC_Viking.png",
+      "sha256": "9fcb9e17fad6ec1a36e3a0e0562cac3ca0ea72208da617875eed9bf294d9f870"
+    },
+    {
+      "path": "rehmanpolanski_viking_tunic.mhclo",
+      "archivePath": "clothes/rehmanpolanski_viking_tunic/rehmanpolanski_viking_tunic.mhclo",
+      "sha256": "349b5b7b2abc44a7bd0b52ca99bd352e7d3b316cd4be5d539bbd9587462e801c"
+    },
+    {
+      "path": "BootsViking.png",
+      "archivePath": "clothes/rehmanpolanski_viking_boots/BootsViking.png",
+      "sha256": "114622c571ff7249bbd25223f6563d174894c426afb6ab92d35551b712bf1413"
+    },
+    {
+      "path": "rehmanpolanski_viking_boots.mhclo",
+      "archivePath": "clothes/rehmanpolanski_viking_boots/rehmanpolanski_viking_boots.mhclo",
+      "sha256": "d864ac895a662031026615b5e042fb2160e63f432029576fa6faaf2ad692eb92"
+    },
+    {
+      "path": "bootsviking.mhmat",
+      "archivePath": "clothes/rehmanpolanski_viking_boots/bootsviking.mhmat",
+      "sha256": "48c23f652484411447b1c04a9c64f421331c5b02ce3697e023f9fc140bb3ca39"
+    },
+    {
+      "path": "rehmanpolanski_viking_boots.thumb",
+      "archivePath": "clothes/rehmanpolanski_viking_boots/rehmanpolanski_viking_boots.thumb",
+      "sha256": "8f8222d6c41f3aee8f0c7a9af01227e71857f9b7688ba00a0b69756f13e854b3"
+    },
+    {
+      "path": "bootsviking.obj",
+      "archivePath": "clothes/rehmanpolanski_viking_boots/bootsviking.obj",
+      "sha256": "9cc5a9cc4160ff2230144490244117eaddc4596152556304ca59d1129e4c196b"
+    }
+  ]
+}
