@@ -23,7 +23,7 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
       <aside class="armory-panel">
         <div class="armory-panel-title"><span>Character & equipment</span><button data-close aria-label="Close armory">×</button></div>
         <label class="armory-field">Race<select data-race><option value="human">Human</option><option value="orc">Orc</option><option value="undead" disabled>Undead — fit not ready</option></select></label>
-        <p class="armory-note" data-race-note>Human is available. Orc is the print-sculpt body on the 65-joint source bind. Undead will unlock with its own fitted equipment.</p>
+        <p class="armory-note" data-race-note>Human is available. Orc is the print-sculpt body on the 65-joint source bind, wearing the same catalogue. Undead will unlock with its own fitted equipment.</p>
         <h2>Equipment</h2><p class="armory-note" data-equipment-status role="status" aria-live="polite"></p><div class="armory-presets">${Object.entries(equipment.presets).map(([id,preset])=>`<button data-outfit="${id}">${preset.name}</button>`).join('')}</div>
         <div class="armory-slots">${[['helmet','Helmet','Unequipped'],['torso','Torso','Base appearance'],['legs','Legs','Charcoal trousers'],['boots','Boots','Base appearance'],['gloves','Gloves','Unequipped'],['mainHand','Main hand','Unequipped'],['offHand','Off-hand','Unequipped']].map(([slot,label,value])=>`<button data-slot="${slot}" disabled><span>${label}</span><strong>${value}</strong><small>Items coming next</small></button>`).join('')}</div>
         <p class="armory-note">Select a fitted item or unequip it. Your selection stays equipped in the churchyard.</p>
@@ -49,7 +49,7 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
   try{
    const result=await action();
    if(result?.status==='superseded')return;
-   label.textContent=result?.status==='failed'?'Could not equip that item. Your current outfit is unchanged.':(race==='orc'?'Orc is a sculpt-pipeline body. Catalogue clothes do not fit this topology yet.':'');
+   label.textContent=result?.status==='failed'?'Could not equip that item. Your current outfit is unchanged.':(race==='orc'?'Orc wears the same catalogue on the print-sculpt body. Report clipping.':'');
    const selection=equipment.getStatus?.().pending?equipment.getStatus().desired:equipment.getState();
    for(const select of element.querySelectorAll('[data-equipment]'))select.value=selection[select.dataset.equipment]||'';
    if(frame&&result?.status!=='failed')face('full');
@@ -61,15 +61,12 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
     const raceScale=()=>race==='orc'?1.22:1;
     const setRaceUi=()=>{
         const orc=race==='orc';
-        const garments=['helmet','torso','legs','boots','gloves'];
-        for(const select of element.querySelectorAll('[data-equipment]')){
-            select.disabled=orc&&garments.includes(select.dataset.equipment);
-        }
-        for(const button of element.querySelectorAll('[data-outfit]'))button.disabled=orc;
+        for(const select of element.querySelectorAll('[data-equipment]'))select.disabled=false;
+        for(const button of element.querySelectorAll('[data-outfit]'))button.disabled=false;
         const selection=equipment.getState();
         for(const select of element.querySelectorAll('[data-equipment]'))select.value=selection[select.dataset.equipment]||'';
-        equipmentStatus.textContent=orc?'Orc is a sculpt-pipeline body. Catalogue clothes do not fit this topology yet.':'';
-        raceNote.textContent=orc?'Orc is the print-sculpt retopo on the 65-joint source bind. Catalogue clothes stay on the Human topology until a new fit.':'Human is available. Undead will unlock with its own fitted equipment.';
+        equipmentStatus.textContent=orc?'Orc wears the same catalogue on the print-sculpt body. Report clipping.':'';
+        raceNote.textContent=orc?'Orc is the print-sculpt retopo on the 65-joint source bind. The same logical items use an Orc fit; Human stays parked.':'Human is available. Undead will unlock with its own fitted equipment.';
     };
     async function chooseRace(){
         const want=raceField.value;if(want===race)return;

@@ -17,8 +17,8 @@ References and exact source URLs: [direct scene implementation](ashen-reach-dire
 The armory **Orc** is the print-sculpt retopo, not a MakeHuman warp. Pipeline: [orc sculpt pipeline](orc-sculpt-pipeline.md).
 
 - Form: `blender/characters/sources/orc-print/Orc_22.fbx` (Crayon, CC-BY 4.0). Look: `.agents/skills/blender-lite/references/orc-concept-art.png`.
-- Bind: Mixamo T-pose, 65 joints, 55 clips, pelvis-only loincloth weights. Pack: `public/ashen-reach/equipment-orc/` (body-only; catalogue clothes withheld).
-- Remaining polish: idle thoracic stoop is Mixamo idle on the print chest (T-pose rest is upright enough; no clip-fighting spine hack), no fitted clothes, chin pad still a slight pale catch. Loincloth inner crotch loops filled 2026-09-19. Face: print eyelids/lips/tusks, HP normals, no dummy spheres, pec ivory cleared. Palette ashen peat-olive.
+- Bind: Mixamo T-pose, 65 joints, 55 clips, pelvis-only loincloth weights. Pack: `public/ashen-reach/equipment-orc/` with the same eight catalogue garments as Human, shrink-fit onto the print-sculpt rest.
+- Remaining polish: idle thoracic stoop is Mixamo idle on the print chest (T-pose rest is upright enough; no clip-fighting spine hack), chin pad still a slight pale catch, clothes are stature-scaled with push-off rather than MHCLO (poke-through and hood/tusk intersection remain possible). Loincloth inner crotch loops filled 2026-09-19. Face: print eyelids/lips/tusks, HP normals, no dummy spheres, pec ivory cleared. Palette ashen peat-olive.
 
 ## Human armed repair (paused for the Orc rebuild)
 
@@ -36,7 +36,7 @@ Choose one consequential deliverable from the latest user request. Current Orc-a
 
 ## Active initiative
 
-[Armory and modular equipment living plan](armory-and-equipment-plan.md) tracks the broader initiative. **C / Armory** opens the character, race selector, motion previews and seven equipment slots. Human uses streamed fitted garments. Orc is the print-sculpt body (catalogue clothes withheld). Wayfarer, Pilgrim, Graveweaver and Warden presets are Human outfits; Warden’s greatstaff and Graveweaver staff/grimoire still work as hand props on Orc. See [equipment authoring](ashen-equipment-authoring.md) for the Human garment pipeline and [orc sculpt pipeline](orc-sculpt-pipeline.md) for the Orc.
+[Armory and modular equipment living plan](armory-and-equipment-plan.md) tracks the broader initiative. **C / Armory** opens the character, race selector, motion previews and seven equipment slots. Human and Orc use the same logical catalogue; Orc garments are a print-sculpt shrink-fit, not MHCLO. Wayfarer, Pilgrim, Graveweaver and Warden presets work on both. See [equipment authoring](ashen-equipment-authoring.md) for the Human garment pipeline and [orc sculpt pipeline](orc-sculpt-pipeline.md) for the Orc.
 
 ## Current implementation
 
@@ -57,7 +57,7 @@ Do not assume key 2 is a held channel in normal Ashen play; that is an older dia
 ## Evidence and operational pointers
 
 - Latest equipment validation: **29 automated tests**, **19 Graveweaver browser checks**; production build passing. The earlier Lava Ball delivery recorded 98 automated and 49 browser checks. These are pass-specific counts; rerun relevant checks after subsequent changes.
-- Latest performance: roughly **144 FPS at 960×540**, foreground local Chrome, equipped character in gameplay and running armory; max 50 draws with the complete hood/robe/staff/book outfit in these short samples. This is not native-resolution, many-caster or MMO-scale proof. The **>120 FPS goal** remains.
+- Latest performance: **144 FPS at 960×540**, foreground local Chrome, print-sculpt Orc in Wayfarer clothes walking the churchyard (600 samples after load stalls flushed): mean **6.94 ms**, p95 **8 ms**, **46 draws**, 126512 reported scene tris. Nude Orc was 34 draws at the same buffer. This is not native-resolution, many-caster or MMO-scale proof. The **>120 FPS goal** remains.
 - Evidence: the ignored local `ve-capture/ashen-reach/graveweaver/` directory contains the current front still and walkthrough when available. Latest reviewed gameplay video: [Graveweaver magic equipment walkthrough](https://ve.sparkify.dev/wow-clone/ashen-reach/graveweaver/2026-09-17-graveweaver-v1.mp4) (all slots, mixed swaps, motion, Fire Blast and Lava Ball). Older raw captures were removed during cleanup.
 - Browser debug global: **`ASHEN`**, readiness `ASHEN.ready`. Recent owned Chrome uses **CDP 9337**; verify the live target before controlling it. Leave unrelated user Chrome/9222 alone. [Browser/capture guide](debug-view.md).
 - Telegram progression media is authorized in this session. Read the local Telegram skill/helper when sending; keep credentials out of docs. Poll at sensible active-work boundaries; no monitoring persists after an ended turn.

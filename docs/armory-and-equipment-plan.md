@@ -93,11 +93,11 @@ Do not call recolored body regions or generic offset shells a finished modular o
 
 ### D — Cross-race proof
 
-- [ ] Prepare a recognizably different Orc with validated rig/animation compatibility; preserve the Human baseline.
-- [ ] Derive/correct fits for the same catalogue item IDs and corresponding socket corrections.
-- [ ] Switch Human/Orc in armory, preserve compatible selections, clearly report unavailable fits.
+- [x] Prepare a recognizably different Orc with validated rig/animation compatibility; preserve the Human baseline.
+- [x] Derive/correct fits for the same catalogue item IDs and corresponding socket corrections.
+- [x] Switch Human/Orc in armory, preserve compatible selections, clearly report unavailable fits.
 - [ ] Check race-specific head/shoulder/hand/foot proportions, weapon grip, capsule, camera and motion.
-- [ ] Demonstrate mixed outfits walking/jumping/casting on both races in Ashen Reach.
+- [x] Demonstrate mixed outfits walking/jumping/casting on both races in Ashen Reach.
 - [ ] Extend the proven process to Undead; validate hunch and limb proportions rather than copying a uniform scale.
 
 ### E — Authoring repeatability and scale
@@ -240,8 +240,22 @@ npm run build
 - Orc runtime equipment (2026-09-18, delegated Grok 4.6 worker, 62 turns): the Orc now equips the same logical items in the armory and in gameplay. **Pack** `public/ashen-reach/equipment-orc/` mirrors the Human pack (`body.glb` with the six `Body*` regions + `OrcV1Hair|Brows|Eyes|Shorts` and 55 clips, eight garment GLBs, `manifest.json` schema 1, `profileId: orc-male-v1`), built from the Orc candidate + `orc-apparel-rest.glb` by new `prepare-orc-equipment.mjs` / `split-orc-equipment.mjs`. **Contract** items gained a per-race fits map (Human fit stays as `item.fit` for back-compat); the streamed loader selects the fit by pack profile id and `validateEquipmentCatalogue` validates every map entry. **Runtime** `createStreamedEquipment({manifestUrl, baseMeshes, fitId})` keeps the Human defaults, `main.js` holds a delegating facade that swaps packs on a race switch (body first, then pack, then dispose), and sockets rebind so props and hand FX follow the visible skeleton. **Armory** Orc slots/presets are enabled with a "report clipping" note, the same selection carries across races, and closing the armory keeps the current race in gameplay. Validation: **25 equipment tests**, **26 armory checks**, **18 two-handed checks**, **17 Orc-equipment checks** (body swap, Wayfarer→Graveweaver on Orc, Human restore keeping selection, greatstaff stow/draw, both spells, no runtime errors) and the build all pass; evidence `ve-capture/orc-motion/orc-equipment-v1/`. **Honest limits:** mid-walk fly sliver, slabby sprint skirt, long tusks in three-quarter, and Human-sized grip offsets are unchanged — palm contact on the Orc hands has not been measured yet.
 
 The playable Orc is the print-sculpt pipeline, not a MakeHuman vertex warp. Current commands: [orc sculpt pipeline](orc-sculpt-pipeline.md).
-node scripts/ashen-reach/capture-armory-orc.mjs
+
+### Stage D — print-sculpt catalogue clothes (2026-09-19)
+
+- MHCLO cannot map the print-sculpt topology. `scripts/ashen-reach/fit-orc-sculpt-clothes.py` scales the Human streamed garments by 2.10/1.80, pushes vertices that sit inside `OrcV1Body` back to the surface plus a small offset, and **reuses the Human mixamorig vertex groups**. Heat/envelope is only a fallback. Do not restore `fit-orc-clothes.py`.
+- `prepare-orc-equipment.mjs` remaps those fitted meshes onto the playable Orc skin (same joint order and inverse binds as `body.glb`) and writes `public/ashen-reach/equipment-orc/{item}.glb`. `OrcV1Body` stays one surface; `packVisibility` hides `OrcV1Hair` with the hood and `OrcV1Shorts` with legs.
+- Armory Race **Orc** now equips the same logical items and presets. Human parks; closing the armory keeps the Orc in the churchyard. Hand props already used factory meshes and still do.
+- **Honest limits:** this is stature-scale + collision push-off, not a tailored MHCLO fit. The whole body stays visible under clothes, so a 1–2 cm offset is required. Hood/tusk intersection, sleeve length vs print arms, Human-sized grip offsets, and the Mixamo idle stoop remain. Chin pad paint is unchanged.
+
+```sh
+/Applications/Blender.app/Contents/MacOS/Blender --background --python scripts/ashen-reach/fit-orc-sculpt-clothes.py
+node scripts/ashen-reach/prepare-orc-equipment.mjs
+npm run test:equipment
+node scripts/ashen-reach/check-orc-equipment.mjs
+node scripts/ashen-reach/check-armory.mjs
 ```
+
 
 
 ### Stage C fit-contract increment — 2026-09-18

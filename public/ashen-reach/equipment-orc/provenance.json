@@ -1,9 +1,72 @@
 {
   "pipeline": "orc sculpt-pipeline pack",
   "source": "public/characters/candidates/orc-source-v1.glb",
-  "note": "Playable Orc is the print-sculpt retopo on the 65-joint source bind. Catalogue garments are withheld. Surface derived from Male Orc for Print by Crayon (CC-BY 4.0).",
+  "fitted": ".cache/armory-assets/orc-sculpt",
+  "note": "Playable Orc is the print-sculpt retopo on the 65-joint source bind. Catalogue garments are scaled to Orc stature and pushed off OrcV1Body; Human mixamorig weights are reused. Surface derived from Male Orc for Print by Crayon (CC-BY 4.0). Garments remain CC0 MakeHuman suits02/gloves01.",
   "hashes": {
     "public/characters/candidates/orc-source-v1.glb": "99c44c39537988089a07762d05e2caa71c6d6d467d8de859ac80ee6911a90128",
     "public/ashen-reach/equipment-orc/body.glb": "99c44c39537988089a07762d05e2caa71c6d6d467d8de859ac80ee6911a90128"
-  }
+  },
+  "garments": [
+    {
+      "id": "graveweaverHood",
+      "bytes": 2300788,
+      "meshes": [
+        "GraveweaverHood"
+      ]
+    },
+    {
+      "id": "graveweaverTop",
+      "bytes": 2216272,
+      "meshes": [
+        "GraveweaverTop",
+        "GraveweaverPendant"
+      ]
+    },
+    {
+      "id": "graveweaverSkirt",
+      "bytes": 2395024,
+      "meshes": [
+        "GraveweaverSkirt",
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs"
+      ]
+    },
+    {
+      "id": "graveweaverGloves",
+      "bytes": 2115460,
+      "meshes": [
+        "GraveweaverGloves"
+      ]
+    },
+    {
+      "id": "wayfarerTunic",
+      "bytes": 2229404,
+      "meshes": [
+        "WayfarerTunic"
+      ]
+    },
+    {
+      "id": "pilgrimTunic",
+      "bytes": 2582720,
+      "meshes": [
+        "PilgrimTunic"
+      ]
+    },
+    {
+      "id": "wayfarerTrousers",
+      "bytes": 2085180,
+      "meshes": [
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs"
+      ]
+    },
+    {
+      "id": "wayfarerBoots",
+      "bytes": 2225324,
+      "meshes": [
+        "WayfarerBoots"
+      ]
+    }
+  ]
 }

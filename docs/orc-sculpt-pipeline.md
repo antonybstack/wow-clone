@@ -32,7 +32,7 @@ Live VE of hooded slits vs gold marbles is the proof. Keep this sequence:
 - Meshes: `OrcV1Body`, `OrcV1Brows`, `OrcV1Eyes`, `OrcV1Hair`, `OrcV1Shorts`
 - Height 2.10 m
 - Isolated Blender 5.2.1 LTS, not MCP 9876
-- Catalogue clothes do not fit this topology yet; the pack is body-only plus factory hand props
+- Catalogue clothes are shrink-fit onto this rest (scale ×1.1667, push vertices inside `OrcV1Body` back out, reuse Human mixamorig weights). MHCLO cannot map this topology. `OrcV1Body` stays one surface; shorts/hair hide through packVisibility.
 
 ## Commands
 
@@ -51,6 +51,8 @@ Live VE of hooded slits vs gold marbles is the proof. Keep this sequence:
 
 # assemble clips, then the playable pack
 node scripts/character-assets/bind-source-orc.mjs
+/Applications/Blender.app/Contents/MacOS/Blender --background \
+    --python scripts/ashen-reach/fit-orc-sculpt-clothes.py
 node scripts/ashen-reach/prepare-orc-equipment.mjs
 
 node scripts/test-source-motion.mjs

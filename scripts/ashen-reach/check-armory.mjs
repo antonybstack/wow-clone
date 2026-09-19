@@ -19,9 +19,9 @@ try{
  await page.locator('[data-race]').selectOption('orc');
  await page.waitForFunction(()=>ASHEN.equipment.race==='orc'&&ASHEN.armory.getState().race==='orc'&&ASHEN.body.parked&&ASHEN.scene.meshes.some(m=>m.name==='OrcV1Body'&&m.visible)&&!ASHEN.equipment.getStatus?.().pending,null,{timeout:60000});
  const orc=await page.evaluate(()=>{const visible=name=>ASHEN.scene.meshes.some(m=>m.name===name&&m.visible);return {names:ASHEN.scene.meshes.map(m=>m.name),visible:{OrcV1Hair:visible('OrcV1Hair'),OrcV1Brows:visible('OrcV1Brows'),OrcV1Body:visible('OrcV1Body'),HumanHair:visible('HumanHair'),WayfarerTunic:visible('WayfarerTunic')},parked:ASHEN.body.parked,bones:ASHEN.body.skeleton?.bones?.length??0,options:(ASHEN.body.inspection?.options??[]).map(o=>o.id),status:document.querySelector('[data-equipment-status]')?.textContent??'',state:ASHEN.equipment.getState(),presetsDisabled:[...document.querySelectorAll('[data-outfit]')].every(b=>b.disabled),torsoDisabled:document.querySelector('[data-equipment="torso"]')?.disabled===true};});
- check('Selecting Orc swaps to the sculpt body',orc.visible.OrcV1Body&&orc.parked&&orc.bones===65&&!orc.visible.WayfarerTunic);
+ check('Selecting Orc swaps to the sculpt body',orc.visible.OrcV1Body&&orc.parked&&orc.bones===65&&!orc.visible.HumanHair);
  check('Orc preview exposes the full runtime clip set',['idle','walk','run','jump','land','fire','lava','carry'].every(id=>orc.options.includes(id)));
- check('Orc withholds catalogue clothes',orc.status.includes('sculpt-pipeline')&&orc.state.torso===null&&orc.presetsDisabled&&orc.torsoDisabled);
+ check('Orc wears transferred catalogue clothes',orc.visible.WayfarerTunic&&orc.state.torso==='wayfarerTunic'&&!orc.presetsDisabled&&!orc.torsoDisabled&&/report clipping/i.test(orc.status));
  await page.screenshot({path:dir+'/armory-orc.png'});
  await page.locator('[data-race]').selectOption('human');
  await page.waitForFunction(()=>ASHEN.equipment.race==='human'&&ASHEN.armory.getState().race==='human'&&!ASHEN.body.parked&&ASHEN.scene.meshes.some(m=>m.name==='HumanHair'&&m.visible)&&ASHEN.scene.meshes.some(m=>m.name==='WayfarerTunic'&&m.visible)&&!ASHEN.equipment.getStatus?.().pending,null,{timeout:60000});

@@ -57,7 +57,7 @@ Latest evidence: `ve-capture/ashen-reach/graveweaver/`; Stage B evidence remains
 
 ## Next useful expansion
 
-All seven slots, contrasting cloth/mail/magic outfits and staff/sword/book choices are implemented. The `graveweaverGreatstaff` is a real two-handed variant (see below); a shield does not exist yet. Standardize seam/coverage rules and item fit metadata while exercising mixed combinations. Preserve a compact catalogue until a visibly distinct Orc proves the same logical items on another body. Human-only success does not establish Orc/Undead fitting or arbitrary body-slider support.
+All seven slots, contrasting cloth/mail/magic outfits and staff/sword/book choices are implemented. The `graveweaverGreatstaff` is a real two-handed variant (see below); a shield does not exist yet. The same logical items now have a print-sculpt Orc fit (`scripts/ashen-reach/fit-orc-sculpt-clothes.py` + `prepare-orc-equipment.mjs`); MHCLO cannot map that topology. Undead and arbitrary body sliders remain unproven.
 
 ## Two-handed hold and eased stow/draw (2026-09-18)
 
