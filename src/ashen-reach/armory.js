@@ -44,7 +44,7 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
   try{
    const result=await action();
    if(result?.status==='superseded')return;
-   label.textContent=result?.status==='failed'?'Could not equip that item. Your current outfit is unchanged.':'';
+   label.textContent=result?.status==='failed'?'Could not equip that item. Your current outfit is unchanged.':(race==='orc'?'Orc fits are new — report clipping.':'');
    const selection=equipment.getStatus?.().pending?equipment.getStatus().desired:equipment.getState();
    for(const select of element.querySelectorAll('[data-equipment]'))select.value=selection[select.dataset.equipment]||'';
    if(frame&&result?.status!=='failed')face('full');
@@ -52,21 +52,23 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
  }
     let open=false, priorView='play', focusHeight=.78, drag=null, lastPaint=0;
     const raceField=element.querySelector('[data-race]'),raceNote=element.querySelector('[data-race-note]'),equipmentStatus=element.querySelector('[data-equipment-status]');
-    const ORC_SOURCE='/characters/candidates/orc-source-v1.glb';
     let race='human';
     const raceScale=()=>race==='orc'?1.22:1;
     const setRaceUi=()=>{
         const orc=race==='orc';
-        for(const select of element.querySelectorAll('[data-equipment]')){select.disabled=orc;if(orc)select.value='';}
-        for(const button of element.querySelectorAll('[data-outfit]'))button.disabled=orc;
-        equipmentStatus.textContent=orc?'Orc equipment fits are not ready — base appearance only. Your Human outfit is remembered.':'';
-        raceNote.textContent=orc?'Orc preview is armory-only until fitted Orc equipment ships.':'Human is available. Undead will unlock with its own fitted equipment.';
+        for(const select of element.querySelectorAll('[data-equipment]'))select.disabled=false;
+        for(const button of element.querySelectorAll('[data-outfit]'))button.disabled=false;
+        const selection=equipment.getState();
+        for(const select of element.querySelectorAll('[data-equipment]'))select.value=selection[select.dataset.equipment]||'';
+        equipmentStatus.textContent=orc?'Orc fits are new — report clipping.':'';
+        raceNote.textContent=orc?'Orc wears the same catalogue on its own fitted meshes.':'Human is available. Undead will unlock with its own fitted equipment.';
     };
     async function chooseRace(){
         const want=raceField.value;if(want===race)return;
         const previous=race;raceField.disabled=true
         try{
-            if(want==='orc'){equipment.setVisible(false);await body.swapSource(ORC_SOURCE);}
+            if(equipment.switchRace)await equipment.switchRace(want);
+            else if(want==='orc'){equipment.setVisible(false);await body.swapSource('/ashen-reach/equipment-orc/body.glb');}
             else{body.restoreSource();equipment.setVisible(true);}
             race=want;
             body.endInspection();
@@ -77,7 +79,6 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
             update(0);
         }catch(error){
             raceField.value=previous;
-            if(previous==='human')equipment.setVisible(true);
             equipmentStatus.textContent='Could not switch race. Your current character is unchanged.';
         }finally{raceField.disabled=false;setRaceUi();}
     }
@@ -96,10 +97,7 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
         open=false;drag=null;key.intensity=0;
         element.hidden=true;document.body.classList.remove('armory-open');launcher.setAttribute('aria-expanded','false');
         body.endInspection();
-        if(race==='orc'){body.restoreSource();race='human';raceField.value='human';equipment.setVisible(true);setRaceUi();}
-        setInputEnabled(true);setView(priorView);
-        // Canvas focus is necessary for immediate movement/spell keys after a button click.
-        canvas.focus();
+        setInputEnabled(true);setView(priorView);canvas.focus();
     };
     const show = () => {
         if(open)return;
@@ -108,7 +106,7 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
         combat.interrupt('Armory opened');setInputEnabled(false);setView('play');combat.setVisible(false);
         const preview=body.beginInspection();
         motion.innerHTML=preview.options.map(({id,label})=>`<option value="${id}">${label}</option>`).join('');
-        slider.value='0';pause.textContent='Pause';focusHeight=.78;camera.radius=4.8;camera.beta=1.36;face('front');
+        slider.value='0';pause.textContent='Pause';focusHeight=.78*raceScale();camera.radius=4.8*raceScale();camera.beta=1.36;face('front');
         open=true;scene.camera=camera;element.hidden=false;launcher.setAttribute('aria-expanded','true');
         document.body.classList.add('armory-open');element.querySelector('[data-close]').focus();update(0);
     };
@@ -154,5 +152,5 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
         timeLabel.textContent=`${state.time.toFixed(2)} / ${state.duration.toFixed(2)} s`;
         pause.textContent=state.paused?'Play':'Pause';pause.setAttribute('aria-pressed',String(state.paused));
     };
-    return {open:show,close,update,camera,get isOpen(){return open;},getState:()=>({open, race:'human',preview:body.inspection?.getState()||null})};
+    return {open:show,close,update,camera,get isOpen(){return open;},getState:()=>({open, race,preview:body.inspection?.getState()||null})};
 }

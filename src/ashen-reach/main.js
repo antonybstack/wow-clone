@@ -1,4 +1,6 @@
 import {createStreamedEquipment} from './equipment-stream.js';
+import {BASE_VISIBLE_MESHES, ORC_BASE_VISIBLE_MESHES} from './equipment-catalog.js';
+import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT} from './equipment-contract.js';
 import {createEngine,createSceneContext,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,startEngine,onBeforeRender,enableBoneControl,enableErrorDecoding,decodeError,setFog,captureScreenshot,setMeshVisible} from '@babylonjs/lite';
 import {createEquipment} from './equipment.js';
 import {createArmory} from './armory.js';
@@ -40,7 +42,42 @@ async function main(){
  const player=await setupPlayer(engine,scene,rig,{spawn:plantSpawnOnTerrain(world.spawn,capsule,height),colliders:world.colliders,groundHeight:height,boundsRadius:85,capsule});
  enableBoneControl();const body=await attachBody(engine,scene,player,player.capsuleHeight,playable);
  const combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig);
- const equipment=preloadedEquipment?createEquipment(engine,scene,body,combat.fx.sockets):await createStreamedEquipment(engine,scene,body,combat.fx.sockets);
+ body.bindSocketHost(combat.fx.sockets);
+ const packs={
+  human:{manifestUrl:'/ashen-reach/equipment/manifest.json',baseMeshes:BASE_VISIBLE_MESHES,fitId:HUMAN_EQUIPMENT_FIT},
+  orc:{manifestUrl:'/ashen-reach/equipment-orc/manifest.json',baseMeshes:ORC_BASE_VISIBLE_MESHES,fitId:ORC_EQUIPMENT_FIT,bodyUrl:'/ashen-reach/equipment-orc/body.glb'},
+ };
+ let impl=preloadedEquipment?createEquipment(engine,scene,body,combat.fx.sockets):await createStreamedEquipment(engine,scene,body,combat.fx.sockets,packs.human);
+ let currentRace='human';
+ const equipment={
+  get items(){return impl.items;},
+  get presets(){return impl.presets;},
+  setLoadout:patch=>impl.setLoadout(patch),
+  equip:(slot,id)=>impl.equip(slot,id),
+  equipPreset:id=>impl.equipPreset(id),
+  getState:()=>impl.getState(),
+  getStatus:()=>impl.getStatus?.(),
+  setVisible:value=>impl.setVisible(value),
+  update:dt=>impl.update(dt),
+  get attachment(){return impl.attachment;},
+  get race(){return currentRace;},
+  async switchRace(race){
+   if(race===currentRace)return;
+   const pack=packs[race];
+   if(!pack)throw Error('Unknown race pack');
+   const loadout={...impl.getState()};
+   impl.setVisible(false);
+   if(race==='orc')await body.swapSource(pack.bodyUrl);
+   else body.restoreSource();
+   if(preloadedEquipment){impl.setVisible(true);currentRace=race;return;}
+   const next=await createStreamedEquipment(engine,scene,body,combat.fx.sockets,{...pack,bootLoadout:loadout});
+   const previous=impl;
+   impl=next;
+   currentRace=race;
+   previous.dispose();
+  },
+  dispose(){impl.dispose();},
+ };
  let view='reference',elapsed=0;const samples=[];
  const setView=v=>{view=v;scene.camera=v==='reference'?reference:camera;setMeshVisible(body.root,v==='play');equipment.setVisible(v==='play');combat.setVisible(v==='play');};
  const reset=()=>{player.setWorldPos(0,height(0,0)+capsule.height/2,0);player.setFacing(0);rig.yaw=0;rig.pitch=.04;setView('reference');};

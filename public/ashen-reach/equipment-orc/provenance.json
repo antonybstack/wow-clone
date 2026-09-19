@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "bodyProfile": "orc-male-v1",
+  "rigJoints": 65,
+  "clips": 55,
+  "items": [
+    {
+      "name": "GraveweaverGloves",
+      "vertices": 2596
+    },
+    {
+      "name": "GraveweaverHood",
+      "vertices": 4723
+    },
+    {
+      "name": "GraveweaverPendant",
+      "vertices": 48
+    },
+    {
+      "name": "GraveweaverSkirt",
+      "vertices": 2644
+    },
+    {
+      "name": "GraveweaverTop",
+      "vertices": 3570
+    },
+    {
+      "name": "PilgrimTunic",
+      "vertices": 9469
+    },
+    {
+      "name": "WayfarerBoots",
+      "vertices": 3530
+    },
+    {
+      "name": "WayfarerTrousers",
+      "vertices": 1380
+    },
+    {
+      "name": "WayfarerTunic",
+      "vertices": 3776
+    }
+  ],
+  "coverageTriangles": {
+    "BodyExposed": 11959,
+    "BodyUnderTunic": 3485,
+    "BodyUnderBoots": 4688,
+    "BodyUnderLegs": 1568,
+    "BodyWaist": 666,
+    "BodyHands": 6286
+  },
+  "sourceSha256": "bd2acc14357241bfdd03dd1cd4ecbb479ed09da8693232705ccd1b05af191ee5",
+  "apparelSha256": "9aac7037700b37024dbe86779a08df7a810adb926964b4e08fd7a1876f8eeebf",
+  "outputSha256": "5d34476b560311f6535df91415dc843d801134ecad78686106a30f29156f2a82",
+  "packSha256": "5d34476b560311f6535df91415dc843d801134ecad78686106a30f29156f2a82",
+  "profileId": "orc-male-v1"
+}

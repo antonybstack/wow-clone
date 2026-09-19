@@ -1,20 +1,35 @@
 import { installEquipmentGrips } from './equipment-grips.js';
 import {loadGltf,getContainerMeshes,setMeshVisible,setParent,addToScene,removeFromScene} from '@babylonjs/lite';
 import {EQUIPMENT_ITEMS,BASE_VISIBLE_MESHES,validateLoadout,resolveEquipmentVisibility,EQUIPMENT_PRESETS} from './equipment-catalog.js';
+import {HUMAN_EQUIPMENT_FIT} from './equipment-contract.js';
 import {resolveHandEquip} from './equipment-contract.js';
 import {createEquipmentLoader} from './equipment-loader.js';
 import {createArmingSword} from './arming-sword.js';
 import {createMageProp} from './mage-props.js';
 import {advancePropTransition,beginPropTransition} from './prop-transition.js';
 
-export async function createStreamedEquipment(engine,scene,body,sockets){
-    const response=await fetch('/ashen-reach/equipment/manifest.json');
+function packVisibility(selected, baseMeshes) {
+    const vis = resolveEquipmentVisibility(selected);
+    const out = {...vis};
+    if (baseMeshes.includes('OrcV1Hair')) out.OrcV1Hair = vis.HumanHair;
+    if (baseMeshes.includes('OrcV1Shorts')) out.OrcV1Shorts = vis.BodyUnderLegs;
+    if (baseMeshes.includes('OrcV1Brows')) out.OrcV1Brows = true;
+    if (baseMeshes.includes('OrcV1Eyes')) out.OrcV1Eyes = true;
+    return out;
+}
+
+export async function createStreamedEquipment(engine,scene,body,sockets,options={}){
+    const manifestUrl=options.manifestUrl||'/ashen-reach/equipment/manifest.json';
+    const baseMeshes=options.baseMeshes||BASE_VISIBLE_MESHES;
+    const expectedFit=options.fitId||HUMAN_EQUIPMENT_FIT;
+    const bootLoadout=options.bootLoadout||{torso:'wayfarerTunic',legs:'wayfarerTrousers',boots:'wayfarerBoots'};
+    const response=await fetch(manifestUrl);
     if(!response.ok)throw Error('Equipment manifest unavailable');
     const manifest=await response.json();
     const base=getContainerMeshes(body.container),donor=base.find(m=>m.skeleton);
     if(!donor||donor.skeleton.boneCount!==65)throw Error('Unsupported equipment rig');
     const entries=new Map();let visible=true,stopped=false;
-    const bindings=Object.fromEntries(BASE_VISIBLE_MESHES.map(name=>[name,base.filter(m=>m.name===name)]));
+    const bindings=Object.fromEntries(baseMeshes.map(name=>[name,base.filter(m=>m.name===name)]));
     if(Object.values(bindings).some(meshes=>!meshes.length))throw Error('Missing body coverage');
     const initial={helmet:null,torso:null,legs:null,boots:null,gloves:null,mainHand:null,offHand:null};
     function setAttachment(entry,stow){
@@ -37,7 +52,9 @@ export async function createStreamedEquipment(engine,scene,body,sockets){
                 ({root,meshes}=prop);
             }else{
                 const asset=manifest.items[id];if(!asset||asset.bytes>16*1024*1024)throw Error('Equipment asset exceeds supported size');
-                for(const key of ['body','rig','bind','shape'])if(asset.fit?.[key]!==item.fit[key])throw Error('Incompatible equipment fit');
+                const raceFit=manifest.profileId==='orc-male-v1'||expectedFit.body==='ashen-orc'?'orc':'human';
+                const declared=item.fits?.[raceFit]||item.fit;
+                for(const key of ['body','rig','bind','shape'])if(asset.fit?.[key]!==declared[key])throw Error('Incompatible equipment fit');
                 const response=await fetch(asset.url,{signal});if(!response.ok)throw Error('Could not load '+item.name);
                 const bytes=await response.arrayBuffer();if(bytes.byteLength!==asset.bytes)throw Error('Equipment size mismatch');
                 const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),n=>n.toString(16).padStart(2,'0')).join('');
@@ -71,7 +88,7 @@ export async function createStreamedEquipment(engine,scene,body,sockets){
         }
     }
     function apply(next){
-        const mask=resolveEquipmentVisibility(next);
+        const mask=packVisibility(next, baseMeshes);
         for(const [name,meshes]of Object.entries(bindings))for(const mesh of meshes)setMeshVisible(mesh,visible&&mask[name]);
         const preview=body.inspection?.getState(),casting=preview?['fire','lava'].includes(preview.id):body.getState().castingShoot;
         sockets.sync([sockets.sockets.mainHand,sockets.sockets.offHand,sockets.sockets.back]);
@@ -100,7 +117,7 @@ export async function createStreamedEquipment(engine,scene,body,sockets){
         dispose(){stopped=true;loader.dispose();},
     };
     installEquipmentGrips(body,loader.getState);
-    const boot=await equipment.setLoadout({torso:'wayfarerTunic',legs:'wayfarerTrousers',boots:'wayfarerBoots'});
+    const boot=await equipment.setLoadout(bootLoadout);
     if(boot.status!=='applied'){equipment.dispose();throw Error(boot.error||'Equipment boot failed');}
     return equipment;
 }

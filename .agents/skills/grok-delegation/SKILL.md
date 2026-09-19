@@ -30,3 +30,16 @@ Keep the parent active while a CLI worker runs and review completion; an ended t
 For a requested independent visual review, use [review guidance](references/judge.md). Ask for the few highest-impact observable corrections, not an exhaustive score-driven loop. Never claim a same-context implementer review is independent.
 
 Parent sends reviewed media through the user's already-authorized Telegram channel and polls at sensible boundaries. No worker messaging by default, no secrets in docs, and no claim of background monitoring after the session ends.
+
+## Field lessons (Ashen Orc passes, 2026-09-18)
+
+These come from eight resumed Grok passes on the Orc anatomy, garments and armory work. They proved effective; keep using them.
+
+- **Resume the same session across passes** (`grok --resume <sessionId> --prompt-file <next handoff>`). Context carries the worker's own knowledge of the files it wrote, so each pass starts faster and stays consistent. Size `--max-turns` per pass (small 8–25 for a correction pass, 60–120 for a build pass) instead of one huge cap.
+- **One defect list per pass, ordered by impact, with a physical hypothesis.** "The hood is picking up shoulder displacement — fade it to zero at the neck" produced a fix; "make it better" did not.
+- **Require isolated per-variant previews.** An all-items composite created false cloth-through-cloth defects and hid the real hood bug. Make the worker capture each outfit/variant alone.
+- **Require the worker to look at its own renders and state per-variant pass/fail honestly.** Its verdicts are optimistic — expect them to name fewer defects than a fresh reviewer — but honest limit notes correlate with where the real problems are.
+- **Verify the worker's claims and the reviewer's claims against the artifact.** A nested vision review called the tunic's intended silver emblem a "hole"; extracting the texture settled it. Neither worker prose nor a reviewer verdict is acceptance by itself.
+- **Freeze the allowed-paths list in the handoff and re-state it every pass.** The workers respected it, and it kept Human assets and committed candidates untouched.
+- **Convert recurring traps into script checks or docs**, e.g. MakeHuman→GLB vertex index mismatch, garment albedo packed at 256 px nearest-neighbour destroying small emblems, displacement must fade at the neck for head children, derived preview GLBs belong in `.gitignore`.
+

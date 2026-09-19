@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {EQUIPMENT_ITEMS as items, EQUIPMENT_SLOTS as slots, BASE_VISIBLE_MESHES as baseMeshes, EQUIPMENT_PRESETS, validateLoadout} from '../src/ashen-reach/equipment-catalog.js';
-import {validateEquipmentCatalogue, validateEquipmentSelection, resolveHandEquip} from '../src/ashen-reach/equipment-contract.js';
+import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT, validateEquipmentCatalogue, validateEquipmentSelection, resolveHandEquip} from '../src/ashen-reach/equipment-contract.js';
 const options={slots,baseMeshes};
 const clone=()=>structuredClone(items);
 test('all current Human presets satisfy declared fits and occupancy',()=>{
@@ -13,6 +13,17 @@ test('different race, rig, bind or shape cannot reuse these fits silently',()=>{
         const candidate=clone();candidate.wayfarerTunic.fit[key]='wrong';
         assert.throws(()=>validateEquipmentCatalogue(candidate,options),/Incompatible/);
     }
+});
+test('items keep the Human fit and declare an Orc entry in the per-race map',()=>{
+    for(const item of Object.values(items)){
+        assert.deepEqual(item.fit, HUMAN_EQUIPMENT_FIT);
+        assert.deepEqual(item.fits.human, HUMAN_EQUIPMENT_FIT);
+        assert.deepEqual(item.fits.orc, ORC_EQUIPMENT_FIT);
+    }
+});
+test('mutating a mapped Orc fit fails validation',()=>{
+    const candidate=clone();candidate.wayfarerTunic.fits.orc.body='wrong';
+    assert.throws(()=>validateEquipmentCatalogue(candidate,options),/Incompatible/);
 });
 test('coverage typos, missing meshes and invalid cuff precedence fail before rendering',()=>{
     let candidate=clone();candidate.graveweaverHood.coverage=['UnknownHair'];

@@ -567,11 +567,10 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
 
     let parkedVisual = null;
     /**
-     * Developer race preview: assemble a second source-compatible body (the Orc
-     * candidate) from `url` and make it the active visual, parking the current
-     * one without retiring it. Equipment keeps its palette and bound meshes, so
-     * `restoreSource()` returns exactly to the previous body. Used by the
-     * armory race selector; gameplay persists Human until Orc fits exist.
+     * Race swap: assemble a second source-compatible body from `url` and make
+     * it the active visual, parking the current one without retiring it.
+     * `restoreSource()` returns exactly to the previous body. Sockets rebind to
+     * the visible skeleton so held props and hand effects follow the swap.
      */
     const swapSource = async (url) => {
         if (disposed) throw new Error("Body disposed");
@@ -592,6 +591,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
         visual = candidate;
         parkedVisual = previous;
         setVisualVisible(candidate, true);
+        if (socketHost?.rebind) socketHost.rebind(facade);
         playLoop(visual.idle);
         state.locoName = visual.idle?.name || state.locoName;
         return facade;
@@ -606,6 +606,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
         visual = previous;
         if (previous?.root) previous.root.name = "BodyRoot";
         setVisualVisible(previous, true);
+        if (socketHost?.rebind) socketHost.rebind(facade);
         playLoop(visual.idle);
         state.locoName = visual.idle?.name || state.locoName;
         return facade;

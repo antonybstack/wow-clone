@@ -15,16 +15,18 @@ try{
  const baseline=await read();
  await page.locator('#armory-launch').click();await page.waitForTimeout(150);let s=await read();check('Button opens armory on existing actor',s.armory.open&&s.camera==='armory'&&s.sceneMeshes===baseline.sceneMeshes);
  check('Only unsupported races disabled',await page.locator('[data-race] option:disabled').count()===1);
- // Race switch: Orc preview with no fitted equipment, Human preserved.
- await page.locator('[data-race]').selectOption('orc');await page.waitForTimeout(1000);
- const orc=await page.evaluate(()=>({names:ASHEN.scene.meshes.map(m=>m.name),parked:ASHEN.body.parked,bones:ASHEN.body.skeleton?.bones?.length??0,options:(ASHEN.body.inspection?.options??[]).map(o=>o.id),status:document.querySelector('[data-equipment-status]')?.textContent??'',state:ASHEN.equipment.getState()}));
- check('Selecting Orc swaps the inspected body to the Orc candidate',orc.names.includes('OrcV1Body')&&orc.parked&&orc.bones===65);
+ // Race switch: Orc fitted pack, Human parked, same logical selection.
+ await page.locator('[data-race]').selectOption('orc');
+ await page.waitForFunction(()=>ASHEN.equipment.race==='orc'&&ASHEN.armory.getState().race==='orc'&&ASHEN.body.parked&&ASHEN.scene.meshes.some(m=>m.name==='OrcV1Hair'&&m.visible)&&ASHEN.scene.meshes.some(m=>m.name==='WayfarerTunic'&&m.visible)&&!ASHEN.equipment.getStatus?.().pending,null,{timeout:60000});
+ const orc=await page.evaluate(()=>{const visible=name=>ASHEN.scene.meshes.some(m=>m.name===name&&m.visible);return {names:ASHEN.scene.meshes.map(m=>m.name),visible:{OrcV1Hair:visible('OrcV1Hair'),OrcV1Brows:visible('OrcV1Brows'),OrcV1Body:visible('OrcV1Body'),HumanHair:visible('HumanHair'),WayfarerTunic:visible('WayfarerTunic'),BodyExposed:visible('BodyExposed')},parked:ASHEN.body.parked,bones:ASHEN.body.skeleton?.bones?.length??0,options:(ASHEN.body.inspection?.options??[]).map(o=>o.id),status:document.querySelector('[data-equipment-status]')?.textContent??'',state:ASHEN.equipment.getState(),presetsDisabled:[...document.querySelectorAll('[data-outfit]')].some(b=>b.disabled),slotsDisabled:[...document.querySelectorAll('[data-equipment]')].some(s=>s.disabled)};});
+ check('Selecting Orc swaps the inspected body to the Orc candidate',orc.visible.OrcV1Hair&&!orc.names.includes('OrcV1Body')&&orc.parked&&orc.bones===65);
  check('Orc preview exposes the full runtime clip set',['idle','walk','run','jump','land','fire','lava','carry'].every(id=>orc.options.includes(id)));
- check('Orc reports unavailable equipment and keeps the Human selection',orc.status.includes('not ready')&&orc.state.torso==='wayfarerTunic');
+ check('Orc wears fitted equipment and keeps the Human selection',orc.status.includes('report clipping')&&orc.state.torso==='wayfarerTunic'&&orc.visible.WayfarerTunic&&!orc.visible.HumanHair&&!orc.presetsDisabled&&!orc.slotsDisabled);
  await page.screenshot({path:dir+'/armory-orc.png'});
- await page.locator('[data-race]').selectOption('human');await page.waitForTimeout(800);
- const human=await page.evaluate(()=>({names:ASHEN.scene.meshes.map(m=>m.name),parked:ASHEN.body.parked,state:ASHEN.equipment.getState()}));
- check('Returning to Human restores the equipped body',!human.parked&&human.names.includes('BodyExposed')&&human.state.torso==='wayfarerTunic');
+ await page.locator('[data-race]').selectOption('human');
+ await page.waitForFunction(()=>ASHEN.equipment.race==='human'&&ASHEN.armory.getState().race==='human'&&!ASHEN.body.parked&&ASHEN.scene.meshes.some(m=>m.name==='HumanHair'&&m.visible)&&ASHEN.scene.meshes.some(m=>m.name==='WayfarerTunic'&&m.visible)&&!ASHEN.equipment.getStatus?.().pending,null,{timeout:60000});
+ const human=await page.evaluate(()=>({names:ASHEN.scene.meshes.map(m=>m.name),parked:ASHEN.body.parked,state:ASHEN.equipment.getState(),hair:ASHEN.scene.meshes.some(m=>m.name==='HumanHair'&&m.visible)}));
+ check('Returning to Human restores the equipped body',!human.parked&&human.names.includes('BodyExposed')&&human.hair&&human.state.torso==='wayfarerTunic');
  await page.mouse.click(650,280);
  await page.keyboard.down('KeyW');await page.keyboard.down('KeyD');await page.keyboard.down('Space');await page.keyboard.press('Digit1');await page.keyboard.press('Digit2');await page.waitForTimeout(450);
  await page.keyboard.up('KeyW');await page.keyboard.up('KeyD');await page.keyboard.up('Space');s=await read();

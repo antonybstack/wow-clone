@@ -57,7 +57,15 @@ In this environment, image tool results (reading a PNG, `browser_take_screenshot
 opencode run --pure -m opencode-go/deepseek-v4.1-flash "Answer from the attached image only; do not call any tools. <question>" -f ve-capture/ashen-reach/<pass>/<frame>.png
 ```
 
-Put the message before `-f` (`-f` is a greedy array). Use `--pure` to skip plugins, and cross-check several camera angles because the spatial read can be inconsistent. `node scripts/ashen-reach/solve-two-hand-pose.mjs` is the two-handed arm-pose solver.
+Put the message before `-f` (`-f` is a greedy array). Use `--pure` to skip plugins, and cross-check several camera angles because the spatial read can be inconsistent.
+
+Treat nested-vision output as **advisory evidence, not ground truth**. Three rules from the Orc passes:
+
+- **Prefer relative reads to absolute verdicts.** "Which phase/panel is more upright, and why" produced usable direction; "is this good" flip-flopped between runs on the same images.
+- **Verify a consequential claim against the asset.** A reviewer called the Wayfarer tunic's silver beast emblem a "hole in the garment". Extracting the texture from the GLB and comparing it with a chest crop showed it was the intended embroidery, crushed by a 256 px nearest-neighbour downsample. Neither a worker's prose nor a reviewer's verdict substitutes for inspecting the artifact.
+- **Crop for detail and re-ask with a different framing when reads contradict.** Full-body stills hide or invent face/chest defects; close crops plus a second question resolved them. A montage of all passes side by side (reference first) gave the most reliable progression read of the whole session.
+
+`node scripts/ashen-reach/solve-two-hand-pose.mjs` is a superseded solver; do not restore it. Two-handed carry is the retargeted CC0 `Walk_Carry_Loop` clip.
 
 Recording to MP4: `ffmpeg` is not on PATH. Use the bundled `/Applications/BabylonJS Editor.app/Contents/bin/ffmpeg` (7.1, libx264/aac). `scripts/ashen-reach/record-two-handed.mjs` writes timestamped JPEG frames, `frames.ffconcat`, `audio.webm` and `recording.json` (with `audioOffset`); encode with `-f concat -safe 0 -i frames.ffconcat -ss <audioOffset> -i audio.webm -c:v libx264 -pix_fmt yuv420p -fps_mode vfr -c:a aac -movflags +faststart -shortest`, then publish with `scripts/ve-upload.sh`.
 

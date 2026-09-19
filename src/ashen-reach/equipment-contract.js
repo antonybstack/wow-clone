@@ -2,6 +2,10 @@
 export const HUMAN_EQUIPMENT_FIT = Object.freeze({
     body: 'ashen-human', rig: 'source-65', bind: 1, shape: 1,
 });
+export const ORC_EQUIPMENT_FIT = Object.freeze({
+    body: 'ashen-orc', rig: 'source-65', bind: 1, shape: 1,
+});
+const FITS_BY_RACE = Object.freeze({human: HUMAN_EQUIPMENT_FIT, orc: ORC_EQUIPMENT_FIT});
 export const SEAM_NAMES = Object.freeze(['neck', 'waist', 'wrists', 'ankles']);
 const HANDS = ['mainHand', 'offHand'];
 const own = (object, key) => Object.hasOwn(object, key);
@@ -12,6 +16,15 @@ export function validateEquipmentCatalogue(items, {slots, baseMeshes, fit = HUMA
         if (item.id !== id || !slots.includes(item.slot)) throw Error(`Invalid item identity/slot: ${id}`);
         for (const key of ['body', 'rig', 'bind', 'shape']) {
             if (item.fit?.[key] !== fit[key]) throw Error(`Incompatible ${key} fit: ${id}`);
+        }
+        if (item.fits) {
+            for (const [race, raceFit] of Object.entries(item.fits)) {
+                const expected = FITS_BY_RACE[race];
+                if (!expected) throw Error(`Unknown fit race: ${id}/${race}`);
+                for (const key of ['body', 'rig', 'bind', 'shape']) {
+                    if (raceFit?.[key] !== expected[key]) throw Error(`Incompatible ${key} fit: ${id}/${race}`);
+                }
+            }
         }
         if (Boolean(item.factory) === Boolean(item.parts?.length)) throw Error(`Item needs one attachment type: ${id}`);
         if (item.factory && !HANDS.includes(item.slot)) throw Error(`Invalid prop slot: ${id}`);
