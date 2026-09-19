@@ -2,7 +2,8 @@ import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT, freezeEquipment, validateEquipme
 /** Current Human fits. Item identity is separate from authored mesh and coverage. */
 export const BODY_REGIONS=['BodyExposed','BodyUnderTunic','BodyUnderBoots','BodyUnderLegs','BodyWaist','BodyHands'];
 export const BASE_VISIBLE_MESHES=[...BODY_REGIONS,'HumanHair'];
-export const ORC_BASE_VISIBLE_MESHES=[...BODY_REGIONS,'OrcV1Hair','OrcV1Brows','OrcV1Eyes','OrcV1Shorts'];
+/** Sculpt-pipeline Orc: one body surface, no MakeHuman coverage partitions. */
+export const ORC_BASE_VISIBLE_MESHES=['OrcV1Body','OrcV1Hair','OrcV1Brows','OrcV1Eyes','OrcV1Shorts'];
 const authoredItems={
     graveweaverHood:{id:'graveweaverHood',slot:'helmet',name:'Graveweaver hood',parts:[{mesh:'GraveweaverHood'}],coverage:['HumanHair']},
     graveweaverTop:{id:'graveweaverTop',slot:'torso',name:'Graveweaver mail vestment',parts:[{mesh:'GraveweaverTop'},{mesh:'GraveweaverPendant'}],coverage:['BodyUnderTunic','BodyWaist']},

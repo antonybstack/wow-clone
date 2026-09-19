@@ -6,7 +6,7 @@ Use for actual rig, mesh, garment or animation work. Start with [current directi
 
 - Ashen uses the fitted Human on the original 65-joint source bind, with 45 original animation clips. Directional imports and split spell clips extend it; current asset count is in CURRENT.md. Do not substitute the old 163-joint Human/Orc/Undead assets without a compatible fit/animation plan.
 - Inspect license, source rig and units before using an asset. Audition authored clips on the actual skinned character at comparable phases. A plausible clip name is not proof of useful movement.
-- For new body/garment geometry, use a credible anatomical/skin pipeline. Do not auto-weight a lathe/cloak cone as a body, hide deformation with oversized garments, or reuse incompatible inverse binds.
+- For new body/garment geometry, use a credible anatomical/skin pipeline. Do not auto-weight a lathe/cloak cone as a body, hide deformation with oversized garments, or reuse incompatible inverse binds. The playable Orc is the print-sculpt collapse in [the sculpt pipeline](../../../../docs/orc-sculpt-pipeline.md): keep the FBX as a bake cage, collapse (do not voxel) the print head so eyelid slits survive, export tangent normals, and do not park dummy spheres on the brow. Do not warp a MakeHuman mesh with ellipsoid muscle tables. `mesh.fill()` on the loincloth becomes a cone; skip it.
 - One evaluated pose drives compatible body/garments. Rigid gear uses evaluated sockets; soft garments require skinning. Joint scene-node parenting does not automatically follow Lite's evaluated skin pose.
 
 ## Unit and binding pitfalls

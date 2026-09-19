@@ -41,6 +41,34 @@ const SPELL_LEG_BONES = [
     'mixamorig:RightToeBase',
 ];
 
+// Pose ownership while a two-handed prop is equipped: the directional gait clips
+// own the whole body, and the carry clip is layered on these joints only. The
+// list stops at the shoulders, so pelvis/root travel, spine lean and leg timing
+// stay with locomotion; both arms move together so the solved hand-to-shaft
+// relative transform (which depends only on the arm chains below a shared
+// parent) is preserved. Hands are included; fingers are excluded here and stay
+// owned by hand-grip.js, which filters every mask before evaluation.
+// Stationary two-handed hold: most neutral phase of `Walk_Carry_Loop`
+// (seconds into the loop), from scripts/ashen-reach/scan-carry-neutral.mjs.
+export const TWO_HAND_STILL_TIME = 0.9;
+// Lite's mixer only selects weighted evaluation when a live clip has a
+// non-unit JS weight, and blends a joint back toward bind pose when its
+// accumulated rotation weight is below 1. A weight just under 1 selects the
+// mixer while rounding to exactly 1 in its Float32 accumulators, so the
+// arms-only carry layer owns those joints outright. See MASKED_CAST_WEIGHT.
+export const CARRY_WEIGHT = 1 - Number.EPSILON;
+
+const CARRY_UPPER_BONES = [
+    'mixamorig:LeftShoulder',
+    'mixamorig:LeftArm',
+    'mixamorig:LeftForeArm',
+    'mixamorig:LeftHand',
+    'mixamorig:RightShoulder',
+    'mixamorig:RightArm',
+    'mixamorig:RightForeArm',
+    'mixamorig:RightHand',
+];
+
 export function findGroup(groups, needles, exclude = []) {
     const want = needles.map((n) => n.toLowerCase());
     const skip = exclude.map((n) => n.toLowerCase());
@@ -161,7 +189,27 @@ export function applyVisualMasks(visual, definition) {
     visual.spellMask = spellMask;
     visual.locoMask = locoMask;
     visual.legNames = legNames;
-    if (visual.twoHand) visual.twoHand.loopAnimation = true;
+    // One stable Include mask for the carry layer, built once per visual so
+    // hand-grip.js can cache its finger-filtered variant. Rigs without the
+    // named arm chain get no mask and no carry layer instead of a full-body
+    // clip that would replace the directional gait.
+    const carryNames = CARRY_UPPER_BONES.filter((name) => boneNames.includes(name));
+    const carryComplete = carryNames.length === CARRY_UPPER_BONES.length;
+    visual.carryMask = carryComplete
+        ? createAnimationGroupMask(carryNames, AnimationGroupMaskMode.Include)
+        : null;
+    // Complementary half of the pair: while the carry layer is live every
+    // locomotion/jump clip gives up exactly these joints, so the two sides
+    // never accumulate into a half-way arm pose (Lite slerps a joint by
+    // accumulated weight; two live sources would land between the gait swing
+    // and the hold, with both hands off the shaft).
+    visual.carryLocoMask = carryComplete
+        ? createAnimationGroupMask(carryNames, AnimationGroupMaskMode.Exclude)
+        : null;
+    if (visual.twoHand) {
+        visual.twoHand.loopAnimation = true;
+        visual.twoHand.mask = visual.carryMask ?? undefined;
+    }
     // The authored Fire Blast adaptation starts in Idle, so Lite can subtract
     // that pose and smoothly layer independent upper/lower contributions.
     if (definition?.castMotion) {
@@ -287,8 +335,10 @@ export function restoreVisualAnimation(visual, snapshot, state) {
 }
 
 export function setVisualVisible(visual, visible) {
-    if (!visual?.root) return;
-    setMeshVisible(visual.root, visible);
+    if (!visual) return;
+    if (visual.root) setMeshVisible(visual.root, visible);
+    const meshes = visual.meshes ?? (visual.container ? getContainerMeshes(visual.container) : []);
+    for (const mesh of meshes) setMeshVisible(mesh, visible);
 }
 
 export function retireVisual(scene, visual) {
@@ -389,7 +439,12 @@ export function assembleBodyVisual(opts) {
         inScene: true,
         retired: false,
         ...clips,
-        locoClips: [clips.idle, clips.idleArmed, clips.walk, clips.walkBack, clips.sprint, clips.strafeL, clips.strafeR, clips.turnL, clips.turnR, clips.twoHand].filter(Boolean),
+        // `twoHand` is deliberately absent: it is not a locomotion target but a
+        // masked upper-body carry layer (see CARRY_UPPER_BONES). Keeping it out
+        // of `locoClips` keeps it clear of stance normalization, pose-transition
+        // crossfades, landing weight scaling, gait-contact prepositioning and
+        // the cast loco overlay mask, all of which own the directional gait.
+        locoClips: [clips.idle, clips.idleArmed, clips.walk, clips.walkBack, clips.sprint, clips.strafeL, clips.strafeR, clips.turnL, clips.turnR].filter(Boolean),
         jumpClips: [clips.jumpStart, clips.jumpLoop, clips.jumpLand].filter(Boolean),
         spellClips: [clips.spellShoot, clips.spellLoop, clips.spellEnter, clips.spellExit].filter(Boolean),
     };

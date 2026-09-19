@@ -13,7 +13,7 @@ Start with [current direction](../../../docs/CURRENT.md). Active gameplay is **A
 - Reuse existing Havok movement, input and camera; physics owns translation/heading. New visuals should not silently change movement speeds or ground/jump policy.
 - Use installed Lite APIs and the exact Vite module graph. In a browser probe, discover the transformed game's optimized Lite import URL, including its query. A second raw package import can create separate registries and false engine failures.
 - Current equipped character is `public/ashen-reach/wanderer-equipment.glb`, built from `wanderer.glb`, the source-compatible Human with a 65-joint bind. See the [equipment authoring guide](../../../docs/ashen-equipment-authoring.md) before rebuilding garments. Native Lite animation/mixer and evaluated hand sockets drive it. Current clip selection and spell profiles live in `src/ashen-reach/main.js`.
-- Use [character authoring notes](references/character-authoring.md) when changing skinning, motion or equipment. Keep original source curves/binds intact unless the task explicitly requires a new compatible asset contract.
+- Use [character authoring notes](references/character-authoring.md) when changing skinning, motion or equipment. Keep original source curves/binds intact unless the task explicitly requires a new compatible asset contract. The playable Orc is the print-sculpt pipeline in [orc sculpt pipeline](../../../docs/orc-sculpt-pipeline.md): isolated Blender 5.2.1 LTS (not MCP 9876), collapse the FBX, bake HP normals, Mixamo 65-joint bind.
 - Real game captures are the visual authority. Follow [Dream Loop](../dream-loop/SKILL.md); use the [browser/capture guide](../../../docs/debug-view.md).
 
 ## Choose the appropriate asset path

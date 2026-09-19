@@ -120,11 +120,8 @@ const copyMaterial = mat => {
     const factor = mat.getBaseColorFactor().slice();
     if (name.includes('Skin')) {
         metal = 0;
-        rough = 1;
+        rough = Math.max(rough, 0.7);
         alpha = 'OPAQUE';
-        factor[0] = Math.min(1, factor[0] * 1.04);
-        factor[1] = factor[1] * 0.90;
-        factor[2] = factor[2] * 0.80;
         factor[3] = 1;
     }
     if (name.includes('Ivory')) {
@@ -150,8 +147,9 @@ const copyMaterial = mat => {
     return out;
 };
 const scene = root.listScenes()[0];
+const meshNameOf = name => name.replace(/^OrcV1Eyes.*/, 'OrcV1Eyes');
 for (const mesh of restRoot.listMeshes()) {
-    const dst = doc.createMesh(mesh.getName());
+    const dst = doc.createMesh(meshNameOf(mesh.getName()));
     for (const prim of mesh.listPrimitives()) {
         const out = doc.createPrimitive().setMaterial(copyMaterial(prim.getMaterial()));
         for (const sem of prim.listSemantics()) {
@@ -167,7 +165,7 @@ for (const mesh of restRoot.listMeshes()) {
         if (prim.getIndices()) out.setIndices(copyAccessor(prim.getIndices()));
         dst.addPrimitive(out);
     }
-    const node = doc.createNode(mesh.getName()).setMesh(dst);
+    const node = doc.createNode(meshNameOf(mesh.getName())).setMesh(dst);
     node.setSkin(skin);
     scene.addChild(node);
 }
@@ -204,19 +202,18 @@ const bytes = await io.writeBinary(doc);
 await fs.writeFile(OUT, bytes);
 const versions = JSON.parse(await fs.readFile('package.json', 'utf8')).devDependencies || {};
 await fs.writeFile(PROVENANCE, JSON.stringify({
-    pipeline: 'source-compatible Orc binding',
-    capture: 've-capture/orc-motion/grok-v5',
+    pipeline: 'source-compatible Orc binding from print sculpt',
+    capture: 've-capture/ashen-reach/orc-sculpt',
     hashes: {
         'public/characters/base.glb': sha(await fs.readFile('public/characters/base.glb')),
         'public/ashen-reach/wanderer.glb': sha(await fs.readFile('public/ashen-reach/wanderer.glb')),
-        'public/characters/bodies/orc-animated-v1.glb': sha(await fs.readFile('public/characters/bodies/orc-animated-v1.glb')),
         [OUT]: sha(bytes),
-        'scripts/character-assets/bulk_orc.py': sha(await fs.readFile('scripts/character-assets/bulk_orc.py')),
-        'scripts/character-assets/bind_source_orc.py': sha(await fs.readFile('scripts/character-assets/bind_source_orc.py')),
+        'scripts/character-assets/orc_from_sculpt.py': sha(await fs.readFile('scripts/character-assets/orc_from_sculpt.py')),
         'scripts/character-assets/bind-source-orc.mjs': sha(await fs.readFile('scripts/character-assets/bind-source-orc.mjs')),
+        'blender/characters/sources/orc-print/provenance.json': sha(await fs.readFile('blender/characters/sources/orc-print/provenance.json')),
     },
     versions: {blender: '5.2.1', gltfTransform: versions['@gltf-transform/core'], glMatrix: versions['gl-matrix']},
-    licenseNotes: 'Orc assets retain existing MakeHuman graphics provenance (CC0); source rig and original clips retain base.glb provenance. No blanket CC0 claim for the source rig.',
+    licenseNotes: 'Orc surface is derived from "Male Orc for Print" by Crayon (CC-BY 4.0). Credit in blender/characters/sources/orc-print/license.txt. Source rig and original clips retain base.glb provenance. MakeHuman CC0 no longer describes the Orc surface.',
 }, null, 2) + '\n');
 console.log(JSON.stringify({clips: root.listAnimations().length, joints: order.length,
     runtimeExtras: extras.map(a => a.getName()),

@@ -6,7 +6,12 @@ import './armory.css';
 export function createArmory({scene, canvas, player, body, combat, equipment, getView, setView}) {
     const camera = createArcRotateCamera(Math.PI/2,1.36,4.8,{x:0,y:1,z:0});
     camera.fov=.56;camera.nearPlane=.05;camera.farPlane=450;
-    const key = createPointLight([0,3,0],0);key.diffuse=[.96,.90,.78];key.range=8;addToScene(scene,key);
+    // Two-point inspection rig. A single dim frontal lamp lit the character flat,
+    // so muscle separation was invisible against the night churchyard and the
+    // armory could not be used to judge anatomy at all. Key from the camera's
+    // upper left, rim from behind the opposite shoulder to draw the silhouette.
+    const key = createPointLight([0,3,0],0);key.diffuse=[.96,.90,.78];key.range=9;addToScene(scene,key);
+    const rim = createPointLight([0,3,0],0);rim.diffuse=[.62,.72,.92];rim.range=9;addToScene(scene,rim);
     const launcher = document.createElement('button');
     launcher.id='armory-launch';launcher.textContent='Armory';launcher.title='Developer armory (C)';
     launcher.setAttribute('aria-keyshortcuts','C');launcher.setAttribute('aria-expanded','false');
@@ -18,7 +23,7 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
       <aside class="armory-panel">
         <div class="armory-panel-title"><span>Character & equipment</span><button data-close aria-label="Close armory">×</button></div>
         <label class="armory-field">Race<select data-race><option value="human">Human</option><option value="orc">Orc</option><option value="undead" disabled>Undead — fit not ready</option></select></label>
-        <p class="armory-note" data-race-note>Human is available. Undead will unlock with its own fitted equipment.</p>
+        <p class="armory-note" data-race-note>Human is available. Orc is the print-sculpt body on the 65-joint source bind. Undead will unlock with its own fitted equipment.</p>
         <h2>Equipment</h2><p class="armory-note" data-equipment-status role="status" aria-live="polite"></p><div class="armory-presets">${Object.entries(equipment.presets).map(([id,preset])=>`<button data-outfit="${id}">${preset.name}</button>`).join('')}</div>
         <div class="armory-slots">${[['helmet','Helmet','Unequipped'],['torso','Torso','Base appearance'],['legs','Legs','Charcoal trousers'],['boots','Boots','Base appearance'],['gloves','Gloves','Unequipped'],['mainHand','Main hand','Unequipped'],['offHand','Off-hand','Unequipped']].map(([slot,label,value])=>`<button data-slot="${slot}" disabled><span>${label}</span><strong>${value}</strong><small>Items coming next</small></button>`).join('')}</div>
         <p class="armory-note">Select a fitted item or unequip it. Your selection stays equipped in the churchyard.</p>
@@ -44,7 +49,7 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
   try{
    const result=await action();
    if(result?.status==='superseded')return;
-   label.textContent=result?.status==='failed'?'Could not equip that item. Your current outfit is unchanged.':(race==='orc'?'Orc fits are new — report clipping.':'');
+   label.textContent=result?.status==='failed'?'Could not equip that item. Your current outfit is unchanged.':(race==='orc'?'Orc is a sculpt-pipeline body. Catalogue clothes do not fit this topology yet.':'');
    const selection=equipment.getStatus?.().pending?equipment.getStatus().desired:equipment.getState();
    for(const select of element.querySelectorAll('[data-equipment]'))select.value=selection[select.dataset.equipment]||'';
    if(frame&&result?.status!=='failed')face('full');
@@ -56,12 +61,15 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
     const raceScale=()=>race==='orc'?1.22:1;
     const setRaceUi=()=>{
         const orc=race==='orc';
-        for(const select of element.querySelectorAll('[data-equipment]'))select.disabled=false;
-        for(const button of element.querySelectorAll('[data-outfit]'))button.disabled=false;
+        const garments=['helmet','torso','legs','boots','gloves'];
+        for(const select of element.querySelectorAll('[data-equipment]')){
+            select.disabled=orc&&garments.includes(select.dataset.equipment);
+        }
+        for(const button of element.querySelectorAll('[data-outfit]'))button.disabled=orc;
         const selection=equipment.getState();
         for(const select of element.querySelectorAll('[data-equipment]'))select.value=selection[select.dataset.equipment]||'';
-        equipmentStatus.textContent=orc?'Orc fits are new — report clipping.':'';
-        raceNote.textContent=orc?'Orc wears the same catalogue on its own fitted meshes.':'Human is available. Undead will unlock with its own fitted equipment.';
+        equipmentStatus.textContent=orc?'Orc is a sculpt-pipeline body. Catalogue clothes do not fit this topology yet.':'';
+        raceNote.textContent=orc?'Orc is the print-sculpt retopo on the 65-joint source bind. Catalogue clothes stay on the Human topology until a new fit.':'Human is available. Undead will unlock with its own fitted equipment.';
     };
     async function chooseRace(){
         const want=raceField.value;if(want===race)return;
@@ -94,7 +102,7 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
     };
     const close = () => {
         if(!open)return;
-        open=false;drag=null;key.intensity=0;
+        open=false;drag=null;key.intensity=0;rim.intensity=0;
         element.hidden=true;document.body.classList.remove('armory-open');launcher.setAttribute('aria-expanded','false');
         body.endInspection();
         setInputEnabled(true);setView(priorView);canvas.focus();
@@ -144,13 +152,24 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
         camera.target.x=p.x-Math.sin(camera.alpha)*offset;
         camera.target.z=p.z+Math.cos(camera.alpha)*offset;
         camera.target.y=feet+focusHeight;
-        key.position.set(p.x+Math.cos(camera.alpha)*2,feet+2.4,p.z+Math.sin(camera.alpha)*2);
-        key.intensity=element.querySelector('[data-light]').checked?1.5:0;
+        const lit=element.querySelector('[data-light]').checked;
+        key.position.set(p.x+Math.cos(camera.alpha+.6)*2.1,feet+2.5,p.z+Math.sin(camera.alpha+.6)*2.1);
+        key.intensity=lit?9:0;
+        rim.position.set(p.x-Math.cos(camera.alpha+1.5)*2.3,feet+2.1,p.z-Math.sin(camera.alpha+1.5)*2.3);
+        rim.intensity=lit?4:0;
         lastPaint+=dt;if(lastPaint<.05&&dt!==0)return;lastPaint=0;
         const state=body.inspection?.getState();if(!state)return;
         slider.max=String(state.duration);slider.value=String(state.time);
         timeLabel.textContent=`${state.time.toFixed(2)} / ${state.duration.toFixed(2)} s`;
         pause.textContent=state.paused?'Play':'Pause';pause.setAttribute('aria-pressed',String(state.paused));
     };
-    return {open:show,close,update,camera,get isOpen(){return open;},getState:()=>({open, race,preview:body.inspection?.getState()||null})};
+    // setFocus lets a capture script frame a body region the five preset views do
+    // not cover (torso, legs, shoulder junction) without hand-dragging the stage.
+    const setFocus = ({height, radius, beta, alpha}={}) => {
+        if(height!==undefined)focusHeight=height*raceScale();
+        if(radius!==undefined)camera.radius=radius*raceScale();
+        if(beta!==undefined)camera.beta=beta;
+        if(alpha!==undefined)camera.alpha=alpha-player.getFacing();
+    };
+    return {open:show,close,update,camera,setFocus,get isOpen(){return open;},getState:()=>({open, race,preview:body.inspection?.getState()||null})};
 }

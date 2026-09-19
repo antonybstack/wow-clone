@@ -18,6 +18,8 @@ import {
     resolvePlayableBody,
 } from "./runtime/playable-body.js";
 import {
+    CARRY_WEIGHT,
+    TWO_HAND_STILL_TIME,
     applyLocoOverlay,
     assembleBodyVisual,
     restoreVisualAnimation,
@@ -55,11 +57,9 @@ const BLEND_SPEED = 4;
 const WALK_RATIO = 1;
 const BACK_RATIO = 0.85;
 const RUN_RATIO = 1.4;
-// Stationary two-handed hold: most neutral phase of `Walk_Carry_Loop`
-// (seconds into the loop), from scripts/ashen-reach/scan-carry-neutral.mjs.
-// A staff is not a heavy weapon, so the freeze eases there within
-// TWO_HAND_SETTLE instead of parking a lean-back walk extreme.
-const TWO_HAND_STILL_TIME = 0.9;
+// A staff is not a heavy weapon, so the stationary carry arms ease to
+// TWO_HAND_STILL_TIME (body-visual.js) within TWO_HAND_SETTLE instead of
+// parking whatever phase the playhead stopped at.
 const TWO_HAND_SETTLE = 0.25;
 const JUMP_UP = 1.5;
 const ONESHOT_SLACK = 0.03;
@@ -467,7 +467,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
     };
 
     const updateLoco = (dt, motion) => {
-        const { idle, idleArmed, walk, walkBack, strafeL, strafeR, turnL, turnR, sprint, samba, twoHand } = visual;
+        const { idle, idleArmed, walk, walkBack, strafeL, strafeR, turnL, turnR, sprint, samba } = visual;
         const forward = motion.forward ?? 0;
         const strafe = motion.strafe ?? 0;
         const wish = Math.abs(forward) > 0.01 || Math.abs(strafe) > 0.01;
@@ -523,28 +523,11 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             const secondaryRate = diagonalWeight ? lateral.speedRatio / lateral.duration : primaryRate;
             gaitFrequency = primaryRate * (1 - diagonalWeight) + secondaryRate * diagonalWeight;
         } else gaitFrequency = 0;
-        // Two-handed carry uses the retargeted CC0 `Walk_Carry_Loop` clip while
-        // moving. Stationary, the cycle eases to its most neutral phase
-        // instead of parking whatever lean-back extreme the playhead stopped
-        // at. Casts/jumps release it like any loco.
-        if (twoHand && visual.handGrips?.()?.twoHanded) {
-            target = twoHand;
-            state.locoName = twoHand.name;
-            if (wish) {
-                twoHand.speedRatio = walking ? WALK_RATIO : RUN_RATIO;
-            } else {
-                twoHand.speedRatio = 0;
-                const dur = twoHand.duration || 1;
-                let d = (TWO_HAND_STILL_TIME - twoHand.currentTime) % dur;
-                if (d > dur / 2) d -= dur;
-                if (d < -dur / 2) d += dur;
-                const step = dur * dt / TWO_HAND_SETTLE;
-                const settled = Math.abs(d) <= step ? TWO_HAND_STILL_TIME : twoHand.currentTime + Math.sign(d) * step;
-                twoHand.currentTime = ((settled % dur) + dur) % dur;
-            }
-        }
+        // The two-handed carry no longer replaces the gait here: it is an
+        // arms-only layer owned by updateCarry(), so backpedal, strafe, run and
+        // turn keep their own legs, pelvis travel and torso while armed.
         if (poseTransition) return target;
-        const stance = [...new Set([idle, idleArmed, walk, walkBack, sprint, strafeL, strafeR, turnL, turnR, twoHand].filter(Boolean))];
+        const stance = [...new Set([idle, idleArmed, walk, walkBack, sprint, strafeL, strafeR, turnL, turnR].filter(Boolean))];
         for (const clip of stance) {
             blendClip(clip, clip === target ? 1 - diagonalWeight : clip === lateral ? diagonalWeight : 0, dt);
         }
@@ -564,17 +547,65 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
     // The two-handed carry pose is the retargeted CC0 `Walk_Carry_Loop` clip
     // (scripts/ashen-reach/append-carry.mjs); no authored arm override is used.
     // Stationary it rests at TWO_HAND_STILL_TIME, the loop's neutral phase.
+    //
+    // Pose ownership while it is live: locomotion and jump clips keep the
+    // pelvis, spine and legs; the carry clip keeps the shoulders/arms/hands
+    // only (CARRY_UPPER_BONES). The two sides wear complementary masks, so a
+    // joint is never driven by both — a shared joint would slerp to the middle
+    // of the gait swing and the hold, taking both hands off the shaft. Fingers
+    // stay with hand-grip.js, which filters every mask before evaluation.
+    // Cast precedence is unchanged: equipment-grips.js reports no two-handed
+    // grip while casting, so this layer releases and the cast overlays own the
+    // arms. Airborne is deliberate: the hold is kept through jump and landing,
+    // so the legs take the authored jump while the staff stays gripped.
+    let carryMasked = false;
+    const updateCarry = (dt, motion, castOverlay) => {
+        const { twoHand, carryMask, carryLocoMask } = visual;
+        const layered = [...visual.locoClips, ...visual.jumpClips];
+        if (!twoHand || !carryMask || !visual.handGrips?.()?.twoHanded) {
+            if (!carryMasked) return;
+            // Restore masks and stop the layer in the same frame: masked-out
+            // arms with no live carry clip would fall back to the bind pose.
+            carryMasked = false;
+            for (const clip of layered) clip.mask = undefined;
+            applyLocoOverlay(visual, castOverlay);
+            halt(twoHand);
+            return;
+        }
+        for (const clip of layered) clip.mask = carryLocoMask;
+        twoHand.mask = carryMask;
+        twoHand.loopAnimation = true;
+        carryMasked = true;
+        if (!twoHand.isPlaying) playAnimation(twoHand);
+        setAnimationWeight(twoHand, CARRY_WEIGHT);
+        const wish = Math.abs(motion.forward ?? 0) > 0.01 || Math.abs(motion.strafe ?? 0) > 0.01;
+        if (wish) {
+            twoHand.speedRatio = (motion.walk ?? input.walk) ? WALK_RATIO : RUN_RATIO;
+            return;
+        }
+        // Stationary: ease the arm cycle to the neutral hold rather than
+        // freezing mid-swing. Lite advances a playing clip itself, so the
+        // playhead is written directly here with speedRatio at zero.
+        twoHand.speedRatio = 0;
+        const dur = twoHand.duration || 1;
+        let d = (TWO_HAND_STILL_TIME - twoHand.currentTime) % dur;
+        if (d > dur / 2) d -= dur;
+        if (d < -dur / 2) d += dur;
+        const step = dur * dt / TWO_HAND_SETTLE;
+        const settled = Math.abs(d) <= step ? TWO_HAND_STILL_TIME : twoHand.currentTime + Math.sign(d) * step;
+        twoHand.currentTime = ((settled % dur) + dur) % dur;
+    };
 
     let parkedVisual = null;
     /**
      * Race swap: assemble a second source-compatible body from `url` and make
-     * it the active visual, parking the current one without retiring it.
-     * `restoreSource()` returns exactly to the previous body. Sockets rebind to
-     * the visible skeleton so held props and hand effects follow the swap.
+     * it the active visual. The first swap parks the boot body (Human) without
+     * retiring it. A later swap (Orc ↔ Orc2) replaces the active swapped body
+     * and keeps the parked original. `restoreSource()` returns to that parked
+     * body. Sockets rebind to the visible skeleton so held props follow.
      */
     const swapSource = async (url) => {
         if (disposed) throw new Error("Body disposed");
-        if (parkedVisual) throw new Error("A source body is already parked");
         const nextContainer = await loadGltf(engine, url);
         const candidate = assembleBodyVisual({
             engine, scene, player, capsuleHeight,
@@ -584,13 +615,21 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
         finishPoseTransition();
         inspection?.dispose(); inspection = null;
         const previous = visual;
-        if (previous && previous !== candidate) {
-            previous.root.name = "BodyRootParked";
+        if (!parkedVisual) {
+            if (previous && previous !== candidate) {
+                previous.root.name = "BodyRootParked";
+                setVisualVisible(previous, false);
+            }
+            parkedVisual = previous;
+        } else if (previous && previous !== parkedVisual && previous !== candidate) {
+            previous.root.name = "BodyRootRetired";
             setVisualVisible(previous, false);
+            retireVisual(scene, previous);
         }
         visual = candidate;
-        parkedVisual = previous;
+        if (candidate?.root) candidate.root.name = "BodyRoot";
         setVisualVisible(candidate, true);
+        setVisualVisible(parkedVisual, false);
         if (socketHost?.rebind) socketHost.rebind(facade);
         playLoop(visual.idle);
         state.locoName = visual.idle?.name || state.locoName;
@@ -770,6 +809,9 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
         }
         const castOverlay = !visual.additiveCast && ((state.castingShoot && !visual.definition?.castMotion) || !!state.channelPhase);
         applyLocoOverlay(visual, castOverlay);
+        // After applyLocoOverlay, which owns the cast masks on the same clips,
+        // and before the frame's single evaluateHandAnimation/manager update.
+        updateCarry(h, motion, castOverlay);
         if (groups.length) {
             evaluateHandAnimation(visual, h * 1000);
         }
@@ -953,6 +995,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
         update,
         swapSource,
         restoreSource,
+        hideParked() { setVisualVisible(parkedVisual, false); },
         get parked() { return !!parkedVisual; },
         get inspection() { return inspection; },
         beginInspection() {
@@ -969,6 +1012,11 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             state.channeling = false; state.channelPhase = ""; state.channelBlocked = false;
             setLocoOverlay(false);
             playLoop(visual.idle);
+            // Re-establish (or clear) the carry layer before the evaluation
+            // below, so leaving the Armory armed cannot show one bind-pose
+            // frame on the arms the preview had just stopped driving.
+            carryMasked = true;
+            updateCarry(0, { forward: 0, strafe: 0 }, false);
             evaluateHandAnimation(visual, 0);
         },
         cancelCast() { if (def.castMotion && state.castingShoot) castCancelTime = .16; },
@@ -997,17 +1045,21 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             strafing: state.strafing,
         }),
         getClipLabel: () => {
-            const { jumpStart, jumpLoop, jumpLand, spellShoot, spellEnter, spellLoop, spellExit, idle, walkBack, strafeL, strafeR } = visual || {};
+            const { jumpStart, jumpLoop, jumpLand, spellShoot, spellEnter, spellLoop, spellExit, idle, walkBack, strafeL, strafeR, twoHand } = visual || {};
+            // The carry is an arms-only layer, so it reads as an extra rather
+            // than replacing the directional gait name.
+            const carry = twoHand?.isPlaying && twoHand.weight > 0 ? twoHand.name : null;
+            const withCarry = (name) => (carry ? `${name} + ${carry}` : name);
             if (state.phase === "air") {
                 if (state.jump === "start") {
-                    return jumpStart?.name || "Jump_Start";
+                    return withCarry(jumpStart?.name || "Jump_Start");
                 }
-                return jumpLoop?.name || "Jump_Loop";
+                return withCarry(jumpLoop?.name || "Jump_Loop");
             }
             if (state.phase === "land") {
-                return jumpLand?.name || "Jump_Land";
+                return withCarry(jumpLand?.name || "Jump_Land");
             }
-            const extras = [];
+            const extras = carry ? [carry] : [];
             if (state.castingShoot) {
                 extras.push((activeCastShot?.isPlaying ? activeCastShot : spellShoot?.isPlaying ? spellShoot : spellEnter)?.name || "Spell_Simple_Shoot");
             } else if (state.channeling) {

@@ -1,19 +1,18 @@
 {
-  "pipeline": "source-compatible Orc binding",
-  "capture": "ve-capture/orc-motion/grok-v5",
+  "pipeline": "source-compatible Orc binding from print sculpt",
+  "capture": "ve-capture/ashen-reach/orc-sculpt",
   "hashes": {
     "public/characters/base.glb": "2f9e45d0f7d9faeae4c20e18585173d62953df1a8f0272f270bedb200927604c",
     "public/ashen-reach/wanderer.glb": "aa9bc4cf04c53d84fbea574d04eee03f659889772d380ec130e892f5a9609da9",
-    "public/characters/bodies/orc-animated-v1.glb": "3b817c2ed69f59fa7946a35a900a3ae817c6b50ae3a3f0c6d339b2856b61389e",
-    "public/characters/candidates/orc-source-v1.glb": "bd2acc14357241bfdd03dd1cd4ecbb479ed09da8693232705ccd1b05af191ee5",
-    "scripts/character-assets/bulk_orc.py": "1debd81b86e2440f9c898c6b8c006bcf7bdf2bc60d983f1892a271e7dfe45459",
-    "scripts/character-assets/bind_source_orc.py": "1ac48f9e4d731e8a9f145e4b20abcaded6792571f2056abfd2eb351cd1e6757b",
-    "scripts/character-assets/bind-source-orc.mjs": "daf35cfbc520cf886028cd2ec6ea30815c9a5f682bf74044c594f76045125f47"
+    "public/characters/candidates/orc-source-v1.glb": "b22f9d636e3455a39d45ca6a8b0503f79a0ad7477cd78c3c14f751ece629c0d5",
+    "scripts/character-assets/orc_from_sculpt.py": "94ac0109736a4c43d97624ab54cfef9a2d9d1eb8ddeefbf1faa4717d4426b876",
+    "scripts/character-assets/bind-source-orc.mjs": "beb7be4f1c249714391ce85539980dc4bd09edf325c30f463b448acea148545c",
+    "blender/characters/sources/orc-print/provenance.json": "e3556edf3df2970d97f27c96876c6e3a5e2e2a07ed46121f907dea9a695c3ce6"
   },
   "versions": {
     "blender": "5.2.1",
     "gltfTransform": "4.4.2",
     "glMatrix": "3.4.4"
   },
-  "licenseNotes": "Orc assets retain existing MakeHuman graphics provenance (CC0); source rig and original clips retain base.glb provenance. No blanket CC0 claim for the source rig."
+  "licenseNotes": "Orc surface is derived from \"Male Orc for Print\" by Crayon (CC-BY 4.0). Credit in blender/characters/sources/orc-print/license.txt. Source rig and original clips retain base.glb provenance. MakeHuman CC0 no longer describes the Orc surface."
 }

@@ -1,5 +1,5 @@
 import {createStreamedEquipment} from './equipment-stream.js';
-import {BASE_VISIBLE_MESHES, ORC_BASE_VISIBLE_MESHES} from './equipment-catalog.js';
+import {BASE_VISIBLE_MESHES, ORC_BASE_VISIBLE_MESHES, EQUIPMENT_ITEMS} from './equipment-catalog.js';
 import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT} from './equipment-contract.js';
 import {createEngine,createSceneContext,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,startEngine,onBeforeRender,enableBoneControl,enableErrorDecoding,decodeError,setFog,captureScreenshot,setMeshVisible} from '@babylonjs/lite';
 import {createEquipment} from './equipment.js';
@@ -43,12 +43,15 @@ async function main(){
  enableBoneControl();const body=await attachBody(engine,scene,player,player.capsuleHeight,playable);
  const combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig);
  body.bindSocketHost(combat.fx.sockets);
+ const EMPTY_LOADOUT={helmet:null,torso:null,legs:null,boots:null,gloves:null,mainHand:null,offHand:null};
+ const factoryHand=(id)=>id&&EQUIPMENT_ITEMS[id]?.factory?id:null;
  const packs={
   human:{manifestUrl:'/ashen-reach/equipment/manifest.json',baseMeshes:BASE_VISIBLE_MESHES,fitId:HUMAN_EQUIPMENT_FIT},
-  orc:{manifestUrl:'/ashen-reach/equipment-orc/manifest.json',baseMeshes:ORC_BASE_VISIBLE_MESHES,fitId:ORC_EQUIPMENT_FIT,bodyUrl:'/ashen-reach/equipment-orc/body.glb'},
+  orc:{manifestUrl:'/ashen-reach/equipment-orc/manifest.json',baseMeshes:ORC_BASE_VISIBLE_MESHES,fitId:ORC_EQUIPMENT_FIT,bodyUrl:'/ashen-reach/equipment-orc/body.glb',garments:false},
  };
  let impl=preloadedEquipment?createEquipment(engine,scene,body,combat.fx.sockets):await createStreamedEquipment(engine,scene,body,combat.fx.sockets,packs.human);
  let currentRace='human';
+ let parkedGarments=null;
  const equipment={
   get items(){return impl.items;},
   get presets(){return impl.presets;},
@@ -65,21 +68,40 @@ async function main(){
    if(race===currentRace)return;
    const pack=packs[race];
    if(!pack)throw Error('Unknown race pack');
+   const previousRace=currentRace;
+   const previousImpl=impl;
    const loadout={...impl.getState()};
    impl.setVisible(false);
-   if(race==='orc')await body.swapSource(pack.bodyUrl);
-   else body.restoreSource();
-   if(preloadedEquipment){impl.setVisible(true);currentRace=race;return;}
-   const next=await createStreamedEquipment(engine,scene,body,combat.fx.sockets,{...pack,bootLoadout:loadout});
-   const previous=impl;
-   impl=next;
-   currentRace=race;
-   previous.dispose();
+   try{
+    if(pack.bodyUrl)await body.swapSource(pack.bodyUrl);
+    else body.restoreSource();
+    if(preloadedEquipment){impl.setVisible(true);currentRace=race;return;}
+    const bootLoadout=pack.garments===false
+     ?{...EMPTY_LOADOUT,mainHand:factoryHand(loadout.mainHand),offHand:factoryHand(loadout.offHand)}
+     :(parkedGarments||loadout);
+    if(pack.garments===false)parkedGarments=loadout;
+    else parkedGarments=null;
+    const next=await createStreamedEquipment(engine,scene,body,combat.fx.sockets,{...pack,bootLoadout});
+    impl=next;
+    currentRace=race;
+    previousImpl.dispose();
+   }catch(error){
+    if(previousRace==='human'||!packs[previousRace]?.bodyUrl)body.restoreSource();
+    else await body.swapSource(packs[previousRace].bodyUrl);
+    previousImpl.setVisible(true);
+    throw error;
+   }
   },
   dispose(){impl.dispose();},
  };
  let view='reference',elapsed=0;const samples=[];
- const setView=v=>{view=v;scene.camera=v==='reference'?reference:camera;setMeshVisible(body.root,v==='play');equipment.setVisible(v==='play');combat.setVisible(v==='play');};
+ const setView=v=>{
+  view=v;scene.camera=v==='reference'?reference:camera;
+  setMeshVisible(body.root,v==='play');
+  body.hideParked?.();
+  equipment.setVisible(v==='play');
+  combat.setVisible(v==='play');
+ };
  const reset=()=>{player.setWorldPos(0,height(0,0)+capsule.height/2,0);player.setFacing(0);rig.yaw=0;rig.pitch=.04;setView('reference');};
  const armory=createArmory({scene,canvas,player,body,combat,equipment,getView:()=>view,setView});
  document.addEventListener('keydown',e=>{if(armory.isOpen)return;if(e.code==='KeyV'){setView(view==='reference'?'play':'reference');}if(e.code==='KeyR')reset();if(e.code==='KeyH')document.body.classList.toggle('clean');if(['KeyW','KeyA','KeyS','KeyD','Space','Tab','Digit1','Digit2'].includes(e.code))setView('play');});

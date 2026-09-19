@@ -1,6 +1,19 @@
-# Character asset pipeline (Human v1)
+# Character asset pipeline
 
-Source-asset pipeline: MakeHuman CC0 → isolated Blender background → `public/characters/bodies/human-v1.glb`. These original race exports are provenance inputs, not the active Ashen character. See [current direction](../../docs/CURRENT.md) and the source-compatible `scripts/ashen-reach/prepare-wanderer.mjs` derivation for gameplay.
+Playable **Orc** is the print-sculpt collapse (not MakeHuman, not voxel remesh). See [orc sculpt pipeline](../../docs/orc-sculpt-pipeline.md).
+
+```sh
+/Applications/Blender.app/Contents/MacOS/Blender --background \
+    --python scripts/character-assets/inspect-orc-sculpt.py
+/Applications/Blender.app/Contents/MacOS/Blender --background \
+    --python scripts/character-assets/orc_from_sculpt.py
+node scripts/character-assets/bind-source-orc.mjs
+node scripts/ashen-reach/prepare-orc-equipment.mjs
+```
+
+`--recook` is paint-only and must keep the HP normal map. Do not voxel the print face.
+
+Human v1 source-asset pipeline (provenance, not the active Ashen character): MakeHuman CC0 → isolated Blender background → `public/characters/bodies/human-v1.glb`. See [current direction](../../docs/CURRENT.md) and the source-compatible `scripts/ashen-reach/prepare-wanderer.mjs` derivation for gameplay.
 
 Does **not** talk to MCP 9876, any interactive Blender scene, or a removed legacy export command.
 
@@ -21,7 +34,7 @@ node scripts/validate-character-body.mjs public/characters/bodies/human-v1.glb -
 
 Authoring stills land in `ve-capture/m2b-human/` (Blender EEVEE/Workbench, **not** game screenshots).
 
-Orc/Undead (same CC0 pipeline, extra macros in `provenance-races.json`):
+Labs Orc/Undead bodies (MakeHuman CC0, **not** the playable Ashen Orc):
 
 ```sh
 python3 scripts/character-assets/fetch-makehuman.py

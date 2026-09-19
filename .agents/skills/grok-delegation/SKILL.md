@@ -42,4 +42,7 @@ These come from eight resumed Grok passes on the Orc anatomy, garments and armor
 - **Verify the worker's claims and the reviewer's claims against the artifact.** A nested vision review called the tunic's intended silver emblem a "hole"; extracting the texture settled it. Neither worker prose nor a reviewer verdict is acceptance by itself.
 - **Freeze the allowed-paths list in the handoff and re-state it every pass.** The workers respected it, and it kept Human assets and committed candidates untouched.
 - **Convert recurring traps into script checks or docs**, e.g. MakeHuman→GLB vertex index mismatch, garment albedo packed at 256 px nearest-neighbour destroying small emblems, displacement must fade at the neck for head children, derived preview GLBs belong in `.gitignore`.
+- **The playable Orc is the sculpt pipeline** (`docs/orc-sculpt-pipeline.md`). Do not revive ellipsoid muscle tables or a MakeHuman body warp.
+- **Form vs paint.** Voxel remesh + `--recook` cannot restore eyelids. Collapse the print FBX, bake the HP cage, keep normals on bind. Dummy brow spheres and `mesh.fill()` on the loincloth are known traps.
+- **Nested vision is advisory.** Relative LEFT/RIGHT questions helped; “is this good” and score loops did not. Verify claims against the GLB/PNG.
 

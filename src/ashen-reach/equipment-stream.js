@@ -15,6 +15,7 @@ function packVisibility(selected, baseMeshes) {
     if (baseMeshes.includes('OrcV1Shorts')) out.OrcV1Shorts = vis.BodyUnderLegs;
     if (baseMeshes.includes('OrcV1Brows')) out.OrcV1Brows = true;
     if (baseMeshes.includes('OrcV1Eyes')) out.OrcV1Eyes = true;
+    if (baseMeshes.includes('OrcV1Body')) out.OrcV1Body = true;
     return out;
 }
 

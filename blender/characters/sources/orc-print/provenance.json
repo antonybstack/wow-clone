@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "asset": "orc-print-sculpt",
+  "title": "Male Orc for Print",
+  "author": "Crayon",
+  "authorUrl": "https://sketchfab.com/miao850520",
+  "sourceUrl": "https://sketchfab.com/3d-models/male-orc-for-print-2362b5e5d94f4303a06faa17d1e7e611",
+  "license": "CC-BY-4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "credit": "This work is based on \"Male Orc for Print\" (https://sketchfab.com/3d-models/male-orc-for-print-2362b5e5d94f4303a06faa17d1e7e611) by Crayon (https://sketchfab.com/miao850520) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+  "role": "High-poly print sculpt used as retopo/bake form reference only. Never shipped under public/. Game-ready mesh is a derived retopo skinned to the 65-joint source bind. Painted look follows the user concept at .agents/skills/blender-lite/references/orc-concept-art.png.",
+  "downloaded": "2026-09-19",
+  "files": [
+    {
+      "path": "blender/characters/sources/orc-print/Orc_22.fbx",
+      "origin": "Sketchfab original FBX (source/Orc_22.fbx)",
+      "sha256": "88333e8f76ececb4b7d31a75f222c40518234c76ceac901f83ff266347f16e2e",
+      "bytes": 72801136,
+      "git": "ignored"
+    },
+    {
+      "path": ".agents/skills/blender-lite/references/male_orc_for_print.glb",
+      "origin": "Sketchfab GLB re-export (multiple overlapping meshes; not the retopo source)",
+      "sha256": "c13245d8f8742154dddf5fa6db2cf15cf9f5910eba46cbf86f630dc6f89b4298",
+      "bytes": 97517568,
+      "git": "ignored"
+    },
+    {
+      "path": ".agents/skills/blender-lite/references/male_orc_for_print.zip",
+      "origin": "Sketchfab glTF folder (scene.gltf + ene.bin + license.txt)",
+      "sha256": "c4aa5c8ff7aee24a41eb4fcfbefb6f36ad76120b3004033c6a65f8252d25559f",
+      "git": "ignored"
+    },
+    {
+      "path": ".agents/skills/blender-lite/references/male-orc-for-print.zip",
+      "origin": "Sketchfab original FBX zip",
+      "sha256": "d4b279f9f2be1a41c2cfac81518968d6414d9f5ce0497e328471c56e45983545",
+      "git": "ignored"
+    },
+    {
+      "path": "blender/characters/sources/orc-print/license.txt",
+      "origin": "Copied from the Sketchfab glTF zip",
+      "git": "tracked"
+    },
+    {
+      "path": "blender/characters/sources/orc-print/scene.gltf",
+      "origin": "Copied from the Sketchfab glTF zip (inventory only; binaries ignored)",
+      "git": "tracked"
+    }
+  ],
+  "gltfInventory": {
+    "note": "The Sketchfab glTF/GLB is a soup of overlapping copies, not a single print mesh. Use the original FBX for retopo. Do not join every glTF mesh.",
+    "namedRoots": [
+      "Orc_Low (26k verts, small misplaced fragment — not a full-body LOD)",
+      "orc_9_copy1",
+      "PM3D_Sphere3D1",
+      "garbled-name body copy (~0.7M tris)",
+      "Extract4 (waist/loincloth band)",
+      "orc_11_copy4 (~1.16M tris, another full-body copy)",
+      "Orc_22 (original HP body, ~0.46M tris across 5 primitives)"
+    ]
+  }
+}
