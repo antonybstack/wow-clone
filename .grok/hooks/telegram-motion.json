@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 telegram-motion-stop.py",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}
