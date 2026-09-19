@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {EQUIPMENT_ITEMS as items, EQUIPMENT_SLOTS as slots, BASE_VISIBLE_MESHES as baseMeshes, EQUIPMENT_PRESETS, validateLoadout} from '../src/ashen-reach/equipment-catalog.js';
+import {EQUIPMENT_ITEMS as items, EQUIPMENT_SLOTS as slots, BASE_VISIBLE_MESHES as baseMeshes, EQUIPMENT_PRESETS, validateLoadout, gripHold} from '../src/ashen-reach/equipment-catalog.js';
 import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT, validateEquipmentCatalogue, validateEquipmentSelection, resolveHandEquip} from '../src/ashen-reach/equipment-contract.js';
 const options={slots,baseMeshes};
 const clone=()=>structuredClone(items);
@@ -13,6 +13,15 @@ test('different race, rig, bind or shape cannot reuse these fits silently',()=>{
         const candidate=clone();candidate.wayfarerTunic.fit[key]='wrong';
         assert.throws(()=>validateEquipmentCatalogue(candidate,options),/Incompatible/);
     }
+});
+test('Orc factory props declare a reviewed grip correction and keep Human defaults',()=>{
+    const sword=items.ironSword;
+    assert.deepEqual(gripHold(sword,'human').position,sword.gripPosition);
+    assert.equal(gripHold(sword,'human').scale,1);
+    const orc=gripHold(sword,'orc');
+    assert.equal(orc.scale,1.16);
+    assert.notDeepEqual(orc.position,sword.gripPosition);
+    assert.deepEqual(gripHold(items.wayfarerTunic,'orc').position,[0,0,0]);
 });
 test('items keep the Human fit and declare an Orc entry in the per-race map',()=>{
     for(const item of Object.values(items)){

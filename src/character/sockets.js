@@ -211,6 +211,7 @@ export function attachSockets(engine, scene, player, body) {
         mainHand: gripOffsetForSlot(definition, "mainHand"),
         offHand: gripOffsetForSlot(definition, "offHand"),
     };
+    let palmPush = 1;
 
     for (const [slot, names] of Object.entries(SLOT_BONES)) {
         const bone = resolveBone(skeleton, names);
@@ -289,7 +290,7 @@ export function attachSockets(engine, scene, player, body) {
                     }
                     const local = GRIP_LOCAL[sock.slot];
                     if (local) {
-                        const d = quatRotate(rx, ry, rz, rw, local.x, local.y, local.z);
+                        const d = quatRotate(rx, ry, rz, rw, local.x * palmPush, local.y * palmPush, local.z * palmPush);
                         px += d.x;
                         py += d.y;
                         pz += d.z;
@@ -324,6 +325,7 @@ export function attachSockets(engine, scene, player, body) {
             skeleton = nextSkeleton;
             groups = nextBody?.animationGroups ?? [];
             skinned = findSkinnedMesh(nextBody?.root);
+            palmPush = skinned?.name?.startsWith("OrcV1") ? 1.25 : 1;
             for (const [slot, names] of Object.entries(SLOT_BONES)) {
                 const sock = sockets[slot];
                 sock.bone = resolveBone(skeleton, names);

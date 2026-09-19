@@ -1,6 +1,6 @@
 import { installEquipmentGrips } from './equipment-grips.js';
 import {loadGltf,getContainerMeshes,setMeshVisible,setParent,addToScene,removeFromScene} from '@babylonjs/lite';
-import {EQUIPMENT_ITEMS,BASE_VISIBLE_MESHES,validateLoadout,resolveEquipmentVisibility,EQUIPMENT_PRESETS} from './equipment-catalog.js';
+import {EQUIPMENT_ITEMS,BASE_VISIBLE_MESHES,validateLoadout,resolveEquipmentVisibility,EQUIPMENT_PRESETS,gripHold} from './equipment-catalog.js';
 import {HUMAN_EQUIPMENT_FIT} from './equipment-contract.js';
 import {resolveHandEquip} from './equipment-contract.js';
 import {createEquipmentLoader} from './equipment-loader.js';
@@ -24,6 +24,7 @@ export async function createStreamedEquipment(engine,scene,body,sockets,options=
     const baseMeshes=options.baseMeshes||BASE_VISIBLE_MESHES;
     const expectedFit=options.fitId||HUMAN_EQUIPMENT_FIT;
     const bootLoadout=options.bootLoadout||{torso:'wayfarerTunic',legs:'wayfarerTrousers',boots:'wayfarerBoots'};
+    const race=expectedFit.body==='ashen-orc'?'orc':'human';
     const response=await fetch(manifestUrl);
     if(!response.ok)throw Error('Equipment manifest unavailable');
     const manifest=await response.json();
@@ -36,11 +37,12 @@ export async function createStreamedEquipment(engine,scene,body,sockets,options=
     function setAttachment(entry,stow){
         const item=entry.item;if(!item.factory)return;
         const where=stow?'back':'hand';if(entry.attachment===where)return;
-        const target=stow?item.stow:{position:item.gripPosition||[0,0,0],rotation:item.gripRotation};
+        const hold=gripHold(item,race);
+        const target=stow?item.stow:{position:hold.position,rotation:hold.rotation};
         const first=entry.attachment===null;
         setParent(entry.root,sockets.sockets[stow?'back':item.slot].node);
         const q=entry.root.rotationQuaternion,from={position:[entry.root.position.x,entry.root.position.y,entry.root.position.z],rotation:[q.x,q.y,q.z,q.w]};
-        entry.attachment=where;entry.root.scaling.set(1,1,1);
+        entry.attachment=where;entry.root.scaling.set(hold.scale,hold.scale,hold.scale);
         if(first){entry.root.position.set(...target.position);entry.root.rotationQuaternion.set(...target.rotation);entry.transition=null;}
         else beginPropTransition(entry,from.position,from.rotation,target);
     }
