@@ -9,7 +9,8 @@ The current product is **Ashen Reach at the repository root**, using `@babylonjs
 
 The previous skill described the separate root snow-demo engine. Duskwell is now under `archived/duskwell`; its Classic imports and procedural-only restrictions do not govern Ashen Reach.
 
-- Read the relevant installed Lite declarations and implementation before relying on an API. Reuse the native animation mixer, billboard pools, sound engine, hand sockets and Havok collision world.
+- For Lite API and module questions, use the **`babylon-lite-docs` MCP** (`search_docs` → `read_doc` on `architecture/…` then `api/…`). Do not use Classic Babylon.js docs MCPs or `@babylonjs/core` TypeDoc. After the spec, confirm against this repo's installed `@babylonjs/lite` declarations and existing Ashen code; the MCP tracks npm `latest`, which can be newer than the game.
+- Reuse the native animation mixer, billboard pools, sound engine, hand sockets and Havok collision world.
 - Do not add `@babylonjs/core`, `beginAnimation`, `ImportMeshAsync` or Classic particle-system snippets. Official Babylon community examples may target a different engine; translate the idea only when Lite has the required API.
 - The Ashen environment uses custom textured diffuse WGSL. Character/prop PBR and glTF are valid existing paths. Adding a point light does not automatically illuminate the custom world shader; it needs explicit uniforms. Concurrent effects need independent light inputs.
 - Runtime WGSL examples are in `src/ashen-reach/materials.js` and `lava-ball-vfx.js`. Preserve required attributes, uniform declarations and scene registration order.
