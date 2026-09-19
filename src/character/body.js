@@ -565,6 +565,52 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
     // (scripts/ashen-reach/append-carry.mjs); no authored arm override is used.
     // Stationary it rests at TWO_HAND_STILL_TIME, the loop's neutral phase.
 
+    let parkedVisual = null;
+    /**
+     * Developer race preview: assemble a second source-compatible body (the Orc
+     * candidate) from `url` and make it the active visual, parking the current
+     * one without retiring it. Equipment keeps its palette and bound meshes, so
+     * `restoreSource()` returns exactly to the previous body. Used by the
+     * armory race selector; gameplay persists Human until Orc fits exist.
+     */
+    const swapSource = async (url) => {
+        if (disposed) throw new Error("Body disposed");
+        if (parkedVisual) throw new Error("A source body is already parked");
+        const nextContainer = await loadGltf(engine, url);
+        const candidate = assembleBodyVisual({
+            engine, scene, player, capsuleHeight,
+            definition: def, container: nextContainer,
+            mode: "boot", loadout: EMPTY_SKINNED_LOADOUT, manifest: null,
+        });
+        finishPoseTransition();
+        inspection?.dispose(); inspection = null;
+        const previous = visual;
+        if (previous && previous !== candidate) {
+            previous.root.name = "BodyRootParked";
+            setVisualVisible(previous, false);
+        }
+        visual = candidate;
+        parkedVisual = previous;
+        setVisualVisible(candidate, true);
+        playLoop(visual.idle);
+        state.locoName = visual.idle?.name || state.locoName;
+        return facade;
+    };
+    const restoreSource = () => {
+        if (!parkedVisual) return facade;
+        const staged = visual;
+        const previous = parkedVisual;
+        parkedVisual = null;
+        inspection?.dispose(); inspection = null;
+        if (staged && staged !== previous) retireVisual(scene, staged);
+        visual = previous;
+        if (previous?.root) previous.root.name = "BodyRoot";
+        setVisualVisible(previous, true);
+        playLoop(visual.idle);
+        state.locoName = visual.idle?.name || state.locoName;
+        return facade;
+    };
+
     const flushCommitWaiters = () => {
         while (commitWaiters.length) {
             const job = commitWaiters.shift();
@@ -904,6 +950,9 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             };
         },
         update,
+        swapSource,
+        restoreSource,
+        get parked() { return !!parkedVisual; },
         get inspection() { return inspection; },
         beginInspection() {
             if (inspection) return inspection;

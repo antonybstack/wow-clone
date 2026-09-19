@@ -14,7 +14,17 @@ try{
  await page.bringToFront();await page.goto(process.env.ASHEN_URL||'http://127.0.0.1:5173/ashen-reach.html?play&clean',{waitUntil:'commit'});await page.waitForFunction(()=>globalThis.ASHEN?.ready,null,{timeout:60000});await page.waitForTimeout(700);
  const baseline=await read();
  await page.locator('#armory-launch').click();await page.waitForTimeout(150);let s=await read();check('Button opens armory on existing actor',s.armory.open&&s.camera==='armory'&&s.sceneMeshes===baseline.sceneMeshes);
- check('Unsupported races disabled',await page.locator('[data-race] option:disabled').count()===2);
+ check('Only unsupported races disabled',await page.locator('[data-race] option:disabled').count()===1);
+ // Race switch: Orc preview with no fitted equipment, Human preserved.
+ await page.locator('[data-race]').selectOption('orc');await page.waitForTimeout(1000);
+ const orc=await page.evaluate(()=>({names:ASHEN.scene.meshes.map(m=>m.name),parked:ASHEN.body.parked,bones:ASHEN.body.skeleton?.bones?.length??0,options:(ASHEN.body.inspection?.options??[]).map(o=>o.id),status:document.querySelector('[data-equipment-status]')?.textContent??'',state:ASHEN.equipment.getState()}));
+ check('Selecting Orc swaps the inspected body to the Orc candidate',orc.names.includes('OrcV1Body')&&orc.parked&&orc.bones===65);
+ check('Orc preview exposes the full runtime clip set',['idle','walk','run','jump','land','fire','lava','carry'].every(id=>orc.options.includes(id)));
+ check('Orc reports unavailable equipment and keeps the Human selection',orc.status.includes('not ready')&&orc.state.torso==='wayfarerTunic');
+ await page.screenshot({path:dir+'/armory-orc.png'});
+ await page.locator('[data-race]').selectOption('human');await page.waitForTimeout(800);
+ const human=await page.evaluate(()=>({names:ASHEN.scene.meshes.map(m=>m.name),parked:ASHEN.body.parked,state:ASHEN.equipment.getState()}));
+ check('Returning to Human restores the equipped body',!human.parked&&human.names.includes('BodyExposed')&&human.state.torso==='wayfarerTunic');
  await page.mouse.click(650,280);
  await page.keyboard.down('KeyW');await page.keyboard.down('KeyD');await page.keyboard.down('Space');await page.keyboard.press('Digit1');await page.keyboard.press('Digit2');await page.waitForTimeout(450);
  await page.keyboard.up('KeyW');await page.keyboard.up('KeyD');await page.keyboard.up('Space');s=await read();

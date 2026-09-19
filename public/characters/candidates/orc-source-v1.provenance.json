@@ -3,11 +3,12 @@
   "capture": "ve-capture/orc-motion/grok-v5",
   "hashes": {
     "public/characters/base.glb": "2f9e45d0f7d9faeae4c20e18585173d62953df1a8f0272f270bedb200927604c",
+    "public/ashen-reach/wanderer.glb": "aa9bc4cf04c53d84fbea574d04eee03f659889772d380ec130e892f5a9609da9",
     "public/characters/bodies/orc-animated-v1.glb": "3b817c2ed69f59fa7946a35a900a3ae817c6b50ae3a3f0c6d339b2856b61389e",
-    "public/characters/candidates/orc-source-v1.glb": "fe27b79528897651583aa1eed678a3a61ff427a6d173d40e5491ccd7997ccad3",
+    "public/characters/candidates/orc-source-v1.glb": "bd2acc14357241bfdd03dd1cd4ecbb479ed09da8693232705ccd1b05af191ee5",
     "scripts/character-assets/bulk_orc.py": "1debd81b86e2440f9c898c6b8c006bcf7bdf2bc60d983f1892a271e7dfe45459",
     "scripts/character-assets/bind_source_orc.py": "1ac48f9e4d731e8a9f145e4b20abcaded6792571f2056abfd2eb351cd1e6757b",
-    "scripts/character-assets/bind-source-orc.mjs": "3d7127e1a79abf0106d8673793289f0c49b76b8873acd3f0288073d63bfacf11"
+    "scripts/character-assets/bind-source-orc.mjs": "daf35cfbc520cf886028cd2ec6ea30815c9a5f682bf74044c594f76045125f47"
   },
   "versions": {
     "blender": "5.2.1",

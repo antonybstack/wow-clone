@@ -4,7 +4,9 @@
  * keep base.glb hierarchy and local rotation frames, fit joint translations
  * from isolated-Blender centres (metres) into stored centimetre units,
  * recompute inverse binds, attach Orc surfaces with palette remap, copy every
- * animation rotation key unchanged (Hips translation: constant rest offset).
+ * animation rotation key unchanged (Hips translation: constant rest offset),
+ * then copy the ten runtime-only clips from the authoring pack so the Orc can
+ * be selected wherever the Human can.
  * Writes public/characters/candidates/orc-source-v1.glb + provenance.
  */
 import fs from 'node:fs/promises';
@@ -170,6 +172,34 @@ for (const mesh of restRoot.listMeshes()) {
     scene.addChild(node);
 }
 
+// Runtime parity: copy the clips the game selects that base.glb lacks
+// (5 directional gaits, 4 split cast layers, the retargeted two-handed carry)
+// from the authoring pack. Same 65-joint rig, so the channels apply directly;
+// Hips translation keeps the same constant rest offset as the base clips.
+const RUNTIME_PACK = 'public/ashen-reach/wanderer.glb';
+const runtimeDoc = await io.read(RUNTIME_PACK);
+const present = new Set(root.listAnimations().map(a => a.getName()));
+const extras = runtimeDoc.getRoot().listAnimations().filter(a => !present.has(a.getName()));
+for (const src of extras) {
+    const anim = doc.createAnimation(src.getName());
+    for (const srcCh of src.listChannels()) {
+        const node = nodes.get(srcCh.getTargetNode().getName());
+        if (!node) throw Error(`Missing target joint ${srcCh.getTargetNode().getName()} for ${src.getName()}`);
+        const srcSampler = srcCh.getSampler();
+        let output = copyAccessor(srcSampler.getOutput());
+        if (node.getName() === 'mixamorig:Hips' && srcCh.getTargetPath() === 'translation') {
+            const arr = Array.from(srcSampler.getOutput().getArray());
+            for (let i = 0; i < arr.length; i += 3) { arr[i] += offset[0]; arr[i + 1] += offset[1]; arr[i + 2] += offset[2]; }
+            output = doc.createAccessor().setType('VEC3').setArray(new Float32Array(arr)).setBuffer(buffer);
+        }
+        const sampler = doc.createAnimationSampler().setInterpolation(srcSampler.getInterpolation())
+            .setInput(copyAccessor(srcSampler.getInput())).setOutput(output);
+        anim.addSampler(sampler);
+        anim.addChannel(doc.createAnimationChannel().setTargetNode(node)
+            .setTargetPath(srcCh.getTargetPath()).setSampler(sampler));
+    }
+}
+
 const bytes = await io.writeBinary(doc);
 await fs.writeFile(OUT, bytes);
 const versions = JSON.parse(await fs.readFile('package.json', 'utf8')).devDependencies || {};
@@ -178,6 +208,7 @@ await fs.writeFile(PROVENANCE, JSON.stringify({
     capture: 've-capture/orc-motion/grok-v5',
     hashes: {
         'public/characters/base.glb': sha(await fs.readFile('public/characters/base.glb')),
+        'public/ashen-reach/wanderer.glb': sha(await fs.readFile('public/ashen-reach/wanderer.glb')),
         'public/characters/bodies/orc-animated-v1.glb': sha(await fs.readFile('public/characters/bodies/orc-animated-v1.glb')),
         [OUT]: sha(bytes),
         'scripts/character-assets/bulk_orc.py': sha(await fs.readFile('scripts/character-assets/bulk_orc.py')),
@@ -188,4 +219,5 @@ await fs.writeFile(PROVENANCE, JSON.stringify({
     licenseNotes: 'Orc assets retain existing MakeHuman graphics provenance (CC0); source rig and original clips retain base.glb provenance. No blanket CC0 claim for the source rig.',
 }, null, 2) + '\n');
 console.log(JSON.stringify({clips: root.listAnimations().length, joints: order.length,
+    runtimeExtras: extras.map(a => a.getName()),
     meshes: root.listMeshes().map(m => m.getName()), hipsOffsetCm: offset.map(v => +v.toFixed(3))}));

@@ -17,8 +17,8 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
       <header class="armory-heading"><small>ASHEN REACH / DEVELOPER TOOLS</small><h1 id="armory-title">The Armory</h1><p>Your character. The same world.</p></header>
       <aside class="armory-panel">
         <div class="armory-panel-title"><span>Character & equipment</span><button data-close aria-label="Close armory">×</button></div>
-        <label class="armory-field">Race<select data-race><option value="human">Human</option><option value="orc" disabled>Orc — fit not ready</option><option value="undead" disabled>Undead — fit not ready</option></select></label>
-        <p class="armory-note">Human is available. Additional races will unlock with their fitted equipment.</p>
+        <label class="armory-field">Race<select data-race><option value="human">Human</option><option value="orc">Orc</option><option value="undead" disabled>Undead — fit not ready</option></select></label>
+        <p class="armory-note" data-race-note>Human is available. Undead will unlock with its own fitted equipment.</p>
         <h2>Equipment</h2><p class="armory-note" data-equipment-status role="status" aria-live="polite"></p><div class="armory-presets">${Object.entries(equipment.presets).map(([id,preset])=>`<button data-outfit="${id}">${preset.name}</button>`).join('')}</div>
         <div class="armory-slots">${[['helmet','Helmet','Unequipped'],['torso','Torso','Base appearance'],['legs','Legs','Charcoal trousers'],['boots','Boots','Base appearance'],['gloves','Gloves','Unequipped'],['mainHand','Main hand','Unequipped'],['offHand','Off-hand','Unequipped']].map(([slot,label,value])=>`<button data-slot="${slot}" disabled><span>${label}</span><strong>${value}</strong><small>Items coming next</small></button>`).join('')}</div>
         <p class="armory-note">Select a fitted item or unequip it. Your selection stays equipped in the churchyard.</p>
@@ -50,20 +50,54 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
    if(frame&&result?.status!=='failed')face('full');
   }catch(error){label.textContent='Could not equip that item. Your current outfit is unchanged.';}
  }
- let open=false, priorView='play', focusHeight=.78, drag=null, lastPaint=0;
+    let open=false, priorView='play', focusHeight=.78, drag=null, lastPaint=0;
+    const raceField=element.querySelector('[data-race]'),raceNote=element.querySelector('[data-race-note]'),equipmentStatus=element.querySelector('[data-equipment-status]');
+    const ORC_SOURCE='/characters/candidates/orc-source-v1.glb';
+    let race='human';
+    const raceScale=()=>race==='orc'?1.22:1;
+    const setRaceUi=()=>{
+        const orc=race==='orc';
+        for(const select of element.querySelectorAll('[data-equipment]')){select.disabled=orc;if(orc)select.value='';}
+        for(const button of element.querySelectorAll('[data-outfit]'))button.disabled=orc;
+        equipmentStatus.textContent=orc?'Orc equipment fits are not ready — base appearance only. Your Human outfit is remembered.':'';
+        raceNote.textContent=orc?'Orc preview is armory-only until fitted Orc equipment ships.':'Human is available. Undead will unlock with its own fitted equipment.';
+    };
+    async function chooseRace(){
+        const want=raceField.value;if(want===race)return;
+        const previous=race;raceField.disabled=true
+        try{
+            if(want==='orc'){equipment.setVisible(false);await body.swapSource(ORC_SOURCE);}
+            else{body.restoreSource();equipment.setVisible(true);}
+            race=want;
+            body.endInspection();
+            const preview=body.beginInspection();
+            motion.innerHTML=preview.options.map(({id,label})=>`<option value="${id}">${label}</option>`).join('');
+            slider.value='0';pause.textContent='Pause';
+            focusHeight=.78*raceScale();camera.radius=4.8*raceScale();camera.beta=1.36;face('front');
+            update(0);
+        }catch(error){
+            raceField.value=previous;
+            if(previous==='human')equipment.setVisible(true);
+            equipmentStatus.textContent='Could not switch race. Your current character is unchanged.';
+        }finally{raceField.disabled=false;setRaceUi();}
+    }
+    raceField.onchange=chooseRace;
+    setRaceUi();
     const face = kind => {
-        const facing=player.getFacing();
+        const facing=player.getFacing(),scale=raceScale();
         if(kind==='front') camera.alpha=Math.PI/2-facing;
         if(kind==='back') camera.alpha=-Math.PI/2-facing;
         if(kind==='side') camera.alpha=-facing;
-        if(kind==='face'){focusHeight=1.56;camera.radius=1.6;camera.beta=1.46;}
-        else if(kind==='full'){const main=equipment.getState().mainHand;const tall=main==='graveweaverStaff'||main==='graveweaverGreatstaff';focusHeight=tall?.93:.78;camera.radius=tall?5.35:4.8;camera.beta=1.36;}
+        if(kind==='face'){focusHeight=1.56*scale;camera.radius=1.6*scale;camera.beta=1.46;}
+        else if(kind==='full'){const main=equipment.getState().mainHand;const tall=main==='graveweaverStaff'||main==='graveweaverGreatstaff';focusHeight=(tall?.93:.78)*scale;camera.radius=(tall?5.35:4.8)*scale;camera.beta=1.36;}
     };
     const close = () => {
         if(!open)return;
         open=false;drag=null;key.intensity=0;
         element.hidden=true;document.body.classList.remove('armory-open');launcher.setAttribute('aria-expanded','false');
-        body.endInspection();setInputEnabled(true);setView(priorView);
+        body.endInspection();
+        if(race==='orc'){body.restoreSource();race='human';raceField.value='human';equipment.setVisible(true);setRaceUi();}
+        setInputEnabled(true);setView(priorView);
         // Canvas focus is necessary for immediate movement/spell keys after a button click.
         canvas.focus();
     };
