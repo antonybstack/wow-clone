@@ -30,3 +30,6 @@ Thumbs.db
 *.webp
 *.mp4
 *.webm
+
+# Derived Orc outfit previews (regenerate with scripts/ashen-reach/prepare-orc-equipment-preview.mjs)
+public/characters/candidates/*-preview.glb
