@@ -501,59 +501,11 @@ def paint_cavity(ob, base=SKIN, dirt=SKIN_DIRT):
     log('cavity vertex colors painted')
 
 
-def _tex_image(ob):
-    mat = ob.data.materials[0] if ob.data.materials else None
-    if not mat or not mat.use_nodes:
-        return None
-    for node in mat.node_tree.nodes:
-        if node.type == 'TEX_IMAGE' and node.image:
-            return node.image
-    return None
-
-
 def existing_tusk_verts(ob):
-    """Recover ivory tusks/teeth from the previous albedo, COLOR_0, or muzzle geometry."""
-    mesh = ob.data
-    img = _tex_image(ob)
-    uv_layer = mesh.uv_layers.active
-    found = set()
-    if img and uv_layer:
-        w, h = img.size
-        pix = list(img.pixels)
-        acc = [[0.0, 0.0, 0.0, 0.0] for _ in mesh.vertices]
-        for loop in mesh.loops:
-            u, v = uv_layer.data[loop.index].uv
-            px = int(max(0, min(w - 1, round(u * (w - 1)))))
-            py = int(max(0, min(h - 1, round(v * (h - 1)))))
-            i = (py * w + px) * 4
-            row = acc[loop.vertex_index]
-            row[0] += pix[i]
-            row[1] += pix[i + 1]
-            row[2] += pix[i + 2]
-            row[3] += 1.0
-        for vi, (r, g, b, n) in enumerate(acc):
-            if n < 1:
-                continue
-            r, g, b = r / n, g / n, b / n
-            if _lum((r, g, b)) > 0.36 and r > g * 0.85:
-                found.add(vi)
-        log(f'tusk verts from albedo: {len(found)}')
-    if len(found) < 24:
-        attr = mesh.color_attributes.get('Col')
-        if attr:
-            extra = set()
-            for i, item in enumerate(attr.data):
-                c = item.color
-                if _lum(c) > 0.36 and c[0] > c[1] * 0.85:
-                    extra.add(i)
-            if extra:
-                found |= extra
-                log(f'tusk verts from COLOR_0: {len(extra)}')
-    if len(found) < 24 or len(found) > max(80, len(mesh.vertices) // 12):
-        geo = geometric_tusk_verts(ob)
-        log(f'tusk verts geometric fallback: {len(geo)} (albedo/vcol was {len(found)})')
-        found = geo
-    return found
+    """Tusk verts from muzzle geometry only. Albedo luminance re-paints chin/pec bleed."""
+    geo = geometric_tusk_verts(ob)
+    log(f'tusk verts geometric: {len(geo)}')
+    return geo
 
 
 def geometric_tusk_verts(ob):
@@ -563,8 +515,8 @@ def geometric_tusk_verts(ob):
     hi_z = max(p.z for _, p in pts)
     h = hi_z - lo_z
     cx = sum(p.x for _, p in pts) / len(pts)
-    z0, z1 = lo_z + h * 0.78, lo_z + h * 0.88
-    band = [(i, p) for i, p in pts if z0 <= p.z <= z1 and abs(p.x - cx) < 0.13]
+    z0, z1 = lo_z + h * 0.805, lo_z + h * 0.875
+    band = [(i, p) for i, p in pts if z0 <= p.z <= z1 and 0.032 < abs(p.x - cx) < 0.10]
     if len(band) < 20:
         return set()
     ys = sorted(p.y for _, p in band)
@@ -576,7 +528,7 @@ def geometric_tusk_verts(ob):
         if len(side) < 6:
             continue
         side.sort(key=lambda ip: ip[1].y)
-        n = max(10, len(side) // 5)
+        n = max(8, len(side) // 8)
         tusks.update(i for i, _ in side[:n])
     return tusks
 
@@ -682,7 +634,7 @@ def paint_skin(ob, tusks=None, landmarks=None):
             crease = 0.0
         under = max(0.0, -v.normal.z)
         mottle = (_hash01(v.index) - 0.5) * 0.10
-        if v.index in tusks:
+        if v.index in tusks and t > 0.80:
             tusk_count += 1
             col = _lerp(IVORY, IVORY_ROOT, crease * 0.55 + under * 0.15)
         else:
@@ -846,6 +798,23 @@ def strip_materials(ob, keep_images=()):
                     if img not in keep and img.users <= 1:
                         bpy.data.images.remove(img)
         ob.data.materials.pop(index=0)
+
+
+def existing_normal_image(ob):
+    mat = ob.data.materials[0] if ob.data.materials else None
+    if not mat or not mat.use_nodes:
+        return None
+    nt = mat.node_tree
+    for node in nt.nodes:
+        if node.type != 'NORMAL_MAP':
+            continue
+        for link in nt.links:
+            if link.to_node == node and getattr(link.from_node, 'image', None):
+                return link.from_node.image
+    for node in nt.nodes:
+        if node.type == 'TEX_IMAGE' and node.image and 'normal' in (node.image.name or '').lower():
+            return node.image
+    return None
 
 
 def recook_albedo(ob, fallback, size=1024, roughness=0.88, skin=True, ao_img=None, normal_img=None):
@@ -1593,7 +1562,8 @@ def recook_rest():
         stale = mesh_named(name)
         if stale:
             bpy.data.objects.remove(stale, do_unlink=True)
-    landmarks = recook_albedo(body, SKIN, 1024, roughness=0.88, skin=True)
+    nrm = existing_normal_image(body)
+    landmarks = recook_albedo(body, SKIN, 1024, roughness=0.88, skin=True, normal_img=nrm)
     if shorts:
         recook_albedo(shorts, LEATHER, 512, roughness=0.92, skin=False)
     eyes = add_eyes(arm, body, landmarks)

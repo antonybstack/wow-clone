@@ -1,13 +1,13 @@
 {
     "schema": 1,
-    "sourceSha256": "b22f9d636e3455a39d45ca6a8b0503f79a0ad7477cd78c3c14f751ece629c0d5",
+    "sourceSha256": "5d827d1cd8ecfb5b0e285b68e065d3c355ef531c389b35cdaeb92a6b08646f0f",
     "profileId": "orc-sculpt-v1",
     "garments": false,
     "items": {
         "body": {
             "url": "/ashen-reach/equipment-orc/body.glb",
-            "bytes": 8024176,
-            "sha256": "b22f9d636e3455a39d45ca6a8b0503f79a0ad7477cd78c3c14f751ece629c0d5",
+            "bytes": 7209276,
+            "sha256": "5d827d1cd8ecfb5b0e285b68e065d3c355ef531c389b35cdaeb92a6b08646f0f",
             "meshes": [
                 "OrcV1Body",
                 "OrcV1Brows",
