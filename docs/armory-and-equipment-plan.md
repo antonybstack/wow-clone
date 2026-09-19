@@ -226,6 +226,27 @@ npm run test:equipment
 npm run build
 ```
 
+### Stage D slice 1 — Orc source bind (2026-09-18)
+
+- The 163-joint MakeHuman Orc (zero clips) is migrated onto the 65-joint source-compatible bind following the sanctioned Human pipeline, not substituted: `scripts/character-assets/bind_source_orc.py` (isolated background Blender: anatomical hip-socket pelvis, source torso rest curve, arm repose, weight collapse to mapped ancestors) exports the rest mesh + fitted centres; `scripts/character-assets/bind-source-orc.mjs` assembles `public/characters/candidates/orc-source-v1.glb` (65 joints, all 45 source rotation keys unchanged, Hips translation constant +14.97 cm rest offset, recomputed inverse binds, OrcV1 surfaces with remapped palette) plus provenance.
+- Validation: generalized `test-source-motion.mjs` passes (both candidates plus the new `orc-source` diagnostic route), `validate-character-body.mjs --profile orc-male-v1` is valid with 0 errors, and an offline Hips→Neck lean table (`lean-table-orc.mjs`) reproduces the Human bind-v2 numbers exactly (Δ0.00° on all 8 matched phases) — no posterior-Hips lean.
+- Audition: `body-preview.html` loads the candidate (`BODY_PREVIEW.load`, new `orc-source` route id and asset entry; views auto-fit the 2.14 m extents). Evidence: `ve-capture/orc-motion/bind-v1/` (idle front/side/three-quarter, walk front/side, sprint side, hands closeup, Human front reference). The preview's hands fallback (A-pose extents estimate) misses reposed candidates, so the hands shot aims from the FK-computed frozen-phase hand centre instead.
+- **Open and honest limit:** the MakeHuman Orc source is modestly bulkier than the Human (shoulders ×1.21, 2.10 m) but has no tusk/fang sculpt and reads more green-human than separate species — a source-asset limit, not a bind defect. MH seams (hairline, chin, wrists) and the fist-closed Idle are shared with the Human. Single-frame "hunch" reads were rebutted objectively: head/hair sit exactly over the hips (0.000, both bodies) and rest arms match the Human candidate exactly. No garments, no socket refits, no armory race switch yet — those are the next slices.
+- Bulk pass toward Grommash scale (2026-09-18, user reference): `scripts/character-assets/bulk_orc.py` warps the Orc flesh before binding — radial girth around arm/leg/neck bone axes plus torso width/depth, weighted by existing MH vertex groups (helpers inherit via parent walk; hands/feet/head excluded). Mesh-only: warps are radial/symmetric so joint centres stay valid. First pass read massive but broken (armpit webbing, buried neck, pinched waist); the correction moves arm joints outboard into the muscle (+0.06 girdle shift, segment lengths preserved), trims traps/neck and grows hips/thighs/belly. Image review confirms v2: webbing gone, neck seated, solid trunk, powerful from front/side/three-quarter. Remaining faceting is coarse source geometry + studio light, verified no tear. Evidence: `ve-capture/orc-motion/bulk-v2/` (supersedes `bind-v1/` stills). All gates re-ran green after the bulk (tests, validator, lean Δ0.00°).
+- Orc convincing-anatomy pass (2026-09-18, delegated Grok 4.6 worker — 5 resumed passes, 110 turns, parent reviewed every pass): `bulk_orc.py` was rewritten for a correct depth warp (the earlier `WIDE` `p.z *= factor` scaled height from the ground, which tore the mesh — a genuine bug in my first pass), plus a real facial plane (heavy brow shelf, recessed sockets, projecting muzzle/snub nose, wide jaw, cheekbones), pointed ears, **thick up-swept tusks with gum mass rooted at the mouth corners**, a hair-cap replacement (dark topknot + tail, short beard), and a matte mottled skin material (raised roughness, generated tiling detail texture, olive-tan hue). All new geometry is skinned to the temp `mixamorig:Head` palette so the existing assembly remap handles it; `ARM_SHIFT` returned to 0 because the joint shift crumpled posed hands. Grok also caught and fixed a tusk-tube framing bug that had collapsed the tusks into flat plates, and an inside-out body from a bad mesh join, both verified in the preview before handing back.
+- Grok worker evidence: `ve-capture/orc-motion/grok-v5/` (8 stills, head crops, `orc-head-montage.png`, `skin-detail.png`, `RESULT.md`); intermediate passes in `grok-v1..v4/`. Independent parent review of the final montage: **convinces as a stylized orc for this art direction** — matte credible skin, tusks read as a defining feature in three-quarter and profile, brow/muzzle/jaw in place. **Remaining polish, not blockers:** the pale band across the muzzle competes with the tusks in pure front view, skin tone variation is still flat versus the reference, and the geometric topknot reads hard against the softer body. It is not a Grommash sculpt match. All gates green after every pass: 5/5 motion tests, validator 0 errors, lean Δ0.00°, build. No garments, no socket refits, no armory race switch yet — those are the next slices.
+
+Reproduce the Orc bind pass from the repository root:
+
+```sh
+/Applications/Blender.app/Contents/MacOS/Blender --background --python scripts/character-assets/bind_source_orc.py
+node scripts/character-assets/bind-source-orc.mjs
+node scripts/character-assets/lean-table-orc.mjs
+node --test scripts/test-source-motion.mjs
+node scripts/validate-character-body.mjs public/characters/candidates/orc-source-v1.glb --profile orc-male-v1
+node scripts/character-assets/review-orc-motion.mjs
+```
+
 
 ### Stage C fit-contract increment — 2026-09-18
 

@@ -146,9 +146,14 @@ export function resolvePlayableBody(search) {
     const raw = search ?? (typeof location !== 'undefined' ? location.search : '');
     const q = new URLSearchParams(raw.startsWith('?') ? raw.slice(1) : raw);
     const id = q.get('character');
-    if (id === 'source-reference' || id === 'human-source') {
+    if (id === 'source-reference' || id === 'human-source' || id === 'orc-source') {
+        const bodies = {
+            'source-reference': '/characters/base.glb',
+            'human-source': '/characters/candidates/human-source-v1.glb',
+            'orc-source': '/characters/candidates/orc-source-v1.glb',
+        };
         return { ...PLAYABLE_BODIES[HUMAN_V1_BODY_ID], id,
-            assetURL: id === 'source-reference' ? '/characters/base.glb' : '/characters/candidates/human-source-v1.glb',
+            assetURL: bodies[id],
             composeStarter: false, outfit: 'body', clips: SOURCE_CLIPS,
             jointAliases: null, palmBones: PLAYABLE_BODIES[LEGACY_BODY_ID].palmBones, grip: null,
         };

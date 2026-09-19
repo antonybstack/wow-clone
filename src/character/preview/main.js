@@ -48,6 +48,7 @@ const ANIMATED_CANDIDATES = [
   { id: "human", url: HUMAN_ANIMATED, label: "Human animated v1" },
   { id: "orc", url: ORC_ANIMATED, label: "Orc animated v1" },
   { id: "undead", url: UNDEAD_ANIMATED, label: "Undead animated v1" },
+  { id: "orc-source", url: "/characters/candidates/orc-source-v1.glb", label: "Orc source v1 (65-joint)" },
 ];
 const VIEW_NAMES = ["front", "back", "side", "three-quarter", "face", "hands", "feet"];
 /** Chest/abdomen sample height for skin-luminance measurement, as a fraction of body height. */

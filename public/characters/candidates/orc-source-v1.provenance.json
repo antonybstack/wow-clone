@@ -1,0 +1,18 @@
+{
+  "pipeline": "source-compatible Orc binding",
+  "capture": "ve-capture/orc-motion/grok-v5",
+  "hashes": {
+    "public/characters/base.glb": "2f9e45d0f7d9faeae4c20e18585173d62953df1a8f0272f270bedb200927604c",
+    "public/characters/bodies/orc-animated-v1.glb": "3b817c2ed69f59fa7946a35a900a3ae817c6b50ae3a3f0c6d339b2856b61389e",
+    "public/characters/candidates/orc-source-v1.glb": "fe27b79528897651583aa1eed678a3a61ff427a6d173d40e5491ccd7997ccad3",
+    "scripts/character-assets/bulk_orc.py": "1debd81b86e2440f9c898c6b8c006bcf7bdf2bc60d983f1892a271e7dfe45459",
+    "scripts/character-assets/bind_source_orc.py": "1ac48f9e4d731e8a9f145e4b20abcaded6792571f2056abfd2eb351cd1e6757b",
+    "scripts/character-assets/bind-source-orc.mjs": "3d7127e1a79abf0106d8673793289f0c49b76b8873acd3f0288073d63bfacf11"
+  },
+  "versions": {
+    "blender": "5.2.1",
+    "gltfTransform": "4.4.2",
+    "glMatrix": "3.4.4"
+  },
+  "licenseNotes": "Orc assets retain existing MakeHuman graphics provenance (CC0); source rig and original clips retain base.glb provenance. No blanket CC0 claim for the source rig."
+}
