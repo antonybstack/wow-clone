@@ -413,6 +413,43 @@ def bake_hp_maps(low, high, size=1024):
     return out_n, out_ao
 
 
+def stamp_chin_skin(ob, img, landmarks, radius=2):
+    """Overwrite chin-pad UV pixels so tusk-island bleed cannot stay ivory."""
+    uv_layer = ob.data.uv_layers.active
+    if not img or not uv_layer:
+        return
+    mw = ob.matrix_world
+    lo, hi = landmarks['lo'], landmarks['hi']
+    h = max(hi.z - lo.z, 1e-6)
+    cx = (lo.x + hi.x) * 0.5
+    w, ht = img.size
+    pix = list(img.pixels)
+    n = 0
+    for loop in ob.data.loops:
+        p = mw @ ob.data.vertices[loop.vertex_index].co
+        t = (p.z - lo.z) / h
+        if not (0.76 <= t <= 0.845 and abs(p.x - cx) < 0.045):
+            continue
+        u, v = uv_layer.data[loop.index].uv
+        px = int(round(u * (w - 1)))
+        py = int(round(v * (ht - 1)))
+        for dx in range(-radius, radius + 1):
+            for dy in range(-radius, radius + 1):
+                x, y = px + dx, py + dy
+                if x < 0 or y < 0 or x >= w or y >= ht:
+                    continue
+                i = (y * w + x) * 4
+                pix[i] = SKIN[0]
+                pix[i + 1] = SKIN[1]
+                pix[i + 2] = SKIN[2]
+                pix[i + 3] = 1.0
+                n += 1
+    if n:
+        img.pixels = pix
+        img.pack()
+        log(f'stamped chin pad {n} albedo texels to skin')
+
+
 def multiply_ao(albedo, ao_img, strength=0.55):
     if not albedo or not ao_img:
         return
@@ -612,6 +649,7 @@ def paint_skin(ob, tusks=None, landmarks=None):
         landmarks = find_face_landmarks(ob, tusks=tusks)
     lo, hi = landmarks['lo'], landmarks['hi']
     h = max(hi.z - lo.z, 1e-6)
+    cx = (lo.x + hi.x) * 0.5
     eye_l, eye_r = landmarks['eye_l'], landmarks['eye_r']
     tusk_pts = [mw @ mesh.vertices[i].co for i in tusks] if tusks else []
     for attr in list(mesh.color_attributes):
@@ -634,7 +672,8 @@ def paint_skin(ob, tusks=None, landmarks=None):
             crease = 0.0
         under = max(0.0, -v.normal.z)
         mottle = (_hash01(v.index) - 0.5) * 0.10
-        if v.index in tusks and t > 0.80:
+        on_chin = t < 0.845 and abs(p.x - cx) < 0.042
+        if v.index in tusks and t > 0.80 and not on_chin:
             tusk_count += 1
             col = _lerp(IVORY, IVORY_ROOT, crease * 0.55 + under * 0.15)
         else:
@@ -659,6 +698,8 @@ def paint_skin(ob, tusks=None, landmarks=None):
                     dmin = min((p - tp).length for tp in tusk_pts)
                     if dmin < 0.024:
                         col = _lerp(col, MOUTH, (1.0 - dmin / 0.024) * 0.85)
+                if on_chin:
+                    col = _lerp(col, SKIN, 0.82)
             col = (
                 max(0.0, col[0] * (1.0 + mottle)),
                 max(0.0, col[1] * (1.0 + mottle * 0.65)),
@@ -832,6 +873,8 @@ def recook_albedo(ob, fallback, size=1024, roughness=0.88, skin=True, ao_img=Non
     albedo = bake_vcol_image(ob, size, fallback)
     if ao_img:
         multiply_ao(albedo, ao_img)
+    if skin and fallback == SKIN and landmarks:
+        stamp_chin_skin(ob, albedo, landmarks)
     assign_albedo(ob, albedo, fallback, roughness=roughness, normal=normal_img)
     log(f'recooked albedo {ob.name} {size}px roughness={roughness} normal={bool(normal_img)}')
     return landmarks
@@ -984,6 +1027,7 @@ def build_retopo():
     if shorts:
         if tris_of(shorts) > 4000:
             decimate_to(shorts, 2500)
+        close_crotch_hole(shorts)
         shade_smooth(shorts)
         smart_uv(shorts)
         recook_albedo(shorts, LEATHER, 512, roughness=0.92, skin=False)
@@ -1300,6 +1344,64 @@ def pelvis_only_weights(ob):
     log(f'pelvis-only weights on {ob.name}; filled {assigned} unweighted verts')
 
 
+def close_crotch_hole(ob):
+    """Fill only the inner crotch boundary. Filling every non-manifold edge made a cone."""
+    object_mode()
+    bm = bmesh.new()
+    bm.from_mesh(ob.data)
+    bm.verts.ensure_lookup_table()
+    bm.edges.ensure_lookup_table()
+    mw = ob.matrix_world
+    visited = set()
+    filled = 0
+    for e0 in list(bm.edges):
+        if not e0.is_boundary or e0.index in visited:
+            continue
+        loop = []
+        cur = e0
+        v = cur.verts[0]
+        for _ in range(400):
+            if cur.index in visited:
+                break
+            loop.append(cur)
+            visited.add(cur.index)
+            nxt = None
+            for e2 in v.link_edges:
+                if e2.is_boundary and e2.index not in visited:
+                    nxt = e2
+                    v = e2.other_vert(v)
+                    break
+            if nxt is None:
+                break
+            cur = nxt
+        if len(loop) < 5 or len(loop) > 64:
+            continue
+        pts = [(mw @ ed.verts[0].co + mw @ ed.verts[1].co) * 0.5 for ed in loop]
+        cx = sum(p.x for p in pts) / len(pts)
+        cz = sum(p.z for p in pts) / len(pts)
+        if abs(cx) > 0.10 or cz < 0.88 or cz > 1.30:
+            continue
+        try:
+            res = bmesh.ops.edgeloop_fill(bm, edges=loop)
+            nfaces = len(res.get('faces') or [])
+            filled += nfaces
+            log(f'crotch fill loop={len(loop)} center_x={cx:.3f} z={cz:.3f} faces={nfaces}')
+        except Exception as err:
+            log(f'crotch fill skipped loop={len(loop)}: {err}')
+    bm.to_mesh(ob.data)
+    ob.data.update()
+    bm.free()
+    if filled:
+        smart_uv(ob)
+        hips = ob.vertex_groups.get('mixamorig:Hips')
+        if hips:
+            for v in ob.data.vertices:
+                if not v.groups:
+                    hips.add([v.index], 1.0, 'REPLACE')
+    log(f'crotch hole faces added={filled}')
+    return filled
+
+
 def primitive_mesh(name, loc, scale, mat, bone):
     object_mode()
     bpy.ops.mesh.primitive_uv_sphere_add(segments=12, ring_count=8, radius=1.0, location=loc)
@@ -1473,7 +1575,7 @@ def bind_retopo():
         raise RuntimeError('retopo GLB missing OrcV1Body')
     shorts = take('OrcV1Shorts')
     if shorts:
-        log('shorts: skip fill (fill() turned the drape into a cone)')
+        close_crotch_hole(shorts)
     stale_eyes = take('OrcV1Eyes')
     if stale_eyes:
         bpy.data.objects.remove(stale_eyes, do_unlink=True)
@@ -1565,6 +1667,7 @@ def recook_rest():
     nrm = existing_normal_image(body)
     landmarks = recook_albedo(body, SKIN, 1024, roughness=0.88, skin=True, normal_img=nrm)
     if shorts:
+        close_crotch_hole(shorts)
         recook_albedo(shorts, LEATHER, 512, roughness=0.92, skin=False)
     eyes = add_eyes(arm, body, landmarks)
     if not hair or not brows:

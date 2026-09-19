@@ -18,7 +18,7 @@ The armory **Orc** is the print-sculpt retopo, not a MakeHuman warp. Pipeline: [
 
 - Form: `blender/characters/sources/orc-print/Orc_22.fbx` (Crayon, CC-BY 4.0). Look: `.agents/skills/blender-lite/references/orc-concept-art.png`.
 - Bind: Mixamo T-pose, 65 joints, 55 clips, pelvis-only loincloth weights. Pack: `public/ashen-reach/equipment-orc/` (body-only; catalogue clothes withheld).
-- Remaining polish: loincloth crotch hole, idle thoracic stoop vs Human, no fitted clothes, a small chin pad still slightly pale. Face form (2026-09-19): print eyelids/lips/tusks survive collapse remesh; HP tangent normals + AO; dummy brow spheres removed; pec ivory bleed cleared. Palette stays ashen peat-olive.
+- Remaining polish: idle thoracic stoop is Mixamo idle on the print chest (T-pose rest is upright enough; no clip-fighting spine hack), no fitted clothes, chin pad still a slight pale catch. Loincloth inner crotch loops filled 2026-09-19. Face: print eyelids/lips/tusks, HP normals, no dummy spheres, pec ivory cleared. Palette ashen peat-olive.
 
 ## Human armed repair (paused for the Orc rebuild)
 
