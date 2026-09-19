@@ -30,4 +30,4 @@ The old Moonwell shrine export commands were removed. Use the current equipment 
 
 ## Verification and delivery
 
-Play the active route after changes. Check body pose and actual input, inspect screenshot/video, and run relevant tests/build. Measure performance separately from recording, always stating render resolution and limitations. Use existing session authorization for Telegram; send reviewed evidence without leaking credentials or claiming monitoring after the turn ends.
+Play the active route after changes. Check body pose and actual input, inspect screenshot **and** video, and run relevant tests/build. Measure performance separately from recording, always stating render resolution and limitations. Use existing session authorization for Telegram; a visual cycle is unfinished until a reviewed live GIF or MP4 is sent with `tg file`. Do not leak credentials or claim monitoring after the turn ends.
