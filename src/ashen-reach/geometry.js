@@ -6,7 +6,34 @@ export const sub=(a,b)=>a.map((x,i)=>x-b[i]);
 export const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
 export const norm=a=>mul(a,1/(Math.hypot(...a)||1));
 export function rng(seed=7321){return()=>{seed=(Math.imul(1664525,seed)+1013904223)|0;return(seed>>>0)/4294967296;};}
-export const height=(x,z)=>.30*Math.sin(x*.19+z*.13)+.16*Math.sin(z*.45+x*.11)+.006*z+1.6*Math.exp(-((x+20)**2+(z-30)**2)/260);
+
+// The churchyard (z<=40) keeps the exact original formula: climb(z) is 0 there by construction,
+// so height(x,z) is bit-for-bit unchanged south of the lych-gate. North of it the ground rises
+// gradually toward Hollowmere on a smoothstep ease.
+const RISE_START=40,RISE_END=140,RISE_HEIGHT=7.5;
+const climb=z=>{if(z<=RISE_START)return 0;const t=Math.min(1,(z-RISE_START)/(RISE_END-RISE_START));return t*t*(3-2*t)*RISE_HEIGHT;};
+const terrainRaw=(x,z)=>.30*Math.sin(x*.19+z*.13)+.16*Math.sin(z*.45+x*.11)+.006*z+1.6*Math.exp(-((x+20)**2+(z-30)**2)/260)+climb(z);
+
+/** Flat pads for Milestone 2's Hollowmere buildings: {x,z,w,d} in world space. height() blends
+ *  each pad into the sloped terrain, so a builder can read groundHeight(x,z) inside a pad and get
+ *  a level floor. All pads sit north of the lych-gate and never touch the churchyard invariant. */
+export const buildingPads=[
+ {x:-9,z:82,w:8,d:8},{x:9,z:82,w:8,d:8},
+ {x:-12,z:98,w:9,d:8},{x:12,z:98,w:9,d:8},
+ {x:-9,z:114,w:8,d:8},{x:9,z:114,w:8,d:8},
+ {x:-13,z:128,w:11,d:9},{x:13,z:128,w:11,d:9},
+ {x:0,z:136,w:16,d:11},
+];
+const PAD_MARGIN=3;
+export function height(x,z){
+ let h=terrainRaw(x,z);
+ for(const p of buildingPads){
+  const dx=Math.max(Math.abs(x-p.x)-p.w/2,0),dz=Math.max(Math.abs(z-p.z)-p.d/2,0);
+  const dist=Math.hypot(dx,dz);
+  if(dist<PAD_MARGIN){const t=1-dist/PAD_MARGIN,s=t*t*(3-2*t);h=h*(1-s)+terrainRaw(p.x,p.z)*s;}
+ }
+ return h;
+}
 export const pathX=z=>Math.sin(z*.14)*1.25;
 
 /** Static geometry is packed by surface, so thousands of plants remain a handful of draws. */

@@ -1,5 +1,5 @@
 import {setShaderUniform} from '@babylonjs/lite';
-import {Batch,rng,height,pathX,add,mul,sub,norm,cross} from './geometry.js';
+import {Batch,rng,height,pathX,buildingPads,add,mul,sub,norm,cross} from './geometry.js';
 import {surface,sky} from './materials.js';
 
 /** A new scene layout. No Moonwell world builders, architecture or vegetation placement. */
@@ -74,12 +74,71 @@ export async function buildChurchyard(engine,scene){
 
  // Each fern is a radiating set of bent alpha-textured fronds.
  function bracken(x,z,size,seed){const rand=rng(seed),y=height(x,z)-.02;for(let f=0;f<8;f++){const a=f*.785+rand()*.45,L=size*(.65+rand()*.5),point=t=>[x+Math.cos(a)*L*t,y+L*(1.85*t-1.40*t*t)+.05,z+Math.sin(a)*L*t],side=[-Math.sin(a)*L*.24,0,Math.cos(a)*L*.24],u0=rand()<.85?0:.5;
-  for(let k=0;k<5;k++){const t=k/5,t1=(k+1)/5,p=point(t),q=point(t1),c=.82+rand()*.25;fern.quad(sub(p,side),add(p,side),add(q,side),sub(q,side),[[u0+.008,.99-t*.49],[u0+.492,.99-t*.49],[u0+.492,.99-t1*.49],[u0+.008,.99-t1*.49]],[[c,c,c,t],[c,c,c,t],[c,c,c,t1],[c,c,c,t1]],[0,1,0]);}
- }}
+   for(let k=0;k<5;k++){const t=k/5,t1=(k+1)/5,p=point(t),q=point(t1),c=.82+rand()*.25;fern.quad(sub(p,side),add(p,side),add(q,side),sub(q,side),[[u0+.008,.99-t*.49],[u0+.492,.99-t*.49],[u0+.492,.99-t1*.49],[u0+.008,.99-t1*.49]],[[c,c,c,t],[c,c,c,t],[c,c,c,t1],[c,c,c,t1]],[0,1,0]);}
+  }}
  for(let i=0;i<420;i++){const x=r(-22,22),z=r(-10,48);if(Math.abs(x-pathX(z))<2.0&&random()<.97)continue;bracken(x,z,r(.45,1.18),i+490);}
  for(const [x,z,s] of [[-2,-2,1.4],[2.8,-2.1,1.5],[-2.5,4,1.3],[2.7,9,1.1],[-4,12,1.6]])bracken(x,z,s,Math.floor(s*900));
  const rects=[[.008,.006,.492,.498],[.508,.006,.992,.498],[.008,.006,.492,.498],[.508,.006,.992,.498]];
  for(let i=0;i<11000;i++){const x=r(-40,40),z=r(-16,84);if(Math.hypot(x,z)>38&&random()<.72)continue;const path=Math.abs(x-pathX(z));if(path<1.2&&z<26)continue;if(path<1.8&&random()<.7)continue;const y=height(x,z)-.02,sz=r(.52,1.23),w=r(.55,1.12),a=r(0,Math.PI),kind=random()<.6?3:random()<.5?2:0,[u0,v0,u1,v1]=rects[kind];for(let k=0;k<2;k++){const dx=Math.cos(a+k*1.571)*w/2,dz=Math.sin(a+k*1.571)*w/2,c=r(.66,1.10);grass.quad([x-dx,y,z-dz],[x+dx,y,z+dz],[x+dx,y+sz,z+dz],[x-dx,y+sz,z-dz],[[u0,v1],[u1,v1],[u1,v0],[u0,v0]],[[c,c,c,0],[c,c,c,0],[c,c,c,1],[c,c,c,1]],[0,1,0]);}}
+
+ // --- Milestone 1, north of the churchyard: everything below is new and uses its own rng so the
+ // churchyard's random sequence above (tombs/trees/grass colour) is untouched. Placed only at
+ // z>40, so height()'s climb/pad terms and this content never affect the z<=40 invariant.
+ const randomNorth=rng(50021),rn=(a,b)=>a+randomNorth()*(b-a);
+
+ function streetLamp(x,z,strength=.5){
+  const y=height(x,z);
+  wood.tube([x,y,z],[x,y+2.9,z],.09,.05,[.62,.56,.48,0],6);
+  const p=[x,y+2.62,z];
+  glow.box(p,[.24,.32,.24],[1,1,1,0]);
+  for(let j=0;j<4;j++){const dx=j<2?-.15:.15,dz=j%2?-.15:.15;wood.box([p[0]+dx,p[1],p[2]+dz],[.036,.48,.036],[.32,.32,.3,0]);}
+  wood.box([p[0],p[1]-.23,p[2]],[.37,.06,.37],[.32,.32,.3,0]);
+  wood.tube([p[0],p[1]+.19,p[2]],[p[0],p[1]+.44,p[2]],.26,0,[.32,.32,.3,0],4);
+  lights.push({position:p,strength,falloff:.55});
+ }
+
+ // Lych-gate: the road leaves the burial ground through a timber roof on two posts.
+ function lychGate(z){
+  const x=pathX(z),y=height(x,z),gap=1.9,postH=2.3,ridgeY=y+postH+.85,eaveOut=gap+.35,half=.62;
+  for(const px of [x-gap,x+gap]){
+   wood.tube([px,y,z],[px,y+postH,z],.12,.09,[.5,.42,.32,0],6);
+   colliders.push({type:'box',position:{x:px,y:y+postH/2,z},size:{x:.30,y:postH,z:.55},rotation:{y:0}});
+  }
+  wood.box([x,y+postH+.02,z],[gap*2+.4,.12,.5],[.44,.38,.29,0]);
+  const roofCol=[.40,.34,.25,0];
+  wood.quad([x-eaveOut,y+postH,z-half],[x-eaveOut,y+postH,z+half],[x,ridgeY,z+half],[x,ridgeY,z-half],undefined,roofCol);
+  wood.quad([x,ridgeY,z-half],[x,ridgeY,z+half],[x+eaveOut,y+postH,z+half],[x+eaveOut,y+postH,z-half],undefined,roofCol);
+  wood.tube([x,ridgeY,z-half],[x,ridgeY,z+half],.045,.045,[.36,.30,.22,0],4);
+  stone.box([x,y+.05,z],[gap*2+.7,.10,.7],[.55,.55,.47,0]);
+  lights.push({position:[x,ridgeY-.1,z],strength:.5,falloff:.55});
+ }
+ lychGate(44);
+ for(const [z,side] of [[50,-1],[58,1],[66,-1]])streetLamp(pathX(z)+side*2.8+rn(-.2,.2),z,.5);
+
+ // Town outer wall and gatehouse: two flanking towers with crenellations, a lintel over the road.
+ function townGate(z){
+  const x=pathX(z),gateHalf=2.6,wallHalf=40,wallH=4.2,wallT=1.2,towerW=3.6,towerH=9;
+  for(const side of [-1,1]){
+   const innerX=x+side*(gateHalf+towerW/2),outerX=x+side*wallHalf,midX=(innerX+outerX)/2,len=Math.abs(outerX-innerX),wy=height(midX,z);
+   stone.box([midX,wy+wallH/2,z],[len,wallH,wallT],[.62,.63,.56,0]);
+   const steps=Math.max(4,Math.round(len/2.4));
+   for(let k=0;k<steps;k+=2){const t=(k+.5)/steps,mx=innerX+(outerX-innerX)*t;stone.box([mx,wy+wallH+.30,z],[1.0,.55,wallT*.85],[.58,.60,.52,0]);}
+   colliders.push({type:'box',position:{x:midX,y:wy+wallH/2,z},size:{x:len,y:wallH,z:wallT},rotation:{y:0}});
+  }
+  for(const side of [-1,1]){
+   const tx=x+side*(gateHalf+towerW/2),ty=height(tx,z);
+   stone.box([tx,ty+towerH/2,z],[towerW,towerH,towerW],[.58,.60,.53,0]);
+   for(let k=0;k<4;k++){const a=k*Math.PI/2+Math.PI/4;stone.box([tx+Math.sin(a)*towerW*.42,ty+towerH+.35,z+Math.cos(a)*towerW*.42],[.5,.7,.5],[.5,.52,.46,0]);}
+   glow.box([tx-side*towerW*.28,ty+towerH*.55,z-towerW*.51],[.16,.24,.05],[1,1,1,0]);
+   colliders.push({type:'box',position:{x:tx,y:ty+towerH/2,z},size:{x:towerW,y:towerH,z:towerW},rotation:{y:0}});
+   lights.push({position:[tx,ty+towerH*.55,z],strength:.75,falloff:.4});
+  }
+  const gy=height(x,z);
+  stone.box([x,gy+3.6,z],[gateHalf*2+towerW*.6,.9,wallT*1.1],[.56,.58,.5,0]);
+ }
+ townGate(75);
+ for(const [z,side] of [[84,1],[94,-1],[104,1],[114,-1],[124,1],[134,-1]])streetLamp(pathX(z)+side*3.4+rn(-.2,.2),z,.5);
+
  const meshes=B.map((b,i)=>b.commit(engine,scene,mats[i],lights));colliders.unshift({type:'mesh',mesh:meshes[0]});const clouds=await sky(engine,scene);
- return {meshes,colliders,groundHeight:height,spawn:{x:0,z:0},stats:{triangles:B.reduce((a,b)=>a+b.idx.length/3,0),drawBatches:B.length},update(t){for(const i of [4,5])setShaderUniform(mats[i],'time',t);clouds.update(t);}};
+ return {meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,stats:{triangles:B.reduce((a,b)=>a+b.idx.length/3,0),drawBatches:B.length},update(t){for(const i of [4,5])setShaderUniform(mats[i],'time',t);clouds.update(t);}};
 }
