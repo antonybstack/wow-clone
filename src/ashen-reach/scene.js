@@ -1,5 +1,5 @@
 import {setShaderUniform} from '@babylonjs/lite';
-import {Batch,rng,height,pathX,buildingPads,add,mul,sub,norm,cross,terrainNormal,lanternGlow,radialGlow} from './geometry.js';
+import {Batch,rng,height,pathX,buildingPads,add,mul,sub,norm,cross,terrainNormal,lanternGlow,groundGlow} from './geometry.js';
 import {surface,sky} from './materials.js';
 import {building,marketStall,well,forgeGlow,crossFinial} from './buildings.js';
 
@@ -111,8 +111,9 @@ export async function buildChurchyard(engine,scene){
   for(let j=0;j<4;j++){const dx=j<2?-.15:.15,dz=j%2?-.15:.15;wood.box([p[0]+dx,p[1],p[2]+dz],[.036,.48,.036],[.32,.32,.3,0]);}
   wood.box([p[0],p[1]-.23,p[2]],[.37,.06,.37],[.32,.32,.3,0]);
   wood.tube([p[0],p[1]+.19,p[2]],[p[0],p[1]+.44,p[2]],.26,0,[.32,.32,.3,0],4);
-  // Ground pool: a radial gradient decal so the lamp visibly spills warm light onto the street.
-  radialGlow(warm,[x,y+.015,z],[1,0,0],[0,0,1],2.0,[.46,.38,.22,0],[0,0,0,0],8);
+  // Ground pool: a bright core tapering to a dim (never black) warm edge, so the lamp visibly
+  // spills warm light onto the street instead of reading as a dark decal (M2b defect).
+  groundGlow(warm,[x,y+.015,z],[1,0,0],[0,0,1],.6,2.0,[1.0,.86,.55,0],[.26,.20,.12,0],10);
   lights.push({position:p,strength,falloff:.42});
  }
 
@@ -130,7 +131,7 @@ export async function buildChurchyard(engine,scene){
   wood.tube([x,ridgeY,z-half],[x,ridgeY,z+half],.045,.045,[.36,.30,.22,0],4);
   stone.box([x,y+.05,z],[gap*2+.7,.10,.7],[.55,.55,.47,0]);
   lanternGlow(warm,[x,ridgeY-.1,z],{r:.11,h:.24});
-  radialGlow(warm,[x,y+.015,z],[1,0,0],[0,0,1],2.4,[.44,.36,.22,0],[0,0,0,0],8);
+  groundGlow(warm,[x,y+.015,z],[1,0,0],[0,0,1],.7,2.4,[1.0,.86,.55,0],[.26,.20,.12,0],10);
   lights.push({position:[x,ridgeY-.1,z],strength:.65,falloff:.42});
  }
  lychGate(44);
