@@ -167,35 +167,35 @@ export async function buildChurchyard(engine,scene){
  // own footprint recorded so the ground-cover pass below can thin around them too. ---
  const ctx={wood,stone,glow:warm,groundHeight:height,colliders,lights};
  const WEST=0,EAST=Math.PI,pads=buildingPads,extraFootprints=[];
- building(ctx,{x:pads[0].x,z:pads[0].z,w:6.6,d:6.6,yaw:WEST,wallH:2.5,roofH:1.3,kind:'house',chimney:true,
+ // House silhouettes are varied deliberately (footprint proportions, a lean-to on one, an upper
+ // storey on another, chimneys on all of them) rather than repeating the same gabled box nine
+ // times — see the M2b status-log defect 5.
+ building(ctx,{x:pads[0].x,z:pads[0].z,w:6.6,d:6.2,yaw:WEST,wallH:2.4,roofH:1.2,kind:'house',chimney:true,leanTo:-1,
   windows:[{wall:1,w:.55,h:.6},{wall:-1,w:.55,h:.6}]});
- building(ctx,{x:pads[1].x,z:pads[1].z,w:6.6,d:6.6,yaw:EAST,wallH:2.5,roofH:1.3,kind:'house',
-  windows:[{wall:1,w:.55,h:.6},{wall:-1,w:.55,h:.6}]});
+ building(ctx,{x:pads[1].x,z:pads[1].z,w:6.0,d:6.4,yaw:EAST,wallH:2.6,roofH:1.35,kind:'house',chimney:true,upper:true,
+  windows:[{wall:1,w:.55,h:.6},{wall:-1,w:.55,h:.6},{wall:1,ly:3.97,w:.42,h:.5},{wall:-1,ly:3.97,w:.42,h:.5}]});
 
- const tavern=building(ctx,{x:pads[2].x,z:pads[2].z,w:7.6,d:6.6,yaw:WEST,wallH:3.0,roofH:1.6,kind:'tavern',chimney:true,
-  windows:[{wall:1,lx:-1.7,w:.5,h:.58},{wall:1,lx:1.7,w:.5,h:.58},{wall:-1,lx:-1.7,w:.5,h:.58},{wall:-1,lx:1.7,w:.5,h:.58}]});
- wood.box(add(tavern.front,[0,2.05,0]),[.9,.5,.05],[.42,.28,.14,0],WEST);
- wood.tube(add(tavern.front,[0,2.55,0]),add(tavern.front,[0,2.3,0]),.02,.02,[.2,.15,.1,0],4);
- lanternGlow(warm,add(tavern.front,[0,1.95,0]),{r:.05,h:.12});
- lights.push({position:add(tavern.front,[0,1.95,0]),strength:.3,falloff:.65});
+ const tavern=building(ctx,{x:pads[2].x,z:pads[2].z,w:7.6,d:6.6,yaw:WEST,wallH:3.0,roofH:1.6,kind:'tavern',chimney:true,upper:true,sign:true,
+  windows:[{wall:1,lx:-1.7,w:.5,h:.58},{wall:1,lx:1.7,w:.5,h:.58},{wall:-1,lx:-1.7,w:.5,h:.58},{wall:-1,lx:1.7,w:.5,h:.58},
+   {wall:1,lx:-1.7,ly:3.97,w:.42,h:.5},{wall:1,lx:1.7,ly:3.97,w:.42,h:.5}]});
 
- const smithy=building(ctx,{x:pads[3].x,z:pads[3].z,w:7.2,d:6.4,yaw:EAST,wallH:2.7,roofH:1.2,kind:'smithy',chimney:true,
+ const smithy=building(ctx,{x:pads[3].x,z:pads[3].z,w:7.2,d:6.4,yaw:EAST,wallH:2.7,roofH:1.3,kind:'smithy',chimney:true,
   windows:[{wall:1,w:.5,h:.5}]});
  forgeGlow(ctx,smithy.front[0],smithy.front[2],EAST);
 
- building(ctx,{x:pads[4].x,z:pads[4].z,w:6.4,d:6.4,yaw:WEST,wallH:2.5,roofH:1.3,kind:'house',
+ building(ctx,{x:pads[4].x,z:pads[4].z,w:5.6,d:6.8,yaw:WEST,wallH:2.8,roofH:1.5,kind:'house',chimney:true,
   windows:[{wall:1,w:.5,h:.58},{wall:-1,w:.5,h:.58}]});
 
- const chapelWallH=3.2,chapelRoofH=2.1;
- const chapel=building(ctx,{x:pads[5].x,z:pads[5].z,w:6.6,d:7.6,yaw:EAST,wallH:chapelWallH,roofH:chapelRoofH,kind:'chapel',
+ const chapelWallH=3.2,chapelRoofH=2.4;
+ const chapel=building(ctx,{x:pads[5].x,z:pads[5].z,w:6.6,d:7.6,yaw:EAST,wallH:chapelWallH,roofH:chapelRoofH,kind:'chapel',steeple:true,
   windows:[{wall:1,w:.8,h:1.05},{wall:-1,w:.8,h:1.05}]});
- crossFinial(ctx,[pads[5].x,chapel.gy+.22+chapelWallH+chapelRoofH,pads[5].z]);
+ crossFinial(ctx,[pads[5].x,(chapel.steepleTop??(chapel.gy+.22+chapelWallH+chapelRoofH))+.05,pads[5].z]);
 
- building(ctx,{x:pads[6].x,z:pads[6].z,w:6.2,d:5.6,yaw:WEST,wallH:2.5,roofH:1.3,kind:'house',
+ building(ctx,{x:pads[6].x,z:pads[6].z,w:6.8,d:5.0,yaw:WEST,wallH:2.3,roofH:1.15,kind:'house',chimney:true,leanTo:1,
   windows:[{wall:1,w:.5,h:.58},{wall:-1,w:.5,h:.58}]});
 
- building(ctx,{x:pads[7].x,z:pads[7].z,w:4.4,d:4.4,yaw:EAST,wallH:5.6,kind:'watchtower',
-  windows:[{wall:1,ly:2.6},{wall:-1,ly:2.6},{wall:1,ly:4.6},{wall:-1,ly:4.6}]});
+ building(ctx,{x:pads[7].x,z:pads[7].z,w:4.4,d:4.4,yaw:EAST,wallH:6.2,kind:'watchtower',
+  windows:[{wall:1,ly:2.6},{wall:-1,ly:2.6},{wall:1,ly:4.6},{wall:-1,ly:4.6},{wall:1,ly:5.6},{wall:-1,ly:5.6}]});
 
  // Well square: the plaza at the north end of the street, with stalls around its rim.
  well(ctx,pads[8].x,pads[8].z);
