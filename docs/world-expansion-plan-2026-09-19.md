@@ -137,3 +137,42 @@ its own Vite port, its own Chrome profile and CDP port, and one command to start
      there is no lit-settlement read from the approach or the overlook.
   5. Every building is the same gabled box. The tavern, chapel and houses are not
      distinguishable by silhouette, and there is no signage or upper storey.
+- 2026-09-20: **M2b landed** (`e3d099e`, `0e67d67`, `f96db05`). The visual pass on Hollowmere.
+  Worth recording: the hypothesis I handed the agent for defect 1 was **wrong**, and it disproved
+  it numerically before acting — smooth vs flat `terrainNormal()` normals move the shader's
+  `directional` term by <0.02%, nowhere near enough to explain the bright ground. The real driver
+  was ground-cover density and colour. Fix is a `nightGrade` shader term gated by
+  `smoothstep(40,55,z)`, algebraically zero at z<=40, so the churchyard is unchanged by
+  construction. It also ran a control for the pixel diff: two reloads of unmodified code give a
+  0.83% noise floor, and two captures 2 s apart give 31.9%, which explains its 5.44% spawn diff as
+  wind-phase decorrelation rather than geometry change.
+  Defect verdicts: overgrowth **fixed** (graded `clearance(x,z)` replaced the boolean footprint
+  test; real paved street and well plaza); forge card **fixed** (shaped ember bed, gradient flame
+  licks, anvil); silhouette variety **fixed** (upper storeys, lean-tos, tavern sign, chapel
+  steeple, chimneys with smoke); ground palette and distance lighting **improved, not solved**.
+  Triangles *fell* 186,056 -> 166,508 because the cover thinning removed more than the detail
+  added. 143.99 FPS, 34 draws, p95 8.10 ms.
+  **New defect found in my review, not in the agent's self-review:** the `radialGlow` ground
+  washes render as dark brown ellipses at the base of every lamp post, reading as craters or mud
+  puddles rather than pools of light. Most obvious in the overlook. The agent reported these as
+  "glowing lamp pools from range"; the images contradict that.
+- 2026-09-20: **M4 landed** (`9a0fcec`, `113e4c5`, merged). Four roaming churchyard grave shades
+  on an idle/patrol/chase/attack/death/respawn state machine, plus player health, death and
+  resurrect, built by a Grok 4.6 worker in a harness worktree on slot 1 — the first real use of
+  the parallel harness, running its own Vite 5273 / CDP 9437 alongside the Sonnet track on
+  5173/9337. Reuses the existing target shape, so Tab targeting, Fire Blast, Lava Ball and the HUD
+  work unchanged and the dummy stays at 2000 HP. `src/player.js` was not touched.
+  Merged only up to `113e4c5`: the worker's two later commits edited a Telegram hook path and
+  added a repo-root shim, both outside its allowed paths, and were deliberately left behind.
+  Verified by me on the merged tree, live, after integration: 13/13 enemy-loop checks, 8/8
+  death/resurrect checks, and the full road still walkable to z=134.79 with hostile enemies
+  active. The merge correctly kept M2's `boundsRect` over M4's older `boundsRadius:85`.
+  The worker's own FPS numbers were worthless (headless Chrome vsync-capped at 60, so before and
+  after both sat on 16.67 ms). Re-measured on real hardware at 960x540 viewport / 720x405
+  internal, 600 samples, 4 enemies active: **144.04 FPS**, mean 6.942 ms, p95 8.10 ms, 36 draws,
+  166,508 triangles. The >120 FPS gate is met.
+  **Open defects carried into M4b:** enemies are blocky hooded scarecrows with square green eyes
+  and no walk cycle (partly a scoping error of mine — `npc.js` and `body.js` were not in its
+  allowed paths, so it had no route to a skinned character); the player walks through enemies,
+  since `player.js` was frozen and colliders are registered only at setup; Lava Ball can miss a
+  moving shade for the same reason; and tall grass overlaps the player health bar.
