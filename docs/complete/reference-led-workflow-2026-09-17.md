@@ -87,7 +87,7 @@ Latest reported delivery evidence: 98 automated checks, 49 browser checks, build
 
 ## How this was made discoverable
 
-[CURRENT.md](CURRENT.md) owns current product facts. [Dream Loop](../.agents/skills/dream-loop/SKILL.md) owns the repeatable process. [The docs index](README.md), the product README, local AGENTS entry and skill routing point there. Following the user's stronger cleanup instruction, conflicting milestone plans, rejected POC briefs, handoffs, judge/session logs and obsolete skill variants were removed outright. No replacement archive of those instructions is retained. Useful technical contracts and source/license provenance remain in focused current documents. See [cleanup audit](documentation-cleanup-2026-09-17.md).
+[CURRENT.md](../CURRENT.md) owns current product facts. [Dream Loop](../../.agents/skills/dream-loop/SKILL.md) owns the repeatable process. [The docs index](../README.md), the product README, local AGENTS entry and skill routing point there. Following the user's stronger cleanup instruction, conflicting milestone plans, rejected POC briefs, handoffs, judge/session logs and obsolete skill variants were removed outright. No replacement archive of those instructions is retained. Useful technical contracts and source/license provenance remain in focused current documents. See [cleanup audit](documentation-cleanup-2026-09-17.md).
 
 
 ## Resumption correction — 2026-09-18

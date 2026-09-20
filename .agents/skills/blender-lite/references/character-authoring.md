@@ -29,4 +29,4 @@ A valid joint trace does not prove mesh quality. Inspect the actual mesh at matc
 
 Blender is useful for authoring/rebinding; it is not required to reuse glTF animation curves or build effects. Keep character work isolated from the live shrine. The actual Lite game is the visual authority. Reuse relevant rig/asset tests, then play and inspect video; do not substitute a validator or Blender still for gameplay quality.
 
-Detailed evidence: [source recovery](../../../../docs/source-motion-recovery-implementation-2026-09-17.md), [gait/contact](../../../../docs/gait-contact-and-landing-2026-09-17.md), [Fire Blast](../../../../docs/fire-blast-body-animation-2026-09-17.md), [Lava Ball](../../../../docs/lava-ball-first-spell-2026-09-17.md).
+Detailed evidence: [source recovery](../../../../docs/complete/source-motion-recovery-implementation-2026-09-17.md), [gait/contact](../../../../docs/complete/gait-contact-and-landing-2026-09-17.md), [Fire Blast](../../../../docs/complete/fire-blast-body-animation-2026-09-17.md), [Lava Ball](../../../../docs/complete/lava-ball-first-spell-2026-09-17.md).

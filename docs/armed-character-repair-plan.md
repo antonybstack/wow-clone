@@ -1,6 +1,6 @@
 # Armed character and Orc repair plan
 
-Status: **planned; implementation not started**. Created 2026-09-18 from the [live review](current-state-review-2026-09-18.md), baseline `ea7df36`. This is the active repair plan, replacing further race/equipment expansion as the immediate priority. Update checkboxes and evidence after each completed slice; adjust approaches when live evidence disproves them.
+Status: **planned; implementation not started**. Created 2026-09-18 from the [live review](complete/current-state-review-2026-09-18.md), baseline `ea7df36`. This is the active repair plan, replacing further race/equipment expansion as the immediate priority. Update checkboxes and evidence after each completed slice; adjust approaches when live evidence disproves them.
 
 ## Goal and boundaries
 

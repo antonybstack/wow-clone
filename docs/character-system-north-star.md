@@ -28,10 +28,8 @@ Prove a convincing equipped character in real gameplay before expanding the full
 
 ## Technical references
 
-- [Lab lineage](character-lab-provenance.md): original mannequin/rig/clip provenance.
-- [Source-compatible Human](source-motion-recovery-implementation-2026-09-17.md): fitted Human using original authored curves; the older root-route comparison is diagnostic.
-- [Gait/contact](gait-contact-and-landing-2026-09-17.md): centimetre-parent conversion, contact phase and landing layers.
+- [Character asset provenance](complete/character-asset-provenance.md): mannequin/rig/clip lineage, body validation, and Human/Orc/Undead source-asset license records, not current gameplay defaults.
+- [Source-compatible Human](complete/source-motion-recovery-implementation-2026-09-17.md): fitted Human using original authored curves; the older root-route comparison is diagnostic.
+- [Gait/contact](complete/gait-contact-and-landing-2026-09-17.md): centimetre-parent conversion, contact phase and landing layers.
 - The former composition-adapter experiment was removed with the old Moonwell route; current equipment contracts live in [the armory plan](armory-and-equipment-plan.md) and [equipment authoring](ashen-equipment-authoring.md).
-- [Body validation](character-body-validation.md): structural checks, not art certification.
-- [Human asset provenance](character-human-source.md), [race asset provenance](character-race-sources.md): retained source/license records, not current gameplay defaults.
-- [Fire Blast motion](fire-blast-body-animation-2026-09-17.md): current cast profile and release behavior. Lava Ball behavior is documented in [CURRENT.md](CURRENT.md).
+- [Fire Blast motion](complete/fire-blast-body-animation-2026-09-17.md): current cast profile and release behavior. Lava Ball behavior is documented in [CURRENT.md](CURRENT.md).

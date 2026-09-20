@@ -1,6 +1,6 @@
 /** Assemble the source-compatible Orc candidate on the original 65-joint bind.
  * Mirrors the sanctioned Human pipeline
- * (docs/source-motion-recovery-implementation-2026-09-17.md):
+ * (docs/complete/source-motion-recovery-implementation-2026-09-17.md):
  * keep base.glb hierarchy and local rotation frames, fit joint translations
  * from isolated-Blender centres (metres) into stored centimetre units,
  * recompute inverse binds, attach Orc surfaces with palette remap, copy every

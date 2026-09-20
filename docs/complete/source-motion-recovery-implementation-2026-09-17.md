@@ -1,6 +1,6 @@
 # Source-motion recovery implementation — 2026-09-17
 
-This report records the source-compatible Human foundation and root-route comparison. The active Ashen integration and current spell/motion state are in [CURRENT.md](CURRENT.md). Its old milestone wording is descriptive evidence, not a task queue.
+This report records the source-compatible Human foundation and root-route comparison. The active Ashen integration and current spell/motion state are in [CURRENT.md](../CURRENT.md). Its old milestone wording is descriptive evidence, not a task queue.
 
 ## Result and scope of this pass
 

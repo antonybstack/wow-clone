@@ -72,7 +72,7 @@ The early reference view measured about 144 FPS; the initial third-person view m
 3. The ground is rolling but lacks the reference’s carefully sculpted berms and broken surface variation. Path encroachment, debris, ivy and partly buried stones need further authoring.
 4. Grave and tower silhouettes are original approximations. They are not extracted reference assets. Surface texture improved substantially, but repeated grave faces and simple tower massing remain visible.
 5. The character is a motion-compatible stand-in with a surface-only outfit. Shoulder anatomy, skin finish, real clothing volume, equipment and the waist edge still need a separate art pass.
-6. Subsequent accepted iterations added targeting, a training dummy, Fire Blast and Lava Ball. See [CURRENT.md](CURRENT.md). Moving enemies/population remain open.
+6. Subsequent accepted iterations added targeting, a training dummy, Fire Blast and Lava Ball. See [CURRENT.md](../CURRENT.md). Moving enemies/population remain open.
 7. The green fortress/meadow and burning dragon scenes have not been built.
 
 The user has endorsed the direction and output; this does not establish pixel identity, a finished MMORPG or completed art in every area. Keep reviewing live evidence against the supplied references.

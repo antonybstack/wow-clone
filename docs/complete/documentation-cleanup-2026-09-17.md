@@ -4,10 +4,10 @@ The user endorsed the screenshot-led, direct implementation workflow used for As
 
 ## Current entry points
 
-- [CURRENT.md](CURRENT.md): active route, accepted reference, runtime facts, controls, measured evidence and unfinished scope.
+- [CURRENT.md](../CURRENT.md): active route, accepted reference, runtime facts, controls, measured evidence and unfinished scope.
 - [Workflow retrospective](reference-led-workflow-2026-09-17.md): the observed turning point, reusable method and concrete corrections from the accepted sequence.
-- [Dream Loop](../.agents/skills/dream-loop/SKILL.md): direct implementation, reuse, real play, visual review and focused correction.
-- [Documentation map](README.md): current implementation and still-useful technical references.
+- [Dream Loop](../../.agents/skills/dream-loop/SKILL.md): direct implementation, reuse, real play, visual review and focused correction.
+- [Documentation map](../README.md): current implementation and still-useful technical references.
 
 Root/game READMEs, local `AGENTS.md`, browser/capture guidance and skill entry points now route to this direction. Ashen Reach is the only playable game; the character lab and body preview remain development tools.
 

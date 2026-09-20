@@ -10,7 +10,7 @@ The visual direction is the user's concrete **Sword Hero gameplay screenshots**:
 
 The user rejected the earlier five retro Blender POCs and grounded waystation because they still looked like the old game. Those generated POCs and local captures have been removed. Do not resume those candidates, the old valley/citadel roadmap, or photorealistic material polish by default. World of Warcraft remains a locomotion/control and long-term character-system reference; Elden Ring's earlier fidelity wording does not override the accepted screenshot-led art direction.
 
-References and exact source URLs: [direct scene implementation](ashen-reach-direct-pass-2026-09-17.md). Local working images: `.dream-loop/sword-reference/target.png`, `demo4.jpg`, `demo10.jpg`, `demo2.jpg`. These are ignored working references; recover from the documented URLs/user attachments if absent. Reference pixels are not shipped game assets.
+References and exact source URLs: [direct scene implementation](complete/ashen-reach-direct-pass-2026-09-17.md). Local working images: `.dream-loop/sword-reference/target.png`, `demo4.jpg`, `demo10.jpg`, `demo2.jpg`. These are ignored working references; recover from the documented URLs/user attachments if absent. Reference pixels are not shipped game assets.
 
 ## Playable Orc (sculpt pipeline)
 
@@ -22,13 +22,13 @@ The armory **Orc** is the print-sculpt retopo, not a MakeHuman warp. Pipeline: [
 
 ## Human armed repair (paused for the Orc rebuild)
 
-The [armed character repair plan](armed-character-repair-plan.md) remains the Human armed-pose plan, based on the [live state review](current-state-review-2026-09-18.md). Step 1 (Human armed posture and directional locomotion) is implemented: the greatstaff carry is an arms-only masked layer over the normal directional gait. Its **remaining visual defect** — the staff still reads as a horizontal pole across the waist — and Steps 2-6 are unchanged. Resume that plan when the Orc body work is not the user's current request.
+The [armed character repair plan](armed-character-repair-plan.md) remains the Human armed-pose plan, based on the [live state review](complete/current-state-review-2026-09-18.md). Step 1 (Human armed posture and directional locomotion) is implemented: the greatstaff carry is an arms-only masked layer over the normal directional gait. Its **remaining visual defect** — the staff still reads as a horizontal pole across the waist — and Steps 2-6 are unchanged. Resume that plan when the Orc body work is not the user's current request.
 
 ## Workflow to continue
 
 Use [Dream Loop](../.agents/skills/dream-loop/SKILL.md): **inspect → bounded reuse/research → direct implementation → real play → screenshot/video review → specific correction → verification and delivery**.
 
-The parent implements and reviews by default. Grok delegation is an optional tool when requested or useful within current authorization; the former Grok-only and subscription-tier mandates are superseded. Nested DeepSeek vision is a **comparative spot check** (lime vs current, face crop), not a closed score loop. Read the [workflow retrospective](reference-led-workflow-2026-09-17.md) for the evidence behind this choice.
+The parent implements and reviews by default. Grok delegation is an optional tool when requested or useful within current authorization; the former Grok-only and subscription-tier mandates are superseded. Nested DeepSeek vision is a **comparative spot check** (lime vs current, face crop), not a closed score loop. Read the [workflow retrospective](complete/reference-led-workflow-2026-09-17.md) for the evidence behind this choice.
 
 Orc form work that produced a live churchyard face matching the print sculpt: collapse the FBX (do not voxel), bake HP normals/AO, keep maps on bind, no dummy eyes. Recipe and traps: [orc sculpt pipeline](orc-sculpt-pipeline.md). Recoloring cannot restore remeshed eyelids.
 
@@ -45,10 +45,10 @@ Choose one consequential deliverable from the latest user request. Current Orc-a
 | Engine | `@babylonjs/lite`, WebGPU; Vite 5173. No `@babylonjs/core`/Classic runtime APIs. |
 | Scene | `src/ashen-reach/{main,scene,geometry,materials}.js`; standalone churchyard with new composition and foliage, textured diffuse WGSL surfaces, fog, lamps, wind and cloud motion. |
 | Character | `public/ashen-reach/equipment/body.glb` plus streamed fitted garments (derived from `wanderer-equipment.glb`), source-compatible Human, original 65-joint bind/54 clips; fitted CC0 mail/cloth/magic garments, trousers, boots, hood and gloves, plus evaluated sword/staff/book attachments. Unequipping restores base appearance. |
-| Motion | Shared `src/character/body.js`, native Lite mixer; 45 original clips retained, five authored directional imports, one CC0 retargeted two-handed carry (`Walk_Carry_Loop`), two Fire Blast layers, two Lava Ball layers: **55 clips**. [Gait/contact report](gait-contact-and-landing-2026-09-17.md). |
+| Motion | Shared `src/character/body.js`, native Lite mixer; 45 original clips retained, five authored directional imports, one CC0 retargeted two-handed carry (`Walk_Carry_Loop`), two Fire Blast layers, two Lava Ball layers: **55 clips**. [Gait/contact report](complete/gait-contact-and-landing-2026-09-17.md). |
 | Physics/input | Existing Havok controller and WoW controls: W/S, A/D turn, Q/E strafe, RMB look, Shift walk, Space jump. Physics owns movement; animation presents it. |
-| Fire Blast | **1**; .28s wind-up, 120 damage, 20m range, 3s cooldown at release. Moving casts supported. [Body motion](fire-blast-body-animation-2026-09-17.md). |
-| Lava Ball | **2**; 1.5s stationary charge, 240 impact damage, 24m range, 6s cooldown at release, 12m/s fixed flight. Movement/jump interrupts charge. [Implementation](lava-ball-first-spell-2026-09-17.md). |
+| Fire Blast | **1**; .28s wind-up, 120 damage, 20m range, 3s cooldown at release. Moving casts supported. [Body motion](complete/fire-blast-body-animation-2026-09-17.md). |
+| Lava Ball | **2**; 1.5s stationary charge, 240 impact damage, 24m range, 6s cooldown at release, 12m/s fixed flight. Movement/jump interrupts charge. [Implementation](complete/lava-ball-first-spell-2026-09-17.md). |
 | Target/combat | Tab selects the 600 HP training dummy; Escape clears target. Dummy recovers three seconds after defeat. Local prototype state, no backend authority. |
 | Effects/audio | Native Lite pooled billboards, shader/point lights, skinned hand sockets, licensed Kenney sprites and Julien Matthey audio. Damage, gesture, release, sound and impact are coordinated. |
 

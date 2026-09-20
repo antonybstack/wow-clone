@@ -25,6 +25,6 @@ The character lab and body preview are development tools:
 - `/character-lab.html`
 - `/body-preview.html`
 
-Read [docs/CURRENT.md](docs/CURRENT.md) for the active direction and [docs/reference-led-workflow-2026-09-17.md](docs/reference-led-workflow-2026-09-17.md) for the endorsed implementation workflow.
+Read [docs/CURRENT.md](docs/CURRENT.md) for the active direction and [docs/complete/reference-led-workflow-2026-09-17.md](docs/complete/reference-led-workflow-2026-09-17.md) for the endorsed implementation workflow.
 
 The former Duskwell application is preserved in [archived/duskwell](archived/duskwell). It is not part of the active build or runtime.
