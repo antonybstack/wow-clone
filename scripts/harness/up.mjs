@@ -2,7 +2,7 @@
 // Bring up one parallel-worktree harness slot: its own Vite dev server, its own Chrome
 // profile and CDP port, pointed at each other, waited on until ASHEN.ready is true.
 //
-// Usage: node scripts/harness/up.mjs --slot 1 [--headless] [--route ashen-reach.html?play&clean]
+// Usage: node scripts/harness/up.mjs --slot 1 [--headless] [--uncapped] [--route ashen-reach.html?play&clean]
 //
 // Prints the environment variables to export so scripts/lib/cdp.mjs and the ASHEN_URL
 // convention already used by scripts/ashen-reach/* target this slot instead of the shared
@@ -24,12 +24,13 @@ function arg(name, fallback) {
 
 const slotArg = arg('slot');
 if (!slotArg) {
-  console.error('Usage: node scripts/harness/up.mjs --slot <N> [--headless] [--route <path>]');
+  console.error('Usage: node scripts/harness/up.mjs --slot <N> [--headless] [--uncapped] [--route <path>]');
   process.exit(1);
 }
 
 const { slot, vitePort, cdpPort, userDataDir, stateFile, viteLog } = resolveSlot(slotArg);
 const headless = process.argv.includes('--headless');
+const uncapped = process.argv.includes('--uncapped');
 const route = arg('route', 'ashen-reach.html?play&clean');
 
 function isAlive(pid) {
@@ -37,11 +38,12 @@ function isAlive(pid) {
   try { process.kill(pid, 0); return true; } catch { return false; }
 }
 
-function printEnv() {
+function printEnv(flags = {}) {
   console.log('');
   console.log(`export ASHEN_VITE_PORT=${vitePort}`);
   console.log(`export ASHEN_CDP_PORT=${cdpPort}`);
   console.log(`export ASHEN_URL="http://127.0.0.1:${vitePort}/${route}"`);
+  if (flags.uncapped) console.log('export ASHEN_UNCAPPED=1');
   console.log('');
 }
 
@@ -66,7 +68,7 @@ if (fs.existsSync(stateFile)) {
   const prev = JSON.parse(fs.readFileSync(stateFile, 'utf8'));
   if (isAlive(prev.vitePid) && isAlive(prev.chromePid)) {
     console.log(`Slot ${slot} is already up (Vite pid ${prev.vitePid}, Chrome pid ${prev.chromePid}).`);
-    printEnv();
+    printEnv({ uncapped: !!prev.uncapped });
     process.exit(0);
   }
   fs.rmSync(stateFile, { force: true });
@@ -115,6 +117,8 @@ const chrome = spawn(chromePath, [
   '--no-default-browser-check',
   '--window-size=1280,800', // match the 1280x720 viewport the ashen-reach check scripts assume
   ...(headless ? ['--headless=new'] : []),
+  // Opt-in only. Default Chrome argv stays identical so other slots are unaffected.
+  ...(uncapped ? ['--disable-gpu-vsync', '--disable-frame-rate-limit'] : []),
   targetUrl,
 ], { detached: true, stdio: 'ignore' });
 chrome.unref();
@@ -128,6 +132,7 @@ console.log(`Chrome up on CDP ${cdpPort} (pid ${chrome.pid})`);
 // Persist state now so `down.mjs` can clean up even if the readiness wait below fails.
 fs.writeFileSync(stateFile, JSON.stringify({
   slot, vitePort, cdpPort, userDataDir, vitePid: vite.pid, chromePid: chrome.pid,
+  headless, uncapped,
   startedAt: new Date().toISOString(),
 }, null, 2));
 
@@ -144,5 +149,5 @@ console.log('ASHEN.ready is true.');
 // keeps running after this CDP connection (and this node process) goes away.
 browser.close().catch(() => {});
 
-console.log(`Slot ${slot} is up.`);
-printEnv();
+console.log(`Slot ${slot} is up.${uncapped ? ' Chrome launched with --disable-gpu-vsync --disable-frame-rate-limit.' : ''}`);
+printEnv({ uncapped });
