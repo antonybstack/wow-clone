@@ -1,7 +1,7 @@
 /**
  * Extra Mixamo humans sharing public/characters/base.glb.
  * Each instance is its own loadGltf container (Lite does not share animation
- * groups across containers yet — L8 documents that). Idle only. Not hostile.
+ * groups across containers yet — L8 documents that).
  *
  * https://doc.babylonjs.com/lite/architecture/07-animation/
  * https://doc.babylonjs.com/lite/architecture/13-skeleton/
@@ -10,23 +10,56 @@ import {
     addAnimationGroups,
     addToScene,
     createAnimationManager,
+    createPbrMaterial,
     enableAnimationBlending,
     getContainerMeshes,
     loadGltf,
     playAnimation,
     setAnimationWeight,
+    setMeshVisible,
     stopAnimation,
     updateAnimationManager,
 } from "@babylonjs/lite";
 
 import { BODY_URL } from "./body.js";
 
-function findIdle(groups) {
+const BLEND_SPEED = 4;
+
+function findNamed(groups, exact, extra = [], exclude = []) {
     const named = groups ?? [];
-    return named.find((g) => (g.name || "") === "Idle_Loop")
-        || named.find((g) => /idle/i.test(g.name || "") && !/talk|torch|pistol|crouch/i.test(g.name || ""))
-        || named[0]
+    const skip = exclude.map((token) => token.toLowerCase());
+    const allowed = named.filter((group) => {
+        const name = (group.name || "").toLowerCase();
+        return !skip.some((token) => name.includes(token));
+    });
+    const hit = allowed.find((group) => (group.name || "") === exact);
+    if (hit) return hit;
+    for (const token of extra) {
+        const lower = token.toLowerCase();
+        const match = allowed.find((group) => (group.name || "").toLowerCase().includes(lower));
+        if (match) return match;
+    }
+    return null;
+}
+
+function findIdle(groups) {
+    return findNamed(groups, "Idle_Loop", ["idle"], ["talk", "torch", "pistol", "crouch"])
+        || (groups ?? [])[0]
         || null;
+}
+
+function shadeSurface(mesh, tint) {
+    if (!tint) return;
+    const color = Array.isArray(tint)
+        ? [tint[0], tint[1], tint[2], tint[3] ?? 1]
+        : [0.34, 0.36, 0.3, 1];
+    mesh.material = createPbrMaterial({
+        baseColorFactor: color,
+        roughnessFactor: Number.isFinite(tint.roughness) ? tint.roughness : 0.9,
+        metallicFactor: Number.isFinite(tint.metallic) ? tint.metallic : 0,
+        doubleSided: true,
+        directIntensity: 1.3,
+    });
 }
 
 function hideNamed(scene, prefix) {
@@ -55,15 +88,18 @@ function greeterPose(scene) {
 /**
  * @param {import("@babylonjs/lite").EngineContext} engine
  * @param {import("@babylonjs/lite").SceneContext} scene
- * @param {{ x: number, y?: number, z: number, yaw?: number, name?: string }} pose
+ * @param {{ x: number, y?: number, z: number, yaw?: number, name?: string,
+ *           scale?: number, tint?: number[]|{0:number,1:number,2:number,roughness?:number,metallic?:number},
+ *           hideJoints?: boolean }} pose
  */
-export async function attachIdleHuman(engine, scene, pose) {
+export async function attachAnimatedHuman(engine, scene, pose) {
     const container = await loadGltf(engine, BODY_URL);
     addToScene(scene, container);
     const root = container.entities?.[0];
     if (!root) {
         throw new Error("npc glTF has no root");
     }
+    const scale = Number.isFinite(pose.scale) && pose.scale > 0 ? pose.scale : 1;
     root.name = pose.name || "NpcHuman";
     root.position.x = pose.x;
     root.position.y = pose.y ?? 0;
@@ -72,12 +108,18 @@ export async function attachIdleHuman(engine, scene, pose) {
         root.rotation.y = pose.yaw ?? 0;
     }
     if (root.scaling) {
-        root.scaling.x = -1;
-        root.scaling.y = 1;
-        root.scaling.z = 1;
+        root.scaling.x = -scale;
+        root.scaling.y = scale;
+        root.scaling.z = scale;
     }
-    for (const mesh of getContainerMeshes(container)) {
+    const meshes = getContainerMeshes(container);
+    for (const mesh of meshes) {
         mesh.receiveShadows = true;
+        if (pose.hideJoints && /joint/i.test(mesh.name || "")) {
+            setMeshVisible(mesh, false);
+            mesh.visible = false;
+        }
+        if (pose.tint && /surface/i.test(mesh.name || "")) shadeSurface(mesh, pose.tint);
     }
 
     const groups = container.animationGroups ?? [];
@@ -91,12 +133,42 @@ export async function attachIdleHuman(engine, scene, pose) {
         stopAnimation(group);
         setAnimationWeight(group, 0);
     }
-    const idle = findIdle(groups);
-    if (idle) {
-        idle.loopAnimation = true;
-        setAnimationWeight(idle, 1);
-        playAnimation(idle);
-    }
+    const clips = {
+        idle: findIdle(groups),
+        walk: findNamed(groups, "Walk_Loop", ["walk"], ["back", "formal", "crouch"]),
+        jog: findNamed(groups, "Jog_Fwd_Loop", ["jog"]),
+        run: findNamed(groups, "Sprint_Loop", ["sprint"]),
+        punch: findNamed(groups, "Punch_Cross", ["punch"]),
+        death: findNamed(groups, "Death01", ["death"]),
+    };
+    const used = Object.values(clips).filter(Boolean);
+    const unique = [...new Set(used)];
+    let active = null;
+    let target = null;
+    let oneshot = false;
+
+    const play = (name, options = {}) => {
+        const clip = clips[name] || null;
+        if (!clip) return null;
+        const speed = Number.isFinite(options.speed) ? options.speed : 1;
+        const loop = options.loop !== false && !options.oneshot;
+        clip.speedRatio = speed;
+        clip.loopAnimation = loop;
+        if (target === clip && clip.isPlaying) {
+            oneshot = !!options.oneshot;
+            return clip;
+        }
+        target = clip;
+        oneshot = !!options.oneshot;
+        if (!clip.isPlaying) {
+            clip.currentTime = 0;
+            playAnimation(clip);
+        }
+        return clip;
+    };
+
+    const idle = clips.idle;
+    if (idle) play("idle");
     if (groups.length) {
         updateAnimationManager(manager, 0);
     }
@@ -104,14 +176,59 @@ export async function attachIdleHuman(engine, scene, pose) {
     return {
         root,
         container,
+        meshes,
         skeleton: container.skeletons?.[0],
         manager,
         idle,
-        update: (dt) => {
-            if (groups.length) {
-                updateAnimationManager(manager, (dt > 0 ? dt : 1 / 60) * 1000);
+        clips,
+        get active() { return target; },
+        get clipName() { return target?.name || null; },
+        play,
+        setVisible(visible) {
+            setMeshVisible(root, visible);
+            for (const mesh of meshes) {
+                if (pose.hideJoints && /joint/i.test(mesh.name || "")) {
+                    mesh.visible = false;
+                    continue;
+                }
+                mesh.visible = visible;
             }
         },
+        update: (dt) => {
+            if (!groups.length) return;
+            const step = Math.max(0, dt);
+            if (oneshot && target && target.duration > 0
+                && target.currentTime >= target.duration - 0.04) {
+                oneshot = false;
+                if (clips.idle && target !== clips.death) play("idle");
+            }
+            for (const clip of unique) {
+                const want = clip === target ? 1 : 0;
+                const next = clip.weight + (want - clip.weight) * Math.min(1, BLEND_SPEED * (step || 1 / 60));
+                setAnimationWeight(clip, next);
+                if (want > 0 && !clip.isPlaying) playAnimation(clip);
+                if (want === 0 && next < 0.02 && clip.isPlaying && clip !== target) stopAnimation(clip);
+            }
+            active = target;
+            updateAnimationManager(manager, (step > 0 ? step : 1 / 60) * 1000);
+        },
+    };
+}
+
+/**
+ * @param {import("@babylonjs/lite").EngineContext} engine
+ * @param {import("@babylonjs/lite").SceneContext} scene
+ * @param {{ x: number, y?: number, z: number, yaw?: number, name?: string }} pose
+ */
+export async function attachIdleHuman(engine, scene, pose) {
+    const human = await attachAnimatedHuman(engine, scene, pose);
+    return {
+        root: human.root,
+        container: human.container,
+        skeleton: human.skeleton,
+        manager: human.manager,
+        idle: human.idle,
+        update: human.update,
     };
 }
 
