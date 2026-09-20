@@ -4,7 +4,7 @@ Updated 2026-09-20. The playable Orc is the print-sculpt retopo on the 65-joint 
 
 ## Product and visual target
 
-The only playable game route is **Ashen Reach**, `ashen-reach.html`, in the repository root (Vite **5173**). Open `http://127.0.0.1:5173/ashen-reach.html?play&clean`. `character-lab.html` and `body-preview.html` are retained development tools; they are not game routes or the current scene/art target.
+The only playable game route is **Ashen Reach**, `ashen-reach.html`, in the repository root (Vite **5173**). Open `http://127.0.0.1:5173/ashen-reach.html?play&clean`. Public deploy: **https://play.sparkify.dev** (Cloudflare Pages project `fardel`, same host that served Fardel). `character-lab.html` and `body-preview.html` are retained development tools; they are not game routes or the current scene/art target.
 
 The visual direction is the user's concrete **Sword Hero gameplay screenshots**: gritty, low-poly, visibly textured 3D; selective darkness and warm lamps/fire; overgrown ground; strong Gothic silhouettes and atmospheric scale. The implemented scene targets the **night churchyard**. The green fortress/meadow and burning dragon images inform style; those environments are not implemented.
 

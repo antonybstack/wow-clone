@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ashen Reach</title>
-  <meta http-equiv="refresh" content="0;url=/ashen-reach.html">
+  <meta http-equiv="refresh" content="0;url=/ashen-reach.html?play&clean">
 </head>
 <body>
   <p>Entering Ashen Reach…</p>
   <script>
-    const query = window.location.search;
+    const query = window.location.search || '?play&clean';
     window.location.replace(`/ashen-reach.html${query}`);
   </script>
 </body>

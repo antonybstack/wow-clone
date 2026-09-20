@@ -1,9 +1,15 @@
 import { defineConfig } from "vite";
 
+const pages = process.env.ASHEN_PAGES === "1";
+
 export default defineConfig({
+  publicDir: process.env.ASHEN_PUBLIC_DIR || "public",
   build: {
+    sourcemap: !pages,
     rollupOptions: {
-      input: { index: 'index.html', ashenReach: 'ashen-reach.html', characterLab: 'character-lab.html', bodyPreview: 'body-preview.html' },
+      input: pages
+        ? { index: "index.html", ashenReach: "ashen-reach.html" }
+        : { index: "index.html", ashenReach: "ashen-reach.html", characterLab: "character-lab.html", bodyPreview: "body-preview.html" },
     },
   },
   optimizeDeps: {
