@@ -48,9 +48,16 @@ export async function loadTrainingDummy(engine, scene, world) {
 function installLifeHud() {
   const root = document.getElementById("combat");
   if (!root || root.querySelector(".player-plate")) return root;
+  root.style.zIndex = "8";
+  root.style.isolation = "isolate";
+  const canvasEl = document.getElementById("renderCanvas");
+  if (canvasEl) {
+    canvasEl.style.position = "relative";
+    canvasEl.style.zIndex = "0";
+  }
   const style = document.createElement("style");
   style.textContent =
-    ".player-plate{position:absolute;bottom:108px;left:50%;transform:translateX(-50%);width:220px;text-align:center;font-size:13px}" +
+    ".player-plate{position:absolute;bottom:124px;left:50%;transform:translateX(-50%);width:220px;text-align:center;font-size:13px;z-index:9;background:#100e0cee;padding:8px 12px 6px;border:1px solid #3a3428;box-shadow:0 2px 10px #000000a0}" +
     ".death-veil{position:absolute;inset:0;background:#100808d4;display:grid;place-items:center;pointer-events:auto;z-index:5;text-align:center}" +
     ".death-veil[hidden]{display:none!important}" +
     ".death-veil p{margin:0 0 14px;font-size:28px;color:#ead1b5}" +
