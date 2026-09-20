@@ -81,3 +81,18 @@ its own Vite port, its own Chrome profile and CDP port, and one command to start
 ## Status log
 
 - 2026-09-19: plan created. `main` pushed to origin at `6b7f18e`. Build and both suites green.
+- 2026-09-20: **M1 landed** (`74bedf0`, `6bb1844`). Static lamp irradiance is now baked per vertex
+  into a `uv2` attribute by `Batch.commit(engine,scene,material,lights)`, so the fragment shader adds
+  one flat term regardless of lamp count; the three dynamic spell-light slots are unchanged. The two
+  original churchyard lamps are reproduced exactly, and `climb(z)`, the building pads and the road
+  paving all evaluate to zero effect for z<=40, so the churchyard is unchanged by construction.
+  Terrain and road now reach z=140 with nine exported `buildingPads`, a lych-gate at z=44, and a
+  walled gatehouse at z=75. Measured at 960x540 viewport / 720x405 internal, 600 samples:
+  144.0 FPS before and after, mean 6.944 ms vs 6.944 ms, p95 7.70 ms both, 33 draws, 9 batches,
+  126,512 to 127,772 triangles. Build, 75 character tests and 27 equipment tests pass.
+  Captures in `ve-capture/ashen-reach/world-expansion-m1/`.
+  **Open defects found in review, carried into M2:** the player cannot reach most of the town
+  (`boundsRadius:85` in `main.js` clips a circle at radius 85 while the pads run to z=136);
+  ground cover stops around z=84 so the town sits on bare terrain; the 2 m terrain grid reads as
+  coarse facets at town scale; and the emissive lantern boxes read as flat acid-green rectangles
+  when seen close up rather than as lantern glass.
