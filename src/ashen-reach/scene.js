@@ -145,13 +145,17 @@ export async function buildChurchyard(engine,scene){
   // was never the source of the ground-pool defect and cranking it up is what caused M3b's first
   // attempt to wash the whole town out toward white (many overlapping lamps, each reaching too far
   // and summing). Left exactly as it was before M3b:
-  lights.push({position:p,strength,falloff:.42});
+  // M7a: `radius:9` windows this ambient/wall light out to zero by 9m (see Batch.commit) so its
+  // tail cannot reach the next lamp, 8-10m up the corridor, and pile into a pedestal.
+  lights.push({position:p,strength,falloff:.42,radius:9});
   // The ground pool itself (see geometry.js/scene.js's M3b note) is a SEPARATE, dedicated
   // near-ground light so its falloff can be tuned tight (a compact, clearly-bounded pool) without
   // also blowing out walls/roofs that read the same `lights` list. Low to the ground so the
   // baked inverse-square falloff isn't dominated by the ~2.6m lamp-head height the way the first
   // M3b attempt was (that flattened the falloff curve into a town-wide wash instead of a pool).
-  lights.push({position:[x,y+.18,z],strength:1.0,falloff:.62});
+  // M7a: `radius:5` is the tightest cutoff in the scene -- this is the light that is supposed to
+  // read as a discrete pool on the ground, so its window ends well inside the gap to the next lamp.
+  lights.push({position:[x,y+.18,z],strength:1.0,falloff:.62,radius:5});
  }
 
  // Lych-gate: the road leaves the burial ground through a timber roof on two posts.
@@ -168,11 +172,14 @@ export async function buildChurchyard(engine,scene){
   wood.tube([x,ridgeY,z-half],[x,ridgeY,z+half],.045,.045,[.36,.30,.22,0],4);
   stone.box([x,y+.05,z],[gap*2+.7,.10,.7],[.55,.55,.47,0]);
   lanternGlow(warm,[x,ridgeY-.1,z],{r:.11,h:.24});
-  // Ambient light, unchanged from the original (M1) value.
-  lights.push({position:[x,ridgeY-.1,z],strength:.65,falloff:.42});
+  // Ambient light, unchanged from the original (M1) value. M7a: same radius:9 window as streetLamp's
+  // ambient light, for the same reason.
+  lights.push({position:[x,ridgeY-.1,z],strength:.65,falloff:.42,radius:9});
   // Dedicated near-ground pool light (see streetLamp's M3b note above) -- gap is wider here so a
-  // slightly bigger pool reads correctly under the gate roof.
-  lights.push({position:[x,y+.18,z],strength:1.1,falloff:.55});
+  // slightly bigger pool reads correctly under the gate roof. M7a: radius:6.5, a touch wider than
+  // streetLamp's radius:5 pool for the same reason the gate's pool strength/falloff are already
+  // slightly larger than a regular streetLamp's.
+  lights.push({position:[x,y+.18,z],strength:1.1,falloff:.55,radius:6.5});
  }
  lychGate(44);
  for(const [z,side] of [[50,-1],[58,1],[66,-1]])streetLamp(pathX(z)+side*2.8+rn(-.2,.2),z,.68);
@@ -193,8 +200,14 @@ export async function buildChurchyard(engine,scene){
    for(let k=0;k<4;k++){const a=k*Math.PI/2+Math.PI/4;stone.box([tx+Math.sin(a)*towerW*.42,ty+towerH+.35,z+Math.cos(a)*towerW*.42],[.5,.7,.5],[.5,.52,.46,0]);}
    lanternGlow(warm,[tx-side*towerW*.28,ty+towerH*.55,z-towerW*.51],{r:.16,h:.34});
    colliders.push({type:'box',position:{x:tx,y:ty+towerH/2,z},size:{x:towerW,y:towerH,z:towerW},rotation:{y:0}});
-   lights.push({position:[tx,ty+towerH*.55,z],strength:1.0,falloff:.32});
-   lights.push({position:[tx,ty+towerH*.55,z],strength:.6,falloff:.15}); // wide, dim halo so the gatehouse registers as a warm mass from the approach
+   // M7a: radius:14 keeps this a real fixture-scale light, not a town-wide wash, but still noticeably
+   // wider than a streetLamp's radius:9 ambient since these towers are meant to read from further off.
+   lights.push({position:[tx,ty+towerH*.55,z],strength:1.0,falloff:.32,radius:14});
+   // wide, dim halo so the gatehouse registers as a warm mass from the approach -- M7a: radius:30
+   // keeps this the widest light in the scene (per the brief: this one must stay a broad warm mass,
+   // not be windowed down to fixture scale like the lamps), while still finite so its tail does not
+   // reach all the way to z=134 the way the unbounded version did.
+   lights.push({position:[tx,ty+towerH*.55,z],strength:.6,falloff:.15,radius:30});
   }
   // M3c defect 2: the plan's M3 gate ("a reviewed vista of the citadel from the town gate")
   // was still unmet -- at ORDINARY play framing (pitch=.04, dist=3.5, not the contrived pitch=.25

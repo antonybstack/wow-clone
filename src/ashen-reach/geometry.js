@@ -56,9 +56,28 @@ export class Batch{
  tube(a,b,r1,r2,color=[1,1,1,0],sides=5,color2=null){const c2=color2||color;const d=norm(sub(b,a));const u=norm(cross(d,Math.abs(d[1])>.95?[1,0,0]:[0,1,0])),v=cross(d,u);for(let j=0;j<sides;j++){const at=(p,r,k)=>add(p,add(mul(u,Math.cos(k*Math.PI*2/sides)*r),mul(v,Math.sin(k*Math.PI*2/sides)*r)));this.quad(at(a,r1,j),at(a,r1,j+1),at(b,r2,j+1),at(b,r2,j),[[j/sides,1],[(j+1)/sides,1],[(j+1)/sides,0],[j/sides,0]],[color,color,c2,c2]);}}
  /** Bakes static lamp irradiance into a uv2 vertex attribute so the fragment shader adds a flat
   *  O(1) term regardless of how many lamps are registered, instead of looping lamps per-fragment.
-  *  `lights` is [{position:[x,y,z],strength,falloff=.5}]; the sum uses the same inverse-square
-  *  falloff the shader used to compute per-fragment for the two original hardcoded lamps. */
- commit(engine,scene,material,lights=[]){if(!this.idx.length)return null;const vcount=this.p.length/3;const uv2=new Float32Array(vcount*2);if(lights.length)for(let i=0;i<vcount;i++){const x=this.p[i*3],y=this.p[i*3+1],z=this.p[i*3+2];let lamp=0;for(const L of lights){const dx=x-L.position[0],dy=y-L.position[1],dz=z-L.position[2],f=(L.falloff??.5),d=Math.sqrt(dx*dx+dy*dy+dz*dz)*f;lamp+=L.strength/(1+d*d);}uv2[i*2]=lamp;}const m=createMeshFromData(engine,this.name,new Float32Array(this.p),new Float32Array(this.n),new Uint32Array(this.idx),new Float32Array(this.u),uv2,undefined,new Float32Array(this.c));m.material=material;m.pickable=false;addToScene(scene,m);return m;}
+  *  `lights` is [{position:[x,y,z],strength,falloff=.5,radius}]; the sum uses the same inverse-square
+  *  falloff the shader used to compute per-fragment for the two original hardcoded lamps.
+  *
+  *  M7a: `radius`, when given, multiplies that light's term by a windowing function that reaches
+  *  exactly 0 at `radius` world units, instead of the bare inverse-square term trailing off forever.
+  *  Without this, Hollowmere's many lamps (plus the gate-tower halos) each contribute everywhere,
+  *  and their tails sum into a pedestal -- a floor of light between lamps that never goes dark --
+  *  which is why the baked profile along the street measured a fixture-to-fixture peak:trough
+  *  ratio of only 1.0-1.4x (see scripts/ashen-reach/measure-lamp-profile.mjs). The window is
+  *  `(1-(dist/radius)^2)^2` for dist<radius, 0 beyond it: derivative is 0 at both dist=0 and
+  *  dist=radius, so it introduces no visible ring or hard edge when Gouraud-interpolated across
+  *  the subdivided corridor ground (the standard "smooth windowing" punctual-light falloff, e.g.
+  *  Lagarde & de Rousiers, "Moving Frostbite to PBR").
+  *
+  *  Gated by the vertex's own world z, not by light position: for z<=40 (the churchyard boundary
+  *  already used throughout this file and materials.js) the loop below is byte-for-byte the
+  *  original unwindowed formula, regardless of which lights are in range or whether they carry a
+  *  radius, so the churchyard's baked values cannot move. Only z>40 vertices (Hollowmere) ever see
+  *  the window applied. This is required because the bake runs before the shader's own
+  *  `lampGate=smoothstep(40,55,z)` ever executes -- that gate protects the shader-side knee/colour,
+  *  not values baked here. */
+ commit(engine,scene,material,lights=[]){if(!this.idx.length)return null;const vcount=this.p.length/3;const uv2=new Float32Array(vcount*2);if(lights.length)for(let i=0;i<vcount;i++){const x=this.p[i*3],y=this.p[i*3+1],z=this.p[i*3+2];let lamp=0;const windowed=z>40;for(const L of lights){const dx=x-L.position[0],dy=y-L.position[1],dz=z-L.position[2],f=(L.falloff??.5),dist=Math.sqrt(dx*dx+dy*dy+dz*dz),d=dist*f;let term=L.strength/(1+d*d);if(windowed&&L.radius!=null){const t=Math.min(1,dist/L.radius),w=(1-t*t)*(1-t*t);term*=w;}lamp+=term;}uv2[i*2]=lamp;}const m=createMeshFromData(engine,this.name,new Float32Array(this.p),new Float32Array(this.n),new Uint32Array(this.idx),new Float32Array(this.u),uv2,undefined,new Float32Array(this.c));m.material=material;m.pickable=false;addToScene(scene,m);return m;}
 }
 
 /** A warm lantern-glass glow: a tapered hex "flame" core plus a larger, dimmer hex "glass" shell
