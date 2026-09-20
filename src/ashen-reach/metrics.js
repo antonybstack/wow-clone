@@ -89,9 +89,18 @@ export function summarizeDurations(values) {
  * "how many are faster than 0.92x" gate are not reliable under that jitter -
  * they were tuned against headless Chrome's rigid compositor cap, where
  * every sample lands on the interval exactly, and false-negative on real
- * hardware. Keep a loose sanity bound on the full range instead, just to
- * reject a mean that coincidentally lands near an interval while the samples
- * are actually spread across multiple multiples of it.
+ * hardware.
+ *
+ * The sanity bound on the spread must not read the literal min/max either:
+ * `a[0]` and `a[a.length - 1]` are each a single sample, so one GC pause,
+ * one shader compile, or one compositor stall anywhere in a 600-sample
+ * capture is enough to veto the whole run - the same single-sample-decides
+ * failure as the original bug, just moved from the min side to the max
+ * side. Read the 1st/99th percentile instead of the true min/max: that
+ * lets roughly 1% of samples (5-6 out of 600) sit outside the bound on
+ * either side - one bad frame, or a handful - without flipping the verdict,
+ * while a run that is genuinely not capped (spread across multiples of the
+ * interval, not just its tails) still fails the check.
  */
 export function detectVsyncCap(values) {
   if (!values.length) {
@@ -102,11 +111,13 @@ export function detectVsyncCap(values) {
   const median = percentile(a, 0.5);
   const min = a[0];
   const worst = a[a.length - 1];
+  const lowP = percentile(a, 0.01);
+  const highP = percentile(a, 0.99);
   for (const hz of KNOWN_CAP_HZ) {
     const capMs = 1000 / hz;
     const meanNear = Math.abs(mean - capMs) / capMs <= 0.02;
     const medianNear = Math.abs(median - capMs) / capMs <= 0.03;
-    const spreadSane = min >= capMs * 0.6 && worst <= capMs * 1.5;
+    const spreadSane = lowP >= capMs * 0.6 && highP <= capMs * 1.5;
     if (meanNear && medianNear && spreadSane) {
       return {
         vsyncCapped: true,
@@ -114,7 +125,8 @@ export function detectVsyncCap(values) {
         capMs,
         capReason:
           `mean ${mean.toFixed(3)} ms and median ${median.toFixed(3)} ms sit on ${hz} Hz ` +
-          `(${capMs.toFixed(3)} ms); range ${min.toFixed(3)}-${worst.toFixed(3)} ms`,
+          `(${capMs.toFixed(3)} ms); 1st-99th percentile ${lowP.toFixed(3)}-${highP.toFixed(3)} ms ` +
+          `(full range ${min.toFixed(3)}-${worst.toFixed(3)} ms)`,
       };
     }
   }
