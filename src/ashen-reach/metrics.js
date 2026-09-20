@@ -80,6 +80,27 @@ export function summarizeDurations(values) {
 /**
  * A result sitting on a vsync (or compositor) ceiling must say so.
  * Known display intervals: 60 / 75 / 90 / 120 / 144 / 165 / 240 Hz.
+ *
+ * The mean and median are the strong signal: over hundreds of samples a real
+ * cap's jitter averages out, so the mean sits within a fraction of a percent
+ * of the true interval even when individual frames land far off it (a real
+ * 144 Hz panel: mean 6.9438 ms against a 6.9444 ms interval, 0.009% off,
+ * while individual samples range 5.10-8.80 ms). `min` and a per-sample
+ * "how many are faster than 0.92x" gate are not reliable under that jitter -
+ * they were tuned against headless Chrome's rigid compositor cap, where
+ * every sample lands on the interval exactly, and false-negative on real
+ * hardware.
+ *
+ * The sanity bound on the spread must not read the literal min/max either:
+ * `a[0]` and `a[a.length - 1]` are each a single sample, so one GC pause,
+ * one shader compile, or one compositor stall anywhere in a 600-sample
+ * capture is enough to veto the whole run - the same single-sample-decides
+ * failure as the original bug, just moved from the min side to the max
+ * side. Read the 1st/99th percentile instead of the true min/max: that
+ * lets roughly 1% of samples (5-6 out of 600) sit outside the bound on
+ * either side - one bad frame, or a handful - without flipping the verdict,
+ * while a run that is genuinely not capped (spread across multiples of the
+ * interval, not just its tails) still fails the check.
  */
 export function detectVsyncCap(values) {
   if (!values.length) {
@@ -89,20 +110,23 @@ export function detectVsyncCap(values) {
   const mean = a.reduce((s, x) => s + x, 0) / a.length;
   const median = percentile(a, 0.5);
   const min = a[0];
+  const worst = a[a.length - 1];
+  const lowP = percentile(a, 0.01);
+  const highP = percentile(a, 0.99);
   for (const hz of KNOWN_CAP_HZ) {
     const capMs = 1000 / hz;
-    const faster = a.filter((ms) => ms < capMs * 0.92).length / a.length;
-    const meanNear = Math.abs(mean - capMs) <= 0.35;
-    const medianNear = Math.abs(median - capMs) <= 0.5;
-    const minNear = min >= capMs * 0.85 && min <= capMs * 1.15;
-    if (faster < 0.05 && (meanNear || medianNear) && minNear) {
+    const meanNear = Math.abs(mean - capMs) / capMs <= 0.02;
+    const medianNear = Math.abs(median - capMs) / capMs <= 0.03;
+    const spreadSane = lowP >= capMs * 0.6 && highP <= capMs * 1.5;
+    if (meanNear && medianNear && spreadSane) {
       return {
         vsyncCapped: true,
         capHz: hz,
         capMs,
         capReason:
-          `mean ${mean.toFixed(3)} ms sits on ${hz} Hz (${capMs.toFixed(3)} ms); ` +
-          `${((1 - faster) * 100).toFixed(1)}% of samples at or slower than 0.92× the interval`,
+          `mean ${mean.toFixed(3)} ms and median ${median.toFixed(3)} ms sit on ${hz} Hz ` +
+          `(${capMs.toFixed(3)} ms); 1st-99th percentile ${lowP.toFixed(3)}-${highP.toFixed(3)} ms ` +
+          `(full range ${min.toFixed(3)}-${worst.toFixed(3)} ms)`,
       };
     }
   }

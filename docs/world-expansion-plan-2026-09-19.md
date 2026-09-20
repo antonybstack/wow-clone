@@ -400,3 +400,185 @@ its own Vite port, its own Chrome profile and CDP port, and one command to start
   rigid headless 60 Hz, uncapped ~750 FPS) and the `check-progression` race, with unit tests that
   must fail before the fix and pass after. Briefed with a 20-consecutive-run tally as the evidence
   bar, because a single green run is not evidence against a race.
+
+## Beyond M1–M6: quality milestones opened 2026-09-20
+
+With M1–M5 merged and M6 deliberately not activated, the plan's original scope is met. The two
+largest remaining gaps are both things earlier milestones disclosed honestly and could not fix
+within their own scope, so each now gets a milestone of its own.
+
+- **M7a — discrete lamp pools in Hollowmere (in flight, branch `m7a`, slot 2).** The oldest carried
+  defect in the project: four passes (M2b, M3, M3b, M3c) attacked it and it still stands. The two
+  dead ends are now documented and fenced off in the brief — ground decals cannot work because the
+  world material has no alpha blending, and tessellation is already sufficient at `CORRIDOR_SUB=4`
+  (0.5 m sub-quads).
+  **My diagnosis, handed over as a hypothesis to falsify rather than an instruction:** the baked
+  `lamp` term in `Batch.commit` is an unbounded sum of inverse-square contributions that never
+  reach zero, so with many street lamps plus gate-tower halos every lamp's tail contributes
+  everywhere and the tails sum into a **pedestal** between lamps. `materials.js` then squashes the
+  peaks with its knee (max 2.4). Peaks come down, troughs stay up, and contrast dies from both
+  ends. The likely fix is to window each light to a finite radius so tails cannot accumulate —
+  free at runtime, because the bake is CPU-side and happens once. The agent must measure the
+  peak:trough ratio along the street first and tell me if I am wrong.
+  **Watch at review:** the bake happens before the shader runs, so `materials.js`'s
+  `smoothstep(40,55,z)` gate does **not** protect the churchyard from a change made in
+  `geometry.js`. A pixel comparison south of z=40 is required, not an eyeball.
+
+- **M7b — give the grave shades a silhouette (in flight, branch `m7b`, slot 3).** M4c's own honest
+  leftover: the shades read as translucent mannequins with ball-joint shoulders and no face, hood
+  or cloth. This needs geometry, not another material pass.
+  **Approach:** build the hood and cloak **procedurally in JavaScript** and hang them off the
+  existing socket system, which already defines `head` → `mixamorig:Head` and `back` →
+  `mixamorig:Spine2` in `"pose"` mode, described in `sockets.js` as the "helm / back cape / tunic"
+  sockets. Loose cloth rigidly parented to two or three joints reads convincingly in motion without
+  any skinning. No new asset files, no Blender, and the Orc print-sculpt pipeline stays untouched.
+  **Biggest technical risk, called out in the brief:** enemies load through `attachAnimatedHuman`,
+  a different path from the player, so whether `createSockets` binds cleanly to the enemy skeleton
+  is unproven. The agent is told to report a failure to bind rather than force it.
+  **Watch at review:** the greeter NPC shares `attachAnimatedHuman`, so the work must be gated on
+  an explicit opt-in rather than on a guess about the caller; a capture proving the greeter is
+  unchanged is required evidence.
+
+- **M6b — instrument correctness (in flight, branch `m6b`, slot 1).** Described in the M4c/M6a
+  entry above. Also fixes the `check-progression` race.
+
+**Three agents are running in parallel on slots 1, 2 and 3.** Slot 0 (ports 5173/9337) stays mine
+for real-hardware measurement. Their allowed paths are disjoint by construction: M6b owns
+`metrics.js` and the progression check, M7a owns the world shader and geometry, M7b owns the enemy
+and NPC appearance path.
+
+---
+
+## M6b merged, 2026-09-20 — the instrument is now honest, and one of my earlier entries was wrong
+
+Merged as `b755b61`. Three files: `metrics.js`, `check-progression.mjs`, `test-metrics.mjs`.
+
+### Defect 1 — the cap detector
+
+`detectVsyncCap()` reported `vsyncCapped: false` on a real 144 Hz display whose mean was 6.9438 ms
+against a 6.9444 ms interval, 0.009% off. The old gate keyed on `min` and a per-sample "how many
+are faster than 0.92×" count, both tuned against headless Chrome's *rigid* cap where every sample
+lands on the interval exactly. Under a real display's rAF jitter they false-negative. Replaced
+with relative tolerances on mean (2%) and median (3%).
+
+**The first pass reintroduced the same defect on the other tail.** Its new sanity bound read the
+literal maximum, so a single frame above `capMs * 1.5` vetoed the whole run. I probed it directly
+rather than trusting the 7/7 test count:
+
+```
+hitch 10.4ms -> capped=true        capMs*1.5 = 10.417
+hitch 10.5ms -> capped=false
+hitch 22.0ms -> capped=false       "mean 6.979 ms is not locked to a known display interval"
+```
+
+One frame in 600 — one GC pause, one shader compile — and the instrument asserted the opposite of
+the truth, in the direction that gets mistaken for headroom. The tests passed because the recorded
+144 Hz fixture happened not to hitch (`worst` 8.80), so every fixture was clean-case. That is the
+*same* failure as the original bug: an instrument validated only on the easy case.
+
+Sent back. The bound now reads the 1st/99th percentile. I re-probed independently of the agent's
+fixtures: single hitches of 10.5, 22 and 60 ms all hold, as do three at 16 ms.
+
+**Live on the merged tree, where it previously said false:**
+
+```
+vsyncCapped  true    capHz 144
+capReason    mean 6.942 ms and median 6.900 ms sit on 144 Hz (6.944 ms);
+             1st-99th percentile 5.500-8.600 ms (full range 5.300-8.700 ms)
+```
+
+**Two boundaries recorded rather than fixed.** Six or more stalls in 600 samples — the 1% trim
+point — still flips a capped run to "not capped". Loosening the trim would give up the guard's
+real job: a uniform 4–10 ms workload has a mean 0.8% off the 144 Hz interval and is rejected *only*
+by the spread check. And a uniform 5–9 ms workload is still reported as 144 Hz capped. That false
+positive errs safe — it prompts a re-measure rather than a phantom headroom claim — but it is a
+real limit of inferring a cap from timing statistics alone, and nobody should read `vsyncCapped`
+as proof.
+
+### Defect 2 — the progression race, and a correction to this log
+
+`check-progression.mjs` forced **every** enemy to `idle` in `plantOn()`, including already-killed
+ones, so a second 50 XP award could land before the `level === 1` assertion. Fixed check-side
+after confirming no gameplay path can set `idle` on a 0-hp enemy. That unmasked two further races,
+both fixed with `waitForFunction` on real state transitions rather than sleeps or loosened
+assertions: `setWorldPos` does not clear `grounded` synchronously, and the level-up cast was
+landing inside Fire Blast's 1 s cooldown.
+
+I verified this by measurement rather than accepting the agent's 20-run tally — same machine, same
+session, same harness:
+
+```
+pre-fix control   4 of 6 runs truncated at 10 PASS, exit=1
+post-fix          6 of 6 runs 16 PASS, exit=0
+```
+
+**This closes a correction I made earlier in this document.** My original M3c note blamed the flake
+on my own harness calling the check twice against a shared tab. That explanation was wrong — the
+check calls `page.goto()` and cannot inherit state — and I corrected it once already. The control
+above now settles it with numbers instead of reasoning.
+
+### Verification on the merged tree
+
+`check-progression` 16/16, `check-enemy-loop` 13/13, `check-player-death` 8/8, `check-mana` 11/11,
+`test:character` 75/75, `test:equipment` 27/27, metrics tests 11/11 (was 4). Build clean.
+
+### What this means for every performance number in this document
+
+Every "no regression" result recorded before today was taken with a cap detector that could not
+detect the cap. `144.0 FPS / 6.944 ms` still means **"did not fall off the ceiling"**, not
+headroom. `sceneTriangles` (335,618 on the merged tree with enemies live) is the count that
+includes skinned meshes; the historical `triangles`/`worldTriangles` (191,846) excludes them and
+should not be quoted as a scene total.
+
+## M7a merged, 2026-09-20 — lamp pooling, and the two report claims I had to send back
+
+Merged as a no-ff merge of `m7a` (4 commits, tip `c62f4bd`). `Batch.commit` now multiplies
+each light's contribution by `(1-(dist/radius)^2)^2` for vertices past `z>40`, so a lamp
+stops contributing at its own radius instead of adding a little brightness to the whole
+corridor. The window is C¹-continuous at both ends, and it is gated on **vertex** world-z,
+not light position — the bake runs at build time, before any shader, so a runtime gate would
+not have protected the churchyard.
+
+**Verified by re-running the agent's own instrument, not by reading its table.** Every number
+below is from my own run of `measure-lamp-profile.mjs` on `m7a`:
+
+- Fixture-to-fixture contrast improves in ten of eleven corridor segments. The one that does
+  not is `z=66->75` (0.98x -> 0.85x), which was already inverted before the change.
+- The two segments the first version of the sweep never measured behave like the rest once
+  sampled: `z=124->134` 1.31x -> 3.09x, `z=134->142.5` 2.00x -> 6.91x. The original loop
+  stopped at z=120 while `inLampCorridor` runs to z=143, so the lamps at z=124 and z=134 were
+  unmeasured and the last table row was degenerate. That was round-one send-back.
+- **This is a level change, not only a contrast change.** Global peak falls 1.596 -> 1.297
+  (-19%) and the trough falls further. The ratio improves because the floor drops faster than
+  the peak. Left as-is deliberately; no radius or intensity retuning this pass.
+
+**Two "unchanged" claims in the first report were both wrong, and both understated the change.**
+Round-two send-back asked for measured diffs instead of impressions:
+
+| capture | changed % | mean | max |
+|---|---|---|---|
+| wide-town | 72.04 | 8.34 | 45 |
+| street-lamp-z94 | 83.50 | 18.32 | 166 |
+| street-level-wide | 77.29 | 18.52 | 201 |
+| well-square | 44.02 | 6.64 | 162 |
+| churchyard-spawn | 8.03 | 1.19 | 99 |
+
+`street-lamp-z94` was reported "unchanged — that was never broken"; it is the **most** changed
+capture of the five. `well-square` was reported "lit entirely by buildings.js"; 44% of its
+pixels moved. `churchyard-spawn`'s 8.03% sits against a same-code control of 6.08%, so the
+`z>40` gate does hold the churchyard invariant.
+
+**The well-square premise was also wrong, and the corrected breakdown scopes the follow-up.**
+At the well's own centre (x=0, z=136) buildings.js is 85.1% of the total before and 95.7%
+after — buildings.js-dominant, as guessed. But at the position actually screenshotted
+(x=0, z=131, five metres south) the windowed corridor lights are 40.4% before and 9.4% after:
+a real share, not zero. And the contributor is not the town-gate halo (radius 30 at z=75,
+~57 m away, ≈0 at both ends) — it is the **z=134 street lamp**, four metres from the camera
+stand. A follow-up that wants to fix the well square has to touch `buildings.js` lights, which
+were out of scope here and carry no radius at all.
+
+Merged-tree verification: build clean; check-progression 16/16, check-enemy-loop 13/13,
+check-player-death 8/8, check-mana 11/11; character 75/75, equipment 27/27, metrics 11/11.
+Live on real hardware: 42 draw calls, 191,846 world triangles, 335,618 scene triangles —
+all three identical to pre-merge, as expected for a bake-time change. `vsyncCapped: true`
+at 144 Hz, so the frame rate proves only that nothing regressed below the cap.
