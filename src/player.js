@@ -4,10 +4,11 @@
  */
 import HavokPhysics from "@babylonjs/havok";
 import {
-    CharacterSupportedState, PhysicsShapeType, addToScene, createCapsule,
+    CharacterSupportedState, PhysicsMotionType, PhysicsShapeType, addToScene, createCapsule,
     createHavokWorld, createPbrMaterial, createPhysicsAggregate,
-    createPhysicsCharacterController, createPhysicsShape, createSphere,
+    createPhysicsBody, createPhysicsCharacterController, createPhysicsShape, createSphere,
     createTransformNode, onPhysicsAfterStep, setParent, physicsRaycast,
+    setPhysicsBodyShape, setPhysicsBodyTransform,
 } from "@babylonjs/lite";
 import { input, pollInput, endFrame } from "./input.js";
 
@@ -201,7 +202,9 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
     let jumpBuffer = 0;
     let coyote = 0;
     let previousJump = false;
-    let counts = { meshCount: 0, boxCount: 0, skipped: 0 };
+    let counts = { meshCount: 0, boxCount: 0, skipped: 0, animatedCount: 0 };
+    const animatedColliders = new Map();
+    const identityQuat = { x: 0, y: 0, z: 0, w: 1 };
     body.position.set(spawn.x, spawn.y, spawn.z);
     body.receiveShadows = true;
     rig.setGroundHeight?.(groundHeight);
@@ -294,6 +297,30 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
                 state.grounded = true;
             }
         }
+        // Havok's controller is kinematic and does not generate contacts against other
+        // kinematic/static bodies added after setup. Resolve living enemy capsules in XZ
+        // here so movement, jump and the bounds clamp below stay on the same path.
+        for (const handle of animatedColliders.values()) {
+            if (!handle.enabled) continue;
+            const other = handle.pose;
+            const min = spec.radius * heightScale + handle.radius + 0.12;
+            const dx = body.position.x - other.x;
+            const dz = body.position.z - other.z;
+            const dist = Math.hypot(dx, dz);
+            const oldDz = oldZ - other.z;
+            const crossed = dist >= min && (oldDz * dz) < 0 && Math.abs(dx) < min;
+            if (dist >= min && !crossed) continue;
+            if (crossed) {
+                body.position.z = other.z + (oldDz < 0 ? -min : min);
+            } else if (dist < 1e-5) {
+                body.position.z = other.z - min;
+            } else {
+                const s = min / dist;
+                body.position.x = other.x + dx * s;
+                body.position.z = other.z + dz * s;
+            }
+            controller?.setPosition({ x: body.position.x, y: body.position.y, z: body.position.z });
+        }
         if (boundsRect) {
             const cx = Math.min(Math.max(body.position.x, boundsRect.minX), boundsRect.maxX);
             const cz = Math.min(Math.max(body.position.z, boundsRect.minZ), boundsRect.maxZ);
@@ -336,7 +363,10 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
         const descriptors = options.colliders || (scene.meshes || [])
             .filter((mesh) => mesh.metadata?.collider)
             .map((mesh) => ({ mesh, type: mesh.metadata.collider }));
-        counts = addStaticColliders(world, descriptors);
+        const staticCounts = addStaticColliders(world, descriptors);
+        counts.meshCount = staticCounts.meshCount;
+        counts.boxCount = staticCounts.boxCount;
+        counts.skipped = staticCounts.skipped;
         // A missing collision asset is explicit in diagnostics; fallback still follows terrain.
         if (!counts.meshCount && !counts.boxCount) {
             world._stopStep?.();
@@ -390,10 +420,60 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
             return motion;
         },
         getDebugState: () => ({ ...state, position: { x: body.position.x, y: body.position.y, z: body.position.z },
-            usingPhysics, colliders: { ...counts }, capsuleHeight: capsuleHeightOf() }),
+            usingPhysics, colliders: { ...counts }, capsuleHeight: capsuleHeightOf(),
+            animated: [...animatedColliders.values()].map((h) => ({
+                id: h.id, enabled: h.enabled, radius: h.radius, pose: { ...h.pose },
+            })),
+        }),
         groundHeight,
         setWorldPos: teleport,
         setOnPose(cb) { onPose = cb; },
         kinematicStep(dt) { if (!usingPhysics) step(dt); },
+        addAnimatedCollider({ id, x, y, z, height, radius }) {
+            if (!physicsWorld || !id) return null;
+            const specH = Number(height);
+            const specR = Number(radius);
+            if (!Number.isFinite(specH) || specH < 2 * specR || !Number.isFinite(specR) || specR <= 0) {
+                throw new Error(`Invalid animated collider ${id}: height=${height} radius=${radius}`);
+            }
+            const node = createTransformNode(`Collision_${id}`, x, y, z);
+            node.metadata = { colliderId: id };
+            addToScene(scene, node);
+            const shape = createPhysicsShape(physicsWorld, {
+                type: PhysicsShapeType.CAPSULE,
+                parameters: {
+                    pointA: { x: 0, y: specH * 0.5 - specR, z: 0 },
+                    pointB: { x: 0, y: -specH * 0.5 + specR, z: 0 },
+                    radius: specR,
+                },
+            });
+            // STATIC so the character controller (itself ANIMATED/kinematic) collides;
+            // Havok skips kinematic-vs-kinematic contacts. Pose is teleported each tick.
+            const body = createPhysicsBody(physicsWorld, node, PhysicsMotionType.STATIC);
+            setPhysicsBodyShape(physicsWorld, body, shape);
+            const handle = {
+                id, node, body, shape, height: specH, radius: specR, enabled: true,
+                pose: { x, y, z },
+            };
+            animatedColliders.set(id, handle);
+            counts.animatedCount++;
+            return handle;
+        },
+        moveAnimatedCollider(id, x, y, z) {
+            const handle = animatedColliders.get(id);
+            if (!handle || !physicsWorld) return;
+            handle.pose = { x, y, z };
+            if (!handle.enabled) return;
+            setPhysicsBodyTransform(physicsWorld, handle.body, { x, y, z }, identityQuat);
+        },
+        setAnimatedColliderEnabled(id, enabled) {
+            const handle = animatedColliders.get(id);
+            if (!handle || !physicsWorld) return;
+            handle.enabled = !!enabled;
+            const p = handle.pose;
+            setPhysicsBodyTransform(physicsWorld, handle.body, {
+                x: p.x, y: enabled ? p.y : -50, z: p.z,
+            }, identityQuat);
+        },
     };
 }

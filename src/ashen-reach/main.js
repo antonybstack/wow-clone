@@ -5,7 +5,7 @@ import {createEngine,createSceneContext,createArcRotateCamera,createFreeCamera,c
 import {createEquipment} from './equipment.js';
 import {createArmory} from './armory.js';
 import {loadTrainingDummy,createCombat} from './combat.js';
-import {loadEnemies} from './enemies.js';
+import {bindEnemyColliders,loadEnemies} from './enemies.js';
 import {buildChurchyard} from './scene.js';
 import {height} from './geometry.js';
 import {FOG} from './materials.js';
@@ -46,6 +46,7 @@ async function main(){
  const player=await setupPlayer(engine,scene,rig,{spawn:plantSpawnOnTerrain(world.spawn,capsule,height),colliders:world.colliders,groundHeight:height,boundsRect:{minX:-88,maxX:88,minZ:-93,maxZ:143},capsule});
  enableBoneControl();const body=await attachBody(engine,scene,player,player.capsuleHeight,playable);
  const enemies=new URLSearchParams(location.search).has('noEnemies')?[]:await loadEnemies(engine,scene,world);
+ bindEnemyColliders(enemies,player,world);
  const combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig,enemies);
  body.bindSocketHost(combat.fx.sockets);
  const EMPTY_LOADOUT={helmet:null,torso:null,legs:null,boots:null,gloves:null,mainHand:null,offHand:null};

@@ -132,12 +132,22 @@ function lineOfSight(enemy, player, raycast) {
 function show(enemy, visible) {
   enemy.actor?.setVisible(visible);
   if (visible) enemy.root.scaling.set(-enemy.scale, enemy.scale, enemy.scale);
+  enemy.setColliderEnabled?.(visible);
 }
 
 function syncRoot(enemy) {
   enemy.position.y = height(enemy.position.x, enemy.position.z);
   enemy.root.position.set(enemy.position.x, enemy.position.y, enemy.position.z);
   if (enemy.root.rotation) enemy.root.rotation.y = enemy.yaw;
+  const y = enemy.position.y + (enemy.capsuleHeight || 1.68) * 0.5;
+  const live = enemy.state !== "dead" && !enemy.hidden;
+  if (enemy.colliderDesc) {
+    enemy.colliderDesc.position.x = enemy.position.x;
+    enemy.colliderDesc.position.y = y;
+    enemy.colliderDesc.position.z = enemy.position.z;
+    enemy.colliderDesc.enabled = live;
+  }
+  if (live) enemy.moveCollider?.(enemy.position.x, y, enemy.position.z);
 }
 
 function enter(enemy, state) {
@@ -149,6 +159,7 @@ function enter(enemy, state) {
     enemy.deadAge = 0;
     enemy.hidden = false;
     enemy.actor?.play("death", { oneshot: true, loop: false, speed: 1 });
+    enemy.setColliderEnabled?.(false);
   }
 }
 
@@ -356,6 +367,40 @@ async function makeEnemy(engine, scene, world, spec, index) {
 
 export async function loadEnemies(engine, scene, world) {
   return Promise.all(ANCHORS.map((spec, i) => makeEnemy(engine, scene, world, spec, i)));
+}
+
+/** Havok capsules registered after the player world exists, so they can move with the shades. */
+export function bindEnemyColliders(enemies, player, world) {
+  for (const enemy of enemies) {
+    const scale = enemy.scale || 1;
+    const capsuleHeight = 1.68 * scale;
+    const capsuleRadius = 0.42 * scale;
+    enemy.capsuleHeight = capsuleHeight;
+    const y = enemy.position.y + capsuleHeight * 0.5;
+    player.addAnimatedCollider?.({
+      id: enemy.id,
+      x: enemy.position.x,
+      y,
+      z: enemy.position.z,
+      height: capsuleHeight,
+      radius: capsuleRadius,
+    });
+    const desc = {
+      id: enemy.id,
+      type: "box",
+      position: { x: enemy.position.x, y, z: enemy.position.z },
+      size: { x: capsuleRadius * 2, y: capsuleHeight, z: capsuleRadius * 2 },
+      enabled: true,
+    };
+    world.colliders.push(desc);
+    enemy.colliderDesc = desc;
+    enemy.moveCollider = (x, cy, z) => player.moveAnimatedCollider?.(enemy.id, x, cy, z);
+    enemy.setColliderEnabled = (on) => {
+      desc.enabled = !!on;
+      player.setAnimatedColliderEnabled?.(enemy.id, on);
+    };
+    enemy.moveCollider(enemy.position.x, y, enemy.position.z);
+  }
 }
 
 export function updateEnemies(enemies, dt, ctx) {
