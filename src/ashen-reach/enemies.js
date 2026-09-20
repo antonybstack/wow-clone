@@ -1,9 +1,12 @@
 /**
- * Roaming churchyard shades. Same target shape as the training dummy so
+ * Roaming hostiles. Same target shape as the training dummy so
  * existing spells, targeting and the combat HUD keep working.
  *
  * Visuals are Mixamo humans from public/characters/base.glb (see npc.js):
  * one loadGltf container per enemy, idle / walk / jog / punch / death clips.
+ * Churchyard shades keep ENEMY_TUNING.zMax (the climb). Town hostiles use a
+ * separate street/well box so raising the global zMax cannot walk a grave
+ * shade into the tavern.
  */
 import { attachAnimatedHuman } from "../character/npc.js";
 import { attachShadeSilhouette } from "./shade-garment.js";
@@ -30,6 +33,24 @@ export const ENEMY_TUNING = Object.freeze({
   xMax: 16,
 });
 
+/** Churchyard / climb. Matches ENEMY_TUNING; kept as its own box so town
+ *  hostiles cannot inherit a raised zMax. */
+export const CHURCHYARD_BOUNDS = Object.freeze({
+  xMin: ENEMY_TUNING.xMin,
+  xMax: ENEMY_TUNING.xMax,
+  zMin: ENEMY_TUNING.zMin,
+  zMax: ENEMY_TUNING.zMax,
+});
+
+/** Hollowmere street and well approaches. North of the gate (z=75), not
+ *  inside the building pads at |x|≥5, not past the well square. */
+export const TOWN_BOUNDS = Object.freeze({
+  xMin: -5.5,
+  xMax: 5.5,
+  zMin: 76,
+  zMax: 138,
+});
+
 const NAMES = ["Grave Shade", "Ash Wight", "Lych Stalker", "Barrow Shade"];
 
 /** Shared spectral look. Per-shade tints were the near/far mismatch in M4b.
@@ -45,21 +66,45 @@ const SHADE_TINT = Object.assign([0.30, 0.38, 0.26, 0.28], {
   emissive: [0.06, 0.09, 0.04],
 });
 
+function townTint(color, emissive) {
+  return Object.assign(color.slice(), {
+    roughness: 0.96,
+    metallic: 0,
+    directIntensity: 0.24,
+    environmentIntensity: 0.10,
+    emissive,
+  });
+}
+
+/** Street / well bodies, distinct from the churchyard peat-mist. Cloak
+ *  geometry stays the shared shade silhouette. */
+const TOWN_TINT_RUST = townTint([0.46, 0.26, 0.16, 0.30], [0.10, 0.04, 0.02]);
+const TOWN_TINT_SLATE = townTint([0.22, 0.30, 0.38, 0.30], [0.04, 0.06, 0.10]);
+const TOWN_TINT_BONE = townTint([0.44, 0.40, 0.26, 0.30], [0.09, 0.08, 0.04]);
+
 /** Punch_Cross is 1.0s; 0.58 keeps the swing on screen for the 1.6s cooldown. */
 const PUNCH_SPEED = 0.58;
 
-/** Handful of roamers on the churchyard road; nothing north of the lych-gate. */
+/** Churchyard four first, unchanged. Town three on the street and well
+ *  approaches so a walk from the gate to the well can aggro. */
 const ANCHORS = [
-  { id: "grave-shade-1", name: NAMES[0], z: 16, side: 2.6, scale: 1.04, tint: SHADE_TINT },
-  { id: "grave-shade-2", name: NAMES[1], z: 30, side: -2.8, scale: 0.96, tint: SHADE_TINT },
-  { id: "grave-shade-3", name: NAMES[2], z: 48, side: 2.4, scale: 1.1, tint: SHADE_TINT },
-  { id: "grave-shade-4", name: NAMES[3], z: 62, side: -2.5, scale: 1.0, tint: SHADE_TINT },
+  { id: "grave-shade-1", name: NAMES[0], z: 16, side: 2.6, scale: 1.04, tint: SHADE_TINT, zone: "churchyard" },
+  { id: "grave-shade-2", name: NAMES[1], z: 30, side: -2.8, scale: 0.96, tint: SHADE_TINT, zone: "churchyard" },
+  { id: "grave-shade-3", name: NAMES[2], z: 48, side: 2.4, scale: 1.1, tint: SHADE_TINT, zone: "churchyard" },
+  { id: "grave-shade-4", name: NAMES[3], z: 62, side: -2.5, scale: 1.0, tint: SHADE_TINT, zone: "churchyard" },
+  { id: "town-wraith-1", name: "Street Wraith", z: 86, side: 2.4, scale: 1.03, tint: TOWN_TINT_RUST, zone: "town", bounds: TOWN_BOUNDS },
+  { id: "town-wraith-2", name: "Lane Shade", z: 108, side: -2.6, scale: 0.97, tint: TOWN_TINT_SLATE, zone: "town", bounds: TOWN_BOUNDS },
+  { id: "town-wraith-3", name: "Well Haunt", z: 126, side: 2.2, scale: 1.05, tint: TOWN_TINT_BONE, zone: "town", bounds: TOWN_BOUNDS },
 ];
 
-function clampPos(x, z) {
+function clampPos(x, z, bounds) {
+  const xMin = bounds?.xMin ?? ENEMY_TUNING.xMin;
+  const xMax = bounds?.xMax ?? ENEMY_TUNING.xMax;
+  const zMin = bounds?.zMin ?? ENEMY_TUNING.zMin;
+  const zMax = bounds?.zMax ?? ENEMY_TUNING.zMax;
   return {
-    x: Math.min(ENEMY_TUNING.xMax, Math.max(ENEMY_TUNING.xMin, x)),
-    z: Math.min(ENEMY_TUNING.zMax, Math.max(ENEMY_TUNING.zMin, z)),
+    x: Math.min(xMax, Math.max(xMin, x)),
+    z: Math.min(zMax, Math.max(zMin, z)),
   };
 }
 
@@ -90,19 +135,20 @@ function tryMove(enemy, dx, dz, dt, speed, colliders) {
   const len = Math.hypot(dx, dz) || 1;
   const stepX = (dx / len) * speed * dt;
   const stepZ = (dz / len) * speed * dt;
-  const next = clampPos(enemy.position.x + stepX, enemy.position.z + stepZ);
+  const bounds = enemy.bounds;
+  const next = clampPos(enemy.position.x + stepX, enemy.position.z + stepZ, bounds);
   if (!blocked(next.x, next.z, colliders, enemy.radius, enemy.id)) {
     enemy.position.x = next.x;
     enemy.position.z = next.z;
     return true;
   }
-  const slideX = clampPos(enemy.position.x + stepX, enemy.position.z);
+  const slideX = clampPos(enemy.position.x + stepX, enemy.position.z, bounds);
   if (!blocked(slideX.x, slideX.z, colliders, enemy.radius, enemy.id)) {
     enemy.position.x = slideX.x;
     enemy.position.z = slideX.z;
     return true;
   }
-  const slideZ = clampPos(enemy.position.x, enemy.position.z + stepZ);
+  const slideZ = clampPos(enemy.position.x, enemy.position.z + stepZ, bounds);
   if (!blocked(slideZ.x, slideZ.z, colliders, enemy.radius, enemy.id)) {
     enemy.position.z = slideZ.z;
     return true;
@@ -110,10 +156,10 @@ function tryMove(enemy, dx, dz, dt, speed, colliders) {
   return false;
 }
 
-function plant(x, z, colliders, radius, id) {
+function plant(x, z, colliders, radius, id, bounds) {
   let px = x,
     pz = z;
-  if (!blocked(px, pz, colliders, radius, id)) return clampPos(px, pz);
+  if (!blocked(px, pz, colliders, radius, id)) return clampPos(px, pz, bounds);
   for (const [dx, dz] of [
     [1.6, 0],
     [-1.6, 0],
@@ -122,10 +168,10 @@ function plant(x, z, colliders, radius, id) {
     [2.4, 1.2],
     [-2.4, 1.2],
   ]) {
-    const n = clampPos(x + dx, z + dz);
+    const n = clampPos(x + dx, z + dz, bounds);
     if (!blocked(n.x, n.z, colliders, radius, id)) return n;
   }
-  return clampPos(px, pz);
+  return clampPos(px, pz, bounds);
 }
 
 function xz(a, b) {
@@ -145,7 +191,14 @@ function lineOfSight(enemy, player, raycast) {
   if (!hit) return true;
   if (!hit.hasHit) return true;
   const id = hit.body?.node?.metadata?.colliderId;
-  return id === enemy.id;
+  if (id === enemy.id) return true;
+  // The ray is aimed at the player. The player controller has no colliderId, so
+  // a hit on that far capsule used to count as blocked and a walk down the
+  // street never entered chase. A hit near the destination is the player;
+  // a hit short of that is world geometry.
+  const len = Math.hypot(to.x - from.x, to.y - from.y, to.z - from.z) || 1;
+  const hitDist = Number.isFinite(hit.hitDistance) ? hit.hitDistance : len;
+  return hitDist >= len - 1;
 }
 
 function show(enemy, visible) {
@@ -338,15 +391,16 @@ function tickEnemy(enemy, dt, ctx) {
 }
 
 async function makeEnemy(engine, scene, world, spec, index) {
+  const bounds = spec.bounds || CHURCHYARD_BOUNDS;
   const x = pathX(spec.z) + spec.side;
-  const planted = plant(x, spec.z, world.colliders || [], ENEMY_TUNING.radius, spec.id);
+  const planted = plant(x, spec.z, world.colliders || [], ENEMY_TUNING.radius, spec.id, bounds);
   const spawn = { x: planted.x, z: planted.z };
   const r = ENEMY_TUNING.patrolRadius;
   const waypoints = [
-    clampPos(spawn.x + r, spawn.z),
-    clampPos(spawn.x, spawn.z + r * 0.7),
-    clampPos(spawn.x - r, spawn.z),
-    clampPos(spawn.x, spawn.z - r * 0.7),
+    clampPos(spawn.x + r, spawn.z, bounds),
+    clampPos(spawn.x, spawn.z + r * 0.7, bounds),
+    clampPos(spawn.x - r, spawn.z, bounds),
+    clampPos(spawn.x, spawn.z - r * 0.7, bounds),
   ];
   const position = {
     x: spawn.x,
@@ -373,6 +427,8 @@ async function makeEnemy(engine, scene, world, spec, index) {
   const enemy = {
     id: spec.id,
     name: spec.name,
+    zone: spec.zone || "churchyard",
+    bounds,
     position,
     hostile: true,
     hp: ENEMY_TUNING.hp,
@@ -449,6 +505,7 @@ export function enemySnapshot(enemies) {
   return enemies.map((e) => ({
     id: e.id,
     name: e.name,
+    zone: e.zone || "churchyard",
     state: e.state,
     hp: e.hp,
     hpMax: e.hpMax,
@@ -460,5 +517,8 @@ export function enemySnapshot(enemies) {
     clip: e.actor?.clipName || null,
     position: { x: e.position.x, y: e.position.y, z: e.position.z },
     spawn: { x: e.spawn.x, z: e.spawn.z },
+    bounds: e.bounds
+      ? { xMin: e.bounds.xMin, xMax: e.bounds.xMax, zMin: e.bounds.zMin, zMax: e.bounds.zMax }
+      : null,
   }));
 }
