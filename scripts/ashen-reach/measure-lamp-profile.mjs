@@ -11,35 +11,38 @@
 // Usage: node scripts/ashen-reach/measure-lamp-profile.mjs
 import {height, pathX, rng, buildingPads, bakeLamp} from '../../src/ashen-reach/geometry.js';
 
-// --- Exact transcription of scene.js's current (post-M7a) light registration ---
-function buildLights(){
+// Corridor lights transcribed from scene.js. Strengths are parameterised so this file can
+// print the frozen pre-M7a / M7a columns next to the live M8b list without the before-column
+// drifting whenever a strength is retuned (that was a real M8b trap: applyWindow=false on the
+// *current* list is not the pre-M7a world).
+function buildCorridorLights({head=.82,pool=1.70,lychA=.80,lychP=1.49,gate=1.20,halo=.6}={}){
  const lights=[{position:[-3.4,2.5,12.0],strength:.45,falloff:.5},{position:[3.6,2.7,14.0],strength:.4,falloff:.5}];
  const randomNorth=rng(50021),rn=(a,b)=>a+randomNorth()*(b-a);
- function streetLamp(x,z,strength=.68){
+ function streetLamp(x,z){
   const y=height(x,z);
-  const p=[x,y+2.62,z];
-  lights.push({position:p,strength,falloff:.42,radius:9});
-  lights.push({position:[x,y+.18,z],strength:1.0,falloff:.62,radius:5});
+  lights.push({position:[x,y+2.62,z],strength:head,falloff:.42,radius:9});
+  lights.push({position:[x,y+.18,z],strength:pool,falloff:.62,radius:5});
  }
  function lychGate(z){
   const x=pathX(z),y=height(x,z),postH=2.3,ridgeY=y+postH+.85;
-  lights.push({position:[x,ridgeY-.1,z],strength:.65,falloff:.42,radius:9});
-  lights.push({position:[x,y+.18,z],strength:1.1,falloff:.55,radius:6.5});
+  lights.push({position:[x,ridgeY-.1,z],strength:lychA,falloff:.42,radius:9});
+  lights.push({position:[x,y+.18,z],strength:lychP,falloff:.55,radius:6.5});
  }
  lychGate(44);
- for(const [z,side] of [[50,-1],[58,1],[66,-1]])streetLamp(pathX(z)+side*2.8+rn(-.2,.2),z,.68);
+ for(const [z,side] of [[50,-1],[58,1],[66,-1]])streetLamp(pathX(z)+side*2.8+rn(-.2,.2),z);
  function townGate(z){
   const x=pathX(z),gateHalf=2.6,towerW=3.6,towerH=9;
   for(const side of [-1,1]){
    const tx=x+side*(gateHalf+towerW/2),ty=height(tx,z);
-   lights.push({position:[tx,ty+towerH*.55,z],strength:1.0,falloff:.32,radius:14});
-   lights.push({position:[tx,ty+towerH*.55,z],strength:.6,falloff:.15,radius:30});
+   lights.push({position:[tx,ty+towerH*.55,z],strength:gate,falloff:.32,radius:14});
+   lights.push({position:[tx,ty+towerH*.55,z],strength:halo,falloff:.15,radius:30});
   }
  }
  townGate(75);
- for(const [z,side] of [[84,1],[94,-1],[104,1],[114,-1],[124,1],[134,-1]])streetLamp(pathX(z)+side*3.4+rn(-.2,.2),z,.68);
+ for(const [z,side] of [[84,1],[94,-1],[104,1],[114,-1],[124,1],[134,-1]])streetLamp(pathX(z)+side*3.4+rn(-.2,.2),z);
  return lights;
 }
+const LIGHTS_M7A={head:.68,pool:1.0,lychA:.65,lychP:1.1,gate:1.0,halo:.6};
 
 // Bake formula is imported from geometry.js (the function Batch.commit actually runs). The
 // before-column still forces applyWindow=false so it reports the pre-M7a unwindowed sum.
@@ -52,8 +55,9 @@ function smoothstep(e0,e1,x){const t=Math.min(1,Math.max(0,(x-e0)/(e1-e0)));retu
 function lampKnee(lamp){return lamp>1.4?1.4+(1-Math.exp(-(lamp-1.4))):lamp;}
 function lampEff(lamp,z){const g=smoothstep(40,55,z);return lamp*(1-g)+lampKnee(lamp)*g;}
 
-const lights=buildLights();
-console.log(`registered ${lights.length} lights`);
+const lightsM7a=buildCorridorLights(LIGHTS_M7A);
+const lights=buildCorridorLights();
+console.log(`registered ${lights.length} lights (M7a list ${lightsM7a.length})`);
 
 // Swept to z=142.5 (the last 0.5m-aligned sample inside scene.js's `inLampCorridor` bound
 // `z>=40&&z<143`), not z=120: the original 44-120 sweep stopped short of the last two street
@@ -64,16 +68,22 @@ console.log(`registered ${lights.length} lights`);
 const samples=[];
 for(let z=44;z<=142.5;z+=0.5){
  const x=pathX(z),y=height(x,z);
- samples.push({z,before:lampAtUnwindowed(x,y,z,lights),after:lampAtWindowed(x,y,z,lights)});
+ samples.push({
+  z,
+  before:lampAtUnwindowed(x,y,z,lightsM7a),
+  m7a:lampAtWindowed(x,y,z,lightsM7a),
+  after:lampAtWindowed(x,y,z,lights),
+ });
 }
 
-console.log('z\tbefore\tafter');
-for(const s of samples)console.log(`${s.z.toFixed(1)}\t${s.before.toFixed(4)}\t${s.after.toFixed(4)}`);
+console.log('z\tpre-M7a\tM7a\tM8b');
+for(const s of samples)console.log(`${s.z.toFixed(1)}\t${s.before.toFixed(4)}\t${s.m7a.toFixed(4)}\t${s.after.toFixed(4)}`);
 
 function stats(vals){const peak=Math.max(...vals),trough=Math.min(...vals);return {peak,trough,ratio:peak/trough};}
-const bStats=stats(samples.map(s=>s.before)),aStats=stats(samples.map(s=>s.after));
-console.log(`\nBEFORE (unwindowed, pre-M7a): peak=${bStats.peak.toFixed(4)} trough=${bStats.trough.toFixed(4)} global peak:trough=${bStats.ratio.toFixed(3)}`);
-console.log(`AFTER  (windowed, post-M7a): peak=${aStats.peak.toFixed(4)} trough=${aStats.trough.toFixed(4)} global peak:trough=${aStats.ratio.toFixed(3)}`);
+const bStats=stats(samples.map(s=>s.before)),mStats=stats(samples.map(s=>s.m7a)),aStats=stats(samples.map(s=>s.after));
+console.log(`\nPRE-M7A (unwindowed, original strengths): peak=${bStats.peak.toFixed(4)} trough=${bStats.trough.toFixed(4)} global peak:trough=${bStats.ratio.toFixed(3)}`);
+console.log(`M7A     (windowed, original strengths):  peak=${mStats.peak.toFixed(4)} trough=${mStats.trough.toFixed(4)} global peak:trough=${mStats.ratio.toFixed(3)}`);
+console.log(`M8B     (windowed, re-leveled strengths): peak=${aStats.peak.toFixed(4)} trough=${aStats.trough.toFixed(4)} global peak:trough=${aStats.ratio.toFixed(3)}`);
 
 // M8b: is the 19% peak drop the window, the materials.js knee (max 2.4), or both?
 const peakBefore=samples.reduce((a,b)=>b.before>a.before?b:a);
@@ -83,8 +93,9 @@ const nAfterAbove=samples.filter(s=>s.after>1.4).length;
 const effBefore=samples.map(s=>lampEff(s.before,s.z));
 const effAfter=samples.map(s=>lampEff(s.after,s.z));
 const eB=stats(effBefore),eA=stats(effAfter);
+const peakM7a=samples.reduce((a,b)=>b.m7a>a.m7a?b:a);
 console.log('\n--- M8b knee vs window ---');
-console.log(`baked peak location: before z=${peakBefore.z.toFixed(1)} lamp=${peakBefore.before.toFixed(4)}  after z=${peakAfter.z.toFixed(1)} lamp=${peakAfter.after.toFixed(4)}  drop=${((1-peakAfter.after/peakBefore.before)*100).toFixed(1)}%`);
+console.log(`baked peak: pre-M7a z=${peakBefore.z.toFixed(1)} ${peakBefore.before.toFixed(4)}  M7a z=${peakM7a.z.toFixed(1)} ${peakM7a.m7a.toFixed(4)} (${((1-peakM7a.m7a/peakBefore.before)*100).toFixed(1)}% drop)  M8b z=${peakAfter.z.toFixed(1)} ${peakAfter.after.toFixed(4)}`);
 console.log(`samples with baked lamp>1.4 (knee engages): before=${nBeforeAbove}/${samples.length}  after=${nAfterAbove}/${samples.length}`);
 console.log(`shader lampEff (knee mixed by lampGate): before peak=${eB.peak.toFixed(4)} trough=${eB.trough.toFixed(4)}  after peak=${eA.peak.toFixed(4)} trough=${eA.trough.toFixed(4)}`);
 console.log(`at baked-after peak z=${peakAfter.z.toFixed(1)}: lampGate=${smoothstep(40,55,peakAfter.z).toFixed(3)}  baked ${peakAfter.after.toFixed(4)} -> lampEff ${lampEff(peakAfter.after,peakAfter.z).toFixed(4)} (knee would map ${peakAfter.after.toFixed(4)} -> ${lampKnee(peakAfter.after).toFixed(4)})`);
@@ -101,13 +112,13 @@ console.log(`full-knee region z>=55: baked peak before=${fullBeforeMax.toFixed(4
 // the final street lamp (z=134) out to where the corridor ends, instead of stopping at z=134 the
 // way the pre-extension sweep implicitly did.
 const fixtureZ=[44,50,58,66,75,84,94,104,114,124,134,142.5];
-console.log('\nfixture-to-fixture local peak/trough (before -> after):');
+console.log('\nfixture-to-fixture local peak/trough (pre-M7a -> M7a -> M8b):');
 for(let i=0;i<fixtureZ.length-1;i++){
  const z0=fixtureZ[i],z1=fixtureZ[i+1],mid=(z0+z1)/2;
  const near=(target)=>samples.reduce((a,b)=>Math.abs(b.z-target)<Math.abs(a.z-target)?b:a);
  const pk=near(z0),tr=near(mid);
- const rBefore=pk.before/tr.before,rAfter=pk.after/tr.after;
- console.log(`  z=${z0}->${z1}: peak@${pk.z} trough@${tr.z}  before=${pk.before.toFixed(3)}/${tr.before.toFixed(3)}=${rBefore.toFixed(2)}x   after=${pk.after.toFixed(3)}/${tr.after.toFixed(3)}=${rAfter.toFixed(2)}x`);
+ const rBefore=pk.before/tr.before,rM7a=pk.m7a/tr.m7a,rAfter=pk.after/tr.after;
+ console.log(`  z=${z0}->${z1}: peak@${pk.z} trough@${tr.z}  pre=${pk.before.toFixed(3)}/${tr.before.toFixed(3)}=${rBefore.toFixed(2)}x   m7a=${pk.m7a.toFixed(3)}/${tr.m7a.toFixed(3)}=${rM7a.toFixed(2)}x   m8b=${pk.after.toFixed(3)}/${tr.after.toFixed(3)}=${rAfter.toFixed(2)}x`);
 }
 
 // Per-light contribution breakdown at a representative mid-corridor trough (z=99.5), after windowing.

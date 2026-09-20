@@ -133,7 +133,7 @@ export async function buildChurchyard(engine,scene){
  // z>40, so height()'s climb/pad terms and this content never affect the z<=40 invariant.
  const randomNorth=rng(50021),rn=(a,b)=>a+randomNorth()*(b-a);
 
- function streetLamp(x,z,strength=.68){
+ function streetLamp(x,z,strength=.82){
   const y=height(x,z);
   wood.tube([x,y,z],[x,y+2.9,z],.09,.05,[.62,.56,.48,0],6);
   const p=[x,y+2.62,z];
@@ -141,21 +141,13 @@ export async function buildChurchyard(engine,scene){
   for(let j=0;j<4;j++){const dx=j<2?-.15:.15,dz=j%2?-.15:.15;wood.box([p[0]+dx,p[1],p[2]+dz],[.036,.48,.036],[.32,.32,.3,0]);}
   wood.box([p[0],p[1]-.23,p[2]],[.37,.06,.37],[.32,.32,.3,0]);
   wood.tube([p[0],p[1]+.19,p[2]],[p[0],p[1]+.44,p[2]],.26,0,[.32,.32,.3,0],4);
-  // Ambient/wall light from the lamp head, unchanged from the original (M1) values -- this alone
-  // was never the source of the ground-pool defect and cranking it up is what caused M3b's first
-  // attempt to wash the whole town out toward white (many overlapping lamps, each reaching too far
-  // and summing). Left exactly as it was before M3b:
-  // M7a: `radius:9` windows this ambient/wall light out to zero by 9m (see Batch.commit) so its
-  // tail cannot reach the next lamp, 8-10m up the corridor, and pile into a pedestal.
+  // Ambient/wall light from the lamp head. M7a windowed it at radius 9. M8b raises strength
+  // .68 -> .82 (the window still kills the tail, and the centre-line is well under the 1.4 knee).
   lights.push({position:p,strength,falloff:.42,radius:9});
-  // The ground pool itself (see geometry.js/scene.js's M3b note) is a SEPARATE, dedicated
-  // near-ground light so its falloff can be tuned tight (a compact, clearly-bounded pool) without
-  // also blowing out walls/roofs that read the same `lights` list. Low to the ground so the
-  // baked inverse-square falloff isn't dominated by the ~2.6m lamp-head height the way the first
-  // M3b attempt was (that flattened the falloff curve into a town-wide wash instead of a pool).
-  // M7a: `radius:5` is the tightest cutoff in the scene -- this is the light that is supposed to
-  // read as a discrete pool on the ground, so its window ends well inside the gap to the next lamp.
-  lights.push({position:[x,y+.18,z],strength:1.0,falloff:.62,radius:5});
+  // Near-ground pool. M8b raises 1.0 -> 1.70: this radius-5 light is the one that can put
+  // level back at the fixture without restoring the pedestal, because it is already zero
+  // well before the next lamp. Halo (radius 30) is deliberately left at M7a strength.
+  lights.push({position:[x,y+.18,z],strength:1.70,falloff:.62,radius:5});
  }
 
  // Lych-gate: the road leaves the burial ground through a timber roof on two posts.
@@ -172,17 +164,13 @@ export async function buildChurchyard(engine,scene){
   wood.tube([x,ridgeY,z-half],[x,ridgeY,z+half],.045,.045,[.36,.30,.22,0],4);
   stone.box([x,y+.05,z],[gap*2+.7,.10,.7],[.55,.55,.47,0]);
   lanternGlow(warm,[x,ridgeY-.1,z],{r:.11,h:.24});
-  // Ambient light, unchanged from the original (M1) value. M7a: same radius:9 window as streetLamp's
-  // ambient light, for the same reason.
-  lights.push({position:[x,ridgeY-.1,z],strength:.65,falloff:.42,radius:9});
-  // Dedicated near-ground pool light (see streetLamp's M3b note above) -- gap is wider here so a
-  // slightly bigger pool reads correctly under the gate roof. M7a: radius:6.5, a touch wider than
-  // streetLamp's radius:5 pool for the same reason the gate's pool strength/falloff are already
-  // slightly larger than a regular streetLamp's.
-  lights.push({position:[x,y+.18,z],strength:1.1,falloff:.55,radius:6.5});
+  // M8b: .65 -> .80 so the centre-line peak at z=44 (this fixture) returns above the pre-M7a 1.596.
+  lights.push({position:[x,ridgeY-.1,z],strength:.80,falloff:.42,radius:9});
+  // Dedicated near-ground pool. M8b: 1.1 -> 1.49, same window as M7a (radius 6.5).
+  lights.push({position:[x,y+.18,z],strength:1.49,falloff:.55,radius:6.5});
  }
  lychGate(44);
- for(const [z,side] of [[50,-1],[58,1],[66,-1]])streetLamp(pathX(z)+side*2.8+rn(-.2,.2),z,.68);
+ for(const [z,side] of [[50,-1],[58,1],[66,-1]])streetLamp(pathX(z)+side*2.8+rn(-.2,.2),z,.82);
 
  // Town outer wall and gatehouse: two flanking towers with crenellations, a lintel over the road.
  function townGate(z){
@@ -202,11 +190,12 @@ export async function buildChurchyard(engine,scene){
    colliders.push({type:'box',position:{x:tx,y:ty+towerH/2,z},size:{x:towerW,y:towerH,z:towerW},rotation:{y:0}});
    // M7a: radius:14 keeps this a real fixture-scale light, not a town-wide wash, but still noticeably
    // wider than a streetLamp's radius:9 ambient since these towers are meant to read from further off.
-   lights.push({position:[tx,ty+towerH*.55,z],strength:1.0,falloff:.32,radius:14});
+   lights.push({position:[tx,ty+towerH*.55,z],strength:1.20,falloff:.32,radius:14});
    // wide, dim halo so the gatehouse registers as a warm mass from the approach -- M7a: radius:30
    // keeps this the widest light in the scene (per the brief: this one must stay a broad warm mass,
    // not be windowed down to fixture scale like the lamps), while still finite so its tail does not
-   // reach all the way to z=134 the way the unbounded version did.
+   // reach all the way to z=134 the way the unbounded version did. M8b leaves this strength at .6
+   // on purpose: boosting the halo would lift troughs, which is the pedestal coming back.
    lights.push({position:[tx,ty+towerH*.55,z],strength:.6,falloff:.15,radius:30});
   }
   // M3c defect 2: the plan's M3 gate ("a reviewed vista of the citadel from the town gate")
@@ -224,7 +213,7 @@ export async function buildChurchyard(engine,scene){
   stone.box([x,gy+7.4,z],[gateHalf*2+towerW*.6,.9,wallT*1.1],[.56,.58,.5,0]);
  }
  townGate(75);
- for(const [z,side] of [[84,1],[94,-1],[104,1],[114,-1],[124,1],[134,-1]])streetLamp(pathX(z)+side*3.4+rn(-.2,.2),z,.68);
+ for(const [z,side] of [[84,1],[94,-1],[104,1],[114,-1],[124,1],[134,-1]])streetLamp(pathX(z)+side*3.4+rn(-.2,.2),z,.82);
 
  // --- Hollowmere: a parameterised building() call per pad instead of hand-placed vertices. Pads
  // west of the street (x<0) use yaw=0 so their door faces +x/east toward the road; pads east of it
