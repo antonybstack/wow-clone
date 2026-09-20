@@ -56,7 +56,7 @@ export async function buildChurchyard(engine,scene){
  const CORRIDOR_SUB=4; // 2m / 4 = 0.5m sub-quads
  const inLampCorridor=(x,z)=>z>=40&&z<143&&x>=-16&&x<16;
  for(let z=-95;z<145;z+=2)for(let x=-90;x<90;x+=2){
-  const c=.83+random()*.24; // unconditional: keeps the shared rng stream identical to before
+  const c=.90+random()*.10; // one random() per cell (stream unchanged); tighter range so a zoomed camera is not a chessboard
   if(inLampCorridor(x,z)){
    const step=2/CORRIDOR_SUB;
    for(let sz=0;sz<CORRIDOR_SUB;sz++)for(let sx=0;sx<CORRIDOR_SUB;sx++){
@@ -359,34 +359,45 @@ export async function buildChurchyard(engine,scene){
  }
 
  // Visual-only far terrain. Same earth material, independent rng, no lamp bake, not in the
- // Havok mesh — so extending the horizon does not grow the collider or the per-vertex light
- // bake. 10 m cells abut the playable 2 m grid at x=±90 / z=-95 / z=145 with no overlap.
+ // Havok mesh. A 6 m halo around the playable rectangle, then 16 m cells out to ~500 m so
+ // the mesh end sits behind the mountain rim. Vertex colour is almost uniform — a 10 m
+ // checkerboard was reading as the world cutting off from a zoomed camera.
  const farEarth=new Batch('Far earth');
  const randomFar=rng(81107),rf=()=>randomFar();
- const FAR_STEP=10;
- const emitFar=(x,z,step=FAR_STEP)=>{
+ const emitFar=(x,z,step)=>{
   const x1=x+step,z1=z+step;
   const v=[[x,z],[x1,z],[x1,z1],[x,z1]].map(([a,b])=>[a,height(a,b),b]);
-  const c=.90+rf()*.10;
+  const c=.79+rf()*.04;
   farEarth.quad(...v,v.map(p=>[p[0]/3,p[2]/3]),[c,c,c,0],v.map(p=>terrainNormal(p[0],p[2])));
  };
- for(let z=-250;z<380;z+=FAR_STEP){
-  for(let x=-250;x<-90;x+=FAR_STEP)emitFar(x,z);
-  for(let x=90;x<250;x+=FAR_STEP)emitFar(x,z);
+ const HALO=48,FINE=6,COARSE=16;
+ const inHalo=(x,z,s)=>x<90+HALO&&x+s>-90-HALO&&z<145+HALO&&z+s>-95-HALO;
+ const inPlay=(x,z,s)=>x<90&&x+s>-90&&z<145&&z+s>-95;
+ for(let z=-420;z<540;z+=COARSE)for(let x=-420;x<420;x+=COARSE){
+  if(inPlay(x,z,COARSE)||inHalo(x,z,COARSE))continue;
+  emitFar(x,z,COARSE);
  }
- for(let z=-250;z<-95;z+=FAR_STEP)for(let x=-90;x<90;x+=FAR_STEP)emitFar(x,z);
- // Finer strip on the citadel approach so the first hill is not a 10 m staircase.
- const NEAR=5;
- for(let z=145;z<250;z+=NEAR)for(let x=-90;x<90;x+=NEAR)emitFar(x,z,NEAR);
- for(let z=250;z<380;z+=FAR_STEP)for(let x=-90;x<90;x+=FAR_STEP)emitFar(x,z);
- // Cheap distant treeline (two tubes) so east/west/south are not a bare dirt shelf.
+ for(let z=-95;z<145;z+=FINE){
+  for(let x=-90-HALO;x<-90;x+=FINE)emitFar(x,z,FINE);
+  for(let x=90;x<90+HALO;x+=FINE)emitFar(x,z,FINE);
+ }
+ for(let x=-90-HALO;x<90+HALO;x+=FINE){
+  for(let z=-95-HALO;z<-95;z+=FINE)emitFar(x,z,FINE);
+  for(let z=145;z<145+HALO;z+=FINE)emitFar(x,z,FINE);
+ }
  const farTree=(x,z,H)=>{const g=height(x,z);bark.tube([x,g,z],[x,g+H*.55,z],H*.034,H*.016,[.42,.46,.38,0],4);bark.tube([x,g+H*.45,z],[x,g+H,z],H*.16,0,[.34,.40,.30,0],5);};
- for(let i=0;i<32;i++){
-  const side=i%2?1:-1;
-  farTree(side*(120+rf()*85),-50+rf()*170,10+rf()*10);
+ for(let i=0;i<70;i++){
+  const a=rf()*Math.PI*2,rad=130+rf()*160;
+  farTree(Math.cos(a)*rad,40+Math.sin(a)*rad*1.15,8+rf()*12);
  }
- for(let i=0;i<12;i++)farTree(-70+rf()*140,-130-rf()*60,9+rf()*10);
- for(let i=0;i<8;i++)farTree(-70+rf()*140,205+rf()*70,9+rf()*8);
+ for(let i=0;i<18;i++)farTree(-80+rf()*160,-140-rf()*90,9+rf()*11);
+ // Outer grass so the churchyard does not stop as a cropped circle of dirt tiles.
+ for(let i=0;i<700;i++){
+  const a=rf()*Math.PI*2,rad=40+rf()*55;
+  const x=Math.cos(a)*rad,z=Math.sin(a)*rad*1.15;
+  if(Math.abs(x)<3.2&&z>-8&&z<50)continue;
+  grassBlade(x,z);
+ }
 
  // --- Milestone 3, the horizon: the Citadel of Vaelmark on a distant crag beyond z=140, plus the
  // mountain ridgeline behind it. Backdrop only (no colliders, no pathing), added last and entirely

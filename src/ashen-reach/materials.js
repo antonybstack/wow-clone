@@ -46,7 +46,7 @@ export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false
  let light=vec3<f32>(${light}*directional)+lampColor*lampEff+vec3<f32>(1.0,.28,.045)*(fire+handFire+lava);
  var c=t.rgb*i.color.rgb*vec3<f32>(${tint.join(',')})*(light+${emission});
  ${nightGrade?'let ng=smoothstep(40.0,55.0,i.p.z);c=mix(c,c*vec3<f32>(.80,.72,.84),ng);':''}
- let d=distance(i.p,shaderSystem.cameraPosition);let fog=1.0-exp(-max(d-9.0,0.0)*.010);
+ let d=distance(i.p,shaderSystem.cameraPosition);let fog=1.0-exp(-max(d-9.0,0.0)*.010-max(d-100.0,0.0)*.006);
  c=mix(c,vec3<f32>(${FOG.join(',')}),fog);
  let vignette=1.0-.12*clamp(abs(i.position.x/960.0-.5),0.0,1.0);
  return vec4<f32>(c*vignette,1);

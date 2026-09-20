@@ -107,6 +107,36 @@ function ridgeRing(distant,cx,cz,rx,rz,groundY,seed,segments,hMin,hMax,tint){
  }
 }
 
+/** Draped cliff face along an arc — vertical land, not a floor that ends. */
+function scarp(distant,groundHeight,cx,cz,r,a0,a1,drop){
+ const n=Math.max(8,Math.round(Math.abs(a1-a0)*r/14));
+ const col=[.52,.53,.48,0],colB=[.38,.39,.34,0];
+ for(let i=0;i<n;i++){
+  const t0=a0+(a1-a0)*i/n,t1=a0+(a1-a0)*(i+1)/n;
+  const x0=cx+Math.cos(t0)*r,z0=cz+Math.sin(t0)*r;
+  const x1=cx+Math.cos(t1)*r,z1=cz+Math.sin(t1)*r;
+  const y0=groundHeight(x0,z0),y1=groundHeight(x1,z1);
+  distant.quad([x0,y0+1.5,z0],[x1,y1+1.5,z1],[x1,y1-drop,z1],[x0,y0-drop,z0],undefined,i%2?col:colB);
+ }
+}
+
+function viaduct(distant,x0,z0,x1,z1,groundHeight,n=6){
+ const dx=x1-x0,dz=z1-z0,len=Math.hypot(dx,dz),yaw=Math.atan2(dx,dz);
+ const deckY=Math.max(groundHeight(x0,z0),groundHeight(x1,z1))+10;
+ for(let i=0;i<=n;i++){
+  const t=i/n,x=x0+dx*t,z=z0+dz*t,g=groundHeight(x,z);
+  distant.box([x,(g+deckY)*.5,z],[2.4,Math.max(4,deckY-g),2.4],[.70,.72,.66,0],yaw);
+ }
+ distant.box([(x0+x1)/2,deckY+1.0,(z0+z1)/2],[len+5,1.5,4.0],[.74,.75,.70,0],yaw);
+}
+
+function mesaKeep(distant,warm,cx,cz,groundHeight,H=30,w=6){
+ const top=groundHeight(cx,cz);
+ scarp(distant,groundHeight,cx,cz,28,-.5,Math.PI+.5,36);
+ spire(distant,warm,cx,cz,top,H,w,3);
+ wallSpan(distant,cx-16,cz-10,cx+16,cz-10,top,8);
+}
+
 /** Builds the Citadel of Vaelmark on a distant crag and the ridgeline behind it. `distant` is the
  *  churchyard's shared 'Distant black stone' batch and `warm` is Hollowmere's warm lantern batch;
  *  `groundHeight` is geometry.js's height(). Returns a rough triangle count for reporting. */
@@ -147,13 +177,25 @@ export function buildHorizon(distant,warm,groundHeight){
  // the existing per-fragment fog term) that makes the far layer read hazier than the near one.
  // Heights and jitter are toned down from the first pass (which used hMax up to 78 with heavy
  // per-segment z-jitter) so the skyline reads as rolling ridgeline rather than shattered shards.
- // Linear ridges behind the citadel stay as extra north depth; a surrounding ring hides the
- // slab ends and fills east/west/south so no camera heading shows a cutoff skyline.
- ridgeline(distant,cz+70,groundY,7001,280,24,14,34,18,[.90,.92,.87,0]);
- ridgeline(distant,cz+150,groundY,7113,320,22,22,50,22,[.90,.92,.87,0]);
+ ridgeline(distant,cz+70,groundY,7001,280,24,18,42,18,[.90,.92,.87,0]);
+ ridgeline(distant,cz+150,groundY,7113,320,22,28,62,22,[.90,.92,.87,0]);
  const ringY=groundHeight(0,0)+2;
- ridgeRing(distant,0,40,310,360,ringY,7204,40,16,38,[.90,.92,.87,0]);
- ridgeRing(distant,0,40,390,450,ringY,7318,36,24,56,[.88,.90,.85,0]);
+ // Closer, taller rings so a max-zoom aerial still sees a mountain skyline, not a disc rim.
+ ridgeRing(distant,0,40,230,270,ringY,7204,48,40,88,[.90,.92,.87,0]);
+ ridgeRing(distant,0,40,320,380,ringY,7318,40,70,130,[.86,.88,.82,0]);
+ ridgeRing(distant,0,40,420,500,ringY,7440,36,90,160,[.82,.84,.78,0]);
+
+ scarp(distant,groundHeight,0,40,128,-0.4,0.9,42);
+ scarp(distant,groundHeight,0,40,128,2.15,3.55,38);
+ scarp(distant,groundHeight,0,40,128,3.65,5.0,40);
+ mesaKeep(distant,warm,152,28,groundHeight,46,8.2);
+ mesaKeep(distant,warm,-148,68,groundHeight,40,7.2);
+ mesaKeep(distant,warm,40,-168,groundHeight,36,6.8);
+ viaduct(distant,108,6,148,24,groundHeight,8);
+ viaduct(distant,-102,48,-142,66,groundHeight,7);
+ spire(distant,warm,132,-55,groundHeight(132,-55),28,5.4,2);
+ spire(distant,warm,-125,-80,groundHeight(-125,-80),24,5.0,2);
+ spire(distant,warm,78,168,groundHeight(78,168),30,5.6,3);
 
  const after=distant.idx.length+warm.idx.length;
  return {triangles:(after-before)/3};
