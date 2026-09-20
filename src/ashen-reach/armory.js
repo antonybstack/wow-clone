@@ -22,8 +22,8 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
       <header class="armory-heading"><small>ASHEN REACH / DEVELOPER TOOLS</small><h1 id="armory-title">The Armory</h1><p>Your character. The same world.</p></header>
       <aside class="armory-panel">
         <div class="armory-panel-title"><span>Character & equipment</span><button data-close aria-label="Close armory">×</button></div>
-        <label class="armory-field">Race<select data-race><option value="human">Human</option><option value="orc">Orc</option><option value="undead" disabled>Undead — fit not ready</option></select></label>
-        <p class="armory-note" data-race-note>Human is available. Orc is the print-sculpt body on the 65-joint source bind, wearing the same catalogue. Undead will unlock with its own fitted equipment.</p>
+        <label class="armory-field">Race<select data-race><option value="human">Human</option><option value="orc">Orc</option><option value="undead">Undead — provisional body</option></select></label>
+        <p class="armory-note" data-race-note>Human is available. Orc is the print-sculpt body on the 65-joint source bind, wearing the same catalogue. Undead streams its own pack on the ashen-undead fit.</p>
         <h2>Equipment</h2><p class="armory-note" data-equipment-status role="status" aria-live="polite"></p><div class="armory-presets">${Object.entries(equipment.presets).map(([id,preset])=>`<button data-outfit="${id}">${preset.name}</button>`).join('')}</div>
         <div class="armory-slots">${[['helmet','Helmet','Unequipped'],['torso','Torso','Base appearance'],['legs','Legs','Charcoal trousers'],['boots','Boots','Base appearance'],['gloves','Gloves','Unequipped'],['mainHand','Main hand','Unequipped'],['offHand','Off-hand','Unequipped']].map(([slot,label,value])=>`<button data-slot="${slot}" disabled><span>${label}</span><strong>${value}</strong><small>Items coming next</small></button>`).join('')}</div>
         <p class="armory-note">Select a fitted item or unequip it. Your selection stays equipped in the churchyard.</p>
@@ -49,7 +49,9 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
   try{
    const result=await action();
    if(result?.status==='superseded')return;
-   label.textContent=result?.status==='failed'?'Could not equip that item. Your current outfit is unchanged.':(race==='orc'?'Orc wears the same catalogue on the print-sculpt body. Report clipping.':'');
+   // Surface the refusal verbatim. "Unsupported combinations must never silently receive a
+   // Human fit" needs the reason on screen, not swallowed into a generic apology.
+   label.textContent=result?.status==='failed'?`Could not equip that item. Your current outfit is unchanged. ${result.error||''}`.trim():raceUi().status;
    const selection=equipment.getStatus?.().pending?equipment.getStatus().desired:equipment.getState();
    for(const select of element.querySelectorAll('[data-equipment]'))select.value=selection[select.dataset.equipment]||'';
    if(frame&&result?.status!=='failed')face('full');
@@ -58,23 +60,44 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
     let open=false, priorView='play', focusHeight=.78, drag=null, lastPaint=0;
     const raceField=element.querySelector('[data-race]'),raceNote=element.querySelector('[data-race-note]'),equipmentStatus=element.querySelector('[data-equipment-status]');
     let race='human';
-    const raceScale=()=>race==='orc'?1.22:1;
+    /**
+     * Per-race armory presentation, keyed explicitly so a new race shows its own copy rather
+     * than inheriting Human's. `scale` frames the inspection camera against body height.
+     *
+     * Undead sits at 1 because the PROVISIONAL body is retinted Human geometry and really is
+     * Human height. The approved concept is taller and gaunter, so this must be re-measured
+     * against the authored body when UNDEAD_PACK_DIR is flipped -- it is framing, not fit,
+     * and getting it wrong only mis-crops the stage.
+     */
+    const RACE_UI={
+        human:{scale:1,status:'',note:'Human is available. Orc and Undead stream their own fitted packs.'},
+        orc:{scale:1.22,status:'Orc wears the same catalogue on the print-sculpt body. Report clipping.',note:'Orc is the print-sculpt retopo on the 65-joint source bind. The same logical items use an Orc fit; Human stays parked.'},
+        undead:{scale:1,status:'Undead body is PROVISIONAL: Human geometry, flat corpse palette, real ashen-undead fit. Judge the plumbing, not the art.',note:'Undead streams its own pack on the ashen-undead fit. A garment with no Undead fit is refused outright, never given the Human one.'},
+    };
+    // Cosmetic lookup only: race is set from a completed switchRace, which has already
+    // refused any race without a pack.
+    const raceUi=()=>RACE_UI[race]??RACE_UI.human;
+    const raceScale=()=>raceUi().scale;
     const setRaceUi=()=>{
-        const orc=race==='orc';
         for(const select of element.querySelectorAll('[data-equipment]'))select.disabled=false;
         for(const button of element.querySelectorAll('[data-outfit]'))button.disabled=false;
         const selection=equipment.getState();
         for(const select of element.querySelectorAll('[data-equipment]'))select.value=selection[select.dataset.equipment]||'';
-        equipmentStatus.textContent=orc?'Orc wears the same catalogue on the print-sculpt body. Report clipping.':'';
-        raceNote.textContent=orc?'Orc is the print-sculpt retopo on the 65-joint source bind. The same logical items use an Orc fit; Human stays parked.':'Human is available. Undead will unlock with its own fitted equipment.';
+        equipmentStatus.textContent=raceUi().status;
+        raceNote.textContent=raceUi().note;
     };
     async function chooseRace(){
         const want=raceField.value;if(want===race)return;
         const previous=race;raceField.disabled=true
         try{
             if(equipment.switchRace)await equipment.switchRace(want);
+            // Legacy path for an equipment module with no race switching. It can only park
+            // the streamed Human body or swap the Orc one in; its old `else` restored the
+            // Human body for anything else, which would have shown a Human under an Undead
+            // label. Any race it cannot actually honour is refused by name.
             else if(want==='orc'){equipment.setVisible(false);await body.swapSource('/ashen-reach/equipment-orc/body.glb');}
-            else{body.restoreSource();equipment.setVisible(true);}
+            else if(want==='human'){body.restoreSource();equipment.setVisible(true);}
+            else throw Error(`${want} needs an equipment module with race switching`);
             race=want;
             body.endInspection();
             const preview=body.beginInspection();
@@ -84,8 +107,13 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
             update(0);
         }catch(error){
             raceField.value=previous;
-            equipmentStatus.textContent='Could not switch race. Your current character is unchanged.';
-        }finally{raceField.disabled=false;setRaceUi();}
+            // Name the race that was refused and why. A failed Undead switch that reported
+            // nothing would be indistinguishable from one that quietly served a Human fit.
+            equipmentStatus.textContent=`Could not switch to ${want}. Your character is still ${previous}, unchanged. ${error?.message||error}`;
+            raceNote.textContent=RACE_UI[previous]?.note??'';
+            return;
+        }finally{raceField.disabled=false;}
+        setRaceUi();
     }
     raceField.onchange=chooseRace;
     setRaceUi();

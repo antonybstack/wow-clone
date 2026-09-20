@@ -1,21 +1,42 @@
 import { installEquipmentGrips } from './equipment-grips.js';
 import {loadGltf,getContainerMeshes,setMeshVisible,setParent,addToScene,removeFromScene} from '@babylonjs/lite';
 import {EQUIPMENT_ITEMS,BASE_VISIBLE_MESHES,validateLoadout,resolveEquipmentVisibility,EQUIPMENT_PRESETS,gripHold} from './equipment-catalog.js';
-import {HUMAN_EQUIPMENT_FIT} from './equipment-contract.js';
+import {HUMAN_EQUIPMENT_FIT, assertAssetFit, raceForFit} from './equipment-contract.js';
 import {resolveHandEquip} from './equipment-contract.js';
 import {createEquipmentLoader} from './equipment-loader.js';
 import {createArmingSword} from './arming-sword.js';
 import {createMageProp} from './mage-props.js';
 import {advancePropTransition,beginPropTransition} from './prop-transition.js';
 
-function packVisibility(selected, baseMeshes) {
+/**
+ * Body-visibility aliases, per race, keyed explicitly rather than sniffed from mesh names.
+ *
+ * The catalogue authors coverage in Human geoset names, so a race whose body splits those
+ * regions differently declares the translation here. Every playable race needs an entry:
+ * a race with no entry is rejected by packVisibility instead of inheriting Human's mapping.
+ */
+const RACE_BODY_ALIASES = Object.freeze({
+    human: () => ({}),
+    orc: (vis, baseMeshes) => ({
+        OrcV1Hair: vis.HumanHair,
+        OrcV1Shorts: vis.BodyUnderLegs,
+        OrcV1Brows: true,
+        OrcV1Eyes: true,
+        ...(baseMeshes.includes('BodyExposed') ? {} : {OrcV1Body: true}),
+    }),
+    // Skull face: no hair geoset exists to alias, so the hood's HumanHair coverage is inert
+    // and the six shared regions carry the whole mapping.
+    undead: () => ({}),
+});
+
+function packVisibility(selected, baseMeshes, race) {
+    const alias = RACE_BODY_ALIASES[race];
+    if (!alias) throw Error(`No body visibility mapping for race: ${race}`);
     const vis = resolveEquipmentVisibility(selected);
     const out = {...vis};
-    if (baseMeshes.includes('OrcV1Hair')) out.OrcV1Hair = vis.HumanHair;
-    if (baseMeshes.includes('OrcV1Shorts')) out.OrcV1Shorts = vis.BodyUnderLegs;
-    if (baseMeshes.includes('OrcV1Brows')) out.OrcV1Brows = true;
-    if (baseMeshes.includes('OrcV1Eyes')) out.OrcV1Eyes = true;
-    if (baseMeshes.includes('OrcV1Body') && !baseMeshes.includes('BodyExposed')) out.OrcV1Body = true;
+    for (const [name, value] of Object.entries(alias(vis, baseMeshes))) {
+        if (baseMeshes.includes(name)) out[name] = value;
+    }
     return out;
 }
 
@@ -24,15 +45,26 @@ export async function createStreamedEquipment(engine,scene,body,sockets,options=
     const baseMeshes=options.baseMeshes||BASE_VISIBLE_MESHES;
     const expectedFit=options.fitId||HUMAN_EQUIPMENT_FIT;
     const bootLoadout=options.bootLoadout||{torso:'wayfarerTunic',legs:'wayfarerTrousers',boots:'wayfarerBoots'};
-    const race=expectedFit.body==='ashen-orc'?'orc':'human';
+    // Explicit race selection. The pack names the race it is; the fit must agree. Nothing here
+    // infers "human" from "not orc", so a third race cannot arrive wearing Human assumptions.
+    const race=options.race??raceForFit(expectedFit);
+    if(raceForFit(expectedFit)!==race)throw Error(`Pack declares race ${race} but carries the ${expectedFit.body} fit`);
     const response=await fetch(manifestUrl);
-    if(!response.ok)throw Error('Equipment manifest unavailable');
-    const manifest=await response.json();
+    if(!response.ok)throw Error(`No ${race} equipment manifest at ${manifestUrl}`);
+    // A dev server answers a missing file with its SPA fallback, so a 200 full of HTML is the
+    // shape a deleted pack actually takes. Name the URL rather than surfacing a JSON parse error.
+    let manifest;
+    try{manifest=await response.json();}
+    catch{throw Error(`The ${race} equipment manifest at ${manifestUrl} is not valid JSON`);}
+    // A pack that declares its fit must be the pack we asked for: this catches a packs-table
+    // entry left pointing at another race's directory, which would otherwise load and look fine.
+    if(manifest.fitId!==expectedFit.body)throw Error(`Equipment pack is ${manifest.fitId||'unlabelled'}, not ${expectedFit.body}`);
     const base=getContainerMeshes(body.container),donor=base.find(m=>m.skeleton);
     if(!donor||donor.skeleton.boneCount!==65)throw Error('Unsupported equipment rig');
     const entries=new Map();let visible=true,stopped=false;
     const bindings=Object.fromEntries(baseMeshes.map(name=>[name,base.filter(m=>m.name===name)]));
-    if(Object.values(bindings).some(meshes=>!meshes.length))throw Error('Missing body coverage');
+    const uncovered=Object.entries(bindings).filter(([,meshes])=>!meshes.length).map(([name])=>name);
+    if(uncovered.length)throw Error(`Missing ${race} body coverage: ${uncovered.join(', ')}`);
     const initial={helmet:null,torso:null,legs:null,boots:null,gloves:null,mainHand:null,offHand:null};
     function setAttachment(entry,stow){
         const item=entry.item;if(!item.factory)return;
@@ -54,14 +86,18 @@ export async function createStreamedEquipment(engine,scene,body,sockets,options=
                 const prop=item.factory==='sword'?createArmingSword(engine,scene,sockets.sockets[item.slot].node,item.gripRotation):createMageProp(engine,scene,item.factory);
                 ({root,meshes}=prop);
             }else{
-                const asset=manifest.items[id];if(!asset||asset.bytes>16*1024*1024)throw Error('Equipment asset exceeds supported size');
-                const raceFit=manifest.profileId==='orc-male-v1'||expectedFit.body==='ashen-orc'?'orc':'human';
-                const declared=item.fits?.[raceFit]||item.fit;
-                for(const key of ['body','rig','bind','shape'])if(asset.fit?.[key]!==declared[key])throw Error('Incompatible equipment fit');
-                const response=await fetch(asset.url,{signal});if(!response.ok)throw Error('Could not load '+item.name);
-                const bytes=await response.arrayBuffer();if(bytes.byteLength!==asset.bytes)throw Error('Equipment size mismatch');
+                const asset=manifest.items[id];
+                // An item this pack does not carry is an unsupported combination, not a cue to
+                // reach for the Human asset. Say which race is missing it.
+                if(!asset)throw Error(`No ${race} fit for ${item.name}`);
+                if(asset.bytes>16*1024*1024)throw Error('Equipment asset exceeds supported size');
+                // Throws unless the manifest entry's fit is the one this item declares for this
+                // race. No Human default: see declaredFitForRace in equipment-contract.js.
+                assertAssetFit(asset,item,race);
+                const response=await fetch(asset.url,{signal});if(!response.ok)throw Error(`Could not load the ${race} ${item.name} from ${asset.url}`);
+                const bytes=await response.arrayBuffer();if(bytes.byteLength!==asset.bytes)throw Error(`The ${race} ${item.name} is ${bytes.byteLength} bytes, not the ${asset.bytes} its manifest declares`);
                 const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),n=>n.toString(16).padStart(2,'0')).join('');
-                if(digest!==asset.sha256)throw Error('Equipment asset hash mismatch');
+                if(digest!==asset.sha256)throw Error(`The ${race} ${item.name} at ${asset.url} does not match its manifest hash`);
                 signal.throwIfAborted();container=await loadGltf(engine,bytes);root=container.entities[0];meshes=getContainerMeshes(container);signal.throwIfAborted();
                 for(const part of item.parts)if(!meshes.some(m=>m.name===part.mesh))throw Error('Missing garment part: '+part.mesh);
                 for(const mesh of meshes){
@@ -91,7 +127,7 @@ export async function createStreamedEquipment(engine,scene,body,sockets,options=
         }
     }
     function apply(next){
-        const mask=packVisibility(next, baseMeshes);
+        const mask=packVisibility(next, baseMeshes, race);
         for(const [name,meshes]of Object.entries(bindings))for(const mesh of meshes)setMeshVisible(mesh,visible&&mask[name]);
         const preview=body.inspection?.getState(),casting=preview?['fire','lava'].includes(preview.id):body.getState().castingShoot;
         sockets.sync([sockets.sockets.mainHand,sockets.sockets.offHand,sockets.sockets.back]);
