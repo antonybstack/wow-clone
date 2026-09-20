@@ -24,10 +24,26 @@ export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false
  t=vec4<f32>(mix(t.rgb*.68,pave.rgb*1.4,amount),1.0);`:''}
  let directional=.62+.38*abs(dot(normalize(i.normal+vec3<f32>(.00001)),normalize(vec3<f32>(-.4,.8,-.3))));
  let lamp=i.lamp;
+ // M3c defect 1: the baked lamp-irradiance term summed unboundedly across every registered light
+ // with no cap, AND used a colour (.7,.75,.30 -- G the highest channel, B the lowest) that was
+ // never actually warm. Both compounded on the green-tinted ground/foliage tints (and on stone,
+ // which has no other correction) into a bright, uniform yellow-green wash wherever pools
+ // overlapped (the well square's ring of well+stall lights, the town gate's own two lights).
+ // Fixed together: a soft knee (identity below ~a single fixture's own peak so the "genuinely
+ // good" isolated lamp close-ups are unchanged, compressed above it so overlapping pools can no
+ // longer blow past a bounded value) and a properly R-dominant warm colour. Both are gated by the
+ // same z>40 boundary nightGrade already uses (smoothstep(40,55,i.p.z)), so at i.p.z<=40 lampGate
+ // is exactly 0 and this reduces to the original formula byte-for-byte -- the churchyard's own two
+ // lamps are untouched by construction.
+ let lampGate=smoothstep(40.0,55.0,i.p.z);
+ var lampKnee=lamp;
+ if(lamp>1.4){lampKnee=1.4+(1.0-exp(-(lamp-1.4)));}
+ let lampEff=mix(lamp,lampKnee,lampGate);
+ let lampColor=mix(vec3<f32>(.7,.75,.30),vec3<f32>(1.0,.60,.28),lampGate);
  let fire=shaderUniforms.fireStrength/(1.0+pow(distance(i.p,shaderUniforms.firePosition)*.85,2.0));
  let handFire=shaderUniforms.handFireStrength/(1.0+pow(distance(i.p,shaderUniforms.handFirePosition)*1.0,2.0));
  let lava=shaderUniforms.lavaStrength/(1.0+pow(distance(i.p,shaderUniforms.lavaPosition)*.7,2.0));
- let light=vec3<f32>(${light}*directional)+vec3<f32>(.7,.75,.30)*lamp+vec3<f32>(1.0,.28,.045)*(fire+handFire+lava);
+ let light=vec3<f32>(${light}*directional)+lampColor*lampEff+vec3<f32>(1.0,.28,.045)*(fire+handFire+lava);
  var c=t.rgb*i.color.rgb*vec3<f32>(${tint.join(',')})*(light+${emission});
  ${nightGrade?'let ng=smoothstep(40.0,55.0,i.p.z);c=mix(c,c*vec3<f32>(.80,.72,.84),ng);':''}
  let d=distance(i.p,shaderSystem.cameraPosition);let fog=1.0-exp(-max(d-9.0,0.0)*.010);
