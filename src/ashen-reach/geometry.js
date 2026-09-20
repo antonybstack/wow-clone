@@ -28,6 +28,18 @@ export const buildingPads=[
  {x:-7.3,z:106,w:6.2,d:6.4},{x:7.3,z:106,w:6.2,d:6.4},
 ];
 const PAD_MARGIN=3;
+/** Broad hills only outside the playable rectangle. Zero inside x∈[-90,90], z∈[-95,145]
+ *  (and therefore on the whole churchyard) so height() stays bit-identical in-bounds. */
+function distantRelief(x,z){
+ const dx=Math.max(0,Math.abs(x)-90),dz=Math.max(0,z>145?z-145:z<-95?-95-z:0);
+ if(dx===0&&dz===0)return 0;
+ const t=Math.min(1,Math.hypot(dx,dz)/28),s=t*t*(3-2*t);
+ return s*(9*Math.exp(-((x-172)**2+(z-28)**2)/3200)
+  +8*Math.exp(-((x+160)**2+(z-75)**2)/3000)
+  +10*Math.exp(-((x-30)**2+(z-220)**2)/4200)
+  +7*Math.exp(-((x+50)**2+(z+170)**2)/3600)
+  +6*Math.exp(-((x-140)**2+(z+80)**2)/2800));
+}
 export function height(x,z){
  let h=terrainRaw(x,z);
  for(const p of buildingPads){
@@ -35,7 +47,7 @@ export function height(x,z){
   const dist=Math.hypot(dx,dz);
   if(dist<PAD_MARGIN){const t=1-dist/PAD_MARGIN,s=t*t*(3-2*t);h=h*(1-s)+terrainRaw(p.x,p.z)*s;}
  }
- return h;
+ return h+distantRelief(x,z);
 }
 export const pathX=z=>Math.sin(z*.14)*1.25;
 

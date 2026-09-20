@@ -115,6 +115,7 @@ export async function buildChurchyard(engine,scene){
   for(let j=0;j<2;j++)glow.box([x-w*.10,g+H*(.68+j*.085),z-w*.502],[w*.07,H*.03,.03],[1,1,1,0]);
  }
  tower(23,37,28,5.5);tower(-41,92,30,5);tower(46,99,53,8);
+ tower(168,32,38,6.4);tower(-162,78,32,5.6);tower(150,-55,26,5.2);tower(-130,-70,24,4.8);
  for(let side of [-1,1])for(let z=4;z<39;z+=3.2){const x=side*(12+Math.sin(z*.12)*1.5),y=height(x,z);wood.tube([x,y,z],[x+r(-.15,.15),y+1.18,z+.12],.085,.055,[.7,.65,.55,0],4);if(random()<.82){for(const h of [.42,.86])wood.tube([x,y+h,z],[side*(12+Math.sin((z+3.2)*.12)*1.5),height(x,z+3.2)+h,z+3.2],.06,.05,[.7,.65,.55,0],4);}}
  // Leaning wooden lantern posts around the monument approach.
  for(const [x,z] of [[-3.4,12],[3.6,14],[-2.8,25]]){const y=height(x,z);wood.tube([x,y,z],[x-.18,y+2.8,z],.085,.045,[.8,.8,.7,0],5);const p=[x-.18,y+2.52,z];glow.box(p,[.22,.31,.22],[1,1,1,0]);for(let j=0;j<4;j++){const dx=j<2?-.14:.14,dz=j%2?-.14:.14;wood.box([p[0]+dx,p[1],p[2]+dz],[.034,.46,.034],[.3,.3,.3,0]);}wood.box([p[0],p[1]-.22,p[2]],[.35,.055,.35],[.3,.3,.3,0]);wood.tube([p[0],p[1]+.18,p[2]],[p[0],p[1]+.42,p[2]],.25,0,[.3,.3,.3,0],4);}
@@ -357,12 +358,46 @@ export async function buildChurchyard(engine,scene){
   bracken(x,z,rn(.42,.95),Math.floor((x+200)*971+z*133));
  }
 
+ // Visual-only far terrain. Same earth material, independent rng, no lamp bake, not in the
+ // Havok mesh — so extending the horizon does not grow the collider or the per-vertex light
+ // bake. 10 m cells abut the playable 2 m grid at x=±90 / z=-95 / z=145 with no overlap.
+ const farEarth=new Batch('Far earth');
+ const randomFar=rng(81107),rf=()=>randomFar();
+ const FAR_STEP=10;
+ const emitFar=(x,z,step=FAR_STEP)=>{
+  const x1=x+step,z1=z+step;
+  const v=[[x,z],[x1,z],[x1,z1],[x,z1]].map(([a,b])=>[a,height(a,b),b]);
+  const c=.90+rf()*.10;
+  farEarth.quad(...v,v.map(p=>[p[0]/3,p[2]/3]),[c,c,c,0],v.map(p=>terrainNormal(p[0],p[2])));
+ };
+ for(let z=-250;z<380;z+=FAR_STEP){
+  for(let x=-250;x<-90;x+=FAR_STEP)emitFar(x,z);
+  for(let x=90;x<250;x+=FAR_STEP)emitFar(x,z);
+ }
+ for(let z=-250;z<-95;z+=FAR_STEP)for(let x=-90;x<90;x+=FAR_STEP)emitFar(x,z);
+ // Finer strip on the citadel approach so the first hill is not a 10 m staircase.
+ const NEAR=5;
+ for(let z=145;z<250;z+=NEAR)for(let x=-90;x<90;x+=NEAR)emitFar(x,z,NEAR);
+ for(let z=250;z<380;z+=FAR_STEP)for(let x=-90;x<90;x+=FAR_STEP)emitFar(x,z);
+ // Cheap distant treeline (two tubes) so east/west/south are not a bare dirt shelf.
+ const farTree=(x,z,H)=>{const g=height(x,z);bark.tube([x,g,z],[x,g+H*.55,z],H*.034,H*.016,[.42,.46,.38,0],4);bark.tube([x,g+H*.45,z],[x,g+H,z],H*.16,0,[.34,.40,.30,0],5);};
+ for(let i=0;i<32;i++){
+  const side=i%2?1:-1;
+  farTree(side*(120+rf()*85),-50+rf()*170,10+rf()*10);
+ }
+ for(let i=0;i<12;i++)farTree(-70+rf()*140,-130-rf()*60,9+rf()*10);
+ for(let i=0;i<8;i++)farTree(-70+rf()*140,205+rf()*70,9+rf()*8);
+
  // --- Milestone 3, the horizon: the Citadel of Vaelmark on a distant crag beyond z=140, plus the
  // mountain ridgeline behind it. Backdrop only (no colliders, no pathing), added last and entirely
  // north of the playable boundsRect (maxZ:143 in main.js), so it cannot move a churchyard or
  // Hollowmere pixel — it only appends triangles to the existing 'distant'/'warm' batches.
  const horizonStats=buildHorizon(distant,warm,height);
 
- const meshes=B.map((b,i)=>b.commit(engine,scene,mats[i],lights));colliders.unshift({type:'mesh',mesh:meshes[0]});const clouds=await sky(engine,scene);
- return {meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,stats:{triangles:B.reduce((a,b)=>a+b.idx.length/3,0),drawBatches:B.length,horizonTriangles:horizonStats.triangles},update(t){for(const i of [4,5])setShaderUniform(mats[i],'time',t);clouds.update(t);}};
+ const farTris=farEarth.idx.length/3;
+ const meshes=B.map((b,i)=>b.commit(engine,scene,mats[i],lights));
+ const farMesh=farEarth.commit(engine,scene,mats[0],[]);
+ if(farMesh)meshes.push(farMesh);
+ colliders.unshift({type:'mesh',mesh:meshes[0]});const clouds=await sky(engine,scene);
+ return {meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,stats:{triangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris,drawBatches:B.length+(farMesh?1:0),horizonTriangles:horizonStats.triangles,farTriangles:farTris},update(t){for(const i of [4,5])setShaderUniform(mats[i],'time',t);clouds.update(t);}};
 }

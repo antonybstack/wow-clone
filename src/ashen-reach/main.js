@@ -29,9 +29,9 @@ async function main(){
  setFog(scene,{mode:1,density:.010,color:FOG});
  const light=createHemisphericLight([0,1,0],.50);light.diffuseColor=[.57,.65,.50];light.groundColor=[.13,.12,.08];addToScene(scene,light);
  const moon=createDirectionalLight([.4,-.8,.3],.45);moon.diffuse=[.65,.72,.52];addToScene(scene,moon);
- const camera=createArcRotateCamera(-Math.PI/2,1.46,3.5,{x:0,y:1.5,z:0});camera.fov=1.05;camera.nearPlane=.1;camera.farPlane=450;
+ const camera=createArcRotateCamera(-Math.PI/2,1.46,3.5,{x:0,y:1.5,z:0});camera.fov=1.05;camera.nearPlane=.1;camera.farPlane=1200;
  const rig=new CameraRig(camera);rig.yaw=0;rig.pitch=.04;rig.distance=rig.distanceTarget=3.5;
- const reference=createFreeCamera({x:0,y:height(0,-5)+1.65,z:-5},{x:.0,y:4.0,z:25});reference.fov=1.06;reference.nearPlane=.1;reference.farPlane=450;
+ const reference=createFreeCamera({x:0,y:height(0,-5)+1.65,z:-5},{x:.0,y:4.0,z:25});reference.fov=1.06;reference.nearPlane=.1;reference.farPlane=1200;
  scene.camera=reference;
  const world=await buildChurchyard(engine,scene);initInput(canvas);
  const sourceBody=resolvePlayableBody('?character=human-source');

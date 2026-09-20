@@ -91,6 +91,22 @@ function ridgeline(distant,cz,groundY,seed,spanX,segments,hMin,hMax,zJitter,tint
  }
 }
 
+/** Closed mountain ring. Cheap (2 tris per segment) and uses the existing distant batch. */
+function ridgeRing(distant,cx,cz,rx,rz,groundY,seed,segments,hMin,hMax,tint){
+ const rand=rng(seed);
+ const pts=[];
+ for(let k=0;k<segments;k++){
+  const a=k*Math.PI*2/segments;
+  const shape=Math.sin(k*.85+seed*.001)*.5+.5;
+  pts.push({x:cx+Math.cos(a)*rx,z:cz+Math.sin(a)*rz,h:hMin+(hMax-hMin)*(shape*.55+rand()*.45)});
+ }
+ const baseY=groundY-320;
+ for(let k=0;k<segments;k++){
+  const a=pts[k],b=pts[(k+1)%segments];
+  distant.quad([a.x,baseY,a.z],[b.x,baseY,b.z],[b.x,groundY+b.h,b.z],[a.x,groundY+a.h,a.z],undefined,tint);
+ }
+}
+
 /** Builds the Citadel of Vaelmark on a distant crag and the ridgeline behind it. `distant` is the
  *  churchyard's shared 'Distant black stone' batch and `warm` is Hollowmere's warm lantern batch;
  *  `groundHeight` is geometry.js's height(). Returns a rough triangle count for reporting. */
@@ -131,8 +147,13 @@ export function buildHorizon(distant,warm,groundHeight){
  // the existing per-fragment fog term) that makes the far layer read hazier than the near one.
  // Heights and jitter are toned down from the first pass (which used hMax up to 78 with heavy
  // per-segment z-jitter) so the skyline reads as rolling ridgeline rather than shattered shards.
- ridgeline(distant,cz+70,groundY,7001,170,20,14,34,18,[.90,.92,.87,0]);
- ridgeline(distant,cz+150,groundY,7113,200,18,22,50,22,[.90,.92,.87,0]);
+ // Linear ridges behind the citadel stay as extra north depth; a surrounding ring hides the
+ // slab ends and fills east/west/south so no camera heading shows a cutoff skyline.
+ ridgeline(distant,cz+70,groundY,7001,280,24,14,34,18,[.90,.92,.87,0]);
+ ridgeline(distant,cz+150,groundY,7113,320,22,22,50,22,[.90,.92,.87,0]);
+ const ringY=groundHeight(0,0)+2;
+ ridgeRing(distant,0,40,310,360,ringY,7204,40,16,38,[.90,.92,.87,0]);
+ ridgeRing(distant,0,40,390,450,ringY,7318,36,24,56,[.88,.90,.85,0]);
 
  const after=distant.idx.length+warm.idx.length;
  return {triangles:(after-before)/3};
