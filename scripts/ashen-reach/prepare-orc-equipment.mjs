@@ -11,6 +11,7 @@ import {NodeIO} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {mergeDocuments, prune, unpartition} from '@gltf-transform/functions';
 import {BODY_REGIONS, EQUIPMENT_ITEMS, ORC_BASE_VISIBLE_MESHES} from '../../src/ashen-reach/equipment-catalog.js';
+import {ORC_EQUIPMENT_FIT} from '../../src/ashen-reach/equipment-contract.js';
 
 const SRC = 'public/characters/candidates/orc-source-v1.glb';
 const DIR = 'public/ashen-reach/equipment-orc';
@@ -152,8 +153,11 @@ const bodyRig = (() => {
 })();
 
 const garmentItems = Object.entries(EQUIPMENT_ITEMS).filter(([, item]) => item.parts);
+// fitId is what equipment-stream.js checks the pack against before it binds anything, so a
+// manifest without it is refused at runtime. Emit it from the contract rather than by hand.
 const manifest = {
     schema: 1,
+    fitId: ORC_EQUIPMENT_FIT.body,
     sourceSha256: bodyHash,
     profileId: 'orc-sculpt-v1',
     garments: true,

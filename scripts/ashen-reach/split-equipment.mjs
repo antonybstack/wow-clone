@@ -5,11 +5,14 @@ import {prune} from '@gltf-transform/functions';
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {EQUIPMENT_ITEMS,BASE_VISIBLE_MESHES} from '../../src/ashen-reach/equipment-catalog.js';
+import {HUMAN_EQUIPMENT_FIT} from '../../src/ashen-reach/equipment-contract.js';
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS);
 const source='public/ashen-reach/wanderer-equipment.glb';
 const bytes=await fs.readFile(source), sha=b=>createHash('sha256').update(b).digest('hex');
 const dir='public/ashen-reach/equipment';await fs.mkdir(dir,{recursive:true});
-const manifest={schema:1,sourceSha256:sha(bytes),items:{}};
+// fitId is what equipment-stream.js checks the pack against before it binds anything, so a
+// manifest without it is refused at runtime. Emit it from the contract rather than by hand.
+const manifest={schema:1,fitId:HUMAN_EQUIPMENT_FIT.body,sourceSha256:sha(bytes),items:{}};
 for(const [id,names]of [['body',BASE_VISIBLE_MESHES],...Object.entries(EQUIPMENT_ITEMS).filter(([,item])=>item.parts).map(([id,item])=>[id,item.parts.map(p=>p.mesh)])]){
  const doc=await io.readBinary(bytes),root=doc.getRoot();
  const skin=root.listSkins()[0];
