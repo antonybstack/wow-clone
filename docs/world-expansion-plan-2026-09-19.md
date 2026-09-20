@@ -801,3 +801,49 @@ The user asked to avoid tunnel vision, merge everything, and re-prioritize. So:
 
 Telegram of the merged tree is a parent walkthrough after live checks, not a
 re-review of the already-sent M8a/M8b clips.
+
+## M11 opened, 2026-09-20 — and a resume that started wrong
+
+**Correcting my own resume, in place.** After a context compaction I came back believing M7b
+was awaiting review and that M8a/M8b were unstarted agents killed by a rate limit. That was
+wrong. `git merge-base --is-ancestor` says all three were already in `main`, as were M9 and
+M10 and the Hollowmere cobble/basin/HUD passes on top of them. Acting on the stale summary I
+relaunched two agents against the old M8a/M8b briefs and told them their worktrees held no
+prior work. One of them checked and told me the premise was wrong before I did. I stopped
+both; neither had modified its worktree (`git status --short` in each showed only the
+pre-existing untracked `_record-m8*-walk.mjs`). No work was lost and nothing was re-merged.
+The lesson is cheap and now written down: on resume, read `git log main`, `git branch -vv` and
+the merge-base of every branch the summary names, before dispatching anything.
+
+State at the real resume point: `main` at `475c44d`, pushed. M7b, M8a, M8b, M9, M10 merged.
+Carried leftovers from those (front cowl, hood faces, dark roofs, death nameplate on the
+unmoved capsule) still stand and are still not tickets — per the user's instruction to stop
+the polishing arc.
+
+**Next is M11, the Undead first dressed body**, per `docs/undead-race-plan.md` and the
+concept the user approved at `docs/references/undead-approved-concept.png`. I split it into
+two structurally disjoint tracks so they can run in parallel:
+
+- **M11a — the body.** Branch `m11a`, worktree `.claude/worktrees/m11a`, slot 1 (5273/9437).
+  Owns `blender/`, `scripts/character-assets/`, `public/characters/`, and
+  `public/ashen-reach/equipment-undead/body.glb` only. Brief carries a hypothesis to falsify:
+  I measured `undead-animated-v1.glb` at 169 nodes / **163 skin joints** / **7 animations**,
+  with `UndeadV1Brows`, `UndeadV1Hair` and a `brown_eye.png` texture — a MakeHuman human on
+  the obsolete rig, against `orc-source-v1.glb` at 65 joints and 55 clips. So I believe it is
+  a dead end and the body must be rebuilt on the 65-joint bind. The agent is told to measure
+  that itself and say plainly if I am wrong. The named trap is reviving a scripted MakeHuman
+  flesh-warp, which the Orc track already threw away.
+
+- **M11b — the race plumbing, no art.** Branch `m11b`, worktree `.claude/worktrees/m11b`,
+  slot 2 (5373/9537). Owns `equipment-contract.js`, `equipment-catalog.js`,
+  `equipment-stream.js`, `armory.js`, `main.js`. `FITS_BY_RACE` currently holds only `human`
+  and `orc`. The acceptance I care about is the plan's own: an unsupported combination must
+  never silently receive a Human fit — and I will look for the mechanism in the diff, not the
+  claim in the report. Because the real body does not exist yet, M11b builds a placeholder at
+  `public/ashen-reach/equipment-undead-provisional/` behind one named constant, and must
+  declare `fitId: 'ashen-undead'` on it; a mislabelled placeholder would make its own
+  acceptance test vacuous.
+
+Allowed-path sets are disjoint by construction; `docs/` and `metrics.js` are frozen to both
+and owned by me. Slot 0 (5173/9337) stays mine for verification. Nothing here is accepted —
+it is staged for the user's review.
