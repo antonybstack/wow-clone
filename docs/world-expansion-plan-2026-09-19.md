@@ -582,3 +582,78 @@ check-player-death 8/8, check-mana 11/11; character 75/75, equipment 27/27, metr
 Live on real hardware: 42 draw calls, 191,846 world triangles, 335,618 scene triangles —
 all three identical to pre-merge, as expected for a bake-time change. `vsyncCapped: true`
 at 144 Hz, so the frame rate proves only that nothing regressed below the cap.
+
+## M7b round 1 reviewed, 2026-09-20 — not merged, sent back
+
+Branch `m7b` (3 commits, `f3c8231`/`2d1c620`/`0adc35c`, plus a merge of `main` at `8f5cf29`).
+Held back from `main`. The socket work is sound; the silhouette is not yet.
+
+**What is genuinely good, verified independently rather than taken from the report:**
+`probe-m7b-sockets.mjs` shows `mixamorig:Head` and `mixamorig:Spine2` resolving on the enemy
+`attachAnimatedHuman` path across 65 bones — the "biggest technical risk" named when this
+milestone was opened does not materialise. Cost is small and exact: +1,760 scene triangles
+(4 shades x 440), +12 draw calls, `worldTriangles` unchanged. I confirmed the exactness by
+moving the garment meshes out of the frustum and watching `sceneTriangles` return to 335,618,
+`main`'s value to the triangle. The greeter correctly never opts in.
+
+**Why it was sent back.** Matched-timing A/B on slot 3, shade planted at (3.4, 16), camera
+stand at (5.2, 13.4), measured inside the shade's own bounding box:
+
+```
+garment OFF -> ON        29.49% of pixels changed, mean delta  9.87
+main -> m7b tint only    28.25%                    mean delta 14.00
+main -> m7b full         37.65%                    mean delta 17.29
+same code twice          00.02%   (noise floor)
+```
+
+The cloak is doing plenty of work and the wrong work: front-on it renders as one rounded slab,
+taller than the head and wider than the shoulders, with no hood-to-shoulder break. `main`'s
+ice-cyan mannequin was at least a readable humanoid. Luminance standard deviation inside the box
+falls 22.99 -> 17.58. In **profile** and at ~8 m the same geometry reads well as a cowled robe,
+so this is a proportion problem, not a geometry-pipeline problem. Arms and hands still poke out;
+only the legs were hidden.
+
+Separately, `SHADE_TINT` was retinted from ice-cyan `[0.46,0.58,0.62,0.56]` to peat
+`[0.30,0.38,0.26,0.28]` with `directIntensity` 0.34 -> 0.22, which is half the visual delta and
+is not mentioned in any commit message. Not asking for a revert — asking that it be declared.
+
+**A measurement trap I walked into, recorded so nobody repeats it.** My first A/B said the
+garment contributed 0.24% — i.e. that it was visually inert. That was wrong, and the cause was
+my probe, not the build: these procedurally created meshes **have no `visible` property**.
+Setting `m.visible = false` decrements `sceneTriangles` while the mesh keeps rendering, so the
+counter agreed with me and the framebuffer did not. Moving the meshes out of the frustum instead
+gave the 29.49% above. Two consequences: the game's own `actor.setVisible()` path is fine (it
+removes body and garment together, -34,920 triangles), and `capture-m7b.mjs`'s assertion
+`visible: m.visible !== false` is vacuous — it reports `true` for a mesh that does not implement
+the flag and can never fail.
+
+Round 2 is in flight on slot 3 with all of the above in the brief.
+
+## M8a and M8b opened, 2026-09-20
+
+- **M8a — put people in Hollowmere (slot 1).** The town is built, lit and empty. The blocker is
+  cost: `attachCrowd` already exists and does the naive thing, one full `loadGltf` per body at
+  **34,480 visible triangles each**; eight of those would add ~276,000 to a 335,618-triangle
+  scene. The milestone is therefore the *representation*, not the placement. Budget handed over:
+  the whole population adds no more than 25,000 triangles and 15 draw calls.
+  **My hypothesis, handed over to be falsified:** a purpose-built low-poly figure generated in
+  JavaScript and committed into the existing `Batch`, the way `buildings.js` makes the town,
+  rather than instancing the Mixamo body. The agent is told to measure the naive path first and
+  tell me if instancing turns out to be cheap enough.
+  **Watch at review:** the world material has no alpha blending, so cut-out billboard impostors
+  cannot work on that path — if the answer needs alpha it has to move to the GLB/PBR path and
+  that must be stated, not slipped in.
+
+- **M8b — re-level the corridor without re-pedestalling it (slot 2).** M7a's windowing improved
+  fixture-to-fixture contrast by dropping the trough faster than the peak; the global peak fell
+  19% with it and the facades now carry no information in the dark. The shape asked for is peaks
+  at or above the pre-M7a 1.596 with troughs at or below today's values.
+  **The question that should decide the fix,** and which the agent must answer before changing
+  behaviour: is the 19% from the window function, from `materials.js`'s knee (max 2.4) no longer
+  being reached, or both? If the knee is no longer clamping, raising strength is nearly free; if
+  it is, raising strength only clips.
+  **Watch at review:** `measure-lamp-profile.mjs` *transcribes* the light list and the bake
+  formula instead of importing them. Change the bake without changing the script and it will
+  cheerfully report the old world. That trap is named in the brief.
+
+Nothing here is accepted. Three agents are staged for review on branches `m7b`, `m8a`, `m8b`.
