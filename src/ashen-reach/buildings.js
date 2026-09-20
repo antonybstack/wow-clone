@@ -31,17 +31,17 @@ export function building(ctx,spec){
  const gy=groundHeight(x,z);
  const cos=Math.cos(yaw),sin=Math.sin(yaw);
  const toWorld=(lx,ly,lz)=>[x+lx*cos+lz*sin,gy+ly,z-lx*sin+lz*cos];
- const stoneWalled=kind==='chapel'||kind==='watchtower'||kind==='smithy';
- const wallMat=stoneWalled?stone:wood;
- const wallColor=kind==='chapel'?[.66,.64,.58,0]:kind==='watchtower'?[.60,.58,.52,0]:kind==='smithy'?[.52,.48,.42,0]:kind==='tavern'?[.50,.38,.27,0]:[.55,.44,.32,0];
- const timber=kind==='house'||kind==='tavern';
+ const ruin=!!spec.ruin;
+ const stoneWalled=true;
+ const wallMat=stone;
+ const wallColor=kind==='chapel'?[.62,.60,.54,0]:kind==='watchtower'?[.58,.56,.50,0]:kind==='smithy'?[.50,.46,.40,0]:kind==='tavern'?[.56,.52,.46,0]:[.54,.51,.46,0];
  const lift=(c,s)=>[Math.min(1,c[0]*s),Math.min(1,c[1]*s),Math.min(1,c[2]*s),0];
  // Street gable (door wall) is the elevation you see from the road; lift it so wall/roof/door
  // still separate at ~15 m. Sides stay closer to the authored colour; the back gable is darker.
  const gableColor=lift(wallColor,1.38);
  const sideColor=lift(wallColor,1.16);
  const backColor=lift(wallColor,0.86);
- const roofColor=kind==='chapel'?[.26,.24,.27,0]:[.26,.18,.12,0];
+ const roofColor=kind==='chapel'?[.28,.26,.28,0]:[.34,.32,.30,0];
  const plinthY=.22,lowerTopY=plinthY+wallH,wallT=.16;
  const upH=(upper&&kind!=='watchtower')?(upperH??wallH*.5):0;
  const wallTopY=lowerTopY+upH;
@@ -51,31 +51,15 @@ export function building(ctx,spec){
  wallMat.box(toWorld(0,plinthY+wallH/2, d/2),[w,wallH,wallT],sideColor,yaw);
  wallMat.box(toWorld(-w/2+wallT/2,plinthY+wallH/2,0),[wallT,wallH,d],backColor,yaw);
  wallMat.box(toWorld( w/2-wallT/2,plinthY+wallH/2,0),[wallT,wallH,d],gableColor,yaw);
- if(!stoneWalled)for(const cx of [-w/2,w/2])for(const cz of [-d/2,d/2])
-  wood.box(toWorld(cx,plinthY+wallH/2,cz),[.10,wallH,.10],[.34,.25,.17,0],yaw);
- if(timber){
-  const dadoH=Math.min(1.05,wallH*.42),beam=[.22,.14,.09,0];
-  stone.box(toWorld(0,plinthY+dadoH/2,-d/2),[w,dadoH,wallT+.04],[.50,.48,.44,0],yaw);
-  stone.box(toWorld(0,plinthY+dadoH/2, d/2),[w,dadoH,wallT+.04],[.50,.48,.44,0],yaw);
-  stone.box(toWorld( w/2-wallT/2,plinthY+dadoH/2,0),[wallT+.04,dadoH,d],[.54,.52,.47,0],yaw);
-  wood.box(toWorld(0,plinthY+dadoH+.04,-d/2-.02),[w,.09,.08],beam,yaw);
-  wood.box(toWorld(0,plinthY+dadoH+.04, d/2+.02),[w,.09,.08],beam,yaw);
-  wood.box(toWorld(w/2+.02,plinthY+dadoH+.04,0),[.08,.09,d],beam,yaw);
-  wood.box(toWorld(0,plinthY+wallH*.72,-d/2-.02),[w,.08,.07],beam,yaw);
-  wood.box(toWorld(0,plinthY+wallH*.72, d/2+.02),[w,.08,.07],beam,yaw);
-  wood.box(toWorld(w/2+.02,plinthY+wallH*.72,0),[.07,.08,d],beam,yaw);
-  for(const lz of [-d/2,d/2])for(const lx of [-w*.28,w*.28])
-   wood.box(toWorld(lx,plinthY+wallH/2,lz+(lz>0?.03:-.03)),[.08,wallH,.08],beam,yaw);
-  for(const lz of [-d*.28,d*.28])
-   wood.box(toWorld(w/2+.03,plinthY+wallH/2,lz),[.08,wallH,.08],beam,yaw);
- }
+ for(const cx of [-w/2,w/2])for(const cz of [-d/2,d/2])
+  stone.box(toWorld(cx,plinthY+wallH/2,cz),[.12,wallH,.12],[.40,.38,.34,0],yaw);
 
  if(upH>0){
   // A second storey, inset a little for a jetty-style break in the silhouette, with a wood trim
   // course marking the floor division. Only reachable off the gable-roof path (watchtower excluded
   // above), so `wallTopY` below (used by the roof/gable/chimney code) already includes it.
   const uw=w-.5,ud=d-.5;
-  wood.box(toWorld(0,lowerTopY+.03,0),[w+.22,.10,d+.22],[.30,.22,.15,0],yaw);
+  stone.box(toWorld(0,lowerTopY+.03,0),[w+.22,.10,d+.22],[.42,.40,.36,0],yaw);
   wallMat.box(toWorld(0,lowerTopY+upH/2,-ud/2),[uw,upH,wallT],sideColor,yaw);
   wallMat.box(toWorld(0,lowerTopY+upH/2, ud/2),[uw,upH,wallT],sideColor,yaw);
   wallMat.box(toWorld(-uw/2+wallT/2,lowerTopY+upH/2,0),[wallT,upH,ud],backColor,yaw);
@@ -87,9 +71,9 @@ export function building(ctx,spec){
   // cheaper alternative to a full upper storey for breaking up an otherwise-identical box.
   const side=leanTo,lw=w*.55,ld=1.35,lh=wallH*.62,lx0=-w/2+lw/2+.35;
   const lz0=side*(d/2+ld/2);
-  wood.box(toWorld(lx0,plinthY+lh/2,lz0),[lw,lh,ld],sideColor,yaw);
+  stone.box(toWorld(lx0,plinthY+lh/2,lz0),[lw,lh,ld],sideColor,yaw);
   const hiY=plinthY+lh+.05,loY=plinthY+wallH*.42;
-  wood.quad(
+  stone.quad(
    toWorld(lx0-lw/2-.12,hiY,side*d/2),toWorld(lx0+lw/2+.12,hiY,side*d/2),
    toWorld(lx0+lw/2+.12,loY,lz0+side*ld/2+.12),toWorld(lx0-lw/2-.12,loY,lz0+side*ld/2+.12),
    undefined,roofColor);
@@ -115,72 +99,50 @@ export function building(ctx,spec){
   }
  }else{
   const ridgeY=wallTopY+roofH,eaveY=wallTopY+.08,overhang=.45,halfD=d/2+overhang,halfW=w/2+.15;
-  wood.quad(toWorld(-halfW,eaveY,-halfD),toWorld(halfW,eaveY,-halfD),toWorld(halfW,ridgeY,0),toWorld(-halfW,ridgeY,0),undefined,roofColor);
-  wood.quad(toWorld(-halfW,ridgeY,0),toWorld(halfW,ridgeY,0),toWorld(halfW,eaveY,halfD),toWorld(-halfW,eaveY,halfD),undefined,roofColor);
-  wood.tube(toWorld(-halfW,ridgeY,0),toWorld(halfW,ridgeY,0),.06,.06,[.24,.18,.12,0],4);
+  if(!ruin){
+   stone.quad(toWorld(-halfW,eaveY,-halfD),toWorld(halfW,eaveY,-halfD),toWorld(halfW,ridgeY,0),toWorld(-halfW,ridgeY,0),undefined,roofColor);
+   stone.quad(toWorld(-halfW,ridgeY,0),toWorld(halfW,ridgeY,0),toWorld(halfW,eaveY,halfD),toWorld(-halfW,eaveY,halfD),undefined,roofColor);
+   stone.tube(toWorld(-halfW,ridgeY,0),toWorld(halfW,ridgeY,0),.05,.05,[.30,.28,.26,0],4);
+  }else{
+   // One surviving pitch; the other side is a jagged broken wall.
+   stone.quad(toWorld(-halfW,eaveY,-halfD),toWorld(halfW*.35,eaveY,-halfD),toWorld(halfW*.2,ridgeY*.82,0),toWorld(-halfW,ridgeY,0),undefined,roofColor);
+  }
   wallMat.tri(toWorld(-w/2,wallTopY,-d/2),toWorld(-w/2,wallTopY,d/2),toWorld(-w/2,ridgeY,0),undefined,backColor);
   wallMat.tri(toWorld(w/2,wallTopY,d/2),toWorld(w/2,wallTopY,-d/2),toWorld(w/2,ridgeY,0),undefined,gableColor);
 
-  // Door on the local +x gable end (see yaw convention above).
   const doorW=.8,doorH=1.55;
-  wood.box(toWorld(w/2+.02,plinthY+doorH/2,0),[.06,doorH,doorW],[.22,.15,.10,0],yaw);
-  wood.box(toWorld(w/2+.06,plinthY+doorH+.06,0),[.06,.10,doorW+.15],[.30,.22,.15,0],yaw);
+  if(ruin){
+   stone.box(toWorld(w/2+.02,plinthY+doorH*.38,0),[.08,doorH*.76,doorW+.1],[.32,.30,.28,0],yaw);
+  }else{
+   wood.box(toWorld(w/2+.02,plinthY+doorH/2,0),[.06,doorH,doorW],[.22,.15,.10,0],yaw);
+   wood.box(toWorld(w/2+.06,plinthY+doorH+.06,0),[.06,.10,doorW+.15],[.30,.22,.15,0],yaw);
+  }
 
-  for(const win of windows)windowGlow(ctx,toWorld(win.lx??0,win.ly??(plinthY+wallH*.62),(win.wall??1)*(d/2+.015)),yaw,win.w??.55,win.h??.6,win.wall??1,win.strength??.45,lights);
-  // Street elevation: two windows flanking the door, plus a small lantern, so a 15 m view of
-  // the gable reads as a building (wall, roof, door, lit openings) rather than a dark slab.
-  // Lights are radius-windowed so they wash this wall and stop before the street centre-line.
-  for(const lz of [-.95,.95])windowGlow(ctx,toWorld(w/2+.015,plinthY+wallH*.58,lz),yaw,.40,.50,0,.45,lights);
-  lanternGlow(glow,toWorld(w/2+.16,plinthY+doorH+.14,0),{r:.045,h:.11});
-  lights.push({position:toWorld(w/2+.16,plinthY+doorH+.14,0),strength:.42,falloff:.6,radius:3.5});
+  const winStrength=ruin?.1:.2;
+  for(const win of windows){
+   if(ruin) darkWindow(ctx,toWorld(win.lx??0,win.ly??(plinthY+wallH*.62),(win.wall??1)*(d/2+.015)),yaw,win.w??.55,win.h??.6,win.wall??1);
+   else windowGlow(ctx,toWorld(win.lx??0,win.ly??(plinthY+wallH*.62),(win.wall??1)*(d/2+.015)),yaw,win.w??.55,win.h??.6,win.wall??1,win.strength??winStrength,lights);
+  }
+  for(const lz of [-.95,.95]){
+   if(ruin) darkWindow(ctx,toWorld(w/2+.015,plinthY+wallH*.58,lz),yaw,.40,.50,0);
+   else windowGlow(ctx,toWorld(w/2+.015,plinthY+wallH*.58,lz),yaw,.40,.50,0,winStrength,lights);
+  }
+  if(!ruin){
+   lanternGlow(glow,toWorld(w/2+.16,plinthY+doorH+.14,0),{r:.045,h:.11});
+   lights.push({position:toWorld(w/2+.16,plinthY+doorH+.14,0),strength:.28,falloff:.6,radius:3.5});
+  }
 
   if(chimney){
    const cx=w*.28,cz=0,cTop=ridgeY+.55;
    stone.box(toWorld(cx,(wallTopY+cTop)/2,cz),[.34,cTop-wallTopY,.34],[.42,.4,.38,0],yaw);
    stone.box(toWorld(cx,cTop+.06,cz),[.46,.10,.46],[.38,.36,.34,0],yaw);
-   // Smoke wisp: a short chain of gradient tubes widening and fading toward the fog colour as
-   // they rise, faked with vertex colour (this material system has no real alpha) rather than a
-   // particle or blend-mode effect. Gives the roofline a lived-in, smoke-stack silhouette.
-   let prevP=toWorld(cx,cTop+.16,cz),prevR=.05,prevC=[.40,.40,.38,0];
-   const fog=[.11,.13,.11,0];
-   for(let s=1;s<=3;s++){
-    const t=s/3,drift=Math.sin(s*1.9)*.05*s;
-    const p=toWorld(cx+drift,cTop+.16+t*1.0,cz+Math.cos(s*1.4)*.04*s);
-    const r=.05+t*.16;
-    const c=[prevC[0]+(fog[0]-prevC[0])*.45,prevC[1]+(fog[1]-prevC[1])*.45,prevC[2]+(fog[2]-prevC[2])*.45,0];
-    stone.tube(prevP,p,prevR,r,prevC,5,c);
-    prevP=p;prevR=r;prevC=c;
-   }
   }
 
   if(steeple){
-   // A small belfry stub above the ridge with a tapered cap, so the chapel's roofline reads as a
-   // chapel at a glance rather than just a tall gable. `steepleTop` lets the caller seat a cross
-   // finial precisely on the apex.
    const stH=1.3,sw=.85,stTopY=ridgeY+stH;
    stone.box(toWorld(0,(ridgeY+stTopY)/2,0),[sw,stH,sw],[.58,.56,.50,0],yaw);
    stone.tube(toWorld(0,stTopY,0),toWorld(0,stTopY+.6,0),sw*.72,.02,[.30,.28,.26,0],4);
    var steepleTop=toWorld(0,stTopY+.6,0)[1];
-  }
-
-  if(sign){
-   // The hanging board-and-bracket sign plus a small lantern beneath it, generalised from the
-   // tavern's original hand-placed geometry so any building can carry one.
-   const sx=w/2+.5;
-   wood.box(toWorld(sx,2.05,0),[.9,.5,.05],[.42,.28,.14,0],yaw);
-   wood.tube(toWorld(sx,2.55,0),toWorld(sx,2.3,0),.02,.02,[.2,.15,.1,0],4);
-   lanternGlow(glow,toWorld(sx,1.95,0),{r:.05,h:.12});
-   lights.push({position:toWorld(sx,1.95,0),strength:.3,falloff:.65,radius:3.5});
-  }
-
-  if(kind==='tavern'){
-   const depth=1.2;
-   for(const lz of [-d*.3,d*.3])
-    wood.tube(toWorld(w/2+.04,0,lz),toWorld(w/2+depth,wallH*.92,lz),.055,.04,[.28,.20,.13,0],5);
-   wood.quad(
-    toWorld(w/2,wallH+.06,-d/2-.08),toWorld(w/2,wallH+.06,d/2+.08),
-    toWorld(w/2+depth+.12,wallH+.38,d/2+.08),toWorld(w/2+depth+.12,wallH+.38,-d/2-.08),
-    undefined,roofColor);
   }
  }
  colliders.push({type:'box',position:{x,y:gy+wallTopY/2,z},size:{x:w+.3,y:wallTopY,z:d+.3},rotation:{y:yaw}});
@@ -193,8 +155,18 @@ export function building(ctx,spec){
  *  plus a small forward-poking glow nub (so the window still has visible volume from a grazing or
  *  top-down angle, where a flat pane flush with the wall nearly disappears). A radial wall-wash
  *  was tried and rejected: opaque discs on this material read as hard orange blots. */
+function darkWindow(ctx,center,yaw,w,h,side){
+ const {stone}=ctx;
+ const s=Math.sin(yaw),c=Math.cos(yaw);
+ const out=side===0?[c,0,-s]:[s*side,0,c*side];
+ const right=side===0?[s,0,c]:[c,0,-s];
+ const at=(rx,ry,off=0)=>[center[0]+right[0]*rx+out[0]*off,center[1]+ry,center[2]+right[2]*rx+out[2]*off];
+ stone.quad(at(-w/2,-h/2,.02),at(w/2,-h/2,.02),at(w/2,h/2,.02),at(-w/2,h/2,.02),undefined,[.16,.15,.13,0]);
+ stone.box(at(0,-h/2-.04,.03),[w+.1,.06,.08],[.38,.36,.32,0],yaw);
+}
+
 function windowGlow(ctx,center,yaw,w,h,side,strength,lights){
- const {glow,wood}=ctx;
+ const {glow,stone}=ctx;
  const s=Math.sin(yaw),c=Math.cos(yaw);
  // side ±1: long walls (local ±z). side 0: door gable (local +x).
  const out=side===0?[c,0,-s]:[s*side,0,c*side];
@@ -208,9 +180,9 @@ function windowGlow(ctx,center,yaw,w,h,side,strength,lights){
  const hw=w*.7,hh=h*.65;
  glow.quad(at(-hw,-hh,-.01),at(hw,-hh,-.01),at(hw,hh,-.01),at(-hw,hh,-.01),undefined,[.36,.32,.27,0]);
  lanternGlow(glow,at(0,0,.10),{r:w*.22,h:h*.4,tint:[1,.9,.72],dim:.45,sides:5});
- wood.box(at(0,-h/2-.05,.03),[w+.12,.07,.10],[.26,.19,.13,0],yaw);
- wood.box(at(0,h/2+.05,.03),[w+.12,.07,.10],[.26,.19,.13,0],yaw);
- wood.box(at(0,0,.02),[.05,h,.06],[.24,.17,.12,0],yaw);
+ stone.box(at(0,-h/2-.05,.03),[w+.12,.07,.10],[.38,.36,.32,0],yaw);
+ stone.box(at(0,h/2+.05,.03),[w+.12,.07,.10],[.38,.36,.32,0],yaw);
+ stone.box(at(0,0,.02),[.05,h,.06],[.34,.32,.28,0],yaw);
  lights.push({position:at(0,0,.15),strength,falloff:.55,radius:4.5});
  lights.push({position:at(0,-h*.9,.5),strength:strength*.7,falloff:.5,radius:3.5});
 }
@@ -316,15 +288,23 @@ export function crate(ctx,x,z,yaw=0){
  colliders.push({type:'box',position:{x,y:gy+.22,z},size:{x:.5,y:.44,z:.46},rotation:{y:yaw}});
 }
 
-/** Timber walkway between the street fronts, high enough to walk under. */
-export function skyBridge(ctx,z,span=8.0){
- const {wood,groundHeight}=ctx;
+/** Broken stone crossing: two piers, a stub lintel, the rest on the cobbles. */
+export function stoneArch(ctx,z,span=8.0){
+ const {stone,groundHeight}=ctx;
  const gy=groundHeight(0,z);
- const yDeck=gy+3.32;
- wood.box([0,yDeck,z],[span,.10,1.18],[.34,.24,.16,0]);
- wood.box([0,yDeck+.42,z-.56],[span,.07,.07],[.28,.20,.13,0]);
- wood.box([0,yDeck+.42,z+.56],[span,.07,.07],[.28,.20,.13,0]);
- const postX=span/2-.15;
- for(const x of [-postX,postX])for(const dz of [-.4,.4])
-  wood.tube([x,gy,z+dz],[x,yDeck,z+dz],.07,.055,[.30,.22,.14,0],5);
+ const pierW=.78,pierH=2.7,half=span/2-.12;
+ stone.box([-half,gy+pierH/2,z],[pierW,pierH,1.1],[.50,.48,.44,0]);
+ stone.box([ half,gy+pierH*.38,z],[pierW,pierH*.76,1.1],[.46,.44,.40,0]);
+ stone.box([-half+1.35,gy+pierH+.2,z],[2.6,.42,1.2],[.48,.46,.42,0],.06);
+ stone.box([.4,gy+.2,z+.9],[1.15,.4,.7],[.42,.40,.36,0],.55);
+ stone.box([1.6,gy+.12,z+.35],[.7,.24,.5],[.40,.38,.34,0],-.3);
+}
+
+export function rubble(ctx,x,z,n=5){
+ const {stone,groundHeight}=ctx;
+ const gy=groundHeight(x,z);
+ for(let i=0;i<n;i++){
+  const a=i*1.37,r=.18+i*.07;
+  stone.box([x+Math.cos(a)*r,gy+.08+i*.02,z+Math.sin(a)*r],[.28+i*.05,.12+i*.04,.22+i*.04],[.40+i*.02,.38,.34,0],a*.3);
+ }
 }

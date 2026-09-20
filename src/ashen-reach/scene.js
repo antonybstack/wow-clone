@@ -1,7 +1,7 @@
 import {setShaderUniform} from '@babylonjs/lite';
 import {Batch,rng,height,pathX,buildingPads,add,mul,sub,norm,cross,terrainNormal,lanternGlow} from './geometry.js';
 import {surface,sky} from './materials.js';
-import {building,marketStall,well,forgeGlow,crossFinial,barrel,crate,skyBridge} from './buildings.js';
+import {building,marketStall,well,forgeGlow,crossFinial,barrel,stoneArch,rubble} from './buildings.js';
 import {buildHorizon} from './horizon.js';
 
 /** A new scene layout. No Moonwell world builders, architecture or vegetation placement. */
@@ -135,12 +135,12 @@ export async function buildChurchyard(engine,scene){
 
  function streetLamp(x,z,strength=.82){
   const y=height(x,z);
-  wood.tube([x,y,z],[x,y+2.9,z],.09,.05,[.62,.56,.48,0],6);
+  stone.tube([x,y,z],[x,y+2.9,z],.10,.07,[.52,.50,.46,0],6);
   const p=[x,y+2.62,z];
   lanternGlow(warm,p,{r:.13,h:.28});
-  for(let j=0;j<4;j++){const dx=j<2?-.15:.15,dz=j%2?-.15:.15;wood.box([p[0]+dx,p[1],p[2]+dz],[.036,.48,.036],[.32,.32,.3,0]);}
-  wood.box([p[0],p[1]-.23,p[2]],[.37,.06,.37],[.32,.32,.3,0]);
-  wood.tube([p[0],p[1]+.19,p[2]],[p[0],p[1]+.44,p[2]],.26,0,[.32,.32,.3,0],4);
+  for(let j=0;j<4;j++){const dx=j<2?-.15:.15,dz=j%2?-.15:.15;stone.box([p[0]+dx,p[1],p[2]+dz],[.036,.48,.036],[.38,.36,.32,0]);}
+  stone.box([p[0],p[1]-.23,p[2]],[.37,.06,.37],[.38,.36,.32,0]);
+  stone.tube([p[0],p[1]+.19,p[2]],[p[0],p[1]+.44,p[2]],.26,0,[.38,.36,.32,0],4);
   // Ambient/wall light from the lamp head. M7a windowed it at radius 9. M8b raises strength
   // .68 -> .82 (the window still kills the tail, and the centre-line is well under the 1.4 knee).
   lights.push({position:p,strength,falloff:.42,radius:9});
@@ -251,47 +251,65 @@ export async function buildChurchyard(engine,scene){
  building(ctx,{x:pads[7].x,z:pads[7].z,w:4.4,d:4.4,yaw:EAST,wallH:6.2,kind:'watchtower',
   windows:[{wall:1,ly:2.6},{wall:-1,ly:2.6},{wall:1,ly:4.6},{wall:-1,ly:4.6},{wall:1,ly:5.6},{wall:-1,ly:5.6}]});
 
- building(ctx,{x:pads[9].x,z:pads[9].z,w:5.2,d:5.4,yaw:WEST,wallH:2.15,roofH:1.05,kind:'house',chimney:true,
+ building(ctx,{x:pads[9].x,z:pads[9].z,w:5.2,d:5.4,yaw:WEST,wallH:2.15,roofH:1.05,kind:'house',ruin:true,
   windows:[{wall:1,w:.46,h:.5},{wall:-1,w:.46,h:.5}]});
- building(ctx,{x:pads[10].x,z:pads[10].z,w:5.0,d:5.6,yaw:EAST,wallH:2.35,roofH:1.2,kind:'house',upper:true,
-  windows:[{wall:1,w:.46,h:.5},{wall:-1,w:.46,h:.5},{wall:1,ly:3.55,w:.36,h:.42}]});
- building(ctx,{x:pads[11].x,z:pads[11].z,w:5.4,d:5.2,yaw:WEST,wallH:2.2,roofH:1.1,kind:'house',leanTo:1,
+ building(ctx,{x:pads[10].x,z:pads[10].z,w:5.0,d:5.6,yaw:EAST,wallH:2.35,roofH:1.2,kind:'house',chimney:true,
+  windows:[{wall:1,w:.46,h:.5},{wall:-1,w:.46,h:.5}]});
+ building(ctx,{x:pads[11].x,z:pads[11].z,w:5.4,d:5.2,yaw:WEST,wallH:2.2,roofH:1.1,kind:'house',ruin:true,leanTo:1,
   windows:[{wall:1,w:.48,h:.52},{wall:-1,w:.48,h:.52}]});
- building(ctx,{x:pads[12].x,z:pads[12].z,w:5.1,d:5.5,yaw:EAST,wallH:2.5,roofH:1.25,kind:'house',chimney:true,upper:true,
+ building(ctx,{x:pads[12].x,z:pads[12].z,w:5.1,d:5.5,yaw:EAST,wallH:2.5,roofH:1.25,kind:'house',chimney:true,
   windows:[{wall:1,w:.46,h:.5},{wall:-1,w:.46,h:.5}]});
- skyBridge(ctx,91,9.2);
+ stoneArch(ctx,91,9.2);
 
- // Well square: the plaza at the north end of the street, with stalls around its rim.
+ // Well square: stone ring, one collapsed stall remnant, rubble instead of a market.
  well(ctx,pads[8].x,pads[8].z);
- marketStall(ctx,pads[8].x-4.6,pads[8].z-2.0,WEST);
  marketStall(ctx,pads[8].x+4.6,pads[8].z-1.4,EAST);
- marketStall(ctx,pads[8].x-3.4,pads[8].z+3.2,WEST+.35);
 
- // Two more stalls line the main street between pads, off the road but on natural (unflattened)
- // terrain, so their footprint is tracked separately for the ground-cover pass below.
- for(const [z,side] of [[90,-1],[106,1],[84,1],[100,-1],[118,1]]){const sx=pathX(z)+side*2.55;marketStall(ctx,sx,z,side<0?EAST:WEST);extraFootprints.push({x:sx,z,r:1.6});}
-
- // Cobble the street so the canyon reads as a paved way, not a dirt ribbon through grass.
- for(let z=76;z<134.5;z+=0.80){
+ // Irregular cobbles: varied size, missing stones, moss, sunken tiles. Grass grows in the gaps.
+ for(let z=76;z<136;){
+  const rowD=.28+rn(.12,.38);
   const px=pathX(z);
-  for(let k=-2;k<=2;k++){
-   const x=px+k*0.76+rn(-.05,.05);
-   const y=height(x,z)+.028;
-   const shade=rn(.0,.07);
-   stone.box([x,y,z],[.70,.046,.66],[.44+shade,.41+shade*.7,.36+shade*.5,0],rn(-.14,.14));
+  for(let x=px-2.55;x<px+2.55;){
+   const tw=.28+rn(0,.38),td=.22+rn(0,.28);
+   if(rn(0,1)>.22){
+    const cx=x+tw/2,cz=z+(rn(0,1)-.5)*rowD*.2;
+    const sink=rn(0,1)>.8?-.02:0;
+    const y=height(cx,cz)+.014+rn(0,.012)+sink;
+    const roll=rn(0,1);
+    const col=roll>.78?[.40+rn(0,.04),.41+rn(0,.04),.34+rn(0,.03),0]
+     :roll>.4?[.50+rn(0,.06),.48+rn(0,.05),.42+rn(0,.04),0]
+     :[.36+rn(0,.05),.34+rn(0,.04),.30+rn(0,.03),0];
+    stone.box([cx,y,cz],[tw,.028+rn(0,.02),Math.min(td,rowD*.9)],col,rn(-.18,.18));
+   }
+   x+=tw+.035+rn(0,.07);
   }
+  z+=rowD+.03;
+ }
+ // Plaza cobbles around the well, same irregular language.
+ for(let i=0;i<160;i++){
+  const a=rn(0,Math.PI*2),rad=rn(.9,5.2);
+  const x=pads[8].x+Math.cos(a)*rad,z=pads[8].z+Math.sin(a)*rad;
+  if(Math.hypot(x-pads[8].x,z-pads[8].z)<1.15)continue;
+  if(rn(0,1)<.15)continue;
+  const tw=.3+rn(0,.4),td=.24+rn(0,.32);
+  const y=height(x,z)+.014+rn(0,.016);
+  const roll=rn(0,1);
+  const col=roll>.7?[.40+rn(0,.04),.41+rn(0,.04),.34+rn(0,.03),0]
+   :[.48+rn(0,.06),.46+rn(0,.04),.40+rn(0,.04),0];
+  stone.box([x,y,z],[tw,.03,td],col,a*.15);
  }
 
- const props=[
-  [-3.1,83],[-3.35,84.1],[3.2,87.4],[3.45,88.2],
-  [-3.0,97.2],[-3.25,98.4],[3.15,97.6],
-  [-3.2,113.5],[3.25,115.2],[-2.9,127.4],[2.95,129.1],
-  [-2.4,135.2],[2.2,134.6],[-4.8,136.8],[4.6,137.2],
- ];
- for(const [x,z] of props)barrel(ctx,x,z);
- for(const [x,z,yaw] of [[-2.55,85.6,.3],[2.7,99.4,-.4],[-2.7,107.2,.6],[2.5,119.8,-.2],[-3.6,133.5,.15]])
-  crate(ctx,x,z,yaw);
- extraFootprints.push(...props.map(([x,z])=>({x,z,r:0.7})));
+ rubble(ctx,-3.2,84,6);
+ rubble(ctx,3.1,88,5);
+ rubble(ctx,-3.0,98,7);
+ rubble(ctx,1.15,91.7,4);
+ rubble(ctx,-2.8,107,5);
+ rubble(ctx,3.2,115,6);
+ rubble(ctx,-3.4,128,5);
+ rubble(ctx,2.6,133,4);
+ barrel(ctx,-4.8,136.8);
+ barrel(ctx,4.6,137.2);
+ extraFootprints.push({x:-3.2,z:84,r:1.1},{x:3.1,z:88,r:1.0},{x:-3.0,z:98,r:1.2},{x:1.15,z:91.7,r:.9});
 
  for(const [x,z,H,seed] of [[-15,84,11,801],[-16,99,13,914],[16,92,12,722],[15.5,116,14,633],[-15.5,124,12,540],[16,130,11,411]])
   tree(x,z,H,seed,true);
@@ -313,9 +331,9 @@ export async function buildChurchyard(engine,scene){
   }
   for(const f of extraFootprints)c=Math.min(c,ease(Math.hypot(x-f.x,z-f.z),f.r*.4,f.r+2.6));
   // Well square: a proper open plaza, cleared well past the well pad's own footprint.
-  c=Math.min(c,ease(Math.hypot(x-pads[8].x,z-pads[8].z),3.0,9.0));
-  // Main street: wide trodden ground either side of the centreline, not just a thin ribbon.
-  c=Math.min(c,ease(Math.abs(x-pathX(z)),1.0,3.4));
+  c=Math.min(c,ease(Math.hypot(x-pads[8].x,z-pads[8].z),2.0,7.0));
+  // Abandoned street: grass returns in the cobble joints, not a swept plaza.
+  c=Math.min(c,ease(Math.abs(x-pathX(z)),0.3,2.4));
   if(z>71&&z<79)c=0; // town gatehouse wall and towers
   return c;
  }
