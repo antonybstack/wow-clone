@@ -29,12 +29,16 @@ try {
     return {
       label: kind,
       ...s,
-      viewport: { w: innerWidth, h: innerHeight },
-      dpr: devicePixelRatio,
+      viewport: s.viewport || { w: innerWidth, h: innerHeight },
+      dpr: s.dpr ?? devicePixelRatio,
       enemies: ASHEN.combat.enemies?.length ?? 0,
       enemyStates: (ASHEN.combat.enemies || []).map((e) => e.state),
     };
   }, label);
+  result.uncappedLaunch = process.env.ASHEN_UNCAPPED === "1";
+  result.cap = result.vsyncCapped
+    ? `SITTING ON A ${result.capHz} Hz CAP. ${result.capReason}. Frame time is the compositor interval, not headroom.`
+    : result.capReason || "cap detector not present";
   console.log(JSON.stringify(result, null, 2));
 } finally {
   await page.keyboard.up("KeyW").catch(() => {});
