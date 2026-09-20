@@ -49,6 +49,11 @@ const read = () =>
 const plantOn = async (index) => {
   await page.evaluate((i) => {
     for (const e of ASHEN.combat.enemies) {
+      // Do not resurrect a dead enemy: forcing state="idle" on one whose hp
+      // is still 0 makes the death transition (hp<=0 && state!=="dead") run
+      // again on the next tick and award its XP a second time. Leave dead
+      // enemies alone; they respawn (hp reset first) on their own timer.
+      if (e.state === "dead") continue;
       e.lockedState = "idle";
       e.state = "idle";
       e.idleFor = 99;
@@ -65,6 +70,16 @@ const plantOn = async (index) => {
     ASHEN.setView("play");
     return e.id;
   }, index);
+  // FireBlast.validate() refuses to cast until the player is grounded
+  // (`Land before casting`); a teleport via setWorldPos does not clear that
+  // synchronously; the physics step needs a frame to confirm ground contact.
+  // Without this wait, a cast attempted right after plantOn can be silently
+  // rejected instead of landing on the enemy.
+  await page.waitForFunction(
+    () => ASHEN.player.getGrounded() && ASHEN.body.getState().phase !== "air",
+    null,
+    { timeout: 3000 },
+  );
 };
 
 try {
@@ -141,6 +156,12 @@ try {
     "Threshold is armed one XP below the level-up",
     beforeLevel.xp === beforeLevel.xpToNext - 1 && beforeLevel.level === 1,
   );
+  // Fire Blast has a 1s cooldown from the dummy cast a moment ago; without
+  // this wait the keypress below is silently dropped ("Fire Blast is not
+  // ready") and the enemy is never actually hit.
+  await page.waitForFunction(() => ASHEN.combat.spell.cooldown <= 0, null, {
+    timeout: 3000,
+  });
   await page.keyboard.press("Digit1");
   await page.waitForFunction(
     () => ASHEN.combat.progress.level >= 2,
