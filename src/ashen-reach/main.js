@@ -67,7 +67,7 @@ async function main(){
  const packs={
   human:{race:'human',manifestUrl:'/ashen-reach/equipment/manifest.json',baseMeshes:BASE_VISIBLE_MESHES,fitId:HUMAN_EQUIPMENT_FIT},
   orc:{race:'orc',manifestUrl:'/ashen-reach/equipment-orc/manifest.json',baseMeshes:ORC_BASE_VISIBLE_MESHES,fitId:ORC_EQUIPMENT_FIT,bodyUrl:'/ashen-reach/equipment-orc/body.glb'},
-  undead:{race:'undead',manifestUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/manifest.json`,baseMeshes:UNDEAD_BASE_VISIBLE_MESHES,fitId:UNDEAD_EQUIPMENT_FIT,bodyUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/body.glb`,streamedOnly:true},
+  undead:{race:'undead',manifestUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/manifest.json`,baseMeshes:UNDEAD_BASE_VISIBLE_MESHES,fitId:UNDEAD_EQUIPMENT_FIT,bodyUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/body.glb`},
  };
  let impl=preloadedEquipment?createEquipment(engine,scene,body,combat.fx.sockets):await createStreamedEquipment(engine,scene,body,combat.fx.sockets,packs.human);
  let currentRace='human';
@@ -88,10 +88,12 @@ async function main(){
    if(race===currentRace)return;
    const pack=packs[race];
    if(!pack)throw Error('Unknown race pack');
-   // ?preloadedEquipment serves one baked Human-fit GLB instead of a streamed per-race pack.
-   // Swapping the body under it would leave an Undead wearing Human-fit garments -- the same
-   // silent substitution, pointed the other way. Refuse before touching the live character.
-   if(preloadedEquipment&&pack.streamedOnly)throw Error(`${race} needs the streamed equipment pack; ?preloadedEquipment serves one baked Human fit.`);
+   // ?preloadedEquipment serves one baked Human-fit GLB instead of a streamed per-race pack, so
+   // no race but Human can be honoured under it. It used to swap the body and report success:
+   // switchRace('orc') answered race='orc' while the churchyard still showed a Human in Human
+   // garments -- a silent Human fit wearing another race's label, which is the one thing this
+   // milestone must make impossible. Refuse on the mode, before anything touches the character.
+   if(preloadedEquipment&&race!=='human')throw Error(`${race} needs the streamed equipment pack; ?preloadedEquipment serves one baked Human fit.`);
    const previousRace=currentRace;
    const previousImpl=impl;
    const loadout={...impl.getState()};
@@ -99,7 +101,6 @@ async function main(){
    try{
     if(pack.bodyUrl)await body.swapSource(pack.bodyUrl);
     else body.restoreSource();
-    if(preloadedEquipment){impl.setVisible(true);currentRace=race;return;}
     const bootLoadout=pack.garments===false
      ?{...EMPTY_LOADOUT,mainHand:factoryHand(loadout.mainHand),offHand:factoryHand(loadout.offHand)}
      :(parkedGarments||loadout);
