@@ -715,3 +715,41 @@ cloak opening.
 
 Round 3 is not launched yet. M8a/M8b are in flight; M7b stays on slot 3 for a
 possible front-cowl pass after those return.
+
+## M8a worker returned, 2026-09-20 — not merged
+
+Branch `m8a` tip `6275441`. Hypothesis survived: naive `attachCrowd(8)` is
++442,560 scene triangles / +16 draws / 8 unique GLB uploads. Ten procedural
+cloaked figures packed into one `Batch` on the existing `Rotten fence` wood
+material: **+2,142 tris, +0 draws**. Churchyard before→after 9.70% vs same-code
+control 9.50% (wind grass).
+
+Parent opened the stills and a live walk. Well-square and stall-close read as
+people. Faces are dark hood holes; backs are cloaked cones; tavern patron is a
+cutout against the wall. `townsfolk.js` transcribes its own light list — if M8b
+merges first those figures will bake against stale strengths.
+
+Telegram: stills 634–635, walk MP4 638,
+https://ve.sparkify.dev/wow-clone/ashen-reach/m8a/2026-09-20-hollowmere-townsfolk-walk.mp4
+(`video/mp4`, Range 206).
+
+## M8b worker returned, 2026-09-20 — not merged
+
+Branch `m8b` tip `659ad0d`. Diagnosis survived: the 19% peak drop is the window,
+not the knee. Corridor re-level (pool 1.00→1.70, head 0.68→0.82, halo stays 0.6)
+puts the centre-line peak **1.297 → 1.730** with all eleven fixture-to-fixture
+ratios holding or improving vs M7a. Street gables got two windows and a door
+lantern; an opaque wall-wash was tried and pulled (hard orange discs). Cost
++856 triangles, 42 draws unchanged.
+
+Parent opened the stills and a live walk. Street lamps are discrete and
+brighter; the tavern gable reads as a building. Roofs still go to black from
+the overlook; windows are bright rectangles on dark wood.
+
+Telegram: stills 636/640–641, lighting MP4 642,
+https://ve.sparkify.dev/wow-clone/ashen-reach/m8b/2026-09-20-hollowmere-lighting-walk.mp4
+(`video/mp4`).
+
+Nothing here is accepted. Merge order if both land: M8b first (bake/lights),
+then M8a, then retune `townsfolk.js`'s transcribed light list so the figures
+pick up the new bake.
