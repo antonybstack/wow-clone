@@ -1,7 +1,8 @@
 import {createStreamedEquipment} from './equipment-stream.js';
 import {BASE_VISIBLE_MESHES, ORC_BASE_VISIBLE_MESHES, EQUIPMENT_ITEMS} from './equipment-catalog.js';
 import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT} from './equipment-contract.js';
-import {createEngine,createSceneContext,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,startEngine,onBeforeRender,enableBoneControl,enableErrorDecoding,decodeError,setFog,captureScreenshot,setMeshVisible} from '@babylonjs/lite';
+import {createEngine,createSceneContext,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,startEngine,onBeforeRender,enableBoneControl,enableErrorDecoding,decodeError,setFog,captureScreenshot,setMeshVisible,isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize} from '@babylonjs/lite';
+import {createAshenMetrics} from './metrics.js';
 import {createEquipment} from './equipment.js';
 import {createArmory} from './armory.js';
 import {loadTrainingDummy,createCombat} from './combat.js';
@@ -18,7 +19,9 @@ import {resolvePlayableBody} from '../character/runtime/playable-body.js';
 enableErrorDecoding();
 async function main(){
  const canvas=document.getElementById('renderCanvas');
- const engine=await createEngine(canvas,{msaaSamples:1,maxDevicePixelRatio:.75});
+ const params=new URLSearchParams(location.search);
+ const pixelRatio=Number(params.get('pixelRatio'));
+ const engine=await createEngine(canvas,{msaaSamples:1,maxDevicePixelRatio:pixelRatio>0?pixelRatio:.75});
  const scene=createSceneContext(engine);scene.clearColor={r:FOG[0],g:FOG[1],b:FOG[2],a:1};
  scene.imageProcessing.toneMappingEnabled=false;scene.imageProcessing.exposure=.7;
  setFog(scene,{mode:1,density:.010,color:FOG});
@@ -30,7 +33,7 @@ async function main(){
  scene.camera=reference;
  const world=await buildChurchyard(engine,scene);initInput(canvas);
  const sourceBody=resolvePlayableBody('?character=human-source');
- const preloadedEquipment=new URLSearchParams(location.search).has('preloadedEquipment');
+ const preloadedEquipment=params.has('preloadedEquipment');
  const playable={...sourceBody,assetURL:preloadedEquipment?'/ashen-reach/wanderer-equipment.glb':'/ashen-reach/equipment/body.glb',directionalSpeed:3.5,
   // Left-foot low-contact phases measured on this fitted GLB by audit-gaits.mjs.
   gaitContacts:{Walk_Loop:.233333,Sprint_Loop:.175,Jog_Bwd_Loop:.333333,Jog_Left_Loop:.208333,Jog_Right_Loop:.983333},
@@ -45,7 +48,7 @@ async function main(){
  // the terrain's east/west edges (large radius). A rectangular clamp matches the actual extent.
  const player=await setupPlayer(engine,scene,rig,{spawn:plantSpawnOnTerrain(world.spawn,capsule,height),colliders:world.colliders,groundHeight:height,boundsRect:{minX:-88,maxX:88,minZ:-93,maxZ:143},capsule});
  enableBoneControl();const body=await attachBody(engine,scene,player,player.capsuleHeight,playable);
- const enemies=new URLSearchParams(location.search).has('noEnemies')?[]:await loadEnemies(engine,scene,world);
+ const enemies=params.has('noEnemies')?[]:await loadEnemies(engine,scene,world);
  bindEnemyColliders(enemies,player,world);
  const combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig,enemies);
  body.bindSocketHost(combat.fx.sockets);
@@ -111,11 +114,12 @@ async function main(){
  const reset=()=>{player.setWorldPos(0,height(0,0)+capsule.height/2,0);player.setFacing(0);rig.yaw=0;rig.pitch=.04;combat.releaseSpirit?.(true);setView('reference');};
  const armory=createArmory({scene,canvas,player,body,combat,equipment,getView:()=>view,setView});
  document.addEventListener('keydown',e=>{if(armory.isOpen)return;if(e.code==='KeyV'){setView(view==='reference'?'play':'reference');}if(e.code==='KeyR'){if(combat.releaseSpirit?.())return;reset();}if(e.code==='KeyH')document.body.classList.toggle('clean');if(['KeyW','KeyA','KeyS','KeyD','Space','Tab','Digit1','Digit2'].includes(e.code))setView('play');});
- if(new URLSearchParams(location.search).has('clean'))document.body.classList.add('clean');
- setView(new URLSearchParams(location.search).has('play')?'play':'reference');
- onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);elapsed+=dt;player.kinematicStep(dt);combat.beforeAnimation(dt);body.update(dt);world.update(elapsed);combat.afterAnimation(dt);equipment.update(dt);armory.update(dt);if(elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();}});
- const summary=()=>{const a=[...samples].sort((a,b)=>a-b),mean=a.reduce((s,x)=>s+x,0)/(a.length||1);return{fps:1000/mean,meanMs:mean,p95Ms:a[Math.floor(a.length*.95)],samples:a.length,drawCalls:engine.drawCallCount,resolution:[canvas.width,canvas.height],...world.stats};};
- globalThis.ASHEN={engine,scene,camera,reference,rig,player,body,world,combat,armory,equipment,input,setView,reset,metrics:{summary,reset(){samples.length=0;}},capture:()=>captureScreenshot(engine)};
+ if(params.has('clean'))document.body.classList.add('clean');
+ setView(params.has('play')?'play':'reference');
+ const metrics=createAshenMetrics({engine,scene,world,canvas,samples,lite:{isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize}});
+ if(params.has('gpuTiming'))metrics.setGpuTiming(true);
+ onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);elapsed+=dt;player.kinematicStep(dt);combat.beforeAnimation(dt);body.update(dt);world.update(elapsed);combat.afterAnimation(dt);equipment.update(dt);armory.update(dt);if(elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();metrics.sampleGpu();}});
+ globalThis.ASHEN={engine,scene,camera,reference,rig,player,body,world,combat,armory,equipment,input,setView,reset,metrics,capture:()=>captureScreenshot(engine)};
  await registerScene(scene);await startEngine(engine);globalThis.ASHEN.ready=true;document.getElementById('loading').remove();
 }
 main().catch(e=>{console.error(e);const el=document.getElementById('error');el.style.display='block';let message=e.stack||String(e);try{message+='\n'+decodeError(e);}catch{}el.textContent=message;});
