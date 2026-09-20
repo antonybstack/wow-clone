@@ -145,6 +145,14 @@ export function createAshenMetrics({ engine, scene, world, canvas, samples, lite
     return [canvas.width, canvas.height];
   }
 
+  function setInternalResolution(width, height) {
+    const w = Math.round(Number(width));
+    const h = Math.round(Number(height));
+    if (!(w > 0 && h > 0)) throw Error("internal resolution must be positive");
+    lite.setEngineSize(engine, w, h);
+    return [canvas.width, canvas.height];
+  }
+
   function reset() {
     samples.length = 0;
     gpuSamples.length = 0;
@@ -175,6 +183,7 @@ export function createAshenMetrics({ engine, scene, world, canvas, samples, lite
       triangleCountMs: counts.triangleCountMs,
       gpuTimingSupported: lite.isGpuTimingSupported(engine),
       gpuTimingEnabled: gpuWanted,
+      gpuTimingReadback: !gpuWanted ? "disabled" : gpu.samples ? "ok" : "timestamp queries returned 0",
       gpuMs: engine.gpuFrameTimeMs || null,
       gpuMeanMs: gpu.samples ? gpu.meanMs : null,
       gpuP95Ms: gpu.samples ? gpu.p95Ms : null,
@@ -186,5 +195,5 @@ export function createAshenMetrics({ engine, scene, world, canvas, samples, lite
     };
   }
 
-  return { summary, reset, sampleGpu, setGpuTiming, setPixelRatio, countSceneTriangles: () => countSceneTriangles(scene) };
+  return { summary, reset, sampleGpu, setGpuTiming, setPixelRatio, setInternalResolution, countSceneTriangles: () => countSceneTriangles(scene) };
 }

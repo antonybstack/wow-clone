@@ -8,7 +8,7 @@
  *
  * Usage:
  *   node scripts/ashen-reach/measure-scene-fps.mjs [--no-enemies] [--gpu-timing]
- *     [--pixel-ratio N] [--seconds N] [--probe-enemies] [--label name]
+ *     [--pixel-ratio N] [--internal WxH] [--seconds N] [--probe-enemies] [--label name]
  *
  * Chrome must already be up (scripts/harness/up.mjs --slot 4). Pass
  * --uncapped on that launch to request a vsync-free compositor; this
@@ -29,6 +29,7 @@ const noEnemies = flag("no-enemies");
 const gpuTiming = flag("gpu-timing");
 const probeEnemies = flag("probe-enemies");
 const pixelRatio = arg("pixel-ratio", null);
+const internal = arg("internal", null);
 const seconds = Number(arg("seconds", "6")) || 6;
 const label = arg("label", noEnemies ? "no-enemies" : "with-enemies");
 const uncappedLaunch = process.env.ASHEN_UNCAPPED === "1";
@@ -71,6 +72,17 @@ try {
     );
     await page.waitForTimeout(200);
   }
+  if (internal) {
+    const [w, h] = internal.split("x").map(Number);
+    const size = await page.evaluate(
+      ([width, height]) => ASHEN.metrics.setInternalResolution(width, height),
+      [w, h],
+    );
+    if (!size || size[0] !== w || size[1] !== h) {
+      console.error("internal resolution did not stick", { requested: [w, h], got: size });
+    }
+    await page.waitForTimeout(200);
+  }
 
   await page.keyboard.down("KeyW");
   await page.waitForTimeout(1500);
@@ -108,6 +120,7 @@ try {
       maxDevicePixelRatio: s.maxDevicePixelRatio,
       gpuTimingSupported: s.gpuTimingSupported,
       gpuTimingEnabled: s.gpuTimingEnabled,
+      gpuTimingReadback: s.gpuTimingReadback,
       gpuMs: s.gpuMs,
       gpuMeanMs: s.gpuMeanMs,
       gpuP95Ms: s.gpuP95Ms,
