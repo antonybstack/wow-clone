@@ -163,29 +163,42 @@ try {
   await page.screenshot({ path: `${dir}/chase.png` });
   console.log("wrote chase.png");
 
-  // Melee mid-punch: hold attack and wait until the swing is actually up.
+  // Melee mid-punch from a 3/4 flank so the striking arm is not behind the player.
   await page.evaluate(() => {
     const e = ASHEN.combat.enemies[0];
     e.lockedState = "attack";
     e.state = "attack";
-    e.actor.play("punch", { loop: true, speed: 0.58 });
-    const punch = e.actor.clips.punch;
-    if (punch) punch.currentTime = punch.duration * 0.45;
+    e.hidden = false;
+    e.actor.setVisible(true);
+    e.actor.play("punch", { loop: true, speed: 0.45 });
+    const x = e.position.x;
+    const z = e.position.z;
+    const px = x - 2.5;
+    const pz = z + 1.1;
+    const y = ASHEN.world.groundHeight(px, pz) + ASHEN.player.capsuleHeight / 2;
+    ASHEN.player.setWorldPos(px, y, pz);
+    e.yaw = Math.atan2(px - x, pz - z);
+    const yaw = Math.atan2(x - px, z - pz);
+    ASHEN.player.setFacing(yaw);
+    ASHEN.rig.yaw = yaw - 0.55;
+    ASHEN.rig.pitch = 0.12;
+    ASHEN.rig.distance = ASHEN.rig.distanceTarget = 3.7;
+    ASHEN.combat.targeting.select(e.id);
+    ASHEN.setView("play");
   });
-  await flank(2.1, 0.7, 3.9, -0.32);
   await page.waitForFunction(
     () => {
       const punch = ASHEN.combat.enemies[0]?.actor?.clips?.punch;
       if (!punch || !punch.isPlaying) return false;
       const t = punch.currentTime / (punch.duration || 1);
-      return t > 0.25 && t < 0.8;
+      return t > 0.32 && t < 0.62;
     },
     null,
-    { timeout: 4000 },
+    { timeout: 5000 },
   );
-  await settle(120);
+  await settle(80);
   await page.screenshot({ path: `${dir}/melee.png` });
-  console.log("wrote melee.png");
+  console.log("wrote melee.png (3/4, striking arm visible)");
 
   // Death: kill the shade and catch the fall before it hides.
   await page.evaluate(() => {
