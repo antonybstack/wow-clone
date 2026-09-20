@@ -1,9 +1,18 @@
-"""Grade Human catalogue garments onto the print-sculpt Orc rest.
+"""Author Orc rest meshes for the print-sculpt body. Isolated Blender.
 
-Isolated background Blender. MHCLO cannot map this topology. Uniform stature
-scale is only a starting cage: boots and gloves are then stretched to enclose
-the print foot/calf and hand/forearm. Other pieces get a bulk XZ grade plus
-push-off. Does not write public/ — prepare-orc-equipment.mjs remaps the skin.
+MHCLO cannot map this topology. Nearest-surface push and origin-scale of Human
+clothes leave a 9 cm cuff on a print bicep and shred a hollow Viking last.
+Do not restore those operators for gloves or boots.
+
+- Gloves: inflated limb shell of the print hand/forearm/distal arm (Human
+  Toigo gloves are too short to grade). Mixamo weights come with the body.
+- Boots: translate each Human last onto the print foot centroid, uniform
+  horizontal scale about that centroid, shaft-only height extend. Skip
+  push-off — inner last verts nearest-snap to the foot and tear the mesh.
+- Tunic/vestment sleeves: cylindrical radius grade about the print arm axis
+  so skinny Human sleeves cannot trumpet-snap to the chest.
+
+Does not write public/ — prepare-orc-equipment.mjs remaps the skin.
 """
 from __future__ import annotations
 
@@ -11,6 +20,7 @@ import json
 import sys
 from pathlib import Path
 
+import bmesh
 import bpy
 from mathutils import Vector
 from mathutils.bvhtree import BVHTree
@@ -158,15 +168,19 @@ def build_body_bvh(body):
     return BVHTree.FromObject(body, depsgraph, epsilon=0.0)
 
 
-def push_off_body(ob, body, bvh, offset):
+def push_off_body(ob, body, bvh, offset, skip_fn=None):
     target_mw = body.matrix_world
     target_imw = target_mw.inverted()
     ob_mw = ob.matrix_world
     ob_imw = ob_mw.inverted()
     normal_m = target_mw.to_3x3()
     moved = 0
+    skipped = 0
     for v in ob.data.vertices:
         world = ob_mw @ v.co
+        if skip_fn and skip_fn(world):
+            skipped += 1
+            continue
         local = target_imw @ world
         hit = bvh.find_nearest(local)
         if hit[0] is None:
@@ -183,7 +197,7 @@ def push_off_body(ob, body, bvh, offset):
             v.co = ob_imw @ world
             moved += 1
     ob.data.update()
-    log(f'push_off {ob.name} moved={moved}/{len(ob.data.vertices)} offset={offset}')
+    log(f'push_off {ob.name} moved={moved}/{len(ob.data.vertices)} skip={skipped} offset={offset}')
     return moved
 
 
@@ -205,75 +219,6 @@ def body_points(body, substrings, min_w=0.25, z_max=None):
             if z_max is None or world.z <= z_max + 0.02:
                 pts.append(world)
     return pts
-
-
-def enclose_origin(meshes, pts, margin=0.024):
-    if not pts:
-        raise RuntimeError('enclose_origin: no target points')
-    mn, mx = world_bbox(meshes)
-    tx = [p.x for p in pts]
-    ty = [p.y for p in pts]
-    tz = [p.z for p in pts]
-    need_x = max(abs(min(tx)), abs(max(tx))) + margin
-    need_y = max(abs(min(ty)), abs(max(ty))) + margin
-    need_z = max(tz) + margin
-    have_x = max(abs(mn.x), abs(mx.x), 1e-4)
-    have_y = max(abs(mn.y), abs(mx.y), 1e-4)
-    have_z = max(mx.z, 1e-4)
-    sx, sy, sz = need_x / have_x, need_y / have_y, need_z / have_z
-    log(f'enclose_origin scale=({sx:.3f},{sy:.3f},{sz:.3f}) target z<{need_z:.3f}')
-    for ob in meshes:
-        ob.scale = Vector((sx, sy, sz))
-        bpy.context.view_layer.update()
-        apply_visual(ob)
-    mn, mx = world_bbox(meshes)
-    dy = (max(ty) + margin) - mx.y
-    if dy > 0.001:
-        for ob in meshes:
-            ob.location.y += dy
-            apply_visual(ob)
-        log(f'enclose_origin shift y+{dy:.3f}')
-
-
-def enclose_capsule(ob, origin, axis_end, pts, radius_margin=0.03, axis_margin=0.05):
-    if not pts:
-        raise RuntimeError('enclose_capsule: no target points')
-    axis = axis_end - origin
-    if axis.length < 1e-5:
-        raise RuntimeError('enclose_capsule: degenerate axis')
-    axis.normalize()
-    t_pts = [(p - origin).dot(axis) for p in pts]
-    r_pts = [((p - origin) - axis * t).length for p, t in zip(pts, t_pts)]
-    t_min = min(t_pts) - axis_margin
-    t_max = max(t_pts) + axis_margin
-    r_need = max(r_pts) + radius_margin
-    mw = ob.matrix_world
-    imw = mw.inverted()
-    t_g, r_g = [], []
-    worlds = []
-    for v in ob.data.vertices:
-        world = mw @ v.co
-        worlds.append(world)
-        t = (world - origin).dot(axis)
-        rad = (world - origin) - axis * t
-        t_g.append(t)
-        r_g.append(rad.length)
-    gmin, gmax = min(t_g), max(t_g)
-    span = max(gmax - gmin, 1e-4)
-    r_have = max(r_g + [1e-4])
-    moved = 0
-    for v, world, t, r in zip(ob.data.vertices, worlds, t_g, r_g):
-        t_new = t_min + (t - gmin) / span * (t_max - t_min)
-        rad = (world - origin) - axis * t
-        if r > 1e-6:
-            rad = rad.normalized() * r_need
-        else:
-            rad = Vector((0, 0, 0))
-        world_new = origin + axis * t_new + rad
-        v.co = imw @ world_new
-        moved += 1
-    ob.data.update()
-    log(f'enclose_capsule {ob.name} along t={t_min:.3f}..{t_max:.3f} r={r_need:.3f} from r={r_have:.3f} verts={moved}')
 
 
 def transfer_weights(ob, body):
@@ -313,84 +258,262 @@ def transfer_weights(ob, body):
             ob.modifiers.remove(mod)
 
 
+def vert_weight(ob, index, substrings):
+    idxs = [g.index for g in ob.vertex_groups if any(s in g.name for s in substrings)]
+    return sum(g.weight for g in ob.data.vertices[index].groups if g.group in idxs)
+
+
+def keep_glove_vert(ob, index):
+    """Print hand + forearm + distal/mid upper arm. Wider than BodyHands so leather
+    overlaps the vestment instead of sharing a knife-cut with hidden skin."""
+    w_hand = vert_weight(ob, index, ('Hand',))
+    w_fore = vert_weight(ob, index, ('ForeArm',))
+    w_arm = vert_weight(ob, index, (':LeftArm', ':RightArm'))
+    w_sh = vert_weight(ob, index, ('Shoulder',))
+    x = (ob.matrix_world @ ob.data.vertices[index].co).x
+    return (
+        w_hand > 0.20
+        or w_fore > 0.20
+        or (w_arm > 0.18 and abs(x) > 0.16)
+        or (w_sh > 0.28 and abs(x) > 0.20)
+    )
+
+
+def limb_shell(body, keep_fn, inflate, name, materials):
+    """Offset copy of a body region — guaranteed coverage, same Mixamo weights.
+
+    Do not holes-fill both arms as one polygon and do not solidify: those two
+    operators exploded the first gauntlet into 25 m spikes.
+    """
+    shell = body.copy()
+    shell.data = body.data.copy()
+    shell.name = name
+    shell.data.name = name
+    bpy.context.collection.objects.link(shell)
+    apply_visual(shell)
+    mn0, mx0 = world_bbox([shell])
+    log(f'limb_shell {name} after apply {tuple(mn0)}..{tuple(mx0)} scale={tuple(shell.scale)}')
+    bm = bmesh.new()
+    bm.from_mesh(shell.data)
+    bm.verts.ensure_lookup_table()
+    dead = [v for v in bm.verts if not keep_fn(shell, v.index)]
+    if len(dead) >= len(bm.verts):
+        bm.free()
+        raise RuntimeError(f'{name} limb shell kept no vertices')
+    bmesh.ops.delete(bm, geom=dead, context='VERTS')
+    # Cap each arm's proximal cuff only. Filling every boundary as one polygon
+    # welded both arms and exploded the first gauntlet to 25 m.
+    used = set()
+    cuff_loops = []
+    for edge in bm.edges:
+        if not edge.is_boundary or edge.index in used:
+            continue
+        loop = []
+        cur = edge
+        vert = edge.verts[0]
+        while cur and cur.index not in used:
+            used.add(cur.index)
+            loop.append(cur)
+            vert = cur.other_vert(vert)
+            nxt = next((e for e in vert.link_edges if e.is_boundary and e.index not in used), None)
+            cur = nxt
+        if 8 <= len(loop) <= 80:
+            cuff_loops.append(loop)
+    cuff_loops.sort(key=len, reverse=True)
+    capped = 0
+    for loop in cuff_loops[:2]:
+        try:
+            bmesh.ops.holes_fill(bm, edges=loop, sides=0)
+            capped += 1
+        except Exception as err:
+            log(f'cuff fill skipped: {err}')
+    log(f'limb_shell {name} capped {capped}/{len(cuff_loops)} cuff loops (longest two)')
+    bmesh.ops.triangulate(bm, faces=bm.faces)
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+    for v in bm.verts:
+        n = v.normal
+        if n.length_squared < 1e-12:
+            continue
+        v.co = v.co + n.normalized() * inflate
+    bm.to_mesh(shell.data)
+    bm.free()
+    shell.data.update()
+    mn, mx = world_bbox([shell])
+    log(f'limb_shell {name} verts={len(shell.data.vertices)} inflate={inflate} bbox={tuple(mn)}..{tuple(mx)}')
+    if max(abs(v) for v in (*mn, *mx)) > 10:
+        raise RuntimeError(f'{name} shell left metre bind space')
+    shell.data.materials.clear()
+    for mat in materials:
+        if mat:
+            shell.data.materials.append(mat)
+    select_only(shell)
+    bpy.ops.object.mode_set(mode='EDIT')
+    bpy.ops.mesh.select_all(action='SELECT')
+    try:
+        bpy.ops.uv.smart_project(angle_limit=1.15, island_margin=0.02)
+    except TypeError:
+        bpy.ops.uv.smart_project()
+    bpy.ops.mesh.vertices_smooth(factor=0.12, repeat=1)
+    bpy.ops.object.mode_set(mode='OBJECT')
+    return shell
+
+
+def replace_with_shell(meshes, body, keep_fn, inflate, name):
+    materials = [mat.copy() if mat else None for mat in meshes[0].data.materials]
+    stale_meshes = [ob.data for ob in meshes]
+    for ob in meshes:
+        bpy.data.objects.remove(ob, do_unlink=True)
+    for mesh in stale_meshes:
+        if mesh.users == 0:
+            bpy.data.meshes.remove(mesh)
+    shell = limb_shell(body, keep_fn, inflate, name, materials)
+    shell.name = name
+    shell.data.name = name
+    return [shell]
+
+
+def grade_boots_per_foot(ob, body):
+    """Park each last on the print foot, uniform horizontal scale, shaft only in Z.
+
+    Do not nearest-snap: inner last verts collapse onto the foot and tear the
+    atlas. Do not origin-scale with separate sx/sy/sz: that shears the last.
+    """
+    mw = ob.matrix_world
+    imw = mw.inverted()
+    worlds = [mw @ v.co for v in ob.data.vertices]
+    for sign, foot_keys, leg_keys in (
+        (1, ('LeftFoot', 'LeftToe'), ('LeftLeg',)),
+        (-1, ('RightFoot', 'RightToe'), ('RightLeg',)),
+    ):
+        foot_pts = [p for p in body_points(body, foot_keys, 0.18) if p.x * sign > 0]
+        shin_pts = [p for p in body_points(body, leg_keys, 0.25) if p.x * sign > 0 and p.z < 0.58]
+        side_idx = [i for i, w in enumerate(worlds) if w.x * sign > 0.02]
+        if not foot_pts or not side_idx:
+            continue
+        # AABB centre, not vertex-mean: paddle toes otherwise bias the last off the heel.
+        c = Vector((
+            (min(p.x for p in foot_pts) + max(p.x for p in foot_pts)) * 0.5,
+            (min(p.y for p in foot_pts) + max(p.y for p in foot_pts)) * 0.5,
+            0,
+        ))
+        boot_c = Vector((
+            (min(worlds[i].x for i in side_idx) + max(worlds[i].x for i in side_idx)) * 0.5,
+            (min(worlds[i].y for i in side_idx) + max(worlds[i].y for i in side_idx)) * 0.5,
+            0,
+        ))
+        dx, dy = c.x - boot_c.x, c.y - boot_c.y
+        for i in side_idx:
+            w = worlds[i]
+            worlds[i] = Vector((w.x + dx, w.y + dy, w.z))
+        need = max(Vector((p.x - c.x, p.y - c.y, 0)).length for p in foot_pts) + 0.036
+        have = max(Vector((worlds[i].x - c.x, worlds[i].y - c.y, 0)).length for i in side_idx) or 1e-4
+        s = max(need / have, 1.0)
+        z_need = max((p.z for p in shin_pts), default=0.52) + 0.028
+        z_hi = max((worlds[i].z for i in side_idx), default=0.36)
+        z0 = 0.14
+        for i in side_idx:
+            w = worlds[i]
+            xy = Vector((c.x + (w.x - c.x) * s, c.y + (w.y - c.y) * s, w.z))
+            if w.z > z0:
+                xy.z = z0 + (w.z - z0) * max(z_need - z0, 0.01) / max(z_hi - z0, 0.01)
+            worlds[i] = xy
+            ob.data.vertices[i].co = imw @ xy
+        log(f'boot sign={sign} translate=({dx:.3f},{dy:.3f}) xy×{s:.3f} shaft->{z_need:.3f}')
+    ob.data.update()
+    mn, mx = world_bbox([ob])
+    if mn.z < -0.008:
+        lift = -mn.z
+        for v in ob.data.vertices:
+            world = ob.matrix_world @ v.co
+            world.z += lift
+            v.co = ob.matrix_world.inverted() @ world
+        ob.data.update()
+        log(f'boot lift {lift:.3f}')
+
+
+def grade_sleeves(ob, body, margin=0.020):
+    """Grow T-pose sleeves about the print arm axis. Nearest-surface hits the chest."""
+    mw = ob.matrix_world
+    imw = mw.inverted()
+    for sign, keys in (
+        (1, ('LeftShoulder', 'LeftArm', 'LeftForeArm', 'LeftHand')),
+        (-1, ('RightShoulder', 'RightArm', 'RightForeArm', 'RightHand')),
+    ):
+        pts = [p for p in body_points(body, keys, 0.18) if p.x * sign > 0.12]
+        if len(pts) < 12:
+            continue
+        shoulder = min(pts, key=lambda p: abs(p.x))
+        hand = max(pts, key=lambda p: abs(p.x))
+        axis = hand - shoulder
+        if axis.length < 0.05:
+            continue
+        axis.normalize()
+        samples = []
+        for p in pts:
+            t = (p - shoulder).dot(axis)
+            r = ((p - shoulder) - axis * t).length
+            samples.append((t, r))
+        t_min = min(s[0] for s in samples)
+        t_max = max(s[0] for s in samples)
+
+        def body_r(t):
+            rs = [s[1] for s in samples if abs(s[0] - t) < 0.08]
+            return max(rs) if rs else 0.12
+
+        moved = 0
+        for v in ob.data.vertices:
+            world = mw @ v.co
+            if world.x * sign <= 0.28:
+                continue
+            if world.z < 1.32:
+                continue
+            t = (world - shoulder).dot(axis)
+            if t < t_min - 0.04 or t > t_max + 0.08:
+                continue
+            radial = (world - shoulder) - axis * t
+            r = radial.length
+            if r < 1e-5:
+                continue
+            need = body_r(t) + margin
+            if r < need:
+                v.co = imw @ (shoulder + axis * t + radial.normalized() * need)
+                moved += 1
+        log(f'sleeves sign={sign} moved={moved} on {ob.name}')
+    ob.data.update()
+
+
+def is_sleeve_world(world):
+    return abs(world.x) > 0.28 and world.z > 1.32
+
+
+SHELL_ITEMS = {'graveweaverGloves'}
+SKIP_PUSH = {'graveweaverGloves', 'wayfarerBoots'}
+SLEEVE_ITEMS = {'wayfarerTunic', 'pilgrimTunic', 'graveweaverTop'}
+
+
 def grade_item(item_id, meshes, body, arm):
     if item_id == 'wayfarerBoots':
-        pts = body_points(body, ('Foot', 'Toe'), 0.25, z_max=0.52)
-        enclose_origin(meshes, pts, margin=0.028)
-        return
-    if item_id == 'graveweaverGloves':
-        left_hand_pts = [p for p in body_points(body, ('LeftHand',), 0.45) if p.x > 0]
-        left_arm_pts = [p for p in body_points(body, ('LeftForeArm',), 0.45) if p.x > 0]
-        right_hand_pts = [p for p in body_points(body, ('RightHand',), 0.45) if p.x < 0]
-        right_arm_pts = [p for p in body_points(body, ('RightForeArm',), 0.45) if p.x < 0]
-        def centroid(pts, fallback):
-            if not pts:
-                return fallback
-            acc = Vector((0, 0, 0))
-            for p in pts:
-                acc += p
-            return acc / len(pts)
-        left_hand = centroid(left_hand_pts, bone_world(arm, 'mixamorig:LeftHand'))
-        left_arm = centroid(left_arm_pts, bone_world(arm, 'mixamorig:LeftForeArm'))
-        right_hand = centroid(right_hand_pts, bone_world(arm, 'mixamorig:RightHand'))
-        right_arm = centroid(right_arm_pts, bone_world(arm, 'mixamorig:RightForeArm'))
-        log(f'glove landmarks Lhand={tuple(left_hand)} Larm={tuple(left_arm)} Rhand={tuple(right_hand)}')
         for ob in meshes:
-            grade_gloves_two_sided(
-                ob,
-                left_hand, left_arm, left_hand_pts + left_arm_pts or [left_hand],
-                right_hand, right_arm, right_hand_pts + right_arm_pts or [right_hand],
-            )
-        return
+            grade_boots_per_foot(ob, body)
+        return meshes
+    if item_id == 'graveweaverGloves':
+        return replace_with_shell(meshes, body, keep_glove_vert, 0.020, 'GraveweaverGloves')
+    if item_id in SLEEVE_ITEMS:
+        for ob in meshes:
+            if 'Pendant' in ob.name:
+                continue
+            ob.scale.x *= 1.10
+            ob.scale.y *= 1.10
+            bpy.context.view_layer.update()
+            apply_visual(ob)
+            grade_sleeves(ob, body)
+        return meshes
     for ob in meshes:
         ob.scale.x *= 1.14
         ob.scale.y *= 1.14
         bpy.context.view_layer.update()
         apply_visual(ob)
-
-
-def grade_gloves_two_sided(ob, left_hand, left_arm, left_pts, right_hand, right_arm, right_pts):
-    mw = ob.matrix_world
-    imw = mw.inverted()
-    def fit_side(origin, axis_end, pts):
-        axis = axis_end - origin
-        if axis.length < 1e-5:
-            return None
-        axis.normalize()
-        t_pts = [(p - origin).dot(axis) for p in pts] or [0]
-        r_pts = [((p - origin) - axis * t).length for p, t in zip(pts, t_pts)] or [0.04]
-        r_need = min(max(r_pts) + 0.012, 0.095)
-        t_min = min(t_pts) - 0.02
-        t_max = max(t_pts) + 0.03
-        return origin, axis, t_min, t_max, r_need
-    left = fit_side(left_hand, left_arm, left_pts)
-    right = fit_side(right_hand, right_arm, right_pts)
-    worlds = [mw @ v.co for v in ob.data.vertices]
-    t_left = [(w - left[0]).dot(left[1]) for w in worlds] if left else []
-    t_right = [(w - right[0]).dot(right[1]) for w in worlds] if right else []
-    left_gmin = min((t for t, w in zip(t_left, worlds) if w.x >= 0), default=0)
-    left_gmax = max((t for t, w in zip(t_left, worlds) if w.x >= 0), default=1)
-    right_gmin = min((t for t, w in zip(t_right, worlds) if w.x < 0), default=0)
-    right_gmax = max((t for t, w in zip(t_right, worlds) if w.x < 0), default=1)
-    for v, world in zip(ob.data.vertices, worlds):
-        side = left if world.x >= 0 else right
-        if not side:
-            continue
-        origin, axis, t_min, t_max, r_need = side
-        gmin, gmax = (left_gmin, left_gmax) if world.x >= 0 else (right_gmin, right_gmax)
-        span = max(gmax - gmin, 1e-4)
-        t = (world - origin).dot(axis)
-        rad = (world - origin) - axis * t
-        target_span = t_max - t_min
-        # Stretch at most ~2.1× the authored cuff so a short glove becomes a
-        # gauntlet, not a wing.
-        used_span = min(target_span, span * 2.1)
-        t_new = t_min + (t - gmin) / span * used_span
-        if rad.length > 1e-6:
-            rad = rad.normalized() * r_need
-        v.co = imw @ (origin + axis * t_new + rad)
-    ob.data.update()
-    log(f'gloves two-sided {ob.name}')
+    return meshes
 
 
 def group_coverage(ob):
@@ -538,13 +661,16 @@ def main():
         offset = ITEM_OFFSET.get(item_id, WRAP_OFFSET)
         for ob in meshes:
             apply_visual(ob)
-            ob.scale *= scale
-            bpy.context.view_layer.update()
-            apply_visual(ob)
-        grade_item(item_id, meshes, body, arm)
+            if item_id not in SHELL_ITEMS:
+                ob.scale *= scale
+                bpy.context.view_layer.update()
+                apply_visual(ob)
+        meshes = grade_item(item_id, meshes, body, arm)
         bvh = build_body_bvh(body)
+        skip_sleeves = is_sleeve_world if item_id in SLEEVE_ITEMS else None
         for ob in meshes:
-            push_off_body(ob, body, bvh, offset)
+            if item_id not in SKIP_PUSH:
+                push_off_body(ob, body, bvh, offset, skip_fn=skip_sleeves)
             transfer_weights(ob, body)
             skin(ob, arm)
         mn, mx = world_bbox(meshes)
@@ -555,6 +681,15 @@ def main():
             raise RuntimeError(f'{item_id} collapsed ({span:.3f}{axis} < {need})')
         if max(abs(v) for v in (*mn, *mx)) > 10:
             raise RuntimeError(f'{item_id} left metre bind space')
+        if item_id == 'graveweaverGloves' and (mx.x - mn.x) < 2.15:
+            raise RuntimeError(f'gloves do not span print hands {(mx.x - mn.x):.3f}')
+        if item_id == 'wayfarerBoots':
+            if mx.z < 0.50:
+                raise RuntimeError(f'boot shaft too short z={mx.z:.3f}')
+            if mx.x < 0.40:
+                raise RuntimeError(f'boot last too narrow x={mx.x:.3f}')
+            if mn.y > -0.26 or mx.y < 0.22:
+                raise RuntimeError(f'boot last misses toe/heel y={mn.y:.3f}..{mx.y:.3f}')
         for ob in meshes:
             ob.data.name = ob.name
         out = OUT / f'{item_id}.glb'

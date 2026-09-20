@@ -246,11 +246,11 @@ The playable Orc is the print-sculpt pipeline, not a MakeHuman vertex warp. Curr
 - MHCLO cannot map the print-sculpt topology. `scripts/ashen-reach/fit-orc-sculpt-clothes.py` scales the Human streamed garments by 2.10/1.80, pushes vertices that sit inside `OrcV1Body` back to the surface plus a small offset, and **reuses the Human mixamorig vertex groups**. Heat/envelope is only a fallback. Do not restore `fit-orc-clothes.py`.
 - `prepare-orc-equipment.mjs` remaps those fitted meshes onto the playable Orc skin (same joint order and inverse binds as `body.glb`) and writes `public/ashen-reach/equipment-orc/{item}.glb`. `OrcV1Body` stays one surface; `packVisibility` hides `OrcV1Hair` with the hood and `OrcV1Shorts` with legs.
 - Armory Race **Orc** now equips the same logical items and presets. Human parks; closing the armory keeps the Orc in the churchyard. Hand props already used factory meshes and still do.
-- **Honest limits:** this is stature-scale + collision push-off, not a tailored MHCLO fit. The whole body stays visible under clothes, so a 1–2 cm offset is required. Hood/tusk intersection, sleeve length vs print arms, and the Mixamo idle stoop remain. Chin pad paint is unchanged.
+- **Superseded 2026-09-19 (Stage E).** Stage D was stature-scale plus collision push-off, and it shredded the boot last and left a 9 cm cuff on a print bicep. `fit-orc-sculpt-clothes.py` and the per-slot heuristics that followed it are replaced by `scripts/ashen-reach/fit-orc-garments.mjs`: register the Human body onto the print sculpt, transfer each garment through that registration, relax the transfer, push for clearance through a lattice, and seal per item against the catalogue's coverage geosets. [Stages and acceptance measures](orc-sculpt-pipeline.md#clothing-fit). Hood/tusk intersection and the Mixamo idle stoop remain; chin pad paint is unchanged.
 - Orc factory grips (2026-09-19): `gripHold(item, 'orc')` plus a ×1.25 socket palm-push when the live mesh is `OrcV1*`. Sword/staff/book/greatstaff scale ×1.16 (book ×1.12) with a short palm nudge. Joint-space contact was already Human-identical; the correction is for the bulkier print fist. Two-handed shaft contact after the nudge: right ~0.6 cm, left ~1.6 cm. Mixamo carry still reads as a pole across the chest.
 
 ```sh
-/Applications/Blender.app/Contents/MacOS/Blender --background --python scripts/ashen-reach/fit-orc-sculpt-clothes.py
+node scripts/ashen-reach/fit-orc-garments.mjs --report
 node scripts/ashen-reach/prepare-orc-equipment.mjs
 npm run test:equipment
 node scripts/ashen-reach/check-orc-equipment.mjs

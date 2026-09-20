@@ -2,22 +2,22 @@
   "pipeline": "orc sculpt-pipeline pack",
   "source": "public/characters/candidates/orc-source-v1.glb",
   "fitted": ".cache/armory-assets/orc-sculpt",
-  "note": "Playable Orc is the print-sculpt retopo on the 65-joint source bind. Catalogue garments are scaled to Orc stature and pushed off OrcV1Body; Human mixamorig weights are reused. Surface derived from Male Orc for Print by Crayon (CC-BY 4.0). Garments remain CC0 MakeHuman suits02/gloves01.",
+  "note": "Playable Orc is the print-sculpt retopo on the 65-joint source bind. Gloves are an inflated limb shell of the print hand/forearm/distal arm. Boots keep the Viking last, parked on each print foot with uniform horizontal scale and a shaft-only extend (no nearest-surface push). Tunic sleeves are radius-graded about the print arm axis. Surface derived from Male Orc for Print by Crayon (CC-BY 4.0). Garments remain CC0 MakeHuman suits02/gloves01.",
   "hashes": {
     "public/characters/candidates/orc-source-v1.glb": "99c44c39537988089a07762d05e2caa71c6d6d467d8de859ac80ee6911a90128",
-    "public/ashen-reach/equipment-orc/body.glb": "d54d96a2f40ce55b6e6a6ecd5f6c17df8a63458f18f8d463f91ead8be7d2db83"
+    "public/ashen-reach/equipment-orc/body.glb": "a21a941f1ec95584b3f39fd87cb8a66ffdb9c38feb6e220512b37df5ad13513c"
   },
   "garments": [
     {
       "id": "graveweaverHood",
-      "bytes": 2301004,
+      "bytes": 2300948,
       "meshes": [
         "GraveweaverHood"
       ]
     },
     {
       "id": "graveweaverTop",
-      "bytes": 2216488,
+      "bytes": 2216412,
       "meshes": [
         "GraveweaverTop",
         "GraveweaverPendant"
@@ -25,7 +25,7 @@
     },
     {
       "id": "graveweaverSkirt",
-      "bytes": 2395968,
+      "bytes": 2405844,
       "meshes": [
         "GraveweaverSkirt",
         "WayfarerTrousers",
@@ -34,28 +34,28 @@
     },
     {
       "id": "graveweaverGloves",
-      "bytes": 2115676,
+      "bytes": 2115616,
       "meshes": [
         "GraveweaverGloves"
       ]
     },
     {
       "id": "wayfarerTunic",
-      "bytes": 2229616,
+      "bytes": 2229604,
       "meshes": [
         "WayfarerTunic"
       ]
     },
     {
       "id": "pilgrimTunic",
-      "bytes": 2584108,
+      "bytes": 2582192,
       "meshes": [
         "PilgrimTunic"
       ]
     },
     {
       "id": "wayfarerTrousers",
-      "bytes": 2085392,
+      "bytes": 2096556,
       "meshes": [
         "WayfarerTrousers",
         "WayfarerTrousersCuffs"
@@ -63,7 +63,7 @@
     },
     {
       "id": "wayfarerBoots",
-      "bytes": 2225532,
+      "bytes": 2225524,
       "meshes": [
         "WayfarerBoots"
       ]

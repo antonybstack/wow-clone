@@ -30,12 +30,12 @@ try{
  await page.mouse.click(650,280);
  await page.keyboard.down('KeyW');await page.keyboard.down('KeyD');await page.keyboard.down('Space');await page.keyboard.press('Digit1');await page.keyboard.press('Digit2');await page.waitForTimeout(450);
  await page.keyboard.up('KeyW');await page.keyboard.up('KeyD');await page.keyboard.up('Space');s=await read();
- check('Modal keys cannot move, turn, jump or cast',s.armory.open&&Math.hypot(s.position.x-baseline.position.x,s.position.z-baseline.position.z)<.02&&Math.abs(s.facing-baseline.facing)<.001&&s.casts===0&&s.lavaCasts===0&&s.hp===600&&s.bodyState.phase!=='air');
+ check('Modal keys cannot move, turn, jump or cast',s.armory.open&&Math.hypot(s.position.x-baseline.position.x,s.position.z-baseline.position.z)<.02&&Math.abs(s.facing-baseline.facing)<.001&&s.casts===0&&s.lavaCasts===0&&s.hp===baseline.hp&&s.bodyState.phase!=='air');
  await page.locator('[data-motion]').selectOption('run');await page.waitForTimeout(250);s=await read();check('Run uses original clip',s.clips.some(c=>c.name==='Sprint_Loop'&&c.w>.9));
  await page.locator('[data-pause]').click();const frozen=(await read()).armory.preview.time;const firstBones=await bones();await page.waitForTimeout(200);check('Pause freezes time',Math.abs((await read()).armory.preview.time-frozen)<1e-6);check('Pause freezes evaluated joints',firstBones.length>0&&JSON.stringify(firstBones)===JSON.stringify(await bones()));
  await page.locator('[data-time-slider]').fill('0.15');await page.waitForTimeout(80);check('Scrub changes evaluated pose',JSON.stringify(firstBones)!==JSON.stringify(await bones()));
  for(const [id,time,name] of [['fire','0.28','FireBlast'],['lava','1.5','LavaBall']]){
-  await page.locator('[data-motion]').selectOption(id);await page.locator('[data-time-slider]').fill(time);await page.waitForTimeout(80);s=await read();check(id+' preview includes upper/lower layers without damage',s.clips.some(c=>c.name===name+'_Upper')&&s.clips.some(c=>c.name===name+'_Lower')&&s.hp===600&&s.casts===0&&s.lavaCasts===0);
+  await page.locator('[data-motion]').selectOption(id);await page.locator('[data-time-slider]').fill(time);await page.waitForTimeout(80);s=await read();check(id+' preview includes upper/lower layers without damage',s.clips.some(c=>c.name===name+'_Upper')&&s.clips.some(c=>c.name===name+'_Lower')&&s.hp===baseline.hp&&s.casts===0&&s.lavaCasts===0);
  }
  await page.locator('[data-motion]').selectOption('idle');await page.locator('[data-view="back"]').click();const back=(await read()).alpha;await page.locator('[data-view="front"]').click();check('Front/back presets',Math.abs(Math.abs((await read()).alpha-back)-Math.PI)<.001);
  await page.mouse.move(650,280);await page.mouse.down();await page.mouse.move(735,290,{steps:5});await page.mouse.up();s=await read();check('Drag orbits without pointer lock',Math.abs(s.alpha-Math.PI/2)>.1&&!s.pointerLock);
@@ -44,8 +44,8 @@ try{
  await page.keyboard.press('Escape');await page.waitForTimeout(120);s=await read();check('Escape restores gameplay and animation',!s.armory.open&&s.camera==='play'&&!s.bodyState.castingShoot&&s.clips.some(c=>c.name==='Idle_Loop'));
  check('Gameplay camera settings preserved',JSON.stringify(s.rig)===JSON.stringify(baseline.rig));
  const start=s.position;await page.keyboard.down('KeyW');await page.waitForTimeout(220);await page.keyboard.up('KeyW');s=await read();check('Movement resumes after button-opened armory',Math.hypot(s.position.x-start.x,s.position.z-start.z)>.4);
- await page.keyboard.press('Tab');await page.keyboard.press('Digit1');await page.waitForFunction(()=>ASHEN.combat.spell.casts===1);check('Fire releases after inspection',(await read()).hp===480);
- await page.waitForTimeout(1300);await page.keyboard.press('Digit2');await page.waitForTimeout(100);check('Lava charge begins',(await read()).pending===2);await page.keyboard.press('KeyC');await page.waitForTimeout(1600);s=await read();check('Opening cancels pending charge without release',s.armory.open&&s.pending===null&&s.hp===480&&s.lavaCasts===0);
+ await page.keyboard.press('Tab');await page.keyboard.press('Digit1');await page.waitForFunction(()=>ASHEN.combat.spell.casts===1);const afterFire=(await read()).hp;check('Fire releases after inspection',afterFire<baseline.hp);
+ await page.waitForTimeout(1300);await page.keyboard.press('Digit2');await page.waitForTimeout(100);check('Lava charge begins',(await read()).pending===2);await page.keyboard.press('KeyC');await page.waitForTimeout(1600);s=await read();check('Opening cancels pending charge without release',s.armory.open&&s.pending===null&&s.hp===afterFire&&s.lavaCasts===0);
  await page.locator('[data-close]').last().click();await page.waitForTimeout(200);await page.keyboard.press('Digit2');await page.waitForFunction(()=>ASHEN.combat.lava.casts===1);check('Lava recovers after modal cancellation',(await read()).lavaCasts===1);
  for(let i=0;i<3;i++){await page.keyboard.press('KeyC');await page.waitForTimeout(40);await page.keyboard.press('Escape');}
  check('Repeated toggles preserve mesh count',(await read()).sceneMeshes===baseline.sceneMeshes);

@@ -59,11 +59,10 @@ function bakeIdentity(node) {
     }
 }
 
-function partitionOrcBody(doc) {
+function partitionOrcBody(doc, cover) {
     const root = doc.getRoot();
     const scene = root.getDefaultScene();
     const skin = root.listSkins()[0];
-    const joints = skin.listJoints();
     const body = root.listNodes().find(n => n.getMesh() && n.getName().startsWith('OrcV1Body'));
     if (!body) throw Error('OrcV1Body missing');
     const mesh = body.getMesh();
@@ -71,25 +70,20 @@ function partitionOrcBody(doc) {
     const parts = new Map(BODY_REGIONS.map(name => [name, doc.createMesh(name)]));
     const counts = {};
     for (const primitive of mesh.listPrimitives()) {
-        const positions = primitive.getAttribute('POSITION').getArray();
         const indices = primitive.getIndices().getArray();
-        const weights = primitive.getAttribute('WEIGHTS_0').getArray();
-        const boneIds = primitive.getAttribute('JOINTS_0').getArray();
         const groups = new Map(BODY_REGIONS.map(name => [name, []]));
         for (let i = 0; i < indices.length; i += 3) {
             const vs = Array.from(indices.slice(i, i + 3));
-            const y = vs.reduce((sum, index) => sum + positions[index * 3 + 1], 0) / 3;
-            const x = vs.reduce((sum, index) => sum + positions[index * 3], 0) / 3;
-            const named = (index, re) => [0, 1, 2, 3].reduce((w, k) => w + (re.test(joints[boneIds[index * 4 + k]].getName()) ? weights[index * 4 + k] : 0), 0);
-            const hand = vs.reduce((sum, index) => sum + named(index, /Hand/), 0) / 3;
-            const forearm = vs.reduce((sum, index) => sum + named(index, /ForeArm/), 0) / 3;
-            const foot = vs.reduce((sum, index) => sum + named(index, /(Foot|Toe)/), 0) / 3;
-            const region = (hand > 0.4 || forearm > 0.45) ? 'BodyHands'
-                : (foot > 0.25 || y < 0.52) ? 'BodyUnderBoots'
-                    : y < 1.00 ? 'BodyUnderLegs'
-                        : y < 1.17 ? 'BodyWaist'
-                            : (y < 1.70 && Math.abs(x) < 0.55) ? 'BodyUnderTunic'
-                                : 'BodyExposed';
+            // The fitter labelled every Orc vertex with the Human geoset it registered
+            // onto, so a triangle goes wherever two of its three corners agree.
+            const votes = new Map();
+            for (const v of vs) {
+                const name = cover.regions[cover.labels[v]];
+                if (name) votes.set(name, (votes.get(name) || 0) + 1);
+            }
+            let region = 'BodyExposed', best = 0;
+            for (const [name, n] of votes) if (n > best) {best = n; region = name;}
+            if (!groups.has(region)) throw Error('Unknown Orc coverage region ' + region);
             groups.get(region).push(...vs);
         }
         for (const [name, ids] of groups) {
@@ -135,7 +129,11 @@ const bodyDoc = await io.read(BODY);
 for (const mesh of bodyDoc.getRoot().listMeshes()) {
     if (mesh.getName().startsWith('OrcV1Eyes')) mesh.setName('OrcV1Eyes');
 }
-const coverage = partitionOrcBody(bodyDoc);
+const cover = JSON.parse(await fs.readFile(`${FITTED}/coverage.json`, 'utf8'));
+for (const name of cover.regions) {
+    if (!BODY_REGIONS.includes(name)) throw Error('coverage.json names an unknown geoset ' + name);
+}
+const coverage = partitionOrcBody(bodyDoc, cover);
 await bodyDoc.transform(unpartition(), prune({keepLeaves: true}));
 const bodyMeshes = bodyDoc.getRoot().listMeshes().map(m => m.getName());
 for (const name of ORC_BASE_VISIBLE_MESHES) {
@@ -233,7 +231,7 @@ await fs.writeFile(`${DIR}/provenance.json`, JSON.stringify({
     pipeline: 'orc sculpt-pipeline pack',
     source: SRC,
     fitted: FITTED,
-    note: 'Playable Orc is the print-sculpt retopo on the 65-joint source bind. Catalogue garments are scaled to Orc stature and pushed off OrcV1Body; Human mixamorig weights are reused. Surface derived from Male Orc for Print by Crayon (CC-BY 4.0). Garments remain CC0 MakeHuman suits02/gloves01.',
+    note: 'Playable Orc is the print-sculpt retopo on the 65-joint source bind. Gloves are an inflated limb shell of the print hand/forearm/distal arm. Boots keep the Viking last, parked on each print foot with uniform horizontal scale and a shaft-only extend (no nearest-surface push). Tunic sleeves are radius-graded about the print arm axis. Surface derived from Male Orc for Print by Crayon (CC-BY 4.0). Garments remain CC0 MakeHuman suits02/gloves01.',
     hashes: {[SRC]: sha(bytes), [BODY]: bodyHash},
     garments: garmentReport,
 }, null, 2) + '\n');
