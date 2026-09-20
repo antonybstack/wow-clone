@@ -59,6 +59,10 @@ function installLifeHud() {
   const style = document.createElement("style");
   style.textContent =
     ".player-plate{position:absolute;bottom:124px;left:50%;transform:translateX(-50%);width:220px;text-align:center;font-size:13px;z-index:9;background:#100e0cee;padding:8px 12px 6px;border:1px solid #3a3428;box-shadow:0 2px 10px #000000a0}" +
+    ".player-plate .player-level{display:block;margin-top:3px;font:10px monospace;letter-spacing:.16em;color:#c1c0ab}" +
+    ".mana-track{height:5px;border:1px solid #282820;background:#15140f;margin:5px 0 2px}" +
+    ".mana-fill{height:100%;background:#a46636;transition:width .1s}" +
+    ".player-plate .player-mana{display:block;font:10px monospace;color:#c1c0ab}" +
     ".death-veil{position:absolute;inset:0;background:#100808d4;display:grid;place-items:center;pointer-events:auto;z-index:5;text-align:center}" +
     ".death-veil[hidden]{display:none!important}" +
     ".death-veil p{margin:0 0 14px;font-size:28px;color:#ead1b5}" +
@@ -68,7 +72,7 @@ function installLifeHud() {
   const plate = document.createElement("div");
   plate.className = "player-plate";
   plate.innerHTML =
-    "<span>You</span><div class=\"hp-track\"><div class=\"hp-fill\"></div></div><small></small>";
+    "<span>You</span><small class=\"player-level\">LEVEL 1</small><div class=\"hp-track\"><div class=\"hp-fill\"></div></div><small class=\"player-hp\"></small><div class=\"mana-track\"><div class=\"mana-fill\"></div></div><small class=\"player-mana\"></small>";
   const veil = document.createElement("div");
   veil.className = "death-veil";
   veil.hidden = true;
@@ -106,7 +110,10 @@ export async function createCombat(
   const audio = await createFireBlastAudio(scene);
   const lifeHud = installLifeHud();
   const playerFill = lifeHud.querySelector(".player-plate .hp-fill");
-  const playerHp = lifeHud.querySelector(".player-plate small");
+  const playerHp = lifeHud.querySelector(".player-plate .player-hp");
+  const playerLevel = lifeHud.querySelector(".player-plate .player-level");
+  const manaFill = lifeHud.querySelector(".player-plate .mana-fill");
+  const manaText = lifeHud.querySelector(".player-plate .player-mana");
   const nameEl = lifeHud.querySelector(".target-plate > span");
   const targetHpEl = lifeHud.querySelector(".target-plate small");
   const deathVeil = lifeHud.querySelector(".death-veil");
@@ -255,7 +262,14 @@ export async function createCombat(
     playerFill.style.width = ratio * 100 + "%";
     playerHp.textContent = life.dead
       ? "Dead"
-      : `${Math.ceil(life.hp)} / ${life.hpMax}`;
+      : `HEALTH  ${Math.ceil(life.hp)} / ${life.hpMax}`;
+    const p = progression.progress;
+    if (playerLevel) playerLevel.textContent = `LEVEL ${p.level}`;
+    if (manaFill)
+      manaFill.style.width = (p.manaMax ? p.mana / p.manaMax : 0) * 100 + "%";
+    if (manaText)
+      manaText.textContent = `MANA  ${Math.ceil(p.mana)} / ${p.manaMax}`;
+    hud.paintProgress(p, life.time);
     const target = targeting.current;
     if (nameEl && target) nameEl.textContent = target.name;
     if (targetHpEl && target && !target.recover && target.hp <= 0)

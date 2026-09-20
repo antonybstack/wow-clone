@@ -4,7 +4,18 @@ import { LAVA_BALL } from "../spells/lava-ball.js";
 export function createCombatHud(canvas) {
   const root = document.createElement("div");
   root.id = "combat";
-  root.innerHTML = `<button class="sound-toggle" type="button" aria-label="Mute sound" aria-pressed="false">Sound on</button><div class="target-plate"><span>Training Dummy</span><div class="hp-track"><div class="hp-fill"></div></div><small></small></div><div class="combat-error" role="status"></div><div class="damage-number"></div><div class="cast-progress" hidden><span>Lava Ball</span><div role="progressbar" aria-label="Lava Ball cast" aria-valuemin="0" aria-valuemax="100"><i></i></div><small></small></div><div class="spell-bar">${[FIRE_BLAST, LAVA_BALL].map((s) => `<div class="spell-slot"><button type="button" data-spell="${s.key}" title="${s.name} — ${s.damage} damage · ${s.range}m · ${s.cooldown}s cooldown${s.castTime ? " · 1.5s cast, movement interrupts" : ""}"><kbd>${s.key}</kbd><img src="/ashen-reach/fire-blast/${s.key === 1 ? "fire_01.png" : "spark_05.png"}" alt=""><strong></strong></button><span>${s.name}</span></div>`).join("")}<small>Tab target · 1 blast · 2 lava ball</small></div>`;
+  root.innerHTML = `<button class="sound-toggle" type="button" aria-label="Mute sound" aria-pressed="false">Sound on</button><div class="target-plate"><span>Training Dummy</span><div class="hp-track"><div class="hp-fill"></div></div><small></small></div><div class="combat-error" role="status"></div><div class="damage-number"></div><div class="cast-progress" hidden><span>Lava Ball</span><div role="progressbar" aria-label="Lava Ball cast" aria-valuemin="0" aria-valuemax="100"><i></i></div><small></small></div><div class="spell-bar">${[FIRE_BLAST, LAVA_BALL].map((s) => `<div class="spell-slot"><button type="button" data-spell="${s.key}" title="${s.name} — ${s.damage} damage · ${s.range}m · ${s.cooldown}s cooldown${s.castTime ? " · 1.5s cast, movement interrupts" : ""}"><kbd>${s.key}</kbd><img src="/ashen-reach/fire-blast/${s.key === 1 ? "fire_01.png" : "spark_05.png"}" alt=""><strong></strong></button><span>${s.name}</span></div>`).join("")}<small>Tab target · 1 blast · 2 lava ball</small></div><div class="xp-plate"><span>EXPERIENCE</span><div class="xp-track"><div class="xp-fill"></div></div><small></small></div><div class="level-up" hidden><strong>LEVEL UP</strong><small></small></div>`;
+  const hudStyle = document.createElement("style");
+  hudStyle.textContent =
+    ".xp-plate{position:absolute;left:18px;bottom:22px;width:200px;z-index:9;background:#100e0cee;padding:7px 10px 6px;border:1px solid #3a3428;box-shadow:0 2px 10px #000000a0;text-align:left}" +
+    ".xp-plate>span{display:block;font:10px monospace;letter-spacing:.16em;color:#c1c0ab}" +
+    ".xp-track{height:5px;border:1px solid #282820;background:#15140f;margin:5px 0 2px}" +
+    ".xp-fill{height:100%;width:0;background:#a46636;transition:width .1s}" +
+    ".xp-plate small{font:10px monospace;color:#c1c0ab}" +
+    ".level-up{position:absolute;top:26%;left:0;right:0;text-align:center;z-index:11;pointer-events:none;color:#ffe1a8;text-shadow:0 2px 14px #000,0 0 28px #a46636aa}" +
+    ".level-up strong{display:block;font:40px Georgia;letter-spacing:.22em}" +
+    ".level-up small{display:block;margin-top:8px;font:14px Georgia;letter-spacing:.12em;color:#ead1b5}";
+  root.prepend(hudStyle);
   document.body.append(root);
   const plate = root.querySelector(".target-plate"),
     fill = root.querySelector(".hp-fill"),
@@ -14,6 +25,10 @@ export function createCombatHud(canvas) {
     slot = root.querySelector(".spell-bar button");
   const lavaSlot = root.querySelector('[data-spell="2"]'),
     castBar = root.querySelector(".cast-progress");
+  const xpFill = root.querySelector(".xp-fill"),
+    xpText = root.querySelector(".xp-plate small"),
+    levelUp = root.querySelector(".level-up"),
+    levelUpSub = root.querySelector(".level-up small");
   let messageTime = 0,
     damageTime = 0,
     damageTarget = null,
@@ -50,6 +65,21 @@ export function createCombatHud(canvas) {
       damageTarget = target;
       damage.textContent = String(amount);
       damageTime = 0.95;
+    },
+    paintProgress(progress, time) {
+      const next = progress.xpToNext || 1;
+      xpFill.style.width = Math.max(0, Math.min(1, progress.xp / next)) * 100 + "%";
+      xpText.textContent = `${Math.floor(progress.xp)} / ${next}`;
+      const age = time - (progress.lastLevelUp ?? -99);
+      if (age >= 0 && age < 2.8) {
+        levelUp.hidden = false;
+        levelUpSub.textContent = `You reach level ${progress.level}`;
+        const fadeIn = Math.min(1, age / 0.18);
+        const fadeOut = age > 2 ? Math.max(0, 1 - (age - 2) / 0.8) : 1;
+        levelUp.style.opacity = String(fadeIn * fadeOut);
+      } else {
+        levelUp.hidden = true;
+      }
     },
     update(dt, target, spell, camera, lava, pending) {
       messageTime = Math.max(0, messageTime - dt);
