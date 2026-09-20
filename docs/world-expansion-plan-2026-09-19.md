@@ -96,3 +96,44 @@ its own Vite port, its own Chrome profile and CDP port, and one command to start
   ground cover stops around z=84 so the town sits on bare terrain; the 2 m terrain grid reads as
   coarse facets at town scale; and the emissive lantern boxes read as flat acid-green rectangles
   when seen close up rather than as lantern glass.
+- 2026-09-20: **parallel harness landed** (`d8ffbeb`, merged to `main`). `ASHEN_VITE_PORT` and
+  `ASHEN_CDP_PORT` now sit behind unchanged defaults of 5173/9337; `scripts/lib/cdp.mjs` is the
+  single CDP target and `scripts/harness/{up,down}.mjs` bring a numbered slot up and down
+  (slot N = Vite 5173+N*100, CDP 9337+N*100; 5173/9337/9222 are refused). Two slots were proven
+  running `check-armory.mjs` concurrently, 27/27 each, with the protected ports untouched.
+  Note one real behaviour change: `vite.config.js` now pins `server.host` to `127.0.0.1` (it was
+  unset and resolving to IPv6-only `::1`), so the dev server is no longer reachable over the LAN.
+  The four `capture-m1-*`/`capture-m2-*` scripts were converted to the shared helper afterwards.
+- 2026-09-20: **M2 landed** (`e4fce2b`, `817db95`, `d3fda86`, `d7214f4`, `9b85b63`). New
+  `src/ashen-reach/buildings.js` exposes a parameterised `building()` plus `windowGlow`,
+  `marketStall`, `well`, `forgeGlow` and `crossFinial`; all nine pads are populated with houses,
+  tavern, smithy, chapel, watchtower and a well square, each pushing colliders. A separate
+  "Hollowmere lantern" material keeps the churchyard's original `Candlelight` batch untouched.
+  `geometry.js` gained `terrainNormal()` (analytic normals, zero added triangles) and
+  `lanternGlow()` (two-layer warm tube replacing the flat emissive quad).
+  All four M1 defects were addressed: `boundsRadius:85` became
+  `boundsRect:{minX:-88,maxX:88,minZ:-93,maxZ:143}`, with `player.js` keeping the original
+  circular clamp verbatim in an `else` branch so any caller passing only `boundsRadius` is
+  byte-identical; ground cover now runs to z~141 and is skipped inside building footprints;
+  northern terrain uses smooth normals; lanterns are shaped and warm.
+  Verified independently: a real `KeyW` walk reached z=134.79 with y climbing 1.39 to 8.79 (the
+  old radius-85 clamp would have stopped it at ~85), build green, 75 character and 27 equipment
+  tests pass, and the churchyard pixel diff (0.87% changed) resolves under inspection to
+  wind-animated foliage plus one horizon patch of new town geometry beyond z=40 — no churchyard
+  geometry moved. Measured at 960x540 viewport / 720x405 internal, 600 samples: 144.02 to 144.00
+  FPS, mean 6.944 ms both, p95 7.70 to 8.30 ms, 33 to 34 draws, 9 to 10 batches,
+  127,772 to 186,056 triangles. Captures in `ve-capture/ashen-reach/world-expansion-m2/`.
+  **Open defects found in review, carried into M2b.** The town is structurally right but does not
+  yet read as an inhabited night town:
+  1. Ground north of the lych-gate reads as bright daytime green rather than night grass, which
+     flattens the whole settlement. The smooth `terrainNormal()` normals are the likely cause —
+     they give the northern ground a more uniform, brighter directional term than the flat
+     per-face normals it replaced.
+  2. The town is overgrown: tall grass and bracken grow right up to the walls and swallow the
+     street, so Hollowmere reads as an abandoned meadow with sheds rather than a lived-in town.
+  3. The forge glow is a hard-edged flat orange rectangle, the same defect class as M1's
+     acid-green boxes and arguably more obvious because it is brighter.
+  4. Buildings are near-black masses at any distance; window glow only registers close up, so
+     there is no lit-settlement read from the approach or the overlook.
+  5. Every building is the same gabled box. The tavern, chapel and houses are not
+     distinguishable by silhouette, and there is no signage or upper storey.
