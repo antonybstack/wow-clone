@@ -94,6 +94,7 @@ export async function createCombat(
   dummy,
   rig,
   enemies = [],
+  objective = null,
 ) {
   const targeting = new Targeting();
   targeting.list = [dummy, ...enemies];
@@ -163,6 +164,31 @@ export async function createCombat(
   const markCombat = () => {
     life.combatUntil = life.time + REGEN_DELAY;
     life.inCombat = true;
+  };
+  const settleKill = (result, completed) => {
+    if (completed && objective) {
+      const bonus = progression.awardXp(
+        { xp: objective.bonusXp },
+        life,
+        life.time,
+      );
+      if (result.leveled || bonus.leveled) syncPlayerHp();
+      hud.message(`Churchyard cleared. +${bonus.gained} experience`);
+      objective.noteComplete(bonus.gained);
+      return;
+    }
+    if (result.leveled) syncPlayerHp();
+    if (result.gained) {
+      const snap = objective?.snapshot();
+      const left = snap?.remaining?.length;
+      if (snap?.phase === "active" && left > 0) {
+        const line = `+${result.gained} experience. ${left} shade${left === 1 ? "" : "s"} remain.`;
+        hud.message(line);
+        objective.holdLine(line);
+      } else if (!result.leveled) {
+        hud.message(`+${result.gained} experience`);
+      }
+    }
   };
   const die = () => {
     if (life.dead) return;
@@ -305,7 +331,9 @@ export async function createCombat(
       enemies: enemySnapshot(enemies),
       dummy: { hp: dummy.hp, hpMax: dummy.hpMax },
       target: targeting.current?.id || null,
+      objective: objective?.snapshot() || null,
     }),
+    objective,
     progress: progression.progress,
     releaseSpirit,
     setVisible(v) {
@@ -329,10 +357,17 @@ export async function createCombat(
         onPlayerHit,
         onKill(enemy) {
           const result = progression.awardXp(enemy, life, life.time);
-          if (result.leveled) syncPlayerHp();
-          else if (result.gained) hud.message(`+${result.gained} experience`);
+          settleKill(result, objective?.onKill(enemy)?.completed);
         },
       });
+      const offered = objective?.tick({
+        player,
+        enemies,
+        dt,
+        dead: life.dead,
+      });
+      if (offered?.completed) settleKill({ gained: 0, leveled: false }, true);
+      else if (offered?.message) hud.message(offered.message);
       if (
         pending?.key === 2 &&
         ((player.getMotion()?.speed ?? 0) > 0.5 ||

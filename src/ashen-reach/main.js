@@ -7,6 +7,7 @@ import {createEquipment} from './equipment.js';
 import {createArmory} from './armory.js';
 import {loadTrainingDummy,createCombat} from './combat.js';
 import {bindEnemyColliders,loadEnemies} from './enemies.js';
+import {createObjective} from './objective.js';
 import {attachTownsfolk} from './townsfolk.js';
 import {buildChurchyard} from './scene.js';
 import {height} from './geometry.js';
@@ -52,7 +53,7 @@ async function main(){
  const enemies=params.has('noEnemies')?[]:await loadEnemies(engine,scene,world);
  bindEnemyColliders(enemies,player,world);
  await attachTownsfolk(engine,scene,world);
- const combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig,enemies);
+ const combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig,enemies,createObjective());
  body.bindSocketHost(combat.fx.sockets);
  const EMPTY_LOADOUT={helmet:null,torso:null,legs:null,boots:null,gloves:null,mainHand:null,offHand:null};
  const factoryHand=(id)=>id&&EQUIPMENT_ITEMS[id]?.factory?id:null;
