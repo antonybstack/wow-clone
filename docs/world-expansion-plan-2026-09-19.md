@@ -176,3 +176,31 @@ its own Vite port, its own Chrome profile and CDP port, and one command to start
   allowed paths, so it had no route to a skinned character); the player walks through enemies,
   since `player.js` was frozen and colliders are registered only at setup; Lava Ball can miss a
   moving shade for the same reason; and tall grass overlaps the player health bar.
+- 2026-09-20: **M3 landed** (`15b1e66`, `a0190c1`, `1796087`). New `src/ashen-reach/horizon.js`
+  builds the Citadel of Vaelmark at z=260 — a crag, a crenellated curtain wall, five towers with
+  lit windows, and two ridgeline layers — reusing the existing `Distant black stone` and
+  `Hollowmere lantern` batches, so it costs **988 triangles and zero extra draw calls**. Backdrop
+  only, entirely beyond `boundsRect.maxZ:143`. The agent's first attempt put it at z=185 with a
+  76-unit keep that subtended ~90 degrees and read as a black wall filling the sky; it caught that
+  itself by looking at its captures and moved the complex back. 143.97-144.01 FPS, 36 draws,
+  167,816 triangles. Build, 75/27 tests and the 13 enemy-loop checks all still pass.
+  It also diagnosed the M2b ground-wash regression correctly: `radialGlow` built a single-vertex
+  triangle fan from a bright centre to a `colorRim` of pure black, and since the material system
+  is `texture * vertexColor * (light+emission)` with no alpha blending, almost the entire decal
+  interpolated toward black. It replaced the four ground-plane call sites with a `groundGlow()`
+  core disc plus a tapering ring.
+  **Open defects found in my review, carried into M3b:**
+  1. The ground washes are no longer dark, but they are now over-bright hard-edged orange
+     polygons that read as spilled lava rather than lamplight — an octagonal silhouette is plainly
+     visible around the well and at every lamp. This is the third attempt at this element and the
+     decal approach is the problem: with no alpha blending an opaque decal will always have a hard
+     edge. The mechanism that already exists is the M1 baked per-vertex lamp irradiance
+     (`Batch.commit(engine,scene,material,lights)` -> `uv2`), which lights the ground smoothly with
+     no decal at all; its limitation is that the 2 m ground grid is too coarse to resolve a lamp
+     pool. Subdividing the ground under the town and deleting the decals is the recommended fix.
+  2. The ridgeline reads as a flat dark slab floating above the horizon, with a hard straight
+     lower edge and sky visible beneath it. It looks like suspended cardboard, not mountains. The
+     agent did not report this.
+  3. **M3's own gate is not met.** The plan's gate is "a reviewed clip of the vista from the town
+     gate", and the citadel is not visible from the gate at all — only from open sightlines like
+     the well square and the overlook. The agent disclosed this honestly.
