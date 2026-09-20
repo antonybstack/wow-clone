@@ -80,6 +80,18 @@ export function summarizeDurations(values) {
 /**
  * A result sitting on a vsync (or compositor) ceiling must say so.
  * Known display intervals: 60 / 75 / 90 / 120 / 144 / 165 / 240 Hz.
+ *
+ * The mean and median are the strong signal: over hundreds of samples a real
+ * cap's jitter averages out, so the mean sits within a fraction of a percent
+ * of the true interval even when individual frames land far off it (a real
+ * 144 Hz panel: mean 6.9438 ms against a 6.9444 ms interval, 0.009% off,
+ * while individual samples range 5.10-8.80 ms). `min` and a per-sample
+ * "how many are faster than 0.92x" gate are not reliable under that jitter -
+ * they were tuned against headless Chrome's rigid compositor cap, where
+ * every sample lands on the interval exactly, and false-negative on real
+ * hardware. Keep a loose sanity bound on the full range instead, just to
+ * reject a mean that coincidentally lands near an interval while the samples
+ * are actually spread across multiple multiples of it.
  */
 export function detectVsyncCap(values) {
   if (!values.length) {
@@ -89,20 +101,20 @@ export function detectVsyncCap(values) {
   const mean = a.reduce((s, x) => s + x, 0) / a.length;
   const median = percentile(a, 0.5);
   const min = a[0];
+  const worst = a[a.length - 1];
   for (const hz of KNOWN_CAP_HZ) {
     const capMs = 1000 / hz;
-    const faster = a.filter((ms) => ms < capMs * 0.92).length / a.length;
-    const meanNear = Math.abs(mean - capMs) <= 0.35;
-    const medianNear = Math.abs(median - capMs) <= 0.5;
-    const minNear = min >= capMs * 0.85 && min <= capMs * 1.15;
-    if (faster < 0.05 && (meanNear || medianNear) && minNear) {
+    const meanNear = Math.abs(mean - capMs) / capMs <= 0.02;
+    const medianNear = Math.abs(median - capMs) / capMs <= 0.03;
+    const spreadSane = min >= capMs * 0.6 && worst <= capMs * 1.5;
+    if (meanNear && medianNear && spreadSane) {
       return {
         vsyncCapped: true,
         capHz: hz,
         capMs,
         capReason:
-          `mean ${mean.toFixed(3)} ms sits on ${hz} Hz (${capMs.toFixed(3)} ms); ` +
-          `${((1 - faster) * 100).toFixed(1)}% of samples at or slower than 0.92× the interval`,
+          `mean ${mean.toFixed(3)} ms and median ${median.toFixed(3)} ms sit on ${hz} Hz ` +
+          `(${capMs.toFixed(3)} ms); range ${min.toFixed(3)}-${worst.toFixed(3)} ms`,
       };
     }
   }
