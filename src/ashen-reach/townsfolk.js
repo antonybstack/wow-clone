@@ -6,7 +6,7 @@
  * committed with the existing wood material, so they share the town's lamp bake
  * and cost one draw.
  */
-import {Batch, height, pathX, buildingPads} from './geometry.js';
+import {Batch, height, pathX} from './geometry.js';
 import {surface} from './materials.js';
 
 const CLOAK = {
@@ -127,26 +127,16 @@ function woodMaterial(world){
 export async function attachTownsfolk(engine,scene,world){
  if(typeof location!=='undefined'&&new URLSearchParams(location.search).has('noTownsfolk'))return {mesh:null,triangles:0,draws:0,count:0};
  const batch=new Batch('Townsfolk');
- const well=buildingPads[8];
- const stall90=pathX(90)-3.0;
- const stall106=pathX(106)+3.0;
  const gateX=pathX(75);
 
- person(batch,well.x-3.15,well.z-2.55,-0.55,{cloak:CLOAK.rust,tunic:TUNIC.hide,pose:'tend',scale:1.00});
- person(batch,well.x+3.20,well.z-2.15,0.70,{cloak:CLOAK.peat,tunic:TUNIC.linen,pose:'tend',scale:.97});
- person(batch,well.x-2.15,well.z+2.35,2.45,{cloak:CLOAK.wine,tunic:TUNIC.grey,pose:'tend',scale:1.02,hood:false});
- person(batch,well.x+1.55,well.z-0.85,2.9,{cloak:CLOAK.moss,tunic:TUNIC.linen,pose:'draw',scale:.98});
- person(batch,well.x-1.35,well.z-0.70,-2.7,{cloak:CLOAK.soot,tunic:TUNIC.grey,pose:'draw',scale:1.04});
- person(batch,stall90+1.15,90,1.35,{cloak:CLOAK.peat,tunic:TUNIC.hide,pose:'tend',scale:1.01});
- person(batch,stall106-1.15,106,-1.45,{cloak:CLOAK.rust,tunic:TUNIC.linen,pose:'tend',scale:.96,hood:false});
- person(batch,-6.85,96.35,-1.05,{cloak:CLOAK.soot,tunic:TUNIC.linen,pose:'lean',scale:1.03});
  person(batch,gateX+1.45,77.4,Math.PI,{cloak:CLOAK.rust,tunic:TUNIC.hide,pose:'spear',scale:1.08,hood:false});
- person(batch,7.55,97.15,-1.55,{cloak:CLOAK.moss,tunic:TUNIC.hide,pose:'tend',scale:1.00});
+ person(batch,-6.85,96.35,-1.05,{cloak:CLOAK.soot,tunic:TUNIC.linen,pose:'lean',scale:1.03});
+ person(batch,7.55,97.15,-1.55,{cloak:CLOAK.moss,tunic:TUNIC.hide,pose:'lean',scale:1.00});
 
  const lights=world.lights||[];
  let material=woodMaterial(world);
  if(!material)material=await surface(engine,'Townsfolk cloth','/tex/wood_planks_grey/diff.jpg',{tint:[.57,.43,.31],light:.62,pixels:64});
  const mesh=batch.commit(engine,scene,material,lights);
  const triangles=batch.idx.length/3;
- return {mesh,triangles,draws:mesh?1:0,count:10};
+ return {mesh,triangles,draws:mesh?1:0,count:3};
 }
