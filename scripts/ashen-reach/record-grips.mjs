@@ -1,7 +1,8 @@
 // Diagnostic close-ups followed by normal gameplay; raw CDP frames, no retouching.
-import {chromium} from 'playwright';import fs from 'node:fs/promises';
+import {chromium} from 'playwright';
+import { CDP_URL } from '../lib/cdp.mjs';import fs from 'node:fs/promises';
 const dir=process.env.ASHEN_CAPTURE_DIR||'ve-capture/ashen-reach/grips/video';await fs.mkdir(dir+'/frames',{recursive:true});
-const browser=await chromium.connectOverCDP('http://127.0.0.1:9337'),page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach.html'));
+const browser=await chromium.connectOverCDP(CDP_URL),page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach.html'));
 const frames=[],writes=[],errors=[],timeline=[];let recording=false,cdp;page.on('pageerror',e=>errors.push(e.message));
 const wait=ms=>page.waitForTimeout(ms),key=k=>page.keyboard.press(k);
 try{

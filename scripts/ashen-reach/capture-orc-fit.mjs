@@ -1,10 +1,11 @@
 // Close views of the fitted Orc garments, for judging clipping rather than silhouette.
 import {chromium} from 'playwright';
+import { CDP_URL } from '../lib/cdp.mjs';
 import fs from 'node:fs/promises';
 const race = process.env.ORC_RACE || 'orc';
 const dir = `ve-capture/ashen-reach/${race}-fit`;
 await fs.mkdir(dir, {recursive: true});
-const browser = await chromium.connectOverCDP('http://127.0.0.1:9337');
+const browser = await chromium.connectOverCDP(CDP_URL);
 const context = browser.contexts()[0];
 const page = context.pages().find(p => p.url().includes('ashen-reach.html')) || await context.newPage();
 const errors = [];

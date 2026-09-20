@@ -1,10 +1,11 @@
 // Real-input regression for delayed release and additive full-body cast layering.
 import {chromium} from 'playwright';
+import { CDP_URL } from '../lib/cdp.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 const dir=process.env.FIRE_BLAST_CAPTURE_DIR||'ve-capture/ashen-reach/cast-motion';
 await fs.mkdir(dir,{recursive:true});
-const browser=await chromium.connectOverCDP('http://127.0.0.1:9337');
+const browser=await chromium.connectOverCDP(CDP_URL);
 const page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach.html'));
 const checks=[],errors=[];
 page.on('pageerror',e=>errors.push(e.message));

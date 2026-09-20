@@ -1,5 +1,6 @@
-import {chromium} from 'playwright';import assert from 'node:assert/strict';import fs from 'node:fs/promises';
-const browser=await chromium.connectOverCDP('http://127.0.0.1:9337');
+import {chromium} from 'playwright';
+import { CDP_URL } from '../lib/cdp.mjs';import assert from 'node:assert/strict';import fs from 'node:fs/promises';
+const browser=await chromium.connectOverCDP(CDP_URL);
 const page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach.html'))||await browser.contexts()[0].newPage();
 const dir='ve-capture/ashen-reach/streamed-equipment';await fs.mkdir(dir,{recursive:true});const checks=[],errors=[],requests=[];
 const check=(name,value)=>{assert.ok(value,name);checks.push(name);console.log('PASS',name);};

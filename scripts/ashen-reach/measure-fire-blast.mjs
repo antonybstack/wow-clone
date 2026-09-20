@@ -1,6 +1,7 @@
-import {chromium} from 'playwright';import fs from 'node:fs/promises';
+import {chromium} from 'playwright';
+import { CDP_URL } from '../lib/cdp.mjs';import fs from 'node:fs/promises';
 const dir=process.env.FIRE_BLAST_CAPTURE_DIR||'ve-capture/ashen-reach/fire-blast';await fs.mkdir(dir,{recursive:true});
-const browser=await chromium.connectOverCDP('http://127.0.0.1:9337');const page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach.html'));
+const browser=await chromium.connectOverCDP(CDP_URL);const page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach.html'));
 try{
  await page.bringToFront();await page.goto('http://127.0.0.1:5173/ashen-reach.html?play&clean',{waitUntil:'commit'});await page.waitForFunction(()=>window.ASHEN?.ready,null,{timeout:60000});await page.waitForTimeout(3000);await page.keyboard.press('Tab');await page.keyboard.press('Digit1');await page.waitForTimeout(3500);
  await page.evaluate(()=>{window.__spellPerf={idle:[],active:[],maxDrawCalls:0,running:true};let last=performance.now();function tick(now){const d=now-last;last=now;const m=window.__spellPerf;if(!m.running)return;(ASHEN.combat.fx.active?m.active:m.idle).push(d);m.maxDrawCalls=Math.max(m.maxDrawCalls,ASHEN.engine.drawCallCount);requestAnimationFrame(tick);}requestAnimationFrame(tick);});

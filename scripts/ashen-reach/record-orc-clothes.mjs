@@ -1,10 +1,11 @@
 /** Live Orc catalogue walkthrough: CDP screencast (DOM HUD) + engine audio. */
 import {chromium} from 'playwright';
+import { CDP_URL } from '../lib/cdp.mjs';
 import fs from 'node:fs/promises';
 
 const dir = process.env.ASHEN_CAPTURE_DIR || 've-capture/ashen-reach/orc-clothes/video';
 await fs.mkdir(dir + '/frames', {recursive: true});
-const browser = await chromium.connectOverCDP('http://127.0.0.1:9337');
+const browser = await chromium.connectOverCDP(CDP_URL);
 const page = browser.contexts()[0].pages().find(p => p.url().includes('ashen-reach.html'))
     || await browser.contexts()[0].newPage();
 let cdp, recording = false;

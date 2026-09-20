@@ -8,6 +8,7 @@
  *   node scripts/ashen-reach/review-orc-live.mjs [--nude] [--out DIR]
  */
 import {chromium} from 'playwright';
+import { CDP_URL } from '../lib/cdp.mjs';
 import fs from 'node:fs/promises';
 
 const argv = process.argv.slice(2);
@@ -19,7 +20,7 @@ const dir = arg('--out', 've-capture/ashen-reach/orc-review');
 const nude = argv.includes('--nude');
 await fs.mkdir(dir, {recursive: true});
 
-const browser = await chromium.connectOverCDP('http://127.0.0.1:9337');
+const browser = await chromium.connectOverCDP(CDP_URL);
 const context = browser.contexts()[0];
 const page = context.pages().find(p => p.url().includes('ashen-reach.html')) || await context.newPage();
 const errors = [];

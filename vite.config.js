@@ -10,7 +10,8 @@ export default defineConfig({
     include: ["@babylonjs/havok"],
   },
   server: {
-    port: 5173,
+    host: "127.0.0.1",
+    port: Number(process.env.ASHEN_VITE_PORT) || 5173,
     strictPort: true,
   },
   plugins: [

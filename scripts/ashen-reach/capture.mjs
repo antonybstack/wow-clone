@@ -1,6 +1,7 @@
 import { chromium } from 'playwright';
+import { CDP_URL } from '../lib/cdp.mjs';
 import fs from 'node:fs/promises';
-const browser=await chromium.connectOverCDP('http://127.0.0.1:9337');
+const browser=await chromium.connectOverCDP(CDP_URL);
 const context=browser.contexts()[0];
 let page=context.pages().find(p=>p.url().includes('ashen-reach.html'))||await context.newPage();
 await page.setViewportSize({width:1280,height:720});
