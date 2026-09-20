@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 telegram-motion-stop.py",
+            "command": "python3 .grok/hooks/telegram-motion-stop.py",
             "timeout": 15
           }
         ]
