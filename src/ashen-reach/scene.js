@@ -1,6 +1,7 @@
 import {setShaderUniform} from '@babylonjs/lite';
-import {Batch,rng,height,pathX,buildingPads,add,mul,sub,norm,cross} from './geometry.js';
+import {Batch,rng,height,pathX,buildingPads,add,mul,sub,norm,cross,terrainNormal,lanternGlow} from './geometry.js';
 import {surface,sky} from './materials.js';
+import {building,marketStall,well,forgeGlow,crossFinial} from './buildings.js';
 
 /** A new scene layout. No Moonwell world builders, architecture or vegetation placement. */
 export async function buildChurchyard(engine,scene){
@@ -20,12 +21,25 @@ export async function buildChurchyard(engine,scene){
   surface(engine,'Distant black stone','/tex/rock_wall_08/diff.jpg',{tint:[.095,.115,.10],light:.35,pixels:64}),
   surface(engine,'Candlelight','/tex/rock_wall_08/diff.jpg',{tint:[.95,1.10,.32],light:1,emission:1.4,pixels:16}),
   surface(engine,'Weathered memorial face','/ashen-reach/grave-face.png',{tint:[1,.98,.88],light:.8,pixels:160}),
+  // Hollowmere's own warm lantern material, separate from the churchyard's Candlelight above: the
+  // two original churchyard lamps and the distant bell towers keep using Candlelight untouched, so
+  // retinting the town's lamp glow can never move a churchyard pixel.
+  surface(engine,'Hollowmere lantern','/tex/rock_wall_08/diff.jpg',{tint:[1.30,.86,.46],light:1,emission:1.25,pixels:24}),
  ]);
- const names=['Earth','Grave stonework','Rotten fence','Bare woodland','Fern beds','Seed grass','Bell towers','Lantern glass','Carved epitaphs'];
- const B=names.map(n=>new Batch(n));const [earth,stone,wood,bark,fern,grass,distant,glow,carve]=B;
+ const names=['Earth','Grave stonework','Rotten fence','Bare woodland','Fern beds','Seed grass','Bell towers','Lantern glass','Carved epitaphs','Warm lantern'];
+ const B=names.map(n=>new Batch(n));const [earth,stone,wood,bark,fern,grass,distant,glow,carve,warm]=B;
  const colliders=[];
- // A continuous uneven floor, not a tiled slab floating on a flat plane.
- for(let z=-95;z<145;z+=2)for(let x=-90;x<90;x+=2){const v=[[x,z],[x+2,z],[x+2,z+2],[x,z+2]].map(([a,b])=>[a,height(a,b),b]);const c=.83+random()*.24;earth.quad(...v,v.map(p=>[p[0]/3,p[2]/3]),[c,c,c,0]);}
+ // A continuous uneven floor, not a tiled slab floating on a flat plane. South of z=40 this is
+ // byte-for-byte the original M1/M0 loop (flat per-face normals) so the churchyard is untouched.
+ // North of z=40 (Hollowmere and the climb) the same triangles get analytic per-vertex normals
+ // instead — zero extra triangles, but the coarse 2m grid no longer reads as flat facets up close.
+ for(let z=-95;z<145;z+=2)for(let x=-90;x<90;x+=2){
+  const v=[[x,z],[x+2,z],[x+2,z+2],[x,z+2]].map(([a,b])=>[a,height(a,b),b]);
+  const c=.83+random()*.24;
+  const uv=v.map(p=>[p[0]/3,p[2]/3]);
+  if(z>=40)earth.quad(...v,uv,[c,c,c,0],v.map(p=>terrainNormal(p[0],p[2])));
+  else earth.quad(...v,uv,[c,c,c,0]);
+ }
 
  // Path albedo is blended directly into the terrain material to avoid coplanar decals.
 
@@ -90,7 +104,7 @@ export async function buildChurchyard(engine,scene){
   const y=height(x,z);
   wood.tube([x,y,z],[x,y+2.9,z],.09,.05,[.62,.56,.48,0],6);
   const p=[x,y+2.62,z];
-  glow.box(p,[.24,.32,.24],[1,1,1,0]);
+  lanternGlow(warm,p,{r:.10,h:.24});
   for(let j=0;j<4;j++){const dx=j<2?-.15:.15,dz=j%2?-.15:.15;wood.box([p[0]+dx,p[1],p[2]+dz],[.036,.48,.036],[.32,.32,.3,0]);}
   wood.box([p[0],p[1]-.23,p[2]],[.37,.06,.37],[.32,.32,.3,0]);
   wood.tube([p[0],p[1]+.19,p[2]],[p[0],p[1]+.44,p[2]],.26,0,[.32,.32,.3,0],4);
@@ -110,6 +124,7 @@ export async function buildChurchyard(engine,scene){
   wood.quad([x,ridgeY,z-half],[x,ridgeY,z+half],[x+eaveOut,y+postH,z+half],[x+eaveOut,y+postH,z-half],undefined,roofCol);
   wood.tube([x,ridgeY,z-half],[x,ridgeY,z+half],.045,.045,[.36,.30,.22,0],4);
   stone.box([x,y+.05,z],[gap*2+.7,.10,.7],[.55,.55,.47,0]);
+  lanternGlow(warm,[x,ridgeY-.1,z],{r:.09,h:.2});
   lights.push({position:[x,ridgeY-.1,z],strength:.5,falloff:.55});
  }
  lychGate(44);
@@ -129,7 +144,7 @@ export async function buildChurchyard(engine,scene){
    const tx=x+side*(gateHalf+towerW/2),ty=height(tx,z);
    stone.box([tx,ty+towerH/2,z],[towerW,towerH,towerW],[.58,.60,.53,0]);
    for(let k=0;k<4;k++){const a=k*Math.PI/2+Math.PI/4;stone.box([tx+Math.sin(a)*towerW*.42,ty+towerH+.35,z+Math.cos(a)*towerW*.42],[.5,.7,.5],[.5,.52,.46,0]);}
-   glow.box([tx-side*towerW*.28,ty+towerH*.55,z-towerW*.51],[.16,.24,.05],[1,1,1,0]);
+   lanternGlow(warm,[tx-side*towerW*.28,ty+towerH*.55,z-towerW*.51],{r:.14,h:.30});
    colliders.push({type:'box',position:{x:tx,y:ty+towerH/2,z},size:{x:towerW,y:towerH,z:towerW},rotation:{y:0}});
    lights.push({position:[tx,ty+towerH*.55,z],strength:.75,falloff:.4});
   }
@@ -138,6 +153,80 @@ export async function buildChurchyard(engine,scene){
  }
  townGate(75);
  for(const [z,side] of [[84,1],[94,-1],[104,1],[114,-1],[124,1],[134,-1]])streetLamp(pathX(z)+side*3.4+rn(-.2,.2),z,.5);
+
+ // --- Hollowmere: a parameterised building() call per pad instead of hand-placed vertices. Pads
+ // west of the street (x<0) use yaw=0 so their door faces +x/east toward the road; pads east of it
+ // (x>0) use yaw=PI so their door faces -x/west toward the road. Off-pad props (stalls) get their
+ // own footprint recorded so the ground-cover pass below can thin around them too. ---
+ const ctx={wood,stone,glow:warm,groundHeight:height,colliders,lights};
+ const WEST=0,EAST=Math.PI,pads=buildingPads,extraFootprints=[];
+ building(ctx,{x:pads[0].x,z:pads[0].z,w:6.6,d:6.6,yaw:WEST,wallH:2.5,roofH:1.3,kind:'house',chimney:true,
+  windows:[{wall:1,w:.55,h:.6},{wall:-1,w:.55,h:.6}]});
+ building(ctx,{x:pads[1].x,z:pads[1].z,w:6.6,d:6.6,yaw:EAST,wallH:2.5,roofH:1.3,kind:'house',
+  windows:[{wall:1,w:.55,h:.6},{wall:-1,w:.55,h:.6}]});
+
+ const tavern=building(ctx,{x:pads[2].x,z:pads[2].z,w:7.6,d:6.6,yaw:WEST,wallH:3.0,roofH:1.6,kind:'tavern',chimney:true,
+  windows:[{wall:1,lx:-1.7,w:.5,h:.58},{wall:1,lx:1.7,w:.5,h:.58},{wall:-1,lx:-1.7,w:.5,h:.58},{wall:-1,lx:1.7,w:.5,h:.58}]});
+ wood.box(add(tavern.front,[0,2.05,0]),[.9,.5,.05],[.42,.28,.14,0],WEST);
+ wood.tube(add(tavern.front,[0,2.55,0]),add(tavern.front,[0,2.3,0]),.02,.02,[.2,.15,.1,0],4);
+ lanternGlow(warm,add(tavern.front,[0,1.95,0]),{r:.05,h:.12});
+ lights.push({position:add(tavern.front,[0,1.95,0]),strength:.3,falloff:.65});
+
+ const smithy=building(ctx,{x:pads[3].x,z:pads[3].z,w:7.2,d:6.4,yaw:EAST,wallH:2.7,roofH:1.2,kind:'smithy',chimney:true,
+  windows:[{wall:1,w:.5,h:.5}]});
+ forgeGlow(ctx,smithy.front[0],smithy.front[2],EAST);
+
+ building(ctx,{x:pads[4].x,z:pads[4].z,w:6.4,d:6.4,yaw:WEST,wallH:2.5,roofH:1.3,kind:'house',
+  windows:[{wall:1,w:.5,h:.58},{wall:-1,w:.5,h:.58}]});
+
+ const chapelWallH=3.2,chapelRoofH=2.1;
+ const chapel=building(ctx,{x:pads[5].x,z:pads[5].z,w:6.6,d:7.6,yaw:EAST,wallH:chapelWallH,roofH:chapelRoofH,kind:'chapel',
+  windows:[{wall:1,w:.8,h:1.05},{wall:-1,w:.8,h:1.05}]});
+ crossFinial(ctx,[pads[5].x,chapel.gy+.22+chapelWallH+chapelRoofH,pads[5].z]);
+
+ building(ctx,{x:pads[6].x,z:pads[6].z,w:6.2,d:5.6,yaw:WEST,wallH:2.5,roofH:1.3,kind:'house',
+  windows:[{wall:1,w:.5,h:.58},{wall:-1,w:.5,h:.58}]});
+
+ building(ctx,{x:pads[7].x,z:pads[7].z,w:4.4,d:4.4,yaw:EAST,wallH:5.6,kind:'watchtower',
+  windows:[{wall:1,ly:2.6},{wall:-1,ly:2.6},{wall:1,ly:4.6},{wall:-1,ly:4.6}]});
+
+ // Well square: the plaza at the north end of the street, with stalls around its rim.
+ well(ctx,pads[8].x,pads[8].z);
+ marketStall(ctx,pads[8].x-4.6,pads[8].z-2.0,WEST);
+ marketStall(ctx,pads[8].x+4.6,pads[8].z-1.4,EAST);
+ marketStall(ctx,pads[8].x-3.4,pads[8].z+3.2,WEST+.35);
+
+ // Two more stalls line the main street between pads, off the road but on natural (unflattened)
+ // terrain, so their footprint is tracked separately for the ground-cover pass below.
+ for(const [z,side] of [[90,-1],[106,1]]){const sx=pathX(z)+side*3.0;marketStall(ctx,sx,z,side<0?EAST:WEST);extraFootprints.push({x:sx,z,r:1.6});}
+
+ // --- Ground cover continues north through Hollowmere, thinned on the street and around every
+ // building/stall footprint so nothing grows through a wall or paving. Independent rng from the
+ // churchyard's grass/fern sequence above, and entirely north of z=40 so it cannot touch the
+ // invariant. ---
+ function insideFootprint(x,z,margin){
+  for(const pd of pads)if(Math.abs(x-pd.x)<pd.w/2+margin&&Math.abs(z-pd.z)<pd.d/2+margin)return true;
+  for(const f of extraFootprints)if(Math.hypot(x-f.x,z-f.z)<f.r+margin)return true;
+  if(z>72&&z<78)return true; // town gatehouse wall and towers
+  return false;
+ }
+ function grassBlade(x,z){
+  const y=height(x,z)-.02,sz=rn(.52,1.15),w=rn(.55,1.05),a=rn(0,Math.PI),kind=randomNorth()<.6?3:randomNorth()<.5?2:0,[u0,v0,u1,v1]=rects[kind];
+  for(let k=0;k<2;k++){const dx=Math.cos(a+k*1.571)*w/2,dz=Math.sin(a+k*1.571)*w/2,c=rn(.66,1.10);grass.quad([x-dx,y,z-dz],[x+dx,y,z+dz],[x+dx,y+sz,z+dz],[x-dx,y+sz,z-dz],[[u0,v1],[u1,v1],[u1,v0],[u0,v0]],[[c,c,c,0],[c,c,c,0],[c,c,c,1],[c,c,c,1]],[0,1,0]);}
+ }
+ for(let i=0;i<7500;i++){
+  const x=rn(-40,40),z=rn(84,143);
+  if(insideFootprint(x,z,.9))continue;
+  const path=Math.abs(x-pathX(z));
+  if(path<1.15)continue;if(path<1.9&&randomNorth()<.75)continue;
+  grassBlade(x,z);
+ }
+ for(let i=0;i<650;i++){
+  const x=rn(-24,24),z=rn(50,141);
+  if(insideFootprint(x,z,1.0))continue;
+  const path=Math.abs(x-pathX(z));if(path<2.0&&randomNorth()<.96)continue;
+  bracken(x,z,rn(.5,1.15),Math.floor((x+200)*971+z*133));
+ }
 
  const meshes=B.map((b,i)=>b.commit(engine,scene,mats[i],lights));colliders.unshift({type:'mesh',mesh:meshes[0]});const clouds=await sky(engine,scene);
  return {meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,stats:{triangles:B.reduce((a,b)=>a+b.idx.length/3,0),drawBatches:B.length},update(t){for(const i of [4,5])setShaderUniform(mats[i],'time',t);clouds.update(t);}};
