@@ -9,64 +9,55 @@
 // (Batch.commit's actual formula, radius included) side by side.
 //
 // Usage: node scripts/ashen-reach/measure-lamp-profile.mjs
-import {height, pathX, rng, buildingPads} from '../../src/ashen-reach/geometry.js';
+import {height, pathX, rng, buildingPads, bakeLamp} from '../../src/ashen-reach/geometry.js';
 
-// --- Exact transcription of scene.js's current (post-M7a) light registration ---
-function buildLights(){
+// Corridor lights transcribed from scene.js. Strengths are parameterised so this file can
+// print the frozen pre-M7a / M7a columns next to the live M8b list without the before-column
+// drifting whenever a strength is retuned (that was a real M8b trap: applyWindow=false on the
+// *current* list is not the pre-M7a world).
+function buildCorridorLights({head=.82,pool=1.70,lychA=.80,lychP=1.49,gate=1.20,halo=.6}={}){
  const lights=[{position:[-3.4,2.5,12.0],strength:.45,falloff:.5},{position:[3.6,2.7,14.0],strength:.4,falloff:.5}];
  const randomNorth=rng(50021),rn=(a,b)=>a+randomNorth()*(b-a);
- function streetLamp(x,z,strength=.68){
+ function streetLamp(x,z){
   const y=height(x,z);
-  const p=[x,y+2.62,z];
-  lights.push({position:p,strength,falloff:.42,radius:9});
-  lights.push({position:[x,y+.18,z],strength:1.0,falloff:.62,radius:5});
+  lights.push({position:[x,y+2.62,z],strength:head,falloff:.42,radius:9});
+  lights.push({position:[x,y+.18,z],strength:pool,falloff:.62,radius:5});
  }
  function lychGate(z){
   const x=pathX(z),y=height(x,z),postH=2.3,ridgeY=y+postH+.85;
-  lights.push({position:[x,ridgeY-.1,z],strength:.65,falloff:.42,radius:9});
-  lights.push({position:[x,y+.18,z],strength:1.1,falloff:.55,radius:6.5});
+  lights.push({position:[x,ridgeY-.1,z],strength:lychA,falloff:.42,radius:9});
+  lights.push({position:[x,y+.18,z],strength:lychP,falloff:.55,radius:6.5});
  }
  lychGate(44);
- for(const [z,side] of [[50,-1],[58,1],[66,-1]])streetLamp(pathX(z)+side*2.8+rn(-.2,.2),z,.68);
+ for(const [z,side] of [[50,-1],[58,1],[66,-1]])streetLamp(pathX(z)+side*2.8+rn(-.2,.2),z);
  function townGate(z){
   const x=pathX(z),gateHalf=2.6,towerW=3.6,towerH=9;
   for(const side of [-1,1]){
    const tx=x+side*(gateHalf+towerW/2),ty=height(tx,z);
-   lights.push({position:[tx,ty+towerH*.55,z],strength:1.0,falloff:.32,radius:14});
-   lights.push({position:[tx,ty+towerH*.55,z],strength:.6,falloff:.15,radius:30});
+   lights.push({position:[tx,ty+towerH*.55,z],strength:gate,falloff:.32,radius:14});
+   lights.push({position:[tx,ty+towerH*.55,z],strength:halo,falloff:.15,radius:30});
   }
  }
  townGate(75);
- for(const [z,side] of [[84,1],[94,-1],[104,1],[114,-1],[124,1],[134,-1]])streetLamp(pathX(z)+side*3.4+rn(-.2,.2),z,.68);
+ for(const [z,side] of [[84,1],[94,-1],[104,1],[114,-1],[124,1],[134,-1]])streetLamp(pathX(z)+side*3.4+rn(-.2,.2),z);
  return lights;
 }
+const LIGHTS_M7A={head:.68,pool:1.0,lychA:.65,lychP:1.1,gate:1.0,halo:.6};
 
-// --- Exact transcription of Batch.commit's per-vertex bake formula, both branches ---
-function lampAtUnwindowed(x,y,z,lights){
- let lamp=0;
- for(const L of lights){
-  const dx=x-L.position[0],dy=y-L.position[1],dz=z-L.position[2],f=(L.falloff??.5);
-  const d=Math.sqrt(dx*dx+dy*dy+dz*dz)*f;
-  lamp+=L.strength/(1+d*d);
- }
- return lamp;
-}
-function lampAtWindowed(x,y,z,lights){
- // Mirrors Batch.commit exactly: `windowed` is z>40 (always true for the z=44..120 samples below,
- // since that is the whole point -- this is the branch Hollowmere's ground actually bakes through).
- const windowed=z>40;
- let lamp=0;
- for(const L of lights){
-  const dx=x-L.position[0],dy=y-L.position[1],dz=z-L.position[2],f=(L.falloff??.5),dist=Math.sqrt(dx*dx+dy*dy+dz*dz),d=dist*f;
-  let term=L.strength/(1+d*d);
-  if(windowed&&L.radius!=null){const t=Math.min(1,dist/L.radius),w=(1-t*t)*(1-t*t);term*=w;}
-  lamp+=term;
- }
- return lamp;
-}
+// Bake formula is imported from geometry.js (the function Batch.commit actually runs). The
+// before-column still forces applyWindow=false so it reports the pre-M7a unwindowed sum.
+function lampAtUnwindowed(x,y,z,lights){return bakeLamp(x,y,z,lights,false);}
+function lampAtWindowed(x,y,z,lights){return bakeLamp(x,y,z,lights,true);}
 
-const lights=buildLights();
-console.log(`registered ${lights.length} lights`);
+// materials.js fragment knee, transcribed because the shader string is not a callable. Identity
+// below 1.4, 1.4+(1-exp(-(lamp-1.4))) above, mixed by lampGate=smoothstep(40,55,z).
+function smoothstep(e0,e1,x){const t=Math.min(1,Math.max(0,(x-e0)/(e1-e0)));return t*t*(3-2*t);}
+function lampKnee(lamp){return lamp>1.4?1.4+(1-Math.exp(-(lamp-1.4))):lamp;}
+function lampEff(lamp,z){const g=smoothstep(40,55,z);return lamp*(1-g)+lampKnee(lamp)*g;}
+
+const lightsM7a=buildCorridorLights(LIGHTS_M7A);
+const lights=buildCorridorLights();
+console.log(`registered ${lights.length} lights (M7a list ${lightsM7a.length})`);
 
 // Swept to z=142.5 (the last 0.5m-aligned sample inside scene.js's `inLampCorridor` bound
 // `z>=40&&z<143`), not z=120: the original 44-120 sweep stopped short of the last two street
@@ -77,16 +68,42 @@ console.log(`registered ${lights.length} lights`);
 const samples=[];
 for(let z=44;z<=142.5;z+=0.5){
  const x=pathX(z),y=height(x,z);
- samples.push({z,before:lampAtUnwindowed(x,y,z,lights),after:lampAtWindowed(x,y,z,lights)});
+ samples.push({
+  z,
+  before:lampAtUnwindowed(x,y,z,lightsM7a),
+  m7a:lampAtWindowed(x,y,z,lightsM7a),
+  after:lampAtWindowed(x,y,z,lights),
+ });
 }
 
-console.log('z\tbefore\tafter');
-for(const s of samples)console.log(`${s.z.toFixed(1)}\t${s.before.toFixed(4)}\t${s.after.toFixed(4)}`);
+console.log('z\tpre-M7a\tM7a\tM8b');
+for(const s of samples)console.log(`${s.z.toFixed(1)}\t${s.before.toFixed(4)}\t${s.m7a.toFixed(4)}\t${s.after.toFixed(4)}`);
 
 function stats(vals){const peak=Math.max(...vals),trough=Math.min(...vals);return {peak,trough,ratio:peak/trough};}
-const bStats=stats(samples.map(s=>s.before)),aStats=stats(samples.map(s=>s.after));
-console.log(`\nBEFORE (unwindowed, pre-M7a): peak=${bStats.peak.toFixed(4)} trough=${bStats.trough.toFixed(4)} global peak:trough=${bStats.ratio.toFixed(3)}`);
-console.log(`AFTER  (windowed, post-M7a): peak=${aStats.peak.toFixed(4)} trough=${aStats.trough.toFixed(4)} global peak:trough=${aStats.ratio.toFixed(3)}`);
+const bStats=stats(samples.map(s=>s.before)),mStats=stats(samples.map(s=>s.m7a)),aStats=stats(samples.map(s=>s.after));
+console.log(`\nPRE-M7A (unwindowed, original strengths): peak=${bStats.peak.toFixed(4)} trough=${bStats.trough.toFixed(4)} global peak:trough=${bStats.ratio.toFixed(3)}`);
+console.log(`M7A     (windowed, original strengths):  peak=${mStats.peak.toFixed(4)} trough=${mStats.trough.toFixed(4)} global peak:trough=${mStats.ratio.toFixed(3)}`);
+console.log(`M8B     (windowed, re-leveled strengths): peak=${aStats.peak.toFixed(4)} trough=${aStats.trough.toFixed(4)} global peak:trough=${aStats.ratio.toFixed(3)}`);
+
+// M8b: is the 19% peak drop the window, the materials.js knee (max 2.4), or both?
+const peakBefore=samples.reduce((a,b)=>b.before>a.before?b:a);
+const peakAfter=samples.reduce((a,b)=>b.after>a.after?b:a);
+const nBeforeAbove=samples.filter(s=>s.before>1.4).length;
+const nAfterAbove=samples.filter(s=>s.after>1.4).length;
+const effBefore=samples.map(s=>lampEff(s.before,s.z));
+const effAfter=samples.map(s=>lampEff(s.after,s.z));
+const eB=stats(effBefore),eA=stats(effAfter);
+const peakM7a=samples.reduce((a,b)=>b.m7a>a.m7a?b:a);
+console.log('\n--- M8b knee vs window ---');
+console.log(`baked peak: pre-M7a z=${peakBefore.z.toFixed(1)} ${peakBefore.before.toFixed(4)}  M7a z=${peakM7a.z.toFixed(1)} ${peakM7a.m7a.toFixed(4)} (${((1-peakM7a.m7a/peakBefore.before)*100).toFixed(1)}% drop)  M8b z=${peakAfter.z.toFixed(1)} ${peakAfter.after.toFixed(4)}`);
+console.log(`samples with baked lamp>1.4 (knee engages): before=${nBeforeAbove}/${samples.length}  after=${nAfterAbove}/${samples.length}`);
+console.log(`shader lampEff (knee mixed by lampGate): before peak=${eB.peak.toFixed(4)} trough=${eB.trough.toFixed(4)}  after peak=${eA.peak.toFixed(4)} trough=${eA.trough.toFixed(4)}`);
+console.log(`at baked-after peak z=${peakAfter.z.toFixed(1)}: lampGate=${smoothstep(40,55,peakAfter.z).toFixed(3)}  baked ${peakAfter.after.toFixed(4)} -> lampEff ${lampEff(peakAfter.after,peakAfter.z).toFixed(4)} (knee would map ${peakAfter.after.toFixed(4)} -> ${lampKnee(peakAfter.after).toFixed(4)})`);
+console.log(`at baked-before peak z=${peakBefore.z.toFixed(1)}: lampGate=${smoothstep(40,55,peakBefore.z).toFixed(3)}  baked ${peakBefore.before.toFixed(4)} -> lampEff ${lampEff(peakBefore.before,peakBefore.z).toFixed(4)} (knee ${lampKnee(peakBefore.before).toFixed(4)})`);
+const fullKnee=samples.filter(s=>s.z>=55);
+const fullBeforeMax=Math.max(...fullKnee.map(s=>s.before));
+const fullAfterMax=Math.max(...fullKnee.map(s=>s.after));
+console.log(`full-knee region z>=55: baked peak before=${fullBeforeMax.toFixed(4)} after=${fullAfterMax.toFixed(4)}  (knee threshold 1.4; headroom after=${(1.4-fullAfterMax).toFixed(4)})`);
 
 // Fixture-to-fixture local peak/trough, before and after -- this is the number that actually
 // determines whether a wide shot reads as discrete pools (the global peak:trough above is
@@ -95,13 +112,13 @@ console.log(`AFTER  (windowed, post-M7a): peak=${aStats.peak.toFixed(4)} trough=
 // the final street lamp (z=134) out to where the corridor ends, instead of stopping at z=134 the
 // way the pre-extension sweep implicitly did.
 const fixtureZ=[44,50,58,66,75,84,94,104,114,124,134,142.5];
-console.log('\nfixture-to-fixture local peak/trough (before -> after):');
+console.log('\nfixture-to-fixture local peak/trough (pre-M7a -> M7a -> M8b):');
 for(let i=0;i<fixtureZ.length-1;i++){
  const z0=fixtureZ[i],z1=fixtureZ[i+1],mid=(z0+z1)/2;
  const near=(target)=>samples.reduce((a,b)=>Math.abs(b.z-target)<Math.abs(a.z-target)?b:a);
  const pk=near(z0),tr=near(mid);
- const rBefore=pk.before/tr.before,rAfter=pk.after/tr.after;
- console.log(`  z=${z0}->${z1}: peak@${pk.z} trough@${tr.z}  before=${pk.before.toFixed(3)}/${tr.before.toFixed(3)}=${rBefore.toFixed(2)}x   after=${pk.after.toFixed(3)}/${tr.after.toFixed(3)}=${rAfter.toFixed(2)}x`);
+ const rBefore=pk.before/tr.before,rM7a=pk.m7a/tr.m7a,rAfter=pk.after/tr.after;
+ console.log(`  z=${z0}->${z1}: peak@${pk.z} trough@${tr.z}  pre=${pk.before.toFixed(3)}/${tr.before.toFixed(3)}=${rBefore.toFixed(2)}x   m7a=${pk.m7a.toFixed(3)}/${tr.m7a.toFixed(3)}=${rM7a.toFixed(2)}x   m8b=${pk.after.toFixed(3)}/${tr.after.toFixed(3)}=${rAfter.toFixed(2)}x`);
 }
 
 // Per-light contribution breakdown at a representative mid-corridor trough (z=99.5), after windowing.
@@ -136,11 +153,12 @@ const WEST=0,EAST=Math.PI;
 function toWorldFrom(x,z,yaw){const c=Math.cos(yaw),s=Math.sin(yaw);return(lx,ly,lz)=>[x+lx*c+lz*s,ly,z-lx*s+lz*c];}
 function windowLights(center,yaw,w,h,side,strength){
  const s=Math.sin(yaw),c=Math.cos(yaw);
- const out=[s*side,0,c*side],right=[c,0,-s];
+ const out=side===0?[c,0,-s]:[s*side,0,c*side];
+ const right=side===0?[s,0,c]:[c,0,-s];
  const at=(rx,ry,off=0)=>[center[0]+right[0]*rx+out[0]*off,center[1]+ry,center[2]+right[2]*rx+out[2]*off];
  return [
-  {position:at(0,0,.15),strength,falloff:.65,src:'buildings.js:window'},
-  {position:at(0,-h*.9,.5),strength:strength*.55,falloff:.5,src:'buildings.js:window-spill'},
+  {position:at(0,0,.15),strength,falloff:.55,radius:4.5,src:'buildings.js:window'},
+  {position:at(0,-h*.9,.5),strength:strength*.7,falloff:.5,radius:3.5,src:'buildings.js:window-spill'},
  ];
 }
 function buildingLights(spec){
@@ -154,14 +172,17 @@ function buildingLights(spec){
  const out=[];
  if(kind==='watchtower'){
   const topY=wallTopY+.12;
-  out.push({position:toW(0,topY+.55,0),strength:.85,falloff:.4,src:'buildings.js:watchtower-beacon'});
+  out.push({position:toW(0,topY+.55,0),strength:.85,falloff:.4,radius:10,src:'buildings.js:watchtower-beacon'});
   for(const win of windows){
    const p=toW(win.lx??0,win.ly??wallTopY*0.55,(win.wall??1)*(d/2+.02));
-   out.push({position:p,strength:win.strength??.22,falloff:.7,src:'buildings.js:watchtower-window'});
+   out.push({position:p,strength:win.strength??.22,falloff:.7,radius:4,src:'buildings.js:watchtower-window'});
   }
  } else {
-  for(const win of windows)out.push(...windowLights(toW(win.lx??0,win.ly??(plinthY+wallH*.62),(win.wall??1)*(d/2+.015)),yaw,win.w??.55,win.h??.6,win.wall??1,win.strength??.35));
-  if(sign)out.push({position:toW(w/2+.5,1.95,0),strength:.3,falloff:.65,src:'buildings.js:sign'});
+  for(const win of windows)out.push(...windowLights(toW(win.lx??0,win.ly??(plinthY+wallH*.62),(win.wall??1)*(d/2+.015)),yaw,win.w??.55,win.h??.6,win.wall??1,win.strength??.45));
+  for(const lz of [-.95,.95])out.push(...windowLights(toW(w/2+.015,plinthY+wallH*.58,lz),yaw,.40,.50,0,.45));
+  const doorH=1.55;
+  out.push({position:toW(w/2+.16,plinthY+doorH+.14,0),strength:.42,falloff:.6,radius:3.5,src:'buildings.js:door-lantern'});
+  if(sign)out.push({position:toW(w/2+.5,1.95,0),strength:.3,falloff:.65,radius:3.5,src:'buildings.js:sign'});
  }
  return {lights:out, front:toW(w/2+.5,0,0)};
 }
@@ -184,8 +205,8 @@ function forgeLights(x,z,yaw){
  const gy=height(x,z),s=Math.sin(yaw),c=Math.cos(yaw);
  const P=(lx,ly,lz)=>[x+lx*c+lz*s,gy+ly,z-lx*s+lz*c];
  return [
-  {position:P(0,.64,.20),strength:1.1,falloff:.4,src:'buildings.js:forge'},
-  {position:P(0,.05,.55),strength:.5,falloff:.55,src:'buildings.js:forge-spill'},
+  {position:P(0,.64,.20),strength:1.3,falloff:.4,radius:6,src:'buildings.js:forge'},
+  {position:P(0,.05,.55),strength:.65,falloff:.55,radius:4.5,src:'buildings.js:forge-spill'},
  ];
 }
 function buildAllBuildingLights(){
@@ -245,3 +266,20 @@ function lampBreakdownAt(label,wx,wz){
 // script's camera stand point (x:0, z:131, ~5m south of the well) -- the well-square.png shot.
 lampBreakdownAt('well-square centre (buildingPads[8])', buildingPads[8].x, buildingPads[8].z);
 lampBreakdownAt('well-square camera stand (capture-m7a-lamp-pools.mjs)', 0, 131);
+
+// M8b facades: street-facing gable of the first house (pad 0, west of the road at z=82) and
+// the tavern (pad 2, z=98). Sampled at mid-wall height so this is what a 15 m street view of
+// the elevation actually bakes, not the centre-line ground profile.
+function facadeAt(label,pad,w){
+ const gy=height(pad.x,pad.z);
+ const gableX=pad.x<0?pad.x+w/2:pad.x-w/2;
+ const y=gy+1.6,z=pad.z,x=gableX;
+ const before=lampAtUnwindowed(x,y,z,allLights),after=lampAtWindowed(x,y,z,allLights);
+ console.log(`\n--- facade ${label} (gable x=${x.toFixed(2)} y=${y.toFixed(2)} z=${z}) ---`);
+ console.log(`baked lamp: before=${before.toFixed(4)} after=${after.toFixed(4)}  lampEff after=${lampEff(after,z).toFixed(4)}`);
+ const streetX=pathX(z),streetDist=Math.abs(x-streetX);
+ console.log(`distance from street centre: ${streetDist.toFixed(2)} m`);
+}
+facadeAt('house pad0', buildingPads[0], 6.6);
+facadeAt('tavern pad2', buildingPads[2], 7.6);
+facadeAt('smithy pad3', buildingPads[3], 7.2);
