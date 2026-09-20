@@ -101,26 +101,33 @@ const crowd = await page.evaluate(async () => {
   };
 
   const crowdMeshes = [];
-  for (const h of humans) {
-    for (const mesh of h.meshes || []) {
-      const gpu = mesh._gpu || {};
-      crowdMeshes.push({
-        root: h.root.name,
-        name: mesh.name,
-        visible: mesh.visible !== false,
-        indexCount: gpu.indexCount || 0,
-        triangles: (gpu.indexCount || 0) / 3,
-        positionBuffer: idOf(gpu.positionBuffer),
-        normalBuffer: idOf(gpu.normalBuffer),
-        uvBuffer: idOf(gpu.uvBuffer),
-        indexBuffer: idOf(gpu.indexBuffer),
-        positionSize: gpu.positionBuffer?.size ?? null,
-        indexSize: gpu.indexBuffer?.size ?? null,
-        material: idOf(mesh.material),
-        skeleton: idOf(h.skeleton),
-        container: idOf(h.container),
-      });
+  for (const mesh of ASHEN.scene.meshes || []) {
+    let node = mesh;
+    let rootName = null;
+    while (node) {
+      if ((node.name || "").startsWith("Crowd_")) {
+        rootName = node.name;
+        break;
+      }
+      node = node.parent;
     }
+    if (!rootName) continue;
+    const gpu = mesh._gpu || {};
+    crowdMeshes.push({
+      root: rootName,
+      name: mesh.name,
+      visible: mesh.visible !== false,
+      indexCount: gpu.indexCount || 0,
+      triangles: (gpu.indexCount || 0) / 3,
+      positionBuffer: idOf(gpu.positionBuffer),
+      normalBuffer: idOf(gpu.normalBuffer),
+      uvBuffer: idOf(gpu.uvBuffer),
+      indexBuffer: idOf(gpu.indexBuffer),
+      positionSize: gpu.positionBuffer?.size ?? null,
+      indexSize: gpu.indexBuffer?.size ?? null,
+      material: idOf(mesh.material),
+      skeleton: idOf(mesh.skeleton || mesh._skeleton),
+    });
   }
 
   const uniquePosition = new Set(crowdMeshes.map((m) => m.positionBuffer)).size;
@@ -179,3 +186,4 @@ const report = {
 await fs.mkdir(outDir, { recursive: true });
 await fs.writeFile(`${outDir}/naive-crowd.json`, JSON.stringify(report, null, 2));
 console.log(JSON.stringify(report, null, 2));
+process.exit(0);
