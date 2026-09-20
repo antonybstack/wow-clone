@@ -37,9 +37,14 @@ scripts/character-assets/__pycache__/
 
 # High-poly print sculpt (CC-BY 4.0). Form reference only; never ship.
 blender/characters/sources/orc-print/*.fbx
+blender/characters/sources/orc-print/*.gltf
 blender/characters/sources/orc-print/*.glb
 blender/characters/sources/orc-print/*.bin
 blender/characters/sources/orc-print/*.zip
 .agents/skills/blender-lite/references/male_orc_for_print.glb
 .agents/skills/blender-lite/references/male_orc_for_print.zip
 .agents/skills/blender-lite/references/male-orc-for-print.zip
+
+# Per-machine agent tool state.
+.claude/settings.local.json
+.claude/.headroom_wrap_*
