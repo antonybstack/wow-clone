@@ -1,8 +1,9 @@
 # World expansion toward an MVP — 2026-09-19
 
-Status: **active**. Started 2026-09-19 from `main` at `6b7f18e`, with the production build and both
-test suites green. The Orc character pipeline is complete enough to stop polishing; this plan moves
-effort to the world, then to a combat loop.
+Status: **active**. Started 2026-09-19 from `main` at `6b7f18e`. M1–M8 are in `main` as of
+2026-09-20 (`3d5f8f5`). The settlement exists. The remaining gap is that **nothing happens
+north of the lych-gate** — Hollowmere is still a walkable diorama. Do not open another
+lighting, shade-cowl, or townsfolk-face pass; those leftovers are carried, not a queue.
 
 ## Why this plan
 
@@ -61,7 +62,38 @@ Player damage, death and resurrect. `src/character/npc.js` is the starting point
 experience bar, minimap.
 
 **M6 — Performance.** Spatial chunking, frustum culling and level of detail, activated only if the
-M1–M3 measurements show the >120 FPS goal is threatened.
+M1–M3 measurements show the >120 FPS goal is threatened. **Not activated:** uncapped p99 is still
+under the 8.3 ms budget.
+
+**M7a / M7b / M8a / M8b — quality follow-ups, now in `main`.** Discrete lamp pools; cowled
+grave-shades; Hollowmere townsfolk; corridor re-level and street gables. Leftovers are listed
+in the log and are **not** the next work.
+
+## Current priority (2026-09-20)
+
+The world-building arc did its job. Next work has to change what a player *does* in the ten
+minutes after spawn, not how the existing diorama is shaded.
+
+**M9 — Hollowmere is hostile ground.** The four shades stop at z≈62 (the climb). The town
+itself cannot hurt you. Put 2–4 hostiles on the street and well approaches, reusing the
+existing enemy machine and shade silhouette — not `attachCrowd`. Different names/tints so they
+are not copies of the churchyard four. The decorative townsfolk stay non-hostile. Gate: you
+can be attacked walking to the well; churchyard shades still work; cost is the existing
+per-shade ~34k+440, not a new Mixamo upload path.
+
+**M10 — one objective that uses the town.** A single beat, not a quest system. The watchman
+(or the existing greeter) gives a HUD message to clear the churchyard shades; doing so awards
+XP and a completion line. No dialogue tree, no vendor, no journal UI. Gate: a player who only
+sightssees has missed something; a player who fights and walks into town has a loop.
+
+**M11 — Undead, first playable dressed body.** The approved concept is
+[undead-race-plan.md](undead-race-plan.md). First delivery is the body + Revenant outfit
+moving in the churchyard, not fitting the whole Human catalogue. Do not open a second Orc-style
+polish loop in the first pass.
+
+**Parked, not a queue:** shade front-cowl round 3, townsfolk faces, tavern-patron contrast,
+dark roofs from the overlook, lamp pooling round 5, minimap art, Human staff-pole carry, M6
+chunking, interiors, vendors, a second spell school.
 
 ## Parallel harness
 
@@ -750,6 +782,24 @@ Telegram: stills 636/640–641, lighting MP4 642,
 https://ve.sparkify.dev/wow-clone/ashen-reach/m8b/2026-09-20-hollowmere-lighting-walk.mp4
 (`video/mp4`).
 
-Nothing here is accepted. Merge order if both land: M8b first (bake/lights),
-then M8a, then retune `townsfolk.js`'s transcribed light list so the figures
-pick up the new bake.
+Merged 2026-09-20, in that order, as no-ff merges `9a85cb4` / `b874c57` / `8e3ef99`,
+then `3d5f8f5` so townsfolk bake from `world.lights` instead of a transcribed list.
+Carried leftovers stand. Round 3 of the shade cowl was not launched.
+
+## Merged into main, 2026-09-20 — stop polishing this arc
+
+`main` at `3d5f8f5`. Offline on the merged tree: build clean, character 75/75,
+equipment 27/27, metrics 11/11.
+
+The user asked to avoid tunnel vision, merge everything, and re-prioritize. So:
+
+- M7b, M8a, M8b are **in**. Front cowl, hood faces, dark roofs stay as documented
+  leftovers. They are not the next tickets.
+- The original M1–M6 scope is met. M6 stays off.
+- Next work is **M9 (town hostiles)** and **M10 (one town objective)** in parallel.
+  M11 (Undead first dressed body) is the character track, started only after M9/M10
+  are in flight or done — it must not eat the world/gameplay loop the way the Orc
+  did.
+
+Telegram of the merged tree is a parent walkthrough after live checks, not a
+re-review of the already-sent M8a/M8b clips.

@@ -1,6 +1,6 @@
 # Current direction — Ashen Reach
 
-Updated 2026-09-19. The playable Orc is the print-sculpt retopo on the 65-joint source bind. Living pipeline: [orc sculpt pipeline](orc-sculpt-pipeline.md). Dated reports are evidence of particular passes; conflicting older roadmaps, handoffs and logs have been removed rather than retained as a task queue.
+Updated 2026-09-20. The playable Orc is the print-sculpt retopo on the 65-joint source bind. Living pipeline: [orc sculpt pipeline](orc-sculpt-pipeline.md). Dated reports are evidence of particular passes; conflicting older roadmaps, handoffs and logs have been removed rather than retained as a task queue.
 
 ## Product and visual target
 
@@ -32,11 +32,11 @@ The parent implements and reviews by default. Grok delegation is an optional too
 
 Orc form work that produced a live churchyard face matching the print sculpt: collapse the FBX (do not voxel), bake HP normals/AO, keep maps on bind, no dummy eyes. Recipe and traps: [orc sculpt pipeline](orc-sculpt-pipeline.md). Recoloring cannot restore remeshed eyelids.
 
-Choose one consequential deliverable from the latest user request. Current Orc-art work is the [sculpt pipeline](orc-sculpt-pipeline.md). Human armed-pose follow-ups stay in [the repair plan](armed-character-repair-plan.md) when that is the request. Preserve approved work, but replace code or art that contradicts the visual target. Do not equate passing functional tests with visual acceptance.
+Choose one consequential deliverable from the latest user request. World/gameplay follow-ups stay in [world expansion](world-expansion-plan-2026-09-19.md). Undead stays in [the undead plan](undead-race-plan.md) when that is the request. Orc-art follow-ups stay in [the sculpt pipeline](orc-sculpt-pipeline.md). Human armed-pose follow-ups stay in [the repair plan](armed-character-repair-plan.md). Preserve approved work, but replace code or art that contradicts the visual target. Do not equate passing functional tests with visual acceptance.
 
 ## Active initiative
 
-The Orc character pipeline is complete enough to stop polishing. Active work is [world expansion toward an MVP](world-expansion-plan-2026-09-19.md): Hollowmere, the citadel vista, churchyard shades, lighting, and a combat loop. That log is the task queue. Nothing in it is accepted while it is still staged for review.
+The Orc character pipeline is complete enough to stop polishing. Hollowmere, the citadel vista, cowled churchyard shades, townsfolk, and the re-leveled street lamps are in `main`. The living queue is [world expansion toward an MVP](world-expansion-plan-2026-09-19.md): **M9 town hostiles** and **M10 one town objective** next; **M11 Undead first dressed body** after those, using the approved concept in [undead-race-plan.md](undead-race-plan.md). Do not open another lighting, shade-cowl, or townsfolk-face pass.
 
 [Armory and modular equipment living plan](armory-and-equipment-plan.md) remains the character/equipment contract. **C / Armory** opens the character, race selector, motion previews and seven equipment slots. Human and Orc use the same logical catalogue; Orc garments are not MHCLO. Every Orc garment is produced by one fitter, `scripts/ashen-reach/fit-orc-garments.mjs` — non-rigid registration of the Human body onto the print sculpt, a K-nearest surface transfer, a relax pass over the transfer, a lattice-resolved clearance push and an item-level seal against the catalogue's coverage geosets. The per-slot heuristics it replaced (inflated glove shells, a parked boot last, radius-graded sleeves) are gone. [Stage detail and the acceptance measures](orc-sculpt-pipeline.md#clothing-fit). Wayfarer, Pilgrim, Graveweaver and Warden presets work on both. See [equipment authoring](ashen-equipment-authoring.md) for the Human garment pipeline and [orc sculpt pipeline](orc-sculpt-pipeline.md) for the Orc.
 
