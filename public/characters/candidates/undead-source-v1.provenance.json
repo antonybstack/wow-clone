@@ -1,0 +1,66 @@
+{
+  "pipeline": "source-compatible Undead binding from an authored body and a CC0 skull scan",
+  "build": {
+    "height": 1.9695,
+    "shoulderSpan": 0.464,
+    "fingertipSpan": 2.2019,
+    "skullHeight": 0.225,
+    "bodyVerts": 9705,
+    "bodyTris": 19044,
+    "restBytes": 1925240,
+    "regionVerts": {
+      "footright": 574,
+      "armright": 756,
+      "legright": 977,
+      "torso": 1132,
+      "neck": 283,
+      "armleft": 742,
+      "footleft": 567,
+      "legleft": 971,
+      "handleft": 66,
+      "fingerleftThumb": 114,
+      "fingerleftIndex": 114,
+      "fingerleftMiddle": 114,
+      "fingerleftRing": 114,
+      "fingerleftPinky": 114,
+      "handright": 66,
+      "fingerrightThumb": 114,
+      "fingerrightIndex": 114,
+      "fingerrightMiddle": 114,
+      "fingerrightRing": 114,
+      "fingerrightPinky": 114,
+      "cranium": 911,
+      "teeth": 986,
+      "mandible": 534
+    },
+    "meshes": [
+      "UndeadV1Body",
+      "UndeadV1Eyes",
+      "UndeadV1Hair",
+      "UndeadV1Brows",
+      "UndeadV1Shorts"
+    ]
+  },
+  "hashes": {
+    "public/characters/base.glb": "2f9e45d0f7d9faeae4c20e18585173d62953df1a8f0272f270bedb200927604c",
+    "public/ashen-reach/wanderer.glb": "aa9bc4cf04c53d84fbea574d04eee03f659889772d380ec130e892f5a9609da9",
+    "public/characters/candidates/undead-source-v1.glb": "5d996c36c1a6785807d9b08e992c62284eac8c96b95a8e3257e41c9f8c702863",
+    "scripts/character-assets/undead_from_skull.py": "0f3bcc825f4da2d3b7caec47411499ace71b86c8f34b6284164221711bfe5e52",
+    "scripts/character-assets/bind-source-undead.mjs": "6d076afcfb71fbc0a9e688df785328f78c7aeb105df59f58782ef6e83280ac95",
+    "blender/characters/sources/undead-skull/provenance.json": "fe089b709df24c7fde2e46a160c59948fe53ab361272cc1c3a53557b0b8e85df"
+  },
+  "versions": {
+    "blender": "5.2.1",
+    "gltfTransform": "4.4.2",
+    "glMatrix": "3.4.4"
+  },
+  "source": {
+    "title": "Human Skull",
+    "author": "CDmir",
+    "license": "CC0-1.0",
+    "url": "https://opengameart.org/content/human-skull-0",
+    "download": "https://opengameart.org/sites/default/files/skull-obj.zip",
+    "use": "cranium, mandible and teeth of UndeadV1Body, and the high-poly cage for the tangent normal and AO bake"
+  },
+  "licenseNotes": "Skull geometry is CC0-1.0 and needs no attribution; credit recorded anyway in blender/characters/sources/undead-skull/license.txt. Torso, limbs and hands are authored in scripts/character-assets/undead_from_skull.py, not derived from MakeHuman. The source rig and the original clips retain base.glb provenance."
+}

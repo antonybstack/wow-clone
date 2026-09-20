@@ -86,24 +86,28 @@ NECK_EXTRA = 0.022         # gaunt exposed neck
 
 # Body radii. (rx = left-right half width, ry = front-back half depth).
 TORSO_RINGS = [
-    # (height as fraction between Hips and Neck joint, rx, ry, y-offset)
-    (-0.16, 0.112, 0.082, 0.004),   # below the hip joint: pelvic floor
-    (0.00, 0.118, 0.086, 0.002),    # pelvis
-    (0.17, 0.101, 0.072, 0.000),    # gaunt waist
-    (0.34, 0.107, 0.074, -0.004),   # floating ribs
-    (0.52, 0.126, 0.084, -0.008),   # lower ribcage
-    (0.70, 0.137, 0.089, -0.008),   # chest
-    (0.86, 0.141, 0.083, -0.004),   # clavicle shelf
-    (1.00, 0.108, 0.073, 0.004),    # neck root
+    # (height as a fraction of hips->neck, half width, half depth, y offset).
+    # frac 0 is the hip joint. Negative fracs build the pelvis down to the crotch;
+    # they taper hard so the pelvis does not hang as a bulb between the thighs.
+    (-0.115, 0.072, 0.064, 0.012),   # crotch
+    (-0.062, 0.108, 0.088, 0.009),   # pelvic floor
+    (-0.008, 0.132, 0.104, 0.016),   # iliac crest, widest point of the pelvis
+    (0.10, 0.120, 0.103, 0.013),     # hips, carrying what is left of the buttock
+    (0.27, 0.098, 0.082, -0.003),    # gaunt waist
+    (0.43, 0.110, 0.095, -0.011),    # floating ribs
+    (0.59, 0.127, 0.105, -0.015),    # lower ribcage
+    (0.75, 0.136, 0.106, -0.012),    # chest
+    (0.89, 0.136, 0.092, -0.004),    # clavicle shelf
+    (1.00, 0.101, 0.078, 0.006),     # neck root
 ]
 TORSO_SEGS = 24
 TORSO_POWER = 2.25
 
 NECK_R = (0.046, 0.044)
-ARM_RADII = [(0.0, 0.060, 0.058), (0.18, 0.052, 0.050), (0.62, 0.041, 0.040), (1.0, 0.037, 0.035)]
-FOREARM_RADII = [(0.0, 0.044, 0.042), (0.30, 0.038, 0.036), (1.0, 0.026, 0.024)]
-THIGH_RADII = [(0.0, 0.088, 0.086), (0.35, 0.073, 0.071), (1.0, 0.052, 0.050)]
-SHIN_RADII = [(0.0, 0.059, 0.058), (0.30, 0.053, 0.050), (1.0, 0.031, 0.030)]
+ARM_RADII = [(0.0, 0.058, 0.055), (0.18, 0.051, 0.049), (0.62, 0.042, 0.041), (1.0, 0.038, 0.037)]
+FOREARM_RADII = [(0.0, 0.046, 0.045), (0.30, 0.040, 0.039), (1.0, 0.024, 0.023)]
+THIGH_RADII = [(0.0, 0.086, 0.090), (0.35, 0.073, 0.077), (1.0, 0.058, 0.060)]
+SHIN_RADII = [(0.0, 0.058, 0.060), (0.30, 0.055, 0.054), (1.0, 0.033, 0.032)]
 LIMB_SEGS = 14
 LIMB_POWER = 2.35
 
@@ -120,11 +124,11 @@ REMESH_TRIS = 12000
 SKULL_HEIGHT = 0.225
 SKULL_FORWARD = 0.010      # seat the ear canal over the Head joint, not the centroid
 SKULL_DROP = 0.004         # nudge down so the crown sits on HeadTop_End
-EYE_RADIUS = 0.0125
+EYE_RADIUS = 0.0095
 # Measured off the +X profile render: orbit centre sits 45% of the vertex-to-chin
 # height below the crown and 17% of the depth back from the face.
 EYE_X_FRACTION = 0.200     # of skull width, per side -> 60 mm interocular
-EYE_Y_FRACTION = 0.170
+EYE_Y_FRACTION = 0.215
 EYE_Z_FRACTION = 0.450
 
 # Palette. Ashen churchyard, not lime. Bone is warm-grey, wraps and flesh are colder.
@@ -363,9 +367,26 @@ class Builder:
                 pass
 
     def tube(self, path, radii, region, segs=LIMB_SEGS, power=LIMB_POWER,
-             up_hint=Vector((0, 0, 1)), cap_start=True, cap_end=True, cap_scale=0.62):
-        """path: list of Vector centres. radii: list of (rx, ry) per centre."""
+             up_hint=Vector((0, 0, 1)), cap_start=True, cap_end=True, cap_scale=0.62,
+             over_start=0.0, over_end=0.0):
+        """path: list of Vector centres. radii: list of (rx, ry) per centre.
+
+        over_start / over_end push the ends further along their own axis so the
+        shell buries itself inside its neighbour. Every tube has to be a closed
+        volume: the voxel union is a mesh-to-volume pass, and an open cylinder
+        converts to a sliver or to nothing. An earlier build left the limbs
+        uncapped and the remesh deleted both legs.
+        """
         assert len(path) == len(radii) >= 2
+        path, radii = list(path), list(radii)
+        if over_start > 0:
+            d = (path[0] - path[1]).normalized()
+            path.insert(0, path[0] + d * over_start)
+            radii.insert(0, radii[0])
+        if over_end > 0:
+            d = (path[-1] - path[-2]).normalized()
+            path.append(path[-1] + d * over_end)
+            radii.append(radii[-1])
         rings = []
         frames = []
         for i, c in enumerate(path):
@@ -433,33 +454,36 @@ def resample(a, b, n):
 def build_body(j):
     """Lofted shells along the retargeted bone graph.
 
-    Two objects come back sharing one region registry. The torso/limb shells get
-    voxel-unified and decimated, which erases the silhouette step where one tube
+    Two objects come back sharing one region registry. The torso and limbs get
+    voxel-unioned and collapsed, which erases the silhouette step where one tube
     abuts the next. The hands do not: remesh-then-collapse turns 11 mm fingers to
-    mush, and the hands are the part being judged."""
+    mush, and the hands are half of what the concept is asking for.
+
+    Every shell here is closed and overlaps its neighbour, because the union is a
+    mesh-to-volume pass and open tubes vanish in it.
+    """
     registry = ([], {})
     B = Builder(registry)
     H = Builder(registry)
 
-    # ---- torso: pelvis to neck root, superelliptical rings, gaunt waist
+    # ---- torso: pelvis to neck root, gaunt waist, slight spinal lean
     hips = j['mixamorig:Hips']
     neck = j['mixamorig:Neck']
     span = neck.z - hips.z
     path, radii = [], []
     for frac, rx, ry, dy in TORSO_RINGS:
         z = hips.z + span * frac
-        # follow the spine's slight backward lean
         y = hips.y + (neck.y - hips.y) * max(0.0, frac) + dy
         path.append(Vector((0.0, y, z)))
         radii.append((rx, ry))
     B.tube(path, radii, 'torso', segs=TORSO_SEGS, power=TORSO_POWER,
-           up_hint=Vector((0, 1, 0)), cap_start=True, cap_end=True, cap_scale=0.55)
+           up_hint=Vector((0, 1, 0)), cap_scale=0.55)
 
-    # ---- neck
+    # ---- neck: buried in the torso below and inside the cranium above
     head = j['mixamorig:Head']
-    nk = resample(neck + Vector((0, 0, -0.012)), head + Vector((0, 0, 0.012)), 5)
+    nk = resample(neck, head, 5)
     B.tube(nk, [NECK_R] * len(nk), 'neck', segs=16, power=2.1,
-           up_hint=Vector((0, 1, 0)), cap_start=False, cap_end=False)
+           up_hint=Vector((0, 1, 0)), over_start=0.045, over_end=0.055, cap_scale=0.7)
 
     for sign, side in ((1.0, 'Left'), (-1.0, 'Right')):
         lo = side.lower()
@@ -470,84 +494,91 @@ def build_body(j):
 
         # ---- shoulder yoke: clavicle out to the deltoid
         yoke = resample(sh, up, 4)
-        B.tube(yoke, [(0.070, 0.066), (0.068, 0.064), (0.064, 0.060), (0.060, 0.058)],
-               f'arm{lo}', segs=LIMB_SEGS, power=LIMB_POWER, cap_start=False, cap_end=False)
+        B.tube(yoke, [(0.066, 0.056), (0.064, 0.055), (0.061, 0.055), (0.058, 0.055)],
+               f'arm{lo}', over_start=0.035, over_end=0.040)
 
         # ---- upper arm and forearm
         ua = resample(up, fore, 6)
         B.tube(ua, [lerp_radii(ARM_RADII, i / 5) for i in range(6)], f'arm{lo}',
-               segs=LIMB_SEGS, power=LIMB_POWER, cap_start=False, cap_end=False)
-        fa = resample(fore, wrist, 6)
-        B.tube(fa, [lerp_radii(FOREARM_RADII, i / 5) for i in range(6)], f'arm{lo}',
-               segs=LIMB_SEGS, power=LIMB_POWER, cap_start=False, cap_end=False)
+               over_start=0.040, over_end=0.032)
 
-        # ---- palm: a flat slab from the wrist to the knuckle line
+        # The palm carries the round-to-flat wrist transition, so the forearm can
+        # taper below the palm's proximal thickness and bury its cap inside it.
+        palm_dir_pre = (j[f'mixamorig:{side}HandMiddle1'] - wrist).normalized()
+        wrist_root = wrist - palm_dir_pre * 0.048
+        fa = resample(fore, wrist_root, 6)
+        B.tube(fa, [lerp_radii(FOREARM_RADII, i / 5) for i in range(6)], f'arm{lo}',
+               over_start=0.032, over_end=0.026)
+
+        # ---- palm: round at the wrist, flat by the knuckles
         knuckles = [j[f'mixamorig:{side}Hand{f}1'] for f in ('Index', 'Middle', 'Ring', 'Pinky')]
         knuckle_mid = sum(knuckles, Vector()) / len(knuckles)
-        palm_dir = (knuckle_mid - wrist).normalized()
-        # palm plane: normal is roughly the thumb-to-pinky cross product
-        across = (j[f'mixamorig:{side}HandIndex1'] - j[f'mixamorig:{side}HandPinky1'])
-        across = across.normalized()
+        palm_dir = (knuckle_mid - wrist_root).normalized()
+        across = (j[f'mixamorig:{side}HandIndex1'] - j[f'mixamorig:{side}HandPinky1']).normalized()
         palm_n = palm_dir.cross(across).normalized()
-        palm_path = resample(wrist - palm_dir * 0.012, knuckle_mid + palm_dir * 0.004, 4)
         half_w = (j[f'mixamorig:{side}HandIndex1'] - j[f'mixamorig:{side}HandPinky1']).length * 0.62
+        shape = [(0.00, 0.030, 0.028, 2.15),
+                 (0.28, 0.035, 0.024, 2.35),
+                 (0.60, half_w * 0.88, 0.019, 2.65),
+                 (1.00, half_w * 1.06, 0.0145, 2.95)]
+        palm_path = resample(wrist_root, knuckle_mid + palm_dir * 0.006, 4)
         palm_rings = []
         for i, c in enumerate(palm_path):
-            t = i / (len(palm_path) - 1)
-            w = half_w * (0.72 + 0.34 * t)
-            th = PALM_HALF_THICK * (1.0 - 0.22 * t)
-            palm_rings.append(H.add_ring(c, across, palm_n, w, th, 14, 2.9, f'hand{lo}'))
+            _, w, th, pw = shape[i]
+            palm_rings.append(H.add_ring(c, across, palm_n, w, th, 16, pw, f'hand{lo}'))
         for i in range(len(palm_rings) - 1):
             H.bridge(palm_rings[i], palm_rings[i + 1])
-        H.fan(palm_rings[0], H.add_point(palm_path[0] - palm_dir * 0.010, f'hand{lo}'), flip=True)
-        H.fan(palm_rings[-1], H.add_point(palm_path[-1] + palm_dir * 0.006, f'hand{lo}'))
+        H.fan(palm_rings[0], H.add_point(palm_path[0] - palm_dir * 0.016, f'hand{lo}'), flip=True)
+        H.fan(palm_rings[-1], H.add_point(palm_path[-1] + palm_dir * 0.008, f'hand{lo}'))
 
         # ---- fingers: bony, knuckle-swollen, tapering to a point
         for fname in ('Thumb', 'Index', 'Middle', 'Ring', 'Pinky'):
             chain = [j[f'mixamorig:{side}Hand{fname}{k}'] for k in (1, 2, 3, 4)]
             pts, rads = [], []
-            scale = 0.80 if fname == 'Thumb' else 1.0
-            for s in range(3):
-                a, b = chain[s], chain[s + 1]
-                steps = 3 if s < 2 else 4
+            scale = 0.86 if fname == 'Thumb' else 1.0
+            if fname == 'Pinky':
+                scale = 0.84
+            for seg in range(3):
+                a, b = chain[seg], chain[seg + 1]
+                steps = 3 if seg < 2 else 4
                 for k in range(steps):
                     f = k / steps
                     pts.append(a + (b - a) * f)
-                    g = (s + f) / 3.0
+                    g = (seg + f) / 3.0
                     r = (FINGER_R_BASE + (FINGER_R_TIP - FINGER_R_BASE) * g) * scale
-                    # knuckle swell at each joint
-                    r *= 1.0 + 0.30 * math.exp(-((f - 0.0) ** 2) / 0.012)
+                    r *= 1.0 + 0.26 * math.exp(-(f ** 2) / 0.012)
                     rads.append((r, r * 0.92))
             pts.append(chain[3])
-            rads.append((FINGER_R_TIP * scale * 0.66,) * 2)
+            rads.append((FINGER_R_TIP * scale * 0.7,) * 2)
             H.tube(pts, rads, f'finger{lo}{fname}', segs=FINGER_SEGS, power=2.6,
-                   cap_start=False, cap_end=True, cap_scale=0.5)
+                   over_start=0.018, cap_scale=0.5)
 
         # ---- legs
         hip = j[f'mixamorig:{side}UpLeg']
         knee = j[f'mixamorig:{side}Leg']
         ankle = j[f'mixamorig:{side}Foot']
-        th = resample(hip + Vector((0, 0, 0.02)), knee, 6)
+        th = resample(hip, knee, 6)
         B.tube(th, [lerp_radii(THIGH_RADII, i / 5) for i in range(6)], f'leg{lo}',
-               segs=LIMB_SEGS, power=LIMB_POWER, cap_start=False, cap_end=False)
-        sh_ = resample(knee, ankle, 6)
-        B.tube(sh_, [lerp_radii(SHIN_RADII, i / 5) for i in range(6)], f'leg{lo}',
-               segs=LIMB_SEGS, power=LIMB_POWER, cap_start=False, cap_end=False)
+               over_start=0.060, over_end=0.036)
+        shin = resample(knee, ankle, 6)
+        B.tube(shin, [lerp_radii(SHIN_RADII, i / 5) for i in range(6)], f'leg{lo}',
+               over_start=0.036, over_end=0.030)
 
-        # ---- foot: ankle -> toe base -> toe end, flattened, sole on the ground
+        # ---- foot: ankle through the ball to the toe, sole flat on the ground
         toe = j[f'mixamorig:{side}ToeBase']
         tip = j[f'mixamorig:{side}Toe_End']
-        sole = 0.0
-        heel = Vector((ankle.x, ankle.y + 0.048, ankle.z * 0.42))
-        f_path = [ankle, Vector((ankle.x, (ankle.y + toe.y) * 0.5, sole + 0.030)),
-                  Vector((toe.x, toe.y, sole + 0.022)), Vector((tip.x, tip.y, sole + 0.014))]
+        f_path = [Vector((ankle.x, ankle.y, ankle.z)),
+                  Vector((ankle.x, (ankle.y + toe.y) * 0.5, 0.032)),
+                  Vector((toe.x, toe.y, 0.024)),
+                  Vector((tip.x, tip.y, 0.016))]
         f_rad = [(0.036, 0.040), (0.040, 0.034), (0.042, 0.026), (0.030, 0.016)]
-        B.tube(f_path, f_rad, f'foot{lo}', segs=12, power=2.8, cap_start=False, cap_end=True,
-               cap_scale=0.55)
-        # heel block so the ankle does not float
-        hl = [ankle, heel]
-        B.tube(hl, [(0.034, 0.038), (0.030, 0.028)], f'foot{lo}', segs=12, power=2.8,
-               cap_start=False, cap_end=True, cap_scale=0.6)
+        B.tube(f_path, f_rad, f'foot{lo}', segs=14, power=2.8,
+               over_start=0.045, over_end=0.006, cap_scale=0.55)
+        # heel block, so the ankle does not float over the ground
+        heel = Vector((ankle.x, ankle.y + 0.052, 0.030))
+        B.tube([Vector((ankle.x, ankle.y, ankle.z)), heel],
+               [(0.034, 0.038), (0.031, 0.030)], f'foot{lo}', segs=14, power=2.8,
+               over_start=0.030, over_end=0.008, cap_scale=0.6)
 
     main = B.to_object('UndeadV1Main')
     hands = H.to_object('UndeadV1Hands')
@@ -559,7 +590,6 @@ def build_body(j):
     return main, hands, regions
 
 
-# ------------------------------------------------------------------- the skull
 def import_skull(j):
     """CC0 skull -> character frame (up +Z, front -Y), scaled and seated on Head."""
     if not SKULL_OBJ.exists():
@@ -1347,7 +1377,7 @@ def main():
     paint(body, j)
     smart_uv(body)
 
-    placeholder = make_material('UndeadV1BodyMat', BONE, vertex_color='Col')
+    placeholder = make_material('UndeadV1BakeTemp', BONE, vertex_color='Col')
     body.data.materials.clear()
     body.data.materials.append(placeholder)
 
