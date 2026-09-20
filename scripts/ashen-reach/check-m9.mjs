@@ -148,6 +148,42 @@ try {
   );
   await page.screenshot({ path: `${dir}/check-town-aggro.png` });
 
+  await page.evaluate(() => {
+    for (const e of ASHEN.combat.enemies) {
+      e.lockedState = null;
+      if (e.state === "dead") continue;
+      e.state = "idle";
+      e.idleFor = 99;
+      e.position.x = e.spawn.x;
+      e.position.z = e.spawn.z;
+    }
+    const y = ASHEN.world.groundHeight(0, 70) + ASHEN.player.capsuleHeight / 2;
+    ASHEN.player.setWorldPos(0, y, 70);
+    ASHEN.player.setFacing(0);
+    ASHEN.rig.yaw = 0;
+    ASHEN.setView("play");
+  });
+  await page.waitForTimeout(200);
+  await page.keyboard.down("KeyW");
+  await page.waitForFunction(
+    () =>
+      ASHEN.combat.enemies.some(
+        (e) => e.zone === "town" && (e.state === "chase" || e.state === "attack"),
+      ),
+    null,
+    { timeout: 8000 },
+  );
+  await page.keyboard.up("KeyW");
+  const walked = await read();
+  const walkAggro = walked.enemies.filter(
+    (e) => e.zone === "town" && (e.state === "chase" || e.state === "attack"),
+  );
+  check(
+    "A walk from the gate toward the well aggros a town hostile",
+    walkAggro.length > 0 && walked.player.z > 70,
+  );
+  await page.screenshot({ path: `${dir}/check-walk-aggro.png` });
+
   const tab = await page.evaluate(() => {
     for (const e of ASHEN.combat.enemies) {
       if (e.state === "dead") continue;

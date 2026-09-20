@@ -191,7 +191,14 @@ function lineOfSight(enemy, player, raycast) {
   if (!hit) return true;
   if (!hit.hasHit) return true;
   const id = hit.body?.node?.metadata?.colliderId;
-  return id === enemy.id;
+  if (id === enemy.id) return true;
+  // The ray is aimed at the player. The player controller has no colliderId, so
+  // a hit on that far capsule used to count as blocked and a walk down the
+  // street never entered chase. A hit near the destination is the player;
+  // a hit short of that is world geometry.
+  const len = Math.hypot(to.x - from.x, to.y - from.y, to.z - from.z) || 1;
+  const hitDist = Number.isFinite(hit.hitDistance) ? hit.hitDistance : len;
+  return hitDist >= len - 1;
 }
 
 function show(enemy, visible) {
