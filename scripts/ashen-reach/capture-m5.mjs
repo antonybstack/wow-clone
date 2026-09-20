@@ -100,11 +100,22 @@ try {
   await page.waitForFunction(() => ASHEN.combat.progress.level >= 2, null, {
     timeout: 6000,
   });
-  await settle(250);
+  await page.evaluate(() => {
+    ASHEN.combat.targeting.clear();
+    ASHEN.rig.pitch = 0.08;
+    ASHEN.rig.distance = ASHEN.rig.distanceTarget = 5.2;
+  });
+  await settle(280);
   await page.screenshot({ path: `${dir}/level-up-live.png` });
-  await clip(".level-up", "level-up-banner.png", 24);
+  await clip(".level-up", "level-up-banner.png", 28);
   await clip(".player-plate", "level-up-plate.png", 16);
   console.log("wrote level-up-live.png");
+
+  await page.waitForFunction(
+    () => document.querySelector(".level-up")?.hidden !== false,
+    null,
+    { timeout: 4000 },
+  );
 
   await page.evaluate(() => {
     const y = ASHEN.world.groundHeight(0, 0) + ASHEN.player.capsuleHeight / 2;

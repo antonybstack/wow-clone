@@ -330,12 +330,7 @@ export async function createCombat(
         onKill(enemy) {
           const result = progression.awardXp(enemy, life, life.time);
           if (result.leveled) syncPlayerHp();
-          if (result.gained)
-            hud.message(
-              result.leveled
-                ? `You reach level ${progression.progress.level}`
-                : `+${result.gained} experience`,
-            );
+          else if (result.gained) hud.message(`+${result.gained} experience`);
         },
       });
       if (

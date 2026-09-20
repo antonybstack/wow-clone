@@ -38,11 +38,16 @@ function paintStatic(ctx) {
   band(40, 75, "#141812");
   band(75, 143, "#1c2016");
 
-  ctx.fillStyle = "#3d382c";
+  ctx.fillStyle = "#5a5040";
   for (const pad of buildingPads) {
     const [u0, vNorth] = worldToMap(pad.x - pad.w / 2, pad.z + pad.d / 2);
     const [u1, vSouth] = worldToMap(pad.x + pad.w / 2, pad.z - pad.d / 2);
-    ctx.fillRect(u0, vNorth, Math.max(2, u1 - u0), Math.max(2, vSouth - vNorth));
+    ctx.fillRect(
+      u0,
+      vNorth,
+      Math.max(5, u1 - u0),
+      Math.max(5, vSouth - vNorth),
+    );
   }
 
   ctx.strokeStyle = "#6a6250";

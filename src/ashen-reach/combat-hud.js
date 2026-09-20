@@ -12,9 +12,9 @@ export function createCombatHud(canvas) {
     ".xp-track{height:5px;border:1px solid #282820;background:#15140f;margin:5px 0 2px}" +
     ".xp-fill{height:100%;width:0;background:#a46636;transition:width .1s}" +
     ".xp-plate small{font:10px monospace;color:#c1c0ab}" +
-    ".level-up{position:absolute;top:26%;left:0;right:0;text-align:center;z-index:11;pointer-events:none;color:#ffe1a8;text-shadow:0 2px 14px #000,0 0 28px #a46636aa}" +
-    ".level-up strong{display:block;font:40px Georgia;letter-spacing:.22em}" +
-    ".level-up small{display:block;margin-top:8px;font:14px Georgia;letter-spacing:.12em;color:#ead1b5}";
+    ".level-up{position:absolute;top:10%;left:0;right:0;text-align:center;z-index:11;pointer-events:none;color:#ffe1a8;text-shadow:0 2px 16px #000,0 0 28px #000}" +
+    ".level-up strong{display:block;font:44px Georgia;letter-spacing:.22em}" +
+    ".level-up small{display:block;margin-top:8px;font:15px Georgia;letter-spacing:.12em;color:#ead1b5}";
   root.prepend(hudStyle);
   document.body.append(root);
   const plate = root.querySelector(".target-plate"),
