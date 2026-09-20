@@ -7,9 +7,11 @@
  */
 import { attachAnimatedHuman } from "../character/npc.js";
 import { height, pathX } from "./geometry.js";
+import { SHADE_XP } from "./progression.js";
 
 export const ENEMY_TUNING = Object.freeze({
   hp: 360,
+  xp: SHADE_XP,
   aggroRadius: 12,
   leashRadius: 22,
   meleeRange: 2.2,
@@ -210,7 +212,10 @@ function tickEnemy(enemy, dt, ctx) {
   enemy.stateAge += dt;
   enemy.attackCooldown = Math.max(0, enemy.attackCooldown - dt);
 
-  if (enemy.hp <= 0 && enemy.state !== "dead") enter(enemy, "dead");
+  if (enemy.hp <= 0 && enemy.state !== "dead") {
+    enter(enemy, "dead");
+    ctx.onKill?.(enemy);
+  }
 
   if (enemy.state === "dead") {
     enemy.deadAge += dt;
@@ -340,6 +345,7 @@ async function makeEnemy(engine, scene, world, spec, index) {
     hostile: true,
     hp: ENEMY_TUNING.hp,
     hpMax: ENEMY_TUNING.hp,
+    xp: ENEMY_TUNING.xp,
     hits: 0,
     hitsLanded: 0,
     meshes: actor.meshes,

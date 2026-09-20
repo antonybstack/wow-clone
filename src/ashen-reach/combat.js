@@ -9,9 +9,11 @@ import { createFireBlastAudio } from "./fire-blast-audio.js";
 import { createFireBlastVfx } from "./fire-blast-vfx.js";
 import { height, pathX } from "./geometry.js";
 import { createLavaBallVfx } from "./lava-ball-vfx.js";
+import { createMinimap } from "./minimap.js";
+import { createProgression, PLAYER_HP_BASE } from "./progression.js";
 import { spellLineOfSight } from "./spell-visibility.js";
 
-const PLAYER_HP = 100;
+const PLAYER_HP = PLAYER_HP_BASE;
 const REGEN_DELAY = 6;
 const REGEN_PER_SEC = 4;
 
@@ -58,6 +60,10 @@ function installLifeHud() {
   const style = document.createElement("style");
   style.textContent =
     ".player-plate{position:absolute;bottom:124px;left:50%;transform:translateX(-50%);width:220px;text-align:center;font-size:13px;z-index:9;background:#100e0cee;padding:8px 12px 6px;border:1px solid #3a3428;box-shadow:0 2px 10px #000000a0}" +
+    ".player-plate .player-level{display:block;margin-top:3px;font:10px monospace;letter-spacing:.16em;color:#c1c0ab}" +
+    ".mana-track{height:5px;border:1px solid #282820;background:#15140f;margin:5px 0 2px}" +
+    ".mana-fill{height:100%;background:#a46636;transition:width .1s}" +
+    ".player-plate .player-mana{display:block;font:10px monospace;color:#c1c0ab}" +
     ".death-veil{position:absolute;inset:0;background:#100808d4;display:grid;place-items:center;pointer-events:auto;z-index:5;text-align:center}" +
     ".death-veil[hidden]{display:none!important}" +
     ".death-veil p{margin:0 0 14px;font-size:28px;color:#ead1b5}" +
@@ -67,7 +73,7 @@ function installLifeHud() {
   const plate = document.createElement("div");
   plate.className = "player-plate";
   plate.innerHTML =
-    "<span>You</span><div class=\"hp-track\"><div class=\"hp-fill\"></div></div><small></small>";
+    "<span>You</span><small class=\"player-level\">LEVEL 1</small><div class=\"hp-track\"><div class=\"hp-fill\"></div></div><small class=\"player-hp\"></small><div class=\"mana-track\"><div class=\"mana-fill\"></div></div><small class=\"player-mana\"></small>";
   const veil = document.createElement("div");
   veil.className = "death-veil";
   veil.hidden = true;
@@ -105,10 +111,15 @@ export async function createCombat(
   const audio = await createFireBlastAudio(scene);
   const lifeHud = installLifeHud();
   const playerFill = lifeHud.querySelector(".player-plate .hp-fill");
-  const playerHp = lifeHud.querySelector(".player-plate small");
+  const playerHp = lifeHud.querySelector(".player-plate .player-hp");
+  const playerLevel = lifeHud.querySelector(".player-plate .player-level");
+  const manaFill = lifeHud.querySelector(".player-plate .mana-fill");
+  const manaText = lifeHud.querySelector(".player-plate .player-mana");
   const nameEl = lifeHud.querySelector(".target-plate > span");
   const targetHpEl = lifeHud.querySelector(".target-plate small");
   const deathVeil = lifeHud.querySelector(".death-veil");
+  const progression = createProgression();
+  const minimap = createMinimap({ player, enemies });
   hud.soundToggle.onclick = () => {
     audio.setMuted(!audio.muted);
     hud.soundToggle.textContent = audio.muted ? "Muted" : "Sound on";
@@ -168,6 +179,7 @@ export async function createCombat(
     life.hp = life.hpMax;
     life.inCombat = false;
     life.combatUntil = 0;
+    progression.fillMana();
     syncPlayerHp();
     plantPlayer();
     deathVeil.hidden = true;
@@ -245,13 +257,21 @@ export async function createCombat(
       life.hp = Math.min(life.hpMax, life.hp + REGEN_PER_SEC * dt);
       syncPlayerHp();
     }
+    progression.regenMana(dt, life.inCombat, REGEN_PER_SEC);
   };
   const paintHud = () => {
     const ratio = life.hpMax ? life.hp / life.hpMax : 0;
     playerFill.style.width = ratio * 100 + "%";
     playerHp.textContent = life.dead
       ? "Dead"
-      : `${Math.ceil(life.hp)} / ${life.hpMax}`;
+      : `HEALTH  ${Math.ceil(life.hp)} / ${life.hpMax}`;
+    const p = progression.progress;
+    if (playerLevel) playerLevel.textContent = `LEVEL ${p.level}`;
+    if (manaFill)
+      manaFill.style.width = (p.manaMax ? p.mana / p.manaMax : 0) * 100 + "%";
+    if (manaText)
+      manaText.textContent = `MANA  ${Math.ceil(p.mana)} / ${p.manaMax}`;
+    hud.paintProgress(p, life.time);
     const target = targeting.current;
     if (nameEl && target) nameEl.textContent = target.name;
     if (targetHpEl && target && !target.recover && target.hp <= 0)
@@ -281,14 +301,17 @@ export async function createCombat(
     },
     snapshot: () => ({
       life: { ...life },
+      progress: progression.snapshot(),
       enemies: enemySnapshot(enemies),
       dummy: { hp: dummy.hp, hpMax: dummy.hpMax },
       target: targeting.current?.id || null,
     }),
+    progress: progression.progress,
     releaseSpirit,
     setVisible(v) {
       visible = v;
       hud.setVisible(v);
+      minimap.setVisible(v);
     },
     interrupt(reason = "Cast interrupted") {
       cancel(reason);
@@ -304,6 +327,11 @@ export async function createCombat(
         playerDead: life.dead,
         targeting,
         onPlayerHit,
+        onKill(enemy) {
+          const result = progression.awardXp(enemy, life, life.time);
+          if (result.leveled) syncPlayerHp();
+          else if (result.gained) hud.message(`+${result.gained} experience`);
+        },
       });
       if (
         pending?.key === 2 &&
@@ -348,7 +376,8 @@ export async function createCombat(
       }
       const ability = key === 2 ? lava : spell,
         target = targeting.current,
-        reason = ability.validate(castArgs(target));
+        reason =
+          ability.validate(castArgs(target)) || progression.refuseMana(key);
       if (reason) {
         ability.lastResult = reason;
         hud.message(reason);
@@ -398,6 +427,8 @@ export async function createCombat(
               origin = { x: p[0], y: p[1], z: p[2] },
               result = lava.release(castArgs(request.target), origin);
             if (result.ok) {
+              progression.spendMana(2);
+              markCombat();
               lavaFx.launch(origin);
               audio.lavaRelease();
             } else {
@@ -408,8 +439,10 @@ export async function createCombat(
             }
           } else {
             const result = spell.cast(castArgs(request.target));
-            if (result.ok) impact(result);
-            else {
+            if (result.ok) {
+              progression.spendMana(1);
+              impact(result);
+            } else {
               fx.cancelWindup();
               hud.message(result.reason);
             }
@@ -444,6 +477,7 @@ export async function createCombat(
         pending?.key === 2 ? { elapsed: body.getState().castElapsed } : null,
       );
       paintHud();
+      if (visible) minimap.update();
     },
   };
 }
