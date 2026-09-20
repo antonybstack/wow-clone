@@ -266,3 +266,31 @@ its own Vite port, its own Chrome profile and CDP port, and one command to start
      — the well square floor and, worse, the lych-gate stone, which now reads lime green rather
      than stone. Wide and overhead shots still read as a proper night town; this is a close-range
      problem.
+- 2026-09-20: **M5 landed and merged** (`90a9388`, six commits `c2eaa1d`..`9811834`). Note the
+  plan's M5 scope was stale: health regen and nameplates already shipped in M4, so the actual new
+  work was XP/levels, mana, the bars and the minimap.
+  `src/ashen-reach/progression.js` holds the tuning; XP is awarded on the existing enemy death
+  path in `enemies.js`, so there is no second death path. Shade 50 XP, dummy 0, `xpToNext =
+  100 * level`, health and mana both `100 + 15/level`, Fire Blast 20 mana, Lava Ball 40, mana
+  regen reusing the existing 4/sec-after-6s health pattern. Spells are refused through the
+  existing `hud.message` plumbing rather than a new mechanism. The HUD gained LEVEL, a MANA track
+  on the player plate and an EXPERIENCE bar, all in the established visual language.
+  `src/ashen-reach/minimap.js` is a 168x196 **2D DOM canvas** painted from world XZ on the
+  existing `afterAnimation` tick — no second camera, no second render loop, no extra
+  `requestAnimationFrame`, and `main.js` was not touched at all.
+  **Verified by me on the merged tree:** build clean, 75/75 and 27/27, and **61/61 live checks**
+  (enemy-loop 13, player-death 8, enemy-collision 7, lava-moving 6, plus new progression 16 and
+  mana 11). Hardware FPS **144.0**, draws **42** — the minimap adds no GPU draws, confirming the
+  DOM-canvas claim. p95 moved 8.0 -> 8.4 ms, which is the minimap's per-tick CPU cost showing up
+  where the vsync-pinned mean cannot.
+  **Open defects (its own, and they are fair):**
+  1. The minimap town is a schematic cross of grey blocks, not a street plan — no walls, no well,
+     no building types. Legible as road/buildings/enemies, but crude.
+  2. Its three terrain bands are near-black and easy to miss.
+  3. The floating damage number overlaps the LEVEL UP banner moment.
+  4. `level-up.png` is a poor frame (airborne, "Land before casting"); `level-up-live.png` is the
+     intended evidence and is genuinely good.
+  **Process note:** like M4 before it, this agent drifted toward the Telegram stop-hook and left an
+  untracked `telegram-motion-stop.py` in its worktree. It did NOT commit it and correctly sent no
+  message. I scanned it (0 token-shaped strings) and deleted it. Two agents have now independently
+  wandered to that hook when blocked by frozen paths; briefs should keep naming it out of scope.
