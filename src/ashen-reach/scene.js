@@ -196,8 +196,19 @@ export async function buildChurchyard(engine,scene){
    lights.push({position:[tx,ty+towerH*.55,z],strength:1.0,falloff:.32});
    lights.push({position:[tx,ty+towerH*.55,z],strength:.6,falloff:.15}); // wide, dim halo so the gatehouse registers as a warm mass from the approach
   }
+  // M3c defect 2: the plan's M3 gate ("a reviewed vista of the citadel from the town gate")
+  // was still unmet -- at ORDINARY play framing (pitch=.04, dist=3.5, not the contrived pitch=.25
+  // M3b judged it at) the citadel's base/lower mass was hidden directly behind this header, which
+  // sat only 3.15-4.05 units above ground at 5m range: close enough that its own angular height
+  // (~17-24 degrees elevation from the gate) covered exactly the band where the citadel's walls and
+  // spire bases sit from that distance, leaving only spire tips visible above it ("window dots
+  // above the lintel", per review). A camera pitch change can't fix an object physically in the
+  // way. Fix: raise the header well above eye-level sightlines (still under towerH=9 so it reads
+  // as an architectural element near the tower tops, not a floating slab) so the gate opens into a
+  // tall archway with a clear sightline through to the citadel at ordinary play pitch. Pure
+  // vertex-Y change: no new triangles, no collider (the header never had one).
   const gy=height(x,z);
-  stone.box([x,gy+3.6,z],[gateHalf*2+towerW*.6,.9,wallT*1.1],[.56,.58,.5,0]);
+  stone.box([x,gy+7.4,z],[gateHalf*2+towerW*.6,.9,wallT*1.1],[.56,.58,.5,0]);
  }
  townGate(75);
  for(const [z,side] of [[84,1],[94,-1],[104,1],[114,-1],[124,1],[134,-1]])streetLamp(pathX(z)+side*3.4+rn(-.2,.2),z,.68);
