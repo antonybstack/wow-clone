@@ -405,7 +405,7 @@ try {
   const views = [
     { stem: "front-2.5m", dist: 2.55, pitch: 0.22, shadeYaw: Math.PI },
     { stem: "profile-2.5m", dist: 2.55, pitch: 0.18, shadeYaw: Math.PI / 2 },
-    { stem: "play-8m", dist: 8.0, pitch: 0.12, shadeYaw: Math.PI, rigYaw: 0.28 },
+    { stem: "play-8m", dist: 8.0, pitch: 0.14, shadeYaw: Math.PI, rigYaw: -1.15 },
   ];
   const pairs = [];
   for (const view of views) {
@@ -456,9 +456,8 @@ try {
     e.actor.play("death", { oneshot: true, loop: false, speed: 1 });
     const death = e.actor.clips.death;
     const duration = death?.duration || 0;
-    if (death) death.currentTime = Math.max(0, duration * 0.9);
+    if (death) death.currentTime = Math.max(0, duration * 0.92);
     e.setColliderEnabled?.(false);
-    for (let i = 0; i < 8; i++) e.actor.update(1 / 30);
     return {
       clip: e.actor.clipName,
       duration,
@@ -466,8 +465,28 @@ try {
       playing: !!death?.isPlaying,
     };
   });
-  await frame({ dist: 3.1, pitch: 0.38, shadeYaw: Math.PI / 2, rigYaw: 0.15 });
-  await settle(250);
+  await settle(400);
+  const deathAt = await page.evaluate(() => {
+    const e = ASHEN.combat.enemies[0];
+    const mesh = (e.actor?.meshes || []).find((m) => m.worldMatrix);
+    const wm = mesh?.worldMatrix;
+    return wm
+      ? { x: wm[12], y: wm[13], z: wm[14] }
+      : { x: e.position.x, y: e.position.y, z: e.position.z };
+  });
+  await page.evaluate(async ({ x, z }) => {
+    const { setMeshVisible } = await import("/src/ashen-reach/shade-garment.js");
+    const y = ASHEN.world.groundHeight(x, z) + ASHEN.player.capsuleHeight / 2;
+    ASHEN.player.setWorldPos(x, y, z);
+    ASHEN.rig.yaw = 1.05;
+    ASHEN.rig.pitch = 0.42;
+    ASHEN.rig.distance = ASHEN.rig.distanceTarget = 2.7;
+    ASHEN.setView("play");
+    if (ASHEN.body?.root) setMeshVisible(ASHEN.body.root, false);
+    ASHEN.equipment?.setVisible?.(false);
+    ASHEN.combat.targeting.select(ASHEN.combat.enemies[0].id);
+  }, deathAt);
+  await settle(200);
   await shot("death");
   console.log("death", JSON.stringify(deathInfo));
 

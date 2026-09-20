@@ -160,12 +160,12 @@ function cap(shell, pts, center, flip = false) {
 function buildHood(engine, scene) {
     const segs = 10;
     const outerRings = [
-        { y: -0.14, rx: 0.11, rz: 0.10, z: 0.00, gap: 0.20, fold: 0.04 },
-        { y: -0.04, rx: 0.145, rz: 0.12, z: 0.04, gap: 0.36, fold: 0.05 },
-        { y: 0.06, rx: 0.12, rz: 0.11, z: 0.07, gap: 0.52, fold: 0.04 },
-        { y: 0.13, rx: 0.10, rz: 0.09, z: 0.04, gap: 0.28, fold: 0.03 },
-        { y: 0.18, rx: 0.055, rz: 0.05, z: 0.02, gap: 0.08, fold: 0.0 },
-        { y: 0.20, rx: 0.012, rz: 0.012, z: 0.01, gap: 0.0, fold: 0.0 },
+        { y: -0.12, rx: 0.10, rz: 0.09, z: 0.00, gap: 0.22, fold: 0.04 },
+        { y: -0.03, rx: 0.12, rz: 0.11, z: 0.04, gap: 0.38, fold: 0.05 },
+        { y: 0.05, rx: 0.11, rz: 0.10, z: 0.06, gap: 0.52, fold: 0.04 },
+        { y: 0.11, rx: 0.09, rz: 0.08, z: 0.04, gap: 0.28, fold: 0.03 },
+        { y: 0.155, rx: 0.05, rz: 0.045, z: 0.02, gap: 0.08, fold: 0.0 },
+        { y: 0.17, rx: 0.012, rz: 0.012, z: 0.01, gap: 0.0, fold: 0.0 },
     ];
     const outer = ringsFrom(outerRings, segs);
     const inner = outerRings.map((row) =>
