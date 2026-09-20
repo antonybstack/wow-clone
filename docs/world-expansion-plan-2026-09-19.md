@@ -1,9 +1,9 @@
 # World expansion toward an MVP — 2026-09-19
 
-Status: **active**. Started 2026-09-19 from `main` at `6b7f18e`. M1–M8 are in `main` as of
-2026-09-20 (`3d5f8f5`). The settlement exists. The remaining gap is that **nothing happens
-north of the lych-gate** — Hollowmere is still a walkable diorama. Do not open another
-lighting, shade-cowl, or townsfolk-face pass; those leftovers are carried, not a queue.
+Status: **active**. Started 2026-09-19 from `main` at `6b7f18e`. M1–M10 are in `main` as of
+2026-09-20 (`469f417`). Hollowmere is a town you can fight in, with a gate objective.
+Do not open another lighting, shade-cowl, or townsfolk-face pass; those leftovers are
+carried, not a queue. Next is M11 Undead (first dressed body).
 
 ## Why this plan
 
@@ -74,22 +74,20 @@ in the log and are **not** the next work.
 The world-building arc did its job. Next work has to change what a player *does* in the ten
 minutes after spawn, not how the existing diorama is shaded.
 
-**M9 — Hollowmere is hostile ground.** The four shades stop at z≈62 (the climb). The town
-itself cannot hurt you. Put 2–4 hostiles on the street and well approaches, reusing the
-existing enemy machine and shade silhouette — not `attachCrowd`. Different names/tints so they
-are not copies of the churchyard four. The decorative townsfolk stay non-hostile. Gate: you
-can be attacked walking to the well; churchyard shades still work; cost is the existing
-per-shade ~34k+440, not a new Mixamo upload path.
+**M9 — Hollowmere is hostile ground.** **In `main` (`46a5712`).** Three town hostiles
+(Street Wraith / Lane Shade / Well Haunt) on the street and well, own roam box z=76..138.
+Churchyard four still clamp to zMax 69. Leftover: cloak tints barely distinguish; nameplates
+do.
 
-**M10 — one objective that uses the town.** A single beat, not a quest system. The watchman
-(or the existing greeter) gives a HUD message to clear the churchyard shades; doing so awards
-XP and a completion line. No dialogue tree, no vendor, no journal UI. Gate: a player who only
-sightssees has missed something; a player who fights and walks into town has a loop.
+**M10 — one objective that uses the town.** **In `main` (`469f417`).** Proximity prompt at
+the gate watchman; +100 XP when the original four `grave-shade-*` ids have each been killed
+this cycle; repeats after they respawn. Leftover: watchman is not marked as the speaker;
+LEVEL UP still stacks on the message line.
 
-**M11 — Undead, first playable dressed body.** The approved concept is
+**M11 — Undead, first playable dressed body.** Next. Approved concept:
 [undead-race-plan.md](undead-race-plan.md). First delivery is the body + Revenant outfit
-moving in the churchyard, not fitting the whole Human catalogue. Do not open a second Orc-style
-polish loop in the first pass.
+moving in the churchyard, not fitting the whole Human catalogue. Do not open a second
+Orc-style polish loop in the first pass.
 
 **Parked, not a queue:** shade front-cowl round 3, townsfolk faces, tavern-patron contrast,
 dark roofs from the overlook, lamp pooling round 5, minimap art, Human staff-pole carry, M6
