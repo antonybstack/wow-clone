@@ -33,7 +33,10 @@ export const ENEMY_TUNING = Object.freeze({
 const NAMES = ["Grave Shade", "Ash Wight", "Lych Stalker", "Barrow Shade"];
 
 /** Shared spectral look. Per-shade tints were the near/far mismatch in M4b.
- *  Shifted off ice-cyan so the body reads as peat-mist inside the cloak. */
+ *  Ice-cyan `[0.46, 0.58, 0.62]` at direct 0.34 / env 0.16 read as a hologram.
+ *  Peat-mist here is the grave-shade body: a paler figure inside the cowl.
+ *  Cloth in shade-garment.js is darker and dimmer so body and robe stay
+ *  two values; that split is the figure, not a second ice-cyan pass. */
 const SHADE_TINT = Object.assign([0.30, 0.38, 0.26, 0.28], {
   roughness: 0.96,
   metallic: 0,
