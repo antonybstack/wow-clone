@@ -126,13 +126,19 @@ const mid = await page.evaluate(() => {
     ? { x: live.position.x, z: live.position.z }
     : { x: 2.4, z: 48 };
 });
-await plant(mid.x, mid.z + 4.2, Math.PI, 0.1, 4.6);
+await plant(mid.x + 2.4, mid.z + 2.6, Math.atan2(-2.4, -2.6), 0.08, 4.1);
 await page.evaluate(() => {
   const e = ASHEN.combat.enemies.find((x) => x.id === "grave-shade-3");
-  if (e) ASHEN.combat.targeting.select(e.id);
+  if (e) {
+    e.lockedState = "idle";
+    e.state = "idle";
+    e.idleFor = 99;
+    ASHEN.combat.targeting.select(e.id);
+  }
 });
-await page.waitForTimeout(400);
+await page.waitForTimeout(280);
 await page.screenshot({ path: `${dir}/mid-clear.png` });
+await clip(".combat-error", "mid-clear-hud.png", 18);
 console.log("wrote mid-clear.png");
 
 await page.evaluate((ids) => {
@@ -163,3 +169,4 @@ const state = await page.evaluate(() => ({
 }));
 await fs.writeFile(`${dir}/capture.json`, JSON.stringify(state, null, 2));
 console.log("capture state", state.objective.phase, state.message);
+await browser.close();

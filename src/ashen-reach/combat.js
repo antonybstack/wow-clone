@@ -178,7 +178,17 @@ export async function createCombat(
       return;
     }
     if (result.leveled) syncPlayerHp();
-    else if (result.gained) hud.message(`+${result.gained} experience`);
+    if (result.gained) {
+      const snap = objective?.snapshot();
+      const left = snap?.remaining?.length;
+      if (snap?.phase === "active" && left > 0) {
+        const line = `+${result.gained} experience. ${left} shade${left === 1 ? "" : "s"} remain.`;
+        hud.message(line);
+        objective.holdLine(line);
+      } else if (!result.leveled) {
+        hud.message(`+${result.gained} experience`);
+      }
+    }
   };
   const die = () => {
     if (life.dead) return;

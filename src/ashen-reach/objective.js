@@ -131,6 +131,8 @@ export function createObjective() {
     return event;
   };
 
+  const holdLine = (text) => remember(text);
+
   const noteComplete = (gained) => {
     remember(`Churchyard cleared. +${gained} experience`);
   };
@@ -138,6 +140,7 @@ export function createObjective() {
   return {
     tick,
     onKill,
+    holdLine,
     noteComplete,
     snapshot,
     bonusXp: OBJECTIVE_BONUS_XP,
