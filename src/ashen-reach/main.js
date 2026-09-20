@@ -39,7 +39,10 @@ async function main(){
   clips:{...sourceBody.clips,cast:'FireBlast_Upper',walkBack:'Jog_Bwd_Loop',strafeL:'Jog_Left_Loop',strafeR:'Jog_Right_Loop',turnL:'Turn90_L',turnR:'Turn90_R'}};
  const dummy=await loadTrainingDummy(engine,scene,world);
  const capsule=resolveCapsule(playable.capsule);
- const player=await setupPlayer(engine,scene,rig,{spawn:plantSpawnOnTerrain(world.spawn,capsule,height),colliders:world.colliders,groundHeight:height,boundsRadius:85,capsule});
+ // The world is a north-running corridor (terrain spans x∈[-90,90], z∈[-95,145]), not a disc, so a
+ // circular clamp either clips the reachable town short (small radius) or lets the player walk off
+ // the terrain's east/west edges (large radius). A rectangular clamp matches the actual extent.
+ const player=await setupPlayer(engine,scene,rig,{spawn:plantSpawnOnTerrain(world.spawn,capsule,height),colliders:world.colliders,groundHeight:height,boundsRect:{minX:-88,maxX:88,minZ:-93,maxZ:143},capsule});
  enableBoneControl();const body=await attachBody(engine,scene,player,player.capsuleHeight,playable);
  const combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig);
  body.bindSocketHost(combat.fx.sockets);

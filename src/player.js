@@ -174,8 +174,12 @@ function createAvatar(engine, scene, spec) {
  * @param {object} engine
  * @param {object} scene
  * @param {import("./camera-rig.js").CameraRig} rig
- * @param {{spawn?:{x:number,y:number,z:number},colliders?:object[],groundHeight?:(x:number,z:number)=>number,boundsRadius?:number,capsule?:{height:number,radius:number}}} options
+ * @param {{spawn?:{x:number,y:number,z:number},colliders?:object[],groundHeight?:(x:number,z:number)=>number,boundsRadius?:number,boundsRect?:{minX:number,maxX:number,minZ:number,maxZ:number},capsule?:{height:number,radius:number}}} options
  * Spawn is the capsule center. Explicit finite Y is kept unless it would embed the capsule.
+ * `boundsRect`, when given, replaces the circular `boundsRadius` clamp with an axis-aligned
+ * rectangle clamp (min/max X and Z) — for a world that is a corridor rather than a disc, a radius
+ * clamp lets the player walk off the terrain edges that a rectangle catches. `boundsRadius` alone
+ * (no `boundsRect`) behaves exactly as before, so existing callers are unaffected.
  */
 export async function setupPlayer(engine, scene, rig, options = {}) {
     const spec = resolveCapsule(options.capsule);
@@ -183,6 +187,7 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
     const groundHeight = options.groundHeight || (() => 0.125);
     const spawn = resolveSpawnCenter(options.spawn || { x: 0, y: 1.15, z: 2.15 }, spec, groundHeight);
     const boundsRadius = options.boundsRadius ?? 180;
+    const boundsRect = options.boundsRect ?? null;
     const state = { facing: rig.yaw, grounded: false, vy: 0, support: -1,
         speed: 0, vx: 0, vz: 0, castBlend: 0, jumps: 0, landings: 0, recoveries: 0,
         jumpInFlight: false, airTime: 0 };
@@ -289,11 +294,21 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
                 state.grounded = true;
             }
         }
-        const radius = Math.hypot(body.position.x, body.position.z);
-        if (Number.isFinite(boundsRadius) && radius > boundsRadius) {
-            body.position.x *= boundsRadius / radius;
-            body.position.z *= boundsRadius / radius;
-            controller?.setPosition(body.position);
+        if (boundsRect) {
+            const cx = Math.min(Math.max(body.position.x, boundsRect.minX), boundsRect.maxX);
+            const cz = Math.min(Math.max(body.position.z, boundsRect.minZ), boundsRect.maxZ);
+            if (cx !== body.position.x || cz !== body.position.z) {
+                body.position.x = cx;
+                body.position.z = cz;
+                controller?.setPosition(body.position);
+            }
+        } else {
+            const radius = Math.hypot(body.position.x, body.position.z);
+            if (Number.isFinite(boundsRadius) && radius > boundsRadius) {
+                body.position.x *= boundsRadius / radius;
+                body.position.z *= boundsRadius / radius;
+                controller?.setPosition(body.position);
+            }
         }
         const floor = groundHeight(body.position.x, body.position.z);
         if (!Number.isFinite(body.position.y) || body.position.y < floor - 4 || body.position.y < -120) {
