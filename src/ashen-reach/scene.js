@@ -1,5 +1,5 @@
 import {setShaderUniform} from '@babylonjs/lite';
-import {Batch,rng,height,pathX,buildingPads,add,mul,sub,norm,cross,terrainNormal,lanternGlow,groundGlow} from './geometry.js';
+import {Batch,rng,height,pathX,buildingPads,add,mul,sub,norm,cross,terrainNormal,lanternGlow} from './geometry.js';
 import {surface,sky} from './materials.js';
 import {building,marketStall,well,forgeGlow,crossFinial} from './buildings.js';
 import {buildHorizon} from './horizon.js';
@@ -37,12 +37,41 @@ export async function buildChurchyard(engine,scene){
  // byte-for-byte the original M1/M0 loop (flat per-face normals) so the churchyard is untouched.
  // North of z=40 (Hollowmere and the climb) the same triangles get analytic per-vertex normals
  // instead — zero extra triangles, but the coarse 2m grid no longer reads as flat facets up close.
+ //
+ // M3b: the 2m grid is also too coarse for the baked per-vertex lamp irradiance (Batch.commit's
+ // `uv2`/`lamp` term) to resolve a smooth pool under a street lamp — with only one triangle
+ // spanning a lamp's whole falloff radius, Gouraud interpolation of a curved (inverse-square)
+ // falloff across a handful of huge triangles reads as a faceted polygon, which is what the
+ // deleted `groundGlow`/`radialGlow` ground decals were reached for (and both failed: an opaque
+ // decal with no alpha blending always shows a hard edge, however its colours are chosen — see
+ // geometry.js). Fixed geometrically instead, with no decal at all: the lamp-lit corridor
+ // (the street/well width, and the lit stretch of road from the lych-gate through Hollowmere) is
+ // subdivided into 0.5m sub-quads so the baked irradiance's curve is resolved by many small,
+ // nearly-planar triangles instead of a few large ones. This is an unconditional +/-0-random()-call
+ // change: `random()` is still called exactly once per original 2m cell, in the same loop order,
+ // whether or not that cell is subdivided, and the extra sub-quad colouring draws from a separate,
+ // independent rng (`randomGround`) — so the churchyard's downstream random sequence (tombs,
+ // trees, grass, all generated later from the same shared `random`) is bit-identical to before.
+ const randomGround=rng(60013);
+ const CORRIDOR_SUB=4; // 2m / 4 = 0.5m sub-quads
+ const inLampCorridor=(x,z)=>z>=40&&z<143&&x>=-16&&x<16;
  for(let z=-95;z<145;z+=2)for(let x=-90;x<90;x+=2){
-  const v=[[x,z],[x+2,z],[x+2,z+2],[x,z+2]].map(([a,b])=>[a,height(a,b),b]);
-  const c=.83+random()*.24;
-  const uv=v.map(p=>[p[0]/3,p[2]/3]);
-  if(z>=40)earth.quad(...v,uv,[c,c,c,0],v.map(p=>terrainNormal(p[0],p[2])));
-  else earth.quad(...v,uv,[c,c,c,0]);
+  const c=.83+random()*.24; // unconditional: keeps the shared rng stream identical to before
+  if(inLampCorridor(x,z)){
+   const step=2/CORRIDOR_SUB;
+   for(let sz=0;sz<CORRIDOR_SUB;sz++)for(let sx=0;sx<CORRIDOR_SUB;sx++){
+    const x0=x+sx*step,x1=x0+step,z0=z+sz*step,z1=z0+step;
+    const v=[[x0,z0],[x1,z0],[x1,z1],[x0,z1]].map(([a,b])=>[a,height(a,b),b]);
+    const sc=.83+randomGround()*.24;
+    const uv=v.map(p=>[p[0]/3,p[2]/3]);
+    earth.quad(...v,uv,[sc,sc,sc,0],v.map(p=>terrainNormal(p[0],p[2])));
+   }
+  } else {
+   const v=[[x,z],[x+2,z],[x+2,z+2],[x,z+2]].map(([a,b])=>[a,height(a,b),b]);
+   const uv=v.map(p=>[p[0]/3,p[2]/3]);
+   if(z>=40)earth.quad(...v,uv,[c,c,c,0],v.map(p=>terrainNormal(p[0],p[2])));
+   else earth.quad(...v,uv,[c,c,c,0]);
+  }
  }
 
  // Path albedo is blended directly into the terrain material to avoid coplanar decals.
@@ -112,10 +141,17 @@ export async function buildChurchyard(engine,scene){
   for(let j=0;j<4;j++){const dx=j<2?-.15:.15,dz=j%2?-.15:.15;wood.box([p[0]+dx,p[1],p[2]+dz],[.036,.48,.036],[.32,.32,.3,0]);}
   wood.box([p[0],p[1]-.23,p[2]],[.37,.06,.37],[.32,.32,.3,0]);
   wood.tube([p[0],p[1]+.19,p[2]],[p[0],p[1]+.44,p[2]],.26,0,[.32,.32,.3,0],4);
-  // Ground pool: a bright core tapering to a dim (never black) warm edge, so the lamp visibly
-  // spills warm light onto the street instead of reading as a dark decal (M2b defect).
-  groundGlow(warm,[x,y+.015,z],[1,0,0],[0,0,1],.6,2.0,[1.0,.86,.55,0],[.26,.20,.12,0],10);
+  // Ambient/wall light from the lamp head, unchanged from the original (M1) values -- this alone
+  // was never the source of the ground-pool defect and cranking it up is what caused M3b's first
+  // attempt to wash the whole town out toward white (many overlapping lamps, each reaching too far
+  // and summing). Left exactly as it was before M3b:
   lights.push({position:p,strength,falloff:.42});
+  // The ground pool itself (see geometry.js/scene.js's M3b note) is a SEPARATE, dedicated
+  // near-ground light so its falloff can be tuned tight (a compact, clearly-bounded pool) without
+  // also blowing out walls/roofs that read the same `lights` list. Low to the ground so the
+  // baked inverse-square falloff isn't dominated by the ~2.6m lamp-head height the way the first
+  // M3b attempt was (that flattened the falloff curve into a town-wide wash instead of a pool).
+  lights.push({position:[x,y+.18,z],strength:1.0,falloff:.62});
  }
 
  // Lych-gate: the road leaves the burial ground through a timber roof on two posts.
@@ -132,8 +168,11 @@ export async function buildChurchyard(engine,scene){
   wood.tube([x,ridgeY,z-half],[x,ridgeY,z+half],.045,.045,[.36,.30,.22,0],4);
   stone.box([x,y+.05,z],[gap*2+.7,.10,.7],[.55,.55,.47,0]);
   lanternGlow(warm,[x,ridgeY-.1,z],{r:.11,h:.24});
-  groundGlow(warm,[x,y+.015,z],[1,0,0],[0,0,1],.7,2.4,[1.0,.86,.55,0],[.26,.20,.12,0],10);
+  // Ambient light, unchanged from the original (M1) value.
   lights.push({position:[x,ridgeY-.1,z],strength:.65,falloff:.42});
+  // Dedicated near-ground pool light (see streetLamp's M3b note above) -- gap is wider here so a
+  // slightly bigger pool reads correctly under the gate roof.
+  lights.push({position:[x,y+.18,z],strength:1.1,falloff:.55});
  }
  lychGate(44);
  for(const [z,side] of [[50,-1],[58,1],[66,-1]])streetLamp(pathX(z)+side*2.8+rn(-.2,.2),z,.68);

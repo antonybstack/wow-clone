@@ -84,24 +84,12 @@ export function radialGlow(batch,center,axis1,axis2,r,colorCenter,colorRim,sides
  }
 }
 
-/** A ground light pool: a roughly uniform bright core out to `rCore`, tapering to `colorEdge` by
- *  `rEdge`. `radialGlow`'s single-vertex fan is wrong for this job: in a triangle fan the given
- *  colour only exists at the one centre vertex, and every other point in the triangle is already
- *  blended toward the rim colour — with a `[0,0,0]` rim that reads as a hard-edged dark shape (the
- *  M2b "mud puddle" defect), not a pool of light, no matter how large `r` is. This material can
- *  only ever darken a pixel relative to its own vertex colour times texture times light — there is
- *  no additive blending to brighten the ground back up past a black decal vertex — so the fix is
- *  geometric: hold the bright colour over a real core disc, then taper to an edge colour that stays
- *  a few times brighter than the unlit ground (never toward black), so the pool reads as light
- *  spilling off rather than a hole cut into the terrain. */
-export function groundGlow(batch,center,axis1,axis2,rCore,rEdge,colorCore,colorEdge,sides=10){
- for(let k=0;k<sides;k++){
-  const a=k*Math.PI*2/sides,b=(k+1)*Math.PI*2/sides;
-  const inA=add(center,add(mul(axis1,Math.cos(a)*rCore),mul(axis2,Math.sin(a)*rCore)));
-  const inB=add(center,add(mul(axis1,Math.cos(b)*rCore),mul(axis2,Math.sin(b)*rCore)));
-  const outA=add(center,add(mul(axis1,Math.cos(a)*rEdge),mul(axis2,Math.sin(a)*rEdge)));
-  const outB=add(center,add(mul(axis1,Math.cos(b)*rEdge),mul(axis2,Math.sin(b)*rEdge)));
-  batch.tri(center,inA,inB,undefined,[colorCore,colorCore,colorCore]);
-  batch.quad(inA,inB,outB,outA,undefined,[colorCore,colorCore,colorEdge,colorEdge]);
- }
-}
+// `groundGlow` (M3's ground-plane decal: a bright core disc tapering to a dim warm edge) was
+// removed in M3b. It fixed M2b's black-rim "mud puddle" defect but replaced it with a new one:
+// an opaque decal with no alpha blending always has a visible hard edge against the ground it
+// sits on, however the colours at that edge are chosen — M3's version read as hard-edged orange
+// lava splotches (see the M3 status-log entry). Ground-level lamp pools are now produced by the
+// mechanism that already existed for exactly this: `Batch.commit`'s baked per-vertex lamp
+// irradiance (the `uv2`/`lamp` term materials.js already samples), applied to a ground mesh
+// subdivided finely enough under Hollowmere's street to resolve a smooth radial pool with no
+// decal geometry at all (see scene.js's ground loop and its `CORRIDOR_SUB` subdivision).

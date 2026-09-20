@@ -1,4 +1,4 @@
-import {lanternGlow,radialGlow,groundGlow} from './geometry.js';
+import {lanternGlow,radialGlow} from './geometry.js';
 
 /**
  * A parameterised building: plinth + walls + gable roof + door + windows + optional chimney,
@@ -187,8 +187,11 @@ export function marketStall(ctx,x,z,yaw=0){
  wood.box(P(0,.55,0),[w*.82,.5,d*.8],[.40,.30,.20,0],yaw);
  for(const [dx,dz] of [[-w*.22,0],[w*.18,.1]])wood.box(P(dx,.85,dz),[.22,.14,.16],[.55,.32,.16,0],yaw);
  lanternGlow(glow,P(0,postH+.02,0),{r:.07,h:.18});
- groundGlow(glow,P(0,.02,0),[1,0,0],[0,0,1],.45,1.3,[1.0,.86,.55,0],[.24,.19,.11,0],8);
+ // Ambient light, unchanged from the original (M1) value.
  lights.push({position:P(0,postH+.02,0),strength:.42,falloff:.55});
+ // Dedicated near-ground pool light (see scene.js streetLamp's M3b note): low to the ground and
+ // tightly falling off so it reads as a small bounded pool under the stall, not a town-wide wash.
+ lights.push({position:P(0,.18,0),strength:.75,falloff:.75});
  colliders.push({type:'box',position:{x,y:gy+postH*.5,z},size:{x:w+.25,y:postH,z:d+.25},rotation:{y:yaw}});
 }
 
@@ -208,8 +211,11 @@ export function well(ctx,x,z){
  wood.tube([x,gy+wallH+1.55,z],[x,gy+wallH+.55,z],.014,.014,[.2,.2,.2,0],4);
  wood.tube([x,gy+wallH+.55,z],[x,gy+wallH+.35,z],.09,.09,[.30,.22,.15,0],6);
  lanternGlow(glow,[x,ridgeY-.18,z],{r:.12,h:.26});
- groundGlow(glow,[x,gy+.02,z],[1,0,0],[0,0,1],.9,2.6,[1.0,.86,.55,0],[.24,.19,.11,0],10);
+ // Ambient light, unchanged from the original (M1) value.
  lights.push({position:[x,ridgeY-.18,z],strength:.95,falloff:.4});
+ // Dedicated near-ground pool light (see scene.js streetLamp's M3b note): the well plaza is wider
+ // than a stall, so a slightly bigger/brighter pool than marketStall's.
+ lights.push({position:[x,gy+.18,z],strength:1.3,falloff:.55});
  colliders.push({type:'box',position:{x,y:gy+wallH/2,z},size:{x:r*2,y:wallH,z:r*2},rotation:{y:0}});
 }
 
