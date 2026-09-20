@@ -294,3 +294,38 @@ its own Vite port, its own Chrome profile and CDP port, and one command to start
   untracked `telegram-motion-stop.py` in its worktree. It did NOT commit it and correctly sent no
   message. I scanned it (0 token-shaped strings) and deleted it. Two agents have now independently
   wandered to that hook when blocked by frozen paths; briefs should keep naming it out of scope.
+- 2026-09-20: **M3c landed and merged** (`4afaee0`, commits `4046896`, `7789930`, `ea39da9`).
+  Both carried defects fixed, and both diagnoses were better than my framing of the problem.
+  **Defect 1 — the lime-green wash — fixed, and the root cause was not what I assumed.** Two
+  compounding bugs in the baked lamp-irradiance term in `materials.js`: the lamp colour constant
+  `(.7,.75,.30)` had **green as its highest channel and blue its lowest**, so the "warm lamplight"
+  was never warm at any point in this project; and `lamp` is an unbounded sum of `strength/(1+d^2)`
+  over every registered light, so fixture-dense spots (the well square's well + three stalls, the
+  gate's own two tower lights) summed past sane brightness. Stone showed it worst because it has no
+  other colour correction. Fixed with a bounded soft knee (`1.4 + (1-exp(-(lamp-1.4)))`, max 2.4)
+  and an R-dominant `(1.0,.60,.28)`. **Both** the knee and the colour are gated by
+  `smoothstep(40,55,i.p.z)` — I checked this specifically, because a colour constant is not a gate
+  and a global change would have altered the churchyard lamps; it is `mix()`ed, so at z<=40 the
+  formula reduces to the original byte-for-byte.
+  I compared before/after at the same camera: brightness and uniformity are identical and only the
+  hue moves, lime green -> warm amber. Its "unchanged in character" claim for the wide shots is
+  accurate.
+  **Defect 2 — M3's gate vista — genuinely met at last.** The occluder was not the tree canopy but
+  **the gate's own decorative header**, sitting 3.15-4.05 units above ground at ~5 m range, whose
+  angular band covered exactly where the citadel's walls and spire bases sit from that distance —
+  which is why only "window dots above the lintel" showed. Raised `gy+3.6` -> `gy+7.4`, still under
+  `towerH=9`. Pure vertex-Y change, zero triangles, no collider. Verified at *ordinary* play
+  framing (pitch .04, distance 3.5), not the contrived pitch .25 M3b judged itself at: five citadel
+  spires with lit windows read clearly through the archway, and the z=141 sanity shot still shows
+  sky around the silhouette rather than a sky-filling wall.
+  **Verified by me on the merged tree:** build clean, 75/75, 27/27, **61/61 live checks**, walk to
+  z=134.73, hardware FPS **144.01**, draws **42**, triangles unchanged at 191,846 (both fixes are
+  shader-only and vertex-Y-only).
+  **Residual, carried:** town lamplight still reads as a general warm ambient over the ground
+  rather than discrete pools in wide shots. That was equally true before this pass, so it is not a
+  regression — but discrete pooling in the wide view is still unachieved, and the unbounded-sum
+  knee is the reason the town now reads uniformly. Worth a future pass, not a blocker.
+  **Testing note:** running a live check script twice in quick succession against the same browser
+  tab makes the second run inherit game state and truncate (`check-progression` reported 10 of 16
+  with zero failures). Count PASS and FAIL from a **single** invocation. This was my own harness
+  error during review, not a defect in the check.
