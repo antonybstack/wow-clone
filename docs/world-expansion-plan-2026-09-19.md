@@ -446,3 +446,86 @@ within their own scope, so each now gets a milestone of its own.
 for real-hardware measurement. Their allowed paths are disjoint by construction: M6b owns
 `metrics.js` and the progression check, M7a owns the world shader and geometry, M7b owns the enemy
 and NPC appearance path.
+
+---
+
+## M6b merged, 2026-09-20 — the instrument is now honest, and one of my earlier entries was wrong
+
+Merged as `b755b61`. Three files: `metrics.js`, `check-progression.mjs`, `test-metrics.mjs`.
+
+### Defect 1 — the cap detector
+
+`detectVsyncCap()` reported `vsyncCapped: false` on a real 144 Hz display whose mean was 6.9438 ms
+against a 6.9444 ms interval, 0.009% off. The old gate keyed on `min` and a per-sample "how many
+are faster than 0.92×" count, both tuned against headless Chrome's *rigid* cap where every sample
+lands on the interval exactly. Under a real display's rAF jitter they false-negative. Replaced
+with relative tolerances on mean (2%) and median (3%).
+
+**The first pass reintroduced the same defect on the other tail.** Its new sanity bound read the
+literal maximum, so a single frame above `capMs * 1.5` vetoed the whole run. I probed it directly
+rather than trusting the 7/7 test count:
+
+```
+hitch 10.4ms -> capped=true        capMs*1.5 = 10.417
+hitch 10.5ms -> capped=false
+hitch 22.0ms -> capped=false       "mean 6.979 ms is not locked to a known display interval"
+```
+
+One frame in 600 — one GC pause, one shader compile — and the instrument asserted the opposite of
+the truth, in the direction that gets mistaken for headroom. The tests passed because the recorded
+144 Hz fixture happened not to hitch (`worst` 8.80), so every fixture was clean-case. That is the
+*same* failure as the original bug: an instrument validated only on the easy case.
+
+Sent back. The bound now reads the 1st/99th percentile. I re-probed independently of the agent's
+fixtures: single hitches of 10.5, 22 and 60 ms all hold, as do three at 16 ms.
+
+**Live on the merged tree, where it previously said false:**
+
+```
+vsyncCapped  true    capHz 144
+capReason    mean 6.942 ms and median 6.900 ms sit on 144 Hz (6.944 ms);
+             1st-99th percentile 5.500-8.600 ms (full range 5.300-8.700 ms)
+```
+
+**Two boundaries recorded rather than fixed.** Six or more stalls in 600 samples — the 1% trim
+point — still flips a capped run to "not capped". Loosening the trim would give up the guard's
+real job: a uniform 4–10 ms workload has a mean 0.8% off the 144 Hz interval and is rejected *only*
+by the spread check. And a uniform 5–9 ms workload is still reported as 144 Hz capped. That false
+positive errs safe — it prompts a re-measure rather than a phantom headroom claim — but it is a
+real limit of inferring a cap from timing statistics alone, and nobody should read `vsyncCapped`
+as proof.
+
+### Defect 2 — the progression race, and a correction to this log
+
+`check-progression.mjs` forced **every** enemy to `idle` in `plantOn()`, including already-killed
+ones, so a second 50 XP award could land before the `level === 1` assertion. Fixed check-side
+after confirming no gameplay path can set `idle` on a 0-hp enemy. That unmasked two further races,
+both fixed with `waitForFunction` on real state transitions rather than sleeps or loosened
+assertions: `setWorldPos` does not clear `grounded` synchronously, and the level-up cast was
+landing inside Fire Blast's 1 s cooldown.
+
+I verified this by measurement rather than accepting the agent's 20-run tally — same machine, same
+session, same harness:
+
+```
+pre-fix control   4 of 6 runs truncated at 10 PASS, exit=1
+post-fix          6 of 6 runs 16 PASS, exit=0
+```
+
+**This closes a correction I made earlier in this document.** My original M3c note blamed the flake
+on my own harness calling the check twice against a shared tab. That explanation was wrong — the
+check calls `page.goto()` and cannot inherit state — and I corrected it once already. The control
+above now settles it with numbers instead of reasoning.
+
+### Verification on the merged tree
+
+`check-progression` 16/16, `check-enemy-loop` 13/13, `check-player-death` 8/8, `check-mana` 11/11,
+`test:character` 75/75, `test:equipment` 27/27, metrics tests 11/11 (was 4). Build clean.
+
+### What this means for every performance number in this document
+
+Every "no regression" result recorded before today was taken with a cap detector that could not
+detect the cap. `144.0 FPS / 6.944 ms` still means **"did not fall off the ceiling"**, not
+headroom. `sceneTriangles` (335,618 on the merged tree with enemies live) is the count that
+includes skinned meshes; the historical `triangles`/`worldTriangles` (191,846) excludes them and
+should not be quoted as a scene total.
