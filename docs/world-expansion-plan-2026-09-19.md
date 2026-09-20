@@ -529,3 +529,56 @@ detect the cap. `144.0 FPS / 6.944 ms` still means **"did not fall off the ceili
 headroom. `sceneTriangles` (335,618 on the merged tree with enemies live) is the count that
 includes skinned meshes; the historical `triangles`/`worldTriangles` (191,846) excludes them and
 should not be quoted as a scene total.
+
+## M7a merged, 2026-09-20 — lamp pooling, and the two report claims I had to send back
+
+Merged as a no-ff merge of `m7a` (4 commits, tip `c62f4bd`). `Batch.commit` now multiplies
+each light's contribution by `(1-(dist/radius)^2)^2` for vertices past `z>40`, so a lamp
+stops contributing at its own radius instead of adding a little brightness to the whole
+corridor. The window is C¹-continuous at both ends, and it is gated on **vertex** world-z,
+not light position — the bake runs at build time, before any shader, so a runtime gate would
+not have protected the churchyard.
+
+**Verified by re-running the agent's own instrument, not by reading its table.** Every number
+below is from my own run of `measure-lamp-profile.mjs` on `m7a`:
+
+- Fixture-to-fixture contrast improves in ten of eleven corridor segments. The one that does
+  not is `z=66->75` (0.98x -> 0.85x), which was already inverted before the change.
+- The two segments the first version of the sweep never measured behave like the rest once
+  sampled: `z=124->134` 1.31x -> 3.09x, `z=134->142.5` 2.00x -> 6.91x. The original loop
+  stopped at z=120 while `inLampCorridor` runs to z=143, so the lamps at z=124 and z=134 were
+  unmeasured and the last table row was degenerate. That was round-one send-back.
+- **This is a level change, not only a contrast change.** Global peak falls 1.596 -> 1.297
+  (-19%) and the trough falls further. The ratio improves because the floor drops faster than
+  the peak. Left as-is deliberately; no radius or intensity retuning this pass.
+
+**Two "unchanged" claims in the first report were both wrong, and both understated the change.**
+Round-two send-back asked for measured diffs instead of impressions:
+
+| capture | changed % | mean | max |
+|---|---|---|---|
+| wide-town | 72.04 | 8.34 | 45 |
+| street-lamp-z94 | 83.50 | 18.32 | 166 |
+| street-level-wide | 77.29 | 18.52 | 201 |
+| well-square | 44.02 | 6.64 | 162 |
+| churchyard-spawn | 8.03 | 1.19 | 99 |
+
+`street-lamp-z94` was reported "unchanged — that was never broken"; it is the **most** changed
+capture of the five. `well-square` was reported "lit entirely by buildings.js"; 44% of its
+pixels moved. `churchyard-spawn`'s 8.03% sits against a same-code control of 6.08%, so the
+`z>40` gate does hold the churchyard invariant.
+
+**The well-square premise was also wrong, and the corrected breakdown scopes the follow-up.**
+At the well's own centre (x=0, z=136) buildings.js is 85.1% of the total before and 95.7%
+after — buildings.js-dominant, as guessed. But at the position actually screenshotted
+(x=0, z=131, five metres south) the windowed corridor lights are 40.4% before and 9.4% after:
+a real share, not zero. And the contributor is not the town-gate halo (radius 30 at z=75,
+~57 m away, ≈0 at both ends) — it is the **z=134 street lamp**, four metres from the camera
+stand. A follow-up that wants to fix the well square has to touch `buildings.js` lights, which
+were out of scope here and carry no radius at all.
+
+Merged-tree verification: build clean; check-progression 16/16, check-enemy-loop 13/13,
+check-player-death 8/8, check-mana 11/11; character 75/75, equipment 27/27, metrics 11/11.
+Live on real hardware: 42 draw calls, 191,846 world triangles, 335,618 scene triangles —
+all three identical to pre-merge, as expected for a bake-time change. `vsyncCapped: true`
+at 144 Hz, so the frame rate proves only that nothing regressed below the cap.
