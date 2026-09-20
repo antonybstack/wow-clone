@@ -6,6 +6,7 @@
  * one loadGltf container per enemy, idle / walk / jog / punch / death clips.
  */
 import { attachAnimatedHuman } from "../character/npc.js";
+import { attachShadeSilhouette } from "./shade-garment.js";
 import { height, pathX } from "./geometry.js";
 import { SHADE_XP } from "./progression.js";
 
@@ -31,13 +32,14 @@ export const ENEMY_TUNING = Object.freeze({
 
 const NAMES = ["Grave Shade", "Ash Wight", "Lych Stalker", "Barrow Shade"];
 
-/** Shared spectral look. Per-shade tints were the near/far mismatch in M4b. */
-const SHADE_TINT = Object.assign([0.46, 0.58, 0.62, 0.56], {
-  roughness: 0.94,
+/** Shared spectral look. Per-shade tints were the near/far mismatch in M4b.
+ *  Shifted off ice-cyan so the body reads as peat-mist inside the cloak. */
+const SHADE_TINT = Object.assign([0.34, 0.42, 0.30, 0.40], {
+  roughness: 0.96,
   metallic: 0,
-  directIntensity: 0.34,
-  environmentIntensity: 0.16,
-  emissive: [0.12, 0.18, 0.2],
+  directIntensity: 0.26,
+  environmentIntensity: 0.12,
+  emissive: [0.07, 0.10, 0.05],
 });
 
 /** Punch_Cross is 1.0s; 0.58 keeps the swing on screen for the 1.6s cooldown. */
@@ -145,14 +147,25 @@ function lineOfSight(enemy, player, raycast) {
 
 function show(enemy, visible) {
   enemy.actor?.setVisible(visible);
-  if (visible) enemy.root.scaling.set(-enemy.scale, enemy.scale, enemy.scale);
+  if (visible) {
+    const s = enemy.scale;
+    if (enemy.actor?.anchor) enemy.root.scaling.set(s, s, s);
+    else enemy.root.scaling.set(-s, s, s);
+  }
   enemy.setColliderEnabled?.(visible);
+}
+
+function setYaw(node, yaw) {
+  if (node.rotationQuaternion) {
+    node.rotationQuaternion.set(0, Math.sin(yaw / 2), 0, Math.cos(yaw / 2));
+  }
+  if (node.rotation) node.rotation.y = yaw;
 }
 
 function syncRoot(enemy) {
   enemy.position.y = height(enemy.position.x, enemy.position.z);
   enemy.root.position.set(enemy.position.x, enemy.position.y, enemy.position.z);
-  if (enemy.root.rotation) enemy.root.rotation.y = enemy.yaw;
+  setYaw(enemy.root, enemy.yaw);
   const y = enemy.position.y + (enemy.capsuleHeight || 1.68) * 0.5;
   const live = enemy.state !== "dead" && !enemy.hidden;
   if (enemy.colliderDesc) {
@@ -348,6 +361,12 @@ async function makeEnemy(engine, scene, world, spec, index) {
     tint: spec.tint,
     hideJoints: true,
   });
+  const garment = attachShadeSilhouette(engine, scene, actor, { scale: spec.scale || 1 });
+  actor.anchor = garment.host;
+  actor.silhouette = garment;
+  for (const mesh of garment.meshes) {
+    if (!actor.meshes.includes(mesh)) actor.meshes.push(mesh);
+  }
   const enemy = {
     id: spec.id,
     name: spec.name,
@@ -359,7 +378,7 @@ async function makeEnemy(engine, scene, world, spec, index) {
     hits: 0,
     hitsLanded: 0,
     meshes: actor.meshes,
-    root: actor.root,
+    root: actor.anchor ?? actor.root,
     actor,
     scale: spec.scale || 1,
     recover: false,
