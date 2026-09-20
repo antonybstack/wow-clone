@@ -34,12 +34,12 @@ const NAMES = ["Grave Shade", "Ash Wight", "Lych Stalker", "Barrow Shade"];
 
 /** Shared spectral look. Per-shade tints were the near/far mismatch in M4b.
  *  Shifted off ice-cyan so the body reads as peat-mist inside the cloak. */
-const SHADE_TINT = Object.assign([0.34, 0.42, 0.30, 0.40], {
+const SHADE_TINT = Object.assign([0.30, 0.38, 0.26, 0.28], {
   roughness: 0.96,
   metallic: 0,
-  directIntensity: 0.26,
-  environmentIntensity: 0.12,
-  emissive: [0.07, 0.10, 0.05],
+  directIntensity: 0.22,
+  environmentIntensity: 0.10,
+  emissive: [0.06, 0.09, 0.04],
 });
 
 /** Punch_Cross is 1.0s; 0.58 keeps the swing on screen for the 1.6s cooldown. */

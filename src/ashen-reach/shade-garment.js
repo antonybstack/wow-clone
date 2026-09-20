@@ -15,8 +15,8 @@ import {
 import { attachSockets } from "../character/sockets.js";
 import { cross, norm, sub } from "./geometry.js";
 
-const CLOTH_COLOR = [0.20, 0.24, 0.15, 1];
-const VOID_COLOR = [0.025, 0.03, 0.022, 1];
+const CLOTH_COLOR = [0.07, 0.09, 0.04, 1];
+const VOID_COLOR = [0.012, 0.014, 0.008, 1];
 
 let clothMat = null;
 let voidMat = null;
@@ -28,12 +28,12 @@ function clothMaterial() {
         roughnessFactor: 0.97,
         metallicFactor: 0,
         doubleSided: true,
-        directIntensity: 0.38,
-        environmentIntensity: 0.14,
-        alpha: 0.92,
-        alphaBlend: true,
+        directIntensity: 0.48,
+        environmentIntensity: 0.08,
+        alpha: 1,
+        alphaBlend: false,
     });
-    setPbrEmissive(clothMat, [0.03, 0.042, 0.022]);
+    setPbrEmissive(clothMat, [0.025, 0.034, 0.016]);
     return clothMat;
 }
 
@@ -44,10 +44,10 @@ function voidMaterial() {
         roughnessFactor: 1,
         metallicFactor: 0,
         doubleSided: true,
-        directIntensity: 0.08,
-        environmentIntensity: 0.04,
-        alpha: 0.97,
-        alphaBlend: true,
+        directIntensity: 0.06,
+        environmentIntensity: 0.03,
+        alpha: 1,
+        alphaBlend: false,
     });
     setPbrEmissive(voidMat, [0.01, 0.014, 0.008]);
     return voidMat;
@@ -138,12 +138,12 @@ function cap(shell, pts, center, flip = false) {
 function buildHood(engine, scene) {
     const segs = 10;
     const outerRings = [
-        { y: -0.10, r: 0.15, z: 0.00, gap: 0.18 },
-        { y: -0.02, r: 0.13, z: 0.03, gap: 0.38 },
-        { y: 0.07, r: 0.135, z: 0.05, gap: 0.52 },
-        { y: 0.15, r: 0.12, z: 0.055, gap: 0.42 },
-        { y: 0.22, r: 0.07, z: 0.045, gap: 0.12 },
-        { y: 0.255, r: 0.0, z: 0.035, gap: 0.0 },
+        { y: -0.12, r: 0.18, z: 0.02, gap: 0.16 },
+        { y: -0.02, r: 0.14, z: 0.04, gap: 0.36 },
+        { y: 0.08, r: 0.13, z: 0.06, gap: 0.50 },
+        { y: 0.16, r: 0.11, z: 0.05, gap: 0.28 },
+        { y: 0.21, r: 0.06, z: 0.03, gap: 0.08 },
+        { y: 0.23, r: 0.015, z: 0.02, gap: 0.0 },
     ];
     const outer = outerRings.map((row) => ring(row.y, row.r, row.z, row.gap, segs));
     const inner = outerRings.map((row) =>
@@ -184,14 +184,14 @@ function buildHood(engine, scene) {
 function buildCloak(engine, scene) {
     const segs = 12;
     const rows = [
-        { y: 0.22, r: 0.15, z: -0.02, gap: 0.20 },
-        { y: 0.10, r: 0.26, z: -0.05, gap: 0.30 },
-        { y: -0.06, r: 0.27, z: -0.06, gap: 0.34 },
-        { y: -0.32, r: 0.29, z: -0.04, gap: 0.16 },
-        { y: -0.62, r: 0.30, z: -0.03, gap: 0.10 },
-        { y: -0.92, r: 0.24, z: -0.02, gap: 0.08 },
-        { y: -1.18, r: 0.14, z: 0.00, gap: 0.14 },
-        { y: -1.36, r: 0.03, z: 0.00, gap: 0.22 },
+        { y: 0.20, r: 0.16, z: -0.02, gap: 0.14 },
+        { y: 0.08, r: 0.28, z: -0.04, gap: 0.18 },
+        { y: -0.10, r: 0.30, z: -0.05, gap: 0.16 },
+        { y: -0.36, r: 0.31, z: -0.03, gap: 0.08 },
+        { y: -0.68, r: 0.29, z: -0.02, gap: 0.04 },
+        { y: -0.98, r: 0.22, z: -0.01, gap: 0.04 },
+        { y: -1.22, r: 0.12, z: 0.00, gap: 0.08 },
+        { y: -1.38, r: 0.02, z: 0.00, gap: 0.16 },
     ];
     const rings = rows.map((row) => ring(row.y, row.r, row.z, row.gap, segs));
     const cloth = new Shell("ShadeCloak");
@@ -207,8 +207,10 @@ function buildCloak(engine, scene) {
 function park(mesh, socket, offset) {
     setParent(mesh, socket);
     mesh.position.set(offset[0], offset[1], offset[2]);
-    if (mesh.rotationQuaternion) mesh.rotationQuaternion.set(0, 0, 0, 1);
-    if (mesh.rotation) mesh.rotation.set(0, 0, 0);
+    // Head/back sockets arrive with a half-turn about Z (RH_TO_LH on the Mixamo
+    // joint). Counter-rotate so authored +Y stays world-up and the cloak falls.
+    if (mesh.rotationQuaternion) mesh.rotationQuaternion.set(0, 0, 1, 0);
+    if (mesh.rotation) mesh.rotation.set(0, 0, Math.PI);
     mesh.scaling.set(1, 1, 1);
 }
 
