@@ -400,3 +400,49 @@ its own Vite port, its own Chrome profile and CDP port, and one command to start
   rigid headless 60 Hz, uncapped ~750 FPS) and the `check-progression` race, with unit tests that
   must fail before the fix and pass after. Briefed with a 20-consecutive-run tally as the evidence
   bar, because a single green run is not evidence against a race.
+
+## Beyond M1–M6: quality milestones opened 2026-09-20
+
+With M1–M5 merged and M6 deliberately not activated, the plan's original scope is met. The two
+largest remaining gaps are both things earlier milestones disclosed honestly and could not fix
+within their own scope, so each now gets a milestone of its own.
+
+- **M7a — discrete lamp pools in Hollowmere (in flight, branch `m7a`, slot 2).** The oldest carried
+  defect in the project: four passes (M2b, M3, M3b, M3c) attacked it and it still stands. The two
+  dead ends are now documented and fenced off in the brief — ground decals cannot work because the
+  world material has no alpha blending, and tessellation is already sufficient at `CORRIDOR_SUB=4`
+  (0.5 m sub-quads).
+  **My diagnosis, handed over as a hypothesis to falsify rather than an instruction:** the baked
+  `lamp` term in `Batch.commit` is an unbounded sum of inverse-square contributions that never
+  reach zero, so with many street lamps plus gate-tower halos every lamp's tail contributes
+  everywhere and the tails sum into a **pedestal** between lamps. `materials.js` then squashes the
+  peaks with its knee (max 2.4). Peaks come down, troughs stay up, and contrast dies from both
+  ends. The likely fix is to window each light to a finite radius so tails cannot accumulate —
+  free at runtime, because the bake is CPU-side and happens once. The agent must measure the
+  peak:trough ratio along the street first and tell me if I am wrong.
+  **Watch at review:** the bake happens before the shader runs, so `materials.js`'s
+  `smoothstep(40,55,z)` gate does **not** protect the churchyard from a change made in
+  `geometry.js`. A pixel comparison south of z=40 is required, not an eyeball.
+
+- **M7b — give the grave shades a silhouette (in flight, branch `m7b`, slot 3).** M4c's own honest
+  leftover: the shades read as translucent mannequins with ball-joint shoulders and no face, hood
+  or cloth. This needs geometry, not another material pass.
+  **Approach:** build the hood and cloak **procedurally in JavaScript** and hang them off the
+  existing socket system, which already defines `head` → `mixamorig:Head` and `back` →
+  `mixamorig:Spine2` in `"pose"` mode, described in `sockets.js` as the "helm / back cape / tunic"
+  sockets. Loose cloth rigidly parented to two or three joints reads convincingly in motion without
+  any skinning. No new asset files, no Blender, and the Orc print-sculpt pipeline stays untouched.
+  **Biggest technical risk, called out in the brief:** enemies load through `attachAnimatedHuman`,
+  a different path from the player, so whether `createSockets` binds cleanly to the enemy skeleton
+  is unproven. The agent is told to report a failure to bind rather than force it.
+  **Watch at review:** the greeter NPC shares `attachAnimatedHuman`, so the work must be gated on
+  an explicit opt-in rather than on a guess about the caller; a capture proving the greeter is
+  unchanged is required evidence.
+
+- **M6b — instrument correctness (in flight, branch `m6b`, slot 1).** Described in the M4c/M6a
+  entry above. Also fixes the `check-progression` race.
+
+**Three agents are running in parallel on slots 1, 2 and 3.** Slot 0 (ports 5173/9337) stays mine
+for real-hardware measurement. Their allowed paths are disjoint by construction: M6b owns
+`metrics.js` and the progression check, M7a owns the world shader and geometry, M7b owns the enemy
+and NPC appearance path.
