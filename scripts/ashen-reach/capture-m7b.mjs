@@ -95,36 +95,33 @@ async function plantSubject(z = 10) {
 }
 
 /**
- * Camera looks north at the player. Shade stands on the path in front of the
- * player (between camera and player) and a little to the right, so the player
- * does not sit inside the shade's silhouette.
- *
- * dist is camera-to-shade. playerBack is how far north of the shade the player
- * stands, so camera radius = dist + playerBack.
+ * Camera looks north at the shade. The player is parked on the shade's feet
+ * (orbit target) and hidden so they cannot occlude the subject.
  */
-async function frame({ dist, pitch, shadeYaw, playerRight = 0.45, playerBack = 0.35 }) {
+async function frame({ dist, pitch, shadeYaw, rigYaw = 0 }) {
   return page.evaluate(
-    ({ dist, pitch, shadeYaw, playerRight, playerBack }) => {
+    async ({ dist, pitch, shadeYaw, rigYaw }) => {
+      const { setMeshVisible } = await import("/src/ashen-reach/shade-garment.js");
       const e = ASHEN.combat.enemies[0];
       const x = e.position.x;
       const z = e.position.z;
-      const px = x - playerRight;
-      const pz = z + playerBack;
-      const y = ASHEN.world.groundHeight(px, pz) + ASHEN.player.capsuleHeight / 2;
-      ASHEN.player.setWorldPos(px, y, pz);
-      ASHEN.player.setFacing(0);
+      const y = ASHEN.world.groundHeight(x, z) + ASHEN.player.capsuleHeight / 2;
+      ASHEN.player.setWorldPos(x, y, z);
+      ASHEN.player.setFacing(rigYaw);
       e.yaw = shadeYaw;
       if (e.root.rotationQuaternion) {
         e.root.rotationQuaternion.set(0, Math.sin(shadeYaw / 2), 0, Math.cos(shadeYaw / 2));
       }
       if (e.root.rotation) e.root.rotation.y = shadeYaw;
-      ASHEN.rig.yaw = 0;
+      ASHEN.rig.yaw = rigYaw;
       ASHEN.rig.pitch = pitch;
-      ASHEN.rig.distance = ASHEN.rig.distanceTarget = dist + playerBack;
+      ASHEN.rig.distance = ASHEN.rig.distanceTarget = dist;
       ASHEN.combat.targeting.select(e.id);
       ASHEN.setView("play");
+      if (ASHEN.body?.root) setMeshVisible(ASHEN.body.root, false);
+      ASHEN.equipment?.setVisible?.(false);
     },
-    { dist, pitch, shadeYaw, playerRight, playerBack },
+    { dist, pitch, shadeYaw, rigYaw },
   );
 }
 
@@ -334,9 +331,9 @@ async function diffPair(aPath, bPath, outPath, box) {
   };
 }
 
-async function pair(stem, { dist, pitch, shadeYaw }) {
+async function pair(stem, { dist, pitch, shadeYaw, rigYaw = 0 }) {
   await plantSubject(10);
-  await frame({ dist, pitch, shadeYaw });
+  await frame({ dist, pitch, shadeYaw, rigYaw });
   await settle(500);
 
   const offState = await setGarmentInFrustum(false);
@@ -406,9 +403,9 @@ try {
   }
 
   const views = [
-    { stem: "front-2.5m", dist: 2.5, pitch: 0.18, shadeYaw: Math.PI },
-    { stem: "profile-2.5m", dist: 2.5, pitch: 0.16, shadeYaw: Math.PI / 2 },
-    { stem: "play-8m", dist: 8.0, pitch: 0.10, shadeYaw: Math.PI },
+    { stem: "front-2.5m", dist: 2.55, pitch: 0.22, shadeYaw: Math.PI },
+    { stem: "profile-2.5m", dist: 2.55, pitch: 0.18, shadeYaw: Math.PI / 2 },
+    { stem: "play-8m", dist: 8.0, pitch: 0.12, shadeYaw: Math.PI, rigYaw: 0.28 },
   ];
   const pairs = [];
   for (const view of views) {
@@ -430,7 +427,7 @@ try {
 
   // Same-code control: two garment-on captures of the front framing, no move.
   await plantSubject(10);
-  await frame({ dist: 2.5, pitch: 0.18, shadeYaw: Math.PI });
+  await frame({ dist: 2.55, pitch: 0.22, shadeYaw: Math.PI });
   await settle(400);
   const controlA = await shot("control-a");
   await settle(80);
@@ -469,7 +466,7 @@ try {
       playing: !!death?.isPlaying,
     };
   });
-  await frame({ dist: 2.8, pitch: 0.22, shadeYaw: Math.PI / 2, playerRight: 0.7, playerBack: 0.2 });
+  await frame({ dist: 3.1, pitch: 0.38, shadeYaw: Math.PI / 2, rigYaw: 0.15 });
   await settle(250);
   await shot("death");
   console.log("death", JSON.stringify(deathInfo));

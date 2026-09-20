@@ -12,7 +12,10 @@ import {
     setParent,
     setPbrEmissive,
     setBoneVisible,
+    setMeshVisible,
 } from "@babylonjs/lite";
+
+export { setMeshVisible };
 import { attachSockets } from "../character/sockets.js";
 import { cross, norm, sub } from "./geometry.js";
 
@@ -157,10 +160,10 @@ function cap(shell, pts, center, flip = false) {
 function buildHood(engine, scene) {
     const segs = 10;
     const outerRings = [
-        { y: -0.14, rx: 0.11, rz: 0.10, z: 0.00, gap: 0.20, fold: 0.03 },
-        { y: -0.04, rx: 0.13, rz: 0.11, z: 0.03, gap: 0.34, fold: 0.04 },
-        { y: 0.06, rx: 0.12, rz: 0.11, z: 0.05, gap: 0.50, fold: 0.03 },
-        { y: 0.13, rx: 0.10, rz: 0.09, z: 0.04, gap: 0.28, fold: 0.02 },
+        { y: -0.14, rx: 0.11, rz: 0.10, z: 0.00, gap: 0.20, fold: 0.04 },
+        { y: -0.04, rx: 0.145, rz: 0.12, z: 0.04, gap: 0.36, fold: 0.05 },
+        { y: 0.06, rx: 0.12, rz: 0.11, z: 0.07, gap: 0.52, fold: 0.04 },
+        { y: 0.13, rx: 0.10, rz: 0.09, z: 0.04, gap: 0.28, fold: 0.03 },
         { y: 0.18, rx: 0.055, rz: 0.05, z: 0.02, gap: 0.08, fold: 0.0 },
         { y: 0.20, rx: 0.012, rz: 0.012, z: 0.01, gap: 0.0, fold: 0.0 },
     ];
@@ -211,14 +214,14 @@ function buildHood(engine, scene) {
 function buildCloak(engine, scene) {
     const segs = 12;
     const rows = [
-        { y: 0.08, rx: 0.12, rz: 0.08, z: -0.01, gap: 0.22, fold: 0.02 },
-        { y: 0.00, rx: 0.23, rz: 0.10, z: -0.03, gap: 0.16, fold: 0.05 },
-        { y: -0.18, rx: 0.19, rz: 0.11, z: -0.03, gap: 0.12, fold: 0.08 },
-        { y: -0.42, rx: 0.17, rz: 0.11, z: -0.02, gap: 0.10, fold: 0.09 },
-        { y: -0.68, rx: 0.15, rz: 0.10, z: -0.01, gap: 0.08, fold: 0.08 },
-        { y: -0.92, rx: 0.13, rz: 0.09, z: 0.00, gap: 0.08, fold: 0.06 },
-        { y: -1.10, rx: 0.09, rz: 0.07, z: 0.00, gap: 0.10, fold: 0.04 },
-        { y: -1.16, rx: 0.05, rz: 0.04, z: 0.00, gap: 0.14, fold: 0.02 },
+        { y: 0.08, rx: 0.12, rz: 0.08, z: -0.01, gap: 0.22, fold: 0.04 },
+        { y: 0.00, rx: 0.24, rz: 0.10, z: -0.03, gap: 0.16, fold: 0.08 },
+        { y: -0.18, rx: 0.19, rz: 0.11, z: -0.03, gap: 0.12, fold: 0.12 },
+        { y: -0.42, rx: 0.17, rz: 0.11, z: -0.02, gap: 0.10, fold: 0.14 },
+        { y: -0.68, rx: 0.15, rz: 0.10, z: -0.01, gap: 0.08, fold: 0.12 },
+        { y: -0.92, rx: 0.13, rz: 0.09, z: 0.00, gap: 0.08, fold: 0.09 },
+        { y: -1.10, rx: 0.09, rz: 0.07, z: 0.00, gap: 0.10, fold: 0.06 },
+        { y: -1.16, rx: 0.05, rz: 0.04, z: 0.00, gap: 0.14, fold: 0.03 },
     ];
     const rings = ringsFrom(rows, segs);
     const cloth = new Shell("ShadeCloak");
@@ -236,8 +239,10 @@ function park(mesh, socket, offset) {
     mesh.position.set(offset[0], offset[1], offset[2]);
     // Head/back sockets arrive with a half-turn about Z (RH_TO_LH on the Mixamo
     // joint). Counter-rotate so authored +Y stays world-up and the cloak falls.
-    if (mesh.rotationQuaternion) mesh.rotationQuaternion.set(0, 0, 1, 0);
-    if (mesh.rotation) mesh.rotation.set(0, 0, Math.PI);
+    // 180° about X = 180° Z (socket RH_TO_LH, so authored +Y falls) then
+    // 180° Y (hood opening faces character forward, not the back of the skull).
+    if (mesh.rotationQuaternion) mesh.rotationQuaternion.set(1, 0, 0, 0);
+    if (mesh.rotation) mesh.rotation.set(Math.PI, 0, 0);
     mesh.scaling.set(1, 1, 1);
 }
 
