@@ -148,6 +148,10 @@ function installFetch(overrides = {}) {
         if (Object.hasOwn(overrides, url)) {
             const value = overrides[url];
             if (value === null) return {ok: false, status: 404};
+            // A string override is a raw response body, so it goes through a real JSON.parse and
+            // can genuinely reject -- otherwise the stub would be kinder than the browser and the
+            // malformed-manifest path would pass here while failing live.
+            if (typeof value === 'string') return {ok: true, json: async () => JSON.parse(value), arrayBuffer: async () => value};
             return {ok: true, json: async () => value, arrayBuffer: async () => value};
         }
         const buf = await fs.readFile('public' + url).catch(() => null);
@@ -236,7 +240,10 @@ test('a deleted or corrupted Undead asset fails loudly and preserves the loadout
     const gone = await bootUndead({overrides: {[url]: null}});
     const missing = await gone.equip('torso', 'wayfarerTunic');
     assert.equal(missing.status, 'failed');
-    assert.match(missing.error, /Could not load Wayfarer mail tunic/);
+    // The message has to name the race and the file, not just say something went wrong: a bare
+    // "could not load" is what sent the reviewer hunting through the network tab last time.
+    assert.match(missing.error, /Could not load the undead Wayfarer mail tunic/);
+    assert.match(missing.error, new RegExp(url.replace(/\//g, '\\/')));
     assert.equal(gone.getState().torso, null);
     gone.dispose();
 
@@ -245,7 +252,7 @@ test('a deleted or corrupted Undead asset fails loudly and preserves the loadout
     const corrupt = await bootUndead({overrides: {[url]: zeroed}});
     const bad = await corrupt.equip('torso', 'wayfarerTunic');
     assert.equal(bad.status, 'failed');
-    assert.match(bad.error, /hash mismatch/);
+    assert.match(bad.error, /undead Wayfarer mail tunic .*does not match its manifest hash/);
     assert.equal(corrupt.getState().torso, null);
     corrupt.dispose();
 });
@@ -255,6 +262,16 @@ test('an Undead body missing a coverage region names the region', async () => {
     await assert.rejects(
         bootUndead({bodyMeshes: UNDEAD_BASE_VISIBLE_MESHES.filter(n => n !== 'BodyHands')}),
         /Missing undead body coverage: BodyHands/);
+});
+
+test('a missing Undead manifest is named, not silently replaced', async () => {
+    const url = '/ashen-reach/equipment-undead-provisional/manifest.json';
+    // A 404 and a dev server's HTML fallback are the two shapes a deleted pack really takes.
+    // Both must name the race and the URL, and neither may quietly boot the Human pack.
+    await assert.rejects(bootUndead({overrides: {[url]: null}}),
+        /No undead equipment manifest at .*equipment-undead-provisional/);
+    await assert.rejects(bootUndead({overrides: {[url]: '<!doctype html><html></html>'}}),
+        /undead equipment manifest at .*is not valid JSON/);
 });
 
 test('an invented race is stopped before it can inherit any Human mapping', async () => {
