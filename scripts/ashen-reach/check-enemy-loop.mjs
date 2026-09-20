@@ -57,11 +57,38 @@ try {
   await page.evaluate(() => ASHEN.setView("play"));
 
   let s = await read();
+  const churchyard = s.enemies.filter((e) => e.zone === "churchyard");
+  const town = s.enemies.filter((e) => e.zone === "town");
   check("Dummy still present at 2000 HP", s.dummyId === "ashen-training-dummy" && s.dummyHp === 2000);
-  check("Four roaming enemies loaded", s.enemies.length === 4);
   check(
-    "Enemies stay between z=0 and z=70",
-    s.enemies.every((e) => e.position.z >= 0 && e.position.z <= 70 && e.spawn.z >= 0 && e.spawn.z <= 70),
+    "Four churchyard shades and 2–4 town hostiles loaded",
+    churchyard.length === 4 && town.length >= 2 && town.length <= 4 && s.enemies.length === churchyard.length + town.length,
+  );
+  check(
+    "Churchyard shades stay in the churchyard / climb",
+    churchyard.length === 4 &&
+      churchyard.every(
+        (e) =>
+          e.position.z >= 0 &&
+          e.position.z <= 70 &&
+          e.spawn.z >= 0 &&
+          e.spawn.z <= 70 &&
+          e.bounds?.zMin === 1 &&
+          e.bounds?.zMax === 69,
+      ),
+  );
+  check(
+    "Town hostiles stay in Hollowmere",
+    town.length >= 2 &&
+      town.every(
+        (e) =>
+          e.position.z > 75 &&
+          e.spawn.z > 75 &&
+          e.position.z <= 140 &&
+          e.spawn.z <= 140 &&
+          e.bounds?.zMin >= 76 &&
+          e.bounds?.zMax <= 140,
+      ),
   );
   check(
     "Enemies start idle or patrol with full health",
