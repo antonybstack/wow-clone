@@ -109,11 +109,11 @@ export function building(ctx,spec){
   wood.box(toWorld(w/2+.02,plinthY+doorH/2,0),[.06,doorH,doorW],[.22,.15,.10,0],yaw);
   wood.box(toWorld(w/2+.06,plinthY+doorH+.06,0),[.06,.10,doorW+.15],[.30,.22,.15,0],yaw);
 
-  for(const win of windows)windowGlow(ctx,toWorld(win.lx??0,win.ly??(plinthY+wallH*.62),(win.wall??1)*(d/2+.015)),yaw,win.w??.55,win.h??.6,win.wall??1,win.strength??.45,lights,wallMat,sideColor);
+  for(const win of windows)windowGlow(ctx,toWorld(win.lx??0,win.ly??(plinthY+wallH*.62),(win.wall??1)*(d/2+.015)),yaw,win.w??.55,win.h??.6,win.wall??1,win.strength??.45,lights);
   // Street elevation: two windows flanking the door, plus a small lantern, so a 15 m view of
   // the gable reads as a building (wall, roof, door, lit openings) rather than a dark slab.
   // Lights are radius-windowed so they wash this wall and stop before the street centre-line.
-  for(const lz of [-.95,.95])windowGlow(ctx,toWorld(w/2+.015,plinthY+wallH*.58,lz),yaw,.40,.50,0,.45,lights,wallMat,gableColor);
+  for(const lz of [-.95,.95])windowGlow(ctx,toWorld(w/2+.015,plinthY+wallH*.58,lz),yaw,.40,.50,0,.45,lights);
   lanternGlow(glow,toWorld(w/2+.16,plinthY+doorH+.14,0),{r:.045,h:.11});
   lights.push({position:toWorld(w/2+.16,plinthY+doorH+.14,0),strength:.42,falloff:.6,radius:3.5});
 
@@ -164,24 +164,19 @@ export function building(ctx,spec){
  *  glow falloff (no real transparency available), and a timber sill/lintel/mullion frame so it
  *  reads as glass in a wall rather than a flat coloured rectangle. Registers a baked point light,
  *  plus a small forward-poking glow nub (so the window still has visible volume from a grazing or
- *  top-down angle, where a flat pane flush with the wall nearly disappears) and a wall-wash — a
- *  radial gradient decal on the wall around the frame — so lamplight visibly spills onto the wall
- *  itself rather than registering only as a small bright rectangle. */
-function windowGlow(ctx,center,yaw,w,h,side,strength,lights,wallMat,wallColor){
+ *  top-down angle, where a flat pane flush with the wall nearly disappears). A radial wall-wash
+ *  was tried and rejected: opaque discs on this material read as hard orange blots. */
+function windowGlow(ctx,center,yaw,w,h,side,strength,lights){
  const {glow,wood}=ctx;
  const s=Math.sin(yaw),c=Math.cos(yaw);
  // side ±1: long walls (local ±z). side 0: door gable (local +x).
  const out=side===0?[c,0,-s]:[s*side,0,c*side];
  const right=side===0?[s,0,c]:[c,0,-s];
- const up=[0,1,0];
  const at=(rx,ry,off=0)=>[center[0]+right[0]*rx+out[0]*off,center[1]+ry,center[2]+right[2]*rx+out[2]*off];
- // Wall wash on the wall material, slightly in front of the facade, fading to the wall colour
- // so the rim is not a black/orange decal (this path has no alpha). A centre vertex means the
- // spill actually shows; baking the window light onto the wall box cannot, because that box
- // only has corner vertices and Gouraud-averages them across the face.
- const rim=wallColor||[0,0,0,0];
- const core=wallColor?wallColor.map((v,i)=>i===3?0:Math.min(1.2,v*1.65)):[.55,.46,.30,0];
- radialGlow(wallMat||glow,at(0,0,.04),right,up,Math.max(w,h)*1.7,core,rim,12);
+ // No radial wall-wash: an opaque disc on this material always reads as a hard orange blot
+ // (M2b/M3/M3b ground-decal failure, now on the wall). Spill is the pane, the frame, and the
+ // radius-windowed point light; the wall box itself has only corner vertices so a baked hot
+ // spot in the face centre cannot exist without tessellating the wall.
  glow.quad(at(-w/2,-h/2,.02),at(w/2,-h/2,.02),at(w/2,h/2,.02),at(-w/2,h/2,.02),undefined,[1,.96,.9,0]);
  const hw=w*.7,hh=h*.65;
  glow.quad(at(-hw,-hh,-.01),at(hw,-hh,-.01),at(hw,hh,-.01),at(-hw,hh,-.01),undefined,[.36,.32,.27,0]);
