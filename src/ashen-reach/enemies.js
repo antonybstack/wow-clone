@@ -29,12 +29,24 @@ export const ENEMY_TUNING = Object.freeze({
 
 const NAMES = ["Grave Shade", "Ash Wight", "Lych Stalker", "Barrow Shade"];
 
+/** Shared spectral look. Per-shade tints were the near/far mismatch in M4b. */
+const SHADE_TINT = Object.assign([0.46, 0.58, 0.62, 0.56], {
+  roughness: 0.94,
+  metallic: 0,
+  directIntensity: 0.34,
+  environmentIntensity: 0.16,
+  emissive: [0.12, 0.18, 0.2],
+});
+
+/** Punch_Cross is 1.0s; 0.58 keeps the swing on screen for the 1.6s cooldown. */
+const PUNCH_SPEED = 0.58;
+
 /** Handful of roamers on the churchyard road; nothing north of the lych-gate. */
 const ANCHORS = [
-  { id: "grave-shade-1", name: NAMES[0], z: 16, side: 2.6, scale: 1.04, tint: [0.34, 0.48, 0.26, 1] },
-  { id: "grave-shade-2", name: NAMES[1], z: 30, side: -2.8, scale: 0.96, tint: [0.52, 0.48, 0.42, 1] },
-  { id: "grave-shade-3", name: NAMES[2], z: 48, side: 2.4, scale: 1.1, tint: [0.28, 0.36, 0.5, 1] },
-  { id: "grave-shade-4", name: NAMES[3], z: 62, side: -2.5, scale: 1.0, tint: [0.5, 0.34, 0.2, 1] },
+  { id: "grave-shade-1", name: NAMES[0], z: 16, side: 2.6, scale: 1.04, tint: SHADE_TINT },
+  { id: "grave-shade-2", name: NAMES[1], z: 30, side: -2.8, scale: 0.96, tint: SHADE_TINT },
+  { id: "grave-shade-3", name: NAMES[2], z: 48, side: 2.4, scale: 1.1, tint: SHADE_TINT },
+  { id: "grave-shade-4", name: NAMES[3], z: 62, side: -2.5, scale: 1.0, tint: SHADE_TINT },
 ];
 
 function clampPos(x, z) {
@@ -186,10 +198,8 @@ function face(enemy, x, z) {
 
 function driveMotion(enemy, moving) {
   if (enemy.state === "dead") return;
-  const punch = enemy.actor?.clips?.punch;
-  if (punch && enemy.actor.clipName === punch.name && punch.isPlaying) return;
   if (enemy.state === "attack") {
-    enemy.actor?.play("idle");
+    enemy.actor?.play("punch", { loop: true, speed: PUNCH_SPEED });
     return;
   }
   if (!moving) {
@@ -285,7 +295,7 @@ function tickEnemy(enemy, dt, ctx) {
     else if (enemy.attackCooldown <= 0 && dist <= ENEMY_TUNING.meleeRange + 0.35) {
       enemy.attackCooldown = ENEMY_TUNING.attackCooldown;
       enemy.hitsLanded = (enemy.hitsLanded || 0) + 1;
-      enemy.actor?.play("punch", { oneshot: true, loop: false, speed: 1.15 });
+      enemy.actor?.play("punch", { loop: true, speed: PUNCH_SPEED });
       onPlayerHit(ENEMY_TUNING.attackDamage, enemy);
     }
   } else if (enemy.state === "return") {
