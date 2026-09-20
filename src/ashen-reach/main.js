@@ -1,6 +1,6 @@
 import {createStreamedEquipment} from './equipment-stream.js';
-import {BASE_VISIBLE_MESHES, ORC_BASE_VISIBLE_MESHES, EQUIPMENT_ITEMS} from './equipment-catalog.js';
-import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT} from './equipment-contract.js';
+import {BASE_VISIBLE_MESHES, ORC_BASE_VISIBLE_MESHES, UNDEAD_BASE_VISIBLE_MESHES, EQUIPMENT_ITEMS} from './equipment-catalog.js';
+import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT, UNDEAD_EQUIPMENT_FIT} from './equipment-contract.js';
 import {createEngine,createSceneContext,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,startEngine,onBeforeRender,enableBoneControl,enableErrorDecoding,decodeError,setFog,captureScreenshot,setMeshVisible,isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize} from '@babylonjs/lite';
 import {createAshenMetrics} from './metrics.js';
 import {createEquipment} from './equipment.js';
@@ -57,9 +57,17 @@ async function main(){
  body.bindSocketHost(combat.fx.sockets);
  const EMPTY_LOADOUT={helmet:null,torso:null,legs:null,boots:null,gloves:null,mainHand:null,offHand:null};
  const factoryHand=(id)=>id&&EQUIPMENT_ITEMS[id]?.factory?id:null;
+ // THE ONE LINE TO FLIP when the authored Undead body lands: set this to 'equipment-undead'
+ // and delete public/ashen-reach/equipment-undead-provisional/ plus its prepare script. The
+ // provisional pack is Human geometry retinted flat; it declares the real ashen-undead fit,
+ // which is what the plumbing below is actually checking. If the finished body splits its
+ // coverage differently, UNDEAD_BASE_VISIBLE_MESHES in equipment-catalog.js is the other
+ // thing to reconcile -- createStreamedEquipment names any region it cannot bind.
+ const UNDEAD_PACK_DIR='equipment-undead-provisional';
  const packs={
-  human:{manifestUrl:'/ashen-reach/equipment/manifest.json',baseMeshes:BASE_VISIBLE_MESHES,fitId:HUMAN_EQUIPMENT_FIT},
-  orc:{manifestUrl:'/ashen-reach/equipment-orc/manifest.json',baseMeshes:ORC_BASE_VISIBLE_MESHES,fitId:ORC_EQUIPMENT_FIT,bodyUrl:'/ashen-reach/equipment-orc/body.glb'},
+  human:{race:'human',manifestUrl:'/ashen-reach/equipment/manifest.json',baseMeshes:BASE_VISIBLE_MESHES,fitId:HUMAN_EQUIPMENT_FIT},
+  orc:{race:'orc',manifestUrl:'/ashen-reach/equipment-orc/manifest.json',baseMeshes:ORC_BASE_VISIBLE_MESHES,fitId:ORC_EQUIPMENT_FIT,bodyUrl:'/ashen-reach/equipment-orc/body.glb'},
+  undead:{race:'undead',manifestUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/manifest.json`,baseMeshes:UNDEAD_BASE_VISIBLE_MESHES,fitId:UNDEAD_EQUIPMENT_FIT,bodyUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/body.glb`,streamedOnly:true},
  };
  let impl=preloadedEquipment?createEquipment(engine,scene,body,combat.fx.sockets):await createStreamedEquipment(engine,scene,body,combat.fx.sockets,packs.human);
  let currentRace='human';
@@ -80,6 +88,10 @@ async function main(){
    if(race===currentRace)return;
    const pack=packs[race];
    if(!pack)throw Error('Unknown race pack');
+   // ?preloadedEquipment serves one baked Human-fit GLB instead of a streamed per-race pack.
+   // Swapping the body under it would leave an Undead wearing Human-fit garments -- the same
+   // silent substitution, pointed the other way. Refuse before touching the live character.
+   if(preloadedEquipment&&pack.streamedOnly)throw Error(`${race} needs the streamed equipment pack; ?preloadedEquipment serves one baked Human fit.`);
    const previousRace=currentRace;
    const previousImpl=impl;
    const loadout={...impl.getState()};
