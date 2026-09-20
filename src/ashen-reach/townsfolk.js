@@ -10,22 +10,21 @@ import {Batch, height, pathX, buildingPads} from './geometry.js';
 import {surface} from './materials.js';
 
 const CLOAK = {
- peat:[.23,.25,.18,0],
- rust:[.44,.20,.13,0],
- soot:[.17,.16,.15,0],
- moss:[.24,.29,.17,0],
- wine:[.34,.13,.15,0],
+ peat:[.48,.46,.36,0],
+ rust:[.62,.32,.22,0],
+ soot:[.40,.38,.36,0],
+ moss:[.42,.50,.32,0],
+ wine:[.56,.28,.30,0],
 };
 const TUNIC = {
- linen:[.50,.43,.33,0],
- grey:[.37,.36,.33,0],
- hide:[.40,.27,.16,0],
+ linen:[.72,.60,.46,0],
+ grey:[.58,.56,.50,0],
+ hide:[.58,.40,.26,0],
 };
-const SKIN = [.56,.41,.31,0];
-const LEATHER = [.26,.17,.11,0];
-const BOOT = [.18,.12,.08,0];
-const WOOD = [.38,.26,.16,0];
-const IRON = [.32,.32,.30,0];
+const SKIN = [.78,.58,.44,0];
+const BOOT = [.32,.22,.16,0];
+const WOOD = [.52,.36,.22,0];
+const IRON = [.50,.50,.46,0];
 
 function townLights(){
  const lights=[];
@@ -80,7 +79,7 @@ function person(batch,x,z,yaw,spec={}){
  const s=spec.scale||1;
  const cloak=spec.cloak||CLOAK.peat;
  const tunic=spec.tunic||TUNIC.linen;
- const hoodCol=spec.hoodColor||[cloak[0]*.82,cloak[1]*.82,cloak[2]*.82,0];
+ const hoodCol=spec.hoodColor||[Math.min(1,cloak[0]*1.18),Math.min(1,cloak[1]*1.16),Math.min(1,cloak[2]*1.12),0];
  const hoodUp=spec.hood!==false;
  const pose=spec.pose||'idle';
  const P=(lx,ly,lz)=>[
@@ -100,12 +99,12 @@ function person(batch,x,z,yaw,spec={}){
  box(0,1.16,.02,.30,.50,.20,tunic);
  box(0,1.40,.00,.38,.12,.22,cloak);
 
- const n=8,front=new Set([0,n-1]);
+ const n=8,front=new Set([0,1,n-1]);
  cloakBand(batch,P,1.40,1.08,.22,.28,n,front,cloak);
- cloakBand(batch,P,1.08,.16,.28,.33,n,front,cloak);
+ cloakBand(batch,P,1.08,.14,.28,.34,n,front,cloak);
  // Cloak edges at the opening, so the garment reads as two flaps rather than a tube.
- batch.quad(P(-.09,1.40,.21),P(-.14,1.08,.27),P(-.16,.16,.32),P(-.05,1.40,.20),undefined,cloak);
- batch.quad(P(.09,1.40,.21),P(.14,1.08,.27),P(.16,.16,.32),P(.05,1.40,.20),undefined,cloak);
+ batch.quad(P(-.09,1.40,.21),P(-.14,1.08,.27),P(-.16,.14,.32),P(-.05,1.40,.20),undefined,cloak);
+ batch.quad(P(.09,1.40,.21),P(.14,1.08,.27),P(.16,.14,.32),P(.05,1.40,.20),undefined,cloak);
 
  const arm=(side,ax,ay,az,bx,by,bz,cx,cy,cz)=>{
   batch.tube(P(ax,ay,az),P(bx,by,bz),.055*s,.045*s,cloak,5);
@@ -130,6 +129,7 @@ function person(batch,x,z,yaw,spec={}){
  }
 
  box(0,1.60,.03,.16,.20,.16,SKIN);
+ box(0,1.61,.14,.12,.14,.08,SKIN);
  if(hoodUp){
   const skip=new Set([0,1,n-1]);
   cloakBand(batch,P,1.50,1.68,.15,.17,n,skip,hoodCol);
@@ -138,14 +138,12 @@ function person(batch,x,z,yaw,spec={}){
  }else{
   box(0,1.72,.01,.18,.06,.18,hoodCol);
  }
- // Face plane inside the hood opening so the head is not a dark hole.
- batch.quad(P(-.05,1.54,.11),P(.05,1.54,.11),P(.05,1.66,.12),P(-.05,1.66,.12),undefined,[SKIN[0]*1.08,SKIN[1]*1.05,SKIN[2]*1.02,0]);
 
  if(pose==='tend'){
   box(.10,.95,.36,.18,.10,.14,WOOD);
  }else if(pose==='spear'){
-  batch.tube(P(.20,.08,.10),P(.22,2.05,.12),.018*s,.014*s,IRON,4);
-  batch.tube(P(.22,2.05,.12),P(.22,2.22,.12),.04*s,.002*s,IRON,4);
+  batch.tube(P(.20,.08,.10),P(.22,2.05,.12),.028*s,.022*s,IRON,4);
+  batch.tube(P(.22,2.05,.12),P(.22,2.28,.12),.055*s,.002*s,IRON,4);
  }else if(pose==='draw'){
   box(0,.88,.28,.12,.08,.12,WOOD);
  }
@@ -162,6 +160,7 @@ function woodMaterial(world){
  * @param {{meshes?: any[]}} world
  */
 export async function attachTownsfolk(engine,scene,world){
+ if(typeof location!=='undefined'&&new URLSearchParams(location.search).has('noTownsfolk'))return {mesh:null,triangles:0,draws:0,count:0};
  const batch=new Batch('Townsfolk');
  const well=buildingPads[8];
  const stall90=pathX(90)-3.0;
@@ -175,8 +174,8 @@ export async function attachTownsfolk(engine,scene,world){
  person(batch,well.x-1.35,well.z-0.70,-2.7,{cloak:CLOAK.soot,tunic:TUNIC.grey,pose:'draw',scale:1.04});
  person(batch,stall90+1.15,90,1.35,{cloak:CLOAK.peat,tunic:TUNIC.hide,pose:'tend',scale:1.01});
  person(batch,stall106-1.15,106,-1.45,{cloak:CLOAK.rust,tunic:TUNIC.linen,pose:'tend',scale:.96,hood:false});
- person(batch,-7.55,96.55,-1.15,{cloak:CLOAK.wine,tunic:TUNIC.grey,pose:'lean',scale:1.03});
- person(batch,gateX+3.15,77.6,Math.PI,{cloak:CLOAK.soot,tunic:TUNIC.hide,pose:'spear',scale:1.08,hood:false});
+ person(batch,-6.85,96.35,-1.05,{cloak:CLOAK.soot,tunic:TUNIC.linen,pose:'lean',scale:1.03});
+ person(batch,gateX+1.45,77.4,Math.PI,{cloak:CLOAK.rust,tunic:TUNIC.hide,pose:'spear',scale:1.08,hood:false});
  person(batch,7.55,97.15,-1.55,{cloak:CLOAK.moss,tunic:TUNIC.hide,pose:'tend',scale:1.00});
 
  const lights=townLights();

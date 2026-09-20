@@ -19,11 +19,12 @@ let page = context.pages().find((p) => p.url().includes("ashen-reach.html"));
 if (!page) page = await context.newPage();
 await page.setViewportSize({ width: 960, height: 540 });
 await page.bringToFront();
-await page.goto(
-  (process.env.ASHEN_URL || "http://127.0.0.1:5173/ashen-reach.html?play&clean") +
-    "&noEnemies",
-  { waitUntil: "commit" },
-);
+const base =
+  process.env.ASHEN_URL || "http://127.0.0.1:5173/ashen-reach.html?play&clean";
+const url = new URL(base);
+url.searchParams.set("noEnemies", "");
+if (tag === "before") url.searchParams.set("noTownsfolk", "");
+await page.goto(url.toString(), { waitUntil: "commit" });
 await page.waitForFunction(() => window.ASHEN?.ready, null, { timeout: 60000 });
 await page.waitForTimeout(1500);
 
@@ -47,6 +48,14 @@ async function shootAt({ name, x, z, yaw, pitch, dist }) {
 
 const shots = [
   {
+    name: "churchyard-spawn",
+    x: 0,
+    z: 0,
+    yaw: 0,
+    pitch: 0.04,
+    dist: 3.5,
+  },
+  {
     name: "well-square",
     x: 0,
     z: 131,
@@ -56,10 +65,10 @@ const shots = [
   },
   {
     name: "stall-close",
-    x: -1.4,
-    z: 131.2,
-    yaw: -0.85,
-    pitch: 0.06,
+    x: 0.4,
+    z: 133.3,
+    yaw: -1.32,
+    pitch: 0.05,
     dist: 3.2,
   },
   {
@@ -80,11 +89,11 @@ const shots = [
   },
   {
     name: "watchman-gate",
-    x: 0.4,
-    z: 80,
-    yaw: 1.05,
+    x: 0,
+    z: 72.2,
+    yaw: 0.22,
     pitch: 0.08,
-    dist: 3.6,
+    dist: 3.8,
   },
   {
     name: "wide-town",
@@ -98,15 +107,19 @@ const shots = [
 
 for (const s of shots) await shootAt(s);
 
-await page.evaluate(() => {
-  window.ASHEN.reset();
-});
-await page.waitForTimeout(500);
-await page.evaluate(() => {
-  window.ASHEN.setView("play");
-});
-await page.waitForTimeout(1200);
-await page.screenshot({ path: `${outDir}/churchyard-spawn.png` });
+if (tag !== "before") {
+  await page.reload({ waitUntil: "commit" });
+  await page.waitForFunction(() => window.ASHEN?.ready, null, { timeout: 60000 });
+  await page.waitForTimeout(1500);
+  await shootAt({
+    name: "churchyard-spawn-reload",
+    x: 0,
+    z: 0,
+    yaw: 0,
+    pitch: 0.04,
+    dist: 3.5,
+  });
+}
 
 console.log("done:", tag, outDir);
 process.exit(0);
