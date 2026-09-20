@@ -50,7 +50,10 @@ export class Batch{
  tri(a,b,c,uv=[[0,0],[1,0],[.5,1]],color=[1,1,1,0],normal=null){const perVertex=Array.isArray(normal)&&Array.isArray(normal[0]);const flat=perVertex?null:(normal||norm(cross(sub(b,a),sub(c,a))));const base=this.p.length/3;for(let j=0;j<3;j++){this.p.push(...[a,b,c][j]);this.n.push(...(perVertex?normal[j]:flat));this.u.push(...uv[j]);this.c.push(...(Array.isArray(color[0])?color[j]:color));}this.idx.push(base,base+1,base+2);}
  quad(a,b,c,d,uv=[[0,1],[1,1],[1,0],[0,0]],color=[1,1,1,0],normal=null){const cs=Array.isArray(color[0])?color:[color,color,color,color];const perVertex=Array.isArray(normal)&&Array.isArray(normal[0]);this.tri(a,b,c,[uv[0],uv[1],uv[2]],[cs[0],cs[1],cs[2]],perVertex?[normal[0],normal[1],normal[2]]:normal);this.tri(a,c,d,[uv[0],uv[2],uv[3]],[cs[0],cs[2],cs[3]],perVertex?[normal[0],normal[2],normal[3]]:normal);}
  box(center,size,color=[1,1,1,0],yaw=0,lean=0){const [x,y,z]=center,[w,h,d]=size;const P=(a,b,c)=>[x+a*Math.cos(yaw)+c*Math.sin(yaw)+b*lean,y+b,z-a*Math.sin(yaw)+c*Math.cos(yaw)];const v=[P(-w/2,-h/2,-d/2),P(w/2,-h/2,-d/2),P(w/2,h/2,-d/2),P(-w/2,h/2,-d/2),P(-w/2,-h/2,d/2),P(w/2,-h/2,d/2),P(w/2,h/2,d/2),P(-w/2,h/2,d/2)];for(const f of [[0,1,2,3],[5,4,7,6],[4,0,3,7],[1,5,6,2],[3,2,6,7],[4,5,1,0]])this.quad(...f.map(i=>v[i]),undefined,color);}
- tube(a,b,r1,r2,color=[1,1,1,0],sides=5){const d=norm(sub(b,a));const u=norm(cross(d,Math.abs(d[1])>.95?[1,0,0]:[0,1,0])),v=cross(d,u);for(let j=0;j<sides;j++){const at=(p,r,k)=>add(p,add(mul(u,Math.cos(k*Math.PI*2/sides)*r),mul(v,Math.sin(k*Math.PI*2/sides)*r)));this.quad(at(a,r1,j),at(a,r1,j+1),at(b,r2,j+1),at(b,r2,j),[[j/sides,1],[(j+1)/sides,1],[(j+1)/sides,0],[j/sides,0]],color);}}
+ /** `color2`, when given, is the colour at the `b` end, so a tube can fade along its own length
+  *  (e.g. a flame lick bright at its base and dark at its tip) via per-vertex colour rather than
+  *  a blend mode. Omitting it reproduces the old single-colour tube exactly. */
+ tube(a,b,r1,r2,color=[1,1,1,0],sides=5,color2=null){const c2=color2||color;const d=norm(sub(b,a));const u=norm(cross(d,Math.abs(d[1])>.95?[1,0,0]:[0,1,0])),v=cross(d,u);for(let j=0;j<sides;j++){const at=(p,r,k)=>add(p,add(mul(u,Math.cos(k*Math.PI*2/sides)*r),mul(v,Math.sin(k*Math.PI*2/sides)*r)));this.quad(at(a,r1,j),at(a,r1,j+1),at(b,r2,j+1),at(b,r2,j),[[j/sides,1],[(j+1)/sides,1],[(j+1)/sides,0],[j/sides,0]],[color,color,c2,c2]);}}
  /** Bakes static lamp irradiance into a uv2 vertex attribute so the fragment shader adds a flat
   *  O(1) term regardless of how many lamps are registered, instead of looping lamps per-fragment.
   *  `lights` is [{position:[x,y,z],strength,falloff=.5}]; the sum uses the same inverse-square
@@ -66,4 +69,17 @@ export class Batch{
 export function lanternGlow(batch,p,{r=.09,h=.22,tint=[1,.92,.8],dim=.4,sides=6}={}){
  batch.tube([p[0],p[1]-h/2,p[2]],[p[0],p[1]+h/2,p[2]],r*.62,r*.92,[tint[0],tint[1],tint[2],0],sides);
  batch.tube([p[0],p[1]-h*.6,p[2]],[p[0],p[1]+h*.62,p[2]],r*1.5,r*1.8,[tint[0]*dim,tint[1]*dim,tint[2]*dim,0],sides);
+}
+
+/** A soft radial gradient fan: bright at `center`, fading to `colorRim` by radius `r` in the plane
+ *  spanned by `axis1`/`axis2`. No real transparency exists in this material system, so this fakes a
+ *  glow puddle (light spilled on a wall or the ground near a fixture) with per-vertex colour falloff
+ *  on ordinary opaque triangles instead of a blend mode. Cheap: `sides` triangles, no quads. */
+export function radialGlow(batch,center,axis1,axis2,r,colorCenter,colorRim,sides=8){
+ for(let k=0;k<sides;k++){
+  const a=k*Math.PI*2/sides,b=(k+1)*Math.PI*2/sides;
+  const p=add(center,add(mul(axis1,Math.cos(a)*r),mul(axis2,Math.sin(a)*r)));
+  const q=add(center,add(mul(axis1,Math.cos(b)*r),mul(axis2,Math.sin(b)*r)));
+  batch.tri(center,p,q,undefined,[colorCenter,colorRim,colorRim]);
+ }
 }

@@ -2,7 +2,7 @@ import {createShaderMaterial,loadTexture2D,setShaderTexture,setShaderUniform,cre
 
 const OUT=`struct Out{@builtin(position) position:vec4<f32>,@location(0) p:vec3<f32>,@location(1) uv:vec2<f32>,@location(2) color:vec4<f32>,@location(3) normal:vec3<f32>,@location(4) lamp:f32};`;
 export const FOG=[.080,.099,.083];
-export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false,wind=false,emission=0,pixels=128,uvScale=1,ground=false}={}){
+export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false,wind=false,emission=0,pixels=128,uvScale=1,ground=false,nightGrade=false}={}){
  const tex=await loadTexture2D(engine,url,{invertY:false,srgb:false,mipMaps:true,minFilter:'nearest',magFilter:'nearest'});
  const mat=createShaderMaterial({name,attributes:['position','normal','uv','color','uv2'],uniforms:['worldViewProjection','world','cameraPosition',{name:'time',type:'f32',defaultValue:0},{name:'firePosition',type:'vec3<f32>',defaultValue:[0,0,0]},{name:'fireStrength',type:'f32',defaultValue:0},{name:'handFirePosition',type:'vec3<f32>',defaultValue:[0,0,0]},{name:'handFireStrength',type:'f32',defaultValue:0},{name:'lavaPosition',type:'vec3<f32>',defaultValue:[0,0,0]},{name:'lavaStrength',type:'f32',defaultValue:0}],samplers:ground?['albedo','paving']:['albedo'],backFaceCulling:false,needAlphaTesting:alpha,
  vertexSource:`${OUT}
@@ -11,7 +11,17 @@ export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false
  @fragment fn mainFragment(i:Out)->@location(0) vec4<f32>{
  let uv=(floor(i.uv*${uvScale}*${pixels}.0)+.5)/${pixels}.0;
  var t=textureSample(albedo,albedoSampler,uv);${alpha?'if(t.a<.52 || (t.r>.8 && t.g<.12)){discard;}':''}
- ${ground?'let path=abs(i.p.x-sin(i.p.z*.14)*1.25);let pave=textureSample(paving,pavingSampler,(floor(i.p.xz*64.0/2.4)+.5)/64.0);let churchGate=1.0-smoothstep(24.0,28.0,i.p.z);let northGate=smoothstep(40.0,48.0,i.p.z);let amount=(1.0-smoothstep(.60,1.38,path+(t.r-.4)*.75))*max(churchGate,northGate);t=vec4<f32>(mix(t.rgb*.68,pave.rgb*1.4,amount),1.0);':''}
+ ${ground?`let path=abs(i.p.x-sin(i.p.z*.14)*1.25);let pave=textureSample(paving,pavingSampler,(floor(i.p.xz*64.0/2.4)+.5)/64.0);let churchGate=1.0-smoothstep(24.0,28.0,i.p.z);let northGate=smoothstep(40.0,48.0,i.p.z);
+ // Below z=40 this is byte-for-byte the original churchyard formula (amountChurch alone, using
+ // churchGate which is itself 0 past z=28). amountStreet/amountPlaza are both multiplied by
+ // northGate, which is exactly 0 for i.p.z<=40, so the town's wider main street and the well
+ // plaza can never move a churchyard pixel.
+ let amountChurch=(1.0-smoothstep(.60,1.38,path+(t.r-.4)*.75))*churchGate;
+ let amountStreet=(1.0-smoothstep(1.05,2.65,path+(t.r-.4)*.9))*northGate;
+ let plazaD=distance(i.p.xz,vec2<f32>(0.0,136.0));
+ let amountPlaza=(1.0-smoothstep(4.2,8.6,plazaD+(t.r-.4)*1.4))*northGate;
+ let amount=max(amountChurch,max(amountStreet,amountPlaza));
+ t=vec4<f32>(mix(t.rgb*.68,pave.rgb*1.4,amount),1.0);`:''}
  let directional=.62+.38*abs(dot(normalize(i.normal+vec3<f32>(.00001)),normalize(vec3<f32>(-.4,.8,-.3))));
  let lamp=i.lamp;
  let fire=shaderUniforms.fireStrength/(1.0+pow(distance(i.p,shaderUniforms.firePosition)*.85,2.0));
@@ -19,6 +29,7 @@ export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false
  let lava=shaderUniforms.lavaStrength/(1.0+pow(distance(i.p,shaderUniforms.lavaPosition)*.7,2.0));
  let light=vec3<f32>(${light}*directional)+vec3<f32>(.7,.75,.30)*lamp+vec3<f32>(1.0,.28,.045)*(fire+handFire+lava);
  var c=t.rgb*i.color.rgb*vec3<f32>(${tint.join(',')})*(light+${emission});
+ ${nightGrade?'let ng=smoothstep(40.0,55.0,i.p.z);c=mix(c,c*vec3<f32>(.80,.72,.84),ng);':''}
  let d=distance(i.p,shaderSystem.cameraPosition);let fog=1.0-exp(-max(d-9.0,0.0)*.010);
  c=mix(c,vec3<f32>(${FOG.join(',')}),fog);
  let vignette=1.0-.12*clamp(abs(i.position.x/960.0-.5),0.0,1.0);
