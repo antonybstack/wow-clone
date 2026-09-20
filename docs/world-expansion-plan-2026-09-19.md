@@ -847,3 +847,81 @@ two structurally disjoint tracks so they can run in parallel:
 Allowed-path sets are disjoint by construction; `docs/` and `metrics.js` are frozen to both
 and owned by me. Slot 0 (5173/9337) stays mine for verification. Nothing here is accepted —
 it is staged for the user's review.
+
+## M11b merged, 2026-09-20 — Undead is a real third race in the plumbing
+
+`main` at `f33e77c`. Merged as no-ff `87f13ab` from `m11b` (6 commits off `475c44d`).
+Re-measured on the merged tree, not the branch: `test:equipment` 47/47, `test:character`
+75/75, `npm run build` exit 0.
+
+**The claim I checked hardest.** The brief's one hard requirement was the plan's own:
+an unsupported combination must never silently receive a Human fit. I did not take the
+report's word for it — I read the diff for the mechanism. It is there and it is real.
+`equipment-stream.js` previously carried two inference expressions,
+`expectedFit.body==='ashen-orc'?'orc':'human'` and `item.fits?.[raceFit]||item.fit`; both
+answered "human" for any race that was not Orc. They are gone. `declaredFitForRace` throws
+with a comment saying explicitly why there is no `|| item.fit` fallback, `raceForFit` throws
+on an unrecognised fit, `packVisibility` throws for a race with no declared mapping rather
+than inheriting Human's, and the manifest's `fitId` must equal the expected fit body. The
+test suite pins the *regression* rather than the happy path: it asserts the old expression
+genuinely did yield `HUMAN_EQUIPMENT_FIT`, then asserts the new path throws.
+
+Live on my own slot, three broken-asset scenarios each produced a named refusal with the
+character left coherent: corrupted garment bytes, deleted manifest, and a manifest relabelled
+with Human fits ("Equipment pack is ashen-human, not ashen-undead").
+
+**A pre-existing bug the milestone exposed.** Under `?preloadedEquipment`,
+`switchRace('orc')` returned `ok:true, race:'orc'` while the churchyard still drew a Human in
+Human garments. That predates Undead entirely and is exactly the substitution this milestone
+exists to prevent. The guard now keys off the mode, so every future race is covered.
+
+**One reported defect I checked and dismissed.** The worker flagged `a2-orc-walk.png` as
+showing the Orc sunk to the waist in terrain, and said honestly that it was probably its own
+`parkCamera` helper but that it could not rule out a real problem. It was the helper. At a
+camera of mine (`rig.pitch 0.18`, `distance 4.2`, identical for all three races, on slot 3
+serving the m11b worktree) the Orc stands on the path with both feet clear. The worker was
+right to flag it and right about the cause.
+
+**Follow-up I closed myself rather than carrying:** both pack generators
+(`split-equipment.mjs`, `prepare-orc-equipment.mjs`) omitted `fitId`, so regenerating either
+pack produced a manifest the new loader refuses. They now take it from the contract. Both
+were re-run and each reproduces its pack byte for byte.
+
+**Carried leftovers, all of them honest and all disclosed by the worker itself:**
+the provisional Undead body is retinted Human geometry and reads as one grey clay figure in
+the dark — good enough to prove plumbing, not art; the armory camera scale for Undead is 1
+and must be re-measured against the taller authored body; no measured Undead grip offsets
+exist, because the provisional hand is a Human hand; `UNDEAD_BASE_VISIBLE_MESHES` lists only
+the six shared `BODY_REGIONS`, so amber eyes or a separate jaw must be declared there or they
+render invisible; Human garment GLBs carry ~5203 orphaned accessors each, roughly 90% of file
+size, which is a Human-path finding deliberately left alone.
+
+**The one line M11a must flip** is `src/ashen-reach/main.js`: `UNDEAD_PACK_DIR`, from
+`equipment-undead-provisional` to `equipment-undead`, then delete the provisional directory
+and `scripts/ashen-reach/prepare-undead-provisional.mjs`. Nothing else names it.
+
+## The harness was lying, on three slots at once
+
+Merged as `5166287`, found because the M11b worker reported it rather than working around it.
+
+`scripts/harness/up.mjs` waited for "something answers on the Vite port" and treated that as
+the slot being up. When an orphaned `npm run dev` from another worktree already held the
+port, our own Vite exited with "port already in use" and the script printed success anyway —
+so every capture taken through that slot rendered a different tree's code. The worker lost a
+full capture run to it.
+
+It was worse than reported. At the time I checked, **every** agent slot was squatted by an
+orphan from a long-merged worktree: 5273 (slot 1) served `m9`, 5373 (slot 2) served `m10`,
+5473 (slot 3) served `m7b`. Slot 1 is where the M11a worker was running, so I killed all
+three orphans and told that agent its live captures were suspect and its offline
+measurements were not.
+
+The fix checks identity rather than liveness: refuse the port up front if a foreign process
+holds it (naming the squatter's pid and directory), confirm after startup that the listener's
+cwd is this checkout and that the Vite we spawned is still alive, and match the Chrome page
+on port as well as route so a stale browser cannot hand back a page from another slot. Both
+directions tested — it refuses a squatted port and still brings a clean slot up.
+
+This is the same lesson as the vsync cap and the triangle counter, in a third place: an
+instrument that reports success without checking the thing it claims to check will silently
+validate every milestone that passes through it.
