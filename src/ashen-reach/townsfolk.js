@@ -26,41 +26,6 @@ const BOOT = [.32,.22,.16,0];
 const WOOD = [.52,.36,.22,0];
 const IRON = [.50,.50,.46,0];
 
-function townLights(){
- const lights=[];
- const lamp=(x,z,strength=.68)=>{
-  const y=height(x,z);
-  lights.push({position:[x,y+2.62,z],strength,falloff:.42,radius:9});
-  lights.push({position:[x,y+.18,z],strength:1.0,falloff:.62,radius:5});
- };
- for(const [z,side] of [[84,1],[94,-1],[104,1],[114,-1],[124,1],[134,-1]])lamp(pathX(z)+side*3.4,z,.68);
- const gx=pathX(75),gy=height(gx,75);
- for(const side of [-1,1]){
-  const tx=gx+side*(2.6+1.8);
-  lights.push({position:[tx,gy+9*.55,75],strength:1.0,falloff:.32,radius:14});
-  lights.push({position:[tx,gy+9*.55,75],strength:.6,falloff:.15,radius:30});
- }
- const well=buildingPads[8];
- const wy=height(well.x,well.z);
- lights.push({position:[well.x,wy+2.42,well.z],strength:.95,falloff:.4});
- lights.push({position:[well.x,wy+.18,well.z],strength:1.3,falloff:.55});
- for(const [x,z] of [[well.x-4.6,well.z-2.0],[well.x+4.6,well.z-1.4],[well.x-3.4,well.z+3.2]]){
-  const y=height(x,z);
-  lights.push({position:[x,y+1.67,z],strength:.42,falloff:.55});
-  lights.push({position:[x,y+.18,z],strength:.75,falloff:.75});
- }
- for(const [z,side] of [[90,-1],[106,1]]){
-  const x=pathX(z)+side*3.0,y=height(x,z);
-  lights.push({position:[x,y+1.67,z],strength:.42,falloff:.55});
-  lights.push({position:[x,y+.18,z],strength:.75,falloff:.75});
- }
- const tavern=buildingPads[2],ty=height(tavern.x,tavern.z);
- lights.push({position:[tavern.x+4.3,ty+1.95,tavern.z],strength:.3,falloff:.65});
- const smithy=buildingPads[3],sy=height(smithy.x,smithy.z);
- lights.push({position:[smithy.x-4.1,sy+.64,smithy.z],strength:1.1,falloff:.4});
- return lights;
-}
-
 function cloakBand(batch,P,y0,y1,r0,r1,n,skip,color){
  for(let i=0;i<n;i++){
   if(skip.has(i))continue;
@@ -178,7 +143,7 @@ export async function attachTownsfolk(engine,scene,world){
  person(batch,gateX+1.45,77.4,Math.PI,{cloak:CLOAK.rust,tunic:TUNIC.hide,pose:'spear',scale:1.08,hood:false});
  person(batch,7.55,97.15,-1.55,{cloak:CLOAK.moss,tunic:TUNIC.hide,pose:'tend',scale:1.00});
 
- const lights=townLights();
+ const lights=world.lights||[];
  let material=woodMaterial(world);
  if(!material)material=await surface(engine,'Townsfolk cloth','/tex/wood_planks_grey/diff.jpg',{tint:[.57,.43,.31],light:.62,pixels:64});
  const mesh=batch.commit(engine,scene,material,lights);

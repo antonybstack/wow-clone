@@ -306,5 +306,5 @@ export async function buildChurchyard(engine,scene){
  const horizonStats=buildHorizon(distant,warm,height);
 
  const meshes=B.map((b,i)=>b.commit(engine,scene,mats[i],lights));colliders.unshift({type:'mesh',mesh:meshes[0]});const clouds=await sky(engine,scene);
- return {meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,stats:{triangles:B.reduce((a,b)=>a+b.idx.length/3,0),drawBatches:B.length,horizonTriangles:horizonStats.triangles},update(t){for(const i of [4,5])setShaderUniform(mats[i],'time',t);clouds.update(t);}};
+ return {meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,stats:{triangles:B.reduce((a,b)=>a+b.idx.length/3,0),drawBatches:B.length,horizonTriangles:horizonStats.triangles},update(t){for(const i of [4,5])setShaderUniform(mats[i],'time',t);clouds.update(t);}};
 }
