@@ -74,12 +74,13 @@ try {
   }
   if (internal) {
     const [w, h] = internal.split("x").map(Number);
+    await page.setViewportSize({ width: w, height: h }).catch(() => {});
     const size = await page.evaluate(
       ([width, height]) => ASHEN.metrics.setInternalResolution(width, height),
       [w, h],
     );
     if (!size || size[0] !== w || size[1] !== h) {
-      console.error("internal resolution did not stick", { requested: [w, h], got: size });
+      throw new Error(`internal resolution did not stick: requested ${w}x${h}, got ${size}`);
     }
     await page.waitForTimeout(200);
   }

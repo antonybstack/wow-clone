@@ -149,7 +149,13 @@ export function createAshenMetrics({ engine, scene, world, canvas, samples, lite
     const w = Math.round(Number(width));
     const h = Math.round(Number(height));
     if (!(w > 0 && h > 0)) throw Error("internal resolution must be positive");
-    lite.setEngineSize(engine, w, h);
+    // startEngine calls resizeSurface every frame from CSS × DPR. Disconnect the
+    // observer and pin _w/_h so the requested backing store survives that path.
+    engine._ro?.disconnect();
+    engine._w = w;
+    engine._h = h;
+    engine.maxDevicePixelRatio = 1;
+    lite.resizeSurface(engine);
     return [canvas.width, canvas.height];
   }
 
