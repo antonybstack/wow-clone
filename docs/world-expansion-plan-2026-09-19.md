@@ -204,3 +204,65 @@ its own Vite port, its own Chrome profile and CDP port, and one command to start
   3. **M3's own gate is not met.** The plan's gate is "a reviewed clip of the vista from the town
      gate", and the citadel is not visible from the gate at all — only from open sightlines like
      the well square and the overlook. The agent disclosed this honestly.
+- 2026-09-20: **M3b landed** (`b356adc`, `595760b`, `baf7fa9`), then **M4b landed and both merged
+  into `main`** (`fc75c17`). Their file sets did not overlap and the merge was clean.
+  **M3b defect 1 — fixed.** `groundGlow` is deleted. Ground-level lamp pools now come entirely
+  from the M1 baked per-vertex lamp irradiance path, applied to a ground mesh subdivided under the
+  lamp/gate/well/stall corridors (`CORRIDOR_SUB=4`), with each fixture keeping its original
+  ambient light and gaining a separate tightly-falling-off near-ground light. Verified against the
+  M2b captures side by side: M2b's hard-edged octagonal craters are gone and the lamp close-ups
+  show a genuine soft warm gradient with no silhouette. Cost **167,816 -> 191,846 triangles
+  (+24,030, +14.3%)**, draws unchanged at 34. Its first attempt inflated the single ambient light
+  and washed the whole town; it caught that with a temporary shader debug visualisation and
+  reverted it.
+  **M3b defect 2 — fixed.** `ridgeline()`'s base Y went from `groundY-14` to `groundY-320`, a pure
+  vertex-Y change costing zero triangles. The ridge now reads as a continuous mass meeting the
+  terrain instead of suspended cardboard.
+  **M3b defect 3 — NOT fixed.** It changed the gate camera pitch to .25 and called the vista
+  found. I opened `town-gate-vista-fixed.png` and the whole 7-frame pan: the citadel is a
+  barely-discernible dark sliver with a few window dots above the lintel, not a vista that reads.
+  M3's gate remains unmet.
+  **M4b landed.** Enemies are now skinned, animated Mixamo humans loaded via the `npc.js`
+  `loadGltf` pattern (clips `Walk_Loop`, `Jog_Fwd_Loop`, `Idle_Loop`, `Punch_Cross`, `Death01`),
+  with a moving Havok collision proxy the player cannot walk through, reliable spell hits on
+  moving targets, and the health plate lifted clear of the grass. `player.js` gained an additive
+  `addAnimatedCollider`/`moveAnimatedCollider`/`setAnimatedColliderEnabled` API; enemy bodies are
+  Havok STATIC because the character controller is itself kinematic and Havok skips
+  kinematic-vs-kinematic contacts. The XZ resolve runs after `integrate` and before the
+  `boundsRect` clamp, so bounds still wins.
+  **Verified on the merged tree, by me, not from agent reports:** build clean, 75/75 character,
+  27/27 equipment, and all 34 live checks green (enemy-loop 13, player-death 8, enemy-collision 7,
+  lava-moving 6). Live walk still reaches z=134.74.
+  **Merged-tree hardware FPS: 144.04 -> 143.99** (600 samples each), p95 8.1 -> 8.0 ms, draws
+  34 -> 42, at 720x405 internal / 960x540 viewport. The >120 FPS gate holds with the citadel, the
+  subdivided ground and four skinned shades all active.
+
+  **Measurement-integrity defects found while verifying — these weaken every FPS number above:**
+  1. `ASHEN.metrics.summary().triangles` spreads `...world.stats`, built at `scene.js` as
+     `B.reduce((a,b)=>a+b.idx.length/3,0)` — the sum over committed procedural batches ONLY. Every
+     GLB mesh is excluded by construction: the Orc, the dummy, and all four skinned enemies. It
+     reads an identical 191,846 with and without enemies. The field is named `triangles` but means
+     "world batch triangles", and M4b's self-reported 137,920 skinned triangles appear nowhere in
+     it. `drawCalls` (`engine.drawCallCount`) IS live and correct — 34 -> 42, two per shade.
+     Trust `drawCalls`; do not cite `triangles` as total scene cost. Fix is ~5 lines: report a
+     live count over `scene.meshes` alongside the batch count.
+  2. **144 FPS is this machine's vsync ceiling, not headroom.** `meanMs` 6.9427 is exactly
+     1000/144. Every "144 FPS" result in this log, including the ones above, proves only that the
+     change did not fall OFF the cap — it cannot quantify remaining budget, and at 720x405
+     internal the GPU is lightly loaded. Headless Chrome is capped the same way at 60. To measure
+     real headroom the renderer must be run uncapped or at a much higher internal resolution.
+
+  **Open defects carried into M4c / a later lighting pass:**
+  1. The shades are bare Mixamo Alpha mannequins — visible ball joints, no clothing, face, hood or
+     weapon. Passable at mid range, poor in melee. Disclosed honestly by the agent.
+  2. The near shade renders pale teal while the distant one is a muddy olive blob; the two
+     instances do not read as the same creature. The agent did not report this.
+  3. `Punch_Cross` is a short oneshot, so melee stills almost always land on idle-in-range.
+  4. No death still was delivered; required capture #5 was incomplete.
+  5. The shades are fully opaque. Unlike world geometry, these are PBR GLB meshes on a separate
+     path, so alpha IS available to them.
+  6. **New lighting regression from M3b's near-ground lights:** at eye level in fixture-dense
+     spots the warm lamp light multiplies against the green ground into a bright yellow-green wash
+     — the well square floor and, worse, the lych-gate stone, which now reads lime green rather
+     than stone. Wide and overhead shots still read as a proper night town; this is a close-range
+     problem.
