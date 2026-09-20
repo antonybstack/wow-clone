@@ -17,6 +17,7 @@ import {
     playAnimation,
     setAnimationWeight,
     setMeshVisible,
+    setPbrEmissive,
     stopAnimation,
     updateAnimationManager,
 } from "@babylonjs/lite";
@@ -24,6 +25,68 @@ import {
 import { BODY_URL } from "./body.js";
 
 const BLEND_SPEED = 4;
+const shadeMaterials = new Map();
+
+function meshName(mesh) {
+    return (mesh.name || "").toLowerCase();
+}
+
+function isJointMesh(mesh) {
+    const name = meshName(mesh);
+    if (name.includes("surface")) return false;
+    return name.includes("joint");
+}
+
+function tintKey(tint) {
+    const color = Array.isArray(tint)
+        ? [tint[0], tint[1], tint[2], tint[3] ?? 1]
+        : [0.46, 0.58, 0.62, 0.58];
+    const emissive = tint?.emissive;
+    return JSON.stringify({
+        color,
+        roughness: Number.isFinite(tint?.roughness) ? tint.roughness : 0.94,
+        metallic: Number.isFinite(tint?.metallic) ? tint.metallic : 0,
+        direct: Number.isFinite(tint?.directIntensity) ? tint.directIntensity : 0.38,
+        env: Number.isFinite(tint?.environmentIntensity) ? tint.environmentIntensity : 0.2,
+        emissive: Array.isArray(emissive) ? emissive : [color[0] * 0.28, color[1] * 0.28, color[2] * 0.28],
+    });
+}
+
+function shadeMaterial(tint) {
+    const key = tintKey(tint);
+    const cached = shadeMaterials.get(key);
+    if (cached) return cached;
+    const parsed = JSON.parse(key);
+    const [r, g, b, alpha] = parsed.color;
+    const mat = createPbrMaterial({
+        baseColorFactor: [r, g, b, 1],
+        roughnessFactor: parsed.roughness,
+        metallicFactor: parsed.metallic,
+        doubleSided: true,
+        directIntensity: parsed.direct,
+        environmentIntensity: parsed.env,
+        alpha,
+        alphaBlend: alpha < 0.999,
+    });
+    if (parsed.emissive) setPbrEmissive(mat, parsed.emissive);
+    shadeMaterials.set(key, mat);
+    return mat;
+}
+
+function applyShadeLook(mesh, tint, hideJoints) {
+    if (hideJoints && isJointMesh(mesh)) {
+        setMeshVisible(mesh, false);
+        mesh.visible = false;
+        mesh.receiveShadows = false;
+        return;
+    }
+    if (!tint) {
+        mesh.receiveShadows = true;
+        return;
+    }
+    mesh.receiveShadows = false;
+    mesh.material = shadeMaterial(tint);
+}
 
 function findNamed(groups, exact, extra = [], exclude = []) {
     const named = groups ?? [];
@@ -46,20 +109,6 @@ function findIdle(groups) {
     return findNamed(groups, "Idle_Loop", ["idle"], ["talk", "torch", "pistol", "crouch"])
         || (groups ?? [])[0]
         || null;
-}
-
-function shadeSurface(mesh, tint) {
-    if (!tint) return;
-    const color = Array.isArray(tint)
-        ? [tint[0], tint[1], tint[2], tint[3] ?? 1]
-        : [0.34, 0.36, 0.3, 1];
-    mesh.material = createPbrMaterial({
-        baseColorFactor: color,
-        roughnessFactor: Number.isFinite(tint.roughness) ? tint.roughness : 0.9,
-        metallicFactor: Number.isFinite(tint.metallic) ? tint.metallic : 0,
-        doubleSided: true,
-        directIntensity: 1.3,
-    });
 }
 
 function hideNamed(scene, prefix) {
@@ -89,7 +138,9 @@ function greeterPose(scene) {
  * @param {import("@babylonjs/lite").EngineContext} engine
  * @param {import("@babylonjs/lite").SceneContext} scene
  * @param {{ x: number, y?: number, z: number, yaw?: number, name?: string,
- *           scale?: number, tint?: number[]|{0:number,1:number,2:number,roughness?:number,metallic?:number},
+ *           scale?: number,
+ *           tint?: number[]|{0:number,1:number,2:number,3?:number,roughness?:number,metallic?:number,
+ *                            emissive?: number[], directIntensity?: number, environmentIntensity?: number},
  *           hideJoints?: boolean }} pose
  */
 export async function attachAnimatedHuman(engine, scene, pose) {
@@ -114,12 +165,7 @@ export async function attachAnimatedHuman(engine, scene, pose) {
     }
     const meshes = getContainerMeshes(container);
     for (const mesh of meshes) {
-        mesh.receiveShadows = true;
-        if (pose.hideJoints && /joint/i.test(mesh.name || "")) {
-            setMeshVisible(mesh, false);
-            mesh.visible = false;
-        }
-        if (pose.tint && /surface/i.test(mesh.name || "")) shadeSurface(mesh, pose.tint);
+        applyShadeLook(mesh, pose.tint, !!pose.hideJoints);
     }
 
     const groups = container.animationGroups ?? [];
@@ -187,10 +233,12 @@ export async function attachAnimatedHuman(engine, scene, pose) {
         setVisible(visible) {
             setMeshVisible(root, visible);
             for (const mesh of meshes) {
-                if (pose.hideJoints && /joint/i.test(mesh.name || "")) {
+                if (pose.hideJoints && isJointMesh(mesh)) {
+                    setMeshVisible(mesh, false);
                     mesh.visible = false;
                     continue;
                 }
+                setMeshVisible(mesh, visible);
                 mesh.visible = visible;
             }
         },
