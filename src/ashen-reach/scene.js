@@ -5,6 +5,11 @@ import {surface,sky} from './materials.js';
 /** A new scene layout. No Moonwell world builders, architecture or vegetation placement. */
 export async function buildChurchyard(engine,scene){
  const random=rng(83861),r=(a,b)=>a+random()*(b-a);
+ // Static lamps are baked per-vertex (see Batch.commit) instead of hardcoded in the shader, so the
+ // town's street lamps and the two original churchyard lamps share one scalable list. These two
+ // entries reproduce materials.js's former hardcoded lamp1/lamp2 exactly (same position, strength,
+ // falloff) so the churchyard's illumination is unchanged.
+ const lights=[{position:[-3.4,2.5,12.0],strength:.45,falloff:.5},{position:[3.6,2.7,14.0],strength:.4,falloff:.5}];
  const mats=await Promise.all([
   surface(engine,'Moss and burial earth','/tex/forrest_ground_01/diff.jpg',{tint:[.81,.83,.62],light:.62,pixels:128,ground:true}),
   surface(engine,'Timeworn limestone','/tex/rock_wall_08/diff.jpg',{tint:[1.12,1.10,.94],light:.85,pixels:512,uvScale:.20}),
@@ -69,12 +74,12 @@ export async function buildChurchyard(engine,scene){
 
  // Each fern is a radiating set of bent alpha-textured fronds.
  function bracken(x,z,size,seed){const rand=rng(seed),y=height(x,z)-.02;for(let f=0;f<8;f++){const a=f*.785+rand()*.45,L=size*(.65+rand()*.5),point=t=>[x+Math.cos(a)*L*t,y+L*(1.85*t-1.40*t*t)+.05,z+Math.sin(a)*L*t],side=[-Math.sin(a)*L*.24,0,Math.cos(a)*L*.24],u0=rand()<.85?0:.5;
-   for(let k=0;k<5;k++){const t=k/5,t1=(k+1)/5,p=point(t),q=point(t1),c=.82+rand()*.25;fern.quad(sub(p,side),add(p,side),add(q,side),sub(q,side),[[u0+.008,.99-t*.49],[u0+.492,.99-t*.49],[u0+.492,.99-t1*.49],[u0+.008,.99-t1*.49]],[[c,c,c,t],[c,c,c,t],[c,c,c,t1],[c,c,c,t1]],[0,1,0]);}
-  }}
+  for(let k=0;k<5;k++){const t=k/5,t1=(k+1)/5,p=point(t),q=point(t1),c=.82+rand()*.25;fern.quad(sub(p,side),add(p,side),add(q,side),sub(q,side),[[u0+.008,.99-t*.49],[u0+.492,.99-t*.49],[u0+.492,.99-t1*.49],[u0+.008,.99-t1*.49]],[[c,c,c,t],[c,c,c,t],[c,c,c,t1],[c,c,c,t1]],[0,1,0]);}
+ }}
  for(let i=0;i<420;i++){const x=r(-22,22),z=r(-10,48);if(Math.abs(x-pathX(z))<2.0&&random()<.97)continue;bracken(x,z,r(.45,1.18),i+490);}
  for(const [x,z,s] of [[-2,-2,1.4],[2.8,-2.1,1.5],[-2.5,4,1.3],[2.7,9,1.1],[-4,12,1.6]])bracken(x,z,s,Math.floor(s*900));
  const rects=[[.008,.006,.492,.498],[.508,.006,.992,.498],[.008,.006,.492,.498],[.508,.006,.992,.498]];
  for(let i=0;i<11000;i++){const x=r(-40,40),z=r(-16,84);if(Math.hypot(x,z)>38&&random()<.72)continue;const path=Math.abs(x-pathX(z));if(path<1.2&&z<26)continue;if(path<1.8&&random()<.7)continue;const y=height(x,z)-.02,sz=r(.52,1.23),w=r(.55,1.12),a=r(0,Math.PI),kind=random()<.6?3:random()<.5?2:0,[u0,v0,u1,v1]=rects[kind];for(let k=0;k<2;k++){const dx=Math.cos(a+k*1.571)*w/2,dz=Math.sin(a+k*1.571)*w/2,c=r(.66,1.10);grass.quad([x-dx,y,z-dz],[x+dx,y,z+dz],[x+dx,y+sz,z+dz],[x-dx,y+sz,z-dz],[[u0,v1],[u1,v1],[u1,v0],[u0,v0]],[[c,c,c,0],[c,c,c,0],[c,c,c,1],[c,c,c,1]],[0,1,0]);}}
- const meshes=B.map((b,i)=>b.commit(engine,scene,mats[i]));colliders.unshift({type:'mesh',mesh:meshes[0]});const clouds=await sky(engine,scene);
+ const meshes=B.map((b,i)=>b.commit(engine,scene,mats[i],lights));colliders.unshift({type:'mesh',mesh:meshes[0]});const clouds=await sky(engine,scene);
  return {meshes,colliders,groundHeight:height,spawn:{x:0,z:0},stats:{triangles:B.reduce((a,b)=>a+b.idx.length/3,0),drawBatches:B.length},update(t){for(const i of [4,5])setShaderUniform(mats[i],'time',t);clouds.update(t);}};
 }
