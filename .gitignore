@@ -51,3 +51,8 @@ blender/characters/sources/orc-print/*.zip
 
 # Agent worktrees. Each is a full checkout of this repo; never commit one into itself.
 .claude/worktrees/
+
+# CC0 skull form source for the Undead head (opengameart.org/content/human-skull-0).
+# Reference and bake cage only; re-fetch per blender/characters/sources/undead-skull/README.md.
+blender/characters/sources/undead-skull/*.zip
+blender/characters/sources/undead-skull/skull-obj/

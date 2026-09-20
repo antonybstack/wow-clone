@@ -1,0 +1,24 @@
+{
+  "role": "Undead head form (skull, jaw, orbits, nasal aperture, zygomatic arches)",
+  "title": "Human Skull",
+  "author": "CDmir",
+  "sourcePage": "https://opengameart.org/content/human-skull-0",
+  "downloadUrl": "https://opengameart.org/sites/default/files/skull-obj.zip",
+  "license": "CC0-1.0",
+  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/",
+  "attributionRequired": false,
+  "retrieved": "2026-09-20",
+  "archiveSha256": "067899af520649177c0dd5de1a4b18bd4f46daf667df04a405dc9a27d206011b",
+  "triangles": 4538,
+  "files": [
+    "skull-Low4K.obj",
+    "skull-Low4K.mtl",
+    "Skull-Low.png",
+    "Skull-Low-normal.png",
+    "Skull-AO.png",
+    "Skull-Low_r.png",
+    "Skull-Low_o.png"
+  ],
+  "committed": false,
+  "notes": "Archive and extracted OBJ/PNG are gitignored like blender/characters/sources/orc-print. Form and bake reference only."
+}
