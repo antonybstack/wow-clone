@@ -1,0 +1,1 @@
+.grok/hooks/telegram-motion-stop.py
