@@ -1,10 +1,9 @@
-"""Fit Human catalogue garments onto the print-sculpt Orc rest.
+"""Grade Human catalogue garments onto the print-sculpt Orc rest.
 
-Isolated background Blender. MHCLO cannot map this topology. Vertices stay
-Human-authored; we scale by stature, push anything inside the Orc surface back
-out, and keep the original mixamorig vertex groups. Heat/envelope is only a
-fallback. Does not write public/ — prepare-orc-equipment.mjs remaps the skin
-onto the playable actor and copies reviewed GLBs.
+Isolated background Blender. MHCLO cannot map this topology. Uniform stature
+scale is only a starting cage: boots and gloves are then stretched to enclose
+the print foot/calf and hand/forearm. Other pieces get a bulk XZ grade plus
+push-off. Does not write public/ — prepare-orc-equipment.mjs remaps the skin.
 """
 from __future__ import annotations
 
@@ -17,19 +16,21 @@ from mathutils import Vector
 from mathutils.bvhtree import BVHTree
 
 ROOT = Path(__file__).resolve().parents[2]
-ORC_BODY = ROOT / 'public/ashen-reach/equipment-orc/body.glb'
+ORC_BODY = ROOT / 'public/characters/candidates/orc-source-v1.glb'
 HUMAN_DIR = ROOT / 'public/ashen-reach/equipment'
 OUT = ROOT / '.cache/armory-assets/orc-sculpt'
 OUT.mkdir(parents=True, exist_ok=True)
 
 ORC_HEIGHT = 2.10
 HUMAN_HEIGHT = 1.80
-WRAP_OFFSET = 0.012
+WRAP_OFFSET = 0.016
 ITEM_OFFSET = {
-    'graveweaverHood': 0.018,
-    'wayfarerBoots': 0.010,
-    'graveweaverGloves': 0.008,
-    'graveweaverTop': 0.014,
+    'graveweaverHood': 0.022,
+    'wayfarerBoots': 0.018,
+    'graveweaverGloves': 0.016,
+    'graveweaverTop': 0.018,
+    'wayfarerTunic': 0.016,
+    'pilgrimTunic': 0.016,
 }
 
 ITEMS = (
@@ -50,8 +51,8 @@ HEIGHT_SPAN = {
     'graveweaverTop': 0.30,
     'graveweaverSkirt': 0.40,
     'graveweaverHood': 0.12,
-    'wayfarerBoots': 0.08,
-    'graveweaverGloves': 0.08,
+    'wayfarerBoots': 0.45,
+    'graveweaverGloves': 0.20,
 }
 
 
@@ -184,6 +185,212 @@ def push_off_body(ob, body, bvh, offset):
     ob.data.update()
     log(f'push_off {ob.name} moved={moved}/{len(ob.data.vertices)} offset={offset}')
     return moved
+
+
+def bone_world(arm, name):
+    bone = arm.pose.bones.get(name)
+    if bone is None:
+        raise RuntimeError('missing bone ' + name)
+    return arm.matrix_world @ bone.head
+
+
+def body_points(body, substrings, min_w=0.25, z_max=None):
+    idxs = [g.index for g in body.vertex_groups if any(s in g.name for s in substrings)]
+    mw = body.matrix_world
+    pts = []
+    for v in body.data.vertices:
+        w = sum(g.weight for g in v.groups if g.group in idxs)
+        world = mw @ v.co
+        if w >= min_w or (z_max is not None and world.z <= z_max):
+            if z_max is None or world.z <= z_max + 0.02:
+                pts.append(world)
+    return pts
+
+
+def enclose_origin(meshes, pts, margin=0.024):
+    if not pts:
+        raise RuntimeError('enclose_origin: no target points')
+    mn, mx = world_bbox(meshes)
+    tx = [p.x for p in pts]
+    ty = [p.y for p in pts]
+    tz = [p.z for p in pts]
+    need_x = max(abs(min(tx)), abs(max(tx))) + margin
+    need_y = max(abs(min(ty)), abs(max(ty))) + margin
+    need_z = max(tz) + margin
+    have_x = max(abs(mn.x), abs(mx.x), 1e-4)
+    have_y = max(abs(mn.y), abs(mx.y), 1e-4)
+    have_z = max(mx.z, 1e-4)
+    sx, sy, sz = need_x / have_x, need_y / have_y, need_z / have_z
+    log(f'enclose_origin scale=({sx:.3f},{sy:.3f},{sz:.3f}) target z<{need_z:.3f}')
+    for ob in meshes:
+        ob.scale = Vector((sx, sy, sz))
+        bpy.context.view_layer.update()
+        apply_visual(ob)
+    mn, mx = world_bbox(meshes)
+    dy = (max(ty) + margin) - mx.y
+    if dy > 0.001:
+        for ob in meshes:
+            ob.location.y += dy
+            apply_visual(ob)
+        log(f'enclose_origin shift y+{dy:.3f}')
+
+
+def enclose_capsule(ob, origin, axis_end, pts, radius_margin=0.03, axis_margin=0.05):
+    if not pts:
+        raise RuntimeError('enclose_capsule: no target points')
+    axis = axis_end - origin
+    if axis.length < 1e-5:
+        raise RuntimeError('enclose_capsule: degenerate axis')
+    axis.normalize()
+    t_pts = [(p - origin).dot(axis) for p in pts]
+    r_pts = [((p - origin) - axis * t).length for p, t in zip(pts, t_pts)]
+    t_min = min(t_pts) - axis_margin
+    t_max = max(t_pts) + axis_margin
+    r_need = max(r_pts) + radius_margin
+    mw = ob.matrix_world
+    imw = mw.inverted()
+    t_g, r_g = [], []
+    worlds = []
+    for v in ob.data.vertices:
+        world = mw @ v.co
+        worlds.append(world)
+        t = (world - origin).dot(axis)
+        rad = (world - origin) - axis * t
+        t_g.append(t)
+        r_g.append(rad.length)
+    gmin, gmax = min(t_g), max(t_g)
+    span = max(gmax - gmin, 1e-4)
+    r_have = max(r_g + [1e-4])
+    moved = 0
+    for v, world, t, r in zip(ob.data.vertices, worlds, t_g, r_g):
+        t_new = t_min + (t - gmin) / span * (t_max - t_min)
+        rad = (world - origin) - axis * t
+        if r > 1e-6:
+            rad = rad.normalized() * r_need
+        else:
+            rad = Vector((0, 0, 0))
+        world_new = origin + axis * t_new + rad
+        v.co = imw @ world_new
+        moved += 1
+    ob.data.update()
+    log(f'enclose_capsule {ob.name} along t={t_min:.3f}..{t_max:.3f} r={r_need:.3f} from r={r_have:.3f} verts={moved}')
+
+
+def transfer_weights(ob, body):
+    select_only(ob)
+    for mod in list(ob.modifiers):
+        if mod.type == 'ARMATURE':
+            continue
+        ob.modifiers.remove(mod)
+    mod = ob.modifiers.new('OrcWeightXfer', 'DATA_TRANSFER')
+    mod.object = body
+    mod.use_vert_data = True
+    try:
+        mod.data_types_verts = {'VGROUP_WEIGHTS'}
+    except TypeError:
+        pass
+    try:
+        mod.vert_mapping = 'POLYINTERP_NEAREST'
+    except TypeError:
+        try:
+            mod.vert_mapping = 'NEAREST_FACE_INTERPOLATED'
+        except TypeError:
+            log('weight transfer mapping unavailable')
+            ob.modifiers.remove(mod)
+            return
+    mod.use_max_distance = True
+    mod.max_distance = 0.25
+    try:
+        bpy.ops.object.datalayout_transfer(modifier=mod.name)
+    except Exception as err:
+        log(f'datalayout_transfer: {err}')
+    try:
+        bpy.ops.object.modifier_apply(modifier=mod.name)
+        log(f'transferred Orc weights onto {ob.name}')
+    except Exception as err:
+        log(f'weight transfer apply skipped: {err}')
+        if mod.name in ob.modifiers:
+            ob.modifiers.remove(mod)
+
+
+def grade_item(item_id, meshes, body, arm):
+    if item_id == 'wayfarerBoots':
+        pts = body_points(body, ('Foot', 'Toe'), 0.25, z_max=0.52)
+        enclose_origin(meshes, pts, margin=0.028)
+        return
+    if item_id == 'graveweaverGloves':
+        left_hand_pts = [p for p in body_points(body, ('LeftHand',), 0.45) if p.x > 0]
+        left_arm_pts = [p for p in body_points(body, ('LeftForeArm',), 0.45) if p.x > 0]
+        right_hand_pts = [p for p in body_points(body, ('RightHand',), 0.45) if p.x < 0]
+        right_arm_pts = [p for p in body_points(body, ('RightForeArm',), 0.45) if p.x < 0]
+        def centroid(pts, fallback):
+            if not pts:
+                return fallback
+            acc = Vector((0, 0, 0))
+            for p in pts:
+                acc += p
+            return acc / len(pts)
+        left_hand = centroid(left_hand_pts, bone_world(arm, 'mixamorig:LeftHand'))
+        left_arm = centroid(left_arm_pts, bone_world(arm, 'mixamorig:LeftForeArm'))
+        right_hand = centroid(right_hand_pts, bone_world(arm, 'mixamorig:RightHand'))
+        right_arm = centroid(right_arm_pts, bone_world(arm, 'mixamorig:RightForeArm'))
+        log(f'glove landmarks Lhand={tuple(left_hand)} Larm={tuple(left_arm)} Rhand={tuple(right_hand)}')
+        for ob in meshes:
+            grade_gloves_two_sided(
+                ob,
+                left_hand, left_arm, left_hand_pts + left_arm_pts or [left_hand],
+                right_hand, right_arm, right_hand_pts + right_arm_pts or [right_hand],
+            )
+        return
+    for ob in meshes:
+        ob.scale.x *= 1.14
+        ob.scale.y *= 1.14
+        bpy.context.view_layer.update()
+        apply_visual(ob)
+
+
+def grade_gloves_two_sided(ob, left_hand, left_arm, left_pts, right_hand, right_arm, right_pts):
+    mw = ob.matrix_world
+    imw = mw.inverted()
+    def fit_side(origin, axis_end, pts):
+        axis = axis_end - origin
+        if axis.length < 1e-5:
+            return None
+        axis.normalize()
+        t_pts = [(p - origin).dot(axis) for p in pts] or [0]
+        r_pts = [((p - origin) - axis * t).length for p, t in zip(pts, t_pts)] or [0.04]
+        r_need = min(max(r_pts) + 0.012, 0.095)
+        t_min = min(t_pts) - 0.02
+        t_max = max(t_pts) + 0.03
+        return origin, axis, t_min, t_max, r_need
+    left = fit_side(left_hand, left_arm, left_pts)
+    right = fit_side(right_hand, right_arm, right_pts)
+    worlds = [mw @ v.co for v in ob.data.vertices]
+    t_left = [(w - left[0]).dot(left[1]) for w in worlds] if left else []
+    t_right = [(w - right[0]).dot(right[1]) for w in worlds] if right else []
+    left_gmin = min((t for t, w in zip(t_left, worlds) if w.x >= 0), default=0)
+    left_gmax = max((t for t, w in zip(t_left, worlds) if w.x >= 0), default=1)
+    right_gmin = min((t for t, w in zip(t_right, worlds) if w.x < 0), default=0)
+    right_gmax = max((t for t, w in zip(t_right, worlds) if w.x < 0), default=1)
+    for v, world in zip(ob.data.vertices, worlds):
+        side = left if world.x >= 0 else right
+        if not side:
+            continue
+        origin, axis, t_min, t_max, r_need = side
+        gmin, gmax = (left_gmin, left_gmax) if world.x >= 0 else (right_gmin, right_gmax)
+        span = max(gmax - gmin, 1e-4)
+        t = (world - origin).dot(axis)
+        rad = (world - origin) - axis * t
+        target_span = t_max - t_min
+        # Stretch at most ~2.1× the authored cuff so a short glove becomes a
+        # gauntlet, not a wing.
+        used_span = min(target_span, span * 2.1)
+        t_new = t_min + (t - gmin) / span * used_span
+        if rad.length > 1e-6:
+            rad = rad.normalized() * r_need
+        v.co = imw @ (origin + axis * t_new + rad)
+    ob.data.update()
+    log(f'gloves two-sided {ob.name}')
 
 
 def group_coverage(ob):
@@ -334,7 +541,11 @@ def main():
             ob.scale *= scale
             bpy.context.view_layer.update()
             apply_visual(ob)
+        grade_item(item_id, meshes, body, arm)
+        bvh = build_body_bvh(body)
+        for ob in meshes:
             push_off_body(ob, body, bvh, offset)
+            transfer_weights(ob, body)
             skin(ob, arm)
         mn, mx = world_bbox(meshes)
         span, axis = height_span(mn, mx)

@@ -32,7 +32,7 @@ Live VE of hooded slits vs gold marbles is the proof. Keep this sequence:
 - Meshes: `OrcV1Body`, `OrcV1Brows`, `OrcV1Eyes`, `OrcV1Hair`, `OrcV1Shorts`
 - Height 2.10 m
 - Isolated Blender 5.2.1 LTS, not MCP 9876
-- Catalogue clothes are shrink-fit onto this rest (scale ×1.1667, push vertices inside `OrcV1Body` back out, reuse Human mixamorig weights). MHCLO cannot map this topology. `OrcV1Body` stays one surface; shorts/hair hide through packVisibility.
+- Catalogue clothes are limb-graded onto this rest (stature scale, then boots/gloves enclose print foot/calf and hand/forearm). MHCLO cannot map this topology. `OrcV1Body` is split into Human coverage geosets so boots/gloves hide skin.
 
 ## Commands
 

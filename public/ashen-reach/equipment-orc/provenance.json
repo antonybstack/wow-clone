@@ -5,19 +5,19 @@
   "note": "Playable Orc is the print-sculpt retopo on the 65-joint source bind. Catalogue garments are scaled to Orc stature and pushed off OrcV1Body; Human mixamorig weights are reused. Surface derived from Male Orc for Print by Crayon (CC-BY 4.0). Garments remain CC0 MakeHuman suits02/gloves01.",
   "hashes": {
     "public/characters/candidates/orc-source-v1.glb": "99c44c39537988089a07762d05e2caa71c6d6d467d8de859ac80ee6911a90128",
-    "public/ashen-reach/equipment-orc/body.glb": "99c44c39537988089a07762d05e2caa71c6d6d467d8de859ac80ee6911a90128"
+    "public/ashen-reach/equipment-orc/body.glb": "d54d96a2f40ce55b6e6a6ecd5f6c17df8a63458f18f8d463f91ead8be7d2db83"
   },
   "garments": [
     {
       "id": "graveweaverHood",
-      "bytes": 2300788,
+      "bytes": 2301004,
       "meshes": [
         "GraveweaverHood"
       ]
     },
     {
       "id": "graveweaverTop",
-      "bytes": 2216272,
+      "bytes": 2216488,
       "meshes": [
         "GraveweaverTop",
         "GraveweaverPendant"
@@ -25,7 +25,7 @@
     },
     {
       "id": "graveweaverSkirt",
-      "bytes": 2395024,
+      "bytes": 2395968,
       "meshes": [
         "GraveweaverSkirt",
         "WayfarerTrousers",
@@ -34,28 +34,28 @@
     },
     {
       "id": "graveweaverGloves",
-      "bytes": 2115460,
+      "bytes": 2115676,
       "meshes": [
         "GraveweaverGloves"
       ]
     },
     {
       "id": "wayfarerTunic",
-      "bytes": 2229404,
+      "bytes": 2229616,
       "meshes": [
         "WayfarerTunic"
       ]
     },
     {
       "id": "pilgrimTunic",
-      "bytes": 2582720,
+      "bytes": 2584108,
       "meshes": [
         "PilgrimTunic"
       ]
     },
     {
       "id": "wayfarerTrousers",
-      "bytes": 2085180,
+      "bytes": 2085392,
       "meshes": [
         "WayfarerTrousers",
         "WayfarerTrousersCuffs"
@@ -63,7 +63,7 @@
     },
     {
       "id": "wayfarerBoots",
-      "bytes": 2225324,
+      "bytes": 2225532,
       "meshes": [
         "WayfarerBoots"
       ]

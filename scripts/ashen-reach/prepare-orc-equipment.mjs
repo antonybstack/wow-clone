@@ -1,8 +1,8 @@
 /** Copy the sculpt-pipeline Orc into the playable pack and remap fitted garments.
 
-Catalogue clothes are shrink-fit onto this topology (not MHCLO). Each streamed
+Catalogue clothes are limb-graded onto this topology (not MHCLO). Each streamed
 garment borrows the actor skin: joint order and inverse binds match body.glb.
-OrcV1Body stays one surface; shorts/hair hide through packVisibility.
+OrcV1Body is split into Human coverage names so boots/gloves can hide skin.
 */
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
@@ -10,7 +10,7 @@ import {mat3, vec3} from 'gl-matrix';
 import {NodeIO} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {mergeDocuments, prune, unpartition} from '@gltf-transform/functions';
-import {EQUIPMENT_ITEMS, ORC_BASE_VISIBLE_MESHES} from '../../src/ashen-reach/equipment-catalog.js';
+import {BODY_REGIONS, EQUIPMENT_ITEMS, ORC_BASE_VISIBLE_MESHES} from '../../src/ashen-reach/equipment-catalog.js';
 
 const SRC = 'public/characters/candidates/orc-source-v1.glb';
 const DIR = 'public/ashen-reach/equipment-orc';
@@ -59,6 +59,58 @@ function bakeIdentity(node) {
     }
 }
 
+function partitionOrcBody(doc) {
+    const root = doc.getRoot();
+    const scene = root.getDefaultScene();
+    const skin = root.listSkins()[0];
+    const joints = skin.listJoints();
+    const body = root.listNodes().find(n => n.getMesh() && n.getName().startsWith('OrcV1Body'));
+    if (!body) throw Error('OrcV1Body missing');
+    const mesh = body.getMesh();
+    const buffer = root.listBuffers()[0];
+    const parts = new Map(BODY_REGIONS.map(name => [name, doc.createMesh(name)]));
+    const counts = {};
+    for (const primitive of mesh.listPrimitives()) {
+        const positions = primitive.getAttribute('POSITION').getArray();
+        const indices = primitive.getIndices().getArray();
+        const weights = primitive.getAttribute('WEIGHTS_0').getArray();
+        const boneIds = primitive.getAttribute('JOINTS_0').getArray();
+        const groups = new Map(BODY_REGIONS.map(name => [name, []]));
+        for (let i = 0; i < indices.length; i += 3) {
+            const vs = Array.from(indices.slice(i, i + 3));
+            const y = vs.reduce((sum, index) => sum + positions[index * 3 + 1], 0) / 3;
+            const x = vs.reduce((sum, index) => sum + positions[index * 3], 0) / 3;
+            const named = (index, re) => [0, 1, 2, 3].reduce((w, k) => w + (re.test(joints[boneIds[index * 4 + k]].getName()) ? weights[index * 4 + k] : 0), 0);
+            const hand = vs.reduce((sum, index) => sum + named(index, /Hand/), 0) / 3;
+            const forearm = vs.reduce((sum, index) => sum + named(index, /ForeArm/), 0) / 3;
+            const foot = vs.reduce((sum, index) => sum + named(index, /(Foot|Toe)/), 0) / 3;
+            const region = (hand > 0.4 || forearm > 0.45) ? 'BodyHands'
+                : (foot > 0.25 || y < 0.52) ? 'BodyUnderBoots'
+                    : y < 1.00 ? 'BodyUnderLegs'
+                        : y < 1.17 ? 'BodyWaist'
+                            : (y < 1.70 && Math.abs(x) < 0.55) ? 'BodyUnderTunic'
+                                : 'BodyExposed';
+            groups.get(region).push(...vs);
+        }
+        for (const [name, ids] of groups) {
+            if (!ids.length) continue;
+            const part = doc.createPrimitive().setMaterial(primitive.getMaterial());
+            for (const semantic of primitive.listSemantics()) part.setAttribute(semantic, primitive.getAttribute(semantic));
+            part.setIndices(doc.createAccessor().setType('SCALAR').setArray(new Uint32Array(ids)).setBuffer(buffer));
+            parts.get(name).addPrimitive(part);
+            counts[name] = (counts[name] || 0) + ids.length / 3;
+        }
+    }
+    const matrix = body.getWorldMatrix();
+    for (const [name, part] of parts) {
+        if (!part.listPrimitives().length) throw Error('Empty Orc coverage ' + name);
+        scene.addChild(doc.createNode(name).setMesh(part).setSkin(skin).setMatrix(matrix));
+    }
+    body.setMesh(null);
+    mesh.dispose();
+    return counts;
+}
+
 function remapSkin(node, joints) {
     const oldSkin = node.getSkin();
     if (!oldSkin) throw Error('Unskinned garment ' + node.getName());
@@ -83,11 +135,14 @@ const bodyDoc = await io.read(BODY);
 for (const mesh of bodyDoc.getRoot().listMeshes()) {
     if (mesh.getName().startsWith('OrcV1Eyes')) mesh.setName('OrcV1Eyes');
 }
+const coverage = partitionOrcBody(bodyDoc);
+await bodyDoc.transform(unpartition(), prune({keepLeaves: true}));
 const bodyMeshes = bodyDoc.getRoot().listMeshes().map(m => m.getName());
 for (const name of ORC_BASE_VISIBLE_MESHES) {
     if (!bodyMeshes.includes(name)) throw Error(`Orc body missing ${name}`);
 }
 await io.write(BODY, bodyDoc);
+console.log('Orc coverage', coverage);
 const packed = await fs.readFile(BODY);
 const bodyHash = sha(packed);
 const bodyRig = (() => {
