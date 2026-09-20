@@ -48,3 +48,6 @@ blender/characters/sources/orc-print/*.zip
 # Per-machine agent tool state.
 .claude/settings.local.json
 .claude/.headroom_wrap_*
+
+# Agent worktrees. Each is a full checkout of this repo; never commit one into itself.
+.claude/worktrees/
