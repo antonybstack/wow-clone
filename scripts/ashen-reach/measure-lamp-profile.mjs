@@ -153,11 +153,12 @@ const WEST=0,EAST=Math.PI;
 function toWorldFrom(x,z,yaw){const c=Math.cos(yaw),s=Math.sin(yaw);return(lx,ly,lz)=>[x+lx*c+lz*s,ly,z-lx*s+lz*c];}
 function windowLights(center,yaw,w,h,side,strength){
  const s=Math.sin(yaw),c=Math.cos(yaw);
- const out=[s*side,0,c*side],right=[c,0,-s];
+ const out=side===0?[c,0,-s]:[s*side,0,c*side];
+ const right=side===0?[s,0,c]:[c,0,-s];
  const at=(rx,ry,off=0)=>[center[0]+right[0]*rx+out[0]*off,center[1]+ry,center[2]+right[2]*rx+out[2]*off];
  return [
-  {position:at(0,0,.15),strength,falloff:.65,src:'buildings.js:window'},
-  {position:at(0,-h*.9,.5),strength:strength*.55,falloff:.5,src:'buildings.js:window-spill'},
+  {position:at(0,0,.15),strength,falloff:.55,radius:4.5,src:'buildings.js:window'},
+  {position:at(0,-h*.9,.5),strength:strength*.7,falloff:.5,radius:3.5,src:'buildings.js:window-spill'},
  ];
 }
 function buildingLights(spec){
@@ -171,14 +172,17 @@ function buildingLights(spec){
  const out=[];
  if(kind==='watchtower'){
   const topY=wallTopY+.12;
-  out.push({position:toW(0,topY+.55,0),strength:.85,falloff:.4,src:'buildings.js:watchtower-beacon'});
+  out.push({position:toW(0,topY+.55,0),strength:.85,falloff:.4,radius:10,src:'buildings.js:watchtower-beacon'});
   for(const win of windows){
    const p=toW(win.lx??0,win.ly??wallTopY*0.55,(win.wall??1)*(d/2+.02));
-   out.push({position:p,strength:win.strength??.22,falloff:.7,src:'buildings.js:watchtower-window'});
+   out.push({position:p,strength:win.strength??.22,falloff:.7,radius:4,src:'buildings.js:watchtower-window'});
   }
  } else {
-  for(const win of windows)out.push(...windowLights(toW(win.lx??0,win.ly??(plinthY+wallH*.62),(win.wall??1)*(d/2+.015)),yaw,win.w??.55,win.h??.6,win.wall??1,win.strength??.35));
-  if(sign)out.push({position:toW(w/2+.5,1.95,0),strength:.3,falloff:.65,src:'buildings.js:sign'});
+  for(const win of windows)out.push(...windowLights(toW(win.lx??0,win.ly??(plinthY+wallH*.62),(win.wall??1)*(d/2+.015)),yaw,win.w??.55,win.h??.6,win.wall??1,win.strength??.45));
+  for(const lz of [-.95,.95])out.push(...windowLights(toW(w/2+.015,plinthY+wallH*.58,lz),yaw,.40,.50,0,.45));
+  const doorH=1.55;
+  out.push({position:toW(w/2+.16,plinthY+doorH+.14,0),strength:.42,falloff:.6,radius:3.5,src:'buildings.js:door-lantern'});
+  if(sign)out.push({position:toW(w/2+.5,1.95,0),strength:.3,falloff:.65,radius:3.5,src:'buildings.js:sign'});
  }
  return {lights:out, front:toW(w/2+.5,0,0)};
 }
@@ -201,8 +205,8 @@ function forgeLights(x,z,yaw){
  const gy=height(x,z),s=Math.sin(yaw),c=Math.cos(yaw);
  const P=(lx,ly,lz)=>[x+lx*c+lz*s,gy+ly,z-lx*s+lz*c];
  return [
-  {position:P(0,.64,.20),strength:1.1,falloff:.4,src:'buildings.js:forge'},
-  {position:P(0,.05,.55),strength:.5,falloff:.55,src:'buildings.js:forge-spill'},
+  {position:P(0,.64,.20),strength:1.3,falloff:.4,radius:6,src:'buildings.js:forge'},
+  {position:P(0,.05,.55),strength:.65,falloff:.55,radius:4.5,src:'buildings.js:forge-spill'},
  ];
 }
 function buildAllBuildingLights(){
