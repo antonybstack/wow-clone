@@ -76,7 +76,15 @@ function ridgeline(distant,cz,groundY,seed,spanX,segments,hMin,hMax,zJitter,tint
   const z=cz+rand()*zJitter;
   pts.push({x,h,z});
  }
- const baseY=groundY-14;
+ // M3b fix (ridgeline-floats defect): a shallow, constant base (-14) left a hard straight
+ // bottom edge with the lighter, non-fog-matched sky dome visible beneath it from any camera that
+ // pitched even slightly upward toward the ridge -- the classic "floating cardboard slab" look.
+ // The sky dome shader (materials.js's sky()) never applies the scene's distance-fog term, so no
+ // colour choice at the seam can blend it away; the only zero-triangle-cost fix is geometric: drop
+ // the base far enough below grade that the angular elevation needed to see under it, from any
+ // in-bounds camera position/height/pitch, exceeds what the frustum can show. -320 gives a wide
+ // safety margin over the ~-135 the closest reachable overlook camera actually needs.
+ const baseY=groundY-320;
  for(let k=0;k<segments;k++){
   const a=pts[k],b=pts[k+1];
   distant.quad([a.x,baseY,a.z],[b.x,baseY,b.z],[b.x,groundY+b.h,b.z],[a.x,groundY+a.h,a.z],undefined,tint);
