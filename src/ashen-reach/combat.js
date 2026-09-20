@@ -2,12 +2,18 @@ import { addToScene, getContainerMeshes, loadGltf } from "@babylonjs/lite";
 import { FireBlast } from "../spells/fire-blast.js";
 import { LavaBall } from "../spells/lava-ball.js";
 import { Targeting } from "../targeting.js";
+import { setInputEnabled } from "../input.js";
 import { createCombatHud } from "./combat-hud.js";
+import { enemySnapshot, updateEnemies } from "./enemies.js";
 import { createFireBlastAudio } from "./fire-blast-audio.js";
 import { createFireBlastVfx } from "./fire-blast-vfx.js";
 import { height, pathX } from "./geometry.js";
 import { createLavaBallVfx } from "./lava-ball-vfx.js";
 import { spellLineOfSight } from "./spell-visibility.js";
+
+const PLAYER_HP = 100;
+const REGEN_DELAY = 6;
+const REGEN_PER_SEC = 4;
 
 export async function loadTrainingDummy(engine, scene, world) {
   const asset = await loadGltf(engine, "/ashen-reach/training-dummy.glb");
@@ -36,8 +42,34 @@ export async function loadTrainingDummy(engine, scene, world) {
     hits: 0,
     meshes,
     root: asset.entities[0],
+    recover: true,
   };
 }
+function installLifeHud() {
+  const root = document.getElementById("combat");
+  if (!root || root.querySelector(".player-plate")) return root;
+  const style = document.createElement("style");
+  style.textContent =
+    ".player-plate{position:absolute;bottom:108px;left:50%;transform:translateX(-50%);width:220px;text-align:center;font-size:13px}" +
+    ".death-veil{position:absolute;inset:0;background:#100808d4;display:grid;place-items:center;pointer-events:auto;z-index:5;text-align:center}" +
+    ".death-veil[hidden]{display:none!important}" +
+    ".death-veil p{margin:0 0 14px;font-size:28px;color:#ead1b5}" +
+    ".death-veil button{pointer-events:auto;background:#181511;color:#ffe1a8;border:1px solid #9b7650;padding:8px 16px;font:15px Georgia;cursor:pointer;box-shadow:0 0 0 3px #171714}" +
+    ".death-veil small{display:block;margin-top:10px;font:11px monospace;color:#c1c0ab}";
+  root.append(style);
+  const plate = document.createElement("div");
+  plate.className = "player-plate";
+  plate.innerHTML =
+    "<span>You</span><div class=\"hp-track\"><div class=\"hp-fill\"></div></div><small></small>";
+  const veil = document.createElement("div");
+  veil.className = "death-veil";
+  veil.hidden = true;
+  veil.innerHTML =
+    "<div><p>You have died</p><button type=\"button\">Release spirit</button><small>Return to the churchyard</small></div>";
+  root.append(plate, veil);
+  return root;
+}
+
 export async function createCombat(
   engine,
   scene,
@@ -48,9 +80,10 @@ export async function createCombat(
   input,
   dummy,
   rig,
+  enemies = [],
 ) {
   const targeting = new Targeting();
-  targeting.list = [dummy];
+  targeting.list = [dummy, ...enemies];
   const spell = new FireBlast(),
     fx = await createFireBlastVfx(engine, scene, player, body, world),
     hud = createCombatHud(canvas);
@@ -63,6 +96,12 @@ export async function createCombat(
       player,
     );
   const audio = await createFireBlastAudio(scene);
+  const lifeHud = installLifeHud();
+  const playerFill = lifeHud.querySelector(".player-plate .hp-fill");
+  const playerHp = lifeHud.querySelector(".player-plate small");
+  const nameEl = lifeHud.querySelector(".target-plate > span");
+  const targetHpEl = lifeHud.querySelector(".target-plate small");
+  const deathVeil = lifeHud.querySelector(".death-veil");
   hud.soundToggle.onclick = () => {
     audio.setMuted(!audio.muted);
     hud.soundToggle.textContent = audio.muted ? "Muted" : "Sound on";
@@ -75,10 +114,63 @@ export async function createCombat(
   }
   let hitAge = 10,
     hitScale = 1,
-    hitDirection = { x: 0, z: 1 };
+    hitDirection = { x: 0, z: 1 },
+    hitDummy = false;
   const animationLab = new URLSearchParams(location.search).has("animationLab");
   let visible = false,
     pending = null;
+  const life = {
+    hp: PLAYER_HP,
+    hpMax: PLAYER_HP,
+    dead: false,
+    inCombat: false,
+    combatUntil: 0,
+    time: 0,
+  };
+  const plantPlayer = () => {
+    const x = 0,
+      z = 0;
+    player.setWorldPos(x, height(x, z) + player.capsuleHeight / 2, z);
+    player.setFacing(0);
+  };
+  const syncPlayerHp = () => {
+    player.hp = life.hp;
+    player.hpMax = life.hpMax;
+  };
+  const keepDummyRecovery = (ability) => {
+    if (!ability?.damagedTarget || ability.damagedTarget.recover) return;
+    ability.damagedTarget = dummy.hp <= 0 ? dummy : null;
+    if (!ability.damagedTarget) ability.resetIn = 0;
+  };
+  const markCombat = () => {
+    life.combatUntil = life.time + REGEN_DELAY;
+    life.inCombat = true;
+  };
+  const die = () => {
+    if (life.dead) return;
+    life.dead = true;
+    life.hp = 0;
+    syncPlayerHp();
+    setInputEnabled(false);
+    cancel("You have died");
+    deathVeil.hidden = false;
+  };
+  const releaseSpirit = (force = false) => {
+    if (!life.dead && !force) return false;
+    life.dead = false;
+    life.hp = life.hpMax;
+    life.inCombat = false;
+    life.combatUntil = 0;
+    syncPlayerHp();
+    plantPlayer();
+    deathVeil.hidden = true;
+    setInputEnabled(true);
+    canvas.focus();
+    return true;
+  };
+  deathVeil.querySelector("button").onclick = () => {
+    releaseSpirit();
+  };
   const castArgs = (target) => ({
     target,
     position: player.body.position,
@@ -89,15 +181,21 @@ export async function createCombat(
     const t = result.target.position,
       p = player.body.position,
       length = Math.hypot(t.x - p.x, t.z - p.z) || 1;
-    hitAge = 0;
-    hitScale = isLava ? 1.8 : 1;
-    hitDirection = { x: (t.x - p.x) / length, z: (t.z - p.z) / length };
+    hitDummy = result.target === dummy;
+    if (hitDummy) {
+      hitAge = 0;
+      hitScale = isLava ? 1.8 : 1;
+      hitDirection = { x: (t.x - p.x) / length, z: (t.z - p.z) / length };
+    }
     if (!isLava) {
       audio.play();
       fx.trigger(result.target);
     }
     hud.message("");
     hud.hit(result.target, result.damage);
+    markCombat();
+    keepDummyRecovery(spell);
+    keepDummyRecovery(lava);
   };
   for (const [slot, key] of [
     [hud.slot, 1],
@@ -119,11 +217,47 @@ export async function createCombat(
     body.cancelCast();
     hud.message(reason);
   };
+  const onPlayerHit = (amount) => {
+    if (life.dead) return;
+    life.hp = Math.max(0, life.hp - amount);
+    syncPlayerHp();
+    markCombat();
+    if (!life.hp) die();
+  };
+  const tickLife = (dt) => {
+    life.time += dt;
+    const fighting = enemies.some(
+      (e) => e.state === "chase" || e.state === "attack",
+    );
+    life.inCombat = fighting || life.time < life.combatUntil;
+    if (life.dead) {
+      setInputEnabled(false);
+      return;
+    }
+    if (!life.inCombat && life.hp < life.hpMax) {
+      life.hp = Math.min(life.hpMax, life.hp + REGEN_PER_SEC * dt);
+      syncPlayerHp();
+    }
+  };
+  const paintHud = () => {
+    const ratio = life.hpMax ? life.hp / life.hpMax : 0;
+    playerFill.style.width = ratio * 100 + "%";
+    playerHp.textContent = life.dead
+      ? "Dead"
+      : `${Math.ceil(life.hp)} / ${life.hpMax}`;
+    const target = targeting.current;
+    if (nameEl && target) nameEl.textContent = target.name;
+    if (targetHpEl && target && !target.recover && target.hp <= 0)
+      targetHpEl.textContent = "Dead";
+  };
+  syncPlayerHp();
   return {
     targeting,
     spell,
     lava,
     dummy,
+    enemies,
+    life,
     fx,
     lavaFx,
     audio,
@@ -138,6 +272,13 @@ export async function createCombat(
     get pendingSpell() {
       return pending?.key || null;
     },
+    snapshot: () => ({
+      life: { ...life },
+      enemies: enemySnapshot(enemies),
+      dummy: { hp: dummy.hp, hpMax: dummy.hpMax },
+      target: targeting.current?.id || null,
+    }),
+    releaseSpirit,
     setVisible(v) {
       visible = v;
       hud.setVisible(v);
@@ -148,6 +289,15 @@ export async function createCombat(
     beforeAnimation(dt) {
       spell.update(dt);
       lava.update(dt);
+      tickLife(dt);
+      updateEnemies(enemies, dt, {
+        player,
+        world,
+        raycast: player.raycast,
+        playerDead: life.dead,
+        targeting,
+        onPlayerHit,
+      });
       if (
         pending?.key === 2 &&
         ((player.getMotion()?.speed ?? 0) > 0.5 ||
@@ -155,6 +305,13 @@ export async function createCombat(
           input.strafe)
       )
         cancel("Movement interrupted Lava Ball");
+      if (life.dead) {
+        input.spellPressed = 0;
+        input.tabPressed = false;
+        input.tabBack = false;
+        input.escape = false;
+        return;
+      }
       if (input.escape) {
         targeting.clear();
         input.escape = false;
@@ -222,9 +379,10 @@ export async function createCombat(
         if (
           !state.castingShoot ||
           targeting.current !== pending.target ||
-          !visible
+          !visible ||
+          life.dead
         )
-          cancel("Cast interrupted");
+          cancel(life.dead ? "You have died" : "Cast interrupted");
         else if (state.castElapsed >= state.castReleaseTime) {
           const request = pending;
           pending = null;
@@ -259,7 +417,7 @@ export async function createCombat(
         else hud.message(collision.reason);
       }
 
-      if (hitAge < 1.25) {
+      if (hitAge < 1.25 && hitDummy) {
         hitAge += dt;
         const tilt =
           hitAge < 1.25
@@ -278,6 +436,7 @@ export async function createCombat(
         lava,
         pending?.key === 2 ? { elapsed: body.getState().castElapsed } : null,
       );
+      paintHud();
     },
   };
 }
