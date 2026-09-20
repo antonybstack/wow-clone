@@ -9,9 +9,10 @@ import { createFireBlastAudio } from "./fire-blast-audio.js";
 import { createFireBlastVfx } from "./fire-blast-vfx.js";
 import { height, pathX } from "./geometry.js";
 import { createLavaBallVfx } from "./lava-ball-vfx.js";
+import { createProgression, PLAYER_HP_BASE } from "./progression.js";
 import { spellLineOfSight } from "./spell-visibility.js";
 
-const PLAYER_HP = 100;
+const PLAYER_HP = PLAYER_HP_BASE;
 const REGEN_DELAY = 6;
 const REGEN_PER_SEC = 4;
 
@@ -109,6 +110,7 @@ export async function createCombat(
   const nameEl = lifeHud.querySelector(".target-plate > span");
   const targetHpEl = lifeHud.querySelector(".target-plate small");
   const deathVeil = lifeHud.querySelector(".death-veil");
+  const progression = createProgression();
   hud.soundToggle.onclick = () => {
     audio.setMuted(!audio.muted);
     hud.soundToggle.textContent = audio.muted ? "Muted" : "Sound on";
@@ -168,6 +170,7 @@ export async function createCombat(
     life.hp = life.hpMax;
     life.inCombat = false;
     life.combatUntil = 0;
+    progression.fillMana();
     syncPlayerHp();
     plantPlayer();
     deathVeil.hidden = true;
@@ -245,6 +248,7 @@ export async function createCombat(
       life.hp = Math.min(life.hpMax, life.hp + REGEN_PER_SEC * dt);
       syncPlayerHp();
     }
+    progression.regenMana(dt, life.inCombat, REGEN_PER_SEC);
   };
   const paintHud = () => {
     const ratio = life.hpMax ? life.hp / life.hpMax : 0;
@@ -281,10 +285,12 @@ export async function createCombat(
     },
     snapshot: () => ({
       life: { ...life },
+      progress: progression.snapshot(),
       enemies: enemySnapshot(enemies),
       dummy: { hp: dummy.hp, hpMax: dummy.hpMax },
       target: targeting.current?.id || null,
     }),
+    progress: progression.progress,
     releaseSpirit,
     setVisible(v) {
       visible = v;
@@ -304,6 +310,16 @@ export async function createCombat(
         playerDead: life.dead,
         targeting,
         onPlayerHit,
+        onKill(enemy) {
+          const result = progression.awardXp(enemy, life, life.time);
+          if (result.leveled) syncPlayerHp();
+          if (result.gained)
+            hud.message(
+              result.leveled
+                ? `You reach level ${progression.progress.level}`
+                : `+${result.gained} experience`,
+            );
+        },
       });
       if (
         pending?.key === 2 &&
@@ -348,7 +364,8 @@ export async function createCombat(
       }
       const ability = key === 2 ? lava : spell,
         target = targeting.current,
-        reason = ability.validate(castArgs(target));
+        reason =
+          ability.validate(castArgs(target)) || progression.refuseMana(key);
       if (reason) {
         ability.lastResult = reason;
         hud.message(reason);
@@ -398,6 +415,8 @@ export async function createCombat(
               origin = { x: p[0], y: p[1], z: p[2] },
               result = lava.release(castArgs(request.target), origin);
             if (result.ok) {
+              progression.spendMana(2);
+              markCombat();
               lavaFx.launch(origin);
               audio.lavaRelease();
             } else {
@@ -408,8 +427,10 @@ export async function createCombat(
             }
           } else {
             const result = spell.cast(castArgs(request.target));
-            if (result.ok) impact(result);
-            else {
+            if (result.ok) {
+              progression.spendMana(1);
+              impact(result);
+            } else {
               fx.cancelWindup();
               hud.message(result.reason);
             }
