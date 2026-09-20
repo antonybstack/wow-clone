@@ -43,10 +43,10 @@ export const CHURCHYARD_BOUNDS = Object.freeze({
 });
 
 /** Hollowmere street and well approaches. North of the gate (z=75), not
- *  inside the building pads at |x|≥5, not past the well square. */
+ *  inside the pulled-in building fronts (~|x|≥4), not past the well square. */
 export const TOWN_BOUNDS = Object.freeze({
-  xMin: -5.5,
-  xMax: 5.5,
+  xMin: -3.4,
+  xMax: 3.4,
   zMin: 76,
   zMax: 138,
 });

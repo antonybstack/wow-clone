@@ -34,6 +34,7 @@ export function building(ctx,spec){
  const stoneWalled=kind==='chapel'||kind==='watchtower'||kind==='smithy';
  const wallMat=stoneWalled?stone:wood;
  const wallColor=kind==='chapel'?[.66,.64,.58,0]:kind==='watchtower'?[.60,.58,.52,0]:kind==='smithy'?[.52,.48,.42,0]:kind==='tavern'?[.50,.38,.27,0]:[.55,.44,.32,0];
+ const timber=kind==='house'||kind==='tavern';
  const lift=(c,s)=>[Math.min(1,c[0]*s),Math.min(1,c[1]*s),Math.min(1,c[2]*s),0];
  // Street gable (door wall) is the elevation you see from the road; lift it so wall/roof/door
  // still separate at ~15 m. Sides stay closer to the authored colour; the back gable is darker.
@@ -52,6 +53,22 @@ export function building(ctx,spec){
  wallMat.box(toWorld( w/2-wallT/2,plinthY+wallH/2,0),[wallT,wallH,d],gableColor,yaw);
  if(!stoneWalled)for(const cx of [-w/2,w/2])for(const cz of [-d/2,d/2])
   wood.box(toWorld(cx,plinthY+wallH/2,cz),[.10,wallH,.10],[.34,.25,.17,0],yaw);
+ if(timber){
+  const dadoH=Math.min(1.05,wallH*.42),beam=[.22,.14,.09,0];
+  stone.box(toWorld(0,plinthY+dadoH/2,-d/2),[w,dadoH,wallT+.04],[.50,.48,.44,0],yaw);
+  stone.box(toWorld(0,plinthY+dadoH/2, d/2),[w,dadoH,wallT+.04],[.50,.48,.44,0],yaw);
+  stone.box(toWorld( w/2-wallT/2,plinthY+dadoH/2,0),[wallT+.04,dadoH,d],[.54,.52,.47,0],yaw);
+  wood.box(toWorld(0,plinthY+dadoH+.04,-d/2-.02),[w,.09,.08],beam,yaw);
+  wood.box(toWorld(0,plinthY+dadoH+.04, d/2+.02),[w,.09,.08],beam,yaw);
+  wood.box(toWorld(w/2+.02,plinthY+dadoH+.04,0),[.08,.09,d],beam,yaw);
+  wood.box(toWorld(0,plinthY+wallH*.72,-d/2-.02),[w,.08,.07],beam,yaw);
+  wood.box(toWorld(0,plinthY+wallH*.72, d/2+.02),[w,.08,.07],beam,yaw);
+  wood.box(toWorld(w/2+.02,plinthY+wallH*.72,0),[.07,.08,d],beam,yaw);
+  for(const lz of [-d/2,d/2])for(const lx of [-w*.28,w*.28])
+   wood.box(toWorld(lx,plinthY+wallH/2,lz+(lz>0?.03:-.03)),[.08,wallH,.08],beam,yaw);
+  for(const lz of [-d*.28,d*.28])
+   wood.box(toWorld(w/2+.03,plinthY+wallH/2,lz),[.08,wallH,.08],beam,yaw);
+ }
 
  if(upH>0){
   // A second storey, inset a little for a jetty-style break in the silhouette, with a wood trim
@@ -154,6 +171,16 @@ export function building(ctx,spec){
    wood.tube(toWorld(sx,2.55,0),toWorld(sx,2.3,0),.02,.02,[.2,.15,.1,0],4);
    lanternGlow(glow,toWorld(sx,1.95,0),{r:.05,h:.12});
    lights.push({position:toWorld(sx,1.95,0),strength:.3,falloff:.65,radius:3.5});
+  }
+
+  if(kind==='tavern'){
+   const depth=1.2;
+   for(const lz of [-d*.3,d*.3])
+    wood.tube(toWorld(w/2+.04,0,lz),toWorld(w/2+depth,wallH*.92,lz),.055,.04,[.28,.20,.13,0],5);
+   wood.quad(
+    toWorld(w/2,wallH+.06,-d/2-.08),toWorld(w/2,wallH+.06,d/2+.08),
+    toWorld(w/2+depth+.12,wallH+.38,d/2+.08),toWorld(w/2+depth+.12,wallH+.38,-d/2-.08),
+    undefined,roofColor);
   }
  }
  colliders.push({type:'box',position:{x,y:gy+wallTopY/2,z},size:{x:w+.3,y:wallTopY,z:d+.3},rotation:{y:yaw}});
@@ -269,4 +296,35 @@ export function crossFinial(ctx,center){
  const {wood}=ctx;
  wood.tube([center[0],center[1],center[2]],[center[0],center[1]+.5,center[2]],.03,.02,[.30,.28,.30,0],4);
  wood.tube([center[0]-.17,center[1]+.34,center[2]],[center[0]+.17,center[1]+.34,center[2]],.025,.025,[.30,.28,.30,0],4);
+}
+
+/** Coopered barrel. Collider is a short box so the player cannot walk through it. */
+export function barrel(ctx,x,z){
+ const {wood,groundHeight,colliders}=ctx;
+ const gy=groundHeight(x,z);
+ wood.tube([x,gy,z],[x,gy+.70,z],.26,.26,[.38,.26,.16,0],8);
+ wood.tube([x,gy+.18,z],[x,gy+.22,z],.28,.28,[.28,.18,.11,0],8);
+ wood.tube([x,gy+.48,z],[x,gy+.52,z],.28,.28,[.28,.18,.11,0],8);
+ wood.tube([x,gy+.70,z],[x,gy+.76,z],.27,.18,[.32,.22,.14,0],8);
+ colliders.push({type:'box',position:{x,y:gy+.35,z},size:{x:.52,y:.7,z:.52},rotation:{y:0}});
+}
+
+export function crate(ctx,x,z,yaw=0){
+ const {wood,groundHeight,colliders}=ctx;
+ const gy=groundHeight(x,z);
+ wood.box([x,gy+.22,z],[.44,.44,.40],[.42,.32,.20,0],yaw);
+ colliders.push({type:'box',position:{x,y:gy+.22,z},size:{x:.5,y:.44,z:.46},rotation:{y:yaw}});
+}
+
+/** Timber walkway between the street fronts, high enough to walk under. */
+export function skyBridge(ctx,z,span=8.0){
+ const {wood,groundHeight}=ctx;
+ const gy=groundHeight(0,z);
+ const yDeck=gy+3.32;
+ wood.box([0,yDeck,z],[span,.10,1.18],[.34,.24,.16,0]);
+ wood.box([0,yDeck+.42,z-.56],[span,.07,.07],[.28,.20,.13,0]);
+ wood.box([0,yDeck+.42,z+.56],[span,.07,.07],[.28,.20,.13,0]);
+ const postX=span/2-.15;
+ for(const x of [-postX,postX])for(const dz of [-.4,.4])
+  wood.tube([x,gy,z+dz],[x,yDeck,z+dz],.07,.055,[.30,.22,.14,0],5);
 }

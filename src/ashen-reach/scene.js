@@ -1,7 +1,7 @@
 import {setShaderUniform} from '@babylonjs/lite';
 import {Batch,rng,height,pathX,buildingPads,add,mul,sub,norm,cross,terrainNormal,lanternGlow} from './geometry.js';
 import {surface,sky} from './materials.js';
-import {building,marketStall,well,forgeGlow,crossFinial} from './buildings.js';
+import {building,marketStall,well,forgeGlow,crossFinial,barrel,crate,skyBridge} from './buildings.js';
 import {buildHorizon} from './horizon.js';
 
 /** A new scene layout. No Moonwell world builders, architecture or vegetation placement. */
@@ -107,7 +107,7 @@ export async function buildChurchyard(engine,scene){
   for(let k=0;k<5;k++){const a=k*1.256;const q=[x+Math.cos(a)*H*.095,g+.04,z+Math.sin(a)*H*.095];bark.tube([x,g+.65,z],q,H*.048,.025,color,5);}
  }
  tree(-6,16,12,1983);tree(4.5,24,17,293);tree(-10,15,12,25);tree(14,19,13,181);
- for(let i=0;i<38;i++){const x=r(-48,48),z=r(32,95);if(Math.abs(x)<4&&z<40)continue;tree(x,z,r(8,17),i*101+58,true);}
+ for(let i=0;i<38;i++){const x=r(-48,48),z=r(32,95);if(Math.abs(x)<4&&z<40)continue;if(z>74&&Math.abs(x-pathX(z))<11)continue;tree(x,z,r(8,17),i*101+58,true);}
 
  function tower(x,z,H,w){const g=height(x,z);distant.box([x,g+H*.40,z],[w,H*.80,w],[1,1,1,0]);
   for(let k=0;k<4;k++){const a=k*Math.PI/2+Math.PI/4;distant.tube([x+Math.sin(a)*w*.69,g,z+Math.cos(a)*w*.69],[x+Math.sin(a)*w*.63,g+H*.87,z+Math.cos(a)*w*.63],w*.16,w*.10,[.7,.75,.7,0],5);distant.tube([x+Math.sin(a)*w*.63,g+H*.87,z+Math.cos(a)*w*.63],[x+Math.sin(a)*w*.63,g+H*1.13,z+Math.cos(a)*w*.63],w*.27,0,[.5,.6,.5,0],5);}
@@ -251,6 +251,16 @@ export async function buildChurchyard(engine,scene){
  building(ctx,{x:pads[7].x,z:pads[7].z,w:4.4,d:4.4,yaw:EAST,wallH:6.2,kind:'watchtower',
   windows:[{wall:1,ly:2.6},{wall:-1,ly:2.6},{wall:1,ly:4.6},{wall:-1,ly:4.6},{wall:1,ly:5.6},{wall:-1,ly:5.6}]});
 
+ building(ctx,{x:pads[9].x,z:pads[9].z,w:5.2,d:5.4,yaw:WEST,wallH:2.15,roofH:1.05,kind:'house',chimney:true,
+  windows:[{wall:1,w:.46,h:.5},{wall:-1,w:.46,h:.5}]});
+ building(ctx,{x:pads[10].x,z:pads[10].z,w:5.0,d:5.6,yaw:EAST,wallH:2.35,roofH:1.2,kind:'house',upper:true,
+  windows:[{wall:1,w:.46,h:.5},{wall:-1,w:.46,h:.5},{wall:1,ly:3.55,w:.36,h:.42}]});
+ building(ctx,{x:pads[11].x,z:pads[11].z,w:5.4,d:5.2,yaw:WEST,wallH:2.2,roofH:1.1,kind:'house',leanTo:1,
+  windows:[{wall:1,w:.48,h:.52},{wall:-1,w:.48,h:.52}]});
+ building(ctx,{x:pads[12].x,z:pads[12].z,w:5.1,d:5.5,yaw:EAST,wallH:2.5,roofH:1.25,kind:'house',chimney:true,upper:true,
+  windows:[{wall:1,w:.46,h:.5},{wall:-1,w:.46,h:.5}]});
+ skyBridge(ctx,91,9.2);
+
  // Well square: the plaza at the north end of the street, with stalls around its rim.
  well(ctx,pads[8].x,pads[8].z);
  marketStall(ctx,pads[8].x-4.6,pads[8].z-2.0,WEST);
@@ -259,7 +269,32 @@ export async function buildChurchyard(engine,scene){
 
  // Two more stalls line the main street between pads, off the road but on natural (unflattened)
  // terrain, so their footprint is tracked separately for the ground-cover pass below.
- for(const [z,side] of [[90,-1],[106,1]]){const sx=pathX(z)+side*3.0;marketStall(ctx,sx,z,side<0?EAST:WEST);extraFootprints.push({x:sx,z,r:1.6});}
+ for(const [z,side] of [[90,-1],[106,1],[84,1],[100,-1],[118,1]]){const sx=pathX(z)+side*2.55;marketStall(ctx,sx,z,side<0?EAST:WEST);extraFootprints.push({x:sx,z,r:1.6});}
+
+ // Cobble the street so the canyon reads as a paved way, not a dirt ribbon through grass.
+ for(let z=76;z<134.5;z+=0.80){
+  const px=pathX(z);
+  for(let k=-2;k<=2;k++){
+   const x=px+k*0.76+rn(-.05,.05);
+   const y=height(x,z)+.028;
+   const shade=rn(.0,.07);
+   stone.box([x,y,z],[.70,.046,.66],[.44+shade,.41+shade*.7,.36+shade*.5,0],rn(-.14,.14));
+  }
+ }
+
+ const props=[
+  [-3.1,83],[-3.35,84.1],[3.2,87.4],[3.45,88.2],
+  [-3.0,97.2],[-3.25,98.4],[3.15,97.6],
+  [-3.2,113.5],[3.25,115.2],[-2.9,127.4],[2.95,129.1],
+  [-2.4,135.2],[2.2,134.6],[-4.8,136.8],[4.6,137.2],
+ ];
+ for(const [x,z] of props)barrel(ctx,x,z);
+ for(const [x,z,yaw] of [[-2.55,85.6,.3],[2.7,99.4,-.4],[-2.7,107.2,.6],[2.5,119.8,-.2],[-3.6,133.5,.15]])
+  crate(ctx,x,z,yaw);
+ extraFootprints.push(...props.map(([x,z])=>({x,z,r:0.7})));
+
+ for(const [x,z,H,seed] of [[-15,84,11,801],[-16,99,13,914],[16,92,12,722],[15.5,116,14,633],[-15.5,124,12,540],[16,130,11,411]])
+  tree(x,z,H,seed,true);
 
  // --- Ground cover continues north through Hollowmere, but a town has trodden ground: it thins
  // out gradually approaching the street, every building/stall apron and the well plaza, rather

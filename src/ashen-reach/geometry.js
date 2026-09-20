@@ -18,11 +18,14 @@ const terrainRaw=(x,z)=>.30*Math.sin(x*.19+z*.13)+.16*Math.sin(z*.45+x*.11)+.006
  *  each pad into the sloped terrain, so a builder can read groundHeight(x,z) inside a pad and get
  *  a level floor. All pads sit north of the lych-gate and never touch the churchyard invariant. */
 export const buildingPads=[
- {x:-9,z:82,w:8,d:8},{x:9,z:82,w:8,d:8},
- {x:-12,z:98,w:9,d:8},{x:12,z:98,w:9,d:8},
- {x:-9,z:114,w:8,d:8},{x:9,z:114,w:8,d:8},
- {x:-13,z:128,w:11,d:9},{x:13,z:128,w:11,d:9},
+ {x:-7.4,z:82,w:8,d:8},{x:7.4,z:82,w:8,d:8},
+ {x:-8.2,z:98,w:9,d:8},{x:8.2,z:98,w:9,d:8},
+ {x:-7.4,z:114,w:8,d:8},{x:7.4,z:114,w:8,d:8},
+ {x:-9.0,z:128,w:10,d:9},{x:9.0,z:128,w:10,d:8},
  {x:0,z:136,w:16,d:11},
+ // Infill sheds (appended so existing [0..8] indices stay valid for townsfolk).
+ {x:-7.3,z:90,w:6.2,d:6.4},{x:7.3,z:90,w:6.2,d:6.4},
+ {x:-7.3,z:106,w:6.2,d:6.4},{x:7.3,z:106,w:6.2,d:6.4},
 ];
 const PAD_MARGIN=3;
 export function height(x,z){
