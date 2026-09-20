@@ -325,7 +325,78 @@ its own Vite port, its own Chrome profile and CDP port, and one command to start
   rather than discrete pools in wide shots. That was equally true before this pass, so it is not a
   regression — but discrete pooling in the wide view is still unachieved, and the unbounded-sum
   knee is the reason the town now reads uniformly. Worth a future pass, not a blocker.
-  **Testing note:** running a live check script twice in quick succession against the same browser
-  tab makes the second run inherit game state and truncate (`check-progression` reported 10 of 16
-  with zero failures). Count PASS and FAIL from a **single** invocation. This was my own harness
-  error during review, not a defect in the check.
+  **Testing note — corrected 2026-09-20.** I originally wrote here that `check-progression`
+  reporting 10 of 16 was my own harness error (running the script twice against the same tab) and
+  "not a defect in the check". **That explanation was wrong, and the 61/61 figure above was
+  reported from a run that had actually returned 55.** The check calls `page.goto(url)` and
+  reloads, so it cannot inherit state between runs. It is a genuine race: I ran it 9 times on
+  `main` and got 4 failures to 5 passes, always the same assertion (`Threshold is armed one XP
+  below the level-up`, exit 1, PASS=10). Cause is in the check's own setup — `plantOn()` forces
+  *every* enemy to `idle`, including the shade already killed for its 50 XP, so a second award can
+  land after the threshold is armed. Sent to M6b to fix. The 61/61 line above is accurate for the
+  merged tree as re-verified on 2026-09-20; it was not accurate when first written.
+
+- **M4c and M6a — merged 2026-09-20** (`8ced463` M6a, `d0d237e` M4c). Both Grok workers finished;
+  I diffed each against its own `git merge-base`, confirmed allowed-path compliance, re-ran every
+  check myself and opened every capture.
+
+  **M4c (shade appearance).** Four commits on `m4c`, touching only `src/ashen-reach/enemies.js`,
+  `src/character/npc.js` and a new capture script. The four per-shade tints (olive, grey, blue,
+  rust) are replaced by one shared `SHADE_TINT` — a translucent spectral PBR material, alpha 0.56
+  with emissive `[.12,.18,.20]`, joints hidden. `Punch_Cross` (1.0 s) now loops at speed 0.58 so
+  the swing stays on screen across the 1.6 s attack cooldown instead of snapping back to idle.
+  **What the captures actually show:** the near/far mismatch is genuinely fixed — `near-far.png`
+  has three shades at three distances reading identically. `melee.png` shows a real strike, arm
+  extended, player at 84/100. `death.png` delivers the collapse with a `Dead` nameplate, which M4b
+  never captured. Draws unchanged at 42.
+  **Correction to the agent's own report:** it listed "a red/white checkered world prop among the
+  graves" as an unexplained leftover. I cropped and enlarged that region — it is the **training
+  dummy** (`/ashen-reach/training-dummy.glb`), a straw figure in a plaid shirt on a crossbar. An
+  authored asset, not a missing-texture checkerboard. Nothing to fix.
+  **Residual, carried and honest:** the shades still read as translucent mannequins. The ball-joint
+  shoulders and elbows are modelled into `Alpha_Surface` itself, so hiding the joint mesh cannot
+  remove them, and the hue is an ice-cyan closer to a hologram than to grave mist. There is no
+  hood, cloth, face or weapon. Fixing this properly means new authored geometry, not another
+  material pass — scope it as such.
+
+  **M6a (honest instruments).** Five commits on `m6a`, adding `src/ashen-reach/metrics.js` and
+  rewiring `main.js` to it. **The triangle counter is a real success.** `sceneTriangles` walks live
+  visible meshes via each mesh's GPU index count and now reports **335,618** against
+  `worldTriangles` **191,846** — a 137,920 delta that is exactly the four skinned shades, proven by
+  hiding and restoring them in-page and cross-checked against a `?noEnemies` load. That cost was
+  invisible to every previous milestone's measurement. `worldTriangles` is the old `triangles`
+  under an honest name, so old log entries keep their meaning. Instrument cost is ~0.004 ms and it
+  runs only in `summary()`, never on the render path.
+  Also landed: `up.mjs --uncapped` (opt-in `--disable-gpu-vsync --disable-frame-rate-limit`;
+  default Chrome argv untouched), and `--internal WxH` / `--pixel-ratio` forcing. Uncapped headless
+  reaches **~750 FPS / 1.33 ms mean**, and 7x the pixels (960x540 to 2560x1440) costs 0.04 ms — this
+  slice is not fill-rate bound. GPU timestamp queries install but read back 0 in this headless
+  WebGPU session; wall-clock uncapped is the working signal.
+
+  **Defect I found in M6a, now sent to M6b: the cap detector false-negatives on the machine that
+  matters.** `detectVsyncCap()` reported `vsyncCapped: false` on a 600-sample run whose mean was
+  **6.9438 ms against 1000/144 = 6.9444 ms — a 0.009% difference.** Its `minNear` gate requires
+  `min >= capMs * 0.85` (5.903 ms) and the real `min` was 5.10. The thresholds were tuned against
+  headless Chrome's 60 Hz compositor cap, which is perfectly rigid — every sample lands on 16.667
+  exactly — and were never validated against a real display, whose rAF timestamps jitter either
+  side of the interval. A detector that launders a vsync ceiling into apparent headroom is worse
+  than no detector, so this is not a cosmetic bug.
+
+  **Verified by me on the merged tree:** build clean, 75/75, 27/27, metrics unit tests 4/4, and
+  **61/61 live checks** (enemy-loop 13, player-death 8, enemy-collision 7, lava-moving 6, mana 11,
+  progression 16). Hardware measurement: 144.01 FPS, mean 6.944 ms, p95 8.4, p99 8.7, worst 8.8,
+  draws **42**, `worldTriangles` 191,846, `sceneTriangles` **335,618**, internal 720x405.
+  **Read that 144 as "did not fall off the cap", not as headroom** — that is the whole lesson here.
+
+- **M6 (chunking, frustum culling, LOD) — not activated.** The plan gates M6 on measurements
+  showing the >120 FPS goal is threatened. With the instruments now honest enough to answer, they
+  say it is not: uncapped p99 is 1.7-1.8 ms against a 8.333 ms budget, the four skinned shades cost
+  0.24 ms, and 7x pixels cost 0.04 ms. Chunking, culling and LOD would be solving a problem the
+  numbers do not show. **This is not a permanent answer** — it is proof for one churchyard, four
+  shades and one player, at 0.75 DPR, with GPU occupancy unconfirmed. Re-measure with
+  `measure-scene-fps.mjs --uncapped` before adding many casters, native DPR, or MMO-scale content.
+
+- **M6b — in flight.** Fixes the cap detector against three recorded distributions (real 144 Hz,
+  rigid headless 60 Hz, uncapped ~750 FPS) and the `check-progression` race, with unit tests that
+  must fail before the fix and pass after. Briefed with a 20-consecutive-run tally as the evidence
+  bar, because a single green run is not evidence against a race.
