@@ -5,10 +5,60 @@ export const HUMAN_EQUIPMENT_FIT = Object.freeze({
 export const ORC_EQUIPMENT_FIT = Object.freeze({
     body: 'ashen-orc', rig: 'source-65', bind: 1, shape: 1,
 });
-const FITS_BY_RACE = Object.freeze({human: HUMAN_EQUIPMENT_FIT, orc: ORC_EQUIPMENT_FIT});
+export const UNDEAD_EQUIPMENT_FIT = Object.freeze({
+    body: 'ashen-undead', rig: 'source-65', bind: 1, shape: 1,
+});
+export const FITS_BY_RACE = Object.freeze({
+    human: HUMAN_EQUIPMENT_FIT, orc: ORC_EQUIPMENT_FIT, undead: UNDEAD_EQUIPMENT_FIT,
+});
+export const EQUIPMENT_RACES = Object.freeze(Object.keys(FITS_BY_RACE));
 export const SEAM_NAMES = Object.freeze(['neck', 'waist', 'wrists', 'ankles']);
+const FIT_KEYS = ['body', 'rig', 'bind', 'shape'];
 const HANDS = ['mainHand', 'offHand'];
 const own = (object, key) => Object.hasOwn(object, key);
+const label = item => item?.name || item?.id || 'this item';
+
+/**
+ * Which race a pack's fit identity belongs to. Callers used to infer this with
+ * `fit.body === 'ashen-orc' ? 'orc' : 'human'`, which quietly answered "human" for
+ * every race that was not Orc. An unrecognised fit is an error, not a Human.
+ */
+export function raceForFit(fit) {
+    const race = EQUIPMENT_RACES.find(name => FITS_BY_RACE[name].body === fit?.body);
+    if (!race) throw Error(`Unsupported equipment fit: ${fit?.body ?? typeof fit}`);
+    return race;
+}
+
+/**
+ * The fit this item actually declares for this race.
+ *
+ * There is deliberately no `|| item.fit` fallback here. `item.fit` is the Human fit, so
+ * falling back to it would dress a non-Human body in Human-bound geometry and report
+ * success -- the exact silent substitution the Undead milestone exists to prevent. An
+ * item with no fit for this race is an unsupported combination and must say so.
+ */
+export function declaredFitForRace(item, race) {
+    if (!own(FITS_BY_RACE, race)) throw Error(`Unsupported equipment race: ${race}`);
+    const declared = item?.fits?.[race];
+    if (!declared) throw Error(`No ${race} fit for ${label(item)}`);
+    return declared;
+}
+
+/**
+ * Guard between a streamed manifest entry and the race being dressed. Every garment load
+ * passes through here, so a pack that serves another race's geometry -- or an asset with
+ * no fit block at all -- fails loudly instead of binding to the wrong body.
+ */
+export function assertAssetFit(asset, item, race) {
+    const declared = declaredFitForRace(item, race);
+    if (!asset?.fit) throw Error(`No ${race} fit declared for ${label(item)}`);
+    for (const key of FIT_KEYS) {
+        if (asset.fit[key] !== declared[key]) {
+            throw Error(`Incompatible ${race} ${key} fit for ${label(item)}: ${asset.fit[key]} is not ${declared[key]}`);
+        }
+    }
+    return declared;
+}
 
 export function validateEquipmentCatalogue(items, {slots, baseMeshes, fit = HUMAN_EQUIPMENT_FIT, meshNames} = {}) {
     const masks = new Set(baseMeshes);

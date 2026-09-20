@@ -1,9 +1,18 @@
-import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT, freezeEquipment, validateEquipmentCatalogue, validateEquipmentSelection} from './equipment-contract.js';
+import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT, UNDEAD_EQUIPMENT_FIT, freezeEquipment, validateEquipmentCatalogue, validateEquipmentSelection} from './equipment-contract.js';
 /** Current Human fits. Item identity is separate from authored mesh and coverage. */
 export const BODY_REGIONS=['BodyExposed','BodyUnderTunic','BodyUnderBoots','BodyUnderLegs','BodyWaist','BodyHands'];
 export const BASE_VISIBLE_MESHES=[...BODY_REGIONS,'HumanHair'];
 /** Sculpt-pipeline Orc: Human coverage names plus print extras. */
 export const ORC_BASE_VISIBLE_MESHES=[...BODY_REGIONS,'OrcV1Hair','OrcV1Brows','OrcV1Eyes','OrcV1Shorts'];
+/**
+ * Undead: the six coverage regions and nothing else. The approved concept is a skull face,
+ * so there is no hair geoset to carry -- the Human `HumanHair` mask has no Undead counterpart
+ * and the hood's coverage of it is a no-op. If the finished body ships the amber eyes or the
+ * jaw as separate meshes they must be added here; until then a body that carries them would
+ * leave them permanently visible. createStreamedEquipment names any region this list asks for
+ * and the body does not provide, so that omission fails loudly rather than drawing wrong.
+ */
+export const UNDEAD_BASE_VISIBLE_MESHES=[...BODY_REGIONS];
 const authoredItems={
     graveweaverHood:{id:'graveweaverHood',slot:'helmet',name:'Graveweaver hood',parts:[{mesh:'GraveweaverHood'}],coverage:['HumanHair']},
     graveweaverTop:{id:'graveweaverTop',slot:'torso',name:'Graveweaver mail vestment',parts:[{mesh:'GraveweaverTop'},{mesh:'GraveweaverPendant'}],coverage:['BodyUnderTunic','BodyWaist']},
@@ -19,8 +28,16 @@ const authoredItems={
     wayfarerBoots:{id:'wayfarerBoots',slot:'boots',name:'Wayfarer boots',parts:[{mesh:'WayfarerBoots'}],coverage:['BodyUnderBoots']},
 };
 const seamsBySlot={helmet:['neck'],torso:['neck','waist','wrists'],legs:['waist','ankles'],boots:['ankles'],gloves:['wrists'],mainHand:[],offHand:[]};
-export const EQUIPMENT_ITEMS=freezeEquipment(Object.fromEntries(Object.entries(authoredItems).map(([id,item])=>[id,{...item,fit:{...HUMAN_EQUIPMENT_FIT},fits:{human:{...HUMAN_EQUIPMENT_FIT},orc:{...ORC_EQUIPMENT_FIT}},seams:seamsBySlot[item.slot],occupies:item.occupies||[item.slot]}])));
-/** Socket-local hold for a race. Human values stay on the item; Orc is an optional correction. */
+export const EQUIPMENT_ITEMS=freezeEquipment(Object.fromEntries(Object.entries(authoredItems).map(([id,item])=>[id,{...item,fit:{...HUMAN_EQUIPMENT_FIT},fits:{human:{...HUMAN_EQUIPMENT_FIT},orc:{...ORC_EQUIPMENT_FIT},undead:{...UNDEAD_EQUIPMENT_FIT}},seams:seamsBySlot[item.slot],occupies:item.occupies||[item.slot]}])));
+/**
+ * Socket-local hold for a race. Human values stay on the item; a race entry under `grips`
+ * is an optional correction.
+ *
+ * This is a pose offset, not a fit identity: the prop is procedural, binds to no body, and
+ * an absent correction means "the authored hold is already right", which is why it may fall
+ * back where `declaredFitForRace` must not. The Undead has no measured correction yet -- it
+ * needs one taken against the real bony hand once that body lands.
+ */
 export function gripHold(item, race='human'){
     const hold={position:item.gripPosition||[0,0,0],rotation:item.gripRotation,scale:1};
     const extra=item.grips?.[race];
