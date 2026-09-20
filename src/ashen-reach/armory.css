@@ -1,5 +1,5 @@
-#armory-launch{position:fixed;right:22px;top:20px;z-index:4;border:1px solid #766b4b;background:#171b16d9;color:#dcd1ad;font:13px Georgia;padding:10px 20px;cursor:pointer;letter-spacing:.05em}
-body.armory-open #armory-launch,body.armory-open #help{display:none}
+#armory-launch{position:fixed;left:14px;top:14px;z-index:4;border:1px solid #766b4b;background:#171b16d9;color:#dcd1ad;font:12px Georgia;padding:6px 12px;cursor:pointer;letter-spacing:.05em}
+body.armory-open #armory-launch,body.armory-open #help,body.armory-open #combat{display:none}
 #armory{position:fixed;inset:0;z-index:5;color:#ddd4b9;font:13px Georgia,serif;text-shadow:0 1px 2px #000;pointer-events:none}
 #armory button,#armory select,#armory input{font:inherit;color:inherit;pointer-events:auto}
 #armory button,#armory select{background:#20231dcf;border:1px solid #5a5b46;border-radius:2px;cursor:pointer;padding:9px 12px}

@@ -11,8 +11,8 @@ export const WORLD_BOUNDS = Object.freeze({
   maxZ: 143,
 });
 
-const WIDTH = 168;
-const HEIGHT = 196;
+const WIDTH = 120;
+const HEIGHT = 140;
 
 function worldToMap(x, z) {
   const u =
@@ -97,9 +97,9 @@ export function createMinimap({ player, enemies }) {
   wrap.append(canvas, caption);
   const style = document.createElement("style");
   style.textContent =
-    ".minimap{position:absolute;top:16px;right:16px;z-index:9;width:168px;background:#100e0cee;border:1px solid #3a3428;box-shadow:0 2px 10px #000000a0;padding:6px 6px 4px;pointer-events:none}" +
-    ".minimap canvas{display:block;width:168px;height:196px;image-rendering:pixelated;background:#10140f}" +
-    ".minimap span{display:block;margin-top:4px;font:10px monospace;letter-spacing:.16em;color:#c1c0ab;text-align:center}";
+    ".minimap{position:absolute;top:14px;right:14px;z-index:9;width:120px;background:#100e0cee;border:1px solid #3a3428;box-shadow:0 2px 10px #000000a0;padding:4px 4px 3px;pointer-events:none}" +
+    ".minimap canvas{display:block;width:120px;height:140px;image-rendering:pixelated;background:#10140f}" +
+    ".minimap span{display:block;margin-top:3px;font:9px monospace;letter-spacing:.14em;color:#c1c0ab;text-align:center}";
   root.append(style, wrap);
 
   const staticLayer = document.createElement("canvas");

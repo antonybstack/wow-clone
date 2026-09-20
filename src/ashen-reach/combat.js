@@ -59,11 +59,16 @@ function installLifeHud() {
   }
   const style = document.createElement("style");
   style.textContent =
-    ".player-plate{position:absolute;bottom:124px;left:50%;transform:translateX(-50%);width:220px;text-align:center;font-size:13px;z-index:9;background:#100e0cee;padding:8px 12px 6px;border:1px solid #3a3428;box-shadow:0 2px 10px #000000a0}" +
-    ".player-plate .player-level{display:block;margin-top:3px;font:10px monospace;letter-spacing:.16em;color:#c1c0ab}" +
-    ".mana-track{height:5px;border:1px solid #282820;background:#15140f;margin:5px 0 2px}" +
-    ".mana-fill{height:100%;background:#a46636;transition:width .1s}" +
-    ".player-plate .player-mana{display:block;font:10px monospace;color:#c1c0ab}" +
+    ".player-plate{position:absolute;left:14px;bottom:14px;width:232px;z-index:9;background:#100e0cee;padding:8px 10px 7px;border:1px solid #3a3428;box-shadow:0 2px 10px #000000a0;text-align:left}" +
+    ".player-plate header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px}" +
+    ".player-plate header span{font-size:13px}" +
+    ".player-plate .player-level{font:10px monospace;letter-spacing:.14em;color:#c1c0ab}" +
+    ".player-plate .res{display:grid;grid-template-columns:1fr auto;gap:6px;align-items:center;margin:3px 0}" +
+    ".player-plate .hp-track,.player-plate .mana-track,.player-plate .xp-track{height:5px;border:1px solid #282820;background:#15140f;margin:0}" +
+    ".player-plate .hp-fill{height:100%;background:#a46636;transition:width .1s}" +
+    ".player-plate .mana-fill{height:100%;background:#4a6e6a;transition:width .1s}" +
+    ".player-plate .xp-fill{height:100%;width:0;background:#8a6a3a;transition:width .1s}" +
+    ".player-plate .res small{font:10px monospace;color:#c1c0ab;min-width:62px;text-align:right}" +
     ".death-veil{position:absolute;inset:0;background:#100808d4;display:grid;place-items:center;pointer-events:auto;z-index:5;text-align:center}" +
     ".death-veil[hidden]{display:none!important}" +
     ".death-veil p{margin:0 0 14px;font-size:28px;color:#ead1b5}" +
@@ -73,7 +78,10 @@ function installLifeHud() {
   const plate = document.createElement("div");
   plate.className = "player-plate";
   plate.innerHTML =
-    "<span>You</span><small class=\"player-level\">LEVEL 1</small><div class=\"hp-track\"><div class=\"hp-fill\"></div></div><small class=\"player-hp\"></small><div class=\"mana-track\"><div class=\"mana-fill\"></div></div><small class=\"player-mana\"></small>";
+    "<header><span>You</span><small class=\"player-level\">LV 1</small></header>" +
+    "<div class=\"res\"><div class=\"hp-track\"><div class=\"hp-fill\"></div></div><small class=\"player-hp\"></small></div>" +
+    "<div class=\"res\"><div class=\"mana-track\"><div class=\"mana-fill\"></div></div><small class=\"player-mana\"></small></div>" +
+    "<div class=\"res\"><div class=\"xp-track\"><div class=\"xp-fill\"></div></div><small class=\"player-xp\"></small></div>";
   const veil = document.createElement("div");
   veil.className = "death-veil";
   veil.hidden = true;
@@ -290,13 +298,13 @@ export async function createCombat(
     playerFill.style.width = ratio * 100 + "%";
     playerHp.textContent = life.dead
       ? "Dead"
-      : `HEALTH  ${Math.ceil(life.hp)} / ${life.hpMax}`;
+      : `${Math.ceil(life.hp)} / ${life.hpMax}`;
     const p = progression.progress;
-    if (playerLevel) playerLevel.textContent = `LEVEL ${p.level}`;
+    if (playerLevel) playerLevel.textContent = `LV ${p.level}`;
     if (manaFill)
       manaFill.style.width = (p.manaMax ? p.mana / p.manaMax : 0) * 100 + "%";
     if (manaText)
-      manaText.textContent = `MANA  ${Math.ceil(p.mana)} / ${p.manaMax}`;
+      manaText.textContent = `${Math.ceil(p.mana)} / ${p.manaMax}`;
     hud.paintProgress(p, life.time);
     const target = targeting.current;
     if (nameEl && target) nameEl.textContent = target.name;
