@@ -9,7 +9,7 @@
 // (Batch.commit's actual formula, radius included) side by side.
 //
 // Usage: node scripts/ashen-reach/measure-lamp-profile.mjs
-import {height, pathX, rng, buildingPads} from '../../src/ashen-reach/geometry.js';
+import {height, pathX, rng, buildingPads, bakeLamp} from '../../src/ashen-reach/geometry.js';
 
 // --- Exact transcription of scene.js's current (post-M7a) light registration ---
 function buildLights(){
@@ -41,29 +41,16 @@ function buildLights(){
  return lights;
 }
 
-// --- Exact transcription of Batch.commit's per-vertex bake formula, both branches ---
-function lampAtUnwindowed(x,y,z,lights){
- let lamp=0;
- for(const L of lights){
-  const dx=x-L.position[0],dy=y-L.position[1],dz=z-L.position[2],f=(L.falloff??.5);
-  const d=Math.sqrt(dx*dx+dy*dy+dz*dz)*f;
-  lamp+=L.strength/(1+d*d);
- }
- return lamp;
-}
-function lampAtWindowed(x,y,z,lights){
- // Mirrors Batch.commit exactly: `windowed` is z>40 (always true for the z=44..120 samples below,
- // since that is the whole point -- this is the branch Hollowmere's ground actually bakes through).
- const windowed=z>40;
- let lamp=0;
- for(const L of lights){
-  const dx=x-L.position[0],dy=y-L.position[1],dz=z-L.position[2],f=(L.falloff??.5),dist=Math.sqrt(dx*dx+dy*dy+dz*dz),d=dist*f;
-  let term=L.strength/(1+d*d);
-  if(windowed&&L.radius!=null){const t=Math.min(1,dist/L.radius),w=(1-t*t)*(1-t*t);term*=w;}
-  lamp+=term;
- }
- return lamp;
-}
+// Bake formula is imported from geometry.js (the function Batch.commit actually runs). The
+// before-column still forces applyWindow=false so it reports the pre-M7a unwindowed sum.
+function lampAtUnwindowed(x,y,z,lights){return bakeLamp(x,y,z,lights,false);}
+function lampAtWindowed(x,y,z,lights){return bakeLamp(x,y,z,lights,true);}
+
+// materials.js fragment knee, transcribed because the shader string is not a callable. Identity
+// below 1.4, 1.4+(1-exp(-(lamp-1.4))) above, mixed by lampGate=smoothstep(40,55,z).
+function smoothstep(e0,e1,x){const t=Math.min(1,Math.max(0,(x-e0)/(e1-e0)));return t*t*(3-2*t);}
+function lampKnee(lamp){return lamp>1.4?1.4+(1-Math.exp(-(lamp-1.4))):lamp;}
+function lampEff(lamp,z){const g=smoothstep(40,55,z);return lamp*(1-g)+lampKnee(lamp)*g;}
 
 const lights=buildLights();
 console.log(`registered ${lights.length} lights`);
@@ -87,6 +74,25 @@ function stats(vals){const peak=Math.max(...vals),trough=Math.min(...vals);retur
 const bStats=stats(samples.map(s=>s.before)),aStats=stats(samples.map(s=>s.after));
 console.log(`\nBEFORE (unwindowed, pre-M7a): peak=${bStats.peak.toFixed(4)} trough=${bStats.trough.toFixed(4)} global peak:trough=${bStats.ratio.toFixed(3)}`);
 console.log(`AFTER  (windowed, post-M7a): peak=${aStats.peak.toFixed(4)} trough=${aStats.trough.toFixed(4)} global peak:trough=${aStats.ratio.toFixed(3)}`);
+
+// M8b: is the 19% peak drop the window, the materials.js knee (max 2.4), or both?
+const peakBefore=samples.reduce((a,b)=>b.before>a.before?b:a);
+const peakAfter=samples.reduce((a,b)=>b.after>a.after?b:a);
+const nBeforeAbove=samples.filter(s=>s.before>1.4).length;
+const nAfterAbove=samples.filter(s=>s.after>1.4).length;
+const effBefore=samples.map(s=>lampEff(s.before,s.z));
+const effAfter=samples.map(s=>lampEff(s.after,s.z));
+const eB=stats(effBefore),eA=stats(effAfter);
+console.log('\n--- M8b knee vs window ---');
+console.log(`baked peak location: before z=${peakBefore.z.toFixed(1)} lamp=${peakBefore.before.toFixed(4)}  after z=${peakAfter.z.toFixed(1)} lamp=${peakAfter.after.toFixed(4)}  drop=${((1-peakAfter.after/peakBefore.before)*100).toFixed(1)}%`);
+console.log(`samples with baked lamp>1.4 (knee engages): before=${nBeforeAbove}/${samples.length}  after=${nAfterAbove}/${samples.length}`);
+console.log(`shader lampEff (knee mixed by lampGate): before peak=${eB.peak.toFixed(4)} trough=${eB.trough.toFixed(4)}  after peak=${eA.peak.toFixed(4)} trough=${eA.trough.toFixed(4)}`);
+console.log(`at baked-after peak z=${peakAfter.z.toFixed(1)}: lampGate=${smoothstep(40,55,peakAfter.z).toFixed(3)}  baked ${peakAfter.after.toFixed(4)} -> lampEff ${lampEff(peakAfter.after,peakAfter.z).toFixed(4)} (knee would map ${peakAfter.after.toFixed(4)} -> ${lampKnee(peakAfter.after).toFixed(4)})`);
+console.log(`at baked-before peak z=${peakBefore.z.toFixed(1)}: lampGate=${smoothstep(40,55,peakBefore.z).toFixed(3)}  baked ${peakBefore.before.toFixed(4)} -> lampEff ${lampEff(peakBefore.before,peakBefore.z).toFixed(4)} (knee ${lampKnee(peakBefore.before).toFixed(4)})`);
+const fullKnee=samples.filter(s=>s.z>=55);
+const fullBeforeMax=Math.max(...fullKnee.map(s=>s.before));
+const fullAfterMax=Math.max(...fullKnee.map(s=>s.after));
+console.log(`full-knee region z>=55: baked peak before=${fullBeforeMax.toFixed(4)} after=${fullAfterMax.toFixed(4)}  (knee threshold 1.4; headroom after=${(1.4-fullAfterMax).toFixed(4)})`);
 
 // Fixture-to-fixture local peak/trough, before and after -- this is the number that actually
 // determines whether a wide shot reads as discrete pools (the global peak:trough above is
@@ -245,3 +251,20 @@ function lampBreakdownAt(label,wx,wz){
 // script's camera stand point (x:0, z:131, ~5m south of the well) -- the well-square.png shot.
 lampBreakdownAt('well-square centre (buildingPads[8])', buildingPads[8].x, buildingPads[8].z);
 lampBreakdownAt('well-square camera stand (capture-m7a-lamp-pools.mjs)', 0, 131);
+
+// M8b facades: street-facing gable of the first house (pad 0, west of the road at z=82) and
+// the tavern (pad 2, z=98). Sampled at mid-wall height so this is what a 15 m street view of
+// the elevation actually bakes, not the centre-line ground profile.
+function facadeAt(label,pad,w){
+ const gy=height(pad.x,pad.z);
+ const gableX=pad.x<0?pad.x+w/2:pad.x-w/2;
+ const y=gy+1.6,z=pad.z,x=gableX;
+ const before=lampAtUnwindowed(x,y,z,allLights),after=lampAtWindowed(x,y,z,allLights);
+ console.log(`\n--- facade ${label} (gable x=${x.toFixed(2)} y=${y.toFixed(2)} z=${z}) ---`);
+ console.log(`baked lamp: before=${before.toFixed(4)} after=${after.toFixed(4)}  lampEff after=${lampEff(after,z).toFixed(4)}`);
+ const streetX=pathX(z),streetDist=Math.abs(x-streetX);
+ console.log(`distance from street centre: ${streetDist.toFixed(2)} m`);
+}
+facadeAt('house pad0', buildingPads[0], 6.6);
+facadeAt('tavern pad2', buildingPads[2], 7.6);
+facadeAt('smithy pad3', buildingPads[3], 7.2);

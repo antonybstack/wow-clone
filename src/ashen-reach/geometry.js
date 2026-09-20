@@ -77,7 +77,23 @@ export class Batch{
   *  the window applied. This is required because the bake runs before the shader's own
   *  `lampGate=smoothstep(40,55,z)` ever executes -- that gate protects the shader-side knee/colour,
   *  not values baked here. */
- commit(engine,scene,material,lights=[]){if(!this.idx.length)return null;const vcount=this.p.length/3;const uv2=new Float32Array(vcount*2);if(lights.length)for(let i=0;i<vcount;i++){const x=this.p[i*3],y=this.p[i*3+1],z=this.p[i*3+2];let lamp=0;const windowed=z>40;for(const L of lights){const dx=x-L.position[0],dy=y-L.position[1],dz=z-L.position[2],f=(L.falloff??.5),dist=Math.sqrt(dx*dx+dy*dy+dz*dz),d=dist*f;let term=L.strength/(1+d*d);if(windowed&&L.radius!=null){const t=Math.min(1,dist/L.radius),w=(1-t*t)*(1-t*t);term*=w;}lamp+=term;}uv2[i*2]=lamp;}const m=createMeshFromData(engine,this.name,new Float32Array(this.p),new Float32Array(this.n),new Uint32Array(this.idx),new Float32Array(this.u),uv2,undefined,new Float32Array(this.c));m.material=material;m.pickable=false;addToScene(scene,m);return m;}
+ commit(engine,scene,material,lights=[]){if(!this.idx.length)return null;const vcount=this.p.length/3;const uv2=new Float32Array(vcount*2);if(lights.length)for(let i=0;i<vcount;i++){const x=this.p[i*3],y=this.p[i*3+1],z=this.p[i*3+2];uv2[i*2]=bakeLamp(x,y,z,lights);}const m=createMeshFromData(engine,this.name,new Float32Array(this.p),new Float32Array(this.n),new Uint32Array(this.idx),new Float32Array(this.u),uv2,undefined,new Float32Array(this.c));m.material=material;m.pickable=false;addToScene(scene,m);return m;}
+}
+
+/** One vertex of the M1/M7a baked lamp term. `Batch.commit` writes this into uv2.x; the
+ *  measure-lamp-profile script imports it so a bake change cannot silently diverge from the
+ *  printed profile. `applyWindow:false` reproduces the pre-M7a unwindowed sum (used only by
+ *  that script's before-column). Default matches commit(): window when the vertex is z>40. */
+export function bakeLamp(x,y,z,lights,applyWindow){
+ const windowed=applyWindow??(z>40);
+ let lamp=0;
+ for(const L of lights){
+  const dx=x-L.position[0],dy=y-L.position[1],dz=z-L.position[2],f=(L.falloff??.5),dist=Math.sqrt(dx*dx+dy*dy+dz*dz),d=dist*f;
+  let term=L.strength/(1+d*d);
+  if(windowed&&L.radius!=null){const t=Math.min(1,dist/L.radius),w=(1-t*t)*(1-t*t);term*=w;}
+  lamp+=term;
+ }
+ return lamp;
 }
 
 /** A warm lantern-glass glow: a tapered hex "flame" core plus a larger, dimmer hex "glass" shell
