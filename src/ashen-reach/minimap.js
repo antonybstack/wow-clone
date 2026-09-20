@@ -1,6 +1,7 @@
 /**
  * Overlay minimap drawn from world XZ on the combat afterAnimation tick.
- * No second camera, no second render loop, no requestAnimationFrame of its own.
+ * One CSS frame around a title bar and a canvas; the canvas does not stroke
+ * its own border (that was the alignment miss).
  */
 import { buildingPads, pathX } from "./geometry.js";
 
@@ -11,8 +12,9 @@ export const WORLD_BOUNDS = Object.freeze({
   maxZ: 143,
 });
 
-const WIDTH = 120;
-const HEIGHT = 140;
+/** Backing store equals CSS pixels so the map is 1:1 inside the frame. */
+const WIDTH = 128;
+const HEIGHT = 148;
 
 function worldToMap(x, z) {
   const u =
@@ -51,7 +53,7 @@ function paintStatic(ctx) {
   }
 
   ctx.strokeStyle = "#6a6250";
-  ctx.lineWidth = 2.4;
+  ctx.lineWidth = 2;
   ctx.beginPath();
   for (let z = WORLD_BOUNDS.minZ, first = true; z <= WORLD_BOUNDS.maxZ; z += 2) {
     const [u, v] = worldToMap(pathX(z), z);
@@ -63,13 +65,13 @@ function paintStatic(ctx) {
   ctx.stroke();
 
   ctx.strokeStyle = "#8a7a58";
-  ctx.lineWidth = 1.4;
+  ctx.lineWidth = 1;
   const gateAt = (z, half) => {
     const [u0, v] = worldToMap(-half, z);
     const [u1] = worldToMap(half, z);
     ctx.beginPath();
-    ctx.moveTo(u0, v);
-    ctx.lineTo(u1, v);
+    ctx.moveTo(u0 + 0.5, v + 0.5);
+    ctx.lineTo(u1 + 0.5, v + 0.5);
     ctx.stroke();
   };
   gateAt(44, 8);
@@ -77,29 +79,27 @@ function paintStatic(ctx) {
 
   const [sx, sy] = worldToMap(0, 0);
   ctx.fillStyle = "#c4b48a";
-  ctx.fillRect(sx - 1.5, sy - 1.5, 3, 3);
-
-  ctx.strokeStyle = "#3a3428";
-  ctx.lineWidth = 2;
-  ctx.strokeRect(1, 1, WIDTH - 2, HEIGHT - 2);
+  ctx.fillRect(sx - 1, sy - 1, 3, 3);
 }
 
 export function createMinimap({ player, enemies }) {
   const root = document.getElementById("combat");
   const wrap = document.createElement("div");
   wrap.className = "minimap";
+  wrap.setAttribute("role", "img");
+  wrap.setAttribute("aria-label", "Minimap");
+  const title = document.createElement("div");
+  title.className = "minimap-title";
+  title.textContent = "MAP";
   const canvas = document.createElement("canvas");
   canvas.width = WIDTH;
   canvas.height = HEIGHT;
-  canvas.setAttribute("aria-label", "Minimap");
-  const caption = document.createElement("span");
-  caption.textContent = "MAP";
-  wrap.append(canvas, caption);
+  wrap.append(title, canvas);
   const style = document.createElement("style");
   style.textContent =
-    ".minimap{position:absolute;top:14px;right:14px;z-index:9;width:120px;background:#100e0cee;border:1px solid #3a3428;box-shadow:0 2px 10px #000000a0;padding:4px 4px 3px;pointer-events:none}" +
-    ".minimap canvas{display:block;width:120px;height:140px;image-rendering:pixelated;background:#10140f}" +
-    ".minimap span{display:block;margin-top:3px;font:9px monospace;letter-spacing:.14em;color:#c1c0ab;text-align:center}";
+    ".minimap{position:absolute;top:14px;right:14px;z-index:9;width:130px;box-sizing:border-box;border:1px solid #3a3428;background:#100e0c;box-shadow:0 2px 10px #000000a0;padding:0;pointer-events:none}" +
+    ".minimap-title{height:16px;line-height:16px;font:9px/16px monospace;letter-spacing:.14em;color:#c1c0ab;text-align:center;border-bottom:1px solid #3a3428;background:#100e0c}" +
+    ".minimap canvas{display:block;width:128px;height:148px;image-rendering:pixelated;background:#10140f;vertical-align:top}";
   root.append(style, wrap);
 
   const staticLayer = document.createElement("canvas");
@@ -115,7 +115,7 @@ export function createMinimap({ player, enemies }) {
       const [u, v] = worldToMap(enemy.position.x, enemy.position.z);
       ctx.fillStyle = "#c45a38";
       ctx.beginPath();
-      ctx.arc(u, v, 3.4, 0, Math.PI * 2);
+      ctx.arc(u, v, 3, 0, Math.PI * 2);
       ctx.fill();
       ctx.strokeStyle = "#2a1810";
       ctx.lineWidth = 1;
