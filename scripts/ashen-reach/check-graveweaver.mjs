@@ -1,6 +1,7 @@
-import {chromium} from 'playwright';import assert from 'node:assert/strict';import fs from 'node:fs/promises';
+import {chromium} from 'playwright';
+import { CDP_URL } from '../lib/cdp.mjs';import assert from 'node:assert/strict';import fs from 'node:fs/promises';
 const dir='ve-capture/ashen-reach/graveweaver';await fs.mkdir(dir,{recursive:true});
-const browser=await chromium.connectOverCDP('http://127.0.0.1:9337'),page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach.html'));
+const browser=await chromium.connectOverCDP(CDP_URL),page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach.html'));
 const checks=[],errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
 const check=(name,ok)=>{checks.push({name,ok:!!ok});assert.ok(ok,name);console.log('PASS',name);};
 const state=()=>page.evaluate(()=>({equipment:ASHEN.equipment.getState(),nodes:ASHEN.scene.meshes.map(n=>({name:n.name,visible:n.visible,parent:n.parent?.parent?.name})),meshCount:ASHEN.scene.meshes.length,bones:ASHEN.body.boneCount,hp:ASHEN.combat.dummy.hp,preview:ASHEN.armory.getState().preview}));

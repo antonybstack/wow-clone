@@ -1,6 +1,7 @@
-import {chromium} from 'playwright';import fs from 'node:fs/promises';
+import {chromium} from 'playwright';
+import { CDP_URL } from '../lib/cdp.mjs';import fs from 'node:fs/promises';
 const graveweaver=process.argv.includes('--graveweaver'),mixed=process.argv.includes('--mixed'),warden=process.argv.includes('--warden'),equipment=graveweaver||mixed||warden||process.argv.includes('--equipment');
-const browser=await chromium.connectOverCDP('http://127.0.0.1:9337');const page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach.html'))||await browser.contexts()[0].newPage();
+const browser=await chromium.connectOverCDP(CDP_URL);const page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach.html'))||await browser.contexts()[0].newPage();
 try{
  await page.bringToFront();if(await page.evaluate(()=>ASHEN.armory.isOpen))await page.keyboard.press('Escape');await page.evaluate(async preset=>{ASHEN.setView('play');if(preset)await ASHEN.equipment.equipPreset(preset);},graveweaver?'graveweaver':warden?'warden':mixed?'pilgrim':equipment?'wayfarer':null);await page.waitForTimeout(1800);
  const sample=()=>page.evaluate(()=>new Promise(resolve=>{const values=[];let last,draws=0;const started=performance.now();function tick(time){if(last!==undefined)values.push(time-last);last=time;draws=Math.max(draws,ASHEN.engine.drawCallCount);if(time-started<5500){requestAnimationFrame(tick);return;}const sorted=[...values].sort((a,b)=>a-b),mean=values.reduce((a,b)=>a+b,0)/values.length;resolve({frames:values.length,seconds:(time-started)/1000,meanMs:mean,fps:1000/mean,p95Ms:sorted[Math.floor(sorted.length*.95)],worstMs:sorted.at(-1),over16ms:values.filter(t=>t>16.67).length,maxDrawCalls:draws,resolution:ASHEN.metrics.summary().resolution});}requestAnimationFrame(tick);}));

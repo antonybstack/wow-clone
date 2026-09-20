@@ -1,11 +1,12 @@
 /** Live sculpt-pipeline Orc: fitted catalogue, selection carried across races. */
 import {chromium} from 'playwright';
+import { CDP_URL } from '../lib/cdp.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 
 const dir = 've-capture/ashen-reach/orc-clothes';
 await fs.mkdir(dir, {recursive: true});
-const browser = await chromium.connectOverCDP('http://127.0.0.1:9337');
+const browser = await chromium.connectOverCDP(CDP_URL);
 const context = browser.contexts()[0];
 const page = context.pages().find(p => p.url().includes('ashen-reach.html')) || await context.newPage();
 const checks = [], errors = [];

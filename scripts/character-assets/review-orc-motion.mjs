@@ -4,6 +4,7 @@
  * of finished art). Usage: node scripts/character-assets/review-orc-motion.mjs
  * [outDir] */
 import {chromium} from 'playwright';
+import { CDP_URL } from '../lib/cdp.mjs';
 import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
 
@@ -12,7 +13,7 @@ await fs.mkdir(dir, {recursive: true});
 const ORC = '/characters/candidates/orc-source-v1.glb';
 const HUMAN = '/characters/candidates/human-source-v1.glb';
 
-const browser = await chromium.connectOverCDP('http://127.0.0.1:9337');
+const browser = await chromium.connectOverCDP(CDP_URL);
 const ctx = browser.contexts()[0];
 const page = ctx.pages().find(p => p.url().includes('body-preview.html')) || await ctx.newPage();
 const errors = [];

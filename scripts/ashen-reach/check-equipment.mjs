@@ -1,7 +1,8 @@
-import {chromium} from 'playwright';import assert from 'node:assert/strict';import fs from 'node:fs/promises';
+import {chromium} from 'playwright';
+import { CDP_URL } from '../lib/cdp.mjs';import assert from 'node:assert/strict';import fs from 'node:fs/promises';
 const mixed=process.argv.includes('--mixed'),torso=mixed?'pilgrimTunic':'wayfarerTunic';
 const dir=`ve-capture/ashen-reach/${mixed?'mixed-equipment':'equipment'}`;await fs.mkdir(dir,{recursive:true});
-const browser=await chromium.connectOverCDP('http://127.0.0.1:9337'),page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach.html'));
+const browser=await chromium.connectOverCDP(CDP_URL),page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach.html'));
 const checks=[],errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
 const check=(name,ok)=>{checks.push({name,ok:!!ok});assert.ok(ok,name);console.log('PASS',name);};
 const state=()=>page.evaluate(()=>{const nodes=[],stack=[ASHEN.body.root];while(stack.length){const n=stack.pop();if(n.skeleton?.boneMatrices)nodes.push({name:n.name,visible:n.visible});stack.push(...(n.children||[]));}return{equipment:ASHEN.equipment.getState(),nodes,clips:ASHEN.body.getPlaying(),meshCount:ASHEN.scene.meshes.length,bones:ASHEN.body.boneCount,hp:ASHEN.combat.dummy.hp,preview:ASHEN.armory.getState().preview};});

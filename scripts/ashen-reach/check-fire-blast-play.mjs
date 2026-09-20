@@ -1,6 +1,7 @@
-import {chromium} from 'playwright';import assert from 'node:assert/strict';import fs from 'node:fs/promises';
+import {chromium} from 'playwright';
+import { CDP_URL } from '../lib/cdp.mjs';import assert from 'node:assert/strict';import fs from 'node:fs/promises';
 const dir=process.env.FIRE_BLAST_CAPTURE_DIR||'ve-capture/ashen-reach/fire-blast';await fs.mkdir(dir,{recursive:true});
-const browser=await chromium.connectOverCDP('http://127.0.0.1:9337');const page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach.html'));
+const browser=await chromium.connectOverCDP(CDP_URL);const page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach.html'));
 const errors=[],checks=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
 const read=()=>page.evaluate(()=>({casts:ASHEN.combat.spell.casts,hp:ASHEN.combat.dummy.hp,target:ASHEN.combat.targeting.current?.id,result:ASHEN.combat.spell.lastResult,cooldown:ASHEN.combat.spell.cooldown,shoot:ASHEN.body.getState().castingShoot,grounded:ASHEN.player.getGrounded()}));
 const press=async key=>{await page.keyboard.press(key);await page.waitForTimeout(400);};

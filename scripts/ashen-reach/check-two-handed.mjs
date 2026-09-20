@@ -2,10 +2,11 @@
  * the shaft through locomotion and both spells, the carry pose releases for casts,
  * and stow/draw is an eased travel rather than an instant snap. */
 import {chromium} from 'playwright';
+import { CDP_URL } from '../lib/cdp.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 const dir=process.env.ASHEN_CAPTURE_DIR||'ve-capture/ashen-reach/two-handed';await fs.mkdir(dir,{recursive:true});
-const browser=await chromium.connectOverCDP('http://127.0.0.1:9337');
+const browser=await chromium.connectOverCDP(CDP_URL);
 const page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach.html'));
 const errors=[],checks=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
 const check=(name,ok)=>{assert.ok(ok,name);checks.push(name);console.log('PASS '+name);};

@@ -1,7 +1,8 @@
 import {chromium} from 'playwright';
+import { CDP_URL } from '../lib/cdp.mjs';
 import fs from 'node:fs/promises';
 const out=process.argv[2]||'ve-capture/ashen-reach/gait-polish';await fs.mkdir(out,{recursive:true});
-const browser=await chromium.connectOverCDP('http://127.0.0.1:9337');
+const browser=await chromium.connectOverCDP(CDP_URL);
 const page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach'));
 try {
  await page.bringToFront();await page.reload();await page.waitForFunction(()=>window.ASHEN?.ready,null,{timeout:120000});

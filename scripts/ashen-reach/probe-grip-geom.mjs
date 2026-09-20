@@ -1,6 +1,7 @@
 import {chromium} from 'playwright';
+import { CDP_URL } from '../lib/cdp.mjs';
 import fs from 'node:fs/promises';
-const browser = await chromium.connectOverCDP('http://127.0.0.1:9337');
+const browser = await chromium.connectOverCDP(CDP_URL);
 const page = browser.contexts()[0].pages().find(p => p.url().includes('ashen-reach.html'));
 await page.bringToFront();
 await page.goto((process.env.ASHEN_URL||'http://127.0.0.1:5173/ashen-reach.html?play&clean'), {waitUntil:'commit', timeout:60000});

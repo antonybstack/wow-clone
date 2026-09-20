@@ -1,5 +1,6 @@
 import {chromium} from 'playwright';
-const browser = await chromium.connectOverCDP('http://127.0.0.1:9337');
+import { CDP_URL } from '../lib/cdp.mjs';
+const browser = await chromium.connectOverCDP(CDP_URL);
 const context = browser.contexts()[0];
 const page = context.pages().find(p => p.url().includes('ashen-reach.html')) || await context.newPage();
 try {

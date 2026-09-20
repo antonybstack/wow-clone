@@ -1,6 +1,7 @@
 import {chromium} from 'playwright';
+import { CDP_URL } from '../lib/cdp.mjs';
 import fs from 'node:fs/promises';
-const b=await chromium.connectOverCDP('http://127.0.0.1:9337');
+const b=await chromium.connectOverCDP(CDP_URL);
 const p=b.contexts()[0].pages().find(p=>p.url().includes('ashen-reach'));
 await p.bringToFront();await p.waitForFunction(()=>window.ASHEN?.ready,null,{timeout:120000});
 const errors=[];p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(m.type()==='error')errors.push(m.text());});

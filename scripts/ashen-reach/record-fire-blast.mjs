@@ -1,9 +1,10 @@
 // CDP screencast includes DOM health/cooldown/damage, unlike canvas.captureStream.
-import {chromium} from 'playwright';import fs from 'node:fs/promises';
+import {chromium} from 'playwright';
+import { CDP_URL } from '../lib/cdp.mjs';import fs from 'node:fs/promises';
 const dir=(process.env.FIRE_BLAST_CAPTURE_DIR||'ve-capture/ashen-reach/fire-blast')+'/video';await fs.mkdir(dir+'/frames',{recursive:true});
 const orbit=Number(process.env.FIRE_BLAST_ORBIT||.6);
 const lava=process.env.SPELL_CAPTURE==='lava';
-const browser=await chromium.connectOverCDP('http://127.0.0.1:9337');const page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach.html'));
+const browser=await chromium.connectOverCDP(CDP_URL);const page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach.html'));
 let cdp,recording=false;const frames=[],writes=[],errors=[],timeline=[];page.on('pageerror',e=>errors.push(e.message));
 const wait=ms=>page.waitForTimeout(ms),key=k=>page.keyboard.press(k);
 try{

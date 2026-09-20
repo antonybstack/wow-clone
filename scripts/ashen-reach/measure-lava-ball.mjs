@@ -1,5 +1,6 @@
-import {chromium} from 'playwright';import fs from 'node:fs/promises';
-const b=await chromium.connectOverCDP('http://127.0.0.1:9337'),p=b.contexts()[0].pages().find(p=>p.url().includes('ashen-reach'));
+import {chromium} from 'playwright';
+import { CDP_URL } from '../lib/cdp.mjs';import fs from 'node:fs/promises';
+const b=await chromium.connectOverCDP(CDP_URL),p=b.contexts()[0].pages().find(p=>p.url().includes('ashen-reach'));
 try{
  await p.bringToFront();await p.goto('http://127.0.0.1:5173/ashen-reach.html?play&clean&lavaPerf='+Date.now(),{waitUntil:'commit'});await p.waitForFunction(()=>window.ASHEN?.ready,null,{timeout:60000});await p.waitForTimeout(2000);await p.keyboard.press('Tab');await p.keyboard.press('Digit2');await p.waitForTimeout(7700);
  await p.evaluate(()=>{window.__lavaPerf={idle:[],charge:[],flight:[],impact:[],overlap:[],draws:0,running:true};let last=performance.now();function tick(t){const m=__lavaPerf;if(!m.running)return;const c=ASHEN.combat;m[c.fx.active&&c.lavaFx.active?'overlap':c.lavaFx.stage].push(t-last);last=t;m.draws=Math.max(m.draws,ASHEN.engine.drawCallCount);requestAnimationFrame(tick);}requestAnimationFrame(tick);});

@@ -1,6 +1,7 @@
-import {chromium} from 'playwright';import assert from 'node:assert/strict';import fs from 'node:fs/promises';
+import {chromium} from 'playwright';
+import { CDP_URL } from '../lib/cdp.mjs';import assert from 'node:assert/strict';import fs from 'node:fs/promises';
 const dir=process.env.FIRE_BLAST_CAPTURE_DIR||'ve-capture/ashen-reach/fire-blast-polish';await fs.mkdir(dir,{recursive:true});
-const browser=await chromium.connectOverCDP('http://127.0.0.1:9337');const page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach.html'));const checks=[],errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push({message:m.text(),location:m.location()})});
+const browser=await chromium.connectOverCDP(CDP_URL);const page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach.html'));const checks=[],errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push({message:m.text(),location:m.location()})});
 const check=(name,ok)=>{assert.ok(ok,name);checks.push(name);console.log('PASS',name);};
 try{
  await page.bringToFront();await page.goto('http://127.0.0.1:5173/ashen-reach.html?play&clean',{waitUntil:'commit'});await page.waitForFunction(()=>window.ASHEN?.ready,null,{timeout:60000});await page.waitForTimeout(900);await page.keyboard.press('Tab');await page.waitForTimeout(100);
