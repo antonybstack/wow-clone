@@ -19,7 +19,7 @@ const browser = await chromium.connectOverCDP(CDP_URL);
 const context = browser.contexts()[0];
 let page = context.pages().find((p) => p.url().includes("ashen-reach.html"));
 if (!page) page = await context.newPage();
-await page.setViewportSize({ width: 960, height: 540 });
+await page.setViewportSize({ width: 1280, height: 720 });
 await page.bringToFront();
 await page.goto(url, { waitUntil: "commit" });
 await page.waitForFunction(() => window.ASHEN?.ready, null, { timeout: 90000 });
