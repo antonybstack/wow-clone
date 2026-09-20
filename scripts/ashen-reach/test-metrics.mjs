@@ -58,6 +58,163 @@ test("detectVsyncCap flags a 144 Hz ceiling and a 60 Hz headless ceiling", () =>
   assert.equal(uncapped.capHz, null);
 });
 
+// --- M6b: the three recorded distributions the cap detector must get right ---
+//
+// A monotone ramp raised to a fractional power biases its mass toward the
+// high end while staying sorted; picking the exponent by bisection lets a
+// tiny handful of control points (min, median, p95, p99, worst) reproduce a
+// full 600-sample array whose aggregate stats match a recorded run exactly,
+// without hand-typing 600 numbers. `skewedRamp` is that building block.
+function skewedRamp(count, lo, hi, exponent) {
+  const out = new Array(count);
+  for (let j = 0; j < count; j++) {
+    const frac = count === 1 ? 0 : j / (count - 1);
+    out[j] = lo + (hi - lo) * Math.pow(frac, exponent);
+  }
+  return out;
+}
+
+/**
+ * Real display, visible Chrome, 600 samples (measured by hand on real
+ * hardware for M6b): mean 6.9438 ms, median 6.900, min 5.10, p95 8.40,
+ * p99 8.70, worst 8.80, above8_333 32 - a textbook 144 Hz cap with rAF
+ * jitter either side of the interval. Exponent found by bisection to hit
+ * the recorded mean exactly; every other control point (min/median/p95/
+ * p99/worst/above8_333) is exact by construction.
+ */
+function realDisplay144Hz() {
+  const below = skewedRamp(300, 5.1, 6.898, 1); // indices 0-299, up to just under the median
+  const median = [6.9]; // index 300
+  const mid = skewedRamp(267, 6.902, 8.33, 0.5702529683955218); // indices 301-567, below the 8.333 ms budget line
+  const tail = new Array(32); // indices 568-599: the 32 samples slower than 8.333 ms
+  tail[0] = 8.34;
+  tail[1] = 8.37;
+  tail[2] = 8.4; // p95 (index 570)
+  for (let k = 1; k <= 24; k++) tail[2 + k] = 8.4 + 0.0125 * k; // tail[26] = 8.70 (p99, index 594)
+  for (let k = 1; k <= 5; k++) tail[26 + k] = 8.7 + 0.02 * k; // tail[31] = 8.80 (worst, index 599)
+  return [...below, ...median, ...mid, ...tail];
+}
+
+/** Headless Chrome's default compositor cap: perfectly rigid 60 Hz, every sample exactly 16.667 ms. */
+function headlessDefault60Hz() {
+  return new Array(600).fill(16.667);
+}
+
+/**
+ * Headless Chrome launched `--uncapped`, 600 samples: mean 1.334 ms,
+ * median ~1.3, min ~1.0, p95 1.60, p99 1.70, worst 2.0 - no known display
+ * interval is anywhere near this (240 Hz, the closest, is 4.167 ms).
+ */
+function headlessUncapped() {
+  const below = skewedRamp(300, 1.0, 1.298, 1); // indices 0-299
+  const median = [1.3]; // index 300
+  const mid = skewedRamp(269, 1.302, 1.598, 0.4864308409841289); // indices 301-569
+  const p95 = [1.6]; // index 570
+  const upper = skewedRamp(23, 1.602, 1.698, 1); // indices 571-593
+  const p99 = [1.7]; // index 594
+  const nearWorst = skewedRamp(4, 1.72, 1.98, 1); // indices 595-598
+  const worst = [2.0]; // index 599
+  return [...below, ...median, ...mid, ...p95, ...upper, ...p99, ...nearWorst, ...worst];
+}
+
+test("detectVsyncCap: real 144 Hz distribution reproduces the recorded stats and is flagged capped", () => {
+  const samples = realDisplay144Hz();
+  const s = summarizeDurations(samples);
+  assert.equal(s.samples, 600);
+  assert.ok(Math.abs(s.meanMs - 6.943833) < 1e-5, `meanMs ${s.meanMs}`);
+  assert.equal(Number(s.medianMs.toFixed(3)), 6.9);
+  assert.equal(Number(s.minMs.toFixed(3)), 5.1);
+  assert.equal(Number(s.p95Ms.toFixed(3)), 8.4);
+  assert.equal(Number(s.p99Ms.toFixed(3)), 8.7);
+  assert.equal(Number(s.worstMs.toFixed(3)), 8.8);
+  assert.equal(s.above8_333, 32);
+
+  const cap = detectVsyncCap(samples);
+  assert.equal(cap.vsyncCapped, true, cap.capReason);
+  assert.equal(cap.capHz, 144);
+});
+
+test("detectVsyncCap: headless default 60 Hz distribution is flagged capped", () => {
+  const samples = headlessDefault60Hz();
+  const cap = detectVsyncCap(samples);
+  assert.equal(cap.vsyncCapped, true, cap.capReason);
+  assert.equal(cap.capHz, 60);
+});
+
+test("detectVsyncCap: headless --uncapped distribution reproduces the recorded stats and is not flagged capped", () => {
+  const samples = headlessUncapped();
+  const s = summarizeDurations(samples);
+  assert.equal(s.samples, 600);
+  assert.ok(Math.abs(s.meanMs - 1.334) < 1e-9, `meanMs ${s.meanMs}`);
+  assert.equal(Number(s.medianMs.toFixed(3)), 1.3);
+  assert.equal(Number(s.minMs.toFixed(3)), 1.0);
+  assert.equal(Number(s.p95Ms.toFixed(3)), 1.6);
+  assert.equal(Number(s.p99Ms.toFixed(3)), 1.7);
+  assert.equal(Number(s.worstMs.toFixed(3)), 2.0);
+
+  const cap = detectVsyncCap(samples);
+  assert.equal(cap.vsyncCapped, false, cap.capReason);
+  assert.equal(cap.capHz, null);
+});
+
+// --- M6b follow-up: the spreadSane bound must not be a single-sample veto ---
+//
+// The first fix read the literal min/worst (`a[0]` / `a[a.length - 1]`) as
+// the spread bound. That is a single sample: one GC pause, one shader
+// compile, or one compositor stall anywhere in a 600-sample capture is
+// enough to veto a genuinely capped run - the same single-sample-decides
+// failure as the original defect, just moved from the min side to the max
+// side (a 10.5 ms hitch flips a real 144 Hz run's verdict from capped to
+// not-capped, because worst=10.5 > capMs*1.5=10.417). `detectVsyncCap` now
+// reads the 1st/99th percentile instead, so ~1% of samples (5-6 out of 600)
+// can sit outside the bound on either side without changing the verdict.
+// These fixtures inject that exact failure mode - and its mirror image on
+// the min side, which had the identical weakness - into the recorded 144 Hz
+// distribution and assert the verdict does not move.
+function injectWorstOutliers(samples, hitchValues) {
+  const sorted = [...samples].sort((a, b) => a - b);
+  for (let k = 0; k < hitchValues.length; k++) {
+    sorted[sorted.length - 1 - k] = hitchValues[k];
+  }
+  return sorted;
+}
+
+function injectFastOutliers(samples, fastValues) {
+  const sorted = [...samples].sort((a, b) => a - b);
+  for (let k = 0; k < fastValues.length; k++) {
+    sorted[k] = fastValues[k];
+  }
+  return sorted;
+}
+
+test("detectVsyncCap: one 22 ms hitch frame in the real 144 Hz distribution does not flip the verdict", () => {
+  const samples = injectWorstOutliers(realDisplay144Hz(), [22.0]);
+  const cap = detectVsyncCap(samples);
+  assert.equal(cap.vsyncCapped, true, cap.capReason);
+  assert.equal(cap.capHz, 144);
+});
+
+test("detectVsyncCap: three hitch frames above 15 ms in the real 144 Hz distribution do not flip the verdict", () => {
+  const samples = injectWorstOutliers(realDisplay144Hz(), [22.0, 18.0, 16.0]);
+  const cap = detectVsyncCap(samples);
+  assert.equal(cap.vsyncCapped, true, cap.capReason);
+  assert.equal(cap.capHz, 144);
+});
+
+test("detectVsyncCap: one abnormally fast frame in the real 144 Hz distribution does not flip the verdict (the min side has the same single-sample weakness, fixed the same way)", () => {
+  const samples = injectFastOutliers(realDisplay144Hz(), [0.1]);
+  const cap = detectVsyncCap(samples);
+  assert.equal(cap.vsyncCapped, true, cap.capReason);
+  assert.equal(cap.capHz, 144);
+});
+
+test("detectVsyncCap: an injected hitch does not drag the headless --uncapped distribution into a false positive", () => {
+  const samples = injectWorstOutliers(headlessUncapped(), [22.0, 18.0, 16.0]);
+  const cap = detectVsyncCap(samples);
+  assert.equal(cap.vsyncCapped, false, cap.capReason);
+  assert.equal(cap.capHz, null);
+});
+
 test("summarizeDurations reports p95/p99 and the 8.333 ms budget", () => {
   const values = Array.from({ length: 100 }, (_, i) => 5 + i * 0.05);
   const s = summarizeDurations(values);
