@@ -281,7 +281,8 @@ try {
   );
   check("No runtime errors during the objective", errors.length === 0);
 } finally {
-  // Slot Chrome is owned by the harness; do not close it.
+  // Drop this Playwright session so node can exit. Chrome stays with the harness.
+  await browser.close();
 }
 
 console.log(`OK ${checks.length} objective checks`);
