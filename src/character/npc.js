@@ -219,7 +219,7 @@ export async function attachAnimatedHuman(engine, scene, pose) {
         updateAnimationManager(manager, 0);
     }
 
-    return {
+    const actor = {
         root,
         container,
         meshes,
@@ -259,8 +259,11 @@ export async function attachAnimatedHuman(engine, scene, pose) {
             }
             active = target;
             updateAnimationManager(manager, (step > 0 ? step : 1 / 60) * 1000);
+            actor.silhouette?.sync();
         },
     };
+
+    return actor;
 }
 
 /**
