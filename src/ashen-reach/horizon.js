@@ -1,0 +1,131 @@
+import {rng} from './geometry.js';
+
+/** The Citadel of Vaelmark and the mountain ridgeline behind it — Milestone 3's horizon. Backdrop
+ *  only: not traversable, so it has no colliders and no pathing, and it is deliberately built for
+ *  silhouette rather than geometry density (a handful of towers, a wall, a few lit windows and the
+ *  existing distance fog will read as "a citadel on a crag" far better than close-up ornament that
+ *  nobody will ever walk up to). Everything here sits at z>=170, well past the player's
+ *  boundsRect maxZ:143 in main.js, and reuses the churchyard's own 'Distant black stone' material
+ *  (the same one scene.js's tower() already uses for the three distant bell towers) so the town's
+ *  own background masses and the citadel read as one consistent dark, atmospheric silhouette
+ *  rather than two competing palettes. Lit windows use the warm Hollowmere lantern material so
+ *  they read as firelight against the cool stone and fog, the same convention Hollowmere itself
+ *  uses. No new material/draw call is introduced for the mountains: the second, further ridgeline
+ *  layer reads hazier than the first purely because it is further from the camera and the
+ *  existing per-fragment distance fog (`materials.js`'s FOG term) blends it more toward the fog
+ *  colour — real aerial perspective from a single reused opaque material, not a second blend mode.
+ */
+
+/** A single fortress tower: a stone shaft, four corner corbel-and-cap turrets, a parapet disc and
+ *  a spiked roof finial, in the same primitive vocabulary as scene.js's existing distant tower()
+ *  helper but parameterised by absolute height/width so it scales up to citadel size. `windowRows`
+ *  lit warm window nubs are added down one face so the tower reads as inhabited from the town. */
+function spire(distant,warm,x,z,groundY,H,w,windowRows=2){
+ const g=groundY;
+ distant.box([x,g+H*.40,z],[w,H*.80,w],[1,1,1,0]);
+ for(let k=0;k<4;k++){
+  const a=k*Math.PI/2+Math.PI/4;
+  distant.tube([x+Math.sin(a)*w*.69,g,z+Math.cos(a)*w*.69],[x+Math.sin(a)*w*.63,g+H*.87,z+Math.cos(a)*w*.63],w*.16,w*.10,[.85,.88,.85,0],5);
+  distant.tube([x+Math.sin(a)*w*.63,g+H*.87,z+Math.cos(a)*w*.63],[x+Math.sin(a)*w*.63,g+H*1.13,z+Math.cos(a)*w*.63],w*.27,0,[.6,.68,.62,0],5);
+ }
+ distant.box([x,g+H*.74,z],[w*1.13,H*.03,w*1.13],[.85,.88,.85,0]);
+ distant.tube([x,g+H*.82,z],[x-w*.06,g+H*1.30,z],w*.90,.03,[.85,.88,.85,0],6);
+ for(let j=0;j<windowRows;j++)
+  warm.box([x-w*.10,g+H*(.50+j*.13),z-w*.502],[w*.16,H*.05,.03],[1,1,1,0]);
+}
+
+/** A short crenellated wall span between two points, matching townGate's silhouette (a wall slab
+ *  plus a row of merlon boxes) but without the stair-step ramps a traversable gatehouse needs. */
+function wallSpan(distant,x1,z1,x2,z2,groundY,H,T=1.6){
+ const mx=(x1+x2)/2,mz=(z1+z2)/2,len=Math.hypot(x2-x1,z2-z1),yaw=Math.atan2(x2-x1,z2-z1);
+ const wy=(groundY+groundY)/2;
+ distant.box([mx,wy+H/2,mz],[len,H,T],[.92,.94,.9,0],yaw);
+ const n=Math.max(3,Math.round(len/6));
+ for(let k=0;k<n;k+=2){
+  const t=(k+.5)/n,px=x1+(x2-x1)*t,pz=z1+(z2-z1)*t;
+  distant.box([px,wy+H+.7,pz],[1.7,1.3,T*.8],[.95,.95,.92,0],yaw);
+ }
+}
+
+/** A jagged rock outcrop under the citadel so it reads as sitting on a crag rather than floating:
+ *  a handful of large flat-shaded triangles fanned around the base, cheap (one triangle each). */
+function crag(distant,cx,cz,groundY,baseY,seed){
+ const rand=rng(seed);
+ for(let i=0;i<10;i++){
+  const a=(i/10)*Math.PI*2,r=18+rand()*14;
+  const x0=cx+Math.cos(a)*r,z0=cz+Math.sin(a)*r*.6;
+  const a2=a+Math.PI*2/10*(1+rand()*.3),r2=18+rand()*14;
+  const x1=cx+Math.cos(a2)*r2,z1=cz+Math.sin(a2)*r2*.6;
+  const peakH=groundY+2+rand()*6;
+  const c=[.5+rand()*.08,.5+rand()*.08,.46+rand()*.08,0];
+  distant.tri([x0,baseY,z0],[x1,baseY,z1],[cx+Math.cos((a+a2)/2)*r*.3,peakH,cz+Math.sin((a+a2)/2)*r*.3*.6],undefined,c);
+ }
+}
+
+/** Two layers of a jagged mountain skyline behind the citadel, spanning the full horizon width so
+ *  it reads from any approach angle in town, not just squarely behind the citadel. Each layer is a
+ *  single ribbon of quads (peak-to-peak), no new material: the far layer looks hazier than the
+ *  near one purely from being further away and catching more of the existing distance fog. */
+function ridgeline(distant,cz,groundY,seed,spanX,segments,hMin,hMax,zJitter,tint){
+ const rand=rng(seed);
+ const pts=[];
+ for(let k=0;k<=segments;k++){
+  const x=-spanX+(2*spanX)*(k/segments);
+  const shape=Math.sin(k*.9+seed*.001)*.5+.5; // smoother, less noisy silhouette than pure random
+  const h=hMin+(hMax-hMin)*(shape*.6+rand()*.4);
+  const z=cz+rand()*zJitter;
+  pts.push({x,h,z});
+ }
+ const baseY=groundY-14;
+ for(let k=0;k<segments;k++){
+  const a=pts[k],b=pts[k+1];
+  distant.quad([a.x,baseY,a.z],[b.x,baseY,b.z],[b.x,groundY+b.h,b.z],[a.x,groundY+a.h,a.z],undefined,tint);
+ }
+}
+
+/** Builds the Citadel of Vaelmark on a distant crag and the ridgeline behind it. `distant` is the
+ *  churchyard's shared 'Distant black stone' batch and `warm` is Hollowmere's warm lantern batch;
+ *  `groundHeight` is geometry.js's height(). Returns a rough triangle count for reporting. */
+export function buildHorizon(distant,warm,groundHeight){
+ const before=distant.idx.length+warm.idx.length;
+ // cz=260 (not 185): the first pass put the citadel close enough that its tallest tower (76
+ // units) subtended roughly 90 degrees of view from the north edge of the reachable terrain
+ // (z=143, only ~42 units from the citadel's front wall) — it filled the whole sky as a jagged
+ // black mass rather than reading as a distant fortress. Pushing the whole complex back to
+ // z=260 puts it ~117 units from the north edge, and scaling the towers down a little on top of
+ // that keeps the tallest spire under ~40 degrees of view from there, comfortably "large on the
+ // horizon" instead of "standing at its foot."
+ const cz=260,cx=0;
+ const groundY=groundHeight(cx,cz)+13; // a crag rises above the plain terrain height here
+ const baseY=groundHeight(cx,cz)-1;
+
+ crag(distant,cx,cz,groundY,baseY,44201);
+ crag(distant,cx-6,cz+10,groundY+3,baseY,44299);
+
+ // Curtain wall: a front wall with a gate gap, two side walls sweeping back to the rear corner
+ // towers, roughly enclosing the keep behind it.
+ const wallH=12;
+ wallSpan(distant,-26,cz-8,-5.5,cz-8,groundY,wallH);
+ wallSpan(distant,5.5,cz-8,26,cz-8,groundY,wallH);
+ wallSpan(distant,-26,cz-8,-22,cz+6,groundY,wallH);
+ wallSpan(distant,26,cz-8,22,cz+6,groundY,wallH);
+
+ // Five towers: two flanking the gate, two rear corner towers, one tall central keep set back.
+ spire(distant,warm,-9,cz-8,groundY,32,5.6,2);
+ spire(distant,warm,9,cz-8,groundY,32,5.6,2);
+ spire(distant,warm,-22,cz+6,groundY,38,6.4,3);
+ spire(distant,warm,22,cz+6,groundY,38,6.4,3);
+ spire(distant,warm,0,cz+15,groundY,58,8.6,4);
+
+ // Mountain ridgeline: a nearer, lower layer close behind the citadel and a further, taller layer
+ // behind that, so distance reads as distance through fog density alone — both layers use the
+ // same near-white vertex colour as the citadel walls; it is only the extra camera distance (and
+ // the existing per-fragment fog term) that makes the far layer read hazier than the near one.
+ // Heights and jitter are toned down from the first pass (which used hMax up to 78 with heavy
+ // per-segment z-jitter) so the skyline reads as rolling ridgeline rather than shattered shards.
+ ridgeline(distant,cz+70,groundY,7001,170,20,14,34,18,[.90,.92,.87,0]);
+ ridgeline(distant,cz+150,groundY,7113,200,18,22,50,22,[.90,.92,.87,0]);
+
+ const after=distant.idx.length+warm.idx.length;
+ return {triangles:(after-before)/3};
+}

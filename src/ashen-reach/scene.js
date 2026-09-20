@@ -2,6 +2,7 @@ import {setShaderUniform} from '@babylonjs/lite';
 import {Batch,rng,height,pathX,buildingPads,add,mul,sub,norm,cross,terrainNormal,lanternGlow,groundGlow} from './geometry.js';
 import {surface,sky} from './materials.js';
 import {building,marketStall,well,forgeGlow,crossFinial} from './buildings.js';
+import {buildHorizon} from './horizon.js';
 
 /** A new scene layout. No Moonwell world builders, architecture or vegetation placement. */
 export async function buildChurchyard(engine,scene){
@@ -246,6 +247,12 @@ export async function buildChurchyard(engine,scene){
   bracken(x,z,rn(.42,.95),Math.floor((x+200)*971+z*133));
  }
 
+ // --- Milestone 3, the horizon: the Citadel of Vaelmark on a distant crag beyond z=140, plus the
+ // mountain ridgeline behind it. Backdrop only (no colliders, no pathing), added last and entirely
+ // north of the playable boundsRect (maxZ:143 in main.js), so it cannot move a churchyard or
+ // Hollowmere pixel — it only appends triangles to the existing 'distant'/'warm' batches.
+ const horizonStats=buildHorizon(distant,warm,height);
+
  const meshes=B.map((b,i)=>b.commit(engine,scene,mats[i],lights));colliders.unshift({type:'mesh',mesh:meshes[0]});const clouds=await sky(engine,scene);
- return {meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,stats:{triangles:B.reduce((a,b)=>a+b.idx.length/3,0),drawBatches:B.length},update(t){for(const i of [4,5])setShaderUniform(mats[i],'time',t);clouds.update(t);}};
+ return {meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,stats:{triangles:B.reduce((a,b)=>a+b.idx.length/3,0),drawBatches:B.length,horizonTriangles:horizonStats.triangles},update(t){for(const i of [4,5])setShaderUniform(mats[i],'time',t);clouds.update(t);}};
 }
