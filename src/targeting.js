@@ -14,6 +14,9 @@ function inFront(list, eye, forward) {
         if (!t.hostile) {
             continue;
         }
+        if (t.hp <= 0 && !t.recover) {
+            continue;
+        }
         const dx = t.position.x - eye.x;
         const dz = t.position.z - eye.z;
         const dist = Math.hypot(dx, dz);
