@@ -9,6 +9,7 @@ import { createFireBlastAudio } from "./fire-blast-audio.js";
 import { createFireBlastVfx } from "./fire-blast-vfx.js";
 import { height, pathX } from "./geometry.js";
 import { createLavaBallVfx } from "./lava-ball-vfx.js";
+import { createMinimap } from "./minimap.js";
 import { createProgression, PLAYER_HP_BASE } from "./progression.js";
 import { spellLineOfSight } from "./spell-visibility.js";
 
@@ -118,6 +119,7 @@ export async function createCombat(
   const targetHpEl = lifeHud.querySelector(".target-plate small");
   const deathVeil = lifeHud.querySelector(".death-veil");
   const progression = createProgression();
+  const minimap = createMinimap({ player, enemies });
   hud.soundToggle.onclick = () => {
     audio.setMuted(!audio.muted);
     hud.soundToggle.textContent = audio.muted ? "Muted" : "Sound on";
@@ -309,6 +311,7 @@ export async function createCombat(
     setVisible(v) {
       visible = v;
       hud.setVisible(v);
+      minimap.setVisible(v);
     },
     interrupt(reason = "Cast interrupted") {
       cancel(reason);
@@ -479,6 +482,7 @@ export async function createCombat(
         pending?.key === 2 ? { elapsed: body.getState().castElapsed } : null,
       );
       paintHud();
+      if (visible) minimap.update();
     },
   };
 }
