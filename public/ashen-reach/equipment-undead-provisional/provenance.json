@@ -1,0 +1,86 @@
+{
+  "pipeline": "provisional Undead stand-in pack",
+  "provisional": true,
+  "source": "public/ashen-reach/equipment",
+  "note": "PLACEHOLDER. Human geometry on the 65-joint source bind, hair geoset removed, all textures stripped and materials flattened to a corpse palette so it cannot be mistaken for finished art. It declares the real ashen-undead fit because the point of the milestone is that an Undead request never silently receives a Human fit; the geometry is a stand-in, the fit label is not. Replace wholesale when the authored Undead body lands, then flip UNDEAD_PACK_DIR in src/ashen-reach/main.js.",
+  "regenerate": "node scripts/ashen-reach/prepare-undead-provisional.mjs",
+  "fit": {
+    "body": "ashen-undead",
+    "rig": "source-65",
+    "bind": 1,
+    "shape": 1
+  },
+  "bodyRegions": [
+    "BodyExposed",
+    "BodyUnderTunic",
+    "BodyUnderBoots",
+    "BodyUnderLegs",
+    "BodyWaist",
+    "BodyHands"
+  ],
+  "hashes": {
+    "public/ashen-reach/equipment-undead-provisional/body.glb": "50ae76815bb1f8234db7a8d5d4804a21e8cfd2d8b84a2ed0e1d65cce44a2714c"
+  },
+  "garments": [
+    {
+      "id": "graveweaverHood",
+      "bytes": 298748,
+      "meshes": [
+        "GraveweaverHood"
+      ]
+    },
+    {
+      "id": "graveweaverTop",
+      "bytes": 227432,
+      "meshes": [
+        "GraveweaverTop",
+        "GraveweaverPendant"
+      ]
+    },
+    {
+      "id": "graveweaverSkirt",
+      "bytes": 318680,
+      "meshes": [
+        "GraveweaverSkirt",
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs"
+      ]
+    },
+    {
+      "id": "graveweaverGloves",
+      "bytes": 169868,
+      "meshes": [
+        "GraveweaverGloves"
+      ]
+    },
+    {
+      "id": "wayfarerTunic",
+      "bytes": 238640,
+      "meshes": [
+        "WayfarerTunic"
+      ]
+    },
+    {
+      "id": "pilgrimTunic",
+      "bytes": 546144,
+      "meshes": [
+        "PilgrimTunic"
+      ]
+    },
+    {
+      "id": "wayfarerTrousers",
+      "bytes": 115004,
+      "meshes": [
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs"
+      ]
+    },
+    {
+      "id": "wayfarerBoots",
+      "bytes": 225352,
+      "meshes": [
+        "WayfarerBoots"
+      ]
+    }
+  ]
+}
