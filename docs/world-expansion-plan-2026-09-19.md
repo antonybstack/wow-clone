@@ -627,7 +627,7 @@ removes body and garment together, -34,920 triangles), and `capture-m7b.mjs`'s a
 `visible: m.visible !== false` is vacuous — it reports `true` for a mesh that does not implement
 the flag and can never fail.
 
-Round 2 is in flight on slot 3 with all of the above in the brief.
+Round 2 finished on `m7b` at `2dca2ca`. Reviewed below; not merged.
 
 ## M8a and M8b opened, 2026-09-20
 
@@ -657,3 +657,61 @@ Round 2 is in flight on slot 3 with all of the above in the brief.
   cheerfully report the old world. That trap is named in the brief.
 
 Nothing here is accepted. Three agents are staged for review on branches `m7b`, `m8a`, `m8b`.
+
+## Session resume, 2026-09-20 — Claude 683f01a4 died at the rate limit
+
+Claude Opus session `683f01a4-ce12-459a-ba6f-d3b92c55d687` hit the session limit while
+launching the first M8a/M8b Sonnet agents and watching M7b round 2. Those two agents
+produced no commits (worktrees were still at `2fd1c9a`). M7b round 2 did finish.
+
+Resumed here as orchestrator. `main` had also gained `3955d1f` (undead concept art and
+plan) after the Claude stop; that work is unrelated and was left untouched. `m8a` and
+`m8b` were fast-forwarded to `3955d1f`. Allowed paths were made disjoint so the two
+milestones cannot collide: M8a owns a new `townsfolk.js` plus one call in `main.js`;
+M8b owns the world shader/geometry/buildings files. Both relaunched.
+
+## M7b round 2 reviewed, 2026-09-20 — not merged, leftovers are honest
+
+Branch `m7b` tip `2dca2ca` (five round-2 commits on top of the round-1 merge of `main`
+at `8f5cf29`). Merge-base with current `main` is `2fd1c9a`. Files: `shade-garment.js`
+(new), `enemies.js`, `npc.js` (+the `actor.silhouette?.sync()` hook), plus capture and
+socket-probe scripts. Offline verification on this tree: build clean, character 75/75,
+equipment 27/27, metrics 11/11. Live checks were not re-run from this parent because
+the check scripts call `browser.close()` and slot 3 (5473/9637) is still the visual
+session; the worker's 13/16/8 live counts are therefore still claims.
+
+**What is genuinely better, from the artifacts not the report.** Round 1's front-on
+slab (widest at the waist, taller than the head, no hood-to-shoulder break) is gone.
+Profile at ~2.5 m is a cowled figure: dark hood, a face cavity with the peat-mist
+body inside, a shoulder shelf, a robe that tapers. Cost is unchanged from round 1:
+440 tris / 3 draws per shade, 54 draw calls, 337,378 scene triangles, 191,846 world
+triangles. `npc.js` only syncs a silhouette if the caller attached one; `greeter.json`
+is `hasSilhouette: false`, `meshNames: []`. The peat-mist retint is now declared in
+`enemies.js`. Arms are hidden the same way as the legs (12 unique bones, not 6
+duplicated). Garment-off now unparents and parks at `(0, 80, -80)` instead of toggling
+a `visible` flag that these meshes do not implement.
+
+**Why it is still held.** The worker's own `front-2.5m-on.png` is the face-on view
+(`shadeYaw = π`, camera looking north). The cowl there is still a rounded cap. The
+face cavity that reads in profile does not read from the front; the pale body shows
+as a slit down the cloak, not as a head in a hood. That was the actual send-back, and
+it is only half-fixed. The 8 m shot still has the player in frame and the shade is a
+dark speck. `death.png` does show a crumpled heap (round 1's "standing dead" was a
+framing miss), but the "Dead" nameplate stays on the unmoved capsule about a metre
+from the mesh. Control noise on the worker's bbox is 18.41% because grass/HUD keep
+moving; the 2.5 m garment signal (45.74% / 43.29%) is above that floor, the 8 m
+number (4.64%) is not.
+
+A parent facing probe on slot 3 (`ve-capture/ashen-reach/m7b-r2/parent-facing/`)
+confirms the profile cavity and the closed back of the hood. `park()` comments
+describe a 180° Y so the opening faces character forward, but the code is only
+180° about X (`rotationQuaternion.set(1,0,0,0)`). Whether that is the remaining
+front-cowl miss is unproven; do not "fix" it by guesswork on merge.
+
+**Carried leftovers if this later merges as-is:** rounded front cowl, cloth is one
+dark value from the front, robe is a tapering tube rather than draped folds, death
+nameplate not on the crumpled mesh, Mixamo body still the peat-mist mannequin in the
+cloak opening.
+
+Round 3 is not launched yet. M8a/M8b are in flight; M7b stays on slot 3 for a
+possible front-cowl pass after those return.
