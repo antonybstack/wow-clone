@@ -118,25 +118,31 @@ await page.waitForFunction(
   { timeout: 4000 },
 );
 
-const mid = await page.evaluate(() => {
-  const live = ASHEN.combat.enemies.find(
-    (e) => e.id === "grave-shade-3" && e.hp > 0,
-  );
-  return live
-    ? { x: live.position.x, z: live.position.z }
-    : { x: 2.4, z: 48 };
-});
-await plant(mid.x + 2.4, mid.z + 2.6, Math.atan2(-2.4, -2.6), 0.08, 4.1);
 await page.evaluate(() => {
   const e = ASHEN.combat.enemies.find((x) => x.id === "grave-shade-3");
-  if (e) {
-    e.lockedState = "idle";
-    e.state = "idle";
-    e.idleFor = 99;
-    ASHEN.combat.targeting.select(e.id);
-  }
+  if (!e) return;
+  const x = e.position.x + 2.2;
+  const z = e.position.z + 0.5;
+  const y = ASHEN.world.groundHeight(x, z) + ASHEN.player.capsuleHeight / 2;
+  ASHEN.player.setWorldPos(x, y, z);
+  const yaw = Math.atan2(e.position.x - x, e.position.z - z);
+  ASHEN.player.setFacing(yaw);
+  e.yaw = yaw + Math.PI;
+  e.lockedState = "idle";
+  e.state = "idle";
+  e.idleFor = 99;
+  ASHEN.rig.yaw = yaw - 0.35;
+  ASHEN.rig.pitch = 0.08;
+  ASHEN.rig.distance = ASHEN.rig.distanceTarget = 4.1;
+  ASHEN.combat.targeting.select(e.id);
+  ASHEN.setView("play");
 });
-await page.waitForTimeout(280);
+await page.waitForFunction(
+  () => document.querySelector(".level-up")?.hidden !== false,
+  null,
+  { timeout: 4000 },
+).catch(() => {});
+await page.waitForTimeout(200);
 await page.screenshot({ path: `${dir}/mid-clear.png` });
 await clip(".combat-error", "mid-clear-hud.png", 18);
 console.log("wrote mid-clear.png");
