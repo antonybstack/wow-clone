@@ -81,6 +81,9 @@ try {
   await page.waitForFunction(() => window.ASHEN?.ready, null, {
     timeout: 60000,
   });
+  await page.waitForFunction(() => window.ASHEN?.hostilesReady, null, {
+    timeout: 30000,
+  });
   await page.waitForTimeout(600);
   await page.evaluate(() => ASHEN.setView("play"));
 

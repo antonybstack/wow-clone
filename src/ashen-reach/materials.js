@@ -9,8 +9,14 @@ export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false
  @vertex fn mainVertex(i:VertexInput)->Out{var o:Out;var p=i.position;${wind?'p.x+=sin(shaderUniforms.time*1.3+p.x*.7+p.z*.43)*i.color.a*.08;p.z+=cos(shaderUniforms.time*.8+p.x*.44)*i.color.a*.05;':''}o.position=shaderSystem.worldViewProjection*vec4<f32>(p,1);o.p=(shaderSystem.world*vec4<f32>(p,1)).xyz;o.uv=i.uv;o.color=i.color;o.normal=i.normal;o.lamp=i.uv2.x;return o;}`,
  fragmentSource:`${OUT}
  @fragment fn mainFragment(i:Out)->@location(0) vec4<f32>{
- let uv=(floor(i.uv*${uvScale}*${pixels}.0)+.5)/${pixels}.0;
- var t=textureSample(albedo,albedoSampler,uv);${alpha?'if(t.a<.52 || (t.r>.8 && t.g<.12)){discard;}':''}
+ ${ground?`let uvWarp=i.uv+vec2<f32>(0.08*sin(i.p.z*0.173+i.p.x*0.041),0.08*sin(i.p.x*0.161-i.p.z*0.037));
+ let uvA=(floor(uvWarp*${uvScale}*${pixels}.0)+.5)/${pixels}.0;
+ let uvB=(floor(vec2<f32>(uvWarp.y+0.17,-uvWarp.x+0.29)*${uvScale}*${pixels}.0)+.5)/${pixels}.0;
+ let tileMix=smoothstep(0.38,0.62,0.5+0.5*sin(i.p.x*0.23+1.3)*sin(i.p.z*0.19+0.6));
+ var t=mix(textureSample(albedo,albedoSampler,uvA),textureSample(albedo,albedoSampler,uvB),tileMix);`
+:`let uv=(floor(i.uv*${uvScale}*${pixels}.0)+.5)/${pixels}.0;
+ var t=textureSample(albedo,albedoSampler,uv);`}
+ ${alpha?'if(t.a<.52 || (t.r>.8 && t.g<.12)){discard;}':''}
  ${ground?`let path=abs(i.p.x-sin(i.p.z*.14)*1.25);let pave=textureSample(paving,pavingSampler,(floor(i.p.xz*64.0/2.4)+.5)/64.0);let churchGate=1.0-smoothstep(24.0,28.0,i.p.z);let northGate=smoothstep(40.0,48.0,i.p.z);
  // Below z=40 this is byte-for-byte the original churchyard formula (amountChurch alone, using
  // churchGate which is itself 0 past z=28). amountStreet/amountPlaza are both multiplied by

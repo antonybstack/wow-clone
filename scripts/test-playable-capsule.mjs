@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { DEFAULT_CAPSULE, plantSpawnOnTerrain, resolveCapsule, resolveSpawnCenter } from '../src/player.js';
+import { DEFAULT_CAPSULE, hasGroundSupport, plantSpawnOnTerrain, resolveCapsule, resolveSpawnCenter } from '../src/player.js';
 import { PLAYABLE_BODIES, HUMAN_V1_BODY_ID, ORC_V1_BODY_ID, UNDEAD_V1_BODY_ID, LEGACY_BODY_ID } from '../src/character/runtime/playable-body.js';
 
 test('resolveCapsule uses legacy defaults and rejects invalid sizes', () => {
@@ -58,4 +58,17 @@ test('starter-zone plant sits on terrain even when authored spawn Y is 1', () =>
   const orc = resolveCapsule(PLAYABLE_BODIES[ORC_V1_BODY_ID].capsule);
   const orcPlant = plantSpawnOnTerrain({ x: 0, y: 1, z: -6 }, orc, ground0);
   assert.equal(orcPlant.y, 2.10 * 0.5);
+});
+
+test('hasGroundSupport treats slope-following ascent as grounded', () => {
+  assert.equal(hasGroundSupport(false, 0, false), false);
+  assert.equal(hasGroundSupport(true, 0, false), true);
+  assert.equal(hasGroundSupport(true, 6.6, true), false);
+  assert.equal(hasGroundSupport(true, 6.6, true, 0.76), false);
+  assert.equal(hasGroundSupport(true, -2, true), true);
+  assert.equal(hasGroundSupport(true, 0.16, true), false);
+  assert.equal(hasGroundSupport(true, 0.16, true, 0.16), true);
+  assert.equal(hasGroundSupport(true, 0.76, true, 0.76), true);
+  assert.equal(hasGroundSupport(true, 0.5, false, 0.5), true);
+  assert.equal(hasGroundSupport(false, 0.76, true, 0.76), false);
 });

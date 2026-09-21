@@ -79,8 +79,11 @@ const COYOTE_TIME = 0.085;
 // A supported capsule can have positive Y velocity while climbing a slope or
 // resolving contact penetration. Only an actual jump impulse rejects support
 // during ascent; ordinary uphill motion must remain grounded.
-export function hasGroundSupport(supported, verticalSpeed, jumpInFlight) {
-    return supported && !(jumpInFlight && verticalSpeed > 0.15);
+export function hasGroundSupport(supported, verticalSpeed, jumpInFlight, slopeVy = 0) {
+    if (!supported) return false;
+    if (!jumpInFlight) return true;
+    const leave = Math.max(0.15, (Number.isFinite(slopeVy) ? slopeVy : 0) + 0.15);
+    return verticalSpeed <= leave;
 }
 
 export function surfaceVerticalSpeed(vx, vz, normal, surfaceVelocity) {
@@ -202,6 +205,8 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
     let jumpBuffer = 0;
     let coyote = 0;
     let previousJump = false;
+    let flying = false;
+    let moveScale = 1;
     let counts = { meshCount: 0, boxCount: 0, skipped: 0, animatedCount: 0 };
     const animatedColliders = new Map();
     const identityQuat = { x: 0, y: 0, z: 0, w: 1 };
@@ -236,9 +241,11 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
             state.facing += turn;
             if (!input.lmb) rig.yaw += turn;
         }
-        const speed = input.walk ? WALK_SPEED : input.forward < 0 ? BACK_SPEED : RUN_SPEED;
-        const sin = Math.sin(state.facing);
-        const cos = Math.cos(state.facing);
+        const flySpeed = input.walk ? 6 : 16;
+        const speed = (flying ? flySpeed : input.walk ? WALK_SPEED : input.forward < 0 ? BACK_SPEED : RUN_SPEED) * (flying ? 1 : moveScale);
+        const yaw = flying ? rig.yaw : state.facing;
+        const sin = Math.sin(yaw);
+        const cos = Math.cos(yaw);
         const wx = sin * input.forward + cos * input.strafe;
         const wz = cos * input.forward - sin * input.strafe;
         const length = Math.max(1, Math.hypot(wx, wz));
@@ -260,13 +267,23 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
             supported = oldY <= floor + 0.06 && state.vy <= 0;
             state.support = supported ? CharacterSupportedState.SUPPORTED : CharacterSupportedState.UNSUPPORTED;
         }
-        state.grounded = hasGroundSupport(supported, state.vy, state.jumpInFlight);
+        const slopeVy = surfaceVerticalSpeed(velocity.x, velocity.z,
+            support?.averageSurfaceNormal, support?.averageSurfaceVelocity);
+        if (state.jumpInFlight && state.vy <= 0.15) state.jumpInFlight = false;
+        state.grounded = flying || hasGroundSupport(supported, state.vy, state.jumpInFlight, slopeVy);
         if (state.grounded) state.jumpInFlight = false;
         coyote = state.grounded ? COYOTE_TIME : Math.max(0, coyote - h);
         if (input.jumpPressed || (input.jump && !previousJump)) jumpBuffer = JUMP_BUFFER;
         else jumpBuffer = Math.max(0, jumpBuffer - h);
         previousJump = input.jump;
-        if (jumpBuffer > 0 && coyote > 0) {
+        if (flying) {
+            let lift = 0;
+            if (input.jump) lift += speed;
+            if (input.walk) lift -= speed;
+            state.vy = lift;
+            state.jumpInFlight = false;
+            jumpBuffer = coyote = 0;
+        } else if (jumpBuffer > 0 && coyote > 0) {
             state.vy = JUMP_SPEED;
             state.grounded = false;
             jumpBuffer = coyote = 0;
@@ -281,7 +298,13 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
             state.vy += GRAVITY.y * h;
         }
         velocity.y = state.vy;
-        if (controller) {
+        if (flying) {
+            body.position.x += velocity.x * h;
+            body.position.y += velocity.y * h;
+            body.position.z += velocity.z * h;
+            controller?.setPosition({ x: body.position.x, y: body.position.y, z: body.position.z });
+            controller?.setVelocity({ x: 0, y: 0, z: 0 });
+        } else if (controller) {
             controller.setVelocity(velocity);
             controller.integrate(h, support, GRAVITY);
             const p = controller.getPosition();
@@ -301,7 +324,7 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
         // kinematic/static bodies added after setup. Resolve living enemy capsules in XZ
         // here so movement, jump and the bounds clamp below stay on the same path.
         for (const handle of animatedColliders.values()) {
-            if (!handle.enabled) continue;
+            if (flying || !handle.enabled) continue;
             const other = handle.pose;
             const min = spec.radius * heightScale + handle.radius + 0.12;
             const dx = body.position.x - other.x;
@@ -321,24 +344,26 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
             }
             controller?.setPosition({ x: body.position.x, y: body.position.y, z: body.position.z });
         }
-        if (boundsRect) {
-            const cx = Math.min(Math.max(body.position.x, boundsRect.minX), boundsRect.maxX);
-            const cz = Math.min(Math.max(body.position.z, boundsRect.minZ), boundsRect.maxZ);
-            if (cx !== body.position.x || cz !== body.position.z) {
-                body.position.x = cx;
-                body.position.z = cz;
-                controller?.setPosition(body.position);
-            }
-        } else {
-            const radius = Math.hypot(body.position.x, body.position.z);
-            if (Number.isFinite(boundsRadius) && radius > boundsRadius) {
-                body.position.x *= boundsRadius / radius;
-                body.position.z *= boundsRadius / radius;
-                controller?.setPosition(body.position);
+        if (!flying) {
+            if (boundsRect) {
+                const cx = Math.min(Math.max(body.position.x, boundsRect.minX), boundsRect.maxX);
+                const cz = Math.min(Math.max(body.position.z, boundsRect.minZ), boundsRect.maxZ);
+                if (cx !== body.position.x || cz !== body.position.z) {
+                    body.position.x = cx;
+                    body.position.z = cz;
+                    controller?.setPosition(body.position);
+                }
+            } else {
+                const radius = Math.hypot(body.position.x, body.position.z);
+                if (Number.isFinite(boundsRadius) && radius > boundsRadius) {
+                    body.position.x *= boundsRadius / radius;
+                    body.position.z *= boundsRadius / radius;
+                    controller?.setPosition(body.position);
+                }
             }
         }
         const floor = groundHeight(body.position.x, body.position.z);
-        if (!Number.isFinite(body.position.y) || body.position.y < floor - 4 || body.position.y < -120) {
+        if (!flying && (!Number.isFinite(body.position.y) || body.position.y < floor - 4 || body.position.y < -120)) {
             state.recoveries++;
             teleport(spawn.x, spawn.y, spawn.z);
         }
@@ -348,6 +373,7 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
         state.vx = (body.position.x - oldX) / h;
         state.vz = (body.position.z - oldZ) / h;
         state.speed = Math.hypot(state.vx, state.vz);
+        if (flying) state.facing = rig.yaw;
         body.rotation.y = state.facing;
         rig.update(h, body.position);
         onPose?.(h);
@@ -409,6 +435,9 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
         getFacing: () => state.facing,
         setFacing(yaw) { if (Number.isFinite(yaw)) body.rotation.y = state.facing = yaw; },
         setCastBlend(value) { state.castBlend = value; },
+        setMoveScale(scale) {
+            moveScale = Number.isFinite(scale) ? Math.min(1, Math.max(0.2, scale)) : 1;
+        },
         getGrounded: () => state.grounded,
         getSupport: () => state.support,
         getVy: () => state.vy,
@@ -427,6 +456,16 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
         }),
         groundHeight,
         setWorldPos: teleport,
+        isFlying: () => flying,
+        setFlying(on) {
+            flying = !!on;
+            if (!flying) {
+                const x = body.position.x;
+                const z = body.position.z;
+                const y = groundHeight(x, z) + capsuleHeightOf() * 0.5;
+                teleport(x, y, z);
+            }
+        },
         setOnPose(cb) { onPose = cb; },
         kinematicStep(dt) { if (!usingPhysics) step(dt); },
         addAnimatedCollider({ id, x, y, z, height, radius }) {

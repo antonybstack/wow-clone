@@ -5,7 +5,7 @@
  * RMB held: lock + look + face the camera; A/D become strafe.
  * LMB drag: lock + orbit without turning the body.
  * LMB / RMB click (travel < CLICK_SLOP): select. Tab / Shift+Tab: cycle hostiles.
- * Esc: unlock pointer, then clear target. Both buttons: run forward. Shift walks.
+ * Esc: unlock pointer, then clear target unless #game-menu is visible. Both buttons: run forward. Shift walks.
  * 1/3/4/5: instant void spells (edge). 2: held channel. Tab / Esc unchanged.
  * B bag · C character pane · H help (HUD chrome; look still hits the canvas).
  */
@@ -97,7 +97,7 @@ function isHudWidget(el) {
         return false;
     }
     return !!(/** @type {Element} */ (el).closest(
-        "#hud-paper, #hud-hint, #hud-bag, #hud-bar, #hud-actions, #hud .action-bar, #hud .simple-pane, #hud .help-pane, #hud .hud-actions, #hud button, #hud select, #hud input, #hud textarea, #hud label",
+        "#hud-paper, #hud-hint, #hud-bag, #hud-bar, #hud-actions, #hud .action-bar, #hud .simple-pane, #hud .help-pane, #hud .hud-actions, #hud button, #hud select, #hud input, #hud textarea, #hud label, #game-menu",
     ));
 }
 
@@ -326,6 +326,10 @@ export function initInput(canvas) {
                 return;
             }
             if (performance.now() - unlockedAt < 200) {
+                return;
+            }
+            const menu = document.getElementById("game-menu");
+            if (menu && !menu.hidden) {
                 return;
             }
             if (!event.repeat) {

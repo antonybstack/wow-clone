@@ -143,8 +143,18 @@ function greeterPose(scene) {
  *                            emissive?: number[], directIntensity?: number, environmentIntensity?: number},
  *           hideJoints?: boolean }} pose
  */
+let npcBufferPromise = null;
+export function prefetchNpcBuffer() {
+    npcBufferPromise ??= fetch(BODY_URL).then((response) => {
+        if (!response.ok) throw new Error(`fetch ${BODY_URL} ${response.status}`);
+        return response.arrayBuffer();
+    });
+    return npcBufferPromise;
+}
+
 export async function attachAnimatedHuman(engine, scene, pose) {
-    const container = await loadGltf(engine, BODY_URL);
+    const source = pose.buffer ? pose.buffer.slice(0) : BODY_URL;
+    const container = await loadGltf(engine, source);
     addToScene(scene, container);
     const root = container.entities?.[0];
     if (!root) {

@@ -1,12 +1,13 @@
 import {createStreamedEquipment} from './equipment-stream.js';
 import {BASE_VISIBLE_MESHES, ORC_BASE_VISIBLE_MESHES, UNDEAD_BASE_VISIBLE_MESHES, EQUIPMENT_ITEMS} from './equipment-catalog.js';
 import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT, UNDEAD_EQUIPMENT_FIT} from './equipment-contract.js';
-import {createEngine,createSceneContext,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,startEngine,onBeforeRender,enableBoneControl,enableErrorDecoding,decodeError,setFog,captureScreenshot,setMeshVisible,isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize} from '@babylonjs/lite';
+import {createEngine,createSceneContext,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,startEngine,onBeforeRender,enableBoneControl,enableErrorDecoding,decodeError,setFog,captureScreenshot,setMeshVisible,isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize,setMeshoptBaseUrl} from '@babylonjs/lite';
 import {createAshenMetrics} from './metrics.js';
 import {createEquipment} from './equipment.js';
 import {createArmory} from './armory.js';
 import {loadTrainingDummy,createCombat} from './combat.js';
-import {bindEnemyColliders,loadEnemies} from './enemies.js';
+import {bindEnemyColliders,loadEnemies,CHURCHYARD_ANCHORS,TOWN_ANCHORS} from './enemies.js';
+import {prefetchNpcBuffer} from '../character/npc.js';
 import {createObjective} from './objective.js';
 import {attachTownsfolk} from './townsfolk.js';
 import {buildChurchyard} from './scene.js';
@@ -17,12 +18,34 @@ import {initInput,input} from '../input.js';
 import {setupPlayer,plantSpawnOnTerrain,resolveCapsule} from '../player.js';
 import {attachBody} from '../character/body.js';
 import {resolvePlayableBody} from '../character/runtime/playable-body.js';
+import {attachDevTools,dev} from './dev-tools.js';
+import {createGameMenu} from './menu.js';
 
 enableErrorDecoding();
+setMeshoptBaseUrl('/');
+function fetchBuffer(url){
+ return fetch(url).then((response)=>{
+  if(!response.ok)throw Error(`fetch ${url} ${response.status}`);
+  return response.arrayBuffer();
+ });
+}
 async function main(){
+ const boot=performance.now();
  const canvas=document.getElementById('renderCanvas');
  const params=new URLSearchParams(location.search);
  const pixelRatio=Number(params.get('pixelRatio'));
+ const preloadedEquipment=params.has('preloadedEquipment');
+ const bodyUrl=preloadedEquipment?'/ashen-reach/wanderer-equipment.glb':'/ashen-reach/equipment/body.glb';
+ const bodyBufP=fetchBuffer(bodyUrl);
+ const dummyBufP=fetchBuffer('/ashen-reach/training-dummy.glb');
+ const npcBufP=prefetchNpcBuffer();
+ // Populate HTTP cache while the engine and churchyard come up. createStreamedEquipment
+ // still owns the real load so a nude flash cannot beat clothes onto the actor.
+ if(!preloadedEquipment){
+  for(const url of ['/ashen-reach/equipment/manifest.json','/ashen-reach/equipment/wayfarerTunic.glb','/ashen-reach/equipment/wayfarerTrousers.glb','/ashen-reach/equipment/wayfarerBoots.glb']){
+   fetch(url).catch(()=>{});
+  }
+ }
  const engine=await createEngine(canvas,{msaaSamples:1,maxDevicePixelRatio:pixelRatio>0?pixelRatio:.75});
  const scene=createSceneContext(engine);scene.clearColor={r:FOG[0],g:FOG[1],b:FOG[2],a:1};
  scene.imageProcessing.toneMappingEnabled=false;scene.imageProcessing.exposure=.7;
@@ -35,25 +58,27 @@ async function main(){
  scene.camera=reference;
  const world=await buildChurchyard(engine,scene);initInput(canvas);
  const sourceBody=resolvePlayableBody('?character=human-source');
- const preloadedEquipment=params.has('preloadedEquipment');
- const playable={...sourceBody,assetURL:preloadedEquipment?'/ashen-reach/wanderer-equipment.glb':'/ashen-reach/equipment/body.glb',directionalSpeed:3.5,
+ const playable={...sourceBody,assetURL:bodyUrl,buffer:await bodyBufP,directionalSpeed:3.5,
   // Left-foot low-contact phases measured on this fitted GLB by audit-gaits.mjs.
   gaitContacts:{Walk_Loop:.233333,Sprint_Loop:.175,Jog_Bwd_Loop:.333333,Jog_Left_Loop:.208333,Jog_Right_Loop:.983333},
   landing:{duration:.42,standingWeight:.4,movingWeight:.23},
   castMotion:{lowerClip:'FireBlast_Lower',releaseTime:.28,hand:'mainHand'},
   castMotions:{lava:{upperClip:'LavaBall_Upper',lowerClip:'LavaBall_Lower',releaseTime:1.5,hand:'mainHand'}},
-  clips:{...sourceBody.clips,cast:'FireBlast_Upper',walkBack:'Jog_Bwd_Loop',strafeL:'Jog_Left_Loop',strafeR:'Jog_Right_Loop',turnL:'Turn90_L',turnR:'Turn90_R'}};
- const dummy=await loadTrainingDummy(engine,scene,world);
+  clips:{...sourceBody.clips,cast:'FireBlast_Upper',walkBack:'Jog_Bwd_Loop',strafeL:'Jog_Left_Loop',strafeR:'Jog_Right_Loop',turnL:'Turn90_L',turnR:'Turn90_R',hit:'Hit_Chest'}};
+ const dummy=await loadTrainingDummy(engine,scene,world,await dummyBufP);
  const capsule=resolveCapsule(playable.capsule);
  // The world is a north-running corridor (terrain spans x∈[-90,90], z∈[-95,145]), not a disc, so a
  // circular clamp either clips the reachable town short (small radius) or lets the player walk off
  // the terrain's east/west edges (large radius). A rectangular clamp matches the actual extent.
  const player=await setupPlayer(engine,scene,rig,{spawn:plantSpawnOnTerrain(world.spawn,capsule,height),colliders:world.colliders,groundHeight:height,boundsRect:{minX:-88,maxX:88,minZ:-93,maxZ:143},capsule});
  enableBoneControl();const body=await attachBody(engine,scene,player,player.capsuleHeight,playable);
- const enemies=params.has('noEnemies')?[]:await loadEnemies(engine,scene,world);
- bindEnemyColliders(enemies,player,world);
- await attachTownsfolk(engine,scene,world);
- const combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig,enemies,createObjective());
+ const noEnemies=params.has('noEnemies');
+ const npcBuf=noEnemies?null:await npcBufP;
+ const folkP=attachTownsfolk(engine,scene,world);
+ const churchyardEnemies=noEnemies?[]:await loadEnemies(engine,scene,world,CHURCHYARD_ANCHORS,npcBuf);
+ if(churchyardEnemies.length)bindEnemyColliders(churchyardEnemies,player,world);
+ const combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig,churchyardEnemies,createObjective());
+ await folkP;
  body.bindSocketHost(combat.fx.sockets);
  const EMPTY_LOADOUT={helmet:null,torso:null,legs:null,boots:null,gloves:null,mainHand:null,offHand:null};
  const factoryHand=(id)=>id&&EQUIPMENT_ITEMS[id]?.factory?id:null;
@@ -69,6 +94,13 @@ async function main(){
   orc:{race:'orc',manifestUrl:'/ashen-reach/equipment-orc/manifest.json',baseMeshes:ORC_BASE_VISIBLE_MESHES,fitId:ORC_EQUIPMENT_FIT,bodyUrl:'/ashen-reach/equipment-orc/body.glb'},
   undead:{race:'undead',manifestUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/manifest.json`,baseMeshes:UNDEAD_BASE_VISIBLE_MESHES,fitId:UNDEAD_EQUIPMENT_FIT,bodyUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/body.glb`},
  };
+ const townP=noEnemies?Promise.resolve([]):loadEnemies(engine,scene,world,TOWN_ANCHORS,npcBuf).then((town)=>{
+  for(const enemy of town){
+   combat.registerEnemy(enemy);
+   bindEnemyColliders([enemy],player,world);
+  }
+  return town;
+ }).catch((error)=>{console.error('Town hostiles failed to load',error);return [];});
  let impl=preloadedEquipment?createEquipment(engine,scene,body,combat.fx.sockets):await createStreamedEquipment(engine,scene,body,combat.fx.sockets,packs.human);
  let currentRace='human';
  let parkedGarments=null;
@@ -129,13 +161,18 @@ async function main(){
  };
  const reset=()=>{player.setWorldPos(0,height(0,0)+capsule.height/2,0);player.setFacing(0);rig.yaw=0;rig.pitch=.04;combat.releaseSpirit?.(true);setView('reference');};
  const armory=createArmory({scene,canvas,player,body,combat,equipment,getView:()=>view,setView});
- document.addEventListener('keydown',e=>{if(armory.isOpen)return;if(e.code==='KeyV'){setView(view==='reference'?'play':'reference');}if(e.code==='KeyR'){if(combat.releaseSpirit?.())return;reset();}if(e.code==='KeyH')document.body.classList.toggle('clean');if(['KeyW','KeyA','KeyS','KeyD','Space','Tab','Digit1','Digit2'].includes(e.code))setView('play');});
+ const tools=attachDevTools({params,canvas,camera,player,combat,setView});
+ const menu=createGameMenu({onArmory:()=>armory.open()});
+ document.addEventListener('keydown',e=>{if(armory.isOpen||menu.isOpen)return;if(e.code==='KeyV'){setView(view==='reference'?'play':'reference');}if(e.code==='KeyR'){if(combat.releaseSpirit?.())return;reset();}if(e.code==='KeyH')document.body.classList.toggle('clean');if(['KeyW','KeyA','KeyS','KeyD','Space','Tab','Digit1','Digit2','KeyF'].includes(e.code))setView('play');});
  if(params.has('clean'))document.body.classList.add('clean');
  setView(params.has('play')?'play':'reference');
  const metrics=createAshenMetrics({engine,scene,world,canvas,samples,lite:{isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize}});
  if(params.has('gpuTiming'))metrics.setGpuTiming(true);
- onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);elapsed+=dt;player.kinematicStep(dt);combat.beforeAnimation(dt);body.update(dt);world.update(elapsed);combat.afterAnimation(dt);equipment.update(dt);armory.update(dt);if(elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();metrics.sampleGpu();}});
- globalThis.ASHEN={engine,scene,camera,reference,rig,player,body,world,combat,armory,equipment,input,setView,reset,metrics,capture:()=>captureScreenshot(engine)};
- await registerScene(scene);await startEngine(engine);globalThis.ASHEN.ready=true;document.getElementById('loading').remove();
+ onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);elapsed+=dt;player.kinematicStep(dt);combat.beforeAnimation(dt);tools.tick();body.update(dt);world.update(elapsed);combat.afterAnimation(dt);equipment.update(dt);armory.update(dt);if(elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();metrics.sampleGpu();}});
+ globalThis.ASHEN={engine,scene,camera,reference,rig,player,body,world,combat,armory,equipment,input,setView,reset,metrics,capture:()=>captureScreenshot(engine),hostilesReady:noEnemies,loadMs:0,dev,menu};
+ ASHEN.whenHostiles=townP.then(()=>{ASHEN.hostilesReady=true;});
+ await registerScene(scene);await startEngine(engine);
+ ASHEN.loadMs=performance.now()-boot;
+ ASHEN.ready=true;document.getElementById('loading').remove();
 }
 main().catch(e=>{console.error(e);const el=document.getElementById('error');el.style.display='block';let message=e.stack||String(e);try{message+='\n'+decodeError(e);}catch{}el.textContent=message;});

@@ -24,7 +24,7 @@ export async function buildChurchyard(engine,scene){
   surface(engine,'Dry seed grass','/ashen-reach/foliage-atlas.png',{tint:[.80,.83,.66],light:.91,alpha:true,wind:true,pixels:512,nightGrade:true}),
   surface(engine,'Distant black stone','/tex/rock_wall_08/diff.jpg',{tint:[.095,.115,.10],light:.35,pixels:64}),
   surface(engine,'Candlelight','/tex/rock_wall_08/diff.jpg',{tint:[.95,1.10,.32],light:1,emission:1.4,pixels:16}),
-  surface(engine,'Weathered memorial face','/ashen-reach/grave-face.png',{tint:[1,.98,.88],light:.8,pixels:160}),
+  surface(engine,'Weathered memorial face','/ashen-reach/grave-face.jpg',{tint:[1,.98,.88],light:.8,pixels:160}),
   // Hollowmere's own warm lantern material, separate from the churchyard's Candlelight above: the
   // two original churchyard lamps and the distant bell towers keep using Candlelight untouched, so
   // retinting the town's lamp glow can never move a churchyard pixel.
@@ -33,10 +33,9 @@ export async function buildChurchyard(engine,scene){
  const names=['Earth','Grave stonework','Rotten fence','Bare woodland','Fern beds','Seed grass','Bell towers','Lantern glass','Carved epitaphs','Warm lantern'];
  const B=names.map(n=>new Batch(n));const [earth,stone,wood,bark,fern,grass,distant,glow,carve,warm]=B;
  const colliders=[];
- // A continuous uneven floor, not a tiled slab floating on a flat plane. South of z=40 this is
- // byte-for-byte the original M1/M0 loop (flat per-face normals) so the churchyard is untouched.
- // North of z=40 (Hollowmere and the climb) the same triangles get analytic per-vertex normals
- // instead — zero extra triangles, but the coarse 2m grid no longer reads as flat facets up close.
+ // A continuous uneven floor, not a tiled slab floating on a flat plane. Every earth
+ // quad uses analytic per-vertex normals (zero extra triangles) so the 2 m grid does
+ // not facet. height() and the lamp bake still read world position only.
  //
  // M3b: the 2m grid is also too coarse for the baked per-vertex lamp irradiance (Batch.commit's
  // `uv2`/`lamp` term) to resolve a smooth pool under a street lamp — with only one triangle
@@ -49,28 +48,30 @@ export async function buildChurchyard(engine,scene){
  // subdivided into 0.5m sub-quads so the baked irradiance's curve is resolved by many small,
  // nearly-planar triangles instead of a few large ones. This is an unconditional +/-0-random()-call
  // change: `random()` is still called exactly once per original 2m cell, in the same loop order,
- // whether or not that cell is subdivided, and the extra sub-quad colouring draws from a separate,
- // independent rng (`randomGround`) — so the churchyard's downstream random sequence (tombs,
- // trees, grass, all generated later from the same shared `random`) is bit-identical to before.
+ // whether or not that cell is subdivided. `randomGround()` still runs once per sub-quad so
+ // this stream stays consumed; shade now comes from earthShade(xz). Tombs, trees and grass
+ // later in `random` stay bit-identical to before.
  const randomGround=rng(60013);
  const CORRIDOR_SUB=4; // 2m / 4 = 0.5m sub-quads
  const inLampCorridor=(x,z)=>z>=40&&z<143&&x>=-16&&x<16;
+ // World-space UVs (~4.3 m/cycle, slow warp) and a continuous xz shade so
+ // adjacent 2 m cells no longer share one colour or one UV phase. random()
+ // still runs once per original 2 m cell, same loop order.
+ const earthUV=p=>[p[0]*.23+.09*Math.sin(p[2]*.173+p[0]*.041),p[2]*.23+.09*Math.sin(p[0]*.161-p[2]*.037)];
+ const earthShade=p=>{const n=.5+.28*Math.sin(p[0]*.29+p[2]*.21)+.22*Math.sin(p[0]*.11-p[2]*.17);const s=.94+.06*n;return [s,s,s,0];};
  for(let z=-95;z<145;z+=2)for(let x=-90;x<90;x+=2){
-  const c=.90+random()*.10; // one random() per cell (stream unchanged); tighter range so a zoomed camera is not a chessboard
+  random(); // one random() per cell (stream unchanged)
   if(inLampCorridor(x,z)){
    const step=2/CORRIDOR_SUB;
    for(let sz=0;sz<CORRIDOR_SUB;sz++)for(let sx=0;sx<CORRIDOR_SUB;sx++){
     const x0=x+sx*step,x1=x0+step,z0=z+sz*step,z1=z0+step;
     const v=[[x0,z0],[x1,z0],[x1,z1],[x0,z1]].map(([a,b])=>[a,height(a,b),b]);
-    const sc=.83+randomGround()*.24;
-    const uv=v.map(p=>[p[0]/3,p[2]/3]);
-    earth.quad(...v,uv,[sc,sc,sc,0],v.map(p=>terrainNormal(p[0],p[2])));
+    randomGround();
+    earth.quad(...v,v.map(earthUV),v.map(earthShade),v.map(p=>terrainNormal(p[0],p[2])));
    }
   } else {
    const v=[[x,z],[x+2,z],[x+2,z+2],[x,z+2]].map(([a,b])=>[a,height(a,b),b]);
-   const uv=v.map(p=>[p[0]/3,p[2]/3]);
-   if(z>=40)earth.quad(...v,uv,[c,c,c,0],v.map(p=>terrainNormal(p[0],p[2])));
-   else earth.quad(...v,uv,[c,c,c,0]);
+   earth.quad(...v,v.map(earthUV),v.map(earthShade),v.map(p=>terrainNormal(p[0],p[2])));
   }
  }
 
@@ -127,7 +128,25 @@ export async function buildChurchyard(engine,scene){
  for(let i=0;i<420;i++){const x=r(-22,22),z=r(-10,48);if(Math.abs(x-pathX(z))<2.0&&random()<.97)continue;bracken(x,z,r(.45,1.18),i+490);}
  for(const [x,z,s] of [[-2,-2,1.4],[2.8,-2.1,1.5],[-2.5,4,1.3],[2.7,9,1.1],[-4,12,1.6]])bracken(x,z,s,Math.floor(s*900));
  const rects=[[.008,.006,.492,.498],[.508,.006,.992,.498],[.008,.006,.492,.498],[.508,.006,.992,.498]];
- for(let i=0;i<11000;i++){const x=r(-40,40),z=r(-16,84);if(Math.hypot(x,z)>38&&random()<.72)continue;const path=Math.abs(x-pathX(z));if(path<1.2&&z<26)continue;if(path<1.8&&random()<.7)continue;const y=height(x,z)-.02,sz=r(.52,1.23),w=r(.55,1.12),a=r(0,Math.PI),kind=random()<.6?3:random()<.5?2:0,[u0,v0,u1,v1]=rects[kind];for(let k=0;k<2;k++){const dx=Math.cos(a+k*1.571)*w/2,dz=Math.sin(a+k*1.571)*w/2,c=r(.66,1.10);grass.quad([x-dx,y,z-dz],[x+dx,y,z+dz],[x+dx,y+sz,z+dz],[x-dx,y+sz,z-dz],[[u0,v1],[u1,v1],[u1,v0],[u0,v0]],[[c,c,c,0],[c,c,c,0],[c,c,c,1],[c,c,c,1]],[0,1,0]);}}
+ const smooth=t=>{t=Math.min(1,Math.max(0,t));return t*t*(3-2*t);};
+ const meadow=(x,z)=>{
+  const rad=Math.hypot(x,z);
+  let d=1-.58*smooth((rad-28)/36);
+  d=Math.max(d,.40);
+  d*=.80+.20*(.5+.5*Math.sin(x*.093+z*.077)*Math.cos(x*.061-z*.118));
+  const path=Math.abs(x-pathX(z));
+  if(path<1.15&&z<26)return 0;
+  if(path<2)d*=.22+.78*smooth((path-1.15)/.85);
+  return d;
+ };
+ const GRASS_CELL=.88;
+ for(let z=-14;z<72;z+=GRASS_CELL)for(let x=-46;x<46;x+=GRASS_CELL){
+  const gx=x+random()*GRASS_CELL,gz=z+random()*GRASS_CELL;
+  if(random()>meadow(gx,gz))continue;
+  const rad=Math.hypot(gx,gz),edge=smooth((rad-28)/36);
+  const y=height(gx,gz)-.02,sz=r(.48,1.20)*(1-.32*edge),w=r(.50,1.10)*(1-.18*edge),a=r(0,Math.PI),kind=random()<.6?3:random()<.5?2:0,[u0,v0,u1,v1]=rects[kind];
+  for(let k=0;k<2;k++){const dx=Math.cos(a+k*1.571)*w/2,dz=Math.sin(a+k*1.571)*w/2,c=r(.66,1.10);grass.quad([gx-dx,y,gz-dz],[gx+dx,y,gz+dz],[gx+dx,y+sz,gz+dz],[gx-dx,y+sz,gz-dz],[[u0,v1],[u1,v1],[u1,v0],[u0,v0]],[[c,c,c,0],[c,c,c,0],[c,c,c,1],[c,c,c,1]],[0,1,0]);}
+ }
 
  // --- Milestone 1, north of the churchyard: everything below is new and uses its own rng so the
  // churchyard's random sequence above (tombs/trees/grass colour) is untouched. Placed only at
@@ -327,7 +346,6 @@ export async function buildChurchyard(engine,scene){
  // against it per-candidate so the transition is a gradient, not a cliff. Independent rng from the
  // churchyard's grass/fern sequence above, and entirely north of z=40 so it cannot touch the
  // invariant.
- const smooth=t=>{t=Math.min(1,Math.max(0,t));return t*t*(3-2*t);};
  const ease=(x,lo,hi)=>smooth((x-lo)/(hi-lo));
  function clearance(x,z){
   let c=1;
@@ -367,8 +385,8 @@ export async function buildChurchyard(engine,scene){
  const emitFar=(x,z,step)=>{
   const x1=x+step,z1=z+step;
   const v=[[x,z],[x1,z],[x1,z1],[x,z1]].map(([a,b])=>[a,height(a,b),b]);
-  const c=.79+rf()*.04;
-  farEarth.quad(...v,v.map(p=>[p[0]/3,p[2]/3]),[c,c,c,0],v.map(p=>terrainNormal(p[0],p[2])));
+  rf();
+  farEarth.quad(...v,v.map(earthUV),v.map(earthShade),v.map(p=>terrainNormal(p[0],p[2])));
  };
  const HALO=48,FINE=6,COARSE=16;
  const inHalo=(x,z,s)=>x<90+HALO&&x+s>-90-HALO&&z<145+HALO&&z+s>-95-HALO;
@@ -391,10 +409,11 @@ export async function buildChurchyard(engine,scene){
   farTree(Math.cos(a)*rad,40+Math.sin(a)*rad*1.15,8+rf()*12);
  }
  for(let i=0;i<18;i++)farTree(-80+rf()*160,-140-rf()*90,9+rf()*11);
- // Outer grass so the churchyard does not stop as a cropped circle of dirt tiles.
- for(let i=0;i<700;i++){
+ // Outer grass beyond the jittered meadow box, so the playable rim is not a dirt crop.
+ for(let i=0;i<1400;i++){
   const a=rf()*Math.PI*2,rad=40+rf()*55;
   const x=Math.cos(a)*rad,z=Math.sin(a)*rad*1.15;
+  if(x>-46&&x<46&&z>-14&&z<72)continue;
   if(Math.abs(x)<3.2&&z>-8&&z<50)continue;
   grassBlade(x,z);
  }

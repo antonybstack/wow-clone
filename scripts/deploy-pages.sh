@@ -20,9 +20,11 @@ trap cleanup EXIT
 
 mkdir -p "$STAGE/tex" "$STAGE/ashen-reach" "$STAGE/characters"
 for pack in forrest_ground_01 rock_wall_08 wood_planks_grey bark_brown_02; do
-  rsync -a "public/tex/$pack/" "$STAGE/tex/$pack/"
+  mkdir -p "$STAGE/tex/$pack"
+  cp -a "public/tex/$pack/diff.jpg" "$STAGE/tex/$pack/diff.jpg"
 done
-rsync -a --exclude 'wanderer.glb' public/ashen-reach/ "$STAGE/ashen-reach/"
+rsync -a --exclude 'wanderer.glb' --exclude 'wanderer-equipment.glb' public/ashen-reach/ "$STAGE/ashen-reach/"
+cp -a public/meshopt_decoder.js "$STAGE/meshopt_decoder.js"
 rsync -a public/characters/bodies/ "$STAGE/characters/bodies/"
 rsync -a public/characters/garments/ "$STAGE/characters/garments/"
 rsync -a public/characters/animations/ "$STAGE/characters/animations/"

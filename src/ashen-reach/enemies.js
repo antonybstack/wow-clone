@@ -8,7 +8,7 @@
  * separate street/well box so raising the global zMax cannot walk a grave
  * shade into the tavern.
  */
-import { attachAnimatedHuman } from "../character/npc.js";
+import { attachAnimatedHuman, prefetchNpcBuffer } from "../character/npc.js";
 import { attachShadeSilhouette } from "./shade-garment.js";
 import { height, pathX } from "./geometry.js";
 import { SHADE_XP } from "./progression.js";
@@ -212,10 +212,17 @@ function show(enemy, visible) {
 }
 
 function setYaw(node, yaw) {
+  // Compose uses rotationQuaternion. Writing that first then rotation.y
+  // reconverts through asin (Y in ±90°) and drops a south-facing π yaw to identity.
+  if (typeof node.rotation?.set === "function") {
+    node.rotation.set(0, yaw, 0);
+    return;
+  }
   if (node.rotationQuaternion) {
     node.rotationQuaternion.set(0, Math.sin(yaw / 2), 0, Math.cos(yaw / 2));
+  } else if (node.rotation) {
+    node.rotation.y = yaw;
   }
-  if (node.rotation) node.rotation.y = yaw;
 }
 
 function syncRoot(enemy) {
@@ -270,7 +277,9 @@ function face(enemy, x, z) {
 function driveMotion(enemy, moving) {
   if (enemy.state === "dead") return;
   if (enemy.state === "attack") {
-    enemy.actor?.play("punch", { loop: true, speed: PUNCH_SPEED });
+    const punch = enemy.actor?.clips?.punch;
+    if (punch && enemy.actor.active === punch && punch.isPlaying) return;
+    enemy.actor?.play("idle");
     return;
   }
   if (!moving) {
@@ -369,7 +378,8 @@ function tickEnemy(enemy, dt, ctx) {
     else if (enemy.attackCooldown <= 0 && dist <= ENEMY_TUNING.meleeRange + 0.35) {
       enemy.attackCooldown = ENEMY_TUNING.attackCooldown;
       enemy.hitsLanded = (enemy.hitsLanded || 0) + 1;
-      enemy.actor?.play("punch", { loop: true, speed: PUNCH_SPEED });
+      const clip = enemy.actor?.play("punch", { oneshot: true, loop: false, speed: PUNCH_SPEED });
+      if (clip) clip.currentTime = 0;
       onPlayerHit(ENEMY_TUNING.attackDamage, enemy);
     }
   } else if (enemy.state === "return") {
@@ -417,6 +427,7 @@ async function makeEnemy(engine, scene, world, spec, index) {
     scale: spec.scale,
     tint: spec.tint,
     hideJoints: true,
+    buffer: spec.buffer,
   });
   const garment = attachShadeSilhouette(engine, scene, actor, { scale: spec.scale || 1 });
   actor.anchor = garment.host;
@@ -459,8 +470,12 @@ async function makeEnemy(engine, scene, world, spec, index) {
   return enemy;
 }
 
-export async function loadEnemies(engine, scene, world) {
-  return Promise.all(ANCHORS.map((spec, i) => makeEnemy(engine, scene, world, spec, i)));
+export const CHURCHYARD_ANCHORS = Object.freeze(ANCHORS.filter((spec) => spec.zone !== "town"));
+export const TOWN_ANCHORS = Object.freeze(ANCHORS.filter((spec) => spec.zone === "town"));
+
+export async function loadEnemies(engine, scene, world, specs = ANCHORS, buffer) {
+  const bytes = buffer || await prefetchNpcBuffer();
+  return Promise.all(specs.map((spec, i) => makeEnemy(engine, scene, world, { ...spec, buffer: bytes }, i)));
 }
 
 /** Havok capsules registered after the player world exists, so they can move with the shades. */

@@ -63,6 +63,8 @@ const RUN_RATIO = 1.4;
 const TWO_HAND_SETTLE = 0.25;
 const JUMP_UP = 1.5;
 const ONESHOT_SLACK = 0.03;
+const LAND_RUN_ABORT_SPEED = 3;
+const LAND_TIMEOUT_MS = 450;
 // Lite 1.28's mixer only selects weighted evaluation when a live clip has a
 // non-unit JS weight. Two weight=1 masked clips otherwise reset each other's
 // excluded bones to bind pose. A JS weight just below 1 selects the mixer while
@@ -204,7 +206,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             bootManifest = decorateOutfitManifest(composed.manifest, initialLoadout);
             container = await loadVisual(composed.buffer);
         } else {
-            container = await loadGltf(engine, assetURL);
+            container = await loadGltf(engine, def.buffer || assetURL);
         }
 
         hideCapsule(scene, player);
@@ -255,6 +257,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
     let castLegSuppressed = false;
     let activeCastShot = null, activeCastLower = null, activeCastProfile = def.castMotion;
     let castCancelTime = null;
+    let hitUntil = 0;
     const state = {
         phase: "loco",
         jump: "",
@@ -265,6 +268,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
         locoName: rest?.name || visual.idle?.name || "Idle_Loop",
         backing: false,
         strafing: false,
+        landAt: 0,
     };
 
     const haltList = (list) => {
@@ -360,6 +364,14 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
         state.castingShoot = false;
         state.channeling = false;
         state.channelPhase = "";
+        const running = (motion.speed ?? 0) > LAND_RUN_ABORT_SPEED;
+        if (running) {
+            beginPoseTransition(updateLoco(0, motion), true);
+            halt(jumpLand);
+            state.jump = "";
+            state.phase = "loco";
+            return;
+        }
         if (def.landing && jumpLand) {
             // Retain travel and crossfade out of the air pose, then layer a
             // shallow authored impact over the moving or idle base pose.
@@ -371,6 +383,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             landingPeak = (motion.speed ?? 0) > 0.55 ? def.landing.movingWeight : def.landing.standingWeight;
             state.jump = "land";
             state.phase = "land";
+            state.landAt = performance.now();
         } else if ((motion.speed ?? 0) > 0.55) {
             beginPoseTransition(updateLoco(0, motion), true);
             state.jump = "";
@@ -706,7 +719,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             }
         }
 
-        if (shouldAnimateAirborne(motion)) {
+        if (shouldAnimateAirborne(motion) && !(state.phase === "land" && (motion.airTime ?? 0) < 0.14)) {
             // A jump interrupts a held channel; require a fresh press after it.
             if (hold) state.channelBlocked = true;
             if (state.phase !== "air") {
@@ -725,26 +738,36 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             }
         } else if (grounded && state.phase === "air") {
             beginJumpLand(motion);
-        } else if (grounded && state.phase === "land") {
+        } else if (state.phase === "land") {
+            const running = (motion.speed ?? 0) > LAND_RUN_ABORT_SPEED;
+            const tooLong = performance.now() - (state.landAt || 0) > LAND_TIMEOUT_MS;
             if (def.landing) {
                 landingElapsed += h;
-                if (landingElapsed >= def.landing.duration) {
+                if (landingElapsed >= def.landing.duration || running || tooLong) {
                     halt(jumpLand);
                     state.jump = "";
                     state.phase = "loco";
                 }
             } else {
-             const moving = (motion.speed ?? 0) > 0.55;
-             const tooLong = performance.now() - (state.landAt || 0) > 450;
-             if (!jumpLand || oneshotDone(jumpLand) || moving || tooLong) {
-                beginPoseTransition(updateLoco(0, motion), true);
-                state.jump = "";
-                state.phase = "loco";
-             }
+                const moving = (motion.speed ?? 0) > 0.55;
+                if (!jumpLand || oneshotDone(jumpLand) || moving || running || tooLong) {
+                    beginPoseTransition(updateLoco(0, motion), true);
+                    state.jump = "";
+                    state.phase = "loco";
+                }
             }
         }
 
         if (state.phase === "land" && def.landing) updateLoco(h, motion);
+        const hitClip = visual.hitChest;
+        if (hitClip && hitUntil > 0) {
+            hitUntil -= h;
+            if (hitUntil <= 0 || oneshotDone(hitClip)) {
+                halt(hitClip);
+                hitUntil = 0;
+            }
+        }
+
         if (state.phase === "loco") {
             if (!poseTransition) haltList(jumpClips);
             updateLoco(h, motion);
@@ -754,15 +777,22 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
                     castElapsed += h;
                     const ease = x => { x = Math.max(0, Math.min(1, x)); return x*x*(3-2*x); };
                     if (castCancelTime !== null) castCancelTime = Math.max(0,castCancelTime-h);
-                    const weight = ease(castElapsed/.09) * ease((shot.duration-castElapsed)/.18) * (castCancelTime===null?1:ease(castCancelTime/.16));
+                    const hold = activeCastProfile?.releaseTime ?? shot.duration ?? 0.3;
+                    const weight = ease(castElapsed/.09) * ease((hold-castElapsed)/.18) * (castCancelTime===null?1:ease(castCancelTime/.16));
                     const travelling = (motion.speed ?? 0) > .5 || Math.abs(motion.forward ?? 0) > .01 || Math.abs(motion.strafe ?? 0) > .01 || Math.abs(turnRate) > .15;
                     // Once travel takes over, keep the feet on locomotion through recovery.
                     castLegSuppressed ||= travelling;
                     castLegWeight += ((castLegSuppressed ? 0 : 1)-castLegWeight)*(1-Math.exp(-18*h));
                     setAnimationWeight(shot, weight);
                     setAnimationWeight(activeCastLower, weight*castLegWeight);
-                }
-                if (!shot || oneshotDone(shot) || castCancelTime === 0) {
+                    if (castCancelTime === 0 || castElapsed >= hold) {
+                        halt(shot);
+                        halt(activeCastLower);
+                        halt(spellEnter);
+                        state.castingShoot = false;
+                        setLocoOverlay(false);
+                    }
+                } else if (!shot || oneshotDone(shot) || castCancelTime === 0) {
                     halt(shot);
                     halt(activeCastLower);
                     halt(spellEnter);
@@ -1020,6 +1050,14 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             evaluateHandAnimation(visual, 0);
         },
         cancelCast() { if (def.castMotion && state.castingShoot) castCancelTime = .16; },
+        playHit() {
+            const clip = visual?.hitChest;
+            if (!clip) return false;
+            playOneshot(clip);
+            setAnimationWeight(clip, 0.9);
+            hitUntil = Math.min(0.7, clip.duration || 0.45);
+            return true;
+        },
         setLoadout,
         dispose,
         bindSocketHost(host) {
@@ -1045,7 +1083,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             strafing: state.strafing,
         }),
         getClipLabel: () => {
-            const { jumpStart, jumpLoop, jumpLand, spellShoot, spellEnter, spellLoop, spellExit, idle, walkBack, strafeL, strafeR, twoHand } = visual || {};
+            const { jumpStart, jumpLoop, jumpLand, hitChest, spellShoot, spellEnter, spellLoop, spellExit, idle, walkBack, strafeL, strafeR, twoHand } = visual || {};
             // The carry is an arms-only layer, so it reads as an extra rather
             // than replacing the directional gait name.
             const carry = twoHand?.isPlaying && twoHand.weight > 0 ? twoHand.name : null;
@@ -1060,6 +1098,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
                 return withCarry(jumpLand?.name || "Jump_Land");
             }
             const extras = carry ? [carry] : [];
+            if (hitUntil > 0 && hitChest) extras.push(hitChest.name);
             if (state.castingShoot) {
                 extras.push((activeCastShot?.isPlaying ? activeCastShot : spellShoot?.isPlaying ? spellShoot : spellEnter)?.name || "Spell_Simple_Shoot");
             } else if (state.channeling) {

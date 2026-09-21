@@ -99,4 +99,31 @@ export class Targeting {
         this._cycle = 0;
         return this.current;
     }
+
+    /**
+     * Click a hostile under the cursor (WoW left/right click). `project` maps a
+     * world point to CSS pixels inside the canvas, same space as clickX/clickY.
+     * @param {number} clickX
+     * @param {number} clickY
+     * @param {(position:{x:number,y:number,z:number}, y:number) => [number,number]|null} project
+     */
+    clickAt(clickX, clickY, project) {
+        let best = null;
+        let bestDist = 56;
+        for (const t of this.list) {
+            if (!t || t.hostile === false || t.hidden) continue;
+            if (t.hp <= 0 && !t.recover) continue;
+            const p = project(t.position, (t.position.y ?? 0) + 1.05);
+            if (!p) continue;
+            const dist = Math.hypot(p[0] - clickX, p[1] - clickY);
+            if (dist < bestDist) {
+                bestDist = dist;
+                best = t;
+            }
+        }
+        if (!best) return null;
+        this.current = best;
+        this._cycle = 0;
+        return best;
+    }
 }

@@ -11,6 +11,14 @@ test('different-duration clips share a contact phase for minutes of diagonal tra
   }
  }
 });
+test('airborne presentation ignores slope-supported grounded motion',async()=>{
+ const {shouldAnimateAirborne}=await import('../src/character/runtime/airborne.js');
+ assert.equal(shouldAnimateAirborne({grounded:true,jumpInFlight:false,airTime:0}),false);
+ assert.equal(shouldAnimateAirborne({grounded:true,jumpInFlight:true,airTime:0.2,vy:0.76}),false);
+ assert.equal(shouldAnimateAirborne({grounded:false,jumpInFlight:true,airTime:0}),true);
+ assert.equal(shouldAnimateAirborne({grounded:false,jumpInFlight:false,airTime:0.04}),false);
+ assert.equal(shouldAnimateAirborne({grounded:false,jumpInFlight:false,airTime:0.08}),true);
+});
 test('clock preserves phase at rest and wraps across changing cadences',()=>{
  assert.ok(Math.abs(advanceGaitPhase(.6,.1,0)-.6)<1e-12);
  assert.ok(Math.abs(advanceGaitPhase(.9,.1,2)-.1)<1e-12);

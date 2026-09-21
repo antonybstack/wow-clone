@@ -78,7 +78,7 @@ export function createCombatHud(canvas) {
         levelUp.hidden = true;
       }
     },
-    update(dt, target, spell, camera, lava, pending) {
+    update(dt, target, spell, camera, lava, pending, gcd = 0) {
       messageTime = Math.max(0, messageTime - dt);
       damageTime = Math.max(0, damageTime - dt);
       feedback.style.opacity = messageTime > 0 ? "1" : "0";
@@ -115,7 +115,10 @@ export function createCombatHud(canvas) {
         if (!s) continue;
         button.querySelector("strong").textContent =
           s.cooldown > 0 ? s.cooldown.toFixed(1) : "";
-        button.style.setProperty("--cooldown", s.cooldown / config.cooldown);
+        button.style.setProperty(
+          "--cooldown",
+          Math.max(s.cooldown / config.cooldown, (gcd || 0) / 1.5),
+        );
         button.classList.toggle("unready", s.cooldown > 0);
         button.setAttribute(
           "aria-label",

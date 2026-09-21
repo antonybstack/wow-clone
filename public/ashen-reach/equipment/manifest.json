@@ -5,8 +5,8 @@
   "items": {
     "body": {
       "url": "/ashen-reach/equipment/body.glb",
-      "bytes": 19464680,
-      "sha256": "c6a27e28d4506338d662a73497881298cb3df8f51d28cb8bec4334119777de88",
+      "bytes": 8802564,
+      "sha256": "04c6d818ffd21c9357a1f3315cb1fb2c795dcd49af4a6db9219b08829177c3ed",
       "meshes": [
         "BodyExposed",
         "BodyUnderTunic",
@@ -78,8 +78,8 @@
     },
     "wayfarerTunic": {
       "url": "/ashen-reach/equipment/wayfarerTunic.glb",
-      "bytes": 2087248,
-      "sha256": "ada7dcb8a86cd404752558ce5cd0e35286c89bcf61c05c1372e27dbe0014a772",
+      "bytes": 248324,
+      "sha256": "331edaeb88bb82c374ff6cdffd693c2ea4971e69343fb32753d39896bd5a6582",
       "meshes": [
         "WayfarerTunic"
       ],
@@ -106,8 +106,8 @@
     },
     "wayfarerTrousers": {
       "url": "/ashen-reach/equipment/wayfarerTrousers.glb",
-      "bytes": 1954152,
-      "sha256": "ebab236a9c5d7cf83753a19c31366e538c230be65b42f1ca791746c4f7a18a88",
+      "bytes": 159116,
+      "sha256": "beaac64f9a3a4959aa418bbaf22a3feba24285497d66bc696cd8ce419751983f",
       "meshes": [
         "WayfarerTrousers",
         "WayfarerTrousersCuffs"
@@ -121,8 +121,8 @@
     },
     "wayfarerBoots": {
       "url": "/ashen-reach/equipment/wayfarerBoots.glb",
-      "bytes": 2083168,
-      "sha256": "0a4b2ae9f89c1e0d5ea680e04a0fcf59f5e3e778857c051cc71d9da61b138f50",
+      "bytes": 241452,
+      "sha256": "0f4091ff26d40cf3a3567b8770105f51b79a346caa21ead40577391704f81ae2",
       "meshes": [
         "WayfarerBoots"
       ],

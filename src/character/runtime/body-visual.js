@@ -161,6 +161,8 @@ export function resolveVisualClips(groups, definition) {
     const jumpLand = exact
         ? byName(exact.clips.jumpLand)
         : findGroup(groups, ['Jump_Land', 'jumpland', 'jump_land']);
+    const hitChest = (exact && byName(exact.clips.hit))
+        || findGroup(groups, ['Hit_Chest', 'hit_chest', 'Hit_Head']);
     const spellShoot = exact
         ? byName(exact.clips.cast)
         : findGroup(groups, ['Spell_Simple_Shoot', 'spell_simple_shoot']);
@@ -170,7 +172,7 @@ export function resolveVisualClips(groups, definition) {
     const twoHand = exact ? byName(exact.clips.twoHand) : findGroup(groups, ['Pistol_Idle_Loop', 'Pistol_Aim_Neutral', 'rifle_idle']);
     return {
         idle, idleArmed, walk, walkBack, strafeL, strafeR, turnL, turnR, sprint, samba,
-        jumpStart, jumpLoop, jumpLand, spellShoot, spellLoop, spellEnter, spellExit, twoHand,
+        jumpStart, jumpLoop, jumpLand, hitChest, spellShoot, spellLoop, spellEnter, spellExit, twoHand,
     };
 }
 

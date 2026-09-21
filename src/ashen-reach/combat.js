@@ -1,4 +1,4 @@
-import { addToScene, getContainerMeshes, loadGltf } from "@babylonjs/lite";
+import { addToScene, getContainerMeshes, loadGltf, getViewProjectionMatrix } from "@babylonjs/lite";
 import { FireBlast } from "../spells/fire-blast.js";
 import { LavaBall } from "../spells/lava-ball.js";
 import { Targeting } from "../targeting.js";
@@ -12,13 +12,16 @@ import { createLavaBallVfx } from "./lava-ball-vfx.js";
 import { createMinimap } from "./minimap.js";
 import { createProgression, PLAYER_HP_BASE } from "./progression.js";
 import { spellLineOfSight } from "./spell-visibility.js";
+import { dev } from "./dev-tools.js";
 
 const PLAYER_HP = PLAYER_HP_BASE;
 const REGEN_DELAY = 6;
 const REGEN_PER_SEC = 4;
+const GCD = 1.5;
+const CAST_MOVE_SCALE = 0.4;
 
-export async function loadTrainingDummy(engine, scene, world) {
-  const asset = await loadGltf(engine, "/ashen-reach/training-dummy.glb");
+export async function loadTrainingDummy(engine, scene, world, buffer) {
+  const asset = await loadGltf(engine, buffer || "/ashen-reach/training-dummy.glb");
   const position = { x: pathX(8), y: height(pathX(8), 8), z: 8 };
   for (const root of asset.entities)
     root.position.set(position.x, position.y, position.z);
@@ -105,7 +108,8 @@ export async function createCombat(
   objective = null,
 ) {
   const targeting = new Targeting();
-  targeting.list = [dummy, ...enemies];
+  const hostiles = [dummy, ...enemies];
+  targeting.list = hostiles;
   const spell = new FireBlast(),
     fx = await createFireBlastVfx(engine, scene, player, body, world),
     hud = createCombatHud(canvas);
@@ -142,7 +146,8 @@ export async function createCombat(
   let hitAge = 10,
     hitScale = 1,
     hitDirection = { x: 0, z: 1 },
-    hitDummy = false;
+    hitDummy = false,
+    gcd = 0;
   const animationLab = new URLSearchParams(location.search).has("animationLab");
   let visible = false,
     pending = null;
@@ -261,6 +266,7 @@ export async function createCombat(
     };
   const cancel = (reason) => {
     if (!pending) return;
+    player.setMoveScale?.(1);
     if (pending.key === 2) {
       lavaFx.cancel();
       audio.lavaCancel();
@@ -271,14 +277,16 @@ export async function createCombat(
     hud.message(reason);
   };
   const onPlayerHit = (amount) => {
-    if (life.dead) return;
+    if (life.dead || dev.god) return;
     life.hp = Math.max(0, life.hp - amount);
     syncPlayerHp();
     markCombat();
+    body.playHit?.();
     if (!life.hp) die();
   };
   const tickLife = (dt) => {
     life.time += dt;
+    gcd = Math.max(0, gcd - dt);
     const fighting = enemies.some(
       (e) => e.state === "chase" || e.state === "attack",
     );
@@ -287,11 +295,15 @@ export async function createCombat(
       setInputEnabled(false);
       return;
     }
-    if (!life.inCombat && life.hp < life.hpMax) {
+    if (dev.god) {
+      life.hp = life.hpMax;
+      progression.fillMana();
+      syncPlayerHp();
+    } else if (!life.inCombat && life.hp < life.hpMax) {
       life.hp = Math.min(life.hpMax, life.hp + REGEN_PER_SEC * dt);
       syncPlayerHp();
     }
-    progression.regenMana(dt, life.inCombat, REGEN_PER_SEC);
+    if (!dev.god) progression.regenMana(dt, life.inCombat, REGEN_PER_SEC);
   };
   const paintHud = () => {
     const ratio = life.hpMax ? life.hp / life.hpMax : 0;
@@ -318,6 +330,11 @@ export async function createCombat(
     lava,
     dummy,
     enemies,
+    registerEnemy(enemy) {
+      if (!enemy || enemies.includes(enemy)) return;
+      enemies.push(enemy);
+      hostiles.push(enemy);
+    },
     life,
     fx,
     lavaFx,
@@ -333,9 +350,12 @@ export async function createCombat(
     get pendingSpell() {
       return pending?.key || null;
     },
+    hud,
     snapshot: () => ({
       life: { ...life },
       progress: progression.snapshot(),
+      dev: { god: dev.god, flying: dev.flying },
+      gcd,
       enemies: enemySnapshot(enemies),
       dummy: { hp: dummy.hp, hpMax: dummy.hpMax },
       target: targeting.current?.id || null,
@@ -376,13 +396,6 @@ export async function createCombat(
       });
       if (offered?.completed) settleKill({ gained: 0, leveled: false }, true);
       else if (offered?.message) hud.message(offered.message);
-      if (
-        pending?.key === 2 &&
-        ((player.getMotion()?.speed ?? 0) > 0.5 ||
-          input.forward ||
-          input.strafe)
-      )
-        cancel("Movement interrupted Lava Ball");
       if (life.dead) {
         input.spellPressed = 0;
         input.tabPressed = false;
@@ -403,6 +416,35 @@ export async function createCombat(
         input.tabPressed = false;
         input.tabBack = false;
       }
+      if (input.clicked && !dev.flying) {
+        const cx = input.clickX;
+        const cy = input.clickY;
+        input.clicked = false;
+        const rect = canvas.getBoundingClientRect();
+        const x = cx - rect.left;
+        const y = cy - rect.top;
+        const picked = targeting.clickAt(x, y, (position, py) => {
+          const vp = getViewProjectionMatrix(
+            scene.camera,
+            canvas.clientWidth / canvas.clientHeight,
+          );
+          const w =
+            vp[3] * position.x + vp[7] * py + vp[11] * position.z + vp[15];
+          if (w <= 0) return null;
+          return [
+            (((vp[0] * position.x + vp[4] * py + vp[8] * position.z + vp[12]) / w) * 0.5 + 0.5) *
+              canvas.clientWidth,
+            (0.5 - ((vp[1] * position.x + vp[5] * py + vp[9] * position.z + vp[13]) / w) * 0.5) *
+              canvas.clientHeight,
+          ];
+        });
+        if (!picked) {
+          targeting.click(player.body.position, {
+            x: Math.sin(rig.yaw),
+            z: Math.cos(rig.yaw),
+          });
+        }
+      }
       const key = input.spellPressed;
       input.spellPressed = 0;
       // Unimplemented slots remain animation diagnostics only under ?animationLab.
@@ -414,25 +456,25 @@ export async function createCombat(
       input.castInstant = false;
       if (!visible) return;
       if (pending) {
+        if (pending.key === key) {
+          cancel("Cast cancelled");
+          player.setMoveScale?.(1);
+          return;
+        }
         hud.message("Already casting");
+        return;
+      }
+      if (gcd > 0.04) {
+        hud.message("Global cooldown");
         return;
       }
       const ability = key === 2 ? lava : spell,
         target = targeting.current,
         reason =
-          ability.validate(castArgs(target)) || progression.refuseMana(key);
+          ability.validate(castArgs(target)) || (dev.god ? "" : progression.refuseMana(key));
       if (reason) {
         ability.lastResult = reason;
         hud.message(reason);
-        return;
-      }
-      if (
-        key === 2 &&
-        ((player.getMotion()?.speed ?? 0) > 0.5 ||
-          input.forward ||
-          input.strafe)
-      ) {
-        hud.message("Stand still to cast Lava Ball");
         return;
       }
       if (body.getState().castingShoot) {
@@ -445,6 +487,8 @@ export async function createCombat(
       input.castInstant = true;
       input.castSpell = key === 2 ? "lava" : null;
       pending = { target, key, ability };
+      gcd = GCD;
+      player.setMoveScale?.(CAST_MOVE_SCALE);
       ability.lastResult = "windup";
       hud.message("");
       if (key === 2) {
@@ -455,22 +499,18 @@ export async function createCombat(
     afterAnimation(dt) {
       if (pending) {
         const state = body.getState();
-        if (
-          !state.castingShoot ||
-          targeting.current !== pending.target ||
-          !visible ||
-          life.dead
-        )
+        if (life.dead || !visible || targeting.current !== pending.target)
           cancel(life.dead ? "You have died" : "Cast interrupted");
         else if (state.castElapsed >= state.castReleaseTime) {
           const request = pending;
           pending = null;
+          player.setMoveScale?.(1);
           if (request.key === 2) {
             const p = lavaFx.origin(),
               origin = { x: p[0], y: p[1], z: p[2] },
               result = lava.release(castArgs(request.target), origin);
             if (result.ok) {
-              progression.spendMana(2);
+              if (!dev.god) progression.spendMana(2);
               markCombat();
               lavaFx.launch(origin);
               audio.lavaRelease();
@@ -483,13 +523,15 @@ export async function createCombat(
           } else {
             const result = spell.cast(castArgs(request.target));
             if (result.ok) {
-              progression.spendMana(1);
+              if (!dev.god) progression.spendMana(1);
               impact(result);
             } else {
               fx.cancelWindup();
               hud.message(result.reason);
             }
           }
+        } else if (!state.castingShoot) {
+          cancel("Cast interrupted");
         }
       }
       const collision = lava.advance(dt, player.raycast);
@@ -518,6 +560,7 @@ export async function createCombat(
         scene.camera,
         lava,
         pending?.key === 2 ? { elapsed: body.getState().castElapsed } : null,
+        gcd,
       );
       paintHud();
       if (visible) minimap.update();

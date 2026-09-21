@@ -96,8 +96,11 @@ export async function createStreamedEquipment(engine,scene,body,sockets,options=
                 assertAssetFit(asset,item,race);
                 const response=await fetch(asset.url,{signal});if(!response.ok)throw Error(`Could not load the ${race} ${item.name} from ${asset.url}`);
                 const bytes=await response.arrayBuffer();if(bytes.byteLength!==asset.bytes)throw Error(`The ${race} ${item.name} is ${bytes.byteLength} bytes, not the ${asset.bytes} its manifest declares`);
-                const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),n=>n.toString(16).padStart(2,'0')).join('');
-                if(digest!==asset.sha256)throw Error(`The ${race} ${item.name} at ${asset.url} does not match its manifest hash`);
+                const verify=import.meta.env?.DEV!==false||new URLSearchParams(globalThis.location?.search||'').has('verifyAssets');
+                if(verify){
+                 const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),n=>n.toString(16).padStart(2,'0')).join('');
+                 if(digest!==asset.sha256)throw Error(`The ${race} ${item.name} at ${asset.url} does not match its manifest hash`);
+                }
                 signal.throwIfAborted();container=await loadGltf(engine,bytes);root=container.entities[0];meshes=getContainerMeshes(container);signal.throwIfAborted();
                 for(const part of item.parts)if(!meshes.some(m=>m.name===part.mesh))throw Error('Missing garment part: '+part.mesh);
                 for(const mesh of meshes){
