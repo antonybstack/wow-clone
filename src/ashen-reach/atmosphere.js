@@ -134,6 +134,40 @@ export const FOG_KNEE=0.50,FOG_FAR=0.74;
  *  The sun glow scales with it rather than being exempt: it is the same haze doing the
  *  scattering, and exempting it would just move the veil from one term to the other. */
 export const HAZE_FAR=0.55,HAZE_D0=110.0,HAZE_D1=300.0;
+/*  How far the deep field's haze is allowed to thin and thicken across itself.
+ *
+ *  The far band is a silhouette with no internal form, and the obvious fix -- give the
+ *  distant stone a stronger value so its own shading registers -- does not work. Two
+ *  measurements killed it. Retinting the stone cool moved the mountain patch on
+ *  03-lych-gate by 0.0 luminance and 0.3 in R-B. Raising its light from .35 to .95, a
+ *  2.7x increase, moved the mean by +0.9 and lowered the internal spread slightly. The
+ *  arithmetic explains both: the stone holds 48% of the pixel by weight at 260 m, but
+ *  its shaded value spans 0.013 to 0.042 against an inscatter near 0.30, so it is only
+ *  about 13% of the pixel by value. Nothing done to a near-black material can matter
+ *  when seven eighths of what you see is air.
+ *
+ *  So the form has to be in the air. These are haze banks: two crossed low-frequency
+ *  waves, the dominant one stratified in world Y so the bands lie roughly horizontal
+ *  the way haze in a valley actually does, its height wobbling with x so it is not a
+ *  set of dead-flat lines, plus a slower lateral term for patchiness. A ridge behind a
+ *  thick bank recedes; the one beside it behind thin air steps forward. That is the
+ *  depth cue the range has never had.
+ *
+ *  Amplitude is modest on purpose. Inscatter is seven eighths of a far pixel, so 0.22
+ *  on the haze is roughly a fifth of the pixel -- already a strong effect, and anything
+ *  near 0.4 would read as rolling fog rather than as still evening air.
+ *
+ *  They do not drift, and that is a constraint rather than a choice. aerial() is inlined
+ *  into every shader that needs fog, including 'Lamp light shafts', which declares no
+ *  time uniform at all -- reaching for shaderUniforms.time here compiles fine in the
+ *  surface materials and fails in that one, and because Ashen Reach submits the world in
+ *  a single render bundle, one invalid pipeline blacks out the entire scene. Static banks
+ *  are also the better reading for still evening air: they are locked to the terrain, so
+ *  the same ridge is veiled the same way every time you come back to it.
+ *
+ *  Gated by the same 110-300 m ramp as HAZE_FAR, so the near and mid field cannot see
+ *  it at all. */
+export const HAZE_BANK=0.22;
 export const FOG_NEAR=7.0,FOG_FULL=30.0;
 
 /** A second, much shallower haze layer that does the job the 22 m one only gestures
@@ -240,7 +274,14 @@ fn aerial(c:vec3<f32>,wp:vec3<f32>,cam:vec3<f32>)->vec3<f32>{
  // reappearing locally in the sun direction. Narrower keeps the glow where the light
  // actually is and gives the silhouettes their value back.
  // Finite-path inscatter, see HAZE_FAR above. Near and mid field pass through at 1.0.
- let hz=mix(1.0,${HAZE_FAR.toFixed(3)},smoothstep(${HAZE_D0.toFixed(1)},${HAZE_D1.toFixed(1)},d));
+ let far=smoothstep(${HAZE_D0.toFixed(1)},${HAZE_D1.toFixed(1)},d);
+ var hz=mix(1.0,${HAZE_FAR.toFixed(3)},far);
+ // Haze banks, see HAZE_BANK above. far gates them out of the near and mid field.
+ let bx=wp.x*0.0090;
+ let bz=wp.z*0.0072;
+ let strata=sin(wp.y*0.042+sin(bx*1.7)*0.9);
+ let lateral=sin(bx*2.1+bz*1.3);
+ hz=hz*(1.0+${HAZE_BANK.toFixed(3)}*(strata*0.72+lateral*0.42)*far);
  let inscatter=(skyColor(dir)+SUN_COLOR*pow(max(dot(dir,SUN_DIR),0.0),15.0)*0.30)*hz;
  var out=mix(c,inscatter,fog);
  // Ground mist. Same analytic integral, a quarter of the scale height, so it fills
