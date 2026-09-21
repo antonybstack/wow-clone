@@ -133,9 +133,11 @@ async function main(){
    try{
     if(pack.bodyUrl)await body.swapSource(pack.bodyUrl);
     else body.restoreSource();
-    const bootLoadout=pack.garments===false || race==='undead'
+    const bootLoadout=pack.garments===false
      ?{...EMPTY_LOADOUT,mainHand:factoryHand(loadout.mainHand),offHand:factoryHand(loadout.offHand)}
-     :(parkedGarments||loadout);
+     : race==='undead'
+      ?{...EMPTY_LOADOUT,helmet:'graveweaverHood',torso:'graveweaverTop',mainHand:factoryHand(loadout.mainHand),offHand:factoryHand(loadout.offHand)}
+      :(parkedGarments||loadout);
     if(pack.garments===false)parkedGarments=loadout;
     else parkedGarments=null;
     const next=await createStreamedEquipment(engine,scene,body,combat.fx.sockets,{...pack,bootLoadout});

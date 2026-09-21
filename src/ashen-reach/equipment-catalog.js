@@ -65,6 +65,7 @@ export const EQUIPMENT_PRESETS={
     pilgrim:{name:'Pilgrim',loadout:outfit({torso:'pilgrimTunic',legs:'wayfarerTrousers',boots:'wayfarerBoots'})},
     graveweaver:{name:'Graveweaver',loadout:outfit({helmet:'graveweaverHood',torso:'graveweaverTop',legs:'graveweaverSkirt',boots:'wayfarerBoots',gloves:'graveweaverGloves',mainHand:'graveweaverStaff',offHand:'graveweaverBook'})},
     warden:{name:'Warden',loadout:outfit({helmet:'graveweaverHood',torso:'graveweaverTop',legs:'graveweaverSkirt',boots:'wayfarerBoots',gloves:'graveweaverGloves',mainHand:'graveweaverGreatstaff',offHand:null})},
+    revenant:{name:'Revenant',loadout:outfit({helmet:'graveweaverHood',torso:'graveweaverTop'})},
 };
 export function validateLoadout(loadout){
     validateEquipmentSelection(loadout,EQUIPMENT_ITEMS,EQUIPMENT_SLOTS);
