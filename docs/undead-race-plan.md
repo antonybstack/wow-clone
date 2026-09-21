@@ -81,7 +81,7 @@ Taken over by hand from the agent that built `undead-source-v1`. Worktree
 | Black-void neck | Same encoding bug (0.176 → byte 45), plus a colour that was a hole rather than a shadow even corrected. | Fixed: encode + neck 0.176 → 0.093 (byte 86). |
 | Garbled dark bands across the upper back | Rib banding had no normal gate, so it wrapped right around the torso; at 62 rad/m against ~2 cm vertex spacing it also aliased into chevrons. | Fixed: gated on surface normal, 46 rad/m. Gone in `fix3/…-back-…png`. |
 | Eyes white, not amber | Exporter writes `emissiveFactor [1, 0.457, 0.065]` with `KHR_materials_emissive_strength`, which Lite honours; at strength 7.5 both R and G clipped past 1.0. | Fixed: redder AMBER, strength 1.1. `fix3` reads orange. |
-| Smooth-egg cranium | The normal bake was a no-op by construction — the "high-poly" cage was a copy of the same surfaces in the same place, so it exported a uniform (128,128,255) image at 15,960 bytes. | Normal bake dropped (there is no higher-resolution source to bake from); the cranium is **still a smooth egg**. Carried. |
+| Smooth-egg cranium | The normal bake was a no-op by construction — the "high-poly" cage was a copy of the same surfaces in the same place, so it exported a uniform (128,128,255) image at 15,960 bytes. | Normal bake dropped (there is no higher-resolution source to bake from). Curvature shading tried next (`adbbf75`) and it does not reach the dome either — see below. The cranium is **still a smooth egg**. Carried. |
 | Feet not touching the ground | Not root height. `sweep-foot-gap.mjs` across Idle_Loop: Undead lowest vertex 0.0142–0.0178 m, Orc 0.0231–0.0287 m, same curve shape, never crossing — the Orc floats *more* and reads planted. It was silhouette: a 52 mm heel stub meant the leg met the floor at the back edge of a forward-pointing paddle. | Fixed: heel, arch, ball and toe lofted as one continuous sole. Lengthening the stub first (`fix2`) produced a hard T with a notch and was reverted. |
 | Floor reflection shows only the head | **Does not reproduce.** Reported off a downscaled thumbnail. On the full-resolution front still the bottom 500 rows span 7 code values of luma (174–181), maximum channel spread 27 at the vignetted left edge, zero warm-saturated pixels. There is no reflection system in the preview studio — `src/character/preview/studio.js` builds a roughness-0.74 PBR disc and nothing else. | Withdrawn. |
 
@@ -99,11 +99,42 @@ length and logs `min/mean/max` so it cannot silently go flat again.
 ### Carried defects
 
 - Cranium has no relief: the scan's detail is all in the face, the dome is bare.
-- Skull/neck colour boundary reads as a painted line, not a transition.
+  **Tried and ruled out for derived signals, not untried.** AO returns 1 on a convex
+  dome; the normal bake had no higher-resolution source; and the curvature term added
+  in `adbbf75` moves the dome by a mean of 0.86 of 255 against 2.82 over the skull as
+  a whole, with what little it gets confined to the lower edge where the dome meets
+  the temporal region. More gain will not help — there is no concavity up there to
+  find. This needs authored geometry (parietal and occipital planes, a sagittal ridge,
+  suture lines) or an authored gradient.
+- Skull/neck colour boundary reads as a painted line, not a transition. Most
+  prominent defect on the gameplay face still: the neck reads as a dark collar
+  under a bright skull.
 - Shoulder mass overhangs the torso as a soft shelf; the arm/torso junction is mushy.
 - Rib banding is effectively invisible at the new palette's compressed range.
 - AO contributes very little — the surfaces are smooth convex lofts with little to occlude.
 - The motion audition across the M4 state set has not been done; only `Idle_Loop` has been reviewed.
 - Feet read planted but thin, with no malleolus at the ankle.
+
+### Curvature shading pass (2026-09-20, commit `adbbf75`)
+
+`paint()` now derives a per-vertex cavity term from the edge neighbourhood and
+darkens towards `BONE_DEEP` / `FLESH_DARK` where it is positive. The amplified
+`fix3`→`fix5` difference is confined to anatomically correct places: orbit rims,
+nasal aperture margins, maxillary and temporal fossae, under the zygomatic
+arches, tooth gaps.
+
+| Region (gameplay face still, 1280×1600) | mean abs diff | max | px > 4 |
+| --- | --- | --- | --- |
+| Skull, x 520–730 y 690–1010 | 2.82 | 61 | 10762 / 67200 (16.0%) |
+| Dome only, above the orbits | 0.86 | 61 | — |
+
+Doubling `CAVITY_GAIN` 6 → 12 doubled the skull mean 1.43 → 2.82. That is the
+control: a live-scene pixel diff on this project otherwise sits inside a
+2.751-mean noise floor and carries no signal, so an effect that tracks the gain
+linearly is the term and not the animation.
+
+Kept on its own merits. It is a refinement of the close read, not a silhouette
+fix — at the gameplay camera the head is about 250 px tall and the change is
+subtle. It does not resolve the cranium, for the reason recorded above.
 
 Nothing here is accepted. The branch is staged for review.
