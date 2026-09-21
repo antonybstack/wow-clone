@@ -1,22 +1,23 @@
 {
     "schema": 1,
     "fitId": "ashen-undead",
-    "sourceSha256": "cce4c4ad83dbfad2b26f71858f8517298c89c7f3f6a7a4767aa4d2762d5c3f99",
+    "sourceSha256": "cf5dc0c47cd7b3c126797436cca482918670fc609ed2d37dacff29be99e244d7",
     "profileId": "undead-tripo-v1",
     "garments": true,
     "items": {
         "body": {
             "url": "/ashen-reach/equipment-undead/body.glb",
-            "bytes": 8062292,
-            "sha256": "cce4c4ad83dbfad2b26f71858f8517298c89c7f3f6a7a4767aa4d2762d5c3f99",
+            "bytes": 8073348,
+            "sha256": "cf5dc0c47cd7b3c126797436cca482918670fc609ed2d37dacff29be99e244d7",
             "meshes": [
-                "UndeadV1Body"
+                "UndeadV1Body",
+                "UndeadV1Eyes"
             ]
         },
         "graveweaverHood": {
             "url": "/ashen-reach/equipment-undead/graveweaverHood.glb",
-            "bytes": 414476,
-            "sha256": "4e5366a9393f80f402d06861a845c0f6b2879c72b53a86750e8740aeb499cc4e",
+            "bytes": 414472,
+            "sha256": "07b688177f329cb1c6173659b2178bf687d78800f5ad84ac517bcf48d0962a6a",
             "meshes": [
                 "GraveweaverHood"
             ],

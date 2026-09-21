@@ -57,7 +57,7 @@ const CLEARANCE = {
     wayfarerTrousers: 0.012,
     graveweaverTop: 0.014,
     graveweaverSkirt: 0.012,
-    graveweaverHood: 0.018,
+    graveweaverHood: 0.010,
 };
 const ITEMS = Object.keys(CLEARANCE);
 

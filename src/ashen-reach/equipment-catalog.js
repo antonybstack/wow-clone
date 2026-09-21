@@ -12,7 +12,7 @@ export const ORC_BASE_VISIBLE_MESHES=[...BODY_REGIONS,'OrcV1Hair','OrcV1Brows','
  * leave them permanently visible. createStreamedEquipment names any region this list asks for
  * and the body does not provide, so that omission fails loudly rather than drawing wrong.
  */
-export const UNDEAD_BASE_VISIBLE_MESHES=['UndeadV1Body'];
+export const UNDEAD_BASE_VISIBLE_MESHES=['UndeadV1Body','UndeadV1Eyes'];
 const authoredItems={
     graveweaverHood:{id:'graveweaverHood',slot:'helmet',name:'Graveweaver hood',parts:[{mesh:'GraveweaverHood'}],coverage:['HumanHair']},
     graveweaverTop:{id:'graveweaverTop',slot:'torso',name:'Graveweaver mail vestment',parts:[{mesh:'GraveweaverTop'},{mesh:'GraveweaverPendant'}],coverage:['BodyUnderTunic','BodyWaist']},

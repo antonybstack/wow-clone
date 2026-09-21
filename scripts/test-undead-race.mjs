@@ -317,7 +317,7 @@ test('the provisional pack declares the Undead fit and never a Human one', async
     assert.equal(manifest.provisional, true, 'the stand-in must admit it is one');
     assert.deepEqual(manifest.items.body.meshes, [...PROVISIONAL_MESHES]);
     assert.deepEqual([...PROVISIONAL_MESHES], [...BODY_REGIONS]);
-    assert.deepEqual([...UNDEAD_BASE_VISIBLE_MESHES], ['UndeadV1Body']);
+    assert.deepEqual([...UNDEAD_BASE_VISIBLE_MESHES], ['UndeadV1Body', 'UndeadV1Eyes']);
 
     const garments = Object.entries(manifest.items).filter(([id]) => id !== 'body');
     assert.equal(garments.length, 8);

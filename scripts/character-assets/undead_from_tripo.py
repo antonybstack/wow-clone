@@ -196,10 +196,74 @@ def write_joints(arm):
     log(f'wrote {JOINTS_OUT.name} hips={hips} head={head}')
 
 
-def export_glb(arm, mesh):
+def add_eyes(arm, mesh):
+    """Small amber beads in the orbits, rigid to Head — the albedo sockets are dark pits."""
+    import bmesh
+    head = arm.matrix_world @ arm.data.bones['mixamorig:Head'].head_local
+    coords = [mesh.matrix_world @ v.co for v in mesh.data.vertices]
+    # Face cluster: near the head, in front of it (Blender -Y after Mixamo FBX).
+    face = [c for c in coords if (c - head).length < 0.14 and c.y < head.y - 0.01]
+    if len(face) < 20:
+        face = [c for c in coords if (c - head).length < 0.18]
+    left = [c for c in face if c.x > 0.01]
+    right = [c for c in face if c.x < -0.01]
+    def centroid(pts, fallback):
+        if not pts:
+            return fallback
+        s = Vector((0, 0, 0))
+        for p in pts:
+            s += p
+        return s / len(pts)
+    centres = [
+        centroid(left, head + Vector((0.032, -0.055, 0.038))),
+        centroid(right, head + Vector((-0.032, -0.055, 0.038))),
+    ]
+    mat = bpy.data.materials.new('UndeadV1Eyes')
+    mat.use_nodes = True
+    nt = mat.node_tree
+    bsdf = next(n for n in nt.nodes if n.type == 'BSDF_PRINCIPLED')
+    bsdf.inputs['Base Color'].default_value = (0.08, 0.025, 0.004, 1)
+    bsdf.inputs['Roughness'].default_value = 0.28
+    bsdf.inputs['Metallic'].default_value = 0
+    for key in ('Emission Color', 'Emission'):
+        if key in bsdf.inputs:
+            bsdf.inputs[key].default_value = (1.0, 0.28, 0.04, 1)
+            break
+    if 'Emission Strength' in bsdf.inputs:
+        bsdf.inputs['Emission Strength'].default_value = 2.4
+    bm = bmesh.new()
+    radius = 0.011
+    for c in centres:
+        sub = bmesh.new()
+        bmesh.ops.create_uvsphere(sub, u_segments=10, v_segments=7, radius=radius)
+        for v in sub.verts:
+            v.co += c
+        tmp = bpy.data.meshes.new('tmpEye')
+        sub.to_mesh(tmp)
+        sub.free()
+        bm.from_mesh(tmp)
+        bpy.data.meshes.remove(tmp)
+    me = bpy.data.meshes.new('UndeadV1Eyes')
+    bm.to_mesh(me)
+    bm.free()
+    eyes = bpy.data.objects.new('UndeadV1Eyes', me)
+    bpy.context.collection.objects.link(eyes)
+    eyes.data.materials.append(mat)
+    vg = eyes.vertex_groups.new(name='mixamorig:Head')
+    vg.add(list(range(len(me.vertices))), 1.0, 'REPLACE')
+    mod = eyes.modifiers.new('Armature', 'ARMATURE')
+    mod.object = arm
+    eyes.parent = arm
+    log(f'amber eyes at {[tuple(round(v, 3) for v in c) for c in centres]}')
+    return eyes
+
+
+def export_glb(arm, mesh, extras=()):
     bpy.ops.object.select_all(action='DESELECT')
     arm.select_set(True)
     mesh.select_set(True)
+    for ob in extras:
+        ob.select_set(True)
     bpy.context.view_layer.objects.active = arm
     CACHE.mkdir(parents=True, exist_ok=True)
     kwargs = dict(
@@ -267,9 +331,10 @@ def main():
     tpose_arms(arm)
     scale_to_height(arm, mesh, TARGET_HEIGHT)
     assign_maps(mesh)
+    eyes = add_eyes(arm, mesh)
     write_joints(arm)
     preview(mesh)
-    export_glb(arm, mesh)
+    export_glb(arm, mesh, extras=(eyes,))
     summary = {
         'height': round(world_height(mesh), 4),
         'verts': len(mesh.data.vertices),
