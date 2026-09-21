@@ -69,22 +69,55 @@ export async function sky(engine,scene){
  @fragment fn mainFragment(i:Out)->@location(0)vec4<f32>{
  let d=normalize(i.p);
  var c=skyColor(d);
- // Two cloud layers at different scales and drift rates give the deck parallax
- // and keep a single tiling texture from reading as a repeated pattern.
- // Drift was .0004 and .00021, which moves the deck 1% of the sky's circumference
- // over a half-minute -- below the threshold where anything reads as weather, so
- // the ceiling was effectively a painted backdrop. These are still slow enough that
- // nothing streaks during combat; they are just fast enough that standing still for
- // a few seconds shows the banks going somewhere.
- let uvA=vec2<f32>(atan2(d.z,d.x)/6.283+.12+shaderUniforms.time*.0014,acos(d.y)/3.14159*.65);
- let uvB=vec2<f32>(atan2(d.z,d.x)/6.283*2.1-.31-shaderUniforms.time*.00062,acos(d.y)/3.14159*1.15+.17);
+ // The deck is projected onto a flat slab overhead, not onto the dome. A ray at
+ // elevation d.y meets a plane at height H at horizontal distance H/d.y, so
+ // d.xz/d.y is that plane in world coordinates up to a scale -- which means a
+ // bank subtends a large angle overhead and compresses toward the horizon,
+ // exactly as a real ceiling does. The dome mapping this replaced could not do
+ // that: atan2(d.z,d.x) gives every bank the same angular width at every
+ // elevation, so the sky was a lid with clouds painted on the inside of it, and
+ // no amount of drift or density tuning was ever going to fix that, because the
+ // missing cue was perspective rather than motion.
+ //
+ // The clamp on |d.y| bounds the projection where it would otherwise run to
+ // infinity. 0.045 is inside the deck fade below, so the compressed region is
+ // already being faded out by the time the clamp engages; mipMaps carry the rest.
+ let ay=max(abs(d.y),0.045);
+ let pl=vec2<f32>(d.x,d.z)/ay;
+ // Drift is now a translation of the plane, i.e. an actual wind vector, rather
+ // than a rotation of the dome. The three layers share a direction within about
+ // 20 degrees -- one weather system, not three -- and differ in rate, which is
+ // what makes them parallax against each other instead of sliding as one sheet.
+ let wA=vec2<f32>(0.82,0.57)*shaderUniforms.time*0.0016;
+ let wB=vec2<f32>(0.90,0.44)*shaderUniforms.time*0.0009;
+ // Scales preserve the apparent bank size the dome mapping had at 30 degrees of
+ // elevation, which is roughly where the gameplay camera sits, so this pass buys
+ // perspective without also silently rescaling the whole sky.
+ let uvA=pl*0.090+vec2<f32>(.12,-.06)+wA;
+ let uvB=pl*0.190+vec2<f32>(-.31,.17)+wB;
  // A third, much finer sample, used only to perturb the density thresholds below
  // rather than to add density of its own. Drifting on its own axis keeps it from
  // locking to either bank.
- let uvC=vec2<f32>(atan2(d.z,d.x)/6.283*5.3+.07+shaderUniforms.time*.0009,acos(d.y)/3.14159*3.1-.22);
+ let uvC=pl*0.480+vec2<f32>(.07,-.22)+vec2<f32>(0.75,0.66)*shaderUniforms.time*0.0021;
  let dA=dot(textureSample(cloud,cloudSampler,uvA).rgb,vec3<f32>(.3,.6,.1));
  let dB=dot(textureSample(cloud,cloudSampler,uvB).rgb,vec3<f32>(.3,.6,.1));
  let dC=dot(textureSample(cloud,cloudSampler,uvC).rgb,vec3<f32>(.3,.6,.1))-.5;
+ // The slope of the density field along the sun's horizontal bearing. Positive
+ // where the deck thins toward the sun, which is the near face of a bank -- the
+ // side a raking sun actually strikes.
+ //
+ // This replaces a self-shadow term that sampled density 0.075 uv toward the sun
+ // and measured nothing: sd moved 1.3 on a 47-unit patch, inside the noise. The
+ // reason was not the strength. With the sun 6 degrees above the horizon, a slab
+ // of thickness 0.3H throws its shadow 9.6 thicknesses downwind, about a quarter
+ // of the sky, so the sample was decorrelated from the bank supposedly casting it
+ // and darkened at random rather than in register. A low sun does not shade a deck
+ // from within; it rakes across it. The offset here is deliberately small -- well
+ // inside one bank -- because what is wanted is which way a piece of deck faces,
+ // not what is standing between it and the sun.
+ let sunXZ=normalize(vec2<f32>(SUN_DIR.x,SUN_DIR.z));
+ let dG=dot(textureSample(cloud,cloudSampler,uvA+sunXZ*0.018).rgb,vec3<f32>(.3,.6,.1));
+ let slope=clamp((dA-dG)*3.4,-1.0,1.0);
  // Density, not colour. Thick where the texture is bright.
  // The cloud deck has to thin out toward the horizon, and not only because real
  // decks do. aerial() converges distant geometry onto skyColor(dir) but cannot
@@ -120,10 +153,22 @@ export async function sky(engine,scene){
  // 26 degrees elevation, so the deck was present and invisible. Away from the glow a
  // dusk cloud is a dark mass, not a slightly different blue -- these are now roughly a
  // third of the sky value there, which is what gives the dome structure to read.
+ // slope is deliberately *not* folded into these two. Tried it at .85 and .70 and
+ // it cost 19 units of mean and 3.4 of spread on the sky patch, because pow(sd,n)
+ // is already at its ceiling exactly where the deck is bright: a multiplier on a
+ // saturated term can only subtract on average, and clamping the negative half at
+ // zero while the positive half caps at 1.30 makes that asymmetry worse. slope
+ // earns its place additively, on the rim below, where it can only add.
  let litHigh=mix(vec3<f32>(.024,.034,.058),vec3<f32>(.54,.34,.24),pow(sd,1.7));
  let litLow=mix(vec3<f32>(.018,.024,.038),vec3<f32>(.78,.44,.24),pow(sd,1.2));
  let band=(high*(1.0-high)+low*(1.0-low))*4.0;
- let rim=pow(sd,5.0)*band;
+ // The rim was non-directional, so it lit the far side of every bank as brightly
+ // as the near one and the deck read as outlined rather than modelled. slope is
+ // added here rather than mixed in: the existing rim keeps its full strength and
+ // an edge that faces the sun gets up to 2.1x it. Written as a weight -- say
+ // (0.30+0.90*slope) -- this would have been the same subtractive trap as above,
+ // since max(slope,0) averages about a third across the field.
+ let rim=pow(sd,5.0)*band*(1.0+1.10*max(slope,0.0));
  c=mix(c,litHigh,high*.72);
  c=mix(c,litLow,low*.80);
  c=c+SUN_COLOR*rim*.55;
