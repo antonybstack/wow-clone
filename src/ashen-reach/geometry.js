@@ -30,14 +30,23 @@ export const buildingPads=[
 const PAD_MARGIN=3;
 /** Basin + rim only outside the playable rectangle. Zero inside x∈[-90,90], z∈[-95,145]
  *  (and therefore on the whole churchyard) so height() stays bit-identical in-bounds.
- *  A shallow dip just past the clamp, then a strong rise, so high-zoom cameras see a
- *  skyline of hills rather than the rim of a tiled disc. */
+ *  A shallow dip just past the clamp, then a rise, so high-zoom cameras see a
+ *  skyline of hills rather than the rim of a tiled disc.
+ *
+ *  The rim is deliberately *lower than the mountain rings* horizon.js draws. The
+ *  first pass used 92 m arriving by d≈120, which measured out to a 25.3° silhouette
+ *  from the north-overlook camera against 24.5° for the tallest ring and a 17.5°
+ *  top-of-frame: the bowl wall swallowed the whole skyline and every pixel of sky,
+ *  so the northward vistas read as a featureless fogged basin. Half the height
+ *  arriving twice as far out puts the earth silhouette under 8°, which leaves the
+ *  ridgelines and the sky above it in the order the references layer them:
+ *  ground, foothills, ridge, sky. */
 function distantRelief(x,z){
  const dx=Math.max(0,Math.abs(x)-90),dz=Math.max(0,z>145?z-145:z<-95?-95-z:0);
  if(dx===0&&dz===0)return 0;
  const d=Math.hypot(dx,dz);
  const t=Math.min(1,d/32),s=t*t*(3-2*t);
- const rim=92/(1+Math.exp(-(d-120)/32));
+ const rim=46/(1+Math.exp(-(d-210)/60));
  const valley=-7*Math.exp(-((d-48)/24)*((d-48)/24));
  const peak=(px,pz,h,w)=>h*Math.exp(-((x-px)**2+(z-pz)**2)/w);
  return s*(valley+rim

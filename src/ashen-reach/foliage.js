@@ -11,7 +11,7 @@ import {
   enableThinInstanceDynamicDrawCount,
 } from '@babylonjs/lite';
 import {Batch,height,terrainNormal,rng,bakeLamp,add,sub} from './geometry.js';
-import {FOG} from './materials.js';
+import {ATMOS} from './atmosphere.js';
 
 const ATLAS='/ashen-reach/foliage-atlas.png';
 const cell=(cx,cy)=>{const s=.5,p=.014;return {u0:cx*s+p,v0:cy*s+p,u1:(cx+1)*s-p,v1:(cy+1)*s-p};};
@@ -68,32 +68,34 @@ async function createFoliageMaterial(engine){
  return o;
 }`,
   fragmentSource:`${OUT}
+${ATMOS}
 @fragment fn mainFragment(i:Out)->@location(0) vec4<f32>{
  var t=textureSample(albedo,albedoSampler,i.uv);
  let fade=smoothstep(46.0,58.0,distance(i.p,shaderSystem.cameraPosition));
  if(t.a<0.48+fade*0.22 || (t.r>0.88 && t.g<0.16)){discard;}
- let n=normalize(i.normal+vec3<f32>(0.00001));
- let L=normalize(vec3<f32>(-0.4,0.8,-0.3));
- let wrap=0.50+0.50*abs(dot(n,L));
- let back=0.22*max(0.0,-dot(n,L));
- let directional=wrap+back;
+ // Blades are alpha-cut cards, so their authored normal is the card's, not the
+ // plant's. Bending it toward vertical before shading keeps a clump reading as a
+ // soft rounded mass under the key instead of as a row of flat billboards, and
+ // the transmission term fakes the light that passes *through* a backlit leaf --
+ // which, with the sun buried at the horizon, is most of what a grass field does
+ // in the reference stills.
+ let raw=normalize(i.normal+vec3<f32>(0.00001));
+ let nn=normalize(i.normal+vec3<f32>(0.0,0.9,0.0)+vec3<f32>(0.00001));
+ let trans=pow(max(-dot(raw,SUN_DIR),0.0),2.2);
+ var light=shade(nn,i.p,shaderSystem.cameraPosition,0.92)+SUN_COLOR*trans*0.55;
  let lamp=i.lamp;
- let lampGate=smoothstep(40.0,55.0,i.p.z);
- var lampKnee=lamp;
- if(lamp>1.4){lampKnee=1.4+(1.0-exp(-(lamp-1.4)));}
- let lampEff=mix(lamp,lampKnee,lampGate);
- let lampColor=mix(vec3<f32>(0.7,0.75,0.30),vec3<f32>(1.0,0.60,0.28),lampGate);
+ var lampEff=lamp;
+ if(lamp>1.4){lampEff=1.4+(1.0-exp(-(lamp-1.4)));}
+ let lampColor=vec3<f32>(1.0,0.58,0.26);
  let fire=shaderUniforms.fireStrength/(1.0+pow(distance(i.p,shaderUniforms.firePosition)*0.85,2.0));
  let handFire=shaderUniforms.handFireStrength/(1.0+pow(distance(i.p,shaderUniforms.handFirePosition)*1.0,2.0));
  let lava=shaderUniforms.lavaStrength/(1.0+pow(distance(i.p,shaderUniforms.lavaPosition)*0.7,2.0));
- let light=vec3<f32>(0.86*directional)+lampColor*lampEff+vec3<f32>(1.0,0.28,0.045)*(fire+handFire+lava);
+ light=light+lampColor*lampEff+vec3<f32>(1.0,0.28,0.045)*(fire+handFire+lava);
  var c=t.rgb*i.color.rgb*light;
  let ng=smoothstep(40.0,55.0,i.p.z);
- c=mix(c,c*vec3<f32>(0.80,0.72,0.84),ng);
- let d=distance(i.p,shaderSystem.cameraPosition);
- let fog=1.0-exp(-max(d-9.0,0.0)*0.010-max(d-100.0,0.0)*0.006);
- c=mix(c,vec3<f32>(${FOG.join(',')}),fog);
- return vec4<f32>(c,1.0);
+ c=mix(c,c*vec3<f32>(0.92,0.86,0.95),ng);
+ c=aerial(c,i.p,shaderSystem.cameraPosition);
+ return vec4<f32>(grade(c),1.0);
 }`,
  });
  setShaderTexture(mat,'albedo',tex);

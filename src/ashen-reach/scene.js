@@ -16,13 +16,13 @@ export async function buildChurchyard(engine,scene){
   // nightGrade is a fragment-shader-side eased darken/desaturate that is exactly 0 for
   // i.p.z<=40 by construction (see materials.js), so it can never move a churchyard pixel even
   // though the churchyard's own grass/earth share these materials with Hollowmere's.
-  surface(engine,'Moss and burial earth','/tex/forrest_ground_01/diff.jpg',{tint:[.81,.83,.62],light:.62,pixels:128,ground:true,nightGrade:true}),
-  surface(engine,'Timeworn limestone','/tex/rock_wall_08/diff.jpg',{tint:[1.12,1.10,.94],light:.85,pixels:512,uvScale:.20}),
+  surface(engine,'Moss and burial earth','/tex/forrest_ground_01/diff.jpg',{tint:[.81,.83,.62],light:.80,pixels:128,ground:true,nightGrade:true}),
+  surface(engine,'Timeworn limestone','/tex/rock_wall_08/diff.jpg',{tint:[1.02,1.02,.98],light:.78,pixels:512,uvScale:.20}),
   surface(engine,'Rotten oak','/tex/wood_planks_grey/diff.jpg',{tint:[.57,.43,.31],light:.62,pixels:64}),
   surface(engine,'Dead bark','/tex/bark_brown_02/diff.jpg',{tint:[.28,.29,.23],light:.40,pixels:64}),
   surface(engine,'Distant black stone','/tex/rock_wall_08/diff.jpg',{tint:[.095,.115,.10],light:.35,pixels:64}),
   surface(engine,'Candlelight','/tex/rock_wall_08/diff.jpg',{tint:[.95,1.10,.32],light:1,emission:1.4,pixels:16}),
-  surface(engine,'Weathered memorial face','/ashen-reach/grave-face.jpg',{tint:[1,.98,.88],light:.8,pixels:160}),
+  surface(engine,'Weathered memorial face','/ashen-reach/grave-face.jpg',{tint:[1,.99,.94],light:.72,pixels:160}),
   // Hollowmere's own warm lantern material, separate from the churchyard's Candlelight above: the
   // two original churchyard lamps and the distant bell towers keep using Candlelight untouched, so
   // retinting the town's lamp glow can never move a churchyard pixel.
