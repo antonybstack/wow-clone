@@ -10,7 +10,7 @@ import {
   setThinInstances,setThinInstanceColors,setThinInstanceCount,
   enableThinInstanceDynamicDrawCount,
 } from '@babylonjs/lite';
-import {Batch,height,terrainNormal,rng,bakeLamp,add,sub} from './geometry.js';
+import {Batch,height,terrainNormal,rng,bakeLamp,add,sub,TERRAIN_SLOPE_WGSL} from './geometry.js';
 import {ATMOS} from './atmosphere.js';
 
 const ATLAS='/ashen-reach/foliage-atlas.png';
@@ -69,6 +69,7 @@ async function createFoliageMaterial(engine){
 }`,
   fragmentSource:`${OUT}
 ${ATMOS}
+${TERRAIN_SLOPE_WGSL}
 @fragment fn mainFragment(i:Out)->@location(0) vec4<f32>{
  var t=textureSample(albedo,albedoSampler,i.uv);
  let fade=smoothstep(46.0,58.0,distance(i.p,shaderSystem.cameraPosition));
@@ -80,7 +81,11 @@ ${ATMOS}
  // which, with the sun buried at the horizon, is most of what a grass field does
  // in the reference stills.
  let raw=normalize(i.normal+vec3<f32>(0.00001));
- let nn=normalize(i.normal+vec3<f32>(0.0,0.9,0.0)+vec3<f32>(0.00001));
+ // Bend toward the *ground's* normal rather than a constant vertical, so a clump
+ // on the north face of a swell reads differently from one on the south face. Flat
+ // ground gives (0,1,0) and the original shading back exactly.
+ let gn=terrainNormalWgsl(i.p.x,i.p.z);
+ let nn=normalize(i.normal+gn*0.9+vec3<f32>(0.00001));
  let trans=pow(max(-dot(raw,SUN_DIR),0.0),2.2);
  var light=shade(nn,i.p,shaderSystem.cameraPosition,0.92)+SUN_COLOR*trans*0.55;
  let lamp=i.lamp;
