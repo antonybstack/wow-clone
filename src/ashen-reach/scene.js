@@ -1,8 +1,8 @@
-import {setShaderUniform} from '@babylonjs/lite';
-import {Batch,rng,height,pathX,buildingPads,add,mul,sub,norm,cross,terrainNormal,lanternGlow} from './geometry.js';
+import {Batch,rng,height,pathX,buildingPads,add,mul,sub,norm,terrainNormal,lanternGlow} from './geometry.js';
 import {surface,sky} from './materials.js';
 import {building,collapsedStall,well,forgeGlow,crossFinial,stoneArch,rubble,flagstone,masonryBox} from './buildings.js';
 import {buildHorizon} from './horizon.js';
+import {createFoliage} from './foliage.js';
 
 /** A new scene layout. No Moonwell world builders, architecture or vegetation placement. */
 export async function buildChurchyard(engine,scene){
@@ -20,8 +20,6 @@ export async function buildChurchyard(engine,scene){
   surface(engine,'Timeworn limestone','/tex/rock_wall_08/diff.jpg',{tint:[1.12,1.10,.94],light:.85,pixels:512,uvScale:.20}),
   surface(engine,'Rotten oak','/tex/wood_planks_grey/diff.jpg',{tint:[.57,.43,.31],light:.62,pixels:64}),
   surface(engine,'Dead bark','/tex/bark_brown_02/diff.jpg',{tint:[.28,.29,.23],light:.40,pixels:64}),
-  surface(engine,'Bracken','/ashen-reach/foliage-atlas.png',{tint:[.79,.90,.59],light:1.04,alpha:true,wind:true,pixels:512,nightGrade:true}),
-  surface(engine,'Dry seed grass','/ashen-reach/foliage-atlas.png',{tint:[.80,.83,.66],light:.91,alpha:true,wind:true,pixels:512,nightGrade:true}),
   surface(engine,'Distant black stone','/tex/rock_wall_08/diff.jpg',{tint:[.095,.115,.10],light:.35,pixels:64}),
   surface(engine,'Candlelight','/tex/rock_wall_08/diff.jpg',{tint:[.95,1.10,.32],light:1,emission:1.4,pixels:16}),
   surface(engine,'Weathered memorial face','/ashen-reach/grave-face.jpg',{tint:[1,.98,.88],light:.8,pixels:160}),
@@ -30,8 +28,8 @@ export async function buildChurchyard(engine,scene){
   // retinting the town's lamp glow can never move a churchyard pixel.
   surface(engine,'Hollowmere lantern','/tex/rock_wall_08/diff.jpg',{tint:[1.30,.86,.46],light:1,emission:1.25,pixels:24}),
  ]);
- const names=['Earth','Grave stonework','Rotten fence','Bare woodland','Fern beds','Seed grass','Bell towers','Lantern glass','Carved epitaphs','Warm lantern'];
- const B=names.map(n=>new Batch(n));const [earth,stone,wood,bark,fern,grass,distant,glow,carve,warm]=B;
+ const names=['Earth','Grave stonework','Rotten fence','Bare woodland','Bell towers','Lantern glass','Carved epitaphs','Warm lantern'];
+ const B=names.map(n=>new Batch(n));const [earth,stone,wood,bark,distant,glow,carve,warm]=B;
  const colliders=[];
  // A continuous uneven floor, not a tiled slab floating on a flat plane. Every earth
  // quad uses analytic per-vertex normals (zero extra triangles) so the 2 m grid does
@@ -121,13 +119,6 @@ export async function buildChurchyard(engine,scene){
  // Leaning wooden lantern posts around the monument approach.
  for(const [x,z] of [[-3.4,12],[3.6,14],[-2.8,25]]){const y=height(x,z);wood.tube([x,y,z],[x-.18,y+2.8,z],.085,.045,[.8,.8,.7,0],5);const p=[x-.18,y+2.52,z];glow.box(p,[.22,.31,.22],[1,1,1,0]);for(let j=0;j<4;j++){const dx=j<2?-.14:.14,dz=j%2?-.14:.14;wood.box([p[0]+dx,p[1],p[2]+dz],[.034,.46,.034],[.3,.3,.3,0]);}wood.box([p[0],p[1]-.22,p[2]],[.35,.055,.35],[.3,.3,.3,0]);wood.tube([p[0],p[1]+.18,p[2]],[p[0],p[1]+.42,p[2]],.25,0,[.3,.3,.3,0],4);}
 
- // Each fern is a radiating set of bent alpha-textured fronds.
- function bracken(x,z,size,seed){const rand=rng(seed),y=height(x,z)-.02;for(let f=0;f<8;f++){const a=f*.785+rand()*.45,L=size*(.65+rand()*.5),point=t=>[x+Math.cos(a)*L*t,y+L*(1.85*t-1.40*t*t)+.05,z+Math.sin(a)*L*t],side=[-Math.sin(a)*L*.24,0,Math.cos(a)*L*.24],u0=rand()<.85?0:.5;
-   for(let k=0;k<5;k++){const t=k/5,t1=(k+1)/5,p=point(t),q=point(t1),c=.82+rand()*.25;fern.quad(sub(p,side),add(p,side),add(q,side),sub(q,side),[[u0+.008,.99-t*.49],[u0+.492,.99-t*.49],[u0+.492,.99-t1*.49],[u0+.008,.99-t1*.49]],[[c,c,c,t],[c,c,c,t],[c,c,c,t1],[c,c,c,t1]],[0,1,0]);}
-  }}
- for(let i=0;i<420;i++){const x=r(-22,22),z=r(-10,48);if(Math.abs(x-pathX(z))<2.0&&random()<.97)continue;bracken(x,z,r(.45,1.18),i+490);}
- for(const [x,z,s] of [[-2,-2,1.4],[2.8,-2.1,1.5],[-2.5,4,1.3],[2.7,9,1.1],[-4,12,1.6]])bracken(x,z,s,Math.floor(s*900));
- const rects=[[.008,.006,.492,.498],[.508,.006,.992,.498],[.008,.006,.492,.498],[.508,.006,.992,.498]];
  const smooth=t=>{t=Math.min(1,Math.max(0,t));return t*t*(3-2*t);};
  const meadow=(x,z)=>{
   const rad=Math.hypot(x,z);
@@ -139,14 +130,6 @@ export async function buildChurchyard(engine,scene){
   if(path<2)d*=.22+.78*smooth((path-1.15)/.85);
   return d;
  };
- const GRASS_CELL=.88;
- for(let z=-14;z<72;z+=GRASS_CELL)for(let x=-46;x<46;x+=GRASS_CELL){
-  const gx=x+random()*GRASS_CELL,gz=z+random()*GRASS_CELL;
-  if(random()>meadow(gx,gz))continue;
-  const rad=Math.hypot(gx,gz),edge=smooth((rad-28)/36);
-  const y=height(gx,gz)-.02,sz=r(.48,1.20)*(1-.32*edge),w=r(.50,1.10)*(1-.18*edge),a=r(0,Math.PI),kind=random()<.6?3:random()<.5?2:0,[u0,v0,u1,v1]=rects[kind];
-  for(let k=0;k<2;k++){const dx=Math.cos(a+k*1.571)*w/2,dz=Math.sin(a+k*1.571)*w/2,c=r(.66,1.10);grass.quad([gx-dx,y,gz-dz],[gx+dx,y,gz+dz],[gx+dx,y+sz,gz+dz],[gx-dx,y+sz,gz-dz],[[u0,v1],[u1,v1],[u1,v0],[u0,v0]],[[c,c,c,0],[c,c,c,0],[c,c,c,1],[c,c,c,1]],[0,1,0]);}
- }
 
  // --- Milestone 1, north of the churchyard: everything below is new and uses its own rng so the
  // churchyard's random sequence above (tombs/trees/grass colour) is untouched. Placed only at
@@ -361,20 +344,6 @@ export async function buildChurchyard(engine,scene){
   if(z>71&&z<79)c=0; // town gatehouse wall and towers
   return c;
  }
- function grassBlade(x,z){
-  const y=height(x,z)-.02,sz=rn(.48,1.05),w=rn(.5,.95),a=rn(0,Math.PI),kind=randomNorth()<.6?3:randomNorth()<.5?2:0,[u0,v0,u1,v1]=rects[kind];
-  for(let k=0;k<2;k++){const dx=Math.cos(a+k*1.571)*w/2,dz=Math.sin(a+k*1.571)*w/2,c=rn(.60,1.0);grass.quad([x-dx,y,z-dz],[x+dx,y,z+dz],[x+dx,y+sz,z+dz],[x-dx,y+sz,z-dz],[[u0,v1],[u1,v1],[u1,v0],[u0,v0]],[[c,c,c,0],[c,c,c,0],[c,c,c,1],[c,c,c,1]],[0,1,0]);}
- }
- for(let i=0;i<9000;i++){
-  const x=rn(-40,40),z=rn(76,143);
-  if(randomNorth()>clearance(x,z))continue;
-  grassBlade(x,z);
- }
- for(let i=0;i<420;i++){
-  const x=rn(-24,24),z=rn(50,141);
-  if(randomNorth()>clearance(x,z)*.7)continue; // bracken is taller and brighter, so it thins sooner than grass
-  bracken(x,z,rn(.42,.95),Math.floor((x+200)*971+z*133));
- }
 
  // Visual-only far terrain. Same earth material, independent rng, no lamp bake, not in the
  // Havok mesh. A 6 m halo around the playable rectangle, then 16 m cells out to ~500 m so
@@ -409,14 +378,6 @@ export async function buildChurchyard(engine,scene){
   farTree(Math.cos(a)*rad,40+Math.sin(a)*rad*1.15,8+rf()*12);
  }
  for(let i=0;i<18;i++)farTree(-80+rf()*160,-140-rf()*90,9+rf()*11);
- // Outer grass beyond the jittered meadow box, so the playable rim is not a dirt crop.
- for(let i=0;i<1400;i++){
-  const a=rf()*Math.PI*2,rad=40+rf()*55;
-  const x=Math.cos(a)*rad,z=Math.sin(a)*rad*1.15;
-  if(x>-46&&x<46&&z>-14&&z<72)continue;
-  if(Math.abs(x)<3.2&&z>-8&&z<50)continue;
-  grassBlade(x,z);
- }
 
  // --- Milestone 3, the horizon: the Citadel of Vaelmark on a distant crag beyond z=140, plus the
  // mountain ridgeline behind it. Backdrop only (no colliders, no pathing), added last and entirely
@@ -424,10 +385,26 @@ export async function buildChurchyard(engine,scene){
  // Hollowmere pixel — it only appends triangles to the existing 'distant'/'warm' batches.
  const horizonStats=buildHorizon(distant,warm,height);
 
+ function foliageDensity(x,z){
+  if(z<=48)return meadow(x,z);
+  if(z<76){
+   const t=smooth((z-48)/28);
+   return meadow(x,z)*(1-t)+clearance(x,z)*t;
+  }
+  if(z<=145&&Math.abs(x)<44)return clearance(x,z);
+  const rad=Math.hypot(x,z-20);
+  if(rad>108)return 0;
+  return 0.38*(1-smooth((rad-52)/48));
+ }
+ const foliage=await createFoliage(engine,scene,{
+  lights,density:foliageDensity,
+  landmarks:[[-2,-2,1.45],[2.8,-2.1,1.5],[-2.5,4,1.3],[2.7,9,1.15],[-4,12,1.55]].map(([x,z,scale])=>({x,z,scale})),
+ });
  const farTris=farEarth.idx.length/3;
- const meshes=B.map((b,i)=>b.commit(engine,scene,mats[i],lights));
+ const meshes=B.map((b,i)=>b.commit(engine,scene,mats[i],lights)).filter(Boolean);
  const farMesh=farEarth.commit(engine,scene,mats[0],[]);
  if(farMesh)meshes.push(farMesh);
+ meshes.push(...foliage.meshes);
  colliders.unshift({type:'mesh',mesh:meshes[0]});const clouds=await sky(engine,scene);
- return {meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,stats:{triangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris,drawBatches:B.length+(farMesh?1:0),horizonTriangles:horizonStats.triangles,farTriangles:farTris},update(t){for(const i of [4,5])setShaderUniform(mats[i],'time',t);clouds.update(t);}};
+ return {meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,foliage,stats:{triangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris,drawBatches:B.length+(farMesh?1:0)+foliage.stats.draws,horizonTriangles:horizonStats.triangles,farTriangles:farTris,foliageInstances:foliage.stats.instances},update(t,playerPos){foliage.update(t,playerPos);clouds.update(t);}};
 }

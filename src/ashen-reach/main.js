@@ -168,7 +168,7 @@ async function main(){
  setView(params.has('play')?'play':'reference');
  const metrics=createAshenMetrics({engine,scene,world,canvas,samples,lite:{isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize}});
  if(params.has('gpuTiming'))metrics.setGpuTiming(true);
- onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);elapsed+=dt;player.kinematicStep(dt);combat.beforeAnimation(dt);tools.tick();body.update(dt);world.update(elapsed);combat.afterAnimation(dt);equipment.update(dt);armory.update(dt);if(elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();metrics.sampleGpu();}});
+ onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);elapsed+=dt;player.kinematicStep(dt);combat.beforeAnimation(dt);tools.tick();body.update(dt);world.update(elapsed,player.body.position);combat.afterAnimation(dt);equipment.update(dt);armory.update(dt);if(elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();metrics.sampleGpu();}});
  globalThis.ASHEN={engine,scene,camera,reference,rig,player,body,world,combat,armory,equipment,input,setView,reset,metrics,capture:()=>captureScreenshot(engine),hostilesReady:noEnemies,loadMs:0,dev,menu};
  ASHEN.whenHostiles=townP.then(()=>{ASHEN.hostilesReady=true;});
  await registerScene(scene);await startEngine(engine);
