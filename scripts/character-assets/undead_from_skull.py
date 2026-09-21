@@ -621,15 +621,27 @@ def build_body(j):
         tip = j[f'mixamorig:{side}Toe_End']
         # 1. A malleolus. The column was two rings of near-constant radius
         # continuing the shin's 0.033, so the leg met the sole with no ankle at
-        # all. Three rings instead -- bone, waist, flare -- puts a 6 mm bulge at
-        # joint height above a narrower tendon waist, which is the whole read.
+        # all. Three rings -- bone, waist, flare -- gave the ankle a profile,
+        # but putting the widest ring at the very top was wrong: tube()'s
+        # over_start extends the first ring along its own axis *at its own
+        # radius*, so a 0.041 top ring buried 40 mm into a 0.033 shin is a
+        # wider sleeve slid over a narrower bone. It read as a collar with a
+        # hard seam ring rather than an ankle, clearest on the far leg at
+        # Sprint (ve-capture/m11a/fix12, side).
+        # Four rings instead, with the bulge moved *below* the junction where
+        # a malleolus actually sits: the top ring undercuts the shin so the
+        # buried overlap stays hidden, then the swell, then the tendon waist,
+        # then the flare into the sole. The lead-in from 0.031 to 0.040 gives
+        # the eye a curve to read instead of a step.
         ank_lo = 0.040
-        B.tube([Vector((ankle.x, ankle.y, ankle.z)),
-                Vector((ankle.x, ankle.y, ank_lo + 0.45 * (ankle.z - ank_lo))),
+        ank_span = max(1e-6, ankle.z - ank_lo)
+        B.tube([Vector((ankle.x, ankle.y, ankle.z + 0.014)),
+                Vector((ankle.x, ankle.y, ank_lo + 0.86 * ank_span)),
+                Vector((ankle.x, ankle.y, ank_lo + 0.42 * ank_span)),
                 Vector((ankle.x, ankle.y, ank_lo))],
-               [(0.041, 0.035), (0.029, 0.031), (0.037, 0.039)],
+               [(0.031, 0.030), (0.040, 0.036), (0.029, 0.031), (0.037, 0.039)],
                f'foot{lo}', segs=14, power=2.8,
-               over_start=0.040, over_end=0.010, cap_scale=0.6)
+               over_start=0.030, over_end=0.010, cap_scale=0.6)
         # 2. An arch was tried here and is deliberately NOT kept. Lifting the two
         # mid-foot nodes so their undersides cleared the floor by 9 mm and 5 mm
         # did break the contact into two pads, but on a tube whose cross-section
