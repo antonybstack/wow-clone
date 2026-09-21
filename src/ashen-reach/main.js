@@ -19,6 +19,7 @@ import {setupPlayer,plantSpawnOnTerrain,resolveCapsule} from '../player.js';
 import {attachBody} from '../character/body.js';
 import {resolvePlayableBody} from '../character/runtime/playable-body.js';
 import {attachDevTools,dev} from './dev-tools.js';
+import {buildPostPipeline} from './post.js';
 import {createGameMenu} from './menu.js';
 
 enableErrorDecoding();
@@ -181,6 +182,12 @@ async function main(){
  onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);elapsed+=dt;player.kinematicStep(dt);combat.beforeAnimation(dt);tools.tick();body.update(dt);world.update(elapsed,player.body.position);combat.afterAnimation(dt);equipment.update(dt);armory.update(dt);if(elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();metrics.sampleGpu();}});
  globalThis.ASHEN={engine,scene,camera,reference,rig,player,body,world,combat,armory,equipment,input,setView,reset,metrics,capture:()=>captureScreenshot(engine),hostilesReady:noEnemies,loadMs:0,dev,menu};
  ASHEN.whenHostiles=townP.then(()=>{ASHEN.hostilesReady=true;});
+ // ?noPost bypasses the whole chain. It is the only honest way to price the post
+ // passes on this engine: GPU timestamp readback returns no samples through the
+ // frame-graph path, and the compositor pins frame time to the refresh rate, so
+ // the cost only shows up as an A/B above a resolution that clears the cap.
+ const post=params.has('noPost')?{status:{bloom:false,notes:['skipped by ?noPost']}}:buildPostPipeline(engine,scene);ASHEN.post=post.status;
+ if(post.status.notes.length)console.warn('ashen post chain:',post.status.notes.join('; '));
  await registerScene(scene);await startEngine(engine);
  ASHEN.loadMs=performance.now()-boot;
  ASHEN.ready=true;document.getElementById('loading').remove();
