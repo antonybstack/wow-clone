@@ -272,15 +272,24 @@ export async function createFoliage(engine,scene,{lights=[],density=()=>0,landma
 
  const grassCore=place(density,lights,{seed:83861,minX:-38,maxX:38,minZ:-16,maxZ:146,spacing:0.36,scale:[0.85,1.25],yScale:[0.72,1.28],tint:[0.78,1.12],densityScale:1});
  const grassShoulder=place(density,lights,{seed:91011,minX:-88,maxX:88,minZ:-90,maxZ:160,spacing:0.62,scale:[0.9,1.3],yScale:[0.7,1.15],tint:[0.74,1.05],densityScale:0.85,skip:(x,z)=>x>-38&&x<38&&z>-16&&z<146});
+ // The shoulder stopped dead at x=+-88 / z=160, and 10-ridge-west stands the camera at
+ // x=-80: eight metres from the edge of every blade of grass in the world. Everything west
+ // of the player was bare ground, which is why that frame measured 0.19 saturation and read
+ // as an empty plane with a glow on it. This outer band is four times the spacing, so it is
+ // moor rather than meadow and costs a fraction of the instances per square metre, but it
+ // carries texture out to where the scattered woodland starts and closes the gap between
+ // the two.
+ const grassMoor=place(density,lights,{seed:31573,minX:-150,maxX:150,minZ:-150,maxZ:215,spacing:1.32,scale:[1.0,1.5],yScale:[0.62,1.05],tint:[0.66,0.94],densityScale:0.62,skip:(x,z)=>x>-88&&x<88&&z>-90&&z<160});
+ const parts=[grassCore,grassShoulder,grassMoor];
  const grass={
-  count:grassCore.count+grassShoulder.count,
-  matrices:new Float32Array(grassCore.matrices.length+grassShoulder.matrices.length),
-  colors:new Float32Array(grassCore.colors.length+grassShoulder.colors.length),
+  count:parts.reduce((a,p)=>a+p.count,0),
+  matrices:new Float32Array(parts.reduce((a,p)=>a+p.matrices.length,0)),
+  colors:new Float32Array(parts.reduce((a,p)=>a+p.colors.length,0)),
  };
- grass.matrices.set(grassCore.matrices,0);
- grass.matrices.set(grassShoulder.matrices,grassCore.matrices.length);
- grass.colors.set(grassCore.colors,0);
- grass.colors.set(grassShoulder.colors,grassCore.colors.length);
+ for(let i=0,m=0,c=0;i<parts.length;i++){
+  grass.matrices.set(parts[i].matrices,m);m+=parts[i].matrices.length;
+  grass.colors.set(parts[i].colors,c);c+=parts[i].colors.length;
+ }
 
  const plants=place(density,lights,{seed:2711,minX:-40,maxX:40,minZ:-12,maxZ:144,spacing:1.55,scale:[0.9,1.45],yScale:[0.85,1.25],tint:[0.82,1.08],densityScale:0.22,sink:0.02,slopeMin:0.7});
  const bracken=place(density,lights,{seed:490,minX:-26,maxX:26,minZ:-12,maxZ:142,spacing:1.12,scale:[0.85,1.35],yScale:[0.8,1.2],tint:[0.85,1.12],densityScale:0.34,sink:0.02});

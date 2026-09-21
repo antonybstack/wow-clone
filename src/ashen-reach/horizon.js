@@ -129,16 +129,35 @@ function ridgeRing(distant,cx,cz,rx,rz,groundY,seed,segments,hMin,hMax,tint,shar
  }
 }
 
+/** A closed butte: a jittered polygon extruded from below the ground up to a broken crest,
+ *  then capped. `crag` cannot do this job -- it is a star of ten separate triangles fanning
+ *  in toward the centre, which is fine buried under the citadel's mass but leaves daylight
+ *  between the spikes when something stands on top of it. At 08-east-meadow that read as a
+ *  keep on stilts with icicles hanging off it. A closed prism has no gaps to see through. */
+function butte(distant,cx,cz,topY,baseY,r,seed){
+ const rand=rng(seed),n=9,ring=[],crest=[];
+ for(let k=0;k<n;k++){
+  const a=k*Math.PI*2/n+rand()*.3,rr=r*(.74+rand()*.52);
+  ring.push([cx+Math.cos(a)*rr,cz+Math.sin(a)*rr*.82]);
+  crest.push(topY-rand()*r*.22);
+ }
+ for(let k=0;k<n;k++){
+  const a=ring[k],b=ring[(k+1)%n],c=.40+rand()*.12;
+  distant.quad([a[0],baseY,a[1]],[b[0],baseY,b[1]],[b[0],crest[(k+1)%n],b[1]],[a[0],crest[k],a[1]],
+   undefined,[c*.96,c,c*1.06,0]);
+  distant.tri([a[0],crest[k],a[1]],[b[0],crest[(k+1)%n],b[1]],[cx,topY,cz],undefined,[.50,.51,.49,0]);
+ }
+}
+
 /** An outlying keep on its own butte. The butte used to be a `scarp` skirt of radius 28 -- a
  *  56 m ring of near-black curtain laid flat on the hillside, which from the south vista read
- *  as dark tape looping over the crest and crossing the other keep's. `crag` is the primitive
- *  that already works for the citadel: a fan of triangles from a buried base up to jagged
- *  peaks, so it is a solid mass with a broken top edge rather than a painted band. `rise`
- *  lifts the keep onto the butte instead of leaving it standing at its foot. */
+ *  as dark tape looping over the crest and crossing the other keep's. `rise` lifts the keep
+ *  onto the butte rather than leaving it standing at its foot, so the butte has to be solid
+ *  all the way up and wider than the 32 m wall span that sits on it. */
 function mesaKeep(distant,warm,cx,cz,groundHeight,H=30,w=6,rise=16){
  const g=groundHeight(cx,cz);
- crag(distant,cx,cz,g+rise,g-30,((cx*73856093)^(cz*19349663))>>>0);
- crag(distant,cx-7,cz+5,g+rise*.7,g-30,((cx*83492791)^(cz*29587121))>>>0);
+ butte(distant,cx,cz,g+rise,g-34,27,((cx*73856093)^(cz*19349663))>>>0);
+ butte(distant,cx-21,cz+13,g+rise*.62,g-34,15,((cx*83492791)^(cz*29587121))>>>0);
  spire(distant,warm,cx,cz,g+rise,H,w,3);
  wallSpan(distant,cx-16,cz-10,cx+16,cz-10,g+rise,8);
 }

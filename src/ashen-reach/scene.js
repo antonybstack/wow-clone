@@ -16,10 +16,29 @@ export async function buildChurchyard(engine,scene){
   // nightGrade is a fragment-shader-side eased darken/desaturate that is exactly 0 for
   // i.p.z<=40 by construction (see materials.js), so it can never move a churchyard pixel even
   // though the churchyard's own grass/earth share these materials with Hollowmere's.
-  surface(engine,'Moss and burial earth','/tex/forrest_ground_01/diff.jpg',{tint:[.81,.83,.62],light:.80,pixels:128,ground:true,nightGrade:true}),
-  surface(engine,'Timeworn limestone','/tex/rock_wall_08/diff.jpg',{tint:[1.02,1.02,.98],light:.78,pixels:512,uvScale:.20}),
+  // forrest_ground_01 averages 145/135/94, so it is already 1.00/0.93/0.65 warm. The old
+  // tint took that to 0.81/0.77/0.40 -- blue at barely half of red -- and the warm key
+  // pushed it further, which is most of why 04-town-gate-vista and 05-main-street came out
+  // as sodium-yellow rooms. Cooling the tint alone fixed the walls and left the ground
+  // doing it; lifting blue here is what actually moves those two frames.
+  surface(engine,'Moss and burial earth','/tex/forrest_ground_01/diff.jpg',{tint:[.78,.83,.78],light:.80,pixels:128,ground:true,nightGrade:true}),
+  // rock_wall_08 averages 81/75/67 -- warm tan before anything touches it. A near-neutral
+  // tint left the albedo at roughly 1.00/0.92/0.81, and then the warm key (SUN_COLOR
+  // 1.00/0.70/0.45) multiplied that again, so lit limestone landed near 1.02/0.66/0.36.
+  // That is why 04-town-gate-vista measured 0.59 mean saturation with 85% of its chromatic
+  // pixels inside a single 30-degree hue bin, the most monochrome frame in the set by a
+  // wide margin: walls, ground and light were all one orange. This tint cancels the
+  // texture's own warmth and pushes a little past neutral, so the stone reads cool grey and
+  // the lantern pools become the warm accent against it rather than one more yellow thing
+  // in a yellow room -- the complementary split atmosphere.js is built around.
+  surface(engine,'Timeworn limestone','/tex/rock_wall_08/diff.jpg',{tint:[.90,.99,1.17],light:.78,pixels:512,uvScale:.20}),
   surface(engine,'Rotten oak','/tex/wood_planks_grey/diff.jpg',{tint:[.57,.43,.31],light:.62,pixels:64}),
-  surface(engine,'Dead bark','/tex/bark_brown_02/diff.jpg',{tint:[.28,.29,.23],light:.40,pixels:64}),
+  // light .40 on a .28 tint meant a near trunk against the hazy glow clipped to pure black
+  // with no internal value at all -- 09-west-treeline had a quarter of its frame taken by one
+  // flat cutout. A silhouette is wanted here; a silhouette with no form in it is not. .56 keeps
+  // the trunk far darker than anything behind it while letting shade()'s rim term register on
+  // the lit side.
+  surface(engine,'Dead bark','/tex/bark_brown_02/diff.jpg',{tint:[.31,.31,.27],light:.56,pixels:64}),
   surface(engine,'Distant black stone','/tex/rock_wall_08/diff.jpg',{tint:[.095,.115,.10],light:.35,pixels:64}),
   surface(engine,'Candlelight','/tex/rock_wall_08/diff.jpg',{tint:[.95,1.10,.32],light:1,emission:1.4,pixels:16}),
   surface(engine,'Weathered memorial face','/ashen-reach/grave-face.jpg',{tint:[1,.99,.94],light:.72,pixels:160}),
@@ -484,9 +503,13 @@ export async function buildChurchyard(engine,scene){
    return meadow(x,z)*(1-t)+clearance(x,z)*t;
   }
   if(z<=145&&Math.abs(x)<44)return clearance(x,z);
+  // The hard zero at radius 108 is what starved the new outer moor band: 10-ridge-west puts
+  // the camera at x=-80, just inside it, so everything west of the player was bare ground.
+  // The cutoff moves to 190 and the falloff stretches over the whole run, so the meadow
+  // thins into moor and then into the scattered woodland instead of stopping at a circle.
   const rad=Math.hypot(x,z-20);
-  if(rad>108)return 0;
-  return 0.38*(1-smooth((rad-52)/48));
+  if(rad>190)return 0;
+  return 0.38*(1-smooth((rad-52)/138));
  }
  const foliage=await createFoliage(engine,scene,{
   lights,density:foliageDensity,
