@@ -71,10 +71,20 @@ export async function sky(engine,scene){
  var c=skyColor(d);
  // Two cloud layers at different scales and drift rates give the deck parallax
  // and keep a single tiling texture from reading as a repeated pattern.
- let uvA=vec2<f32>(atan2(d.z,d.x)/6.283+.12+shaderUniforms.time*.0004,acos(d.y)/3.14159*.65);
- let uvB=vec2<f32>(atan2(d.z,d.x)/6.283*2.1-.31-shaderUniforms.time*.00021,acos(d.y)/3.14159*1.15+.17);
+ // Drift was .0004 and .00021, which moves the deck 1% of the sky's circumference
+ // over a half-minute -- below the threshold where anything reads as weather, so
+ // the ceiling was effectively a painted backdrop. These are still slow enough that
+ // nothing streaks during combat; they are just fast enough that standing still for
+ // a few seconds shows the banks going somewhere.
+ let uvA=vec2<f32>(atan2(d.z,d.x)/6.283+.12+shaderUniforms.time*.0014,acos(d.y)/3.14159*.65);
+ let uvB=vec2<f32>(atan2(d.z,d.x)/6.283*2.1-.31-shaderUniforms.time*.00062,acos(d.y)/3.14159*1.15+.17);
+ // A third, much finer sample, used only to perturb the density thresholds below
+ // rather than to add density of its own. Drifting on its own axis keeps it from
+ // locking to either bank.
+ let uvC=vec2<f32>(atan2(d.z,d.x)/6.283*5.3+.07+shaderUniforms.time*.0009,acos(d.y)/3.14159*3.1-.22);
  let dA=dot(textureSample(cloud,cloudSampler,uvA).rgb,vec3<f32>(.3,.6,.1));
  let dB=dot(textureSample(cloud,cloudSampler,uvB).rgb,vec3<f32>(.3,.6,.1));
+ let dC=dot(textureSample(cloud,cloudSampler,uvC).rgb,vec3<f32>(.3,.6,.1))-.5;
  // Density, not colour. Thick where the texture is bright.
  // The cloud deck has to thin out toward the horizon, and not only because real
  // decks do. aerial() converges distant geometry onto skyColor(dir) but cannot
@@ -90,8 +100,16 @@ export async function sky(engine,scene){
  // a clouded dome. Pulling the band in from ~20 degrees to ~13 hands most of the sky
  // the gameplay camera actually frames back to the cloud deck.
  let deck=smoothstep(0.025,0.22,abs(d.y));
- let high=smoothstep(.36,.82,dA)*deck;
- let low=smoothstep(.48,.90,dB)*smoothstep(.55,.06,abs(d.y))*deck;
+ // Narrow windows, jittered by the fine octave. The old .36-.82 and .48-.90 spans
+ // took almost the whole range of the density field to go from clear to solid, which
+ // is why every bank was a soft blob with no silhouette: there was no value at which
+ // the deck had an actual boundary. Halving the span sculpts one, and offsetting both
+ // ends by dC breaks the contour into lobes rather than turning it into the clean arc
+ // of a JPEG isoline, which is what a hard threshold on a single sample would give.
+ let jA=dC*.30;
+ let jB=dC*.26;
+ let high=smoothstep(.45+jA,.69+jA,dA)*deck;
+ let low=smoothstep(.55+jB,.83+jB,dB)*smoothstep(.55,.06,abs(d.y))*deck;
  // Clouds lit by the buried sun: bright warm underside toward the glow, cool
  // and dense away from it, with a hot rim at the density edge on the sun side.
  let sd=max(dot(d,SUN_DIR),0.0);
