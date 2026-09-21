@@ -1062,3 +1062,79 @@ believing a capture.**
 - The reference also has **terraced rock shelves** organising the whole landscape,
   and **flower scatter** breaking up the grass. Neither exists here; both are open.
 - From §14: the cloud slab has one height, and the camera frames little sky.
+
+## 19. Wildflower drifts (p58–p63)
+
+§18 closed by naming flower scatter as an open reference gap. This closes it.
+
+Crop the foreground of `public/image-references/elden-cliff.jpg` and the meadow is
+not green: white umbels with violet spikes, orange clusters and pink through them,
+and those flowers are **the only saturated hue in an otherwise ash-grey frame**.
+Our field had exactly one hue.
+
+### Why this is geometry and not an atlas cell
+
+`foliage-atlas.png` **is a symlink into the main checkout**, shared with every other
+worktree, and its plant and fern cells are photographic — `build-foliage-atlas.mjs`
+only reproduces them when handed the original photos via `--photo`, so running it
+would have silently replaced the shipped atlas with the procedural fallback. The
+plant cell's own pale-pink flowers cannot help either: the instance tint multiplies
+the whole card, so anything painted on it arrives the same green as the leaves.
+
+So flowers get a **sampler-less material**. A floret is worth a handful of pixels at
+any distance, so its silhouette *is* the texture. That frees `uv.x` to carry
+petal-ness, which is why a violet spike does not arrive with a violet stalk, and
+lets the layer draw opaque with no alpha test.
+
+`CARD_VERTEX` was extracted so both materials share one vertex shader. Wind and
+player-push cannot drift apart between them — a flower standing still in bending
+grass is instantly visible and would never show in a diff of two shader strings.
+
+### Four defects, each found by looking
+
+| Symptom | Cause |
+|---|---|
+| Drifts invisible; field even and thin | Mask periods ~45 m, wider than the 28 m the near pool reaches — the camera always stood inside one band |
+| Heads read as white dashes | Floret ring was horizontal; the camera looks down ~40°, foreshortening the vertical by a third |
+| Heads floating unsupported | A single-plane stem vanishes edge-on |
+| West-shoulder vista a whiteout while lych-gate read correctly | Far LOD floret authored **bigger** than the near one, so distance *increased* the white in frame |
+
+The mask was fixed by **measuring it over the whole meadow** rather than by eye: the
+first version covered 34% of the ground and saturated 6%. At 0.19 frequencies with a
+−0.35 cut it covers 60% and saturates 18%, leaving 40% genuinely empty. The dome is
+now authored **taller than it is wide** so it lands round *after* the foreshortening.
+Flowers thin at 0.93 with distance where grass thins at 0.72 — grass merges into a
+mat, a flower is a discrete bright point.
+
+Petal values also came down from 1.55 to 1.18 and the stem's share of the
+transmission term from 0.35 to 0.08. At the old values the drifts stopped being the
+brightest thing in frame and became a separate light source sitting on top of it,
+and the stems read as bright yellow-green wire. Both were obvious the moment the
+camera reached the **shaded** west treeline, where the grass went dark and the
+flowers did not — a reminder that a value error hides in the lit shots.
+
+### Cost and control
+
+Three runs each way at 3840×2160 internal, off the 144 Hz cap: **98.30 fps with
+flowers against 96.53 without** — the sign backwards, and the no-flower side
+carrying the larger spread (3.4 fps against 1.0). `sceneTriangles` 451899 → 464787,
+about 12.9k drawn at that camera. Below the noise, as with the motes.
+
+Flowers begin north of the lych-gate and never enter the churchyard. That is the
+right read — ash and graves on one side, the living meadow on the other — and it
+also preserves the z≤40 control the swell was required to leave alone.
+`10-ridge-west` measured 0.53 against a 0.48 same-build control and
+`12-wide-south-vista` 1.66 against 1.41: the churchyard did not move.
+
+### Still carried
+
+- **Trees and buildings cast nothing on grass** (§17). Still the largest open defect,
+  and still the one that genuinely needs a texture, with a reach excluding
+  `distantRelief`.
+- **Terraced rock shelves.** The reference organises its whole landscape around cliff
+  benches; we have none. Unstarted, and the largest remaining structural gap.
+- From §14: the cloud slab has one height, and the camera frames little sky.
+- **This pass was not delivered to Telegram.** The recording step was interrupted, so
+  §19 rests on the twelve stills in `p63-lod` and the crops taken from them, not on a
+  reviewed live clip. That is a weaker standard than §16–§18 and should be closed
+  before the branch is judged finished.
