@@ -69,6 +69,20 @@ const CARRY_UPPER_BONES = [
     'mixamorig:RightHand',
 ];
 
+function stripRootTranslation(group) {
+    const clip = group?._gltfMixer?.[0];
+    if (!clip?.channels) return;
+    const hips = new Set();
+    for (const ta of group.targetedAnimations ?? []) {
+        if (ta.path === 'translation' && /Hips$/.test(ta.targetName || '')) hips.add(ta.nodeIndex);
+    }
+    if (!hips.size) return;
+    clip.channels = clip.channels.filter((ch) => !(ch.path === 0 && hips.has(ch.nodeIdx)));
+    group.targetedAnimations = group.targetedAnimations.filter(
+        (ta) => !(ta.path === 'translation' && hips.has(ta.nodeIndex)),
+    );
+}
+
 export function findGroup(groups, needles, exclude = []) {
     const want = needles.map((n) => n.toLowerCase());
     const skip = exclude.map((n) => n.toLowerCase());
@@ -211,6 +225,13 @@ export function applyVisualMasks(visual, definition) {
     if (visual.twoHand) {
         visual.twoHand.loopAnimation = true;
         visual.twoHand.mask = visual.carryMask ?? undefined;
+    }
+    if (visual.hitChest) {
+        stripRootTranslation(visual.hitChest);
+        // Additive on idle/gait: Mixamo Hit_Chest is authored from T-pose, so
+        // replacing loco joints snaps the arms out. Delta-from-frame-0 layers
+        // the flinch on whatever the character is already doing.
+        setAnimationAdditive(visual.hitChest, { referenceTime: 0 });
     }
     // The authored Fire Blast adaptation starts in Idle, so Lite can subtract
     // that pose and smoothly layer independent upper/lower contributions.

@@ -1053,9 +1053,10 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
         playHit() {
             const clip = visual?.hitChest;
             if (!clip) return false;
+            clip.speedRatio = 0.7;
             playOneshot(clip);
-            setAnimationWeight(clip, 0.9);
-            hitUntil = Math.min(0.7, clip.duration || 0.45);
+            setAnimationWeight(clip, 1);
+            hitUntil = (clip.duration || 0.45) / clip.speedRatio;
             return true;
         },
         setLoadout,
