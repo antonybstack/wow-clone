@@ -102,11 +102,16 @@ const loadInfo = await page.evaluate(async (target) => {
   // The warm-up must itself be a 65-joint source-bind asset. human-v1 is the
   // 163-joint legacy rig and does not prime this path, so warming with it leaves
   // the target just as invisible. Use the Orc source unless that *is* the target.
-  const WARMUP = '/characters/candidates/orc-source-v1.glb';
-  if (!target.includes('orc-source-v1')) {
-    await p.load(WARMUP);
-    await new Promise((r) => setTimeout(r, 300));
-  }
+  // Pick any 65-joint source that is not the target -- warming up with the
+  // target itself is exactly the case that stays broken.
+  const WARMUP_POOL = [
+    '/characters/candidates/orc-source-v1.glb',
+    '/characters/candidates/undead-source-v1.glb',
+  ];
+  const warmup = WARMUP_POOL.find((u) => !target.includes(u.split('/').pop().replace('.glb', '')));
+  if (!warmup) throw new Error(`No warm-up asset distinct from ${target}; add one to WARMUP_POOL.`);
+  await p.load(warmup);
+  await new Promise((r) => setTimeout(r, 300));
   await p.load(target);
   p.setChromeVisible(false);
   return { url: p.selectedUrl, clips: p.clipNames, diagnostics: p.diagnostics?.() ?? null };
