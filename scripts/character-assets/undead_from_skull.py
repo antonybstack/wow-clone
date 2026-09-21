@@ -15,7 +15,8 @@ different forms, not displaced ones. So:
 
 * the **head is a real skull** -- CC0 scan, `blender/characters/sources/undead-skull`,
   cranium + free mandible + 32 individual teeth, kept as its own shells and
-  kept as the bake cage for the tangent normal map;
+  carrying its own surface detail into the joined body (there is no separate
+  high-poly to bake a normal map from, so none is baked -- see bake_ao);
 * the **body is authored around the bind itself**, as lofted superelliptical
   shells along the retargeted bone graph, so the surface cannot drift from the
   skeleton that deforms it;
@@ -70,6 +71,10 @@ DO_BAKE = '--no-bake' not in argv
 DO_PREVIEW = '--preview' in argv
 TARGET_HEIGHT = float(arg('--height', '1.95'))
 BAKE_SIZE = int(arg('--bake-size', '1024'))
+# AO ray length. Long rays make the legs occlude each other and the arms occlude the
+# torso, which reads as grime rather than form; this is short enough to catch the
+# orbits, under the jaw, the armpits and the intercostal hollows and nothing else.
+AO_DISTANCE = float(arg('--ao-distance', '0.25'))
 
 # ---------------------------------------------------------------- proportions
 # Concept: tall, gaunt, narrow silhouette, long bony hands. Half-widths in metres
@@ -138,6 +143,11 @@ TOOTH = (0.620, 0.582, 0.500, 1.0)
 FLESH = (0.352, 0.344, 0.310, 1.0)         # desiccated hide over the torso
 FLESH_DARK = (0.176, 0.172, 0.152, 1.0)    # hollows: between ribs, armpit, groin
 FLESH_PALE = (0.436, 0.418, 0.372, 1.0)    # bone pressing through: knees, elbows, ribs
+# The neck used to be painted FLESH_DARK, which the v1 build rendered as a black void
+# between jaw and collar -- mostly the encoding bug in bake_vertex_colours, but even
+# corrected, 0.176 against a 0.352 torso is a hole rather than a shadow. Sinew in
+# shadow: clearly darker than the torso, with room left for the AO under the jaw.
+NECK = (0.235, 0.226, 0.198, 1.0)
 AMBER = (0.92, 0.42, 0.06, 1.0)
 
 
@@ -809,13 +819,21 @@ def paint(ob, j=None):
         elif name.startswith('foot'):
             c = FLESH
         elif name == 'neck':
-            c = FLESH_DARK
+            c = NECK
         if name == 'torso':
             t = (p.z - lo.z) / max(1e-6, height)
-            # rib shadows: horizontal banding across the chest, front and sides
-            if 0.66 < t < 0.80:
-                band = 0.5 + 0.5 * math.cos((p.z * 62.0))
-                c = tuple(FLESH[k] + (FLESH_DARK[k] - FLESH[k]) * (0.55 * band) for k in range(4))
+            # Rib shadows: horizontal banding across the chest, full strength facing
+            # forward and fading out by the time the surface faces backward. Without the
+            # normal gate the bands wrapped right around and read as garbled chevrons
+            # across the upper back, where there are no ribs to shadow. The frequency is
+            # also down from 62 rad/m: at ~2 cm vertex spacing that was under three
+            # samples per period, so the interpolation aliased into zigzags.
+            if 0.64 < t < 0.82:
+                ny = (mw.to_3x3() @ v.normal).normalized().y
+                fade = min(1.0, max(0.0, (0.30 - ny) / 0.80))
+                band = 0.5 + 0.5 * math.cos(p.z * 46.0)
+                c = tuple(FLESH[k] + (FLESH_DARK[k] - FLESH[k]) * (0.45 * band * fade)
+                          for k in range(4))
             elif t < 0.36:
                 c = tuple(FLESH[k] + (FLESH_DARK[k] - FLESH[k]) * 0.35 for k in range(4))
         # knees and elbows: bone pressing through
@@ -888,44 +906,62 @@ def ensure_cycles():
     return True
 
 
-def bake_maps(low, high, size):
-    """Tangent normal + AO from the skull cage and the body's own shells."""
+def bake_ao(low, size):
+    """Ambient occlusion of the finished body, from the body alone.
+
+    This deliberately does NOT use selected-to-active. The previous version baked
+    NORMAL and AO against a cage that was a *copy of these very surfaces* sitting in
+    the same place, so every AO ray left the low-poly and immediately struck its own
+    duplicate: the map read fully occluded everywhere. Measured in the shipped v1
+    atlas, whose dominant colour is 0.102 linear against an authored FLESH of 0.352 --
+    flat at the f = 1 - 0.55(1 - occ) floor. That is what made the whole body a uniform
+    dark olive and the neck a void. The normal bake was a no-op for the same reason
+    (high and low were the same surface, so it exported a uniform 128,128,255 image);
+    it is dropped rather than faked, since the skull scan's detail is already in the
+    low-poly and there is no higher-resolution source to bake from.
+    """
     if not ensure_cycles():
-        return None, None
-    nrm = bpy.data.images.new('UndeadV1BodyNormal', size, size, alpha=False, float_buffer=False)
-    nrm.generated_color = (0.5, 0.5, 1.0, 1.0)
+        return None
     ao = bpy.data.images.new('UndeadV1BodyAO', size, size, alpha=False)
     ao.generated_color = (1, 1, 1, 1)
+    ao.colorspace_settings.name = 'Non-Color'
     scn = bpy.context.scene
-    scn.render.bake.use_selected_to_active = True
-    scn.render.bake.cage_extrusion = 0.012
-    scn.render.bake.max_ray_distance = 0.03
+    if scn.world is None:
+        scn.world = bpy.data.worlds.new('UndeadBakeWorld')
+    try:
+        scn.world.light_settings.distance = AO_DISTANCE
+    except Exception as err:
+        log(f'  AO distance not settable: {err}')
+    scn.cycles.samples = 64
+    scn.cycles.use_denoising = True
+    scn.render.bake.use_selected_to_active = False
     scn.render.bake.use_clear = True
-    results = {}
-    for image, bake_type in ((nrm, 'NORMAL'), (ao, 'AO')):
-        for mat in low.data.materials:
-            nt = mat.node_tree
-            node = nt.nodes.new('ShaderNodeTexImage')
-            node.image = image
-            node.select = True
-            nt.nodes.active = node
-        bpy.ops.object.select_all(action='DESELECT')
-        high.select_set(True)
-        low.select_set(True)
-        bpy.context.view_layer.objects.active = low
-        try:
-            bpy.ops.object.bake(type=bake_type, use_selected_to_active=True,
-                                cage_extrusion=0.012, max_ray_distance=0.03)
-            results[bake_type] = image
-            log(f'  baked {bake_type}')
-        except Exception as err:
-            log(f'  bake {bake_type} failed: {err}')
-            results[bake_type] = None
-        for mat in low.data.materials:
-            nt = mat.node_tree
-            for n in [x for x in nt.nodes if x.type == 'TEX_IMAGE' and x.image == image]:
-                nt.nodes.remove(n)
-    return results.get('NORMAL'), results.get('AO')
+    for mat in low.data.materials:
+        nt = mat.node_tree
+        node = nt.nodes.new('ShaderNodeTexImage')
+        node.image = ao
+        node.select = True
+        nt.nodes.active = node
+    bpy.ops.object.select_all(action='DESELECT')
+    low.select_set(True)
+    bpy.context.view_layer.objects.active = low
+    result = None
+    try:
+        bpy.ops.object.bake(type='AO', use_selected_to_active=False)
+        result = ao
+        log('  baked AO (self-occlusion)')
+    except Exception as err:
+        log(f'  bake AO failed: {err}')
+    for mat in low.data.materials:
+        nt = mat.node_tree
+        for n in [x for x in nt.nodes if x.type == 'TEX_IMAGE' and x.image == ao]:
+            nt.nodes.remove(n)
+    if result is not None:
+        # An AO map that reads the same value everywhere is not measuring occlusion;
+        # print the spread so a future build cannot silently go flat again.
+        vals = list(result.pixels)[0::4]
+        log('  AO min=%.3f mean=%.3f max=%.3f' % (min(vals), sum(vals) / len(vals), max(vals)))
+    return result
 
 
 def bake_vertex_colours(ob, size, ao_img=None):
@@ -1007,6 +1043,20 @@ def bake_vertex_colours(ob, size, ao_img=None):
             px[i * 4 + 1] *= f
             px[i * 4 + 2] *= f
         log('  multiplied AO into albedo')
+    # Everything above is linear, and it has to be: the vertex colours are linear and
+    # AO is a linear multiply. But images.new() without float_buffer gives an 8-bit
+    # buffer, and assigning .pixels to one of those stores value*255 verbatim -- no
+    # colour management runs. The v1 atlas therefore shipped FLESH 0.352 as byte 90,
+    # which glTF then decoded as sRGB back down to 0.102 linear: a third of the
+    # authored brightness, uniformly, which is what made the whole body read dark
+    # olive and the FLESH_DARK neck read as a void. Encode explicitly here so the
+    # byte in the PNG means what the glTF baseColorTexture sRGB decode expects.
+    for i in range(size * size * 4):
+        if i % 4 == 3:
+            continue
+        v = min(1.0, max(0.0, px[i]))
+        px[i] = 12.92 * v if v <= 0.0031308 else 1.055 * (v ** (1 / 2.4)) - 0.055
+    log('  encoded albedo linear -> sRGB')
     img.pixels = px
     img.pack()
     log(f'  albedo baked {size}x{size}')
@@ -1203,8 +1253,13 @@ def add_contract_meshes(arm, j, orbit_centres):
     the concept has two small amber lights deep in the orbits. Hair/Brows/Shorts are
     the minimal stand-ins the contract needs (the outfit is a later milestone)."""
     out = []
+    # Strength was 7.5. The exporter writes emissiveFactor [1, 0.457, 0.065] with
+    # KHR_materials_emissive_strength, and the Lite engine honours that extension, so
+    # 7.5 pushed both R and G past 1.0 -- the eyes clipped to pale yellow-white and the
+    # amber hue was destroyed before it ever reached the frame. 1.6 keeps G at ~0.73,
+    # below clipping, so the hue survives while the eyes still read as lit.
     eye_mat = make_material('UndeadV1Eyes', (0.06, 0.022, 0.004, 1.0), roughness=0.35,
-                            emission=AMBER, strength=7.5)
+                            emission=AMBER, strength=1.6)
     bm = bmesh.new()
     for c in orbit_centres:
         sub = bmesh.new()
@@ -1346,16 +1401,6 @@ def main():
     orbit_centres = [Vector((w * EYE_X_FRACTION, orbit_y, orbit_z)),
                      Vector((-w * EYE_X_FRACTION, orbit_y, orbit_z))]
 
-    # Bake cage: the untouched skull plus a copy of the finished surfaces, so the
-    # head bakes real bone detail and the body bakes its own near-flat normal.
-    cage_parts = []
-    for src, nm in ((skull, 'CageSkull'), (main_shells, 'CageBody'), (hands, 'CageHands')):
-        cp = src.copy()
-        cp.data = src.data.copy()
-        cp.name = nm
-        bpy.context.collection.objects.link(cp)
-        cage_parts.append(cp)
-
     select_only(main_shells)
     hands.select_set(True)
     skull.select_set(True)
@@ -1381,21 +1426,10 @@ def main():
     body.data.materials.clear()
     body.data.materials.append(placeholder)
 
-    select_only(cage_parts[0])
-    for cp in cage_parts[1:]:
-        cp.select_set(True)
-    bpy.context.view_layer.objects.active = cage_parts[0]
-    bpy.ops.object.join()
-    cage = bpy.context.view_layer.objects.active
-    cage.name = 'UndeadBakeCage'
-
-    normal_img, ao_img = (None, None)
-    if DO_BAKE:
-        normal_img, ao_img = bake_maps(body, cage, BAKE_SIZE)
-    bpy.data.objects.remove(cage, do_unlink=True)
+    ao_img = bake_ao(body, BAKE_SIZE) if DO_BAKE else None
 
     albedo = bake_vertex_colours(body, BAKE_SIZE, ao_img)
-    assign_final_material(body, albedo, normal_img)
+    assign_final_material(body, albedo, None)
 
     analytic_skin(body, arm, regions)
     extras = add_contract_meshes(arm, j, orbit_centres)

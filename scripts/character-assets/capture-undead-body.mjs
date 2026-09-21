@@ -161,4 +161,6 @@ for (const view of views) {
 const report = { url: loadInfo.url, tag, mode, clip, clips: loadInfo.clips, shots, consoleErrors, diagnostics: loadInfo.diagnostics };
 await writeFile(path.join(outDir, `report-${mode}${clip ? `-${clip}` : ''}.json`), JSON.stringify(report, null, 2));
 console.log(JSON.stringify({ ok: consoleErrors.length === 0, outDir, clips: loadInfo.clips.length, consoleErrors: consoleErrors.slice(0, 5) }, null, 2));
-await browser.close();
+// browser.close() on a connectOverCDP() connection tears down the shared browser
+// context and leaves the slot's Chrome with zero pages. Disconnect instead.
+process.exit(consoleErrors.length ? 1 : 0);
