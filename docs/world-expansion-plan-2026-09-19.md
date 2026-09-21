@@ -1071,3 +1071,55 @@ Each verified by restoring the shipped binaries from git and re-running:
 
 Three of those are gate checks for equipment and the armory, and they are all
 failing on `main` right now. Nothing here is accepted — it is staged for review.
+
+### Gate checks repaired (2026-09-20, commit `467d5f6`)
+
+The three red gate checks above are green. Every one of the seven failures was
+the check being stale against a shipped behaviour change; none was a defect in
+the game, and each was confirmed to pre-exist by running the committed version
+of the script before touching it.
+
+| Check | Was asserting | Why it went stale |
+| --- | --- | --- |
+| check-armory | exactly one `option:disabled` | M11b made Undead a real third race; unsupported races are now refused by name, not greyed out |
+| check-equipment-stream | exact failure-message equality | the message now carries the reason after the prefix |
+| check-equipment | `equip()` throws on a wrong slot | the streaming loader *resolves* `{status:'failed',error}` so the UI can show why |
+| check-equipment | sword origin within 2mm of the socket, 80ms after a motion change | draw/stow is eased over 0.35s (2026-09-18) and the grip sits ~8cm from the socket origin — verified in `ve-capture/m12/sword/side.png` |
+| check-equipment | `attachment==='back'` sampled once at `casts===1` | the stow is a window, not an instant; now traced per frame |
+| check-equipment | dummy `hp===480` / `hp===240` | 500hp-dummy arithmetic; the dummy has 2000hp. Both now derived from `FIRE_BLAST.damage` / `LAVA_BALL.damage` |
+| check-equipment --mixed | `meshCount===initial.meshCount` after equipping pilgrimTunic | `initial` predates the ironSword and pilgrimTunic streams, so the count legitimately grew 75 → 78. Actor identity is the skeleton; per-swap stability is already asserted precisely by the 40-cycle check |
+
+Two of the diagnoses were only reachable by instrumenting rather than guessing,
+and both changed what the fix had to be:
+
+- The `--mixed` assertion is a conjunction of four conditions. Printing them
+  individually showed the frozen preview time and the bone count were fine, the
+  visibility conjunct was false only because a **first-time garment stream is
+  asynchronous** (`getStatus().pending` was still true at the read), and the mesh
+  count was comparing against a three-streams-old snapshot. Added a `settle()`
+  helper used after every `selectOption`.
+- "Gameplay view changes preserve unequipped coverage" read `WayfarerTunic` as
+  visible with the torso slot empty, which looks exactly like a garment leaking
+  into gameplay. It is not. The streaming loader had **evicted** that mesh — it
+  stays parented under `body.root` but leaves `scene.meshes` — and `setView()`'s
+  blanket `setMeshVisible(body.root, true)` then writes `visible = true` straight
+  back onto the detached mesh. The capture shows a bare chest, correctly. The
+  check was reading a flag on something that cannot render, so `visible` now
+  means in-scene **and** flagged. Worth knowing generally: on this engine the
+  mesh visibility flag alone is not evidence that a mesh renders.
+
+**Correction to an earlier entry of mine.** Partway through this work I recorded
+that `check-equipment` was green in default mode at 12 PASS. That was wrong: the
+default run was reaching the stale `hp===240` lava expectation and timing out
+there, and I read a truncated tail as a clean finish. Default mode has 14 checks
+and now passes 14. The lesson is the one already in this log — count the checks,
+do not read the tail.
+
+Current numbers on `main` at `467d5f6`: check-equipment 14 PASS default and 21
+PASS `--mixed`, check-armory 28 PASS, check-equipment-stream 8 PASS,
+check-m12-packs 16/16, `test:equipment` 47/47.
+
+Still carried from the M12 list, untouched: `test:character` 62/8 in
+`test-rig-contract.mjs`, and orc `wayfarerTrousers` hidden beneath
+`pilgrimTunic` (may be intentional, still unconfirmed). Staged for review, not
+accepted.
