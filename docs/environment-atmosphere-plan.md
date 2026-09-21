@@ -464,3 +464,89 @@ Read the console over CDP; the WGSL parse error names the line.
   skyline reads soft, and it is recorded as a decision rather than as a fact.
 - Cloud drift is legible now but the deck has no vertical structure; it is a ceiling,
   not weather.
+
+## 11. The convergence target (p33–p36, Telegram 700)
+
+### The thing every earlier pass missed
+
+`aerial()` ended in `mix(c, inscatter, fog)` with `inscatter = skyColor(dir)`. That is
+the statement "a fully hazed object is exactly as bright as the open sky", and it is
+the reason the skyline read soft through this entire branch. FOG_MAX, the FOG_KNEE
+soft knee, FOG_SCALE_H and the forward-scatter lobe are all arguments about *how much*
+inscatter there is. None of them touch what it converges to, so none of them could
+move a distant object more than a fraction of the way toward a silhouette — which is
+exactly what the numbers showed each time.
+
+`HAZE_FAR=0.55` takes the deep field's inscatter to 55% of the sky in the same
+direction, ramped over 110–300 m. Measured on 03-lych-gate against p32, same patches:
+
+| patch | p32 | p34 | vs its own sky |
+|---|---|---|---|
+| mountain left of citadel | 151.1 | 114.1 | 25% below → 43% |
+| spire cluster | 149.5 | 131.1 | 26% → 35% |
+| crag | 101.8 | 85.4 | 32% → 43% |
+| sky above crag | 150.2 | 149.2 | control |
+| sky left | 202.2 | 201.9 | control |
+| town wall | 133.5 | 133.3 | control |
+| gravestone | 159.4 | 159.5 | control |
+
+This also retires the second entry on §10's "Still carried" list. I had recorded the
+crag being brighter than the sky above it as a decision I believed was physically
+right. It was not a decision worth keeping; it was this bug.
+
+### Two things I got wrong on the way
+
+**Keying the ramp to fog.** The first attempt (p33) ramped on the fog value with a knee
+at 0.35, reasoning that it would spare the tuned near field. It did, and it also spared
+the target: the citadel towers sit at fog 0.52, a sixth of the way up that ramp, and
+measured **+0.0** on the tower and −0.3 on the castle mass. `FOG_KNEE` has already
+flattened fog exactly where the interesting geometry is, which makes fog a poor proxy
+for path length. Distance is the right key, and starting the ramp at 110 m leaves every
+near- and mid-field value from p5, p10 and p15–p18 untouched anyway, because nothing
+tuned in those passes is beyond 110 m.
+
+**The physics story.** The tempting justification is "a 260 m path carries less
+inscatter than the infinite column behind it". It does not survive `FOG_SCALE_H=15`:
+under a 15 m scale height a horizontal sightline passes roughly seventeen times more
+haze than the vertical column, so a strictly physical reading of this model makes the
+far field *brighter* than the sky, not darker. The model is a mood device. The change
+is art direction — distant land must sit below the sky it stands against — and the
+comment in `atmosphere.js` says so rather than dressing it up.
+
+### A negative result worth not repeating: crest caps (p35, p36, reverted)
+
+The far band is now a silhouette with no internal form, and the reason is structural:
+the ridge rings enclose the camera, so we see their inner faces, and an inner face on
+the half of the ring that frames the sunset has `ndl ≈ −0.96`. `shade()`'s wrapped tail
+is zero by then, and its rim term needs a normal turning away from the eye, which a
+flat camera-facing curtain never does. The visible ridges receive **no directional
+light at all** — hemispheric ambient on a near-black stone is the whole of it.
+
+I tried a snowline crest cap: a second quad above a height threshold carrying a large
+vertex colour (they are float32 and multiply albedo, so multipliers above 1 are legal).
+It cost 372 triangles and it does not work, for two reasons found in that order:
+
+1. A snowline at 0.62 of the `hMin..hMax` *parameter* range is not 0.62 of the crests
+   actually generated. `t = pow(ridged, sharp)` with sharp 1.35–2.1 pushes most segments
+   far down the range, so only 43 of 334 segments crossed it and the whole feature
+   measured inside the pose-noise floor on all twelve shots. A percentile of the
+   generated heights fixes that.
+2. It still does not show, because **the ring crests are occluded by nearer terrain in
+   almost every gameplay framing**. A debug pass colouring the caps flat magenta put
+   them at 0.2–0.6% of screen on three shots and nothing on the other nine, and even at
+   a 12× albedo the band arrived as a muted dark pink, because 45–55% of a 300–500 m
+   pixel is inscatter. At honest colours, the side-by-side crops on 02 and 11 are
+   indistinguishable.
+
+Reverted. Recorded here so the next pass does not spend the same day on it. The lever
+for the northern skyline is the big pale near hill that actually occupies it, not the
+rings behind it.
+
+### Still carried
+
+- The far band is a silhouette with no internal form, for the reason above. Fixing it
+  needs light the curtains can actually receive, not a brighter material.
+- The deep field now skews warm-brown rather than cool, because what survives the cut
+  is the warm end of the inscatter.
+- Cloud drift is legible but the deck has no vertical structure; it is a ceiling, not
+  weather.
