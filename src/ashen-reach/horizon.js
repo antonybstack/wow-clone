@@ -185,9 +185,18 @@ export function buildHorizon(distant,warm,groundHeight){
  ridgeRing(distant,0,40,320,380,ringY,7318,40,70,130,[.86,.88,.82,0]);
  ridgeRing(distant,0,40,420,500,ringY,7440,36,90,160,[.82,.84,.78,0]);
 
- scarp(distant,groundHeight,0,40,128,-0.4,0.9,42);
- scarp(distant,groundHeight,0,40,128,2.15,3.55,38);
- scarp(distant,groundHeight,0,40,128,3.65,5.0,40);
+ // Radius 200, not 128. A scarp is a downward curtain: it only reads as a cliff
+ // where the ground beyond it is *lower*. These were placed against the first
+ // bowl rim, which reached 92 m by d~120, so r=128 landed them on a real edge.
+ // Halving that rim and pushing it out to d~210 (geometry.js distantRelief) left
+ // them stranded on flat ground, where the 1.5 m lip drew as a hard black bar
+ // straight across the south vista in front of a slope that rises behind it --
+ // material-tag probe named it `Distant black stone`, not terrain. r=200 puts the
+ // southern arc at z=-160, where the ground is already ~18 m up and climbing, so
+ // the curtain sits on the slope it is meant to be the face of.
+ scarp(distant,groundHeight,0,40,200,-0.4,0.9,42);
+ scarp(distant,groundHeight,0,40,200,2.15,3.55,38);
+ scarp(distant,groundHeight,0,40,200,3.65,5.0,40);
  mesaKeep(distant,warm,152,28,groundHeight,46,8.2);
  mesaKeep(distant,warm,-148,68,groundHeight,40,7.2);
  mesaKeep(distant,warm,40,-168,groundHeight,36,6.8);
