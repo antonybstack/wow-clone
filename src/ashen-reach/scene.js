@@ -3,6 +3,7 @@ import {surface,sky} from './materials.js';
 import {building,collapsedStall,well,forgeGlow,crossFinial,stoneArch,rubble,flagstone,masonryBox} from './buildings.js';
 import {buildHorizon} from './horizon.js';
 import {createFoliage} from './foliage.js';
+import {createLightShafts} from './light-shafts.js';
 
 /** A new scene layout. No Moonwell world builders, architecture or vegetation placement. */
 export async function buildChurchyard(engine,scene){
@@ -154,6 +155,12 @@ export async function buildChurchyard(engine,scene){
  // churchyard's random sequence above (tombs/trees/grass colour) is untouched. Placed only at
  // z>40, so height()'s climb/pad terms and this content never affect the z<=40 invariant.
  const randomNorth=rng(50021),rn=(a,b)=>a+randomNorth()*(b-a);
+ // Anchors for the additive light shafts (light-shafts.js). Collected here rather
+ // than derived from `lights` because that array mixes head fixtures with the
+ // near-ground pools, and only the head of a lantern casts a visible cone.
+ // Everything pushed here is z>=44, so the z<=40 churchyard invariant (section 4
+ // of docs/environment-atmosphere-plan.md) is untouched by construction.
+ const shafts=[];
 
  function streetLamp(x,z,strength=.82){
   const y=height(x,z);
@@ -167,6 +174,7 @@ export async function buildChurchyard(engine,scene){
   // Ambient/wall light from the lamp head. M7a windowed it at radius 9. M8b raises strength
   // .68 -> .82 (the window still kills the tail, and the centre-line is well under the 1.4 knee).
   lights.push({position:p,strength,falloff:.42,radius:9});
+  shafts.push({p:[p[0],p[1]-.18,p[2]],groundY:y,radius:2.05,strength:.80});
   // Near-ground pool. M8b raises 1.0 -> 1.70: this radius-5 light is the one that can put
   // level back at the fixture without restoring the pedestal, because it is already zero
   // well before the next lamp. Halo (radius 30) is deliberately left at M7a strength.
@@ -189,6 +197,9 @@ export async function buildChurchyard(engine,scene){
   lanternGlow(warm,[x,ridgeY-.1,z],{r:.11,h:.24});
   // M8b: .65 -> .80 so the centre-line peak at z=44 (this fixture) returns above the pre-M7a 1.596.
   lights.push({position:[x,ridgeY-.1,z],strength:.80,falloff:.42,radius:9});
+  // The gate lantern hangs under a timber roof, so its cone starts lower and
+  // spreads less than a free-standing street lamp's.
+  shafts.push({p:[x,ridgeY-.28,z],groundY:y,radius:1.75,strength:.62});
   // Dedicated near-ground pool. M8b: 1.1 -> 1.49, same window as M7a (radius 6.5).
   lights.push({position:[x,y+.18,z],strength:1.49,falloff:.55,radius:6.5});
  }
@@ -519,7 +530,9 @@ export async function buildChurchyard(engine,scene){
  const meshes=B.map((b,i)=>b.commit(engine,scene,mats[i],lights)).filter(Boolean);
  const farMesh=farEarth.commit(engine,scene,mats[0],[]);
  if(farMesh)meshes.push(farMesh);
+ const shaftPass=await createLightShafts(engine,scene,shafts);
+ if(shaftPass?.mesh)meshes.push(shaftPass.mesh);
  meshes.push(...foliage.meshes);
  colliders.unshift({type:'mesh',mesh:meshes[0]});const clouds=await sky(engine,scene);
- return {meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,foliage,stats:{triangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris,drawBatches:B.length+(farMesh?1:0)+foliage.stats.draws,horizonTriangles:horizonStats.triangles,farTriangles:farTris,foliageInstances:foliage.stats.instances,scatterTrees,scatterRocks},update(t,playerPos){foliage.update(t,playerPos);clouds.update(t);}};
+ return {meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,foliage,stats:{triangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris,drawBatches:B.length+(farMesh?1:0)+(shaftPass?.mesh?1:0)+foliage.stats.draws,horizonTriangles:horizonStats.triangles,farTriangles:farTris,foliageInstances:foliage.stats.instances,scatterTrees,scatterRocks,shafts:shafts.length,shaftTriangles:shaftPass?.triangles??0},update(t,playerPos){foliage.update(t,playerPos);clouds.update(t);}};
 }
