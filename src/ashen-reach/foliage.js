@@ -19,26 +19,13 @@ const UV={meadow:cell(0,0),dry:cell(1,0),plant:cell(0,1),fern:cell(1,1)};
 
 const OUT=`struct Out{@builtin(position) position:vec4<f32>,@location(0) p:vec3<f32>,@location(1) uv:vec2<f32>,@location(2) color:vec4<f32>,@location(3) normal:vec3<f32>,@location(4) lamp:f32};`;
 
-async function createFoliageMaterial(engine){
- const tex=await loadTexture2D(engine,ATLAS,{invertY:false,srgb:false,mipMaps:true,minFilter:'linear',magFilter:'linear'});
- const mat=createShaderMaterial({
-  name:'Ashen foliage',
-  attributes:['position','normal','uv','color','uv2'],
-  uniforms:['viewProjection','world','cameraPosition',
-   {name:'time',type:'f32',defaultValue:0},
-   {name:'playerPosition',type:'vec3<f32>',defaultValue:[0,0,0]},
-   {name:'playerRadius',type:'f32',defaultValue:1.2},
-   {name:'firePosition',type:'vec3<f32>',defaultValue:[0,0,0]},
-   {name:'fireStrength',type:'f32',defaultValue:0},
-   {name:'handFirePosition',type:'vec3<f32>',defaultValue:[0,0,0]},
-   {name:'handFireStrength',type:'f32',defaultValue:0},
-   {name:'lavaPosition',type:'vec3<f32>',defaultValue:[0,0,0]},
-   {name:'lavaStrength',type:'f32',defaultValue:0},
-  ],
-  samplers:['albedo'],
-  backFaceCulling:false,
-  needAlphaTesting:true,
-  vertexSource:`${OUT}
+/**
+ * Shared by the foliage cards and the flowers below, so the wind gust, the flutter
+ * and the player-push can never drift apart between the two materials -- a flower
+ * standing still in grass that is bending is the kind of thing the eye catches
+ * instantly, and it would be invisible in any diff of two separate shader strings.
+ */
+const CARD_VERTEX=`${OUT}
 @vertex fn mainVertex(i:VertexInput)->Out{
  var o:Out;
  let instanceWorld=mat4x4<f32>(i.world0,i.world1,i.world2,i.world3);
@@ -66,7 +53,28 @@ async function createFoliageMaterial(engine){
  o.normal=normalize((finalWorld*vec4<f32>(i.normal,0.0)).xyz);
  o.lamp=i.instanceColor.a;
  return o;
-}`,
+}`;
+
+async function createFoliageMaterial(engine){
+ const tex=await loadTexture2D(engine,ATLAS,{invertY:false,srgb:false,mipMaps:true,minFilter:'linear',magFilter:'linear'});
+ const mat=createShaderMaterial({
+  name:'Ashen foliage',
+  attributes:['position','normal','uv','color','uv2'],
+  uniforms:['viewProjection','world','cameraPosition',
+   {name:'time',type:'f32',defaultValue:0},
+   {name:'playerPosition',type:'vec3<f32>',defaultValue:[0,0,0]},
+   {name:'playerRadius',type:'f32',defaultValue:1.2},
+   {name:'firePosition',type:'vec3<f32>',defaultValue:[0,0,0]},
+   {name:'fireStrength',type:'f32',defaultValue:0},
+   {name:'handFirePosition',type:'vec3<f32>',defaultValue:[0,0,0]},
+   {name:'handFireStrength',type:'f32',defaultValue:0},
+   {name:'lavaPosition',type:'vec3<f32>',defaultValue:[0,0,0]},
+   {name:'lavaStrength',type:'f32',defaultValue:0},
+  ],
+  samplers:['albedo'],
+  backFaceCulling:false,
+  needAlphaTesting:true,
+  vertexSource:CARD_VERTEX,
   fragmentSource:`${OUT}
 ${ATMOS}
 ${TERRAIN_SLOPE_WGSL}
@@ -106,6 +114,184 @@ ${TERRAIN_SLOPE_WGSL}
  setShaderTexture(mat,'albedo',tex);
  return mat;
 }
+
+/**
+ * Wildflowers, as geometry rather than atlas cards.
+ *
+ * `public/image-references/elden-cliff.jpg` settles what the grass field is missing.
+ * Crop its foreground and the meadow is not green: it is a drift of white umbels with
+ * violet spikes, orange clusters and pink through it, and those flowers are the only
+ * saturated hue in an otherwise ash-grey frame. Our field has exactly one hue, and the
+ * broadleaf atlas cell's pale pink flowers cannot supply another -- the instance tint
+ * multiplies the whole card, so anything painted on it comes out the same green as the
+ * leaves around it.
+ *
+ * The atlas cannot help and must not be touched. `foliage-atlas.png` is a symlink into
+ * the main checkout, shared with every other worktree, and the plant and fern cells are
+ * photographic: the builder only reproduces them when handed the original photos with
+ * --photo, and running it without them would silently replace the shipped atlas with
+ * the procedural fallback. So flowers get their own material with no sampler at all.
+ *
+ * That turns out to be the better shape anyway. A floret is a centimetre or two across;
+ * at every distance it is worth a handful of pixels, so a texture buys nothing that the
+ * silhouette does not already give, and dropping the alpha test lets these draw opaque.
+ * Hue comes from the instance colour, which is what we wanted the atlas to allow.
+ *
+ * `uv.x` is free without a sampler, so it carries petal-ness: the stem reads a fixed
+ * green and only the florets take the instance hue, which is why a violet spike does
+ * not come with a violet stalk. `uv.y` carries a length gradient for shading.
+ */
+async function createFlowerMaterial(){
+ return createShaderMaterial({
+  name:'Ashen flowers',
+  attributes:['position','normal','uv','color','uv2'],
+  uniforms:['viewProjection','world','cameraPosition',
+   {name:'time',type:'f32',defaultValue:0},
+   {name:'playerPosition',type:'vec3<f32>',defaultValue:[0,0,0]},
+   {name:'playerRadius',type:'f32',defaultValue:1.2},
+   {name:'firePosition',type:'vec3<f32>',defaultValue:[0,0,0]},
+   {name:'fireStrength',type:'f32',defaultValue:0},
+   {name:'handFirePosition',type:'vec3<f32>',defaultValue:[0,0,0]},
+   {name:'handFireStrength',type:'f32',defaultValue:0},
+   {name:'lavaPosition',type:'vec3<f32>',defaultValue:[0,0,0]},
+   {name:'lavaStrength',type:'f32',defaultValue:0},
+  ],
+  backFaceCulling:false,
+  vertexSource:CARD_VERTEX,
+  fragmentSource:`${OUT}
+${ATMOS}
+${TERRAIN_SLOPE_WGSL}
+@fragment fn mainFragment(i:Out)->@location(0) vec4<f32>{
+ let petal=i.uv.x;
+ // The stem keeps its own green whatever hue the instance carries, so a violet
+ // spike is not a violet stalk. petal=0 on stem vertices, 1 on florets.
+ let stem=vec3<f32>(0.21,0.27,0.11);
+ let base=mix(stem,i.color.rgb,petal);
+ let gn=terrainNormalWgsl(i.p.x,i.p.z);
+ let raw=normalize(i.normal+vec3<f32>(0.00001));
+ let nn=normalize(i.normal+gn*0.7+vec3<f32>(0.00001));
+ // A petal is one cell thick and the sun is on the horizon, so most of what reaches
+ // the eye passed *through* it. The exponent is lower and the weight far higher than
+ // the grass blade's -- that is the whole reason white flowers glow at dusk.
+ let trans=pow(max(-dot(raw,SUN_DIR),0.0),1.5);
+ // The stem barely gets this. At 0.35 it picked up enough warm sun to read as a bright
+ // yellow-green stick hovering in dark grass, which is what the west-treeline shot was
+ // actually showing rather than any flower.
+ var light=shade(nn,i.p,shaderSystem.cameraPosition,0.92)+SUN_COLOR*trans*(0.08+petal*0.62);
+ var lampEff=i.lamp;
+ if(i.lamp>1.4){lampEff=1.4+(1.0-exp(-(i.lamp-1.4)));}
+ let fire=shaderUniforms.fireStrength/(1.0+pow(distance(i.p,shaderUniforms.firePosition)*0.85,2.0));
+ let handFire=shaderUniforms.handFireStrength/(1.0+pow(distance(i.p,shaderUniforms.handFirePosition)*1.0,2.0));
+ let lava=shaderUniforms.lavaStrength/(1.0+pow(distance(i.p,shaderUniforms.lavaPosition)*0.7,2.0));
+ light=light+vec3<f32>(1.0,0.58,0.26)*lampEff+vec3<f32>(1.0,0.28,0.045)*(fire+handFire+lava);
+ var c=base*light;
+ // The same northward cooling the grass takes, so the drifts belong to Hollowmere
+ // rather than sitting on top of it.
+ c=mix(c,c*vec3<f32>(0.92,0.86,0.95),smoothstep(40.0,55.0,i.p.z));
+ c=aerial(c,i.p,shaderSystem.cameraPosition);
+ return vec4<f32>(grade(c),1.0);
+}`,
+ });
+}
+
+/**
+ * A floret is a diamond, not a hexagon or a card. Two triangles is the whole budget
+ * that survives multiplying by a thousand instances, and rotating the quad 45 degrees
+ * costs nothing while removing the one thing a square silhouette gives away. Florets
+ * overlap inside a head anyway, so what the eye reads is the cluster's outline.
+ */
+function floret(b,cx,cy,cz,r,ax,az,col,grad){
+ const ux=ax*r, uz=az*r;
+ b.quad(
+  [cx-ux,cy,cz-uz],[cx,cy+r,cz],[cx+ux,cy,cz+uz],[cx,cy-r,cz],
+  [[1,grad],[1,grad],[1,grad],[1,grad]],
+  [col,col,col,col],
+  [[-az,0.55,ax],[-az,0.55,ax],[-az,0.55,ax],[-az,0.55,ax]]);
+}
+
+/**
+ * Two crossed quads, not one. A single-plane stem vanishes completely when the camera
+ * catches it edge-on, and the west-treeline shot was full of flower heads apparently
+ * floating unsupported in the grass. Two extra triangles per instance buys that back.
+ */
+function stalk(b,h,w,lean){
+ const top=[lean*h,h,lean*h*0.4];
+ // uv.x=0 marks this as stem, so the fragment shader keeps it green. color.a is the
+ // wind weight: rooted at the bottom, full travel at the head.
+ const uv=[[0,0],[0,0],[0,1],[0,1]];
+ const col=[[1,1,1,0],[1,1,1,0],[1,1,1,0.92],[1,1,1,0.92]];
+ b.quad([-w,0,0],[w,0,0],[top[0]+w*0.45,top[1],top[2]],[top[0]-w*0.45,top[1],top[2]],uv,col,[0,0,1]);
+ b.quad([0,0,-w],[0,0,w],[top[0],top[1],top[2]+w*0.45],[top[0],top[1],top[2]-w*0.45],uv,col,[1,0,0]);
+ return top;
+}
+
+/** Cow-parsley plate: florets spread on a shallow dome, read mostly from above. */
+function flowerUmbel(name,lod){
+ const b=new Batch(name);
+ // A 17 cm plate is ~70 px at three metres, so seven 2 cm florets spread across it read
+ // as specks, not as a flower. Fewer, wider florets over a tighter radius fill it.
+ //
+ // The radius then has to come back in. Florets are vertical diamonds -- the right
+ // choice, since the gameplay camera looks down at the grass and a truly horizontal
+ // plate would be edge-on -- but spread across 14 cm of width and only 7 cm of height
+ // the head read as a white horizontal dash. Half the radius, with the ring lifted
+ // into a dome, gives a rounded mass at the same floret count.
+ // The far LOD was authored with a *bigger* floret than the near one -- the instinct
+ // that a distant thing needs help to stay visible, applied to the one layer that did
+ // not need it. It made distant flowers weigh more on screen than nearby ones.
+ const n=lod?4:8, R=lod?0.030:0.040, RV=lod?0.050:0.070, r=lod?0.028:0.033;
+ const top=stalk(b,lod?0.40:0.46,0.006,0.05);
+ for(let k=0;k<n;k++){
+  // Centres on a dome rather than a ring. A ring is horizontal, and the gameplay
+  // camera looks down the slope at roughly 40 deg, which foreshortens the vertical
+  // by a third -- so a head that measured 16 by 10 cm arrived on screen closer to
+  // 3:1 and read as a white dash. The dome is authored *taller* than it is wide so
+  // that it lands round after the foreshortening, not before it.
+  const u=(k+0.5)/n, phi=Math.acos(1-u*0.9), a=k*2.399963;
+  const sp=Math.sin(phi);
+  floret(b,top[0]+sp*Math.cos(a)*R,top[1]+Math.cos(phi)*RV,top[2]+sp*Math.sin(a)*R,
+   r,Math.cos(a),Math.sin(a),[1,1,1,0.95],0.85);
+ }
+ return b;
+}
+
+/** Spire: florets climbing the stalk, alternating planes so it reads from any yaw. */
+function flowerSpike(name,lod){
+ const b=new Batch(name);
+ const n=lod?4:6, r=lod?0.026:0.030, h=lod?0.34:0.42;
+ const top=stalk(b,h,0.006,-0.07);
+ for(let k=0;k<n;k++){
+  const t=0.38+0.62*(k/(n-1||1));
+  const a=k*1.9+(k%2)*1.57;
+  const side=((k%2)?1:-1)*0.022;
+  floret(b,top[0]*t+Math.cos(a)*side,h*t,top[2]*t+Math.sin(a)*side,
+   r*(1.15-t*0.4),Math.cos(a),Math.sin(a),[1,1,1,0.55+t*0.45],0.3+t*0.7);
+ }
+ return b;
+}
+
+/**
+ * Drifts, not a sprinkle. A uniform roll over the whole meadow reads as noise; the
+ * reference's flowers arrive in bands that thin to nothing between. Two low-frequency
+ * sines beaten against each other give the bands, and the cut at 0.18 is what makes
+ * the gaps actually empty rather than merely sparser.
+ *
+ * The periods matter more than the shape. The first pass used frequencies around 0.07,
+ * which put the bands 45 m across -- wider than the 28 m the near pool reaches, so the
+ * camera always stood inside a single band and the field came out even and thin, with
+ * the drifts invisible. At 0.19 the bands are 15-20 m and a view contains two or three
+ * of them, which is what actually reads as drifting.
+ */
+const drift=(x,z)=>{
+ const v=Math.sin(x*0.19+z*0.13)*Math.sin(z*0.17-x*0.11)+0.55*Math.sin(x*0.33-z*0.29);
+ // Cut, shape and gain were picked by measuring the mask over the whole meadow rather
+ // than by eye. The first pass cut at 0.18 and squared, which left 34% of the ground
+ // carrying anything and only 6% dense -- so a camera almost never stood in a drift and
+ // the field read evenly thin, which is the exact opposite of the intent. Cutting at
+ // -0.35 with a 1.5 power covers 60% and saturates 18%, keeping 40% genuinely empty.
+ const t=Math.max(0,(v+0.35)/1.9);
+ return Math.pow(t,1.5)*2.6;
+};
 
 function commitProto(engine,scene,batch,material){
  const mesh=batch.commit(engine,scene,material,[]);
@@ -165,12 +351,15 @@ function writeMatrix(out,o,x,y,z,yaw,sx,sy,sz){
 function place(density,lights,opt){
  const roll=rng(opt.seed);
  const mats=[],cols=[];
- const {minX,maxX,minZ,maxZ,spacing,scale,yScale,tint,slopeMin=0.58,densityScale=1,sink=0.035,skip}=opt;
+ const {minX,maxX,minZ,maxZ,spacing,scale,yScale,tint,slopeMin=0.58,densityScale=1,sink=0.035,skip,mask,palette}=opt;
  for(let z=minZ;z<maxZ;z+=spacing){
   for(let x=minX;x<maxX;x+=spacing){
    const gx=x+roll()*spacing, gz=z+roll()*spacing;
    if(skip&&skip(gx,gz))continue;
-   const d=density(gx,gz)*densityScale;
+   // `mask` gates on top of the density field, which is what turns an even sprinkle
+   // into drifts. It multiplies rather than replaces, so a drift still cannot put
+   // flowers where the ground already refuses to grow anything.
+   const d=density(gx,gz)*densityScale*(mask?mask(gx,gz):1);
    if(d<=0.02||roll()>d)continue;
    const n=terrainNormal(gx,gz);
    if(n[1]<slopeMin)continue;
@@ -182,7 +371,15 @@ function place(density,lights,opt){
    const shade=tint[0]+roll()*(tint[1]-tint[0]);
    const dry=roll();
    const lamp=Math.min(1.85,bakeLamp(gx,y+0.45,gz,lights));
-   cols.push(shade*(0.88+dry*0.16), shade, shade*(0.72+dry*0.08), lamp);
+   if(palette){
+    // A hue straight from the palette rather than the green ramp. Weighted by
+    // position in the list -- a cubed roll keeps white dominant, the way a real
+    // meadow is mostly one species with the others scattered through it.
+    const p=palette[Math.min(palette.length-1,Math.floor(Math.pow(roll(),1.9)*palette.length))];
+    cols.push(p[0]*shade,p[1]*shade,p[2]*shade,lamp);
+   }else{
+    cols.push(shade*(0.88+dry*0.16), shade, shade*(0.72+dry*0.08), lamp);
+   }
   }
  }
  return {
@@ -217,7 +414,7 @@ function bucketTiles(data){
  return tiles;
 }
 
-function makePool(near,far,tiles,maxNear,maxFar){
+function makePool(near,far,tiles,maxNear,maxFar,farThin=0.72){
  const nM=new Float32Array(maxNear*16), nC=new Float32Array(maxNear*4);
  const fM=new Float32Array(maxFar*16), fC=new Float32Array(maxFar*4);
  setThinInstances(near,nM,maxNear);
@@ -228,7 +425,7 @@ function makePool(near,far,tiles,maxNear,maxFar){
  setThinInstanceCount(far,0);
  enableThinInstanceDynamicDrawCount(near);
  enableThinInstanceDynamicDrawCount(far);
- return {near,far,tiles,nM,nC,fM,fC,maxNear,maxFar,nearCount:0,farCount:0};
+ return {near,far,tiles,nM,nC,fM,fC,maxNear,maxFar,farThin,nearCount:0,farCount:0};
 }
 
 function packPool(pool,cx,cz){
@@ -249,7 +446,7 @@ function packPool(pool,cx,cz){
     ni++;
    }else{
     const d=Math.sqrt(d2);
-    const keep=1-Math.max(0,(d-NEAR_R)/(FAR_R-NEAR_R))*0.72;
+    const keep=1-Math.max(0,(d-NEAR_R)/(FAR_R-NEAR_R))*pool.farThin;
     const h=Math.abs(Math.sin(x*12.9898+z*78.233)*43758.5453)%1;
     if(h>keep)continue;
     if(fi>=pool.maxFar)continue;
@@ -274,6 +471,11 @@ export async function createFoliage(engine,scene,{lights=[],density=()=>0,landma
  const plantFar=commitProto(engine,scene,clumpCards('Plant far',[UV.plant],{cards:2,height:0.60,width:0.42,spread:0,cross:true}),material);
  const brackenNear=commitProto(engine,scene,brackenTuft('Bracken near',UV.fern,false),material);
  const brackenFar=commitProto(engine,scene,brackenTuft('Bracken far',UV.fern,true),material);
+ const flowerMaterial=await createFlowerMaterial();
+ const umbelNear=commitProto(engine,scene,flowerUmbel('Umbel near',false),flowerMaterial);
+ const umbelFar=commitProto(engine,scene,flowerUmbel('Umbel far',true),flowerMaterial);
+ const spikeNear=commitProto(engine,scene,flowerSpike('Spike near',false),flowerMaterial);
+ const spikeFar=commitProto(engine,scene,flowerSpike('Spike far',true),flowerMaterial);
 
  const grassCore=place(density,lights,{seed:83861,minX:-38,maxX:38,minZ:-16,maxZ:146,spacing:0.36,scale:[0.85,1.25],yScale:[0.72,1.28],tint:[0.78,1.12],densityScale:1});
  const grassShoulder=place(density,lights,{seed:91011,minX:-88,maxX:88,minZ:-90,maxZ:160,spacing:0.62,scale:[0.9,1.3],yScale:[0.7,1.15],tint:[0.74,1.05],densityScale:0.85,skip:(x,z)=>x>-38&&x<38&&z>-16&&z<146});
@@ -299,6 +501,23 @@ export async function createFoliage(engine,scene,{lights=[],density=()=>0,landma
  const plants=place(density,lights,{seed:2711,minX:-40,maxX:40,minZ:-12,maxZ:144,spacing:1.55,scale:[0.9,1.45],yScale:[0.85,1.25],tint:[0.82,1.08],densityScale:0.22,sink:0.02,slopeMin:0.7});
  const bracken=place(density,lights,{seed:490,minX:-26,maxX:26,minZ:-12,maxZ:142,spacing:1.12,scale:[0.85,1.35],yScale:[0.8,1.2],tint:[0.85,1.12],densityScale:0.34,sink:0.02});
 
+ // Flowers begin north of the lych-gate and never enter the churchyard. That is the
+ // right read -- the churchyard is ash and graves, Hollowmere is the living side -- and
+ // it also keeps the two southern vistas as a control: z<=40 is the region the terrain
+ // swell was required to leave bit-for-bit alone, so 08 and 12 still must not move.
+ // Values are well above 1 because a petal is the brightest thing in a frame whose
+ // ground luminance is 0.46; a white that reads as white here has to be driven past it.
+ // Driven above 1 because ground luminance here is 0.46, but only just. At 1.55 the
+ // drifts stopped being the brightest thing in the frame and started being a separate
+ // light source sitting on top of it -- obvious the moment the camera reached the
+ // shaded west treeline, where the grass goes dark and the flowers did not.
+ const WHITE=[1.18,1.16,1.05], CREAM=[1.22,1.10,0.82];
+ const umbels=place(density,lights,{seed:60317,minX:-70,maxX:70,minZ:34,maxZ:152,spacing:0.60,scale:[0.8,1.35],yScale:[0.75,1.3],tint:[0.86,1.08],densityScale:0.78,sink:0.01,slopeMin:0.66,mask:drift,palette:[WHITE,WHITE,WHITE,CREAM,[1.10,0.88,0.96]]});
+ // The spikes carry the colour the reference actually has and we have nowhere else:
+ // violet, blue-violet and a hot orange. Sparser than the white by a factor of three,
+ // because in the reference they punctuate the white rather than compete with it.
+ const spikes=place(density,lights,{seed:74209,minX:-70,maxX:70,minZ:34,maxZ:152,spacing:1.05,scale:[0.8,1.3],yScale:[0.8,1.35],tint:[0.88,1.1],densityScale:0.52,sink:0.01,slopeMin:0.66,mask:drift,palette:[[0.78,0.56,1.16],[0.52,0.48,1.20],[1.22,0.54,0.20],[1.12,0.62,0.84],[0.64,0.78,1.16]]});
+
  if(landmarks.length){
   const extra=new Float32Array(landmarks.length*16);
   const extraC=new Float32Array(landmarks.length*4);
@@ -318,35 +537,55 @@ export async function createFoliage(engine,scene,{lights=[],density=()=>0,landma
  const grassPool=makePool(grassNear,grassFar,bucketTiles(grass),8192,24576);
  const plantPool=makePool(plantNear,plantFar,bucketTiles(plants),512,768);
  const brackenPool=makePool(brackenNear,brackenFar,bucketTiles(bracken),768,1024);
- const pools=[grassPool,plantPool,brackenPool];
+ // Flowers are the one layer worth spending near-pool slots on, because the whole point
+ // is the colour at the player's feet. 20 tris for a near head and 10 for a far one puts
+ // the full pool at about 25k triangles -- the same order as the ash motes, against a
+ // 140k scene.
+ // Flowers thin far harder than grass with distance. Grass merges into a continuous
+ // mat, so dropping instances only costs coverage; a flower is a discrete bright point,
+ // so keeping the same fraction at 28 m as at 5 m makes distance *increase* the white
+ // in the frame. The west-shoulder vista, which sees a wide swath of meadow at once,
+ // came out as an even whiteout at 0.72 while the lych-gate view at the same settings
+ // read correctly.
+ const umbelPool=makePool(umbelNear,umbelFar,bucketTiles(umbels),1024,1536,0.93);
+ const spikePool=makePool(spikeNear,spikeFar,bucketTiles(spikes),512,768,0.93);
+ const pools=[grassPool,plantPool,brackenPool,umbelPool,spikePool];
  packPool(grassPool,0,0);
  packPool(plantPool,0,0);
  packPool(brackenPool,0,0);
+ packPool(umbelPool,0,0);
+ packPool(spikePool,0,0);
 
- const meshes=[grassNear,grassFar,plantNear,plantFar,brackenNear,brackenFar].filter(Boolean);
+ const meshes=[grassNear,grassFar,plantNear,plantFar,brackenNear,brackenFar,umbelNear,umbelFar,spikeNear,spikeFar].filter(Boolean);
  const protoTris=meshes.reduce((n,m)=>(m._gpu?.indexCount??0)/3+n,0);
  let packedX=0, packedZ=0;
  return {
   meshes,material,pools,
   stats:{
    grass:grass.count,plants:plants.count,bracken:bracken.count,
-   instances:grass.count+plants.count+bracken.count,
-   drawnNear:grassPool.nearCount+plantPool.nearCount+brackenPool.nearCount,
-   drawnFar:grassPool.farCount+plantPool.farCount+brackenPool.farCount,
+   umbels:umbels.count,spikes:spikes.count,
+   instances:grass.count+plants.count+bracken.count+umbels.count+spikes.count,
+   drawnNear:pools.reduce((a,p)=>a+p.nearCount,0),
+   drawnFar:pools.reduce((a,p)=>a+p.farCount,0),
    prototypeTriangles:protoTris,draws:meshes.length,
   },
   update(t,playerPos){
+   // Both materials, every frame. They share CARD_VERTEX, so a missed uniform here
+   // would leave the flowers standing rigid in grass that is bending.
    setShaderUniform(material,'time',t);
+   setShaderUniform(flowerMaterial,'time',t);
    if(!playerPos)return;
-   setShaderUniform(material,'playerPosition',[playerPos.x,playerPos.y,playerPos.z]);
-   setShaderUniform(material,'playerRadius',1.55);
+   for(const m of [material,flowerMaterial]){
+    setShaderUniform(m,'playerPosition',[playerPos.x,playerPos.y,playerPos.z]);
+    setShaderUniform(m,'playerRadius',1.55);
+   }
    const x=playerPos.x, z=playerPos.z;
    if((x-packedX)*(x-packedX)+(z-packedZ)*(z-packedZ)<4)return;
    packedX=x; packedZ=z;
    for(const pool of pools)packPool(pool,x,z);
    const s=this.stats;
-   s.drawnNear=grassPool.nearCount+plantPool.nearCount+brackenPool.nearCount;
-   s.drawnFar=grassPool.farCount+plantPool.farCount+brackenPool.farCount;
+   s.drawnNear=pools.reduce((a,p)=>a+p.nearCount,0);
+   s.drawnFar=pools.reduce((a,p)=>a+p.farCount,0);
   },
  };
 }
