@@ -75,6 +75,12 @@ BAKE_SIZE = int(arg('--bake-size', '1024'))
 # torso, which reads as grime rather than form; this is short enough to catch the
 # orbits, under the jaw, the armpits and the intercostal hollows and nothing else.
 AO_DISTANCE = float(arg('--ao-distance', '0.25'))
+# Scales the raw curvature estimate in paint() into a 0..1 darkening. The raw
+# values are small -- a deep orbit rim reads around 0.08 -- so this is a gain,
+# not a blend factor. At 6.0 the term landed in anatomically correct places but
+# only moved the cranium by a mean of 1.4 of 255, which does not read at the
+# gameplay camera; 12.0 is the value the fix5 stills were picked against.
+CAVITY_GAIN = float(arg('--cavity-gain', '12.0'))
 
 # ---------------------------------------------------------------- proportions
 # Concept: tall, gaunt, narrow silhouette, long bony hands. Half-widths in metres
@@ -792,6 +798,30 @@ def paint(ob, j=None):
     lo, hi = world_bbox([ob])
     height = hi.z - lo.z
 
+    # Cavity term. The cranium reads as a smooth egg because it is painted one flat
+    # value and there is genuinely nothing there to bake: AO on a convex dome returns
+    # 1 everywhere, and the normal map was a no-op (see bake_ao). Curvature is the
+    # one signal that does distinguish the temporal fossa, the orbit rims, the space
+    # under the zygomatic arches and the tooth gaps, because those are concave while
+    # the dome is not. Positive means the neighbours sit above the vertex's tangent
+    # plane, i.e. the vertex is in a hollow.
+    nbrs = [[] for _ in range(len(me.vertices))]
+    for e in me.edges:
+        a, b = e.vertices
+        nbrs[a].append(b)
+        nbrs[b].append(a)
+    cavity = [0.0] * len(me.vertices)
+    for i, v in enumerate(me.vertices):
+        n = v.normal
+        acc = 0.0
+        for k in nbrs[i]:
+            d = me.vertices[k].co - v.co
+            length = d.length
+            if length > 1e-9:
+                acc += d.dot(n) / length
+        if nbrs[i]:
+            cavity[i] = acc / len(nbrs[i])
+
     for i, v in enumerate(me.vertices):
         p = mw @ v.co
         name = ''
@@ -824,6 +854,9 @@ def paint(ob, j=None):
                     depth = max(depth, 0.92 * math.exp(-(dn / 0.020) ** 2))
                 if depth > 0:
                     c = tuple(base[k] + (BONE_DEEP[k] - base[k]) * min(1.0, depth) for k in range(4))
+            cav = min(1.0, max(0.0, cavity[i] * CAVITY_GAIN))
+            if cav > 0:
+                c = tuple(c[k] + (BONE_DEEP[k] - c[k]) * (0.75 * cav) for k in range(4))
             col.data[i].color = c
             continue
 
@@ -857,6 +890,9 @@ def paint(ob, j=None):
                 if d < 0.055:
                     f = 1.0 - d / 0.055
                     c = tuple(c[k] + (FLESH_PALE[k] - c[k]) * f for k in range(4))
+        cav = min(1.0, max(0.0, cavity[i] * CAVITY_GAIN))
+        if cav > 0:
+            c = tuple(c[k] + (FLESH_DARK[k] - c[k]) * (0.45 * cav) for k in range(4))
         col.data[i].color = c
     log('  vertex colours authored')
 

@@ -7,7 +7,7 @@
     "skullHeight": 0.225,
     "bodyVerts": 9705,
     "bodyTris": 19044,
-    "restBytes": 1780964,
+    "restBytes": 1802056,
     "regionVerts": {
       "footright": 470,
       "armright": 792,
@@ -44,8 +44,8 @@
   "hashes": {
     "public/characters/base.glb": "2f9e45d0f7d9faeae4c20e18585173d62953df1a8f0272f270bedb200927604c",
     "public/ashen-reach/wanderer.glb": "aa9bc4cf04c53d84fbea574d04eee03f659889772d380ec130e892f5a9609da9",
-    "public/characters/candidates/undead-source-v1.glb": "984a415e3a2aead4bf81c171e55c84456593df1232098a54e5d0cf674f0caf6d",
-    "scripts/character-assets/undead_from_skull.py": "dd10f6983d3edad53d6b5b16e825fc940a22605a437b33bc708e7ab324bbe4a5",
+    "public/characters/candidates/undead-source-v1.glb": "ac8cbfc806d6ee424ee567b2966cec6c074d951e7f69f03db504a68cdf090ec5",
+    "scripts/character-assets/undead_from_skull.py": "232cf80242bc83a8b9f8a3c6a1d8258f0199d52f5781b7145919a3604866a18a",
     "scripts/character-assets/bind-source-undead.mjs": "6d076afcfb71fbc0a9e688df785328f78c7aeb105df59f58782ef6e83280ac95",
     "blender/characters/sources/undead-skull/provenance.json": "fe089b709df24c7fde2e46a160c59948fe53ab361272cc1c3a53557b0b8e85df"
   },
