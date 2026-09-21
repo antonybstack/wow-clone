@@ -612,3 +612,56 @@ terrain-locked banks are arguably the better reading for still evening air.
   worth fixing, the lever is the inscatter's own colour, not the stone's.
 - Cloud drift is legible but the deck has no vertical structure; it is a ceiling, not
   weather.
+
+## 13. Cool air (p42, Telegram 703)
+
+§12's last carried defect was that the deep field skewed warm-brown. The cause is
+mechanical: `HAZE_FAR` scales the whole inscatter term down by 45% at distance, and
+what is left over is dominated by the warm part of it — the sun lobe and the warm
+horizon band of `skyColor()`. Nothing about that cut is selective, so cutting it
+preserves the hue and only loses the value.
+
+§12 had already closed the material half of the lever (the 13%-by-value arithmetic),
+so the only remaining place to put the change is the colour of the air itself.
+
+### What landed
+
+`HAZE_TINT = [0.90, 1.00, 1.26]` multiplies the `skyColor(dir)` term of far inscatter
+and nothing else. The sun lobe is deliberately excluded: it is the one part of the
+inscatter that *should* be the sun's colour, and tinting it turns the sunset cold
+while doing nothing for the mountains, which are nowhere near the disc. Gated by the
+same `far = smoothstep(HAZE_D0, HAZE_D1, d)` ramp as `HAZE_FAR` and `HAZE_BANK`.
+
+Measured on `03-lych-gate`, p41 → p42:
+
+| patch | R−B | luminance |
+|---|---|---|
+| mountain left of citadel | 51.5 → **33.6** (−35%) | 115.8 → 115.6 |
+| crag mass | 15.8 → **7.7** (−51%) | 82.6 → 83.2 |
+| spire cluster | 34.7 → **27.1** (−22%) | 132.4 → 131.5 |
+| sky left (control) | 4.4 → 4.3 | 201.6 → 201.9 |
+| gravestone (control) | 82.4 → 82.4 | 159.4 → 159.5 |
+| town wall (control) | 61.6 → 61.6 | 133.3 → 133.3 |
+
+This is the first far-field change in three passes where the number moved by a large
+fraction rather than by a decimal, and the reason is the same arithmetic that killed
+the other three: the haze is seven eighths of the pixel out there, so a change to the
+haze gets seven eighths of the leverage. §12 said this in the negative; §13 is the
+positive form of the same sentence. Stop proposing far-field material edits.
+
+Luminance held flat on all three far patches — under one unit on each — so the
+colour moved without the contrast structure built in §11 and §12 moving with it.
+
+Reviewed on the live clip, not just the stills: the two contact sheets show the town
+interiors keeping their lamplight warmth (all inside 110 m, so the gate excludes
+them) while the ridgelines read cool grey-blue against a still-warm sky.
+
+### Still carried
+
+- Haze banks do not drift. `Lamp light shafts` declares no time uniform, and `aerial()`
+  is inlined into it, so this needs a shader-side change before it can be animated.
+- The cloud deck is a ceiling, not weather: drift is legible but there is no vertical
+  structure in it.
+- The sun lobe is now the only warm thing in the deep field by construction. If the
+  scene ever moves the sun off the horizon, `HAZE_TINT` will need re-checking, since
+  the lobe currently overlaps the citadel silhouette and hides the boundary.
