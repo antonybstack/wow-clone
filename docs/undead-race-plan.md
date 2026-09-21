@@ -122,7 +122,12 @@ length and logs `min/mean/max` so it cannot silently go flat again.
 - Feet read planted but thin, with no malleolus at the ankle. The motion
   audition makes this worse than it looked at idle: at full stride the sole is a
   flat ski with no toe box and no ankle bone, and it is the most obvious
-  remaining silhouette defect after the shoulder. Next thing to fix.
+  remaining silhouette defect after the shoulder. *Addressed across `d092e67`
+  (heel, toe box, first malleolus) and `7b5dd80` (malleolus reprofiled so it
+  stops reading as a collar) -- see the two pass entries below. The ankle and
+  toe box now read; the arch is still out of reach for a convex loft, and the
+  stride silhouette wants a re-check because the still it was judged on is
+  unreliable.*
 
 ### Curvature shading pass (2026-09-20, commit `adbbf75`)
 
@@ -203,3 +208,55 @@ raise `island_margin` 0.006 → 0.012, dilate 4 → 8. Also shortened the heel
 Feet still read as paddles at stride. The arch remains out of reach of this
 loft (convex tube). Yoke-as-band, smooth cranium, and skull/neck collar are
 unchanged. Evidence: `ve-capture/m11a/fix12`.
+
+### Ankle pass (2026-09-21, `fix13`, commit 7b5dd80)
+
+The malleolus from `fix12` was built the wrong way round. `tube()`
+implements `over_start` by extending the first ring along its own axis *at
+that ring's radius*, so a 0.041 top ring buried 40 mm into a shin that ends
+at 0.033 is a wider sleeve slid over a narrower bone. It rendered as a hard
+seam ring with a flat band under it -- a collar, not an ankle. Four rings
+now, swell moved *below* the junction where a malleolus actually sits, top
+ring undercutting the shin. The junction crease is gone; the bulge is
+subtler than `fix12`, which is the trade for losing the step.
+
+| check | result |
+| --- | --- |
+| luma<30, side Idle / side Sprint / front Idle | 0 |
+| luma<30, front Sprint | 1 px at (664,303), inside the eye orbit -- authored `BONE_DEEP` beside the emissive eye, not a gap |
+| `measureGroundedSole`, Idle_Loop t=0..1.2 | 0.0135-0.0172 m against 0.0142-0.0178 m before the foot pass: unchanged |
+| `npm run test:character` | 75 pass, 0 fail |
+
+**Correction to the entry above, and a caution about the stored stills.**
+`fix12`'s own side-Sprint PNG is not a reliable frame. Three fresh captures
+of the *same* build (`ctrlS1/2/3`, taken before the `fix13` rebuild) agree
+with each other to 0.01 % of pixels and max channel delta 3, but disagree
+with `fix12`'s stored Sprint still by 6.8 % and max 407 -- a visibly
+different leg pose. I could not find the cause, so I do not know which
+invocation misbehaved; I only know the stored one is the outlier. The
+"feet still read paddles at stride" note above rests on that still and
+should be re-checked rather than trusted. The `fix13` before/after was
+taken against `ctrlS1`, re-shot by hand, for this reason.
+
+Two related instrument notes, both found by running a same-binary control
+first rather than after:
+
+* The capture itself *is* deterministic when it behaves -- 0.01 % between
+  runs -- so a single-digit luma<30 count is meaningful. But a count taken
+  from a still whose build or frame is not pinned is not. `fix11`'s 4 px
+  were captured at 20:50 against a GLB that was rewritten at 21:12; that
+  still describes the pre-`d092e67` build, not the one shipped.
+* The gameplay camera pivots on the feet, so a foot-geometry change shifts
+  the whole body in frame. A fixed-pixel crop is not a matched framing
+  across a foot change; locate the feature in each still instead.
+
+`scripts/character-assets/measure-foot-gap.mjs` hangs indefinitely when run
+standalone and dies with "Execution context was destroyed" when anything
+else drives the same CDP browser. The numbers above came from
+`BODY_PREVIEW.measureGroundedSole()` directly. The script needs repair
+before it is trusted again.
+
+Still carried: yoke-as-band when the arm is raised, smooth cranial dome,
+rib banding invisible at the compressed palette, AO contributing little on
+smooth convex lofts, and the arch (out of reach for a convex loft). Nothing
+here is accepted; the branch is staged for review.
