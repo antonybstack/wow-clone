@@ -801,3 +801,63 @@ The user asked to avoid tunnel vision, merge everything, and re-prioritize. So:
 
 Telegram of the merged tree is a parent walkthrough after live checks, not a
 re-review of the already-sent M8a/M8b clips.
+
+## M11a resumed, 2026-09-20 — the body is real, the captures were not
+
+The M11a agent died on a session rate limit mid-run. It left five commits and two
+uncommitted files, all salvageable, and its central claim holds up. I parsed
+`public/characters/candidates/undead-source-v1.glb` myself: **73 nodes, 65 skin joints,
+55 animations, 5 meshes, 20,184 triangles** — structural parity with
+`orc-source-v1.glb`. `validate-character-body.mjs --profile undead-male-v1` reports
+valid, 0 errors, 2 warnings (`PROFILE_NOT_PRODUCTION`, `TRANSFORM_NON_IDENTITY`).
+`npm run test:character` is 75/75. The head source is a CC0-1.0 skull by CDmir from
+OpenGameArt, archive SHA recorded in the provenance file.
+
+The agent also took my hypothesis seriously rather than implementing it: it measured the
+legacy 163-joint asset first, agreed it was a dead end, and rebuilt on the 65-joint bind.
+
+**Its four "verified" renders were worthless, and neither of us caught it from the flags.**
+Every one was an empty field with two floating eyes and a body-shaped shadow. The cause is
+a body-preview defect: the first *65-joint source-bind* GLB loaded after a page load never
+draws in the main pass, and stays broken for that page session. Extents are correct,
+`visible` is true, there is no console error, and the shadow pass and eye meshes still
+render — so every instrument reports success while the body is simply absent.
+
+I pinned it by loading the Orc and Undead sources in both orders on slot 1: whichever went
+first was invisible, **including the shipped, known-good Orc**, which is what rules out an
+asset defect. The agent's workaround warmed up with `human-v1.glb`, which does not work —
+that is the 163-joint legacy rig and it does not prime this path. The warm-up has to be a
+65-joint source asset itself. Fixed in `capture-undead-body.mjs` (04d9d0c); captures went
+from ~40KB of empty sky to 137–301KB with the body present.
+
+**Correcting my own instrument, in place:** I first scored "did the body draw" by reading
+the canvas back into a 2D context and counting dark pixels. It returned 100.00% for every
+case including the known-good ones — you cannot sample a WebGPU canvas that way. A metric
+that reads identically for pass and fail is not measuring anything, and I discarded it
+rather than tuning its threshold. The screenshot hashes and file sizes did the real work.
+
+### What the body actually looks like, at the gameplay camera
+
+Verified against an Orc control captured through the same script, same camera, same clip,
+so pose is not a confound. Reads correctly: skull with retained jaw and teeth, gaunt
+narrow silhouette, long bony hands with separated fingers, tall upright stance.
+
+Carried defects, all mine from opening the captures, not self-reported:
+
+1. **The feet do not touch the ground.** Both feet float visibly above the floor in side
+   and back views. The Orc control at the identical camera and clip has its feet flat on
+   the floor, so this is Undead-specific and not a mid-stride frame.
+2. **Eyes read flat white, not the amber the concept specifies.**
+3. **The neck is a black void** — a solid unlit tube between jaw and collar, reads as a
+   hole rather than bone or wrapping.
+4. **Garbled dark text-like smears across the upper back**, clearly visible in the back
+   view. Looks like a UV or bake artifact.
+5. **The cranium is a smooth egg** — no occipital, parietal or temporal definition. From
+   behind it reads as a bald head, not a skull.
+6. **The whole body is one uniform dark olive**, so it reads as a grey mannequin wearing a
+   skull rather than a revenant. Material work may belong to the outfit milestone, but the
+   body does not currently carry the concept on its own.
+7. The floor reflection shows only the head, not the body.
+
+Still owed from the original brief: the motion audition across the M4 state set, and the
+agent's own defect list. Nothing here is accepted — it is staged for review.
