@@ -162,6 +162,10 @@ def main() -> int:
         data = json.load(sys.stdin)
     except json.JSONDecodeError:
         return 0
+    # The Grok CLI sends a `reason`; Claude Code does not. Only end_turn is a cycle
+    # closing -- a tool-limit or interrupt stop is not the agent claiming it is done.
+    if "reason" in data and data.get("reason") != "end_turn":
+        return 0
     if data.get("stop_hook_active") or data.get("stopHookActive"):
         return 0
     if data.get("subagentType") or data.get("hook_event_name") == "SubagentStop":
