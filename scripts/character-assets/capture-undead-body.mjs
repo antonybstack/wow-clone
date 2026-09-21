@@ -82,24 +82,29 @@ try {
   throw err;
 }
 
-// Warm up with a throwaway asset first. body-preview has an order-dependent
-// defect: whichever GLB is loaded *first* after a page load never draws in the
-// main pass -- correct extents, visible=true, no console error, and it still
-// casts a shadow and shows its eye meshes, so every flag says success while the
-// body is simply absent. It stays broken for that asset for the rest of the
-// session; every asset loaded afterwards draws correctly.
+// Warm up with a throwaway load first. body-preview has an order-dependent
+// defect: the first *65-joint source-bind* GLB loaded after a page load never
+// draws in the main pass, and stays broken for the rest of that page session.
+// Nothing reports it -- extents are correct, visible is true, there is no console
+// error, and the body still casts a shadow and shows its eye meshes. So the
+// capture looks like an empty field with two floating eyes and every flag says
+// success.
 //
-// Measured on 2026-09-20 by loading orc-source-v1 and undead-source-v1 in both
-// orders on slot 1: the *first* one loaded was invisible each time and the
-// second was perfect, including the shipped, known-good Orc. So this is a
-// body-preview bug, not a property of either asset. Tracked, not papered over --
-// the warm-up makes captures trustworthy but the harness still needs fixing.
+// Measured on 2026-09-20 on slot 1, loading orc-source-v1 and undead-source-v1
+// in both orders: whichever went first was invisible, including the shipped,
+// known-good Orc, which is what rules out an asset defect. Warming with
+// human-v1 does NOT help -- that is the 163-joint legacy rig and it does not
+// prime this path. The warm-up has to be a 65-joint source asset itself.
+//
+// This makes captures trustworthy; the underlying preview bug is still open.
 const loadInfo = await page.evaluate(async (target) => {
   const p = globalThis.BODY_PREVIEW;
-  // Warming up with a *different* asset is what settles it; reloading the same
-  // URL twice is not enough.
-  if (!target.includes('human-v1')) {
-    await p.load('/characters/bodies/human-v1.glb');
+  // The warm-up must itself be a 65-joint source-bind asset. human-v1 is the
+  // 163-joint legacy rig and does not prime this path, so warming with it leaves
+  // the target just as invisible. Use the Orc source unless that *is* the target.
+  const WARMUP = '/characters/candidates/orc-source-v1.glb';
+  if (!target.includes('orc-source-v1')) {
+    await p.load(WARMUP);
     await new Promise((r) => setTimeout(r, 300));
   }
   await p.load(target);
