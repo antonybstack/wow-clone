@@ -516,9 +516,28 @@ def build_body(j):
         wrist = j[f'mixamorig:{side}Hand']
 
         # ---- shoulder yoke: clavicle out to the deltoid
+        # The radii ran 0.066 at the clavicle down to 0.058 at the deltoid --
+        # fattest where the clavicle is nearly subcutaneous, thinnest where the
+        # deltoid actually sits, which is backwards. Level, constant and fat, it
+        # read as a coat hanger: a horizontal bar laid across the top of the
+        # torso with a dark undercut where it overhung the ribs. Reversed here,
+        # so the tube starts thin enough to bury itself in the trapezius and
+        # swells into a deltoid cap sitting over the head of the upper arm,
+        # The path also sags, so the neck-to-shoulder line has a slope for the
+        # eye to read instead of running dead level. The sag is a half sine, not
+        # a ramp, because it has to return to zero at both ends: a first attempt
+        # drooped the outboard end quadratically by 16 mm, which moved the
+        # yoke's end cap that far below the upper arm's start ring, so the two
+        # tubes stopped overlapping concentrically and opened a gap. It showed
+        # as a hard black sliver at the deltoid -- 46 pixels down to luma 13,
+        # straight through the surface. Pinned at both ends the junctions stay
+        # concentric and only the middle of the span drops.
         yoke = resample(sh, up, 4)
-        B.tube(yoke, [(0.066, 0.056), (0.064, 0.055), (0.061, 0.055), (0.058, 0.055)],
-               f'arm{lo}', over_start=0.035, over_end=0.040)
+        yoke = [Vector((q.x, q.y,
+                        q.z - 0.022 * math.sin(math.pi * k / (len(yoke) - 1))))
+                for k, q in enumerate(yoke)]
+        B.tube(yoke, [(0.034, 0.036), (0.046, 0.046), (0.058, 0.054), (0.062, 0.057)],
+               f'arm{lo}', over_start=0.035, over_end=0.050)
 
         # ---- upper arm and forearm
         ua = resample(up, fore, 6)
