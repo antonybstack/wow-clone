@@ -15,7 +15,11 @@ try{
  await page.bringToFront();await page.goto(process.env.ASHEN_URL||'http://127.0.0.1:5173/ashen-reach.html?play&clean',{waitUntil:'commit'});await page.waitForFunction(()=>globalThis.ASHEN?.ready,null,{timeout:60000});await page.waitForTimeout(700);
  const baseline=await read();
  await page.locator('#armory-launch').click();await page.waitForTimeout(150);let s=await read();check('Button opens armory on existing actor',s.armory.open&&s.camera==='armory'&&s.sceneMeshes===baseline.sceneMeshes);
- check('Only unsupported races disabled',await page.locator('[data-race] option:disabled').count()===1);
+ // Was ===1 back when Undead was the one listed-but-unsupported race. M11b made Undead a
+ // real third race, so every race the selector offers is now selectable; an unsupported
+ // race is refused by name in equipment-contract.js rather than greyed out here.
+ check('Every listed race is selectable',await page.locator('[data-race] option:disabled').count()===0);
+ check('All three races are offered',(await page.locator('[data-race] option').allTextContents()).length===3);
  check('Orc2 is not a race option',await page.locator('[data-race] option[value="orc2"]').count()===0);
  await page.locator('[data-race]').selectOption('orc');
  await page.waitForFunction(()=>ASHEN.equipment.race==='orc'&&ASHEN.armory.getState().race==='orc'&&ASHEN.body.parked&&(ASHEN.scene.meshes.some(m=>m.name==='OrcV1Body'&&m.visible)||ASHEN.scene.meshes.some(m=>m.name==='BodyExposed'&&m.visible))&&!ASHEN.equipment.getStatus?.().pending,null,{timeout:60000});

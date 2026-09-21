@@ -13,7 +13,12 @@ try{
  await page.route('**/equipment/graveweaverHood.glb',r=>r.fulfill({status:503,body:'test failure'}));
  await page.locator('[data-outfit="graveweaver"]').click();await page.waitForFunction(()=>!ASHEN.equipment.getStatus().pending);
  check('Failed fetch preserves all selected slots',JSON.stringify(await page.evaluate(()=>ASHEN.equipment.getState()))===JSON.stringify(before));
- check('Failure is explained in armory',await page.locator('[data-equipment-status]').textContent()==='Could not equip that item. Your current outfit is unchanged.');
+ // armory.js appends the underlying error to the sentence when it has one, so exact
+ // equality only held before diagnostics were added. Assert the user-facing explanation
+ // is what leads, and keep the diagnostic free to change.
+ const failureText=await page.locator('[data-equipment-status]').textContent();
+ console.log('  equipment status text:',JSON.stringify(failureText));
+ check('Failure is explained in armory',failureText.startsWith('Could not equip that item. Your current outfit is unchanged.'));
  await page.unroute('**/equipment/graveweaverHood.glb');
  await page.route('**/equipment/graveweaverSkirt.glb',async r=>{await new Promise(resolve=>setTimeout(resolve,500));await r.continue();});
  await page.locator('[data-outfit="graveweaver"]').click();await page.waitForFunction(()=>ASHEN.equipment.getStatus().pending);
