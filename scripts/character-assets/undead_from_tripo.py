@@ -197,16 +197,15 @@ def write_joints(arm):
 
 
 def add_eyes(arm, mesh):
-    """Small amber beads in the orbits, rigid to Head — the albedo sockets are dark pits."""
+    """Amber beads in the orbit pits. A centroid of every front-of-head vert
+    landed on the mandible (two glows at the mouth corners). Mixamo Head is
+    the skull base; orbits sit 6–11 cm above it."""
     import bmesh
     head = arm.matrix_world @ arm.data.bones['mixamorig:Head'].head_local
     coords = [mesh.matrix_world @ v.co for v in mesh.data.vertices]
-    # Face cluster: near the head, in front of it (Blender -Y after Mixamo FBX).
-    face = [c for c in coords if (c - head).length < 0.14 and c.y < head.y - 0.01]
-    if len(face) < 20:
-        face = [c for c in coords if (c - head).length < 0.18]
-    left = [c for c in face if c.x > 0.01]
-    right = [c for c in face if c.x < -0.01]
+    orbit = [c for c in coords
+             if 0.06 <= (c.z - head.z) <= 0.11
+             and 0.015 <= abs(c.x) <= 0.055]
     def centroid(pts, fallback):
         if not pts:
             return fallback
@@ -214,9 +213,16 @@ def add_eyes(arm, mesh):
         for p in pts:
             s += p
         return s / len(pts)
+    left = [c for c in orbit if c.x > 0]
+    right = [c for c in orbit if c.x < 0]
+    pit_l = sorted(left, key=lambda c: c.y, reverse=True)[:8]
+    pit_r = sorted(right, key=lambda c: c.y, reverse=True)[:8]
+    mid_l = centroid(left, head + Vector((0.034, -0.058, 0.075)))
+    mid_r = centroid(right, head + Vector((-0.034, -0.058, 0.075)))
+    # 35% toward the back of the socket so the bead sits in the pit, not on the brow.
     centres = [
-        centroid(left, head + Vector((0.032, -0.055, 0.038))),
-        centroid(right, head + Vector((-0.032, -0.055, 0.038))),
+        mid_l.lerp(centroid(pit_l, mid_l), 0.35),
+        mid_r.lerp(centroid(pit_r, mid_r), 0.35),
     ]
     mat = bpy.data.materials.new('UndeadV1Eyes')
     mat.use_nodes = True
@@ -232,7 +238,7 @@ def add_eyes(arm, mesh):
     if 'Emission Strength' in bsdf.inputs:
         bsdf.inputs['Emission Strength'].default_value = 2.4
     bm = bmesh.new()
-    radius = 0.011
+    radius = 0.008
     for c in centres:
         sub = bmesh.new()
         bmesh.ops.create_uvsphere(sub, u_segments=10, v_segments=7, radius=radius)
