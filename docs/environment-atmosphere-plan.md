@@ -550,3 +550,65 @@ rings behind it.
   is the warm end of the inscatter.
 - Cloud drift is legible but the deck has no vertical structure; it is a ceiling, not
   weather.
+
+## 12. Form in the far field (p37–p41, Telegram 702)
+
+### Correction to §10, and to my own instinct twice over
+
+§10's "Still carried" said the citadel would not move further without "a change to
+the distant stone's own value or the haze at its base". Only the second half was true.
+Two measurements, both reverted:
+
+| change | mountain patch on 03-lych-gate |
+|---|---|
+| tint `[.095,.115,.10]` → `[.082,.098,.135]` (cool) | 0.0 luminance, 0.3 in R−B |
+| `light` .35 → .95, a 2.7× increase | +0.9 mean, spread 5.01 → **4.98** |
+
+A 10× difference map of the retint capture is black across the whole skyline at
+amplification. The arithmetic: the stone holds 48% of a 260 m pixel *by weight*, but
+its shaded value spans 0.013–0.042 against an inscatter near 0.30, so it is about 13%
+of the pixel *by value*. Weight and value are not the same lever, and I conflated them
+when I wrote §10. Nothing that can be done to a near-black material outvotes seven
+eighths of air.
+
+This is worth stating plainly because it closes a whole family of ideas: distant-stone
+retints, `light` changes, per-ridge tint tables, and vertex-colour tricks on the far
+geometry are all bounded by that 13%, and the crest-cap experiment in §11 was the same
+mistake in a different costume.
+
+### What worked
+
+`HAZE_BANK=0.22` modulates the deep field's haze with two crossed low-frequency waves.
+The dominant one is stratified in world Y so the bands lie roughly horizontal, the way
+haze in a valley does, with its height wobbling in x so they are not dead-flat lines; a
+slower lateral term adds patchiness. Gated by the same 110–300 m ramp as `HAZE_FAR`.
+
+| patch | before | after |
+|---|---|---|
+| mountain spread (sd) | 5.01 | **6.33** (+27%) |
+| gravestone spread | 6.44 | 6.47 (control) |
+| town wall spread | 6.80 | 6.80 (control) |
+| sky left mean | 201.9 | 201.6 (control) |
+
+### Instrument note, second entry
+
+Two black-frame failures in this pass, both caught by the same signal from §10 — a
+mean-abs diff of 40–84 on *every* shot — and both printing a fully correct stats block
+over the black frame:
+
+1. `let patch = ...` — `patch` is a WGSL reserved keyword.
+2. `shaderUniforms.time` inside `aerial()`. It compiles in the surface materials and
+   fails in `Lamp light shafts`, which declares no time uniform. Because the world is
+   submitted in one render bundle, one invalid pipeline discards every mesh.
+
+The second is why the banks are static. That is a constraint, not a preference, though
+terrain-locked banks are arguably the better reading for still evening air.
+
+### Still carried
+
+- The banks do not drift. Giving `Lamp light shafts` a time uniform would allow it.
+- The deep field skews warm-brown; what survives the `HAZE_FAR` cut is the warm end of
+  the inscatter, and §12 establishes that the material side cannot correct it. If it is
+  worth fixing, the lever is the inscatter's own colour, not the stone's.
+- Cloud drift is legible but the deck has no vertical structure; it is a ceiling, not
+  weather.
