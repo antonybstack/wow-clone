@@ -92,49 +92,55 @@ function ridgeline(distant,cz,groundY,seed,spanX,segments,hMin,hMax,zJitter,tint
 }
 
 /** Closed mountain ring. Cheap (2 tris per segment) and uses the existing distant batch. */
-function ridgeRing(distant,cx,cz,rx,rz,groundY,seed,segments,hMin,hMax,tint){
- const rand=rng(seed);
+/** Closed mountain curtain. The silhouette is the top edge, so it is the only thing that
+ *  matters: a viewer 300 m away sees an outline and a tone and nothing else.
+ *
+ *  The first version drew 36-48 segments with an independent random height at each, which
+ *  is white noise on a 30-80 m chord -- a sawtooth with no summits, no saddles and no
+ *  repeated silhouette anywhere, which is exactly the "flat cardboard" read. Ridged noise
+ *  instead (1 - |sin|, so the octave cusps upward at its zeros) gives peaks that are sharp
+ *  and troughs that are broad, which is the shape erosion actually makes. Three octaves
+ *  set how many summits the ring carries; `sharp` decides how alpine they are.
+ *
+ *  The radius wobbles too, by up to 14%. A perfect ellipse puts every peak at the same
+ *  distance, so they all haze identically and the range collapses into one painted band;
+ *  staggering them lets the near spurs overlap and occlude the far ones, and occlusion is
+ *  the depth cue that survives when there is no stereo and no parallax. */
+function ridgeRing(distant,cx,cz,rx,rz,groundY,seed,segments,hMin,hMax,tint,sharp=1.5){
+ const rand=rng(seed),ph=[rand()*7,rand()*7,rand()*7],spin=rand()*7;
+ const oct=(a,f,p)=>1-Math.abs(Math.sin(a*f*.5+p));
+ const n=Math.max(segments,96);
  const pts=[];
- for(let k=0;k<segments;k++){
-  const a=k*Math.PI*2/segments;
-  const shape=Math.sin(k*.85+seed*.001)*.5+.5;
-  pts.push({x:cx+Math.cos(a)*rx,z:cz+Math.sin(a)*rz,h:hMin+(hMax-hMin)*(shape*.55+rand()*.45)});
+ for(let k=0;k<n;k++){
+  const a=k*Math.PI*2/n;
+  let t=.52*oct(a,3,ph[0])+.30*oct(a,7,ph[1])+.18*oct(a,17,ph[2]);
+  t=Math.pow(t,sharp);
+  const wob=1+.14*Math.sin(a*2.4+spin)*Math.sin(a*5.1-spin);
+  pts.push({x:cx+Math.cos(a)*rx*wob,z:cz+Math.sin(a)*rz*wob,h:hMin+(hMax-hMin)*t,t});
  }
  const baseY=groundY-320;
- for(let k=0;k<segments;k++){
-  const a=pts[k],b=pts[(k+1)%segments];
-  distant.quad([a.x,baseY,a.z],[b.x,baseY,b.z],[b.x,groundY+b.h,b.z],[a.x,groundY+a.h,a.z],undefined,tint);
+ // Summits sit in thinner air than the saddles below them, so they read fractionally paler
+ // and cooler. It is a few percent, and it is what stops the curtain being one flat fill.
+ const shade=q=>{const g=1+.13*q.t;return [tint[0]*g,tint[1]*g,tint[2]*(g+.03*q.t),0];};
+ for(let k=0;k<n;k++){
+  const a=pts[k],b=pts[(k+1)%n];
+  distant.quad([a.x,baseY,a.z],[b.x,baseY,b.z],[b.x,groundY+b.h,b.z],[a.x,groundY+a.h,a.z],
+   undefined,[shade(a),shade(b),shade(b),shade(a)]);
  }
 }
 
-/** Draped cliff face along an arc — vertical land, not a floor that ends. */
-function scarp(distant,groundHeight,cx,cz,r,a0,a1,drop){
- const n=Math.max(8,Math.round(Math.abs(a1-a0)*r/14));
- const col=[.52,.53,.48,0],colB=[.38,.39,.34,0];
- for(let i=0;i<n;i++){
-  const t0=a0+(a1-a0)*i/n,t1=a0+(a1-a0)*(i+1)/n;
-  const x0=cx+Math.cos(t0)*r,z0=cz+Math.sin(t0)*r;
-  const x1=cx+Math.cos(t1)*r,z1=cz+Math.sin(t1)*r;
-  const y0=groundHeight(x0,z0),y1=groundHeight(x1,z1);
-  distant.quad([x0,y0+1.5,z0],[x1,y1+1.5,z1],[x1,y1-drop,z1],[x0,y0-drop,z0],undefined,i%2?col:colB);
- }
-}
-
-function viaduct(distant,x0,z0,x1,z1,groundHeight,n=6){
- const dx=x1-x0,dz=z1-z0,len=Math.hypot(dx,dz),yaw=Math.atan2(dx,dz);
- const deckY=Math.max(groundHeight(x0,z0),groundHeight(x1,z1))+10;
- for(let i=0;i<=n;i++){
-  const t=i/n,x=x0+dx*t,z=z0+dz*t,g=groundHeight(x,z);
-  distant.box([x,(g+deckY)*.5,z],[2.4,Math.max(4,deckY-g),2.4],[.70,.72,.66,0],yaw);
- }
- distant.box([(x0+x1)/2,deckY+1.0,(z0+z1)/2],[len+5,1.5,4.0],[.74,.75,.70,0],yaw);
-}
-
-function mesaKeep(distant,warm,cx,cz,groundHeight,H=30,w=6){
- const top=groundHeight(cx,cz);
- scarp(distant,groundHeight,cx,cz,28,-.5,Math.PI+.5,36);
- spire(distant,warm,cx,cz,top,H,w,3);
- wallSpan(distant,cx-16,cz-10,cx+16,cz-10,top,8);
+/** An outlying keep on its own butte. The butte used to be a `scarp` skirt of radius 28 -- a
+ *  56 m ring of near-black curtain laid flat on the hillside, which from the south vista read
+ *  as dark tape looping over the crest and crossing the other keep's. `crag` is the primitive
+ *  that already works for the citadel: a fan of triangles from a buried base up to jagged
+ *  peaks, so it is a solid mass with a broken top edge rather than a painted band. `rise`
+ *  lifts the keep onto the butte instead of leaving it standing at its foot. */
+function mesaKeep(distant,warm,cx,cz,groundHeight,H=30,w=6,rise=16){
+ const g=groundHeight(cx,cz);
+ crag(distant,cx,cz,g+rise,g-30,((cx*73856093)^(cz*19349663))>>>0);
+ crag(distant,cx-7,cz+5,g+rise*.7,g-30,((cx*83492791)^(cz*29587121))>>>0);
+ spire(distant,warm,cx,cz,g+rise,H,w,3);
+ wallSpan(distant,cx-16,cz-10,cx+16,cz-10,g+rise,8);
 }
 
 /** Builds the Citadel of Vaelmark on a distant crag and the ridgeline behind it. `distant` is the
@@ -181,27 +187,35 @@ export function buildHorizon(distant,warm,groundHeight){
  ridgeline(distant,cz+150,groundY,7113,320,22,28,62,22,[.90,.92,.87,0]);
  const ringY=groundHeight(0,0)+2;
  // Closer, taller rings so a max-zoom aerial still sees a mountain skyline, not a disc rim.
- ridgeRing(distant,0,40,230,270,ringY,7204,48,40,88,[.90,.92,.87,0]);
- ridgeRing(distant,0,40,320,380,ringY,7318,40,70,130,[.86,.88,.82,0]);
- ridgeRing(distant,0,40,420,500,ringY,7440,36,90,160,[.82,.84,.78,0]);
+ // Segment counts are now silhouette resolution, not peak count -- the ridged noise decides
+ // where the summits are, so these only have to be fine enough that a 300 m chord does not
+ // cut a peak flat. Sharpness rises with distance: the near ring is rounded foothills, the
+ // far one is the alpine wall behind them.
+ ridgeRing(distant,0,40,230,270,ringY,7204,150,34,86,[.90,.92,.87,0],1.35);
+ ridgeRing(distant,0,40,320,380,ringY,7318,170,62,134,[.86,.88,.82,0],1.7);
+ ridgeRing(distant,0,40,420,500,ringY,7440,190,84,172,[.82,.84,.78,0],2.1);
 
- // Radius 200, not 128. A scarp is a downward curtain: it only reads as a cliff
- // where the ground beyond it is *lower*. These were placed against the first
- // bowl rim, which reached 92 m by d~120, so r=128 landed them on a real edge.
- // Halving that rim and pushing it out to d~210 (geometry.js distantRelief) left
- // them stranded on flat ground, where the 1.5 m lip drew as a hard black bar
- // straight across the south vista in front of a slope that rises behind it --
- // material-tag probe named it `Distant black stone`, not terrain. r=200 puts the
- // southern arc at z=-160, where the ground is already ~18 m up and climbing, so
- // the curtain sits on the slope it is meant to be the face of.
- scarp(distant,groundHeight,0,40,200,-0.4,0.9,42);
- scarp(distant,groundHeight,0,40,200,2.15,3.55,38);
- scarp(distant,groundHeight,0,40,200,3.65,5.0,40);
- mesaKeep(distant,warm,152,28,groundHeight,46,8.2);
- mesaKeep(distant,warm,-148,68,groundHeight,40,7.2);
- mesaKeep(distant,warm,40,-168,groundHeight,36,6.8);
- viaduct(distant,108,6,148,24,groundHeight,8);
- viaduct(distant,-102,48,-142,66,groundHeight,7);
+ // The three r=200 scarp curtains that used to stand here are gone. They failed twice: at
+ // r=128 they were stranded on flat ground by a rim change and drew a hard black bar across
+ // the south vista, and at r=200, sitting on the slope they were meant to be the face of,
+ // they read as dark tape looping over the hillcrest and crossing each other. A cliff needs
+ // the ground to actually drop behind it; painting a dark band on a smooth slope never
+ // reads as one. Removing them left the north views pixel-identical and cleaned up
+ // 12-wide-south-vista, where the hillside now shows its woodland instead of the arcs.
+
+ // The two viaducts that used to stand here went with the scarps, for the same reason at a
+ // different scale: a deck 1.5 m thick at 150 m is two pixels of dark line, and two pixels
+ // of straight dark line across a hillside is a defect, not a landmark. Removing them moved
+ // nothing in the other eleven vistas.
+ //
+ // The keeps move out past 190 m and roughly double in size. Close in they were skirt-tape
+ // on the near slope; out there they are layered silhouettes standing between the woodland
+ // and the first mountain ring, which is the one job a `Distant black stone` landmark can
+ // do -- the material is tint .095/.115/.10 at light .35, so it is an outline and a tone and
+ // nothing else, and an outline has to be big before it is worth drawing at all.
+ mesaKeep(distant,warm,196,-38,groundHeight,62,11,22);
+ mesaKeep(distant,warm,-186,112,groundHeight,54,9.5,18);
+ mesaKeep(distant,warm,74,-214,groundHeight,68,12,26);
  spire(distant,warm,132,-55,groundHeight(132,-55),28,5.4,2);
  spire(distant,warm,-125,-80,groundHeight(-125,-80),24,5.0,2);
  spire(distant,warm,78,168,groundHeight(78,168),30,5.6,3);

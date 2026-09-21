@@ -351,11 +351,34 @@ export async function buildChurchyard(engine,scene){
  // checkerboard was reading as the world cutting off from a zoomed camera.
  const farEarth=new Batch('Far earth');
  const randomFar=rng(81107),rf=()=>randomFar();
+
+ // The far field is over half of every vista frame -- material-tag coverage measures it at
+ // 76% of 10-ridge-west and 52% of 07-north-overlook, against ~0% sky -- and it was drawing
+ // as one bare olive ramp from the foliage line to the mountains, with nothing in it to
+ // measure distance against. That, and not the ridge rings, is why those cameras read flat.
+ // `earthShade` varies +-6% at a 21 m wavelength, which is invisible once 16 m quads and
+ // aerial perspective have had it; these vary +-30% at 100-500 m, the scale the eye reads as
+ // terrain rather than as noise, and they cost no triangles and no draw call.
+ //
+ // Slope is the term that matters, because it is the only one that follows the actual land,
+ // so it is what turns the bowl wall from a gradient into a surface with form: steep goes
+ // darker and cooler toward bare rock, high goes paler toward scree, low flats stay warm
+ // heath.
+ const farShade=p=>{
+  const [x,y,z]=p;
+  const patch=.5+.31*Math.sin(x*.0121+z*.0093)*Math.sin(z*.0107-x*.0068)
+                 +.17*Math.sin(x*.0287-z*.0231)*Math.sin(z*.0199+x*.0163);
+  const n=terrainNormal(x,z);
+  const slope=Math.min(1,Math.max(0,(1-n[1])*3.2));
+  const alt=Math.min(1,Math.max(0,(y-3)/36));
+  const s=(.78+.36*patch)*(1-.32*slope)*(1-.07*alt);
+  return [s*(1+.05*alt-.02*slope),s*(1+.02*alt),s*(1-.06*slope*slope+.11*alt),0];
+ };
  const emitFar=(x,z,step)=>{
   const x1=x+step,z1=z+step;
   const v=[[x,z],[x1,z],[x1,z1],[x,z1]].map(([a,b])=>[a,height(a,b),b]);
   rf();
-  farEarth.quad(...v,v.map(earthUV),v.map(earthShade),v.map(p=>terrainNormal(p[0],p[2])));
+  farEarth.quad(...v,v.map(earthUV),v.map(farShade),v.map(p=>terrainNormal(p[0],p[2])));
  };
  const HALO=48,FINE=6,COARSE=16;
  const inHalo=(x,z,s)=>x<90+HALO&&x+s>-90-HALO&&z<145+HALO&&z+s>-95-HALO;
@@ -372,12 +395,81 @@ export async function buildChurchyard(engine,scene){
   for(let z=-95-HALO;z<-95;z+=FINE)emitFar(x,z,FINE);
   for(let z=145;z<145+HALO;z+=FINE)emitFar(x,z,FINE);
  }
- const farTree=(x,z,H)=>{const g=height(x,z);bark.tube([x,g,z],[x,g+H*.55,z],H*.034,H*.016,[.42,.46,.38,0],4);bark.tube([x,g+H*.45,z],[x,g+H,z],H*.16,0,[.34,.40,.30,0],5);};
- for(let i=0;i<70;i++){
-  const a=rf()*Math.PI*2,rad=130+rf()*160;
-  farTree(Math.cos(a)*rad,40+Math.sin(a)*rad*1.15,8+rf()*12);
+ // Three silhouettes, because a hillside of identical cones reads as a picket fence. The
+ // conifer carries the band, the snag is a bare dead trunk that breaks the rhythm, and the
+ // broadleaf is a squat double crown. Each leans a little: a vertical line repeated 600
+ // times is the most obviously procedural thing a landscape can do.
+ const farTree=(x,z,H,sides,kind,lean)=>{
+  const g=height(x,z),tx=x+lean[0]*H,tz=z+lean[1]*H;
+  const lerp=(t,a,b)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];
+  const foot=[x,g,z],mid=p=>lerp(p,foot,[tx,g+H,tz]);
+  if(kind<.58){                                  // conifer
+   bark.tube(foot,mid(.55),H*.034,H*.016,[.42,.46,.38,0],sides);
+   bark.tube(mid(.42),mid(1),H*.15,0,[.34,.40,.30,0],sides+1);
+  }else if(kind<.78){                            // dead snag: trunk only, forked short
+   bark.tube(foot,mid(.86),H*.040,H*.011,[.46,.45,.39,0],sides);
+   bark.tube(mid(.62),[tx+H*.16,g+H*.92,tz-H*.09],H*.018,0,[.44,.43,.37,0],3);
+  }else{                                         // broadleaf
+   bark.tube(foot,mid(.46),H*.045,H*.030,[.40,.42,.35,0],sides);
+   bark.tube(mid(.34),mid(.80),H*.20,H*.17,[.33,.39,.29,0],sides+1);
+   bark.tube(mid(.74),mid(1),H*.16,0,[.31,.37,.27,0],sides+1);
+  }
+ };
+
+ // A lichened lump: a jittered base ring, a smaller jittered shoulder ring, and a cap. The
+ // two rings matter -- a single apex made a pale pyramid that read as a tent on the slope at
+ // 10-ridge-west. It goes in `farEarth` rather than `distant`, whose tint is .095/.115/.10 at
+ // light .35: right for a mountain silhouette, wrong for a tor standing on lit moor. The
+ // vertex colour is well under the ground's own so it stays a dark cool mass against warm
+ // heath instead of catching the key light and glowing tan.
+ const boulder=(x,z,r,h,seed)=>{
+  const rand=rng(seed),g=height(x,z),n=6;
+  const px=x+(rand()-.5)*r*.4,pz=z+(rand()-.5)*r*.4;
+  const ring=k=>{const o=[];for(let m=0;m<n;m++){const a=m*Math.PI*2/n+.31,rr=r*k*(.74+rand()*.5);
+   o.push([px+Math.cos(a)*rr,g+(k<1?h*.62:-r*.14)+(rand()-.5)*h*.12,pz+Math.sin(a)*rr]);}return o;};
+  const lo=ring(1),hi=ring(.46),cap=[px,g+h,pz];
+  const tint=t=>{const c=.29+rand()*.09;return [c*.97,c,c*1.10+t,0];};
+  for(let m=0;m<n;m++){
+   farEarth.quad(lo[m],lo[(m+1)%n],hi[(m+1)%n],hi[m],[[0,0],[.3,0],[.3,.3],[0,.3]],tint(0));
+   farEarth.tri(hi[m],hi[(m+1)%n],cap,[[0,0],[.3,0],[.15,.3]],tint(.03));
+  }
+ };
+
+ // 70 trees over a 130-290 m annulus is one tree per ~1,700 m2 -- statistically invisible,
+ // which is why the mid-ground read as empty ground. A two-octave grove field clusters them
+ // instead, so the band alternates woodland and open moor, and that alternation is itself
+ // depth information: a grove you can see past tells you how far the next one is.
+ //
+ // `edge` is metres outside the playable rectangle, and it does two jobs. The first pass let
+ // trees start 17 m in front of the 07-north-overlook camera, where a 4-sided trunk is an
+ // obvious crude pole; 40 m of clearance plus a height ramp turns that boundary into scrub
+ // thickening into forest rather than a wall. The second is budget: past 160 m only the
+ // silhouette survives the haze, so trunks drop to three sides, and that saving is what pays
+ // for there being ten times as many of them.
+ const grove=(x,z)=>{
+  const a=Math.sin(x*.0139+z*.0101)*Math.sin(z*.0119-x*.0073);
+  const b=Math.sin(x*.0381-z*.0263)*Math.sin(z*.0327+x*.0211);
+  return .5+.34*a+.16*b;
+ };
+ const SCAT=9;
+ const edgeOf=(x,z)=>Math.max(Math.abs(x)-90,z-145,-95-z);
+ let scatterTrees=0,scatterRocks=0;
+ for(let z=-330;z<430;z+=SCAT)for(let x=-330;x<330;x+=SCAT){
+  const jx=x+(rf()-.5)*SCAT*.9,jz=z+(rf()-.5)*SCAT*.9;
+  const edge=edgeOf(jx,jz);
+  if(edge<40)continue;
+  const d=Math.hypot(jx,jz-40);
+  if(d>325)continue;                             // stay inside the innermost mountain ring
+  if(Math.abs(jx)<36&&jz>222&&jz<298)continue;   // the citadel keeps its own bare crag
+  const g=grove(jx,jz),roll=rf();
+  const sides=edge<80?6:edge<160?4:3;
+  if(g>.60&&roll<.62){
+   const H=(6+rf()*14)*Math.min(1,.52+edge/95);
+   farTree(jx,jz,H,sides,rf(),[(rf()-.5)*.12,(rf()-.5)*.12]);scatterTrees++;
+  }else if(g<.42&&roll<.15){
+   boulder(jx,jz,1.4+rf()*3.0,.9+rf()*1.7,81107+scatterRocks*7919);scatterRocks++;
+  }
  }
- for(let i=0;i<18;i++)farTree(-80+rf()*160,-140-rf()*90,9+rf()*11);
 
  // --- Milestone 3, the horizon: the Citadel of Vaelmark on a distant crag beyond z=140, plus the
  // mountain ridgeline behind it. Backdrop only (no colliders, no pathing), added last and entirely
@@ -406,5 +498,5 @@ export async function buildChurchyard(engine,scene){
  if(farMesh)meshes.push(farMesh);
  meshes.push(...foliage.meshes);
  colliders.unshift({type:'mesh',mesh:meshes[0]});const clouds=await sky(engine,scene);
- return {meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,foliage,stats:{triangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris,drawBatches:B.length+(farMesh?1:0)+foliage.stats.draws,horizonTriangles:horizonStats.triangles,farTriangles:farTris,foliageInstances:foliage.stats.instances},update(t,playerPos){foliage.update(t,playerPos);clouds.update(t);}};
+ return {meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,foliage,stats:{triangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris,drawBatches:B.length+(farMesh?1:0)+foliage.stats.draws,horizonTriangles:horizonStats.triangles,farTriangles:farTris,foliageInstances:foliage.stats.instances,scatterTrees,scatterRocks},update(t,playerPos){foliage.update(t,playerPos);clouds.update(t);}};
 }
