@@ -34,12 +34,19 @@
 import fs from 'node:fs/promises';
 import {NodeIO} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
+import {MeshoptDecoder, MeshoptEncoder} from 'meshoptimizer';
 import {EQUIPMENT_ITEMS} from '../../src/ashen-reach/equipment-catalog.js';
 
-const ORC = 'public/characters/candidates/orc-source-v1.glb';
+await MeshoptDecoder.ready;
+await MeshoptEncoder.ready;
+const TARGET = process.argv.includes('--target=undead') ? 'undead' : 'orc';
+const ORC = TARGET === 'undead'
+    ? 'public/characters/candidates/undead-source-v1.glb'
+    : 'public/characters/candidates/orc-source-v1.glb';
+const TARGET_BODY = TARGET === 'undead' ? 'UndeadV1Body' : 'OrcV1Body';
 const HUMAN = 'public/ashen-reach/equipment/body.glb';
 const HUMAN_DIR = 'public/ashen-reach/equipment';
-const OUT = '.cache/armory-assets/orc-sculpt';
+const OUT = TARGET === 'undead' ? '.cache/armory-assets/undead-tripo' : '.cache/armory-assets/orc-sculpt';
 
 /** Garment thickness held off the skin, metres. Real leather/cloth, not a fudge. */
 const CLEARANCE = {
@@ -79,7 +86,10 @@ const len = a => Math.hypot(a[0], a[1], a[2]);
 const unit = a => {const l = len(a) || 1; return [a[0] / l, a[1] / l, a[2] / l];};
 
 /* ------------------------------------------------------------------- rig + mesh */
-const io = new NodeIO().registerExtensions(ALL_EXTENSIONS);
+const io = new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({
+    'meshopt.decoder': MeshoptDecoder,
+    'meshopt.encoder': MeshoptEncoder,
+});
 
 /** Joint rest world matrices by name. */
 function readRig(root) {
@@ -1189,7 +1199,7 @@ if (missing.length) throw Error('Orc rig is missing Human joints: ' + missing.jo
 const globalId = new Map(orcRig.joints.map((j, i) => [j.getName(), i]));
 console.log(`rigs agree on ${humanRig.joints.length} joints`);
 
-const orcGrid = buildGrid(readBody(orcDoc.getRoot(), n => n === 'OrcV1Body'));
+const orcGrid = buildGrid(readBody(orcDoc.getRoot(), n => n === TARGET_BODY));
 const humanGrid = buildGrid(readBody(humanDoc.getRoot(), n => n.startsWith('Body')));
 console.log(`bodies: Human ${humanGrid.tris.length} triangles, Orc ${orcGrid.tris.length}`);
 
@@ -1310,7 +1320,7 @@ const movedGrid = buildGrid(Array.from({length: body.idx.length / 3}, (_, n) =>
         const v = body.idx[n * 3 + k];
         return [moved[v * 3], moved[v * 3 + 1], moved[v * 3 + 2]];
     })));
-const orcPoints = readPoints(orcDoc.getRoot(), n => n === 'OrcV1Body');
+const orcPoints = readPoints(orcDoc.getRoot(), n => n === TARGET_BODY);
 
 let orcRegions = [];
 const orcByRegion = new Map();
@@ -1318,7 +1328,7 @@ const orcByRegion = new Map();
    registered Human triangle it lands on, so the skin hidden under a garment is the
    skin that garment covers, at the Orc's own proportions. */
 {
-    const orcBody = orcDoc.getRoot().listNodes().find(n => n.getMesh() && n.getName() === 'OrcV1Body');
+    const orcBody = orcDoc.getRoot().listNodes().find(n => n.getMesh() && n.getName() === TARGET_BODY);
     const prim = orcBody.getMesh().listPrimitives()[0];
     const P = prim.getAttribute('POSITION').getArray();
     const M = Array.from(orcBody.getWorldMatrix());

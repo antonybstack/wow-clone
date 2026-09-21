@@ -11,6 +11,67 @@
   "hashes": {
     "public/ashen-reach/equipment-undead/body.glb": "cce4c4ad83dbfad2b26f71858f8517298c89c7f3f6a7a4767aa4d2762d5c3f99"
   },
-  "garments": [],
-  "note": "Body is the authored Tripo revenant on the 65-joint source bind. Catalogue clothes are not fitted yet and are omitted from the pack."
+  "garments": [
+    {
+      "id": "graveweaverHood",
+      "bytes": 414476,
+      "meshes": [
+        "GraveweaverHood"
+      ]
+    },
+    {
+      "id": "graveweaverTop",
+      "bytes": 329876,
+      "meshes": [
+        "GraveweaverTop",
+        "GraveweaverPendant"
+      ]
+    },
+    {
+      "id": "graveweaverSkirt",
+      "bytes": 519256,
+      "meshes": [
+        "GraveweaverSkirt",
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs"
+      ]
+    },
+    {
+      "id": "graveweaverGloves",
+      "bytes": 229148,
+      "meshes": [
+        "GraveweaverGloves"
+      ]
+    },
+    {
+      "id": "wayfarerTunic",
+      "bytes": 250400,
+      "meshes": [
+        "WayfarerTunic"
+      ]
+    },
+    {
+      "id": "pilgrimTunic",
+      "bytes": 695732,
+      "meshes": [
+        "PilgrimTunic"
+      ]
+    },
+    {
+      "id": "wayfarerTrousers",
+      "bytes": 146936,
+      "meshes": [
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs"
+      ]
+    },
+    {
+      "id": "wayfarerBoots",
+      "bytes": 242868,
+      "meshes": [
+        "WayfarerBoots"
+      ]
+    }
+  ],
+  "note": "Body is the Tripo Mixamo revenant. Catalogue clothes are ICP-fitted onto that surface (fit-orc-garments --target=undead)."
 }

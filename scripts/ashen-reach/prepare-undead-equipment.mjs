@@ -12,10 +12,11 @@ import {createHash} from 'node:crypto';
 import {NodeIO} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {MeshoptDecoder, MeshoptEncoder} from 'meshoptimizer';
-import {UNDEAD_BASE_VISIBLE_MESHES} from '../../src/ashen-reach/equipment-catalog.js';
+import {EQUIPMENT_ITEMS, UNDEAD_BASE_VISIBLE_MESHES} from '../../src/ashen-reach/equipment-catalog.js';
 import {UNDEAD_EQUIPMENT_FIT} from '../../src/ashen-reach/equipment-contract.js';
 
 const SRC = 'public/characters/candidates/undead-source-v1.glb';
+const FITTED = '.cache/armory-assets/undead-tripo';
 const DIR = 'public/ashen-reach/equipment-undead';
 const URL_BASE = '/ashen-reach/equipment-undead';
 await MeshoptDecoder.ready;
@@ -45,7 +46,7 @@ const manifest = {
     fitId: UNDEAD_EQUIPMENT_FIT.body,
     sourceSha256: bodyHash,
     profileId: 'undead-tripo-v1',
-    garments: false,
+    garments: true,
     items: {
         body: {
             url: `${URL_BASE}/body.glb`,
@@ -57,9 +58,20 @@ const manifest = {
 };
 
 const report = [];
-// Human catalogue garments are not fitted to this skeleton yet. Copying them
-// unbound puts a giant rest-pose hood in world space. Ship the body alone
-// until a revenant fit exists.
+for (const [id, item] of Object.entries(EQUIPMENT_ITEMS).filter(([, i]) => i.parts)) {
+    const names = item.parts.map(p => p.mesh);
+    const srcPath = `${FITTED}/${id}.glb`;
+    const bytes = await fs.readFile(srcPath);
+    await fs.writeFile(`${DIR}/${id}.glb`, bytes);
+    manifest.items[id] = {
+        url: `${URL_BASE}/${id}.glb`,
+        bytes: bytes.byteLength,
+        sha256: sha(bytes),
+        meshes: names,
+        fit: {...item.fits.undead},
+    };
+    report.push({id, bytes: bytes.byteLength, meshes: names});
+}
 
 await fs.writeFile(`${DIR}/manifest.json`, JSON.stringify(manifest, null, 4) + '\n');
 await fs.writeFile(`${DIR}/provenance.json`, JSON.stringify({
@@ -69,7 +81,7 @@ await fs.writeFile(`${DIR}/provenance.json`, JSON.stringify({
     fit: {...UNDEAD_EQUIPMENT_FIT},
     hashes: {[`${DIR}/body.glb`]: bodyHash},
     garments: report,
-    note: 'Body is the authored Tripo revenant on the 65-joint source bind. Catalogue clothes are not fitted yet and are omitted from the pack.',
+    note: 'Body is the Tripo Mixamo revenant. Catalogue clothes are ICP-fitted onto that surface (fit-orc-garments --target=undead).',
 }, null, 2) + '\n');
 
 console.log(JSON.stringify({
