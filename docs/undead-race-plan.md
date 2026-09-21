@@ -109,11 +109,20 @@ length and logs `min/mean/max` so it cannot silently go flat again.
 - Skull/neck colour boundary reads as a painted line, not a transition. Most
   prominent defect on the gameplay face still: the neck reads as a dark collar
   under a bright skull.
-- Shoulder mass overhangs the torso as a soft shelf; the arm/torso junction is mushy.
+- ~~Shoulder mass overhangs the torso as a soft shelf.~~ **Fixed** in `c65f202`:
+  radii reversed so the yoke buries itself in the trapezius and swells into a
+  deltoid, path sagged so the shoulder line slopes. The arm/torso junction is
+  still mushy under a raised arm — see the audition note below.
 - Rib banding is effectively invisible at the new palette's compressed range.
 - AO contributes very little — the surfaces are smooth convex lofts with little to occlude.
-- The motion audition across the M4 state set has not been done; only `Idle_Loop` has been reviewed.
-- Feet read planted but thin, with no malleolus at the ankle.
+- ~~The motion audition has not been done.~~ **Done** — see below. No surface
+  holes in any state. What it did surface: the yoke reads as a separate rigid
+  band laid across the chest when the arm is raised, and the feet read as flat
+  skis in every state.
+- Feet read planted but thin, with no malleolus at the ankle. The motion
+  audition makes this worse than it looked at idle: at full stride the sole is a
+  flat ski with no toe box and no ankle bone, and it is the most obvious
+  remaining silhouette defect after the shoulder. Next thing to fix.
 
 ### Curvature shading pass (2026-09-20, commit `adbbf75`)
 
@@ -136,5 +145,36 @@ linearly is the term and not the animation.
 Kept on its own merits. It is a refinement of the close read, not a silhouette
 fix — at the gameplay camera the head is about 250 px tall and the change is
 subtle. It does not resolve the cranium, for the reason recorded above.
+
+### Motion audition (2026-09-20)
+
+Six states captured at the gameplay camera, front and side, `t=0.35`:
+`Walk_Loop`, `Jog_Fwd_Loop`, `Sprint_Loop`, `Jump_Loop`, `Sword_Attack`,
+`Death01` (`ve-capture/m11a/motion`). Previously only `Idle_Loop` had ever been
+looked at.
+
+The check that matters for a rig is whether extreme poses tear the surface
+open. Counting pixels below luma 30 over the whole frame — the darkest
+legitimate flesh shading on the clean idle front measures 42, and the shoulder
+gap fixed in `c65f202` measured 46 pixels down to 13 — across all twelve
+captures:
+
+| | worst count | darkest |
+| --- | --- | --- |
+| all 12 motion captures | 3 px | 23 |
+
+So nothing opens. The new deltoid in particular holds under `Sword_Attack`'s
+fully extended arm and under `Sprint_Loop`'s drive, neither of which existed as
+test cases when it was shaped.
+
+Two defects the audition found that idle did not show:
+
+- **The yoke reads as a separate rigid band** laid over the chest once the arm
+  is raised (`Sword_Attack`, front). It is skinned to Shoulder/Arm and slides
+  over the torso as a unit rather than blending into it. Not a hole, but it
+  reads as a stuck-on piece.
+- **The feet are flat skis.** At full stride (`Sprint_Loop`, side) the sole has
+  no toe box, no arch break and no malleolus, and it is long enough to read as
+  a ski rather than a foot. Worse in motion than at idle, where the pose hid it.
 
 Nothing here is accepted. The branch is staged for review.
