@@ -203,7 +203,18 @@ for (const [id, item] of garmentItems) {
     for (const n of root.listNodes()) {
         if (n.getMesh() && !keep.has(n.getName())) n.setMesh(null);
     }
-    for (const a of root.listAnimations()) a.dispose();
+    // Animation.dispose() only unlinks the Animation's own edges to its channels/samplers
+    // (they're stored as RefSet, not owned refs), so the AnimationChannel/AnimationSampler
+    // objects survive, orphaned but still holding edges to their keyframe accessors. prune()'s
+    // accessor tree-shake excludes Root and AnimationChannel parents but not AnimationSampler,
+    // so those still-alive samplers keep dead keyframe accessors (and their bufferView bytes)
+    // out of prune's reach. Dispose channels and samplers explicitly so nothing is left holding
+    // a reference into the accessor the animation no longer needs.
+    for (const a of root.listAnimations()) {
+        for (const c of a.listChannels()) c.dispose();
+        for (const s of a.listSamplers()) s.dispose();
+        a.dispose();
+    }
     await doc.transform(unpartition(), prune({keepLeaves: true}));
     const missing = names.filter(name => !root.listNodes().some(n => n.getMesh() && n.getName() === name));
     if (missing.length) throw Error(`${id} missing meshes after pack: ${missing}`);
