@@ -99,6 +99,41 @@ export const FOG_DENSITY=0.0085,FOG_SCALE_H=15.0,FOG_FLOOR_Y=0.0;
  *  that the honest move is to stop at a value whose worst case, 0.71 on the outermost
  *  ring, still sits between the accepted 0.62 and the rejected 0.80. */
 export const FOG_KNEE=0.50,FOG_FAR=0.74;
+/*  How bright the haze is allowed to get in the deep field, as a fraction of the open
+ *  sky in the same direction, and the distances over which it falls off.
+ *
+ *  aerial() has always mixed toward skyColor(dir) outright. That says a fully hazed
+ *  object matches the sky exactly, which is why the crag beside the citadel measured
+ *  *brighter* than the sky above it (188.9 vs 170.8 on 03-lych-gate) and why the
+ *  citadel has never been more than 20% below its background no matter what was done
+ *  to the fog curve or the sun lobe: those change how much inscatter there is, never
+ *  what it converges to.
+ *
+ *  Two honest notes about this fix, because the first thing I tried was wrong.
+ *
+ *  It is art direction, not physics. The tempting story is "a 260 m path carries less
+ *  inscatter than the infinite column behind it". That story does not survive contact
+ *  with this fog: FOG_SCALE_H is 15 m, so a horizontal 260 m sightline passes through
+ *  roughly seventeen times more haze than the vertical column does, and a strictly
+ *  physical reading of this model would make the far field brighter than the sky, not
+ *  darker. The model is a mood device, not an atmosphere. What is being asserted here
+ *  is the art direction that distant land must sit below the sky it stands against --
+ *  which is what every dusk reference in the folder does -- and this is the term that
+ *  asserts it.
+ *
+ *  It is keyed to distance, not to fog. My first attempt ramped on the fog value with
+ *  a knee at 0.35, reasoning that it would leave the tuned near field untouched. It did,
+ *  and it also left the citadel untouched: the towers sit at fog 0.52, only a sixth of
+ *  the way up that ramp, so they took an 8% change that measured +0.0 on the tower and
+ *  -0.3 on the castle mass against p32. Fog is a poor proxy because the knee at
+ *  FOG_KNEE has already flattened it exactly where the interesting geometry is. Ramping
+ *  on distance instead puts full strength on the things that are actually far away, and
+ *  starting at 110 m still leaves every near and mid-field value from p5, p10 and
+ *  p15-p18 bit-identical, because nothing tuned in those passes is beyond 110 m.
+ *
+ *  The sun glow scales with it rather than being exempt: it is the same haze doing the
+ *  scattering, and exempting it would just move the veil from one term to the other. */
+export const HAZE_FAR=0.55,HAZE_D0=110.0,HAZE_D1=300.0;
 export const FOG_NEAR=7.0,FOG_FULL=30.0;
 
 /** A second, much shallower haze layer that does the job the 22 m one only gestures
@@ -204,7 +239,9 @@ fn aerial(c:vec3<f32>,wp:vec3<f32>,cam:vec3<f32>)->vec3<f32>{
  // "reads as a mist bank rather than land" failure the FOG_MAX note describes,
  // reappearing locally in the sun direction. Narrower keeps the glow where the light
  // actually is and gives the silhouettes their value back.
- let inscatter=skyColor(dir)+SUN_COLOR*pow(max(dot(dir,SUN_DIR),0.0),15.0)*0.30;
+ // Finite-path inscatter, see HAZE_FAR above. Near and mid field pass through at 1.0.
+ let hz=mix(1.0,${HAZE_FAR.toFixed(3)},smoothstep(${HAZE_D0.toFixed(1)},${HAZE_D1.toFixed(1)},d));
+ let inscatter=(skyColor(dir)+SUN_COLOR*pow(max(dot(dir,SUN_DIR),0.0),15.0)*0.30)*hz;
  var out=mix(c,inscatter,fog);
  // Ground mist. Same analytic integral, a quarter of the scale height, so it fills
  // the low ground and clears off the crests instead of greying everything equally.
