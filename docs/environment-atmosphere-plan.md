@@ -208,3 +208,64 @@ file, so they are pre-existing and unrelated.
   the frame tops out at 17.5 deg at that camera's pitch.
 - `04-town-gate-vista` is very mustard; the limestone tint may be over-saturated
   against the new warm key.
+
+## 7. Delivery pass (p9 + motion)
+
+**The bar across the south vista was mine, not inherited.** §6 listed "the hard dark
+band at y≈255-285 in `12-wide-south-vista`" as a carried defect and guessed at the
+uniform `valley` trough ring. That guess was wrong, and the correction matters because
+it changes who owns the defect. A material-tag probe at the shot-12 camera returned the
+band in *green* — `Distant black stone` — so it was never terrain at all. It was the
+three `scarp()` calls in `horizon.js` at radius 128 around (0,40).
+
+A scarp is a downward curtain: quads from `groundHeight+1.5` down to `groundHeight-drop`.
+It reads as a cliff **only where the ground beyond it is lower**. They were authored
+against the first bowl rim, which reached 92 m by d≈120, so r=128 put them on a real
+edge. The rim change in §6 — half the height, arriving twice as far out — left them
+standing on flat ground (the measured profile at x=0 runs −0.8 m at z=−100 and does not
+begin climbing until z≈−112), where the 1.5 m lip is a fence in front of a rising slope.
+So the §6 fix created this defect; it was not pre-existing.
+
+r=200 puts the southern arc at z=−160, where the ground is ~18 m up and climbing.
+Full 12-shot re-shoot (`p9-scarp` vs `p8-vignette`), mean abs diff per channel against
+the 0.62–0.67 animation noise floor:
+
+| shot | diff | | shot | diff |
+|---|---|---|---|---|
+| 12-wide-south-vista | **4.89** | | 09-west-treeline | 1.91 |
+| 02-churchyard-south | **3.29** | | 11-silhouette-back | 1.83 |
+| 05-main-street | **3.28** | | 06-well-plaza | 1.28 |
+| 04-town-gate-vista | **2.67** | | 08-east-meadow | 1.04 |
+| 10-ridge-west | **2.29** | | 03-lych-gate | 0.92 |
+| 01-churchyard-spawn | **2.06** | | 07-north-overlook | 0.56 |
+
+No shot regressed on inspection. Cost: 127145 → 127187 triangles (+42), draw batches
+unchanged at 15.
+
+**Delivered:** 27.2 s live MP4, 1280×720, 30 fps, 27.0 MB, recorded by the new
+`scripts/ashen-reach/record-vistas.mjs` at 94.9 fps capture-time, Telegram message 689.
+Route: south ridgeline → churchyard → lych gate → town gate → main street → well plaza
+→ turn back to the lit town. Two takes were rejected before that one: the first spent a
+third of its runtime on empty field at the west meadow and north overlook and boomed the
+camera through a wall for a black frame; the second still carried the scarp bar through
+its opening 3.5 s.
+
+**Why this section exists at all.** The §6 work was committed, logged, and never sent.
+The `Stop` gate that was supposed to prevent that could not have: it lived in
+`.grok/hooks/`, which Claude Code does not read, and it decided "is this visual work?"
+from `git status`, so committing — the normal last act of a session — blinded it. And
+`tg`, named in AGENTS.md and `docs/debug-view.md`, did not exist on disk. Fixed in
+`2f77c26`: `scripts/tg` (env-only credentials, loud failure on `{"ok":false}`, delivery
+ledger), `.claude/hooks/telegram-motion-stop.py` registered in `.claude/settings.json`
+and reading committed history against that ledger, and the `deliver-visual-cycle` skill.
+
+### Still carried
+
+- `04-town-gate-vista` reads very mustard; the limestone tint is likely over-saturated
+  against the new warm key.
+- `10-ridge-west` ridge rings still read as flat cardboard — `ridgeRing` uses 36–48
+  segments over 230–500 m radii, i.e. 30–80 m quads with flat top edges.
+- `07-north-overlook` shows almost no sky: the rings span ~10–24° against a 17.5°
+  top-of-frame.
+- Phase E is not started: mist bands pooled at valley height, light shafts at the gate
+  lamps.
