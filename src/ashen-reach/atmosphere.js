@@ -168,6 +168,22 @@ export const HAZE_FAR=0.55,HAZE_D0=110.0,HAZE_D1=300.0;
  *  Gated by the same 110-300 m ramp as HAZE_FAR, so the near and mid field cannot see
  *  it at all. */
 export const HAZE_BANK=0.22;
+/*  The colour of the deep field's haze, applied to its skylight term only.
+ *
+ *  What survives the HAZE_FAR cut is the warm end of the inscatter, so the far field
+ *  came out sepia: skyColor() at the horizon is [.250,.262,.288] and the forward-scatter
+ *  lobe adds roughly [.185,.130,.083] near the sun, summing to something distinctly
+ *  brown. §12 of the plan establishes that this cannot be corrected on the material
+ *  side -- the distant stone is only about 13% of a far pixel by value -- so it has to
+ *  be corrected in the inscatter, which is the other seven eighths.
+ *
+ *  Blue-weighting the skylight term is both the honest physics here and the art
+ *  direction: aerial perspective is Rayleigh-dominated, which is why distant ranges go
+ *  blue-grey, and a cool distance against a warm sky is the complementary contrast every
+ *  dusk reference in the folder is built on. Deliberately applied to skyColor() only and
+ *  not to the sun lobe -- the glow near the disc should stay the sun's colour, or the
+ *  sunset itself goes cold. */
+export const HAZE_TINT=[0.90,1.00,1.26];
 export const FOG_NEAR=7.0,FOG_FULL=30.0;
 
 /** A second, much shallower haze layer that does the job the 22 m one only gestures
@@ -282,7 +298,10 @@ fn aerial(c:vec3<f32>,wp:vec3<f32>,cam:vec3<f32>)->vec3<f32>{
  let strata=sin(wp.y*0.042+sin(bx*1.7)*0.9);
  let lateral=sin(bx*2.1+bz*1.3);
  hz=hz*(1.0+${HAZE_BANK.toFixed(3)}*(strata*0.72+lateral*0.42)*far);
- let inscatter=(skyColor(dir)+SUN_COLOR*pow(max(dot(dir,SUN_DIR),0.0),15.0)*0.30)*hz;
+ // Blue-weight the skylight term by HAZE_TINT in the deep field only; far is the same
+ // 110-300 m ramp, so the near and mid field keep neutral haze.
+ let hazeTint=mix(vec3<f32>(1.0),${w3(HAZE_TINT)},far);
+ let inscatter=(skyColor(dir)*hazeTint+SUN_COLOR*pow(max(dot(dir,SUN_DIR),0.0),15.0)*0.30)*hz;
  var out=mix(c,inscatter,fog);
  // Ground mist. Same analytic integral, a quarter of the scale height, so it fills
  // the low ground and clears off the crests instead of greying everything equally.
