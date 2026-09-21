@@ -58,6 +58,43 @@ export const GROUND_BOUNCE=[0.124,0.107,0.081];
 export const FOG_DENSITY=0.0085,FOG_SCALE_H=22.0,FOG_FLOOR_Y=0.0,FOG_MAX=0.62;
 export const FOG_NEAR=7.0,FOG_FULL=30.0;
 
+/** A second, much shallower haze layer that does the job the 22 m one only gestures
+ *  at. With one scale height, a crest 20 m above a valley floor sits in 90% of the
+ *  same fog as the floor does, so "ridges emerging from mist" comes out as "the
+ *  whole landscape is slightly grey". At a 6.5 m e-folding height the integral is
+ *  nearly saturated at ground level and nearly empty two storeys up, which is what
+ *  puts a distinct waterline on a hillside and lets the woodland above it read
+ *  against the woodland below.
+ *
+ *  It is applied after aerial's own mix and with its own colour, which is why the
+ *  two do not collapse into one: the deep layer converges distance onto the sky
+ *  behind it, while this one is a bright cool body of air that far low ground sits
+ *  *inside*. MIST_MAX below 1 keeps the valley floor visible through it -- a
+ *  saturating mist erases the ground instead of pooling on it. */
+/*  Numbers, because the first attempt at this layer failed in a way that looked like a
+ *  colour problem and was actually a range problem. At density 0.028 the integral was
+ *  past the cap at *every* sample I checked -- 80 m of flat ground and a summit 80 m up
+ *  at 400 m both came out at 0.52 -- so the layer had no height discrimination at all
+ *  and painted a flat grey veil over the whole frame (p19-mist). A mist that saturates
+ *  everywhere is just a lower exposure.
+ *
+ *  These values keep the integral in the part of its range where it still varies: a
+ *  distant valley floor reaches the 0.42 cap, while a crest 35 m above that same floor,
+ *  at the same distance, sits at 0.11. That four-to-one gap across 35 m of height is the
+ *  whole effect. NEAR/FULL push the ramp out past the playable clearing so the grass the
+ *  player stands in stays crisp -- at 30 m the layer contributes nothing. */
+export const MIST_DENSITY=0.0028,MIST_SCALE_H=7.0,MIST_FLOOR_Y=1.5,MIST_MAX=0.42;
+export const MIST_NEAR=45.0,MIST_FULL=130.0;
+/** Barely tinted and only slightly cool. The first pass used 1.16/1.18/1.26 over
+ *  skyColor(), which is already the brightest value in frame at the horizon; combined
+ *  with the saturated integral it blew the sun band out and erased the citadel. Once the
+ *  opacity profile was fixed the band went the other way and read as almost nothing: at
+ *  1.04 the mist body landed at the same luminance as the tan slope it covers, so 36%
+ *  coverage changed the picture by almost no contrast at all. The fix is the body, not
+ *  more opacity -- it is blue-weighted, so it separates from warm ground by hue as well
+ *  as by value, which is what makes a waterline read without greying the frame. */
+export const MIST_TINT=[1.14,1.19,1.34];
+
 export const EXPOSURE=1.35;
 /** Lifted, slightly cool blacks. The references never reach pure black; the
  *  baseline did constantly (`10-ridge-west` is mostly clipped-to-zero mud). */
@@ -110,7 +147,18 @@ fn aerial(c:vec3<f32>,wp:vec3<f32>,cam:vec3<f32>)->vec3<f32>{
  let fog=min(1.0-exp(-max(od,0.0)),${FOG_MAX.toFixed(3)});
  // Forward scattering: looking toward the buried sun, the haze itself glows.
  let inscatter=skyColor(dir)+SUN_COLOR*pow(max(dot(dir,SUN_DIR),0.0),10.0)*0.40;
- return mix(c,inscatter,fog);
+ var out=mix(c,inscatter,fog);
+ // Ground mist. Same analytic integral, a quarter of the scale height, so it fills
+ // the low ground and clears off the crests instead of greying everything equally.
+ let mb=${MIST_DENSITY.toFixed(5)}*d*exp(-(cam.y-${MIST_FLOOR_Y.toFixed(1)})/${MIST_SCALE_H.toFixed(1)});
+ var mo:f32;
+ if(abs(dy)<0.05){mo=mb;}
+ else{mo=mb*(1.0-exp(-dy/${MIST_SCALE_H.toFixed(1)}))*(${MIST_SCALE_H.toFixed(1)}/dy);}
+ mo=mo*smoothstep(${MIST_NEAR.toFixed(1)},${MIST_FULL.toFixed(1)},d);
+ let mist=min(1.0-exp(-max(mo,0.0)),${MIST_MAX.toFixed(3)});
+ let mistBody=skyColor(vec3<f32>(dir.x,0.02,dir.z))*${w3(MIST_TINT)}
+  +SUN_COLOR*pow(max(dot(dir,SUN_DIR),0.0),9.0)*0.14;
+ return mix(out,mistBody,mist);
 }
 
 /** Key + hemispheric ambient + rim, the three terms the baseline was missing.
