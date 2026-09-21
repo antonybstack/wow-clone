@@ -83,18 +83,37 @@ export async function sky(engine,scene){
  // sky -- exactly the stepped bands in the p1-atmos capture 07-north-overlook.
  // Clearing the clouds across the band where far geometry actually sits makes
  // the two agree instead of requiring them to be matched by hand.
- let deck=smoothstep(0.03,0.34,abs(d.y));
- let high=smoothstep(.40,.86,dA)*deck;
- let low=smoothstep(.52,.92,dB)*smoothstep(.55,.06,abs(d.y))*deck;
+ // The clear band only has to cover where far *geometry* sits, since that is the
+ // mismatch it exists to prevent. The tallest ridge ring tops out near 20 degrees,
+ // but FOG_MAX is 0.62 now (it was 0.93 when this was first tuned), so a ridge keeps
+ // well over a third of its own dark stone and no longer reads as a pale slab against
+ // a clouded dome. Pulling the band in from ~20 degrees to ~13 hands most of the sky
+ // the gameplay camera actually frames back to the cloud deck.
+ let deck=smoothstep(0.025,0.22,abs(d.y));
+ let high=smoothstep(.36,.82,dA)*deck;
+ let low=smoothstep(.48,.90,dB)*smoothstep(.55,.06,abs(d.y))*deck;
  // Clouds lit by the buried sun: bright warm underside toward the glow, cool
  // and dense away from it, with a hot rim at the density edge on the sun side.
  let sd=max(dot(d,SUN_DIR),0.0);
- let litHigh=mix(vec3<f32>(.055,.070,.098),vec3<f32>(.54,.34,.24),pow(sd,1.7));
- let litLow=mix(vec3<f32>(.038,.046,.060),vec3<f32>(.78,.44,.24),pow(sd,1.2));
- let rim=pow(sd,5.0)*(high*(1.0-high)+low*(1.0-low))*4.0;
+ // The anti-sun ends of these two were the real reason the sky read as a flat navy
+ // field: at .055/.070/.098 a cloud was within 20% of the sky it was painted over at
+ // 26 degrees elevation, so the deck was present and invisible. Away from the glow a
+ // dusk cloud is a dark mass, not a slightly different blue -- these are now roughly a
+ // third of the sky value there, which is what gives the dome structure to read.
+ let litHigh=mix(vec3<f32>(.024,.034,.058),vec3<f32>(.54,.34,.24),pow(sd,1.7));
+ let litLow=mix(vec3<f32>(.018,.024,.038),vec3<f32>(.78,.44,.24),pow(sd,1.2));
+ let band=(high*(1.0-high)+low*(1.0-low))*4.0;
+ let rim=pow(sd,5.0)*band;
  c=mix(c,litHigh,high*.72);
  c=mix(c,litLow,low*.80);
  c=c+SUN_COLOR*rim*.55;
+ // The same density-edge term as the sun rim above, but ungated by sun direction
+ // and carrying skylight rather than sunlight. Darkening alone gave the anti-sun deck value but
+ // no boundary, so neighbouring banks merged into one smudge; a bank needs an edge
+ // that is brighter than both the cloud and the sky behind it to read as a separate
+ // body. Sampling skyColor() just above the horizon keeps it cold, so this adds
+ // definition to the northern sky without leaking the sunset's warmth into it.
+ c=c+skyColor(vec3<f32>(d.x,0.10,d.z))*band*.12;
  // A thin band of haze right at the horizon line, the same colour the ground's
  // aerial() converges to, so the two meet with no value step at all.
  c=mix(c,skyColor(vec3<f32>(d.x,0.0,d.z)),pow(1.0-abs(d.y),9.0)*.75);
