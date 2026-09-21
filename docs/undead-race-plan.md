@@ -65,3 +65,45 @@ Acceptance: Human → Orc → Undead → Human works during motion; catalogue sw
 Body and source decision → compatible moving body → approved outfit in game → complete race and catalogue integration → performance and motion review → delivery.
 
 The first implementation milestone is the recognizable Undead body with the approved outfit moving in the churchyard. Broad appearance customization, new racial abilities, additional enemy types, and further outfit families are future work.
+
+## M11a body defect pass (2026-09-20, commits `0f9c7d7` and `499600c`)
+
+Taken over by hand from the agent that built `undead-source-v1`. Worktree
+`.claude/worktrees/m11a`, harness slot 1 (Vite 5273 / CDP 9437). Stills at
+`ve-capture/m11a/fix1`, `fix2`, `fix3`, all at the gameplay camera with
+`--clip Idle_Loop`; `takeover-orcctl` is the Orc control at the same camera.
+
+### What was wrong, and what it actually was
+
+| Reported defect | Root cause | Status |
+| --- | --- | --- |
+| Whole body a uniform dark olive | `bake_vertex_colours` wrote linear vertex colours straight into an 8-bit sRGB atlas. `images.new()` without `float_buffer` gives a byte buffer, and assigning `.pixels` to one stores `value*255` with no colour management, so FLESH 0.352 shipped as byte 90 and glTF decoded it back to 0.102 linear — a third of the authored brightness, everywhere. | Fixed: explicit linear→sRGB encode. Atlas dominant colour (90,88,79) → (160,158,151), median luma 88 → 158. |
+| Black-void neck | Same encoding bug (0.176 → byte 45), plus a colour that was a hole rather than a shadow even corrected. | Fixed: encode + neck 0.176 → 0.093 (byte 86). |
+| Garbled dark bands across the upper back | Rib banding had no normal gate, so it wrapped right around the torso; at 62 rad/m against ~2 cm vertex spacing it also aliased into chevrons. | Fixed: gated on surface normal, 46 rad/m. Gone in `fix3/…-back-…png`. |
+| Eyes white, not amber | Exporter writes `emissiveFactor [1, 0.457, 0.065]` with `KHR_materials_emissive_strength`, which Lite honours; at strength 7.5 both R and G clipped past 1.0. | Fixed: redder AMBER, strength 1.1. `fix3` reads orange. |
+| Smooth-egg cranium | The normal bake was a no-op by construction — the "high-poly" cage was a copy of the same surfaces in the same place, so it exported a uniform (128,128,255) image at 15,960 bytes. | Normal bake dropped (there is no higher-resolution source to bake from); the cranium is **still a smooth egg**. Carried. |
+| Feet not touching the ground | Not root height. `sweep-foot-gap.mjs` across Idle_Loop: Undead lowest vertex 0.0142–0.0178 m, Orc 0.0231–0.0287 m, same curve shape, never crossing — the Orc floats *more* and reads planted. It was silhouette: a 52 mm heel stub meant the leg met the floor at the back edge of a forward-pointing paddle. | Fixed: heel, arch, ball and toe lofted as one continuous sole. Lengthening the stub first (`fix2`) produced a hard T with a notch and was reverted. |
+| Floor reflection shows only the head | **Does not reproduce.** Reported off a downscaled thumbnail. On the full-resolution front still the bottom 500 rows span 7 code values of luma (174–181), maximum channel spread 27 at the vignetted left edge, zero warm-saturated pixels. There is no reflection system in the preview studio — `src/character/preview/studio.js` builds a roughness-0.74 PBR disc and nothing else. | Withdrawn. |
+
+### Correction to an earlier entry of mine
+
+I recorded, before any rebuild, that the coincident bake cage made AO read fully
+occluded everywhere and that this was what crushed the albedo. That was wrong.
+Rebuilding with the cage removed moved the atlas by less than one code value
+(dominant stayed (90,88,79), median luma 88 → 88), and it was that null result
+that exposed the encoding bug. The cage is still gone, because the rest of the
+reasoning held: it was a copy of the same surfaces, so the normal bake could not
+have produced detail. AO is now a genuine self-occlusion bake at 0.25 m ray
+length and logs `min/mean/max` so it cannot silently go flat again.
+
+### Carried defects
+
+- Cranium has no relief: the scan's detail is all in the face, the dome is bare.
+- Skull/neck colour boundary reads as a painted line, not a transition.
+- Shoulder mass overhangs the torso as a soft shelf; the arm/torso junction is mushy.
+- Rib banding is effectively invisible at the new palette's compressed range.
+- AO contributes very little — the surfaces are smooth convex lofts with little to occlude.
+- The motion audition across the M4 state set has not been done; only `Idle_Loop` has been reviewed.
+- Feet read planted but thin, with no malleolus at the ankle.
+
+Nothing here is accepted. The branch is staged for review.
