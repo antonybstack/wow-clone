@@ -195,7 +195,16 @@ fn aerial(c:vec3<f32>,wp:vec3<f32>,cam:vec3<f32>)->vec3<f32>{
  var fog=raw;
  if(raw>${FOG_KNEE.toFixed(3)}){fog=${FOG_KNEE.toFixed(3)}+(${FOG_FAR.toFixed(3)}-${FOG_KNEE.toFixed(3)})*(1.0-exp(-(raw-${FOG_KNEE.toFixed(3)})/(${FOG_FAR.toFixed(3)}-${FOG_KNEE.toFixed(3)})));}
  // Forward scattering: looking toward the buried sun, the haze itself glows.
- let inscatter=skyColor(dir)+SUN_COLOR*pow(max(dot(dir,SUN_DIR),0.0),10.0)*0.40;
+ // Forward-scatter glow, tightened from pow 10 / 0.40 to pow 15 / 0.30. At the old
+ // width it was still at 54% of full strength 20 degrees off the sun, which is most
+ // of the southern sky, so every backlit thing in that half of the frame was veiled
+ // by it rather than only the things actually near the disc. The citadel sat 17%
+ // below the sky it stands against -- a backlit castle should be far darker than
+ // that -- and the crag beside it came out *brighter* than the dome, which is the
+ // "reads as a mist bank rather than land" failure the FOG_MAX note describes,
+ // reappearing locally in the sun direction. Narrower keeps the glow where the light
+ // actually is and gives the silhouettes their value back.
+ let inscatter=skyColor(dir)+SUN_COLOR*pow(max(dot(dir,SUN_DIR),0.0),15.0)*0.30;
  var out=mix(c,inscatter,fog);
  // Ground mist. Same analytic integral, a quarter of the scale height, so it fills
  // the low ground and clears off the crests instead of greying everything equally.
