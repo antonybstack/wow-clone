@@ -22,7 +22,18 @@ for(const [id,names]of [['body',BASE_VISIBLE_MESHES],...Object.entries(EQUIPMENT
    if(!names.includes(n.getName()))n.setMesh(null);
    else if(n.getWorldMatrix().some((v,i)=>Math.abs(v-(i%5===0?1:0))>1e-6))throw Error('Non-identity mesh bind: '+n.getName());
  }
- if(id!=='body')for(const a of root.listAnimations())a.dispose();
+ // Animation.dispose() only unlinks the Animation's own edges to its channels/samplers
+ // (they're stored as RefSet, not owned refs), so the AnimationChannel/AnimationSampler
+ // objects survive, orphaned but still holding edges to their keyframe accessors. prune()'s
+ // accessor tree-shake excludes Root and AnimationChannel parents but not AnimationSampler,
+ // so those still-alive samplers keep ~5,200 dead keyframe accessors (and their bufferView
+ // bytes) out of prune's reach. Dispose channels and samplers explicitly so nothing is left
+ // holding a reference into the accessor the animation no longer needs.
+ if(id!=='body')for(const a of root.listAnimations()){
+   for(const c of a.listChannels())c.dispose();
+   for(const s of a.listSamplers())s.dispose();
+   a.dispose();
+ }
  await doc.transform(prune({keepLeaves:true}));
  const output=await io.writeBinary(doc);await fs.writeFile(`${dir}/${id}.glb`,output);
  manifest.items[id]={url:`/ashen-reach/equipment/${id}.glb`,bytes:output.byteLength,sha256:sha(output),meshes:names,fit:EQUIPMENT_ITEMS[id]?.fit};
