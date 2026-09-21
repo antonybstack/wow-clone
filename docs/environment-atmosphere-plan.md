@@ -919,3 +919,70 @@ Run a same-build control before trusting any diff.
   `distantRelief`.
 - From §14: the cloud slab has one height (three layers share a projection), and
   the gameplay camera frames very little sky — still the largest open question.
+
+## 17. Grass follows the ground (p53–p54, Telegram 707)
+
+§16's clip disclosed its own largest leftover: grass was lit identically on both
+faces of every crest the swell had just created. §16 also said fixing it needed a
+shadow texture. **That was wrong, and the correction is the interesting part.**
+
+The foliage pass bends each alpha-cut blade card toward vertical before shading —
+that bend is what makes a clump read as a rounded mass rather than a row of flat
+billboards. But it bent toward a *constant* `+Y`, so every blade on the field
+shared one shading normal.
+
+A shadow texture is the right tool when the caster is an object. Here the caster
+is **the terrain itself**, and the terrain is a closed-form function, so its slope
+can be evaluated per fragment: four trig calls, no memory, no vertex channel
+(`instanceColor` is full — rgb tint, a lamp), no bake, and nothing to keep in
+sync as the foliage patch recycles. `TERRAIN_SLOPE_WGSL` in `geometry.js` emits
+the analytic derivative of `climb()+swell()` immediately beside the JS it mirrors.
+
+Only the mid-scale terms are included. `terrainRaw`'s 0.30/0.16 octaves live at
+14–33 m, below a grass clump, and would read as noise rather than form.
+
+Verified against finite differences of `height()`: **max error 3.4e-10** over 5130
+samples inside the play rectangle and off the building pads. The first run of that
+check reported 4.4e-1 — at a building pad, where `height()` flattens by design,
+and then 3.9e-1 at `z=198`, outside the play rectangle where the basin term
+starts. Both were the check meeting the terrain's other features, not an error.
+
+Slope is exaggerated **2.2×** for shading only, the way a normal-map intensity is.
+The true grade tops out at 1 in 4.7 and tilts the normal 12°, which is real but a
+gentle read across a hundred metres of haze; a three-way stack at 1.0× and 2.2×
+is monotonic, and only at 2.2× does the meadow have a lit flank and a shaded one.
+
+### Instrument: band sd has a blind spot, and it nearly cost this pass
+
+Band sd moved **0.2–0.6 against a 0.06 control** — by §16's own standard, a
+negative result, and the signs were mixed across shots. It was wrong. Band sd
+measures spread *within* a row band, so an effect that brightens some elements and
+darkens others inside the same band barely moves it, however large the per-element
+change is.
+
+The amplified difference map settled it in one image: the same-build control is
+uncorrelated white speckle on the near grass, while the signal is **large coherent
+orange per-clump patches organised along the terrain**. Per-shot mean-abs-diff
+rises above the control floor only on the north-looking shots — 03 (3.84 vs 1.12),
+04 (4.00 vs 2.64), 05, 07 (1.61 vs 0.54), 09 — which is exactly where the swell is.
+
+**So the instrument rule from §16 needs a caveat.** Band sd is right for *"does
+this region have more form"*. It is blind to *"did individual elements change"* —
+use a difference map against a same-build control for that, and read its
+structure, not just its magnitude.
+
+### Invariant
+
+Holds by construction, not just by measurement: at `z=40`, `t=0` gives `e=0` and
+`de=0`, so the slope is exactly `(0,1,0)` and eases in C1. No seam is possible.
+`12-wide-south-vista` moves 0.71 against a 0.66 control, `08-east-meadow` 1.06
+against 1.46, and the lych-gate crop is pixel-identical south of the gate.
+
+### Still carried
+
+- **Trees and buildings cast nothing on grass.** *That* one does need a texture,
+  with a reach that excludes `distantRelief`.
+- From §16: 07's 320–360 band and 10-ridge-west's 200–240 still lost spread to the
+  swell; the two southern vistas gain nothing by design.
+- From §14: the cloud slab has one height, and the gameplay camera frames very
+  little sky — still the largest open question in this document.
