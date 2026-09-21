@@ -41,7 +41,10 @@ export const GROUND_BOUNCE=[0.124,0.107,0.081];
  *  ridge crest at y=+60 sits in thin air while its base sits in thick fog --
  *  "ridges emerging from a fog-filled valley" falls out of the integral rather
  *  than being authored. */
-/** FOG_MAX is what keeps distance from erasing the skyline. Everything past
+/** The far-field ceiling is what keeps distance from erasing the skyline. It used to
+ * be a hard clamp, FOG_MAX; it is now the FOG_KNEE/FOG_FAR pair below, for the reason
+ * given there. The tuning history is still the reason those numbers are where they
+ * are. Everything past
  *  ~200 m saturates the integral, so this cap alone sets how far below the sky a
  *  ridge or the citadel sits. At 0.93 they washed out to slightly *lighter* than
  *  the dome above them and read as mist banks rather than land (p2-grade
@@ -55,7 +58,47 @@ export const GROUND_BOUNCE=[0.124,0.107,0.081];
  *  greyed out at the same rate as the horizon and the picture had two depth
  *  layers instead of five. 0.0085 is about 50% at 80 m and still saturating by
  *  250 m, which separates near / mid / far / ridge / sky. */
-export const FOG_DENSITY=0.0085,FOG_SCALE_H=22.0,FOG_FLOOR_Y=0.0,FOG_MAX=0.62;
+/*  FOG_SCALE_H came down from 22 to 15 to un-flatten the citadel, and the measurement
+ *  that motivated it also corrected a wrong diagnosis of mine, so both are recorded
+ *  here. I had assumed the old hard FOG_MAX clamp was what flattened the far field.
+ *  It is not: the clamp only binds where the sightline stays low. Evaluating the
+ *  integral at 260 m gives 0.83 on the ground plane -- clamped -- but 0.52 at the top
+ *  of a 58 m tower and 0.50 on a 98 m ridge crest at 400 m, both of which were always
+ *  well under the cap. Elevated distant geometry was never clamped, so removing the
+ *  clamp could not have fixed it.
+ *
+ *  What actually buries the citadel is the height profile. At a 22 m scale height the
+ *  haze is still thick 56 m up, so roughly half of what reaches the eye from a tower
+ *  is inscatter, and the tower's own shading -- which spans about 0.013 to 0.042 for
+ *  this near-black stone -- arrives as a 4% modulation on a much brighter constant.
+ *  There is no exposure at which that reads as form. At 15 m the same tower keeps 60%
+ *  of itself instead of 48%, which is the difference between a tan smudge and a
+ *  silhouette with facets.
+ *
+ *  The ground plane barely moves under this change, 0.68 to 0.67, so the near- and
+ *  mid-field haze tuned across the earlier passes is preserved. It buys the towers
+ *  and the ridge crests back and leaves everything at eye level alone. */
+export const FOG_DENSITY=0.0085,FOG_SCALE_H=15.0,FOG_FLOOR_Y=0.0;
+/*  Where the hard FOG_MAX clamp becomes a soft knee, and where that knee asymptotes.
+ *  The clamp was flattening the entire far field: 1-exp(-od) reaches 0.62 at about
+ *  125 m of level ground, so the moor at 200 m, the citadel at 260 m and the outer
+ *  ridge ring at 450 m were all assigned exactly the same fog. Beyond 125 m there was
+ *  no aerial perspective at all, which is why the citadel reads as one flat wash with
+ *  no separation between its front wall, its rear towers and the mountains behind it.
+ *  Below FOG_KNEE the curve is untouched, so every near- and mid-field value tuned in
+ *  the earlier passes is preserved to within 0.005; above it the fog keeps climbing
+ *  toward FOG_FAR instead of stopping. That restores an ordering across the far field
+ *  -- roughly 0.59 at 125 m, 0.69 at 260 m, 0.71 at 450 m -- which is what makes one
+ *  ridge sit behind another.
+ *
+ *  FOG_FAR is deliberately not 0.80, even though the knee only approaches it
+ *  asymptotically and would never actually reach it at any distance in this scene. The
+ *  note above records that a hard clamp at 0.80 made the ridge rings the brightest
+ *  thing in frame. This is a different mechanism -- an asymptote, not a ceiling that
+ *  everything past 100 m piles up against -- but the failure it caused is close enough
+ *  that the honest move is to stop at a value whose worst case, 0.71 on the outermost
+ *  ring, still sits between the accepted 0.62 and the rejected 0.80. */
+export const FOG_KNEE=0.50,FOG_FAR=0.74;
 export const FOG_NEAR=7.0,FOG_FULL=30.0;
 
 /** A second, much shallower haze layer that does the job the 22 m one only gestures
@@ -144,7 +187,13 @@ fn aerial(c:vec3<f32>,wp:vec3<f32>,cam:vec3<f32>)->vec3<f32>{
  // A clear near field: the player and the props they are standing among must
  // stay crisp, or the haze reads as a dirty lens instead of as distance.
  od=od*smoothstep(${FOG_NEAR.toFixed(1)},${FOG_FULL.toFixed(1)},d);
- let fog=min(1.0-exp(-max(od,0.0)),${FOG_MAX.toFixed(3)});
+ let raw=1.0-exp(-max(od,0.0));
+ // Soft knee rather than a clamp, see FOG_KNEE above. Saturating exponentially toward
+ // FOG_FAR keeps the function monotonic and bounded, so nothing can ever fully erase
+ // the skyline -- which is the property FOG_MAX was protecting -- while still leaving
+ // the far field with a slope to order it by.
+ var fog=raw;
+ if(raw>${FOG_KNEE.toFixed(3)}){fog=${FOG_KNEE.toFixed(3)}+(${FOG_FAR.toFixed(3)}-${FOG_KNEE.toFixed(3)})*(1.0-exp(-(raw-${FOG_KNEE.toFixed(3)})/(${FOG_FAR.toFixed(3)}-${FOG_KNEE.toFixed(3)})));}
  // Forward scattering: looking toward the buried sun, the haze itself glows.
  let inscatter=skyColor(dir)+SUN_COLOR*pow(max(dot(dir,SUN_DIR),0.0),10.0)*0.40;
  var out=mix(c,inscatter,fog);
