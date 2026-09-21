@@ -1012,3 +1012,62 @@ smaller" — it is total shipped bytes, with the startup set still compressed.
 
 Both agents were wound down here at the user's instruction; I am taking the implementation
 over directly.
+
+### M12 landed, 2026-09-20 — 50.25MB of packs down to 26.43MB
+
+Implemented directly rather than delegated; both agents were wound down first and
+handed off clean trees.
+
+| pack | before | after |
+| --- | --- | --- |
+| `equipment` (Human) | 20.36MB | 11.64MB |
+| `equipment-orc` | 24.66MB | 9.57MB |
+| `equipment-undead-provisional` | 5.23MB | 5.23MB (untouched) |
+| **total** | **50.25MB** | **26.43MB** |
+
+The Orc pack was the biggest win (garments 18.17MB → 3.08MB) for the reason found
+above: it had never been through `compress-startup-glbs.mjs`, so nothing had ever
+incidentally re-pruned it.
+
+**The sequencing trap was real and I walked into the edge of it.** Running
+`split-equipment.mjs` alone took `body.glb` from 8.80MB to 19.46MB and *grew* the
+three Wayfarer files, because regeneration discards the texture transcode and
+meshopt encoding. Re-running `compress-startup-glbs.mjs` over exactly the four
+regenerated first-play files restored them — and they came back **byte-identical**
+to what shipped. That is the useful result: the pipeline is deterministic, and the
+generator fix provably changes nothing for files that already got the second pass.
+
+Evidence, checked rather than reasoned about:
+- Both `bindSha256` unchanged; both `body.glb` byte-identical.
+- Geometry, joint order and inverse bind matrices compared against the shipped
+  blobs read straight out of git, for all 18 files: identical. Only dead keyframe
+  data left.
+- `check-m12-packs.mjs` (new) equips all eight garments on both races in the
+  running game. All 16 load, skin to 65 bones, have non-degenerate world extents,
+  no console errors — and **every row is identical to the same check run against
+  the shipped binaries.**
+- `test:equipment` 47/47, including the pack bytes/hashes/bind assertions.
+
+**Two instruments of mine failed before they told me anything.** First, the mesh
+probe reported `verts=0 bones=0` for all 16 garments including plainly visible
+ones — Babylon Lite meshes are plain objects with no `getTotalVertices` and a
+`skeleton.boneCount` rather than a bones array. A metric that reads zero for
+everything is not measuring anything; I replaced it with triangle counts from
+`_cpuIndices` and world extents from `boundMin/boundMax`. Second, screenshot
+hashes differed on 16/16 captures, which looks damning until you run the control:
+two consecutive runs on *identical* binaries differ by mean 2.751 (range
+0.25–4.04), and the before/after range is 2.08–4.88. The scene is animated, so
+pixel hashes carry no signal here at all. The numeric rows are the evidence.
+
+**Carried defects, pre-existing, identical before and after — not caused by M12.**
+Each verified by restoring the shipped binaries from git and re-running:
+- `check-equipment` fails at "Sword grip stays on evaluated hand, no inherited
+  world offset" (6 pass first). Deterministic across 4 runs.
+- `check-equipment-stream` fails at "Failure is explained in armory" (2 pass).
+- `check-armory` fails at "Only unsupported races disabled" (1 pass).
+- `test:character` is 62 pass / 8 fail, `test-rig-contract.mjs`.
+- On Orc, `wayfarerTrousers` is correctly skinned but hidden beneath
+  `pilgrimTunic`, where on Human it shows. May be intentional; unconfirmed.
+
+Three of those are gate checks for equipment and the armory, and they are all
+failing on `main` right now. Nothing here is accepted — it is staged for review.
