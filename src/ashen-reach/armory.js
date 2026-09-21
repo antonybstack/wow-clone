@@ -22,7 +22,7 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
       <header class="armory-heading"><small>ASHEN REACH / DEVELOPER TOOLS</small><h1 id="armory-title">The Armory</h1><p>Your character. The same world.</p></header>
       <aside class="armory-panel">
         <div class="armory-panel-title"><span>Character & equipment</span><button data-close aria-label="Close armory">×</button></div>
-        <label class="armory-field">Race<select data-race><option value="human">Human</option><option value="orc">Orc</option><option value="undead">Undead — provisional body</option></select></label>
+        <label class="armory-field">Race<select data-race><option value="human">Human</option><option value="orc">Orc</option><option value="undead">Undead</option></select></label>
         <p class="armory-note" data-race-note>Human is available. Orc is the print-sculpt body on the 65-joint source bind, wearing the same catalogue. Undead streams its own pack on the ashen-undead fit.</p>
         <h2>Equipment</h2><p class="armory-note" data-equipment-status role="status" aria-live="polite"></p><div class="armory-presets">${Object.entries(equipment.presets).map(([id,preset])=>`<button data-outfit="${id}">${preset.name}</button>`).join('')}</div>
         <div class="armory-slots">${[['helmet','Helmet','Unequipped'],['torso','Torso','Base appearance'],['legs','Legs','Charcoal trousers'],['boots','Boots','Base appearance'],['gloves','Gloves','Unequipped'],['mainHand','Main hand','Unequipped'],['offHand','Off-hand','Unequipped']].map(([slot,label,value])=>`<button data-slot="${slot}" disabled><span>${label}</span><strong>${value}</strong><small>Items coming next</small></button>`).join('')}</div>
@@ -72,7 +72,7 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
     const RACE_UI={
         human:{scale:1,status:'',note:'Human is available. Orc and Undead stream their own fitted packs.'},
         orc:{scale:1.22,status:'Orc wears the same catalogue on the print-sculpt body. Report clipping.',note:'Orc is the print-sculpt retopo on the 65-joint source bind. The same logical items use an Orc fit; Human stays parked.'},
-        undead:{scale:1,status:'Undead body is PROVISIONAL: Human geometry, flat corpse palette, real ashen-undead fit. Judge the plumbing, not the art.',note:'Undead streams its own pack on the ashen-undead fit. A garment with no Undead fit is refused outright, never given the Human one.'},
+        undead:{scale:1,status:'Undead is the Tripo Mixamo body on the 65-joint source bind.',note:'Undead streams its own pack on the ashen-undead fit. Catalogue clothes are still the Human garments, unfitted.'},
     };
     // Cosmetic lookup only: race is set from a completed switchRace, which has already
     // refused any race without a pack.

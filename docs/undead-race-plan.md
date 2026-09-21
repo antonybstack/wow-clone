@@ -1,10 +1,12 @@
 # Undead race implementation plan
 
-Date: 2026-09-20. Status: planned; implementation has not started.
+Date: 2026-09-21. Status: in progress. Uncovered body is playable on the 65-joint source; revenant clothes are not fitted yet.
 
 ## Approved target
 
 The user approved [this generated concept](references/undead-approved-concept.png). Preserve this exact image as the visual authority for the Undead. Front, side, and back studies may clarify hidden anatomy and clothing construction; they must retain its design.
+
+An [unclothed body study](references/undead-body-reference-v1.png) was generated on 2026-09-20 for anatomy modeling: front, side, and rear views with a neutral pelvis and exposed hands and feet. This is a proposed interpretation of the concealed anatomy, pending user review. The side view's arm pose differs from the front/rear A-pose; reconcile that when modeling. Use the sheet as a visual reference, not a mechanically exact turnaround.
 
 The defining features are a tall, gaunt humanoid; a dry skull face with a retained jaw and small amber eyes; long bony hands; a torn hood and wrapped neck; asymmetric rusted shoulder armor; crossed leather straps; layered burial cloth; wrapped limbs; and battered boots. Keep the upright, composed stance and narrow silhouette. The outfit leaves the face and hands readable.
 

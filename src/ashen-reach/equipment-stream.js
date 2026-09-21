@@ -26,7 +26,7 @@ const RACE_BODY_ALIASES = Object.freeze({
     }),
     // Skull face: no hair geoset exists to alias, so the hood's HumanHair coverage is inert
     // and the six shared regions carry the whole mapping.
-    undead: () => ({}),
+    undead: () => ({UndeadV1Body: true}),
 });
 
 function packVisibility(selected, baseMeshes, race) {

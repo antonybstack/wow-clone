@@ -30,6 +30,7 @@ import {createStreamedEquipment} from '../src/ashen-reach/equipment-stream.js';
 const DIR = 'public/ashen-reach/equipment-undead-provisional';
 const MANIFEST_URL = `/ashen-reach/${DIR.split('/').pop()}/manifest.json`;
 const manifest = JSON.parse(await fs.readFile(`${DIR}/manifest.json`, 'utf8'));
+const PROVISIONAL_MESHES = [...BODY_REGIONS];
 const io = new NodeIO().registerExtensions(ALL_EXTENSIONS);
 
 // ---------------------------------------------------------------------------------------
@@ -165,7 +166,7 @@ function installFetch(overrides = {}) {
 }
 
 async function bootUndead({manifestUrl = MANIFEST_URL, fitId = UNDEAD_EQUIPMENT_FIT, race = 'undead',
-    baseMeshes = [...UNDEAD_BASE_VISIBLE_MESHES], bodyMeshes, overrides = {}} = {}) {
+    baseMeshes = [...PROVISIONAL_MESHES], bodyMeshes, overrides = {}} = {}) {
     installFetch(overrides);
     return createStreamedEquipment({}, {}, fakeBody(bodyMeshes || baseMeshes), fakeSockets(),
         {manifestUrl, fitId, race, baseMeshes, bootLoadout: EMPTY});
@@ -260,7 +261,7 @@ test('a deleted or corrupted Undead asset fails loudly and preserves the loadout
 test('an Undead body missing a coverage region names the region', async () => {
     // What a mis-split authored body will actually look like when UNDEAD_PACK_DIR flips.
     await assert.rejects(
-        bootUndead({bodyMeshes: UNDEAD_BASE_VISIBLE_MESHES.filter(n => n !== 'BodyHands')}),
+        bootUndead({bodyMeshes: PROVISIONAL_MESHES.filter(n => n !== 'BodyHands')}),
         /Missing undead body coverage: BodyHands/);
 });
 
@@ -280,7 +281,7 @@ test('an invented race is stopped before it can inherit any Human mapping', asyn
     const fit = {body: 'ashen-wraith', rig: 'source-65', bind: 1, shape: 1};
     installFetch({[MANIFEST_URL]: {...structuredClone(manifest), fitId: 'ashen-wraith'}});
     await assert.rejects(
-        createStreamedEquipment({}, {}, fakeBody([...UNDEAD_BASE_VISIBLE_MESHES]), fakeSockets(),
+        createStreamedEquipment({}, {}, fakeBody([...PROVISIONAL_MESHES]), fakeSockets(),
             {manifestUrl: MANIFEST_URL, fitId: fit, race: 'wraith',
                 baseMeshes: [...UNDEAD_BASE_VISIBLE_MESHES], bootLoadout: EMPTY}),
         /Unsupported equipment fit: ashen-wraith/);
@@ -293,7 +294,7 @@ test('every declared race boots through the same path with its own visibility ma
     const packs = {
         human: {manifest: '/ashen-reach/equipment/manifest.json', fit: HUMAN_EQUIPMENT_FIT, meshes: BASE_VISIBLE_MESHES},
         orc: {manifest: '/ashen-reach/equipment-orc/manifest.json', fit: ORC_EQUIPMENT_FIT, meshes: ORC_BASE_VISIBLE_MESHES},
-        undead: {manifest: MANIFEST_URL, fit: UNDEAD_EQUIPMENT_FIT, meshes: UNDEAD_BASE_VISIBLE_MESHES},
+        undead: {manifest: MANIFEST_URL, fit: UNDEAD_EQUIPMENT_FIT, meshes: PROVISIONAL_MESHES},
     };
     assert.deepEqual(Object.keys(packs).sort(), [...EQUIPMENT_RACES].sort(),
         'a race gained a fit without gaining a pack in this test');
@@ -314,8 +315,9 @@ test('every declared race boots through the same path with its own visibility ma
 test('the provisional pack declares the Undead fit and never a Human one', async () => {
     assert.equal(manifest.fitId, 'ashen-undead');
     assert.equal(manifest.provisional, true, 'the stand-in must admit it is one');
-    assert.deepEqual(manifest.items.body.meshes, [...UNDEAD_BASE_VISIBLE_MESHES]);
-    assert.deepEqual([...UNDEAD_BASE_VISIBLE_MESHES], [...BODY_REGIONS]);
+    assert.deepEqual(manifest.items.body.meshes, [...PROVISIONAL_MESHES]);
+    assert.deepEqual([...PROVISIONAL_MESHES], [...BODY_REGIONS]);
+    assert.deepEqual([...UNDEAD_BASE_VISIBLE_MESHES], ['UndeadV1Body']);
 
     const garments = Object.entries(manifest.items).filter(([id]) => id !== 'body');
     assert.equal(garments.length, 8);

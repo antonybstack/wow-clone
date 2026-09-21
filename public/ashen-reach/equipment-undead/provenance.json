@@ -1,0 +1,16 @@
+{
+  "pipeline": "Tripo Mixamo FBX bound to the 65-joint source",
+  "source": "public/characters/candidates/undead-source-v1.glb",
+  "regenerate": "node scripts/character-assets/undead_from_tripo.py && node scripts/character-assets/bind-source-undead.mjs && node scripts/ashen-reach/prepare-undead-equipment.mjs",
+  "fit": {
+    "body": "ashen-undead",
+    "rig": "source-65",
+    "bind": 1,
+    "shape": 1
+  },
+  "hashes": {
+    "public/ashen-reach/equipment-undead/body.glb": "cce4c4ad83dbfad2b26f71858f8517298c89c7f3f6a7a4767aa4d2762d5c3f99"
+  },
+  "garments": [],
+  "note": "Body is the authored Tripo revenant on the 65-joint source bind. Catalogue clothes are not fitted yet and are omitted from the pack."
+}

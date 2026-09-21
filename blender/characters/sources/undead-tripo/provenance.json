@@ -1,0 +1,29 @@
+{
+  "id": "undead-tripo",
+  "role": "form source for the uncovered Undead body",
+  "generator": "Tripo 3D (studio.tripo3d.ai), Mixamo humanoid auto-rig",
+  "job": "https://studio.tripo3d.ai/workspace/rigging/bipedal-skeletal-humanoid-creature-with-detailed-bone-texture-and-musc-c2c5935d-97cb-49b1-9b23-2bc92dbc762d",
+  "promptImage": "docs/references/undead-body-reference-v1/undead-body-reference-v1.png",
+  "droppedAs": "docs/references/undead-body-reference-v1/alien skeleton 3d model.{glb,zip}",
+  "files": {
+    "undead-tripo.fbx": "authoritative: 65 mixamorig bones, 52 used vertex groups, real weights",
+    "undead-tripo.glb": "mesh + maps only; JOINTS_0 is 100% Hips — do not bind from this file",
+    "textures/": "basecolor, normal, roughness, metallic, packed ORM from the FBX .fbm"
+  },
+  "inspect": {
+    "armatureBones": 65,
+    "armatureScale": 0.01,
+    "meshVerts": 4351,
+    "meshPolys": 8741,
+    "vertexGroupsUsed": 52,
+    "vertsWithoutWeights": 0,
+    "meshHeightCm": 97.74,
+    "glbDummySkin": true
+  },
+  "notes": [
+    "Use the FBX. The GLB Mixamo names are present but every vertex weight is joint 0.",
+    "Rest height is ~0.98 m after the Mixamo 0.01 root; scale to the Undead target (~1.95 m) on bind.",
+    "Leaf bones (HeadTop_End, *4 finger tips, Toe_End) exist on the armature and are unused by weights, same as Mixamo.",
+    "No animation clips shipped, which is what we want — clips come from public/characters/base.glb."
+  ]
+}

@@ -88,11 +88,11 @@ async function main(){
  // which is what the plumbing below is actually checking. If the finished body splits its
  // coverage differently, UNDEAD_BASE_VISIBLE_MESHES in equipment-catalog.js is the other
  // thing to reconcile -- createStreamedEquipment names any region it cannot bind.
- const UNDEAD_PACK_DIR='equipment-undead-provisional';
+ const UNDEAD_PACK_DIR='equipment-undead';
  const packs={
   human:{race:'human',manifestUrl:'/ashen-reach/equipment/manifest.json',baseMeshes:BASE_VISIBLE_MESHES,fitId:HUMAN_EQUIPMENT_FIT},
   orc:{race:'orc',manifestUrl:'/ashen-reach/equipment-orc/manifest.json',baseMeshes:ORC_BASE_VISIBLE_MESHES,fitId:ORC_EQUIPMENT_FIT,bodyUrl:'/ashen-reach/equipment-orc/body.glb'},
-  undead:{race:'undead',manifestUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/manifest.json`,baseMeshes:UNDEAD_BASE_VISIBLE_MESHES,fitId:UNDEAD_EQUIPMENT_FIT,bodyUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/body.glb`},
+  undead:{race:'undead',manifestUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/manifest.json`,baseMeshes:UNDEAD_BASE_VISIBLE_MESHES,fitId:UNDEAD_EQUIPMENT_FIT,bodyUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/body.glb`,garments:false},
  };
  const townP=noEnemies?Promise.resolve([]):loadEnemies(engine,scene,world,TOWN_ANCHORS,npcBuf).then((town)=>{
   for(const enemy of town){
@@ -133,7 +133,7 @@ async function main(){
    try{
     if(pack.bodyUrl)await body.swapSource(pack.bodyUrl);
     else body.restoreSource();
-    const bootLoadout=pack.garments===false
+    const bootLoadout=pack.garments===false || race==='undead'
      ?{...EMPTY_LOADOUT,mainHand:factoryHand(loadout.mainHand),offHand:factoryHand(loadout.offHand)}
      :(parkedGarments||loadout);
     if(pack.garments===false)parkedGarments=loadout;
