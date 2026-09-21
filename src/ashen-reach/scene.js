@@ -39,7 +39,7 @@ export async function buildChurchyard(engine,scene){
   // flat cutout. A silhouette is wanted here; a silhouette with no form in it is not. .56 keeps
   // the trunk far darker than anything behind it while letting shade()'s rim term register on
   // the lit side.
-  surface(engine,'Dead bark','/tex/bark_brown_02/diff.jpg',{tint:[.31,.31,.27],light:.56,pixels:64}),
+  surface(engine,'Dead bark','/tex/bark_brown_02/diff.jpg',{tint:[.44,.44,.38],light:.56,pixels:64}),
   surface(engine,'Distant black stone','/tex/rock_wall_08/diff.jpg',{tint:[.095,.115,.10],light:.35,pixels:64}),
   surface(engine,'Candlelight','/tex/rock_wall_08/diff.jpg',{tint:[.95,1.10,.32],light:1,emission:1.4,pixels:16}),
   surface(engine,'Weathered memorial face','/ashen-reach/grave-face.jpg',{tint:[1,.99,.94],light:.72,pixels:160}),
@@ -118,12 +118,33 @@ export async function buildChurchyard(engine,scene){
  stone.tube(add(center,[-.35,-3.45,0]),add(center,[.40,2.55,0]),.15,.23,[1,1,.83,0],4);stone.tube(add(center,[-2.5,.37,0]),add(center,[2.5,-.37,0]),.18,.18,[1,1,.83,0],4);
  stone.box([center[0],height(0,23)+.35,23],[1.8,.65,1.35],[.66,.70,.57,0]);stone.box([center[0],height(0,23)+.05,23],[2.7,.17,2],[.56,.59,.47,0]);
 
- function tree(x,z,H,seed,back=false){const rand=rng(seed),g=height(x,z),base=[x,g,z];const color=back?[.56,.63,.55,0]:[.70,.74,.63,0];
+ function tree(x,z,H,seed,back=false){const rand=rng(seed),g=height(x,z),base=[x,g,z];// Trunk value is carried on the vertex colour rather than on the `Dead bark`
+  // material, because that material is shared with the 565 scatter trees on the far
+  // moor, which want to stay near-black silhouettes. At .56 a `back` tree standing 3 m
+  // from the 09-west-treeline camera clipped to a flat detail-free black mass -- the
+  // bark texture was multiplied to nothing -- while the same value read correctly at
+  // 80 m. Lifting it here lets the texture survive up close; aerial() still carries the
+  // far ones back down toward the haze.
+  const color=back?[.76,.82,.70,0]:[.88,.92,.80,0];
   let p=base,dir=[rand()*.14-.07,1,rand()*.10-.05];const nodes=[base];
   for(let k=0;k<6;k++){dir=norm(add(dir,[rand()*.34-.17,.05,rand()*.25-.125]));const q=add(p,mul(dir,H/6));bark.tube(p,q,H*.044*(1-k/6)+.025,H*.044*(1-(k+1)/6)+.025,color,6);p=q;nodes.push(p);}
   const branch=(p,dir,len,rad,depth)=>{const q=add(p,mul(dir,len));bark.tube(p,q,rad,Math.max(.005,rad*.55),color,depth>1?4:3);if(depth<=0)return;const t=norm(add(dir,[rand()*.6-.3,.15,rand()*.6-.3]));branch(q,t,len*.7,rad*.56,depth-1);if(depth>1||rand()>.32){const yaw=rand()*6.28;branch(add(p,mul(sub(q,p),.73)),norm(add(dir,[Math.cos(yaw)*.8,.35,Math.sin(yaw)*.8])),len*.55,rad*.45,depth-1);}};
   for(let k=2;k<7;k++)for(let j=0;j<2;j++){const a=k*2.4+j*3.1+rand()*.7;branch(nodes[k],norm([Math.cos(a),.35+rand()*.5,Math.sin(a)]),H*(.23+rand()*.11)*(1-(k-2)*.075),H*.012*(1-(k-2)*.1),back?3:4);}
-  for(let k=0;k<5;k++){const a=k*1.256;const q=[x+Math.cos(a)*H*.095,g+.04,z+Math.sin(a)*H*.095];bark.tube([x,g+.65,z],q,H*.048,.025,color,5);}
+  // Root flare. The old version put every tip at `g+.04` -- the terrain height at the
+  // *trunk centre* -- so on any slope the downhill roots ended in mid-air, which is what
+  // made the near trunk at 09-west-treeline read as a black wedge floating over the
+  // grass. Each tip now samples the ground under itself and sinks .14 below it, so the
+  // flare is buried rather than merely nearby. Seven irregular roots instead of five
+  // evenly spaced ones, because five at exactly 72 degrees read as a fixed prop.
+  for(let k=0;k<7;k++){
+   // Reach is short relative to the drop on purpose: at H*.082-.144 the roots ran out
+   // almost flat and read as spikes lying on the grass rather than as buttresses
+   // holding the trunk up. Leaving from higher on the trunk and reaching less puts
+   // them near 45 degrees.
+   const a=k*(Math.PI*2/7)+rand()*.34,rr=H*(.054+rand()*.034);
+   const qx=x+Math.cos(a)*rr,qz=z+Math.sin(a)*rr;
+   bark.tube([x,g+1.15*(H/14),z],[qx,height(qx,qz)-.14,qz],H*.034,H*.010,color,5);
+  }
  }
  tree(-6,16,12,1983);tree(4.5,24,17,293);tree(-10,15,12,25);tree(14,19,13,181);
  for(let i=0;i<38;i++){const x=r(-48,48),z=r(32,95);if(Math.abs(x)<4&&z<40)continue;if(z>74&&Math.abs(x-pathX(z))<11)continue;tree(x,z,r(8,17),i*101+58,true);}
