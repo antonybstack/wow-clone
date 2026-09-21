@@ -95,9 +95,11 @@ export async function sky(engine,scene){
  // the two agree instead of requiring them to be matched by hand.
  // The clear band only has to cover where far *geometry* sits, since that is the
  // mismatch it exists to prevent. The tallest ridge ring tops out near 20 degrees,
- // but FOG_MAX is 0.62 now (it was 0.93 when this was first tuned), so a ridge keeps
- // well over a third of its own dark stone and no longer reads as a pale slab against
- // a clouded dome. Pulling the band in from ~20 degrees to ~13 hands most of the sky
+ // but a ridge crest at 400 m now retains about 63% of its own dark stone rather than
+ // the 7% it kept when this band was first tuned, so it no longer reads as a pale slab
+ // against a clouded dome. (That figure used to be justified by FOG_MAX=0.62; FOG_MAX
+ // is gone, and the number that matters here was never the cap anyway -- a crest that
+ // high was always below it. It is FOG_SCALE_H=15 that buys the crest back.) Pulling the band in from ~20 degrees to ~13 hands most of the sky
  // the gameplay camera actually frames back to the cloud deck.
  let deck=smoothstep(0.025,0.22,abs(d.y));
  // Narrow windows, jittered by the fine octave. The old .36-.82 and .48-.90 spans

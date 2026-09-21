@@ -375,3 +375,92 @@ chaining with `&&`.
 - `capture-vistas.mjs` needs `ASHEN_URL`, not just `ASHEN_VITE_PORT` (see §8).
 - Every frame-time figure in §8 and §9 sits on the 144 Hz vsync cap: "did not regress", not
   headroom.
+
+## 10. The sky and the far field (p27–p32)
+
+Four deliveries, Telegram 696 through 699. The first two are the cloud deck; the
+last two are aerial perspective, and one of them exists mainly to correct the
+other.
+
+**The deck was already there and invisible (p27–p28, Telegram 696).** The sky read
+as a flat navy field away from the sunset, and the obvious guess — that the cloud
+clear band was too wide — was wrong. Above ~20 degrees of elevation the deck was at
+full strength already. What killed it was colour: the anti-sun end of the cloud tint
+was `.055/.070/.098` against a sky that sits at `.076/.094/.128` at 26 degrees, so a
+cloud differed from its own background by under 20%. Dropping the anti-sun tints to
+roughly a third of the sky value gives the banks mass. Darkening alone gave them value
+but no boundary, so the density-edge term that previously fired only near the sun is
+now also applied ungated, carrying skylight rather than sunlight; that is what makes a
+bank separate from its neighbour. The horizon clear band came in from ~20 degrees to
+~13 at the same time.
+
+**Form and motion (p29, Telegram 697).** The density thresholds spanned `.36–.82` and
+`.48–.90` — most of the range of the field — so no bank ever had a silhouette. Halving
+both spans sculpts one; a third, much finer sample of the same texture offsets both
+ends of each window so the contour breaks into lobes instead of reading as a clean
+JPEG isoline. Drift went from `.0004`/`.00021` to `.0014`/`.00062`; the old rate moved
+the deck about 1% of the sky's circumference per half-minute, which is a painted
+backdrop.
+
+**The far field had no depth ordering (p30–p31, Telegram 698).** Two changes, and the
+second one is here because the first was built on a measurement I had not taken.
+
+- The hard `FOG_MAX` clamp is now a soft knee: below `FOG_KNEE=0.50` the curve is
+  untouched, above it the fog saturates exponentially toward `FOG_FAR=0.74` instead of
+  stopping. `FOG_FAR` deliberately stops short of 0.80 because section 6 records that a
+  hard clamp there made the ridge rings the brightest thing in frame.
+- `FOG_SCALE_H` comes down from 22 to 15. This is what actually fixed the citadel.
+
+**Correction to my own entry for the knee.** I justified the knee by claiming the
+clamp flattened the entire far field past ~125 m. It does not, and modelling the
+integral rather than reading a screenshot is what showed it. At 260 m the integral is
+0.83 on the ground plane — clamped — but 0.52 at the top of a 58 m tower and 0.50 on a
+98 m crest at 400 m. Elevated distant geometry was **never** clamped, so removing the
+clamp could not have been what fixed the citadel, and the p30 capture confirmed it: the
+towers barely moved. The clamp only ever bound on low sightlines. The knee still earns
+its place — distant *ground* now recedes instead of piling up on one value — but the
+claim attached to it was wrong. What buries a tower is the height profile: at a 22 m
+scale height the haze is still thick 56 m up, so about half of what reaches the eye
+from a tower is inscatter, and that near-black stone's own shading (roughly 0.013 to
+0.042) arrives as a 4% modulation on a much brighter constant. No exposure makes that
+read as form. At 15 m the tower keeps 60% of itself instead of 48%, and the ground
+plane moves only 0.68 to 0.67, so the near- and mid-field haze tuned in sections 7 and
+8 is preserved.
+
+**The forward-scatter lobe was too wide (p32, Telegram 699).** `pow(dot,10)*0.40` is
+still at 54% of full strength 20 degrees off the sun, so everything backlit in that
+half of the frame was veiled rather than only the things near the disc. `pow 15 /
+0.30`. Measured on 03-lych-gate: the citadel sat 16.6% below the sky directly above it
+and now sits 20.0% below. That is a modest gain and is recorded as one — a backlit
+castle at this distance should be far darker than either figure. 07-north-overlook
+gained more, because its ridge trees sit exactly in the trimmed part of the lobe.
+
+### Verified, not assumed
+
+The deck clear band exists to stop a cloud-darkened dome from stepping against a pale
+ridge at the ridgeline. Every sky change above was checked against that specific
+defect by sampling horizon row means on 02-churchyard-south, 04-town-gate-vista and
+10-ridge-west; they match the pre-sky build to within 1/255 throughout. The step never
+returned.
+
+### Instrument note
+
+`capture-vistas.mjs` prints a fully correct stats block over a completely black frame.
+A `let a=..,b=..;` in the sky shader — WGSL has no comma-separated `let` — produced an
+invalid pipeline, which invalidated the whole render bundle, which dropped every mesh
+in the scene. The counts are assembled on the CPU during scene build and never consult
+the GPU, so they answer "which build loaded", not "did anything render". The giveaway
+was a mean-abs diff of 40–90 on *every* shot including ones framing almost no sky.
+Read the console over CDP; the WGSL parse error names the line.
+
+### Still carried
+
+- Into the sun the citadel is a tan smudge. 20% below its background is not a
+  silhouette, and nothing short of changing the distant stone's own value or the haze
+  at its base will move it much further.
+- The crag beside the citadel is about 10% brighter than the sky above it. I believe
+  this is correct — `skyColor()` peaks at the horizon, so a near-horizontal sightline
+  full of haze genuinely outshines the dome further up — but it is the main reason the
+  skyline reads soft, and it is recorded as a decision rather than as a fact.
+- Cloud drift is legible now but the deck has no vertical structure; it is a ceiling,
+  not weather.
