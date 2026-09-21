@@ -5,6 +5,7 @@ import {building,collapsedStall,well,forgeGlow,crossFinial,stoneArch,rubble,flag
 import {buildHorizon} from './horizon.js';
 import {createFoliage} from './foliage.js';
 import {createLightShafts} from './light-shafts.js';
+import {createAshMotes} from './ash-motes.js';
 
 /** A new scene layout. No Moonwell world builders, architecture or vegetation placement. */
 export async function buildChurchyard(engine,scene){
@@ -554,9 +555,11 @@ export async function buildChurchyard(engine,scene){
  if(farMesh)meshes.push(farMesh);
  const shaftPass=await createLightShafts(engine,scene,shafts);
  if(shaftPass?.mesh)meshes.push(shaftPass.mesh);
+ const motePass=await createAshMotes(engine,scene,{lights});
+ if(motePass?.mesh)meshes.push(motePass.mesh);
  meshes.push(...foliage.meshes);
  colliders.unshift({type:'mesh',mesh:meshes[0]});const clouds=await sky(engine,scene);
- return {meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,foliage,stats:{triangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris,drawBatches:B.length+(farMesh?1:0)+(shaftPass?.mesh?1:0)+foliage.stats.draws,horizonTriangles:horizonStats.triangles,farTriangles:farTris,foliageInstances:foliage.stats.instances,scatterTrees,scatterRocks,shafts:shafts.length,shaftTriangles:shaftPass?.triangles??0},update(t,playerPos){foliage.update(t,playerPos);clouds.update(t);shaftPass?.update(t);
+ return {meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,foliage,stats:{triangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris,drawBatches:B.length+(farMesh?1:0)+(shaftPass?.mesh?1:0)+(motePass?.mesh?1:0)+foliage.stats.draws,horizonTriangles:horizonStats.triangles,farTriangles:farTris,foliageInstances:foliage.stats.instances,scatterTrees,scatterRocks,shafts:shafts.length,shaftTriangles:shaftPass?.triangles??0,motes:motePass?.count??0,moteTriangles:motePass?.triangles??0},update(t,playerPos){foliage.update(t,playerPos);clouds.update(t);shaftPass?.update(t);motePass?.update(t);
   // Every surface() material declares a time uniform and nothing had ever written to
   // it, so shaderUniforms.time was frozen at its default of 0 in all of them. That is
   // why aerial()'s haze drift measured exactly zero when it was first wired: the
