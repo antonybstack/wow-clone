@@ -1,15 +1,17 @@
 #!/usr/bin/env node
 /**
  * Sweep Idle_Loop time (13 samples over the 2.5s duration) and report the
- * global grounded-sole minY for Undead vs Orc at each, to find the point in
- * the clip where they diverge -- t=0 alone does not (see measure-foot-gap.mjs
- * header). NOT YET RUN as of 2026-09-20; written and syntax-checked
- * (`node --check`) but the sweep itself was not executed before handoff.
- * Next step for whoever picks this up: run it, find the time where Undead's
- * minY visibly exceeds Orc's, then re-capture both at that --time with
- * capture-undead-body.mjs and diff against the existing
- * ve-capture/m11a/verify vs ve-capture/m11a/orcctl stills to confirm it
- * reproduces the reviewed pose before reporting a final metres number.
+ * global grounded-sole minY for Undead vs Orc at each.
+ *
+ * RESULT, run 2026-09-20: there is no divergent frame. The Undead's lowest
+ * vertex is lower than the Orc's at all 13 samples (Undead 0.0142-0.0178 m,
+ * Orc 0.0231-0.0287 m), same curve shape, never crossing. So the visible
+ * floating-feet defect was not a root-height problem -- see the header of
+ * measure-foot-gap.mjs for what it actually was.
+ *
+ * Rows print as they are taken rather than only at the end. The first version
+ * buffered everything to a final console.log, which made a slow run
+ * indistinguishable from a hung one and cost two abandoned attempts.
  */
 import { chromium } from 'playwright';
 
@@ -54,6 +56,7 @@ async function sweep(target, warmup) {
   for (let i = 0; i < SAMPLES; i++) {
     const t = (i / (SAMPLES - 1)) * DURATION;
     const sole = await sampleAt(t);
+    process.stderr.write(`  ${target.split('/').pop()} t=${t.toFixed(3)} minY=${sole.minY?.toFixed(4)}\n`);
     rows.push({ t: Number(t.toFixed(3)), minY: sole.minY });
   }
   return rows;
@@ -66,4 +69,6 @@ console.log('t       undead_minY   orc_minY');
 for (let i = 0; i < SAMPLES; i++) {
   console.log(`${undead[i].t.toFixed(3).padStart(6)}  ${undead[i].minY.toFixed(4).padStart(10)}   ${orc[i].minY.toFixed(4).padStart(10)}`);
 }
-// leave the shared harness browser context alive for later captures
+// browser.close() on a connectOverCDP() connection tears down the shared browser
+// context and leaves the slot's Chrome with zero pages. Disconnect instead.
+process.exit(0);

@@ -8,17 +8,19 @@
  * positions -- not the bind-pose "extents" the capture report's framing
  * field stores.
  *
- * CAUTION, measured 2026-09-20: at Idle_Loop t=0 this reports the Undead and
- * Orc source-bind bodies as nearly IDENTICAL (Undead footA 0.030 m / footB
- * 0.015 m; Orc footA 0.029 m / footB 0.024 m -- both within noise of each
- * other), which does not match the visibly larger gap on the Undead in
- * ve-capture/m11a/verify/*.png versus ve-capture/m11a/orcctl/*.png. That
- * means t=0 is NOT the pose those PNGs were captured at (the capture
- * invocation's exact --time flag, if any, was not recorded in the report
- * JSON -- a real gap in capture-undead-body.mjs's own reporting). Sweep
- * across the clip with sweep-foot-gap.mjs to find the time that reproduces
- * the visible divergence before trusting a single-time reading from this
- * script.
+ * RESOLVED 2026-09-20 by sweep-foot-gap.mjs. t=0 was not an unrepresentative
+ * sample: the Undead's global lowest vertex is *lower* than the Orc's at every
+ * one of 13 samples across Idle_Loop (Undead 0.0142-0.0178 m, Orc
+ * 0.0231-0.0287 m). The two curves are the same shape and never cross, so
+ * there is no divergent frame to hunt for. The "feet not touching the ground"
+ * defect in the reviewed stills is therefore NOT root height -- numerically
+ * the Orc floats more, and reads planted anyway. It was silhouette: the foot
+ * had almost no mass behind the ankle, so the leg met the floor at the back
+ * edge of a forward-pointing paddle. Fixed in undead_from_skull.py by lofting
+ * heel and sole as one tube.
+ *
+ * Keep this script for per-foot (rather than global) numbers, but read the
+ * caveat above before treating a gap number as the defect.
  */
 import { chromium } from 'playwright';
 

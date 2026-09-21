@@ -136,19 +136,26 @@ EYE_X_FRACTION = 0.200     # of skull width, per side -> 60 mm interocular
 EYE_Y_FRACTION = 0.215
 EYE_Z_FRACTION = 0.450
 
-# Palette. Ashen churchyard, not lime. Bone is warm-grey, wraps and flesh are colder.
-BONE = (0.545, 0.508, 0.430, 1.0)
-BONE_DEEP = (0.250, 0.222, 0.176, 1.0)     # orbits, nasal aperture, under the arches
-TOOTH = (0.620, 0.582, 0.500, 1.0)
-FLESH = (0.352, 0.344, 0.310, 1.0)         # desiccated hide over the torso
-FLESH_DARK = (0.176, 0.172, 0.152, 1.0)    # hollows: between ribs, armpit, groin
-FLESH_PALE = (0.436, 0.418, 0.372, 1.0)    # bone pressing through: knees, elbows, ribs
+# Palette. Ashen churchyard, not lime. Bone is warm old ivory, flesh is a colder
+# grey-green so the skull reads lighter than the hide it sits on.
+#
+# These are LINEAR values and the quoted bytes are what bake_vertex_colours writes
+# into the sRGB atlas -- quoted because the first build to encode correctly showed
+# the old numbers had been chosen against the broken path. FLESH 0.352 landed as
+# byte 90 and looked like dark hide; encoded properly it is byte 160, a pale neutral
+# mannequin. Re-picked against the corrected encoding, from the fix1 stills.
+BONE = (0.445, 0.413, 0.314, 1.0)          # byte 178,172,152 -- old ivory, not white
+BONE_DEEP = (0.076, 0.061, 0.040, 1.0)     # orbits, nasal aperture, under the arches
+TOOTH = (0.515, 0.485, 0.381, 1.0)
+FLESH = (0.181, 0.191, 0.138, 1.0)         # byte 118,121,104 -- desiccated hide
+FLESH_DARK = (0.048, 0.051, 0.037, 1.0)    # hollows: between ribs, armpit, groin
+FLESH_PALE = (0.352, 0.352, 0.270, 1.0)    # bone pressing through: knees, elbows, ribs
 # The neck used to be painted FLESH_DARK, which the v1 build rendered as a black void
 # between jaw and collar -- mostly the encoding bug in bake_vertex_colours, but even
 # corrected, 0.176 against a 0.352 torso is a hole rather than a shadow. Sinew in
 # shadow: clearly darker than the torso, with room left for the AO under the jaw.
-NECK = (0.235, 0.226, 0.198, 1.0)
-AMBER = (0.92, 0.42, 0.06, 1.0)
+NECK = (0.093, 0.098, 0.072, 1.0)      # byte 86,88,76
+AMBER = (0.95, 0.26, 0.03, 1.0)
 
 
 def log(msg):
@@ -574,21 +581,28 @@ def build_body(j):
         B.tube(shin, [lerp_radii(SHIN_RADII, i / 5) for i in range(6)], f'leg{lo}',
                over_start=0.036, over_end=0.030)
 
-        # ---- foot: ankle through the ball to the toe, sole flat on the ground
+        # ---- foot. One continuous sole from heel to toe tip, plus a short column
+        # dropping the shin into it. The sole was already flat on z=0 in rest, and the
+        # sweep confirms the Undead's lowest vertex sits *closer* to the floor than the
+        # Orc's across the whole of Idle_Loop (1.4-1.8 cm vs 2.3-2.9 cm), so the
+        # feet-not-touching read is not root height -- it is silhouette. The first
+        # attempt bolted a longer heel tube onto the back of the ankle, which just
+        # turned the foot into a T with a notch in it (ve-capture/m11a/fix2). Lofting
+        # heel and sole as a single tube puts mass behind the ankle without the seam.
         toe = j[f'mixamorig:{side}ToeBase']
         tip = j[f'mixamorig:{side}Toe_End']
-        f_path = [Vector((ankle.x, ankle.y, ankle.z)),
-                  Vector((ankle.x, (ankle.y + toe.y) * 0.5, 0.032)),
+        B.tube([Vector((ankle.x, ankle.y, ankle.z)), Vector((ankle.x, ankle.y, 0.040))],
+               [(0.032, 0.034), (0.034, 0.036)], f'foot{lo}', segs=14, power=2.8,
+               over_start=0.040, over_end=0.010, cap_scale=0.6)
+        f_path = [Vector((ankle.x, ankle.y + 0.072, 0.034)),
+                  Vector((ankle.x, ankle.y + 0.022, 0.032)),
+                  Vector((ankle.x, (ankle.y + toe.y) * 0.5, 0.030)),
                   Vector((toe.x, toe.y, 0.024)),
                   Vector((tip.x, tip.y, 0.016))]
-        f_rad = [(0.036, 0.040), (0.040, 0.034), (0.042, 0.026), (0.030, 0.016)]
+        f_rad = [(0.031, 0.034), (0.036, 0.032), (0.038, 0.030), (0.042, 0.026),
+                 (0.030, 0.016)]
         B.tube(f_path, f_rad, f'foot{lo}', segs=14, power=2.8,
-               over_start=0.045, over_end=0.006, cap_scale=0.55)
-        # heel block, so the ankle does not float over the ground
-        heel = Vector((ankle.x, ankle.y + 0.052, 0.030))
-        B.tube([Vector((ankle.x, ankle.y, ankle.z)), heel],
-               [(0.034, 0.038), (0.031, 0.030)], f'foot{lo}', segs=14, power=2.8,
-               over_start=0.030, over_end=0.008, cap_scale=0.6)
+               over_start=0.006, over_end=0.006, cap_scale=0.55)
 
     main = B.to_object('UndeadV1Main')
     hands = H.to_object('UndeadV1Hands')
@@ -1253,13 +1267,14 @@ def add_contract_meshes(arm, j, orbit_centres):
     the concept has two small amber lights deep in the orbits. Hair/Brows/Shorts are
     the minimal stand-ins the contract needs (the outfit is a later milestone)."""
     out = []
-    # Strength was 7.5. The exporter writes emissiveFactor [1, 0.457, 0.065] with
-    # KHR_materials_emissive_strength, and the Lite engine honours that extension, so
-    # 7.5 pushed both R and G past 1.0 -- the eyes clipped to pale yellow-white and the
-    # amber hue was destroyed before it ever reached the frame. 1.6 keeps G at ~0.73,
-    # below clipping, so the hue survives while the eyes still read as lit.
+    # Strength was 7.5. The exporter writes emissiveFactor normalised to the largest
+    # channel with KHR_materials_emissive_strength carrying the rest, and the Lite
+    # engine honours that extension, so 7.5 pushed both R and G past 1.0 -- the eyes
+    # clipped to pale yellow-white. 1.6 stopped the clipping but the fix1 face still
+    # read yellow, not amber, so AMBER is redder now and the strength is down again:
+    # at 1.1 the green channel lands near 0.3, which survives the tonemap as orange.
     eye_mat = make_material('UndeadV1Eyes', (0.06, 0.022, 0.004, 1.0), roughness=0.35,
-                            emission=AMBER, strength=1.6)
+                            emission=AMBER, strength=1.1)
     bm = bmesh.new()
     for c in orbit_centres:
         sub = bmesh.new()
