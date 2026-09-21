@@ -12,7 +12,34 @@ export function rng(seed=7321){return()=>{seed=(Math.imul(1664525,seed)+10139042
 // gradually toward Hollowmere on a smoothstep ease.
 const RISE_START=40,RISE_END=140,RISE_HEIGHT=7.5;
 const climb=z=>{if(z<=RISE_START)return 0;const t=Math.min(1,(z-RISE_START)/(RISE_END-RISE_START));return t*t*(3-2*t)*RISE_HEIGHT;};
-const terrainRaw=(x,z)=>.30*Math.sin(x*.19+z*.13)+.16*Math.sin(z*.45+x*.11)+.006*z+1.6*Math.exp(-((x+20)**2+(z-30)**2)/260)+climb(z);
+/**
+ * Mid-scale swells, north of the lych-gate only.
+ *
+ * Four passes of lighting work on the mid-distance -- a baked sun shadow, a macro
+ * albedo term on the fine earth, a tighter octave on the far mesh at two amplitudes --
+ * all measured at or below the noise on the band they were meant to fix. The cause
+ * turned out to be in the heightfield rather than in any shader: terrainRaw's own
+ * relief is 0.46 m at 14 to 33 m, and distantRelief's is 12 m at 224 to 286 m. There
+ * was nothing at all between one metre and two hundred, which is exactly the range a
+ * camera standing on the ground reads as landscape.
+ *
+ * So the ground had no form to light, and that is why every shading fix measured
+ * nothing. 4 m peak to trough at 70 to 80 m fixes it at the source: the silhouette
+ * varies, and terrainNormal starts to move, so farShade's slope term and shade()'s
+ * own cosine come alive. A maximum grade of 1 in 6 is a gentle hill to walk over, and
+ * it costs no triangles. Measured on 07-north-overlook the mid-field bands gain 35,
+ * 77 and 69 percent of spread; on 10-ridge-west, 16, 80 and 63.
+ *
+ * The churchyard invariant above is kept intact: the same smoothstep ease climb() uses
+ * holds this at exactly zero for z<=40, so height(x,z) south of the lych-gate is still
+ * bit-for-bit the original. Building pads read terrainRaw at their own centre, so they
+ * stay level at whatever height the swell puts them.
+ */
+const SWELL_A=2.0;
+const swell=(x,z)=>{if(z<=RISE_START)return 0;
+ const t=Math.min(1,(z-RISE_START)/(RISE_END-RISE_START));
+ return t*t*(3-2*t)*SWELL_A*Math.sin(x*.0742+z*.0513)*Math.sin(z*.0681-x*.0394);};
+const terrainRaw=(x,z)=>.30*Math.sin(x*.19+z*.13)+.16*Math.sin(z*.45+x*.11)+.006*z+1.6*Math.exp(-((x+20)**2+(z-30)**2)/260)+climb(z)+swell(x,z);
 
 /** Flat pads for Milestone 2's Hollowmere buildings: {x,z,w,d} in world space. height() blends
  *  each pad into the sloped terrain, so a builder can read groundHeight(x,z) inside a pad and get
@@ -65,6 +92,7 @@ export function height(x,z){
  return h+distantRelief(x,z);
 }
 export const pathX=z=>Math.sin(z*.14)*1.25;
+
 
 /** Analytic heightfield normal via central differences, for smooth (non-faceted) ground shading
  *  without adding a single extra triangle. Only used north of the churchyard boundary (z>=40),
