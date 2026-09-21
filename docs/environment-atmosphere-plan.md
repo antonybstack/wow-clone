@@ -100,4 +100,111 @@ frame cost, not the vsync-capped FPS number.
 
 ## 6. Log
 
-(appended as work lands)
+Captures live in `ve-capture/ashen-reach/env-lighting/<tag>/`, all 12 cameras,
+1280x720, identical framing by construction (`capture-vistas.mjs`).
+
+### `baseline` -> `p1-atmos` -> `p2-grade` -> `p3-silhouette` (commit `ff0af06`)
+
+Phases A-C. `atmosphere.js` added as the single source of truth; `materials.js`
+(`surface` and `sky`), `foliage.js` and `main.js` all read from it. The horizon
+seam is gone by construction: the dome and `aerial()`'s inscatter both call the
+same `skyColor(dir)`.
+
+`01-churchyard-spawn` reached the reference vocabulary at `p3` — layered aerial
+depth, citadel as silhouette in warm haze, backlit trees, player reading dark
+against the glow.
+
+**Wrong diagnosis, corrected.** Three pale faceted bands across the upper frame
+of `07-north-overlook` were attributed to a cloud/aerial mismatch: the dome is
+cloud-darkened and `aerial()` cannot sample the cloud texture, so a far ridge
+should read as a pale slab over a darker sky. The horizon-clearing `deck` term
+in `sky()` was added to fix that. **It did not**, and neither did dropping
+`FOG_MAX` 0.90 -> 0.80; the bands were unchanged through `p2` and `p3`. The
+hypothesis was wrong. `deck` is kept because a thinning deck at the horizon is
+correct anyway, but it fixed nothing.
+
+**What the bands actually were.** Two mesh-identification probes failed before
+one worked, and both failures are worth recording because they look like
+evidence:
+
+- `mesh.isVisible=false` produced 32 byte-identical images. The flag does not
+  affect rendering on this engine.
+- Splicing the mesh out of `scene.meshes` produced 32 byte-identical images too.
+  The draw list is cached elsewhere.
+
+What worked was tagging: patch `surface()`, `sky()` and `foliage.js` to return
+flat per-material colours and re-shoot. That answered it in one frame — at
+cameras `04` and `07` **there is no sky in frame at all**, and every pixel above
+the grass is `surface()` geometry. A second pass with a per-material palette
+identified it as `Moss and burial earth`, i.e. the far terrain.
+
+Measured from the `07` camera:
+
+| | angle above horizontal |
+|---|---|
+| far-terrain silhouette (`distantRelief` rim) | **25.3 deg** |
+| tallest ridge ring (`horizon.js`) | 24.5 deg |
+| top of frame | 17.5 deg |
+
+`distantRelief`'s 92 m bowl rim was taller than the mountains it was supposed to
+sit behind, so it occluded the whole skyline and every pixel of sky. Every
+northward vista was a fogged basin. The "mist banks" were that wall.
+
+`rim = 92/(1+exp(-(d-120)/32))` -> `46/(1+exp(-(d-210)/60))` puts the earth
+silhouette at 10.6 deg, under the rings, restoring ground / foothills / ridge /
+sky. `distantRelief` is zero inside the playable rectangle, so no in-bounds
+pixel and no collider moved.
+
+### `p4-skyline` -> `p5-fogdepth`
+
+With the sky back, the ridge rings became the brightest thing in frame: at
+`FOG_MAX` 0.80 they kept only a fifth of their own near-black stone. Density
+0.0165 was also ~70% saturated by 80 m, so the mid ground greyed out at the same
+rate as the horizon and the picture had two depth layers instead of five.
+0.0085 / 0.62 separates near / mid / far / ridge / sky. `10-ridge-west` is the
+clearest read: the near ridge is now a dark silhouette against pale haze.
+
+### `p6-bloom` -> `p7-bloomtune` -> `p8-vignette` (commit `2efd3d8`)
+
+Phase D. **The first bloom did nothing.** `ASHEN.post` reported `bloom:true`,
+and p5 -> p6 showed a mean abs diff of 1.9 — but a *same-binary control run*
+(`zz-control`) puts the animation noise floor at 0.62, and raising weight
+0.34 -> 2.5 moved the picture by only 2.0. The material shaders already tonemap
+to display range, so nothing cleared a 0.78 threshold. 0.55 / 0.65 / kernel 64
+moves it by 11.2 against the same control and the glow through the bare branches
+is plainly visible. Task creation is not evidence of reaching the screen.
+
+Vignette is a composited overlay (`#vignette`), not a task — Lite has no
+vignette post-process, and the in-shader one this pass removed was x-only
+against a hardcoded 960 width.
+
+### Cost
+
+Unchanged across every tag: 127145 world triangles, 15 draw batches, 90818
+foliage instances, 422555 scene triangles.
+
+Frame cost is **not measured**, only bounded. GPU timestamp readback returns
+zero samples through the frame-graph path, and at 2560x1440 both `?noPost` and
+the full chain sit exactly on the 144 Hz vsync cap (6.944 ms). That is a floor:
+it says the post passes fit inside the remaining headroom, not what they cost.
+
+### Tests
+
+`test:equipment` 47/47. `test:character` has 8 failures; the same suite fails at
+the base commit `b69611b` (9 failures there) and this work touches no character
+file, so they are pre-existing and unrelated.
+
+### Still carried
+
+- **Phase E is not started** — no mist bands pooled at valley height, no light
+  shafts at the gate lamps.
+- `12-wide-south-vista` has a hard dark horizontal band at y≈255-285. It is the
+  `valley` trough in `distantRelief` (a uniform ring at d=48) reading as a
+  stripe. Not diagnosed further.
+- The ridge rings read as flat cardboard at `10-ridge-west`: `ridgeRing` uses
+  36-48 segments over a 230-500 m radius, so each quad spans 30-80 m with a flat
+  top edge.
+- `07-north-overlook` still shows no sky, because the rings span ~10-24 deg and
+  the frame tops out at 17.5 deg at that camera's pitch.
+- `04-town-gate-vista` is very mustard; the limestone tint may be over-saturated
+  against the new warm key.
