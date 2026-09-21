@@ -986,3 +986,79 @@ against 1.46, and the lych-gate crop is pixel-identical south of the gate.
   swell; the two southern vistas gain nothing by design.
 - From §14: the cloud slab has one height, and the gameplay camera frames very
   little sky — still the largest open question in this document.
+
+## 18. Ash motes (p55–p57, Telegram 708)
+
+§14 named "the gameplay camera frames very little sky" as the largest open
+question. Going back to `public/image-references/elden-cliff.jpg` to re-ground
+found something more useful, and it is not in the sky at all.
+
+**The reference's densest single element is one we had nowhere: motes.** Small
+warm points suspended at every depth, from the foreground flowers to the far
+cliff. They do most of the work of making the air read as a *volume* rather than
+as a gap between a foreground and a backdrop — and haze cannot do that job on its
+own, because haze has no parallax. It tints distance; it gives the eye nothing to
+measure distance *against*. A field of small points does both.
+
+### Implementation notes worth keeping
+
+- **Billboarding with no view matrix.** All four vertices of a quad carry the same
+  world anchor; the shader rebuilds a camera basis from `cameraPosition` alone
+  (`right = cross(up, viewDir)`). Only `viewProjection` is needed.
+- **Packing into a full vertex layout.** `position` is the anchor, `normal` is
+  phase/rate/span, `color` is tint and brightness — every channel spoken for. Size
+  rides as the **magnitude of `uv`** and the corner is recovered from its **sign**.
+  Both survive interpolation: `|uv|` is constant across a quad whose corners are
+  all ±size, and `sign()` at the vertices gives exactly the (±1,±1) unit corner.
+- **Rise and wrap, not bob.** A field of sines reads as one organism breathing.
+  `f = fract(t*rate + phase)` with `alpha = sin(f*PI)` fades each mote in at birth
+  and out at the top, so the wrap is invisible *and* the population is never all
+  on screen, which makes the field look denser than its triangle count.
+- **Baked lamp irradiance per anchor**, so motes catch fire near a lantern and
+  nearly vanish in the open field. This is what stops the layer reading as a
+  screen-space overlay: it belongs to the lighting.
+
+### Cost
+
+At **3840×2160 internal** — nine times the shipping pixel count, and far enough
+off the 144 Hz cap to measure — three runs each way:
+
+```
+12000 motes  9.085  9.201  9.270   mean 9.185
+        none  9.271  9.110  9.191   mean 9.191
+```
+
+Inside a 0.17 ms run-to-run spread, and the sign was backwards on the first pair.
+The honest claim is **"below the noise"**, not "free". At shipping resolution it
+is hidden entirely under the cap, which measures nothing. 24000 triangles, one
+extra draw batch. `--uncapped` on the harness launch **did not take** — the run
+still reported `vsyncCapped:true` at exactly 6.944 ms — so forcing the renderer
+off the cap with a high internal resolution is the working technique here.
+
+### Density is not population
+
+`count` is the population, not what is on screen. The fades cut it to roughly a
+fifth of the play rectangle and `sin(f*PI)` averages 0.64 over the wrap, so the
+first pass at 3400 put about **250 motes in frame** and the air still read empty
+beside the reference. 12000 is the same fraction of a bigger population.
+
+### The blackout, again
+
+Ash motes read `shaderSystem.time`. Custom uniforms live in **`shaderUniforms`**;
+`shaderSystem` holds the engine's own (`world`, `viewProjection`,
+`cameraPosition`). One bad pipeline took down the entire render bundle: **all 12
+shots black, at 40–82 mean-abs-diff, with the stats block perfect throughout** —
+140799 triangles, 17 draw batches, 12000 motes, all correct, all invisible.
+
+`scripts/ashen-reach/check-shader-errors.mjs` now loads the page, dedupes the
+per-frame repeats and prints the compile error, exiting 1 so it can gate a
+capture. This failure has now cost time three times (see light-shafts.js's own
+comment on declaring `time`). **Run it after touching any shader, before
+believing a capture.**
+
+### Still carried
+
+- Trees and buildings cast nothing on grass (§17).
+- The reference also has **terraced rock shelves** organising the whole landscape,
+  and **flower scatter** breaking up the grass. Neither exists here; both are open.
+- From §14: the cloud slab has one height, and the camera frames little sky.
