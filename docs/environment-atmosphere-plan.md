@@ -665,3 +665,95 @@ them) while the ridgelines read cool grey-blue against a still-warm sky.
 - The sun lobe is now the only warm thing in the deep field by construction. If the
   scene ever moves the sun off the horizon, `HAZE_TINT` will need re-checking, since
   the lobe currently overlaps the citadel silhouette and hides the boundary.
+
+## 14. The deck in perspective (p43, Telegram 704)
+
+§13's remaining carried defect was "the cloud deck is a ceiling, not weather."
+Three previous passes had attacked that through density: narrower thresholds, a
+jitter octave, faster drift, stronger lit/unlit separation. All of them helped a
+little and none of them fixed it, which was the signal that the diagnosis was
+wrong.
+
+The diagnosis was wrong. The deck was sampled at
+`vec2(atan2(d.z,d.x)/6.283, acos(d.y)/3.14159)` — a pure spherical mapping, under
+which a bank subtends the same angle whether it is overhead or near the horizon.
+That is not a ceiling seen from underneath; it is a dome with clouds painted on
+the inside, and the missing cue was **perspective, not motion**. No density or
+drift parameter can supply perspective.
+
+### What landed
+
+A ray at elevation `d.y` meets a plane at height `H` at horizontal distance
+`H/d.y`, so `d.xz/d.y` is that plane in world coordinates up to a scale. Sampling
+there gives foreshortening for free: banks spread overhead and compress toward the
+horizon. Two consequences fall out of it rather than needing to be added:
+
+- **Drift becomes a wind vector.** A translation of the plane is what wind
+  physically is, so the three layers now share a bearing to within 20 degrees and
+  differ only in rate. They parallax against each other instead of sliding as one
+  sheet, which is what the old dome rotation always did no matter how the rates
+  were staggered.
+- **The compression near the horizon is self-limiting.** `|d.y|` is clamped at
+  0.045, which sits inside the existing `deck = smoothstep(0.025,0.22,|d.y|)`
+  fade, so the region where the projection would run away is already being faded
+  out; mipmaps absorb the rest. No aliasing appeared on any of the twelve shots.
+
+Scales were chosen to preserve the apparent bank size the dome mapping had at 30
+degrees of elevation — roughly where the gameplay camera sits — so the pass buys
+perspective without silently rescaling the whole sky.
+
+| patch (`01-churchyard-spawn`) | mean | spread |
+|---|---|---|
+| sky mid, dome → slab | 189.0 → 164.6 | 37.69 → **47.09** (+25%) |
+| sky mid, + directional rim | 164.6 → 172.4 | 47.09 → 47.18 |
+| sky right, + directional rim | 114.2 → 117.2 | 31.33 → **33.71** (+7.6%) |
+| gravestone (control) | 129.9 → 129.8 | 53.84 → 53.84 |
+| grass (control) | 58.7 → 58.9 | 21.78 → 22.00 |
+
+An amplified difference map confirms the change lands entirely in the sky band;
+everything below the horizon is pose and foliage noise.
+
+The rim change makes the existing edge term directional, weighted by the density
+gradient along the sun's horizontal bearing, so a sun-facing edge gets up to 2.1x
+the glow and the far side of a bank no longer lights as brightly as the near one.
+
+### Two negative results, one lesson
+
+Both attempts at giving the deck relief failed, and for the same reason twice.
+
+1. **Self-shadow**, sampling density 0.075 uv toward the sun and subtracting it
+   from the lit term. Moved spread by 1.3 on a 47-unit patch — inside the noise.
+   The cause was geometric, not a tuning miss: with the sun about 6 degrees above
+   the horizon, a slab of thickness 0.3H throws its shadow 9.6 thicknesses
+   downwind, roughly a quarter of the sky, so the sample was decorrelated from the
+   bank supposedly casting it and darkened at random rather than in register. **A
+   low sun does not shade a deck from within; it rakes across it.**
+2. **Folding the sun-bearing gradient into `litHigh`/`litLow`** as a multiplier on
+   `pow(sd,n)`. Cost 19 units of mean and 3.4 of spread, and the crop read visibly
+   greyer. `pow(sd,n)` is already at its ceiling exactly where the deck is bright,
+   so a multiplier on it can only subtract on average — and clamping the negative
+   half at 0 while the positive half caps at 1.30 makes the asymmetry worse.
+
+The general form, worth carrying forward: **a term that modulates an
+already-saturated quantity is a subtraction wearing a multiplier's clothes.** The
+same gradient that cost 19 units mixed in gained 7.8 added to the rim, unchanged
+in every other respect. If a new sky or lighting term measures as net dimming,
+check whether it is riding on something that was already at 1.0 before reaching
+for a bigger coefficient.
+
+This is a sibling of §12's weight-versus-value error: both are cases where an
+intervention was applied at a point in the pipeline that had no headroom left.
+
+### Still carried
+
+- Haze banks do not drift. `Lamp light shafts` declares no time uniform and
+  `aerial()` is inlined into it, so this needs a shader-side change first.
+- **The gameplay camera sits low and frames very little sky.** Six of the twelve
+  vistas show the deck only as a thin strip above the horizon, and the recorded
+  flythrough undersells this pass badly compared to the stills. That is a framing
+  fact about the game, not about the sky, and it caps how much any further deck
+  work is worth. Before spending another pass up there, it is worth asking whether
+  the camera should ever tilt up at all.
+- The slab has one height. Real decks have two or three at genuinely different
+  altitudes, which would show as differential parallax when the camera translates.
+  The three layers here share a projection and differ only in scale and drift.
