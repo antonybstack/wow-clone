@@ -970,3 +970,45 @@ orphaned accessors.
 Running in parallel with M11a's second pass. M11a holds slot 1 and the character
 assets; M12 holds slot 2 and the equipment packs; the allowed path sets are disjoint
 by construction. Neither is accepted; both are staged for review.
+
+### M12 mechanism found, and a trap in my own brief
+
+**My hypothesis was wrong.** `prune({keepLeaves:true})` is not what strands the accessors,
+and `keepLeaves:false` produces byte-identical output. The agent refuted it with a
+four-variant reproduction before touching any code, which is exactly what the brief asked
+for. I confirmed the mechanism independently in the dependency source rather than taking
+the report on trust — `node_modules/@gltf-transform/functions/dist/index.js:2727`:
+
+```js
+const parents = prop.listParents().filter((p) => !(p instanceof Root || p instanceof AnimationChannel));
+```
+
+`AnimationSampler` is absent from that filter. `Animation.dispose()` only drops the
+animation's own edges; the AnimationChannel and AnimationSampler objects survive in the
+graph as orphans, and each surviving sampler still holds edges to its input/output
+accessors. So tree-shake sees a live parent and keeps the accessor, and its bufferView
+bytes ride along into the export. The fix is to cascade-dispose channels and samplers
+before disposing the Animation: 5,209 accessors and 1,973,260 bytes become 7 accessors and
+229,148 bytes for graveweaverGloves.
+
+**The trap, which was mine.** `dbb3a37` added `scripts/ashen-reach/compress-startup-glbs.mjs`,
+a destructive in-place post-process over six first-play files only. It is why three Wayfarer
+garments are already lean (7–8 accessors) while graveweaver/pilgrim still carry 5,209: run
+against a file freshly read from disk there is no live sampler to strand anything, so its
+second `prune` pass collects the dead accessors. It also transcoded `body.glb`'s textures to
+JPEG and meshopt-encoded the set.
+
+`public/ashen-reach/equipment/body.glb` is therefore **8.80MB on main**, but **19.46MB** when
+regenerated from `split-equipment.mjs`. My brief told the agent to "regenerate both packs",
+which would have overwritten the compressed startup files with uncompressed ones — reverting
+the load-opt commit's texture and meshopt work while every garment size dropped and the
+change looked like a clean win. The garment numbers would have been real and the overall
+result a regression.
+
+Correct sequence, for whoever does this: fix both generators, regenerate, **then re-run
+`compress-startup-glbs.mjs`** to restore the startup set, and verify `body.glb` is back to
+~8.8MB and every `bindSha256` is unchanged. The acceptance number is not "garments got
+smaller" — it is total shipped bytes, with the startup set still compressed.
+
+Both agents were wound down here at the user's instruction; I am taking the implementation
+over directly.
