@@ -269,3 +269,64 @@ and reading committed history against that ledger, and the `deliver-visual-cycle
   top-of-frame.
 - Phase E is not started: mist bands pooled at valley height, light shafts at the gate
   lamps.
+
+## 8. Midground, colour and mist (p10–p21)
+
+Three passes, each starting from a measurement rather than from an impression.
+
+**Midground and skyline (`1094bf2`).** The bowl between the town and the ridge rings was
+empty, and the rings themselves were flat cardboard. `ridgeRing` now sums three octaves of
+`1-|sin|` over at least 96 segments and raises the result to a `sharp` exponent, so the
+silhouette has summits and saddles instead of a scalloped top edge. `scarp()` is deleted
+outright — it painted a near-black skirt onto smooth ground and produced the dark forked
+"tape" bands across `12-wide-south-vista` through three separate generations of tuning; the
+third time it was cheaper to remove the primitive than to retune it. The viaducts went with
+it for the same reason. `mesaKeep` now stands on a closed `butte()` prism; it previously
+stood on `crag()`, which is a fan of ten separate triangles and so read as a keep on stilts
+with icicles at `08-east-meadow`. Scatter is grove-clustered rather than uniform, with three
+tree silhouettes, and gated by `edgeOf()` at ≥40 m of clearance — without that gate trees
+landed 17 m in front of the `07` camera as crude four-sided poles.
+
+**Colour (`49d59d3`).** "Looks mustard" became a number: `04-town-gate-vista` measured 0.591
+mean saturation with 85% of its chromatic pixels inside a single 30° hue bin. The cause was
+two texture averages — `rock_wall_08` at 81/75/67 and `forrest_ground_01` at 145/135/94, both
+already warm — multiplied by warm tints and then lit by a warm key. Fixed at the tints, not
+at the grade. Cooling the limestone alone moved the concentration 85%→84%, because the
+remaining mustard was the ground; cooling the earth too took `04` to 0.518/79% and `07`'s
+warm bin from 67% to 50%. Separately, `10-ridge-west` was bare because `foliageDensity` had a
+hard `if(rad>108)return 0` and that camera stands at x=-80 — art direction was never the
+problem. Cutoff widened to 190 with the falloff stretched over the whole run.
+
+**Valley mist (`d16b3b0`).** A second analytic height-fog layer at a 7 m e-folding height,
+applied after `aerial()`'s own mix and with its own blue-weighted body. Documented in detail
+in `atmosphere.js`; the short version is that the first attempt used density 0.028 and was
+past its cap at *every* distance and height sampled, making it a flat 52% veil rather than a
+layer. Shipped values keep the integral in its varying range: distant valley floor at the
+0.42 cap, a crest 35 m above it at the same distance at 0.11.
+
+### Corrections to earlier entries
+
+- The "76% of `10-ridge-west` is far terrain" figure recorded during the p10 work is **wrong**
+  and should not be built on. Material tagging cannot separate near `Earth` from `Far earth`
+  because both use the material `Moss and burial earth`. Most of that 76% was near playable
+  ground, which is why a change that rewrote every far-terrain vertex colour moved the shot
+  by only 0.92.
+- Mean-absolute-difference over a whole 1280×720 frame is a poor detector for localized
+  defects. `12-wide-south-vista` measured 1.31 while showing an obvious change in a crop.
+  Crop at full resolution before concluding anything. The per-shot animation noise floor is
+  0.62–0.67 per channel and pose is not pinned by the capture script, so diffs up to ~4.7 can
+  be pure noise.
+- `capture-vistas.mjs` falls back to port **5173** unless `ASHEN_URL` is set; setting only
+  `ASHEN_VITE_PORT` is not enough. A p20 run shot against another session's server and was
+  only caught because the stats block came back with the pre-`1094bf2` triangle count. Always
+  check the stats against the expected build before trusting a capture.
+
+### Still carried
+
+- `09-west-treeline`'s near trunk is a detail-free black mass filling a quarter of frame, and
+  its flared base does not meet the ground. Raising `Dead bark` to `light:.56` did not rescue
+  it — this is near-field tree geometry in `scene.js`, not atmosphere.
+- The sky is still a flat navy field away from the sun.
+- Light shafts at the gate lamps: the remaining half of Phase E.
+- Frame time is pinned to the 144 Hz vsync cap in every measurement here. That means "did not
+  regress"; none of these numbers establish headroom.
