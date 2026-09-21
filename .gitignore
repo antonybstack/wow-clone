@@ -57,3 +57,6 @@ blender/characters/sources/undead-tripo/textures/
 
 # Agent worktrees. Each is a full checkout of this repo; never commit one into itself.
 .claude/worktrees/
+
+# Telegram delivery ledger (local record of what has been sent; see .claude/hooks/telegram-motion-stop.py)
+.claude/telegram-deliveries.log
