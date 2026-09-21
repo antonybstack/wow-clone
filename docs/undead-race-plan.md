@@ -178,3 +178,28 @@ Two defects the audition found that idle did not show:
   a ski rather than a foot. Worse in motion than at idle, where the pose hid it.
 
 Nothing here is accepted. The branch is staged for review.
+
+### Foot + atlas pass (2026-09-21, uncommitted then `fix12`)
+
+Claude's session died while locating 4 new luma<30 pixels on Idle side after the
+malleolus/toe-box rebuild (`fix11`). They were atlas leaks, not holes:
+
+| still | px | where |
+| --- | --- | --- |
+| fix11 idle side | 4 | 599,337 (jaw) and a 3-px slit at 689,695–697 (torso) |
+| fix11 sprint side | 3 | torso specks |
+
+`smart_project` re-packs whenever the foot gains verts, so a 1-px island gap
+sampled the unfilled (black) atlas. Fix: seed the albedo with authored `FLESH`,
+raise `island_margin` 0.006 → 0.012, dilate 4 → 8. Also shortened the heel
+72 mm → 48 mm behind the ankle so the sole is less of a ski.
+
+| still | luma<30 |
+| --- | --- |
+| fix12 idle side | 0 |
+| fix12 sprint side | 0 |
+| fix12 idle/sprint front | 4–7 px in the orbits/teeth, same region as fix9 |
+
+Feet still read as paddles at stride. The arch remains out of reach of this
+loft (convex tube). Yoke-as-band, smooth cranium, and skull/neck collar are
+unchanged. Evidence: `ve-capture/m11a/fix12`.

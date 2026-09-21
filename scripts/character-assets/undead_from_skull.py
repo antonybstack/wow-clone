@@ -614,18 +614,43 @@ def build_body(j):
         # attempt bolted a longer heel tube onto the back of the ankle, which just
         # turned the foot into a T with a notch in it (ve-capture/m11a/fix2). Lofting
         # heel and sole as a single tube puts mass behind the ankle without the seam.
+        # The motion audition then showed what idle had hidden: at full stride
+        # (ve-capture/m11a/motion, Sprint_Loop side) the result read as a ski.
+        # Three things were missing and all three are geometry, not shading.
         toe = j[f'mixamorig:{side}ToeBase']
         tip = j[f'mixamorig:{side}Toe_End']
-        B.tube([Vector((ankle.x, ankle.y, ankle.z)), Vector((ankle.x, ankle.y, 0.040))],
-               [(0.032, 0.034), (0.034, 0.036)], f'foot{lo}', segs=14, power=2.8,
+        # 1. A malleolus. The column was two rings of near-constant radius
+        # continuing the shin's 0.033, so the leg met the sole with no ankle at
+        # all. Three rings instead -- bone, waist, flare -- puts a 6 mm bulge at
+        # joint height above a narrower tendon waist, which is the whole read.
+        ank_lo = 0.040
+        B.tube([Vector((ankle.x, ankle.y, ankle.z)),
+                Vector((ankle.x, ankle.y, ank_lo + 0.45 * (ankle.z - ank_lo))),
+                Vector((ankle.x, ankle.y, ank_lo))],
+               [(0.041, 0.035), (0.029, 0.031), (0.037, 0.039)],
+               f'foot{lo}', segs=14, power=2.8,
                over_start=0.040, over_end=0.010, cap_scale=0.6)
-        f_path = [Vector((ankle.x, ankle.y + 0.072, 0.034)),
-                  Vector((ankle.x, ankle.y + 0.022, 0.032)),
+        # 2. An arch was tried here and is deliberately NOT kept. Lifting the two
+        # mid-foot nodes so their undersides cleared the floor by 9 mm and 5 mm
+        # did break the contact into two pads, but on a tube whose cross-section
+        # stays convex the break reads as a hard step under the instep rather
+        # than a curve, and at full stride it turned the smooth wedge into an
+        # angular axe-head (compare ve-capture/m11a/motion against fix10,
+        # Sprint_Loop side). A real arch needs an asymmetric, medial-only
+        # cross-section, which this loft cannot express. The sole stays flat.
+        # Heel used to sit 72 mm behind the ankle, which is a ski. A human
+        # calcaneus is closer to 45-50 mm behind the joint centre.
+        f_path = [Vector((ankle.x, ankle.y + 0.048, 0.034)),
+                  Vector((ankle.x, ankle.y + 0.018, 0.032)),
                   Vector((ankle.x, (ankle.y + toe.y) * 0.5, 0.030)),
                   Vector((toe.x, toe.y, 0.024)),
-                  Vector((tip.x, tip.y, 0.016))]
+                  Vector((tip.x, tip.y, 0.019))]
+        # 3. A toe box. The tip tapered to 0.030 x 0.016 against the ball's
+        # 0.042 x 0.026, which is a ski tip; toes are blunt and nearly as wide
+        # as the ball. Widened and deepened so the front of the foot ends rather
+        # than points.
         f_rad = [(0.031, 0.034), (0.036, 0.032), (0.038, 0.030), (0.042, 0.026),
-                 (0.030, 0.016)]
+                 (0.036, 0.019)]
         B.tube(f_path, f_rad, f'foot{lo}', segs=14, power=2.8,
                over_start=0.006, over_end=0.006, cap_scale=0.55)
 
@@ -940,7 +965,7 @@ def smart_uv(ob):
         ob.data.uv_layers.new(name='UVMap')
     bpy.ops.object.mode_set(mode='EDIT')
     bpy.ops.mesh.select_all(action='SELECT')
-    bpy.ops.uv.smart_project(angle_limit=1.0472, island_margin=0.006)
+    bpy.ops.uv.smart_project(angle_limit=1.0472, island_margin=0.012)
     bpy.ops.object.mode_set(mode='OBJECT')
 
 
@@ -1057,7 +1082,16 @@ def bake_vertex_colours(ob, size, ao_img=None):
     col = me.color_attributes.get('Col')
     uv = me.uv_layers.active
     img = bpy.data.images.new('UndeadV1BodyAlbedo', size, size, alpha=False)
+    # Unfilled texels used to stay black. smart_project packing moves whenever
+    # a region gains verts, so a 1-pixel island gap shows as a luma-19 speck
+    # on the gameplay still (fix11 idle side: 599,337 and 689,695-697). Seed
+    # the atlas with authored flesh so a missed texel is hide, not a hole.
     px = [0.0] * (size * size * 4)
+    for i in range(size * size):
+        px[i * 4 + 0] = FLESH[0]
+        px[i * 4 + 1] = FLESH[1]
+        px[i * 4 + 2] = FLESH[2]
+        px[i * 4 + 3] = 1.0
     filled = [False] * (size * size)
 
     def vert_col(idx):
@@ -1100,7 +1134,7 @@ def bake_vertex_colours(ob, size, ao_img=None):
                     put(x, y, tuple(a * cols[0][i] + b * cols[1][i] + g * cols[2][i]
                                     for i in range(3)))
     # dilate so island edges do not bleed background
-    for _ in range(4):
+    for _ in range(8):
         snapshot = list(filled)
         for y in range(size):
             for x in range(size):
