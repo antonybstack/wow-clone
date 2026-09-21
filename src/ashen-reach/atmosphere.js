@@ -157,13 +157,22 @@ export const HAZE_FAR=0.55,HAZE_D0=110.0,HAZE_D1=300.0;
  *  on the haze is roughly a fifth of the pixel -- already a strong effect, and anything
  *  near 0.4 would read as rolling fog rather than as still evening air.
  *
- *  They do not drift, and that is a constraint rather than a choice. aerial() is inlined
- *  into every shader that needs fog, including 'Lamp light shafts', which declares no
- *  time uniform at all -- reaching for shaderUniforms.time here compiles fine in the
- *  surface materials and fails in that one, and because Ashen Reach submits the world in
- *  a single render bundle, one invalid pipeline blacks out the entire scene. Static banks
- *  are also the better reading for still evening air: they are locked to the terrain, so
- *  the same ridge is veiled the same way every time you come back to it.
+ *  They drift. This used to be impossible and the reason was worth recording: aerial()
+ *  is inlined into every shader that needs fog, including 'Lamp light shafts', which
+ *  declared no time uniform, and WGSL validates a module as a whole -- so reaching for
+ *  shaderUniforms.time here compiled fine in the surface materials and failed in that
+ *  one, blacking out the entire scene because the world is submitted in a single render
+ *  bundle. The fix was one line in light-shafts.js, not a change here. A constraint that
+ *  survives three passes is worth re-reading before it is written down as a decision.
+ *
+ *  Drift is 5.0 m/s along the same bearing the cloud deck uses. That is not decoration:
+ *  the deck's flat-slab projection has its uv axes on world x and z, so one wind vector
+ *  genuinely describes both, and the banks and the deck move together instead of
+ *  advertising that they are two unrelated effects. The rate is calibrated, not guessed:
+ *  a constant 200 m offset moves the spire patch on 03-lych-gate by 6.4 luminance, so
+ *  5 m/s gives about 4 units over a fifteen-second look -- above the 0.5 measurement
+ *  floor and well short of streaking. It is faster than the evening looks, which is the
+ *  usual trade for making a soft multiplicative effect legible at all.
  *
  *  Gated by the same 110-300 m ramp as HAZE_FAR, so the near and mid field cannot see
  *  it at all. */
@@ -293,9 +302,14 @@ fn aerial(c:vec3<f32>,wp:vec3<f32>,cam:vec3<f32>)->vec3<f32>{
  let far=smoothstep(${HAZE_D0.toFixed(1)},${HAZE_D1.toFixed(1)},d);
  var hz=mix(1.0,${HAZE_FAR.toFixed(3)},far);
  // Haze banks, see HAZE_BANK above. far gates them out of the near and mid field.
- let bx=wp.x*0.0090;
- let bz=wp.z*0.0072;
- let strata=sin(wp.y*0.042+sin(bx*1.7)*0.9);
+ // The wind translates the sample point rather than adding a phase, so the whole
+ // field moves rigidly downwind instead of shimmering in place.
+ let wind=shaderUniforms.time*5.0;
+ let bx=(wp.x+wind*0.82)*0.0090;
+ let bz=(wp.z+wind*0.57)*0.0072;
+ // A slow independent term on the vertical stratification, so the layers rise and
+ // settle rather than only sliding sideways as one rigid sheet.
+ let strata=sin(wp.y*0.042+sin(bx*1.7)*0.9+shaderUniforms.time*0.021);
  let lateral=sin(bx*2.1+bz*1.3);
  hz=hz*(1.0+${HAZE_BANK.toFixed(3)}*(strata*0.72+lateral*0.42)*far);
  // Blue-weight the skylight term by HAZE_TINT in the deep field only; far is the same

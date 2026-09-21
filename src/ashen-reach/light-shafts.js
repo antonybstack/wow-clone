@@ -1,4 +1,4 @@
-import {createShaderMaterial} from '@babylonjs/lite';
+import {createShaderMaterial,setShaderUniform} from '@babylonjs/lite';
 import {Batch} from './geometry.js';
 import {ATMOS} from './atmosphere.js';
 
@@ -34,7 +34,13 @@ export async function createLightShafts(engine,scene,shafts){
 
  const OUT=`struct Out{@builtin(position) position:vec4<f32>,@location(0) p:vec3<f32>,@location(1) color:vec4<f32>,@location(2) normal:vec3<f32>};`;
  const mat=createShaderMaterial({name:'Lamp light shafts',attributes:['position','normal','color'],
-  uniforms:['worldViewProjection','world','cameraPosition'],
+  // The cone shader never calls aerial(), but it inlines ATMOS wholesale and WGSL
+  // validates a module as a whole, so every uniform aerial() reads has to be
+  // declared here or the pipeline fails to compile -- and because the world is
+  // submitted in one render bundle, that blacks out the entire scene while the
+  // CPU-side stats still print correct counts. Declaring time unconditionally is
+  // what lets the haze in atmosphere.js animate at all.
+  uniforms:['worldViewProjection','world','cameraPosition',{name:'time',type:'f32',defaultValue:0}],
   needAlphaBlending:true,blendMode:'additive',backFaceCulling:false,
   vertexSource:`${OUT}
   @vertex fn mainVertex(i:VertexInput)->Out{var o:Out;
@@ -61,7 +67,7 @@ export async function createLightShafts(engine,scene,shafts){
   }`});
  const mesh=batch.commit(engine,scene,mat,[]);
  if(mesh)mesh.renderOrder=50;
- return {mesh,triangles:batch.idx.length/3};
+ return {mesh,mat,triangles:batch.idx.length/3,update(t){setShaderUniform(mat,'time',t);}};
 }
 
 /** One lamp's cone: a bright narrow core inside a wide soft skirt. Two shells

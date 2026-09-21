@@ -1,3 +1,4 @@
+import {setShaderUniform} from '@babylonjs/lite';
 import {Batch,rng,height,pathX,buildingPads,add,mul,sub,norm,terrainNormal,lanternGlow} from './geometry.js';
 import {surface,sky} from './materials.js';
 import {building,collapsedStall,well,forgeGlow,crossFinial,stoneArch,rubble,flagstone,masonryBox} from './buildings.js';
@@ -555,5 +556,11 @@ export async function buildChurchyard(engine,scene){
  if(shaftPass?.mesh)meshes.push(shaftPass.mesh);
  meshes.push(...foliage.meshes);
  colliders.unshift({type:'mesh',mesh:meshes[0]});const clouds=await sky(engine,scene);
- return {meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,foliage,stats:{triangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris,drawBatches:B.length+(farMesh?1:0)+(shaftPass?.mesh?1:0)+foliage.stats.draws,horizonTriangles:horizonStats.triangles,farTriangles:farTris,foliageInstances:foliage.stats.instances,scatterTrees,scatterRocks,shafts:shafts.length,shaftTriangles:shaftPass?.triangles??0},update(t,playerPos){foliage.update(t,playerPos);clouds.update(t);}};
+ return {meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,foliage,stats:{triangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris,drawBatches:B.length+(farMesh?1:0)+(shaftPass?.mesh?1:0)+foliage.stats.draws,horizonTriangles:horizonStats.triangles,farTriangles:farTris,foliageInstances:foliage.stats.instances,scatterTrees,scatterRocks,shafts:shafts.length,shaftTriangles:shaftPass?.triangles??0},update(t,playerPos){foliage.update(t,playerPos);clouds.update(t);shaftPass?.update(t);
+  // Every surface() material declares a time uniform and nothing had ever written to
+  // it, so shaderUniforms.time was frozen at its default of 0 in all of them. That is
+  // why aerial()'s haze drift measured exactly zero when it was first wired: the
+  // missing time uniform on 'Lamp light shafts' was only half the blocker, and fixing
+  // that half alone changed nothing. Twelve uniform writes a frame.
+  for(const m of mats)setShaderUniform(m,'time',t);}};
 }
