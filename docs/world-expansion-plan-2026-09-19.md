@@ -925,3 +925,48 @@ directions tested — it refuses a squatted port and still brings a clean slot u
 This is the same lesson as the vsync cap and the triangle counter, in a third place: an
 instrument that reports success without checking the thing it claims to check will silently
 validate every milestone that passes through it.
+
+## M12 opened, 2026-09-20 — the streamed equipment packs are ~83% dead weight
+
+Found while verifying a carried leftover from M11b rather than from a report. Every
+streamed garment GLB in both the Human and Orc packs carries ~5,202 orphaned
+accessors; only 7–14 per file are referenced by a mesh primitive or skin. Measured
+on `main` at dbb3a37:
+
+```
+graveweaverGloves.glb    file= 1.97MB json= 0.53MB bin= 1.44MB deadBin= 1.22MB accessors=5209
+graveweaverHood.glb      file= 2.16MB json= 0.53MB bin= 1.62MB deadBin= 1.22MB accessors=5209
+graveweaverSkirt.glb     file= 2.26MB json= 0.54MB bin= 1.73MB deadBin= 1.22MB accessors=5216
+graveweaverTop.glb       file= 2.07MB json= 0.54MB bin= 1.54MB deadBin= 1.22MB accessors=5219
+pilgrimTunic.glb         file= 2.44MB json= 0.53MB bin= 1.91MB deadBin= 1.22MB accessors=5209
+wayfarerBoots.glb        file= 2.08MB json= 0.53MB bin= 1.55MB deadBin= 1.22MB accessors=5209
+wayfarerTrousers.glb     file= 1.95MB json= 0.53MB bin= 1.42MB deadBin= 1.22MB accessors=5210
+wayfarerTunic.glb        file= 2.09MB json= 0.53MB bin= 1.55MB deadBin= 1.22MB accessors=5209
+```
+
+So ~1.75MB of each ~2.1MB file is waste: 1.22MB of orphaned animation binary plus
+~0.53MB of dead accessor JSON. The Orc pack's eight files are the same, so roughly
+28MB of dead payload ships. The game is deployed at https://play.sparkify.dev, so
+this is real load time.
+
+Working hypothesis handed to the agent as a hypothesis, not a spec: the garment
+branch of `split-equipment.mjs` disposes animations and then runs
+`prune({keepLeaves:true})`, which does not collect the accessors and bufferViews the
+disposed animations left behind. The agent is to measure the mechanism and say so if
+I am wrong.
+
+The constraint that matters is that `manifest.bindSha256` must not change, and
+pruning must not drop joints, the skin, or the inverse bind matrices — dropping
+"unused" joints would renumber the palette and silently corrupt skinning while every
+file got pleasingly smaller. That is the failure mode to watch.
+
+**Correcting a measurement of my own, in place:** my first pass at sizing this summed
+`byteLength` over every orphaned accessor's bufferView and reported 7,434MB of dead
+payload inside a 2MB file — orphaned accessors share bufferViews, so the sum
+double-counted wildly. An impossible number is a broken instrument, not a dramatic
+finding. The table above is computed over unique bufferViews referenced only by
+orphaned accessors.
+
+Running in parallel with M11a's second pass. M11a holds slot 1 and the character
+assets; M12 holds slot 2 and the equipment packs; the allowed path sets are disjoint
+by construction. Neither is accepted; both are staged for review.
