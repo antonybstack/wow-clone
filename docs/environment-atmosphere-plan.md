@@ -822,3 +822,100 @@ price of making a soft multiplicative effect legible at all.
 - The slab has one height (§14); the three cloud layers share a projection.
 - Nothing has been done about the ground's own mid-distance, which is what the
   camera actually frames.
+
+## 16. The ground had no form to light (p45–p52, Telegram 706)
+
+§15 ended by naming the ground's mid-distance as the open item. This pass went
+after it and spent four experiments on the wrong layer before measuring the right
+one.
+
+### Correction to §15's framing
+
+§15 treats the mid-field as a lighting problem. It is not. Every shading fix
+tried here measured at or below its band's noise, and the reason is arithmetic:
+at a 5.8° sun the flat ground's `ndl` is 0.101, so
+
+```
+key  = SUN_COLOR*(0.101*0.95 + ((0.101+0.45)/1.45)*0.30) = 0.2100
+hemi = SKY_AMBIENT                                       = 0.4617 - 0.2100
+```
+
+The hard key is **15.9% of ground luminance**. Masking *all* of it moves the
+frame less than the haze does. Any pass that modulates the key is fighting for a
+sixth of the signal, and the tonemap takes back part of even that — `grade()`
+compresses highs, so a change that raises a band's mean tends to *lower* its sd.
+Several of the negative results below have exactly that signature.
+
+### The actual cause: a hole in the relief spectrum
+
+Measuring the heightfield rather than the shaders:
+
+| source | amplitude | wavelength |
+| --- | --- | --- |
+| `terrainRaw` | 0.46 m | 14–33 m |
+| `distantRelief` | 12 m | 224–286 m |
+
+**Nothing between one metre and two hundred** — exactly the range a camera
+standing on the ground reads as landscape. `terrainNormal` was therefore near-
+constant across the whole mid-field, so `farShade`'s slope term and `shade()`'s
+own cosine had nothing to respond to. The ground had no form to light, which is
+why every shading fix measured nothing.
+
+### What shipped
+
+A mid-scale swell in `geometry.js`, 4 m peak to trough at 70–80 m, reusing
+`climb()`'s own smoothstep ease so it is exactly zero for `z<=40`. Costs no
+triangles. Max grade 1 in 6 — a gentle hill to walk over.
+
+Band spread, 40-row bands at 200/240/280/320:
+
+```
+07-north-overlook  p44 21.12 12.36  7.92 11.19
+                   p52 28.63 21.70 13.17  7.98   +35% +77% +66% -29%
+10-ridge-west      p44 39.85 26.27 10.31  6.77
+                   p52 35.84 29.92 17.92 10.55   -10% +14% +74% +56%
+01-churchyard      p44 50.64 63.36 73.54 53.16
+                   p52 50.73 63.64 73.80 53.02   invariant holds
+```
+
+The churchyard row is the invariant check: `h(0,0)` and `h(0,40)` are unchanged
+bit-for-bit, and the render agrees to 0.3.
+
+### Negative results, kept because they cost four cycles
+
+- **Baked sun shadow in `uv2.y`.** Plumbing was perfect — a debug capture
+  writing `vec4(i.sun, i.sun*0.2, 1.0-i.sun, 1)` proved the channel arrives — but
+  at 5.8° the shadowed fraction of the play area is small and it rides on that
+  15.9% key. Worth 4–11% on three bands, against a whole-shot exposure shift.
+  Cut. Note it is also homeless for foliage: `instanceColor` is fully spoken for
+  (rgb tint, a lamp) and the patch is recycled as the player moves.
+- **`earthShade` macro albedo.** Targeted the wrong mesh. A second tag capture
+  (`fine` red vs far blue) showed the fine earth ends at y≈370 in shot 07 and the
+  dead band at y=280–320 is *entirely* far mesh.
+- **`farShade` tight third octave, two amplitudes.** The `near` radial fade was
+  anchored on the town centre, but shot 07 stands at the northern edge looking
+  further north, so the band sat at ~360 m where `near = 0` — the term was zeroed
+  exactly where the shot looks. Removing the fade and tripling the amplitude then
+  made the band *smoother* (sd 8.45 → 7.25), the tonemap signature above.
+
+### Instrument change: `capture-vistas.mjs` pixel diffs now have a floor
+
+Since §15 wired `time` into every `surface()` material, a **same-build control**
+gives a mean-abs-diff of 0.54–3.44 (worst on dressed/animated shots 02, 05, 06,
+11). Two algebraically identical builds differed by 1.78–8.74. Band sd, by
+contrast, agreed to within 0.18 across p51/p52/p52-ctrl while p44→p52 moved 5–8
+units. **Use band statistics for before/after conclusions; whole-frame
+mean-abs-diff is now only a global-catastrophe detector** (40–84 = black frame).
+Run a same-build control before trusting any diff.
+
+### Still carried
+
+- 07's 320–360 band lost 29% and 10-ridge-west's 200–240 lost 10%.
+- `08-east-meadow` and `12-wide-south-vista` gain nothing: the swell is zero
+  south of `z=40` by design, to hold the churchyard invariant.
+- **Foliage takes no terrain shadow**, so grass is lit identically on both faces
+  of every crest. Per-fragment shadowing would need a texture rather than a
+  vertex channel, with casters from trees and buildings and a reach that excludes
+  `distantRelief`.
+- From §14: the cloud slab has one height (three layers share a projection), and
+  the gameplay camera frames very little sky — still the largest open question.
