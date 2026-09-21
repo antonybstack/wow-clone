@@ -757,3 +757,68 @@ intervention was applied at a point in the pipeline that had no headroom left.
 - The slab has one height. Real decks have two or three at genuinely different
   altitudes, which would show as differential parallax when the camera translates.
   The three layers here share a projection and differ only in scale and drift.
+
+## 15. The haze drifts (p44, Telegram 705)
+
+§12, §13 and §14 each carried the same line: "haze banks do not drift; `Lamp light
+shafts` declares no time uniform, and `aerial()` is inlined into it." That was
+recorded as a constraint across three passes. It was half of one.
+
+### Correction to §12 and §13
+
+The shafts uniform was real and is fixed with one line in `light-shafts.js`. After
+fixing it the drift **still measured exactly 0.0** against a static control. The
+second half: nothing in the game had ever written a value to the `time` uniform on
+any `surface()` material. Foliage, the sky dome and the lava ball each drive their
+own; the twelve `surface()` materials were left at `defaultValue: 0` forever. So
+`shaderUniforms.time` inside `aerial()` was a compile-time-legal constant zero, and
+would have been even if the shafts material had never existed.
+
+This is worth stating plainly because §12 and §13 both assert the shafts uniform as
+*the* reason, and someone reading them would fix that and conclude the feature was
+broken. The surface materials' vertex `wind` branch, which also reads `time`, has
+been dead the whole time too — no caller passes `wind:true`, so it never emitted.
+
+### Correction to the instrument
+
+The first measurement said the banks were not moving. It could not have said
+anything else. `capture-vistas.mjs` calls `page.goto` per run, restarting the
+simulation clock, so two runs shoot each vista at the same elapsed time. Running it
+twice and finding the far field identical to 0.1 units proved only that the harness
+is deterministic. `scripts/_tmp-hold.mjs` parks one camera and shoots across live
+time in a single session, which is the instrument this question needed.
+
+The giveaway that should have come first: the static and drifting builds produced
+*identical* numbers, not merely similar ones. Two different shaders agreeing to
+within 0.1 on a 140-unit patch is a statement about the harness, not the shaders.
+
+### Measured
+
+`03-lych-gate`, `spire-cluster` patch, one session:
+
+| build | t+0 | t+12s | t+24s |
+|---|---|---|---|
+| static control | 129.5 | 129.5 | 129.5 |
+| drifting | 128.3 | **118.2** | **115.0** |
+
+Controls over the same span: town wall 0.9, crag 0.2 — the same as the static
+build's own run-to-run noise. `mtn-left-cit` moves 3.1 and its spread rises from
+18.36 to 21.03, so the banks add form as they pass, not just value.
+
+Rate is 5.0 m/s on the same bearing as the cloud deck. That shared bearing is not
+decoration: §14's flat-slab projection puts the deck's uv axes on world x and z, so
+a single wind vector genuinely describes both, and the two effects move together
+instead of advertising that they are unrelated. The rate is calibrated rather than
+picked — a constant 200 m offset moves that patch by 6.4 luminance, which sets the
+scale for everything else. It is faster than the evening looks; that is the usual
+price of making a soft multiplicative effect legible at all.
+
+### Still carried
+
+- The gameplay camera sits low and frames very little sky (§14). This pass is
+  mostly invisible in the recorded flythrough for that reason, and it caps the
+  value of further sky work. **This is now the largest open question in this
+  document** — not a defect in the sky but a fact about how the game is framed.
+- The slab has one height (§14); the three cloud layers share a projection.
+- Nothing has been done about the ground's own mid-distance, which is what the
+  camera actually frames.
