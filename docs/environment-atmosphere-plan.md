@@ -330,3 +330,48 @@ layer. Shipped values keep the integral in its varying range: distant valley flo
 - Light shafts at the gate lamps: the remaining half of Phase E.
 - Frame time is pinned to the 144 Hz vsync cap in every measurement here. That means "did not
   regress"; none of these numbers establish headroom.
+
+## 9. Phase E and the near trunks (p22–p26)
+
+**Lamp light shafts (`e009b41`).** `src/ashen-reach/light-shafts.js`, the only thing in the
+scene with its own material. Every other glow here is faked on opaque triangles with
+per-vertex falloff because `surface()` has no blending, which is correct for a puddle
+painted on a wall and impossible for a shaft — an opaque cone would punch a
+lantern-coloured hole in the road behind it. `createShaderMaterial` does support
+`needAlphaBlending` with `blendMode:'additive'`, so the cone only adds light and never
+occludes. Depth testing on (a shaft hides behind a house), depth writing off (adjacent
+cones sum rather than fight over draw order). Alpha is weighted by `|dot(normal,view)|` so
+the silhouette dissolves — that hard outline is the usual tell on a cheap god-ray cone —
+and back-face culling is off so the far wall sums toward the centre, which is where a real
+ray crosses the most lit air. The one thing needing a second pass was that stacking: two
+shells × two walls is four layers on the centre line, and the first alphas summed past
+white at the lych gate, reading as a floodlight in fog. Halved. 10 shafts, 640 triangles,
+150→152 draw calls. Anchors are collected at the fixtures, not derived from `lights`, since
+that array mixes lamp heads with ground pools; all are z≥44, so §4's churchyard invariant
+holds by construction.
+
+**Near trunks (`c61868f`).** Both halves of the long-carried `09-west-treeline` defect.
+The flare did not meet the ground because every root tip took its height from `g`, the
+terrain sampled at the *trunk centre*, so downhill roots ended in mid-air on any slope.
+Tips now sample the ground beneath themselves and sink .14 below it. The first retry kept
+the original reach and the roots ran out nearly flat, reading as spikes lying on the grass
+rather than buttresses; shortening the reach and raising the origin put them near 45°. The
+trunk read as a detail-free black mass because the bark texture was multiplied to nothing;
+the lift is on the vertex colour rather than on `Dead bark`, because that material is shared
+with the 565 far scatter trees, which want to stay silhouettes and still do — 07, 10 and 12
+all moved less than the animation noise floor.
+
+**Tooling.** `scripts/tg` now rejects captions over 1024 bytes *before* uploading. Telegram
+enforces that limit by refusing the whole upload after the file has transferred, and it
+does so as an HTTP 200 `{"ok":false}` — so a caller that pipes `tg file` through `tail`
+loses the exit status and can go on to `tg record` a delivery that never happened. That
+happened once here; the send was repeated successfully, so the ledger line is accurate, but
+the guard is what stops it recurring. Related: do not pipe `tg file` into anything when
+chaining with `&&`.
+
+### Still carried
+
+- The sky is a flat navy field away from the sun.
+- `capture-vistas.mjs` needs `ASHEN_URL`, not just `ASHEN_VITE_PORT` (see §8).
+- Every frame-time figure in §8 and §9 sits on the 144 Hz vsync cap: "did not regress", not
+  headroom.

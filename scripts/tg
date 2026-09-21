@@ -50,6 +50,18 @@ case "$cmd" in
     path="${1:?usage: tg file <path> [caption]}"; shift || true
     caption="${*:-}"
     [ -f "$path" ] || { echo "no such file: $path" >&2; exit 1; }
+    # Telegram caps captions at 1024 characters and rejects the whole upload if you
+    # exceed it -- after the file has finished uploading, which for a 15 MB clip is a
+    # slow way to find out. Worse, it fails as an HTTP 200 {"ok":false}, so a caller
+    # that pipes this through `tail` loses the exit status and can go on to record a
+    # delivery that never happened. Checked here, before the upload, so the length is
+    # never the thing that breaks the cycle. The count is bytes, which is >= Telegram's
+    # own count, so this errs toward rejecting early rather than passing something the
+    # API will refuse.
+    if [ "${#caption}" -gt 1024 ]; then
+      echo "caption is ${#caption} bytes; Telegram's limit is 1024. Trim $(( ${#caption} - 1024 )) and retry." >&2
+      exit 1
+    fi
     # tr, not ${path,,}: macOS ships bash 3.2 and would fail to parse that.
     ext=$(printf '%s' "$path" | tr '[:upper:]' '[:lower:]')
     case "$ext" in
