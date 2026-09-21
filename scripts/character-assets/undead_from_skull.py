@@ -866,7 +866,24 @@ def paint(ob, j=None):
         elif name.startswith('foot'):
             c = FLESH
         elif name == 'neck':
+            # One flat value meeting the flat BONE of the mandible at a region
+            # boundary is a 92-code step (byte 86 against 178), which is why this
+            # read as a painted collar rather than a throat. Ramp both ends
+            # instead. Upwards into BONE, because what is exposed under the jaw of
+            # a desiccated corpse is cervical vertebra, so the skull does not so
+            # much end as continue; the square makes the ramp ease in, keeping the
+            # lower throat dark and concentrating the change just under the jaw
+            # where the eye reads a transition rather than an edge. Downwards into
+            # FLESH so the shoulder junction does not simply acquire the same line
+            # one joint lower.
             c = NECK
+            if j is not None:
+                span = max(1e-6, j['mixamorig:Head'].z - j['mixamorig:Neck'].z)
+                t = (p.z - j['mixamorig:Neck'].z) / span
+                up = min(1.0, max(0.0, (t - 0.30) / 0.55))
+                c = tuple(NECK[k] + (BONE[k] - NECK[k]) * (up * up) for k in range(4))
+                down = min(1.0, max(0.0, (0.15 - t) / 0.30))
+                c = tuple(c[k] + (FLESH[k] - c[k]) * down for k in range(4))
         if name == 'torso':
             t = (p.z - lo.z) / max(1e-6, height)
             # Rib shadows: horizontal banding across the chest, full strength facing
