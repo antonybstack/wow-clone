@@ -12,6 +12,7 @@ Living docs: actively edited, describe current pipelines/plans, and are the ones
 - [Armed character repair plan](armed-character-repair-plan.md): paused Human armed-pose/two-handed plan; resume when Orc work is not the current request.
 - [Character architecture](character-system-north-star.md): long-term race/equipment contracts; historical milestone order is not a work queue.
 - [Startup load](startup-load.md): what blocks the loading overlay, what is deferred, and how the player body textures are packed.
+- [Play test plan](play-test-plan.md): the race, outfit, spell, and hostile matrix, and how to run it.
 - [Browser, play and capture](debug-view.md).
 - [Parallel worktree harness](parallel-worktree-harness.md): run several agents' worktrees against their own Vite/Chrome/CDP slot at once.
 
