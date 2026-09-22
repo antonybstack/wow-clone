@@ -76,11 +76,16 @@ function townTint(color, emissive) {
   });
 }
 
-/** Street / well bodies, distinct from the churchyard peat-mist. Cloak
- *  geometry stays the shared shade silhouette. */
+/** Street / well bodies, distinct from the churchyard peat-mist.
+ *  The robe is what you see; the body tint only shows inside the cowl. */
 const TOWN_TINT_RUST = townTint([0.46, 0.26, 0.16, 0.30], [0.10, 0.04, 0.02]);
 const TOWN_TINT_SLATE = townTint([0.22, 0.30, 0.38, 0.30], [0.04, 0.06, 0.10]);
 const TOWN_TINT_BONE = townTint([0.44, 0.40, 0.26, 0.30], [0.09, 0.08, 0.04]);
+
+const PEAT_CLOTH = { color: [0.14, 0.18, 0.11, 1], emissive: [0.04, 0.07, 0.03], name: "#c5d2b0" };
+const RUST_CLOTH = { color: [0.52, 0.16, 0.07, 1], emissive: [0.28, 0.06, 0.02], name: "#e88958" };
+const SLATE_CLOTH = { color: [0.14, 0.24, 0.46, 1], emissive: [0.05, 0.12, 0.28], name: "#9ec4e4" };
+const BONE_CLOTH = { color: [0.58, 0.5, 0.28, 1], emissive: [0.2, 0.16, 0.05], name: "#ead7a0" };
 
 /** Punch_Cross is 1.0s; 0.58 keeps the swing on screen for the 1.6s cooldown. */
 const PUNCH_SPEED = 0.58;
@@ -88,13 +93,13 @@ const PUNCH_SPEED = 0.58;
 /** Churchyard four first, unchanged. Town three on the street and well
  *  approaches so a walk from the gate to the well can aggro. */
 const ANCHORS = [
-  { id: "grave-shade-1", name: NAMES[0], z: 16, side: 2.6, scale: 1.04, tint: SHADE_TINT, zone: "churchyard" },
-  { id: "grave-shade-2", name: NAMES[1], z: 30, side: -2.8, scale: 0.96, tint: SHADE_TINT, zone: "churchyard" },
-  { id: "grave-shade-3", name: NAMES[2], z: 48, side: 2.4, scale: 1.1, tint: SHADE_TINT, zone: "churchyard" },
-  { id: "grave-shade-4", name: NAMES[3], z: 62, side: -2.5, scale: 1.0, tint: SHADE_TINT, zone: "churchyard" },
-  { id: "town-wraith-1", name: "Street Wraith", z: 86, side: 2.4, scale: 1.03, tint: TOWN_TINT_RUST, zone: "town", bounds: TOWN_BOUNDS },
-  { id: "town-wraith-2", name: "Lane Shade", z: 108, side: -2.6, scale: 0.97, tint: TOWN_TINT_SLATE, zone: "town", bounds: TOWN_BOUNDS },
-  { id: "town-wraith-3", name: "Well Haunt", z: 126, side: 2.2, scale: 1.05, tint: TOWN_TINT_BONE, zone: "town", bounds: TOWN_BOUNDS },
+  { id: "grave-shade-1", name: NAMES[0], z: 16, side: 2.6, scale: 1.04, tint: SHADE_TINT, cloth: PEAT_CLOTH, zone: "churchyard" },
+  { id: "grave-shade-2", name: NAMES[1], z: 30, side: -2.8, scale: 0.96, tint: SHADE_TINT, cloth: PEAT_CLOTH, zone: "churchyard" },
+  { id: "grave-shade-3", name: NAMES[2], z: 48, side: 2.4, scale: 1.1, tint: SHADE_TINT, cloth: PEAT_CLOTH, zone: "churchyard" },
+  { id: "grave-shade-4", name: NAMES[3], z: 62, side: -2.5, scale: 1.0, tint: SHADE_TINT, cloth: PEAT_CLOTH, zone: "churchyard" },
+  { id: "town-wraith-1", name: "Street Wraith", z: 86, side: 2.4, scale: 1.03, tint: TOWN_TINT_RUST, cloth: RUST_CLOTH, zone: "town", bounds: TOWN_BOUNDS },
+  { id: "town-wraith-2", name: "Lane Shade", z: 108, side: -2.6, scale: 0.97, tint: TOWN_TINT_SLATE, cloth: SLATE_CLOTH, zone: "town", bounds: TOWN_BOUNDS },
+  { id: "town-wraith-3", name: "Well Haunt", z: 126, side: 2.2, scale: 1.05, tint: TOWN_TINT_BONE, cloth: BONE_CLOTH, zone: "town", bounds: TOWN_BOUNDS },
 ];
 
 function clampPos(x, z, bounds) {
@@ -429,7 +434,10 @@ async function makeEnemy(engine, scene, world, spec, index) {
     hideJoints: true,
     buffer: spec.buffer,
   });
-  const garment = attachShadeSilhouette(engine, scene, actor, { scale: spec.scale || 1 });
+  const garment = attachShadeSilhouette(engine, scene, actor, {
+    scale: spec.scale || 1,
+    cloth: spec.cloth,
+  });
   actor.anchor = garment.host;
   actor.silhouette = garment;
   for (const mesh of garment.meshes) {
@@ -437,6 +445,7 @@ async function makeEnemy(engine, scene, world, spec, index) {
   }
   const enemy = {
     id: spec.id,
+    nameColor: spec.cloth?.name || "#ead1b5",
     name: spec.name,
     zone: spec.zone || "churchyard",
     bounds,

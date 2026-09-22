@@ -1,0 +1,23 @@
+{
+  "license": "CC0-1.0",
+  "sourceClips": [
+    "Sword_Attack",
+    "Idle_Loop",
+    "PickUp_Table"
+  ],
+  "changes": "Two-handed overhead chop: arms stay cocked until 0.88s, the downward strike arrives at the 1.1s release, and that hit pose is held through the nova.",
+  "duration": 1.55,
+  "releaseTime": 1.1,
+  "hand": "mainHand",
+  "outputSha256": "9947a6ea7f5a6a34d0a7d15f73a5502f8044c14ca61aef3e1dd5f06a7aeb8096",
+  "clips": [
+    {
+      "name": "PyreBurst_Upper",
+      "channels": 43
+    },
+    {
+      "name": "PyreBurst_Lower",
+      "channels": 10
+    }
+  ]
+}

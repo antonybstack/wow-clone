@@ -2,13 +2,15 @@
  *
  * Vertex reorder on a GLB whose primitives share POSITION/JOINTS accessors
  * (player body, Wayfarer trousers) collapsed those meshes in-engine. Do not
- * call reorder() or quantize() on those files. Body size is mostly 2K PNG
- * maps; those are transcoded separately and the bind/clips stay untouched.
+ * call reorder() or quantize() on those files. Body size is the embedded
+ * maps; compressBodyTextures resamples those and leaves the bind and clips
+ * alone. Hair stays WebP with alpha. See docs/startup-load.md.
  */
 import {NodeIO} from '@gltf-transform/core';
 import {ALL_EXTENSIONS, EXTMeshoptCompression} from '@gltf-transform/extensions';
 import {dedup, prune, reorder, resample} from '@gltf-transform/functions';
 import {MeshoptDecoder, MeshoptEncoder} from 'meshoptimizer';
+import sharp from 'sharp';
 import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import fs from 'node:fs/promises';
@@ -75,27 +77,42 @@ async function transcodeTexture(texture, {format, max, quality}) {
   return true;
 }
 
+async function putImage(texture, bytes, mime) {
+  const img = texture.getImage();
+  if (!img || bytes.byteLength >= img.byteLength) return false;
+  texture.setImage(bytes);
+  texture.setMimeType(mime);
+  console.log(`  ${texture.getName() || mime} ${(img.byteLength / 1024).toFixed(0)}KB → ${(bytes.byteLength / 1024).toFixed(0)}KB ${mime}`);
+  return true;
+}
+
 async function compressBodyTextures(doc) {
   for (const texture of doc.getRoot().listTextures()) {
     const name = (texture.getName() || '').toLowerCase();
-    const mime = texture.getMimeType();
     const img = texture.getImage();
-    const size = texture.getSize() || [Infinity, Infinity];
-    const alpha = mime === 'image/png' && pngHasAlpha(img);
-    // Hair PNG keeps a dark transparent surround. JPEG fills that with white, and
-    // sips resize composites the island edge against black/white, both of which
-    // the hairline UVs sample as a silver band on the forehead. Leave it alone.
-    if (/hair/.test(name) && !/normal/.test(name)) continue;
+    if (!img) continue;
+    const input = Buffer.from(img);
+    // Hair keeps its alpha. JPEG, and sips' resize, both composite that
+    // surround and the hairline UVs read it as a silver forehead band.
+    // WebP keeps the alpha and the browser decodes it without a transcoder.
+    if (/hair/.test(name) && !/normal/.test(name)) {
+      const out = await sharp(input).resize(1024, 1024, {fit: 'fill'}).webp({quality: 75, alphaQuality: 90}).toBuffer();
+      await putImage(texture, out, 'image/webp');
+      continue;
+    }
     if (/normal/.test(name)) {
-      if (Math.max(size[0], size[1]) > 1024) await transcodeTexture(texture, {format: 'png', max: 1024});
+      const out = await sharp(input).resize(512, 512, {fit: 'fill'}).png({compressionLevel: 9}).toBuffer();
+      await putImage(texture, out, 'image/png');
       continue;
     }
     // ORM / roughness stays PNG: JPEG chroma smear writes fake metallic into B.
-    if (name === 'roughness' || /metal|orm/.test(name)) continue;
-    if (alpha && name !== 'albedo') continue;
-    if (mime === 'image/png') {
-      await transcodeTexture(texture, {format: 'jpeg', quality: 80});
+    if (name === 'roughness' || /metal|orm/.test(name)) {
+      const out = await sharp(input).resize(512, 512, {fit: 'fill'}).png({compressionLevel: 9}).toBuffer();
+      await putImage(texture, out, 'image/png');
+      continue;
     }
+    const out = await sharp(input).resize(1024, 1024, {fit: 'fill'}).jpeg({quality: 72, mozjpeg: true}).toBuffer();
+    await putImage(texture, out, 'image/jpeg');
   }
 }
 

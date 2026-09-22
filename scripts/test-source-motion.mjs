@@ -8,7 +8,7 @@ function load(path){const b=fs.readFileSync(path);return parseGlb(b.buffer.slice
 const source=load('public/characters/base.glb');
 function tracks(asset,a){return new Map(a.channels.map(c=>[asset.json.nodes[c.target.node].name+':'+c.target.path,{channel:c,sampler:a.samplers[c.sampler]}]));}
 function values(asset,index){return readAccessor(asset.json,asset.binary,index);}
-const RUNTIME_EXTRA_CLIPS=['Jog_Bwd_Loop','Jog_Left_Loop','Jog_Right_Loop','Turn90_L','Turn90_R','FireBlast_Upper','FireBlast_Lower','LavaBall_Upper','LavaBall_Lower','Walk_Carry_Loop'];
+const RUNTIME_EXTRA_CLIPS=['Jog_Bwd_Loop','Jog_Left_Loop','Jog_Right_Loop','Turn90_L','Turn90_R','FireBlast_Upper','FireBlast_Lower','LavaBall_Upper','LavaBall_Lower','Walk_Carry_Loop','PyreBurst_Upper','PyreBurst_Lower'];
 const candidates=[
  {path:'public/characters/candidates/human-source-v1.glb',meshes:['HumanBody','HumanBrows','HumanEyes','HumanHair','HumanShorts'],extra:[]},
  {path:'public/characters/candidates/orc-source-v1.glb',meshes:['OrcV1Body','OrcV1Brows','OrcV1Eyes','OrcV1Hair','OrcV1Shorts'],extra:RUNTIME_EXTRA_CLIPS},

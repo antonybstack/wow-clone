@@ -82,7 +82,7 @@ function paintStatic(ctx) {
   ctx.fillRect(sx - 1, sy - 1, 3, 3);
 }
 
-export function createMinimap({ player, enemies }) {
+export function createMinimap({ player, enemies, marker }) {
   const root = document.getElementById("combat");
   const wrap = document.createElement("div");
   wrap.className = "minimap";
@@ -113,12 +113,27 @@ export function createMinimap({ player, enemies }) {
     for (const enemy of enemies) {
       if (enemy.hidden || enemy.state === "dead" || enemy.hp <= 0) continue;
       const [u, v] = worldToMap(enemy.position.x, enemy.position.z);
-      ctx.fillStyle = "#c45a38";
+      ctx.fillStyle = enemy.nameColor || "#c45a38";
       ctx.beginPath();
       ctx.arc(u, v, 3, 0, Math.PI * 2);
       ctx.fill();
       ctx.strokeStyle = "#2a1810";
       ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+    const pin = marker?.();
+    if (pin) {
+      const [mx, my] = worldToMap(pin.x, pin.z);
+      ctx.fillStyle = "#ffe1a8";
+      ctx.strokeStyle = "#3a2a10";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(mx, my - 5);
+      ctx.lineTo(mx + 4, my + 3);
+      ctx.lineTo(mx, my + 1);
+      ctx.lineTo(mx - 4, my + 3);
+      ctx.closePath();
+      ctx.fill();
       ctx.stroke();
     }
     const pos = player.body.position;

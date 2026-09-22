@@ -50,6 +50,12 @@ export class CameraRig {
         this.distance = camera.radius;
         this.distanceTarget = camera.radius;
         this.pivotHeight = PIVOT_HEIGHT;
+        this.trauma = 0;
+    }
+
+    /** Add decaying view punch. Amount is metres of pivot travel. */
+    impulse(amount) {
+        this.trauma = Math.min(0.42, (this.trauma || 0) + amount);
     }
 
     /** Mouse look — call before locomotion so RMB facing matches this frame. */
@@ -80,9 +86,20 @@ export class CameraRig {
         camera.inertialPanningX = 0;
         camera.inertialPanningY = 0;
 
-        camera.target.x = feet.x;
-        camera.target.y = feet.y + this.pivotHeight;
-        camera.target.z = feet.z;
+        let ox = 0, oy = 0, oz = 0;
+        if (this.trauma > 0.001) {
+            this.trauma *= Math.exp(-10 * dt);
+            const t = performance.now() * 0.001;
+            const a = this.trauma;
+            ox = Math.sin(t * 73.1) * a;
+            oy = Math.sin(t * 91.7) * a * 0.45;
+            oz = Math.cos(t * 61.3) * a;
+        } else {
+            this.trauma = 0;
+        }
+        camera.target.x = feet.x + ox;
+        camera.target.y = feet.y + this.pivotHeight + oy;
+        camera.target.z = feet.z + oz;
         camera.alpha = alphaFromYaw(this.yaw);
         camera.beta = clamp(Math.PI / 2 - this.pitch, 0.35, 2.29);
         camera.radius = this.distance;

@@ -1,7 +1,7 @@
 /** Assemble the playable Undead pack from the Tripo-bound source body.
 
 Body is public/characters/candidates/undead-source-v1.glb (single UndeadV1Body
-mesh, 65-joint source bind, 55 clips). Catalogue garments are copied from the
+mesh, 65-joint source bind, 57 clips). Catalogue garments are copied from the
 Human pack for now — they share joint names and will deform on the actor skin.
 A dedicated revenant fit is the next pass.
 
@@ -35,7 +35,7 @@ for (const name of UNDEAD_BASE_VISIBLE_MESHES) {
     if (!bodyMeshes.includes(name)) throw Error(`Undead body missing ${name}, have ${bodyMeshes}`);
 }
 if (bodyDoc.getRoot().listSkins()[0].listJoints().length !== 65) throw Error('Not the 65-joint source bind');
-if (clips !== 55) throw Error(`Expected 55 clips, have ${clips}`);
+if (clips !== 57) throw Error(`Expected 57 clips, have ${clips}`);
 
 const bodyBytes = await io.writeBinary(bodyDoc);
 await fs.writeFile(`${DIR}/body.glb`, bodyBytes);

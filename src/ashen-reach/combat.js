@@ -1,6 +1,7 @@
 import { addToScene, getContainerMeshes, loadGltf, getViewProjectionMatrix } from "@babylonjs/lite";
 import { FireBlast } from "../spells/fire-blast.js";
 import { LavaBall } from "../spells/lava-ball.js";
+import { GravePulse } from "../spells/grave-pulse.js";
 import { Targeting } from "../targeting.js";
 import { setInputEnabled } from "../input.js";
 import { createCombatHud } from "./combat-hud.js";
@@ -9,6 +10,7 @@ import { createFireBlastAudio } from "./fire-blast-audio.js";
 import { createFireBlastVfx } from "./fire-blast-vfx.js";
 import { height, pathX } from "./geometry.js";
 import { createLavaBallVfx } from "./lava-ball-vfx.js";
+import { createGravePulseVfx } from "./grave-pulse-vfx.js";
 import { createMinimap } from "./minimap.js";
 import { createProgression, PLAYER_HP_BASE } from "./progression.js";
 import { spellLineOfSight } from "./spell-visibility.js";
@@ -121,6 +123,8 @@ export async function createCombat(
       fx.handPosition,
       player,
     );
+  const pulse = new GravePulse(),
+    pulseFx = await createGravePulseVfx(engine, scene, player, world, fx.handPosition);
   const audio = await createFireBlastAudio(scene);
   const lifeHud = installLifeHud();
   const playerFill = lifeHud.querySelector(".player-plate .hp-fill");
@@ -132,17 +136,31 @@ export async function createCombat(
   const targetHpEl = lifeHud.querySelector(".target-plate small");
   const deathVeil = lifeHud.querySelector(".death-veil");
   const progression = createProgression();
-  const minimap = createMinimap({ player, enemies });
-  hud.soundToggle.onclick = () => {
-    audio.setMuted(!audio.muted);
+  const minimap = createMinimap({
+    player,
+    enemies,
+    marker() {
+      const snap = objective?.snapshot();
+      if (!snap || snap.phase === "done") return null;
+      return { x: snap.watchman.x, z: snap.watchman.z };
+    },
+  });
+  const paintMute = () => {
+    if (!audio.status.ready) {
+      hud.soundToggle.textContent = "Sound unavailable";
+      hud.soundToggle.disabled = true;
+      return;
+    }
     hud.soundToggle.textContent = audio.muted ? "Muted" : "Sound on";
     hud.soundToggle.setAttribute("aria-pressed", String(audio.muted));
+    hud.soundToggle.setAttribute("aria-label", audio.muted ? "Unmute sound" : "Mute sound");
+  };
+  hud.soundToggle.onclick = () => {
+    audio.setMuted(!audio.muted);
+    paintMute();
     canvas.focus();
   };
-  if (!audio.status.ready) {
-    hud.soundToggle.textContent = "Sound unavailable";
-    hud.soundToggle.disabled = true;
-  }
+  paintMute();
   let hitAge = 10,
     hitScale = 1,
     hitDirection = { x: 0, z: 1 },
@@ -258,17 +276,22 @@ export async function createCombat(
   for (const [slot, key] of [
     [hud.slot, 1],
     [hud.lavaSlot, 2],
-  ])
+    [hud.pulseSlot, 3],
+  ]) {
     slot.onclick = () => {
       input.spellPressed = key;
       input.castInstant = true;
       canvas.focus();
     };
+  }
   const cancel = (reason) => {
     if (!pending) return;
     player.setMoveScale?.(1);
     if (pending.key === 2) {
       lavaFx.cancel();
+      audio.lavaCancel();
+    } else if (pending.key === 3) {
+      pulseFx.cancel();
       audio.lavaCancel();
     } else fx.cancelWindup();
     pending.ability.lastResult = reason;
@@ -324,10 +347,41 @@ export async function createCombat(
       targetHpEl.textContent = "Dead";
   };
   syncPlayerHp();
+  function worldMarks() {
+    const marks = [];
+    const px = player.body.position;
+    for (const enemy of enemies) {
+      if (enemy.hidden || enemy.hp <= 0 || enemy.state === "dead") continue;
+      if (enemy === targeting.current) continue;
+      if (Math.hypot(enemy.position.x - px.x, enemy.position.z - px.z) > 20) continue;
+      marks.push({
+        position: enemy.position,
+        y: enemy.position.y + 2.2,
+        text: enemy.name,
+        color: enemy.nameColor,
+      });
+    }
+    const snap = objective?.snapshot();
+    if (snap && snap.phase !== "done") {
+      const dist = Math.hypot(px.x - snap.watchman.x, px.z - snap.watchman.z);
+      if (dist < 36) {
+        const y = height(snap.watchman.x, snap.watchman.z);
+        marks.push({
+          position: { x: snap.watchman.x, y, z: snap.watchman.z },
+          y: y + 2.45,
+          text: "Watchman",
+          color: "#ffe1a8",
+          watchman: true,
+        });
+      }
+    }
+    return marks;
+  }
   return {
     targeting,
     spell,
     lava,
+    pulse,
     dummy,
     enemies,
     registerEnemy(enemy) {
@@ -375,6 +429,7 @@ export async function createCombat(
     beforeAnimation(dt) {
       spell.update(dt);
       lava.update(dt);
+      pulse.update(dt);
       tickLife(dt);
       updateEnemies(enemies, dt, {
         player,
@@ -452,7 +507,7 @@ export async function createCombat(
       input.castHold = false;
       input.spellHeld2 = false;
       input.castInstant = false;
-      if (key !== 1 && key !== 2) return;
+      if (key !== 1 && key !== 2 && key !== 3) return;
       input.castInstant = false;
       if (!visible) return;
       if (pending) {
@@ -468,10 +523,14 @@ export async function createCombat(
         hud.message("Global cooldown");
         return;
       }
-      const ability = key === 2 ? lava : spell,
+      const ability = key === 2 ? lava : key === 3 ? pulse : spell,
         target = targeting.current,
         reason =
-          ability.validate(castArgs(target)) || (dev.god ? "" : progression.refuseMana(key));
+          ability.validate(
+            key === 3
+              ? { position: player.body.position, grounded: player.getGrounded() && body.getState().phase !== "air", hostiles }
+              : castArgs(target),
+          ) || (dev.god ? "" : progression.refuseMana(key));
       if (reason) {
         ability.lastResult = reason;
         hud.message(reason);
@@ -481,11 +540,13 @@ export async function createCombat(
         hud.message("Finishing cast");
         return;
       }
-      const t = target.position,
-        p = player.body.position;
-      player.setFacing(Math.atan2(t.x - p.x, t.z - p.z));
+      if (key !== 3) {
+        const t = target.position,
+          p = player.body.position;
+        player.setFacing(Math.atan2(t.x - p.x, t.z - p.z));
+      }
       input.castInstant = true;
-      input.castSpell = key === 2 ? "lava" : null;
+      input.castSpell = key === 2 ? "lava" : key === 3 ? "pulse" : null;
       pending = { target, key, ability };
       gcd = GCD;
       player.setMoveScale?.(CAST_MOVE_SCALE);
@@ -494,13 +555,18 @@ export async function createCombat(
       if (key === 2) {
         lavaFx.begin();
         audio.lavaCharge();
+      } else if (key === 3) {
+        pulseFx.begin();
+        audio.lavaCharge();
       } else fx.beginWindup();
     },
     afterAnimation(dt) {
       if (pending) {
         const state = body.getState();
-        if (life.dead || !visible || targeting.current !== pending.target)
+        if (life.dead || !visible)
           cancel(life.dead ? "You have died" : "Cast interrupted");
+        else if (pending.key !== 3 && targeting.current !== pending.target)
+          cancel("Cast interrupted");
         else if (state.castElapsed >= state.castReleaseTime) {
           const request = pending;
           pending = null;
@@ -520,6 +586,29 @@ export async function createCombat(
               body.cancelCast();
               hud.message(result.reason);
             }
+          } else if (request.key === 3) {
+            const result = pulse.cast({
+              position: player.body.position,
+              grounded: true,
+              hostiles,
+            });
+            if (result.ok) {
+              if (!dev.god) progression.spendMana(3);
+              pulseFx.trigger();
+              audio.pulse();
+              rig?.impulse?.(0.34);
+              markCombat();
+              for (const hit of result.hits) {
+                hud.hit(hit.target, hit.damage);
+                if (hit.target === dummy) {
+                  hitDummy = true;
+                  hitAge = 0;
+                  hitScale = 2.2;
+                  hitDirection = { x: 0, z: 1 };
+                }
+                keepDummyRecovery(pulse);
+              }
+            } else hud.message(result.reason);
           } else {
             const result = spell.cast(castArgs(request.target));
             if (result.ok) {
@@ -553,17 +642,26 @@ export async function createCombat(
       }
       fx.update(dt);
       lavaFx.update(dt, body.getState().castElapsed, lava.flight);
+      pulseFx.update(dt);
       hud.update(
         dt,
         targeting.current,
         spell,
         scene.camera,
         lava,
-        pending?.key === 2 ? { elapsed: body.getState().castElapsed } : null,
+        pending?.key === 2
+          ? { elapsed: body.getState().castElapsed, name: "Lava Ball", castTime: 1.5 }
+          : pending?.key === 3
+            ? { elapsed: body.getState().castElapsed, name: "Pyre Burst", castTime: 1.1 }
+            : null,
         gcd,
+        pulse,
       );
       paintHud();
-      if (visible) minimap.update();
+      if (visible) {
+        minimap.update();
+        hud.paintMarks(scene.camera, worldMarks());
+      } else hud.paintMarks(scene.camera, []);
     },
   };
 }

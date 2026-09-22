@@ -396,15 +396,29 @@ export async function buildChurchyard(engine,scene){
   if(rad>108)return 0;
   return 0.38*(1-smooth((rad-52)/48));
  }
- const foliage=await createFoliage(engine,scene,{
-  lights,density:foliageDensity,
-  landmarks:[[-2,-2,1.45],[2.8,-2.1,1.5],[-2.5,4,1.3],[2.7,9,1.15],[-4,12,1.55]].map(([x,z,scale])=>({x,z,scale})),
- });
  const farTris=farEarth.idx.length/3;
  const meshes=B.map((b,i)=>b.commit(engine,scene,mats[i],lights)).filter(Boolean);
  const farMesh=farEarth.commit(engine,scene,mats[0],[]);
  if(farMesh)meshes.push(farMesh);
- meshes.push(...foliage.meshes);
  colliders.unshift({type:'mesh',mesh:meshes[0]});const clouds=await sky(engine,scene);
- return {meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,foliage,stats:{triangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris,drawBatches:B.length+(farMesh?1:0)+foliage.stats.draws,horizonTriangles:horizonStats.triangles,farTriangles:farTris,foliageInstances:foliage.stats.instances},update(t,playerPos){foliage.update(t,playerPos);clouds.update(t);}};
+ const stats={triangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris,drawBatches:B.length+(farMesh?1:0),horizonTriangles:horizonStats.triangles,farTriangles:farTris,foliageInstances:0};
+ let foliage=null;
+ const api={meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,foliage:null,stats,whenFoliage:null,update(t,playerPos){foliage?.update(t,playerPos);clouds.update(t);}};
+ // Grass stays off the first-frame download. Call startFoliage once the
+ // player body is on screen; the meshes then join the fire-light list.
+ api.startFoliage=()=>{
+  api.whenFoliage??=createFoliage(engine,scene,{
+   lights,density:foliageDensity,
+   landmarks:[[-2,-2,1.45],[2.8,-2.1,1.5],[-2.5,4,1.3],[2.7,9,1.15],[-4,12,1.55]].map(([x,z,scale])=>({x,z,scale})),
+  }).then((created)=>{
+   foliage=created;
+   api.foliage=created;
+   meshes.push(...created.meshes);
+   stats.drawBatches+=created.stats.draws;
+   stats.foliageInstances=created.stats.instances;
+   return created;
+  });
+  return api.whenFoliage;
+ };
+ return api;
 }

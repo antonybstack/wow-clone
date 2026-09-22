@@ -6,6 +6,7 @@ import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import fs from 'node:fs/promises';
 import {prepareFireCast} from './prepare-fire-cast.mjs';
 import {prepareLavaCast} from './prepare-lava-cast.mjs';
+import {preparePyreCast} from './prepare-pyre-cast.mjs';
 import {appendDirections} from './append-directions.mjs';
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS);
 const doc=await io.read('public/characters/candidates/human-source-v1.glb');
@@ -29,3 +30,4 @@ await appendDirections();
 
 await prepareFireCast();
 await prepareLavaCast();
+await preparePyreCast();

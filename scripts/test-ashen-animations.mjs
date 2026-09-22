@@ -30,7 +30,7 @@ test('directional import preserves the source-human joint bind and rest transfor
  }
 });
 test('five added motions contain complete finite joint channels and no capsule/root transform tracks',()=>{
- assert.equal(current.json.animations.length,54);
+ assert.equal(current.json.animations.length,57);
  for(const name of ['Jog_Bwd_Loop','Jog_Left_Loop','Jog_Right_Loop','Turn90_L','Turn90_R']){
   const a=current.json.animations.find(a=>a.name===name);assert.ok(a,name);assert.equal(a.channels.length,53);
   const channels=tracks(current,a);assert.equal(channels.size,53);
@@ -84,4 +84,17 @@ test('lava layers preserve the additive reference, complete joint partition and 
   }
  }
  assert.equal(seen.size,53);const p=JSON.parse(fs.readFileSync('public/ashen-reach/lava-cast-provenance.json'));assert.equal(p.releaseTime,1.5);assert.equal(p.outputSha256,createHash('sha256').update(fs.readFileSync('public/ashen-reach/wanderer.glb')).digest('hex'));
+});
+
+test('pyre layers preserve the additive reference, two-handed partition and slam release timing',()=>{
+ const seen=new Set();
+ for(const name of ['PyreBurst_Upper','PyreBurst_Lower']){
+  const a=current.json.animations.find(a=>a.name===name);assert.ok(a,name);
+  for(const [target,s] of tracks(current,a)){
+   assert.ok(!seen.has(target));seen.add(target);const v=values(current,s.output),t=values(current,s.input),n=target.endsWith(':rotation')?4:3;
+   assert.ok([...v].every(Number.isFinite));assert.ok(Math.abs(t.at(-1)-1.55)<1e-5);
+   for(let j=0;j<n;j++)assert.ok(Math.abs(v[j]-v[v.length-n+j])<1e-5,target);
+  }
+ }
+ assert.equal(seen.size,53);const p=JSON.parse(fs.readFileSync('public/ashen-reach/pyre-cast-provenance.json'));assert.equal(p.releaseTime,1.1);assert.equal(p.outputSha256,createHash('sha256').update(fs.readFileSync('public/ashen-reach/wanderer.glb')).digest('hex'));
 });

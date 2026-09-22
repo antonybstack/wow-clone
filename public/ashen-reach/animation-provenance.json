@@ -8,7 +8,7 @@
   "retargeter": "https://github.com/crazyramirez/BJS_Character_Controller_V2",
   "retargeterCommit": "869170ff94380b44b6f76753feee77c17c468819",
   "retargeterLicense": "MIT",
-  "outputSha256": "ff503dd0e5b0dc3b41d9892a3e89f75f798a8d47b0c698d58f0ea99007df9784",
+  "outputSha256": "9947a6ea7f5a6a34d0a7d15f73a5502f8044c14ca61aef3e1dd5f06a7aeb8096",
   "inventory": [
     {
       "name": "Jog_Bwd_Loop",
@@ -85,5 +85,28 @@
       }
     ],
     "scope": "Ashen Reach source-compatible Human only. Original geometry, bind and clips retained."
+  },
+  "derivedPyreCast": {
+    "license": "CC0-1.0",
+    "sourceClips": [
+      "Sword_Attack",
+      "Idle_Loop",
+      "PickUp_Table"
+    ],
+    "changes": "Two-handed overhead chop: arms stay cocked until 0.88s, the downward strike arrives at the 1.1s release, and that hit pose is held through the nova.",
+    "duration": 1.55,
+    "releaseTime": 1.1,
+    "hand": "mainHand",
+    "outputSha256": "9947a6ea7f5a6a34d0a7d15f73a5502f8044c14ca61aef3e1dd5f06a7aeb8096",
+    "clips": [
+      {
+        "name": "PyreBurst_Upper",
+        "channels": 43
+      },
+      {
+        "name": "PyreBurst_Lower",
+        "channels": 10
+      }
+    ]
   }
 }

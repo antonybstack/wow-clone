@@ -15,7 +15,10 @@ try{
  await page.keyboard.press('Digit1');await page.waitForTimeout(350);
  check('Successful hit ignites hand/impact, plays sound, and rocks dummy',await page.evaluate(()=>{const c=ASHEN.combat;return c.dummy.hp===480&&c.fx.active&&c.audio.status.played===1&&Math.hypot(c.dummy.root.rotation.x,c.dummy.root.rotation.z)>.015;}));
  await page.waitForTimeout(1700);check('Effects and hit reaction settle completely',await page.evaluate(()=>{const c=ASHEN.combat;return !c.fx.active&&c.dummy.root.rotation.x===0&&c.dummy.root.rotation.z===0;}));
- await page.locator('.sound-toggle').click();check('Mute control works',await page.evaluate(()=>ASHEN.combat.audio.muted));await page.locator('.sound-toggle').click();check('Sound can be restored',await page.evaluate(()=>!ASHEN.combat.audio.muted));
+ check('Sound starts muted',await page.evaluate(()=>ASHEN.combat.audio.muted));
+ await page.locator('.sound-toggle').click();check('Sound can be enabled',await page.evaluate(()=>!ASHEN.combat.audio.muted));
+ await page.locator('.sound-toggle').click();check('Mute control works',await page.evaluate(()=>ASHEN.combat.audio.muted));
+ await page.locator('.sound-toggle').click();check('Sound can be restored',await page.evaluate(()=>!ASHEN.combat.audio.muted));
  await page.waitForTimeout(1400);await page.locator('[data-spell="1"]').click();await page.waitForTimeout(400);check('Clickable spell slot remains independent of mute',await page.evaluate(()=>ASHEN.combat.spell.casts===2&&!ASHEN.combat.audio.muted));
  await fs.writeFile(dir+'/polish-errors.json',JSON.stringify(errors,null,2));console.log('Errors',errors);check('No runtime/GPU errors',errors.length===0);await fs.writeFile(dir+'/polish-checks.json',JSON.stringify({checks,errors,blocked},null,2));
 }finally{await browser.close();}

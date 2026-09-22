@@ -14,6 +14,7 @@ export function createInspectionPreview(visual) {
         {id:'land', label:'Landing', clips:[visual.jumpLand]},
         {id:'fire', label:'Fire Blast', clips:[visual.idle, visual.spellShoot, visual.castLower], layered:true},
         {id:'lava', label:'Lava Ball', clips:[visual.idle, visual.castMotions?.lava?.upper, visual.castMotions?.lava?.lower], layered:true},
+        {id:'pulse', label:'Pyre Burst', clips:[visual.idle, visual.castMotions?.pulse?.upper, visual.castMotions?.pulse?.lower], layered:true},
         {id:'carry', label:'Two-handed carry (raw source clip)', clips:[visual.twoHand]},
     ].filter(option => option.clips.every(Boolean));
     // Gameplay composition, not a second animation path: when a two-handed

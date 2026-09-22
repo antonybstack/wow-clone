@@ -777,15 +777,22 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
                     castElapsed += h;
                     const ease = x => { x = Math.max(0, Math.min(1, x)); return x*x*(3-2*x); };
                     if (castCancelTime !== null) castCancelTime = Math.max(0,castCancelTime-h);
-                    const hold = activeCastProfile?.releaseTime ?? shot.duration ?? 0.3;
-                    const weight = ease(castElapsed/.09) * ease((hold-castElapsed)/.18) * (castCancelTime===null?1:ease(castCancelTime/.16));
+                    const release = activeCastProfile?.releaseTime ?? shot.duration ?? 0.3;
+                    const follow = activeCastProfile?.followThrough ?? 0;
+                    const fade = activeCastProfile?.fadeOut ?? 0.18;
+                    const end = release + follow;
+                    // Default casts ease out before release. A zero fade keeps the
+                    // slam pose up until followThrough ends, so the hit and the
+                    // nova share a frame.
+                    const out = fade <= 0 ? 1 : ease((end - castElapsed) / fade);
+                    const weight = ease(castElapsed / 0.09) * out * (castCancelTime === null ? 1 : ease(castCancelTime / 0.16));
                     const travelling = (motion.speed ?? 0) > .5 || Math.abs(motion.forward ?? 0) > .01 || Math.abs(motion.strafe ?? 0) > .01 || Math.abs(turnRate) > .15;
                     // Once travel takes over, keep the feet on locomotion through recovery.
                     castLegSuppressed ||= travelling;
                     castLegWeight += ((castLegSuppressed ? 0 : 1)-castLegWeight)*(1-Math.exp(-18*h));
                     setAnimationWeight(shot, weight);
                     setAnimationWeight(activeCastLower, weight*castLegWeight);
-                    if (castCancelTime === 0 || castElapsed >= hold) {
+                    if (castCancelTime === 0 || castElapsed >= end) {
                         halt(shot);
                         halt(activeCastLower);
                         halt(spellEnter);

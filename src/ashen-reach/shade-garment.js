@@ -23,23 +23,26 @@ import { cross, norm, sub } from "./geometry.js";
 const CLOTH_COLOR = [0.04, 0.05, 0.032, 1];
 const VOID_COLOR = [0.01, 0.012, 0.008, 1];
 
-let clothMat = null;
+const clothMats = new Map();
 let voidMat = null;
 
-function clothMaterial() {
-    if (clothMat) return clothMat;
-    clothMat = createPbrMaterial({
-        baseColorFactor: CLOTH_COLOR,
-        roughnessFactor: 0.97,
+function clothMaterial(color = CLOTH_COLOR, emissive = [0.01, 0.014, 0.008]) {
+    const key = color.join(",") + "|" + emissive.join(",");
+    const cached = clothMats.get(key);
+    if (cached) return cached;
+    const mat = createPbrMaterial({
+        baseColorFactor: color,
+        roughnessFactor: 0.94,
         metallicFactor: 0,
         doubleSided: true,
-        directIntensity: 0.26,
-        environmentIntensity: 0.05,
+        directIntensity: 0.55,
+        environmentIntensity: 0.14,
         alpha: 1,
         alphaBlend: false,
     });
-    setPbrEmissive(clothMat, [0.01, 0.014, 0.008]);
-    return clothMat;
+    setPbrEmissive(mat, emissive);
+    clothMats.set(key, mat);
+    return mat;
 }
 
 function voidMaterial() {
@@ -157,7 +160,7 @@ function cap(shell, pts, center, flip = false) {
  * Skull-sized cowl with a face cavity — not a shoulder-width cap.
  * Inner lining is the same shell, inset, so the opening reads as a dark hole.
  */
-function buildHood(engine, scene) {
+function buildHood(engine, scene, robe) {
     const segs = 10;
     const outerRings = [
         { y: -0.12, rx: 0.10, rz: 0.09, z: 0.00, gap: 0.22, fold: 0.04 },
@@ -199,7 +202,7 @@ function buildHood(engine, scene) {
 
     return {
         meshes: [
-            cloth.commit(engine, scene, clothMaterial()),
+            cloth.commit(engine, scene, robe),
             lining.commit(engine, scene, voidMaterial()),
         ].filter(Boolean),
         triangles: cloth.triangles + lining.triangles,
@@ -211,7 +214,7 @@ function buildHood(engine, scene) {
  * Collar sits under the cowl; the shoulder ring is the widest station, then
  * the robe tapers. Same 8×12 topology as round 1 (180 tris).
  */
-function buildCloak(engine, scene) {
+function buildCloak(engine, scene, robe) {
     const segs = 12;
     const rows = [
         { y: 0.08, rx: 0.12, rz: 0.08, z: -0.01, gap: 0.22, fold: 0.04 },
@@ -229,7 +232,7 @@ function buildCloak(engine, scene) {
     const hem = rings[rings.length - 1];
     cap(cloth, hem, [0, rows[rows.length - 1].y - 0.02, 0], true);
     return {
-        meshes: [cloth.commit(engine, scene, clothMaterial())].filter(Boolean),
+        meshes: [cloth.commit(engine, scene, robe)].filter(Boolean),
         triangles: cloth.triangles,
     };
 }
@@ -300,7 +303,7 @@ function yawQuaternion(yaw) {
  * enemy's world pose, then hang a hood and cloak on attachSockets. Root local
  * scale stays (-1, 1, 1) so socket sync does not double-apply enemy scale.
  */
-export function attachShadeSilhouette(engine, scene, actor, { scale = 1 } = {}) {
+export function attachShadeSilhouette(engine, scene, actor, { scale = 1, cloth } = {}) {
     const root = actor.root;
     const yaw = root.rotation?.y ?? 0;
     const [qx, qy, qz, qw] = yawQuaternion(yaw);
@@ -355,8 +358,9 @@ export function attachShadeSilhouette(engine, scene, actor, { scale = 1 } = {}) 
         };
     }
 
-    const hood = buildHood(engine, scene);
-    const cloak = buildCloak(engine, scene);
+    const robe = clothMaterial(cloth?.color, cloth?.emissive);
+    const hood = buildHood(engine, scene, robe);
+    const cloak = buildCloak(engine, scene, robe);
     for (const mesh of hood.meshes) park(mesh, sockets.sockets.head.node, [0, 0.0, 0.01]);
     for (const mesh of cloak.meshes) park(mesh, sockets.sockets.back.node, [0, -0.06, -0.03]);
     const hiddenBones = hideCoveredLimbs(actor);

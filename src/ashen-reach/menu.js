@@ -50,7 +50,7 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics } = {}) {
           <button type="button" data-action="sound">Sound</button>
           <button type="button" data-action="keys">Keybindings</button>
           <button type="button" data-action="dev" aria-pressed="false">Dev mode</button>
-          <button type="button" data-action="metrics" aria-pressed="false">Show Metrics</button>
+          <button type="button" data-action="metrics" aria-pressed="true">Hide Metrics</button>
         </div>
       </div>
       <div class="game-menu-keys" hidden>
@@ -266,6 +266,8 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics } = {}) {
     },
     true,
   );
+
+  setMetricsVisible(true);
 
   return {
     open,

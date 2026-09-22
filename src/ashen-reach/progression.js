@@ -10,6 +10,7 @@ export const MANA_PER_LEVEL = 15;
 export const SHADE_XP = 50;
 export const FIRE_BLAST_MANA = 20;
 export const LAVA_BALL_MANA = 40;
+export const GRAVE_PULSE_MANA = 30;
 
 /** XP required to go from `level` to `level + 1`. */
 export function xpToNext(level) {
@@ -25,7 +26,9 @@ export function manaMaxFor(level) {
 }
 
 export function manaCost(spellKey) {
-  return spellKey === 2 ? LAVA_BALL_MANA : FIRE_BLAST_MANA;
+  if (spellKey === 2) return LAVA_BALL_MANA;
+  if (spellKey === 3) return GRAVE_PULSE_MANA;
+  return FIRE_BLAST_MANA;
 }
 
 export function xpForKill(target) {

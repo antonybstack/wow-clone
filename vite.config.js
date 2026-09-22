@@ -27,20 +27,13 @@ export default defineConfig({
         order: "pre",
         handler(html, ctx) {
           if (!String(ctx.filename || "").endsWith("ashen-reach.html")) return html;
+          // Only the player body and the two textures the first churchyard
+          // frame actually needs. Shades, the dummy, clothes, grass and the
+          // other race packs load after that frame.
           const tags = [
             ["/ashen-reach/equipment/body.glb", "fetch"],
-            ["/characters/base.glb", "fetch"],
-            ["/ashen-reach/training-dummy.glb", "fetch"],
-            ["/ashen-reach/equipment/manifest.json", "fetch"],
-            ["/ashen-reach/equipment/wayfarerTunic.glb", "fetch"],
-            ["/ashen-reach/equipment/wayfarerTrousers.glb", "fetch"],
-            ["/ashen-reach/equipment/wayfarerBoots.glb", "fetch"],
             ["/tex/forrest_ground_01/diff.jpg", "image"],
             ["/tex/rock_wall_08/diff.jpg", "image"],
-            ["/tex/wood_planks_grey/diff.jpg", "image"],
-            ["/tex/bark_brown_02/diff.jpg", "image"],
-            ["/ashen-reach/foliage-atlas.png", "image"],
-            ["/ashen-reach/grave-face.jpg", "image"],
           ];
           const links = tags
             .map(([href, as]) =>
