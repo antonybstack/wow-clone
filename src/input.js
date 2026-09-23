@@ -6,7 +6,8 @@
  * LMB drag: lock + orbit without turning the body.
  * LMB / RMB click (travel < CLICK_SLOP): select. Tab / Shift+Tab: cycle hostiles.
  * Esc: unlock pointer, then clear target unless #game-menu is visible. Both buttons: run forward. Shift walks.
- * 1/3/4/5: instant void spells (edge). 2: held channel. Tab / Esc unchanged.
+ * 1/3/4/5: instant void spells (edge). 2: held channel. T toggles auto attack. Tab / Esc unchanged.
+ * Touch: the on-screen stick sets move and faces the camera; a finger drag looks without pointer lock.
  * B bag · C character pane · H help (HUD chrome; look still hits the canvas).
  */
 
@@ -30,6 +31,8 @@ export const input = {
     castHold: false,
     /** 0 = none, else 1..5 — edge, consumed by the spell system. */
     spellPressed: 0,
+    /** Edge. T or the Attack button toggles melee. */
+    attackPressed: false,
     spellHeld2: false,
     tabPressed: false,
     tabBack: false,
@@ -45,6 +48,8 @@ export const input = {
     clicked: false,
     clickX: 0,
     clickY: 0,
+    /** Stick is held, so facing follows the camera the way RMB does. */
+    faceCamera: false,
 };
 
 const SPELL_KEYS = {
@@ -62,6 +67,10 @@ const SPELL_KEYS = {
 
 const keys = Object.create(null);
 let inputEnabled = true;
+let touchMove = { forward: 0, strafe: 0, active: false };
+let touchJump = false;
+const touchPoints = new Map();
+let lastPinch = 0;
 
 /** Modal game tools release held input on both entry and exit. */
 export function setInputEnabled(enabled) {
@@ -72,8 +81,23 @@ export function setInputEnabled(enabled) {
         else if (typeof input[key] === 'number') input[key] = 0;
     }
     input.castSpell = null;
+    touchMove = { forward: 0, strafe: 0, active: false };
+    touchJump = false;
+    touchPoints.clear();
+    lastPinch = 0;
     releaseButtons();
     exitPointerLock();
+}
+
+/** On-screen stick. `active` faces the body along the camera while held. */
+export function setTouchMove(forward, strafe, active) {
+    touchMove.forward = forward;
+    touchMove.strafe = strafe;
+    touchMove.active = !!active;
+}
+
+export function setTouchJump(down) {
+    touchJump = !!down;
 }
 
 const LOOK_SCALE = 0.0036;
@@ -97,7 +121,7 @@ function isHudWidget(el) {
         return false;
     }
     return !!(/** @type {Element} */ (el).closest(
-        "#hud-paper, #hud-hint, #hud-bag, #hud-bar, #hud-actions, #hud .action-bar, #hud .simple-pane, #hud .help-pane, #hud .hud-actions, #hud button, #hud select, #hud input, #hud textarea, #hud label, #game-menu",
+        "#hud-paper, #hud-hint, #hud-bag, #hud-bar, #hud-actions, #hud .action-bar, #hud .simple-pane, #hud .help-pane, #hud .hud-actions, #hud button, #hud select, #hud input, #hud textarea, #hud label, #game-menu, #touch-controls",
     ));
 }
 
@@ -211,7 +235,9 @@ export function initInput(canvas) {
             rmbTravel = 0;
         }
         syncLooking();
-        if (input.looking) {
+        if (event.pointerType === "touch") {
+            touchPoints.set(event.pointerId, { x: event.clientX, y: event.clientY });
+        } else if (input.looking) {
             canvas.style.cursor = "none";
             ensurePointerLock();
         }
@@ -238,6 +264,8 @@ export function initInput(canvas) {
             input.rmbDrag = false;
             rmbTravel = 0;
         }
+        if (event.pointerType === "touch") touchPoints.delete(event.pointerId);
+        if (touchPoints.size < 2) lastPinch = 0;
         syncLooking();
         if (!input.looking) {
             canvas.style.cursor = "";
@@ -248,17 +276,21 @@ export function initInput(canvas) {
     const move = (event) => {
         if (!inputEnabled) return;
         let healed = false;
-        if (!(event.buttons & 1) && input.lmb) {
-            input.lmb = false;
-            input.lmbDrag = false;
-            lmbTravel = 0;
-            healed = true;
-        }
-        if (!(event.buttons & 2) && input.rmb) {
-            input.rmb = false;
-            input.rmbDrag = false;
-            rmbTravel = 0;
-            healed = true;
+        // A finger drag often reports buttons as 0. Clearing the press here
+        // would drop the look before the delta is applied.
+        if (event.pointerType !== "touch") {
+            if (!(event.buttons & 1) && input.lmb) {
+                input.lmb = false;
+                input.lmbDrag = false;
+                lmbTravel = 0;
+                healed = true;
+            }
+            if (!(event.buttons & 2) && input.rmb) {
+                input.rmb = false;
+                input.rmbDrag = false;
+                rmbTravel = 0;
+                healed = true;
+            }
         }
         if (healed) {
             syncLooking();
@@ -268,8 +300,24 @@ export function initInput(canvas) {
             }
         }
 
-        const dx = event.movementX || 0;
-        const dy = event.movementY || 0;
+        let dx = event.movementX || 0;
+        let dy = event.movementY || 0;
+        if (event.pointerType === "touch") {
+            const prev = touchPoints.get(event.pointerId);
+            if (!prev) return;
+            dx = event.clientX - prev.x;
+            dy = event.clientY - prev.y;
+            prev.x = event.clientX;
+            prev.y = event.clientY;
+            if (touchPoints.size >= 2) {
+                const pts = [...touchPoints.values()];
+                const dist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+                if (lastPinch) input.zoomDelta += (dist - lastPinch) * 0.004;
+                lastPinch = dist;
+                return;
+            }
+            lastPinch = 0;
+        }
         if (dropWarpMove) {
             dropWarpMove = false;
             return;
@@ -390,6 +438,9 @@ export function initInput(canvas) {
             if (event.code === "KeyU") {
                 input.unequipHelm = true;
             }
+            if (event.code === "KeyT") {
+                input.attackPressed = true;
+            }
         }
         const n = SPELL_KEYS[event.code];
         if (n) {
@@ -466,6 +517,11 @@ export function pollInput() {
     if (input.autorun && forward >= 0) {
         forward = Math.max(forward, 1);
     }
+    if (touchMove.active) {
+        forward += touchMove.forward;
+        strafe += touchMove.strafe;
+    }
+    input.faceCamera = touchMove.active;
 
     const len = Math.sqrt(forward * forward + strafe * strafe);
     if (len > 1) {
@@ -477,7 +533,7 @@ export function pollInput() {
     input.turn = turn;
     input.strafe = strafe;
     input.walk = !!(keys.ShiftLeft || keys.ShiftRight);
-    input.jump = !!keys.Space;
+    input.jump = !!(keys.Space || touchJump);
     input.castHold = !!(keys.Digit2 || keys.Numpad2 || input.spellHeld2);
 }
 

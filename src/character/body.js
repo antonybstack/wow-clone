@@ -4,6 +4,8 @@
  * Core playground #92Y727#463 beginAnimation → Lite playAnimation on groups.
  */
 import {
+    AnimationGroupMaskMode,
+    createAnimationGroupMask,
     getContainerMeshes,
     loadGltf,
     onSceneDispose,
@@ -71,6 +73,22 @@ const LAND_TIMEOUT_MS = 450;
 // rounding to exactly 1 in its Float32 accumulators. A genuine fractional
 // weight is NOT safe: this version does not normalize translation/scale sums.
 const MASKED_CAST_WEIGHT = 1 - Number.EPSILON;
+// PyreBurst_Upper's chop arrives at 1.1s. Auto attack plays that weapon arm
+// faster, and masked, so the swing is a one-hand cut rather than the nova slam.
+const MELEE_CLIP = "PyreBurst_Upper";
+const MELEE_RATE = 2.2;
+const MELEE_RELEASE = 1.1 / MELEE_RATE;
+const MELEE_END = 1.9 / MELEE_RATE;
+const MELEE_FADE = 0.16;
+const MELEE_BONES = [
+    "mixamorig:Spine",
+    "mixamorig:Spine1",
+    "mixamorig:Spine2",
+    "mixamorig:RightShoulder",
+    "mixamorig:RightArm",
+    "mixamorig:RightForeArm",
+    "mixamorig:RightHand",
+];
 
 function meshList(scene) {
     return scene.meshes ?? [];
@@ -258,10 +276,41 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
     let activeCastShot = null, activeCastLower = null, activeCastProfile = def.castMotion;
     let castCancelTime = null;
     let hitUntil = 0;
+    let meleeElapsed = 0;
+    let meleeClip = null;
+    let swingMask = null;
+    let swingVisual = null;
+    const easeMelee = (value) => {
+        const x = Math.max(0, Math.min(1, value));
+        return x * x * (3 - 2 * x);
+    };
+    const endMelee = () => {
+        const clip = meleeClip;
+        state.melee = false;
+        meleeElapsed = 0;
+        meleeClip = null;
+        if (!clip) return;
+        clip.speedRatio = 1;
+        clip.mask = undefined;
+        halt(clip);
+    };
+    const ensureSwingMask = () => {
+        if (swingVisual !== visual) {
+            swingMask = null;
+            swingVisual = visual;
+        }
+        if (swingMask || !visual?.skeleton) return swingMask;
+        const have = new Set((visual.skeleton.bones ?? []).map((bone) => bone.name));
+        const names = MELEE_BONES.filter((name) => have.has(name));
+        if (names.length < 4) return null;
+        swingMask = createAnimationGroupMask(names, AnimationGroupMaskMode.Include);
+        return swingMask;
+    };
     const state = {
         phase: "loco",
         jump: "",
         castingShoot: false,
+        melee: false,
         channeling: false,
         channelPhase: "",
         channelBlocked: false,
@@ -333,6 +382,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
         const { jumpStart, jumpLoop, spellClips } = visual;
         setLocoOverlay(false);
         haltList(spellClips);
+        endMelee();
         state.castingShoot = false;
         state.channeling = false;
         state.channelPhase = "";
@@ -401,6 +451,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
 
     const beginShoot = () => {
         finishPoseTransition();
+        endMelee();
         const { jumpClips, spellLoop, spellEnter, spellExit, spellMask, additiveCast } = visual;
         const selected = visual.castMotions?.[input.castSpell];
         input.castSpell = null;
@@ -619,6 +670,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
      */
     const swapSource = async (url) => {
         if (disposed) throw new Error("Body disposed");
+        endMelee();
         const nextContainer = await loadGltf(engine, url);
         const candidate = assembleBodyVisual({
             engine, scene, player, capsuleHeight,
@@ -728,6 +780,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
                 } else {
                     setLocoOverlay(false);
                     haltList(visual.spellClips);
+                    endMelee();
                     state.castingShoot = false;
                     state.channeling = false;
                     state.channelPhase = "";
@@ -816,6 +869,12 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
                 }
             } else if (state.channeling) {
                 endChannel();
+            } else if (state.melee && meleeClip) {
+                meleeElapsed += h;
+                meleeClip.speedRatio = MELEE_RATE;
+                const weight = easeMelee(meleeElapsed / 0.07) * easeMelee((MELEE_END - meleeElapsed) / MELEE_FADE);
+                setAnimationWeight(meleeClip, weight);
+                if (meleeElapsed >= MELEE_END) endMelee();
             } else if (spellExit && spellExit.isPlaying && !oneshotDone(spellExit)) {
                 // The exit keeps the same upper/lower-body split as the hold.
             } else if (state.channelPhase === "exit") {
@@ -823,6 +882,8 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
                 state.channelPhase = "";
                 setLocoOverlay(false);
             }
+        } else if (state.melee) {
+            endMelee();
         }
 
         updatePoseTransition(h);
@@ -1057,6 +1118,22 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             evaluateHandAnimation(visual, 0);
         },
         cancelCast() { if (def.castMotion && state.castingShoot) castCancelTime = .16; },
+        playMelee() {
+            if (state.phase === "air" || state.castingShoot || state.channeling) return false;
+            const clip = visual?.groups?.find((group) => group.name === MELEE_CLIP);
+            const mask = ensureSwingMask();
+            if (!clip || !mask) return false;
+            endMelee();
+            meleeClip = clip;
+            clip.mask = mask;
+            clip.currentTime = 0;
+            playOneshot(clip);
+            clip.speedRatio = MELEE_RATE;
+            meleeElapsed = 0;
+            state.melee = true;
+            return true;
+        },
+        cancelMelee() { endMelee(); },
         playHit() {
             const clip = visual?.hitChest;
             if (!clip) return false;
@@ -1078,6 +1155,10 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             phase: state.phase,
             jump: state.jump,
             castingShoot: state.castingShoot,
+            melee: state.melee,
+            meleeElapsed,
+            meleeRelease: MELEE_RELEASE,
+            holdWeapon: !!((state.castingShoot && activeCastProfile?.holdWeapon) || state.melee),
             castElapsed,
             castReleaseTime: activeCastProfile?.releaseTime ?? 0,
             castLegWeight,
@@ -1107,6 +1188,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             }
             const extras = carry ? [carry] : [];
             if (hitUntil > 0 && hitChest) extras.push(hitChest.name);
+            if (state.melee) extras.push("Auto attack");
             if (state.castingShoot) {
                 extras.push((activeCastShot?.isPlaying ? activeCastShot : spellShoot?.isPlaying ? spellShoot : spellEnter)?.name || "Spell_Simple_Shoot");
             } else if (state.channeling) {

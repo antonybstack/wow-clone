@@ -123,7 +123,11 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
         if(kind==='back') camera.alpha=-Math.PI/2-facing;
         if(kind==='side') camera.alpha=-facing;
         if(kind==='face'){focusHeight=1.56*scale;camera.radius=1.6*scale;camera.beta=1.46;}
-        else if(kind==='full'){const main=equipment.getState().mainHand;const tall=main==='graveweaverStaff'||main==='graveweaverGreatstaff';focusHeight=(tall?.93:.78)*scale;camera.radius=(tall?5.35:4.8)*scale;camera.beta=1.36;}
+        else if(kind==='full'){
+            // One frame for every outfit. Pulling back for the staff made
+            // Graveweaver and Warden look like a shorter body.
+            focusHeight=.78*scale;camera.radius=4.8*scale;camera.beta=1.36;
+        }
     };
     const close = () => {
         if(!open)return;

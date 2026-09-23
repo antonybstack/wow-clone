@@ -1,143 +1,143 @@
 {
-    "schema": 1,
-    "fitId": "ashen-orc",
-    "sourceSha256": "a21a941f1ec95584b3f39fd87cb8a66ffdb9c38feb6e220512b37df5ad13513c",
-    "profileId": "orc-sculpt-v1",
-    "garments": true,
-    "items": {
-        "body": {
-            "url": "/ashen-reach/equipment-orc/body.glb",
-            "bytes": 6487480,
-            "sha256": "a21a941f1ec95584b3f39fd87cb8a66ffdb9c38feb6e220512b37df5ad13513c",
-            "meshes": [
-                "BodyExposed",
-                "BodyUnderTunic",
-                "BodyUnderBoots",
-                "BodyUnderLegs",
-                "BodyWaist",
-                "BodyHands",
-                "OrcV1Hair",
-                "OrcV1Brows",
-                "OrcV1Eyes",
-                "OrcV1Shorts"
-            ]
-        },
-        "graveweaverHood": {
-            "url": "/ashen-reach/equipment-orc/graveweaverHood.glb",
-            "bytes": 414136,
-            "sha256": "e07841563d560e1f766e4cf52689574df6ed8b5a6862a98d2a1abcc56bb24e35",
-            "meshes": [
-                "GraveweaverHood"
-            ],
-            "fit": {
-                "body": "ashen-orc",
-                "rig": "source-65",
-                "bind": 1,
-                "shape": 1
-            }
-        },
-        "graveweaverTop": {
-            "url": "/ashen-reach/equipment-orc/graveweaverTop.glb",
-            "bytes": 329576,
-            "sha256": "8b044f691641ba7c197db148f82bf1315dabe287f16ae8cd7e2b28d83bfa7ea9",
-            "meshes": [
-                "GraveweaverTop",
-                "GraveweaverPendant"
-            ],
-            "fit": {
-                "body": "ashen-orc",
-                "rig": "source-65",
-                "bind": 1,
-                "shape": 1
-            }
-        },
-        "graveweaverSkirt": {
-            "url": "/ashen-reach/equipment-orc/graveweaverSkirt.glb",
-            "bytes": 519004,
-            "sha256": "d0eb5d0a032558c1d95a2758f5d0573eea8f8615136424111cfeb9db4a9abef2",
-            "meshes": [
-                "GraveweaverSkirt",
-                "WayfarerTrousers",
-                "WayfarerTrousersCuffs"
-            ],
-            "fit": {
-                "body": "ashen-orc",
-                "rig": "source-65",
-                "bind": 1,
-                "shape": 1
-            }
-        },
-        "graveweaverGloves": {
-            "url": "/ashen-reach/equipment-orc/graveweaverGloves.glb",
-            "bytes": 228812,
-            "sha256": "69c6e081383e6868c35a8a8954261166cb0ba431e39195c1b6512d5f0c9c508d",
-            "meshes": [
-                "GraveweaverGloves"
-            ],
-            "fit": {
-                "body": "ashen-orc",
-                "rig": "source-65",
-                "bind": 1,
-                "shape": 1
-            }
-        },
-        "wayfarerTunic": {
-            "url": "/ashen-reach/equipment-orc/wayfarerTunic.glb",
-            "bytes": 342792,
-            "sha256": "291c8ccdd6891c21aeb74342bc72ad0110ef2a658f22f9b10ba2099d59bebc1b",
-            "meshes": [
-                "WayfarerTunic"
-            ],
-            "fit": {
-                "body": "ashen-orc",
-                "rig": "source-65",
-                "bind": 1,
-                "shape": 1
-            }
-        },
-        "pilgrimTunic": {
-            "url": "/ashen-reach/equipment-orc/pilgrimTunic.glb",
-            "bytes": 695392,
-            "sha256": "91fc9c23dddcd1b54efb8b3356cb6f93fcbfba97bc90241b176f18ef0e406270",
-            "meshes": [
-                "PilgrimTunic"
-            ],
-            "fit": {
-                "body": "ashen-orc",
-                "rig": "source-65",
-                "bind": 1,
-                "shape": 1
-            }
-        },
-        "wayfarerTrousers": {
-            "url": "/ashen-reach/equipment-orc/wayfarerTrousers.glb",
-            "bytes": 209732,
-            "sha256": "de739d3ac403b757b94b13f98213ffb2cce103a1a1cb49f6142aca620ad72df5",
-            "meshes": [
-                "WayfarerTrousers",
-                "WayfarerTrousersCuffs"
-            ],
-            "fit": {
-                "body": "ashen-orc",
-                "rig": "source-65",
-                "bind": 1,
-                "shape": 1
-            }
-        },
-        "wayfarerBoots": {
-            "url": "/ashen-reach/equipment-orc/wayfarerBoots.glb",
-            "bytes": 338720,
-            "sha256": "800fc2b7cb43a30a4b103dcf607ddae68692b1bd9ee8f64325199fd043583be6",
-            "meshes": [
-                "WayfarerBoots"
-            ],
-            "fit": {
-                "body": "ashen-orc",
-                "rig": "source-65",
-                "bind": 1,
-                "shape": 1
-            }
-        }
+  "schema": 1,
+  "fitId": "ashen-orc",
+  "sourceSha256": "6d1885570eb3a3535457702293ab38623cd515a75b52fd6e6ef18d7542b35321",
+  "profileId": "orc-sculpt-v1",
+  "garments": true,
+  "items": {
+    "body": {
+      "url": "/ashen-reach/equipment-orc/body.glb",
+      "bytes": 8634492,
+      "sha256": "0020d7f07eaefa5f115a7dad8a355da5ff28eb97efba121c9fa40ad4742ae93f",
+      "meshes": [
+        "BodyExposed",
+        "BodyUnderTunic",
+        "BodyUnderBoots",
+        "BodyUnderLegs",
+        "BodyWaist",
+        "BodyHands",
+        "OrcV1Hair",
+        "OrcV1Brows",
+        "OrcV1Eyes",
+        "OrcV1Shorts"
+      ]
     },
-    "bindSha256": "5bdfea1bf692a085205a24fe496c876874fba82aa62ee92597128fcf88ab2079"
+    "graveweaverHood": {
+      "url": "/ashen-reach/equipment-orc/graveweaverHood.glb",
+      "bytes": 414136,
+      "sha256": "e07841563d560e1f766e4cf52689574df6ed8b5a6862a98d2a1abcc56bb24e35",
+      "meshes": [
+        "GraveweaverHood"
+      ],
+      "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "graveweaverTop": {
+      "url": "/ashen-reach/equipment-orc/graveweaverTop.glb",
+      "bytes": 329576,
+      "sha256": "8b044f691641ba7c197db148f82bf1315dabe287f16ae8cd7e2b28d83bfa7ea9",
+      "meshes": [
+        "GraveweaverTop",
+        "GraveweaverPendant"
+      ],
+      "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "graveweaverSkirt": {
+      "url": "/ashen-reach/equipment-orc/graveweaverSkirt.glb",
+      "bytes": 519004,
+      "sha256": "d0eb5d0a032558c1d95a2758f5d0573eea8f8615136424111cfeb9db4a9abef2",
+      "meshes": [
+        "GraveweaverSkirt",
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs"
+      ],
+      "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "graveweaverGloves": {
+      "url": "/ashen-reach/equipment-orc/graveweaverGloves.glb",
+      "bytes": 228812,
+      "sha256": "69c6e081383e6868c35a8a8954261166cb0ba431e39195c1b6512d5f0c9c508d",
+      "meshes": [
+        "GraveweaverGloves"
+      ],
+      "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "wayfarerTunic": {
+      "url": "/ashen-reach/equipment-orc/wayfarerTunic.glb",
+      "bytes": 342792,
+      "sha256": "291c8ccdd6891c21aeb74342bc72ad0110ef2a658f22f9b10ba2099d59bebc1b",
+      "meshes": [
+        "WayfarerTunic"
+      ],
+      "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "pilgrimTunic": {
+      "url": "/ashen-reach/equipment-orc/pilgrimTunic.glb",
+      "bytes": 695392,
+      "sha256": "91fc9c23dddcd1b54efb8b3356cb6f93fcbfba97bc90241b176f18ef0e406270",
+      "meshes": [
+        "PilgrimTunic"
+      ],
+      "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "wayfarerTrousers": {
+      "url": "/ashen-reach/equipment-orc/wayfarerTrousers.glb",
+      "bytes": 209732,
+      "sha256": "de739d3ac403b757b94b13f98213ffb2cce103a1a1cb49f6142aca620ad72df5",
+      "meshes": [
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs"
+      ],
+      "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "wayfarerBoots": {
+      "url": "/ashen-reach/equipment-orc/wayfarerBoots.glb",
+      "bytes": 338720,
+      "sha256": "800fc2b7cb43a30a4b103dcf607ddae68692b1bd9ee8f64325199fd043583be6",
+      "meshes": [
+        "WayfarerBoots"
+      ],
+      "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    }
+  },
+  "bindSha256": "5bdfea1bf692a085205a24fe496c876874fba82aa62ee92597128fcf88ab2079"
 }

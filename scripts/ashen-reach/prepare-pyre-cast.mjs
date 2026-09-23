@@ -1,7 +1,9 @@
-/** Offline two-handed overhead slam for Pyre Burst.
- * Source: Quaternius CC0 Sword_Attack (cocked chop) + Idle_Loop, with the
- * striking arm mirrored onto the left so both hands come down together.
- * Open fingers from bind. Split upper/lower for native additive layering.
+/** Offline overhead slam for Pyre Burst.
+ * Source: Quaternius CC0 Sword_Attack (cocked chop) + Idle_Loop.
+ * The weapon hand keeps the chop. The off hand follows at a shorter reach
+ * with an idle wrist, so it does not mirror into a claw. Fingers stay at
+ * rest and the live grip owns them. The hit eases back to idle over half a
+ * second. Split upper/lower for native additive layering.
  */
 import {NodeIO} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
@@ -12,8 +14,10 @@ import {createHash} from 'node:crypto';
 import {pathToFileURL} from 'node:url';
 import {sample, smooth, lower} from './prepare-fire-cast.mjs';
 
-const DURATION = 1.55;
+const DURATION = 1.9;
 const RELEASE = 1.1;
+const HOLD_UNTIL = 1.38;
+const RECOVER = 0.52;
 const NAMES = ['PyreBurst_Upper', 'PyreBurst_Lower'];
 const BODY = 'public/ashen-reach/wanderer.glb';
 const TARGETS = [
@@ -26,16 +30,17 @@ const TARGETS = [
 ];
 
 function sourceTime(t) {
-  // Raise and hold, then a fast chop that arrives just before the 1.1s release
-  // and stays down while the nova is on screen.
+  // Raise, then a fast chop that arrives on the 1.1s release and holds.
+  // Recovery is the layer weight returning to idle, not a jump to the
+  // end of the source swing.
   const keys = [
-    [0, 0],
-    [0.18, 0.06],
-    [0.72, 0.48],
-    [0.92, 0.58],
-    [1.08, 0.74],
-    [1.42, 0.74],
-    [DURATION, 1.533],
+    [0, 0.04],
+    [0.28, 0.2],
+    [0.72, 0.32],
+    [0.98, 0.44],
+    [1.1, 0.58],
+    [HOLD_UNTIL, 0.62],
+    [DURATION, 0.62],
   ];
   for (let i = 1; i < keys.length; i++)
     if (t <= keys[i][0]) {
@@ -61,7 +66,7 @@ async function ioWithMeshopt() {
     });
 }
 
-async function copyNamedClips(sourcePath, targetPath, names) {
+export async function copyNamedClips(sourcePath, targetPath, names) {
   const io = await ioWithMeshopt();
   const source = await io.read(sourcePath);
   const target = await io.read(targetPath);
@@ -133,7 +138,7 @@ export async function preparePyreCast() {
   for (const a of root.listAnimations().filter((a) => NAMES.includes(a.getName()))) a.dispose();
   const upper = d.createAnimation('PyreBurst_Upper');
   const legs = d.createAnimation('PyreBurst_Lower');
-  const times = Float32Array.from({length: 94}, (_, i) => i / 60);
+  const times = Float32Array.from({length: Math.round(DURATION * 60) + 1}, (_, i) => i / 60);
   const buffer = root.listBuffers()[0];
   const input = d.createAccessor('Pyre cast time').setType('SCALAR').setArray(times).setBuffer(buffer);
   for (const c of sword.listChannels()) {
@@ -144,19 +149,25 @@ export async function preparePyreCast() {
     const n = rest.length;
     const values = new Float32Array(times.length * n);
     const finger = /mixamorig:(Left|Right)Hand(Thumb|Index|Middle|Ring|Pinky)/.test(name);
-    const leftLimb = /mixamorig:Left(Shoulder|Arm|ForeArm|Hand)$/.test(name);
+    const leftArm = /mixamorig:Left(Shoulder|Arm|ForeArm)$/.test(name);
+    const leftHand = name === 'mixamorig:LeftHand';
     const crunch = pickBy.get(name + ':' + path);
-    const sourceChannel = leftLimb
+    const mirrored = leftArm || leftHand;
+    const sourceChannel = mirrored
       ? swordBy.get(name.replace('Left', 'Right') + ':' + path) || c
       : c;
+    // How much of the source swing this joint is allowed to take.
+    // The off-hand wrist stays near idle; a full mirror is the claw.
+    const reach = finger ? 0 : leftHand ? 0.2 : leftArm ? 0.92 : lower(name) ? 0.34 : 1;
     for (let i = 0; i < times.length; i++) {
       const t = times[i];
-      const weight = smooth(t / 0.14) * (1 - smooth((t - 1.42) / 0.13));
+      const weight = smooth(t / 0.18) * (1 - smooth((t - HOLD_UNTIL) / RECOVER));
       let pose = sample(sourceChannel, sourceTime(t));
-      if (leftLimb && path === 'rotation') pose = mirrorQuat(pose);
-      if (finger && path === 'rotation') pose = Array.from(node.getRotation());
+      if (mirrored && path === 'rotation') pose = mirrorQuat(pose);
+      if (path === 'rotation' && reach < 1) pose = Array.from(quat.slerp(quat.create(), rest, pose, reach));
+      else if (path !== 'rotation' && reach < 1) pose = rest.map((v, j) => v + (pose[j] - v) * reach);
       if (crunch && (/Spine/.test(name) || lower(name))) {
-        const crush = smooth((t - 0.96) / 0.1) * (1 - smooth((t - 1.3) / 0.08)) * 0.6;
+        const crush = smooth((t - 0.96) / 0.12) * (1 - smooth((t - 1.22) / 0.18)) * 0.28;
         const bent = sample(crunch, 0.21);
         pose =
           n === 4
@@ -194,7 +205,7 @@ export async function preparePyreCast() {
     license: 'CC0-1.0',
     sourceClips: ['Sword_Attack', 'Idle_Loop', 'PickUp_Table'],
     changes:
-      'Two-handed overhead chop: arms stay cocked until 0.88s, the downward strike arrives at the 1.1s release, and that hit pose is held through the nova.',
+      'Sword-hand overhead chop with a shorter off-hand brace. The strike arrives at the 1.1s release, holds through the nova, then eases back to idle. Fingers stay at rest so the live grip can keep the weapon.',
     duration: DURATION,
     releaseTime: RELEASE,
     hand: 'mainHand',

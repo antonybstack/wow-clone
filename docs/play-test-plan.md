@@ -33,7 +33,7 @@ For human, orc, and undead: `switchRace` resolves, Idle_Loop is playing, and eac
 | pilgrim | auto | auto | auto |
 | graveweaver | auto | auto | auto |
 | warden (greatstaff, both hands) | auto | auto | auto |
-| revenant (hood + vestment) | auto | auto | auto |
+| revenant (hood, vestment, skirt) | auto | auto | auto |
 
 After each apply, the selected slots match the preset and no extra page error appears. Undead must not spawn a mesh named like a Revenant plate or strap. Those were the wooden board and the wooden cross.
 
@@ -46,7 +46,7 @@ Visual, from the saved shots: hood does not cover the undead face, hood is not a
 | Idle_Loop playing after each race swap | yes |
 | Holding W moves the player and a walk or jog clip is playing | yes |
 | Fire Blast, Lava Ball, and Pyre Burst each have an upper and lower clip on the body | yes |
-| Pyre Burst profile keeps `followThrough` and `fadeOut: 0` so the slam is still weighted at release | source |
+| Pyre Burst profile keeps `followThrough` and `fadeOut: 0` so the slam stays weighted through the nova, then the clip eases back to idle. `holdWeapon` keeps the sword in the hand | source |
 
 ## Spells
 

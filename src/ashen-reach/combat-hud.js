@@ -11,7 +11,7 @@ export function createCombatHud(canvas) {
     s.key === 3
       ? `${s.name} — ${s.damage} fire damage · ${s.radius}m around you · ${s.castTime}s cast · ${s.cooldown}s cooldown`
       : `${s.name} — ${s.damage} damage · ${s.range}m · ${s.cooldown}s cooldown${s.castTime ? " · 1.5s cast, movement interrupts" : ""}`;
-  root.innerHTML = `<button class="sound-toggle" type="button" aria-label="Unmute sound" aria-pressed="true">Muted</button><div class="target-plate"><span>Training Dummy</span><div class="hp-track"><div class="hp-fill"></div></div><small></small></div><div class="combat-error" role="status"></div><div class="damage-number"></div><div class="cast-progress" hidden><span>Lava Ball</span><div role="progressbar" aria-label="Lava Ball cast" aria-valuemin="0" aria-valuemax="100"><i></i></div><small></small></div><div class="spell-bar">${[FIRE_BLAST, LAVA_BALL, GRAVE_PULSE].map((s) => `<div class="spell-slot"><button type="button" data-spell="${s.key}" title="${title(s)}"><kbd>${s.key}</kbd><img src="/ashen-reach/fire-blast/${icon(s)}" alt=""><strong></strong></button><span>${s.name}</span></div>`).join("")}</div><div class="level-up" hidden><strong>LEVEL UP</strong><small></small></div>`;
+  root.innerHTML = `<button class="sound-toggle" type="button" aria-label="Unmute sound" aria-pressed="true">Muted</button><div class="target-plate"><span>Training Dummy</span><div class="hp-track"><div class="hp-fill"></div></div><small></small></div><div class="combat-error" role="status"></div><div class="damage-number"></div><div class="cast-progress" hidden><span>Lava Ball</span><div role="progressbar" aria-label="Lava Ball cast" aria-valuemin="0" aria-valuemax="100"><i></i></div><small></small></div><div class="spell-bar">${[FIRE_BLAST, LAVA_BALL, GRAVE_PULSE].map((s) => `<div class="spell-slot"><button type="button" data-spell="${s.key}" title="${title(s)}"><kbd>${s.key}</kbd><img src="/ashen-reach/fire-blast/${icon(s)}" alt=""><strong></strong></button><span>${s.name}</span></div>`).join("")}<div class="spell-slot attack-slot"><button type="button" data-attack aria-pressed="false" title="Auto attack">Attack<kbd>T</kbd><strong></strong></button><span>Attack</span></div></div><div class="level-up" hidden><strong>LEVEL UP</strong><small></small></div>`;
   const hudStyle = document.createElement("style");
   hudStyle.textContent =
     ".level-up{position:absolute;left:0;right:0;top:16%;text-align:center;z-index:11;pointer-events:none;color:#ffe1a8;text-shadow:0 2px 12px #000}" +
@@ -118,7 +118,7 @@ export function createCombatHud(canvas) {
         levelUp.hidden = true;
       }
     },
-    update(dt, target, spell, camera, lava, pending, gcd = 0, pulse) {
+    update(dt, target, spell, camera, lava, pending, gcd = 0, pulse, attack) {
       messageTime = Math.max(0, messageTime - dt);
       damageTime = Math.max(0, damageTime - dt);
       feedback.style.opacity = messageTime > 0 ? "1" : "0";
@@ -167,6 +167,13 @@ export function createCombatHud(canvas) {
             ? `${config.name} ready in ${s.cooldown.toFixed(1)} seconds`
             : `Cast ${config.name}`,
         );
+      }
+      const ratio = attack?.enabled && attack.speed ? Math.max(0, Math.min(1, attack.timer / attack.speed)) : 0;
+      for (const button of document.querySelectorAll("[data-attack]")) {
+        button.classList.toggle("attacking", !!attack?.enabled);
+        button.style.setProperty("--cooldown", attack?.enabled ? String(ratio) : "0");
+        button.setAttribute("aria-pressed", attack?.enabled ? "true" : "false");
+        if (attack?.name) button.title = `${attack.name} · ${attack.damage} damage · ${attack.speed.toFixed(2)}s · T toggles`;
       }
       castBar.hidden = !pending;
       if (pending) {

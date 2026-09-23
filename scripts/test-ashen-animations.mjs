@@ -65,12 +65,12 @@ test('fire cast layers partition the authored joints, start/end at their additiv
   for(const [target,s] of tracks(current,a)){
    assert.ok(!channels.has(target),'duplicate '+target);channels.add(target);assert.ok(target.startsWith('mixamorig:'));
    const v=values(current,s.output),times=values(current,s.input),n=target.endsWith(':rotation')?4:3;
-   assert.ok(Math.abs(times.at(-1)-1.1)<1e-5);assert.ok([...v].every(Number.isFinite));
+   assert.ok(Math.abs(times.at(-1)-1.4)<1e-5);assert.ok([...v].every(Number.isFinite));
    for(let j=0;j<n;j++)assert.ok(Math.abs(v[j]-v[v.length-n+j])<1e-5,target+' recovery');
   }
  }
  assert.equal(channels.size,53);
- const provenance=JSON.parse(fs.readFileSync('public/ashen-reach/fire-cast-provenance.json'));assert.equal(provenance.releaseTime,.28);assert.equal(provenance.hand,'mainHand');
+ const provenance=JSON.parse(fs.readFileSync('public/ashen-reach/fire-cast-provenance.json'));assert.equal(provenance.releaseTime,.55);assert.equal(provenance.hand,'mainHand');
 });
 
 test('lava layers preserve the additive reference, complete joint partition and authored release timing',()=>{
@@ -92,7 +92,7 @@ test('pyre layers preserve the additive reference, two-handed partition and slam
   const a=current.json.animations.find(a=>a.name===name);assert.ok(a,name);
   for(const [target,s] of tracks(current,a)){
    assert.ok(!seen.has(target));seen.add(target);const v=values(current,s.output),t=values(current,s.input),n=target.endsWith(':rotation')?4:3;
-   assert.ok([...v].every(Number.isFinite));assert.ok(Math.abs(t.at(-1)-1.55)<1e-5);
+   assert.ok([...v].every(Number.isFinite));assert.ok(Math.abs(t.at(-1)-1.9)<1e-5);
    for(let j=0;j<n;j++)assert.ok(Math.abs(v[j]-v[v.length-n+j])<1e-5,target);
   }
  }

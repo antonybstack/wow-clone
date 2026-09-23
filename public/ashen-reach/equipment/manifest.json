@@ -5,8 +5,8 @@
   "items": {
     "body": {
       "url": "/ashen-reach/equipment/body.glb",
-      "bytes": 3063384,
-      "sha256": "fb9da903aa761697adc9975d444bac47382b26bbf94b0b88f183066fc9573d83",
+      "bytes": 5777464,
+      "sha256": "e813a40bbb00a9a8499cbabf3a042dd781ef806e69d8c2378756330428dae92d",
       "meshes": [
         "BodyExposed",
         "BodyUnderTunic",
@@ -14,7 +14,8 @@
         "BodyUnderLegs",
         "BodyWaist",
         "BodyHands",
-        "HumanHair"
+        "HumanHair",
+        "HumanEyes"
       ]
     },
     "graveweaverHood": {

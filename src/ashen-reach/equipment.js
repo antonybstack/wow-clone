@@ -1,4 +1,4 @@
-import {installEquipmentGrips} from './equipment-grips.js';
+import {installEquipmentGrips,spellStowsWeapon} from './equipment-grips.js';
 import {advancePropTransition,beginPropTransition} from './prop-transition.js';
 import {validateEquipmentCatalogue,resolveHandEquip} from './equipment-contract.js';
 import {createMageProp} from './mage-props.js';
@@ -32,7 +32,7 @@ export function createEquipment(engine,scene,body,sockets){
         else beginPropTransition(prop,from.position,from.rotation,target);
     };
     const weaponSockets=[sockets.sockets.mainHand,sockets.sockets.offHand,sockets.sockets.back];
-    let visible=true;const selected={helmet:null,torso:'wayfarerTunic',boots:'wayfarerBoots',legs:'wayfarerTrousers',gloves:null,mainHand:null,offHand:null};
+    let visible=true;const selected={helmet:null,torso:'wayfarerTunic',boots:'wayfarerBoots',legs:'wayfarerTrousers',gloves:null,mainHand:'ironSword',offHand:null};
     const apply=()=>{
         for(const prop of props)setMeshVisible(prop.root,visible&&selected[prop.item.slot]===prop.item.id);
         for(const [name,shown]of Object.entries(resolveEquipmentVisibility(selected)))for(const mesh of bindings[name])setMeshVisible(mesh,visible&&shown);
@@ -46,7 +46,7 @@ export function createEquipment(engine,scene,body,sockets){
         setVisible(value){visible=!!value;apply();},
         update(dt=0){
             if(!visible)return;
-            const preview=body.inspection?.getState(),casting=preview?['fire','lava'].includes(preview.id):body.getState().castingShoot;
+            const casting=spellStowsWeapon(body);
             if(selected.mainHand||selected.offHand){sockets.sync(weaponSockets);for(const prop of props)if(selected[prop.item.slot]===prop.item.id)setAttachment(prop,casting);}
             for(const prop of props)if(selected[prop.item.slot]===prop.item.id)advancePropTransition(prop,dt);
         },

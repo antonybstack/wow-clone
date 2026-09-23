@@ -8,6 +8,7 @@ import {height} from './geometry.js';
 import {FOG} from './materials.js';
 import {CameraRig} from '../camera-rig.js';
 import {initInput,input} from '../input.js';
+import {installTouchControls} from './touch-controls.js';
 import {setupPlayer,plantSpawnOnTerrain,resolveCapsule} from '../player.js';
 import {attachBody} from '../character/body.js';
 import {resolvePlayableBody} from '../character/runtime/playable-body.js';
@@ -65,7 +66,7 @@ async function main(){
  const rig=new CameraRig(camera);rig.yaw=0;rig.pitch=.04;rig.distance=rig.distanceTarget=3.5;
  const reference=createFreeCamera({x:0,y:height(0,-5)+1.65,z:-5},{x:.0,y:4.0,z:25});reference.fov=1.06;reference.nearPlane=.1;reference.farPlane=1200;
  scene.camera=reference;
- const world=await buildChurchyard(engine,scene);initInput(canvas);
+ const world=await buildChurchyard(engine,scene);initInput(canvas);installTouchControls();
  loadLine('Setting the stones.');
  enableBoneControl();
  const noEnemies=params.has('noEnemies');
@@ -100,8 +101,8 @@ async function main(){
   // Left-foot low-contact phases measured on this fitted GLB by audit-gaits.mjs.
   gaitContacts:{Walk_Loop:.233333,Sprint_Loop:.175,Jog_Bwd_Loop:.333333,Jog_Left_Loop:.208333,Jog_Right_Loop:.983333},
   landing:{duration:.42,standingWeight:.4,movingWeight:.23},
-  castMotion:{lowerClip:'FireBlast_Lower',releaseTime:.28,hand:'mainHand'},
-  castMotions:{lava:{upperClip:'LavaBall_Upper',lowerClip:'LavaBall_Lower',releaseTime:1.5,hand:'mainHand'},pulse:{upperClip:'PyreBurst_Upper',lowerClip:'PyreBurst_Lower',releaseTime:1.1,followThrough:0.32,fadeOut:0,hand:'mainHand'}},
+  castMotion:{lowerClip:'FireBlast_Lower',releaseTime:.55,followThrough:.85,fadeOut:0,hand:'mainHand'},
+  castMotions:{lava:{upperClip:'LavaBall_Upper',lowerClip:'LavaBall_Lower',releaseTime:1.5,followThrough:0.8,fadeOut:0,hand:'mainHand'},pulse:{upperClip:'PyreBurst_Upper',lowerClip:'PyreBurst_Lower',releaseTime:1.1,followThrough:0.8,fadeOut:0,holdWeapon:true,hand:'mainHand'}},
   clips:{...sourceBody.clips,cast:'FireBlast_Upper',walkBack:'Jog_Bwd_Loop',strafeL:'Jog_Left_Loop',strafeR:'Jog_Right_Loop',turnL:'Turn90_L',turnR:'Turn90_R',hit:'Hit_Chest'}};
  capsule=resolveCapsule(playable.capsule);
  // The world is a north-running corridor (terrain spans x∈[-90,90], z∈[-95,145]), not a disc, so a
@@ -204,7 +205,7 @@ async function main(){
     const bootLoadout=pack.garments===false
      ?{...EMPTY_LOADOUT,mainHand:factoryHand(loadout.mainHand),offHand:factoryHand(loadout.offHand)}
      : race==='undead'
-      ?{...EMPTY_LOADOUT,helmet:'graveweaverHood',torso:'graveweaverTop',mainHand:factoryHand(loadout.mainHand),offHand:factoryHand(loadout.offHand)}
+      ?{...EMPTY_LOADOUT,helmet:'graveweaverHood',torso:'graveweaverTop',legs:'graveweaverSkirt',mainHand:factoryHand(loadout.mainHand),offHand:factoryHand(loadout.offHand)}
       :(parkedGarments||loadout);
     if(pack.garments===false)parkedGarments=loadout;
     else parkedGarments=null;
@@ -221,6 +222,7 @@ async function main(){
   },
   dispose(){impl.dispose();},
  };
+ combat.bindEquipment(() => equipment.getState());
  armory=createArmory({scene,canvas,player,body,combat,equipment,getView:()=>view,setView});
  tools=attachDevTools({params,canvas,camera,player,combat,setView});
  dressed=true;

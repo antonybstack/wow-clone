@@ -234,7 +234,7 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
         if (h <= 0) return;
         pollInput();
         rig.applyLook();
-        if (input.rmb) {
+        if (input.rmb || input.faceCamera) {
             state.facing = rig.yaw;
         } else if (input.turn) {
             const turn = input.turn * TURN_RATE * h;

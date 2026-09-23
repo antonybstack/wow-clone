@@ -14,6 +14,13 @@ import { createGravePulseVfx } from "./grave-pulse-vfx.js";
 import { createMinimap } from "./minimap.js";
 import { createProgression, PLAYER_HP_BASE } from "./progression.js";
 import { spellLineOfSight } from "./spell-visibility.js";
+import {
+  facingError,
+  meleeDistance,
+  stepAutoAttack,
+  weaponProfile,
+  yawTo,
+} from "./auto-attack.js";
 import { dev } from "./dev-tools.js";
 
 const PLAYER_HP = PLAYER_HP_BASE;
@@ -165,7 +172,11 @@ export async function createCombat(
     hitScale = 1,
     hitDirection = { x: 0, z: 1 },
     hitDummy = false,
-    gcd = 0;
+    gcd = 0,
+    meleeRecover = 0,
+    swingHit = false;
+  const auto = { enabled: false, timer: 0, queued: false, pendingHit: false };
+  let readWeapon = () => null;
   const animationLab = new URLSearchParams(location.search).has("animationLab");
   let visible = false,
     pending = null;
@@ -221,11 +232,38 @@ export async function createCombat(
       }
     }
   };
+  const connectSwing = (profile) => {
+    const target = targeting.current;
+    if (!target || target.hp <= 0 || target.hidden) return;
+    if (meleeDistance(player.body.position, target.position) > profile.range + 0.4) return;
+    const los = spellLineOfSight(player, target);
+    if (!los.clear && los.obstacle !== "Collision world unavailable") return;
+    const dealt = Math.min(target.hp, profile.damage);
+    target.hp -= dealt;
+    target.hits = (target.hits || 0) + 1;
+    hud.hit(target, dealt);
+    hud.message("");
+    markCombat();
+    if (target === dummy) {
+      hitDummy = true;
+      hitAge = 0;
+      hitScale = 0.7;
+      const t = target.position,
+        p = player.body.position,
+        length = Math.hypot(t.x - p.x, t.z - p.z) || 1;
+      hitDirection = { x: (t.x - p.x) / length, z: (t.z - p.z) / length };
+      if (dummy.hp <= 0) meleeRecover = 3;
+    }
+  };
   const die = () => {
     if (life.dead) return;
     life.dead = true;
     life.hp = 0;
     syncPlayerHp();
+    auto.enabled = false;
+    auto.queued = false;
+    auto.pendingHit = false;
+    body.cancelMelee?.();
     setInputEnabled(false);
     cancel("You have died");
     deathVeil.hidden = false;
@@ -284,7 +322,60 @@ export async function createCombat(
       canvas.focus();
     };
   }
+  for (const button of document.querySelectorAll("[data-attack]")) {
+    button.addEventListener("pointerup", (event) => {
+      input.attackPressed = true;
+      event.preventDefault();
+      canvas.focus();
+    });
+  }
+  let queuedCast = 0;
+  const beginSpell = (key) => {
+    if (gcd > 0.04) {
+      hud.message("Global cooldown");
+      return;
+    }
+    const ability = key === 2 ? lava : key === 3 ? pulse : spell,
+      target = targeting.current,
+      reason =
+        ability.validate(
+          key === 3
+            ? { position: player.body.position, grounded: player.getGrounded() && body.getState().phase !== "air", hostiles }
+            : castArgs(target),
+        ) || (dev.god ? "" : progression.refuseMana(key));
+    if (reason) {
+      ability.lastResult = reason;
+      hud.message(reason);
+      return;
+    }
+    const pose = body.getState();
+    if (pose.castingShoot) {
+      if (pose.castElapsed + 0.02 >= pose.castReleaseTime && key !== 2) queuedCast = key;
+      else hud.message("Finishing cast");
+      return;
+    }
+    if (key !== 3) {
+      const t = target.position,
+        p = player.body.position;
+      player.setFacing(Math.atan2(t.x - p.x, t.z - p.z));
+    }
+    input.castInstant = true;
+    input.castSpell = key === 2 ? "lava" : key === 3 ? "pulse" : null;
+    pending = { target, key, ability };
+    gcd = GCD;
+    player.setMoveScale?.(CAST_MOVE_SCALE);
+    ability.lastResult = "windup";
+    hud.message("");
+    if (key === 2) {
+      lavaFx.begin();
+      audio.lavaCharge();
+    } else if (key === 3) {
+      pulseFx.begin();
+      audio.lavaCharge();
+    } else fx.beginWindup();
+  };
   const cancel = (reason) => {
+    queuedCast = 0;
     if (!pending) return;
     player.setMoveScale?.(1);
     if (pending.key === 2) {
@@ -377,6 +468,43 @@ export async function createCombat(
     }
     return marks;
   }
+  const tickAuto = (dt) => {
+    if (!auto.enabled) return;
+    const profile = weaponProfile(readWeapon());
+    const target = targeting.current;
+    const alive = !!(target && target.hp > 0 && !target.hidden && target.state !== "dead");
+    const from = player.body.position;
+    const casting = !!pending || !!body.getState().castingShoot;
+    if (casting && auto.pendingHit && !swingHit) {
+      auto.queued = true;
+      auto.pendingHit = false;
+      body.cancelMelee?.();
+    }
+    const moving = Math.abs(input.forward) > 0.1 || Math.abs(input.strafe) > 0.1;
+    const los = alive ? spellLineOfSight(player, target) : { clear: true, obstacle: null };
+    const step = stepAutoAttack(auto, dt, {
+      alive,
+      dist: alive ? meleeDistance(from, target.position) : 0,
+      range: profile.range,
+      facingError: alive ? facingError(player.getFacing(), from, target.position) : 0,
+      speed: profile.speed,
+      casting,
+      grounded: player.getGrounded() && body.getState().phase !== "air",
+      canTurn: !input.rmb && !input.faceCamera && !input.turn && !input.looking && !moving,
+      blocked: alive && !los.clear && los.obstacle !== "Collision world unavailable",
+    });
+    auto.enabled = step.enabled;
+    auto.timer = step.timer;
+    auto.queued = step.queued;
+    if (step.action === "out-of-range") hud.message("Out of range");
+    else if (step.action === "blocked") hud.message("Target is blocked");
+    else if (step.action === "not-facing") hud.message("Face your target");
+    if (step.action !== "swing") return;
+    if (step.turn) player.setFacing(yawTo(from, target.position));
+    swingHit = false;
+    if (body.playMelee?.()) auto.pendingHit = true;
+    else auto.timer = 0.3;
+  };
   return {
     targeting,
     spell,
@@ -414,7 +542,11 @@ export async function createCombat(
       dummy: { hp: dummy.hp, hpMax: dummy.hpMax },
       target: targeting.current?.id || null,
       objective: objective?.snapshot() || null,
+      auto: { ...auto, weapon: readWeapon() },
     }),
+    bindEquipment(getState) {
+      readWeapon = () => getState()?.mainHand || null;
+    },
     objective,
     progress: progression.progress,
     releaseSpirit,
@@ -453,10 +585,26 @@ export async function createCombat(
       else if (offered?.message) hud.message(offered.message);
       if (life.dead) {
         input.spellPressed = 0;
+        input.attackPressed = false;
         input.tabPressed = false;
         input.tabBack = false;
         input.escape = false;
         return;
+      }
+      if (input.attackPressed) {
+        input.attackPressed = false;
+        auto.enabled = !auto.enabled;
+        auto.queued = false;
+        auto.pendingHit = false;
+        swingHit = false;
+        if (auto.enabled) {
+          auto.timer = 0.1;
+          const target = targeting.current;
+          if (!target || target.hp <= 0) hud.message("Select a target · Tab");
+        } else {
+          body.cancelMelee?.();
+          hud.message("");
+        }
       }
       if (input.escape) {
         targeting.clear();
@@ -503,62 +651,24 @@ export async function createCombat(
       const key = input.spellPressed;
       input.spellPressed = 0;
       // Unimplemented slots remain animation diagnostics only under ?animationLab.
-      if (animationLab) return;
-      input.castHold = false;
-      input.spellHeld2 = false;
-      input.castInstant = false;
-      if (key !== 1 && key !== 2 && key !== 3) return;
-      input.castInstant = false;
-      if (!visible) return;
-      if (pending) {
-        if (pending.key === key) {
-          cancel("Cast cancelled");
-          player.setMoveScale?.(1);
-          return;
+      if (!animationLab) {
+        input.castHold = false;
+        input.spellHeld2 = false;
+        input.castInstant = false;
+        if ((key === 1 || key === 2 || key === 3) && visible) {
+          if (pending) {
+            if (pending.key === key) {
+              cancel("Cast cancelled");
+              player.setMoveScale?.(1);
+            } else hud.message("Already casting");
+          } else beginSpell(key);
+        } else if (queuedCast && visible && !pending && !body.getState().castingShoot) {
+          const next = queuedCast;
+          queuedCast = 0;
+          beginSpell(next);
         }
-        hud.message("Already casting");
-        return;
       }
-      if (gcd > 0.04) {
-        hud.message("Global cooldown");
-        return;
-      }
-      const ability = key === 2 ? lava : key === 3 ? pulse : spell,
-        target = targeting.current,
-        reason =
-          ability.validate(
-            key === 3
-              ? { position: player.body.position, grounded: player.getGrounded() && body.getState().phase !== "air", hostiles }
-              : castArgs(target),
-          ) || (dev.god ? "" : progression.refuseMana(key));
-      if (reason) {
-        ability.lastResult = reason;
-        hud.message(reason);
-        return;
-      }
-      if (body.getState().castingShoot) {
-        hud.message("Finishing cast");
-        return;
-      }
-      if (key !== 3) {
-        const t = target.position,
-          p = player.body.position;
-        player.setFacing(Math.atan2(t.x - p.x, t.z - p.z));
-      }
-      input.castInstant = true;
-      input.castSpell = key === 2 ? "lava" : key === 3 ? "pulse" : null;
-      pending = { target, key, ability };
-      gcd = GCD;
-      player.setMoveScale?.(CAST_MOVE_SCALE);
-      ability.lastResult = "windup";
-      hud.message("");
-      if (key === 2) {
-        lavaFx.begin();
-        audio.lavaCharge();
-      } else if (key === 3) {
-        pulseFx.begin();
-        audio.lavaCharge();
-      } else fx.beginWindup();
+      if (visible && !animationLab) tickAuto(dt);
     },
     afterAnimation(dt) {
       if (pending) {
@@ -640,6 +750,18 @@ export async function createCombat(
         dummy.root.rotation.x = tilt * hitDirection.z;
         dummy.root.rotation.z = -tilt * hitDirection.x;
       }
+      const swung = body.getState();
+      if (swung.melee && auto.pendingHit && !swingHit && swung.meleeElapsed >= swung.meleeRelease) {
+        swingHit = true;
+        auto.pendingHit = false;
+        connectSwing(weaponProfile(readWeapon()));
+      } else if (!swung.melee) {
+        swingHit = false;
+      }
+      if (meleeRecover > 0) {
+        meleeRecover = Math.max(0, meleeRecover - dt);
+        if (!meleeRecover && dummy.hp <= 0) dummy.hp = dummy.hpMax;
+      }
       fx.update(dt);
       lavaFx.update(dt, body.getState().castElapsed, lava.flight);
       pulseFx.update(dt);
@@ -656,6 +778,7 @@ export async function createCombat(
             : null,
         gcd,
         pulse,
+        { enabled: auto.enabled, timer: auto.timer, speed: weaponProfile(readWeapon()).speed, name: weaponProfile(readWeapon()).name, damage: weaponProfile(readWeapon()).damage },
       );
       paintHud();
       if (visible) {

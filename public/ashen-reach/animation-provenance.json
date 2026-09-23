@@ -8,7 +8,7 @@
   "retargeter": "https://github.com/crazyramirez/BJS_Character_Controller_V2",
   "retargeterCommit": "869170ff94380b44b6f76753feee77c17c468819",
   "retargeterLicense": "MIT",
-  "outputSha256": "9947a6ea7f5a6a34d0a7d15f73a5502f8044c14ca61aef3e1dd5f06a7aeb8096",
+  "outputSha256": "6ccdd3a7c18517214e007cb079164f091230e9013d6eee223a097c0ceea36b67",
   "inventory": [
     {
       "name": "Jog_Bwd_Loop",
@@ -40,11 +40,11 @@
       "Idle_Loop"
     ],
     "sourceAsset": "public/characters/candidates/human-source-v1.glb",
-    "changes": "Retimed right-arm strike; eased idle entry/recovery; open striking fingers from bind pose; split upper/lower channels for native additive layering.",
-    "duration": 1.1,
-    "releaseTime": 0.28,
+    "changes": "Right-arm throw reaches the cross at 0.55s, holds through the release, then eases back to idle by 1.4s. Open striking fingers stay at bind so the live grip can return the weapon.",
+    "duration": 1.4,
+    "releaseTime": 0.55,
     "hand": "mainHand",
-    "outputSha256": "ff503dd0e5b0dc3b41d9892a3e89f75f798a8d47b0c698d58f0ea99007df9784",
+    "outputSha256": "6ccdd3a7c18517214e007cb079164f091230e9013d6eee223a097c0ceea36b67",
     "clips": [
       {
         "name": "FireBlast_Upper",
@@ -62,10 +62,10 @@
       "Punch_Cross",
       "Idle_Loop"
     ],
-    "changes": "Extended anticipation, open right fingers, sharp release at 1.5 seconds, eased recovery; disjoint native additive layers.",
+    "changes": "Chamber through the 1.5s charge, throw on the release, then ease the arm home by 2.3s. Open right fingers stay at bind.",
     "duration": 2.3,
     "releaseTime": 1.5,
-    "outputSha256": "ff503dd0e5b0dc3b41d9892a3e89f75f798a8d47b0c698d58f0ea99007df9784"
+    "outputSha256": "6ccdd3a7c18517214e007cb079164f091230e9013d6eee223a097c0ceea36b67"
   },
   "carry": {
     "sourceURL": "https://opengameart.org/sites/default/files/universal_animation_library_2standard.zip",
@@ -93,11 +93,11 @@
       "Idle_Loop",
       "PickUp_Table"
     ],
-    "changes": "Two-handed overhead chop: arms stay cocked until 0.88s, the downward strike arrives at the 1.1s release, and that hit pose is held through the nova.",
-    "duration": 1.55,
+    "changes": "Sword-hand overhead chop with a shorter off-hand brace. The strike arrives at the 1.1s release, holds through the nova, then eases back to idle. Fingers stay at rest so the live grip can keep the weapon.",
+    "duration": 1.9,
     "releaseTime": 1.1,
     "hand": "mainHand",
-    "outputSha256": "9947a6ea7f5a6a34d0a7d15f73a5502f8044c14ca61aef3e1dd5f06a7aeb8096",
+    "outputSha256": "6ccdd3a7c18517214e007cb079164f091230e9013d6eee223a097c0ceea36b67",
     "clips": [
       {
         "name": "PyreBurst_Upper",

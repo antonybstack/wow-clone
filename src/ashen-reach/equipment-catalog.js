@@ -1,7 +1,7 @@
 import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT, UNDEAD_EQUIPMENT_FIT, freezeEquipment, validateEquipmentCatalogue, validateEquipmentSelection} from './equipment-contract.js';
 /** Current Human fits. Item identity is separate from authored mesh and coverage. */
 export const BODY_REGIONS=['BodyExposed','BodyUnderTunic','BodyUnderBoots','BodyUnderLegs','BodyWaist','BodyHands'];
-export const BASE_VISIBLE_MESHES=[...BODY_REGIONS,'HumanHair'];
+export const BASE_VISIBLE_MESHES=[...BODY_REGIONS,'HumanHair','HumanEyes'];
 /** Sculpt-pipeline Orc: Human coverage names plus print extras. */
 export const ORC_BASE_VISIBLE_MESHES=[...BODY_REGIONS,'OrcV1Hair','OrcV1Brows','OrcV1Eyes','OrcV1Shorts'];
 /**
@@ -65,7 +65,7 @@ export const EQUIPMENT_PRESETS={
     pilgrim:{name:'Pilgrim',loadout:outfit({torso:'pilgrimTunic',legs:'wayfarerTrousers',boots:'wayfarerBoots'})},
     graveweaver:{name:'Graveweaver',loadout:outfit({helmet:'graveweaverHood',torso:'graveweaverTop',legs:'graveweaverSkirt',boots:'wayfarerBoots',gloves:'graveweaverGloves',mainHand:'graveweaverStaff',offHand:'graveweaverBook'})},
     warden:{name:'Warden',loadout:outfit({helmet:'graveweaverHood',torso:'graveweaverTop',legs:'graveweaverSkirt',boots:'wayfarerBoots',gloves:'graveweaverGloves',mainHand:'graveweaverGreatstaff',offHand:null})},
-    revenant:{name:'Revenant',loadout:outfit({helmet:'graveweaverHood',torso:'graveweaverTop'})},
+    revenant:{name:'Revenant',loadout:outfit({helmet:'graveweaverHood',torso:'graveweaverTop',legs:'graveweaverSkirt'})},
 };
 export function validateLoadout(loadout){
     validateEquipmentSelection(loadout,EQUIPMENT_ITEMS,EQUIPMENT_SLOTS);

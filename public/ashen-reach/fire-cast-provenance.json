@@ -6,11 +6,11 @@
     "Idle_Loop"
   ],
   "sourceAsset": "public/characters/candidates/human-source-v1.glb",
-  "changes": "Retimed right-arm strike; eased idle entry/recovery; open striking fingers from bind pose; split upper/lower channels for native additive layering.",
-  "duration": 1.1,
-  "releaseTime": 0.28,
+  "changes": "Right-arm throw reaches the cross at 0.55s, holds through the release, then eases back to idle by 1.4s. Open striking fingers stay at bind so the live grip can return the weapon.",
+  "duration": 1.4,
+  "releaseTime": 0.55,
   "hand": "mainHand",
-  "outputSha256": "9947a6ea7f5a6a34d0a7d15f73a5502f8044c14ca61aef3e1dd5f06a7aeb8096",
+  "outputSha256": "6ccdd3a7c18517214e007cb079164f091230e9013d6eee223a097c0ceea36b67",
   "clips": [
     {
       "name": "FireBlast_Upper",

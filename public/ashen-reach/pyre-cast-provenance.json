@@ -5,11 +5,11 @@
     "Idle_Loop",
     "PickUp_Table"
   ],
-  "changes": "Two-handed overhead chop: arms stay cocked until 0.88s, the downward strike arrives at the 1.1s release, and that hit pose is held through the nova.",
-  "duration": 1.55,
+  "changes": "Sword-hand overhead chop with a shorter off-hand brace. The strike arrives at the 1.1s release, holds through the nova, then eases back to idle. Fingers stay at rest so the live grip can keep the weapon.",
+  "duration": 1.9,
   "releaseTime": 1.1,
   "hand": "mainHand",
-  "outputSha256": "9947a6ea7f5a6a34d0a7d15f73a5502f8044c14ca61aef3e1dd5f06a7aeb8096",
+  "outputSha256": "6ccdd3a7c18517214e007cb079164f091230e9013d6eee223a097c0ceea36b67",
   "clips": [
     {
       "name": "PyreBurst_Upper",

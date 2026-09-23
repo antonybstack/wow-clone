@@ -29,7 +29,7 @@ export async function createFireBlastVfx(engine,scene,player,body,world){
  }
  function update(dt){
   if(priming){
-   primeAge+=dt;const hand=handPosition(),power=Math.min(1,primeAge/.28);
+   primeAge+=dt;const hand=handPosition(),wind=body.getState?.().castReleaseTime||.55,power=Math.min(1,primeAge/wind);
    for(const q of systems[0].slice(0,5))updateBillboardSprite(q.handle,{position:hand,sizeWorld:[.18+power*.18,.18+power*.18],rotation:q.angle+primeAge,color:[1.8,.45,.025,.12+power*.13],visible:true});
    lights[1].position.set(...hand);lights[1].intensity=power*.35;
    for(const material of lightMaterials){setShaderUniform(material,'handFirePosition',hand);setShaderUniform(material,'handFireStrength',power*.35);}

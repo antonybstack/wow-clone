@@ -74,6 +74,18 @@ for (const race of races) {
   }, race);
   check(`${race} swap`, swapped.race === race, swapped.error || swapped.race);
   check(`${race} idle`, swapped.idle);
+  if (race === "orc") {
+    const skin = await page.evaluate(() => {
+      const body = ASHEN.scene.meshes.find((m) => m.name === "BodyExposed" && m.visible !== false);
+      return { visible: !!body, color: !!body?._gpu?.colorBuffer };
+    });
+    check("orc body mesh is visible", skin.visible);
+    check("orc body has no vertex-color buffer", skin.color === false);
+  }
+  if (race === "undead") {
+    const legs = await page.evaluate(() => ASHEN.equipment.getState().legs);
+    check("undead starts in the graveweaver skirt", legs === "graveweaverSkirt", String(legs));
+  }
   await page.screenshot({ path: `${dir}/${race}-idle.png` });
   for (const preset of presets) {
     const applied = await page.evaluate(async (preset) => {

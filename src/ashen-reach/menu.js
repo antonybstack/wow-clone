@@ -60,7 +60,8 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics } = {}) {
           <li><span>Look</span><kbd>RMB</kbd></li>
           <li><span>Jump</span><kbd>Space</kbd></li>
           <li><span>Target</span><kbd>Tab</kbd></li>
-          <li><span>Fire Blast / Lava Ball</span><kbd>1 / 2</kbd></li>
+          <li><span>Auto attack</span><kbd>T</kbd></li>
+          <li><span>Fire Blast / Lava Ball / Pyre Burst</span><kbd>1 / 2 / 3</kbd></li>
           <li><span>Armory</span><kbd>C</kbd></li>
           <li><span>Camera</span><kbd>V</kbd></li>
           <li><span>Reset</span><kbd>R</kbd></li>
