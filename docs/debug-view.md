@@ -77,7 +77,7 @@ CDP screencast includes the DOM HUD; `canvas.captureStream()` alone does not. Th
 
 Measure foreground frame times separately from recording, after warm-up. Report actual buffer resolution, sample count, average, tails/stalls and whether other GPU work was active. Do not discard slow frames or call unsupported GPU timing zero. The current 960×540 buffer is an intentional pixel-art presentation; don't claim its ~144 FPS as native-resolution performance.
 
-Runtime evidence goes under `ve-capture/ashen-reach/<pass>/`. A visual cycle is not delivered until a reviewed live **GIF or MP4** is on Telegram (`tg file`). Stills are for review and may accompany the clip; they are not the deliverable. Do not expose credentials. Poll at sensible boundaries while active; no monitoring persists after the turn ends. R2 publication is optional when separately useful/authorized, not a substitute for the Telegram motion file.
+Runtime evidence goes under `ve-capture/ashen-reach/<pass>/`. A visual cycle is not delivered until a reviewed live **GIF or MP4** is on Telegram (`bash scripts/tg file <clip.mp4> "<caption>"`; `scripts/ashen-reach/record-vistas.mjs` records the world/lighting route, the `record-*.mjs` scripts cover character and spell work). Run `bash scripts/tg record <clip.mp4>` after committing so `.claude/telegram-deliveries.log` points at the finished commit and the Stop gate stops asking. Stills are for review and may accompany the clip; they are not the deliverable. Do not expose credentials. Poll at sensible boundaries while active; no monitoring persists after the turn ends. R2 publication is optional when separately useful/authorized, not a substitute for the Telegram motion file.
 
 ## Share a public video URL
 

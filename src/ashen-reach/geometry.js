@@ -12,7 +12,78 @@ export function rng(seed=7321){return()=>{seed=(Math.imul(1664525,seed)+10139042
 // gradually toward Hollowmere on a smoothstep ease.
 const RISE_START=40,RISE_END=140,RISE_HEIGHT=7.5;
 const climb=z=>{if(z<=RISE_START)return 0;const t=Math.min(1,(z-RISE_START)/(RISE_END-RISE_START));return t*t*(3-2*t)*RISE_HEIGHT;};
-const terrainRaw=(x,z)=>.30*Math.sin(x*.19+z*.13)+.16*Math.sin(z*.45+x*.11)+.006*z+1.6*Math.exp(-((x+20)**2+(z-30)**2)/260)+climb(z);
+/**
+ * Mid-scale swells, north of the lych-gate only.
+ *
+ * Four passes of lighting work on the mid-distance -- a baked sun shadow, a macro
+ * albedo term on the fine earth, a tighter octave on the far mesh at two amplitudes --
+ * all measured at or below the noise on the band they were meant to fix. The cause
+ * turned out to be in the heightfield rather than in any shader: terrainRaw's own
+ * relief is 0.46 m at 14 to 33 m, and distantRelief's is 12 m at 224 to 286 m. There
+ * was nothing at all between one metre and two hundred, which is exactly the range a
+ * camera standing on the ground reads as landscape.
+ *
+ * So the ground had no form to light, and that is why every shading fix measured
+ * nothing. 4 m peak to trough at 70 to 80 m fixes it at the source: the silhouette
+ * varies, and terrainNormal starts to move, so farShade's slope term and shade()'s
+ * own cosine come alive. A maximum grade of 1 in 6 is a gentle hill to walk over, and
+ * it costs no triangles. Measured on 07-north-overlook the mid-field bands gain 35,
+ * 77 and 69 percent of spread; on 10-ridge-west, 16, 80 and 63.
+ *
+ * The churchyard invariant above is kept intact: the same smoothstep ease climb() uses
+ * holds this at exactly zero for z<=40, so height(x,z) south of the lych-gate is still
+ * bit-for-bit the original. Building pads read terrainRaw at their own centre, so they
+ * stay level at whatever height the swell puts them.
+ */
+const SWELL_A=2.0;
+const swell=(x,z)=>{if(z<=RISE_START)return 0;
+ const t=Math.min(1,(z-RISE_START)/(RISE_END-RISE_START));
+ return t*t*(3-2*t)*SWELL_A*Math.sin(x*.0742+z*.0513)*Math.sin(z*.0681-x*.0394);};
+/**
+ * The same mid-scale form as climb()+swell(), as WGSL, for shaders that need the
+ * landscape's slope at a fragment rather than at a vertex.
+ *
+ * The foliage pass bends each alpha-cut blade card toward vertical before shading
+ * it, which is what makes a clump read as a rounded mass. But a *constant* vertical
+ * meant every blade on the field shared one shading normal, so once the swell gave
+ * the ground crests, grass was still lit identically on both of their faces. Feeding
+ * this slope in instead costs four trig calls and no memory at all -- no vertex
+ * channel (instanceColor is full: rgb tint, a lamp) and no shadow texture, because
+ * the caster here is the terrain itself and the terrain is a closed-form function.
+ *
+ * Only the mid-scale terms are included. terrainRaw's 0.30/0.16 octaves live at 14
+ * to 33 m, which is below a grass clump and would read as noise rather than form.
+ * Derivatives are of climb()+swell() exactly, so this is (0,1,0) wherever they are
+ * flat -- in particular for z<=40, leaving the churchyard bit-for-bit unchanged.
+ *
+ * This does NOT cast: trees and buildings still drop no shadow on grass. That needs
+ * a texture and is a separate pass.
+ */
+const SHADE_RELIEF=2.2;
+export const TERRAIN_SLOPE_WGSL=`
+fn terrainSlope(x:f32,z:f32)->vec2<f32>{
+ if(z<=${RISE_START}.0){return vec2<f32>(0.0,0.0);}
+ let t=min(1.0,(z-${RISE_START}.0)/${RISE_END-RISE_START}.0);
+ let e=t*t*(3.0-2.0*t);
+ let de=6.0*t*(1.0-t)/${RISE_END-RISE_START}.0;
+ let a=x*0.0742+z*0.0513;
+ let b=z*0.0681-x*0.0394;
+ let sa=sin(a);let ca=cos(a);let sb=sin(b);let cb=cos(b);
+ let dx=e*${SWELL_A.toFixed(1)}*(0.0742*ca*sb-0.0394*sa*cb);
+ let dz=de*${SWELL_A.toFixed(1)}*sa*sb+e*${SWELL_A.toFixed(1)}*(0.0513*ca*sb+0.0681*sa*cb)+de*${RISE_HEIGHT.toFixed(1)};
+ return vec2<f32>(dx,dz);
+}
+fn terrainNormalWgsl(x:f32,z:f32)->vec3<f32>{
+ // Slope is exaggerated for shading only. The true grade tops out at 1 in 4.7, which
+ // tilts the normal 12 deg -- real, but a gentle read across a hundred metres of
+ // haze. SHADE_RELIEF opens that to 25 deg, the way a normal-map intensity does,
+ // without touching the geometry or the blade-shape bend the weight below controls.
+ let g=terrainSlope(x,z)*${SHADE_RELIEF.toFixed(1)};
+ return normalize(vec3<f32>(-g.x,1.0,-g.y));
+}
+`;
+
+const terrainRaw=(x,z)=>.30*Math.sin(x*.19+z*.13)+.16*Math.sin(z*.45+x*.11)+.006*z+1.6*Math.exp(-((x+20)**2+(z-30)**2)/260)+climb(z)+swell(x,z);
 
 /** Flat pads for Milestone 2's Hollowmere buildings: {x,z,w,d} in world space. height() blends
  *  each pad into the sloped terrain, so a builder can read groundHeight(x,z) inside a pad and get
@@ -30,14 +101,23 @@ export const buildingPads=[
 const PAD_MARGIN=3;
 /** Basin + rim only outside the playable rectangle. Zero inside x∈[-90,90], z∈[-95,145]
  *  (and therefore on the whole churchyard) so height() stays bit-identical in-bounds.
- *  A shallow dip just past the clamp, then a strong rise, so high-zoom cameras see a
- *  skyline of hills rather than the rim of a tiled disc. */
+ *  A shallow dip just past the clamp, then a rise, so high-zoom cameras see a
+ *  skyline of hills rather than the rim of a tiled disc.
+ *
+ *  The rim is deliberately *lower than the mountain rings* horizon.js draws. The
+ *  first pass used 92 m arriving by d≈120, which measured out to a 25.3° silhouette
+ *  from the north-overlook camera against 24.5° for the tallest ring and a 17.5°
+ *  top-of-frame: the bowl wall swallowed the whole skyline and every pixel of sky,
+ *  so the northward vistas read as a featureless fogged basin. Half the height
+ *  arriving twice as far out puts the earth silhouette under 8°, which leaves the
+ *  ridgelines and the sky above it in the order the references layer them:
+ *  ground, foothills, ridge, sky. */
 function distantRelief(x,z){
  const dx=Math.max(0,Math.abs(x)-90),dz=Math.max(0,z>145?z-145:z<-95?-95-z:0);
  if(dx===0&&dz===0)return 0;
  const d=Math.hypot(dx,dz);
  const t=Math.min(1,d/32),s=t*t*(3-2*t);
- const rim=92/(1+Math.exp(-(d-120)/32));
+ const rim=46/(1+Math.exp(-(d-210)/60));
  const valley=-7*Math.exp(-((d-48)/24)*((d-48)/24));
  const peak=(px,pz,h,w)=>h*Math.exp(-((x-px)**2+(z-pz)**2)/w);
  return s*(valley+rim
@@ -56,6 +136,7 @@ export function height(x,z){
  return h+distantRelief(x,z);
 }
 export const pathX=z=>Math.sin(z*.14)*1.25;
+
 
 /** Analytic heightfield normal via central differences, for smooth (non-faceted) ground shading
  *  without adding a single extra triangle. Only used north of the churchyard boundary (z>=40),

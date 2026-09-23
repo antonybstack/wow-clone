@@ -1,11 +1,11 @@
 import {BASE_VISIBLE_MESHES, ORC_BASE_VISIBLE_MESHES, UNDEAD_BASE_VISIBLE_MESHES, EQUIPMENT_ITEMS} from './equipment-catalog.js';
 import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT, UNDEAD_EQUIPMENT_FIT} from './equipment-contract.js';
-import {createEngine,createSceneContext,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,startEngine,onBeforeRender,enableBoneControl,enableErrorDecoding,decodeError,setFog,captureScreenshot,setMeshVisible,isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize,setMeshoptBaseUrl} from '@babylonjs/lite';
+import {createEngine,createSceneContext,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,startEngine,onBeforeRender,enableBoneControl,enableErrorDecoding,decodeError,setFog,captureScreenshot,setMeshVisible,isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize,setMeshoptBaseUrl,AcesToneMapping} from '@babylonjs/lite';
 import {createAshenMetrics} from './metrics.js';
 import {createObjective} from './objective.js';
 import {buildChurchyard} from './scene.js';
 import {height} from './geometry.js';
-import {FOG} from './materials.js';
+import {FOG_SCREEN,SUN_DIR,SUN_COLOR,SKY_AMBIENT,GROUND_BOUNCE,EXPOSURE} from './atmosphere.js';
 import {CameraRig} from '../camera-rig.js';
 import {initInput,input} from '../input.js';
 import {installTouchControls} from './touch-controls.js';
@@ -13,6 +13,7 @@ import {setupPlayer,plantSpawnOnTerrain,resolveCapsule} from '../player.js';
 import {attachBody} from '../character/body.js';
 import {resolvePlayableBody} from '../character/runtime/playable-body.js';
 import {attachDevTools,dev} from './dev-tools.js';
+import {buildPostPipeline} from './post.js';
 import {createGameMenu} from './menu.js';
 
 enableErrorDecoding();
@@ -57,11 +58,19 @@ async function main(){
  }
  loadLine('Lighting the lamps.');
  const engine=await createEngine(canvas,{msaaSamples:1,maxDevicePixelRatio:pixelRatio>0?pixelRatio:.75});
- const scene=createSceneContext(engine);scene.clearColor={r:FOG[0],g:FOG[1],b:FOG[2],a:1};
- scene.imageProcessing.toneMappingEnabled=false;scene.imageProcessing.exposure=.7;
- setFog(scene,{mode:1,density:.010,color:FOG});
- const light=createHemisphericLight([0,1,0],.50);light.diffuseColor=[.57,.65,.50];light.groundColor=[.13,.12,.08];addToScene(scene,light);
- const moon=createDirectionalLight([.4,-.8,.3],.45);moon.diffuse=[.65,.72,.52];addToScene(scene,moon);
+ // The world's own shader materials do their own atmosphere, tonemap and grade
+ // (atmosphere.js). Everything here exists to put the character/enemy GLBs --
+ // which are lit by Babylon's standard pipeline, not by that shader -- on the
+ // same light rig, or they stand in a blue-hour landscape wearing flat night
+ // lighting. Clear colour and Babylon's fog use the *graded* horizon haze, i.e.
+ // the screen value distance actually converges to, not the linear one.
+ const scene=createSceneContext(engine);scene.clearColor={r:FOG_SCREEN[0],g:FOG_SCREEN[1],b:FOG_SCREEN[2],a:1};
+ scene.imageProcessing.toneMapping=AcesToneMapping;scene.imageProcessing.toneMappingEnabled=true;scene.imageProcessing.exposure=EXPOSURE;
+ setFog(scene,{mode:1,density:.010,color:FOG_SCREEN});
+ const light=createHemisphericLight([0,1,0],.62);light.diffuseColor=SKY_AMBIENT.map(v=>v*3.1);light.groundColor=GROUND_BOUNCE.map(v=>v*3.1);addToScene(scene,light);
+ // Direction light travels = away from the sun. Low and northward, so the player
+ // walking toward Hollowmere is backlit and rims out against the haze.
+ const sun=createDirectionalLight([-SUN_DIR[0],-SUN_DIR[1],-SUN_DIR[2]],.95);sun.diffuse=SUN_COLOR;addToScene(scene,sun);
  const camera=createArcRotateCamera(-Math.PI/2,1.46,3.5,{x:0,y:1.5,z:0});camera.fov=1.05;camera.nearPlane=.1;camera.farPlane=1200;
  const rig=new CameraRig(camera);rig.yaw=0;rig.pitch=.04;rig.distance=rig.distanceTarget=3.5;
  const reference=createFreeCamera({x:0,y:height(0,-5)+1.65,z:-5},{x:.0,y:4.0,z:25});reference.fov=1.06;reference.nearPlane=.1;reference.farPlane=1200;
@@ -113,6 +122,11 @@ async function main(){
  loadLine('The wanderer steps in.');
  // Skinning is fixed up at load. Starting the engine first leaves the mesh
  // in the bind pose while clips report as playing. See docs/startup-load.md.
+ // Bloom is a render-target swap, so it has to exist before the first
+ // registerScene. It does not fetch anything. ?noPost skips it.
+ const post=params.has('noPost')?{status:{bloom:false,notes:['skipped by ?noPost']}}:buildPostPipeline(engine,scene);
+ ashen.post=post.status;
+ if(post.status.notes.length)console.warn('ashen post chain:',post.status.notes.join('; '));
  await registerScene(scene);await startEngine(engine);
  ashen.presentMs=performance.now()-boot;
  document.getElementById('loading').remove();

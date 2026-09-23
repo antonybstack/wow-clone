@@ -1,8 +1,11 @@
+import {setShaderUniform} from '@babylonjs/lite';
 import {Batch,rng,height,pathX,buildingPads,add,mul,sub,norm,terrainNormal,lanternGlow} from './geometry.js';
 import {surface,sky} from './materials.js';
 import {building,collapsedStall,well,forgeGlow,crossFinial,stoneArch,rubble,flagstone,masonryBox} from './buildings.js';
 import {buildHorizon} from './horizon.js';
 import {createFoliage} from './foliage.js';
+import {createLightShafts} from './light-shafts.js';
+import {createAshMotes} from './ash-motes.js';
 
 /** A new scene layout. No Moonwell world builders, architecture or vegetation placement. */
 export async function buildChurchyard(engine,scene){
@@ -16,13 +19,32 @@ export async function buildChurchyard(engine,scene){
   // nightGrade is a fragment-shader-side eased darken/desaturate that is exactly 0 for
   // i.p.z<=40 by construction (see materials.js), so it can never move a churchyard pixel even
   // though the churchyard's own grass/earth share these materials with Hollowmere's.
-  surface(engine,'Moss and burial earth','/tex/forrest_ground_01/diff.jpg',{tint:[.81,.83,.62],light:.62,pixels:128,ground:true,nightGrade:true}),
-  surface(engine,'Timeworn limestone','/tex/rock_wall_08/diff.jpg',{tint:[1.12,1.10,.94],light:.85,pixels:512,uvScale:.20}),
+  // forrest_ground_01 averages 145/135/94, so it is already 1.00/0.93/0.65 warm. The old
+  // tint took that to 0.81/0.77/0.40 -- blue at barely half of red -- and the warm key
+  // pushed it further, which is most of why 04-town-gate-vista and 05-main-street came out
+  // as sodium-yellow rooms. Cooling the tint alone fixed the walls and left the ground
+  // doing it; lifting blue here is what actually moves those two frames.
+  surface(engine,'Moss and burial earth','/tex/forrest_ground_01/diff.jpg',{tint:[.78,.83,.78],light:.80,pixels:128,ground:true,nightGrade:true}),
+  // rock_wall_08 averages 81/75/67 -- warm tan before anything touches it. A near-neutral
+  // tint left the albedo at roughly 1.00/0.92/0.81, and then the warm key (SUN_COLOR
+  // 1.00/0.70/0.45) multiplied that again, so lit limestone landed near 1.02/0.66/0.36.
+  // That is why 04-town-gate-vista measured 0.59 mean saturation with 85% of its chromatic
+  // pixels inside a single 30-degree hue bin, the most monochrome frame in the set by a
+  // wide margin: walls, ground and light were all one orange. This tint cancels the
+  // texture's own warmth and pushes a little past neutral, so the stone reads cool grey and
+  // the lantern pools become the warm accent against it rather than one more yellow thing
+  // in a yellow room -- the complementary split atmosphere.js is built around.
+  surface(engine,'Timeworn limestone','/tex/rock_wall_08/diff.jpg',{tint:[.90,.99,1.17],light:.78,pixels:512,uvScale:.20}),
   surface(engine,'Rotten oak','/tex/wood_planks_grey/diff.jpg',{tint:[.57,.43,.31],light:.62,pixels:64}),
-  surface(engine,'Dead bark','/tex/bark_brown_02/diff.jpg',{tint:[.28,.29,.23],light:.40,pixels:64}),
+  // light .40 on a .28 tint meant a near trunk against the hazy glow clipped to pure black
+  // with no internal value at all -- 09-west-treeline had a quarter of its frame taken by one
+  // flat cutout. A silhouette is wanted here; a silhouette with no form in it is not. .56 keeps
+  // the trunk far darker than anything behind it while letting shade()'s rim term register on
+  // the lit side.
+  surface(engine,'Dead bark','/tex/bark_brown_02/diff.jpg',{tint:[.44,.44,.38],light:.56,pixels:64}),
   surface(engine,'Distant black stone','/tex/rock_wall_08/diff.jpg',{tint:[.095,.115,.10],light:.35,pixels:64}),
   surface(engine,'Candlelight','/tex/rock_wall_08/diff.jpg',{tint:[.95,1.10,.32],light:1,emission:1.4,pixels:16}),
-  surface(engine,'Weathered memorial face','/ashen-reach/grave-face.jpg',{tint:[1,.98,.88],light:.8,pixels:160}),
+  surface(engine,'Weathered memorial face','/ashen-reach/grave-face.jpg',{tint:[1,.99,.94],light:.72,pixels:160}),
   // Hollowmere's own warm lantern material, separate from the churchyard's Candlelight above: the
   // two original churchyard lamps and the distant bell towers keep using Candlelight untouched, so
   // retinting the town's lamp glow can never move a churchyard pixel.
@@ -98,12 +120,33 @@ export async function buildChurchyard(engine,scene){
  stone.tube(add(center,[-.35,-3.45,0]),add(center,[.40,2.55,0]),.15,.23,[1,1,.83,0],4);stone.tube(add(center,[-2.5,.37,0]),add(center,[2.5,-.37,0]),.18,.18,[1,1,.83,0],4);
  stone.box([center[0],height(0,23)+.35,23],[1.8,.65,1.35],[.66,.70,.57,0]);stone.box([center[0],height(0,23)+.05,23],[2.7,.17,2],[.56,.59,.47,0]);
 
- function tree(x,z,H,seed,back=false){const rand=rng(seed),g=height(x,z),base=[x,g,z];const color=back?[.56,.63,.55,0]:[.70,.74,.63,0];
+ function tree(x,z,H,seed,back=false){const rand=rng(seed),g=height(x,z),base=[x,g,z];// Trunk value is carried on the vertex colour rather than on the `Dead bark`
+  // material, because that material is shared with the 565 scatter trees on the far
+  // moor, which want to stay near-black silhouettes. At .56 a `back` tree standing 3 m
+  // from the 09-west-treeline camera clipped to a flat detail-free black mass -- the
+  // bark texture was multiplied to nothing -- while the same value read correctly at
+  // 80 m. Lifting it here lets the texture survive up close; aerial() still carries the
+  // far ones back down toward the haze.
+  const color=back?[.76,.82,.70,0]:[.88,.92,.80,0];
   let p=base,dir=[rand()*.14-.07,1,rand()*.10-.05];const nodes=[base];
   for(let k=0;k<6;k++){dir=norm(add(dir,[rand()*.34-.17,.05,rand()*.25-.125]));const q=add(p,mul(dir,H/6));bark.tube(p,q,H*.044*(1-k/6)+.025,H*.044*(1-(k+1)/6)+.025,color,6);p=q;nodes.push(p);}
   const branch=(p,dir,len,rad,depth)=>{const q=add(p,mul(dir,len));bark.tube(p,q,rad,Math.max(.005,rad*.55),color,depth>1?4:3);if(depth<=0)return;const t=norm(add(dir,[rand()*.6-.3,.15,rand()*.6-.3]));branch(q,t,len*.7,rad*.56,depth-1);if(depth>1||rand()>.32){const yaw=rand()*6.28;branch(add(p,mul(sub(q,p),.73)),norm(add(dir,[Math.cos(yaw)*.8,.35,Math.sin(yaw)*.8])),len*.55,rad*.45,depth-1);}};
   for(let k=2;k<7;k++)for(let j=0;j<2;j++){const a=k*2.4+j*3.1+rand()*.7;branch(nodes[k],norm([Math.cos(a),.35+rand()*.5,Math.sin(a)]),H*(.23+rand()*.11)*(1-(k-2)*.075),H*.012*(1-(k-2)*.1),back?3:4);}
-  for(let k=0;k<5;k++){const a=k*1.256;const q=[x+Math.cos(a)*H*.095,g+.04,z+Math.sin(a)*H*.095];bark.tube([x,g+.65,z],q,H*.048,.025,color,5);}
+  // Root flare. The old version put every tip at `g+.04` -- the terrain height at the
+  // *trunk centre* -- so on any slope the downhill roots ended in mid-air, which is what
+  // made the near trunk at 09-west-treeline read as a black wedge floating over the
+  // grass. Each tip now samples the ground under itself and sinks .14 below it, so the
+  // flare is buried rather than merely nearby. Seven irregular roots instead of five
+  // evenly spaced ones, because five at exactly 72 degrees read as a fixed prop.
+  for(let k=0;k<7;k++){
+   // Reach is short relative to the drop on purpose: at H*.082-.144 the roots ran out
+   // almost flat and read as spikes lying on the grass rather than as buttresses
+   // holding the trunk up. Leaving from higher on the trunk and reaching less puts
+   // them near 45 degrees.
+   const a=k*(Math.PI*2/7)+rand()*.34,rr=H*(.054+rand()*.034);
+   const qx=x+Math.cos(a)*rr,qz=z+Math.sin(a)*rr;
+   bark.tube([x,g+1.15*(H/14),z],[qx,height(qx,qz)-.14,qz],H*.034,H*.010,color,5);
+  }
  }
  tree(-6,16,12,1983);tree(4.5,24,17,293);tree(-10,15,12,25);tree(14,19,13,181);
  for(let i=0;i<38;i++){const x=r(-48,48),z=r(32,95);if(Math.abs(x)<4&&z<40)continue;if(z>74&&Math.abs(x-pathX(z))<11)continue;tree(x,z,r(8,17),i*101+58,true);}
@@ -135,6 +178,12 @@ export async function buildChurchyard(engine,scene){
  // churchyard's random sequence above (tombs/trees/grass colour) is untouched. Placed only at
  // z>40, so height()'s climb/pad terms and this content never affect the z<=40 invariant.
  const randomNorth=rng(50021),rn=(a,b)=>a+randomNorth()*(b-a);
+ // Anchors for the additive light shafts (light-shafts.js). Collected here rather
+ // than derived from `lights` because that array mixes head fixtures with the
+ // near-ground pools, and only the head of a lantern casts a visible cone.
+ // Everything pushed here is z>=44, so the z<=40 churchyard invariant (section 4
+ // of docs/environment-atmosphere-plan.md) is untouched by construction.
+ const shafts=[];
 
  function streetLamp(x,z,strength=.82){
   const y=height(x,z);
@@ -148,6 +197,7 @@ export async function buildChurchyard(engine,scene){
   // Ambient/wall light from the lamp head. M7a windowed it at radius 9. M8b raises strength
   // .68 -> .82 (the window still kills the tail, and the centre-line is well under the 1.4 knee).
   lights.push({position:p,strength,falloff:.42,radius:9});
+  shafts.push({p:[p[0],p[1]-.18,p[2]],groundY:y,radius:2.05,strength:.80});
   // Near-ground pool. M8b raises 1.0 -> 1.70: this radius-5 light is the one that can put
   // level back at the fixture without restoring the pedestal, because it is already zero
   // well before the next lamp. Halo (radius 30) is deliberately left at M7a strength.
@@ -170,6 +220,9 @@ export async function buildChurchyard(engine,scene){
   lanternGlow(warm,[x,ridgeY-.1,z],{r:.11,h:.24});
   // M8b: .65 -> .80 so the centre-line peak at z=44 (this fixture) returns above the pre-M7a 1.596.
   lights.push({position:[x,ridgeY-.1,z],strength:.80,falloff:.42,radius:9});
+  // The gate lantern hangs under a timber roof, so its cone starts lower and
+  // spreads less than a free-standing street lamp's.
+  shafts.push({p:[x,ridgeY-.28,z],groundY:y,radius:1.75,strength:.62});
   // Dedicated near-ground pool. M8b: 1.1 -> 1.49, same window as M7a (radius 6.5).
   lights.push({position:[x,y+.18,z],strength:1.49,falloff:.55,radius:6.5});
  }
@@ -351,11 +404,34 @@ export async function buildChurchyard(engine,scene){
  // checkerboard was reading as the world cutting off from a zoomed camera.
  const farEarth=new Batch('Far earth');
  const randomFar=rng(81107),rf=()=>randomFar();
+
+ // The far field is over half of every vista frame -- material-tag coverage measures it at
+ // 76% of 10-ridge-west and 52% of 07-north-overlook, against ~0% sky -- and it was drawing
+ // as one bare olive ramp from the foliage line to the mountains, with nothing in it to
+ // measure distance against. That, and not the ridge rings, is why those cameras read flat.
+ // `earthShade` varies +-6% at a 21 m wavelength, which is invisible once 16 m quads and
+ // aerial perspective have had it; these vary +-30% at 100-500 m, the scale the eye reads as
+ // terrain rather than as noise, and they cost no triangles and no draw call.
+ //
+ // Slope is the term that matters, because it is the only one that follows the actual land,
+ // so it is what turns the bowl wall from a gradient into a surface with form: steep goes
+ // darker and cooler toward bare rock, high goes paler toward scree, low flats stay warm
+ // heath.
+ const farShade=p=>{
+  const [x,y,z]=p;
+  const patch=.5+.31*Math.sin(x*.0121+z*.0093)*Math.sin(z*.0107-x*.0068)
+                 +.17*Math.sin(x*.0287-z*.0231)*Math.sin(z*.0199+x*.0163);
+  const n=terrainNormal(x,z);
+  const slope=Math.min(1,Math.max(0,(1-n[1])*3.2));
+  const alt=Math.min(1,Math.max(0,(y-3)/36));
+  const s=(.78+.36*patch)*(1-.32*slope)*(1-.07*alt);
+  return [s*(1+.05*alt-.02*slope),s*(1+.02*alt),s*(1-.06*slope*slope+.11*alt),0];
+ };
  const emitFar=(x,z,step)=>{
   const x1=x+step,z1=z+step;
   const v=[[x,z],[x1,z],[x1,z1],[x,z1]].map(([a,b])=>[a,height(a,b),b]);
   rf();
-  farEarth.quad(...v,v.map(earthUV),v.map(earthShade),v.map(p=>terrainNormal(p[0],p[2])));
+  farEarth.quad(...v,v.map(earthUV),v.map(farShade),v.map(p=>terrainNormal(p[0],p[2])));
  };
  const HALO=48,FINE=6,COARSE=16;
  const inHalo=(x,z,s)=>x<90+HALO&&x+s>-90-HALO&&z<145+HALO&&z+s>-95-HALO;
@@ -372,12 +448,81 @@ export async function buildChurchyard(engine,scene){
   for(let z=-95-HALO;z<-95;z+=FINE)emitFar(x,z,FINE);
   for(let z=145;z<145+HALO;z+=FINE)emitFar(x,z,FINE);
  }
- const farTree=(x,z,H)=>{const g=height(x,z);bark.tube([x,g,z],[x,g+H*.55,z],H*.034,H*.016,[.42,.46,.38,0],4);bark.tube([x,g+H*.45,z],[x,g+H,z],H*.16,0,[.34,.40,.30,0],5);};
- for(let i=0;i<70;i++){
-  const a=rf()*Math.PI*2,rad=130+rf()*160;
-  farTree(Math.cos(a)*rad,40+Math.sin(a)*rad*1.15,8+rf()*12);
+ // Three silhouettes, because a hillside of identical cones reads as a picket fence. The
+ // conifer carries the band, the snag is a bare dead trunk that breaks the rhythm, and the
+ // broadleaf is a squat double crown. Each leans a little: a vertical line repeated 600
+ // times is the most obviously procedural thing a landscape can do.
+ const farTree=(x,z,H,sides,kind,lean)=>{
+  const g=height(x,z),tx=x+lean[0]*H,tz=z+lean[1]*H;
+  const lerp=(t,a,b)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];
+  const foot=[x,g,z],mid=p=>lerp(p,foot,[tx,g+H,tz]);
+  if(kind<.58){                                  // conifer
+   bark.tube(foot,mid(.55),H*.034,H*.016,[.42,.46,.38,0],sides);
+   bark.tube(mid(.42),mid(1),H*.15,0,[.34,.40,.30,0],sides+1);
+  }else if(kind<.78){                            // dead snag: trunk only, forked short
+   bark.tube(foot,mid(.86),H*.040,H*.011,[.46,.45,.39,0],sides);
+   bark.tube(mid(.62),[tx+H*.16,g+H*.92,tz-H*.09],H*.018,0,[.44,.43,.37,0],3);
+  }else{                                         // broadleaf
+   bark.tube(foot,mid(.46),H*.045,H*.030,[.40,.42,.35,0],sides);
+   bark.tube(mid(.34),mid(.80),H*.20,H*.17,[.33,.39,.29,0],sides+1);
+   bark.tube(mid(.74),mid(1),H*.16,0,[.31,.37,.27,0],sides+1);
+  }
+ };
+
+ // A lichened lump: a jittered base ring, a smaller jittered shoulder ring, and a cap. The
+ // two rings matter -- a single apex made a pale pyramid that read as a tent on the slope at
+ // 10-ridge-west. It goes in `farEarth` rather than `distant`, whose tint is .095/.115/.10 at
+ // light .35: right for a mountain silhouette, wrong for a tor standing on lit moor. The
+ // vertex colour is well under the ground's own so it stays a dark cool mass against warm
+ // heath instead of catching the key light and glowing tan.
+ const boulder=(x,z,r,h,seed)=>{
+  const rand=rng(seed),g=height(x,z),n=6;
+  const px=x+(rand()-.5)*r*.4,pz=z+(rand()-.5)*r*.4;
+  const ring=k=>{const o=[];for(let m=0;m<n;m++){const a=m*Math.PI*2/n+.31,rr=r*k*(.74+rand()*.5);
+   o.push([px+Math.cos(a)*rr,g+(k<1?h*.62:-r*.14)+(rand()-.5)*h*.12,pz+Math.sin(a)*rr]);}return o;};
+  const lo=ring(1),hi=ring(.46),cap=[px,g+h,pz];
+  const tint=t=>{const c=.29+rand()*.09;return [c*.97,c,c*1.10+t,0];};
+  for(let m=0;m<n;m++){
+   farEarth.quad(lo[m],lo[(m+1)%n],hi[(m+1)%n],hi[m],[[0,0],[.3,0],[.3,.3],[0,.3]],tint(0));
+   farEarth.tri(hi[m],hi[(m+1)%n],cap,[[0,0],[.3,0],[.15,.3]],tint(.03));
+  }
+ };
+
+ // 70 trees over a 130-290 m annulus is one tree per ~1,700 m2 -- statistically invisible,
+ // which is why the mid-ground read as empty ground. A two-octave grove field clusters them
+ // instead, so the band alternates woodland and open moor, and that alternation is itself
+ // depth information: a grove you can see past tells you how far the next one is.
+ //
+ // `edge` is metres outside the playable rectangle, and it does two jobs. The first pass let
+ // trees start 17 m in front of the 07-north-overlook camera, where a 4-sided trunk is an
+ // obvious crude pole; 40 m of clearance plus a height ramp turns that boundary into scrub
+ // thickening into forest rather than a wall. The second is budget: past 160 m only the
+ // silhouette survives the haze, so trunks drop to three sides, and that saving is what pays
+ // for there being ten times as many of them.
+ const grove=(x,z)=>{
+  const a=Math.sin(x*.0139+z*.0101)*Math.sin(z*.0119-x*.0073);
+  const b=Math.sin(x*.0381-z*.0263)*Math.sin(z*.0327+x*.0211);
+  return .5+.34*a+.16*b;
+ };
+ const SCAT=9;
+ const edgeOf=(x,z)=>Math.max(Math.abs(x)-90,z-145,-95-z);
+ let scatterTrees=0,scatterRocks=0;
+ for(let z=-330;z<430;z+=SCAT)for(let x=-330;x<330;x+=SCAT){
+  const jx=x+(rf()-.5)*SCAT*.9,jz=z+(rf()-.5)*SCAT*.9;
+  const edge=edgeOf(jx,jz);
+  if(edge<40)continue;
+  const d=Math.hypot(jx,jz-40);
+  if(d>325)continue;                             // stay inside the innermost mountain ring
+  if(Math.abs(jx)<36&&jz>222&&jz<298)continue;   // the citadel keeps its own bare crag
+  const g=grove(jx,jz),roll=rf();
+  const sides=edge<80?6:edge<160?4:3;
+  if(g>.60&&roll<.62){
+   const H=(6+rf()*14)*Math.min(1,.52+edge/95);
+   farTree(jx,jz,H,sides,rf(),[(rf()-.5)*.12,(rf()-.5)*.12]);scatterTrees++;
+  }else if(g<.42&&roll<.15){
+   boulder(jx,jz,1.4+rf()*3.0,.9+rf()*1.7,81107+scatterRocks*7919);scatterRocks++;
+  }
  }
- for(let i=0;i<18;i++)farTree(-80+rf()*160,-140-rf()*90,9+rf()*11);
 
  // --- Milestone 3, the horizon: the Citadel of Vaelmark on a distant crag beyond z=140, plus the
  // mountain ridgeline behind it. Backdrop only (no colliders, no pathing), added last and entirely
@@ -392,20 +537,33 @@ export async function buildChurchyard(engine,scene){
    return meadow(x,z)*(1-t)+clearance(x,z)*t;
   }
   if(z<=145&&Math.abs(x)<44)return clearance(x,z);
+  // The hard zero at radius 108 is what starved the new outer moor band: 10-ridge-west puts
+  // the camera at x=-80, just inside it, so everything west of the player was bare ground.
+  // The cutoff moves to 190 and the falloff stretches over the whole run, so the meadow
+  // thins into moor and then into the scattered woodland instead of stopping at a circle.
   const rad=Math.hypot(x,z-20);
-  if(rad>108)return 0;
-  return 0.38*(1-smooth((rad-52)/48));
+  if(rad>190)return 0;
+  return 0.38*(1-smooth((rad-52)/138));
  }
  const farTris=farEarth.idx.length/3;
  const meshes=B.map((b,i)=>b.commit(engine,scene,mats[i],lights)).filter(Boolean);
  const farMesh=farEarth.commit(engine,scene,mats[0],[]);
  if(farMesh)meshes.push(farMesh);
+ const shaftPass=await createLightShafts(engine,scene,shafts);
+ if(shaftPass?.mesh)meshes.push(shaftPass.mesh);
+ const motePass=await createAshMotes(engine,scene,{lights});
+ if(motePass?.mesh)meshes.push(motePass.mesh);
  colliders.unshift({type:'mesh',mesh:meshes[0]});const clouds=await sky(engine,scene);
- const stats={triangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris,drawBatches:B.length+(farMesh?1:0),horizonTriangles:horizonStats.triangles,farTriangles:farTris,foliageInstances:0};
+ const stats={triangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris,drawBatches:B.length+(farMesh?1:0)+(shaftPass?.mesh?1:0)+(motePass?.mesh?1:0),horizonTriangles:horizonStats.triangles,farTriangles:farTris,foliageInstances:0,scatterTrees,scatterRocks,shafts:shafts.length,shaftTriangles:shaftPass?.triangles??0,motes:motePass?.count??0,moteTriangles:motePass?.triangles??0};
  let foliage=null;
- const api={meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,foliage:null,stats,whenFoliage:null,update(t,playerPos){foliage?.update(t,playerPos);clouds.update(t);}};
- // Grass stays off the first-frame download. Call startFoliage once the
- // player body is on screen; the meshes then join the fire-light list.
+ const api={meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,foliage:null,stats,whenFoliage:null,update(t,playerPos){
+  foliage?.update(t,playerPos);clouds.update(t);shaftPass?.update(t);motePass?.update(t);
+  // surface() materials declare a time uniform. Nothing else writes it, so the
+  // haze drift stays at zero unless this loop runs.
+  for(const m of mats)setShaderUniform(m,'time',t);
+ }};
+ // Grass and wildflowers stay off the first-frame download. Call startFoliage
+ // once the player body is on screen; the meshes then join the fire-light list.
  api.startFoliage=()=>{
   api.whenFoliage??=createFoliage(engine,scene,{
    lights,density:foliageDensity,
