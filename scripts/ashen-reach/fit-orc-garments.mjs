@@ -39,14 +39,18 @@ import {EQUIPMENT_ITEMS} from '../../src/ashen-reach/equipment-catalog.js';
 
 await MeshoptDecoder.ready;
 await MeshoptEncoder.ready;
-const TARGET = process.argv.includes('--target=undead') ? 'undead' : 'orc';
-const ORC = TARGET === 'undead'
-    ? 'public/characters/candidates/undead-source-v1.glb'
-    : 'public/characters/candidates/orc-source-v1.glb';
-const TARGET_BODY = TARGET === 'undead' ? 'UndeadV1Body' : 'OrcV1Body';
-const HUMAN = 'public/ashen-reach/equipment/body.glb';
-const HUMAN_DIR = 'public/ashen-reach/equipment';
-const OUT = TARGET === 'undead' ? '.cache/armory-assets/undead-tripo' : '.cache/armory-assets/orc-sculpt';
+const TARGET = process.argv.find((arg) => arg.startsWith('--target='))?.slice('--target='.length) || 'orc';
+const TARGETS = {
+    orc: ['public/characters/candidates/orc-source-v1.glb', 'OrcV1Body', '.cache/armory-assets/orc-sculpt'],
+    undead: ['public/characters/candidates/undead-source-v1.glb', 'UndeadV1Body', '.cache/armory-assets/undead-tripo'],
+    human: ['public/characters/candidates/human-source-v1.glb', 'HumanV1Body', '.cache/armory-assets/human-tripo'],
+};
+if (!TARGETS[TARGET]) throw Error(`Unknown fit target ${TARGET}`);
+const [ORC, TARGET_BODY, OUT] = TARGETS[TARGET];
+// The live Human pack is the Tripo body. Registration still starts from the
+// split MakeHuman catalogue these garments were authored on.
+const HUMAN = 'blender/characters/sources/human-catalogue/body.glb';
+const HUMAN_DIR = 'blender/characters/sources/human-catalogue';
 
 /** Garment thickness held off the skin, metres. Real leather/cloth, not a fudge. */
 const CLEARANCE = {

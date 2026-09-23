@@ -15,7 +15,7 @@ page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
 const check = (name, ok) => { checks.push({name, ok: !!ok}); assert.ok(ok, name); console.log('PASS', name); };
 const settled = () => page.waitForFunction(() => !ASHEN.equipment.getStatus?.().pending);
 const waitOrc = () => page.waitForFunction(() => ASHEN.equipment.race === 'orc' && ASHEN.armory.getState().race === 'orc' && ASHEN.body.parked && ASHEN.scene.meshes.some(m => (m.name === 'OrcV1Body' || m.name === 'BodyExposed') && m.visible) && !ASHEN.equipment.getStatus?.().pending, null, {timeout: 60000});
-const waitHuman = () => page.waitForFunction(() => ASHEN.equipment.race === 'human' && ASHEN.armory.getState().race === 'human' && !ASHEN.body.parked && ASHEN.scene.meshes.some(m => m.name === 'HumanHair') && !ASHEN.equipment.getStatus?.().pending, null, {timeout: 60000});
+const waitHuman = () => page.waitForFunction(() => ASHEN.equipment.race === 'human' && ASHEN.armory.getState().race === 'human' && !ASHEN.body.parked && ASHEN.scene.meshes.some(m => m.name === 'HumanV1Body' && m.visible) && !ASHEN.equipment.getStatus?.().pending, null, {timeout: 60000});
 const state = () => page.evaluate(() => {
     const nodes = ASHEN.scene.meshes.map(n => ({name: n.name, visible: !!n.visible}));
     const visible = name => nodes.some(n => n.name === name && n.visible);
@@ -116,7 +116,7 @@ try {
     await page.locator('[data-race]').selectOption('human');
     await waitHuman();
     s = await state();
-    check('Returning to Human restores Human hair and keeps Graveweaver selection', !s.parked && s.names.includes('HumanHair') && !s.visible.OrcV1Hair && !s.visible.OrcV1Brows && s.equipment.helmet === 'graveweaverHood' && s.equipment.torso === 'graveweaverTop' && s.visible.GraveweaverHood);
+    check('Returning to Human restores the Tripo body and keeps Graveweaver selection', !s.parked && s.names.includes('HumanV1Body') && !s.visible.OrcV1Hair && !s.visible.OrcV1Brows && s.equipment.helmet === 'graveweaverHood' && s.equipment.torso === 'graveweaverTop' && s.visible.GraveweaverHood);
 
     await page.locator('[data-race]').selectOption('orc');
     await waitOrc();

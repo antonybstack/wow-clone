@@ -13,9 +13,9 @@ try{
  check('All seven equipment slots have working controls',await page.locator('[data-equipment]').count()===7);
  check('Preset equips the complete magic set on the existing actor',s.bones===65&&await page.evaluate(()=>ASHEN.body.root===globalThis.__equipmentActor)&&s.equipment.helmet==='graveweaverHood'&&s.equipment.offHand==='graveweaverBook');
  check('Preset preserves paused motion phase',s.preview.time===.24&&s.preview.paused);
- check('Hood and gloves hide hair and underlying hands',!visible(s,'HumanHair')&&!visible(s,'BodyHands')&&visible(s,'GraveweaverHood')&&visible(s,'GraveweaverGloves'));
- await equip('helmet','');s=await state();check('Removing hood restores hair independently',visible(s,'HumanHair')&&!visible(s,'GraveweaverHood')&&visible(s,'GraveweaverTop'));await equip('helmet','graveweaverHood');
- await equip('gloves','');s=await state();check('Removing gloves restores hands independently',visible(s,'BodyHands')&&!visible(s,'GraveweaverGloves'));await equip('gloves','graveweaverGloves');
+ check('Hood and gloves sit on the single body mesh',visible(s,'HumanV1Body')&&visible(s,'GraveweaverHood')&&visible(s,'GraveweaverGloves'));
+ await equip('helmet','');s=await state();check('Removing the hood clears it and leaves the vestment',visible(s,'HumanV1Body')&&!visible(s,'GraveweaverHood')&&visible(s,'GraveweaverTop'));await equip('helmet','graveweaverHood');
+ await equip('gloves','');s=await state();check('Removing the gloves clears them and leaves the body',visible(s,'HumanV1Body')&&!visible(s,'GraveweaverGloves'));await equip('gloves','graveweaverGloves');
  await equip('torso','pilgrimTunic');s=await state();check('Cloth top mixes with robe skirt and hood',visible(s,'PilgrimTunic')&&!visible(s,'GraveweaverTop')&&!visible(s,'GraveweaverPendant')&&visible(s,'GraveweaverSkirt'));await equip('torso','graveweaverTop');
  await equip('legs','wayfarerTrousers');s=await state();check('Magic top mixes with separate trousers',visible(s,'GraveweaverTop')&&!visible(s,'GraveweaverSkirt')&&visible(s,'WayfarerTrousers'));await equip('legs','graveweaverSkirt');
  const invalid=await page.evaluate(async()=>{const before=JSON.stringify(ASHEN.equipment.getState());try{const result=await ASHEN.equipment.setLoadout({helmet:null,torso:'missing-item'});return result?.status==='failed'&&JSON.stringify(ASHEN.equipment.getState())===before;}catch{return JSON.stringify(ASHEN.equipment.getState())===before;}});check('Invalid preset patch leaves every existing slot unchanged',invalid);

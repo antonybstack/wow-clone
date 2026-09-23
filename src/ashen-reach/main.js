@@ -159,7 +159,7 @@ async function main(){
  // thing to reconcile -- createStreamedEquipment names any region it cannot bind.
  const UNDEAD_PACK_DIR='equipment-undead';
  const packs={
-  human:{race:'human',manifestUrl:'/ashen-reach/equipment/manifest.json',baseMeshes:BASE_VISIBLE_MESHES,fitId:HUMAN_EQUIPMENT_FIT},
+  human:{race:'human',manifestUrl:'/ashen-reach/equipment/manifest.json',baseMeshes:['HumanV1Body'],fitId:HUMAN_EQUIPMENT_FIT},
   orc:{race:'orc',manifestUrl:'/ashen-reach/equipment-orc/manifest.json',baseMeshes:ORC_BASE_VISIBLE_MESHES,fitId:ORC_EQUIPMENT_FIT,bodyUrl:'/ashen-reach/equipment-orc/body.glb'},
   undead:{race:'undead',manifestUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/manifest.json`,baseMeshes:UNDEAD_BASE_VISIBLE_MESHES,fitId:UNDEAD_EQUIPMENT_FIT,bodyUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/body.glb`},
  };

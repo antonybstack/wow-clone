@@ -1,0 +1,78 @@
+{
+  "pipeline": "Tripo Mixamo FBX bound to the 65-joint source, replacing the split MakeHuman body",
+  "source": "public/characters/candidates/human-source-v1.glb",
+  "fitted": ".cache/armory-assets/human-tripo",
+  "regenerate": "Blender --background --python scripts/character-assets/human_from_tripo.py && node scripts/character-assets/bind-source-human-tripo.mjs && node scripts/ashen-reach/fit-orc-garments.mjs --target=human && node scripts/ashen-reach/prepare-human-equipment.mjs",
+  "fit": {
+    "body": "ashen-human",
+    "rig": "source-65",
+    "bind": 1,
+    "shape": 1
+  },
+  "hashes": {
+    "public/ashen-reach/equipment/body.glb": "02883f6844663d20402c91b94c3ce8c776961530e410f58d6a994fa4cee1f1cd"
+  },
+  "garments": [
+    {
+      "id": "graveweaverHood",
+      "bytes": 276880,
+      "meshes": [
+        "GraveweaverHood"
+      ]
+    },
+    {
+      "id": "graveweaverTop",
+      "bytes": 245104,
+      "meshes": [
+        "GraveweaverTop",
+        "GraveweaverPendant"
+      ]
+    },
+    {
+      "id": "graveweaverSkirt",
+      "bytes": 371764,
+      "meshes": [
+        "GraveweaverSkirt",
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs"
+      ]
+    },
+    {
+      "id": "graveweaverGloves",
+      "bytes": 174004,
+      "meshes": [
+        "GraveweaverGloves"
+      ]
+    },
+    {
+      "id": "wayfarerTunic",
+      "bytes": 249636,
+      "meshes": [
+        "WayfarerTunic"
+      ]
+    },
+    {
+      "id": "pilgrimTunic",
+      "bytes": 479776,
+      "meshes": [
+        "PilgrimTunic"
+      ]
+    },
+    {
+      "id": "wayfarerTrousers",
+      "bytes": 146288,
+      "meshes": [
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs"
+      ]
+    },
+    {
+      "id": "wayfarerBoots",
+      "bytes": 242544,
+      "meshes": [
+        "WayfarerBoots"
+      ]
+    }
+  ],
+  "note": "HumanV1Body stays visible under cloth. Hair is part of that mesh, so the hood does not hide a separate hair geoset. The MakeHuman catalogue the fitter still registers from lives in blender/characters/sources/human-catalogue/."
+}

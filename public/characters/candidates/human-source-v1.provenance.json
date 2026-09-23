@@ -1,17 +1,22 @@
 {
-  "pipeline": "source-compatible Human binding",
-  "capture": "ve-capture/source-motion/bind-v2",
+  "pipeline": "source-compatible Human binding from Tripo Mixamo FBX",
   "hashes": {
-    "public/characters/base.glb": "2f9e45d0f7d9faeae4c20e18585173d62953df1a8f0272f270bedb200927604c",
-    "public/characters/bodies/human-animated-v1.glb": "6e87eb1b31c301d8adccf134043dca7983786c48e931f0d94f185aaa93dddbe9",
-    "public/characters/candidates/human-source-v1.glb": "6b34ae3ed1d4a411adf7bc3769fde78fa813b9f3b548e39a4d073ed453a28aee",
-    "scripts/character-assets/bind_source_human.py": "b7e1bb3f43be8e5cbbf380ca24ac8719f51fdce8b80f7770f7b501d1c40be7df",
-    "scripts/experiments/bind-source-human.mjs": "48b402b3dae9fc50f21d09bb8776edc8e87a61f62070da442548d3e3519024cd"
+    "public/characters/base.glb": "d8a14bb2421ed4ce7e4cc3651432494e1f27ac1d6944646ca9bf434a12a401ad",
+    "public/ashen-reach/wanderer.glb": "6ccdd3a7c18517214e007cb079164f091230e9013d6eee223a097c0ceea36b67",
+    "public/characters/candidates/human-source-v1.glb": "02883f6844663d20402c91b94c3ce8c776961530e410f58d6a994fa4cee1f1cd",
+    "scripts/character-assets/human_from_tripo.py": "2aa0b8a6e6dabcaa692465dcb8adf2907dbae9fac2218aed0c97c4f9bd0db55b",
+    "scripts/character-assets/bind-source-human-tripo.mjs": "c1dea6255963a8ac4abc018b7840b88fb635a93a0a01df44bac2a50575bca9f8",
+    "blender/characters/sources/human-tripo/provenance.json": "b87f326ddd71e07af6eea9d93d980f8ed890bcb8285a978c1bad88713599cb39"
   },
   "versions": {
     "blender": "5.2.1",
     "gltfTransform": "4.4.2",
     "glMatrix": "3.4.4"
   },
-  "licenseNotes": "Human assets retain existing MakeHuman graphics provenance; source rig and original clips retain base.glb provenance. No blanket CC0 claim for the source rig."
+  "source": {
+    "title": "Tripo Mixamo auto-rig from the approved human A-pose study",
+    "filesNote": "docs/references/human",
+    "files": "blender/characters/sources/human-tripo/human-tripo.fbx"
+  },
+  "licenseNotes": "Body is a Tripo generation from the user-approved human body study. Source rig and original clips retain base.glb provenance."
 }

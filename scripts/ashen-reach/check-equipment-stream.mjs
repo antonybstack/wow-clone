@@ -9,7 +9,7 @@ const url=process.env.ASHEN_URL||'http://127.0.0.1:5173/ashen-reach.html?play&cl
 try{
  await page.goto(url,{waitUntil:'commit'});await page.waitForFunction(()=>globalThis.ASHEN?.ready,null,{timeout:60000});await page.bringToFront();await page.keyboard.press('KeyC');
  check('Initial loading excludes unequipped hood and robe',!requests.some(u=>u.includes('graveweaver')));
- const before=await page.evaluate(()=>{window.__streamActor=ASHEN.body.root;window.__streamPalette=ASHEN.scene.meshes.find(m=>m.name==='BodyExposed'&&m.skeleton).skeleton.boneTexture;return ASHEN.equipment.getState();});
+ const before=await page.evaluate(()=>{window.__streamActor=ASHEN.body.root;window.__streamPalette=ASHEN.scene.meshes.find(m=>m.name==='HumanV1Body'&&m.skeleton).skeleton.boneTexture;return ASHEN.equipment.getState();});
  await page.route('**/equipment/graveweaverHood.glb',r=>r.fulfill({status:503,body:'test failure'}));
  await page.locator('[data-outfit="graveweaver"]').click();await page.waitForFunction(()=>!ASHEN.equipment.getStatus().pending);
  check('Failed fetch preserves all selected slots',JSON.stringify(await page.evaluate(()=>ASHEN.equipment.getState()))===JSON.stringify(before));
@@ -33,7 +33,7 @@ try{
   const state=ASHEN.equipment.getState(),status=ASHEN.equipment.getStatus();
   if(status.error||status.cached.filter(id=>!Object.values(state).includes(id)).length>2)return false;
   counts.push(ASHEN.scene.meshes.length);
- }return new Set(counts).size===1&&ASHEN.body.root===window.__streamActor&&ASHEN.scene.meshes.find(m=>m.name==='BodyExposed'&&m.skeleton).skeleton.boneTexture===window.__streamPalette;});
+ }return new Set(counts).size===1&&ASHEN.body.root===window.__streamActor&&ASHEN.scene.meshes.find(m=>m.name==='HumanV1Body'&&m.skeleton).skeleton.boneTexture===window.__streamPalette;});
  check('Eviction/reload keeps stable scene count, actor and shared pose palette',stable);
  await page.locator('[data-light]').check();await page.locator('[data-motion]').selectOption('run');await page.locator('[data-time-slider]').fill('0.24');await page.waitForTimeout(200);await page.screenshot({path:dir+'/run.png'});
  await page.locator('[data-motion]').selectOption('idle');await page.locator('[data-view="front"]').click();await page.locator('[data-view="full"]').click();await page.waitForTimeout(200);await page.screenshot({path:dir+'/front.png'});

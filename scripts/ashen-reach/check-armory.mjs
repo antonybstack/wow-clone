@@ -29,9 +29,9 @@ try{
  check('Orc wears transferred catalogue clothes',orc.visible.WayfarerTunic&&orc.state.torso==='wayfarerTunic'&&!orc.presetsDisabled&&!orc.torsoDisabled&&/report clipping/i.test(orc.status));
  await page.screenshot({path:dir+'/armory-orc.png'});
  await page.locator('[data-race]').selectOption('human');
- await page.waitForFunction(()=>ASHEN.equipment.race==='human'&&ASHEN.armory.getState().race==='human'&&!ASHEN.body.parked&&ASHEN.scene.meshes.some(m=>m.name==='HumanHair'&&m.visible)&&ASHEN.scene.meshes.some(m=>m.name==='WayfarerTunic'&&m.visible)&&!ASHEN.equipment.getStatus?.().pending,null,{timeout:60000});
- const human=await page.evaluate(()=>({names:ASHEN.scene.meshes.map(m=>m.name),parked:ASHEN.body.parked,state:ASHEN.equipment.getState(),hair:ASHEN.scene.meshes.some(m=>m.name==='HumanHair'&&m.visible)}));
- check('Returning to Human restores the equipped body',!human.parked&&human.names.includes('BodyExposed')&&human.hair&&human.state.torso==='wayfarerTunic');
+ await page.waitForFunction(()=>ASHEN.equipment.race==='human'&&ASHEN.armory.getState().race==='human'&&!ASHEN.body.parked&&ASHEN.scene.meshes.some(m=>m.name==='HumanV1Body'&&m.visible)&&ASHEN.scene.meshes.some(m=>m.name==='WayfarerTunic'&&m.visible)&&!ASHEN.equipment.getStatus?.().pending,null,{timeout:60000});
+ const human=await page.evaluate(()=>({names:ASHEN.scene.meshes.map(m=>m.name),parked:ASHEN.body.parked,state:ASHEN.equipment.getState(),body:ASHEN.scene.meshes.some(m=>m.name==='HumanV1Body'&&m.visible)}));
+ check('Returning to Human restores the equipped body',!human.parked&&human.body&&human.state.torso==='wayfarerTunic');
  await page.mouse.click(650,280);
  await page.keyboard.down('KeyW');await page.keyboard.down('KeyD');await page.keyboard.down('Space');await page.keyboard.press('Digit1');await page.keyboard.press('Digit2');await page.waitForTimeout(450);
  await page.keyboard.up('KeyW');await page.keyboard.up('KeyD');await page.keyboard.up('Space');s=await read();

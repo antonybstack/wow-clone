@@ -50,6 +50,9 @@ blender/characters/sources/undead-tripo/textures/
 .agents/skills/blender-lite/references/male_orc_for_print.glb
 .agents/skills/blender-lite/references/male_orc_for_print.zip
 .agents/skills/blender-lite/references/male-orc-for-print.zip
+blender/characters/sources/human-tripo/*.fbx
+blender/characters/sources/human-tripo/*.glb
+blender/characters/sources/human-tripo/textures/
 
 # Per-machine agent tool state.
 .claude/settings.local.json

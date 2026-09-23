@@ -1,0 +1,5 @@
+{
+  "role": "Registration source for fit-orc-garments.mjs. These are the split MakeHuman catalogue body and garments, copied before the playable Human pack was replaced by the Tripo body.",
+  "copiedFrom": "public/ashen-reach/equipment/",
+  "note": "Do not point the fitter at public/ashen-reach/equipment after that pack became HumanV1Body. Orc and Undead refits still start from this directory."
+}

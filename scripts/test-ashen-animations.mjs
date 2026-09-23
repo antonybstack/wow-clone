@@ -2,32 +2,47 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
+import {NodeIO} from '@gltf-transform/core';
+import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
+import {MeshoptDecoder} from 'meshoptimizer';
 import {parseGlb,readAccessor} from '../src/character/runtime/glb.js';
-const load=p=>{const b=fs.readFileSync(p);return parseGlb(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength));};
-const original=load('public/characters/candidates/human-source-v1.glb'),current=load('public/ashen-reach/wanderer.glb');
+await MeshoptDecoder.ready;
+const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder});
+async function load(p){
+ const b=fs.readFileSync(p);
+ if(!b.includes(Buffer.from('EXT_meshopt_compression')))return parseGlb(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength));
+ const doc=await io.read(p);
+ for(const ext of [...doc.getRoot().listExtensionsUsed()])if(ext.extensionName==='EXT_meshopt_compression')ext.dispose();
+ const bytes=Buffer.from(await io.writeBinary(doc));
+ return parseGlb(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength));
+}
+const original=await load('public/characters/candidates/human-source-v1.glb'),current=await load('public/ashen-reach/wanderer.glb');
 const tracks=(asset,a)=>new Map(a.channels.map(c=>[asset.json.nodes[c.target.node].name+':'+c.target.path,a.samplers[c.sampler]]));
 const values=(asset,i)=>readAccessor(asset.json,asset.binary,i);
-test('Ashen directional import preserves all original 45 motion curves exactly',()=>{
- for(const a of original.json.animations){
-  const b=current.json.animations.find(b=>b.name===a.name);assert.ok(b,a.name);
-  const have=tracks(current,b);
-  assert.equal(have.size,a.channels.length);
-  for(const [name,s]of tracks(original,a)){
-   const t=have.get(name);assert.ok(t,name);
+test('Tripo human bind keeps wanderer rotation curves and hip travel',()=>{
+ assert.equal(original.json.animations.length,current.json.animations.length);
+ for(const a of current.json.animations){
+  const b=original.json.animations.find(clip=>clip.name===a.name);assert.ok(b,a.name);
+  const have=tracks(original,b);
+  assert.equal(have.size,a.channels.length,a.name);
+  for(const [name,s]of tracks(current,a)){
+   const t=have.get(name);assert.ok(t,a.name+' '+name);
    assert.equal(t.interpolation||'LINEAR',s.interpolation||'LINEAR');
-   assert.deepEqual(values(current,t.input),values(original,s.input));
-   assert.deepEqual(values(current,t.output),values(original,s.output));
+   assert.deepEqual(values(original,t.input),values(current,s.input),a.name+' '+name);
+   if(name.endsWith(':rotation'))assert.deepEqual(values(original,t.output),values(current,s.output),a.name+' '+name);
+   else {
+    assert.equal(name,'mixamorig:Hips:translation');
+    const x=values(current,s.output),y=values(original,t.output);
+    assert.equal(x.length,y.length);
+    for(let i=3;i<x.length;i++)assert.ok(Math.abs((x[i]-x[i%3])-(y[i]-y[i%3]))<2e-4,a.name+' hip travel');
+   }
   }
  }
 });
-test('directional import preserves the source-human joint bind and rest transforms',()=>{
+test('Tripo human uses the same 65 joint names in wanderer order',()=>{
  const a=original.json.skins[0],b=current.json.skins[0];
- assert.equal(b.joints.length,65);
- assert.deepEqual(values(current,b.inverseBindMatrices),values(original,a.inverseBindMatrices));
- for(let i=0;i<a.joints.length;i++){
-  const x=original.json.nodes[a.joints[i]],y=current.json.nodes[b.joints[i]];
-  for(const k of ['name','translation','rotation','scale','matrix'])assert.deepEqual(y[k],x[k],x.name+' '+k);
- }
+ assert.equal(a.joints.length,65);assert.equal(b.joints.length,65);
+ for(let i=0;i<a.joints.length;i++)assert.equal(original.json.nodes[a.joints[i]].name,current.json.nodes[b.joints[i]].name);
 });
 test('five added motions contain complete finite joint channels and no capsule/root transform tracks',()=>{
  assert.equal(current.json.animations.length,57);

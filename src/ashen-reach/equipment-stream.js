@@ -37,7 +37,7 @@ import {
  * a race with no entry is rejected by packVisibility instead of inheriting Human's mapping.
  */
 const RACE_BODY_ALIASES = Object.freeze({
-  human: () => ({}),
+  human: () => ({ HumanV1Body: true }),
   orc: (vis, baseMeshes) => ({
     OrcV1Hair: vis.HumanHair,
     OrcV1Shorts: vis.BodyUnderLegs,

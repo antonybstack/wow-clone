@@ -517,7 +517,11 @@ async function stampManifest(path, addEye) {
 async function main() {
   const reader = await io();
   const source = await reader.read(HUMAN_SOURCE);
-  const srcMat = source.getRoot().listNodes().find((node) => node.getName() === 'HumanEyes').getMesh().listPrimitives()[0].getMaterial();
+  const eyes = source.getRoot().listNodes().find((node) => node.getName() === 'HumanEyes' && node.getMesh());
+  if (!eyes) {
+    throw Error('restore-eyes.mjs fits the split MakeHuman face. The playable Human is HumanV1Body; this script would write the old eye meshes onto the wrong body.');
+  }
+  const srcMat = eyes.getMesh().listPrimitives()[0].getMaterial();
   const iris = await extractIris(srcMat.getBaseColorTexture().getImage());
   if (!iris) console.log('photo iris missing, human falls back to a painted iris');
   const humanDoc = await reader.read(HUMAN_TARGETS[0]);

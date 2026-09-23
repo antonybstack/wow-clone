@@ -1,0 +1,10 @@
+{
+  "title": "Tripo Mixamo human from the approved A-pose body study",
+  "files": {
+    "fbx": "human-tripo.fbx",
+    "glb": "human-tripo.glb",
+    "basecolor": "textures/basecolor.png"
+  },
+  "reference": "docs/references/human/human-body-reference-front-v1.png",
+  "notes": "Bind from the FBX. The GLB skin is not authoritative. One albedo map, scaled to 1024 at rest export."
+}

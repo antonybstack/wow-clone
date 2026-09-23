@@ -19,7 +19,7 @@ import {createHash} from 'node:crypto';
 import {NodeIO} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {
-    EQUIPMENT_ITEMS, UNDEAD_BASE_VISIBLE_MESHES, BASE_VISIBLE_MESHES, ORC_BASE_VISIBLE_MESHES, BODY_REGIONS, gripHold,
+    EQUIPMENT_ITEMS, UNDEAD_BASE_VISIBLE_MESHES, ORC_BASE_VISIBLE_MESHES, BODY_REGIONS, gripHold,
 } from '../src/ashen-reach/equipment-catalog.js';
 import {
     HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT, UNDEAD_EQUIPMENT_FIT, FITS_BY_RACE, EQUIPMENT_RACES,
@@ -292,7 +292,7 @@ test('every declared race boots through the same path with its own visibility ma
     // so booting each race is what proves the table covers EQUIPMENT_RACES. If a fourth
     // race is added to FITS_BY_RACE without an alias entry, this fails.
     const packs = {
-        human: {manifest: '/ashen-reach/equipment/manifest.json', fit: HUMAN_EQUIPMENT_FIT, meshes: BASE_VISIBLE_MESHES},
+        human: {manifest: '/ashen-reach/equipment/manifest.json', fit: HUMAN_EQUIPMENT_FIT, meshes: ['HumanV1Body']},
         orc: {manifest: '/ashen-reach/equipment-orc/manifest.json', fit: ORC_EQUIPMENT_FIT, meshes: ORC_BASE_VISIBLE_MESHES},
         undead: {manifest: MANIFEST_URL, fit: UNDEAD_EQUIPMENT_FIT, meshes: PROVISIONAL_MESHES},
     };

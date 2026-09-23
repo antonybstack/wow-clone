@@ -2,19 +2,31 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {mat4} from 'gl-matrix';
+import {NodeIO} from '@gltf-transform/core';
+import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
+import {MeshoptDecoder} from 'meshoptimizer';
 import {parseGlb,readAccessor} from '../src/character/runtime/glb.js';
 import {resolvePlayableBody,resolvePlayableClips} from '../src/character/runtime/playable-body.js';
-function load(path){const b=fs.readFileSync(path);return parseGlb(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength));}
-const source=load('public/characters/base.glb');
+await MeshoptDecoder.ready;
+const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder});
+async function load(path){
+ const b=fs.readFileSync(path);
+ if(!b.includes(Buffer.from('EXT_meshopt_compression')))return parseGlb(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength));
+ const doc=await io.read(path);
+ for(const ext of [...doc.getRoot().listExtensionsUsed()])if(ext.extensionName==='EXT_meshopt_compression')ext.dispose();
+ const bytes=Buffer.from(await io.writeBinary(doc));
+ return parseGlb(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength));
+}
+const source=await load('public/characters/base.glb');
 function tracks(asset,a){return new Map(a.channels.map(c=>[asset.json.nodes[c.target.node].name+':'+c.target.path,{channel:c,sampler:a.samplers[c.sampler]}]));}
 function values(asset,index){return readAccessor(asset.json,asset.binary,index);}
 const RUNTIME_EXTRA_CLIPS=['Jog_Bwd_Loop','Jog_Left_Loop','Jog_Right_Loop','Turn90_L','Turn90_R','FireBlast_Upper','FireBlast_Lower','LavaBall_Upper','LavaBall_Lower','Walk_Carry_Loop','PyreBurst_Upper','PyreBurst_Lower'];
 const candidates=[
- {path:'public/characters/candidates/human-source-v1.glb',meshes:['HumanBody','HumanBrows','HumanEyes','HumanHair','HumanShorts'],extra:[]},
+ {path:'public/characters/candidates/human-source-v1.glb',meshes:['HumanV1Body'],extra:RUNTIME_EXTRA_CLIPS},
  {path:'public/characters/candidates/orc-source-v1.glb',meshes:['OrcV1Body','OrcV1Brows','OrcV1Eyes','OrcV1Hair','OrcV1Shorts'],extra:RUNTIME_EXTRA_CLIPS},
 ];
 for(const {path:candidatePath,meshes:expectedMeshes,extra:expectedExtra} of candidates){
-const candidate=load(candidatePath);
+const candidate=await load(candidatePath);
 test(`${candidatePath} preserves every source rotation key, interpolation and timestamp`,()=>{
  assert.equal(candidate.json.animations.length,source.json.animations.length+expectedExtra.length);
  for(const name of expectedExtra)assert.ok(candidate.json.animations.some(a=>a.name===name),name);
@@ -51,8 +63,8 @@ test('new skin binds are inverses of the fitted source hierarchy',()=>{
  }
 });
 }
-const humanCandidate=load('public/characters/candidates/human-source-v1.glb');
-const routeBodies={'source-reference':source,'human-source':humanCandidate,'orc-source':load('public/characters/candidates/orc-source-v1.glb')};
+const humanCandidate=await load('public/characters/candidates/human-source-v1.glb');
+const routeBodies={'source-reference':source,'human-source':humanCandidate,'orc-source':await load('public/characters/candidates/orc-source-v1.glb')};
 const routeUrls={'source-reference':'/characters/base.glb','human-source':'/characters/candidates/human-source-v1.glb','orc-source':'/characters/candidates/orc-source-v1.glb'};
 test('diagnostic gameplay routes select original clips without procedural mage composition',()=>{
  for(const id of ['source-reference','human-source','orc-source']){

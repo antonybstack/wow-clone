@@ -1,27 +1,20 @@
 {
   "schema": 1,
   "fitId": "ashen-human",
-  "sourceSha256": "8efe9e8cc9d4b8b0558d4ec93f7406ccf0e567f557afae24bb4501f492471393",
+  "sourceSha256": "02883f6844663d20402c91b94c3ce8c776961530e410f58d6a994fa4cee1f1cd",
   "items": {
     "body": {
       "url": "/ashen-reach/equipment/body.glb",
-      "bytes": 5777464,
-      "sha256": "e813a40bbb00a9a8499cbabf3a042dd781ef806e69d8c2378756330428dae92d",
+      "bytes": 3399840,
+      "sha256": "02883f6844663d20402c91b94c3ce8c776961530e410f58d6a994fa4cee1f1cd",
       "meshes": [
-        "BodyExposed",
-        "BodyUnderTunic",
-        "BodyUnderBoots",
-        "BodyUnderLegs",
-        "BodyWaist",
-        "BodyHands",
-        "HumanHair",
-        "HumanEyes"
+        "HumanV1Body"
       ]
     },
     "graveweaverHood": {
       "url": "/ashen-reach/equipment/graveweaverHood.glb",
-      "bytes": 414472,
-      "sha256": "3b175f8b6c347ea6fd75cdd825730412282c2f81aff17c11c37dc0134229edfd",
+      "bytes": 276880,
+      "sha256": "828b7e66b2edfc4d8fb2411c87c0fe7f1da52359b192691774d0c34392c63799",
       "meshes": [
         "GraveweaverHood"
       ],
@@ -34,8 +27,8 @@
     },
     "graveweaverTop": {
       "url": "/ashen-reach/equipment/graveweaverTop.glb",
-      "bytes": 329860,
-      "sha256": "13e8c5fcf29c6ca1fd195f3d00e2f808efe051f8639716aaf96e89d6369b5301",
+      "bytes": 245104,
+      "sha256": "935bc9c509c562e08161bac0d7babc60b5273c38aea6764258966dcc060f1b78",
       "meshes": [
         "GraveweaverTop",
         "GraveweaverPendant"
@@ -49,8 +42,8 @@
     },
     "graveweaverSkirt": {
       "url": "/ashen-reach/equipment/graveweaverSkirt.glb",
-      "bytes": 519252,
-      "sha256": "cbfde0d42dc93dbf2aee47a400dc211cc00298d5f501078bcbeaed33f4ea1103",
+      "bytes": 371764,
+      "sha256": "7a9a770063337c1dfa1de5a0da2e2fe3191865b1a3f7882afe92694b03e55cbc",
       "meshes": [
         "GraveweaverSkirt",
         "WayfarerTrousers",
@@ -65,8 +58,8 @@
     },
     "graveweaverGloves": {
       "url": "/ashen-reach/equipment/graveweaverGloves.glb",
-      "bytes": 229148,
-      "sha256": "2a182c78ca88a80cb219dc78f2eeeb3cea579d4b9297f8d41ccbb095010fc0b5",
+      "bytes": 174004,
+      "sha256": "ae3a162fc15b038bbf713f924b0b6b69d88fcd18ff2cfcb676112d5c91bb6e75",
       "meshes": [
         "GraveweaverGloves"
       ],
@@ -79,8 +72,8 @@
     },
     "wayfarerTunic": {
       "url": "/ashen-reach/equipment/wayfarerTunic.glb",
-      "bytes": 248324,
-      "sha256": "331edaeb88bb82c374ff6cdffd693c2ea4971e69343fb32753d39896bd5a6582",
+      "bytes": 249636,
+      "sha256": "3b4c929df3708afd760f3f056f0dc706e780552cfe1966d8ef3f5083b8749cd6",
       "meshes": [
         "WayfarerTunic"
       ],
@@ -93,8 +86,8 @@
     },
     "pilgrimTunic": {
       "url": "/ashen-reach/equipment/pilgrimTunic.glb",
-      "bytes": 695732,
-      "sha256": "b9b37c789284bcf209f7a2045111529d947f51abce0dd03db984b816cfef359b",
+      "bytes": 479776,
+      "sha256": "e8ee89fed1056a1b0d1434bf138c05e698cf0564ce531ad1c7a39de45f4ef691",
       "meshes": [
         "PilgrimTunic"
       ],
@@ -107,8 +100,8 @@
     },
     "wayfarerTrousers": {
       "url": "/ashen-reach/equipment/wayfarerTrousers.glb",
-      "bytes": 159116,
-      "sha256": "beaac64f9a3a4959aa418bbaf22a3feba24285497d66bc696cd8ce419751983f",
+      "bytes": 146288,
+      "sha256": "169ad0333e5746e72512b8160008aefbf3d8bef7d75f2ff70203feca08538def",
       "meshes": [
         "WayfarerTrousers",
         "WayfarerTrousersCuffs"
@@ -122,8 +115,8 @@
     },
     "wayfarerBoots": {
       "url": "/ashen-reach/equipment/wayfarerBoots.glb",
-      "bytes": 241452,
-      "sha256": "0f4091ff26d40cf3a3567b8770105f51b79a346caa21ead40577391704f81ae2",
+      "bytes": 242544,
+      "sha256": "a55a9e4cd7b8658b6f2bd51dd3092af576e8d7dd279c9687bb3419a5c858bd98",
       "meshes": [
         "WayfarerBoots"
       ],
@@ -135,5 +128,7 @@
       }
     }
   },
-  "bindSha256": "1edfeed2c3017054c6e591ea758e97e9135f9745b82f32b5c6889e6b6f51e506"
+  "bindSha256": "96bc48fe1c85ecfa78f169cbc0a637a71a8fcb1a8812f4a41b015a621b5522af",
+  "profileId": "human-tripo-v1",
+  "garments": true
 }
