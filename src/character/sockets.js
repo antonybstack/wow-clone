@@ -125,21 +125,33 @@ function jointIndex(binding, nodeIndex) {
     return -1;
 }
 
+function linkedUnder(node, root) {
+    let current = node;
+    for (let guard = 0; current && guard < 24; guard++) {
+        if (current === root) return true;
+        current = current.parent;
+    }
+    return false;
+}
+
+/** The mesh whose world matrix turns joint locals into capsule space.
+ *  Garments and a race swap both leave skinned nodes in `children` after
+ *  `removeFromScene` clears `parent`. Those nodes keep a frozen world matrix,
+ *  and a socket that follows one stays where the character was. */
 function findSkinnedMesh(root) {
     const stack = [root];
+    let fallback = null;
     while (stack.length) {
         const node = stack.pop();
+        if (node !== root && !linkedUnder(node, root)) continue;
         if (node?.skeleton?.boneMatrices && node.worldMatrix) {
-            return node;
+            if (/V1Body$|BodyExposed$/.test(node.name || "")) return node;
+            fallback ??= node;
         }
         const kids = node?.children;
-        if (kids) {
-            for (let i = 0; i < kids.length; i++) {
-                stack.push(kids[i]);
-            }
-        }
+        if (kids) for (let i = 0; i < kids.length; i++) stack.push(kids[i]);
     }
-    return null;
+    return fallback;
 }
 
 /** Mesh-local joint: boneMatrix * inv(IBM) = invMeshWorld_load * jointWorld. */

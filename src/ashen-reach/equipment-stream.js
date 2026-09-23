@@ -251,6 +251,9 @@ export async function createStreamedEquipment(
           if (dead) return;
           dead = true;
           for (const [mesh, skeleton] of owned) mesh.skeleton = skeleton;
+          // removeFromScene nulls parent without splicing `children`. A later
+          // socket rebind would follow that frozen garment and leave weapons behind.
+          if (root?.parent) setParent(root, null);
           removeFromScene(scene, container || root);
           entries.delete(id);
         },
@@ -263,6 +266,7 @@ export async function createStreamedEquipment(
       return entry;
     } catch (error) {
       for (const [mesh, skeleton] of owned) mesh.skeleton = skeleton;
+      if (root?.parent) setParent(root, null);
       if (root) removeFromScene(scene, container || root);
       throw error;
     }

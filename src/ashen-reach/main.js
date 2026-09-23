@@ -213,6 +213,7 @@ async function main(){
     impl=next;
     currentRace=race;
     previousImpl.dispose();
+    combat.fx.sockets?.rebind?.(body);
    }catch(error){
     if(previousRace==='human'||!packs[previousRace]?.bodyUrl)body.restoreSource();
     else await body.swapSource(packs[previousRace].bodyUrl);
