@@ -1,5 +1,6 @@
 import {createSphere,createShaderMaterial,setShaderUniform,setMeshVisible,addToScene,createPointLight,loadTexture2D,createGridSpriteAtlas,createFacingBillboardSystem,addFacingBillboardSystem,addBillboardSprite,updateBillboardSprite,billboardBlendAdditive,billboardBlendAlpha} from '@babylonjs/lite';
 import {rng} from './geometry.js';
+import {paintLitUniform} from './materials.js';
 const clamp=x=>Math.max(0,Math.min(1,x));
 const xyz=p=>[p.x,p.y,p.z];
 /** One molten mesh and three fixed sprite pools; no GPU allocations at cast time. */
@@ -40,7 +41,7 @@ export async function createLavaBallVfx(engine,scene,world,handPosition,player){
  let stage='idle',age=0,time=0,position=[0,0,0],charge=0,ground=0;
  const hide=()=>{for(const pool of pools)for(const q of pool)updateBillboardSprite(q.handle,{visible:false});setMeshVisible(core,false);};
  const draw=(q,p,size,color,rotation=0)=>updateBillboardSprite(q.handle,{position:p,sizeWorld:[size,size],color,rotation,visible:true});
- const illuminate=power=>{light.position.set(...position);light.intensity=power;for(const m of materials){setShaderUniform(m,'lavaPosition',position);setShaderUniform(m,'lavaStrength',power);}};
+ const illuminate=power=>{light.position.set(...position);light.intensity=power;for(const m of materials){paintLitUniform(m,'lavaPosition',position);paintLitUniform(m,'lavaStrength',power);}};
  const center=()=>{const p=handPosition(),f=player.getFacing();return [p[0]+Math.sin(f)*.24,p[1]+.03,p[2]+Math.cos(f)*.24];};
  return {
   begin(){stage='charge';age=0;charge=0;for(const t of trail)t.age=10;},

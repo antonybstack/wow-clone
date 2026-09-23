@@ -14,6 +14,7 @@ import {
   setMeshVisible,
   addToScene,
 } from "@babylonjs/lite";
+import { paintLitUniform } from "./materials.js";
 import { rng } from "./geometry.js";
 
 const CHARGE = 1.1;
@@ -137,15 +138,15 @@ export async function createGravePulseVfx(
   }
   function paintWorld(pos, strength) {
     for (const m of materials) {
-      setShaderUniform(m, "firePosition", pos);
-      setShaderUniform(m, "fireStrength", strength);
+      paintLitUniform(m, "firePosition", pos);
+      paintLitUniform(m, "fireStrength", strength);
     }
   }
   function paintHand(pos, strength) {
     if (!handPosition) return;
     for (const m of materials) {
-      setShaderUniform(m, "handFirePosition", pos);
-      setShaderUniform(m, "handFireStrength", strength);
+      paintLitUniform(m, "handFirePosition", pos);
+      paintLitUniform(m, "handFireStrength", strength);
     }
   }
   function clear() {

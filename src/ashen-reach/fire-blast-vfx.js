@@ -1,4 +1,5 @@
-import {loadTexture2D,createGridSpriteAtlas,createFacingBillboardSystem,addFacingBillboardSystem,addBillboardSprite,updateBillboardSprite,billboardBlendAdditive,billboardBlendAlpha,createPointLight,addToScene,setShaderUniform} from '@babylonjs/lite';
+import {loadTexture2D,createGridSpriteAtlas,createFacingBillboardSystem,addFacingBillboardSystem,addBillboardSprite,updateBillboardSprite,billboardBlendAdditive,billboardBlendAlpha,createPointLight,addToScene} from '@babylonjs/lite';
+import {paintLitUniform} from './materials.js';
 import {attachSockets} from '../character/sockets.js';
 import {rng} from './geometry.js';
 
@@ -32,7 +33,7 @@ export async function createFireBlastVfx(engine,scene,player,body,world){
    primeAge+=dt;const hand=handPosition(),wind=body.getState?.().castReleaseTime||.55,power=Math.min(1,primeAge/wind);
    for(const q of systems[0].slice(0,5))updateBillboardSprite(q.handle,{position:hand,sizeWorld:[.18+power*.18,.18+power*.18],rotation:q.angle+primeAge,color:[1.8,.45,.025,.12+power*.13],visible:true});
    lights[1].position.set(...hand);lights[1].intensity=power*.35;
-   for(const material of lightMaterials){setShaderUniform(material,'handFirePosition',hand);setShaderUniform(material,'handFireStrength',power*.35);}
+   for(const material of lightMaterials){paintLitUniform(material,'handFirePosition',hand);paintLitUniform(material,'handFireStrength',power*.35);}
    return;
   }
   age+=dt;if(age>EFFECT_DURATION&&!wasActive)return;wasActive=age<=EFFECT_DURATION;
@@ -68,11 +69,11 @@ export async function createFireBlastVfx(engine,scene,player,body,world){
   }
   const power=Math.max(0,1-age/.65)**2,handPower=Math.max(0,1-age/.58)**1.4;
   lights[0].position.set(...point);lights[0].intensity=power*3.5;lights[1].position.set(...hand);lights[1].intensity=handPower*2.4;
-  for(const material of lightMaterials){setShaderUniform(material,'firePosition',point);setShaderUniform(material,'fireStrength',power*4.5);setShaderUniform(material,'handFirePosition',hand);setShaderUniform(material,'handFireStrength',handPower*2.2);}
+  for(const material of lightMaterials){paintLitUniform(material,'firePosition',point);paintLitUniform(material,'fireStrength',power*4.5);paintLitUniform(material,'handFirePosition',hand);paintLitUniform(material,'handFireStrength',handPower*2.2);}
  }
  return {
   beginWindup(){priming=true;primeAge=0;},
-  cancelWindup(){priming=false;for(const q of systems[0].slice(0,5))updateBillboardSprite(q.handle,{visible:false});lights[1].intensity=0;for(const m of lightMaterials)setShaderUniform(m,'handFireStrength',0);},
+  cancelWindup(){priming=false;for(const q of systems[0].slice(0,5))updateBillboardSprite(q.handle,{visible:false});lights[1].intensity=0;for(const m of lightMaterials)paintLitUniform(m,'handFireStrength',0);},
   trigger(target){priming=false;point=[target.position.x,target.position.y+1.1,target.position.z];age=0;wasActive=true;for(const pool of systems)for(const q of pool){q.birth=null;q.direction=null;}},
   sockets,update,get age(){return age;},get active(){return priming||age<=EFFECT_DURATION;},handPosition,
   stats:{sprites:100,systems:3,lights:2},
