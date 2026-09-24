@@ -8,11 +8,11 @@ Sunlight now follows the same occlusion on terrain, masonry, vegetation, animate
 
 V11 production release: `b628f37`, Pages `b14a1aa7`, 2026-09-24.
 
-## 2. Ground contact and ambient occlusion — implemented locally
+## 2. Ground contact and ambient occlusion — deployed
 
 Add restrained depth-based contact and ambient occlusion around feet, stones, walls, and vegetation roots. Preserve warm lamp lighting and avoid black halos, screen-edge leaks, and shadows that detach during animation. Validate camera movement and portrait views.
 
-The [V12 plan and results](contact-occlusion-plan-2026-09-24.md) record the native contact pass, local AO, bounded composition, live validation, and remaining limitations. Awaiting a separate release request.
+The [V12 plan and results](contact-occlusion-plan-2026-09-24.md) record the native contact pass, local AO, bounded composition, live validation, and remaining limitations. Released as `8c20843`, Pages `3d6eb578`, on 2026-09-24. See the [implementation retrospective](v12-lighting-retrospective-2026-09-24.md).
 
 ## 3. Linear HDR lighting and exposure
 

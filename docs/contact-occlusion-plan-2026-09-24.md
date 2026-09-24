@@ -1,5 +1,7 @@
 # V12 contact shadows and ambient occlusion
 
+Release update — 2026-09-24: committed and pushed as `8c20843`, deployed to https://play.sparkify.dev (Pages `3d6eb578`). Production readiness, V12 state, physics/WASM, movement, portrait rendering, and runtime/GPU checks passed; captures reviewed. The plan and local implementation results below retain their original pre-release scope. See the [retrospective](v12-lighting-retrospective-2026-09-24.md).
+
 ## Target
 
 Ground the current character, stones, and building junctions with short, restrained occlusion. Keep the approved golden horizon, mountain silhouettes, shadowed fog, warm lamps, source animation, and movement. V11 is the release baseline; this next slice is local until another release is requested.

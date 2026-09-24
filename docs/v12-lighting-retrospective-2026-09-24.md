@@ -1,5 +1,7 @@
 # V12 contact lighting retrospective — 2026-09-24
 
+Release completed: **`8c20843`** committed and pushed to `main`; Cloudflare Pages **`3d6eb578`** deployed at **https://play.sparkify.dev**. Production smoke verified V12 active, valid Havok WASM and physics, 38 dynamic shadow casters, 12.72 units of keyboard movement, portrait rendering, and no runtime/GPU errors. Desktop, town, and portrait captures were reviewed. The production report is `ve-capture/ashen-reach/contact-occlusion/v12-release-final/production.json`. Existing Telegram motion evidence 744 is associated with the release commit.
+
 ## Outcome and release boundary
 
 V12 adds short contact shadows and local ambient occlusion to the existing V11 sunlight and fog. The visible target was modest: better grounding at nearby feet, stones, wall bases, and foliage intersections while retaining the approved horizon and warm lamps.

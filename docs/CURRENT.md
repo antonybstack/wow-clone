@@ -2,7 +2,7 @@
 
 ## V12 contact shadows and ambient occlusion — 2026-09-24
 
-Release requested. The [V12 implementation retrospective](v12-lighting-retrospective-2026-09-24.md) records decisions, corrections, evidence, and a reusable checklist. Fresh release build, seven tests, and live contact/occlusion checks pass; production verification is pending. The implementation handoff below precedes this release.
+**V12 is committed and pushed as `8c20843`, deployed to https://play.sparkify.dev through Cloudflare Pages `3d6eb578`.** The [V12 implementation retrospective](v12-lighting-retrospective-2026-09-24.md) records decisions, corrections, evidence, and a reusable checklist. Fresh release build, seven tests, and stricter live contact/occlusion checks pass. Production verified: V12 enabled, Havok physics and valid WASM, 38 dynamic sun casters, 12.72 units of keyboard movement, portrait rendering, no runtime/GPU errors. Desktop, town, and portrait captures were reviewed. Telegram clip 744 is associated with this release commit. The implementation handoff below precedes this release.
 
 The [detailed plan and results](contact-occlusion-plan-2026-09-24.md) are implemented **locally, uncommitted, not deployed**. Native short contact rays and custom local AO add restrained grounding before fog; composition caps darkening and protects bright lamps. Normal orientation and screen borders were corrected after live/source review. Fullscreen play, reference, and armory cameras, portrait/odd resize, exact disabled bypass, scene disposal, and direct rendering passed without runtime/GPU errors. Near/far sunlight regressions still pass; actual walking/jumping covered 10.62 units. Build and seven targeting/spell tests pass.
 
@@ -12,7 +12,7 @@ Separate uncapped Mac Studio Chromium/WebGPU benchmark, 1280×720 internal/viewp
 
 The next roadmap milestone is linear HDR lighting and a single final grade; it is not started automatically.
 
-## Production release
+## Previous V11 production release
 
 V11 is committed and pushed as **`b628f37`**, deployed to production as Cloudflare Pages **`b14a1aa7`** at **https://play.sparkify.dev**. Production verification passed: ready, Havok physics, 38 dynamic shadow casters, valid WASM bytes, no runtime/GPU errors; the live capture was reviewed. Telegram evidence 743 is associated with this commit.
 
