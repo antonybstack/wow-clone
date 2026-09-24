@@ -1,6 +1,14 @@
 # Current direction — Ashen Reach
 
-## V13 linear HDR lighting — 2026-09-24
+## V13 production release — 2026-09-24
+
+Committed and pushed as **`05fe8fe`**, deployed to **https://play.sparkify.dev** through Pages **`f71594d2`**. Includes the verified loading-screen redesign and subtitle removal from `9eea274`.
+
+Release build and 47 tests pass. Production entry JavaScript matches the local build byte-for-byte; versioned Havok WASM has the correct header and active physics. Production desktop WebKit with a mobile viewport passed visible movement (18.09 units), and Chromium with the injected iPhone depth failure passed touch movement (27.22 units), capture loss, cancellation, menu and blur recovery. Both use the HDR pipeline and reported no runtime/GPU errors. Reviewed production portrait recording: https://ve.sparkify.dev/wow-clone/ashen-reach/hdr/production-05fe8fe.mp4. Physical iPhone V13 verification remains pending.
+
+Next proposed milestone is **V14: local lights with believable occlusion**. Start with the lych-gate lantern and two adjacent lamps, budget at most two shadowed spotlights, and share visibility between surface lighting and fog. Remove the selected lamps' baked light contributions and geometric cones. Verify moving actor/wall occlusion, camera traversal, portrait rendering, physical iPhone behavior and a separate >120 FPS desktop benchmark. This is a recommendation, not an implementation started by this release request.
+
+## V13 implementation handoff (before release) — 2026-09-24
 
 The user-verified loading-screen changes, including subtitle removal, were committed and pushed as **`9eea274`**. The next authorized graphics milestone is now implemented **locally, uncommitted, not deployed**: [V13 plan, implementation and retrospective](linear-hdr-plan-2026-09-24.md).
 

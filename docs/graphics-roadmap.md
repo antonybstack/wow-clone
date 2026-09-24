@@ -1,6 +1,6 @@
 # Graphics milestones
 
-Updated 2026-09-24. Baseline V10 is committed as `8c550ef`, pushed to main, and deployed to https://play.sparkify.dev (Pages deployment `372548bd`). Production smoke check: ready, Havok physics, shadowed volumetric fog, valid WASM, no page errors. This roadmap describes future work, not an automatic task queue.
+Updated 2026-09-24. Current production baseline is V13, committed as `05fe8fe` and deployed to https://play.sparkify.dev through Pages `f71594d2`. Production rendering, movement, physics and mobile depth fallback checks pass. Physical iPhone V13 review remains pending. This roadmap describes future work, not an automatic task queue.
 
 ## 1. A fully shadowed street — deployed
 
@@ -14,11 +14,11 @@ Add restrained depth-based contact and ambient occlusion around feet, stones, wa
 
 The [V12 plan and results](contact-occlusion-plan-2026-09-24.md) record the native contact pass, local AO, bounded composition, live validation, and remaining limitations. Released as `8c20843`, Pages `3d6eb578`, on 2026-09-24. See the [implementation retrospective](v12-lighting-retrospective-2026-09-24.md).
 
-## 3. Linear HDR lighting and exposure — implemented locally
+## 3. Linear HDR lighting and exposure — deployed
 
 Render surface lighting and volumetric scattering into linear floating-point color. Apply exposure, bloom, and tone mapping once at the end. Remove the current approximate inverse material grade. Match character PBR and custom environment materials; keep highlights colored and the sky readable.
 
-[V13 implementation and results](linear-hdr-plan-2026-09-24.md): shared linear targets, native material compatibility bridge, one final display transform, live GPU probes, mobile-browser regression checks and reviewed movement/spell video. Production deployment and physical iPhone review remain pending.
+[V13 implementation and results](linear-hdr-plan-2026-09-24.md): shared linear targets, native material compatibility bridge, one final display transform, live GPU probes, mobile-browser regression checks and reviewed movement/spell video. Deployed as `05fe8fe` / Pages `f71594d2`; physical iPhone review remains pending.
 
 ## 4. Local lights with believable occlusion
 

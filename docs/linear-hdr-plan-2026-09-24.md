@@ -26,7 +26,7 @@ The Lite documentation MCP is unavailable in this session. Use installed package
 
 ## Status
 
-Loading-screen baseline committed and pushed as `9eea274`. V13 implemented and verified locally; no production deployment authorized. V13 changes remain uncommitted.
+Loading-screen baseline committed and pushed as `9eea274`. V13 committed and pushed as `05fe8fe`, deployed on 2026-09-24 to https://play.sparkify.dev through Pages `f71594d2`.
 
 ## Implementation and corrections
 
@@ -60,6 +60,12 @@ An attempted root import of `disposeRenderTarget` failed because Lite does not e
 
 ## Remaining limits and retrospective
 
-Physical iPhone review and deployment are pending. This is an internal HDR lighting pipeline with SDR output, not an HDR-monitor mode. The ACES fit remains an artistic approximation; albedo/vertex palettes were authored for the former pipeline and can receive future tuning. Ambient/contact occlusion still darkens combined surface color with highlight protection, not a separately rendered ambient term. Transparent emitters inherit the opaque depth used for fog. Geometric lantern shafts and point-light occlusion belong to the next milestone. No temporal reconstruction or auto-exposure was introduced. Tail frame stalls remain despite good average throughput.
+Physical iPhone review remains pending; production deployment is complete. This is an internal HDR lighting pipeline with SDR output, not an HDR-monitor mode. The ACES fit remains an artistic approximation; albedo/vertex palettes were authored for the former pipeline and can receive future tuning. Ambient/contact occlusion still darkens combined surface color with highlight protection, not a separately rendered ambient term. Transparent emitters inherit the opaque depth used for fog. Geometric lantern shafts and point-light occlusion belong to the next milestone. No temporal reconstruction or auto-exposure was introduced. Tail frame stalls remain despite good average throughput.
 
 The important process correction was to inspect actual native shader composition, then validate ordinary and asynchronously created materials in the live full scene. A plausible engine flag and green no-enemy screenshots did not establish a single display transform. Keep numeric float-target probes, real gameplay review, stream-boundary tests and the iPhone fallback test together whenever the render pipeline changes.
+
+## Production release verification — 2026-09-24
+
+Release build and 47 tests passed. Production entry JavaScript matches the built asset byte-for-byte; versioned Havok WASM returns HTTP 200 with the correct magic bytes. Both production browser checks confirmed active physics, `rgba16float` composition, and the shared final display transform. Native desktop WebKit with a mobile viewport traveled 18.09 units with visible image changes; Chromium's injected depth-failure fallback traveled 27.22 units using native touch and passed capture-loss, cancellation, menu and blur recovery. Neither reported runtime/GPU errors. These checks do not establish physical iPhone acceptance.
+
+Reviewed production portrait movement recording: https://ve.sparkify.dev/wow-clone/ashen-reach/hdr/production-05fe8fe.mp4. Code deployed: `05fe8fe`; Pages deployment: `f71594d2`. Subsequent documentation commits do not change the deployed code.
