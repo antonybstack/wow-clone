@@ -110,13 +110,21 @@ export function attachDevTools({params, canvas, camera, player, combat, setView}
   });
   document.body.append(badge);
   paintBadge(badge);
-  if (!enabled) {
-    return {dev, tick() {}};
-  }
   const help = document.getElementById('help');
-  if (help && !help.textContent.includes('DEV')) {
-    help.insertAdjacentText('beforeend', '  ·  ?dev  G god  F fly  click teleport');
-  }
+  const devHelp = document.createElement('span');
+  devHelp.className = 'help-dev';
+  devHelp.textContent = 'DEV MODE · G god · F fly · click teleport while flying';
+  help?.append(devHelp);
+  const setEnabled = (on) => {
+    if (!on && dev.flying) player.setFlying?.(false);
+    dev.enabled = !!on;
+    dev.god = !!on;
+    dev.flying = false;
+    devHelp.hidden = !on;
+    document.body.classList.toggle('dev-mode', !!on);
+    paintBadge(badge);
+  };
+  setEnabled(enabled);
   document.addEventListener('keydown', (event) => {
     if (!dev.enabled || event.repeat || document.body.classList.contains('armory-open')) return;
     if (event.code === 'KeyG') {
@@ -133,12 +141,10 @@ export function attachDevTools({params, canvas, camera, player, combat, setView}
     }
   });
   const tick = () => {
-    if (!dev.enabled) return;
-    if (input.clicked) {
+    if (dev.enabled && dev.flying && input.clicked) {
       const x = input.clickX;
       const y = input.clickY;
       input.clicked = false;
-      if (!dev.flying) return;
       setView?.('play');
       const hit = pickGround(camera, canvas, x, y);
       if (!hit) {
@@ -150,5 +156,5 @@ export function attachDevTools({params, canvas, camera, player, combat, setView}
       combat.hud?.message?.(`Teleported  ${hit.x.toFixed(1)}, ${hit.z.toFixed(1)}`);
     }
   };
-  return {dev, tick};
+  return {dev, tick, setEnabled};
 }

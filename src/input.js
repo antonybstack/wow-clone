@@ -71,6 +71,7 @@ let touchMove = { forward: 0, strafe: 0, active: false };
 let touchJump = false;
 const touchPoints = new Map();
 let lastPinch = 0;
+let primaryTouchId = null;
 
 /** Modal game tools release held input on both entry and exit. */
 export function setInputEnabled(enabled) {
@@ -83,8 +84,6 @@ export function setInputEnabled(enabled) {
     input.castSpell = null;
     touchMove = { forward: 0, strafe: 0, active: false };
     touchJump = false;
-    touchPoints.clear();
-    lastPinch = 0;
     releaseButtons();
     exitPointerLock();
 }
@@ -187,6 +186,9 @@ function releaseButtons() {
     input.lmb = input.rmb = input.looking = false;
     input.lmbDrag = input.rmbDrag = false;
     lmbTravel = rmbTravel = 0;
+    touchPoints.clear();
+    lastPinch = 0;
+    primaryTouchId = null;
     if (canvasEl) {
         canvasEl.style.cursor = "";
     }
@@ -216,6 +218,10 @@ export function initInput(canvas) {
         if (event.button !== 0 && event.button !== 1 && event.button !== 2) {
             return;
         }
+        if (event.pointerType === "touch" && primaryTouchId !== null) {
+            touchPoints.set(event.pointerId, { x: event.clientX, y: event.clientY });
+            return;
+        }
         pressX = event.clientX;
         pressY = event.clientY;
         if (event.button === 1) {
@@ -236,6 +242,7 @@ export function initInput(canvas) {
         }
         syncLooking();
         if (event.pointerType === "touch") {
+            primaryTouchId = event.pointerId;
             touchPoints.set(event.pointerId, { x: event.clientX, y: event.clientY });
         } else if (input.looking) {
             canvas.style.cursor = "none";
@@ -244,8 +251,13 @@ export function initInput(canvas) {
     };
 
     const up = (event) => {
+        if (event.pointerType === "touch" && event.pointerId !== primaryTouchId) {
+            touchPoints.delete(event.pointerId);
+            if (touchPoints.size < 2) lastPinch = 0;
+            return;
+        }
         if (event.button === 0) {
-            if (input.lmb && !input.rmb && !input.lmbDrag && lmbTravel <= CLICK_SLOP) {
+            if (event.type === "pointerup" && input.lmb && !input.rmb && !input.lmbDrag && lmbTravel <= CLICK_SLOP) {
                 input.clicked = true;
                 input.clickX = pressX;
                 input.clickY = pressY;
@@ -255,7 +267,7 @@ export function initInput(canvas) {
             lmbTravel = 0;
         }
         if (event.button === 2) {
-            if (input.rmb && !input.lmb && !input.rmbDrag && rmbTravel <= CLICK_SLOP) {
+            if (event.type === "pointerup" && input.rmb && !input.lmb && !input.rmbDrag && rmbTravel <= CLICK_SLOP) {
                 input.clicked = true;
                 input.clickX = pressX;
                 input.clickY = pressY;
@@ -264,7 +276,10 @@ export function initInput(canvas) {
             input.rmbDrag = false;
             rmbTravel = 0;
         }
-        if (event.pointerType === "touch") touchPoints.delete(event.pointerId);
+        if (event.pointerType === "touch") {
+            touchPoints.delete(event.pointerId);
+            primaryTouchId = null;
+        }
         if (touchPoints.size < 2) lastPinch = 0;
         syncLooking();
         if (!input.looking) {
@@ -343,6 +358,7 @@ export function initInput(canvas) {
 
     window.addEventListener("pointerdown", down, true);
     window.addEventListener("pointerup", up, true);
+    window.addEventListener("pointercancel", up, true);
     window.addEventListener("pointermove", move, true);
 
     document.addEventListener("pointerlockchange", () => {

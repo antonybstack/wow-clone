@@ -1,5 +1,45 @@
 # Current direction — Ashen Reach
 
+## V10 shadowed volumetric sunlight — 2026-09-23
+
+The user rejected V9's artificial ground-origin rays. [V10](shadowed-volumetric-fog-plan-2026-09-23.md) removes that pattern and integrates real shadow-tested sunlight through world-space fog. A cached 2048 sun depth map includes terrain, mountains, opaque trees and buildings; a half-resolution, 48-step volume stops at scene depth and composites with depth-aware upsampling. All 45 GPU light-visibility probes matched independent triangle raycasts; removing/restoring the mountain caster batch changed the fog visibility as expected. Movement, portrait resizing, build and live shader checks pass. The reviewed 18.88-second flythrough went to Telegram (742). At 1280×720 internal resolution, uncapped Chrome with seven enemies averaged 268.8 FPS over 600 samples (p95 5.7 ms, p99 59.5 ms). Occasional long frames remain. Fine grass and animated characters are not sun shadow casters. V10 is local only; production remains V7.
+
+## V9 golden-hour mountain fog — 2026-09-23
+
+The user-supplied World of Warcraft Forever sunset reference now drives the [golden-hour fog plan](golden-hour-fog-plan-2026-09-23.md). The local game has a low left-hand solar glow, blue-to-peach sky, concentrated valley mist, mauve mountain layers, and soft directional light bands shared by sky and fog. These are stylized scattering bands rather than fully shadow-mapped volumetric rays. Six final live views and an 18.5-second 1280×720/60 FPS citadel clip were reviewed; the MP4 went to Telegram as message 741. Build and live shader checks pass. Uncapped headless Chrome with seven enemies averaged 308 FPS at 1280×720 internal resolution over 600 samples (p95 6.1 ms, p99 53.8 ms); occasional long frames remain. V9 is local only. Production remains the earlier V7 deployment below.
+
+## V8 backlit mountain fog — 2026-09-23
+
+[The backlit mountain fog pass](backlit-mountain-fog-plan-2026-09-23.md) is implemented and live-reviewed locally. Warm directional scattering now catches distant northern mist, and soft cloud-gated crepuscular rays emerge above the mountain silhouette. The south-facing fog balance and citadel legibility held in matched captures. An 18.9-second, 1280×720/60 FPS citadel flythrough went to Telegram (message 740). Build and shader checks passed; uncapped 1280×720 with seven enemies averaged 410 FPS over 600 samples (p95 3.4 ms, p99 20.4 ms). This pass has not been deployed to production; the production note below describes the prior V7 deploy.
+
+## Production deploy — 2026-09-23
+
+The current playable checkout was deployed to Cloudflare Pages project `fardel` on `play.sparkify.dev`. Production browser smoke check rendered the churchyard with `ASHEN.ready === true`, `ASHEN.player.getDebugState().usingPhysics === true`, and no page errors. A stale browser cache had served HTML from the unversioned `/HavokPhysics.wasm` URL despite the newly staged file being valid. `src/player.js` now requests `HavokPhysics.wasm?v=20260923-1`, and `public/_headers` revalidates `.wasm` after 60 seconds. The production response returned `00 61 73 6d` and used the new cache rule. See [deploy notes](DEPLOY.md).
+
+## V7 lighting and fog balance — 2026-09-23
+
+[The focused V7 pass](world-light-fog-v7-plan-2026-09-23.md) reduced sunward churchyard wash and near-lamp gate overexposure while keeping dusk sky, distance fog, and warm town landmarks. Twelve matched views and a 27.2-second live town flythrough were reviewed; the 1280×720, 60 FPS MP4 went to Telegram (message 739). Build and shader checks passed. Two uncapped 1280×720, seven-enemy headless runs averaged 390.9 FPS (600 samples each); p99 was 37.2/20.4 ms, so occasional stalls remain. Some close lamp shafts still show geometric edges. The previous outer-moor note remains below.
+
+## V2 outer-moor follow-up — 2026-09-23
+
+The open distant-cover and smooth-southern-hill item from [world vista repair](world-vista-repair-plan-2026-09-23.md) received a live pass: shallow crossing relief outside the playable rectangle and a separate sparse textured moor pool visible out to 185 m. Matched south/east rim and town-ground captures were reviewed, followed by a 13.3-second, 60 FPS boundary flight delivered on Telegram (message 738; replaces the 25 FPS encode in message 737). The first recording crossed a tree trunk; the delivered take uses a camera cut past that grove. No page errors occurred. At 960×540 with seven enemies, the uncapped headless run measured 422 FPS average, p95 3.6 ms, p99 18.3 ms; at 1280×720, 394 FPS average, p95 4.1 ms, p99 18.8 ms (600 retained samples each, no recording). Average throughput meets the >120 FPS goal in these conditions, but frame-time stalls and larger scenes remain open. Distant cover is still stylized and speckled; further art polish should be judged against new gameplay references, not treated as an automatic historical milestone.
+
+## FPS benchmark update — 2026-09-23
+
+The owned default headless Chrome's 60 Hz compositor cap explained recent 60.001 FPS reports. An isolated `--uncapped` headless Chrome measured about 493 FPS with no enemies and 425 FPS with seven enemies at 960×540 internal resolution (1280×720 viewport, 600 retained samples; seven-enemy p95 3.5 ms, p99 10.9 ms). Thus average throughput exceeds the >120 FPS goal in that condition, while occasional stalls, larger resolutions and visible display pacing remain unverified. Use [the reproducible uncapped procedure](debug-view.md#measure-above-the-headless-chrome-60-fps-cap) for future checks.
+
+## V5 play-view update — 2026-09-23
+
+[V5 readable play views](play-views-v5-plan-2026-09-23.md) are implemented and live-reviewed. Desktop help and spell labels are readable, ordinary metrics are hidden, phone spell names and touch keybindings are visible, and 320–390 px layouts fit. The menu pauses combat; dev toggling, normal click targeting, flight, and multi-touch ownership now work in the live checks. Reviewed desktop and touch MP4s were delivered on Telegram (messages 736 and 735). V2 distant ground cover and the smooth southern hill remain open. A no-recording 960×540 run measured 60.001 FPS in a 60 Hz-capped browser; the >120 FPS goal remains unverified.
+
+## V4 world atmosphere update — 2026-09-23
+
+[V4 lighting balance](world-atmosphere-v4-plan-2026-09-23.md) is implemented and live-reviewed. Cloud glare is lower, north and west slopes are more readable, and broad gate halos are restrained while local lamps and churchyard remain legible. Town and elevated rim MP4s were reviewed and delivered on Telegram (messages 733 and 734). The smooth southern hill and sparse distant ground cover remain open V2 work; V5 play-view polish is complete; see the update above. The latest 960×540 internal-buffer run measured 60.004 FPS in a 60 Hz-capped browser, so the >120 FPS goal remains unverified.
+
+## Latest user request — world vista repair (2026-09-23)
+
+The user supplied three elevated Hollowmere screenshots and asked for a defect inventory, a multi-milestone plan, and implementation. See [the world vista repair plan](world-vista-repair-plan-2026-09-23.md). V1 terrain continuity, the V2 landscape pass, and [V3 citadel/ridge depth](citadel-ridge-plan-2026-09-23.md) are implemented locally. V3 corrects wall orientation, closes the crag, separates readable masonry from dark roofs, moves the central fortress back into the street frame, and replaces ridge curtains with slopes. Matched views and reviewed live flights were delivered on Telegram (730, 731, 732). V2 still needs fuller distant ground cover; V4 atmosphere is implemented and reviewed; V5 play-view polish is complete; see the V5 update above. The >120 FPS goal is unverified because the capture browser is capped at 60 Hz. The M11 Undead initiative below is paused by this newer request, not abandoned.
+
 Updated 2026-09-20. The playable Orc is the print-sculpt retopo on the 65-joint source bind. Living pipeline: [orc sculpt pipeline](orc-sculpt-pipeline.md). Dated reports are evidence of particular passes; conflicting older roadmaps, handoffs and logs have been removed rather than retained as a task queue.
 
 ## Product and visual target

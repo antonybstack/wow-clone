@@ -25,6 +25,7 @@ for pack in forrest_ground_01 rock_wall_08 wood_planks_grey bark_brown_02; do
 done
 rsync -a --exclude 'wanderer.glb' --exclude 'wanderer-equipment.glb' public/ashen-reach/ "$STAGE/ashen-reach/"
 cp -a public/meshopt_decoder.js "$STAGE/meshopt_decoder.js"
+cp -a public/HavokPhysics.wasm "$STAGE/HavokPhysics.wasm"
 rsync -a public/characters/bodies/ "$STAGE/characters/bodies/"
 rsync -a public/characters/garments/ "$STAGE/characters/garments/"
 rsync -a public/characters/animations/ "$STAGE/characters/animations/"
@@ -34,6 +35,10 @@ cp -a public/_headers "$STAGE/_headers"
 
 echo "Staging $(du -sh "$STAGE" | awk '{print $1}') of playable assets"
 ASHEN_PAGES=1 ASHEN_PUBLIC_DIR="$STAGE" npm run build
+if ! cmp -s public/HavokPhysics.wasm dist/HavokPhysics.wasm; then
+  echo "Deployment build is missing HavokPhysics.wasm" >&2
+  exit 3
+fi
 
 npx --yes wrangler@4 pages deploy dist \
   --project-name="$PROJECT" \

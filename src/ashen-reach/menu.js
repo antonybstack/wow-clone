@@ -49,13 +49,13 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics } = {}) {
           <button type="button" data-action="armory">Armory <kbd>C</kbd></button>
           <button type="button" data-action="sound">Sound</button>
           <button type="button" data-action="keys">Keybindings</button>
-          <button type="button" data-action="dev" aria-pressed="false">Dev mode</button>
-          <button type="button" data-action="metrics" aria-pressed="true">Hide Metrics</button>
+          <button type="button" data-action="dev" aria-pressed="false">Developer mode</button>
+          <button type="button" data-action="metrics" aria-pressed="false">Show performance</button>
         </div>
       </div>
       <div class="game-menu-keys" hidden>
         <h1>Keybindings</h1>
-        <ul>
+        <ul class="desktop-keys">
           <li><span>Move / turn</span><kbd>WASD</kbd></li>
           <li><span>Look</span><kbd>RMB</kbd></li>
           <li><span>Jump</span><kbd>Space</kbd></li>
@@ -65,9 +65,16 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics } = {}) {
           <li><span>Armory</span><kbd>C</kbd></li>
           <li><span>Camera</span><kbd>V</kbd></li>
           <li><span>Reset</span><kbd>R</kbd></li>
-          <li><span>Hide HUD</span><kbd>H</kbd></li>
-          <li><span>God / fly (upcoming with ?dev)</span><kbd>G / F</kbd></li>
+          <li><span>Hide help</span><kbd>H</kbd></li>
+          <li data-dev-only hidden><span>Developer: god / fly / teleport</span><kbd>G / F / click</kbd></li>
           <li><span>Menu</span><kbd>Esc</kbd></li>
+        </ul>
+        <ul class="touch-keys" hidden>
+          <li><span>Move / strafe</span><kbd>Left stick</kbd></li>
+          <li><span>Look / select</span><kbd>Drag / tap world</kbd></li>
+          <li><span>Target / attack / jump</span><kbd>Bottom buttons</kbd></li>
+          <li><span>Cast spells</span><kbd>1 / 2 / 3 icons</kbd></li>
+          <li><span>Armory / menu</span><kbd>Top buttons</kbd></li>
         </ul>
         <button type="button" data-action="hub">Back</button>
       </div>
@@ -117,13 +124,14 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics } = {}) {
   function paintDev() {
     const on = devQueryOn();
     devBtn.setAttribute("aria-pressed", String(on));
-    devBtn.textContent = on ? "Dev mode: on" : "Dev mode";
+    devBtn.textContent = on ? "Developer mode: on" : "Developer mode";
+    root.querySelector("[data-dev-only]").hidden = !on;
   }
 
   function paintMetricsButton() {
     const on = !overlay.hidden;
     metricsBtn.setAttribute("aria-pressed", String(on));
-    metricsBtn.textContent = on ? "Hide Metrics" : "Show Metrics";
+    metricsBtn.textContent = on ? "Hide performance" : "Show performance";
   }
 
   function paintMetrics() {
@@ -190,8 +198,9 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics } = {}) {
   }
 
   function toggleDev() {
-    if (onDev) onDev();
-    else syncDevQuery(!devQueryOn());
+    const on = syncDevQuery(!devQueryOn());
+    onDev?.(on);
+    setMetricsVisible(on);
     paintDev();
   }
 
@@ -218,6 +227,9 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics } = {}) {
     else if (action === "armory") chooseArmory();
     else if (action === "sound") toggleSound();
     else if (action === "keys") {
+      const touch = document.body.classList.contains("touch-play");
+      keysPane.querySelector(".desktop-keys").hidden = touch;
+      keysPane.querySelector(".touch-keys").hidden = !touch;
       hub.hidden = true;
       keysPane.hidden = false;
       keysPane.querySelector("button")?.focus();
@@ -268,7 +280,7 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics } = {}) {
     true,
   );
 
-  setMetricsVisible(true);
+  setMetricsVisible(devQueryOn() || new URLSearchParams(location.search).has("metrics"));
 
   return {
     open,

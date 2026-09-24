@@ -5,6 +5,8 @@ description: Work with Babylon Lite, WebGPU and WGSL in the active Ashen Reach g
 
 # Babylon Lite in the active game
 
+For FPS diagnostics, read [the uncapped headless benchmark procedure](../../../docs/debug-view.md#measure-above-the-headless-chrome-60-fps-cap). The default owned headless Chrome on CDP 9337 can pace at 60 Hz; use an isolated `scripts/harness/up.mjs --uncapped` slot and check `vsyncCapped` before judging the >120 FPS goal. Treat uncapped `requestAnimationFrame` throughput separately from visible display refresh and frame-time tails.
+
 The current product is **Ashen Reach at the repository root**, using `@babylonjs/lite`, WebGPU and Vite **5173**. Start with [current direction](../../../docs/CURRENT.md) and [the Lite workflow](../blender-lite/SKILL.md).
 
 The previous skill described the separate root snow-demo engine. Duskwell is now under `archived/duskwell`; its Classic imports and procedural-only restrictions do not govern Ashen Reach.

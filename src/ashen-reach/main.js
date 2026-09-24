@@ -8,12 +8,13 @@ import {height} from './geometry.js';
 import {FOG_SCREEN,SUN_DIR,SUN_COLOR,SKY_AMBIENT,GROUND_BOUNCE,EXPOSURE} from './atmosphere.js';
 import {CameraRig} from '../camera-rig.js';
 import {initInput,input} from '../input.js';
-import {installTouchControls} from './touch-controls.js';
+import {installTouchControls,touchControlsWanted} from './touch-controls.js';
 import {setupPlayer,plantSpawnOnTerrain,resolveCapsule} from '../player.js';
 import {attachBody} from '../character/body.js';
 import {resolvePlayableBody} from '../character/runtime/playable-body.js';
 import {attachDevTools,dev} from './dev-tools.js';
 import {buildPostPipeline} from './post.js';
+import {registerSceneWithShadowSupport} from '@babylonjs/lite';
 import {createGameMenu} from './menu.js';
 
 enableErrorDecoding();
@@ -66,7 +67,7 @@ async function main(){
  // the screen value distance actually converges to, not the linear one.
  const scene=createSceneContext(engine);scene.clearColor={r:FOG_SCREEN[0],g:FOG_SCREEN[1],b:FOG_SCREEN[2],a:1};
  scene.imageProcessing.toneMapping=AcesToneMapping;scene.imageProcessing.toneMappingEnabled=true;scene.imageProcessing.exposure=EXPOSURE;
- setFog(scene,{mode:1,density:.010,color:FOG_SCREEN});
+ setFog(scene,{mode:0,density:0,color:FOG_SCREEN});
  const light=createHemisphericLight([0,1,0],.62);light.diffuseColor=SKY_AMBIENT.map(v=>v*3.1);light.groundColor=GROUND_BOUNCE.map(v=>v*3.1);addToScene(scene,light);
  // Direction light travels = away from the sun. Low and northward, so the player
  // walking toward Hollowmere is backlit and rims out against the haze.
@@ -96,13 +97,13 @@ async function main(){
   combat?.setVisible(v==='play');
  };
  const reset=()=>{if(!player||!capsule)return;player.setWorldPos(0,height(0,0)+capsule.height/2,0);player.setFacing(0);rig.yaw=0;rig.pitch=.04;combat?.releaseSpirit?.(true);setView('reference');};
- const menu=createGameMenu({onArmory:()=>armory?.open()});
+ const menu=createGameMenu({onArmory:()=>armory?.open(),onDev:on=>tools.setEnabled?.(on)});
  document.addEventListener('keydown',e=>{if(armory?.isOpen||menu.isOpen)return;if(e.code==='KeyV'){setView(view==='reference'?'play':'reference');}if(e.code==='KeyR'){if(combat?.releaseSpirit?.())return;reset();}if(e.code==='KeyH')document.body.classList.toggle('clean');if(['KeyW','KeyA','KeyS','KeyD','Space','Tab','Digit1','Digit2','Digit3','KeyF'].includes(e.code))setView('play');});
  if(params.has('clean'))document.body.classList.add('clean');
- setView(params.has('play')?'play':'reference');
+ setView(params.has('play')||touchControlsWanted()?'play':'reference');
  const metrics=createAshenMetrics({engine,scene,world,canvas,samples,lite:{isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize}});
  if(params.has('gpuTiming'))metrics.setGpuTiming(true);
- onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);elapsed+=dt;player?.kinematicStep(dt);combat?.beforeAnimation(dt);tools.tick();body?.update(dt);world.update(elapsed,player?player.body.position:null);combat?.afterAnimation(dt);equipment?.update(dt);armory?.update(dt);if(elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();metrics.sampleGpu();}});
+ onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);if(menu.isOpen){armory?.update(dt);return;}elapsed+=dt;player?.kinematicStep(dt);combat?.beforeAnimation(dt);tools.tick();body?.update(dt);world.update(elapsed,player?player.body.position:null);combat?.afterAnimation(dt);equipment?.update(dt);armory?.update(dt);if(elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();metrics.sampleGpu();}});
  const ashen={engine,scene,camera,reference,rig,world,input,setView,reset,metrics,capture:()=>captureScreenshot(engine),hostilesReady:noEnemies,presentMs:0,loadMs:0,ready:false,dev,menu,get player(){return player;},get body(){return body;},get combat(){return combat;},get equipment(){return equipment;},get armory(){return armory;}};
  globalThis.ASHEN=ashen;
  const sourceBody=resolvePlayableBody('?character=human-source');
@@ -124,10 +125,12 @@ async function main(){
  // in the bind pose while clips report as playing. See docs/startup-load.md.
  // Bloom is a render-target swap, so it has to exist before the first
  // registerScene. It does not fetch anything. ?noPost skips it.
- const post=params.has('noPost')?{status:{bloom:false,notes:['skipped by ?noPost']}}:buildPostPipeline(engine,scene);
+ const post=params.has('noPost')?{status:{bloom:false,notes:['skipped by ?noPost']}}:buildPostPipeline(engine,scene,sun,world);
  ashen.post=post.status;
+ ashen.volumetric=post.volume;
  if(post.status.notes.length)console.warn('ashen post chain:',post.status.notes.join('; '));
- await registerScene(scene);await startEngine(engine);
+ if(post.volume)await registerSceneWithShadowSupport(scene);else await registerScene(scene);
+ await startEngine(engine);
  ashen.presentMs=performance.now()-boot;
  document.getElementById('loading').remove();
  const foliageP=world.startFoliage();

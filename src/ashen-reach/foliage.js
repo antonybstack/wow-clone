@@ -414,7 +414,7 @@ function bucketTiles(data){
  return tiles;
 }
 
-function makePool(near,far,tiles,maxNear,maxFar,farThin=0.72){
+function makePool(near,far,tiles,maxNear,maxFar,farThin=0.72,farRadius=FAR_R,farFalloff=1){
  const nM=new Float32Array(maxNear*16), nC=new Float32Array(maxNear*4);
  const fM=new Float32Array(maxFar*16), fC=new Float32Array(maxFar*4);
  setThinInstances(near,nM,maxNear);
@@ -425,11 +425,11 @@ function makePool(near,far,tiles,maxNear,maxFar,farThin=0.72){
  setThinInstanceCount(far,0);
  enableThinInstanceDynamicDrawCount(near);
  enableThinInstanceDynamicDrawCount(far);
- return {near,far,tiles,nM,nC,fM,fC,maxNear,maxFar,farThin,nearCount:0,farCount:0};
+ return {near,far,tiles,nM,nC,fM,fC,maxNear,maxFar,farThin,farRadius,farFalloff,nearCount:0,farCount:0};
 }
 
 function packPool(pool,cx,cz){
- const nearR2=NEAR_R*NEAR_R, farR2=FAR_R*FAR_R, tileR=(FAR_R+TILE)*(FAR_R+TILE);
+ const nearR2=NEAR_R*NEAR_R, farR2=pool.farRadius*pool.farRadius, tileR=(pool.farRadius+TILE)*(pool.farRadius+TILE);
  let ni=0, fi=0;
  for(const tile of pool.tiles){
   const tdx=tile.cx-cx, tdz=tile.cz-cz;
@@ -446,7 +446,8 @@ function packPool(pool,cx,cz){
     ni++;
    }else{
     const d=Math.sqrt(d2);
-    const keep=1-Math.max(0,(d-NEAR_R)/(FAR_R-NEAR_R))*pool.farThin;
+    const fade=Math.max(0,(d-NEAR_R)/(pool.farRadius-NEAR_R));
+    const keep=1-Math.pow(fade,pool.farFalloff)*pool.farThin;
     const h=Math.abs(Math.sin(x*12.9898+z*78.233)*43758.5453)%1;
     if(h>keep)continue;
     if(fi>=pool.maxFar)continue;
@@ -467,6 +468,8 @@ export async function createFoliage(engine,scene,{lights=[],density=()=>0,landma
  const material=await createFoliageMaterial(engine);
  const grassNear=commitProto(engine,scene,clumpCards('Grass near',[UV.meadow,UV.meadow,UV.dry],{cards:3,height:0.74,width:0.26,spread:0.12}),material);
  const grassFar=commitProto(engine,scene,clumpCards('Grass far',[UV.meadow,UV.dry],{cards:2,height:0.84,width:0.36,spread:0,cross:true}),material);
+ const moorNear=commitProto(engine,scene,clumpCards('Moor near',[UV.meadow,UV.dry],{cards:3,height:1.0,width:0.42,spread:0.14}),material);
+ const moorFar=commitProto(engine,scene,clumpCards('Moor far',[UV.meadow,UV.dry],{cards:2,height:1.3,width:0.68,spread:0,cross:true}),material);
  const plantNear=commitProto(engine,scene,clumpCards('Plant near',[UV.plant],{cards:3,height:0.55,width:0.36,spread:0.10}),material);
  const plantFar=commitProto(engine,scene,clumpCards('Plant far',[UV.plant],{cards:2,height:0.60,width:0.42,spread:0,cross:true}),material);
  const brackenNear=commitProto(engine,scene,brackenTuft('Bracken near',UV.fern,false),material);
@@ -487,6 +490,18 @@ export async function createFoliage(engine,scene,{lights=[],density=()=>0,landma
  // carries texture out to where the scattered woodland starts and closes the gap between
  // the two.
  const grassMoor=place(density,lights,{seed:31573,minX:-150,maxX:150,minZ:-150,maxZ:215,spacing:1.32,scale:[1.0,1.5],yScale:[0.62,1.05],tint:[0.66,0.94],densityScale:0.62,skip:(x,z)=>x>-88&&x<88&&z>-90&&z<160});
+ // Backdrop-only grass has a sparse source set so its long draw radius cannot
+ // saturate the dense meadow pool. It remains outside the playable rectangle.
+ const outerDensity=(x,z)=>{
+  const edge=Math.max(Math.abs(x)-90,z-145,-95-z);
+  if(edge<10||edge>220||Math.hypot(x,z-40)>330)return 0;
+  if(Math.abs(x)<45&&z>255&&z<355)return 0;
+  const drift=.5+.5*Math.sin(x*.036+z*.013)*Math.sin(z*.041-x*.019);
+  const join=Math.min(1,Math.max(0,(edge-10)/28));
+  const fade=Math.min(1,Math.max(0,(220-edge)/95));
+  return (.23+.20*drift)*join*fade;
+ };
+ const moor=place(outerDensity,lights,{seed:290923,minX:-300,maxX:300,minZ:-310,maxZ:390,spacing:2.0,scale:[.9,1.4],yScale:[.75,1.2],tint:[.58,.80],sink:.05});
  const parts=[grassCore,grassShoulder,grassMoor];
  const grass={
   count:parts.reduce((a,p)=>a+p.count,0),
@@ -534,7 +549,10 @@ export async function createFoliage(engine,scene,{lights=[],density=()=>0,landma
   bracken.matrices=mergedM; bracken.colors=mergedC; bracken.count+=landmarks.length;
  }
 
+ // The dense meadow retains its short view distance. Only the sparse, separate
+ // outer moor pool reaches the hills; flowers and bracken remain short-range.
  const grassPool=makePool(grassNear,grassFar,bucketTiles(grass),8192,24576);
+ const moorPool=makePool(moorNear,moorFar,bucketTiles(moor),1024,8192,0.85,185,0.9);
  const plantPool=makePool(plantNear,plantFar,bucketTiles(plants),512,768);
  const brackenPool=makePool(brackenNear,brackenFar,bucketTiles(bracken),768,1024);
  // Flowers are the one layer worth spending near-pool slots on, because the whole point
@@ -549,22 +567,23 @@ export async function createFoliage(engine,scene,{lights=[],density=()=>0,landma
  // read correctly.
  const umbelPool=makePool(umbelNear,umbelFar,bucketTiles(umbels),1024,1536,0.93);
  const spikePool=makePool(spikeNear,spikeFar,bucketTiles(spikes),512,768,0.93);
- const pools=[grassPool,plantPool,brackenPool,umbelPool,spikePool];
+ const pools=[grassPool,moorPool,plantPool,brackenPool,umbelPool,spikePool];
  packPool(grassPool,0,0);
+ packPool(moorPool,0,0);
  packPool(plantPool,0,0);
  packPool(brackenPool,0,0);
  packPool(umbelPool,0,0);
  packPool(spikePool,0,0);
 
- const meshes=[grassNear,grassFar,plantNear,plantFar,brackenNear,brackenFar,umbelNear,umbelFar,spikeNear,spikeFar].filter(Boolean);
+ const meshes=[grassNear,grassFar,moorNear,moorFar,plantNear,plantFar,brackenNear,brackenFar,umbelNear,umbelFar,spikeNear,spikeFar].filter(Boolean);
  const protoTris=meshes.reduce((n,m)=>(m._gpu?.indexCount??0)/3+n,0);
  let packedX=0, packedZ=0;
  return {
   meshes,material,pools,
   stats:{
-   grass:grass.count,plants:plants.count,bracken:bracken.count,
+   grass:grass.count,moor:moor.count,plants:plants.count,bracken:bracken.count,
    umbels:umbels.count,spikes:spikes.count,
-   instances:grass.count+plants.count+bracken.count+umbels.count+spikes.count,
+   instances:grass.count+moor.count+plants.count+bracken.count+umbels.count+spikes.count,
    drawnNear:pools.reduce((a,p)=>a+p.nearCount,0),
    drawnFar:pools.reduce((a,p)=>a+p.farCount,0),
    prototypeTriangles:protoTris,draws:meshes.length,

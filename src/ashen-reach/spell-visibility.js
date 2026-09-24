@@ -5,6 +5,14 @@ export function spellLineOfSight(player,target){
  const hit=player.raycast(from,to);
  // Fail closed if collision queries are unavailable. Cosmetic foliage has no collider.
  if(!hit)return {clear:false,obstacle:'Collision world unavailable'};
- const ownTarget=hit.body?.node?.metadata?.colliderId===target.id;
- return {clear:!hit.hasHit||ownTarget,obstacle:hit.hasHit&&!ownTarget?hit.body?.node?.name||'Solid obstacle':null};
+ const clear=h=>!h.hasHit||h.body?.node?.metadata?.colliderId===target.id;
+ if(clear(hit))return {clear:true,obstacle:null};
+ // A nearby grave can graze the low ray even while the caster can see the
+ // target's upper body. Check that direct upper-body path before rejecting.
+ const upper=player.raycast(
+  {x:p.x,y:p.y+.55,z:p.z},
+  {x:target.position.x,y:target.position.y+1.45,z:target.position.z},
+ );
+ if(upper&&clear(upper))return {clear:true,obstacle:null};
+ return {clear:false,obstacle:upper?.body?.node?.name||hit.body?.node?.name||'Solid obstacle'};
 }

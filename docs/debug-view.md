@@ -34,6 +34,24 @@ Wait for Vite reloads to settle before navigating/capturing; simultaneous reload
 
 ## Existing harnesses
 
+### Measure above the headless Chrome 60 FPS cap
+
+The usual owned headless Chrome on CDP 9337 paced `requestAnimationFrame` at 60 Hz in a 2026-09-23 test. A 60 FPS result there measures the browser compositor limit, not the game's maximum throughput. For a separate uncapped benchmark, use the existing isolated harness:
+
+```sh
+node scripts/harness/up.mjs --slot 7 --headless --uncapped
+ASHEN_CDP_PORT=10037 ASHEN_URL='http://127.0.0.1:5873/ashen-reach.html?play&clean' ASHEN_UNCAPPED=1 node scripts/ashen-reach/measure-scene-fps.mjs --seconds 7
+node scripts/harness/down.mjs --slot 7
+```
+
+Slot 7 uses Vite 5873 and CDP 10037; choose another free slot if occupied, using the ports printed by `up.mjs`. `--uncapped` passes Chromium's `--disable-frame-rate-limit` and `--disable-gpu-vsync`. Keep the ordinary 9337 browser and unrelated user Chrome untouched. The measurement script reports `vsyncCapped`; verify it is `false` before claiming an uncapped result. Do not measure while recording.
+
+At 960×540 internal render resolution in a 1280×720 viewport, the default headless browser measured 60.001 FPS with no enemies. The isolated uncapped browser measured about 493 FPS with no enemies and 425 FPS with seven enemies (600 retained frame samples; seven-enemy p95 3.5 ms, p99 10.9 ms). This used WebGPU on Apple Metal 3. These are scene and machine specific `requestAnimationFrame` intervals, not GPU timings or a promise that every frame fits the 8.33 ms budget. A visible display remains bounded by its refresh rate. Report resolution, enemy count, frame-time tails, browser flags and whether recording was active with future FPS claims.
+
+Chromium's [switch definition](https://chromium.googlesource.com/chromium/src/+/refs/heads/main/components/viz/common/switches.cc) documents the frame-limiter flag.
+
+### Other live checks
+
 Use only checks relevant to the change; inspect scripts before running them against an owned browser.
 
 ```sh
@@ -72,6 +90,8 @@ Recording to MP4: `ffmpeg` is not on PATH. Use the bundled `/Applications/Babylo
 Record errors and failure evidence, not just successful assertions. Never replace a failed assertion with a tautology or accept nullable counters as evidence. A black screenshot is a failure even when a structural test passes.
 
 ## Capture, review and performance
+
+For a silent `record-vistas.mjs` flythrough, the bundled ffmpeg reads `frames.ffconcat` as a 25 FPS JPEG stream by default; `-fps_mode vfr` alone dropped a 59 FPS capture to 25 FPS in the V2 outer-moor pass. Preserve the captured frame sequence with `-vf 'setpts=N/(60*TB)' -fps_mode cfr -r 60` when encoding that recorder's roughly 60 FPS output, then check `ffprobe`'s `nb_frames` and `avg_frame_rate` against `recording.json`. The corrected 2026-09-23 clip has 800 frames at 60 FPS. Audio-bearing recorders need their own timestamp and sync check before applying a constant-rate conversion.
 
 CDP screencast includes the DOM HUD; `canvas.captureStream()` alone does not. The spell recorder captures Lite's actual audio mix through `createAudioEngineMediaStream`, not microphone audio or a staged soundtrack. It writes JPEG frames, `frames.ffconcat`, `audio.webm` and `recording.json`. Align audio using the recorded offset when encoding H.264/AAC. Review representative frames across the whole action and a useful second angle. Keep caster and target visible for projectile review.
 

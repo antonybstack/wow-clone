@@ -25,6 +25,7 @@ Thumbs.db
 # Review captures and generated media stay out of source control.
 *.png
 *.jpg
+!public/ashen-reach/horizon-rock.jpg
 *.jpeg
 *.gif
 *.webp

@@ -197,11 +197,10 @@ export async function buildChurchyard(engine,scene){
   // Ambient/wall light from the lamp head. M7a windowed it at radius 9. M8b raises strength
   // .68 -> .82 (the window still kills the tail, and the centre-line is well under the 1.4 knee).
   lights.push({position:p,strength,falloff:.42,radius:9});
-  shafts.push({p:[p[0],p[1]-.18,p[2]],groundY:y,radius:2.05,strength:.80});
-  // Near-ground pool. M8b raises 1.0 -> 1.70: this radius-5 light is the one that can put
-  // level back at the fixture without restoring the pedestal, because it is already zero
-  // well before the next lamp. Halo (radius 30) is deliberately left at M7a strength.
-  lights.push({position:[x,y+.18,z],strength:1.70,falloff:.62,radius:5});
+  shafts.push({p:[p[0],p[1]-.18,p[2]],groundY:y,radius:2.05,strength:.65});
+  // Fixture-sized ground pool. The 1.70 pass blew out the gate approach;
+  // 1.10 keeps the pool visible without turning nearby grass solid yellow.
+  lights.push({position:[x,y+.18,z],strength:1.10,falloff:.62,radius:5});
  }
 
  // Lych-gate: the road leaves the burial ground through a timber roof on two posts.
@@ -251,9 +250,9 @@ export async function buildChurchyard(engine,scene){
    // wide, dim halo so the gatehouse registers as a warm mass from the approach -- M7a: radius:30
    // keeps this the widest light in the scene (per the brief: this one must stay a broad warm mass,
    // not be windowed down to fixture scale like the lamps), while still finite so its tail does not
-   // reach all the way to z=134 the way the unbounded version did. M8b leaves this strength at .6
-   // on purpose: boosting the halo would lift troughs, which is the pedestal coming back.
-   lights.push({position:[tx,ty+towerH*.55,z],strength:.6,falloff:.15,radius:30});
+   // reach all the way to z=134 the way the unbounded version did. Its restrained
+   // strength keeps the gate broad and warm while leaving masonry readable.
+   lights.push({position:[tx,ty+towerH*.55,z],strength:.46,falloff:.15,radius:30});
   }
   // M3c defect 2: the plan's M3 gate ("a reviewed vista of the citadel from the town gate")
   // was still unmet -- at ORDINARY play framing (pitch=.04, dist=3.5, not the contrived pitch=.25
@@ -398,10 +397,8 @@ export async function buildChurchyard(engine,scene){
   return c;
  }
 
- // Visual-only far terrain. Same earth material, independent rng, no lamp bake, not in the
- // Havok mesh. A 6 m halo around the playable rectangle, then 16 m cells out to ~500 m so
- // the mesh end sits behind the mountain rim. Vertex colour is almost uniform — a 10 m
- // checkerboard was reading as the world cutting off from a zoomed camera.
+ // Visual-only far terrain, separate from the Havok ground mesh. It uses the same
+ // earth material and reaches beyond the camera's 1200 m far plane from the playable bounds.
  const farEarth=new Batch('Far earth');
  const randomFar=rng(81107),rf=()=>randomFar();
 
@@ -417,55 +414,82 @@ export async function buildChurchyard(engine,scene){
  // so it is what turns the bowl wall from a gradient into a surface with form: steep goes
  // darker and cooler toward bare rock, high goes paler toward scree, low flats stay warm
  // heath.
- const farShade=p=>{
+ const farShade=(p,n)=>{
   const [x,y,z]=p;
   const patch=.5+.31*Math.sin(x*.0121+z*.0093)*Math.sin(z*.0107-x*.0068)
                  +.17*Math.sin(x*.0287-z*.0231)*Math.sin(z*.0199+x*.0163);
-  const n=terrainNormal(x,z);
   const slope=Math.min(1,Math.max(0,(1-n[1])*3.2));
   const alt=Math.min(1,Math.max(0,(y-3)/36));
-  const s=(.78+.36*patch)*(1-.32*slope)*(1-.07*alt);
-  return [s*(1+.05*alt-.02*slope),s*(1+.02*alt),s*(1-.06*slope*slope+.11*alt),0];
+  const heath=.5+.5*Math.sin(x*.055+z*.033)*Math.sin(z*.067-x*.019);
+  const s=(.63+.29*patch)*(1-.34*slope)*(1-.09*alt)*(1.15-.60*heath);
+  return [s*(.90-.09*heath+.05*alt-.02*slope),s*(1+.04*heath+.02*alt),s*(1.05-.08*heath-.06*slope*slope+.11*alt),0];
  };
- const emitFar=(x,z,step)=>{
-  const x1=x+step,z1=z+step;
+ const farColor=(p,n)=>{
+  const [x,,z]=p;
+  const dx=Math.max(0,Math.abs(x)-90),dz=Math.max(0,z>145?z-145:-95-z);
+  const t=Math.min(1,Math.hypot(dx,dz)/48),mix=t*t*(3-2*t);
+  if(mix===0)return earthShade(p);
+  if(mix===1)return farShade(p,n);
+  const near=earthShade(p),far=farShade(p,n);
+  return near.map((c,i)=>c*(1-mix)+far[i]*mix);
+ };
+ // Shared axis coordinates keep the grid watertight at every change in cell size.
+ // The inner edge includes every 2 m terrain vertex; the first 48 m resolves the basin.
+ const offsets=[];
+ for(let d=8;d<=48;d+=8)offsets.push(d);
+ for(let d=64;d<=160;d+=16)offsets.push(d);
+ for(let d=192;d<=320;d+=32)offsets.push(d);
+ for(let d=384;d<=640;d+=64)offsets.push(d);
+ for(let d=768;d<=1536;d+=128)offsets.push(d);
+ const axis=(min,max)=>[
+  ...offsets.map(d=>min-d).reverse(),
+  ...Array.from({length:(max-min)/2+1},(_,i)=>min+i*2),
+  ...offsets.map(d=>max+d)
+ ];
+ const xs=axis(-90,90),zs=axis(-95,145);
+ for(let zi=0;zi<zs.length-1;zi++)for(let xi=0;xi<xs.length-1;xi++){
+  const x=xs[xi],x1=xs[xi+1],z=zs[zi],z1=zs[zi+1];
+  if(x>=-90&&x1<=90&&z>=-95&&z1<=145)continue;
   const v=[[x,z],[x1,z],[x1,z1],[x,z1]].map(([a,b])=>[a,height(a,b),b]);
-  rf();
-  farEarth.quad(...v,v.map(earthUV),v.map(farShade),v.map(p=>terrainNormal(p[0],p[2])));
- };
- const HALO=48,FINE=6,COARSE=16;
- const inHalo=(x,z,s)=>x<90+HALO&&x+s>-90-HALO&&z<145+HALO&&z+s>-95-HALO;
- const inPlay=(x,z,s)=>x<90&&x+s>-90&&z<145&&z+s>-95;
- for(let z=-420;z<540;z+=COARSE)for(let x=-420;x<420;x+=COARSE){
-  if(inPlay(x,z,COARSE)||inHalo(x,z,COARSE))continue;
-  emitFar(x,z,COARSE);
+  const normals=v.map(p=>terrainNormal(p[0],p[2]));
+  farEarth.quad(...v,v.map(earthUV),v.map((p,i)=>farColor(p,normals[i])),normals);
  }
- for(let z=-95;z<145;z+=FINE){
-  for(let x=-90-HALO;x<-90;x+=FINE)emitFar(x,z,FINE);
-  for(let x=90;x<90+HALO;x+=FINE)emitFar(x,z,FINE);
+ // Preserve far-tree and boulder placement after changing the ground topology.
+ const oldHalo=48,oldFine=6,oldCoarse=16;
+ for(let z=-420;z<540;z+=oldCoarse)for(let x=-420;x<420;x+=oldCoarse){
+  const inHalo=x<90+oldHalo&&x+oldCoarse>-90-oldHalo&&z<145+oldHalo&&z+oldCoarse>-95-oldHalo;
+  const inPlay=x<90&&x+oldCoarse>-90&&z<145&&z+oldCoarse>-95;
+  if(!inHalo&&!inPlay)rf();
  }
- for(let x=-90-HALO;x<90+HALO;x+=FINE){
-  for(let z=-95-HALO;z<-95;z+=FINE)emitFar(x,z,FINE);
-  for(let z=145;z<145+HALO;z+=FINE)emitFar(x,z,FINE);
+ for(let z=-95;z<145;z+=oldFine)for(let x=-90-oldHalo;x<90+oldHalo;x+=oldFine){
+  if(x<-90||x>=90)rf();
  }
- // Three silhouettes, because a hillside of identical cones reads as a picket fence. The
- // conifer carries the band, the snag is a bare dead trunk that breaks the rhythm, and the
- // broadleaf is a squat double crown. Each leans a little: a vertical line repeated 600
- // times is the most obviously procedural thing a landscape can do.
+ for(let x=-90-oldHalo;x<90+oldHalo;x+=oldFine)for(let z=-95-oldHalo;z<145+oldHalo;z+=oldFine){
+  if(z<-95||z>=145)rf();
+ }
+ // Crown sections share the bark batch. Their offsets make a crooked fir, a swept fir,
+ // a broad old tree, and an occasional dead snag read differently against the sky.
  const farTree=(x,z,H,sides,kind,lean)=>{
   const g=height(x,z),tx=x+lean[0]*H,tz=z+lean[1]*H;
   const lerp=(t,a,b)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];
   const foot=[x,g,z],mid=p=>lerp(p,foot,[tx,g+H,tz]);
-  if(kind<.58){                                  // conifer
-   bark.tube(foot,mid(.55),H*.034,H*.016,[.42,.46,.38,0],sides);
-   bark.tube(mid(.42),mid(1),H*.15,0,[.34,.40,.30,0],sides+1);
-  }else if(kind<.78){                            // dead snag: trunk only, forked short
-   bark.tube(foot,mid(.86),H*.040,H*.011,[.46,.45,.39,0],sides);
-   bark.tube(mid(.62),[tx+H*.16,g+H*.92,tz-H*.09],H*.018,0,[.44,.43,.37,0],3);
-  }else{                                         // broadleaf
-   bark.tube(foot,mid(.46),H*.045,H*.030,[.40,.42,.35,0],sides);
-   bark.tube(mid(.34),mid(.80),H*.20,H*.17,[.33,.39,.29,0],sides+1);
-   bark.tube(mid(.74),mid(1),H*.16,0,[.31,.37,.27,0],sides+1);
+  if(kind<.39){                                  // uneven, wide-skirted fir
+   bark.tube(foot,mid(.82),H*.036,H*.012,[.42,.45,.37,0],sides);
+   bark.tube(mid(.28),mid(.75),H*.22,H*.065,[.31,.39,.29,0],sides+1);
+   bark.tube(mid(.61),[tx+lean[0]*H*.35,g+H,tz+lean[1]*H*.35],H*.13,0,[.35,.41,.30,0],sides+1);
+  }else if(kind<.68){                            // swept, high-crowned fir
+   const sweep=[lean[0]*H*.7,0,lean[1]*H*.7];
+   const crown=p=>{const q=mid(p);return [q[0]+sweep[0],q[1],q[2]+sweep[2]];};
+   bark.tube(foot,mid(.91),H*.034,H*.009,[.40,.44,.36,0],sides);
+   bark.tube(crown(.43),crown(.83),H*.19,H*.07,[.30,.37,.28,0],sides+1);
+   bark.tube(crown(.72),crown(1),H*.12,0,[.34,.39,.29,0],sides+1);
+  }else if(kind<.88){                            // squat, broken broadleaf crown
+   bark.tube(foot,mid(.56),H*.052,H*.027,[.44,.43,.36,0],sides);
+   bark.tube(mid(.36),mid(.75),H*.25,H*.23,[.32,.38,.29,0],sides+1);
+   bark.tube(mid(.69),mid(.92),H*.22,0,[.35,.40,.30,0],sides+1);
+  }else{                                         // bare fork above low scrub
+   bark.tube(foot,mid(.91),H*.043,H*.008,[.44,.44,.37,0],sides);
+   bark.tube(mid(.53),[tx+H*.14,g+H*.81,tz-H*.11],H*.022,0,[.43,.42,.35,0],3);
   }
  };
 
@@ -488,47 +512,61 @@ export async function buildChurchyard(engine,scene){
   }
  };
 
- // 70 trees over a 130-290 m annulus is one tree per ~1,700 m2 -- statistically invisible,
- // which is why the mid-ground read as empty ground. A two-octave grove field clusters them
- // instead, so the band alternates woodland and open moor, and that alternation is itself
- // depth information: a grove you can see past tells you how far the next one is.
- //
- // `edge` is metres outside the playable rectangle, and it does two jobs. The first pass let
- // trees start 17 m in front of the 07-north-overlook camera, where a 4-sided trunk is an
- // obvious crude pole; 40 m of clearance plus a height ramp turns that boundary into scrub
- // thickening into forest rather than a wall. The second is budget: past 160 m only the
- // silhouette survives the haze, so trunks drop to three sides, and that saving is what pays
- // for there being ten times as many of them.
+ // Jittered grove centres give broad empty runs between irregular thickets. A local
+ // three-by-three lookup keeps distant placement deterministic without a new mesh.
+ const groveHash=(x,z,s)=>{const v=Math.sin(x*127.1+z*311.7+s*74.7)*43758.5453;return v-Math.floor(v);};
  const grove=(x,z)=>{
-  const a=Math.sin(x*.0139+z*.0101)*Math.sin(z*.0119-x*.0073);
-  const b=Math.sin(x*.0381-z*.0263)*Math.sin(z*.0327+x*.0211);
-  return .5+.34*a+.16*b;
+  const cell=78,cx=Math.floor(x/cell),cz=Math.floor(z/cell);
+  let cover=0;
+  for(let iz=cz-1;iz<=cz+1;iz++)for(let ix=cx-1;ix<=cx+1;ix++){
+   if(groveHash(ix,iz,0)<.24)continue;
+   const px=(ix+.15+.7*groveHash(ix,iz,1))*cell;
+   const pz=(iz+.15+.7*groveHash(ix,iz,2))*cell;
+   const rx=25+22*groveHash(ix,iz,3),rz=23+27*groveHash(ix,iz,4);
+   const d=Math.hypot((x-px)/rx,(z-pz)/rz);
+   cover=Math.max(cover,1-smooth((d-.22)/.95));
+  }
+  return cover;
  };
- const SCAT=9;
+ const SCAT=8;
  const edgeOf=(x,z)=>Math.max(Math.abs(x)-90,z-145,-95-z);
  let scatterTrees=0,scatterRocks=0;
  for(let z=-330;z<430;z+=SCAT)for(let x=-330;x<330;x+=SCAT){
-  const jx=x+(rf()-.5)*SCAT*.9,jz=z+(rf()-.5)*SCAT*.9;
+  const jx=x+(rf()-.5)*SCAT*.98,jz=z+(rf()-.5)*SCAT*.98;
   const edge=edgeOf(jx,jz);
-  if(edge<40)continue;
+  const setback=28+8*Math.sin(jx*.032+jz*.011)+6*Math.sin(jz*.029-jx*.017);
+  if(edge<setback)continue;
   const d=Math.hypot(jx,jz-40);
   if(d>325)continue;                             // stay inside the innermost mountain ring
-  if(Math.abs(jx)<36&&jz>222&&jz<298)continue;   // the citadel keeps its own bare crag
-  const g=grove(jx,jz),roll=rf();
+  if(Math.abs(jx)<42&&jz>264&&jz<354)continue;   // the citadel keeps its own bare crag
+  // Two uneven woods frame the keep from Hollowmere without filling the road.
+  const northWoods=Math.max(
+   .84*Math.exp(-((jx+61)**2+(jz-186)**2)/2100),
+   .80*Math.exp(-((jx-72)**2+(jz-194)**2)/2600));
+  const g=Math.max(grove(jx,jz),northWoods),roll=rf();
   const sides=edge<80?6:edge<160?4:3;
-  if(g>.60&&roll<.62){
-   const H=(6+rf()*14)*Math.min(1,.52+edge/95);
-   farTree(jx,jz,H,sides,rf(),[(rf()-.5)*.12,(rf()-.5)*.12]);scatterTrees++;
-  }else if(g<.42&&roll<.15){
+  const approach=smooth((edge-setback)/30);
+  if(roll<(.045+.70*g*g)*approach){
+   const H=(7+rf()*13)*(.60+.40*smooth((edge-setback)/72));
+   farTree(jx,jz,H,sides,rf(),[(rf()-.5)*.18,(rf()-.5)*.18]);scatterTrees++;
+  }else if(g<.30&&roll<.11){
    boulder(jx,jz,1.4+rf()*3.0,.9+rf()*1.7,81107+scatterRocks*7919);scatterRocks++;
   }
  }
+
 
  // --- Milestone 3, the horizon: the Citadel of Vaelmark on a distant crag beyond z=140, plus the
  // mountain ridgeline behind it. Backdrop only (no colliders, no pathing), added last and entirely
  // north of the playable boundsRect (maxZ:143 in main.js), so it cannot move a churchyard or
  // Hollowmere pixel — it only appends triangles to the existing 'distant'/'warm' batches.
- const horizonStats=buildHorizon(distant,warm,height);
+ const citadelStone=new Batch('Vaelmark masonry'),horizonRock=new Batch('Horizon rock'),ridgeRock=new Batch('Distant mauve ridges');
+ const horizonMaterials=await Promise.all([
+  surface(engine,'Vaelmark weathered stone','/tex/rock_wall_08/diff.jpg',{tint:[.72,.73,.76],light:.62,skyFill:.40,pixels:256,uvScale:.20}),
+  surface(engine,'Horizon slate','/ashen-reach/horizon-rock.jpg',{tint:[.37,.45,.54],light:.66,skyFill:.16,pixels:128}),
+  surface(engine,'Sunlit distant ridges','/ashen-reach/horizon-rock.jpg',{tint:[1.05,.89,.96],light:.82,skyFill:.48,emission:.16,pixels:128}),
+ ]);
+ const horizonStats=buildHorizon(distant,warm,height,{stone:citadelStone,rock:horizonRock,ridge:ridgeRock});
+ B.push(citadelStone,horizonRock,ridgeRock);mats.push(...horizonMaterials);
 
  function foliageDensity(x,z){
   if(z<=48)return meadow(x,z);
@@ -547,7 +585,7 @@ export async function buildChurchyard(engine,scene){
  }
  const farTris=farEarth.idx.length/3;
  const meshes=B.map((b,i)=>b.commit(engine,scene,mats[i],lights)).filter(Boolean);
- const farMesh=farEarth.commit(engine,scene,mats[0],[]);
+ const farMesh=farEarth.commit(engine,scene,mats[0],lights);
  if(farMesh)meshes.push(farMesh);
  const shaftPass=await createLightShafts(engine,scene,shafts);
  if(shaftPass?.mesh)meshes.push(shaftPass.mesh);

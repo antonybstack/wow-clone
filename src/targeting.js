@@ -3,7 +3,7 @@
  * Positions are sampled from mesh world translation.
  */
 
-const MIN_DIST = 1.2;
+const CLOSE_DIST = 2.2;
 const MAX_DIST = 42;
 const MIN_DOT = 0.15;
 
@@ -20,11 +20,15 @@ function inFront(list, eye, forward) {
         const dx = t.position.x - eye.x;
         const dz = t.position.z - eye.z;
         const dist = Math.hypot(dx, dz);
-        if (dist < MIN_DIST || dist > MAX_DIST) {
+        if (dist > MAX_DIST) {
             continue;
         }
-        const dot = (dx / dist) * forward.x + (dz / dist) * forward.z;
-        if (dot < MIN_DOT) {
+        const dot = dist > 0.001
+            ? (dx / dist) * forward.x + (dz / dist) * forward.z
+            : 1;
+        // A hostile in melee range stays targetable even when it reaches the
+        // player's side or back. The camera cone still limits distant picks.
+        if (dist > CLOSE_DIST && dot < MIN_DOT) {
             continue;
         }
         front.push(t);

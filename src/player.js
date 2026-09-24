@@ -382,7 +382,9 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
 
     try {
         const hknp = await HavokPhysics({
-            locateFile: (file) => file.endsWith(".wasm") ? "/HavokPhysics.wasm" : file,
+      // A previous Pages deploy cached an HTML fallback at the old URL under
+      // an immutable header. The versioned request bypasses that stale entry.
+      locateFile: (file) => file.endsWith(".wasm") ? "/HavokPhysics.wasm?v=20260923-1" : file,
         });
         const world = createHavokWorld(scene, hknp, GRAVITY);
         physicsWorld = world;

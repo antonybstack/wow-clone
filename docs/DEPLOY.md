@@ -16,6 +16,8 @@ SpacetimeDB (`db` / `dev-db`) is unrelated to this static client. Visual evidenc
 
 Same Pages project and hostname. The deploy script builds only the playable routes (`index.html` → `ashen-reach.html?play&clean`) and copies the textures, bodies, and equipment the game actually loads. Unused `public/models` tree bins (over the 25 MB Pages file limit) stay off the upload.
 
+The staged root must include `HavokPhysics.wasm`. Without it, Cloudflare Pages can return the app HTML at that URL, leaving the game without a collision world and making spells report every target as blocked. The deploy script compares the built WebAssembly file with the source before publishing. An older deployment cached that HTML fallback for a year, so the client now requests a versioned WebAssembly URL and `.wasm` responses revalidate after 60 seconds. After deployment, verify that the versioned `HavokPhysics.wasm` response begins with WebAssembly bytes `00 61 73 6d` and that the game reports `ASHEN.player.getDebugState().usingPhysics === true`.
+
 ```bash
 export CLOUDFLARE_API_TOKEN=…   # already in the Mac Studio shell
 npm run deploy

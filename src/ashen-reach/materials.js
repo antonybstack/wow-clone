@@ -10,7 +10,7 @@ export function paintLitUniform(material, name, value) {
   if (!material?._uniformValues?.has(name)) return;
   setShaderUniform(material, name, value);
 }
-export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false,wind=false,emission=0,pixels=128,uvScale=1,ground=false,nightGrade=false}={}){
+export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false,wind=false,emission=0,skyFill=0,pixels=128,uvScale=1,ground=false,nightGrade=false}={}){
  const tex=await loadTexture2D(engine,url,{invertY:false,srgb:false,mipMaps:true,minFilter:'nearest',magFilter:'nearest'});
  const mat=createShaderMaterial({name,attributes:['position','normal','uv','color','uv2'],uniforms:['worldViewProjection','world','cameraPosition',{name:'time',type:'f32',defaultValue:0},{name:'firePosition',type:'vec3<f32>',defaultValue:[0,0,0]},{name:'fireStrength',type:'f32',defaultValue:0},{name:'handFirePosition',type:'vec3<f32>',defaultValue:[0,0,0]},{name:'handFireStrength',type:'f32',defaultValue:0},{name:'lavaPosition',type:'vec3<f32>',defaultValue:[0,0,0]},{name:'lavaStrength',type:'f32',defaultValue:0}],samplers:ground?['albedo','paving']:['albedo'],backFaceCulling:false,needAlphaTesting:alpha,
  vertexSource:`${OUT}
@@ -26,8 +26,8 @@ export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false
 :`let uv=(floor(i.uv*${uvScale}*${pixels}.0)+.5)/${pixels}.0;
  var t=textureSample(albedo,albedoSampler,uv);`}
  ${alpha?'if(t.a<.52 || (t.r>.8 && t.g<.12)){discard;}':''}
- ${ground?`let path=abs(i.p.x-sin(i.p.z*.14)*1.25);let pave=textureSample(paving,pavingSampler,(floor(i.p.xz*64.0/2.4)+.5)/64.0);let churchGate=1.0-smoothstep(24.0,28.0,i.p.z);let northGate=smoothstep(40.0,48.0,i.p.z);
- let amountChurch=(1.0-smoothstep(.60,1.38,path+(t.r-.4)*.75))*churchGate;
+ ${ground?`let path=abs(i.p.x-sin(i.p.z*.14)*1.25);let pave=textureSample(paving,pavingSampler,(floor(i.p.xz*64.0/2.4)+.5)/64.0);let churchGate=1.0-smoothstep(24.0,28.0,i.p.z);let southFade=smoothstep(-142.0,-95.0,i.p.z);let northGate=smoothstep(40.0,48.0,i.p.z);
+ let amountChurch=(1.0-smoothstep(.60,1.38,path+(t.r-.4)*.75))*churchGate*southFade;
  let amountStreet=(1.0-smoothstep(1.05,2.65,path+(t.r-.4)*.9))*northGate;
  let plazaD=distance(i.p.xz,vec2<f32>(0.0,136.0));
  let amountPlaza=(1.0-smoothstep(4.2,8.6,plazaD+(t.r-.4)*1.4))*northGate;
@@ -48,7 +48,10 @@ export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false
  let fire=shaderUniforms.fireStrength/(1.0+pow(distance(i.p,shaderUniforms.firePosition)*.85,2.0));
  let handFire=shaderUniforms.handFireStrength/(1.0+pow(distance(i.p,shaderUniforms.handFirePosition)*1.0,2.0));
  let lava=shaderUniforms.lavaStrength/(1.0+pow(distance(i.p,shaderUniforms.lavaPosition)*.7,2.0));
- let light=shade(i.normal,i.p,shaderSystem.cameraPosition,${light})+lampColor*lampEff+vec3<f32>(1.0,.28,.045)*(fire+handFire+lava);
+ // Recover form on the outer moor where it is shadowed by the low sun. The
+ // churchyard (z<=40) and Hollowmere's lamp corridor get exactly zero fill.
+ let outerLandFill=${ground?'vec3<f32>(.15,.16,.18)*smoothstep(40.0,90.0,i.p.z)*max(smoothstep(18.0,45.0,abs(i.p.x)),smoothstep(120.0,175.0,i.p.z))':'vec3<f32>(0.0)'};
+ let light=shade(i.normal,i.p,shaderSystem.cameraPosition,${light})+outerLandFill+vec3<f32>(.80,.86,1.0)*${skyFill}+lampColor*lampEff+vec3<f32>(1.0,.28,.045)*(fire+handFire+lava);
  var c=t.rgb*i.color.rgb*vec3<f32>(${tint.join(',')})*(light+${emission});
  ${nightGrade?'let ng=smoothstep(40.0,55.0,i.p.z);c=mix(c,c*vec3<f32>(.92,.86,.95),ng);':''}
  c=aerial(c,i.p,shaderSystem.cameraPosition);
@@ -166,8 +169,8 @@ export async function sky(engine,scene){
  // saturated term can only subtract on average, and clamping the negative half at
  // zero while the positive half caps at 1.30 makes that asymmetry worse. slope
  // earns its place additively, on the rim below, where it can only add.
- let litHigh=mix(vec3<f32>(.024,.034,.058),vec3<f32>(.54,.34,.24),pow(sd,1.7));
- let litLow=mix(vec3<f32>(.018,.024,.038),vec3<f32>(.78,.44,.24),pow(sd,1.2));
+let litHigh=mix(vec3<f32>(.23,.30,.40),vec3<f32>(1.15,.61,.46),pow(sd,1.7));
+let litLow=mix(vec3<f32>(.29,.34,.42),vec3<f32>(1.34,.67,.44),pow(sd,1.2));
  let band=(high*(1.0-high)+low*(1.0-low))*4.0;
  // The rim was non-directional, so it lit the far side of every bank as brightly
  // as the near one and the deck read as outlined rather than modelled. slope is
@@ -176,9 +179,12 @@ export async function sky(engine,scene){
  // (0.30+0.90*slope) -- this would have been the same subtractive trap as above,
  // since max(slope,0) averages about a third across the field.
  let rim=pow(sd,5.0)*band*(1.0+1.10*max(slope,0.0));
- c=mix(c,litHigh,high*.72);
- c=mix(c,litLow,low*.80);
- c=c+SUN_COLOR*rim*.55;
+// Open the deck around the low sun so the actual sky radiance and distant
+// silhouettes carry the vista. Thin cloud edges still catch the warm key.
+let sunOpening=1.0-smoothstep(.62,.96,sd)*.78;
+c=mix(c,litHigh,high*.34*sunOpening);
+c=mix(c,litLow,low*.40*sunOpening);
+c=c+SUN_COLOR*rim*.25;
  // The same density-edge term as the sun rim above, but ungated by sun direction
  // and carrying skylight rather than sunlight. Darkening alone gave the anti-sun deck value but
  // no boundary, so neighbouring banks merged into one smudge; a bank needs an edge
@@ -189,6 +195,7 @@ export async function sky(engine,scene){
  // A thin band of haze right at the horizon line, the same colour the ground's
  // aerial() converges to, so the two meet with no value step at all.
  c=mix(c,skyColor(vec3<f32>(d.x,0.0,d.z)),pow(1.0-abs(d.y),9.0)*.75);
+ // Sun shafts are integrated through shadowed world-space fog in the post pass.
  return vec4<f32>(grade(c),1);}`});
  setShaderTexture(mat,'cloud',tex);const mesh=createSphere(engine,{diameter:2200,segments:32});mesh.name='AshenSky';mesh.material=mat;mesh.renderOrder=-100;addToScene(scene,mesh);return {mat,update(t){setShaderUniform(mat,'time',t);}};
 }

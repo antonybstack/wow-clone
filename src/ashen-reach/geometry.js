@@ -120,10 +120,30 @@ function distantRelief(x,z){
  const rim=46/(1+Math.exp(-(d-210)/60));
  const valley=-7*Math.exp(-((d-48)/24)*((d-48)/24));
  const peak=(px,pz,h,w)=>h*Math.exp(-((x-px)**2+(z-pz)**2)/w);
+ // Unequal foothill spurs and intervening cuts give the newly continuous
+ // outer ground readable form between the playable edge and the distant
+ // mountain curtain. Their centres and widths are deliberately irregular;
+ // an even sinusoidal ring reads as another cardboard band from above.
+ const foothills=
+   peak(-139,-29,9,1600)+peak(-170,91,7,2200)
+  +peak(119,-52,7,1300)+peak(151,73,11,2100)
+  +peak(-40,-159,8,1700)+peak(51,205,10,2300)
+  -peak(-104,23,6,900)-peak(89,114,5,1050)
+  -peak(12,-132,5,850);
+ // The first outer slope otherwise rises as a single smooth lit ramp between
+ // the playable edge and the trees. Small, crossing swells put light and shade
+ // on the ground itself. Fade them in past the seam and out before coarse far
+ // cells, so no playable height or distant ridge silhouette changes.
+ const roughIn=Math.min(1,Math.max(0,(d-8)/24));
+ const roughOut=Math.min(1,Math.max(0,(230-d)/55));
+ const rough=roughIn*roughIn*(3-2*roughIn)*roughOut*roughOut*(3-2*roughOut)*(
+   1.5*Math.sin(x*.095+z*.048)*Math.sin(z*.089-x*.029)
+  +.7*Math.sin(x*.053-z*.105));
  return s*(valley+rim
   +peak(210,24,42,5200)+peak(-200,58,36,4600)
   +peak(28,-215,34,5800)+peak(-36,235,26,4800)
   +peak(160,-90,22,3600)
+  +foothills+rough
   +7*Math.sin(x*.028)+5*Math.sin(z*.022+x*.018));
 }
 export function height(x,z){

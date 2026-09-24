@@ -44,10 +44,17 @@ body.touch-play .player-plate{top:52px;left:calc(12px + env(safe-area-inset-left
 body.touch-play #metrics-overlay{top:150px}
 body.touch-play .spell-bar{left:auto;right:calc(16px + env(safe-area-inset-right));bottom:calc(96px + env(safe-area-inset-bottom));transform:none;grid-template-columns:repeat(3,68px);gap:8px}
 body.touch-play .spell-bar button{width:64px;height:64px}
-body.touch-play .spell-bar span{display:none}
+body.touch-play .spell-bar span{display:block;font-size:10px;line-height:1.1;color:#eee0bd;white-space:nowrap}
 body.touch-play .sound-toggle{display:none}
 body.touch-play .cast-progress,body.touch-play .combat-error{bottom:calc(188px + env(safe-area-inset-bottom))}
 body.armory-open #touch-controls,body.game-menu-open #touch-controls{display:none}
+@media(max-width:380px){
+  body.touch-play .touch-stick{left:calc(8px + env(safe-area-inset-left));bottom:calc(12px + env(safe-area-inset-bottom));width:104px;height:104px}
+  body.touch-play .touch-actions{right:calc(8px + env(safe-area-inset-right));bottom:calc(12px + env(safe-area-inset-bottom));gap:6px}
+  body.touch-play .touch-actions button{width:56px;height:56px;font-size:12px}
+  body.touch-play .spell-bar{right:calc(8px + env(safe-area-inset-right));bottom:calc(82px + env(safe-area-inset-bottom));grid-template-columns:repeat(3,58px);gap:6px}
+  body.touch-play .spell-bar button{width:56px;height:56px}
+}
 `;
     document.head.append(style);
 
