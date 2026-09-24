@@ -3,8 +3,9 @@ import {
  createRenderTarget,createEffectWrapper,createEffectRenderTask,
  setEffectTexture,setEffectUniforms,disposeEffectWrapper,getViewProjectionMatrix,mat4Invert,getCameraPosition,
 } from '@babylonjs/lite';
-import {SUN_DIR,SUN_COLOR,EXPOSURE,SATURATION,BLACK_LIFT} from './atmosphere.js';
+import {SUN_DIR,SUN_COLOR} from './atmosphere.js';
 
+import {HDR_FORMAT} from './color-management.js';
 import {SUN_SHADOW_WGSL} from './sun-shadows.js';
 const MAP_SIZE=2048,STEPS=48,UNIFORM_BYTES=512;
 const fogShadowWGSL=SUN_SHADOW_WGSL.replaceAll('shaderUniforms.','u.').replaceAll('shaderSystem.view','u.view').replaceAll('u.sunFarMatrix','u.lightVP').replace(/var light=0.0;[\s\S]*?return light\/9.0;/,'return textureSampleCompareLevel(sunCascades,sunCascadesSampler,uv,layer,q.z);');
@@ -102,25 +103,6 @@ fn density(p:vec3<f32>)->f32{
 const COMPOSITE=`${COMMON}
 @group(0) @binding(2) var source:texture_2d<f32>;
 @group(0) @binding(3) var volume:texture_2d<f32>;
-fn encode(c:vec3<f32>)->vec3<f32>{
- let x=c*${EXPOSURE};
- var t=clamp((x*(2.51*x+0.03))/(x*(2.43*x+0.59)+0.14),vec3<f32>(0.0),vec3<f32>(1.0));
- t+=${vec(BLACK_LIFT)}*(1.0-smoothstep(vec3<f32>(0.0),vec3<f32>(0.4),t));
- let l=dot(t,vec3<f32>(0.2126,0.7152,0.0722));
- return clamp(mix(vec3<f32>(l),t,${SATURATION}),vec3<f32>(0.0),vec3<f32>(1.0));
-}
-// Ashen's material shaders currently grade before post. Undo that shared grade
-// for the extinction/scattering composite, then grade once. Clipped highlights
-// cannot be recovered; limiting the inverse avoids unbounded white sky values.
-fn decode(c:vec3<f32>)->vec3<f32>{
- let l=dot(c,vec3<f32>(0.2126,0.7152,0.0722));
- let graded=(c-vec3<f32>(l))/${SATURATION}+vec3<f32>(l);
- var y=graded;
- for(var n=0u;n<4u;n++){y=graded-${vec(BLACK_LIFT)}*(1.0-smoothstep(vec3<f32>(0.0),vec3<f32>(0.4),y));}
- y=clamp(y,vec3<f32>(0.0),vec3<f32>(0.985));
- let a=2.43*y-2.51;let b=0.59*y-0.03;
- return max((-b-sqrt(max(b*b-4.0*a*(0.14*y),vec3<f32>(0.0))))/(2.0*a*${EXPOSURE}),vec3<f32>(0.0));
-}
 @fragment fn effectFragment(@builtin(position) pixel:vec4<f32>)->@location(0) vec4<f32>{
  let uv=pixel.xy/u.screen.xy;
  let color=textureLoad(source,vec2<i32>(pixel.xy),0).rgb;
@@ -143,14 +125,14 @@ fn decode(c:vec3<f32>)->vec3<f32>{
  // If every low-resolution neighbor is across an occlusion edge, preserve the
  // opaque foreground rather than borrowing the background's bright fog.
  if(weights<0.00001){return vec4<f32>(color,1.0);}
- return vec4<f32>(encode(decode(color)*fog.a+fog.rgb),1.0);
+ return vec4<f32>(color*fog.a+fog.rgb,1.0);
 }`;
 
 export function createVolumetricFog(engine,scene,sourceRT,sun,world,shadows,sourceColor=sourceRT){
  const sg=shadows.far,casters=shadows.casters;
  const halfSize={width:1,height:1};
  const fogRT=createRenderTarget({lbl:'sunlit-fog-half',format:'rgba16float',samples:1,size:halfSize});
- const output=createRenderTarget({lbl:'sunlit-fog-composite',format:engine.format,samples:1,size:engine});
+ const output=createRenderTarget({lbl:'sunlit-fog-composite',format:HDR_FORMAT,samples:1,size:engine});
  const binding=(name,binding,kind,extra={})=>({name,binding,kind,...extra});
  const common=[binding('params',0,'uniform',{uniformByteLength:UNIFORM_BYTES}),binding('depth',1,'texture',{textureSampleType:'depth'})];
  const integrate=createEffectWrapper(engine,{name:'Shadowed volume integration',fragmentWGSL:INTEGRATE,bindings:[...common,

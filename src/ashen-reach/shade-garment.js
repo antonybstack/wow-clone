@@ -1,3 +1,4 @@
+import {prepareLinearMaterial} from './linear-materials.js';
 /**
  * Procedural hood + cloak for churchyard shades.
  * Rigid meshes on the existing pose sockets (head / back) — no skinning.
@@ -100,7 +101,8 @@ class Shell {
             new Uint32Array(this.idx),
             new Float32Array(this.u),
         );
-        mesh.material = material;
+        prepareLinearMaterial(scene, material);
+    mesh.material = material;
         mesh.pickable = false;
   mesh.receiveShadows = true;
         addToScene(scene, mesh);

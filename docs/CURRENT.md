@@ -1,5 +1,15 @@
 # Current direction — Ashen Reach
 
+## V13 linear HDR lighting — 2026-09-24
+
+The user-verified loading-screen changes, including subtitle removal, were committed and pushed as **`9eea274`**. The next authorized graphics milestone is now implemented **locally, uncommitted, not deployed**: [V13 plan, implementation and retrospective](linear-hdr-plan-2026-09-24.md).
+
+Surface lighting, contact/AO, fog and bloom now compose in `rgba16float`, followed by one shared exposure, fitted ACES curve and sRGB output. The fog tone-map inverse and custom per-material grades are gone. Native PBR uses a tested Lite material plugin/operator bridge; streamed bodies, garments and enemy materials are prepared before scene entry. Spell color textures decode to linear. `noPost` retains the required final display transform while skipping effects.
+
+Build and **47 unit tests** pass. Live GPU probes retain radiance above 1, match CPU/GPU display math, preserve exact disabled-effect output, cover portrait resize/armory/camera/movement, and verify scene disposal. Desktop WebKit and Chromium's injected iPhone depth-failure fallback pass without runtime/GPU errors. Physical iPhone verification of V13 remains pending. Reviewed 13.8-second live movement/jump/spell/town MP4 delivered via `tg file`, Telegram **749**: https://ve.sparkify.dev/wow-clone/ashen-reach/hdr/2026-09-24-v13-lighting.mp4.
+
+Separate uncapped Chromium/WebGPU benchmark on **Mac Studio, Apple M1 Max, 32 GB**, 1280×720 internal and viewport, DPR 1, seven enemies, no recording: **292.45 FPS**, mean **3.42 ms**, p95 **6.50 ms**, p99 **55.00 ms**, worst **74.60 ms**, 600 samples, `vsyncCapped:false`. Average throughput meets >120 FPS; occasional stalls remain. Production remains iPhone compatibility release `6a7a4f8` / Pages `ac8e866e`. The next graphics roadmap item is believable local-light occlusion, not started automatically.
+
 ## Responsive loading screen — 2026-09-24
 
 The user verified the loading screen on their phone and authorized commit/push. The subtitle was removed afterward as requested. Production deployment has not been requested for this release. V13 linear HDR lighting is now authorized as the next implementation milestone.

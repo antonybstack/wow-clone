@@ -1,3 +1,4 @@
+import {prepareLinearMaterial} from './linear-materials.js';
 import {
   addToScene,
   getContainerMeshes,
@@ -238,6 +239,7 @@ export async function createStreamedEquipment(
         root.rotationQuaternion.set(0, 0, 0, 1);
         root.scaling.set(1, 1, 1);
         setMeshVisible(root, false);
+        for (const mesh of meshes) prepareLinearMaterial(scene, mesh.material);
         addToScene(scene, container);
       }
       setMeshVisible(root, false);

@@ -53,10 +53,10 @@ export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false
  // churchyard (z<=40) and Hollowmere's lamp corridor get exactly zero fill.
  let outerLandFill=${ground?'vec3<f32>(.15,.16,.18)*smoothstep(40.0,90.0,i.p.z)*max(smoothstep(18.0,45.0,abs(i.p.x)),smoothstep(120.0,175.0,i.p.z))':'vec3<f32>(0.0)'};
  let light=shade(i.normal,i.p,shaderSystem.cameraPosition,${light},sunVisibility(i.p,normalize(i.normal+vec3<f32>(.00001))))+outerLandFill+vec3<f32>(.80,.86,1.0)*${skyFill}+lampColor*lampEff+vec3<f32>(1.0,.28,.045)*(fire+handFire+lava);
- var c=t.rgb*i.color.rgb*vec3<f32>(${tint.join(',')})*(light+${emission});
+ var c=srgbToLinear(t.rgb)*i.color.rgb*vec3<f32>(${tint.join(',')})*(light+${emission});
  ${nightGrade?'let ng=smoothstep(40.0,55.0,i.p.z);c=mix(c,c*vec3<f32>(.92,.86,.95),ng);':''}
  c=aerial(c,i.p,shaderSystem.cameraPosition);
- return vec4<f32>(grade(c),1);
+ return vec4<f32>(c,1);
  }`});
  bindSunReceiver(engine,mat);setShaderTexture(mat,'albedo',tex);if(ground)setShaderTexture(mat,'paving',await loadTexture2D(engine,'/tex/rock_wall_08/diff.jpg',{invertY:false,srgb:false,mipMaps:true,minFilter:'nearest',magFilter:'nearest'}));return mat;
 }
@@ -197,6 +197,6 @@ c=c+SUN_COLOR*rim*.25;
  // aerial() converges to, so the two meet with no value step at all.
  c=mix(c,skyColor(vec3<f32>(d.x,0.0,d.z)),pow(1.0-abs(d.y),9.0)*.75);
  // Sun shafts are integrated through shadowed world-space fog in the post pass.
- return vec4<f32>(grade(c),1);}`});
+ return vec4<f32>(c,1);}`});
  setShaderTexture(mat,'cloud',tex);const mesh=createSphere(engine,{diameter:2200,segments:32});mesh.name='AshenSky';mesh.material=mat;mesh.renderOrder=-100;addToScene(scene,mesh);return {mat,update(t){setShaderUniform(mat,'time',t);}};
 }

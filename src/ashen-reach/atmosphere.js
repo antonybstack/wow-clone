@@ -1,5 +1,5 @@
 /**
- * Shared sunset palette, surface illumination and filmic grade.
+ * Shared linear sunset palette and surface illumination.
  * World-space fog and sunlight visibility live in volumetric-fog.js and are
  * applied once after opaque scene depth is available.
  */
@@ -16,13 +16,11 @@ export const SKY_NADIR=[0.38,0.25,0.27];
 export const SUN_GLOW=[3.40,2.55,0.70];
 export const SKY_AMBIENT=[0.255,0.305,0.415];
 export const GROUND_BOUNCE=[0.124,0.107,0.081];
-export const EXPOSURE=1.35;
-export const BLACK_LIFT=[0.018,0.023,0.034];
-export const SATURATION=1.14;
 export const FOG=SKY_HORIZON;
 
 /** WGSL shared by world materials, foliage, lamps and the sky. */
-export const ATMOS=`
+import {COLOR_DECODE_WGSL} from './color-management.js';
+export const ATMOS=`${COLOR_DECODE_WGSL}
 const SUN_DIR=${w3(SUN_DIR)};
 const SUN_COLOR=${w3(SUN_COLOR)};
 const SUN_GLOW=${w3(SUN_GLOW)};
@@ -64,27 +62,4 @@ fn shade(n:vec3<f32>,wp:vec3<f32>,cam:vec3<f32>,k:f32,visibility:f32)->vec3<f32>
  return (key*visibility+hemi)*k+SUN_COLOR*rim*0.22*k*visibility;
 }
 
-/** Filmic tonemap (ACES fit) then a lifted-black, mid-saturated grade. Without
- *  this the lamp pools clip to a single flat yellow and the shadows clip to
- *  zero; both are visible in the baseline (04-town-gate-vista, 10-ridge-west). */
-fn grade(cIn:vec3<f32>)->vec3<f32>{
- let x=cIn*${EXPOSURE.toFixed(3)};
- var t=clamp((x*(2.51*x+0.03))/(x*(2.43*x+0.59)+0.14),vec3<f32>(0.0),vec3<f32>(1.0));
- t=t+${w3(BLACK_LIFT)}*(1.0-smoothstep(vec3<f32>(0.0),vec3<f32>(0.40),t));
- let l=dot(t,vec3<f32>(0.2126,0.7152,0.0722));
- return clamp(mix(vec3<f32>(l),t,${SATURATION.toFixed(3)}),vec3<f32>(0.0),vec3<f32>(1.0));
-}
 `;
-
-/** JS mirror of the WGSL grade(), so code outside the shaders (clear colour,
- *  Babylon's own fog for the character GLBs, any future post chain) lands on the
- *  same screen value the world converges to instead of a hand-matched guess. */
-export function gradeJS(c){
- const f=x=>{const v=x*EXPOSURE;return Math.min(1,Math.max(0,(v*(2.51*v+0.03))/(v*(2.43*v+0.59)+0.14)));};
- const t=c.map(f);
- const lift=t.map((v,i)=>v+BLACK_LIFT[i]*(1-(v<=0?0:v>=0.40?1:(()=>{const s=v/0.40;return s*s*(3-2*s);})())));
- const l=0.2126*lift[0]+0.7152*lift[1]+0.0722*lift[2];
- return lift.map(v=>Math.min(1,Math.max(0,l+(v-l)*SATURATION)));
-}
-/** The horizon haze as it appears on screen. */
-export const FOG_SCREEN=gradeJS(SKY_HORIZON);

@@ -106,11 +106,11 @@ ${TERRAIN_SLOPE_WGSL}
  let handFire=shaderUniforms.handFireStrength/(1.0+pow(distance(i.p,shaderUniforms.handFirePosition)*1.0,2.0));
  let lava=shaderUniforms.lavaStrength/(1.0+pow(distance(i.p,shaderUniforms.lavaPosition)*0.7,2.0));
  light=light+lampColor*lampEff+vec3<f32>(1.0,0.28,0.045)*(fire+handFire+lava);
- var c=t.rgb*i.color.rgb*light;
+ var c=srgbToLinear(t.rgb)*i.color.rgb*light;
  let ng=smoothstep(40.0,55.0,i.p.z);
  c=mix(c,c*vec3<f32>(0.92,0.86,0.95),ng);
  c=aerial(c,i.p,shaderSystem.cameraPosition);
- return vec4<f32>(grade(c),1.0);
+ return vec4<f32>(c,1.0);
 }`,
  });
  bindSunReceiver(engine,mat);setShaderTexture(mat,'albedo',tex);
@@ -192,7 +192,7 @@ ${TERRAIN_SLOPE_WGSL}
  // rather than sitting on top of it.
  c=mix(c,c*vec3<f32>(0.92,0.86,0.95),smoothstep(40.0,55.0,i.p.z));
  c=aerial(c,i.p,shaderSystem.cameraPosition);
- return vec4<f32>(grade(c),1.0);
+ return vec4<f32>(c,1.0);
 }`,
  });
  return bindSunReceiver(engine,mat);

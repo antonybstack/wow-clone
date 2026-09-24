@@ -147,7 +147,7 @@ ${ATMOS}
  // And out again at range, so the north overlook does not read as static over the
  // whole basin. The far mesh keeps its own silhouette.
  a=a*(1.0-smoothstep(55.0,120.0,d));
- return vec4<f32>(grade(i.color.rgb),clamp(a,0.0,1.0));
+ return vec4<f32>(i.color.rgb,clamp(a,0.0,1.0));
 }`});
 
  const mesh=batch.commit(engine,scene,mat,[]);

@@ -9,7 +9,7 @@ export async function createFireBlastVfx(engine,scene,player,body,world){
  const random=rng(419),systems=await Promise.all([
   ['fire_01.png',billboardBlendAdditive,42],['smoke_01.png',billboardBlendAlpha,8],['spark_05.png',billboardBlendAdditive,50]
  ].map(async([file,blendMode,capacity])=>{
-  const texture=await loadTexture2D(engine,'/ashen-reach/fire-blast/'+file,{invertY:false,srgb:false,mipMaps:true,magFilter:'nearest',minFilter:'nearest'});
+  const texture=await loadTexture2D(engine,'/ashen-reach/fire-blast/'+file,{invertY:false,srgb:true,mipMaps:true,magFilter:'nearest',minFilter:'nearest'});
   const atlas=createGridSpriteAtlas(texture,{cellWidthPx:512,cellHeightPx:512});
   const system=createFacingBillboardSystem(atlas,{capacity,blendMode});addFacingBillboardSystem(scene,system);
   return Array.from({length:capacity},()=>({handle:addBillboardSprite(system,{position:[0,-50,0],sizeWorld:[1,1],visible:false}),seed:random(),angle:random()*Math.PI*2,birth:null,direction:null}));

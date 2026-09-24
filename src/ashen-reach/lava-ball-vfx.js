@@ -8,7 +8,7 @@ export async function createLavaBallVfx(engine,scene,world,handPosition,player){
  const random=rng(9017),pools=await Promise.all([
   ['fire_01.png',64,billboardBlendAdditive],['smoke_01.png',14,billboardBlendAlpha],['spark_05.png',96,billboardBlendAdditive],
  ].map(async([name,count,blendMode])=>{
-  const texture=await loadTexture2D(engine,'/ashen-reach/fire-blast/'+name,{invertY:false,srgb:false,mipMaps:true,minFilter:'nearest',magFilter:'nearest'});
+  const texture=await loadTexture2D(engine,'/ashen-reach/fire-blast/'+name,{invertY:false,srgb:true,mipMaps:true,minFilter:'nearest',magFilter:'nearest'});
   const atlas=createGridSpriteAtlas(texture,{cellWidthPx:512,cellHeightPx:512});
   const system=createFacingBillboardSystem(atlas,{capacity:count,blendMode});addFacingBillboardSystem(scene,system);
   return Array.from({length:count},()=>({handle:addBillboardSprite(system,{position:[0,-50,0],visible:false,sizeWorld:[1,1]}),seed:random(),angle:random()*Math.PI*2}));

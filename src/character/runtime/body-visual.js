@@ -1,3 +1,4 @@
+import {prepareLinearMaterial} from '../../ashen-reach/linear-materials.js';
 /**
  * One skinned visual + clip table from an already-loaded container.
  * Does not own the locomotion state machine or a second animation loop.
@@ -428,6 +429,7 @@ export function assembleBodyVisual(opts) {
         setVisualVisible({ root }, false);
     }
 
+    for (const mesh of meshes) prepareLinearMaterial(scene, mesh.material);
     addToScene(scene, container);
     mountBodyRoot(root, player, capsuleHeight);
 

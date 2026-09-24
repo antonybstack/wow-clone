@@ -14,9 +14,11 @@ Add restrained depth-based contact and ambient occlusion around feet, stones, wa
 
 The [V12 plan and results](contact-occlusion-plan-2026-09-24.md) record the native contact pass, local AO, bounded composition, live validation, and remaining limitations. Released as `8c20843`, Pages `3d6eb578`, on 2026-09-24. See the [implementation retrospective](v12-lighting-retrospective-2026-09-24.md).
 
-## 3. Linear HDR lighting and exposure
+## 3. Linear HDR lighting and exposure — implemented locally
 
 Render surface lighting and volumetric scattering into linear floating-point color. Apply exposure, bloom, and tone mapping once at the end. Remove the current approximate inverse material grade. Match character PBR and custom environment materials; keep highlights colored and the sky readable.
+
+[V13 implementation and results](linear-hdr-plan-2026-09-24.md): shared linear targets, native material compatibility bridge, one final display transform, live GPU probes, mobile-browser regression checks and reviewed movement/spell video. Production deployment and physical iPhone review remain pending.
 
 ## 4. Local lights with believable occlusion
 

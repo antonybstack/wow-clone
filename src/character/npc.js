@@ -1,3 +1,4 @@
+import {prepareLinearMaterial} from '../ashen-reach/linear-materials.js';
 /**
  * Extra Mixamo humans sharing public/characters/base.glb.
  * Each instance is its own loadGltf container (Lite does not share animation
@@ -73,7 +74,7 @@ function shadeMaterial(tint) {
     return mat;
 }
 
-function applyShadeLook(mesh, tint, hideJoints) {
+function applyShadeLook(mesh, tint, hideJoints, scene) {
     if (hideJoints && isJointMesh(mesh)) {
         setMeshVisible(mesh, false);
         mesh.visible = false;
@@ -85,7 +86,9 @@ function applyShadeLook(mesh, tint, hideJoints) {
         return;
     }
     mesh.receiveShadows = true;
-    mesh.material = shadeMaterial(tint);
+    const material = shadeMaterial(tint);
+    prepareLinearMaterial(scene, material);
+    mesh.material = material;
 }
 
 function findNamed(groups, exact, extra = [], exclude = []) {
@@ -155,6 +158,7 @@ export function prefetchNpcBuffer() {
 export async function attachAnimatedHuman(engine, scene, pose) {
     const source = pose.buffer ? pose.buffer.slice(0) : BODY_URL;
     const container = await loadGltf(engine, source);
+    for (const mesh of getContainerMeshes(container)) prepareLinearMaterial(scene, mesh.material);
     addToScene(scene, container);
     const root = container.entities?.[0];
     if (!root) {
@@ -175,7 +179,7 @@ export async function attachAnimatedHuman(engine, scene, pose) {
     }
     const meshes = getContainerMeshes(container);
     for (const mesh of meshes) {
-        applyShadeLook(mesh, pose.tint, !!pose.hideJoints);
+        applyShadeLook(mesh, pose.tint, !!pose.hideJoints, scene);
     }
 
     const groups = container.animationGroups ?? [];

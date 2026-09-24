@@ -63,7 +63,7 @@ export async function createLightShafts(engine,scene,shafts){
    // And they stop existing well before the far ridge, so the town does not read
    // as a bank of floodlights from the north overlook.
    a=a*(1.0-smoothstep(34.0,78.0,d));
-   return vec4<f32>(grade(i.color.rgb),clamp(a,0.0,1.0));
+   return vec4<f32>(i.color.rgb,clamp(a,0.0,1.0));
   }`});
  const mesh=batch.commit(engine,scene,mat,[]);
  if(mesh)mesh.renderOrder=50;

@@ -1,3 +1,4 @@
+import {prepareLinearMaterial} from './linear-materials.js';
 import {createMeshFromData,addToScene} from '@babylonjs/lite';
 
 export const add=(a,b)=>a.map((x,i)=>x+b[i]);
@@ -199,7 +200,7 @@ export class Batch{
   *  the window applied. This is required because the bake runs before the shader's own
   *  `lampGate=smoothstep(40,55,z)` ever executes -- that gate protects the shader-side knee/colour,
   *  not values baked here. */
- commit(engine,scene,material,lights=[]){if(!this.idx.length)return null;const vcount=this.p.length/3;const uv2=new Float32Array(vcount*2);if(lights.length)for(let i=0;i<vcount;i++){const x=this.p[i*3],y=this.p[i*3+1],z=this.p[i*3+2];uv2[i*2]=bakeLamp(x,y,z,lights);}const m=createMeshFromData(engine,this.name,new Float32Array(this.p),new Float32Array(this.n),new Uint32Array(this.idx),new Float32Array(this.u),uv2,undefined,new Float32Array(this.c));m.material=material;m.pickable=false;addToScene(scene,m);return m;}
+ commit(engine,scene,material,lights=[]){if(!this.idx.length)return null;const vcount=this.p.length/3;const uv2=new Float32Array(vcount*2);if(lights.length)for(let i=0;i<vcount;i++){const x=this.p[i*3],y=this.p[i*3+1],z=this.p[i*3+2];uv2[i*2]=bakeLamp(x,y,z,lights);}const m=createMeshFromData(engine,this.name,new Float32Array(this.p),new Float32Array(this.n),new Uint32Array(this.idx),new Float32Array(this.u),uv2,undefined,new Float32Array(this.c));prepareLinearMaterial(scene,material);m.material=material;m.pickable=false;addToScene(scene,m);return m;}
 }
 
 /** One vertex of the M1/M7a baked lamp term. `Batch.commit` writes this into uv2.x; the

@@ -4,6 +4,7 @@ import {
  createRenderTarget,createEffectWrapper,createEffectRenderTask,createScreenSpaceContactShadowsPostProcessTask,
  setEffectTexture,setEffectUniforms,disposeEffectWrapper,getViewProjectionMatrix,mat4Invert,getCameraPosition,
 } from '@babylonjs/lite';
+import {HDR_FORMAT} from './color-management.js';
 import {SUN_DIR} from './atmosphere.js';
 
 const BYTES=192;
@@ -96,7 +97,7 @@ export function createContactOcclusion(engine,scene,sourceRT){
  },engine,scene);
  const size={width:1,height:1};
  const aoRT=createRenderTarget({lbl:'ashen-ambient-occlusion',format:'rg16float',samples:1,size});
- const output=createRenderTarget({lbl:'ashen-contact-composite',format:engine.format,samples:1,size:engine});
+ const output=createRenderTarget({lbl:'ashen-contact-composite',format:HDR_FORMAT,samples:1,size:engine});
  const binding=(name,binding,kind,extra={})=>({name,binding,kind,...extra});
  const common=[binding('params',0,'uniform',{uniformByteLength:BYTES}),binding('depth',1,'texture',{textureSampleType:'depth'})];
  const aoEffect=createEffectWrapper(engine,{name:'Local ambient occlusion',fragmentWGSL:AO,bindings:common});

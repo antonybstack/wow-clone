@@ -1,3 +1,4 @@
+import {prepareLinearMaterial} from './linear-materials.js';
 import { addToScene, getContainerMeshes, loadGltf, getViewProjectionMatrix } from "@babylonjs/lite";
 import { FireBlast } from "../spells/fire-blast.js";
 import { LavaBall } from "../spells/lava-ball.js";
@@ -34,6 +35,7 @@ export async function loadTrainingDummy(engine, scene, world, buffer) {
   const position = { x: pathX(8), y: height(pathX(8), 8), z: 8 };
   for (const root of asset.entities)
     root.position.set(position.x, position.y, position.z);
+  for (const mesh of getContainerMeshes(asset)) prepareLinearMaterial(scene, mesh.material);
   addToScene(scene, asset);
   const meshes = getContainerMeshes(asset);
   for (const mesh of meshes) {

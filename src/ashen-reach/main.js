@@ -1,11 +1,11 @@
 import {BASE_VISIBLE_MESHES, ORC_BASE_VISIBLE_MESHES, UNDEAD_BASE_VISIBLE_MESHES, EQUIPMENT_ITEMS} from './equipment-catalog.js';
 import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT, UNDEAD_EQUIPMENT_FIT} from './equipment-contract.js';
-import {createEngine,createSceneContext,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,startEngine,onBeforeRender,enableBoneControl,enableErrorDecoding,decodeError,setFog,captureScreenshot,setMeshVisible,isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize,setMeshoptBaseUrl,AcesToneMapping} from '@babylonjs/lite';
+import {createEngine,createSceneContext,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,startEngine,onBeforeRender,enableBoneControl,enableErrorDecoding,decodeError,setFog,captureScreenshot,setMeshVisible,isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize,setMeshoptBaseUrl} from '@babylonjs/lite';
 import {createAshenMetrics} from './metrics.js';
 import {createObjective} from './objective.js';
 import {buildChurchyard} from './scene.js';
 import {height} from './geometry.js';
-import {FOG_SCREEN,SUN_DIR,SUN_COLOR,SKY_AMBIENT,GROUND_BOUNCE,EXPOSURE} from './atmosphere.js';
+import {SKY_HORIZON,SUN_DIR,SUN_COLOR,SKY_AMBIENT,GROUND_BOUNCE} from './atmosphere.js';
 import {CameraRig} from '../camera-rig.js';
 import {initInput,input,setInputEnabled} from '../input.js';
 import {installTouchControls,touchControlsWanted} from './touch-controls.js';
@@ -19,13 +19,15 @@ import {registerSceneWithShadowSupport} from '@babylonjs/lite';
 import {createGameMenu} from './menu.js';
 import {configureGpuCompatibility,showGpuDiagnostics} from './gpu-compatibility.js';
 import {beginLoading,setLoadingStage,finishLoading,failLoading} from './loading-screen.js';
+import {configureLinearMaterials} from './linear-materials.js';
 
 enableErrorDecoding();
 setMeshoptBaseUrl('/');
-async function flushDeferredBuilders(scene){
+async function flushDeferredBuilders(scene,prepareMaterials){
  const pending=scene._deferredBuilders;
  if(!pending?.length)return;
  while(pending.length){
+  prepareMaterials();
   const builders=pending.splice(0);
   await Promise.all(builders.map((build)=>build()));
  }
@@ -63,15 +65,10 @@ async function main(){
  if(params.has('gpuDiagnostics'))showGpuDiagnostics(gpu);
  if(gpu.depthBundle==='unsupported')throw new Error(gpu.errors.join('\n'));
  setLoadingStage(1,'Raising the churchyard.');
- // The world's own shader materials do their own atmosphere, tonemap and grade
- // (atmosphere.js). Everything here exists to put the character/enemy GLBs --
- // which are lit by Babylon's standard pipeline, not by that shader -- on the
- // same light rig, or they stand in a blue-hour landscape wearing flat night
- // lighting. Clear colour and Babylon's fog use the *graded* horizon haze, i.e.
- // the screen value distance actually converges to, not the linear one.
- const scene=createSceneContext(engine,{defaultRenderTask:false});scene.clearColor={r:FOG_SCREEN[0],g:FOG_SCREEN[1],b:FOG_SCREEN[2],a:1};
- scene.imageProcessing.toneMapping=AcesToneMapping;scene.imageProcessing.toneMappingEnabled=true;scene.imageProcessing.exposure=EXPOSURE;
- setFog(scene,{mode:0,density:0,color:FOG_SCREEN});
+ // All scene materials write linear radiance; presentation owns display conversion.
+ const scene=createSceneContext(engine,{defaultRenderTask:false});scene.clearColor={r:SKY_HORIZON[0],g:SKY_HORIZON[1],b:SKY_HORIZON[2],a:1};
+ const attachLinearMaterials=configureLinearMaterials(scene);
+ setFog(scene,{mode:0,density:0,color:SKY_HORIZON});
  const light=createHemisphericLight([0,1,0],.62);light.diffuseColor=SKY_AMBIENT.map(v=>v*3.1);light.groundColor=GROUND_BOUNCE.map(v=>v*3.1);addToScene(scene,light);
  // Direction light travels = away from the sun. Low and northward, so the player
  // walking toward Hollowmere is backlit and rims out against the haze.
@@ -136,9 +133,11 @@ async function main(){
  shadows.setWorld(world);ashen.shadows=shadows;
  const post=params.has('noPost')?buildDirectPipeline(engine,scene):buildPostPipeline(engine,scene,sun,world,shadows);
  ashen.post=post.status;
+ ashen.hdr=post;
  ashen.volumetric=post.volume;
  ashen.grounding=post.grounding;
  if(post.status.notes.length)console.warn('ashen post chain:',post.status.notes.join('; '));
+ attachLinearMaterials();
  await registerSceneWithShadowSupport(scene);
  await startEngine(engine);
  ashen.presentMs=performance.now()-boot;
@@ -172,7 +171,7 @@ async function main(){
  // running by this point, and those builders only flush inside the first
  // registerScene. Without this, Pyre Burst keeps the ground disc (a mesh)
  // and drops the geyser, sparks and pillars.
- await flushDeferredBuilders(scene);
+ await flushDeferredBuilders(scene,attachLinearMaterials);
  await folkP;
  body.bindSocketHost(combat.fx.sockets);
  setLoadingStage(4,'Gathering your belongings.');
