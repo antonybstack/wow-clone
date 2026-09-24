@@ -10,12 +10,19 @@ export const BLOOM_WEIGHT=0.24;
 export const BLOOM_KERNEL=36;
 export const BLOOM_SCALE=0.5;
 
-export function buildPostPipeline(engine,scene,sun,world){
+export function buildDirectPipeline(engine,scene){
+ const depth=createRenderTarget({lbl:'ashen-direct-depth',dFormat:'depth32float',samples:1,size:engine});
+ const sceneTask=createRenderTask({name:'ashen-direct',rt:engine.scRT,depth},engine,scene);
+ addTask(scene,sceneTask);
+ return {sceneTask,status:{bloom:false,notes:['skipped by ?noPost']}};
+}
+
+export function buildPostPipeline(engine,scene,sun,world,shadows){
  const status={bloom:false,notes:[]};
  const sceneRT=createRenderTarget({lbl:'ashen-scene',format:engine.format,dFormat:'depth32float',samples:1,size:engine});
  const sceneTask=createRenderTask({name:'ashen-scene',rt:sceneRT},engine,scene);
  addTask(scene,sceneTask);
- const volume=createVolumetricFog(engine,scene,sceneRT,sun,world);
+ const volume=createVolumetricFog(engine,scene,sceneRT,sun,world,shadows);
  addTaskAfter(scene,volume.fogTask,sceneTask);
  addTaskAfter(scene,volume.compositeTask,volume.fogTask);
  status.volumetric=volume.state;

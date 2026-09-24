@@ -13,7 +13,8 @@ import {setupPlayer,plantSpawnOnTerrain,resolveCapsule} from '../player.js';
 import {attachBody} from '../character/body.js';
 import {resolvePlayableBody} from '../character/runtime/playable-body.js';
 import {attachDevTools,dev} from './dev-tools.js';
-import {buildPostPipeline} from './post.js';
+import {buildPostPipeline,buildDirectPipeline} from './post.js';
+import {createSunShadows} from './sun-shadows.js';
 import {registerSceneWithShadowSupport} from '@babylonjs/lite';
 import {createGameMenu} from './menu.js';
 
@@ -65,7 +66,7 @@ async function main(){
  // same light rig, or they stand in a blue-hour landscape wearing flat night
  // lighting. Clear colour and Babylon's fog use the *graded* horizon haze, i.e.
  // the screen value distance actually converges to, not the linear one.
- const scene=createSceneContext(engine);scene.clearColor={r:FOG_SCREEN[0],g:FOG_SCREEN[1],b:FOG_SCREEN[2],a:1};
+ const scene=createSceneContext(engine,{defaultRenderTask:false});scene.clearColor={r:FOG_SCREEN[0],g:FOG_SCREEN[1],b:FOG_SCREEN[2],a:1};
  scene.imageProcessing.toneMapping=AcesToneMapping;scene.imageProcessing.toneMappingEnabled=true;scene.imageProcessing.exposure=EXPOSURE;
  setFog(scene,{mode:0,density:0,color:FOG_SCREEN});
  const light=createHemisphericLight([0,1,0],.62);light.diffuseColor=SKY_AMBIENT.map(v=>v*3.1);light.groundColor=GROUND_BOUNCE.map(v=>v*3.1);addToScene(scene,light);
@@ -76,6 +77,7 @@ async function main(){
  const rig=new CameraRig(camera);rig.yaw=0;rig.pitch=.04;rig.distance=rig.distanceTarget=3.5;
  const reference=createFreeCamera({x:0,y:height(0,-5)+1.65,z:-5},{x:.0,y:4.0,z:25});reference.fov=1.06;reference.nearPlane=.1;reference.farPlane=1200;
  scene.camera=reference;
+ const shadows=createSunShadows(engine,scene,sun);
  const world=await buildChurchyard(engine,scene);initInput(canvas);installTouchControls();
  loadLine('Setting the stones.');
  enableBoneControl();
@@ -103,7 +105,7 @@ async function main(){
  setView(params.has('play')||touchControlsWanted()?'play':'reference');
  const metrics=createAshenMetrics({engine,scene,world,canvas,samples,lite:{isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize}});
  if(params.has('gpuTiming'))metrics.setGpuTiming(true);
- onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);if(menu.isOpen){armory?.update(dt);return;}elapsed+=dt;player?.kinematicStep(dt);combat?.beforeAnimation(dt);tools.tick();body?.update(dt);world.update(elapsed,player?player.body.position:null);combat?.afterAnimation(dt);equipment?.update(dt);armory?.update(dt);if(elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();metrics.sampleGpu();}});
+ onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);if(menu.isOpen){armory?.update(dt);shadows.update();return;}elapsed+=dt;player?.kinematicStep(dt);combat?.beforeAnimation(dt);tools.tick();body?.update(dt);world.update(elapsed,player?player.body.position:null);combat?.afterAnimation(dt);equipment?.update(dt);armory?.update(dt);shadows.update();if(elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();metrics.sampleGpu();}});
  const ashen={engine,scene,camera,reference,rig,world,input,setView,reset,metrics,capture:()=>captureScreenshot(engine),hostilesReady:noEnemies,presentMs:0,loadMs:0,ready:false,dev,menu,get player(){return player;},get body(){return body;},get combat(){return combat;},get equipment(){return equipment;},get armory(){return armory;}};
  globalThis.ASHEN=ashen;
  const sourceBody=resolvePlayableBody('?character=human-source');
@@ -125,11 +127,12 @@ async function main(){
  // in the bind pose while clips report as playing. See docs/startup-load.md.
  // Bloom is a render-target swap, so it has to exist before the first
  // registerScene. It does not fetch anything. ?noPost skips it.
- const post=params.has('noPost')?{status:{bloom:false,notes:['skipped by ?noPost']}}:buildPostPipeline(engine,scene,sun,world);
+ shadows.setWorld(world);ashen.shadows=shadows;
+ const post=params.has('noPost')?buildDirectPipeline(engine,scene):buildPostPipeline(engine,scene,sun,world,shadows);
  ashen.post=post.status;
  ashen.volumetric=post.volume;
  if(post.status.notes.length)console.warn('ashen post chain:',post.status.notes.join('; '));
- if(post.volume)await registerSceneWithShadowSupport(scene);else await registerScene(scene);
+ await registerSceneWithShadowSupport(scene);
  await startEngine(engine);
  ashen.presentMs=performance.now()-boot;
  document.getElementById('loading').remove();

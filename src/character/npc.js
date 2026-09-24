@@ -84,7 +84,7 @@ function applyShadeLook(mesh, tint, hideJoints) {
         mesh.receiveShadows = true;
         return;
     }
-    mesh.receiveShadows = false;
+    mesh.receiveShadows = true;
     mesh.material = shadeMaterial(tint);
 }
 

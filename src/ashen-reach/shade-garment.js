@@ -102,7 +102,7 @@ class Shell {
         );
         mesh.material = material;
         mesh.pickable = false;
-        mesh.receiveShadows = false;
+  mesh.receiveShadows = true;
         addToScene(scene, mesh);
         return mesh;
     }

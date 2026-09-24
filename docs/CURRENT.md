@@ -1,8 +1,24 @@
 # Current direction — Ashen Reach
 
+V11 release is in progress. The [implementation retrospective](v11-lighting-retrospective-2026-09-24.md) records the approach, failed experiments, corrections, and verification. The next requested implementation is the roadmap's contact shadow and ambient occlusion milestone.
+
+## V11 shared sunlight and moving shadows — 2026-09-24
+
+The requested baseline commit/push/deploy was completed first: **`8c550ef`** on `main`, Cloudflare Pages deployment **`372548bd`**, live at **https://play.sparkify.dev**. Production smoke verified readiness, Havok physics, valid WASM bytes, the V10 volume, and no page errors.
+
+The [graphics roadmap](graphics-roadmap.md) and [first detailed plan](fully-shadowed-street-plan.md) are documented. **V11 is implemented locally, uncommitted, and not deployed.** Three stabilized sun cascades now shadow world surfaces, grass/flowers, native characters, and nearby fog. Animated actors cast their actual skinned silhouettes. A separate cached world map preserves distant mountain occlusion. The [architecture notes](sun-shadow-architecture.md) document the Lite 1.28 compatibility bridges and frame order. Native material receivers are enabled before compilation, hidden casters are excluded, and caster changes clear stale skinned shadows. The scene now draws once per frame.
+
+Live checks pass: **41** ground samples respond to actor caster removal, **38** native receivers enabled, actual keyboard movement **15.51 units**, street occlusion, portrait resize, direct `?noPost` rendering, and scene disposal without runtime/GPU errors. The far-map regression matched **45/45** GPU/triangle-ray probes and retained the ridge removal/restoration behavior. Build and targeting/spell-visibility tests pass.
+
+The reviewed **15.82-second 1280×720/60 FPS MP4** was delivered to Telegram **743**. It shows actual keyboard travel from the sunny southern approach into shade, then a cut to a Hollowmere street traversal. Capture: 960×540 internal scene, 480×270 fog. Evidence: `ve-capture/ashen-reach/sun-shadows/video-v11-final-2026-09-24/v11-street.mp4`.
+
+Separate uncapped Mac Studio Chromium/WebGPU measurement, seven enemies, 1280×720 internal/viewport, DPR 1, no recording: **397.75 FPS** mean, **4.70 ms p95**, **7.70 ms p99**, **20.30 ms worst**, 600 retained samples, 5 over 8.33 ms. These are animation-frame intervals, not GPU timings or mobile performance. Benchmark slot 7 was stopped afterward. Local Vite 5173 remains the active game.
+
+Next proposed milestone: restrained contact shadows and ambient occlusion. Fine foliage casting, linear HDR, local-light shadows, and temporal reconstruction remain future work. Hollowmere is naturally in mountain shade at the approved sun angle; the southern approach supplies the visible sun/shadow transition.
+
 ## V10 shadowed volumetric sunlight — 2026-09-23
 
-The user rejected V9's artificial ground-origin rays. [V10](shadowed-volumetric-fog-plan-2026-09-23.md) removes that pattern and integrates real shadow-tested sunlight through world-space fog. A cached 2048 sun depth map includes terrain, mountains, opaque trees and buildings; a half-resolution, 48-step volume stops at scene depth and composites with depth-aware upsampling. All 45 GPU light-visibility probes matched independent triangle raycasts; removing/restoring the mountain caster batch changed the fog visibility as expected. Movement, portrait resizing, build and live shader checks pass. The reviewed 18.88-second flythrough went to Telegram (742). At 1280×720 internal resolution, uncapped Chrome with seven enemies averaged 268.8 FPS over 600 samples (p95 5.7 ms, p99 59.5 ms). Occasional long frames remain. Fine grass and animated characters are not sun shadow casters. V10 is local only; production remains V7.
+The user rejected V9's artificial ground-origin rays. [V10](shadowed-volumetric-fog-plan-2026-09-23.md) removes that pattern and integrates real shadow-tested sunlight through world-space fog. A cached 2048 sun depth map includes terrain, mountains, opaque trees and buildings; a half-resolution, 48-step volume stops at scene depth and composites with depth-aware upsampling. All 45 GPU light-visibility probes matched independent triangle raycasts; removing/restoring the mountain caster batch changed the fog visibility as expected. Movement, portrait resizing, build and live shader checks pass. The reviewed 18.88-second flythrough went to Telegram (742). At 1280×720 internal resolution, uncapped Chrome with seven enemies averaged 268.8 FPS over 600 samples (p95 5.7 ms, p99 59.5 ms). Occasional long frames remain. Fine grass and animated characters are not sun shadow casters. V10 was committed and deployed on 2026-09-24 as `8c550ef`; see the V11 handoff above.
 
 ## V9 golden-hour mountain fog — 2026-09-23
 

@@ -12,6 +12,7 @@ import {
 } from '@babylonjs/lite';
 import {Batch,height,terrainNormal,rng,bakeLamp,add,sub,TERRAIN_SLOPE_WGSL} from './geometry.js';
 import {ATMOS} from './atmosphere.js';
+import {SUN_SHADOW_UNIFORMS,SUN_SHADOW_SAMPLERS,SUN_SHADOW_WGSL,bindSunReceiver} from './sun-shadows.js';
 
 const ATLAS='/ashen-reach/foliage-atlas.png';
 const cell=(cx,cy)=>{const s=.5,p=.014;return {u0:cx*s+p,v0:cy*s+p,u1:(cx+1)*s-p,v1:(cy+1)*s-p};};
@@ -60,7 +61,7 @@ async function createFoliageMaterial(engine){
  const mat=createShaderMaterial({
   name:'Ashen foliage',
   attributes:['position','normal','uv','color','uv2'],
-  uniforms:['viewProjection','world','cameraPosition',
+  uniforms:['viewProjection','world','cameraPosition','view',...SUN_SHADOW_UNIFORMS,
    {name:'time',type:'f32',defaultValue:0},
    {name:'playerPosition',type:'vec3<f32>',defaultValue:[0,0,0]},
    {name:'playerRadius',type:'f32',defaultValue:1.2},
@@ -71,12 +72,12 @@ async function createFoliageMaterial(engine){
    {name:'lavaPosition',type:'vec3<f32>',defaultValue:[0,0,0]},
    {name:'lavaStrength',type:'f32',defaultValue:0},
   ],
-  samplers:['albedo'],
+  samplers:['albedo',...SUN_SHADOW_SAMPLERS],
   backFaceCulling:false,
   needAlphaTesting:true,
   vertexSource:CARD_VERTEX,
   fragmentSource:`${OUT}
-${ATMOS}
+${ATMOS} ${SUN_SHADOW_WGSL}
 ${TERRAIN_SLOPE_WGSL}
 @fragment fn mainFragment(i:Out)->@location(0) vec4<f32>{
  var t=textureSample(albedo,albedoSampler,i.uv);
@@ -95,7 +96,8 @@ ${TERRAIN_SLOPE_WGSL}
  let gn=terrainNormalWgsl(i.p.x,i.p.z);
  let nn=normalize(i.normal+gn*0.9+vec3<f32>(0.00001));
  let trans=pow(max(-dot(raw,SUN_DIR),0.0),2.2);
- var light=shade(nn,i.p,shaderSystem.cameraPosition,0.92)+SUN_COLOR*trans*0.55;
+ let visibility=sunVisibility(i.p,gn);
+ var light=shade(nn,i.p,shaderSystem.cameraPosition,0.92,visibility)+SUN_COLOR*trans*visibility*0.55;
  let lamp=i.lamp;
  var lampEff=lamp;
  if(lamp>1.4){lampEff=1.4+(1.0-exp(-(lamp-1.4)));}
@@ -111,7 +113,7 @@ ${TERRAIN_SLOPE_WGSL}
  return vec4<f32>(grade(c),1.0);
 }`,
  });
- setShaderTexture(mat,'albedo',tex);
+ bindSunReceiver(engine,mat);setShaderTexture(mat,'albedo',tex);
  return mat;
 }
 
@@ -141,11 +143,11 @@ ${TERRAIN_SLOPE_WGSL}
  * green and only the florets take the instance hue, which is why a violet spike does
  * not come with a violet stalk. `uv.y` carries a length gradient for shading.
  */
-async function createFlowerMaterial(){
- return createShaderMaterial({
-  name:'Ashen flowers',
+async function createFlowerMaterial(engine){
+ const mat=createShaderMaterial({
+  name:'Ashen flowers',samplers:SUN_SHADOW_SAMPLERS,
   attributes:['position','normal','uv','color','uv2'],
-  uniforms:['viewProjection','world','cameraPosition',
+  uniforms:['viewProjection','world','cameraPosition','view',...SUN_SHADOW_UNIFORMS,
    {name:'time',type:'f32',defaultValue:0},
    {name:'playerPosition',type:'vec3<f32>',defaultValue:[0,0,0]},
    {name:'playerRadius',type:'f32',defaultValue:1.2},
@@ -159,7 +161,7 @@ async function createFlowerMaterial(){
   backFaceCulling:false,
   vertexSource:CARD_VERTEX,
   fragmentSource:`${OUT}
-${ATMOS}
+${ATMOS} ${SUN_SHADOW_WGSL}
 ${TERRAIN_SLOPE_WGSL}
 @fragment fn mainFragment(i:Out)->@location(0) vec4<f32>{
  let petal=i.uv.x;
@@ -177,7 +179,8 @@ ${TERRAIN_SLOPE_WGSL}
  // The stem barely gets this. At 0.35 it picked up enough warm sun to read as a bright
  // yellow-green stick hovering in dark grass, which is what the west-treeline shot was
  // actually showing rather than any flower.
- var light=shade(nn,i.p,shaderSystem.cameraPosition,0.92)+SUN_COLOR*trans*(0.08+petal*0.62);
+ let visibility=sunVisibility(i.p,gn);
+ var light=shade(nn,i.p,shaderSystem.cameraPosition,0.92,visibility)+SUN_COLOR*trans*visibility*(0.08+petal*0.62);
  var lampEff=i.lamp;
  if(i.lamp>1.4){lampEff=1.4+(1.0-exp(-(i.lamp-1.4)));}
  let fire=shaderUniforms.fireStrength/(1.0+pow(distance(i.p,shaderUniforms.firePosition)*0.85,2.0));
@@ -192,6 +195,7 @@ ${TERRAIN_SLOPE_WGSL}
  return vec4<f32>(grade(c),1.0);
 }`,
  });
+ return bindSunReceiver(engine,mat);
 }
 
 /**
@@ -474,7 +478,7 @@ export async function createFoliage(engine,scene,{lights=[],density=()=>0,landma
  const plantFar=commitProto(engine,scene,clumpCards('Plant far',[UV.plant],{cards:2,height:0.60,width:0.42,spread:0,cross:true}),material);
  const brackenNear=commitProto(engine,scene,brackenTuft('Bracken near',UV.fern,false),material);
  const brackenFar=commitProto(engine,scene,brackenTuft('Bracken far',UV.fern,true),material);
- const flowerMaterial=await createFlowerMaterial();
+ const flowerMaterial=await createFlowerMaterial(engine);
  const umbelNear=commitProto(engine,scene,flowerUmbel('Umbel near',false),flowerMaterial);
  const umbelFar=commitProto(engine,scene,flowerUmbel('Umbel far',true),flowerMaterial);
  const spikeNear=commitProto(engine,scene,flowerSpike('Spike near',false),flowerMaterial);

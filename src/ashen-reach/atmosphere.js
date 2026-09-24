@@ -51,7 +51,7 @@ fn aerial(c:vec3<f32>,wp:vec3<f32>,cam:vec3<f32>)->vec3<f32>{return c;}
 /** Key + hemispheric ambient + rim, the three terms the baseline was missing.
  *  Parameter k is the material's own light scale (surface()'s light option), kept
  *  per-material authoring intent survives the model change. */
-fn shade(n:vec3<f32>,wp:vec3<f32>,cam:vec3<f32>,k:f32)->vec3<f32>{
+fn shade(n:vec3<f32>,wp:vec3<f32>,cam:vec3<f32>,k:f32,visibility:f32)->vec3<f32>{
  let nn=normalize(n+vec3<f32>(0.00001));
  let ndl=dot(nn,SUN_DIR);
  // A hard key for form, plus a wrapped tail so surfaces turned away from a
@@ -61,7 +61,7 @@ fn shade(n:vec3<f32>,wp:vec3<f32>,cam:vec3<f32>,k:f32)->vec3<f32>{
  let v=normalize(cam-wp);
  // Fresnel rim, gated on facing the key, so edges separate from the haze.
  let rim=pow(1.0-clamp(dot(nn,v),0.0,1.0),3.2)*(0.30+0.70*max(ndl,0.0));
- return (key+hemi)*k+SUN_COLOR*rim*0.22*k;
+ return (key*visibility+hemi)*k+SUN_COLOR*rim*0.22*k*visibility;
 }
 
 /** Filmic tonemap (ACES fit) then a lifted-black, mid-saturated grade. Without
