@@ -7,7 +7,7 @@ import {buildChurchyard} from './scene.js';
 import {height} from './geometry.js';
 import {FOG_SCREEN,SUN_DIR,SUN_COLOR,SKY_AMBIENT,GROUND_BOUNCE,EXPOSURE} from './atmosphere.js';
 import {CameraRig} from '../camera-rig.js';
-import {initInput,input} from '../input.js';
+import {initInput,input,setInputEnabled} from '../input.js';
 import {installTouchControls,touchControlsWanted} from './touch-controls.js';
 import {setupPlayer,plantSpawnOnTerrain,resolveCapsule} from '../player.js';
 import {attachBody} from '../character/body.js';
@@ -18,6 +18,7 @@ import {createSunShadows} from './sun-shadows.js';
 import {registerSceneWithShadowSupport} from '@babylonjs/lite';
 import {createGameMenu} from './menu.js';
 import {configureGpuCompatibility,showGpuDiagnostics} from './gpu-compatibility.js';
+import {beginLoading,setLoadingStage,finishLoading,failLoading} from './loading-screen.js';
 
 enableErrorDecoding();
 setMeshoptBaseUrl('/');
@@ -32,10 +33,6 @@ async function flushDeferredBuilders(scene){
  scene._renderableVersion=(scene._renderableVersion??0)+1;
  scene._frameGraph?.build?.();
 }
-function loadLine(text){
- const el=document.getElementById('loading-line');
- if(el)el.textContent=text;
-}
 function fetchBuffer(url,priority='high'){
  return fetch(url,{priority}).then((response)=>{
   if(!response.ok)throw Error(`fetch ${url} ${response.status}`);
@@ -43,6 +40,7 @@ function fetchBuffer(url,priority='high'){
  });
 }
 async function main(){
+ beginLoading();
  const boot=performance.now();
  const canvas=document.getElementById('renderCanvas');
  const params=new URLSearchParams(location.search);
@@ -59,11 +57,12 @@ async function main(){
    }
   }).catch(()=>{});
  }
- loadLine('Lighting the lamps.');
+ setLoadingStage(0,'Lighting the lamps.');
  const engine=await createEngine(canvas,{msaaSamples:1,maxDevicePixelRatio:pixelRatio>0?pixelRatio:.75});
  const gpu=await configureGpuCompatibility(engine._device);
  if(params.has('gpuDiagnostics'))showGpuDiagnostics(gpu);
  if(gpu.depthBundle==='unsupported')throw new Error(gpu.errors.join('\n'));
+ setLoadingStage(1,'Raising the churchyard.');
  // The world's own shader materials do their own atmosphere, tonemap and grade
  // (atmosphere.js). Everything here exists to put the character/enemy GLBs --
  // which are lit by Babylon's standard pipeline, not by that shader -- on the
@@ -82,8 +81,8 @@ async function main(){
  const reference=createFreeCamera({x:0,y:height(0,-5)+1.65,z:-5},{x:.0,y:4.0,z:25});reference.fov=1.06;reference.nearPlane=.1;reference.farPlane=1200;
  scene.camera=reference;
  const shadows=createSunShadows(engine,scene,sun,{depthOnlyFragment:gpu.depthBundle==='empty-fragment'});
- const world=await buildChurchyard(engine,scene);initInput(canvas);installTouchControls();
- loadLine('Setting the stones.');
+ const world=await buildChurchyard(engine,scene);initInput(canvas);setInputEnabled(false);installTouchControls();
+ setLoadingStage(2,'Calling the wanderer.');
  enableBoneControl();
  const noEnemies=params.has('noEnemies');
  let player=null;
@@ -94,6 +93,7 @@ async function main(){
  let armory=null;
  let tools={tick(){}};
  let dressed=false;
+ let readyForPlay=false;
  let view='reference',elapsed=0;const samples=[];
  const setView=v=>{
   view=v;scene.camera=v==='reference'?reference:camera;
@@ -109,7 +109,7 @@ async function main(){
  setView(params.has('play')||touchControlsWanted()?'play':'reference');
  const metrics=createAshenMetrics({engine,scene,world,canvas,samples,lite:{isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize}});
  if(params.has('gpuTiming'))metrics.setGpuTiming(true);
- onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);if(menu.isOpen){armory?.update(dt);shadows.update();return;}elapsed+=dt;player?.kinematicStep(dt);combat?.beforeAnimation(dt);tools.tick();body?.update(dt);world.update(elapsed,player?player.body.position:null);combat?.afterAnimation(dt);equipment?.update(dt);armory?.update(dt);shadows.update();if(elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();metrics.sampleGpu();}});
+ onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);if(menu.isOpen){armory?.update(dt);shadows.update();return;}elapsed+=dt;player?.kinematicStep(dt);if(readyForPlay)combat?.beforeAnimation(dt);tools.tick();body?.update(dt);world.update(elapsed,player?player.body.position:null);if(readyForPlay)combat?.afterAnimation(dt);equipment?.update(dt);armory?.update(dt);shadows.update();if(readyForPlay&&elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();metrics.sampleGpu();}});
  const ashen={engine,scene,camera,reference,rig,world,input,setView,reset,metrics,capture:()=>captureScreenshot(engine),hostilesReady:noEnemies,presentMs:0,loadMs:0,ready:false,dev,menu,get player(){return player;},get body(){return body;},get combat(){return combat;},get equipment(){return equipment;},get armory(){return armory;}};
  ashen.gpu=gpu;
  onBeforeRender(scene,()=>{gpu.frames++;});
@@ -128,7 +128,7 @@ async function main(){
  // the terrain's east/west edges (large radius). A rectangular clamp matches the actual extent.
  player=await setupPlayer(engine,scene,rig,{spawn:plantSpawnOnTerrain(world.spawn,capsule,height),colliders:world.colliders,groundHeight:height,boundsRect:{minX:-88,maxX:88,minZ:-93,maxZ:143},capsule});
  body=await attachBody(engine,scene,player,player.capsuleHeight,playable);
- loadLine('The wanderer steps in.');
+ setLoadingStage(3,'Waking the churchyard.');
  // Skinning is fixed up at load. Starting the engine first leaves the mesh
  // in the bind pose while clips report as playing. See docs/startup-load.md.
  // Bloom is a render-target swap, so it has to exist before the first
@@ -142,7 +142,6 @@ async function main(){
  await registerSceneWithShadowSupport(scene);
  await startEngine(engine);
  ashen.presentMs=performance.now()-boot;
- document.getElementById('loading').remove();
  const foliageP=world.startFoliage();
  const [
   {loadTrainingDummy,createCombat},
@@ -176,6 +175,7 @@ async function main(){
  await flushDeferredBuilders(scene);
  await folkP;
  body.bindSocketHost(combat.fx.sockets);
+ setLoadingStage(4,'Gathering your belongings.');
  const EMPTY_LOADOUT={helmet:null,torso:null,legs:null,boots:null,gloves:null,mainHand:null,offHand:null};
  const factoryHand=(id)=>id&&EQUIPMENT_ITEMS[id]?.factory?id:null;
  // THE ONE LINE TO FLIP when the authored Undead body lands: set this to 'equipment-undead'
@@ -255,8 +255,12 @@ async function main(){
  tools=attachDevTools({params,canvas,camera,player,combat,setView});
  dressed=true;
  setView(view);
+ setLoadingStage(5,'Opening the gates.');
  ashen.whenHostiles=townP.then(()=>{ashen.hostilesReady=true;});
+ await finishLoading();
+ readyForPlay=true;
+ setInputEnabled(true);
  ashen.loadMs=performance.now()-boot;
  ashen.ready=true;
 }
-main().catch(e=>{console.error(e);const el=document.getElementById('error');el.style.display='block';let message=e.stack||String(e);try{message+='\n'+decodeError(e);}catch{}el.textContent=message;});
+main().catch(e=>{console.error(e);if(failLoading(e))return;const el=document.getElementById('error');el.style.display='block';let message=e.stack||String(e);try{message+='\n'+decodeError(e);}catch{}el.textContent=message;});

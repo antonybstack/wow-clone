@@ -1,5 +1,13 @@
 # Current direction — Ashen Reach
 
+## Responsive loading screen — 2026-09-24
+
+The user verified the loading screen on their phone and authorized commit/push. The subtitle was removed afterward as requested. Production deployment has not been requested for this release. V13 linear HDR lighting is now authorized as the next implementation milestone.
+
+Implemented locally and published to preview **`7a5dd862`**: https://7a5dd862.fardel.pages.dev/ashen-reach. Production remains on the iPhone compatibility release below. The loader now uses an inline illustrated churchyard, responsive portrait/landscape layout, touch guidance, six real startup stages, reduced-motion support, and a recoverable error state. It hides the desktop help before JavaScript initializes and waits for equipment and controls before revealing play. Combat and gameplay input are held during loading.
+
+Eight loader browser tests and thirty existing unit tests pass. Chromium's injected iPhone depth failure and native desktop WebKit movement checks pass; the published preview also passes WebKit with no runtime/GPU errors. Reviewed live loading-to-movement clip: https://ve.sparkify.dev/wow-clone/ashen-reach/loading/2026-09-24-loading-to-play.mp4. See [implementation and verification](loading-screen-2026-09-24.md). Physical iPhone review of this new layout remains pending.
+
 ## iPhone compatibility fix released — 2026-09-24
 
 **Committed and pushed as `6a7a4f8`, deployed to production as Pages `ac8e866e` at https://play.sparkify.dev.** The affected iPhone's Safari preview test confirmed the original depth-bundle validation failure and successful empty-fragment fallback, restored visible movement, and no reported GPU errors. Thirty tests and the release build pass. Production JavaScript matches the build byte-for-byte; Havok WASM and physics are valid. Desktop WebKit's native path and Chromium's injected fallback both pass production rendering/movement checks (16.90 and 28.12 units respectively), with no runtime/GPU errors. Touch cancellation, capture loss, menu and blur recovery also pass. Exact device diagnostics and release evidence are in the [investigation](iphone-regression-2026-09-24.md). Physical Edge and prolonged phone stability remain unverified. Earlier investigation status below describes the pre-release work.

@@ -1,5 +1,15 @@
 # Startup load
 
+## Current lifecycle — 2026-09-24
+
+The [responsive loader](loading-screen-2026-09-24.md) now stays visible through equipment, combat setup, deferred builders and controls. `ASHEN.presentMs` measures the initial rendered scene behind the loader; it no longer means the overlay is gone. `ASHEN.loadMs` and `ASHEN.ready` mark the completed loading transition and enabled gameplay input. Keep renderer startup after `attachBody`: the source skeleton must exist before Lite begins skinning.
+
+Six actual startup stages drive the progress bar; there is no artificial minimum duration. Combat updates and gameplay input remain paused during loading. `finishLoading()` waits for two animation frames, fades the loader (immediately with reduced motion), clears the canvas's inert state and releases the keyboard guard. Errors leave a readable retry screen. Startup frame timings are excluded from gameplay metrics until play is ready.
+
+## Historical optimization notes — 2026-09-21
+
+The early overlay dismissal described below has been superseded by the lifecycle above; the asset and source-rig optimization rationale still applies.
+
 How `ashen-reach.html` decides what the player waits for. The goal is an uncached first visit that is as short as it can be without a frozen character or a nude flash. This is the live behavior as of 2026-09-21.
 
 `ASHEN.presentMs` is when the loading overlay comes off. `ASHEN.loadMs` and `ASHEN.ready` are when clothes, combat, churchyard shades, townsfolk and grass are in. Probes wait on `ASHEN.ready`. Do not move `ready` earlier: several checks cast or read the outfit on the next line.
