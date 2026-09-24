@@ -146,7 +146,7 @@ fn decode(c:vec3<f32>)->vec3<f32>{
  return vec4<f32>(encode(decode(color)*fog.a+fog.rgb),1.0);
 }`;
 
-export function createVolumetricFog(engine,scene,sourceRT,sun,world,shadows){
+export function createVolumetricFog(engine,scene,sourceRT,sun,world,shadows,sourceColor=sourceRT){
  const sg=shadows.far,casters=shadows.casters;
  const halfSize={width:1,height:1};
  const fogRT=createRenderTarget({lbl:'sunlit-fog-half',format:'rgba16float',samples:1,size:halfSize});
@@ -189,7 +189,7 @@ export function createVolumetricFog(engine,scene,sourceRT,sun,world,shadows){
   const depth={view:sourceRT._depthTexture.createView({aspect:'depth-only'}),depth:true};
   setEffectTexture(integrate,'depth',depth);setEffectTexture(composite,'depth',depth);
   update();recordFog();
-  setEffectTexture(composite,'source',{view:sourceRT._colorView});
+  setEffectTexture(composite,'source',{view:sourceColor._colorView});
   setEffectTexture(composite,'volume',{view:fogRT._colorView});
  };
  fogTask.execute=()=>{update();return executeFog();};

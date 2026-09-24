@@ -1,8 +1,22 @@
 # Current direction — Ashen Reach
 
+## V12 contact shadows and ambient occlusion — 2026-09-24
+
+Release requested. The [V12 implementation retrospective](v12-lighting-retrospective-2026-09-24.md) records decisions, corrections, evidence, and a reusable checklist. Fresh release build, seven tests, and live contact/occlusion checks pass; production verification is pending. The implementation handoff below precedes this release.
+
+The [detailed plan and results](contact-occlusion-plan-2026-09-24.md) are implemented **locally, uncommitted, not deployed**. Native short contact rays and custom local AO add restrained grounding before fog; composition caps darkening and protects bright lamps. Normal orientation and screen borders were corrected after live/source review. Fullscreen play, reference, and armory cameras, portrait/odd resize, exact disabled bypass, scene disposal, and direct rendering passed without runtime/GPU errors. Near/far sunlight regressions still pass; actual walking/jumping covered 10.62 units. Build and seven targeting/spell tests pass.
+
+Reviewed **19.45-second 1280×720/60 FPS MP4** delivered via `tg file`, Telegram **744**: labeled off/on comparison, keyboard walking/jump, then a cut to town. Scene 960×540; AO/fog 480×270. File: `ve-capture/ashen-reach/contact-occlusion/video-v12-final-2026-09-24/v12-contact.mp4`.
+
+Separate uncapped Mac Studio Chromium/WebGPU benchmark, 1280×720 internal/viewport, seven enemies, no recording: **292.98 FPS**, mean **3.41 ms**, p95 **6.60 ms**, p99 **53.10 ms**, worst **75.10 ms**, 600 samples. Average throughput meets the target; occasional stalls remain. Mobile hardware performance, off-screen occluders, ambient-only HDR composition, and lantern cone replacement remain open. Current implementation assumes fullscreen cameras. See [source review](v12-contact-review.md).
+
+The next roadmap milestone is linear HDR lighting and a single final grade; it is not started automatically.
+
+## Production release
+
 V11 is committed and pushed as **`b628f37`**, deployed to production as Cloudflare Pages **`b14a1aa7`** at **https://play.sparkify.dev**. Production verification passed: ready, Havok physics, 38 dynamic shadow casters, valid WASM bytes, no runtime/GPU errors; the live capture was reviewed. Telegram evidence 743 is associated with this commit.
 
-The [implementation retrospective](v11-lighting-retrospective-2026-09-24.md) records the approach, failed experiments, corrections, and verification. The next requested implementation follows the [V12 contact shadow and ambient occlusion plan](contact-occlusion-plan-2026-09-24.md). Historical V11 implementation status below describes its pre-release handoff.
+The [implementation retrospective](v11-lighting-retrospective-2026-09-24.md) records the approach, failed experiments, corrections, and verification. The subsequent V12 implementation is documented above. Historical V11 implementation status below describes its pre-release handoff.
 
 ## V11 shared sunlight and moving shadows — 2026-09-24
 

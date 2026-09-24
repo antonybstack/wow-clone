@@ -131,6 +131,7 @@ async function main(){
  const post=params.has('noPost')?buildDirectPipeline(engine,scene):buildPostPipeline(engine,scene,sun,world,shadows);
  ashen.post=post.status;
  ashen.volumetric=post.volume;
+ ashen.grounding=post.grounding;
  if(post.status.notes.length)console.warn('ashen post chain:',post.status.notes.join('; '));
  await registerSceneWithShadowSupport(scene);
  await startEngine(engine);

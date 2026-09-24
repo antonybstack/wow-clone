@@ -2,13 +2,17 @@
 
 Updated 2026-09-24. Baseline V10 is committed as `8c550ef`, pushed to main, and deployed to https://play.sparkify.dev (Pages deployment `372548bd`). Production smoke check: ready, Havok physics, shadowed volumetric fog, valid WASM, no page errors. This roadmap describes future work, not an automatic task queue.
 
-## 1. A fully shadowed street — implemented locally
+## 1. A fully shadowed street — deployed
 
 Sunlight now follows the same occlusion on terrain, masonry, vegetation, animated characters, and fog. Three cascades cover the foreground; the cached distant map preserves mountain occlusion. The southern approach supplies the sun/shadow traversal because Hollowmere is largely in mountain shade at this sun angle. Detailed plan and measured results: [V11](fully-shadowed-street-plan.md).
 
-## 2. Ground contact and ambient occlusion
+V11 production release: `b628f37`, Pages `b14a1aa7`, 2026-09-24.
+
+## 2. Ground contact and ambient occlusion — implemented locally
 
 Add restrained depth-based contact and ambient occlusion around feet, stones, walls, and vegetation roots. Preserve warm lamp lighting and avoid black halos, screen-edge leaks, and shadows that detach during animation. Validate camera movement and portrait views.
+
+The [V12 plan and results](contact-occlusion-plan-2026-09-24.md) record the native contact pass, local AO, bounded composition, live validation, and remaining limitations. Awaiting a separate release request.
 
 ## 3. Linear HDR lighting and exposure
 
