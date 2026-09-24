@@ -3,7 +3,7 @@
  * The stick and buttons feed the same input object the keyboard uses.
  * A finger on the world still looks through the pointer path in input.js.
  */
-import { input, setTouchJump, setTouchMove } from "../input.js";
+import { input, isInputEnabled, onInputReset, setTouchJump, setTouchMove } from "../input.js";
 
 const RADIUS = 46;
 
@@ -73,6 +73,14 @@ body.armory-open #touch-controls,body.game-menu-open #touch-controls{display:non
     const stick = root.querySelector(".touch-stick");
     const knob = root.querySelector(".touch-knob");
     let stickId = null;
+    const releaseCapture = (element, pointerId) => {
+        if (pointerId === null) return;
+        try {
+            if (element.hasPointerCapture(pointerId)) element.releasePointerCapture(pointerId);
+        } catch {
+            // The browser may already have invalidated the pointer.
+        }
+    };
 
     const placeKnob = (clientX, clientY) => {
         const rect = stick.getBoundingClientRect();
@@ -85,19 +93,26 @@ body.armory-open #touch-controls,body.game-menu-open #touch-controls{display:non
         setTouchMove(axes.y, axes.x, axes.active);
     };
     const releaseStick = () => {
+        const pointerId = stickId;
         stickId = null;
         knob.style.transform = "";
         setTouchMove(0, 0, false);
+        releaseCapture(stick, pointerId);
     };
     stick.addEventListener("pointerdown", (event) => {
-        if (stickId !== null) return;
+        if (!isInputEnabled() || stickId !== null || event.button !== 0) return;
         stickId = event.pointerId;
-        stick.setPointerCapture(event.pointerId);
+        try {
+            stick.setPointerCapture(event.pointerId);
+        } catch {
+            releaseStick();
+            return;
+        }
         placeKnob(event.clientX, event.clientY);
         event.preventDefault();
     });
     stick.addEventListener("pointermove", (event) => {
-        if (event.pointerId !== stickId) return;
+        if (!isInputEnabled() || event.pointerId !== stickId) return;
         placeKnob(event.clientX, event.clientY);
     });
     const endStick = (event) => {
@@ -106,18 +121,44 @@ body.armory-open #touch-controls,body.game-menu-open #touch-controls{display:non
     };
     stick.addEventListener("pointerup", endStick);
     stick.addEventListener("pointercancel", endStick);
+    stick.addEventListener("lostpointercapture", endStick);
 
     const jump = root.querySelector(".touch-jump");
+    let jumpId = null;
+    const releaseJump = () => {
+        const pointerId = jumpId;
+        jumpId = null;
+        setTouchJump(false);
+        releaseCapture(jump, pointerId);
+    };
     const holdJump = (down) => (event) => {
-        if (down) jump.setPointerCapture(event.pointerId);
-        setTouchJump(down);
+        if (down) {
+            if (!isInputEnabled() || jumpId !== null || event.button !== 0) return;
+            jumpId = event.pointerId;
+            try {
+                jump.setPointerCapture(event.pointerId);
+            } catch {
+                releaseJump();
+                return;
+            }
+            setTouchJump(true);
+        } else {
+            if (event.pointerId !== jumpId) return;
+            releaseJump();
+        }
         event.preventDefault();
     };
     jump.addEventListener("pointerdown", holdJump(true));
     jump.addEventListener("pointerup", holdJump(false));
     jump.addEventListener("pointercancel", holdJump(false));
+    jump.addEventListener("lostpointercapture", holdJump(false));
+    onInputReset(() => {
+        releaseStick();
+        releaseJump();
+    });
 
     root.querySelector(".touch-target").addEventListener("pointerup", (event) => {
+        if (!isInputEnabled()) return;
         input.tabPressed = true;
         event.preventDefault();
     });

@@ -67,6 +67,7 @@ const SPELL_KEYS = {
 
 const keys = Object.create(null);
 let inputEnabled = true;
+const resetListeners = new Set();
 let touchMove = { forward: 0, strafe: 0, active: false };
 let touchJump = false;
 const touchPoints = new Map();
@@ -76,6 +77,20 @@ let primaryTouchId = null;
 /** Modal game tools release held input on both entry and exit. */
 export function setInputEnabled(enabled) {
     inputEnabled = !!enabled;
+    resetInput();
+}
+
+export function isInputEnabled() {
+    return inputEnabled && !document.hidden;
+}
+
+/** Controls must clear their private pointer owners when held input is reset. */
+export function onInputReset(callback) {
+    resetListeners.add(callback);
+    return () => resetListeners.delete(callback);
+}
+
+function resetInput() {
     for (const code of Object.keys(keys)) delete keys[code];
     for (const key of Object.keys(input)) {
         if (typeof input[key] === 'boolean') input[key] = false;
@@ -85,17 +100,21 @@ export function setInputEnabled(enabled) {
     touchMove = { forward: 0, strafe: 0, active: false };
     touchJump = false;
     releaseButtons();
+    dropWarpMove = false;
+    for (const reset of resetListeners) reset();
     exitPointerLock();
 }
 
 /** On-screen stick. `active` faces the body along the camera while held. */
 export function setTouchMove(forward, strafe, active) {
+    if (active && !isInputEnabled()) return;
     touchMove.forward = forward;
     touchMove.strafe = strafe;
     touchMove.active = !!active;
 }
 
 export function setTouchJump(down) {
+    if (down && !isInputEnabled()) return;
     touchJump = !!down;
 }
 
@@ -104,6 +123,8 @@ export const CLICK_SLOP = 16;
 
 let lmbTravel = 0;
 let rmbTravel = 0;
+let lmbPointerId = null;
+let rmbPointerId = null;
 /** Drop the lock-enter cursor warp so RMB-down does not yank the camera. */
 let dropWarpMove = false;
 let lockAttemptAt = 0;
@@ -186,6 +207,7 @@ function releaseButtons() {
     input.lmb = input.rmb = input.looking = false;
     input.lmbDrag = input.rmbDrag = false;
     lmbTravel = rmbTravel = 0;
+    lmbPointerId = rmbPointerId = null;
     touchPoints.clear();
     lastPinch = 0;
     primaryTouchId = null;
@@ -212,7 +234,7 @@ export function initInput(canvas) {
     const down = (event) => {
         // Action bar / panes own the press; #hud itself is pointer-events:none
         // so empty chrome never eats look.
-        if (!inputEnabled || isHudWidget(event.target) || event.target !== canvas) {
+        if (!isInputEnabled() || isHudWidget(event.target) || event.target !== canvas) {
             return;
         }
         if (event.button !== 0 && event.button !== 1 && event.button !== 2) {
@@ -230,11 +252,13 @@ export function initInput(canvas) {
             return;
         }
         if (event.button === 0) {
+            lmbPointerId = event.pointerId;
             input.lmb = true;
             input.lmbDrag = false;
             lmbTravel = 0;
         }
         if (event.button === 2) {
+            rmbPointerId = event.pointerId;
             event.preventDefault();
             input.rmb = true;
             input.rmbDrag = false;
@@ -256,7 +280,10 @@ export function initInput(canvas) {
             if (touchPoints.size < 2) lastPinch = 0;
             return;
         }
-        if (event.button === 0) {
+        // Cancellation/capture-loss events may report button -1. Release by
+        // ownership, never by whichever unrelated finger generated the event.
+        const cancelled = event.type !== "pointerup";
+        if (event.pointerId === lmbPointerId && (event.button === 0 || cancelled)) {
             if (event.type === "pointerup" && input.lmb && !input.rmb && !input.lmbDrag && lmbTravel <= CLICK_SLOP) {
                 input.clicked = true;
                 input.clickX = pressX;
@@ -265,8 +292,9 @@ export function initInput(canvas) {
             input.lmb = false;
             input.lmbDrag = false;
             lmbTravel = 0;
+            lmbPointerId = null;
         }
-        if (event.button === 2) {
+        if (event.pointerId === rmbPointerId && (event.button === 2 || cancelled)) {
             if (event.type === "pointerup" && input.rmb && !input.lmb && !input.rmbDrag && rmbTravel <= CLICK_SLOP) {
                 input.clicked = true;
                 input.clickX = pressX;
@@ -275,6 +303,7 @@ export function initInput(canvas) {
             input.rmb = false;
             input.rmbDrag = false;
             rmbTravel = 0;
+            rmbPointerId = null;
         }
         if (event.pointerType === "touch") {
             touchPoints.delete(event.pointerId);
@@ -289,7 +318,7 @@ export function initInput(canvas) {
     };
 
     const move = (event) => {
-        if (!inputEnabled) return;
+        if (!isInputEnabled()) return;
         let healed = false;
         // A finger drag often reports buttons as 0. Clearing the press here
         // would drop the look before the delta is applied.
@@ -298,12 +327,14 @@ export function initInput(canvas) {
                 input.lmb = false;
                 input.lmbDrag = false;
                 lmbTravel = 0;
+                lmbPointerId = null;
                 healed = true;
             }
             if (!(event.buttons & 2) && input.rmb) {
                 input.rmb = false;
                 input.rmbDrag = false;
                 rmbTravel = 0;
+                rmbPointerId = null;
                 healed = true;
             }
         }
@@ -359,6 +390,7 @@ export function initInput(canvas) {
     window.addEventListener("pointerdown", down, true);
     window.addEventListener("pointerup", up, true);
     window.addEventListener("pointercancel", up, true);
+    window.addEventListener("lostpointercapture", up, true);
     window.addEventListener("pointermove", move, true);
 
     document.addEventListener("pointerlockchange", () => {
@@ -377,13 +409,13 @@ export function initInput(canvas) {
         "wheel",
         (event) => {
             event.preventDefault();
-            if (inputEnabled) input.zoomDelta += event.deltaY * 0.0016;
+            if (isInputEnabled()) input.zoomDelta += event.deltaY * 0.0016;
         },
         { passive: false },
     );
 
     window.addEventListener("keydown", (event) => {
-        if (!inputEnabled) return;
+        if (!isInputEnabled()) return;
         if (event.code === "Escape") {
             if (document.pointerLockElement) {
                 exitPointerLock();
@@ -478,21 +510,16 @@ export function initInput(canvas) {
         }
     });
 
-    window.addEventListener("pointercancel", releaseButtons, true);
     window.addEventListener("blur", () => {
-        for (const code in keys) {
-            keys[code] = false;
-        }
-        input.jump = false;
-        input.spellHeld2 = false;
-        input.castHold = false;
-        releaseButtons();
-        exitPointerLock();
+        resetInput();
+    });
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) resetInput();
     });
 }
 
 export function pollInput() {
-    if (!inputEnabled) return;
+    if (!isInputEnabled()) return;
     let forward = 0;
     let turn = 0;
     let strafe = 0;

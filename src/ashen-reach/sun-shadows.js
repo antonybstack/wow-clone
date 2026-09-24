@@ -68,7 +68,7 @@ export function bindSunReceiver(engine,material){
  return material;
 }
 
-export function createSunShadows(engine,scene,sun){
+export function createSunShadows(engine,scene,sun,{depthOnlyFragment=false}={}){
  const csm=createCsmDirectionalShadowGenerator(engine,sun,{
   mapSize:2048,numCascades:3,lambda:.75,shadowMaxZ:SUN_SHADOW_RANGE,
   stabilizeCascades:true,cascadeBlendPercentage:.1,worldSpaceBias:.006,forceRefreshEveryFrame:true,
@@ -86,7 +86,7 @@ export function createSunShadows(engine,scene,sun){
  const farTexture={texture:far._depthTexture,view:far._depthTexture.createView(),sampler:far._depthSampler,depth:true,_sampleType:'depth',width:2048,height:2048};
  acquireTexture(farTexture);
  const csmTexture=getCsmReceiverTexture(csm),receivers=new Set(),data=new Float32Array(80);
- const state={enabled:true,characters:true,cascades:3,mapSize:2048,range:SUN_SHADOW_RANGE,staticCasters:0,dynamicCasters:0,receivers:0,version:0};
+ const state={enabled:true,characters:true,cascades:3,mapSize:2048,range:SUN_SHADOW_RANGE,staticCasters:0,dynamicCasters:0,receivers:0,version:0,depthOnlyFragment};
  let worldCasters=[],farCasters=[],dynamic=[];
  const updateMaterial=mat=>{
   for(let i=0;i<3;i++)setShaderUniform(mat,`sunCascade${i}`,data.subarray(i*16,i*16+16));
@@ -95,9 +95,11 @@ export function createSunShadows(engine,scene,sun){
   setShaderUniform(mat,'sunShadowParams',[+state.enabled,1/state.mapSize,state.range,.1]);
  };
  const unsubscribe=onCsmReceiverUpdate(csm,next=>{data.set(next);for(const mat of receivers)updateMaterial(mat);state.version=csm._version;});
- const caster=createShaderMaterial({name:'Sun opaque world caster',attributes:['position'],uniforms:['worldViewProjection'],backFaceCulling:false,
+ // A capability probe selects this for WebKit builds that reject fragmentless
+ // depth bundles (319980). Keep shadow geometry/bias/bundles unchanged.
+ const caster=createShaderMaterial({name:'Sun opaque world caster',attributes:['position'],uniforms:['worldViewProjection'],backFaceCulling:false,depthOnlyFragment,
   vertexSource:'@vertex fn mainVertex(i:VertexInput)->@builtin(position) vec4<f32>{return shaderSystem.worldViewProjection*vec4<f32>(i.position,1.0);}',
-  fragmentSource:'@fragment fn mainFragment()->@location(0) vec4<f32>{return vec4<f32>(0.0);}'});
+  fragmentSource:'@fragment fn mainFragment() {}'});
  const controller={state,csm,far,csmTexture,farTexture,data,
   addReceiver(mat){receivers.add(mat);setShaderTexture(mat,'sunCascades',csmTexture);setShaderTexture(mat,'sunFar',farTexture);updateMaterial(mat);state.receivers=receivers.size;},
   setWorld(world){worldCasters=world.meshes.filter(m=>!['Ash motes','Lamp light shafts'].includes(m.name));for(const mesh of worldCasters)setShadowCasterMaterial(mesh.material,caster);farCasters=worldCasters;state.staticCasters=worldCasters.length;dynamic=[];controller.update(true);},

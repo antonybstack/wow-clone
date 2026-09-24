@@ -17,6 +17,7 @@ import {buildPostPipeline,buildDirectPipeline} from './post.js';
 import {createSunShadows} from './sun-shadows.js';
 import {registerSceneWithShadowSupport} from '@babylonjs/lite';
 import {createGameMenu} from './menu.js';
+import {configureGpuCompatibility,showGpuDiagnostics} from './gpu-compatibility.js';
 
 enableErrorDecoding();
 setMeshoptBaseUrl('/');
@@ -60,6 +61,9 @@ async function main(){
  }
  loadLine('Lighting the lamps.');
  const engine=await createEngine(canvas,{msaaSamples:1,maxDevicePixelRatio:pixelRatio>0?pixelRatio:.75});
+ const gpu=await configureGpuCompatibility(engine._device);
+ if(params.has('gpuDiagnostics'))showGpuDiagnostics(gpu);
+ if(gpu.depthBundle==='unsupported')throw new Error(gpu.errors.join('\n'));
  // The world's own shader materials do their own atmosphere, tonemap and grade
  // (atmosphere.js). Everything here exists to put the character/enemy GLBs --
  // which are lit by Babylon's standard pipeline, not by that shader -- on the
@@ -77,7 +81,7 @@ async function main(){
  const rig=new CameraRig(camera);rig.yaw=0;rig.pitch=.04;rig.distance=rig.distanceTarget=3.5;
  const reference=createFreeCamera({x:0,y:height(0,-5)+1.65,z:-5},{x:.0,y:4.0,z:25});reference.fov=1.06;reference.nearPlane=.1;reference.farPlane=1200;
  scene.camera=reference;
- const shadows=createSunShadows(engine,scene,sun);
+ const shadows=createSunShadows(engine,scene,sun,{depthOnlyFragment:gpu.depthBundle==='empty-fragment'});
  const world=await buildChurchyard(engine,scene);initInput(canvas);installTouchControls();
  loadLine('Setting the stones.');
  enableBoneControl();
@@ -107,6 +111,8 @@ async function main(){
  if(params.has('gpuTiming'))metrics.setGpuTiming(true);
  onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);if(menu.isOpen){armory?.update(dt);shadows.update();return;}elapsed+=dt;player?.kinematicStep(dt);combat?.beforeAnimation(dt);tools.tick();body?.update(dt);world.update(elapsed,player?player.body.position:null);combat?.afterAnimation(dt);equipment?.update(dt);armory?.update(dt);shadows.update();if(elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();metrics.sampleGpu();}});
  const ashen={engine,scene,camera,reference,rig,world,input,setView,reset,metrics,capture:()=>captureScreenshot(engine),hostilesReady:noEnemies,presentMs:0,loadMs:0,ready:false,dev,menu,get player(){return player;},get body(){return body;},get combat(){return combat;},get equipment(){return equipment;},get armory(){return armory;}};
+ ashen.gpu=gpu;
+ onBeforeRender(scene,()=>{gpu.frames++;});
  globalThis.ASHEN=ashen;
  const sourceBody=resolvePlayableBody('?character=human-source');
  const playable={...sourceBody,assetURL:bodyUrl,buffer:await bodyBufP,directionalSpeed:3.5,
