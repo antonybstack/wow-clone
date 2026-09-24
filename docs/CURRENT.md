@@ -1,6 +1,8 @@
 # Current direction — Ashen Reach
 
-V11 release is in progress. The [implementation retrospective](v11-lighting-retrospective-2026-09-24.md) records the approach, failed experiments, corrections, and verification. The next requested implementation is the roadmap's contact shadow and ambient occlusion milestone.
+V11 is committed and pushed as **`b628f37`**, deployed to production as Cloudflare Pages **`b14a1aa7`** at **https://play.sparkify.dev**. Production verification passed: ready, Havok physics, 38 dynamic shadow casters, valid WASM bytes, no runtime/GPU errors; the live capture was reviewed. Telegram evidence 743 is associated with this commit.
+
+The [implementation retrospective](v11-lighting-retrospective-2026-09-24.md) records the approach, failed experiments, corrections, and verification. The next requested implementation follows the [V12 contact shadow and ambient occlusion plan](contact-occlusion-plan-2026-09-24.md). Historical V11 implementation status below describes its pre-release handoff.
 
 ## V11 shared sunlight and moving shadows — 2026-09-24
 
