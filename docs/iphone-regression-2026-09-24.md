@@ -1,6 +1,6 @@
 # iPhone rendering and input investigation
 
-Status: input fixes and a capability-selected shadow compatibility fix are implemented. The user confirmed visible movement in Safari on the affected iPhone using isolated preview **`76899bd7`**. Its report confirms the original depth bundle fails validation and the fallback succeeds without subsequent reported GPU errors. Production is unchanged; Edge verification of the fix and production release remain pending.
+Status: input fixes and the capability-selected shadow compatibility fix are **committed and pushed as `6a7a4f8`, deployed to production as Pages `ac8e866e` at https://play.sparkify.dev**. The user confirmed visible movement in Safari on the affected iPhone using preview **`76899bd7`**, with the original probe failing and the fallback succeeding without reported GPU errors. Edge verification of the fix and prolonged phone stability remain unverified.
 
 Device supplied by the user: iPhone 14 Pro Max, iOS 26.7, Edge. Reference: `/tmp/C490C081-1867-4211-B32B-D5BF1E883B92.mov`, copied intact to ignored `ve-capture/ashen-reach/iphone-regression/user-reference.mov`.
 
@@ -31,7 +31,7 @@ Acceptance is specific to this Safari preview session. The original Edge report 
 
 The 11.57-second recording alternates between black canvas frames and apparently old startup images, including both the clothed and undressed player. Consecutive frames around 6.9 seconds show this particularly clearly. The DOM HUD, joystick knob, target labels and minimap continue changing. This suggests that the apparent movement freeze can be a presentation failure while simulation continues. It does not establish a specific shader, touch handler, or browser defect as the cause.
 
-Production is V12 (`8c20843`, Pages `3d6eb578`). Input code did not change between the V10 baseline and V12.
+At the time of the original report, production was V12 (`8c20843`, Pages `3d6eb578`). Input code did not change between the V10 baseline and V12.
 
 ## Reproduction and evidence
 
@@ -82,7 +82,7 @@ Implementation milestones:
 2. **Retain graphics and correct the failing path — done.** On the verified fallback path, the world shadow material uses Lite's public `depthOnlyFragment: true` option and an empty fragment entry point. Geometry, shadow bias, cascades, fog, bloom, movement and native bundles remain active. GPU API constructors are not patched. Devices passing the original probe use their original path.
 3. **Reproduce the mechanism and verify — done on desktop engines.** The browser test can inject a real WebGPU validation error for fragmentless depth bundles. Disabling the fix recreates a black game canvas with an active HUD; the pixel check fails and GPU errors are captured. With the fix, Chromium and WebKit both render moving scenes without uncaptured GPU errors. This is an injected reproduction of the identified mechanism, not proof of the physical phone's underlying defect. Thirty unit tests pass; the Pages build passes.
 4. **Physical device confirmation — Safari passed.** The user's [preview](https://76899bd7.fardel.pages.dev/ashen-reach?play&clean&gpuDiagnostics) report is preserved above. The panel collects no automatic remote telemetry. Desktop WebKit smoke also passes (17.48 units of visible movement, no GPU errors). Edge acceptance remains pending.
-5. **Production release — pending.** Commit/push/release have not been performed for this patch. Preserve the capability probe rather than assuming every Safari version needs the fallback, then verify the production build on the affected device after release.
+5. **Production release — deployed and smoke-tested.** Code commit `6a7a4f8`, Pages `ac8e866e`, production branch `main`. Thirty tests and a fresh Pages build pass. The production entry script `/assets/ashenReach-BkjWv8jW.js` matches the release build byte-for-byte (SHA-256 `aa69e164309976d6e959d94e077e2261273e88c6285d01d3a70b61748b6bc16e`). Versioned Havok WASM returns 2,094,563 bytes with the correct magic bytes; live Havok physics is active. Desktop WebKit's native path moved 16.90 units; Chromium with the injected depth-bundle failure selected the fallback and moved 28.12 units. Both changed displayed world pixels, resized correctly, and reported no runtime/GPU errors. Native Chromium touch recovered after capture loss, cancellation, menu and blur. Physical Edge and prolonged device stability are not claimed.
 
 Run the positive and negative controls locally (Vite and owned Chromium must be running):
 
@@ -99,6 +99,10 @@ The negative control intercepts only the local Vite shadow module to disable the
 Reviewed [12.88-second fallback motion clip](https://ve.sparkify.dev/wow-clone/ashen-reach/iphone-regression/2026-09-24-depth-fallback.mp4): native Chromium touch, full graphics, injected rejection with capability-selected fallback, capture interruption recovery and resize. 430×734 output at 60 FPS encoding, 322×550 scene. This is not an iPhone performance measurement; the >120 FPS target remains separate.
 
 Public clip verified as `video/mp4` with byte-range support and delivered through `tg file`, Telegram **746**. The published diagnostic panel was also inspected at 430×734; its Copy report button and collapse control are visible.
+
+Production release verification: [12.93-second live production clip](https://ve.sparkify.dev/wow-clone/ashen-reach/iphone-regression/production-6a7a4f8.mp4), 430×734 at 60 FPS encoding, 322×550 scene. Recorded on the actual production route in Chromium with the validation failure injected to exercise the shipped compatibility path, then reviewed for visible movement, input recovery and resize. Capture rate is not a performance benchmark.
+
+Verified public MP4 byte-range response; delivered via `tg file`, Telegram **747**.
 
 Primary research: [WebKit canvas flicker report 301627](https://bugs.webkit.org/show_bug.cgi?id=301627) describes a similar historical symptom and reports a fix in Safari 26.4. Its duplicate [302711](https://bugs.webkit.org/show_bug.cgi?id=302711) concerns Metal command encoding and instanced vertex buffers. The user reports 26.7, so those reports are useful comparisons, **not an established diagnosis**. [Playwright browser documentation](https://playwright.dev/docs/browsers) describes its browser builds; emulation does not reproduce the physical device's GPU/compositor.
 
