@@ -1,5 +1,17 @@
 # V15 — shadowed Hollowmere street
 
+## Production release
+
+User authorized commit, push and production deployment. Game commit **`2dc981b`** is on `origin/main`; Pages **`31f85684`** serves https://play.sparkify.dev. Release build and 72 tests pass, including the upload-order regression below. All 317 deployed JavaScript files match `dist` byte-for-byte; the 2,094,563-byte Havok WASM matches source and has the correct MIME type and magic bytes.
+
+Production street checks: ten fixtures/two slots, 57 actor and restored-shadow samples, 49 fog samples, zero static renders across 96 hits, 11.20 units of actual movement, no runtime/GPU errors. The check now waits for slot weights to reach 1 before comparisons; a fixed 800 ms delay was insufficient during cold production loading and confounded the initial fog comparison with a fading light. That first comparison was discarded and rerun after the wait correction. This changes only the verification script.
+
+Production desktop WebKit: 16.23 units of visible movement. Chromium with injected iPhone depth failure: empty-fragment fallback, 26.77 units of visible touch movement and passing capture-loss, cancellation, menu and blur recovery. Physical iPhone acceptance remains pending. Production evidence is under `ve-capture/ashen-reach/street-lights/production-2dc981b/`.
+
+Reviewed [production MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/street-lights/production-2dc981b.mp4), 12.05 seconds, recorded from the public game. Chromium/WebGPU, 1280×720 recording / 960×540 internal, no enemies, labeled diagnostic shadow toggle and camera cut. Actual walking segments cover 18.19, 10.50 and 10.51 units. No runtime/GPU errors; warm pools, mist and actor motion reviewed across the clip. Media verified HTTP 200 `video/mp4` and HTTP 206 byte-range seeking.
+
+Production motion was delivered via `tg file`, Telegram **753**.
+
 ## Target
 
 Extend V14 from the gate sample to the nine freestanding street lanterns along the approach and Hollowmere main street. Timber, masonry and actors should block their light pools and mist. Keep the two 512×512 shadow-map budget and remove the remaining street cone shells and duplicate baked lamp contributions.

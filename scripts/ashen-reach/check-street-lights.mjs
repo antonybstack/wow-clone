@@ -11,7 +11,7 @@ p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(m.type()==='er
 await p.addInitScript(()=>{window.__gpuErrors=[];const f=GPUAdapter.prototype.requestDevice;GPUAdapter.prototype.requestDevice=async function(...a){const d=await f.apply(this,a);d.addEventListener('uncapturederror',e=>__gpuErrors.push(e.error.message));return d;};});
 const wait=()=>p.waitForTimeout(800);
 const state=()=>p.evaluate(()=>structuredClone(ASHEN.localLights.state));
-const place=async(x,z)=>{await p.evaluate(({x,z})=>{const a=ASHEN;a.player.setWorldPos(x,a.world.groundHeight(x,z)+1.7,z);a.player.setFacing(0);a.rig.yaw=0;a.rig.pitch=.16;a.rig.distance=a.rig.distanceTarget=4.5;},{x,z});await wait();};
+const place=async(x,z)=>{await p.evaluate(({x,z})=>{const a=ASHEN;a.player.setWorldPos(x,a.world.groundHeight(x,z)+1.7,z);a.player.setFacing(0);a.rig.yaw=0;a.rig.pitch=.16;a.rig.distance=a.rig.distanceTarget=4.5;},{x,z});await wait();await p.waitForFunction(()=>ASHEN.localLights.state.active.every(s=>s.id&&s.weight===1));};
 const capture=async name=>{const png=await p.screenshot({path:`${dir}/${name}.png`});const s=await sharp(png).stats();assert(s.channels.slice(0,3).some(c=>c.mean>15),'World must visibly render');};
 try{
  await p.goto(process.env.ASHEN_TEST_URL||'http://127.0.0.1:5173/ashen-reach.html?play&clean',{waitUntil:'commit'});await p.waitForFunction(()=>window.ASHEN?.ready&&ASHEN.hostilesReady,null,{timeout:120000});await p.evaluate(()=>ASHEN.dev.god=true);

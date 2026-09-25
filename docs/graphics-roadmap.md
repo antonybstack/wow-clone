@@ -1,6 +1,6 @@
 # Graphics milestones
 
-Updated 2026-09-24. Current production baseline is V13, committed as `05fe8fe` and deployed to https://play.sparkify.dev through Pages `f71594d2`. Production rendering, movement, physics and mobile depth fallback checks pass. Physical iPhone V13 review remains pending. This roadmap describes future work, not an automatic task queue.
+Updated 2026-09-24. Current production baseline is V15, committed as `2dc981b` and deployed to https://play.sparkify.dev through Pages `31f85684`. Production rendering, movement, physics and mobile depth fallback checks pass. Physical iPhone review remains pending. This roadmap describes future work, not an automatic task queue.
 
 ## 1. A fully shadowed street — deployed
 
@@ -22,7 +22,7 @@ Render surface lighting and volumetric scattering into linear floating-point col
 
 ## 4. Local lights with believable occlusion
 
-[V14 first slice](local-light-plan-2026-09-24.md) established shared native/custom/fog visibility. [V15 street extension](street-light-plan-2026-09-24.md) now covers all nine freestanding street lanterns plus the gate with two shadow slots, conservative animated caster selection and static map caching. Live town, HDR, sun and mobile-browser checks pass; reviewed motion is delivered. Both slices are local and uncommitted. Physical iPhone review and deployment remain pending. Building/window lights, local specular response and moving spell shadows remain future work.
+[V14 first slice](local-light-plan-2026-09-24.md) established shared native/custom/fog visibility. [V15 street extension](street-light-plan-2026-09-24.md) covers all nine freestanding street lanterns plus the gate with two shadow slots, conservative animated caster selection and static map caching. Both are released as `2dc981b` / Pages `31f85684`. Live town, HDR, sun and mobile-browser checks pass; reviewed motion is delivered. Physical iPhone review remains pending. Building/window lights, local specular response and moving spell shadows remain future work.
 
 Replace geometric lantern cones with light scattering that responds to scene depth and appropriate shadow maps. Give major lanterns and spell lights a bounded shadow budget. Lite supports spot shadows; omnidirectional point shadows need a separate design. Test moving spells, walls, and simultaneous lights.
 
