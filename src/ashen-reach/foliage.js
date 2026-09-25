@@ -17,6 +17,8 @@ import {SUN_SHADOW_UNIFORMS,SUN_SHADOW_SAMPLERS,SUN_SHADOW_WGSL,bindSunReceiver}
 import {LOCAL_LIGHT_UNIFORMS,LOCAL_LIGHT_SAMPLERS,LOCAL_LIGHT_WGSL} from './local-light-shared.js';
 import {bindLocalReceiver} from './local-lights.js';
 import {FOLIAGE_LOD_WGSL,NEAR_RADIUS,REPACK_DISTANCE,plantHash,removalRadius,packingRadius} from './foliage-lod.js';
+import {pathX} from './geometry.js';
+import {pathVegetation} from './world-composition.js';
 import {grassCardLayout} from './foliage-card-layout.js';
 
 const ATLAS='/ashen-reach/foliage-atlas.png';
@@ -382,7 +384,7 @@ function place(density,lights,opt){
    // `mask` gates on top of the density field, which is what turns an even sprinkle
    // into drifts. It multiplies rather than replaces, so a drift still cannot put
    // flowers where the ground already refuses to grow anything.
-   const d=density(gx,gz)*densityScale*(mask?mask(gx,gz):1);
+   const d=density(gx,gz)*densityScale*(mask?mask(gx,gz):1)*pathVegetation(gx-pathX(gz),gz,.6);
    if(d<=0.02||roll()>d)continue;
    const n=terrainNormal(gx,gz);
    if(n[1]<slopeMin)continue;

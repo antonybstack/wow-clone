@@ -31,7 +31,7 @@ export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false
 :`let uv=(floor(i.uv*${uvScale}*${pixels}.0)+.5)/${pixels}.0;
  var t=textureSample(albedo,albedoSampler,uv);`}
  ${alpha?'if(t.a<.52 || (t.r>.8 && t.g<.12)){discard;}':''}
- ${ground?`let path=abs(i.p.x-sin(i.p.z*.14)*1.25);let pave=textureSample(paving,pavingSampler,(floor(i.p.xz*64.0/2.4)+.5)/64.0);let churchGate=1.0-smoothstep(24.0,28.0,i.p.z);let southFade=smoothstep(-142.0,-95.0,i.p.z);let northGate=smoothstep(40.0,48.0,i.p.z);
+ ${ground?`let path=abs(i.p.x-sin(i.p.z*.14)*1.25);let pave=textureSample(paving,pavingSampler,(floor(i.p.xz*64.0/2.4)+.5)/64.0);let churchGate=1.0-smoothstep(40.0,48.0,i.p.z);let southFade=smoothstep(-142.0,-95.0,i.p.z);let northGate=smoothstep(40.0,48.0,i.p.z);
  let amountChurch=(1.0-smoothstep(.60,1.38,path+(t.r-.4)*.75))*churchGate*southFade;
  let amountStreet=(1.0-smoothstep(1.05,2.65,path+(t.r-.4)*.9))*northGate;
  let plazaD=distance(i.p.xz,vec2<f32>(0.0,136.0));

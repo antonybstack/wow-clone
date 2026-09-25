@@ -1,5 +1,11 @@
 # Current direction — Ashen Reach
 
+## V19 complete; world composition V20–V22 in progress
+
+Latest request: commit/push, solve frame spikes, deeply inspect composition/readability, plan and iterate autonomously. Commit and push completed changes at session end. V19 is pushed as **617b737**: a four-frame submission budget fixes the reproduced uncapped GPU queue backlog. Separate actual-render measurement: **252.53 FPS / p99 8.70 ms / worst 15.50 ms**, 3,031 intervals, 1280×720, seven enemies, M1 Max / Chromium 153 WebGPU, no recording. 126 unit tests, build, movement/visibility/disposal/HDR/mobile fallback/WebKit checks pass. Physical iPhone performance is unmeasured. [Plan and retrospective](v19-frame-spikes-plan.md), [reviewed live MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/v19/2026-09-24-traversal.mp4), Telegram 757.
+
+Fresh player-height captures identify broken path continuity, excessive basin-wide motes, and distant trees competing with the castle. [V20–V22 plan](world-composition-plan.md) defines sequential implementation and motion review. Production remains V18; this request authorizes commit/push, not a new deployment.
+
 ## V18 released — all three authorized milestones complete
 
 Game commit **`849fda6`**, Pages **`8585b672`**, live at https://play.sparkify.dev. V16, V17 and V18 were each planned, implemented, verified, committed, pushed and deployed sequentially. Production V18 code, stone texture and Havok WASM match the build/source. Production foliage: 64 GPU samples, 28.00 metres movement, zero cumulative drops/errors. Mobile fallback/touch: 24.88 metres; desktop WebKit: 16.43 metres. Town: 58 actor/restoration samples, 44 fog-shadow samples, 1,824 bound evaluations plus 1,824 cache hits, 11.20 metres movement, no runtime/GPU errors. No fourth milestone has started.

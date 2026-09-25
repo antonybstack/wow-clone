@@ -3,6 +3,7 @@ import {Batch,rng,height,pathX,buildingPads,add,mul,sub,norm,terrainNormal,lante
 import {surface,sky} from './materials.js';
 import {building,collapsedStall,well,forgeGlow,crossFinial,stoneArch,rubble,flagstone,masonryBox} from './buildings.js';
 import {buildHorizon} from './horizon.js';
+import {pathVegetation} from './world-composition.js';
 import {createFoliage} from './foliage.js';
 import {createLightShafts} from './light-shafts.js';
 import {createAshMotes} from './ash-motes.js';
@@ -172,8 +173,7 @@ export async function buildChurchyard(engine,scene){
   d=Math.max(d,.40);
   d*=.80+.20*(.5+.5*Math.sin(x*.093+z*.077)*Math.cos(x*.061-z*.118));
   const path=Math.abs(x-pathX(z));
-  if(path<1.15&&z<26)return 0;
-  if(path<2)d*=.22+.78*smooth((path-1.15)/.85);
+  d*=pathVegetation(path,z);
   return d;
  };
 
@@ -392,7 +392,7 @@ export async function buildChurchyard(engine,scene){
   // Well square: a proper open plaza, cleared well past the well pad's own footprint.
   c=Math.min(c,ease(Math.hypot(x-pads[8].x,z-pads[8].z),2.4,7.2));
   // Walking line stays mostly stone; grass returns in the verge joints.
-  c=Math.min(c,0.12+0.88*ease(Math.abs(x-pathX(z)),0.9,3.1));
+  c=Math.min(c,pathVegetation(x-pathX(z),z));
   if(z>71&&z<79)c=0; // town gatehouse wall and towers
   return c;
  }
