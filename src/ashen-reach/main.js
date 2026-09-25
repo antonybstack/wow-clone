@@ -123,10 +123,8 @@ async function main(){
   castMotions:{lava:{upperClip:'LavaBall_Upper',lowerClip:'LavaBall_Lower',releaseTime:1.5,followThrough:0.8,fadeOut:0,hand:'mainHand'},pulse:{upperClip:'PyreBurst_Upper',lowerClip:'PyreBurst_Lower',releaseTime:1.1,followThrough:0.8,fadeOut:0,holdWeapon:true,hand:'mainHand'}},
   clips:{...sourceBody.clips,cast:'FireBlast_Upper',walkBack:'Jog_Bwd_Loop',strafeL:'Jog_Left_Loop',strafeR:'Jog_Right_Loop',turnL:'Turn90_L',turnR:'Turn90_R',hit:'Hit_Chest'}};
  capsule=resolveCapsule(playable.capsule);
- // The world is a north-running corridor (terrain spans x∈[-90,90], z∈[-95,145]), not a disc, so a
- // circular clamp either clips the reachable town short (small radius) or lets the player walk off
- // the terrain's east/west edges (large radius). A rectangular clamp matches the actual extent.
- player=await setupPlayer(engine,scene,rig,{spawn:plantSpawnOnTerrain(world.spawn,capsule,height),colliders:world.colliders,groundHeight:height,boundsRect:{minX:-88,maxX:88,minZ:-93,maxZ:143},capsule});
+ // Both near and outer terrain participate in Havok; exploration has no corridor clamp.
+ player=await setupPlayer(engine,scene,rig,{spawn:plantSpawnOnTerrain(world.spawn,capsule,height),colliders:world.colliders,groundHeight:height,boundsRadius:Infinity,capsule});
  body=await attachBody(engine,scene,player,player.capsuleHeight,playable);
  setLoadingStage(3,'Waking the churchyard.');
  // Skinning is fixed up at load. Starting the engine first leaves the mesh

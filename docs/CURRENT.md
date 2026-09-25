@@ -1,5 +1,15 @@
 # Current direction — Ashen Reach
 
+## V23 playable cathedral and first V24 woodland pass — 2026-09-25
+
+Latest request: remove invisible walls, improve distant trees using suitable open-source work, and make monumental Gothic castles/churches explorable using the four supplied references. [Audit, roadmap, implementation and retrospective](explorable-gothic-world-plan.md).
+
+The former rectangle/default radius are removed. Outer basin terrain has Havok collision. Vaelmark now has a continuous bridge approach, courtyard, recessed entrance, asymmetric bell towers and enterable nave with piers, ribs and real window openings. A generated MIT EZ-Tree ash/oak library replaces the primitive distant crowns. The sky follows the active camera to prevent clipping during wider exploration.
+
+139 unit tests pass. Live keyboard traversal reaches the nave and returns through the portal without flight or recovery teleports; east/west/south crossing and real masonry collision checks also pass. Mobile depth fallback/native touch and desktop WebKit pass; physical iPhone acceptance is unmeasured. Separate uncapped M1 Max / Chrome 153 WebGPU, 1280×720, seven enemies, 12-second measurements: town **181.32 FPS / p99 12.20 ms / worst 20.60 ms**, cathedral **202.33 FPS / p99 10.70 ms / worst 11.50 ms**. The added geometry costs performance versus V22; tree culling and reduced-detail variants remain V24 follow-up.
+
+[Reviewed live MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-world/2026-09-25-cathedral-traversal.mp4), Telegram **761**. Side keeps, a readable finite-world edge, upper floors, stairs and further architectural art are future V25/V26 scope. Do not claim every visible building is enterable. Production remains V18; this request does not ask for deployment. Commit and push the session's completed work.
+
 ## V19–V22 complete — frame pacing and composition
 
 Latest request: commit/push, solve frame spikes, deeply inspect composition/readability, plan and iterate autonomously. Commit and push completed changes at session end. V19 is pushed as **617b737**: a four-frame submission budget fixes the reproduced uncapped GPU queue backlog. Separate actual-render measurement: **252.53 FPS / p99 8.70 ms / worst 15.50 ms**, 3,031 intervals, 1280×720, seven enemies, M1 Max / Chromium 153 WebGPU, no recording. 126 unit tests, build, movement/visibility/disposal/HDR/mobile fallback/WebKit checks pass. Physical iPhone performance is unmeasured. [Plan and retrospective](v19-frame-spikes-plan.md), [reviewed live MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/v19/2026-09-24-traversal.mp4), Telegram 757.

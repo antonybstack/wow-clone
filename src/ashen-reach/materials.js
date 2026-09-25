@@ -1,4 +1,4 @@
-import {createShaderMaterial,loadTexture2D,setShaderTexture,setShaderUniform,createSphere,addToScene} from '@babylonjs/lite';
+import {createShaderMaterial,loadTexture2D,setShaderTexture,setShaderUniform,createSphere,addToScene,getCameraPosition} from '@babylonjs/lite';
 import {ATMOS,SUN_DIR,FOG} from './atmosphere.js';
 
 const OUT=`struct Out{@builtin(position) position:vec4<f32>,@location(0) p:vec3<f32>,@location(1) uv:vec2<f32>,@location(2) color:vec4<f32>,@location(3) normal:vec3<f32>,@location(4) lamp:f32};`;
@@ -212,5 +212,12 @@ c=c+SUN_COLOR*rim*.25;
  c=mix(c,skyColor(vec3<f32>(d.x,0.0,d.z)),pow(1.0-abs(d.y),9.0)*.75);
  // Sun shafts are integrated through shadowed world-space fog in the post pass.
  return vec4<f32>(c,1);}`});
- setShaderTexture(mat,'cloud',tex);const mesh=createSphere(engine,{diameter:2200,segments:32});mesh.name='AshenSky';mesh.material=mat;mesh.renderOrder=-100;addToScene(scene,mesh);return {mat,update(t){setShaderUniform(mat,'time',t);}};
+ setShaderTexture(mat,'cloud',tex);
+ const mesh=createSphere(engine,{diameter:2,segments:32});mesh.name='AshenSky';mesh.material=mat;mesh.renderOrder=-100;addToScene(scene,mesh);
+ return {mat,update(t){
+  // Center the dome on the active eye. A fixed origin clips behind explorers
+  // once camera distance plus dome radius exceeds the far plane.
+  const camera=scene.camera;if(camera){mesh.position.copyFrom(getCameraPosition(camera));const r=camera.farPlane*.9;mesh.scaling.set(r,r,r);}
+  setShaderUniform(mat,'time',t);
+ }};
 }

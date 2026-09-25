@@ -1,8 +1,10 @@
-import {setShaderUniform} from '@babylonjs/lite';
+import {setShaderUniform,setMeshVisible} from '@babylonjs/lite';
 import {Batch,rng,height,pathX,buildingPads,add,mul,sub,norm,terrainNormal,lanternGlow} from './geometry.js';
 import {surface,sky} from './materials.js';
 import {building,collapsedStall,well,forgeGlow,crossFinial,stoneArch,rubble,flagstone,masonryBox} from './buildings.js';
 import {buildHorizon} from './horizon.js';
+import {buildGothicCathedral} from './gothic-cathedral.js';
+import {loadWoodland,appendWoodlandTree} from './woodland.js';
 import {pathVegetation,castleTreeScale} from './world-composition.js';
 import {createFoliage} from './foliage.js';
 import {createLightShafts} from './light-shafts.js';
@@ -397,8 +399,7 @@ export async function buildChurchyard(engine,scene){
   return c;
  }
 
- // Visual-only far terrain, separate from the Havok ground mesh. It uses the same
- // earth material and reaches beyond the camera's 1200 m far plane from the playable bounds.
+ // Outer terrain shares the ground material and participates in Havok collision.
  const farEarth=new Batch('Far earth');
  const randomFar=rng(81107),rf=()=>randomFar();
 
@@ -434,12 +435,11 @@ export async function buildChurchyard(engine,scene){
   return near.map((c,i)=>c*(1-mix)+far[i]*mix);
  };
  // Shared axis coordinates keep the grid watertight at every change in cell size.
- // The inner edge includes every 2 m terrain vertex; the first 48 m resolves the basin.
+ // The inner edge includes every 2 m terrain vertex; 4 m cells resolve the nearby basin.
  const offsets=[];
- for(let d=8;d<=48;d+=8)offsets.push(d);
- for(let d=64;d<=160;d+=16)offsets.push(d);
- for(let d=192;d<=320;d+=32)offsets.push(d);
- for(let d=384;d<=640;d+=64)offsets.push(d);
+ for(let d=4;d<=240;d+=4)offsets.push(d);
+ for(let d=256;d<=480;d+=16)offsets.push(d);
+ for(let d=544;d<=640;d+=64)offsets.push(d);
  for(let d=768;d<=1536;d+=128)offsets.push(d);
  const axis=(min,max)=>[
   ...offsets.map(d=>min-d).reverse(),
@@ -467,30 +467,11 @@ export async function buildChurchyard(engine,scene){
  for(let x=-90-oldHalo;x<90+oldHalo;x+=oldFine)for(let z=-95-oldHalo;z<145+oldHalo;z+=oldFine){
   if(z<-95||z>=145)rf();
  }
- // Crown sections share the bark batch. Their offsets make a crooked fir, a swept fir,
- // a broad old tree, and an occasional dead snag read differently against the sky.
+ // Offline ash/oak variants share the existing bark material and draw batch.
+ const woodland=await loadWoodland();
  const farTree=(x,z,H,sides,kind,lean)=>{
-  const g=height(x,z),tx=x+lean[0]*H,tz=z+lean[1]*H;
-  const lerp=(t,a,b)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];
-  const foot=[x,g,z],mid=p=>lerp(p,foot,[tx,g+H,tz]);
-  if(kind<.39){                                  // uneven, wide-skirted fir
-   bark.tube(foot,mid(.82),H*.036,H*.012,[.42,.45,.37,0],sides);
-   bark.tube(mid(.28),mid(.75),H*.22,H*.065,[.31,.39,.29,0],sides+1);
-   bark.tube(mid(.61),[tx+lean[0]*H*.35,g+H,tz+lean[1]*H*.35],H*.13,0,[.35,.41,.30,0],sides+1);
-  }else if(kind<.68){                            // swept, high-crowned fir
-   const sweep=[lean[0]*H*.7,0,lean[1]*H*.7];
-   const crown=p=>{const q=mid(p);return [q[0]+sweep[0],q[1],q[2]+sweep[2]];};
-   bark.tube(foot,mid(.91),H*.034,H*.009,[.40,.44,.36,0],sides);
-   bark.tube(crown(.43),crown(.83),H*.19,H*.07,[.30,.37,.28,0],sides+1);
-   bark.tube(crown(.72),crown(1),H*.12,0,[.34,.39,.29,0],sides+1);
-  }else if(kind<.88){                            // squat, broken broadleaf crown
-   bark.tube(foot,mid(.56),H*.052,H*.027,[.44,.43,.36,0],sides);
-   bark.tube(mid(.36),mid(.75),H*.25,H*.23,[.32,.38,.29,0],sides+1);
-   bark.tube(mid(.69),mid(.92),H*.22,0,[.35,.40,.30,0],sides+1);
-  }else{                                         // bare fork above low scrub
-   bark.tube(foot,mid(.91),H*.043,H*.008,[.44,.44,.37,0],sides);
-   bark.tube(mid(.53),[tx+H*.14,g+H*.81,tz-H*.11],H*.022,0,[.43,.42,.35,0],3);
-  }
+  appendWoodlandTree(bark,woodland,{x,z,y:height(x,z),height:H,kind,lean});
+  if(H>3)colliders.push({type:'box',position:{x,y:height(x,z)+H*.2,z},size:{x:H*.065,y:H*.4,z:H*.065}});
  };
 
  // A lichened lump: a jittered base ring, a smaller jittered shoulder ring, and a cap. The
@@ -538,7 +519,7 @@ export async function buildChurchyard(engine,scene){
   if(edge<setback)continue;
   const d=Math.hypot(jx,jz-40);
   if(d>325)continue;                             // stay inside the innermost mountain ring
-  if(Math.abs(jx)<42&&jz>264&&jz<354)continue;   // the citadel keeps its own bare crag
+  if(Math.abs(jx)<55&&jz>260&&jz<378)continue; // Clear playable cathedral and courtyard.
   // Two uneven woods frame the keep from Hollowmere without filling the road.
   const northWoods=Math.max(
    .84*Math.exp(-((jx+61)**2+(jz-186)**2)/2100),
@@ -556,11 +537,7 @@ export async function buildChurchyard(engine,scene){
   }
  }
 
-
- // --- Milestone 3, the horizon: the Citadel of Vaelmark on a distant crag beyond z=140, plus the
- // mountain ridgeline behind it. Backdrop only (no colliders, no pathing), added last and entirely
- // north of the playable boundsRect (maxZ:143 in main.js), so it cannot move a churchyard or
- // Hollowmere pixel — it only appends triangles to the existing 'distant'/'warm' batches.
+ // Outer mountains and side landmarks; the enterable cathedral is built below.
  const citadelStone=new Batch('Vaelmark masonry'),horizonRock=new Batch('Horizon rock'),ridgeRock=new Batch('Distant mauve ridges');
  const horizonMaterials=await Promise.all([
   surface(engine,'Vaelmark weathered stone','/tex/rock_wall_08/diff.jpg',{tint:[.72,.73,.76],light:.62,skyFill:.40,pixels:256,uvScale:.20}),
@@ -569,6 +546,10 @@ export async function buildChurchyard(engine,scene){
  ]);
  const horizonStats=buildHorizon(distant,warm,height,{stone:citadelStone,rock:horizonRock,ridge:ridgeRock});
  B.push(citadelStone,horizonRock,ridgeRock);mats.push(...horizonMaterials);
+ const cathedralStone=new Batch('Vaelmark cathedral'),cathedralRoof=new Batch('Vaelmark roof'),cathedralRock=new Batch('Vaelmark foundation');
+ const cathedral=buildGothicCathedral({stone:cathedralStone,roof:cathedralRoof,glow:warm,rock:cathedralRock,groundHeight:height,colliders});
+ B.push(cathedralStone,cathedralRoof,cathedralRock);
+ mats.push(await surface(engine,'Vaelmark limestone','/tex/rock_wall_08/diff.jpg',{tint:[.85,.92,1.04],light:.82,skyFill:.35,pixels:512,uvScale:.20,detail:true}),horizonMaterials[1],horizonMaterials[1]);
 
  function foliageDensity(x,z){
   if(z<=48)return meadow(x,z);
@@ -588,7 +569,9 @@ export async function buildChurchyard(engine,scene){
  const farTris=farEarth.idx.length/3;
  const meshes=B.map((b,i)=>b.commit(engine,scene,mats[i],lights)).filter(Boolean);
  const farMesh=farEarth.commit(engine,scene,mats[0],lights);
- if(farMesh)meshes.push(farMesh);
+ if(farMesh){meshes.push(farMesh);colliders.push({type:'mesh',mesh:farMesh});}
+ const cathedralCollision=cathedral.collisionBatch.commit(engine,scene,mats[0],[]);
+ setMeshVisible(cathedralCollision,false);colliders.push({type:'mesh',mesh:cathedralCollision});
  const shaftPass=await createLightShafts(engine,scene,shafts);
  if(shaftPass?.mesh)meshes.push(shaftPass.mesh);
  const motePass=await createAshMotes(engine,scene,{lights});
@@ -596,7 +579,7 @@ export async function buildChurchyard(engine,scene){
  colliders.unshift({type:'mesh',mesh:meshes[0]});const clouds=await sky(engine,scene);
  const stats={triangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris,drawBatches:B.length+(farMesh?1:0)+(shaftPass?.mesh?1:0)+(motePass?.mesh?1:0),horizonTriangles:horizonStats.triangles,farTriangles:farTris,foliageInstances:0,scatterTrees,scatterRocks,shafts:shafts.length,shaftTriangles:shaftPass?.triangles??0,motes:motePass?.count??0,moteTriangles:motePass?.triangles??0};
  let foliage=null;
- const api={localLights,meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,foliage:null,stats,whenFoliage:null,update(t,playerPos){
+ const api={cathedral,localLights,meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,foliage:null,stats,whenFoliage:null,update(t,playerPos){
   foliage?.update(t,playerPos);clouds.update(t);shaftPass?.update(t);motePass?.update(t);
   // surface() materials declare a time uniform. Nothing else writes it, so the
   // haze drift stays at zero unless this loop runs.

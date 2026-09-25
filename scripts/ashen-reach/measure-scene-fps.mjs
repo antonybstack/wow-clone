@@ -92,7 +92,10 @@ try {
     if (!Number.isFinite(z)) throw new Error('--start-z must be finite');
     await page.evaluate(z => {
       const a = ASHEN;
-      a.player.setWorldPos(0, a.world.groundHeight(0, z) + 1.7, z);
+      const cathedral = a.world.cathedral;
+      const floor = cathedral && z >= cathedral.route.start[2] && z <= cathedral.terrace.maxZ
+        ? cathedral.route.heightAt(z) : a.world.groundHeight(0, z);
+      a.player.setWorldPos(0, floor + 1.7, z);
       a.player.setFacing(0); a.rig.yaw = 0;
     }, z);
     await page.waitForTimeout(700);

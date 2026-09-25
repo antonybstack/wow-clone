@@ -103,21 +103,7 @@ export function buildHorizon(distant,warm,groundHeight,{stone,rock,ridge=rock}){
  const batches=[...new Set([distant,warm,stone,rock,ridge])];
  const count=()=>batches.reduce((sum,b)=>sum+b.idx.length/3,0),before=count();
  const stoneNormalStart=stone.n.length;
- const z=310,g=groundHeight(0,z)+10;
- crag(rock,0,z,g,36,34,groundHeight,44201);
- wallSpan(stone,-25,z-12,-4,z-12,g,9);
- wallSpan(stone,4,z-12,25,z-12,g,9);
- wallSpan(stone,-25,z-12,-20,z+16,g,9);
- wallSpan(stone,25,z-12,20,z+16,g,9);
- wallSpan(stone,-20,z+16,20,z+16,g,8);
- masonryBox(stone,[0,g+8,z-12],[8,3,3.2],[.84,.87,.90,0]);
- for(const x of [-19,-13,13,19])masonryBox(stone,[x,g+3.8,z-13.8],[1.3,7.6,2.3],[.64,.70,.76,0]);
- spire(stone,distant,warm,-8,z-11,g,24,5.6,2,'parapet');
- spire(stone,distant,warm,8,z-11,g,24,5.6,2,'parapet');
- spire(stone,distant,warm,-20,z+12,g,32,6.4,3,'roof');
- spire(stone,distant,warm,20,z+12,g,28,6.4,3,'roof');
- masonryBox(stone,[0,g+10,z+12],[19,20,18],[.72,.77,.82,0]);
- spire(stone,distant,warm,0,z+15,g+8,40,8.6,4);
+ // Vaelmark is built as an explorable cathedral by gothic-cathedral.js.
  ridgeRing(ridge,0,40,230,270,groundHeight,7204,150,34,86,[.82,.72,.78],1.35);
  ridgeRing(ridge,0,40,320,380,groundHeight,7318,170,62,134,[.94,.80,.86],1.7);
  ridgeRing(ridge,0,40,420,500,groundHeight,7440,190,84,172,[1.0,.87,.94],2.1);
