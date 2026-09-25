@@ -1,5 +1,14 @@
 # Current direction — Ashen Reach
 
+## V23 production release — 2026-09-25
+
+User-authorized release of **`c67765b`** is live at https://play.sparkify.dev through Pages **`ac99e4c7-9ea5-4c67-8758-bd4bac3222d4`**. Previous production / rollback target: **`8585b672-2bb3-4999-b192-ee4d0a0bb780`** (`849fda6`, V18). All 330 checked release files match the staged build, including JavaScript, woodland JSON, textures, HTML and Havok WASM (`application/wasm`). Cathedral keyboard entry and exit passed with Havok active and unchanged recovery count; desktop WebKit traveled 16.72 m; exact-bundle Chromium depth fallback passed native touch movement of 28.14 m plus capture loss, cancellation, modal and blur checks. Successful runs have no runtime/GPU errors. Physical iPhone acceptance remains unmeasured.
+
+The first production depth-fallback run timed out at loading stage 4 after 120 seconds. Production was rolled back immediately; two isolated browser retries then passed, and the release was restored. A final production check explicitly verified `ashenReach-CbHpE97j.js` before accepting movement. The first timeout's cause is unconfirmed. The initial Python deployment-metadata request also failed local certificate validation; the previous deployment was recovered from Cloudflare history after upload. Evidence: `ve-capture/ashen-reach/release-c67765b/` (ignored local artifacts).
+
+Active authorized sequence: correct recording/Telegram playback, then complete V24 woodland detail, V25 connected finite region, and V26 cathedral architecture one milestone at a time, with motion delivery, commit/push and production checks for each. Earlier statements below excluding deployment describe historical requests.
+
+
 ## V23 playable cathedral and first V24 woodland pass — 2026-09-25
 
 Latest request: remove invisible walls, improve distant trees using suitable open-source work, and make monumental Gothic castles/churches explorable using the four supplied references. [Audit, roadmap, implementation and retrospective](explorable-gothic-world-plan.md).

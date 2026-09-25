@@ -94,6 +94,8 @@ async function pixels(name) {
 try {
   await page.goto(url, {waitUntil: 'commit'});
   await page.waitForFunction(() => window.ASHEN?.ready && ASHEN.hostilesReady, null, {timeout: 120000});
+  report.loadedScripts = await page.evaluate(() => [...document.scripts].map(s => s.src).filter(Boolean));
+  if (process.env.ASHEN_EXPECT_BUNDLE) assert(report.loadedScripts.some(src => src.endsWith(process.env.ASHEN_EXPECT_BUNDLE)), 'Production page must load the expected release bundle');
   await page.bringToFront();
   assert(await page.evaluate(() => matchMedia('(pointer: coarse)').matches), 'requires coarse pointer, not just a narrow viewport');
   assert(await page.locator('.touch-stick').isVisible());
