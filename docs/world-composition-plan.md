@@ -25,6 +25,8 @@ Reduce the uniform mote population and distance/size amplification. Keep seeded 
 
 ## V22 — castle sightline and silhouette
 
+V21 completed: 4,200 seeded motes replace 12,000; distance fade is 18–60 m, size compensation tops out at 1.35× instead of 3.2×, brightness is 70% of the old value. Matching meadow capture now separates terrain, fog and distant silhouettes; nearby ash still moves with parallax. Shared CPU/WGSL visibility policy has continuity/end-point tests. Reviewed 13.42-second live keyboard motion, packed path-root assertions and runtime/GPU checks pass. Video: https://ve.sparkify.dev/wow-clone/ashen-reach/v21/2026-09-24-walk.mp4. Review also found two V20 refinements for the next pass: use a complementary paving blend at z=40–48 and reserve more footprint for large fern cards.
+
 Protect a widening view corridor from the north terrace to the castle in distant tree placement. Keep clustered woods on both sides, mountains and the real sun shadow caster geometry. Avoid unrelated exposure/fog tuning that would wash out foreground combat. Check north view plus oblique viewpoints so the corridor reads as a plausible opening, not a rectangular cut. Test placement mask and deterministic counts, capture motion and portrait, benchmark separately, commit and push.
 
 ## Acceptance and iteration
