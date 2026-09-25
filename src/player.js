@@ -405,7 +405,11 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
             controller.maxCharacterSpeedForSolver = 18;
             controller.maxSlopeCosine = Math.cos(Math.PI * 0.27);
             controller.keepDistance = 0.035;
-            // Query-only sphere uses the same walls, ramps and terrain as movement.
+            // Lite's shapeCast queries the existing Havok world. Its ignoreBody
+            // option excludes the player's capsule; release the query shape with
+            // the scene. See the official physics module documentation:
+            // https://github.com/BabylonJS/Babylon-Lite/blob/master/docs/lite/architecture/42-physics.md
+            // This query-only sphere uses the same walls, ramps and terrain as movement.
             const cameraShape = createPhysicsShape(world, {
                 type: PhysicsShapeType.SPHERE, parameters: { radius: 0.22 },
             });

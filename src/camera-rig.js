@@ -4,6 +4,9 @@
  * Pivot is glued to the character. No attachControl, inertia 0.
  * LMB orbits without turning the body; RMB is mouselook.
  * Zoom and outward collision recovery are damped.
+ * Lite's camera data, position helper and control split are documented at:
+ * https://github.com/BabylonJS/Babylon-Lite/blob/master/docs/lite/architecture/02-camera.md
+ * The WoW input and collision choices are explained in docs/camera-lite-audit.md.
  */
 import { input } from "./input.js";
 import { expDampFactor, getCameraPosition, setCameraLimits } from "@babylonjs/lite";
