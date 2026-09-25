@@ -1,5 +1,10 @@
 # Current direction — Ashen Reach
 
+## Recording and Telegram playback corrected — 2026-09-25
+
+Telegram message **762** re-sent the cathedral clip with explicit 1280×720 dimensions; the API returned matching dimensions and the user confirmed correct playback. `scripts/tg` now probes video, rejects unnormalized aspect/rotation metadata, validates returned dimensions/duration, and writes sanitized delivery metadata. Capture manifests record viewport/canvas/source frames, capture timestamps and arrival order; encoding orders asynchronous CDP frames by timestamp and preserves elapsed time without stretching. Landscape and actual 390×844 portrait captures passed, plus 8 Python and 3 JavaScript tests. Direct VE and native Chromium/WebKit video playback passed. See [capture procedure](debug-view.md). The desktop Telegram app/automation was unavailable; user confirmation supplies client acceptance. Physical iPhone acceptance remains distinct.
+
+
 ## V23 production release — 2026-09-25
 
 User-authorized release of **`c67765b`** is live at https://play.sparkify.dev through Pages **`ac99e4c7-9ea5-4c67-8758-bd4bac3222d4`**. Previous production / rollback target: **`8585b672-2bb3-4999-b192-ee4d0a0bb780`** (`849fda6`, V18). All 330 checked release files match the staged build, including JavaScript, woodland JSON, textures, HTML and Havok WASM (`application/wasm`). Cathedral keyboard entry and exit passed with Havok active and unchanged recovery count; desktop WebKit traveled 16.72 m; exact-bundle Chromium depth fallback passed native touch movement of 28.14 m plus capture loss, cancellation, modal and blur checks. Successful runs have no runtime/GPU errors. Physical iPhone acceptance remains unmeasured.
