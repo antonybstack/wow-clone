@@ -109,3 +109,7 @@ Telegram **765** returned matching 1280×720 dimensions and duration.
 
 
 V26 released as **`bea44fa`**, Pages **`c9b7e6b8-f71b-474a-8b8a-a4c03ead3426`**, at https://play.sparkify.dev. All 330 release files match the staged build. Production cathedral entry/return, the gallery/parapet circuit, exact-bundle mobile fallback/touch and desktop WebKit pass with no runtime/GPU errors or recovery teleports. Previous V25 Pages **`ed0b7634-d734-4d7a-9c46-46d5807480aa`** is the rollback target. All requested implementation milestones are committed, pushed and released; the documented physical-iPhone and tight-camera limitations remain.
+
+## Camera API follow-up
+
+The user's request to verify Babylon Lite best practices exposed unnecessary custom terrain sampling. The [camera audit](camera-lite-audit.md) records the official sources and installed 1.28.0 API checks. Native Havok sphere sweeps now share movement's terrain, wall and stair geometry, exclude the player's capsule and release their shape on scene disposal. Native camera limits, camera position and damping replace duplicated helpers. The input adapter remains necessary for coordinated LMB/RMB character controls. Reviewed live tower motion now keeps the character and stairs visible where the V26 camera entered masonry; tight passages still require close framing. Telegram 766 and VE carry the reviewed clip. Twenty focused tests, real collision/control/disposal checks, full bell-tower ascent/return, mobile fallback/touch and desktop WebKit pass.

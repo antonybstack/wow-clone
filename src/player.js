@@ -7,7 +7,7 @@ import {
     CharacterSupportedState, PhysicsMotionType, PhysicsShapeType, addToScene, createCapsule,
     createHavokWorld, createPbrMaterial, createPhysicsAggregate,
     createPhysicsBody, createPhysicsCharacterController, createPhysicsShape, createSphere,
-    createTransformNode, onPhysicsAfterStep, setParent, physicsRaycast,
+    createTransformNode, onPhysicsAfterStep, onSceneDispose, setParent, physicsRaycast, releasePhysicsShape, shapeCast,
     setPhysicsBodyShape, setPhysicsBodyTransform,
 } from "@babylonjs/lite";
 import { input, pollInput, endFrame } from "./input.js";
@@ -212,7 +212,6 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
     const identityQuat = { x: 0, y: 0, z: 0, w: 1 };
     body.position.set(spawn.x, spawn.y, spawn.z);
     body.receiveShadows = true;
-    rig.setGroundHeight?.(groundHeight);
 
     const capsuleHeightOf = () => spec.height * heightScale;
     const teleport = (x, y, z) => {
@@ -406,6 +405,23 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
             controller.maxCharacterSpeedForSolver = 18;
             controller.maxSlopeCosine = Math.cos(Math.PI * 0.27);
             controller.keepDistance = 0.035;
+            // Query-only sphere uses the same walls, ramps and terrain as movement.
+            const cameraShape = createPhysicsShape(world, {
+                type: PhysicsShapeType.SPHERE, parameters: { radius: 0.22 },
+            });
+            const cameraQuery = {
+                shape: cameraShape, rotation: identityQuat, ignoreBody: controller.getBody(),
+                shouldHitTriggers: false, startPosition: null, endPosition: null,
+            };
+            rig.setCollisionSweep?.((from, to) => {
+                cameraQuery.startPosition = from;
+                cameraQuery.endPosition = to;
+                return shapeCast(world, cameraQuery);
+            });
+            onSceneDispose(scene, () => {
+                rig.setCollisionSweep?.(null);
+                releasePhysicsShape(world, cameraShape);
+            });
             usingPhysics = true;
             onPhysicsAfterStep(world, step);
         }

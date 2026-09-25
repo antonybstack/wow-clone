@@ -1,5 +1,13 @@
 # Current direction — Ashen Reach
 
+## Camera reuses native Lite APIs — 2026-09-25
+
+The [camera audit](camera-lite-audit.md) checked official Babylon Lite camera/physics documentation against installed 1.28.0. Native Havok sphere sweeps replace the V26 terrain sampler, sharing the player's collision world and ignoring its capsule. Native camera limits, world position and damping replace duplicated helpers. The input adapter retains coordinated LMB free orbit, RMB facing, pointer lock and touch movement.
+
+Twenty camera/touch tests, live ground/wall/tower sweeps, LMB/RMB controls, scene-disposal cleanup, full west bell ascent/return, mobile depth fallback/touch and desktop WebKit pass. No runtime/GPU errors or recovery teleports occurred. Reviewed [26.037-second live MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/camera-native/2026-09-25-camera.mp4), Telegram **766**, 1280×720 square pixels; returned metadata and direct VE WebKit playback match. Tower turns now retain a view of the character and stairs; close framing remains in tight spaces. Physical iPhone acceptance remains separate. Evidence: `ve-capture/ashen-reach/camera-native/`.
+
+
+Separate M1 Max uncapped Chromium 153 WebGPU, 1280×720, seven enemies, three 12-second runs per route: town/bridge/cathedral/forest **180.15 / 219.01 / 225.74 / 191.06 FPS**. Worst p99 **12.3 / 10.5 / 10.1 / 6.8 ms**; worst frames **13.3 / 58.6 / 13.8 / 8.9 ms**. Two bridge frames exceed 16.67 ms; all runs exceed 120 FPS with zero recovery teleports. Release verification follows below when complete.
 
 ## V26 Vaelmark vertical exploration verified — 2026-09-25
 
