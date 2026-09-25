@@ -37,4 +37,6 @@ Separate uncapped M1 Max / 32 GB / Chromium 153 WebGPU benchmark, 1280×720 inte
 
 ## Release
 
-Commit, push, production deployment and production verification follow these local gates.
+Committed and pushed **`849fda6`**, deployed to https://play.sparkify.dev through Pages **`8585b672`**. Production bundle, stone texture and Havok WASM match build/source bytes. Production foliage checks pass: 64 GPU samples including actual packed roots, 28.00 metres movement, zero cumulative pool drops, portrait resize and no runtime/GPU errors. Injected mobile depth fallback/touch movement 24.88 metres and desktop WebKit movement 16.43 metres pass. Production street tests retain 58 actor/restoration samples, 44 fog samples, 1,824 bound evaluations/1,824 hits, and 11.20 metres movement without errors.
+
+All three milestones in the authorized V16–V18 sequence are complete. No subsequent milestone was started. Reviewed clips for each milestone were delivered on Telegram (754, 755, 756). Future work should focus on measured long-frame causes, other foliage prototype transitions and eventual antialiasing; do not treat those recommendations as an active task queue.

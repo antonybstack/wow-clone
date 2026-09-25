@@ -1,10 +1,12 @@
 # Current direction — Ashen Reach
 
-## V18 implemented — third milestone release verification in progress
+## V18 released — all three authorized milestones complete
+
+Game commit **`849fda6`**, Pages **`8585b672`**, live at https://play.sparkify.dev. V16, V17 and V18 were each planned, implemented, verified, committed, pushed and deployed sequentially. Production V18 code, stone texture and Havok WASM match the build/source. Production foliage: 64 GPU samples, 28.00 metres movement, zero cumulative drops/errors. Mobile fallback/touch: 24.88 metres; desktop WebKit: 16.43 metres. Town: 58 actor/restoration samples, 44 fog-shadow samples, 1,824 bound evaluations plus 1,824 cache hits, 11.20 metres movement, no runtime/GPU errors. No fourth milestone has started.
 
 [Vegetation stability plan and retrospective](v18-vegetation-stability-plan.md): matched near/far grass cards, rooted distance taper with a streaming margin, shared CPU/GPU hash policy, and reduced distant flutter. 113 unit tests and build pass. Final live test covers 64 GPU policy samples (including actual packed roots), 28.00 metres movement, matching shared geometry, zero cumulative pool drops and portrait resize with no runtime/GPU errors. Mobile depth fallback, desktop WebKit, town shadow and HDR checks pass. Reviewed [live MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/v18/2026-09-24-meadow-stability.mp4), Telegram **756**.
 
-Separate uncapped M1 Max / Chromium 153 WebGPU, 1280×720, seven enemies, full ten seconds: **247.93 FPS**, p95 **7.3 ms**, p99 **74.4 ms**, worst **85.1 ms**. The added streaming margin has a measurable cost; the average remains above 120 FPS and long frames remain unresolved. Commit/push/deploy and production verification are the remaining steps in the three-milestone goal.
+Separate uncapped M1 Max / Chromium 153 WebGPU, 1280×720, seven enemies, full ten seconds: **247.93 FPS**, p95 **7.3 ms**, p99 **74.4 ms**, worst **85.1 ms**. The added streaming margin has a measurable cost; the average remains above 120 FPS and long frames remain unresolved. Next recommended investigation: attribute long frames to actual GPU queue/pipeline events and validate any reuse fix. Fresh physical iPhone acceptance of V16–V18 remains unmeasured; the prior V15 user confirmation is preserved.
 
 ## V17 released — two of three milestones complete
 
