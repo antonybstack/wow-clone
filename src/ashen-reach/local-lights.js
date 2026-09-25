@@ -8,7 +8,7 @@ export function bindLocalReceiver(engine,material){controllers.get(engine)?.addR
 
 export function createLocalLights(engine,scene,shadows){
  const values=Object.fromEntries(LOCAL_LIGHT_UNIFORMS.map(u=>[u.name,new Float32Array(u.type.startsWith('mat')?16:4)]));
- const state={enabled:true,shadows:true,characters:true,mapSize:LOCAL_MAP_SIZE,budget:2,candidates:0,active:[],draws:0,version:0,cacheHits:0,mapRenders:0};
+ const state={enabled:true,shadows:true,characters:true,specular:true,details:true,mapSize:LOCAL_MAP_SIZE,budget:2,candidates:0,active:[],draws:0,version:0,cacheHits:0,mapRenders:0};
  const receivers=new Set();let candidates=[],casters=[],requested=[],disposed=false,revision=0,preload=Promise.resolve(),preloadError=null;
  const slots=[0,1].map(i=>{
   const spot=createSpotLight([0,3,44],[0,-1,0],Math.PI*.73,1,1);spot.range=8;
@@ -28,6 +28,10 @@ export function createLocalLights(engine,scene,shadows){
    values[`localParams${i}`].set([Math.cos(Math.PI*.48/2),.00018,1/LOCAL_MAP_SIZE,+state.shadows]);
   }
   for(const m of receivers)for(const [name,value] of Object.entries(values))setShaderUniform(m,name,value);
+  for(const m of receivers){
+   if(m._uniformValues.has('localSpecularStrength'))setShaderUniform(m,'localSpecularStrength',+state.specular);
+   if(m._uniformValues.has('surfaceDetailStrength'))setShaderUniform(m,'surfaceDetailStrength',+state.details);
+  }
   state.active=slots.map(s=>({id:s.light?.id??null,weight:s.weight,version:s.generator._version,casters:s.casters.length,nearby:s.nearby.length,renders:s.renders,cacheHits:s.cacheHits}));
  }
  function slotCasters(s){

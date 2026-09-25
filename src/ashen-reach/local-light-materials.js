@@ -3,10 +3,13 @@ import {
   onBeforeRender, rebuildMaterial, setShadowCasterMaterial,
 } from '@babylonjs/lite';
 import { LOCAL_LIGHT_UNIFORMS, LOCAL_LIGHT_WGSL } from './local-light-shared.js';
+import { LOCAL_SPECULAR_WGSL } from './local-specular.js';
 
 const configuredScenes = new WeakMap();
 const casterAliases = new WeakMap();
 const NAME = 'ashen-local-light-v1';
+// Native-only scalar: do not extend the shared 256-byte surface/fog light block.
+const nativeUniforms = [...LOCAL_LIGHT_UNIFORMS, { name: 'localSpecularStrength', type: 'f32' }];
 const samplers = Object.freeze([0, 1].map(index => Object.freeze({
   texture: `localShadow${index}`,
   sampler: `localShadow${index}Sampler`,
@@ -16,15 +19,21 @@ const samplers = Object.freeze([0, 1].map(index => Object.freeze({
   samplerType: 'sampler_comparison',
 })));
 const fragmentCode = Object.freeze({
-  CUSTOM_FRAGMENT_DEFINITIONS: LOCAL_LIGHT_WGSL.replaceAll('shaderUniforms.', 'material.'),
+  CUSTOM_FRAGMENT_DEFINITIONS: (LOCAL_LIGHT_WGSL + LOCAL_SPECULAR_WGSL).replaceAll('shaderUniforms.', 'material.'),
   CUSTOM_FRAGMENT_MAIN_BEGIN: 'var ashenLocalCompositionPass = 0u;',
   // Installed Lite 1.28 maps this hook to BOTH AI and NI. The IBL fragment
   // rebuilds color at AI. Add exactly once at NI, after that reconstruction
   // and before fog, the V13 linear capture, and native display conversion.
+  // N/V, texture-adjusted roughness and colorF0 come from pbr-template.js.
+  // Its surfaceAlbedo already contains (1-dielectricF0)*(1-metallic); preserve
+  // the V15 diffuse baseline and its zero diffuse response for pure metals.
   CUSTOM_FRAGMENT_BEFORE_FINALCOLORCOMPOSITION: `
     ashenLocalCompositionPass += 1u;
     if (ashenLocalCompositionPass == 2u) {
       color += surfaceAlbedo * localIrradiance(input.worldPos, N);
+      if (material.localSpecularStrength > 0.0) {
+        color += material.localSpecularStrength * localSpecular(input.worldPos, N, V, roughness, colorF0);
+      }
     }
   `,
 });
@@ -45,13 +54,15 @@ export function createLocalLightPlugin(controller) {
     name: NAME,
     dynamic: true,
     getCustomCode(stage) { return stage === 'fragment' ? fragmentCode : null; },
-    getUniforms() { return { ubo: LOCAL_LIGHT_UNIFORMS }; },
+    getUniforms() { return { ubo: nativeUniforms }; },
     getSamplers() { return samplers; },
     writeUbo(data, offsets) {
       for (const { name } of LOCAL_LIGHT_UNIFORMS) {
         const offset = offsets.get(name);
         if (offset !== undefined) data.set(controller.values[name], offset / 4);
       }
+      const strengthOffset = offsets.get('localSpecularStrength');
+      if (strengthOffset !== undefined) data[strengthOffset / 4] = +(controller.state.specular ?? true);
     },
     bindTextures(out) {
       for (const slot of controller.slots) out.push({ texture: slot.texture });

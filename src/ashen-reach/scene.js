@@ -24,7 +24,7 @@ export async function buildChurchyard(engine,scene){
   // pushed it further, which is most of why 04-town-gate-vista and 05-main-street came out
   // as sodium-yellow rooms. Cooling the tint alone fixed the walls and left the ground
   // doing it; lifting blue here is what actually moves those two frames.
-  surface(engine,'Moss and burial earth','/tex/forrest_ground_01/diff.jpg',{tint:[.78,.83,.78],light:.80,pixels:128,ground:true,nightGrade:true}),
+  surface(engine,'Moss and burial earth','/tex/forrest_ground_01/diff.jpg',{tint:[.78,.83,.78],light:.80,pixels:128,ground:true,nightGrade:true,detail:true}),
   // rock_wall_08 averages 81/75/67 -- warm tan before anything touches it. A near-neutral
   // tint left the albedo at roughly 1.00/0.92/0.81, and then the warm key (SUN_COLOR
   // 1.00/0.70/0.45) multiplied that again, so lit limestone landed near 1.02/0.66/0.36.
@@ -34,7 +34,7 @@ export async function buildChurchyard(engine,scene){
   // texture's own warmth and pushes a little past neutral, so the stone reads cool grey and
   // the lantern pools become the warm accent against it rather than one more yellow thing
   // in a yellow room -- the complementary split atmosphere.js is built around.
-  surface(engine,'Timeworn limestone','/tex/rock_wall_08/diff.jpg',{tint:[.90,.99,1.17],light:.78,pixels:512,uvScale:.20}),
+  surface(engine,'Timeworn limestone','/tex/rock_wall_08/diff.jpg',{tint:[.90,.99,1.17],light:.78,pixels:512,uvScale:.20,detail:true}),
   surface(engine,'Rotten oak','/tex/wood_planks_grey/diff.jpg',{tint:[.57,.43,.31],light:.62,pixels:64}),
   // light .40 on a .28 tint meant a near trunk against the hazy glow clipped to pure black
   // with no internal value at all -- 09-west-treeline had a quarter of its frame taken by one

@@ -69,6 +69,8 @@ test('real Lite composition declares depth/comparison bindings and writes byte-a
   assert.match(source, /var localShadow1Sampler:sampler_comparison/);
   assert.ok(!source.includes('shaderUniforms.'));
   assert.match(source, /material\.localMatrix0/);
+  assert.match(source, /localSpecularStrength:\s*f32/);
+  assert.match(source, /localSpecular\(input\.worldPos, N, V, roughness, colorF0\)/);
   const entries = composed._meshBGLDescriptor.entries;
   assert.equal(entries.filter(e => e.texture?.sampleType === 'depth').length, 2);
   assert.equal(entries.filter(e => e.sampler?.type === 'comparison').length, 2);
@@ -80,6 +82,17 @@ test('real Lite composition declares depth/comparison bindings and writes byte-a
   assert.equal(data[spec._offsets.get('localMatrix0') / 4 + 12], 37);
   assert.deepEqual(Array.from(data.subarray(spec._offsets.get('localColor1') / 4,
     spec._offsets.get('localColor1') / 4 + 4)), [1, 0.5, 0.25, 2]);
+  const strengthIndex = spec._offsets.get('localSpecularStrength') / 4;
+  assert.equal(data[strengthIndex], 1, 'specular defaults on before parent state initialization');
+  assert.ok(strengthIndex >= spec._offsets.get('localParams1') / 4 + 4);
+  c.state.specular = false;
+  plugin.writeUbo(data, spec._offsets);
+  assert.equal(data[strengthIndex], 0);
+  c.state.specular = true;
+  plugin.writeUbo(data, spec._offsets);
+  assert.equal(data[strengthIndex], 1);
+  assert.equal(LOCAL_LIGHT_UNIFORMS.length, 10, 'native toggle must not alter shared fog layout');
+  assert.equal(data[spec._offsets.get('localMatrix0') / 4 + 12], 37, 'toggle does not overwrite light values');
   const textures = [], bindings = [];
   plugin.getActiveTextures(textures);
   plugin.bindTextures(bindings);
@@ -87,7 +100,7 @@ test('real Lite composition declares depth/comparison bindings and writes byte-a
   assert.deepEqual(bindings, c.slots.map(s => ({ texture: s.texture })));
 });
 
-test('AI/NI evaluates local irradiance once after IBL and before V13 linear capture', () => {
+test('AI/NI evaluates diffuse and specular once after IBL and before V13 linear capture', () => {
   const scene = fixture(), c = controller(), material = createPbrMaterial();
   configureLinearMaterials(scene)(material);
   configureLocalLightMaterials(scene, c)(material);
@@ -102,21 +115,56 @@ test('AI/NI evaluates local irradiance once after IBL and before V13 linear capt
   assert.equal(additions.length, 2, 'installed hook occurs at AI and NI');
   assert.ok(additions[1] > source.indexOf('color=finalIrradiance+'));
   assert.ok(additions[1] < source.indexOf('var ashenLinearRadiance = color;'));
+  const specularAdditions = [...source.matchAll(/color \+= material\.localSpecularStrength \* localSpecular/g)].map(m => m.index);
+  assert.equal(specularAdditions.length, 2);
+  assert.ok(specularAdditions[1] > source.indexOf('color=finalIrradiance+'));
+  assert.ok(specularAdditions[1] < source.indexOf('var ashenLinearRadiance = color;'));
   assert.ok(source.indexOf('color = ashenLinearRadiance;') > source.indexOf('color=clamp(color'));
   const code = createLocalLightPlugin(c).getCustomCode('fragment');
   // This injection uses only scalar control flow/arithmetic. Execute that flow
   // twice, with the native IBL color reconstruction between the two slots.
   const js = code.CUSTOM_FRAGMENT_BEFORE_FINALCOLORCOMPOSITION.replace(/(\d+)u\b/g, '$1');
-  const run = new Function(`
-    let ashenLocalCompositionPass=0, color=0, calls=0;
-    const surfaceAlbedo=0.5, input={worldPos:0}, N=0;
+  const run = new Function('strength', 'surfaceAlbedo', `
+    let ashenLocalCompositionPass=0, color=0, calls=0, specularCalls=0;
+    const input={worldPos:0}, N=0, V=0, roughness=0.5, colorF0=0.04;
+    const material={localSpecularStrength:strength};
     const localIrradiance=()=>{calls++;return 4;};
+    const localSpecular=()=>{specularCalls++;return 6;};
     ${js}
     color=10;
     ${js}
-    return {color,calls};
+    return {color,calls,specularCalls};
   `);
-  assert.deepEqual(run(), { color: 12, calls: 1 });
+  assert.deepEqual(run(1, .5), { color: 18, calls: 1, specularCalls: 1 });
+  assert.deepEqual(run(0, .5), { color: 12, calls: 1, specularCalls: 0 }, 'off preserves V15 diffuse');
+  assert.deepEqual(run(1, 0), { color: 16, calls: 1, specularCalls: 1 }, 'metal has only local specular');
+});
+
+test('installed Lite PBR variants expose material-aware inputs before local specular injection', () => {
+  const plugin = createLocalLightPlugin(controller());
+  for (const normalMode of ['none', 'tangent', 'cotangent']) {
+    for (const specGloss of [false, true]) for (const ibl of [false, true]) {
+      const fragments = [
+        ...(ibl ? [createIblFragment(normalMode !== 'none')] : []),
+        buildPluginFragment([plugin], 5, false)._fragment,
+      ];
+      const compiled = composeShader(createPbrTemplate({
+        _normalMode: normalMode, _hasSpecGloss: specGloss, _hasIbl: ibl,
+        _hasDoubleSided: true, _hasSpecularAA: true,
+      }), fragments);
+      const source = compiled._fragmentWGSL;
+      const injection = source.lastIndexOf('localSpecular(input.worldPos, N, V, roughness, colorF0)');
+      assert.ok(injection > 0);
+      for (const declaration of ['let V=normalize(scene.vEyePosition.xyz-input.worldPos)',
+        'let roughness=', 'var colorF0=', 'let surfaceAlbedo=', 'var N=']) {
+        assert.ok(source.indexOf(declaration) >= 0 && source.indexOf(declaration) < injection, declaration);
+      }
+      assert.ok(!source.includes('shaderUniforms.'));
+      assert.equal((source.match(/fn localSpecular\(/g) ?? []).length, 1);
+      if (!specGloss) assert.ok(source.includes('surfaceAlbedo=baseColor*(1.0-dielectricF0)*(1.0-metallic)'));
+      assert.ok(compiled._materialUboSpec._offsets.has('localSpecularStrength'));
+    }
+  }
 });
 
 test('native no-color views inherit receiver bindings: caster override is required', () => {
@@ -168,6 +216,8 @@ test('caster alias retains native material state, but native no-color compositio
   );
   assert.ok(!composed._fragmentWGSL.includes('localShadow'));
   assert.ok(!composed._fragmentWGSL.includes('localIrradiance'));
+  assert.ok(!composed._fragmentWGSL.includes('localSpecular'));
+  assert.ok(!composed._materialUboSpec._offsets.has('localSpecularStrength'));
   assert.ok(!composed._fragmentWGSL.includes('ashenLinearRadiance'));
   assert.ok(composed._fragmentWGSL.includes('discard'), 'native alpha-test survives the caster alias');
   assert.equal(composed._meshBGLDescriptor.entries.filter(e => e.texture?.sampleType === 'depth').length, 0);

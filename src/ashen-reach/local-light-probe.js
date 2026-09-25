@@ -1,5 +1,6 @@
 /** Opt-in GPU samples use the exact shared surface/fog visibility functions. */
 import {LOCAL_LIGHT_UNIFORMS,LOCAL_LIGHT_WGSL} from './local-light-shared.js';
+import {LOCAL_SPECULAR_WGSL} from './local-specular.js';
 export async function probeLocalLights(engine,controller,points){
  if(!points.length)return [];
  const device=engine._device,resources=[];
@@ -21,14 +22,16 @@ export async function probeLocalLights(engine,controller,points){
   @group(0) @binding(4) var localShadow1Sampler:sampler_comparison;
   @group(0) @binding(5) var<storage,read_write> samples:array<Sample>;
   ${LOCAL_LIGHT_WGSL.replaceAll('shaderUniforms.','u.')}
+  ${LOCAL_SPECULAR_WGSL.replaceAll('shaderUniforms.','u.')}
   @compute @workgroup_size(64) fn main(@builtin(global_invocation_id) id:vec3<u32>){
    if(id.x>=arrayLength(&samples)){return;}let p=samples[id.x].p.xyz;
-   samples[id.x].result=vec4<f32>(localVisibility0(p,vec3<f32>(0.0)),localVisibility1(p,vec3<f32>(0.0)),length(localIrradiance(p,vec3<f32>(0.0,1.0,0.0))),1.0);
+   let specular=localSpecular(p,vec3<f32>(0.0,1.0,0.0),vec3<f32>(0.0,1.0,0.0),.35,vec3<f32>(.04));
+   samples[id.x].result=vec4<f32>(localVisibility0(p,vec3<f32>(0.0)),localVisibility1(p,vec3<f32>(0.0)),length(localIrradiance(p,vec3<f32>(0.0,1.0,0.0))),length(specular)*${controller.state.specular?'1.0':'0.0'});
   }`});
   const pipeline=device.createComputePipeline({layout:'auto',compute:{module,entryPoint:'main'}});
   const group=device.createBindGroup({layout:pipeline.getBindGroupLayout(0),entries:[{binding:0,resource:{buffer:ubo}},
    ...controller.slots.flatMap((s,i)=>[{binding:1+i*2,resource:s.texture.view},{binding:2+i*2,resource:s.texture.sampler}]),{binding:5,resource:{buffer:storage}}]});
   const enc=device.createCommandEncoder(),pass=enc.beginComputePass();pass.setPipeline(pipeline);pass.setBindGroup(0,group);pass.dispatchWorkgroups(Math.ceil(points.length/64));pass.end();enc.copyBufferToBuffer(storage,0,read,0,samples.byteLength);device.queue.submit([enc.finish()]);
-  await read.mapAsync(GPUMapMode.READ);const out=new Float32Array(read.getMappedRange());return points.map((point,i)=>({point,visibility:[out[i*8+4],out[i*8+5]],irradiance:out[i*8+6]}));
+  await read.mapAsync(GPUMapMode.READ);const out=new Float32Array(read.getMappedRange());return points.map((point,i)=>({point,visibility:[out[i*8+4],out[i*8+5]],irradiance:out[i*8+6],specular:out[i*8+7]}));
  }finally{read.unmap();for(const b of resources)b.destroy();}
 }

@@ -1,6 +1,6 @@
 # Graphics milestones
 
-Updated 2026-09-24. Current production baseline is V15, committed as `2dc981b` and deployed to https://play.sparkify.dev through Pages `31f85684`. Production rendering, movement, physics and mobile depth fallback checks pass. Physical iPhone review remains pending. This roadmap describes future work, not an automatic task queue.
+Updated 2026-09-24. Current production baseline is V15, committed as `2dc981b` and deployed to https://play.sparkify.dev through Pages `31f85684`. Production rendering, movement, physics and mobile depth fallback checks pass. User confirmed the production game works on their phone after this release. This confirms reported usability; no on-device frame-time measurement was supplied. This roadmap describes future work, not an automatic task queue.
 
 ## 1. A fully shadowed street — deployed
 

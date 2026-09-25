@@ -1,10 +1,14 @@
 # Current direction — Ashen Reach
 
+## Autonomous graphics sequence — V16–V18
+
+The user authorized three further milestones, planned and implemented one at a time, including commit/push and production deployment after each. V16 is [material depth and lantern highlights](v16-material-depth-plan.md). V17 frame pacing and V18 vegetation stability are provisional directions, with detailed plans to follow the previous release's evidence. Preserve the user-confirmed working phone behavior. Do not mark subsequent milestones complete merely because V16 is released.
+
 ## V14/V15 production release — 2026-09-24
 
 Committed and pushed as **`2dc981b`**, deployed to **https://play.sparkify.dev** through Pages **`31f85684`**. Includes all ten shadowed gate/street lamps, two cached shadow maps, shared surface/fog visibility, and the release-review correction that uploads current lamp data before fog rendering. The release suite has **72 passing tests**; the build passes.
 
-All **317 JavaScript assets** match the release build byte-for-byte. Havok WASM matches the source asset, has valid WASM magic and is served as `application/wasm`. Production town checks pass: 57 actor/restoration samples, 49 fog-shadow samples, zero static redraws over 96 cache hits, fixture reassignment/return, 11.20 units of keyboard movement and no runtime/GPU errors. Desktop WebKit passes visible movement (16.23 units); Chromium's injected iPhone depth failure passes touch movement (26.77 units), cancellation, capture loss, menu and blur recovery. Physical iPhone V14/V15 verification remains pending.
+All **317 JavaScript assets** match the release build byte-for-byte. Havok WASM matches the source asset, has valid WASM magic and is served as `application/wasm`. Production town checks pass: 57 actor/restoration samples, 49 fog-shadow samples, zero static redraws over 96 cache hits, fixture reassignment/return, 11.20 units of keyboard movement and no runtime/GPU errors. Desktop WebKit passes visible movement (16.23 units); Chromium's injected iPhone depth failure passes touch movement (26.77 units), cancellation, capture loss, menu and blur recovery. User confirmed the production game works on their phone after this release. This confirms reported usability; no on-device frame-time measurement was supplied.
 
 Reviewed [production walkthrough](https://ve.sparkify.dev/wow-clone/ashen-reach/street-lights/production-2dc981b.mp4): 12.05 seconds, actual keyboard movement, labeled shadow toggle/camera cut, no runtime/GPU errors. Public MP4 and byte-range seeking verified. The pre-release handoff and performance conditions follow below. No subsequent graphics milestone is started by this release request.
 
