@@ -1,5 +1,9 @@
 # Current direction — Ashen Reach
 
+## Camera documentation deployment — 2026-09-25
+
+Camera and physics source comments now link the official Babylon Lite documentation and the [camera audit](camera-lite-audit.md). Comment commit **`6e28551`** was pushed and deployed to https://play.sparkify.dev as Pages **`6a174b2a-4885-42da-aa11-9991641858c2`**. The executable bundle remains `ashenReach-COxFpJlG.js`. All 330 release assets match; production cathedral entry/exit, exact-bundle mobile depth fallback/touch and desktop WebKit pass without runtime/GPU errors or recovery teleports. Rollback: **`bc19f36c-c8ed-434e-973a-6af552a9cfcc`** (`82fd323`). Evidence: `ve-capture/ashen-reach/camera-native/comment-release-*`.
+
 ## Camera reuses native Lite APIs — 2026-09-25
 
 The [camera audit](camera-lite-audit.md) checked official Babylon Lite camera/physics documentation against installed 1.28.0. Native Havok sphere sweeps replace the V26 terrain sampler, sharing the player's collision world and ignoring its capsule. Native camera limits, world position and damping replace duplicated helpers. The input adapter retains coordinated LMB free orbit, RMB facing, pointer lock and touch movement.

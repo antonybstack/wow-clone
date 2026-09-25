@@ -63,3 +63,7 @@ Committed and pushed as **`82fd323`**. Production Pages **`bc19f36c-c8ed-434e-97
 The first asset pass, immediately after deployment, received HTML fallback for four optional JavaScript chunks. All four subsequently matched on both the deployment URL and the public domain, including ordinary URLs without query strings; the repeated full 330-file pass passed. The initial report is retained as `production-assets-initial.json`.
 
 Previous production **`c9b7e6b8-f71b-474a-8b8a-a4c03ead3426`**, game commit `bea44fa`, is the rollback target. Release evidence is under the same `ve-capture/ashen-reach/camera-native/` directory.
+
+## Documentation deployment
+
+Inline comments in `src/camera-rig.js` and `src/player.js` now point to the official camera and physics documentation and this audit. Commit **`6e28551`** was pushed and deployed as Pages **`6a174b2a-4885-42da-aa11-9991641858c2`**. The executable bundle is unchanged (`ashenReach-COxFpJlG.js`). All 330 assets match; production entry/exit, exact-bundle touch/depth fallback and desktop WebKit pass with empty runtime/GPU error lists and no recovery teleports. The previous Pages deployment **`bc19f36c-c8ed-434e-973a-6af552a9cfcc`** is the rollback target.
