@@ -1,5 +1,16 @@
 # Current direction — Ashen Reach
 
+
+## V25 connected region verified — 2026-09-25
+
+Three mountain profiles are now physical terrain with shared visible/collision geometry. Seven continuous routes reach the three side keeps, three landmark towers and Hollowmere chapel, with real gates, courtyards, halls and return paths. Roads are 5.5 m wide with rounded turns and at most 19.5-degree sampled centerline grades. The finite footprint ends in a continuous visible cliff with matching collision; coordinate clamps remain disabled. Registry entrances and waypoints drive minimap markers and traversal checks, including Vaelmark's retained bridge route.
+
+All seven full keyboard outward/return routes pass with Havok and no recovery teleports. Four perimeter tests, 21 relevant unit tests, native touch/depth fallback and desktop WebKit pass. Early rail, road-miter, terrain-protrusion and vegetation-intersection failures were corrected before acceptance. Floor sampling follows the actual mesh triangles so coarse far terrain does not cause false recovery. Reviewed [live MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/v25/2026-09-25-region.mp4), Telegram **764**, verified 1280×720 / 29.671 s; VE video/mp4 and seeking pass.
+
+M1 Max, uncapped Chromium 153 WebGPU, 1280×720, seven enemies, three 12-second runs per route without recording: mean FPS **180.49 / 211.65 / 208.34 / 196.16** for town / bridge / cathedral / forest. Worst p99: **12.2 / 10.8 / 10.7 / 11.5 ms**; worst frames **16.1 / 32.8 / 11.8 / 14.8 ms**. One frame exceeded 16.67 ms. Throughput remains above 120 FPS but is lower than V24's 196.53 / 234.50 / 231.60 / 218.37 because of denser physical terrain. Physical iPhone performance remains unmeasured.
+
+Evidence: `ve-capture/ashen-reach/v25/`. Production release verification is pending. The next authorized milestone is V26: Vaelmark cliff foundation, side chapels, gallery, bell-tower stairs, parapet and architectural/light detail. Keep and chapel interiors remain simple; older decorative towers and unrelated town houses are not all enterable.
+
 ## V24 woodland detail verified — 2026-09-25
 
 Generated woodland now occupies 27 independent 128 m tiles; churchyard bark remains separate. Full seeded variants are unchanged at 1,240 triangles each; reduced meshes retain source branches/attributes at 396/388/394 triangles. Camera distance to tile bounds selects full below 100 m and reduced above 140 m with hysteresis, at most one transition per frame. Every tile keeps a visible representation, including offscreen shadow casters. Public transform dirtiness refreshes Lite's cached shadows without moving geometry. Existing trunk colliders and placements are preserved.

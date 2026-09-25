@@ -1,5 +1,7 @@
 import {prepareLinearMaterial} from './linear-materials.js';
 import {createMeshFromData,addToScene} from '@babylonjs/lite';
+import {applyRegionalTerrain,isProtectedTerrain} from './regional-terrain.js';
+import {applyRegionRoutes,initializeRegionRoutes} from './region-layout.js';
 
 export const add=(a,b)=>a.map((x,i)=>x+b[i]);
 export const mul=(a,s)=>a.map(x=>x*s);
@@ -147,7 +149,7 @@ function distantRelief(x,z){
   +foothills+rough
   +7*Math.sin(x*.028)+5*Math.sin(z*.022+x*.018));
 }
-export function height(x,z){
+export function legacyHeight(x,z){
  let h=terrainRaw(x,z);
  for(const p of buildingPads){
   const dx=Math.max(Math.abs(x-p.x)-p.w/2,0),dz=Math.max(Math.abs(z-p.z)-p.d/2,0);
@@ -155,6 +157,11 @@ export function height(x,z){
   if(dist<PAD_MARGIN){const t=1-dist/PAD_MARGIN,s=t*t*(3-2*t);h=h*(1-s)+terrainRaw(p.x,p.z)*s;}
  }
  return h+distantRelief(x,z);
+}
+export function height(x,z){
+ const original=legacyHeight(x,z);
+ if(isProtectedTerrain(x,z))return original;
+ return applyRegionRoutes(x,z,applyRegionalTerrain(x,z,original));
 }
 export const pathX=z=>Math.sin(z*.14)*1.25;
 
@@ -252,3 +259,7 @@ export function radialGlow(batch,center,axis1,axis2,r,colorCenter,colorRim,sides
 // irradiance (the `uv2`/`lamp` term materials.js already samples), applied to a ground mesh
 // subdivided finely enough under Hollowmere's street to resolve a smooth radial pool with no
 // decal geometry at all (see scene.js's ground loop and its `CORRIDOR_SUB` subdivision).
+
+// Route sampling uses the untouched terrain datum and an index built once,
+// after terrain constants and building pads have initialized. No import cycle.
+initializeRegionRoutes(legacyHeight);

@@ -61,7 +61,8 @@ function masonryTri(stone,a,b,c,color){
 export function building(ctx,spec){
  const {stone,groundHeight,colliders,lights,glow}=ctx;
  const {x,z,w,d,yaw=0,wallH=2.6,roofH=1.4,kind='house',windows=[],chimney=false,
-  upper=false,upperH=null,leanTo=0,sign=false,steeple=false}=spec;
+  upper=false,upperH=null,leanTo=0,sign=false,steeple=false,enterable=false}=spec;
+ const putBox=(center,size,color,rotation)=>{const startIndex=stone.idx.length,startNormal=stone.n.length;masonryBox(stone,center,size,color,rotation);if(enterable){for(let i=startNormal;i<stone.n.length;i++)stone.n[i]*=-1;for(let i=startIndex;i<stone.idx.length;i+=3)[stone.idx[i+1],stone.idx[i+2]]=[stone.idx[i+2],stone.idx[i+1]];}};
  const gy=groundHeight(x,z);
  const cos=Math.cos(yaw),sin=Math.sin(yaw);
  const toWorld=(lx,ly,lz)=>[x+lx*cos+lz*sin,gy+ly,z-lx*sin+lz*cos];
@@ -78,27 +79,31 @@ export function building(ctx,spec){
  const upH=(upper&&kind!=='watchtower')?(upperH??wallH*.5):0;
  const wallTopY=lowerTopY+upH;
 
- masonryBox(stone,toWorld(0,plinthY/2,0),[w+.28,plinthY,d+.28],[.48,.48,.43,0],yaw);
- masonryBox(stone,toWorld(0,plinthY+wallH/2,-d/2),[w,wallH,wallT],sideColor,yaw);
- masonryBox(stone,toWorld(0,plinthY+wallH/2, d/2),[w,wallH,wallT],sideColor,yaw);
- masonryBox(stone,toWorld(-w/2+wallT/2,plinthY+wallH/2,0),[wallT,wallH,d],backColor,yaw);
- masonryBox(stone,toWorld( w/2-wallT/2,plinthY+wallH/2,0),[wallT,wallH,d],gableColor,yaw);
+ putBox(toWorld(0,plinthY/2,0),[w+.28,plinthY,d+.28],[.48,.48,.43,0],yaw);
+ putBox(toWorld(0,plinthY+wallH/2,-d/2),[w,wallH,wallT],sideColor,yaw);
+ putBox(toWorld(0,plinthY+wallH/2, d/2),[w,wallH,wallT],sideColor,yaw);
+ putBox(toWorld(-w/2+wallT/2,plinthY+wallH/2,0),[wallT,wallH,d],backColor,yaw);
+ if(enterable){
+  const opening=2.4,doorHeight=2.6;
+  for(const side of [-1,1])putBox(toWorld(w/2-wallT/2,plinthY+wallH/2,side*(d+opening)/4),[wallT,wallH,(d-opening)/2],gableColor,yaw);
+  putBox(toWorld(w/2-wallT/2,plinthY+(wallH+doorHeight)/2,0),[wallT,wallH-doorHeight,opening],gableColor,yaw);
+ }else putBox(toWorld( w/2-wallT/2,plinthY+wallH/2,0),[wallT,wallH,d],gableColor,yaw);
  for(const cx of [-w/2,w/2])for(const cz of [-d/2,d/2])
-  masonryBox(stone,toWorld(cx,plinthY+wallH/2,cz),[.12,wallH,.12],[.40,.38,.34,0],yaw);
+  putBox(toWorld(cx,plinthY+wallH/2,cz),[.12,wallH,.12],[.40,.38,.34,0],yaw);
 
  if(upH>0){
   const uw=w-.5,ud=d-.5;
-  masonryBox(stone,toWorld(0,lowerTopY+.03,0),[w+.22,.10,d+.22],[.42,.40,.36,0],yaw);
-  masonryBox(stone,toWorld(0,lowerTopY+upH/2,-ud/2),[uw,upH,wallT],sideColor,yaw);
-  masonryBox(stone,toWorld(0,lowerTopY+upH/2, ud/2),[uw,upH,wallT],sideColor,yaw);
-  masonryBox(stone,toWorld(-uw/2+wallT/2,lowerTopY+upH/2,0),[wallT,upH,ud],backColor,yaw);
-  masonryBox(stone,toWorld( uw/2-wallT/2,lowerTopY+upH/2,0),[wallT,upH,ud],gableColor,yaw);
+  putBox(toWorld(0,lowerTopY+.03,0),[w+.22,.10,d+.22],[.42,.40,.36,0],yaw);
+  putBox(toWorld(0,lowerTopY+upH/2,-ud/2),[uw,upH,wallT],sideColor,yaw);
+  putBox(toWorld(0,lowerTopY+upH/2, ud/2),[uw,upH,wallT],sideColor,yaw);
+  putBox(toWorld(-uw/2+wallT/2,lowerTopY+upH/2,0),[wallT,upH,ud],backColor,yaw);
+  putBox(toWorld( uw/2-wallT/2,lowerTopY+upH/2,0),[wallT,upH,ud],gableColor,yaw);
  }
 
  if(leanTo){
   const side=leanTo,lw=w*.55,ld=1.35,lh=wallH*.62,lx0=-w/2+lw/2+.35;
   const lz0=side*(d/2+ld/2);
-  masonryBox(stone,toWorld(lx0,plinthY+lh/2,lz0),[lw,lh,ld],sideColor,yaw);
+  putBox(toWorld(lx0,plinthY+lh/2,lz0),[lw,lh,ld],sideColor,yaw);
   const hiY=plinthY+lh+.05,loY=plinthY+wallH*.42;
   masonryQuad(stone,
    toWorld(lx0-lw/2-.12,hiY,side*d/2),toWorld(lx0+lw/2+.12,hiY,side*d/2),
@@ -110,13 +115,13 @@ export function building(ctx,spec){
  if(kind==='watchtower'){
   // Flat battlement instead of a gable roof: a square parapet ring of merlons and a beacon.
   const topY=wallTopY+.12;
-  masonryBox(stone,toWorld(0,topY,0),[w+.16,.14,d+.16],[.5,.5,.45,0],yaw);
+  putBox(toWorld(0,topY,0),[w+.16,.14,d+.16],[.5,.5,.45,0],yaw);
   const n=10;
   for(let k=0;k<n;k++){const t=(k+.5)/n-.5,along=t*(k%2===0?w:d)*1.02;
-   if(k<n/2)masonryBox(stone,toWorld(along,topY+.28,-d/2),[.42,.5,.16],[.52,.52,.47,0],yaw);
-   else masonryBox(stone,toWorld(along,topY+.28,d/2),[.42,.5,.16],[.52,.52,.47,0],yaw);
+   if(k<n/2)putBox(toWorld(along,topY+.28,-d/2),[.42,.5,.16],[.52,.52,.47,0],yaw);
+   else putBox(toWorld(along,topY+.28,d/2),[.42,.5,.16],[.52,.52,.47,0],yaw);
   }
-  for(const s of [-1,1]){masonryBox(stone,toWorld(-w/2,topY+.28,s*d/2*.55),[.16,.5,.42],[.52,.52,.47,0],yaw);masonryBox(stone,toWorld(w/2,topY+.28,s*d/2*.55),[.16,.5,.42],[.52,.52,.47,0],yaw);}
+  for(const s of [-1,1]){putBox(toWorld(-w/2,topY+.28,s*d/2*.55),[.16,.5,.42],[.52,.52,.47,0],yaw);putBox(toWorld(w/2,topY+.28,s*d/2*.55),[.16,.5,.42],[.52,.52,.47,0],yaw);}
   lanternGlow(ctx.glow,toWorld(0,topY+.55,0),{r:.16,h:.38});
   lights.push({position:toWorld(0,topY+.55,0),strength:.85,falloff:.4,radius:10});
   for(const win of windows){
@@ -135,14 +140,14 @@ export function building(ctx,spec){
   }
   masonryTri(stone,toWorld(-w/2,wallTopY,-d/2),toWorld(-w/2,wallTopY,d/2),toWorld(-w/2,ridgeY,0),backColor);
   if(!ruin)masonryTri(stone,toWorld(w/2,wallTopY,d/2),toWorld(w/2,wallTopY,-d/2),toWorld(w/2,ridgeY,0),gableColor);
-  else masonryBox(stone,toWorld(w/2-wallT/2,wallTopY*.55,0),[wallT,wallTopY*.4,d*.55],[.40,.38,.34,0],yaw);
+  else putBox(toWorld(w/2-wallT/2,wallTopY*.55,0),[wallT,wallTopY*.4,d*.55],[.40,.38,.34,0],yaw);
 
-  const doorW=.8,doorH=1.55;
+  const doorW=enterable?2.4:.8,doorH=enterable?2.6:1.55;
   if(ruin){
-   masonryBox(stone,toWorld(w/2+.02,plinthY+doorH*.38,0),[.10,doorH*.76,doorW+.12],[.34,.32,.30,0],yaw);
-  }else{
-   masonryBox(stone,toWorld(w/2+.02,plinthY+doorH/2,0),[.08,doorH,doorW],[.30,.28,.26,0],yaw);
-   masonryBox(stone,toWorld(w/2+.06,plinthY+doorH+.08,0),[.12,.16,doorW+.30],[.46,.44,.40,0],yaw);
+   putBox(toWorld(w/2+.02,plinthY+doorH*.38,0),[.10,doorH*.76,doorW+.12],[.34,.32,.30,0],yaw);
+  }else if(!enterable){
+   putBox(toWorld(w/2+.02,plinthY+doorH/2,0),[.08,doorH,doorW],[.30,.28,.26,0],yaw);
+   putBox(toWorld(w/2+.06,plinthY+doorH+.08,0),[.12,.16,doorW+.30],[.46,.44,.40,0],yaw);
   }
 
   const winStrength=ruin?.1:.2;
@@ -150,7 +155,7 @@ export function building(ctx,spec){
    if(ruin) darkWindow(ctx,toWorld(win.lx??0,win.ly??(plinthY+wallH*.62),(win.wall??1)*(d/2+.015)),yaw,win.w??.55,win.h??.6,win.wall??1);
    else windowGlow(ctx,toWorld(win.lx??0,win.ly??(plinthY+wallH*.62),(win.wall??1)*(d/2+.015)),yaw,win.w??.55,win.h??.6,win.wall??1,win.strength??winStrength,lights);
   }
-  for(const lz of [-.95,.95]){
+  for(const lz of enterable?[]:[-.95,.95]){
    if(ruin) darkWindow(ctx,toWorld(w/2+.015,plinthY+wallH*.58,lz),yaw,.40,.50,0);
    else windowGlow(ctx,toWorld(w/2+.015,plinthY+wallH*.58,lz),yaw,.40,.50,0,winStrength,lights);
   }
@@ -161,18 +166,25 @@ export function building(ctx,spec){
 
   if(chimney){
    const cx=w*.28,cz=0,cTop=ridgeY+.55;
-   masonryBox(stone,toWorld(cx,(wallTopY+cTop)/2,cz),[.34,cTop-wallTopY,.34],[.42,.4,.38,0],yaw);
-   masonryBox(stone,toWorld(cx,cTop+.06,cz),[.46,.10,.46],[.38,.36,.34,0],yaw);
+   putBox(toWorld(cx,(wallTopY+cTop)/2,cz),[.34,cTop-wallTopY,.34],[.42,.4,.38,0],yaw);
+   putBox(toWorld(cx,cTop+.06,cz),[.46,.10,.46],[.38,.36,.34,0],yaw);
   }
 
   if(steeple){
    const stH=1.3,sw=.85,stTopY=ridgeY+stH;
-   masonryBox(stone,toWorld(0,(ridgeY+stTopY)/2,0),[sw,stH,sw],[.58,.56,.50,0],yaw);
+   putBox(toWorld(0,(ridgeY+stTopY)/2,0),[sw,stH,sw],[.58,.56,.50,0],yaw);
    stone.tube(toWorld(0,stTopY,0),toWorld(0,stTopY+.6,0),sw*.72,.02,[.30,.28,.26,0],4);
    var steepleTop=toWorld(0,stTopY+.6,0)[1];
   }
  }
- colliders.push({type:'box',position:{x,y:gy+wallTopY/2,z},size:{x:w+.3,y:wallTopY,z:d+.3},rotation:{y:yaw}});
+ if(enterable){
+  const collision=(lx,ly,lz,cw,ch,cd)=>{const p=toWorld(lx,ly,lz);colliders.push({type:'box',position:{x:p[0],y:p[1],z:p[2]},size:{x:cw,y:ch,z:cd},rotation:{y:yaw}});};
+  collision(0,plinthY/2,0,w+.28,plinthY,d+.28);
+  for(const side of [-1,1]){collision(0,plinthY+wallH/2,side*d/2,w,wallH,wallT);collision(w/2-wallT/2,plinthY+wallH/2,side*(d+2.4)/4,wallT,wallH,(d-2.4)/2);}
+  collision(-w/2+wallT/2,plinthY+wallH/2,0,wallT,wallH,d);collision(w/2-wallT/2,plinthY+(wallH+2.6)/2,0,wallT,wallH-2.6,2.4);
+  putBox(toWorld(0,wallTopY+.08,0),[w,.16,d],sideColor,yaw);collision(0,wallTopY+.08,0,w,.16,d);
+  for(const side of [-1,1]){putBox(toWorld(-.6,.52,side*2.35),[2.4,.6,.5],[.35,.33,.31,0],yaw);collision(-.6,.52,side*2.35,2.4,.6,.5);}
+ }else colliders.push({type:'box',position:{x,y:gy+wallTopY/2,z},size:{x:w+.3,y:wallTopY,z:d+.3},rotation:{y:yaw}});
  return {gy,front:toWorld(w/2+.5,0,0),steepleTop:typeof steepleTop!=='undefined'?steepleTop:undefined};
 }
 

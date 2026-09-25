@@ -19,6 +19,7 @@ import {bindLocalReceiver} from './local-lights.js';
 import {FOLIAGE_LOD_WGSL,NEAR_RADIUS,REPACK_DISTANCE,plantHash,removalRadius,packingRadius} from './foliage-lod.js';
 import {pathX} from './geometry.js';
 import {pathVegetation} from './world-composition.js';
+import {nearestRegionRoute,regionSiteDistance} from './region-layout.js';
 import {grassCardLayout} from './foliage-card-layout.js';
 
 const ATLAS='/ashen-reach/foliage-atlas.png';
@@ -518,7 +519,8 @@ export async function createFoliage(engine,scene,{lights=[],density=()=>0,landma
  const grassMoor=place(density,lights,{seed:31573,minX:-150,maxX:150,minZ:-150,maxZ:215,spacing:1.32,scale:[1.0,1.5],yScale:[0.62,1.05],tint:[0.66,0.94],densityScale:0.62,skip:(x,z)=>x>-88&&x<88&&z>-90&&z<160});
  // Backdrop-only grass has a sparse source set so its long draw radius cannot
  // saturate the dense meadow pool. It remains outside the playable rectangle.
- const outerDensity=(x,z)=>{
+const outerDensity=(x,z)=>{
+  if((nearestRegionRoute(x,z)?.distance??Infinity)<4||regionSiteDistance(x,z)<2)return 0;
   const edge=Math.max(Math.abs(x)-90,z-145,-95-z);
   if(edge<10||edge>220||Math.hypot(x,z-40)>330)return 0;
   if(Math.abs(x)<45&&z>255&&z<355)return 0;

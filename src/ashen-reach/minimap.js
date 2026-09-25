@@ -5,12 +5,10 @@
  */
 import { buildingPads, pathX } from "./geometry.js";
 
-export const WORLD_BOUNDS = Object.freeze({
-  minX: -88,
-  maxX: 88,
-  minZ: -93,
-  maxZ: 143,
-});
+import {REGION_BOUNDS} from './regional-terrain.js';
+import {REGION_LANDMARKS,REGION_ROUTES} from './region-layout.js';
+export const WORLD_BOUNDS=REGION_BOUNDS;
+let viewBounds={minX:-300,maxX:300,minZ:-280,maxZ:400};
 
 /** Backing store equals CSS pixels so the map is 1:1 inside the frame. */
 const WIDTH = 128;
@@ -18,9 +16,9 @@ const HEIGHT = 148;
 
 function worldToMap(x, z) {
   const u =
-    ((x - WORLD_BOUNDS.minX) / (WORLD_BOUNDS.maxX - WORLD_BOUNDS.minX)) * WIDTH;
+    ((x - viewBounds.minX) / (viewBounds.maxX - viewBounds.minX)) * WIDTH;
   const v =
-    (1 - (z - WORLD_BOUNDS.minZ) / (WORLD_BOUNDS.maxZ - WORLD_BOUNDS.minZ)) *
+    (1 - (z - viewBounds.minZ) / (viewBounds.maxZ - viewBounds.minZ)) *
     HEIGHT;
   return [u, v];
 }
@@ -55,7 +53,7 @@ function paintStatic(ctx) {
   ctx.strokeStyle = "#6a6250";
   ctx.lineWidth = 2;
   ctx.beginPath();
-  for (let z = WORLD_BOUNDS.minZ, first = true; z <= WORLD_BOUNDS.maxZ; z += 2) {
+  for (let z = -95, first = true; z <= 145; z += 2) {
     const [u, v] = worldToMap(pathX(z), z);
     if (first) {
       ctx.moveTo(u, v);
@@ -77,6 +75,10 @@ function paintStatic(ctx) {
   gateAt(44, 8);
   gateAt(75, 14);
 
+  ctx.strokeStyle='#8b8069';ctx.lineWidth=1;
+  for(const route of REGION_ROUTES){ctx.beginPath();route.points.forEach((p,i)=>{const [x,y]=worldToMap(p[0],p[2]);if(i)ctx.lineTo(x,y);else ctx.moveTo(x,y);});ctx.stroke();}
+  const bridgeStart=worldToMap(0,145),bridgeEnd=worldToMap(0,298);ctx.beginPath();ctx.moveTo(...bridgeStart);ctx.lineTo(...bridgeEnd);ctx.stroke();
+  for(const site of REGION_LANDMARKS){const [x,y]=worldToMap(site.x,site.z);ctx.fillStyle=site.kind==='cathedral'?'#eee0be':'#c4ad7c';ctx.fillRect(x-2,y-2,4,4);ctx.font='8px monospace';ctx.fillText(site.kind==='keep'?site.name[0]:site.kind==='chapel'?'+':site.kind==='cathedral'?'V':'T',x+4,y+3);}
   const [sx, sy] = worldToMap(0, 0);
   ctx.fillStyle = "#c4b48a";
   ctx.fillRect(sx - 1, sy - 1, 3, 3);
@@ -107,7 +109,11 @@ export function createMinimap({ player, enemies, marker }) {
   staticLayer.height = HEIGHT;
   paintStatic(staticLayer.getContext("2d"));
 
+  let mapCell='';
   const update = () => {
+    const position=player.body.position,cx=Math.round(position.x/64)*64,cz=Math.round(position.z/64)*64,key=`${cx},${cz}`;
+    if(key!==mapCell){mapCell=key;viewBounds={minX:cx-300,maxX:cx+300,minZ:cz-280,maxZ:cz+400};paintStatic(staticLayer.getContext('2d'));}
+
     const ctx = canvas.getContext("2d");
     ctx.drawImage(staticLayer, 0, 0);
     for (const enemy of enemies) {

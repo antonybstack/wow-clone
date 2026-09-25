@@ -1,8 +1,11 @@
+import {TERRAIN_X,TERRAIN_Z,sampleTerrainSurface} from './terrain-grid.js';
 import {setShaderUniform,setMeshVisible} from '@babylonjs/lite';
-import {Batch,rng,height,pathX,buildingPads,add,mul,sub,norm,terrainNormal,lanternGlow} from './geometry.js';
+import {Batch,rng,height,legacyHeight,pathX,buildingPads,add,mul,sub,norm,terrainNormal,lanternGlow} from './geometry.js';
 import {surface,sky} from './materials.js';
 import {building,collapsedStall,well,forgeGlow,crossFinial,stoneArch,rubble,flagstone,masonryBox} from './buildings.js';
-import {buildHorizon} from './horizon.js';
+import {buildRegionStructures} from './region-structures.js';
+import {buildRegionWorld} from './region-world.js';
+import {REGION_LANDMARKS,REGION_ROUTES,nearestRegionRoute,regionSiteDistance} from './region-layout.js';
 import {buildGothicCathedral} from './gothic-cathedral.js';
 import {loadWoodland} from './woodland.js';
 import {createWoodlandTiles} from './woodland-tiles.js';
@@ -300,7 +303,7 @@ export async function buildChurchyard(engine,scene){
   windows:[{wall:1,w:.5,h:.58},{wall:-1,w:.5,h:.58}]});
 
  const chapelWallH=3.2,chapelRoofH=2.4;
- const chapel=building(ctx,{x:pads[5].x,z:pads[5].z,w:6.6,d:7.6,yaw:EAST,wallH:chapelWallH,roofH:chapelRoofH,kind:'chapel',steeple:true,
+ const chapel=building(ctx,{x:pads[5].x,z:pads[5].z,w:6.6,d:7.6,yaw:EAST,wallH:chapelWallH,roofH:chapelRoofH,kind:'chapel',steeple:true,enterable:true,
   windows:[{wall:1,w:.8,h:1.05},{wall:-1,w:.8,h:1.05}]});
  crossFinial(ctx,[pads[5].x,(chapel.steepleTop??(chapel.gy+.22+chapelWallH+chapelRoofH))+.05,pads[5].z]);
 
@@ -401,7 +404,7 @@ export async function buildChurchyard(engine,scene){
  }
 
  // Outer terrain shares the ground material and participates in Havok collision.
- const farEarth=new Batch('Far earth');
+ const farEarth=new Batch('Far earth'),farMountains=new Batch('Physical mountain terrain');
  const randomFar=rng(81107),rf=()=>randomFar();
 
  // The far field is over half of every vista frame -- material-tag coverage measures it at
@@ -437,23 +440,15 @@ export async function buildChurchyard(engine,scene){
  };
  // Shared axis coordinates keep the grid watertight at every change in cell size.
  // The inner edge includes every 2 m terrain vertex; 4 m cells resolve the nearby basin.
- const offsets=[];
- for(let d=4;d<=240;d+=4)offsets.push(d);
- for(let d=256;d<=480;d+=16)offsets.push(d);
- for(let d=544;d<=640;d+=64)offsets.push(d);
- for(let d=768;d<=1536;d+=128)offsets.push(d);
- const axis=(min,max)=>[
-  ...offsets.map(d=>min-d).reverse(),
-  ...Array.from({length:(max-min)/2+1},(_,i)=>min+i*2),
-  ...offsets.map(d=>max+d)
- ];
- const xs=axis(-90,90),zs=axis(-95,145);
+ const xs=TERRAIN_X,zs=TERRAIN_Z;
  for(let zi=0;zi<zs.length-1;zi++)for(let xi=0;xi<xs.length-1;xi++){
   const x=xs[xi],x1=xs[xi+1],z=zs[zi],z1=zs[zi+1];
   if(x>=-90&&x1<=90&&z>=-95&&z1<=145)continue;
   const v=[[x,z],[x1,z],[x1,z1],[x,z1]].map(([a,b])=>[a,height(a,b),b]);
   const normals=v.map(p=>terrainNormal(p[0],p[2]));
-  farEarth.quad(...v,v.map(earthUV),v.map((p,i)=>farColor(p,normals[i])),normals);
+  const mountain=v.some(p=>p[1]-legacyHeight(p[0],p[2])>5)&&Math.hypot(x,z-40)>180;
+  const batch=mountain?farMountains:farEarth;
+  batch.quad(...v,v.map(earthUV),mountain?[.90,.80,.86,0]:v.map((p,i)=>farColor(p,normals[i])),normals);
  }
  // Preserve far-tree and boulder placement after changing the ground topology.
  const oldHalo=48,oldFine=6,oldCoarse=16;
@@ -532,27 +527,34 @@ export async function buildChurchyard(engine,scene){
    const H=(7+rf()*13)*(.60+.40*smooth((edge-setback)/72));
    const kind=rf(),lean=[(rf()-.5)*.18,(rf()-.5)*.18];
    const opening=castleTreeScale(jx,jz);
-   if(opening>.12){farTree(jx,jz,H*opening,sides,kind,lean);scatterTrees++;}
+   if(opening>.12&&(nearestRegionRoute(jx,jz)?.distance??Infinity)>4.5&&regionSiteDistance(jx,jz)>H*.5+2){farTree(jx,jz,H*opening,sides,kind,lean);scatterTrees++;}
   }else if(g<.30&&roll<.11){
-   boulder(jx,jz,1.4+rf()*3.0,.9+rf()*1.7,81107+scatterRocks*7919);scatterRocks++;
+   const br=1.4+rf()*3.0,bh=.9+rf()*1.7;
+   if((nearestRegionRoute(jx,jz)?.distance??Infinity)>br+3&&regionSiteDistance(jx,jz)>br+2)boulder(jx,jz,br,bh,81107+scatterRocks*7919);scatterRocks++;
   }
  }
 
  // Outer mountains and side landmarks; the enterable cathedral is built below.
- const citadelStone=new Batch('Vaelmark masonry'),horizonRock=new Batch('Horizon rock'),ridgeRock=new Batch('Distant mauve ridges');
+ const citadelStone=new Batch('Vaelmark masonry'),horizonRock=new Batch('Horizon rock'),regionRoofs=new Batch('Region slate roofs');
  const horizonMaterials=await Promise.all([
   surface(engine,'Vaelmark weathered stone','/tex/rock_wall_08/diff.jpg',{tint:[.72,.73,.76],light:.62,skyFill:.40,pixels:256,uvScale:.20}),
   surface(engine,'Horizon slate','/ashen-reach/horizon-rock.jpg',{tint:[.37,.45,.54],light:.66,skyFill:.16,pixels:128}),
   surface(engine,'Sunlit distant ridges','/ashen-reach/horizon-rock.jpg',{tint:[1.05,.89,.96],light:.82,skyFill:.48,emission:.16,pixels:128}),
  ]);
- const horizonStats=buildHorizon(distant,warm,height,{stone:citadelStone,rock:horizonRock,ridge:ridgeRock});
- B.push(citadelStone,horizonRock,ridgeRock);mats.push(...horizonMaterials);
+ const regionStructures=buildRegionStructures({stone:citadelStone,roof:regionRoofs,rock:horizonRock,glow:warm,groundHeight:height,landmarks:REGION_LANDMARKS});
+ const surfaceHeight=(x,z)=>sampleTerrainSurface(x,z,height);
+ const regionWorld=buildRegionWorld({stone:citadelStone,rock:horizonRock,groundHeight:surfaceHeight});
+ const horizonStats={triangles:regionStructures.triangles+farMountains.idx.length/3};
+ B.push(citadelStone,horizonRock,regionRoofs);mats.push(horizonMaterials[0],horizonMaterials[1],horizonMaterials[1]);
  const cathedralStone=new Batch('Vaelmark cathedral'),cathedralRoof=new Batch('Vaelmark roof'),cathedralRock=new Batch('Vaelmark foundation');
  const cathedral=buildGothicCathedral({stone:cathedralStone,roof:cathedralRoof,glow:warm,rock:cathedralRock,groundHeight:height,colliders});
+ const cathedralSite=REGION_LANDMARKS.find(site=>site.id==='vaelmark');
+ cathedralSite.entrance=cathedral.entry;cathedralSite.route=cathedral.route.waypoints;
  B.push(cathedralStone,cathedralRoof,cathedralRock);
  mats.push(await surface(engine,'Vaelmark limestone','/tex/rock_wall_08/diff.jpg',{tint:[.85,.92,1.04],light:.82,skyFill:.35,pixels:512,uvScale:.20,detail:true}),horizonMaterials[1],horizonMaterials[1]);
 
  function foliageDensity(x,z){
+  if((nearestRegionRoute(x,z)?.distance??Infinity)<3.5||regionSiteDistance(x,z)<2)return 0;
   if(z<=48)return meadow(x,z);
   if(z<76){
    const t=smooth((z-48)/28);
@@ -567,11 +569,13 @@ export async function buildChurchyard(engine,scene){
   if(rad>190)return 0;
   return 0.38*(1-smooth((rad-52)/138));
  }
- const farTris=farEarth.idx.length/3;
+ const farTris=(farEarth.idx.length+farMountains.idx.length)/3;
  const meshes=B.map((b,i)=>b.commit(engine,scene,mats[i],lights)).filter(Boolean);
  meshes.push(...woodland.commit(engine,scene,mats[3],lights));
  const farMesh=farEarth.commit(engine,scene,mats[0],lights);
  if(farMesh){meshes.push(farMesh);colliders.push({type:'mesh',mesh:farMesh});}
+ const mountainMesh=farMountains.commit(engine,scene,horizonMaterials[2],lights);if(mountainMesh){meshes.push(mountainMesh);colliders.push({type:'mesh',mesh:mountainMesh});}
+ for(const batch of [regionStructures.collisionBatch,regionWorld.collisionBatch]){const mesh=batch.commit(engine,scene,mats[0],[]);setMeshVisible(mesh,false);colliders.push({type:'mesh',mesh});}
  const cathedralCollision=cathedral.collisionBatch.commit(engine,scene,mats[0],[]);
  setMeshVisible(cathedralCollision,false);colliders.push({type:'mesh',mesh:cathedralCollision});
  const shaftPass=await createLightShafts(engine,scene,shafts);
@@ -584,7 +588,7 @@ export async function buildChurchyard(engine,scene){
  const fixedTriangles=stats.triangles;
  Object.defineProperty(stats,'triangles',{enumerable:true,get:()=>fixedTriangles+woodland.state.triangles});
  stats.drawBatches+=woodland.tiles.size;
- const api={cathedral,woodland,localLights,meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,foliage:null,stats,whenFoliage:null,update(t,playerPos){
+ const api={cathedral,woodland,landmarks:REGION_LANDMARKS,routes:REGION_ROUTES,regionStructures,regionWorld,localLights,meshes,colliders,groundHeight:surfaceHeight,spawn:{x:0,z:0},buildingPads,lights,foliage:null,stats,whenFoliage:null,update(t,playerPos){
   woodland.update();
   foliage?.update(t,playerPos);clouds.update(t);shaftPass?.update(t);motePass?.update(t);
   // surface() materials declare a time uniform. Nothing else writes it, so the
