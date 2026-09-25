@@ -9,7 +9,7 @@ All seven full keyboard outward/return routes pass with Havok and no recovery te
 
 M1 Max, uncapped Chromium 153 WebGPU, 1280×720, seven enemies, three 12-second runs per route without recording: mean FPS **180.49 / 211.65 / 208.34 / 196.16** for town / bridge / cathedral / forest. Worst p99: **12.2 / 10.8 / 10.7 / 11.5 ms**; worst frames **16.1 / 32.8 / 11.8 / 14.8 ms**. One frame exceeded 16.67 ms. Throughput remains above 120 FPS but is lower than V24's 196.53 / 234.50 / 231.60 / 218.37 because of denser physical terrain. Physical iPhone performance remains unmeasured.
 
-Evidence: `ve-capture/ashen-reach/v25/`. Production release verification is pending. The next authorized milestone is V26: Vaelmark cliff foundation, side chapels, gallery, bell-tower stairs, parapet and architectural/light detail. Keep and chapel interiors remain simple; older decorative towers and unrelated town houses are not all enterable.
+Evidence: `ve-capture/ashen-reach/v25/`. Released as **`ebb3d64`**, Pages **`ed0b7634`**, at https://play.sparkify.dev. All 330 release assets, cathedral keyboard entry/return, exact-bundle mobile fallback/touch and desktop WebKit pass without runtime/GPU errors. Rollback target: V24 Pages **`19e2e6dc`**. The next authorized milestone is V26: Vaelmark cliff foundation, side chapels, gallery, bell-tower stairs, parapet and architectural/light detail. Keep and chapel interiors remain simple; older decorative towers and unrelated town houses are not all enterable.
 
 ## V24 woodland detail verified — 2026-09-25
 
