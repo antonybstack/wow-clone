@@ -8,7 +8,7 @@
  *
  * Usage:
  *   node scripts/ashen-reach/measure-scene-fps.mjs [--no-enemies] [--gpu-timing]
- *     [--pixel-ratio N] [--internal WxH] [--seconds N] [--probe-enemies] [--label name]
+ *     [--pixel-ratio N] [--internal WxH] [--seconds N] [--probe-enemies] [--label name] [--start-z N]
  *
  * Chrome must already be up (scripts/harness/up.mjs --slot 4). Pass
  * --uncapped on that launch to request a vsync-free compositor; this
@@ -32,6 +32,7 @@ const pixelRatio = arg("pixel-ratio", null);
 const internal = arg("internal", null);
 const seconds = Number(arg("seconds", "6")) || 6;
 const label = arg("label", noEnemies ? "no-enemies" : "with-enemies");
+const startZ = arg("start-z", null);
 const uncappedLaunch = process.env.ASHEN_UNCAPPED === "1";
 
 const base =
@@ -85,6 +86,16 @@ try {
     await page.waitForTimeout(200);
   }
 
+  if (startZ !== null) {
+    const z = Number(startZ);
+    if (!Number.isFinite(z)) throw new Error('--start-z must be finite');
+    await page.evaluate(z => {
+      const a = ASHEN;
+      a.player.setWorldPos(0, a.world.groundHeight(0, z) + 1.7, z);
+      a.player.setFacing(0); a.rig.yaw = 0;
+    }, z);
+    await page.waitForTimeout(700);
+  }
   await page.keyboard.down("KeyW");
   await page.waitForTimeout(1500);
   await page.evaluate(() => ASHEN.metrics.reset?.());
@@ -162,6 +173,7 @@ try {
 
   const report = {
     label,
+    startZ: startZ === null ? null : Number(startZ),
     url: url.toString(),
     uncappedLaunch,
     cap: capVerdict(result),

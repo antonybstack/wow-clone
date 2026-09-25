@@ -2,6 +2,8 @@ import {
   enableMaterialPlugins, isPbrMaterial, onBeforeRender, rebuildMaterial,
 } from '@babylonjs/lite';
 
+import {prepareLocalLightMaterial} from './local-light-materials.js';
+
 const configuredScenes = new WeakMap();
 const NAME = 'ashen-linear-output-v1';
 const fragmentCode = Object.freeze({
@@ -32,6 +34,7 @@ const operator = Object.freeze({
  */
 export function prepareLinearMaterial(scene, material) {
   if (!material) return 0;
+  prepareLocalLightMaterial(scene, material);
   return configuredScenes.get(scene)?.(material) ?? 0;
 }
 

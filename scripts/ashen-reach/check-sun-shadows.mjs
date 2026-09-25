@@ -9,7 +9,7 @@ const tag=tagIndex>=0?process.argv[tagIndex+1]:'v11-check';
 const dir=`ve-capture/ashen-reach/sun-shadows/${tag}`;
 await fs.mkdir(dir,{recursive:true});
 const browser=await chromium.connectOverCDP(CDP_URL);
-const page=browser.contexts()[0].pages().find(p=>p.url().includes('ashen-reach'))||await browser.contexts()[0].newPage();
+const context=await browser.newContext({viewport:{width:1280,height:720}}),page=await context.newPage();
 const errors=[];
 page.on('pageerror',e=>errors.push(e.message));
 page.on('console',m=>{if(m.type()==='error'||/validation|invalid.*(bind|shader|command|pipeline)/i.test(m.text()))errors.push(m.text());});
@@ -65,5 +65,5 @@ try{
 }finally{
  await page.keyboard.up('KeyW').catch(()=>{});
  await page.evaluate(()=>{if(window.ASHEN?.shadows){ASHEN.shadows.setEnabled(true);ASHEN.shadows.state.characters=true;}}).catch(()=>{});
- await browser.close();
+ await context.close();await browser.close();
 }

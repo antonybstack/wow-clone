@@ -7,7 +7,8 @@ import {SUN_DIR,SUN_COLOR} from './atmosphere.js';
 
 import {HDR_FORMAT} from './color-management.js';
 import {SUN_SHADOW_WGSL} from './sun-shadows.js';
-const MAP_SIZE=2048,STEPS=48,UNIFORM_BYTES=512;
+import {LOCAL_LIGHT_UNIFORMS,LOCAL_LIGHT_WGSL} from './local-light-shared.js';
+const MAP_SIZE=2048,STEPS=48,UNIFORM_BYTES=768;
 const fogShadowWGSL=SUN_SHADOW_WGSL.replaceAll('shaderUniforms.','u.').replaceAll('shaderSystem.view','u.view').replaceAll('u.sunFarMatrix','u.lightVP').replace(/var light=0.0;[\s\S]*?return light\/9.0;/,'return textureSampleCompareLevel(sunCascades,sunCascadesSampler,uv,layer,q.z);');
 const vec=a=>`vec3<f32>(${a.join(',')})`;
 function triangleSunBlocker(meshes,origin){
@@ -37,7 +38,8 @@ function triangleSunBlocker(meshes,origin){
 const COMMON=`
 struct Params {
  invVP:mat4x4<f32>,lightVP:mat4x4<f32>,camera:vec4<f32>,sun:vec4<f32>,
- medium:vec4<f32>,options:vec4<f32>,screen:vec4<f32>,sunCascade0:mat4x4<f32>,sunCascade1:mat4x4<f32>,sunCascade2:mat4x4<f32>,view:mat4x4<f32>,sunSplits:vec4<f32>,sunLengths:vec4<f32>,sunShadowParams:vec4<f32>
+ medium:vec4<f32>,options:vec4<f32>,screen:vec4<f32>,sunCascade0:mat4x4<f32>,sunCascade1:mat4x4<f32>,sunCascade2:mat4x4<f32>,view:mat4x4<f32>,sunSplits:vec4<f32>,sunLengths:vec4<f32>,sunShadowParams:vec4<f32>,
+ ${LOCAL_LIGHT_UNIFORMS.map(v=>`${v.name}:${v.type}`).join(',')}
 };
 @group(0) @binding(0) var<uniform> u:Params;
 @group(0) @binding(1) var sceneDepth:texture_depth_2d;
@@ -58,6 +60,29 @@ const INTEGRATE=`${COMMON}
 @group(0) @binding(3) var sunFarSampler:sampler_comparison;
 @group(0) @binding(4) var sunCascades:texture_depth_2d_array;
 @group(0) @binding(5) var sunCascadesSampler:sampler_comparison;
+@group(0) @binding(6) var localShadow0:texture_depth_2d;
+@group(0) @binding(7) var localShadow0Sampler:sampler_comparison;
+@group(0) @binding(8) var localShadow1:texture_depth_2d;
+@group(0) @binding(9) var localShadow1Sampler:sampler_comparison;
+${LOCAL_LIGHT_WGSL.replaceAll('shaderUniforms.','u.')}
+${[0,1].map(i=>`
+fn integrateLocal${i}(origin:vec3<f32>,dir:vec3<f32>,end:f32,jitter:f32)->vec3<f32>{
+ if(u.localColor${i}.w<.0001){return vec3<f32>(0.0);}
+ let rel=origin-u.localPosition${i}.xyz;
+ let b=dot(rel,dir);let c=dot(rel,rel)-u.localPosition${i}.w*u.localPosition${i}.w;
+ let h=b*b-c;if(h<=0.0){return vec3<f32>(0.0);}
+ let near=max(0.0,-b-sqrt(h));let far=min(end,-b+sqrt(h));
+ if(far<=near){return vec3<f32>(0.0);}
+ let ds=(far-near)/24.0;var sum=vec3<f32>(0.0);
+ for(var k=0;k<24;k++){
+  let t=near+(f32(k)+jitter)*ds;let p=origin+dir*t;
+  let toLight=normalize(u.localPosition${i}.xyz-p);
+  let g=.25;let phase=(1.0-g*g)/(12.56637*pow(1.0+g*g-2.0*g*dot(dir,toLight),1.5));
+  // Thin local mist. Independent short steps retain nearby actor silhouettes.
+  sum+=localRadiance${i}(p,vec3<f32>(0.0))*phase*.14*ds*exp(-.025*t);
+ }
+ return sum;
+}`).join('\n')}
 ${fogShadowWGSL}
 fn visibility(p:vec3<f32>)->f32{
  if(u.options.x<.5){return 1.0;}
@@ -98,6 +123,7 @@ fn density(p:vec3<f32>)->f32{
   return vec4<f32>(vec3<f32>(litWeight/max(totalWeight,0.00001)),transmittance);
  }
  if(u.options.y>1.5){return vec4<f32>(vec3<f32>(1.0-transmittance),transmittance);}
+ scatter+=integrateLocal0(u.camera.xyz,dir,distance,jitter)+integrateLocal1(u.camera.xyz,dir,distance,jitter);
  return vec4<f32>(scatter,transmittance);
 }`;
 const COMPOSITE=`${COMMON}
@@ -128,7 +154,7 @@ const COMPOSITE=`${COMMON}
  return vec4<f32>(color*fog.a+fog.rgb,1.0);
 }`;
 
-export function createVolumetricFog(engine,scene,sourceRT,sun,world,shadows,sourceColor=sourceRT){
+export function createVolumetricFog(engine,scene,sourceRT,sun,world,shadows,sourceColor=sourceRT,localLights){
  const sg=shadows.far,casters=shadows.casters;
  const halfSize={width:1,height:1};
  const fogRT=createRenderTarget({lbl:'sunlit-fog-half',format:'rgba16float',samples:1,size:halfSize});
@@ -137,7 +163,8 @@ export function createVolumetricFog(engine,scene,sourceRT,sun,world,shadows,sour
  const common=[binding('params',0,'uniform',{uniformByteLength:UNIFORM_BYTES}),binding('depth',1,'texture',{textureSampleType:'depth'})];
  const integrate=createEffectWrapper(engine,{name:'Shadowed volume integration',fragmentWGSL:INTEGRATE,bindings:[...common,
   binding('shadow',2,'texture',{textureSampleType:'depth'}),binding('shadowSampler',3,'sampler',{samplerType:'comparison',textureBinding:'shadow'}),
- binding('cascades',4,'texture',{textureSampleType:'depth',viewDimension:'2d-array'}),binding('cascadeSampler',5,'sampler',{samplerType:'comparison',textureBinding:'cascades'})]});
+ binding('cascades',4,'texture',{textureSampleType:'depth',viewDimension:'2d-array'}),binding('cascadeSampler',5,'sampler',{samplerType:'comparison',textureBinding:'cascades'}),
+  ...[0,1].flatMap(i=>[binding(`localShadow${i}`,6+i*2,'texture',{textureSampleType:'depth'}),binding(`localShadow${i}Sampler`,7+i*2,'sampler',{samplerType:'comparison',textureBinding:`localShadow${i}`})])]});
  const composite=createEffectWrapper(engine,{name:'Depth-aware fog composite',fragmentWGSL:COMPOSITE,bindings:[...common,
   binding('source',2,'texture'),binding('volume',3,'texture')]});
  const fogTask=createEffectRenderTask({name:'shadowed-fog-integrate',effect:integrate,target:fogRT},engine,scene);
@@ -149,6 +176,7 @@ export function createVolumetricFog(engine,scene,sourceRT,sun,world,shadows,sour
  if(!sg._depthTexture||!sg._lightMatrix)throw new Error('Lite shadow texture/matrix bridge changed');
  const shadowTexture={view:sg._depthTexture.createView(),sampler:sg._depthSampler,depth:true};
  setEffectTexture(integrate,'shadow',shadowTexture);setEffectTexture(integrate,'cascades',shadows.csmTexture);
+ for(const s of localLights.slots)setEffectTexture(integrate,`localShadow${s.index}`,s.texture);
  function update(){
   const inv=mat4Invert(getViewProjectionMatrix(scene.camera,sourceRT._width/sourceRT._height));
   if(!inv)return;
@@ -161,6 +189,8 @@ export function createVolumetricFog(engine,scene,sourceRT,sun,world,shadows,sour
   uniforms.set(shadows.data.subarray(0,48),52);uniforms.set(shadows.view,100);
   uniforms.set(shadows.data.subarray(64,68),116);uniforms.set(shadows.data.subarray(68,72),120);
   uniforms.set([+shadows.state.enabled,1/MAP_SIZE,shadows.state.range,.1],124);
+  let offset=128;for(const spec of LOCAL_LIGHT_UNIFORMS){const value=localLights.values[spec.name];uniforms.set(value,offset);offset+=value.length;}
+  // Lite uploads immediately: pack current lamp matrices/weights before writing.
   setEffectUniforms(integrate,uniforms);setEffectUniforms(composite,uniforms);
   state.shadowVersion=sg._version;
  }
@@ -178,7 +208,7 @@ export function createVolumetricFog(engine,scene,sourceRT,sun,world,shadows,sour
  const disposeFog=fogTask.dispose.bind(fogTask),disposeComposite=compositeTask.dispose.bind(compositeTask);
  fogTask.dispose=()=>{disposeFog();disposeEffectWrapper(integrate);};
  compositeTask.dispose=()=>{disposeComposite();disposeEffectWrapper(composite);};
- return {state,fogTask,compositeTask,output,shadowGenerator:sg,casters,
+ return {state,fogTask,compositeTask,fogRT,output,shadowGenerator:sg,casters,
   setCasters(meshes){shadows.setFarCasters(meshes);state.casters=meshes.length;},
   get lightMatrix(){return Array.from(sg._lightMatrix);},
   async probeSun(points){

@@ -3,6 +3,8 @@ import {ATMOS,SUN_DIR,FOG} from './atmosphere.js';
 
 const OUT=`struct Out{@builtin(position) position:vec4<f32>,@location(0) p:vec3<f32>,@location(1) uv:vec2<f32>,@location(2) color:vec4<f32>,@location(3) normal:vec3<f32>,@location(4) lamp:f32};`;
 import {SUN_SHADOW_UNIFORMS,SUN_SHADOW_SAMPLERS,SUN_SHADOW_WGSL,bindSunReceiver} from './sun-shadows.js';
+import {LOCAL_LIGHT_UNIFORMS,LOCAL_LIGHT_SAMPLERS,LOCAL_LIGHT_WGSL} from './local-light-shared.js';
+import {bindLocalReceiver} from './local-lights.js';
 export {FOG};
 
 /** Spell light is written onto every world material. Shafts, ash, and the sky
@@ -13,11 +15,11 @@ export function paintLitUniform(material, name, value) {
 }
 export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false,wind=false,emission=0,skyFill=0,pixels=128,uvScale=1,ground=false,nightGrade=false}={}){
  const tex=await loadTexture2D(engine,url,{invertY:false,srgb:false,mipMaps:true,minFilter:'nearest',magFilter:'nearest'});
- const mat=createShaderMaterial({name,attributes:['position','normal','uv','color','uv2'],uniforms:['worldViewProjection','world','cameraPosition','view',...SUN_SHADOW_UNIFORMS,{name:'time',type:'f32',defaultValue:0},{name:'firePosition',type:'vec3<f32>',defaultValue:[0,0,0]},{name:'fireStrength',type:'f32',defaultValue:0},{name:'handFirePosition',type:'vec3<f32>',defaultValue:[0,0,0]},{name:'handFireStrength',type:'f32',defaultValue:0},{name:'lavaPosition',type:'vec3<f32>',defaultValue:[0,0,0]},{name:'lavaStrength',type:'f32',defaultValue:0}],samplers:[...SUN_SHADOW_SAMPLERS,...(ground?['albedo','paving']:['albedo'])],backFaceCulling:false,needAlphaTesting:alpha,
+ const mat=createShaderMaterial({name,attributes:['position','normal','uv','color','uv2'],uniforms:['worldViewProjection','world','cameraPosition','view',...SUN_SHADOW_UNIFORMS,...LOCAL_LIGHT_UNIFORMS,{name:'time',type:'f32',defaultValue:0},{name:'firePosition',type:'vec3<f32>',defaultValue:[0,0,0]},{name:'fireStrength',type:'f32',defaultValue:0},{name:'handFirePosition',type:'vec3<f32>',defaultValue:[0,0,0]},{name:'handFireStrength',type:'f32',defaultValue:0},{name:'lavaPosition',type:'vec3<f32>',defaultValue:[0,0,0]},{name:'lavaStrength',type:'f32',defaultValue:0}],samplers:[...SUN_SHADOW_SAMPLERS,...LOCAL_LIGHT_SAMPLERS,...(ground?['albedo','paving']:['albedo'])],backFaceCulling:false,needAlphaTesting:alpha,
  vertexSource:`${OUT}
  @vertex fn mainVertex(i:VertexInput)->Out{var o:Out;var p=i.position;${wind?'p.x+=sin(shaderUniforms.time*1.3+p.x*.7+p.z*.43)*i.color.a*.08;p.z+=cos(shaderUniforms.time*.8+p.x*.44)*i.color.a*.05;':''}o.position=shaderSystem.worldViewProjection*vec4<f32>(p,1);o.p=(shaderSystem.world*vec4<f32>(p,1)).xyz;o.uv=i.uv;o.color=i.color;o.normal=i.normal;o.lamp=i.uv2.x;return o;}`,
  fragmentSource:`${OUT}
- ${ATMOS} ${SUN_SHADOW_WGSL}
+ ${ATMOS} ${SUN_SHADOW_WGSL} ${LOCAL_LIGHT_WGSL}
  @fragment fn mainFragment(i:Out)->@location(0) vec4<f32>{
  ${ground?`let uvWarp=i.uv+vec2<f32>(0.08*sin(i.p.z*0.173+i.p.x*0.041),0.08*sin(i.p.x*0.161-i.p.z*0.037));
  let uvA=(floor(uvWarp*${uvScale}*${pixels}.0)+.5)/${pixels}.0;
@@ -52,13 +54,13 @@ export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false
  // Recover form on the outer moor where it is shadowed by the low sun. The
  // churchyard (z<=40) and Hollowmere's lamp corridor get exactly zero fill.
  let outerLandFill=${ground?'vec3<f32>(.15,.16,.18)*smoothstep(40.0,90.0,i.p.z)*max(smoothstep(18.0,45.0,abs(i.p.x)),smoothstep(120.0,175.0,i.p.z))':'vec3<f32>(0.0)'};
- let light=shade(i.normal,i.p,shaderSystem.cameraPosition,${light},sunVisibility(i.p,normalize(i.normal+vec3<f32>(.00001))))+outerLandFill+vec3<f32>(.80,.86,1.0)*${skyFill}+lampColor*lampEff+vec3<f32>(1.0,.28,.045)*(fire+handFire+lava);
+ let light=shade(i.normal,i.p,shaderSystem.cameraPosition,${light},sunVisibility(i.p,normalize(i.normal+vec3<f32>(.00001))))+outerLandFill+vec3<f32>(.80,.86,1.0)*${skyFill}+lampColor*lampEff+localIrradiance(i.p,normalize(i.normal+vec3<f32>(.00001)))+vec3<f32>(1.0,.28,.045)*(fire+handFire+lava);
  var c=srgbToLinear(t.rgb)*i.color.rgb*vec3<f32>(${tint.join(',')})*(light+${emission});
  ${nightGrade?'let ng=smoothstep(40.0,55.0,i.p.z);c=mix(c,c*vec3<f32>(.92,.86,.95),ng);':''}
  c=aerial(c,i.p,shaderSystem.cameraPosition);
  return vec4<f32>(c,1);
  }`});
- bindSunReceiver(engine,mat);setShaderTexture(mat,'albedo',tex);if(ground)setShaderTexture(mat,'paving',await loadTexture2D(engine,'/tex/rock_wall_08/diff.jpg',{invertY:false,srgb:false,mipMaps:true,minFilter:'nearest',magFilter:'nearest'}));return mat;
+ bindSunReceiver(engine,mat);bindLocalReceiver(engine,mat);setShaderTexture(mat,'albedo',tex);if(ground)setShaderTexture(mat,'paving',await loadTexture2D(engine,'/tex/rock_wall_08/diff.jpg',{invertY:false,srgb:false,mipMaps:true,minFilter:'nearest',magFilter:'nearest'}));return mat;
 }
 
 /**

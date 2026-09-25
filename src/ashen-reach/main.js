@@ -13,6 +13,7 @@ import {setupPlayer,plantSpawnOnTerrain,resolveCapsule} from '../player.js';
 import {attachBody} from '../character/body.js';
 import {resolvePlayableBody} from '../character/runtime/playable-body.js';
 import {attachDevTools,dev} from './dev-tools.js';
+import {createLocalLights} from './local-lights.js';
 import {buildPostPipeline,buildDirectPipeline} from './post.js';
 import {createSunShadows} from './sun-shadows.js';
 import {registerSceneWithShadowSupport} from '@babylonjs/lite';
@@ -78,6 +79,7 @@ async function main(){
  const reference=createFreeCamera({x:0,y:height(0,-5)+1.65,z:-5},{x:.0,y:4.0,z:25});reference.fov=1.06;reference.nearPlane=.1;reference.farPlane=1200;
  scene.camera=reference;
  const shadows=createSunShadows(engine,scene,sun,{depthOnlyFragment:gpu.depthBundle==='empty-fragment'});
+ const localLights=createLocalLights(engine,scene,shadows);
  const world=await buildChurchyard(engine,scene);initInput(canvas);setInputEnabled(false);installTouchControls();
  setLoadingStage(2,'Calling the wanderer.');
  enableBoneControl();
@@ -106,7 +108,7 @@ async function main(){
  setView(params.has('play')||touchControlsWanted()?'play':'reference');
  const metrics=createAshenMetrics({engine,scene,world,canvas,samples,lite:{isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize}});
  if(params.has('gpuTiming'))metrics.setGpuTiming(true);
- onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);if(menu.isOpen){armory?.update(dt);shadows.update();return;}elapsed+=dt;player?.kinematicStep(dt);if(readyForPlay)combat?.beforeAnimation(dt);tools.tick();body?.update(dt);world.update(elapsed,player?player.body.position:null);if(readyForPlay)combat?.afterAnimation(dt);equipment?.update(dt);armory?.update(dt);shadows.update();if(readyForPlay&&elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();metrics.sampleGpu();}});
+ onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);if(menu.isOpen){armory?.update(dt);shadows.update();localLights.update(dt,player?.body.position);return;}elapsed+=dt;player?.kinematicStep(dt);if(readyForPlay)combat?.beforeAnimation(dt);tools.tick();body?.update(dt);world.update(elapsed,player?player.body.position:null);if(readyForPlay)combat?.afterAnimation(dt);equipment?.update(dt);armory?.update(dt);shadows.update();localLights.update(dt,player?.body.position);if(readyForPlay&&elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();metrics.sampleGpu();}});
  const ashen={engine,scene,camera,reference,rig,world,input,setView,reset,metrics,capture:()=>captureScreenshot(engine),hostilesReady:noEnemies,presentMs:0,loadMs:0,ready:false,dev,menu,get player(){return player;},get body(){return body;},get combat(){return combat;},get equipment(){return equipment;},get armory(){return armory;}};
  ashen.gpu=gpu;
  onBeforeRender(scene,()=>{gpu.frames++;});
@@ -130,8 +132,8 @@ async function main(){
  // in the bind pose while clips report as playing. See docs/startup-load.md.
  // Bloom is a render-target swap, so it has to exist before the first
  // registerScene. It does not fetch anything. ?noPost skips it.
- shadows.setWorld(world);ashen.shadows=shadows;
- const post=params.has('noPost')?buildDirectPipeline(engine,scene):buildPostPipeline(engine,scene,sun,world,shadows);
+ shadows.setWorld(world);localLights.setWorld(world);ashen.shadows=shadows;ashen.localLights=localLights;
+ const post=params.has('noPost')?buildDirectPipeline(engine,scene):buildPostPipeline(engine,scene,sun,world,shadows,localLights);
  ashen.post=post.status;
  ashen.hdr=post;
  ashen.volumetric=post.volume;

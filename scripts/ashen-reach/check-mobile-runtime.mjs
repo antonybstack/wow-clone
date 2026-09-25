@@ -98,6 +98,12 @@ try {
   assert(await page.evaluate(() => matchMedia('(pointer: coarse)').matches), 'requires coarse pointer, not just a narrow viewport');
   assert(await page.locator('.touch-stick').isVisible());
   await page.evaluate(() => { ASHEN.dev.god = true; });
+  if(process.argv.includes('--local-lights')||process.argv.includes('--street-lights')){
+    const z=process.argv.includes('--street-lights')?90:40;
+    await page.evaluate(z=>{const a=ASHEN;a.player.setWorldPos(0,a.world.groundHeight(0,z)+1.7,z);a.rig.yaw=0;a.player.setFacing(0);},z);
+    await page.waitForTimeout(700);
+    report.localLights=await page.evaluate(()=>ASHEN.localLights.state);
+  }
   report.runtime = await page.evaluate(() => ({ua: navigator.userAgent, physics: ASHEN.player.getDebugState().usingPhysics, canvas: [ASHEN.engine.canvas.width, ASHEN.engine.canvas.height], post: ASHEN.post}));
   assert(report.runtime.physics, 'Havok must be active');
   report.compatibility = await page.evaluate(() => ASHEN.gpu);

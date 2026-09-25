@@ -14,6 +14,9 @@ import {Batch,height,terrainNormal,rng,bakeLamp,add,sub,TERRAIN_SLOPE_WGSL} from
 import {ATMOS} from './atmosphere.js';
 import {SUN_SHADOW_UNIFORMS,SUN_SHADOW_SAMPLERS,SUN_SHADOW_WGSL,bindSunReceiver} from './sun-shadows.js';
 
+import {LOCAL_LIGHT_UNIFORMS,LOCAL_LIGHT_SAMPLERS,LOCAL_LIGHT_WGSL} from './local-light-shared.js';
+import {bindLocalReceiver} from './local-lights.js';
+
 const ATLAS='/ashen-reach/foliage-atlas.png';
 const cell=(cx,cy)=>{const s=.5,p=.014;return {u0:cx*s+p,v0:cy*s+p,u1:(cx+1)*s-p,v1:(cy+1)*s-p};};
 const UV={meadow:cell(0,0),dry:cell(1,0),plant:cell(0,1),fern:cell(1,1)};
@@ -61,7 +64,7 @@ async function createFoliageMaterial(engine){
  const mat=createShaderMaterial({
   name:'Ashen foliage',
   attributes:['position','normal','uv','color','uv2'],
-  uniforms:['viewProjection','world','cameraPosition','view',...SUN_SHADOW_UNIFORMS,
+  uniforms:['viewProjection','world','cameraPosition','view',...SUN_SHADOW_UNIFORMS,...LOCAL_LIGHT_UNIFORMS,
    {name:'time',type:'f32',defaultValue:0},
    {name:'playerPosition',type:'vec3<f32>',defaultValue:[0,0,0]},
    {name:'playerRadius',type:'f32',defaultValue:1.2},
@@ -72,12 +75,12 @@ async function createFoliageMaterial(engine){
    {name:'lavaPosition',type:'vec3<f32>',defaultValue:[0,0,0]},
    {name:'lavaStrength',type:'f32',defaultValue:0},
   ],
-  samplers:['albedo',...SUN_SHADOW_SAMPLERS],
+  samplers:['albedo',...SUN_SHADOW_SAMPLERS,...LOCAL_LIGHT_SAMPLERS],
   backFaceCulling:false,
   needAlphaTesting:true,
   vertexSource:CARD_VERTEX,
   fragmentSource:`${OUT}
-${ATMOS} ${SUN_SHADOW_WGSL}
+${ATMOS} ${SUN_SHADOW_WGSL} ${LOCAL_LIGHT_WGSL}
 ${TERRAIN_SLOPE_WGSL}
 @fragment fn mainFragment(i:Out)->@location(0) vec4<f32>{
  var t=textureSample(albedo,albedoSampler,i.uv);
@@ -105,7 +108,7 @@ ${TERRAIN_SLOPE_WGSL}
  let fire=shaderUniforms.fireStrength/(1.0+pow(distance(i.p,shaderUniforms.firePosition)*0.85,2.0));
  let handFire=shaderUniforms.handFireStrength/(1.0+pow(distance(i.p,shaderUniforms.handFirePosition)*1.0,2.0));
  let lava=shaderUniforms.lavaStrength/(1.0+pow(distance(i.p,shaderUniforms.lavaPosition)*0.7,2.0));
- light=light+lampColor*lampEff+vec3<f32>(1.0,0.28,0.045)*(fire+handFire+lava);
+ light=light+lampColor*lampEff+localIrradiance(i.p,nn)+vec3<f32>(1.0,0.28,0.045)*(fire+handFire+lava);
  var c=srgbToLinear(t.rgb)*i.color.rgb*light;
  let ng=smoothstep(40.0,55.0,i.p.z);
  c=mix(c,c*vec3<f32>(0.92,0.86,0.95),ng);
@@ -113,7 +116,7 @@ ${TERRAIN_SLOPE_WGSL}
  return vec4<f32>(c,1.0);
 }`,
  });
- bindSunReceiver(engine,mat);setShaderTexture(mat,'albedo',tex);
+ bindSunReceiver(engine,mat);bindLocalReceiver(engine,mat);setShaderTexture(mat,'albedo',tex);
  return mat;
 }
 
@@ -145,9 +148,9 @@ ${TERRAIN_SLOPE_WGSL}
  */
 async function createFlowerMaterial(engine){
  const mat=createShaderMaterial({
-  name:'Ashen flowers',samplers:SUN_SHADOW_SAMPLERS,
+  name:'Ashen flowers',samplers:[...SUN_SHADOW_SAMPLERS,...LOCAL_LIGHT_SAMPLERS],
   attributes:['position','normal','uv','color','uv2'],
-  uniforms:['viewProjection','world','cameraPosition','view',...SUN_SHADOW_UNIFORMS,
+  uniforms:['viewProjection','world','cameraPosition','view',...SUN_SHADOW_UNIFORMS,...LOCAL_LIGHT_UNIFORMS,
    {name:'time',type:'f32',defaultValue:0},
    {name:'playerPosition',type:'vec3<f32>',defaultValue:[0,0,0]},
    {name:'playerRadius',type:'f32',defaultValue:1.2},
@@ -161,7 +164,7 @@ async function createFlowerMaterial(engine){
   backFaceCulling:false,
   vertexSource:CARD_VERTEX,
   fragmentSource:`${OUT}
-${ATMOS} ${SUN_SHADOW_WGSL}
+${ATMOS} ${SUN_SHADOW_WGSL} ${LOCAL_LIGHT_WGSL}
 ${TERRAIN_SLOPE_WGSL}
 @fragment fn mainFragment(i:Out)->@location(0) vec4<f32>{
  let petal=i.uv.x;
@@ -186,7 +189,7 @@ ${TERRAIN_SLOPE_WGSL}
  let fire=shaderUniforms.fireStrength/(1.0+pow(distance(i.p,shaderUniforms.firePosition)*0.85,2.0));
  let handFire=shaderUniforms.handFireStrength/(1.0+pow(distance(i.p,shaderUniforms.handFirePosition)*1.0,2.0));
  let lava=shaderUniforms.lavaStrength/(1.0+pow(distance(i.p,shaderUniforms.lavaPosition)*0.7,2.0));
- light=light+vec3<f32>(1.0,0.58,0.26)*lampEff+vec3<f32>(1.0,0.28,0.045)*(fire+handFire+lava);
+ light=light+vec3<f32>(1.0,0.58,0.26)*lampEff+localIrradiance(i.p,nn)+vec3<f32>(1.0,0.28,0.045)*(fire+handFire+lava);
  var c=base*light;
  // The same northward cooling the grass takes, so the drifts belong to Hollowmere
  // rather than sitting on top of it.
@@ -195,7 +198,7 @@ ${TERRAIN_SLOPE_WGSL}
  return vec4<f32>(c,1.0);
 }`,
  });
- return bindSunReceiver(engine,mat);
+ bindLocalReceiver(engine,mat);return bindSunReceiver(engine,mat);
 }
 
 /**

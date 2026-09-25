@@ -1,5 +1,25 @@
 # Current direction — Ashen Reach
 
+## V15 Hollowmere street lighting — 2026-09-24
+
+Implemented locally; V14 and V15 remain uncommitted and undeployed. All nine freestanding street lanterns plus the lych gate now share two 512×512 shadow maps. Street cone shells and duplicate baked pools are removed. Static maps reuse cached results; nearby animated casters refresh continuously with conservative posed bounds. Building/window lighting, local specular response and spell shadows remain future work.
+
+Seventy-one unit tests and the build pass. Live town tests cover 58 actor-shadow samples, restoration after removal, 57 fog-shadow samples, zero static redraws across 96 cache hits, lamp reassignment/return and 11.31 units of keyboard movement. HDR and sunlight regressions pass. Desktop WebKit and Chromium's injected iPhone depth fallback pass town rendering/movement without runtime/GPU errors; physical iPhone acceptance remains pending.
+
+Separate uncapped Mac Studio / M1 Max / 32 GB, Chromium 153 WebGPU benchmark: town route beginning at z=80, seven enemies, 1280×720 internal/viewport, DPR 1, no recording, 600 samples: **279.85 FPS**, mean **3.57 ms**, p95 **7.00 ms**, p99 **56.50 ms**, worst **77.50 ms**. Eight samples exceeded 16.67 ms. This is a different route from the V14 benchmark, so it is not an isolated speedup comparison. Benchmark slot stopped afterward.
+
+[Implementation and retrospective](street-light-plan-2026-09-24.md). Reviewed 12.17-second [live walkthrough](https://ve.sparkify.dev/wow-clone/ashen-reach/street-lights/2026-09-24-v15-street-lights.mp4), Telegram **752**. Production remains V13 below. Next review gate is the physical iPhone; a subsequent graphics slice can add local specular response and selected stone/metal material detail.
+
+## V14 shadowed lanterns — 2026-09-24
+
+Implemented locally; uncommitted and not deployed. The lych-gate lantern and the next two street fixtures now share spotlight visibility across world surfaces, foliage, native characters and fog. Two 512×512 maps serve three fixtures with selection hysteresis and a fade before reassignment. Their baked upper/ground contributions and cone meshes are removed; other town lamps retain their prior implementation. Converted glass has a separate emissive material, and street lanterns hang from short arms clear of their posts.
+
+See the [plan and retrospective](local-light-plan-2026-09-24.md). Sixty unit tests and the build pass. Live GPU checks found 47 actor-shadow samples, 420 static-occlusion samples and 626 fog samples responding to lamp shadows; moving the actor changed 89 samples. All 48 native receiver meshes carry the plugin. HDR math/bypass, portrait resizing, armory, direct rendering, disposal and movement pass. Desktop WebKit and Chromium's injected iPhone depth fallback pass through the selected lamp area without runtime/GPU errors. Physical iPhone V14 acceptance remains pending.
+
+Separate uncapped Mac Studio / Apple M1 Max / 32 GB, Chromium 153 WebGPU benchmark: 1280×720 internal/viewport, DPR 1, seven enemies, no recording, 600 samples: **242.11 FPS**, mean **4.13 ms**, p95 **7.20 ms**, p99 **72.80 ms**, worst **78.90 ms**, `vsyncCapped:false`. Average throughput exceeds the goal; long frames remain. The isolated benchmark was stopped afterward.
+
+Production remains V13 below. The next useful extension is more selected town lamps after physical phone review; moving spell shadows and omnidirectional lights need a separate budget/design. Motion evidence and limitations are in the V14 plan.
+
 ## V13 production release — 2026-09-24
 
 Committed and pushed as **`05fe8fe`**, deployed to **https://play.sparkify.dev** through Pages **`f71594d2`**. Includes the verified loading-screen redesign and subtitle removal from `9eea274`.

@@ -18,12 +18,12 @@ export function buildDirectPipeline(engine,scene){
  const display=createDisplayPass(engine,scene,sceneRT);addTaskAfter(scene,display.task,sceneTask);
  return {sceneTask,sceneRT,display,status:{hdr:true,format:HDR_FORMAT,bloom:false,display:display.state,notes:['effects skipped by ?noPost; display conversion retained']}};
 }
-export function buildPostPipeline(engine,scene,sun,world,shadows){
+export function buildPostPipeline(engine,scene,sun,world,shadows,localLights){
  const status={hdr:true,format:HDR_FORMAT,bloom:false,notes:[]};
  const {sceneRT,sceneTask}=sceneTarget(engine,scene);
  const grounding=createContactOcclusion(engine,scene,sceneRT);
  addTaskAfter(scene,grounding.contactTask,sceneTask);addTaskAfter(scene,grounding.aoTask,grounding.contactTask);addTaskAfter(scene,grounding.compositeTask,grounding.aoTask);
- const volume=createVolumetricFog(engine,scene,sceneRT,sun,world,shadows,grounding.output);
+ const volume=createVolumetricFog(engine,scene,sceneRT,sun,world,shadows,grounding.output,localLights);
  addTaskAfter(scene,volume.fogTask,grounding.compositeTask);addTaskAfter(scene,volume.compositeTask,volume.fogTask);
  status.volumetric=volume.state;
  const bloomTask=createBloomPostProcessTask({name:'ashen-hdr-bloom',sourceTexture:volume.output,

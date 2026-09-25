@@ -52,6 +52,9 @@ export async function buildChurchyard(engine,scene){
  ]);
  const names=['Earth','Grave stonework','Rotten fence','Bare woodland','Bell towers','Lantern glass','Carved epitaphs','Warm lantern'];
  const B=names.map(n=>new Batch(n));const [earth,stone,wood,bark,distant,glow,carve,warm]=B;
+ // Shadowed fixtures keep luminous glass independent of their removed baked pool.
+ const localGlass=new Batch('Shadowed lantern glass');
+ B.push(localGlass);mats.push(await surface(engine,'Shadowed lantern glass','/tex/rock_wall_08/diff.jpg',{tint:[1,.68,.32],light:0,emission:24,pixels:16}));
  const colliders=[];
  // A continuous uneven floor, not a tiled slab floating on a flat plane. Every earth
  // quad uses analytic per-vertex normals (zero extra triangles) so the 2 m grid does
@@ -178,29 +181,27 @@ export async function buildChurchyard(engine,scene){
  // churchyard's random sequence above (tombs/trees/grass colour) is untouched. Placed only at
  // z>40, so height()'s climb/pad terms and this content never affect the z<=40 invariant.
  const randomNorth=rng(50021),rn=(a,b)=>a+randomNorth()*(b-a);
- // Anchors for the additive light shafts (light-shafts.js). Collected here rather
- // than derived from `lights` because that array mixes head fixtures with the
- // near-ground pools, and only the head of a lantern casts a visible cone.
- // Everything pushed here is z>=44, so the z<=40 churchyard invariant (section 4
- // of docs/environment-atmosphere-plan.md) is untouched by construction.
- const shafts=[];
+ // Freestanding fixtures use shadowed surface light and integrated fog.
+ // The legacy shaft list stays empty; its diagnostic count remains available.
+ // All local fixtures are z>=44, beyond the original churchyard.
+ const shafts=[],localLights=[];
 
  function streetLamp(x,z,strength=.82){
   const y=height(x,z);
   masonryBox(stone,[x,y+1.45,z],[.28,2.9,.28],[.52,.50,.46,0]);
   masonryBox(stone,[x,y+.08,z],[.42,.16,.42],[.46,.44,.40,0]);
-  const p=[x,y+2.62,z];
-  lanternGlow(warm,p,{r:.13,h:.28});
+  const p=[x+(pathX(z)-x)*.30,y+2.62,z];
+  wood.tube([x,y+2.85,z],[p[0],y+2.85,z],.055,.055,[.4,.33,.25,0],5);
+  lanternGlow(localGlass,p,{r:.13,h:.28});
   for(let j=0;j<4;j++){const dx=j<2?-.15:.15,dz=j%2?-.15:.15;stone.box([p[0]+dx,p[1],p[2]+dz],[.036,.48,.036],[.38,.36,.32,0]);}
   masonryBox(stone,[p[0],p[1]-.23,p[2]],[.37,.06,.37],[.38,.36,.32,0]);
   stone.tube([p[0],p[1]+.19,p[2]],[p[0],p[1]+.44,p[2]],.26,0,[.38,.36,.32,0],4);
-  // Ambient/wall light from the lamp head. M7a windowed it at radius 9. M8b raises strength
-  // .68 -> .82 (the window still kills the tail, and the centre-line is well under the 1.4 knee).
-  lights.push({position:p,strength,falloff:.42,radius:9});
-  shafts.push({p:[p[0],p[1]-.18,p[2]],groundY:y,radius:2.05,strength:.65});
+  // Every freestanding street fixture now gets surface and fog visibility.
+  lights.push({position:p,strength,falloff:.42,radius:9,shadowed:true});
+  localLights.push({id:`street-${z}`,position:[p[0],p[1]-.30,p[2]],strength:4.2});
   // Fixture-sized ground pool. The 1.70 pass blew out the gate approach;
   // 1.10 keeps the pool visible without turning nearby grass solid yellow.
-  lights.push({position:[x,y+.18,z],strength:1.10,falloff:.62,radius:5});
+  lights.push({position:[x,y+.18,z],strength:1.10,falloff:.62,radius:5,shadowed:true});
  }
 
  // Lych-gate: the road leaves the burial ground through a timber roof on two posts.
@@ -216,14 +217,13 @@ export async function buildChurchyard(engine,scene){
   wood.quad([x,ridgeY,z-half],[x,ridgeY,z+half],[x+eaveOut,y+postH,z+half],[x+eaveOut,y+postH,z-half],undefined,roofCol);
   wood.tube([x,ridgeY,z-half],[x,ridgeY,z+half],.045,.045,[.36,.30,.22,0],4);
   stone.box([x,y+.05,z],[gap*2+.7,.10,.7],[.55,.55,.47,0]);
-  lanternGlow(warm,[x,ridgeY-.1,z],{r:.11,h:.24});
-  // M8b: .65 -> .80 so the centre-line peak at z=44 (this fixture) returns above the pre-M7a 1.596.
-  lights.push({position:[x,ridgeY-.1,z],strength:.80,falloff:.42,radius:9});
-  // The gate lantern hangs under a timber roof, so its cone starts lower and
-  // spreads less than a free-standing street lamp's.
-  shafts.push({p:[x,ridgeY-.28,z],groundY:y,radius:1.75,strength:.62});
+  lanternGlow(localGlass,[x,ridgeY-.1,z],{r:.11,h:.24});
+  // Keep the authored entries for diagnostics; shadowed excludes both from baking.
+  lights.push({position:[x,ridgeY-.1,z],strength:.80,falloff:.42,radius:9,shadowed:true});
+  // Real timber occlusion replaces the gate's former cone shell.
+  localLights.push({id:'lych-gate',position:[x,ridgeY-.28,z],strength:5});
   // Dedicated near-ground pool. M8b: 1.1 -> 1.49, same window as M7a (radius 6.5).
-  lights.push({position:[x,y+.18,z],strength:1.49,falloff:.55,radius:6.5});
+  lights.push({position:[x,y+.18,z],strength:1.49,falloff:.55,radius:6.5,shadowed:true});
  }
  lychGate(44);
  for(const [z,side] of [[50,-1],[58,1],[66,-1]])streetLamp(pathX(z)+side*2.8+rn(-.2,.2),z,.82);
@@ -594,7 +594,7 @@ export async function buildChurchyard(engine,scene){
  colliders.unshift({type:'mesh',mesh:meshes[0]});const clouds=await sky(engine,scene);
  const stats={triangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris,drawBatches:B.length+(farMesh?1:0)+(shaftPass?.mesh?1:0)+(motePass?.mesh?1:0),horizonTriangles:horizonStats.triangles,farTriangles:farTris,foliageInstances:0,scatterTrees,scatterRocks,shafts:shafts.length,shaftTriangles:shaftPass?.triangles??0,motes:motePass?.count??0,moteTriangles:motePass?.triangles??0};
  let foliage=null;
- const api={meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,foliage:null,stats,whenFoliage:null,update(t,playerPos){
+ const api={localLights,meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,foliage:null,stats,whenFoliage:null,update(t,playerPos){
   foliage?.update(t,playerPos);clouds.update(t);shaftPass?.update(t);motePass?.update(t);
   // surface() materials declare a time uniform. Nothing else writes it, so the
   // haze drift stays at zero unless this loop runs.

@@ -211,6 +211,7 @@ export function bakeLamp(x,y,z,lights,applyWindow){
  const windowed=applyWindow??(z>40);
  let lamp=0;
  for(const L of lights){
+  if(L.shadowed)continue; // Runtime shadowed irradiance must not also be baked.
   const dx=x-L.position[0],dy=y-L.position[1],dz=z-L.position[2],f=(L.falloff??.5),dist=Math.sqrt(dx*dx+dy*dy+dz*dz),d=dist*f;
   let term=L.strength/(1+d*d);
   if(windowed&&L.radius!=null){const t=Math.min(1,dist/L.radius),w=(1-t*t)*(1-t*t);term*=w;}
