@@ -1,6 +1,8 @@
 # Current direction — Ashen Reach
 
-## V17 implemented — release verification in progress
+## V17 released — two of three milestones complete
+
+Game commit **`b3183c8`**, Pages **`a35f2e7e`**, https://play.sparkify.dev. Production bundle, texture and Havok WASM match the build. Production tests pass: 58 actor/restoration samples, 57 fog samples, 1,824 bound evaluations and 1,824 cache hits, 11.31 units traversal; injected mobile fallback 26.55 units and WebKit 16.24 units, without runtime/GPU errors. Reviewed video delivered as Telegram **755**. V18 is now the remaining authorized milestone.
 
 Second of three authorized milestones: [frame pacing plan and findings](v17-frame-pacing-plan.md). HUD projection uses observed CSS dimensions; local lights share posed bounds within each frame. 102 unit tests, build, live actor/fog shadow/cache checks, HDR checks, WebKit and injected mobile depth fallback pass. Reviewed motion: https://ve.sparkify.dev/wow-clone/ashen-reach/v17/2026-09-24-traversal.mp4.
 
