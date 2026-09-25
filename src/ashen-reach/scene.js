@@ -3,7 +3,7 @@ import {Batch,rng,height,pathX,buildingPads,add,mul,sub,norm,terrainNormal,lante
 import {surface,sky} from './materials.js';
 import {building,collapsedStall,well,forgeGlow,crossFinial,stoneArch,rubble,flagstone,masonryBox} from './buildings.js';
 import {buildHorizon} from './horizon.js';
-import {pathVegetation} from './world-composition.js';
+import {pathVegetation,castleTreeScale} from './world-composition.js';
 import {createFoliage} from './foliage.js';
 import {createLightShafts} from './light-shafts.js';
 import {createAshMotes} from './ash-motes.js';
@@ -548,7 +548,9 @@ export async function buildChurchyard(engine,scene){
   const approach=smooth((edge-setback)/30);
   if(roll<(.045+.70*g*g)*approach){
    const H=(7+rf()*13)*(.60+.40*smooth((edge-setback)/72));
-   farTree(jx,jz,H,sides,rf(),[(rf()-.5)*.18,(rf()-.5)*.18]);scatterTrees++;
+   const kind=rf(),lean=[(rf()-.5)*.18,(rf()-.5)*.18];
+   const opening=castleTreeScale(jx,jz);
+   if(opening>.12){farTree(jx,jz,H*opening,sides,kind,lean);scatterTrees++;}
   }else if(g<.30&&roll<.11){
    boulder(jx,jz,1.4+rf()*3.0,.9+rf()*1.7,81107+scatterRocks*7919);scatterRocks++;
   }
@@ -605,7 +607,7 @@ export async function buildChurchyard(engine,scene){
  api.startFoliage=()=>{
   api.whenFoliage??=createFoliage(engine,scene,{
    lights,density:foliageDensity,
-   landmarks:[[-2,-2,1.45],[2.8,-2.1,1.5],[-2.5,4,1.3],[2.7,9,1.15],[-4,12,1.55]].map(([x,z,scale])=>({x,z,scale})),
+   landmarks:[[-3.1,-2,1.45],[3.1,-2.1,1.5],[-3.0,4,1.3],[4.0,9,1.15],[-4,12,1.55]].map(([x,z,scale])=>({x,z,scale})),
   }).then((created)=>{
    foliage=created;
    api.foliage=created;

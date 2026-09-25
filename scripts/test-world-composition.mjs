@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {pathVegetation,moteVisibility,MOTE_STYLE} from '../src/ashen-reach/world-composition.js';
+import {pathVegetation,moteVisibility,MOTE_STYLE,castleTreeScale} from '../src/ashen-reach/world-composition.js';
 test('walk line stays clear through churchyard, transition, gateway and town',()=>{
  for(const z of [-95,0,25,28,32,40,48,76,100,145]){
   for(const d of [-1,-.5,0,.5,1])assert.equal(pathVegetation(d,z),0);
@@ -21,4 +21,13 @@ test('ash fades before lens and distant silhouettes without a discontinuity',()=
  assert.equal(moteVisibility(60),0);assert.equal(moteVisibility(600),0);
  assert(MOTE_STYLE.count<5000&&MOTE_STYLE.growth<.5);
  let previous=1;for(let d=18;d<=60;d+=.1){const v=moteVisibility(d);assert(v<=previous&&v>=0);assert(previous-v<.01);previous=v;}
+});
+test('castle opening clears center, retains side woods and feathers tree height',()=>{
+ for(const z of [175,200,250,300]){
+  assert.equal(castleTreeScale(0,z),0);assert.equal(castleTreeScale(9,z),0);
+  assert.equal(castleTreeScale(90,z),1);
+  let previous=0;for(let x=0;x<=100;x+=.1){const v=castleTreeScale(x,z);assert(v>=previous&&v<=1);assert(v-previous<.01);assert.equal(v,castleTreeScale(-x,z));previous=v;}
+ }
+ assert.equal(castleTreeScale(0,100),1);assert.equal(castleTreeScale(0,400),1);
+ assert(castleTreeScale(30,175)>castleTreeScale(30,250));
 });

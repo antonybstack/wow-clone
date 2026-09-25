@@ -376,7 +376,7 @@ function writeMatrix(out,o,x,y,z,yaw,sx,sy,sz){
 function place(density,lights,opt){
  const roll=rng(opt.seed);
  const mats=[],cols=[];
- const {minX,maxX,minZ,maxZ,spacing,scale,yScale,tint,slopeMin=0.58,densityScale=1,sink=0.035,skip,mask,palette}=opt;
+ const {minX,maxX,minZ,maxZ,spacing,scale,yScale,tint,slopeMin=0.58,densityScale=1,sink=0.035,skip,mask,palette,footprint=.6}=opt;
  for(let z=minZ;z<maxZ;z+=spacing){
   for(let x=minX;x<maxX;x+=spacing){
    const gx=x+roll()*spacing, gz=z+roll()*spacing;
@@ -384,7 +384,7 @@ function place(density,lights,opt){
    // `mask` gates on top of the density field, which is what turns an even sprinkle
    // into drifts. It multiplies rather than replaces, so a drift still cannot put
    // flowers where the ground already refuses to grow anything.
-   const d=density(gx,gz)*densityScale*(mask?mask(gx,gz):1)*pathVegetation(gx-pathX(gz),gz,.6);
+   const d=density(gx,gz)*densityScale*(mask?mask(gx,gz):1)*pathVegetation(gx-pathX(gz),gz,footprint);
    if(d<=0.02||roll()>d)continue;
    const n=terrainNormal(gx,gz);
    if(n[1]<slopeMin)continue;
@@ -540,7 +540,7 @@ export async function createFoliage(engine,scene,{lights=[],density=()=>0,landma
  }
 
  const plants=place(density,lights,{seed:2711,minX:-40,maxX:40,minZ:-12,maxZ:144,spacing:1.55,scale:[0.9,1.45],yScale:[0.85,1.25],tint:[0.82,1.08],densityScale:0.22,sink:0.02,slopeMin:0.7});
- const bracken=place(density,lights,{seed:490,minX:-26,maxX:26,minZ:-12,maxZ:142,spacing:1.12,scale:[0.85,1.35],yScale:[0.8,1.2],tint:[0.85,1.12],densityScale:0.34,sink:0.02});
+ const bracken=place(density,lights,{seed:490,minX:-26,maxX:26,minZ:-12,maxZ:142,spacing:1.12,scale:[0.85,1.35],yScale:[0.8,1.2],tint:[0.85,1.12],densityScale:0.34,sink:0.02,footprint:1.5});
 
  // Flowers begin north of the lych-gate and never enter the churchyard. That is the
  // right read -- the churchyard is ash and graves, Hollowmere is the living side -- and

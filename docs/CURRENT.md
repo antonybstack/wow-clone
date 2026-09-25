@@ -1,10 +1,10 @@
 # Current direction — Ashen Reach
 
-## V19 complete; world composition V20–V22 in progress
+## V19–V22 complete — frame pacing and composition
 
 Latest request: commit/push, solve frame spikes, deeply inspect composition/readability, plan and iterate autonomously. Commit and push completed changes at session end. V19 is pushed as **617b737**: a four-frame submission budget fixes the reproduced uncapped GPU queue backlog. Separate actual-render measurement: **252.53 FPS / p99 8.70 ms / worst 15.50 ms**, 3,031 intervals, 1280×720, seven enemies, M1 Max / Chromium 153 WebGPU, no recording. 126 unit tests, build, movement/visibility/disposal/HDR/mobile fallback/WebKit checks pass. Physical iPhone performance is unmeasured. [Plan and retrospective](v19-frame-spikes-plan.md), [reviewed live MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/v19/2026-09-24-traversal.mp4), Telegram 757.
 
-Fresh player-height captures identify broken path continuity, excessive basin-wide motes, and distant trees competing with the castle. [V20–V22 plan](world-composition-plan.md) defines sequential implementation and motion review. Production remains V18; this request authorizes commit/push, not a new deployment.
+V20 (**33bcdb6**) restores continuous paving and clears vegetation from walking lines. V21 (**a2f777e**) reduces and localizes drifting ash. V22 protects the castle sightline, fixes the paving blend and gives large ferns more clearance. [Plan, audit and retrospective](world-composition-plan.md) records each milestone and its reviewed motion. Final benchmark: **252.34 FPS / p99 8.70 ms / worst 16.00 ms**, 3,029 actual rendered intervals under the same 1280×720 / seven-enemy conditions. **130 tests**, build, HDR disposal, foliage, mobile fallback/touch and desktop WebKit checks pass. [Final live MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/v22/2026-09-24-world-composition.mp4), Telegram **760**. Physical iPhone follow-up remains unmeasured. Production remains V18; this request authorizes commit/push, not a new deployment. Next recommendations: distant tree art, enemy readability, then authored world focal locations; no milestone is automatically active.
 
 ## V18 released — all three authorized milestones complete
 

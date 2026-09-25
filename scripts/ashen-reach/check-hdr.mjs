@@ -69,7 +69,9 @@ try{
   unregisterScene(a.scene);disposeScene(a.scene);
   return !a.hdr.bloomRT._colorTexture&&!a.hdr.sceneRT._colorTexture;
  });
- assert(disposed,'HDR scene and bloom targets released');await page.waitForTimeout(200);
+ assert(disposed,'HDR scene and bloom targets released');const stoppedFrames=await page.evaluate(()=>ASHEN.renderLoop.state.rendered);
+ await page.waitForTimeout(200);
+ assert.equal(await page.evaluate(()=>ASHEN.renderLoop.state.rendered),stoppedFrames,'Scene disposal stops scheduler');
  assert.deepEqual(errors,[]);assert.deepEqual(await page.evaluate(()=>__gpuErrors),[]);
  const report={views,bypass,movement,portrait,direct,disposed,displayMathSamples:samples.length,errors};await fs.writeFile(`${dir}/report.json`,JSON.stringify(report,null,2));console.log(JSON.stringify(report));
 }finally{await context.close();await browser.close();}

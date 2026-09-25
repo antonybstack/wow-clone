@@ -1,5 +1,9 @@
 # Graphics milestones
 
+## V19–V22 update
+
+Frame submission backpressure is fixed under the reproduced uncapped load. World composition work restores path continuity, restrains ash particles and opens the castle sightline. All four milestones are implemented and verified locally, with reviewed live motion, commits and pushes. See [current status](CURRENT.md), [V19 investigation](v19-frame-spikes-plan.md) and [V20–V22 audit/retrospective](world-composition-plan.md). Production remains V18. The older frame-tail recommendation below is historical; next visual priorities are distant tree silhouettes, enemy readability and authored focal locations.
+
 ## V16–V18 update
 
 The user authorized three sequential milestones. V16 material depth/specular, V17 measured CPU-work reduction and V18 vegetation stability are all deployed and verified. Current game commit is `849fda6`, Pages `8585b672`. [CURRENT.md](CURRENT.md) is authoritative for release status. The three-milestone sequence is complete.

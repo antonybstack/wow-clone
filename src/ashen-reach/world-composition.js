@@ -13,3 +13,11 @@ export function moteVisibility(distance) {
 export const MOTE_VISIBILITY_WGSL=`fn moteVisibility(d:f32)->f32 {
  return smoothstep(0.6,3.0,d)*(1.0-smoothstep(${MOTE_STYLE.fadeStart.toFixed(1)},${MOTE_STYLE.fadeEnd.toFixed(1)},d));
 }`;
+
+/** Widening woodland opening from the terrace toward Vaelmark, feathered at edges. */
+export function castleTreeScale(x,z) {
+  if(z<150||z>310)return 1;
+  const halfWidth=8+(z-145)*.16;
+  // Include the widest crown and lean so a root outside the opening cannot cover it.
+  return smooth((Math.abs(x)-halfWidth-7)/18);
+}

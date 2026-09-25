@@ -36,7 +36,7 @@ export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false
  let amountStreet=(1.0-smoothstep(1.05,2.65,path+(t.r-.4)*.9))*northGate;
  let plazaD=distance(i.p.xz,vec2<f32>(0.0,136.0));
  let amountPlaza=(1.0-smoothstep(4.2,8.6,plazaD+(t.r-.4)*1.4))*northGate;
- let amount=max(amountChurch,max(amountStreet,amountPlaza));
+ let amount=max(amountChurch+amountStreet,amountPlaza);
  t=vec4<f32>(mix(t.rgb*.68,pave.rgb*1.4,amount),1.0);`:''}
  // Baked static lamp irradiance (uv2.x, see geometry.js Batch.commit). The soft
  // knee still bounds overlapping pools; it is now applied everywhere rather than
