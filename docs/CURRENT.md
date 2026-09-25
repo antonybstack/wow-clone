@@ -1,5 +1,9 @@
 # Current direction — Ashen Reach
 
+## Babylon Lite documentation audit — 2026-09-25
+
+The [Babylon Lite documentation audit](babylon-lite-documentation-audit-2026-09-25.md) reviews all 71 authored Lite guide pages and indexes all 1,817 generated API reference pages against the active source and installed Lite 1.28.0. It records concrete lifecycle and private-API risks, newer version-gated replacements, and measured trials. The most urgent reviews are Havok world teardown and the borrowed CSM receiver texture; an upgrade to current 1.31.1 also requires migrating removed `mat4*` exports. This entry records findings only; no game runtime or dependency version changed.
+
 ## Camera documentation deployment — 2026-09-25
 
 Camera and physics source comments now link the official Babylon Lite documentation and the [camera audit](camera-lite-audit.md). Comment commit **`6e28551`** was pushed and deployed to https://play.sparkify.dev as Pages **`6a174b2a-4885-42da-aa11-9991641858c2`**. The executable bundle remains `ashenReach-COxFpJlG.js`. All 330 release assets match; production cathedral entry/exit, exact-bundle mobile depth fallback/touch and desktop WebKit pass without runtime/GPU errors or recovery teleports. Rollback: **`bc19f36c-c8ed-434e-973a-6af552a9cfcc`** (`82fd323`). Evidence: `ve-capture/ashen-reach/camera-native/comment-release-*`.
