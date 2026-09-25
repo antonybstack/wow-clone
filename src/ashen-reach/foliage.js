@@ -16,6 +16,8 @@ import {SUN_SHADOW_UNIFORMS,SUN_SHADOW_SAMPLERS,SUN_SHADOW_WGSL,bindSunReceiver}
 
 import {LOCAL_LIGHT_UNIFORMS,LOCAL_LIGHT_SAMPLERS,LOCAL_LIGHT_WGSL} from './local-light-shared.js';
 import {bindLocalReceiver} from './local-lights.js';
+import {FOLIAGE_LOD_WGSL,NEAR_RADIUS,REPACK_DISTANCE,plantHash,removalRadius,packingRadius} from './foliage-lod.js';
+import {grassCardLayout} from './foliage-card-layout.js';
 
 const ATLAS='/ashen-reach/foliage-atlas.png';
 const cell=(cx,cy)=>{const s=.5,p=.014;return {u0:cx*s+p,v0:cy*s+p,u1:(cx+1)*s-p,v1:(cy+1)*s-p};};
@@ -30,15 +32,22 @@ const OUT=`struct Out{@builtin(position) position:vec4<f32>,@location(0) p:vec3<
  * instantly, and it would be invisible in any diff of two separate shader strings.
  */
 const CARD_VERTEX=`${OUT}
+${FOLIAGE_LOD_WGSL}
 @vertex fn mainVertex(i:VertexInput)->Out{
  var o:Out;
  let instanceWorld=mat4x4<f32>(i.world0,i.world1,i.world2,i.world3);
  let finalWorld=shaderSystem.world*instanceWorld;
+ let root=finalWorld[3].xyz;
+ let plantDistance=distance(root.xz,shaderUniforms.playerPosition.xz);
+ let lod=shaderUniforms.foliageLod;
+ let end=foliageRemovalRadius(foliagePlantHash(root.xz),lod.x,lod.y,lod.z);
+ let detail=floor(i.color.a*.5);
+ let scale=foliageScale(plantDistance,end)*mix(1.0,foliageDetailScale(plantDistance),detail);
  var wp=(finalWorld*vec4<f32>(i.position,1.0)).xyz;
- let h=i.color.a;
+ let h=i.color.a-detail*2.0;
  let gust=sin(shaderUniforms.time*1.12+wp.x*0.51+wp.z*0.39);
  let gust2=sin(shaderUniforms.time*0.34+wp.x*0.11-wp.z*0.17);
- let flutter=sin(shaderUniforms.time*6.8+wp.x*2.7+wp.z*2.1);
+ let flutter=sin(shaderUniforms.time*6.8+root.x*2.7+root.z*2.1)*foliageFlutterAttenuation(distance(root,shaderSystem.cameraPosition));
  let h2=h*h;
  wp.x+=(gust*0.17+gust2*0.11+flutter*0.028)*h2;
  wp.z+=(cos(shaderUniforms.time*0.88+wp.x*0.37)*0.12+flutter*0.02)*h2;
@@ -50,6 +59,8 @@ const CARD_VERTEX=`${OUT}
  wp.x+=dir.x*push;
  wp.z+=dir.y*push;
  wp.y-=push*0.22;
+ // Scale every displacement around its planted root, including wind/push.
+ wp=root+(wp-root)*scale;
  o.position=shaderSystem.viewProjection*vec4<f32>(wp,1.0);
  o.p=wp;
  o.uv=i.uv;
@@ -59,13 +70,13 @@ const CARD_VERTEX=`${OUT}
  return o;
 }`;
 
-async function createFoliageMaterial(engine){
- const tex=await loadTexture2D(engine,ATLAS,{invertY:false,srgb:false,mipMaps:true,minFilter:'linear',magFilter:'linear'});
+async function createFoliageMaterial(engine,tex,lod=[28,.72,1,4]){
  const mat=createShaderMaterial({
   name:'Ashen foliage',
   attributes:['position','normal','uv','color','uv2'],
   uniforms:['viewProjection','world','cameraPosition','view',...SUN_SHADOW_UNIFORMS,...LOCAL_LIGHT_UNIFORMS,
    {name:'time',type:'f32',defaultValue:0},
+   {name:'foliageLod',type:'vec4<f32>',defaultValue:lod},
    {name:'playerPosition',type:'vec3<f32>',defaultValue:[0,0,0]},
    {name:'playerRadius',type:'f32',defaultValue:1.2},
    {name:'firePosition',type:'vec3<f32>',defaultValue:[0,0,0]},
@@ -84,8 +95,7 @@ ${ATMOS} ${SUN_SHADOW_WGSL} ${LOCAL_LIGHT_WGSL}
 ${TERRAIN_SLOPE_WGSL}
 @fragment fn mainFragment(i:Out)->@location(0) vec4<f32>{
  var t=textureSample(albedo,albedoSampler,i.uv);
- let fade=smoothstep(46.0,58.0,distance(i.p,shaderSystem.cameraPosition));
- if(t.a<0.48+fade*0.22 || (t.r>0.88 && t.g<0.16)){discard;}
+ if(t.a<0.48 || (t.r>0.88 && t.g<0.16)){discard;}
  // Blades are alpha-cut cards, so their authored normal is the card's, not the
  // plant's. Bending it toward vertical before shading keeps a clump reading as a
  // soft rounded mass under the key instead of as a row of flat billboards, and
@@ -152,6 +162,7 @@ async function createFlowerMaterial(engine){
   attributes:['position','normal','uv','color','uv2'],
   uniforms:['viewProjection','world','cameraPosition','view',...SUN_SHADOW_UNIFORMS,...LOCAL_LIGHT_UNIFORMS,
    {name:'time',type:'f32',defaultValue:0},
+   {name:'foliageLod',type:'vec4<f32>',defaultValue:[28,.93,1,4]},
    {name:'playerPosition',type:'vec3<f32>',defaultValue:[0,0,0]},
    {name:'playerRadius',type:'f32',defaultValue:1.2},
    {name:'firePosition',type:'vec3<f32>',defaultValue:[0,0,0]},
@@ -303,6 +314,9 @@ const drift=(x,z)=>{
 function commitProto(engine,scene,batch,material){
  const mesh=batch.commit(engine,scene,material,[]);
  if(!mesh)return null;
+ // Lite can release CPU vertex arrays after upload. Retain only the small
+ // shared-card contract needed to verify the two grass LODs in a live build.
+ if(/^(Grass|Moor) /.test(mesh.name))mesh.foliageLayout={positions:batch.p.slice(0,36),normals:batch.n.slice(0,36),uvs:batch.u.slice(0,24),colors:batch.c.slice(0,48),detailAlpha:batch.c.slice(48).filter((_,i)=>i%4===3)};
  mesh.pickable=false;
  return mesh;
 }
@@ -311,17 +325,19 @@ function clumpCards(name,uvs,opt){
  const b=new Batch(name);
  const count=opt.cards,H=opt.height,W=opt.width,spread=opt.spread??0.12;
  for(let k=0;k<count;k++){
-  const a=opt.cross?k*Math.PI/2:(k/count)*Math.PI+ (k%2)*0.13;
+  const shared=opt.shared?grassCardLayout(k,H,W):null;
+  const a=shared?.angle??(opt.cross?k*Math.PI/2:(k/count)*Math.PI+ (k%2)*0.13);
   const uv=uvs[k%uvs.length];
-  const h=H*(opt.cross?1:0.78+(k%5)*0.05);
-  const w=W*(opt.cross?1.05:0.84+(k%3)*0.07);
-  const ox=Math.cos(a*2)*spread*(opt.cross?0:0.55);
-  const oz=Math.sin(a*2)*spread*(opt.cross?0:0.55);
+  const h=shared?.height??H*(opt.cross?1:0.78+(k%5)*0.05);
+  const w=shared?.width??W*(opt.cross?1.05:0.84+(k%3)*0.07);
+  const ox=shared?0:Math.cos(a*2)*spread*(opt.cross?0:0.55);
+  const oz=shared?0:Math.sin(a*2)*spread*(opt.cross?0:0.55);
+  const rootWeight=shared?.rootWeight??0,tipWeight=shared?.tipWeight??1;
   const ca=Math.cos(a),sa=Math.sin(a);
   b.quad(
    [-ca*w+ox,0,-sa*w+oz],[ca*w+ox,0,sa*w+oz],[ca*w+ox,h,sa*w+oz],[-ca*w+ox,h,-sa*w+oz],
    [[uv.u0,uv.v1],[uv.u1,uv.v1],[uv.u1,uv.v0],[uv.u0,uv.v0]],
-   [[1,1,1,0],[1,1,1,0],[1,1,1,1],[1,1,1,1]],
+   [[1,1,1,rootWeight],[1,1,1,rootWeight],[1,1,1,tipWeight],[1,1,1,tipWeight]],
    [0,1,0],
   );
  }
@@ -396,7 +412,7 @@ function place(density,lights,opt){
  };
 }
 
-const TILE=8, NEAR_R=15, FAR_R=28;
+const TILE=8, NEAR_R=NEAR_RADIUS, FAR_R=28;
 
 function bucketTiles(data){
  const map=new Map();
@@ -432,11 +448,13 @@ function makePool(near,far,tiles,maxNear,maxFar,farThin=0.72,farRadius=FAR_R,far
  setThinInstanceCount(far,0);
  enableThinInstanceDynamicDrawCount(near);
  enableThinInstanceDynamicDrawCount(far);
- return {near,far,tiles,nM,nC,fM,fC,maxNear,maxFar,farThin,farRadius,farFalloff,nearCount:0,farCount:0};
+ return {near,far,tiles,nM,nC,fM,fC,maxNear,maxFar,farThin,farRadius,farFalloff,nearCount:0,farCount:0,totalDropped:0};
 }
 
 function packPool(pool,cx,cz){
- const nearR2=NEAR_R*NEAR_R, farR2=pool.farRadius*pool.farRadius, tileR=(pool.farRadius+TILE)*(pool.farRadius+TILE);
+ pool.nearDropped=0;pool.farDropped=0;
+ const radius=pool.farRadius+REPACK_DISTANCE;
+ const nearR2=NEAR_R*NEAR_R, farR2=radius*radius, tileR=(radius+TILE)*(radius+TILE);
  let ni=0, fi=0;
  for(const tile of pool.tiles){
   const tdx=tile.cx-cx, tdz=tile.cz-cz;
@@ -446,18 +464,15 @@ function packPool(pool,cx,cz){
    const x=m[i*16+12], z=m[i*16+14];
    const d2=(x-cx)*(x-cx)+(z-cz)*(z-cz);
    if(d2>farR2)continue;
+   const end=removalRadius(plantHash(x,z),pool.farRadius,pool.farThin,pool.farFalloff);
+   if(d2>packingRadius(end)**2)continue;
    if(d2<nearR2){
-    if(ni>=pool.maxNear)continue;
+    if(ni>=pool.maxNear){pool.nearDropped++;pool.totalDropped++;continue;}
     pool.nM.set(m.subarray(i*16,i*16+16),ni*16);
     pool.nC.set(c.subarray(i*4,i*4+4),ni*4);
     ni++;
    }else{
-    const d=Math.sqrt(d2);
-    const fade=Math.max(0,(d-NEAR_R)/(pool.farRadius-NEAR_R));
-    const keep=1-Math.pow(fade,pool.farFalloff)*pool.farThin;
-    const h=Math.abs(Math.sin(x*12.9898+z*78.233)*43758.5453)%1;
-    if(h>keep)continue;
-    if(fi>=pool.maxFar)continue;
+    if(fi>=pool.maxFar){pool.farDropped++;pool.totalDropped++;continue;}
     pool.fM.set(m.subarray(i*16,i*16+16),fi*16);
     pool.fC.set(c.subarray(i*4,i*4+4),fi*4);
     fi++;
@@ -472,11 +487,13 @@ function packPool(pool,cx,cz){
 }
 
 export async function createFoliage(engine,scene,{lights=[],density=()=>0,landmarks=[]}={}){
- const material=await createFoliageMaterial(engine);
- const grassNear=commitProto(engine,scene,clumpCards('Grass near',[UV.meadow,UV.meadow,UV.dry],{cards:3,height:0.74,width:0.26,spread:0.12}),material);
- const grassFar=commitProto(engine,scene,clumpCards('Grass far',[UV.meadow,UV.dry],{cards:2,height:0.84,width:0.36,spread:0,cross:true}),material);
- const moorNear=commitProto(engine,scene,clumpCards('Moor near',[UV.meadow,UV.dry],{cards:3,height:1.0,width:0.42,spread:0.14}),material);
- const moorFar=commitProto(engine,scene,clumpCards('Moor far',[UV.meadow,UV.dry],{cards:2,height:1.3,width:0.68,spread:0,cross:true}),material);
+ const atlas=await loadTexture2D(engine,ATLAS,{invertY:false,srgb:false,mipMaps:true,minFilter:'linear',magFilter:'linear'});
+ const material=await createFoliageMaterial(engine,atlas);
+ const moorMaterial=await createFoliageMaterial(engine,atlas,[185,.85,.9,4]);
+ const grassNear=commitProto(engine,scene,clumpCards('Grass near',[UV.meadow,UV.dry,UV.meadow],{cards:3,height:0.74,width:0.26,shared:true}),material);
+ const grassFar=commitProto(engine,scene,clumpCards('Grass far',[UV.meadow,UV.dry],{cards:2,height:0.74,width:0.26,shared:true}),material);
+ const moorNear=commitProto(engine,scene,clumpCards('Moor near',[UV.meadow,UV.dry,UV.meadow],{cards:3,height:1.0,width:0.42,shared:true}),moorMaterial);
+ const moorFar=commitProto(engine,scene,clumpCards('Moor far',[UV.meadow,UV.dry],{cards:2,height:1.0,width:0.42,shared:true}),moorMaterial);
  const plantNear=commitProto(engine,scene,clumpCards('Plant near',[UV.plant],{cards:3,height:0.55,width:0.36,spread:0.10}),material);
  const plantFar=commitProto(engine,scene,clumpCards('Plant far',[UV.plant],{cards:2,height:0.60,width:0.42,spread:0,cross:true}),material);
  const brackenNear=commitProto(engine,scene,brackenTuft('Bracken near',UV.fern,false),material);
@@ -587,6 +604,7 @@ export async function createFoliage(engine,scene,{lights=[],density=()=>0,landma
  let packedX=0, packedZ=0;
  return {
   meshes,material,pools,
+  async probe(roots){const {probeFoliageLod}=await import('./foliage-lod-probe.js');return probeFoliageLod(engine,roots);},
   stats:{
    grass:grass.count,moor:moor.count,plants:plants.count,bracken:bracken.count,
    umbels:umbels.count,spikes:spikes.count,
@@ -598,15 +616,14 @@ export async function createFoliage(engine,scene,{lights=[],density=()=>0,landma
   update(t,playerPos){
    // Both materials, every frame. They share CARD_VERTEX, so a missed uniform here
    // would leave the flowers standing rigid in grass that is bending.
-   setShaderUniform(material,'time',t);
-   setShaderUniform(flowerMaterial,'time',t);
+   for(const m of [material,moorMaterial,flowerMaterial])setShaderUniform(m,'time',t);
    if(!playerPos)return;
-   for(const m of [material,flowerMaterial]){
+   for(const m of [material,moorMaterial,flowerMaterial]){
     setShaderUniform(m,'playerPosition',[playerPos.x,playerPos.y,playerPos.z]);
     setShaderUniform(m,'playerRadius',1.55);
    }
    const x=playerPos.x, z=playerPos.z;
-   if((x-packedX)*(x-packedX)+(z-packedZ)*(z-packedZ)<4)return;
+   if((x-packedX)*(x-packedX)+(z-packedZ)*(z-packedZ)<REPACK_DISTANCE**2)return;
    packedX=x; packedZ=z;
    for(const pool of pools)packPool(pool,x,z);
    const s=this.stats;

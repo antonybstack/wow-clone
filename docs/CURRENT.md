@@ -1,5 +1,11 @@
 # Current direction — Ashen Reach
 
+## V18 implemented — third milestone release verification in progress
+
+[Vegetation stability plan and retrospective](v18-vegetation-stability-plan.md): matched near/far grass cards, rooted distance taper with a streaming margin, shared CPU/GPU hash policy, and reduced distant flutter. 113 unit tests and build pass. Final live test covers 64 GPU policy samples (including actual packed roots), 28.00 metres movement, matching shared geometry, zero cumulative pool drops and portrait resize with no runtime/GPU errors. Mobile depth fallback, desktop WebKit, town shadow and HDR checks pass. Reviewed [live MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/v18/2026-09-24-meadow-stability.mp4), Telegram **756**.
+
+Separate uncapped M1 Max / Chromium 153 WebGPU, 1280×720, seven enemies, full ten seconds: **247.93 FPS**, p95 **7.3 ms**, p99 **74.4 ms**, worst **85.1 ms**. The added streaming margin has a measurable cost; the average remains above 120 FPS and long frames remain unresolved. Commit/push/deploy and production verification are the remaining steps in the three-milestone goal.
+
 ## V17 released — two of three milestones complete
 
 Game commit **`b3183c8`**, Pages **`a35f2e7e`**, https://play.sparkify.dev. Production bundle, texture and Havok WASM match the build. Production tests pass: 58 actor/restoration samples, 57 fog samples, 1,824 bound evaluations and 1,824 cache hits, 11.31 units traversal; injected mobile fallback 26.55 units and WebKit 16.24 units, without runtime/GPU errors. Reviewed video delivered as Telegram **755**. V18 is now the remaining authorized milestone.

@@ -1,5 +1,15 @@
 # Graphics milestones
 
+## V16–V18 update
+
+The user authorized three sequential milestones. V16 material depth/specular and V17 measured CPU-work reduction are deployed and verified. V18 vegetation stability passes local tests and is being released. [CURRENT.md](CURRENT.md) is authoritative for release status.
+
+- [V16](v16-material-depth-plan.md): stone normal/roughness detail and shadowed native/custom lantern highlights. Wet surfaces and broader reflections remain future work.
+- [V17](v17-frame-pacing-plan.md): observed HUD dimensions, shared posed bounds, full-window frame measurements. Long frames remain; investigate actual GPU queue/pipeline stalls before claiming smooth frame pacing.
+- [V18](v18-vegetation-stability-plan.md): matching grass LOD shapes, smooth rooted removal and reduced distant flutter. Other plant prototype transitions, broader foliage shadowing and antialiasing remain future work.
+
+After this authorized sequence, the strongest next investigation is frame-tail attribution and pipeline reuse with device/animation validation. Weather, cloud shadows and changing daylight remain larger design milestones. These are recommendations, not authorization to start another milestone.
+
 Updated 2026-09-24. Current production baseline is V15, committed as `2dc981b` and deployed to https://play.sparkify.dev through Pages `31f85684`. Production rendering, movement, physics and mobile depth fallback checks pass. User confirmed the production game works on their phone after this release. This confirms reported usability; no on-device frame-time measurement was supplied. This roadmap describes future work, not an automatic task queue.
 
 ## 1. A fully shadowed street — deployed
