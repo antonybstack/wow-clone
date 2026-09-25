@@ -1,3 +1,4 @@
+import {buildCathedralFoundation,buildCathedralExploration} from './cathedral-exploration.js';
 import {Batch} from './geometry.js';
 import {masonryBox} from './buildings.js';
 
@@ -139,19 +140,8 @@ export function buildGothicCathedral({stone,roof,glow,rock,groundHeight,collider
     }
   }
 
-  // One flat deck: courtyard, nave and tower floors share a flush threshold.
-  wall([0,floorY-1,317.5],[76,2,95],STONE);
-  for(const side of [-1,1]){
-    for(let z=275;z<=355;z+=10){
-      const bottom=Math.min(floorY-3,groundHeight(side*37,z)-1);
-      wall([side*37,(bottom+floorY-1)/2,z],[2,floorY-1-bottom,10],ROCK,rock);
-    }
-    wall([side*37.35,floorY+.7,317.5],[1.3,1.4,95],SHADE);
-    for(let z=275;z<=365;z+=10)box(stone,[side*37.35,floorY+1.1,z],[2,2.2,2],TRIM);
-    // Front terrace parapet leaves the eight-metre bridge throat open.
-    wall([side*21.35,floorY+.7,270.4],[33.3,1.4,.8],SHADE);
-  }
-  wall([0,floorY+.7,364.5],[76,1.4,1],SHADE);
+  const helpers={stone,roof,glow,rock,collisionBatch,floorY,groundHeight,solid,wall,beam,box,prism,arch,faceMap};
+  const foundation=buildCathedralFoundation(helpers);
   // Two paving borders lead to the portal without raised obstacles on the centerline.
   for(const side of [-1,1])box(stone,[side*4.5,floorY+.018,287],[.3,.036,32],TRIM);
 
@@ -159,32 +149,47 @@ export function buildGothicCathedral({stone,roof,glow,rock,groundHeight,collider
   const windowCenters=[309,317,325,333,341,349];
   for(const side of [-1,1]){
     const x=side*12;
-    wall([x,floorY+4.25,329],[1.3,8.5,50]);
+    // Ground-level side-chapel doorway, clear from z=326 to z=330.
+    wall([x,floorY+4.25,315],[1.3,8.5,22]);
+    wall([x,floorY+4.25,342],[1.3,8.5,24]);
+    wall([x,floorY+6.75,328],[1.3,3.5,4]);
+    for(const batch of [stone,collisionBatch])arch(batch,2,3,5,.3,1.4,(u,y,d)=>[x+d,floorY+y,328+u],TRIM);
     wall([x,floorY+23.35,329],[1.3,1.3,50]);
     let cursor=304;
     for(const z of windowCenters){
       const left=z-2.3,right=z+2.3;
-      if(left>cursor)wall([x,floorY+15.6,(cursor+left)/2],[1.3,14.2,left-cursor]);
+      const chapelWindow=z>=325&&z<=341;
+      if(chapelWindow)wall([x,floorY+11.05,z],[1.3,5.1,4.6],STONE);
+      if(left>cursor){
+        if(z===349){
+          wall([x,floorY+17.35,(cursor+left)/2],[1.3,10.7,left-cursor]);
+          wall([x,floorY+10.25,(cursor+345.5)/2],[1.3,3.5,345.5-cursor]);
+        }else wall([x,floorY+15.6,(cursor+left)/2],[1.3,14.2,left-cursor]);
+      }
       const map=(u,y,d)=>[x+d,floorY+y,z+u];
       spandrel(stone,2.3,18.5,22.7,22.7,1.3,map);
       spandrel(collisionBatch,2.3,18.5,22.7,22.7,1.3,map);
       for(const inset of [-.83,.83]){
         const frame=(u,y,d)=>map(u,y,d+inset);
         arch(stone,2.3,18.5,22.7,.28,.28,frame,TRIM);
-        for(const u of [-2.45,2.45])box(stone,map(u,13.5,inset),[.3,10,.3],TRIM);
+        for(const u of [-2.45,2.45])box(stone,map(u,chapelWindow?16.05:z===349?15.25:13.5,inset),[.3,chapelWindow?4.9:z===349?6.5:10,.3],TRIM);
       }
       for(const u of [-.78,.78]){
-        beam(stone,map(u,8.5,0),map(u,18.6,0),.18);
+        beam(stone,map(u,chapelWindow?13.6:z===349?12:8.5,0),map(u,18.6,0),.18);
         arch(stone,.71,17.1,19.1,.13,.2,(v,y,d)=>map(v+u,y,d),TRIM);
       }
       beam(stone,map(-2.3,14,0),map(2.3,14,0),.18);
       // Thin colored accents within tracery; the aperture itself remains open.
-      for(const u of [-1.6,0,1.6])beam(glow,map(u,10,.02),map(u,13.6,.02),.075,AMBER);
+      if(!chapelWindow)for(const u of [-1.6,0,1.6])beam(glow,map(u,z===349?12:10,.02),map(u,13.6,.02),.075,AMBER);
       cursor=right;
     }
     if(cursor<354)wall([x,floorY+15.6,(cursor+354)/2],[1.3,14.2,354-cursor]);
-    for(const y of [2.3,8.3,23.7])box(stone,[x,floorY+y,329],[1.75,.35,51],TRIM);
-    for(let z=305;z<=353;z+=8){
+    for(const y of [2.3,8.3,23.7]){
+      if(y===2.3){box(stone,[x,floorY+y,314.25],[1.75,.35,21.5],TRIM);box(stone,[x,floorY+y,342.75],[1.75,.35,23.5],TRIM);}
+      else box(stone,[x,floorY+y,329],[1.75,.35,51],TRIM);
+    }
+    for(let z=313;z<=353;z+=8){
+      if(z>=321&&z<=345)continue;
       wall([side*14.8,floorY+6,z],[2.3,12,2],SHADE);
       box(stone,[side*14.8,floorY+12.25,z],[2.7,.5,2.4],TRIM);
       beam(stone,[side*14.8,floorY+11.7,z],[side*12,floorY+19.5,z],.8);
@@ -197,7 +202,7 @@ export function buildGothicCathedral({stone,roof,glow,rock,groundHeight,collider
   for(const side of [-1,1])wall([side*8,floorY+12,304],[8,24,1.8]);
   spandrel(stone,4,4,8,24,1.8,faceMap(0,304));
   spandrel(collisionBatch,4,4,8,24,1.8,faceMap(0,304));
-  for(let ring=0;ring<3;ring++){
+  for(let ring=0;ring<5;ring++){
     const w=4+ring*.45,z=302.8-ring*.36;
     arch(stone,w,4,8+ring*.45,.32,.5,faceMap(0,z),ring===1?SHADE:TRIM);
     for(const side of [-1,1])box(stone,[side*(w+.16),floorY+2,z],[.32,4,.5],TRIM);
@@ -307,7 +312,9 @@ export function buildGothicCathedral({stone,roof,glow,rock,groundHeight,collider
       for(const dx of [-2.5,2.5])arch(stone,.65,y,y+2.8,.16,.22,faceMap(x+dx,z-5.73),SHADE);
     }
   }
+  const exploration=buildCathedralExploration(helpers);
   return {
+    foundation,exploration,
     floorY,entry:[0,floorY,304],altar:[0,floorY,345],collisionBatch,
     route:{start:[0,startY,145],end:[0,floorY,270],width:8,heightAt,
       waypoints:[[0,startY,145],[0,heightAt(210),210],[0,floorY,270],[0,floorY,298],[0,floorY,310],[0,floorY,345]]},

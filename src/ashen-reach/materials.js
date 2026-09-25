@@ -15,7 +15,7 @@ export function paintLitUniform(material, name, value) {
   if (!material?._uniformValues?.has(name)) return;
   setShaderUniform(material, name, value);
 }
-export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false,wind=false,emission=0,skyFill=0,pixels=128,uvScale=1,ground=false,nightGrade=false,detail=false}={}){
+export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false,wind=false,emission=0,skyFill=0,pixels=128,uvScale=1,ground=false,nightGrade=false,detail=false,saturation=1}={}){
  const tex=await loadTexture2D(engine,url,{invertY:false,srgb:false,mipMaps:true,minFilter:'nearest',magFilter:'nearest'});
  const mat=createShaderMaterial({name,attributes:['position','normal','uv','color','uv2'],uniforms:['worldViewProjection','world','cameraPosition','view',...SUN_SHADOW_UNIFORMS,...LOCAL_LIGHT_UNIFORMS,{name:'localSpecularStrength',type:'f32',defaultValue:1},{name:'surfaceDetailStrength',type:'f32',defaultValue:1},{name:'time',type:'f32',defaultValue:0},{name:'firePosition',type:'vec3<f32>',defaultValue:[0,0,0]},{name:'fireStrength',type:'f32',defaultValue:0},{name:'handFirePosition',type:'vec3<f32>',defaultValue:[0,0,0]},{name:'handFireStrength',type:'f32',defaultValue:0},{name:'lavaPosition',type:'vec3<f32>',defaultValue:[0,0,0]},{name:'lavaStrength',type:'f32',defaultValue:0}],samplers:[...SUN_SHADOW_SAMPLERS,...LOCAL_LIGHT_SAMPLERS,...(detail?['stoneDetail']:[]),...(ground?['albedo','paving']:['albedo'])],backFaceCulling:false,needAlphaTesting:alpha,
  vertexSource:`${OUT}
@@ -65,7 +65,8 @@ export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false
  materialN=stoneNormal(i.p,detailUV,geometricN,packedDetail.rgb,detailFade*detailMask*.45);
  materialRoughness=mix(.92,clamp(packedDetail.a*.60+.28,.45,.94),detailMask*detailFade);`:''}
  let light=shade(materialN,i.p,shaderSystem.cameraPosition,${light},sunVisibility(i.p,normalize(i.normal+vec3<f32>(.00001))))+outerLandFill+vec3<f32>(.80,.86,1.0)*${skyFill}+lampColor*lampEff+localIrradiance(i.p,materialN)+vec3<f32>(1.0,.28,.045)*(fire+handFire+lava);
- var c=srgbToLinear(t.rgb)*i.color.rgb*vec3<f32>(${tint.join(',')})*(light+${emission});
+ let albedo=srgbToLinear(t.rgb);
+ var c=${saturation===1?'albedo':`mix(vec3<f32>(dot(albedo,vec3<f32>(.2126,.7152,.0722))),albedo,${saturation})`}*i.color.rgb*vec3<f32>(${tint.join(',')})*(light+${emission});
  c+=localSpecular(i.p,materialN,normalize(shaderSystem.cameraPosition-i.p+vec3<f32>(.00001)),materialRoughness,vec3<f32>(.04))*shaderUniforms.localSpecularStrength*${emission>0?'0.0':'1.0'};
  ${nightGrade?'let ng=smoothstep(40.0,55.0,i.p.z);c=mix(c,c*vec3<f32>(.92,.86,.95),ng);':''}
  c=aerial(c,i.p,shaderSystem.cameraPosition);

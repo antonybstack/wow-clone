@@ -42,8 +42,8 @@ test('metadata matches the authored site and all material work stays within budg
   assert.equal(cathedral.route.width,8);
   assert.equal(cathedral.route.heightAt(270),cathedral.floorY);
   assert.equal(cathedral.route.heightAt(345),cathedral.floorY);
-  assert(cathedral.triangles>10000&&cathedral.triangles<40000);
-  assert(cathedral.collisionTriangles>0&&cathedral.collisionTriangles<10000);
+  assert(cathedral.triangles>10000&&cathedral.triangles<60000);
+  assert(cathedral.collisionTriangles>0&&cathedral.collisionTriangles<15000);
   let highest=-Infinity;
   for(let i=1;i<batches.roof.p.length;i+=3)highest=Math.max(highest,batches.roof.p[i]);
   assert.equal(highest,cathedral.floorY+56);
@@ -116,4 +116,33 @@ test('altar window is genuinely open with solid sill, pointed head and recessed 
   assert(through(.7,10.5),'stone transom');
   assert(through(0,20.65),'upper rose tracery');
   for(let i=2;i<batches.glow.p.length;i+=3)assert(batches.glow.p[i]<352,'apse uses stone and daylight, no added emissive geometry');
+});
+
+test('chapels, gallery and tower stairs have floor support and 1.9 m headroom',()=>{
+ const paths=cathedral.exploration.towers.map(t=>t.route.concat([t.landing]));
+ for(const chapel of cathedral.exploration.chapels)paths.push([chapel.interior,...chapel.stairs,chapel.gallery], [chapel.stairs.at(-1),chapel.parapet]);
+ paths.push(cathedral.exploration.gallery,cathedral.exploration.parapet);
+ for(const [index,path] of paths.entries())for(let i=1;i<path.length;i++){
+  const a=path[i-1],b=path[i],length=Math.hypot(b[0]-a[0],b[2]-a[2]),steps=Math.ceil(length/.7);
+  for(let j=0;j<=steps;j++){
+   const p=a.map((v,k)=>v+(b[k]-v)*j/steps),from=[p[0],p[1]+.65,p[2]],to=[p[0],p[1]-.65,p[2]],floor=hit(from,to);
+   assert(floor&&floor.normal[1]>0,`path ${index}/${i}/${j}: floor at ${p}`);
+   const y=from[1]+(to[1]-from[1])*floor.fraction;
+   assert.equal(hit([p[0],y+.08,p[2]],[p[0],y+1.9,p[2]]),null,`path ${index}/${i}/${j}: headroom at ${p}`);
+  }
+ }
+});
+test('both chapel doors and upper gallery exits have capsule-width clearance',()=>{
+ for(const side of [-1,1])for(const offset of [-.38,0,.38])for(const h of [.3,1.8]){
+  assert.equal(hit([side*10.7,cathedral.floorY+h,328+offset],[side*13.3,cathedral.floorY+h,328+offset]),null,'chapel doorway');
+  assert.equal(hit([side*10.7,cathedral.floorY+8.5+h,347+offset],[side*13.3,cathedral.floorY+8.5+h,347+offset]),null,'gallery opening');
+ }
+});
+
+test('gallery and parapet rails leave their turning junctions open',()=>{
+ const e=cathedral.exploration,paths=[e.gallery,e.parapet];
+ for(const q of e.chapels)paths.push([q.stairs.at(-1),q.gallery], [q.stairs.at(-1),q.parapet]);
+ for(const path of paths)for(let i=1;i<path.length;i++)for(const h of [.7,1.7]){
+  const a=path[i-1],b=path[i];assert.equal(hit([a[0],a[1]+h,a[2]],[b[0],b[1]+h,b[2]]),null,`rail crosses route ${a} to ${b}`);
+ }
 });

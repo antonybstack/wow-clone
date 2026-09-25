@@ -1,6 +1,17 @@
 # Current direction — Ashen Reach
 
 
+## V26 Vaelmark vertical exploration verified — 2026-09-25
+
+Vaelmark has an irregular cliff foundation with masonry supports, two enterable side chapels, a connected gallery, stairs to both bell towers and a guarded exterior parapet circuit. Visible treads use smooth Havok ramps. Deeper portal rings, chapel roofs, bronze bells, stone trim and restrained furnishings follow the supplied Gothic direction. Daylight openings sit above chapel roofs; localized chapel lamps retain the two-light shadow budget. The camera arm now shortens against the physical terrain.
+
+Both complete bell ascents/descents, both chapel entries/returns, and the connected gallery/parapet circuit pass with normal keyboard controls, Havok and no recovery teleports. Four guard tests, 26 unit tests, woodland detail/shadow-cache/disposal, mobile depth fallback/touch and desktop WebKit pass without runtime/GPU errors. Reviewed [26.030-second live MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/v26/2026-09-25-cathedral.mp4), 1280×720 square pixels. Its opening architectural view explicitly labels a raised camera; subsequent route excerpts use normal gameplay framing. VE video/mp4, seeking and direct WebKit playback pass. Telegram **765** returned matching 1280×720 dimensions and duration.
+
+Separate M1 Max, uncapped Chromium 153 WebGPU, 1280×720, seven enemies, three 12-second runs without recording: town/bridge/cathedral/forest mean FPS **177.04 / 219.00 / 225.65 / 191.63**. Worst p99 **12.3 / 10.5 / 10.0 / 11.6 ms**; worst frames **12.8 / 35.4 / 10.9 / 13.9 ms**. Four frames exceeded 16.67 ms, all on the bridge. Every run exceeds 120 FPS, with no movement recoveries. V25 means were 180.49 / 211.65 / 208.34 / 196.16 FPS; the final scene trades a small town/forest cost for improved bridge/cathedral throughput in this sample.
+
+Evidence: `ve-capture/ashen-reach/v26/`. Production release verification is pending. Physical iPhone acceptance remains unmeasured. Architecture and far terrain are simplified original interpretations of the references. Tight stair turns can briefly occlude the camera against masonry; terrain avoidance is implemented, full wall camera avoidance is not. Older decorative towers and unrelated town houses remain scenery. The requested release, recording correction, V24, V25 and V26 implementation sequence is complete locally; terrain streaming, additional regions, combat and character redesign remain excluded.
+
+
 ## V25 connected region verified — 2026-09-25
 
 Three mountain profiles are now physical terrain with shared visible/collision geometry. Seven continuous routes reach the three side keeps, three landmark towers and Hollowmere chapel, with real gates, courtyards, halls and return paths. Roads are 5.5 m wide with rounded turns and at most 19.5-degree sampled centerline grades. The finite footprint ends in a continuous visible cliff with matching collision; coordinate clamps remain disabled. Registry entrances and waypoints drive minimap markers and traversal checks, including Vaelmark's retained bridge route.

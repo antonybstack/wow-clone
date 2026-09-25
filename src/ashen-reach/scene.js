@@ -539,7 +539,7 @@ export async function buildChurchyard(engine,scene){
  const horizonMaterials=await Promise.all([
   surface(engine,'Vaelmark weathered stone','/tex/rock_wall_08/diff.jpg',{tint:[.72,.73,.76],light:.62,skyFill:.40,pixels:256,uvScale:.20}),
   surface(engine,'Horizon slate','/ashen-reach/horizon-rock.jpg',{tint:[.37,.45,.54],light:.66,skyFill:.16,pixels:128}),
-  surface(engine,'Sunlit distant ridges','/ashen-reach/horizon-rock.jpg',{tint:[1.05,.89,.96],light:.82,skyFill:.48,emission:.16,pixels:128}),
+  surface(engine,'Sunlit distant ridges','/ashen-reach/horizon-rock.jpg',{tint:[.68,.67,.80],saturation:.15,light:.82,skyFill:.48,emission:.12,pixels:128}),
  ]);
  const regionStructures=buildRegionStructures({stone:citadelStone,roof:regionRoofs,rock:horizonRock,glow:warm,groundHeight:height,landmarks:REGION_LANDMARKS});
  const surfaceHeight=(x,z)=>sampleTerrainSurface(x,z,height);
@@ -548,10 +548,11 @@ export async function buildChurchyard(engine,scene){
  B.push(citadelStone,horizonRock,regionRoofs);mats.push(horizonMaterials[0],horizonMaterials[1],horizonMaterials[1]);
  const cathedralStone=new Batch('Vaelmark cathedral'),cathedralRoof=new Batch('Vaelmark roof'),cathedralRock=new Batch('Vaelmark foundation');
  const cathedral=buildGothicCathedral({stone:cathedralStone,roof:cathedralRoof,glow:warm,rock:cathedralRock,groundHeight:height,colliders});
+ for(const lamp of cathedral.exploration.lamps){localLights.push(lamp);lights.push({position:lamp.position,strength:1.4,falloff:.45,radius:10,shadowed:true});}
  const cathedralSite=REGION_LANDMARKS.find(site=>site.id==='vaelmark');
  cathedralSite.entrance=cathedral.entry;cathedralSite.route=cathedral.route.waypoints;
  B.push(cathedralStone,cathedralRoof,cathedralRock);
- mats.push(await surface(engine,'Vaelmark limestone','/tex/rock_wall_08/diff.jpg',{tint:[.85,.92,1.04],light:.82,skyFill:.35,pixels:512,uvScale:.20,detail:true}),horizonMaterials[1],horizonMaterials[1]);
+ mats.push(await surface(engine,'Vaelmark limestone','/tex/rock_wall_08/diff.jpg',{tint:[.85,.92,1.04],light:.82,skyFill:.35,pixels:512,uvScale:.20,detail:true}),horizonMaterials[1],await surface(engine,'Vaelmark exposed cliff','/ashen-reach/horizon-rock.jpg',{tint:[.70,.76,.87],saturation:.15,light:.72,skyFill:.40,pixels:256,uvScale:.6}));
 
  function foliageDensity(x,z){
   if((nearestRegionRoute(x,z)?.distance??Infinity)<3.5||regionSiteDistance(x,z)<2)return 0;

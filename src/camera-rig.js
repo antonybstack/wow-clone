@@ -31,6 +31,20 @@ export function alphaFromYaw(yaw) {
     return Math.atan2(-Math.cos(yaw), -Math.sin(yaw));
 }
 
+/** Shorten the viewing arm where its sightline crosses the physical heightfield. */
+export function terrainArmDistance(target,yaw,pitch,distance,groundHeight){
+    if(typeof groundHeight!=="function")return distance;
+    const horizontal=Math.cos(pitch),dx=-Math.sin(yaw)*horizontal,dz=-Math.cos(yaw)*horizontal,dy=Math.sin(pitch);
+    const clear=d=>target.y+dy*d>=groundHeight(target.x+dx*d,target.z+dz*d)+.22;
+    let previous=0;
+    for(let i=1;i<=8;i++){
+        const next=distance*i/8;
+        if(!clear(next)){let low=previous,high=next;for(let j=0;j<7;j++){const middle=(low+high)/2;if(clear(middle))low=middle;else high=middle;}return Math.max(.05,low);}
+        previous=next;
+    }
+    return distance;
+}
+
 export class CameraRig {
     /**
      * @param {import("@babylonjs/lite").ArcRotateCamera} camera
@@ -52,6 +66,8 @@ export class CameraRig {
         this.pivotHeight = PIVOT_HEIGHT;
         this.trauma = 0;
     }
+
+    setGroundHeight(sample) { this.groundHeight=sample; }
 
     /** Add decaying view punch. Amount is metres of pivot travel. */
     impulse(amount) {
@@ -102,6 +118,6 @@ export class CameraRig {
         camera.target.z = feet.z + oz;
         camera.alpha = alphaFromYaw(this.yaw);
         camera.beta = clamp(Math.PI / 2 - this.pitch, 0.35, 2.29);
-        camera.radius = this.distance;
+        camera.radius = terrainArmDistance(camera.target,this.yaw,this.pitch,this.distance,this.groundHeight);
     }
 }
