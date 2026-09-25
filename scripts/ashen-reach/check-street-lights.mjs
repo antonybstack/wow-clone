@@ -11,6 +11,7 @@ p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(m.type()==='er
 await p.addInitScript(()=>{window.__gpuErrors=[];const f=GPUAdapter.prototype.requestDevice;GPUAdapter.prototype.requestDevice=async function(...a){const d=await f.apply(this,a);d.addEventListener('uncapturederror',e=>__gpuErrors.push(e.error.message));return d;};});
 const wait=()=>p.waitForTimeout(800);
 const state=()=>p.evaluate(()=>structuredClone(ASHEN.localLights.state));
+const animationState=()=>p.evaluate(()=>({...structuredClone(ASHEN.localLights.state),boundsStats:{...ASHEN.localLights.boundsStats}}));
 const place=async(x,z)=>{await p.evaluate(({x,z})=>{const a=ASHEN;a.player.setWorldPos(x,a.world.groundHeight(x,z)+1.7,z);a.player.setFacing(0);a.rig.yaw=0;a.rig.pitch=.16;a.rig.distance=a.rig.distanceTarget=4.5;},{x,z});await wait();await p.waitForFunction(()=>ASHEN.localLights.state.active.every(s=>s.id&&s.weight===1));};
 const capture=async name=>{const png=await p.screenshot({path:`${dir}/${name}.png`});const s=await sharp(png).stats();assert(s.channels.slice(0,3).some(c=>c.mean>15),'World must visibly render');};
 try{
@@ -33,7 +34,12 @@ try{
  const probe=()=>p.evaluate(points=>ASHEN.localLights.probe(points),points);
  const baseline=await probe();await p.evaluate(()=>ASHEN.localLights.state.characters=true);await wait();const actor=await probe();const active=await state();const slot=active.active.findIndex(s=>s.id==='street-94');assert(slot>=0);
  report.actorSamples=actor.filter((s,i)=>baseline[i].visibility[slot]-s.visibility[slot]>.4).length;assert(report.actorSamples>5,'Arriving actor must invalidate the cached map');
- const running=await state();await wait();const animated=await state();assert(animated.mapRenders>running.mapRenders,'Stationary animated actors must keep refreshing');
+ const running=await animationState();await wait();const animated=await animationState();assert(animated.mapRenders>running.mapRenders,'Stationary animated actors must keep refreshing');
+ for(const snapshot of [running,animated])for(const key of ['evaluations','hits'])assert(Number.isSafeInteger(snapshot.boundsStats[key])&&snapshot.boundsStats[key]>=0,`Integrated bounds cache must expose cumulative ${key}`);
+ report.animatedBoundsCache={evaluations:animated.boundsStats.evaluations-running.boundsStats.evaluations,hits:animated.boundsStats.hits-running.boundsStats.hits};
+ assert(report.animatedBoundsCache.evaluations>0,'Animated actors must receive fresh bounds evaluations across frames');
+ assert(report.animatedBoundsCache.hits>0,'Both lamp slots must use the shared bounds cache');
+ assert(report.animatedBoundsCache.hits>=report.animatedBoundsCache.evaluations*.9,'Two lamp queries should reuse at least approximately one bounds result per evaluation');
  await p.evaluate(()=>ASHEN.localLights.state.characters=false);await wait();const restored=await probe();report.restoredSamples=restored.filter((s,i)=>s.visibility[slot]-actor[i].visibility[slot]>.4).length;assert(report.restoredSamples>5,'Departed actors must not leave ghost shadows');
  // Fixture reassignment must invalidate a fully cached static map.
  const beforeTravel=await state();await place(0,126);const afterTravel=await state();assert(afterTravel.mapRenders>beforeTravel.mapRenders);assert.deepEqual(new Set(afterTravel.active.map(s=>s.id)),new Set(['street-124','street-134']));

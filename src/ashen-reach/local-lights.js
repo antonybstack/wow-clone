@@ -2,11 +2,12 @@
 import {createSpotLight,createPcfSpotlightShadowGenerator,enableSkeletonShadows,addTask,onSceneDispose,setShaderTexture,setShaderUniform,acquireTexture,releaseTexture} from '@babylonjs/lite';
 import {LOCAL_LIGHT_UNIFORMS,LOCAL_MAP_SIZE,desiredLocalLights,advanceLocalSlots} from './local-light-shared.js';
 import {configureLocalLightMaterials} from './local-light-materials.js';
-import {canAffectLocalLight} from './local-light-bounds.js';
+import {createLocalLightBoundsCache} from './local-light-bounds.js';
 const controllers=new WeakMap();
 export function bindLocalReceiver(engine,material){controllers.get(engine)?.addReceiver(material);return material;}
 
 export function createLocalLights(engine,scene,shadows){
+ const bounds=createLocalLightBoundsCache();
  const values=Object.fromEntries(LOCAL_LIGHT_UNIFORMS.map(u=>[u.name,new Float32Array(u.type.startsWith('mat')?16:4)]));
  const state={enabled:true,shadows:true,characters:true,specular:true,details:true,mapSize:LOCAL_MAP_SIZE,budget:2,candidates:0,active:[],draws:0,version:0,cacheHits:0,mapRenders:0};
  const receivers=new Set();let candidates=[],casters=[],requested=[],disposed=false,revision=0,preload=Promise.resolve(),preloadError=null;
@@ -36,7 +37,7 @@ export function createLocalLights(engine,scene,shadows){
  }
  function slotCasters(s){
   const staticSet=new Set(shadows.casters),p=s.light?.position??[0,3,44];
-  const nearby=casters.filter(m=>!staticSet.has(m)&&m.visible!==false&&canAffectLocalLight(m,p,s.nearby.includes(m)?9:8));
+  const nearby=casters.filter(m=>!staticSet.has(m)&&m.visible!==false&&bounds.canAffect(m,p,s.nearby.includes(m)?9:8));
   const next=[...casters.filter(m=>staticSet.has(m)&&m.visible!==false),...nearby];
   if(!next.length)throw Error('Local shadows require an explicit caster list');
   s.nearby=nearby;
@@ -46,12 +47,14 @@ export function createLocalLights(engine,scene,shadows){
   s.generator._config._forceRefreshEveryFrame=nearby.some(m=>m.skeleton||m.morphTargets||m.morphTargetManager);
   return s.casters;
  }
- const controller={slots,values,state,
+ const controller={slots,values,state,boundsStats:bounds.stats,
   setWorld(world){candidates=world.localLights;state.candidates=candidates.length;controller.update(1,{x:0,z:0});},
   addReceiver(mat){receivers.add(mat);for(const s of slots)setShaderTexture(mat,`localShadow${s.index}`,s.texture);for(const [name,value] of Object.entries(values))setShaderUniform(mat,name,value);},
   update(dt,position){
    if(disposed)return;
    if(preloadError)throw preloadError;
+   // main.js calls this after body, combat and equipment animation updates.
+   bounds.beginFrame();
    advanceLocalSlots(slots,desiredLocalLights(candidates,slots,position??{x:0,z:0}),dt);
    for(const s of slots){if(!s.light)continue;const p=s.light.position;s.spot.position.x=p[0];s.spot.position.y=p[1];s.spot.position.z=p[2];}
    // Keep the identity stable while membership is unchanged so Lite reuses tasks.

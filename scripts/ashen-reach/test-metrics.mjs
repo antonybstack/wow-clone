@@ -16,6 +16,15 @@ function mesh({ indexCount = 0, visible, parent, instances } = {}) {
   };
 }
 
+test('full-window summaries preserve early stalls beyond the HUD 600-frame history', () => {
+  const frames = [100, ...Array(2999).fill(3)];
+  const summary = summarizeDurations(frames);
+  assert.equal(summary.samples,3000);
+  assert.equal(summary.worstMs,100);
+  assert.equal(summary.above16_667,1);
+  assert.equal(summary.meanMs,9097/3000);
+});
+
 test("meshTriangleCount uses GPU indexCount and thin-instance multiplier", () => {
   assert.equal(meshTriangleCount(mesh()), 0);
   assert.equal(meshTriangleCount(mesh({ indexCount: 9 })), 3);

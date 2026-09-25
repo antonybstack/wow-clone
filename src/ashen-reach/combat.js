@@ -123,7 +123,7 @@ export async function createCombat(
   targeting.list = hostiles;
   const spell = new FireBlast(),
     fx = await createFireBlastVfx(engine, scene, player, body, world),
-    hud = createCombatHud(canvas);
+    hud = createCombatHud(canvas, scene);
   const lava = new LavaBall(),
     lavaFx = await createLavaBallVfx(
       engine,

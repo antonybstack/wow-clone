@@ -1,5 +1,11 @@
 # Current direction — Ashen Reach
 
+## V17 implemented — release verification in progress
+
+Second of three authorized milestones: [frame pacing plan and findings](v17-frame-pacing-plan.md). HUD projection uses observed CSS dimensions; local lights share posed bounds within each frame. 102 unit tests, build, live actor/fog shadow/cache checks, HDR checks, WebKit and injected mobile depth fallback pass. Reviewed motion: https://ve.sparkify.dev/wow-clone/ashen-reach/v17/2026-09-24-traversal.mp4.
+
+Sampled CPU work fell sharply for HUD projection and roughly halved for bounds. Clean uncapped M1 Max / Chromium 153 WebGPU, 1280×720, seven enemies, full ten seconds: 260.67 FPS, p95 6.7 ms, p99 70.3 ms, worst 80.2 ms. Long frames remain; no claim of overall throughput improvement. V18 begins only after this release is verified.
+
 ## Autonomous graphics sequence — V16–V18
 
 The user authorized three further milestones, planned and implemented one at a time, including commit/push and production deployment after each. V16 is [material depth and lantern highlights](v16-material-depth-plan.md). V17 frame pacing and V18 vegetation stability are provisional directions, with detailed plans to follow the previous release's evidence. Preserve the user-confirmed working phone behavior. Do not mark subsequent milestones complete merely because V16 is released.

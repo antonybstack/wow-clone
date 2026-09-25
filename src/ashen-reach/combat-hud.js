@@ -1,8 +1,11 @@
-import { getViewProjectionMatrix } from "@babylonjs/lite";
+import { getViewProjectionMatrix, onSceneDispose } from "@babylonjs/lite";
+import {observeCanvasLayout} from './canvas-layout.js';
 import { FIRE_BLAST } from "../spells/fire-blast.js";
 import { LAVA_BALL } from "../spells/lava-ball.js";
 import { GRAVE_PULSE } from "../spells/grave-pulse.js";
-export function createCombatHud(canvas) {
+export function createCombatHud(canvas, scene) {
+  const layout = observeCanvasLayout(canvas);
+  onSceneDispose(scene, () => layout.dispose());
   const root = document.createElement("div");
   root.id = "combat";
   const icon = (s) =>
@@ -49,7 +52,7 @@ export function createCombatHud(canvas) {
   function project(position, y, camera) {
     const vp = getViewProjectionMatrix(
         camera,
-        canvas.clientWidth / canvas.clientHeight,
+        layout.size.width / layout.size.height,
       ),
       x = position.x,
       z = position.z,
@@ -57,9 +60,9 @@ export function createCombatHud(canvas) {
     if (w <= 0) return null;
     return [
       (((vp[0] * x + vp[4] * y + vp[8] * z + vp[12]) / w) * 0.5 + 0.5) *
-        canvas.clientWidth,
+        layout.size.width,
       (0.5 - ((vp[1] * x + vp[5] * y + vp[9] * z + vp[13]) / w) * 0.5) *
-        canvas.clientHeight,
+        layout.size.height,
     ];
   }
   return {

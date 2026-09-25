@@ -16,6 +16,7 @@
  */
 import { chromium } from "playwright";
 import { CDP_URL } from "../lib/cdp.mjs";
+import {summarizeDurations, detectVsyncCap} from '../../src/ashen-reach/metrics.js';
 
 function flag(name) {
   return process.argv.includes(`--${name}`);
@@ -98,8 +99,25 @@ try {
   }
   await page.keyboard.down("KeyW");
   await page.waitForTimeout(1500);
-  await page.evaluate(() => ASHEN.metrics.reset?.());
+  await page.evaluate(() => {
+    ASHEN.metrics.reset?.();
+    window.__measurementFrames = [];
+    window.__measurementActive = true;
+    let last;
+    function sample() {
+      if (!window.__measurementActive) return;
+      const now = performance.now();
+      if (last !== undefined) window.__measurementFrames.push(now - last);
+      last = now;
+      requestAnimationFrame(sample);
+    }
+    requestAnimationFrame(sample);
+  });
   await page.waitForTimeout(seconds * 1000);
+  const fullWindow = await page.evaluate(() => {
+    window.__measurementActive = false;
+    return window.__measurementFrames;
+  });
   await page.keyboard.up("KeyW");
 
   const result = await page.evaluate((kind) => {
@@ -178,6 +196,7 @@ try {
     uncappedLaunch,
     cap: capVerdict(result),
     ...result,
+    fullWindow: {...summarizeDurations(fullWindow), ...detectVsyncCap(fullWindow), requestedSeconds: seconds},
     probe,
     note:
       "worldTriangles = procedural world batches (same as historical `triangles`). " +
