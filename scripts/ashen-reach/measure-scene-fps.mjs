@@ -101,22 +101,11 @@ try {
   await page.waitForTimeout(1500);
   await page.evaluate(() => {
     ASHEN.metrics.reset?.();
-    window.__measurementFrames = [];
-    window.__measurementActive = true;
-    let last;
-    function sample() {
-      if (!window.__measurementActive) return;
-      const now = performance.now();
-      if (last !== undefined) window.__measurementFrames.push(now - last);
-      last = now;
-      requestAnimationFrame(sample);
-    }
-    requestAnimationFrame(sample);
+    ASHEN.renderLoop.beginMeasurement();
   });
   await page.waitForTimeout(seconds * 1000);
   const fullWindow = await page.evaluate(() => {
-    window.__measurementActive = false;
-    return window.__measurementFrames;
+    return ASHEN.renderLoop.endMeasurement();
   });
   await page.keyboard.up("KeyW");
 

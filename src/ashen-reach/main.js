@@ -2,6 +2,7 @@ import {BASE_VISIBLE_MESHES, ORC_BASE_VISIBLE_MESHES, UNDEAD_BASE_VISIBLE_MESHES
 import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT, UNDEAD_EQUIPMENT_FIT} from './equipment-contract.js';
 import {createEngine,createSceneContext,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,startEngine,onBeforeRender,enableBoneControl,enableErrorDecoding,decodeError,setFog,captureScreenshot,setMeshVisible,isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize,setMeshoptBaseUrl} from '@babylonjs/lite';
 import {createAshenMetrics} from './metrics.js';
+import {createRenderLoop} from './render-loop.js';
 import {createObjective} from './objective.js';
 import {buildChurchyard} from './scene.js';
 import {height} from './geometry.js';
@@ -141,7 +142,8 @@ async function main(){
  if(post.status.notes.length)console.warn('ashen post chain:',post.status.notes.join('; '));
  attachLinearMaterials();
  await registerSceneWithShadowSupport(scene);
- await startEngine(engine);
+ ashen.renderLoop=createRenderLoop(engine,scene,{onError:e=>{console.error(e);const el=document.getElementById('error');el.style.display='block';el.textContent=e.stack||String(e);}});
+ await ashen.renderLoop.start();
  ashen.presentMs=performance.now()-boot;
  const foliageP=world.startFoliage();
  const [

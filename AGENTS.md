@@ -8,6 +8,7 @@ Read [docs/CURRENT.md](docs/CURRENT.md) before choosing the route or next work i
 - Preserve the user's exact visual references and approved direction. Reuse useful infrastructure; change inherited art/design when it conflicts with the requested target.
 - Keep >120 FPS as the goal and report measurement conditions.
 - Preserve unrelated live-checkout work. Read current code on resume; do not reset, stash, clean, or assume HEAD contains the latest implementation.
+- Commit and push completed task changes before ending the session, as requested by the user. Preserve unrelated changes and report any verification or push failure clearly.
 - Run relevant verification and inspect actual game captures. Never equate tests or an offline render with visual acceptance.
 - A visual cycle (character, clothes, animation, camera, spells, world) is not delivered until a reviewed **live GIF or MP4** is on Telegram via `tg file`. Stills are review aids, not the end of the cycle. Put a VE `video/mp4` URL in the caption when publication is authorized. PNG-only Telegram is incomplete.
 - `tg` is `scripts/tg` (`bash scripts/tg file <clip.mp4> "<caption>"`). It reads `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` from the environment — never put either in a file, a caption, or a log. Every successful send is appended to `.claude/telegram-deliveries.log` with the commit that was HEAD at the time; if you sent the clip before committing the work, run `bash scripts/tg record <clip.mp4>` afterwards so the ledger points at the finished commit.
