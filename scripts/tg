@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Credentials remain in the environment; Python never places them on a command line.
 set -euo pipefail
-exec python3 "$(dirname "$0")/telegram.py" "$@"
+exec python3 -B "$(dirname "$0")/telegram.py" "$@"

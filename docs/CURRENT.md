@@ -1,5 +1,14 @@
 # Current direction — Ashen Reach
 
+## V24 woodland detail verified — 2026-09-25
+
+Generated woodland now occupies 27 independent 128 m tiles; churchyard bark remains separate. Full seeded variants are unchanged at 1,240 triangles each; reduced meshes retain source branches/attributes at 396/388/394 triangles. Camera distance to tile bounds selects full below 100 m and reduced above 140 m with hysteresis, at most one transition per frame. Every tile keeps a visible representation, including offscreen shadow casters. Public transform dirtiness refreshes Lite's cached shadows without moving geometry. Existing trunk colliders and placements are preserved.
+
+Eight woodland tests, build, live keyboard traversal, 19 detail transitions, stationary far-shadow refresh, scene disposal, mobile fallback/touch and desktop WebKit pass with no runtime/GPU errors. Reviewed [live MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/v24/2026-09-25-woodland.mp4), Telegram **763**, verified 1280×720 / 23.209 s. The forest review route avoids an old decorative tower obscuring the camera; these shells remain V25 work.
+
+Separate M1 Max / Chromium 153 uncapped WebGPU, 1280×720, seven enemies, three 12-second keyboard runs per route, no recording: average FPS town **196.53**, bridge **234.50**, cathedral **231.60**, forest **218.37** (baseline 170.78/190.97/195.55/197.11). Worst p99 per route: 10.10/5.60/5.60/10.00 ms; worst frames: 31.10/10.70/18.20/10.90 ms. Four frames exceeded 16.67 ms across all twelve runs; throughput improved but rare stalls remain. Evidence: `ve-capture/ashen-reach/v24/`. Production release verification follows this commit.
+
+
 ## Recording and Telegram playback corrected — 2026-09-25
 
 Telegram message **762** re-sent the cathedral clip with explicit 1280×720 dimensions; the API returned matching dimensions and the user confirmed correct playback. `scripts/tg` now probes video, rejects unnormalized aspect/rotation metadata, validates returned dimensions/duration, and writes sanitized delivery metadata. Capture manifests record viewport/canvas/source frames, capture timestamps and arrival order; encoding orders asynchronous CDP frames by timestamp and preserves elapsed time without stretching. Landscape and actual 390×844 portrait captures passed, plus 8 Python and 3 JavaScript tests. Direct VE and native Chromium/WebKit video playback passed. See [capture procedure](debug-view.md). The desktop Telegram app/automation was unavailable; user confirmation supplies client acceptance. Physical iPhone acceptance remains distinct.

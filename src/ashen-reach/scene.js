@@ -4,7 +4,8 @@ import {surface,sky} from './materials.js';
 import {building,collapsedStall,well,forgeGlow,crossFinial,stoneArch,rubble,flagstone,masonryBox} from './buildings.js';
 import {buildHorizon} from './horizon.js';
 import {buildGothicCathedral} from './gothic-cathedral.js';
-import {loadWoodland,appendWoodlandTree} from './woodland.js';
+import {loadWoodland} from './woodland.js';
+import {createWoodlandTiles} from './woodland-tiles.js';
 import {pathVegetation,castleTreeScale} from './world-composition.js';
 import {createFoliage} from './foliage.js';
 import {createLightShafts} from './light-shafts.js';
@@ -467,10 +468,10 @@ export async function buildChurchyard(engine,scene){
  for(let x=-90-oldHalo;x<90+oldHalo;x+=oldFine)for(let z=-95-oldHalo;z<145+oldHalo;z+=oldFine){
   if(z<-95||z>=145)rf();
  }
- // Offline ash/oak variants share the existing bark material and draw batch.
- const woodland=await loadWoodland();
+ // Keep generated woodland spatially separate from the churchyard bark batch.
+ const woodland=createWoodlandTiles(await loadWoodland());
  const farTree=(x,z,H,sides,kind,lean)=>{
-  appendWoodlandTree(bark,woodland,{x,z,y:height(x,z),height:H,kind,lean});
+  woodland.add({x,z,y:height(x,z),height:H,kind,lean});
   if(H>3)colliders.push({type:'box',position:{x,y:height(x,z)+H*.2,z},size:{x:H*.065,y:H*.4,z:H*.065}});
  };
 
@@ -568,6 +569,7 @@ export async function buildChurchyard(engine,scene){
  }
  const farTris=farEarth.idx.length/3;
  const meshes=B.map((b,i)=>b.commit(engine,scene,mats[i],lights)).filter(Boolean);
+ meshes.push(...woodland.commit(engine,scene,mats[3],lights));
  const farMesh=farEarth.commit(engine,scene,mats[0],lights);
  if(farMesh){meshes.push(farMesh);colliders.push({type:'mesh',mesh:farMesh});}
  const cathedralCollision=cathedral.collisionBatch.commit(engine,scene,mats[0],[]);
@@ -579,7 +581,11 @@ export async function buildChurchyard(engine,scene){
  colliders.unshift({type:'mesh',mesh:meshes[0]});const clouds=await sky(engine,scene);
  const stats={triangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris,drawBatches:B.length+(farMesh?1:0)+(shaftPass?.mesh?1:0)+(motePass?.mesh?1:0),horizonTriangles:horizonStats.triangles,farTriangles:farTris,foliageInstances:0,scatterTrees,scatterRocks,shafts:shafts.length,shaftTriangles:shaftPass?.triangles??0,motes:motePass?.count??0,moteTriangles:motePass?.triangles??0};
  let foliage=null;
- const api={cathedral,localLights,meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,foliage:null,stats,whenFoliage:null,update(t,playerPos){
+ const fixedTriangles=stats.triangles;
+ Object.defineProperty(stats,'triangles',{enumerable:true,get:()=>fixedTriangles+woodland.state.triangles});
+ stats.drawBatches+=woodland.tiles.size;
+ const api={cathedral,woodland,localLights,meshes,colliders,groundHeight:height,spawn:{x:0,z:0},buildingPads,lights,foliage:null,stats,whenFoliage:null,update(t,playerPos){
+  woodland.update();
   foliage?.update(t,playerPos);clouds.update(t);shaftPass?.update(t);motePass?.update(t);
   // surface() materials declare a time uniform. Nothing else writes it, so the
   // haze drift stays at zero unless this loop runs.
