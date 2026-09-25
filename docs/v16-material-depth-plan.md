@@ -39,4 +39,6 @@ Live wall/ground detail and moving highlights visible without glossy cloth or a 
 
 ## Retrospective
 
+Released as **`8e9fc92`** / Pages **`508c1b3b`** to https://play.sparkify.dev. Production bundle, packed texture and WASM compare byte-for-byte. Live production check: 99 specular-shadow samples, 15.39 units movement, no runtime/GPU errors. Production desktop WebKit: 16.73 units; injected iPhone fallback: 26.21 units with input lifecycle checks. Reviewed clip delivered via `tg file`, Telegram **754**. First of the three authorized milestones is complete; V17 is planned next. No new physical iPhone measurement is claimed.
+
 Reuse of the existing texture family preserved composition while adding directional relief. One packed data map bounded bandwidth; derivative UVs avoid the zero gradients created by pixel-quantized albedo coordinates. Native PBR values prevented a material-wide gloss override. Source review caught a green-channel convention error that ordinary GPU validation could not detect; the directional test and corrected live review are both required. Per-milestone delivery includes motion, a separate benchmark and production verification rather than treating shader compilation as acceptance.

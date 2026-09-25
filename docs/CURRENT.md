@@ -4,6 +4,12 @@
 
 The user authorized three further milestones, planned and implemented one at a time, including commit/push and production deployment after each. V16 is [material depth and lantern highlights](v16-material-depth-plan.md). V17 frame pacing and V18 vegetation stability are provisional directions, with detailed plans to follow the previous release's evidence. Preserve the user-confirmed working phone behavior. Do not mark subsequent milestones complete merely because V16 is released.
 
+### V16 released — first of three complete
+
+Game commit **`8e9fc92`**, Pages **`508c1b3b`**, https://play.sparkify.dev. Stone/paving normal and roughness data plus native material-aware lantern specular are implemented. **82 tests** and build pass; reviewed [live MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/v16/2026-09-24-material-depth.mp4) delivered to Telegram **754**. Production bundle, texture and WASM match build/source; actual production movement (15.39 units), 99 shadow-suppressed specular samples, WebKit movement (16.73 units), injected depth fallback/touch movement (26.21 units) pass with no runtime/GPU errors. Physical phone V16 follow-up remains unmeasured; prior V15 phone confirmation is retained.
+
+Uncapped M1 Max / Chromium 153 WebGPU, 1280×720, DPR 1, seven enemies, no recording, 600 retained samples: **276.29 FPS**, mean **3.62 ms**, p95 **5.20 ms**, p99 **59.30 ms**, worst **73.40 ms**. This preserves average headroom but motivates investigation of long frames for V17. Full implementation, source references, correction and evidence: [V16 plan](v16-material-depth-plan.md).
+
 ## V14/V15 production release — 2026-09-24
 
 Committed and pushed as **`2dc981b`**, deployed to **https://play.sparkify.dev** through Pages **`31f85684`**. Includes all ten shadowed gate/street lamps, two cached shadow maps, shared surface/fog visibility, and the release-review correction that uploads current lamp data before fog rendering. The release suite has **72 passing tests**; the build passes.
