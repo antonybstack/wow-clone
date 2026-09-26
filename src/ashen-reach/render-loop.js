@@ -2,7 +2,7 @@ import {renderFrame, resizeEngine, waitForGpuIdle, onSceneDispose} from '@babylo
 import {createFrameScheduler} from './frame-scheduler.js';
 
 /** Bound unacknowledged submissions so an uncapped CPU cannot flood the GPU queue. */
-export function createRenderLoop(engine, scene, {onError = console.error} = {}) {
+export function createRenderLoop(engine, scene, {onError = console.error, onDeviceLost = onError} = {}) {
   let measurement = null, disposed = false;
   const scheduler = createFrameScheduler({
     maxPending: 4,
@@ -28,9 +28,13 @@ export function createRenderLoop(engine, scene, {onError = console.error} = {}) 
   document.addEventListener('visibilitychange', visibility);
   onSceneDispose(scene, dispose);
   engine._device.lost.then(info => {
+    // An explicit disposal is silent; an active device loss needs a full-page
+    // recovery even when WebGPU reports `destroyed` (our live test uses destroy()).
+    // Lite's scene recovery cannot rebuild our PCF/CSM shadows yet:
+    // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/50-device-lost-recovery.md
     if (disposed) return;
     dispose();
-    if (info.reason !== 'destroyed') onError(new Error(`GPU device lost: ${info.message}`));
+    onDeviceLost(new Error(`GPU device lost: ${info.message || info.reason}`, {cause: info}), info);
   });
   return {
     state: scheduler.state,

@@ -67,6 +67,7 @@ const SPELL_KEYS = {
 
 const keys = Object.create(null);
 let inputEnabled = true;
+let inputLockedUntilReload = false;
 const resetListeners = new Set();
 let touchMove = { forward: 0, strafe: 0, active: false };
 let touchJump = false;
@@ -76,8 +77,14 @@ let primaryTouchId = null;
 
 /** Modal game tools release held input on both entry and exit. */
 export function setInputEnabled(enabled) {
-    inputEnabled = !!enabled;
+    inputEnabled = !!enabled && !inputLockedUntilReload;
     resetInput();
+}
+
+/** A lost GPU device cannot resume this scene; no modal may restore movement before reload. */
+export function lockInputUntilReload() {
+    inputLockedUntilReload = true;
+    setInputEnabled(false);
 }
 
 export function isInputEnabled() {

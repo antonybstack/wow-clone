@@ -8,7 +8,7 @@ import {buildChurchyard} from './scene.js';
 import {height} from './geometry.js';
 import {SKY_HORIZON,SUN_DIR,SUN_COLOR,SKY_AMBIENT,GROUND_BOUNCE} from './atmosphere.js';
 import {CameraRig} from '../camera-rig.js';
-import {initInput,input,setInputEnabled} from '../input.js';
+import {initInput,input,setInputEnabled,lockInputUntilReload} from '../input.js';
 import {installTouchControls,touchControlsWanted} from './touch-controls.js';
 import {setupPlayer,plantSpawnOnTerrain,resolveCapsule} from '../player.js';
 import {attachBody} from '../character/body.js';
@@ -20,7 +20,7 @@ import {createSunShadows} from './sun-shadows.js';
 import {registerSceneWithShadowSupport} from '@babylonjs/lite';
 import {createGameMenu} from './menu.js';
 import {configureGpuCompatibility,showGpuDiagnostics} from './gpu-compatibility.js';
-import {beginLoading,setLoadingStage,finishLoading,failLoading} from './loading-screen.js';
+import {beginLoading,setLoadingStage,finishLoading,failLoading,showDeviceLoss} from './loading-screen.js';
 import {configureLinearMaterials} from './linear-materials.js';
 
 enableErrorDecoding();
@@ -94,6 +94,7 @@ async function main(){
  let tools={tick(){}};
  let dressed=false;
  let readyForPlay=false;
+ let deviceLost=false;
  let view='reference',elapsed=0;const samples=[];
  const setView=v=>{
   view=v;scene.camera=v==='reference'?reference:camera;
@@ -140,7 +141,15 @@ async function main(){
  if(post.status.notes.length)console.warn('ashen post chain:',post.status.notes.join('; '));
  attachLinearMaterials();
  await registerSceneWithShadowSupport(scene);
- ashen.renderLoop=createRenderLoop(engine,scene,{onError:e=>{console.error(e);const el=document.getElementById('error');el.style.display='block';el.textContent=e.stack||String(e);}});
+ ashen.renderLoop=createRenderLoop(engine,scene,{
+  onError:e=>{console.error(e);const el=document.getElementById('error');el.style.display='block';el.textContent=e.stack||String(e);},
+  onDeviceLost:(error,info)=>{
+   deviceLost=true;
+   console.error(error,info);
+   lockInputUntilReload();
+   showDeviceLoss(error);
+  },
+ });
  await ashen.renderLoop.start();
  ashen.presentMs=performance.now()-boot;
  const foliageP=world.startFoliage();
@@ -259,6 +268,7 @@ async function main(){
  setLoadingStage(5,'Opening the gates.');
  ashen.whenHostiles=townP.then(()=>{ashen.hostilesReady=true;});
  await finishLoading();
+ if(deviceLost)return;
  readyForPlay=true;
  setInputEnabled(true);
  ashen.loadMs=performance.now()-boot;

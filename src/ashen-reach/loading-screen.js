@@ -64,3 +64,22 @@ export function failLoading(error) {
   retry.onclick = () => location.reload();
   return true;
 }
+
+/** Show a terminal graphics failure after the startup loader has been removed. */
+export function showDeviceLoss(error) {
+  const root = document.getElementById('device-loss');
+  if (!root || !root.hidden) return false;
+  document.body.classList.remove('is-loading');
+  document.body.removeAttribute('aria-busy');
+  for (const sibling of document.body.children) {
+    if (sibling !== root) sibling.inert = true;
+  }
+  const rawError = document.getElementById('error');
+  if (rawError) rawError.style.display = 'none';
+  root.querySelector('pre').textContent = error?.stack || String(error);
+  root.hidden = false;
+  const retry = root.querySelector('button');
+  retry.onclick = () => location.reload();
+  retry.focus();
+  return true;
+}

@@ -62,3 +62,13 @@ body.is-loading > :not(#loading):not(#renderCanvas):not(#gpu-diagnostics):not(sc
  .loading-tip{margin-top:10px;padding-top:8px}
 }
 @media(prefers-reduced-motion:reduce){#loading,.loading-track i{transition:none}.loading-mist,.loading-track::after{animation:none}.loading-track::after{display:none}}
+
+#device-loss{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:max(24px,env(safe-area-inset-top)) max(24px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(24px,env(safe-area-inset-left));background:#0d1517ed;color:#e9dcc0;font-family:Georgia,'Times Roman',serif}
+#device-loss[hidden]{display:none}
+.device-loss-panel{width:min(100%,460px);padding:clamp(24px,5vw,40px);border:1px solid #8b96735c;background:#172325;box-shadow:0 18px 80px #030909b3}
+.device-loss-panel h2{margin:0 0 16px;font-size:clamp(26px,5vw,38px);font-weight:normal;color:#e8d9b8}
+.device-loss-panel p{margin:0 0 22px;font:15px/1.6 system-ui,sans-serif;color:#c0c9bd}
+.device-loss-panel button{min-height:44px;padding:10px 20px;border:1px solid #b79a66;background:#594c36;color:#f6ead0;font:15px Georgia,serif;cursor:pointer}
+.device-loss-panel button:focus-visible{outline:2px solid #f5dfb2;outline-offset:4px}
+.device-loss-panel details{margin-top:22px;color:#b9c1b6;font:12px/1.5 system-ui,sans-serif}
+.device-loss-panel pre{max-height:160px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;color:#d9afa0;font:11px/1.5 ui-monospace,monospace}
