@@ -13,9 +13,10 @@ import {
   resolveSemanticJoints,
 } from '../src/character/runtime/rig.js';
 import { BODY_PROFILES, getBodyProfile, profilesReadyForFit, productionProfiles } from '../src/character/runtime/body-profile.js';
+import { fixtureGlbInput } from './character-fixture-input.mjs';
 
 const file = await readFile(new URL('../public/characters/base.glb', import.meta.url));
-const source = file.buffer.slice(file.byteOffset, file.byteOffset + file.byteLength);
+const source = await fixtureGlbInput(file);
 const { json } = parseGlb(source);
 const nodeNames = json.nodes.map((n) => n.name).filter(Boolean);
 

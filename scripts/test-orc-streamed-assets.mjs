@@ -39,7 +39,7 @@ test('Orc sculpt pack streams eight catalogue garments on the actor bind', async
             assert.deepEqual(node.getWorldMatrix(), IDENTITY, node.getName());
         }
         if (id === 'body') {
-            assert.equal(doc.getRoot().listAnimations().length, 55);
+            assert.equal(doc.getRoot().listAnimations().length, 57);
         } else {
             assert.equal(doc.getRoot().listAnimations().length, 0);
             assert.deepEqual(asset.fit, ORC_EQUIPMENT_FIT);

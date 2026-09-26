@@ -2,7 +2,7 @@ import {BODY_REGIONS,EQUIPMENT_ITEMS,EQUIPMENT_PRESETS,validateLoadout,resolveEq
 import {test} from 'node:test';import assert from 'node:assert/strict';import {NodeIO} from '@gltf-transform/core';import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS),source=await io.read('public/ashen-reach/wanderer.glb'),equipped=await io.read('public/ashen-reach/wanderer-equipment.glb');
 const animations=doc=>doc.getRoot().listAnimations().map(a=>({name:a.getName(),channels:a.listChannels().map(c=>({target:c.getTargetNode().getName(),path:c.getTargetPath(),interpolation:c.getSampler().getInterpolation(),times:Array.from(c.getSampler().getInput().getArray()),values:Array.from(c.getSampler().getOutput().getArray())}))}));
-test('Equipment pack preserves all 55 authored clips exactly',()=>{assert.equal(source.getRoot().listAnimations().length,55);assert.deepEqual(animations(equipped),animations(source));});
+test('Equipment pack preserves all 57 authored clips exactly',()=>{assert.equal(source.getRoot().listAnimations().length,57);assert.deepEqual(animations(equipped),animations(source));});
 test('Equipment uses the original ordered source bind and rest hierarchy',()=>{
  const before=source.getRoot().listSkins()[0],after=equipped.getRoot().listSkins()[0];assert.equal(equipped.getRoot().listSkins().length,1);assert.equal(after.listJoints().length,65);
  assert.deepEqual(Array.from(after.getInverseBindMatrices().getArray()),Array.from(before.getInverseBindMatrices().getArray()));

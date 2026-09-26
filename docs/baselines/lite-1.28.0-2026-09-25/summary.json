@@ -1,0 +1,150 @@
+{
+  "dateUTC": "2026-09-26T07:52:49.400338+00:00",
+  "checkout": "/tmp/ashen-lite128-m0",
+  "gitCommit": "30d205c",
+  "serverUrl": "http://127.0.0.1:6673/ashen-reach.html?play&clean",
+  "cdpPort": 10837,
+  "runnerCheckout": "/Users/antbly/dev/wow-clone",
+  "capture": "desktop WebGPU/WebKit, not physical iPhone",
+  "checks": [
+    {
+      "name": "camera",
+      "exit": 0,
+      "report": "ve-capture/ashen-reach/lite1311/baseline/m0-checks/camera/report.json",
+      "requestedUrl": null,
+      "visitedUrl": null,
+      "errors": 0,
+      "gpuErrors": 0
+    },
+    {
+      "name": "hdr",
+      "exit": 0,
+      "report": "ve-capture/ashen-reach/lite1311/baseline/m0-checks/hdr/report.json",
+      "requestedUrl": null,
+      "visitedUrl": null,
+      "errors": 0,
+      "gpuErrors": 0
+    },
+    {
+      "name": "sun",
+      "exit": 0,
+      "report": "ve-capture/ashen-reach/lite1311/baseline/m0-checks/sun/report.json",
+      "requestedUrl": null,
+      "visitedUrl": null,
+      "errors": 0,
+      "gpuErrors": 0
+    },
+    {
+      "name": "contact",
+      "exit": 0,
+      "report": "ve-capture/ashen-reach/lite1311/baseline/m0-checks/contact/report.json",
+      "requestedUrl": "http://127.0.0.1:6673/ashen-reach.html?play&clean",
+      "visitedUrl": "http://127.0.0.1:6673/ashen-reach.html?play&clean",
+      "errors": 0,
+      "gpuErrors": 0,
+      "movementM": 10.587507673664621,
+      "aoSamples": 4187,
+      "contactSamples": 2028
+    },
+    {
+      "name": "local",
+      "exit": 0,
+      "report": "ve-capture/ashen-reach/lite1311/baseline/m0-checks/local/report.json",
+      "requestedUrl": "http://127.0.0.1:6673/ashen-reach.html?play&clean",
+      "visitedUrl": "http://127.0.0.1:6673/ashen-reach.html?play&clean",
+      "errors": 0,
+      "gpuErrors": 0,
+      "movementM": 12.260254262140432,
+      "actorShadowSamples": 48,
+      "staticShadowSamples": 420,
+      "fogShadowSamples": 632
+    },
+    {
+      "name": "exploration",
+      "exit": 0,
+      "report": "ve-capture/ashen-reach/lite1311/baseline/m0-checks/exploration/report.json",
+      "requestedUrl": null,
+      "visitedUrl": null,
+      "errors": 0,
+      "gpuErrors": 0,
+      "returnZ": 297.98038123569575,
+      "sampleCount": 141
+    },
+    {
+      "name": "region",
+      "exit": 0,
+      "report": "ve-capture/ashen-reach/lite1311/baseline/m0-checks/region/report.json",
+      "requestedUrl": null,
+      "visitedUrl": null,
+      "errors": 0,
+      "gpuErrors": 0,
+      "routes": [
+        {
+          "id": "east-keep",
+          "entered": true,
+          "returned": true
+        },
+        {
+          "id": "west-keep",
+          "entered": true,
+          "returned": true
+        },
+        {
+          "id": "south-keep",
+          "entered": true,
+          "returned": true
+        },
+        {
+          "id": "east-tower",
+          "entered": true,
+          "returned": true
+        },
+        {
+          "id": "west-tower",
+          "entered": true,
+          "returned": true
+        },
+        {
+          "id": "north-tower",
+          "entered": true,
+          "returned": true
+        },
+        {
+          "id": "hollowmere-chapel",
+          "entered": true,
+          "returned": true
+        },
+        {
+          "id": "vaelmark",
+          "entered": true,
+          "returned": true
+        }
+      ]
+    },
+    {
+      "name": "mobile_fallback",
+      "exit": 0,
+      "report": "ve-capture/ashen-reach/lite1311/baseline/m0-checks/mobile_fallback/report.json",
+      "requestedUrl": "http://127.0.0.1:6673/ashen-reach.html?play&clean",
+      "visitedUrl": "http://127.0.0.1:6673/ashen-reach.html?play&clean",
+      "errors": 0,
+      "gpuErrors": 0,
+      "kind": "chromium",
+      "passed": true,
+      "checks": 5
+    },
+    {
+      "name": "webkit",
+      "exit": 0,
+      "report": "ve-capture/ashen-reach/lite1311/baseline/m0-checks/webkit/report.json",
+      "requestedUrl": "http://127.0.0.1:6673/ashen-reach.html?play&clean",
+      "visitedUrl": "http://127.0.0.1:6673/ashen-reach.html?play&clean",
+      "errors": 0,
+      "gpuErrors": 0,
+      "kind": "webkit",
+      "passed": true,
+      "checks": 1
+    }
+  ],
+  "allExitedZero": true
+}

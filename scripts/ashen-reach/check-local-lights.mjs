@@ -6,8 +6,9 @@ import sharp from 'sharp';
 import {CDP_URL} from '../lib/cdp.mjs';
 import {fogPixels as readFogPixels} from '../lib/fog-pixels.mjs';
 const dir='ve-capture/ashen-reach/local-lights/check';await fs.mkdir(dir,{recursive:true});
+const url=process.env.ASHEN_TEST_URL||'http://127.0.0.1:5173/ashen-reach.html?play&clean';
 const browser=await chromium.connectOverCDP(CDP_URL),context=await browser.newContext({viewport:{width:1280,height:720}}),page=await context.newPage();
-const errors=[],report={errors};page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+const errors=[],report={requestedUrl:url,visitedUrl:null,errors};page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
 await page.addInitScript(()=>{window.__gpuErrors=[];const f=GPUAdapter.prototype.requestDevice;GPUAdapter.prototype.requestDevice=async function(...a){const d=await f.apply(this,a);d.addEventListener('uncapturederror',e=>__gpuErrors.push(e.error.message));return d;};});
 const wait=()=>page.waitForTimeout(700);
 const place=async(x,z,yaw=0)=>{await page.evaluate(({x,z,yaw})=>{const a=ASHEN;a.player.setWorldPos(x,a.world.groundHeight(x,z)+1.7,z);a.player.setFacing(yaw);a.rig.yaw=yaw;a.rig.pitch=.12;a.rig.distance=a.rig.distanceTarget=5;},{x,z,yaw});await wait();};
@@ -15,7 +16,7 @@ const capture=async name=>{const png=await page.screenshot({path:`${dir}/${name}
 const probe=()=>page.evaluate(async()=>{const a=ASHEN,points=[];for(let z=40;z<=48;z+=.2)for(let x=-3;x<=3;x+=.2)points.push([x,a.world.groundHeight(x,z)+.10,z]);return a.localLights.probe(points);});
 const fogPixels=()=>readFogPixels(page);
 try{
- await page.goto('http://127.0.0.1:5173/ashen-reach.html?play&clean',{waitUntil:'commit'});await page.waitForFunction(()=>window.ASHEN?.ready&&ASHEN.hostilesReady,null,{timeout:120000});await page.evaluate(()=>ASHEN.dev.god=true);
+ await page.goto(url,{waitUntil:'commit'});report.visitedUrl=page.url();await page.waitForFunction(()=>window.ASHEN?.ready&&ASHEN.hostilesReady,null,{timeout:120000});await page.evaluate(()=>ASHEN.dev.god=true);
  await place(0,42);await capture('gate');
  const withActor=await probe();await page.evaluate(()=>ASHEN.localLights.state.characters=false);await wait();const worldOnly=await probe();
  report.actorShadowSamples=withActor.filter((p,i)=>worldOnly[i].visibility[0]-p.visibility[0]>.4).length;assert(report.actorShadowSamples>5,'Animated player must cast a local shadow');

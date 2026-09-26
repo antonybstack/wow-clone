@@ -1,0 +1,297 @@
+{
+  "requestedUrl": "https://play.sparkify.dev/ashen-reach.html?play&clean",
+  "expectedBundle": "ashenReach-COxFpJlG.js",
+  "browser": "153.0.8010.54",
+  "scenes": [
+    {
+      "name": "town-lamps-walk",
+      "note": "Warm local lamps, normal W travel",
+      "frame": 33,
+      "atMs": 1790408072469,
+      "state": {
+        "position": {
+          "x": 0.0004436177643074484,
+          "y": 1.0035894931386857,
+          "z": 39.99921293621756
+        },
+        "physics": {
+          "usingPhysics": true,
+          "recoveries": 0
+        },
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "enemies": 7
+      },
+      "walk": {
+        "before": {
+          "position": {
+            "x": 0.0004436177643074484,
+            "y": 1.0035894931386857,
+            "z": 39.99921293621756
+          },
+          "physics": {
+            "usingPhysics": true,
+            "recoveries": 0
+          },
+          "canvas": {
+            "width": 1280,
+            "height": 720
+          },
+          "enemies": 7
+        },
+        "after": {
+          "position": {
+            "x": 0.00011923990771706526,
+            "y": 1.5952525806624072,
+            "z": 52.660916760977294
+          },
+          "physics": {
+            "usingPhysics": true,
+            "recoveries": 0
+          },
+          "canvas": {
+            "width": 1280,
+            "height": 720
+          },
+          "enemies": 7
+        },
+        "distanceM": 12.66170382891482
+      }
+    },
+    {
+      "name": "equipment",
+      "note": "Graveweaver preset on the live actor",
+      "frame": 242,
+      "atMs": 1790408076010,
+      "state": {
+        "position": {
+          "x": 0.00011923990771706526,
+          "y": 1.5952525806624072,
+          "z": 52.660916760977294
+        },
+        "physics": {
+          "usingPhysics": true,
+          "recoveries": 0
+        },
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "enemies": 7
+      }
+    },
+    {
+      "name": "chest-hit",
+      "note": "Diagnostic Hit_Chest playback on live actor",
+      "frame": 299,
+      "atMs": 1790408077037,
+      "state": {
+        "position": {
+          "x": 0.00011923990771706526,
+          "y": 1.5952525806624072,
+          "z": 52.660916760977294
+        },
+        "physics": {
+          "usingPhysics": true,
+          "recoveries": 0
+        },
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "enemies": 7
+      }
+    },
+    {
+      "name": "cast",
+      "note": "Tab target and Digit1 Fire Blast input",
+      "frame": 348,
+      "atMs": 1790408077779,
+      "state": {
+        "position": {
+          "x": 0.00011923990771706526,
+          "y": 1.5952525806624072,
+          "z": 52.660916760977294
+        },
+        "physics": {
+          "usingPhysics": true,
+          "recoveries": 0
+        },
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "enemies": 7
+      }
+    },
+    {
+      "name": "camera-obstruction",
+      "note": "Nave wall limits third-person camera radius",
+      "frame": 491,
+      "atMs": 1790408079657,
+      "state": {
+        "position": {
+          "x": 0,
+          "y": 45.927495235936995,
+          "z": 318
+        },
+        "physics": {
+          "usingPhysics": true,
+          "recoveries": 0
+        },
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "enemies": 7
+      }
+    },
+    {
+      "name": "cathedral-entry",
+      "note": "Diagnostic start at approach; normal W entry",
+      "frame": 631,
+      "atMs": 1790408080945,
+      "state": {
+        "position": {
+          "x": 0.0000680679428063751,
+          "y": 35.6816479726562,
+          "z": 285.0003209094161
+        },
+        "physics": {
+          "usingPhysics": true,
+          "recoveries": 0
+        },
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "enemies": 7
+      },
+      "walk": {
+        "before": {
+          "position": {
+            "x": 0.0000680679428063751,
+            "y": 35.68239025274413,
+            "z": 285.0003209094161
+          },
+          "physics": {
+            "usingPhysics": true,
+            "recoveries": 0
+          },
+          "canvas": {
+            "width": 1280,
+            "height": 720
+          },
+          "enemies": 7
+        },
+        "after": {
+          "position": {
+            "x": 0.00004324273223731564,
+            "y": 33.883769950599685,
+            "z": 309.5126855496781
+          },
+          "physics": {
+            "usingPhysics": true,
+            "recoveries": 0
+          },
+          "canvas": {
+            "width": 1280,
+            "height": 720
+          },
+          "enemies": 7
+        },
+        "distanceM": 24.5123646402746
+      }
+    },
+    {
+      "name": "woodland",
+      "note": "Northern tree-detail route and shadow transition",
+      "frame": 1074,
+      "atMs": 1790408085424,
+      "state": {
+        "position": {
+          "x": 72.0042291534411,
+          "y": 16.656734042918252,
+          "z": 189.99319744682825
+        },
+        "physics": {
+          "usingPhysics": true,
+          "recoveries": 0
+        },
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "enemies": 7
+      },
+      "walk": {
+        "before": {
+          "position": {
+            "x": 72.0042291534411,
+            "y": 16.656734042918252,
+            "z": 189.99319744682825
+          },
+          "physics": {
+            "usingPhysics": true,
+            "recoveries": 0
+          },
+          "canvas": {
+            "width": 1280,
+            "height": 720
+          },
+          "enemies": 7
+        },
+        "after": {
+          "position": {
+            "x": 72.00801581744753,
+            "y": 23.850202870952234,
+            "z": 205.46318969131096
+          },
+          "physics": {
+            "usingPhysics": true,
+            "recoveries": 0
+          },
+          "canvas": {
+            "width": 1280,
+            "height": 720
+          },
+          "enemies": 7
+        },
+        "distanceM": 15.469992707922634
+      }
+    }
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "visitedUrl": "https://play.sparkify.dev/ashen-reach?play&clean",
+  "loadedScripts": [
+    "https://play.sparkify.dev/assets/ashenReach-COxFpJlG.js",
+    "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495"
+  ],
+  "equipment": {
+    "helmet": "graveweaverHood",
+    "torso": "graveweaverTop",
+    "legs": "graveweaverSkirt",
+    "boots": "wayfarerBoots",
+    "gloves": "graveweaverGloves",
+    "mainHand": "graveweaverStaff",
+    "offHand": "graveweaverBook"
+  },
+  "casts": 1,
+  "camera": {
+    "radius": 11.190117804209518,
+    "desired": 20
+  },
+  "gpuErrors": [],
+  "passed": true,
+  "recording": {
+    "frames": 1332,
+    "seconds": 16.172842979431152,
+    "sourceFrame": {
+      "width": 1280,
+      "height": 720
+    }
+  }
+}

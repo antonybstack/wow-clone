@@ -1,0 +1,57 @@
+{
+  "checks": [
+    "Havok character controller is active",
+    "Enemy capsules were registered as animated colliders",
+    "Player moved forward toward the enemy",
+    "Player did not walk through the enemy",
+    "Player stopped at a collision gap, not inside the shade",
+    "Dummy HP unchanged during the collision probe"
+  ],
+  "errors": [],
+  "planted": {
+    "animated": 7,
+    "usingPhysics": true
+  },
+  "before": {
+    "player": {
+      "x": 0,
+      "y": 1.377814005025002,
+      "z": 13.999999873893785
+    },
+    "enemy": {
+      "x": 0,
+      "y": 0.676165060546859,
+      "z": 18,
+      "id": "grave-shade-1"
+    },
+    "dummyHp": 2000,
+    "colliders": {
+      "meshCount": 6,
+      "boxCount": 678,
+      "skipped": 0,
+      "animatedCount": 7
+    }
+  },
+  "after": {
+    "player": {
+      "x": 0.23060918861766014,
+      "y": 1.4635606115537632,
+      "z": 17.195603554131978
+    },
+    "enemy": {
+      "x": 0,
+      "y": 0.676165060546859,
+      "z": 18,
+      "id": "grave-shade-1"
+    },
+    "dummyHp": 2000,
+    "colliders": {
+      "meshCount": 6,
+      "boxCount": 678,
+      "skipped": 0,
+      "animatedCount": 7
+    }
+  },
+  "dz": 3.195603680238193,
+  "gap": 0.8043964458680222
+}

@@ -11,6 +11,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { validateBody } from '../src/character/runtime/validate-body.js';
 import { BODY_PROFILES } from '../src/character/runtime/body-profile.js';
+import { fixtureGlbInput } from './character-fixture-input.mjs';
 
 function usage() {
   return 'Usage: node scripts/validate-character-body.mjs <path.glb> [--profile <id>] [--out <report.json>]';
@@ -75,7 +76,8 @@ async function main() {
   } catch (err) {
     failArgs(`Cannot read ${resolved}: ${err.message}`);
   }
-  const report = await validateBody(bytes, profile ? { profile } : {});
+  const input = await fixtureGlbInput(bytes);
+  const report = await validateBody(input, profile ? { profile } : {});
   printReport(glbPath, report);
   if (out) {
     await writeFile(resolve(out), `${JSON.stringify(report, null, 2)}\n`);

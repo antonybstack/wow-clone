@@ -4,8 +4,19 @@ import { readFile } from 'node:fs/promises';
 import { parseGlb, readAccessor } from '../src/character/runtime/glb.js';
 import { composeFixture, OUTFITS } from '../src/character/runtime/compose-fixture.js';
 import { FrameMetrics } from '../src/character/runtime/frame-metrics.js';
+import { fixtureGlbInput } from './character-fixture-input.mjs';
 const file = await readFile(new URL('../public/characters/base.glb', import.meta.url));
-const source = file.buffer.slice(file.byteOffset, file.byteOffset + file.byteLength);
+const source = await fixtureGlbInput(file);
+
+test('optimized source decodes to the strict single-buffer fixture without losing the rig', () => {
+  const raw = JSON.parse(new TextDecoder().decode(file.subarray(20, 20 + file.readUInt32LE(12))));
+  const { json } = parseGlb(source);
+  assert.ok(raw.extensionsUsed.includes('EXT_meshopt_compression'));
+  assert.equal(raw.buffers.length, 2);
+  assert.equal(json.buffers.length, 1);
+  assert.equal(json.animations.length, raw.animations.length);
+  assert.equal(json.skins[0].joints.length, raw.skins[0].joints.length);
+});
 
 test('assembly keeps one joint hierarchy, immutable source, and mesh-specific weights', () => {
   const before = new Uint8Array(source).slice();

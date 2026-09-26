@@ -5,8 +5,10 @@ import assert from 'node:assert/strict';
 import {CDP_URL} from '../lib/cdp.mjs';
 const i=process.argv.indexOf('--tag'),tag=i<0?'v12-check':process.argv[i+1];
 const dir=`ve-capture/ashen-reach/contact-occlusion/${tag}`;await fs.mkdir(dir,{recursive:true});
+const url=process.env.ASHEN_TEST_URL||'http://127.0.0.1:5173/ashen-reach.html?play&clean';
 const browser=await chromium.connectOverCDP(CDP_URL);
-const page=browser.contexts()[0].pages().find(p=>p.url().includes('127.0.0.1:5173'))||await browser.contexts()[0].newPage();
+const context=await browser.newContext({viewport:{width:1280,height:720}});
+const page=await context.newPage();
 const errors=[];page.on('pageerror',e=>errors.push(e.message));
 page.on('console',m=>{if(m.type()==='error'||/validation|invalid.*(bind|shader|command|pipeline)/i.test(m.text()))errors.push(m.text());});
 async function stats(){return page.evaluate(async()=>{
@@ -48,7 +50,7 @@ async function stats(){return page.evaluate(async()=>{
 });}
 try{
  await page.setViewportSize({width:1280,height:720});
- await page.goto('http://127.0.0.1:5173/ashen-reach.html?play&clean',{waitUntil:'commit'});
+ await page.goto(url,{waitUntil:'commit'});
  await page.waitForFunction(()=>window.ASHEN?.ready&&ASHEN.hostilesReady,null,{timeout:90000});
  // Keep the seven live actors while preventing combat death during mask captures.
  await page.evaluate(()=>{ASHEN.dev.god=true;});
@@ -79,10 +81,10 @@ try{
  await page.setViewportSize({width:390,height:844});await page.waitForTimeout(600);await page.screenshot({path:`${dir}/portrait.png`});
  const portrait=await page.evaluate(()=>({...ASHEN.grounding.state}));assert(portrait.resolution[0]<portrait.resolution[1]);
  await page.setViewportSize({width:1280,height:720});await page.waitForTimeout(400);
- const report={views,movement:Math.hypot(before.x-after.x,before.z-after.z),portrait,errors};
+ const report={requestedUrl:url,visitedUrl:page.url(),views,movement:Math.hypot(before.x-after.x,before.z-after.z),portrait,errors};
  await fs.writeFile(`${dir}/report.json`,JSON.stringify(report,null,2));console.log(JSON.stringify(report));assert.equal(errors.length,0,'Runtime/GPU errors');
 }finally{
  await page.keyboard.up('KeyW').catch(()=>{});
   await page.evaluate(()=>{if(ASHEN.grounding)Object.assign(ASHEN.grounding.state,{enabled:true,debug:0});if(ASHEN.volumetric)ASHEN.volumetric.state.enabled=true;ASHEN.dev.god=false;}).catch(()=>{});
- await browser.close();
+ await context.close();await browser.close();
 }

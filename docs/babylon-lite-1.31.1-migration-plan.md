@@ -233,7 +233,7 @@ Update this table during implementation; a reviewed plan is not a completed runt
 
 | Item | Status | Commit / evidence / retained limitation |
 | --- | --- | --- |
-| M0 baseline and harness | Planned | No candidate tests run in this planning review. |
+| M0 baseline and harness | Complete, 2026-09-26 | [1.28.0 baseline and M0 trust checks](babylon-lite-1.28.0-baseline-2026-09-25.md): clean built smoke, 9/9 live matrix checks, eight region returns, 76 character + 47 equipment + 89 focused tests, reviewed production motion, raw FPS/load series. A foreign-worktree renderer was present during FPS measurement; quiet paired comparison remains necessary for small deltas. |
 | M1 physics lifecycle | Planned | Controller and caller-owned shapes must be included. |
 | M2 private bridges | Planned | CSM owner-release exception remains until explicitly verified. |
 | M3 Lite 1.31.1 migration | Planned | Runtime remains on locked 1.28.0. |

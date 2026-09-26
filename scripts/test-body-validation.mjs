@@ -12,10 +12,11 @@ import {
   validateBody,
 } from '../src/character/runtime/validate-body.js';
 import { getBodyProfile, productionProfiles, profilesReadyForFit } from '../src/character/runtime/body-profile.js';
+import { fixtureGlbInput } from './character-fixture-input.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const file = await readFile(new URL('../public/characters/base.glb', import.meta.url));
-const baseGlb = file.buffer.slice(file.byteOffset, file.byteOffset + file.byteLength);
+const baseGlb = await fixtureGlbInput(file);
 
 function codes(report, key = 'errors') {
   return report[key].map((i) => i.code);
