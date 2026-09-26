@@ -1,8 +1,12 @@
 # Current direction — Ashen Reach
 
+## Babylon Lite 1.31.1 released — 2026-09-26
+
+[M4 production acceptance](babylon-lite-m4-release-2026-09-26.md) records Pages deployment `b0812424-5963-4a70-94fb-13f6f1e23bde` from pushed `ff91340`, with rollback target `6a174b2a-4885-42da-aa11-9991641858c2`. The 346-file asset check, exact-bundle movement, cathedral and all eight region returns, mobile depth fallback/touch, desktop WebKit, and [reviewed production MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/lite1311-m4/2026-09-26-production-motion.mp4) passed; Telegram delivery is message 772. Paired M1 Max / 1280×720 / seven-enemy runs stayed above 178 FPS with near-equal average FPS to 1.28.0. Intermittent frame-time tails remain under investigation, and physical iPhone acceptance is separate. F1–F7 Lite maintenance follow-ups are next.
+
 ## M3 Babylon Lite 1.31.1 migration verified locally — 2026-09-26
 
-[M3 compatibility and live report](babylon-lite-m3-upgrade-2026-09-26.md) records the exact Lite 1.31.1 pin, four math API renames, a compressed-GLB fix for the character lab, 77 character + 47 equipment + 102 focused passing tests, exact-bundle built movement, all eight Havok region returns, mobile/WebKit checks, and reviewed [1.31.1 motion](https://ve.sparkify.dev/wow-clone/ashen-reach/lite1311-m3/2026-09-26-migration-motion.mp4). M4 paired performance and production release are next. Production remains the previous 1.28.0 deployment until those gates pass.
+[M3 compatibility and live report](babylon-lite-m3-upgrade-2026-09-26.md) records the exact Lite 1.31.1 pin, four math API renames, a compressed-GLB fix for the character lab, 77 character + 47 equipment + 102 focused passing tests, exact-bundle built movement, all eight Havok region returns, mobile/WebKit checks, and reviewed [1.31.1 motion](https://ve.sparkify.dev/wow-clone/ashen-reach/lite1311-m3/2026-09-26-migration-motion.mp4). M4 subsequently released this candidate to production.
 
 ## M2 Lite private bridges verified on 1.28.0 — 2026-09-26
 
