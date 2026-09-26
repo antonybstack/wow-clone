@@ -4,4 +4,6 @@ The spell billboard systems are created after the first visible scene registrati
 
 Two helper tests and the production build pass. The 1280×720 Chromium WebGPU live first-use check found no remaining deferred builders and all expected billboard capacities (176 fire, 18 smoke and both 96-instance systems). The first Pyre cast drew its ring, 48 pillars, 28 geyser instances, sparks and smoke. Fire Blast and Lava Ball both cast afterward. Runtime and uncaptured GPU errors were empty. The visual review found all layers present on the first cast, with no missing-material frame in the sampled sequence. A comparative startup-time or stall-tail measurement for this single change was not made; the final integrated performance gate covers the release candidate.
 
-The reviewed [8.663-second live MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/lite1311-f6/2026-09-26-late-spells-motion.mp4) contains first Pyre, Fire Blast, Lava Ball and movement. Its 640 timestamped 1280×720 frames preserve elapsed time, square pixels and rotation zero in the capture manifest. VE and Telegram delivery checks follow the commit.
+The reviewed [8.663-second live MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/lite1311-f6/2026-09-26-late-spells-motion.mp4) contains first Pyre, Fire Blast, Lava Ball and movement. Its 640 timestamped 1280×720 frames preserve elapsed time, square pixels and rotation zero in the capture manifest.
+
+VE served the MP4 with byte ranges; Telegram message **778** returned matching 1280×720 dimensions and 8.663-second duration.

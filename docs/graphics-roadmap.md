@@ -1,5 +1,9 @@
 # Graphics milestones
 
+## Current runtime and visual verification — 2026-09-26
+
+V24–V26 region and Gothic milestones and the Babylon Lite 1.31.1 migration are released. The [F1–F7 release retrospective](babylon-lite-f1-f7-release-2026-09-26.md) records the current Pages deployment, reviewed live motion, representative >120 FPS measurements, and the remaining frame-tail and physical iPhone limits. [CURRENT.md](CURRENT.md) is the authoritative active state; the older entries below preserve historical milestone results.
+
 ## V19–V22 update
 
 Frame submission backpressure is fixed under the reproduced uncapped load. World composition work restores path continuity, restrains ash particles and opens the castle sightline. All four milestones are implemented and verified locally, with reviewed live motion, commits and pushes. See [current status](CURRENT.md), [V19 investigation](v19-frame-spikes-plan.md) and [V20–V22 audit/retrospective](world-composition-plan.md). Production remains V18. The older frame-tail recommendation below is historical; next visual priorities are distant tree silhouettes, enemy readability and authored focal locations.

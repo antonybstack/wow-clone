@@ -229,17 +229,21 @@ Set `ASHEN_EXPECT_BUNDLE` to the newly deployed bundle filename for mobile check
 
 ## Execution ledger
 
-Update this table during implementation; a reviewed plan is not a completed runtime milestone.
-
-| Item | Status | Commit / evidence / retained limitation |
+| Item | Status | Evidence and retained limits |
 | --- | --- | --- |
-| M0 baseline and harness | Complete, 2026-09-26 | [1.28.0 baseline and M0 trust checks](babylon-lite-1.28.0-baseline-2026-09-25.md): clean built smoke, 9/9 live matrix checks, eight region returns, 76 character + 47 equipment + 89 focused tests, reviewed production motion, raw FPS/load series. A foreign-worktree renderer was present during FPS measurement; quiet paired comparison remains necessary for small deltas. |
-| M1 physics lifecycle | Complete, 2026-09-26 | [Ownership, real-Havok release tests, built movement, camera/stairs, and reviewed live motion](babylon-lite-m1-physics-2026-09-26.md). Same-slot untouched HEAD also misses the existing head-on enemy-stop assertion; retain as a pacing-sensitive test limitation, not a proven M1 regression. Lite remains 1.28.0. |
-| M2 private bridges | Complete, 2026-09-26 | [Shadow/socket ownership and version guards, focused tests, live checks, reviewed built motion](babylon-lite-m2-private-bridges-2026-09-26.md). CSM generator-owner release exception retained; two-handed stow probe missed a short sampling window; local-light startup timeout passed after blanking extra owned renderer. Lite remains 1.28.0. |
-| M3 Lite 1.31.1 migration | Complete locally, 2026-09-26 | [Exact pin/math migration, clean install and matching bundle, lab fix, tests and live matrix](babylon-lite-m3-upgrade-2026-09-26.md). Production remains 1.28.0 pending M4 release. |
-| M4 release acceptance | Complete, 2026-09-26 | [Paired 48-run FPS/tail report, 346 production assets, eight routes, mobile/WebKit, reviewed VE/Telegram 772 motion](babylon-lite-m4-release-2026-09-26.md). Pages deployment `b0812424-5963-4a70-94fb-13f6f1e23bde`, rollback target `6a174b2a-4885-42da-aa11-9991641858c2`. Intermittent frame tails and physical iPhone acceptance remain separate. |
-| F1/F2 recommended follow-ups | Planned, after M4 | Separate commits and targeted acceptance. |
-| F3/F4 asset workarounds | Planned, after M4 | Race/clip-specific evidence required. |
-| F5/F6/F7 public replacement trials | Optional, after M4 | Retained bridge is a valid documented outcome. |
-| E1/E2 performance trials | Optional | No improvement claimed without measurements. |
+| M0 baseline | Complete | [Lite 1.28.0 load, movement, visual and test baseline](babylon-lite-1.28.0-baseline-2026-09-25.md). |
+| M1 physics ownership | Complete | [Real-Havok ownership, teardown, movement and reviewed motion](babylon-lite-m1-physics-2026-09-26.md). |
+| M2 private bridges | Complete | [Version guards, task/texture ownership, lifecycle and live shadow/socket checks](babylon-lite-m2-private-bridges-2026-09-26.md). |
+| M3 Lite 1.31.1 upgrade | Complete | [Exact dependency pin, math compatibility, tests and live matrix](babylon-lite-m3-upgrade-2026-09-26.md). |
+| M4 production gate | Complete | [48-run paired performance and deployed 1.31.1 acceptance](babylon-lite-m4-release-2026-09-26.md); deployment `b0812424-5963-4a70-94fb-13f6f1e23bde`. |
+| F1 device loss | Complete | [Visible reload flow and reviewed motion](babylon-lite-f1-device-loss-2026-09-26.md), commit `423851e`. |
+| F2a lazy errors | Complete | [Startup byte saving and failure readability](babylon-lite-f2a-error-decoding-2026-09-26.md), commit `6065f9d`. |
+| F2b HUD projection | Complete | [Native projection and portrait/landscape live motion](babylon-lite-f2b-hud-projection-2026-09-26.md), commit `a09e087`. |
+| F3 chest hit | Complete | [Three-race asset/animation and live review](babylon-lite-f3-chest-hit-inventory-2026-09-26.md), commit `2a4ab2e`. |
+| F4 Orc colors | Complete | [Offline neutral-color cleanup and Orc live checks](orc-vertex-color-cleanup-2026-09-26.md), commit `689ee75`. |
+| F5 shadows | Complete bounded trial | [Public toggle adopted; native caster retirement failed live and guarded bridge retained](babylon-lite-f5-shadow-trials-2026-09-26.md), commit `b8ec23e`. |
+| F6 late features | Complete | [Public registration and first-use spell checks](babylon-lite-f6-late-features-2026-09-26.md), commit `b3c05e5`. |
+| F7 sampled targets | Complete bounded trial | [Scene/contact facades and ownership/resize checks](babylon-lite-f7-render-target-facades-2026-09-26.md), commit `52700a0`; half-size and borrowed bloom targets retained. |
+| Final release | Complete, 2026-09-26 | [Integrated release and retrospective](babylon-lite-f1-f7-release-2026-09-26.md): 347 assets, exact bundle, eight region routes, cathedral vertical routes, mobile/WebKit, reviewed motion Telegram 780 and >120 FPS. Deployment `ec4176ce-5f5a-43d4-a0a4-7f350c46b9b4`, rollback `b0812424-5963-4a70-94fb-13f6f1e23bde`. |
+| E1/E2 experiments | Deferred optional | Current candidate meets >120 FPS and first-use readiness. No unmeasured static-cache or async-compilation claim. |
 | D1/D2 compute/VAT | Deferred | No current product requirement. |
