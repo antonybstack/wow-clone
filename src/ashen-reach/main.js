@@ -1,6 +1,6 @@
 import {BASE_VISIBLE_MESHES, ORC_BASE_VISIBLE_MESHES, UNDEAD_BASE_VISIBLE_MESHES, EQUIPMENT_ITEMS} from './equipment-catalog.js';
 import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT, UNDEAD_EQUIPMENT_FIT} from './equipment-contract.js';
-import {createEngine,createSceneContext,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,onBeforeRender,enableBoneControl,enableErrorDecoding,decodeError,setFog,captureScreenshot,setMeshVisible,isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize,setMeshoptBaseUrl} from '@babylonjs/lite';
+import {createEngine,createSceneContext,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,onBeforeRender,enableBoneControl,setFog,captureScreenshot,setMeshVisible,isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize,setMeshoptBaseUrl} from '@babylonjs/lite';
 import {createAshenMetrics} from './metrics.js';
 import {createRenderLoop} from './render-loop.js';
 import {createObjective} from './objective.js';
@@ -22,8 +22,8 @@ import {createGameMenu} from './menu.js';
 import {configureGpuCompatibility,showGpuDiagnostics} from './gpu-compatibility.js';
 import {beginLoading,setLoadingStage,finishLoading,failLoading,showDeviceLoss} from './loading-screen.js';
 import {configureLinearMaterials} from './linear-materials.js';
+import {formatGameError} from './error-display.js';
 
-enableErrorDecoding();
 setMeshoptBaseUrl('/');
 async function flushDeferredBuilders(scene,prepareMaterials){
  const pending=scene._deferredBuilders;
@@ -142,7 +142,7 @@ async function main(){
  attachLinearMaterials();
  await registerSceneWithShadowSupport(scene);
  ashen.renderLoop=createRenderLoop(engine,scene,{
-  onError:e=>{console.error(e);const el=document.getElementById('error');el.style.display='block';el.textContent=e.stack||String(e);},
+  onError:e=>{console.error(e);const el=document.getElementById('error');el.style.display='block';el.textContent=e?.stack||String(e);void formatGameError(e).then(message=>{el.textContent=message;}).catch(()=>{});},
   onDeviceLost:(error,info)=>{
    deviceLost=true;
    console.error(error,info);
@@ -274,4 +274,4 @@ async function main(){
  ashen.loadMs=performance.now()-boot;
  ashen.ready=true;
 }
-main().catch(e=>{console.error(e);if(failLoading(e))return;const el=document.getElementById('error');el.style.display='block';let message=e.stack||String(e);try{message+='\n'+decodeError(e);}catch{}el.textContent=message;});
+main().catch(async e=>{console.error(e);const message=await formatGameError(e).catch(()=>e?.stack||String(e));if(failLoading(e,message))return;const el=document.getElementById('error');el.style.display='block';el.textContent=message;});

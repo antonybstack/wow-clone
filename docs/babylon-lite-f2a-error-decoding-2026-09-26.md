@@ -1,0 +1,7 @@
+# F2a — lazy Babylon Lite error decoding, 2026-09-26
+
+The playable game no longer imports or enables Lite's verbose error decoder during startup. A failure-only module dynamically imports the public `decodeError` API when a coded Lite error reaches the game handler. The formatter retains the original message, stack, and cause chain if decoding or its import fails. Startup errors still expose details and a Reload action in the loading screen; runtime render errors keep their immediate raw diagnostic and then gain decoded detail. The source links the [Lite 1.31.1 error-handling guide](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/49-error-handling.md).
+
+Five focused tests pass for a real Lite coded error, ordinary network error, failed decoder import/call, cause/stack preservation, and loading retry. The F1 device-loss and frame-scheduler tests and game build also pass. In a live Chromium WebGPU browser, an injected adapter-startup failure produced readable `simulated adapter failure` details with a stack and visible Reload action, with no uncaught page error. On isolated `ff91340`, the game startup preload graph fell from 615,390 raw / 216,841 gzip bytes to 550,378 raw / 201,248 gzip bytes; the 65,822-byte decoder chunk is requested only on a relevant failure. The character lab and preview have separate entry points and remain unchanged by this game-entry optimization.
+
+This follow-up is locally accepted. Production remains the M4 release until the follow-up batch passes its own release gates.

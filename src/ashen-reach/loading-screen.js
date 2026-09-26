@@ -47,7 +47,7 @@ export async function finishLoading() {
   document.getElementById('renderCanvas')?.removeAttribute('inert');
 }
 
-export function failLoading(error) {
+export function failLoading(error, errorDetails) {
   clearTimeout(slowTimer);
   const root = document.getElementById('loading');
   if (!root) return false;
@@ -58,7 +58,7 @@ export function failLoading(error) {
   document.getElementById('loading-note').textContent = 'Something interrupted loading. Check your connection, then try again.';
   const details = document.getElementById('loading-error');
   details.hidden = false;
-  details.querySelector('pre').textContent = String(error?.message || error);
+  details.querySelector('pre').textContent = errorDetails ?? String(error?.message || error);
   const retry = document.getElementById('loading-retry');
   retry.hidden = false;
   retry.onclick = () => location.reload();
