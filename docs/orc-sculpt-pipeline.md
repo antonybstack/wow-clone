@@ -104,7 +104,7 @@ node scripts/ashen-reach/capture-orc-fit.mjs        # ORC_PRESET=Wayfarer|Pilgri
 
 `--from-retopo` skips the high-poly remesh (T-pose + skin only). `--recook` repaints albedo on the existing T-pose rest and must not strip the HP normal map. `--no-tpose` keeps the print's hanging arms (do not ship). Defaults: body collapse `--target-faces 16000`, head `--head-faces 12000`. Voxel flags are leftover; do not voxel the print face.
 
-Skin is packed cavity albedo × AO, plus a tangent normal map from the high poly. Lite ignores COLOR_0. Bind after a form rebuild must **not** recook. Do not use 1.5–3k tri AI remesh, MakeHuman ellipsoid warps, or dummy brow eyeballs.
+Skin is packed cavity albedo × AO, plus a tangent normal map from the high poly. The source binder and playable pack remove only uniformly white `COLOR_0` attributes using [glTF Transform's primitive API](https://gltf-transform.dev/modules/core/classes/Primitive); the cavity detail remains in the albedo. Bind after a form rebuild must **not** recook. Do not use 1.5–3k tri AI remesh, MakeHuman ellipsoid warps, or dummy brow eyeballs.
 
 ## Runtime
 

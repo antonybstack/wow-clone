@@ -130,20 +130,22 @@ try {
     s = await state();
     check('Closing the armory keeps the Orc in gameplay', s.parked && s.visible.BodyExposed && s.equipment.mainHand === 'graveweaverGreatstaff');
 
+    const hpBeforeFire = (await state()).hp;
     await page.keyboard.press('Tab');
     await page.keyboard.press('Digit1');
     await page.waitForFunction(() => ASHEN.combat.spell.casts === 1, null, {timeout: 8000});
     check('Orc Fire Blast stows the greatstaff', await page.evaluate(() => ASHEN.equipment.attachment === 'back'));
     await page.waitForTimeout(1200);
     check('Orc Fire Blast returns the greatstaff to the hand', await page.evaluate(() => ASHEN.equipment.attachment === 'hand'));
-    check('Orc Fire Blast deals timed damage', (await state()).hp < 600);
+    check('Orc Fire Blast deals timed damage', hpBeforeFire - (await state()).hp === 120);
 
+    const hpBeforeLava = (await state()).hp;
     await page.keyboard.press('Digit2');
     await page.waitForFunction(() => ASHEN.combat.pendingSpell === 2, null, {timeout: 6000});
     check('Orc Lava Ball charge stows the greatstaff', await page.evaluate(() => ASHEN.equipment.attachment === 'back'));
     await page.waitForFunction(() => ASHEN.combat.lava.casts === 1, null, {timeout: 9000});
     await page.waitForTimeout(1400);
-    check('Orc Lava Ball recovers and hits', await page.evaluate(() => ASHEN.equipment.attachment === 'hand' && ASHEN.combat.dummy.hp === 240));
+    check('Orc Lava Ball recovers and hits', await page.evaluate(expectedHp => ASHEN.equipment.attachment === 'hand' && ASHEN.combat.dummy.hp === expectedHp, hpBeforeLava - 240));
 
     await page.keyboard.down('KeyW');
     await page.waitForTimeout(500);

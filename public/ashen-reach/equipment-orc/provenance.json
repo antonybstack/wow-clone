@@ -4,8 +4,8 @@
   "fitted": ".cache/armory-assets/orc-sculpt",
   "note": "Playable Orc is the print-sculpt retopo on the 65-joint source bind. Gloves are an inflated limb shell of the print hand/forearm/distal arm. Boots keep the Viking last, parked on each print foot with uniform horizontal scale and a shaft-only extend (no nearest-surface push). Tunic sleeves are radius-graded about the print arm axis. Surface derived from Male Orc for Print by Crayon (CC-BY 4.0). Garments remain CC0 MakeHuman suits02/gloves01.",
   "hashes": {
-    "public/characters/candidates/orc-source-v1.glb": "38618259e239d617798689af2441f795d8e8629ee2200762ae3e15afd7b36357",
-    "public/ashen-reach/equipment-orc/body.glb": "b9e1c02ac665c0f8fcb0d39afcc09c03eab2dd56f9457a6bd38f95bc5c6d7b22"
+    "public/characters/candidates/orc-source-v1.glb": "cf631fd423fecc0487c497255b89189e1298f55abc355b1ebdea43680e2f91d1",
+    "public/ashen-reach/equipment-orc/body.glb": "25a24f13965a7e8c691f50aa210dcd2d6598c48aa82121b77efaa0637444c001"
   },
   "garments": [
     {
@@ -68,5 +68,6 @@
         "WayfarerBoots"
       ]
     }
-  ]
+  ],
+  "vertexColorCleanup": "Neutral RGBA8 COLOR_0 removed after albedo baking; the original painted cavity survives in texture."
 }

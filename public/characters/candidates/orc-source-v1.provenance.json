@@ -4,9 +4,9 @@
   "hashes": {
     "public/characters/base.glb": "d8a14bb2421ed4ce7e4cc3651432494e1f27ac1d6944646ca9bf434a12a401ad",
     "public/ashen-reach/wanderer.glb": "5da7e073e208b51d0eb780956016464056c233d72b9b955e3d8698fc3c1e5270",
-    "public/characters/candidates/orc-source-v1.glb": "38618259e239d617798689af2441f795d8e8629ee2200762ae3e15afd7b36357",
+    "public/characters/candidates/orc-source-v1.glb": "cf631fd423fecc0487c497255b89189e1298f55abc355b1ebdea43680e2f91d1",
     "scripts/character-assets/orc_from_sculpt.py": "50eb1de76470d03002e1a4f875b74e367e59cbe0c8970a20bd2c144a1c53496f",
-    "scripts/character-assets/bind-source-orc.mjs": "4f117b850e3b9739327c91744883f2f04415cc045a2d5254f989119db68846af",
+    "scripts/character-assets/bind-source-orc.mjs": "cec3ff672d248323e2f92d13c81e20b9492f9e7d324a6a4604dc56f637b5caa9",
     "blender/characters/sources/orc-print/provenance.json": "e3556edf3df2970d97f27c96876c6e3a5e2e2a07ed46121f907dea9a695c3ce6"
   },
   "versions": {
@@ -14,5 +14,6 @@
     "gltfTransform": "4.4.2",
     "glMatrix": "3.4.4"
   },
-  "licenseNotes": "Orc surface is derived from \"Male Orc for Print\" by Crayon (CC-BY 4.0). Credit in blender/characters/sources/orc-print/license.txt. Source rig and original clips retain base.glb provenance. MakeHuman CC0 no longer describes the Orc surface."
+  "licenseNotes": "Orc surface is derived from \"Male Orc for Print\" by Crayon (CC-BY 4.0). Credit in blender/characters/sources/orc-print/license.txt. Source rig and original clips retain base.glb provenance. MakeHuman CC0 no longer describes the Orc surface.",
+  "vertexColorCleanup": "Neutral RGBA8 COLOR_0 removed after albedo baking; the original painted cavity survives in texture."
 }

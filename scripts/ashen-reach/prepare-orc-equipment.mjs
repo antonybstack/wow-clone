@@ -12,6 +12,7 @@ import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {mergeDocuments, prune, unpartition} from '@gltf-transform/functions';
 import {BODY_REGIONS, EQUIPMENT_ITEMS, ORC_BASE_VISIBLE_MESHES} from '../../src/ashen-reach/equipment-catalog.js';
 import {ORC_EQUIPMENT_FIT} from '../../src/ashen-reach/equipment-contract.js';
+import {removeWhiteOrcColors} from '../character-assets/remove-white-orc-colors.mjs';
 
 const SRC = 'public/characters/candidates/orc-source-v1.glb';
 const DIR = 'public/ashen-reach/equipment-orc';
@@ -125,8 +126,7 @@ function remapSkin(node, joints) {
 
 await fs.mkdir(DIR, {recursive: true});
 const bytes = await fs.readFile(SRC);
-await fs.writeFile(BODY, bytes);
-const bodyDoc = await io.read(BODY);
+const bodyDoc = await io.readBinary(bytes);
 for (const mesh of bodyDoc.getRoot().listMeshes()) {
     if (mesh.getName().startsWith('OrcV1Eyes')) mesh.setName('OrcV1Eyes');
 }
@@ -136,6 +136,7 @@ for (const name of cover.regions) {
 }
 const coverage = partitionOrcBody(bodyDoc, cover);
 await bodyDoc.transform(unpartition(), prune({keepLeaves: true}));
+removeWhiteOrcColors(bodyDoc);
 const bodyMeshes = bodyDoc.getRoot().listMeshes().map(m => m.getName());
 for (const name of ORC_BASE_VISIBLE_MESHES) {
     if (!bodyMeshes.includes(name)) throw Error(`Orc body missing ${name}`);

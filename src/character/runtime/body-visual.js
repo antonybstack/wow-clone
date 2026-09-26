@@ -429,9 +429,6 @@ export function assembleBodyVisual(opts) {
     const meshes = getContainerMeshes(container);
     for (const mesh of meshes) {
         mesh.receiveShadows = true;
-        // COLOR_0 on a skinned body keeps that mesh from drawing in Lite.
-        // The albedo is the paint, so the color buffer is not bound.
-        if (mesh.skeleton && mesh._gpu?.colorBuffer) mesh._gpu.colorBuffer = null;
     }
 
     if (mode === 'stage') {

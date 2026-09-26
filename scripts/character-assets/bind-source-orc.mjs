@@ -14,6 +14,7 @@ import {createHash} from 'node:crypto';
 import {NodeIO} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {mat4, vec3, quat} from 'gl-matrix';
+import {removeWhiteOrcColors} from './remove-white-orc-colors.mjs';
 
 const REST = '.cache/source-motion/orc-source-rest.glb';
 const JOINTS = '.cache/source-motion/orc-source-joints.json';
@@ -200,6 +201,7 @@ for (const src of extras) {
 
 const {stripChestHitHipsTranslation} = await import('./strip-chest-hit-hips.mjs');
 stripChestHitHipsTranslation(doc);
+removeWhiteOrcColors(doc);
 const bytes = await io.writeBinary(doc);
 await fs.writeFile(OUT, bytes);
 const versions = JSON.parse(await fs.readFile('package.json', 'utf8')).devDependencies || {};
