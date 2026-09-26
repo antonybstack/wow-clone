@@ -1,5 +1,11 @@
 # Current direction — Ashen Reach
 
+## Lite audit re-review and migration plan — 2026-09-25
+
+The [Lite 1.31.1 migration plan](babylon-lite-1.31.1-migration-plan.md) supersedes the original audit's action suggestions with validated decisions and sequential implementation/verification tasks. It reviews releases 1.29.0, 1.30.0, 1.31.0 and 1.31.1 against the actual packages. Required work is a trustworthy baseline, complete physics ownership, documented private bridges, an atomic exact-version/math-export migration, then live/build/performance and production acceptance. Physics cleanup includes controller collectors and caller-owned shapes. The CSM final owner release must not be removed blindly; native CSM/PCF device recovery and a simple deferred-builder-to-rebuild substitution are unsuitable. Asset and performance refactors have separate bounded follow-ups.
+
+This turn produced planning documentation only. Lite remains locked at **1.28.0**, Havok at **1.3.14**; no runtime change, candidate acceptance run or deployment occurred. Follow the latest user request before executing this plan.
+
 ## Babylon Lite documentation audit — 2026-09-25
 
 The [Babylon Lite documentation audit](babylon-lite-documentation-audit-2026-09-25.md) reviews all 71 authored Lite guide pages and indexes all 1,817 generated API reference pages against the active source and installed Lite 1.28.0. It records concrete lifecycle and private-API risks, newer version-gated replacements, and measured trials. The most urgent reviews are Havok world teardown and the borrowed CSM receiver texture; an upgrade to current 1.31.1 also requires migrating removed `mat4*` exports. This entry records findings only; no game runtime or dependency version changed.
