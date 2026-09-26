@@ -3,7 +3,7 @@ import {
  createCsmDirectionalShadowGenerator,createPcfDirectionalShadowGenerator,createDirectionalLight,
  createShaderMaterial,addTask,onSceneDispose,setShadowCasterMaterial,setShadowTaskCasterMeshes,
  getCsmReceiverTexture,onCsmReceiverUpdate,setShaderTexture,setShaderUniform,
- enableSkeletonShadows,getViewMatrix,acquireTexture,releaseTexture,
+ enableSkeletonShadows,getViewMatrix,acquireTexture,releaseTexture,setShadowGeneratorEnabled,
  VERSION as LITE_VERSION,
 } from '@babylonjs/lite';
 import {SUN_DIR} from './atmosphere.js';
@@ -125,7 +125,7 @@ export function createSunShadows(engine,scene,sun,{depthOnlyFragment=false}={}){
  farTextureAcquired=true;
  csmTexture=getCsmReceiverTexture(csm);
  if(typeof csm._shadowUBO?.destroy!=='function'||typeof csm._shadowParamsUBO?.destroy!=='function'||
-    !csm._config||typeof csm._config!=='object'||typeof csm._depthTexture?.createView!=='function')
+    typeof csm._depthTexture?.createView!=='function')
   throw new Error('Lite 1.28/1.31 CSM bridge unavailable');
  const data=new Float32Array(80);
  const state={enabled:true,characters:true,cascades:3,mapSize:2048,range:SUN_SHADOW_RANGE,staticCasters:0,dynamicCasters:0,receivers:0,version:0,depthOnlyFragment};
@@ -172,7 +172,11 @@ export function createSunShadows(engine,scene,sun,{depthOnlyFragment=false}={}){
     setShadowTaskCasterMeshes(csm,[...worldCasters,...dynamic]);state.dynamicCasters=dynamic.length;
    }
   },
-  setEnabled(enabled){if(disposed)return;state.enabled=!!enabled;csm._config._darkness=enabled?0:1;csm._config._forceRefreshEveryFrame=true;},
+  setEnabled(enabled){if(disposed)return;state.enabled=!!enabled;
+   // Public Lite toggle retains receiver bindings while suspending map draws.
+   // Our custom receivers also read state.enabled to bypass a stale depth map.
+   // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/17-cascaded-shadow.md
+   setShadowGeneratorEnabled(csm,state.enabled);},
   get view(){return getViewMatrix(scene.camera);},
   get casters(){return worldCasters;},get dynamicCasters(){return dynamic;},
   async probeSun(points){const {probeSun}=await import('./sun-shadow-probe.js');return probeSun(engine,controller,points);},

@@ -52,13 +52,16 @@ try{
  await page.screenshot({path:`${dir}/street-unshadowed.png`});
  assert(street[0].visibility<.5&&unshadowed[0].visibility>.99,'Street solar occlusion toggle failed');
  await page.evaluate(()=>ASHEN.shadows.setEnabled(true));
+ await page.waitForTimeout(400);
+ const restored=await page.evaluate(p=>ASHEN.shadows.probeSun([p]),streetPoint);
+ assert(restored[0].visibility<.5,'Street solar occlusion did not return after re-enable');
  await page.setViewportSize({width:390,height:844});await page.waitForTimeout(800);
  await page.screenshot({path:`${dir}/portrait.png`});
  const portrait=await page.evaluate(()=>({...ASHEN.volumetric.state}));
  assert(portrait.resolution[0]<portrait.resolution[1]);
  await page.setViewportSize({width:1280,height:720});await page.waitForTimeout(400);
  const state=await page.evaluate(()=>({...ASHEN.shadows.state}));
- const report={actorShadowSamples,movement,versions:[before.v,after.v],street,unshadowed,receivers,state,portrait,errors};
+ const report={actorShadowSamples,movement,versions:[before.v,after.v],street,unshadowed,restored,receivers,state,portrait,errors};
  await fs.writeFile(`${dir}/report.json`,JSON.stringify(report,null,2));
  console.log(JSON.stringify({actorShadowSamples,movement,receivers:receivers.length,state,errors:errors.map(e=>e.split('\n')[0])}));
  assert.equal(errors.length,0,'Runtime or GPU errors');

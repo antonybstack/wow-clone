@@ -8,7 +8,7 @@ const names = [
   'createCsmDirectionalShadowGenerator','createPcfDirectionalShadowGenerator',
   'createPcfSpotlightShadowGenerator','createDirectionalLight','createSpotLight',
   'createShaderMaterial','addTask','onSceneDispose','setShadowCasterMaterial',
-  'setShadowTaskCasterMeshes','getCsmReceiverTexture','onCsmReceiverUpdate',
+  'setShadowTaskCasterMeshes','setShadowGeneratorEnabled','getCsmReceiverTexture','onCsmReceiverUpdate',
   'setShaderTexture','setShaderUniform','enableSkeletonShadows','getViewMatrix',
   'acquireTexture','releaseTexture','enableMaterialPlugins','isPbrMaterial',
   'markMaterialUboDirty','onBeforeRender','rebuildMaterial',
@@ -48,7 +48,7 @@ function fixture({badFar = false, badCsm = false, badLocalSlot = -1, deferredPre
       _renderShadowMap: () => 0,
     };
     if (invalid) value._lightMatrix = null;
-    if (kind === 'csm' && badCsm) value._config = null;
+    if (kind === 'csm' && badCsm) value._depthTexture = null;
     generators.push(value);
     return value;
   };

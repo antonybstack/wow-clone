@@ -13,7 +13,7 @@ const errors=[],frames=[],writes=[];
 page.on('pageerror',e=>errors.push(e.message));
 page.on('console',m=>{if(m.type()==='error'||/validation|invalid.*(bind|shader|command|pipeline)/i.test(m.text()))errors.push(m.text());});
 await page.setViewportSize({width:1280,height:720});await page.bringToFront();
-await page.goto('http://127.0.0.1:5173/ashen-reach.html?play&clean&noEnemies',{waitUntil:'commit'});
+await page.goto(process.env.ASHEN_URL||'http://127.0.0.1:5173/ashen-reach.html?play&clean&noEnemies',{waitUntil:'commit'});
 await page.waitForFunction(()=>window.ASHEN?.ready,null,{timeout:90000});
 const place=async(z,pitch=.35)=>{
  await page.evaluate(({z,pitch})=>{const A=ASHEN;A.setView('play');A.player.setWorldPos(0,A.world.groundHeight(0,z)+1.7,z);A.player.setFacing(0);A.rig.yaw=0;A.rig.pitch=pitch;A.rig.distance=A.rig.distanceTarget=5;},{z,pitch});
@@ -49,7 +49,7 @@ try{
  await page.waitForTimeout(1800);
  await cdp.send('Page.stopScreencast');await Promise.all(writes);
  const lines=['ffconcat version 1.0'];
- for(let i=0;i<frames.length;i++)lines.push(`file 'frames/${frames[i].name}'`,`duration ${Math.max(.008,i+1<frames.length?frames[i+1].ts-frames[i].ts:1/60).toFixed(6)}`);
+ for(let i=0;i<frames.length;i++)lines.push(`file 'frames/${frames[i].name}'`,'option framerate 1000',`duration ${Math.max(.001,i+1<frames.length?frames[i+1].ts-frames[i].ts:1/60).toFixed(6)}`);
  await fs.writeFile(`${dir}/frames.ffconcat`,lines.join('\n')+'\n');
  const seconds=frames.at(-1).ts-frames[0].ts;
  const grounding=contactMode?await page.evaluate(()=>({...ASHEN.grounding.state})):null;
