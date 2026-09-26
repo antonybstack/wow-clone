@@ -12,6 +12,7 @@ const names = [
   'setShaderTexture','setShaderUniform','enableSkeletonShadows','getViewMatrix',
   'acquireTexture','releaseTexture','enableMaterialPlugins','isPbrMaterial',
   'markMaterialUboDirty','onBeforeRender','rebuildMaterial',
+  'waitForGpuIdle','waitForGpuResourceRetirements',
 ];
 const mockUrl = version => `data:text/javascript,${encodeURIComponent([
   `export const VERSION=${JSON.stringify(version)};`,
@@ -24,11 +25,12 @@ registerHooks({resolve(specifier, context, nextResolve) {
 const {createSunShadows} = await import('../src/ashen-reach/sun-shadows.js');
 const {createLocalLights} = await import('../src/ashen-reach/local-lights.js');
 
-function fixture({badFar = false, badCsm = false, badLocalSlot = -1, deferredPreload = false} = {}) {
+function fixture({badFar = false, badCsm = false, badLocalSlot = -1, deferredPreload = false, deferredGpu = false} = {}) {
   const count = {acquire: 0, release: 0, rawDestroy: 0, uboDestroy: 0,
     taskDispose: 0, unsubscribe: 0};
   const generators = [];
   const pending = [];
+  const gpuFences = [];
   const scene = {meshes: [], tasks: [], disposals: [], beforeRender: []};
   const sun = {shadowGenerator: null};
   const queue = {onSubmittedWorkDone: () => Promise.resolve()};
@@ -73,15 +75,32 @@ function fixture({badFar = false, badCsm = false, badLocalSlot = -1, deferredPre
     releaseTexture: () => { count.release++; },
     getViewMatrix: () => new Float32Array(16),
     isPbrMaterial: () => false,
+    waitForGpuIdle: () => deferredGpu ? new Promise(resolve => gpuFences.push(resolve)) : Promise.resolve(),
+    waitForGpuResourceRetirements: () => Promise.resolve(),
   });
-  return {count, generators, pending, scene, sun, engine};
+  return {count, generators, pending, gpuFences, scene, sun, engine};
 }
 
-test('sun setup failure releases CSM owner and unacquired far depth once', () => {
+test('generator-owned resources wait for submitted GPU work on scene teardown', async () => {
+ const f=fixture({deferredGpu:true});
+ const shadows=createSunShadows(f.engine,f.scene,f.sun);
+ const local=createLocalLights(f.engine,f.scene,shadows);
+ f.scene.disposals.forEach(dispose=>dispose());
+ assert.equal(f.gpuFences.length,2);
+ assert.equal(f.count.release,0);
+ assert.equal(f.count.uboDestroy,0);
+ f.gpuFences.forEach(resolve=>resolve());
+ await Promise.all([shadows.gpuRelease,local.gpuRelease]);
+ assert.equal(f.count.release,4);
+ assert.equal(f.count.uboDestroy,8);
+});
+
+test('sun setup failure releases CSM owner and unacquired far depth once', async () => {
   const f = fixture({badFar: true});
   assert.throws(() => createSunShadows(f.engine, f.scene, f.sun), /far PCF bridge unavailable/);
-  assert.equal(f.count.acquire, 0);
-  assert.equal(f.count.release, 0);
+ assert.equal(f.count.acquire, 0);
+ assert.equal(f.count.release, 0);
+ await new Promise(resolve => setImmediate(resolve));
   assert.equal(f.count.rawDestroy, 2);
   assert.equal(f.count.uboDestroy, 4);
   assert.equal(f.sun.shadowGenerator, null);
@@ -89,10 +108,11 @@ test('sun setup failure releases CSM owner and unacquired far depth once', () =>
   assert.equal(f.count.rawDestroy, 2);
 });
 
-test('sun failure after CSM receiver acquisition releases only acquired owners', () => {
+test('sun failure after CSM receiver acquisition releases only acquired owners', async () => {
   const f = fixture({badCsm: true});
   assert.throws(() => createSunShadows(f.engine, f.scene, f.sun), /CSM bridge unavailable/);
-  assert.equal(f.count.acquire, 2);
+ assert.equal(f.count.acquire, 2);
+ await new Promise(resolve => setImmediate(resolve));
   assert.equal(f.count.release, 2);
   assert.equal(f.count.rawDestroy, 0);
   assert.equal(f.count.uboDestroy, 4);
@@ -126,8 +146,9 @@ test('local partial setup and pending preload dispose every owned resource once'
   const bad = fixture({badLocalSlot: 1});
   assert.throws(() => createLocalLights(bad.engine, bad.scene, {casters: [], dynamicCasters: []}),
     /local PCF bridge unavailable/);
-  assert.equal(bad.count.acquire, 1);
-  assert.equal(bad.count.release, 1);
+ assert.equal(bad.count.acquire, 1);
+ await new Promise(resolve => setImmediate(resolve));
+ assert.equal(bad.count.release, 1);
   assert.equal(bad.count.rawDestroy, 1);
   assert.equal(bad.count.uboDestroy, 4);
   bad.scene.disposals.forEach(dispose => dispose());
@@ -159,10 +180,11 @@ test('local frame-graph task disposal is once-only across repeated teardown', as
     task.dispose();
     task.dispose();
   }
-  f.scene.disposals.forEach(dispose => dispose());
-  f.scene.disposals.forEach(dispose => dispose());
-  assert.equal(f.count.taskDispose, 2);
-  assert.equal(f.count.release, 2);
+ f.scene.disposals.forEach(dispose => dispose());
+ f.scene.disposals.forEach(dispose => dispose());
+ assert.equal(f.count.taskDispose, 2);
+ await local.gpuRelease;
+ assert.equal(f.count.release, 2);
 });
 
 test('private layout guard admits exact 1.31.1 and rejects unreviewed versions', async () => {
@@ -171,9 +193,10 @@ test('private layout guard admits exact 1.31.1 and rejects unreviewed versions',
   const candidateLocal = await import('../src/ashen-reach/local-lights.js?bridge-version=1311');
   const f = fixture();
   candidateSun.createSunShadows(f.engine, f.scene, f.sun);
-  candidateLocal.createLocalLights(f.engine, f.scene, {casters: [], dynamicCasters: []});
-  f.scene.disposals.forEach(dispose => dispose());
-  assert.equal(f.count.release, 4); // CSM, far PCF and both local PCF maps
+ candidateLocal.createLocalLights(f.engine, f.scene, {casters: [], dynamicCasters: []});
+ f.scene.disposals.forEach(dispose => dispose());
+ await new Promise(resolve => setImmediate(resolve));
+ assert.equal(f.count.release, 4); // CSM, far PCF and both local PCF maps
 
   globalThis.__mockLiteVersion = '1.30.0';
   const unsupportedSun = await import('../src/ashen-reach/sun-shadows.js?bridge-version=1300');

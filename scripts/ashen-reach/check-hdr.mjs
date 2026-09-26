@@ -67,6 +67,7 @@ try{
   if(!url)throw new Error('Could not locate the active Lite module');
   const {unregisterScene,disposeScene}=await import(url),a=ASHEN;
   unregisterScene(a.scene);disposeScene(a.scene);
+  await Promise.all([a.shadows.gpuRelease,a.localLights.gpuRelease]);
   return !a.hdr.bloomRT._colorTexture&&!a.hdr.sceneRT._colorTexture;
  });
  assert(disposed,'HDR scene and bloom targets released');const stoppedFrames=await page.evaluate(()=>ASHEN.renderLoop.state.rendered);

@@ -85,12 +85,15 @@ try {
     report.gpuErrors = await page.evaluate(() => __gpuErrors);
     assert.deepEqual(errors, []);
     assert.deepEqual(report.gpuErrors, []);
-    report.disposed = await page.evaluate(() => {
+    report.disposed = await page.evaluate(async () => {
         cameraLite.unregisterScene(ASHEN.scene);
         cameraLite.disposeScene(ASHEN.scene);
+        await Promise.all([ASHEN.shadows.gpuRelease, ASHEN.localLights.gpuRelease]);
         return ASHEN.rig.collisionSweep === null;
     });
     assert(report.disposed, 'Scene disposal must detach the sweep and release its shape');
+    report.gpuErrorsAfterDispose = await page.evaluate(() => __gpuErrors);
+    assert.deepEqual(report.gpuErrorsAfterDispose, []);
     report.passed = true;
 } catch (e) {
     report.failure = e.stack;

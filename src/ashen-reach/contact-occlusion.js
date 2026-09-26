@@ -123,7 +123,10 @@ export function createContactOcclusion(engine,scene,sourceRT,sourceSurface=null)
  contactTask.execute=()=>{
   const p=getCameraPosition(scene.camera);
   if(lastCamera!==scene.camera || (lastPosition&&Math.hypot(p.x-lastPosition.x,p.y-lastPosition.y,p.z-lastPosition.z)>3))contactTask.resetVersion++;
-  lastCamera=scene.camera;lastPosition={x:p.x,y:p.y,z:p.z};contactTask.enabled=state.enabled&&state.contact;
+  lastCamera=scene.camera;
+  if(lastPosition){lastPosition.x=p.x;lastPosition.y=p.y;lastPosition.z=p.z;}
+  else lastPosition={x:p.x,y:p.y,z:p.z};
+  contactTask.enabled=state.enabled&&state.contact;
   return contactExecute();
  };
  const record=aoTask.record.bind(aoTask),execute=aoTask.execute.bind(aoTask);

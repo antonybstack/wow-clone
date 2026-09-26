@@ -7,6 +7,7 @@ import {
  VERSION as LITE_VERSION,
 } from '@babylonjs/lite';
 import {SUN_DIR} from './atmosphere.js';
+import {scheduleShadowGpuRelease} from './shadow-gpu-release.js';
 
 export const SUN_SHADOW_RANGE=180;
 const controllers=new WeakMap();
@@ -84,7 +85,7 @@ export function createSunShadows(engine,scene,sun,{depthOnlyFragment=false}={}){
  // exception while Lite exposes no public generator disposal API.
  const previousShadowGenerator=sun.shadowGenerator;
  let csm=null,far=null,farTexture=null,csmTexture=null,farTextureAcquired=false;
- let unsubscribe=null,farTask=null,controller=null,disposed=false;
+ let unsubscribe=null,farTask=null,controller=null,disposed=false,gpuRelease=Promise.resolve();
  const receivers=new Set(),retiredTasks=new WeakSet();
  const disposeTask=task=>{if(!task||retiredTasks.has(task))return;retiredTasks.add(task);task.dispose();};
  const cleanup=()=>{
@@ -96,10 +97,12 @@ export function createSunShadows(engine,scene,sun,{depthOnlyFragment=false}={}){
   // On setup failure, the frame graph may not own farTask yet. Its dispose is
   // guarded because scene disposal calls it independently when registered.
   farTask?.dispose();
-  if(farTextureAcquired)releaseTexture(farTexture);else far?._depthTexture?.destroy?.();
-  if(csmTexture)releaseTexture(csmTexture);else csm?._depthTexture?.destroy?.();
-  far?._shadowUBO?.destroy?.();far?._shadowParamsUBO?.destroy?.();
-  csm?._shadowUBO?.destroy?.();csm?._shadowParamsUBO?.destroy?.();
+  gpuRelease=scheduleShadowGpuRelease(engine,()=>{
+   if(farTextureAcquired)releaseTexture(farTexture);else far?._depthTexture?.destroy?.();
+   if(csmTexture)releaseTexture(csmTexture);else csm?._depthTexture?.destroy?.();
+   far?._shadowUBO?.destroy?.();far?._shadowParamsUBO?.destroy?.();
+   csm?._shadowUBO?.destroy?.();csm?._shadowParamsUBO?.destroy?.();
+  });
  };
  onSceneDispose(scene,cleanup);
  try{
@@ -129,7 +132,7 @@ export function createSunShadows(engine,scene,sun,{depthOnlyFragment=false}={}){
   throw new Error('Lite 1.28/1.31 CSM bridge unavailable');
  const data=new Float32Array(80);
  const state={enabled:true,characters:true,cascades:3,mapSize:2048,range:SUN_SHADOW_RANGE,staticCasters:0,dynamicCasters:0,receivers:0,version:0,depthOnlyFragment};
- let worldCasters=[],farCasters=[],dynamic=[];
+ let worldCasters=[],worldCasterSet=new Set(),farCasters=[],dynamic=[],candidateDynamic=[];
  const updateMaterial=mat=>{
   for(let i=0;i<3;i++)setShaderUniform(mat,`sunCascade${i}`,data.subarray(i*16,i*16+16));
   setShaderUniform(mat,'sunFarMatrix',far._lightMatrix);
@@ -142,17 +145,23 @@ export function createSunShadows(engine,scene,sun,{depthOnlyFragment=false}={}){
  const caster=createShaderMaterial({name:'Sun opaque world caster',attributes:['position'],uniforms:['worldViewProjection'],backFaceCulling:false,depthOnlyFragment,
   vertexSource:'@vertex fn mainVertex(i:VertexInput)->@builtin(position) vec4<f32>{return shaderSystem.worldViewProjection*vec4<f32>(i.position,1.0);}',
   fragmentSource:'@fragment fn mainFragment() {}'});
- controller={state,csm,far,csmTexture,farTexture,data,
+ controller={state,csm,far,csmTexture,farTexture,data,get gpuRelease(){return gpuRelease;},
   addReceiver(mat){if(disposed)return;receivers.add(mat);setShaderTexture(mat,'sunCascades',csmTexture);setShaderTexture(mat,'sunFar',farTexture);updateMaterial(mat);state.receivers=receivers.size;},
-  setWorld(world){if(disposed)return;worldCasters=world.meshes.filter(m=>!['Ash motes','Lamp light shafts'].includes(m.name));for(const mesh of worldCasters)setShadowCasterMaterial(mesh.material,caster);farCasters=worldCasters;state.staticCasters=worldCasters.length;dynamic=[];controller.update(true);},
+  setWorld(world){if(disposed)return;worldCasters=world.meshes.filter(m=>!['Ash motes','Lamp light shafts'].includes(m.name));worldCasterSet=new Set(worldCasters);for(const mesh of worldCasters)setShadowCasterMaterial(mesh.material,caster);farCasters=worldCasters;state.staticCasters=worldCasters.length;dynamic=[];candidateDynamic=[];controller.update(true);},
   setFarCasters(meshes){farCasters=meshes;},
   update(force=false){
    if(disposed)return;
    // Reconcile loaded/swapped equipment and actors; hidden parked bodies are
    // omitted by Lite's visibility check, preserving source skeletons/materials.
-   const next=state.characters?scene.meshes.filter(m=>m.visible!==false&&m.material&&['pbr','standard'].includes(m.material._buildGroup?._materialFamily)&&!worldCasters.includes(m)):[];
-   if(force||next.length!==dynamic.length||next.some((mesh,i)=>mesh!==dynamic[i])){
-    dynamic=next;
+   candidateDynamic.length=0;
+   if(state.characters)for(const mesh of scene.meshes){
+    const family=mesh.material?._buildGroup?._materialFamily;
+    if(mesh.visible!==false&&(family==='pbr'||family==='standard')&&!worldCasterSet.has(mesh))candidateDynamic.push(mesh);
+   }
+   let changed=force||candidateDynamic.length!==dynamic.length;
+   if(!changed)for(let i=0;i<candidateDynamic.length;i++)if(candidateDynamic[i]!==dynamic[i]){changed=true;break;}
+   if(changed){
+    const previousDynamic=dynamic;dynamic=candidateDynamic;candidateDynamic=previousDynamic;
     for(const mesh of dynamic)mesh.receiveShadows=true;
     // Lite 1.28's skeleton preloader replaces its mesh wrappers before the
     // incremental CSM removal pass sees the old wrappers. Retire the old tasks
@@ -186,7 +195,7 @@ export function createSunShadows(engine,scene,sun,{depthOnlyFragment=false}={}){
   _preload:()=>disposed?Promise.resolve():far._preloadShadowTask(farCasters),
   record(){if(disposed)return;recordedFar=far._ensureShadowTaskState(engine,scene,farCasters);recordedFar._task.record();},
   execute(){
-   if(disposed)return 0;
+   if(disposed||!state.enabled)return 0;
    const next=far._ensureShadowTaskState(engine,scene,farCasters);
    if(next!==recordedFar){recordedFar=next;next._task.record();}
    const draws=far._renderShadowMap(engine,next);

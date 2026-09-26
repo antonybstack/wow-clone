@@ -3,6 +3,7 @@ import {createSpotLight,createPcfSpotlightShadowGenerator,enableSkeletonShadows,
 import {LOCAL_LIGHT_UNIFORMS,LOCAL_MAP_SIZE,desiredLocalLights,advanceLocalSlots} from './local-light-shared.js';
 import {configureLocalLightMaterials} from './local-light-materials.js';
 import {createLocalLightBoundsCache} from './local-light-bounds.js';
+import {scheduleShadowGpuRelease} from './shadow-gpu-release.js';
 const controllers=new WeakMap();
 export function bindLocalReceiver(engine,material){controllers.get(engine)?.addReceiver(material);return material;}
 
@@ -18,17 +19,19 @@ export function createLocalLights(engine,scene,shadows){
  const values=Object.fromEntries(LOCAL_LIGHT_UNIFORMS.map(u=>[u.name,new Float32Array(u.type.startsWith('mat')?16:4)]));
  const state={enabled:true,shadows:true,characters:true,specular:true,details:true,mapSize:LOCAL_MAP_SIZE,budget:2,candidates:0,active:[],draws:0,version:0,cacheHits:0,mapRenders:0,disposed:false};
  const receivers=new Set(),slots=[],retiredTasks=new WeakSet();
- let candidates=[],casters=[],requested=[],disposed=false,revision=0,preload=Promise.resolve(),preloadError=null,controller=null;
+ let candidates=[],casters=[],requested=[],disposed=false,revision=0,preload=Promise.resolve(),preloadError=null,controller=null,gpuRelease=Promise.resolve();
  const disposeTask=task=>{if(!task||retiredTasks.has(task))return;retiredTasks.add(task);task.dispose();};
  const cleanup=()=>{
   if(disposed)return;
   disposed=true;state.disposed=true;revision++;receivers.clear();
   if(controllers.get(engine)===controller)controllers.delete(engine);
-  for(const s of slots){
-   s.task?.dispose();
-   if(s.textureAcquired)releaseTexture(s.texture);else s.generator?._depthTexture?.destroy?.();
-   s.generator?._shadowUBO?.destroy?.();s.generator?._shadowParamsUBO?.destroy?.();
-  }
+  for(const s of slots)s.task?.dispose();
+  gpuRelease=scheduleShadowGpuRelease(engine,()=>{
+   for(const s of slots){
+    if(s.textureAcquired)releaseTexture(s.texture);else s.generator?._depthTexture?.destroy?.();
+    s.generator?._shadowUBO?.destroy?.();s.generator?._shadowParamsUBO?.destroy?.();
+   }
+  });
  };
  onSceneDispose(scene,cleanup);
  try{
@@ -74,7 +77,7 @@ export function createLocalLights(engine,scene,shadows){
   s.generator._config._forceRefreshEveryFrame=nearby.some(m=>m.skeleton||m.morphTargets||m.morphTargetManager);
   return s.casters;
  }
- controller={slots,values,state,boundsStats:bounds.stats,
+ controller={slots,values,state,boundsStats:bounds.stats,get gpuRelease(){return gpuRelease;},
   setWorld(world){if(disposed)return;candidates=world.localLights;state.candidates=candidates.length;controller.update(1,{x:0,z:0});},
   addReceiver(mat){
    if(disposed)return;
@@ -110,7 +113,7 @@ export function createLocalLights(engine,scene,shadows){
    _preload:async()=>{await preload;if(!disposed&&preloadError)throw preloadError;},
    record(){if(disposed)return;s.recorded=s.generator._ensureShadowTaskState(engine,scene,slotCasters(s));s.recorded._task.record();},
    execute(){
-    if(disposed)return 0;
+    if(disposed||!shadows.state.enabled||!state.enabled||!state.shadows){s.draws=0;return 0;}
     // Even disabled fixtures receive an initialized map, keeping bindings valid.
     const next=s.generator._ensureShadowTaskState(engine,scene,slotCasters(s));
     if(next!==s.recorded){s.recorded=next;next._task.record();}
