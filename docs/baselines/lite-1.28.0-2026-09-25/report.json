@@ -1,0 +1,269 @@
+{
+  "url": "http://127.0.0.1:6273/ashen-reach.html?play&clean",
+  "cdpPort": "10437",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "shots": [
+    {
+      "shot": {
+        "id": "churchyard",
+        "x": 0,
+        "z": 8,
+        "yaw": 0,
+        "pitch": 0.04,
+        "distance": 3.5
+      },
+      "pose": {
+        "player": {
+          "x": 0,
+          "y": 1.3025672357828262,
+          "z": 8.002545108623982
+        },
+        "camera": {
+          "x": 0,
+          "pitch": 0.04,
+          "distance": 3.5
+        },
+        "physics": true,
+        "recoveries": 0
+      },
+      "file": "churchyard.png"
+    },
+    {
+      "shot": {
+        "id": "town-plaza",
+        "x": 0,
+        "z": 130,
+        "yaw": 0,
+        "pitch": 0.12,
+        "distance": 4.5
+      },
+      "pose": {
+        "player": {
+          "x": -0.0007443034671200499,
+          "y": 9.078520933737154,
+          "z": 130.009303793183
+        },
+        "camera": {
+          "x": 0,
+          "pitch": 0.12,
+          "distance": 4.5
+        },
+        "physics": true,
+        "recoveries": 0
+      },
+      "file": "town-plaza.png"
+    },
+    {
+      "shot": {
+        "id": "bridge-approach",
+        "x": 0,
+        "z": 190,
+        "yaw": 0,
+        "pitch": -0.1,
+        "distance": 4
+      },
+      "pose": {
+        "player": {
+          "x": -0.022639099053628386,
+          "y": 15.727682636613961,
+          "z": 189.9847165656092
+        },
+        "camera": {
+          "x": 0,
+          "pitch": -0.1,
+          "distance": 4
+        },
+        "physics": true,
+        "recoveries": 0
+      },
+      "file": "bridge-approach.png"
+    },
+    {
+      "shot": {
+        "id": "cathedral-silhouette",
+        "x": 0,
+        "z": 249,
+        "yaw": 0,
+        "pitch": -0.1,
+        "distance": 4,
+        "routeFloor": true
+      },
+      "pose": {
+        "player": {
+          "x": 0,
+          "y": 39.674173886382626,
+          "z": 248.97708210881436
+        },
+        "camera": {
+          "x": 0,
+          "pitch": -0.1,
+          "distance": 4
+        },
+        "physics": true,
+        "recoveries": 0
+      },
+      "file": "cathedral-silhouette.png"
+    },
+    {
+      "shot": {
+        "id": "cathedral-approach",
+        "x": 0,
+        "z": 280,
+        "yaw": 0,
+        "pitch": -0.16,
+        "distance": 4,
+        "routeFloor": true
+      },
+      "pose": {
+        "player": {
+          "x": 0,
+          "y": 45.92980653269742,
+          "z": 280
+        },
+        "camera": {
+          "x": 0,
+          "pitch": -0.16,
+          "distance": 4
+        },
+        "physics": true,
+        "recoveries": 0
+      },
+      "file": "cathedral-approach.png"
+    },
+    {
+      "shot": {
+        "id": "cathedral-nave",
+        "x": 0,
+        "z": 335,
+        "yaw": 0,
+        "pitch": -0.1,
+        "distance": 3.5,
+        "cathedralFloor": true
+      },
+      "pose": {
+        "player": {
+          "x": 0,
+          "y": 45.92927321989612,
+          "z": 335
+        },
+        "camera": {
+          "x": 0,
+          "pitch": -0.1,
+          "distance": 3.5
+        },
+        "physics": true,
+        "recoveries": 0
+      },
+      "file": "cathedral-nave.png"
+    },
+    {
+      "shot": {
+        "id": "forest-performance-route",
+        "x": 130,
+        "z": -50,
+        "yaw": 0,
+        "pitch": -0.16,
+        "distance": 4
+      },
+      "pose": {
+        "player": {
+          "x": 129.99972892617666,
+          "y": 20.657387268647135,
+          "z": -49.99629532436399
+        },
+        "camera": {
+          "x": 0,
+          "pitch": -0.16,
+          "distance": 4
+        },
+        "physics": true,
+        "recoveries": 0
+      },
+      "file": "forest-performance-route.png"
+    },
+    {
+      "shot": {
+        "id": "woodland-detail",
+        "x": 72,
+        "z": 190,
+        "yaw": 0,
+        "pitch": -0.16,
+        "distance": 4
+      },
+      "pose": {
+        "player": {
+          "x": 72.00444160033216,
+          "y": 16.63207636099966,
+          "z": 189.9928557280203
+        },
+        "camera": {
+          "x": 0,
+          "pitch": -0.16,
+          "distance": 4
+        },
+        "physics": true,
+        "recoveries": 0,
+        "woodlandState": {
+          "disposed": false,
+          "revision": 81,
+          "transitions": 81,
+          "tiles": 27,
+          "full": 8,
+          "triangles": 419872
+        }
+      },
+      "file": "woodland-detail.png"
+    }
+  ],
+  "errors": [],
+  "video": {
+    "before": {
+      "x": 0,
+      "z": 248.97370927245368,
+      "recoveries": 0
+    },
+    "after": {
+      "x": 0,
+      "z": 325.9772092724582,
+      "recoveries": 0,
+      "physics": true
+    },
+    "frames": 681
+  },
+  "initial": {
+    "version": null,
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "canvas": {
+      "width": 960,
+      "height": 540
+    },
+    "enemies": 7,
+    "devicePixelRatio": 1,
+    "physics": true
+  },
+  "mobile": {
+    "kind": "desktop Chromium mobile emulation",
+    "surface": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "devicePixelRatio": 3,
+      "canvas": {
+        "width": 292,
+        "height": 633,
+        "cssWidth": 390,
+        "cssHeight": 844
+      }
+    },
+    "physics": true,
+    "file": "mobile-portrait.png"
+  },
+  "passed": true
+}

@@ -59,6 +59,8 @@ Do not turn uncertain findings into mandatory rewrites. Where a task says **tria
 
 ### M0 — Reproducible baseline and trustworthy checks
 
+**Initial snapshot captured 2026-09-25:** [Lite 1.28.0 baseline](babylon-lite-1.28.0-baseline-2026-09-25.md) includes five corrected load navigations, 12 uncapped movement runs with raw frame intervals, gameplay/portrait stills, and reviewed cathedral motion. The benchmark runner now checks expected canvas, enemy count, active Havok, movement, recovery count, browser uncapping, and runtime/GPU errors. A foreign-worktree Chrome game tab remained open, so a quiet paired version comparison is still required before using small FPS differences as an acceptance gate. This snapshot does not complete the other M0 script/test repairs below.
+
 **Files:** `scripts/ashen-reach/check-contact-occlusion.mjs`, `check-local-lights.mjs`, `measure-region.mjs`; new focused built-runtime smoke script if existing checks cannot cover the gate. Read `scripts/harness/`, `scripts/lib/cdp.mjs`, `docs/debug-view.md`, `vite.config.js`.
 
 1. Record git SHA, clean/unrelated working changes, actual installed/locked package versions, lockfile integrity, browser version, hardware and GPU adapter, and current production deployment. Do not assume historical FPS is a comparable baseline.

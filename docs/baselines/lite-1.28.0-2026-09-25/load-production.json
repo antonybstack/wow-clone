@@ -1,0 +1,548 @@
+{
+  "recordedAt": "2026-09-26T06:31:11.846Z",
+  "hostname": "antbly",
+  "platform": "darwin",
+  "arch": "arm64",
+  "cpus": [
+    "Apple M1 Max"
+  ],
+  "browserVersion": "153.0.8010.54",
+  "cdp": "10337",
+  "url": "https://play.sparkify.dev/ashen-reach.html?play&clean",
+  "viewport": {
+    "width": 1280,
+    "height": 720,
+    "deviceScaleFactor": 1
+  },
+  "conditions": "Chrome headless WebGPU; same context; browser cache cleared before cold run, then two same-context warm navigations; no FPS benchmark running; Vite dev server if loopback URL, live CDN if HTTPS URL",
+  "runs": [
+    {
+      "label": "cold-browser-cache",
+      "startedAt": "2026-09-26T06:30:02.366Z",
+      "navigation": {
+        "startTime": 0,
+        "domContentLoaded": 11918.399999856949,
+        "loadEventEnd": 11918.699999809265,
+        "responseEnd": 7743.899999856949,
+        "transferSize": 5798,
+        "encodedBodySize": 5498
+      },
+      "paints": [
+        {
+          "name": "first-paint",
+          "startTime": 8744
+        },
+        {
+          "name": "first-contentful-paint",
+          "startTime": 8744
+        }
+      ],
+      "stages": {
+        "readyAt": 50799.299999952316,
+        "hostilesAt": 50428.39999985695,
+        "firstAshenAt": 24208.89999985695,
+        "firstGpuFrameAt": 34991.59999990463
+      },
+      "startupFrameSpikes": {
+        "sampleCount": 262209,
+        "p95": 0.20000000000436557,
+        "p99": 1.1999999999970896,
+        "max": 6385,
+        "over50ms": 5,
+        "over100ms": 5,
+        "longAnimationFrames": [
+          {
+            "startTime": 7750,
+            "duration": 984
+          },
+          {
+            "startTime": 14570.599999904633,
+            "duration": 6385.099999904633
+          },
+          {
+            "startTime": 21870.199999809265,
+            "duration": 104.90000009536743
+          },
+          {
+            "startTime": 22891.599999904633,
+            "duration": 956.5999999046326
+          },
+          {
+            "startTime": 24728,
+            "duration": 928.6999998092651
+          },
+          {
+            "startTime": 35727.199999809265,
+            "duration": 811
+          }
+        ]
+      },
+      "ashen": {
+        "presentMs": 23081.299999952316,
+        "loadMs": 38877.5,
+        "ready": true,
+        "hostilesReady": true,
+        "gpuFrames": 3403
+      },
+      "resources": {
+        "count": 141,
+        "transferSize": 11499291,
+        "encodedBodySize": 13524776,
+        "decodedBodySize": 15807640,
+        "bundleUrls": [
+          "https://play.sparkify.dev/assets/ashenReach-COxFpJlG.js"
+        ],
+        "longest": [
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/equipment/body.glb",
+            "initiatorType": "link",
+            "startTime": 7746.399999856949,
+            "duration": 8059.100000143051,
+            "transferSize": 3400140,
+            "encodedBodySize": 3399840
+          },
+          {
+            "name": "https://play.sparkify.dev/tex/rock_wall_08/diff.jpg",
+            "initiatorType": "early-hints",
+            "startTime": 7746,
+            "duration": 5708.199999809265,
+            "transferSize": 0,
+            "encodedBodySize": 321767
+          },
+          {
+            "name": "https://play.sparkify.dev/assets/ashenReach-COxFpJlG.js",
+            "initiatorType": "script",
+            "startTime": 7746.399999856949,
+            "duration": 4151,
+            "transferSize": 167116,
+            "encodedBodySize": 166816
+          },
+          {
+            "name": "https://play.sparkify.dev/tex/forrest_ground_01/diff.jpg",
+            "initiatorType": "early-hints",
+            "startTime": 7746,
+            "duration": 3792.7999999523163,
+            "transferSize": 0,
+            "encodedBodySize": 127416
+          },
+          {
+            "name": "https://play.sparkify.dev/assets/gltf-pbr-builder-ext-DYCqfMeD.js",
+            "initiatorType": "script",
+            "startTime": 37306.699999809265,
+            "duration": 2923.100000143051,
+            "transferSize": 1713,
+            "encodedBodySize": 1413
+          },
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/stone-detail.png",
+            "initiatorType": "fetch",
+            "startTime": 12519.599999904633,
+            "duration": 2046.0999999046326,
+            "transferSize": 921647,
+            "encodedBodySize": 921347
+          },
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/equipment/wayfarerTrousers.glb",
+            "initiatorType": "fetch",
+            "startTime": 47826.199999809265,
+            "duration": 1840.1000001430511,
+            "transferSize": 300,
+            "encodedBodySize": 146288
+          },
+          {
+            "name": "https://play.sparkify.dev/assets/create-skeleton-COr8Bw2Y.js",
+            "initiatorType": "script",
+            "startTime": 28424.599999904633,
+            "duration": 1803.7999999523163,
+            "transferSize": 773,
+            "encodedBodySize": 473
+          },
+          {
+            "name": "https://play.sparkify.dev/assets/load-gltf-LTVm1JoR.js",
+            "initiatorType": "other",
+            "startTime": 7747.5,
+            "duration": 1746.8999998569489,
+            "transferSize": 6283,
+            "encodedBodySize": 5983
+          },
+          {
+            "name": "https://play.sparkify.dev/assets/animation-group-CTrony3w.js",
+            "initiatorType": "other",
+            "startTime": 7747.799999952316,
+            "duration": 1723,
+            "transferSize": 3436,
+            "encodedBodySize": 3136
+          },
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/fire-blast/fireball-julien-matthey.wav",
+            "initiatorType": "fetch",
+            "startTime": 42297.39999985695,
+            "duration": 1711.9000000953674,
+            "transferSize": 346994,
+            "encodedBodySize": 346694
+          },
+          {
+            "name": "https://play.sparkify.dev/assets/bone-control-D8eKLvx5.js",
+            "initiatorType": "other",
+            "startTime": 7747.899999856949,
+            "duration": 1709.7999999523163,
+            "transferSize": 2360,
+            "encodedBodySize": 2060
+          },
+          {
+            "name": "https://play.sparkify.dev/assets/standard-material-r_SZpAnS.js",
+            "initiatorType": "other",
+            "startTime": 7747.599999904633,
+            "duration": 1707.7999999523163,
+            "transferSize": 2400,
+            "encodedBodySize": 2100
+          },
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/fire-blast/fire_01.png",
+            "initiatorType": "other",
+            "startTime": 11923.099999904633,
+            "duration": 1705.5,
+            "transferSize": 100191,
+            "encodedBodySize": 99891
+          },
+          {
+            "name": "https://play.sparkify.dev/tex/wood_planks_grey/diff.jpg",
+            "initiatorType": "fetch",
+            "startTime": 11930,
+            "duration": 1699.5999999046326,
+            "transferSize": 75707,
+            "encodedBodySize": 75407
+          },
+          {
+            "name": "https://play.sparkify.dev/tex/bark_brown_02/diff.jpg",
+            "initiatorType": "fetch",
+            "startTime": 11930.099999904633,
+            "duration": 1698.7000000476837,
+            "transferSize": 124750,
+            "encodedBodySize": 124450
+          },
+          {
+            "name": "https://play.sparkify.dev/assets/pbr-material-0ifN_Wyr.js",
+            "initiatorType": "other",
+            "startTime": 7747.5,
+            "duration": 1692,
+            "transferSize": 3565,
+            "encodedBodySize": 3265
+          },
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/grave-face.jpg",
+            "initiatorType": "fetch",
+            "startTime": 11930.099999904633,
+            "duration": 1672.7999999523163,
+            "transferSize": 159305,
+            "encodedBodySize": 159005
+          },
+          {
+            "name": "https://play.sparkify.dev/assets/gltf-pbr-builder-Bp1I3jRX.js",
+            "initiatorType": "other",
+            "startTime": 7747.5,
+            "duration": 1672.5,
+            "transferSize": 1752,
+            "encodedBodySize": 1452
+          },
+          {
+            "name": "https://play.sparkify.dev/assets/compute-aabb-DwpYVsHJ.js",
+            "initiatorType": "other",
+            "startTime": 7747.199999809265,
+            "duration": 1671.5,
+            "transferSize": 1315,
+            "encodedBodySize": 1015
+          }
+        ]
+      },
+      "webgpu": true,
+      "viewport": {
+        "innerWidth": 1280,
+        "innerHeight": 720,
+        "devicePixelRatio": 1
+      },
+      "canvas": [
+        {
+          "width": 960,
+          "height": 540,
+          "clientWidth": 1280,
+          "clientHeight": 720
+        },
+        {
+          "width": 128,
+          "height": 148,
+          "clientWidth": 128,
+          "clientHeight": 148
+        }
+      ],
+      "errors": [],
+      "failedRequests": [],
+      "httpErrors": []
+    },
+    {
+      "label": "warm-browser-cache-1",
+      "startedAt": "2026-09-26T06:30:53.714Z",
+      "navigation": {
+        "startTime": 0,
+        "domContentLoaded": 737.0999999046326,
+        "loadEventEnd": 737.8999998569489,
+        "responseEnd": 662.0999999046326,
+        "transferSize": 5798,
+        "encodedBodySize": 5498
+      },
+      "paints": [
+        {
+          "name": "first-paint",
+          "startTime": 744
+        },
+        {
+          "name": "first-contentful-paint",
+          "startTime": 744
+        }
+      ],
+      "stages": {
+        "readyAt": 17601.699999809265,
+        "hostilesAt": 17242.199999809265,
+        "firstAshenAt": 9526.299999952316,
+        "firstGpuFrameAt": 10519.5
+      },
+      "startupFrameSpikes": {
+        "sampleCount": 51669,
+        "p95": 0.2000000000007276,
+        "p99": 1.7999999999992724,
+        "max": 6239.6,
+        "over50ms": 5,
+        "over100ms": 4,
+        "longAnimationFrames": [
+          {
+            "startTime": 764.6999998092651,
+            "duration": 6245.800000190735
+          },
+          {
+            "startTime": 8455,
+            "duration": 100.5
+          },
+          {
+            "startTime": 8558.199999809265,
+            "duration": 959.4000000953674
+          },
+          {
+            "startTime": 9533.099999904633,
+            "duration": 923.9000000953674
+          },
+          {
+            "startTime": 10543.799999952316,
+            "duration": 806.7000000476837
+          }
+        ]
+      },
+      "ashen": {
+        "presentMs": 9782.5,
+        "loadMs": 16862.700000047684,
+        "ready": true,
+        "hostilesReady": true,
+        "gpuFrames": 1447
+      },
+      "resources": {
+        "count": 141,
+        "transferSize": 4500,
+        "encodedBodySize": 13524776,
+        "decodedBodySize": 15807640,
+        "bundleUrls": [
+          "https://play.sparkify.dev/assets/ashenReach-COxFpJlG.js"
+        ],
+        "longest": [
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/equipment/body.glb",
+            "initiatorType": "link",
+            "startTime": 668.7999999523163,
+            "duration": 6344.799999952316,
+            "transferSize": 300,
+            "encodedBodySize": 3399840
+          },
+          {
+            "name": "https://play.sparkify.dev/characters/base.glb",
+            "initiatorType": "fetch",
+            "startTime": 10537.299999952316,
+            "duration": 2829.7999999523163,
+            "transferSize": 300,
+            "encodedBodySize": 1891828
+          },
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/training-dummy.glb",
+            "initiatorType": "fetch",
+            "startTime": 10535.399999856949,
+            "duration": 2087.600000143051,
+            "transferSize": 300,
+            "encodedBodySize": 1061704
+          },
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/woodland/trees.json",
+            "initiatorType": "fetch",
+            "startTime": 7010.199999809265,
+            "duration": 1443.6000001430511,
+            "transferSize": 300,
+            "encodedBodySize": 60899
+          },
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/equipment/wayfarerBoots.glb",
+            "initiatorType": "fetch",
+            "startTime": 7019.199999809265,
+            "duration": 853.2000000476837,
+            "transferSize": 300,
+            "encodedBodySize": 242544
+          },
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/equipment/wayfarerTunic.glb",
+            "initiatorType": "fetch",
+            "startTime": 7019.199999809265,
+            "duration": 853.2000000476837,
+            "transferSize": 300,
+            "encodedBodySize": 249636
+          },
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/equipment/manifest.json",
+            "initiatorType": "fetch",
+            "startTime": 7019.099999904633,
+            "duration": 851.0999999046326,
+            "transferSize": 300,
+            "encodedBodySize": 910
+          },
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/equipment/wayfarerTrousers.glb",
+            "initiatorType": "fetch",
+            "startTime": 7019.199999809265,
+            "duration": 851,
+            "transferSize": 300,
+            "encodedBodySize": 146288
+          },
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/equipment/wayfarerTrousers.glb",
+            "initiatorType": "fetch",
+            "startTime": 15785.299999952316,
+            "duration": 747.7999999523163,
+            "transferSize": 300,
+            "encodedBodySize": 146288
+          },
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/equipment/wayfarerBoots.glb",
+            "initiatorType": "fetch",
+            "startTime": 16539.39999985695,
+            "duration": 694.1000001430511,
+            "transferSize": 300,
+            "encodedBodySize": 242544
+          },
+          {
+            "name": "https://play.sparkify.dev/cdn-cgi/rum?",
+            "initiatorType": "xmlhttprequest",
+            "startTime": 746.1999998092651,
+            "duration": 679.4000000953674,
+            "transferSize": 300,
+            "encodedBodySize": 0
+          },
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/equipment/wayfarerTunic.glb",
+            "initiatorType": "fetch",
+            "startTime": 15114.399999856949,
+            "duration": 663.5,
+            "transferSize": 300,
+            "encodedBodySize": 249636
+          },
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/fire-blast/fireball-julien-matthey.wav",
+            "initiatorType": "fetch",
+            "startTime": 13439.799999952316,
+            "duration": 611.7000000476837,
+            "transferSize": 300,
+            "encodedBodySize": 346694
+          },
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/equipment/manifest.json",
+            "initiatorType": "fetch",
+            "startTime": 14566.299999952316,
+            "duration": 545.7999999523163,
+            "transferSize": 300,
+            "encodedBodySize": 910
+          },
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/fire-blast/lava-charge.wav",
+            "initiatorType": "fetch",
+            "startTime": 14059.5,
+            "duration": 491.89999985694885,
+            "transferSize": 300,
+            "encodedBodySize": 264678
+          },
+          {
+            "name": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+            "initiatorType": "fetch",
+            "startTime": 9525.5,
+            "duration": 7.3999998569488525,
+            "transferSize": 0,
+            "encodedBodySize": 640796
+          },
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/fire-blast/spark_05.png",
+            "initiatorType": "fetch",
+            "startTime": 13416.199999809265,
+            "duration": 0.8000001907348633,
+            "transferSize": 0,
+            "encodedBodySize": 64808
+          },
+          {
+            "name": "https://play.sparkify.dev/tex/bark_brown_02/diff.jpg",
+            "initiatorType": "fetch",
+            "startTime": 751.8999998569489,
+            "duration": 0.7999999523162842,
+            "transferSize": 0,
+            "encodedBodySize": 124450
+          },
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/grave-face.jpg",
+            "initiatorType": "fetch",
+            "startTime": 752,
+            "duration": 0.7999999523162842,
+            "transferSize": 0,
+            "encodedBodySize": 159005
+          },
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/fire-blast/fire_01.png",
+            "initiatorType": "fetch",
+            "startTime": 13416.099999904633,
+            "duration": 0.7999999523162842,
+            "transferSize": 0,
+            "encodedBodySize": 99891
+          }
+        ]
+      },
+      "webgpu": true,
+      "viewport": {
+        "innerWidth": 1280,
+        "innerHeight": 720,
+        "devicePixelRatio": 1
+      },
+      "canvas": [
+        {
+          "width": 960,
+          "height": 540,
+          "clientWidth": 1280,
+          "clientHeight": 720
+        },
+        {
+          "width": 128,
+          "height": 148,
+          "clientWidth": 128,
+          "clientHeight": 148
+        }
+      ],
+      "errors": [],
+      "failedRequests": [],
+      "httpErrors": []
+    }
+  ],
+  "sourceCommit": "e8ea4b59193b6550a0aec07330c6b83216391bd3",
+  "babylonLiteVersion": "1.28.0",
+  "machine": "Mac Studio Mac13,1, Apple M1 Max, 32 GB",
+  "harnessSlot": 10,
+  "harnessDefaultTab": "about:blank during all reported measurements",
+  "measurementNote": "First contentful paint is the loading UI. firstGpuFrameAt is the first observed ASHEN GPU frame count, an approximate first game frame. Interactive readiness is max(readyAt, hostilesAt); hostiles can become ready first. requestAnimationFrame gaps and long-animation-frame entries are startup stalls, not gameplay frame intervals."
+}

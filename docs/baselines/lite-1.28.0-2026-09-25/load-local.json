@@ -1,0 +1,797 @@
+{
+  "recordedAt": "2026-09-26T06:29:30.218Z",
+  "hostname": "antbly",
+  "platform": "darwin",
+  "arch": "arm64",
+  "cpus": [
+    "Apple M1 Max"
+  ],
+  "browserVersion": "153.0.8010.54",
+  "cdp": "10337",
+  "url": "http://127.0.0.1:6173/ashen-reach.html?play&clean",
+  "viewport": {
+    "width": 1280,
+    "height": 720,
+    "deviceScaleFactor": 1
+  },
+  "conditions": "Chrome headless WebGPU; same context; browser cache cleared before cold run, then two same-context warm navigations; no FPS benchmark running; Vite dev server if loopback URL, live CDN if HTTPS URL",
+  "runs": [
+    {
+      "label": "cold-browser-cache",
+      "startedAt": "2026-09-26T06:28:58.116Z",
+      "navigation": {
+        "startTime": 0,
+        "domContentLoaded": 371.7999999523163,
+        "loadEventEnd": 371.90000009536743,
+        "responseEnd": 5.5,
+        "transferSize": 12143,
+        "encodedBodySize": 11843
+      },
+      "paints": [
+        {
+          "name": "first-paint",
+          "startTime": 56
+        },
+        {
+          "name": "first-contentful-paint",
+          "startTime": 56
+        }
+      ],
+      "stages": {
+        "readyAt": 10484.100000143051,
+        "hostilesAt": 10124.5,
+        "firstAshenAt": 7967.400000095367,
+        "firstGpuFrameAt": 8993.600000143051
+      },
+      "startupFrameSpikes": {
+        "sampleCount": 4929,
+        "p95": 0.3999999999996362,
+        "p99": 4.3999999999999915,
+        "max": 6465.7,
+        "over50ms": 5,
+        "over100ms": 5,
+        "longAnimationFrames": [
+          {
+            "startTime": 409.2000000476837,
+            "duration": 6476
+          },
+          {
+            "startTime": 6890.400000095367,
+            "duration": 103
+          },
+          {
+            "startTime": 6997.299999952316,
+            "duration": 955.9000000953674
+          },
+          {
+            "startTime": 7973.200000047684,
+            "duration": 936.2000000476837
+          },
+          {
+            "startTime": 9044,
+            "duration": 810.1000001430511
+          }
+        ]
+      },
+      "ashen": {
+        "presentMs": 8622.900000095367,
+        "loadMs": 10111.400000095367,
+        "ready": true,
+        "hostilesReady": true,
+        "gpuFrames": 210
+      },
+      "resources": {
+        "count": 250,
+        "transferSize": 23561524,
+        "encodedBodySize": 23935707,
+        "decodedBodySize": 23935707,
+        "bundleUrls": [],
+        "longest": [
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/light-shafts.js",
+            "initiatorType": "script",
+            "startTime": 77.29999995231628,
+            "duration": 153.40000009536743,
+            "transferSize": 31666,
+            "encodedBodySize": 31366
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/foliage.js",
+            "initiatorType": "script",
+            "startTime": 77.20000004768372,
+            "duration": 150.90000009536743,
+            "transferSize": 180512,
+            "encodedBodySize": 180212
+          },
+          {
+            "name": "http://127.0.0.1:6173/node_modules/.vite/deps/@babylonjs_lite.js?v=655febc4",
+            "initiatorType": "script",
+            "startTime": 53.299999952316284,
+            "duration": 147.30000019073486,
+            "transferSize": 7679236,
+            "encodedBodySize": 7678936
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/ash-motes.js",
+            "initiatorType": "script",
+            "startTime": 77.40000009536743,
+            "duration": 140.39999985694885,
+            "transferSize": 30483,
+            "encodedBodySize": 30183
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/woodland.js",
+            "initiatorType": "script",
+            "startTime": 77.20000004768372,
+            "duration": 139.90000009536743,
+            "transferSize": 7418,
+            "encodedBodySize": 7118
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/gothic-cathedral.js",
+            "initiatorType": "script",
+            "startTime": 77.10000014305115,
+            "duration": 139.59999990463257,
+            "transferSize": 100743,
+            "encodedBodySize": 100443
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/world-composition.js",
+            "initiatorType": "script",
+            "startTime": 77.20000004768372,
+            "duration": 138,
+            "transferSize": 6568,
+            "encodedBodySize": 6268
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/woodland-tiles.js",
+            "initiatorType": "script",
+            "startTime": 77.20000004768372,
+            "duration": 137.70000004768372,
+            "transferSize": 19922,
+            "encodedBodySize": 19622
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/region-structures.js",
+            "initiatorType": "script",
+            "startTime": 77.10000014305115,
+            "duration": 137,
+            "transferSize": 62934,
+            "encodedBodySize": 62634
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/region-world.js",
+            "initiatorType": "script",
+            "startTime": 77.10000014305115,
+            "duration": 137,
+            "transferSize": 19495,
+            "encodedBodySize": 19195
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/linear-materials.js",
+            "initiatorType": "script",
+            "startTime": 54,
+            "duration": 134.90000009536743,
+            "transferSize": 18589,
+            "encodedBodySize": 18289
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/buildings.js",
+            "initiatorType": "script",
+            "startTime": 77,
+            "duration": 134.29999995231628,
+            "transferSize": 124681,
+            "encodedBodySize": 124381
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/loading-screen.js",
+            "initiatorType": "script",
+            "startTime": 54,
+            "duration": 133.60000014305115,
+            "transferSize": 15331,
+            "encodedBodySize": 15031
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/gpu-compatibility.js",
+            "initiatorType": "script",
+            "startTime": 53.90000009536743,
+            "duration": 132.29999995231628,
+            "transferSize": 21674,
+            "encodedBodySize": 21374
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/menu.js",
+            "initiatorType": "script",
+            "startTime": 53.90000009536743,
+            "duration": 131,
+            "transferSize": 53517,
+            "encodedBodySize": 53217
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/color-management.js",
+            "initiatorType": "script",
+            "startTime": 68.10000014305115,
+            "duration": 130.5,
+            "transferSize": 8226,
+            "encodedBodySize": 7926
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/frame-scheduler.js",
+            "initiatorType": "script",
+            "startTime": 60.200000047683716,
+            "duration": 130.09999990463257,
+            "transferSize": 18515,
+            "encodedBodySize": 18215
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/region-layout.js",
+            "initiatorType": "script",
+            "startTime": 68.10000014305115,
+            "duration": 129.79999995231628,
+            "transferSize": 40985,
+            "encodedBodySize": 40685
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/sun-shadows.js",
+            "initiatorType": "script",
+            "startTime": 53.90000009536743,
+            "duration": 128.09999990463257,
+            "transferSize": 42825,
+            "encodedBodySize": 42525
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/materials.js",
+            "initiatorType": "script",
+            "startTime": 76.90000009536743,
+            "duration": 128.09999990463257,
+            "transferSize": 92905,
+            "encodedBodySize": 92605
+          }
+        ]
+      },
+      "webgpu": true,
+      "viewport": {
+        "innerWidth": 1280,
+        "innerHeight": 720,
+        "devicePixelRatio": 1
+      },
+      "canvas": [
+        {
+          "width": 960,
+          "height": 540,
+          "clientWidth": 1280,
+          "clientHeight": 720
+        },
+        {
+          "width": 128,
+          "height": 148,
+          "clientWidth": 128,
+          "clientHeight": 148
+        }
+      ],
+      "errors": [],
+      "failedRequests": [],
+      "httpErrors": []
+    },
+    {
+      "label": "warm-browser-cache-1",
+      "startedAt": "2026-09-26T06:29:09.124Z",
+      "navigation": {
+        "startTime": 0,
+        "domContentLoaded": 125.69999980926514,
+        "loadEventEnd": 125.89999985694885,
+        "responseEnd": 15.199999809265137,
+        "transferSize": 300,
+        "encodedBodySize": 11843
+      },
+      "paints": [
+        {
+          "name": "first-paint",
+          "startTime": 80
+        },
+        {
+          "name": "first-contentful-paint",
+          "startTime": 80
+        }
+      ],
+      "stages": {
+        "readyAt": 10009.399999856949,
+        "hostilesAt": 9652.799999952316,
+        "firstAshenAt": 7632.199999809265,
+        "firstGpuFrameAt": 8586.299999952316
+      },
+      "startupFrameSpikes": {
+        "sampleCount": 2763,
+        "p95": 0.9000000000000057,
+        "p99": 5,
+        "max": 6335.5,
+        "over50ms": 5,
+        "over100ms": 5,
+        "longAnimationFrames": [
+          {
+            "startTime": 161.29999995231628,
+            "duration": 6348.5
+          },
+          {
+            "startTime": 6514.299999952316,
+            "duration": 126.20000004768372
+          },
+          {
+            "startTime": 6647.799999952316,
+            "duration": 975.7000000476837
+          },
+          {
+            "startTime": 7639.199999809265,
+            "duration": 898.6000001430511
+          },
+          {
+            "startTime": 8607.5,
+            "duration": 821.3999998569489
+          }
+        ]
+      },
+      "ashen": {
+        "presentMs": 8460.899999856949,
+        "loadMs": 9881.5,
+        "ready": true,
+        "hostilesReady": true,
+        "gpuFrames": 201
+      },
+      "resources": {
+        "count": 250,
+        "transferSize": 36300,
+        "encodedBodySize": 24947744,
+        "decodedBodySize": 24947744,
+        "bundleUrls": [],
+        "longest": [
+          {
+            "name": "http://127.0.0.1:6173/ashen-reach/equipment/body.glb",
+            "initiatorType": "link",
+            "startTime": 26.899999856948853,
+            "duration": 46.799999952316284,
+            "transferSize": 300,
+            "encodedBodySize": 3399840
+          },
+          {
+            "name": "http://127.0.0.1:6173/tex/rock_wall_08/diff.jpg",
+            "initiatorType": "link",
+            "startTime": 26.899999856948853,
+            "duration": 41.5,
+            "transferSize": 300,
+            "encodedBodySize": 321767
+          },
+          {
+            "name": "http://127.0.0.1:6173/tex/forrest_ground_01/diff.jpg",
+            "initiatorType": "link",
+            "startTime": 26.899999856948853,
+            "duration": 41.40000009536743,
+            "transferSize": 300,
+            "encodedBodySize": 127416
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/character/runtime/inspection-preview.js",
+            "initiatorType": "script",
+            "startTime": 93.5,
+            "duration": 7.099999904632568,
+            "transferSize": 300,
+            "encodedBodySize": 27678
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/character/runtime/gait-phase.js",
+            "initiatorType": "script",
+            "startTime": 93.39999985694885,
+            "duration": 6.799999952316284,
+            "transferSize": 300,
+            "encodedBodySize": 3693
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/character/runtime/hand-grip.js",
+            "initiatorType": "script",
+            "startTime": 93.5,
+            "duration": 6.799999952316284,
+            "transferSize": 300,
+            "encodedBodySize": 14711
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/character/sockets.js",
+            "initiatorType": "script",
+            "startTime": 93.29999995231628,
+            "duration": 6.299999952316284,
+            "transferSize": 300,
+            "encodedBodySize": 76681
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/character/runtime/fit-contract.js",
+            "initiatorType": "script",
+            "startTime": 93.39999985694885,
+            "duration": 6.299999952316284,
+            "transferSize": 300,
+            "encodedBodySize": 46052
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/character/runtime/airborne.js",
+            "initiatorType": "script",
+            "startTime": 93.29999995231628,
+            "duration": 6.200000047683716,
+            "transferSize": 300,
+            "encodedBodySize": 2158
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/character/runtime/armed-mage.js",
+            "initiatorType": "script",
+            "startTime": 93.39999985694885,
+            "duration": 6.200000047683716,
+            "transferSize": 300,
+            "encodedBodySize": 20498
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/character/runtime/loadout-client.js",
+            "initiatorType": "script",
+            "startTime": 93.29999995231628,
+            "duration": 6.099999904632568,
+            "transferSize": 300,
+            "encodedBodySize": 30004
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/character/runtime/body-visual.js",
+            "initiatorType": "script",
+            "startTime": 93.19999980926514,
+            "duration": 5.6000001430511475,
+            "transferSize": 300,
+            "encodedBodySize": 98091
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/character/runtime/body-profile.js",
+            "initiatorType": "script",
+            "startTime": 93.09999990463257,
+            "duration": 5.400000095367432,
+            "transferSize": 300,
+            "encodedBodySize": 46671
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/linear-materials.js",
+            "initiatorType": "script",
+            "startTime": 74.39999985694885,
+            "duration": 5.299999952316284,
+            "transferSize": 300,
+            "encodedBodySize": 18289
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/character/runtime/garment-catalog.js",
+            "initiatorType": "script",
+            "startTime": 93.29999995231628,
+            "duration": 5.299999952316284,
+            "transferSize": 300,
+            "encodedBodySize": 26497
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/character/runtime/loadout-controller.js",
+            "initiatorType": "script",
+            "startTime": 93.29999995231628,
+            "duration": 5.299999952316284,
+            "transferSize": 300,
+            "encodedBodySize": 47031
+          },
+          {
+            "name": "http://127.0.0.1:6173/node_modules/vite/dist/client/env.mjs",
+            "initiatorType": "script",
+            "startTime": 74.69999980926514,
+            "duration": 5.200000047683716,
+            "transferSize": 300,
+            "encodedBodySize": 3478
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/display-pass.js",
+            "initiatorType": "script",
+            "startTime": 93,
+            "duration": 5.099999904632568,
+            "transferSize": 300,
+            "encodedBodySize": 8797
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/menu.js",
+            "initiatorType": "script",
+            "startTime": 74.39999985694885,
+            "duration": 4.799999952316284,
+            "transferSize": 300,
+            "encodedBodySize": 53217
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/character/runtime/playable-body.js",
+            "initiatorType": "script",
+            "startTime": 74.19999980926514,
+            "duration": 4.6000001430511475,
+            "transferSize": 300,
+            "encodedBodySize": 55285
+          }
+        ]
+      },
+      "webgpu": true,
+      "viewport": {
+        "innerWidth": 1280,
+        "innerHeight": 720,
+        "devicePixelRatio": 1
+      },
+      "canvas": [
+        {
+          "width": 960,
+          "height": 540,
+          "clientWidth": 1280,
+          "clientHeight": 720
+        },
+        {
+          "width": 128,
+          "height": 148,
+          "clientWidth": 128,
+          "clientHeight": 148
+        }
+      ],
+      "errors": [],
+      "failedRequests": [],
+      "httpErrors": []
+    },
+    {
+      "label": "warm-browser-cache-2",
+      "startedAt": "2026-09-26T06:29:19.646Z",
+      "navigation": {
+        "startTime": 0,
+        "domContentLoaded": 123,
+        "loadEventEnd": 123.10000014305115,
+        "responseEnd": 10.700000047683716,
+        "transferSize": 300,
+        "encodedBodySize": 11843
+      },
+      "paints": [
+        {
+          "name": "first-paint",
+          "startTime": 80
+        },
+        {
+          "name": "first-contentful-paint",
+          "startTime": 80
+        }
+      ],
+      "stages": {
+        "readyAt": 10039.900000095367,
+        "hostilesAt": 9679.100000143051,
+        "firstAshenAt": 7619.5,
+        "firstGpuFrameAt": 8613.400000095367
+      },
+      "startupFrameSpikes": {
+        "sampleCount": 3030,
+        "p95": 0.6999999999989086,
+        "p99": 5,
+        "max": 6350.6,
+        "over50ms": 5,
+        "over100ms": 5,
+        "longAnimationFrames": [
+          {
+            "startTime": 143.70000004768372,
+            "duration": 6357.100000143051
+          },
+          {
+            "startTime": 6506,
+            "duration": 104.70000004768372
+          },
+          {
+            "startTime": 6614.200000047684,
+            "duration": 994.7000000476837
+          },
+          {
+            "startTime": 7625.200000047684,
+            "duration": 928.2000000476837
+          },
+          {
+            "startTime": 8635.400000095367,
+            "duration": 813.4000000953674
+          }
+        ]
+      },
+      "ashen": {
+        "presentMs": 8490.799999952316,
+        "loadMs": 9913.700000047684,
+        "ready": true,
+        "hostilesReady": true,
+        "gpuFrames": 206
+      },
+      "resources": {
+        "count": 250,
+        "transferSize": 36300,
+        "encodedBodySize": 24947744,
+        "decodedBodySize": 24947744,
+        "bundleUrls": [],
+        "longest": [
+          {
+            "name": "http://127.0.0.1:6173/ashen-reach/equipment/body.glb",
+            "initiatorType": "link",
+            "startTime": 29.700000047683716,
+            "duration": 40.299999952316284,
+            "transferSize": 300,
+            "encodedBodySize": 3399840
+          },
+          {
+            "name": "http://127.0.0.1:6173/tex/rock_wall_08/diff.jpg",
+            "initiatorType": "link",
+            "startTime": 29.800000190734863,
+            "duration": 35.09999990463257,
+            "transferSize": 300,
+            "encodedBodySize": 321767
+          },
+          {
+            "name": "http://127.0.0.1:6173/tex/forrest_ground_01/diff.jpg",
+            "initiatorType": "link",
+            "startTime": 29.700000047683716,
+            "duration": 35,
+            "transferSize": 300,
+            "encodedBodySize": 127416
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/armory.css",
+            "initiatorType": "script",
+            "startTime": 8619.900000095367,
+            "duration": 7.599999904632568,
+            "transferSize": 300,
+            "encodedBodySize": 5446
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/display-pass.js",
+            "initiatorType": "script",
+            "startTime": 90.70000004768372,
+            "duration": 6.900000095367432,
+            "transferSize": 300,
+            "encodedBodySize": 8797
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/local-light-shared.js",
+            "initiatorType": "script",
+            "startTime": 90.90000009536743,
+            "duration": 6.700000047683716,
+            "transferSize": 300,
+            "encodedBodySize": 14876
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/local-light-bounds.js",
+            "initiatorType": "script",
+            "startTime": 90.90000009536743,
+            "duration": 6.700000047683716,
+            "transferSize": 300,
+            "encodedBodySize": 31605
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/volumetric-fog.js",
+            "initiatorType": "script",
+            "startTime": 90.70000004768372,
+            "duration": 6.6000001430511475,
+            "transferSize": 300,
+            "encodedBodySize": 75596
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/contact-occlusion.js",
+            "initiatorType": "script",
+            "startTime": 90.70000004768372,
+            "duration": 6.5,
+            "transferSize": 300,
+            "encodedBodySize": 44625
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/local-light-materials.js",
+            "initiatorType": "script",
+            "startTime": 90.90000009536743,
+            "duration": 5.900000095367432,
+            "transferSize": 300,
+            "encodedBodySize": 32843
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/shade-garment.js",
+            "initiatorType": "script",
+            "startTime": 8619.800000190735,
+            "duration": 5.8999998569488525,
+            "transferSize": 300,
+            "encodedBodySize": 75608
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/auto-attack.js",
+            "initiatorType": "script",
+            "startTime": 8619.600000143051,
+            "duration": 5.799999952316284,
+            "transferSize": 300,
+            "encodedBodySize": 15058
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/spell-visibility.js",
+            "initiatorType": "script",
+            "startTime": 8619.600000143051,
+            "duration": 5.700000047683716,
+            "transferSize": 300,
+            "encodedBodySize": 5699
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/equipment-loader.js",
+            "initiatorType": "script",
+            "startTime": 8622.300000190735,
+            "duration": 5.599999904632568,
+            "transferSize": 300,
+            "encodedBodySize": 14267
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/character/runtime/inspection-preview.js",
+            "initiatorType": "script",
+            "startTime": 90.60000014305115,
+            "duration": 5.5,
+            "transferSize": 300,
+            "encodedBodySize": 27678
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/progression.js",
+            "initiatorType": "script",
+            "startTime": 8619.600000143051,
+            "duration": 5.299999952316284,
+            "transferSize": 300,
+            "encodedBodySize": 14969
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/character/runtime/hand-grip.js",
+            "initiatorType": "script",
+            "startTime": 90.5,
+            "duration": 5,
+            "transferSize": 300,
+            "encodedBodySize": 14711
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/linear-materials.js",
+            "initiatorType": "script",
+            "startTime": 71,
+            "duration": 4.700000047683716,
+            "transferSize": 300,
+            "encodedBodySize": 18289
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/grave-pulse-vfx.js",
+            "initiatorType": "script",
+            "startTime": 8619.5,
+            "duration": 4.6000001430511475,
+            "transferSize": 300,
+            "encodedBodySize": 84934
+          },
+          {
+            "name": "http://127.0.0.1:6173/src/ashen-reach/local-lights.js",
+            "initiatorType": "script",
+            "startTime": 70.80000019073486,
+            "duration": 4.599999904632568,
+            "transferSize": 300,
+            "encodedBodySize": 32380
+          }
+        ]
+      },
+      "webgpu": true,
+      "viewport": {
+        "innerWidth": 1280,
+        "innerHeight": 720,
+        "devicePixelRatio": 1
+      },
+      "canvas": [
+        {
+          "width": 960,
+          "height": 540,
+          "clientWidth": 1280,
+          "clientHeight": 720
+        },
+        {
+          "width": 128,
+          "height": 148,
+          "clientWidth": 128,
+          "clientHeight": 148
+        }
+      ],
+      "errors": [],
+      "failedRequests": [],
+      "httpErrors": []
+    }
+  ],
+  "sourceCommit": "e8ea4b59193b6550a0aec07330c6b83216391bd3",
+  "babylonLiteVersion": "1.28.0",
+  "machine": "Mac Studio Mac13,1, Apple M1 Max, 32 GB",
+  "harnessSlot": 10,
+  "harnessDefaultTab": "about:blank during all reported measurements",
+  "measurementNote": "First contentful paint is the loading UI. firstGpuFrameAt is the first observed ASHEN GPU frame count, an approximate first game frame. Interactive readiness is max(readyAt, hostilesAt); hostiles can become ready first. requestAnimationFrame gaps and long-animation-frame entries are startup stalls, not gameplay frame intervals."
+}
