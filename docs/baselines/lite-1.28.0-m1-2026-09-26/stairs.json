@@ -1,0 +1,29 @@
+{
+  "errors": [],
+  "routes": [
+    {
+      "id": "west-chapel",
+      "start": {
+        "x": 0,
+        "y": 45.920839963407694,
+        "z": 328,
+        "facing": -1.5707963267948966,
+        "physics": true,
+        "recoveries": 0
+      },
+      "end": {
+        "x": -0.25345909522061894,
+        "y": 45.905552089072714,
+        "z": 327.9446171716393,
+        "facing": 1.5733536713811993,
+        "physics": true,
+        "recoveries": 0
+      },
+      "samples": 16,
+      "entered": true,
+      "returned": true
+    }
+  ],
+  "gpuErrors": [],
+  "passed": true
+}

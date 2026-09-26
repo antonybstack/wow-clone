@@ -5,10 +5,10 @@
 import HavokPhysics from "@babylonjs/havok";
 import {
     CharacterSupportedState, PhysicsMotionType, PhysicsShapeType, addToScene, createCapsule,
-    createHavokWorld, createPbrMaterial, createPhysicsAggregate,
+    createHavokWorld, createPbrMaterial, createPhysicsAggregate, disposePhysics,
     createPhysicsBody, createPhysicsCharacterController, createPhysicsShape, createSphere,
     createTransformNode, onPhysicsAfterStep, onSceneDispose, setParent, physicsRaycast, releasePhysicsShape, shapeCast,
-    setPhysicsBodyShape, setPhysicsBodyTransform,
+    setPhysicsBodyShape, setPhysicsBodyTransform, removePhysicsBody,
 } from "@babylonjs/lite";
 import { input, pollInput, endFrame } from "./input.js";
 
@@ -92,19 +92,85 @@ export function surfaceVerticalSpeed(vx, vz, normal, surfaceVelocity) {
     return sy - (normal.x * (vx - sx) + normal.z * (vz - sz)) / normal.y;
 }
 
+/**
+ * Lite leaves aggregate shapes and bodies with the caller. A controller owns its
+ * own body, current capsule shape, and query collectors. Keep it outside these
+ * sets, including after setShapeOptions replaces its capsule.
+ * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/42-physics.md
+ */
+export function createPhysicsOwnership(rig, operations = {
+    removeBody: removePhysicsBody, releaseShape: releasePhysicsShape, disposeWorld: disposePhysics,
+}) {
+    let world = null;
+    let controller = null;
+    let cameraShape = null;
+    let disposed = false;
+    const bodies = new Set();
+    const shapes = new Set();
+    const safely = (label, action) => {
+        try { action(); } catch (error) { console.warn(`Physics ${label} cleanup failed`, error); }
+    };
+    return {
+        get disposed() { return disposed; },
+        get world() { return world; },
+        setWorld(value) {
+            if (disposed) {
+                operations.disposeWorld(value);
+                throw new Error("Physics scene disposed during initialization");
+            }
+            world = value;
+        },
+        setController(value) { controller = value; },
+        shape(value) { shapes.add(value); return value; },
+        body(value) { bodies.add(value); return value; },
+        setCameraShape(value) { cameraShape = value; shapes.add(value); return value; },
+        releaseShape(value) {
+            if (!world || !shapes.delete(value)) return;
+            operations.releaseShape(world, value);
+        },
+        removeBody(value) {
+            if (!world || !bodies.delete(value)) return;
+            operations.removeBody(world, value);
+        },
+        dispose() {
+            if (disposed) return;
+            disposed = true;
+            // The rig may query while a render callback is still in flight.
+            safely("camera sweep", () => rig.setCollisionSweep?.(null));
+            if (!world) return;
+            // Lite controller.dispose removes its body and releases the latest
+            // capsule shape, even after a height change.
+            if (controller) safely("controller", () => controller.dispose());
+            controller = null;
+            if (cameraShape) {
+                safely("camera query shape", () => operations.releaseShape(world, cameraShape));
+                shapes.delete(cameraShape);
+                cameraShape = null;
+            }
+            for (const body of bodies) safely("body", () => operations.removeBody(world, body));
+            for (const shape of shapes) safely("shape", () => operations.releaseShape(world, shape));
+            bodies.clear();
+            shapes.clear();
+            safely("world", () => operations.disposeWorld(world));
+            world = null;
+        },
+    };
+}
+
 /** A collision proxy is a transform only, with no GPU geometry or draw call. */
-function addStaticColliders(world, descriptors) {
+function addStaticColliders(world, descriptors, own) {
     const counts = { meshCount: 0, boxCount: 0, skipped: 0 };
     for (const entry of descriptors) {
         const mesh = entry.mesh || (entry._cpuPositions ? entry : null);
         const type = entry.type || mesh?.metadata?.collider || "box";
+        let ownedShape = null;
         try {
             if (type === "mesh") {
                 if (!mesh) throw new Error("Triangle collision requires a mesh");
-                const shape = createPhysicsShape(world, { type: PhysicsShapeType.MESH, mesh });
+                const shape = ownedShape = own.shape(createPhysicsShape(world, { type: PhysicsShapeType.MESH, mesh }));
                 // Procedural terrain is authored in world space or has a root transform.
-                createPhysicsAggregate(world, mesh, PhysicsShapeType.MESH,
-                    { mass: 0, friction: 0.9, restitution: 0, shape });
+                own.body(createPhysicsAggregate(world, mesh, PhysicsShapeType.MESH,
+                    { mass: 0, friction: 0.9, restitution: 0, shape }).body);
                 counts.meshCount++;
                 continue;
             }
@@ -141,14 +207,20 @@ function addStaticColliders(world, descriptors) {
             } else if (rotation) {
                 node.rotation.set(rotation.x || 0, rotation.y || 0, rotation.z || 0);
             }
-            createPhysicsAggregate(world, node, PhysicsShapeType.BOX, {
+            const extents = { x: Math.max(0.02, size.x ?? size.width),
+                y: Math.max(0.02, size.y ?? size.height),
+                z: Math.max(0.02, size.z ?? size.depth) };
+            const aggregate = createPhysicsAggregate(world, node, PhysicsShapeType.BOX, {
                 mass: 0, friction: 0.8, restitution: 0,
-                extents: { x: Math.max(0.02, size.x ?? size.width),
-                    y: Math.max(0.02, size.y ?? size.height),
-                    z: Math.max(0.02, size.z ?? size.depth) },
+                extents,
             });
+            // The aggregate returns both caller-owned handles; body removal
+            // does not release its shape in Lite's physics contract.
+            ownedShape = own.shape(aggregate.shape);
+            own.body(aggregate.body);
             counts.boxCount++;
         } catch (err) {
+            if (ownedShape) own.releaseShape(ownedShape);
             counts.skipped++;
             console.warn("Collision skipped", mesh?.name || entry, err);
         }
@@ -197,9 +269,22 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
         jumpInFlight: false, airTime: 0 };
     const velocity = { x: 0, y: 0, z: 0 };
     const motion = {};
+    const descriptors = options.colliders || (scene.meshes || [])
+        .filter((mesh) => mesh.metadata?.collider)
+        .map((mesh) => ({ mesh, type: mesh.metadata.collider }));
     let controller = null;
     let physicsWorld = null;
     let usingPhysics = false;
+    let sceneDisposed = false;
+    const own = createPhysicsOwnership(rig);
+    const cleanupPhysics = () => {
+        own.dispose();
+        controller = null;
+        physicsWorld = null;
+        usingPhysics = false;
+    };
+    // Register before Havok's asynchronous WASM load: scene teardown may race it.
+    onSceneDispose(scene, () => { sceneDisposed = true; cleanupPhysics(); });
     let heightScale = 1;
     let onPose = null;
     let jumpBuffer = 0;
@@ -229,6 +314,7 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
     };
 
     const step = (dt) => {
+        if (sceneDisposed) return;
         const h = Math.min(Math.max(dt, 0), 0.05);
         if (h <= 0) return;
         pollInput();
@@ -385,59 +471,62 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
       // an immutable header. The versioned request bypasses that stale entry.
       locateFile: (file) => file.endsWith(".wasm") ? "/HavokPhysics.wasm?v=20260923-1" : file,
         });
+        if (sceneDisposed) throw new Error("Physics scene disposed during initialization");
         const world = createHavokWorld(scene, hknp, GRAVITY);
+        own.setWorld(world);
         physicsWorld = world;
-        const descriptors = options.colliders || (scene.meshes || [])
-            .filter((mesh) => mesh.metadata?.collider)
-            .map((mesh) => ({ mesh, type: mesh.metadata.collider }));
-        const staticCounts = addStaticColliders(world, descriptors);
+        const staticCounts = addStaticColliders(world, descriptors, own);
         counts.meshCount = staticCounts.meshCount;
         counts.boxCount = staticCounts.boxCount;
         counts.skipped = staticCounts.skipped;
         // A missing collision asset is explicit in diagnostics; fallback still follows terrain.
         if (!counts.meshCount && !counts.boxCount) {
-            world._stopStep?.();
+            cleanupPhysics();
+            if (descriptors.length) throw new Error(`All ${descriptors.length} authored colliders failed to initialize`);
             console.warn("No authored colliders; using terrain locomotion");
         } else {
             controller = createPhysicsCharacterController(world, spawn, {
                 capsuleHeight: spec.height, capsuleRadius: spec.radius,
             });
+            own.setController(controller);
             controller.maxCharacterSpeedForSolver = 18;
             controller.maxSlopeCosine = Math.cos(Math.PI * 0.27);
             controller.keepDistance = 0.035;
             // Lite's shapeCast queries the existing Havok world. Its ignoreBody
             // option excludes the player's capsule; release the query shape with
             // the scene. See the official physics module documentation:
-            // https://github.com/BabylonJS/Babylon-Lite/blob/master/docs/lite/architecture/42-physics.md
+            // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/42-physics.md
             // This query-only sphere uses the same walls, ramps and terrain as movement.
-            const cameraShape = createPhysicsShape(world, {
+            const cameraShape = own.setCameraShape(createPhysicsShape(world, {
                 type: PhysicsShapeType.SPHERE, parameters: { radius: 0.22 },
-            });
+            }));
             const cameraQuery = {
                 shape: cameraShape, rotation: identityQuat, ignoreBody: controller.getBody(),
                 shouldHitTriggers: false, startPosition: null, endPosition: null,
             };
             rig.setCollisionSweep?.((from, to) => {
+                if (sceneDisposed || own.disposed) return null;
                 cameraQuery.startPosition = from;
                 cameraQuery.endPosition = to;
                 return shapeCast(world, cameraQuery);
             });
-            onSceneDispose(scene, () => {
-                rig.setCollisionSweep?.(null);
-                releasePhysicsShape(world, cameraShape);
-            });
             usingPhysics = true;
-            onPhysicsAfterStep(world, step);
+            onPhysicsAfterStep(world, (dt) => {
+                if (!sceneDisposed && !own.disposed) step(dt);
+            });
         }
     } catch (error) {
+        cleanupPhysics();
+        if (sceneDisposed || descriptors.length > 0) throw error;
         console.warn("Havok unavailable; using terrain locomotion", error);
     }
     console.info("physics colliders", counts);
     rig.update(0, body.position);
 
     return {
-        body, usingPhysics, hp: 100, hpMax: 100,
-        raycast: (from, to) => usingPhysics && physicsWorld ? physicsRaycast(physicsWorld, from, to) : null,
+        body, get usingPhysics() { return usingPhysics; }, hp: 100, hpMax: 100,
+        raycast: (from, to) => !sceneDisposed && usingPhysics && physicsWorld
+            ? physicsRaycast(physicsWorld, from, to) : null,
         get capsuleHeight() { return capsuleHeightOf(); },
         get heightScale() { return heightScale; },
         setHeightScale(scale) {
@@ -489,9 +578,9 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
             }
         },
         setOnPose(cb) { onPose = cb; },
-        kinematicStep(dt) { if (!usingPhysics) step(dt); },
+        kinematicStep(dt) { if (!usingPhysics && !sceneDisposed) step(dt); },
         addAnimatedCollider({ id, x, y, z, height, radius }) {
-            if (!physicsWorld || !id) return null;
+            if (sceneDisposed || own.disposed || !physicsWorld || !id) return null;
             const specH = Number(height);
             const specR = Number(radius);
             if (!Number.isFinite(specH) || specH < 2 * specR || !Number.isFinite(specR) || specR <= 0) {
@@ -500,20 +589,27 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
             const node = createTransformNode(`Collision_${id}`, x, y, z);
             node.metadata = { colliderId: id };
             addToScene(scene, node);
-            const shape = createPhysicsShape(physicsWorld, {
+            const shape = own.shape(createPhysicsShape(physicsWorld, {
                 type: PhysicsShapeType.CAPSULE,
                 parameters: {
                     pointA: { x: 0, y: specH * 0.5 - specR, z: 0 },
                     pointB: { x: 0, y: -specH * 0.5 + specR, z: 0 },
                     radius: specR,
                 },
-            });
+            }));
             // STATIC so the character controller (itself ANIMATED/kinematic) collides;
             // Havok skips kinematic-vs-kinematic contacts. Pose is teleported each tick.
-            const body = createPhysicsBody(physicsWorld, node, PhysicsMotionType.STATIC);
-            setPhysicsBodyShape(physicsWorld, body, shape);
+            let colliderBody = null;
+            try {
+                colliderBody = own.body(createPhysicsBody(physicsWorld, node, PhysicsMotionType.STATIC));
+                setPhysicsBodyShape(physicsWorld, colliderBody, shape);
+            } catch (error) {
+                if (colliderBody) own.removeBody(colliderBody);
+                own.releaseShape(shape);
+                throw error;
+            }
             const handle = {
-                id, node, body, shape, height: specH, radius: specR, enabled: true,
+                id, node, body: colliderBody, shape, height: specH, radius: specR, enabled: true,
                 pose: { x, y, z },
             };
             animatedColliders.set(id, handle);
