@@ -17,7 +17,8 @@ import {attachDevTools,dev} from './dev-tools.js';
 import {createLocalLights} from './local-lights.js';
 import {buildPostPipeline,buildDirectPipeline} from './post.js';
 import {createSunShadows} from './sun-shadows.js';
-import {registerSceneWithShadowSupport} from '@babylonjs/lite';
+import {registerSceneWithShadowSupport,unregisterScene} from '@babylonjs/lite';
+import {registerLateFeatures} from './register-late-features.js';
 import {createGameMenu} from './menu.js';
 import {configureGpuCompatibility,showGpuDiagnostics} from './gpu-compatibility.js';
 import {beginLoading,setLoadingStage,finishLoading,failLoading,showDeviceLoss} from './loading-screen.js';
@@ -25,18 +26,6 @@ import {configureLinearMaterials} from './linear-materials.js';
 import {formatGameError} from './error-display.js';
 
 setMeshoptBaseUrl('/');
-async function flushDeferredBuilders(scene,prepareMaterials){
- const pending=scene._deferredBuilders;
- if(!pending?.length)return;
- while(pending.length){
-  prepareMaterials();
-  const builders=pending.splice(0);
-  await Promise.all(builders.map((build)=>build()));
- }
- scene._renderables?.sort((a,b)=>(a.order??0)-(b.order??0));
- scene._renderableVersion=(scene._renderableVersion??0)+1;
- scene._frameGraph?.build?.();
-}
 function fetchBuffer(url,priority='high'){
  return fetch(url,{priority}).then((response)=>{
   if(!response.ok)throw Error(`fetch ${url} ${response.status}`);
@@ -178,11 +167,8 @@ async function main(){
  const churchyardEnemies=noEnemies?[]:await loadEnemies(engine,scene,world,CHURCHYARD_ANCHORS,npcBuf);
  if(churchyardEnemies.length)bindEnemyColliders(churchyardEnemies,player,world);
  combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig,churchyardEnemies,createObjective());
- // Spell sprites register as deferred builders. The scene is already
- // running by this point, and those builders only flush inside the first
- // registerScene. Without this, Pyre Burst keeps the ground disc (a mesh)
- // and drops the geyser, sparks and pillars.
- await flushDeferredBuilders(scene,attachLinearMaterials);
+ // Spell billboard systems arrive after the first visible scene registration.
+ await registerLateFeatures(scene,attachLinearMaterials,unregisterScene,registerSceneWithShadowSupport);
  await folkP;
  body.bindSocketHost(combat.fx.sockets);
  setLoadingStage(4,'Gathering your belongings.');
