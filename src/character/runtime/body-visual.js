@@ -84,6 +84,10 @@ function stripRootTranslation(group) {
         (ta) => !(ta.path === 'translation' && hips.has(ta.nodeIndex)),
     );
 }
+export function needsLegacyChestStrip(definition, group) {
+  return group?.name === 'Hit_Chest' &&
+    (definition?.assetURL === '/characters/base.glb' || definition?.id === 'source-reference');
+}
 
 export function findGroup(groups, needles, exclude = []) {
     const want = needles.map((n) => n.toLowerCase());
@@ -228,8 +232,12 @@ export function applyVisualMasks(visual, definition) {
         visual.twoHand.loopAnimation = true;
         visual.twoHand.mask = visual.carryMask ?? undefined;
     }
-    if (visual.hitChest) {
-        stripRootTranslation(visual.hitChest);
+  if (visual.hitChest) {
+    // base.glb is the unmodified external Mixamo source; prepared race GLBs
+    // have this channel removed before export. Keep the Lite clip bridge only
+    // for the legacy source path. See animation ownership and clip layering:
+    // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/07-animation.md
+    if (needsLegacyChestStrip(definition, visual.hitChest)) stripRootTranslation(visual.hitChest);
         // Additive on idle/gait: Mixamo Hit_Chest is authored from T-pose, so
         // replacing loco joints snaps the arms out. Delta-from-frame-0 layers
         // the flinch on whatever the character is already doing.

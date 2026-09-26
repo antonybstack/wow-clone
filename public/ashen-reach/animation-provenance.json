@@ -8,7 +8,7 @@
   "retargeter": "https://github.com/crazyramirez/BJS_Character_Controller_V2",
   "retargeterCommit": "869170ff94380b44b6f76753feee77c17c468819",
   "retargeterLicense": "MIT",
-  "outputSha256": "6ccdd3a7c18517214e007cb079164f091230e9013d6eee223a097c0ceea36b67",
+  "outputSha256": "5da7e073e208b51d0eb780956016464056c233d72b9b955e3d8698fc3c1e5270",
   "inventory": [
     {
       "name": "Jog_Bwd_Loop",
@@ -44,7 +44,7 @@
     "duration": 1.4,
     "releaseTime": 0.55,
     "hand": "mainHand",
-    "outputSha256": "6ccdd3a7c18517214e007cb079164f091230e9013d6eee223a097c0ceea36b67",
+    "outputSha256": "5da7e073e208b51d0eb780956016464056c233d72b9b955e3d8698fc3c1e5270",
     "clips": [
       {
         "name": "FireBlast_Upper",
@@ -65,7 +65,7 @@
     "changes": "Chamber through the 1.5s charge, throw on the release, then ease the arm home by 2.3s. Open right fingers stay at bind.",
     "duration": 2.3,
     "releaseTime": 1.5,
-    "outputSha256": "6ccdd3a7c18517214e007cb079164f091230e9013d6eee223a097c0ceea36b67"
+    "outputSha256": "5da7e073e208b51d0eb780956016464056c233d72b9b955e3d8698fc3c1e5270"
   },
   "carry": {
     "sourceURL": "https://opengameart.org/sites/default/files/universal_animation_library_2standard.zip",
@@ -97,7 +97,7 @@
     "duration": 1.9,
     "releaseTime": 1.1,
     "hand": "mainHand",
-    "outputSha256": "6ccdd3a7c18517214e007cb079164f091230e9013d6eee223a097c0ceea36b67",
+    "outputSha256": "5da7e073e208b51d0eb780956016464056c233d72b9b955e3d8698fc3c1e5270",
     "clips": [
       {
         "name": "PyreBurst_Upper",

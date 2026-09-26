@@ -2,11 +2,11 @@
   "pipeline": "source-compatible Orc binding from print sculpt",
   "capture": "ve-capture/ashen-reach/orc-sculpt",
   "hashes": {
-    "public/characters/base.glb": "2f9e45d0f7d9faeae4c20e18585173d62953df1a8f0272f270bedb200927604c",
-    "public/ashen-reach/wanderer.glb": "aa9bc4cf04c53d84fbea574d04eee03f659889772d380ec130e892f5a9609da9",
-    "public/characters/candidates/orc-source-v1.glb": "99c44c39537988089a07762d05e2caa71c6d6d467d8de859ac80ee6911a90128",
+    "public/characters/base.glb": "d8a14bb2421ed4ce7e4cc3651432494e1f27ac1d6944646ca9bf434a12a401ad",
+    "public/ashen-reach/wanderer.glb": "5da7e073e208b51d0eb780956016464056c233d72b9b955e3d8698fc3c1e5270",
+    "public/characters/candidates/orc-source-v1.glb": "38618259e239d617798689af2441f795d8e8629ee2200762ae3e15afd7b36357",
     "scripts/character-assets/orc_from_sculpt.py": "50eb1de76470d03002e1a4f875b74e367e59cbe0c8970a20bd2c144a1c53496f",
-    "scripts/character-assets/bind-source-orc.mjs": "beb7be4f1c249714391ce85539980dc4bd09edf325c30f463b448acea148545c",
+    "scripts/character-assets/bind-source-orc.mjs": "4f117b850e3b9739327c91744883f2f04415cc045a2d5254f989119db68846af",
     "blender/characters/sources/orc-print/provenance.json": "e3556edf3df2970d97f27c96876c6e3a5e2e2a07ed46121f907dea9a695c3ce6"
   },
   "versions": {

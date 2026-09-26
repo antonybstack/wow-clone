@@ -1,140 +1,140 @@
 {
-    "schema": 1,
-    "fitId": "ashen-undead",
-    "sourceSha256": "50ae76815bb1f8234db7a8d5d4804a21e8cfd2d8b84a2ed0e1d65cce44a2714c",
-    "profileId": "undead-provisional-v1",
-    "provisional": true,
-    "garments": true,
-    "items": {
-        "body": {
-            "url": "/ashen-reach/equipment-undead-provisional/body.glb",
-            "bytes": 3086868,
-            "sha256": "50ae76815bb1f8234db7a8d5d4804a21e8cfd2d8b84a2ed0e1d65cce44a2714c",
-            "meshes": [
-                "BodyExposed",
-                "BodyUnderTunic",
-                "BodyUnderBoots",
-                "BodyUnderLegs",
-                "BodyWaist",
-                "BodyHands"
-            ]
-        },
-        "graveweaverHood": {
-            "url": "/ashen-reach/equipment-undead-provisional/graveweaverHood.glb",
-            "bytes": 298748,
-            "sha256": "57a6fd3af7f299c5d6cdf707a7e21cad06f89feb9ee0fd6c5fb25e253b73f899",
-            "meshes": [
-                "GraveweaverHood"
-            ],
-            "fit": {
-                "body": "ashen-undead",
-                "rig": "source-65",
-                "bind": 1,
-                "shape": 1
-            }
-        },
-        "graveweaverTop": {
-            "url": "/ashen-reach/equipment-undead-provisional/graveweaverTop.glb",
-            "bytes": 227432,
-            "sha256": "e558b6cd25f4b6b55f82e425d508c756a67c28493da39ca324bf3b08ccb239de",
-            "meshes": [
-                "GraveweaverTop",
-                "GraveweaverPendant"
-            ],
-            "fit": {
-                "body": "ashen-undead",
-                "rig": "source-65",
-                "bind": 1,
-                "shape": 1
-            }
-        },
-        "graveweaverSkirt": {
-            "url": "/ashen-reach/equipment-undead-provisional/graveweaverSkirt.glb",
-            "bytes": 318680,
-            "sha256": "4a5c74ea61b77f0deac05f4c1f03e700f51b1c7b7be7e4871ca84a5d21182fce",
-            "meshes": [
-                "GraveweaverSkirt",
-                "WayfarerTrousers",
-                "WayfarerTrousersCuffs"
-            ],
-            "fit": {
-                "body": "ashen-undead",
-                "rig": "source-65",
-                "bind": 1,
-                "shape": 1
-            }
-        },
-        "graveweaverGloves": {
-            "url": "/ashen-reach/equipment-undead-provisional/graveweaverGloves.glb",
-            "bytes": 169868,
-            "sha256": "ece81c36b26f75f2136990b60c3c41c234b1e8e2c99212c4ff7dc6812e0c423e",
-            "meshes": [
-                "GraveweaverGloves"
-            ],
-            "fit": {
-                "body": "ashen-undead",
-                "rig": "source-65",
-                "bind": 1,
-                "shape": 1
-            }
-        },
-        "wayfarerTunic": {
-            "url": "/ashen-reach/equipment-undead-provisional/wayfarerTunic.glb",
-            "bytes": 238640,
-            "sha256": "83ad28dfba4888137f0b7174efcffdc76f3e46b6e7425686c359889b2ce71cc3",
-            "meshes": [
-                "WayfarerTunic"
-            ],
-            "fit": {
-                "body": "ashen-undead",
-                "rig": "source-65",
-                "bind": 1,
-                "shape": 1
-            }
-        },
-        "pilgrimTunic": {
-            "url": "/ashen-reach/equipment-undead-provisional/pilgrimTunic.glb",
-            "bytes": 546144,
-            "sha256": "50f95c148cf20554fdb84ac3db8b55efcc0727303ed12154dcfc2ba9e359d110",
-            "meshes": [
-                "PilgrimTunic"
-            ],
-            "fit": {
-                "body": "ashen-undead",
-                "rig": "source-65",
-                "bind": 1,
-                "shape": 1
-            }
-        },
-        "wayfarerTrousers": {
-            "url": "/ashen-reach/equipment-undead-provisional/wayfarerTrousers.glb",
-            "bytes": 115004,
-            "sha256": "451d377e6a06a05637f715aaba9c1ebc923cedd3bc172c0da962f7da97a67e47",
-            "meshes": [
-                "WayfarerTrousers",
-                "WayfarerTrousersCuffs"
-            ],
-            "fit": {
-                "body": "ashen-undead",
-                "rig": "source-65",
-                "bind": 1,
-                "shape": 1
-            }
-        },
-        "wayfarerBoots": {
-            "url": "/ashen-reach/equipment-undead-provisional/wayfarerBoots.glb",
-            "bytes": 225352,
-            "sha256": "e4dcb7b9c44d2fc1688147bc8404b6ebff06821cca749b507aa27a67c08219c8",
-            "meshes": [
-                "WayfarerBoots"
-            ],
-            "fit": {
-                "body": "ashen-undead",
-                "rig": "source-65",
-                "bind": 1,
-                "shape": 1
-            }
-        }
+  "schema": 1,
+  "fitId": "ashen-undead",
+  "sourceSha256": "96dba89080f0e6facf9875ae2f7be6ec3e5c0fc2516b42150551ebe72e06ea58",
+  "profileId": "undead-provisional-v1",
+  "provisional": true,
+  "garments": true,
+  "items": {
+    "body": {
+      "url": "/ashen-reach/equipment-undead-provisional/body.glb",
+      "bytes": 3086812,
+      "sha256": "96dba89080f0e6facf9875ae2f7be6ec3e5c0fc2516b42150551ebe72e06ea58",
+      "meshes": [
+        "BodyExposed",
+        "BodyUnderTunic",
+        "BodyUnderBoots",
+        "BodyUnderLegs",
+        "BodyWaist",
+        "BodyHands"
+      ]
     },
-    "bindSha256": "1edfeed2c3017054c6e591ea758e97e9135f9745b82f32b5c6889e6b6f51e506"
+    "graveweaverHood": {
+      "url": "/ashen-reach/equipment-undead-provisional/graveweaverHood.glb",
+      "bytes": 298748,
+      "sha256": "57a6fd3af7f299c5d6cdf707a7e21cad06f89feb9ee0fd6c5fb25e253b73f899",
+      "meshes": [
+        "GraveweaverHood"
+      ],
+      "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "graveweaverTop": {
+      "url": "/ashen-reach/equipment-undead-provisional/graveweaverTop.glb",
+      "bytes": 227432,
+      "sha256": "e558b6cd25f4b6b55f82e425d508c756a67c28493da39ca324bf3b08ccb239de",
+      "meshes": [
+        "GraveweaverTop",
+        "GraveweaverPendant"
+      ],
+      "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "graveweaverSkirt": {
+      "url": "/ashen-reach/equipment-undead-provisional/graveweaverSkirt.glb",
+      "bytes": 318680,
+      "sha256": "4a5c74ea61b77f0deac05f4c1f03e700f51b1c7b7be7e4871ca84a5d21182fce",
+      "meshes": [
+        "GraveweaverSkirt",
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs"
+      ],
+      "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "graveweaverGloves": {
+      "url": "/ashen-reach/equipment-undead-provisional/graveweaverGloves.glb",
+      "bytes": 169868,
+      "sha256": "ece81c36b26f75f2136990b60c3c41c234b1e8e2c99212c4ff7dc6812e0c423e",
+      "meshes": [
+        "GraveweaverGloves"
+      ],
+      "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "wayfarerTunic": {
+      "url": "/ashen-reach/equipment-undead-provisional/wayfarerTunic.glb",
+      "bytes": 238640,
+      "sha256": "83ad28dfba4888137f0b7174efcffdc76f3e46b6e7425686c359889b2ce71cc3",
+      "meshes": [
+        "WayfarerTunic"
+      ],
+      "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "pilgrimTunic": {
+      "url": "/ashen-reach/equipment-undead-provisional/pilgrimTunic.glb",
+      "bytes": 546144,
+      "sha256": "50f95c148cf20554fdb84ac3db8b55efcc0727303ed12154dcfc2ba9e359d110",
+      "meshes": [
+        "PilgrimTunic"
+      ],
+      "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "wayfarerTrousers": {
+      "url": "/ashen-reach/equipment-undead-provisional/wayfarerTrousers.glb",
+      "bytes": 115004,
+      "sha256": "451d377e6a06a05637f715aaba9c1ebc923cedd3bc172c0da962f7da97a67e47",
+      "meshes": [
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs"
+      ],
+      "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "wayfarerBoots": {
+      "url": "/ashen-reach/equipment-undead-provisional/wayfarerBoots.glb",
+      "bytes": 225352,
+      "sha256": "e4dcb7b9c44d2fc1688147bc8404b6ebff06821cca749b507aa27a67c08219c8",
+      "meshes": [
+        "WayfarerBoots"
+      ],
+      "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    }
+  },
+  "bindSha256": "1edfeed2c3017054c6e591ea758e97e9135f9745b82f32b5c6889e6b6f51e506"
 }

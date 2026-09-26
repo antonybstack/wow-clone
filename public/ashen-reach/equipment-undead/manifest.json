@@ -1,14 +1,14 @@
 {
   "schema": 1,
   "fitId": "ashen-undead",
-  "sourceSha256": "1a7dfc43d9ef2cab1d8ae57c8294a10d8162edd133a38839f3a54a58e51e5081",
+  "sourceSha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d",
   "profileId": "undead-tripo-v1",
   "garments": true,
   "items": {
     "body": {
       "url": "/ashen-reach/equipment-undead/body.glb",
-      "bytes": 8372468,
-      "sha256": "ee063ebdfa8928c99bc1b60e6a227f35ff1945aa7e853de5b3dc09b33199ee0a",
+      "bytes": 8370504,
+      "sha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d",
       "meshes": [
         "UndeadV1Body",
         "UndeadV1Eyes"

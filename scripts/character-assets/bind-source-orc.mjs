@@ -198,6 +198,8 @@ for (const src of extras) {
     }
 }
 
+const {stripChestHitHipsTranslation} = await import('./strip-chest-hit-hips.mjs');
+stripChestHitHipsTranslation(doc);
 const bytes = await io.writeBinary(doc);
 await fs.writeFile(OUT, bytes);
 const versions = JSON.parse(await fs.readFile('package.json', 'utf8')).devDependencies || {};
