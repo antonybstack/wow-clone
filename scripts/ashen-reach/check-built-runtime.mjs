@@ -47,6 +47,10 @@ try {
   assert.equal(new URL(report.visitedUrl).origin, new URL(url).origin,
     'Navigation reached a different server');
   await page.waitForFunction(() => window.ASHEN?.ready && ASHEN.hostilesReady, null, {timeout: 120000});
+  // The isolated CDP browser may still have another tab. A hidden scene pauses
+  // our scheduler, so a movement check must focus the page before pressing keys.
+  await page.bringToFront();
+  await page.waitForFunction(() => !document.hidden, null, {timeout: 10000});
   report.loadedScripts = await page.evaluate(() => [...document.scripts].map(script => script.src).filter(Boolean));
   assert(report.loadedScripts.some(src => new URL(src).pathname.endsWith(`/assets/${expectedBundle}`)),
     `Expected built script ${expectedBundle} was not loaded`);
@@ -61,6 +65,7 @@ try {
     a.player.setFacing(0);
     a.rig.yaw = 0;
   });
+  await page.waitForFunction(() => ASHEN.player.getDebugState().grounded, null, {timeout: 10000});
   await page.waitForTimeout(500);
   const state = () => page.evaluate(() => {
     const a = ASHEN, p = a.player.body.position, canvas = document.getElementById('renderCanvas');
