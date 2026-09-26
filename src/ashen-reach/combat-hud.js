@@ -1,10 +1,12 @@
-import { getViewProjectionMatrix, onSceneDispose } from "@babylonjs/lite";
+import { onSceneDispose } from "@babylonjs/lite";
 import {observeCanvasLayout} from './canvas-layout.js';
+import {createHudProjection} from './hud-projection.js';
 import { FIRE_BLAST } from "../spells/fire-blast.js";
 import { LAVA_BALL } from "../spells/lava-ball.js";
 import { GRAVE_PULSE } from "../spells/grave-pulse.js";
 export function createCombatHud(canvas, scene) {
   const layout = observeCanvasLayout(canvas);
+  const projection = createHudProjection(canvas, layout);
   onSceneDispose(scene, () => layout.dispose());
   const root = document.createElement("div");
   root.id = "combat";
@@ -49,22 +51,6 @@ export function createCombatHud(canvas, scene) {
     damageTime = 0,
     damageTarget = null,
     visible = true;
-  function project(position, y, camera) {
-    const vp = getViewProjectionMatrix(
-        camera,
-        layout.size.width / layout.size.height,
-      ),
-      x = position.x,
-      z = position.z,
-      w = vp[3] * x + vp[7] * y + vp[11] * z + vp[15];
-    if (w <= 0) return null;
-    return [
-      (((vp[0] * x + vp[4] * y + vp[8] * z + vp[12]) / w) * 0.5 + 0.5) *
-        layout.size.width,
-      (0.5 - ((vp[1] * x + vp[5] * y + vp[9] * z + vp[13]) / w) * 0.5) *
-        layout.size.height,
-    ];
-  }
   return {
     slot,
     lavaSlot,
@@ -84,10 +70,11 @@ export function createCombatHud(canvas, scene) {
       damageTime = 0.95;
     },
     paintMarks(camera, marks) {
+      projection.begin(camera);
       let used = 0;
       for (const mark of marks || []) {
         if (used >= namePool.length) break;
-        const spot = project(mark.position, mark.y, camera);
+        const spot = projection.project(mark.position, mark.y);
         const el = namePool[used++];
         if (!spot) {
           el.hidden = true;
@@ -96,8 +83,8 @@ export function createCombatHud(canvas, scene) {
         el.hidden = false;
         el.textContent = mark.text;
         el.style.color = mark.color || "#ead1b5";
-        el.style.left = spot[0] + "px";
-        el.style.top = spot[1] + "px";
+        el.style.left = layout.size.left + spot.cssX + "px";
+        el.style.top = layout.size.top + spot.cssY + "px";
         el.classList.toggle("watchman", !!mark.watchman);
       }
       for (; used < namePool.length; used++) namePool[used].hidden = true;
@@ -126,12 +113,13 @@ export function createCombatHud(canvas, scene) {
       damageTime = Math.max(0, damageTime - dt);
       feedback.style.opacity = messageTime > 0 ? "1" : "0";
       if (!visible) return;
+      projection.begin(camera);
       const p =
-        target && project(target.position, target.position.y + 2.05, camera);
+        target && projection.project(target.position, target.position.y + 2.05);
       plate.hidden = !p;
       if (p) {
-        plate.style.left = p[0] + "px";
-        plate.style.top = p[1] + "px";
+        plate.style.left = layout.size.left + p.cssX + "px";
+        plate.style.top = layout.size.top + p.cssY + "px";
         fill.style.width = (target.hp / target.hpMax) * 100 + "%";
         hp.textContent = target.hp
           ? `${target.hp} / ${target.hpMax}`
@@ -140,15 +128,14 @@ export function createCombatHud(canvas, scene) {
       const d =
         damageTarget &&
         damageTime > 0 &&
-        project(
+        projection.project(
           damageTarget.position,
           damageTarget.position.y + 2.45 + (0.95 - damageTime) * 0.75,
-          camera,
         );
       damage.hidden = !d;
       if (d) {
-        damage.style.left = d[0] + "px";
-        damage.style.top = d[1] + "px";
+        damage.style.left = layout.size.left + d.cssX + "px";
+        damage.style.top = layout.size.top + d.cssY + "px";
         damage.style.opacity = String(Math.min(1, damageTime * 3));
       }
       for (const [button, s, config] of [
