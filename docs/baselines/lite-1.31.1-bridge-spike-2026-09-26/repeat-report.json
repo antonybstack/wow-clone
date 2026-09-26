@@ -1,0 +1,3054 @@
+{
+  "gitCommit": null,
+  "url": "http://127.0.0.1:6273/ashen-reach.html?play&clean",
+  "capturedAt": "2026-09-26T22:43:09.242Z",
+  "conditions": {
+    "host": "antbly",
+    "cpu": "Apple M1 Max",
+    "platform": "darwin 25.6.0 arm64",
+    "browser": "153.0.8010.54",
+    "cdp": "http://127.0.0.1:10437",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "requestedCanvas": {
+      "width": 1280,
+      "height": 720
+    },
+    "enemyCount": 7,
+    "runSeconds": 12,
+    "warmupSeconds": 1.5,
+    "recording": false,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "gpu": null
+  },
+  "rows": [
+    {
+      "name": "town",
+      "run": 1,
+      "samples": 2171,
+      "fps": 180.82926585555504,
+      "meanMs": 5.53007830490664,
+      "medianMs": 4.200000047683716,
+      "p95Ms": 11.100000143051147,
+      "p99Ms": 12.299999952316284,
+      "worstMs": 13.099999904632568,
+      "minMs": 2.0999999046325684,
+      "above8_333": 543,
+      "above16_667": 0,
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 5.530 ms is not locked to a known display interval",
+      "distanceM": 44.17969156733183,
+      "before": {
+        "position": {
+          "x": -0.09117588772509232,
+          "y": 5.277577336501703,
+          "z": 90.55140941260389
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0.0820312483672783,
+          "support": 2,
+          "speed": 7.000000000000266,
+          "vx": 0,
+          "vz": 7.000000000000266,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 4,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": -0.09117588772509232,
+            "y": 5.277577336501703,
+            "z": 90.55140941260389
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 3.580394906355525,
+                "y": 1.2489695408600143,
+                "z": 18.084265000128763
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 2.928819246428747,
+                "y": 1.5731326558938874,
+                "z": 46.99587000006436
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -1.1861792808883893,
+                "y": 2.5156293627198627,
+                "z": 62
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 0.3542627003223371,
+                "y": 4.760666388405022,
+                "z": 85.0809673827374
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -2.8513956666860016,
+                "y": 5.847214623665019,
+                "z": 108
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": 1.0306760737604208,
+                "y": 8.757715759683242,
+                "z": 124.99587000006447
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "after": {
+        "position": {
+          "x": -0.3614018640024836,
+          "y": 9.044577576426855,
+          "z": 134.7302745508837
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0,
+          "support": 2,
+          "speed": 0,
+          "vx": 0,
+          "vz": 0,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 8,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": -0.3614018640024836,
+            "y": 9.044577576426855,
+            "z": 134.7302745508837
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.7700156203358093,
+                "y": 1.2898057976238926,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 3.3410678723146887,
+                "y": 1.5919452133140501,
+                "z": 50.584545333793315
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -5.06413764875474,
+                "y": 2.4502258652472344,
+                "z": 62.443509855776846
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 1.712361906188754,
+                "y": 4.97986592767262,
+                "z": 86.58591222374349
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -0.8894459826166795,
+                "y": 8.220280050176932,
+                "z": 122.95020822384451
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": -0.2498141561047473,
+                "y": 8.933835926051055,
+                "z": 132.53917228059487
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "spikes": []
+    },
+    {
+      "name": "town",
+      "run": 2,
+      "samples": 2171,
+      "fps": 180.8096875993483,
+      "meanMs": 5.530677107389706,
+      "medianMs": 4.299999952316284,
+      "p95Ms": 11.200000047683716,
+      "p99Ms": 12.299999952316284,
+      "worstMs": 12.800000190734863,
+      "minMs": 2.1000001430511475,
+      "above8_333": 543,
+      "above16_667": 0,
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 5.531 ms is not locked to a known display interval",
+      "distanceM": 44.22126733570712,
+      "before": {
+        "position": {
+          "x": -0.09875241853197551,
+          "y": 5.27584722542751,
+          "z": 90.5065561100751
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0.0820312483672783,
+          "support": 2,
+          "speed": 6.999999999999432,
+          "vx": 0,
+          "vz": 6.999999999999432,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 11,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": -0.09875241853197551,
+            "y": 5.27584722542751,
+            "z": 90.5065561100751
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 0.5359053476949664,
+                "y": 1.5011508769398092,
+                "z": 49.012628834572695
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -5.377369082493422,
+                "y": 2.4261570068802563,
+                "z": 62.26734837910194
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 0.3676442613462204,
+                "y": 4.785664084399706,
+                "z": 85.24105844427132
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -1.4639743386851454,
+                "y": 7.159547726115552,
+                "z": 114.50629125320334
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": 0.9170102554870053,
+                "y": 9.001601166124715,
+                "z": 126.58046547390133
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "after": {
+        "position": {
+          "x": -0.43303318613015734,
+          "y": 9.043944713789307,
+          "z": 134.7265599674301
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0,
+          "support": 2,
+          "speed": 0,
+          "vx": 0,
+          "vz": 0,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 14,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": -0.43303318613015734,
+            "y": 9.043944713789307,
+            "z": 134.7265599674301
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 6.657493870185968,
+                "y": 1.6130968073458392,
+                "z": 47.736456810309
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -0.3009337137608148,
+                "y": 2.54373632844408,
+                "z": 63.775679970899276
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 1.7142496674136771,
+                "y": 4.978333700778875,
+                "z": 86.57293087668164
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -1.0160783297766527,
+                "y": 8.0610396656846,
+                "z": 121.61890527247166
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": -0.2972128917311678,
+                "y": 8.933835926051055,
+                "z": 132.55731185967144
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "spikes": []
+    },
+    {
+      "name": "town",
+      "run": 3,
+      "samples": 2171,
+      "fps": 180.80517014723125,
+      "meanMs": 5.530815292426047,
+      "medianMs": 4.299999952316284,
+      "p95Ms": 11.200000047683716,
+      "p99Ms": 12.100000143051147,
+      "worstMs": 13,
+      "minMs": 2,
+      "above8_333": 543,
+      "above16_667": 0,
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 5.531 ms is not locked to a known display interval",
+      "distanceM": 44.19046292721977,
+      "before": {
+        "position": {
+          "x": -0.09958491290967883,
+          "y": 5.276546333204134,
+          "z": 90.51727924419022
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0.0820312483672783,
+          "support": 2,
+          "speed": 7.000000000000237,
+          "vx": 0,
+          "vz": 7.000000000000237,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 19,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": -0.09958491290967883,
+            "y": 5.276546333204134,
+            "z": 90.51727924419022
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 5.161571612350649,
+                "y": 1.593291592376682,
+                "z": 49.02169943535914
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -1.2370813959192979,
+                "y": 2.5807178799775303,
+                "z": 64.58199082147023
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 0.3621848599641764,
+                "y": 4.787729568482869,
+                "z": 85.25709097547552
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -1.5682212077425797,
+                "y": 6.953487893541939,
+                "z": 113.17550928006956
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": 0.912964073655157,
+                "y": 9.001333194868206,
+                "z": 126.58127924425528
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "after": {
+        "position": {
+          "x": -0.4214327273327593,
+          "y": 9.050719548038945,
+          "z": 134.70657011546734
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0,
+          "support": 2,
+          "speed": 0,
+          "vx": 0,
+          "vz": 0,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 25,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": -0.4214327273327593,
+            "y": 9.050719548038945,
+            "z": 134.70657011546734
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 1.6808953895788896,
+                "y": 1.527853588519707,
+                "z": 46.13533073356863
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -0.6828262086290435,
+                "y": 2.4368299463139693,
+                "z": 60.1925648608504
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 1.712289933826313,
+                "y": 4.980638124805245,
+                "z": 86.59184770237874
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -0.9778628627621706,
+                "y": 8.107807735638943,
+                "z": 122.05537486271879
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": -0.5330739803832861,
+                "y": 8.933835926051055,
+                "z": 132.52561727452266
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "spikes": []
+    },
+    {
+      "name": "bridge",
+      "run": 1,
+      "samples": 2681,
+      "fps": 223.26782145236507,
+      "meanMs": 4.478925773964939,
+      "medianMs": 3.0999999046325684,
+      "p95Ms": 9.700000047683716,
+      "p99Ms": 10.199999809265137,
+      "worstMs": 11,
+      "minMs": 1.7000000476837158,
+      "above8_333": 516,
+      "above16_667": 0,
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 4.479 ms is not locked to a known display interval",
+      "distanceM": 84.13999999999811,
+      "before": {
+        "position": {
+          "x": 0,
+          "y": 25.266962387940808,
+          "z": 200.5103545539124
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 2.0827187241127367,
+          "support": 2,
+          "speed": 7.000000000000276,
+          "vx": 0,
+          "vz": 7.000000000000276,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 27,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 0,
+            "y": 25.266962387940808,
+            "z": 200.5103545539124
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 2.8592980245949624,
+                "y": 1.5540149072651874,
+                "z": 45.6116511421299
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": 2.0725207210066956,
+                "y": 2.4556369376835647,
+                "z": 61.73435335521043
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 1.758269806266542,
+                "y": 5.232930579213702,
+                "z": 88.39999317882615
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -1.5336488820216174,
+                "y": 7.025654535257992,
+                "z": 113.64478349649256
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": 0.8936736728594386,
+                "y": 8.998088929133687,
+                "z": 126.571718754926
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "after": {
+        "position": {
+          "x": 0,
+          "y": 45.924383235488875,
+          "z": 284.6503545539105
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0,
+          "support": 2,
+          "speed": 0,
+          "vx": 0,
+          "vz": 0,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 28,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 0,
+            "y": 45.924383235488875,
+            "z": 284.6503545539105
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 0.6808215663140674,
+                "y": 1.5048560286211652,
+                "z": 49.092908102461436
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -5.3808164237113765,
+                "y": 2.4258677390179884,
+                "z": 62.26524993925619
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 1.7335353733627374,
+                "y": 4.675335884535846,
+                "z": 83.89364004234436
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": 1.8159378552819596,
+                "y": 6.561113781489644,
+                "z": 107.72777942626733
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": 1.3099812484351332,
+                "y": 9.197441576608734,
+                "z": 128.4706631337689
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "spikes": []
+    },
+    {
+      "name": "bridge",
+      "run": 2,
+      "samples": 2655,
+      "fps": 221.06393784967457,
+      "meanMs": 4.523578154479492,
+      "medianMs": 3.0999999046325684,
+      "p95Ms": 9.899999856948853,
+      "p99Ms": 10.399999856948853,
+      "worstMs": 11.299999952316284,
+      "minMs": 1.6999998092651367,
+      "above8_333": 547,
+      "above16_667": 0,
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 4.524 ms is not locked to a known display interval",
+      "distanceM": 84.10920000099779,
+      "before": {
+        "position": {
+          "x": 0,
+          "y": 25.252109154564724,
+          "z": 200.54910015812303
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 2.0827187241127367,
+          "support": 2,
+          "speed": 6.999999999998885,
+          "vx": 0,
+          "vz": 6.999999999998885,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 30,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 0,
+            "y": 25.252109154564724,
+            "z": 200.54910015812303
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": -0.7920720636948488,
+                "y": 1.4702439639585396,
+                "z": 48.26824853832978
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -3.0892249834046197,
+                "y": 2.3734283155025753,
+                "z": 60.29503230609114
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 3.059820060542797,
+                "y": 5.0908027851768125,
+                "z": 85.57002303474248
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -0.6727373394228929,
+                "y": 6.574139567832571,
+                "z": 109.87524788871721
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": -0.2942541358560407,
+                "y": 9.029678939231479,
+                "z": 127.58581044628856
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "after": {
+        "position": {
+          "x": 0,
+          "y": 45.91240415963702,
+          "z": 284.6583001591208
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0,
+          "support": 2,
+          "speed": 0,
+          "vx": 0,
+          "vz": 0,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 30,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 0,
+            "y": 45.91240415963702,
+            "z": 284.6583001591208
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 5.285238609204149,
+                "y": 1.5944522113659332,
+                "z": 48.90801539061673
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -1.237728786510075,
+                "y": 2.5807537062591948,
+                "z": 64.58278984239398
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": -0.24961600093626182,
+                "y": 4.683362197602735,
+                "z": 84.80083816720904
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -0.5620219962178111,
+                "y": 6.219046449427005,
+                "z": 106.41325822852791
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": 2.9978620381542815,
+                "y": 9.919828051143558,
+                "z": 125.62710953966058
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "spikes": []
+    },
+    {
+      "name": "bridge",
+      "run": 3,
+      "samples": 2656,
+      "fps": 221.22272197234713,
+      "meanMs": 4.520331325301205,
+      "medianMs": 3.0999999046325684,
+      "p95Ms": 9.799999952316284,
+      "p99Ms": 10.299999952316284,
+      "worstMs": 11.200000047683716,
+      "minMs": 1.7000000476837158,
+      "above8_333": 535,
+      "above16_667": 0,
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 4.520 ms is not locked to a known display interval",
+      "distanceM": 84.17990000033069,
+      "before": {
+        "position": {
+          "x": 0,
+          "y": 25.24967097172315,
+          "z": 200.5622359638732
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 2.0827187241127367,
+          "support": 2,
+          "speed": 7.000000000003935,
+          "vx": 0,
+          "vz": 7.000000000003935,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 32,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 0,
+            "y": 25.24967097172315,
+            "z": 200.5622359638732
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 3.3431309901126562,
+                "y": 1.5919267693197434,
+                "z": 50.582731213318105
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -3.703170537717368,
+                "y": 2.5266116346246212,
+                "z": 63.20300578340514
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 1.3563724350411521,
+                "y": 4.58280273882186,
+                "z": 83.41790319190673
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": 1.8145713128807157,
+                "y": 6.562267695117535,
+                "z": 107.73394799268466
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": 1.8519538965566122,
+                "y": 9.417108385265477,
+                "z": 127.55690581689989
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "after": {
+        "position": {
+          "x": 0,
+          "y": 45.90972861354852,
+          "z": 284.7421359642039
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0,
+          "support": 2,
+          "speed": 0,
+          "vx": 0,
+          "vz": 0,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 32,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 0,
+            "y": 45.90972861354852,
+            "z": 284.7421359642039
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 2.734807734390454,
+                "y": 1.5476570769388025,
+                "z": 45.54288204549856
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": 2.067933207570809,
+                "y": 2.4557767731865807,
+                "z": 61.73110249161808
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": -1.9485183616254553,
+                "y": 4.581692947294538,
+                "z": 86.265352105305
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -2.363428830913977,
+                "y": 5.885448213407289,
+                "z": 106.37692853721855
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": 0.6195400922304466,
+                "y": 8.461197579985726,
+                "z": 123.41398785937041
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "spikes": []
+    },
+    {
+      "name": "cathedral",
+      "run": 1,
+      "samples": 2741,
+      "fps": 228.3310425257195,
+      "meanMs": 4.379605983217804,
+      "medianMs": 3,
+      "p95Ms": 9.599999904632568,
+      "p99Ms": 9.899999856948853,
+      "worstMs": 10.5,
+      "minMs": 1.7000000476837158,
+      "above8_333": 501,
+      "above16_667": 0,
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 4.380 ms is not locked to a known display interval",
+      "distanceM": 73.99489999866273,
+      "before": {
+        "position": {
+          "x": 0,
+          "y": 45.92387225673933,
+          "z": 275.46191910975404
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0,
+          "support": 2,
+          "speed": 6.999999999994316,
+          "vx": 0,
+          "vz": 6.999999999994316,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 35,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 0,
+            "y": 45.92387225673933,
+            "z": 275.46191910975404
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 5.692424104325989,
+                "y": 1.6213151554362883,
+                "z": 47.196772178736936
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": 0.8779640146844107,
+                "y": 2.5005028064203865,
+                "z": 62.75739254807443
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": -1.1791875104256386,
+                "y": 4.670823145408703,
+                "z": 85.60254793933827
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -1.5162935150488883,
+                "y": 6.090542428660563,
+                "z": 105.89361146100494
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": 2.019600852637358,
+                "y": 9.185708177820478,
+                "z": 124.71613723182278
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "after": {
+        "position": {
+          "x": 0,
+          "y": 45.92387225673933,
+          "z": 349.45681910841677
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0,
+          "support": 2,
+          "speed": 0,
+          "vx": 0,
+          "vz": 0,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 35,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 0,
+            "y": 45.92387225673933,
+            "z": 349.45681910841677
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": -0.7932189959750169,
+                "y": 1.4702208435105262,
+                "z": 48.26732246744548
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -3.184343416732984,
+                "y": 2.37683407922371,
+                "z": 60.3760305921178
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 1.318249138149173,
+                "y": 5.150059815784911,
+                "z": 88.07173965836704
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -3.0765357653709127,
+                "y": 5.818185714084099,
+                "z": 108.4378253754599
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": -2.688221214137035,
+                "y": 8.76688921418338,
+                "z": 126.26490022258018
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "spikes": []
+    },
+    {
+      "name": "cathedral",
+      "run": 2,
+      "samples": 2737,
+      "fps": 227.99783414552877,
+      "meanMs": 4.386006576543661,
+      "medianMs": 3,
+      "p95Ms": 9.599999904632568,
+      "p99Ms": 10,
+      "worstMs": 10.5,
+      "minMs": 1.5999999046325684,
+      "above8_333": 500,
+      "above16_667": 0,
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 4.386 ms is not locked to a known display interval",
+      "distanceM": 73.99420000099798,
+      "before": {
+        "position": {
+          "x": 0,
+          "y": 45.930793935896304,
+          "z": 275.4958062951823
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0,
+          "support": 2,
+          "speed": 7.000000000008468,
+          "vx": 0,
+          "vz": 7.000000000008468,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 38,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 0,
+            "y": 45.930793935896304,
+            "z": 275.4958062951823
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 0.4831932944319009,
+                "y": 1.5054213046844696,
+                "z": 47.16742355450417
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -2.0655601185633423,
+                "y": 2.3288417763891904,
+                "z": 59.41956339134254
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": -1.6284747313220402,
+                "y": 4.657104473751099,
+                "z": 86.44215032435807
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -2.7273296863155503,
+                "y": 5.821749890480572,
+                "z": 107.42954492065648
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": -0.6402710471854157,
+                "y": 8.533956405483323,
+                "z": 124.50000180302544
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "after": {
+        "position": {
+          "x": 0,
+          "y": 45.930793935896304,
+          "z": 349.4900062961803
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0,
+          "support": 2,
+          "speed": 0,
+          "vx": 0,
+          "vz": 0,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 38,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 0,
+            "y": 45.930793935896304,
+            "z": 349.4900062961803
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 3.344306482920528,
+                "y": 1.591925999944103,
+                "z": 50.58197995362232
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -3.571314472318934,
+                "y": 2.5318112780490134,
+                "z": 63.27631115738094
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 2.44900015516355,
+                "y": 5.194408084272732,
+                "z": 87.18171195316089
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -1.4917622544277496,
+                "y": 6.616653693966361,
+                "z": 110.58256766564472
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": -0.15407367817153889,
+                "y": 9.048937104869616,
+                "z": 127.6623807852326
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "spikes": []
+    },
+    {
+      "name": "cathedral",
+      "run": 3,
+      "samples": 2733,
+      "fps": 227.67790199860514,
+      "meanMs": 4.392169776784602,
+      "medianMs": 3.299999952316284,
+      "p95Ms": 9.5,
+      "p99Ms": 9.900000095367432,
+      "worstMs": 12.899999856948853,
+      "minMs": 1.6999998092651367,
+      "above8_333": 469,
+      "above16_667": 0,
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 4.392 ms is not locked to a known display interval",
+      "distanceM": 73.97669999933191,
+      "before": {
+        "position": {
+          "x": 0,
+          "y": 45.93074155432679,
+          "z": 275.48308015736865
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0,
+          "support": 2,
+          "speed": 7.000000000004325,
+          "vx": 0,
+          "vz": 7.000000000004325,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 41,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 0,
+            "y": 45.93074155432679,
+            "z": 275.48308015736865
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 2.0470168316499837,
+                "y": 1.5444823981528908,
+                "z": 49.8562546505298
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -5.376029598380215,
+                "y": 2.4261750725204143,
+                "z": 62.266688555415676
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 1.9692078244935918,
+                "y": 5.273475322816415,
+                "z": 88.4278200348181
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -2.970488392028628,
+                "y": 5.873494547891148,
+                "z": 108.58129171448364
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": -2.6916116093611495,
+                "y": 8.766947436238418,
+                "z": 126.26337441708414
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "after": {
+        "position": {
+          "x": 0,
+          "y": 45.93074155432679,
+          "z": 349.45978015670056
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0,
+          "support": 2,
+          "speed": 0,
+          "vx": 0,
+          "vz": 0,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 41,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 0,
+            "y": 45.93074155432679,
+            "z": 349.45978015670056
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 5.542747387688102,
+                "y": 1.6213761508917794,
+                "z": 47.1132043180236
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": 1.0008490347903167,
+                "y": 2.4961158210935426,
+                "z": 62.66082153071648
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 2.43839952344453,
+                "y": 4.772872410164089,
+                "z": 84.78437980585151
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": 0.6625047358256321,
+                "y": 6.538598579521945,
+                "z": 108.73442501427392
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": 1.9310028723555872,
+                "y": 9.445246506830339,
+                "z": 127.42527128321812
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "spikes": []
+    },
+    {
+      "name": "forest",
+      "run": 1,
+      "samples": 2309,
+      "fps": 192.38780849615674,
+      "meanMs": 5.197834560395113,
+      "medianMs": 5.5,
+      "p95Ms": 5.900000095367432,
+      "p99Ms": 6.6000001430511475,
+      "worstMs": 7.1000001430511475,
+      "minMs": 3.6999998092651367,
+      "above8_333": 0,
+      "above16_667": 0,
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 5.198 ms is not locked to a known display interval",
+      "distanceM": 84.08449664486164,
+      "before": {
+        "position": {
+          "x": 129.99993453589164,
+          "y": 19.102426386491327,
+          "z": -39.4613053683345
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": -1.7158204815647458,
+          "support": 2,
+          "speed": 7.000000149479991,
+          "vx": -9.01176173633019e-11,
+          "vz": 7.000000149479991,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 43,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 129.99993453589164,
+            "y": 19.102426386491327,
+            "z": -39.4613053683345
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 6.471317624534033,
+                "y": 1.6102321099433543,
+                "z": 47.88682004243711
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -1.237024196524649,
+                "y": 2.5807518569919043,
+                "z": 64.58294051801761
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 2.8790368265188637,
+                "y": 5.169493765294559,
+                "z": 86.04510826757551
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -1.4911293269893193,
+                "y": 6.616782007332883,
+                "z": 110.58327140164843
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": 1.3107624865017795,
+                "y": 9.197784125813524,
+                "z": 128.46877673615649
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "after": {
+        "position": {
+          "x": 129.99762907930037,
+          "y": 11.525943792791134,
+          "z": 44.623191244921266
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0.7792969112117518,
+          "support": 2,
+          "speed": 6.999999999999432,
+          "vx": 0,
+          "vz": 6.999999999999432,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 58,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 129.99762907930037,
+            "y": 11.525943792791134,
+            "z": 44.623191244921266
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 0.36899559206843957,
+                "y": 1.5026674987915811,
+                "z": 47.26290865809117
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -2.065340684516907,
+                "y": 2.328444479260553,
+                "z": 59.415813487842925
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 0.6032434065673749,
+                "y": 4.612268683498435,
+                "z": 84.06618660382519
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": 0.8679136615511585,
+                "y": 6.397382957977991,
+                "z": 107.2104154500602
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": 1.9091696557875781,
+                "y": 9.095638021865584,
+                "z": 124.61859235394411
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "spikes": []
+    },
+    {
+      "name": "forest",
+      "run": 2,
+      "samples": 2306,
+      "fps": 192.07383098245504,
+      "meanMs": 5.206331309606382,
+      "medianMs": 5.400000095367432,
+      "p95Ms": 5.900000095367432,
+      "p99Ms": 6.700000047683716,
+      "worstMs": 8.100000143051147,
+      "minMs": 2.700000047683716,
+      "above8_333": 0,
+      "above16_667": 0,
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 5.206 ms is not locked to a known display interval",
+      "distanceM": 84.18504557006375,
+      "before": {
+        "position": {
+          "x": 129.9998926087918,
+          "y": 19.088393802775066,
+          "z": -39.44325317843784
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": -1.7158203477456415,
+          "support": 2,
+          "speed": 7.000000000000283,
+          "vx": 0,
+          "vz": 7.000000000000283,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 60,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 129.9998926087918,
+            "y": 19.088393802775066,
+            "z": -39.44325317843784
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 2.512114218112861,
+                "y": 1.5355836579331419,
+                "z": 45.41860404414326
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": 0.7765945050552003,
+                "y": 2.4759706225171905,
+                "z": 61.0079932455246
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 1.6732882828750009,
+                "y": 4.662985523530783,
+                "z": 83.81811865358887
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": 1.488910484595827,
+                "y": 6.5555200442776,
+                "z": 108.01251667617065
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": 2.991046331803272,
+                "y": 9.917078522682106,
+                "z": 125.64806152143862
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "after": {
+        "position": {
+          "x": 129.99861570632746,
+          "y": 11.541974552038106,
+          "z": 44.741792381942005
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0,
+          "support": 2,
+          "speed": 0,
+          "vx": 0,
+          "vz": 0,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 71,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 129.99861570632746,
+            "y": 11.541974552038106,
+            "z": 44.741792381942005
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 2.167861330139618,
+                "y": 1.548461235152674,
+                "z": 49.92343881857111
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -5.377626515676703,
+                "y": 2.4260369816732146,
+                "z": 62.26565171973979
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": -1.9519051501150961,
+                "y": 4.5810856195126615,
+                "z": 86.26330586766075
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -2.0854911607662947,
+                "y": 5.942598709900773,
+                "z": 105.57658061672876
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": -0.7355368835192148,
+                "y": 8.54021927843016,
+                "z": 124.5825498128953
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "spikes": []
+    },
+    {
+      "name": "forest",
+      "run": 3,
+      "samples": 2310,
+      "fps": 192.44226731751064,
+      "meanMs": 5.196363636425564,
+      "medianMs": 5.400000095367432,
+      "p95Ms": 5.8999998569488525,
+      "p99Ms": 6.700000047683716,
+      "worstMs": 8.399999856948853,
+      "minMs": 2.799999952316284,
+      "above8_333": 1,
+      "above16_667": 0,
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 5.196 ms is not locked to a known display interval",
+      "distanceM": 84.12632627231284,
+      "before": {
+        "position": {
+          "x": 129.99985151616423,
+          "y": 19.09776249549688,
+          "z": -39.472080457237375
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": -1.7158203477456415,
+          "support": 2,
+          "speed": 7.000000000000259,
+          "vx": 0,
+          "vz": 7.000000000000259,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 73,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 129.99985151616423,
+            "y": 19.09776249549688,
+            "z": -39.472080457237375
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": -0.7977614539847172,
+                "y": 1.4701220920352793,
+                "z": 48.26478101637626
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -4.355507515544334,
+                "y": 2.4103086935488847,
+                "z": 61.386012330971475
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": -0.3094747310621551,
+                "y": 4.687901947802654,
+                "z": 84.8504867324951
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -0.06722367134810134,
+                "y": 6.27934366381187,
+                "z": 106.6935715909449
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": 0.6151059089934795,
+                "y": 8.461487969111941,
+                "z": 123.41823895074653
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "after": {
+        "position": {
+          "x": 129.99633633715132,
+          "y": 11.531424561240378,
+          "z": 44.65424574163541
+        },
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0.7792969112117518,
+          "support": 2,
+          "speed": 7.000000000000789,
+          "vx": 0,
+          "vz": 7.000000000000789,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 86,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 129.99633633715132,
+            "y": 11.531424561240378,
+            "z": 44.65424574163541
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 6,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 2.772159074466691,
+                "y": 1.2897301982993032,
+                "z": 13.761506730385662
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.071394715516981,
+                "y": 1.7852161549915808,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 6.5919861415995005,
+                "y": 1.6120844702082746,
+                "z": 47.789119587025866
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -1.2373822073091665,
+                "y": 2.580720690327126,
+                "z": 64.58198197892813
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 0.3447871672899261,
+                "y": 5.050156975977858,
+                "z": 87.53334022369827
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -3.0759973247870938,
+                "y": 5.8185316700078005,
+                "z": 108.43931206178267
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": -2.69095832367611,
+                "y": 8.76695881963289,
+                "z": 126.26402385175456
+              }
+            }
+          ]
+        },
+        "enemies": 7,
+        "canvas": {
+          "width": 1280,
+          "height": 720
+        },
+        "resolution": [
+          1280,
+          720
+        ]
+      },
+      "spikes": []
+    }
+  ],
+  "errors": [],
+  "gpuErrors": []
+}
