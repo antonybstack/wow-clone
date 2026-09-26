@@ -16,10 +16,10 @@ import {
     bakeSkeleton,
     createTransformNode,
     getBoneByName,
-    mat4Decompose,
-    mat4Invert,
-    mat4Multiply,
-    mat4Translation,
+    decomposeMat4,
+    invertMat4,
+    multiplyMat4,
+    createTranslationMat4,
     setParent,
 } from "@babylonjs/lite";
 
@@ -157,11 +157,11 @@ function jointMeshLocal(binding, bone) {
     }
     const boneMat = binding.boneMatrices.subarray(bi * 16, bi * 16 + 16);
     const ibm = binding.inverseBindMatrices.subarray(bi * 16, bi * 16 + 16);
-    const invIbm = mat4Invert(ibm);
+    const invIbm = invertMat4(ibm);
     if (!invIbm) {
         return null;
     }
-    return mat4Multiply(boneMat, invIbm);
+    return multiplyMat4(boneMat, invIbm);
 }
 
 /**
@@ -176,9 +176,9 @@ export function jointWorldMatrix(groups, bone) {
     const binding = liteSkinBinding(groups);
     const meshLocal = jointMeshLocal(binding, bone);
     if (meshLocal && binding?.invMeshWorld) {
-        const meshWorldLoad = mat4Invert(binding.invMeshWorld);
+        const meshWorldLoad = invertMat4(binding.invMeshWorld);
         if (meshWorldLoad) {
-            return mat4Multiply(meshWorldLoad, meshLocal);
+            return multiplyMat4(meshWorldLoad, meshLocal);
         }
     }
     for (const group of groups ?? []) {
@@ -207,7 +207,7 @@ export function attachSockets(engine, scene, player, body) {
         bakeSkeleton(skeleton);
     }
 
-    const feet = mat4Translation(0, -(player.capsuleHeight ?? 1.55) * 0.5, 0);
+    const feet = createTranslationMat4(0, -(player.capsuleHeight ?? 1.55) * 0.5, 0);
     let skinned = findSkinnedMesh(body.root);
     const sockets = {};
     const authoredGrip = {
@@ -236,11 +236,11 @@ export function attachSockets(engine, scene, player, body) {
         const meshLocal = jointMeshLocal(binding, bone);
         const meshWorld = skinned?.worldMatrix;
         const bodyWorld = player.body?.worldMatrix;
-        const invBody = bodyWorld ? mat4Invert(bodyWorld) : null;
+        const invBody = bodyWorld ? invertMat4(bodyWorld) : null;
         if (meshLocal && meshWorld && invBody) {
-            const world = mat4Multiply(meshWorld, meshLocal);
-            const local = mat4Multiply(invBody, world);
-            const d = mat4Decompose(local);
+            const world = multiplyMat4(meshWorld, meshLocal);
+            const local = multiplyMat4(invBody, world);
+            const d = decomposeMat4(local);
             return { x: d.translation.x, y: d.translation.y, z: d.translation.z, r: d.rotation };
         }
         const joint = jointWorldMatrix(groups, bone);
@@ -250,7 +250,7 @@ export function attachSockets(engine, scene, player, body) {
         // Fallback: animation joint already has RH_TO_LH. Scale by |root|, never signed x.
         const h = Math.abs(body.root?.scaling?.y ?? 1);
         const feetY = -(player.capsuleHeight ?? 1.55) * 0.5;
-        const d = mat4Decompose(mat4Multiply(feet, joint));
+        const d = decomposeMat4(multiplyMat4(feet, joint));
         return {
             x: d.translation.x * h,
             y: feetY + (d.translation.y - feetY) * h,

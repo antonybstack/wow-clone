@@ -1,5 +1,9 @@
 # Current direction — Ashen Reach
 
+## M3 Babylon Lite 1.31.1 migration verified locally — 2026-09-26
+
+[M3 compatibility and live report](babylon-lite-m3-upgrade-2026-09-26.md) records the exact Lite 1.31.1 pin, four math API renames, a compressed-GLB fix for the character lab, 77 character + 47 equipment + 102 focused passing tests, exact-bundle built movement, all eight Havok region returns, mobile/WebKit checks, and reviewed [1.31.1 motion](https://ve.sparkify.dev/wow-clone/ashen-reach/lite1311-m3/2026-09-26-migration-motion.mp4). M4 paired performance and production release are next. Production remains the previous 1.28.0 deployment until those gates pass.
+
 ## M2 Lite private bridges verified on 1.28.0 — 2026-09-26
 
 [M2 shadow and socket bridge report](babylon-lite-m2-private-bridges-2026-09-26.md) records version/layout guards, ownership and teardown of CSM/PCF tasks/textures, a narrow glTF socket adapter, focused lifecycle tests, live shadow/contact/local-light and race-switch checks, and reviewed [built motion](https://ve.sparkify.dev/wow-clone/ashen-reach/lite128-m2/2026-09-26-shadow-socket-motion.mp4). Lite remains 1.28.0. M3 dependency/math migration is next; production remains the prior 1.28.0 deployment until M4 acceptance.

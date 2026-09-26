@@ -1,0 +1,85 @@
+{
+  "kind": "chromium",
+  "url": "http://127.0.0.1:6973/ashen-reach.html?play&clean",
+  "injectDepthFailure": true,
+  "disableDepthFallback": false,
+  "device": "desktop engine with mobile viewport/touch emulation",
+  "errors": [],
+  "checks": [
+    {
+      "name": "native touch advances simulation and displayed world",
+      "traveled": 30.150237204879208,
+      "imageDelta": 21.470833333333335
+    },
+    {
+      "name": "capture-loss"
+    },
+    {
+      "name": "cancel"
+    },
+    {
+      "name": "modal"
+    },
+    {
+      "name": "blur"
+    }
+  ],
+  "loadedScripts": [
+    "http://127.0.0.1:6973/@vite/client",
+    "http://127.0.0.1:6973/src/ashen-reach/main.js"
+  ],
+  "runtime": {
+    "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "physics": true,
+    "canvas": [
+      322,
+      550
+    ],
+    "post": {
+      "hdr": true,
+      "format": "rgba16float",
+      "bloom": true,
+      "notes": [],
+      "volumetric": {
+        "enabled": true,
+        "shadows": true,
+        "debug": 0,
+        "density": 0.006,
+        "sunPower": 3.4,
+        "height": 48,
+        "maxDistance": 850,
+        "steps": 48,
+        "mapSize": 2048,
+        "casters": 71,
+        "shadowVersion": 1,
+        "resolution": [
+          322,
+          550
+        ],
+        "integrationResolution": [
+          161,
+          275
+        ]
+      },
+      "display": {
+        "exposure": 0.9,
+        "saturation": 1.05,
+        "output": "srgb",
+        "toneMap": "ACES fitted",
+        "resolution": [
+          322,
+          550
+        ]
+      }
+    }
+  },
+  "compatibility": {
+    "depthBundle": "empty-fragment",
+    "probeError": "No pipeline set.\n - While encoding [RenderBundleEncoder (unlabeled)].Draw(3, 1, 0, 0).\n - While calling [RenderBundleEncoder (unlabeled)].Finish([RenderBundleDescriptor]).\n",
+    "fallbackError": null,
+    "errors": [],
+    "frames": 3496
+  },
+  "gpuFailures": [],
+  "passed": true
+}

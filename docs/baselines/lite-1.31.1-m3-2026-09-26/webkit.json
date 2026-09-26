@@ -1,0 +1,73 @@
+{
+  "kind": "webkit",
+  "url": "http://127.0.0.1:6973/ashen-reach.html?play&clean",
+  "injectDepthFailure": false,
+  "disableDepthFallback": false,
+  "device": "desktop engine with mobile viewport/touch emulation",
+  "errors": [],
+  "checks": [
+    {
+      "name": "keyboard advances WebKit simulation and displayed world",
+      "traveled": 15.938280876906695,
+      "imageDelta": 22.798333333333332
+    }
+  ],
+  "loadedScripts": [
+    "http://127.0.0.1:6973/@vite/client",
+    "http://127.0.0.1:6973/src/ashen-reach/main.js"
+  ],
+  "runtime": {
+    "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15",
+    "physics": true,
+    "canvas": [
+      322,
+      550
+    ],
+    "post": {
+      "hdr": true,
+      "format": "rgba16float",
+      "bloom": true,
+      "notes": [],
+      "volumetric": {
+        "enabled": true,
+        "shadows": true,
+        "debug": 0,
+        "density": 0.006,
+        "sunPower": 3.4,
+        "height": 48,
+        "maxDistance": 850,
+        "steps": 48,
+        "mapSize": 2048,
+        "casters": 71,
+        "shadowVersion": 1,
+        "resolution": [
+          322,
+          550
+        ],
+        "integrationResolution": [
+          161,
+          275
+        ]
+      },
+      "display": {
+        "exposure": 0.9,
+        "saturation": 1.05,
+        "output": "srgb",
+        "toneMap": "ACES fitted",
+        "resolution": [
+          322,
+          550
+        ]
+      }
+    }
+  },
+  "compatibility": {
+    "depthBundle": "native",
+    "probeError": null,
+    "fallbackError": null,
+    "errors": [],
+    "frames": 254
+  },
+  "gpuFailures": [],
+  "passed": true
+}

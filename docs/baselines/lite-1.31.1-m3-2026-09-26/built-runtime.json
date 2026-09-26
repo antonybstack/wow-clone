@@ -1,0 +1,51 @@
+{
+  "requestedUrl": "http://127.0.0.1:9073/ashen-reach.html?play&clean",
+  "expectedBundle": "ashenReach-C6Ic5lIH.js",
+  "browser": "153.0.8010.54",
+  "errors": [],
+  "failedRequests": [],
+  "visitedUrl": "http://127.0.0.1:9073/ashen-reach.html?play&clean",
+  "loadedScripts": [
+    "http://127.0.0.1:9073/assets/ashenReach-C6Ic5lIH.js"
+  ],
+  "before": {
+    "position": {
+      "x": 0,
+      "y": 9.022058938713766,
+      "z": 142.00010680575915
+    },
+    "physics": {
+      "usingPhysics": true,
+      "recoveries": 0,
+      "grounded": true
+    },
+    "canvas": {
+      "width": 1280,
+      "height": 720
+    },
+    "enemies": 7,
+    "shadowEnabled": true,
+    "gpuErrors": []
+  },
+  "after": {
+    "position": {
+      "x": -0.00015702501159836307,
+      "y": 12.00756361891685,
+      "z": 156.03564200485383
+    },
+    "physics": {
+      "usingPhysics": true,
+      "recoveries": 0,
+      "grounded": true
+    },
+    "canvas": {
+      "width": 1280,
+      "height": 720
+    },
+    "enemies": 7,
+    "shadowEnabled": true,
+    "gpuErrors": []
+  },
+  "movementM": 14.035535199973053,
+  "passed": true
+}

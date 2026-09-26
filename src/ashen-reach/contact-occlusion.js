@@ -2,7 +2,7 @@
  * See docs/contact-occlusion-plan-2026-09-24.md. No history blending in this slice. */
 import {
  createRenderTarget,createEffectWrapper,createEffectRenderTask,createScreenSpaceContactShadowsPostProcessTask,
- setEffectTexture,setEffectUniforms,disposeEffectWrapper,getViewProjectionMatrix,mat4Invert,getCameraPosition,
+ setEffectTexture,setEffectUniforms,disposeEffectWrapper,getViewProjectionMatrix,invertMat4,getCameraPosition,
 } from '@babylonjs/lite';
 import {HDR_FORMAT} from './color-management.js';
 import {SUN_DIR} from './atmosphere.js';
@@ -106,7 +106,7 @@ export function createContactOcclusion(engine,scene,sourceRT){
  const compositeTask=createEffectRenderTask({name:'ashen-contact-composite',effect:composeEffect,target:output},engine,scene);
  const data=new Float32Array(BYTES/4);let lastCamera=null,lastPosition=null;
  function update(){
-  const vp=getViewProjectionMatrix(scene.camera,sourceRT._width/sourceRT._height),inv=mat4Invert(vp),p=getCameraPosition(scene.camera);
+  const vp=getViewProjectionMatrix(scene.camera,sourceRT._width/sourceRT._height),inv=invertMat4(vp),p=getCameraPosition(scene.camera);
   if(inv)data.set(inv,0);data.set(vp,16);data.set([p.x,p.y,p.z,1],32);
   data.set([Math.max(.05,Math.min(1.5,state.radius)),Math.max(0,Math.min(1,state.ambientStrength)),Math.max(0,Math.min(1,state.contactStrength)),+state.ambient],36);
   data.set([sourceRT._width,sourceRT._height,0,0],40);data.set([+(state.enabled&&!!inv),+state.contact,state.debug,0],44);

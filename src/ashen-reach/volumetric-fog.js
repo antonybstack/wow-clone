@@ -1,7 +1,7 @@
 /** Shadow-tested single scattering in world space. See docs/shadowed-volumetric-fog-plan-2026-09-23.md. */
 import {
  createRenderTarget,createEffectWrapper,createEffectRenderTask,
- setEffectTexture,setEffectUniforms,disposeEffectWrapper,getViewProjectionMatrix,mat4Invert,getCameraPosition,
+ setEffectTexture,setEffectUniforms,disposeEffectWrapper,getViewProjectionMatrix,invertMat4,getCameraPosition,
 } from '@babylonjs/lite';
 import {SUN_DIR,SUN_COLOR} from './atmosphere.js';
 
@@ -178,7 +178,7 @@ export function createVolumetricFog(engine,scene,sourceRT,sun,world,shadows,sour
  setEffectTexture(integrate,'shadow',shadowTexture);setEffectTexture(integrate,'cascades',shadows.csmTexture);
  for(const s of localLights.slots)setEffectTexture(integrate,`localShadow${s.index}`,s.texture);
  function update(){
-  const inv=mat4Invert(getViewProjectionMatrix(scene.camera,sourceRT._width/sourceRT._height));
+  const inv=invertMat4(getViewProjectionMatrix(scene.camera,sourceRT._width/sourceRT._height));
   if(!inv)return;
   const camera=getCameraPosition(scene.camera);
   uniforms.set(inv,0);uniforms.set(sg._lightMatrix,16);

@@ -75,9 +75,13 @@ try {
         assert(Math.abs(after.yaw - before.yaw) > .03, `${button}: orbit did not move`);
         if (button === 'left') assert(Math.abs(after.facing - before.facing) < .01);
         else assert(Math.abs(after.facing - after.yaw) < .01);
-        report[button] = { before, after };
-        await page.keyboard.press('Escape');
-    }
+  report[button] = { before, after };
+  // Pointer-up already exits lock. Sending Escape after it can open the game
+  // menu and disable the next drag, depending on pointer-lock event timing.
+  await page.waitForFunction(() => document.pointerLockElement === null);
+  // Input suppresses immediate re-lock attempts for 350 ms (src/input.js).
+  await page.waitForTimeout(400);
+}
     report.gpuErrors = await page.evaluate(() => __gpuErrors);
     assert.deepEqual(errors, []);
     assert.deepEqual(report.gpuErrors, []);

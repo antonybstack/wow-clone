@@ -155,8 +155,10 @@ test('installed Lite PBR variants expose material-aware inputs before local spec
       const source = compiled._fragmentWGSL;
       const injection = source.lastIndexOf('localSpecular(input.worldPos, N, V, roughness, colorF0)');
       assert.ok(injection > 0);
+      // Lite 1.31.1 PBR makes roughness and surfaceAlbedo mutable before plugins.
+      // https://github.com/BabylonJS/Babylon-Lite/releases/tag/npm-lite-v1.31.1
       for (const declaration of ['let V=normalize(scene.vEyePosition.xyz-input.worldPos)',
-        'let roughness=', 'var colorF0=', 'let surfaceAlbedo=', 'var N=']) {
+        'var roughness=', 'var colorF0=', 'var surfaceAlbedo=', 'var N=']) {
         assert.ok(source.indexOf(declaration) >= 0 && source.indexOf(declaration) < injection, declaration);
       }
       assert.ok(!source.includes('shaderUniforms.'));

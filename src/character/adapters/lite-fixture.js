@@ -14,9 +14,9 @@ import {
   getBoneByName,
   loadGltf,
   loadTexture2D,
-  mat4Decompose,
-  mat4Invert,
-  mat4Multiply,
+  decomposeMat4,
+  invertMat4,
+  multiplyMat4,
   playAnimation,
   rebuildScenePbrPipelines,
   rebuildSceneRenderables,
@@ -236,11 +236,11 @@ function jointMeshLocal(boneMatrices, ibm, jointIndex) {
     return null;
   }
   const boneMat = boneMatrices.slice(jointIndex * 16, jointIndex * 16 + 16);
-  const invIbm = mat4Invert(ibm.slice(jointIndex * 16, jointIndex * 16 + 16));
+  const invIbm = invertMat4(ibm.slice(jointIndex * 16, jointIndex * 16 + 16));
   if (!invIbm) {
     return null;
   }
-  return mat4Multiply(boneMat, invIbm);
+  return multiplyMat4(boneMat, invIbm);
 }
 
 /**
@@ -263,19 +263,19 @@ function syncStaffFromPalette(asset) {
     return;
   }
   const palm = jointMeshLocal(mats, asset.ibm, names.indexOf("mixamorig:RightHandMiddle1"));
-  const meshWorld = mat4Multiply(body.worldMatrix, hand);
-  const invRoot = mat4Invert(asset.root.worldMatrix);
+  const meshWorld = multiplyMat4(body.worldMatrix, hand);
+  const invRoot = invertMat4(asset.root.worldMatrix);
   if (!invRoot) {
     return;
   }
-  const local = mat4Multiply(invRoot, meshWorld);
-  const d = mat4Decompose(local);
+  const local = multiplyMat4(invRoot, meshWorld);
+  const d = decomposeMat4(local);
   let px = d.translation.x;
   let py = d.translation.y;
   let pz = d.translation.z;
   if (palm) {
-    const palmWorld = mat4Multiply(invRoot, mat4Multiply(body.worldMatrix, palm));
-    const p = mat4Decompose(palmWorld);
+    const palmWorld = multiplyMat4(invRoot, multiplyMat4(body.worldMatrix, palm));
+    const p = decomposeMat4(palmWorld);
     px = px + (p.translation.x - px) * PALM_BLEND;
     py = py + (p.translation.y - py) * PALM_BLEND;
     pz = pz + (p.translation.z - pz) * PALM_BLEND;

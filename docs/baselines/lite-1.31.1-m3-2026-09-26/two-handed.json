@@ -1,0 +1,23 @@
+{
+  "checks": [
+    "Warden preset equips the two-handed greatstaff with no off-hand",
+    "Equipping an off-hand clears the two-handed main hand",
+    "Equipping the greatstaff clears an equipped off-hand",
+    "Armory carry t=0.1: both hands stay on the greatstaff shaft",
+    "Armory carry t=0.4: both hands stay on the greatstaff shaft",
+    "Armory carry t=0.7: both hands stay on the greatstaff shaft",
+    "Live movement keeps both hands on the shaft",
+    "Two-handed carry pose is active during locomotion",
+    "Stowing the greatstaff is eased travel, not an instant snap",
+    "The greatstaff reaches its authored back transform",
+    "Two-handed carry pose releases for Fire Blast",
+    "Fire Blast recovery returns the greatstaff to the hand",
+    "Fire Blast still deals its timed damage",
+    "Both hands re-grip the shaft after Fire Blast",
+    "Lava Ball charge stows the greatstaff and releases the carry pose",
+    "Lava Ball recovery returns the greatstaff and deals damage",
+    "Both hands re-grip the shaft after Lava Ball",
+    "No runtime/WebGPU errors"
+  ],
+  "errors": []
+}

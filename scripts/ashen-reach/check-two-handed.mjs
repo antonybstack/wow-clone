@@ -44,17 +44,39 @@ try{
   await page.keyboard.down('KeyW');await page.waitForTimeout(700);const moving=await axisDistances();await page.keyboard.up('KeyW');await page.waitForTimeout(300);
   check('Live movement keeps both hands on the shaft',moving&&moving.left<.02&&moving.right<.02);
   check('Two-handed carry pose is active during locomotion',await page.evaluate(()=>{const s=ASHEN.combat.fx.sockets,cap=n=>{const b=ASHEN.body.skeleton.bones.find(x=>x.name===n);const c=s.toCapsule(b);return c?[c.x,c.y,c.z]:null;};const L=cap('mixamorig:LeftHand'),R=cap('mixamorig:RightHand');return !!L&&!!R&&L[2]>0.08&&Math.abs(L[0]-R[0])>0.14;}));
-  // Fire Blast: pose releases, prop stows and travels, then recovers.
-  await page.keyboard.press('Tab');await page.keyboard.press('Digit1');
+// Fire Blast: pose releases, prop stows and travels, then recovers.
+  const dummyBeforeFire = await page.evaluate(() => ASHEN.combat.dummy.hp);
+  await page.keyboard.press('Tab');
+  // Observe the short 350 ms stow at render cadence. CDP polling after cast
+  // release can miss nearly all of the remaining transition.
+  await page.evaluate(() => {
+    const root = ASHEN.scene.meshes.find(m => m.name === 'greatstaffWood').parent;
+    const stow = ASHEN.equipment.items.graveweaverGreatstaff.stow.position;
+    const until = performance.now() + 1200;
+    window.__greatstaffStowSamples = [];
+    const sample = () => {
+      const p = root.position;
+      window.__greatstaffStowSamples.push({
+        parent: root.parent?.name,
+        dist: Math.hypot(p.x - stow[0], p.y - stow[1], p.z - stow[2]),
+      });
+      if (performance.now() < until) requestAnimationFrame(sample);
+    };
+    requestAnimationFrame(sample);
+  });
+  await page.keyboard.press('Digit1');
   await page.waitForFunction(()=>ASHEN.combat.spell.casts===1,null,{timeout:8000});
-  let sawTravel=false,stowed=false;
-  for(let i=0;i<8;i++){const s=await propState();if(s.parent==='backSocket'&&s.dist>.02)sawTravel=true;if(s.parent==='backSocket'&&s.dist<.002)stowed=true;await page.waitForTimeout(45);}
+  await page.waitForTimeout(500);
+  const stowSamples = await page.evaluate(() => window.__greatstaffStowSamples);
+  const sawTravel = stowSamples.some(s => s.parent === 'backSocket' && s.dist > .02);
+  const stowed = stowSamples.some(s => s.parent === 'backSocket' && s.dist < .002);
   check('Stowing the greatstaff is eased travel, not an instant snap',sawTravel);
   check('The greatstaff reaches its authored back transform',stowed);
   check('Two-handed carry pose releases for Fire Blast',await page.evaluate(()=>ASHEN.body.getState().castingShoot===true));
   await page.waitForTimeout(1200);
   check('Fire Blast recovery returns the greatstaff to the hand',await page.evaluate(()=>ASHEN.equipment.attachment==='hand'));
-  check('Fire Blast still deals its timed damage',await page.evaluate(()=>ASHEN.combat.dummy.hp===480));
+  const dummyAfterFire = await page.evaluate(() => ASHEN.combat.dummy.hp);
+  check('Fire Blast still deals its timed damage',dummyBeforeFire-dummyAfterFire===120);
   const afterFire=await axisDistances();check('Both hands re-grip the shaft after Fire Blast',afterFire.left<.02&&afterFire.right<.02);
   await page.screenshot({path:dir+'/gameplay-carry.png'});
   // Lava Ball.
@@ -62,7 +84,7 @@ try{
   await page.waitForTimeout(250);const charging=await propState();
   check('Lava Ball charge stows the greatstaff and releases the carry pose',charging.attachment==='back'&&await page.evaluate(()=>ASHEN.body.getState().castingShoot===true));
   await page.waitForFunction(()=>ASHEN.combat.lava.casts===1,null,{timeout:9000});await page.waitForTimeout(1400);
-  check('Lava Ball recovery returns the greatstaff and deals damage',await page.evaluate(async()=>ASHEN.equipment.attachment==='hand'&&ASHEN.combat.dummy.hp===240));
+  check('Lava Ball recovery returns the greatstaff and deals damage',await page.evaluate(previousHp=>ASHEN.equipment.attachment==='hand'&&previousHp-ASHEN.combat.dummy.hp===240,dummyAfterFire));
   const afterLava=await axisDistances();check('Both hands re-grip the shaft after Lava Ball',afterLava.left<.02&&afterLava.right<.02);
   check('No runtime/WebGPU errors',errors.length===0);
 }finally{

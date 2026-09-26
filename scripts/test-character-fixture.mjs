@@ -8,6 +8,20 @@ import { fixtureGlbInput } from './character-fixture-input.mjs';
 const file = await readFile(new URL('../public/characters/base.glb', import.meta.url));
 const source = await fixtureGlbInput(file);
 
+test('browser ArrayBuffer fixture input decodes the compressed source', async () => {
+  const browserInput = file.buffer.slice(file.byteOffset, file.byteOffset + file.byteLength);
+  const decoded = await fixtureGlbInput(browserInput);
+  const { json } = parseGlb(decoded);
+  const original = JSON.parse(new TextDecoder().decode(file.subarray(20, 20 + file.readUInt32LE(12))));
+  assert.equal(json.buffers.length, 1);
+  assert.equal(json.skins[0].joints.length, 65);
+  assert.equal(json.animations.length, 45);
+  assert.deepEqual(json.extensionsUsed?.sort(), original.extensionsUsed.filter(name => name !== 'EXT_meshopt_compression').sort());
+  assert.deepEqual(json.materials, original.materials);
+  assert.deepEqual(new Uint8Array(decoded), new Uint8Array(source));
+  assert.deepEqual(new Uint8Array(await fixtureGlbInput(decoded)), new Uint8Array(decoded));
+});
+
 test('optimized source decodes to the strict single-buffer fixture without losing the rig', () => {
   const raw = JSON.parse(new TextDecoder().decode(file.subarray(20, 20 + file.readUInt32LE(12))));
   const { json } = parseGlb(source);

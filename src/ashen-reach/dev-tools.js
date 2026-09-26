@@ -1,7 +1,7 @@
 /**
  * Developer tools behind ?dev: unlimited health/mana, fly, click-to-teleport.
  */
-import {getViewProjectionMatrix, mat4Invert} from '@babylonjs/lite';
+import {getViewProjectionMatrix, invertMat4} from '@babylonjs/lite';
 import {input} from '../input.js';
 import {height} from './geometry.js';
 
@@ -28,7 +28,7 @@ function screenRay(camera, canvas, clientX, clientY) {
   const x = clientX - rect.left;
   const y = clientY - rect.top;
   const vp = getViewProjectionMatrix(camera, width / heightPx);
-  const inv = mat4Invert(vp);
+  const inv = invertMat4(vp);
   if (!inv) return null;
   const ndcX = (2 * x) / width - 1;
   const ndcY = 1 - (2 * y) / heightPx;

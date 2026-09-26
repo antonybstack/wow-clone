@@ -25,6 +25,7 @@ import {
   startEngine,
 } from "@babylonjs/lite";
 import { createFixtureCharacter } from "../adapters/lite-fixture.js";
+import { fixtureGlbInput } from "../runtime/fixture-glb-input.js";
 import { FrameMetrics } from "../runtime/frame-metrics.js";
 import "./style.css";
 
@@ -256,7 +257,7 @@ async function main() {
   if (!response.ok) {
     throw new Error("Character source failed to load");
   }
-  const source = await response.arrayBuffer();
+  const source = await fixtureGlbInput(await response.arrayBuffer());
 
   const left = await createFixtureCharacter({ engine, scene, source, x: -1.55 });
   const right = await createFixtureCharacter({ engine, scene, source, x: 1.55, palette: "copper" });
