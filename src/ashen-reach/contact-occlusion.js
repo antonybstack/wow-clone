@@ -1,7 +1,7 @@
 /** Short visible-depth contact and ambient occlusion, composed before distant fog.
  * See docs/contact-occlusion-plan-2026-09-24.md. No history blending in this slice. */
 import {
- createRenderTarget,createEffectWrapper,createEffectRenderTask,createScreenSpaceContactShadowsPostProcessTask,
+ createRenderTarget,createSurfaceRenderTargetTexture,disposeRenderTargetTexture,createEffectWrapper,createEffectRenderTask,createScreenSpaceContactShadowsPostProcessTask,
  setEffectTexture,setEffectUniforms,disposeEffectWrapper,getViewProjectionMatrix,invertMat4,getCameraPosition,
 } from '@babylonjs/lite';
 import {HDR_FORMAT} from './color-management.js';
@@ -86,7 +86,7 @@ const COMPOSITE=`${COMMON}
  return vec4<f32>(color.rgb*(1.0-amount*protect),color.a);
 }`;
 
-export function createContactOcclusion(engine,scene,sourceRT){
+export function createContactOcclusion(engine,scene,sourceRT,sourceSurface=null){
  const state={enabled:true,ambient:true,contact:true,radius:.55,ambientStrength:.30,contactStrength:.14,debug:0,resolution:[],aoResolution:[]};
  // Native task captures a camera once. Forward reads AND cache writes to the
  // active camera, since the game swaps reference/play cameras without rebuilding.
@@ -97,13 +97,20 @@ export function createContactOcclusion(engine,scene,sourceRT){
  },engine,scene);
  const size={width:1,height:1};
  const aoRT=createRenderTarget({lbl:'ashen-ambient-occlusion',format:'rg16float',samples:1,size});
- const output=createRenderTarget({lbl:'ashen-contact-composite',format:HDR_FORMAT,samples:1,size:engine});
  const binding=(name,binding,kind,extra={})=>({name,binding,kind,...extra});
  const common=[binding('params',0,'uniform',{uniformByteLength:BYTES}),binding('depth',1,'texture',{textureSampleType:'depth'})];
  const aoEffect=createEffectWrapper(engine,{name:'Local ambient occlusion',fragmentWGSL:AO,bindings:common});
  const composeEffect=createEffectWrapper(engine,{name:'Bounded contact composition',fragmentWGSL:COMPOSITE,bindings:[...common,binding('source',2,'texture'),binding('ambient',3,'texture'),binding('contact',4,'texture')]});
  const aoTask=createEffectRenderTask({name:'ashen-ambient-occlusion',effect:aoEffect,target:aoRT},engine,scene);
- const compositeTask=createEffectRenderTask({name:'ashen-contact-composite',effect:composeEffect,target:output},engine,scene);
+ // Lite 1.31.1 returns a resize-aware sampled facade; compositeTask owns .rt
+ // after construction, while fog borrows .texture. Dispose only if setup fails
+ // before that ownership transfer.
+ // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/28-frame-graph.md
+ const compositeTarget=createSurfaceRenderTargetTexture(engine,{lbl:'ashen-contact-composite',format:HDR_FORMAT,samples:1,size:engine});
+ const output=compositeTarget.rt;
+ let compositeTask;
+ try {compositeTask=createEffectRenderTask({name:'ashen-contact-composite',effect:composeEffect,target:output},engine,scene);}
+ catch(error){disposeRenderTargetTexture(compositeTarget);throw error;}
  const data=new Float32Array(BYTES/4);let lastCamera=null,lastPosition=null;
  function update(){
   const vp=getViewProjectionMatrix(scene.camera,sourceRT._width/sourceRT._height),inv=invertMat4(vp),p=getCameraPosition(scene.camera);
@@ -123,14 +130,14 @@ export function createContactOcclusion(engine,scene,sourceRT){
  aoTask.record=()=>{
   size.width=Math.ceil(sourceRT._width/2);size.height=Math.ceil(sourceRT._height/2);
   state.resolution=[sourceRT._width,sourceRT._height];state.aoResolution=[size.width,size.height];
-  const depth={view:sourceRT._depthTexture.createView({aspect:'depth-only'}),depth:true};
+  const depth=sourceSurface?.depthTexture??{view:sourceRT._depthTexture.createView({aspect:'depth-only'}),depth:true};
   setEffectTexture(aoEffect,'depth',depth);setEffectTexture(composeEffect,'depth',depth);update();record();
-  setEffectTexture(composeEffect,'source',{view:sourceRT._colorView});setEffectTexture(composeEffect,'ambient',{view:aoRT._colorView});
+  setEffectTexture(composeEffect,'source',sourceSurface?.texture??{view:sourceRT._colorView});setEffectTexture(composeEffect,'ambient',{view:aoRT._colorView});
   setEffectTexture(composeEffect,'contact',{view:contactTask.shadowTexture._colorView});
  };
  aoTask.execute=()=>{update();return execute();};
  for(const [task,effect] of [[aoTask,aoEffect],[compositeTask,composeEffect]]){
   const dispose=task.dispose.bind(task);task.dispose=()=>{dispose();disposeEffectWrapper(effect);};
  }
- return {state,contactTask,aoTask,compositeTask,output,aoRT,sourceRT};
+ return {state,contactTask,aoTask,compositeTask,output,outputTexture:compositeTarget.texture,aoRT,sourceRT};
 }

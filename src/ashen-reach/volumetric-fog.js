@@ -154,7 +154,7 @@ const COMPOSITE=`${COMMON}
  return vec4<f32>(color*fog.a+fog.rgb,1.0);
 }`;
 
-export function createVolumetricFog(engine,scene,sourceRT,sun,world,shadows,sourceColor=sourceRT,localLights){
+export function createVolumetricFog(engine,scene,sourceRT,sun,world,shadows,sourceColor=sourceRT,localLights,sourceColorTexture=null,sourceDepthTexture=null){
  const sg=shadows.far,casters=shadows.casters;
  const halfSize={width:1,height:1};
  const fogRT=createRenderTarget({lbl:'sunlit-fog-half',format:'rgba16float',samples:1,size:halfSize});
@@ -198,10 +198,10 @@ export function createVolumetricFog(engine,scene,sourceRT,sun,world,shadows,sour
  fogTask.record=()=>{
   halfSize.width=Math.ceil(sourceRT._width/2);halfSize.height=Math.ceil(sourceRT._height/2);
   state.resolution=[sourceRT._width,sourceRT._height];state.integrationResolution=[halfSize.width,halfSize.height];
-  const depth={view:sourceRT._depthTexture.createView({aspect:'depth-only'}),depth:true};
+  const depth=sourceDepthTexture??{view:sourceRT._depthTexture.createView({aspect:'depth-only'}),depth:true};
   setEffectTexture(integrate,'depth',depth);setEffectTexture(composite,'depth',depth);
   update();recordFog();
-  setEffectTexture(composite,'source',{view:sourceColor._colorView});
+  setEffectTexture(composite,'source',sourceColorTexture??{view:sourceColor._colorView});
   setEffectTexture(composite,'volume',{view:fogRT._colorView});
  };
  fogTask.execute=()=>{update();return executeFog();};

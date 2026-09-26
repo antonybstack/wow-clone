@@ -12,7 +12,7 @@ const errors=[];
 page.on('pageerror',e=>errors.push(e.message));
 page.on('console',m=>{if(m.type()==='error'||/validation|shader.*error/i.test(m.text()))errors.push(m.text());});
 await page.setViewportSize({width:1280,height:720});
-await page.goto('http://127.0.0.1:5173/ashen-reach.html?play&clean&noEnemies',{waitUntil:'commit'});
+await page.goto(process.env.ASHEN_TEST_URL||'http://127.0.0.1:5173/ashen-reach.html?play&clean&noEnemies',{waitUntil:'commit'});
 await page.waitForFunction(()=>window.ASHEN?.ready,null,{timeout:90000});
 await page.waitForTimeout(1500);
 const probes=await page.evaluate(async()=>{
@@ -60,4 +60,6 @@ await fs.writeFile(`${dir}/report.json`,JSON.stringify(report,null,2));
 console.log(JSON.stringify({matches,total:probes.length,lit:report.lit,ridgeRemovedLit,ridgeRestoredBlocked,movement,cacheStable,portrait:portrait.resolution,errors}));
 await page.evaluate(()=>{window.__volumeHold?.();Object.assign(ASHEN.volumetric.state,{debug:0,shadows:true});});
 await browser.close();
-if(errors.length||matches/probes.length<.9||report.lit===0||report.lit===probes.length||ridgeRemovedLit<1||ridgeRestoredBlocked!==ridgePoints.length||!Number.isFinite(movement)||movement<1||!cacheStable||portrait.resolution[0]>=portrait.resolution[1])throw new Error('Volume shadow verification failed; inspect report and live captures');
+// V25 replaced the decorative "Distant mauve ridges" mesh with physical terrain.
+// Run its removal/restoration assertion only when that historical caster exists.
+if(errors.length||matches/probes.length<.9||report.lit===0||report.lit===probes.length||(ridgePoints.length>0&&(ridgeRemovedLit<1||ridgeRestoredBlocked!==ridgePoints.length))||!Number.isFinite(movement)||movement<1||!cacheStable||portrait.resolution[0]>=portrait.resolution[1])throw new Error('Volume shadow verification failed; inspect report and live captures');
