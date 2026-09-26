@@ -235,7 +235,7 @@ Update this table during implementation; a reviewed plan is not a completed runt
 | --- | --- | --- |
 | M0 baseline and harness | Complete, 2026-09-26 | [1.28.0 baseline and M0 trust checks](babylon-lite-1.28.0-baseline-2026-09-25.md): clean built smoke, 9/9 live matrix checks, eight region returns, 76 character + 47 equipment + 89 focused tests, reviewed production motion, raw FPS/load series. A foreign-worktree renderer was present during FPS measurement; quiet paired comparison remains necessary for small deltas. |
 | M1 physics lifecycle | Complete, 2026-09-26 | [Ownership, real-Havok release tests, built movement, camera/stairs, and reviewed live motion](babylon-lite-m1-physics-2026-09-26.md). Same-slot untouched HEAD also misses the existing head-on enemy-stop assertion; retain as a pacing-sensitive test limitation, not a proven M1 regression. Lite remains 1.28.0. |
-| M2 private bridges | Planned | CSM owner-release exception remains until explicitly verified. |
+| M2 private bridges | Complete, 2026-09-26 | [Shadow/socket ownership and version guards, focused tests, live checks, reviewed built motion](babylon-lite-m2-private-bridges-2026-09-26.md). CSM generator-owner release exception retained; two-handed stow probe missed a short sampling window; local-light startup timeout passed after blanking extra owned renderer. Lite remains 1.28.0. |
 | M3 Lite 1.31.1 migration | Planned | Runtime remains on locked 1.28.0. |
 | M4 release acceptance | Planned | No deployment performed by this review. |
 | F1/F2 recommended follow-ups | Planned, after M4 | Separate commits and targeted acceptance. |

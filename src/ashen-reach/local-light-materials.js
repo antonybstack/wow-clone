@@ -84,6 +84,12 @@ export function createLocalLightPlugin(controller) {
  * which would discard the plugin exclusion. Mask source for the same reason.
  * The terminal caster pointer MUST be owned here, or it would inherit the
  * original -> alias pointer after setShadowCasterMaterial and become a cycle.
+ * Supported bridge layouts: Lite 1.28.0 and 1.31.1. The public caster setter
+ * checks cycles; the private `_pi` mask prevents a PCF/CSM caster sampling its
+ * own local depth attachment. Keep this alias until an exact-version live
+ * shadow pass proves a public material view equivalent.
+ * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/17-cascaded-shadow.md
+ * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/28-frame-graph.md
  */
 function prepareCasterMaterial(material) {
   const previous = casterAliases.get(material);
@@ -105,7 +111,8 @@ function prepareCasterMaterial(material) {
 /** Call at the existing prepareLinearMaterial boundary before scene entry. */
 export function prepareLocalLightMaterial(scene, material) {
   if (!material) return 0;
-  return configuredScenes.get(scene)?.attach(material) ?? 0;
+  const configured = configuredScenes.get(scene);
+  return configured && !configured.controller.state.disposed ? configured.attach(material) : 0;
 }
 
 /**
@@ -125,6 +132,7 @@ export function configureLocalLightMaterials(scene, controller) {
   const plugin = createLocalLightPlugin(controller);
   enableMaterialPlugins(scene);
   function attach(material) {
+    if (controller.state.disposed) return 0;
     const materials = material
       ? [material]
       : new Set(scene.meshes.map(mesh => mesh.material).filter(Boolean));
@@ -146,7 +154,7 @@ export function configureLocalLightMaterials(scene, controller) {
     return changed;
   }
   configuredScenes.set(scene, { controller, attach });
-  onBeforeRender(scene, () => { attach(); });
+  onBeforeRender(scene, () => { if (!controller.state.disposed) attach(); });
   attach();
   return attach;
 }

@@ -29,6 +29,7 @@ import {
     resolvePlayableClips,
     usesAdditiveCast,
 } from './playable-body.js';
+import { liteAnimationClip } from '../adapters/lite-skin-layout.js';
 
 const SPELL_LEG_BONES = [
     'mixamorig:Hips',
@@ -71,7 +72,7 @@ const CARRY_UPPER_BONES = [
 ];
 
 function stripRootTranslation(group) {
-    const clip = group?._gltfMixer?.[0];
+    const clip = liteAnimationClip(group);
     if (!clip?.channels) return;
     const hips = new Set();
     for (const ta of group.targetedAnimations ?? []) {

@@ -245,6 +245,9 @@ function jointMeshLocal(boneMatrices, ibm, jointIndex) {
 
 /**
  * Public-API rigid follow: mesh.skeleton.boneMatrices + composed IBM.
+ * The palette equation and root-world order are documented for Lite 1.31.1:
+ * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/13-skeleton.md
+ * This path also runs on installed 1.28.0; keep it when migrating sockets.
  * Does not read _gltfMixer / _ctrl.
  */
 function syncStaffFromPalette(asset) {

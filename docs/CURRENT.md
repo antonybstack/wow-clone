@@ -1,5 +1,9 @@
 # Current direction — Ashen Reach
 
+## M2 Lite private bridges verified on 1.28.0 — 2026-09-26
+
+[M2 shadow and socket bridge report](babylon-lite-m2-private-bridges-2026-09-26.md) records version/layout guards, ownership and teardown of CSM/PCF tasks/textures, a narrow glTF socket adapter, focused lifecycle tests, live shadow/contact/local-light and race-switch checks, and reviewed [built motion](https://ve.sparkify.dev/wow-clone/ashen-reach/lite128-m2/2026-09-26-shadow-socket-motion.mp4). Lite remains 1.28.0. M3 dependency/math migration is next; production remains the prior 1.28.0 deployment until M4 acceptance.
+
 ## M1 physics lifecycle verified on Lite 1.28.0 — 2026-09-26
 
 The [M1 physics ownership report](babylon-lite-m1-physics-2026-09-26.md) records one idempotent player Havok cleanup path, explicit caller body/shape ownership, camera query and controller teardown, setup-failure handling, and late-callback guards. Eight real-Havok/camera tests, normal build, exact built-bundle movement (14.05 m), camera disposal, and west-chapel stairs entry/return pass with active Havok and zero recoveries. Reviewed [14.727-second live motion](https://ve.sparkify.dev/wow-clone/ashen-reach/lite128-m1/2026-09-26-physics-motion.mp4) is 1280×720 square pixels, directly playable on VE and delivered as Telegram **769**. A head-on enemy-collision script is pacing-sensitive: untouched HEAD and M1 code both failed in the same browser slot, so it is not evidence of a physics regression. No Lite/Havok dependency has changed. M2 private-bridge containment is next.

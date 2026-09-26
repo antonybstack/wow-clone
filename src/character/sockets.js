@@ -24,6 +24,7 @@ import {
 } from "@babylonjs/lite";
 
 import { gripOffsetForSlot, palmBoneNames } from "./runtime/playable-body.js";
+import { assertLiteSocketLayout, liteBoneNodeIndex, liteDebugWorldMatrices, liteSkinBinding, liteSocketLayoutReady } from "./adapters/lite-skin-layout.js";
 
 export const SLOT_BONES = {
     head: ["mixamorig:Head", "Head", "head"],
@@ -102,16 +103,6 @@ export function resolveBone(skeleton, names) {
     });
 }
 
-function skinBinding(groups) {
-    for (const group of groups ?? []) {
-        const skins = group._gltfMixer?.[2];
-        if (skins?.[0]?.boneMatrices && skins[0].inverseBindMatrices) {
-            return skins[0];
-        }
-    }
-    return null;
-}
-
 function jointIndex(binding, nodeIndex) {
     const joints = binding?.jointNodes;
     if (!joints) {
@@ -156,7 +147,7 @@ function findSkinnedMesh(root) {
 
 /** Mesh-local joint: boneMatrix * inv(IBM) = invMeshWorld_load * jointWorld. */
 function jointMeshLocal(binding, bone) {
-    const nodeIndex = bone?._nodeIndex;
+    const nodeIndex = liteBoneNodeIndex(bone);
     if (nodeIndex === undefined || !binding) {
         return null;
     }
@@ -178,11 +169,11 @@ function jointMeshLocal(binding, bone) {
  * mesh world is missing.
  */
 export function jointWorldMatrix(groups, bone) {
-    const nodeIndex = bone?._nodeIndex;
+    const nodeIndex = liteBoneNodeIndex(bone);
     if (nodeIndex === undefined) {
         return null;
     }
-    const binding = skinBinding(groups);
+    const binding = liteSkinBinding(groups);
     const meshLocal = jointMeshLocal(binding, bone);
     if (meshLocal && binding?.invMeshWorld) {
         const meshWorldLoad = mat4Invert(binding.invMeshWorld);
@@ -194,7 +185,7 @@ export function jointWorldMatrix(groups, bone) {
         if (!group.isPlaying || group.weight < 0.95) {
             continue;
         }
-        const wm = group._ctrl?._debugWorldMat;
+        const wm = liteDebugWorldMatrices(group);
         if (wm && wm.length >= (nodeIndex + 1) * 16) {
             return wm.subarray(nodeIndex * 16, nodeIndex * 16 + 16);
         }
@@ -241,7 +232,7 @@ export function attachSockets(engine, scene, player, body) {
     }
 
     const toCapsule = (bone) => {
-        const binding = skinBinding(groups);
+        const binding = liteSkinBinding(groups);
         const meshLocal = jointMeshLocal(binding, bone);
         const meshWorld = skinned?.worldMatrix;
         const bodyWorld = player.body?.worldMatrix;
@@ -269,7 +260,12 @@ export function attachSockets(engine, scene, player, body) {
     };
 
     const allSockets = Object.values(sockets);
+    let layoutValidated = false;
     const sync = (selectedSockets = allSockets) => {
+        if (!layoutValidated && liteSocketLayoutReady({ skeleton, groups, skinned })) {
+            assertLiteSocketLayout({ skeleton, groups, skinned, hand: sockets.mainHand?.bone });
+            layoutValidated = true;
+        }
         const h = Math.abs(body.root?.scaling?.y ?? 1);
         for (const sock of selectedSockets) {
             const wrist = toCapsule(sock.bone);
@@ -334,9 +330,13 @@ export function attachSockets(engine, scene, player, body) {
             if (nextSkeleton) {
                 bakeSkeleton(nextSkeleton);
             }
+            const nextGroups = nextBody?.animationGroups ?? [];
+            const nextSkinned = findSkinnedMesh(nextBody?.root);
+            assertLiteSocketLayout({ skeleton: nextSkeleton, groups: nextGroups, skinned: nextSkinned, hand });
             skeleton = nextSkeleton;
-            groups = nextBody?.animationGroups ?? [];
-            skinned = findSkinnedMesh(nextBody?.root);
+            groups = nextGroups;
+            skinned = nextSkinned;
+            layoutValidated = liteSocketLayoutReady({ skeleton, groups, skinned });
             palmPush = skinned?.name?.startsWith("OrcV1") ? 1.25 : 1;
             for (const [slot, names] of Object.entries(SLOT_BONES)) {
                 const sock = sockets[slot];
