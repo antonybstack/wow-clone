@@ -1,0 +1,55 @@
+{
+  "conditions": "Fresh Chromium process/profile each run, initially empty HTTP cache, service workers blocked. OS/DNS/CDN/GPU-driver cache uncontrolled. Headless desktop 1280x720, device scale 1; no CPU throttle. Not physical iPhone or FPS acceptance.",
+  "browser": "153.0.8010.54",
+  "cpu": "Apple M1 Max",
+  "profiles": {
+    "native": {
+      "runs": 3,
+      "gameReadyMedianMs": 7597.099999904633,
+      "rootReadyApproxMedianMs": 7777.750000132248,
+      "encodedMedianBytes": 11551973,
+      "rootOverheadMedianMs": 180.65000022761524,
+      "worstLongTaskMs": 2078,
+      "stageMediansMs": {
+        "engine": 29.200000047683716,
+        "world": 3549.699999809265,
+        "havok": 1187.7000000476837,
+        "body": 220,
+        "registration": 219.60000014305115,
+        "afterFirstSubmission": 2173.5
+      }
+    },
+    "50mbps": {
+      "runs": 3,
+      "gameReadyMedianMs": 8678.799999952316,
+      "rootReadyApproxMedianMs": 8882.538999971002,
+      "encodedMedianBytes": 11552160,
+      "rootOverheadMedianMs": 205.70799987763166,
+      "worstLongTaskMs": 2084,
+      "stageMediansMs": {
+        "engine": 13.600000143051147,
+        "world": 3838.0,
+        "havok": 1235.0,
+        "body": 259.7999999523163,
+        "registration": 282.0,
+        "afterFirstSubmission": 2749.899999856949
+      }
+    },
+    "10mbps": {
+      "runs": 3,
+      "gameReadyMedianMs": 14921.100000143051,
+      "rootReadyApproxMedianMs": 15156.297000115737,
+      "encodedMedianBytes": 11552028,
+      "rootOverheadMedianMs": 246.58600008115172,
+      "worstLongTaskMs": 2080,
+      "stageMediansMs": {
+        "engine": 14.200000047683716,
+        "world": 5859.599999904633,
+        "havok": 1658.6000001430511,
+        "body": 484.0,
+        "registration": 552.4000000953674,
+        "afterFirstSubmission": 5694.700000047684
+      }
+    }
+  }
+}

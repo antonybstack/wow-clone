@@ -1,0 +1,87 @@
+{
+  "purpose": "Offline size feasibility only; no GLB deployed, no visual/animation acceptance. Clothing remains separate and is included only as current byte cost.",
+  "sourceSha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+  "source": {
+    "bytes": 3399784,
+    "brotliQuality6Bytes": 2486598
+  },
+  "variants": [
+    {
+      "maxTextureSize": null,
+      "animations": [
+        "Idle_Loop",
+        "Jump_Land",
+        "Jump_Loop",
+        "Jump_Start",
+        "Sprint_Loop",
+        "Walk_Loop",
+        "Jog_Bwd_Loop",
+        "Jog_Left_Loop",
+        "Jog_Right_Loop",
+        "Turn90_L",
+        "Turn90_R"
+      ],
+      "skins": 1,
+      "exactGeometry": true,
+      "bytes": 3148600,
+      "brotliQuality6Bytes": 2475180
+    },
+    {
+      "maxTextureSize": 512,
+      "animations": [
+        "Idle_Loop",
+        "Jump_Land",
+        "Jump_Loop",
+        "Jump_Start",
+        "Sprint_Loop",
+        "Walk_Loop",
+        "Jog_Bwd_Loop",
+        "Jog_Left_Loop",
+        "Jog_Right_Loop",
+        "Turn90_L",
+        "Turn90_R"
+      ],
+      "skins": 1,
+      "exactGeometry": true,
+      "bytes": 2120432,
+      "brotliQuality6Bytes": 1446186
+    },
+    {
+      "maxTextureSize": 256,
+      "animations": [
+        "Idle_Loop",
+        "Jump_Land",
+        "Jump_Loop",
+        "Jump_Start",
+        "Sprint_Loop",
+        "Walk_Loop",
+        "Jog_Bwd_Loop",
+        "Jog_Left_Loop",
+        "Jog_Right_Loop",
+        "Turn90_L",
+        "Turn90_R"
+      ],
+      "skins": 1,
+      "exactGeometry": true,
+      "bytes": 1681848,
+      "brotliQuality6Bytes": 1008988
+    }
+  ],
+  "clothing": [
+    {
+      "name": "wayfarerTunic",
+      "bytes": 249636,
+      "brotliQuality6Bytes": 217209
+    },
+    {
+      "name": "wayfarerTrousers",
+      "bytes": 146288,
+      "brotliQuality6Bytes": 128126
+    },
+    {
+      "name": "wayfarerBoots",
+      "bytes": 242544,
+      "brotliQuality6Bytes": 209970
+    }
+  ]
+}
