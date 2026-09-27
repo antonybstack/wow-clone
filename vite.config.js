@@ -47,6 +47,36 @@ export default defineConfig({
       },
     },
     {
+      // The game page is served at `/` as well as `/ashen-reach.html`.
+      //
+      // `/` used to be a stub that meta-refreshed and then `location.replace`d to
+      // `/ashen-reach.html?play&clean`. That hop cost 181-247 ms of the startup budget
+      // before a single byte of the game was requested, and it is pure overhead: the
+      // root document's only job was to name another document. Serving the same HTML
+      // at both paths removes the hop without giving up the direct URL that every
+      // capture script, test and bookmark already uses.
+      //
+      // Dev does this with a middleware rewrite so `?play&clean` survives; the built
+      // output copies ashen-reach.html over index.html (see writeBundle below), which
+      // keeps `/` a real static file on Pages rather than a redirect rule.
+      name: "ashen-root-is-game",
+      configureServer(server) {
+        server.middlewares.use((req, _res, next) => {
+          const [pathname, query] = String(req.url || "/").split("?");
+          if (pathname === "/" || pathname === "/index.html") {
+            req.url = `/ashen-reach.html${query === undefined ? "" : `?${query}`}`;
+          }
+          next();
+        });
+      },
+      async writeBundle(options) {
+        const fs = await import("node:fs/promises");
+        const path = await import("node:path");
+        const dir = options.dir || "dist";
+        await fs.copyFile(path.join(dir, "ashen-reach.html"), path.join(dir, "index.html"));
+      },
+    },
+    {
       name: "reload-on-blender-export",
       handleHotUpdate({ file, server }) {
         if (file.endsWith(".glb")) {

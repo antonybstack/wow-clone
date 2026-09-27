@@ -10,7 +10,7 @@ import {SKY_HORIZON,SUN_DIR,SUN_COLOR,SKY_AMBIENT,GROUND_BOUNCE} from './atmosph
 import {CameraRig} from '../camera-rig.js';
 import {initInput,input,setInputEnabled,lockInputUntilReload} from '../input.js';
 import {installTouchControls,touchControlsWanted} from './touch-controls.js';
-import {setupPlayer,plantSpawnOnTerrain,resolveCapsule} from '../player.js';
+import {setupPlayer,loadHavok,plantSpawnOnTerrain,resolveCapsule} from '../player.js';
 import {attachBody} from '../character/body.js';
 import {resolvePlayableBody} from '../character/runtime/playable-body.js';
 import {attachDevTools,dev} from './dev-tools.js';
@@ -24,6 +24,22 @@ import {configureGpuCompatibility,showGpuDiagnostics} from './gpu-compatibility.
 import {beginLoading,setLoadingStage,finishLoading,failLoading,showDeviceLoss} from './loading-screen.js';
 import {configureLinearMaterials} from './linear-materials.js';
 import {formatGameError} from './error-display.js';
+import {startupMark,startupMarks,startupTimings,startupSpanMs} from './startup-trace.js';
+
+/**
+ * A readiness boundary other code and every probe can await.
+ *
+ * Three of these exist because "loaded" is three different questions. Movement
+ * needs a dressed body on solid ground with input live; combat needs hostiles and
+ * the spell systems; the region is everything. Collapsing them into one boolean
+ * is what made the old `ready` mean "all of it", and so made the startup target
+ * unmeasurable: there was no name for the moment the player can actually walk.
+ */
+function boundary(){
+ let resolve;
+ const promise=new Promise(r=>{resolve=r;});
+ return {promise,reached:false,reach(value){if(this.reached)return;this.reached=true;resolve(value);}};
+}
 
 setMeshoptBaseUrl('/');
 function fetchBuffer(url,priority='high'){
@@ -37,12 +53,24 @@ async function main(){
  const boot=performance.now();
  const canvas=document.getElementById('renderCanvas');
  const params=new URLSearchParams(location.search);
- const markStartup=params.has('startupMarks')?name=>performance.mark(`ashen-startup-${name}`):()=>{};
+ // `/` now serves this document directly instead of redirecting through a stub page.
+ // That stub sent a bare `/` to `?play&clean` and forwarded any query it was given
+ // verbatim, so the same two rules apply here: a root URL with no query of its own
+ // gets the play defaults, and a root URL with a query is taken at its word.
+ if(!location.search&&(location.pathname==='/'||location.pathname.endsWith('/index.html'))){
+  params.set('play','');params.set('clean','');
+ }
+ const markStartup=startupMark;
  markStartup('begin');
  const pixelRatio=Number(params.get('pixelRatio'));
  const preloadedEquipment=params.has('preloadedEquipment');
  const bodyUrl=preloadedEquipment?'/ashen-reach/wanderer-equipment.glb':'/ashen-reach/equipment/body.glb';
  const bodyBufP=fetchBuffer(bodyUrl,'high');
+ // Havok's 650 KB WASM gates grounded movement and needs nothing from the scene, so it
+ // downloads and compiles alongside the body instead of starting inside setupPlayer once
+ // the world is already built. loadHavok() memoises, so setupPlayer's own call is free.
+ const havokP=loadHavok();
+ havokP.then(()=>markStartup('havok-runtime-available')).catch(()=>{});
  // Starter clothes wait until the body bytes have arrived, then warm the
  // cache at low priority. They used to race the body on the first connection.
  if(!preloadedEquipment){
@@ -56,6 +84,7 @@ async function main(){
  const engine=await createEngine(canvas,{msaaSamples:1,maxDevicePixelRatio:pixelRatio>0?pixelRatio:.75});
  markStartup('engine-created');
  const gpu=await configureGpuCompatibility(engine._device);
+ markStartup('gpu-probe-end');
  if(params.has('gpuDiagnostics'))showGpuDiagnostics(gpu);
  if(gpu.depthBundle==='unsupported')throw new Error(gpu.errors.join('\n'));
  setLoadingStage(1,'Raising the churchyard.');
@@ -90,6 +119,7 @@ async function main(){
  let dressed=false;
  let readyForPlay=false;
  let deviceLost=false;
+ const playableBoundary=boundary(),combatBoundary=boundary(),regionBoundary=boundary(),firstGpuCompleted=boundary();
  let view='reference',elapsed=0;const samples=[];
  const setView=v=>{
   view=v;scene.camera=v==='reference'?reference:camera;
@@ -106,7 +136,13 @@ async function main(){
  const metrics=createAshenMetrics({engine,scene,world,canvas,samples,lite:{isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize}});
  if(params.has('gpuTiming'))metrics.setGpuTiming(true);
  onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);if(menu.isOpen){armory?.update(dt);shadows.update();localLights.update(dt,player?.body.position);return;}elapsed+=dt;player?.kinematicStep(dt);if(readyForPlay)combat?.beforeAnimation(dt);tools.tick();body?.update(dt);world.update(elapsed,player?player.body.position:null);if(readyForPlay)combat?.afterAnimation(dt);equipment?.update(dt);armory?.update(dt);shadows.update();localLights.update(dt,player?.body.position);if(readyForPlay&&elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();metrics.sampleGpu();}});
- const ashen={engine,scene,camera,reference,rig,world,input,setView,reset,metrics,capture:()=>captureScreenshot(engine),hostilesReady:noEnemies,presentMs:0,loadMs:0,ready:false,dev,menu,get player(){return player;},get body(){return body;},get combat(){return combat;},get equipment(){return equipment;},get armory(){return armory;}};
+ const ashen={engine,scene,camera,reference,rig,world,input,setView,reset,metrics,capture:()=>captureScreenshot(engine),hostilesReady:noEnemies,presentMs:0,loadMs:0,ready:false,
+  // ready/hostilesReady keep their existing "all of it" meaning for the suites
+  // that already assert on them. The three below are the new, narrower claims.
+  playableReady:false,combatReady:false,regionReady:false,
+  whenPlayable:playableBoundary.promise,whenCombat:combatBoundary.promise,whenRegion:regionBoundary.promise,
+  whenFirstGpuFrame:firstGpuCompleted.promise,
+  startup:{marks:startupMarks,timings:startupTimings,span:startupSpanMs},dev,menu,get player(){return player;},get body(){return body;},get combat(){return combat;},get equipment(){return equipment;},get armory(){return armory;}};
  ashen.gpu=gpu;
  onBeforeRender(scene,()=>{gpu.frames++;});
  globalThis.ASHEN=ashen;
@@ -121,7 +157,7 @@ async function main(){
  capsule=resolveCapsule(playable.capsule);
  // Both near and outer terrain participate in Havok; exploration has no corridor clamp.
  markStartup('havok-start');
- player=await setupPlayer(engine,scene,rig,{spawn:plantSpawnOnTerrain(world.spawn,capsule,world.groundHeight),colliders:world.colliders,groundHeight:world.groundHeight,boundsRadius:Infinity,capsule});
+ player=await setupPlayer(engine,scene,rig,{spawn:plantSpawnOnTerrain(world.spawn,capsule,world.groundHeight),colliders:world.colliders,groundHeight:world.groundHeight,boundsRadius:Infinity,capsule,havok:havokP,onPhase:markStartup});
  markStartup('havok-end');
  markStartup('body-start');
  body=await attachBody(engine,scene,player,player.capsuleHeight,playable);
@@ -155,7 +191,12 @@ async function main(){
  markStartup('first-render-return');
  // Lite's public GPU fence reports completion of already submitted work, not scanout.
  // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/index.ts
- if(params.has('startupMarks'))void waitForGpuIdle(engine).then(()=>markStartup('first-gpu-completed'))
+ // The render loop already fences every frame through waitForGpuIdle, so asking
+ // once more here adds a queue callback and no GPU work. It used to be gated on
+ // ?startupMarks, which meant an ordinary navigation had no completed-GPU
+ // boundary at all -- the one boundary that distinguishes "submitted a frame"
+ // from "a frame finished".
+ void waitForGpuIdle(engine).then(()=>{markStartup('first-gpu-completed');firstGpuCompleted.reach(performance.now()-boot);})
   .catch(error=>{console.error('Startup GPU fence failed',error);});
  ashen.presentMs=performance.now()-boot;
  const foliageP=world.startFoliage();
@@ -184,6 +225,9 @@ async function main(){
  const churchyardEnemies=noEnemies?[]:await loadEnemies(engine,scene,world,CHURCHYARD_ANCHORS,npcBuf);
  if(churchyardEnemies.length)bindEnemyColliders(churchyardEnemies,player,world);
  combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig,churchyardEnemies,createObjective());
+ markStartup('combat-ready');
+ ashen.combatReady=true;
+ combatBoundary.reach(performance.now()-boot);
  // Spell billboard systems arrive after the first visible scene registration.
  markStartup('late-register-start');
  await registerLateFeatures(scene,attachLinearMaterials,unregisterScene,registerSceneWithShadowSupport);
@@ -279,5 +323,18 @@ async function main(){
  ashen.loadMs=performance.now()-boot;
  ashen.ready=true;
  markStartup('ready');
+ // Today this is the same instant as `ready`, because nothing is playable until
+ // the whole region is built. That is the point of measuring it separately: the
+ // gap between these two marks is the thing the startup work has to open up.
+ markStartup('playable');
+ ashen.playableMs=performance.now()-boot;
+ ashen.playableReady=true;
+ playableBoundary.reach(ashen.playableMs);
+ void Promise.resolve(ashen.whenHostiles).then(()=>{
+  markStartup('region-ready');
+  ashen.regionMs=performance.now()-boot;
+  ashen.regionReady=true;
+  regionBoundary.reach(ashen.regionMs);
+ });
 }
 main().catch(async e=>{console.error(e);const message=await formatGameError(e).catch(()=>e?.stack||String(e));if(failLoading(e,message))return;const el=document.getElementById('error');el.style.display='block';el.textContent=message;});

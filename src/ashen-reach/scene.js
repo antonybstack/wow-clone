@@ -13,6 +13,7 @@ import {pathVegetation,castleTreeScale} from './world-composition.js';
 import {createFoliage} from './foliage.js';
 import {createLightShafts} from './light-shafts.js';
 import {createAshMotes} from './ash-motes.js';
+import {startupMark} from './startup-trace.js';
 
 /** A new scene layout. No Moonwell world builders, architecture or vegetation placement. */
 export async function buildChurchyard(engine,scene){
@@ -63,6 +64,7 @@ export async function buildChurchyard(engine,scene){
  const localGlass=new Batch('Shadowed lantern glass');
  B.push(localGlass);mats.push(await surface(engine,'Shadowed lantern glass','/tex/rock_wall_08/diff.jpg',{tint:[1,.68,.32],light:0,emission:24,pixels:16}));
  const colliders=[];
+ startupMark('world-materials-end');
  // A continuous uneven floor, not a tiled slab floating on a flat plane. Every earth
  // quad uses analytic per-vertex normals (zero extra triangles) so the 2 m grid does
  // not facet. height() and the lamp bake still read world position only.
@@ -105,6 +107,7 @@ export async function buildChurchyard(engine,scene){
   }
  }
 
+ startupMark('world-terrain-end');
  // Path albedo is blended directly into the terrain material to avoid coplanar decals.
 
  function tomb(x,z,w,h,yaw=0,lean=0,kind=0){const gy=height(x,z),c=[r(.72,1),r(.73,.90),r(.66,.79),0];
@@ -274,6 +277,7 @@ export async function buildChurchyard(engine,scene){
   const gy=height(x,z);
   masonryBox(stone,[x,gy+7.4,z],[gateHalf*2+towerW*.6,.9,wallT*1.1],[.56,.58,.5,0]);
  }
+ startupMark('world-churchyard-end');
  townGate(75);
  for(const [z,side] of [[84,1],[94,-1],[104,1],[114,-1],[124,1],[134,-1]])streetLamp(pathX(z)+side*3.4+rn(-.2,.2),z,.82);
 
@@ -404,6 +408,7 @@ export async function buildChurchyard(engine,scene){
  }
 
  // Outer terrain shares the ground material and participates in Havok collision.
+ startupMark('world-town-end');
  const farEarth=new Batch('Far earth'),farMountains=new Batch('Physical mountain terrain');
  const randomFar=rng(81107),rf=()=>randomFar();
 
@@ -466,6 +471,7 @@ export async function buildChurchyard(engine,scene){
   if(z<-95||z>=145)rf();
  }
  // Keep generated woodland spatially separate from the churchyard bark batch.
+ startupMark('world-far-end');
  const woodland=createWoodlandTiles(await loadWoodland());
  const farTree=(x,z,H,sides,kind,lean)=>{
   woodland.add({x,z,y:height(x,z),height:H,kind,lean});
@@ -510,6 +516,7 @@ export async function buildChurchyard(engine,scene){
  const SCAT=8;
  const edgeOf=(x,z)=>Math.max(Math.abs(x)-90,z-145,-95-z);
  let scatterTrees=0,scatterRocks=0;
+ startupMark('world-woodland-end');
  for(let z=-330;z<430;z+=SCAT)for(let x=-330;x<330;x+=SCAT){
   const jx=x+(rf()-.5)*SCAT*.98,jz=z+(rf()-.5)*SCAT*.98;
   const edge=edgeOf(jx,jz);
@@ -543,6 +550,7 @@ export async function buildChurchyard(engine,scene){
   surface(engine,'Horizon slate','/ashen-reach/horizon-rock.jpg',{tint:[.37,.45,.54],light:.66,skyFill:.16,pixels:128}),
   surface(engine,'Sunlit distant ridges','/ashen-reach/horizon-rock.jpg',{tint:[.68,.67,.80],saturation:.15,light:.82,skyFill:.48,emission:.12,pixels:128}),
  ]);
+ startupMark('world-scatter-end');
  const regionStructures=buildRegionStructures({stone:citadelStone,roof:regionRoofs,rock:horizonRock,glow:warm,groundHeight:height,landmarks:REGION_LANDMARKS});
  const surfaceHeight=(x,z)=>sampleTerrainSurface(x,z,height);
  const regionWorld=buildRegionWorld({stone:citadelStone,rock:horizonRock,groundHeight:surfaceHeight});
@@ -573,6 +581,7 @@ export async function buildChurchyard(engine,scene){
   return 0.38*(1-smooth((rad-52)/138));
  }
  const farTris=(farEarth.idx.length+farMountains.idx.length)/3;
+ startupMark('world-region-end');
  const meshes=B.map((b,i)=>b.commit(engine,scene,mats[i],lights)).filter(Boolean);
  meshes.push(...woodland.commit(engine,scene,mats[3],lights));
  const farMesh=farEarth.commit(engine,scene,mats[0],lights);
@@ -581,11 +590,13 @@ export async function buildChurchyard(engine,scene){
  for(const batch of [regionStructures.collisionBatch,regionWorld.collisionBatch]){const mesh=batch.commit(engine,scene,mats[0],[]);setMeshVisible(mesh,false);colliders.push({type:'mesh',mesh});}
  const cathedralCollision=cathedral.collisionBatch.commit(engine,scene,mats[0],[]);
  setMeshVisible(cathedralCollision,false);colliders.push({type:'mesh',mesh:cathedralCollision});
+ startupMark('world-commit-end');
  const shaftPass=await createLightShafts(engine,scene,shafts);
  if(shaftPass?.mesh)meshes.push(shaftPass.mesh);
  const motePass=await createAshMotes(engine,scene,{lights});
  if(motePass?.mesh)meshes.push(motePass.mesh);
  colliders.unshift({type:'mesh',mesh:meshes[0]});const clouds=await sky(engine,scene);
+ startupMark('world-effects-end');
  const stats={triangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris,drawBatches:B.length+(farMesh?1:0)+(shaftPass?.mesh?1:0)+(motePass?.mesh?1:0),horizonTriangles:horizonStats.triangles,farTriangles:farTris,foliageInstances:0,scatterTrees,scatterRocks,shafts:shafts.length,shaftTriangles:shaftPass?.triangles??0,motes:motePass?.count??0,moteTriangles:motePass?.triangles??0};
  let foliage=null;
  const fixedTriangles=stats.triangles;

@@ -19,6 +19,26 @@ const TURN_RATE = 2.55;
 const JUMP_SPEED = 6.6;
 const GRAVITY = { x: 0, y: -20.8, z: 0 };
 const DOWN = { x: 0, y: -1, z: 0 };
+let havokRuntime = null;
+/**
+ * Fetch and compile Havok's WASM, at most once per page.
+ *
+ * `setupPlayer` used to call the factory itself, which meant the 650 KB fetch did not
+ * start until every collider descriptor existed -- several seconds into startup on a
+ * cold cache, with the network otherwise idle. Callers can now start it during boot and
+ * hand the promise back in via `options.havok`. Memoising here rather than in the
+ * caller is what makes a second call free instead of a second download:
+ * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/42-physics.md
+ */
+export function loadHavok() {
+    // A previous Pages deploy cached an HTML fallback at the old URL under
+    // an immutable header. The versioned request bypasses that stale entry.
+    havokRuntime ||= HavokPhysics({
+        locateFile: (file) => file.endsWith(".wasm") ? "/HavokPhysics.wasm?v=20260923-1" : file,
+    });
+    return havokRuntime;
+}
+
 /** Legacy Mixamo default. Never mutate; per-instance specs are copies. */
 export const DEFAULT_CAPSULE = Object.freeze({ height: 1.55, radius: 0.28 });
 
@@ -252,6 +272,9 @@ function createAvatar(engine, scene, spec) {
  * @param {import("./camera-rig.js").CameraRig} rig
  * @param {{spawn?:{x:number,y:number,z:number},colliders?:object[],groundHeight?:(x:number,z:number)=>number,boundsRadius?:number,boundsRect?:{minX:number,maxX:number,minZ:number,maxZ:number},capsule?:{height:number,radius:number}}} options
  * Spawn is the capsule center. Explicit finite Y is kept unless it would embed the capsule.
+ *
+ * `havok` accepts an already-started `loadHavok()` promise so the WASM fetch overlaps the
+ * rest of boot; `onPhase(name)` receives physics milestones for startup tracing.
  * `boundsRect`, when given, replaces the circular `boundsRadius` clamp with an axis-aligned
  * rectangle clamp (min/max X and Z) — for a world that is a corridor rather than a disc, a radius
  * clamp lets the player walk off the terrain edges that a rectangle catches. `boundsRadius` alone
@@ -277,6 +300,9 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
     let usingPhysics = false;
     let sceneDisposed = false;
     const own = createPhysicsOwnership(rig);
+    // Startup tracing is injected rather than imported: this module is shared with
+    // non-Ashen callers that have no startup timeline.
+    const phase = options.onPhase || (() => {});
     const cleanupPhysics = () => {
         own.dispose();
         controller = null;
@@ -466,16 +492,16 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
     };
 
     try {
-        const hknp = await HavokPhysics({
-      // A previous Pages deploy cached an HTML fallback at the old URL under
-      // an immutable header. The versioned request bypasses that stale entry.
-      locateFile: (file) => file.endsWith(".wasm") ? "/HavokPhysics.wasm?v=20260923-1" : file,
-        });
+        phase("havok-runtime-start");
+        const hknp = await (options.havok || loadHavok());
+        phase("havok-runtime-end");
         if (sceneDisposed) throw new Error("Physics scene disposed during initialization");
         const world = createHavokWorld(scene, hknp, GRAVITY);
         own.setWorld(world);
         physicsWorld = world;
+        phase("havok-world-end");
         const staticCounts = addStaticColliders(world, descriptors, own);
+        phase("havok-colliders-end");
         counts.meshCount = staticCounts.meshCount;
         counts.boxCount = staticCounts.boxCount;
         counts.skipped = staticCounts.skipped;
@@ -511,6 +537,7 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
                 return shapeCast(world, cameraQuery);
             });
             usingPhysics = true;
+            phase("havok-controller-end");
             onPhysicsAfterStep(world, (dt) => {
                 if (!sceneDisposed && !own.disposed) step(dt);
             });

@@ -1,0 +1,836 @@
+{
+  "version": 1,
+  "conditions": {
+    "commit": "e60d64f",
+    "url": "http://127.0.0.1:5973/ashen-reach.html?play=&clean=&startupMarks=&pixelRatio=1",
+    "cdp": "http://127.0.0.1:10137",
+    "browser": "153.0.8010.54",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "host": "darwin 25.6.0 arm64",
+    "cpu": "Apple M1 Max",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "cachePolicy": "First run: new browser context with empty HTTP cache. Later runs: same context, HTTP cache allowed. Browser process, OS, and GPU driver caches are uncontrolled; Network encoded bytes and cache flags are recorded.",
+    "recording": false
+  },
+  "rows": [
+    {
+      "marks": {
+        "begin": 302.59999990463257,
+        "havok-runtime-available": 326,
+        "engine-created": 331.19999980926514,
+        "gpu-probe-end": 334.69999980926514,
+        "world-start": 337.19999980926514,
+        "world-materials-end": 360.69999980926514,
+        "world-terrain-end": 565,
+        "world-churchyard-end": 634.2999999523163,
+        "world-town-end": 659.2999999523163,
+        "world-far-end": 2500.899999856949,
+        "world-woodland-end": 2513.699999809265,
+        "world-scatter-end": 2641.2999999523163,
+        "world-region-end": 2807.699999809265,
+        "world-commit-end": 3710.5999999046326,
+        "world-effects-end": 3732.7999999523163,
+        "world-end": 3732.899999856949,
+        "havok-start": 3734.199999809265,
+        "havok-runtime-start": 3735.5,
+        "havok-runtime-end": 3735.5,
+        "havok-world-end": 3737.699999809265,
+        "havok-colliders-end": 4719.899999856949,
+        "havok-controller-end": 4721.5,
+        "havok-end": 4723.199999809265,
+        "body-start": 4723.199999809265,
+        "body-end": 4772.199999809265,
+        "register-start": 4776.699999809265,
+        "register-end": 4809.099999904633,
+        "first-render-return": 4823.699999809265,
+        "first-gpu-completed": 5790.799999952316,
+        "combat-ready": 5929.599999904633,
+        "late-register-start": 5929.599999904633,
+        "late-register-end": 5933.099999904633,
+        "hostiles-ready": 5987.299999952316,
+        "ready": 6351.299999952316,
+        "playable": 6351.299999952316,
+        "region-ready": 6351.399999856949
+      },
+      "playableReadyMs": 6351.299999952316,
+      "firstGpuCompletedMs": 5790.799999952316,
+      "presentMs": 4521.099999904633,
+      "loadMs": 6048.700000047684,
+      "longTasks": {
+        "count": 5,
+        "totalMs": 5247,
+        "worstMs": 2141,
+        "entries": [
+          {
+            "startMs": 360.2999999523163,
+            "durationMs": 2141
+          },
+          {
+            "startMs": 2513.699999809265,
+            "durationMs": 122
+          },
+          {
+            "startMs": 2641.0999999046326,
+            "durationMs": 1079
+          },
+          {
+            "startMs": 3731.5999999046326,
+            "durationMs": 993
+          },
+          {
+            "startMs": 4874.099999904633,
+            "durationMs": 912
+          }
+        ]
+      },
+      "canvas": {
+        "width": 1280,
+        "height": 720,
+        "cssWidth": 1280,
+        "cssHeight": 720
+      },
+      "enemies": 7,
+      "physics": {
+        "facing": 0,
+        "grounded": true,
+        "vy": 0.0016419916219834894,
+        "support": 2,
+        "speed": 0,
+        "vx": 0,
+        "vz": 0,
+        "castBlend": 0,
+        "jumps": 0,
+        "landings": 1,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": -0.0004049605904092067,
+          "y": 0.8865264223713872,
+          "z": -0.0007146362928673898
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 6,
+          "boxCount": 678,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 1.748,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": 3.580394906355525,
+              "y": 1.324564865592879,
+              "z": 16
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -3.8894697155169853,
+              "y": 1.6477259811026683,
+              "z": 30
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": 2.928819246428747,
+              "y": 1.5673904652287836,
+              "z": 48
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": -1.652739280759643,
+              "y": 2.513678872972124,
+              "z": 62
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": 1.7720018013288021,
+              "y": 4.909179606556347,
+              "z": 86
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": -1.906665666750373,
+              "y": 6.13827632342876,
+              "z": 108
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": 1.0306760737604208,
+              "y": 8.924054821409728,
+              "z": 126
+            }
+          }
+        ]
+      },
+      "gpuErrors": [],
+      "loadingVisible": false,
+      "errorVisible": false,
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+      "run": 1,
+      "cacheLabel": "fresh context HTTP cache",
+      "stagesMs": {
+        "engine": 28.59999990463257,
+        "world": 3395.7000000476837,
+        "havok": 989,
+        "body": 49,
+        "initialRegistration": 32.40000009536743,
+        "lateRegistration": 3.5,
+        "firstRenderToGpuCompletion": 967.1000001430511
+      },
+      "network": {
+        "encodedBytes": 32969337,
+        "completedRequests": 302,
+        "fromDiskCache": 0,
+        "fromServiceWorker": 0
+      },
+      "errors": {
+        "page": [],
+        "console": [],
+        "requests": []
+      }
+    },
+    {
+      "marks": {
+        "begin": 125.09999990463257,
+        "havok-runtime-available": 163.79999995231628,
+        "engine-created": 168.19999980926514,
+        "gpu-probe-end": 171.79999995231628,
+        "world-start": 172.5,
+        "world-materials-end": 184.69999980926514,
+        "world-terrain-end": 361.7999999523163,
+        "world-churchyard-end": 421.69999980926514,
+        "world-town-end": 442.69999980926514,
+        "world-far-end": 2319.7999999523163,
+        "world-woodland-end": 2336.899999856949,
+        "world-scatter-end": 2487.5,
+        "world-region-end": 2631,
+        "world-commit-end": 3464.5,
+        "world-effects-end": 3480.399999856949,
+        "world-end": 3480.399999856949,
+        "havok-start": 3480.7999999523163,
+        "havok-runtime-start": 3481.0999999046326,
+        "havok-runtime-end": 3481.0999999046326,
+        "havok-world-end": 3481.2999999523163,
+        "havok-colliders-end": 4395.5,
+        "havok-controller-end": 4395.699999809265,
+        "havok-end": 4396,
+        "body-start": 4396,
+        "body-end": 4428.399999856949,
+        "register-start": 4429.899999856949,
+        "register-end": 4441,
+        "first-render-return": 4453.299999952316,
+        "first-gpu-completed": 5345.199999809265,
+        "combat-ready": 5463.599999904633,
+        "late-register-start": 5463.699999809265,
+        "late-register-end": 5465.399999856949,
+        "hostiles-ready": 5524.299999952316,
+        "ready": 5900.899999856949,
+        "playable": 5901,
+        "region-ready": 5901
+      },
+      "playableReadyMs": 5900.899999856949,
+      "firstGpuCompletedMs": 5345.199999809265,
+      "presentMs": 4328.299999952316,
+      "loadMs": 5775.799999952316,
+      "longTasks": {
+        "count": 5,
+        "totalMs": 5044,
+        "worstMs": 2135,
+        "entries": [
+          {
+            "startMs": 184.5,
+            "durationMs": 2135
+          },
+          {
+            "startMs": 2336.899999856949,
+            "durationMs": 139
+          },
+          {
+            "startMs": 2487.2999999523163,
+            "durationMs": 985
+          },
+          {
+            "startMs": 3479.399999856949,
+            "durationMs": 916
+          },
+          {
+            "startMs": 4466.699999809265,
+            "durationMs": 869
+          }
+        ]
+      },
+      "canvas": {
+        "width": 1280,
+        "height": 720,
+        "cssWidth": 1280,
+        "cssHeight": 720
+      },
+      "enemies": 7,
+      "physics": {
+        "facing": 0,
+        "grounded": true,
+        "vy": 0.00115560122238172,
+        "support": 2,
+        "speed": 0.00007988606157164503,
+        "vx": -0.00003938483448085476,
+        "vz": -0.0000695026448874022,
+        "castBlend": 0,
+        "jumps": 0,
+        "landings": 1,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": 0.0001395850746131488,
+          "y": 0.8858066920687432,
+          "z": -0.006063873864937283
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 6,
+          "boxCount": 678,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 1.748,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": 3.580394906355525,
+              "y": 1.324564865592879,
+              "z": 16
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -3.8894697155169853,
+              "y": 1.6477259811026683,
+              "z": 30
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": 2.928819246428747,
+              "y": 1.5673904652287836,
+              "z": 48
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": -1.652739280759643,
+              "y": 2.513678872972124,
+              "z": 62
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": 1.7720018013288021,
+              "y": 4.909179606556347,
+              "z": 86
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": -1.906665666750373,
+              "y": 6.13827632342876,
+              "z": 108
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": 1.0306760737604208,
+              "y": 8.924054821409728,
+              "z": 126
+            }
+          }
+        ]
+      },
+      "gpuErrors": [],
+      "loadingVisible": false,
+      "errorVisible": false,
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+      "run": 2,
+      "cacheLabel": "same context reload",
+      "stagesMs": {
+        "engine": 43.09999990463257,
+        "world": 3307.899999856949,
+        "havok": 915.2000000476837,
+        "body": 32.39999985694885,
+        "initialRegistration": 11.100000143051147,
+        "lateRegistration": 1.7000000476837158,
+        "firstRenderToGpuCompletion": 891.8999998569489
+      },
+      "network": {
+        "encodedBytes": 24053,
+        "completedRequests": 302,
+        "fromDiskCache": 0,
+        "fromServiceWorker": 0
+      },
+      "errors": {
+        "page": [],
+        "console": [],
+        "requests": []
+      }
+    },
+    {
+      "marks": {
+        "begin": 126.40000009536743,
+        "havok-runtime-available": 137.29999995231628,
+        "engine-created": 140.40000009536743,
+        "gpu-probe-end": 144.20000004768372,
+        "world-start": 144.90000009536743,
+        "world-materials-end": 159.20000004768372,
+        "world-terrain-end": 335.59999990463257,
+        "world-churchyard-end": 395.59999990463257,
+        "world-town-end": 415.7000000476837,
+        "world-far-end": 2300.5,
+        "world-woodland-end": 2317.7000000476837,
+        "world-scatter-end": 2425.5,
+        "world-region-end": 2568.2000000476837,
+        "world-commit-end": 3397.2999999523163,
+        "world-effects-end": 3412.7000000476837,
+        "world-end": 3412.7999999523163,
+        "havok-start": 3413.2999999523163,
+        "havok-runtime-start": 3413.7000000476837,
+        "havok-runtime-end": 3413.7000000476837,
+        "havok-world-end": 3414,
+        "havok-colliders-end": 4321.400000095367,
+        "havok-controller-end": 4321.599999904633,
+        "havok-end": 4322,
+        "body-start": 4322,
+        "body-end": 4352.200000047684,
+        "register-start": 4354,
+        "register-end": 4364.799999952316,
+        "first-render-return": 4373.299999952316,
+        "first-gpu-completed": 5279.200000047684,
+        "combat-ready": 5389.599999904633,
+        "late-register-start": 5389.599999904633,
+        "late-register-end": 5393.5,
+        "hostiles-ready": 5452.700000047684,
+        "ready": 5821.400000095367,
+        "playable": 5821.400000095367,
+        "region-ready": 5821.400000095367
+      },
+      "playableReadyMs": 5821.400000095367,
+      "firstGpuCompletedMs": 5279.200000047684,
+      "presentMs": 4247.100000143051,
+      "loadMs": 5695.100000143051,
+      "longTasks": {
+        "count": 5,
+        "totalMs": 5010,
+        "worstMs": 2144,
+        "entries": [
+          {
+            "startMs": 159,
+            "durationMs": 2144
+          },
+          {
+            "startMs": 2317.7000000476837,
+            "durationMs": 104
+          },
+          {
+            "startMs": 2425.2999999523163,
+            "durationMs": 980
+          },
+          {
+            "startMs": 3411.7999999523163,
+            "durationMs": 910
+          },
+          {
+            "startMs": 4394.400000095367,
+            "durationMs": 872
+          }
+        ]
+      },
+      "canvas": {
+        "width": 1280,
+        "height": 720,
+        "cssWidth": 1280,
+        "cssHeight": 720
+      },
+      "enemies": 7,
+      "physics": {
+        "facing": 0,
+        "grounded": true,
+        "vy": 0.0017296499114196353,
+        "support": 2,
+        "speed": 0,
+        "vx": 0,
+        "vz": 0,
+        "castBlend": 0,
+        "jumps": 0,
+        "landings": 1,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": -0.0004335760008598649,
+          "y": 0.8864351259305766,
+          "z": -0.0007651340729666166
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 6,
+          "boxCount": 678,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 1.748,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": 3.580394906355525,
+              "y": 1.324564865592879,
+              "z": 16
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -3.8894697155169853,
+              "y": 1.6477259811026683,
+              "z": 30
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": 2.928819246428747,
+              "y": 1.5673904652287836,
+              "z": 48
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": -1.652739280759643,
+              "y": 2.513678872972124,
+              "z": 62
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": 1.7720018013288021,
+              "y": 4.909179606556347,
+              "z": 86
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": -1.906665666750373,
+              "y": 6.13827632342876,
+              "z": 108
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": 1.0306760737604208,
+              "y": 8.924054821409728,
+              "z": 126
+            }
+          }
+        ]
+      },
+      "gpuErrors": [],
+      "loadingVisible": false,
+      "errorVisible": false,
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+      "run": 3,
+      "cacheLabel": "same context reload",
+      "stagesMs": {
+        "engine": 14,
+        "world": 3267.899999856949,
+        "havok": 908.7000000476837,
+        "body": 30.200000047683716,
+        "initialRegistration": 10.799999952316284,
+        "lateRegistration": 3.9000000953674316,
+        "firstRenderToGpuCompletion": 905.9000000953674
+      },
+      "network": {
+        "encodedBytes": 24053,
+        "completedRequests": 302,
+        "fromDiskCache": 0,
+        "fromServiceWorker": 0
+      },
+      "errors": {
+        "page": [],
+        "console": [],
+        "requests": []
+      }
+    },
+    {
+      "marks": {
+        "begin": 128.60000014305115,
+        "havok-runtime-available": 139.20000004768372,
+        "engine-created": 142.30000019073486,
+        "gpu-probe-end": 146,
+        "world-start": 146.80000019073486,
+        "world-materials-end": 159,
+        "world-terrain-end": 335,
+        "world-churchyard-end": 393.10000014305115,
+        "world-town-end": 413.10000014305115,
+        "world-far-end": 2271.4000000953674,
+        "world-woodland-end": 2280.800000190735,
+        "world-scatter-end": 2407.100000143051,
+        "world-region-end": 2549.800000190735,
+        "world-commit-end": 3378.300000190735,
+        "world-effects-end": 3393.300000190735,
+        "world-end": 3393.300000190735,
+        "havok-start": 3393.7000000476837,
+        "havok-runtime-start": 3394.100000143051,
+        "havok-runtime-end": 3394.100000143051,
+        "havok-world-end": 3394.2000000476837,
+        "havok-colliders-end": 4306.400000095367,
+        "havok-controller-end": 4306.600000143051,
+        "havok-end": 4306.900000095367,
+        "body-start": 4306.900000095367,
+        "body-end": 4337.700000047684,
+        "register-start": 4339.400000095367,
+        "register-end": 4349.700000047684,
+        "first-render-return": 4361.600000143051,
+        "first-gpu-completed": 5275.400000095367,
+        "combat-ready": 5376.800000190735,
+        "late-register-start": 5376.800000190735,
+        "late-register-end": 5378.5,
+        "hostiles-ready": 5425.800000190735,
+        "ready": 5791.200000047684,
+        "playable": 5791.200000047684,
+        "region-ready": 5791.300000190735
+      },
+      "playableReadyMs": 5791.200000047684,
+      "firstGpuCompletedMs": 5275.400000095367,
+      "presentMs": 4233.100000143051,
+      "loadMs": 5662.700000047684,
+      "longTasks": {
+        "count": 5,
+        "totalMs": 5003,
+        "worstMs": 2113,
+        "entries": [
+          {
+            "startMs": 158.70000004768372,
+            "durationMs": 2113
+          },
+          {
+            "startMs": 2280.7000000476837,
+            "durationMs": 116
+          },
+          {
+            "startMs": 2406.9000000953674,
+            "durationMs": 980
+          },
+          {
+            "startMs": 3392.5,
+            "durationMs": 914
+          },
+          {
+            "startMs": 4383.600000143051,
+            "durationMs": 880
+          }
+        ]
+      },
+      "canvas": {
+        "width": 1280,
+        "height": 720,
+        "cssWidth": 1280,
+        "cssHeight": 720
+      },
+      "enemies": 7,
+      "physics": {
+        "facing": 0,
+        "grounded": true,
+        "vy": 0.0017279660148820507,
+        "support": 2,
+        "speed": 0,
+        "vx": 0,
+        "vz": 0,
+        "castBlend": 0,
+        "jumps": 0,
+        "landings": 1,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": -0.00044333153675455203,
+          "y": 0.8864130687787608,
+          "z": -0.0007823497235060165
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 6,
+          "boxCount": 678,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 1.748,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": 3.580394906355525,
+              "y": 1.324564865592879,
+              "z": 16
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -3.8894697155169853,
+              "y": 1.6477259811026683,
+              "z": 30
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": 2.928819246428747,
+              "y": 1.5673904652287836,
+              "z": 48
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": -1.652739280759643,
+              "y": 2.513678872972124,
+              "z": 62
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": 1.7720018013288021,
+              "y": 4.909179606556347,
+              "z": 86
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": -1.906665666750373,
+              "y": 6.13827632342876,
+              "z": 108
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": 1.0306760737604208,
+              "y": 8.924054821409728,
+              "z": 126
+            }
+          }
+        ]
+      },
+      "gpuErrors": [],
+      "loadingVisible": false,
+      "errorVisible": false,
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+      "run": 4,
+      "cacheLabel": "same context reload",
+      "stagesMs": {
+        "engine": 13.700000047683716,
+        "world": 3246.5,
+        "havok": 913.2000000476837,
+        "body": 30.799999952316284,
+        "initialRegistration": 10.299999952316284,
+        "lateRegistration": 1.6999998092651367,
+        "firstRenderToGpuCompletion": 913.7999999523163
+      },
+      "network": {
+        "encodedBytes": 24053,
+        "completedRequests": 302,
+        "fromDiskCache": 0,
+        "fromServiceWorker": 0
+      },
+      "errors": {
+        "page": [],
+        "console": [],
+        "requests": []
+      }
+    }
+  ]
+}
