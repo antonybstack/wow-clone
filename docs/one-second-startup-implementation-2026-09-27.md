@@ -1,6 +1,40 @@
 # Progressive startup and performance takeover — 2026-09-27
 
-Status: implementation and local verification in progress; production release results will be recorded below. This follows [the accepted investigation plan](one-second-startup-investigation-2026-09-26.md). The user accepts a playable starting neighborhood while the rest of the finite region loads.
+Status: **released and verified**. The accepted P0–P5 desktop implementation is complete, including production verification and motion delivery. Physical iPhone startup and memory acceptance remain unmeasured. This follows [the accepted investigation plan](one-second-startup-investigation-2026-09-26.md): a playable starting neighborhood while the rest of the existing finite region loads.
+
+## Final production result
+
+Source **`76e3c41bf24956b85d3ea0776d571eebea6c7e91`** is live at [play.sparkify.dev](https://play.sparkify.dev), Pages **`72fd1e3d-7d8d-4108-8f0f-d8eb9a42cbfe`**, bundle `ashenReach-BqJG9J9_.js`. The previous stable rollback deployment is **`279d43aa-65e8-43ca-a454-e1bccff1d4c8`** (`fb1057d`). All **218** checked deployed resources match, including generated geometry, starter assets, original textures, executable bundles, and Havok. Later documentation/verification-only commits do not require another runtime deployment.
+
+On an **M1 Max, uncapped Chromium WebGPU, 1280×720, seven enemies**, three separate 12-second runs per route, without recording or competing game renderers:
+
+| Route | Mean FPS | Largest run p95 | Largest run p99 | Worst frame |
+| --- | ---: | ---: | ---: | ---: |
+| Meadow | 193.66 | 10.8 ms | 11.4 ms | 12.2 ms |
+| Town | 193.96 | 6.0 ms | 6.3 ms | 8.8 ms |
+| Bridge | 230.79 | 9.1 ms | 10.1 ms | 12.3 ms |
+| Cathedral | 228.87 | 9.6 ms | 10.0 ms | 10.9 ms |
+| Forest | 214.56 | 10.1 ms | 10.4 ms | 11.9 ms |
+
+Every run exceeds 144 FPS on average; no sampled interval exceeds 16.67 ms. This is throughput acceptance, not a promise that every individual frame fits 6.94 ms. No runtime/GPU errors were captured.
+
+Cold startup uses a fresh Chrome process/profile per navigation with an initially empty HTTP cache, default browser frame pacing, 1280×720. Timing ends only after the dressed, grounded Havok player has a completed GPU frame, the overlay is removed, and input is enabled. Subsequent actual movement and GPU completion are also checked.
+
+| Production network profile | Runs | Median playable | p95 playable | Maximum | At or under 1 s |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Unthrottled | 20 | 520.2 ms | 597.1 ms | 616.1 ms | 20/20 |
+| 50 Mbit/s, 40 ms configured latency | 20 | 912.6 ms | **979.4 ms** | 1,054.5 ms | **19/20** |
+| 10 Mbit/s, 80 ms configured latency | 3 | 3,033.4 ms | 3,082.3 ms | 3,082.3 ms | 0/3 |
+
+Cold percentiles use nearest rank, the one-based `ceil(p × n)` observation. Three slow-network samples describe those trials, not a reliable population tail. Final production traffic through first play is approximately **3.25–3.26 MB**, replacing the original 1.50 MB hypothesis. The 50/40 batch's observed movement-through-subsequent-GPU-completion upper bound is at most 50.1 ms. Some unthrottled observations reach about 199 ms while the player advances; this includes automation/readback and background arrival and is not a precise input-latency measurement.
+
+OS, DNS, CDN, and GPU-driver caches are uncontrolled. An earlier production attempt had an unexplained 9.636-second first-GPU outlier, retained below. These results establish the measured percentile target, not a universal one-second guarantee. Physical iPhone load time, memory behavior, and this release's sustained device FPS remain unmeasured; the user's earlier iPhone 14 Pro Max report was approximately 60 FPS on the previous release.
+
+Final production passed mobile touch/capture-loss/cancel/modal/blur, injected depth fallback, desktop WebKit movement, the race/outfit/spell play matrix, cathedral entry/return, and west-chapel stairs. Havok remained active with zero recovery teleports. The complete candidate additionally passed all eight destination returns, all five cathedral level routes, perimeter barriers, woodland detail/shadow/disposal checks, and 12 progressive failure/readiness/lifetime cases. Test conditions and raw reports are in [the evidence directory](baselines/startup-2026-09-27/README.md).
+
+The reviewed [production walkthrough](https://ve.sparkify.dev/wow-clone/ashen-reach/startup-2026-09-27/production-walk.mp4) was delivered as **Telegram 786**: 1280×720, square pixels, no rotation, 19.463 seconds, matching returned video dimensions. VE returned `video/mp4`, supported HTTP 206 seeking, and played at native dimensions with advancing time. The controlled live capture enables damage immunity and uses normal keyboard movement; it shows the dressed player walking to the visible collision frontier, waiting for it to open, and continuing into town with no recovery. Initial grass, skyline detail, and textures visibly refine. Recording is deliberately excluded from performance measurements; its full-region ready mark was 13.103 seconds and worst installation 2.4 ms. No new Telegram desktop inline/fullscreen inspection is claimed; the user previously approved this delivery procedure's proportions.
+
+The remaining sections preserve the investigation and intermediate attempts; their candidate numbers are historical, not the final production result.
 
 ## What was actually slowing the game
 
@@ -15,7 +49,7 @@ Performance probes now create and close their own contexts. Disconnecting a CDP 
 - **P0: actual playable readiness.** The root serves the game directly. Havok and required downloads start early. Input unlocks only after dressed equipment, supported Havok grounding, and a completed rendered frame. `playableReady`, `combatReady`, `regionReady`, and the original full `ready` remain distinct. The probe checks real movement and GPU completion after an input event.
 - **P1: prepared neighborhood.** The deterministic authoring generator supplies a compact gzip typed-buffer package for nearby world/collision, material definitions, sparse nearby foliage placements, and simplified existing skyline/tree geometry. No terrain or character geometry is silently replaced in the completed scene. Each generated manifest records source hashes, including generator dependencies and the package lock; a stale or corrupt prepared asset fails the build. Run `npm run prepare:startup` after authoring changes.
 - **P2: dressed starter assets.** The body retains all **57 animations**, source vertices, skin weights, joints, and inverse bind matrices. The three initial clothing GLBs remain byte-identical after decompression. A 256-pixel body albedo is upgraded in place with native `rebuildMaterial`; the player, skeleton, heading, pose, and equipment sockets are retained. Tests compare the source and prepared accessors and animation samples.
-- **P3: measured first playable area.** Native bundler grouping removes serial PBR/shadow module requests. Exact URL preloads and early thumbnail discovery overlap transfer and initialization. The full post/shadow pipeline remains active. Nearby vegetation is installed immediately after input unlocks, before the worker finishes the region; the first frame includes the dressed player, real starting ground, and skyline. The original 1.50 MB hypothesis was revised using measurements: the candidate observes approximately **3.58 MB** encoded traffic at the playable boundary.
+- **P3: measured first playable area.** Native bundler grouping removes serial PBR/shadow module requests. Exact URL preloads and early thumbnail discovery overlap transfer and initialization. The full post/shadow pipeline remains active. Nearby vegetation is installed immediately after input unlocks, before the worker finishes the region; the first frame includes the dressed player, real starting ground, and skyline. The original 1.50 MB hypothesis was revised using measurements: the initial candidate observed approximately **3.58 MB** encoded traffic at the playable boundary; the final production result above is approximately **3.25–3.26 MB**.
 - **P4: bounded remainder.** A module worker runs the same deterministic authoring generator and transfers geometry using an eight-credit queue. Render buffers have fixed ownership and range uploads. Collision chunks contain at most 512 triangles because native Havok cooking cannot yield within one shape. A visible railing with real Havok collision keeps the player inside safe terrain until all connecting collision is installed. There are no coordinate clamps or recovery teleports. A failed worker preserves installed chunks and player position; retry continues idempotently. Incompatible generator metadata requires a reload. Full foliage placements reuse the initial native instance pools. Enemy installation yields between bodies, and late collision waits for actual separation from the player.
 - **P5: acceptance.** Cold-process, settled-frame, streaming-frame, traversal, disposal, failure, mobile and release checks are recorded separately below. A local compressed preview is not a production measurement or physical iPhone acceptance.
 
@@ -49,7 +83,7 @@ Implementation comments link the installed Lite version's [storage mesh API](htt
 
 ## Container comparison and scope decisions
 
-An offline comparison exported the same 52 initial/proxy blocks through glTF Transform and standard `EXT_meshopt_compression`. The unquantized variant preserved every attribute value and triangle winding (the triangle codec rotates each triangle's indices cyclically). Its gzip payload was **829,344 bytes**, versus **975,927 bytes** for the current typed package. The filtered variant was **641,127 bytes**, with lossy filters; it was not selected as an appearance-preserving replacement. The unquantized Node decoding experiment took approximately 75–85 ms, which is not a browser upload benchmark.
+An offline comparison exported the same 52 initial/proxy blocks through glTF Transform and standard `EXT_meshopt_compression`. The unquantized variant preserved every attribute value and triangle winding (the triangle codec rotates each triangle's indices cyclically). Its gzip payload was **829,344 bytes**, versus **975,927 bytes** for the then-current gzip typed package. The filtered variant was **641,127 bytes**, with lossy filters; it was not selected as an appearance-preserving replacement. The unquantized Node decoding experiment took approximately 75–85 ms, which is not a browser upload benchmark.
 
 The typed package retains direct CPU collision arrays, per-block offsets into preallocated native Lite storage, and shared position-only shadow storage. A glTF switch would need extraction and repacking into those same allocations or a different streaming mesh lifecycle. The current package meets the measured local time target, so this release accepts the 147 KB transfer difference and avoids adding an unverified runtime conversion. Standard Meshopt glTF remains in use for the source-compatible character. This is a deliberate bounded scope decision, not a claim that a custom container compresses better.
 

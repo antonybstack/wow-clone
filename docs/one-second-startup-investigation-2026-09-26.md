@@ -1,5 +1,8 @@
 # One-second uncached playable startup — investigation and plan
 
+**Implemented and released 2026-09-27.** See [the production retrospective](one-second-startup-implementation-2026-09-27.md): 194–231 FPS and 979.4 ms playable p95 at 50 Mbit/s / 40 ms, 19/20 under one second. The measured initial production transfer is approximately 3.25–3.26 MB; the original 1.50 MB figure below was a planning hypothesis. Physical iPhone startup remains unmeasured.
+
+
 ## Decision and scope
 
 The user confirmed that **a playable starting area within one second, with the rest loading in the background**, is acceptable. The target means a visible, dressed, animated character responding to keyboard/touch movement with Havok and nearby collision active. A loading screen, static screenshot, hidden render, earlier boolean, or character standing over missing terrain does not qualify.

@@ -1,0 +1,122 @@
+{
+  "source": "76e3c41bf24956b85d3ea0776d571eebea6c7e91",
+  "deployment": "72fd1e3d-7d8d-4108-8f0f-d8eb9a42cbfe",
+  "percentile": "nearest rank: sorted[ceil(p*n)-1]",
+  "cold": {
+    "production-cold-20": {
+      "conditions": {
+        "profile": "50mbps",
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "runs": 20,
+      "p50Ms": 912.5999999046326,
+      "p95Ms": 979.4000000953674,
+      "maxMs": 1054.5,
+      "atOrUnder1000Ms": 19
+    },
+    "production-native-20": {
+      "conditions": {
+        "profile": "native",
+        "network": {
+          "latency": 0,
+          "downloadThroughput": -1,
+          "uploadThroughput": -1
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "runs": 20,
+      "p50Ms": 520.1999998092651,
+      "p95Ms": 597.0999999046326,
+      "maxMs": 616.0999999046326,
+      "atOrUnder1000Ms": 20
+    },
+    "production-slow": {
+      "conditions": {
+        "profile": "10mbps",
+        "network": {
+          "latency": 80,
+          "downloadThroughput": 1250000,
+          "uploadThroughput": 250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "runs": 3,
+      "p50Ms": 3033.4000000953674,
+      "p95Ms": 3082.300000190735,
+      "maxMs": 3082.300000190735,
+      "atOrUnder1000Ms": 0
+    }
+  },
+  "fpsConditions": {
+    "cpu": "Apple M1 Max",
+    "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1&gpuTiming=",
+    "viewport": [
+      1280,
+      720
+    ],
+    "seconds": 12,
+    "runs": 3,
+    "uncappedRequired": true,
+    "recording": false
+  },
+  "routes": {
+    "meadow": {
+      "meanFps": 193.66307387735878,
+      "maxRunP95Ms": 10.800000190734863,
+      "maxRunP99Ms": 11.400000095367432,
+      "worstMs": 12.200000047683716,
+      "above16_667": 0
+    },
+    "town": {
+      "meanFps": 193.9555963183162,
+      "maxRunP95Ms": 6,
+      "maxRunP99Ms": 6.300000190734863,
+      "worstMs": 8.799999952316284,
+      "above16_667": 0
+    },
+    "bridge": {
+      "meanFps": 230.79489100027345,
+      "maxRunP95Ms": 9.099999904632568,
+      "maxRunP99Ms": 10.099999904632568,
+      "worstMs": 12.299999952316284,
+      "above16_667": 0
+    },
+    "cathedral": {
+      "meanFps": 228.87070664819552,
+      "maxRunP95Ms": 9.600000143051147,
+      "maxRunP99Ms": 10,
+      "worstMs": 10.900000095367432,
+      "above16_667": 0
+    },
+    "forest": {
+      "meanFps": 214.5612581223664,
+      "maxRunP95Ms": 10.100000143051147,
+      "maxRunP99Ms": 10.400000095367432,
+      "worstMs": 11.900000095367432,
+      "above16_667": 0
+    }
+  }
+}

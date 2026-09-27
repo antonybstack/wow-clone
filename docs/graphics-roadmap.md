@@ -2,7 +2,7 @@
 
 ## Progressive startup — 2026-09-27
 
-The accepted P0–P5 implementation is complete through local candidate acceptance; production gates are recorded in [the implementation retrospective](one-second-startup-implementation-2026-09-27.md). Immediate dressed/Havok local play, bounded worker-driven completion, native position-only shadow buffers, failure/retry and async teardown are implemented. Existing V24–V26 architecture and routes remain the authored source. The one-second claim applies only to the measured fast-network envelope; slow-network and physical-device limits are explicit.
+The accepted P0–P5 implementation is complete through production acceptance; production gates are recorded in [the implementation retrospective](one-second-startup-implementation-2026-09-27.md). Immediate dressed/Havok local play, bounded worker-driven completion, native position-only shadow buffers, failure/retry and async teardown are implemented. Existing V24–V26 architecture and routes remain the authored source. The one-second claim applies only to the measured fast-network envelope; slow-network and physical-device limits are explicit.
 
 ## Startup follow-up — 2026-09-26
 

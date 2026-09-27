@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 786,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 19.463078,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 20
+  },
+  "verified": true,
+  "file": "production-walk.mp4",
+  "sha256": "af5aaab95201b002c122fb0d916a2874a8f56abb4e13bd2497b40b9a2c6fd00c",
+  "sentAt": "2026-09-27T20:53:54.054250+00:00"
+}

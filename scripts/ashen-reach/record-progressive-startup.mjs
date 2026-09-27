@@ -25,6 +25,8 @@ try{
  await cdp.send('Page.startScreencast',{format:'jpeg',quality:90,maxWidth:1280,maxHeight:720,everyNthFrame:1});
  await page.waitForFunction(()=>globalThis.ASHEN?.playableReady,null,{timeout:30000});
  const start=await page.evaluate(()=>({x:ASHEN.player.body.position.x,z:ASHEN.player.body.position.z,recoveries:ASHEN.player.getDebugState().recoveries}));
+ // Keep combat damage from interrupting this controlled movement check.
+ await page.evaluate(()=>{ASHEN.dev.god=true;});
  await page.screenshot({path:`${dir}/playable.png`});
  await page.keyboard.down('KeyW');
  await page.waitForFunction(()=>ASHEN.ready,null,{timeout:90000});
