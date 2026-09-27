@@ -37,7 +37,7 @@ async function run(name, fn, options={}) {
   });
   try {
     const details = await fn(page, context);
-    const unexpected=name==='initial-body-failure'?errors.filter(message=>!(/503/.test(message)&&(/body-|Failed to load resource/.test(message)))):errors;
+    const unexpected=['initial-body-failure','initial-world-failure'].includes(name)?errors.filter(message=>!(/503/.test(message)&&(/body-|near-|Failed to load resource/.test(message)))):errors;
     assert.deepEqual(unexpected, []);
     assert.deepEqual(await page.evaluate(() => __gpuErrors), []);
     report.checks.push({ name, ...details, passed: true });
@@ -86,6 +86,12 @@ try {
     assert(marks['supported-frame-submitted']>=released);
     assert(marks['supported-frame-completed']>=marks['supported-frame-submitted']);
     assert(marks.playable>=marks['supported-frame-completed']);return {released,marks};
+  });
+  await run('initial-world-failure',async(page,context)=>{
+    await context.route('**/startup/starter/near-*',route=>route.fulfill({status:503,body:'Injected starting geometry failure'}));
+    await page.goto(url);await page.locator('#loading-retry').waitFor({state:'visible'});
+    assert.equal(await page.evaluate(()=>!!globalThis.ASHEN?.playableReady),false);
+    return {retryVisible:true,playable:false};
   });
   await run('initial-body-failure',async(page,context)=>{
     let release;const held=new Promise(resolve=>{release=resolve;});

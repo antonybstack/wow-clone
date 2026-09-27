@@ -5,7 +5,7 @@ import {
 } from "./startup-provenance.mjs";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { gzipSync } from "node:zlib";
+import { brotliCompressSync, constants } from "node:zlib";
 import { createHash } from "node:crypto";
 import sharp from "sharp";
 import { MeshoptSimplifier } from "meshoptimizer";
@@ -135,8 +135,13 @@ for (const [name, pool] of Object.entries(placements)) {
     },
   });
 }
-const bytes = gzipSync(Buffer.concat(buffers), { level: 9 }),
-  file = `near-${hash(bytes).slice(0, 12)}.bin`;
+// Pages serves these actual Brotli bytes with Content-Encoding: br. Native
+// HTTP decoding works in Chromium/WebKit and needs no JavaScript decoder.
+// https://developers.cloudflare.com/pages/configuration/headers/
+const bytes = brotliCompressSync(Buffer.concat(buffers), {
+    params: { [constants.BROTLI_PARAM_QUALITY]: 11 },
+  }),
+  file = `near-${hash(bytes).slice(0, 12)}.br`;
 await fs.writeFile(path.join(output, file), bytes);
 const textureURLs = {};
 for (const url of new Set([
@@ -179,6 +184,7 @@ await fs.writeFile(
     textureURLs,
     foliage,
     geometry: {
+      compression: "http-br",
       file,
       sha256: hash(bytes),
       encodedBytes: bytes.length,

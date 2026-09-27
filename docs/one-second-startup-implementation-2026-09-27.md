@@ -87,4 +87,12 @@ Runtime `2f78c4a` / `ashenReach-DnwW50kL.js` passed another complete production 
 
 The final HTML change uses Vite's documented post-transform phase so its generated entry/module preload tags precede the large binary preloads. Binary hints begin at low priority; actual application requests promote required body/outfit loads as needed. This follows [Chrome's documented resource-priority behavior](https://web.dev/articles/fetch-priority), using standard browser hints. Local module initialization moves to approximately 173–180 ms, with five complete playable runs at **864.8–892.0 ms**. Resource timings are now retained by the cold probe. Executable bundles, generated geometry, textures and gameplay are byte-identical to the preceding production FPS series.
 
-A bounded Brotli experiment saved only 192 KB across all five starter binaries, mostly terrain. That does not justify introducing another custom transport/header path in this release; the existing lossless gzip envelope and native browser decompressor remain. All experiments, including time-gate misses, are retained.
+The initial Brotli quality-9 experiment saved 192 KB across all five starter binaries, mostly terrain. A subsequent quality-11 experiment and real Pages header verification justified applying standard HTTP compression to terrain only; character/clothes retain gzip. All experiments, including time-gate misses, are retained.
+
+## Lossless HTTP terrain compression
+
+The fourth production time gate still missed (p95 **1,025.5 ms**, maximum **1,697 ms**), so it is retained as a failed attempt. Material/image preparation now overlaps geometry transfer; storage and collision still wait for validated bytes. This alone produced local first-play times of **857.8–869.7 ms**.
+
+Brotli quality 11 reduces the starter terrain from **975,927 to 717,693 bytes**. Decompression produces the exact same **3,291,020 bytes**, verified against the previous gzip payload and recorded with its SHA-256. A separate Pages preview proved that `Content-Encoding: br` delivers the correct decoded bytes with the correct MIME type. Vite dev/preview and the measurement server mirror the same standard HTTP headers; no JavaScript Brotli decoder or dependency was added. The release verifier explicitly checks the decoded representation.
+
+Five local cold runs of the resulting candidate measured **792.7–824.1 ms**, with **3,171,015 encoded bytes** through first play. The live regression suite adds initial terrain-download failure to the existing body failure, partial-retry, early input/combat/race-switch, grounding and disposal cases. These are **12** cases in total. Final production measurements follow.

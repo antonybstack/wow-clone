@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
-import { gunzipSync } from "node:zlib";
+import { gunzipSync, brotliDecompressSync } from "node:zlib";
 import { NodeIO } from "@gltf-transform/core";
 import { ALL_EXTENSIONS } from "@gltf-transform/extensions";
 import { MeshoptDecoder } from "meshoptimizer";
@@ -21,6 +21,16 @@ test(
   "prepared files match authoring inputs and content hashes",
   verifyStartupAssets,
 );
+test('starter terrain is actual Brotli data with matching HTTP metadata',async()=>{
+  const root='public/ashen-reach/startup/starter/',manifest=JSON.parse(await fs.readFile(root+'manifest.json'));
+  assert.equal(manifest.geometry.compression,'http-br');assert(manifest.geometry.file.endsWith('.br'));
+  const bytes=brotliDecompressSync(await fs.readFile(root+manifest.geometry.file));
+  assert.equal(bytes.length,manifest.geometry.rawBytes);
+  for(const block of [...manifest.geometry.blocks,...manifest.geometry.proxies])
+    for(const a of Object.values(block.attributes))assert(a.offset+a.length*4<=bytes.length);
+  const headers=await fs.readFile('public/_headers','utf8');
+  assert.match(headers,/\/ashen-reach\/startup\/starter\/\*\.br\s+Content-Type: application\/octet-stream\s+Content-Encoding: br/);
+});
 test("starter body preserves every source vertex, joint, weight and animation sample", async () => {
   const manifest = JSON.parse(
     await fs.readFile("public/ashen-reach/startup/character/manifest.json"),

@@ -66,7 +66,7 @@ export async function pruneStartupAssets(kind) {
     manifest = await fs.readFile(`${root}/manifest.json`, "utf8");
   for (const name of await fs.readdir(root))
     if (
-      /^[a-zA-Z-]+-[a-f0-9]{12}\.(bin|png|webp)$/.test(name) &&
+      /^[a-zA-Z-]+-[a-f0-9]{12}\.(bin|br|png|webp)$/.test(name) &&
       !manifest.includes(name)
     )
       await fs.unlink(`${root}/${name}`);

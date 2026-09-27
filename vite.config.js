@@ -7,6 +7,13 @@ const starterBuild=process.env.VITE_FAST_START!=='0';
 const starterWorldManifest=starterBuild?JSON.parse(readFileSync('public/ashen-reach/startup/starter/manifest.json','utf8')):null;
 const starterCharacterManifest=starterBuild?JSON.parse(readFileSync('public/ashen-reach/startup/character/manifest.json','utf8')):null;
 
+function starterBrotliHeaders(req,res,next) {
+  if (/^\/ashen-reach\/startup\/starter\/near-[a-f0-9]{12}\.br(?:\?|$)/.test(req.url||'')) {
+    res.setHeader('Content-Encoding','br');res.setHeader('Content-Type','application/octet-stream');
+  }
+  next();
+}
+
 export default defineConfig({
   define:{
     'import.meta.env.VITE_FAST_START':JSON.stringify(starterBuild?'1':'0'),
@@ -41,6 +48,13 @@ export default defineConfig({
   plugins: [
     {name: "verify-prepared-startup", async buildStart(){if(starterBuild)await verifyStartupAssets();}},
     {
+      name: "starter-brotli-http",
+      // Mirror Pages _headers when serving the same precompressed artifact locally.
+      // https://developers.cloudflare.com/pages/configuration/headers/
+      configureServer(server) { server.middlewares.use(starterBrotliHeaders); },
+      configurePreviewServer(server) { server.middlewares.use(starterBrotliHeaders); },
+    },
+    {
       name: "ashen-startup-preload",
       transformIndexHtml: {
         // Let Vite put the entry/module preloads first. Equal-priority fetches
@@ -72,7 +86,7 @@ export default defineConfig({
           const links = tags
             .map(([href, as]) =>
               as === "fetch"
-                ? `<link rel="preload" href="${href}" as="fetch" crossorigin fetchpriority="${href.endsWith('.bin')?'low':'auto'}">`
+                ? `<link rel="preload" href="${href}" as="fetch" crossorigin fetchpriority="${(href.endsWith('.bin')||href.endsWith('.br'))?'low':'auto'}">`
                 : `<link rel="preload" href="${href}" as="image">`,
             )
             .join("");

@@ -23,3 +23,8 @@
 
 /ashen-reach/startup/character/manifest.json
   Cache-Control: no-cache
+
+/ashen-reach/startup/starter/*.br
+  Content-Type: application/octet-stream
+  Content-Encoding: br
+  Cache-Control: public, max-age=31536000, immutable, no-transform

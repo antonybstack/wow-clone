@@ -52,14 +52,18 @@ export function preloadStarterWorld() {
       ),
     );
     textures.catch(() => {});
-    const response2 = await checkedFetch(ROOT + manifest.geometry.file);
-    const bytes = await new Response(
-      response2.body.pipeThrough(new DecompressionStream("gzip")),
-    ).arrayBuffer();
-    await textures;
-    if (bytes.byteLength !== manifest.geometry.rawBytes)
-      throw Error("Starting world geometry is truncated");
-    return { manifest, bytes };
+    const bytesReady = (async () => {
+      const response2 = await checkedFetch(ROOT + manifest.geometry.file);
+      const bytes = manifest.geometry.compression === 'http-br'
+        ? await response2.arrayBuffer() // Native HTTP Content-Encoding decoding.
+        : await new Response(response2.body.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
+      await textures;
+      if (bytes.byteLength !== manifest.geometry.rawBytes)
+        throw Error("Starting world geometry is truncated");
+      return bytes;
+    })();
+    bytesReady.catch(() => {});
+    return { manifest, bytesReady };
   });
 }
 
@@ -70,13 +74,17 @@ export function preloadStarterWorld() {
  * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/resource/storage-buffer.ts
  */
 export async function createStarterWorld(engine, scene, prepared) {
-  const { manifest, bytes } = await prepared;
+  const { manifest, bytesReady } = await prepared;
   engine.ashenTextureURLs = manifest.textureURLs;
   engine.ashenTextureUpgrades = [];
   const mats = await Promise.all(
     manifest.surfaces.map((s) => surface(engine, s.name, s.url, s.options)),
   );
   mats.forEach((m) => prepareLinearMaterial(scene, m));
+  // Material/image preparation needs only the small manifest, so overlap it
+  // with geometry transfer. Storage, collision and visible meshes still wait
+  // for validated geometry bytes; readiness retains the same GPU/physics gate.
+  const bytes = await bytesReady;
   // Shadow passes read only positions. A separate compact native vertex stream
   // avoids fetching each 64-byte colour vertex for every shadow cascade.
   // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/17-cascaded-shadow.md

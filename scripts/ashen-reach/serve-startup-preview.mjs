@@ -54,7 +54,7 @@ http
         "Content-Length": bytes.length,
         "Cache-Control": "public, max-age=3600",
         Vary: "Accept-Encoding",
-        ...(compressed ? { "Content-Encoding": "br" } : {}),
+        ...((compressed || file.endsWith(".br")) ? { "Content-Encoding": "br" } : {}),
       });
       res.end(req.method === "HEAD" ? undefined : bytes);
     } catch (error) {
