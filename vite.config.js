@@ -4,14 +4,16 @@ import {readFileSync} from 'node:fs';
 
 const pages = process.env.ASHEN_PAGES === "1";
 const starterBuild=process.env.VITE_FAST_START!=='0';
+const starterWorldManifest=starterBuild?JSON.parse(readFileSync('public/ashen-reach/startup/starter/manifest.json','utf8')):null;
+const starterCharacterManifest=starterBuild?JSON.parse(readFileSync('public/ashen-reach/startup/character/manifest.json','utf8')):null;
 
 export default defineConfig({
   define:{
     'import.meta.env.VITE_FAST_START':JSON.stringify(starterBuild?'1':'0'),
     // Immutable bundles reject a newer deployment's mutable manifest instead
     // of mixing old worker generation with new prepared geometry/materials.
-    'import.meta.env.VITE_STARTER_WORLD_SOURCE':JSON.stringify(process.env.NODE_ENV==='production'&&starterBuild?JSON.parse(readFileSync('public/ashen-reach/startup/starter/manifest.json','utf8')).provenance.sha256:''),
-    'import.meta.env.VITE_STARTER_CHARACTER_SOURCE':JSON.stringify(process.env.NODE_ENV==='production'&&starterBuild?JSON.parse(readFileSync('public/ashen-reach/startup/character/manifest.json','utf8')).provenance.sha256:''),
+    'import.meta.env.VITE_STARTER_WORLD_SOURCE':JSON.stringify(process.env.NODE_ENV==='production'&&starterBuild?starterWorldManifest.provenance.sha256:''),
+    'import.meta.env.VITE_STARTER_CHARACTER_SOURCE':JSON.stringify(process.env.NODE_ENV==='production'&&starterBuild?starterCharacterManifest.provenance.sha256:''),
   },
   worker: { format: 'es' },
   publicDir: process.env.ASHEN_PUBLIC_DIR || "public",
@@ -44,15 +46,20 @@ export default defineConfig({
         order: "pre",
         handler(html, ctx) {
           if (!String(ctx.filename || "").endsWith("ashen-reach.html")) return html;
-          // Only the player body and the two textures the first churchyard
-          // frame actually needs. Shades, the dummy, clothes, grass and the
-          // other race packs load after that frame.
+          // Required starter resources begin with the HTML. NPCs, full-size
+          // textures and alternate race packs remain background downloads.
           const tags = starterBuild ? [
             ['/HavokPhysics.wasm?v=20260923-1','fetch'],
             ['/ashen-reach/startup/starter/manifest.json','fetch'],
             ['/ashen-reach/startup/character/manifest.json','fetch'],
-            [JSON.parse(readFileSync('public/ashen-reach/startup/character/manifest.json','utf8')).items.body.url,'fetch'],
-            ['/ashen-reach/startup/starter/'+JSON.parse(readFileSync('public/ashen-reach/startup/starter/manifest.json','utf8')).geometry.file,'fetch'],
+            ...['body','wayfarerTunic','wayfarerTrousers','wayfarerBoots'].map(id=>[starterCharacterManifest.items[id].url,'fetch']),
+            ['/ashen-reach/startup/starter/'+starterWorldManifest.geometry.file,'fetch'],
+            // HTML discovery avoids a module + manifest round trip for the
+            // 36 KB of first-frame textures; the foliage atlas remains late.
+            // https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/rel/preload
+            ...Object.entries(starterWorldManifest.textureURLs)
+              .filter(([source])=>!source.endsWith('/foliage-atlas.png'))
+              .map(([,url])=>[url,'fetch']),
           ] : [
             ["/ashen-reach/equipment/body.glb", "fetch"],
             ["/tex/forrest_ground_01/diff.jpg", "image"],

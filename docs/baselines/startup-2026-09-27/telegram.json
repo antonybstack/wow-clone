@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 785,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 19.079244,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 20
+  },
+  "verified": true,
+  "file": "startup-walk.mp4",
+  "sha256": "9a189d76f2c0f3154dda34316f8ea05195925d8f2ae05c7f56113772e4c8fb69",
+  "sentAt": "2026-09-27T19:56:17.317121+00:00"
+}

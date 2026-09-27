@@ -1,0 +1,1164 @@
+{
+  "conditions": {
+    "profile": "50mbps",
+    "network": {
+      "latency": 40,
+      "downloadThroughput": 6250000,
+      "uploadThroughput": 1250000
+    },
+    "cpu": "Apple M1 Max",
+    "viewport": [
+      1280,
+      720
+    ],
+    "cache": "Fresh browser process/profile each run; OS and GPU-driver caches uncontrolled",
+    "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+  },
+  "rows": [
+    {
+      "origin": 1790539299761,
+      "marks": {
+        "begin": 452.09999990463257,
+        "havok-runtime-available": 473.69999980926514,
+        "engine-created": 493.59999990463257,
+        "gpu-probe-end": 496.59999990463257,
+        "world-start": 498.59999990463257,
+        "world-end": 688,
+        "havok-start": 689,
+        "havok-runtime-start": 689.7999999523163,
+        "havok-runtime-end": 689.7999999523163,
+        "havok-world-end": 691.6999998092651,
+        "havok-colliders-end": 698.5,
+        "havok-controller-end": 699.8999998569489,
+        "havok-end": 700.7999999523163,
+        "body-start": 701,
+        "body-end": 718.1999998092651,
+        "equipment-start": 719.8999998569489,
+        "equipment-end": 730.2999999523163,
+        "register-start": 735.3999998569489,
+        "register-end": 759.6999998092651,
+        "first-render-return": 769.6999998092651,
+        "first-gpu-completed": 885.6999998092651,
+        "playable": 916,
+        "bg-start": 916.0999999046326
+      },
+      "playableMs": 916,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.0004845497789015429,
+        "z": -0.0008550877932498609
+      },
+      "frame": 14,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 4616
+        },
+        {
+          "url": "http://127.0.0.1:7074/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 589033
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 73376
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 1961
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 873881
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 976154
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5049
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3511
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2435
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5381
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3031
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2135
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15070
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1457
+        },
+        {
+          "url": "http://127.0.0.1:7074/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 6617
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/ashenReach-gR-x8rgE.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 117933
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 370
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 195967
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1773
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1584
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2198
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-a659b1767619.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 134099
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 218932
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 129891
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212484
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 1780
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3580718,
+      "input": {
+        "keyAt": 1180.6999998092651,
+        "observedAt": 1223.3999998569489,
+        "position": {
+          "x": -0.0004956239386858273,
+          "z": 0.3001253695732554
+        },
+        "frames": 105,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 42.700000047683716
+      },
+      "errors": [],
+      "run": 1
+    },
+    {
+      "origin": 1790539301689.1,
+      "marks": {
+        "begin": 452.2999999523163,
+        "havok-runtime-available": 473.19999980926514,
+        "engine-created": 491.7999999523163,
+        "gpu-probe-end": 493.89999985694885,
+        "world-start": 495.89999985694885,
+        "world-end": 683.2999999523163,
+        "havok-start": 684.2999999523163,
+        "havok-runtime-start": 685,
+        "havok-runtime-end": 685,
+        "havok-world-end": 686.8999998569489,
+        "havok-colliders-end": 693.5999999046326,
+        "havok-controller-end": 694.8999998569489,
+        "havok-end": 695.7999999523163,
+        "body-start": 695.8999998569489,
+        "body-end": 712.2999999523163,
+        "equipment-start": 714.0999999046326,
+        "equipment-end": 723.7999999523163,
+        "register-start": 729,
+        "register-end": 750.0999999046326,
+        "first-render-return": 759.7999999523163,
+        "first-gpu-completed": 856.1999998092651,
+        "playable": 889.5,
+        "bg-start": 889.5999999046326
+      },
+      "playableMs": 889.5,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.0004446446603568861,
+        "z": -0.0007846670002899656
+      },
+      "frame": 16,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 4616
+        },
+        {
+          "url": "http://127.0.0.1:7074/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 589033
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 73376
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 1961
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 873881
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 976154
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5049
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3511
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2435
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5381
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3031
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2135
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15070
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1457
+        },
+        {
+          "url": "http://127.0.0.1:7074/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 6617
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/ashenReach-gR-x8rgE.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 117933
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 370
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 195967
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1773
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1584
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2198
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-a659b1767619.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 134099
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 218932
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 129891
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212484
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 1780
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3580718,
+      "input": {
+        "keyAt": 1128.6999998092651,
+        "observedAt": 1173,
+        "position": {
+          "x": -0.0004548669638306079,
+          "z": 0.30089729297425627
+        },
+        "frames": 101,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 44.30000019073486
+      },
+      "errors": [],
+      "run": 2
+    },
+    {
+      "origin": 1790539303516,
+      "marks": {
+        "begin": 452.19999980926514,
+        "havok-runtime-available": 473,
+        "engine-created": 491.69999980926514,
+        "gpu-probe-end": 493.59999990463257,
+        "world-start": 495.5,
+        "world-end": 688.1999998092651,
+        "havok-start": 689.1999998092651,
+        "havok-runtime-start": 689.8999998569489,
+        "havok-runtime-end": 689.8999998569489,
+        "havok-world-end": 691.7999999523163,
+        "havok-colliders-end": 698.5999999046326,
+        "havok-controller-end": 699.6999998092651,
+        "havok-end": 700.5999999046326,
+        "body-start": 700.6999998092651,
+        "body-end": 717.3999998569489,
+        "equipment-start": 718.3999998569489,
+        "equipment-end": 727.8999998569489,
+        "register-start": 732.8999998569489,
+        "register-end": 754.0999999046326,
+        "first-render-return": 763.5999999046326,
+        "first-gpu-completed": 860.7999999523163,
+        "playable": 893.0999999046326,
+        "bg-start": 893.1999998092651
+      },
+      "playableMs": 893.0999999046326,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.00043020979853742463,
+        "z": -0.0007591937160931299
+      },
+      "frame": 16,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 4616
+        },
+        {
+          "url": "http://127.0.0.1:7074/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 589033
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 73376
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 1961
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 873881
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 976154
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5049
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3511
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2435
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5381
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3031
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2135
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15070
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1457
+        },
+        {
+          "url": "http://127.0.0.1:7074/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 6617
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/ashenReach-gR-x8rgE.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 117933
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 370
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 195967
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1773
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1584
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2198
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-a659b1767619.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 134099
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 218932
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 129891
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212484
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 1780
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3580718,
+      "input": {
+        "keyAt": 1132.0999999046326,
+        "observedAt": 1176.3999998569489,
+        "position": {
+          "x": -0.00044032949278681097,
+          "z": 0.3058229476674156
+        },
+        "frames": 99,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 44.299999952316284
+      },
+      "errors": [],
+      "run": 3
+    },
+    {
+      "origin": 1790539305361.6,
+      "marks": {
+        "begin": 450.40000009536743,
+        "havok-runtime-available": 470.59999990463257,
+        "engine-created": 490.09999990463257,
+        "gpu-probe-end": 491.90000009536743,
+        "world-start": 494.09999990463257,
+        "world-end": 679.7999999523163,
+        "havok-start": 680.9000000953674,
+        "havok-runtime-start": 681.7000000476837,
+        "havok-runtime-end": 681.7000000476837,
+        "havok-world-end": 683.7000000476837,
+        "havok-colliders-end": 690.5,
+        "havok-controller-end": 691.7000000476837,
+        "havok-end": 692.7000000476837,
+        "body-start": 692.7999999523163,
+        "body-end": 709.7000000476837,
+        "equipment-start": 711.2999999523163,
+        "equipment-end": 721.0999999046326,
+        "register-start": 726,
+        "register-end": 748.7000000476837,
+        "first-render-return": 758.2999999523163,
+        "first-gpu-completed": 850.9000000953674,
+        "playable": 883,
+        "bg-start": 883.0999999046326
+      },
+      "playableMs": 883,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.00041553513014203335,
+        "z": -0.0007332972440341816
+      },
+      "frame": 15,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 4616
+        },
+        {
+          "url": "http://127.0.0.1:7074/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 589033
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 73376
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 1961
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 873881
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 976154
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5049
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3511
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2435
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5381
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3031
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2135
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15070
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1457
+        },
+        {
+          "url": "http://127.0.0.1:7074/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 6617
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/ashenReach-gR-x8rgE.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 117933
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 370
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 195967
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1773
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1584
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2198
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-a659b1767619.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 134099
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 218932
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 129891
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212484
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 1780
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3580718,
+      "input": {
+        "keyAt": 1120.7999999523163,
+        "observedAt": 1165.7000000476837,
+        "position": {
+          "x": -0.00042588080151357465,
+          "z": 0.30584844535664246
+        },
+        "frames": 102,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 44.90000009536743
+      },
+      "errors": [],
+      "run": 4
+    },
+    {
+      "origin": 1790539307189.7,
+      "marks": {
+        "begin": 455.40000009536743,
+        "havok-runtime-available": 476.40000009536743,
+        "engine-created": 495.2000000476837,
+        "gpu-probe-end": 497,
+        "world-start": 498.90000009536743,
+        "world-end": 686.5,
+        "havok-start": 687.7000000476837,
+        "havok-runtime-start": 688.4000000953674,
+        "havok-runtime-end": 688.4000000953674,
+        "havok-world-end": 690.4000000953674,
+        "havok-colliders-end": 697.4000000953674,
+        "havok-controller-end": 698.6000001430511,
+        "havok-end": 699.6000001430511,
+        "body-start": 699.7000000476837,
+        "body-end": 715.9000000953674,
+        "equipment-start": 717.6000001430511,
+        "equipment-end": 727.5,
+        "register-start": 732.6000001430511,
+        "register-end": 753.9000000953674,
+        "first-render-return": 763.8000001907349,
+        "first-gpu-completed": 859.7000000476837,
+        "playable": 883.5,
+        "bg-start": 883.6000001430511
+      },
+      "playableMs": 883.5,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.0004397925579515533,
+        "z": -0.0007761044671515646
+      },
+      "frame": 12,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 4616
+        },
+        {
+          "url": "http://127.0.0.1:7074/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 589033
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 73376
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 1961
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 873881
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 976154
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5049
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3511
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2435
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5381
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3031
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2135
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15070
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1457
+        },
+        {
+          "url": "http://127.0.0.1:7074/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 6617
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/ashenReach-gR-x8rgE.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 117933
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 370
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 195967
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1773
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1584
+        },
+        {
+          "url": "http://127.0.0.1:7074/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2198
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-a659b1767619.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 134099
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 218932
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 129891
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212484
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 1780
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3580718,
+      "input": {
+        "keyAt": 1149.8000001907349,
+        "observedAt": 1196.9000000953674,
+        "position": {
+          "x": -0.00045111663880354115,
+          "z": 0.3366039121960549
+        },
+        "frames": 107,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 47.09999990463257
+      },
+      "errors": [],
+      "run": 5
+    }
+  ]
+}

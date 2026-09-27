@@ -43,7 +43,11 @@ export function preloadStarterWorld() {
     // Discover tiny first-frame maps while geometry is still in flight. Waiting
     // for geometry before surface() starts them adds multiple network round trips.
     const textures = Promise.all(
-      [...new Set(Object.values(manifest.textureURLs))].map((url) =>
+      // Vegetation is installed after input unlocks. Its larger atlas must
+      // not compete with, or delay, the required ground/body downloads.
+      [...new Set(Object.entries(manifest.textureURLs)
+        .filter(([source]) => !source.endsWith('/foliage-atlas.png'))
+        .map(([, url]) => url))].map((url) =>
         checkedFetch(url).then((r) => r.arrayBuffer()),
       ),
     );
