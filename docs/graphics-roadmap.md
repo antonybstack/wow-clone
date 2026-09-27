@@ -1,5 +1,9 @@
 # Graphics milestones
 
+## Startup follow-up — 2026-09-26
+
+[Terrain corner reuse](terrain-startup-optimization-2026-09-26.md) is released as `fb1057d` / Pages `279d43aa-65e8-43ca-a454-e1bccff1d4c8`. Warm local playable-ready median improved 45.2% with exact matching terrain position, normal, UV, and index buffers. All four representative movement routes remain over 120 FPS; production movement, mobile fallback, WebKit, and reviewed live motion passed. A candidate CPU profile now identifies lamp baking as the largest remaining JavaScript self-time group (757 ms). Its repeated-work opportunity needs a separate measured experiment. Native static shadow caching and async shader compilation remain disabled based on the [isolated investigation](rendering-performance-investigation-2026-09-26.md). Physical iPhone load timing remains open.
+
 ## Current runtime and visual verification — 2026-09-26
 
 V24–V26 region and Gothic milestones and the Babylon Lite 1.31.1 migration are released. The [F1–F7 release retrospective](babylon-lite-f1-f7-release-2026-09-26.md) records the current Pages deployment, reviewed live motion, representative >120 FPS measurements, and the remaining frame-tail and physical iPhone limits. [CURRENT.md](CURRENT.md) is the authoritative active state; the older entries below preserve historical milestone results.
