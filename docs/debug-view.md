@@ -32,6 +32,17 @@ Wait for Vite reloads to settle before navigating/capturing; simultaneous reload
 - Inspect actual renderable descendants/materials. A named glTF transform may own several primitives; its parent is not necessarily the mesh.
 - Direct camera/state changes are allowed for diagnostic views but must be labelled. Gameplay claims require actual inputs and verified state transitions.
 
+## Browser ownership and performance isolation
+
+Treat every open game page as GPU work, including a page in a detached headless Chrome after its CDP client exits. At the start of a live task, before starting another browser, after each live check, and before handoff or final response:
+
+1. Inventory browser parents and Vite processes (`ps -axo pid,command | rg '/Contents/MacOS/Google Chrome --|/node_modules/\.bin/vite|serve-startup-preview'`) and listening ports (`lsof -nP -iTCP -sTCP:LISTEN`). For each known owned CDP port, inspect `http://127.0.0.1:<port>/json/list` for game page URLs. Also check any visible browser running the game; a browser without CDP may still render. The process list alone does not tell you which tabs are active.
+2. In the current task notes, record **owner (this session or named managed subagent), browser PID, CDP port, Vite port or production URL, page URL, and purpose**. Pass that ownership record to subagents before live work. Use one shared owned browser where practical; start another only for a named, isolated check. `scripts/harness/up.mjs --slot N` records the slot's Vite and Chrome PIDs; use its printed ports and `scripts/harness/down.mjs --slot N` for cleanup.
+3. For FPS runs, inspect all known game tabs and ensure **only the measured game page is actively rendering**. Close or pause other pages owned by this session or its managed subagents and record what was done. Leave user and other agents' unrelated sessions untouched. If an active renderer remains unknown or cannot be isolated, mark the run contaminated and do not use it for a performance claim.
+4. Close each owned Playwright context/page and stop its harness when the check finishes. `browser.close()` on a CDP connection may only disconnect; confirm the browser process and its game tab actually stopped. Recheck the inventory at handoff and session end. Keep any intentionally retained game instance in the ownership record so the next session knows it exists.
+
+This rule follows the 2026-09-27 investigation: two abandoned game pages reduced the same walk from about **173 to 96 FPS**. A local server without a game page is not the same GPU load; count rendering pages, not merely ports.
+
 ## Existing harnesses
 
 ### Measure above the headless Chrome 60 FPS cap
