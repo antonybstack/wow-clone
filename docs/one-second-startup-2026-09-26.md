@@ -55,15 +55,33 @@ the shape of the critical path, not an absolute figure.
 | **4306** | **912** | `havok-colliders-end` (6 mesh + 678 box colliders) |
 | 4338 | 31 | `body-end` (character decode; bytes already fetched) |
 | 4362 | 24 | `register-end`, `first-render-return` |
-| **5275** | **914** | `first-gpu-completed` (first frame actually finished) |
+| 5275 | 914 | `first-gpu-completed` (**see the correction below — this is not the frame's cost**) |
 | 5426 | 151 | `combat-ready`, `late-register-end`, `hostiles-ready` |
 | 5791 | 365 | `ready` = `playable` |
 
-Four costs account for 4.5 of the 5.8 seconds, and none of them is the starting area:
-**far terrain 1,858 ms**, **first GPU frame 914 ms**, **static colliders 912 ms**, **mesh commits
-829 ms**. The churchyard the player actually stands in costs 58 ms. This is the measurement that
-justifies the plan's architecture: the starting area is nearly free, and everything expensive is
-content the player cannot reach in the first second.
+Nothing expensive is in the starting area: the churchyard the player actually stands in costs
+58 ms, against **far terrain 1,858 ms**, **static colliders 912 ms** and **mesh commits 829 ms**.
+That is the measurement justifying the plan's architecture — everything costly is content the
+player cannot reach in the first second.
+
+#### Correction: `first-gpu-completed` is not the first frame's cost
+
+This log first reported the 914 ms between `first-render-return` and `first-gpu-completed` as a
+fourth large cost, "the first frame actually finished". **That was wrong**, and it would have sent
+the next phase after the wrong bottleneck.
+
+`waitForGpuIdle`'s promise can only settle when the main thread is free to run the continuation,
+and `main()` starts foliage plus seven dynamic imports on the line after `renderLoop.start()`
+returns. A long-task observer over that exact window shows **886 of the 933 ms is main-thread long
+task**, not a GPU wait. Awaiting the fence before any of that follow-on work puts the real number
+at **79 ms** for the reduced world and **165 ms** for the full one.
+
+So the mark measures "the GPU is idle *and* the main thread got around to noticing", which is a
+useful boundary for "the page is responsive" and a misleading one for "the frame cost this much".
+It is kept, under that reading. The corrected picture of what sits between the first frame and a
+playable character is **feature loading**, roughly 1.2 s of foliage, dynamic imports, dummy, NPC
+buffer, enemies, combat, late feature registration, townsfolk, equipment and armory — all of it
+ahead of `setInputEnabled(true)`, and almost none of it needed to walk.
 
 ### Delays removed in P0
 
@@ -112,6 +130,41 @@ Playable readiness is **unchanged** by P0 on a warm dev server: 5,791 ms before,
 across the probe navigations after. That is expected — P0 removed the redirect hop and the fade
 from the *input* path and moved the Havok fetch off the critical path, none of which shortens the
 3.4 s world build or the 912 ms collider install that dominate the number. Those are P1–P4.
+
+## Feasibility probe — is one second reachable at all?
+
+Before building a build-time asset stage, a throwaway patch skipped the far-terrain and scatter
+loops behind a `?slice` flag to price the rest of the path. Reverted after measuring; same
+machine and dev server as above.
+
+| | full world | `?slice` |
+|---|---:|---:|
+| world build | 3,234 ms | **730 ms** |
+| mesh commits | 840 ms | 225 ms |
+| static colliders | 975 ms | 206 ms |
+| scene registration | 32 ms | 29 ms |
+| first frame (fence awaited before follow-on work) | 165 ms | **79 ms** |
+| triangles | 941,975 | 188,041 |
+| **playable** | 5,834 ms | **2,549 ms** |
+
+Two conclusions:
+
+1. **The world build scales with content, and the starting area is a small fraction of it.** A
+   tighter starting neighbourhood than `?slice`'s (which still built the full 2 m near grid over
+   360 × 240 m, the region structures and the cathedral) should land well under 730 ms.
+2. **After the first frame there is ~1.2 s of feature loading before input is enabled**, and it is
+   the same 1.2 s whether the world has 188 k or 942 k triangles. Combat, enemies, townsfolk,
+   armory, the training dummy, the NPC buffer and foliage are all ahead of `setInputEnabled(true)`
+   and none of them is needed to walk. Starter equipment *is* needed — "dressed" is part of
+   playable — and it currently loads after combat because it takes `combat.fx.sockets`.
+
+Adding up what must remain ahead of a first playable frame — module load, engine, a tight starting
+area, near colliders, the body, scene registration, the first frame and starter garments — one
+second is plausible but not comfortable. The next phase is therefore ordering, not baking: build
+the starting area first, install only near collision, dress the character, enable input, and move
+everything else behind that boundary. Whether a build-time baked starting-area package is also
+needed is a question to re-ask once that ordering exists, because it only competes with the
+remaining starting-area CPU cost.
 
 ## Remaining phases
 
