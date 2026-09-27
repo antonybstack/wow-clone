@@ -1,0 +1,14 @@
+{
+  "changed": 36348,
+  "maxError": 443,
+  "changedAttributes": 0,
+  "changedTriangles": 0,
+  "blocks": 52,
+  "typedRaw": 3291020,
+  "typedGzip": 975927,
+  "meshoptGlb": 1297512,
+  "meshoptGzip": 829344,
+  "nodeDecodeMs": 85.28404199999999,
+  "decodedPrimitives": 52,
+  "note": "Offline size/decode experiment, without quantize preprocessing. Attributes compared exactly; triangles compared allowing cyclic index rotation. Node decode time is not a browser Lite upload measurement."
+}

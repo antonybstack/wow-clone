@@ -1,0 +1,183 @@
+{
+  "errors": [],
+  "routes": [
+    {
+      "id": "east-keep",
+      "start": {
+        "x": 0,
+        "y": 9.033809807987268,
+        "z": 142.0004555831877,
+        "facing": 1.5707963267948966,
+        "physics": true,
+        "recoveries": 0
+      },
+      "end": {
+        "x": 0.21573133830699215,
+        "y": 9.057810192047176,
+        "z": 141.99958184742482,
+        "facing": -1.56442866712543,
+        "physics": true,
+        "recoveries": 0
+      },
+      "samples": 50,
+      "entered": true,
+      "returned": true
+    },
+    {
+      "id": "west-keep",
+      "start": {
+        "x": 0,
+        "y": 9.015753661702778,
+        "z": 142.00011990304787,
+        "facing": -1.5707963267948966,
+        "physics": true,
+        "recoveries": 0
+      },
+      "end": {
+        "x": -0.25673871035474066,
+        "y": 9.038541667874906,
+        "z": 142.0111704434018,
+        "facing": -4.662926326551704,
+        "physics": true,
+        "recoveries": 0
+      },
+      "samples": 74,
+      "entered": true,
+      "returned": true
+    },
+    {
+      "id": "south-keep",
+      "start": {
+        "x": 0.0007540555945055766,
+        "y": 0.5437596594955392,
+        "z": -70,
+        "facing": 3.141592653589793,
+        "physics": true,
+        "recoveries": 0
+      },
+      "end": {
+        "x": -0.0077101754186633155,
+        "y": 0.5362708736132696,
+        "z": -70.31558781866303,
+        "facing": 0.0800626556568832,
+        "physics": true,
+        "recoveries": 0
+      },
+      "samples": 106,
+      "entered": true,
+      "returned": true
+    },
+    {
+      "id": "east-tower",
+      "start": {
+        "x": 0,
+        "y": 9.039883266944885,
+        "z": 142.0001807425886,
+        "facing": 1.5707963267948966,
+        "physics": true,
+        "recoveries": 0
+      },
+      "end": {
+        "x": 0.25812874336143377,
+        "y": 9.054764705758144,
+        "z": 141.9982269809781,
+        "facing": 4.649156326916482,
+        "physics": true,
+        "recoveries": 0
+      },
+      "samples": 64,
+      "entered": true,
+      "returned": true
+    },
+    {
+      "id": "west-tower",
+      "start": {
+        "x": 0,
+        "y": 9.051844419577387,
+        "z": 142.00024623097698,
+        "facing": -1.5707963267948966,
+        "physics": true,
+        "recoveries": 0
+      },
+      "end": {
+        "x": -0.2600537757264996,
+        "y": 9.040673284338705,
+        "z": 142.012965233116,
+        "facing": -4.648391324606213,
+        "physics": true,
+        "recoveries": 0
+      },
+      "samples": 58,
+      "entered": true,
+      "returned": true
+    },
+    {
+      "id": "north-tower",
+      "start": {
+        "x": 0,
+        "y": 9.034563037745832,
+        "z": 142.00018134217706,
+        "facing": 1.5707963267948966,
+        "physics": true,
+        "recoveries": 0
+      },
+      "end": {
+        "x": 0.21328098791782452,
+        "y": 9.053358158527057,
+        "z": 142.00791280168684,
+        "facing": 4.691231328132422,
+        "physics": true,
+        "recoveries": 0
+      },
+      "samples": 42,
+      "entered": true,
+      "returned": true
+    },
+    {
+      "id": "hollowmere-chapel",
+      "start": {
+        "x": -0.0022054254531928357,
+        "y": 7.663147925776866,
+        "z": 114,
+        "facing": 1.5707963267948966,
+        "physics": true,
+        "recoveries": 0
+      },
+      "end": {
+        "x": 0.25791020721756974,
+        "y": 7.7040577911386,
+        "z": 114.06971757037944,
+        "facing": -1.8242736734482894,
+        "physics": true,
+        "recoveries": 0
+      },
+      "samples": 4,
+      "entered": true,
+      "returned": true
+    },
+    {
+      "id": "vaelmark",
+      "start": {
+        "x": 0,
+        "y": 8.747168932847323,
+        "z": 144.9960764231313,
+        "facing": 0,
+        "physics": true,
+        "recoveries": 0
+      },
+      "end": {
+        "x": -0.020439385840412095,
+        "y": 8.842517123676052,
+        "z": 145.2974753252471,
+        "facing": 3.140325,
+        "physics": true,
+        "recoveries": 0
+      },
+      "samples": 4,
+      "entered": true,
+      "returned": true
+    }
+  ],
+  "gpuErrors": [],
+  "passed": true
+}

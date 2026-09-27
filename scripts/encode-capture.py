@@ -27,7 +27,10 @@ def encode(directory, destination):
         # Read every actual JPEG header rather than trusting manifest dimensions.
         if jpeg_dimensions(directory / 'frames' / name) != (width, height):
             raise ValueError('Source frame dimensions differ from manifest')
-        lines.extend([f"file 'frames/{name}'", 'option framerate 1000'])
+        # Microsecond input timestamps avoid cumulative millisecond rounding
+        # across irregular CDP frames. Match the output track timebase below.
+        # https://ffmpeg.org/ffmpeg-formats.html#concat-1
+        lines.extend([f"file 'frames/{name}'", 'option framerate 1000000'])
         if i + 1 < len(frames):
             delta = frames[i + 1]['timestamp'] - frame['timestamp']
             if not 0 < delta < float('inf'):
@@ -36,9 +39,12 @@ def encode(directory, destination):
     elapsed = frames[-1]['timestamp'] - frames[0]['timestamp']
     concat = directory / 'frames.ffconcat'
     concat.write_text('\n'.join(lines) + '\n')
+    # Keep decode and presentation order equal for irregular capture intervals.
+    # B-frame reordering shortened the MP4 stream duration by 67 ms in a real
+    # 1,178-frame capture even though its final presentation timestamp was right.
     subprocess.run([media_binary('ffmpeg'), '-hide_banner', '-loglevel', 'warning', '-y',
                     '-f', 'concat', '-safe', '0', '-i', str(concat), '-map_metadata', '-1',
-                    '-vf', 'setsar=1', '-c:v', 'libx264', '-x264-params', 'fps=60/1', '-preset', 'fast', '-crf', '19',
+                    '-vf', 'setsar=1', '-c:v', 'libx264', '-x264-params', 'fps=60/1', '-bf', '0', '-preset', 'fast', '-crf', '19',
                     '-pix_fmt', 'yuv420p', '-fps_mode', 'vfr', '-video_track_timescale', '1000000',
                     '-metadata:s:v:0', 'rotate=0', '-movflags', '+faststart', str(destination)], check=True)
     encoded = probe_video(destination)

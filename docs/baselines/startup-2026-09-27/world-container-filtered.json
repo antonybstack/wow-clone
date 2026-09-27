@@ -1,0 +1,10 @@
+{
+  "blocks": 52,
+  "typedRaw": 3291020,
+  "typedGzip": 975927,
+  "meshoptGlb": 1054664,
+  "meshoptGzip": 641127,
+  "nodeDecodeMs": 41.695750000000004,
+  "decodedPrimitives": 52,
+  "note": "Offline container size comparison; does not measure browser Lite conversion/upload or guarantee exact quantization-free source equality."
+}

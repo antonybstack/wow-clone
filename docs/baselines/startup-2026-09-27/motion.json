@@ -1,0 +1,63 @@
+{
+  "start": {
+    "x": -0.0006052440253483575,
+    "z": -0.0010680776271307709,
+    "recoveries": 0
+  },
+  "end": {
+    "x": 0.3453938624274885,
+    "z": 69.53945409229478
+  },
+  "recoveries": 0,
+  "physics": true,
+  "marks": {
+    "begin": 337.59999990463257,
+    "engine-created": 360.7999999523163,
+    "gpu-probe-end": 363.2000000476837,
+    "world-start": 365.2000000476837,
+    "havok-runtime-available": 458.7000000476837,
+    "world-end": 719.5,
+    "havok-start": 720.5999999046326,
+    "havok-runtime-start": 721.5,
+    "havok-runtime-end": 721.5,
+    "havok-world-end": 723.5999999046326,
+    "havok-colliders-end": 730.8999998569489,
+    "havok-controller-end": 732.2999999523163,
+    "havok-end": 733.3999998569489,
+    "body-start": 733.5,
+    "body-end": 753.5999999046326,
+    "equipment-start": 754.8999998569489,
+    "equipment-end": 768.3999998569489,
+    "register-start": 773.5999999046326,
+    "register-end": 799.2999999523163,
+    "first-render-return": 811.5999999046326,
+    "first-gpu-completed": 1020.8999998569489,
+    "playable": 1161.5,
+    "bg-start": 1161.5999999046326,
+    "bg-imports-end": 1267,
+    "bg-dummy-end": 1792.7999999523163,
+    "bg-enemies-end": 1845.8999998569489,
+    "combat-ready": 2168.7999999523163,
+    "late-register-start": 2170.2000000476837,
+    "late-register-end": 2171.899999856949,
+    "hostiles-ready": 2212.2999999523163,
+    "bg-foliage-end": 11175.299999952316,
+    "ready": 12650.899999856949,
+    "region-ready": 12650.899999856949
+  },
+  "streaming": {
+    "blocks": 1035,
+    "worstInstallMs": 2.5999999046325684,
+    "backgroundWorstInstallMs": 2.5999999046325684,
+    "backgroundSlowest": {
+      "name": "Grave stonework",
+      "triangles": 4096
+    },
+    "totalInstallMs": 837.2000005245209,
+    "allocatedBytes": 210049236
+  },
+  "enemies": 7,
+  "foliage": 117242,
+  "recording": true,
+  "errors": []
+}

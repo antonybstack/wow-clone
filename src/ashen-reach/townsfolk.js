@@ -1,3 +1,4 @@
+import {sceneLifetime} from './scene-lifetime.js';
 /**
  * Hollowmere background people. Mixamo attachCrowd is 55,320 visible triangles
  * per body (Alpha_Surface 34,480 + Alpha_Joints 20,840) and a unique loadGltf
@@ -125,6 +126,7 @@ function woodMaterial(world){
  * @param {{meshes?: any[]}} world
  */
 export async function attachTownsfolk(engine,scene,world){
+ const lifetime=sceneLifetime(scene);lifetime.throwIfAborted();
  if(typeof location!=='undefined'&&new URLSearchParams(location.search).has('noTownsfolk'))return {mesh:null,triangles:0,draws:0,count:0};
  const batch=new Batch('Townsfolk');
  const gateX=pathX(75);
@@ -136,6 +138,7 @@ export async function attachTownsfolk(engine,scene,world){
  const lights=world.lights||[];
  let material=woodMaterial(world);
  if(!material)material=await surface(engine,'Townsfolk cloth','/tex/wood_planks_grey/diff.jpg',{tint:[.57,.43,.31],light:.62,pixels:64});
+ lifetime.throwIfAborted();
  const mesh=batch.commit(engine,scene,material,lights);
  const triangles=batch.idx.length/3;
  return {mesh,triangles,draws:mesh?1:0,count:3};

@@ -1,0 +1,174 @@
+{
+  "errors": [],
+  "routes": [
+    {
+      "name": "town",
+      "start": {
+        "x": -0.0002927328889440904,
+        "z": 79.99853633555529,
+        "recoveries": 0,
+        "far": 306
+      },
+      "end": {
+        "x": -0.41599179841422723,
+        "z": 111.24410356569952,
+        "recoveries": 0,
+        "physics": true,
+        "woodland": {
+          "disposed": false,
+          "revision": 4,
+          "transitions": 4,
+          "tiles": 27,
+          "full": 5,
+          "triangles": 359670
+        },
+        "far": 306
+      },
+      "movement": 31.248332391449974
+    },
+    {
+      "name": "bridge",
+      "start": {
+        "x": 0,
+        "z": 209.99378442934966,
+        "recoveries": 0,
+        "far": 310
+      },
+      "end": {
+        "x": 0,
+        "z": 241.53788442901617,
+        "recoveries": 0,
+        "physics": true,
+        "woodland": {
+          "disposed": false,
+          "revision": 8,
+          "transitions": 8,
+          "tiles": 27,
+          "full": 5,
+          "triangles": 312218
+        },
+        "far": 310
+      },
+      "movement": 31.544099999666514
+    },
+    {
+      "name": "cathedral",
+      "start": {
+        "x": 0,
+        "z": 280,
+        "recoveries": 0,
+        "far": 311
+      },
+      "end": {
+        "x": 0,
+        "z": 311.5630000000029,
+        "recoveries": 0,
+        "physics": true,
+        "woodland": {
+          "disposed": false,
+          "revision": 9,
+          "transitions": 9,
+          "tiles": 27,
+          "full": 4,
+          "triangles": 309670
+        },
+        "far": 311
+      },
+      "movement": 31.563000000002887
+    },
+    {
+      "name": "forest",
+      "start": {
+        "x": -79.99741006205223,
+        "z": 180.0007507066904,
+        "recoveries": 0,
+        "far": 315
+      },
+      "end": {
+        "x": -110.3620433910547,
+        "z": 180.74482553537987,
+        "recoveries": 0,
+        "physics": true,
+        "woodland": {
+          "disposed": false,
+          "revision": 13,
+          "transitions": 13,
+          "tiles": 27,
+          "full": 8,
+          "triangles": 379144
+        },
+        "far": 315
+      },
+      "movement": 30.37374860888028
+    }
+  ],
+  "transitions": [
+    {
+      "delta": 1,
+      "far": 302
+    },
+    {
+      "delta": 1,
+      "far": 303
+    },
+    {
+      "delta": 1,
+      "far": 304
+    },
+    {
+      "delta": 1,
+      "far": 305
+    },
+    {
+      "delta": 1,
+      "far": 306
+    },
+    {
+      "delta": 1,
+      "far": 307
+    },
+    {
+      "delta": 1,
+      "far": 308
+    },
+    {
+      "delta": 1,
+      "far": 309
+    },
+    {
+      "delta": 1,
+      "far": 310
+    },
+    {
+      "delta": 1,
+      "far": 311
+    },
+    {
+      "delta": 1,
+      "far": 312
+    },
+    {
+      "delta": 1,
+      "far": 313
+    },
+    {
+      "delta": 1,
+      "far": 314
+    }
+  ],
+  "shadowCache": {
+    "before": 315,
+    "after": 316,
+    "positionUnchanged": true
+  },
+  "disposed": {
+    "disposed": true,
+    "revision": 13,
+    "transitions": 13,
+    "tiles": 0,
+    "full": 0,
+    "triangles": 0
+  },
+  "gpuErrors": [],
+  "passed": true
+}

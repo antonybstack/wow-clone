@@ -16,7 +16,7 @@ export function paintLitUniform(material, name, value) {
   setShaderUniform(material, name, value);
 }
 export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false,wind=false,emission=0,skyFill=0,pixels=128,uvScale=1,ground=false,nightGrade=false,detail=false,saturation=1}={}){
- const tex=await loadTexture2D(engine,url,{invertY:false,srgb:false,mipMaps:true,minFilter:'nearest',magFilter:'nearest'});
+ const tex=await loadTexture2D(engine,engine.ashenTextureURLs?.[url]??url,{invertY:false,srgb:false,mipMaps:true,minFilter:'nearest',magFilter:'nearest'});
  const mat=createShaderMaterial({name,attributes:['position','normal','uv','color','uv2'],uniforms:['worldViewProjection','world','cameraPosition','view',...SUN_SHADOW_UNIFORMS,...LOCAL_LIGHT_UNIFORMS,{name:'localSpecularStrength',type:'f32',defaultValue:1},{name:'surfaceDetailStrength',type:'f32',defaultValue:1},{name:'time',type:'f32',defaultValue:0},{name:'firePosition',type:'vec3<f32>',defaultValue:[0,0,0]},{name:'fireStrength',type:'f32',defaultValue:0},{name:'handFirePosition',type:'vec3<f32>',defaultValue:[0,0,0]},{name:'handFireStrength',type:'f32',defaultValue:0},{name:'lavaPosition',type:'vec3<f32>',defaultValue:[0,0,0]},{name:'lavaStrength',type:'f32',defaultValue:0}],samplers:[...SUN_SHADOW_SAMPLERS,...LOCAL_LIGHT_SAMPLERS,...(detail?['stoneDetail']:[]),...(ground?['albedo','paving']:['albedo'])],backFaceCulling:false,needAlphaTesting:alpha,
  vertexSource:`${OUT}
  @vertex fn mainVertex(i:VertexInput)->Out{var o:Out;var p=i.position;${wind?'p.x+=sin(shaderUniforms.time*1.3+p.x*.7+p.z*.43)*i.color.a*.08;p.z+=cos(shaderUniforms.time*.8+p.x*.44)*i.color.a*.05;':''}o.position=shaderSystem.worldViewProjection*vec4<f32>(p,1);o.p=(shaderSystem.world*vec4<f32>(p,1)).xyz;o.uv=i.uv;o.color=i.color;o.normal=i.normal;o.lamp=i.uv2.x;return o;}`,
@@ -72,8 +72,9 @@ export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false
  c=aerial(c,i.p,shaderSystem.cameraPosition);
  return vec4<f32>(c,1);
  }`});
- if(detail)setShaderTexture(mat,'stoneDetail',await loadTexture2D(engine,'/ashen-reach/stone-detail.png',{invertY:false,srgb:false,mipMaps:true,minFilter:'linear',magFilter:'linear'}));
- bindSunReceiver(engine,mat);bindLocalReceiver(engine,mat);setShaderTexture(mat,'albedo',tex);if(ground)setShaderTexture(mat,'paving',await loadTexture2D(engine,'/tex/rock_wall_08/diff.jpg',{invertY:false,srgb:false,mipMaps:true,minFilter:'nearest',magFilter:'nearest'}));return mat;
+ if(detail)setShaderTexture(mat,'stoneDetail',await loadTexture2D(engine,engine.ashenTextureURLs?.['/ashen-reach/stone-detail.png']??'/ashen-reach/stone-detail.png',{invertY:false,srgb:false,mipMaps:true,minFilter:'linear',magFilter:'linear'}));
+ if(engine.ashenTextureUpgrades)engine.ashenTextureUpgrades.push({mat,slots:[['albedo',url,'nearest'],...(detail?[['stoneDetail','/ashen-reach/stone-detail.png','linear']]:[]),...(ground?[['paving','/tex/rock_wall_08/diff.jpg','nearest']]:[])]});
+ bindSunReceiver(engine,mat);bindLocalReceiver(engine,mat);setShaderTexture(mat,'albedo',tex);if(ground)setShaderTexture(mat,'paving',await loadTexture2D(engine,engine.ashenTextureURLs?.['/tex/rock_wall_08/diff.jpg']??'/tex/rock_wall_08/diff.jpg',{invertY:false,srgb:false,mipMaps:true,minFilter:'nearest',magFilter:'nearest'}));return mat;
 }
 
 /**
@@ -87,7 +88,7 @@ export async function surface(engine,name,url,{tint=[1,1,1],light=.6,alpha=false
  * the layered, lit ceiling the references have in place of a flat lid.
  */
 export async function sky(engine,scene){
- const tex=await loadTexture2D(engine,'/ashen-reach/sky-generated.jpg',{invertY:false,mipMaps:true});
+ const tex=await loadTexture2D(engine,engine.ashenTextureURLs?.['/ashen-reach/sky-generated.jpg']??'/ashen-reach/sky-generated.jpg',{invertY:false,mipMaps:true});
  const mat=createShaderMaterial({name:'Ashen cloud ceiling',attributes:['position','uv'],uniforms:['worldViewProjection',{name:'time',type:'f32',defaultValue:0}],samplers:['cloud'],backFaceCulling:false,depthWrite:false,
  vertexSource:`${OUT} @vertex fn mainVertex(i:VertexInput)->Out{var o:Out;o.position=shaderSystem.worldViewProjection*vec4<f32>(i.position,1);o.p=i.position;o.uv=i.uv;o.color=vec4<f32>(1);o.normal=vec3<f32>(0,1,0);return o;}`,
  fragmentSource:`${OUT}
@@ -213,7 +214,7 @@ c=c+SUN_COLOR*rim*.25;
  c=mix(c,skyColor(vec3<f32>(d.x,0.0,d.z)),pow(1.0-abs(d.y),9.0)*.75);
  // Sun shafts are integrated through shadowed world-space fog in the post pass.
  return vec4<f32>(c,1);}`});
- setShaderTexture(mat,'cloud',tex);
+ setShaderTexture(mat,'cloud',tex);if(engine.ashenTextureUpgrades)engine.ashenTextureUpgrades.push({mat,slots:[['cloud','/ashen-reach/sky-generated.jpg','linear',false]]});
  const mesh=createSphere(engine,{diameter:2,segments:32});mesh.name='AshenSky';mesh.material=mat;mesh.renderOrder=-100;addToScene(scene,mesh);
  return {mat,update(t){
   // Center the dome on the active eye. A fixed origin clips behind explorers

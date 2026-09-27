@@ -188,8 +188,10 @@ function addStaticColliders(world, descriptors, own) {
             if (type === "mesh") {
                 if (!mesh) throw new Error("Triangle collision requires a mesh");
                 const shape = ownedShape = own.shape(createPhysicsShape(world, { type: PhysicsShapeType.MESH, mesh }));
-                // Procedural terrain is authored in world space or has a root transform.
-                own.body(createPhysicsAggregate(world, mesh, PhysicsShapeType.MESH,
+                // Streamed world-space triangles can release their render source after
+                // cooking: an explicit identity node owns the static body transform.
+                // Other callers retain their original mesh transform.
+                own.body(createPhysicsAggregate(world, entry.node ?? mesh, PhysicsShapeType.MESH,
                     { mass: 0, friction: 0.9, restitution: 0, shape }).body);
                 counts.meshCount++;
                 continue;
@@ -552,9 +554,22 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
 
     return {
         body, get usingPhysics() { return usingPhysics; }, hp: 100, hpMax: 100,
+        /** Streamed groups share the initial collision owner's body/shape lifetime.
+         * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/42-physics.md */
+        installStaticColliders(entries) {
+            if (sceneDisposed || !physicsWorld || !usingPhysics) throw Error('Physics is not available for streamed collision');
+            const bodies=[],shapes=[];
+            const group={shape:s=>{shapes.push(s);return own.shape(s);},body:b=>{bodies.push(b);return own.body(b);},releaseShape:s=>own.releaseShape(s),removeBody:b=>own.removeBody(b)};
+            const added=addStaticColliders(physicsWorld,entries,group);let live=true;
+            const dispose=()=>{if(!live)return;live=false;for(const b of bodies)own.removeBody(b);for(const s of shapes)own.releaseShape(s);};
+            if(added.skipped){dispose();throw Error('A streamed collider failed to initialize');}
+            counts.meshCount+=added.meshCount;counts.boxCount+=added.boxCount;
+            return {dispose(){if(!live)return;dispose();counts.meshCount-=added.meshCount;counts.boxCount-=added.boxCount;}};
+        },
         raycast: (from, to) => !sceneDisposed && usingPhysics && physicsWorld
             ? physicsRaycast(physicsWorld, from, to) : null,
         get capsuleHeight() { return capsuleHeightOf(); },
+        get capsuleRadius() { return spec.radius * heightScale; },
         get heightScale() { return heightScale; },
         setHeightScale(scale) {
             const next = Math.min(1.15, Math.max(0.9, scale));

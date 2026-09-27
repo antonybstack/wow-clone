@@ -10,6 +10,7 @@ await fs.mkdir(dir, {recursive: true});
 const browser = await chromium.connectOverCDP(CDP_URL);
 const context = await browser.newContext({viewport: {width: 1280, height: 720}});
 const page = await context.newPage();
+const duringStartup=process.argv.includes('--during-startup');
 const report = {checks: [], pageErrors: [], consoleErrors: []};
 page.on('pageerror', error => report.pageErrors.push(error.message));
 page.on('console', message => {
@@ -22,7 +23,7 @@ const check = (name, value) => {
 
 try {
   await page.goto(url);
-  await page.waitForFunction(() => window.ASHEN?.ready === true, null, {timeout: 120000});
+  await page.waitForFunction(during=>during?window.ASHEN?.playableReady===true:window.ASHEN?.ready===true,duringStartup,{timeout:120000});
   check('Loss dialog is hidden before device loss', !(await page.locator('#device-loss').isVisible()));
   await page.keyboard.down('w');
   await page.waitForTimeout(100);

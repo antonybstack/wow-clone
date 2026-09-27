@@ -1,3 +1,4 @@
+import {sceneLifetime} from './scene-lifetime.js';
 import {
   loadTexture2D,
   createGridSpriteAtlas,
@@ -78,6 +79,7 @@ export async function createGravePulseVfx(
   world,
   handPosition,
 ) {
+  const lifetime=sceneLifetime(scene);lifetime.throwIfAborted();
   const random = rng(7741);
   const [fireTex, smokeTex, sparkTex] = await Promise.all(
     ["fire_01.png", "smoke_01.png", "spark_05.png"].map((name) =>
@@ -90,6 +92,7 @@ export async function createGravePulseVfx(
       }),
     ),
   );
+  lifetime.throwIfAborted();
   const atlas = (tex) =>
     createGridSpriteAtlas(tex, { cellWidthPx: 512, cellHeightPx: 512 });
   const fireSys = createFacingBillboardSystem(atlas(fireTex), {

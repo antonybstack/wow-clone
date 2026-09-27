@@ -207,7 +207,18 @@ export class Batch{
   *  the window applied. This is required because the bake runs before the shader's own
   *  `lampGate=smoothstep(40,55,z)` ever executes -- that gate protects the shader-side knee/colour,
   *  not values baked here. */
- commit(engine,scene,material,lights=[]){if(!this.idx.length)return null;const vcount=this.p.length/3;const uv2=new Float32Array(vcount*2);if(lights.length)for(let i=0;i<vcount;i++){const x=this.p[i*3],y=this.p[i*3+1],z=this.p[i*3+2];uv2[i*2]=bakeLamp(x,y,z,lights);}const m=createMeshFromData(engine,this.name,new Float32Array(this.p),new Float32Array(this.n),new Uint32Array(this.idx),new Float32Array(this.u),uv2,undefined,new Float32Array(this.c));prepareLinearMaterial(scene,material);m.material=material;m.pickable=false;addToScene(scene,m);return m;}
+ buffers(lights=[]){
+  const uv2=new Float32Array(this.p.length/3*2);
+  if(lights.length)for(let i=0;i<this.p.length/3;i++)uv2[i*2]=bakeLamp(this.p[i*3],this.p[i*3+1],this.p[i*3+2],lights);
+  return {positions:new Float32Array(this.p),normals:new Float32Array(this.n),indices:new Uint32Array(this.idx),uvs:new Float32Array(this.u),uv2,colors:new Float32Array(this.c)};
+ }
+ commit(engine,scene,material,lights=[]){
+  if(!this.idx.length)return null;
+  const b=this.buffers(lights);
+  const m=createMeshFromData(engine,this.name,b.positions,b.normals,b.indices,b.uvs,b.uv2,undefined,b.colors);
+  prepareLinearMaterial(scene,material);m.material=material;m.pickable=false;addToScene(scene,m);
+  return m;
+ }
 }
 
 /** One vertex of the M1/M7a baked lamp term. `Batch.commit` writes this into uv2.x; the

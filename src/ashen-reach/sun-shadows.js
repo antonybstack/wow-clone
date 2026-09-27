@@ -147,7 +147,7 @@ export function createSunShadows(engine,scene,sun,{depthOnlyFragment=false}={}){
   fragmentSource:'@fragment fn mainFragment() {}'});
  controller={state,csm,far,csmTexture,farTexture,data,get gpuRelease(){return gpuRelease;},
   addReceiver(mat){if(disposed)return;receivers.add(mat);setShaderTexture(mat,'sunCascades',csmTexture);setShaderTexture(mat,'sunFar',farTexture);updateMaterial(mat);state.receivers=receivers.size;},
-  setWorld(world){if(disposed)return;worldCasters=world.meshes.filter(m=>!['Ash motes','Lamp light shafts'].includes(m.name));worldCasterSet=new Set(worldCasters);for(const mesh of worldCasters)setShadowCasterMaterial(mesh.material,caster);farCasters=worldCasters;state.staticCasters=worldCasters.length;dynamic=[];candidateDynamic=[];controller.update(true);},
+  setWorld(world){if(disposed)return;worldCasters=(world.shadowMeshes??world.meshes).filter(m=>!['Ash motes','Lamp light shafts'].includes(m.name));worldCasterSet=new Set(worldCasters);for(const mesh of worldCasters)setShadowCasterMaterial(mesh.material,caster);farCasters=worldCasters;state.staticCasters=worldCasters.length;dynamic=[];candidateDynamic=[];controller.update(true);},
   setFarCasters(meshes){farCasters=meshes;},
   update(force=false){
    if(disposed)return;

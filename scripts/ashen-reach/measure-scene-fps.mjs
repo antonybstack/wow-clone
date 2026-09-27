@@ -45,10 +45,10 @@ if (gpuTiming) url.searchParams.set("gpuTiming", "");
 if (pixelRatio) url.searchParams.set("pixelRatio", pixelRatio);
 
 const browser = await chromium.connectOverCDP(CDP_URL);
-const page = browser.contexts()[0].pages().find((p) =>
-  p.url().includes("ashen-reach.html"),
-);
-if (!page) throw new Error("No ashen-reach.html tab on " + CDP_URL);
+// Own the page we measure; never navigate a user's existing game or leave a
+// disconnected benchmark rendering against the next test's GPU budget.
+const context=await browser.newContext({viewport:{width:1280,height:720},deviceScaleFactor:1});
+const page=await context.newPage();
 
 function capVerdict(summary) {
   if (summary.vsyncCapped) {
@@ -198,5 +198,10 @@ try {
   console.log(JSON.stringify(report, null, 2));
 } finally {
   await page.keyboard.up("KeyW").catch(() => {});
+  // connectOverCDP().close() disconnects the client; it does not stop the
+  // browser. An uncapped page left here competes with the user's game and
+  // subsequent benchmarks (96 -> 173 FPS when two abandoned runs were paused).
+  // https://playwright.dev/docs/api/class-browsertype#browser-type-connect-over-cdp
+  if (!flag("keep-open")) await context.close().catch(() => {});
   await browser.close();
 }

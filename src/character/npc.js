@@ -8,6 +8,7 @@ import {prepareLinearMaterial} from '../ashen-reach/linear-materials.js';
  * https://doc.babylonjs.com/lite/architecture/13-skeleton/
  */
 import {
+    onSceneDispose,disposeMeshGpu,
     addAnimationGroups,
     addToScene,
     createAnimationManager,
@@ -156,8 +157,13 @@ export function prefetchNpcBuffer() {
 }
 
 export async function attachAnimatedHuman(engine, scene, pose) {
+    let disposed=false;onSceneDispose(scene,()=>{disposed=true;});
     const source = pose.buffer ? pose.buffer.slice(0) : BODY_URL;
     const container = await loadGltf(engine, source);
+    // A pending native decode can outlive its scene. These meshes have never
+    // joined a render scene, so release their GPU claims before returning.
+    // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/01-scene.md
+    if(disposed){for(const mesh of getContainerMeshes(container))disposeMeshGpu(mesh);throw Error('Scene disposed during NPC decode');}
     for (const mesh of getContainerMeshes(container)) prepareLinearMaterial(scene, mesh.material);
     addToScene(scene, container);
     const root = container.entities?.[0];

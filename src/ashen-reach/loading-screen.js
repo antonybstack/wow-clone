@@ -29,39 +29,15 @@ export function beginLoading() {
   }, 20000);
 }
 
-/**
- * Hand control to the player, then let the overlay fade out behind them.
- *
- * This used to await the whole 350 ms exit transition before returning, and the caller
- * enables input on the line after the await -- so the overlay's CSS animation sat on the
- * input-critical path and the player could not move for a third of a second after the
- * world was genuinely ready. The fade is decoration; it does not need to block anything.
- * `#loading.leaving` is already `pointer-events:none`, so the only thing still holding
- * input back once the class is on is our own capture-phase key blocker, which is why it
- * comes off here rather than after the timer.
- *
- * The overlay is still visibly fading for up to 350 ms after this resolves. Frames behind
- * it are real and interactive; it is a dissolve over live gameplay, not a held still.
- */
+/** Reveal the completed, dressed frame and release input without a timed fade. */
 export async function finishLoading() {
   clearTimeout(slowTimer);
   const root = document.getElementById('loading');
   if (root) {
     setLoadingStage(TOTAL, 'The gates are open.');
-    // Present the ready, clothed player before revealing the canvas. No artificial
-    // minimum loading time; only the short exit transition remains.
-    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-    root.classList.add('leaving');
-    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) root.remove();
-    else {
-      // transitionend is the accurate signal; the timer is the fallback for a
-      // background tab, where transitions may never run to completion.
-      let removed = false;
-      const drop = () => { if (!removed) { removed = true; root.remove(); } };
-      root.addEventListener('transitionend', drop, {once: true});
-      setTimeout(drop, 450);
-    }
+    // main already awaited grounded support and a completed dressed frame.
+    // An extra animation-frame delay adds latency without another GPU check.
+    root.remove();
   }
   document.body.classList.remove('is-loading');
   window.removeEventListener('keydown', blockLoadingKeys, true);

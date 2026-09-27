@@ -110,7 +110,9 @@ try {
         const tasks = window.__startupLongTasks;
         return {
           marks,
-          playableReadyMs: Math.max(marks.ready ?? 0, marks['hostiles-ready'] ?? 0),
+          playableReadyMs: marks.playable ?? null,
+          regionReadyMs: marks['region-ready'] ?? null,
+          fullReadyMs: Math.max(marks.ready ?? 0, marks['hostiles-ready'] ?? 0),
           firstGpuCompletedMs: marks['first-gpu-completed'] ?? null,
           presentMs: game.presentMs, loadMs: game.loadMs,
           longTasks: {count: tasks.length, totalMs: tasks.reduce((sum, task) => sum + task.durationMs, 0),

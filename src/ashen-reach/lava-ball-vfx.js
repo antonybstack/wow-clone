@@ -1,3 +1,4 @@
+import {sceneLifetime} from './scene-lifetime.js';
 import {createSphere,createShaderMaterial,setShaderUniform,setMeshVisible,addToScene,createPointLight,loadTexture2D,createGridSpriteAtlas,createFacingBillboardSystem,addFacingBillboardSystem,addBillboardSprite,updateBillboardSprite,billboardBlendAdditive,billboardBlendAlpha} from '@babylonjs/lite';
 import {rng} from './geometry.js';
 import {paintLitUniform} from './materials.js';
@@ -5,14 +6,17 @@ const clamp=x=>Math.max(0,Math.min(1,x));
 const xyz=p=>[p.x,p.y,p.z];
 /** One molten mesh and three fixed sprite pools; no GPU allocations at cast time. */
 export async function createLavaBallVfx(engine,scene,world,handPosition,player){
+ const lifetime=sceneLifetime(scene);lifetime.throwIfAborted();
  const random=rng(9017),pools=await Promise.all([
   ['fire_01.png',64,billboardBlendAdditive],['smoke_01.png',14,billboardBlendAlpha],['spark_05.png',96,billboardBlendAdditive],
  ].map(async([name,count,blendMode])=>{
   const texture=await loadTexture2D(engine,'/ashen-reach/fire-blast/'+name,{invertY:false,srgb:true,mipMaps:true,minFilter:'nearest',magFilter:'nearest'});
+  lifetime.throwIfAborted();
   const atlas=createGridSpriteAtlas(texture,{cellWidthPx:512,cellHeightPx:512});
   const system=createFacingBillboardSystem(atlas,{capacity:count,blendMode});addFacingBillboardSystem(scene,system);
   return Array.from({length:count},()=>({handle:addBillboardSprite(system,{position:[0,-50,0],visible:false,sizeWorld:[1,1]}),seed:random(),angle:random()*Math.PI*2}));
  }));
+ lifetime.throwIfAborted();
  const OUT='struct LavaOut{@builtin(position) position:vec4<f32>,@location(0) p:vec3<f32>,@location(1) normal:vec3<f32>};';
  const material=createShaderMaterial({name:'Molten basalt',attributes:['position','normal'],uniforms:['worldViewProjection',{name:'time',type:'f32',defaultValue:0},{name:'heat',type:'f32',defaultValue:0}],
   vertexSource:`${OUT} @vertex fn mainVertex(i:VertexInput)->LavaOut{var o:LavaOut;o.position=shaderSystem.worldViewProjection*vec4<f32>(i.position,1);o.p=i.position;o.normal=i.normal;return o;}`,

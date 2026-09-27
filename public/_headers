@@ -14,3 +14,12 @@
 /*.wasm
   Content-Type: application/wasm
   Cache-Control: public, max-age=60, must-revalidate
+
+/
+  Cache-Control: public, max-age=60, must-revalidate
+
+/ashen-reach/startup/starter/manifest.json
+  Cache-Control: no-cache
+
+/ashen-reach/startup/character/manifest.json
+  Cache-Control: no-cache

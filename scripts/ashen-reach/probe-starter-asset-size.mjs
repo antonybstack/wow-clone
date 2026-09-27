@@ -29,7 +29,14 @@ const size=buffer=>({bytes:buffer.byteLength,brotliQuality6Bytes:brotliCompressS
 const report={purpose:'Offline size feasibility only; no GLB deployed, no visual/animation acceptance. Clothing remains separate and is included only as current byte cost.',sourceSha256:createHash('sha256').update(input).digest('hex'),source:size(input),variants:[]};
 for(const maxTextureSize of [null,512,256]){
   const doc=await io.readBinary(input),before=geometryHashes(doc);
-  for(const animation of doc.getRoot().listAnimations())if(!keep.has(animation.getName()))animation.dispose();
+  for(const animation of doc.getRoot().listAnimations())if(!keep.has(animation.getName())){
+    // Graph disposal is not recursive. Detached channels still reference
+    // samplers/accessors unless explicitly disposed before prune().
+    // https://gltf-transform.dev/modules/core/classes/Property#dispose
+    for(const channel of animation.listChannels())channel.dispose();
+    for(const sampler of animation.listSamplers())sampler.dispose();
+    animation.dispose();
+  }
   await doc.transform(prune({keepLeaves:true,keepAttributes:true}));
   if(maxTextureSize)for(const texture of doc.getRoot().listTextures()){
     const source=Buffer.from(texture.getImage());

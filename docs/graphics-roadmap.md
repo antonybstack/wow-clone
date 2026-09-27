@@ -1,5 +1,9 @@
 # Graphics milestones
 
+## Progressive startup — 2026-09-27
+
+The accepted P0–P5 implementation is complete through local candidate acceptance; production gates are recorded in [the implementation retrospective](one-second-startup-implementation-2026-09-27.md). Immediate dressed/Havok local play, bounded worker-driven completion, native position-only shadow buffers, failure/retry and async teardown are implemented. Existing V24–V26 architecture and routes remain the authored source. The one-second claim applies only to the measured fast-network envelope; slow-network and physical-device limits are explicit.
+
 ## Startup follow-up — 2026-09-26
 
 [Terrain corner reuse](terrain-startup-optimization-2026-09-26.md) is released as `fb1057d` / Pages `279d43aa-65e8-43ca-a454-e1bccff1d4c8`. Warm local playable-ready median improved 45.2% with exact matching terrain position, normal, UV, and index buffers. All four representative movement routes remain over 120 FPS; production movement, mobile fallback, WebKit, and reviewed live motion passed. A candidate CPU profile now identifies lamp baking as the largest remaining JavaScript self-time group (757 ms). Its repeated-work opportunity needs a separate measured experiment. Native static shadow caching and async shader compilation remain disabled based on the [isolated investigation](rendering-performance-investigation-2026-09-26.md). Physical iPhone load timing remains open.

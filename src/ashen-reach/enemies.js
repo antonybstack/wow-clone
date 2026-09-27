@@ -8,6 +8,8 @@
  * separate street/well box so raising the global zMax cannot walk a grave
  * shade into the tavern.
  */
+import {onSceneDispose} from '@babylonjs/lite';
+import {yieldToFrame} from './frame-budget.js';
 import { attachAnimatedHuman, prefetchNpcBuffer } from "../character/npc.js";
 import { attachShadeSilhouette } from "./shade-garment.js";
 import { height, pathX } from "./geometry.js";
@@ -483,11 +485,25 @@ export const CHURCHYARD_ANCHORS = Object.freeze(ANCHORS.filter((spec) => spec.zo
 export const TOWN_ANCHORS = Object.freeze(ANCHORS.filter((spec) => spec.zone === "town"));
 
 export async function loadEnemies(engine, scene, world, specs = ANCHORS, buffer) {
-  const bytes = buffer || await prefetchNpcBuffer();
-  return Promise.all(specs.map((spec, i) => makeEnemy(engine, scene, world, { ...spec, buffer: bytes }, i)));
+  let disposed=false;onSceneDispose(scene,()=>{disposed=true;});
+  const bytes=buffer||await prefetchNpcBuffer(),enemies=[];
+  // Each native GLB parse/upload is indivisible. Avoid resuming four complete
+  // character installations in one frame while movement is already live.
+  for(const [i,spec] of specs.entries()){
+    if(disposed)throw Error('Scene disposed during enemy loading');
+    enemies.push(await makeEnemy(engine,scene,world,{...spec,buffer:bytes},i));
+    await yieldToFrame();
+  }
+  return enemies;
 }
 
 /** Havok capsules registered after the player world exists, so they can move with the shades. */
+export function hasSpawnClearance(player,position,height,radius){
+  const p=player.body.position;
+  return Math.abs(p.y-position.y)>(player.capsuleHeight+height)*.5
+    || Math.hypot(p.x-position.x,p.z-position.z)>player.capsuleRadius+radius+.1;
+}
+
 export function bindEnemyColliders(enemies, player, world) {
   for (const enemy of enemies) {
     const scale = enemy.scale || 1;
@@ -512,10 +528,22 @@ export function bindEnemyColliders(enemies, player, world) {
     };
     world.colliders.push(desc);
     enemy.colliderDesc = desc;
-    enemy.moveCollider = (x, cy, z) => player.moveAnimatedCollider?.(enemy.id, x, cy, z);
+    // Background loading can finish after the player reaches an NPC's anchor.
+    // Wait for real separation before enabling that newly arrived collider;
+    // never resolve the overlap by moving the player or changing normal contacts.
+    let waitingForClearance=!hasSpawnClearance(player,desc.position,capsuleHeight,capsuleRadius),wanted=true;
+    const applyEnabled=()=>{
+      desc.enabled=wanted&&!waitingForClearance;
+      player.setAnimatedColliderEnabled?.(enemy.id,desc.enabled);
+    };
+    applyEnabled();
+    enemy.moveCollider = (x, cy, z) => {
+      player.moveAnimatedCollider?.(enemy.id,x,cy,z);
+      if(waitingForClearance&&hasSpawnClearance(player,{x,y:cy,z},capsuleHeight,capsuleRadius)){waitingForClearance=false;applyEnabled();}
+      if(waitingForClearance)desc.enabled=false;
+    };
     enemy.setColliderEnabled = (on) => {
-      desc.enabled = !!on;
-      player.setAnimatedColliderEnabled?.(enemy.id, on);
+      wanted=!!on;applyEnabled();
     };
     enemy.moveCollider(enemy.position.x, y, enemy.position.z);
   }

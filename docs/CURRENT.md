@@ -1,3 +1,7 @@
+## Progressive startup release candidate — 2026-09-27
+
+[Implementation and verification](one-second-startup-implementation-2026-09-27.md) restores performance after isolating two abandoned GPU harness pages and correcting the new shadow vertex stride. The completed candidate measured **193–231 FPS** across five representative routes (M1 Max, uncapped Chromium WebGPU, 1280×720, seven enemies, three 12-second runs each). A playable dressed/Havok starting area now loads before the rest of the finite region; 20 fresh-process local compressed-preview runs at 50 Mbit/s / 40 ms measured **p95 910.9 ms**, maximum **912.0 ms**. Background work, failure/retry, race switching, all destination returns, cathedral routes, boundaries, mobile touch/depth fallback and desktop WebKit were checked. Production release verification is pending; existing production remains `279d43aa-65e8-43ca-a454-e1bccff1d4c8`. Physical iPhone startup and memory remain unmeasured.
+
 # Current direction — Ashen Reach
 
 ## One-second playable startup investigated — 2026-09-26

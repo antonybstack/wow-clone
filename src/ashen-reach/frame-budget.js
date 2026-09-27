@@ -28,21 +28,11 @@ const yieldToFrame = () => new Promise(resolve => requestAnimationFrame(() => re
 
 export {yieldToFrame};
 
-/**
- * A stopwatch that says when to hand the frame back, and how much to take next time.
- *
- * A fixed slice cannot be right for both halves of the problem. Two milliseconds keeps
- * frames intact but stretched one foliage build to 6.3 s of background trickle; eight
- * finishes quickly and eats a 120 Hz frame budget on a machine that had no room.
- *
- * So the slice is a *share* of the frame rather than an absolute: at most `shareOfFrame` of
- * the interval the machine is actually achieving, clamped to [minMs, maxMs]. An absolute
- * ceiling was tried first and turned out to be untestable -- headless Chromium runs its
- * frames near 14 ms, which is already past any 120 FPS ceiling, so a ceiling rule pinned the
- * slice at its floor forever and adapted to nothing. A share is meaningful on both: whatever
- * a frame costs, background loading takes a known fraction of it and leaves the rest.
+/** Bound background work to 1–2 ms. Slow frames must never expand the slice
+ * beyond this ceiling: at 144 Hz the entire frame has only 6.94 ms available.
+ * Native frame completion must get a turn between slices (see above).
  */
-export function createFrameBudget(minMs = 2, {maxMs = 8, shareOfFrame = 0.25} = {}) {
+export function createFrameBudget(minMs = 1, {maxMs = 2, shareOfFrame = 0.12} = {}) {
   let slice = minMs;
   let since = performance.now();
   let frameStart = since;

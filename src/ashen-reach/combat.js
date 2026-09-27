@@ -1,3 +1,5 @@
+import {sceneLifetime} from './scene-lifetime.js';
+import {disposeMeshGpu} from '@babylonjs/lite';
 import {prepareLinearMaterial} from './linear-materials.js';
 import { addToScene, getContainerMeshes, loadGltf, getViewProjectionMatrix } from "@babylonjs/lite";
 import { FireBlast } from "../spells/fire-blast.js";
@@ -31,7 +33,9 @@ const GCD = 1.5;
 const CAST_MOVE_SCALE = 0.4;
 
 export async function loadTrainingDummy(engine, scene, world, buffer) {
+  const lifetime=sceneLifetime(scene);lifetime.throwIfAborted();
   const asset = await loadGltf(engine, buffer || "/ashen-reach/training-dummy.glb");
+  if(lifetime.aborted){for(const mesh of getContainerMeshes(asset))disposeMeshGpu(mesh);lifetime.throwIfAborted();}
   const position = { x: pathX(8), y: height(pathX(8), 8), z: 8 };
   for (const root of asset.entities)
     root.position.set(position.x, position.y, position.z);
@@ -119,12 +123,13 @@ export async function createCombat(
   objective = null,
   options = {},
 ) {
+  const lifetime=sceneLifetime(scene);lifetime.throwIfAborted();
   const targeting = new Targeting();
   const hostiles = [dummy, ...enemies];
   targeting.list = hostiles;
   const spell = new FireBlast(),
     fx = await createFireBlastVfx(engine, scene, player, body, world, {sockets: options.sockets}),
-    hud = createCombatHud(canvas, scene);
+    hud = (lifetime.throwIfAborted(),createCombatHud(canvas, scene));
   const lava = new LavaBall(),
     lavaFx = await createLavaBallVfx(
       engine,
@@ -136,6 +141,7 @@ export async function createCombat(
   const pulse = new GravePulse(),
     pulseFx = await createGravePulseVfx(engine, scene, player, world, fx.handPosition);
   const audio = await createFireBlastAudio(scene);
+  lifetime.throwIfAborted();
   const lifeHud = installLifeHud();
   const playerFill = lifeHud.querySelector(".player-plate .hp-fill");
   const playerHp = lifeHud.querySelector(".player-plate .player-hp");

@@ -10,8 +10,8 @@ import fs from "node:fs/promises";
 const dir = "ve-capture/ashen-reach/play-matrix";
 await fs.mkdir(dir, { recursive: true });
 const browser = await chromium.connectOverCDP(CDP_URL);
-const page = browser.contexts()[0].pages().find((p) => p.url().includes("127.0.0.1:5173/ashen-reach"))
-  || await browser.contexts()[0].newPage();
+const context=await browser.newContext({viewport:{width:1280,height:720},deviceScaleFactor:1});
+const page=await context.newPage();
 const errors = [];
 page.on("pageerror", (e) => errors.push(String(e).slice(0, 240)));
 const fail = [];
@@ -19,7 +19,9 @@ const check = (name, ok, detail = "") => {
   if (!ok) fail.push(detail ? `${name}: ${detail}` : name);
 };
 
-await page.goto("http://127.0.0.1:5173/ashen-reach.html?play&clean", { waitUntil: "commit" });
+try {
+const target=new URL(process.env.ASHEN_TEST_URL||"http://127.0.0.1:5173/ashen-reach.html?play&clean");target.searchParams.set("metrics", "");
+await page.goto(target.href,{waitUntil:"commit"});
 await page.waitForFunction(() => window.ASHEN?.ready && ASHEN.hostilesReady, null, { timeout: 90000 });
 await page.waitForFunction(() => ASHEN.player.getGrounded(), null, { timeout: 8000 }).catch(() => {});
 
@@ -195,7 +197,7 @@ check("watchman label", gate.labels.includes("Watchman"), gate.labels.join("|"))
 if (errors.length) fail.push("pageerror: " + errors.join(" | "));
 if (fail.length) {
   console.error(fail.join("\n"));
-  process.exit(1);
+  throw Error("Play matrix failed");
 }
 console.log("play matrix ok");
-process.exit(0);
+} finally {await context.close();await browser.close();}

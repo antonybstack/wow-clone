@@ -86,18 +86,14 @@ export async function createStreamedEquipment(
     throw Error(
       `Pack declares race ${race} but carries the ${expectedFit.body} fit`,
     );
-  const response = await fetch(manifestUrl);
-  if (!response.ok)
-    throw Error(`No ${race} equipment manifest at ${manifestUrl}`);
-  // A dev server answers a missing file with its SPA fallback, so a 200 full of HTML is the
-  // shape a deleted pack actually takes. Name the URL rather than surfacing a JSON parse error.
-  let manifest;
-  try {
-    manifest = await response.json();
-  } catch {
-    throw Error(
-      `The ${race} equipment manifest at ${manifestUrl} is not valid JSON`,
-    );
+  // Reuse the validated startup manifest. A no-cache HTTP manifest otherwise
+  // incurs another conditional request on the input-critical path.
+  let manifest=options.manifest;
+  if(!manifest){
+    const response=await fetch(manifestUrl);
+    if(!response.ok)throw Error(`No ${race} equipment manifest at ${manifestUrl}`);
+    try{manifest=await response.json();}
+    catch{throw Error(`The ${race} equipment manifest at ${manifestUrl} is not valid JSON`);}
   }
   // A pack that declares its fit must be the pack we asked for: this catches a packs-table
   // entry left pointing at another race's directory, which would otherwise load and look fine.
@@ -187,12 +183,12 @@ export async function createStreamedEquipment(
         // Throws unless the manifest entry's fit is the one this item declares for this
         // race. No Human default: see declaredFitForRace in equipment-contract.js.
         assertAssetFit(asset, item, race);
-        const response = await fetch(asset.url, { signal });
-        if (!response.ok)
+        const response = options.loadBuffer?null:await fetch(asset.url, { signal });
+        if (response&&!response.ok)
           throw Error(
             `Could not load the ${race} ${item.name} from ${asset.url}`,
           );
-        const bytes = await response.arrayBuffer();
+        const bytes = options.loadBuffer?await options.loadBuffer(asset):await response.arrayBuffer();
         if (bytes.byteLength !== asset.bytes)
           throw Error(
             `The ${race} ${item.name} is ${bytes.byteLength} bytes, not the ${asset.bytes} its manifest declares`,

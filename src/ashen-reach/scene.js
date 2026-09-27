@@ -1,7 +1,7 @@
 import {TERRAIN_X,TERRAIN_Z,sampleTerrainSurface,createTerrainCornerCache} from './terrain-grid.js';
 import {setShaderUniform,setMeshVisible} from '@babylonjs/lite';
 import {Batch,rng,height,legacyHeight,pathX,buildingPads,add,mul,sub,norm,terrainNormal,lanternGlow} from './geometry.js';
-import {surface,sky} from './materials.js';
+import {surface as createSurface,sky} from './materials.js';
 import {building,collapsedStall,well,forgeGlow,crossFinial,stoneArch,rubble,flagstone,masonryBox} from './buildings.js';
 import {buildRegionStructures} from './region-structures.js';
 import {buildRegionWorld} from './region-world.js';
@@ -11,12 +11,17 @@ import {loadWoodland} from './woodland.js';
 import {createWoodlandTiles} from './woodland-tiles.js';
 import {pathVegetation,castleTreeScale} from './world-composition.js';
 import {createFoliage} from './foliage.js';
+import {createFoliageDensity} from './foliage-density.js';
 import {createLightShafts} from './light-shafts.js';
 import {createAshMotes} from './ash-motes.js';
 import {startupMark} from './startup-trace.js';
 
 /** A new scene layout. No Moonwell world builders, architecture or vegetation placement. */
-export async function buildChurchyard(engine,scene){
+export async function buildChurchyard(engine,scene,{dataOnly=false}={}){
+ // The worker and authoring exporter share this exact generator. GPU objects stay
+ // on the rendering thread; only descriptors and transferable arrays cross it.
+ // https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Transferable_objects
+ const surface=dataOnly?async(_engine,name,url,options)=>({name,url,options}):createSurface;
  const random=rng(83861),r=(a,b)=>a+random()*(b-a);
  // Static lamps are baked per-vertex (see Batch.commit) instead of hardcoded in the shader, so the
  // town's street lamps and the two original churchyard lamps share one scalable list. These two
@@ -176,16 +181,6 @@ export async function buildChurchyard(engine,scene){
  for(const [x,z] of [[-3.4,12],[3.6,14],[-2.8,25]]){const y=height(x,z);wood.tube([x,y,z],[x-.18,y+2.8,z],.085,.045,[.8,.8,.7,0],5);const p=[x-.18,y+2.52,z];glow.box(p,[.22,.31,.22],[1,1,1,0]);for(let j=0;j<4;j++){const dx=j<2?-.14:.14,dz=j%2?-.14:.14;wood.box([p[0]+dx,p[1],p[2]+dz],[.034,.46,.034],[.3,.3,.3,0]);}wood.box([p[0],p[1]-.22,p[2]],[.35,.055,.35],[.3,.3,.3,0]);wood.tube([p[0],p[1]+.18,p[2]],[p[0],p[1]+.42,p[2]],.25,0,[.3,.3,.3,0],4);}
 
  const smooth=t=>{t=Math.min(1,Math.max(0,t));return t*t*(3-2*t);};
- const meadow=(x,z)=>{
-  const rad=Math.hypot(x,z);
-  let d=1-.58*smooth((rad-28)/36);
-  d=Math.max(d,.40);
-  d*=.80+.20*(.5+.5*Math.sin(x*.093+z*.077)*Math.cos(x*.061-z*.118));
-  const path=Math.abs(x-pathX(z));
-  d*=pathVegetation(path,z);
-  return d;
- };
-
  // --- Milestone 1, north of the churchyard: everything below is new and uses its own rng so the
  // churchyard's random sequence above (tombs/trees/grass colour) is untouched. Placed only at
  // z>40, so height()'s climb/pad terms and this content never affect the z<=40 invariant.
@@ -384,29 +379,6 @@ export async function buildChurchyard(engine,scene){
  for(const [x,z,H,seed] of [[-15,84,11,801],[-16,99,13,914],[16,92,12,722],[15.5,116,14,633],[-15.5,124,12,540],[16,130,11,411]])
   tree(x,z,H,seed,true);
 
- // --- Ground cover continues north through Hollowmere, but a town has trodden ground: it thins
- // out gradually approaching the street, every building/stall apron and the well plaza, rather
- // than stopping abruptly at a fixed radius the way the old insideFootprint() boolean did.
- // clearance(x,z) returns 0 (bare ground, nothing grows) to 1 (full meadow density); callers roll
- // against it per-candidate so the transition is a gradient, not a cliff. Independent rng from the
- // churchyard's grass/fern sequence above, and entirely north of z=40 so it cannot touch the
- // invariant.
- const ease=(x,lo,hi)=>smooth((x-lo)/(hi-lo));
- function clearance(x,z){
-  let c=1;
-  for(const pd of pads){
-   const dx=Math.max(Math.abs(x-pd.x)-pd.w/2,0),dz=Math.max(Math.abs(z-pd.z)-pd.d/2,0);
-   c=Math.min(c,ease(Math.hypot(dx,dz),0.35,3.6));
-  }
-  for(const f of extraFootprints)c=Math.min(c,ease(Math.hypot(x-f.x,z-f.z),f.r*.4,f.r+2.6));
-  // Well square: a proper open plaza, cleared well past the well pad's own footprint.
-  c=Math.min(c,ease(Math.hypot(x-pads[8].x,z-pads[8].z),2.4,7.2));
-  // Walking line stays mostly stone; grass returns in the verge joints.
-  c=Math.min(c,pathVegetation(x-pathX(z),z));
-  if(z>71&&z<79)c=0; // town gatehouse wall and towers
-  return c;
- }
-
  // Outer terrain shares the ground material and participates in Havok collision.
  startupMark('world-town-end');
  const farEarth=new Batch('Far earth'),farMountains=new Batch('Physical mountain terrain');
@@ -564,24 +536,28 @@ export async function buildChurchyard(engine,scene){
  B.push(cathedralStone,cathedralRoof,cathedralRock);
  mats.push(await surface(engine,'Vaelmark limestone','/tex/rock_wall_08/diff.jpg',{tint:[.85,.92,1.04],light:.82,skyFill:.35,pixels:512,uvScale:.20,detail:true}),horizonMaterials[1],await surface(engine,'Vaelmark exposed cliff','/ashen-reach/horizon-rock.jpg',{tint:[.70,.76,.87],saturation:.15,light:.72,skyFill:.40,pixels:256,uvScale:.6}));
 
- function foliageDensity(x,z){
-  if((nearestRegionRoute(x,z)?.distance??Infinity)<3.5||regionSiteDistance(x,z)<2)return 0;
-  if(z<=48)return meadow(x,z);
-  if(z<76){
-   const t=smooth((z-48)/28);
-   return meadow(x,z)*(1-t)+clearance(x,z)*t;
-  }
-  if(z<=145&&Math.abs(x)<44)return clearance(x,z);
-  // The hard zero at radius 108 is what starved the new outer moor band: 10-ridge-west puts
-  // the camera at x=-80, just inside it, so everything west of the player was bare ground.
-  // The cutoff moves to 190 and the falloff stretches over the whole run, so the meadow
-  // thins into moor and then into the scattered woodland instead of stopping at a circle.
-  const rad=Math.hypot(x,z-20);
-  if(rad>190)return 0;
-  return 0.38*(1-smooth((rad-52)/138));
- }
+ const foliageDensity=createFoliageDensity(extraFootprints);
  const farTris=(farEarth.idx.length+farMountains.idx.length)/3;
  startupMark('world-region-end');
+ if(dataOnly){
+  const batches=[];
+  const append=(batch,material,world=true,collision=false)=>{
+   if(batch.idx.length)batches.push({name:batch.name,material:mats.indexOf(material),world,collision,buffers:batch.buffers(world?lights:[])});
+  };
+  B.forEach((b,i)=>append(b,mats[i],true,i===0));
+  const tiles=[];
+  for(const tile of woodland.tiles.values()){
+   append(tile.full,mats[3]);append(tile.reduced,mats[3]);
+   tiles.push({key:tile.key,bounds:tile.bounds,trees:tile.trees,full:tile.full.name,reduced:tile.reduced.name});
+  }
+  append(farEarth,mats[0],true,true);
+  // The mountain material is not otherwise in B's material table.
+  if(!mats.includes(horizonMaterials[2]))mats.push(horizonMaterials[2]);
+  append(farMountains,horizonMaterials[2],true,true);
+  for(const batch of [regionStructures.collisionBatch,regionWorld.collisionBatch,cathedral.collisionBatch])append(batch,mats[0],false,true);
+  const plain=value=>JSON.parse(JSON.stringify(value,(key,v)=>key==='collisionBatch'||typeof v==='function'?undefined:v));
+  return {schema:1,surfaces:mats,batches,boxes:colliders,woodland:tiles,metadata:plain({cathedral,regionWorld,regionStructures,landmarks:REGION_LANDMARKS,routes:REGION_ROUTES,lights,localLights,shafts,sourceStats:{horizonTriangles:horizonStats.triangles,farTriangles:farTris,scatterTrees,scatterRocks,shafts:shafts.length},extraFootprints,spawn:{x:0,z:0},fixedTriangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris})};
+ }
  const meshes=B.map((b,i)=>b.commit(engine,scene,mats[i],lights)).filter(Boolean);
  meshes.push(...woodland.commit(engine,scene,mats[3],lights));
  const farMesh=farEarth.commit(engine,scene,mats[0],lights);

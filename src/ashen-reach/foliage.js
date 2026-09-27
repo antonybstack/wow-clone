@@ -8,11 +8,11 @@
 import {
   createShaderMaterial,loadTexture2D,setShaderTexture,setShaderUniform,
   setThinInstances,setThinInstanceColors,setThinInstanceCount,
-  enableThinInstanceDynamicDrawCount,
+  enableThinInstanceDynamicDrawCount,onSceneDispose,
 } from '@babylonjs/lite';
 import {Batch,height,terrainNormal,rng,bakeLamp,add,sub,TERRAIN_SLOPE_WGSL} from './geometry.js';
 import {ATMOS} from './atmosphere.js';
-import {createFrameBudget} from './frame-budget.js';
+import {createFrameBudget,yieldToFrame} from './frame-budget.js';
 import {SUN_SHADOW_UNIFORMS,SUN_SHADOW_SAMPLERS,SUN_SHADOW_WGSL,bindSunReceiver} from './sun-shadows.js';
 
 import {LOCAL_LIGHT_UNIFORMS,LOCAL_LIGHT_SAMPLERS,LOCAL_LIGHT_WGSL} from './local-light-shared.js';
@@ -451,6 +451,11 @@ function bucketTiles(data){
  return tiles;
 }
 
+/** Prepare the same tile buckets off-thread for a full-region placement upgrade. */
+export function bucketFoliagePlacements(placements){
+ return Object.fromEntries(Object.entries(placements).map(([name,pool])=>[name,{count:pool.count,tiles:bucketTiles(pool)}]));
+}
+
 function makePool(near,far,tiles,maxNear,maxFar,farThin=0.72,farRadius=FAR_R,farFalloff=1){
  const nM=new Float32Array(maxNear*16), nC=new Float32Array(maxNear*4);
  const fM=new Float32Array(maxFar*16), fC=new Float32Array(maxFar*4);
@@ -500,15 +505,11 @@ function packPool(pool,cx,cz){
  pool.nearCount=ni; pool.farCount=fi;
 }
 
-export async function createFoliage(engine,scene,{lights=[],density=()=>0,landmarks=[],budgetMs=2}={}){
- // Every placement pass shares one stopwatch, so the budget bounds a chunk of the build
- // rather than each pass separately.
- const budget=createFrameBudget(budgetMs);
- const atlas=await loadTexture2D(engine,ATLAS,{invertY:false,srgb:false,mipMaps:true,minFilter:'linear',magFilter:'linear'});
- const material=await createFoliageMaterial(engine,atlas);
- const moorMaterial=await createFoliageMaterial(engine,atlas,[185,.85,.9,4]);
- const flowerMaterial=await createFlowerMaterial(engine);
-
+/** Shared deterministic placement, usable without a GPU in the region worker.
+ * Transfer typed arrays; keep native thin-instance pools on the rendering thread.
+ * https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Transferable_objects
+ */
+export async function generateFoliagePlacements({lights=[],density=()=>0,landmarks=[],budget=null}={}){
  const grassCore=await place(density,lights,budget,{seed:83861,minX:-38,maxX:38,minZ:-16,maxZ:146,spacing:0.36,scale:[0.85,1.25],yScale:[0.72,1.28],tint:[0.78,1.12],densityScale:1});
  const grassShoulder=await place(density,lights,budget,{seed:91011,minX:-88,maxX:88,minZ:-90,maxZ:160,spacing:0.62,scale:[0.9,1.3],yScale:[0.7,1.15],tint:[0.74,1.05],densityScale:0.85,skip:(x,z)=>x>-38&&x<38&&z>-16&&z<146});
  // The shoulder stopped dead at x=+-88 / z=160, and 10-ridge-west stands the camera at
@@ -579,6 +580,23 @@ const outerDensity=(x,z)=>{
   bracken.matrices=mergedM; bracken.colors=mergedC; bracken.count+=landmarks.length;
  }
 
+ return {grass,moor,plants,bracken,umbels,spikes};
+}
+
+export async function createFoliage(engine,scene,{lights=[],density=()=>0,landmarks=[],budgetMs=1,placements=null}={}){
+ // Every placement pass shares one stopwatch, so the budget bounds a chunk of the build
+ // rather than each pass separately.
+ let disposed=false;onSceneDispose(scene,()=>{disposed=true;});
+ const budget=createFrameBudget(budgetMs);
+ const atlas=await loadTexture2D(engine,engine.ashenTextureURLs?.[ATLAS]??ATLAS,{invertY:false,srgb:false,mipMaps:true,minFilter:'linear',magFilter:'linear'});
+ const material=await createFoliageMaterial(engine,atlas);
+ const moorMaterial=await createFoliageMaterial(engine,atlas,[185,.85,.9,4]);
+ const flowerMaterial=await createFlowerMaterial(engine);
+ if(engine.ashenTextureUpgrades)for(const mat of [material,moorMaterial])engine.ashenTextureUpgrades.push({mat,slots:[['albedo',ATLAS,'linear']]});
+
+ const {grass,moor,plants,bracken,umbels,spikes}=placements??await generateFoliagePlacements({lights,density,landmarks,budget});
+ if(disposed)throw Error('Scene disposed during foliage loading');
+
  // The dense meadow retains its short view distance. Only the sparse, separate
  // outer moor pool reaches the hills; flowers and bracken remain short-range.
  // Prototype meshes are committed here, in the same uninterrupted task as the pools that
@@ -591,46 +609,54 @@ const outerDensity=(x,z)=>{
  // registered mesh regardless of visibility. Only keeping the two steps in one task does.
  const grassNear=commitProto(engine,scene,clumpCards('Grass near',[UV.meadow,UV.dry,UV.meadow],{cards:3,height:0.74,width:0.26,shared:true}),material);
  const grassFar=commitProto(engine,scene,clumpCards('Grass far',[UV.meadow,UV.dry],{cards:2,height:0.74,width:0.26,shared:true}),material);
+ const grassPool=makePool(grassNear,grassFar,bucketTiles(grass),8192,24576);
+ packPool(grassPool,0,0);
+ await yieldToFrame();if(disposed)throw Error("Scene disposed during foliage installation");
  const moorNear=commitProto(engine,scene,clumpCards('Moor near',[UV.meadow,UV.dry,UV.meadow],{cards:3,height:1.0,width:0.42,shared:true}),moorMaterial);
  const moorFar=commitProto(engine,scene,clumpCards('Moor far',[UV.meadow,UV.dry],{cards:2,height:1.0,width:0.42,shared:true}),moorMaterial);
+ const moorPool=makePool(moorNear,moorFar,bucketTiles(moor),1024,8192,0.85,185,0.9);
+ packPool(moorPool,0,0);
+ await yieldToFrame();if(disposed)throw Error("Scene disposed during foliage installation");
  const plantNear=commitProto(engine,scene,clumpCards('Plant near',[UV.plant],{cards:3,height:0.55,width:0.36,spread:0.10}),material);
  const plantFar=commitProto(engine,scene,clumpCards('Plant far',[UV.plant],{cards:2,height:0.60,width:0.42,spread:0,cross:true}),material);
+ const plantPool=makePool(plantNear,plantFar,bucketTiles(plants),512,768);
+ packPool(plantPool,0,0);
+ await yieldToFrame();if(disposed)throw Error("Scene disposed during foliage installation");
  const brackenNear=commitProto(engine,scene,brackenTuft('Bracken near',UV.fern,false),material);
  const brackenFar=commitProto(engine,scene,brackenTuft('Bracken far',UV.fern,true),material);
+ const brackenPool=makePool(brackenNear,brackenFar,bucketTiles(bracken),768,1024);
+ packPool(brackenPool,0,0);
+ await yieldToFrame();if(disposed)throw Error("Scene disposed during foliage installation");
  const umbelNear=commitProto(engine,scene,flowerUmbel('Umbel near',false),flowerMaterial);
  const umbelFar=commitProto(engine,scene,flowerUmbel('Umbel far',true),flowerMaterial);
+ const umbelPool=makePool(umbelNear,umbelFar,bucketTiles(umbels),1024,1536,0.93);
+ packPool(umbelPool,0,0);
+ await yieldToFrame();if(disposed)throw Error("Scene disposed during foliage installation");
  const spikeNear=commitProto(engine,scene,flowerSpike('Spike near',false),flowerMaterial);
  const spikeFar=commitProto(engine,scene,flowerSpike('Spike far',true),flowerMaterial);
-
- const grassPool=makePool(grassNear,grassFar,bucketTiles(grass),8192,24576);
- const moorPool=makePool(moorNear,moorFar,bucketTiles(moor),1024,8192,0.85,185,0.9);
- const plantPool=makePool(plantNear,plantFar,bucketTiles(plants),512,768);
- const brackenPool=makePool(brackenNear,brackenFar,bucketTiles(bracken),768,1024);
- // Flowers are the one layer worth spending near-pool slots on, because the whole point
- // is the colour at the player's feet. 20 tris for a near head and 10 for a far one puts
- // the full pool at about 25k triangles -- the same order as the ash motes, against a
- // 140k scene.
- // Flowers thin far harder than grass with distance. Grass merges into a continuous
- // mat, so dropping instances only costs coverage; a flower is a discrete bright point,
- // so keeping the same fraction at 28 m as at 5 m makes distance *increase* the white
- // in the frame. The west-shoulder vista, which sees a wide swath of meadow at once,
- // came out as an even whiteout at 0.72 while the lych-gate view at the same settings
- // read correctly.
- const umbelPool=makePool(umbelNear,umbelFar,bucketTiles(umbels),1024,1536,0.93);
  const spikePool=makePool(spikeNear,spikeFar,bucketTiles(spikes),512,768,0.93);
- const pools=[grassPool,moorPool,plantPool,brackenPool,umbelPool,spikePool];
- packPool(grassPool,0,0);
- packPool(moorPool,0,0);
- packPool(plantPool,0,0);
- packPool(brackenPool,0,0);
- packPool(umbelPool,0,0);
  packPool(spikePool,0,0);
-
+ await yieldToFrame();if(disposed)throw Error("Scene disposed during foliage installation");
+ const pools=[grassPool,moorPool,plantPool,brackenPool,umbelPool,spikePool];
+ const species=['grass','moor','plants','bracken','umbels','spikes'];
  const meshes=[grassNear,grassFar,moorNear,moorFar,plantNear,plantFar,brackenNear,brackenFar,umbelNear,umbelFar,spikeNear,spikeFar].filter(Boolean);
  const protoTris=meshes.reduce((n,m)=>(m._gpu?.indexCount??0)/3+n,0);
  let packedX=0, packedZ=0;
  return {
   meshes,material,pools,
+  async replacePlacements(placements){
+   // Keep the same native thin-instance allocations and material bindings.
+   // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/12-thin-instances.md
+   for(let i=0;i<pools.length;i++){
+    if(disposed)throw Error('Scene disposed during foliage upgrade');
+    const data=placements[species[i]];
+    pools[i].tiles=data.tiles??bucketTiles(data);packPool(pools[i],packedX,packedZ);
+    this.stats[species[i]]=data.count;await yieldToFrame();
+   }
+   this.stats.instances=species.reduce((sum,key)=>sum+this.stats[key],0);
+   this.stats.drawnNear=pools.reduce((sum,p)=>sum+p.nearCount,0);
+   this.stats.drawnFar=pools.reduce((sum,p)=>sum+p.farCount,0);
+  },
   async probe(roots){const {probeFoliageLod}=await import('./foliage-lod-probe.js');return probeFoliageLod(engine,roots);},
   stats:{
    grass:grass.count,moor:moor.count,plants:plants.count,bracken:bracken.count,

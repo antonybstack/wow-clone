@@ -1,10 +1,15 @@
+import {sceneLifetime} from './scene-lifetime.js';
 import {BASE_VISIBLE_MESHES, ORC_BASE_VISIBLE_MESHES, UNDEAD_BASE_VISIBLE_MESHES, EQUIPMENT_ITEMS} from './equipment-catalog.js';
 import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT, UNDEAD_EQUIPMENT_FIT} from './equipment-contract.js';
-import {createEngine,createSceneContext,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,onBeforeRender,enableBoneControl,setFog,captureScreenshot,setMeshVisible,isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize,setMeshoptBaseUrl,waitForGpuIdle} from '@babylonjs/lite';
+import {createEngine,createSceneContext,disposeScene,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,onSceneDispose,onBeforeRender,enableBoneControl,setFog,captureScreenshot,setMeshVisible,isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize,setMeshoptBaseUrl,waitForGpuIdle} from '@babylonjs/lite';
 import {createAshenMetrics} from './metrics.js';
 import {createRenderLoop} from './render-loop.js';
 import {createObjective} from './objective.js';
 import {buildChurchyard} from './scene.js';
+import {createStarterWorld,preloadStarterWorld} from './starter-world.js';
+import {createStreamedEquipment} from './equipment-stream.js';
+import {preloadStarterCharacter,startupAssetBuffer,upgradeStarterCharacter} from './startup-assets.js';
+import {showBackgroundLoading} from './background-loading.js';
 import {height} from './geometry.js';
 import {SKY_HORIZON,SUN_DIR,SUN_COLOR,SKY_AMBIENT,GROUND_BOUNCE} from './atmosphere.js';
 import {CameraRig} from '../camera-rig.js';
@@ -37,9 +42,10 @@ import {startupMark,startupMarks,startupTimings,startupSpanMs} from './startup-t
  * unmeasurable: there was no name for the moment the player can actually walk.
  */
 function boundary(){
- let resolve;
- const promise=new Promise(r=>{resolve=r;});
- return {promise,reached:false,reach(value){if(this.reached)return;this.reached=true;resolve(value);}};
+ let resolve,reject;
+ const promise=new Promise((r,j)=>{resolve=r;reject=j;});
+ promise.catch(()=>{});
+ return {promise,reached:false,reach(value){if(this.reached)return;this.reached=true;resolve(value);},fail(error){if(this.reached)return;this.reached=true;reject(error);}};
 }
 
 setMeshoptBaseUrl('/');
@@ -49,6 +55,7 @@ function fetchBuffer(url,priority='high'){
   return response.arrayBuffer();
  });
 }
+let failStartup=null;
 async function main(){
  beginLoading();
  const boot=performance.now();
@@ -65,8 +72,13 @@ async function main(){
  markStartup('begin');
  const pixelRatio=Number(params.get('pixelRatio'));
  const preloadedEquipment=params.has('preloadedEquipment');
+ const fastStart=!preloadedEquipment&&!params.has('legacyStart')&&(params.has('fastStart')||import.meta.env.VITE_FAST_START==='1');
+ const starterWorldP=fastStart?preloadStarterWorld():null;
+ const starterCharacterP=fastStart?preloadStarterCharacter():null;
+ starterWorldP?.catch(()=>{});starterCharacterP?.catch(()=>{});
  const bodyUrl=preloadedEquipment?'/ashen-reach/wanderer-equipment.glb':'/ashen-reach/equipment/body.glb';
- const bodyBufP=fetchBuffer(bodyUrl,'high');
+ const bodyBufP=fastStart?starterCharacterP.then(m=>startupAssetBuffer(m.items.body)):fetchBuffer(bodyUrl,'high');
+ bodyBufP.catch(()=>{});
  // Havok's 650 KB WASM gates grounded movement and needs nothing from the scene, so it
  // downloads and compiles alongside the body instead of starting inside setupPlayer once
  // the world is already built. loadHavok() memoises, so setupPlayer's own call is free.
@@ -74,7 +86,7 @@ async function main(){
  havokP.then(()=>markStartup('havok-runtime-available')).catch(()=>{});
  // Starter clothes wait until the body bytes have arrived, then warm the
  // cache at low priority. They used to race the body on the first connection.
- if(!preloadedEquipment){
+ if(!preloadedEquipment&&!fastStart){
   bodyBufP.then(()=>{
    for(const url of ['/ashen-reach/equipment/manifest.json','/ashen-reach/equipment/wayfarerTunic.glb','/ashen-reach/equipment/wayfarerTrousers.glb','/ashen-reach/equipment/wayfarerBoots.glb']){
     fetch(url,{priority:'low'}).catch(()=>{});
@@ -90,7 +102,7 @@ async function main(){
  if(gpu.depthBundle==='unsupported')throw new Error(gpu.errors.join('\n'));
  setLoadingStage(1,'Raising the churchyard.');
  // All scene materials write linear radiance; presentation owns display conversion.
- const scene=createSceneContext(engine,{defaultRenderTask:false});scene.clearColor={r:SKY_HORIZON[0],g:SKY_HORIZON[1],b:SKY_HORIZON[2],a:1};
+ const scene=createSceneContext(engine,{defaultRenderTask:false}),lifetime=sceneLifetime(scene);scene.clearColor={r:SKY_HORIZON[0],g:SKY_HORIZON[1],b:SKY_HORIZON[2],a:1};
  const attachLinearMaterials=configureLinearMaterials(scene);
  setFog(scene,{mode:0,density:0,color:SKY_HORIZON});
  const light=createHemisphericLight([0,1,0],.62);light.diffuseColor=SKY_AMBIENT.map(v=>v*3.1);light.groundColor=GROUND_BOUNCE.map(v=>v*3.1);addToScene(scene,light);
@@ -104,7 +116,7 @@ async function main(){
  const shadows=createSunShadows(engine,scene,sun,{depthOnlyFragment:gpu.depthBundle==='empty-fragment'});
  const localLights=createLocalLights(engine,scene,shadows);
  markStartup('world-start');
- const world=await buildChurchyard(engine,scene);
+ const world=fastStart?await createStarterWorld(engine,scene,starterWorldP):await buildChurchyard(engine,scene);
  markStartup('world-end');
  initInput(canvas);setInputEnabled(false);installTouchControls();
  setLoadingStage(2,'Calling the wanderer.');
@@ -120,7 +132,8 @@ async function main(){
  let dressed=false;
  let readyForPlay=false;
  let deviceLost=false;
- const playableBoundary=boundary(),combatBoundary=boundary(),regionBoundary=boundary(),firstGpuCompleted=boundary();
+ const playableBoundary=boundary(),combatBoundary=boundary(),regionBoundary=boundary(),hostilesBoundary=boundary(),firstGpuCompleted=boundary();
+ failStartup=error=>{for(const b of [playableBoundary,combatBoundary,regionBoundary,hostilesBoundary,firstGpuCompleted])b.fail(error);};
  let view='reference',elapsed=0;const samples=[];
  const setView=v=>{
   view=v;scene.camera=v==='reference'?reference:camera;
@@ -142,7 +155,9 @@ async function main(){
   // that already assert on them. The three below are the new, narrower claims.
   playableReady:false,combatReady:false,regionReady:false,
   whenPlayable:playableBoundary.promise,whenCombat:combatBoundary.promise,whenRegion:regionBoundary.promise,
-  whenFirstGpuFrame:firstGpuCompleted.promise,
+  whenHostiles:hostilesBoundary.promise,
+  whenFirstGpuFrame:firstGpuCompleted.promise,dispose:()=>disposeScene(scene),
+  async whenNextGpuFrame(){const frame=ashen.gpu.frames;while(ashen.gpu.frames<=frame)await new Promise(requestAnimationFrame);await waitForGpuIdle(engine);},
   startup:{marks:startupMarks,timings:startupTimings,span:startupSpanMs},dev,menu,get player(){return player;},get body(){return body;},get combat(){return combat;},get equipment(){return equipment;},get armory(){return armory;}};
  ashen.gpu=gpu;
  onBeforeRender(scene,()=>{gpu.frames++;});
@@ -160,61 +175,16 @@ async function main(){
  markStartup('havok-start');
  player=await setupPlayer(engine,scene,rig,{spawn:plantSpawnOnTerrain(world.spawn,capsule,world.groundHeight),colliders:world.colliders,groundHeight:world.groundHeight,boundsRadius:Infinity,capsule,havok:havokP,onPhase:markStartup});
  markStartup('havok-end');
+ world.releaseInitialCollisionSources?.();
  markStartup('body-start');
  body=await attachBody(engine,scene,player,player.capsuleHeight,playable);
+ const starterBodyContainer=body.container;
  markStartup('body-end');
  // Sockets need the player capsule and the body's skeleton and nothing else, so they do not
  // have to wait for combat. Hoisting them out of the spell VFX is what lets the starter
  // garments and the starter weapon be worn before any combat module has been fetched.
  const sockets=attachSockets(engine,scene,player,body);
  body.bindSocketHost(sockets);
- setLoadingStage(3,'Waking the churchyard.');
- // Skinning is fixed up at load. Starting the engine first leaves the mesh
- // in the bind pose while clips report as playing. See docs/startup-load.md.
- // Bloom is a render-target swap, so it has to exist before the first
- // registerScene. It does not fetch anything. ?noPost skips it.
- shadows.setWorld(world);localLights.setWorld(world);ashen.shadows=shadows;ashen.localLights=localLights;
- const post=params.has('noPost')?buildDirectPipeline(engine,scene):buildPostPipeline(engine,scene,sun,world,shadows,localLights);
- ashen.post=post.status;
- ashen.hdr=post;
- ashen.volumetric=post.volume;
- ashen.grounding=post.grounding;
- if(post.status.notes.length)console.warn('ashen post chain:',post.status.notes.join('; '));
- attachLinearMaterials();
- markStartup('register-start');
- await registerSceneWithShadowSupport(scene);
- markStartup('register-end');
- ashen.renderLoop=createRenderLoop(engine,scene,{
-  onError:e=>{console.error(e);const el=document.getElementById('error');el.style.display='block';el.textContent=e?.stack||String(e);void formatGameError(e).then(message=>{el.textContent=message;}).catch(()=>{});},
-  onDeviceLost:(error,info)=>{
-   deviceLost=true;
-   console.error(error,info);
-   lockInputUntilReload();
-   showDeviceLoss(error);
-  },
- });
- await ashen.renderLoop.start();
- markStartup('first-render-return');
- // Lite's public GPU fence reports completion of already submitted work, not scanout.
- // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/index.ts
- // The render loop already fences every frame through waitForGpuIdle, so asking
- // once more here adds a queue callback and no GPU work. It used to be gated on
- // ?startupMarks, which meant an ordinary navigation had no completed-GPU
- // boundary at all -- the one boundary that distinguishes "submitted a frame"
- // from "a frame finished".
- void waitForGpuIdle(engine).then(()=>{markStartup('first-gpu-completed');firstGpuCompleted.reach(performance.now()-boot);})
-  .catch(error=>{console.error('Startup GPU fence failed',error);});
- ashen.presentMs=performance.now()-boot;
- // --- Everything above this line is on the playable critical path. Everything below is
- // ordered by one question: can the player walk without it?
- //
- // The old order loaded foliage, seven feature modules, the training dummy, the NPC
- // buffer, the churchyard hostiles, combat, the late feature registration and the
- // townsfolk, and only then put clothes on the character and enabled input. Measured on
- // a reduced world, that block was ~1.2 s and it did not shrink when the world did,
- // because none of it is about the world. Starter garments are the one part of it that
- // "playable" actually requires -- a dressed character is in the acceptance criteria --
- // so they move ahead of the boundary and the rest moves behind it.
  const EMPTY_LOADOUT={helmet:null,torso:null,legs:null,boots:null,gloves:null,mainHand:null,offHand:null};
  const factoryHand=(id)=>id&&EQUIPMENT_ITEMS[id]?.factory?id:null;
  // THE ONE LINE TO FLIP when the authored Undead body lands: set this to 'equipment-undead'
@@ -225,16 +195,13 @@ async function main(){
  // thing to reconcile -- createStreamedEquipment names any region it cannot bind.
  const UNDEAD_PACK_DIR='equipment-undead';
  const packs={
-  human:{race:'human',manifestUrl:'/ashen-reach/equipment/manifest.json',baseMeshes:['HumanV1Body'],fitId:HUMAN_EQUIPMENT_FIT},
+  human:{race:'human',manifestUrl:fastStart?'/ashen-reach/startup/character/manifest.json':'/ashen-reach/equipment/manifest.json',baseMeshes:['HumanV1Body'],fitId:HUMAN_EQUIPMENT_FIT,...(fastStart?{manifest:await starterCharacterP,loadBuffer:startupAssetBuffer}:{})},
   orc:{race:'orc',manifestUrl:'/ashen-reach/equipment-orc/manifest.json',baseMeshes:ORC_BASE_VISIBLE_MESHES,fitId:ORC_EQUIPMENT_FIT,bodyUrl:'/ashen-reach/equipment-orc/body.glb'},
   undead:{race:'undead',manifestUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/manifest.json`,baseMeshes:UNDEAD_BASE_VISIBLE_MESHES,fitId:UNDEAD_EQUIPMENT_FIT,bodyUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/body.glb`},
  };
- setLoadingStage(4,'Gathering your belongings.');
+ setLoadingStage(3,'Gathering your belongings.');
  markStartup('equipment-start');
- const [{createStreamedEquipment},{createEquipment}]=await Promise.all([
-  import('./equipment-stream.js'),
-  import('./equipment.js'),
- ]);
+ const createEquipment=preloadedEquipment?(await import('./equipment.js')).createEquipment:null;
  let impl=preloadedEquipment?createEquipment(engine,scene,body,sockets):await createStreamedEquipment(engine,scene,body,sockets,packs.human);
  let currentRace='human';
  let parkedGarments=null;
@@ -291,9 +258,58 @@ async function main(){
  markStartup('equipment-end');
  dressed=true;
  setView(view);
+ setLoadingStage(4,'Waking the churchyard.');
+ // Skinning is fixed up at load. Starting the engine first leaves the mesh
+ // in the bind pose while clips report as playing. See docs/startup-load.md.
+ // Bloom is a render-target swap, so it has to exist before the first
+ // registerScene. It does not fetch anything. ?noPost skips it.
+ shadows.setWorld(world);localLights.setWorld(world);ashen.shadows=shadows;ashen.localLights=localLights;
+ const post=params.has('noPost')?buildDirectPipeline(engine,scene):buildPostPipeline(engine,scene,sun,world,shadows,localLights);
+ ashen.post=post.status;
+ ashen.hdr=post;
+ ashen.volumetric=post.volume;
+ ashen.grounding=post.grounding;
+ if(post.status.notes.length)console.warn('ashen post chain:',post.status.notes.join('; '));
+ attachLinearMaterials();
+ markStartup('register-start');
+ await registerSceneWithShadowSupport(scene);
+ markStartup('register-end');
+ ashen.renderLoop=createRenderLoop(engine,scene,{
+  onError:e=>{console.error(e);const el=document.getElementById('error');el.style.display='block';el.textContent=e?.stack||String(e);void formatGameError(e).then(message=>{el.textContent=message;}).catch(()=>{});},
+  onDeviceLost:(error,info)=>{
+   deviceLost=true;
+   console.error(error,info);
+   lockInputUntilReload();
+   disposeScene(scene);
+   showDeviceLoss(error);
+  },
+ });
+ await ashen.renderLoop.start();
+ markStartup('first-render-return');
+ // Lite's public GPU fence reports completion of already submitted work, not scanout.
+ // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/index.ts
+ // The render loop already fences every frame through waitForGpuIdle, so asking
+ // once more here adds a queue callback and no GPU work. It used to be gated on
+ // ?startupMarks, which meant an ordinary navigation had no completed-GPU
+ // boundary at all -- the one boundary that distinguishes "submitted a frame"
+ // from "a frame finished".
+ void waitForGpuIdle(engine).then(()=>{markStartup('first-gpu-completed');firstGpuCompleted.reach(performance.now()-boot);})
+ .catch(error=>{firstGpuCompleted.fail(error);console.error('Startup GPU fence failed',error);});
+ ashen.presentMs=performance.now()-boot;
+ // Observe supported physics and completion of a dressed frame, not just loading.
+ // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/42-physics.md
+ await firstGpuCompleted.promise;
+ const groundingDeadline=performance.now()+10000;
+ while(!player.getGrounded()){
+  if(deviceLost||performance.now()>groundingDeadline)throw Error('Starting character did not reach grounded Havok support');
+  await new Promise(requestAnimationFrame);
+ }
+ const dressedFrame=ashen.gpu.frames;
+ while(ashen.gpu.frames<dressedFrame+1)await new Promise(requestAnimationFrame);
+ await waitForGpuIdle(engine);
  setLoadingStage(5,'Opening the gates.');
  // The playable boundary. The character is dressed, standing on Havok collision, and the
- // first frame is on screen; finishLoading hands back control at the start of its fade.
+ // dressed frame has completed; finishLoading reveals it and releases the overlay.
  await finishLoading();
  if(deviceLost)return;
  readyForPlay=true;
@@ -304,10 +320,40 @@ async function main(){
  playableBoundary.reach(ashen.playableMs);
 
  // --- Background. The player is walking while all of this lands. Anything here that
- // throws must not take the running game with it, so the chain reports and continues.
+ // fails leaves the safe area usable and reports retry or reload explicitly.
+ const backgroundStatus=showBackgroundLoading();
+ let backgroundDisposed=false;onSceneDispose(scene,()=>{backgroundDisposed=true;backgroundStatus.dispose();});
  ashen.whenRest=(async()=>{
   markStartup('bg-start');
-  const foliageP=world.startFoliage();
+  const nearbyFoliage=world.startNearbyFoliage?.();nearbyFoliage?.catch(error=>{ashen.nearbyError=error.message;});
+  // Nearby gameplay must not wait for distant geometry or texture enhancement.
+  // Both jobs yield through the same native render loop; scene/GPU mutations
+  // remain on the main thread and the worker only transfers authoring data.
+  const regionP=(async()=>{
+   if(world.startRegion){
+    for(;;){
+     try{await world.startRegion(player);break;}
+     catch(error){if(backgroundDisposed||deviceLost||error.reloadRequired)throw error;ashen.backgroundError=error.message;await backgroundStatus.retry(error);}
+    }
+    delete ashen.backgroundError;world.retireProxies();shadows.setWorld(world);
+   }
+   if(world.startNearbyFoliage){
+    for(;;){
+     try{await world.startNearbyFoliage();delete ashen.nearbyError;break;}
+     catch(error){if(backgroundDisposed||deviceLost)throw error;await backgroundStatus.retry(error);}
+    }
+   }
+  })();
+  regionP.catch(()=>{});
+    const foliageP=regionP.then(()=>world.startFoliage());
+    // Cancellation can reject while the parallel gameplay imports are pending.
+    // Observe immediately; the later Promise.all still propagates real failures.
+    foliageP.catch(()=>{});
+  const texturesP=regionP.then(async()=>{
+   if(world.upgradeTextures)await world.upgradeTextures();
+   if(fastStart)await upgradeStarterCharacter(engine,scene,starterBodyContainer,await starterCharacterP);
+  });
+  texturesP.catch(()=>{});
   const [
    {loadTrainingDummy,createCombat},
    {bindEnemyColliders,loadEnemies,CHURCHYARD_ANCHORS,TOWN_ANCHORS},
@@ -321,22 +367,29 @@ async function main(){
    import('./townsfolk.js'),
    import('./armory.js'),
   ]);
+  lifetime.throwIfAborted();
   markStartup('bg-imports-end');
   const dummyP=loadTrainingDummy(engine,scene,world);
-  const folkP=attachTownsfolk(engine,scene,world);
+  const folkP=attachTownsfolk(engine,scene,world);folkP.catch(()=>{});
   const npcP=noEnemies?Promise.resolve(null):prefetchNpcBuffer();
   // Foliage is the longest background job and nothing else depends on it, so it runs
   // alongside the hostiles rather than in front of them. It is still awaited before
   // `ready`, which keeps that flag meaning "all of it" for the suites that assert on it.
   void foliageP.then(()=>markStartup('bg-foliage-end'),()=>{});
   const [dummy,npcBuf]=await Promise.all([dummyP,npcP]);
+  lifetime.throwIfAborted();
   markStartup('bg-dummy-end');
   const churchyardEnemies=noEnemies?[]:await loadEnemies(engine,scene,world,CHURCHYARD_ANCHORS,npcBuf);
   markStartup('bg-enemies-end');
   if(churchyardEnemies.length)bindEnemyColliders(churchyardEnemies,player,world);
   // The socket host was created with the body, so combat binds to the one the garments
   // are already hanging on rather than baking a second one onto the same skeleton.
+  // Spell lighting snapshots materials. Nearby pools must exist first; the
+  // completed foliage upgrade retains those exact materials and allocations.
+  if(nearbyFoliage)await nearbyFoliage.catch(()=>regionP);
+  lifetime.throwIfAborted();
   combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig,churchyardEnemies,createObjective(),{sockets});
+  lifetime.throwIfAborted();
   markStartup('combat-ready');
   ashen.combatReady=true;
   combatBoundary.reach(performance.now()-boot);
@@ -356,10 +409,10 @@ async function main(){
     bindEnemyColliders([enemy],player,world);
    }
    return town;
-  }).catch((error)=>{console.error('Town hostiles failed to load',error);return [];});
-  ashen.whenHostiles=townP.then(()=>{ashen.hostilesReady=true;markStartup('hostiles-ready');});
+  });
+  townP.then(()=>{ashen.hostilesReady=true;markStartup('hostiles-ready');hostilesBoundary.reach();},error=>hostilesBoundary.fail(error));
   await ashen.whenHostiles;
-  await foliageP;
+  await Promise.all([foliageP,texturesP]);
   ashen.loadMs=performance.now()-boot;
   ashen.ready=true;
   markStartup('ready');
@@ -367,7 +420,8 @@ async function main(){
   ashen.regionMs=performance.now()-boot;
   ashen.regionReady=true;
   regionBoundary.reach(ashen.regionMs);
+  backgroundStatus.done();
  })();
- ashen.whenRest.catch(error=>{console.error('Background startup failed',error);});
+ ashen.whenRest.catch(error=>{combatBoundary.fail(error);hostilesBoundary.fail(error);regionBoundary.fail(error);if(backgroundDisposed||deviceLost)return;ashen.backgroundError=error.message;backgroundStatus.fail();console.error('Background startup failed',error);});
 }
-main().catch(async e=>{console.error(e);const message=await formatGameError(e).catch(()=>e?.stack||String(e));if(failLoading(e,message))return;const el=document.getElementById('error');el.style.display='block';el.textContent=message;});
+main().catch(async e=>{failStartup?.(e);console.error(e);const message=await formatGameError(e).catch(()=>e?.stack||String(e));if(failLoading(e,message))return;const el=document.getElementById('error');el.style.display='block';el.textContent=message;});

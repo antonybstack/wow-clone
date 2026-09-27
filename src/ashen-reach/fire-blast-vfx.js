@@ -1,3 +1,4 @@
+import {sceneLifetime} from './scene-lifetime.js';
 import {loadTexture2D,createGridSpriteAtlas,createFacingBillboardSystem,addFacingBillboardSystem,addBillboardSprite,updateBillboardSprite,billboardBlendAdditive,billboardBlendAlpha,createPointLight,addToScene} from '@babylonjs/lite';
 import {paintLitUniform} from './materials.js';
 import {attachSockets} from '../character/sockets.js';
@@ -6,14 +7,17 @@ import {rng} from './geometry.js';
 const EFFECT_DURATION=1.65;
 /** Three fixed Lite billboard pools. Emitted particles keep their birth position when the caster moves. */
 export async function createFireBlastVfx(engine,scene,player,body,world,options={}){
+ const lifetime=sceneLifetime(scene);lifetime.throwIfAborted();
  const random=rng(419),systems=await Promise.all([
   ['fire_01.png',billboardBlendAdditive,42],['smoke_01.png',billboardBlendAlpha,8],['spark_05.png',billboardBlendAdditive,50]
  ].map(async([file,blendMode,capacity])=>{
   const texture=await loadTexture2D(engine,'/ashen-reach/fire-blast/'+file,{invertY:false,srgb:true,mipMaps:true,magFilter:'nearest',minFilter:'nearest'});
+  lifetime.throwIfAborted();
   const atlas=createGridSpriteAtlas(texture,{cellWidthPx:512,cellHeightPx:512});
   const system=createFacingBillboardSystem(atlas,{capacity,blendMode});addFacingBillboardSystem(scene,system);
   return Array.from({length:capacity},()=>({handle:addBillboardSprite(system,{position:[0,-50,0],sizeWorld:[1,1],visible:false}),seed:random(),angle:random()*Math.PI*2,birth:null,direction:null}));
  }));
+ lifetime.throwIfAborted();
  // The caller may already own a socket host: main() creates one right after attachBody so
  // starter garments and the starter weapon can be worn before any combat module is fetched.
  // Two hosts on one skeleton would each bake and drive the same bones.
