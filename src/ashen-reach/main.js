@@ -5,7 +5,6 @@ import {createEngine,createSceneContext,disposeScene,createArcRotateCamera,creat
 import {createAshenMetrics} from './metrics.js';
 import {createRenderLoop} from './render-loop.js';
 import {createObjective} from './objective.js';
-import {buildChurchyard} from './scene.js';
 import {createStarterWorld,preloadStarterWorld} from './starter-world.js';
 import {createStreamedEquipment} from './equipment-stream.js';
 import {preloadStarterCharacter,startupAssetBuffer,upgradeStarterCharacter} from './startup-assets.js';
@@ -116,7 +115,9 @@ async function main(){
  const shadows=createSunShadows(engine,scene,sun,{depthOnlyFragment:gpu.depthBundle==='empty-fragment'});
  const localLights=createLocalLights(engine,scene,shadows);
  markStartup('world-start');
- const world=fastStart?await createStarterWorld(engine,scene,starterWorldP):await buildChurchyard(engine,scene);
+ // Keep procedural authoring off the prepared starting area's module graph.
+ // The worker and diagnostic legacy path still use the same generator.
+ const world=fastStart?await createStarterWorld(engine,scene,starterWorldP):await (await import('./scene.js')).buildChurchyard(engine,scene);
  markStartup('world-end');
  initInput(canvas);setInputEnabled(false);installTouchControls();
  setLoadingStage(2,'Calling the wanderer.');
@@ -132,8 +133,9 @@ async function main(){
  let dressed=false;
  let readyForPlay=false;
  let deviceLost=false;
- const playableBoundary=boundary(),combatBoundary=boundary(),regionBoundary=boundary(),hostilesBoundary=boundary(),firstGpuCompleted=boundary();
- failStartup=error=>{for(const b of [playableBoundary,combatBoundary,regionBoundary,hostilesBoundary,firstGpuCompleted])b.fail(error);};
+ const playableBoundary=boundary(),combatBoundary=boundary(),regionBoundary=boundary(),hostilesBoundary=boundary(),firstGpuCompleted=boundary(),supportedGpuCompleted=boundary();
+ let supportedFramePending=false;
+ failStartup=error=>{for(const b of [playableBoundary,combatBoundary,regionBoundary,hostilesBoundary,firstGpuCompleted,supportedGpuCompleted])b.fail(error);};
  let view='reference',elapsed=0;const samples=[];
  const setView=v=>{
   view=v;scene.camera=v==='reference'?reference:camera;
@@ -275,6 +277,15 @@ async function main(){
  await registerSceneWithShadowSupport(scene);
  markStartup('register-end');
  ashen.renderLoop=createRenderLoop(engine,scene,{
+  onFrameSubmitted:()=>{
+   if(supportedFramePending||!dressed||!player.getGrounded())return;
+   supportedFramePending=true;
+   markStartup('supported-frame-submitted');
+   // Fence the first actually submitted dressed, grounded frame. An extra
+   // requestAnimationFrame after this fence would add latency without adding
+   // stronger evidence that the starting scene is ready for movement.
+   void waitForGpuIdle(engine).then(()=>{markStartup('supported-frame-completed');supportedGpuCompleted.reach();},error=>supportedGpuCompleted.fail(error));
+  },
   onError:e=>{console.error(e);const el=document.getElementById('error');el.style.display='block';el.textContent=e?.stack||String(e);void formatGameError(e).then(message=>{el.textContent=message;}).catch(()=>{});},
   onDeviceLost:(error,info)=>{
    deviceLost=true;
@@ -299,14 +310,8 @@ async function main(){
  // Observe supported physics and completion of a dressed frame, not just loading.
  // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/42-physics.md
  await firstGpuCompleted.promise;
- const groundingDeadline=performance.now()+10000;
- while(!player.getGrounded()){
-  if(deviceLost||performance.now()>groundingDeadline)throw Error('Starting character did not reach grounded Havok support');
-  await new Promise(requestAnimationFrame);
- }
- const dressedFrame=ashen.gpu.frames;
- while(ashen.gpu.frames<dressedFrame+1)await new Promise(requestAnimationFrame);
- await waitForGpuIdle(engine);
+ const groundingTimeout=setTimeout(()=>supportedGpuCompleted.fail(Error('Starting character did not reach grounded Havok support')),10000);
+ try{await supportedGpuCompleted.promise;}finally{clearTimeout(groundingTimeout);}
  setLoadingStage(5,'Opening the gates.');
  // The playable boundary. The character is dressed, standing on Havok collision, and the
  // dressed frame has completed; finishLoading reveals it and releases the overlay.
@@ -387,6 +392,7 @@ async function main(){
   // Spell lighting snapshots materials. Nearby pools must exist first; the
   // completed foliage upgrade retains those exact materials and allocations.
   if(nearbyFoliage)await nearbyFoliage.catch(()=>regionP);
+  else await foliageP; // The diagnostic full-world path creates its pools later.
   lifetime.throwIfAborted();
   combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig,churchyardEnemies,createObjective(),{sockets});
   lifetime.throwIfAborted();

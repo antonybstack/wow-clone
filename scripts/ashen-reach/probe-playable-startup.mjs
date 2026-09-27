@@ -178,6 +178,9 @@ for (let run = 1; run <= runs; run++) {
     report.rows.push(row);
     await fs.writeFile(destination, JSON.stringify(report, null, 2));
     assert(row.grounded && row.physics && !row.loader);
+    assert(row.marks['supported-frame-submitted'] >= row.marks['equipment-end']);
+    assert(row.marks['supported-frame-completed'] >= row.marks['supported-frame-submitted']);
+    assert(row.playableMs >= row.marks['supported-frame-completed']);
     assert.deepEqual(row.canvas, [1280, 720]);
     assert.deepEqual(errors, []);
     assert.deepEqual(row.input.gpuErrors, []);

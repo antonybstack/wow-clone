@@ -64,6 +64,29 @@ const pos = (page) =>
   }));
 
 try {
+  await run('wait-for-supported-frame',async(page)=>{
+    await page.addInitScript(()=>{
+      window.__holdSupport=true;
+      const timer=setInterval(()=>{
+        const player=globalThis.ASHEN?.player;if(!player)return;
+        clearInterval(timer);const grounded=player.getGrounded.bind(player);
+        player.getGrounded=()=>!window.__holdSupport&&grounded();
+        window.__supportHook=true;
+      },0);
+    });
+    await page.goto(url);
+    await page.waitForFunction(()=>window.__supportHook&&!!globalThis.ASHEN?.whenFirstGpuFrame);
+    await page.evaluate(()=>ASHEN.whenFirstGpuFrame);
+    assert.equal(await page.evaluate(()=>ASHEN.playableReady),false);
+    const before=await pos(page);await page.keyboard.down('KeyW');await page.waitForTimeout(250);await page.keyboard.up('KeyW');
+    const held=await pos(page);assert(Math.hypot(held.x-before.x,held.z-before.z)<.05);
+    const released=await page.evaluate(()=>{window.__holdSupport=false;return performance.now();});
+    await page.waitForFunction(()=>ASHEN.playableReady);
+    const marks=await page.evaluate(()=>ASHEN.startup.timings());
+    assert(marks['supported-frame-submitted']>=released);
+    assert(marks['supported-frame-completed']>=marks['supported-frame-submitted']);
+    assert(marks.playable>=marks['supported-frame-completed']);return {released,marks};
+  });
   await run('initial-body-failure',async(page,context)=>{
     let release;const held=new Promise(resolve=>{release=resolve;});
     await context.route('**/startup/character/body-*.bin',async route=>{await held;await route.fulfill({status:503,body:'Injected body failure'});});

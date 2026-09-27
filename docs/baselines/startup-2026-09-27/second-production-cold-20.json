@@ -1,0 +1,4699 @@
+{
+  "conditions": {
+    "profile": "50mbps",
+    "network": {
+      "latency": 40,
+      "downloadThroughput": 6250000,
+      "uploadThroughput": 1250000
+    },
+    "cpu": "Apple M1 Max",
+    "viewport": [
+      1280,
+      720
+    ],
+    "cache": "Fresh browser process/profile each run; OS and GPU-driver caches uncontrolled",
+    "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+  },
+  "rows": [
+    {
+      "origin": 1790539615696.2,
+      "marks": {
+        "begin": 462.39999985694885,
+        "engine-created": 492.69999980926514,
+        "gpu-probe-end": 496.39999985694885,
+        "world-start": 498.19999980926514,
+        "havok-runtime-available": 699.2999999523163,
+        "world-end": 807.5999999046326,
+        "havok-start": 808.6999998092651,
+        "havok-runtime-start": 809.3999998569489,
+        "havok-runtime-end": 809.3999998569489,
+        "havok-world-end": 811.2999999523163,
+        "havok-colliders-end": 818,
+        "havok-controller-end": 819.2999999523163,
+        "havok-end": 820.0999999046326,
+        "body-start": 820.1999998092651,
+        "body-end": 837.5,
+        "equipment-start": 839.1999998092651,
+        "equipment-end": 848.7999999523163,
+        "register-start": 854,
+        "register-end": 876,
+        "first-render-return": 886.2999999523163,
+        "first-gpu-completed": 992,
+        "playable": 1021.6999998092651,
+        "bg-start": 1021.7999999523163
+      },
+      "playableMs": 1021.6999998092651,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.00044540381685510654,
+        "z": -0.0007860066880674822
+      },
+      "frame": 15,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 5534
+        },
+        {
+          "url": "https://play.sparkify.dev/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 641890
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 72305
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 2082
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 874974
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 219263
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 130142
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212795
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 977361
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5349
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3804
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2728
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5483
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3152
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2239
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15175
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1562
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-DTa9dLR_.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 125721
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 433
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 210927
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1986
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1747
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2439
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "complete": true,
+          "encodedBytesAtBoundary": 10338
+        },
+        {
+          "url": "https://play.sparkify.dev/cdn-cgi/rum?",
+          "complete": true,
+          "encodedBytesAtBoundary": 505
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 2097
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3532031,
+      "input": {
+        "keyAt": 1256,
+        "observedAt": 1307.6999998092651,
+        "position": {
+          "x": -0.0004556715744377207,
+          "z": 0.3540958740747705
+        },
+        "frames": 102,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 51.69999980926514
+      },
+      "errors": [],
+      "run": 1
+    },
+    {
+      "origin": 1790539617684.1,
+      "marks": {
+        "begin": 429.10000014305115,
+        "engine-created": 458.2999999523163,
+        "gpu-probe-end": 460.2000000476837,
+        "world-start": 462,
+        "havok-runtime-available": 689.9000000953674,
+        "world-end": 787.5,
+        "havok-start": 788.6000001430511,
+        "havok-runtime-start": 789.2999999523163,
+        "havok-runtime-end": 789.2999999523163,
+        "havok-world-end": 791.2999999523163,
+        "havok-colliders-end": 798.2000000476837,
+        "havok-controller-end": 799.4000000953674,
+        "havok-end": 800.2999999523163,
+        "body-start": 800.4000000953674,
+        "body-end": 817.4000000953674,
+        "equipment-start": 818.4000000953674,
+        "equipment-end": 827.6000001430511,
+        "register-start": 833,
+        "register-end": 854.4000000953674,
+        "first-render-return": 864.7000000476837,
+        "first-gpu-completed": 958.4000000953674,
+        "playable": 990,
+        "bg-start": 990.1000001430511
+      },
+      "playableMs": 990,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.0004062992690292436,
+        "z": -0.0007169986666035859
+      },
+      "frame": 14,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 5535
+        },
+        {
+          "url": "https://play.sparkify.dev/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 642174
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 72297
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 2125
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 874962
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 219268
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 130157
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212813
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 977351
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5290
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3617
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2679
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5547
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3129
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2248
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15189
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1562
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-DTa9dLR_.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 125665
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 433
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 210972
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1953
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1796
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2624
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "complete": true,
+          "encodedBytesAtBoundary": 10338
+        },
+        {
+          "url": "https://play.sparkify.dev/cdn-cgi/rum?",
+          "complete": true,
+          "encodedBytesAtBoundary": 508
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 2097
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3532329,
+      "input": {
+        "keyAt": 1224.7000000476837,
+        "observedAt": 1275.7999999523163,
+        "position": {
+          "x": -0.00041666192335044854,
+          "z": 0.3541647146314544
+        },
+        "frames": 102,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 51.09999990463257
+      },
+      "errors": [],
+      "run": 2
+    },
+    {
+      "origin": 1790539619623.7,
+      "marks": {
+        "begin": 462.89999985694885,
+        "engine-created": 493.89999985694885,
+        "gpu-probe-end": 495.69999980926514,
+        "world-start": 497.5,
+        "havok-runtime-available": 693.7999999523163,
+        "world-end": 796.2999999523163,
+        "havok-start": 797.2999999523163,
+        "havok-runtime-start": 798,
+        "havok-runtime-end": 798,
+        "havok-world-end": 799.7999999523163,
+        "havok-colliders-end": 806.5,
+        "havok-controller-end": 807.7999999523163,
+        "havok-end": 808.6999998092651,
+        "body-start": 808.6999998092651,
+        "body-end": 824.7999999523163,
+        "equipment-start": 826.5999999046326,
+        "equipment-end": 836,
+        "register-start": 840.6999998092651,
+        "register-end": 862.0999999046326,
+        "first-render-return": 871.5999999046326,
+        "first-gpu-completed": 966.2999999523163,
+        "playable": 988.1999998092651,
+        "bg-start": 988.2999999523163
+      },
+      "playableMs": 988.1999998092651,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.00042059498718096826,
+        "z": -0.0007422264030920795
+      },
+      "frame": 12,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 5748
+        },
+        {
+          "url": "https://play.sparkify.dev/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 642145
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 72119
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 2119
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 874987
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 219251
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 130284
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212810
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 977324
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5156
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3793
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2543
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5481
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3317
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2265
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15183
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1562
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-DTa9dLR_.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 125708
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 451
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 210959
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1956
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1740
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2451
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "complete": true,
+          "encodedBytesAtBoundary": 10326
+        },
+        {
+          "url": "https://play.sparkify.dev/cdn-cgi/rum?",
+          "complete": true,
+          "encodedBytesAtBoundary": 507
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 2094
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3532279,
+      "input": {
+        "keyAt": 1246.2999999523163,
+        "observedAt": 1287.8999998569489,
+        "position": {
+          "x": -0.00043144292111959876,
+          "z": 0.2876386305190514
+        },
+        "frames": 104,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 41.59999990463257
+      },
+      "errors": [],
+      "run": 3
+    },
+    {
+      "origin": 1790539621593.7,
+      "marks": {
+        "begin": 538.9000000953674,
+        "engine-created": 570.2000000476837,
+        "gpu-probe-end": 572.2000000476837,
+        "world-start": 574.0999999046326,
+        "havok-runtime-available": 728.4000000953674,
+        "world-end": 821.5,
+        "havok-start": 822.5,
+        "havok-runtime-start": 823.2000000476837,
+        "havok-runtime-end": 823.2000000476837,
+        "havok-world-end": 825.0999999046326,
+        "havok-colliders-end": 832.2000000476837,
+        "havok-controller-end": 833.4000000953674,
+        "havok-end": 834.5,
+        "body-start": 834.5999999046326,
+        "body-end": 850.9000000953674,
+        "equipment-start": 852.5,
+        "equipment-end": 861.7000000476837,
+        "register-start": 866.4000000953674,
+        "register-end": 888.0999999046326,
+        "first-render-return": 897.7000000476837,
+        "first-gpu-completed": 991.5999999046326,
+        "playable": 1020.5999999046326,
+        "bg-start": 1020.7000000476837
+      },
+      "playableMs": 1020.5999999046326,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.00040740538413110443,
+        "z": -0.0007189506343120457
+      },
+      "frame": 14,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 5536
+        },
+        {
+          "url": "https://play.sparkify.dev/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 641934
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 72183
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 2119
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 874970
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 219287
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 130147
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212883
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 977351
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5234
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3617
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2537
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5483
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3170
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2280
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15272
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1641
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-DTa9dLR_.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 125665
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 465
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 211033
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1954
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1796
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2545
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "complete": true,
+          "encodedBytesAtBoundary": 10326
+        },
+        {
+          "url": "https://play.sparkify.dev/cdn-cgi/rum?",
+          "complete": true,
+          "encodedBytesAtBoundary": 513
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 2097
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3532038,
+      "input": {
+        "keyAt": 1277.7999999523163,
+        "observedAt": 1318.9000000953674,
+        "position": {
+          "x": -0.0004181646522851878,
+          "z": 0.28486206208943055
+        },
+        "frames": 105,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 41.10000014305115
+      },
+      "errors": [],
+      "run": 4
+    },
+    {
+      "origin": 1790539623666.2,
+      "marks": {
+        "begin": 551.6999998092651,
+        "engine-created": 584.5,
+        "gpu-probe-end": 586.5,
+        "world-start": 588.3999998569489,
+        "havok-runtime-available": 727.5,
+        "world-end": 816,
+        "havok-start": 817.0999999046326,
+        "havok-runtime-start": 817.7999999523163,
+        "havok-runtime-end": 817.8999998569489,
+        "havok-world-end": 819.7999999523163,
+        "havok-colliders-end": 826.7999999523163,
+        "havok-controller-end": 828,
+        "havok-end": 829,
+        "body-start": 829,
+        "body-end": 846.0999999046326,
+        "equipment-start": 847.7999999523163,
+        "equipment-end": 857.5,
+        "register-start": 862.8999998569489,
+        "register-end": 884.7999999523163,
+        "first-render-return": 895.5,
+        "first-gpu-completed": 991.1999998092651,
+        "playable": 1022.3999998569489,
+        "bg-start": 1022.5
+      },
+      "playableMs": 1022.3999998569489,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.00046917996701494047,
+        "z": -0.0008279645974958473
+      },
+      "frame": 14,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 5533
+        },
+        {
+          "url": "https://play.sparkify.dev/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 642068
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 72174
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 2258
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 875010
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 219273
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 130109
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212802
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 977342
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5161
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3612
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2534
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5481
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3126
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2291
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15183
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1562
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-DTa9dLR_.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 125699
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 650
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 211097
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1956
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1740
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2463
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "complete": true,
+          "encodedBytesAtBoundary": 10338
+        },
+        {
+          "url": "https://play.sparkify.dev/cdn-cgi/rum?",
+          "complete": true,
+          "encodedBytesAtBoundary": 514
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 2094
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3532070,
+      "input": {
+        "keyAt": 1255.5999999046326,
+        "observedAt": 1305.5999999046326,
+        "position": {
+          "x": -0.0004794188724931932,
+          "z": 0.3456539667471693
+        },
+        "frames": 102,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 50
+      },
+      "errors": [],
+      "run": 5
+    },
+    {
+      "origin": 1790539625650.7,
+      "marks": {
+        "begin": 492.59999990463257,
+        "engine-created": 523.7999999523163,
+        "gpu-probe-end": 525.6999998092651,
+        "world-start": 527.6999998092651,
+        "havok-runtime-available": 711,
+        "world-end": 806.5,
+        "havok-start": 807.5,
+        "havok-runtime-start": 808.1999998092651,
+        "havok-runtime-end": 808.1999998092651,
+        "havok-world-end": 810.0999999046326,
+        "havok-colliders-end": 816.8999998569489,
+        "havok-controller-end": 818.0999999046326,
+        "havok-end": 819.0999999046326,
+        "body-start": 819.2999999523163,
+        "body-end": 835.5,
+        "equipment-start": 837.1999998092651,
+        "equipment-end": 846.7999999523163,
+        "register-start": 851.6999998092651,
+        "register-end": 873.5,
+        "first-render-return": 883.3999998569489,
+        "first-gpu-completed": 978.2999999523163,
+        "playable": 1001.5999999046326,
+        "bg-start": 1001.7999999523163
+      },
+      "playableMs": 1001.5999999046326,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.00043039686534825084,
+        "z": -0.000759523834084439
+      },
+      "frame": 12,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 5537
+        },
+        {
+          "url": "https://play.sparkify.dev/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 641892
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 72170
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 2123
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 874970
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 219321
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 130261
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212835
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 977465
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5164
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3617
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2537
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5549
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3134
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2239
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15320
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1571
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-DTa9dLR_.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 125665
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 465
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 210940
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 2018
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1743
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2439
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "complete": true,
+          "encodedBytesAtBoundary": 10338
+        },
+        {
+          "url": "https://play.sparkify.dev/cdn-cgi/rum?",
+          "complete": true,
+          "encodedBytesAtBoundary": 504
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 2094
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3531911,
+      "input": {
+        "keyAt": 1255.6999998092651,
+        "observedAt": 1299.7999999523163,
+        "position": {
+          "x": -0.0004411735188962441,
+          "z": 0.30582145987836873
+        },
+        "frames": 104,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 44.10000014305115
+      },
+      "errors": [],
+      "run": 6
+    },
+    {
+      "origin": 1790539627638.3,
+      "marks": {
+        "begin": 450.80000019073486,
+        "engine-created": 482.7000000476837,
+        "gpu-probe-end": 484.90000009536743,
+        "world-start": 487,
+        "havok-runtime-available": 663.7000000476837,
+        "world-end": 763.5,
+        "havok-start": 764.5,
+        "havok-runtime-start": 765.1000001430511,
+        "havok-runtime-end": 765.1000001430511,
+        "havok-world-end": 767,
+        "havok-colliders-end": 773.8000001907349,
+        "havok-controller-end": 775,
+        "havok-end": 776,
+        "body-start": 776.1000001430511,
+        "body-end": 792.4000000953674,
+        "equipment-start": 794,
+        "equipment-end": 803.8000001907349,
+        "register-start": 808.9000000953674,
+        "register-end": 830.1000001430511,
+        "first-render-return": 840.7000000476837,
+        "first-gpu-completed": 937.1000001430511,
+        "playable": 958.7000000476837,
+        "bg-start": 958.8000001907349
+      },
+      "playableMs": 958.7000000476837,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.00043513122712413575,
+        "z": -0.0007678785893646069
+      },
+      "frame": 12,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 5540
+        },
+        {
+          "url": "https://play.sparkify.dev/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 642104
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 72180
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 2124
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 875019
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 219246
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 130147
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212885
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 977338
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5143
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3658
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2541
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5488
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3195
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2325
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15265
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1562
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-DTa9dLR_.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 125698
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 433
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 211041
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 2045
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1775
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2439
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "complete": true,
+          "encodedBytesAtBoundary": 10338
+        },
+        {
+          "url": "https://play.sparkify.dev/cdn-cgi/rum?",
+          "complete": true,
+          "encodedBytesAtBoundary": 510
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 2094
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3532133,
+      "input": {
+        "keyAt": 1206.7000000476837,
+        "observedAt": 1240.7000000476837,
+        "position": {
+          "x": -0.0004453239409982756,
+          "z": 0.2379141352710357
+        },
+        "frames": 99,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 34
+      },
+      "errors": [],
+      "run": 7
+    },
+    {
+      "origin": 1790539629555.6,
+      "marks": {
+        "begin": 453.2999999523163,
+        "engine-created": 485.40000009536743,
+        "gpu-probe-end": 487.2999999523163,
+        "world-start": 489.10000014305115,
+        "havok-runtime-available": 661.5,
+        "world-end": 749.7999999523163,
+        "havok-start": 750.7999999523163,
+        "havok-runtime-start": 751.5,
+        "havok-runtime-end": 751.5,
+        "havok-world-end": 753.4000000953674,
+        "havok-colliders-end": 759.9000000953674,
+        "havok-controller-end": 761.2000000476837,
+        "havok-end": 762.1000001430511,
+        "body-start": 762.2000000476837,
+        "body-end": 778.6000001430511,
+        "equipment-start": 780.2000000476837,
+        "equipment-end": 789.6000001430511,
+        "register-start": 794.6000001430511,
+        "register-end": 816.5,
+        "first-render-return": 826.1000001430511,
+        "first-gpu-completed": 918.7999999523163,
+        "playable": 946.6000001430511,
+        "bg-start": 946.7999999523163
+      },
+      "playableMs": 946.6000001430511,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.0004169703910597685,
+        "z": -0.0007358300573640481
+      },
+      "frame": 15,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 5749
+        },
+        {
+          "url": "https://play.sparkify.dev/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 641877
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 72229
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 2155
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 874953
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 219263
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 130264
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212804
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 977360
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5143
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3663
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2597
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5622
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3129
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2239
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15314
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1562
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-DTa9dLR_.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 125683
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 433
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 210927
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1985
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1793
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2439
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "complete": true,
+          "encodedBytesAtBoundary": 10338
+        },
+        {
+          "url": "https://play.sparkify.dev/cdn-cgi/rum?",
+          "complete": true,
+          "encodedBytesAtBoundary": 511
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 2097
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3532129,
+      "input": {
+        "keyAt": 1187.2000000476837,
+        "observedAt": 1228.2999999523163,
+        "position": {
+          "x": -0.00042707335518414076,
+          "z": 0.28344634051640527
+        },
+        "frames": 100,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 41.09999990463257
+      },
+      "errors": [],
+      "run": 8
+    },
+    {
+      "origin": 1790539631444.6,
+      "marks": {
+        "begin": 535.5999999046326,
+        "engine-created": 568.3999998569489,
+        "gpu-probe-end": 570.3999998569489,
+        "world-start": 572.2999999523163,
+        "havok-runtime-available": 697.1999998092651,
+        "world-end": 799.3999998569489,
+        "havok-start": 800.3999998569489,
+        "havok-runtime-start": 801,
+        "havok-runtime-end": 801,
+        "havok-world-end": 802.6999998092651,
+        "havok-colliders-end": 809.7999999523163,
+        "havok-controller-end": 810.8999998569489,
+        "havok-end": 811.8999998569489,
+        "body-start": 812,
+        "body-end": 828.7999999523163,
+        "equipment-start": 830.5999999046326,
+        "equipment-end": 839.5,
+        "register-start": 844.2999999523163,
+        "register-end": 866,
+        "first-render-return": 875.8999998569489,
+        "first-gpu-completed": 968.5,
+        "playable": 1001.0999999046326,
+        "bg-start": 1001.1999998092651
+      },
+      "playableMs": 1001.0999999046326,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.00041567789116295586,
+        "z": -0.0007335491753422186
+      },
+      "frame": 15,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 5537
+        },
+        {
+          "url": "https://play.sparkify.dev/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 641927
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 72118
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 2167
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 874945
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 219272
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 130173
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212801
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 977342
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5152
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3621
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2621
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5490
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3255
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2236
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15182
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1561
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-DTa9dLR_.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 125699
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 629
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 210955
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1951
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1900
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2465
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "complete": true,
+          "encodedBytesAtBoundary": 10338
+        },
+        {
+          "url": "https://play.sparkify.dev/cdn-cgi/rum?",
+          "complete": true,
+          "encodedBytesAtBoundary": 513
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 2097
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3531947,
+      "input": {
+        "keyAt": 1227.5,
+        "observedAt": 1267.5999999046326,
+        "position": {
+          "x": -0.00042534927747803767,
+          "z": 0.27644938300592964
+        },
+        "frames": 97,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 40.09999990463257
+      },
+      "errors": [],
+      "run": 9
+    },
+    {
+      "origin": 1790539633371.4,
+      "marks": {
+        "begin": 463.30000019073486,
+        "engine-created": 495,
+        "gpu-probe-end": 496.80000019073486,
+        "world-start": 498.80000019073486,
+        "havok-runtime-available": 677.7000000476837,
+        "world-end": 772.1000001430511,
+        "havok-start": 773.2000000476837,
+        "havok-runtime-start": 773.9000000953674,
+        "havok-runtime-end": 773.9000000953674,
+        "havok-world-end": 775.6000001430511,
+        "havok-colliders-end": 782.3000001907349,
+        "havok-controller-end": 783.7000000476837,
+        "havok-end": 784.6000001430511,
+        "body-start": 784.7000000476837,
+        "body-end": 801.3000001907349,
+        "equipment-start": 803,
+        "equipment-end": 812.9000000953674,
+        "register-start": 818,
+        "register-end": 839.4000000953674,
+        "first-render-return": 849.3000001907349,
+        "first-gpu-completed": 945.1000001430511,
+        "playable": 970.8000001907349,
+        "bg-start": 971
+      },
+      "playableMs": 970.8000001907349,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.0004253062780668049,
+        "z": -0.0007505404453420104
+      },
+      "frame": 12,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 5536
+        },
+        {
+          "url": "https://play.sparkify.dev/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 642121
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 72129
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 2207
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 874937
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 219260
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 130131
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212956
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 977408
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5152
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3612
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2679
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5502
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3244
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2245
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15183
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1567
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-DTa9dLR_.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 125668
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 451
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 210950
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 2020
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1798
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2428
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "complete": true,
+          "encodedBytesAtBoundary": 10338
+        },
+        {
+          "url": "https://play.sparkify.dev/cdn-cgi/rum?",
+          "complete": true,
+          "encodedBytesAtBoundary": 511
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 2094
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3532127,
+      "input": {
+        "keyAt": 1224,
+        "observedAt": 1251.1000001430511,
+        "position": {
+          "x": -0.0004353950801218708,
+          "z": 0.19383165545403794
+        },
+        "frames": 98,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 27.100000143051147
+      },
+      "errors": [],
+      "run": 10
+    },
+    {
+      "origin": 1790539635273.5,
+      "marks": {
+        "begin": 521.0999999046326,
+        "engine-created": 554.7000000476837,
+        "gpu-probe-end": 556.5999999046326,
+        "world-start": 558.3999998569489,
+        "havok-runtime-available": 674.5,
+        "world-end": 783.2000000476837,
+        "havok-start": 784.2999999523163,
+        "havok-runtime-start": 785,
+        "havok-runtime-end": 785,
+        "havok-world-end": 786.8999998569489,
+        "havok-colliders-end": 793.7000000476837,
+        "havok-controller-end": 794.8999998569489,
+        "havok-end": 795.8999998569489,
+        "body-start": 796,
+        "body-end": 812.7000000476837,
+        "equipment-start": 814.2999999523163,
+        "equipment-end": 824,
+        "register-start": 829.0999999046326,
+        "register-end": 851.0999999046326,
+        "first-render-return": 860.8999998569489,
+        "first-gpu-completed": 954.0999999046326,
+        "playable": 975.5,
+        "bg-start": 975.5999999046326
+      },
+      "playableMs": 975.5,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.0004207397168632487,
+        "z": -0.0007424818083850058
+      },
+      "frame": 14,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 5540
+        },
+        {
+          "url": "https://play.sparkify.dev/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 642139
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 72149
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 2115
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 874959
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 219273
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 130109
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212793
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 977530
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5147
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3644
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2534
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5678
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3314
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2245
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15183
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1567
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-DTa9dLR_.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 125700
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 483
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 210946
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1956
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1799
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2433
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "complete": true,
+          "encodedBytesAtBoundary": 10338
+        },
+        {
+          "url": "https://play.sparkify.dev/cdn-cgi/rum?",
+          "complete": true,
+          "encodedBytesAtBoundary": 509
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 2097
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3532180,
+      "input": {
+        "keyAt": 1227.2999999523163,
+        "observedAt": 1276.7999999523163,
+        "position": {
+          "x": -0.0004314944251107425,
+          "z": 0.34853853829470877
+        },
+        "frames": 105,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 49.5
+      },
+      "errors": [],
+      "run": 11
+    },
+    {
+      "origin": 1790539637238.4,
+      "marks": {
+        "begin": 496.5,
+        "engine-created": 527.2000000476837,
+        "gpu-probe-end": 528.9000000953674,
+        "world-start": 530.7000000476837,
+        "havok-runtime-available": 715.5,
+        "world-end": 812.2000000476837,
+        "havok-start": 813.2000000476837,
+        "havok-runtime-start": 813.9000000953674,
+        "havok-runtime-end": 814,
+        "havok-world-end": 815.8000001907349,
+        "havok-colliders-end": 822.8000001907349,
+        "havok-controller-end": 824.1000001430511,
+        "havok-end": 825.1000001430511,
+        "body-start": 825.2000000476837,
+        "body-end": 841.7000000476837,
+        "equipment-start": 843.4000000953674,
+        "equipment-end": 853.1000001430511,
+        "register-start": 858.1000001430511,
+        "register-end": 879.4000000953674,
+        "first-render-return": 889.2000000476837,
+        "first-gpu-completed": 982.9000000953674,
+        "playable": 1012.2000000476837,
+        "bg-start": 1012.4000000953674
+      },
+      "playableMs": 1012.2000000476837,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.0004201739212904569,
+        "z": -0.0007414833455513981
+      },
+      "frame": 14,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 5536
+        },
+        {
+          "url": "https://play.sparkify.dev/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 642318
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 72130
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 2129
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 875076
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 219246
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 130199
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212949
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 977342
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5209
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3608
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2607
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5633
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3129
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2239
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15184
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1562
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-DTa9dLR_.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 125666
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 465
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 210972
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1985
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1747
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2439
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "complete": true,
+          "encodedBytesAtBoundary": 10337
+        },
+        {
+          "url": "https://play.sparkify.dev/cdn-cgi/rum?",
+          "complete": true,
+          "encodedBytesAtBoundary": 507
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 2094
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3532308,
+      "input": {
+        "keyAt": 1255.5,
+        "observedAt": 1296,
+        "position": {
+          "x": -0.00043057828467575344,
+          "z": 0.2834401553469968
+        },
+        "frames": 100,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 40.5
+      },
+      "errors": [],
+      "run": 12
+    },
+    {
+      "origin": 1790539639218.5,
+      "marks": {
+        "begin": 452,
+        "engine-created": 481.7000000476837,
+        "gpu-probe-end": 483.90000009536743,
+        "world-start": 485.7999999523163,
+        "havok-runtime-available": 672.6000001430511,
+        "world-end": 787.2000000476837,
+        "havok-start": 788.2000000476837,
+        "havok-runtime-start": 789,
+        "havok-runtime-end": 789,
+        "havok-world-end": 790.7000000476837,
+        "havok-colliders-end": 797.2000000476837,
+        "havok-controller-end": 798.5,
+        "havok-end": 799.5,
+        "body-start": 799.6000001430511,
+        "body-end": 815.9000000953674,
+        "equipment-start": 817.5,
+        "equipment-end": 827.5,
+        "register-start": 832.4000000953674,
+        "register-end": 854.4000000953674,
+        "first-render-return": 864.7000000476837,
+        "first-gpu-completed": 959.7000000476837,
+        "playable": 983.2999999523163,
+        "bg-start": 983.5
+      },
+      "playableMs": 983.2999999523163,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.0004301959945926245,
+        "z": -0.000759169356345826
+      },
+      "frame": 12,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 5537
+        },
+        {
+          "url": "https://play.sparkify.dev/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 642128
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 72119
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 2206
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 875010
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 219273
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 130109
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212874
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 977414
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5147
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3621
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2623
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5490
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3215
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2236
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15183
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1562
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-DTa9dLR_.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 125668
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 451
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 210950
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 2048
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1854
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2475
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "complete": true,
+          "encodedBytesAtBoundary": 10338
+        },
+        {
+          "url": "https://play.sparkify.dev/cdn-cgi/rum?",
+          "complete": true,
+          "encodedBytesAtBoundary": 508
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 2097
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3532136,
+      "input": {
+        "keyAt": 1256.4000000953674,
+        "observedAt": 1296.4000000953674,
+        "position": {
+          "x": -0.0004415277621937225,
+          "z": 0.27852083240686343
+        },
+        "frames": 108,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 40
+      },
+      "errors": [],
+      "run": 13
+    },
+    {
+      "origin": 1790539641202.2,
+      "marks": {
+        "begin": 480.5,
+        "engine-created": 512.0999999046326,
+        "gpu-probe-end": 513.9000000953674,
+        "world-start": 516,
+        "havok-runtime-available": 690.7000000476837,
+        "world-end": 786.2000000476837,
+        "havok-start": 787.2000000476837,
+        "havok-runtime-start": 788,
+        "havok-runtime-end": 788,
+        "havok-world-end": 790,
+        "havok-colliders-end": 797.0999999046326,
+        "havok-controller-end": 798.4000000953674,
+        "havok-end": 799.4000000953674,
+        "body-start": 799.5999999046326,
+        "body-end": 816.2999999523163,
+        "equipment-start": 818.0999999046326,
+        "equipment-end": 827.5999999046326,
+        "register-start": 832.5,
+        "register-end": 854.2000000476837,
+        "first-render-return": 864.0999999046326,
+        "first-gpu-completed": 958.2000000476837,
+        "playable": 982.2999999523163,
+        "bg-start": 982.5
+      },
+      "playableMs": 982.2999999523163,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.0004299183850133773,
+        "z": -0.0007586794570592873
+      },
+      "frame": 12,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 5533
+        },
+        {
+          "url": "https://play.sparkify.dev/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 641895
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 72214
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 2125
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 874953
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 219272
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 130121
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212835
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 977338
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5193
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3689
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2537
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5564
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3268
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2239
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15175
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1701
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-DTa9dLR_.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 125698
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 468
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 210931
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1954
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1853
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2474
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "complete": true,
+          "encodedBytesAtBoundary": 10338
+        },
+        {
+          "url": "https://play.sparkify.dev/cdn-cgi/rum?",
+          "complete": true,
+          "encodedBytesAtBoundary": 510
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 2094
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3531972,
+      "input": {
+        "keyAt": 1239.5,
+        "observedAt": 1296.7000000476837,
+        "position": {
+          "x": -0.0004413092363246529,
+          "z": 0.39962121937598777
+        },
+        "frames": 109,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 57.200000047683716
+      },
+      "errors": [],
+      "run": 14
+    },
+    {
+      "origin": 1790539643204.8,
+      "marks": {
+        "begin": 416.90000009536743,
+        "engine-created": 448.2999999523163,
+        "gpu-probe-end": 450.09999990463257,
+        "world-start": 452.09999990463257,
+        "havok-runtime-available": 667.4000000953674,
+        "world-end": 765.9000000953674,
+        "havok-start": 767,
+        "havok-runtime-start": 767.7999999523163,
+        "havok-runtime-end": 767.7999999523163,
+        "havok-world-end": 769.7999999523163,
+        "havok-colliders-end": 777,
+        "havok-controller-end": 778.2000000476837,
+        "havok-end": 779.2000000476837,
+        "body-start": 779.4000000953674,
+        "body-end": 796.2000000476837,
+        "equipment-start": 797.9000000953674,
+        "equipment-end": 807.2999999523163,
+        "register-start": 812.0999999046326,
+        "register-end": 833.4000000953674,
+        "first-render-return": 843.5,
+        "first-gpu-completed": 939.2999999523163,
+        "playable": 965.5,
+        "bg-start": 965.5999999046326
+      },
+      "playableMs": 965.5,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.0005376064560268306,
+        "z": -0.0009487172180308742
+      },
+      "frame": 15,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 5533
+        },
+        {
+          "url": "https://play.sparkify.dev/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 642134
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 72161
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 2126
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 874944
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 219268
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 130133
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212943
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 977364
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5152
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3613
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2537
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5613
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3219
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2239
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15314
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1652
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-DTa9dLR_.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 125698
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 465
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 210931
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1954
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1853
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2442
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "complete": true,
+          "encodedBytesAtBoundary": 10338
+        },
+        {
+          "url": "https://play.sparkify.dev/cdn-cgi/rum?",
+          "complete": true,
+          "encodedBytesAtBoundary": 509
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 2094
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3532229,
+      "input": {
+        "keyAt": 1203.7000000476837,
+        "observedAt": 1249.7999999523163,
+        "position": {
+          "x": -0.0005476627366568972,
+          "z": 0.3266335360718518
+        },
+        "frames": 101,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 46.09999990463257
+      },
+      "errors": [],
+      "run": 15
+    },
+    {
+      "origin": 1790539645127.4,
+      "marks": {
+        "begin": 499.2000000476837,
+        "engine-created": 530.2000000476837,
+        "gpu-probe-end": 532.0999999046326,
+        "world-start": 533.7999999523163,
+        "havok-runtime-available": 738.7000000476837,
+        "world-end": 819.7999999523163,
+        "havok-start": 820.7999999523163,
+        "havok-runtime-start": 821.5,
+        "havok-runtime-end": 821.5,
+        "havok-world-end": 823.3999998569489,
+        "havok-colliders-end": 830,
+        "havok-controller-end": 831.2999999523163,
+        "havok-end": 832.3999998569489,
+        "body-start": 832.5999999046326,
+        "body-end": 849.0999999046326,
+        "equipment-start": 850.5999999046326,
+        "equipment-end": 860.0999999046326,
+        "register-start": 865.3999998569489,
+        "register-end": 886.8999998569489,
+        "first-render-return": 895.7999999523163,
+        "first-gpu-completed": 990.8999998569489,
+        "playable": 1018.8999998569489,
+        "bg-start": 1019
+      },
+      "playableMs": 1018.8999998569489,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.0004752098522328231,
+        "z": -0.0008386055708033698
+      },
+      "frame": 13,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 5538
+        },
+        {
+          "url": "https://play.sparkify.dev/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 642116
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 72151
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 2122
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 875007
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 219268
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 130128
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212816
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 977346
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5297
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3608
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2586
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5637
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3134
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2244
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15329
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1562
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-DTa9dLR_.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 125666
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 465
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 210931
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1954
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1829
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2471
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "complete": true,
+          "encodedBytesAtBoundary": 10338
+        },
+        {
+          "url": "https://play.sparkify.dev/cdn-cgi/rum?",
+          "complete": true,
+          "encodedBytesAtBoundary": 509
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 2094
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3532146,
+      "input": {
+        "keyAt": 1259,
+        "observedAt": 1300.2000000476837,
+        "position": {
+          "x": -0.00048536593051760104,
+          "z": 0.28544347260710445
+        },
+        "frames": 100,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 41.200000047683716
+      },
+      "errors": [],
+      "run": 16
+    },
+    {
+      "origin": 1790539647119.5,
+      "marks": {
+        "begin": 483.7999999523163,
+        "engine-created": 515.3999998569489,
+        "gpu-probe-end": 517.2999999523163,
+        "world-start": 519.0999999046326,
+        "havok-runtime-available": 702.8999998569489,
+        "world-end": 799.3999998569489,
+        "havok-start": 800.3999998569489,
+        "havok-runtime-start": 801.0999999046326,
+        "havok-runtime-end": 801.0999999046326,
+        "havok-world-end": 803,
+        "havok-colliders-end": 809.7000000476837,
+        "havok-controller-end": 811,
+        "havok-end": 811.8999998569489,
+        "body-start": 812,
+        "body-end": 828.5999999046326,
+        "equipment-start": 830.3999998569489,
+        "equipment-end": 839.7000000476837,
+        "register-start": 844.7000000476837,
+        "register-end": 866.5,
+        "first-render-return": 876.7999999523163,
+        "first-gpu-completed": 970.7999999523163,
+        "playable": 998.8999998569489,
+        "bg-start": 999.0999999046326
+      },
+      "playableMs": 998.8999998569489,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.00051647218747458,
+        "z": -0.0009114214522459788
+      },
+      "frame": 13,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 5539
+        },
+        {
+          "url": "https://play.sparkify.dev/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 642108
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 72230
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 2125
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 874953
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 219402
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 130263
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212809
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 977320
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5143
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3622
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2671
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5483
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3143
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2239
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15175
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1643
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-DTa9dLR_.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 125698
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 433
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 210939
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 2064
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1747
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2471
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "complete": true,
+          "encodedBytesAtBoundary": 10338
+        },
+        {
+          "url": "https://play.sparkify.dev/cdn-cgi/rum?",
+          "complete": true,
+          "encodedBytesAtBoundary": 504
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 2097
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3532159,
+      "input": {
+        "keyAt": 1256.2999999523163,
+        "observedAt": 1297.8999998569489,
+        "position": {
+          "x": -0.0005272001419001852,
+          "z": 0.2860696468648854
+        },
+        "frames": 105,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 41.59999990463257
+      },
+      "errors": [],
+      "run": 17
+    },
+    {
+      "origin": 1790539649087.2,
+      "marks": {
+        "begin": 531.5999999046326,
+        "engine-created": 564.7999999523163,
+        "gpu-probe-end": 566.7000000476837,
+        "world-start": 568.5999999046326,
+        "havok-runtime-available": 695.4000000953674,
+        "world-end": 790.4000000953674,
+        "havok-start": 791.5999999046326,
+        "havok-runtime-start": 792.2999999523163,
+        "havok-runtime-end": 792.2999999523163,
+        "havok-world-end": 794.2999999523163,
+        "havok-colliders-end": 801.2000000476837,
+        "havok-controller-end": 802.4000000953674,
+        "havok-end": 803.2999999523163,
+        "body-start": 803.4000000953674,
+        "body-end": 819.7999999523163,
+        "equipment-start": 821.5999999046326,
+        "equipment-end": 831.2000000476837,
+        "register-start": 836.5999999046326,
+        "register-end": 858.2999999523163,
+        "first-render-return": 868.7000000476837,
+        "first-gpu-completed": 960.7999999523163,
+        "playable": 992,
+        "bg-start": 992.0999999046326
+      },
+      "playableMs": 992,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.00044430265101680474,
+        "z": -0.0007840634543939448
+      },
+      "frame": 16,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 5746
+        },
+        {
+          "url": "https://play.sparkify.dev/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 642011
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 72278
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 2123
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 874937
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 219251
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 130131
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212926
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 977414
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5147
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3736
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2589
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5481
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3126
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2291
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15238
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1562
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-DTa9dLR_.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 125700
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 500
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 210918
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 2002
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1744
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2443
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "complete": true,
+          "encodedBytesAtBoundary": 10338
+        },
+        {
+          "url": "https://play.sparkify.dev/cdn-cgi/rum?",
+          "complete": true,
+          "encodedBytesAtBoundary": 513
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 2097
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3532242,
+      "input": {
+        "keyAt": 1233.2999999523163,
+        "observedAt": 1275.2000000476837,
+        "position": {
+          "x": -0.00045448224432606326,
+          "z": 0.29879797222494303
+        },
+        "frames": 102,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 41.90000009536743
+      },
+      "errors": [],
+      "run": 18
+    },
+    {
+      "origin": 1790539651046,
+      "marks": {
+        "begin": 480.5,
+        "engine-created": 511.7999999523163,
+        "gpu-probe-end": 513.6999998092651,
+        "world-start": 515.6999998092651,
+        "havok-runtime-available": 684.3999998569489,
+        "world-end": 777.5,
+        "havok-start": 778.5,
+        "havok-runtime-start": 779.2999999523163,
+        "havok-runtime-end": 779.2999999523163,
+        "havok-world-end": 781.0999999046326,
+        "havok-colliders-end": 788,
+        "havok-controller-end": 789.1999998092651,
+        "havok-end": 790.1999998092651,
+        "body-start": 790.2999999523163,
+        "body-end": 806.6999998092651,
+        "equipment-start": 808.3999998569489,
+        "equipment-end": 818,
+        "register-start": 823.0999999046326,
+        "register-end": 845.0999999046326,
+        "first-render-return": 855.3999998569489,
+        "first-gpu-completed": 948.8999998569489,
+        "playable": 982,
+        "bg-start": 982.1999998092651
+      },
+      "playableMs": 982,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.00046429553387010355,
+        "z": -0.0008193450102790534
+      },
+      "frame": 15,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 5742
+        },
+        {
+          "url": "https://play.sparkify.dev/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 642044
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 72341
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 2161
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 875010
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 219246
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 130272
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212830
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 977329
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5157
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3622
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2546
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5622
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3170
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2290
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15175
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1593
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-DTa9dLR_.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 125698
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 465
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 210931
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1971
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1743
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2439
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "complete": true,
+          "encodedBytesAtBoundary": 10338
+        },
+        {
+          "url": "https://play.sparkify.dev/cdn-cgi/rum?",
+          "complete": true,
+          "encodedBytesAtBoundary": 505
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 2094
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3532334,
+      "input": {
+        "keyAt": 1221.0999999046326,
+        "observedAt": 1264.5999999046326,
+        "position": {
+          "x": -0.0004743800458695276,
+          "z": 0.2966628587931652
+        },
+        "frames": 100,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 43.5
+      },
+      "errors": [],
+      "run": 19
+    },
+    {
+      "origin": 1790539652969.8,
+      "marks": {
+        "begin": 476.7999999523163,
+        "engine-created": 508,
+        "gpu-probe-end": 510,
+        "world-start": 511.89999985694885,
+        "havok-runtime-available": 685.5999999046326,
+        "world-end": 780.2000000476837,
+        "havok-start": 781.2000000476837,
+        "havok-runtime-start": 782,
+        "havok-runtime-end": 782,
+        "havok-world-end": 783.7999999523163,
+        "havok-colliders-end": 790.5999999046326,
+        "havok-controller-end": 791.7999999523163,
+        "havok-end": 792.7000000476837,
+        "body-start": 792.7999999523163,
+        "body-end": 809.7000000476837,
+        "equipment-start": 811.7999999523163,
+        "equipment-end": 822.5999999046326,
+        "register-start": 828,
+        "register-end": 850.5,
+        "first-render-return": 860.8999998569489,
+        "first-gpu-completed": 956.2999999523163,
+        "playable": 986.7999999523163,
+        "bg-start": 987
+      },
+      "playableMs": 986.7999999523163,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.0004741886749336423,
+        "z": -0.0008368034932682437
+      },
+      "frame": 14,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 5545
+        },
+        {
+          "url": "https://play.sparkify.dev/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 641908
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 72216
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 2126
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 874966
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 219325
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 130147
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 212817
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/near-760159bd18c3.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 977406
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5147
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3657
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2591
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5482
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3207
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2317
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15197
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1561
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-DTa9dLR_.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 125697
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 432
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/lite-runtime-DCCbO0cx.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 210978
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1954
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/linear-materials-BREM7Fi8.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1764
+        },
+        {
+          "url": "https://play.sparkify.dev/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2544
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "complete": true,
+          "encodedBytesAtBoundary": 10326
+        },
+        {
+          "url": "https://play.sparkify.dev/cdn-cgi/rum?",
+          "complete": true,
+          "encodedBytesAtBoundary": 511
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 2094
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3531915,
+      "input": {
+        "keyAt": 1213.7000000476837,
+        "observedAt": 1251.5,
+        "position": {
+          "x": -0.0004837150985047162,
+          "z": 0.26164638517219285
+        },
+        "frames": 95,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 37.799999952316284
+      },
+      "errors": [],
+      "run": 20
+    }
+  ]
+}

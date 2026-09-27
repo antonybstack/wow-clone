@@ -2,7 +2,7 @@ import {renderFrame, resizeEngine, waitForGpuIdle, onSceneDispose} from '@babylo
 import {createFrameScheduler} from './frame-scheduler.js';
 
 /** Bound unacknowledged submissions so an uncapped CPU cannot flood the GPU queue. */
-export function createRenderLoop(engine, scene, {onError = console.error, onDeviceLost = onError} = {}) {
+export function createRenderLoop(engine, scene, {onError = console.error, onDeviceLost = onError, onFrameSubmitted} = {}) {
   let measurement = null, disposed = false;
   const scheduler = createFrameScheduler({
     maxPending: 4,
@@ -14,6 +14,9 @@ export function createRenderLoop(engine, scene, {onError = console.error, onDevi
       if (measurement && delta > 0) measurement.push(delta);
       resizeEngine(engine);
       renderFrame(engine, delta);
+      // Submission is synchronous; callers can fence this exact native frame.
+      // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/index.ts
+      onFrameSubmitted?.();
     },
     onError,
   });
