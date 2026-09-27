@@ -5,6 +5,25 @@ for(let d=536;d<=640;d+=16)offsets.push(d);
 for(let d=768;d<=1536;d+=128)offsets.push(d);
 const axis=(min,max)=>[...offsets.map(d=>min-d).reverse(),...Array.from({length:(max-min)/2+1},(_,i)=>min+i*2),...offsets.map(d=>max+d)];
 export const TERRAIN_X=axis(-90,90),TERRAIN_Z=axis(-95,145);
+/** Reuse each outer-grid corner while adjoining cells are built. Two rows bound
+ * peak memory; the source functions and final mesh packing remain unchanged.
+ * See docs/rendering-performance-investigation-2026-09-26.md (P1).
+ */
+export function createTerrainCornerCache(xs,zs,height,normal,legacyHeight){
+ const rows=[{zi:-1,cells:[]},{zi:-1,cells:[]}];
+ const get=(xi,zi)=>{
+  const row=rows[zi&1];
+  if(row.zi!==zi){row.zi=zi;row.cells=[];}
+  let corner=row.cells[xi];
+  if(!corner){const x=xs[xi],z=zs[zi];corner={position:[x,height(x,z),z],normal:normal(x,z),legacy:null};row.cells[xi]=corner;}
+  return corner;
+ };
+ const legacy=corner=>{
+  if(corner.legacy===null)corner.legacy=legacyHeight(corner.position[0],corner.position[2]);
+  return corner.legacy;
+ };
+ return {get,legacy};
+}
 function cell(axis,value){let lo=0,hi=axis.length-1;while(hi-lo>1){const m=(lo+hi)>>1;if(axis[m]<=value)lo=m;else hi=m;}return [axis[lo],axis[hi]];}
 export function sampleTerrainSurface(x,z,height){
  const corridor=x>=-16&&x<16&&z>=41&&z<143;

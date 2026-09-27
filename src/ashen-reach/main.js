@@ -1,6 +1,6 @@
 import {BASE_VISIBLE_MESHES, ORC_BASE_VISIBLE_MESHES, UNDEAD_BASE_VISIBLE_MESHES, EQUIPMENT_ITEMS} from './equipment-catalog.js';
 import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT, UNDEAD_EQUIPMENT_FIT} from './equipment-contract.js';
-import {createEngine,createSceneContext,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,onBeforeRender,enableBoneControl,setFog,captureScreenshot,setMeshVisible,isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize,setMeshoptBaseUrl} from '@babylonjs/lite';
+import {createEngine,createSceneContext,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,onBeforeRender,enableBoneControl,setFog,captureScreenshot,setMeshVisible,isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize,setMeshoptBaseUrl,waitForGpuIdle} from '@babylonjs/lite';
 import {createAshenMetrics} from './metrics.js';
 import {createRenderLoop} from './render-loop.js';
 import {createObjective} from './objective.js';
@@ -37,6 +37,8 @@ async function main(){
  const boot=performance.now();
  const canvas=document.getElementById('renderCanvas');
  const params=new URLSearchParams(location.search);
+ const markStartup=params.has('startupMarks')?name=>performance.mark(`ashen-startup-${name}`):()=>{};
+ markStartup('begin');
  const pixelRatio=Number(params.get('pixelRatio'));
  const preloadedEquipment=params.has('preloadedEquipment');
  const bodyUrl=preloadedEquipment?'/ashen-reach/wanderer-equipment.glb':'/ashen-reach/equipment/body.glb';
@@ -52,6 +54,7 @@ async function main(){
  }
  setLoadingStage(0,'Lighting the lamps.');
  const engine=await createEngine(canvas,{msaaSamples:1,maxDevicePixelRatio:pixelRatio>0?pixelRatio:.75});
+ markStartup('engine-created');
  const gpu=await configureGpuCompatibility(engine._device);
  if(params.has('gpuDiagnostics'))showGpuDiagnostics(gpu);
  if(gpu.depthBundle==='unsupported')throw new Error(gpu.errors.join('\n'));
@@ -70,7 +73,10 @@ async function main(){
  scene.camera=reference;
  const shadows=createSunShadows(engine,scene,sun,{depthOnlyFragment:gpu.depthBundle==='empty-fragment'});
  const localLights=createLocalLights(engine,scene,shadows);
- const world=await buildChurchyard(engine,scene);initInput(canvas);setInputEnabled(false);installTouchControls();
+ markStartup('world-start');
+ const world=await buildChurchyard(engine,scene);
+ markStartup('world-end');
+ initInput(canvas);setInputEnabled(false);installTouchControls();
  setLoadingStage(2,'Calling the wanderer.');
  enableBoneControl();
  const noEnemies=params.has('noEnemies');
@@ -114,8 +120,12 @@ async function main(){
   clips:{...sourceBody.clips,cast:'FireBlast_Upper',walkBack:'Jog_Bwd_Loop',strafeL:'Jog_Left_Loop',strafeR:'Jog_Right_Loop',turnL:'Turn90_L',turnR:'Turn90_R',hit:'Hit_Chest'}};
  capsule=resolveCapsule(playable.capsule);
  // Both near and outer terrain participate in Havok; exploration has no corridor clamp.
+ markStartup('havok-start');
  player=await setupPlayer(engine,scene,rig,{spawn:plantSpawnOnTerrain(world.spawn,capsule,world.groundHeight),colliders:world.colliders,groundHeight:world.groundHeight,boundsRadius:Infinity,capsule});
+ markStartup('havok-end');
+ markStartup('body-start');
  body=await attachBody(engine,scene,player,player.capsuleHeight,playable);
+ markStartup('body-end');
  setLoadingStage(3,'Waking the churchyard.');
  // Skinning is fixed up at load. Starting the engine first leaves the mesh
  // in the bind pose while clips report as playing. See docs/startup-load.md.
@@ -129,7 +139,9 @@ async function main(){
  ashen.grounding=post.grounding;
  if(post.status.notes.length)console.warn('ashen post chain:',post.status.notes.join('; '));
  attachLinearMaterials();
+ markStartup('register-start');
  await registerSceneWithShadowSupport(scene);
+ markStartup('register-end');
  ashen.renderLoop=createRenderLoop(engine,scene,{
   onError:e=>{console.error(e);const el=document.getElementById('error');el.style.display='block';el.textContent=e?.stack||String(e);void formatGameError(e).then(message=>{el.textContent=message;}).catch(()=>{});},
   onDeviceLost:(error,info)=>{
@@ -140,6 +152,11 @@ async function main(){
   },
  });
  await ashen.renderLoop.start();
+ markStartup('first-render-return');
+ // Lite's public GPU fence reports completion of already submitted work, not scanout.
+ // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/index.ts
+ if(params.has('startupMarks'))void waitForGpuIdle(engine).then(()=>markStartup('first-gpu-completed'))
+  .catch(error=>{console.error('Startup GPU fence failed',error);});
  ashen.presentMs=performance.now()-boot;
  const foliageP=world.startFoliage();
  const [
@@ -168,7 +185,9 @@ async function main(){
  if(churchyardEnemies.length)bindEnemyColliders(churchyardEnemies,player,world);
  combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig,churchyardEnemies,createObjective());
  // Spell billboard systems arrive after the first visible scene registration.
+ markStartup('late-register-start');
  await registerLateFeatures(scene,attachLinearMaterials,unregisterScene,registerSceneWithShadowSupport);
+ markStartup('late-register-end');
  await folkP;
  body.bindSocketHost(combat.fx.sockets);
  setLoadingStage(4,'Gathering your belongings.');
@@ -252,12 +271,13 @@ async function main(){
  dressed=true;
  setView(view);
  setLoadingStage(5,'Opening the gates.');
- ashen.whenHostiles=townP.then(()=>{ashen.hostilesReady=true;});
+ ashen.whenHostiles=townP.then(()=>{ashen.hostilesReady=true;markStartup('hostiles-ready');});
  await finishLoading();
  if(deviceLost)return;
  readyForPlay=true;
  setInputEnabled(true);
  ashen.loadMs=performance.now()-boot;
  ashen.ready=true;
+ markStartup('ready');
 }
 main().catch(async e=>{console.error(e);const message=await formatGameError(e).catch(()=>e?.stack||String(e));if(failLoading(e,message))return;const el=document.getElementById('error');el.style.display='block';el.textContent=message;});

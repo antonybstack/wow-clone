@@ -1,0 +1,186 @@
+{
+  "samplingIntervalUs": 1000,
+  "sampleCount": 5448,
+  "topSelf": [
+    {
+      "function": "bakeLamp",
+      "file": "geometry.js",
+      "line": 217,
+      "selfMs": 757.0
+    },
+    {
+      "function": "(idle)",
+      "file": "",
+      "line": 0,
+      "selfMs": 619.5
+    },
+    {
+      "function": "applyRegionRoutes",
+      "file": "region-layout.js",
+      "line": 77,
+      "selfMs": 477.7
+    },
+    {
+      "function": "regionalRidgeCrest",
+      "file": "regional-terrain.js",
+      "line": 22,
+      "selfMs": 450.1
+    },
+    {
+      "function": "legacyHeight",
+      "file": "geometry.js",
+      "line": 152,
+      "selfMs": 405.4
+    },
+    {
+      "function": "(program)",
+      "file": "",
+      "line": 0,
+      "selfMs": 401.8
+    },
+    {
+      "function": "wasm-function[32]",
+      "file": "HavokPhysics.wasm?v=20260923-1",
+      "line": 1,
+      "selfMs": 243.4
+    },
+    {
+      "function": "nearestRegionRoute",
+      "file": "region-layout.js",
+      "line": 61,
+      "selfMs": 207.4
+    },
+    {
+      "function": "regionSiteDistance",
+      "file": "region-layout.js",
+      "line": 69,
+      "selfMs": 188.6
+    },
+    {
+      "function": "wasm-function[2423]",
+      "file": "HavokPhysics.wasm?v=20260923-1",
+      "line": 1,
+      "selfMs": 169.5
+    },
+    {
+      "function": "applyRegionalTerrain",
+      "file": "regional-terrain.js",
+      "line": 40,
+      "selfMs": 141.2
+    },
+    {
+      "function": "wasm-function[2420]",
+      "file": "HavokPhysics.wasm?v=20260923-1",
+      "line": 1,
+      "selfMs": 116.9
+    },
+    {
+      "function": "tri",
+      "file": "geometry.js",
+      "line": 180,
+      "selfMs": 114.5
+    },
+    {
+      "function": "oct",
+      "file": "regional-terrain.js",
+      "line": 25,
+      "selfMs": 100.8
+    },
+    {
+      "function": "peak",
+      "file": "geometry.js",
+      "line": 125,
+      "selfMs": 95.3
+    },
+    {
+      "function": "(garbage collector)",
+      "file": "",
+      "line": 0,
+      "selfMs": 91.1
+    },
+    {
+      "function": "distantRelief",
+      "file": "geometry.js",
+      "line": 118,
+      "selfMs": 76.5
+    },
+    {
+      "function": "wasm-function[2464]",
+      "file": "HavokPhysics.wasm?v=20260923-1",
+      "line": 1,
+      "selfMs": 74.9
+    },
+    {
+      "function": "wasm-function[1184]",
+      "file": "HavokPhysics.wasm?v=20260923-1",
+      "line": 1,
+      "selfMs": 72.8
+    },
+    {
+      "function": "terrainRaw",
+      "file": "geometry.js",
+      "line": 89,
+      "selfMs": 69.5
+    },
+    {
+      "function": "wasm-function[1187]",
+      "file": "HavokPhysics.wasm?v=20260923-1",
+      "line": 1,
+      "selfMs": 61.9
+    },
+    {
+      "function": "buildChurchyard",
+      "file": "scene.js?t=1790471503512",
+      "line": 18,
+      "selfMs": 58.3
+    },
+    {
+      "function": "appendWoodlandTree",
+      "file": "woodland.js",
+      "line": 9,
+      "selfMs": 55.8
+    },
+    {
+      "function": "quad",
+      "file": "geometry.js",
+      "line": 181,
+      "selfMs": 53.2
+    },
+    {
+      "function": "commit",
+      "file": "geometry.js",
+      "line": 210,
+      "selfMs": 50.2
+    },
+    {
+      "function": "protectedTerrainDistance",
+      "file": "regional-terrain.js",
+      "line": 6,
+      "selfMs": 44.6
+    },
+    {
+      "function": "place",
+      "file": "foliage.js",
+      "line": 377,
+      "selfMs": 41.9
+    },
+    {
+      "function": "add",
+      "file": "woodland-tiles.js",
+      "line": 16,
+      "selfMs": 40.9
+    },
+    {
+      "function": "rectangleDistance",
+      "file": "regional-terrain.js",
+      "line": 5,
+      "selfMs": 37.5
+    },
+    {
+      "function": "",
+      "file": "geometry.js",
+      "line": 11,
+      "selfMs": 33.7
+    }
+  ]
+}

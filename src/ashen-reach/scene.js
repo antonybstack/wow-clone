@@ -1,4 +1,4 @@
-import {TERRAIN_X,TERRAIN_Z,sampleTerrainSurface} from './terrain-grid.js';
+import {TERRAIN_X,TERRAIN_Z,sampleTerrainSurface,createTerrainCornerCache} from './terrain-grid.js';
 import {setShaderUniform,setMeshVisible} from '@babylonjs/lite';
 import {Batch,rng,height,legacyHeight,pathX,buildingPads,add,mul,sub,norm,terrainNormal,lanternGlow} from './geometry.js';
 import {surface,sky} from './materials.js';
@@ -441,15 +441,17 @@ export async function buildChurchyard(engine,scene){
  // Shared axis coordinates keep the grid watertight at every change in cell size.
  // The inner edge includes every 2 m terrain vertex; 4 m cells resolve the nearby basin.
  const xs=TERRAIN_X,zs=TERRAIN_Z;
+ let cornerCache=createTerrainCornerCache(xs,zs,height,terrainNormal,legacyHeight);
  for(let zi=0;zi<zs.length-1;zi++)for(let xi=0;xi<xs.length-1;xi++){
   const x=xs[xi],x1=xs[xi+1],z=zs[zi],z1=zs[zi+1];
   if(x>=-90&&x1<=90&&z>=-95&&z1<=145)continue;
-  const v=[[x,z],[x1,z],[x1,z1],[x,z1]].map(([a,b])=>[a,height(a,b),b]);
-  const normals=v.map(p=>terrainNormal(p[0],p[2]));
-  const mountain=v.some(p=>p[1]-legacyHeight(p[0],p[2])>5)&&Math.hypot(x,z-40)>180;
+  const corners=[cornerCache.get(xi,zi),cornerCache.get(xi+1,zi),cornerCache.get(xi+1,zi+1),cornerCache.get(xi,zi+1)];
+  const v=corners.map(c=>c.position),normals=corners.map(c=>c.normal);
+  const mountain=corners.some(c=>c.position[1]-cornerCache.legacy(c)>5)&&Math.hypot(x,z-40)>180;
   const batch=mountain?farMountains:farEarth;
   batch.quad(...v,v.map(earthUV),mountain?[.90,.80,.86,0]:v.map((p,i)=>farColor(p,normals[i])),normals);
  }
+ cornerCache=null; // Drop the two sampled rows before creating GPU meshes.
  // Preserve far-tree and boulder placement after changing the ground topology.
  const oldHalo=48,oldFine=6,oldCoarse=16;
  for(let z=-420;z<540;z+=oldCoarse)for(let x=-420;x<420;x+=oldCoarse){

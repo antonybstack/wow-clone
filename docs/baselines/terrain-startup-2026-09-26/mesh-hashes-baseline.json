@@ -1,0 +1,48 @@
+[
+  {
+    "name": "Far earth",
+    "_cpuPositions": {
+      "type": "Float32Array",
+      "length": 1541844,
+      "sha256": "c9a1f67ff871b416ce3665b82f57e8f4dec6c448440acfdcde73e849aa50f218"
+    },
+    "_cpuNormals": {
+      "type": "Float32Array",
+      "length": 1541844,
+      "sha256": "639183bf9c328f844f58ba1b53b474c448d3b9746c5fac9b756b83e5fcf5211d"
+    },
+    "_cpuUvs": {
+      "type": "Float32Array",
+      "length": 1027896,
+      "sha256": "f98dbf12de3687fe6c6d8b9e05cfcc651667174d06953b3e98cfa8d244e75f14"
+    },
+    "_cpuIndices": {
+      "type": "Uint32Array",
+      "length": 513948,
+      "sha256": "1d3863c93386812ff1af2b694f71d4a505dd5b6b701d4420ed6f18ced97deb4d"
+    }
+  },
+  {
+    "name": "Physical mountain terrain",
+    "_cpuPositions": {
+      "type": "Float32Array",
+      "length": 1061010,
+      "sha256": "5b9f3e25032e2a97bcae8394cbeb5c5c471d8590a1e94098154d134857b54b7c"
+    },
+    "_cpuNormals": {
+      "type": "Float32Array",
+      "length": 1061010,
+      "sha256": "1dfc0b86e90e6a155eee0fe2a913903a8c985260c83f19c350c7744658e2d8d6"
+    },
+    "_cpuUvs": {
+      "type": "Float32Array",
+      "length": 707340,
+      "sha256": "69d320a3c8a634ac167ecd666ffbf21f474814a4db311223ab8993c71a3265bf"
+    },
+    "_cpuIndices": {
+      "type": "Uint32Array",
+      "length": 353670,
+      "sha256": "9c04cb89de9b93f34d5b6702ea0715bc800ab909e86625edc070811e26158d56"
+    }
+  }
+]
