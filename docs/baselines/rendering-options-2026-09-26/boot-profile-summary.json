@@ -1,0 +1,356 @@
+{
+  "self": [
+    {
+      "fn": "applyRegionRoutes",
+      "selfMs": 1613.9,
+      "inclusiveMs": 1845.3,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/region-layout.js",
+      "line": 77
+    },
+    {
+      "fn": "regionalRidgeCrest",
+      "selfMs": 1541.3,
+      "inclusiveMs": 2045.2,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/regional-terrain.js",
+      "line": 22
+    },
+    {
+      "fn": "legacyHeight",
+      "selfMs": 773.2,
+      "inclusiveMs": 1536.0,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/geometry.js",
+      "line": 152
+    },
+    {
+      "fn": "bakeLamp",
+      "selfMs": 748.8,
+      "inclusiveMs": 748.8,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/geometry.js",
+      "line": 217
+    },
+    {
+      "fn": "(idle)",
+      "selfMs": 686.0,
+      "inclusiveMs": 686.0,
+      "url": "",
+      "line": 0
+    },
+    {
+      "fn": "applyRegionalTerrain",
+      "selfMs": 660.8,
+      "inclusiveMs": 2794.1,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/regional-terrain.js",
+      "line": 40
+    },
+    {
+      "fn": "oct",
+      "selfMs": 496.3,
+      "inclusiveMs": 496.3,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/regional-terrain.js",
+      "line": 25
+    },
+    {
+      "fn": "(program)",
+      "selfMs": 452.8,
+      "inclusiveMs": 452.8,
+      "url": "",
+      "line": 0
+    },
+    {
+      "fn": "peak",
+      "selfMs": 359.4,
+      "inclusiveMs": 359.4,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/geometry.js",
+      "line": 125
+    },
+    {
+      "fn": "nearestRegionRoute",
+      "selfMs": 348.3,
+      "inclusiveMs": 348.3,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/region-layout.js",
+      "line": 61
+    },
+    {
+      "fn": "distantRelief",
+      "selfMs": 242.6,
+      "inclusiveMs": 586.9,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/geometry.js",
+      "line": 118
+    },
+    {
+      "fn": "wasm-function[32]",
+      "selfMs": 239.2,
+      "inclusiveMs": 878.1,
+      "url": "http://127.0.0.1:6573/HavokPhysics.wasm?v=20260923-1",
+      "line": 1
+    },
+    {
+      "fn": "wasm-function[2423]",
+      "selfMs": 185.4,
+      "inclusiveMs": 185.4,
+      "url": "http://127.0.0.1:6573/HavokPhysics.wasm?v=20260923-1",
+      "line": 1
+    },
+    {
+      "fn": "regionSiteDistance",
+      "selfMs": 142.9,
+      "inclusiveMs": 142.9,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/region-layout.js",
+      "line": 69
+    },
+    {
+      "fn": "rectangleDistance",
+      "selfMs": 128.2,
+      "inclusiveMs": 128.2,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/regional-terrain.js",
+      "line": 5
+    },
+    {
+      "fn": "terrainRaw",
+      "selfMs": 120.4,
+      "inclusiveMs": 172.2,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/geometry.js",
+      "line": 89
+    },
+    {
+      "fn": "tri",
+      "selfMs": 115.8,
+      "inclusiveMs": 160.4,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/geometry.js",
+      "line": 180
+    },
+    {
+      "fn": "wasm-function[2420]",
+      "selfMs": 108.7,
+      "inclusiveMs": 299.1,
+      "url": "http://127.0.0.1:6573/HavokPhysics.wasm?v=20260923-1",
+      "line": 1
+    },
+    {
+      "fn": "(garbage collector)",
+      "selfMs": 91.8,
+      "inclusiveMs": 91.8,
+      "url": "",
+      "line": 0
+    },
+    {
+      "fn": "wasm-function[1184]",
+      "selfMs": 82.8,
+      "inclusiveMs": 87.8,
+      "url": "http://127.0.0.1:6573/HavokPhysics.wasm?v=20260923-1",
+      "line": 1
+    },
+    {
+      "fn": "wasm-function[2464]",
+      "selfMs": 78.9,
+      "inclusiveMs": 78.9,
+      "url": "http://127.0.0.1:6573/HavokPhysics.wasm?v=20260923-1",
+      "line": 1
+    },
+    {
+      "fn": "mul",
+      "selfMs": 66.5,
+      "inclusiveMs": 75.5,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/geometry.js",
+      "line": 7
+    },
+    {
+      "fn": "buildChurchyard",
+      "selfMs": 65.6,
+      "inclusiveMs": 7424.5,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/scene.js",
+      "line": 18
+    },
+    {
+      "fn": "quad",
+      "selfMs": 65.4,
+      "inclusiveMs": 196.7,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/geometry.js",
+      "line": 181
+    },
+    {
+      "fn": "appendWoodlandTree",
+      "selfMs": 62.8,
+      "inclusiveMs": 62.8,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/woodland.js",
+      "line": 9
+    }
+  ],
+  "inclusive": [
+    {
+      "fn": "(root)",
+      "inclusiveMs": 10908.5,
+      "selfMs": 0.0,
+      "url": "",
+      "line": 0
+    },
+    {
+      "fn": "buildChurchyard",
+      "inclusiveMs": 7424.5,
+      "selfMs": 65.6,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/scene.js",
+      "line": 18
+    },
+    {
+      "fn": "height",
+      "inclusiveMs": 6139.0,
+      "selfMs": 44.0,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/geometry.js",
+      "line": 161
+    },
+    {
+      "fn": "terrainNormal",
+      "inclusiveMs": 4985.7,
+      "selfMs": 5.4,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/geometry.js",
+      "line": 172
+    },
+    {
+      "fn": "",
+      "inclusiveMs": 4602.4,
+      "selfMs": 3.8,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/scene.js",
+      "line": 448
+    },
+    {
+      "fn": "applyRegionalTerrain",
+      "inclusiveMs": 2794.1,
+      "selfMs": 660.8,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/regional-terrain.js",
+      "line": 40
+    },
+    {
+      "fn": "regionalRidgeCrest",
+      "inclusiveMs": 2045.2,
+      "selfMs": 1541.3,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/regional-terrain.js",
+      "line": 22
+    },
+    {
+      "fn": "applyRegionRoutes",
+      "inclusiveMs": 1845.3,
+      "selfMs": 1613.9,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/region-layout.js",
+      "line": 77
+    },
+    {
+      "fn": "legacyHeight",
+      "inclusiveMs": 1536.0,
+      "selfMs": 773.2,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/geometry.js",
+      "line": 152
+    },
+    {
+      "fn": "",
+      "inclusiveMs": 1114.5,
+      "selfMs": 14.0,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/scene.js",
+      "line": 447
+    },
+    {
+      "fn": "js-to-wasm",
+      "inclusiveMs": 923.8,
+      "selfMs": 6.1,
+      "url": "",
+      "line": 0
+    },
+    {
+      "fn": "setupPlayer",
+      "inclusiveMs": 918.3,
+      "selfMs": 1.5,
+      "url": "http://127.0.0.1:6573/src/player.js",
+      "line": 260
+    },
+    {
+      "fn": "addStaticColliders",
+      "inclusiveMs": 910.5,
+      "selfMs": 0.0,
+      "url": "http://127.0.0.1:6573/src/player.js",
+      "line": 161
+    },
+    {
+      "fn": "createPhysicsShape",
+      "inclusiveMs": 903.6,
+      "selfMs": 0.0,
+      "url": "http://127.0.0.1:6573/node_modules/.vite/deps/havok-C2YBzezg.js?v=a1642be9",
+      "line": 713
+    },
+    {
+      "fn": "wasm-function[208]",
+      "inclusiveMs": 880.6,
+      "selfMs": 1.3,
+      "url": "http://127.0.0.1:6573/HavokPhysics.wasm?v=20260923-1",
+      "line": 1
+    },
+    {
+      "fn": "wasm-function[318]",
+      "inclusiveMs": 880.6,
+      "selfMs": 0.0,
+      "url": "http://127.0.0.1:6573/HavokPhysics.wasm?v=20260923-1",
+      "line": 1
+    },
+    {
+      "fn": "",
+      "inclusiveMs": 880.6,
+      "selfMs": 0.0,
+      "url": "http://127.0.0.1:6573/node_modules/.vite/deps/@babylonjs_havok.js?v=02f06d08",
+      "line": 547
+    },
+    {
+      "fn": "wasm-function[32]",
+      "inclusiveMs": 878.1,
+      "selfMs": 239.2,
+      "url": "http://127.0.0.1:6573/HavokPhysics.wasm?v=20260923-1",
+      "line": 1
+    },
+    {
+      "fn": "commit",
+      "inclusiveMs": 806.9,
+      "selfMs": 56.3,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/geometry.js",
+      "line": 210
+    },
+    {
+      "fn": "createFoliage",
+      "inclusiveMs": 803.8,
+      "selfMs": 4.9,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/foliage.js",
+      "line": 492
+    },
+    {
+      "fn": "place",
+      "inclusiveMs": 773.4,
+      "selfMs": 36.3,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/foliage.js",
+      "line": 377
+    },
+    {
+      "fn": "bakeLamp",
+      "inclusiveMs": 748.8,
+      "selfMs": 748.8,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/geometry.js",
+      "line": 217
+    },
+    {
+      "fn": "(idle)",
+      "inclusiveMs": 686.0,
+      "selfMs": 686.0,
+      "url": "",
+      "line": 0
+    },
+    {
+      "fn": "distantRelief",
+      "inclusiveMs": 586.9,
+      "selfMs": 242.6,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/geometry.js",
+      "line": 118
+    },
+    {
+      "fn": "oct",
+      "inclusiveMs": 496.3,
+      "selfMs": 496.3,
+      "url": "http://127.0.0.1:6573/src/ashen-reach/regional-terrain.js",
+      "line": 25
+    }
+  ]
+}

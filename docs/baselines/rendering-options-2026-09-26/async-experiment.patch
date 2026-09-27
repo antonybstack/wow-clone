@@ -1,0 +1,76 @@
+diff --git a/src/ashen-reach/main.js b/src/ashen-reach/main.js
+index 8c5f498..c68f4a6 100644
+--- a/src/ashen-reach/main.js
++++ b/src/ashen-reach/main.js
+@@ -1,3 +1,4 @@
++import {enableAsyncShaderPipelineCompilation} from '@babylonjs/lite';
+ import {BASE_VISIBLE_MESHES, ORC_BASE_VISIBLE_MESHES, UNDEAD_BASE_VISIBLE_MESHES, EQUIPMENT_ITEMS} from './equipment-catalog.js';
+ import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT, UNDEAD_EQUIPMENT_FIT} from './equipment-contract.js';
+ import {createEngine,createSceneContext,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,onBeforeRender,enableBoneControl,setFog,captureScreenshot,setMeshVisible,isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize,setMeshoptBaseUrl} from '@babylonjs/lite';
+@@ -52,6 +53,8 @@ async function main(){
+  }
+  setLoadingStage(0,'Lighting the lamps.');
+  const engine=await createEngine(canvas,{msaaSamples:1,maxDevicePixelRatio:pixelRatio>0?pixelRatio:.75});
++ if(params.has('asyncCompile'))enableAsyncShaderPipelineCompilation(engine);
++ performance.mark('probe-engine-created');
+  const gpu=await configureGpuCompatibility(engine._device);
+  if(params.has('gpuDiagnostics'))showGpuDiagnostics(gpu);
+  if(gpu.depthBundle==='unsupported')throw new Error(gpu.errors.join('\n'));
+@@ -70,7 +73,8 @@ async function main(){
+  scene.camera=reference;
+  const shadows=createSunShadows(engine,scene,sun,{depthOnlyFragment:gpu.depthBundle==='empty-fragment'});
+  const localLights=createLocalLights(engine,scene,shadows);
+- const world=await buildChurchyard(engine,scene);initInput(canvas);setInputEnabled(false);installTouchControls();
++ performance.mark('probe-world-start');
++ const world=await buildChurchyard(engine,scene);performance.mark('probe-world-end');initInput(canvas);setInputEnabled(false);installTouchControls();
+  setLoadingStage(2,'Calling the wanderer.');
+  enableBoneControl();
+  const noEnemies=params.has('noEnemies');
+@@ -114,8 +118,11 @@ async function main(){
+   clips:{...sourceBody.clips,cast:'FireBlast_Upper',walkBack:'Jog_Bwd_Loop',strafeL:'Jog_Left_Loop',strafeR:'Jog_Right_Loop',turnL:'Turn90_L',turnR:'Turn90_R',hit:'Hit_Chest'}};
+  capsule=resolveCapsule(playable.capsule);
+  // Both near and outer terrain participate in Havok; exploration has no corridor clamp.
++ performance.mark('probe-havok-start');
+  player=await setupPlayer(engine,scene,rig,{spawn:plantSpawnOnTerrain(world.spawn,capsule,world.groundHeight),colliders:world.colliders,groundHeight:world.groundHeight,boundsRadius:Infinity,capsule});
++ performance.mark('probe-havok-end');
+  body=await attachBody(engine,scene,player,player.capsuleHeight,playable);
++ performance.mark('probe-body-end');
+  setLoadingStage(3,'Waking the churchyard.');
+  // Skinning is fixed up at load. Starting the engine first leaves the mesh
+  // in the bind pose while clips report as playing. See docs/startup-load.md.
+@@ -129,7 +136,9 @@ async function main(){
+  ashen.grounding=post.grounding;
+  if(post.status.notes.length)console.warn('ashen post chain:',post.status.notes.join('; '));
+  attachLinearMaterials();
++ performance.mark('probe-register-start');
+  await registerSceneWithShadowSupport(scene);
++ performance.mark('probe-register-end');
+  ashen.renderLoop=createRenderLoop(engine,scene,{
+   onError:e=>{console.error(e);const el=document.getElementById('error');el.style.display='block';el.textContent=e?.stack||String(e);void formatGameError(e).then(message=>{el.textContent=message;}).catch(()=>{});},
+   onDeviceLost:(error,info)=>{
+@@ -140,6 +149,8 @@ async function main(){
+   },
+  });
+  await ashen.renderLoop.start();
++ performance.mark('probe-first-render-return');
++ engine._device.queue.onSubmittedWorkDone().then(()=>performance.mark('probe-first-render-completed'));
+  ashen.presentMs=performance.now()-boot;
+  const foliageP=world.startFoliage();
+  const [
+@@ -168,7 +179,9 @@ async function main(){
+  if(churchyardEnemies.length)bindEnemyColliders(churchyardEnemies,player,world);
+  combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig,churchyardEnemies,createObjective());
+  // Spell billboard systems arrive after the first visible scene registration.
++ performance.mark('probe-late-register-start');
+  await registerLateFeatures(scene,attachLinearMaterials,unregisterScene,registerSceneWithShadowSupport);
++ performance.mark('probe-late-register-end');
+  await folkP;
+  body.bindSocketHost(combat.fx.sockets);
+  setLoadingStage(4,'Gathering your belongings.');
+@@ -259,5 +272,6 @@ async function main(){
+  setInputEnabled(true);
+  ashen.loadMs=performance.now()-boot;
+  ashen.ready=true;
++ performance.mark('probe-ready');
+ }
+ main().catch(async e=>{console.error(e);const message=await formatGameError(e).catch(()=>e?.stack||String(e));if(failLoading(e,message))return;const el=document.getElementById('error');el.style.display='block';el.textContent=message;});

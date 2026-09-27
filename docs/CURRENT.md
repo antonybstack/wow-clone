@@ -1,5 +1,10 @@
 # Current direction — Ashen Reach
 
+## Rendering performance investigation and next plan — 2026-09-26
+
+[Investigation and implementation plan](rendering-performance-investigation-2026-09-26.md) tested native CSM caching/distributed updates and asynchronous ShaderMaterial compilation in isolated checkouts of `837f18a`. Caching reduced sampled throughput by **4.1–5.1%** because the gameplay camera invalidated all cascades every frame, including while standing; distributed sun-drift updates do not address this fixed-sun workload. Eight load trials showed no async readiness gain (**10.671 → 10.729 s** warm medians). A separate CPU profile attributed **4.99 s** to terrain normals within **7.42 s** of world building. Recommended first implementation is exact reuse of shared terrain height/normal samples during construction, followed by camera invalidation analysis; both native options remain disabled pending evidence. Raw intervals, load data, profile, experimental patches/probes and reviewed stills are tracked with the report. These are local development investigations with stated cache/workload limits, not release acceptance. Production is unchanged; no optimization was deployed in this turn.
+
+
 ## Bridge interval checked; physical iPhone report — 2026-09-26
 
 [Bridge spike follow-up](bridge-frame-spike-followup-2026-09-26.md) repeated the same 1280×720, seven-enemy, uncapped M1 Max benchmark on a fresh browser. All three bridge runs were free of intervals over 16.67 ms (7,992 frames, worst **11.3 ms**, mean **221.85 FPS**); the earlier 22.1 ms interval did not recur, so no speculative rendering change was made. The user reports the released game works on an **iPhone 14 Pro Max at approximately 60 FPS**. This confirms playable physical-device behavior by user observation; device frame-time tails have not been captured.

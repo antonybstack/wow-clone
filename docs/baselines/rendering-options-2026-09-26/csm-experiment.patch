@@ -1,0 +1,48 @@
+diff --git a/src/ashen-reach/main.js b/src/ashen-reach/main.js
+index 8c5f498..3ff6cb1 100644
+--- a/src/ashen-reach/main.js
++++ b/src/ashen-reach/main.js
+@@ -68,7 +68,7 @@ async function main(){
+  const rig=new CameraRig(camera);rig.yaw=0;rig.pitch=.04;rig.distance=rig.distanceTarget=3.5;
+  const reference=createFreeCamera({x:0,y:height(0,-5)+1.65,z:-5},{x:.0,y:4.0,z:25});reference.fov=1.06;reference.nearPlane=.1;reference.farPlane=1200;
+  scene.camera=reference;
+- const shadows=createSunShadows(engine,scene,sun,{depthOnlyFragment:gpu.depthBundle==='empty-fragment'});
++ const shadows=await createSunShadows(engine,scene,sun,{depthOnlyFragment:gpu.depthBundle==='empty-fragment'});
+  const localLights=createLocalLights(engine,scene,shadows);
+  const world=await buildChurchyard(engine,scene);initInput(canvas);setInputEnabled(false);installTouchControls();
+  setLoadingStage(2,'Calling the wanderer.');
+diff --git a/src/ashen-reach/sun-shadows.js b/src/ashen-reach/sun-shadows.js
+index 1da10a7..d56ce1a 100644
+--- a/src/ashen-reach/sun-shadows.js
++++ b/src/ashen-reach/sun-shadows.js
+@@ -3,7 +3,7 @@ import {
+  createCsmDirectionalShadowGenerator,createPcfDirectionalShadowGenerator,createDirectionalLight,
+  createShaderMaterial,addTask,onSceneDispose,setShadowCasterMaterial,setShadowTaskCasterMeshes,
+  getCsmReceiverTexture,onCsmReceiverUpdate,setShaderTexture,setShaderUniform,
+- enableSkeletonShadows,getViewMatrix,acquireTexture,releaseTexture,setShadowGeneratorEnabled,
++ enableCsmStaticCache,enableSkeletonShadows,getViewMatrix,acquireTexture,releaseTexture,setShadowGeneratorEnabled,
+  VERSION as LITE_VERSION,
+ } from '@babylonjs/lite';
+ import {SUN_DIR} from './atmosphere.js';
+@@ -70,7 +70,7 @@ export function bindSunReceiver(engine,material){
+  return material;
+ }
+ 
+-export function createSunShadows(engine,scene,sun,{depthOnlyFragment=false}={}){
++export async function createSunShadows(engine,scene,sun,{depthOnlyFragment=false}={}){
+  if(LITE_VERSION!=='1.28.0'&&LITE_VERSION!=='1.31.1')
+   throw new Error(`Unsupported Lite shadow bridge version ${LITE_VERSION}`);
+  // Lite 1.28.0 and 1.31.1 have no public PCF generator disposer or texture reader.
+@@ -108,9 +108,11 @@ export function createSunShadows(engine,scene,sun,{depthOnlyFragment=false}={}){
+  try{
+  csm=createCsmDirectionalShadowGenerator(engine,sun,{
+   mapSize:2048,numCascades:3,lambda:.75,shadowMaxZ:SUN_SHADOW_RANGE,
+-  stabilizeCascades:true,cascadeBlendPercentage:.1,worldSpaceBias:.006,forceRefreshEveryFrame:true,
++  stabilizeCascades:true,cascadeBlendPercentage:.1,worldSpaceBias:.006,forceRefreshEveryFrame:!new URLSearchParams(location.search).has("csmCache"),
+  });
+  enableSkeletonShadows(csm);
++ if(new URLSearchParams(location.search).has("csmCache"))await enableCsmStaticCache(engine,csm,{refitAngle:.01,refitMaxIntervalMs:0,staticCascadesPerFrame:1});
++ window.__csmTrial=csm;
+  sun.shadowGenerator=csm;
+  // A separate frame-graph pass retains the distant map. Lite 1.28 native PBR
+  // cannot bind a mixture of PCF and CSM generators in the same scene light list.

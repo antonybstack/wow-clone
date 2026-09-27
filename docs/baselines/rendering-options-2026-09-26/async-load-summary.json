@@ -1,0 +1,108 @@
+{
+  "runs": [
+    {
+      "i": 0,
+      "async": false,
+      "world": 7862.200000047684,
+      "register": 36.80000019073486,
+      "firstGPU": 10573.5,
+      "ready": 11205,
+      "tailAfterWorld": 2668.5999999046326,
+      "longTaskMax": 6600,
+      "longTaskSum": 9617,
+      "sync": 94,
+      "asyncCount": 0
+    },
+    {
+      "i": 1,
+      "async": true,
+      "world": 7684.0,
+      "register": 67,
+      "firstGPU": 10078.700000047684,
+      "ready": 10705.400000095367,
+      "tailAfterWorld": 2550.2000000476837,
+      "longTaskMax": 6574,
+      "longTaskSum": 9384,
+      "sync": 72,
+      "asyncCount": 17
+    },
+    {
+      "i": 2,
+      "async": true,
+      "world": 7440.5,
+      "register": 61.5,
+      "firstGPU": 9797.700000047684,
+      "ready": 10403.400000095367,
+      "tailAfterWorld": 2524.2000000476837,
+      "longTaskMax": 6332,
+      "longTaskSum": 9143,
+      "sync": 77,
+      "asyncCount": 17
+    },
+    {
+      "i": 3,
+      "async": false,
+      "world": 7449.400000095367,
+      "register": 37.200000047683716,
+      "firstGPU": 9893.299999952316,
+      "ready": 10671.200000047684,
+      "tailAfterWorld": 2765.0,
+      "longTaskMax": 6344,
+      "longTaskSum": 9235,
+      "sync": 89,
+      "asyncCount": 0
+    },
+    {
+      "i": 4,
+      "async": false,
+      "world": 7817.799999952316,
+      "register": 35.700000047683716,
+      "firstGPU": 10510.799999952316,
+      "ready": 11151.799999952316,
+      "tailAfterWorld": 2640.0999999046326,
+      "longTaskMax": 6573,
+      "longTaskSum": 9594,
+      "sync": 90,
+      "asyncCount": 0
+    },
+    {
+      "i": 5,
+      "async": true,
+      "world": 7941.400000095367,
+      "register": 67.89999985694885,
+      "firstGPU": 10464.899999856949,
+      "ready": 11117.699999809265,
+      "tailAfterWorld": 2668.399999856949,
+      "longTaskMax": 6676,
+      "longTaskSum": 9695,
+      "sync": 73,
+      "asyncCount": 17
+    },
+    {
+      "i": 6,
+      "async": true,
+      "world": 7723.099999904633,
+      "register": 61.200000047683716,
+      "firstGPU": 10138.700000047684,
+      "ready": 10752.599999904633,
+      "tailAfterWorld": 2570.7999999523163,
+      "longTaskMax": 6527,
+      "longTaskSum": 9437,
+      "sync": 77,
+      "asyncCount": 17
+    },
+    {
+      "i": 7,
+      "async": false,
+      "world": 7543.5,
+      "register": 29.199999809265137,
+      "firstGPU": 9917.5,
+      "ready": 10536,
+      "tailAfterWorld": 2523.9000000953674,
+      "longTaskMax": 6431,
+      "longTaskSum": 9267,
+      "sync": 94,
+      "asyncCount": 0
+    }
+  ]
+}

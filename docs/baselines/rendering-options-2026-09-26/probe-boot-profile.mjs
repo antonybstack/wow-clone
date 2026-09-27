@@ -1,0 +1,6 @@
+// Archived investigation: apply async-experiment.patch in an isolated checkout and use harness slot 14.
+// https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/53-async-shader-pipeline-compilation.md
+// Fresh contexts do not prove a warm HTTP/driver cache; only browser-process reuse is established.
+import {chromium} from 'playwright';import fs from 'node:fs/promises';
+const browser=await chromium.connectOverCDP('http://127.0.0.1:10737');const context=await browser.newContext({viewport:{width:1280,height:720},deviceScaleFactor:1});const page=await context.newPage();const cdp=await context.newCDPSession(page);
+await cdp.send('Profiler.enable');await cdp.send('Profiler.setSamplingInterval',{interval:1000});await cdp.send('Profiler.start');await page.goto('http://127.0.0.1:6573/ashen-reach.html?play&clean&pixelRatio=1');await page.waitForFunction(()=>window.ASHEN?.ready&&ASHEN.hostilesReady,null,{timeout:120000});const {profile}=await cdp.send('Profiler.stop');await fs.writeFile('/tmp/ashen-boot-baseline.cpuprofile',JSON.stringify(profile));await fs.writeFile('/tmp/ashen-boot-profile-marks.json',JSON.stringify(await page.evaluate(()=>performance.getEntriesByType('mark').map(x=>({name:x.name,at:x.startTime}))),null,2));await context.close();await browser.close();console.log('saved /tmp/ashen-boot-baseline.cpuprofile');

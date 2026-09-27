@@ -1,0 +1,64 @@
+[
+  {
+    "label": "initial",
+    "refit": true,
+    "renderDynamic": true,
+    "driftOnly": false,
+    "layersThisFrame": [
+      0,
+      1,
+      2
+    ],
+    "remaining": false
+  },
+  {
+    "label": "quiet",
+    "refit": false,
+    "renderDynamic": false,
+    "driftOnly": false,
+    "layersThisFrame": [],
+    "remaining": false
+  },
+  {
+    "label": "quietDemotion",
+    "refit": true,
+    "renderDynamic": true,
+    "driftOnly": false,
+    "layersThisFrame": [
+      0,
+      1,
+      2
+    ],
+    "remaining": false
+  },
+  {
+    "label": "stable",
+    "refit": false,
+    "renderDynamic": false,
+    "driftOnly": false,
+    "layersThisFrame": [],
+    "remaining": false
+  },
+  {
+    "label": "camera",
+    "refit": true,
+    "renderDynamic": true,
+    "driftOnly": false,
+    "layersThisFrame": [
+      0,
+      1,
+      2
+    ],
+    "remaining": false
+  },
+  {
+    "label": "sunDrift",
+    "refit": true,
+    "renderDynamic": true,
+    "driftOnly": true,
+    "layersThisFrame": [
+      0
+    ],
+    "remaining": true
+  }
+]

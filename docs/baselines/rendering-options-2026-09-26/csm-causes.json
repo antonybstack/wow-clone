@@ -1,0 +1,334 @@
+{
+  "rows": [
+    {
+      "view": "play",
+      "causes": {
+        "frames": 895,
+        "camera": 895,
+        "force": 0,
+        "refit": 895,
+        "driftOnly": 0
+      },
+      "metrics": {
+        "samples": 600,
+        "fps": 178.8055787264339,
+        "meanMs": 5.592666666905085,
+        "medianMs": 4.099999904632568,
+        "p95Ms": 11.200000047683716,
+        "p99Ms": 12.100000143051147,
+        "worstMs": 13.599999904632568,
+        "minMs": 2.0999999046325684,
+        "above8_333": 150,
+        "above16_667": 0,
+        "drawCalls": 514,
+        "resolution": [
+          1280,
+          720
+        ],
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "maxDevicePixelRatio": 1,
+        "triangles": 819949,
+        "drawBatches": 56,
+        "horizonTriangles": 125642,
+        "farTriangles": 289206,
+        "foliageInstances": 117242,
+        "scatterTrees": 599,
+        "scatterRocks": 139,
+        "shafts": 0,
+        "shaftTriangles": 0,
+        "motes": 4200,
+        "moteTriangles": 8400,
+        "worldTriangles": 819949,
+        "sceneTriangles": 1092979,
+        "drawnMeshes": 91,
+        "hiddenMeshes": 48,
+        "totalMeshes": 139,
+        "triangleCountMs": 0.2999999523162842,
+        "gpuTimingSupported": true,
+        "gpuTimingEnabled": true,
+        "gpuTimingReadback": "ok",
+        "gpuMs": 4.882703849074031,
+        "gpuMeanMs": 4.518064934524587,
+        "gpuP95Ms": 4.860869045965494,
+        "gpuSamples": 600,
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.593 ms is not locked to a known display interval"
+      },
+      "camera": {
+        "version": 2858,
+        "radius": 4.9999999999999964
+      },
+      "player": {
+        "facing": 0,
+        "grounded": true,
+        "vy": 0,
+        "support": 2,
+        "speed": 0,
+        "vx": 0,
+        "vz": 0,
+        "castBlend": 0,
+        "jumps": 0,
+        "landings": 3,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": 0.00042352912725280553,
+          "y": 0.2133671488893807,
+          "z": -59.99982474657284
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 6,
+          "boxCount": 678,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 1.748,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": 0.2520353282435458,
+              "y": 1.527496638520946,
+              "z": 16.496377429268037
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -5.0722047150663725,
+              "y": 1.7853112522380425,
+              "z": 30
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": 5.9014024561325265,
+              "y": 1.6208937978059264,
+              "z": 47.30081955991454
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": 0.7535460138788462,
+              "y": 2.506648561575896,
+              "z": 63.008499265843014
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": -1.556357776783036,
+              "y": 4.681080312926061,
+              "z": 86.49637742926828
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": -2.07526071368889,
+              "y": 5.945519989002615,
+              "z": 105.58183420511077
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": 3.015011697329043,
+              "y": 9.928333330944822,
+              "z": 125.61125072248872
+            }
+          }
+        ]
+      }
+    },
+    {
+      "view": "reference",
+      "causes": {
+        "frames": 1128,
+        "camera": 0,
+        "force": 0,
+        "refit": 0,
+        "driftOnly": 0
+      },
+      "metrics": {
+        "samples": 600,
+        "fps": 225.55543025506958,
+        "meanMs": 4.433499999841055,
+        "medianMs": 3.299999952316284,
+        "p95Ms": 9,
+        "p99Ms": 10,
+        "worstMs": 11.100000143051147,
+        "minMs": 1.2999999523162842,
+        "above8_333": 137,
+        "above16_667": 0,
+        "drawCalls": 271,
+        "resolution": [
+          1280,
+          720
+        ],
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "maxDevicePixelRatio": 1,
+        "triangles": 819949,
+        "drawBatches": 56,
+        "horizonTriangles": 125642,
+        "farTriangles": 289206,
+        "foliageInstances": 117242,
+        "scatterTrees": 599,
+        "scatterRocks": 139,
+        "shafts": 0,
+        "shaftTriangles": 0,
+        "motes": 4200,
+        "moteTriangles": 8400,
+        "worldTriangles": 819949,
+        "sceneTriangles": 1092979,
+        "drawnMeshes": 91,
+        "hiddenMeshes": 48,
+        "totalMeshes": 139,
+        "triangleCountMs": 0.09999990463256836,
+        "gpuTimingSupported": true,
+        "gpuTimingEnabled": true,
+        "gpuTimingReadback": "ok",
+        "gpuMs": 0.9239802233302189,
+        "gpuMeanMs": 0.916636183172307,
+        "gpuP95Ms": 1.0487701112107275,
+        "gpuSamples": 600,
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 4.433 ms is not locked to a known display interval"
+      },
+      "camera": {
+        "version": 0
+      },
+      "player": {
+        "facing": 0,
+        "grounded": true,
+        "vy": 0,
+        "support": 2,
+        "speed": 0,
+        "vx": 0,
+        "vz": 0,
+        "castBlend": 0,
+        "jumps": 0,
+        "landings": 3,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": 0.00042352912725280553,
+          "y": 0.2133671488893807,
+          "z": -59.99982474657284
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 6,
+          "boxCount": 678,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 1.748,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": 2.767149495469743,
+              "y": 1.2897696208497327,
+              "z": 13.759213381489257
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -5.0722047150663725,
+              "y": 1.7853112522380425,
+              "z": 30
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": 2.641693323545231,
+              "y": 1.5649362497201182,
+              "z": 50.18882588838484
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": -5.374484032196,
+              "y": 2.426375130511033,
+              "z": 62.26873320383326
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": 1.6896848457129792,
+              "y": 4.6663922797029995,
+              "z": 83.83818928717939
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": -1.056611006991926,
+              "y": 6.5942503333264195,
+              "z": 110.2099531778781
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": -1.5891793335817044,
+              "y": 8.841049499338695,
+              "z": 126.8745343778671
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "errors": []
+}
