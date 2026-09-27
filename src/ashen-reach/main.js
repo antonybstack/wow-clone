@@ -12,6 +12,7 @@ import {initInput,input,setInputEnabled,lockInputUntilReload} from '../input.js'
 import {installTouchControls,touchControlsWanted} from './touch-controls.js';
 import {setupPlayer,loadHavok,plantSpawnOnTerrain,resolveCapsule} from '../player.js';
 import {attachBody} from '../character/body.js';
+import {attachSockets} from '../character/sockets.js';
 import {resolvePlayableBody} from '../character/runtime/playable-body.js';
 import {attachDevTools,dev} from './dev-tools.js';
 import {createLocalLights} from './local-lights.js';
@@ -162,6 +163,11 @@ async function main(){
  markStartup('body-start');
  body=await attachBody(engine,scene,player,player.capsuleHeight,playable);
  markStartup('body-end');
+ // Sockets need the player capsule and the body's skeleton and nothing else, so they do not
+ // have to wait for combat. Hoisting them out of the spell VFX is what lets the starter
+ // garments and the starter weapon be worn before any combat module has been fetched.
+ const sockets=attachSockets(engine,scene,player,body);
+ body.bindSocketHost(sockets);
  setLoadingStage(3,'Waking the churchyard.');
  // Skinning is fixed up at load. Starting the engine first leaves the mesh
  // in the bind pose while clips report as playing. See docs/startup-load.md.
@@ -199,42 +205,16 @@ async function main(){
  void waitForGpuIdle(engine).then(()=>{markStartup('first-gpu-completed');firstGpuCompleted.reach(performance.now()-boot);})
   .catch(error=>{console.error('Startup GPU fence failed',error);});
  ashen.presentMs=performance.now()-boot;
- const foliageP=world.startFoliage();
- const [
-  {loadTrainingDummy,createCombat},
-  {bindEnemyColliders,loadEnemies,CHURCHYARD_ANCHORS,TOWN_ANCHORS},
-  {prefetchNpcBuffer},
-  {attachTownsfolk},
-  {createStreamedEquipment},
-  {createEquipment},
-  {createArmory},
- ]=await Promise.all([
-  import('./combat.js'),
-  import('./enemies.js'),
-  import('../character/npc.js'),
-  import('./townsfolk.js'),
-  import('./equipment-stream.js'),
-  import('./equipment.js'),
-  import('./armory.js'),
- ]);
- const dummyP=loadTrainingDummy(engine,scene,world);
- const folkP=attachTownsfolk(engine,scene,world);
- const npcP=noEnemies?Promise.resolve(null):prefetchNpcBuffer();
- await foliageP;
- const [dummy,npcBuf]=await Promise.all([dummyP,npcP]);
- const churchyardEnemies=noEnemies?[]:await loadEnemies(engine,scene,world,CHURCHYARD_ANCHORS,npcBuf);
- if(churchyardEnemies.length)bindEnemyColliders(churchyardEnemies,player,world);
- combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig,churchyardEnemies,createObjective());
- markStartup('combat-ready');
- ashen.combatReady=true;
- combatBoundary.reach(performance.now()-boot);
- // Spell billboard systems arrive after the first visible scene registration.
- markStartup('late-register-start');
- await registerLateFeatures(scene,attachLinearMaterials,unregisterScene,registerSceneWithShadowSupport);
- markStartup('late-register-end');
- await folkP;
- body.bindSocketHost(combat.fx.sockets);
- setLoadingStage(4,'Gathering your belongings.');
+ // --- Everything above this line is on the playable critical path. Everything below is
+ // ordered by one question: can the player walk without it?
+ //
+ // The old order loaded foliage, seven feature modules, the training dummy, the NPC
+ // buffer, the churchyard hostiles, combat, the late feature registration and the
+ // townsfolk, and only then put clothes on the character and enabled input. Measured on
+ // a reduced world, that block was ~1.2 s and it did not shrink when the world did,
+ // because none of it is about the world. Starter garments are the one part of it that
+ // "playable" actually requires -- a dressed character is in the acceptance criteria --
+ // so they move ahead of the boundary and the rest moves behind it.
  const EMPTY_LOADOUT={helmet:null,torso:null,legs:null,boots:null,gloves:null,mainHand:null,offHand:null};
  const factoryHand=(id)=>id&&EQUIPMENT_ITEMS[id]?.factory?id:null;
  // THE ONE LINE TO FLIP when the authored Undead body lands: set this to 'equipment-undead'
@@ -249,14 +229,13 @@ async function main(){
   orc:{race:'orc',manifestUrl:'/ashen-reach/equipment-orc/manifest.json',baseMeshes:ORC_BASE_VISIBLE_MESHES,fitId:ORC_EQUIPMENT_FIT,bodyUrl:'/ashen-reach/equipment-orc/body.glb'},
   undead:{race:'undead',manifestUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/manifest.json`,baseMeshes:UNDEAD_BASE_VISIBLE_MESHES,fitId:UNDEAD_EQUIPMENT_FIT,bodyUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/body.glb`},
  };
- const townP=noEnemies?Promise.resolve([]):loadEnemies(engine,scene,world,TOWN_ANCHORS,npcBuf).then((town)=>{
-  for(const enemy of town){
-   combat.registerEnemy(enemy);
-   bindEnemyColliders([enemy],player,world);
-  }
-  return town;
- }).catch((error)=>{console.error('Town hostiles failed to load',error);return [];});
- let impl=preloadedEquipment?createEquipment(engine,scene,body,combat.fx.sockets):await createStreamedEquipment(engine,scene,body,combat.fx.sockets,packs.human);
+ setLoadingStage(4,'Gathering your belongings.');
+ markStartup('equipment-start');
+ const [{createStreamedEquipment},{createEquipment}]=await Promise.all([
+  import('./equipment-stream.js'),
+  import('./equipment.js'),
+ ]);
+ let impl=preloadedEquipment?createEquipment(engine,scene,body,sockets):await createStreamedEquipment(engine,scene,body,sockets,packs.human);
  let currentRace='human';
  let parkedGarments=null;
  equipment={
@@ -295,11 +274,11 @@ async function main(){
       :(parkedGarments||loadout);
     if(pack.garments===false)parkedGarments=loadout;
     else parkedGarments=null;
-    const next=await createStreamedEquipment(engine,scene,body,combat.fx.sockets,{...pack,bootLoadout});
+    const next=await createStreamedEquipment(engine,scene,body,sockets,{...pack,bootLoadout});
     impl=next;
     currentRace=race;
     previousImpl.dispose();
-    combat.fx.sockets?.rebind?.(body);
+    sockets.rebind?.(body);
    }catch(error){
     if(previousRace==='human'||!packs[previousRace]?.bodyUrl)body.restoreSource();
     else await body.swapSource(packs[previousRace].bodyUrl);
@@ -309,32 +288,86 @@ async function main(){
   },
   dispose(){impl.dispose();},
  };
- combat.bindEquipment(() => equipment.getState());
- armory=createArmory({scene,canvas,player,body,combat,equipment,getView:()=>view,setView});
- tools=attachDevTools({params,canvas,camera,player,combat,setView});
+ markStartup('equipment-end');
  dressed=true;
  setView(view);
  setLoadingStage(5,'Opening the gates.');
- ashen.whenHostiles=townP.then(()=>{ashen.hostilesReady=true;markStartup('hostiles-ready');});
+ // The playable boundary. The character is dressed, standing on Havok collision, and the
+ // first frame is on screen; finishLoading hands back control at the start of its fade.
  await finishLoading();
  if(deviceLost)return;
  readyForPlay=true;
  setInputEnabled(true);
- ashen.loadMs=performance.now()-boot;
- ashen.ready=true;
- markStartup('ready');
- // Today this is the same instant as `ready`, because nothing is playable until
- // the whole region is built. That is the point of measuring it separately: the
- // gap between these two marks is the thing the startup work has to open up.
  markStartup('playable');
  ashen.playableMs=performance.now()-boot;
  ashen.playableReady=true;
  playableBoundary.reach(ashen.playableMs);
- void Promise.resolve(ashen.whenHostiles).then(()=>{
+
+ // --- Background. The player is walking while all of this lands. Anything here that
+ // throws must not take the running game with it, so the chain reports and continues.
+ ashen.whenRest=(async()=>{
+  markStartup('bg-start');
+  const foliageP=world.startFoliage();
+  const [
+   {loadTrainingDummy,createCombat},
+   {bindEnemyColliders,loadEnemies,CHURCHYARD_ANCHORS,TOWN_ANCHORS},
+   {prefetchNpcBuffer},
+   {attachTownsfolk},
+   {createArmory},
+  ]=await Promise.all([
+   import('./combat.js'),
+   import('./enemies.js'),
+   import('../character/npc.js'),
+   import('./townsfolk.js'),
+   import('./armory.js'),
+  ]);
+  markStartup('bg-imports-end');
+  const dummyP=loadTrainingDummy(engine,scene,world);
+  const folkP=attachTownsfolk(engine,scene,world);
+  const npcP=noEnemies?Promise.resolve(null):prefetchNpcBuffer();
+  // Foliage is the longest background job and nothing else depends on it, so it runs
+  // alongside the hostiles rather than in front of them. It is still awaited before
+  // `ready`, which keeps that flag meaning "all of it" for the suites that assert on it.
+  void foliageP.then(()=>markStartup('bg-foliage-end'),()=>{});
+  const [dummy,npcBuf]=await Promise.all([dummyP,npcP]);
+  markStartup('bg-dummy-end');
+  const churchyardEnemies=noEnemies?[]:await loadEnemies(engine,scene,world,CHURCHYARD_ANCHORS,npcBuf);
+  markStartup('bg-enemies-end');
+  if(churchyardEnemies.length)bindEnemyColliders(churchyardEnemies,player,world);
+  // The socket host was created with the body, so combat binds to the one the garments
+  // are already hanging on rather than baking a second one onto the same skeleton.
+  combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig,churchyardEnemies,createObjective(),{sockets});
+  markStartup('combat-ready');
+  ashen.combatReady=true;
+  combatBoundary.reach(performance.now()-boot);
+  combat.bindEquipment(() => equipment.getState());
+  combat.setVisible(view==='play');
+  armory=createArmory({scene,canvas,player,body,combat,equipment,getView:()=>view,setView});
+  tools=attachDevTools({params,canvas,camera,player,combat,setView});
+  // Spell billboard systems arrive after the first visible scene registration. This
+  // re-registers the scene while the player is moving; it measured 2-9 ms.
+  markStartup('late-register-start');
+  await registerLateFeatures(scene,attachLinearMaterials,unregisterScene,registerSceneWithShadowSupport);
+  markStartup('late-register-end');
+  await folkP;
+  const townP=noEnemies?Promise.resolve([]):loadEnemies(engine,scene,world,TOWN_ANCHORS,npcBuf).then((town)=>{
+   for(const enemy of town){
+    combat.registerEnemy(enemy);
+    bindEnemyColliders([enemy],player,world);
+   }
+   return town;
+  }).catch((error)=>{console.error('Town hostiles failed to load',error);return [];});
+  ashen.whenHostiles=townP.then(()=>{ashen.hostilesReady=true;markStartup('hostiles-ready');});
+  await ashen.whenHostiles;
+  await foliageP;
+  ashen.loadMs=performance.now()-boot;
+  ashen.ready=true;
+  markStartup('ready');
   markStartup('region-ready');
   ashen.regionMs=performance.now()-boot;
   ashen.regionReady=true;
   regionBoundary.reach(ashen.regionMs);
- });
+ })();
+ ashen.whenRest.catch(error=>{console.error('Background startup failed',error);});
 }
 main().catch(async e=>{console.error(e);const message=await formatGameError(e).catch(()=>e?.stack||String(e));if(failLoading(e,message))return;const el=document.getElementById('error');el.style.display='block';el.textContent=message;});

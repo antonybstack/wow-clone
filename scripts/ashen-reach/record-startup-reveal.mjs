@@ -21,6 +21,10 @@ import {CDP_URL} from '../lib/cdp.mjs';
 const tagIndex = process.argv.indexOf('--tag');
 const tag = tagIndex === -1 ? 'v1' : process.argv[tagIndex + 1];
 const url = process.env.ASHEN_URL || 'http://127.0.0.1:5173/ashen-reach.html?play&clean';
+const holdIndex = process.argv.indexOf('--hold');
+/** How long to keep running forward. Long enough to outlast background loading, so the
+ *  clip shows what the player sees while chunks are still arriving, not just after. */
+const holdMs = holdIndex === -1 ? 2600 : Number(process.argv[holdIndex + 1]);
 const dir = `ve-capture/ashen-reach/startup-reveal-${tag}/motion`;
 await fs.mkdir(`${dir}/frames`, {recursive: true});
 const browser = await chromium.connectOverCDP(CDP_URL);
@@ -47,7 +51,7 @@ try {
   // No settling pause: the first keypress lands at the playable boundary on purpose.
   await page.locator('#renderCanvas').focus().catch(() => {});
   await page.keyboard.down('w');
-  await page.waitForTimeout(2600);
+  await page.waitForTimeout(holdMs);
   await page.keyboard.up('w');
   await page.waitForTimeout(900);
   await page.screenshot({path: `${dir}/after-travel.png`, scale: 'css'});

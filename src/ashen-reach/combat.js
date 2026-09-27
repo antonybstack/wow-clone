@@ -117,12 +117,13 @@ export async function createCombat(
   rig,
   enemies = [],
   objective = null,
+  options = {},
 ) {
   const targeting = new Targeting();
   const hostiles = [dummy, ...enemies];
   targeting.list = hostiles;
   const spell = new FireBlast(),
-    fx = await createFireBlastVfx(engine, scene, player, body, world),
+    fx = await createFireBlastVfx(engine, scene, player, body, world, {sockets: options.sockets}),
     hud = createCombatHud(canvas, scene);
   const lava = new LavaBall(),
     lavaFx = await createLavaBallVfx(

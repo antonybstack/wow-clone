@@ -166,6 +166,87 @@ everything else behind that boundary. Whether a build-time baked starting-area p
 needed is a question to re-ask once that ordering exists, because it only competes with the
 remaining starting-area CPU cost.
 
+## M1 — playable-first ordering
+
+The feasibility probe said the ~1.2 s between the first frame and input being enabled was
+feature loading, not world building. This phase moves that work behind the boundary.
+
+- **Sockets are created with the body, not with combat.** `attachSockets` needs the player
+  capsule and the body's skeleton and nothing else, so `main()` creates the one socket host
+  right after `attachBody` and hands it to both the equipment stream and, later, the spell
+  VFX (`createFireBlastVfx` takes an optional `sockets`). Two hosts on one skeleton would
+  each bake and drive the same bones.
+- **Starter garments load before the boundary**, because a dressed character is in the
+  acceptance criteria. Everything else — foliage, the seven feature modules, the training
+  dummy, the NPC buffer, churchyard and town hostiles, combat, late feature registration,
+  townsfolk and the armory — moves into `ASHEN.whenRest`, which runs while the player walks.
+- **`ready` and `hostilesReady` keep meaning "all of it"** and are set at the end of that
+  background chain, so the existing suites assert on exactly what they asserted before.
+
+### Background work must yield to *frames*, not to tasks
+
+Moving the work behind the boundary made it worse before it made it better: input went live
+and then froze for 1,053 ms. One uncut foliage pass held the main thread for 899 ms starting
+43 ms after `playable`.
+
+The first fix was `scheduler.yield()`, the standard advice for
+[breaking up long tasks](https://web.dev/articles/optimize-long-tasks). It worked, by the
+metric: **zero long tasks after `playable`**. The game still did not render —
+`ASHEN.gpu.frames` sat at **4** for 920 ms. Four is `createFrameScheduler`'s `maxPending`.
+Its completion fence resolves on a queued task, and a build that resumes via
+`scheduler.yield()` runs ahead of that queue, so the fences never settled, the scheduler
+stayed at its ceiling and stopped issuing frames. A long-task profile said everything was
+fine while the player looked at a still image.
+
+`src/ashen-reach/frame-budget.js` therefore yields to an animation frame. The render loop
+registers its callback first, so the resumed build knows a frame was drawn and its fence had
+a turn. The slice is a **share of the frame** (25%, clamped to 2–8 ms) rather than an
+absolute budget: an absolute 120 FPS ceiling was tried first and proved untestable, because
+headless Chromium runs frames near 14 ms and pinned the slice at its floor forever.
+
+### One real bug this exposed
+
+Yielding inside `createFoliage` let a frame render between `commitProto` (mesh in the scene,
+vertex layout declaring `world0..world3`) and `makePool` (thin-instance buffers attached).
+Pipeline creation fails outright in that gap — `struct member world0 not found`, then an
+invalid render bundle for the rest of the frame. Hiding the meshes does not help; the
+pipeline is built from the registered mesh regardless of visibility. The fix is to commit the
+prototypes in the same uninterrupted task as the pools that buffer them. `measure-startup.mjs`
+caught this through its GPU-error assertion; nothing else did.
+
+### M1 results
+
+M1 Max / Chromium 153 WebGPU / 1280×720 / dev server / `pixelRatio=1`.
+
+| | before M1 | after M1 |
+|---|---:|---:|
+| playable | 5,791 ms | **4,441–4,568 ms** |
+| combat ready | at `playable` | playable + 400 ms |
+| hostiles ready | at `playable` | playable + 582 ms |
+| foliage complete | at `playable` | playable + 3,100 ms |
+| full `ready` | 5,791 ms | 7,624–7,859 ms |
+| keyboard first travel | 49 ms / 5 frames | 111 ms / 14 frames |
+| touch first travel | 84 ms / 5 frames | 128 ms / 26 frames |
+| long tasks after `playable` | — | none |
+| recovery teleports | 0 | 0 |
+
+Checks: `check-shader-errors.mjs` clean, `check-startup-entry.mjs` 3/3, `measure-startup.mjs`
+2 runs with 7 enemies and no GPU or console errors, `test:character` 77/77,
+`test:equipment` 47/47.
+
+### Disclosed defects carried into the next phase
+
+1. **The starting area is bare ground for about three seconds while the player runs through
+   it.** Foliage builds in seed order over the whole region rather than nearest-first, so the
+   grass arrives everywhere at once at roughly `playable` + 3.1 s instead of under the player
+   first. Visible in the delivered clip. The plan's P4 ordering — adjacent traversable
+   surfaces first — is the fix.
+2. **Full `ready` regressed from 5.7 s to 7.7 s.** Deliberate: foliage is now sliced to a
+   quarter of a frame so it cannot freeze input, and `ready` still waits for it. Nothing a
+   player waits on, but it is a number this repo has tracked and it moved the wrong way.
+3. **The world build is untouched.** 3.3 s of `buildChurchyard`, of which far terrain is 1.9 s,
+   still runs before the first frame. That is the whole remaining gap to one second.
+
 ## Remaining phases
 
 P1 build-time starting-area package · P2 compact dressed starter character · P3 minimal playable

@@ -12,6 +12,7 @@ import {
 } from '@babylonjs/lite';
 import {Batch,height,terrainNormal,rng,bakeLamp,add,sub,TERRAIN_SLOPE_WGSL} from './geometry.js';
 import {ATMOS} from './atmosphere.js';
+import {createFrameBudget} from './frame-budget.js';
 import {SUN_SHADOW_UNIFORMS,SUN_SHADOW_SAMPLERS,SUN_SHADOW_WGSL,bindSunReceiver} from './sun-shadows.js';
 
 import {LOCAL_LIGHT_UNIFORMS,LOCAL_LIGHT_SAMPLERS,LOCAL_LIGHT_WGSL} from './local-light-shared.js';
@@ -374,11 +375,21 @@ function writeMatrix(out,o,x,y,z,yaw,sx,sy,sz){
  out[o+12]=x; out[o+13]=y; out[o+14]=z; out[o+15]=1;
 }
 
-function place(density,lights,opt){
+/**
+ * Scatter one species over a rectangle, handing the frame back between rows.
+ *
+ * This is async purely so it can yield. The rows are walked in the same order with the same
+ * seeded stream as before, so the placement is bit-identical to the synchronous version --
+ * the only difference is that a pass no longer holds the main thread for its whole duration.
+ * Foliage is built after the player can already walk, so a pass that does not yield reads
+ * as a freeze rather than as loading.
+ */
+async function place(density,lights,budget,opt){
  const roll=rng(opt.seed);
  const mats=[],cols=[];
  const {minX,maxX,minZ,maxZ,spacing,scale,yScale,tint,slopeMin=0.58,densityScale=1,sink=0.035,skip,mask,palette,footprint=.6}=opt;
  for(let z=minZ;z<maxZ;z+=spacing){
+  if(budget)await budget.spend();
   for(let x=minX;x<maxX;x+=spacing){
    const gx=x+roll()*spacing, gz=z+roll()*spacing;
    if(skip&&skip(gx,gz))continue;
@@ -489,26 +500,17 @@ function packPool(pool,cx,cz){
  pool.nearCount=ni; pool.farCount=fi;
 }
 
-export async function createFoliage(engine,scene,{lights=[],density=()=>0,landmarks=[]}={}){
+export async function createFoliage(engine,scene,{lights=[],density=()=>0,landmarks=[],budgetMs=2}={}){
+ // Every placement pass shares one stopwatch, so the budget bounds a chunk of the build
+ // rather than each pass separately.
+ const budget=createFrameBudget(budgetMs);
  const atlas=await loadTexture2D(engine,ATLAS,{invertY:false,srgb:false,mipMaps:true,minFilter:'linear',magFilter:'linear'});
  const material=await createFoliageMaterial(engine,atlas);
  const moorMaterial=await createFoliageMaterial(engine,atlas,[185,.85,.9,4]);
- const grassNear=commitProto(engine,scene,clumpCards('Grass near',[UV.meadow,UV.dry,UV.meadow],{cards:3,height:0.74,width:0.26,shared:true}),material);
- const grassFar=commitProto(engine,scene,clumpCards('Grass far',[UV.meadow,UV.dry],{cards:2,height:0.74,width:0.26,shared:true}),material);
- const moorNear=commitProto(engine,scene,clumpCards('Moor near',[UV.meadow,UV.dry,UV.meadow],{cards:3,height:1.0,width:0.42,shared:true}),moorMaterial);
- const moorFar=commitProto(engine,scene,clumpCards('Moor far',[UV.meadow,UV.dry],{cards:2,height:1.0,width:0.42,shared:true}),moorMaterial);
- const plantNear=commitProto(engine,scene,clumpCards('Plant near',[UV.plant],{cards:3,height:0.55,width:0.36,spread:0.10}),material);
- const plantFar=commitProto(engine,scene,clumpCards('Plant far',[UV.plant],{cards:2,height:0.60,width:0.42,spread:0,cross:true}),material);
- const brackenNear=commitProto(engine,scene,brackenTuft('Bracken near',UV.fern,false),material);
- const brackenFar=commitProto(engine,scene,brackenTuft('Bracken far',UV.fern,true),material);
  const flowerMaterial=await createFlowerMaterial(engine);
- const umbelNear=commitProto(engine,scene,flowerUmbel('Umbel near',false),flowerMaterial);
- const umbelFar=commitProto(engine,scene,flowerUmbel('Umbel far',true),flowerMaterial);
- const spikeNear=commitProto(engine,scene,flowerSpike('Spike near',false),flowerMaterial);
- const spikeFar=commitProto(engine,scene,flowerSpike('Spike far',true),flowerMaterial);
 
- const grassCore=place(density,lights,{seed:83861,minX:-38,maxX:38,minZ:-16,maxZ:146,spacing:0.36,scale:[0.85,1.25],yScale:[0.72,1.28],tint:[0.78,1.12],densityScale:1});
- const grassShoulder=place(density,lights,{seed:91011,minX:-88,maxX:88,minZ:-90,maxZ:160,spacing:0.62,scale:[0.9,1.3],yScale:[0.7,1.15],tint:[0.74,1.05],densityScale:0.85,skip:(x,z)=>x>-38&&x<38&&z>-16&&z<146});
+ const grassCore=await place(density,lights,budget,{seed:83861,minX:-38,maxX:38,minZ:-16,maxZ:146,spacing:0.36,scale:[0.85,1.25],yScale:[0.72,1.28],tint:[0.78,1.12],densityScale:1});
+ const grassShoulder=await place(density,lights,budget,{seed:91011,minX:-88,maxX:88,minZ:-90,maxZ:160,spacing:0.62,scale:[0.9,1.3],yScale:[0.7,1.15],tint:[0.74,1.05],densityScale:0.85,skip:(x,z)=>x>-38&&x<38&&z>-16&&z<146});
  // The shoulder stopped dead at x=+-88 / z=160, and 10-ridge-west stands the camera at
  // x=-80: eight metres from the edge of every blade of grass in the world. Everything west
  // of the player was bare ground, which is why that frame measured 0.19 saturation and read
@@ -516,7 +518,7 @@ export async function createFoliage(engine,scene,{lights=[],density=()=>0,landma
  // moor rather than meadow and costs a fraction of the instances per square metre, but it
  // carries texture out to where the scattered woodland starts and closes the gap between
  // the two.
- const grassMoor=place(density,lights,{seed:31573,minX:-150,maxX:150,minZ:-150,maxZ:215,spacing:1.32,scale:[1.0,1.5],yScale:[0.62,1.05],tint:[0.66,0.94],densityScale:0.62,skip:(x,z)=>x>-88&&x<88&&z>-90&&z<160});
+ const grassMoor=await place(density,lights,budget,{seed:31573,minX:-150,maxX:150,minZ:-150,maxZ:215,spacing:1.32,scale:[1.0,1.5],yScale:[0.62,1.05],tint:[0.66,0.94],densityScale:0.62,skip:(x,z)=>x>-88&&x<88&&z>-90&&z<160});
  // Backdrop-only grass has a sparse source set so its long draw radius cannot
  // saturate the dense meadow pool. It remains outside the playable rectangle.
 const outerDensity=(x,z)=>{
@@ -529,7 +531,7 @@ const outerDensity=(x,z)=>{
   const fade=Math.min(1,Math.max(0,(220-edge)/95));
   return (.23+.20*drift)*join*fade;
  };
- const moor=place(outerDensity,lights,{seed:290923,minX:-300,maxX:300,minZ:-310,maxZ:390,spacing:2.0,scale:[.9,1.4],yScale:[.75,1.2],tint:[.58,.80],sink:.05});
+ const moor=await place(outerDensity,lights,budget,{seed:290923,minX:-300,maxX:300,minZ:-310,maxZ:390,spacing:2.0,scale:[.9,1.4],yScale:[.75,1.2],tint:[.58,.80],sink:.05});
  const parts=[grassCore,grassShoulder,grassMoor];
  const grass={
   count:parts.reduce((a,p)=>a+p.count,0),
@@ -541,8 +543,8 @@ const outerDensity=(x,z)=>{
   grass.colors.set(parts[i].colors,c);c+=parts[i].colors.length;
  }
 
- const plants=place(density,lights,{seed:2711,minX:-40,maxX:40,minZ:-12,maxZ:144,spacing:1.55,scale:[0.9,1.45],yScale:[0.85,1.25],tint:[0.82,1.08],densityScale:0.22,sink:0.02,slopeMin:0.7});
- const bracken=place(density,lights,{seed:490,minX:-26,maxX:26,minZ:-12,maxZ:142,spacing:1.12,scale:[0.85,1.35],yScale:[0.8,1.2],tint:[0.85,1.12],densityScale:0.34,sink:0.02,footprint:1.5});
+ const plants=await place(density,lights,budget,{seed:2711,minX:-40,maxX:40,minZ:-12,maxZ:144,spacing:1.55,scale:[0.9,1.45],yScale:[0.85,1.25],tint:[0.82,1.08],densityScale:0.22,sink:0.02,slopeMin:0.7});
+ const bracken=await place(density,lights,budget,{seed:490,minX:-26,maxX:26,minZ:-12,maxZ:142,spacing:1.12,scale:[0.85,1.35],yScale:[0.8,1.2],tint:[0.85,1.12],densityScale:0.34,sink:0.02,footprint:1.5});
 
  // Flowers begin north of the lych-gate and never enter the churchyard. That is the
  // right read -- the churchyard is ash and graves, Hollowmere is the living side -- and
@@ -555,11 +557,11 @@ const outerDensity=(x,z)=>{
  // light source sitting on top of it -- obvious the moment the camera reached the
  // shaded west treeline, where the grass goes dark and the flowers did not.
  const WHITE=[1.18,1.16,1.05], CREAM=[1.22,1.10,0.82];
- const umbels=place(density,lights,{seed:60317,minX:-70,maxX:70,minZ:34,maxZ:152,spacing:0.60,scale:[0.8,1.35],yScale:[0.75,1.3],tint:[0.86,1.08],densityScale:0.78,sink:0.01,slopeMin:0.66,mask:drift,palette:[WHITE,WHITE,WHITE,CREAM,[1.10,0.88,0.96]]});
+ const umbels=await place(density,lights,budget,{seed:60317,minX:-70,maxX:70,minZ:34,maxZ:152,spacing:0.60,scale:[0.8,1.35],yScale:[0.75,1.3],tint:[0.86,1.08],densityScale:0.78,sink:0.01,slopeMin:0.66,mask:drift,palette:[WHITE,WHITE,WHITE,CREAM,[1.10,0.88,0.96]]});
  // The spikes carry the colour the reference actually has and we have nowhere else:
  // violet, blue-violet and a hot orange. Sparser than the white by a factor of three,
  // because in the reference they punctuate the white rather than compete with it.
- const spikes=place(density,lights,{seed:74209,minX:-70,maxX:70,minZ:34,maxZ:152,spacing:1.05,scale:[0.8,1.3],yScale:[0.8,1.35],tint:[0.88,1.1],densityScale:0.52,sink:0.01,slopeMin:0.66,mask:drift,palette:[[0.78,0.56,1.16],[0.52,0.48,1.20],[1.22,0.54,0.20],[1.12,0.62,0.84],[0.64,0.78,1.16]]});
+ const spikes=await place(density,lights,budget,{seed:74209,minX:-70,maxX:70,minZ:34,maxZ:152,spacing:1.05,scale:[0.8,1.3],yScale:[0.8,1.35],tint:[0.88,1.1],densityScale:0.52,sink:0.01,slopeMin:0.66,mask:drift,palette:[[0.78,0.56,1.16],[0.52,0.48,1.20],[1.22,0.54,0.20],[1.12,0.62,0.84],[0.64,0.78,1.16]]});
 
  if(landmarks.length){
   const extra=new Float32Array(landmarks.length*16);
@@ -579,6 +581,27 @@ const outerDensity=(x,z)=>{
 
  // The dense meadow retains its short view distance. Only the sparse, separate
  // outer moor pool reaches the hills; flowers and bracken remain short-range.
+ // Prototype meshes are committed here, in the same uninterrupted task as the pools that
+ // give them their thin-instance buffers. A prototype declares world0..world3 in its vertex
+ // layout and has nothing bound until makePool() runs, so a frame drawn between the two
+ // fails pipeline creation outright -- "struct member world0 not found", then an invalid
+ // render bundle for the rest of that frame. That gap used to be unreachable because foliage
+ // built inside one task; now that the build yields a frame every few milliseconds it is
+ // reached every time. Hiding the meshes does not help: the pipeline is created from the
+ // registered mesh regardless of visibility. Only keeping the two steps in one task does.
+ const grassNear=commitProto(engine,scene,clumpCards('Grass near',[UV.meadow,UV.dry,UV.meadow],{cards:3,height:0.74,width:0.26,shared:true}),material);
+ const grassFar=commitProto(engine,scene,clumpCards('Grass far',[UV.meadow,UV.dry],{cards:2,height:0.74,width:0.26,shared:true}),material);
+ const moorNear=commitProto(engine,scene,clumpCards('Moor near',[UV.meadow,UV.dry,UV.meadow],{cards:3,height:1.0,width:0.42,shared:true}),moorMaterial);
+ const moorFar=commitProto(engine,scene,clumpCards('Moor far',[UV.meadow,UV.dry],{cards:2,height:1.0,width:0.42,shared:true}),moorMaterial);
+ const plantNear=commitProto(engine,scene,clumpCards('Plant near',[UV.plant],{cards:3,height:0.55,width:0.36,spread:0.10}),material);
+ const plantFar=commitProto(engine,scene,clumpCards('Plant far',[UV.plant],{cards:2,height:0.60,width:0.42,spread:0,cross:true}),material);
+ const brackenNear=commitProto(engine,scene,brackenTuft('Bracken near',UV.fern,false),material);
+ const brackenFar=commitProto(engine,scene,brackenTuft('Bracken far',UV.fern,true),material);
+ const umbelNear=commitProto(engine,scene,flowerUmbel('Umbel near',false),flowerMaterial);
+ const umbelFar=commitProto(engine,scene,flowerUmbel('Umbel far',true),flowerMaterial);
+ const spikeNear=commitProto(engine,scene,flowerSpike('Spike near',false),flowerMaterial);
+ const spikeFar=commitProto(engine,scene,flowerSpike('Spike far',true),flowerMaterial);
+
  const grassPool=makePool(grassNear,grassFar,bucketTiles(grass),8192,24576);
  const moorPool=makePool(moorNear,moorFar,bucketTiles(moor),1024,8192,0.85,185,0.9);
  const plantPool=makePool(plantNear,plantFar,bucketTiles(plants),512,768);

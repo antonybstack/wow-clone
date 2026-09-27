@@ -5,7 +5,7 @@ import {rng} from './geometry.js';
 
 const EFFECT_DURATION=1.65;
 /** Three fixed Lite billboard pools. Emitted particles keep their birth position when the caster moves. */
-export async function createFireBlastVfx(engine,scene,player,body,world){
+export async function createFireBlastVfx(engine,scene,player,body,world,options={}){
  const random=rng(419),systems=await Promise.all([
   ['fire_01.png',billboardBlendAdditive,42],['smoke_01.png',billboardBlendAlpha,8],['spark_05.png',billboardBlendAdditive,50]
  ].map(async([file,blendMode,capacity])=>{
@@ -14,7 +14,10 @@ export async function createFireBlastVfx(engine,scene,player,body,world){
   const system=createFacingBillboardSystem(atlas,{capacity,blendMode});addFacingBillboardSystem(scene,system);
   return Array.from({length:capacity},()=>({handle:addBillboardSprite(system,{position:[0,-50,0],sizeWorld:[1,1],visible:false}),seed:random(),angle:random()*Math.PI*2,birth:null,direction:null}));
  }));
- const sockets=attachSockets(engine,scene,player,body);
+ // The caller may already own a socket host: main() creates one right after attachBody so
+ // starter garments and the starter weapon can be worn before any combat module is fetched.
+ // Two hosts on one skeleton would each bake and drive the same bones.
+ const sockets=options.sockets??attachSockets(engine,scene,player,body);
  const lights=Array.from({length:2},()=>{const light=createPointLight([0,0,0],0);light.diffuse=[1,.25,.035];light.range=5;addToScene(scene,light);return light;});
  let priming=false,primeAge=0;
  let age=10,point=[0,0,0],wasActive=false;
