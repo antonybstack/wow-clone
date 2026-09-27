@@ -111,6 +111,10 @@ for (let run = 1; run <= runs; run++) {
     const row = await page.evaluate(() => ({
       origin: performance.timeOrigin,
       marks: ASHEN.startup.timings(),
+      resources: performance.getEntriesByType('resource').map(r=>({
+        name:r.name,start:r.startTime,responseStart:r.responseStart,end:r.responseEnd,
+        transferSize:r.transferSize,encodedBodySize:r.encodedBodySize,initiator:r.initiatorType,
+      })),
       playableMs: ASHEN.startup.timings().playable,
       grounded: ASHEN.player.getGrounded(),
       physics: ASHEN.player.getDebugState().usingPhysics,

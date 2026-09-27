@@ -43,7 +43,11 @@ export default defineConfig({
     {
       name: "ashen-startup-preload",
       transformIndexHtml: {
-        order: "pre",
+        // Let Vite put the entry/module preloads first. Equal-priority fetches
+        // otherwise queue several megabytes ahead of engine initialization.
+        // https://vite.dev/guide/api-plugin.html#transformindexhtml
+        // https://web.dev/articles/fetch-priority
+        order: "post",
         handler(html, ctx) {
           if (!String(ctx.filename || "").endsWith("ashen-reach.html")) return html;
           // Required starter resources begin with the HTML. NPCs, full-size
@@ -68,7 +72,7 @@ export default defineConfig({
           const links = tags
             .map(([href, as]) =>
               as === "fetch"
-                ? `<link rel="preload" href="${href}" as="fetch" crossorigin>`
+                ? `<link rel="preload" href="${href}" as="fetch" crossorigin fetchpriority="${href.endsWith('.bin')?'low':'auto'}">`
                 : `<link rel="preload" href="${href}" as="image">`,
             )
             .join("");
