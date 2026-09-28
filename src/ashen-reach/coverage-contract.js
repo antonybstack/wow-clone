@@ -152,9 +152,9 @@ export function itemSegments(item) {
  * @param {Record<string,object>} items catalogue
  * @param {string} race
  */
-export function resolveCoverage(loadout, items, race) {
-    const bodies = RACE_BODY_SEGMENTS[race];
-    if (!bodies) throw new CoverageError('UNKNOWN_RACE', `No body segment map for race "${race}"`);
+export function resolveCoverage(loadout, items, race, bodySegments = RACE_BODY_SEGMENTS[race]) {
+    if (!RACE_BODY_SEGMENTS[race]) throw new CoverageError('UNKNOWN_RACE', `No body segment map for race "${race}"`);
+    const bodies = bodySegments;
 
     const covered = new Set();
     const bySegment = new Map();

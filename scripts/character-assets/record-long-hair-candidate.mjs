@@ -68,6 +68,57 @@ try {
     await page.keyboard.press('Space'); await page.waitForTimeout(1400);
     await page.keyboard.up('ShiftLeft'); await page.keyboard.up('KeyW');
     await page.waitForTimeout(900);
+    if (process.env.ASHEN_HAIR_HEADWEAR_CHECK === '1') {
+        mark('creator camera, uncovered ponytail');
+        await page.evaluate(() => {
+            ASHEN.armory.open();
+            ASHEN.armory.setFocus({height: 1.55, radius: 1.65, beta: 1.45});
+        });
+        await page.waitForTimeout(700);
+        mark('hood covers separate tail');
+        await page.selectOption('#armory [data-equipment="helmet"]', 'graveweaverHood');
+        await page.waitForFunction(() => ASHEN.equipment.getState().helmet === 'graveweaverHood');
+        await page.evaluate(async () => {
+            const camera = ASHEN.armory.camera, from = camera.alpha, t0 = performance.now();
+            for (;;) {
+                const k = Math.min(1, (performance.now() - t0) / 2400);
+                camera.alpha = from + Math.PI * 2 * k;
+                if (k >= 1) break;
+                await new Promise(requestAnimationFrame);
+            }
+        });
+        mark('hood removed, tail restored');
+        await page.selectOption('#armory [data-equipment="helmet"]', '');
+        await page.waitForFunction(() => ASHEN.equipment.getState().helmet === null);
+        await page.waitForTimeout(800);
+        await page.evaluate(() => ASHEN.armory.close());
+    }
+    if (process.env.ASHEN_OLD_NAKED_REVIEW === '1') {
+        mark('old head, bare neck in inspection');
+        await page.evaluate(() => {
+            ASHEN.armory.open();
+            ASHEN.armory.setFocus({height: 1.55, radius: 2.05, beta: 1.45});
+        });
+        for (const slot of ['torso', 'legs', 'boots', 'mainHand']) {
+            await page.selectOption(`#armory [data-equipment="${slot}"]`, '');
+            await page.waitForFunction(slot => ASHEN.equipment.getState()[slot] === null, slot);
+        }
+        await page.check('#armory [data-light]');
+        await page.evaluate(async () => {
+            const camera = ASHEN.armory.camera, from = camera.alpha, t0 = performance.now();
+            for (;;) {
+                const k = Math.min(1, (performance.now() - t0) / 3000);
+                camera.alpha = from + Math.PI * 2 * k;
+                if (k >= 1) break;
+                await new Promise(requestAnimationFrame);
+            }
+        });
+        mark('Wayfarer restored');
+        await page.click('#armory [data-outfit="wayfarer"]');
+        await page.waitForFunction(() => ASHEN.equipment.getState().torso === 'wayfarerTunic');
+        await page.waitForTimeout(600);
+        await page.evaluate(() => ASHEN.armory.close());
+    }
     recording = false;
     await cdp.send('Page.stopScreencast');
     await Promise.all(writes);

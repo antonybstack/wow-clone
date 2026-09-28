@@ -1,6 +1,7 @@
 import {sceneLifetime} from './scene-lifetime.js';
 import {BASE_VISIBLE_MESHES, ORC_BASE_VISIBLE_MESHES, UNDEAD_BASE_VISIBLE_MESHES, EQUIPMENT_ITEMS} from './equipment-catalog.js';
 import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT, UNDEAD_EQUIPMENT_FIT} from './equipment-contract.js';
+import {RACE_BODY_SEGMENTS} from './coverage-contract.js';
 import {createEngine,createSceneContext,disposeScene,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,onSceneDispose,onBeforeRender,enableBoneControl,setFog,captureScreenshot,setMeshVisible,isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize,setMeshoptBaseUrl,waitForGpuIdle} from '@babylonjs/lite';
 import {createAshenMetrics} from './metrics.js';
 import {createRenderLoop} from './render-loop.js';
@@ -83,7 +84,17 @@ async function main(){
  const humanShape=params.has('humanShape')||params.has('humanHeight')
   ?(await import('../character/runtime/human-shape.js')).resolveHumanShape(params)
   :null;
- const shapeCandidate=humanShape?.assetURL||null;
+ // Diagnostic M006 tail on the M004 shape family. This explicit route has its
+ // own mesh/coverage adapter; the starter body and startup path stay identical.
+ // The candidate is served by Vite from .cache and is not a released asset.
+ const humanHair=params.get('humanHair');
+ if(humanHair&&humanHair!=='ponytail')throw Error(`Unknown Human hair candidate ${humanHair}`);
+ if(humanHair&&preloadedEquipment)throw Error('The Human hair candidate needs streamed equipment');
+ if(humanHair&&humanShape?.weights.some(weight=>weight>0)&&humanShape.garmentFit!=='refit')
+  throw Error('A shaped Human hair candidate needs garmentFit=refit');
+ const shapeCandidate=humanHair
+  ?'/__human_hair__/human-ponytail01-tail-shape-family-candidate.glb'
+  :humanShape?.assetURL||null;
  const fastCharacter=fastStart&&!shapeCandidate;
  const bodyUrl=shapeCandidate||(preloadedEquipment?'/ashen-reach/wanderer-equipment.glb':'/ashen-reach/equipment/body.glb');
  const bodyBufP=fastCharacter?starterCharacterP.then(m=>startupAssetBuffer(m.items.body)):fetchBuffer(bodyUrl,'high');
@@ -261,7 +272,9 @@ async function main(){
  // thing to reconcile -- createStreamedEquipment names any region it cannot bind.
  const UNDEAD_PACK_DIR='equipment-undead';
  const packs={
-  human:{race:'human',manifestUrl:humanShape?.garmentManifestURL||(fastCharacter?'/ashen-reach/startup/character/manifest.json':'/ashen-reach/equipment/manifest.json'),baseMeshes:['HumanV1Body'],fitId:HUMAN_EQUIPMENT_FIT,...(fastCharacter?{manifest:await starterCharacterP,loadBuffer:startupAssetBuffer}:{})},
+  human:{race:'human',manifestUrl:humanShape?.garmentManifestURL||(fastCharacter?'/ashen-reach/startup/character/manifest.json':'/ashen-reach/equipment/manifest.json'),baseMeshes:humanHair?['HumanV1Body','HumanPonytail01']:['HumanV1Body'],
+   ...(humanHair?{bodySegments:{...RACE_BODY_SEGMENTS.human,HumanPonytail01:['head.scalp']}}:{}),
+   fitId:HUMAN_EQUIPMENT_FIT,...(fastCharacter?{manifest:await starterCharacterP,loadBuffer:startupAssetBuffer}:{})},
   orc:{race:'orc',manifestUrl:'/ashen-reach/equipment-orc/manifest.json',baseMeshes:ORC_BASE_VISIBLE_MESHES,fitId:ORC_EQUIPMENT_FIT,bodyUrl:'/ashen-reach/equipment-orc/body.glb'},
   undead:{race:'undead',manifestUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/manifest.json`,baseMeshes:UNDEAD_BASE_VISIBLE_MESHES,fitId:UNDEAD_EQUIPMENT_FIT,bodyUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/body.glb`},
  };
@@ -312,6 +325,10 @@ async function main(){
     if(pack.garments===false)parkedGarments=loadout;
     else parkedGarments=null;
     const next=await createStreamedEquipment(engine,scene,body,sockets,{...pack,bootLoadout});
+    // Returning from Orc/Undead creates fresh Human garment meshes at morph weight 0.
+    // The parked Human body retained its shape, so drive the newly streamed clothes
+    // before making the outfit visible again.
+    if(race==='human')reshapeEquipment?.();
     impl=next;
     currentRace=race;
     previousImpl.dispose();

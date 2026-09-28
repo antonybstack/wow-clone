@@ -3,7 +3,7 @@
   "generation": "appearanceFromEquipment({race,loadout:EQUIPMENT_PRESETS[preset].loadout}); empty uses {}",
   "source": "M001 active catalogue at bad1087",
   "sourceSha256": {
-    "src/ashen-reach/equipment-catalog.js": "af0a7e067f1f458fd38e5546ab97d691eecf9b18bbcdcb15fb1ad484f7069332",
+    "src/ashen-reach/equipment-catalog.js": "64c6b05f58aac973444df3da6a2c04e0712fddf18a9b382c0f10a797a8793f73",
     "src/ashen-reach/equipment-contract.js": "6b82f2974bafd3ef93e1e8c4f78b206d1fa65724a25257a929b174dbda9282af"
   },
   "license": "project-authored identity data; no third-party asset bytes",

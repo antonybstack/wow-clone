@@ -17,9 +17,13 @@ import sharp from 'sharp';
 
 const variant = process.argv[2] ?? 'ponytail01-tail';
 if (!['long01', 'ponytail01', 'ponytail01-tail'].includes(variant)) throw Error(`Unknown variant ${variant}`);
-const bodyPath = 'public/ashen-reach/equipment/body.glb';
+const shapeFamily = process.argv[3] === 'shape-family';
+if (process.argv[3] && !shapeFamily) throw Error(`Unknown body family ${process.argv[3]}`);
+const bodyPath = shapeFamily
+    ? '.cache/character-mmo/m004/human-shape-family-v1.glb'
+    : 'public/ashen-reach/equipment/body.glb';
 const hairPath = `.cache/character-mmo/m006/${variant}-fitted.glb`;
-const outPath = `.cache/character-mmo/m006/human-${variant}-candidate.glb`;
+const outPath = `.cache/character-mmo/m006/human-${variant}${shapeFamily ? '-shape-family' : ''}-candidate.glb`;
 const tolerance = 2e-3; // Same Blender round-trip tolerance as M005's rigid plate.
 
 await MeshoptDecoder.ready;
@@ -84,9 +88,11 @@ const binary = await io.writeBinary(bodyDoc);
 await fs.writeFile(outPath, binary);
 const check = (await io.read(outPath)).getRoot();
 const node = check.listNodes().find(n => n.getMesh()?.getName() === mesh.getName());
-if (node?.getSkin() !== check.listSkins()[0] || check.listAnimations().length !== 57) {
-    throw Error('Hair/body skin or source animation lost in round trip');
+const checkBody = check.listMeshes().find(m => m.getName() === 'HumanV1Body');
+if (node?.getSkin() !== check.listSkins()[0] || check.listAnimations().length !== 57
+    || (shapeFamily && checkBody?.listPrimitives()[0]?.listTargets().length !== 2)) {
+    throw Error('Hair/body skin, source animation or shape targets lost in round trip');
 }
-console.log(JSON.stringify({variant, outPath, bytes: binary.length,
+console.log(JSON.stringify({variant, shapeFamily, outPath, bytes: binary.length,
     hairTriangles: node.getMesh().listPrimitives().reduce((n, p) => n + p.getIndices().getCount() / 3, 0),
     joints: bodySkin.listJoints().length, animations: check.listAnimations().length}));

@@ -38,15 +38,15 @@ import {
  * remains visible when a hood covers its scalp. See docs/plans/character-mmo/m007-mixed-equipment.md
  * and https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#meshes.
  */
-function packVisibility(selected, race, provisionalUndead) {
+function packVisibility(selected, race, provisionalUndead, bodySegments) {
   const vis = resolveEquipmentVisibility(selected);
   // The older diagnostic Undead pack uses six physical body geosets and is still exercised
   // by its compatibility tests. It is not the active single-body-mesh Undead pack. Keep its
   // authored region masks until that provisional asset is retired; see
   // docs/CURRENT.md#current-character-boundary-and-unresolved-risks.
   if (provisionalUndead) return vis;
-  const hidden = new Set(resolveCoverage(selected, EQUIPMENT_ITEMS, race).hiddenMeshes);
-  for (const name of Object.keys(RACE_BODY_SEGMENTS[race])) vis[name] = !hidden.has(name);
+  const hidden = new Set(resolveCoverage(selected, EQUIPMENT_ITEMS, race, bodySegments).hiddenMeshes);
+  for (const name of Object.keys(bodySegments)) vis[name] = !hidden.has(name);
   return vis;
 }
 
@@ -74,6 +74,11 @@ export async function createStreamedEquipment(
     throw Error(
       `Pack declares race ${race} but carries the ${expectedFit.body} fit`,
     );
+  // A head style may add a separately hideable mesh to the same body and rig.
+  // Keep the default race adapter exact, while requiring an explicit semantic
+  // adapter for each variant mesh. A hood can then hide a ponytail without
+  // hiding the Human's fused head/face.
+  const bodySegments = options.bodySegments || RACE_BODY_SEGMENTS[race];
   // Reuse the validated startup manifest. A no-cache HTTP manifest otherwise
   // incurs another conditional request on the input-critical path.
   let manifest=options.manifest;
@@ -106,7 +111,7 @@ export async function createStreamedEquipment(
     throw Error(`Missing ${race} body coverage: ${uncovered.join(", ")}`);
   const provisionalUndead = race === "undead" && manifest.provisional === true &&
     baseMeshes.length === BODY_REGIONS.length && BODY_REGIONS.every((name) => baseMeshes.includes(name));
-  const described = Object.keys(RACE_BODY_SEGMENTS[race] || {});
+  const described = Object.keys(bodySegments || {});
   const missingAdapter = baseMeshes.filter((name) => !described.includes(name));
   const missingBase = described.filter((name) => !baseMeshes.includes(name));
   if (!provisionalUndead && (missingAdapter.length || missingBase.length))
@@ -270,7 +275,7 @@ export async function createStreamedEquipment(
     }
   }
   function apply(next) {
-    const mask = packVisibility(next, race, provisionalUndead);
+    const mask = packVisibility(next, race, provisionalUndead, bodySegments);
     for (const [name, meshes] of Object.entries(bindings))
       for (const mesh of meshes) setMeshVisible(mesh, visible && mask[name]);
     const casting = spellStowsWeapon(body);

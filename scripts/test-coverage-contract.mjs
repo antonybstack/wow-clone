@@ -76,6 +76,15 @@ test('unknown segments and regions are rejected rather than ignored', () => {
     assert.throws(() => resolveCoverage({legs: 'wayfarerTunic'}, EQUIPMENT_ITEMS, 'human'), /occupies torso/);
 });
 
+test('separate Human ponytail follows hood coverage while the fused face stays visible', () => {
+    const withTail = {...RACE_BODY_SEGMENTS.human, HumanPonytail01: ['head.scalp']};
+    const withoutHood = resolveCoverage({helmet: null}, EQUIPMENT_ITEMS, 'human', withTail);
+    const withHood = resolveCoverage({helmet: 'graveweaverHood'}, EQUIPMENT_ITEMS, 'human', withTail);
+    assert.ok(!withoutHood.hiddenMeshes.includes('HumanPonytail01'));
+    assert.ok(withHood.hiddenMeshes.includes('HumanPonytail01'));
+    assert.ok(!withHood.hiddenMeshes.includes('HumanV1Body'));
+});
+
 test('two-handed occupancy agrees with the catalogue validator on every combination', () => {
     let checked = 0;
     for (const loadout of allLoadouts()) {
