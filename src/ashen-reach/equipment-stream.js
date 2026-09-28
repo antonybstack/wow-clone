@@ -10,6 +10,7 @@ import {
 import { createArmingSword } from "./arming-sword.js";
 import {
   BASE_VISIBLE_MESHES,
+  BODY_REGIONS,
   EQUIPMENT_ITEMS,
   EQUIPMENT_PRESETS,
   gripHold,
@@ -22,6 +23,7 @@ import {
   raceForFit,
   resolveHandEquip,
 } from "./equipment-contract.js";
+import { RACE_BODY_SEGMENTS, resolveCoverage } from "./coverage-contract.js";
 import { installEquipmentGrips, spellStowsWeapon } from "./equipment-grips.js";
 import { createEquipmentLoader } from "./equipment-loader.js";
 import { createMageProp } from "./mage-props.js";
@@ -31,35 +33,21 @@ import {
 } from "./prop-transition.js";
 
 /**
- * Body-visibility aliases, per race, keyed explicitly rather than sniffed from mesh names.
- *
- * The catalogue authors coverage in Human geoset names, so a race whose body splits those
- * regions differently declares the translation here. Every playable race needs an entry:
- * a race with no entry is rejected by packVisibility instead of inheriting Human's mapping.
+ * Keep the existing part/hideWhenSlots resolver, but derive streamed body visibility from
+ * the semantic adapter. A glTF mesh can only be hidden as a whole, so a fused Human head
+ * remains visible when a hood covers its scalp. See docs/plans/character-mmo/m007-mixed-equipment.md
+ * and https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#meshes.
  */
-const RACE_BODY_ALIASES = Object.freeze({
-  human: () => ({ HumanV1Body: true }),
-  orc: (vis, baseMeshes) => ({
-    OrcV1Hair: vis.HumanHair,
-    OrcV1Shorts: vis.BodyUnderLegs,
-    OrcV1Brows: true,
-    OrcV1Eyes: true,
-    ...(baseMeshes.includes("BodyExposed") ? {} : { OrcV1Body: true }),
-  }),
-  // Skull face: no hair geoset exists to alias, so the hood's HumanHair coverage is inert
-  // and the six shared regions carry the whole mapping.
-  undead: () => ({ UndeadV1Body: true, UndeadV1Eyes: true }),
-});
-
-function packVisibility(selected, baseMeshes, race) {
-  const alias = RACE_BODY_ALIASES[race];
-  if (!alias) throw Error(`No body visibility mapping for race: ${race}`);
+function packVisibility(selected, race, provisionalUndead) {
   const vis = resolveEquipmentVisibility(selected);
-  const out = { ...vis };
-  for (const [name, value] of Object.entries(alias(vis, baseMeshes))) {
-    if (baseMeshes.includes(name)) out[name] = value;
-  }
-  return out;
+  // The older diagnostic Undead pack uses six physical body geosets and is still exercised
+  // by its compatibility tests. It is not the active single-body-mesh Undead pack. Keep its
+  // authored region masks until that provisional asset is retired; see
+  // docs/CURRENT.md#current-character-boundary-and-unresolved-risks.
+  if (provisionalUndead) return vis;
+  const hidden = new Set(resolveCoverage(selected, EQUIPMENT_ITEMS, race).hiddenMeshes);
+  for (const name of Object.keys(RACE_BODY_SEGMENTS[race])) vis[name] = !hidden.has(name);
+  return vis;
 }
 
 export async function createStreamedEquipment(
@@ -116,6 +104,15 @@ export async function createStreamedEquipment(
     .map(([name]) => name);
   if (uncovered.length)
     throw Error(`Missing ${race} body coverage: ${uncovered.join(", ")}`);
+  const provisionalUndead = race === "undead" && manifest.provisional === true &&
+    baseMeshes.length === BODY_REGIONS.length && BODY_REGIONS.every((name) => baseMeshes.includes(name));
+  const described = Object.keys(RACE_BODY_SEGMENTS[race] || {});
+  const missingAdapter = baseMeshes.filter((name) => !described.includes(name));
+  const missingBase = described.filter((name) => !baseMeshes.includes(name));
+  if (!provisionalUndead && (missingAdapter.length || missingBase.length))
+    throw Error(`The ${race} semantic body adapter disagrees with its pack: ` +
+      `missing adapter ${missingAdapter.join(", ") || "none"}; ` +
+      `missing base mesh ${missingBase.join(", ") || "none"}`);
   const initial = {
     helmet: null,
     torso: null,
@@ -270,7 +267,7 @@ export async function createStreamedEquipment(
     }
   }
   function apply(next) {
-    const mask = packVisibility(next, baseMeshes, race);
+    const mask = packVisibility(next, race, provisionalUndead);
     for (const [name, meshes] of Object.entries(bindings))
       for (const mesh of meshes) setMeshVisible(mesh, visible && mask[name]);
     const casting = spellStowsWeapon(body);

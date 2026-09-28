@@ -1,0 +1,560 @@
+{
+  "schema": 1,
+  "sourceHead": "4aabe147f4e49efaa4a149ed38adcc8a0f8f4297",
+  "conditions": {
+    "machine": "Apple M1 Max",
+    "os": "macOS 26.6.2 (25G83)",
+    "browser": "Google Chrome 153.0.8010.54",
+    "power": "AC",
+    "frameSample": "uncapped requestAnimationFrame intervals, 1280x720 pixelRatio 1, seven enemies, three 12-second runs per route, no recording",
+    "startupSample": "local Brotli preview, 50 Mbit/s and 40 ms latency, fresh Chrome process/profile for each of 20 runs, 1280x720, GPU-completed dressed grounded playable frame and observed movement",
+    "browserIsolation": "CDP 10037 slot 7 exclusively rendered the FPS route; CDP 9337 was on about:blank; slot 7 was stopped before cold-start probes"
+  },
+  "fps": {
+    "baseline": {
+      "meadow": {
+        "runs": [
+          {
+            "samples": 2216,
+            "meanMs": 5.419,
+            "meanFps": 184.553,
+            "p50Ms": 3.9,
+            "p95Ms": 11.4,
+            "p99Ms": 12.3,
+            "maxMs": 13.6,
+            "above6_94": 554,
+            "above8_33": 554,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          {
+            "samples": 2217,
+            "meanMs": 5.413,
+            "meanFps": 184.745,
+            "p50Ms": 4.2,
+            "p95Ms": 11.4,
+            "p99Ms": 12.2,
+            "maxMs": 13.3,
+            "above6_94": 556,
+            "above8_33": 553,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          {
+            "samples": 2198,
+            "meanMs": 5.462,
+            "meanFps": 183.092,
+            "p50Ms": 5.5,
+            "p95Ms": 6.8,
+            "p99Ms": 9.5,
+            "maxMs": 11.4,
+            "above6_94": 69,
+            "above8_33": 43,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        ],
+        "meanFps": 184.13,
+        "meanFrameMs": 5.431,
+        "worstP99Ms": 12.3,
+        "worstFrameMs": 13.6
+      },
+      "town": {
+        "runs": [
+          {
+            "samples": 2221,
+            "meanMs": 5.406,
+            "meanFps": 184.982,
+            "p50Ms": 4.6,
+            "p95Ms": 11,
+            "p99Ms": 11.7,
+            "maxMs": 13.5,
+            "above6_94": 498,
+            "above8_33": 487,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          {
+            "samples": 2200,
+            "meanMs": 5.456,
+            "meanFps": 183.292,
+            "p50Ms": 5.5,
+            "p95Ms": 6.1,
+            "p99Ms": 6.9,
+            "maxMs": 69.1,
+            "above6_94": 12,
+            "above8_33": 6,
+            "above16_67": 1,
+            "above33_33": 1
+          },
+          {
+            "samples": 2210,
+            "meanMs": 5.432,
+            "meanFps": 184.09,
+            "p50Ms": 5.5,
+            "p95Ms": 6.3,
+            "p99Ms": 6.9,
+            "maxMs": 8.8,
+            "above6_94": 13,
+            "above8_33": 3,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        ],
+        "meanFps": 184.121,
+        "meanFrameMs": 5.431,
+        "worstP99Ms": 11.7,
+        "worstFrameMs": 69.1
+      },
+      "bridge": {
+        "runs": [
+          {
+            "samples": 2618,
+            "meanMs": 4.587,
+            "meanFps": 217.998,
+            "p50Ms": 4,
+            "p95Ms": 9.5,
+            "p99Ms": 10.4,
+            "maxMs": 11.7,
+            "above6_94": 417,
+            "above8_33": 364,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          {
+            "samples": 2633,
+            "meanMs": 4.56,
+            "meanFps": 219.276,
+            "p50Ms": 3.9,
+            "p95Ms": 9.4,
+            "p99Ms": 10.1,
+            "maxMs": 11.4,
+            "above6_94": 481,
+            "above8_33": 386,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          {
+            "samples": 2628,
+            "meanMs": 4.568,
+            "meanFps": 218.892,
+            "p50Ms": 4.1,
+            "p95Ms": 9.2,
+            "p99Ms": 10.1,
+            "maxMs": 66.4,
+            "above6_94": 345,
+            "above8_33": 309,
+            "above16_67": 1,
+            "above33_33": 1
+          }
+        ],
+        "meanFps": 218.722,
+        "meanFrameMs": 4.572,
+        "worstP99Ms": 10.4,
+        "worstFrameMs": 66.4
+      },
+      "cathedral": {
+        "runs": [
+          {
+            "samples": 2611,
+            "meanMs": 4.598,
+            "meanFps": 217.507,
+            "p50Ms": 4,
+            "p95Ms": 9.4,
+            "p99Ms": 10.2,
+            "maxMs": 11.4,
+            "above6_94": 504,
+            "above8_33": 458,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          {
+            "samples": 2612,
+            "meanMs": 4.596,
+            "meanFps": 217.598,
+            "p50Ms": 3.9,
+            "p95Ms": 9.2,
+            "p99Ms": 10.4,
+            "maxMs": 11.3,
+            "above6_94": 387,
+            "above8_33": 378,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          {
+            "samples": 2592,
+            "meanMs": 4.632,
+            "meanFps": 215.892,
+            "p50Ms": 4.2,
+            "p95Ms": 8.9,
+            "p99Ms": 9.7,
+            "maxMs": 65.7,
+            "above6_94": 276,
+            "above8_33": 237,
+            "above16_67": 1,
+            "above33_33": 1
+          }
+        ],
+        "meanFps": 216.999,
+        "meanFrameMs": 4.608,
+        "worstP99Ms": 10.4,
+        "worstFrameMs": 65.7
+      },
+      "forest": {
+        "runs": [
+          {
+            "samples": 2385,
+            "meanMs": 5.034,
+            "meanFps": 198.656,
+            "p50Ms": 5.4,
+            "p95Ms": 5.8,
+            "p99Ms": 6.1,
+            "maxMs": 8.7,
+            "above6_94": 5,
+            "above8_33": 2,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          {
+            "samples": 2474,
+            "meanMs": 4.853,
+            "meanFps": 206.079,
+            "p50Ms": 4.4,
+            "p95Ms": 9,
+            "p99Ms": 10.4,
+            "maxMs": 12.6,
+            "above6_94": 134,
+            "above8_33": 131,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          {
+            "samples": 2499,
+            "meanMs": 4.804,
+            "meanFps": 208.179,
+            "p50Ms": 4.5,
+            "p95Ms": 5.9,
+            "p99Ms": 9.7,
+            "maxMs": 10.9,
+            "above6_94": 85,
+            "above8_33": 72,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        ],
+        "meanFps": 204.305,
+        "meanFrameMs": 4.897,
+        "worstP99Ms": 10.4,
+        "worstFrameMs": 12.6
+      }
+    },
+    "candidate": {
+      "meadow": {
+        "runs": [
+          {
+            "samples": 2329,
+            "meanMs": 5.153,
+            "meanFps": 194.049,
+            "p50Ms": 3.5,
+            "p95Ms": 10.9,
+            "p99Ms": 11.5,
+            "maxMs": 14.1,
+            "above6_94": 582,
+            "above8_33": 581,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          {
+            "samples": 2328,
+            "meanMs": 5.156,
+            "meanFps": 193.964,
+            "p50Ms": 5.4,
+            "p95Ms": 9.5,
+            "p99Ms": 10.2,
+            "maxMs": 12,
+            "above6_94": 214,
+            "above8_33": 208,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          {
+            "samples": 2330,
+            "meanMs": 5.148,
+            "meanFps": 194.235,
+            "p50Ms": 3.5,
+            "p95Ms": 10.8,
+            "p99Ms": 11.4,
+            "maxMs": 12.5,
+            "above6_94": 582,
+            "above8_33": 582,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        ],
+        "meanFps": 194.083,
+        "meanFrameMs": 5.152,
+        "worstP99Ms": 11.5,
+        "worstFrameMs": 14.1
+      },
+      "town": {
+        "runs": [
+          {
+            "samples": 2336,
+            "meanMs": 5.138,
+            "meanFps": 194.629,
+            "p50Ms": 5.5,
+            "p95Ms": 5.9,
+            "p99Ms": 6.2,
+            "maxMs": 8.7,
+            "above6_94": 6,
+            "above8_33": 2,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          {
+            "samples": 2330,
+            "meanMs": 5.153,
+            "meanFps": 194.076,
+            "p50Ms": 4,
+            "p95Ms": 10.8,
+            "p99Ms": 11.3,
+            "maxMs": 12.8,
+            "above6_94": 543,
+            "above8_33": 542,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          {
+            "samples": 2330,
+            "meanMs": 5.152,
+            "meanFps": 194.118,
+            "p50Ms": 5.5,
+            "p95Ms": 5.9,
+            "p99Ms": 6.2,
+            "maxMs": 8.6,
+            "above6_94": 7,
+            "above8_33": 3,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        ],
+        "meanFps": 194.275,
+        "meanFrameMs": 5.147,
+        "worstP99Ms": 11.3,
+        "worstFrameMs": 12.8
+      },
+      "bridge": {
+        "runs": [
+          {
+            "samples": 2772,
+            "meanMs": 4.33,
+            "meanFps": 230.963,
+            "p50Ms": 4.1,
+            "p95Ms": 5.5,
+            "p99Ms": 5.7,
+            "maxMs": 8.6,
+            "above6_94": 4,
+            "above8_33": 2,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          {
+            "samples": 2775,
+            "meanMs": 4.326,
+            "meanFps": 231.156,
+            "p50Ms": 4.1,
+            "p95Ms": 8.6,
+            "p99Ms": 9.6,
+            "maxMs": 10.2,
+            "above6_94": 158,
+            "above8_33": 143,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          {
+            "samples": 2775,
+            "meanMs": 4.325,
+            "meanFps": 231.194,
+            "p50Ms": 3.9,
+            "p95Ms": 9,
+            "p99Ms": 9.9,
+            "maxMs": 13.5,
+            "above6_94": 465,
+            "above8_33": 295,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        ],
+        "meanFps": 231.104,
+        "meanFrameMs": 4.327,
+        "worstP99Ms": 9.9,
+        "worstFrameMs": 13.5
+      },
+      "cathedral": {
+        "runs": [
+          {
+            "samples": 2750,
+            "meanMs": 4.365,
+            "meanFps": 229.104,
+            "p50Ms": 3,
+            "p95Ms": 9.6,
+            "p99Ms": 9.9,
+            "maxMs": 13.1,
+            "above6_94": 688,
+            "above8_33": 525,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          {
+            "samples": 2751,
+            "meanMs": 4.363,
+            "meanFps": 229.193,
+            "p50Ms": 3,
+            "p95Ms": 9.6,
+            "p99Ms": 9.9,
+            "maxMs": 11,
+            "above6_94": 688,
+            "above8_33": 545,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          {
+            "samples": 2747,
+            "meanMs": 4.37,
+            "meanFps": 228.846,
+            "p50Ms": 3.5,
+            "p95Ms": 9.4,
+            "p99Ms": 9.8,
+            "maxMs": 12.3,
+            "above6_94": 555,
+            "above8_33": 438,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        ],
+        "meanFps": 229.047,
+        "meanFrameMs": 4.366,
+        "worstP99Ms": 9.9,
+        "worstFrameMs": 13.1
+      },
+      "forest": {
+        "runs": [
+          {
+            "samples": 2508,
+            "meanMs": 4.784,
+            "meanFps": 209.019,
+            "p50Ms": 3.5,
+            "p95Ms": 10,
+            "p99Ms": 10.3,
+            "maxMs": 11.4,
+            "above6_94": 576,
+            "above8_33": 571,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          {
+            "samples": 2602,
+            "meanMs": 4.614,
+            "meanFps": 216.73,
+            "p50Ms": 4.3,
+            "p95Ms": 5.7,
+            "p99Ms": 5.9,
+            "maxMs": 8.6,
+            "above6_94": 4,
+            "above8_33": 2,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          {
+            "samples": 2627,
+            "meanMs": 4.568,
+            "meanFps": 218.92,
+            "p50Ms": 4,
+            "p95Ms": 9.7,
+            "p99Ms": 10,
+            "maxMs": 11.1,
+            "above6_94": 456,
+            "above8_33": 395,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        ],
+        "meanFps": 214.89,
+        "meanFrameMs": 4.655,
+        "worstP99Ms": 10.3,
+        "worstFrameMs": 11.4
+      }
+    }
+  },
+  "startup": {
+    "baseline": {
+      "runs": 20,
+      "playableMs": [
+        831.8,
+        826.5,
+        829.9,
+        841.3,
+        832.4,
+        831.5,
+        820.1,
+        825.5,
+        832.8,
+        832.1,
+        828.1,
+        821.6,
+        814.7,
+        825.4,
+        830.4,
+        831.9,
+        833.7,
+        824.7,
+        832.9,
+        835.8
+      ],
+      "p50Ms": 830.4,
+      "p95Ms": 835.8,
+      "maxMs": 841.3,
+      "under1000Ms": 20,
+      "encodedBytesAtBoundary": 3174979,
+      "errors": 0
+    },
+    "candidate": {
+      "runs": 20,
+      "playableMs": [
+        829.5,
+        818.7,
+        840.4,
+        832.3,
+        823,
+        837.8,
+        828.9,
+        846,
+        825.1,
+        843,
+        827.5,
+        838.2,
+        825.6,
+        816.7,
+        836.2,
+        827.4,
+        820.1,
+        830.6,
+        833.8,
+        836.1
+      ],
+      "p50Ms": 829.5,
+      "p95Ms": 843,
+      "maxMs": 846,
+      "under1000Ms": 20,
+      "encodedBytesAtBoundary": 3175802,
+      "errors": 0
+    }
+  },
+  "fpsMeanFrameChangePercent": {
+    "meadow": -5.137,
+    "town": -5.229,
+    "bridge": -5.359,
+    "cathedral": -5.252,
+    "forest": -4.942
+  }
+}

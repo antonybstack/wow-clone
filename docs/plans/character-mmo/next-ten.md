@@ -1,6 +1,6 @@
 # Next ten milestones — customization and crowd proof
 
-Status: **M001–M005 complete; M006 blocked at its entry gate on source art**. Read the [100-milestone vision](vision-roadmap.md), [architecture](architecture.md) and [execution contract](execution-contract.md). Baseline evidence always identifies the actual HEAD and live assets.
+Status: **M001–M005 complete; M006 blocked at its entry gate on source art; M007 semantic coverage verified with fit acceptance open**. Read the [100-milestone vision](vision-roadmap.md), [architecture](architecture.md) and [execution contract](execution-contract.md). Baseline evidence always identifies the actual HEAD and live assets.
 
 ## Sequence and risk ordering
 
@@ -90,7 +90,7 @@ Choose the production schema/fit/material/animation/detail contracts; list defer
 | M004 | Complete; shape family and height range proven, garment fit measured and handed to M005 | [Result, shape family and reviewed motion](results/m004.md) |
 | M005 | Complete; garments refitted and measured, rigid plate prototype proved, live and cached cost measured | [Result, fit comparison and reviewed motion](results/m005.md) |
 | M006 | Blocked at entry gate; bald needs the head re-authored, long hair needs sculpting | [Gate result and measured blockers](results/m006-gate.md) |
-| M007 | Planned | — |
+| M007 | Semantic coverage slice verified live on Human/Orc/Undead; creator/extreme-shape and close fit gates open | [Checkpoint](results/m007.md) |
 | M008 | Planned | — |
 | M009 | Planned | — |
 | M010 | Planned | — |

@@ -1,5 +1,15 @@
 import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT, UNDEAD_EQUIPMENT_FIT, freezeEquipment, validateEquipmentCatalogue, validateEquipmentSelection} from './equipment-contract.js';
-/** Current Human fits. Item identity is separate from authored mesh and coverage. */
+/**
+ * Current Human fits. Item identity is separate from authored mesh and coverage.
+ *
+ * Items carry coverage twice on purpose. `coverage` is the legacy list of Human mesh names
+ * the runtime still resolves; `covers` is the M007 semantic vocabulary in
+ * `coverage-contract.js`, which is about the body rather than about one race's mesh split.
+ * The two proof outfits declare both so `test-coverage-contract.mjs` can assert they mean
+ * the same thing, and a later milestone can drop the legacy column once every item and the
+ * runtime have moved. Migrating in one step would have made a migration bug and a coverage
+ * bug indistinguishable.
+ */
 export const BODY_REGIONS=['BodyExposed','BodyUnderTunic','BodyUnderBoots','BodyUnderLegs','BodyWaist','BodyHands'];
 export const BASE_VISIBLE_MESHES=[...BODY_REGIONS,'HumanHair','HumanEyes'];
 /** Sculpt-pipeline Orc: Human coverage names plus print extras. */
@@ -14,18 +24,18 @@ export const ORC_BASE_VISIBLE_MESHES=[...BODY_REGIONS,'OrcV1Hair','OrcV1Brows','
  */
 export const UNDEAD_BASE_VISIBLE_MESHES=['UndeadV1Body','UndeadV1Eyes'];
 const authoredItems={
-    graveweaverHood:{id:'graveweaverHood',slot:'helmet',name:'Graveweaver hood',parts:[{mesh:'GraveweaverHood'}],coverage:['HumanHair']},
-    graveweaverTop:{id:'graveweaverTop',slot:'torso',name:'Graveweaver mail vestment',parts:[{mesh:'GraveweaverTop'},{mesh:'GraveweaverPendant'}],coverage:['BodyUnderTunic','BodyWaist']},
-    graveweaverSkirt:{id:'graveweaverSkirt',slot:'legs',name:'Graveweaver robe skirt',parts:[{mesh:'GraveweaverSkirt'},{mesh:'WayfarerTrousers'},{mesh:'WayfarerTrousersCuffs',hideWhenSlots:['boots']}],coverage:['BodyUnderLegs','BodyWaist']},
-    graveweaverGloves:{id:'graveweaverGloves',slot:'gloves',name:'Graveweaver gloves',parts:[{mesh:'GraveweaverGloves'}],coverage:['BodyHands']},
+    graveweaverHood:{id:'graveweaverHood',slot:'helmet',name:'Graveweaver hood',parts:[{mesh:'GraveweaverHood'}],coverage:['HumanHair'],covers:['head.scalp']},
+    graveweaverTop:{id:'graveweaverTop',slot:'torso',name:'Graveweaver mail vestment',parts:[{mesh:'GraveweaverTop'},{mesh:'GraveweaverPendant'}],coverage:['BodyUnderTunic','BodyWaist'],covers:['torso.upper','torso.lower','waist']},
+    graveweaverSkirt:{id:'graveweaverSkirt',slot:'legs',name:'Graveweaver robe skirt',parts:[{mesh:'GraveweaverSkirt'},{mesh:'WayfarerTrousers'},{mesh:'WayfarerTrousersCuffs',hideWhenSlots:['boots']}],coverage:['BodyUnderLegs','BodyWaist'],covers:['leg.upper','leg.lower','waist']},
+    graveweaverGloves:{id:'graveweaverGloves',slot:'gloves',name:'Graveweaver gloves',parts:[{mesh:'GraveweaverGloves'}],coverage:['BodyHands'],covers:['hand']},
     graveweaverStaff:{id:'graveweaverStaff',factory:'staff',slot:'mainHand',name:'Graveweaver staff',gripPose:'shaft',gripPosition:[-.005,-.080,.020],gripRotation:[0,0,-Math.SQRT1_2,Math.SQRT1_2],stow:{position:[.05414,.30924,-.13681],rotation:[-.098894,.137577,-.976529,.132979]},grips:{orc:{position:[-.005,-.092,.028],scale:1.16}}},
     graveweaverGreatstaff:{id:'graveweaverGreatstaff',factory:'greatstaff',slot:'mainHand',name:'Graveweaver greatstaff',gripPose:'shaft',twoHanded:true,occupies:['mainHand','offHand'],gripPosition:[.00572,.02636,-.01291],gripRotation:[-.353791,0,-.362037,.862416],stow:{position:[.08126,.02175,-.27471],rotation:[-.098894,.137577,-.976529,.132979]},grips:{orc:{position:[.00572,.02636,-.022],scale:1.16}}},
     graveweaverBook:{id:'graveweaverBook',factory:'book',slot:'offHand',name:'Graveweaver grimoire',gripPose:'shaft',gripPosition:[-.100,.050,.135],gripRotation:[0,0,0,1],stow:{position:[.21018,.56617,.02915],rotation:[-.114652,.124749,-.985426,.015120]},grips:{orc:{position:[-.100,.050,.148],scale:1.12}}},
     ironSword:{factory:'sword',id:'ironSword',slot:'mainHand',name:'Iron arming sword',gripPose:'shaft',gripPosition:[-.005,-.080,.020],gripRotation:[0,0,-Math.SQRT1_2,Math.SQRT1_2],stow:{position:[-.24881,-.08593,-.12746],rotation:[.102945,.134573,-.156227,.97308]},grips:{orc:{position:[-.005,-.092,.028],scale:1.16}},description:'Weathered steel with a leather grip.'},
-    wayfarerTunic:{id:'wayfarerTunic',slot:'torso',name:'Wayfarer mail tunic',parts:[{mesh:'WayfarerTunic'}],coverage:['BodyUnderTunic','BodyWaist']},
+    wayfarerTunic:{id:'wayfarerTunic',slot:'torso',name:'Wayfarer mail tunic',parts:[{mesh:'WayfarerTunic'}],coverage:['BodyUnderTunic','BodyWaist'],covers:['torso.upper','torso.lower','waist']},
     pilgrimTunic:{id:'pilgrimTunic',slot:'torso',name:'Pilgrim cloth tunic',parts:[{mesh:'PilgrimTunic'}],coverage:['BodyUnderTunic','BodyWaist']},
-    wayfarerTrousers:{id:'wayfarerTrousers',slot:'legs',name:'Wayfarer trousers',parts:[{mesh:'WayfarerTrousers'},{mesh:'WayfarerTrousersCuffs',hideWhenSlots:['boots']}],coverage:['BodyUnderLegs','BodyWaist']},
-    wayfarerBoots:{id:'wayfarerBoots',slot:'boots',name:'Wayfarer boots',parts:[{mesh:'WayfarerBoots'}],coverage:['BodyUnderBoots']},
+    wayfarerTrousers:{id:'wayfarerTrousers',slot:'legs',name:'Wayfarer trousers',parts:[{mesh:'WayfarerTrousers'},{mesh:'WayfarerTrousersCuffs',hideWhenSlots:['boots']}],coverage:['BodyUnderLegs','BodyWaist'],covers:['leg.upper','leg.lower','waist']},
+    wayfarerBoots:{id:'wayfarerBoots',slot:'boots',name:'Wayfarer boots',parts:[{mesh:'WayfarerBoots'}],coverage:['BodyUnderBoots'],covers:['foot']},
 };
 const seamsBySlot={helmet:['neck'],torso:['neck','waist','wrists'],legs:['waist','ankles'],boots:['ankles'],gloves:['wrists'],mainHand:[],offHand:[]};
 export const EQUIPMENT_ITEMS=freezeEquipment(Object.fromEntries(Object.entries(authoredItems).map(([id,item])=>[id,{...item,fit:{...HUMAN_EQUIPMENT_FIT},fits:{human:{...HUMAN_EQUIPMENT_FIT},orc:{...ORC_EQUIPMENT_FIT},undead:{...UNDEAD_EQUIPMENT_FIT}},seams:seamsBySlot[item.slot],occupies:item.occupies||[item.slot]}])));

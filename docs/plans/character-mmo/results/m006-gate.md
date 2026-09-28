@@ -50,3 +50,7 @@ The brief is explicit that a capability flag is not a visual substitute, so the 
 3. An age transfer experiment, with the neutral head as its control the way the neutral body was M005's.
 
 Only then are height, shape, age, colour and hair five controls the creator can honestly expose.
+
+### Source search after this gate (2026-09-28)
+
+The [MakeHuman system-asset index](https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html) lists `long01` and `ponytail01` as **CC0**, and also lists old/middle-aged/young skin assets. The [MakeHuman license](https://github.com/makehumancommunity/makehuman/blob/master/makehuman/license.txt) distinguishes bundled CC0 assets from third-party repository assets; this matters because the staged `mhair02` file had an AGPL3 header despite its listing. These entries are **candidates**, not accepted assets: obtain the exact file, inspect its own header/license, pin its hash, fit it to the current head and source-65 bind, and review it in live motion before revising the long-hair blocker. The local session that found the listing had no outbound DNS, so no binary was fetched or silently substituted. It does not solve the fused bald head or the age transfer.

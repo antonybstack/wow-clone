@@ -1,0 +1,379 @@
+{
+ "schema": 1,
+ "url": "http://127.0.0.1:5873/ashen-reach.html",
+ "race": "orc",
+ "bodyMeshes": [
+  "BodyExposed",
+  "BodyUnderTunic",
+  "BodyUnderLegs",
+  "BodyUnderBoots",
+  "BodyWaist",
+  "BodyHands",
+  "OrcV1Hair",
+  "OrcV1Brows",
+  "OrcV1Eyes",
+  "OrcV1Shorts"
+ ],
+ "cases": [
+  {
+   "id": "bare",
+   "loadout": {
+    "helmet": null,
+    "torso": null,
+    "legs": null,
+    "boots": null,
+    "gloves": null,
+    "mainHand": null,
+    "offHand": null
+   },
+   "seams": [],
+   "predictedHidden": [],
+   "predictedExceptions": [],
+   "bodyMeshesInScene": [
+    "BodyExposed",
+    "BodyHands",
+    "BodyUnderBoots",
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Brows",
+    "OrcV1Eyes",
+    "OrcV1Hair",
+    "OrcV1Shorts"
+   ],
+   "actuallyHidden": []
+  },
+  {
+   "id": "wayfarer",
+   "loadout": {
+    "helmet": null,
+    "torso": "wayfarerTunic",
+    "legs": "wayfarerTrousers",
+    "boots": "wayfarerBoots",
+    "gloves": null,
+    "mainHand": "ironSword",
+    "offHand": null
+   },
+   "seams": [
+    "ankle:boots+legs",
+    "waist:legs+torso"
+   ],
+   "predictedHidden": [
+    "BodyUnderBoots",
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Shorts"
+   ],
+   "predictedExceptions": [],
+   "bodyMeshesInScene": [
+    "BodyExposed",
+    "BodyHands",
+    "BodyUnderBoots",
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Brows",
+    "OrcV1Eyes",
+    "OrcV1Hair",
+    "OrcV1Shorts"
+   ],
+   "actuallyHidden": [
+    "BodyUnderBoots",
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Shorts"
+   ]
+  },
+  {
+   "id": "graveweaver",
+   "loadout": {
+    "helmet": "graveweaverHood",
+    "torso": "graveweaverTop",
+    "legs": "graveweaverSkirt",
+    "boots": "wayfarerBoots",
+    "gloves": "graveweaverGloves",
+    "mainHand": "graveweaverStaff",
+    "offHand": "graveweaverBook"
+   },
+   "seams": [
+    "ankle:boots+legs",
+    "neck:helmet+torso",
+    "waist:legs+torso",
+    "wrist:gloves+torso"
+   ],
+   "predictedHidden": [
+    "BodyHands",
+    "BodyUnderBoots",
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Hair",
+    "OrcV1Shorts"
+   ],
+   "predictedExceptions": [],
+   "bodyMeshesInScene": [
+    "BodyExposed",
+    "BodyHands",
+    "BodyUnderBoots",
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Brows",
+    "OrcV1Eyes",
+    "OrcV1Hair",
+    "OrcV1Shorts"
+   ],
+   "actuallyHidden": [
+    "BodyHands",
+    "BodyUnderBoots",
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Hair",
+    "OrcV1Shorts"
+   ]
+  },
+  {
+   "id": "cross-hood-wayfarer",
+   "loadout": {
+    "helmet": "graveweaverHood",
+    "torso": "wayfarerTunic",
+    "legs": "wayfarerTrousers",
+    "boots": "wayfarerBoots",
+    "gloves": null,
+    "mainHand": null,
+    "offHand": null
+   },
+   "seams": [
+    "ankle:boots+legs",
+    "neck:helmet+torso",
+    "waist:legs+torso"
+   ],
+   "predictedHidden": [
+    "BodyUnderBoots",
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Hair",
+    "OrcV1Shorts"
+   ],
+   "predictedExceptions": [],
+   "bodyMeshesInScene": [
+    "BodyExposed",
+    "BodyHands",
+    "BodyUnderBoots",
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Brows",
+    "OrcV1Eyes",
+    "OrcV1Hair",
+    "OrcV1Shorts"
+   ],
+   "actuallyHidden": [
+    "BodyUnderBoots",
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Hair",
+    "OrcV1Shorts"
+   ]
+  },
+  {
+   "id": "cross-pilgrim-skirt",
+   "loadout": {
+    "helmet": null,
+    "torso": "pilgrimTunic",
+    "legs": "graveweaverSkirt",
+    "boots": "wayfarerBoots",
+    "gloves": "graveweaverGloves",
+    "mainHand": null,
+    "offHand": null
+   },
+   "seams": [
+    "ankle:boots+legs",
+    "waist:legs+torso",
+    "wrist:gloves+torso"
+   ],
+   "predictedHidden": [
+    "BodyHands",
+    "BodyUnderBoots",
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Shorts"
+   ],
+   "predictedExceptions": [],
+   "bodyMeshesInScene": [
+    "BodyExposed",
+    "BodyHands",
+    "BodyUnderBoots",
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Brows",
+    "OrcV1Eyes",
+    "OrcV1Hair",
+    "OrcV1Shorts"
+   ],
+   "actuallyHidden": [
+    "BodyHands",
+    "BodyUnderBoots",
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Shorts"
+   ]
+  },
+  {
+   "id": "no-helmet-no-gloves",
+   "loadout": {
+    "helmet": null,
+    "torso": "graveweaverTop",
+    "legs": "wayfarerTrousers",
+    "boots": "wayfarerBoots",
+    "gloves": null,
+    "mainHand": null,
+    "offHand": null
+   },
+   "seams": [
+    "ankle:boots+legs",
+    "waist:legs+torso"
+   ],
+   "predictedHidden": [
+    "BodyUnderBoots",
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Shorts"
+   ],
+   "predictedExceptions": [],
+   "bodyMeshesInScene": [
+    "BodyExposed",
+    "BodyHands",
+    "BodyUnderBoots",
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Brows",
+    "OrcV1Eyes",
+    "OrcV1Hair",
+    "OrcV1Shorts"
+   ],
+   "actuallyHidden": [
+    "BodyUnderBoots",
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Shorts"
+   ]
+  },
+  {
+   "id": "cuffs-no-boots",
+   "loadout": {
+    "helmet": null,
+    "torso": "wayfarerTunic",
+    "legs": "wayfarerTrousers",
+    "boots": null,
+    "gloves": null,
+    "mainHand": null,
+    "offHand": null
+   },
+   "seams": [
+    "waist:legs+torso"
+   ],
+   "predictedHidden": [
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Shorts"
+   ],
+   "predictedExceptions": [],
+   "bodyMeshesInScene": [
+    "BodyExposed",
+    "BodyHands",
+    "BodyUnderBoots",
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Brows",
+    "OrcV1Eyes",
+    "OrcV1Hair",
+    "OrcV1Shorts"
+   ],
+   "actuallyHidden": [
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Shorts"
+   ]
+  },
+  {
+   "id": "two-handed",
+   "loadout": {
+    "helmet": null,
+    "torso": "graveweaverTop",
+    "legs": "graveweaverSkirt",
+    "boots": "wayfarerBoots",
+    "gloves": null,
+    "mainHand": "graveweaverGreatstaff",
+    "offHand": null
+   },
+   "seams": [
+    "ankle:boots+legs",
+    "waist:legs+torso"
+   ],
+   "predictedHidden": [
+    "BodyUnderBoots",
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Shorts"
+   ],
+   "predictedExceptions": [],
+   "bodyMeshesInScene": [
+    "BodyExposed",
+    "BodyHands",
+    "BodyUnderBoots",
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Brows",
+    "OrcV1Eyes",
+    "OrcV1Hair",
+    "OrcV1Shorts"
+   ],
+   "actuallyHidden": [
+    "BodyUnderBoots",
+    "BodyUnderLegs",
+    "BodyUnderTunic",
+    "BodyWaist",
+    "OrcV1Shorts"
+   ]
+  }
+ ],
+ "failedRequest": {
+  "status": "failed",
+  "loadoutUnchanged": true
+ },
+ "rapidSwap": {
+  "requests": [
+   "wayfarerTunic",
+   "pilgrimTunic",
+   "graveweaverTop",
+   "wayfarerTunic",
+   "pilgrimTunic"
+  ],
+  "statuses": [
+   "superseded",
+   "superseded",
+   "superseded",
+   "superseded",
+   "applied"
+  ],
+  "final": "pilgrimTunic"
+ },
+ "errors": []
+}

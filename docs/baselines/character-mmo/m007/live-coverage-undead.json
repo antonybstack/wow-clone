@@ -1,0 +1,269 @@
+{
+ "schema": 1,
+ "url": "http://127.0.0.1:5873/ashen-reach.html",
+ "race": "undead",
+ "bodyMeshes": [
+  "UndeadV1Body",
+  "UndeadV1Eyes"
+ ],
+ "cases": [
+  {
+   "id": "bare",
+   "loadout": {
+    "helmet": null,
+    "torso": null,
+    "legs": null,
+    "boots": null,
+    "gloves": null,
+    "mainHand": null,
+    "offHand": null
+   },
+   "seams": [],
+   "predictedHidden": [],
+   "predictedExceptions": [],
+   "bodyMeshesInScene": [
+    "UndeadV1Body",
+    "UndeadV1Eyes"
+   ],
+   "actuallyHidden": []
+  },
+  {
+   "id": "wayfarer",
+   "loadout": {
+    "helmet": null,
+    "torso": "wayfarerTunic",
+    "legs": "wayfarerTrousers",
+    "boots": "wayfarerBoots",
+    "gloves": null,
+    "mainHand": "ironSword",
+    "offHand": null
+   },
+   "seams": [
+    "ankle:boots+legs",
+    "waist:legs+torso"
+   ],
+   "predictedHidden": [],
+   "predictedExceptions": [
+    {
+     "code": "MESH_CARRIES_UNCOVERED_SEGMENTS",
+     "mesh": "UndeadV1Body",
+     "reason": "UndeadV1Body also carries head.face, neck, arm.upper, arm.lower, hand, so hiding it would remove body that nothing covers"
+    }
+   ],
+   "bodyMeshesInScene": [
+    "UndeadV1Body",
+    "UndeadV1Eyes"
+   ],
+   "actuallyHidden": []
+  },
+  {
+   "id": "graveweaver",
+   "loadout": {
+    "helmet": "graveweaverHood",
+    "torso": "graveweaverTop",
+    "legs": "graveweaverSkirt",
+    "boots": "wayfarerBoots",
+    "gloves": "graveweaverGloves",
+    "mainHand": "graveweaverStaff",
+    "offHand": "graveweaverBook"
+   },
+   "seams": [
+    "ankle:boots+legs",
+    "neck:helmet+torso",
+    "waist:legs+torso",
+    "wrist:gloves+torso"
+   ],
+   "predictedHidden": [],
+   "predictedExceptions": [
+    {
+     "code": "MESH_CARRIES_UNCOVERED_SEGMENTS",
+     "mesh": "UndeadV1Body",
+     "reason": "UndeadV1Body also carries head.face, neck, arm.upper, arm.lower, so hiding it would remove body that nothing covers"
+    },
+    {
+     "code": "SEGMENT_ABSENT_ON_RACE",
+     "mesh": "head.scalp",
+     "reason": "no undead body mesh carries head.scalp"
+    }
+   ],
+   "bodyMeshesInScene": [
+    "UndeadV1Body",
+    "UndeadV1Eyes"
+   ],
+   "actuallyHidden": []
+  },
+  {
+   "id": "cross-hood-wayfarer",
+   "loadout": {
+    "helmet": "graveweaverHood",
+    "torso": "wayfarerTunic",
+    "legs": "wayfarerTrousers",
+    "boots": "wayfarerBoots",
+    "gloves": null,
+    "mainHand": null,
+    "offHand": null
+   },
+   "seams": [
+    "ankle:boots+legs",
+    "neck:helmet+torso",
+    "waist:legs+torso"
+   ],
+   "predictedHidden": [],
+   "predictedExceptions": [
+    {
+     "code": "MESH_CARRIES_UNCOVERED_SEGMENTS",
+     "mesh": "UndeadV1Body",
+     "reason": "UndeadV1Body also carries head.face, neck, arm.upper, arm.lower, hand, so hiding it would remove body that nothing covers"
+    },
+    {
+     "code": "SEGMENT_ABSENT_ON_RACE",
+     "mesh": "head.scalp",
+     "reason": "no undead body mesh carries head.scalp"
+    }
+   ],
+   "bodyMeshesInScene": [
+    "UndeadV1Body",
+    "UndeadV1Eyes"
+   ],
+   "actuallyHidden": []
+  },
+  {
+   "id": "cross-pilgrim-skirt",
+   "loadout": {
+    "helmet": null,
+    "torso": "pilgrimTunic",
+    "legs": "graveweaverSkirt",
+    "boots": "wayfarerBoots",
+    "gloves": "graveweaverGloves",
+    "mainHand": null,
+    "offHand": null
+   },
+   "seams": [
+    "ankle:boots+legs",
+    "waist:legs+torso",
+    "wrist:gloves+torso"
+   ],
+   "predictedHidden": [],
+   "predictedExceptions": [
+    {
+     "code": "MESH_CARRIES_UNCOVERED_SEGMENTS",
+     "mesh": "UndeadV1Body",
+     "reason": "UndeadV1Body also carries head.face, neck, arm.upper, arm.lower, so hiding it would remove body that nothing covers"
+    }
+   ],
+   "bodyMeshesInScene": [
+    "UndeadV1Body",
+    "UndeadV1Eyes"
+   ],
+   "actuallyHidden": []
+  },
+  {
+   "id": "no-helmet-no-gloves",
+   "loadout": {
+    "helmet": null,
+    "torso": "graveweaverTop",
+    "legs": "wayfarerTrousers",
+    "boots": "wayfarerBoots",
+    "gloves": null,
+    "mainHand": null,
+    "offHand": null
+   },
+   "seams": [
+    "ankle:boots+legs",
+    "waist:legs+torso"
+   ],
+   "predictedHidden": [],
+   "predictedExceptions": [
+    {
+     "code": "MESH_CARRIES_UNCOVERED_SEGMENTS",
+     "mesh": "UndeadV1Body",
+     "reason": "UndeadV1Body also carries head.face, neck, arm.upper, arm.lower, hand, so hiding it would remove body that nothing covers"
+    }
+   ],
+   "bodyMeshesInScene": [
+    "UndeadV1Body",
+    "UndeadV1Eyes"
+   ],
+   "actuallyHidden": []
+  },
+  {
+   "id": "cuffs-no-boots",
+   "loadout": {
+    "helmet": null,
+    "torso": "wayfarerTunic",
+    "legs": "wayfarerTrousers",
+    "boots": null,
+    "gloves": null,
+    "mainHand": null,
+    "offHand": null
+   },
+   "seams": [
+    "waist:legs+torso"
+   ],
+   "predictedHidden": [],
+   "predictedExceptions": [
+    {
+     "code": "MESH_CARRIES_UNCOVERED_SEGMENTS",
+     "mesh": "UndeadV1Body",
+     "reason": "UndeadV1Body also carries head.face, neck, arm.upper, arm.lower, hand, foot, so hiding it would remove body that nothing covers"
+    }
+   ],
+   "bodyMeshesInScene": [
+    "UndeadV1Body",
+    "UndeadV1Eyes"
+   ],
+   "actuallyHidden": []
+  },
+  {
+   "id": "two-handed",
+   "loadout": {
+    "helmet": null,
+    "torso": "graveweaverTop",
+    "legs": "graveweaverSkirt",
+    "boots": "wayfarerBoots",
+    "gloves": null,
+    "mainHand": "graveweaverGreatstaff",
+    "offHand": null
+   },
+   "seams": [
+    "ankle:boots+legs",
+    "waist:legs+torso"
+   ],
+   "predictedHidden": [],
+   "predictedExceptions": [
+    {
+     "code": "MESH_CARRIES_UNCOVERED_SEGMENTS",
+     "mesh": "UndeadV1Body",
+     "reason": "UndeadV1Body also carries head.face, neck, arm.upper, arm.lower, hand, so hiding it would remove body that nothing covers"
+    }
+   ],
+   "bodyMeshesInScene": [
+    "UndeadV1Body",
+    "UndeadV1Eyes"
+   ],
+   "actuallyHidden": []
+  }
+ ],
+ "failedRequest": {
+  "status": "failed",
+  "loadoutUnchanged": true
+ },
+ "rapidSwap": {
+  "requests": [
+   "wayfarerTunic",
+   "pilgrimTunic",
+   "graveweaverTop",
+   "wayfarerTunic",
+   "pilgrimTunic"
+  ],
+  "statuses": [
+   "superseded",
+   "superseded",
+   "superseded",
+   "superseded",
+   "applied"
+  ],
+  "final": "pilgrimTunic"
+ },
+ "errors": []
+}
