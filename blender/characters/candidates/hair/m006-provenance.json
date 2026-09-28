@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "asset": "m006-long-hair-auditions",
+  "sourcePage": "https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html",
+  "zipUrl": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
+  "zipSha256": "b542127a8e25547c7c29c19f2d1d2adb9a664c80396ecd694095dbc8028a0107",
+  "styles": [
+    {
+      "id": "long01",
+      "uuid": "6c6b0bb1-3608-40b8-9108-4bfd8fa71e39",
+      "status": "audition-only",
+      "fileHeaderLicense": "CC0 released September 2020",
+      "files": [
+        {
+          "path": "blender/characters/candidates/hair/long01/long01.mhclo",
+          "url": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
+          "zipMember": "hair/long01/long01.mhclo",
+          "sha256": "94ecbebfd834da2cbee2ce90b730972590eb22a252ecd9592038ea736e063646"
+        },
+        {
+          "path": "blender/characters/candidates/hair/long01/long01.mhmat",
+          "url": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
+          "zipMember": "hair/long01/long01.mhmat",
+          "sha256": "74ec88267e679d316f8037a074511ffc887b27e198ea381d0ae4a3f180f96760"
+        },
+        {
+          "path": "blender/characters/candidates/hair/long01/long01.obj",
+          "url": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
+          "zipMember": "hair/long01/long01.obj",
+          "sha256": "7f1d6dadbdf9e96435251955d6657e77ea5433c9bc7c85a5c5f5e4eae0cb9a8c"
+        },
+        {
+          "path": "blender/characters/candidates/hair/long01/long01.thumb",
+          "url": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
+          "zipMember": "hair/long01/long01.thumb",
+          "sha256": "4cb13248134980fc69fdbe298e2bdde58864aec764243cb3c50cb0da7dc0ed98"
+        },
+        {
+          "path": "blender/characters/candidates/hair/long01/long01_diffuse.png",
+          "url": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
+          "zipMember": "hair/long01/long01_diffuse.png",
+          "sha256": "e8dc25d90f8f62467e8630420e1240a400d070054fb7c3f1d3f7bf3e457d6c2c"
+        }
+      ]
+    },
+    {
+      "id": "ponytail01",
+      "uuid": "44e0340e-c7a6-4d22-814c-0632968d2dde",
+      "status": "audition-only",
+      "fileHeaderLicense": "CC0 released September 2020",
+      "files": [
+        {
+          "path": "blender/characters/candidates/hair/ponytail01/ponytail01.mhclo",
+          "url": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
+          "zipMember": "hair/ponytail01/ponytail01.mhclo",
+          "sha256": "97fc50b12bcb3b1c7b33edddd8d427a2604ffb06fe79b31132bf47f82d7afbac"
+        },
+        {
+          "path": "blender/characters/candidates/hair/ponytail01/ponytail01.mhmat",
+          "url": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
+          "zipMember": "hair/ponytail01/ponytail01.mhmat",
+          "sha256": "b145f5a7c9606859ad523f5113482a1cf989cf0e26dccc2ea95c377cb1c2557f"
+        },
+        {
+          "path": "blender/characters/candidates/hair/ponytail01/ponytail01.obj",
+          "url": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
+          "zipMember": "hair/ponytail01/ponytail01.obj",
+          "sha256": "d9f5fe96fbedbc8006220d87aad0e4a33d15286eb6b21f5929661cdc490ebf5a"
+        },
+        {
+          "path": "blender/characters/candidates/hair/ponytail01/ponytail01.thumb",
+          "url": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
+          "zipMember": "hair/ponytail01/ponytail01.thumb",
+          "sha256": "1dd14d9ce1c7bb7368f49757e3299a961190ea374c8dc140ff964b5f437d3383"
+        },
+        {
+          "path": "blender/characters/candidates/hair/ponytail01/ponytail01_diffuse.png",
+          "url": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
+          "zipMember": "hair/ponytail01/ponytail01_diffuse.png",
+          "sha256": "dcb364300cac06ce8bef91b2f7c0970baf310898bbdd06b0c6b884ee9306eb97"
+        }
+      ]
+    }
+  ]
+}

@@ -97,6 +97,17 @@ def main() -> None:
         dest_dir = ROOT / "blender/characters/sources"
         for rel, digest in race_entries(spec):
             fetch_item(base + rel, dest_dir / Path(rel).name, digest, verify_only=verify_only)
+    # M006 auditions reuse the same pinned MakeHuman system archive and fetch_item's
+    # zip-member extraction. The style files themselves carry the CC0 header; nothing
+    # from the separately licensed community mhair02 candidate enters this list.
+    # https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html
+    hair = ROOT / "blender/characters/candidates/hair/m006-provenance.json"
+    if hair.exists():
+        spec = json.loads(hair.read_text())
+        for style in spec["styles"]:
+            for item in style["files"]:
+                fetch_item(item["url"], ROOT / item["path"], item["sha256"],
+                           verify_only=verify_only, zip_member=item["zipMember"])
 
 
 if __name__ == "__main__":

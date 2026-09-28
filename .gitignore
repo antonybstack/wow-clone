@@ -36,6 +36,11 @@ Thumbs.db
 public/characters/candidates/*-preview.glb
 scripts/character-assets/__pycache__/
 
+# Pinned M006 source auditions are reconstructed from the CC0 archive by
+# scripts/character-assets/fetch-makehuman.py; keep the large raw proxies local.
+blender/characters/candidates/hair/long01/
+blender/characters/candidates/hair/ponytail01/
+
 # High-poly print sculpt (CC-BY 4.0). Form reference only; never ship.
 blender/characters/sources/orc-print/*.fbx
 blender/characters/sources/undead-tripo/*.fbx
