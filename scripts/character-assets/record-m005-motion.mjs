@@ -19,10 +19,10 @@ const dir = process.env.ASHEN_CAPTURE_DIR || 've-capture/character-mmo/m005/moti
 
 const PASSES = [
     {id: 'stout-shipped', query: 'humanShape=stout&garmentFit=shipped', label: 'stout, shipped garments'},
-    {id: 'stout-refit', query: 'humanShape=stout&garmentFit=refit', label: 'stout, refitted garments'},
-    {id: 'slender-refit', query: 'humanShape=slender&garmentFit=refit', label: 'slender, refitted garments'},
-    {id: 'short-refit', query: 'humanShape=slender&humanHeight=0.9&garmentFit=refit', label: 'slender at 1.58 m, refitted'},
-    {id: 'tall-refit', query: 'humanShape=stout&humanHeight=1.15&garmentFit=refit', label: 'stout at 2.02 m, refitted'},
+    {id: 'stout-refit', query: 'humanShape=stout&garmentFit=refit', label: 'stout, refitted with extended hems'},
+    {id: 'slender-refit', query: 'humanShape=slender&garmentFit=refit', label: 'slender, refitted with extended hems'},
+    {id: 'stout-plate', query: 'humanShape=stout&garmentFit=refit&plate=1', label: 'stout, refitted plus the rigid plate'},
+    {id: 'slender-plate', query: 'humanShape=slender&garmentFit=refit&plate=1', label: 'slender, refitted plus the rigid plate'},
 ];
 const EMPTY = {helmet: null, torso: null, legs: null, boots: null, gloves: null, mainHand: null, offHand: null};
 const STARTER = {helmet: null, torso: 'wayfarerTunic', legs: 'wayfarerTrousers', boots: 'wayfarerBoots', gloves: null, mainHand: null, offHand: null};

@@ -1,0 +1,30 @@
+{
+ "schema": 1,
+ "generatedBy": "scripts/character-assets/build-plated-body.mjs",
+ "body": {
+  "path": ".cache/character-mmo/m004/human-shape-family-v1.glb",
+  "sha256": "e8e564c9c362ad2473ef6de9042f9a701c67643b5c205c64da2d86e91725f3f5"
+ },
+ "plate": {
+  "path": ".cache/character-mmo/m005/warden-pauldrons-shaped.glb",
+  "sha256": "e1b8fcb89e30977b43aabbeb1864c5d69fa9c5fa0e7cac1bd3667197162fac61",
+  "mesh": "WardenPauldrons",
+  "vertices": 236,
+  "triangles": 464
+ },
+ "output": {
+  "path": ".cache/character-mmo/m005/human-shape-family-plated.glb",
+  "sha256": "79d98f1890f3cad760fffb871eb921ba2138d9cdaae40a8394dbb09f7a7b11c2",
+  "bytes": 4133316
+ },
+ "bind": {
+  "jointsMatchedByName": 65,
+  "jointOrderDiffered": true,
+  "worstInverseBindDelta": 0.001343,
+  "worstRelativeDelta": 0.0007746,
+  "relativeTolerance": 0.002,
+  "units": "inverse binds are in the asset's centimetre joint units"
+ },
+ "clips": 57,
+ "note": "The plate has no catalogue slot, so it is carried by the body asset. This is not a slot system."
+}

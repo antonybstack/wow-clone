@@ -15,19 +15,43 @@
   "path": "docs/baselines/character-mmo/m004/makehuman-girth.json",
   "sha256": "42977214cfcb9676cb69c9136538d112adac3eb4c190c626394f5c14b78b9069"
  },
+ "hemPass": true,
  "note": "Each garment vertex moves by the body displacement beneath it, preserving authored standoff; a rigid piece takes the mean of that as one translation.",
  "garments": [
   {
    "item": "wayfarerTunic",
    "rigid": false,
+   "hems": {
+    "slender": {
+     "passes": [],
+     "lostAfter": 0
+    },
+    "stout": {
+     "passes": [
+      {
+       "pass": 1,
+       "lostBefore": 17,
+       "verticesMoved": 126,
+       "worstExtensionM": 0.045
+      },
+      {
+       "pass": 2,
+       "lostBefore": 16,
+       "verticesMoved": 39,
+       "worstExtensionM": 0.045
+      }
+     ],
+     "lostAfter": 14
+    }
+   },
    "source": {
     "path": "public/ashen-reach/equipment/wayfarerTunic.glb",
     "sha256": "3b4c929df3708afd760f3f056f0dc706e780552cfe1966d8ef3f5083b8749cd6"
    },
    "output": {
     "path": ".cache/character-mmo/m005/wayfarerTunic.glb",
-    "sha256": "bec24964f68978c16508f4a7133e30386b5e22f1ae3e6a60e98605dcdfcfc950",
-    "bytes": 525164
+    "sha256": "71f193bc42597db6818ea9f275e9c0c0aa448762bbb22eac23b0a988e676cb9b",
+    "bytes": 525160
    },
    "pieces": [
     {
@@ -42,8 +66,8 @@
       },
       "stout": {
        "movedVertices": 3776,
-       "maxDisplacementM": 0.03082,
-       "meanDisplacementM": 0.016724
+       "maxDisplacementM": 0.051254,
+       "meanDisplacementM": 0.016869
       }
      },
      "neutralSha256": "9282a5f95b13e5cf15ece55819ffccc11cb90b77fb0c766a1249d93199513fec"
@@ -53,14 +77,50 @@
   {
    "item": "wayfarerTrousers",
    "rigid": false,
+   "hems": {
+    "slender": {
+     "passes": [
+      {
+       "pass": 1,
+       "lostBefore": 2,
+       "verticesMoved": 62,
+       "worstExtensionM": 0.027358
+      },
+      {
+       "pass": 2,
+       "lostBefore": 4,
+       "verticesMoved": 19,
+       "worstExtensionM": 0.029963
+      }
+     ],
+     "lostAfter": 2
+    },
+    "stout": {
+     "passes": [
+      {
+       "pass": 1,
+       "lostBefore": 14,
+       "verticesMoved": 41,
+       "worstExtensionM": 0.039923
+      },
+      {
+       "pass": 2,
+       "lostBefore": 5,
+       "verticesMoved": 26,
+       "worstExtensionM": 0.033274
+      }
+     ],
+     "lostAfter": 7
+    }
+   },
    "source": {
     "path": "public/ashen-reach/equipment/wayfarerTrousers.glb",
     "sha256": "169ad0333e5746e72512b8160008aefbf3d8bef7d75f2ff70203feca08538def"
    },
    "output": {
     "path": ".cache/character-mmo/m005/wayfarerTrousers.glb",
-    "sha256": "8407181d0d63c2997636522db280a288a20447318bb447022e6b710a0b7c33d1",
-    "bytes": 344616
+    "sha256": "70324197409d09b3f4a67e01d5c690940e5151baa7bfe534bf7673faa31c8f96",
+    "bytes": 344612
    },
    "pieces": [
     {
@@ -70,13 +130,13 @@
      "shapes": {
       "slender": {
        "movedVertices": 1380,
-       "maxDisplacementM": 0.019858,
-       "meanDisplacementM": 0.012021
+       "maxDisplacementM": 0.054937,
+       "meanDisplacementM": 0.01243
       },
       "stout": {
        "movedVertices": 1380,
-       "maxDisplacementM": 0.022693,
-       "meanDisplacementM": 0.013748
+       "maxDisplacementM": 0.056299,
+       "meanDisplacementM": 0.014277
       }
      },
      "neutralSha256": "0ce5d1a70e757e8bc49786c8c03420c2db8899be6c3af75449ad26bef14f8d90"
@@ -104,6 +164,16 @@
   {
    "item": "wayfarerBoots",
    "rigid": false,
+   "hems": {
+    "slender": {
+     "passes": [],
+     "lostAfter": 0
+    },
+    "stout": {
+     "passes": [],
+     "lostAfter": 0
+    }
+   },
    "source": {
     "path": "public/ashen-reach/equipment/wayfarerBoots.glb",
     "sha256": "a55a9e4cd7b8658b6f2bd51dd3092af576e8d7dd279c9687bb3419a5c858bd98"
@@ -137,13 +207,49 @@
   {
    "item": "pilgrimTunic",
    "rigid": false,
+   "hems": {
+    "slender": {
+     "passes": [
+      {
+       "pass": 1,
+       "lostBefore": 1,
+       "verticesMoved": 18,
+       "worstExtensionM": 0.037964
+      },
+      {
+       "pass": 2,
+       "lostBefore": 1,
+       "verticesMoved": 6,
+       "worstExtensionM": 0.020834
+      }
+     ],
+     "lostAfter": 1
+    },
+    "stout": {
+     "passes": [
+      {
+       "pass": 1,
+       "lostBefore": 8,
+       "verticesMoved": 280,
+       "worstExtensionM": 0.033184
+      },
+      {
+       "pass": 2,
+       "lostBefore": 6,
+       "verticesMoved": 226,
+       "worstExtensionM": 0.014204
+      }
+     ],
+     "lostAfter": 5
+    }
+   },
    "source": {
     "path": "public/ashen-reach/equipment/pilgrimTunic.glb",
     "sha256": "e8ee89fed1056a1b0d1434bf138c05e698cf0564ce531ad1c7a39de45f4ef691"
    },
    "output": {
     "path": ".cache/character-mmo/m005/pilgrimTunic.glb",
-    "sha256": "b3db2af7e1242fff3063710e2597fa6874eaaa9cb26f881bc68639637a93424f",
+    "sha256": "669469f375802e5a41e765c8ab23369d520761560c0ec30ba132ad5b672605c4",
     "bytes": 1126604
    },
    "pieces": [
@@ -154,13 +260,13 @@
      "shapes": {
       "slender": {
        "movedVertices": 8960,
-       "maxDisplacementM": 0.025783,
-       "meanDisplacementM": 0.014613
+       "maxDisplacementM": 0.054167,
+       "meanDisplacementM": 0.014627
       },
       "stout": {
        "movedVertices": 8960,
-       "maxDisplacementM": 0.030827,
-       "meanDisplacementM": 0.017097
+       "maxDisplacementM": 0.037036,
+       "meanDisplacementM": 0.017532
       }
      },
      "neutralSha256": "965c05176ce9654a2ff4e1f13db54bcf2fbbacc79e24c81119f24f7c6b193790"
@@ -170,13 +276,43 @@
   {
    "item": "graveweaverTop",
    "rigid": false,
+   "hems": {
+    "slender": {
+     "passes": [
+      {
+       "pass": 1,
+       "lostBefore": 2,
+       "verticesMoved": 58,
+       "worstExtensionM": 0.037943
+      }
+     ],
+     "lostAfter": 0
+    },
+    "stout": {
+     "passes": [
+      {
+       "pass": 1,
+       "lostBefore": 7,
+       "verticesMoved": 49,
+       "worstExtensionM": 0.039194
+      },
+      {
+       "pass": 2,
+       "lostBefore": 5,
+       "verticesMoved": 17,
+       "worstExtensionM": 0.045
+      }
+     ],
+     "lostAfter": 5
+    }
+   },
    "source": {
     "path": "public/ashen-reach/equipment/graveweaverTop.glb",
     "sha256": "935bc9c509c562e08161bac0d7babc60b5273c38aea6764258966dcc060f1b78"
    },
    "output": {
     "path": ".cache/character-mmo/m005/graveweaverTop.glb",
-    "sha256": "8ec1160ca747f91b77a8e8289dadd741c21003475254cc5a0baf9f0fce28b523",
+    "sha256": "711a52af8703db507b97b01a69a798138355d5a573a49fed1ef336a894a1b8f3",
     "bytes": 504908
    },
    "pieces": [
@@ -223,13 +359,13 @@
      "shapes": {
       "slender": {
        "movedVertices": 3497,
-       "maxDisplacementM": 0.02574,
-       "meanDisplacementM": 0.014148
+       "maxDisplacementM": 0.043829,
+       "meanDisplacementM": 0.014222
       },
       "stout": {
        "movedVertices": 3497,
-       "maxDisplacementM": 0.030835,
-       "meanDisplacementM": 0.016712
+       "maxDisplacementM": 0.045465,
+       "meanDisplacementM": 0.016802
       }
      },
      "neutralSha256": "0e5a2341145164bacf54b39c05844772bd4dbd3df5f1cefd865877031fe2e313"
@@ -239,14 +375,37 @@
   {
    "item": "graveweaverSkirt",
    "rigid": false,
+   "hems": {
+    "slender": {
+     "passes": [],
+     "lostAfter": 0
+    },
+    "stout": {
+     "passes": [
+      {
+       "pass": 1,
+       "lostBefore": 6,
+       "verticesMoved": 222,
+       "worstExtensionM": 0.045
+      },
+      {
+       "pass": 2,
+       "lostBefore": 4,
+       "verticesMoved": 47,
+       "worstExtensionM": 0.042568
+      }
+     ],
+     "lostAfter": 5
+    }
+   },
    "source": {
     "path": "public/ashen-reach/equipment/graveweaverSkirt.glb",
     "sha256": "7a9a770063337c1dfa1de5a0da2e2fe3191865b1a3f7882afe92694b03e55cbc"
    },
    "output": {
     "path": ".cache/character-mmo/m005/graveweaverSkirt.glb",
-    "sha256": "c5eea117af2210abe18aa6746749ed21f2aea97b324e112d9acec2113e585a68",
-    "bytes": 821680
+    "sha256": "837e272327dfd795e6a8aaf0ed4ba3dc897ca2b98fd0713101cd4827b982d73b",
+    "bytes": 821676
    },
    "pieces": [
     {
@@ -261,8 +420,8 @@
       },
       "stout": {
        "movedVertices": 3463,
-       "maxDisplacementM": 0.022522,
-       "meanDisplacementM": 0.013543
+       "maxDisplacementM": 0.042148,
+       "meanDisplacementM": 0.014115
       }
      },
      "neutralSha256": "b36eea0ec8e7644b0eacbd7dcc975c3026a8871615f79fcb7fd0916784d3718e"
@@ -279,8 +438,8 @@
       },
       "stout": {
        "movedVertices": 1380,
-       "maxDisplacementM": 0.022693,
-       "meanDisplacementM": 0.013797
+       "maxDisplacementM": 0.054345,
+       "meanDisplacementM": 0.014482
       }
      },
      "neutralSha256": "1c5d796ca953f15d4d049555e119e3ba5238771c3408527fdd5c0c08a2a9ccc9"
@@ -308,13 +467,36 @@
   {
    "item": "graveweaverHood",
    "rigid": false,
+   "hems": {
+    "slender": {
+     "passes": [
+      {
+       "pass": 1,
+       "lostBefore": 4,
+       "verticesMoved": 133,
+       "worstExtensionM": 0.022354
+      },
+      {
+       "pass": 2,
+       "lostBefore": 3,
+       "verticesMoved": 0,
+       "worstExtensionM": 0
+      }
+     ],
+     "lostAfter": 3
+    },
+    "stout": {
+     "passes": [],
+     "lostAfter": 0
+    }
+   },
    "source": {
     "path": "public/ashen-reach/equipment/graveweaverHood.glb",
     "sha256": "828b7e66b2edfc4d8fb2411c87c0fe7f1da52359b192691774d0c34392c63799"
    },
    "output": {
     "path": ".cache/character-mmo/m005/graveweaverHood.glb",
-    "sha256": "26b689d28216ba7038e687c7d8242622a7c906c3306a9aa69704254b16a5a8e4",
+    "sha256": "767519b11623e1d56c1e0745dade7575484fd11319cb8696b0c7a78321ae66fc",
     "bytes": 641976
    },
    "pieces": [
@@ -325,8 +507,8 @@
      "shapes": {
       "slender": {
        "movedVertices": 4723,
-       "maxDisplacementM": 0.019161,
-       "meanDisplacementM": 0.004803
+       "maxDisplacementM": 0.02199,
+       "meanDisplacementM": 0.005013
       },
       "stout": {
        "movedVertices": 4723,
@@ -341,14 +523,50 @@
   {
    "item": "graveweaverGloves",
    "rigid": false,
+   "hems": {
+    "slender": {
+     "passes": [
+      {
+       "pass": 1,
+       "lostBefore": 2,
+       "verticesMoved": 384,
+       "worstExtensionM": 0.032225
+      },
+      {
+       "pass": 2,
+       "lostBefore": 1,
+       "verticesMoved": 233,
+       "worstExtensionM": 0.045
+      }
+     ],
+     "lostAfter": 1
+    },
+    "stout": {
+     "passes": [
+      {
+       "pass": 1,
+       "lostBefore": 2,
+       "verticesMoved": 183,
+       "worstExtensionM": 0.032366
+      },
+      {
+       "pass": 2,
+       "lostBefore": 1,
+       "verticesMoved": 89,
+       "worstExtensionM": 0.022832
+      }
+     ],
+     "lostAfter": 2
+    }
+   },
    "source": {
     "path": "public/ashen-reach/equipment/graveweaverGloves.glb",
     "sha256": "ae3a162fc15b038bbf713f924b0b6b69d88fcd18ff2cfcb676112d5c91bb6e75"
    },
    "output": {
     "path": ".cache/character-mmo/m005/graveweaverGloves.glb",
-    "sha256": "1db89563b09b3ef6859b5a0d746f1a13fff5e71400e1394f139a456e52d5c57a",
-    "bytes": 354572
+    "sha256": "61843db466b3649bed274a6ec8a6b2045f5a8a64a567a98ef7310485ca643ea9",
+    "bytes": 354560
    },
    "pieces": [
     {
@@ -357,14 +575,14 @@
      "triangles": 4544,
      "shapes": {
       "slender": {
-       "movedVertices": 1228,
-       "maxDisplacementM": 0.003624,
-       "meanDisplacementM": 0.000674
+       "movedVertices": 1397,
+       "maxDisplacementM": 0.049553,
+       "meanDisplacementM": 0.002847
       },
       "stout": {
-       "movedVertices": 1228,
-       "maxDisplacementM": 0.004483,
-       "meanDisplacementM": 0.000734
+       "movedVertices": 1281,
+       "maxDisplacementM": 0.032558,
+       "meanDisplacementM": 0.001543
       }
      },
      "neutralSha256": "3b8ab6a991fe5aec0337063653a12aa7b30a2a6320e8909bf758ec58189510e7"
@@ -374,6 +592,7 @@
   {
    "item": "wardenPauldrons",
    "rigid": true,
+   "hems": null,
    "source": {
     "path": ".cache/character-mmo/m005/warden-pauldrons.glb",
     "sha256": "96d71dc0a137034e049c828c0050d2d13802d153e034a1c02fb31e0fdf020fee"

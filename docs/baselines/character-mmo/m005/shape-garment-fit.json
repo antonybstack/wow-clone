@@ -55,16 +55,16 @@
    "slot": "torso",
    "shape": "stout",
    "refitted": true,
-   "bodyVerticesInRegion": 1094,
-   "coveredByGarment": 902,
-   "newlyUncovered": 17,
-   "newlyCovered": 6,
-   "worstNewGapMm": 42.43,
-   "meanNewGapMm": 24.6,
+   "bodyVerticesInRegion": 1133,
+   "coveredByGarment": 910,
+   "newlyUncovered": 14,
+   "newlyCovered": 11,
+   "worstNewGapMm": 42.46,
+   "meanNewGapMm": 17.06,
    "worstAt": {
-    "x": 0.0764,
-    "y": 0.8596,
-    "z": -0.0996
+    "x": 0.0251,
+    "y": 0.8709,
+    "z": 0.1103
    }
   },
   {
@@ -90,15 +90,15 @@
    "shape": "slender",
    "refitted": true,
    "bodyVerticesInRegion": 883,
-   "coveredByGarment": 760,
+   "coveredByGarment": 761,
    "newlyUncovered": 2,
-   "newlyCovered": 6,
-   "worstNewGapMm": 21.57,
-   "meanNewGapMm": 12.82,
+   "newlyCovered": 7,
+   "worstNewGapMm": 8.06,
+   "meanNewGapMm": 8.06,
    "worstAt": {
-    "x": 0.0291,
-    "y": 0.8213,
-    "z": -0.0226
+    "x": -0.0009,
+    "y": 0.8501,
+    "z": 0.0225
    }
   },
   {
@@ -107,11 +107,11 @@
    "shape": "stout",
    "refitted": true,
    "bodyVerticesInRegion": 882,
-   "coveredByGarment": 743,
-   "newlyUncovered": 14,
+   "coveredByGarment": 750,
+   "newlyUncovered": 7,
    "newlyCovered": 1,
    "worstNewGapMm": 53.76,
-   "meanNewGapMm": 4.81,
+   "meanNewGapMm": 9.8,
    "worstAt": {
     "x": 0.1303,
     "y": 0.6383,

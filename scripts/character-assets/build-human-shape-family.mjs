@@ -46,7 +46,7 @@ import {createHash} from 'node:crypto';
 import {NodeIO, VertexLayout} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {MeshoptDecoder, MeshoptEncoder} from 'meshoptimizer';
-import {mat4, vec3} from 'gl-matrix';
+import {buildSegments, recomputeNormals, restWorld, softShape} from './girth-field.mjs';
 
 const BODY = 'public/ashen-reach/equipment/body.glb';
 const GIRTH = 'docs/baselines/character-mmo/m004/makehuman-girth.json';
@@ -56,73 +56,6 @@ const MESH_NAME = 'HumanV1Body';
 const TARGET_NAMES = ['slender', 'stout'];
 
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
-
-/** Segment axis on our rig: joint -> the child joint whose rest direction is the segment axis.
- *  Terminal segments borrow their parent's direction, which is why Head, Hand and Foot name
- *  a source joint rather than a child. */
-const AXIS_TO = {
-    'mixamorig:Hips': 'mixamorig:Spine',
-    'mixamorig:Spine': 'mixamorig:Spine1',
-    'mixamorig:Spine1': 'mixamorig:Spine2',
-    'mixamorig:Spine2': 'mixamorig:Neck',
-    'mixamorig:Neck': 'mixamorig:Head',
-    'mixamorig:Head': 'mixamorig:HeadTop_End',
-    'mixamorig:LeftShoulder': 'mixamorig:LeftArm',
-    'mixamorig:RightShoulder': 'mixamorig:RightArm',
-    'mixamorig:LeftArm': 'mixamorig:LeftForeArm',
-    'mixamorig:RightArm': 'mixamorig:RightForeArm',
-    'mixamorig:LeftForeArm': 'mixamorig:LeftHand',
-    'mixamorig:RightForeArm': 'mixamorig:RightHand',
-    'mixamorig:LeftHand': 'mixamorig:LeftHandMiddle1',
-    'mixamorig:RightHand': 'mixamorig:RightHandMiddle1',
-    'mixamorig:LeftUpLeg': 'mixamorig:LeftLeg',
-    'mixamorig:RightUpLeg': 'mixamorig:RightLeg',
-    'mixamorig:LeftLeg': 'mixamorig:LeftFoot',
-    'mixamorig:RightLeg': 'mixamorig:RightFoot',
-    'mixamorig:LeftFoot': 'mixamorig:LeftToeBase',
-    'mixamorig:RightFoot': 'mixamorig:RightToeBase',
-};
-
-function unit(v) {
-    const n = Math.hypot(v[0], v[1], v[2]);
-    return n > 1e-9 ? [v[0] / n, v[1] / n, v[2] / n] : null;
-}
-
-function cross(a, b) {
-    return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
-}
-
-/** The two unit axes of the plane perpendicular to `axis`: cross-width, then depth.
- *  Identical rule and ordering as `measure-makehuman-girth.py`, so ratio index 0 and 1
- *  always mean the same thing on both meshes. `e2` is world Z projected into the plane
- *  (body depth); `e1` is `cross(e2, axis)`, which is body width for a vertical segment
- *  and vertical thickness for a lateral one. */
-function perpFrame(axis) {
-    const along = axis[2];
-    const residual = [-along * axis[0], -along * axis[1], 1 - along * axis[2]];
-    const magnitude = Math.hypot(...residual);
-    if (magnitude <= 0.25) return null;
-    const e2 = unit(residual);
-    return {e1: unit(cross(e2, axis)), e2, zResidual: magnitude};
-}
-
-function recomputeNormals(positions, indices, count) {
-    const normals = new Float32Array(count * 3);
-    for (let t = 0; t < indices.length; t += 3) {
-        const a = indices[t] * 3, b = indices[t + 1] * 3, c = indices[t + 2] * 3;
-        const ux = positions[b] - positions[a], uy = positions[b + 1] - positions[a + 1], uz = positions[b + 2] - positions[a + 2];
-        const vx = positions[c] - positions[a], vy = positions[c + 1] - positions[a + 1], vz = positions[c + 2] - positions[a + 2];
-        const nx = uy * vz - uz * vy, ny = uz * vx - ux * vz, nz = ux * vy - uy * vx;
-        for (const o of [a, b, c]) {
-            normals[o] += nx; normals[o + 1] += ny; normals[o + 2] += nz;
-        }
-    }
-    for (let i = 0; i < normals.length; i += 3) {
-        const n = Math.hypot(normals[i], normals[i + 1], normals[i + 2]);
-        if (n > 1e-9) { normals[i] /= n; normals[i + 1] /= n; normals[i + 2] /= n; }
-    }
-    return normals;
-}
 
 async function main() {
     await MeshoptDecoder.ready;
@@ -155,52 +88,9 @@ async function main() {
     const joints = skin.listJoints();
     if (joints.length !== 65) throw Error(`Expected 65 joints, have ${joints.length}`);
 
-    // Rest world transforms in the mesh's own space. The skeleton sits under a 0.01-scaled
-    // RootNode while POSITION is already in metres, so the traversal has to include that
-    // scale for joint axes and vertex positions to share one space.
-    const world = new Map();
-    const visit = (node, parent) => {
-        const local = mat4.fromRotationTranslationScale(mat4.create(),
-            node.getRotation(), node.getTranslation(), node.getScale());
-        const w = mat4.multiply(mat4.create(), parent, local);
-        world.set(node.getName(), w);
-        for (const child of node.listChildren()) visit(child, w);
-    };
-    for (const sceneChild of root.listScenes()[0].listChildren()) visit(sceneChild, mat4.create());
-    const originOf = name => {
-        const w = world.get(name);
-        return w ? [w[12], w[13], w[14]] : null;
-    };
-
-    // Per joint index: origin, axis, perpendicular frame and the two measured ratios.
-    const segments = new Array(joints.length).fill(null);
-    const used = [];
-    joints.forEach((joint, index) => {
-        const name = joint.getName();
-        const row = girth.segments[name];
-        const toName = AXIS_TO[name];
-        if (!row || !toName) return;
-        const from = originOf(name);
-        const to = originOf(toName);
-        if (!from || !to) throw Error(`Missing rest transform for ${name} -> ${toName}`);
-        const axis = unit([to[0] - from[0], to[1] - from[1], to[2] - from[2]]);
-        if (!axis) throw Error(`Degenerate rest axis for ${name}`);
-        const frame = perpFrame(axis);
-        if (!frame) throw Error(`No perpendicular frame for ${name}`);
-        // The frame is well defined whenever the segment is not near-parallel to world Z.
-        // A segment that drifted that way would silently rotate e1/e2 against the measured
-        // axes, so fail loudly instead of applying width ratios to depth.
-        if (frame.zResidual <= 0.4) {
-            throw Error(`${name} runs too close to world Z (residual ${frame.zResidual.toFixed(3)}); `
-                + 'the measured width/depth ratios would land on the wrong axes');
-        }
-        segments[index] = {
-            name, axisTo: toName, origin: from, axis, ...frame,
-            ratios: {slender: row.slenderAxes, stout: row.stoutAxes},
-        };
-        used.push(name);
-    });
-    if (!used.length) throw Error('No measured segment matched a skin joint');
+    // Rest transforms, segment axes and the measured ratios all come from the shared
+    // field module, so the body and the M005 garments cannot drift apart.
+    const {segments, used} = buildSegments(joints, restWorld(root), girth);
 
     const positions = prim.getAttribute('POSITION').getArray();
     const count = prim.getAttribute('POSITION').getCount();
@@ -211,41 +101,8 @@ async function main() {
 
     const shapes = {};
     for (const target of TARGET_NAMES) {
-        const shaped = Float32Array.from(positions);
-        let maxDelta = 0, sumDelta = 0, moved = 0;
-        for (let v = 0; v < count; v++) {
-            const px = positions[v * 3], py = positions[v * 3 + 1], pz = positions[v * 3 + 2];
-            let wsum = 0;
-            for (let k = 0; k < 4; k++) wsum += weightsArr[v * 4 + k];
-            if (wsum <= 0) continue;
-            let dx = 0, dy = 0, dz = 0;
-            for (let k = 0; k < 4; k++) {
-                const w = weightsArr[v * 4 + k] / wsum;
-                if (w <= 0) continue;
-                const seg = segments[jointsArr[v * 4 + k]];
-                if (!seg) continue;
-                const [r1, r2] = seg.ratios[target];
-                const o = seg.origin;
-                const rel = [px - o[0], py - o[1], pz - o[2]];
-                const along = rel[0] * seg.axis[0] + rel[1] * seg.axis[1] + rel[2] * seg.axis[2];
-                const perp = [rel[0] - along * seg.axis[0], rel[1] - along * seg.axis[1], rel[2] - along * seg.axis[2]];
-                const c1 = perp[0] * seg.e1[0] + perp[1] * seg.e1[1] + perp[2] * seg.e1[2];
-                const c2 = perp[0] * seg.e2[0] + perp[1] * seg.e2[1] + perp[2] * seg.e2[2];
-                // Scaling only the two perpendicular components leaves the along-axis
-                // position untouched, so segment lengths and every joint centre hold.
-                const s1 = c1 * (r1 - 1), s2 = c2 * (r2 - 1);
-                dx += w * (s1 * seg.e1[0] + s2 * seg.e2[0]);
-                dy += w * (s1 * seg.e1[1] + s2 * seg.e2[1]);
-                dz += w * (s1 * seg.e1[2] + s2 * seg.e2[2]);
-            }
-            shaped[v * 3] += dx;
-            shaped[v * 3 + 1] += dy;
-            shaped[v * 3 + 2] += dz;
-            const d = Math.hypot(dx, dy, dz);
-            if (d > 1e-6) moved++;
-            sumDelta += d;
-            if (d > maxDelta) maxDelta = d;
-        }
+        const result = softShape(positions, jointsArr, weightsArr, segments, target);
+        const shaped = result.shaped;
         const shapedNormals = recomputeNormals(shaped, indices, count);
         const posDelta = new Float32Array(count * 3);
         const normDelta = new Float32Array(count * 3);
@@ -261,9 +118,9 @@ async function main() {
         shapes[target] = {
             posDelta, normDelta,
             stats: {
-                movedVertices: moved,
-                maxDisplacementM: Number(maxDelta.toFixed(6)),
-                meanDisplacementM: Number((sumDelta / count).toFixed(6)),
+                movedVertices: result.moved,
+                maxDisplacementM: Number(result.maxDelta.toFixed(6)),
+                meanDisplacementM: Number(result.meanDelta.toFixed(6)),
                 shapedHeightM: Number((maxY - minY).toFixed(6)),
                 shapedSpanXM: Number((maxX - minX).toFixed(6)),
             },

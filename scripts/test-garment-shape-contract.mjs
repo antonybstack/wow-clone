@@ -9,6 +9,8 @@ import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {
     HUMAN_GARMENT_FIT_MANIFEST,
+    HUMAN_PLATED_ASSET,
+    HUMAN_SHAPE_ASSET,
     HUMAN_SHAPE_CAPABILITIES,
     HUMAN_SHAPE_TARGETS,
     resolveHumanShape,
@@ -17,6 +19,7 @@ import {
 const REPORT = 'docs/baselines/character-mmo/m005/garment-shape-family.json';
 const FIT = 'docs/baselines/character-mmo/m005/shape-garment-fit.json';
 const RIGIDITY = 'docs/baselines/character-mmo/m005/plate-rigidity.json';
+const PLATED = 'docs/baselines/character-mmo/m005/plated-body.json';
 
 test('no garment control means the default route', () => {
     assert.equal(resolveHumanShape('?play&clean'), null);
@@ -37,8 +40,28 @@ test('an unknown garmentFit is rejected rather than treated as shipped', () => {
     assert.throws(() => resolveHumanShape('?humanShape=stout&garmentFit=1'), /Unknown garmentFit/);
 });
 
-test('garment fit is advertised as a candidate, not as shipped behaviour', () => {
+test('garment fit and the plate are advertised as candidates, not shipped behaviour', () => {
     assert.equal(HUMAN_SHAPE_CAPABILITIES.garmentsFollowShape, 'candidate');
+    assert.equal(HUMAN_SHAPE_CAPABILITIES.rigidPlate, 'candidate');
+});
+
+test('the plate rides a body variant and only when a shape is driven', () => {
+    // It has no catalogue slot, so it is not reachable through the equipment path at all.
+    assert.equal(resolveHumanShape('?humanShape=stout&plate=1').assetURL, HUMAN_PLATED_ASSET);
+    assert.equal(resolveHumanShape('?humanShape=stout').assetURL, HUMAN_SHAPE_ASSET);
+    assert.equal(resolveHumanShape('?plate=1').assetURL, null);
+    assert.equal(resolveHumanShape('?plate=1').plate, true);
+    assert.equal(resolveHumanShape('?humanShape=stout').plate, false);
+});
+
+test('the plated body is the same skin carrying one more mesh', {skip: fs.existsSync(PLATED) ? false : 'build the plated body first'}, () => {
+    const report = JSON.parse(fs.readFileSync(PLATED, 'utf8'));
+    assert.equal(report.bind.jointsMatchedByName, 65);
+    assert.ok(report.bind.worstRelativeDelta <= report.bind.relativeTolerance,
+        `plate bind differs by ${report.bind.worstRelativeDelta}`);
+    assert.equal(report.clips, 57, 'the plated body must keep every clip');
+    const actual = createHash('sha256').update(fs.readFileSync(report.output.path)).digest('hex');
+    assert.equal(actual, report.output.sha256);
 });
 
 const built = fs.existsSync(REPORT);
@@ -67,7 +90,11 @@ test('the refit reduces the coverage the shape takes away', {skip: fs.existsSync
     const before = lost(shipped.rows), after = lost(refit.rows);
     assert.equal(lost(shipped.rows.filter(r => r.shape === 'neutral')), 0, 'the neutral control must lose nothing');
     assert.equal(lost(refit.rows.filter(r => r.shape === 'neutral')), 0, 'the neutral control must lose nothing');
-    assert.ok(after < before / 4, `refit left ${after} newly uncovered vertices against ${before} shipped`);
+    // The refit plus the hem pass has to beat the shipped pack by a wide margin. It does
+    // not reach zero: 23 body vertices at the shape extremes are past the end of their
+    // garment, and reaching them needs authored geometry rather than a fit.
+    assert.ok(after < before / 10, `refit left ${after} newly uncovered vertices against ${before} shipped`);
+    assert.ok(after <= 30, `refit regressed to ${after} newly uncovered vertices`);
 });
 
 test('a rigid piece stays a similarity and cloth does not', {skip: fs.existsSync(RIGIDITY) ? false : 'measure rigidity first'}, () => {

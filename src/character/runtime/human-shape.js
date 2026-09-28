@@ -50,6 +50,17 @@ export const HUMAN_SHAPE_ASSET = '/__human_shape__/human-shape-family-v1.glb';
 export const HUMAN_GARMENT_FIT_MANIFEST = '/__garment_fit__/manifest.json';
 
 /**
+ * The M005 rigid-plate prototype, carried by a variant of the body candidate.
+ *
+ * The equipment catalogue has seven slots and none of them is a shoulder; adding one, with
+ * a catalogue entry and a shipped asset, is production content M005 excludes. So `?plate=1`
+ * loads a body whose skin also drives a rigidly weighted pauldron pair. That is not a slot
+ * system and must not be read as one: it is how the plate gets live motion on the real
+ * character under the real clips.
+ */
+export const HUMAN_PLATED_ASSET = '/__garment_fit__/human-shape-family-plated.glb';
+
+/**
  * Uniform height. `scale` multiplies both the gameplay capsule and the visual root;
  * `capsuleM`/`visualM` are the measured metre values of the unscaled Human.
  */
@@ -67,6 +78,9 @@ export const HUMAN_SHAPE_CAPABILITIES = Object.freeze({
     blendable: true,
     uniformHeight: {min: HUMAN_HEIGHT.min, max: HUMAN_HEIGHT.max},
     garmentsFollowShape: 'candidate',
+    // M005 authored a shoulder-plate prototype and proved it rigid, but it has no
+    // catalogue slot and rides a body variant, so nothing may read this as equippable.
+    rigidPlate: 'candidate',
     faceOrAge: false,
     hair: false,
     dyes: false,
@@ -129,7 +143,8 @@ export function resolveHumanShape(search) {
     const rawShape = q.get('humanShape');
     const rawHeight = q.get('humanHeight');
     const rawGarments = q.get('garmentFit');
-    if (rawShape == null && rawHeight == null && rawGarments == null) return null;
+    const rawPlate = q.get('plate');
+    if (rawShape == null && rawHeight == null && rawGarments == null && rawPlate == null) return null;
     if (rawGarments != null && rawGarments !== 'refit' && rawGarments !== 'shipped') {
         throw new Error(`Unknown garmentFit '${rawGarments}'; expected 'refit' or 'shipped'`);
     }
@@ -154,7 +169,12 @@ export function resolveHumanShape(search) {
         heightClamped: Number.isFinite(requested) && Math.abs(requested - heightScale) > 1e-6,
         // Weight 0 on every target is the shipped body, so the candidate GLB is only
         // needed when a target is actually driven.
-        assetURL: weights.some((w) => w > 0) ? HUMAN_SHAPE_ASSET : null,
+        plate: rawPlate === '1',
+        // The plated variant is the same body plus one more mesh on the same skin, so it is
+        // only worth loading when a shape target is actually driven.
+        assetURL: weights.some((w) => w > 0)
+            ? (rawPlate === '1' ? HUMAN_PLATED_ASSET : HUMAN_SHAPE_ASSET)
+            : null,
         // Refitted garments only matter when a target is actually driven; at weight 0 they
         // are the shipped garments in every semantic accessor anyway.
         garmentFit: rawGarments === 'refit' ? 'refit' : 'shipped',

@@ -25,6 +25,8 @@ const CASES = [
     {id: 'stout-refit', query: 'humanShape=stout&garmentFit=refit'},
     {id: 'slender-refit', query: 'humanShape=slender&garmentFit=refit'},
     {id: 'tall-stout-refit', query: 'humanShape=stout&humanHeight=1.15&garmentFit=refit'},
+    {id: 'stout-refit-plate', query: 'humanShape=stout&garmentFit=refit&plate=1', plate: true},
+    {id: 'slender-refit-plate', query: 'humanShape=slender&garmentFit=refit&plate=1', plate: true},
 ];
 
 await fs.mkdir(out, {recursive: true});
@@ -68,6 +70,15 @@ try {
         if (test.query.includes('refit')) {
             assert.ok(booted.morphMeshes.length >= 4,
                 `${test.id}: only ${booted.morphMeshes.length} shaped meshes; the refitted garments did not load`);
+            if (test.plate) {
+                // The plate rides the body asset, so it has to be in the scene and carrying
+                // the same weights as everything else before the pass counts.
+                assert.ok(booted.morphMeshes.some(m => m.name === 'WardenPauldrons'),
+                    `${test.id}: WardenPauldrons is not in the scene; the plated body did not load`);
+            } else {
+                assert.ok(!booted.morphMeshes.some(m => m.name === 'WardenPauldrons'),
+                    `${test.id}: the plate loaded without ?plate=1`);
+            }
         } else {
             assert.equal(booted.morphMeshes.length, 1,
                 `${test.id}: shipped garments must not carry shape targets`);

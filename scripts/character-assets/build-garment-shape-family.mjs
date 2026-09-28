@@ -24,6 +24,7 @@ import {NodeIO, VertexLayout} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {MeshoptDecoder, MeshoptEncoder} from 'meshoptimizer';
 import {buildSegments, recomputeNormals, restWorld, rigidShape, softShape, trackBodyRigid, trackBodyShape} from './girth-field.mjs';
+import {extendHems, vertexNormals} from './garment-coverage.mjs';
 
 const GIRTH = 'docs/baselines/character-mmo/m004/makehuman-girth.json';
 const BODY = '.cache/character-mmo/m004/human-shape-family-v1.glb';
@@ -32,6 +33,11 @@ const BODY = '.cache/character-mmo/m004/human-shape-family-v1.glb';
 // over-moves cloth that sits further from the bone than the skin does. Both are kept so the
 // M005 report can compare them on the same measurement instead of asserting one is better.
 const MODE = process.env.ASHEN_FIT_MODE === 'field' ? 'field' : 'track';
+// A reference fit preserves standoff; it cannot invent length, so a heavier silhouette runs
+// past where a garment ends. The hem pass stretches the last band of the existing hem to
+// cover what the shape uncovered, inside the shape target only. Off with ASHEN_HEMS=0, so
+// the report can state what the fit alone achieves.
+const HEMS = process.env.ASHEN_HEMS !== '0';
 const OUT_DIR = process.env.ASHEN_GARMENT_OUT || (MODE === 'field' ? '.cache/character-mmo/m005-field' : '.cache/character-mmo/m005');
 const OUT_REPORT = process.env.ASHEN_GARMENT_REPORT
     || (MODE === 'field' ? 'docs/baselines/character-mmo/m005/garment-shape-family-field.json'
@@ -97,6 +103,16 @@ async function main() {
     for (const name of TARGET_NAMES) {
         if (!bodyDeltas[name]) throw Error(`Body candidate has no '${name}' target; rebuild it first`);
     }
+    // The hem pass asks whether the body is still covered, which needs the body's own
+    // shaped positions and normals, not just its deltas.
+    const bodyIndices = bodyPrim.getIndices().getArray();
+    const bodyNeutralNormals = vertexNormals(bodyPositions, bodyIndices);
+    const shapedBodies = {};
+    for (const name of TARGET_NAMES) {
+        const positions = Float32Array.from(bodyPositions);
+        for (let i = 0; i < positions.length; i++) positions[i] += bodyDeltas[name][i];
+        shapedBodies[name] = {positions, normals: vertexNormals(positions, bodyIndices)};
+    }
 
     const rows = [];
     for (const garment of GARMENTS) {
@@ -113,50 +129,91 @@ async function main() {
             if (ext.extensionName === 'EXT_meshopt_compression') ext.dispose();
         }
 
-        const pieces = [];
+        // Collect every primitive first. The hem pass needs the whole garment at once,
+        // because a body vertex left bare by one piece can only be reached by that piece's
+        // hem, and coverage is asked of the garment as a whole.
+        const prims = [];
         for (const mesh of root.listMeshes()) {
             for (const prim of mesh.listPrimitives()) {
                 if (prim.listTargets().length) throw Error(`${garment.item}/${mesh.getName()} already has morph targets`);
-                const positions = prim.getAttribute('POSITION').getArray();
-                const count = prim.getAttribute('POSITION').getCount();
-                const jointsArr = prim.getAttribute('JOINTS_0').getArray();
-                const weightsArr = prim.getAttribute('WEIGHTS_0').getArray();
-                const indices = prim.getIndices().getArray();
-                const baseNormals = prim.getAttribute('NORMAL').getArray();
-                const before = semanticHash(prim, skin);
-                const stats = {};
-                for (const name of TARGET_NAMES) {
-                    const result = MODE === 'track'
-                        ? (garment.rigid
-                            ? trackBodyRigid(positions, bodyPositions, bodyDeltas[name], {jointsArr, weightsArr})
-                            : trackBodyShape(positions, bodyPositions, bodyDeltas[name]))
-                        : (garment.rigid
-                            ? rigidShape(positions, jointsArr, weightsArr, segments, name)
-                            : softShape(positions, jointsArr, weightsArr, segments, name));
-                    const shapedNormals = garment.rigid ? baseNormals : recomputeNormals(result.shaped, indices, count);
-                    const posDelta = new Float32Array(count * 3);
-                    const normDelta = new Float32Array(count * 3);
-                    for (let i = 0; i < count * 3; i++) {
-                        posDelta[i] = result.shaped[i] - positions[i];
-                        normDelta[i] = shapedNormals[i] - baseNormals[i];
-                    }
-                    const target = doc.createPrimitiveTarget(name)
-                        .setAttribute('POSITION', doc.createAccessor(`${mesh.getName()}_${name}_POSITION`)
-                            .setType('VEC3').setArray(posDelta).setBuffer(buffer))
-                        .setAttribute('NORMAL', doc.createAccessor(`${mesh.getName()}_${name}_NORMAL`)
-                            .setType('VEC3').setArray(normDelta).setBuffer(buffer));
-                    prim.addTarget(target);
-                    stats[name] = {
-                        movedVertices: result.moved,
-                        maxDisplacementM: Number(result.maxDelta.toFixed(6)),
-                        meanDisplacementM: Number(result.meanDelta.toFixed(6)),
-                        ...(garment.rigid ? {rigidPieces: result.fits} : {}),
-                    };
-                }
-                pieces.push({mesh: mesh.getName(), vertices: count, triangles: indices.length / 3, before, shapes: stats});
-                mesh.setWeights(TARGET_NAMES.map(() => 0));
-                mesh.setExtras({...(mesh.getExtras() || {}), targetNames: [...TARGET_NAMES]});
+                prims.push({
+                    mesh, prim,
+                    positions: prim.getAttribute('POSITION').getArray(),
+                    count: prim.getAttribute('POSITION').getCount(),
+                    jointsArr: prim.getAttribute('JOINTS_0').getArray(),
+                    weightsArr: prim.getAttribute('WEIGHTS_0').getArray(),
+                    indices: prim.getIndices().getArray(),
+                    baseNormals: prim.getAttribute('NORMAL').getArray(),
+                    before: semanticHash(prim, skin),
+                    shapes: {},
+                });
             }
+        }
+
+        const neutralParts = prims.map(p => ({positions: p.positions, indices: p.indices}));
+        const hemReports = {};
+        for (const name of TARGET_NAMES) {
+            const shapedParts = prims.map((p) => {
+                const result = MODE === 'track'
+                    ? (garment.rigid
+                        ? trackBodyRigid(p.positions, bodyPositions, bodyDeltas[name], {jointsArr: p.jointsArr, weightsArr: p.weightsArr})
+                        : trackBodyShape(p.positions, bodyPositions, bodyDeltas[name]))
+                    : (garment.rigid
+                        ? rigidShape(p.positions, p.jointsArr, p.weightsArr, segments, name)
+                        : softShape(p.positions, p.jointsArr, p.weightsArr, segments, name));
+                return {result, positions: result.shaped, indices: p.indices};
+            });
+
+            // A plate has no hem to stretch, and stretching it would be exactly the bending
+            // this milestone forbids.
+            if (!garment.rigid && HEMS) {
+                const shapedBody = shapedBodies[name];
+                hemReports[name] = extendHems(
+                    shapedParts, neutralParts,
+                    shapedBody.positions, shapedBody.normals,
+                    bodyPositions, bodyNeutralNormals,
+                );
+            }
+
+            prims.forEach((p, i) => {
+                const shaped = shapedParts[i].positions;
+                const result = shapedParts[i].result;
+                const shapedNormals = garment.rigid ? p.baseNormals : recomputeNormals(shaped, p.indices, p.count);
+                const posDelta = new Float32Array(p.count * 3);
+                const normDelta = new Float32Array(p.count * 3);
+                let moved = 0, maxDelta = 0, sumDelta = 0;
+                for (let v = 0; v < p.count; v++) {
+                    for (let a = 0; a < 3; a++) {
+                        posDelta[v * 3 + a] = shaped[v * 3 + a] - p.positions[v * 3 + a];
+                        normDelta[v * 3 + a] = shapedNormals[v * 3 + a] - p.baseNormals[v * 3 + a];
+                    }
+                    const m = Math.hypot(posDelta[v * 3], posDelta[v * 3 + 1], posDelta[v * 3 + 2]);
+                    if (m > 1e-6) moved++;
+                    sumDelta += m;
+                    if (m > maxDelta) maxDelta = m;
+                }
+                const target = doc.createPrimitiveTarget(name)
+                    .setAttribute('POSITION', doc.createAccessor(`${p.mesh.getName()}_${name}_POSITION`)
+                        .setType('VEC3').setArray(posDelta).setBuffer(buffer))
+                    .setAttribute('NORMAL', doc.createAccessor(`${p.mesh.getName()}_${name}_NORMAL`)
+                        .setType('VEC3').setArray(normDelta).setBuffer(buffer));
+                p.prim.addTarget(target);
+                p.shapes[name] = {
+                    movedVertices: moved,
+                    maxDisplacementM: Number(maxDelta.toFixed(6)),
+                    meanDisplacementM: Number((sumDelta / p.count).toFixed(6)),
+                    ...(garment.rigid ? {rigidPieces: result.fits} : {}),
+                };
+            });
+        }
+
+        const pieces = prims.map(p => ({
+            mesh: p.mesh.getName(), vertices: p.count, triangles: p.indices.length / 3,
+            before: p.before, shapes: p.shapes,
+        }));
+        for (const p of prims) {
+            p.mesh.setWeights(TARGET_NAMES.map(() => 0));
+            p.mesh.setExtras({...(p.mesh.getExtras() || {}), targetNames: [...TARGET_NAMES]});
         }
 
         const outPath = garment.out || path.join(OUT_DIR, path.basename(garment.file));
@@ -182,6 +239,7 @@ async function main() {
         rows.push({
             item: garment.item,
             rigid: garment.rigid,
+            hems: Object.keys(hemReports).length ? hemReports : null,
             source: {path: garment.file, sha256: sha(sourceBytes)},
             output: {path: outPath, sha256: sha(outBytes), bytes: outBytes.byteLength},
             pieces,
@@ -233,6 +291,7 @@ async function main() {
         body: {path: BODY, sha256: sha(await fs.readFile(BODY))},
         targetNames: [...TARGET_NAMES],
         girthSource: {path: GIRTH, sha256: sha(await fs.readFile(GIRTH))},
+        hemPass: HEMS,
         note: MODE === 'track'
             ? 'Each garment vertex moves by the body displacement beneath it, preserving authored standoff; a rigid piece takes the mean of that as one translation.'
             : 'Cloth takes the girth field applied to its own offsets; a rigid piece takes one translation for the whole piece.',
