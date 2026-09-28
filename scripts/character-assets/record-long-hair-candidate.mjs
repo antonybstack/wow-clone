@@ -9,11 +9,15 @@ import {chromium} from 'playwright';
 
 const port = Number(process.env.ASHEN_CDP_PORT);
 const url = process.env.ASHEN_URL;
-const variant = process.env.ASHEN_HAIR_VARIANT ?? 'ponytail01-tail';
-if (!port || !url || !['long01', 'ponytail01', 'ponytail01-tail'].includes(variant)) {
-    throw Error('Owned ASHEN_CDP_PORT, ASHEN_URL and valid ASHEN_HAIR_VARIANT required');
+const variant = process.env.ASHEN_CANDIDATE_NAME ?? process.env.ASHEN_HAIR_VARIANT ?? 'ponytail01-tail';
+const candidateFile = process.env.ASHEN_CANDIDATE_FILE;
+if (!port || !url || !/^[a-z0-9-]+$/.test(variant)
+    || (!candidateFile && !['long01', 'ponytail01', 'ponytail01-tail'].includes(variant))) {
+    throw Error('Owned ASHEN_CDP_PORT, ASHEN_URL and a supported candidate required');
 }
-const file = path.resolve(`.cache/character-mmo/m006/human-${variant}-candidate.glb`);
+const file = path.resolve(candidateFile ?? `.cache/character-mmo/m006/human-${variant}-candidate.glb`);
+const target = process.env.ASHEN_CANDIDATE_TARGET ?? '**/ashen-reach/equipment/body.glb';
+const query = process.env.ASHEN_CANDIDATE_QUERY ?? '';
 const dir = path.resolve(`ve-capture/character-mmo/m006/${variant}-live`);
 await fs.mkdir(path.join(dir, 'frames'), {recursive: true});
 const browser = await chromium.connectOverCDP(`http://127.0.0.1:${port}`);
@@ -25,7 +29,7 @@ const errors = [], frames = [], writes = [], timeline = [];
 page.on('pageerror', e => errors.push(String(e.message ?? e)));
 page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
 let bodyRequests = 0, recording = false;
-await page.route('**/ashen-reach/equipment/body.glb', async route => {
+await page.route(target, async route => {
     bodyRequests++;
     await route.fulfill({status: 200, contentType: 'model/gltf-binary', body: await fs.readFile(file)});
 });
@@ -40,7 +44,7 @@ cdp.on('Page.screencastFrame', e => {
 const mark = label => timeline.push({frame: frames.length, label});
 try {
     await page.setViewportSize({width: 1280, height: 720});
-    await page.goto(`http://127.0.0.1:${new URL(url).port}/ashen-reach.html?play&clean&legacyStart=1&noEnemies=1&pixelRatio=1`);
+    await page.goto(`http://127.0.0.1:${new URL(url).port}/ashen-reach.html?play&clean&legacyStart=1&noEnemies=1&pixelRatio=1${query ? `&${query}` : ''}`);
     await page.waitForFunction(() => globalThis.ASHEN?.whenPlayable, null, {timeout: 90000});
     await page.evaluate(() => ASHEN.whenRest);
     if (bodyRequests !== 1) throw Error(`Expected one intercepted body request, got ${bodyRequests}`);
@@ -79,7 +83,7 @@ try {
     }
     await fs.writeFile(path.join(dir, 'frames.ffconcat'), concat);
     await fs.writeFile(path.join(dir, 'capture-manifest.json'), JSON.stringify({
-        sourceUrl: page.url(), variant, viewport: [1280, 720], canvas,
+        sourceUrl: page.url(), variant, candidateTarget: target, viewport: [1280, 720], canvas,
         frames: ordered.map(f => ({name: f.name, timestamp: f.time, width: f.width, height: f.height})),
     }, null, 2) + '\n');
     const report = {variant, file, sourceUrl: page.url(), viewport: [1280, 720], canvas,
