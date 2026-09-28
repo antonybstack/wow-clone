@@ -1,0 +1,117 @@
+{
+ "schema": 1,
+ "generatedBy": "scripts/character-assets/build-human-shape-family.mjs",
+ "fitProfile": "ashen-human-shape-v1",
+ "targetNames": [
+  "slender",
+  "stout"
+ ],
+ "base": {
+  "path": "public/ashen-reach/equipment/body.glb",
+  "sha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+  "vertices": 3274,
+  "triangles": 5325,
+  "joints": 65
+ },
+ "girthSource": {
+  "path": "docs/baselines/character-mmo/m004/makehuman-girth.json",
+  "sha256": "42977214cfcb9676cb69c9136538d112adac3eb4c190c626394f5c14b78b9069"
+ },
+ "output": {
+  "path": ".cache/character-mmo/m004/human-shape-family-v1.glb",
+  "sha256": "e8e564c9c362ad2473ef6de9042f9a701c67643b5c205c64da2d86e91725f3f5",
+  "bytes": 4104128,
+  "compression": null
+ },
+ "neutralIdentity": {
+  "method": "sha256 over POSITION/NORMAL/TEXCOORD_0/TANGENT/JOINTS_0/WEIGHTS_0/indices/joint order/inverse binds",
+  "sha256": "d9741c0e2cfa164695e098c6e9407d8305707aa092eb2c910dfd8b2b52255f61",
+  "matchesShippedBody": true
+ },
+ "clips": 57,
+ "segments": [
+  "mixamorig:Hips",
+  "mixamorig:Spine",
+  "mixamorig:Spine1",
+  "mixamorig:Spine2",
+  "mixamorig:Neck",
+  "mixamorig:Head",
+  "mixamorig:LeftShoulder",
+  "mixamorig:LeftArm",
+  "mixamorig:LeftForeArm",
+  "mixamorig:LeftHand",
+  "mixamorig:RightShoulder",
+  "mixamorig:RightArm",
+  "mixamorig:RightForeArm",
+  "mixamorig:RightHand",
+  "mixamorig:LeftUpLeg",
+  "mixamorig:LeftLeg",
+  "mixamorig:LeftFoot",
+  "mixamorig:RightUpLeg",
+  "mixamorig:RightLeg",
+  "mixamorig:RightFoot"
+ ],
+ "unmeasuredJoints": [
+  "mixamorig:HeadTop_End",
+  "mixamorig:LeftHandThumb1",
+  "mixamorig:LeftHandThumb2",
+  "mixamorig:LeftHandThumb3",
+  "mixamorig:LeftHandThumb4",
+  "mixamorig:LeftHandIndex1",
+  "mixamorig:LeftHandIndex2",
+  "mixamorig:LeftHandIndex3",
+  "mixamorig:LeftHandIndex4",
+  "mixamorig:LeftHandMiddle1",
+  "mixamorig:LeftHandMiddle2",
+  "mixamorig:LeftHandMiddle3",
+  "mixamorig:LeftHandMiddle4",
+  "mixamorig:LeftHandRing1",
+  "mixamorig:LeftHandRing2",
+  "mixamorig:LeftHandRing3",
+  "mixamorig:LeftHandRing4",
+  "mixamorig:LeftHandPinky1",
+  "mixamorig:LeftHandPinky2",
+  "mixamorig:LeftHandPinky3",
+  "mixamorig:LeftHandPinky4",
+  "mixamorig:RightHandThumb1",
+  "mixamorig:RightHandThumb2",
+  "mixamorig:RightHandThumb3",
+  "mixamorig:RightHandThumb4",
+  "mixamorig:RightHandIndex1",
+  "mixamorig:RightHandIndex2",
+  "mixamorig:RightHandIndex3",
+  "mixamorig:RightHandIndex4",
+  "mixamorig:RightHandMiddle1",
+  "mixamorig:RightHandMiddle2",
+  "mixamorig:RightHandMiddle3",
+  "mixamorig:RightHandMiddle4",
+  "mixamorig:RightHandRing1",
+  "mixamorig:RightHandRing2",
+  "mixamorig:RightHandRing3",
+  "mixamorig:RightHandRing4",
+  "mixamorig:RightHandPinky1",
+  "mixamorig:RightHandPinky2",
+  "mixamorig:RightHandPinky3",
+  "mixamorig:RightHandPinky4",
+  "mixamorig:LeftToeBase",
+  "mixamorig:LeftToe_End",
+  "mixamorig:RightToeBase",
+  "mixamorig:RightToe_End"
+ ],
+ "shapes": {
+  "slender": {
+   "movedVertices": 2789,
+   "maxDisplacementM": 0.027739,
+   "meanDisplacementM": 0.006761,
+   "shapedHeightM": 1.759992,
+   "shapedSpanXM": 1.805639
+  },
+  "stout": {
+   "movedVertices": 2789,
+   "maxDisplacementM": 0.034209,
+   "meanDisplacementM": 0.008007,
+   "shapedHeightM": 1.760026,
+   "shapedSpanXM": 1.805639
+  }
+ }
+}

@@ -1,0 +1,206 @@
+{
+ "schema": 1,
+ "url": "http://127.0.0.1:5873/ashen-reach.html",
+ "seconds": 6,
+ "heights": [
+  {
+   "id": "min",
+   "scale": 0.9,
+   "shape": "slender"
+  },
+  {
+   "id": "default",
+   "scale": 1,
+   "shape": "neutral"
+  },
+  {
+   "id": "max",
+   "scale": 1.15,
+   "shape": "stout"
+  }
+ ],
+ "rows": [
+  {
+   "height": "min",
+   "scale": 0.9,
+   "shape": "slender",
+   "route": "meadow",
+   "capsuleHeightM": 1.5732,
+   "cameraPivotM": 0.495,
+   "travelM": 42.03,
+   "recoveriesDelta": 0,
+   "grounded": true,
+   "physics": true
+  },
+  {
+   "height": "min",
+   "scale": 0.9,
+   "shape": "slender",
+   "route": "town",
+   "capsuleHeightM": 1.5732,
+   "cameraPivotM": 0.495,
+   "travelM": 39.99,
+   "recoveriesDelta": 0,
+   "grounded": false,
+   "physics": true
+  },
+  {
+   "height": "min",
+   "scale": 0.9,
+   "shape": "slender",
+   "route": "bridge",
+   "capsuleHeightM": 1.5732,
+   "cameraPivotM": 0.495,
+   "travelM": 42.04,
+   "recoveriesDelta": 0,
+   "grounded": true,
+   "physics": true
+  },
+  {
+   "height": "min",
+   "scale": 0.9,
+   "shape": "slender",
+   "route": "cathedral",
+   "capsuleHeightM": 1.5732,
+   "cameraPivotM": 0.495,
+   "travelM": 42.03,
+   "recoveriesDelta": 0,
+   "grounded": true,
+   "physics": true
+  },
+  {
+   "height": "min",
+   "scale": 0.9,
+   "shape": "slender",
+   "route": "forest",
+   "capsuleHeightM": 1.5732,
+   "cameraPivotM": 0.495,
+   "travelM": 33.73,
+   "recoveriesDelta": 0,
+   "grounded": true,
+   "physics": true
+  },
+  {
+   "height": "default",
+   "scale": 1,
+   "shape": "neutral",
+   "route": "meadow",
+   "capsuleHeightM": 1.748,
+   "cameraPivotM": 0.55,
+   "travelM": 41.97,
+   "recoveriesDelta": 0,
+   "grounded": true,
+   "physics": true
+  },
+  {
+   "height": "default",
+   "scale": 1,
+   "shape": "neutral",
+   "route": "town",
+   "capsuleHeightM": 1.748,
+   "cameraPivotM": 0.55,
+   "travelM": 40.02,
+   "recoveriesDelta": 0,
+   "grounded": false,
+   "physics": true
+  },
+  {
+   "height": "default",
+   "scale": 1,
+   "shape": "neutral",
+   "route": "bridge",
+   "capsuleHeightM": 1.748,
+   "cameraPivotM": 0.55,
+   "travelM": 42.04,
+   "recoveriesDelta": 0,
+   "grounded": true,
+   "physics": true
+  },
+  {
+   "height": "default",
+   "scale": 1,
+   "shape": "neutral",
+   "route": "cathedral",
+   "capsuleHeightM": 1.748,
+   "cameraPivotM": 0.55,
+   "travelM": 41.97,
+   "recoveriesDelta": 0,
+   "grounded": true,
+   "physics": true
+  },
+  {
+   "height": "default",
+   "scale": 1,
+   "shape": "neutral",
+   "route": "forest",
+   "capsuleHeightM": 1.748,
+   "cameraPivotM": 0.55,
+   "travelM": 33.7,
+   "recoveriesDelta": 0,
+   "grounded": true,
+   "physics": true
+  },
+  {
+   "height": "max",
+   "scale": 1.15,
+   "shape": "stout",
+   "route": "meadow",
+   "capsuleHeightM": 2.0102,
+   "cameraPivotM": 0.6325,
+   "travelM": 42.01,
+   "recoveriesDelta": 0,
+   "grounded": true,
+   "physics": true
+  },
+  {
+   "height": "max",
+   "scale": 1.15,
+   "shape": "stout",
+   "route": "town",
+   "capsuleHeightM": 2.0102,
+   "cameraPivotM": 0.6325,
+   "travelM": 39.79,
+   "recoveriesDelta": 0,
+   "grounded": true,
+   "physics": true
+  },
+  {
+   "height": "max",
+   "scale": 1.15,
+   "shape": "stout",
+   "route": "bridge",
+   "capsuleHeightM": 2.0102,
+   "cameraPivotM": 0.6325,
+   "travelM": 42.02,
+   "recoveriesDelta": 0,
+   "grounded": true,
+   "physics": true
+  },
+  {
+   "height": "max",
+   "scale": 1.15,
+   "shape": "stout",
+   "route": "cathedral",
+   "capsuleHeightM": 2.0102,
+   "cameraPivotM": 0.6325,
+   "travelM": 42.08,
+   "recoveriesDelta": 0,
+   "grounded": true,
+   "physics": true
+  },
+  {
+   "height": "max",
+   "scale": 1.15,
+   "shape": "stout",
+   "route": "forest",
+   "capsuleHeightM": 2.0102,
+   "cameraPivotM": 0.6325,
+   "travelM": 33.66,
+   "recoveriesDelta": 0,
+   "grounded": false,
+   "physics": true
+  }
+ ],
+ "failures": [],
+ "errors": []
+}

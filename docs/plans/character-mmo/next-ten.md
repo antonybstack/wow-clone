@@ -1,6 +1,6 @@
 # Next ten milestones — customization and crowd proof
 
-Status: **M001–M003 complete with inherited findings; M004 next**. Read the [100-milestone vision](vision-roadmap.md), [architecture](architecture.md) and [execution contract](execution-contract.md). Baseline evidence always identifies the actual HEAD and live assets.
+Status: **M001–M004 complete with inherited findings; M005 next**. Read the [100-milestone vision](vision-roadmap.md), [architecture](architecture.md) and [execution contract](execution-contract.md). Baseline evidence always identifies the actual HEAD and live assets.
 
 ## Sequence and risk ordering
 
@@ -29,6 +29,8 @@ Implement a small pure descriptor/validator/codec for existing appearances, with
 Build a separately imported developer probe using existing assets. Measure identical and varied populations at 100/300/1,000; compare independent animation with a compatible native baked/instanced path. Check full body + actual visible equipment, attachments, shadows, teardown and asynchronous churn. Execute M003a (one/ten dressed actors and ownership/shadow proof), M003b (repeated-outfit population curves), then M003c (bounded mixed-outfit proof or concrete blocker), using the gates in its brief. Exit is an evidence-backed architecture decision, including a negative result where appropriate. Do not hide failed high counts, substitute 1,000 invisible actors, or require production deployment. M004 can proceed after a negative M003 only when the report states a feasible alternative and revises the assumptions/budgets.
 
 ## M004 — Canonical Human template
+
+Status: **complete**. Brief: [implementation steps](m004-human-template.md). Result: [M004](results/m004.md).
 
 **Dependency:** M003 fit/animation constraints. **Inputs:** M001 real source inventory, approved Human references in `docs/references/human/`, current source-65 animation and equipment.
 
@@ -81,7 +83,7 @@ Choose the production schema/fit/material/animation/detail contracts; list defer
 | M001 | Complete; active Undead bind mismatch documented | [Result and baseline](results/m001.md) |
 | M002 | Complete; no startup import change | [Result and seeded recipes](results/m002.md) |
 | M003 | Complete feasibility probe; native VAT promising in isolation, actual-town shadow integration blocked | [Result, capacity curves and reviewed motion](results/m003.md) |
-| M004 | Planned | — |
+| M004 | Complete; shape family and height range proven, garment fit measured and handed to M005 | [Result, shape family and reviewed motion](results/m004.md) |
 | M005 | Planned | — |
 | M006 | Planned | — |
 | M007 | Planned | — |

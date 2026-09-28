@@ -1,0 +1,163 @@
+{
+ "schema": 1,
+ "generatedBy": "scripts/character-assets/measure-shape-garment-fit.mjs",
+ "candidate": ".cache/character-mmo/m004/human-shape-family-v1.glb",
+ "pose": "shared rest pose; animation is not evaluated",
+ "thresholds": {
+  "nearMetres": 0.06,
+  "coverRayMetres": 0.06
+ },
+ "definitions": {
+  "coveredByGarment": "a ray along the body vertex normal, coverRayMetres long, hits the garment",
+  "newlyUncovered": "covered on the neutral body and not on this shape: skin this shape put outside the cloth",
+  "newlyCovered": "uncovered on neutral and covered here: the shape pulled the body back inside",
+  "worstNewGapMm": "largest distance from the cloth among the newly uncovered vertices"
+ },
+ "note": "HumanV1Body is a single mesh with no hideable regions, so every newly uncovered vertex is drawn.",
+ "rows": [
+  {
+   "garment": "wayfarerTunic",
+   "slot": "torso",
+   "shape": "neutral",
+   "bodyVerticesInRegion": 1103,
+   "coveredByGarment": 913,
+   "newlyUncovered": 0,
+   "newlyCovered": 0,
+   "worstNewGapMm": 0,
+   "meanNewGapMm": 0,
+   "worstAt": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   }
+  },
+  {
+   "garment": "wayfarerTunic",
+   "slot": "torso",
+   "shape": "slender",
+   "bodyVerticesInRegion": 1084,
+   "coveredByGarment": 870,
+   "newlyUncovered": 43,
+   "newlyCovered": 0,
+   "worstNewGapMm": 64.23,
+   "meanNewGapMm": 43.86,
+   "worstAt": {
+    "x": -0.0445,
+    "y": 0.8302,
+    "z": 0.0439
+   }
+  },
+  {
+   "garment": "wayfarerTunic",
+   "slot": "torso",
+   "shape": "stout",
+   "bodyVerticesInRegion": 1118,
+   "coveredByGarment": 572,
+   "newlyUncovered": 364,
+   "newlyCovered": 23,
+   "worstNewGapMm": 30.19,
+   "meanNewGapMm": 5.82,
+   "worstAt": {
+    "x": 0.0047,
+    "y": 0.8484,
+    "z": 0.0982
+   }
+  },
+  {
+   "garment": "wayfarerTrousers",
+   "slot": "legs",
+   "shape": "neutral",
+   "bodyVerticesInRegion": 881,
+   "coveredByGarment": 756,
+   "newlyUncovered": 0,
+   "newlyCovered": 0,
+   "worstNewGapMm": 0,
+   "meanNewGapMm": 0,
+   "worstAt": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   }
+  },
+  {
+   "garment": "wayfarerTrousers",
+   "slot": "legs",
+   "shape": "slender",
+   "bodyVerticesInRegion": 878,
+   "coveredByGarment": 750,
+   "newlyUncovered": 11,
+   "newlyCovered": 5,
+   "worstNewGapMm": 62.03,
+   "meanNewGapMm": 42.93,
+   "worstAt": {
+    "x": 0.1286,
+    "y": 0.6393,
+    "z": 0.0299
+   }
+  },
+  {
+   "garment": "wayfarerTrousers",
+   "slot": "legs",
+   "shape": "stout",
+   "bodyVerticesInRegion": 883,
+   "coveredByGarment": 510,
+   "newlyUncovered": 250,
+   "newlyCovered": 4,
+   "worstNewGapMm": 17.72,
+   "meanNewGapMm": 6.02,
+   "worstAt": {
+    "x": -0.1712,
+    "y": 0.9929,
+    "z": -0.0149
+   }
+  },
+  {
+   "garment": "wayfarerBoots",
+   "slot": "boots",
+   "shape": "neutral",
+   "bodyVerticesInRegion": 739,
+   "coveredByGarment": 669,
+   "newlyUncovered": 0,
+   "newlyCovered": 0,
+   "worstNewGapMm": 0,
+   "meanNewGapMm": 0,
+   "worstAt": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   }
+  },
+  {
+   "garment": "wayfarerBoots",
+   "slot": "boots",
+   "shape": "slender",
+   "bodyVerticesInRegion": 735,
+   "coveredByGarment": 669,
+   "newlyUncovered": 0,
+   "newlyCovered": 0,
+   "worstNewGapMm": 0,
+   "meanNewGapMm": 0,
+   "worstAt": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+   }
+  },
+  {
+   "garment": "wayfarerBoots",
+   "slot": "boots",
+   "shape": "stout",
+   "bodyVerticesInRegion": 741,
+   "coveredByGarment": 660,
+   "newlyUncovered": 9,
+   "newlyCovered": 0,
+   "worstNewGapMm": 5.63,
+   "meanNewGapMm": 1.76,
+   "worstAt": {
+    "x": -0.2068,
+    "y": 0.4002,
+    "z": -0.1386
+   }
+  }
+ ]
+}

@@ -1,0 +1,359 @@
+{
+ "schema": 1,
+ "url": "http://127.0.0.1:5873/ashen-reach.html",
+ "cases": [
+  {
+   "id": "neutral",
+   "query": "humanShape=neutral",
+   "request": {
+    "fit": "ashen-human-shape-v1",
+    "shape": "neutral",
+    "weights": [
+     0,
+     0
+    ],
+    "heightScale": 1,
+    "heightClamped": false,
+    "assetURL": null,
+    "visualHeightM": 1.76,
+    "capsuleHeightM": 1.748,
+    "applied": true
+   },
+   "morphMeshes": [],
+   "usingPhysics": true,
+   "capsuleHeight": 1.748,
+   "heightScale": 1,
+   "rootScale": {
+    "x": -1,
+    "y": 1,
+    "z": 1
+   },
+   "pivotHeight": 0.55,
+   "enemies": 7,
+   "canvas": [
+    1280,
+    720
+   ],
+   "socketY": null,
+   "shadowCasters": null,
+   "movement": {
+    "start": {
+     "x": -0.00019263481405332747,
+     "y": 0.8881936399274721,
+     "z": -0.0003399437667014664
+    },
+    "end": {
+     "x": -0.00036184244707717397,
+     "y": 1.2457587116829696,
+     "z": 5.534782907381349
+    },
+    "travelM": 5.535122853734372,
+    "grounded": true
+   },
+   "errors": []
+  },
+  {
+   "id": "slender",
+   "query": "humanShape=slender",
+   "request": {
+    "fit": "ashen-human-shape-v1",
+    "shape": "slender",
+    "weights": [
+     1,
+     0
+    ],
+    "heightScale": 1,
+    "heightClamped": false,
+    "assetURL": "/__human_shape__/human-shape-family-v1.glb",
+    "visualHeightM": 1.76,
+    "capsuleHeightM": 1.748,
+    "applied": true
+   },
+   "morphMeshes": [
+    {
+     "name": "HumanV1Body",
+     "targets": 2,
+     "weights": [
+      1,
+      0
+     ],
+     "skinned": true
+    }
+   ],
+   "usingPhysics": true,
+   "capsuleHeight": 1.748,
+   "heightScale": 1,
+   "rootScale": {
+    "x": -1,
+    "y": 1,
+    "z": 1
+   },
+   "pivotHeight": 0.55,
+   "enemies": 7,
+   "canvas": [
+    1280,
+    720
+   ],
+   "socketY": null,
+   "shadowCasters": null,
+   "movement": {
+    "start": {
+     "x": -0.00014583792196422608,
+     "y": 0.8882064539530218,
+     "z": -0.00025736102106731516
+    },
+    "end": {
+     "x": -0.00035464006517277937,
+     "y": 1.2370142733630312,
+     "z": 5.772011341134839
+    },
+    "travelM": 5.77226870593244,
+    "grounded": true
+   },
+   "errors": []
+  },
+  {
+   "id": "stout",
+   "query": "humanShape=stout",
+   "request": {
+    "fit": "ashen-human-shape-v1",
+    "shape": "stout",
+    "weights": [
+     0,
+     1
+    ],
+    "heightScale": 1,
+    "heightClamped": false,
+    "assetURL": "/__human_shape__/human-shape-family-v1.glb",
+    "visualHeightM": 1.76,
+    "capsuleHeightM": 1.748,
+    "applied": true
+   },
+   "morphMeshes": [
+    {
+     "name": "HumanV1Body",
+     "targets": 2,
+     "weights": [
+      0,
+      1
+     ],
+     "skinned": true
+    }
+   ],
+   "usingPhysics": true,
+   "capsuleHeight": 1.748,
+   "heightScale": 1,
+   "rootScale": {
+    "x": -1,
+    "y": 1,
+    "z": 1
+   },
+   "pivotHeight": 0.55,
+   "enemies": 7,
+   "canvas": [
+    1280,
+    720
+   ],
+   "socketY": null,
+   "shadowCasters": null,
+   "movement": {
+    "start": {
+     "x": -0.00014036021497381841,
+     "y": 0.8882079429136633,
+     "z": -0.00024769447960604283
+    },
+    "end": {
+     "x": -0.0002668724093564801,
+     "y": 1.2402699683191951,
+     "z": 5.424365802719758
+    },
+    "travelM": 5.424613498674615,
+    "grounded": true
+   },
+   "errors": []
+  },
+  {
+   "id": "blend",
+   "query": "humanShape=slender:0.5,stout:0.5",
+   "request": {
+    "fit": "ashen-human-shape-v1",
+    "shape": {
+     "slender": 0.5,
+     "stout": 0.5
+    },
+    "weights": [
+     0.5,
+     0.5
+    ],
+    "heightScale": 1,
+    "heightClamped": false,
+    "assetURL": "/__human_shape__/human-shape-family-v1.glb",
+    "visualHeightM": 1.76,
+    "capsuleHeightM": 1.748,
+    "applied": true
+   },
+   "morphMeshes": [
+    {
+     "name": "HumanV1Body",
+     "targets": 2,
+     "weights": [
+      0.5,
+      0.5
+     ],
+     "skinned": true
+    }
+   ],
+   "usingPhysics": true,
+   "capsuleHeight": 1.748,
+   "heightScale": 1,
+   "rootScale": {
+    "x": -1,
+    "y": 1,
+    "z": 1
+   },
+   "pivotHeight": 0.55,
+   "enemies": 7,
+   "canvas": [
+    1280,
+    720
+   ],
+   "socketY": null,
+   "shadowCasters": null,
+   "movement": {
+    "start": {
+     "x": -0.00014034970077504122,
+     "y": 0.8882079465829104,
+     "z": -0.0002476759254069646
+    },
+    "end": {
+     "x": -0.0004165397540667181,
+     "y": 1.2394242852771864,
+     "z": 5.6312703812157325
+    },
+    "travelM": 5.63151806391382,
+    "grounded": true
+   },
+   "errors": []
+  },
+  {
+   "id": "short",
+   "query": "humanShape=slender&humanHeight=0.9",
+   "request": {
+    "fit": "ashen-human-shape-v1",
+    "shape": "slender",
+    "weights": [
+     1,
+     0
+    ],
+    "heightScale": 0.9,
+    "heightClamped": false,
+    "assetURL": "/__human_shape__/human-shape-family-v1.glb",
+    "visualHeightM": 1.584,
+    "capsuleHeightM": 1.5732,
+    "applied": true
+   },
+   "morphMeshes": [
+    {
+     "name": "HumanV1Body",
+     "targets": 2,
+     "weights": [
+      1,
+      0
+     ],
+     "skinned": true
+    }
+   ],
+   "usingPhysics": true,
+   "capsuleHeight": 1.5732,
+   "heightScale": 0.9,
+   "rootScale": {
+    "x": -0.9,
+    "y": 0.9,
+    "z": 0.9
+   },
+   "pivotHeight": 0.49500000000000005,
+   "enemies": 7,
+   "canvas": [
+    1280,
+    720
+   ],
+   "socketY": null,
+   "shadowCasters": null,
+   "movement": {
+    "start": {
+     "x": -0.0001346225836145349,
+     "y": 0.8005566910759983,
+     "z": -0.0002375692487563428
+    },
+    "end": {
+     "x": -0.0005909147624439178,
+     "y": 1.1579238173896846,
+     "z": 5.665600980167786
+    },
+    "travelM": 5.66583856779004,
+    "grounded": true
+   },
+   "errors": []
+  },
+  {
+   "id": "tall",
+   "query": "humanShape=stout&humanHeight=1.15",
+   "request": {
+    "fit": "ashen-human-shape-v1",
+    "shape": "stout",
+    "weights": [
+     0,
+     1
+    ],
+    "heightScale": 1.15,
+    "heightClamped": false,
+    "assetURL": "/__human_shape__/human-shape-family-v1.glb",
+    "visualHeightM": 2.024,
+    "capsuleHeightM": 2.0101999999999998,
+    "applied": true
+   },
+   "morphMeshes": [
+    {
+     "name": "HumanV1Body",
+     "targets": 2,
+     "weights": [
+      0,
+      1
+     ],
+     "skinned": true
+    }
+   ],
+   "usingPhysics": true,
+   "capsuleHeight": 2.0101999999999998,
+   "heightScale": 1.15,
+   "rootScale": {
+    "x": -1.15,
+    "y": 1.15,
+    "z": 1.15
+   },
+   "pivotHeight": 0.6325,
+   "enemies": 7,
+   "canvas": [
+    1280,
+    720
+   ],
+   "socketY": null,
+   "shadowCasters": null,
+   "movement": {
+    "start": {
+     "x": -0.0001549052191122538,
+     "y": 1.0196833021998848,
+     "z": -0.00027336213242038653
+    },
+    "end": {
+     "x": -0.00026616326096279687,
+     "y": 1.3715038770653412,
+     "z": 5.493750748082006
+    },
+    "travelM": 5.494024111340955,
+    "grounded": true
+   },
+   "errors": []
+  }
+ ]
+}

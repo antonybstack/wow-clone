@@ -75,8 +75,18 @@ async function main(){
  const starterWorldP=fastStart?preloadStarterWorld():null;
  const starterCharacterP=fastStart?preloadStarterCharacter():null;
  starterWorldP?.catch(()=>{});starterCharacterP?.catch(()=>{});
- const bodyUrl=preloadedEquipment?'/ashen-reach/wanderer-equipment.glb':'/ashen-reach/equipment/body.glb';
- const bodyBufP=fastStart?starterCharacterP.then(m=>startupAssetBuffer(m.items.body)):fetchBuffer(bodyUrl,'high');
+ // M004 developer shape family. `resolveHumanShape` answers null for every URL that does
+ // not name `humanShape` or `humanHeight`, so the default route below is untouched. When a
+ // morph target is actually driven the character comes from the candidate GLB instead of the
+ // compressed startup pack -- same body, same bind, same clips, plus two shape targets -- so
+ // the character half of the fast start is bypassed while the fast world is kept.
+ const humanShape=params.has('humanShape')||params.has('humanHeight')
+  ?(await import('../character/runtime/human-shape.js')).resolveHumanShape(params)
+  :null;
+ const shapeCandidate=humanShape?.assetURL||null;
+ const fastCharacter=fastStart&&!shapeCandidate;
+ const bodyUrl=shapeCandidate||(preloadedEquipment?'/ashen-reach/wanderer-equipment.glb':'/ashen-reach/equipment/body.glb');
+ const bodyBufP=fastCharacter?starterCharacterP.then(m=>startupAssetBuffer(m.items.body)):fetchBuffer(bodyUrl,'high');
  bodyBufP.catch(()=>{});
  // Havok's 650 KB WASM gates grounded movement and needs nothing from the scene, so it
  // downloads and compiles alongside the body instead of starting inside setupPlayer once
@@ -85,7 +95,7 @@ async function main(){
  havokP.then(()=>markStartup('havok-runtime-available')).catch(()=>{});
  // Starter clothes wait until the body bytes have arrived, then warm the
  // cache at low priority. They used to race the body on the first connection.
- if(!preloadedEquipment&&!fastStart){
+ if(!preloadedEquipment&&!fastCharacter){
   bodyBufP.then(()=>{
    for(const url of ['/ashen-reach/equipment/manifest.json','/ashen-reach/equipment/wayfarerTunic.glb','/ashen-reach/equipment/wayfarerTrousers.glb','/ashen-reach/equipment/wayfarerBoots.glb']){
     fetch(url,{priority:'low'}).catch(()=>{});
@@ -145,6 +155,37 @@ async function main(){
   combat?.setVisible(v==='play');
  };
  const reset=()=>{if(!player||!capsule)return;player.setWorldPos(0,height(0,0)+capsule.height/2,0);player.setFacing(0);rig.yaw=0;rig.pitch=.04;combat?.releaseSpirit?.(true);setView('reference');};
+ /**
+  * M004 developer shape family, applied to the one body this route owns.
+  *
+  * Morph weights go straight onto the loaded mesh. Lite composes morph deltas into
+  * `morphedPos`/`morphedNorm` in the vertex stage *before* skinning, so a shaped body
+  * still deforms with the same 65-joint palette and the same clips
+  * (`@babylonjs/lite/lib/shader/fragments/morph-fragment-core.js`, `MORPH_PRE_SKINNING`).
+  *
+  * Height is a uniform scale on the visual root, which already carries the -1 X mirror
+  * `mountBodyRoot` installs; the sockets read that same root scale, so hand and weapon
+  * placement follows without a second height path. The camera pivot is the one value
+  * that is not derived from the body, so it is scaled here.
+  */
+ const applyHumanShape=async request=>{
+  if(request.weights.some(w=>w>0)){
+   const {setMorphTargetWeights}=await import('@babylonjs/lite');
+   let applied=0;
+   const visit=node=>{
+    if(node?.morphTargets){setMorphTargetWeights(engine,node.morphTargets,request.weights);applied++;}
+    for(const child of node?.children||[])visit(child);
+   };
+   visit(body.root);
+   if(!applied)throw Error(`No morph targets on the loaded body; ${bodyUrl} is not the shape-family candidate`);
+  }
+  if(request.heightScale!==1){
+   const s=request.heightScale,root=body.root;
+   if(root?.scaling){root.scaling.x=Math.sign(root.scaling.x||-1)*s;root.scaling.y=s;root.scaling.z=s;}
+   rig.pivotHeight*=s;
+  }
+  ashen.humanShape={...request,applied:true};
+ };
  const menu=createGameMenu({onArmory:()=>armory?.open(),onDev:on=>tools.setEnabled?.(on)});
  document.addEventListener('keydown',e=>{if(armory?.isOpen||menu.isOpen)return;if(e.code==='KeyV'){setView(view==='reference'?'play':'reference');}if(e.code==='KeyR'){if(combat?.releaseSpirit?.())return;reset();}if(e.code==='KeyH')document.body.classList.toggle('clean');if(['KeyW','KeyA','KeyS','KeyD','Space','Tab','Digit1','Digit2','Digit3','KeyF'].includes(e.code))setView('play');});
  if(params.has('clean'))document.body.classList.add('clean');
@@ -160,7 +201,7 @@ async function main(){
   whenHostiles:hostilesBoundary.promise,
   whenFirstGpuFrame:firstGpuCompleted.promise,dispose:()=>disposeScene(scene),
   async whenNextGpuFrame(){const frame=ashen.gpu.frames;while(ashen.gpu.frames<=frame)await new Promise(requestAnimationFrame);await waitForGpuIdle(engine);},
-  startup:{marks:startupMarks,timings:startupTimings,span:startupSpanMs},dev,menu,get player(){return player;},get body(){return body;},get combat(){return combat;},get equipment(){return equipment;},get armory(){return armory;}};
+  startup:{marks:startupMarks,timings:startupTimings,span:startupSpanMs},humanShape:null,dev,menu,get player(){return player;},get body(){return body;},get combat(){return combat;},get equipment(){return equipment;},get armory(){return armory;},get sockets(){return sockets;}};
  ashen.gpu=gpu;
  onBeforeRender(scene,()=>{gpu.frames++;});
  globalThis.ASHEN=ashen;
@@ -177,11 +218,16 @@ async function main(){
  markStartup('havok-start');
  player=await setupPlayer(engine,scene,rig,{spawn:plantSpawnOnTerrain(world.spawn,capsule,world.groundHeight),colliders:world.colliders,groundHeight:world.groundHeight,boundsRadius:Infinity,capsule,havok:havokP,onPhase:markStartup});
  markStartup('havok-end');
+ // Height is applied to the Havok controller first, so `player.capsuleHeight` below is
+ // already the scaled capsule that the body root and the sockets are mounted against.
+ // Collision authority never leaves the capsule; the visual only follows it.
+ if(humanShape&&humanShape.heightScale!==1)player.setHeightScale(humanShape.heightScale);
  world.releaseInitialCollisionSources?.();
  markStartup('body-start');
  body=await attachBody(engine,scene,player,player.capsuleHeight,playable);
  const starterBodyContainer=body.container;
  markStartup('body-end');
+ if(humanShape)await applyHumanShape(humanShape);
  // Sockets need the player capsule and the body's skeleton and nothing else, so they do not
  // have to wait for combat. Hoisting them out of the spell VFX is what lets the starter
  // garments and the starter weapon be worn before any combat module has been fetched.
@@ -197,7 +243,7 @@ async function main(){
  // thing to reconcile -- createStreamedEquipment names any region it cannot bind.
  const UNDEAD_PACK_DIR='equipment-undead';
  const packs={
-  human:{race:'human',manifestUrl:fastStart?'/ashen-reach/startup/character/manifest.json':'/ashen-reach/equipment/manifest.json',baseMeshes:['HumanV1Body'],fitId:HUMAN_EQUIPMENT_FIT,...(fastStart?{manifest:await starterCharacterP,loadBuffer:startupAssetBuffer}:{})},
+  human:{race:'human',manifestUrl:fastCharacter?'/ashen-reach/startup/character/manifest.json':'/ashen-reach/equipment/manifest.json',baseMeshes:['HumanV1Body'],fitId:HUMAN_EQUIPMENT_FIT,...(fastCharacter?{manifest:await starterCharacterP,loadBuffer:startupAssetBuffer}:{})},
   orc:{race:'orc',manifestUrl:'/ashen-reach/equipment-orc/manifest.json',baseMeshes:ORC_BASE_VISIBLE_MESHES,fitId:ORC_EQUIPMENT_FIT,bodyUrl:'/ashen-reach/equipment-orc/body.glb'},
   undead:{race:'undead',manifestUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/manifest.json`,baseMeshes:UNDEAD_BASE_VISIBLE_MESHES,fitId:UNDEAD_EQUIPMENT_FIT,bodyUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/body.glb`},
  };
@@ -356,7 +402,7 @@ async function main(){
     foliageP.catch(()=>{});
   const texturesP=regionP.then(async()=>{
    if(world.upgradeTextures)await world.upgradeTextures();
-   if(fastStart)await upgradeStarterCharacter(engine,scene,starterBodyContainer,await starterCharacterP);
+   if(fastCharacter)await upgradeStarterCharacter(engine,scene,starterBodyContainer,await starterCharacterP);
   });
   texturesP.catch(()=>{});
   const [

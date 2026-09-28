@@ -1,0 +1,905 @@
+{
+ "schema": 1,
+ "generatedBy": "scripts/character-assets/measure-makehuman-girth.py",
+ "method": {
+  "bodies": {
+   "lean": "base + caucasian-male-young + universal-male-old-minmuscle-minweight",
+   "mid": "base + caucasian-male-young + 0.5*lean-target + 0.5*heavy-target",
+   "heavy": "base + caucasian-male-young + universal-male-young-maxmuscle-maxweight"
+  },
+  "statureNormalisedTo": 17.4813,
+  "rawStature": {
+   "mid": 17.4813,
+   "lean": 17.4813,
+   "heavy": 17.4813
+  },
+  "girth": "weight-averaged perpendicular distance from the bone head-to-tail axis",
+  "axes": "e1/e2 are weighted RMS extents along the two axes of the perpendicular plane, e2 = world Z projected into that plane (body depth), e1 = cross(e2, axis)",
+  "minBoneWeight": 0.15,
+  "units": "MakeHuman decimetre-scale source units; only ratios are used downstream"
+ },
+ "license": "CC0 1.0 Universal (MakeHuman graphical assets)",
+ "sources": {
+  "base": {
+   "path": "blender/characters/sources/base.obj",
+   "sha256": "8e761e6624b8f54536409135d1636da63b32486a90d4897f84e121d144f6fb4c"
+  },
+  "macro": {
+   "path": "blender/characters/sources/caucasian-male-young.target",
+   "sha256": "70e228ba7164737dae664454394536fc5935fa48d333c1a97d77e2dc6eacc5f5"
+  },
+  "lean": {
+   "path": "blender/characters/sources/universal-male-old-minmuscle-minweight.target",
+   "sha256": "2d2f1bc78b1ac1f87adcf4e632a58bfb1237ab1f4b8b5527f2e6907d38b2364d"
+  },
+  "heavy": {
+   "path": "blender/characters/sources/universal-male-young-maxmuscle-maxweight.target",
+   "sha256": "95392741389537889a37dc67a7d8453c93b30f27131e3e622bee3f30d1d8738c"
+  },
+  "skel": {
+   "path": "blender/characters/sources/default.mhskel",
+   "sha256": "99f179bce0aa850b45d4191a1d0d234c5851f881c057439470ded3bddf729a24"
+  },
+  "weights": {
+   "path": "blender/characters/sources/default_weights.mhw",
+   "sha256": "0f3641d651ae3d00ad6b4ccee43142edb109d3bd909d27d9e4139ef1beed8625"
+  }
+ },
+ "segments": {
+  "mixamorig:Hips": {
+   "bones": [
+    "spine05",
+    "pelvis.L",
+    "pelvis.R"
+   ],
+   "vertices": 466,
+   "axis": [
+    "spine05____head",
+    "spine04____head"
+   ],
+   "perpZResidual": 0.939316,
+   "girth": {
+    "lean": {
+     "mean": 0.870479,
+     "e1": 0.774061,
+     "e2": 0.597776
+    },
+    "mid": {
+     "mean": 0.944373,
+     "e1": 0.79095,
+     "e2": 0.704955
+    },
+    "heavy": {
+     "mean": 1.031624,
+     "e1": 0.813403,
+     "e2": 0.823628
+    }
+   },
+   "axisLabels": [
+    "crossWidth",
+    "depth"
+   ],
+   "slender": 0.921754,
+   "stout": 1.09239,
+   "slenderAxes": [
+    0.978647,
+    0.847964
+   ],
+   "stoutAxes": [
+    1.028388,
+    1.168342
+   ]
+  },
+  "mixamorig:Spine": {
+   "bones": [
+    "spine04"
+   ],
+   "vertices": 415,
+   "axis": [
+    "spine04____head",
+    "spine04____tail"
+   ],
+   "perpZResidual": 0.991146,
+   "girth": {
+    "lean": {
+     "mean": 1.085304,
+     "e1": 0.788451,
+     "e2": 0.850476
+    },
+    "mid": {
+     "mean": 1.254665,
+     "e1": 0.871881,
+     "e2": 1.012196
+    },
+    "heavy": {
+     "mean": 1.432378,
+     "e1": 0.962958,
+     "e2": 1.181592
+    }
+   },
+   "axisLabels": [
+    "crossWidth",
+    "depth"
+   ],
+   "slender": 0.865015,
+   "stout": 1.141641,
+   "slenderAxes": [
+    0.90431,
+    0.840229
+   ],
+   "stoutAxes": [
+    1.104459,
+    1.167356
+   ]
+  },
+  "mixamorig:Spine1": {
+   "bones": [
+    "spine03"
+   ],
+   "vertices": 418,
+   "axis": [
+    "spine03____head",
+    "spine03____tail"
+   ],
+   "perpZResidual": 0.990943,
+   "girth": {
+    "lean": {
+     "mean": 0.915412,
+     "e1": 0.778141,
+     "e2": 0.669546
+    },
+    "mid": {
+     "mean": 1.12366,
+     "e1": 0.93512,
+     "e2": 0.789213
+    },
+    "heavy": {
+     "mean": 1.33758,
+     "e1": 1.098822,
+     "e2": 0.918719
+    }
+   },
+   "axisLabels": [
+    "crossWidth",
+    "depth"
+   ],
+   "slender": 0.81467,
+   "stout": 1.190377,
+   "slenderAxes": [
+    0.832129,
+    0.848372
+   ],
+   "stoutAxes": [
+    1.175059,
+    1.164096
+   ]
+  },
+  "mixamorig:Spine2": {
+   "bones": [
+    "spine02",
+    "spine01"
+   ],
+   "vertices": 1190,
+   "axis": [
+    "spine02____head",
+    "spine01____tail"
+   ],
+   "perpZResidual": 0.993638,
+   "girth": {
+    "lean": {
+     "mean": 1.054744,
+     "e1": 0.845798,
+     "e2": 0.795594
+    },
+    "mid": {
+     "mean": 1.240604,
+     "e1": 0.920169,
+     "e2": 0.956645
+    },
+    "heavy": {
+     "mean": 1.439518,
+     "e1": 0.999174,
+     "e2": 1.137699
+    }
+   },
+   "axisLabels": [
+    "crossWidth",
+    "depth"
+   ],
+   "slender": 0.850186,
+   "stout": 1.160337,
+   "slenderAxes": [
+    0.919177,
+    0.83165
+   ],
+   "stoutAxes": [
+    1.085859,
+    1.18926
+   ]
+  },
+  "mixamorig:Neck": {
+   "bones": [
+    "neck01",
+    "neck02",
+    "neck03"
+   ],
+   "vertices": 403,
+   "axis": [
+    "neck01____head",
+    "neck03____tail"
+   ],
+   "perpZResidual": 0.949184,
+   "girth": {
+    "lean": {
+     "mean": 0.535758,
+     "e1": 0.403339,
+     "e2": 0.384402
+    },
+    "mid": {
+     "mean": 0.6603,
+     "e1": 0.480195,
+     "e2": 0.473128
+    },
+    "heavy": {
+     "mean": 0.798435,
+     "e1": 0.560629,
+     "e2": 0.59131
+    }
+   },
+   "axisLabels": [
+    "crossWidth",
+    "depth"
+   ],
+   "slender": 0.811385,
+   "stout": 1.209199,
+   "slenderAxes": [
+    0.839949,
+    0.81247
+   ],
+   "stoutAxes": [
+    1.167504,
+    1.249787
+   ]
+  },
+  "mixamorig:Head": {
+   "bones": [
+    "head"
+   ],
+   "vertices": 3312,
+   "axis": [
+    "head____head",
+    "head____tail"
+   ],
+   "perpZResidual": 0.999995,
+   "girth": {
+    "lean": {
+     "mean": 0.830168,
+     "e1": 0.503545,
+     "e2": 0.687051
+    },
+    "mid": {
+     "mean": 0.831614,
+     "e1": 0.504686,
+     "e2": 0.68749
+    },
+    "heavy": {
+     "mean": 0.833068,
+     "e1": 0.50599,
+     "e2": 0.687992
+    }
+   },
+   "axisLabels": [
+    "crossWidth",
+    "depth"
+   ],
+   "slender": 0.998262,
+   "stout": 1.001748,
+   "slenderAxes": [
+    0.997739,
+    0.999362
+   ],
+   "stoutAxes": [
+    1.002583,
+    1.00073
+   ]
+  },
+  "mixamorig:LeftShoulder": {
+   "bones": [
+    "clavicle.L",
+    "shoulder01.L"
+   ],
+   "vertices": 115,
+   "axis": [
+    "clavicle.L____head",
+    "shoulder01.L____tail"
+   ],
+   "perpZResidual": 0.999495,
+   "girth": {
+    "lean": {
+     "mean": 0.555506,
+     "e1": 0.368333,
+     "e2": 0.434619
+    },
+    "mid": {
+     "mean": 0.730273,
+     "e1": 0.495256,
+     "e2": 0.56821
+    },
+    "heavy": {
+     "mean": 0.912877,
+     "e1": 0.630273,
+     "e2": 0.729273
+    }
+   },
+   "axisLabels": [
+    "crossWidth",
+    "depth"
+   ],
+   "slender": 0.760683,
+   "stout": 1.250048,
+   "slenderAxes": [
+    0.743722,
+    0.764892
+   ],
+   "stoutAxes": [
+    1.27262,
+    1.283456
+   ]
+  },
+  "mixamorig:RightShoulder": {
+   "bones": [
+    "clavicle.R",
+    "shoulder01.R"
+   ],
+   "vertices": 115,
+   "axis": [
+    "clavicle.R____head",
+    "shoulder01.R____tail"
+   ],
+   "perpZResidual": 0.999495,
+   "girth": {
+    "lean": {
+     "mean": 0.555506,
+     "e1": 0.368333,
+     "e2": 0.434619
+    },
+    "mid": {
+     "mean": 0.730273,
+     "e1": 0.495256,
+     "e2": 0.56821
+    },
+    "heavy": {
+     "mean": 0.912877,
+     "e1": 0.630273,
+     "e2": 0.729273
+    }
+   },
+   "axisLabels": [
+    "crossWidth",
+    "depth"
+   ],
+   "slender": 0.760683,
+   "stout": 1.250048,
+   "slenderAxes": [
+    0.743722,
+    0.764892
+   ],
+   "stoutAxes": [
+    1.27262,
+    1.283456
+   ]
+  },
+  "mixamorig:LeftArm": {
+   "bones": [
+    "upperarm01.L",
+    "upperarm02.L"
+   ],
+   "vertices": 377,
+   "axis": [
+    "upperarm01.L____head",
+    "upperarm02.L____tail"
+   ],
+   "perpZResidual": 0.999963,
+   "girth": {
+    "lean": {
+     "mean": 0.373609,
+     "e1": 0.263204,
+     "e2": 0.311801
+    },
+    "mid": {
+     "mean": 0.538952,
+     "e1": 0.361456,
+     "e2": 0.425292
+    },
+    "heavy": {
+     "mean": 0.720565,
+     "e1": 0.489325,
+     "e2": 0.573663
+    }
+   },
+   "axisLabels": [
+    "crossWidth",
+    "depth"
+   ],
+   "slender": 0.693214,
+   "stout": 1.336974,
+   "slenderAxes": [
+    0.728177,
+    0.733146
+   ],
+   "stoutAxes": [
+    1.35376,
+    1.34887
+   ]
+  },
+  "mixamorig:RightArm": {
+   "bones": [
+    "upperarm01.R",
+    "upperarm02.R"
+   ],
+   "vertices": 377,
+   "axis": [
+    "upperarm01.R____head",
+    "upperarm02.R____tail"
+   ],
+   "perpZResidual": 0.999963,
+   "girth": {
+    "lean": {
+     "mean": 0.373609,
+     "e1": 0.263204,
+     "e2": 0.311801
+    },
+    "mid": {
+     "mean": 0.538952,
+     "e1": 0.361456,
+     "e2": 0.425292
+    },
+    "heavy": {
+     "mean": 0.720565,
+     "e1": 0.489325,
+     "e2": 0.573663
+    }
+   },
+   "axisLabels": [
+    "crossWidth",
+    "depth"
+   ],
+   "slender": 0.693214,
+   "stout": 1.336974,
+   "slenderAxes": [
+    0.728177,
+    0.733146
+   ],
+   "stoutAxes": [
+    1.35376,
+    1.34887
+   ]
+  },
+  "mixamorig:LeftForeArm": {
+   "bones": [
+    "lowerarm01.L",
+    "lowerarm02.L"
+   ],
+   "vertices": 325,
+   "axis": [
+    "lowerarm01.L____head",
+    "lowerarm02.L____tail"
+   ],
+   "perpZResidual": 0.699224,
+   "girth": {
+    "lean": {
+     "mean": 0.275737,
+     "e1": 0.214013,
+     "e2": 0.207088
+    },
+    "mid": {
+     "mean": 0.367119,
+     "e1": 0.274421,
+     "e2": 0.266953
+    },
+    "heavy": {
+     "mean": 0.478928,
+     "e1": 0.358991,
+     "e2": 0.35145
+    }
+   },
+   "axisLabels": [
+    "crossWidth",
+    "depth"
+   ],
+   "slender": 0.751082,
+   "stout": 1.304557,
+   "slenderAxes": [
+    0.77987,
+    0.775746
+   ],
+   "stoutAxes": [
+    1.308178,
+    1.316522
+   ]
+  },
+  "mixamorig:RightForeArm": {
+   "bones": [
+    "lowerarm01.R",
+    "lowerarm02.R"
+   ],
+   "vertices": 325,
+   "axis": [
+    "lowerarm01.R____head",
+    "lowerarm02.R____tail"
+   ],
+   "perpZResidual": 0.699224,
+   "girth": {
+    "lean": {
+     "mean": 0.275737,
+     "e1": 0.214013,
+     "e2": 0.207088
+    },
+    "mid": {
+     "mean": 0.367119,
+     "e1": 0.274421,
+     "e2": 0.266953
+    },
+    "heavy": {
+     "mean": 0.478928,
+     "e1": 0.358991,
+     "e2": 0.35145
+    }
+   },
+   "axisLabels": [
+    "crossWidth",
+    "depth"
+   ],
+   "slender": 0.751082,
+   "stout": 1.304557,
+   "slenderAxes": [
+    0.77987,
+    0.775746
+   ],
+   "stoutAxes": [
+    1.308178,
+    1.316522
+   ]
+  },
+  "mixamorig:LeftHand": {
+   "bones": [
+    "wrist.L"
+   ],
+   "vertices": 114,
+   "axis": [
+    "wrist.L____head",
+    "wrist.L____tail"
+   ],
+   "perpZResidual": 0.558151,
+   "girth": {
+    "lean": {
+     "mean": 0.247709,
+     "e1": 0.159234,
+     "e2": 0.196761
+    },
+    "mid": {
+     "mean": 0.274663,
+     "e1": 0.177045,
+     "e2": 0.215172
+    },
+    "heavy": {
+     "mean": 0.302234,
+     "e1": 0.196074,
+     "e2": 0.234689
+    }
+   },
+   "axisLabels": [
+    "crossWidth",
+    "depth"
+   ],
+   "slender": 0.901864,
+   "stout": 1.100383,
+   "slenderAxes": [
+    0.899397,
+    0.914439
+   ],
+   "stoutAxes": [
+    1.107477,
+    1.090705
+   ]
+  },
+  "mixamorig:RightHand": {
+   "bones": [
+    "wrist.R"
+   ],
+   "vertices": 114,
+   "axis": [
+    "wrist.R____head",
+    "wrist.R____tail"
+   ],
+   "perpZResidual": 0.558151,
+   "girth": {
+    "lean": {
+     "mean": 0.247709,
+     "e1": 0.159234,
+     "e2": 0.196761
+    },
+    "mid": {
+     "mean": 0.274663,
+     "e1": 0.177045,
+     "e2": 0.215172
+    },
+    "heavy": {
+     "mean": 0.302234,
+     "e1": 0.196074,
+     "e2": 0.234689
+    }
+   },
+   "axisLabels": [
+    "crossWidth",
+    "depth"
+   ],
+   "slender": 0.901864,
+   "stout": 1.100383,
+   "slenderAxes": [
+    0.899397,
+    0.914439
+   ],
+   "stoutAxes": [
+    1.107477,
+    1.090705
+   ]
+  },
+  "mixamorig:LeftUpLeg": {
+   "bones": [
+    "upperleg01.L",
+    "upperleg02.L"
+   ],
+   "vertices": 438,
+   "axis": [
+    "upperleg01.L____head",
+    "upperleg02.L____tail"
+   ],
+   "perpZResidual": 0.996756,
+   "girth": {
+    "lean": {
+     "mean": 0.572935,
+     "e1": 0.389629,
+     "e2": 0.466383
+    },
+    "mid": {
+     "mean": 0.734597,
+     "e1": 0.52188,
+     "e2": 0.561472
+    },
+    "heavy": {
+     "mean": 0.911786,
+     "e1": 0.671991,
+     "e2": 0.670758
+    }
+   },
+   "axisLabels": [
+    "crossWidth",
+    "depth"
+   ],
+   "slender": 0.77993,
+   "stout": 1.241205,
+   "slenderAxes": [
+    0.746586,
+    0.830642
+   ],
+   "stoutAxes": [
+    1.287634,
+    1.194642
+   ]
+  },
+  "mixamorig:RightUpLeg": {
+   "bones": [
+    "upperleg01.R",
+    "upperleg02.R"
+   ],
+   "vertices": 438,
+   "axis": [
+    "upperleg01.R____head",
+    "upperleg02.R____tail"
+   ],
+   "perpZResidual": 0.996756,
+   "girth": {
+    "lean": {
+     "mean": 0.572935,
+     "e1": 0.389629,
+     "e2": 0.466383
+    },
+    "mid": {
+     "mean": 0.734597,
+     "e1": 0.52188,
+     "e2": 0.561472
+    },
+    "heavy": {
+     "mean": 0.911786,
+     "e1": 0.671991,
+     "e2": 0.670758
+    }
+   },
+   "axisLabels": [
+    "crossWidth",
+    "depth"
+   ],
+   "slender": 0.77993,
+   "stout": 1.241205,
+   "slenderAxes": [
+    0.746586,
+    0.830642
+   ],
+   "stoutAxes": [
+    1.287634,
+    1.194642
+   ]
+  },
+  "mixamorig:LeftLeg": {
+   "bones": [
+    "lowerleg01.L",
+    "lowerleg02.L"
+   ],
+   "vertices": 317,
+   "axis": [
+    "lowerleg01.L____head",
+    "lowerleg02.L____tail"
+   ],
+   "perpZResidual": 0.999634,
+   "girth": {
+    "lean": {
+     "mean": 0.412322,
+     "e1": 0.276855,
+     "e2": 0.345444
+    },
+    "mid": {
+     "mean": 0.498775,
+     "e1": 0.331845,
+     "e2": 0.416538
+    },
+    "heavy": {
+     "mean": 0.594981,
+     "e1": 0.401906,
+     "e2": 0.495048
+    }
+   },
+   "axisLabels": [
+    "crossWidth",
+    "depth"
+   ],
+   "slender": 0.826669,
+   "stout": 1.192883,
+   "slenderAxes": [
+    0.834291,
+    0.829321
+   ],
+   "stoutAxes": [
+    1.211126,
+    1.188483
+   ]
+  },
+  "mixamorig:RightLeg": {
+   "bones": [
+    "lowerleg01.R",
+    "lowerleg02.R"
+   ],
+   "vertices": 317,
+   "axis": [
+    "lowerleg01.R____head",
+    "lowerleg02.R____tail"
+   ],
+   "perpZResidual": 0.999634,
+   "girth": {
+    "lean": {
+     "mean": 0.412322,
+     "e1": 0.276855,
+     "e2": 0.345444
+    },
+    "mid": {
+     "mean": 0.498775,
+     "e1": 0.331845,
+     "e2": 0.416538
+    },
+    "heavy": {
+     "mean": 0.594981,
+     "e1": 0.401906,
+     "e2": 0.495048
+    }
+   },
+   "axisLabels": [
+    "crossWidth",
+    "depth"
+   ],
+   "slender": 0.826669,
+   "stout": 1.192883,
+   "slenderAxes": [
+    0.834291,
+    0.829321
+   ],
+   "stoutAxes": [
+    1.211126,
+    1.188483
+   ]
+  },
+  "mixamorig:LeftFoot": {
+   "bones": [
+    "foot.L"
+   ],
+   "vertices": 395,
+   "axis": [
+    "foot.L____head",
+    "foot.L____tail"
+   ],
+   "perpZResidual": 0.448113,
+   "girth": {
+    "lean": {
+     "mean": 0.418564,
+     "e1": 0.268189,
+     "e2": 0.359226
+    },
+    "mid": {
+     "mean": 0.419894,
+     "e1": 0.268455,
+     "e2": 0.360519
+    },
+    "heavy": {
+     "mean": 0.421288,
+     "e1": 0.268798,
+     "e2": 0.361873
+    }
+   },
+   "axisLabels": [
+    "crossWidth",
+    "depth"
+   ],
+   "slender": 0.996834,
+   "stout": 1.003321,
+   "slenderAxes": [
+    0.99901,
+    0.996414
+   ],
+   "stoutAxes": [
+    1.001281,
+    1.003756
+   ]
+  },
+  "mixamorig:RightFoot": {
+   "bones": [
+    "foot.R"
+   ],
+   "vertices": 395,
+   "axis": [
+    "foot.R____head",
+    "foot.R____tail"
+   ],
+   "perpZResidual": 0.448113,
+   "girth": {
+    "lean": {
+     "mean": 0.418564,
+     "e1": 0.268189,
+     "e2": 0.359226
+    },
+    "mid": {
+     "mean": 0.419894,
+     "e1": 0.268455,
+     "e2": 0.360519
+    },
+    "heavy": {
+     "mean": 0.421288,
+     "e1": 0.268798,
+     "e2": 0.361873
+    }
+   },
+   "axisLabels": [
+    "crossWidth",
+    "depth"
+   ],
+   "slender": 0.996834,
+   "stout": 1.003321,
+   "slenderAxes": [
+    0.99901,
+    0.996414
+   ],
+   "stoutAxes": [
+    1.001281,
+    1.003756
+   ]
+  }
+ }
+}

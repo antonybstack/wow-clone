@@ -7,6 +7,18 @@ const starterBuild=process.env.VITE_FAST_START!=='0';
 const starterWorldManifest=starterBuild?JSON.parse(readFileSync('public/ashen-reach/startup/starter/manifest.json','utf8')):null;
 const starterCharacterManifest=starterBuild?JSON.parse(readFileSync('public/ashen-reach/startup/character/manifest.json','utf8')):null;
 
+function humanShapeAsset(req,res,next) {
+  const name=/^\/__human_shape__\/(human-shape-family-v1\.glb)$/.exec(req.url?.split('?')[0]||'')?.[1];
+  if(!name) return next();
+  const file=`.cache/character-mmo/m004/${name}`;
+  try {
+    const info=statSync(file);
+    res.setHeader('Content-Type','model/gltf-binary');
+    res.setHeader('Content-Length',String(info.size));
+    createReadStream(file).pipe(res);
+  } catch {res.statusCode=404;res.end('Run node scripts/character-assets/build-human-shape-family.mjs');}
+}
+
 function starterBrotliHeaders(req,res,next) {
   if (/^\/ashen-reach\/startup\/starter\/near-[a-f0-9]{12}\.br(?:\?|$)/.test(req.url||'')) {
     res.setHeader('Content-Encoding','br');res.setHeader('Content-Type','application/octet-stream');
@@ -62,6 +74,14 @@ export default defineConfig({
           } catch {res.statusCode=404;res.end('Run node scripts/character-assets/prepare-crowd-probe.mjs');}
         });
       },
+    },
+    {
+      // M004 Human shape family candidate. Developer asset under .cache/, deliberately
+      // outside public/ so it cannot reach the Pages bundle; the game requests it only
+      // when ?humanShape drives a morph target.
+      name: 'dev-only-human-shape-assets',
+      configureServer(server) { server.middlewares.use(humanShapeAsset); },
+      configurePreviewServer(server) { server.middlewares.use(humanShapeAsset); },
     },
     {
       name: "starter-brotli-http",
