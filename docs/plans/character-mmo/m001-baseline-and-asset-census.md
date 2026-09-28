@@ -1,6 +1,6 @@
 # M001 — Asset census and trustworthy baseline
 
-Status: **planned, first implementation milestone**. Parent: [next ten](next-ten.md). Mandatory: [execution contract](execution-contract.md).
+Status: **complete with inherited active-Undead incompatibility**. [Result](results/m001.md). Parent: [next ten](next-ten.md). Mandatory: [execution contract](execution-contract.md).
 
 ## Objective and completion boundary
 
@@ -76,14 +76,14 @@ ASHEN_TEST_URL=http://127.0.0.1:7074/ ASHEN_PROBE_PROFILE=50mbps ASHEN_PROBE_RUN
 
 ## Acceptance checklist
 
-- [ ] All active body/garment/startup assets and procedural props are represented; files are untouched.
-- [ ] Fit identity and ownership claims are backed by parsed data/current code.
-- [ ] The inspector's negative tests fail for meaningful incompatibilities.
-- [ ] Current gameplay tests/build have recorded outcomes; inherited failures are explicit.
-- [ ] Measurements are isolated, reproducible and retain tails/outliers; previous release numbers are not relabelled as fresh results.
-- [ ] Live character motion is reviewed and delivered; existing clipping limitations are visible in the report.
-- [ ] M002 inputs and M003 candidate compatibility groups are identified.
-- [ ] Owned processes are stopped, task changes committed/pushed, and status links updated.
+- [x] All active body/garment/startup assets and procedural props are represented; files are untouched.
+- [x] Fit identity and ownership claims are backed by parsed data/current code.
+- [x] The inspector's negative tests fail for meaningful incompatibilities.
+- [x] Current gameplay tests/build have recorded outcomes; inherited failures are explicit.
+- [x] Measurements are isolated, reproducible and retain tails/outliers; previous release numbers are not relabelled as fresh results.
+- [x] Live character motion is reviewed and delivered; limitations are visible in the report.
+- [x] M002 inputs and M003 candidate compatibility groups are identified.
+- [x] Owned processes are stopped, status links updated, and task changes committed/pushed at delivery.
 
 ## Copyable handoff
 

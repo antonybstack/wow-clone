@@ -6,12 +6,14 @@ Updated 2026-09-27. Read this file first. Follow the latest user request; histor
 
 The user selected a long-term direction of customizable Human characters, existing Undead/Orc and future Elf support, 30 mixable armor sets, recurring quarterly PvP tiers, and crowded MMO hubs. The recommended architecture is authored/generated source art converted into compatible templates, procedural fitting/assembly, and progressively cheaper crowd representations.
 
-**Planning is complete; M001–M100 implementation has not started.** The next executable work item is M001, then M002 and M003. Do not resume old graphics or world-expansion milestone queues.
+**M001 is complete; M002 is next.** The [M001 result](plans/character-mmo/results/m001.md) records the active asset census, fresh baseline and live motion. All eight active Undead garments have a different rest/inverse bind from their body even though their fit labels match; the existing Undead equipment suite tests the older provisional pack. Treat that as a compatibility blocker for exact shared-pose crowd grouping. Do not resume old graphics or world-expansion milestone queues.
+
+Fresh local M001 measurements on M1 Max, uncapped headless Chromium WebGPU at 1280×720 with seven enemies: five-route mean FPS **190.5–219.5**, with intermittent bridge/cathedral/forest pacing tails and a **14.1 ms** worst sampled interval. Twenty fresh-process 50 Mbit/s / 40 ms starts had p95 **802.1 ms**, **19/20 <=1 second**, and a first-run GPU completion outlier of **9,149.4 ms**. These are local built-preview measurements, distinct from the released production figures below. Reviewed live Human/Orc/Undead motion is [VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m001-motion-v2-2026-09-27.mp4), Telegram **788**.
 
 - [100 milestones in ten categories](plans/character-mmo/vision-roadmap.md)
 - [Next ten: scope, dependencies and exits](plans/character-mmo/next-ten.md)
 - [Shared execution and performance contract](plans/character-mmo/execution-contract.md)
-- [M001: actual asset census and fresh baseline](plans/character-mmo/m001-baseline-and-asset-census.md)
+- [M001: completed asset census and fresh baseline](plans/character-mmo/results/m001.md)
 - [M002: versioned appearance recipe](plans/character-mmo/m002-appearance-contract.md)
 - [M003: native crowd feasibility](plans/character-mmo/m003-crowd-feasibility.md)
 - [Architecture decisions and sources](plans/character-mmo/architecture.md)
@@ -32,7 +34,7 @@ Reviewed [production motion](https://ve.sparkify.dev/wow-clone/ashen-reach/start
 
 ## Current character boundary and unresolved risks
 
-- Main-route `packs` and actual manifests identify active Human/Orc/Undead assets. The current Human and race pipelines have evolved beyond older MakeHuman-only descriptions; M001 must parse actual source/bind/geometry and not trust stale profile labels.
+- The [M001 parsed census](baselines/character-mmo/m001/asset-census.json) identifies active Human/Orc/Undead and startup Human geometry, bind and animation. Human and Orc garments match their bodies; all eight active Undead garments have a different rest/inverse bind. The older MakeHuman diagnostic profile and provisional Undead pack are not active defaults.
 - Existing equipment has explicit fit identities, coverage/slot occupancy, on-demand loading, shared pose and evaluated sockets. It is a limited fitted catalogue, not a general parametric wardrobe. Arbitrary body sliders, production Elf, robust semantic coverage across all races and crowd rendering remain unproven.
 - Anatomy/clothing quality, extreme motion clipping, two-handed/Orc grip polish and terrain-aware feet need measured review. Old plans sometimes contain later superseded fixes; use live evidence to identify what remains.
 - Static sun-shadow caching and asynchronous shader trials were negative/neutral for the measured workload; they remain disabled. See the [investigation](archive/plans/rendering-performance-investigation-2026-09-26.md). Do not re-enable them based on feature availability alone.

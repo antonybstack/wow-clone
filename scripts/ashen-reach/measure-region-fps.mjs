@@ -5,6 +5,7 @@ import os from "node:os";
 import assert from "node:assert/strict";
 import { CDP_URL } from "../lib/cdp.mjs";
 import { summarizeDurations } from "../../src/ashen-reach/metrics.js";
+import { summarizeFrameIntervals } from "../character-assets/summarize-frame-intervals.mjs";
 const file = process.argv[2];
 assert(file, "Specify report.json");
 const url = new URL(
@@ -102,8 +103,9 @@ try {
         run,
         before,
         fullWindow: summarizeDurations(row.frames),
+        tails: summarizeFrameIntervals(row.frames),
       });
-      delete row.frames;
+      if (process.env.ASHEN_FPS_RAW !== "1") delete row.frames;
       report.rows.push(row);
       await fs.writeFile(file, JSON.stringify(report, null, 2));
       assert(row.physics);

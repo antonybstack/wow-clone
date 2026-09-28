@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-27",
+  "branch": "main",
+  "sourceHeadAtStart": "2d5c17ba722d81577394d5b23ba3fbc40c176513",
+  "unrelatedDirtyPathAtStart": ["AGENTS.md"],
+  "gameSourceRelease": "76e3c41bf24956b85d3ea0776d571eebea6c7e91",
+  "packageVersions": {"@babylonjs/lite":"1.31.1","@babylonjs/havok":"1.3.14","@gltf-transform/core":"4.4.2","vite":"8.3.0"},
+  "manifestSha256": {
+    "human":"e49987356b84e068e04edf8a4a7d3788b4ce75a77f3996b5f109058325bcdabd",
+    "orc":"c7874b70d4d1a00d35e5e3ee981c1b0f3c07de301813d08caa76380f479e14ed",
+    "undead":"e8f686051afb9543858bb8db5f31a85afb9637bd0e6d3bfdbd8cff1291364036",
+    "startupHuman":"97019c6b695d9f1e0da820d93813283a7b0d971be9065b97bb8ecc6833f847f4"
+  },
+  "machine": {"cpu":"Apple M1 Max","gpu":"Apple M1 Max, 24 cores","os":"macOS 26.6.2 (25G83)","power":"AC Power"},
+  "browserOwnership": [
+    {"owner":"unrelated existing session","browserPid":3538,"cdpPort":9337,"pages":"five about:blank; left intact","purpose":"none of this task"},
+    {"owner":"M001 settled benchmark","browserPid":50601,"cdpPort":10037,"vitePort":5873,"previewPort":7074,"url":"http://127.0.0.1:7074/?play&clean&pixelRatio=1&gpuTiming=","purpose":"15 uncapped 12-second route runs; landing page blanked","teardown":"slot 7 Chrome and Vite stopped"},
+    {"owner":"M001 cold probe","browserPid":"20 sequential fresh headless Chrome processes; PIDs not exposed by current helper","previewPort":7074,"url":"http://127.0.0.1:7074/?play=&pixelRatio=1","purpose":"50 Mbit/s / 40 ms cold playable probe","teardown":"each browser closed in finally; preview server PID 51685 stopped"},
+    {"owner":"M001 motion attempt 1","browserPid":66226,"cdpPort":10037,"vitePort":5873,"url":"http://127.0.0.1:5873/ashen-reach.html?play&clean","purpose":"recorder API assertion correction","teardown":"page blanked; slot 7 Chrome and Vite stopped"},
+    {"owner":"M001 motion attempt 2","browserPid":79957,"cdpPort":10037,"vitePort":5873,"url":"http://127.0.0.1:5873/ashen-reach.html?play&clean&pixelRatio=1","purpose":"armory and Warden review; gameplay coverage incomplete","teardown":"page blanked; slot 7 Chrome and Vite stopped"},
+    {"owner":"M001 motion attempt 3","browserPid":93242,"cdpPort":10037,"vitePort":5873,"url":"http://127.0.0.1:5873/ashen-reach.html?play&clean&pixelRatio=1","purpose":"three-race gameplay; character died in live scene","teardown":"page blanked; slot 7 Chrome and Vite stopped"},
+    {"owner":"M001 motion attempt 4","browserPid":99262,"cdpPort":10037,"vitePort":5873,"url":"http://127.0.0.1:5873/ashen-reach.html?play&clean&pixelRatio=1","purpose":"invulnerable motion review; target cycling selected distant hostiles","teardown":"page blanked; slot 7 Chrome and Vite stopped"},
+    {"owner":"M001 motion attempt 5","browserPid":5192,"cdpPort":10037,"vitePort":5873,"url":"http://127.0.0.1:5873/ashen-reach.html?play&clean&pixelRatio=1","purpose":"training-dummy selection review; live line of sight obstruction noted","teardown":"page blanked; slot 7 Chrome and Vite stopped"},
+    {"owner":"M001 reviewed motion","browserPid":11235,"cdpPort":10037,"vitePort":5873,"url":"http://127.0.0.1:5873/ashen-reach.html?play&clean&pixelRatio=1","purpose":"final live Human/Orc/Undead and Warden clip","teardown":"page blanked; slot 7 Chrome and Vite stopped"}
+  ],
+  "measurementNotes": {
+    "fps":"Headless Chromium WebGPU, uncapped flags, 1280x720 canvas, device scale 1, seven enemies, Havok active; three 12-second runs after 1.2-second settle and 0.8-second movement warm-up; no recording; raw requestAnimationFrame intervals saved.",
+    "cold":"ASHEN_PAGES=1 built bundle on compressed local preview; 20 fresh headless Chrome browser processes; browser profile/cache reset each run, OS/GPU driver caches uncontrolled; ordinary frame pacing; no other active game renderer.",
+    "visual":"Owned headless Chrome on Vite, 1280x720 viewport and canvas; separate from performance measurements; existing god toggle enabled to keep the actor alive; CDP screencast frame timestamps encoded to 30 fps square-pixel MP4."
+  }
+}
