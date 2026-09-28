@@ -1,0 +1,26 @@
+{
+ "schema": 1,
+ "generatedBy": "scripts/character-assets/measure-hair-separability.mjs",
+ "body": {
+  "path": "public/ashen-reach/equipment/body.glb",
+  "sha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+  "mesh": "HumanV1Body",
+  "vertices": 3274
+ },
+ "region": {
+  "rule": "head-driven, above the brow, ears excluded by region",
+  "browY": 1.615,
+  "headDrivenVertices": 616,
+  "aboveBrowVertices": 333
+ },
+ "shell": {
+  "rule": "another head surface within 16 mm straight down the vertex's own normal",
+  "verticesOverAnotherSurface": 75,
+  "fraction": 0.2252
+ },
+ "verdict": "fused",
+ "conclusion": "The hair is the head's own outer surface with lock shapes sculpted into it, sharing one mesh and one material with the face. It is not a shell over a scalp, so no morph target can remove it: there is nothing beneath to collapse onto.",
+ "blocks": "bald",
+ "nextStep": "Re-author the head with hair as separate geometry. That changes the body mesh vertex count, so it invalidates the vertex correspondence the M004 shape family and the M005 garment refit both depend on, and belongs in a body-source milestone rather than in the creator slice.",
+ "unblocked": "Long hair is additive: a separate mesh on the same 65-joint rig, like the M005 plate. It needs none of this."
+}

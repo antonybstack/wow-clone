@@ -1,6 +1,6 @@
 # Next ten milestones — customization and crowd proof
 
-Status: **M001–M005 complete with inherited findings; M006 next**. Read the [100-milestone vision](vision-roadmap.md), [architecture](architecture.md) and [execution contract](execution-contract.md). Baseline evidence always identifies the actual HEAD and live assets.
+Status: **M001–M005 complete; M006 blocked at its entry gate on source art**. Read the [100-milestone vision](vision-roadmap.md), [architecture](architecture.md) and [execution contract](execution-contract.md). Baseline evidence always identifies the actual HEAD and live assets.
 
 ## Sequence and risk ordering
 
@@ -50,6 +50,8 @@ Map the body controls to each garment's shape deltas/reference fits, preserve in
 
 ## M006 — Human creator vertical slice
 
+Status: **blocked at the entry gate**. Result: [M006 gate](results/m006-gate.md). Bald cannot be a morph on the shipped head (measured: only 22.5% of the above-brow head sits over another surface, so the hair is fused, not a shell), and no long-hair source exists that may ship. Height and body shape are delivered by M004/M005.
+
 **Dependency:** M005 and named editable Human, age and long-hair source assets. If those sources are absent, first author the minimal licensed variants and record their provenance; a JSON capability flag is not a visual substitute. Add a lazily loaded creator surface reusing the armory/camera infrastructure where suitable. Implement only proven controls: height, body shape, adult age appearance, skin/hair color and at least long hair versus bald. Add a small authored face/age variant if needed to make the two user examples visibly distinct; skin tint alone does not prove aging.
 
 Persist a versioned local recipe with undo/reset, visible loading/errors and race capability filtering. Extend M002 via explicit migration only when actual assets exist. Keep exact default starter appearance and cold-play behavior; creator entry is a separate payload. Show both user example characters entering gameplay, equipping both outfits and returning to the creator with state retained. Exit: saved/restored visual equivalence and input/device usability, not merely working sliders. Long hair must have a helmet/cape interaction policy; no requirement for expensive hair simulation.
@@ -87,7 +89,7 @@ Choose the production schema/fit/material/animation/detail contracts; list defer
 | M003 | Complete feasibility probe; native VAT promising in isolation, actual-town shadow integration blocked | [Result, capacity curves and reviewed motion](results/m003.md) |
 | M004 | Complete; shape family and height range proven, garment fit measured and handed to M005 | [Result, shape family and reviewed motion](results/m004.md) |
 | M005 | Complete; garments refitted and measured, rigid plate prototype proved, live and cached cost measured | [Result, fit comparison and reviewed motion](results/m005.md) |
-| M006 | Planned | — |
+| M006 | Blocked at entry gate; bald needs the head re-authored, long hair needs sculpting | [Gate result and measured blockers](results/m006-gate.md) |
 | M007 | Planned | — |
 | M008 | Planned | — |
 | M009 | Planned | — |
