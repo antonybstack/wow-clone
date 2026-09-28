@@ -1,6 +1,8 @@
+> Scope note, 2026-09-27: this is a dated authoring reference with later additions, not the active implementation queue. Current Human/race assets evolved after the first MakeHuman slice. Inspect main-route manifests and use [M001](plans/character-mmo/m001-baseline-and-asset-census.md) to establish the current source/bind inventory before rebuilding. The active plan is [the next ten milestones](plans/character-mmo/next-ten.md).
+
 # Ashen equipment: first fitted Human slice
 
-Stages B and the Human magic-set Stage C increment of [the living plan](armory-and-equipment-plan.md), 2026-09-17. This is the reproducible path for the current mail/cloth tunics, trousers, boots and Graveweaver magic set; it is not a universal fitter or a completed multi-race catalogue.
+Stages B and the Human magic-set Stage C increment of [the living plan](archive/plans/armory-and-equipment-plan.md), 2026-09-17. This is the reproducible path for the current mail/cloth tunics, trousers, boots and Graveweaver magic set; it is not a universal fitter or a completed multi-race catalogue.
 
 ## Sources and outputs
 

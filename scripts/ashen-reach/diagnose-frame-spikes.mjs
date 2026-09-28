@@ -11,7 +11,7 @@ const dir=process.env.ASHEN_CAPTURE_DIR||'ve-capture/ashen-reach/v19/diagnostic'
 const arg=name=>process.argv.find(s=>s.startsWith(`--${name}=`))?.split('=')[1];
 for(const name of ['queue-depth','frame-rate','wake-on-complete']){
  if(process.argv.some(s=>s===`--${name}`||s.startsWith(`--${name}=`)))
-  throw Error(`--${name} is retired; this diagnostic measures ASHEN.renderLoop. See docs/v19-frame-spikes-plan.md for historical experiments.`);
+  throw Error(`--${name} is retired; this diagnostic measures ASHEN.renderLoop. See docs/archive/plans/v19-frame-spikes-plan.md for historical experiments.`);
 }
 const seconds=Number(arg('seconds')??12);
 if(!Number.isFinite(seconds)||seconds<=0)throw Error('--seconds must be positive and finite');

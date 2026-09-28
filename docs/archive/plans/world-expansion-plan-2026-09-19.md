@@ -1,0 +1,1127 @@
+Archived planning/history: preserved for rationale and provenance; unfinished items here are **not** current commitments. Archiving does not declare them completed. See [current state](../../CURRENT.md) and [the new roadmap](../../plans/character-mmo/vision-roadmap.md).
+
+# World expansion toward an MVP — 2026-09-19
+
+Status: **active**. Started 2026-09-19 from `main` at `6b7f18e`. M1–M10 are in `main` as of
+2026-09-20 (`469f417`). Hollowmere is a town you can fight in, with a gate objective.
+Do not open another lighting, shade-cowl, or townsfolk-face pass; those leftovers are
+carried, not a queue. Next is M11 Undead (first dressed body).
+
+## Why this plan
+
+Ashen Reach has a credible character, eight fitted garments on two races, two spells and an armory.
+It has one small churchyard and one static training dummy. The gap between this and a playable MVP
+is world and encounter content, not character fidelity.
+
+## Design: the settlement of Ashen Reach
+
+The churchyard is preserved exactly as approved and the world grows north along the road that
+already exists as `pathX(z)`.
+
+| Zone | Extent (z) | Content |
+|---|---|---|
+| Approach | < 0 | Sparse dead ground, ravine edge as a soft boundary |
+| **Churchyard** | 0–40 | Unchanged: spawn, tombs, chapel ruin, lanterns |
+| Lych-gate and climb | 40–75 | Road rises out of the burial ground through a gate |
+| **Hollowmere** | 75–140 | Walled town: gatehouse, main street, tavern, smithy, chapel, houses, market stalls, well square, watchtower |
+| Ridge and vista | 140+ | Citadel of Vaelmark on a distant crag, curtain walls, five towers, lit windows, mountain ridgeline |
+
+Traversable ground grows from roughly 180×240 m to roughly 400×600 m. The citadel is a backdrop and
+is not traversable. Night atmosphere and the warm-lamp palette are unchanged.
+
+## Architecture constraints found before starting
+
+The world is generated in code, not imported. `geometry.js` accumulates triangles into a `Batch` per
+material and `scene.js` commits nine batches. That produces 46 draws and 126,512 triangles at 144 FPS.
+
+Two properties of that design bound the work:
+
+- **Lighting does not scale.** `materials.js` hardcodes two lamp positions in the WGSL fragment
+  shader plus three dynamic slots for fire, hand fire and lava. A town of lit windows and street
+  lamps cannot be expressed in that shader as written. Milestone 1 addresses this first because
+  every later milestone would otherwise be built on it and need redoing.
+- **No culling or level of detail.** One mesh per material means the full triangle set is submitted
+  every frame. This is acceptable now and is measured at each milestone rather than pre-optimized.
+
+## Milestones
+
+**M1 — Scalable lighting and the road north.** Replace the two hardcoded lamps with a light set the
+shader can iterate, or bake static lamp contribution into vertex colour, whichever measures better.
+Extend terrain and road to z=140 with flat building pads. Lych-gate and town walls.
+*Gate: the churchyard renders unchanged; FPS measured before and after and reported.*
+
+**M2 — Hollowmere.** A parameterised `building()` builder in `geometry.js` so buildings are composed
+rather than hand-placed. Populate the town, add colliders, light interiors visible through windows.
+*Gate: walk the full road from graveyard to town in a live capture.*
+
+**M3 — The horizon.** Citadel, curtain walls, mountain ridgeline, sky and fog tuned for depth.
+*Gate: reviewed clip of the vista from the town gate.*
+
+**M4 — Enemies and a combat loop.** Roaming enemy with aggro, chase, attack, death and respawn.
+Player damage, death and resurrect. `src/character/npc.js` is the starting point.
+
+**M5 — Progression and interface.** Experience, levels, health and mana regeneration, nameplates,
+experience bar, minimap.
+
+**M6 — Performance.** Spatial chunking, frustum culling and level of detail, activated only if the
+M1–M3 measurements show the >120 FPS goal is threatened. **Not activated:** uncapped p99 is still
+under the 8.3 ms budget.
+
+**M7a / M7b / M8a / M8b — quality follow-ups, now in `main`.** Discrete lamp pools; cowled
+grave-shades; Hollowmere townsfolk; corridor re-level and street gables. Leftovers are listed
+in the log and are **not** the next work.
+
+## Current priority (2026-09-20)
+
+The world-building arc did its job. Next work has to change what a player *does* in the ten
+minutes after spawn, not how the existing diorama is shaded.
+
+**M9 — Hollowmere is hostile ground.** **In `main` (`46a5712`).** Three town hostiles
+(Street Wraith / Lane Shade / Well Haunt) on the street and well, own roam box z=76..138.
+Churchyard four still clamp to zMax 69. Leftover: cloak tints barely distinguish; nameplates
+do.
+
+**M10 — one objective that uses the town.** **In `main` (`469f417`).** Proximity prompt at
+the gate watchman; +100 XP when the original four `grave-shade-*` ids have each been killed
+this cycle; repeats after they respawn. Leftover: watchman is not marked as the speaker;
+LEVEL UP still stacks on the message line.
+
+**M11 — Undead, first playable dressed body.** Next. Approved concept:
+[undead-race-plan.md](undead-race-plan.md). First delivery is the body + Revenant outfit
+moving in the churchyard, not fitting the whole Human catalogue. Do not open a second
+Orc-style polish loop in the first pass.
+
+**Parked, not a queue:** shade front-cowl round 3, townsfolk faces, tavern-patron contrast,
+dark roofs from the overlook, lamp pooling round 5, minimap art, Human staff-pole carry, M6
+chunking, interiors, vendors, a second spell school.
+
+## Parallel harness
+
+A separate track builds a repeatable worktree harness so more than one agent can verify live at the
+same time. Today CDP port 9337 is hardcoded in more than twenty scripts and Vite is pinned to 5173
+with `strictPort`, so live verification is a single shared resource. The harness gives each worktree
+its own Vite port, its own Chrome profile and CDP port, and one command to start and stop them.
+
+## Invariants for every milestone
+
+- The churchyard as approved on 2026-09-19 renders unchanged unless a milestone explicitly revises it.
+- Orc and Human character, garment, spell and armory behaviour are untouched.
+- Report actual render resolution and frame-time distribution with any FPS claim.
+- Automated checks are not visual acceptance. Nothing is marked accepted while the user is away;
+  completed work is staged for review.
+
+## Status log
+
+- 2026-09-19: plan created. `main` pushed to origin at `6b7f18e`. Build and both suites green.
+- 2026-09-20: **M1 landed** (`74bedf0`, `6bb1844`). Static lamp irradiance is now baked per vertex
+  into a `uv2` attribute by `Batch.commit(engine,scene,material,lights)`, so the fragment shader adds
+  one flat term regardless of lamp count; the three dynamic spell-light slots are unchanged. The two
+  original churchyard lamps are reproduced exactly, and `climb(z)`, the building pads and the road
+  paving all evaluate to zero effect for z<=40, so the churchyard is unchanged by construction.
+  Terrain and road now reach z=140 with nine exported `buildingPads`, a lych-gate at z=44, and a
+  walled gatehouse at z=75. Measured at 960x540 viewport / 720x405 internal, 600 samples:
+  144.0 FPS before and after, mean 6.944 ms vs 6.944 ms, p95 7.70 ms both, 33 draws, 9 batches,
+  126,512 to 127,772 triangles. Build, 75 character tests and 27 equipment tests pass.
+  Captures in `ve-capture/ashen-reach/world-expansion-m1/`.
+  **Open defects found in review, carried into M2:** the player cannot reach most of the town
+  (`boundsRadius:85` in `main.js` clips a circle at radius 85 while the pads run to z=136);
+  ground cover stops around z=84 so the town sits on bare terrain; the 2 m terrain grid reads as
+  coarse facets at town scale; and the emissive lantern boxes read as flat acid-green rectangles
+  when seen close up rather than as lantern glass.
+- 2026-09-20: **parallel harness landed** (`d8ffbeb`, merged to `main`). `ASHEN_VITE_PORT` and
+  `ASHEN_CDP_PORT` now sit behind unchanged defaults of 5173/9337; `scripts/lib/cdp.mjs` is the
+  single CDP target and `scripts/harness/{up,down}.mjs` bring a numbered slot up and down
+  (slot N = Vite 5173+N*100, CDP 9337+N*100; 5173/9337/9222 are refused). Two slots were proven
+  running `check-armory.mjs` concurrently, 27/27 each, with the protected ports untouched.
+  Note one real behaviour change: `vite.config.js` now pins `server.host` to `127.0.0.1` (it was
+  unset and resolving to IPv6-only `::1`), so the dev server is no longer reachable over the LAN.
+  The four `capture-m1-*`/`capture-m2-*` scripts were converted to the shared helper afterwards.
+- 2026-09-20: **M2 landed** (`e4fce2b`, `817db95`, `d3fda86`, `d7214f4`, `9b85b63`). New
+  `src/ashen-reach/buildings.js` exposes a parameterised `building()` plus `windowGlow`,
+  `marketStall`, `well`, `forgeGlow` and `crossFinial`; all nine pads are populated with houses,
+  tavern, smithy, chapel, watchtower and a well square, each pushing colliders. A separate
+  "Hollowmere lantern" material keeps the churchyard's original `Candlelight` batch untouched.
+  `geometry.js` gained `terrainNormal()` (analytic normals, zero added triangles) and
+  `lanternGlow()` (two-layer warm tube replacing the flat emissive quad).
+  All four M1 defects were addressed: `boundsRadius:85` became
+  `boundsRect:{minX:-88,maxX:88,minZ:-93,maxZ:143}`, with `player.js` keeping the original
+  circular clamp verbatim in an `else` branch so any caller passing only `boundsRadius` is
+  byte-identical; ground cover now runs to z~141 and is skipped inside building footprints;
+  northern terrain uses smooth normals; lanterns are shaped and warm.
+  Verified independently: a real `KeyW` walk reached z=134.79 with y climbing 1.39 to 8.79 (the
+  old radius-85 clamp would have stopped it at ~85), build green, 75 character and 27 equipment
+  tests pass, and the churchyard pixel diff (0.87% changed) resolves under inspection to
+  wind-animated foliage plus one horizon patch of new town geometry beyond z=40 — no churchyard
+  geometry moved. Measured at 960x540 viewport / 720x405 internal, 600 samples: 144.02 to 144.00
+  FPS, mean 6.944 ms both, p95 7.70 to 8.30 ms, 33 to 34 draws, 9 to 10 batches,
+  127,772 to 186,056 triangles. Captures in `ve-capture/ashen-reach/world-expansion-m2/`.
+  **Open defects found in review, carried into M2b.** The town is structurally right but does not
+  yet read as an inhabited night town:
+  1. Ground north of the lych-gate reads as bright daytime green rather than night grass, which
+     flattens the whole settlement. The smooth `terrainNormal()` normals are the likely cause —
+     they give the northern ground a more uniform, brighter directional term than the flat
+     per-face normals it replaced.
+  2. The town is overgrown: tall grass and bracken grow right up to the walls and swallow the
+     street, so Hollowmere reads as an abandoned meadow with sheds rather than a lived-in town.
+  3. The forge glow is a hard-edged flat orange rectangle, the same defect class as M1's
+     acid-green boxes and arguably more obvious because it is brighter.
+  4. Buildings are near-black masses at any distance; window glow only registers close up, so
+     there is no lit-settlement read from the approach or the overlook.
+  5. Every building is the same gabled box. The tavern, chapel and houses are not
+     distinguishable by silhouette, and there is no signage or upper storey.
+- 2026-09-20: **M2b landed** (`e3d099e`, `0e67d67`, `f96db05`). The visual pass on Hollowmere.
+  Worth recording: the hypothesis I handed the agent for defect 1 was **wrong**, and it disproved
+  it numerically before acting — smooth vs flat `terrainNormal()` normals move the shader's
+  `directional` term by <0.02%, nowhere near enough to explain the bright ground. The real driver
+  was ground-cover density and colour. Fix is a `nightGrade` shader term gated by
+  `smoothstep(40,55,z)`, algebraically zero at z<=40, so the churchyard is unchanged by
+  construction. It also ran a control for the pixel diff: two reloads of unmodified code give a
+  0.83% noise floor, and two captures 2 s apart give 31.9%, which explains its 5.44% spawn diff as
+  wind-phase decorrelation rather than geometry change.
+  Defect verdicts: overgrowth **fixed** (graded `clearance(x,z)` replaced the boolean footprint
+  test; real paved street and well plaza); forge card **fixed** (shaped ember bed, gradient flame
+  licks, anvil); silhouette variety **fixed** (upper storeys, lean-tos, tavern sign, chapel
+  steeple, chimneys with smoke); ground palette and distance lighting **improved, not solved**.
+  Triangles *fell* 186,056 -> 166,508 because the cover thinning removed more than the detail
+  added. 143.99 FPS, 34 draws, p95 8.10 ms.
+  **New defect found in my review, not in the agent's self-review:** the `radialGlow` ground
+  washes render as dark brown ellipses at the base of every lamp post, reading as craters or mud
+  puddles rather than pools of light. Most obvious in the overlook. The agent reported these as
+  "glowing lamp pools from range"; the images contradict that.
+- 2026-09-20: **M4 landed** (`9a0fcec`, `113e4c5`, merged). Four roaming churchyard grave shades
+  on an idle/patrol/chase/attack/death/respawn state machine, plus player health, death and
+  resurrect, built by a Grok 4.6 worker in a harness worktree on slot 1 — the first real use of
+  the parallel harness, running its own Vite 5273 / CDP 9437 alongside the Sonnet track on
+  5173/9337. Reuses the existing target shape, so Tab targeting, Fire Blast, Lava Ball and the HUD
+  work unchanged and the dummy stays at 2000 HP. `src/player.js` was not touched.
+  Merged only up to `113e4c5`: the worker's two later commits edited a Telegram hook path and
+  added a repo-root shim, both outside its allowed paths, and were deliberately left behind.
+  Verified by me on the merged tree, live, after integration: 13/13 enemy-loop checks, 8/8
+  death/resurrect checks, and the full road still walkable to z=134.79 with hostile enemies
+  active. The merge correctly kept M2's `boundsRect` over M4's older `boundsRadius:85`.
+  The worker's own FPS numbers were worthless (headless Chrome vsync-capped at 60, so before and
+  after both sat on 16.67 ms). Re-measured on real hardware at 960x540 viewport / 720x405
+  internal, 600 samples, 4 enemies active: **144.04 FPS**, mean 6.942 ms, p95 8.10 ms, 36 draws,
+  166,508 triangles. The >120 FPS gate is met.
+  **Open defects carried into M4b:** enemies are blocky hooded scarecrows with square green eyes
+  and no walk cycle (partly a scoping error of mine — `npc.js` and `body.js` were not in its
+  allowed paths, so it had no route to a skinned character); the player walks through enemies,
+  since `player.js` was frozen and colliders are registered only at setup; Lava Ball can miss a
+  moving shade for the same reason; and tall grass overlaps the player health bar.
+- 2026-09-20: **M3 landed** (`15b1e66`, `a0190c1`, `1796087`). New `src/ashen-reach/horizon.js`
+  builds the Citadel of Vaelmark at z=260 — a crag, a crenellated curtain wall, five towers with
+  lit windows, and two ridgeline layers — reusing the existing `Distant black stone` and
+  `Hollowmere lantern` batches, so it costs **988 triangles and zero extra draw calls**. Backdrop
+  only, entirely beyond `boundsRect.maxZ:143`. The agent's first attempt put it at z=185 with a
+  76-unit keep that subtended ~90 degrees and read as a black wall filling the sky; it caught that
+  itself by looking at its captures and moved the complex back. 143.97-144.01 FPS, 36 draws,
+  167,816 triangles. Build, 75/27 tests and the 13 enemy-loop checks all still pass.
+  It also diagnosed the M2b ground-wash regression correctly: `radialGlow` built a single-vertex
+  triangle fan from a bright centre to a `colorRim` of pure black, and since the material system
+  is `texture * vertexColor * (light+emission)` with no alpha blending, almost the entire decal
+  interpolated toward black. It replaced the four ground-plane call sites with a `groundGlow()`
+  core disc plus a tapering ring.
+  **Open defects found in my review, carried into M3b:**
+  1. The ground washes are no longer dark, but they are now over-bright hard-edged orange
+     polygons that read as spilled lava rather than lamplight — an octagonal silhouette is plainly
+     visible around the well and at every lamp. This is the third attempt at this element and the
+     decal approach is the problem: with no alpha blending an opaque decal will always have a hard
+     edge. The mechanism that already exists is the M1 baked per-vertex lamp irradiance
+     (`Batch.commit(engine,scene,material,lights)` -> `uv2`), which lights the ground smoothly with
+     no decal at all; its limitation is that the 2 m ground grid is too coarse to resolve a lamp
+     pool. Subdividing the ground under the town and deleting the decals is the recommended fix.
+  2. The ridgeline reads as a flat dark slab floating above the horizon, with a hard straight
+     lower edge and sky visible beneath it. It looks like suspended cardboard, not mountains. The
+     agent did not report this.
+  3. **M3's own gate is not met.** The plan's gate is "a reviewed clip of the vista from the town
+     gate", and the citadel is not visible from the gate at all — only from open sightlines like
+     the well square and the overlook. The agent disclosed this honestly.
+- 2026-09-20: **M3b landed** (`b356adc`, `595760b`, `baf7fa9`), then **M4b landed and both merged
+  into `main`** (`fc75c17`). Their file sets did not overlap and the merge was clean.
+  **M3b defect 1 — fixed.** `groundGlow` is deleted. Ground-level lamp pools now come entirely
+  from the M1 baked per-vertex lamp irradiance path, applied to a ground mesh subdivided under the
+  lamp/gate/well/stall corridors (`CORRIDOR_SUB=4`), with each fixture keeping its original
+  ambient light and gaining a separate tightly-falling-off near-ground light. Verified against the
+  M2b captures side by side: M2b's hard-edged octagonal craters are gone and the lamp close-ups
+  show a genuine soft warm gradient with no silhouette. Cost **167,816 -> 191,846 triangles
+  (+24,030, +14.3%)**, draws unchanged at 34. Its first attempt inflated the single ambient light
+  and washed the whole town; it caught that with a temporary shader debug visualisation and
+  reverted it.
+  **M3b defect 2 — fixed.** `ridgeline()`'s base Y went from `groundY-14` to `groundY-320`, a pure
+  vertex-Y change costing zero triangles. The ridge now reads as a continuous mass meeting the
+  terrain instead of suspended cardboard.
+  **M3b defect 3 — NOT fixed.** It changed the gate camera pitch to .25 and called the vista
+  found. I opened `town-gate-vista-fixed.png` and the whole 7-frame pan: the citadel is a
+  barely-discernible dark sliver with a few window dots above the lintel, not a vista that reads.
+  M3's gate remains unmet.
+  **M4b landed.** Enemies are now skinned, animated Mixamo humans loaded via the `npc.js`
+  `loadGltf` pattern (clips `Walk_Loop`, `Jog_Fwd_Loop`, `Idle_Loop`, `Punch_Cross`, `Death01`),
+  with a moving Havok collision proxy the player cannot walk through, reliable spell hits on
+  moving targets, and the health plate lifted clear of the grass. `player.js` gained an additive
+  `addAnimatedCollider`/`moveAnimatedCollider`/`setAnimatedColliderEnabled` API; enemy bodies are
+  Havok STATIC because the character controller is itself kinematic and Havok skips
+  kinematic-vs-kinematic contacts. The XZ resolve runs after `integrate` and before the
+  `boundsRect` clamp, so bounds still wins.
+  **Verified on the merged tree, by me, not from agent reports:** build clean, 75/75 character,
+  27/27 equipment, and all 34 live checks green (enemy-loop 13, player-death 8, enemy-collision 7,
+  lava-moving 6). Live walk still reaches z=134.74.
+  **Merged-tree hardware FPS: 144.04 -> 143.99** (600 samples each), p95 8.1 -> 8.0 ms, draws
+  34 -> 42, at 720x405 internal / 960x540 viewport. The >120 FPS gate holds with the citadel, the
+  subdivided ground and four skinned shades all active.
+
+  **Measurement-integrity defects found while verifying — these weaken every FPS number above:**
+  1. `ASHEN.metrics.summary().triangles` spreads `...world.stats`, built at `scene.js` as
+     `B.reduce((a,b)=>a+b.idx.length/3,0)` — the sum over committed procedural batches ONLY. Every
+     GLB mesh is excluded by construction: the Orc, the dummy, and all four skinned enemies. It
+     reads an identical 191,846 with and without enemies. The field is named `triangles` but means
+     "world batch triangles", and M4b's self-reported 137,920 skinned triangles appear nowhere in
+     it. `drawCalls` (`engine.drawCallCount`) IS live and correct — 34 -> 42, two per shade.
+     Trust `drawCalls`; do not cite `triangles` as total scene cost. Fix is ~5 lines: report a
+     live count over `scene.meshes` alongside the batch count.
+  2. **144 FPS is this machine's vsync ceiling, not headroom.** `meanMs` 6.9427 is exactly
+     1000/144. Every "144 FPS" result in this log, including the ones above, proves only that the
+     change did not fall OFF the cap — it cannot quantify remaining budget, and at 720x405
+     internal the GPU is lightly loaded. Headless Chrome is capped the same way at 60. To measure
+     real headroom the renderer must be run uncapped or at a much higher internal resolution.
+
+  **Open defects carried into M4c / a later lighting pass:**
+  1. The shades are bare Mixamo Alpha mannequins — visible ball joints, no clothing, face, hood or
+     weapon. Passable at mid range, poor in melee. Disclosed honestly by the agent.
+  2. The near shade renders pale teal while the distant one is a muddy olive blob; the two
+     instances do not read as the same creature. The agent did not report this.
+  3. `Punch_Cross` is a short oneshot, so melee stills almost always land on idle-in-range.
+  4. No death still was delivered; required capture #5 was incomplete.
+  5. The shades are fully opaque. Unlike world geometry, these are PBR GLB meshes on a separate
+     path, so alpha IS available to them.
+  6. **New lighting regression from M3b's near-ground lights:** at eye level in fixture-dense
+     spots the warm lamp light multiplies against the green ground into a bright yellow-green wash
+     — the well square floor and, worse, the lych-gate stone, which now reads lime green rather
+     than stone. Wide and overhead shots still read as a proper night town; this is a close-range
+     problem.
+- 2026-09-20: **M5 landed and merged** (`90a9388`, six commits `c2eaa1d`..`9811834`). Note the
+  plan's M5 scope was stale: health regen and nameplates already shipped in M4, so the actual new
+  work was XP/levels, mana, the bars and the minimap.
+  `src/ashen-reach/progression.js` holds the tuning; XP is awarded on the existing enemy death
+  path in `enemies.js`, so there is no second death path. Shade 50 XP, dummy 0, `xpToNext =
+  100 * level`, health and mana both `100 + 15/level`, Fire Blast 20 mana, Lava Ball 40, mana
+  regen reusing the existing 4/sec-after-6s health pattern. Spells are refused through the
+  existing `hud.message` plumbing rather than a new mechanism. The HUD gained LEVEL, a MANA track
+  on the player plate and an EXPERIENCE bar, all in the established visual language.
+  `src/ashen-reach/minimap.js` is a 168x196 **2D DOM canvas** painted from world XZ on the
+  existing `afterAnimation` tick — no second camera, no second render loop, no extra
+  `requestAnimationFrame`, and `main.js` was not touched at all.
+  **Verified by me on the merged tree:** build clean, 75/75 and 27/27, and **61/61 live checks**
+  (enemy-loop 13, player-death 8, enemy-collision 7, lava-moving 6, plus new progression 16 and
+  mana 11). Hardware FPS **144.0**, draws **42** — the minimap adds no GPU draws, confirming the
+  DOM-canvas claim. p95 moved 8.0 -> 8.4 ms, which is the minimap's per-tick CPU cost showing up
+  where the vsync-pinned mean cannot.
+  **Open defects (its own, and they are fair):**
+  1. The minimap town is a schematic cross of grey blocks, not a street plan — no walls, no well,
+     no building types. Legible as road/buildings/enemies, but crude.
+  2. Its three terrain bands are near-black and easy to miss.
+  3. The floating damage number overlaps the LEVEL UP banner moment.
+  4. `level-up.png` is a poor frame (airborne, "Land before casting"); `level-up-live.png` is the
+     intended evidence and is genuinely good.
+  **Process note:** like M4 before it, this agent drifted toward the Telegram stop-hook and left an
+  untracked `telegram-motion-stop.py` in its worktree. It did NOT commit it and correctly sent no
+  message. I scanned it (0 token-shaped strings) and deleted it. Two agents have now independently
+  wandered to that hook when blocked by frozen paths; briefs should keep naming it out of scope.
+- 2026-09-20: **M3c landed and merged** (`4afaee0`, commits `4046896`, `7789930`, `ea39da9`).
+  Both carried defects fixed, and both diagnoses were better than my framing of the problem.
+  **Defect 1 — the lime-green wash — fixed, and the root cause was not what I assumed.** Two
+  compounding bugs in the baked lamp-irradiance term in `materials.js`: the lamp colour constant
+  `(.7,.75,.30)` had **green as its highest channel and blue its lowest**, so the "warm lamplight"
+  was never warm at any point in this project; and `lamp` is an unbounded sum of `strength/(1+d^2)`
+  over every registered light, so fixture-dense spots (the well square's well + three stalls, the
+  gate's own two tower lights) summed past sane brightness. Stone showed it worst because it has no
+  other colour correction. Fixed with a bounded soft knee (`1.4 + (1-exp(-(lamp-1.4)))`, max 2.4)
+  and an R-dominant `(1.0,.60,.28)`. **Both** the knee and the colour are gated by
+  `smoothstep(40,55,i.p.z)` — I checked this specifically, because a colour constant is not a gate
+  and a global change would have altered the churchyard lamps; it is `mix()`ed, so at z<=40 the
+  formula reduces to the original byte-for-byte.
+  I compared before/after at the same camera: brightness and uniformity are identical and only the
+  hue moves, lime green -> warm amber. Its "unchanged in character" claim for the wide shots is
+  accurate.
+  **Defect 2 — M3's gate vista — genuinely met at last.** The occluder was not the tree canopy but
+  **the gate's own decorative header**, sitting 3.15-4.05 units above ground at ~5 m range, whose
+  angular band covered exactly where the citadel's walls and spire bases sit from that distance —
+  which is why only "window dots above the lintel" showed. Raised `gy+3.6` -> `gy+7.4`, still under
+  `towerH=9`. Pure vertex-Y change, zero triangles, no collider. Verified at *ordinary* play
+  framing (pitch .04, distance 3.5), not the contrived pitch .25 M3b judged itself at: five citadel
+  spires with lit windows read clearly through the archway, and the z=141 sanity shot still shows
+  sky around the silhouette rather than a sky-filling wall.
+  **Verified by me on the merged tree:** build clean, 75/75, 27/27, **61/61 live checks**, walk to
+  z=134.73, hardware FPS **144.01**, draws **42**, triangles unchanged at 191,846 (both fixes are
+  shader-only and vertex-Y-only).
+  **Residual, carried:** town lamplight still reads as a general warm ambient over the ground
+  rather than discrete pools in wide shots. That was equally true before this pass, so it is not a
+  regression — but discrete pooling in the wide view is still unachieved, and the unbounded-sum
+  knee is the reason the town now reads uniformly. Worth a future pass, not a blocker.
+  **Testing note — corrected 2026-09-20.** I originally wrote here that `check-progression`
+  reporting 10 of 16 was my own harness error (running the script twice against the same tab) and
+  "not a defect in the check". **That explanation was wrong, and the 61/61 figure above was
+  reported from a run that had actually returned 55.** The check calls `page.goto(url)` and
+  reloads, so it cannot inherit state between runs. It is a genuine race: I ran it 9 times on
+  `main` and got 4 failures to 5 passes, always the same assertion (`Threshold is armed one XP
+  below the level-up`, exit 1, PASS=10). Cause is in the check's own setup — `plantOn()` forces
+  *every* enemy to `idle`, including the shade already killed for its 50 XP, so a second award can
+  land after the threshold is armed. Sent to M6b to fix. The 61/61 line above is accurate for the
+  merged tree as re-verified on 2026-09-20; it was not accurate when first written.
+
+- **M4c and M6a — merged 2026-09-20** (`8ced463` M6a, `d0d237e` M4c). Both Grok workers finished;
+  I diffed each against its own `git merge-base`, confirmed allowed-path compliance, re-ran every
+  check myself and opened every capture.
+
+  **M4c (shade appearance).** Four commits on `m4c`, touching only `src/ashen-reach/enemies.js`,
+  `src/character/npc.js` and a new capture script. The four per-shade tints (olive, grey, blue,
+  rust) are replaced by one shared `SHADE_TINT` — a translucent spectral PBR material, alpha 0.56
+  with emissive `[.12,.18,.20]`, joints hidden. `Punch_Cross` (1.0 s) now loops at speed 0.58 so
+  the swing stays on screen across the 1.6 s attack cooldown instead of snapping back to idle.
+  **What the captures actually show:** the near/far mismatch is genuinely fixed — `near-far.png`
+  has three shades at three distances reading identically. `melee.png` shows a real strike, arm
+  extended, player at 84/100. `death.png` delivers the collapse with a `Dead` nameplate, which M4b
+  never captured. Draws unchanged at 42.
+  **Correction to the agent's own report:** it listed "a red/white checkered world prop among the
+  graves" as an unexplained leftover. I cropped and enlarged that region — it is the **training
+  dummy** (`/ashen-reach/training-dummy.glb`), a straw figure in a plaid shirt on a crossbar. An
+  authored asset, not a missing-texture checkerboard. Nothing to fix.
+  **Residual, carried and honest:** the shades still read as translucent mannequins. The ball-joint
+  shoulders and elbows are modelled into `Alpha_Surface` itself, so hiding the joint mesh cannot
+  remove them, and the hue is an ice-cyan closer to a hologram than to grave mist. There is no
+  hood, cloth, face or weapon. Fixing this properly means new authored geometry, not another
+  material pass — scope it as such.
+
+  **M6a (honest instruments).** Five commits on `m6a`, adding `src/ashen-reach/metrics.js` and
+  rewiring `main.js` to it. **The triangle counter is a real success.** `sceneTriangles` walks live
+  visible meshes via each mesh's GPU index count and now reports **335,618** against
+  `worldTriangles` **191,846** — a 137,920 delta that is exactly the four skinned shades, proven by
+  hiding and restoring them in-page and cross-checked against a `?noEnemies` load. That cost was
+  invisible to every previous milestone's measurement. `worldTriangles` is the old `triangles`
+  under an honest name, so old log entries keep their meaning. Instrument cost is ~0.004 ms and it
+  runs only in `summary()`, never on the render path.
+  Also landed: `up.mjs --uncapped` (opt-in `--disable-gpu-vsync --disable-frame-rate-limit`;
+  default Chrome argv untouched), and `--internal WxH` / `--pixel-ratio` forcing. Uncapped headless
+  reaches **~750 FPS / 1.33 ms mean**, and 7x the pixels (960x540 to 2560x1440) costs 0.04 ms — this
+  slice is not fill-rate bound. GPU timestamp queries install but read back 0 in this headless
+  WebGPU session; wall-clock uncapped is the working signal.
+
+  **Defect I found in M6a, now sent to M6b: the cap detector false-negatives on the machine that
+  matters.** `detectVsyncCap()` reported `vsyncCapped: false` on a 600-sample run whose mean was
+  **6.9438 ms against 1000/144 = 6.9444 ms — a 0.009% difference.** Its `minNear` gate requires
+  `min >= capMs * 0.85` (5.903 ms) and the real `min` was 5.10. The thresholds were tuned against
+  headless Chrome's 60 Hz compositor cap, which is perfectly rigid — every sample lands on 16.667
+  exactly — and were never validated against a real display, whose rAF timestamps jitter either
+  side of the interval. A detector that launders a vsync ceiling into apparent headroom is worse
+  than no detector, so this is not a cosmetic bug.
+
+  **Verified by me on the merged tree:** build clean, 75/75, 27/27, metrics unit tests 4/4, and
+  **61/61 live checks** (enemy-loop 13, player-death 8, enemy-collision 7, lava-moving 6, mana 11,
+  progression 16). Hardware measurement: 144.01 FPS, mean 6.944 ms, p95 8.4, p99 8.7, worst 8.8,
+  draws **42**, `worldTriangles` 191,846, `sceneTriangles` **335,618**, internal 720x405.
+  **Read that 144 as "did not fall off the cap", not as headroom** — that is the whole lesson here.
+
+- **M6 (chunking, frustum culling, LOD) — not activated.** The plan gates M6 on measurements
+  showing the >120 FPS goal is threatened. With the instruments now honest enough to answer, they
+  say it is not: uncapped p99 is 1.7-1.8 ms against a 8.333 ms budget, the four skinned shades cost
+  0.24 ms, and 7x pixels cost 0.04 ms. Chunking, culling and LOD would be solving a problem the
+  numbers do not show. **This is not a permanent answer** — it is proof for one churchyard, four
+  shades and one player, at 0.75 DPR, with GPU occupancy unconfirmed. Re-measure with
+  `measure-scene-fps.mjs --uncapped` before adding many casters, native DPR, or MMO-scale content.
+
+- **M6b — in flight.** Fixes the cap detector against three recorded distributions (real 144 Hz,
+  rigid headless 60 Hz, uncapped ~750 FPS) and the `check-progression` race, with unit tests that
+  must fail before the fix and pass after. Briefed with a 20-consecutive-run tally as the evidence
+  bar, because a single green run is not evidence against a race.
+
+## Beyond M1–M6: quality milestones opened 2026-09-20
+
+With M1–M5 merged and M6 deliberately not activated, the plan's original scope is met. The two
+largest remaining gaps are both things earlier milestones disclosed honestly and could not fix
+within their own scope, so each now gets a milestone of its own.
+
+- **M7a — discrete lamp pools in Hollowmere (in flight, branch `m7a`, slot 2).** The oldest carried
+  defect in the project: four passes (M2b, M3, M3b, M3c) attacked it and it still stands. The two
+  dead ends are now documented and fenced off in the brief — ground decals cannot work because the
+  world material has no alpha blending, and tessellation is already sufficient at `CORRIDOR_SUB=4`
+  (0.5 m sub-quads).
+  **My diagnosis, handed over as a hypothesis to falsify rather than an instruction:** the baked
+  `lamp` term in `Batch.commit` is an unbounded sum of inverse-square contributions that never
+  reach zero, so with many street lamps plus gate-tower halos every lamp's tail contributes
+  everywhere and the tails sum into a **pedestal** between lamps. `materials.js` then squashes the
+  peaks with its knee (max 2.4). Peaks come down, troughs stay up, and contrast dies from both
+  ends. The likely fix is to window each light to a finite radius so tails cannot accumulate —
+  free at runtime, because the bake is CPU-side and happens once. The agent must measure the
+  peak:trough ratio along the street first and tell me if I am wrong.
+  **Watch at review:** the bake happens before the shader runs, so `materials.js`'s
+  `smoothstep(40,55,z)` gate does **not** protect the churchyard from a change made in
+  `geometry.js`. A pixel comparison south of z=40 is required, not an eyeball.
+
+- **M7b — give the grave shades a silhouette (in flight, branch `m7b`, slot 3).** M4c's own honest
+  leftover: the shades read as translucent mannequins with ball-joint shoulders and no face, hood
+  or cloth. This needs geometry, not another material pass.
+  **Approach:** build the hood and cloak **procedurally in JavaScript** and hang them off the
+  existing socket system, which already defines `head` → `mixamorig:Head` and `back` →
+  `mixamorig:Spine2` in `"pose"` mode, described in `sockets.js` as the "helm / back cape / tunic"
+  sockets. Loose cloth rigidly parented to two or three joints reads convincingly in motion without
+  any skinning. No new asset files, no Blender, and the Orc print-sculpt pipeline stays untouched.
+  **Biggest technical risk, called out in the brief:** enemies load through `attachAnimatedHuman`,
+  a different path from the player, so whether `createSockets` binds cleanly to the enemy skeleton
+  is unproven. The agent is told to report a failure to bind rather than force it.
+  **Watch at review:** the greeter NPC shares `attachAnimatedHuman`, so the work must be gated on
+  an explicit opt-in rather than on a guess about the caller; a capture proving the greeter is
+  unchanged is required evidence.
+
+- **M6b — instrument correctness (in flight, branch `m6b`, slot 1).** Described in the M4c/M6a
+  entry above. Also fixes the `check-progression` race.
+
+**Three agents are running in parallel on slots 1, 2 and 3.** Slot 0 (ports 5173/9337) stays mine
+for real-hardware measurement. Their allowed paths are disjoint by construction: M6b owns
+`metrics.js` and the progression check, M7a owns the world shader and geometry, M7b owns the enemy
+and NPC appearance path.
+
+---
+
+## M6b merged, 2026-09-20 — the instrument is now honest, and one of my earlier entries was wrong
+
+Merged as `b755b61`. Three files: `metrics.js`, `check-progression.mjs`, `test-metrics.mjs`.
+
+### Defect 1 — the cap detector
+
+`detectVsyncCap()` reported `vsyncCapped: false` on a real 144 Hz display whose mean was 6.9438 ms
+against a 6.9444 ms interval, 0.009% off. The old gate keyed on `min` and a per-sample "how many
+are faster than 0.92×" count, both tuned against headless Chrome's *rigid* cap where every sample
+lands on the interval exactly. Under a real display's rAF jitter they false-negative. Replaced
+with relative tolerances on mean (2%) and median (3%).
+
+**The first pass reintroduced the same defect on the other tail.** Its new sanity bound read the
+literal maximum, so a single frame above `capMs * 1.5` vetoed the whole run. I probed it directly
+rather than trusting the 7/7 test count:
+
+```
+hitch 10.4ms -> capped=true        capMs*1.5 = 10.417
+hitch 10.5ms -> capped=false
+hitch 22.0ms -> capped=false       "mean 6.979 ms is not locked to a known display interval"
+```
+
+One frame in 600 — one GC pause, one shader compile — and the instrument asserted the opposite of
+the truth, in the direction that gets mistaken for headroom. The tests passed because the recorded
+144 Hz fixture happened not to hitch (`worst` 8.80), so every fixture was clean-case. That is the
+*same* failure as the original bug: an instrument validated only on the easy case.
+
+Sent back. The bound now reads the 1st/99th percentile. I re-probed independently of the agent's
+fixtures: single hitches of 10.5, 22 and 60 ms all hold, as do three at 16 ms.
+
+**Live on the merged tree, where it previously said false:**
+
+```
+vsyncCapped  true    capHz 144
+capReason    mean 6.942 ms and median 6.900 ms sit on 144 Hz (6.944 ms);
+             1st-99th percentile 5.500-8.600 ms (full range 5.300-8.700 ms)
+```
+
+**Two boundaries recorded rather than fixed.** Six or more stalls in 600 samples — the 1% trim
+point — still flips a capped run to "not capped". Loosening the trim would give up the guard's
+real job: a uniform 4–10 ms workload has a mean 0.8% off the 144 Hz interval and is rejected *only*
+by the spread check. And a uniform 5–9 ms workload is still reported as 144 Hz capped. That false
+positive errs safe — it prompts a re-measure rather than a phantom headroom claim — but it is a
+real limit of inferring a cap from timing statistics alone, and nobody should read `vsyncCapped`
+as proof.
+
+### Defect 2 — the progression race, and a correction to this log
+
+`check-progression.mjs` forced **every** enemy to `idle` in `plantOn()`, including already-killed
+ones, so a second 50 XP award could land before the `level === 1` assertion. Fixed check-side
+after confirming no gameplay path can set `idle` on a 0-hp enemy. That unmasked two further races,
+both fixed with `waitForFunction` on real state transitions rather than sleeps or loosened
+assertions: `setWorldPos` does not clear `grounded` synchronously, and the level-up cast was
+landing inside Fire Blast's 1 s cooldown.
+
+I verified this by measurement rather than accepting the agent's 20-run tally — same machine, same
+session, same harness:
+
+```
+pre-fix control   4 of 6 runs truncated at 10 PASS, exit=1
+post-fix          6 of 6 runs 16 PASS, exit=0
+```
+
+**This closes a correction I made earlier in this document.** My original M3c note blamed the flake
+on my own harness calling the check twice against a shared tab. That explanation was wrong — the
+check calls `page.goto()` and cannot inherit state — and I corrected it once already. The control
+above now settles it with numbers instead of reasoning.
+
+### Verification on the merged tree
+
+`check-progression` 16/16, `check-enemy-loop` 13/13, `check-player-death` 8/8, `check-mana` 11/11,
+`test:character` 75/75, `test:equipment` 27/27, metrics tests 11/11 (was 4). Build clean.
+
+### What this means for every performance number in this document
+
+Every "no regression" result recorded before today was taken with a cap detector that could not
+detect the cap. `144.0 FPS / 6.944 ms` still means **"did not fall off the ceiling"**, not
+headroom. `sceneTriangles` (335,618 on the merged tree with enemies live) is the count that
+includes skinned meshes; the historical `triangles`/`worldTriangles` (191,846) excludes them and
+should not be quoted as a scene total.
+
+## M7a merged, 2026-09-20 — lamp pooling, and the two report claims I had to send back
+
+Merged as a no-ff merge of `m7a` (4 commits, tip `c62f4bd`). `Batch.commit` now multiplies
+each light's contribution by `(1-(dist/radius)^2)^2` for vertices past `z>40`, so a lamp
+stops contributing at its own radius instead of adding a little brightness to the whole
+corridor. The window is C¹-continuous at both ends, and it is gated on **vertex** world-z,
+not light position — the bake runs at build time, before any shader, so a runtime gate would
+not have protected the churchyard.
+
+**Verified by re-running the agent's own instrument, not by reading its table.** Every number
+below is from my own run of `measure-lamp-profile.mjs` on `m7a`:
+
+- Fixture-to-fixture contrast improves in ten of eleven corridor segments. The one that does
+  not is `z=66->75` (0.98x -> 0.85x), which was already inverted before the change.
+- The two segments the first version of the sweep never measured behave like the rest once
+  sampled: `z=124->134` 1.31x -> 3.09x, `z=134->142.5` 2.00x -> 6.91x. The original loop
+  stopped at z=120 while `inLampCorridor` runs to z=143, so the lamps at z=124 and z=134 were
+  unmeasured and the last table row was degenerate. That was round-one send-back.
+- **This is a level change, not only a contrast change.** Global peak falls 1.596 -> 1.297
+  (-19%) and the trough falls further. The ratio improves because the floor drops faster than
+  the peak. Left as-is deliberately; no radius or intensity retuning this pass.
+
+**Two "unchanged" claims in the first report were both wrong, and both understated the change.**
+Round-two send-back asked for measured diffs instead of impressions:
+
+| capture | changed % | mean | max |
+|---|---|---|---|
+| wide-town | 72.04 | 8.34 | 45 |
+| street-lamp-z94 | 83.50 | 18.32 | 166 |
+| street-level-wide | 77.29 | 18.52 | 201 |
+| well-square | 44.02 | 6.64 | 162 |
+| churchyard-spawn | 8.03 | 1.19 | 99 |
+
+`street-lamp-z94` was reported "unchanged — that was never broken"; it is the **most** changed
+capture of the five. `well-square` was reported "lit entirely by buildings.js"; 44% of its
+pixels moved. `churchyard-spawn`'s 8.03% sits against a same-code control of 6.08%, so the
+`z>40` gate does hold the churchyard invariant.
+
+**The well-square premise was also wrong, and the corrected breakdown scopes the follow-up.**
+At the well's own centre (x=0, z=136) buildings.js is 85.1% of the total before and 95.7%
+after — buildings.js-dominant, as guessed. But at the position actually screenshotted
+(x=0, z=131, five metres south) the windowed corridor lights are 40.4% before and 9.4% after:
+a real share, not zero. And the contributor is not the town-gate halo (radius 30 at z=75,
+~57 m away, ≈0 at both ends) — it is the **z=134 street lamp**, four metres from the camera
+stand. A follow-up that wants to fix the well square has to touch `buildings.js` lights, which
+were out of scope here and carry no radius at all.
+
+Merged-tree verification: build clean; check-progression 16/16, check-enemy-loop 13/13,
+check-player-death 8/8, check-mana 11/11; character 75/75, equipment 27/27, metrics 11/11.
+Live on real hardware: 42 draw calls, 191,846 world triangles, 335,618 scene triangles —
+all three identical to pre-merge, as expected for a bake-time change. `vsyncCapped: true`
+at 144 Hz, so the frame rate proves only that nothing regressed below the cap.
+
+## M7b round 1 reviewed, 2026-09-20 — not merged, sent back
+
+Branch `m7b` (3 commits, `f3c8231`/`2d1c620`/`0adc35c`, plus a merge of `main` at `8f5cf29`).
+Held back from `main`. The socket work is sound; the silhouette is not yet.
+
+**What is genuinely good, verified independently rather than taken from the report:**
+`probe-m7b-sockets.mjs` shows `mixamorig:Head` and `mixamorig:Spine2` resolving on the enemy
+`attachAnimatedHuman` path across 65 bones — the "biggest technical risk" named when this
+milestone was opened does not materialise. Cost is small and exact: +1,760 scene triangles
+(4 shades x 440), +12 draw calls, `worldTriangles` unchanged. I confirmed the exactness by
+moving the garment meshes out of the frustum and watching `sceneTriangles` return to 335,618,
+`main`'s value to the triangle. The greeter correctly never opts in.
+
+**Why it was sent back.** Matched-timing A/B on slot 3, shade planted at (3.4, 16), camera
+stand at (5.2, 13.4), measured inside the shade's own bounding box:
+
+```
+garment OFF -> ON        29.49% of pixels changed, mean delta  9.87
+main -> m7b tint only    28.25%                    mean delta 14.00
+main -> m7b full         37.65%                    mean delta 17.29
+same code twice          00.02%   (noise floor)
+```
+
+The cloak is doing plenty of work and the wrong work: front-on it renders as one rounded slab,
+taller than the head and wider than the shoulders, with no hood-to-shoulder break. `main`'s
+ice-cyan mannequin was at least a readable humanoid. Luminance standard deviation inside the box
+falls 22.99 -> 17.58. In **profile** and at ~8 m the same geometry reads well as a cowled robe,
+so this is a proportion problem, not a geometry-pipeline problem. Arms and hands still poke out;
+only the legs were hidden.
+
+Separately, `SHADE_TINT` was retinted from ice-cyan `[0.46,0.58,0.62,0.56]` to peat
+`[0.30,0.38,0.26,0.28]` with `directIntensity` 0.34 -> 0.22, which is half the visual delta and
+is not mentioned in any commit message. Not asking for a revert — asking that it be declared.
+
+**A measurement trap I walked into, recorded so nobody repeats it.** My first A/B said the
+garment contributed 0.24% — i.e. that it was visually inert. That was wrong, and the cause was
+my probe, not the build: these procedurally created meshes **have no `visible` property**.
+Setting `m.visible = false` decrements `sceneTriangles` while the mesh keeps rendering, so the
+counter agreed with me and the framebuffer did not. Moving the meshes out of the frustum instead
+gave the 29.49% above. Two consequences: the game's own `actor.setVisible()` path is fine (it
+removes body and garment together, -34,920 triangles), and `capture-m7b.mjs`'s assertion
+`visible: m.visible !== false` is vacuous — it reports `true` for a mesh that does not implement
+the flag and can never fail.
+
+Round 2 finished on `m7b` at `2dca2ca`. Reviewed below; not merged.
+
+## M8a and M8b opened, 2026-09-20
+
+- **M8a — put people in Hollowmere (slot 1).** The town is built, lit and empty. The blocker is
+  cost: `attachCrowd` already exists and does the naive thing, one full `loadGltf` per body at
+  **34,480 visible triangles each**; eight of those would add ~276,000 to a 335,618-triangle
+  scene. The milestone is therefore the *representation*, not the placement. Budget handed over:
+  the whole population adds no more than 25,000 triangles and 15 draw calls.
+  **My hypothesis, handed over to be falsified:** a purpose-built low-poly figure generated in
+  JavaScript and committed into the existing `Batch`, the way `buildings.js` makes the town,
+  rather than instancing the Mixamo body. The agent is told to measure the naive path first and
+  tell me if instancing turns out to be cheap enough.
+  **Watch at review:** the world material has no alpha blending, so cut-out billboard impostors
+  cannot work on that path — if the answer needs alpha it has to move to the GLB/PBR path and
+  that must be stated, not slipped in.
+
+- **M8b — re-level the corridor without re-pedestalling it (slot 2).** M7a's windowing improved
+  fixture-to-fixture contrast by dropping the trough faster than the peak; the global peak fell
+  19% with it and the facades now carry no information in the dark. The shape asked for is peaks
+  at or above the pre-M7a 1.596 with troughs at or below today's values.
+  **The question that should decide the fix,** and which the agent must answer before changing
+  behaviour: is the 19% from the window function, from `materials.js`'s knee (max 2.4) no longer
+  being reached, or both? If the knee is no longer clamping, raising strength is nearly free; if
+  it is, raising strength only clips.
+  **Watch at review:** `measure-lamp-profile.mjs` *transcribes* the light list and the bake
+  formula instead of importing them. Change the bake without changing the script and it will
+  cheerfully report the old world. That trap is named in the brief.
+
+Nothing here is accepted. Three agents are staged for review on branches `m7b`, `m8a`, `m8b`.
+
+## Session resume, 2026-09-20 — Claude 683f01a4 died at the rate limit
+
+Claude Opus session `683f01a4-ce12-459a-ba6f-d3b92c55d687` hit the session limit while
+launching the first M8a/M8b Sonnet agents and watching M7b round 2. Those two agents
+produced no commits (worktrees were still at `2fd1c9a`). M7b round 2 did finish.
+
+Resumed here as orchestrator. `main` had also gained `3955d1f` (undead concept art and
+plan) after the Claude stop; that work is unrelated and was left untouched. `m8a` and
+`m8b` were fast-forwarded to `3955d1f`. Allowed paths were made disjoint so the two
+milestones cannot collide: M8a owns a new `townsfolk.js` plus one call in `main.js`;
+M8b owns the world shader/geometry/buildings files. Both relaunched.
+
+## M7b round 2 reviewed, 2026-09-20 — not merged, leftovers are honest
+
+Branch `m7b` tip `2dca2ca` (five round-2 commits on top of the round-1 merge of `main`
+at `8f5cf29`). Merge-base with current `main` is `2fd1c9a`. Files: `shade-garment.js`
+(new), `enemies.js`, `npc.js` (+the `actor.silhouette?.sync()` hook), plus capture and
+socket-probe scripts. Offline verification on this tree: build clean, character 75/75,
+equipment 27/27, metrics 11/11. Live checks were not re-run from this parent because
+the check scripts call `browser.close()` and slot 3 (5473/9637) is still the visual
+session; the worker's 13/16/8 live counts are therefore still claims.
+
+**What is genuinely better, from the artifacts not the report.** Round 1's front-on
+slab (widest at the waist, taller than the head, no hood-to-shoulder break) is gone.
+Profile at ~2.5 m is a cowled figure: dark hood, a face cavity with the peat-mist
+body inside, a shoulder shelf, a robe that tapers. Cost is unchanged from round 1:
+440 tris / 3 draws per shade, 54 draw calls, 337,378 scene triangles, 191,846 world
+triangles. `npc.js` only syncs a silhouette if the caller attached one; `greeter.json`
+is `hasSilhouette: false`, `meshNames: []`. The peat-mist retint is now declared in
+`enemies.js`. Arms are hidden the same way as the legs (12 unique bones, not 6
+duplicated). Garment-off now unparents and parks at `(0, 80, -80)` instead of toggling
+a `visible` flag that these meshes do not implement.
+
+**Why it is still held.** The worker's own `front-2.5m-on.png` is the face-on view
+(`shadeYaw = π`, camera looking north). The cowl there is still a rounded cap. The
+face cavity that reads in profile does not read from the front; the pale body shows
+as a slit down the cloak, not as a head in a hood. That was the actual send-back, and
+it is only half-fixed. The 8 m shot still has the player in frame and the shade is a
+dark speck. `death.png` does show a crumpled heap (round 1's "standing dead" was a
+framing miss), but the "Dead" nameplate stays on the unmoved capsule about a metre
+from the mesh. Control noise on the worker's bbox is 18.41% because grass/HUD keep
+moving; the 2.5 m garment signal (45.74% / 43.29%) is above that floor, the 8 m
+number (4.64%) is not.
+
+A parent facing probe on slot 3 (`ve-capture/ashen-reach/m7b-r2/parent-facing/`)
+confirms the profile cavity and the closed back of the hood. `park()` comments
+describe a 180° Y so the opening faces character forward, but the code is only
+180° about X (`rotationQuaternion.set(1,0,0,0)`). Whether that is the remaining
+front-cowl miss is unproven; do not "fix" it by guesswork on merge.
+
+**Carried leftovers if this later merges as-is:** rounded front cowl, cloth is one
+dark value from the front, robe is a tapering tube rather than draped folds, death
+nameplate not on the crumpled mesh, Mixamo body still the peat-mist mannequin in the
+cloak opening.
+
+Round 3 is not launched yet. M8a/M8b are in flight; M7b stays on slot 3 for a
+possible front-cowl pass after those return.
+
+## M8a worker returned, 2026-09-20 — not merged
+
+Branch `m8a` tip `6275441`. Hypothesis survived: naive `attachCrowd(8)` is
++442,560 scene triangles / +16 draws / 8 unique GLB uploads. Ten procedural
+cloaked figures packed into one `Batch` on the existing `Rotten fence` wood
+material: **+2,142 tris, +0 draws**. Churchyard before→after 9.70% vs same-code
+control 9.50% (wind grass).
+
+Parent opened the stills and a live walk. Well-square and stall-close read as
+people. Faces are dark hood holes; backs are cloaked cones; tavern patron is a
+cutout against the wall. `townsfolk.js` transcribes its own light list — if M8b
+merges first those figures will bake against stale strengths.
+
+Telegram: stills 634–635, walk MP4 638,
+https://ve.sparkify.dev/wow-clone/ashen-reach/m8a/2026-09-20-hollowmere-townsfolk-walk.mp4
+(`video/mp4`, Range 206).
+
+## M8b worker returned, 2026-09-20 — not merged
+
+Branch `m8b` tip `659ad0d`. Diagnosis survived: the 19% peak drop is the window,
+not the knee. Corridor re-level (pool 1.00→1.70, head 0.68→0.82, halo stays 0.6)
+puts the centre-line peak **1.297 → 1.730** with all eleven fixture-to-fixture
+ratios holding or improving vs M7a. Street gables got two windows and a door
+lantern; an opaque wall-wash was tried and pulled (hard orange discs). Cost
++856 triangles, 42 draws unchanged.
+
+Parent opened the stills and a live walk. Street lamps are discrete and
+brighter; the tavern gable reads as a building. Roofs still go to black from
+the overlook; windows are bright rectangles on dark wood.
+
+Telegram: stills 636/640–641, lighting MP4 642,
+https://ve.sparkify.dev/wow-clone/ashen-reach/m8b/2026-09-20-hollowmere-lighting-walk.mp4
+(`video/mp4`).
+
+Merged 2026-09-20, in that order, as no-ff merges `9a85cb4` / `b874c57` / `8e3ef99`,
+then `3d5f8f5` so townsfolk bake from `world.lights` instead of a transcribed list.
+Carried leftovers stand. Round 3 of the shade cowl was not launched.
+
+## Merged into main, 2026-09-20 — stop polishing this arc
+
+`main` at `3d5f8f5`. Offline on the merged tree: build clean, character 75/75,
+equipment 27/27, metrics 11/11.
+
+The user asked to avoid tunnel vision, merge everything, and re-prioritize. So:
+
+- M7b, M8a, M8b are **in**. Front cowl, hood faces, dark roofs stay as documented
+  leftovers. They are not the next tickets.
+- The original M1–M6 scope is met. M6 stays off.
+- Next work is **M9 (town hostiles)** and **M10 (one town objective)** in parallel.
+  M11 (Undead first dressed body) is the character track, started only after M9/M10
+  are in flight or done — it must not eat the world/gameplay loop the way the Orc
+  did.
+
+Telegram of the merged tree is a parent walkthrough after live checks, not a
+re-review of the already-sent M8a/M8b clips.
+
+## M11 opened, 2026-09-20 — and a resume that started wrong
+
+**Correcting my own resume, in place.** After a context compaction I came back believing M7b
+was awaiting review and that M8a/M8b were unstarted agents killed by a rate limit. That was
+wrong. `git merge-base --is-ancestor` says all three were already in `main`, as were M9 and
+M10 and the Hollowmere cobble/basin/HUD passes on top of them. Acting on the stale summary I
+relaunched two agents against the old M8a/M8b briefs and told them their worktrees held no
+prior work. One of them checked and told me the premise was wrong before I did. I stopped
+both; neither had modified its worktree (`git status --short` in each showed only the
+pre-existing untracked `_record-m8*-walk.mjs`). No work was lost and nothing was re-merged.
+The lesson is cheap and now written down: on resume, read `git log main`, `git branch -vv` and
+the merge-base of every branch the summary names, before dispatching anything.
+
+State at the real resume point: `main` at `475c44d`, pushed. M7b, M8a, M8b, M9, M10 merged.
+Carried leftovers from those (front cowl, hood faces, dark roofs, death nameplate on the
+unmoved capsule) still stand and are still not tickets — per the user's instruction to stop
+the polishing arc.
+
+**Next is M11, the Undead first dressed body**, per `docs/archive/plans/undead-race-plan.md` and the
+concept the user approved at `docs/references/undead-approved-concept.png`. I split it into
+two structurally disjoint tracks so they can run in parallel:
+
+- **M11a — the body.** Branch `m11a`, worktree `.claude/worktrees/m11a`, slot 1 (5273/9437).
+  Owns `blender/`, `scripts/character-assets/`, `public/characters/`, and
+  `public/ashen-reach/equipment-undead/body.glb` only. Brief carries a hypothesis to falsify:
+  I measured `undead-animated-v1.glb` at 169 nodes / **163 skin joints** / **7 animations**,
+  with `UndeadV1Brows`, `UndeadV1Hair` and a `brown_eye.png` texture — a MakeHuman human on
+  the obsolete rig, against `orc-source-v1.glb` at 65 joints and 55 clips. So I believe it is
+  a dead end and the body must be rebuilt on the 65-joint bind. The agent is told to measure
+  that itself and say plainly if I am wrong. The named trap is reviving a scripted MakeHuman
+  flesh-warp, which the Orc track already threw away.
+
+- **M11b — the race plumbing, no art.** Branch `m11b`, worktree `.claude/worktrees/m11b`,
+  slot 2 (5373/9537). Owns `equipment-contract.js`, `equipment-catalog.js`,
+  `equipment-stream.js`, `armory.js`, `main.js`. `FITS_BY_RACE` currently holds only `human`
+  and `orc`. The acceptance I care about is the plan's own: an unsupported combination must
+  never silently receive a Human fit — and I will look for the mechanism in the diff, not the
+  claim in the report. Because the real body does not exist yet, M11b builds a placeholder at
+  `public/ashen-reach/equipment-undead-provisional/` behind one named constant, and must
+  declare `fitId: 'ashen-undead'` on it; a mislabelled placeholder would make its own
+  acceptance test vacuous.
+
+Allowed-path sets are disjoint by construction; `docs/` and `metrics.js` are frozen to both
+and owned by me. Slot 0 (5173/9337) stays mine for verification. Nothing here is accepted —
+it is staged for the user's review.
+
+## M11b merged, 2026-09-20 — Undead is a real third race in the plumbing
+
+`main` at `f33e77c`. Merged as no-ff `87f13ab` from `m11b` (6 commits off `475c44d`).
+Re-measured on the merged tree, not the branch: `test:equipment` 47/47, `test:character`
+75/75, `npm run build` exit 0.
+
+**The claim I checked hardest.** The brief's one hard requirement was the plan's own:
+an unsupported combination must never silently receive a Human fit. I did not take the
+report's word for it — I read the diff for the mechanism. It is there and it is real.
+`equipment-stream.js` previously carried two inference expressions,
+`expectedFit.body==='ashen-orc'?'orc':'human'` and `item.fits?.[raceFit]||item.fit`; both
+answered "human" for any race that was not Orc. They are gone. `declaredFitForRace` throws
+with a comment saying explicitly why there is no `|| item.fit` fallback, `raceForFit` throws
+on an unrecognised fit, `packVisibility` throws for a race with no declared mapping rather
+than inheriting Human's, and the manifest's `fitId` must equal the expected fit body. The
+test suite pins the *regression* rather than the happy path: it asserts the old expression
+genuinely did yield `HUMAN_EQUIPMENT_FIT`, then asserts the new path throws.
+
+Live on my own slot, three broken-asset scenarios each produced a named refusal with the
+character left coherent: corrupted garment bytes, deleted manifest, and a manifest relabelled
+with Human fits ("Equipment pack is ashen-human, not ashen-undead").
+
+**A pre-existing bug the milestone exposed.** Under `?preloadedEquipment`,
+`switchRace('orc')` returned `ok:true, race:'orc'` while the churchyard still drew a Human in
+Human garments. That predates Undead entirely and is exactly the substitution this milestone
+exists to prevent. The guard now keys off the mode, so every future race is covered.
+
+**One reported defect I checked and dismissed.** The worker flagged `a2-orc-walk.png` as
+showing the Orc sunk to the waist in terrain, and said honestly that it was probably its own
+`parkCamera` helper but that it could not rule out a real problem. It was the helper. At a
+camera of mine (`rig.pitch 0.18`, `distance 4.2`, identical for all three races, on slot 3
+serving the m11b worktree) the Orc stands on the path with both feet clear. The worker was
+right to flag it and right about the cause.
+
+**Follow-up I closed myself rather than carrying:** both pack generators
+(`split-equipment.mjs`, `prepare-orc-equipment.mjs`) omitted `fitId`, so regenerating either
+pack produced a manifest the new loader refuses. They now take it from the contract. Both
+were re-run and each reproduces its pack byte for byte.
+
+**Carried leftovers, all of them honest and all disclosed by the worker itself:**
+the provisional Undead body is retinted Human geometry and reads as one grey clay figure in
+the dark — good enough to prove plumbing, not art; the armory camera scale for Undead is 1
+and must be re-measured against the taller authored body; no measured Undead grip offsets
+exist, because the provisional hand is a Human hand; `UNDEAD_BASE_VISIBLE_MESHES` lists only
+the six shared `BODY_REGIONS`, so amber eyes or a separate jaw must be declared there or they
+render invisible; Human garment GLBs carry ~5203 orphaned accessors each, roughly 90% of file
+size, which is a Human-path finding deliberately left alone.
+
+**The one line M11a must flip** is `src/ashen-reach/main.js`: `UNDEAD_PACK_DIR`, from
+`equipment-undead-provisional` to `equipment-undead`, then delete the provisional directory
+and `scripts/ashen-reach/prepare-undead-provisional.mjs`. Nothing else names it.
+
+## The harness was lying, on three slots at once
+
+Merged as `5166287`, found because the M11b worker reported it rather than working around it.
+
+`scripts/harness/up.mjs` waited for "something answers on the Vite port" and treated that as
+the slot being up. When an orphaned `npm run dev` from another worktree already held the
+port, our own Vite exited with "port already in use" and the script printed success anyway —
+so every capture taken through that slot rendered a different tree's code. The worker lost a
+full capture run to it.
+
+It was worse than reported. At the time I checked, **every** agent slot was squatted by an
+orphan from a long-merged worktree: 5273 (slot 1) served `m9`, 5373 (slot 2) served `m10`,
+5473 (slot 3) served `m7b`. Slot 1 is where the M11a worker was running, so I killed all
+three orphans and told that agent its live captures were suspect and its offline
+measurements were not.
+
+The fix checks identity rather than liveness: refuse the port up front if a foreign process
+holds it (naming the squatter's pid and directory), confirm after startup that the listener's
+cwd is this checkout and that the Vite we spawned is still alive, and match the Chrome page
+on port as well as route so a stale browser cannot hand back a page from another slot. Both
+directions tested — it refuses a squatted port and still brings a clean slot up.
+
+This is the same lesson as the vsync cap and the triangle counter, in a third place: an
+instrument that reports success without checking the thing it claims to check will silently
+validate every milestone that passes through it.
+
+## M12 opened, 2026-09-20 — the streamed equipment packs are ~83% dead weight
+
+Found while verifying a carried leftover from M11b rather than from a report. Every
+streamed garment GLB in both the Human and Orc packs carries ~5,202 orphaned
+accessors; only 7–14 per file are referenced by a mesh primitive or skin. Measured
+on `main` at dbb3a37:
+
+```
+graveweaverGloves.glb    file= 1.97MB json= 0.53MB bin= 1.44MB deadBin= 1.22MB accessors=5209
+graveweaverHood.glb      file= 2.16MB json= 0.53MB bin= 1.62MB deadBin= 1.22MB accessors=5209
+graveweaverSkirt.glb     file= 2.26MB json= 0.54MB bin= 1.73MB deadBin= 1.22MB accessors=5216
+graveweaverTop.glb       file= 2.07MB json= 0.54MB bin= 1.54MB deadBin= 1.22MB accessors=5219
+pilgrimTunic.glb         file= 2.44MB json= 0.53MB bin= 1.91MB deadBin= 1.22MB accessors=5209
+wayfarerBoots.glb        file= 2.08MB json= 0.53MB bin= 1.55MB deadBin= 1.22MB accessors=5209
+wayfarerTrousers.glb     file= 1.95MB json= 0.53MB bin= 1.42MB deadBin= 1.22MB accessors=5210
+wayfarerTunic.glb        file= 2.09MB json= 0.53MB bin= 1.55MB deadBin= 1.22MB accessors=5209
+```
+
+So ~1.75MB of each ~2.1MB file is waste: 1.22MB of orphaned animation binary plus
+~0.53MB of dead accessor JSON. The Orc pack's eight files are the same, so roughly
+28MB of dead payload ships. The game is deployed at https://play.sparkify.dev, so
+this is real load time.
+
+Working hypothesis handed to the agent as a hypothesis, not a spec: the garment
+branch of `split-equipment.mjs` disposes animations and then runs
+`prune({keepLeaves:true})`, which does not collect the accessors and bufferViews the
+disposed animations left behind. The agent is to measure the mechanism and say so if
+I am wrong.
+
+The constraint that matters is that `manifest.bindSha256` must not change, and
+pruning must not drop joints, the skin, or the inverse bind matrices — dropping
+"unused" joints would renumber the palette and silently corrupt skinning while every
+file got pleasingly smaller. That is the failure mode to watch.
+
+**Correcting a measurement of my own, in place:** my first pass at sizing this summed
+`byteLength` over every orphaned accessor's bufferView and reported 7,434MB of dead
+payload inside a 2MB file — orphaned accessors share bufferViews, so the sum
+double-counted wildly. An impossible number is a broken instrument, not a dramatic
+finding. The table above is computed over unique bufferViews referenced only by
+orphaned accessors.
+
+Running in parallel with M11a's second pass. M11a holds slot 1 and the character
+assets; M12 holds slot 2 and the equipment packs; the allowed path sets are disjoint
+by construction. Neither is accepted; both are staged for review.
+
+### M12 mechanism found, and a trap in my own brief
+
+**My hypothesis was wrong.** `prune({keepLeaves:true})` is not what strands the accessors,
+and `keepLeaves:false` produces byte-identical output. The agent refuted it with a
+four-variant reproduction before touching any code, which is exactly what the brief asked
+for. I confirmed the mechanism independently in the dependency source rather than taking
+the report on trust — `node_modules/@gltf-transform/functions/dist/index.js:2727`:
+
+```js
+const parents = prop.listParents().filter((p) => !(p instanceof Root || p instanceof AnimationChannel));
+```
+
+`AnimationSampler` is absent from that filter. `Animation.dispose()` only drops the
+animation's own edges; the AnimationChannel and AnimationSampler objects survive in the
+graph as orphans, and each surviving sampler still holds edges to its input/output
+accessors. So tree-shake sees a live parent and keeps the accessor, and its bufferView
+bytes ride along into the export. The fix is to cascade-dispose channels and samplers
+before disposing the Animation: 5,209 accessors and 1,973,260 bytes become 7 accessors and
+229,148 bytes for graveweaverGloves.
+
+**The trap, which was mine.** `dbb3a37` added `scripts/ashen-reach/compress-startup-glbs.mjs`,
+a destructive in-place post-process over six first-play files only. It is why three Wayfarer
+garments are already lean (7–8 accessors) while graveweaver/pilgrim still carry 5,209: run
+against a file freshly read from disk there is no live sampler to strand anything, so its
+second `prune` pass collects the dead accessors. It also transcoded `body.glb`'s textures to
+JPEG and meshopt-encoded the set.
+
+`public/ashen-reach/equipment/body.glb` is therefore **8.80MB on main**, but **19.46MB** when
+regenerated from `split-equipment.mjs`. My brief told the agent to "regenerate both packs",
+which would have overwritten the compressed startup files with uncompressed ones — reverting
+the load-opt commit's texture and meshopt work while every garment size dropped and the
+change looked like a clean win. The garment numbers would have been real and the overall
+result a regression.
+
+Correct sequence, for whoever does this: fix both generators, regenerate, **then re-run
+`compress-startup-glbs.mjs`** to restore the startup set, and verify `body.glb` is back to
+~8.8MB and every `bindSha256` is unchanged. The acceptance number is not "garments got
+smaller" — it is total shipped bytes, with the startup set still compressed.
+
+Both agents were wound down here at the user's instruction; I am taking the implementation
+over directly.
+
+### M12 landed, 2026-09-20 — 50.25MB of packs down to 26.43MB
+
+Implemented directly rather than delegated; both agents were wound down first and
+handed off clean trees.
+
+| pack | before | after |
+| --- | --- | --- |
+| `equipment` (Human) | 20.36MB | 11.64MB |
+| `equipment-orc` | 24.66MB | 9.57MB |
+| `equipment-undead-provisional` | 5.23MB | 5.23MB (untouched) |
+| **total** | **50.25MB** | **26.43MB** |
+
+The Orc pack was the biggest win (garments 18.17MB → 3.08MB) for the reason found
+above: it had never been through `compress-startup-glbs.mjs`, so nothing had ever
+incidentally re-pruned it.
+
+**The sequencing trap was real and I walked into the edge of it.** Running
+`split-equipment.mjs` alone took `body.glb` from 8.80MB to 19.46MB and *grew* the
+three Wayfarer files, because regeneration discards the texture transcode and
+meshopt encoding. Re-running `compress-startup-glbs.mjs` over exactly the four
+regenerated first-play files restored them — and they came back **byte-identical**
+to what shipped. That is the useful result: the pipeline is deterministic, and the
+generator fix provably changes nothing for files that already got the second pass.
+
+Evidence, checked rather than reasoned about:
+- Both `bindSha256` unchanged; both `body.glb` byte-identical.
+- Geometry, joint order and inverse bind matrices compared against the shipped
+  blobs read straight out of git, for all 18 files: identical. Only dead keyframe
+  data left.
+- `check-m12-packs.mjs` (new) equips all eight garments on both races in the
+  running game. All 16 load, skin to 65 bones, have non-degenerate world extents,
+  no console errors — and **every row is identical to the same check run against
+  the shipped binaries.**
+- `test:equipment` 47/47, including the pack bytes/hashes/bind assertions.
+
+**Two instruments of mine failed before they told me anything.** First, the mesh
+probe reported `verts=0 bones=0` for all 16 garments including plainly visible
+ones — Babylon Lite meshes are plain objects with no `getTotalVertices` and a
+`skeleton.boneCount` rather than a bones array. A metric that reads zero for
+everything is not measuring anything; I replaced it with triangle counts from
+`_cpuIndices` and world extents from `boundMin/boundMax`. Second, screenshot
+hashes differed on 16/16 captures, which looks damning until you run the control:
+two consecutive runs on *identical* binaries differ by mean 2.751 (range
+0.25–4.04), and the before/after range is 2.08–4.88. The scene is animated, so
+pixel hashes carry no signal here at all. The numeric rows are the evidence.
+
+**Carried defects, pre-existing, identical before and after — not caused by M12.**
+Each verified by restoring the shipped binaries from git and re-running:
+- `check-equipment` fails at "Sword grip stays on evaluated hand, no inherited
+  world offset" (6 pass first). Deterministic across 4 runs.
+- `check-equipment-stream` fails at "Failure is explained in armory" (2 pass).
+- `check-armory` fails at "Only unsupported races disabled" (1 pass).
+- `test:character` is 62 pass / 8 fail, `test-rig-contract.mjs`.
+- On Orc, `wayfarerTrousers` is correctly skinned but hidden beneath
+  `pilgrimTunic`, where on Human it shows. May be intentional; unconfirmed.
+
+Three of those are gate checks for equipment and the armory, and they are all
+failing on `main` right now. Nothing here is accepted — it is staged for review.
+
+### Gate checks repaired (2026-09-20, commit `467d5f6`)
+
+The three red gate checks above are green. Every one of the seven failures was
+the check being stale against a shipped behaviour change; none was a defect in
+the game, and each was confirmed to pre-exist by running the committed version
+of the script before touching it.
+
+| Check | Was asserting | Why it went stale |
+| --- | --- | --- |
+| check-armory | exactly one `option:disabled` | M11b made Undead a real third race; unsupported races are now refused by name, not greyed out |
+| check-equipment-stream | exact failure-message equality | the message now carries the reason after the prefix |
+| check-equipment | `equip()` throws on a wrong slot | the streaming loader *resolves* `{status:'failed',error}` so the UI can show why |
+| check-equipment | sword origin within 2mm of the socket, 80ms after a motion change | draw/stow is eased over 0.35s (2026-09-18) and the grip sits ~8cm from the socket origin — verified in `ve-capture/m12/sword/side.png` |
+| check-equipment | `attachment==='back'` sampled once at `casts===1` | the stow is a window, not an instant; now traced per frame |
+| check-equipment | dummy `hp===480` / `hp===240` | 500hp-dummy arithmetic; the dummy has 2000hp. Both now derived from `FIRE_BLAST.damage` / `LAVA_BALL.damage` |
+| check-equipment --mixed | `meshCount===initial.meshCount` after equipping pilgrimTunic | `initial` predates the ironSword and pilgrimTunic streams, so the count legitimately grew 75 → 78. Actor identity is the skeleton; per-swap stability is already asserted precisely by the 40-cycle check |
+
+Two of the diagnoses were only reachable by instrumenting rather than guessing,
+and both changed what the fix had to be:
+
+- The `--mixed` assertion is a conjunction of four conditions. Printing them
+  individually showed the frozen preview time and the bone count were fine, the
+  visibility conjunct was false only because a **first-time garment stream is
+  asynchronous** (`getStatus().pending` was still true at the read), and the mesh
+  count was comparing against a three-streams-old snapshot. Added a `settle()`
+  helper used after every `selectOption`.
+- "Gameplay view changes preserve unequipped coverage" read `WayfarerTunic` as
+  visible with the torso slot empty, which looks exactly like a garment leaking
+  into gameplay. It is not. The streaming loader had **evicted** that mesh — it
+  stays parented under `body.root` but leaves `scene.meshes` — and `setView()`'s
+  blanket `setMeshVisible(body.root, true)` then writes `visible = true` straight
+  back onto the detached mesh. The capture shows a bare chest, correctly. The
+  check was reading a flag on something that cannot render, so `visible` now
+  means in-scene **and** flagged. Worth knowing generally: on this engine the
+  mesh visibility flag alone is not evidence that a mesh renders.
+
+**Correction to an earlier entry of mine.** Partway through this work I recorded
+that `check-equipment` was green in default mode at 12 PASS. That was wrong: the
+default run was reaching the stale `hp===240` lava expectation and timing out
+there, and I read a truncated tail as a clean finish. Default mode has 14 checks
+and now passes 14. The lesson is the one already in this log — count the checks,
+do not read the tail.
+
+Current numbers on `main` at `467d5f6`: check-equipment 14 PASS default and 21
+PASS `--mixed`, check-armory 28 PASS, check-equipment-stream 8 PASS,
+check-m12-packs 16/16, `test:equipment` 47/47.
+
+Still carried from the M12 list, untouched: `test:character` 62/8 in
+`test-rig-contract.mjs`, and orc `wayfarerTrousers` hidden beneath
+`pilgrimTunic` (may be intentional, still unconfirmed). Staged for review, not
+accepted.

@@ -1,0 +1,345 @@
+{
+  "date": "2026-09-27",
+  "moves": [
+    {
+      "from": "docs/armed-character-repair-plan.md",
+      "to": "docs/archive/plans/armed-character-repair-plan.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "1ef8636a5ceb700ac79b33428919f67385c6eded68fbcdc82895b5bd9799d35c"
+    },
+    {
+      "from": "docs/armory-and-equipment-plan.md",
+      "to": "docs/archive/plans/armory-and-equipment-plan.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "3c60e825cf25dd9ffe9aac3841dc18b5ba9715e3f22d434917fa392c63142985"
+    },
+    {
+      "from": "docs/babylon-lite-1.28.0-baseline-2026-09-25.md",
+      "to": "docs/complete/2026-09/babylon-lite-1.28.0-baseline-2026-09-25.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "af191084a736a0f053a14cd3e52bd44babc1bae9245d836e1bd005da771deb7d"
+    },
+    {
+      "from": "docs/babylon-lite-1.31.1-migration-plan.md",
+      "to": "docs/archive/plans/babylon-lite-1.31.1-migration-plan.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "6c3137502da02fa86b0587333758cb0f576a21fa0ab7bb5d8fed907f0229193b"
+    },
+    {
+      "from": "docs/babylon-lite-documentation-audit-2026-09-25.md",
+      "to": "docs/archive/plans/babylon-lite-documentation-audit-2026-09-25.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "ad55914142782040abfda3ab10df7b87ee97ee9e933e73e54ea82b34001d8883"
+    },
+    {
+      "from": "docs/babylon-lite-f1-device-loss-2026-09-26.md",
+      "to": "docs/complete/2026-09/babylon-lite-f1-device-loss-2026-09-26.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "2d3e599ce94ea817530bb92badb1aa6575eefc15e9f9720d405c508894208228"
+    },
+    {
+      "from": "docs/babylon-lite-f1-f7-release-2026-09-26.md",
+      "to": "docs/complete/2026-09/babylon-lite-f1-f7-release-2026-09-26.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "2776d5564a2491d36c3d5743ed991e9f5e1ed52c00c5c2753e6a645ff8135ac2"
+    },
+    {
+      "from": "docs/babylon-lite-f2a-error-decoding-2026-09-26.md",
+      "to": "docs/complete/2026-09/babylon-lite-f2a-error-decoding-2026-09-26.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "0407d1e9d2a38d3ae9fbb5e0b44dd0df656338048c36244208a8ddc70b8618bd"
+    },
+    {
+      "from": "docs/babylon-lite-f2b-hud-projection-2026-09-26.md",
+      "to": "docs/complete/2026-09/babylon-lite-f2b-hud-projection-2026-09-26.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "e778ec1d3ebd830f3da6f5c98ab2594cf0f48df3e21276d64ecb1cb6ca5ab587"
+    },
+    {
+      "from": "docs/babylon-lite-f3-chest-hit-inventory-2026-09-26.md",
+      "to": "docs/complete/2026-09/babylon-lite-f3-chest-hit-inventory-2026-09-26.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "71602044a3c83c75a1fa8d185df258812ac6f18838ee313c132e0abfa6da3a00"
+    },
+    {
+      "from": "docs/babylon-lite-f5-shadow-trials-2026-09-26.md",
+      "to": "docs/complete/2026-09/babylon-lite-f5-shadow-trials-2026-09-26.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "e0d8c298c2a01e0a9e4da8150ce7c2c62b492025afc1dfadf52d8d28f6586a43"
+    },
+    {
+      "from": "docs/babylon-lite-f6-late-features-2026-09-26.md",
+      "to": "docs/complete/2026-09/babylon-lite-f6-late-features-2026-09-26.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "7b89e5ed916c693daf32b5c5753941fb8699e6f8f295ce4b524d518671140974"
+    },
+    {
+      "from": "docs/babylon-lite-f7-render-target-facades-2026-09-26.md",
+      "to": "docs/complete/2026-09/babylon-lite-f7-render-target-facades-2026-09-26.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "303db65e716cc869b43b7ae19023ff1d6062c0cb2d7ee0be7f89b69a0c39b2eb"
+    },
+    {
+      "from": "docs/babylon-lite-m1-physics-2026-09-26.md",
+      "to": "docs/complete/2026-09/babylon-lite-m1-physics-2026-09-26.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "2fd574cb1c52c18fcbdd1da9939019989bd90f63dbefd53fbdf8c8f7e4b85548"
+    },
+    {
+      "from": "docs/babylon-lite-m2-private-bridges-2026-09-26.md",
+      "to": "docs/complete/2026-09/babylon-lite-m2-private-bridges-2026-09-26.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "7ce2a08abe7527178d10f1322344be170d245cd410a0e9cbf24a0a37ef24d2df"
+    },
+    {
+      "from": "docs/babylon-lite-m3-upgrade-2026-09-26.md",
+      "to": "docs/complete/2026-09/babylon-lite-m3-upgrade-2026-09-26.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "85ee1397c65f7763ced80b69bac193a53ff62ebc39706d63a17b7d244a69d530"
+    },
+    {
+      "from": "docs/babylon-lite-m4-release-2026-09-26.md",
+      "to": "docs/complete/2026-09/babylon-lite-m4-release-2026-09-26.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "ddfa236285b4ac47e497b65ec5ec98508b749cb40ce544c78c94421faca5d812"
+    },
+    {
+      "from": "docs/babylon-lite-review-followup-plan-2026-09-26.md",
+      "to": "docs/complete/2026-09/babylon-lite-review-followup-plan-2026-09-26.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "5a4a7f5c305e78b1b6c2915a437f7dfd446aaf06efebf3dce58a904b1f742e6a"
+    },
+    {
+      "from": "docs/backlit-mountain-fog-plan-2026-09-23.md",
+      "to": "docs/archive/plans/backlit-mountain-fog-plan-2026-09-23.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "bc22a1461328b61bcb43a24ac6d4427821645d3b946fcfeef192eede165e86bd"
+    },
+    {
+      "from": "docs/bridge-frame-spike-followup-2026-09-26.md",
+      "to": "docs/complete/2026-09/bridge-frame-spike-followup-2026-09-26.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "b3d74cd5d169288b5e3cc0395112b37914a14dd8ac7e4feb2a7ffd456bc43935"
+    },
+    {
+      "from": "docs/camera-lite-audit.md",
+      "to": "docs/complete/2026-09/camera-lite-audit.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "56048bbf499f1932edc263f69f21027bf235ff3f28d5ca7272a3f2e7fa60f9c9"
+    },
+    {
+      "from": "docs/citadel-ridge-plan-2026-09-23.md",
+      "to": "docs/archive/plans/citadel-ridge-plan-2026-09-23.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "afc366f67708eb5aff2c75eb39538b7705d79864eeb16edd2ad12f1abace1838"
+    },
+    {
+      "from": "docs/contact-occlusion-plan-2026-09-24.md",
+      "to": "docs/archive/plans/contact-occlusion-plan-2026-09-24.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "0134ef1bc462dcb15c808e3be9a0d47bb18328965dc5a0c4542f4ebb7a237150"
+    },
+    {
+      "from": "docs/environment-atmosphere-plan.md",
+      "to": "docs/archive/plans/environment-atmosphere-plan.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "4bd1759e06abbba090074e6d185cef4272755c8b5cb86978996869b672b50d7f"
+    },
+    {
+      "from": "docs/explorable-gothic-world-plan.md",
+      "to": "docs/complete/2026-09/explorable-gothic-world-plan.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "1751a915956ae0a11959e694671366ba9f0f6990f26ccb6158416265e09033c9"
+    },
+    {
+      "from": "docs/fully-shadowed-street-plan.md",
+      "to": "docs/archive/plans/fully-shadowed-street-plan.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "6579d117fe6db3152ff7e39725bdcf1d5444b56af81bc1357a6ddd97142261ad"
+    },
+    {
+      "from": "docs/golden-hour-fog-plan-2026-09-23.md",
+      "to": "docs/archive/plans/golden-hour-fog-plan-2026-09-23.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "df64cfbd40e2b9aa7e752e960d3f33898fddcb123f163aa1a16224469df00e45"
+    },
+    {
+      "from": "docs/graphics-roadmap.md",
+      "to": "docs/archive/plans/graphics-roadmap.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "ec07b7381fd7712f99e5a43fa4bf11f19bd8dd375eb520fb97794935d4ab929c"
+    },
+    {
+      "from": "docs/iphone-regression-2026-09-24.md",
+      "to": "docs/complete/2026-09/iphone-regression-2026-09-24.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "0f76692298fc6be9e8d73ff45c25ec51eb1d0679ba805452101368678e1ba60f"
+    },
+    {
+      "from": "docs/linear-hdr-plan-2026-09-24.md",
+      "to": "docs/archive/plans/linear-hdr-plan-2026-09-24.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "6066a1f2c65ee4db1250140a3b478fc34e0b91d7cd06bae7b9373e3e6e7b469c"
+    },
+    {
+      "from": "docs/loading-screen-2026-09-24.md",
+      "to": "docs/complete/2026-09/loading-screen-2026-09-24.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "7c2e9ca7d7b9844e91173ebac63df2bfea11d03164b6656c209f6cb49307ba44"
+    },
+    {
+      "from": "docs/local-light-plan-2026-09-24.md",
+      "to": "docs/archive/plans/local-light-plan-2026-09-24.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "3366f78e72010f7c2efacf27e24b93baade558b3f46591484aa701749efaa4a9"
+    },
+    {
+      "from": "docs/one-second-startup-2026-09-26.md",
+      "to": "docs/archive/plans/one-second-startup-2026-09-26.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "78ce17523ab4f68af1f240c32a44b51cb143e97acc5a3e16ff0ec994f7440840"
+    },
+    {
+      "from": "docs/one-second-startup-implementation-2026-09-27.md",
+      "to": "docs/complete/2026-09/one-second-startup-implementation-2026-09-27.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "5f0df9b63bc12ccefdf689e137091e998052a6e8c8d3288ee83712152037be14"
+    },
+    {
+      "from": "docs/one-second-startup-investigation-2026-09-26.md",
+      "to": "docs/archive/plans/one-second-startup-investigation-2026-09-26.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "7634fdb885afc8575a8d4efb267cbac8ded9b9e46c13322f5d0deeaec925e6bf"
+    },
+    {
+      "from": "docs/orc-vertex-color-cleanup-2026-09-26.md",
+      "to": "docs/complete/2026-09/orc-vertex-color-cleanup-2026-09-26.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "beeea2a6ad6159a6ab95b4f31327d85b52463abc5a2ebbdc92c565c6d01b1383"
+    },
+    {
+      "from": "docs/play-views-v5-plan-2026-09-23.md",
+      "to": "docs/archive/plans/play-views-v5-plan-2026-09-23.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "9498c437a36ab11a84b5c8b4f485800f718805c6b07dcb37a57a114f3e7882ed"
+    },
+    {
+      "from": "docs/rendering-performance-investigation-2026-09-26.md",
+      "to": "docs/archive/plans/rendering-performance-investigation-2026-09-26.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "eecac09ddb6656491c71bc0e405c9f7509e8c632a573a2c48969b69b4cebf96e"
+    },
+    {
+      "from": "docs/shadowed-volumetric-fog-plan-2026-09-23.md",
+      "to": "docs/archive/plans/shadowed-volumetric-fog-plan-2026-09-23.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "3308b185509c42aa77a5dc7aea6532a3d9c0394e5d105b707d70ef447cd7b2bf"
+    },
+    {
+      "from": "docs/street-light-plan-2026-09-24.md",
+      "to": "docs/archive/plans/street-light-plan-2026-09-24.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "6627bb2f09b60db65cc93158d83ac21e949c845d4a84d2013dafc8a764dc330a"
+    },
+    {
+      "from": "docs/terrain-startup-optimization-2026-09-26.md",
+      "to": "docs/complete/2026-09/terrain-startup-optimization-2026-09-26.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "dc723bd310848125772860463e845b876d2602464c7c47804ed89b97538c9fe2"
+    },
+    {
+      "from": "docs/undead-race-plan.md",
+      "to": "docs/archive/plans/undead-race-plan.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "b0380c305e87a245459273d691cc2c497aae16ced7e832e96bf8432b6ed834f0"
+    },
+    {
+      "from": "docs/v11-lighting-retrospective-2026-09-24.md",
+      "to": "docs/complete/2026-09/v11-lighting-retrospective-2026-09-24.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "73676c337b7b7c66324896c96b3bc19caaf0c3905de322d9f816901cb9db5e76"
+    },
+    {
+      "from": "docs/v12-contact-review.md",
+      "to": "docs/complete/2026-09/v12-contact-review.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "78c0ddfb88449b0488b735fc209ff64005e2fb13a16d8c9f3c6bb49c00004b99"
+    },
+    {
+      "from": "docs/v12-lighting-retrospective-2026-09-24.md",
+      "to": "docs/complete/2026-09/v12-lighting-retrospective-2026-09-24.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "28d950dfdd7c57f730c2c8f7c02e9a3b709519dba7270a1e43b63a4a38ee2ad8"
+    },
+    {
+      "from": "docs/v16-material-depth-plan.md",
+      "to": "docs/archive/plans/v16-material-depth-plan.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "97420e48acfbeb40f9a0d79a9ab3dc68696b4d5b3c10ab21a71429c866932122"
+    },
+    {
+      "from": "docs/v17-frame-pacing-plan.md",
+      "to": "docs/archive/plans/v17-frame-pacing-plan.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "6a74e5ef74acc2d1adadcf44227ffd8f0531b47b595b1c893db5da4f40c46e53"
+    },
+    {
+      "from": "docs/v18-vegetation-stability-plan.md",
+      "to": "docs/archive/plans/v18-vegetation-stability-plan.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "98897567b32935ec253b0fed61a8f4c7acded7ce586f8a3356d5535b23e48b88"
+    },
+    {
+      "from": "docs/v19-frame-spikes-plan.md",
+      "to": "docs/archive/plans/v19-frame-spikes-plan.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "a5250930fd5b9bb8df7a76e589e0902c9159775f9860f021317a0d4f0e5606af"
+    },
+    {
+      "from": "docs/worktree-retirement-audit-2026-09-27.md",
+      "to": "docs/complete/2026-09/worktree-retirement-audit-2026-09-27.md",
+      "disposition": "completed-scoped-report",
+      "originalSha256": "848baa0bc91679b71fb541dc6136c72e5c0bddee88e4b40b597e915ec15519f1"
+    },
+    {
+      "from": "docs/world-atmosphere-v4-plan-2026-09-23.md",
+      "to": "docs/archive/plans/world-atmosphere-v4-plan-2026-09-23.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "7bbb284fd14080c9bbd7fe574d8f3f3c4abfbf968d242d131fcef7ab0519b4bf"
+    },
+    {
+      "from": "docs/world-composition-plan.md",
+      "to": "docs/archive/plans/world-composition-plan.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "132e782a2881865ccfa2f98ea44c8a221fc80529aee1762f9883535b345f8ab4"
+    },
+    {
+      "from": "docs/world-expansion-plan-2026-09-19.md",
+      "to": "docs/archive/plans/world-expansion-plan-2026-09-19.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "cfd35a3002f239e24b5c62c624892d14dfdc59177528ef2ee534d79ddf023eb9"
+    },
+    {
+      "from": "docs/world-light-fog-v7-plan-2026-09-23.md",
+      "to": "docs/archive/plans/world-light-fog-v7-plan-2026-09-23.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "b119f3fd70db21e8bff803ed732b9169406ba2dc042f85cb8dc1473ea2bf747f"
+    },
+    {
+      "from": "docs/world-vista-repair-plan-2026-09-23.md",
+      "to": "docs/archive/plans/world-vista-repair-plan-2026-09-23.md",
+      "disposition": "historical-plan-not-active",
+      "originalSha256": "6c2cc478a69b14743bebaccdf517fafcde7fda66b4dc284fa91a1256dc42d3ea"
+    }
+  ],
+  "entrySnapshots": [
+    "docs/archive/state/CURRENT-before-character-vision-2026-09-27.md",
+    "docs/archive/state/README-before-character-vision-2026-09-27.md",
+    "docs/archive/state/character-system-north-star-before-character-vision-2026-09-27.md",
+    "docs/archive/state/startup-load-before-character-vision-2026-09-27.md"
+  ],
+  "compatibilityPointers": [
+    "docs/environment-atmosphere-plan.md",
+    "docs/rendering-performance-investigation-2026-09-26.md"
+  ]
+}

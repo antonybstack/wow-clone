@@ -1,7 +1,7 @@
 /**
  * Undead race integration.
  *
- * The requirement this file exists to defend, from docs/undead-race-plan.md step 4:
+ * The requirement this file exists to defend, from docs/archive/plans/undead-race-plan.md step 4:
  * "Unsupported combinations must never silently receive a Human fit."
  *
  * A happy-path test proves nothing about that, so almost everything here is a refusal

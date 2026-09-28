@@ -1,35 +1,29 @@
 # Character contracts and long-term direction
 
-Current product and workflow: [CURRENT.md](CURRENT.md). This document retains the useful architecture goals; the earlier mage/photorealistic target, numbered milestone queue and mandatory Grok judge loops have been removed.
+Current state: [CURRENT](CURRENT.md). Active vision: [100 milestones](plans/character-mmo/vision-roadmap.md), [next ten](plans/character-mmo/next-ten.md), [architecture](plans/character-mmo/architecture.md).
 
-## Current playable foundation
+## Direction selected 2026-09-27
 
-Ashen Reach uses `public/ashen-reach/wanderer.glb`: a MakeHuman-derived Human fitted to the original 65-joint source-compatible rig. All 45 source clips remain, alongside five directional imports and four spell layers. Native Lite animation presents movement; Havok owns movement, heading and grounded/jump state. Do not resume procedural gait replacement as the baseline.
+Support distinct Human appearances including tall/slender/young/long-haired and short/stout/old/bald adults; retain Human/Orc/Undead and enable a future Elf family. Target 30 mixable armor sets and repeatable quarterly content. Use authored/generated source art normalized into compatible templates, procedural fitting/assembly, and budgeted crowd representations. Hundreds/thousands present does not imply identical high detail or one full physics/animation controller per remote actor.
 
-The surface-defined outfit is a stand-in. This is not proof of production clothing, a complete character creator or a scalable armor catalogue. Existing Human/Orc/Undead assets on the old 163-joint bind are not interchangeable with the source-compatible Human simply because joint names look similar.
+## Current boundary
 
-## Long-term goal
+The main route uses the actual source-compatible Human/Orc/Undead packs in `src/ashen-reach/main.js`, progressive starter assets, native Lite animation and Havok movement. Equipment fit IDs, coverage, occupancy and streaming already exist. Their exact current source/bind/shape inventory is M001's deliverable. Older MakeHuman-only descriptions and 163-joint diagnostic profiles are historical, not interchangeable with the current source-65 runtime assets.
 
-Support distinct Human, Orc and Undead proportions, character appearance choices, and hundreds to thousands of armor/weapon combinations. Preserve readable silhouettes, smooth authored motion and the current screenshot-led visual style. WoW remains a reference for controls and equipment usability; the user's accepted Sword Hero imagery governs current art direction.
+There is no general body slider system or production crowd renderer yet. Do not treat supported native morph/baked-animation primitives as a complete customizable wardrobe.
 
-Prove a convincing equipped character in real gameplay before expanding the full combinatorial system. Future work should follow the user's chosen deliverable, not a historical milestone number. Backend/progression integration remains outside the current slice.
+## Contracts to preserve
 
-## Contracts worth preserving
+- One evaluated pose drives body and compatible garments. Validate joint order, rest hierarchy, inverse binds, mesh transforms and geometry fit; equal names/counts are insufficient.
+- Soft garments use skinning/deformation. Weapons, shields and appropriate rigid armor use evaluated attachments. Do not parent a whole robe to a chest socket.
+- Fit identity is semantic and versioned separately from source byte hashes or animation additions. Different races may reuse animation without sharing a literal bind or garment mesh.
+- Body controls and equipped garments change coherently; height has camera/grip/foot/collision implications. Preserve current movement authority until a new physical contract is explicitly implemented and verified.
+- Union body coverage over selected items, define seam/layer precedence, and reject unsupported fits. Hiding geometry must not expose holes at garment boundaries.
+- Preserve authored animation curves, units and source provenance. Reuse native Lite features and existing upstream tools; do not substitute a procedural gait or arbitrary anatomy deformation.
+- Appearance changes preserve pose continuity, ownership and cancellation/failure recovery. Shared GPU resources have explicit final-owner disposal.
+- Exact nearby appearance and approximate distant representation are separate contracts. Resource and population limits must be measured with real varied outfits and body families.
+- Tests prove contracts; reviewed live motion proves observable tailoring/contact within the tested matrix. Report limits honestly.
 
-- One evaluated character pose drives the body and all compatible skinned garments. A garment must share the correct rig/bind contract; copying another container's skeleton object is not binding.
-- **Skinned garments:** torso clothing, trousers, soft boots/gloves, robes and capes need compatible skinning/deformation. Do not parent an entire robe to a torso socket.
-- **Rigid equipment:** weapons, shields and suitable hard attachments use evaluated sockets. Bone scene nodes may remain at rest in Lite; use the existing evaluated skin/socket path.
-- Body/race proportions require corresponding fitted meshes/garments and compatible animation, not a universal scalar applied to every item. Reuse compatible rig families and authored fit variants where practical; do not pretend one literal bind fits every race.
-- Compatibility is joint order, rest hierarchy, inverse binds, mesh transforms and fit geometry—not names, clip count or whole-file hash alone. Animation-only additions may change file hashes without changing garment fit compatibility.
-- Keep license/source lineage and reproducible derivations. Preserve source animation curves, units and bind transforms; introduce explicit profile/fit versions when those contracts change.
-- Use native Lite animation and upstream tools. Compare the actual mesh through walk/run/turn/jump/cast/recovery, including transitions; finite joint arrays alone cannot establish convincing motion or ground contact.
-- When changing loadouts, preserve visual ownership, socket bindings, pose continuity and scene registration. First prove one visible transition; expand coverage only when that path works. Do not build a generalized framework before a playable outfit.
-- Keep the >120 FPS goal with honest measurement conditions. Single-body local samples do not prove crowd, native-resolution or all-race performance.
+## Supporting evidence
 
-## Technical references
-
-- [Character asset provenance](complete/character-asset-provenance.md): mannequin/rig/clip lineage, body validation, and Human/Orc/Undead source-asset license records, not current gameplay defaults.
-- [Source-compatible Human](complete/source-motion-recovery-implementation-2026-09-17.md): fitted Human using original authored curves; the older root-route comparison is diagnostic.
-- [Gait/contact](complete/gait-contact-and-landing-2026-09-17.md): centimetre-parent conversion, contact phase and landing layers.
-- The former composition-adapter experiment was removed with the old Moonwell route; current equipment contracts live in [the armory plan](armory-and-equipment-plan.md) and [equipment authoring](ashen-equipment-authoring.md).
-- [Fire Blast motion](complete/fire-blast-body-animation-2026-09-17.md): current cast profile and release behavior. Lava Ball behavior is documented in [CURRENT.md](CURRENT.md).
+[Source/asset provenance](complete/character-asset-provenance.md), [equipment authoring](ashen-equipment-authoring.md), [Orc pipeline](orc-sculpt-pipeline.md), and [historical armory plan](archive/plans/armory-and-equipment-plan.md) retain lineage. The [previous architecture document](archive/state/character-system-north-star-before-character-vision-2026-09-27.md) records earlier assumptions. Their historical milestone IDs do not refer to the new M001–M100 roadmap.

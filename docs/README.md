@@ -1,41 +1,43 @@
 # Documentation map
 
-Start with **[CURRENT.md](CURRENT.md)** for the live route, accepted direction, current controls and unfinished scope.
+Start with **[CURRENT.md](CURRENT.md)** for the shipped game and current initiative.
 
-## Active references
+## Active plan
 
-Living docs: actively edited, describe current pipelines/plans, and are the ones to update when behavior changes.
+- **[Long-term vision: 100 milestones, ten categories](plans/character-mmo/vision-roadmap.md)**
+- **[Next ten milestones](plans/character-mmo/next-ten.md)**
+- **Implementation briefs:** [M001 — baseline/assets](plans/character-mmo/m001-baseline-and-asset-census.md), [M002 — appearance contract](plans/character-mmo/m002-appearance-contract.md), [M003 — crowd feasibility](plans/character-mmo/m003-crowd-feasibility.md)
+- [Execution contract and performance gates](plans/character-mmo/execution-contract.md)
+- [Architecture decisions, capability checks and research](plans/character-mmo/architecture.md)
 
-- [Armory and equipment living plan](armory-and-equipment-plan.md): current implementation initiative and completion criteria.
-- [Equipment authoring](ashen-equipment-authoring.md): first fitted Human garments, provenance, rebuild commands and attachment learnings.
-- [Orc sculpt pipeline](orc-sculpt-pipeline.md): print-sculpt retopo, bind and the [garment fitter's stages/acceptance measures](orc-sculpt-pipeline.md#clothing-fit).
-- [Armed character repair plan](armed-character-repair-plan.md): paused Human armed-pose/two-handed plan; resume when Orc work is not the current request.
-- [Character architecture](character-system-north-star.md): long-term race/equipment contracts; historical milestone order is not a work queue.
-- [Startup load](startup-load.md): what blocks the loading overlay, what is deferred, and how the player body textures are packed.
-- [Play test plan](play-test-plan.md): the race, outfit, spell, and hostile matrix, and how to run it.
-- [Browser, play and capture](debug-view.md).
-- [Parallel worktree harness](parallel-worktree-harness.md): run several agents' worktrees against their own Vite/Chrome/CDP slot at once.
+All new milestones are planned. Completed documentation work does not mean the proposed feature is implemented. The briefs contain their own copyable implementer handoff prompts.
 
-## Completed reports
+## Operating and authoring references
 
-**[docs/complete/](complete/)** holds closed, dated reports and provenance records: evidence of a specific finished pass, not actively edited, kept for lineage. Consult them for a specific implementation's rationale, not as a task queue.
+- [Character contracts](character-system-north-star.md)
+- [Equipment source/authoring history and current runtime boundary](ashen-equipment-authoring.md)
+- [Orc sculpt pipeline](orc-sculpt-pipeline.md)
+- [Progressive startup lifecycle](startup-load.md)
+- [Play and regression checks](play-test-plan.md)
+- [Browser ownership, measurement, capture and Telegram](debug-view.md)
+- [Owned worktree harness](parallel-worktree-harness.md): isolated slots are tools, not permission for concurrent game rendering during measurements.
+- [Deployment and production rollback workflow](DEPLOY.md)
+- [Sun-shadow technical reference](sun-shadow-architecture.md): check installed engine/current source before changing bridges.
 
-- [Direct scene/reference implementation](complete/ashen-reach-direct-pass-2026-09-17.md)
-- [Character asset provenance](complete/character-asset-provenance.md): Human/Orc/Undead source-body and mannequin lineage, license and validator record.
-- [Live state review, 2026-09-18](complete/current-state-review-2026-09-18.md): baseline the armed repair plan was created from.
-- [Documentation cleanup audit, 2026-09-17](complete/documentation-cleanup-2026-09-17.md): what was removed vs. retained in an earlier pass.
-- [Fire Blast body motion](complete/fire-blast-body-animation-2026-09-17.md)
-- [Gait/contact and landing](complete/gait-contact-and-landing-2026-09-17.md)
-- [Lava Ball implementation](complete/lava-ball-first-spell-2026-09-17.md)
-- [Reference-led workflow retrospective](complete/reference-led-workflow-2026-09-17.md): evidence behind the current parent-implements-and-reviews workflow.
-- [Source-motion recovery implementation](complete/source-motion-recovery-implementation-2026-09-17.md): the source-compatible Human retarget.
+## Evidence and history
 
-## Documentation policy
+| Location | Purpose |
+| --- | --- |
+| [complete/](complete/README.md) | Closed scoped implementation/release/review reports, including their limitations |
+| [archive/](archive/README.md) | Superseded or mixed historical plans and previous entry-point snapshots; archived does not mean completed |
+| [baselines/](baselines/) | Immutable measured artifacts and comparison evidence; paths retained |
+| [reviews/](reviews/) | Independent reviews and their stated scope |
+| [references/](references/) | User-approved visual references/source artifacts; paths retained |
 
-Retained dated reports describe an endorsed pass or still-valid technical provenance. Their status notices distinguish that pass from current runtime behavior; read [CURRENT.md](CURRENT.md) for what is live now. Conflicting old plans, rejected-POC briefs, judge logs and superseded pass reports have been removed, not archived — the [cleanup audit](complete/documentation-cleanup-2026-09-17.md) records what was removed and retained at that time.
+See the [2026-09-27 reorganization audit](complete/documentation-reorganization-2026-09-27.md) and [machine-readable relocation map](archive/relocations-2026-09-27.json) for old paths. No baseline or reference asset was removed. Two small root compatibility pointers preserve source-hashed documentation references without invalidating prepared startup assets.
 
-A doc moves from `docs/` into `docs/complete/` once it is a closed, non-edited milestone record rather than a plan someone is still executing against. Moving a report does not mean the code/assets it describes are dead — check `docs/complete/character-asset-provenance.md` before assuming the source bodies it documents are unused, for example. Do not rebuild a historical task queue or recursively load every report to resume a focused task.
+## Documentation lifecycle
 
-Local `ve-capture/`, browser session files and Blender POC exports are ignored working evidence. Keep only the current pass locally when reviewing it; published walkthroughs are linked from the living reports.
+Keep one current initiative in CURRENT. Put its active plans in `plans/<initiative>/`; append concise outcome reports under that initiative's `results/` as work finishes. Move closed reports into `complete/` when the initiative is retired and update links. Move superseded/mixed plans to `archive/` with an explicit status notice; never promote their unchecked tasks into a new queue or silently mark them complete.
 
-The local Dream Loop skill is an ignored nested checkout. The tracked [endorsed workflow](complete/reference-led-workflow-2026-09-17.md) is the fallback for a fresh clone without that skill.
+Keep compact measurements, provenance and reviewed-media URLs in git. Large raw captures stay in ignored `ve-capture/`. Do not delete or rewrite historical baseline data during organization. Update relative Markdown links and source documentation references when moving files. Preserve prior entry-point snapshots when a significant new direction replaces their chronology.
