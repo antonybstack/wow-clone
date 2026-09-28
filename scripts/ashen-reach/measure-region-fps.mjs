@@ -18,6 +18,16 @@ for (const [k, v] of [
   url.searchParams.set(k, v);
 const runs = Number(process.env.ASHEN_FPS_RUNS || 3),
   seconds = 12;
+const race = process.env.ASHEN_BENCH_RACE || 'human';
+assert(['human', 'orc', 'undead'].includes(race), `Unsupported benchmark race: ${race}`);
+const routes = [
+  ['meadow', 0, -65, 0], ['town', 0, 80, 0], ['bridge', 0, 210, 0],
+  ['cathedral', 0, 280, 0], ['forest', -80, 180, -Math.PI / 2],
+];
+const selected = new Set((process.env.ASHEN_FPS_ROUTES || routes.map(r => r[0]).join(','))
+  .split(',').filter(Boolean));
+assert([...selected].every(name => routes.some(r => r[0] === name)), 'Unknown benchmark route');
+const recordCapped = process.env.ASHEN_RECORD_CAPPED === '1';
 const browser = await chromium.connectOverCDP(CDP_URL),
   context = await browser.newContext({
     viewport: { width: 1280, height: 720 },
@@ -33,6 +43,9 @@ const report = {
     runs,
     uncappedRequired: true,
     recording: false,
+    race,
+    routes: [...selected],
+    recordCapped,
   },
   rows: [],
   errors: [],
@@ -46,17 +59,16 @@ try {
   await page.waitForFunction(() => globalThis.ASHEN?.ready, null, {
     timeout: 90000,
   });
+  // The URL's `race` parameter does not select the playable actor. Use the same
+  // race-switch path as gameplay and assert the settled state before sampling;
+  // otherwise an Undead-labelled run silently measures Human.
+  if (race !== 'human') await page.evaluate(r => ASHEN.equipment.switchRace(r), race);
+  assert.equal(await page.evaluate(() => ASHEN.equipment.race), race);
   await page.evaluate(() => {
     ASHEN.dev.god = true;
     ASHEN.setView("play");
   });
-  for (const [route, x, z, yaw] of [
-    ["meadow", 0, -65, 0],
-    ["town", 0, 80, 0],
-    ["bridge", 0, 210, 0],
-    ["cathedral", 0, 280, 0],
-    ["forest", -80, 180, -Math.PI / 2],
-  ])
+  for (const [route, x, z, yaw] of routes.filter(r => selected.has(r[0])))
     for (let run = 1; run <= runs; run++) {
       await page.evaluate(
         ({ x, z, yaw }) => {
@@ -112,7 +124,9 @@ try {
       assert.equal(row.enemies, 7);
       assert.equal(row.recoveries, before.recoveries);
       assert.deepEqual(row.summary.resolution, [1280, 720]);
-      assert(!row.summary.vsyncCapped);
+      // A possible compositor ceiling is retained as invalid throughput evidence
+      // when explicitly requested, so a suspect route cannot hide later routes.
+      if (!recordCapped) assert(!row.summary.vsyncCapped);
       assert(Math.hypot(row.x - before.x, row.z - before.z) > 10);
       console.log(
         JSON.stringify({
@@ -120,6 +134,7 @@ try {
           run,
           ...row.fullWindow,
           gpuMeanMs: row.summary.gpuMeanMs,
+          capped: row.summary.vsyncCapped,
         }),
       );
     }

@@ -18,6 +18,7 @@ import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {NodeIO} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
+import {MeshoptDecoder} from 'meshoptimizer';
 import {
     EQUIPMENT_ITEMS, UNDEAD_BASE_VISIBLE_MESHES, ORC_BASE_VISIBLE_MESHES, BODY_REGIONS, gripHold,
 } from '../src/ashen-reach/equipment-catalog.js';
@@ -355,6 +356,43 @@ test('provisional pack bytes, hashes and bind match what the manifest claims', a
             [...asset.meshes].sort(), id);
         if (id === 'body') assert.equal(doc.getRoot().listAnimations().length, 55);
         else assert.equal(doc.getRoot().listAnimations().length, 0, id);
+    }
+});
+
+test('active Undead garments carry the actor rest pose and inverse bind', async () => {
+    // The provisional fixture has always matched. The actual playable pack used to
+    // copy Human-skin fitted GLBs verbatim, so palette sharing distorted animation.
+    // glTF skin matrices combine the live joint with the asset inverse bind:
+    // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#skins
+    const activeDir = 'public/ashen-reach/equipment-undead';
+    const active = JSON.parse(await fs.readFile(`${activeDir}/manifest.json`, 'utf8'));
+    await MeshoptDecoder.ready;
+    const activeIO = new NodeIO().registerExtensions(ALL_EXTENSIONS)
+        .registerDependencies({'meshopt.decoder': MeshoptDecoder});
+    const source = await activeIO.read(`${activeDir}/body.glb`);
+    const rig = doc => {
+        const skin = doc.getRoot().listSkins()[0];
+        return {
+            joints: skin.listJoints().map(n => [n.getName(), Array.from(n.getWorldMatrix())]),
+            inverseBind: Array.from(skin.getInverseBindMatrices().getArray()),
+        };
+    };
+    const bodyRig = rig(source);
+    assert.equal(active.profileId, 'undead-tripo-v1');
+    assert.equal(active.garments, true);
+    assert.equal(active.bindSha256, createHash('sha256').update(JSON.stringify(bodyRig)).digest('hex'));
+    assert.equal(Object.keys(active.items).length, 9);
+    for (const [id, asset] of Object.entries(active.items)) {
+        const bytes = await fs.readFile(`public${asset.url}`);
+        assert.equal(bytes.length, asset.bytes, id);
+        assert.equal(createHash('sha256').update(bytes).digest('hex'), asset.sha256, id);
+        const doc = await activeIO.readBinary(bytes);
+        assert.deepEqual(rig(doc), bodyRig, id);
+        assert.deepEqual(
+            doc.getRoot().listNodes().filter(n => n.getMesh()).map(n => n.getName()).sort(),
+            [...asset.meshes].sort(), id);
+        assert.equal(doc.getRoot().listAnimations().length, id === 'body' ? 57 : 0, id);
+        if (id !== 'body') assert.deepEqual(asset.fit, UNDEAD_EQUIPMENT_FIT, id);
     }
 });
 

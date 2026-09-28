@@ -1,7 +1,8 @@
 {
   "pipeline": "Tripo Mixamo FBX bound to the 65-joint source",
   "source": "public/characters/candidates/undead-source-v1.glb",
-  "regenerate": "node scripts/character-assets/undead_from_tripo.py && node scripts/character-assets/bind-source-undead.mjs && node scripts/ashen-reach/prepare-undead-equipment.mjs",
+  "fitted": ".cache/armory-assets/undead-tripo",
+  "regenerate": "Blender --background --python scripts/character-assets/undead_from_tripo.py && node scripts/character-assets/bind-source-undead.mjs && node scripts/ashen-reach/fit-orc-garments.mjs --target=undead && node scripts/ashen-reach/prepare-undead-equipment.mjs",
   "fit": {
     "body": "ashen-undead",
     "rig": "source-65",
@@ -14,14 +15,14 @@
   "garments": [
     {
       "id": "graveweaverHood",
-      "bytes": 414472,
+      "bytes": 277312,
       "meshes": [
         "GraveweaverHood"
       ]
     },
     {
       "id": "graveweaverTop",
-      "bytes": 329876,
+      "bytes": 245116,
       "meshes": [
         "GraveweaverTop",
         "GraveweaverPendant"
@@ -29,7 +30,7 @@
     },
     {
       "id": "graveweaverSkirt",
-      "bytes": 519256,
+      "bytes": 371668,
       "meshes": [
         "GraveweaverSkirt",
         "WayfarerTrousers",
@@ -38,28 +39,28 @@
     },
     {
       "id": "graveweaverGloves",
-      "bytes": 229148,
+      "bytes": 174144,
       "meshes": [
         "GraveweaverGloves"
       ]
     },
     {
       "id": "wayfarerTunic",
-      "bytes": 250400,
+      "bytes": 249676,
       "meshes": [
         "WayfarerTunic"
       ]
     },
     {
       "id": "pilgrimTunic",
-      "bytes": 695732,
+      "bytes": 480100,
       "meshes": [
         "PilgrimTunic"
       ]
     },
     {
       "id": "wayfarerTrousers",
-      "bytes": 146936,
+      "bytes": 146260,
       "meshes": [
         "WayfarerTrousers",
         "WayfarerTrousersCuffs"
@@ -67,11 +68,11 @@
     },
     {
       "id": "wayfarerBoots",
-      "bytes": 242868,
+      "bytes": 242148,
       "meshes": [
         "WayfarerBoots"
       ]
     }
   ],
-  "note": "Body is the Tripo Mixamo revenant. Catalogue clothes are ICP-fitted onto that surface (fit-orc-garments --target=undead)."
+  "note": "Body is the Tripo Mixamo revenant. Catalogue clothes are ICP-fitted onto that surface (fit-orc-garments --target=undead), then attached to this body skin with exact joint order and inverse binds."
 }

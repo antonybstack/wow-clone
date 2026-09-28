@@ -216,7 +216,10 @@ export async function createStreamedEquipment(
         for (const mesh of meshes) {
           if (!mesh.skeleton || mesh.skeleton.boneCount !== 65)
             throw Error("Garment skin mismatch");
-          // Splitter proves identical joint order, inverse binds and identity mesh bind.
+          // Pack builders prove identical joint order, inverse binds and identity mesh
+          // frame before this palette is borrowed. Names and bone count alone cannot
+          // establish glTF skin compatibility:
+          // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#skins
           // Borrow only the live palette, retaining this mesh's own vertex skin buffers.
           // Restore its owned skeleton BEFORE disposal so the actor palette is never freed.
           owned.push([mesh, mesh.skeleton]);

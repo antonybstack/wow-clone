@@ -1,6 +1,6 @@
 # Next ten milestones — customization and crowd proof
 
-Status: **M001–M005 complete; M006 source-art gate open with a live CC0 ponytail candidate; M007 semantic coverage verified with fit acceptance open**. Read the [100-milestone vision](vision-roadmap.md), [architecture](architecture.md) and [execution contract](execution-contract.md). Baseline evidence always identifies the actual HEAD and live assets.
+Status: **M001–M005 complete; M006 source-art gate open with a live CC0 ponytail candidate; M007 semantic coverage and active Undead bind verified with fit acceptance open**. Read the [100-milestone vision](vision-roadmap.md), [architecture](architecture.md) and [execution contract](execution-contract.md). Baseline evidence always identifies the actual HEAD and live assets.
 
 ## Sequence and risk ordering
 
@@ -89,8 +89,8 @@ Choose the production schema/fit/material/animation/detail contracts; list defer
 | M003 | Complete feasibility probe; native VAT promising in isolation, actual-town shadow integration blocked | [Result, capacity curves and reviewed motion](results/m003.md) |
 | M004 | Complete; shape family and height range proven, garment fit measured and handed to M005 | [Result, shape family and reviewed motion](results/m004.md) |
 | M005 | Complete; garments refitted and measured, rigid plate prototype proved, live and cached cost measured | [Result, fit comparison and reviewed motion](results/m005.md) |
-| M006 | Blocked at entry gate; bald/age head art open, licensed ponytail candidate live-reviewed | [Gate](results/m006-gate.md), [hair audition](results/m006-hair-audition.md) |
-| M007 | Semantic coverage slice verified live on Human/Orc/Undead; creator/extreme-shape and close fit gates open | [Checkpoint](results/m007.md) |
+| M006 | Source-art gate open; bald/age head art and final ponytail fit in progress | [Gate](results/m006-gate.md), [hair audition](results/m006-hair-audition.md) |
+| M007 | Semantic coverage and active Undead bind verified live; creator/extreme-shape and close fit gates open | [Coverage](results/m007.md), [Undead bind correction](results/m007-undead-rebind.md) |
 | M008 | Planned | — |
 | M009 | Planned | — |
 | M010 | Planned | — |

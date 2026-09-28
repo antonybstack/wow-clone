@@ -1,6 +1,6 @@
 # Execution contract for M001–M010
 
-Status: M001–M005 completed; M006 source-art gate remains open after a licensed live ponytail audition; M007 semantic coverage verified with fit acceptance open. Read [CURRENT](../../CURRENT.md), the [next-ten plan](next-ten.md), and the single milestone brief assigned to you. These instructions are designed for Claude Opus 5.5 or GPT-6 Sol at medium effort. Do not implement all 100 milestones from an isolated brief.
+Status: M001–M005 completed; M006 source-art gate remains open after a licensed live ponytail audition; M007 semantic coverage and active Undead bind verified with fit acceptance open. Read [CURRENT](../../CURRENT.md), the [next-ten plan](next-ten.md), and the single milestone brief assigned to you. These instructions are designed for Claude Opus 5.5 or GPT-6 Sol at medium effort. Do not implement all 100 milestones from an isolated brief.
 
 ## Baseline and ownership
 

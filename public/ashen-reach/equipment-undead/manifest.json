@@ -4,6 +4,7 @@
   "sourceSha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d",
   "profileId": "undead-tripo-v1",
   "garments": true,
+  "bindSha256": "6a7f392c9301863bbcc17b5e57cef5fe6dbe0f89e3736fbcb788be0c4fc62295",
   "items": {
     "body": {
       "url": "/ashen-reach/equipment-undead/body.glb",
@@ -16,8 +17,8 @@
     },
     "graveweaverHood": {
       "url": "/ashen-reach/equipment-undead/graveweaverHood.glb",
-      "bytes": 414472,
-      "sha256": "d06c45ebcd5f7e11535dc459574ecac1001568a6f24e2e5b6005a25cf3a029f8",
+      "bytes": 277312,
+      "sha256": "5e67a23def5c9ea04a97e9f6844500296d832be20840c676463b1fd857f9af4e",
       "meshes": [
         "GraveweaverHood"
       ],
@@ -30,8 +31,8 @@
     },
     "graveweaverTop": {
       "url": "/ashen-reach/equipment-undead/graveweaverTop.glb",
-      "bytes": 329876,
-      "sha256": "2ab873d3a8c18d4bc9afc3a00ab6711b8d17523c9dcb828476e45918489744f8",
+      "bytes": 245116,
+      "sha256": "dccc6949b8ac9672954101de1bffdca0b7f5a8fae6f0b4ef0ad90e9a02cc031a",
       "meshes": [
         "GraveweaverTop",
         "GraveweaverPendant"
@@ -45,8 +46,8 @@
     },
     "graveweaverSkirt": {
       "url": "/ashen-reach/equipment-undead/graveweaverSkirt.glb",
-      "bytes": 519256,
-      "sha256": "5f978551f478921bedfea4d2699df0dee8d6f951eae66595ec83275daa3efb8b",
+      "bytes": 371668,
+      "sha256": "95451b57ba7c1199aab3825f416d8d21c96eb842ee3e432e79bdb4a6b01d3933",
       "meshes": [
         "GraveweaverSkirt",
         "WayfarerTrousers",
@@ -61,8 +62,8 @@
     },
     "graveweaverGloves": {
       "url": "/ashen-reach/equipment-undead/graveweaverGloves.glb",
-      "bytes": 229148,
-      "sha256": "ba02bd598bdf373be9aa1878fa05718b85f2269feb281f812e5babda1abd99eb",
+      "bytes": 174144,
+      "sha256": "5c136ecbaca3b6f583d88b6ccdc298d014ebd18ee089d60e29546f2ba1698864",
       "meshes": [
         "GraveweaverGloves"
       ],
@@ -75,8 +76,8 @@
     },
     "wayfarerTunic": {
       "url": "/ashen-reach/equipment-undead/wayfarerTunic.glb",
-      "bytes": 250400,
-      "sha256": "5b3b18b9b7ade644cbca11244456f41b55644f47471422ee91872083c6d422c7",
+      "bytes": 249676,
+      "sha256": "40ef02c1b771dcbc6272b63bc8b7039033698b847439a57527a82e367a6e8c9b",
       "meshes": [
         "WayfarerTunic"
       ],
@@ -89,8 +90,8 @@
     },
     "pilgrimTunic": {
       "url": "/ashen-reach/equipment-undead/pilgrimTunic.glb",
-      "bytes": 695732,
-      "sha256": "5cc897251366259af3d6001cc9edec8d61b2da5667afa2b690b2a15356785661",
+      "bytes": 480100,
+      "sha256": "4a832e759069b96f66eedcebb3ca85915d612ca43bee2c0bcb60992d5e485d95",
       "meshes": [
         "PilgrimTunic"
       ],
@@ -103,8 +104,8 @@
     },
     "wayfarerTrousers": {
       "url": "/ashen-reach/equipment-undead/wayfarerTrousers.glb",
-      "bytes": 146936,
-      "sha256": "22c37f8c51aa4ce47a8477714b0420d8aa9e052a4507fed7e77c1360b734596c",
+      "bytes": 146260,
+      "sha256": "566bee577d31b5f961a20790b4c6697825ef955bb4da2fa77700069690aa6467",
       "meshes": [
         "WayfarerTrousers",
         "WayfarerTrousersCuffs"
@@ -118,8 +119,8 @@
     },
     "wayfarerBoots": {
       "url": "/ashen-reach/equipment-undead/wayfarerBoots.glb",
-      "bytes": 242868,
-      "sha256": "7b7f2ac0447ae73153a298b2f4249132d3c55d8cb1497606c1abaa80dcbd86fe",
+      "bytes": 242148,
+      "sha256": "ce99e04c73153c47b97b69f94327983e3844d0f24c8a7757e4126f1baabc5c85",
       "meshes": [
         "WayfarerBoots"
       ],
