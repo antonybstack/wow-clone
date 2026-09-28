@@ -1,6 +1,6 @@
 # Next ten milestones — customization and crowd proof
 
-Status: **M001–M005 complete; M006 source-art gate open with shape-family ponytail headwear and a neck-morphed old/bald candidate; M007 semantic coverage, active Undead bind and Orc wrist repair verified with fit acceptance open**. Read the [100-milestone vision](vision-roadmap.md), [architecture](architecture.md) and [execution contract](execution-contract.md). Baseline evidence always identifies the actual HEAD and live assets.
+Status: **M001–M005 complete; M006 source-art gate open with shape-family ponytail headwear and a neck-morphed old/bald candidate; M007 semantic coverage, active Undead bind, Orc wrist and Human mixed-waist repairs verified with fit acceptance open**. Read the [100-milestone vision](vision-roadmap.md), [architecture](architecture.md) and [execution contract](execution-contract.md). Baseline evidence always identifies the actual HEAD and live assets.
 
 ## Sequence and risk ordering
 
@@ -96,7 +96,7 @@ Choose the production schema/fit/material/animation/detail contracts; list defer
 | M004 | Complete; shape family and height range proven, garment fit measured and handed to M005 | [Result, shape family and reviewed motion](results/m004.md) |
 | M005 | Complete; garments refitted and measured, rigid plate prototype proved, live and cached cost measured | [Result, fit comparison and reviewed motion](results/m005.md) |
 | M006 | Source-art gate open; old-head hood diagnostic reduces rear scalp breakthrough, material seam and final fit remain | [Gate](results/m006-gate.md), [hair audition](results/m006-hair-audition.md), [head experiments](results/m006-source-experiments.md), [old/bald](results/m006-old-bald-candidate.md), [neck/headwear](results/m006-neck-and-headwear.md), [source audit](results/m006-old-head-source-audit.md), [hood fit](results/m006-old-head-hood-fit.md) |
-| M007 | Semantic coverage, active Undead bind and Orc glove wrist repair verified live; creator/extreme-shape and remaining close fit gates open | [Coverage](results/m007.md), [Undead bind correction](results/m007-undead-rebind.md), [close-fit review and Orc wrist](results/m007-close-fit-and-orc-wrist.md) |
+| M007 | Semantic coverage, active Undead bind, Orc wrist and Human mixed-waist repairs verified live; creator/extreme-shape and remaining close fit gates open | [Coverage](results/m007.md), [Undead bind correction](results/m007-undead-rebind.md), [Orc wrist](results/m007-close-fit-and-orc-wrist.md), [Human waist](results/m007-human-waist.md) |
 | M008 | Planned | — |
 | M009 | Planned | — |
 | M010 | Planned | — |

@@ -18,7 +18,8 @@ import {HUMAN_EQUIPMENT_FIT} from '../../src/ashen-reach/equipment-contract.js';
 
 const SRC = 'public/characters/candidates/human-source-v1.glb';
 const FITTED = '.cache/armory-assets/human-tripo';
-const DIR = 'public/ashen-reach/equipment';
+const ACTIVE_DIR = 'public/ashen-reach/equipment';
+const DIR = process.env.ASHEN_HUMAN_EQUIPMENT_OUT || ACTIVE_DIR;
 const URL_BASE = '/ashen-reach/equipment';
 const BODY_MESHES = ['HumanV1Body'];
 const IDENTITY = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
@@ -30,6 +31,7 @@ const io = new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies(
     'meshopt.encoder': MeshoptEncoder,
 });
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
+await fs.mkdir(DIR, {recursive: true});
 
 function isIdentity(m) {
     return m.every((v, i) => Math.abs(v - (i % 5 === 0 ? 1 : 0)) < 1e-5);
@@ -121,7 +123,7 @@ await fs.writeFile(`${DIR}/body.glb`, bodyBytes);
 const bodyHash = sha(bodyBytes);
 const bodyRig = rigOf(bodyDoc);
 
-const manifest = JSON.parse(await fs.readFile(`${DIR}/manifest.json`, 'utf8'));
+const manifest = JSON.parse(await fs.readFile(`${ACTIVE_DIR}/manifest.json`, 'utf8'));
 manifest.fitId = HUMAN_EQUIPMENT_FIT.body;
 manifest.sourceSha256 = bodyHash;
 manifest.profileId = 'human-tripo-v1';
@@ -171,6 +173,31 @@ for (const [id, item] of Object.entries(EQUIPMENT_ITEMS).filter(([, entry]) => e
         animation.dispose();
     }
     await doc.transform(unpartition(), prune({keepLeaves: true}));
+    if (id === 'graveweaverSkirt') {
+        // This skirt shares a lower Wayfarer trouser layer for the moving slit.
+        // Its hip triangles break through a mixed Pilgrim tunic at the waist.
+        // Remove only triangles wholly above the covered upper-leg zone from
+        // this one item; standalone Wayfarer trousers and all skin/morph data
+        // keep their authored topology and bind.
+        // glTF index accessors select the triangles in a mesh primitive:
+        // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#meshes
+        const trousers = root.listMeshes().find(mesh => mesh.getName() === 'WayfarerTrousers');
+        const prim = trousers?.listPrimitives()[0];
+        const pos = prim?.getAttribute('POSITION')?.getArray(), indices = prim?.getIndices()?.getArray();
+        if (!pos || !indices || indices.length !== 2260 * 3) {
+            throw Error('Graveweaver undertrouser source changed; review the waist trim');
+        }
+        const kept = [];
+        for (let i = 0; i < indices.length; i += 3) {
+            if ([0, 1, 2].every(j => pos[indices[i + j] * 3 + 1] < .8)) {
+                kept.push(indices[i], indices[i + 1], indices[i + 2]);
+            }
+        }
+        if (kept.length !== 1200 * 3) {
+            throw Error(`Graveweaver undertrouser trim changed: ${kept.length / 3} triangles`);
+        }
+        prim.getIndices().setArray(new indices.constructor(kept));
+    }
     const missing = names.filter(name => !root.listNodes().some(node => node.getMesh() && node.getName() === name));
     if (missing.length) throw Error(`${id} missing meshes after pack: ${missing}`);
     for (const node of root.listNodes().filter(node => node.getMesh())) {
@@ -181,10 +208,19 @@ for (const [id, item] of Object.entries(EQUIPMENT_ITEMS).filter(([, entry]) => e
     if (root.listAnimations().length) throw Error(`${id} still has animations`);
     const output = await io.writeBinary(doc);
     await fs.writeFile(`${DIR}/${id}.glb`, output);
+    const assetHash = sha(output);
+    const canonicalURL = `${URL_BASE}/${id}.glb`;
+    // The startup character manifest mirrors these late outfit entries. When
+    // an asset changes, give it a new HTTP cache key so an older cached GLB
+    // cannot be paired with the new manifest's size/hash on an existing client.
+    // https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching
+    const prior = manifest.items[id];
+    const assetURL = prior?.sha256 === assetHash && prior.url?.startsWith(canonicalURL)
+        ? prior.url : `${canonicalURL}?v=${assetHash.slice(0, 12)}`;
     manifest.items[id] = {
-        url: `${URL_BASE}/${id}.glb`,
+        url: assetURL,
         bytes: output.byteLength,
-        sha256: sha(output),
+        sha256: assetHash,
         meshes: names,
         fit: {...HUMAN_EQUIPMENT_FIT},
     };

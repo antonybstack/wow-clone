@@ -28,7 +28,7 @@ test('Tripo human pack streams the catalogue on the actor bind', async () => {
     assert.deepEqual(manifest.items.body.meshes, ['HumanV1Body']);
     assert.equal(source.getRoot().listSkins()[0].listJoints().length, 65);
     for (const [id, asset] of Object.entries(manifest.items)) {
-        const bytes = await fs.readFile(`public${asset.url}`);
+        const bytes = await fs.readFile(`public${new URL(asset.url, 'https://play.sparkify.dev').pathname}`);
         assert.equal(bytes.length, asset.bytes, id);
         assert.equal(createHash('sha256').update(bytes).digest('hex'), asset.sha256, id);
         const doc = await io.readBinary(bytes);
@@ -55,4 +55,24 @@ test('Tripo human pack streams the catalogue on the actor bind', async () => {
             assert.deepEqual(asset.fit, HUMAN_EQUIPMENT_FIT);
         }
     }
+});
+
+test('Graveweaver skirt underlayer stops below the mixed-outfit waist', async () => {
+    const skirtEntry = manifest.items.graveweaverSkirt;
+    const startup = JSON.parse(await fs.readFile('public/ashen-reach/startup/character/manifest.json', 'utf8'));
+    assert.deepEqual(startup.items.graveweaverSkirt, skirtEntry);
+    assert.match(skirtEntry.url, /\?v=[a-f0-9]{12}$/);
+    const skirt = await io.read(`public${new URL(skirtEntry.url, 'https://play.sparkify.dev').pathname}`);
+    const trousers = skirt.getRoot().listMeshes().find(mesh => mesh.getName() === 'WayfarerTrousers');
+    assert.ok(trousers, 'the skirt retains its moving lower trouser layer');
+    const inner = trousers.listPrimitives()[0];
+    assert.equal(inner.getIndices().getCount() / 3, 1200);
+    const positions = inner.getAttribute('POSITION').getArray();
+    const indices = inner.getIndices().getArray();
+    assert.ok(Array.from(indices).every(index => positions[index * 3 + 1] < .8),
+        'covered hip triangles cannot protrude into a mixed tunic');
+    const standalone = await io.read(`${dir}/wayfarerTrousers.glb`);
+    const outer = standalone.getRoot().listMeshes().find(mesh => mesh.getName() === 'WayfarerTrousers');
+    assert.ok(outer.listPrimitives()[0].getIndices().getCount() / 3 > 1200,
+        'standalone trousers keep their upper body coverage');
 });

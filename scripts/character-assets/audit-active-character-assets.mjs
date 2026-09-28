@@ -113,7 +113,10 @@ export async function audit(repo=path.resolve(fileURLToPath(new URL('../..', imp
     const out={manifestPath,manifestSha256:sha(raw),fitId:manifest.fitId,profileId:manifest.profileId,bindSha256:manifest.bindSha256,sourceSha256:manifest.sourceSha256,items:{}};
     report.packs[race]=out;
     for(const [id,entry] of Object.entries(manifest.items)) {
-      const relative=`public${entry.url}`;
+      // HTTP version keys belong to the request URL, never to the local file.
+      // URL.pathname preserves the asset identity used by the manifest while
+      // dropping its cache query: https://developer.mozilla.org/en-US/docs/Web/API/URL/pathname
+      const relative=`public${new URL(entry.url,'https://play.sparkify.dev').pathname}`;
       const row={url:entry.url,path:relative,fit:entry.fit || null,declaredMeshes:entry.meshes,status:'valid'};
       out.items[id]=row;
       try {

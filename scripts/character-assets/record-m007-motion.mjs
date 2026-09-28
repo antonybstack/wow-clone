@@ -21,13 +21,21 @@ if (!['human', 'orc', 'undead'].includes(requestedRace)) throw Error(`Unknown ra
 const dir = process.env.ASHEN_CAPTURE_DIR || `ve-capture/character-mmo/m007/motion-${requestedRace}`;
 
 const EMPTY = {helmet: null, torso: null, legs: null, boots: null, gloves: null, mainHand: null, offHand: null};
-const PASSES = [
+const ALL_PASSES = [
     {id: 'wayfarer', label: 'Wayfarer, the shipped set', loadout: {...EMPTY, torso: 'wayfarerTunic', legs: 'wayfarerTrousers', boots: 'wayfarerBoots', mainHand: 'ironSword'}},
     {id: 'cross-hood', label: 'Graveweaver hood on the Wayfarer set', loadout: {...EMPTY, helmet: 'graveweaverHood', torso: 'wayfarerTunic', legs: 'wayfarerTrousers', boots: 'wayfarerBoots', mainHand: 'ironSword'}},
     {id: 'cross-pilgrim', label: 'Pilgrim tunic, Graveweaver skirt and gloves', loadout: {...EMPTY, torso: 'pilgrimTunic', legs: 'graveweaverSkirt', boots: 'wayfarerBoots', gloves: 'graveweaverGloves'}},
     {id: 'cuffs-no-boots', label: 'trousers with no boots: the cuff part appears', loadout: {...EMPTY, torso: 'wayfarerTunic', legs: 'wayfarerTrousers'}},
     {id: 'two-handed', label: 'two-handed greatstaff claims both hands', loadout: {...EMPTY, helmet: 'graveweaverHood', torso: 'graveweaverTop', legs: 'graveweaverSkirt', boots: 'wayfarerBoots', gloves: 'graveweaverGloves', mainHand: 'graveweaverGreatstaff'}},
 ];
+const requestedPasses = process.env.ASHEN_M007_PASSES?.split(',').filter(Boolean);
+const PASSES = requestedPasses ? ALL_PASSES.filter(pass => requestedPasses.includes(pass.id)) : ALL_PASSES;
+if (!PASSES.length || requestedPasses?.some(id => !ALL_PASSES.some(pass => pass.id === id))) {
+    throw Error('ASHEN_M007_PASSES has no valid matching pass');
+}
+const captureQuery = process.env.ASHEN_CAPTURE_QUERY ?? '';
+const skirtTrimMm = process.env.ASHEN_SKIRT_TRIM_MM ?? '';
+if (skirtTrimMm && skirtTrimMm !== '800') throw Error('Unsupported diagnostic skirt trim');
 
 await fs.mkdir(path.join(dir, 'frames'), {recursive: true});
 const browser = await chromium.connectOverCDP(`http://127.0.0.1:${port}`);
@@ -38,6 +46,21 @@ if (!page) throw Error('No owned page in this harness slot');
 const errors = [], frames = [], writes = [], timeline = [];
 page.on('pageerror', e => errors.push(String(e.message ?? e)));
 page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
+let skirtRequests = 0, manifestRequests = 0;
+if (skirtTrimMm) {
+    // Route both the asset and manifest so the normal streamed loader checks
+    // the candidate's bytes/hash before showing the trimmed undertrousers.
+    await page.route('**/__garment_fit__/manifest.json', async route => {
+        manifestRequests++;
+        await route.fulfill({status: 200, contentType: 'application/json', body:
+            await fs.readFile(`.cache/character-mmo/m007/graveweaverSkirt-undertrousers-${skirtTrimMm}mm.json`)});
+    });
+    await page.route('**/__garment_fit__/graveweaverSkirt.glb', async route => {
+        skirtRequests++;
+        await route.fulfill({status: 200, contentType: 'model/gltf-binary', body:
+            await fs.readFile(`.cache/character-mmo/m007/graveweaverSkirt-undertrousers-${skirtTrimMm}mm.glb`)});
+    });
+}
 const cdp = await page.context().newCDPSession(page);
 let recording = false;
 cdp.on('Page.screencastFrame', e => {
@@ -66,7 +89,7 @@ async function orbit(page, degrees, ms) {
 let canvas = null;
 try {
     await page.setViewportSize({width: 1280, height: 720});
-    await page.goto(`${base}?play&clean&pixelRatio=1`);
+    await page.goto(`${base}?play&clean&pixelRatio=1${captureQuery ? `&${captureQuery}` : ''}`);
     await page.waitForFunction(() => globalThis.ASHEN?.whenPlayable, null, {timeout: 90000});
     await page.evaluate(() => ASHEN.whenRest);
     if (requestedRace !== 'human') await page.evaluate(race => ASHEN.equipment.switchRace(race), requestedRace);
@@ -112,6 +135,9 @@ try {
     if (swapped.final !== swapped.requests.at(-1)) errors.push(`rapid swap settled on ${swapped.final}`);
     await pause(700);
     await orbit(page, 200, 1300);
+    if (skirtTrimMm && (skirtRequests !== 1 || manifestRequests !== 1)) {
+        throw Error(`Diagnostic skirt/manifest requests: ${skirtRequests}/${manifestRequests}`);
+    }
 
     recording = false;
     await cdp.send('Page.stopScreencast');
@@ -135,8 +161,14 @@ try {
         if (i + 1 < ordered.length) concat += `duration ${Math.max(0.001, ordered[i + 1].time - ordered[i].time).toFixed(6)}\n`;
     }
     await fs.writeFile(path.join(dir, 'frames.ffconcat'), concat);
+    await fs.writeFile(path.join(dir, 'capture-manifest.json'), JSON.stringify({
+        sourceUrl: page.url(), race: requestedRace, captureQuery, skirtTrimMm,
+        viewport: [1280, 720], canvas,
+        frames: ordered.map(f => ({name: f.name, timestamp: f.time, width: f.width, height: f.height})),
+    }, null, 2) + '\n');
     await fs.writeFile(path.join(dir, 'recording.json'), `${JSON.stringify({
-        sourceUrl: base, race: requestedRace, passes: PASSES, viewport: [1280, 720], canvas, rapidSwap: swapped,
+        sourceUrl: base, race: requestedRace, passes: PASSES, captureQuery, skirtTrimMm,
+        skirtRequests, manifestRequests, viewport: [1280, 720], canvas, rapidSwap: swapped,
         frames: frames.length, encodedFrames: ordered.length,
         outOfOrderArrivals: outOfOrder, discardedDuplicateTimestamps: frames.length - ordered.length,
         frameDimensions: [...new Set(frames.map(f => `${f.width}x${f.height}`))],

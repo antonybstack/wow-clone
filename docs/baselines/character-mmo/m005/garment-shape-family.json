@@ -384,28 +384,28 @@
      "passes": [
       {
        "pass": 1,
-       "lostBefore": 6,
-       "verticesMoved": 222,
-       "worstExtensionM": 0.045
+       "lostBefore": 7,
+       "verticesMoved": 37,
+       "worstExtensionM": 0.0415
       },
       {
        "pass": 2,
-       "lostBefore": 4,
-       "verticesMoved": 47,
-       "worstExtensionM": 0.042568
+       "lostBefore": 3,
+       "verticesMoved": 41,
+       "worstExtensionM": 0.045
       }
      ],
-     "lostAfter": 5
+     "lostAfter": 3
     }
    },
    "source": {
     "path": "public/ashen-reach/equipment/graveweaverSkirt.glb",
-    "sha256": "7a9a770063337c1dfa1de5a0da2e2fe3191865b1a3f7882afe92694b03e55cbc"
+    "sha256": "5a9b020c3e2ed0e7e099ba11caa2d86ebc11b036c4f03b0d1a0c9cfe9f818063"
    },
    "output": {
     "path": ".cache/character-mmo/m005/graveweaverSkirt.glb",
-    "sha256": "837e272327dfd795e6a8aaf0ed4ba3dc897ca2b98fd0713101cd4827b982d73b",
-    "bytes": 821676
+    "sha256": "c218dfb482f772f2730c57fd066c8117c41e9da28ba0b3222dcf79ae73f7995e",
+    "bytes": 808960
    },
    "pieces": [
     {
@@ -420,8 +420,8 @@
       },
       "stout": {
        "movedVertices": 3463,
-       "maxDisplacementM": 0.042148,
-       "meanDisplacementM": 0.014115
+       "maxDisplacementM": 0.022522,
+       "meanDisplacementM": 0.013543
       }
      },
      "neutralSha256": "b36eea0ec8e7644b0eacbd7dcc975c3026a8871615f79fcb7fd0916784d3718e"
@@ -429,7 +429,7 @@
     {
      "mesh": "WayfarerTrousers",
      "vertices": 1380,
-     "triangles": 2260,
+     "triangles": 1200,
      "shapes": {
       "slender": {
        "movedVertices": 1380,
@@ -438,11 +438,11 @@
       },
       "stout": {
        "movedVertices": 1380,
-       "maxDisplacementM": 0.054345,
-       "meanDisplacementM": 0.014482
+       "maxDisplacementM": 0.048684,
+       "meanDisplacementM": 0.014365
       }
      },
-     "neutralSha256": "1c5d796ca953f15d4d049555e119e3ba5238771c3408527fdd5c0c08a2a9ccc9"
+     "neutralSha256": "cbfc5812741293e231cffa4f260ca7ba7abab1a22080cb8eeb922ef50fb5288a"
     },
     {
      "mesh": "WayfarerTrousersCuffs",
