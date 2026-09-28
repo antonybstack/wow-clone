@@ -55,7 +55,9 @@ test('missing active file fails while preserving prior valid report rows',async(
   const report=await audit(undefined,read);
   assert.equal(Object.keys(report.packs).length,4);
   assert.equal(report.packs.human.items.body.status,'valid');
-  assert.equal(report.packs.undead.items.graveweaverHood.status,'incompatible');
+  // M007 rebuilt the active Undead garments on the body's actual rest/inverse
+  // bind, so a missing Orc file must not regress an unrelated valid Undead row.
+  assert.equal(report.packs.undead.items.graveweaverHood.status,'valid');
   assert.equal(report.packs.orc.items.wayfarerBoots.status,'invalid');
   assert.match(report.errors.join(),/orc\/wayfarerBoots: missing fixture/);
 });

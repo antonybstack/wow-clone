@@ -77,6 +77,15 @@ against its neighbours' mean). Roughness is the one that tracks visible tearing;
 largely invisible because the covered skin geosets are dropped. `ORC_NO_PUSH=1` writes the
 transfer alone, which says whether an artefact came from the correspondence or from a push.
 
+The [M007 close-fit review](plans/character-mmo/results/m007-close-fit-and-orc-wrist.md)
+found a wrist gap where the Graveweaver glove and either inspected sleeve meet. The packer
+now calls `addOrcGloveCuff` after fitting to append a 192-triangle skinned bracer inside
+the glove's existing material primitive. Its 65-joint palette and inverse bind remain the
+body's; the extra ring adds no draw submission. Use `--out-dir=<ignored path> --active-body`
+on `prepare-orc-equipment.mjs` for an isolated repack comparison before replacing an active
+asset. The current registration fitter reproduces the glove's vertex count but differs
+from the previously shipped packed positions, so a full repack still requires live review.
+
 ## Commands
 
 ```sh

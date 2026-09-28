@@ -1,4 +1,8 @@
-/** Run alone on an uncapped harness. No capture/profiling during frame sampling. */
+/** Run alone on an uncapped harness. No capture/profiling during frame sampling.
+ * ASHEN_BENCH_RACE and ASHEN_BENCH_OUTFIT select the *actual* streamed actor and
+ * gear. ASHEN_BENCH_ORC_ASSETS_DIR can substitute a prior Orc manifest/glove pair
+ * for a controlled old/new asset comparison without mutating the public pack.
+ */
 import { chromium } from "playwright";
 import fs from "node:fs/promises";
 import os from "node:os";
@@ -20,6 +24,9 @@ const runs = Number(process.env.ASHEN_FPS_RUNS || 3),
   seconds = 12;
 const race = process.env.ASHEN_BENCH_RACE || 'human';
 assert(['human', 'orc', 'undead'].includes(race), `Unsupported benchmark race: ${race}`);
+const outfit = process.env.ASHEN_BENCH_OUTFIT || '';
+const orcAssetsOverride = process.env.ASHEN_BENCH_ORC_ASSETS_DIR || '';
+assert(!orcAssetsOverride || race === 'orc', 'Orc asset override requires ASHEN_BENCH_RACE=orc');
 const routes = [
   ['meadow', 0, -65, 0], ['town', 0, 80, 0], ['bridge', 0, 210, 0],
   ['cathedral', 0, 280, 0], ['forest', -80, 180, -Math.PI / 2],
@@ -44,6 +51,8 @@ const report = {
     uncappedRequired: true,
     recording: false,
     race,
+    outfit: outfit || null,
+    orcAssetsOverride: orcAssetsOverride || null,
     routes: [...selected],
     recordCapped,
   },
@@ -54,6 +63,15 @@ page.on("pageerror", (e) => report.errors.push(e.message));
 page.on("console", (m) => {
   if (m.type() === "error") report.errors.push(m.text());
 });
+if (orcAssetsOverride) {
+  // Substitute the prior pack at request time for a paired asset benchmark.
+  // The manifest and GLB move together so hash validation still exercises the
+  // ordinary streamed-equipment path. No request is patched after loading.
+  const manifest = await fs.readFile(`${orcAssetsOverride}/manifest.json`);
+  const glove = await fs.readFile(`${orcAssetsOverride}/graveweaverGloves.glb`);
+  await page.route('**/ashen-reach/equipment-orc/manifest.json', r => r.fulfill({status: 200, contentType: 'application/json', body: manifest}));
+  await page.route('**/ashen-reach/equipment-orc/graveweaverGloves.glb', r => r.fulfill({status: 200, contentType: 'model/gltf-binary', body: glove}));
+}
 try {
   await page.goto(url.href);
   await page.waitForFunction(() => globalThis.ASHEN?.ready, null, {
@@ -64,6 +82,15 @@ try {
   // otherwise an Undead-labelled run silently measures Human.
   if (race !== 'human') await page.evaluate(r => ASHEN.equipment.switchRace(r), race);
   assert.equal(await page.evaluate(() => ASHEN.equipment.race), race);
+  if (outfit) {
+    const applied = await page.evaluate(id => {
+      const preset = ASHEN.equipment.presets[id];
+      if (!preset) throw Error(`Unknown benchmark outfit ${id}`);
+      return ASHEN.equipment.setLoadout(preset.loadout);
+    }, outfit);
+    assert.equal(applied.status, 'applied', `Outfit ${outfit} failed to equip`);
+    assert.equal(await page.evaluate(() => ASHEN.equipment.getStatus().pending), false);
+  }
   await page.evaluate(() => {
     ASHEN.dev.god = true;
     ASHEN.setView("play");

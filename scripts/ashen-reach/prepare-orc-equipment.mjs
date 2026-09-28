@@ -6,6 +6,7 @@ OrcV1Body is split into Human coverage names so boots/gloves can hide skin.
 */
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
+import path from 'node:path';
 import {mat3, vec3} from 'gl-matrix';
 import {NodeIO} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
@@ -13,10 +14,20 @@ import {mergeDocuments, prune, unpartition} from '@gltf-transform/functions';
 import {BODY_REGIONS, EQUIPMENT_ITEMS, ORC_BASE_VISIBLE_MESHES} from '../../src/ashen-reach/equipment-catalog.js';
 import {ORC_EQUIPMENT_FIT} from '../../src/ashen-reach/equipment-contract.js';
 import {removeWhiteOrcColors} from '../character-assets/remove-white-orc-colors.mjs';
+import {addOrcGloveCuff} from './add-orc-glove-cuff.mjs';
 
 const SRC = 'public/characters/candidates/orc-source-v1.glb';
-const DIR = 'public/ashen-reach/equipment-orc';
+// An ignored output directory lets fit revisions be reviewed in the live game
+// before replacing the shipped Orc pack. The public URLs in the manifest stay
+// stable so a CDP route can substitute just the candidate garment for review.
+const DIR = process.argv.find(arg => arg.startsWith('--out-dir='))?.slice('--out-dir='.length)
+    || 'public/ashen-reach/equipment-orc';
 const BODY = `${DIR}/body.glb`;
+const ACTIVE_BODY = 'public/ashen-reach/equipment-orc/body.glb';
+const reuseActiveBody = process.argv.includes('--active-body');
+if (reuseActiveBody && path.resolve(DIR) === path.resolve('public/ashen-reach/equipment-orc')) {
+    throw Error('--active-body requires an isolated --out-dir');
+}
 const FITTED = '.cache/armory-assets/orc-sculpt';
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const IDENTITY = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
@@ -125,23 +136,30 @@ function remapSkin(node, joints) {
 }
 
 await fs.mkdir(DIR, {recursive: true});
-const bytes = await fs.readFile(SRC);
+const sourcePath = reuseActiveBody ? ACTIVE_BODY : SRC;
+const bytes = await fs.readFile(sourcePath);
 const bodyDoc = await io.readBinary(bytes);
-for (const mesh of bodyDoc.getRoot().listMeshes()) {
-    if (mesh.getName().startsWith('OrcV1Eyes')) mesh.setName('OrcV1Eyes');
+let coverage;
+if (!reuseActiveBody) {
+    for (const mesh of bodyDoc.getRoot().listMeshes()) {
+        if (mesh.getName().startsWith('OrcV1Eyes')) mesh.setName('OrcV1Eyes');
+    }
+    const cover = JSON.parse(await fs.readFile(`${FITTED}/coverage.json`, 'utf8'));
+    for (const name of cover.regions) {
+        if (!BODY_REGIONS.includes(name)) throw Error('coverage.json names an unknown geoset ' + name);
+    }
+    coverage = partitionOrcBody(bodyDoc, cover);
+    await bodyDoc.transform(unpartition(), prune({keepLeaves: true}));
+    removeWhiteOrcColors(bodyDoc);
+} else {
+    coverage = {reusedActiveBody: true};
 }
-const cover = JSON.parse(await fs.readFile(`${FITTED}/coverage.json`, 'utf8'));
-for (const name of cover.regions) {
-    if (!BODY_REGIONS.includes(name)) throw Error('coverage.json names an unknown geoset ' + name);
-}
-const coverage = partitionOrcBody(bodyDoc, cover);
-await bodyDoc.transform(unpartition(), prune({keepLeaves: true}));
-removeWhiteOrcColors(bodyDoc);
 const bodyMeshes = bodyDoc.getRoot().listMeshes().map(m => m.getName());
 for (const name of ORC_BASE_VISIBLE_MESHES) {
     if (!bodyMeshes.includes(name)) throw Error(`Orc body missing ${name}`);
 }
-await io.write(BODY, bodyDoc);
+if (reuseActiveBody) await fs.writeFile(BODY, bytes);
+else await io.write(BODY, bodyDoc);
 console.log('Orc coverage', coverage);
 const packed = await fs.readFile(BODY);
 const bodyHash = sha(packed);
@@ -217,6 +235,9 @@ for (const [id, item] of garmentItems) {
         a.dispose();
     }
     await doc.transform(unpartition(), prune({keepLeaves: true}));
+    // The fitted Orc glove's open cuff does not meet either sleeve cleanly.
+    // Add the skinned bracer inside its existing primitive before manifest hashing.
+    if (id === 'graveweaverGloves') addOrcGloveCuff(doc);
     const missing = names.filter(name => !root.listNodes().some(n => n.getMesh() && n.getName() === name));
     if (missing.length) throw Error(`${id} missing meshes after pack: ${missing}`);
     for (const n of root.listNodes().filter(n => n.getMesh())) {
@@ -245,10 +266,10 @@ for (const [id, item] of garmentItems) {
 await fs.writeFile(`${DIR}/manifest.json`, JSON.stringify(manifest, null, 4) + '\n');
 await fs.writeFile(`${DIR}/provenance.json`, JSON.stringify({
     pipeline: 'orc sculpt-pipeline pack',
-    source: SRC,
+    source: sourcePath,
     fitted: FITTED,
-    note: 'Playable Orc is the print-sculpt retopo on the 65-joint source bind. Gloves are an inflated limb shell of the print hand/forearm/distal arm. Boots keep the Viking last, parked on each print foot with uniform horizontal scale and a shaft-only extend (no nearest-surface push). Tunic sleeves are radius-graded about the print arm axis. Surface derived from Male Orc for Print by Crayon (CC-BY 4.0). Garments remain CC0 MakeHuman suits02/gloves01.',
-    hashes: {[SRC]: sha(bytes), [BODY]: bodyHash},
+    note: 'Playable Orc is the print-sculpt retopo on the 65-joint source bind. Garments use the current body-registration fit. The Graveweaver glove gains a skinned wrist bracer within its existing primitive to bridge the sleeve seam. Surface derived from Male Orc for Print by Crayon (CC-BY 4.0). Garments remain CC0 MakeHuman suits02/gloves01.',
+    hashes: {[sourcePath]: sha(bytes), [BODY]: bodyHash},
     garments: garmentReport,
 }, null, 2) + '\n');
 console.log(JSON.stringify({bytes: packed.byteLength, meshes: bodyMeshes, sha256: bodyHash, garments: garmentReport}));

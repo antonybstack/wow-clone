@@ -38,6 +38,14 @@ test('Orc sculpt pack streams eight catalogue garments on the actor bind', async
         for (const node of doc.getRoot().listNodes().filter(n => n.getMesh())) {
             assert.deepEqual(node.getWorldMatrix(), IDENTITY, node.getName());
         }
+        if (id === 'graveweaverGloves') {
+            const glove = doc.getRoot().listNodes().find(n => n.getName() === 'GraveweaverGloves').getMesh();
+            assert.equal(glove.getExtras().orcWristCuff, 1);
+            // The bridge stays in the original skinned primitive and material. A
+            // second primitive would add a draw submission to every dressed Orc.
+            assert.equal(glove.listPrimitives().length, 1);
+            assert.equal(glove.listPrimitives()[0].getAttribute('POSITION').getCount(), 2740);
+        }
         if (id === 'body') {
             assert.equal(doc.getRoot().listAnimations().length, 57);
         } else {

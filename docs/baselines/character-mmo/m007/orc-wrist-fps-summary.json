@@ -1,0 +1,376 @@
+{
+  "schema": 1,
+  "date": "2026-09-28",
+  "sourceHead": "11ef738",
+  "assetSha256": "ae551225a6ceb06388b491342070e00a5c7ac2a377df1bac8ffcff13930331af",
+  "conditions": {
+    "cpu": "Apple M1 Max",
+    "url": "http://127.0.0.1:5873/ashen-reach.html?play=&clean=&pixelRatio=1&gpuTiming=",
+    "viewport": [
+      1280,
+      720
+    ],
+    "seconds": 12,
+    "runs": 3,
+    "uncappedRequired": true,
+    "recording": false,
+    "race": "orc",
+    "outfit": "graveweaver",
+    "routes": [
+      "meadow",
+      "town",
+      "bridge",
+      "cathedral",
+      "forest"
+    ],
+    "recordCapped": true,
+    "localVitePort": 5873,
+    "cdpPort": 10037,
+    "chrome": "Google Chrome 153",
+    "gpu": "M1 Max WebGPU",
+    "power": "not independently logged",
+    "ownedRendererOnly": true,
+    "asset": "full Graveweaver Orc, including modified gloves"
+  },
+  "routes": {
+    "meadow": {
+      "meanFps": 197.37537104434105,
+      "worstP99Ms": 6.300000190734863,
+      "maxMs": 9.200000047683716,
+      "above16_67": 0
+    },
+    "town": {
+      "meanFps": 195.56066641959555,
+      "worstP99Ms": 10.599999904632568,
+      "maxMs": 13.400000095367432,
+      "above16_67": 0
+    },
+    "bridge": {
+      "meanFps": 232.13968711218072,
+      "worstP99Ms": 5.799999952316284,
+      "maxMs": 8.700000047683716,
+      "above16_67": 0
+    },
+    "cathedral": {
+      "meanFps": 231.6702098581404,
+      "worstP99Ms": 5.799999952316284,
+      "maxMs": 9.700000047683716,
+      "above16_67": 0
+    },
+    "forest": {
+      "meanFps": 218.06900798144616,
+      "worstP99Ms": 6.099999904632568,
+      "maxMs": 8.700000047683716,
+      "above16_67": 0
+    }
+  },
+  "rows": [
+    {
+      "route": "meadow",
+      "run": 1,
+      "meanFps": 197.53724130722188,
+      "meanMs": 5.062336566929876,
+      "p50Ms": 4.799999952316284,
+      "p95Ms": 6.200000047683716,
+      "p99Ms": 6.300000190734863,
+      "maxMs": 7.800000190734863,
+      "above8_33": 0,
+      "above16_67": 0,
+      "vsyncCapped": false,
+      "gpuMeanMs": 0.9346391098858091
+    },
+    {
+      "route": "meadow",
+      "run": 2,
+      "meanFps": 197.27250764269294,
+      "meanMs": 5.069130067587705,
+      "p50Ms": 4.799999952316284,
+      "p95Ms": 6.199999809265137,
+      "p99Ms": 6.300000190734863,
+      "maxMs": 8.800000190734863,
+      "above8_33": 3,
+      "above16_67": 0,
+      "vsyncCapped": false,
+      "gpuMeanMs": 0.9928206495249073
+    },
+    {
+      "route": "meadow",
+      "run": 3,
+      "meanFps": 197.3163641831084,
+      "meanMs": 5.068003376912044,
+      "p50Ms": 4.799999952316284,
+      "p95Ms": 6.199999809265137,
+      "p99Ms": 6.299999952316284,
+      "maxMs": 9.200000047683716,
+      "above8_33": 3,
+      "above16_67": 0,
+      "vsyncCapped": false,
+      "gpuMeanMs": 1.0018263934536393
+    },
+    {
+      "route": "town",
+      "run": 1,
+      "meanFps": 196.4458212607926,
+      "meanMs": 5.0904620601343575,
+      "p50Ms": 4.8999998569488525,
+      "p95Ms": 9.600000143051147,
+      "p99Ms": 10.599999904632568,
+      "maxMs": 11.700000047683716,
+      "above8_33": 180,
+      "above16_67": 0,
+      "vsyncCapped": false,
+      "gpuMeanMs": 1.0430995190279986
+    },
+    {
+      "route": "town",
+      "run": 2,
+      "meanFps": 195.1377957658838,
+      "meanMs": 5.124583866878091,
+      "p50Ms": 4.8999998569488525,
+      "p95Ms": 6.200000047683716,
+      "p99Ms": 9.399999856948853,
+      "maxMs": 13.400000095367432,
+      "above8_33": 33,
+      "above16_67": 0,
+      "vsyncCapped": false,
+      "gpuMeanMs": 1.0151937459659808
+    },
+    {
+      "route": "town",
+      "run": 3,
+      "meanFps": 195.09838223211017,
+      "meanMs": 5.125619128969976,
+      "p50Ms": 4.8999998569488525,
+      "p95Ms": 6.200000047683716,
+      "p99Ms": 6.3999998569488525,
+      "maxMs": 8.5,
+      "above8_33": 2,
+      "above16_67": 0,
+      "vsyncCapped": false,
+      "gpuMeanMs": 1.0058825149087438
+    },
+    {
+      "route": "bridge",
+      "run": 1,
+      "meanFps": 231.57789514203597,
+      "meanMs": 4.318201438814616,
+      "p50Ms": 4.400000095367432,
+      "p95Ms": 4.900000095367432,
+      "p99Ms": 5.700000047683716,
+      "maxMs": 8.700000047683716,
+      "above8_33": 2,
+      "above16_67": 0,
+      "vsyncCapped": false,
+      "gpuMeanMs": 1.033838168503534
+    },
+    {
+      "route": "bridge",
+      "run": 2,
+      "meanFps": 232.26365423890752,
+      "meanMs": 4.305451936838104,
+      "p50Ms": 4.400000095367432,
+      "p95Ms": 4.900000095367432,
+      "p99Ms": 5.799999952316284,
+      "maxMs": 8.699999809265137,
+      "above8_33": 3,
+      "above16_67": 0,
+      "vsyncCapped": false,
+      "gpuMeanMs": 0.9996970145091618
+    },
+    {
+      "route": "bridge",
+      "run": 3,
+      "meanFps": 232.57751195559874,
+      "meanMs": 4.299641833776731,
+      "p50Ms": 4.400000095367432,
+      "p95Ms": 4.8999998569488525,
+      "p99Ms": 5.700000047683716,
+      "maxMs": 8.399999856948853,
+      "above8_33": 1,
+      "above16_67": 0,
+      "vsyncCapped": false,
+      "gpuMeanMs": 0.9987654666429258
+    },
+    {
+      "route": "cathedral",
+      "run": 1,
+      "meanFps": 231.62453670928247,
+      "meanMs": 4.317331895001798,
+      "p50Ms": 4.3999998569488525,
+      "p95Ms": 5.3999998569488525,
+      "p99Ms": 5.700000047683716,
+      "maxMs": 8.5,
+      "above8_33": 1,
+      "above16_67": 0,
+      "vsyncCapped": false,
+      "gpuMeanMs": 1.1397301254641987
+    },
+    {
+      "route": "cathedral",
+      "run": 2,
+      "meanFps": 231.78697594090823,
+      "meanMs": 4.3143062544417505,
+      "p50Ms": 4.3999998569488525,
+      "p95Ms": 4.799999952316284,
+      "p99Ms": 5.700000047683716,
+      "maxMs": 8.400000095367432,
+      "above8_33": 1,
+      "above16_67": 0,
+      "vsyncCapped": false,
+      "gpuMeanMs": 1.158150438374807
+    },
+    {
+      "route": "cathedral",
+      "run": 3,
+      "meanFps": 231.59911692423043,
+      "meanMs": 4.317805755395684,
+      "p50Ms": 4.3999998569488525,
+      "p95Ms": 4.8999998569488525,
+      "p99Ms": 5.799999952316284,
+      "maxMs": 9.700000047683716,
+      "above8_33": 7,
+      "above16_67": 0,
+      "vsyncCapped": false,
+      "gpuMeanMs": 1.1401958649825832
+    },
+    {
+      "route": "forest",
+      "run": 1,
+      "meanFps": 212.65076297474343,
+      "meanMs": 4.702546024341188,
+      "p50Ms": 4.700000047683716,
+      "p95Ms": 5.800000190734863,
+      "p99Ms": 6.099999904632568,
+      "maxMs": 8.599999904632568,
+      "above8_33": 3,
+      "above16_67": 0,
+      "vsyncCapped": false,
+      "gpuMeanMs": 1.1226878574492327
+    },
+    {
+      "route": "forest",
+      "run": 2,
+      "meanFps": 219.78021977847354,
+      "meanMs": 4.550000000036151,
+      "p50Ms": 4.599999904632568,
+      "p95Ms": 5.299999952316284,
+      "p99Ms": 5.900000095367432,
+      "maxMs": 8.5,
+      "above8_33": 1,
+      "above16_67": 0,
+      "vsyncCapped": false,
+      "gpuMeanMs": 1.207180091244615
+    },
+    {
+      "route": "forest",
+      "run": 3,
+      "meanFps": 221.7760411911215,
+      "meanMs": 4.509053343315038,
+      "p50Ms": 4.599999904632568,
+      "p95Ms": 5,
+      "p99Ms": 5.900000095367432,
+      "maxMs": 8.700000047683716,
+      "above8_33": 2,
+      "above16_67": 0,
+      "vsyncCapped": false,
+      "gpuMeanMs": 1.194166421063556
+    }
+  ],
+  "errors": [],
+  "pairedTown": {
+    "conditions": {
+      "route": "town",
+      "runs": 3,
+      "seconds": 12,
+      "viewport": [
+        1280,
+        720
+      ],
+      "race": "orc",
+      "outfit": "graveweaver",
+      "uncapped": true,
+      "recording": false,
+      "sameHarness": true,
+      "baselineOverride": "prior manifest and glove bytes served at load time"
+    },
+    "prior": {
+      "assetSha256": "69c6e081383e6868c35a8a8954261166cb0ba431e39195c1b6512d5f0c9c508d",
+      "meanFps": 186.58858469397424,
+      "meanMs": 5.360017902217017,
+      "worstRunP99Ms": 6.599999904632568,
+      "worstFrameMs": 10.099999904632568,
+      "rows": [
+        {
+          "run": 1,
+          "meanFps": 183.73228058047425,
+          "meanMs": 5.442701722531565,
+          "p99Ms": 6.5,
+          "maxMs": 8.900000095367432,
+          "vsyncCapped": false,
+          "enemies": 7,
+          "recoveries": 0
+        },
+        {
+          "run": 2,
+          "meanFps": 187.95614356724784,
+          "meanMs": 5.320390070900849,
+          "p99Ms": 6.400000095367432,
+          "maxMs": 10.099999904632568,
+          "vsyncCapped": false,
+          "enemies": 7,
+          "recoveries": 0
+        },
+        {
+          "run": 3,
+          "meanFps": 188.07732993420058,
+          "meanMs": 5.316961913218638,
+          "p99Ms": 6.599999904632568,
+          "maxMs": 9.5,
+          "vsyncCapped": false,
+          "enemies": 7,
+          "recoveries": 0
+        }
+      ]
+    },
+    "cuff": {
+      "assetSha256": "ae551225a6ceb06388b491342070e00a5c7ac2a377df1bac8ffcff13930331af",
+      "meanFps": 186.63810172380389,
+      "meanMs": 5.358568806325711,
+      "worstRunP99Ms": 6.5,
+      "worstFrameMs": 12.600000143051147,
+      "rows": [
+        {
+          "run": 1,
+          "meanFps": 183.84925527525738,
+          "meanMs": 5.439238785617104,
+          "p99Ms": 6.5,
+          "maxMs": 9,
+          "vsyncCapped": false,
+          "enemies": 7,
+          "recoveries": 0
+        },
+        {
+          "run": 2,
+          "meanFps": 187.8509188443247,
+          "meanMs": 5.323370288269483,
+          "p99Ms": 6.5,
+          "maxMs": 12.600000143051147,
+          "vsyncCapped": false,
+          "enemies": 7,
+          "recoveries": 0
+        },
+        {
+          "run": 3,
+          "meanFps": 188.21413105182964,
+          "meanMs": 5.313097345090545,
+          "p99Ms": 6.5,
+          "maxMs": 9.299999952316284,
+          "vsyncCapped": false,
+          "enemies": 7,
+          "recoveries": 0
+        }
+      ]
+    },
+    "meanFrameTimeChangePercent": -0.02703528080952866
+  }
+}
