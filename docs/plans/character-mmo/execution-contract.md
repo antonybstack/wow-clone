@@ -1,6 +1,6 @@
 # Execution contract for M001–M010
 
-Status: M001 completed; later milestones planned. Read [CURRENT](../../CURRENT.md), the [next-ten plan](next-ten.md), and the single milestone brief assigned to you. These instructions are designed for Claude Opus 5.5 or GPT-6 Sol at medium effort. Do not implement all 100 milestones from an isolated brief.
+Status: M001–M002 completed; later milestones planned. Read [CURRENT](../../CURRENT.md), the [next-ten plan](next-ten.md), and the single milestone brief assigned to you. These instructions are designed for Claude Opus 5.5 or GPT-6 Sol at medium effort. Do not implement all 100 milestones from an isolated brief.
 
 ## Baseline and ownership
 

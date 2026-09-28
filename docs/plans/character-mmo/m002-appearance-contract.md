@@ -1,6 +1,6 @@
 # M002 — Versioned appearance recipe and compatibility contract
 
-Status: **planned; requires M001 acceptance**. Parent: [next ten](next-ten.md). Mandatory: [execution contract](execution-contract.md).
+Status: **complete**. [Implementation and verification result](results/m002.md). Parent: [next ten](next-ten.md). Mandatory: [execution contract](execution-contract.md).
 
 ## Objective
 
@@ -88,14 +88,14 @@ The first command names a new test to create. Inspect built default-route import
 
 ## Acceptance checklist
 
-- [ ] Exact current appearances serialize/deserialize deterministically through one schema.
-- [ ] Validation reuses equipment occupancy/fit rules and advertises no unimplemented body controls.
-- [ ] Complete normalized recipes are immutable; malformed/oversized/unsupported inputs fail with field-level errors.
-- [ ] Semantic identity is separate from asset bytes/detail tier; key scope is documented.
-- [ ] Read-only live adapter describes committed state and cannot mutate or fetch.
-- [ ] Character/equipment regressions and build pass; default startup import graph is unchanged.
-- [ ] M003 can use seeded recipes without knowing runtime equipment internals.
-- [ ] Results, owned-process cleanup, commit and push recorded.
+- [x] Exact current appearances serialize/deserialize deterministically through one schema.
+- [x] Validation reuses equipment occupancy/fit rules and advertises no unimplemented body controls.
+- [x] Complete normalized recipes are immutable; malformed/oversized/unsupported inputs fail with field-level errors.
+- [x] Semantic identity is separate from asset bytes/detail tier; key scope is documented.
+- [x] Read-only live adapter describes committed state and cannot mutate or fetch.
+- [x] Character/equipment regressions and build pass; default startup import graph is unchanged.
+- [x] M003 can use seeded recipes without knowing runtime equipment internals.
+- [x] Results and owned-process cleanup recorded; task changes committed and pushed.
 
 ## Copyable handoff
 

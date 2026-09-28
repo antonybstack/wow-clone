@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "generation": "appearanceFromEquipment({race,loadout:EQUIPMENT_PRESETS[preset].loadout}); empty uses {}",
+  "source": "M001 active catalogue at bad1087",
+  "sourceSha256": {
+    "src/ashen-reach/equipment-catalog.js": "af0a7e067f1f458fd38e5546ab97d691eecf9b18bbcdcb15fb1ad484f7069332",
+    "src/ashen-reach/equipment-contract.js": "6b82f2974bafd3ef93e1e8c4f78b206d1fa65724a25257a929b174dbda9282af"
+  },
+  "license": "project-authored identity data; no third-party asset bytes",
+  "fixtures": {
+    "humanWayfarer": {
+      "race": "human",
+      "preset": "wayfarer",
+      "recipe": {
+        "schemaVersion": 1,
+        "catalogVersion": "appearance-catalog-v1",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {},
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        }
+      }
+    },
+    "orcWarden": {
+      "race": "orc",
+      "preset": "warden",
+      "recipe": {
+        "schemaVersion": 1,
+        "catalogVersion": "appearance-catalog-v1",
+        "race": "orc",
+        "fitFamily": "ashen-orc",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {},
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null
+        }
+      }
+    },
+    "undeadRevenant": {
+      "race": "undead",
+      "preset": "revenant",
+      "recipe": {
+        "schemaVersion": 1,
+        "catalogVersion": "appearance-catalog-v1",
+        "race": "undead",
+        "fitFamily": "ashen-undead",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {},
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null
+        }
+      }
+    },
+    "humanEmpty": {
+      "race": "human",
+      "preset": "empty",
+      "recipe": {
+        "schemaVersion": 1,
+        "catalogVersion": "appearance-catalog-v1",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {},
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": null,
+          "legs": null,
+          "boots": null,
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null
+        }
+      }
+    }
+  }
+}

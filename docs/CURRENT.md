@@ -6,7 +6,7 @@ Updated 2026-09-27. Read this file first. Follow the latest user request; histor
 
 The user selected a long-term direction of customizable Human characters, existing Undead/Orc and future Elf support, 30 mixable armor sets, recurring quarterly PvP tiers, and crowded MMO hubs. The recommended architecture is authored/generated source art converted into compatible templates, procedural fitting/assembly, and progressively cheaper crowd representations.
 
-**M001 is complete; M002 is next.** The [M001 result](plans/character-mmo/results/m001.md) records the active asset census, fresh baseline and live motion. All eight active Undead garments have a different rest/inverse bind from their body even though their fit labels match; the existing Undead equipment suite tests the older provisional pack. Treat that as a compatibility blocker for exact shared-pose crowd grouping. Do not resume old graphics or world-expansion milestone queues.
+**M001 and M002 are complete; M003 is next.** The [M001 result](plans/character-mmo/results/m001.md) records the active asset census, fresh baseline and live motion. The [M002 result](plans/character-mmo/results/m002.md) records the pure versioned appearance recipe, seeded fixtures and live committed-state probe; the Pages play output is byte-identical. All eight active Undead garments have a different rest/inverse bind from their body even though their fit labels match; the existing Undead equipment suite tests the older provisional pack. Treat that as a compatibility blocker for exact shared-pose crowd grouping. Do not resume old graphics or world-expansion milestone queues.
 
 Fresh local M001 measurements on M1 Max, uncapped headless Chromium WebGPU at 1280×720 with seven enemies: five-route mean FPS **190.5–219.5**, with intermittent bridge/cathedral/forest pacing tails and a **14.1 ms** worst sampled interval. Twenty fresh-process 50 Mbit/s / 40 ms starts had p95 **802.1 ms**, **19/20 <=1 second**, and a first-run GPU completion outlier of **9,149.4 ms**. These are local built-preview measurements, distinct from the released production figures below. Reviewed live Human/Orc/Undead motion is [VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m001-motion-v2-2026-09-27.mp4), Telegram **788**.
 
@@ -15,6 +15,7 @@ Fresh local M001 measurements on M1 Max, uncapped headless Chromium WebGPU at 12
 - [Shared execution and performance contract](plans/character-mmo/execution-contract.md)
 - [M001: completed asset census and fresh baseline](plans/character-mmo/results/m001.md)
 - [M002: versioned appearance recipe](plans/character-mmo/m002-appearance-contract.md)
+- [M002: implementation and verification result](plans/character-mmo/results/m002.md)
 - [M003: native crowd feasibility](plans/character-mmo/m003-crowd-feasibility.md)
 - [Architecture decisions and sources](plans/character-mmo/architecture.md)
 
