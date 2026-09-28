@@ -1,0 +1,266 @@
+{
+  "schema": 1,
+  "sourceHead": "2136879",
+  "conditions": {
+    "browser": "system Chrome, owned CDP",
+    "cdpPort": 10037,
+    "vitePort": 5873,
+    "viewport": [
+      1280,
+      720
+    ],
+    "pixelRatio": 1,
+    "uncapped": true,
+    "environment": "actual town, seven normal enemies, standing player, shadowless probe cohort",
+    "warmupMs": 2000,
+    "seconds": 12,
+    "runs": 3,
+    "recording": false,
+    "internalResolution": [
+      960,
+      540
+    ],
+    "note": "Browser viewport was 1280×720; game default rendered at 960×540. Valid as lower-resolution town comparison only.",
+    "experimentalSourcePatch": "Temporary if(mesh.vat) continue in src/ashen-reach/sun-shadows.js; reverted before final build. Do not attribute these intervals to committed code."
+  },
+  "cells": [
+    {
+      "label": "baseline",
+      "count": 0,
+      "status": {
+        "canvas": [
+          960,
+          540
+        ],
+        "hostilesReady": true,
+        "sceneMeshes": 136,
+        "drawCalls": 588,
+        "submittedPieces": 0,
+        "projectedActorCenters": 0
+      },
+      "runs": [
+        {
+          "run": 1,
+          "frames": 1541,
+          "meanFps": 128.3952674554241,
+          "meanMs": 7.788449059052564,
+          "p50Ms": 3.2999999999992724,
+          "p95Ms": 18.600000000000364,
+          "p99Ms": 18.799999999999272,
+          "maxMs": 19.400000000001455,
+          "over8_33": 492,
+          "over16_67": 491,
+          "drawCalls": 533,
+          "rawFile": "raw-960/town-baseline-run1.json.gz"
+        },
+        {
+          "run": 2,
+          "frames": 1561,
+          "meanFps": 129.9209321681232,
+          "meanMs": 7.6969891095451635,
+          "p50Ms": 3.2999999999956344,
+          "p95Ms": 18.599999999998545,
+          "p99Ms": 18.799999999995634,
+          "maxMs": 18.900000000001455,
+          "over8_33": 492,
+          "over16_67": 490,
+          "drawCalls": 537,
+          "rawFile": "raw-960/town-baseline-run2.json.gz"
+        },
+        {
+          "run": 3,
+          "frames": 1539,
+          "meanFps": 128.09628445864968,
+          "meanMs": 7.8066276803118875,
+          "p50Ms": 3.1999999999970896,
+          "p95Ms": 18.69999999999709,
+          "p99Ms": 18.799999999995634,
+          "maxMs": 18.900000000001455,
+          "over8_33": 504,
+          "over16_67": 501,
+          "drawCalls": 537,
+          "rawFile": "raw-960/town-baseline-run3.json.gz"
+        }
+      ]
+    },
+    {
+      "label": "vat-100",
+      "count": 100,
+      "status": {
+        "canvas": [
+          960,
+          540
+        ],
+        "hostilesReady": true,
+        "sceneMeshes": 142,
+        "drawCalls": 537,
+        "submittedPieces": 600,
+        "projectedActorCenters": 100
+      },
+      "runs": [
+        {
+          "run": 1,
+          "frames": 1317,
+          "meanFps": 109.65496569639646,
+          "meanMs": 9.11951404707669,
+          "p50Ms": 3.1999999999970896,
+          "p95Ms": 18.69999999999709,
+          "p99Ms": 18.80000000000291,
+          "maxMs": 18.900000000001455,
+          "over8_33": 595,
+          "over16_67": 595,
+          "drawCalls": 543,
+          "rawFile": "raw-960/town-vat-100-run1.json.gz"
+        },
+        {
+          "run": 2,
+          "frames": 1353,
+          "meanFps": 112.62329878886253,
+          "meanMs": 8.879157427937916,
+          "p50Ms": 3.1000000000058208,
+          "p95Ms": 18.69999999999709,
+          "p99Ms": 18.80000000000291,
+          "maxMs": 18.89999999999418,
+          "over8_33": 589,
+          "over16_67": 586,
+          "drawCalls": 543,
+          "rawFile": "raw-960/town-vat-100-run2.json.gz"
+        },
+        {
+          "run": 3,
+          "frames": 1338,
+          "meanFps": 111.44427786106947,
+          "meanMs": 8.973094170403588,
+          "p50Ms": 3,
+          "p95Ms": 18.69999999999709,
+          "p99Ms": 18.80000000000291,
+          "maxMs": 18.90000000000873,
+          "over8_33": 595,
+          "over16_67": 592,
+          "drawCalls": 543,
+          "rawFile": "raw-960/town-vat-100-run3.json.gz"
+        }
+      ]
+    },
+    {
+      "label": "vat-300",
+      "count": 300,
+      "status": {
+        "canvas": [
+          960,
+          540
+        ],
+        "hostilesReady": true,
+        "sceneMeshes": 142,
+        "drawCalls": 537,
+        "submittedPieces": 1800,
+        "projectedActorCenters": 270
+      },
+      "runs": [
+        {
+          "run": 1,
+          "frames": 1331,
+          "meanFps": 110.86031267439047,
+          "meanMs": 9.020360631104436,
+          "p50Ms": 3.1999999999970896,
+          "p95Ms": 18.60000000000582,
+          "p99Ms": 18.80000000000291,
+          "maxMs": 18.80000000000291,
+          "over8_33": 607,
+          "over16_67": 606,
+          "drawCalls": 543,
+          "rawFile": "raw-960/town-vat-300-run1.json.gz"
+        },
+        {
+          "run": 2,
+          "frames": 1330,
+          "meanFps": 110.75488195861266,
+          "meanMs": 9.028947368421052,
+          "p50Ms": 3.3000000000029104,
+          "p95Ms": 18.60000000000582,
+          "p99Ms": 18.80000000000291,
+          "maxMs": 18.80000000000291,
+          "over8_33": 603,
+          "over16_67": 603,
+          "drawCalls": 543,
+          "rawFile": "raw-960/town-vat-300-run2.json.gz"
+        },
+        {
+          "run": 3,
+          "frames": 1338,
+          "meanFps": 111.4359243435024,
+          "meanMs": 8.973766816143504,
+          "p50Ms": 3.3000000000029104,
+          "p95Ms": 18.60000000000582,
+          "p99Ms": 18.79999999998836,
+          "maxMs": 18.80000000000291,
+          "over8_33": 603,
+          "over16_67": 602,
+          "drawCalls": 543,
+          "rawFile": "raw-960/town-vat-300-run3.json.gz"
+        }
+      ]
+    },
+    {
+      "label": "after-dispose",
+      "count": 0,
+      "status": {
+        "canvas": [
+          960,
+          540
+        ],
+        "hostilesReady": true,
+        "sceneMeshes": 136,
+        "drawCalls": 537,
+        "submittedPieces": 0,
+        "projectedActorCenters": 0
+      },
+      "runs": [
+        {
+          "run": 1,
+          "frames": 1565,
+          "meanFps": 130.3699507676414,
+          "meanMs": 7.670479233226848,
+          "p50Ms": 3.2000000000116415,
+          "p95Ms": 18.60000000000582,
+          "p99Ms": 18.79999999998836,
+          "maxMs": 18.900000000023283,
+          "over8_33": 496,
+          "over16_67": 490,
+          "drawCalls": 537,
+          "rawFile": "raw-960/town-after-dispose-run1.json.gz"
+        },
+        {
+          "run": 2,
+          "frames": 1535,
+          "meanFps": 127.83251026407622,
+          "meanMs": 7.822736156351787,
+          "p50Ms": 3.2999999999883585,
+          "p95Ms": 18.60000000000582,
+          "p99Ms": 18.79999999998836,
+          "maxMs": 18.89999999999418,
+          "over8_33": 503,
+          "over16_67": 501,
+          "drawCalls": 537,
+          "rawFile": "raw-960/town-after-dispose-run2.json.gz"
+        },
+        {
+          "run": 3,
+          "frames": 1508,
+          "meanFps": 125.45026495961122,
+          "meanMs": 7.971286472148549,
+          "p50Ms": 3.3000000000174623,
+          "p95Ms": 18.60000000000582,
+          "p99Ms": 18.70000000001164,
+          "maxMs": 18.900000000023283,
+          "over8_33": 514,
+          "over16_67": 512,
+          "drawCalls": 537,
+          "rawFile": "raw-960/town-after-dispose-run3.json.gz"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "accepted": false
+}

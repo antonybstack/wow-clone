@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "source": "public/ashen-reach/equipment/body.glb",
+  "sourceSha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+  "method": "Merge active split garments onto the active body skin after exact ordered bind validation; retain meshes from resolveEquipmentVisibility; retain Idle/Walk clips; prune unreachable resources.",
+  "license": "Probe derivative of existing project Human and CC0 garment sources; see docs/plans/character-mmo/results/m001.md",
+  "variants": {
+    "wayfarer": {
+      "file": "human-wayfarer.glb",
+      "sha256": "188b3ca33a4510f29ab1e115a5a1975924763b2ad579d8674cced55295ddba58",
+      "bytes": 2425128,
+      "triangles": 20521,
+      "vertices": 12056,
+      "primitives": 6,
+      "recipe": "{\"schemaVersion\":1,\"catalogVersion\":\"appearance-catalog-v1\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null}}",
+      "assetSha256": {
+        "wayfarerTunic": "3b4c929df3708afd760f3f056f0dc706e780552cfe1966d8ef3f5083b8749cd6",
+        "wayfarerTrousers": "169ad0333e5746e72512b8160008aefbf3d8bef7d75f2ff70203feca08538def",
+        "wayfarerBoots": "a55a9e4cd7b8658b6f2bd51dd3092af576e8d7dd279c9687bb3419a5c858bd98"
+      },
+      "meshes": [
+        "HumanV1Body",
+        "ProbeIronSword",
+        "WayfarerBoots",
+        "WayfarerTrousers",
+        "WayfarerTunic"
+      ],
+      "clips": [
+        "Idle_Loop",
+        "Walk_Loop"
+      ]
+    },
+    "warden": {
+      "file": "human-warden.glb",
+      "sha256": "1c0df5de5542dc9841be0cf220cd553622af250b4109f9816d05beadccf79119",
+      "bytes": 3066296,
+      "triangles": 39638,
+      "vertices": 22607,
+      "primitives": 11,
+      "recipe": "{\"schemaVersion\":1,\"catalogVersion\":\"appearance-catalog-v1\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":\"graveweaverHood\",\"torso\":\"graveweaverTop\",\"legs\":\"graveweaverSkirt\",\"boots\":\"wayfarerBoots\",\"gloves\":\"graveweaverGloves\",\"mainHand\":\"graveweaverGreatstaff\",\"offHand\":null}}",
+      "assetSha256": {
+        "graveweaverHood": "828b7e66b2edfc4d8fb2411c87c0fe7f1da52359b192691774d0c34392c63799",
+        "graveweaverTop": "935bc9c509c562e08161bac0d7babc60b5273c38aea6764258966dcc060f1b78",
+        "graveweaverSkirt": "7a9a770063337c1dfa1de5a0da2e2fe3191865b1a3f7882afe92694b03e55cbc",
+        "wayfarerBoots": "a55a9e4cd7b8658b6f2bd51dd3092af576e8d7dd279c9687bb3419a5c858bd98",
+        "graveweaverGloves": "ae3a162fc15b038bbf713f924b0b6b69d88fcd18ff2cfcb676112d5c91bb6e75"
+      },
+      "meshes": [
+        "GraveweaverGloves",
+        "GraveweaverHood",
+        "GraveweaverPendant",
+        "GraveweaverSkirt",
+        "GraveweaverTop",
+        "HumanV1Body",
+        "ProbeGreatstaff",
+        "WayfarerBoots",
+        "WayfarerTrousers"
+      ],
+      "clips": [
+        "Idle_Loop",
+        "Walk_Loop"
+      ]
+    }
+  }
+}

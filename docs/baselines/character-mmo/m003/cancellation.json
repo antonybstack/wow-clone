@@ -1,0 +1,48 @@
+{
+  "result": {
+    "settled": [
+      {
+        "ok": false,
+        "error": "Cancelled scene build"
+      },
+      {
+        "ok": true
+      }
+    ],
+    "status": {
+      "ready": true,
+      "path": "vat",
+      "count": 10,
+      "projectedActorCenters": 10,
+      "submittedActorInstances": 10,
+      "outfitCounts": {
+        "wayfarer": 5,
+        "warden": 5
+      },
+      "motion": "walk",
+      "shadows": false,
+      "sceneMeshes": 18,
+      "drawCalls": 7,
+      "gpuTimingSupported": true,
+      "gpuFrameTimeMs": 0.5086246725534616,
+      "loadMs": 92.29999995231628,
+      "ownedContainers": 2,
+      "batchCount": 12,
+      "pieceInstances": 70,
+      "vatTextures": 2,
+      "preparedBytes": 16407040,
+      "canvas": [
+        1280,
+        720
+      ],
+      "errors": [
+        "Cancelled scene build"
+      ]
+    }
+  },
+  "after": {
+    "sceneMeshes": 1,
+    "ownedContainers": 0
+  },
+  "pageErrors": []
+}

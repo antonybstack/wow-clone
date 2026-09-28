@@ -1,6 +1,6 @@
 import {verifyStartupAssets} from './scripts/ashen-reach/startup-provenance.mjs';
 import { defineConfig } from "vite";
-import {readFileSync} from 'node:fs';
+import {readFileSync,createReadStream,statSync} from 'node:fs';
 
 const pages = process.env.ASHEN_PAGES === "1";
 const starterBuild=process.env.VITE_FAST_START!=='0';
@@ -34,7 +34,7 @@ export default defineConfig({
       output: process.env.ASHEN_LITE_BUNDLE!=='0'?{codeSplitting:{groups:[{name:'lite-runtime',test:/node_modules\/@babylonjs\/lite\//}]}}:undefined,
       input: pages
         ? { index: "index.html", ashenReach: "ashen-reach.html" }
-        : { index: "index.html", ashenReach: "ashen-reach.html", characterLab: "character-lab.html", bodyPreview: "body-preview.html" },
+        : { index: "index.html", ashenReach: "ashen-reach.html", characterLab: "character-lab.html", bodyPreview: "body-preview.html", characterCrowdProbe: "character-crowd-probe.html" },
     },
   },
   optimizeDeps: {
@@ -47,6 +47,22 @@ export default defineConfig({
   },
   plugins: [
     {name: "verify-prepared-startup", async buildStart(){if(starterBuild)await verifyStartupAssets();}},
+    {
+      name: 'dev-only-crowd-probe-assets',
+      configureServer(server) {
+        server.middlewares.use((req,res,next)=>{
+          const name=/^\/__crowd_probe__\/(human-(?:wayfarer|warden)\.glb|manifest\.json)$/.exec(req.url?.split('?')[0]||'')?.[1];
+          if(!name) return next();
+          const file=`.cache/character-mmo/m003/${name}`;
+          try {
+            const info=statSync(file);
+            res.setHeader('Content-Type',name.endsWith('.json')?'application/json':'model/gltf-binary');
+            res.setHeader('Content-Length',String(info.size));
+            createReadStream(file).pipe(res);
+          } catch {res.statusCode=404;res.end('Run node scripts/character-assets/prepare-crowd-probe.mjs');}
+        });
+      },
+    },
     {
       name: "starter-brotli-http",
       // Mirror Pages _headers when serving the same precompressed artifact locally.

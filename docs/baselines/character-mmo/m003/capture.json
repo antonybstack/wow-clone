@@ -1,0 +1,180 @@
+{
+  "sourceUrl": "local developer-only character-crowd-probe.html",
+  "viewport": [
+    1280,
+    720
+  ],
+  "canvas": [
+    1280,
+    720
+  ],
+  "dimensions": [
+    "1280x720"
+  ],
+  "frames": 187,
+  "firstTimestamp": 1790568620.184237,
+  "lastTimestamp": 1790568632.873371,
+  "timeline": [
+    {
+      "label": "ten mixed dressed VAT actors walking",
+      "timestamp": 1790568620133,
+      "status": {
+        "ready": true,
+        "path": "vat",
+        "count": 10,
+        "projectedActorCenters": 10,
+        "submittedActorInstances": 10,
+        "outfitCounts": {
+          "wayfarer": 5,
+          "warden": 5
+        },
+        "motion": "walk",
+        "shadows": false,
+        "sceneMeshes": 18,
+        "drawCalls": 18,
+        "gpuTimingSupported": true,
+        "gpuFrameTimeMs": 0.32768,
+        "loadMs": 125.79999995231628,
+        "ownedContainers": 2,
+        "batchCount": 12,
+        "pieceInstances": 70,
+        "vatTextures": 2,
+        "preparedBytes": 16407040,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": []
+      }
+    },
+    {
+      "label": "quarter outfit swap and idle",
+      "timestamp": 1790568623028,
+      "status": {
+        "ready": true,
+        "path": "vat",
+        "count": 10,
+        "projectedActorCenters": 10,
+        "submittedActorInstances": 10,
+        "outfitCounts": {
+          "warden": 3,
+          "wayfarer": 7
+        },
+        "motion": "idle",
+        "shadows": false,
+        "sceneMeshes": 18,
+        "drawCalls": 12,
+        "gpuTimingSupported": true,
+        "gpuFrameTimeMs": 0.07839038185664891,
+        "loadMs": 87.5,
+        "ownedContainers": 2,
+        "batchCount": 12,
+        "pieceInstances": 62,
+        "vatTextures": 2,
+        "preparedBytes": 16407040,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": []
+      }
+    },
+    {
+      "label": "one hundred mixed actors walking",
+      "timestamp": 1790568625339,
+      "status": {
+        "ready": true,
+        "path": "vat",
+        "count": 100,
+        "projectedActorCenters": 100,
+        "submittedActorInstances": 100,
+        "outfitCounts": {
+          "wayfarer": 50,
+          "warden": 50
+        },
+        "motion": "walk",
+        "shadows": false,
+        "sceneMeshes": 18,
+        "drawCalls": 9,
+        "gpuTimingSupported": true,
+        "gpuFrameTimeMs": 0.08618559586623309,
+        "loadMs": 105.10000014305115,
+        "ownedContainers": 2,
+        "batchCount": 12,
+        "pieceInstances": 700,
+        "vatTextures": 2,
+        "preparedBytes": 16407040,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": []
+      }
+    },
+    {
+      "label": "native teardown and rebuild",
+      "timestamp": 1790568628274,
+      "status": {
+        "ready": true,
+        "path": "vat",
+        "count": 10,
+        "projectedActorCenters": 10,
+        "submittedActorInstances": 10,
+        "outfitCounts": {
+          "wayfarer": 5,
+          "warden": 5
+        },
+        "motion": "walk",
+        "shadows": false,
+        "sceneMeshes": 18,
+        "drawCalls": 7,
+        "gpuTimingSupported": true,
+        "gpuFrameTimeMs": 3.472925239154382,
+        "loadMs": 125.79999995231628,
+        "ownedContainers": 2,
+        "batchCount": 12,
+        "pieceInstances": 70,
+        "vatTextures": 2,
+        "preparedBytes": 16407040,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": []
+      }
+    },
+    {
+      "label": "fresh independent control actors walking",
+      "timestamp": 1790568630681,
+      "status": {
+        "ready": true,
+        "path": "independent",
+        "count": 10,
+        "projectedActorCenters": 10,
+        "submittedActorInstances": 10,
+        "outfitCounts": {
+          "wayfarer": 5,
+          "warden": 5
+        },
+        "motion": "walk",
+        "shadows": false,
+        "sceneMeshes": 86,
+        "drawCalls": 86,
+        "gpuTimingSupported": true,
+        "gpuFrameTimeMs": 0,
+        "loadMs": 231.5,
+        "ownedContainers": 10,
+        "batchCount": 12,
+        "pieceInstances": 70,
+        "vatTextures": 0,
+        "preparedBytes": 0,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": []
+      }
+    }
+  ],
+  "errors": []
+}

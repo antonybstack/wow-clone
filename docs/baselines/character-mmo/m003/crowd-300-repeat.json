@@ -1,0 +1,482 @@
+{
+  "schema": 1,
+  "sourceHead": "2136879",
+  "conditions": {
+    "browser": "system Chrome via owned CDP",
+    "cdpPort": 10037,
+    "vitePort": 5873,
+    "viewport": [
+      1280,
+      720
+    ],
+    "pixelRatio": 1,
+    "uncapped": true,
+    "seconds": 12,
+    "runs": 3,
+    "warmupMs": 2000,
+    "metric": "requestAnimationFrame interval; nearest-rank tails; no recording",
+    "gpuTiming": "not instrumented; zero/missing reported unavailable"
+  },
+  "cells": [
+    {
+      "appearance": "repeat",
+      "count": 300,
+      "path": "independent",
+      "motion": "idle",
+      "startedAt": "2026-09-28T03:31:05.199Z",
+      "runs": [
+        {
+          "run": 1,
+          "frames": 436,
+          "meanFps": 36.29190008074115,
+          "meanMs": 27.55435779816514,
+          "p50Ms": 27.5,
+          "p95Ms": 29.400000000001455,
+          "p99Ms": 30.400000000001455,
+          "maxMs": 45.20000000000073,
+          "over6_94": 436,
+          "over8_33": 436,
+          "over16_67": 436,
+          "over33_33": 1,
+          "drawCalls": 1801,
+          "gpu": {
+            "sampleStride": 20,
+            "unit": "GPU frame ms",
+            "samples": 22,
+            "meanMs": 12.652071353540487,
+            "p50Ms": 12.601204137004643,
+            "p95Ms": 13.042825047658631,
+            "p99Ms": 13.099448290559868,
+            "maxMs": 13.099448290559868
+          },
+          "rawFile": "raw/independent-300-repeat-idle-run1.json.gz"
+        },
+        {
+          "run": 2,
+          "frames": 439,
+          "meanFps": 36.518816757062524,
+          "meanMs": 27.383143507972665,
+          "p50Ms": 27.299999999999272,
+          "p95Ms": 29.400000000001455,
+          "p99Ms": 30.700000000000728,
+          "maxMs": 36.70000000000073,
+          "over6_94": 439,
+          "over8_33": 439,
+          "over16_67": 439,
+          "over33_33": 3,
+          "drawCalls": 1801,
+          "gpu": {
+            "sampleStride": 20,
+            "unit": "GPU frame ms",
+            "samples": 22,
+            "meanMs": 12.648192742927472,
+            "p50Ms": 12.56925883182605,
+            "p95Ms": 12.929147061237465,
+            "p99Ms": 14.19206942689448,
+            "maxMs": 14.19206942689448
+          },
+          "rawFile": "raw/independent-300-repeat-idle-run2.json.gz"
+        },
+        {
+          "run": 3,
+          "frames": 432,
+          "meanFps": 35.95086714823075,
+          "meanMs": 27.815740740740743,
+          "p50Ms": 27.5,
+          "p95Ms": 30.5,
+          "p99Ms": 44.69999999999709,
+          "maxMs": 72.90000000000146,
+          "over6_94": 432,
+          "over8_33": 432,
+          "over16_67": 432,
+          "over33_33": 5,
+          "drawCalls": 1801,
+          "gpu": {
+            "sampleStride": 20,
+            "unit": "GPU frame ms",
+            "samples": 22,
+            "meanMs": 13.064748662740943,
+            "p50Ms": 12.615192952543737,
+            "p95Ms": 14.601213516361078,
+            "p99Ms": 18.656925523196684,
+            "maxMs": 18.656925523196684
+          },
+          "rawFile": "raw/independent-300-repeat-idle-run3.json.gz"
+        }
+      ],
+      "errors": [],
+      "status": {
+        "ready": true,
+        "path": "independent",
+        "count": 300,
+        "projectedActorCenters": 300,
+        "submittedActorInstances": 300,
+        "outfitCounts": {
+          "wayfarer": 300
+        },
+        "motion": "idle",
+        "shadows": false,
+        "sceneMeshes": 1801,
+        "drawCalls": 1801,
+        "gpuTimingSupported": true,
+        "gpuFrameTimeMs": 0,
+        "loadMs": 6270.899999856949,
+        "ownedContainers": 300,
+        "batchCount": 5,
+        "pieceInstances": 1500,
+        "vatTextures": 0,
+        "preparedBytes": 0,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": []
+      }
+    },
+    {
+      "appearance": "repeat",
+      "count": 300,
+      "path": "independent",
+      "motion": "walk",
+      "startedAt": "2026-09-28T03:31:49.965Z",
+      "runs": [
+        {
+          "run": 1,
+          "frames": 443,
+          "meanFps": 36.864442040442704,
+          "meanMs": 27.126410835214447,
+          "p50Ms": 27,
+          "p95Ms": 28.600000000000364,
+          "p99Ms": 29.899999999999636,
+          "maxMs": 45,
+          "over6_94": 443,
+          "over8_33": 443,
+          "over16_67": 443,
+          "over33_33": 2,
+          "drawCalls": 1801,
+          "gpu": {
+            "sampleStride": 20,
+            "unit": "GPU frame ms",
+            "samples": 23,
+            "meanMs": 12.387584613414056,
+            "p50Ms": 12.372178749071583,
+            "p95Ms": 12.626952551874371,
+            "p99Ms": 12.717813537771061,
+            "maxMs": 12.717813537771061
+          },
+          "rawFile": "raw/independent-300-repeat-walk-run1.json.gz"
+        },
+        {
+          "run": 2,
+          "frames": 439,
+          "meanFps": 36.553785689900664,
+          "meanMs": 27.356947608200457,
+          "p50Ms": 27.299999999999272,
+          "p95Ms": 29.200000000000728,
+          "p99Ms": 30.5,
+          "maxMs": 33.900000000001455,
+          "over6_94": 439,
+          "over8_33": 439,
+          "over16_67": 439,
+          "over33_33": 1,
+          "drawCalls": 1801,
+          "gpu": {
+            "sampleStride": 20,
+            "unit": "GPU frame ms",
+            "samples": 22,
+            "meanMs": 12.598088293976526,
+            "p50Ms": 12.533122844860227,
+            "p95Ms": 12.920409628886903,
+            "p99Ms": 12.960085583755149,
+            "maxMs": 12.960085583755149
+          },
+          "rawFile": "raw/independent-300-repeat-walk-run2.json.gz"
+        },
+        {
+          "run": 3,
+          "frames": 442,
+          "meanFps": 36.766846619030595,
+          "meanMs": 27.198416289592753,
+          "p50Ms": 27.19999999999709,
+          "p95Ms": 28.700000000004366,
+          "p99Ms": 29.799999999995634,
+          "maxMs": 31.400000000001455,
+          "over6_94": 442,
+          "over8_33": 442,
+          "over16_67": 442,
+          "over33_33": 0,
+          "drawCalls": 1801,
+          "gpu": {
+            "sampleStride": 20,
+            "unit": "GPU frame ms",
+            "samples": 23,
+            "meanMs": 12.45672862015319,
+            "p50Ms": 12.44804338177131,
+            "p95Ms": 12.627067956709542,
+            "p99Ms": 13.108620022753788,
+            "maxMs": 13.108620022753788
+          },
+          "rawFile": "raw/independent-300-repeat-walk-run3.json.gz"
+        }
+      ],
+      "errors": [],
+      "status": {
+        "ready": true,
+        "path": "independent",
+        "count": 300,
+        "projectedActorCenters": 300,
+        "submittedActorInstances": 300,
+        "outfitCounts": {
+          "wayfarer": 300
+        },
+        "motion": "walk",
+        "shadows": false,
+        "sceneMeshes": 1801,
+        "drawCalls": 1801,
+        "gpuTimingSupported": true,
+        "gpuFrameTimeMs": 0,
+        "loadMs": 6135.400000095367,
+        "ownedContainers": 300,
+        "batchCount": 5,
+        "pieceInstances": 1500,
+        "vatTextures": 0,
+        "preparedBytes": 0,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": []
+      }
+    },
+    {
+      "appearance": "repeat",
+      "count": 300,
+      "path": "vat",
+      "motion": "idle",
+      "startedAt": "2026-09-28T03:32:34.625Z",
+      "runs": [
+        {
+          "run": 1,
+          "frames": 4401,
+          "meanFps": 366.64611693353544,
+          "meanMs": 2.7274255850942972,
+          "p50Ms": 2.700000000000273,
+          "p95Ms": 3,
+          "p99Ms": 5.5,
+          "maxMs": 38.40000000000009,
+          "over6_94": 31,
+          "over8_33": 29,
+          "over16_67": 28,
+          "over33_33": 25,
+          "drawCalls": 7,
+          "gpu": {
+            "sampleStride": 20,
+            "unit": "GPU frame ms",
+            "samples": 221,
+            "meanMs": 0.13343771507174476,
+            "p50Ms": 0.10344313865223036,
+            "p95Ms": 0.24213212728479716,
+            "p99Ms": 0.36437031110311946,
+            "maxMs": 0.36437031110311946
+          },
+          "rawFile": "raw/vat-300-repeat-idle-run1.json.gz"
+        },
+        {
+          "run": 2,
+          "frames": 4399,
+          "meanFps": 366.4642324577845,
+          "meanMs": 2.7287792680154586,
+          "p50Ms": 2.7000000000007276,
+          "p95Ms": 3.099999999998545,
+          "p99Ms": 5.599999999998545,
+          "maxMs": 38.400000000001455,
+          "over6_94": 27,
+          "over8_33": 27,
+          "over16_67": 26,
+          "over33_33": 25,
+          "drawCalls": 7,
+          "gpu": {
+            "sampleStride": 20,
+            "unit": "GPU frame ms",
+            "samples": 220,
+            "meanMs": 0.0874329891695892,
+            "p50Ms": 0.08364570027520263,
+            "p95Ms": 0.12347822518922456,
+            "p99Ms": 0.12347822518922456,
+            "maxMs": 0.12347822518922456
+          },
+          "rawFile": "raw/vat-300-repeat-idle-run2.json.gz"
+        },
+        {
+          "run": 3,
+          "frames": 4398,
+          "meanFps": 366.39924020894244,
+          "meanMs": 2.7292633015006826,
+          "p50Ms": 2.7000000000007276,
+          "p95Ms": 3,
+          "p99Ms": 5.5,
+          "maxMs": 38.400000000001455,
+          "over6_94": 26,
+          "over8_33": 26,
+          "over16_67": 26,
+          "over33_33": 24,
+          "drawCalls": 7,
+          "gpu": {
+            "sampleStride": 20,
+            "unit": "GPU frame ms",
+            "samples": 220,
+            "meanMs": 0.09147162380704403,
+            "p50Ms": 0.09522154134907895,
+            "p95Ms": 0.11062048413658276,
+            "p99Ms": 0.11471078730926622,
+            "maxMs": 0.11471078730926622
+          },
+          "rawFile": "raw/vat-300-repeat-idle-run3.json.gz"
+        }
+      ],
+      "errors": [],
+      "status": {
+        "ready": true,
+        "path": "vat",
+        "count": 300,
+        "projectedActorCenters": 300,
+        "submittedActorInstances": 300,
+        "outfitCounts": {
+          "wayfarer": 300
+        },
+        "motion": "idle",
+        "shadows": false,
+        "sceneMeshes": 7,
+        "drawCalls": 7,
+        "gpuTimingSupported": true,
+        "gpuFrameTimeMs": 0,
+        "loadMs": 55.89999985694885,
+        "ownedContainers": 1,
+        "batchCount": 5,
+        "pieceInstances": 1500,
+        "vatTextures": 1,
+        "preparedBytes": 5790720,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": []
+      }
+    },
+    {
+      "appearance": "repeat",
+      "count": 300,
+      "path": "vat",
+      "motion": "walk",
+      "startedAt": "2026-09-28T03:33:12.949Z",
+      "runs": [
+        {
+          "run": 1,
+          "frames": 4400,
+          "meanFps": 366.5658610548766,
+          "meanMs": 2.728022727272727,
+          "p50Ms": 2.700000000000273,
+          "p95Ms": 3.099999999998545,
+          "p99Ms": 5.5,
+          "maxMs": 40.70000000000027,
+          "over6_94": 26,
+          "over8_33": 26,
+          "over16_67": 26,
+          "over33_33": 26,
+          "drawCalls": 7,
+          "gpu": {
+            "sampleStride": 20,
+            "unit": "GPU frame ms",
+            "samples": 221,
+            "meanMs": 0.1254817483578621,
+            "p50Ms": 0.10537863621789109,
+            "p95Ms": 0.2675039295598438,
+            "p99Ms": 0.2675039295598438,
+            "maxMs": 0.30161191194980475
+          },
+          "rawFile": "raw/vat-300-repeat-walk-run1.json.gz"
+        },
+        {
+          "run": 2,
+          "frames": 4400,
+          "meanFps": 366.5658610548766,
+          "meanMs": 2.728022727272727,
+          "p50Ms": 2.7000000000007276,
+          "p95Ms": 3,
+          "p99Ms": 5.5,
+          "maxMs": 38.399999999999636,
+          "over6_94": 26,
+          "over8_33": 26,
+          "over16_67": 26,
+          "over33_33": 26,
+          "drawCalls": 7,
+          "gpu": {
+            "sampleStride": 20,
+            "unit": "GPU frame ms",
+            "samples": 221,
+            "meanMs": 0.11859234501928542,
+            "p50Ms": 0.09871163851178498,
+            "p95Ms": 0.28298250497148253,
+            "p99Ms": 0.28298250497148253,
+            "maxMs": 0.28298250497148253
+          },
+          "rawFile": "raw/vat-300-repeat-walk-run2.json.gz"
+        },
+        {
+          "run": 3,
+          "frames": 4399,
+          "meanFps": 366.44286356896515,
+          "meanMs": 2.7289383950897936,
+          "p50Ms": 2.7000000000007276,
+          "p95Ms": 3.099999999998545,
+          "p99Ms": 5.5,
+          "maxMs": 38.400000000001455,
+          "over6_94": 25,
+          "over8_33": 25,
+          "over16_67": 25,
+          "over33_33": 25,
+          "drawCalls": 7,
+          "gpu": {
+            "sampleStride": 20,
+            "unit": "GPU frame ms",
+            "samples": 220,
+            "meanMs": 0.12203130638871595,
+            "p50Ms": 0.10617282900628675,
+            "p95Ms": 0.242663728250785,
+            "p99Ms": 0.3234245942398143,
+            "maxMs": 0.3234245942398143
+          },
+          "rawFile": "raw/vat-300-repeat-walk-run3.json.gz"
+        }
+      ],
+      "errors": [],
+      "status": {
+        "ready": true,
+        "path": "vat",
+        "count": 300,
+        "projectedActorCenters": 300,
+        "submittedActorInstances": 300,
+        "outfitCounts": {
+          "wayfarer": 300
+        },
+        "motion": "walk",
+        "shadows": false,
+        "sceneMeshes": 7,
+        "drawCalls": 7,
+        "gpuTimingSupported": true,
+        "gpuFrameTimeMs": 0,
+        "loadMs": 54,
+        "ownedContainers": 1,
+        "batchCount": 5,
+        "pieceInstances": 1500,
+        "vatTextures": 1,
+        "preparedBytes": 5790720,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": []
+      }
+    }
+  ]
+}

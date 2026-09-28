@@ -1,0 +1,279 @@
+{
+  "schema": 1,
+  "sourceHead": "2136879",
+  "sourceState": "uncommitted M003 working tree on sourceHead",
+  "conditions": {
+    "browser": "system Chrome via owned CDP",
+    "cdpPort": 10037,
+    "vitePort": 5873,
+    "viewport": [
+      1280,
+      720
+    ],
+    "pixelRatio": 1,
+    "uncapped": true,
+    "seconds": 12,
+    "runs": 3,
+    "warmupMs": 2000,
+    "metric": "requestAnimationFrame interval; nearest-rank tails; no recording",
+    "gpuTiming": "Lite GPU timer enabled when supported; sampled every twentieth animation frame; zero/missing reported unavailable"
+  },
+  "cells": [
+    {
+      "appearance": "mixed",
+      "count": 1000,
+      "path": "independent",
+      "motion": "idle",
+      "startedAt": "2026-09-28T03:43:37.908Z",
+      "runs": [],
+      "errors": [
+        "RangeError: Independent path safety budget is 300 dressed actors; 1,000 is rejected after the measured 300-actor failure",
+        "RangeError: Independent path safety budget is 300 dressed actors; 1,000 is rejected after the measured 300-actor failure\n    at set (http://127.0.0.1:5873/src/character/crowd-probe/main.js?t=1790566555586:98:47)\n    at main (http://127.0.0.1:5873/src/character/crowd-probe/main.js?t=1790566555586:179:9)"
+      ]
+    },
+    {
+      "appearance": "mixed",
+      "count": 1000,
+      "path": "independent",
+      "motion": "walk",
+      "startedAt": "2026-09-28T03:43:38.088Z",
+      "runs": [],
+      "errors": [
+        "RangeError: Independent path safety budget is 300 dressed actors; 1,000 is rejected after the measured 300-actor failure",
+        "RangeError: Independent path safety budget is 300 dressed actors; 1,000 is rejected after the measured 300-actor failure\n    at set (http://127.0.0.1:5873/src/character/crowd-probe/main.js?t=1790566555586:98:47)\n    at main (http://127.0.0.1:5873/src/character/crowd-probe/main.js?t=1790566555586:179:9)"
+      ]
+    },
+    {
+      "appearance": "mixed",
+      "count": 1000,
+      "path": "vat",
+      "motion": "idle",
+      "startedAt": "2026-09-28T03:43:38.175Z",
+      "runs": [
+        {
+          "run": 1,
+          "frames": 1298,
+          "meanFps": 108.14413663820037,
+          "meanMs": 9.246918335901388,
+          "p50Ms": 12.799999999999272,
+          "p95Ms": 13.5,
+          "p99Ms": 30.200000000000728,
+          "maxMs": 187.8000000000011,
+          "over6_94": 828,
+          "over8_33": 822,
+          "over16_67": 19,
+          "over33_33": 7,
+          "drawCalls": 18,
+          "gpu": {
+            "sampleStride": 20,
+            "unit": "GPU frame ms",
+            "samples": 65,
+            "meanMs": 0.6129256484780637,
+            "p50Ms": 0.488632369335501,
+            "p95Ms": 1.0657181204480004,
+            "p99Ms": 1.7091788800000005,
+            "maxMs": 1.7091788800000005
+          },
+          "rawFile": "raw/vat-1000-mixed-idle-run1.json.gz"
+        },
+        {
+          "run": 2,
+          "frames": 901,
+          "meanFps": 74.94094553681339,
+          "meanMs": 13.343840177580466,
+          "p50Ms": 13,
+          "p95Ms": 13.599999999998545,
+          "p99Ms": 31,
+          "maxMs": 256.6000000000022,
+          "over6_94": 808,
+          "over8_33": 801,
+          "over16_67": 20,
+          "over33_33": 8,
+          "drawCalls": 18,
+          "gpu": {
+            "sampleStride": 20,
+            "unit": "GPU frame ms",
+            "samples": 46,
+            "meanMs": 0.14576041406934942,
+            "p50Ms": 0.13741624505377378,
+            "p95Ms": 0.20902487952581478,
+            "p99Ms": 0.20902487952581478,
+            "maxMs": 0.20902487952581478
+          },
+          "rawFile": "raw/vat-1000-mixed-idle-run2.json.gz"
+        },
+        {
+          "run": 3,
+          "frames": 921,
+          "meanFps": 76.64588933365512,
+          "meanMs": 13.04701411509229,
+          "p50Ms": 13,
+          "p95Ms": 13.599999999998545,
+          "p99Ms": 29.599999999998545,
+          "maxMs": 188.10000000000218,
+          "over6_94": 856,
+          "over8_33": 852,
+          "over16_67": 11,
+          "over33_33": 5,
+          "drawCalls": 18,
+          "gpu": {
+            "sampleStride": 20,
+            "unit": "GPU frame ms",
+            "samples": 47,
+            "meanMs": 0.3027812131364104,
+            "p50Ms": 0.32406084888487324,
+            "p95Ms": 0.40895618184783505,
+            "p99Ms": 0.4530970763826145,
+            "maxMs": 0.4530970763826145
+          },
+          "rawFile": "raw/vat-1000-mixed-idle-run3.json.gz"
+        }
+      ],
+      "errors": [],
+      "status": {
+        "ready": true,
+        "path": "vat",
+        "count": 1000,
+        "projectedActorCenters": 1000,
+        "submittedActorInstances": 1000,
+        "outfitCounts": {
+          "wayfarer": 500,
+          "warden": 500
+        },
+        "motion": "idle",
+        "shadows": false,
+        "sceneMeshes": 18,
+        "drawCalls": 18,
+        "gpuTimingSupported": true,
+        "gpuFrameTimeMs": 0,
+        "loadMs": 137.5,
+        "ownedContainers": 2,
+        "batchCount": 12,
+        "pieceInstances": 7000,
+        "vatTextures": 2,
+        "preparedBytes": 16407040,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": []
+      }
+    },
+    {
+      "appearance": "mixed",
+      "count": 1000,
+      "path": "vat",
+      "motion": "walk",
+      "startedAt": "2026-09-28T03:44:19.991Z",
+      "runs": [
+        {
+          "run": 1,
+          "frames": 922,
+          "meanFps": 76.74124384072447,
+          "meanMs": 13.030802603036875,
+          "p50Ms": 12.900000000001455,
+          "p95Ms": 13.699999999998909,
+          "p99Ms": 30.899999999999636,
+          "maxMs": 229.20000000000073,
+          "over6_94": 810,
+          "over8_33": 796,
+          "over16_67": 28,
+          "over33_33": 6,
+          "drawCalls": 18,
+          "gpu": {
+            "sampleStride": 20,
+            "unit": "GPU frame ms",
+            "samples": 47,
+            "meanMs": 15.059064172075677,
+            "p50Ms": 17.1068111192064,
+            "p95Ms": 23.667564183226943,
+            "p99Ms": 23.667564183226943,
+            "maxMs": 23.667564183226943
+          },
+          "rawFile": "raw/vat-1000-mixed-walk-run1.json.gz"
+        },
+        {
+          "run": 2,
+          "frames": 921,
+          "meanFps": 76.65928651096205,
+          "meanMs": 13.044733984799128,
+          "p50Ms": 13,
+          "p95Ms": 13.600000000002183,
+          "p99Ms": 30.900000000001455,
+          "maxMs": 226.3000000000029,
+          "over6_94": 850,
+          "over8_33": 841,
+          "over16_67": 20,
+          "over33_33": 5,
+          "drawCalls": 18,
+          "gpu": {
+            "sampleStride": 20,
+            "unit": "GPU frame ms",
+            "samples": 47,
+            "meanMs": 24.456674687447677,
+            "p50Ms": 25.355046364712866,
+            "p95Ms": 26.36072066384976,
+            "p99Ms": 26.36072066384976,
+            "maxMs": 26.36072066384976
+          },
+          "rawFile": "raw/vat-1000-mixed-walk-run2.json.gz"
+        },
+        {
+          "run": 3,
+          "frames": 922,
+          "meanFps": 76.73741156887222,
+          "meanMs": 13.03145336225597,
+          "p50Ms": 13,
+          "p95Ms": 13.60000000000582,
+          "p99Ms": 31,
+          "maxMs": 228.1999999999971,
+          "over6_94": 815,
+          "over8_33": 805,
+          "over16_67": 27,
+          "over33_33": 6,
+          "drawCalls": 18,
+          "gpu": {
+            "sampleStride": 20,
+            "unit": "GPU frame ms",
+            "samples": 47,
+            "meanMs": 24.131828143815977,
+            "p50Ms": 24.81895679811027,
+            "p95Ms": 25.15661224538639,
+            "p99Ms": 25.15661224538639,
+            "maxMs": 25.15661224538639
+          },
+          "rawFile": "raw/vat-1000-mixed-walk-run3.json.gz"
+        }
+      ],
+      "errors": [],
+      "status": {
+        "ready": true,
+        "path": "vat",
+        "count": 1000,
+        "projectedActorCenters": 1000,
+        "submittedActorInstances": 1000,
+        "outfitCounts": {
+          "wayfarer": 500,
+          "warden": 500
+        },
+        "motion": "walk",
+        "shadows": false,
+        "sceneMeshes": 18,
+        "drawCalls": 18,
+        "gpuTimingSupported": true,
+        "gpuFrameTimeMs": 0,
+        "loadMs": 128.39999985694885,
+        "ownedContainers": 2,
+        "batchCount": 12,
+        "pieceInstances": 7000,
+        "vatTextures": 2,
+        "preparedBytes": 16407040,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "sourceHead": "2136879",
+  "sourceState": "uncommitted M003 working tree on sourceHead",
+  "conditions": {
+    "browser": "system Chrome via owned CDP",
+    "cdpPort": 10037,
+    "vitePort": 5873,
+    "viewport": [
+      1280,
+      720
+    ],
+    "pixelRatio": 1,
+    "uncapped": true,
+    "seconds": 12,
+    "runs": 3,
+    "warmupMs": 2000,
+    "metric": "requestAnimationFrame interval; nearest-rank tails; no recording",
+    "gpuTiming": "Lite GPU timer enabled when supported; sampled every twentieth animation frame; zero/missing reported unavailable"
+  },
+  "cells": [
+    {
+      "appearance": "repeat",
+      "count": 1000,
+      "path": "independent",
+      "motion": "idle",
+      "startedAt": "2026-09-28T03:45:07.886Z",
+      "runs": [],
+      "errors": [
+        "RangeError: Independent path safety budget is 300 dressed actors; 1,000 is rejected after the measured 300-actor failure",
+        "RangeError: Independent path safety budget is 300 dressed actors; 1,000 is rejected after the measured 300-actor failure\n    at set (http://127.0.0.1:5873/src/character/crowd-probe/main.js?t=1790566555586:98:47)\n    at main (http://127.0.0.1:5873/src/character/crowd-probe/main.js?t=1790566555586:179:9)"
+      ]
+    },
+    {
+      "appearance": "repeat",
+      "count": 1000,
+      "path": "independent",
+      "motion": "walk",
+      "startedAt": "2026-09-28T03:45:08.251Z",
+      "runs": [],
+      "errors": [
+        "RangeError: Independent path safety budget is 300 dressed actors; 1,000 is rejected after the measured 300-actor failure",
+        "RangeError: Independent path safety budget is 300 dressed actors; 1,000 is rejected after the measured 300-actor failure\n    at set (http://127.0.0.1:5873/src/character/crowd-probe/main.js?t=1790566555586:98:47)\n    at main (http://127.0.0.1:5873/src/character/crowd-probe/main.js?t=1790566555586:179:9)"
+      ]
+    }
+  ]
+}

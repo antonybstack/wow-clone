@@ -1,12 +1,14 @@
 # Current state and immediate focus — Ashen Reach
 
-Updated 2026-09-27. Read this file first. Follow the latest user request; historical milestone documents are not an active task queue.
+Updated 2026-09-27 (local). Read this file first. Follow the latest user request; historical milestone documents are not an active task queue.
 
 ## Immediate focus: customizable characters and scalable crowds
 
 The user selected a long-term direction of customizable Human characters, existing Undead/Orc and future Elf support, 30 mixable armor sets, recurring quarterly PvP tiers, and crowded MMO hubs. The recommended architecture is authored/generated source art converted into compatible templates, procedural fitting/assembly, and progressively cheaper crowd representations.
 
-**M001 and M002 are complete; M003 is next.** The [M001 result](plans/character-mmo/results/m001.md) records the active asset census, fresh baseline and live motion. The [M002 result](plans/character-mmo/results/m002.md) records the pure versioned appearance recipe, seeded fixtures and live committed-state probe; the Pages play output is byte-identical. All eight active Undead garments have a different rest/inverse bind from their body even though their fit labels match; the existing Undead equipment suite tests the older provisional pack. Treat that as a compatibility blocker for exact shared-pose crowd grouping. Do not resume old graphics or world-expansion milestone queues.
+**M001–M003 are complete; M004, the canonical Human template, is next.** The [M001 result](plans/character-mmo/results/m001.md) records the active asset census, fresh baseline and live motion. The [M002 result](plans/character-mmo/results/m002.md) records the pure versioned appearance recipe and seeded fixtures. The [M003 result](plans/character-mmo/results/m003.md) records Babylon Lite VAT/thin-instance capacity, mixed-outfit batching, churn and a reviewed [live clip](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m003-motion-2026-09-27.mp4) (Telegram **789**). The Pages play output remains byte-identical. All eight active Undead garments have a different rest/inverse bind from their body even though their fit labels match; the existing Undead equipment suite tests the older provisional pack. Treat that as a compatibility blocker for exact shared-pose crowd grouping. Do not resume old graphics or world-expansion milestone queues.
+
+M003's native candidate is viable only as a **developer diagnostic**: 300 fully dressed mixed Human actors measured ~242 mean FPS in the flat 1280×720 probe, while 1,000 mixed actors settled near 77 mean FPS with ~31 ms p99 intervals. A single VAT actor triggers a PBR shader-composition error when Ashen Reach's custom CSM path enrolls it as a town caster; a temporary shadow exclusion was tested and reverted. A VAT-to-independent same-scene switch can leave a bind pose, so the probe rejects it and compares a fresh independent page. M009 must resolve shadow tiers, state transitions and detail/upload budgets before integrating crowds. M004 should preserve the verified Human source rig/bind and establish genuine shape/template correspondence; per-instance arbitrary morphing remains unproven. The M003 probe and prepared binaries are absent from the Pages bundle, and no release was made.
 
 Fresh local M001 measurements on M1 Max, uncapped headless Chromium WebGPU at 1280×720 with seven enemies: five-route mean FPS **190.5–219.5**, with intermittent bridge/cathedral/forest pacing tails and a **14.1 ms** worst sampled interval. Twenty fresh-process 50 Mbit/s / 40 ms starts had p95 **802.1 ms**, **19/20 <=1 second**, and a first-run GPU completion outlier of **9,149.4 ms**. These are local built-preview measurements, distinct from the released production figures below. Reviewed live Human/Orc/Undead motion is [VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m001-motion-v2-2026-09-27.mp4), Telegram **788**.
 
@@ -17,6 +19,7 @@ Fresh local M001 measurements on M1 Max, uncapped headless Chromium WebGPU at 12
 - [M002: versioned appearance recipe](plans/character-mmo/m002-appearance-contract.md)
 - [M002: implementation and verification result](plans/character-mmo/results/m002.md)
 - [M003: native crowd feasibility](plans/character-mmo/m003-crowd-feasibility.md)
+- [M003: measured result and blockers](plans/character-mmo/results/m003.md)
 - [Architecture decisions and sources](plans/character-mmo/architecture.md)
 
 The first three are bounded evidence/contract/prototype work, with no production art replacement or deployment. No count of fully detailed simultaneous players, quarterly delivery date, or arbitrary slider capability has been established. Backend selection and broader multiplayer gameplay are future gated work.
@@ -39,7 +42,7 @@ Reviewed [production motion](https://ve.sparkify.dev/wow-clone/ashen-reach/start
 - Existing equipment has explicit fit identities, coverage/slot occupancy, on-demand loading, shared pose and evaluated sockets. It is a limited fitted catalogue, not a general parametric wardrobe. Arbitrary body sliders, production Elf, robust semantic coverage across all races and crowd rendering remain unproven.
 - Anatomy/clothing quality, extreme motion clipping, two-handed/Orc grip polish and terrain-aware feet need measured review. Old plans sometimes contain later superseded fixes; use live evidence to identify what remains.
 - Static sun-shadow caching and asynchronous shader trials were negative/neutral for the measured workload; they remain disabled. See the [investigation](archive/plans/rendering-performance-investigation-2026-09-26.md). Do not re-enable them based on feature availability alone.
-- No current seven-enemy test establishes MMO capacity. Preserve load time, animation correctness and memory ownership while designing future representations.
+- The M003 seven-enemy town confirmation is blocked by VAT caster composition in the unchanged production scene. A temporary shadowless trial at 1280×720 had a no-crowd baseline of 111–112 mean FPS and is not an accepted MMO-capacity claim. Preserve load time, animation correctness and memory ownership while designing future representations.
 
 ## Operating references
 

@@ -1,6 +1,6 @@
 # M003 — Native Babylon Lite crowd feasibility
 
-Status: **planned; requires M001 and M002**. Parent: [next ten](next-ten.md). Mandatory: [execution contract](execution-contract.md).
+Status: **completed as a bounded feasibility experiment, with production shadow and transition blockers**. Read the [M003 result](results/m003.md) before using these implementation instructions. Parent: [next ten](next-ten.md). Mandatory: [execution contract](execution-contract.md).
 
 ## Objective and scope
 

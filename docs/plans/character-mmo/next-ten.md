@@ -1,6 +1,6 @@
 # Next ten milestones — customization and crowd proof
 
-Status: **M001–M002 complete with inherited findings; M003 next**. Read the [100-milestone vision](vision-roadmap.md), [architecture](architecture.md) and [execution contract](execution-contract.md). Baseline evidence always identifies the actual HEAD and live assets.
+Status: **M001–M003 complete with inherited findings; M004 next**. Read the [100-milestone vision](vision-roadmap.md), [architecture](architecture.md) and [execution contract](execution-contract.md). Baseline evidence always identifies the actual HEAD and live assets.
 
 ## Sequence and risk ordering
 
@@ -80,7 +80,7 @@ Choose the production schema/fit/material/animation/detail contracts; list defer
 | --- | --- | --- |
 | M001 | Complete; active Undead bind mismatch documented | [Result and baseline](results/m001.md) |
 | M002 | Complete; no startup import change | [Result and seeded recipes](results/m002.md) |
-| M003 | Planned | — |
+| M003 | Complete feasibility probe; native VAT promising in isolation, actual-town shadow integration blocked | [Result, capacity curves and reviewed motion](results/m003.md) |
 | M004 | Planned | — |
 | M005 | Planned | — |
 | M006 | Planned | — |

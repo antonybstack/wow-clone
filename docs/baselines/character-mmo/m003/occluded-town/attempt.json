@@ -1,0 +1,199 @@
+{
+  "schema": 1,
+  "sourceHead": "2136879",
+  "conditions": {
+    "browser": "system Chrome, owned CDP",
+    "cdpPort": 10037,
+    "vitePort": 5873,
+    "viewport": [
+      1280,
+      720
+    ],
+    "pixelRatio": 1,
+    "uncapped": true,
+    "environment": "actual town, seven normal enemies, standing player, shadowless probe cohort",
+    "warmupMs": 2000,
+    "seconds": 12,
+    "runs": 3,
+    "recording": false
+  },
+  "cells": [
+    {
+      "label": "baseline",
+      "count": 0,
+      "status": {
+        "canvas": [
+          960,
+          540
+        ],
+        "hostilesReady": true,
+        "sceneMeshes": 136,
+        "drawCalls": 588,
+        "submittedPieces": 0
+      },
+      "runs": [
+        {
+          "run": 1,
+          "frames": 1647,
+          "meanFps": 137.23284589426322,
+          "meanMs": 7.286885245901638,
+          "p50Ms": 3.1999999999989086,
+          "p95Ms": 18.399999999999636,
+          "p99Ms": 18.700000000000728,
+          "maxMs": 18.899999999999636,
+          "over8_33": 464,
+          "over16_67": 462,
+          "drawCalls": 475,
+          "rawFile": "raw/town-baseline-run1.json.gz"
+        },
+        {
+          "run": 2,
+          "frames": 1615,
+          "meanFps": 134.5698763456988,
+          "meanMs": 7.431083591331268,
+          "p50Ms": 3.1999999999970896,
+          "p95Ms": 18.5,
+          "p99Ms": 18.700000000000728,
+          "maxMs": 18.80000000000291,
+          "over8_33": 475,
+          "over16_67": 473,
+          "drawCalls": 475,
+          "rawFile": "raw/town-baseline-run2.json.gz"
+        },
+        {
+          "run": 3,
+          "frames": 1622,
+          "meanFps": 135.0395044666273,
+          "meanMs": 7.405240443896422,
+          "p50Ms": 3.099999999998545,
+          "p95Ms": 18.5,
+          "p99Ms": 18.799999999995634,
+          "maxMs": 18.900000000001455,
+          "over8_33": 472,
+          "over16_67": 472,
+          "drawCalls": 475,
+          "rawFile": "raw/town-baseline-run3.json.gz"
+        }
+      ]
+    },
+    {
+      "label": "vat-100",
+      "count": 100,
+      "status": {
+        "canvas": [
+          960,
+          540
+        ],
+        "hostilesReady": true,
+        "sceneMeshes": 142,
+        "drawCalls": 475,
+        "submittedPieces": 600
+      },
+      "runs": [
+        {
+          "run": 1,
+          "frames": 1271,
+          "meanFps": 105.89901683052824,
+          "meanMs": 9.442958300550748,
+          "p50Ms": 3.3000000000029104,
+          "p95Ms": 18.799999999995634,
+          "p99Ms": 18.80000000000291,
+          "maxMs": 18.900000000001455,
+          "over8_33": 583,
+          "over16_67": 583,
+          "drawCalls": 481,
+          "rawFile": "raw/town-vat-100-run1.json.gz"
+        },
+        {
+          "run": 2,
+          "frames": 1305,
+          "meanFps": 108.67392825022482,
+          "meanMs": 9.201839080459772,
+          "p50Ms": 3.2000000000043656,
+          "p95Ms": 18.700000000004366,
+          "p99Ms": 18.80000000000291,
+          "maxMs": 18.90000000000873,
+          "over8_33": 576,
+          "over16_67": 575,
+          "drawCalls": 481,
+          "rawFile": "raw/town-vat-100-run2.json.gz"
+        },
+        {
+          "run": 3,
+          "frames": 1288,
+          "meanFps": 107.25735937044594,
+          "meanMs": 9.32336956521739,
+          "p50Ms": 3.599999999991269,
+          "p95Ms": 18.70000000001164,
+          "p99Ms": 18.80000000000291,
+          "maxMs": 18.90000000000873,
+          "over8_33": 572,
+          "over16_67": 568,
+          "drawCalls": 481,
+          "rawFile": "raw/town-vat-100-run3.json.gz"
+        }
+      ]
+    },
+    {
+      "label": "vat-300",
+      "count": 300,
+      "status": {
+        "canvas": [
+          960,
+          540
+        ],
+        "hostilesReady": true,
+        "sceneMeshes": 142,
+        "drawCalls": 475,
+        "submittedPieces": 1800
+      },
+      "runs": [
+        {
+          "run": 1,
+          "frames": 1204,
+          "meanFps": 100.20890727346882,
+          "meanMs": 9.979152823920261,
+          "p50Ms": 4.900000000008731,
+          "p95Ms": 18.69999999999709,
+          "p99Ms": 18.80000000000291,
+          "maxMs": 18.80000000000291,
+          "over8_33": 594,
+          "over16_67": 593,
+          "drawCalls": 481,
+          "rawFile": "raw/town-vat-300-run1.json.gz"
+        },
+        {
+          "run": 2,
+          "frames": 1210,
+          "meanFps": 100.66388246451797,
+          "meanMs": 9.934049586776869,
+          "p50Ms": 5.100000000005821,
+          "p95Ms": 18.60000000000582,
+          "p99Ms": 18.80000000000291,
+          "maxMs": 18.80000000000291,
+          "over8_33": 596,
+          "over16_67": 596,
+          "drawCalls": 481,
+          "rawFile": "raw/town-vat-300-run2.json.gz"
+        },
+        {
+          "run": 3,
+          "frames": 1214,
+          "meanFps": 100.97985393688346,
+          "meanMs": 9.90296540362438,
+          "p50Ms": 4.599999999991269,
+          "p95Ms": 18.60000000000582,
+          "p99Ms": 18.79999999998836,
+          "maxMs": 18.80000000000291,
+          "over8_33": 594,
+          "over16_67": 594,
+          "drawCalls": 481,
+          "rawFile": "raw/town-vat-300-run3.json.gz"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "valid": false,
+  "failure": "Reviewed screenshot shows crowd obscured by foreground town gate/buildings; visibility not established and post-disposal paired baseline was interrupted."
+}
