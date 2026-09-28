@@ -108,6 +108,10 @@ def main() -> None:
             for item in style["files"]:
                 fetch_item(item["url"], ROOT / item["path"], item["sha256"],
                            verify_only=verify_only, zip_member=item["zipMember"])
+        if "diagnosticOldHeadSkin" in spec:
+            item = spec["diagnosticOldHeadSkin"]
+            fetch_item(item["url"], ROOT / item["path"], item["sha256"],
+                       verify_only=verify_only, zip_member=item["zipMember"])
 
 
 if __name__ == "__main__":

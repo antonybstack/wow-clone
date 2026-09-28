@@ -33,11 +33,17 @@ Long hair is additive and therefore not blocked the way bald is: it is a separat
 
 **Next step:** sculpt it in a Blender session against the actual head. Judging a silhouette from several angles and adjusting is what the parametric approach cannot do; driving arc, flare, drop and a cap falloff blind converged on a cone rather than a hairstyle. The rigging half is already settled and reusable — a three-bone blend down the length, Head at the crown through Neck to Spine2 at the tips, which is also the helmet and cape interaction policy the brief asks for: the strand tracks the spine, so a turn of the head sweeps the top and barely moves the tips, with no simulation.
 
-## Age: not attempted
+## Age: cross-topology transfer not attempted
 
 The CC0 `caucasian-male-{young,old}` targets exist and are vendored, but they are hm08 topology. M004 deliberately avoided cross-topology transfer and got its shape family from *measurements* of the CC0 bodies rather than their vertices, which works for girth because girth is a scalar per segment. Ageing is not: it is a face, and a face needs its deltas, not its dimensions.
 
 Transferring those deltas onto the Tripo head by closest-point projection is the obvious candidate and is untried. It is listed here as the open question rather than guessed at.
+
+### Whole-head source swap check (2026-09-28)
+
+After the [licensed hair audition](m006-hair-audition.md), I tested a different shortcut for the old/bald example: cut the active Tripo head at **1.50 m**, fit the CC0 MakeHuman `caucasian-male-old.target` head and `old_lightskinned_male_diffuse.png` to its measured head bounds, and render front/side/back. The source skin is pinned in the [M006 manifest](../../../../blender/characters/candidates/hair/m006-provenance.json), and [`review-old-bald-head.py`](../../../../scripts/character-assets/review-old-bald-head.py) reproduces the test. Raw renders are local under ignored `ve-capture/character-mmo/m006/old-bald-fit/`.
+
+The source is bald and visibly older, but the fit is **rejected**: the 1.50 m cut leaves a jagged, floating neck seam; the MakeHuman face has empty/reddish eye sockets without authored globes; its skin and facial identity differ sharply from the approved Human. The offline render is a source assessment, not live visual acceptance or a runtime option. Fixing it needs an authored head/neck/eyes asset or a face delta and texture transfer onto the existing head; the cross-topology age transfer described above remains untried. No gameplay asset or capability flag was changed.
 
 ## What this means for M006
 

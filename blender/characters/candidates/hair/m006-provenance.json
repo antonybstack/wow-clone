@@ -81,5 +81,13 @@
         }
       ]
     }
-  ]
+  ],
+  "diagnosticOldHeadSkin": {
+    "status": "offline-fit-rejected",
+    "fileHeaderLicense": "CC0 released September 2020",
+    "path": ".cache/character-mmo/m006/old_lightskinned_male_diffuse.png",
+    "url": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
+    "zipMember": "skins/old_caucasian_male/old_lightskinned_male_diffuse.png",
+    "sha256": "dfb2310ed3e0ad024ea7a3ad321215e2e9e2994cca64043d9f3d07c6543ec847"
+  }
 }
