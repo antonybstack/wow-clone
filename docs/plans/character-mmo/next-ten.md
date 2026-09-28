@@ -1,6 +1,6 @@
 # Next ten milestones — customization and crowd proof
 
-Status: **M001–M004 complete with inherited findings; M005 next**. Read the [100-milestone vision](vision-roadmap.md), [architecture](architecture.md) and [execution contract](execution-contract.md). Baseline evidence always identifies the actual HEAD and live assets.
+Status: **M001–M005 complete with inherited findings; M006 next**. Read the [100-milestone vision](vision-roadmap.md), [architecture](architecture.md) and [execution contract](execution-contract.md). Baseline evidence always identifies the actual HEAD and live assets.
 
 ## Sequence and risk ordering
 
@@ -41,6 +41,8 @@ The M001 source-readiness table is an entry gate: name the exact editable source
 Deliver an explicit fit-profile version and source project, provenance, candidate GLB, capability metadata, and three-body motion evidence. Test shape endpoints and combined height extremes through idle, walk, run, jump/land and spells. Define safe visual height limits under the existing gameplay capsule; reject unsafe extremes or record a separate future physics decision. Camera and sockets must follow visual height while collision authority remains coherent. Exit: anatomy/silhouette and motion accepted, exact neutral compatibility established, supported ranges documented. A failed source comparison produces a source-art dependency report, not fake placeholder anatomy.
 
 ## M005 — Body and garment deformation proof
+
+Status: **complete**. Brief: [implementation steps](m005-deformation-proof.md). Result: [M005](results/m005.md).
 
 **Dependency:** M004. Select two structurally contrasting outfits from available licensed sources; include a soft garment and a rigid-armor element. If the catalogue lacks a suitable rigid element, author one bounded prototype rather than claiming a textured tunic proves plate articulation.
 
@@ -84,7 +86,7 @@ Choose the production schema/fit/material/animation/detail contracts; list defer
 | M002 | Complete; no startup import change | [Result and seeded recipes](results/m002.md) |
 | M003 | Complete feasibility probe; native VAT promising in isolation, actual-town shadow integration blocked | [Result, capacity curves and reviewed motion](results/m003.md) |
 | M004 | Complete; shape family and height range proven, garment fit measured and handed to M005 | [Result, shape family and reviewed motion](results/m004.md) |
-| M005 | Planned | — |
+| M005 | Complete; garments refitted and measured, rigid plate prototype proved, live and cached cost measured | [Result, fit comparison and reviewed motion](results/m005.md) |
 | M006 | Planned | — |
 | M007 | Planned | — |
 | M008 | Planned | — |

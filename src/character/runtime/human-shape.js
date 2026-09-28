@@ -43,6 +43,13 @@ export const HUMAN_SHAPE_NAMES = Object.freeze(['neutral', 'slender', 'stout']);
 export const HUMAN_SHAPE_ASSET = '/__human_shape__/human-shape-family-v1.glb';
 
 /**
+ * M005 refitted garment pack. Same eight catalogue items, same fit identity, same meshes;
+ * each carries the shape targets that let it follow the body. Developer candidate, served
+ * from `.cache/character-mmo/m005/`, absent from `public/` and from the Pages bundle.
+ */
+export const HUMAN_GARMENT_FIT_MANIFEST = '/__garment_fit__/manifest.json';
+
+/**
  * Uniform height. `scale` multiplies both the gameplay capsule and the visual root;
  * `capsuleM`/`visualM` are the measured metre values of the unscaled Human.
  */
@@ -59,7 +66,7 @@ export const HUMAN_SHAPE_CAPABILITIES = Object.freeze({
     bodyShapes: HUMAN_SHAPE_NAMES,
     blendable: true,
     uniformHeight: {min: HUMAN_HEIGHT.min, max: HUMAN_HEIGHT.max},
-    garmentsFollowShape: false,
+    garmentsFollowShape: 'candidate',
     faceOrAge: false,
     hair: false,
     dyes: false,
@@ -121,7 +128,11 @@ export function resolveHumanShape(search) {
         : new URLSearchParams(String(search ?? '').replace(/^\?/, ''));
     const rawShape = q.get('humanShape');
     const rawHeight = q.get('humanHeight');
-    if (rawShape == null && rawHeight == null) return null;
+    const rawGarments = q.get('garmentFit');
+    if (rawShape == null && rawHeight == null && rawGarments == null) return null;
+    if (rawGarments != null && rawGarments !== 'refit' && rawGarments !== 'shipped') {
+        throw new Error(`Unknown garmentFit '${rawGarments}'; expected 'refit' or 'shipped'`);
+    }
 
     let shape = 'neutral';
     if (rawShape) {
@@ -144,6 +155,12 @@ export function resolveHumanShape(search) {
         // Weight 0 on every target is the shipped body, so the candidate GLB is only
         // needed when a target is actually driven.
         assetURL: weights.some((w) => w > 0) ? HUMAN_SHAPE_ASSET : null,
+        // Refitted garments only matter when a target is actually driven; at weight 0 they
+        // are the shipped garments in every semantic accessor anyway.
+        garmentFit: rawGarments === 'refit' ? 'refit' : 'shipped',
+        garmentManifestURL: rawGarments === 'refit' && weights.some((w) => w > 0)
+            ? HUMAN_GARMENT_FIT_MANIFEST
+            : null,
         visualHeightM: humanVisualHeightM(heightScale),
         capsuleHeightM: humanCapsuleHeightM(heightScale),
     };

@@ -1,0 +1,112 @@
+{
+ "schema": 1,
+ "generatedBy": "scripts/character-assets/measure-shape-preparation.mjs",
+ "url": "http://127.0.0.1:5873/ashen-reach.html?play&clean&humanShape=stout&garmentFit=refit",
+ "viewport": [
+  1280,
+  720
+ ],
+ "framesPerRun": 900,
+ "resident": [
+  {
+   "mesh": "HumanV1Body",
+   "targets": 2,
+   "vertices": 3274,
+   "deltaBytes": 157152,
+   "weightsBytes": 24
+  },
+  {
+   "mesh": "WayfarerTunic",
+   "targets": 2,
+   "vertices": 3776,
+   "deltaBytes": 181248,
+   "weightsBytes": 24
+  },
+  {
+   "mesh": "WayfarerTrousers",
+   "targets": 2,
+   "vertices": 1380,
+   "deltaBytes": 66240,
+   "weightsBytes": 24
+  },
+  {
+   "mesh": "WayfarerTrousersCuffs",
+   "targets": 2,
+   "vertices": 1380,
+   "deltaBytes": 66240,
+   "weightsBytes": 24
+  },
+  {
+   "mesh": "WayfarerBoots",
+   "targets": 2,
+   "vertices": 3530,
+   "deltaBytes": 169440,
+   "weightsBytes": 24
+  }
+ ],
+ "residentTotals": {
+  "meshes": 5,
+  "deltaBytes": 640320,
+  "deltaMiB": 0.611,
+  "weightsBytes": 120
+ },
+ "runs": [
+  {
+   "mode": "static",
+   "frames": 900,
+   "meshes": 5,
+   "meanMs": 9.213,
+   "p95Ms": 20.7,
+   "p99Ms": 21,
+   "worstMs": 22.6,
+   "fps": 108.5,
+   "weightUpdateMeanMs": null,
+   "weightUpdateWorstMs": null
+  },
+  {
+   "mode": "sweep",
+   "frames": 900,
+   "meshes": 5,
+   "meanMs": 9.241,
+   "p95Ms": 20.7,
+   "p99Ms": 21.3,
+   "worstMs": 22.7,
+   "fps": 108.2,
+   "weightUpdateMeanMs": 0.01267,
+   "weightUpdateWorstMs": 0.2
+  },
+  {
+   "mode": "static",
+   "frames": 900,
+   "meshes": 5,
+   "meanMs": 9.2902,
+   "p95Ms": 20.8,
+   "p99Ms": 21.1,
+   "worstMs": 22.3,
+   "fps": 107.6,
+   "weightUpdateMeanMs": null,
+   "weightUpdateWorstMs": null
+  },
+  {
+   "mode": "sweep",
+   "frames": 900,
+   "meshes": 5,
+   "meanMs": 9.2803,
+   "p95Ms": 20.5,
+   "p99Ms": 21,
+   "worstMs": 22,
+   "fps": 107.8,
+   "weightUpdateMeanMs": 0.01056,
+   "weightUpdateWorstMs": 0.1
+  }
+ ],
+ "bake": {
+  "meshes": 5,
+  "vertices": 13340,
+  "uploadBytes": 320160,
+  "medianMs": 0.3,
+  "worstMs": 1.9,
+  "repeats": 25
+ },
+ "errors": []
+}

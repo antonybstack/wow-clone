@@ -1,0 +1,792 @@
+{
+ "schema": 1,
+ "url": "http://127.0.0.1:5873/ashen-reach.html",
+ "cases": [
+  {
+   "id": "stout-shipped",
+   "query": "humanShape=stout&garmentFit=shipped",
+   "manifest": null,
+   "weights": [
+    0,
+    1
+   ],
+   "booted": {
+    "request": {
+     "fit": "ashen-human-shape-v1",
+     "shape": "stout",
+     "weights": [
+      0,
+      1
+     ],
+     "heightScale": 1,
+     "heightClamped": false,
+     "assetURL": "/__human_shape__/human-shape-family-v1.glb",
+     "garmentFit": "shipped",
+     "garmentManifestURL": null,
+     "visualHeightM": 1.76,
+     "capsuleHeightM": 1.748,
+     "applied": true
+    },
+    "morphMeshes": [
+     {
+      "name": "HumanV1Body",
+      "weights": [
+       0,
+       1
+      ]
+     }
+    ],
+    "loadout": {
+     "helmet": null,
+     "torso": "wayfarerTunic",
+     "legs": "wayfarerTrousers",
+     "boots": "wayfarerBoots",
+     "gloves": null,
+     "mainHand": "ironSword",
+     "offHand": null
+    },
+    "manifest": null,
+    "usingPhysics": true
+   },
+   "afterEquip": {
+    "request": {
+     "fit": "ashen-human-shape-v1",
+     "shape": "stout",
+     "weights": [
+      0,
+      1
+     ],
+     "heightScale": 1,
+     "heightClamped": false,
+     "assetURL": "/__human_shape__/human-shape-family-v1.glb",
+     "garmentFit": "shipped",
+     "garmentManifestURL": null,
+     "visualHeightM": 1.76,
+     "capsuleHeightM": 1.748,
+     "applied": true
+    },
+    "morphMeshes": [
+     {
+      "name": "HumanV1Body",
+      "weights": [
+       0,
+       1
+      ]
+     }
+    ],
+    "loadout": {
+     "helmet": null,
+     "torso": "pilgrimTunic",
+     "legs": "wayfarerTrousers",
+     "boots": "wayfarerBoots",
+     "gloves": null,
+     "mainHand": "ironSword",
+     "offHand": null
+    },
+    "manifest": null,
+    "usingPhysics": true
+   },
+   "afterFailure": {
+    "request": {
+     "fit": "ashen-human-shape-v1",
+     "shape": "stout",
+     "weights": [
+      0,
+      1
+     ],
+     "heightScale": 1,
+     "heightClamped": false,
+     "assetURL": "/__human_shape__/human-shape-family-v1.glb",
+     "garmentFit": "shipped",
+     "garmentManifestURL": null,
+     "visualHeightM": 1.76,
+     "capsuleHeightM": 1.748,
+     "applied": true
+    },
+    "morphMeshes": [
+     {
+      "name": "HumanV1Body",
+      "weights": [
+       0,
+       1
+      ]
+     }
+    ],
+    "loadout": {
+     "helmet": null,
+     "torso": "pilgrimTunic",
+     "legs": "wayfarerTrousers",
+     "boots": "wayfarerBoots",
+     "gloves": null,
+     "mainHand": "ironSword",
+     "offHand": null
+    },
+    "manifest": null,
+    "usingPhysics": true
+   }
+  },
+  {
+   "id": "stout-refit",
+   "query": "humanShape=stout&garmentFit=refit",
+   "manifest": "/__garment_fit__/manifest.json",
+   "weights": [
+    0,
+    1
+   ],
+   "booted": {
+    "request": {
+     "fit": "ashen-human-shape-v1",
+     "shape": "stout",
+     "weights": [
+      0,
+      1
+     ],
+     "heightScale": 1,
+     "heightClamped": false,
+     "assetURL": "/__human_shape__/human-shape-family-v1.glb",
+     "garmentFit": "refit",
+     "garmentManifestURL": "/__garment_fit__/manifest.json",
+     "visualHeightM": 1.76,
+     "capsuleHeightM": 1.748,
+     "applied": true
+    },
+    "morphMeshes": [
+     {
+      "name": "HumanV1Body",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerTunic",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerTrousers",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerTrousersCuffs",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerBoots",
+      "weights": [
+       0,
+       1
+      ]
+     }
+    ],
+    "loadout": {
+     "helmet": null,
+     "torso": "wayfarerTunic",
+     "legs": "wayfarerTrousers",
+     "boots": "wayfarerBoots",
+     "gloves": null,
+     "mainHand": "ironSword",
+     "offHand": null
+    },
+    "manifest": "/__garment_fit__/manifest.json",
+    "usingPhysics": true
+   },
+   "afterEquip": {
+    "request": {
+     "fit": "ashen-human-shape-v1",
+     "shape": "stout",
+     "weights": [
+      0,
+      1
+     ],
+     "heightScale": 1,
+     "heightClamped": false,
+     "assetURL": "/__human_shape__/human-shape-family-v1.glb",
+     "garmentFit": "refit",
+     "garmentManifestURL": "/__garment_fit__/manifest.json",
+     "visualHeightM": 1.76,
+     "capsuleHeightM": 1.748,
+     "applied": true
+    },
+    "morphMeshes": [
+     {
+      "name": "HumanV1Body",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerTunic",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerTrousers",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerTrousersCuffs",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerBoots",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "PilgrimTunic",
+      "weights": [
+       0,
+       1
+      ]
+     }
+    ],
+    "loadout": {
+     "helmet": null,
+     "torso": "pilgrimTunic",
+     "legs": "wayfarerTrousers",
+     "boots": "wayfarerBoots",
+     "gloves": null,
+     "mainHand": "ironSword",
+     "offHand": null
+    },
+    "manifest": "/__garment_fit__/manifest.json",
+    "usingPhysics": true
+   },
+   "afterFailure": {
+    "request": {
+     "fit": "ashen-human-shape-v1",
+     "shape": "stout",
+     "weights": [
+      0,
+      1
+     ],
+     "heightScale": 1,
+     "heightClamped": false,
+     "assetURL": "/__human_shape__/human-shape-family-v1.glb",
+     "garmentFit": "refit",
+     "garmentManifestURL": "/__garment_fit__/manifest.json",
+     "visualHeightM": 1.76,
+     "capsuleHeightM": 1.748,
+     "applied": true
+    },
+    "morphMeshes": [
+     {
+      "name": "HumanV1Body",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerTunic",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerTrousers",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerTrousersCuffs",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerBoots",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "PilgrimTunic",
+      "weights": [
+       0,
+       1
+      ]
+     }
+    ],
+    "loadout": {
+     "helmet": null,
+     "torso": "pilgrimTunic",
+     "legs": "wayfarerTrousers",
+     "boots": "wayfarerBoots",
+     "gloves": null,
+     "mainHand": "ironSword",
+     "offHand": null
+    },
+    "manifest": "/__garment_fit__/manifest.json",
+    "usingPhysics": true
+   }
+  },
+  {
+   "id": "slender-refit",
+   "query": "humanShape=slender&garmentFit=refit",
+   "manifest": "/__garment_fit__/manifest.json",
+   "weights": [
+    1,
+    0
+   ],
+   "booted": {
+    "request": {
+     "fit": "ashen-human-shape-v1",
+     "shape": "slender",
+     "weights": [
+      1,
+      0
+     ],
+     "heightScale": 1,
+     "heightClamped": false,
+     "assetURL": "/__human_shape__/human-shape-family-v1.glb",
+     "garmentFit": "refit",
+     "garmentManifestURL": "/__garment_fit__/manifest.json",
+     "visualHeightM": 1.76,
+     "capsuleHeightM": 1.748,
+     "applied": true
+    },
+    "morphMeshes": [
+     {
+      "name": "HumanV1Body",
+      "weights": [
+       1,
+       0
+      ]
+     },
+     {
+      "name": "WayfarerTunic",
+      "weights": [
+       1,
+       0
+      ]
+     },
+     {
+      "name": "WayfarerTrousers",
+      "weights": [
+       1,
+       0
+      ]
+     },
+     {
+      "name": "WayfarerTrousersCuffs",
+      "weights": [
+       1,
+       0
+      ]
+     },
+     {
+      "name": "WayfarerBoots",
+      "weights": [
+       1,
+       0
+      ]
+     }
+    ],
+    "loadout": {
+     "helmet": null,
+     "torso": "wayfarerTunic",
+     "legs": "wayfarerTrousers",
+     "boots": "wayfarerBoots",
+     "gloves": null,
+     "mainHand": "ironSword",
+     "offHand": null
+    },
+    "manifest": "/__garment_fit__/manifest.json",
+    "usingPhysics": true
+   },
+   "afterEquip": {
+    "request": {
+     "fit": "ashen-human-shape-v1",
+     "shape": "slender",
+     "weights": [
+      1,
+      0
+     ],
+     "heightScale": 1,
+     "heightClamped": false,
+     "assetURL": "/__human_shape__/human-shape-family-v1.glb",
+     "garmentFit": "refit",
+     "garmentManifestURL": "/__garment_fit__/manifest.json",
+     "visualHeightM": 1.76,
+     "capsuleHeightM": 1.748,
+     "applied": true
+    },
+    "morphMeshes": [
+     {
+      "name": "HumanV1Body",
+      "weights": [
+       1,
+       0
+      ]
+     },
+     {
+      "name": "WayfarerTunic",
+      "weights": [
+       1,
+       0
+      ]
+     },
+     {
+      "name": "WayfarerTrousers",
+      "weights": [
+       1,
+       0
+      ]
+     },
+     {
+      "name": "WayfarerTrousersCuffs",
+      "weights": [
+       1,
+       0
+      ]
+     },
+     {
+      "name": "WayfarerBoots",
+      "weights": [
+       1,
+       0
+      ]
+     },
+     {
+      "name": "PilgrimTunic",
+      "weights": [
+       1,
+       0
+      ]
+     }
+    ],
+    "loadout": {
+     "helmet": null,
+     "torso": "pilgrimTunic",
+     "legs": "wayfarerTrousers",
+     "boots": "wayfarerBoots",
+     "gloves": null,
+     "mainHand": "ironSword",
+     "offHand": null
+    },
+    "manifest": "/__garment_fit__/manifest.json",
+    "usingPhysics": true
+   },
+   "afterFailure": {
+    "request": {
+     "fit": "ashen-human-shape-v1",
+     "shape": "slender",
+     "weights": [
+      1,
+      0
+     ],
+     "heightScale": 1,
+     "heightClamped": false,
+     "assetURL": "/__human_shape__/human-shape-family-v1.glb",
+     "garmentFit": "refit",
+     "garmentManifestURL": "/__garment_fit__/manifest.json",
+     "visualHeightM": 1.76,
+     "capsuleHeightM": 1.748,
+     "applied": true
+    },
+    "morphMeshes": [
+     {
+      "name": "HumanV1Body",
+      "weights": [
+       1,
+       0
+      ]
+     },
+     {
+      "name": "WayfarerTunic",
+      "weights": [
+       1,
+       0
+      ]
+     },
+     {
+      "name": "WayfarerTrousers",
+      "weights": [
+       1,
+       0
+      ]
+     },
+     {
+      "name": "WayfarerTrousersCuffs",
+      "weights": [
+       1,
+       0
+      ]
+     },
+     {
+      "name": "WayfarerBoots",
+      "weights": [
+       1,
+       0
+      ]
+     },
+     {
+      "name": "PilgrimTunic",
+      "weights": [
+       1,
+       0
+      ]
+     }
+    ],
+    "loadout": {
+     "helmet": null,
+     "torso": "pilgrimTunic",
+     "legs": "wayfarerTrousers",
+     "boots": "wayfarerBoots",
+     "gloves": null,
+     "mainHand": "ironSword",
+     "offHand": null
+    },
+    "manifest": "/__garment_fit__/manifest.json",
+    "usingPhysics": true
+   }
+  },
+  {
+   "id": "tall-stout-refit",
+   "query": "humanShape=stout&humanHeight=1.15&garmentFit=refit",
+   "manifest": "/__garment_fit__/manifest.json",
+   "weights": [
+    0,
+    1
+   ],
+   "booted": {
+    "request": {
+     "fit": "ashen-human-shape-v1",
+     "shape": "stout",
+     "weights": [
+      0,
+      1
+     ],
+     "heightScale": 1.15,
+     "heightClamped": false,
+     "assetURL": "/__human_shape__/human-shape-family-v1.glb",
+     "garmentFit": "refit",
+     "garmentManifestURL": "/__garment_fit__/manifest.json",
+     "visualHeightM": 2.024,
+     "capsuleHeightM": 2.0101999999999998,
+     "applied": true
+    },
+    "morphMeshes": [
+     {
+      "name": "HumanV1Body",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerTunic",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerTrousers",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerTrousersCuffs",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerBoots",
+      "weights": [
+       0,
+       1
+      ]
+     }
+    ],
+    "loadout": {
+     "helmet": null,
+     "torso": "wayfarerTunic",
+     "legs": "wayfarerTrousers",
+     "boots": "wayfarerBoots",
+     "gloves": null,
+     "mainHand": "ironSword",
+     "offHand": null
+    },
+    "manifest": "/__garment_fit__/manifest.json",
+    "usingPhysics": true
+   },
+   "afterEquip": {
+    "request": {
+     "fit": "ashen-human-shape-v1",
+     "shape": "stout",
+     "weights": [
+      0,
+      1
+     ],
+     "heightScale": 1.15,
+     "heightClamped": false,
+     "assetURL": "/__human_shape__/human-shape-family-v1.glb",
+     "garmentFit": "refit",
+     "garmentManifestURL": "/__garment_fit__/manifest.json",
+     "visualHeightM": 2.024,
+     "capsuleHeightM": 2.0101999999999998,
+     "applied": true
+    },
+    "morphMeshes": [
+     {
+      "name": "HumanV1Body",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerTunic",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerTrousers",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerTrousersCuffs",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerBoots",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "PilgrimTunic",
+      "weights": [
+       0,
+       1
+      ]
+     }
+    ],
+    "loadout": {
+     "helmet": null,
+     "torso": "pilgrimTunic",
+     "legs": "wayfarerTrousers",
+     "boots": "wayfarerBoots",
+     "gloves": null,
+     "mainHand": "ironSword",
+     "offHand": null
+    },
+    "manifest": "/__garment_fit__/manifest.json",
+    "usingPhysics": true
+   },
+   "afterFailure": {
+    "request": {
+     "fit": "ashen-human-shape-v1",
+     "shape": "stout",
+     "weights": [
+      0,
+      1
+     ],
+     "heightScale": 1.15,
+     "heightClamped": false,
+     "assetURL": "/__human_shape__/human-shape-family-v1.glb",
+     "garmentFit": "refit",
+     "garmentManifestURL": "/__garment_fit__/manifest.json",
+     "visualHeightM": 2.024,
+     "capsuleHeightM": 2.0101999999999998,
+     "applied": true
+    },
+    "morphMeshes": [
+     {
+      "name": "HumanV1Body",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerTunic",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerTrousers",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerTrousersCuffs",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "WayfarerBoots",
+      "weights": [
+       0,
+       1
+      ]
+     },
+     {
+      "name": "PilgrimTunic",
+      "weights": [
+       0,
+       1
+      ]
+     }
+    ],
+    "loadout": {
+     "helmet": null,
+     "torso": "pilgrimTunic",
+     "legs": "wayfarerTrousers",
+     "boots": "wayfarerBoots",
+     "gloves": null,
+     "mainHand": "ironSword",
+     "offHand": null
+    },
+    "manifest": "/__garment_fit__/manifest.json",
+    "usingPhysics": true
+   }
+  }
+ ]
+}

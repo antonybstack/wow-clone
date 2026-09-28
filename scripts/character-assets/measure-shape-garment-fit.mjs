@@ -21,6 +21,11 @@
  *
  * Measured in the shared rest pose. Animation can open or close the margin further, so a
  * clean rest-pose result would not by itself prove a clean walk cycle.
+ *
+ * With `ASHEN_GARMENT_DIR` pointing at the M005 refitted garments, the garment is shaped by
+ * its own morph target of the same name before the comparison, which is what measures
+ * whether the refit actually closed the gap. The control is unchanged either way: both the
+ * body and the garment sit at weight 0 for the neutral row.
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -34,7 +39,10 @@ const GARMENTS = [
     {slot: 'legs', item: 'wayfarerTrousers', file: 'public/ashen-reach/equipment/wayfarerTrousers.glb'},
     {slot: 'boots', item: 'wayfarerBoots', file: 'public/ashen-reach/equipment/wayfarerBoots.glb'},
 ];
-const OUT = 'docs/baselines/character-mmo/m004/shape-garment-fit.json';
+const GARMENT_DIR = process.env.ASHEN_GARMENT_DIR || null;
+const OUT = process.env.ASHEN_FIT_REPORT
+    || (GARMENT_DIR ? 'docs/baselines/character-mmo/m005/shape-garment-fit.json'
+        : 'docs/baselines/character-mmo/m004/shape-garment-fit.json');
 const NEAR_M = 0.06;   // beyond this a body vertex is not in the garment's neighbourhood
 const COVER_M = 0.06;  // how far the outward normal ray looks for cloth
 const REJECT_SQ = 0.09;
@@ -128,19 +136,30 @@ function vertexNormals(positions, indices) {
     return n;
 }
 
+/** Garment pieces, each carrying its own per-shape positions when the file has targets. */
 async function readGarment(file) {
     const doc = await io.read(file);
     const parts = [];
     for (const mesh of doc.getRoot().listMeshes()) {
+        const names = mesh.getExtras()?.targetNames || [];
         for (const prim of mesh.listPrimitives()) {
-            parts.push({
-                name: mesh.getName(),
-                positions: prim.getAttribute('POSITION').getArray(),
-                indices: prim.getIndices().getArray(),
+            const base = prim.getAttribute('POSITION').getArray();
+            const shapes = {neutral: base};
+            prim.listTargets().forEach((target, i) => {
+                const delta = target.getAttribute('POSITION').getArray();
+                const arr = Float32Array.from(base);
+                for (let k = 0; k < arr.length; k++) arr[k] += delta[k];
+                shapes[names[i] ?? `target${i}`] = arr;
             });
+            parts.push({name: mesh.getName(), positions: base, shapes, indices: prim.getIndices().getArray()});
         }
     }
     return parts;
+}
+
+/** The same pieces with the positions of one shape selected. */
+function garmentAt(parts, shape) {
+    return parts.map(part => ({...part, positions: part.shapes[shape] ?? part.positions}));
 }
 
 /** Per body vertex: nearest distance to the cloth, and whether the outward normal finds it. */
@@ -188,10 +207,13 @@ async function main() {
 
     const rows = [];
     for (const garment of GARMENTS) {
-        const parts = await readGarment(garment.file);
+        const file = GARMENT_DIR ? path.join(GARMENT_DIR, path.basename(garment.file)) : garment.file;
+        const parts = await readGarment(file);
+        const refitted = parts.some(part => Object.keys(part.shapes).length > 1);
         const results = {};
         for (const [shape, positions] of Object.entries(shapes)) {
-            results[shape] = classify(positions, vertexNormals(positions, indices), parts);
+            // A refitted garment moves with the body; a shipped one stays where it is.
+            results[shape] = classify(positions, vertexNormals(positions, indices), garmentAt(parts, shape));
         }
         const control = results.neutral;
         for (const [shape, result] of Object.entries(results)) {
@@ -212,7 +234,7 @@ async function main() {
                 if (!control.covered[v] && result.covered[v]) gained++;
             }
             const row = {
-                garment: garment.item, slot: garment.slot, shape,
+                garment: garment.item, slot: garment.slot, shape, refitted,
                 bodyVerticesInRegion: inRegion,
                 coveredByGarment: covered,
                 newlyUncovered: lost,
@@ -222,7 +244,7 @@ async function main() {
                 worstAt: {x: Number(worstAt.x.toFixed(4)), y: Number(worstAt.y.toFixed(4)), z: Number(worstAt.z.toFixed(4))},
             };
             rows.push(row);
-            console.log(`${garment.item.padEnd(17)} ${shape.padEnd(8)} region=${String(inRegion).padStart(4)} `
+            console.log(`${garment.item.padEnd(17)} ${shape.padEnd(8)} ${refitted ? 'refit' : 'ship '} region=${String(inRegion).padStart(4)} `
                 + `covered=${String(covered).padStart(4)} newlyUncovered=${String(lost).padStart(4)} `
                 + `newlyCovered=${String(gained).padStart(3)} worstGap=${row.worstNewGapMm.toFixed(1)}mm`);
         }
@@ -233,6 +255,7 @@ async function main() {
         schema: 1,
         generatedBy: 'scripts/character-assets/measure-shape-garment-fit.mjs',
         candidate: CANDIDATE,
+        garmentDir: GARMENT_DIR,
         pose: 'shared rest pose; animation is not evaluated',
         thresholds: {nearMetres: NEAR_M, coverRayMetres: COVER_M},
         definitions: {

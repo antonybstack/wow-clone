@@ -19,6 +19,18 @@ function humanShapeAsset(req,res,next) {
   } catch {res.statusCode=404;res.end('Run node scripts/character-assets/build-human-shape-family.mjs');}
 }
 
+function garmentFitAsset(req,res,next) {
+  const name=/^\/__garment_fit__\/([A-Za-z0-9._-]+\.(?:glb|json))$/.exec(req.url?.split('?')[0]||'')?.[1];
+  if(!name) return next();
+  const file=`.cache/character-mmo/m005/${name}`;
+  try {
+    const info=statSync(file);
+    res.setHeader('Content-Type',name.endsWith('.json')?'application/json':'model/gltf-binary');
+    res.setHeader('Content-Length',String(info.size));
+    createReadStream(file).pipe(res);
+  } catch {res.statusCode=404;res.end('Run node scripts/character-assets/build-garment-shape-family.mjs');}
+}
+
 function starterBrotliHeaders(req,res,next) {
   if (/^\/ashen-reach\/startup\/starter\/near-[a-f0-9]{12}\.br(?:\?|$)/.test(req.url||'')) {
     res.setHeader('Content-Encoding','br');res.setHeader('Content-Type','application/octet-stream');
@@ -82,6 +94,14 @@ export default defineConfig({
       name: 'dev-only-human-shape-assets',
       configureServer(server) { server.middlewares.use(humanShapeAsset); },
       configurePreviewServer(server) { server.middlewares.use(humanShapeAsset); },
+    },
+    {
+      // M005 refitted garment pack: the same eight catalogue items carrying the shape
+      // targets that let them follow the body. Developer assets under .cache/, outside
+      // public/ so they cannot reach the Pages bundle.
+      name: 'dev-only-garment-fit-assets',
+      configureServer(server) { server.middlewares.use(garmentFitAsset); },
+      configurePreviewServer(server) { server.middlewares.use(garmentFitAsset); },
     },
     {
       name: "starter-brotli-http",

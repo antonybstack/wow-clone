@@ -1,0 +1,216 @@
+{
+ "schema": 1,
+ "generatedBy": "scripts/character-assets/measure-plate-rigidity.mjs",
+ "definitions": {
+  "animation.verticesOnOneBoneAtFullWeight": "vertices with exactly one influence at weight 1; such a piece is transformed by a single bone matrix, so every internal distance survives every pose",
+  "shape[].medianRatio": "the uniform factor every distance inside that rigid piece changed by",
+  "shape[].worstDeviationMm": "largest departure from that uniform factor; 0 means a pure similarity, so no bending"
+ },
+ "sampleVertices": 120,
+ "rows": [
+  {
+   "piece": "wardenPauldrons",
+   "kind": "plate",
+   "mesh": "WardenPauldrons",
+   "vertices": 236,
+   "animation": {
+    "verticesOnOneBoneAtFullWeight": 236,
+    "fraction": 1,
+    "largestSecondaryWeight": 0,
+    "distinctPrimaryBones": 2
+   },
+   "shape": {
+    "slender": [
+     {
+      "joint": 42,
+      "vertices": 124,
+      "pairs": 7140,
+      "medianRatio": 0.859597,
+      "worstRatioDeviation": 0.000008,
+      "worstDeviationMm": 0.0001
+     },
+     {
+      "joint": 15,
+      "vertices": 112,
+      "pairs": 6216,
+      "medianRatio": 0.862752,
+      "worstRatioDeviation": 0.000028,
+      "worstDeviationMm": 0.0001
+     }
+    ],
+    "stout": [
+     {
+      "joint": 42,
+      "vertices": 124,
+      "pairs": 7140,
+      "medianRatio": 1.17667,
+      "worstRatioDeviation": 0.000009,
+      "worstDeviationMm": 0.0001
+     },
+     {
+      "joint": 15,
+      "vertices": 112,
+      "pairs": 6216,
+      "medianRatio": 1.172377,
+      "worstRatioDeviation": 0.000036,
+      "worstDeviationMm": 0.0001
+     }
+    ]
+   },
+   "rigidGroupsMeasured": 2
+  },
+  {
+   "piece": "wayfarerTunic",
+   "kind": "cloth",
+   "mesh": "WayfarerTunic",
+   "vertices": 3776,
+   "animation": {
+    "verticesOnOneBoneAtFullWeight": 460,
+    "fraction": 0.1218,
+    "largestSecondaryWeight": 0.4989,
+    "distinctPrimaryBones": 15
+   },
+   "shape": {
+    "slender": [
+     {
+      "joint": 1,
+      "vertices": 908,
+      "pairs": 7140,
+      "medianRatio": 0.920463,
+      "worstRatioDeviation": 0.159869,
+      "worstDeviationMm": 16.0115
+     },
+     {
+      "joint": 2,
+      "vertices": 555,
+      "pairs": 7140,
+      "medianRatio": 0.921923,
+      "worstRatioDeviation": 0.248027,
+      "worstDeviationMm": 29.2521
+     }
+    ],
+    "stout": [
+     {
+      "joint": 1,
+      "vertices": 908,
+      "pairs": 7140,
+      "medianRatio": 1.089253,
+      "worstRatioDeviation": 0.201365,
+      "worstDeviationMm": 17.8738
+     },
+     {
+      "joint": 2,
+      "vertices": 555,
+      "pairs": 7140,
+      "medianRatio": 1.088684,
+      "worstRatioDeviation": 0.403641,
+      "worstDeviationMm": 34.4302
+     }
+    ]
+   },
+   "rigidGroupsMeasured": 2
+  },
+  {
+   "piece": "wayfarerTrousers",
+   "kind": "cloth",
+   "mesh": "WayfarerTrousers",
+   "vertices": 1380,
+   "animation": {
+    "verticesOnOneBoneAtFullWeight": 203,
+    "fraction": 0.1471,
+    "largestSecondaryWeight": 0.498,
+    "distinctPrimaryBones": 6
+   },
+   "shape": {
+    "slender": [
+     {
+      "joint": 60,
+      "vertices": 366,
+      "pairs": 7140,
+      "medianRatio": 0.952744,
+      "worstRatioDeviation": 0.267326,
+      "worstDeviationMm": 24.4411
+     },
+     {
+      "joint": 55,
+      "vertices": 361,
+      "pairs": 7140,
+      "medianRatio": 0.958129,
+      "worstRatioDeviation": 0.31036,
+      "worstDeviationMm": 25.5615
+     }
+    ],
+    "stout": [
+     {
+      "joint": 60,
+      "vertices": 366,
+      "pairs": 7140,
+      "medianRatio": 1.060081,
+      "worstRatioDeviation": 0.220973,
+      "worstDeviationMm": 27.8771
+     },
+     {
+      "joint": 55,
+      "vertices": 361,
+      "pairs": 7140,
+      "medianRatio": 1.053462,
+      "worstRatioDeviation": 0.22551,
+      "worstDeviationMm": 28.7453
+     }
+    ]
+   },
+   "rigidGroupsMeasured": 2
+  },
+  {
+   "piece": "wayfarerTrousers",
+   "kind": "cloth",
+   "mesh": "WayfarerTrousersCuffs",
+   "vertices": 1380,
+   "animation": {
+    "verticesOnOneBoneAtFullWeight": 203,
+    "fraction": 0.1471,
+    "largestSecondaryWeight": 0.498,
+    "distinctPrimaryBones": 6
+   },
+   "shape": {
+    "slender": [
+     {
+      "joint": 60,
+      "vertices": 366,
+      "pairs": 7140,
+      "medianRatio": 0.952744,
+      "worstRatioDeviation": 0.267326,
+      "worstDeviationMm": 24.4411
+     },
+     {
+      "joint": 55,
+      "vertices": 361,
+      "pairs": 7140,
+      "medianRatio": 0.958129,
+      "worstRatioDeviation": 0.31036,
+      "worstDeviationMm": 25.5615
+     }
+    ],
+    "stout": [
+     {
+      "joint": 60,
+      "vertices": 366,
+      "pairs": 7140,
+      "medianRatio": 1.060081,
+      "worstRatioDeviation": 0.220973,
+      "worstDeviationMm": 27.8771
+     },
+     {
+      "joint": 55,
+      "vertices": 361,
+      "pairs": 7140,
+      "medianRatio": 1.053462,
+      "worstRatioDeviation": 0.22551,
+      "worstDeviationMm": 28.7453
+     }
+    ]
+   },
+   "rigidGroupsMeasured": 2
+  }
+ ]
+}

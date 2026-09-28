@@ -168,16 +168,34 @@ async function main(){
   * placement follows without a second height path. The camera pivot is the one value
   * that is not derived from the body, so it is scaled here.
   */
+ // Set once a shape is applied, so equipment loaded later can be given the same weights.
+ let applyMorphWeights=null,reshapeEquipment=null;
  const applyHumanShape=async request=>{
   if(request.weights.some(w=>w>0)){
    const {setMorphTargetWeights}=await import('@babylonjs/lite');
-   let applied=0;
-   const visit=node=>{
-    if(node?.morphTargets){setMorphTargetWeights(engine,node.morphTargets,request.weights);applied++;}
-    for(const child of node?.children||[])visit(child);
+   // Every mesh under a root that declares morph targets takes the same weights: the body
+   // and, under ?garmentFit=refit, each garment piece. Their targets are built from one
+   // girth field and share a name and an order, so one weight vector drives the outfit.
+   applyMorphWeights=root=>{
+    let applied=0;
+    const visit=node=>{
+     if(node?.morphTargets){setMorphTargetWeights(engine,node.morphTargets,request.weights);applied++;}
+     for(const child of node?.children||[])visit(child);
+    };
+    visit(root);
+    return applied;
    };
-   visit(body.root);
-   if(!applied)throw Error(`No morph targets on the loaded body; ${bodyUrl} is not the shape-family candidate`);
+   if(!applyMorphWeights(body.root))throw Error(`No morph targets on the loaded body; ${bodyUrl} is not the shape-family candidate`);
+   // A garment arrives at its own pace, and it arrives at weight 0, which is the shipped
+   // shape. Re-applying over the whole scene after every change is what keeps a newly
+   // equipped piece from being the only thing still wearing the neutral body's shape.
+   const writeWeights=weights=>{let n=0;for(const mesh of scene.meshes||[])if(mesh.morphTargets){setMorphTargetWeights(engine,mesh.morphTargets,weights);n++;}return n;};
+   reshapeEquipment=()=>writeWeights(request.weights);
+   reshapeEquipment();
+   // A probe cannot import '@babylonjs/lite' by bare specifier inside the page, and
+   // re-importing the package raw would build a second registry. Expose the bound writer
+   // instead, so a weight sweep measures the same call the game itself makes.
+   ashen.setShapeWeights=writeWeights;
   }
   if(request.heightScale!==1){
    const s=request.heightScale,root=body.root;
@@ -243,7 +261,7 @@ async function main(){
  // thing to reconcile -- createStreamedEquipment names any region it cannot bind.
  const UNDEAD_PACK_DIR='equipment-undead';
  const packs={
-  human:{race:'human',manifestUrl:fastCharacter?'/ashen-reach/startup/character/manifest.json':'/ashen-reach/equipment/manifest.json',baseMeshes:['HumanV1Body'],fitId:HUMAN_EQUIPMENT_FIT,...(fastCharacter?{manifest:await starterCharacterP,loadBuffer:startupAssetBuffer}:{})},
+  human:{race:'human',manifestUrl:humanShape?.garmentManifestURL||(fastCharacter?'/ashen-reach/startup/character/manifest.json':'/ashen-reach/equipment/manifest.json'),baseMeshes:['HumanV1Body'],fitId:HUMAN_EQUIPMENT_FIT,...(fastCharacter?{manifest:await starterCharacterP,loadBuffer:startupAssetBuffer}:{})},
   orc:{race:'orc',manifestUrl:'/ashen-reach/equipment-orc/manifest.json',baseMeshes:ORC_BASE_VISIBLE_MESHES,fitId:ORC_EQUIPMENT_FIT,bodyUrl:'/ashen-reach/equipment-orc/body.glb'},
   undead:{race:'undead',manifestUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/manifest.json`,baseMeshes:UNDEAD_BASE_VISIBLE_MESHES,fitId:UNDEAD_EQUIPMENT_FIT,bodyUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/body.glb`},
  };
@@ -251,14 +269,18 @@ async function main(){
  markStartup('equipment-start');
  const createEquipment=preloadedEquipment?(await import('./equipment.js')).createEquipment:null;
  let impl=preloadedEquipment?createEquipment(engine,scene,body,sockets):await createStreamedEquipment(engine,scene,body,sockets,packs.human);
+ // A settled request is the only safe moment to shape a garment: a cancelled or failed one
+ // never added a mesh, and re-applying after it would be shaping whatever is still on.
+ const reshaped=request=>Promise.resolve(request).then(result=>{reshapeEquipment?.();return result;},error=>{reshapeEquipment?.();throw error;});
+ reshapeEquipment?.();
  let currentRace='human';
  let parkedGarments=null;
  equipment={
   get items(){return impl.items;},
   get presets(){return impl.presets;},
-  setLoadout:patch=>impl.setLoadout(patch),
-  equip:(slot,id)=>impl.equip(slot,id),
-  equipPreset:id=>impl.equipPreset(id),
+  setLoadout:patch=>reshaped(impl.setLoadout(patch)),
+  equip:(slot,id)=>reshaped(impl.equip(slot,id)),
+  equipPreset:id=>reshaped(impl.equipPreset(id)),
   getState:()=>impl.getState(),
   getStatus:()=>impl.getStatus?.(),
   setVisible:value=>impl.setVisible(value),

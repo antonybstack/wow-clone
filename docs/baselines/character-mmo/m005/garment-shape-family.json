@@ -1,0 +1,455 @@
+{
+ "schema": 1,
+ "generatedBy": "scripts/character-assets/build-garment-shape-family.mjs",
+ "fitProfile": "ashen-human-shape-v1",
+ "mode": "track",
+ "body": {
+  "path": ".cache/character-mmo/m004/human-shape-family-v1.glb",
+  "sha256": "e8e564c9c362ad2473ef6de9042f9a701c67643b5c205c64da2d86e91725f3f5"
+ },
+ "targetNames": [
+  "slender",
+  "stout"
+ ],
+ "girthSource": {
+  "path": "docs/baselines/character-mmo/m004/makehuman-girth.json",
+  "sha256": "42977214cfcb9676cb69c9136538d112adac3eb4c190c626394f5c14b78b9069"
+ },
+ "note": "Each garment vertex moves by the body displacement beneath it, preserving authored standoff; a rigid piece takes the mean of that as one translation.",
+ "garments": [
+  {
+   "item": "wayfarerTunic",
+   "rigid": false,
+   "source": {
+    "path": "public/ashen-reach/equipment/wayfarerTunic.glb",
+    "sha256": "3b4c929df3708afd760f3f056f0dc706e780552cfe1966d8ef3f5083b8749cd6"
+   },
+   "output": {
+    "path": ".cache/character-mmo/m005/wayfarerTunic.glb",
+    "sha256": "bec24964f68978c16508f4a7133e30386b5e22f1ae3e6a60e98605dcdfcfc950",
+    "bytes": 525164
+   },
+   "pieces": [
+    {
+     "mesh": "WayfarerTunic",
+     "vertices": 3776,
+     "triangles": 6568,
+     "shapes": {
+      "slender": {
+       "movedVertices": 3776,
+       "maxDisplacementM": 0.025739,
+       "meanDisplacementM": 0.014193
+      },
+      "stout": {
+       "movedVertices": 3776,
+       "maxDisplacementM": 0.03082,
+       "meanDisplacementM": 0.016724
+      }
+     },
+     "neutralSha256": "9282a5f95b13e5cf15ece55819ffccc11cb90b77fb0c766a1249d93199513fec"
+    }
+   ]
+  },
+  {
+   "item": "wayfarerTrousers",
+   "rigid": false,
+   "source": {
+    "path": "public/ashen-reach/equipment/wayfarerTrousers.glb",
+    "sha256": "169ad0333e5746e72512b8160008aefbf3d8bef7d75f2ff70203feca08538def"
+   },
+   "output": {
+    "path": ".cache/character-mmo/m005/wayfarerTrousers.glb",
+    "sha256": "8407181d0d63c2997636522db280a288a20447318bb447022e6b710a0b7c33d1",
+    "bytes": 344616
+   },
+   "pieces": [
+    {
+     "mesh": "WayfarerTrousers",
+     "vertices": 1380,
+     "triangles": 2260,
+     "shapes": {
+      "slender": {
+       "movedVertices": 1380,
+       "maxDisplacementM": 0.019858,
+       "meanDisplacementM": 0.012021
+      },
+      "stout": {
+       "movedVertices": 1380,
+       "maxDisplacementM": 0.022693,
+       "meanDisplacementM": 0.013748
+      }
+     },
+     "neutralSha256": "0ce5d1a70e757e8bc49786c8c03420c2db8899be6c3af75449ad26bef14f8d90"
+    },
+    {
+     "mesh": "WayfarerTrousersCuffs",
+     "vertices": 1380,
+     "triangles": 284,
+     "shapes": {
+      "slender": {
+       "movedVertices": 1380,
+       "maxDisplacementM": 0.019858,
+       "meanDisplacementM": 0.012021
+      },
+      "stout": {
+       "movedVertices": 1380,
+       "maxDisplacementM": 0.022693,
+       "meanDisplacementM": 0.013748
+      }
+     },
+     "neutralSha256": "658c888dc1bfccc0128bde7f54beeb44a029844a7c186892192532c753a85d05"
+    }
+   ]
+  },
+  {
+   "item": "wayfarerBoots",
+   "rigid": false,
+   "source": {
+    "path": "public/ashen-reach/equipment/wayfarerBoots.glb",
+    "sha256": "a55a9e4cd7b8658b6f2bd51dd3092af576e8d7dd279c9687bb3419a5c858bd98"
+   },
+   "output": {
+    "path": ".cache/character-mmo/m005/wayfarerBoots.glb",
+    "sha256": "f3392784e01a1abfd411e9aa5b5991391f9cc628c7dba01fa7050dbeefc473dd",
+    "bytes": 509284
+   },
+   "pieces": [
+    {
+     "mesh": "WayfarerBoots",
+     "vertices": 3530,
+     "triangles": 6320,
+     "shapes": {
+      "slender": {
+       "movedVertices": 3503,
+       "maxDisplacementM": 0.016088,
+       "meanDisplacementM": 0.003765
+      },
+      "stout": {
+       "movedVertices": 3504,
+       "maxDisplacementM": 0.018187,
+       "meanDisplacementM": 0.004369
+      }
+     },
+     "neutralSha256": "eac16f6de234e5906213ff8ff1e65f5381b5af96a651eb55655860ee4db106dd"
+    }
+   ]
+  },
+  {
+   "item": "pilgrimTunic",
+   "rigid": false,
+   "source": {
+    "path": "public/ashen-reach/equipment/pilgrimTunic.glb",
+    "sha256": "e8ee89fed1056a1b0d1434bf138c05e698cf0564ce531ad1c7a39de45f4ef691"
+   },
+   "output": {
+    "path": ".cache/character-mmo/m005/pilgrimTunic.glb",
+    "sha256": "b3db2af7e1242fff3063710e2597fa6874eaaa9cb26f881bc68639637a93424f",
+    "bytes": 1126604
+   },
+   "pieces": [
+    {
+     "mesh": "PilgrimTunic",
+     "vertices": 8960,
+     "triangles": 16346,
+     "shapes": {
+      "slender": {
+       "movedVertices": 8960,
+       "maxDisplacementM": 0.025783,
+       "meanDisplacementM": 0.014613
+      },
+      "stout": {
+       "movedVertices": 8960,
+       "maxDisplacementM": 0.030827,
+       "meanDisplacementM": 0.017097
+      }
+     },
+     "neutralSha256": "965c05176ce9654a2ff4e1f13db54bcf2fbbacc79e24c81119f24f7c6b193790"
+    }
+   ]
+  },
+  {
+   "item": "graveweaverTop",
+   "rigid": false,
+   "source": {
+    "path": "public/ashen-reach/equipment/graveweaverTop.glb",
+    "sha256": "935bc9c509c562e08161bac0d7babc60b5273c38aea6764258966dcc060f1b78"
+   },
+   "output": {
+    "path": ".cache/character-mmo/m005/graveweaverTop.glb",
+    "sha256": "8ec1160ca747f91b77a8e8289dadd741c21003475254cc5a0baf9f0fce28b523",
+    "bytes": 504908
+   },
+   "pieces": [
+    {
+     "mesh": "GraveweaverPendant",
+     "vertices": 48,
+     "triangles": 24,
+     "shapes": {
+      "slender": {
+       "movedVertices": 48,
+       "maxDisplacementM": 0.022284,
+       "meanDisplacementM": 0.020386
+      },
+      "stout": {
+       "movedVertices": 48,
+       "maxDisplacementM": 0.025451,
+       "meanDisplacementM": 0.022716
+      }
+     },
+     "neutralSha256": "727f61ceb7bf086261a4bdbf4cbcbadc318be4616c96054b9aeec31c3a18a810"
+    },
+    {
+     "mesh": "GraveweaverPendant",
+     "vertices": 24,
+     "triangles": 8,
+     "shapes": {
+      "slender": {
+       "movedVertices": 24,
+       "maxDisplacementM": 0.02072,
+       "meanDisplacementM": 0.020237
+      },
+      "stout": {
+       "movedVertices": 24,
+       "maxDisplacementM": 0.022927,
+       "meanDisplacementM": 0.022243
+      }
+     },
+     "neutralSha256": "0a31d6a22e68049ae663161b192ca9c8d26a1773415e02c6fa0feb7caed63367"
+    },
+    {
+     "mesh": "GraveweaverTop",
+     "vertices": 3497,
+     "triangles": 6028,
+     "shapes": {
+      "slender": {
+       "movedVertices": 3497,
+       "maxDisplacementM": 0.02574,
+       "meanDisplacementM": 0.014148
+      },
+      "stout": {
+       "movedVertices": 3497,
+       "maxDisplacementM": 0.030835,
+       "meanDisplacementM": 0.016712
+      }
+     },
+     "neutralSha256": "0e5a2341145164bacf54b39c05844772bd4dbd3df5f1cefd865877031fe2e313"
+    }
+   ]
+  },
+  {
+   "item": "graveweaverSkirt",
+   "rigid": false,
+   "source": {
+    "path": "public/ashen-reach/equipment/graveweaverSkirt.glb",
+    "sha256": "7a9a770063337c1dfa1de5a0da2e2fe3191865b1a3f7882afe92694b03e55cbc"
+   },
+   "output": {
+    "path": ".cache/character-mmo/m005/graveweaverSkirt.glb",
+    "sha256": "c5eea117af2210abe18aa6746749ed21f2aea97b324e112d9acec2113e585a68",
+    "bytes": 821680
+   },
+   "pieces": [
+    {
+     "mesh": "GraveweaverSkirt",
+     "vertices": 3463,
+     "triangles": 6085,
+     "shapes": {
+      "slender": {
+       "movedVertices": 3463,
+       "maxDisplacementM": 0.019777,
+       "meanDisplacementM": 0.011912
+      },
+      "stout": {
+       "movedVertices": 3463,
+       "maxDisplacementM": 0.022522,
+       "meanDisplacementM": 0.013543
+      }
+     },
+     "neutralSha256": "b36eea0ec8e7644b0eacbd7dcc975c3026a8871615f79fcb7fd0916784d3718e"
+    },
+    {
+     "mesh": "WayfarerTrousers",
+     "vertices": 1380,
+     "triangles": 2260,
+     "shapes": {
+      "slender": {
+       "movedVertices": 1380,
+       "maxDisplacementM": 0.019857,
+       "meanDisplacementM": 0.012064
+      },
+      "stout": {
+       "movedVertices": 1380,
+       "maxDisplacementM": 0.022693,
+       "meanDisplacementM": 0.013797
+      }
+     },
+     "neutralSha256": "1c5d796ca953f15d4d049555e119e3ba5238771c3408527fdd5c0c08a2a9ccc9"
+    },
+    {
+     "mesh": "WayfarerTrousersCuffs",
+     "vertices": 1380,
+     "triangles": 284,
+     "shapes": {
+      "slender": {
+       "movedVertices": 1380,
+       "maxDisplacementM": 0.019857,
+       "meanDisplacementM": 0.012064
+      },
+      "stout": {
+       "movedVertices": 1380,
+       "maxDisplacementM": 0.022693,
+       "meanDisplacementM": 0.013797
+      }
+     },
+     "neutralSha256": "535e15564d058ddcfea23b52635d3b61dfbbf496d3c3e563b9e1ae552d4a6017"
+    }
+   ]
+  },
+  {
+   "item": "graveweaverHood",
+   "rigid": false,
+   "source": {
+    "path": "public/ashen-reach/equipment/graveweaverHood.glb",
+    "sha256": "828b7e66b2edfc4d8fb2411c87c0fe7f1da52359b192691774d0c34392c63799"
+   },
+   "output": {
+    "path": ".cache/character-mmo/m005/graveweaverHood.glb",
+    "sha256": "26b689d28216ba7038e687c7d8242622a7c906c3306a9aa69704254b16a5a8e4",
+    "bytes": 641976
+   },
+   "pieces": [
+    {
+     "mesh": "GraveweaverHood",
+     "vertices": 4723,
+     "triangles": 9008,
+     "shapes": {
+      "slender": {
+       "movedVertices": 4723,
+       "maxDisplacementM": 0.019161,
+       "meanDisplacementM": 0.004803
+      },
+      "stout": {
+       "movedVertices": 4723,
+       "maxDisplacementM": 0.022562,
+       "meanDisplacementM": 0.005705
+      }
+     },
+     "neutralSha256": "d26cda35859cf0105d914dfc7b5351f03659dc5aa7400400080b1ba68d3a4b49"
+    }
+   ]
+  },
+  {
+   "item": "graveweaverGloves",
+   "rigid": false,
+   "source": {
+    "path": "public/ashen-reach/equipment/graveweaverGloves.glb",
+    "sha256": "ae3a162fc15b038bbf713f924b0b6b69d88fcd18ff2cfcb676112d5c91bb6e75"
+   },
+   "output": {
+    "path": ".cache/character-mmo/m005/graveweaverGloves.glb",
+    "sha256": "1db89563b09b3ef6859b5a0d746f1a13fff5e71400e1394f139a456e52d5c57a",
+    "bytes": 354572
+   },
+   "pieces": [
+    {
+     "mesh": "GraveweaverGloves",
+     "vertices": 2596,
+     "triangles": 4544,
+     "shapes": {
+      "slender": {
+       "movedVertices": 1228,
+       "maxDisplacementM": 0.003624,
+       "meanDisplacementM": 0.000674
+      },
+      "stout": {
+       "movedVertices": 1228,
+       "maxDisplacementM": 0.004483,
+       "meanDisplacementM": 0.000734
+      }
+     },
+     "neutralSha256": "3b8ab6a991fe5aec0337063653a12aa7b30a2a6320e8909bf758ec58189510e7"
+    }
+   ]
+  },
+  {
+   "item": "wardenPauldrons",
+   "rigid": true,
+   "source": {
+    "path": ".cache/character-mmo/m005/warden-pauldrons.glb",
+    "sha256": "96d71dc0a137034e049c828c0050d2d13802d153e034a1c02fb31e0fdf020fee"
+   },
+   "output": {
+    "path": ".cache/character-mmo/m005/warden-pauldrons-shaped.glb",
+    "sha256": "e1b8fcb89e30977b43aabbeb1864c5d69fa9c5fa0e7cac1bd3667197162fac61",
+    "bytes": 45064
+   },
+   "pieces": [
+    {
+     "mesh": "WardenPauldrons",
+     "vertices": 236,
+     "triangles": 464,
+     "shapes": {
+      "slender": {
+       "movedVertices": 236,
+       "maxDisplacementM": 0.01945,
+       "meanDisplacementM": 0.01516,
+       "rigidPieces": [
+        {
+         "joint": 15,
+         "vertices": 112,
+         "scale": 0.862752,
+         "offset": [
+          0.027274,
+          0.190232,
+          -0.007568
+         ]
+        },
+        {
+         "joint": 42,
+         "vertices": 124,
+         "scale": 0.859597,
+         "offset": [
+          -0.027348,
+          0.194312,
+          -0.007878
+         ]
+        }
+       ]
+      },
+      "stout": {
+       "movedVertices": 236,
+       "maxDisplacementM": 0.024593,
+       "meanDisplacementM": 0.018852,
+       "rigidPieces": [
+        {
+         "joint": 15,
+         "vertices": 112,
+         "scale": 1.172377,
+         "offset": [
+          -0.034595,
+          -0.239333,
+          0.009527
+         ]
+        },
+        {
+         "joint": 42,
+         "vertices": 124,
+         "scale": 1.17667,
+         "offset": [
+          0.034744,
+          -0.244877,
+          0.009952
+         ]
+        }
+       ]
+      }
+     },
+     "neutralSha256": "c203293fffc54f555bb8d825ff81cdb33ba4fba0cc7a69b6a25b26827dd6d05d"
+    }
+   ]
+  }
+ ],
+ "manifest": {
+  "path": ".cache/character-mmo/m005/manifest.json"
+ }
+}

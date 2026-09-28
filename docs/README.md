@@ -6,7 +6,7 @@ Start with **[CURRENT.md](CURRENT.md)** for the shipped game and current initiat
 
 - **[Long-term vision: 100 milestones, ten categories](plans/character-mmo/vision-roadmap.md)**
 - **[Next ten milestones](plans/character-mmo/next-ten.md)**
-- **Implementation briefs:** [M001 — baseline/assets](plans/character-mmo/m001-baseline-and-asset-census.md), [M002 — appearance contract](plans/character-mmo/m002-appearance-contract.md), [M003 — crowd feasibility](plans/character-mmo/m003-crowd-feasibility.md), [M004 — Human template](plans/character-mmo/m004-human-template.md)
+- **Implementation briefs:** [M001 — baseline/assets](plans/character-mmo/m001-baseline-and-asset-census.md), [M002 — appearance contract](plans/character-mmo/m002-appearance-contract.md), [M003 — crowd feasibility](plans/character-mmo/m003-crowd-feasibility.md), [M004 — Human template](plans/character-mmo/m004-human-template.md), [M005 — deformation proof](plans/character-mmo/m005-deformation-proof.md)
 - [Execution contract and performance gates](plans/character-mmo/execution-contract.md)
 - [Architecture decisions, capability checks and research](plans/character-mmo/architecture.md)
 

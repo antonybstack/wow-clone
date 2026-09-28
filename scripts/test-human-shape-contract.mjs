@@ -76,8 +76,10 @@ test('height is clamped to the range the gameplay capsule already accepts', () =
 test('capabilities advertise only what M004 actually delivered', () => {
     assert.equal(HUMAN_SHAPE_CAPABILITIES.fit, HUMAN_SHAPE_FIT);
     assert.deepEqual(HUMAN_SHAPE_CAPABILITIES.bodyShapes, HUMAN_SHAPE_NAMES);
-    // Everything below is unproven at M004 and must stay false until its own milestone.
-    assert.equal(HUMAN_SHAPE_CAPABILITIES.garmentsFollowShape, false);
+    // Everything below is unproven and must stay false until its own milestone. Garment
+    // fit is the exception: M005 built it as a developer candidate, so it advertises
+    // 'candidate' rather than true, which no shipped route may read as a supported control.
+    assert.equal(HUMAN_SHAPE_CAPABILITIES.garmentsFollowShape, 'candidate');
     assert.equal(HUMAN_SHAPE_CAPABILITIES.faceOrAge, false);
     assert.equal(HUMAN_SHAPE_CAPABILITIES.hair, false);
     assert.equal(HUMAN_SHAPE_CAPABILITIES.dyes, false);
