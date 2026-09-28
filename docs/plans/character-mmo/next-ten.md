@@ -50,7 +50,7 @@ Map the body controls to each garment's shape deltas/reference fits, preserve in
 
 ## M006 — Human creator vertical slice
 
-Status: **blocked at the entry gate**. Results: [M006 gate](results/m006-gate.md) and [licensed hair audition](results/m006-hair-audition.md). Bald cannot be removed from the shipped head by collapsing a shell (measured: only 22.5% of the above-brow head sits over another surface, so the hair is fused). A whole old/bald MakeHuman head swap failed the offline face, eye and neck review. A CC0 ponytail source is fitted to the 65-joint rig and live-reviewed, but its clean final fit, color and helmet policy remain unaccepted. Height and body shape are delivered by M004/M005.
+Status: **source-art entry gate open**. Results: [M006 gate](results/m006-gate.md), [licensed hair audition](results/m006-hair-audition.md) and [head/age experiments](results/m006-source-experiments.md). Bald cannot be removed from the shipped head by collapsing a shell (measured: only 22.5% of the above-brow head sits over another surface, so the hair is fused). A whole old/bald MakeHuman head swap, a texture-based scalp cut and a source-scalp graft failed offline review. Cross-topology age transfer preserves the face but is not yet a convincing older version. The CC0 ponytail is fitted to the 65-joint rig and live-reviewed; its 1024² atlas cut the diagnostic body to 4.00 MB, but final fit, color and helmet policy remain unaccepted. Height and body shape are delivered by M004/M005.
 
 **Dependency:** M005 and named editable Human, age and long-hair source assets. If those sources are absent, first author the minimal licensed variants and record their provenance; a JSON capability flag is not a visual substitute. Add a lazily loaded creator surface reusing the armory/camera infrastructure where suitable. Implement only proven controls: height, body shape, adult age appearance, skin/hair color and at least long hair versus bald. Add a small authored face/age variant if needed to make the two user examples visibly distinct; skin tint alone does not prove aging.
 
@@ -89,7 +89,7 @@ Choose the production schema/fit/material/animation/detail contracts; list defer
 | M003 | Complete feasibility probe; native VAT promising in isolation, actual-town shadow integration blocked | [Result, capacity curves and reviewed motion](results/m003.md) |
 | M004 | Complete; shape family and height range proven, garment fit measured and handed to M005 | [Result, shape family and reviewed motion](results/m004.md) |
 | M005 | Complete; garments refitted and measured, rigid plate prototype proved, live and cached cost measured | [Result, fit comparison and reviewed motion](results/m005.md) |
-| M006 | Source-art gate open; bald/age head art and final ponytail fit in progress | [Gate](results/m006-gate.md), [hair audition](results/m006-hair-audition.md) |
+| M006 | Source-art gate open; scalp/age experiments rejected, ponytail payload reduced and live-reviewed | [Gate](results/m006-gate.md), [hair audition](results/m006-hair-audition.md), [follow-up](results/m006-source-experiments.md) |
 | M007 | Semantic coverage and active Undead bind verified live; creator/extreme-shape and close fit gates open | [Coverage](results/m007.md), [Undead bind correction](results/m007-undead-rebind.md) |
 | M008 | Planned | — |
 | M009 | Planned | — |

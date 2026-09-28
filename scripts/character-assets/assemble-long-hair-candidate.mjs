@@ -11,8 +11,9 @@
 import fs from 'node:fs/promises';
 import {NodeIO, VertexLayout} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
-import {copyToDocument, unpartition} from '@gltf-transform/functions';
+import {compressTexture, copyToDocument, unpartition} from '@gltf-transform/functions';
 import {MeshoptDecoder, MeshoptEncoder} from 'meshoptimizer';
+import sharp from 'sharp';
 
 const variant = process.argv[2] ?? 'ponytail01-tail';
 if (!['long01', 'ponytail01', 'ponytail01-tail'].includes(variant)) throw Error(`Unknown variant ${variant}`);
@@ -28,6 +29,19 @@ const io = new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies(
 }).setVertexLayout(VertexLayout.SEPARATE);
 const bodyDoc = await io.read(bodyPath), hairDoc = await io.read(hairPath);
 const body = bodyDoc.getRoot(), hair = hairDoc.getRoot();
+// The CC0 source carries a 2048² masked atlas even though this candidate retains
+// only the rear tie and tail. Reuse glTF Transform's alpha-safe PNG resize, keeping
+// the authored UVs and MASK material intact rather than introducing a custom
+// texture conversion or a runtime image decode step.
+// https://gltf-transform.dev/modules/functions/functions/compressTexture
+if (variant === 'ponytail01-tail') {
+    const texture = hair.listTextures().find(t => t.getName() === 'ponytail01_diffuse');
+    if (!texture || texture.getSize().join('x') !== '2048x2048')
+        throw Error('Unexpected ponytail source atlas');
+    await compressTexture(texture, {encoder: sharp, targetFormat: 'png', resize: [1024, 1024], effort: 8});
+    if (texture.getMimeType() !== 'image/png' || texture.getSize().join('x') !== '1024x1024')
+        throw Error('Ponytail atlas resize lost PNG or expected dimensions');
+}
 const bodySkin = body.listSkins()[0], hairSkin = hair.listSkins()[0];
 if (!bodySkin || !hairSkin) throw Error('Both candidates need a skin');
 const bodyIndex = new Map(bodySkin.listJoints().map((j, i) => [j.getName(), i]));
