@@ -1,4 +1,4 @@
-/** Record an M006 hair audition in the actual game, using one owned CDP slot.
+/** Record an M006 hair/head candidate in the actual game, using one owned CDP slot.
  * The candidate is substituted at the body fetch boundary; no runtime or public asset
  * changes are needed. Frame timestamps and dimensions follow the M007 capture protocol.
  * https://chromedevtools.github.io/devtools-protocol/tot/Page/#event-screencastFrame
@@ -18,6 +18,11 @@ if (!port || !url || !/^[a-z0-9-]+$/.test(variant)
 const file = path.resolve(candidateFile ?? `.cache/character-mmo/m006/human-${variant}-candidate.glb`);
 const target = process.env.ASHEN_CANDIDATE_TARGET ?? '**/ashen-reach/equipment/body.glb';
 const query = process.env.ASHEN_CANDIDATE_QUERY ?? '';
+const hoodFitMm = process.env.ASHEN_HOOD_FIT_MM ?? '';
+if (hoodFitMm && !['20', '35'].includes(hoodFitMm)) throw Error('Unsupported diagnostic hood fit');
+if (hoodFitMm && process.env.ASHEN_OUTFIT_REVIEW !== 'graveweaver') {
+    throw Error('ASHEN_HOOD_FIT_MM requires ASHEN_OUTFIT_REVIEW=graveweaver');
+}
 const dir = path.resolve(`ve-capture/character-mmo/m006/${variant}-live`);
 await fs.mkdir(path.join(dir, 'frames'), {recursive: true});
 const browser = await chromium.connectOverCDP(`http://127.0.0.1:${port}`);
@@ -29,10 +34,26 @@ const errors = [], frames = [], writes = [], timeline = [];
 page.on('pageerror', e => errors.push(String(e.message ?? e)));
 page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
 let bodyRequests = 0, recording = false;
+let hoodRequests = 0, manifestRequests = 0;
 await page.route(target, async route => {
     bodyRequests++;
     await route.fulfill({status: 200, contentType: 'model/gltf-binary', body: await fs.readFile(file)});
 });
+if (hoodFitMm) {
+    // A head-specific hood fit remains a developer asset. Route the matching
+    // manifest too, so the streamed loader verifies the actual candidate hash.
+    // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#meshes
+    await page.route('**/__garment_fit__/manifest.json', async route => {
+        manifestRequests++;
+        await route.fulfill({status: 200, contentType: 'application/json', body:
+            await fs.readFile(`.cache/character-mmo/m006/graveweaver-hood-old-fit-${hoodFitMm}mm.json`)});
+    });
+    await page.route('**/__garment_fit__/graveweaverHood.glb', async route => {
+        hoodRequests++;
+        await route.fulfill({status: 200, contentType: 'model/gltf-binary', body:
+            await fs.readFile(`.cache/character-mmo/m006/graveweaver-hood-old-fit-${hoodFitMm}mm.glb`)});
+    });
+}
 const cdp = await page.context().newCDPSession(page);
 cdp.on('Page.screencastFrame', e => {
     cdp.send('Page.screencastFrameAck', {sessionId: e.sessionId}).catch(() => {});
@@ -139,6 +160,9 @@ try {
         });
         await page.evaluate(() => ASHEN.armory.close());
     }
+    if (hoodFitMm && (manifestRequests !== 1 || hoodRequests !== 1)) {
+        throw Error(`Diagnostic hood/manifest requests: ${hoodRequests}/${manifestRequests}`);
+    }
     recording = false;
     await cdp.send('Page.stopScreencast');
     await Promise.all(writes);
@@ -154,11 +178,11 @@ try {
     }
     await fs.writeFile(path.join(dir, 'frames.ffconcat'), concat);
     await fs.writeFile(path.join(dir, 'capture-manifest.json'), JSON.stringify({
-        sourceUrl: page.url(), variant, candidateTarget: target, viewport: [1280, 720], canvas,
+        sourceUrl: page.url(), variant, candidateTarget: target, hoodFitMm, viewport: [1280, 720], canvas,
         frames: ordered.map(f => ({name: f.name, timestamp: f.time, width: f.width, height: f.height})),
     }, null, 2) + '\n');
     const report = {variant, file, sourceUrl: page.url(), viewport: [1280, 720], canvas,
-        bodyRequests, frames: frames.length, encodedFrames: ordered.length,
+        bodyRequests, hoodRequests, manifestRequests, frames: frames.length, encodedFrames: ordered.length,
         outOfOrderArrivals: frames.reduce((n, f, i) => n + Number(i > 0 && f.time < frames[i - 1].time), 0),
         firstTimestamp: ordered[0].time, lastTimestamp: ordered.at(-1).time,
         frameDimensions: ['1280x720'], timeline, errors};
