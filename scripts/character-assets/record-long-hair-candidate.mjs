@@ -119,6 +119,26 @@ try {
         await page.waitForTimeout(600);
         await page.evaluate(() => ASHEN.armory.close());
     }
+    if (process.env.ASHEN_OUTFIT_REVIEW === 'graveweaver') {
+        mark('Graveweaver hood and mixed fitted outfit');
+        await page.evaluate(() => {
+            ASHEN.armory.open();
+            ASHEN.armory.setFocus({height: 1.55, radius: 2.05, beta: 1.45});
+        });
+        await page.click('#armory [data-outfit="graveweaver"]');
+        await page.waitForFunction(() => ASHEN.equipment.getState().helmet === 'graveweaverHood');
+        await page.check('#armory [data-light]');
+        await page.evaluate(async () => {
+            const camera = ASHEN.armory.camera, from = camera.alpha, t0 = performance.now();
+            for (;;) {
+                const k = Math.min(1, (performance.now() - t0) / 3000);
+                camera.alpha = from + Math.PI * 2 * k;
+                if (k >= 1) break;
+                await new Promise(requestAnimationFrame);
+            }
+        });
+        await page.evaluate(() => ASHEN.armory.close());
+    }
     recording = false;
     await cdp.send('Page.stopScreencast');
     await Promise.all(writes);
