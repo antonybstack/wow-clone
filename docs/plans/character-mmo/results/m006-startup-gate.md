@@ -51,8 +51,10 @@ the compressed server, which this session did not do.
 Raw rows: `docs/baselines/character-mmo/m006/startup-baseline-db61e63.json` and
 `startup-after-creator.json`.
 
-## Not measured
+## Settled solo FPS
 
-Settled solo FPS. The >120 FPS gate at actual 1280x720 was not re-run this session; the
-changes are confined to a developer route and the default render path is untouched, but that
-is an argument, not a measurement.
+Measured afterwards, paired against the same baseline: see
+[the paired FPS result](solo-fps-paired-2026-09-29.md). Meadow 184.4 both builds, town 204.5
+vs 203.7-205.2, cathedral 240.1 vs 239.9, with paired mean frame time within +0.14% and zero
+frames over 16.67 ms. Both clear the >144 gate, so the throughput gate is green even though
+the startup gate above is not.
