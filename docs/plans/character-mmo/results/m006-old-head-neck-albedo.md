@@ -91,9 +91,43 @@ candidate's body ends at the neck, so the coverage contract moves both head segm
    longer a tonal block, but it is geometrically straight and catches the eye. Colour alone
    will not remove it; it needs a blend band or overlapping geometry at the cut.
 2. The stubble stops in a **hard horizontal cut at the nape** instead of fading.
-3. The **13 rear-scalp UV discontinuities** are untouched (worst spread 130 sRGB).
+3. The rear-scalp UV discontinuities are untouched, and are **not a visible defect** — see
+   below. They should come off the M006 blocker list.
 4. Ear edge in the diagnostic 35 mm hood fit, weak adult-age distinction and the long-hair
    tie/colour policy are all untouched.
 
 At gameplay distance, with the collar over the join, the head reads as one piece with the
 body. That is not sufficient for M006 acceptance.
+
+
+## The rear-scalp UV seams are latent, not visible
+
+The audit reports 13 coincident-position vertices on the back centreline whose two UV islands
+sample texels up to 167 sRGB apart. Three things were checked, in order.
+
+**They are not a sampling artifact.** The audit samples at the vertex UV, which sits exactly
+on an island boundary, and the GPU never samples there — interpolated UVs stay strictly inside
+the triangle. Re-sampling each vertex nudged toward the centroid of every triangle that uses
+it, which is what actually shades, still flags all 13; several get worse (up to 167). The
+hypothesis that this was a measurement artifact was wrong.
+
+**They are not masked by the stubble.** Natural texel-to-texel variation in the scalp region
+of the head atlas, at the 3-texel separation comparable to the seam's two-sided gap, is p50 5,
+p90 20, p95 34, p99 69 sRGB. The seam spreads of 67–167 sit at or above p99.
+
+**They are larger in number than the audit suggests.** Across the whole head there are 172
+UV-split vertex groups; 50 disagree by >=40 sRGB and 21 exceed the stubble's own p99. They
+span y 1.500–1.760, not just the nape — the audit's window (|x|<0.005, z<-0.10, y>1.55)
+sees 14 of them.
+
+**And none of it renders as a seam.** The seam's position on screen could not be found by eye,
+so its texels were painted magenta and cyan and a 16-step camera sweep was run to find where
+they appear: alpha 1.5*pi, a 26 x 190 px vertical strip up the back centreline. Compared at
+that exact camera, neither the uncorrected nor the corrected build shows any line there. The
+flagged vertices are scattered and isolated rather than forming a run of adjacent vertices
+disagreeing in the same direction, so each produces a small interpolated blob a few triangles
+wide, indistinguishable from stubble, instead of an edge.
+
+This is a latent authoring defect. Fixing it means re-welding or re-painting the head's UV
+islands, which puts the M004 morph correspondence at risk for no visible gain. Recommend
+leaving it and treating the visible join (defects 1 and 2 above) as the actual M006 art gate.

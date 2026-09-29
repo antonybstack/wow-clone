@@ -28,7 +28,7 @@ const file = path.resolve(process.env.ASHEN_CANDIDATE_FILE
 if (!port || !url || !/^[a-z0-9.-]+$/.test(label)) throw Error('Owned ASHEN_CDP_PORT, ASHEN_URL and a label required');
 const views = [
     {name: 'front-quarter', alpha: Math.PI * 0.75, beta: 1.52},
-    {name: 'back', alpha: Math.PI * 1.75, beta: 1.52},
+    {name: 'back', alpha: Math.PI * 1.50, beta: 1.52},
 ];
 const dir = path.resolve(`ve-capture/character-mmo/m006/join/${label}`);
 await fs.mkdir(dir, {recursive: true});
