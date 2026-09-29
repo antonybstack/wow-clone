@@ -1,0 +1,64 @@
+{
+ "schema": 1,
+ "generatedBy": "scripts/character-assets/match-old-head-atlas.mjs",
+ "method": "per-channel affine in CIELAB fitted on texels both meshes use within the neck band, applied to the head atlas",
+ "reference": "Reinhard et al., Color Transfer between Images, IEEE CG&A 21(5) 2001",
+ "source": {
+  "path": ".cache/character-mmo/m006/human-old-bald-candidate.glb"
+ },
+ "output": {
+  "path": ".cache/character-mmo/m006/human-old-bald-atlas-matched.glb",
+  "sha256": "1ec5c3357e9935f62180ceded50899728e8b8e52f9d9763eb58b28ee4ce1016f",
+  "bytes": 6248344
+ },
+ "band": {
+  "cutY": 1.5,
+  "metres": 0.015
+ },
+ "spreadLimit": 1,
+ "lightnessMatch": 0.2,
+ "taper": {
+  "fadeMetres": 0.13,
+  "faceStrength": 1
+ },
+ "atlas": {
+  "width": 1024,
+  "height": 1024,
+  "channels": 3
+ },
+ "labStats": {
+  "bodyBand": [
+   {
+    "mean": 60.417,
+    "sd": 6.603
+   },
+   {
+    "mean": 6.156,
+    "sd": 1.704
+   },
+   {
+    "mean": 8.999,
+    "sd": 1.55
+   }
+  ],
+  "headBand": [
+   {
+    "mean": 76.857,
+    "sd": 5.026
+   },
+   {
+    "mean": 13.409,
+    "sd": 3.604
+   },
+   {
+    "mean": 25.686,
+    "sd": 3.105
+   }
+  ],
+  "gains": [
+   1,
+   1,
+   1
+  ]
+ }
+}

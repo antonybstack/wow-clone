@@ -92,8 +92,21 @@ async function main(){
  if(humanHair&&preloadedEquipment)throw Error('The Human hair candidate needs streamed equipment');
  if(humanHair&&humanShape?.weights.some(weight=>weight>0)&&humanShape.garmentFit!=='refit')
   throw Error('A shaped Human hair candidate needs garmentFit=refit');
+ // M006 old/bald head diagnostic. The candidate is the same M004 shape body cut at the
+ // y=1.5 neck with a separate head and eyes mesh, so it carries the same 65 joints, the
+ // same 57 clips and the same slender/stout targets and loads through this one route.
+ // Its head and body use two different atlases; `match-old-head-atlas.mjs` is what makes
+ // them agree at the join. Not a released asset.
+ const humanHead=params.get('humanHead');
+ if(humanHead&&humanHead!=='old-bald')throw Error(`Unknown Human head candidate ${humanHead}`);
+ if(humanHead&&humanHair)throw Error('The head and hair candidates are two different bodies');
+ if(humanHead&&preloadedEquipment)throw Error('The Human head candidate needs streamed equipment');
+ if(humanHead&&humanShape?.weights.some(weight=>weight>0)&&humanShape.garmentFit!=='refit')
+  throw Error('A shaped Human head candidate needs garmentFit=refit');
  const shapeCandidate=humanHair
   ?'/__human_hair__/human-ponytail01-tail-shape-family-candidate.glb'
+  :humanHead
+  ?'/__human_head__/human-old-bald-atlas-matched.glb'
   :humanShape?.assetURL||null;
  const fastCharacter=fastStart&&!shapeCandidate;
  const bodyUrl=shapeCandidate||(preloadedEquipment?'/ashen-reach/wanderer-equipment.glb':'/ashen-reach/equipment/body.glb');
@@ -272,8 +285,17 @@ async function main(){
  // thing to reconcile -- createStreamedEquipment names any region it cannot bind.
  const UNDEAD_PACK_DIR='equipment-undead';
  const packs={
-  human:{race:'human',manifestUrl:humanShape?.garmentManifestURL||(fastCharacter?'/ashen-reach/startup/character/manifest.json':'/ashen-reach/equipment/manifest.json'),baseMeshes:humanHair?['HumanV1Body','HumanPonytail01']:['HumanV1Body'],
+  human:{race:'human',manifestUrl:humanShape?.garmentManifestURL||(fastCharacter?'/ashen-reach/startup/character/manifest.json':'/ashen-reach/equipment/manifest.json'),
+   baseMeshes:humanHair?['HumanV1Body','HumanPonytail01']
+    :humanHead?['HumanV1Body','OldBaldHeadV2Diagnostic','OldBaldEyesDiagnostic']:['HumanV1Body'],
    ...(humanHair?{bodySegments:{...RACE_BODY_SEGMENTS.human,HumanPonytail01:['head.scalp']}}:{}),
+   // The candidate's body ends at the neck, so it no longer carries either head segment;
+   // the head and eyes do. Same split the Undead body already uses.
+   ...(humanHead?{bodySegments:{
+    HumanV1Body:RACE_BODY_SEGMENTS.human.HumanV1Body.filter(s=>!s.startsWith('head.')),
+    OldBaldHeadV2Diagnostic:['head.face','head.scalp'],
+    OldBaldEyesDiagnostic:['head.face'],
+   }}:{}),
    fitId:HUMAN_EQUIPMENT_FIT,...(fastCharacter?{manifest:await starterCharacterP,loadBuffer:startupAssetBuffer}:{})},
   orc:{race:'orc',manifestUrl:'/ashen-reach/equipment-orc/manifest.json',baseMeshes:ORC_BASE_VISIBLE_MESHES,fitId:ORC_EQUIPMENT_FIT,bodyUrl:ORC_BODY_URL},
   undead:{race:'undead',manifestUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/manifest.json`,baseMeshes:UNDEAD_BASE_VISIBLE_MESHES,fitId:UNDEAD_EQUIPMENT_FIT,bodyUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/body.glb`},

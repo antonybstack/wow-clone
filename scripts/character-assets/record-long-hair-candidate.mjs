@@ -140,6 +140,36 @@ try {
         await page.waitForTimeout(600);
         await page.evaluate(() => ASHEN.armory.close());
     }
+    if (process.env.ASHEN_OLD_NECK_REVIEW === '1') {
+        // The head and the body are two atlases meeting at the y=1.5 cut, so the join is
+        // the thing under review and it is roughly 40 mm of screen at play distance. This
+        // pass strips the collar, lights the subject and orbits close enough that a
+        // mismatch in skin tone is visible rather than inferred.
+        mark('bare neck, close orbit on the head/body join');
+        await page.evaluate(() => {
+            ASHEN.armory.open();
+            ASHEN.armory.setFocus({height: 1.52, radius: 1.05, beta: 1.52});
+        });
+        for (const slot of ['torso', 'legs', 'boots', 'mainHand']) {
+            await page.selectOption(`#armory [data-equipment="${slot}"]`, '');
+            await page.waitForFunction(slot => ASHEN.equipment.getState()[slot] === null, slot);
+        }
+        await page.check('#armory [data-light]');
+        await page.evaluate(async () => {
+            const camera = ASHEN.armory.camera, from = camera.alpha, t0 = performance.now();
+            for (;;) {
+                const k = Math.min(1, (performance.now() - t0) / 6000);
+                camera.alpha = from + Math.PI * 2 * k;
+                if (k >= 1) break;
+                await new Promise(requestAnimationFrame);
+            }
+        });
+        mark('Wayfarer restored, collar over the join');
+        await page.click('#armory [data-outfit="wayfarer"]');
+        await page.waitForFunction(() => ASHEN.equipment.getState().torso === 'wayfarerTunic');
+        await page.waitForTimeout(900);
+        await page.evaluate(() => ASHEN.armory.close());
+    }
     if (process.env.ASHEN_OUTFIT_REVIEW === 'graveweaver') {
         mark('Graveweaver hood and mixed fitted outfit');
         await page.evaluate(() => {

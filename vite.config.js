@@ -43,6 +43,18 @@ function humanHairAsset(req,res,next) {
   } catch {res.statusCode=404;res.end('Run node scripts/character-assets/assemble-long-hair-candidate.mjs ponytail01-tail shape-family');}
 }
 
+function humanHeadAsset(req,res,next) {
+  const name=/^\/__human_head__\/(human-old-bald-[A-Za-z0-9._-]+\.glb)$/.exec(req.url?.split('?')[0]||'')?.[1];
+  if(!name) return next();
+  const file=`.cache/character-mmo/m006/${name}`;
+  try {
+    const info=statSync(file);
+    res.setHeader('Content-Type','model/gltf-binary');
+    res.setHeader('Content-Length',String(info.size));
+    createReadStream(file).pipe(res);
+  } catch {res.statusCode=404;res.end('Run node scripts/character-assets/match-old-head-atlas.mjs');}
+}
+
 function starterBrotliHeaders(req,res,next) {
   if (/^\/ashen-reach\/startup\/starter\/near-[a-f0-9]{12}\.br(?:\?|$)/.test(req.url||'')) {
     res.setHeader('Content-Encoding','br');res.setHeader('Content-Type','application/octet-stream');
@@ -121,6 +133,13 @@ export default defineConfig({
       name: 'dev-only-human-hair-assets',
       configureServer(server) { server.middlewares.use(humanHairAsset); },
       configurePreviewServer(server) { server.middlewares.use(humanHairAsset); },
+    },
+    {
+      // M006 old/bald head diagnostic on the same shape body. Same rule as the
+      // ponytail above: .cache/ only, never in the Pages public asset set.
+      name: 'dev-only-human-head-assets',
+      configureServer(server) { server.middlewares.use(humanHeadAsset); },
+      configurePreviewServer(server) { server.middlewares.use(humanHeadAsset); },
     },
     {
       name: "starter-brotli-http",
