@@ -61,3 +61,15 @@ test('missing active file fails while preserving prior valid report rows',async(
   assert.equal(report.packs.orc.items.wayfarerBoots.status,'invalid');
   assert.match(report.errors.join(),/orc\/wayfarerBoots: missing fixture/);
 });
+test('missing body is reported without hiding the other pack results',async()=>{
+  const read=async (file,...args)=>file.endsWith('/equipment/body.glb')
+    ? Promise.reject(Object.assign(new Error('missing body fixture'),{code:'ENOENT'}))
+    : fs.readFile(file,...args);
+  const report=await audit(undefined,read);
+  assert.equal(report.packs.human.items.body.status,'invalid');
+  assert.match(report.errors.join(),/human\/body: missing body fixture/);
+  assert.equal(report.packs.human.items.graveweaverSkirt.compatibility.status,'unsupported');
+  assert.equal(report.packs.orc.items.body.status,'valid');
+  assert.equal(report.packs.undead.items.body.status,'valid');
+  assert.equal(report.packs.startupHuman.items.body.status,'valid');
+});

@@ -31,7 +31,14 @@ export function validateWeights(weights, indices, jointCount, tolerance = 1e-3) 
   return problems.slice(0, 12);
 }
 export function compareRig(body, item) {
-  if (!body || !item) return {status:'unsupported', reasons:['skin absent']};
+  // A corrupt or missing body is reported as an invalid asset by audit(). Its
+  // garment rows still need a compatibility result without pretending that a
+  // manifest entry alone supplied a glTF skin for comparison.
+  // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#skins
+  if (!Array.isArray(body?.joints) || !Array.isArray(body?.meshFrames)
+      || !Array.isArray(item?.joints) || !Array.isArray(item?.meshFrames)) {
+    return {status:'unsupported', reasons:['skin absent or body asset invalid']};
+  }
   const reasons = [];
   const bodyByName = new Map(body.joints.map((j, i) => [j.name, {joint:j, index:i}]));
   if (bodyByName.size !== body.joints.length || item.joints.length !== body.joints.length) reasons.push('joint count/uniqueness differs');
