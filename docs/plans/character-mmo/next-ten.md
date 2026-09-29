@@ -72,6 +72,8 @@ Persist a versioned local recipe with undo/reset, visible loading/errors and rac
 
 Exit: independently mixed pieces stay coherent through all accepted body settings and reviewed gameplay motion; failed requests and rapid swaps preserve the last committed appearance. This is a bounded representative proof, not acceptance of 30 sets or every theoretical combination.
 
+The [extreme-motion fit result](results/m007-extreme-motion-fit.md) closes the body-extreme half of that exit with a measurement: posed skinning validated to 1.19e-7 m at the bind pose and against M005's accepted rest numbers, 600 sampled configurations, worst case 24 of 3,274 vertices, confirmed clean at 2x in the live game (Telegram **812**). Four artifacts had to be removed from the raw count first, including that the refitted garments carry no animation of their own and that coverage along the 60 mm normal is not visibility.
+
 ## M008 — Race extensibility proof
 
 **Dependency:** M007. Create explicit family/capability adapters for current Undead and a minimal licensed Elf candidate; retain current Orc. Missing Elf source is an explicit asset dependency, not permission to advertise an unsupported race. The Elf has an authored approved silhouette and ears rather than merely relabelling Human. Verify whether Human/Elf can share selected garment assets by actual topology/frame/bind/fit evidence. Refit both proof outfits where needed and expose only verified race controls; Human aging/hair controls need not apply to skull Undead.
