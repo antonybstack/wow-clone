@@ -103,11 +103,22 @@ async function main(){
  if(humanHead&&preloadedEquipment)throw Error('The Human head candidate needs streamed equipment');
  if(humanHead&&humanShape?.weights.some(weight=>weight>0)&&humanShape.garmentFit!=='refit')
   throw Error('A shaped Human head candidate needs garmentFit=refit');
+ // M006 creator. It drives the M004 morph targets live, so the candidate body has to be
+ // loaded even at weight 0 -- the default route loads the shipped body, which has no targets
+ // and cannot be reshaped afterwards. Refitted garments come with it so M005's fit follows.
+ // Lazily imported below; nothing about the creator is in the startup graph.
+ const creatorWanted=params.has('creator');
+ if(creatorWanted&&preloadedEquipment)throw Error('The creator needs streamed equipment');
+ if(creatorWanted&&(humanHair||humanHead))throw Error('The creator and the head/hair candidates are different bodies');
+ // One dynamic import for the whole creator route; the module is pure data and stays out of
+ // the default startup graph, as the M004 route already keeps it.
+ const shapeModule=creatorWanted?await import('../character/runtime/human-shape.js'):null;
  const shapeCandidate=humanHair
   ?'/__human_hair__/human-ponytail01-tail-shape-family-candidate.glb'
   :humanHead
   ?'/__human_head__/human-old-bald-atlas-matched.glb'
-  :humanShape?.assetURL||null;
+  :humanShape?.assetURL
+  ||(creatorWanted?shapeModule.HUMAN_SHAPE_ASSET:null);
  const fastCharacter=fastStart&&!shapeCandidate;
  const bodyUrl=shapeCandidate||(preloadedEquipment?'/ashen-reach/wanderer-equipment.glb':'/ashen-reach/equipment/body.glb');
  const bodyBufP=fastCharacter?starterCharacterP.then(m=>startupAssetBuffer(m.items.body)):fetchBuffer(bodyUrl,'high');
@@ -163,6 +174,7 @@ async function main(){
  let combat=null;
  let equipment=null;
  let armory=null;
+ let creator=null;
  let tools={tick(){}};
  let dressed=false;
  let readyForPlay=false;
@@ -194,8 +206,11 @@ async function main(){
   */
  // Set once a shape is applied, so equipment loaded later can be given the same weights.
  let applyMorphWeights=null,reshapeEquipment=null;
+ // The creator drives these live from weight 0, so the writers have to exist before a
+ // target is driven; the one-shot M004 route only needed them once a weight was non-zero.
+ let writeShapeWeights=null,basePivotHeight=null;
  const applyHumanShape=async request=>{
-  if(request.weights.some(w=>w>0)){
+  if(request.weights.some(w=>w>0)||request.installWriters){
    const {setMorphTargetWeights}=await import('@babylonjs/lite');
    // Every mesh under a root that declares morph targets takes the same weights: the body
    // and, under ?garmentFit=refit, each garment piece. Their targets are built from one
@@ -220,6 +235,7 @@ async function main(){
    // re-importing the package raw would build a second registry. Expose the bound writer
    // instead, so a weight sweep measures the same call the game itself makes.
    ashen.setShapeWeights=writeWeights;
+   writeShapeWeights=writeWeights;
   }
   if(request.heightScale!==1){
    const s=request.heightScale,root=body.root;
@@ -228,6 +244,27 @@ async function main(){
   }
   ashen.humanShape={...request,applied:true};
  };
+ /**
+  * Absolute live shape, for the creator's sliders.
+  *
+  * `applyHumanShape` is a one-shot: it multiplies the camera pivot by the height scale,
+  * which is correct once and compounds if it is called again. This sets every value from
+  * the neutral baseline instead, so dragging a slider back and forth lands exactly where it
+  * started. The capsule follows through `player.setHeightScale`, which owns the clamp and
+  * reshapes the Havok controller, so collision never disagrees with what is drawn.
+  */
+ const setHumanShapeLive=({weights,heightScale})=>{
+  if(!writeShapeWeights)throw Error('The live shape writers are not installed; load with ?creator=1');
+  writeShapeWeights(weights);
+  reshapeEquipment=()=>writeShapeWeights(weights);
+  const root=body.root;
+  if(root?.scaling){root.scaling.x=Math.sign(root.scaling.x||-1)*heightScale;root.scaling.y=heightScale;root.scaling.z=heightScale;}
+  if(basePivotHeight===null)basePivotHeight=rig.pivotHeight;
+  rig.pivotHeight=basePivotHeight*heightScale;
+  player.setHeightScale(heightScale);
+  ashen.humanShape={weights,heightScale,applied:true,live:true};
+ };
+
  const menu=createGameMenu({onArmory:()=>armory?.open(),onDev:on=>tools.setEnabled?.(on)});
  document.addEventListener('keydown',e=>{if(armory?.isOpen||menu.isOpen)return;if(e.code==='KeyV'){setView(view==='reference'?'play':'reference');}if(e.code==='KeyR'){if(combat?.releaseSpirit?.())return;reset();}if(e.code==='KeyH')document.body.classList.toggle('clean');if(['KeyW','KeyA','KeyS','KeyD','Space','Tab','Digit1','Digit2','Digit3','KeyF'].includes(e.code))setView('play');});
  if(params.has('clean'))document.body.classList.add('clean');
@@ -245,6 +282,7 @@ async function main(){
   async whenNextGpuFrame(){const frame=ashen.gpu.frames;while(ashen.gpu.frames<=frame)await new Promise(requestAnimationFrame);await waitForGpuIdle(engine);},
   startup:{marks:startupMarks,timings:startupTimings,span:startupSpanMs},humanShape:null,dev,menu,get player(){return player;},get body(){return body;},get combat(){return combat;},get equipment(){return equipment;},get armory(){return armory;},get sockets(){return sockets;}};
  ashen.gpu=gpu;
+ ashen.setHumanShapeLive=setHumanShapeLive;
  onBeforeRender(scene,()=>{gpu.frames++;});
  globalThis.ASHEN=ashen;
  const sourceBody=resolvePlayableBody('?character=human-source');
@@ -270,6 +308,9 @@ async function main(){
  const starterBodyContainer=body.container;
  markStartup('body-end');
  if(humanShape)await applyHumanShape(humanShape);
+ // Install the live writers at weight 0, so the creator's sliders have something to drive
+ // from the neutral character rather than needing a shape to already be applied.
+ else if(creatorWanted)await applyHumanShape({weights:shapeModule.HUMAN_SHAPE_TARGETS.map(()=>0),heightScale:1,installWriters:true});
  // Sockets need the player capsule and the body's skeleton and nothing else, so they do not
  // have to wait for combat. Hoisting them out of the spell VFX is what lets the starter
  // garments and the starter weapon be worn before any combat module has been fetched.
@@ -285,7 +326,9 @@ async function main(){
  // thing to reconcile -- createStreamedEquipment names any region it cannot bind.
  const UNDEAD_PACK_DIR='equipment-undead';
  const packs={
-  human:{race:'human',manifestUrl:humanShape?.garmentManifestURL||(fastCharacter?'/ashen-reach/startup/character/manifest.json':'/ashen-reach/equipment/manifest.json'),
+  // The creator reshapes the body live, so its garments must be the refitted pack; the
+  // shipped pack has no targets and would stay at the neutral shape under every slider.
+  human:{race:'human',manifestUrl:humanShape?.garmentManifestURL||(creatorWanted?shapeModule.HUMAN_GARMENT_FIT_MANIFEST:null)||(fastCharacter?'/ashen-reach/startup/character/manifest.json':'/ashen-reach/equipment/manifest.json'),
    baseMeshes:humanHair?['HumanV1Body','HumanPonytail01']
     :humanHead?['HumanV1Body','OldBaldHeadV2Diagnostic','OldBaldEyesDiagnostic']:['HumanV1Body'],
    ...(humanHair?{bodySegments:{...RACE_BODY_SEGMENTS.human,HumanPonytail01:['head.scalp']}}:{}),
@@ -509,6 +552,19 @@ async function main(){
   combat.bindEquipment(() => equipment.getState());
   combat.setVisible(view==='play');
   armory=createArmory({scene,canvas,player,body,combat,equipment,getView:()=>view,setView});
+  // M006 creator, imported only when asked for. It reuses the armory's camera and stage,
+  // and drives the body through the same absolute setter a probe would call.
+  if(creatorWanted){
+   const {createCreator}=await import('./creator.js');
+   const {creatorStateToShape}=await import('../character/creator/contract.js');
+   creator=createCreator({
+    race:'human',
+    armory,
+    applyShape:state=>{const {weights,heightScale}=creatorStateToShape(state);setHumanShapeLive({weights,heightScale});},
+   });
+   ashen.creator=creator;
+   creator.open();
+  }
   tools=attachDevTools({params,canvas,camera,player,combat,setView});
   // Spell billboard systems arrive after the first visible scene registration. This
   // re-registers the scene while the player is moving; it measured 2-9 ms.

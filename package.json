@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "deploy": "bash scripts/deploy-pages.sh",
     "ve": "bash scripts/ve-upload.sh",
-    "test:character": "node --test scripts/test-character-fixture.mjs scripts/test-rig-contract.mjs scripts/test-body-validation.mjs scripts/test-retarget-contract.mjs scripts/test-body-profile-meta.mjs scripts/test-playable-body.mjs scripts/test-starter-outfit.mjs scripts/test-loadout-controller.mjs scripts/test-human-shape-contract.mjs",
+    "test:character": "node --test scripts/test-character-fixture.mjs scripts/test-rig-contract.mjs scripts/test-body-validation.mjs scripts/test-retarget-contract.mjs scripts/test-body-profile-meta.mjs scripts/test-playable-body.mjs scripts/test-starter-outfit.mjs scripts/test-loadout-controller.mjs scripts/test-human-shape-contract.mjs scripts/test-creator-contract.mjs",
     "validate:character-body": "node scripts/validate-character-body.mjs",
     "prepare:equipment": "node scripts/ashen-reach/split-equipment.mjs",
     "test:equipment": "node --test scripts/test-equipment-contract.mjs scripts/test-equipment-loader.mjs scripts/test-streamed-assets.mjs scripts/test-orc-streamed-assets.mjs scripts/test-ashen-equipment.mjs scripts/test-undead-race.mjs scripts/test-garment-shape-contract.mjs scripts/test-coverage-contract.mjs",
