@@ -4,7 +4,7 @@ import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {NodeIO} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
-import {ORC_BASE_VISIBLE_MESHES} from '../src/ashen-reach/equipment-catalog.js';
+import {ORC_BASE_VISIBLE_MESHES, ORC_BODY_URL} from '../src/ashen-reach/equipment-catalog.js';
 import {ORC_EQUIPMENT_FIT} from '../src/ashen-reach/equipment-contract.js';
 
 const io = new NodeIO().registerExtensions(ALL_EXTENSIONS);
@@ -24,8 +24,9 @@ test('Orc sculpt pack streams eight catalogue garments on the actor bind', async
     assert.equal(manifest.profileId, 'orc-sculpt-v1');
     assert.equal(manifest.garments, true);
     assert.deepEqual(manifest.items.body.meshes, [...ORC_BASE_VISIBLE_MESHES]);
+    assert.equal(manifest.items.body.url, ORC_BODY_URL);
     for (const [id, asset] of Object.entries(manifest.items)) {
-        const bytes = await fs.readFile(`public${asset.url}`);
+        const bytes = await fs.readFile(`public${new URL(asset.url, 'https://play.sparkify.dev').pathname}`);
         assert.equal(bytes.length, asset.bytes);
         assert.equal(createHash('sha256').update(bytes).digest('hex'), asset.sha256);
         const doc = await io.readBinary(bytes);
@@ -48,6 +49,13 @@ test('Orc sculpt pack streams eight catalogue garments on the actor bind', async
         }
         if (id === 'body') {
             assert.equal(doc.getRoot().listAnimations().length, 57);
+            const triangles = Object.fromEntries(doc.getRoot().listNodes()
+                .filter(n => n.getMesh()).map(n => [n.getName(), n.getMesh().listPrimitives()
+                    .reduce((sum, p) => sum + p.getIndices().getCount() / 3, 0)]));
+            assert.equal(triangles.BodyExposed, 9568);
+            assert.equal(triangles.BodyUnderTunic, 10727);
+            assert.equal(triangles.BodyHands, 2349);
+            assert.equal(triangles.BodyExposed + triangles.BodyUnderTunic + triangles.BodyHands, 22644);
         } else {
             assert.equal(doc.getRoot().listAnimations().length, 0);
             assert.deepEqual(asset.fit, ORC_EQUIPMENT_FIT);

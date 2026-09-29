@@ -15,6 +15,7 @@ import {BODY_REGIONS, EQUIPMENT_ITEMS, ORC_BASE_VISIBLE_MESHES} from '../../src/
 import {ORC_EQUIPMENT_FIT} from '../../src/ashen-reach/equipment-contract.js';
 import {removeWhiteOrcColors} from '../character-assets/remove-white-orc-colors.mjs';
 import {addOrcGloveCuff} from './add-orc-glove-cuff.mjs';
+import {correctOrcWristCoverage} from './orc-wrist-coverage.mjs';
 
 const SRC = 'public/characters/candidates/orc-source-v1.glb';
 // An ignored output directory lets fit revisions be reviewed in the live game
@@ -149,6 +150,7 @@ if (!reuseActiveBody) {
         if (!BODY_REGIONS.includes(name)) throw Error('coverage.json names an unknown geoset ' + name);
     }
     coverage = partitionOrcBody(bodyDoc, cover);
+    coverage.wrist = correctOrcWristCoverage(bodyDoc);
     await bodyDoc.transform(unpartition(), prune({keepLeaves: true}));
     removeWhiteOrcColors(bodyDoc);
 } else {
@@ -182,7 +184,10 @@ const manifest = {
     garments: true,
     items: {
         body: {
-            url: '/ashen-reach/equipment-orc/body.glb',
+            // Browser/CDN caches must not pair an older body with the new
+            // partition manifest after a release. The runtime race URL has
+            // the same version and is checked by test-orc-streamed-assets.
+            url: `/ashen-reach/equipment-orc/body.glb?v=${bodyHash.slice(0, 12)}`,
             bytes: packed.byteLength,
             sha256: bodyHash,
             meshes: [...ORC_BASE_VISIBLE_MESHES],
@@ -268,7 +273,7 @@ await fs.writeFile(`${DIR}/provenance.json`, JSON.stringify({
     pipeline: 'orc sculpt-pipeline pack',
     source: sourcePath,
     fitted: FITTED,
-    note: 'Playable Orc is the print-sculpt retopo on the 65-joint source bind. Garments use the current body-registration fit. The Graveweaver glove gains a skinned wrist bracer within its existing primitive to bridge the sleeve seam. Surface derived from Male Orc for Print by Crayon (CC-BY 4.0). Garments remain CC0 MakeHuman suits02/gloves01.',
+    note: 'Playable Orc is the print-sculpt retopo on the 65-joint source bind. Garments use the current body-registration fit. Wrist forearm triangles are reassigned among existing coverage geosets so sleeves and gloves hide the correct skin. The Graveweaver glove gains a skinned wrist bracer within its existing primitive to bridge the sleeve seam. Surface derived from Male Orc for Print by Crayon (CC-BY 4.0). Garments remain CC0 MakeHuman suits02/gloves01.',
     hashes: {[sourcePath]: sha(bytes), [BODY]: bodyHash},
     garments: garmentReport,
 }, null, 2) + '\n');

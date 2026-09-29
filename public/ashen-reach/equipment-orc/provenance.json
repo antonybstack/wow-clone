@@ -2,10 +2,10 @@
   "pipeline": "orc sculpt-pipeline pack",
   "source": "public/characters/candidates/orc-source-v1.glb",
   "fitted": ".cache/armory-assets/orc-sculpt",
-  "note": "Playable Orc is the print-sculpt retopo on the 65-joint source bind. Catalogue garments are registered to the Orc body on the shared rig. The Graveweaver glove has a 192-triangle skinned wrist bracer in its existing primitive, derived from the committed 228812-byte glove by scripts/ashen-reach/add-orc-glove-cuff.mjs. Surface derived from Male Orc for Print by Crayon (CC-BY 4.0). Garments remain CC0 MakeHuman suits02/gloves01.",
+  "note": "Playable Orc is the print-sculpt retopo on the 65-joint source bind. Catalogue garments are registered to the Orc body on the shared rig. The Graveweaver glove has a 192-triangle skinned wrist bracer in its existing primitive, derived from the committed 228812-byte glove by scripts/ashen-reach/add-orc-glove-cuff.mjs. Surface derived from Male Orc for Print by Crayon (CC-BY 4.0). Garments remain CC0 MakeHuman suits02/gloves01. Orc wrist forearm coverage is reassigned between existing body geosets so gloves and sleeves hide the correct triangles.",
   "hashes": {
     "public/characters/candidates/orc-source-v1.glb": "cf631fd423fecc0487c497255b89189e1298f55abc355b1ebdea43680e2f91d1",
-    "public/ashen-reach/equipment-orc/body.glb": "25a24f13965a7e8c691f50aa210dcd2d6598c48aa82121b77efaa0637444c001"
+    "public/ashen-reach/equipment-orc/body.glb": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b"
   },
   "garments": [
     {
@@ -79,5 +79,16 @@
       "addedTriangles": 192,
       "extraDrawSubmissions": 0
     }
+  },
+  "bodyCoveragePostprocess": {
+    "script": "scripts/ashen-reach/orc-wrist-coverage.mjs",
+    "sourceSha256": "25a24f13965a7e8c691f50aa210dcd2d6598c48aa82121b77efaa0637444c001",
+    "outputSha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b",
+    "movedTriangles": {
+      "BodyHands": 426,
+      "BodyUnderTunic": 540
+    },
+    "extraTriangles": 0,
+    "extraDrawSubmissions": 0
   }
 }

@@ -36,6 +36,8 @@ if (!PASSES.length || requestedPasses?.some(id => !ALL_PASSES.some(pass => pass.
 const captureQuery = process.env.ASHEN_CAPTURE_QUERY ?? '';
 const skirtTrimMm = process.env.ASHEN_SKIRT_TRIM_MM ?? '';
 if (skirtTrimMm && skirtTrimMm !== '800') throw Error('Unsupported diagnostic skirt trim');
+const orcBodyDir = process.env.ASHEN_ORC_BODY_DIR ?? '';
+if (orcBodyDir && requestedRace !== 'orc') throw Error('Orc body candidate requires ASHEN_RACE=orc');
 
 await fs.mkdir(path.join(dir, 'frames'), {recursive: true});
 const browser = await chromium.connectOverCDP(`http://127.0.0.1:${port}`);
@@ -47,6 +49,21 @@ const errors = [], frames = [], writes = [], timeline = [];
 page.on('pageerror', e => errors.push(String(e.message ?? e)));
 page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
 let skirtRequests = 0, manifestRequests = 0;
+let orcBodyRequests = 0, orcManifestRequests = 0;
+if (orcBodyDir) {
+    // Route the candidate and its matching manifest together. The runtime's
+    // normal byte/hash validation must pass before any visual comparison.
+    await page.route('**/equipment-orc/manifest.json', async route => {
+        orcManifestRequests++;
+        await route.fulfill({status: 200, contentType: 'application/json', body:
+            await fs.readFile(path.join(orcBodyDir, 'manifest.json'))});
+    });
+    await page.route('**/equipment-orc/body.glb*', async route => {
+        orcBodyRequests++;
+        await route.fulfill({status: 200, contentType: 'model/gltf-binary', body:
+            await fs.readFile(path.join(orcBodyDir, 'body.glb'))});
+    });
+}
 if (skirtTrimMm) {
     // Route both the asset and manifest so the normal streamed loader checks
     // the candidate's bytes/hash before showing the trimmed undertrousers.
@@ -138,6 +155,9 @@ try {
     if (skirtTrimMm && (skirtRequests !== 1 || manifestRequests !== 1)) {
         throw Error(`Diagnostic skirt/manifest requests: ${skirtRequests}/${manifestRequests}`);
     }
+    if (orcBodyDir && (orcBodyRequests !== 1 || orcManifestRequests !== 1)) {
+        throw Error(`Orc body/manifest requests: ${orcBodyRequests}/${orcManifestRequests}`);
+    }
 
     recording = false;
     await cdp.send('Page.stopScreencast');
@@ -162,13 +182,14 @@ try {
     }
     await fs.writeFile(path.join(dir, 'frames.ffconcat'), concat);
     await fs.writeFile(path.join(dir, 'capture-manifest.json'), JSON.stringify({
-        sourceUrl: page.url(), race: requestedRace, captureQuery, skirtTrimMm,
+        sourceUrl: page.url(), race: requestedRace, captureQuery, skirtTrimMm, orcBodyDir,
         viewport: [1280, 720], canvas,
         frames: ordered.map(f => ({name: f.name, timestamp: f.time, width: f.width, height: f.height})),
     }, null, 2) + '\n');
     await fs.writeFile(path.join(dir, 'recording.json'), `${JSON.stringify({
-        sourceUrl: base, race: requestedRace, passes: PASSES, captureQuery, skirtTrimMm,
-        skirtRequests, manifestRequests, viewport: [1280, 720], canvas, rapidSwap: swapped,
+        sourceUrl: base, race: requestedRace, passes: PASSES, captureQuery, skirtTrimMm, orcBodyDir,
+        skirtRequests, manifestRequests, orcBodyRequests, orcManifestRequests,
+        viewport: [1280, 720], canvas, rapidSwap: swapped,
         frames: frames.length, encodedFrames: ordered.length,
         outOfOrderArrivals: outOfOrder, discardedDuplicateTimestamps: frames.length - ordered.length,
         frameDimensions: [...new Set(frames.map(f => `${f.width}x${f.height}`))],

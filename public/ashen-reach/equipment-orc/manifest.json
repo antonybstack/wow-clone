@@ -1,14 +1,14 @@
 {
   "schema": 1,
   "fitId": "ashen-orc",
-  "sourceSha256": "25a24f13965a7e8c691f50aa210dcd2d6598c48aa82121b77efaa0637444c001",
+  "sourceSha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b",
   "profileId": "orc-sculpt-v1",
   "garments": true,
   "items": {
     "body": {
-      "url": "/ashen-reach/equipment-orc/body.glb",
+      "url": "/ashen-reach/equipment-orc/body.glb?v=b055e29393ca",
       "bytes": 8519660,
-      "sha256": "25a24f13965a7e8c691f50aa210dcd2d6598c48aa82121b77efaa0637444c001",
+      "sha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b",
       "meshes": [
         "BodyExposed",
         "BodyUnderTunic",

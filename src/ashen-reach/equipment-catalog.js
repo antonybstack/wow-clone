@@ -14,6 +14,8 @@ export const BODY_REGIONS=['BodyExposed','BodyUnderTunic','BodyUnderBoots','Body
 export const BASE_VISIBLE_MESHES=[...BODY_REGIONS,'HumanHair','HumanEyes'];
 /** Sculpt-pipeline Orc: Human coverage names plus print extras. */
 export const ORC_BASE_VISIBLE_MESHES=[...BODY_REGIONS,'OrcV1Hair','OrcV1Brows','OrcV1Eyes','OrcV1Shorts'];
+/** Versioned with the active Orc body GLB; the manifest test keeps these in sync. */
+export const ORC_BODY_URL='/ashen-reach/equipment-orc/body.glb?v=b055e29393ca';
 /**
  * Undead: the six coverage regions and nothing else. The approved concept is a skull face,
  * so there is no hair geoset to carry -- the Human `HumanHair` mask has no Undead counterpart

@@ -1,5 +1,6 @@
 import {createArcRotateCamera, createPointLight, addToScene} from '@babylonjs/lite';
 import {setInputEnabled} from '../input.js';
+import {ORC_BODY_URL} from './equipment-catalog.js';
 import './armory.css';
 
 /** In-scene developer inspection. The renderer, actor and animation manager are shared. */
@@ -95,7 +96,7 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
             // the streamed Human body or swap the Orc one in; its old `else` restored the
             // Human body for anything else, which would have shown a Human under an Undead
             // label. Any race it cannot actually honour is refused by name.
-            else if(want==='orc'){equipment.setVisible(false);await body.swapSource('/ashen-reach/equipment-orc/body.glb');}
+            else if(want==='orc'){equipment.setVisible(false);await body.swapSource(ORC_BODY_URL);}
             else if(want==='human'){body.restoreSource();equipment.setVisible(true);}
             else throw Error(`${want} needs an equipment module with race switching`);
             race=want;
