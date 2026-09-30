@@ -1,0 +1,275 @@
+{
+  "owner": "root",
+  "slot": 8,
+  "browserPid": 41806,
+  "cdpPort": 10137,
+  "vitePort": 5973,
+  "sourceHead": "434a9a6",
+  "purpose": "milestone 1 baseline, functional, motion and paired FPS checks; only one game page at a time",
+  "initialOtherGameBrowsers": [],
+  "baseline": {
+    "ready": true,
+    "render": [
+      1280,
+      720
+    ],
+    "race": "human",
+    "state": {
+      "helmet": null,
+      "torso": "wayfarerTunic",
+      "legs": "wayfarerTrousers",
+      "boots": "wayfarerBoots",
+      "gloves": null,
+      "mainHand": "ironSword",
+      "offHand": null
+    },
+    "creator": {
+      "schemaVersion": 1,
+      "race": "human",
+      "controls": {
+        "height": 1,
+        "build": {
+          "slender": 0,
+          "stout": 0
+        }
+      }
+    }
+  },
+  "candidatePreview": {
+    "owner": "root",
+    "pid": 69567,
+    "port": 7274,
+    "purpose": "final built release checks",
+    "closed": true
+  },
+  "baselinePreview": {
+    "owner": "root",
+    "pid": 85096,
+    "port": 7174,
+    "purpose": "paired HEAD434a9a6 comparison",
+    "closed": true
+  },
+  "production": {
+    "owner": "root",
+    "browserPid": 41806,
+    "cdpPort": 10137,
+    "url": "https://play.sparkify.dev",
+    "purpose": "sequential production traversal, appearance failure/reload, mobile and WebKit checks",
+    "closed": true
+  },
+  "ve": {
+    "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/production-customization-2026-09-30.mp4",
+    "browserPid": 41806,
+    "purpose": "video metadata/playback/seek/fullscreen",
+    "closed": true
+  },
+  "finalAuditAt": "2026-09-30T22:16:10.941518+00:00",
+  "closed": true,
+  "browserClosed": true,
+  "viteClosed": true,
+  "vitePids": [
+    41757,
+    41781
+  ],
+  "ownedListeningPortsAtFinalAudit": [],
+  "ownedHarnessStateRemoved": true,
+  "coldProbeOwnership": [
+    {
+      "report": "cold-baseline.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "34214",
+      "url": "http://127.0.0.1:7174/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-default-accepted.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "52828",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-default-final.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "69265",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-default-frozen.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "7394",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-default-release.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "39510",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-default.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "37268",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-largest-accepted.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "54300",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-largest-compact.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "66448",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-largest-frozen.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "8886",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-largest-release.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "41015",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-largest.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "41687",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-neutral-accepted.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "57135",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-neutral-release.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "43908",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-pages-default.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "71786",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-pages-largest.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "73200",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-pages-neutral.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "76086",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-pages-stout.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "74604",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-production-native-default-continuation.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "26750",
+      "url": "https://play.sparkify.dev/ashen-reach.html?play=&clean=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-production-native-default.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "18876",
+      "url": "https://play.sparkify.dev/ashen-reach.html?play=&clean=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-production-native-largest-continuation.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "27816",
+      "url": "https://play.sparkify.dev/ashen-reach.html?play=&clean=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-production-native-largest.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "19288",
+      "url": "https://play.sparkify.dev/ashen-reach.html?play=&clean=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-saved-neutral-frozen.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "11691",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-saved-neutral-release.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "99659",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-stout-accepted.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "55733",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-stout-compact.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "67839",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-stout-frozen.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "10326",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-stout-release.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "42488",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    },
+    {
+      "report": "cold-stout.json.ownership.json",
+      "owner": "probe-playable-startup",
+      "browserPid": "39663",
+      "url": "http://127.0.0.1:7274/?play=&pixelRatio=1",
+      "active": false
+    }
+  ],
+  "finalAuditNotes": "Owned Chrome, harness Vite, baseline/candidate previews and transient cold/WebKit contexts are closed. No browser renderer, Vite or startup-preview process was found in the final process inventory. Unrelated Playwright MCP servers and the Chrome crashpad helper were left intact."
+}

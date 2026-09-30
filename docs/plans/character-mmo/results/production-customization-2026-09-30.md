@@ -1,6 +1,6 @@
 # Milestone 1 — production body customization
 
-Implementation and release verification in progress, 2026-09-30. This result belongs to milestone 1 of the [reprioritized next ten](../next-ten.md); it does not close the older M006 art milestone or establish crowd capacity.
+Bounded customization released and verified, 2026-09-30. Reliable one-second public startup remains an explicit performance follow-up. This result belongs to milestone 1 of the [reprioritized next ten](../next-ten.md); it does not close the older M006 art milestone or establish crowd capacity.
 
 ## Delivered scope
 
@@ -77,7 +77,24 @@ Reviewed live motion is [VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/c
 
 VE returned `video/mp4`, matching content length and a correct 206 byte range. Chromium played and sought the public clip in fullscreen at 1280×720 with advancing time and no video errors. Telegram returned matching 1280×720 dimensions and duration. Telegram client inline/fullscreen presentation was not independently inspected in this environment; earlier user confirmation applies to the separate cathedral clip, not this new attachment.
 
-Final production/device verification and deployment identifiers are added below before release acceptance.
+Production game source **`59c08daac18c07c3fc2b56bc28f871f71374b37f`**, Cloudflare Pages **`378af1f5-609a-416e-ad3d-5636dbf13c2b`**, [play.sparkify.dev](https://play.sparkify.dev). Rollback is **`72fd1e3d-7d8d-4108-8f0f-d8eb9a42cbfe`** (`76e3c41`). The rollback identity was re-read immediately before release; rollback was not needed. Deployment uses the existing Pages workflow; 251 executable/critical resources match the resulting build, including the shape family, woodland data, images and Havok binary.
+
+Production passed spawn movement and cathedral entry/return at all four build/height endpoint pairs, with Havok active and no recovery increment. Tests place fixtures before each route, then use normal keyboard movement; successful traversal uses no flying or recovery teleports. All 33 appearance checks passed again on the deployed URL, including negative download controls and saved race outfits. Chromium native touch and interrupted-input checks passed with the deliberately injected depth-only bundle failure recovering through the native empty-fragment fallback. Desktop WebKit 26.6 passed body-slider touch, composited-pixel and movement checks. Both use 430×734 CSS/DPR 3, existing 322×550 internal rendering. These are functional checks, not phone FPS measurements; narrow portrait Armory framing retains its existing partially obscured stage.
+
+## Public startup qualification and next priority
+
+An additional **unthrottled public-URL** experiment was extended from five to twenty fresh processes per identity after its initial outliers appeared. The initial rows were retained; fifteen continuation rows were appended, without replacements:
+
+| Public native profile | p95 ms | Maximum ms | <=1 second |
+| --- | ---: | ---: | ---: |
+| Default | 1,012.4 | 8,291.1 | 18/20 |
+| Largest saved outfit | 1,030.9 | 1,455.2 | 16/20 |
+
+These public results **miss the reliable one-second target**, despite the prescribed local 50 Mbit/s/40 ms Pages-build gate passing. They must not be presented as universal one-second acceptance. In default run 1, the supported frame was submitted at about 735 ms, but first GPU completion arrived at about 8,287 ms; the largest first run similarly spent about 722 ms between submission and completion. The probe reported no long tasks or GPU validation errors. M001 recorded a similar 9,149 ms first-GPU-completion outlier; that establishes prior occurrence, not a proven common cause. Production input observation also has background-loading tails: maximum response upper bound 1,898 ms in the default outlier and 236 ms for the largest cohort. Settled throughput and first appearance promotion are separate measurements above.
+
+**Next performance work:** isolate first-frame GPU completion versus shader/pipeline readiness and browser/driver state, compare a fresh paired baseline on the same public transport, and recover public startup margin while preserving the saved silhouette and completed-GPU/input boundary. Do not weaken that boundary, drop the first run, or enable the previously rejected shader/shadow trials without a new measured path. Crowd correctness remains milestone 2 after this priority is addressed. The released subset is functional; the public load-time limitation remains open.
+
+Owned Chrome/CDP 10137 (PID 41806), harness Vite 5973 and compressed previews 7174/7274 were tracked throughout. Cold-browser and WebKit processes/contexts were closed after each run. Final teardown is recorded in the ownership report; no worker started an additional renderer.
 
 Independent Grok 4.6/high design and implementation reviews were completed. Valid feedback addressed post-commit disposal, borrowed palette ordering, native container access, separate editor draft/undo, provenance validation and coherent saved-outfit startup. Workers started no game renderer. The subsequent local-light regression was attributed through per-task live draw instrumentation and corrected directly.
 

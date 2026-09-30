@@ -1,0 +1,18 @@
+[
+  {
+    "profile": "default",
+    "runs": 20,
+    "p95Ms": 1012.4000000953674,
+    "maxMs": 8291.099999904633,
+    "underOneSecond": 18,
+    "inputMaxMs": 1898
+  },
+  {
+    "profile": "largest",
+    "runs": 20,
+    "p95Ms": 1030.8999998569489,
+    "maxMs": 1455.2000000476837,
+    "underOneSecond": 16,
+    "inputMaxMs": 236.40000009536743
+  }
+]
