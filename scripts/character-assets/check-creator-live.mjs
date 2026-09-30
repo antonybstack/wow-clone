@@ -202,6 +202,113 @@ try {
         report.touch = {viewport: [390, 844], sliderBox: box, before, after};
     } finally { await touch.close(); }
 
+    // --- saved/restored VISUAL equivalence ---------------------------------------------------
+    // The milestone's exit is "saved/restored visual equivalence ... not merely working
+    // sliders". Matching state is not the same claim as matching pixels: the weights could
+    // be restored and never reach the body, or reach it after the frame that was compared.
+    // Compared in the armory with the animation paused and the camera pinned, so the only
+    // thing that can differ between the two runs is the character.
+    const poseForCompare = async () => {
+        // The armory camera targets the player's feet, so where the character happens to be
+        // standing frames the shot. Two runs settle on the terrain a little differently, and
+        // that alone moved 13% of pixels and looked like a restore failure. Reset to the
+        // known spawn and facing first, so the only thing left that can differ is the body.
+        // Wait for all background loading, or one posing sees streamed foliage the other
+        // does not: an earlier version of this comparison had a same-run floor of 64%,
+        // which is not a noise floor, it is the scenery still arriving.
+        await page.evaluate(() => globalThis.ASHEN?.whenHostiles).catch(() => {});
+        await page.waitForFunction(() => globalThis.ASHEN?.ready === true, null, {timeout: 120000});
+        // Close the armory before resetting. `reset()` switches to the reference camera, and
+        // `armory.open()` returns early when it is already open, so calling this twice in one
+        // run left the reference camera active with the armory panel showing and the
+        // character out of frame entirely -- which is what a 68% "noise floor" actually was.
+        await page.evaluate(() => { ASHEN.creator.close(); ASHEN.armory.close(); });
+        await page.evaluate(() => ASHEN.reset());
+        await page.waitForTimeout(600);
+        await page.evaluate(() => {
+            ASHEN.armory.open();
+            // Close enough that the character fills most of the frame. At a wide framing the
+            // churchyard grass dominates the pixel count and swamps the thing under test.
+            ASHEN.armory.setFocus({height: 1.15, radius: 1.15, beta: 1.5});
+            ASHEN.armory.camera.alpha = Math.PI * 0.75;
+            ASHEN.body?.inspection?.setPaused(true);
+            ASHEN.body?.inspection?.seek(0.4);
+        });
+        await page.check('#armory [data-light]');
+        await settle();
+        await page.evaluate(() => ASHEN.whenNextGpuFrame());
+    };
+    await boot('&creator=1');
+    await page.waitForSelector('.creator-panel:not([hidden])', {timeout: 20000});
+    await page.evaluate(() => { ASHEN.creator.clear(); });
+    await setSlider(0, 1.08);
+    await setSlider(2, 0.7);
+    const savedState = await page.evaluate(() => { ASHEN.creator.close(); return ASHEN.creator.state; });
+    await poseForCompare();
+    const beforeShot = await shot('equivalence-before');
+    // Same-run control. The churchyard grass is not reproduced pixel for pixel between two
+    // posings even within one session, so a raw frame difference is dominated by foliage: a
+    // first attempt read 15.4% and looked like a restore failure, while the difference mask
+    // showed the character's silhouette standing out as *unchanged* against moving grass.
+    // Measuring the same state twice gives the floor that a cross-reload comparison has to
+    // be read against.
+    await poseForCompare();
+    const controlShot = await shot('equivalence-control');
+    const sameRunDrift = await differs(beforeShot, controlShot);
+
+    await boot('&creator=1');
+    await page.waitForSelector('.creator-panel:not([hidden])', {timeout: 20000});
+    const restoredState = await page.evaluate(() => ASHEN.creator.state);
+    assert.deepEqual(restoredState, savedState, 'restored state must equal what was saved');
+    await poseForCompare();
+    const afterShot = await shot('equivalence-after');
+    const drift = await differs(beforeShot, afterShot);
+    // The claim is that reloading changes the picture no more than re-posing the same
+    // character already does. A restore that lost the shape would move the silhouette, which
+    // is far more than the foliage floor.
+    assert.ok(drift <= Math.max(sameRunDrift * 1.35, 0.02),
+        `restored character must look the same: cross-reload ${(drift * 100).toFixed(2)}% vs same-run floor ${(sameRunDrift * 100).toFixed(2)}%`);
+    report.visualEquivalence = {
+        state: restoredState,
+        crossReloadPercent: Number((drift * 100).toFixed(3)),
+        sameRunFloorPercent: Number((sameRunDrift * 100).toFixed(3)),
+        note: 'player reset to spawn and animation paused; the floor is foliage, which is not reproduced between posings even within one run',
+    };
+
+    // Everything after this point deliberately breaks the page, so the clean-run error list
+    // is frozen here; the injected failure's own console output is expected, not a defect.
+    const errorsBeforeInjection = [...errors];
+
+    // --- a failed asset load is reported, not silently swallowed -------------------------------
+    // "visible loading/errors" is part of the milestone. A creator that cannot fetch its body
+    // must say so; failing quietly into the default character would be the worst outcome,
+    // because it looks like the saved character was lost.
+    await page.route('**/__human_shape__/*.glb', route => route.fulfill({status: 500, body: 'forced failure'}));
+    try {
+        await page.goto(`${origin}/ashen-reach.html?play&clean&legacyStart=1&noEnemies=1&pixelRatio=1&creator=1`);
+        await page.waitForFunction(() => {
+            const overlay = document.getElementById('error');
+            const loading = document.getElementById('loading-error');
+            return (overlay && overlay.style.display === 'block' && overlay.textContent.trim())
+                || (loading && !loading.hidden);
+        }, null, {timeout: 60000});
+        const shown = await page.evaluate(() => {
+            const overlay = document.getElementById('error');
+            const loading = document.getElementById('loading-error');
+            return {
+                overlay: overlay?.style.display === 'block' ? overlay.textContent.trim().slice(0, 200) : null,
+                loadingDetails: loading && !loading.hidden ? loading.querySelector('pre')?.textContent?.trim().slice(0, 200) : null,
+                playable: Boolean(globalThis.ASHEN?.playableReady),
+            };
+        });
+        assert.ok(shown.overlay || shown.loadingDetails, 'a failed body fetch must surface an error');
+        assert.equal(shown.playable, false, 'a failed body fetch must not report the game playable');
+        report.loadFailure = shown;
+        await shot('load-failure');
+    } finally {
+        await page.unroute('**/__human_shape__/*.glb');
+    }
+
     // --- the default cold start is untouched -------------------------------------------------
     await boot('');
     const cold = await page.evaluate(() => ({
@@ -215,8 +322,10 @@ try {
     assert.equal(cold.panel, 'absent');
     report.coldStart = cold;
 
-    report.errors = errors;
-    assert.deepEqual(errors, [], `page errors: ${errors.join(' | ')}`);
+    report.errors = errorsBeforeInjection;
+    report.expectedErrorsFromInjectedFailure = errors.length - errorsBeforeInjection.length;
+    assert.deepEqual(errorsBeforeInjection, [],
+        `page errors before the deliberate failure: ${errorsBeforeInjection.join(' | ')}`);
     await fs.writeFile(path.join(out, 'creator-live.json'), JSON.stringify(report, null, 2) + '\n');
     console.log(JSON.stringify(report, null, 2));
 } finally {

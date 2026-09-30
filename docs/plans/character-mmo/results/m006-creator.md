@@ -4,7 +4,8 @@ Status: **implemented, measured and visually reviewed.** M006 as a whole is stil
 creator is done, the source-art gate is not. See
 [the neck albedo result](m006-old-head-neck-albedo.md).
 
-Reviewed clip: Telegram 811 (1280x720, 17.37 s, verified).
+Reviewed clips: Telegram 811 (the surface) and **815** (saved/restored visual equivalence).
+Both 1280x720, verified.
 
 ## The rule the surface enforces
 
@@ -47,6 +48,8 @@ Orc and Undead have no verified body family, so every control reports unavailabl
 | touch input | 33.6 px slider at 390x844; a drag moved height 1.00 → 1.15 |
 | default cold start unchanged | no creator, no panel, `ASHEN.humanShape` null |
 | page errors | none |
+| **saved/restored visual equivalence** | cross-reload **13.1%** of pixels against a same-run floor of **14.0%**; two different characters differ by 42% |
+| **visible loading/errors** | a forced 500 on the body asset surfaces an error and reports the game not playable |
 
 Shape is proved by pixels as well as by state, because a weight vector in `ASHEN.humanShape`
 only says the game was *told* to reshape. Morph deltas compose before skinning, so bounding
@@ -96,3 +99,42 @@ uses.
 - The appearance recipe (M002 schema 1) still advertises an empty `shape` object. The
   creator persists its own versioned record instead; folding shape into the recipe needs the
   migration fixtures that contract asks for, and is not part of this surface.
+
+
+## Closing the last two exit criteria
+
+M006's exit is "saved/restored **visual** equivalence and input/device usability, **not merely
+working sliders**", plus "visible loading/errors". State equality and applied weights were
+already proved; pixels and error surfacing were not, so both were added to the live check.
+
+**Visual equivalence** compares a character before saving against the same character after a
+full page reload, in the armory with the animation paused and the player reset to spawn. The
+claim is not "the frames are identical" — the churchyard is not deterministic — but that
+reloading changes the picture no more than re-posing the same character already does:
+
+| comparison | pixels differing |
+|---|---|
+| same character, re-posed in one run (the floor) | 14.0% |
+| saved then restored across a reload | **13.1%** |
+| two *different* characters | 42.0% |
+
+The floor took three corrections before it meant anything, each found by looking at the
+frames rather than trusting the number:
+
+1. The armory camera targets the player's feet, so where the character settled on the terrain
+   framed the shot. Two runs settle differently, which alone moved 13% of pixels and read as
+   a restore failure. Fixed by resetting to spawn first.
+2. Foliage was still streaming during the first posing and not the second. Fixed by waiting
+   for `ASHEN.ready`.
+3. `ASHEN.reset()` switches to the reference camera, and `armory.open()` returns early when
+   the armory is already open — so the second posing left the reference camera active with
+   the panel showing and **no character in frame**. That was the 68% "noise floor": an empty
+   frame. Fixed by closing the armory before resetting.
+
+A difference mask was what exposed the first of these: the differing pixels were grass, with
+the character's silhouette standing out as *unchanged* black against it.
+
+**Loading and errors**: the body asset is forced to 500 and the check asserts that an error
+reaches the DOM and that `ASHEN.playableReady` stays false. Falling back quietly to the
+default character would be the worst outcome, because it looks exactly like the saved
+character was lost.

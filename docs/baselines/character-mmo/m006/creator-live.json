@@ -1,0 +1,161 @@
+{
+  "views": {
+    "a-wayfarer": {
+      "helmet": null,
+      "torso": "wayfarerTunic",
+      "legs": "wayfarerTrousers",
+      "boots": "wayfarerBoots",
+      "gloves": null,
+      "mainHand": "ironSword",
+      "offHand": null
+    },
+    "a-graveweaver": {
+      "helmet": "graveweaverHood",
+      "torso": "graveweaverTop",
+      "legs": "graveweaverSkirt",
+      "boots": "wayfarerBoots",
+      "gloves": "graveweaverGloves",
+      "mainHand": "graveweaverStaff",
+      "offHand": "graveweaverBook"
+    },
+    "b-wayfarer": {
+      "helmet": null,
+      "torso": "wayfarerTunic",
+      "legs": "wayfarerTrousers",
+      "boots": "wayfarerBoots",
+      "gloves": null,
+      "mainHand": "ironSword",
+      "offHand": null
+    },
+    "b-graveweaver": {
+      "helmet": "graveweaverHood",
+      "torso": "graveweaverTop",
+      "legs": "graveweaverSkirt",
+      "boots": "wayfarerBoots",
+      "gloves": "graveweaverGloves",
+      "mainHand": "graveweaverStaff",
+      "offHand": "graveweaverBook"
+    }
+  },
+  "errors": [],
+  "surface": {
+    "sliders": [
+      "Height",
+      "Build: slender",
+      "Build: stout"
+    ],
+    "choices": [],
+    "pending": [
+      {
+        "label": "Adult age",
+        "reason": "Adult age is not distinct enough on the candidate head to offer yet."
+      },
+      {
+        "label": "Skin tone",
+        "reason": "Skin tone has no accepted dye channel yet."
+      },
+      {
+        "label": "Hair",
+        "reason": "The long-hair candidate is fused to the scalp and has no accepted tie or colour policy."
+      },
+      {
+        "label": "Hair colour",
+        "reason": "Hair colour needs both an accepted hair mesh and a dye channel."
+      }
+    ],
+    "restored": true
+  },
+  "restored": {
+    "restored": true,
+    "discarded": null,
+    "state": {
+      "schemaVersion": 1,
+      "race": "human",
+      "controls": {
+        "height": 0.93,
+        "build": {
+          "slender": 0.85,
+          "stout": 0
+        }
+      }
+    },
+    "shape": {
+      "weights": [
+        0.85,
+        0
+      ],
+      "heightScale": 0.93,
+      "applied": true,
+      "live": true
+    }
+  },
+  "characters": {
+    "a": {
+      "shape": {
+        "weights": [
+          0.85,
+          0
+        ],
+        "heightScale": 0.93,
+        "applied": true,
+        "live": true
+      },
+      "capsule": 1.62564
+    },
+    "b": {
+      "shape": {
+        "weights": [
+          0,
+          0.95
+        ],
+        "heightScale": 1.15,
+        "applied": true,
+        "live": true
+      },
+      "capsule": 2.0101999999999998
+    },
+    "pixelsDifferent": 42
+  },
+  "touch": {
+    "viewport": [
+      390,
+      844
+    ],
+    "sliderBox": {
+      "x": 175,
+      "y": 137.78125,
+      "width": 205,
+      "height": 33.59375
+    },
+    "before": 1,
+    "after": 1.15
+  },
+  "visualEquivalence": {
+    "state": {
+      "schemaVersion": 1,
+      "race": "human",
+      "controls": {
+        "height": 1.08,
+        "build": {
+          "slender": 0,
+          "stout": 0.7
+        }
+      }
+    },
+    "crossReloadPercent": 13.133,
+    "sameRunFloorPercent": 14.01,
+    "note": "player reset to spawn and animation paused; the floor is foliage, which is not reproduced between posings even within one run"
+  },
+  "loadFailure": {
+    "overlay": null,
+    "loadingDetails": "Error: fetch /__human_shape__/human-shape-family-v1.glb 500\n    at http://127.0.0.1:5873/src/ashen-reach/main.js:54:25",
+    "playable": false
+  },
+  "coldStart": {
+    "humanShape": null,
+    "creator": null,
+    "panel": "absent",
+    "playableMs": 4001
+  },
+  "expectedErrorsFromInjectedFailure": 2
+}

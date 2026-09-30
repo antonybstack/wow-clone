@@ -85,6 +85,19 @@ try {
     await page.evaluate(() => ASHEN.creator.undo());
     await settle();
     await page.waitForTimeout(800);
+    if (process.env.ASHEN_CREATOR_RESTORE === '1') {
+        mark('saved, then the page is reloaded');
+        await page.evaluate(() => ASHEN.creator.close());   // close() persists
+        await page.waitForTimeout(700);
+        await page.reload();
+        await page.waitForFunction(() => globalThis.ASHEN?.whenPlayable, null, {timeout: 90000});
+        await page.evaluate(() => ASHEN.whenRest);
+        await page.waitForSelector('.creator-panel:not([hidden])', {timeout: 20000});
+        await page.evaluate(() => { ASHEN.dev.god = true; });
+        await settle();
+        mark('restored: same sliders, same body, no re-entry needed');
+        await page.waitForTimeout(1800);
+    }
     mark('into the churchyard: walk, run, jump');
     await page.evaluate(() => ASHEN.creator.close());
     await page.waitForTimeout(600);
