@@ -9,6 +9,7 @@ import {createObjective} from './objective.js';
 import {createStarterWorld,preloadStarterWorld} from './starter-world.js';
 import {createStreamedEquipment} from './equipment-stream.js';
 import {preloadStarterCharacter,preloadHumanShapePack,startupAssetBuffer,upgradeStarterCharacter} from './startup-assets.js';
+import {loadStartupAppearance,usesHumanShapeStarter,DEFAULT_BOOT_GEAR} from './startup-appearance.js';
 import {showBackgroundLoading} from './background-loading.js';
 import {height} from './geometry.js';
 import {SKY_HORIZON,SUN_DIR,SUN_COLOR,SKY_AMBIENT,GROUND_BOUNCE} from './atmosphere.js';
@@ -75,16 +76,11 @@ async function main(){
  const fastStart=!preloadedEquipment&&!params.has('legacyStart')&&(params.has('fastStart')||import.meta.env.VITE_FAST_START==='1');
  // Read a saved identity only when a record exists. An unsaved neutral boot imports no
  // editor/storage graph and never requests morph assets before its playable boundary.
- let appearanceAPI=null,appearanceLoaded=null;
- const diagnosticShape=['humanShape','humanHeight','humanHair','humanHead','plate','creator','garmentFit'].some(k=>params.has(k));
- let hasSavedAppearance=false;
- try{hasSavedAppearance=Boolean(localStorage.getItem('ashen.appearance.v2')||localStorage.getItem('ashen.appearance.v1')||localStorage.getItem('ashen.creator.v1'));}catch{}
- if(hasSavedAppearance&&!diagnosticShape&&!preloadedEquipment){
-  appearanceAPI=await import('../character/appearance/store.js');appearanceLoaded=appearanceAPI.loadAppearance();
- }
+ const startupAppearance=await loadStartupAppearance(params);
+ let appearanceAPI=startupAppearance?.api??null,appearanceLoaded=startupAppearance?.loaded??null;
  const bootAppearance=appearanceLoaded?.restored?appearanceLoaded.appearance:null;
- const defaultBootGear={helmet:null,torso:'wayfarerTunic',legs:'wayfarerTrousers',boots:'wayfarerBoots',gloves:null,mainHand:'ironSword',offHand:null};
- const productionShapeStart=bootAppearance?.race==='human' && (bootAppearance.shape.build!==0 || bootAppearance.shape.height!==1 || Object.entries(defaultBootGear).some(([k,v])=>bootAppearance.equipment[k]!==v));
+ const defaultBootGear=DEFAULT_BOOT_GEAR;
+ const productionShapeStart=usesHumanShapeStarter(bootAppearance);
  const starterWorldP=fastStart?preloadStarterWorld():null;
  const starterCharacterP=productionShapeStart?preloadHumanShapePack(bootAppearance.equipment,{compact:true}):(fastStart?preloadStarterCharacter():null);
  starterWorldP?.catch(()=>{});starterCharacterP?.catch(()=>{});

@@ -1,0 +1,13 @@
+# Startup margin/GPU investigation — 2026-09-30
+
+[Result and release](../../../plans/character-mmo/results/startup-gpu-2026-09-30.md). Raw rows are preserved; do not discard first-use stalls.
+
+- `public-*-baseline/candidate.json`: sequential A/B/B/A, twenty fresh native/unthrottled Chrome processes per source/identity. Different immutable Pages hosts and uncontrolled CDN/driver caches limit attribution. Candidate was an uncommitted preview; final production is measured separately.
+- `cold-final-*.json`: final exact native Pages build, twenty fresh Chrome processes for each of default/largest/stout/neutral, 50 Mbit/s / 40 ms, 1280×720. GPU instrumentation, tracing and forced shader-cache policy are disabled.
+- `fps-*.json`: M1 Max, uncapped Chromium WebGPU, 1280×720, seven enemies, three 12-second windows per route. Each raw row retains full-window and tail samples; use full-window results for throughput. Measurements run sequentially without recording.
+- `prefetch-functional.json`: eight native request-sharing, migration, held-Lite and stale-manifest checks. `functional-final.json`: existing 33-case customization suite. `traversal-final.json`: spawn movement and four height/build endpoints through the cathedral and back. Mobile/WebKit reports are desktop engine checks, not physical iPhone acceptance.
+- `public-diagnostic-default.json`, `paired-baseline-largest.json`: retained multi-second first-use GPU-completion outliers. Diagnostic API timing is not GPU timestamp timing; world-stage elapsed time also includes network/decode/upload.
+- `dawn-trace-summary.json`: SHA and longest relevant spans from a diagnostic without a multi-second hole. Full traces are ignored in `.cache/startup-gpu-2026-09-30/`; reproduce with `ASHEN_PROBE_GPU_EVENTS=1 ASHEN_PROBE_CHROME_TRACE=1 ASHEN_PROBE_DISABLE_SHADER_CACHE=1 ASHEN_PROBE_RUNS=1 ASHEN_TEST_URL=<build URL> node scripts/ashen-reach/probe-playable-startup.mjs <report.json>`. Cache disabling affects Chromium disk policy, not OS/Metal caches. Do not mix diagnostic rows into normal gates.
+- `review.md`, `code-review.md`, `review-resolution.md`: independent read-only Grok 4.6/high reviews and parent disposition. Worker prose is not acceptance.
+- Motion/VE/Telegram/capture summaries retain metadata and live input/physics results. Full timestamped frames, manifest and encoded MP4 are under `ve-capture/character-mmo/startup-gpu-2026-09-30`; public MP4 is linked in the result. Recording changes startup performance.
+- Release/resource/rollback and final ownership reports account for the shipped build and all owned processes. Unrelated AGENTS.md edits and hook cache are preserved.

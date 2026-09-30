@@ -8,6 +8,8 @@ const dir=process.env.ASHEN_CAPTURE_DIR||'ve-capture/ashen-reach/startup-2026-09
 const url=process.env.ASHEN_TEST_URL||'http://127.0.0.1:7074/?play&clean&pixelRatio=1';
 await fs.mkdir(`${dir}/frames`,{recursive:true});
 const browser=await chromium.connectOverCDP(CDP_URL),context=await browser.newContext({viewport:{width:1280,height:720},deviceScaleFactor:1}),page=await context.newPage(),cdp=await context.newCDPSession(page),errors=[],writes=[];
+const savedAppearance=process.env.ASHEN_PROBE_APPEARANCE?JSON.parse(await fs.readFile(process.env.ASHEN_PROBE_APPEARANCE,'utf8')):null;
+if(savedAppearance)await context.addInitScript(recipe=>localStorage.setItem('ashen.appearance.v2',JSON.stringify(recipe)),savedAppearance);
 let manifest,error;
 page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
 cdp.on('Page.screencastFrame',frame=>{

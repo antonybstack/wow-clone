@@ -1,0 +1,148 @@
+{
+  "file": ".cache/startup-gpu-2026-09-30/local-dawn-cache-disabled-1.trace.json",
+  "sha256": "454f41df559e74eb9b05faeb47250452ce0af7fcaf07bc8c70b624a3f1a8a77a",
+  "events": 54168,
+  "note": "Warm diagnostic with Chrome shader-disk cache disabled; no OS/driver-cache control and no multi-second first-use hole. Not an acceptance benchmark.",
+  "largestDawnRelatedSpans": [
+    {
+      "name": "WebGPU",
+      "category": "gpu",
+      "durationMs": 72.508,
+      "pid": 12374,
+      "tid": 80310606
+    },
+    {
+      "name": "WebGPU",
+      "category": "gpu",
+      "durationMs": 26.501,
+      "pid": 12374,
+      "tid": 80310606
+    },
+    {
+      "name": "WebGPU",
+      "category": "gpu",
+      "durationMs": 22.121,
+      "pid": 12374,
+      "tid": 80310606
+    },
+    {
+      "name": "DawnCommands",
+      "category": "disabled-by-default-gpu.dawn",
+      "durationMs": 17.286,
+      "pid": 12374,
+      "tid": 80310606
+    },
+    {
+      "name": "WebGPUDecoderImpl::HandleDawnCommands",
+      "category": "disabled-by-default-gpu.dawn",
+      "durationMs": 17.286,
+      "pid": 12374,
+      "tid": 80310606
+    },
+    {
+      "name": "DawnCommands",
+      "category": "disabled-by-default-gpu.dawn",
+      "durationMs": 14.208,
+      "pid": 12374,
+      "tid": 80310606
+    },
+    {
+      "name": "WebGPUDecoderImpl::HandleDawnCommands",
+      "category": "disabled-by-default-gpu.dawn",
+      "durationMs": 14.208,
+      "pid": 12374,
+      "tid": 80310606
+    },
+    {
+      "name": "DawnCommands",
+      "category": "disabled-by-default-gpu.dawn",
+      "durationMs": 13.862,
+      "pid": 12374,
+      "tid": 80310606
+    },
+    {
+      "name": "WebGPUDecoderImpl::HandleDawnCommands",
+      "category": "disabled-by-default-gpu.dawn",
+      "durationMs": 13.861,
+      "pid": 12374,
+      "tid": 80310606
+    },
+    {
+      "name": "DawnCommands",
+      "category": "disabled-by-default-gpu.dawn",
+      "durationMs": 13.433,
+      "pid": 12374,
+      "tid": 80310606
+    },
+    {
+      "name": "WebGPUDecoderImpl::HandleDawnCommands",
+      "category": "disabled-by-default-gpu.dawn",
+      "durationMs": 13.432,
+      "pid": 12374,
+      "tid": 80310606
+    },
+    {
+      "name": "DawnCommands",
+      "category": "disabled-by-default-gpu.dawn",
+      "durationMs": 13.267,
+      "pid": 12374,
+      "tid": 80310606
+    },
+    {
+      "name": "WebGPUDecoderImpl::HandleDawnCommands",
+      "category": "disabled-by-default-gpu.dawn",
+      "durationMs": 13.267,
+      "pid": 12374,
+      "tid": 80310606
+    },
+    {
+      "name": "DawnCommands",
+      "category": "disabled-by-default-gpu.dawn",
+      "durationMs": 13.058,
+      "pid": 12374,
+      "tid": 80310606
+    },
+    {
+      "name": "WebGPUDecoderImpl::HandleDawnCommands",
+      "category": "disabled-by-default-gpu.dawn",
+      "durationMs": 13.058,
+      "pid": 12374,
+      "tid": 80310606
+    },
+    {
+      "name": "DawnCommands",
+      "category": "disabled-by-default-gpu.dawn",
+      "durationMs": 12.95,
+      "pid": 12374,
+      "tid": 80310606
+    },
+    {
+      "name": "WebGPUDecoderImpl::HandleDawnCommands",
+      "category": "disabled-by-default-gpu.dawn",
+      "durationMs": 12.949,
+      "pid": 12374,
+      "tid": 80310606
+    },
+    {
+      "name": "WebGPU",
+      "category": "gpu",
+      "durationMs": 10.663,
+      "pid": 12374,
+      "tid": 80310606
+    },
+    {
+      "name": "DawnCommands",
+      "category": "disabled-by-default-gpu.dawn",
+      "durationMs": 10.328,
+      "pid": 12374,
+      "tid": 80310606
+    },
+    {
+      "name": "WebGPUDecoderImpl::HandleDawnCommands",
+      "category": "disabled-by-default-gpu.dawn",
+      "durationMs": 10.328,
+      "pid": 12374,
+      "tid": 80310606
+    }
+  ]
+}

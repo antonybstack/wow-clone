@@ -5,66 +5,8 @@ import {
   rebuildMaterial,
   acquireTexture, releaseTexture,
 } from "@babylonjs/lite";
-const pending = new Map();
-/** Cache promises, not just completed HTTP responses, so prefetch and equipment
- * installation share one request and one decompression.
- * https://developer.mozilla.org/en-US/docs/Web/API/DecompressionStream
- */
-export function startupAssetBuffer(asset) {
-  if (!pending.has(asset.url)) {
-    const task = fetch(asset.url, { priority: "high" })
-      .then(async (response) => {
-        if (!response.ok) throw Error(`${asset.url}: HTTP ${response.status}`);
-        const bytes =
-          asset.compression === "gzip"
-            ? await new Response(
-                response.body.pipeThrough(new DecompressionStream("gzip")),
-              ).arrayBuffer()
-            : await response.arrayBuffer();
-        if (bytes.byteLength !== asset.bytes)
-          throw Error(`Unexpected size for ${asset.url}`);
-        return bytes;
-      })
-      .catch((error) => {
-        pending.delete(asset.url);
-        throw error;
-      });
-    pending.set(asset.url, task);
-  }
-  return pending.get(asset.url);
-}
-export async function preloadStarterCharacter() {
-  const response = await fetch("/ashen-reach/startup/character/manifest.json");
-  if (!response.ok)
-    throw Error(`Starter character manifest: HTTP ${response.status}`);
-  const manifest = await response.json();
-  const expected=import.meta.env.VITE_STARTER_CHARACTER_SOURCE;
-  if(expected&&manifest.provenance?.sha256!==expected)throw Error('The character has been updated. Reload to use the matching starting assets.');
-  for (const id of [
-    "body",
-    "wayfarerTunic",
-    "wayfarerTrousers",
-    "wayfarerBoots",
-  ])
-    startupAssetBuffer(manifest.items[id]).catch(() => {});
-  return manifest;
-}
-/** Only saved customized characters fetch this family before play. Neutral boots retain
- * the existing starter; opening the Armory loads the family transactionally later.
- */
-export async function preloadHumanShapePack(loadout = {}, {compact = false} = {}) {
-  const response = await fetch('/ashen-reach/human-shape-v1/manifest.json');
-  if (!response.ok) throw Error(`Human body family: HTTP ${response.status}`);
-  const manifest = await response.json();
-  const expected=import.meta.env.VITE_HUMAN_SHAPE_SOURCE;
-  if(expected&&manifest.provenance?.sha256!==expected)throw Error('The character family has been updated. Reload to use matching assets.');
-  if (manifest.shapeFamily !== 'ashen-human-shape-v1' || manifest.targetNames?.join('|') !== 'slender|stout')
-    throw Error('The Human body family has an incompatible deformation layout.');
-  const selected=compact?{...manifest,items:manifest.compactItems,fullManifest:manifest}:manifest;
-  for (const id of new Set(['body', ...Object.values(loadout).filter(id => manifest.items[id])]))
-    startupAssetBuffer(selected.items[id]).catch(() => {});
-  return selected;
-}
+import {clearStartupBuffers} from './startup-fetch.js';
+export {preloadStarterCharacter,preloadHumanShapePack,startupAssetBuffer} from './startup-fetch.js';
 export async function upgradeStarterCharacter(engine, scene, container, manifest, shouldAbort = () => false) {
   let disposed = false;
   onSceneDispose(scene, () => {
@@ -98,6 +40,6 @@ export async function upgradeStarterCharacter(engine, scene, container, manifest
       }
     } finally {releaseTexture(texture);}
   }
-  pending.clear();
+  clearStartupBuffers();
   return true;
 }

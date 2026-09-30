@@ -1,0 +1,2968 @@
+{
+  "conditions": {
+    "gpuProbe": false,
+    "traceGpu": false,
+    "profile": "50mbps",
+    "savedAppearance": {
+      "schemaVersion": 2,
+      "catalogVersion": "appearance-catalog-v2",
+      "race": "human",
+      "fitFamily": "ashen-human",
+      "fit": {
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "shape": {
+        "family": "ashen-human-shape-v1",
+        "height": 0.9,
+        "build": -0.95
+      },
+      "components": {},
+      "dyes": {},
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "pilgrimTunic",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook"
+      }
+    },
+    "network": {
+      "latency": 40,
+      "downloadThroughput": 6250000,
+      "uploadThroughput": 1250000
+    },
+    "cpu": "Apple M1 Max",
+    "viewport": [
+      1280,
+      720
+    ],
+    "cache": "Fresh browser process/profile each run; OS and GPU-driver caches uncontrolled",
+    "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+  },
+  "rows": [
+    {
+      "origin": 1790807659330.3,
+      "shape": {
+        "weights": [
+          0.95,
+          0
+        ],
+        "heightScale": 0.9,
+        "installWriters": true,
+        "assetURL": null,
+        "garmentManifestURL": null,
+        "applied": true
+      },
+      "heightScale": 0.9,
+      "race": "human",
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "pilgrimTunic",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook"
+      },
+      "marks": {
+        "begin": 173.60000014305115,
+        "havok-runtime-available": 330.2000000476837,
+        "engine-created": 353.60000014305115,
+        "gpu-probe-end": 360.90000009536743,
+        "world-start": 362.90000009536743,
+        "world-end": 615,
+        "havok-start": 731,
+        "havok-runtime-start": 731.9000000953674,
+        "havok-runtime-end": 731.9000000953674,
+        "havok-world-end": 733.7999999523163,
+        "havok-colliders-end": 741.1000001430511,
+        "havok-controller-end": 742.4000000953674,
+        "havok-end": 743.2999999523163,
+        "body-start": 743.6000001430511,
+        "body-end": 760.6000001430511,
+        "equipment-start": 762.7999999523163,
+        "equipment-end": 778.7000000476837,
+        "register-start": 783.9000000953674,
+        "register-end": 807.2000000476837,
+        "first-render-return": 817.5,
+        "supported-frame-submitted": 839.6000001430511,
+        "first-gpu-completed": 8141.900000095367,
+        "supported-frame-completed": 8147.200000047684,
+        "playable": 8149.5,
+        "bg-start": 8149.600000143051
+      },
+      "resources": [
+        {
+          "name": "http://127.0.0.1:7374/assets/ashenReach-BOYCXwOD.js",
+          "start": 50.799999952316284,
+          "responseStart": 54.5,
+          "end": 122.90000009536743,
+          "transferSize": 83784,
+          "encodedBodySize": 83484,
+          "initiator": "script",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/rolldown-runtime-DK3Fl9T5.js",
+          "start": 50.90000009536743,
+          "responseStart": 55,
+          "end": 95,
+          "transferSize": 426,
+          "encodedBodySize": 126,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/equipment-catalog-BZ-Ky5L1.js",
+          "start": 50.90000009536743,
+          "responseStart": 55.700000047683716,
+          "end": 97.79999995231628,
+          "transferSize": 3131,
+          "encodedBodySize": 2831,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/lite-runtime-UsrBloMy.js",
+          "start": 50.90000009536743,
+          "responseStart": 55.299999952316284,
+          "end": 145.20000004768372,
+          "transferSize": 196605,
+          "encodedBodySize": 196305,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/local-specular-c6fg4PgS.js",
+          "start": 51,
+          "responseStart": 56.10000014305115,
+          "end": 97,
+          "transferSize": 1828,
+          "encodedBodySize": 1528,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/linear-materials-DKO2bm2I.js",
+          "start": 51,
+          "responseStart": 56.200000047683716,
+          "end": 97.10000014305115,
+          "transferSize": 1646,
+          "encodedBodySize": 1346,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/geometry-MtsWPNPs.js",
+          "start": 51,
+          "responseStart": 97.60000014305115,
+          "end": 140.10000014305115,
+          "transferSize": 5535,
+          "encodedBodySize": 5235,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/ashenReach-CELGCeSv.css",
+          "start": 51.10000014305115,
+          "responseStart": 95.60000014305115,
+          "end": 136.10000014305115,
+          "transferSize": 2267,
+          "encodedBodySize": 1967,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/sun-shadows-C3XDGq5b.js",
+          "start": 51.10000014305115,
+          "responseStart": 98.29999995231628,
+          "end": 139.5,
+          "transferSize": 4367,
+          "encodedBodySize": 4067,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/materials-Cj9x5p0w.js",
+          "start": 51.10000014305115,
+          "responseStart": 98.40000009536743,
+          "end": 142.5,
+          "transferSize": 10119,
+          "encodedBodySize": 9819,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/input-D6q4S014.js",
+          "start": 51.10000014305115,
+          "responseStart": 123.29999995231628,
+          "end": 165.20000004768372,
+          "transferSize": 2680,
+          "encodedBodySize": 2380,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/HavokPhysics.wasm?v=20260923-1",
+          "start": 51.10000014305115,
+          "responseStart": 136.5,
+          "end": 299,
+          "transferSize": 589092,
+          "encodedBodySize": 588792,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/manifest.json",
+          "start": 51.200000047683716,
+          "responseStart": 139.90000009536743,
+          "end": 205.20000004768372,
+          "transferSize": 73454,
+          "encodedBodySize": 73154,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 51.299999952316284,
+          "responseStart": 140.79999995231628,
+          "end": 183.10000014305115,
+          "transferSize": 5138,
+          "encodedBodySize": 4838,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 51.299999952316284,
+          "responseStart": 143.29999995231628,
+          "end": 185,
+          "transferSize": 3600,
+          "encodedBodySize": 3300,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/near-61b52956fc8e.br",
+          "start": 51.299999952316284,
+          "responseStart": 250.90000009536743,
+          "end": 583.6000001430511,
+          "transferSize": 717993,
+          "encodedBodySize": 717693,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 51.40000009536743,
+          "responseStart": 145.90000009536743,
+          "end": 186.79999995231628,
+          "transferSize": 2524,
+          "encodedBodySize": 2224,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 51.40000009536743,
+          "responseStart": 166.10000014305115,
+          "end": 207.29999995231628,
+          "transferSize": 5470,
+          "encodedBodySize": 5170,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 51.40000009536743,
+          "responseStart": 184,
+          "end": 224.60000014305115,
+          "transferSize": 3120,
+          "encodedBodySize": 2820,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 51.40000009536743,
+          "responseStart": 185.60000014305115,
+          "end": 226,
+          "transferSize": 2224,
+          "encodedBodySize": 1924,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 51.40000009536743,
+          "responseStart": 187.5,
+          "end": 232.29999995231628,
+          "transferSize": 15158,
+          "encodedBodySize": 14858,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 51.40000009536743,
+          "responseStart": 206.10000014305115,
+          "end": 245.90000009536743,
+          "transferSize": 1546,
+          "encodedBodySize": 1246,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/meshopt_decoder.js",
+          "start": 51.5,
+          "responseStart": 207.79999995231628,
+          "end": 249.70000004768372,
+          "transferSize": 6672,
+          "encodedBodySize": 6372,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/store-Dgke6nLB.js",
+          "start": 178.20000004768372,
+          "responseStart": 225,
+          "end": 265.2999999523163,
+          "transferSize": 1500,
+          "encodedBodySize": 1200,
+          "initiator": "script",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/contract-BrZB4rCJ.js",
+          "start": 178.40000009536743,
+          "responseStart": 226.29999995231628,
+          "end": 267.10000014305115,
+          "transferSize": 2425,
+          "encodedBodySize": 2125,
+          "initiator": "script",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/from-equipment-BuEtNy8z.js",
+          "start": 178.5,
+          "responseStart": 232.60000014305115,
+          "end": 272.90000009536743,
+          "transferSize": 634,
+          "encodedBodySize": 334,
+          "initiator": "script",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/favicon.png",
+          "start": 183.29999995231628,
+          "responseStart": 246.79999995231628,
+          "end": 287.10000014305115,
+          "transferSize": 1870,
+          "encodedBodySize": 1570,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/manifest.json",
+          "start": 274.2000000476837,
+          "responseStart": 274.60000014305115,
+          "end": 316.2000000476837,
+          "transferSize": 4827,
+          "encodedBodySize": 4527,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/body-e69a14d75176.bin",
+          "start": 333.40000009536743,
+          "responseStart": 336.5,
+          "end": 728.6000001430511,
+          "transferSize": 991900,
+          "encodedBodySize": 991600,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/wayfarerBoots-compact-287d89851371.bin",
+          "start": 333.5,
+          "responseStart": 336.10000014305115,
+          "end": 526.7000000476837,
+          "transferSize": 158278,
+          "encodedBodySize": 157978,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverSkirt-compact-27daf8474125.bin",
+          "start": 333.5,
+          "responseStart": 335.2000000476837,
+          "end": 562.5,
+          "transferSize": 203347,
+          "encodedBodySize": 203047,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverHood-compact-6976171552b8.bin",
+          "start": 333.5,
+          "responseStart": 335.5,
+          "end": 567.4000000953674,
+          "transferSize": 211607,
+          "encodedBodySize": 211307,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/pilgrimTunic-compact-b3352a452974.bin",
+          "start": 333.5,
+          "responseStart": 335.90000009536743,
+          "end": 620.2000000476837,
+          "transferSize": 315674,
+          "encodedBodySize": 315374,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverGloves-compact-106f6454299a.bin",
+          "start": 333.60000014305115,
+          "responseStart": 527.7999999523163,
+          "end": 616.7000000476837,
+          "transferSize": 94045,
+          "encodedBodySize": 93745,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 363.7000000476837,
+          "responseStart": 364,
+          "end": 364.2999999523163,
+          "transferSize": 0,
+          "encodedBodySize": 4838,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 363.7999999523163,
+          "responseStart": 364,
+          "end": 364.2999999523163,
+          "transferSize": 0,
+          "encodedBodySize": 3300,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 363.7999999523163,
+          "responseStart": 364.40000009536743,
+          "end": 364.5,
+          "transferSize": 0,
+          "encodedBodySize": 2224,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 363.90000009536743,
+          "responseStart": 364.5,
+          "end": 364.60000014305115,
+          "transferSize": 0,
+          "encodedBodySize": 5170,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 363.90000009536743,
+          "responseStart": 364.60000014305115,
+          "end": 364.7000000476837,
+          "transferSize": 0,
+          "encodedBodySize": 2820,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 364,
+          "responseStart": 364.7999999523163,
+          "end": 364.7999999523163,
+          "transferSize": 0,
+          "encodedBodySize": 1924,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 368.10000014305115,
+          "responseStart": 368.2000000476837,
+          "end": 368.2999999523163,
+          "transferSize": 0,
+          "encodedBodySize": 14858,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 600.2000000476837,
+          "responseStart": 600.6000001430511,
+          "end": 600.7000000476837,
+          "transferSize": 0,
+          "encodedBodySize": 1246,
+          "initiator": "fetch",
+          "protocol": ""
+        }
+      ],
+      "navigation": [
+        {
+          "start": 0,
+          "responseStart": 3.5,
+          "end": 48.799999952316284,
+          "domContentLoaded": 178.70000004768372,
+          "protocol": "http/1.1"
+        }
+      ],
+      "playableMs": 8149.5,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.0004374738594266799,
+        "z": -0.0007720126462889478
+      },
+      "frame": 7,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:7374/?play=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 4938
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/ashenReach-BOYCXwOD.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 83730
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 370
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/lite-runtime-UsrBloMy.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 196552
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/equipment-catalog-BZ-Ky5L1.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 3076
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1773
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/linear-materials-DKO2bm2I.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1591
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/geometry-MtsWPNPs.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 5480
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/sun-shadows-C3XDGq5b.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 4312
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/materials-Cj9x5p0w.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 10064
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/input-D6q4S014.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 2625
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2198
+        },
+        {
+          "url": "http://127.0.0.1:7374/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 589033
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 73394
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/near-61b52956fc8e.br",
+          "complete": true,
+          "encodedBytesAtBoundary": 717942
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5049
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3511
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2435
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5381
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3031
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2135
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15070
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1457
+        },
+        {
+          "url": "http://127.0.0.1:7374/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 6617
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/store-Dgke6nLB.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1445
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/contract-BrZB4rCJ.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 2370
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/from-equipment-BuEtNy8z.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 578
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 1780
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 4766
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/body-e69a14d75176.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 991827
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverHood-compact-6976171552b8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 211534
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/pilgrimTunic-compact-b3352a452974.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 315601
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverSkirt-compact-27daf8474125.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 203274
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/wayfarerBoots-compact-287d89851371.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 158205
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverGloves-compact-106f6454299a.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 93971
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3727115,
+      "input": {
+        "keyAt": 8401.5,
+        "observedAt": 8783.200000047684,
+        "position": {
+          "x": -0.0007857574974325275,
+          "z": 0.9841166341052263
+        },
+        "frames": 44,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 381.7000000476837
+      },
+      "errors": [],
+      "run": 1,
+      "browserPid": "75413"
+    },
+    {
+      "origin": 1790807669306,
+      "shape": {
+        "weights": [
+          0.95,
+          0
+        ],
+        "heightScale": 0.9,
+        "installWriters": true,
+        "assetURL": null,
+        "garmentManifestURL": null,
+        "applied": true
+      },
+      "heightScale": 0.9,
+      "race": "human",
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "pilgrimTunic",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook"
+      },
+      "marks": {
+        "begin": 174.90000009536743,
+        "engine-created": 281.7999999523163,
+        "gpu-probe-end": 283.7999999523163,
+        "world-start": 285.7999999523163,
+        "havok-runtime-available": 305.59999990463257,
+        "world-end": 652.7999999523163,
+        "havok-start": 730.5,
+        "havok-runtime-start": 731.2999999523163,
+        "havok-runtime-end": 731.2999999523163,
+        "havok-world-end": 733.2000000476837,
+        "havok-colliders-end": 739.7999999523163,
+        "havok-controller-end": 741,
+        "havok-end": 742.0999999046326,
+        "body-start": 742.2999999523163,
+        "body-end": 759.0999999046326,
+        "equipment-start": 760.4000000953674,
+        "equipment-end": 776.2000000476837,
+        "register-start": 782.2999999523163,
+        "register-end": 805.2000000476837,
+        "first-render-return": 815.5999999046326,
+        "supported-frame-submitted": 837.9000000953674,
+        "first-gpu-completed": 922.0999999046326,
+        "supported-frame-completed": 935.5999999046326,
+        "playable": 938.0999999046326,
+        "bg-start": 938.2999999523163
+      },
+      "resources": [
+        {
+          "name": "http://127.0.0.1:7374/assets/ashenReach-BOYCXwOD.js",
+          "start": 45.5,
+          "responseStart": 49.700000047683716,
+          "end": 123.40000009536743,
+          "transferSize": 83784,
+          "encodedBodySize": 83484,
+          "initiator": "script",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/rolldown-runtime-DK3Fl9T5.js",
+          "start": 45.59999990463257,
+          "responseStart": 50,
+          "end": 95.59999990463257,
+          "transferSize": 426,
+          "encodedBodySize": 126,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/lite-runtime-UsrBloMy.js",
+          "start": 45.59999990463257,
+          "responseStart": 50,
+          "end": 145.70000004768372,
+          "transferSize": 196605,
+          "encodedBodySize": 196305,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/local-specular-c6fg4PgS.js",
+          "start": 45.700000047683716,
+          "responseStart": 50.299999952316284,
+          "end": 97.09999990463257,
+          "transferSize": 1828,
+          "encodedBodySize": 1528,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/linear-materials-DKO2bm2I.js",
+          "start": 45.700000047683716,
+          "responseStart": 50.299999952316284,
+          "end": 97.5,
+          "transferSize": 1646,
+          "encodedBodySize": 1346,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/equipment-catalog-BZ-Ky5L1.js",
+          "start": 45.700000047683716,
+          "responseStart": 50.200000047683716,
+          "end": 98.09999990463257,
+          "transferSize": 3131,
+          "encodedBodySize": 2831,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/geometry-MtsWPNPs.js",
+          "start": 45.700000047683716,
+          "responseStart": 97.29999995231628,
+          "end": 139.79999995231628,
+          "transferSize": 5535,
+          "encodedBodySize": 5235,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/sun-shadows-C3XDGq5b.js",
+          "start": 45.799999952316284,
+          "responseStart": 97.79999995231628,
+          "end": 140.20000004768372,
+          "transferSize": 4367,
+          "encodedBodySize": 4067,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/materials-Cj9x5p0w.js",
+          "start": 45.799999952316284,
+          "responseStart": 98.40000009536743,
+          "end": 142.59999990463257,
+          "transferSize": 10119,
+          "encodedBodySize": 9819,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/input-D6q4S014.js",
+          "start": 45.799999952316284,
+          "responseStart": 123.79999995231628,
+          "end": 166.59999990463257,
+          "transferSize": 2680,
+          "encodedBodySize": 2380,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/ashenReach-CELGCeSv.css",
+          "start": 45.90000009536743,
+          "responseStart": 96.09999990463257,
+          "end": 136.5,
+          "transferSize": 2267,
+          "encodedBodySize": 1967,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 46,
+          "responseStart": 141.79999995231628,
+          "end": 183.29999995231628,
+          "transferSize": 5138,
+          "encodedBodySize": 4838,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/manifest.json",
+          "start": 46,
+          "responseStart": 140.20000004768372,
+          "end": 205.40000009536743,
+          "transferSize": 73454,
+          "encodedBodySize": 73154,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/HavokPhysics.wasm?v=20260923-1",
+          "start": 46,
+          "responseStart": 136.90000009536743,
+          "end": 297.40000009536743,
+          "transferSize": 589092,
+          "encodedBodySize": 588792,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/near-61b52956fc8e.br",
+          "start": 46,
+          "responseStart": 252.29999995231628,
+          "end": 622.5,
+          "transferSize": 717993,
+          "encodedBodySize": 717693,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 46.09999990463257,
+          "responseStart": 143.5,
+          "end": 185,
+          "transferSize": 3600,
+          "encodedBodySize": 3300,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 46.09999990463257,
+          "responseStart": 146.5,
+          "end": 187.40000009536743,
+          "transferSize": 2524,
+          "encodedBodySize": 2224,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 46.200000047683716,
+          "responseStart": 167.5,
+          "end": 208.59999990463257,
+          "transferSize": 5470,
+          "encodedBodySize": 5170,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 46.200000047683716,
+          "responseStart": 184.20000004768372,
+          "end": 224.70000004768372,
+          "transferSize": 3120,
+          "encodedBodySize": 2820,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 46.299999952316284,
+          "responseStart": 185.79999995231628,
+          "end": 226,
+          "transferSize": 2224,
+          "encodedBodySize": 1924,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 46.299999952316284,
+          "responseStart": 188.20000004768372,
+          "end": 232.79999995231628,
+          "transferSize": 15158,
+          "encodedBodySize": 14858,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 46.40000009536743,
+          "responseStart": 206.29999995231628,
+          "end": 246.09999990463257,
+          "transferSize": 1546,
+          "encodedBodySize": 1246,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/meshopt_decoder.js",
+          "start": 46.40000009536743,
+          "responseStart": 208.90000009536743,
+          "end": 251.09999990463257,
+          "transferSize": 6672,
+          "encodedBodySize": 6372,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/store-Dgke6nLB.js",
+          "start": 179.29999995231628,
+          "responseStart": 225,
+          "end": 265.2999999523163,
+          "transferSize": 1500,
+          "encodedBodySize": 1200,
+          "initiator": "script",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/contract-BrZB4rCJ.js",
+          "start": 179.59999990463257,
+          "responseStart": 226.29999995231628,
+          "end": 267.09999990463257,
+          "transferSize": 2425,
+          "encodedBodySize": 2125,
+          "initiator": "script",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/from-equipment-BuEtNy8z.js",
+          "start": 179.59999990463257,
+          "responseStart": 233.09999990463257,
+          "end": 273.40000009536743,
+          "transferSize": 634,
+          "encodedBodySize": 334,
+          "initiator": "script",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/favicon.png",
+          "start": 183,
+          "responseStart": 246.90000009536743,
+          "end": 287.09999990463257,
+          "transferSize": 1870,
+          "encodedBodySize": 1570,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/manifest.json",
+          "start": 274.7000000476837,
+          "responseStart": 275.09999990463257,
+          "end": 316.7999999523163,
+          "transferSize": 4827,
+          "encodedBodySize": 4527,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 286.40000009536743,
+          "responseStart": 286.7999999523163,
+          "end": 287,
+          "transferSize": 0,
+          "encodedBodySize": 4838,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 286.5,
+          "responseStart": 286.90000009536743,
+          "end": 287,
+          "transferSize": 0,
+          "encodedBodySize": 3300,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 286.59999990463257,
+          "responseStart": 287.2000000476837,
+          "end": 287.2999999523163,
+          "transferSize": 0,
+          "encodedBodySize": 2224,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 286.59999990463257,
+          "responseStart": 287.2999999523163,
+          "end": 287.2999999523163,
+          "transferSize": 0,
+          "encodedBodySize": 5170,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 286.7000000476837,
+          "responseStart": 287.5,
+          "end": 287.5,
+          "transferSize": 0,
+          "encodedBodySize": 2820,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 286.7000000476837,
+          "responseStart": 287.59999990463257,
+          "end": 287.59999990463257,
+          "transferSize": 0,
+          "encodedBodySize": 1924,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 290.40000009536743,
+          "responseStart": 290.7000000476837,
+          "end": 290.7999999523163,
+          "transferSize": 0,
+          "encodedBodySize": 14858,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/body-e69a14d75176.bin",
+          "start": 317.2000000476837,
+          "responseStart": 320.09999990463257,
+          "end": 728.4000000953674,
+          "transferSize": 991900,
+          "encodedBodySize": 991600,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverSkirt-compact-27daf8474125.bin",
+          "start": 317.2999999523163,
+          "responseStart": 319.7000000476837,
+          "end": 546.4000000953674,
+          "transferSize": 203347,
+          "encodedBodySize": 203047,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverHood-compact-6976171552b8.bin",
+          "start": 317.2999999523163,
+          "responseStart": 319.59999990463257,
+          "end": 552.0999999046326,
+          "transferSize": 211607,
+          "encodedBodySize": 211307,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/pilgrimTunic-compact-b3352a452974.bin",
+          "start": 317.2999999523163,
+          "responseStart": 319.7999999523163,
+          "end": 616.7999999523163,
+          "transferSize": 315674,
+          "encodedBodySize": 315374,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/wayfarerBoots-compact-287d89851371.bin",
+          "start": 317.40000009536743,
+          "responseStart": 319.90000009536743,
+          "end": 510.40000009536743,
+          "transferSize": 158278,
+          "encodedBodySize": 157978,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverGloves-compact-106f6454299a.bin",
+          "start": 317.40000009536743,
+          "responseStart": 512.2999999523163,
+          "end": 611.5999999046326,
+          "transferSize": 94045,
+          "encodedBodySize": 93745,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 639.2999999523163,
+          "responseStart": 639.5999999046326,
+          "end": 639.7000000476837,
+          "transferSize": 0,
+          "encodedBodySize": 1246,
+          "initiator": "fetch",
+          "protocol": ""
+        }
+      ],
+      "navigation": [
+        {
+          "start": 0,
+          "responseStart": 1,
+          "end": 43.59999990463257,
+          "domContentLoaded": 179.70000004768372,
+          "protocol": "http/1.1"
+        }
+      ],
+      "playableMs": 938.0999999046326,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.00047836537968546527,
+        "z": -0.0008441741483514365
+      },
+      "frame": 10,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:7374/?play=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 4938
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/ashenReach-BOYCXwOD.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 83730
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 370
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/lite-runtime-UsrBloMy.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 196552
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/equipment-catalog-BZ-Ky5L1.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 3076
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1773
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/linear-materials-DKO2bm2I.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1591
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/geometry-MtsWPNPs.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 5480
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/sun-shadows-C3XDGq5b.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 4312
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/materials-Cj9x5p0w.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 10064
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/input-D6q4S014.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 2625
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2198
+        },
+        {
+          "url": "http://127.0.0.1:7374/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 589033
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 73394
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/near-61b52956fc8e.br",
+          "complete": true,
+          "encodedBytesAtBoundary": 717942
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5049
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3511
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2435
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5381
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3031
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2135
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15070
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1457
+        },
+        {
+          "url": "http://127.0.0.1:7374/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 6617
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/store-Dgke6nLB.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1445
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/contract-BrZB4rCJ.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 2370
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/from-equipment-BuEtNy8z.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 578
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 1780
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 4766
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/body-e69a14d75176.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 991827
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverHood-compact-6976171552b8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 211534
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/pilgrimTunic-compact-b3352a452974.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 315601
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverSkirt-compact-27daf8474125.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 203274
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/wayfarerBoots-compact-287d89851371.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 158205
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverGloves-compact-106f6454299a.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 93971
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3727115,
+      "input": {
+        "keyAt": 1184.2000000476837,
+        "observedAt": 1227.0999999046326,
+        "position": {
+          "x": -0.0004875209504852432,
+          "z": 0.2952396686294389
+        },
+        "frames": 94,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 42.89999985694885
+      },
+      "errors": [],
+      "run": 2,
+      "browserPid": "75668"
+    },
+    {
+      "origin": 1790807671171.9,
+      "shape": {
+        "weights": [
+          0.95,
+          0
+        ],
+        "heightScale": 0.9,
+        "installWriters": true,
+        "assetURL": null,
+        "garmentManifestURL": null,
+        "applied": true
+      },
+      "heightScale": 0.9,
+      "race": "human",
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "pilgrimTunic",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook"
+      },
+      "marks": {
+        "begin": 179.5,
+        "engine-created": 288.2000000476837,
+        "gpu-probe-end": 289.90000009536743,
+        "world-start": 291.7999999523163,
+        "havok-runtime-available": 309.09999990463257,
+        "world-end": 656.7000000476837,
+        "havok-start": 734,
+        "havok-runtime-start": 734.9000000953674,
+        "havok-runtime-end": 734.9000000953674,
+        "havok-world-end": 736.7999999523163,
+        "havok-colliders-end": 743.5,
+        "havok-controller-end": 744.7999999523163,
+        "havok-end": 745.7000000476837,
+        "body-start": 745.9000000953674,
+        "body-end": 763.4000000953674,
+        "equipment-start": 764.7999999523163,
+        "equipment-end": 780.0999999046326,
+        "register-start": 785.0999999046326,
+        "register-end": 808.2000000476837,
+        "first-render-return": 818.9000000953674,
+        "supported-frame-submitted": 842.2000000476837,
+        "first-gpu-completed": 924.7000000476837,
+        "supported-frame-completed": 938.0999999046326,
+        "playable": 940.0999999046326,
+        "bg-start": 940.2000000476837
+      },
+      "resources": [
+        {
+          "name": "http://127.0.0.1:7374/assets/rolldown-runtime-DK3Fl9T5.js",
+          "start": 52,
+          "responseStart": 55.700000047683716,
+          "end": 99.70000004768372,
+          "transferSize": 426,
+          "encodedBodySize": 126,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/ashenReach-BOYCXwOD.js",
+          "start": 52,
+          "responseStart": 55.5,
+          "end": 127.5,
+          "transferSize": 83784,
+          "encodedBodySize": 83484,
+          "initiator": "script",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/lite-runtime-UsrBloMy.js",
+          "start": 52,
+          "responseStart": 55.90000009536743,
+          "end": 149.90000009536743,
+          "transferSize": 196605,
+          "encodedBodySize": 196305,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/equipment-catalog-BZ-Ky5L1.js",
+          "start": 52.09999990463257,
+          "responseStart": 56.09999990463257,
+          "end": 102.40000009536743,
+          "transferSize": 3131,
+          "encodedBodySize": 2831,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/local-specular-c6fg4PgS.js",
+          "start": 52.200000047683716,
+          "responseStart": 56.200000047683716,
+          "end": 101.29999995231628,
+          "transferSize": 1828,
+          "encodedBodySize": 1528,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/linear-materials-DKO2bm2I.js",
+          "start": 52.200000047683716,
+          "responseStart": 56.200000047683716,
+          "end": 101.70000004768372,
+          "transferSize": 1646,
+          "encodedBodySize": 1346,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/geometry-MtsWPNPs.js",
+          "start": 52.200000047683716,
+          "responseStart": 101.70000004768372,
+          "end": 144.5,
+          "transferSize": 5535,
+          "encodedBodySize": 5235,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/ashenReach-CELGCeSv.css",
+          "start": 52.299999952316284,
+          "responseStart": 100.20000004768372,
+          "end": 140.79999995231628,
+          "transferSize": 2267,
+          "encodedBodySize": 1967,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/sun-shadows-C3XDGq5b.js",
+          "start": 52.299999952316284,
+          "responseStart": 101.90000009536743,
+          "end": 144.09999990463257,
+          "transferSize": 4367,
+          "encodedBodySize": 4067,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/materials-Cj9x5p0w.js",
+          "start": 52.299999952316284,
+          "responseStart": 102.59999990463257,
+          "end": 147.09999990463257,
+          "transferSize": 10119,
+          "encodedBodySize": 9819,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/input-D6q4S014.js",
+          "start": 52.299999952316284,
+          "responseStart": 128,
+          "end": 171,
+          "transferSize": 2680,
+          "encodedBodySize": 2380,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 52.40000009536743,
+          "responseStart": 145.20000004768372,
+          "end": 187.20000004768372,
+          "transferSize": 5138,
+          "encodedBodySize": 4838,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/manifest.json",
+          "start": 52.40000009536743,
+          "responseStart": 144.5,
+          "end": 209.90000009536743,
+          "transferSize": 73454,
+          "encodedBodySize": 73154,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/HavokPhysics.wasm?v=20260923-1",
+          "start": 52.40000009536743,
+          "responseStart": 141.20000004768372,
+          "end": 301.5,
+          "transferSize": 589092,
+          "encodedBodySize": 588792,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/near-61b52956fc8e.br",
+          "start": 52.40000009536743,
+          "responseStart": 256.40000009536743,
+          "end": 626.2999999523163,
+          "transferSize": 717993,
+          "encodedBodySize": 717693,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 52.5,
+          "responseStart": 147.59999990463257,
+          "end": 189.5,
+          "transferSize": 3600,
+          "encodedBodySize": 3300,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 52.5,
+          "responseStart": 150.5,
+          "end": 191.70000004768372,
+          "transferSize": 2524,
+          "encodedBodySize": 2224,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 52.59999990463257,
+          "responseStart": 171.90000009536743,
+          "end": 213,
+          "transferSize": 5470,
+          "encodedBodySize": 5170,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 52.59999990463257,
+          "responseStart": 188,
+          "end": 228.59999990463257,
+          "transferSize": 3120,
+          "encodedBodySize": 2820,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 52.59999990463257,
+          "responseStart": 190.09999990463257,
+          "end": 230.59999990463257,
+          "transferSize": 2224,
+          "encodedBodySize": 1924,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 52.59999990463257,
+          "responseStart": 192.09999990463257,
+          "end": 237,
+          "transferSize": 15158,
+          "encodedBodySize": 14858,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 52.700000047683716,
+          "responseStart": 210.5,
+          "end": 250.5,
+          "transferSize": 1546,
+          "encodedBodySize": 1246,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/meshopt_decoder.js",
+          "start": 52.700000047683716,
+          "responseStart": 213.29999995231628,
+          "end": 255.5,
+          "transferSize": 6672,
+          "encodedBodySize": 6372,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/store-Dgke6nLB.js",
+          "start": 184,
+          "responseStart": 229,
+          "end": 269.2000000476837,
+          "transferSize": 1500,
+          "encodedBodySize": 1200,
+          "initiator": "script",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/contract-BrZB4rCJ.js",
+          "start": 184.20000004768372,
+          "responseStart": 230.79999995231628,
+          "end": 271.5,
+          "transferSize": 2425,
+          "encodedBodySize": 2125,
+          "initiator": "script",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/from-equipment-BuEtNy8z.js",
+          "start": 184.29999995231628,
+          "responseStart": 237.29999995231628,
+          "end": 277.7999999523163,
+          "transferSize": 634,
+          "encodedBodySize": 334,
+          "initiator": "script",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/favicon.png",
+          "start": 187.59999990463257,
+          "responseStart": 251.09999990463257,
+          "end": 291.59999990463257,
+          "transferSize": 1870,
+          "encodedBodySize": 1570,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/manifest.json",
+          "start": 279,
+          "responseStart": 279.40000009536743,
+          "end": 321,
+          "transferSize": 4827,
+          "encodedBodySize": 4527,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 292.5,
+          "responseStart": 292.7999999523163,
+          "end": 292.90000009536743,
+          "transferSize": 0,
+          "encodedBodySize": 4838,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 292.59999990463257,
+          "responseStart": 292.7999999523163,
+          "end": 293,
+          "transferSize": 0,
+          "encodedBodySize": 3300,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 292.59999990463257,
+          "responseStart": 293.09999990463257,
+          "end": 293.2000000476837,
+          "transferSize": 0,
+          "encodedBodySize": 2224,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 292.59999990463257,
+          "responseStart": 293.2999999523163,
+          "end": 293.2999999523163,
+          "transferSize": 0,
+          "encodedBodySize": 5170,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 292.7000000476837,
+          "responseStart": 293.2999999523163,
+          "end": 293.40000009536743,
+          "transferSize": 0,
+          "encodedBodySize": 2820,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 292.7999999523163,
+          "responseStart": 293.40000009536743,
+          "end": 293.5,
+          "transferSize": 0,
+          "encodedBodySize": 1924,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 296,
+          "responseStart": 296.2999999523163,
+          "end": 296.40000009536743,
+          "transferSize": 0,
+          "encodedBodySize": 14858,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/body-e69a14d75176.bin",
+          "start": 321.40000009536743,
+          "responseStart": 322.59999990463257,
+          "end": 732,
+          "transferSize": 991900,
+          "encodedBodySize": 991600,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverHood-compact-6976171552b8.bin",
+          "start": 321.5,
+          "responseStart": 323,
+          "end": 556.2000000476837,
+          "transferSize": 211607,
+          "encodedBodySize": 211307,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/pilgrimTunic-compact-b3352a452974.bin",
+          "start": 321.5,
+          "responseStart": 323.2000000476837,
+          "end": 621.2000000476837,
+          "transferSize": 315674,
+          "encodedBodySize": 315374,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/wayfarerBoots-compact-287d89851371.bin",
+          "start": 321.59999990463257,
+          "responseStart": 323.40000009536743,
+          "end": 514.5999999046326,
+          "transferSize": 158278,
+          "encodedBodySize": 157978,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverSkirt-compact-27daf8474125.bin",
+          "start": 321.59999990463257,
+          "responseStart": 323.2000000476837,
+          "end": 550.7000000476837,
+          "transferSize": 203347,
+          "encodedBodySize": 203047,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverGloves-compact-106f6454299a.bin",
+          "start": 321.59999990463257,
+          "responseStart": 515.5,
+          "end": 615.7000000476837,
+          "transferSize": 94045,
+          "encodedBodySize": 93745,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 642.4000000953674,
+          "responseStart": 642.7000000476837,
+          "end": 642.9000000953674,
+          "transferSize": 0,
+          "encodedBodySize": 1246,
+          "initiator": "fetch",
+          "protocol": ""
+        }
+      ],
+      "navigation": [
+        {
+          "start": 0,
+          "responseStart": 1.0999999046325684,
+          "end": 50,
+          "domContentLoaded": 184.40000009536743,
+          "protocol": "http/1.1"
+        }
+      ],
+      "playableMs": 940.0999999046326,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.0005040321909456107,
+        "z": -0.0008894685183497577
+      },
+      "frame": 9,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:7374/?play=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 4938
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/ashenReach-BOYCXwOD.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 83730
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 370
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/lite-runtime-UsrBloMy.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 196552
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/equipment-catalog-BZ-Ky5L1.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 3076
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1773
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/linear-materials-DKO2bm2I.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1591
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/geometry-MtsWPNPs.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 5480
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/sun-shadows-C3XDGq5b.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 4312
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/materials-Cj9x5p0w.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 10064
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/input-D6q4S014.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 2625
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2198
+        },
+        {
+          "url": "http://127.0.0.1:7374/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 589033
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 73394
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/near-61b52956fc8e.br",
+          "complete": true,
+          "encodedBytesAtBoundary": 717942
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5049
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3511
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2435
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5381
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3031
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2135
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15070
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1457
+        },
+        {
+          "url": "http://127.0.0.1:7374/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 6617
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/store-Dgke6nLB.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1445
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/contract-BrZB4rCJ.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 2370
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/from-equipment-BuEtNy8z.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 578
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 1780
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 4766
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/body-e69a14d75176.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 991827
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverHood-compact-6976171552b8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 211534
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/pilgrimTunic-compact-b3352a452974.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 315601
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverSkirt-compact-27daf8474125.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 203274
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/wayfarerBoots-compact-287d89851371.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 158205
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverGloves-compact-106f6454299a.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 93971
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3727115,
+      "input": {
+        "keyAt": 1174.5,
+        "observedAt": 1229.2999999523163,
+        "position": {
+          "x": -0.0005133187581292406,
+          "z": 0.38409414342310266
+        },
+        "frames": 94,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 54.799999952316284
+      },
+      "errors": [],
+      "run": 3,
+      "browserPid": "75746"
+    },
+    {
+      "origin": 1790807673018.7,
+      "shape": {
+        "weights": [
+          0.95,
+          0
+        ],
+        "heightScale": 0.9,
+        "installWriters": true,
+        "assetURL": null,
+        "garmentManifestURL": null,
+        "applied": true
+      },
+      "heightScale": 0.9,
+      "race": "human",
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "pilgrimTunic",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook"
+      },
+      "marks": {
+        "begin": 171.59999990463257,
+        "engine-created": 275.2999999523163,
+        "gpu-probe-end": 277.09999990463257,
+        "world-start": 278.89999985694885,
+        "havok-runtime-available": 299.2999999523163,
+        "world-end": 650,
+        "havok-start": 726,
+        "havok-runtime-start": 727,
+        "havok-runtime-end": 727,
+        "havok-world-end": 728.7999999523163,
+        "havok-colliders-end": 735.5999999046326,
+        "havok-controller-end": 736.8999998569489,
+        "havok-end": 737.8999998569489,
+        "body-start": 738,
+        "body-end": 755.5,
+        "equipment-start": 757.2000000476837,
+        "equipment-end": 772.2999999523163,
+        "register-start": 777.3999998569489,
+        "register-end": 801.2000000476837,
+        "first-render-return": 811.7999999523163,
+        "supported-frame-submitted": 835.5,
+        "first-gpu-completed": 915.7999999523163,
+        "supported-frame-completed": 927.5,
+        "playable": 929.5999999046326,
+        "bg-start": 929.7000000476837
+      },
+      "resources": [
+        {
+          "name": "http://127.0.0.1:7374/assets/ashenReach-BOYCXwOD.js",
+          "start": 45.09999990463257,
+          "responseStart": 48.59999990463257,
+          "end": 117.39999985694885,
+          "transferSize": 83784,
+          "encodedBodySize": 83484,
+          "initiator": "script",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/rolldown-runtime-DK3Fl9T5.js",
+          "start": 45.200000047683716,
+          "responseStart": 48.89999985694885,
+          "end": 89.5,
+          "transferSize": 426,
+          "encodedBodySize": 126,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/local-specular-c6fg4PgS.js",
+          "start": 45.299999952316284,
+          "responseStart": 49.09999990463257,
+          "end": 91.39999985694885,
+          "transferSize": 1828,
+          "encodedBodySize": 1528,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/linear-materials-DKO2bm2I.js",
+          "start": 45.299999952316284,
+          "responseStart": 49.200000047683716,
+          "end": 91.39999985694885,
+          "transferSize": 1646,
+          "encodedBodySize": 1346,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/equipment-catalog-BZ-Ky5L1.js",
+          "start": 45.299999952316284,
+          "responseStart": 49,
+          "end": 92.20000004768372,
+          "transferSize": 3131,
+          "encodedBodySize": 2831,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/geometry-MtsWPNPs.js",
+          "start": 45.299999952316284,
+          "responseStart": 91.70000004768372,
+          "end": 134.39999985694885,
+          "transferSize": 5535,
+          "encodedBodySize": 5235,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/lite-runtime-UsrBloMy.js",
+          "start": 45.299999952316284,
+          "responseStart": 49,
+          "end": 139.79999995231628,
+          "transferSize": 196605,
+          "encodedBodySize": 196305,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/ashenReach-CELGCeSv.css",
+          "start": 45.39999985694885,
+          "responseStart": 90,
+          "end": 130.5,
+          "transferSize": 2267,
+          "encodedBodySize": 1967,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/sun-shadows-C3XDGq5b.js",
+          "start": 45.39999985694885,
+          "responseStart": 91.79999995231628,
+          "end": 134.09999990463257,
+          "transferSize": 4367,
+          "encodedBodySize": 4067,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/materials-Cj9x5p0w.js",
+          "start": 45.39999985694885,
+          "responseStart": 92.59999990463257,
+          "end": 136.89999985694885,
+          "transferSize": 10119,
+          "encodedBodySize": 9819,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/input-D6q4S014.js",
+          "start": 45.39999985694885,
+          "responseStart": 117.89999985694885,
+          "end": 163.09999990463257,
+          "transferSize": 2680,
+          "encodedBodySize": 2380,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/manifest.json",
+          "start": 45.5,
+          "responseStart": 134.39999985694885,
+          "end": 199.70000004768372,
+          "transferSize": 73454,
+          "encodedBodySize": 73154,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/HavokPhysics.wasm?v=20260923-1",
+          "start": 45.5,
+          "responseStart": 131.09999990463257,
+          "end": 291.89999985694885,
+          "transferSize": 589092,
+          "encodedBodySize": 588792,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 45.59999990463257,
+          "responseStart": 134.89999985694885,
+          "end": 177,
+          "transferSize": 5138,
+          "encodedBodySize": 4838,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 45.59999990463257,
+          "responseStart": 137.29999995231628,
+          "end": 179.09999990463257,
+          "transferSize": 3600,
+          "encodedBodySize": 3300,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/near-61b52956fc8e.br",
+          "start": 45.59999990463257,
+          "responseStart": 248.29999995231628,
+          "end": 620.2999999523163,
+          "transferSize": 717993,
+          "encodedBodySize": 717693,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 45.700000047683716,
+          "responseStart": 140.29999995231628,
+          "end": 181.39999985694885,
+          "transferSize": 2524,
+          "encodedBodySize": 2224,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 45.700000047683716,
+          "responseStart": 163.79999995231628,
+          "end": 205,
+          "transferSize": 5470,
+          "encodedBodySize": 5170,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 45.700000047683716,
+          "responseStart": 177.79999995231628,
+          "end": 218.5,
+          "transferSize": 3120,
+          "encodedBodySize": 2820,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 45.799999952316284,
+          "responseStart": 179.70000004768372,
+          "end": 220.20000004768372,
+          "transferSize": 2224,
+          "encodedBodySize": 1924,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 45.799999952316284,
+          "responseStart": 181.89999985694885,
+          "end": 226.70000004768372,
+          "transferSize": 15158,
+          "encodedBodySize": 14858,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 45.89999985694885,
+          "responseStart": 200.39999985694885,
+          "end": 240.39999985694885,
+          "transferSize": 1546,
+          "encodedBodySize": 1246,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/meshopt_decoder.js",
+          "start": 45.89999985694885,
+          "responseStart": 205.29999995231628,
+          "end": 247.5,
+          "transferSize": 6672,
+          "encodedBodySize": 6372,
+          "initiator": "link",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/store-Dgke6nLB.js",
+          "start": 176.20000004768372,
+          "responseStart": 218.79999995231628,
+          "end": 259.2000000476837,
+          "transferSize": 1500,
+          "encodedBodySize": 1200,
+          "initiator": "script",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/contract-BrZB4rCJ.js",
+          "start": 176.29999995231628,
+          "responseStart": 220.5,
+          "end": 261.2000000476837,
+          "transferSize": 2425,
+          "encodedBodySize": 2125,
+          "initiator": "script",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/assets/from-equipment-BuEtNy8z.js",
+          "start": 176.39999985694885,
+          "responseStart": 226.79999995231628,
+          "end": 267.2999999523163,
+          "transferSize": 634,
+          "encodedBodySize": 334,
+          "initiator": "script",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/favicon.png",
+          "start": 179.29999995231628,
+          "responseStart": 241,
+          "end": 281.39999985694885,
+          "transferSize": 1870,
+          "encodedBodySize": 1570,
+          "initiator": "other",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/manifest.json",
+          "start": 268.59999990463257,
+          "responseStart": 269,
+          "end": 310.59999990463257,
+          "transferSize": 4827,
+          "encodedBodySize": 4527,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 279.59999990463257,
+          "responseStart": 280,
+          "end": 280.09999990463257,
+          "transferSize": 0,
+          "encodedBodySize": 4838,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 279.7999999523163,
+          "responseStart": 280,
+          "end": 280.2000000476837,
+          "transferSize": 0,
+          "encodedBodySize": 3300,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 279.7999999523163,
+          "responseStart": 280.2999999523163,
+          "end": 280.2999999523163,
+          "transferSize": 0,
+          "encodedBodySize": 2224,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 279.89999985694885,
+          "responseStart": 280.39999985694885,
+          "end": 280.39999985694885,
+          "transferSize": 0,
+          "encodedBodySize": 5170,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 279.89999985694885,
+          "responseStart": 280.5,
+          "end": 280.59999990463257,
+          "transferSize": 0,
+          "encodedBodySize": 2820,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 280,
+          "responseStart": 280.7000000476837,
+          "end": 280.7000000476837,
+          "transferSize": 0,
+          "encodedBodySize": 1924,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 283.89999985694885,
+          "responseStart": 284.2999999523163,
+          "end": 284.2999999523163,
+          "transferSize": 0,
+          "encodedBodySize": 14858,
+          "initiator": "fetch",
+          "protocol": ""
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/body-e69a14d75176.bin",
+          "start": 311,
+          "responseStart": 312.7000000476837,
+          "end": 723.5999999046326,
+          "transferSize": 991900,
+          "encodedBodySize": 991600,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverHood-compact-6976171552b8.bin",
+          "start": 311.09999990463257,
+          "responseStart": 312.2000000476837,
+          "end": 545.7000000476837,
+          "transferSize": 211607,
+          "encodedBodySize": 211307,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/pilgrimTunic-compact-b3352a452974.bin",
+          "start": 311.09999990463257,
+          "responseStart": 312.5,
+          "end": 610.7000000476837,
+          "transferSize": 315674,
+          "encodedBodySize": 315374,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverSkirt-compact-27daf8474125.bin",
+          "start": 311.2000000476837,
+          "responseStart": 312.2999999523163,
+          "end": 539.7999999523163,
+          "transferSize": 203347,
+          "encodedBodySize": 203047,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/wayfarerBoots-compact-287d89851371.bin",
+          "start": 311.2999999523163,
+          "responseStart": 312.59999990463257,
+          "end": 504.09999990463257,
+          "transferSize": 158278,
+          "encodedBodySize": 157978,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverGloves-compact-106f6454299a.bin",
+          "start": 311.2999999523163,
+          "responseStart": 504.7999999523163,
+          "end": 605.0999999046326,
+          "transferSize": 94045,
+          "encodedBodySize": 93745,
+          "initiator": "fetch",
+          "protocol": "http/1.1"
+        },
+        {
+          "name": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 636.0999999046326,
+          "responseStart": 636.3999998569489,
+          "end": 636.5999999046326,
+          "transferSize": 0,
+          "encodedBodySize": 1246,
+          "initiator": "fetch",
+          "protocol": ""
+        }
+      ],
+      "navigation": [
+        {
+          "start": 0,
+          "responseStart": 1.2999999523162842,
+          "end": 43.39999985694885,
+          "domContentLoaded": 176.59999990463257,
+          "protocol": "http/1.1"
+        }
+      ],
+      "playableMs": 929.5999999046326,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "position": {
+        "x": -0.0005195764576083373,
+        "z": -0.00091689957548988
+      },
+      "frame": 8,
+      "gpuErrors": [],
+      "tasks": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:7374/?play=&pixelRatio=1",
+          "complete": true,
+          "encodedBytesAtBoundary": 4938
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/ashenReach-BOYCXwOD.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 83730
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/rolldown-runtime-DK3Fl9T5.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 370
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/lite-runtime-UsrBloMy.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 196552
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/equipment-catalog-BZ-Ky5L1.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 3076
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/local-specular-c6fg4PgS.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1773
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/linear-materials-DKO2bm2I.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1591
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/geometry-MtsWPNPs.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 5480
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/sun-shadows-C3XDGq5b.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 4312
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/materials-Cj9x5p0w.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 10064
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/input-D6q4S014.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 2625
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/ashenReach-CELGCeSv.css",
+          "complete": true,
+          "encodedBytesAtBoundary": 2198
+        },
+        {
+          "url": "http://127.0.0.1:7374/HavokPhysics.wasm?v=20260923-1",
+          "complete": true,
+          "encodedBytesAtBoundary": 589033
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 73394
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/near-61b52956fc8e.br",
+          "complete": true,
+          "encodedBytesAtBoundary": 717942
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5049
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3511
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2435
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 5381
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 3031
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 2135
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 15070
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 1457
+        },
+        {
+          "url": "http://127.0.0.1:7374/meshopt_decoder.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 6617
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/store-Dgke6nLB.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 1445
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/contract-BrZB4rCJ.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 2370
+        },
+        {
+          "url": "http://127.0.0.1:7374/assets/from-equipment-BuEtNy8z.js",
+          "complete": true,
+          "encodedBytesAtBoundary": 578
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/favicon.png",
+          "complete": true,
+          "encodedBytesAtBoundary": 1780
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/manifest.json",
+          "complete": true,
+          "encodedBytesAtBoundary": 4766
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-876257499921.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/body-e69a14d75176.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 991827
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverHood-compact-6976171552b8.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 211534
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/pilgrimTunic-compact-b3352a452974.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 315601
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverSkirt-compact-27daf8474125.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 203274
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/wayfarerBoots-compact-287d89851371.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 158205
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/human-shape-v1/graveweaverGloves-compact-106f6454299a.bin",
+          "complete": true,
+          "encodedBytesAtBoundary": 93971
+        },
+        {
+          "url": "http://127.0.0.1:7374/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "complete": true,
+          "encodedBytesAtBoundary": 0
+        }
+      ],
+      "encodedBytesAtBoundary": 3727115,
+      "input": {
+        "keyAt": 1189.5999999046326,
+        "observedAt": 1231,
+        "position": {
+          "x": -0.000529351661503493,
+          "z": 0.2895658500659213
+        },
+        "frames": 98,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 41.40000009536743
+      },
+      "errors": [],
+      "run": 4,
+      "browserPid": "75796"
+    }
+  ]
+}

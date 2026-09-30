@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "devicePixelRatio": 1,
+  "canvas": {
+    "width": 1280,
+    "height": 720,
+    "cssWidth": 1280,
+    "cssHeight": 720
+  },
+  "purpose": "Continuous startup/upgrade visual review; recording affects timing",
+  "reorderedFrames": 2,
+  "receivedFrames": 1173,
+  "elapsedSeconds": 19.175331115722656,
+  "sourceFrame": {
+    "width": 1280,
+    "height": 720
+  },
+  "encoded": {
+    "width": 1280,
+    "height": 720,
+    "duration": 19.174746,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "framesCount": 1173
+}

@@ -82,10 +82,19 @@ export default defineConfig({
       // several serial 40 ms requests. Compare this native bundler grouping with
       // the split build; it changes packaging, not Lite's runtime implementation.
       // https://rolldown.rs/reference/TypeAlias.CodeSplittingGroup
-      output: process.env.ASHEN_LITE_BUNDLE!=='0'?{codeSplitting:{groups:[{name:'lite-runtime',test:/node_modules\/@babylonjs\/lite\//}]}}:undefined,
+      output: {codeSplitting:{groups:[
+        ...(process.env.ASHEN_LITE_BUNDLE!=='0'?[{name:'lite-runtime',test:/node_modules\/@babylonjs\/lite\//,includeDependenciesRecursively:false}]:[]),
+        // Vite's shared preload helper otherwise lands inside the Lite chunk,
+        // making a pure dynamic storage import wait for the entire renderer.
+        {name:'module-preload',test:/vite\/preload-helper/,priority:100,includeDependenciesRecursively:false},
+        // Keep the early entry self-contained; otherwise its tiny shared helper
+        // requests queue behind Lite and recreate the serial discovery delay.
+        {name:'startup-bootstrap',test:/src\/ashen-reach\/startup-(?:preload|fetch|appearance)\.js$/,includeDependenciesRecursively:false},
+        {name:'appearance-storage',test:/src\/character\/appearance\//,includeDependenciesRecursively:false},
+      ]}},
       input: pages
-        ? { index: "index.html", ashenReach: "ashen-reach.html" }
-        : { index: "index.html", ashenReach: "ashen-reach.html", characterLab: "character-lab.html", bodyPreview: "body-preview.html", characterCrowdProbe: "character-crowd-probe.html" },
+        ? { index: "index.html", ashenReach: "ashen-reach.html", startupPreload: "src/ashen-reach/startup-preload.js" }
+        : { index: "index.html", ashenReach: "ashen-reach.html", startupPreload: "src/ashen-reach/startup-preload.js", characterLab: "character-lab.html", bodyPreview: "body-preview.html", characterCrowdProbe: "character-crowd-probe.html" },
     },
   },
   optimizeDeps: {
@@ -98,6 +107,43 @@ export default defineConfig({
   },
   plugins: [
     {name: "verify-prepared-startup", async buildStart(){if(starterBuild)await verifyStartupAssets();await verifyProductionHumanShapes();}},
+    {
+      // Separate bundler entry: Vite merges two ordinary HTML module scripts into
+      // one renderer entry, which defeats starting saved-appearance fetches early.
+      // https://vite.dev/guide/build.html#multi-page-app
+      // https://rolldown.rs/reference/Interface.Plugin#generatebundle
+      name: 'early-saved-character',
+      transformIndexHtml(html,ctx) {
+        return ctx.server ? html.replace('<!-- ASHEN_STARTUP_PRELOAD -->','<script type="module" async src="/src/ashen-reach/startup-preload.js"></script>') : html;
+      },
+      generateBundle: {order:'post',handler(_options,bundle) {
+        const entry=Object.values(bundle).find(item=>item.type==='chunk'&&item.isEntry&&item.facadeModuleId?.endsWith('/src/ashen-reach/startup-preload.js'));
+        if(!entry)throw Error('Missing early saved-character entry');
+        const pending=[entry],seen=new Set();
+        while(pending.length) {
+          const chunk=pending.pop();if(seen.has(chunk.fileName))continue;seen.add(chunk.fileName);
+          if(Object.keys(chunk.modules).some(id=>id.includes('/node_modules/@babylonjs/lite/')||id.includes('/src/character/appearance/')))throw Error('Early character entry eagerly imports optional renderer/storage code');
+          for(const name of chunk.imports){const dependency=bundle[name];if(dependency?.type==='chunk')pending.push(dependency);}
+        }
+        const chunks=Object.values(bundle).filter(item=>item.type==='chunk');
+        for(const file of ['startup-fetch.js','startup-appearance.js','startup-preload.js']) {
+          const owners=chunks.filter(chunk=>Object.keys(chunk.modules).some(id=>id.endsWith(`/src/ashen-reach/${file}`)));
+          if(owners.length!==1||owners[0]!==entry)throw Error(`Early/main startup must share one ${file} module`);
+        }
+        if(starterBuild&&(!entry.code.includes(starterCharacterManifest.provenance.sha256)||!entry.code.includes(humanShapeManifest.provenance.sha256)))throw Error('Early shared loader lost its compiled provenance guards');
+        const main=chunks.find(chunk=>chunk.isEntry&&chunk.name==='ashenReach');
+        if(!main)throw Error('Missing normal game entry');
+        const mainPending=[main],mainSeen=new Set();
+        while(mainPending.length) {
+          const chunk=mainPending.pop();if(mainSeen.has(chunk.fileName))continue;mainSeen.add(chunk.fileName);
+          if(Object.keys(chunk.modules).some(id=>id.includes('/src/character/appearance/')))throw Error('Unsaved default startup eagerly imports optional appearance storage');
+          for(const name of chunk.imports){const dependency=bundle[name];if(dependency?.type==='chunk')mainPending.push(dependency);}
+        }
+        for(const item of Object.values(bundle))if(item.type==='asset'&&item.fileName.endsWith('.html')) {
+          item.source=String(item.source).replace('<!-- ASHEN_STARTUP_PRELOAD -->',`<script type="module" async crossorigin src="/${entry.fileName}"></script>`);
+        }
+      }},
+    },
     {
       name: 'dev-only-crowd-probe-assets',
       configureServer(server) {

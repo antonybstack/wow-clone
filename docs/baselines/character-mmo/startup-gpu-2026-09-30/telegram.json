@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 819,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 19.174746,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 20
+  },
+  "verified": true,
+  "file": "startup-gpu-2026-09-30.mp4",
+  "sha256": "792669988e47de74554d52a812956eede473b5bff7d60b2a9fa691e592a62b7d",
+  "sentAt": "2026-09-30T23:17:06.509986+00:00"
+}

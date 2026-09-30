@@ -8,6 +8,10 @@ import os from "node:os";
 import {execFileSync} from 'node:child_process';
 import assert from "node:assert/strict";
 import { chromium } from "playwright";
+import {installGpuEventProbe} from '../lib/probe-gpu-events.mjs';
+const gpuProbe = process.env.ASHEN_PROBE_GPU_EVENTS === '1';
+const traceGpu = process.env.ASHEN_PROBE_CHROME_TRACE === '1';
+const disableShaderCache = process.env.ASHEN_PROBE_DISABLE_SHADER_CACHE === '1';
 const seed=process.env.ASHEN_PROBE_APPEARANCE?JSON.parse(await fs.readFile(process.env.ASHEN_PROBE_APPEARANCE,'utf8')):null;
 const destination = process.argv[2];
 assert(destination, "Specify report.json");
@@ -33,6 +37,7 @@ target.searchParams.set("play", "");
 target.searchParams.set("pixelRatio", "1");
 const report = {
   conditions: {
+    gpuProbe, traceGpu, disableShaderCache,
     profile, savedAppearance:seed,
     network: conditions[profile],
     cpu: os.cpus()[0]?.model,
@@ -46,7 +51,9 @@ const report = {
 };
 await fs.mkdir(path.dirname(destination), { recursive: true });
 for (let run = 1; run <= runs; run++) {
-  const browser = await chromium.launch({ channel: "chrome", headless: true });
+  // Diagnostic only; never mix this forced cache policy with acceptance cohorts.
+  // https://chromium.googlesource.com/chromium/src/+/HEAD/gpu/config/gpu_switches.cc
+  const browser = await chromium.launch({ channel: "chrome", headless: true, args:disableShaderCache?['--disable-gpu-shader-disk-cache']:[] });
   const browserPid=execFileSync('ps',['-axo','pid=,ppid=,command='],{encoding:'utf8'}).split('\n').map(line=>/^\s*(\d+)\s+(\d+)\s+(.*)$/.exec(line)).find(m=>m&&Number(m[2])===process.pid&&/Chrome|Chromium/.test(m[3]))?.[1]||null;
   await fs.writeFile(destination+'.ownership.json',JSON.stringify({owner:'probe-playable-startup',controllerPid:process.pid,browserPid,cdpPort:null,url:target.href,purpose:`${profile} cold run ${run}`,active:true}));
   try {
@@ -59,7 +66,9 @@ for (let run = 1; run <= runs; run++) {
       errors = [],
       requests = new Map();
     if(seed)await context.addInitScript(recipe=>localStorage.setItem('ashen.appearance.v2',JSON.stringify(recipe)),seed);
+    if(gpuProbe)await context.addInitScript(installGpuEventProbe);
     const cdp = await context.newCDPSession(page);
+    if(traceGpu)await cdp.send('Tracing.start',{categories:'gpu,gpu.dawn,gpu.dawn.validation,gpu.dawn.recording,gpu.dawn.gpu_work,disabled-by-default-gpu.dawn,disabled-by-default-gpu.service,toplevel,blink.user_timing,devtools.timeline',transferMode:'ReturnAsStream'});
     await cdp.send("Network.enable");
     await cdp.send("Network.emulateNetworkConditions", {
       offline: false,
@@ -122,8 +131,9 @@ for (let run = 1; run <= runs; run++) {
       marks: ASHEN.startup.timings(),
       resources: performance.getEntriesByType('resource').map(r=>({
         name:r.name,start:r.startTime,responseStart:r.responseStart,end:r.responseEnd,
-        transferSize:r.transferSize,encodedBodySize:r.encodedBodySize,initiator:r.initiatorType,
+        transferSize:r.transferSize,encodedBodySize:r.encodedBodySize,initiator:r.initiatorType,protocol:r.nextHopProtocol,
       })),
+      navigation: performance.getEntriesByType('navigation').map(r=>({start:r.startTime,responseStart:r.responseStart,end:r.responseEnd,domContentLoaded:r.domContentLoadedEventEnd,protocol:r.nextHopProtocol})),
       playableMs: ASHEN.startup.timings().playable,
       grounded: ASHEN.player.getGrounded(),
       physics: ASHEN.player.getDebugState().usingPhysics,
@@ -186,6 +196,15 @@ for (let run = 1; run <= runs; run++) {
     }));
     await page.keyboard.up("KeyW");
     row.input.responseUpperBoundMs = row.input.observedAt - row.input.keyAt;
+    if(gpuProbe)row.gpuEvents=await page.evaluate(()=>{globalThis.__stopGpuEventProbe=true;return globalThis.__startupGpuEvents;});
+    if(traceGpu) {
+      const completed=new Promise(resolve=>cdp.once('Tracing.tracingComplete',resolve));
+      await cdp.send('Tracing.end');
+      const {stream}=await completed, chunks=[];
+      for(;;){const chunk=await cdp.send('IO.read',{handle:stream});chunks.push(Buffer.from(chunk.data,chunk.base64Encoded?'base64':'utf8'));if(chunk.eof)break;}
+      await cdp.send('IO.close',{handle:stream});
+      await fs.writeFile(destination.replace(/\.json$/,`-${run}.trace.json`),Buffer.concat(chunks));
+    }
     row.errors = errors;
     row.run = run;row.browserPid=browserPid;
     if(seed) {
