@@ -1,7 +1,10 @@
 # M006 — cold startup gate, paired measurement
 
-Status: **the one-second playable gate fails, and it already failed before this session's
-work.** Nothing here regressed it.
+Status: **the one-second playable gate cannot be evaluated on this machine right now.** The
+code is not the cause: the very commit that passed the gate at 843 ms p95 now measures
+1,125 ms on the same protocol. Nothing in this session regressed it, and nothing before this
+session did either — see *The failure is environmental* below, which supersedes the original
+reading of this result.
 
 ## Result
 
@@ -27,7 +30,41 @@ Transferred bytes: 4,753,370 baseline, 4,754,054 candidate — a 684-byte differ
 the creator's route code in `main.js`. `creator.js` itself is a separate 5.5 KB chunk that
 the default route never fetches.
 
-## Reading it honestly
+## The failure is environmental, not inherited from the code
+
+The original conclusion here — "the gate fails and already failed before this session" — was
+true as a measurement and wrong as an explanation. It invited the reading that the code was
+at fault. A third measurement settles it.
+
+`595438c`, the M007 checkpoint, recorded **p95 843.0 ms with 20/20 runs under a second** on
+this same machine, the same Apple M1 Max, the same 50 Mbit/s / 40 ms profile, the same
+viewport and the same definition of playable. Rebuilt from that exact commit and re-measured
+today, back to back with HEAD:
+
+| build | ≤1000 ms | p50 | p95 | max |
+|---|---|---|---|---|
+| `595438c` **as recorded then** | **20/20** | 829.5 | **843.0** | 846.0 |
+| `595438c` **re-measured today** | 0/20 | 1074.6 | **1125.2** | 1288.3 |
+| `8b8138f` (HEAD) today | 0/20 | 1080.4 | 1098.3 | 1104.7 |
+
+The same commit is **282 ms slower** than its own recorded result, and HEAD is
+**marginally faster than it** today (p50 +0.54%, p95 −2.39%). Transferred bytes at the
+playable boundary are 4,752,398 for `595438c` and 4,754,054 for HEAD — a 1,656-byte
+difference, and the tracked startup packs are byte-identical between the two commits.
+
+So no code change accounts for the gap. The machine does: load average was 3.09 rising to
+5.83 across these runs, with 9 users logged in, 17 days of uptime, and WindowServer, Activity
+Monitor, a browser, an editor daemon and Blender all resident. Startup is CPU-bound work —
+parse, compile, Brotli decode, PNG decode, Havok init — and contends with that. Settled FPS
+does not: it reproduced the M007 baseline's meadow figure to within 0.1 FPS (184.4 against
+184.553) in the same period, which is why the two gates disagree.
+
+**Consequence for the project:** no startup number measured on this machine in its current
+state is comparable to the 843 ms local reference or the 979.4 ms release reference. The gate
+should be re-run when the machine is quiet, and until then a failing local p95 is not
+evidence about the build.
+
+## Reading the original paired comparison
 
 The gate is p95 <= 1,000 ms. Both builds sit at about 1,089 ms, so **the gate fails on this
 machine today**, by roughly 9%. The released reference recorded 19/20 under 1 s and a
