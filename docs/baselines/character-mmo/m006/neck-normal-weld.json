@@ -1,0 +1,25 @@
+{
+ "generatedBy": "scripts/character-assets/weld-neck-normals.mjs",
+ "input": ".cache/character-mmo/m006/human-old-bald-atlas-matched.glb",
+ "output": ".cache/character-mmo/m006/human-old-bald-welded.glb",
+ "bytes": 6250912,
+ "cutY": 1.5,
+ "rimEpsM": 0.002,
+ "neighbours": 3,
+ "iterations": 12,
+ "headRimVertices": 89,
+ "bodyRimVertices": 41,
+ "normalAngleDegrees": {
+  "before": {
+   "p50": 43.9,
+   "p90": 112.3,
+   "max": 168
+  },
+  "after": {
+   "p50": 1,
+   "p90": 9,
+   "max": 26.6
+  }
+ },
+ "changed": "NORMAL only; positions, UVs, joints, weights, indices and morph targets untouched"
+}

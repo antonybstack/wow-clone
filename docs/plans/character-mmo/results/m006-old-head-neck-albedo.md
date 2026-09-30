@@ -122,12 +122,8 @@ candidate's body ends at the neck, so the coverage contract moves both head segm
 
 ## What still reads wrong
 
-1. At close range the join is a **thin straight horizontal line** under the jaw. It is no
-   longer a tonal block, but it is geometrically straight and catches the eye. Colour alone
-   will not remove it — the diffused variant above confirms that a better colour field does
-   not help. Two meshes butted at a cut, carrying two atlases, need to become one mesh on one
-   atlas with a gradient-domain blend across the former seam. That is re-authoring, and it is
-   the actual remaining M006 art gate.
+1. At close range the join is a **thin straight horizontal line** under the jaw. Its cause is
+   now measured, and it is **not colour** — see below.
 2. The stubble stops in a **hard horizontal cut at the nape** instead of fading.
 3. The rear-scalp UV discontinuities are untouched, and are **not a visible defect** — see
    below. They should come off the M006 blocker list.
@@ -169,3 +165,42 @@ wide, indistinguishable from stubble, instead of an edge.
 This is a latent authoring defect. Fixing it means re-welding or re-painting the head's UV
 islands, which puts the M004 morph correspondence at risk for no visible gain. Recommend
 leaving it and treating the visible join (defects 1 and 2 above) as the actual M006 art gate.
+
+
+## The residual line is a normal discontinuity, not an albedo one
+
+Five colour corrections were tried on this seam and each left the same thin straight line.
+The reason was measurable from the first day and went unmeasured while the albedo was fitted
+five times. At the y=1.5 m rim, the head's shading normals and the body's disagree by a
+**median of 44 degrees**, p90 112, max 168.
+
+Two surfaces meeting with normals that far apart shade differently whatever their albedo is,
+and a lighting step along a straight mesh boundary is exactly a thin straight line. This is
+the same failure as fitting the atlas instead of the render, one level down: the quantity
+being corrected was not the quantity producing the defect.
+
+`scripts/character-assets/weld-neck-normals.mjs` tests the standard fix — both sides adopt one
+shared normal at the rim, iterated because the two rims are not the same density (89 head
+vertices against 41 on the body), so a single inverse-distance blend does not converge. It
+brings the angle across the cut to **p50 1.0, p90 9.0, max 26.6** degrees, touching NORMAL
+only and leaving positions, UVs, joints, weights, indices and morph targets alone.
+
+**It is not shipped**, because the result is genuinely ambiguous and the two available
+measurements disagree:
+
+- By eye the edge is **softer**, most clearly at the nape, where the hard horizontal line
+  becomes a gradient.
+- By the band-mean metric it is **worse**: the step rises from 8.2/7.6 to 16.7/21.1
+  front-quarter/back, because the head now renders 16–21 brighter than the body near the rim.
+  The hue break, by contrast, falls to 1.0/3.7.
+
+Both readings are correct about different things. The band-mean metric measures a *brightness
+offset* across the join; the visible defect is an *edge*. Welding removes the edge and
+introduces an offset, because it forces normals that match neither surface's actual geometry.
+
+That is the real diagnosis: the head and body are **not tangent-continuous at the cut**. Their
+surfaces genuinely point in different directions where they meet, and no normal or colour
+assignment can make one look like the continuation of the other while both keep their own
+shading. Closing this needs the geometry adjusted so the two rims meet smoothly — or the two
+meshes merged into one — which is authoring work, and it is the actual remaining M006 art
+gate. A future attempt should start there rather than at the atlas.
