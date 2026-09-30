@@ -1,0 +1,268 @@
+{
+ "generatedBy": "scripts/character-assets/measure-posed-garment-fit.mjs",
+ "heightSweep": [
+  {
+   "height": 0.9,
+   "shape": "slender",
+   "newlyUncovered": 1
+  },
+  {
+   "height": 0.9,
+   "shape": "stout",
+   "newlyUncovered": 23
+  },
+  {
+   "height": 1,
+   "shape": "slender",
+   "newlyUncovered": 3
+  },
+  {
+   "height": 1,
+   "shape": "stout",
+   "newlyUncovered": 29
+  },
+  {
+   "height": 1.15,
+   "shape": "slender",
+   "newlyUncovered": 6
+  },
+  {
+   "height": 1.15,
+   "shape": "stout",
+   "newlyUncovered": 33
+  }
+ ],
+ "body": ".cache/character-mmo/m004/human-shape-family-v1.glb",
+ "garmentDir": ".cache/character-mmo/m005",
+ "bindPoseResidualM": 1.192e-7,
+ "method": "morph then linear blend skin; control is the neutral body in the same pose at the same instant",
+ "clips": [
+  "Idle_Loop"
+ ],
+ "thresholds": {
+  "nearMetres": 0.06,
+  "coverRayMetres": 0.06,
+  "hemExclusionMetres": 0.03,
+  "viewDirections": 8,
+  "viewReachMetres": 0.8
+ },
+ "excludedVertices": {
+  "count": 1249,
+  "of": 3274,
+  "reason": "dominant skinning joint belongs to a region no equipped slot covers (hands, fingers, head, neck)"
+ },
+ "metrics": {
+  "newlyUncovered": "covered on the neutral body and not on this shape, in the same pose at the same instant",
+  "newlyUncoveredAwayFromHem": "the same, excluding vertices within hemExclusionMetres of a garment edge",
+  "exposedToCamera": "the headline: newly uncovered AND visible from at least one of viewDirections horizontal directions, with cloth and the body itself as occluders"
+ },
+ "samplesPerClip": 1,
+ "outfits": {
+  "wayfarer": [
+   "wayfarerTunic",
+   "wayfarerTrousers",
+   "wayfarerBoots"
+  ],
+  "graveweaver": [
+   "graveweaverTop",
+   "graveweaverSkirt",
+   "graveweaverGloves"
+  ],
+  "mixed-top-wayfarer": [
+   "wayfarerTunic",
+   "graveweaverSkirt",
+   "wayfarerBoots"
+  ],
+  "mixed-top-graveweaver": [
+   "graveweaverTop",
+   "wayfarerTrousers",
+   "wayfarerBoots"
+  ]
+ },
+ "summary": {
+  "wayfarer/slender": {
+   "worstExposedToCamera": 0,
+   "at": null,
+   "meanExposedToCamera": 0,
+   "worstNewlyUncovered": 3,
+   "samples": 1
+  },
+  "wayfarer/stout": {
+   "worstExposedToCamera": 2,
+   "at": "Idle_Loop@0s",
+   "meanExposedToCamera": 2,
+   "worstNewlyUncovered": 29,
+   "samples": 1
+  },
+  "graveweaver/slender": {
+   "worstExposedToCamera": 0,
+   "at": null,
+   "meanExposedToCamera": 0,
+   "worstNewlyUncovered": 4,
+   "samples": 1
+  },
+  "graveweaver/stout": {
+   "worstExposedToCamera": 0,
+   "at": null,
+   "meanExposedToCamera": 0,
+   "worstNewlyUncovered": 19,
+   "samples": 1
+  },
+  "mixed-top-wayfarer/slender": {
+   "worstExposedToCamera": 0,
+   "at": null,
+   "meanExposedToCamera": 0,
+   "worstNewlyUncovered": 7,
+   "samples": 1
+  },
+  "mixed-top-wayfarer/stout": {
+   "worstExposedToCamera": 0,
+   "at": null,
+   "meanExposedToCamera": 0,
+   "worstNewlyUncovered": 29,
+   "samples": 1
+  },
+  "mixed-top-graveweaver/slender": {
+   "worstExposedToCamera": 0,
+   "at": null,
+   "meanExposedToCamera": 0,
+   "worstNewlyUncovered": 2,
+   "samples": 1
+  },
+  "mixed-top-graveweaver/stout": {
+   "worstExposedToCamera": 20,
+   "at": "Idle_Loop@0s",
+   "meanExposedToCamera": 20,
+   "worstNewlyUncovered": 32,
+   "samples": 1
+  }
+ },
+ "worstOverall": {
+  "outfit": "mixed-top-graveweaver",
+  "clip": "Idle_Loop",
+  "time": 0,
+  "shape": "stout",
+  "inGarmentRegion": 2024,
+  "coveredByGarment": 1863,
+  "newlyUncovered": 32,
+  "newlyUncoveredAwayFromHem": 22,
+  "exposedToCamera": 20,
+  "newlyCovered": 8,
+  "worstNewGapMm": 54.3,
+  "worstDeepGapMm": 54.3
+ },
+ "rows": [
+  {
+   "outfit": "wayfarer",
+   "clip": "Idle_Loop",
+   "time": 0,
+   "shape": "slender",
+   "inGarmentRegion": 2025,
+   "coveredByGarment": 1912,
+   "newlyUncovered": 3,
+   "newlyUncoveredAwayFromHem": 1,
+   "exposedToCamera": 0,
+   "newlyCovered": 21,
+   "worstNewGapMm": 38.9,
+   "worstDeepGapMm": 38.9
+  },
+  {
+   "outfit": "wayfarer",
+   "clip": "Idle_Loop",
+   "time": 0,
+   "shape": "stout",
+   "inGarmentRegion": 2024,
+   "coveredByGarment": 1875,
+   "newlyUncovered": 29,
+   "newlyUncoveredAwayFromHem": 18,
+   "exposedToCamera": 2,
+   "newlyCovered": 10,
+   "worstNewGapMm": 54.3,
+   "worstDeepGapMm": 54.3
+  },
+  {
+   "outfit": "graveweaver",
+   "clip": "Idle_Loop",
+   "time": 0,
+   "shape": "slender",
+   "inGarmentRegion": 1516,
+   "coveredByGarment": 1279,
+   "newlyUncovered": 4,
+   "newlyUncoveredAwayFromHem": 3,
+   "exposedToCamera": 0,
+   "newlyCovered": 12,
+   "worstNewGapMm": 59.9,
+   "worstDeepGapMm": 59.9
+  },
+  {
+   "outfit": "graveweaver",
+   "clip": "Idle_Loop",
+   "time": 0,
+   "shape": "stout",
+   "inGarmentRegion": 1508,
+   "coveredByGarment": 1264,
+   "newlyUncovered": 19,
+   "newlyUncoveredAwayFromHem": 12,
+   "exposedToCamera": 0,
+   "newlyCovered": 12,
+   "worstNewGapMm": 56.5,
+   "worstDeepGapMm": 56.5
+  },
+  {
+   "outfit": "mixed-top-wayfarer",
+   "clip": "Idle_Loop",
+   "time": 0,
+   "shape": "slender",
+   "inGarmentRegion": 2025,
+   "coveredByGarment": 1865,
+   "newlyUncovered": 7,
+   "newlyUncoveredAwayFromHem": 6,
+   "exposedToCamera": 0,
+   "newlyCovered": 15,
+   "worstNewGapMm": 54.6,
+   "worstDeepGapMm": 54.6
+  },
+  {
+   "outfit": "mixed-top-wayfarer",
+   "clip": "Idle_Loop",
+   "time": 0,
+   "shape": "stout",
+   "inGarmentRegion": 2024,
+   "coveredByGarment": 1850,
+   "newlyUncovered": 29,
+   "newlyUncoveredAwayFromHem": 19,
+   "exposedToCamera": 0,
+   "newlyCovered": 22,
+   "worstNewGapMm": 48.6,
+   "worstDeepGapMm": 48.6
+  },
+  {
+   "outfit": "mixed-top-graveweaver",
+   "clip": "Idle_Loop",
+   "time": 0,
+   "shape": "slender",
+   "inGarmentRegion": 2025,
+   "coveredByGarment": 1906,
+   "newlyUncovered": 2,
+   "newlyUncoveredAwayFromHem": 1,
+   "exposedToCamera": 0,
+   "newlyCovered": 21,
+   "worstNewGapMm": 38.9,
+   "worstDeepGapMm": 38.9
+  },
+  {
+   "outfit": "mixed-top-graveweaver",
+   "clip": "Idle_Loop",
+   "time": 0,
+   "shape": "stout",
+   "inGarmentRegion": 2024,
+   "coveredByGarment": 1863,
+   "newlyUncovered": 32,
+   "newlyUncoveredAwayFromHem": 22,
+   "exposedToCamera": 20,
+   "newlyCovered": 8,
+   "worstNewGapMm": 54.3,
+   "worstDeepGapMm": 54.3
+  }
+ ]
+}

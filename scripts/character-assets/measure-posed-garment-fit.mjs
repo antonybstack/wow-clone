@@ -11,10 +11,12 @@
  * is something the shape broke. Comparing a posed shaped body against a rest-pose neutral
  * would report the pose as a defect.
  *
- * Height is deliberately not swept. It is a uniform scale on the visual root, and the
- * garments hang from the same root, so body and cloth scale together and no coverage
- * relationship changes. The `--verify-height-invariance` flag proves that rather than
- * assuming it.
+ * Height is swept separately rather than crossed with everything else. It is a uniform scale
+ * on the visual root and the garments hang from that same root, so body and cloth scale
+ * together and the *fit* cannot change. The measurement is not quite scale-free, though: the
+ * coverage ray is an absolute 60 mm, so at 1.15x it reaches relatively less far and a few
+ * marginal vertices change side. `ASHEN_HEIGHT_SWEEP=1` measures that directly instead of
+ * asserting invariance, and the result is reported as the metric's own scale sensitivity.
  *
  * Deformation order is morph-then-skin, matching the renderer. Skinning is validated against
  * the bind pose before any measurement runs; see `pose-skin.mjs`.
@@ -231,6 +233,51 @@ function distanceToHem(posed, v, hems) {
     return Math.sqrt(best);
 }
 
+/**
+ * Scale sensitivity of the metric to the creator's height range.
+ *
+ * Scaling every position uniformly is exactly what the height slider does to the rendered
+ * character, so any change in the count is the metric's own absolute 60 mm ray, not a fit
+ * change. Reported rather than asserted away.
+ */
+async function heightSweep() {
+    const scaled = (arr, k) => { const out = new Float32Array(arr.length); for (let i = 0; i < arr.length; i++) out[i] = arr[i] * k; return out; };
+    const out = [];
+    for (const height of [0.9, 1.0, 1.15]) {
+        for (const shape of TARGETS) {
+            const clip = root.listAnimations().find(a => a.getName() === 'Idle_Loop');
+            const bodyPose = poseNodes(root, clip, 0);
+            const mats = jointMatrices(skin, globalMatrices(root, bodyPose));
+            const byName = globalMatricesByName(root, bodyPose);
+            const measure = which => {
+                const morphed = which === 'neutral' ? bodyBase : applyMorph(bodyBase, bodyTargets, weightsFor(which));
+                const posed = scaled(skinPositions(morphed, bodyJoints, bodyWeights, mats), height);
+                const parts = [];
+                for (const id of OUTFITS.wayfarer) {
+                    const g = garments.get(id);
+                    const gm = g.skin ? jointMatricesFromNamed(g.skin, byName) : null;
+                    for (const part of g.parts) {
+                        const i = part.targetNames.indexOf(which);
+                        const sh = which === 'neutral' || i < 0 ? part.base
+                            : applyMorph(part.base, part.targets, part.targetNames.map((_, k) => (k === i ? 1 : 0)));
+                        parts.push({positions: scaled(gm && part.joints ? skinPositions(sh, part.joints, part.weights, gm) : sh, height),
+                            indices: part.indices});
+                    }
+                }
+                return {...classifyCoverage(posed, vertexNormals(posed, bodyIndices), parts), posed, parts};
+            };
+            const control = measure('neutral'), result = measure(shape);
+            let lost = 0;
+            for (let v = 0; v < control.covered.length; v++) {
+                if (!countable[v]) continue;
+                if (control.covered[v] && !result.covered[v]) lost++;
+            }
+            out.push({height, shape, newlyUncovered: lost});
+        }
+    }
+    return out;
+}
+
 const rows = [];
 let worst = null;
 for (const outfit of Object.keys(OUTFITS)) {
@@ -291,8 +338,15 @@ for (const row of rows) {
     if (row.exposedToCamera > e.worst) { e.worst = row.exposedToCamera; e.worstClip = `${row.clip}@${row.time}s`; }
 }
 
+const heightRows = process.env.ASHEN_HEIGHT_SWEEP === '1' ? await heightSweep() : null;
+if (heightRows) {
+    console.log('height sweep (Wayfarer, Idle_Loop@0, newly uncovered away from unclaimed regions):');
+    for (const r of heightRows) console.log(`  height ${r.height.toFixed(2)}  ${r.shape.padEnd(8)} ${r.newlyUncovered}`);
+}
+
 const report = {
     generatedBy: 'scripts/character-assets/measure-posed-garment-fit.mjs',
+    heightSweep: heightRows,
     body: BODY, garmentDir: FIT_DIR,
     bindPoseResidualM: Number(residual.toExponential(3)),
     method: 'morph then linear blend skin; control is the neutral body in the same pose at the same instant',

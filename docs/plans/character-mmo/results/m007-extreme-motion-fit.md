@@ -82,10 +82,32 @@ all three, and the corrected metric puts slender at ≤5 exposed everywhere.
 
 ## What this does not cover
 
-- Only `slender` and `stout` at weight 0.95. Intermediate blends are interpolations of the
-  same field but were not sampled.
-- Height is not swept: it is a uniform scale on the visual root and the garments hang from
-  that same root, so body and cloth scale together and no coverage relationship changes.
+- Intermediate blends are interpolations of the same field but were not sampled.
+- Only `slender` and `stout` at weight 0.95 in the main matrix.
 - Five samples per clip. A defect confined to a window narrower than a fifth of a clip could
   be missed.
 - The Orc and Undead have no verified shape family, so there are no body extremes to test.
+
+
+## Height, measured rather than assumed
+
+An earlier version of this file said height needed no sweep because it is a uniform scale on
+the visual root that the garments hang from, "so no coverage relationship changes", and
+referred to a verification flag that did not exist. The first half is right about the
+character and wrong about the metric: the coverage ray is an absolute 60 mm, so on a taller
+body it reaches relatively less far and marginal vertices change side.
+
+`ASHEN_HEIGHT_SWEEP=1` measures it (Wayfarer, `Idle_Loop@0`, newly uncovered away from
+unclaimed regions):
+
+| height | slender | stout |
+|---|---|---|
+| 0.90 | 1 | 23 |
+| 1.00 | 3 | 29 |
+| 1.15 | 6 | 33 |
+
+The count drifts by 5 and 10 across the creator's whole height range. That drift is the ray
+length, not the garment: body and cloth are scaled by the same factor, so the fit is
+identical by construction. It is reported here so the main matrix's figures are read as
+belonging to height 1.0, and so the claim rests on a measurement rather than on an argument
+about a flag that was never written.
