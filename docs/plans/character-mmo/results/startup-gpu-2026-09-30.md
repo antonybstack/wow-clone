@@ -51,6 +51,8 @@ M1 Max, isolated uncapped Chromium WebGPU, actual 1280×720, seven enemies, thre
 | Cathedral | 233.5 | 233.5 | 228.4 |
 | Forest | 219.1 | 219.0 | 216.8 |
 
+The largest-body FPS fixture is height **1.15**, build **+0.95**, starter outfit. The largest saved-outfit startup fixture is independently height **0.90**, build **−0.95**, with the hood/mixed cloth/skirt/gloves/staff/book loadout recorded in its recipe; “largest outfit” denotes prepared mesh payload, not maximum stature.
+
 Neutral mean changes stay below 0.1%. Largest-body runs are within 2.3% of the neutral baseline. Maximum settled intervals are **12.6 ms neutral / 15.2 ms largest body**, zero >16.67 ms; worst run p95/p99 intervals are **10.3/11.1 ms neutral** and **10.7/11.4 ms largest body**. This is uncapped throughput, not a guarantee every frame meets 144 Hz. Raw full-window/tail results are retained.
 
 Reviewed [live startup and movement](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/startup-gpu-2026-09-30.mp4) is Telegram **819**, explicit returned **1280×720** dimensions, **19.175 s**, square pixels and normalized rotation. Capture timestamps determine encoded elapsed time; recording is not a startup/FPS benchmark. The selected outfit is present at first play, the loading frontier remains physical while region detail arrives, and movement finishes near z=69 with Havok active, seven enemies, zero recovery teleports and no runtime/GPU errors. Direct VE video/mp4, range seeking, advancing playback and fullscreen pass; Telegram desktop client presentation was not independently inspected.
@@ -72,4 +74,22 @@ An earlier pre-review candidate also passed 80/80 (p95 836.7–947.2 ms); its re
 
 ## Release status
 
-Local acceptance and reviewed motion are complete. Commit/push and production deployment/verification follow; production remains `378af1f5-609a-416e-ad3d-5636dbf13c2b` until a new deployment is recorded. That release/source `59c08da` is the recorded rollback target. The GPU first-use tail remains unresolved, irrespective of whether the new public batch reproduces it.
+Committed/pushed game source **`b362dbc12b22831ccbc708f9fffadcc083f48804`**. Existing `scripts/deploy-pages.sh` published Cloudflare Pages production **`60c0ca70-6575-4cd6-a717-b99984c9964f`**, [play.sparkify.dev](https://play.sparkify.dev), immutable [deployment](https://60c0ca70.fardel.pages.dev). Rollback is **`378af1f5-609a-416e-ad3d-5636dbf13c2b`**, source `59c08da`. All **251** executable/critical-resource checks pass, including geometry, textures and Havok; **191** executable/HTML/Havok files match the final locally measured native bundle byte for byte. No runtime art payloads were regenerated. Final public custom-domain cohorts use twenty fresh native/unthrottled Chrome processes per identity, 1280×720, no recording or diagnostic GPU flags:
+
+| Identity | p95 ms | Maximum ms | <=1 second |
+| --- | ---: | ---: | ---: |
+| Default | 753.4 | 758.8 | 20/20 |
+| Largest saved outfit | 860.0 | 1,248.3 | 19/20 |
+
+The largest-outfit outlier is **run 1**, retained without rerun or exclusion. Its supported frame was submitted at **581.7 ms**, supported completion at **1,245.7 ms**, first play at **1,248.3 ms**. Selected body/clothes were installed by approximately 519 ms. This approximately **664 ms** submission/completion gap again prevents claiming that transport prefetch fixes all GPU tails. All forty runs retain the actual selected appearance, completed-GPU/grounded/input boundary, Havok and observed keyboard movement with no runtime/GPU errors. Native public p95 passes in these cohorts; one-second startup on every start/device remains unproved.
+
+Production **33-case customization**, spawn movement and **four body-endpoint cathedral entry/return** checks all pass with Havok active and no recovery teleports. Largest-outfit **native touch/depth fallback** and **desktop WebKit** pass on the production URL, no runtime/GPU errors. All local checks and public cohorts use the shipped executable hashes. No rollback was needed. Owned browser contexts, both shared harness launches and both compressed-preview servers are closed; the final ownership report records the audit. Physical iPhone acceptance and Telegram client presentation remain unmeasured.
+
+The GPU first-use tail remains unresolved, irrespective of whether the new public batch reproduces it.
+
+
+## Remaining work and next investigation
+
+The measured serial discovery problem is fixed and released. The **multi-second GPU first-use defect remains open**; candidate absence of that stall is not a fix. Before changing rendering policy, collect a genuinely slow run with `ASHEN_PROBE_GPU_EVENTS=1 ASHEN_PROBE_CHROME_TRACE=1`, save its complete Chrome/Dawn trace, and correlate device acquisition, shader/pipeline identities, submit serials, GPU-service tasks and callback delivery. Compare identical profiles/URLs sequentially; document OS/driver/cache conditions rather than claiming that a fresh browser or disk-cache flag clears them. A fast diagnostic cannot explain a slow baseline. Do not force context loss or restart the user's machine to manufacture a cold run.
+
+Only an attributed fix should change pipeline initialization: reuse the installed Lite 1.31.1 native capabilities, measure PBR/world/post/compute coverage separately, and repeat normal four-profile startup/solo gates without instrumentation. Preserve saved identity, immutable provenance, Havok, full first-frame GPU completion and current quality. Shadow caching and async compilation remain disabled because existing trials did not justify enabling them. Crowd correctness in milestone 2 remains the next feature after the performance follow-up; physical iPhone startup/memory is still a separate acceptance item.

@@ -1,0 +1,81 @@
+{
+  "owner": "root",
+  "servers": [
+    {
+      "owner": "root",
+      "pid": 72546,
+      "port": 7374,
+      "purpose": "source 59c08da exact Pages baseline",
+      "active": false
+    },
+    {
+      "owner": "root",
+      "pid": 18335,
+      "port": 7474,
+      "purpose": "final native exact Pages candidate",
+      "active": false
+    }
+  ],
+  "browsers": "Sequential fresh processes owned by probe; each closes in finally and writes a closed ownership marker",
+  "initialOtherRenderingBrowsers": [],
+  "grok": "read-only Grok4.6/high review; no renderer launched",
+  "at": "2026-09-30T22:34:18.499372+00:00",
+  "serverPidHistory": [
+    74826,
+    79283,
+    83361,
+    4434
+  ],
+  "orcaAudit": {
+    "ownedBrowserPageTabs": [],
+    "rendererPid": 64823,
+    "purpose": "Orca application UI; read-only all-worktree tab list empty"
+  },
+  "safariAudit": "Only widget/link extension processes; no active WebContent. Unrelated booted simulator and Metal compiler services left intact.",
+  "harness": {
+    "owner": "root",
+    "browserPid": 13283,
+    "cdpPort": 10137,
+    "vitePid": 13228,
+    "vitePort": 5973,
+    "purpose": "isolated exact-build FPS and live functional/motion checks; bootstrap page blanked",
+    "active": false,
+    "closedAfter": "functional, mobile, motion and direct VE checks; before final cold batches"
+  },
+  "finalCold": "80 sequential fresh processes; all browser-close ownership markers inactive; no other Chrome game browser",
+  "production": "60c0ca70-6575-4cd6-a717-b99984c9964f; sequential default/largest cold probes, fresh processes closed finally",
+  "productionHarness": {
+    "owner": "root",
+    "browserPid": 57611,
+    "cdpPort": 10137,
+    "vitePid": 57559,
+    "vitePort": 5973,
+    "url": "https://play.sparkify.dev",
+    "purpose": "final production function/traversal/mobile checks; initial dev page blanked",
+    "active": false,
+    "closedAfter": "production appearance/traversal/touch/WebKit gates"
+  },
+  "finalAudit": {
+    "at": "2026-09-30T23:29:04.071968+00:00",
+    "ownedPorts": {
+      "7374": {
+        "listeners": "",
+        "closed": true
+      },
+      "7474": {
+        "listeners": "",
+        "closed": true
+      },
+      "5973": {
+        "listeners": "",
+        "closed": true
+      },
+      "10137": {
+        "listeners": "",
+        "closed": true
+      }
+    },
+    "activeGameBrowserProcesses": [],
+    "note": "Both harness Chrome/Vite groups and both preview servers closed. Cold probes close fresh processes in finally. Grok workers finished. Orca UI and unrelated Safari extensions/simulator retained."
+  }
+}
