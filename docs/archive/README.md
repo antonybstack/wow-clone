@@ -4,6 +4,8 @@ These documents are retained for rationale, sources and unresolved limitations. 
 
 ## Prior plans and mixed implementation histories
 
+- [Original character M001–M010 sequence, superseded 2026-09-29](plans/character-mmo-next-ten-2026-09-27.md)
+
 - [armed-character-repair-plan](plans/armed-character-repair-plan.md)
 - [armory-and-equipment-plan](plans/armory-and-equipment-plan.md)
 - [babylon-lite-1.31.1-migration-plan](plans/babylon-lite-1.31.1-migration-plan.md)

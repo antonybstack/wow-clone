@@ -1,6 +1,6 @@
 # Character customization and MMO vision — 100 milestone horizon
 
-Status: **proposed roadmap; implementation has not begun**. Prepared 2026-09-27 from the user's customization, 30-set wardrobe, quarterly PvP tier and crowded-city goals. Historical releases are prerequisites, not milestones completed in this roadmap.
+Status: **long-term horizon, updated 2026-09-29**. M001–M005 are completed bounded proof work. M006's creator surface is implemented; its Human source art is still open. M007 has representative fit evidence but the broader production control domain is not accepted. The [reprioritized next ten](next-ten.md) is the current execution order. Prepared originally on 2026-09-27 from the user's customization, 30-set wardrobe, quarterly PvP tier and crowded-city goals.
 
 ## Product direction
 
@@ -18,7 +18,7 @@ Hundreds or thousands of characters present in a hub does not promise identical 
 - [Architecture decisions and sources](architecture.md): technical rationale and unresolved choices.
 - [Current shipped state](../../CURRENT.md): live product evidence.
 
-The current task produces plans and documentation organization only. All M001–M100 are **planned**. Start M001 when implementing this initiative. Complete its evidence and commit before M002; then M003. IDs establish traceability, not equal effort or calendar promises. Categories after A are a dependency roadmap; tasks can later be scheduled when their dependencies are satisfied. They do not authorize a backend, combat or economy rewrite now. Replan after M003 and M010 before committing to asset volume or population claims.
+This file preserves the 100-milestone capability horizon and its original IDs. It is not an executable queue. The active plan combines existing recipe/fit/creator work into a production release, resolves crowd correctness and ownership, and pulls a bounded multiplayer presence spike forward before bulk race/wardrobe art. It then completes Human identity, rehearses five outfits and an Elf fit, and accepts hub scale before one cooperative loop. Unassigned capability IDs remain future work; no backend has been selected or multiplayer implemented by this planning update. IDs are traceability, not equal effort or calendar promises. Replan after active milestones 3 and 8 before committing to volume or population claims.
 
 ## Success criteria and constraints
 
@@ -31,7 +31,7 @@ The current task produces plans and documentation organization only. All M001–
 
 ## A — Prove customization and crowd feasibility
 
-M001–M010; execute sequentially using the detailed briefs.
+M001–M010 were the original proof sequence. M001–M005 are done; remaining outputs are assigned to the active next-ten plan. Use the individual briefs as evidence and implementation references, not a command to repeat completed work.
 
 | ID | Milestone | Observable exit |
 | --- | --- | --- |
@@ -48,7 +48,7 @@ M001–M010; execute sequentially using the detailed briefs.
 
 ## B — Production character bodies and identity
 
-Depends on M010. Art direction remains the approved project direction; new reference choices are recorded before authoring.
+The active plan pulls a bounded Human identity family and an Elf proof forward; full production libraries follow the architecture/capacity acceptance in active milestone 8. Art direction remains the approved project direction; new reference choices are recorded before authoring.
 
 | ID | Milestone | Observable exit |
 | --- | --- | --- |
@@ -133,7 +133,7 @@ Depends on C/E and preserves the measured progressive startup contract.
 
 ## G — Multiplayer presence foundation
 
-Conditional future work after M010; backend choice is an explicit decision, not an assumed SpacetimeDB commitment.
+A small authoritative presence slice is now planned at active milestone 4, with spatial/admission scale at 8. Broader service work remains conditional. Backend choice is an explicit measured decision, not an assumed SpacetimeDB commitment.
 
 | ID | Milestone | Observable exit |
 | --- | --- | --- |
@@ -150,7 +150,7 @@ Conditional future work after M010; backend choice is an explicit decision, not 
 
 ## H — Social hub and relevant gameplay integration
 
-Depends on G and existing gameplay contracts; expands only when multiplayer work is commissioned.
+Depends on G and existing gameplay contracts. Active milestone 9 proposes one bounded cooperative loop in the existing region; wider multiplayer systems remain future work.
 
 | ID | Milestone | Observable exit |
 | --- | --- | --- |

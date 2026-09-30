@@ -1,6 +1,6 @@
 # Character architecture decisions and research
 
-Status: recommended architecture, 2026-09-27. Capability verification is scoped; no crowd or arbitrary body-customization implementation is claimed.
+Status updated 2026-09-29: recommended architecture with M001–M005 proof results, a candidate-only Human creator and representative M007 fit evidence. Production crowds, general customization and multiplayer are unimplemented. The [next-ten plan](next-ten.md) owns current sequencing; the [current-state review](../../reviews/current-state-priorities-2026-09-29.md) records gaps.
 
 ## Durable decisions
 
@@ -18,8 +18,8 @@ Status: recommended architecture, 2026-09-27. Capability verification is scoped;
 ## Existing repository boundary
 
 - `src/ashen-reach/main.js`: progressive startup, Human/Orc/Undead pack selection, race lifecycle.
-- `src/ashen-reach/equipment-contract.js`, `equipment-catalog.js`: fit declarations, coverage union, slot occupancy, current presets. Coverage still uses Human mesh names and adapters, not the future semantic region standard.
-- `equipment-stream.js`, `equipment-loader.js`: staged garment loads, shared pose resources and cancellation; preserve their ownership rules.
+- `src/ashen-reach/equipment-contract.js`, `equipment-catalog.js`: fit declarations, coverage union, slot occupancy, current presets. M007 semantic coverage maps supported legacy names and current race primitives; not all bodies have individually hideable covered regions.
+- `equipment-stream.js`, `equipment-loader.js`: staged garment loads, shared pose resources and cancellation; preserve their ownership rules. M007 added `coverage-contract.js` for semantic body segments with concrete per-race mesh adapters.
 - `src/character/body.js`, `runtime/body-visual.js`, `sockets.js`, `adapters/lite-skin-layout.js`: source motion and evaluated attachments.
 - `src/character/runtime/body-profile.js` also contains older diagnostic profiles. Audit actual main-route use before reuse.
 - `scripts/ashen-reach/prepare-starter-character.mjs`: derives the compact dressed startup assets from current equipment; preserves geometry and animation while deferring full body textures.

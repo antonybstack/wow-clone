@@ -10,7 +10,7 @@ Support distinct Human appearances including tall/slender/young/long-haired and 
 
 The main route uses the actual source-compatible Human/Orc/Undead packs in `src/ashen-reach/main.js`, progressive starter assets, native Lite animation and Havok movement. Equipment fit IDs, coverage, occupancy and streaming already exist. Their exact current source/bind/shape inventory is M001's deliverable. Older MakeHuman-only descriptions and 163-joint diagnostic profiles are historical, not interchangeable with the current source-65 runtime assets.
 
-There is no general body slider system or production crowd renderer yet. Do not treat supported native morph/baked-animation primitives as a complete customizable wardrobe.
+A Human height/build creator and fitted morph candidates exist on an explicit developer route, with local persistence. Ordinary production play has no accepted body editing or crowd renderer yet. The next milestone publishes a bounded body family and one appearance recipe; later milestones add source identity art, real crowd integration and authoritative multiplayer. Do not treat native morph/baked-animation primitives as a complete wardrobe.
 
 ## Contracts to preserve
 

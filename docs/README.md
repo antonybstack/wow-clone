@@ -6,11 +6,12 @@ Start with **[CURRENT.md](CURRENT.md)** for the shipped game and current initiat
 
 - **[Long-term vision: 100 milestones, ten categories](plans/character-mmo/vision-roadmap.md)**
 - **[Next ten milestones](plans/character-mmo/next-ten.md)**
-- **Implementation briefs:** [M001 — baseline/assets](plans/character-mmo/m001-baseline-and-asset-census.md), [M002 — appearance contract](plans/character-mmo/m002-appearance-contract.md), [M003 — crowd feasibility](plans/character-mmo/m003-crowd-feasibility.md), [M004 — Human template](plans/character-mmo/m004-human-template.md), [M005 — deformation proof](plans/character-mmo/m005-deformation-proof.md)
+- **[Current-state review and changed priorities — 2026-09-29](reviews/current-state-priorities-2026-09-29.md)**
+- **Completed proof briefs and reusable tooling:** [M001 — baseline/assets](plans/character-mmo/m001-baseline-and-asset-census.md), [M002 — appearance contract](plans/character-mmo/m002-appearance-contract.md), [M003 — crowd feasibility](plans/character-mmo/m003-crowd-feasibility.md), [M004 — Human template](plans/character-mmo/m004-human-template.md), [M005 — deformation proof](plans/character-mmo/m005-deformation-proof.md)
 - [Execution contract and performance gates](plans/character-mmo/execution-contract.md)
 - [Architecture decisions, capability checks and research](plans/character-mmo/architecture.md)
 
-All new milestones are planned. Completed documentation work does not mean the proposed feature is implemented. The briefs contain their own copyable implementer handoff prompts.
+M001–M005 are completed proof work; M006's creator surface and M007's representative fit evidence exist, with production customization and source-art gaps still open. The active next-ten plan supersedes the original execution order, with detailed work packages and handoffs for its first three milestones. These ten are planned, not implemented. Earlier briefs remain evidence and reusable instructions; historical IDs are not a second task queue.
 
 ## Operating and authoring references
 

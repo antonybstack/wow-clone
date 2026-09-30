@@ -1,6 +1,6 @@
-# Execution contract for M001–M010
+# Execution contract for character and multiplayer milestones
 
-Status: M001–M005 completed; M006 source-art gate remains open after a licensed live ponytail audition; M007 semantic coverage and active Undead bind verified with fit acceptance open. Read [CURRENT](../../CURRENT.md), the [next-ten plan](next-ten.md), and the single milestone brief assigned to you. These instructions are designed for Claude Opus 5.5 or GPT-6 Sol at medium effort. Do not implement all 100 milestones from an isolated brief.
+Status updated 2026-09-29: M001–M005 proof work completed; M006 creator surface implemented with source art open; M007 representative fit evidenced with production domain acceptance pending. Read [CURRENT](../../CURRENT.md), the [reprioritized next-ten plan](next-ten.md), and the single assigned package. These instructions are designed for Claude Opus 5.5 or GPT-6 Sol at medium effort. Historical M001–M010 references below retain their original scope; new milestones use the active plan's scope and release gates. Do not implement all 100 horizon items from an isolated brief.
 
 ## Baseline and ownership
 
