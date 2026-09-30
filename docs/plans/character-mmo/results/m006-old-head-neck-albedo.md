@@ -185,18 +185,19 @@ vertices against 41 on the body), so a single inverse-distance blend does not co
 brings the angle across the cut to **p50 1.0, p90 9.0, max 26.6** degrees, touching NORMAL
 only and leaving positions, UVs, joints, weights, indices and morph targets alone.
 
-**It is not shipped**, because the result is genuinely ambiguous and the two available
-measurements disagree:
+**It is not shipped.** By the band-mean metric it is worse: the step rises from 8.2/7.6 to
+16.7/21.1 front-quarter/back, because the head then renders 16–21 brighter than the body near
+the rim. The hue break, by contrast, falls to 1.0/3.7.
 
-- By eye the edge is **softer**, most clearly at the nape, where the hard horizontal line
-  becomes a gradient.
-- By the band-mean metric it is **worse**: the step rises from 8.2/7.6 to 16.7/21.1
-  front-quarter/back, because the head now renders 16–21 brighter than the body near the rim.
-  The hue break, by contrast, falls to 1.0/3.7.
+An earlier version of this section said the edge was "visibly softer" despite that, and
+called the result ambiguous. **That claim was wrong** — it was made from stills. Reviewed in
+live motion against the shipped colour-only build at the same camera and frames (Telegram
+**814**), the difference is marginal and cannot be called better either way. So the weld is
+rejected on the measurement, not on a visual judgement that does not survive review.
 
-Both readings are correct about different things. The band-mean metric measures a *brightness
-offset* across the join; the visible defect is an *edge*. Welding removes the edge and
-introduces an offset, because it forces normals that match neither surface's actual geometry.
+The reason welding does not pay off is still informative: it forces normals that match
+neither surface's actual geometry, trading a shading break at the cut for a brightness offset
+on each side of it.
 
 That is the real diagnosis: the head and body are **not tangent-continuous at the cut**. Their
 surfaces genuinely point in different directions where they meet, and no normal or colour
