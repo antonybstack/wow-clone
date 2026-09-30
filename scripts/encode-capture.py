@@ -7,7 +7,7 @@ import sys
 from lib.video_metadata import media_binary, probe_video, jpeg_dimensions
 
 
-def encode(directory, destination):
+def encode(directory, destination, max_kbps=None):
     directory, destination = Path(directory).resolve(), Path(destination).resolve()
     manifest_path = directory / 'capture-manifest.json'
     manifest = json.loads(manifest_path.read_text())
@@ -42,10 +42,18 @@ def encode(directory, destination):
     # Keep decode and presentation order equal for irregular capture intervals.
     # B-frame reordering shortened the MP4 stream duration by 67 ms in a real
     # 1,178-frame capture even though its final presentation timestamp was right.
+    rate_args = []
+    if max_kbps is not None:
+        max_kbps = int(max_kbps)
+        if not 250 <= max_kbps <= 50000:
+            raise ValueError('Video maximum bitrate must be 250–50000 kbit/s')
+        # VBV caps attachments without resizing or retiming the actual capture.
+        # https://ffmpeg.org/ffmpeg-codecs.html#libx264_002c-libx264rgb
+        rate_args = ['-maxrate', f'{max_kbps}k', '-bufsize', f'{max_kbps * 2}k']
     subprocess.run([media_binary('ffmpeg'), '-hide_banner', '-loglevel', 'warning', '-y',
                     '-f', 'concat', '-safe', '0', '-i', str(concat), '-map_metadata', '-1',
                     '-vf', 'setsar=1', '-c:v', 'libx264', '-x264-params', 'fps=60/1', '-bf', '0', '-preset', 'fast', '-crf', '19',
-                    '-pix_fmt', 'yuv420p', '-fps_mode', 'vfr', '-video_track_timescale', '1000000',
+                    *rate_args, '-pix_fmt', 'yuv420p', '-fps_mode', 'vfr', '-video_track_timescale', '1000000',
                     '-metadata:s:v:0', 'rotate=0', '-movflags', '+faststart', str(destination)], check=True)
     encoded = probe_video(destination)
     if (encoded['width'], encoded['height']) != (width, height) or abs(encoded['duration'] - elapsed) > .05:
@@ -56,4 +64,4 @@ def encode(directory, destination):
 
 
 if __name__ == '__main__':
-    encode(sys.argv[1], sys.argv[2])
+    encode(sys.argv[1], sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else None)

@@ -244,3 +244,20 @@ test('cached queries preserve affine, blended-bone and offscreen selection', () 
  }
  assert.deepEqual(cache.stats, {evaluations: 1, hits: 16});
 });
+
+test('morph extents follow signed weights before conservative skin/world transformation', () => {
+ const targets = [{positions:new Float32Array([10,0,0,12,0,0])}, {positions:new Float32Array([-4,0,0,-2,0,0])}];
+ const morphTargets={count:2,targets,weights:new Float32Array([1,0])};
+ const subject=mesh({morphTargets,skeleton:skin(identity(),translate(30)),worldMatrix:translate(100)});
+ assert.equal(canAffectLocalLight(subject,[111,0,0],0),true);
+ assert.equal(canAffectLocalLight(subject,[0,0,0]),false);
+ morphTargets.weights.set([-1,0]);
+ assert.equal(canAffectLocalLight(subject,[89,0,0],0),true);
+ morphTargets.weights.set([0,1]);
+ assert.equal(canAffectLocalLight(subject,[97,0,0],0),true);
+ // The range cache must not freeze the first shape or miss a replacement target.
+ targets[1]={positions:new Float32Array([-120,0,0,-100,0,0])};
+ assert.equal(canAffectLocalLight(subject,[0,0,0]),true);
+ morphTargets.weights[0]=NaN;
+ assert.equal(canAffectLocalLight(subject,[1000,0,0]),true);
+});

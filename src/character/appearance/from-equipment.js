@@ -2,7 +2,7 @@
  * The loader's `getStatus().desired` may be pending or fail and is never used here.
  * No live actor, ASHEN global, network or Lite dependency enters this module.
  */
-import {APPEARANCE_REGISTRY, assertFields, validateAppearance} from './contract.js';
+import {APPEARANCE_REGISTRY, assertFields, neutralAppearanceShape, validateAppearance} from './contract.js';
 
 export function appearanceFromEquipment(state,registry=APPEARANCE_REGISTRY) {
   assertFields(state,['race','loadout'],'$',{complete:true});
@@ -14,6 +14,6 @@ export function appearanceFromEquipment(state,registry=APPEARANCE_REGISTRY) {
   return validateAppearance({
     schemaVersion:registry.schemaVersion,catalogVersion:registry.catalogVersion,
     race:state.race,fitFamily:fit.body,fit:{rig:fit.rig,bind:fit.bind,shape:fit.shape},
-    shape:{},components:{},dyes:{},equipment,
+    shape:neutralAppearanceShape(state.race,registry),components:{},dyes:{},equipment,
   },registry);
 }

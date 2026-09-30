@@ -1,5 +1,5 @@
 /** Two bounded spot shadow maps shared by native/custom surfaces and fog. */
-import {createSpotLight,createPcfSpotlightShadowGenerator,enableSkeletonShadows,addTask,onSceneDispose,setShaderTexture,setShaderUniform,acquireTexture,releaseTexture,VERSION as LITE_VERSION} from '@babylonjs/lite';
+import {createSpotLight,createPcfSpotlightShadowGenerator,enableSkeletonShadows,enableMorphTargetShadows,addTask,onSceneDispose,setShaderTexture,setShaderUniform,acquireTexture,releaseTexture,VERSION as LITE_VERSION} from '@babylonjs/lite';
 import {LOCAL_LIGHT_UNIFORMS,LOCAL_MAP_SIZE,desiredLocalLights,advanceLocalSlots} from './local-light-shared.js';
 import {configureLocalLightMaterials} from './local-light-materials.js';
 import {createLocalLightBoundsCache} from './local-light-bounds.js';
@@ -40,7 +40,7 @@ export function createLocalLights(engine,scene,shadows){
   const generator=createPcfSpotlightShadowGenerator(engine,spot,{mapSize:LOCAL_MAP_SIZE,near:.08,far:8,bias:.0001,forceRefreshEveryFrame:false});
   const slot={index:i,spot,generator,texture:null,textureAcquired:false,light:null,weight:0,recorded:null,casters:[],nearby:[],renders:0,cacheHits:0};
   slots.push(slot);
-  enableSkeletonShadows(generator);
+  enableSkeletonShadows(generator);enableMorphTargetShadows(generator);
   if(typeof generator._depthTexture?.createView!=='function'||!generator._depthSampler||
      generator._lightMatrix?.length!==16||typeof generator._preloadShadowTask!=='function'||
      typeof generator._ensureShadowTaskState!=='function'||typeof generator._renderShadowMap!=='function'||

@@ -3,6 +3,7 @@ import {
   getContainerMeshes,
   loadTexture2D,
   rebuildMaterial,
+  acquireTexture, releaseTexture,
 } from "@babylonjs/lite";
 const pending = new Map();
 /** Cache promises, not just completed HTTP responses, so prefetch and equipment
@@ -48,12 +49,29 @@ export async function preloadStarterCharacter() {
     startupAssetBuffer(manifest.items[id]).catch(() => {});
   return manifest;
 }
-export async function upgradeStarterCharacter(engine, scene, container, manifest) {
+/** Only saved customized characters fetch this family before play. Neutral boots retain
+ * the existing starter; opening the Armory loads the family transactionally later.
+ */
+export async function preloadHumanShapePack(loadout = {}, {compact = false} = {}) {
+  const response = await fetch('/ashen-reach/human-shape-v1/manifest.json');
+  if (!response.ok) throw Error(`Human body family: HTTP ${response.status}`);
+  const manifest = await response.json();
+  const expected=import.meta.env.VITE_HUMAN_SHAPE_SOURCE;
+  if(expected&&manifest.provenance?.sha256!==expected)throw Error('The character family has been updated. Reload to use matching assets.');
+  if (manifest.shapeFamily !== 'ashen-human-shape-v1' || manifest.targetNames?.join('|') !== 'slender|stout')
+    throw Error('The Human body family has an incompatible deformation layout.');
+  const selected=compact?{...manifest,items:manifest.compactItems,fullManifest:manifest}:manifest;
+  for (const id of new Set(['body', ...Object.values(loadout).filter(id => manifest.items[id])]))
+    startupAssetBuffer(selected.items[id]).catch(() => {});
+  return selected;
+}
+export async function upgradeStarterCharacter(engine, scene, container, manifest, shouldAbort = () => false) {
   let disposed = false;
   onSceneDispose(scene, () => {
     disposed = true;
   });
   for (const entry of manifest.startup.textures) {
+    if (disposed || shouldAbort()) return false;
     const materials = new Set(
       getContainerMeshes(container)
         .map((m) => m.material)
@@ -66,14 +84,20 @@ export async function upgradeStarterCharacter(engine, scene, container, manifest
       srgb: true,
       mipMaps: true,
     });
-    if (disposed) throw Error("Scene disposed during character texture load");
-    for (const material of materials) {
-      material.baseColorTexture = texture;
-      // Public Lite material refresh updates bindings, retaining the skeleton,
-      // current animation phase, equipment and sockets throughout the upgrade.
-      // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/index.ts
-      await rebuildMaterial(scene, material);
-    }
+    // Keep one temporary owner while an asynchronous bind refresh installs its
+    // own references. Cancellation must release an otherwise unused upload.
+    // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/resource/texture-release.ts
+    acquireTexture(texture);
+    try {
+      if (disposed || shouldAbort()) return false;
+      for (const material of materials) {
+        if (disposed || shouldAbort()) return false;
+        material.baseColorTexture = texture;
+        // Public refresh preserves the source skeleton and current animation.
+        await rebuildMaterial(scene, material);
+      }
+    } finally {releaseTexture(texture);}
   }
   pending.clear();
+  return true;
 }

@@ -1,0 +1,2194 @@
+{
+  "sourceUrl": "http://127.0.0.1:7274/?play&clean&pixelRatio=1",
+  "viewport": [
+    1280,
+    720
+  ],
+  "canvas": [
+    1280,
+    720
+  ],
+  "timeline": [
+    {
+      "frame": 0,
+      "timestamp": null,
+      "label": "Normal URL: Human height and signed build controls",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1,
+          "build": 0
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 106,
+      "timestamp": 1790804159.121002,
+      "label": "Saved short slender identity, full Graveweaver",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 597,
+      "timestamp": 1790804171.329562,
+      "label": "Reload restores selected silhouette and compact clothing before detail",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 702,
+      "timestamp": 1790804173.570745,
+      "label": "Full clothing refines the same saved identity",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 746,
+      "timestamp": 1790804174.818032,
+      "label": "slender 0.95 / height 0.9 / wayfarer: orbit, travel, jump, cast",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 861,
+      "timestamp": 1790804178.311357,
+      "label": "Verified spell 1 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 926,
+      "timestamp": 1790804180.043403,
+      "label": "Verified spell 2 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 1016,
+      "timestamp": 1790804182.508505,
+      "label": "slender 0.95 / height 0.9 / graveweaver: orbit, travel, jump, cast",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 1139,
+      "timestamp": 1790804186.047723,
+      "label": "Verified spell 1 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 1202,
+      "timestamp": 1790804187.768824,
+      "label": "Verified spell 2 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 1299,
+      "timestamp": 1790804190.219645,
+      "label": "slender 0.95 / height 0.9 / pilgrim-largest: orbit, travel, jump, cast",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 1425,
+      "timestamp": 1790804193.725798,
+      "label": "Verified spell 1 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 1488,
+      "timestamp": 1790804195.454255,
+      "label": "Verified spell 2 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 1575,
+      "timestamp": 1790804197.889442,
+      "label": "slender 0.95 / height 0.9 / mixed-uncovered: orbit, travel, jump, cast",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 1694,
+      "timestamp": 1790804201.411777,
+      "label": "Verified spell 1 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 1759,
+      "timestamp": 1790804203.142145,
+      "label": "Verified spell 2 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 1848,
+      "timestamp": 1790804205.568347,
+      "label": "slender 0.95 / height 0.9 / mixed-staff: orbit, travel, jump, cast",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 1968,
+      "timestamp": 1790804209.088933,
+      "label": "Verified spell 1 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 2033,
+      "timestamp": 1790804210.824509,
+      "label": "Verified spell 2 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 2122,
+      "timestamp": 1790804213.245946,
+      "label": "slender 0.95 / height 1.15 / wayfarer: orbit, travel, jump, cast",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 2246,
+      "timestamp": 1790804216.742441,
+      "label": "Verified spell 1 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 2311,
+      "timestamp": 1790804218.474928,
+      "label": "Verified spell 2 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 2401,
+      "timestamp": 1790804220.927156,
+      "label": "slender 0.95 / height 1.15 / graveweaver: orbit, travel, jump, cast",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 2524,
+      "timestamp": 1790804224.471715,
+      "label": "Verified spell 1 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 2587,
+      "timestamp": 1790804226.194133,
+      "label": "Verified spell 2 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 2675,
+      "timestamp": 1790804228.636752,
+      "label": "slender 0.95 / height 1.15 / pilgrim-largest: orbit, travel, jump, cast",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 2803,
+      "timestamp": 1790804232.199795,
+      "label": "Verified spell 1 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 2866,
+      "timestamp": 1790804233.92839,
+      "label": "Verified spell 2 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 2952,
+      "timestamp": 1790804236.331579,
+      "label": "slender 0.95 / height 1.15 / mixed-uncovered: orbit, travel, jump, cast",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 3071,
+      "timestamp": 1790804239.840108,
+      "label": "Verified spell 1 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 3136,
+      "timestamp": 1790804241.574878,
+      "label": "Verified spell 2 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 3226,
+      "timestamp": 1790804244.030734,
+      "label": "slender 0.95 / height 1.15 / mixed-staff: orbit, travel, jump, cast",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 3350,
+      "timestamp": 1790804247.544698,
+      "label": "Verified spell 1 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 3415,
+      "timestamp": 1790804249.286377,
+      "label": "Verified spell 2 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 3504,
+      "timestamp": 1790804251.717903,
+      "label": "stout 0.95 / height 0.9 / wayfarer: orbit, travel, jump, cast",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 3628,
+      "timestamp": 1790804255.197658,
+      "label": "Verified spell 1 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 3693,
+      "timestamp": 1790804256.9255,
+      "label": "Verified spell 2 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 3784,
+      "timestamp": 1790804259.388185,
+      "label": "stout 0.95 / height 0.9 / graveweaver: orbit, travel, jump, cast",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 3905,
+      "timestamp": 1790804262.94928,
+      "label": "Verified spell 1 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 3969,
+      "timestamp": 1790804264.687105,
+      "label": "Verified spell 2 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 4067,
+      "timestamp": 1790804267.123611,
+      "label": "stout 0.95 / height 0.9 / pilgrim-largest: orbit, travel, jump, cast",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 4192,
+      "timestamp": 1790804270.630693,
+      "label": "Verified spell 1 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 4255,
+      "timestamp": 1790804272.357105,
+      "label": "Verified spell 2 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 4342,
+      "timestamp": 1790804274.78653,
+      "label": "stout 0.95 / height 0.9 / mixed-uncovered: orbit, travel, jump, cast",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 4463,
+      "timestamp": 1790804278.298555,
+      "label": "Verified spell 1 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 4528,
+      "timestamp": 1790804280.037925,
+      "label": "Verified spell 2 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 4618,
+      "timestamp": 1790804282.499319,
+      "label": "stout 0.95 / height 0.9 / mixed-staff: orbit, travel, jump, cast",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 4739,
+      "timestamp": 1790804285.99363,
+      "label": "Verified spell 1 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 4804,
+      "timestamp": 1790804287.727672,
+      "label": "Verified spell 2 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 4893,
+      "timestamp": 1790804290.147232,
+      "label": "stout 0.95 / height 1.15 / wayfarer: orbit, travel, jump, cast",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 5013,
+      "timestamp": 1790804293.638032,
+      "label": "Verified spell 1 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 5078,
+      "timestamp": 1790804295.370706,
+      "label": "Verified spell 2 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 5169,
+      "timestamp": 1790804297.834316,
+      "label": "stout 0.95 / height 1.15 / graveweaver: orbit, travel, jump, cast",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 5292,
+      "timestamp": 1790804301.369701,
+      "label": "Verified spell 1 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 5355,
+      "timestamp": 1790804303.094633,
+      "label": "Verified spell 2 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 5443,
+      "timestamp": 1790804305.541502,
+      "label": "stout 0.95 / height 1.15 / pilgrim-largest: orbit, travel, jump, cast",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 5566,
+      "timestamp": 1790804309.050539,
+      "label": "Verified spell 1 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 5629,
+      "timestamp": 1790804310.785092,
+      "label": "Verified spell 2 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      }
+    },
+    {
+      "frame": 5720,
+      "timestamp": 1790804313.231962,
+      "label": "stout 0.95 / height 1.15 / mixed-uncovered: orbit, travel, jump, cast",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 5846,
+      "timestamp": 1790804316.754595,
+      "label": "Verified spell 1 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 5911,
+      "timestamp": 1790804318.493634,
+      "label": "Verified spell 2 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 6007,
+      "timestamp": 1790804320.928226,
+      "label": "stout 0.95 / height 1.15 / mixed-staff: orbit, travel, jump, cast",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 6130,
+      "timestamp": 1790804324.464192,
+      "label": "Verified spell 1 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 6195,
+      "timestamp": 1790804326.207105,
+      "label": "Verified spell 2 windup",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 6304,
+      "timestamp": 1790804328.787653,
+      "label": "Atomic race change: orc",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "orc",
+        "fitFamily": "ashen-orc",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {},
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 6352,
+      "timestamp": 1790804330.141521,
+      "label": "Atomic race change: undead",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "undead",
+        "fitFamily": "ashen-undead",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {},
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 6401,
+      "timestamp": 1790804331.419911,
+      "label": "Atomic race change: human",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": null
+        }
+      }
+    },
+    {
+      "frame": 6446,
+      "timestamp": 1790804332.637334,
+      "label": "The same editable recipe remains after gameplay",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": null
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "encoded": {
+    "width": 1280,
+    "height": 720,
+    "duration": 176.908892,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "elapsedSeconds": 176.91211700439453,
+  "frames": 6485,
+  "bytes": 44314419,
+  "review": "Encoded chronological orbit/jump/fire/lava samples for all 20 endpoint/outfit combinations, compact movement, race changes and full-size Chromium VE fullscreen playback; screenshots are review aids."
+}

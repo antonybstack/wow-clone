@@ -14,13 +14,13 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
     const key = createPointLight([0,3,0],0);key.diffuse=[.96,.90,.78];key.range=9;addToScene(scene,key);
     const rim = createPointLight([0,3,0],0);rim.diffuse=[.62,.72,.92];rim.range=9;addToScene(scene,rim);
     const launcher = document.createElement('button');
-    launcher.id='armory-launch';launcher.textContent='Armory';launcher.title='Developer armory (C)';
+    launcher.id='armory-launch';launcher.textContent='Armory';launcher.title='Character & equipment (C)';
     launcher.setAttribute('aria-keyshortcuts','C');launcher.setAttribute('aria-expanded','false');
     const element = document.createElement('section');
     element.id='armory';element.hidden=true;element.setAttribute('role','dialog');element.setAttribute('aria-modal','true');element.setAttribute('aria-labelledby','armory-title');
     element.innerHTML=`
       <div class="armory-stage" aria-label="Character view. Drag to orbit; scroll to zoom."></div>
-      <header class="armory-heading"><small>ASHEN REACH / DEVELOPER TOOLS</small><h1 id="armory-title">The Armory</h1><p>Your character. The same world.</p></header>
+      <header class="armory-heading"><small>ASHEN REACH / CHARACTER</small><h1 id="armory-title">The Armory</h1><p>Your character. The same world.</p></header>
       <aside class="armory-panel">
         <div class="armory-panel-title"><span>Character & equipment</span><button data-close aria-label="Close armory">×</button></div>
         <label class="armory-field">Race<select data-race><option value="human">Human</option><option value="orc">Orc</option><option value="undead">Undead</option></select></label>
@@ -60,7 +60,7 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
  }
     let open=false, priorView='play', focusHeight=.78, drag=null, lastPaint=0;
     const raceField=element.querySelector('[data-race]'),raceNote=element.querySelector('[data-race-note]'),equipmentStatus=element.querySelector('[data-equipment-status]');
-    let race='human';
+    let race=equipment.race||'human';raceField.value=race;
     /**
      * Per-race armory presentation, keyed explicitly so a new race shows its own copy rather
      * than inheriting Human's. `scale` frames the inspection camera against body height.
@@ -71,15 +71,16 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
      * and getting it wrong only mis-crops the stage.
      */
     const RACE_UI={
-        human:{scale:1,status:'',note:'Human is available. Orc and Undead stream their own fitted packs.'},
-        orc:{scale:1.22,status:'Orc wears the same catalogue on the print-sculpt body. Report clipping.',note:'Orc is the print-sculpt retopo on the 65-joint source bind. The same logical items use an Orc fit; Human stays parked.'},
-        undead:{scale:1,status:'Undead is the Tripo Mixamo body on the 65-joint source bind.',note:'Undead streams its own pack on the ashen-undead fit. Catalogue clothes are still the Human garments, unfitted.'},
+        human:{scale:1,status:'',note:'Choose Human, Orc or Undead. Body adjustments are available for Human.'},
+        orc:{scale:1.22,status:'Orc',note:'Orc wears fitted versions of the same equipment.'},
+        undead:{scale:1,status:'Undead',note:'Undead wears fitted versions of the same equipment.'},
     };
     // Cosmetic lookup only: race is set from a completed switchRace, which has already
     // refused any race without a pack.
     const raceUi=()=>RACE_UI[race]??RACE_UI.human;
     const raceScale=()=>raceUi().scale;
     const setRaceUi=()=>{
+        raceField.value=race;
         for(const select of element.querySelectorAll('[data-equipment]'))select.disabled=false;
         for(const button of element.querySelectorAll('[data-outfit]'))button.disabled=false;
         const selection=equipment.getState();
@@ -139,6 +140,7 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
     };
     const show = () => {
         if(open)return;
+        race=equipment.race||race;setRaceUi();
         priorView=getView();
         for(const select of element.querySelectorAll('[data-equipment]'))select.value=equipment.getState()[select.dataset.equipment]||'';
         combat.interrupt('Armory opened');setInputEnabled(false);setView('play');combat.setVisible(false);
@@ -176,6 +178,7 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
     },true);
     const update = dt => {
         if(!open)return;
+        if(equipment.race&&equipment.race!==race){race=equipment.race;setRaceUi();}
         const p=player.body.position,feet=p.y-player.capsuleHeight/2;
         // Offset toward the panel to keep the character centered in the usable stage.
         const offset=innerWidth>760?.38:0;

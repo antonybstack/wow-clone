@@ -1,0 +1,15 @@
+{
+  "id": "72fd1e3d-7d8d-4108-8f0f-d8eb9a42cbfe",
+  "url": "https://72fd1e3d.fardel.pages.dev",
+  "created_on": "2026-09-27T20:39:56.478549Z",
+  "environment": "production",
+  "deployment_trigger": {
+    "type": "ad_hoc",
+    "metadata": {
+      "branch": "main",
+      "commit_hash": "76e3c41bf24956b85d3ea0776d571eebea6c7e91",
+      "commit_message": "Compress starter terrain with native HTTP Brotli and overlap material preparation",
+      "commit_dirty": true
+    }
+  }
+}

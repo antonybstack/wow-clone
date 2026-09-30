@@ -5,8 +5,10 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import os from "node:os";
+import {execFileSync} from 'node:child_process';
 import assert from "node:assert/strict";
 import { chromium } from "playwright";
+const seed=process.env.ASHEN_PROBE_APPEARANCE?JSON.parse(await fs.readFile(process.env.ASHEN_PROBE_APPEARANCE,'utf8')):null;
 const destination = process.argv[2];
 assert(destination, "Specify report.json");
 const runs = Number(process.env.ASHEN_PROBE_RUNS || 5),
@@ -31,7 +33,7 @@ target.searchParams.set("play", "");
 target.searchParams.set("pixelRatio", "1");
 const report = {
   conditions: {
-    profile,
+    profile, savedAppearance:seed,
     network: conditions[profile],
     cpu: os.cpus()[0]?.model,
     viewport: [1280, 720],
@@ -45,6 +47,8 @@ const report = {
 await fs.mkdir(path.dirname(destination), { recursive: true });
 for (let run = 1; run <= runs; run++) {
   const browser = await chromium.launch({ channel: "chrome", headless: true });
+  const browserPid=execFileSync('ps',['-axo','pid=,ppid=,command='],{encoding:'utf8'}).split('\n').map(line=>/^\s*(\d+)\s+(\d+)\s+(.*)$/.exec(line)).find(m=>m&&Number(m[2])===process.pid&&/Chrome|Chromium/.test(m[3]))?.[1]||null;
+  await fs.writeFile(destination+'.ownership.json',JSON.stringify({owner:'probe-playable-startup',controllerPid:process.pid,browserPid,cdpPort:null,url:target.href,purpose:`${profile} cold run ${run}`,active:true}));
   try {
     const context = await browser.newContext({
         viewport: { width: 1280, height: 720 },
@@ -54,6 +58,7 @@ for (let run = 1; run <= runs; run++) {
       page = await context.newPage(),
       errors = [],
       requests = new Map();
+    if(seed)await context.addInitScript(recipe=>localStorage.setItem('ashen.appearance.v2',JSON.stringify(recipe)),seed);
     const cdp = await context.newCDPSession(page);
     await cdp.send("Network.enable");
     await cdp.send("Network.emulateNetworkConditions", {
@@ -110,6 +115,10 @@ for (let run = 1; run <= runs; run++) {
     });
     const row = await page.evaluate(() => ({
       origin: performance.timeOrigin,
+      shape: ASHEN.humanShape,
+      heightScale: ASHEN.player.heightScale,
+      race: ASHEN.equipment.race,
+      equipment: ASHEN.equipment.getState(),
       marks: ASHEN.startup.timings(),
       resources: performance.getEntriesByType('resource').map(r=>({
         name:r.name,start:r.startTime,responseStart:r.responseStart,end:r.responseEnd,
@@ -178,7 +187,15 @@ for (let run = 1; run <= runs; run++) {
     await page.keyboard.up("KeyW");
     row.input.responseUpperBoundMs = row.input.observedAt - row.input.keyAt;
     row.errors = errors;
-    row.run = run;
+    row.run = run;row.browserPid=browserPid;
+    if(seed) {
+      assert.equal(row.race,seed.race);assert.deepEqual(row.equipment,seed.equipment);
+      if(seed.race==='human') {
+        assert.equal(row.heightScale,seed.shape.height);
+        if(row.shape)assert.deepEqual(row.shape.weights,[Math.max(0,-seed.shape.build),Math.max(0,seed.shape.build)]);
+        else {assert.equal(seed.shape.build,0);assert.equal(seed.shape.height,1);}
+      }
+    }
     report.rows.push(row);
     await fs.writeFile(destination, JSON.stringify(report, null, 2));
     assert(row.grounded && row.physics && !row.loader);
@@ -198,5 +215,6 @@ for (let run = 1; run <= runs; run++) {
     );
   } finally {
     await browser.close();
+    await fs.writeFile(destination+'.ownership.json',JSON.stringify({owner:'probe-playable-startup',browserPid,url:target.href,active:false}));
   }
 }

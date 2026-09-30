@@ -1,6 +1,6 @@
 # Next ten major milestones — production customization and a multiplayer hub
 
-Reprioritized **2026-09-29**, reviewed through source HEAD **2573439**. All ten milestones below are **planned**. The [current-state review](../../reviews/current-state-priorities-2026-09-29.md) records what is released, active, candidate-only and unaccepted, plus verification and limitations. The [original M001–M010 sequence](../../archive/plans/character-mmo-next-ten-2026-09-27.md) is retained as history.
+Reprioritized **2026-09-29**, reviewed through source HEAD **2573439**. Milestone **1 is implemented with production release verification in progress**; milestones **2–10 remain planned**. The [current-state review](../../reviews/current-state-priorities-2026-09-29.md) records what is released, active, candidate-only and unaccepted, plus verification and limitations. The [original M001–M010 sequence](../../archive/plans/character-mmo-next-ten-2026-09-27.md) is retained as history.
 
 These numbers are the current execution order. Original M001–M100 IDs remain references to the [long-term horizon](vision-roadmap.md), not a second queue. Completed M001–M005 proof work is reused; M006 creator infrastructure and M007 representative fit evidence are retained. Missing age/hair art and untested shape settings are not marked complete by reorganizing the plan.
 
@@ -38,6 +38,8 @@ Execute one bounded work package at a time. Do not launch ten writers or ten gam
 - **Ownership and release:** follow the [execution contract](execution-contract.md), [browser ownership](../../debug-view.md#browser-ownership-and-performance-isolation) and [deployment/rollback procedure](../../DEPLOY.md). Track every renderer. Multiplayer functional checks may own several explicitly tracked clients; FPS checks use one rendering client plus non-rendering protocol load generators. Commit/push each accepted package. Production releases require exact bundle/assets, loading/movement and rollback verification.
 
 ## 1 — Production body customization
+
+Status: implementation and local gates complete; [result and release verification](results/production-customization-2026-09-30.md).
 
 **Why first:** several milestones proved body and garment work that players cannot use on the ordinary deployed route. Shipping this subset produces value and establishes the one appearance identity needed by every later milestone.
 

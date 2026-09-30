@@ -99,7 +99,7 @@ export async function createStreamedEquipment(
   if (!donor || donor.skeleton.boneCount !== 65)
     throw Error("Unsupported equipment rig");
   const entries = new Map();
-  let visible = true,
+  let visible = options.visible !== false,
     stopped = false;
   const bindings = Object.fromEntries(
     baseMeshes.map((name) => [name, base.filter((m) => m.name === name)]),
@@ -159,6 +159,7 @@ export async function createStreamedEquipment(
     const signal = AbortSignal.any([requestSignal, AbortSignal.timeout(15000)]);
     signal.throwIfAborted();
     const item = EQUIPMENT_ITEMS[id];
+    let textureEntries = [];
     let root,
       container,
       meshes,
@@ -177,6 +178,9 @@ export async function createStreamedEquipment(
         ({ root, meshes } = prop);
       } else {
         const asset = manifest.items[id];
+        textureEntries = asset?.textures || [];
+        if (options.shapeFamily && asset?.shapeFamily !== options.shapeFamily)
+          throw Error(`The ${race} ${item.name} has no compatible ${options.shapeFamily} deformation`);
         // An item this pack does not carry is an unsupported combination, not a cue to
         // reach for the Human asset. Say which race is missing it.
         if (!asset) throw Error(`No ${race} fit for ${item.name}`);
@@ -235,21 +239,42 @@ export async function createStreamedEquipment(
           };
           mesh.receiveShadows = true;
         }
+        // Stage with this actor's committed weights before the visibility commit.
+        // A post-commit writer would expose one neutral garment frame.
+        // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#morph-targets
+        if (options.getShapeWeights && meshes.some(mesh => mesh.morphTargets)) {
+          const {setMorphTargetWeights} = await import('@babylonjs/lite');
+          for (const mesh of meshes) if (mesh.morphTargets)
+            setMorphTargetWeights(engine, mesh.morphTargets, options.getShapeWeights());
+        }
         setParent(root, body.root);
         root.position.set(0, 0, 0);
         root.rotationQuaternion.set(0, 0, 0, 1);
         root.scaling.set(1, 1, 1);
         setMeshVisible(root, false);
+        for (const mesh of meshes) setMeshVisible(mesh, false);
         for (const mesh of meshes) prepareLinearMaterial(scene, mesh.material);
         addToScene(scene, container);
       }
       setMeshVisible(root, false);
-      let dead = false;
+      let dead = false, textureUpgrade = null;
       const entry = {
         item,
         root,
         meshes,
         attachment: null,
+        async upgradeTextures(shouldAbort = () => false) {
+          if (dead || shouldAbort() || !container || !textureEntries.length) return;
+          const {upgradeStarterCharacter} = await import('./startup-assets.js');
+          textureUpgrade ||= upgradeStarterCharacter(engine, scene, container, {startup:{textures:textureEntries}}, () => dead || shouldAbort()).then(completed => {if(!completed)textureUpgrade = null;return completed;}).catch(error => {textureUpgrade = null; throw error;});
+          await textureUpgrade;
+        },
+        releasePalette() {
+          if(dead)return ()=>{};
+          const borrowed=owned.map(([mesh])=>[mesh,mesh.skeleton]);
+          for(const [mesh,skeleton]of owned)mesh.skeleton=skeleton;
+          return ()=>{if(!dead)for(const [mesh,skeleton]of borrowed)mesh.skeleton=skeleton;};
+        },
         dispose() {
           if (dead) return;
           dead = true;
@@ -325,6 +350,16 @@ export async function createStreamedEquipment(
     },
     getState: loader.getState,
     getStatus: loader.getStatus,
+    releasePalettes() {
+      const restore=[...entries.values()].map(entry=>entry.releasePalette());
+      return ()=>restore.forEach(fn=>fn());
+    },
+    async upgradeTextures(shouldAbort = () => false) {
+      for (const entry of entries.values()) {
+        if(shouldAbort())return;
+        await entry.upgradeTextures(shouldAbort);
+      }
+    },
     setVisible(value) {
       visible = value;
       apply(loader.getState());

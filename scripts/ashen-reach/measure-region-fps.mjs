@@ -8,7 +8,7 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import assert from "node:assert/strict";
 import { CDP_URL } from "../lib/cdp.mjs";
-import { summarizeDurations } from "../../src/ashen-reach/metrics.js";
+import { summarizeDurations, detectVsyncCap } from "../../src/ashen-reach/metrics.js";
 import { summarizeFrameIntervals } from "../character-assets/summarize-frame-intervals.mjs";
 const file = process.argv[2];
 assert(file, "Specify report.json");
@@ -91,6 +91,11 @@ try {
     assert.equal(applied.status, 'applied', `Outfit ${outfit} failed to equip`);
     assert.equal(await page.evaluate(() => ASHEN.equipment.getStatus().pending), false);
   }
+  if(process.env.ASHEN_BENCH_BUILD||process.env.ASHEN_BENCH_HEIGHT){
+    await page.evaluate(async shape=>{await ASHEN.creator.set('build',shape.build);await ASHEN.creator.set('height',shape.height);},{build:Number(process.env.ASHEN_BENCH_BUILD||0),height:Number(process.env.ASHEN_BENCH_HEIGHT||1)});
+    report.conditions.appearance=await page.evaluate(()=>ASHEN.getAppearance());
+    await page.waitForTimeout(3000);
+  }
   await page.evaluate(() => {
     ASHEN.dev.god = true;
     ASHEN.setView("play");
@@ -142,6 +147,10 @@ try {
         run,
         before,
         fullWindow: summarizeDurations(row.frames),
+        // The HUD retains only 600 samples. A near-240 Hz tail can flag its
+        // rolling window even when the complete 12-second sample is uncapped.
+        // Keep both diagnostics; judge this benchmark's complete measurement.
+        fullWindowCap: detectVsyncCap(row.frames),
         tails: summarizeFrameIntervals(row.frames),
       });
       if (process.env.ASHEN_FPS_RAW !== "1") delete row.frames;
@@ -153,7 +162,7 @@ try {
       assert.deepEqual(row.summary.resolution, [1280, 720]);
       // A possible compositor ceiling is retained as invalid throughput evidence
       // when explicitly requested, so a suspect route cannot hide later routes.
-      if (!recordCapped) assert(!row.summary.vsyncCapped);
+      if (!recordCapped) assert(!row.fullWindowCap.vsyncCapped);
       assert(Math.hypot(row.x - before.x, row.z - before.z) > 10);
       console.log(
         JSON.stringify({
@@ -161,7 +170,8 @@ try {
           run,
           ...row.fullWindow,
           gpuMeanMs: row.summary.gpuMeanMs,
-          capped: row.summary.vsyncCapped,
+          capped: row.fullWindowCap.vsyncCapped,
+          rollingCapHint: row.summary.vsyncCapped,
         }),
       );
     }

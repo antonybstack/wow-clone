@@ -3,7 +3,7 @@ import {
  createCsmDirectionalShadowGenerator,createPcfDirectionalShadowGenerator,createDirectionalLight,
  createShaderMaterial,addTask,onSceneDispose,setShadowCasterMaterial,setShadowTaskCasterMeshes,
  getCsmReceiverTexture,onCsmReceiverUpdate,setShaderTexture,setShaderUniform,
- enableSkeletonShadows,getViewMatrix,acquireTexture,releaseTexture,setShadowGeneratorEnabled,
+ enableSkeletonShadows,enableMorphTargetShadows,getViewMatrix,acquireTexture,releaseTexture,setShadowGeneratorEnabled,
  VERSION as LITE_VERSION,
 } from '@babylonjs/lite';
 import {SUN_DIR} from './atmosphere.js';
@@ -110,7 +110,7 @@ export function createSunShadows(engine,scene,sun,{depthOnlyFragment=false}={}){
   mapSize:2048,numCascades:3,lambda:.75,shadowMaxZ:SUN_SHADOW_RANGE,
   stabilizeCascades:true,cascadeBlendPercentage:.1,worldSpaceBias:.006,forceRefreshEveryFrame:true,
  });
- enableSkeletonShadows(csm);
+ enableSkeletonShadows(csm);enableMorphTargetShadows(csm);
  sun.shadowGenerator=csm;
  // A separate frame-graph pass retains the distant map. Lite 1.28 native PBR
  // cannot bind a mixture of PCF and CSM generators in the same scene light list.

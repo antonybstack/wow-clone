@@ -8,7 +8,7 @@ import {createRenderLoop} from './render-loop.js';
 import {createObjective} from './objective.js';
 import {createStarterWorld,preloadStarterWorld} from './starter-world.js';
 import {createStreamedEquipment} from './equipment-stream.js';
-import {preloadStarterCharacter,startupAssetBuffer,upgradeStarterCharacter} from './startup-assets.js';
+import {preloadStarterCharacter,preloadHumanShapePack,startupAssetBuffer,upgradeStarterCharacter} from './startup-assets.js';
 import {showBackgroundLoading} from './background-loading.js';
 import {height} from './geometry.js';
 import {SKY_HORIZON,SUN_DIR,SUN_COLOR,SKY_AMBIENT,GROUND_BOUNCE} from './atmosphere.js';
@@ -73,17 +73,30 @@ async function main(){
  const pixelRatio=Number(params.get('pixelRatio'));
  const preloadedEquipment=params.has('preloadedEquipment');
  const fastStart=!preloadedEquipment&&!params.has('legacyStart')&&(params.has('fastStart')||import.meta.env.VITE_FAST_START==='1');
+ // Read a saved identity only when a record exists. An unsaved neutral boot imports no
+ // editor/storage graph and never requests morph assets before its playable boundary.
+ let appearanceAPI=null,appearanceLoaded=null;
+ const diagnosticShape=['humanShape','humanHeight','humanHair','humanHead','plate','creator','garmentFit'].some(k=>params.has(k));
+ let hasSavedAppearance=false;
+ try{hasSavedAppearance=Boolean(localStorage.getItem('ashen.appearance.v2')||localStorage.getItem('ashen.appearance.v1')||localStorage.getItem('ashen.creator.v1'));}catch{}
+ if(hasSavedAppearance&&!diagnosticShape&&!preloadedEquipment){
+  appearanceAPI=await import('../character/appearance/store.js');appearanceLoaded=appearanceAPI.loadAppearance();
+ }
+ const bootAppearance=appearanceLoaded?.restored?appearanceLoaded.appearance:null;
+ const defaultBootGear={helmet:null,torso:'wayfarerTunic',legs:'wayfarerTrousers',boots:'wayfarerBoots',gloves:null,mainHand:'ironSword',offHand:null};
+ const productionShapeStart=bootAppearance?.race==='human' && (bootAppearance.shape.build!==0 || bootAppearance.shape.height!==1 || Object.entries(defaultBootGear).some(([k,v])=>bootAppearance.equipment[k]!==v));
  const starterWorldP=fastStart?preloadStarterWorld():null;
- const starterCharacterP=fastStart?preloadStarterCharacter():null;
+ const starterCharacterP=productionShapeStart?preloadHumanShapePack(bootAppearance.equipment,{compact:true}):(fastStart?preloadStarterCharacter():null);
  starterWorldP?.catch(()=>{});starterCharacterP?.catch(()=>{});
  // M004 developer shape family. `resolveHumanShape` answers null for every URL that does
  // not name `humanShape` or `humanHeight`, so the default route below is untouched. When a
  // morph target is actually driven the character comes from the candidate GLB instead of the
  // compressed startup pack -- same body, same bind, same clips, plus two shape targets -- so
  // the character half of the fast start is bypassed while the fast world is kept.
- const humanShape=params.has('humanShape')||params.has('humanHeight')
+ const developerShape=params.has('humanShape')||params.has('humanHeight')
   ?(await import('../character/runtime/human-shape.js')).resolveHumanShape(params)
   :null;
+ const humanShape=developerShape||(productionShapeStart?{weights:[Math.max(0,-bootAppearance.shape.build),Math.max(0,bootAppearance.shape.build)],heightScale:bootAppearance.shape.height,installWriters:true,assetURL:null,garmentManifestURL:null}:null);
  // Diagnostic M006 tail on the M004 shape family. This explicit route has its
  // own mesh/coverage adapter; the starter body and startup path stay identical.
  // The candidate is served by Vite from .cache and is not a released asset.
@@ -119,7 +132,8 @@ async function main(){
   ?'/__human_head__/human-old-bald-atlas-matched.glb'
   :humanShape?.assetURL
   ||(creatorWanted?shapeModule.HUMAN_SHAPE_ASSET:null);
- const fastCharacter=fastStart&&!shapeCandidate;
+ const fastCharacter=(fastStart||productionShapeStart)&&!shapeCandidate;
+ let humanFamilyReady=Boolean(productionShapeStart||creatorWanted||humanShape?.garmentManifestURL);
  const bodyUrl=shapeCandidate||(preloadedEquipment?'/ashen-reach/wanderer-equipment.glb':'/ashen-reach/equipment/body.glb');
  const bodyBufP=fastCharacter?starterCharacterP.then(m=>startupAssetBuffer(m.items.body)):fetchBuffer(bodyUrl,'high');
  bodyBufP.catch(()=>{});
@@ -226,9 +240,9 @@ async function main(){
    };
    if(!applyMorphWeights(body.root))throw Error(`No morph targets on the loaded body; ${bodyUrl} is not the shape-family candidate`);
    // A garment arrives at its own pace, and it arrives at weight 0, which is the shipped
-   // shape. Re-applying over the whole scene after every change is what keeps a newly
+   // shape. Re-applying over this actor's root after every change keeps a newly
    // equipped piece from being the only thing still wearing the neutral body's shape.
-   const writeWeights=weights=>{let n=0;for(const mesh of scene.meshes||[])if(mesh.morphTargets){setMorphTargetWeights(engine,mesh.morphTargets,weights);n++;}return n;};
+   const writeWeights=weights=>{let n=0;const visit=node=>{if(node?.morphTargets){setMorphTargetWeights(engine,node.morphTargets,weights);n++;}for(const c of node?.children||[])visit(c);};visit(body.root);return n;};
    reshapeEquipment=()=>writeWeights(request.weights);
    reshapeEquipment();
    // A probe cannot import '@babylonjs/lite' by bare specifier inside the page, and
@@ -254,14 +268,15 @@ async function main(){
   * reshapes the Havok controller, so collision never disagrees with what is drawn.
   */
  const setHumanShapeLive=({weights,heightScale})=>{
-  if(!writeShapeWeights)throw Error('The live shape writers are not installed; load with ?creator=1');
+  if(!writeShapeWeights)throw Error('The editable body family is not loaded yet');
   writeShapeWeights(weights);
   reshapeEquipment=()=>writeShapeWeights(weights);
   const root=body.root;
   if(root?.scaling){root.scaling.x=Math.sign(root.scaling.x||-1)*heightScale;root.scaling.y=heightScale;root.scaling.z=heightScale;}
-  if(basePivotHeight===null)basePivotHeight=rig.pivotHeight;
+  if(basePivotHeight===null)basePivotHeight=rig.pivotHeight/(ashen.humanShape?.heightScale||1);
   rig.pivotHeight=basePivotHeight*heightScale;
   player.setHeightScale(heightScale);
+  if(root?.position)root.position.y=-player.capsuleHeight/2;
   ashen.humanShape={weights,heightScale,applied:true,live:true};
  };
 
@@ -339,7 +354,10 @@ async function main(){
     OldBaldHeadV2Diagnostic:['head.face','head.scalp'],
     OldBaldEyesDiagnostic:['head.face'],
    }}:{}),
-   fitId:HUMAN_EQUIPMENT_FIT,...(fastCharacter?{manifest:await starterCharacterP,loadBuffer:startupAssetBuffer}:{})},
+   getShapeWeights:()=>ashen.humanShape?.weights||[0,0],
+   fitId:HUMAN_EQUIPMENT_FIT,...(fastCharacter?{manifest:await starterCharacterP,loadBuffer:startupAssetBuffer}:{}),
+   ...(productionShapeStart?{shapeFamily:'ashen-human-shape-v1'}:{}),
+   ...(bootAppearance?.race==='human'?{bootLoadout:bootAppearance.equipment}:{})},
   orc:{race:'orc',manifestUrl:'/ashen-reach/equipment-orc/manifest.json',baseMeshes:ORC_BASE_VISIBLE_MESHES,fitId:ORC_EQUIPMENT_FIT,bodyUrl:ORC_BODY_URL},
   undead:{race:'undead',manifestUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/manifest.json`,baseMeshes:UNDEAD_BASE_VISIBLE_MESHES,fitId:UNDEAD_EQUIPMENT_FIT,bodyUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/body.glb`},
  };
@@ -352,20 +370,42 @@ async function main(){
  const reshaped=request=>Promise.resolve(request).then(result=>{reshapeEquipment?.();return result;},error=>{reshapeEquipment?.();throw error;});
  reshapeEquipment?.();
  let currentRace='human';
+ let committedAppearance=bootAppearance,currentHumanShape=bootAppearance?.race==='human'?bootAppearance.shape:null;
+ if(basePivotHeight===null)basePivotHeight=rig.pivotHeight/(humanShape?.heightScale||1);
+ let actorChain=Promise.resolve();
+ const actorRequest=job=>{const result=actorChain.then(()=>{lifetime.throwIfAborted();return job();});actorChain=result.catch(()=>{});return result;};
+ let rebuildCreator=null;
+ const rememberAppearance=async()=>{
+  appearanceAPI ||= await import('../character/appearance/store.js');
+  const {appearanceFromEquipment}=await import('../character/appearance/from-equipment.js');
+  const {validateAppearance}=await import('../character/appearance/contract.js');
+  const base=appearanceFromEquipment({race:currentRace,loadout:impl.getState()});
+  committedAppearance=validateAppearance({...base,shape:currentRace==='human'?(currentHumanShape||base.shape):{}});
+  if(!appearanceAPI.saveAppearance(committedAppearance))ashen.appearanceWarning='Could not save; this character lasts for this session only.';
+  return committedAppearance;
+ };
+ const equipRequest=job=>actorRequest(async()=>{
+  const result=await reshaped(job());
+  if(result?.status==='applied'){
+   await rememberAppearance();
+   void impl.upgradeTextures?.().catch(error=>{ashen.appearanceDetailError=error.message;});
+  }
+  return result;
+ });
  let parkedGarments=null;
  equipment={
   get items(){return impl.items;},
   get presets(){return impl.presets;},
-  setLoadout:patch=>reshaped(impl.setLoadout(patch)),
-  equip:(slot,id)=>reshaped(impl.equip(slot,id)),
-  equipPreset:id=>reshaped(impl.equipPreset(id)),
+  setLoadout:patch=>equipRequest(()=>impl.setLoadout(patch)),
+  equip:(slot,id)=>equipRequest(()=>impl.equip(slot,id)),
+  equipPreset:id=>equipRequest(()=>impl.equipPreset(id)),
   getState:()=>impl.getState(),
   getStatus:()=>impl.getStatus?.(),
   setVisible:value=>impl.setVisible(value),
   update:dt=>impl.update(dt),
   get attachment(){return impl.attachment;},
   get race(){return currentRace;},
-  async switchRace(race){
+  switchRace:(race,{restoreAppearance=null}={})=>actorRequest(async()=>{
    if(race===currentRace)return;
    const pack=packs[race];
    if(!pack)throw Error('Unknown race pack');
@@ -375,38 +415,41 @@ async function main(){
    // garments -- a silent Human fit wearing another race's label, which is the one thing this
    // milestone must make impossible. Refuse on the mode, before anything touches the character.
    if(preloadedEquipment&&race!=='human')throw Error(`${race} needs the streamed equipment pack; ?preloadedEquipment serves one baked Human fit.`);
-   const previousRace=currentRace;
-   const previousImpl=impl;
-   const loadout={...impl.getState()};
-   impl.setVisible(false);
-   try{
-    if(pack.bodyUrl)await body.swapSource(pack.bodyUrl);
-    else body.restoreSource();
-    const bootLoadout=pack.garments===false
-     ?{...EMPTY_LOADOUT,mainHand:factoryHand(loadout.mainHand),offHand:factoryHand(loadout.offHand)}
-     : race==='undead'
-      ?{...EMPTY_LOADOUT,helmet:'graveweaverHood',torso:'graveweaverTop',legs:'graveweaverSkirt',mainHand:factoryHand(loadout.mainHand),offHand:factoryHand(loadout.offHand)}
-      :(parkedGarments||loadout);
-    if(pack.garments===false)parkedGarments=loadout;
-    else parkedGarments=null;
-    const next=await createStreamedEquipment(engine,scene,body,sockets,{...pack,bootLoadout});
-    // Returning from Orc/Undead creates fresh Human garment meshes at morph weight 0.
-    // The parked Human body retained its shape, so drive the newly streamed clothes
-    // before making the outfit visible again.
-    if(race==='human')reshapeEquipment?.();
-    impl=next;
-    currentRace=race;
+   const previousRace=currentRace,previousImpl=impl;
+   const loadout={...impl.getState()},previousParkedGarments=parkedGarments;
+   const bootLoadout=restoreAppearance?.race===race?restoreAppearance.equipment:pack.garments===false
+    ?{...EMPTY_LOADOUT,mainHand:factoryHand(loadout.mainHand),offHand:factoryHand(loadout.offHand)}
+    :race==='undead'?{...EMPTY_LOADOUT,helmet:'graveweaverHood',torso:'graveweaverTop',legs:'graveweaverSkirt',mainHand:factoryHand(loadout.mainHand),offHand:factoryHand(loadout.offHand)}
+    :(parkedGarments||loadout);
+   let staged=null,next=null,committed=false;
+   try {
+    staged=await body.stageSource(pack.bodyUrl,{parkOriginal:race!=='human',restoreOriginal:race==='human'});
+    lifetime.throwIfAborted();
+    if(race!=='human')staged.body.root.scaling.set(-1,1,1);
+    next=await createStreamedEquipment(engine,scene,staged.body,sockets,{...pack,bootLoadout,visible:false});
+    lifetime.throwIfAborted();
+    await staged.commit(()=>{
+     const previousHeight=player.heightScale,previousPivot=rig.pivotHeight;
+     previousImpl.setVisible(false);const restorePalettes=previousImpl.releasePalettes?.();
+     impl=next;currentRace=race;
+     if(race==='human'&&currentHumanShape&&writeShapeWeights)
+      setHumanShapeLive({weights:[Math.max(0,-currentHumanShape.build),Math.max(0,currentHumanShape.build)],heightScale:currentHumanShape.height});
+     else {player.setHeightScale(1);rig.pivotHeight=basePivotHeight??rig.pivotHeight;body.root.position.y=-player.capsuleHeight/2;}
+     next.setVisible(true);
+     return ()=>{restorePalettes?.();next.setVisible(false);impl=previousImpl;currentRace=previousRace;player.setHeightScale(previousHeight);rig.pivotHeight=previousPivot;previousImpl.setVisible(true);};
+    },{immediate:!ashen.renderLoop});
+    committed=true;
+    parkedGarments=pack.garments===false?loadout:null;
     previousImpl.dispose();
-    sockets.rebind?.(body);
+    await rememberAppearance();rebuildCreator?.();
    }catch(error){
-    if(previousRace==='human'||!packs[previousRace]?.bodyUrl)body.restoreSource();
-    else await body.swapSource(packs[previousRace].bodyUrl);
-    previousImpl.setVisible(true);
+    if(!committed){next?.dispose();staged?.dispose();parkedGarments=previousParkedGarments;}
     throw error;
    }
-  },
+  }),
   dispose(){impl.dispose();},
  };
+ if(bootAppearance&&bootAppearance.race!=='human')await equipment.switchRace(bootAppearance.race,{restoreAppearance:bootAppearance});
  markStartup('equipment-end');
  dressed=true;
  setView(view);
@@ -480,6 +523,17 @@ async function main(){
  let backgroundDisposed=false;onSceneDispose(scene,()=>{backgroundDisposed=true;backgroundStatus.dispose();});
  ashen.whenRest=(async()=>{
   markStartup('bg-start');
+  if(productionShapeStart)void actorRequest(async()=>{
+   const full=(await starterCharacterP).fullManifest,previous=impl;
+   let next=null;
+   try {
+    next=await createStreamedEquipment(engine,scene,body,sockets,{...packs.human,manifest:full,bootLoadout:previous.getState(),visible:false});
+    lifetime.throwIfAborted();reshapeEquipment?.();
+    previous.setVisible(false);impl=next;next.setVisible(view==='play');
+    packs.human={...packs.human,manifest:full};previous.dispose();
+    await next.upgradeTextures?.();
+   }catch(error){if(impl!==next)next?.dispose();ashen.appearanceDetailError=error.message;}
+  });
   const nearbyFoliage=world.startNearbyFoliage?.();nearbyFoliage?.catch(error=>{ashen.nearbyError=error.message;});
   // Nearby gameplay must not wait for distant geometry or texture enhancement.
   // Both jobs yield through the same native render loop; scene/GPU mutations
@@ -506,7 +560,10 @@ async function main(){
     foliageP.catch(()=>{});
   const texturesP=regionP.then(async()=>{
    if(world.upgradeTextures)await world.upgradeTextures();
-   if(fastCharacter)await upgradeStarterCharacter(engine,scene,starterBodyContainer,await starterCharacterP);
+   if(fastCharacter&&body.container===starterBodyContainer){
+    await upgradeStarterCharacter(engine,scene,starterBodyContainer,await starterCharacterP);
+    await impl.upgradeTextures?.();
+   }
   });
   texturesP.catch(()=>{});
   const [
@@ -552,23 +609,73 @@ async function main(){
   combat.bindEquipment(() => equipment.getState());
   combat.setVisible(view==='play');
   armory=createArmory({scene,canvas,player,body,combat,equipment,getView:()=>view,setView});
-  // M006 body controls, as a section of the armory rather than a second panel: one
-  // inspection surface, reached with C. Imported here, in the background pass after the game
-  // is playable, so it stays its own chunk and off the startup critical path.
-  //
-  // The sliders can only move a body that carries the M004 morph targets, which is the
-  // ?creator=1 route; on the default route the section still appears, disabled, saying why.
-  {
-   const {createCreator}=await import('./creator.js');
-   const {creatorStateToShape}=await import('../character/creator/contract.js');
-   creator=createCreator({
-    race:'human',
-    armory,
-    drivable:Boolean(writeShapeWeights),
-    applyShape:state=>{const {weights,heightScale}=creatorStateToShape(state);setHumanShapeLive({weights,heightScale});},
-   });
+  // The editor is imported after play; opening/editing loads the compatible family.
+  appearanceAPI ||= await import('../character/appearance/store.js');
+  const {appearanceFromEquipment}=await import('../character/appearance/from-equipment.js');
+  const {validateAppearance}=await import('../character/appearance/contract.js');
+  committedAppearance ||= appearanceFromEquipment({race:currentRace,loadout:impl.getState()});
+  currentHumanShape ||= currentRace==='human'?committedAppearance.shape:null;
+  ashen.getAppearance=()=>committedAppearance;
+  const {createCreator}=await import('./creator.js');
+  const applyProductionBody=shape=>actorRequest(async()=>{
+   if(currentRace!=='human')throw Error('Body adjustment is only available for Human');
+   const desired=validateAppearance({...committedAppearance,shape});
+   if(!humanFamilyReady){
+    let staged=null,next=null,committed=false;
+    const previous=impl;
+    try{
+     const manifest=await preloadHumanShapePack(previous.getState());lifetime.throwIfAborted();
+     // Prime Lite's lazy morph/PBR extension in a separate, non-rendering scene.
+     // Force the native group build before the live CSM sees its first morph mesh;
+     // the live scene remains registered and movement continues during downloads.
+     // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/01-scene.md
+     const {createPlane,createMorphTargets,rebuildScenePbrPipelines,createPbrMaterial}=await import('@babylonjs/lite');
+     const warmScene=createSceneContext(engine,{defaultRenderTask:false});
+     try {
+      const warm=createPlane(engine);warm.material=createPbrMaterial();
+      warm.morphTargets=createMorphTargets(engine,[{positions:new Float32Array(12),normals:new Float32Array(12)}],4,[0]);
+      setMeshVisible(warm,false);addToScene(warmScene,warm);
+      await rebuildScenePbrPipelines(warmScene,true);
+     }finally{disposeScene(warmScene);}
+     staged=await body.stageSource(await startupAssetBuffer(manifest.items.body));lifetime.throwIfAborted();
+     next=await createStreamedEquipment(engine,scene,staged.body,sockets,{...packs.human,manifest,loadBuffer:startupAssetBuffer,shapeFamily:manifest.shapeFamily,bootLoadout:previous.getState(),getShapeWeights:()=>[Math.max(0,-shape.build),Math.max(0,shape.build)],visible:false});
+     lifetime.throwIfAborted();
+     // The primed native extension lets addToScene build only the arriving meshes.
+     // addToScene already requests the native PBR runtime rebuild; do not request it twice.
+     const {setMorphTargetWeights}=await import('@babylonjs/lite');
+     attachLinearMaterials();
+     const weights=[Math.max(0,-shape.build),Math.max(0,shape.build)];
+     const visit=node=>{if(node?.morphTargets)setMorphTargetWeights(engine,node.morphTargets,weights);for(const c of node?.children||[])visit(c);};
+     visit(staged.body.root);
+     staged.body.root.scaling.set(-shape.height,shape.height,shape.height);
+     await staged.commit(()=>{
+      previous.setVisible(false);const restorePalettes=previous.releasePalettes?.();impl=next;next.setVisible(true);
+      return ()=>{restorePalettes?.();next.setVisible(false);impl=previous;previous.setVisible(true);};
+     });
+     committed=true;
+     previous.dispose();
+     packs.human={...packs.human,manifest,loadBuffer:startupAssetBuffer,shapeFamily:manifest.shapeFamily};
+     humanFamilyReady=true;
+     await applyHumanShape({weights:[0,0],heightScale:1,installWriters:true});
+     if(armory.isOpen){body.beginInspection();}
+     const detailContainer=body.container,detailEquipment=impl;
+     const detailAborted=()=>lifetime.aborted||body.container!==detailContainer||impl!==detailEquipment;
+     void (async()=>{
+      if(!await upgradeStarterCharacter(engine,scene,detailContainer,manifest,detailAborted)||detailAborted())return;
+      await detailEquipment.upgradeTextures?.(detailAborted);
+     })().catch(e=>{if(!detailAborted())ashen.appearanceDetailError=e.message;});
+    }catch(error){if(!committed){next?.dispose();staged?.dispose();}throw error;}
+   }
+   setHumanShapeLive({weights:[Math.max(0,-shape.build),Math.max(0,shape.build)],heightScale:shape.height});
+   currentHumanShape=desired.shape;
+   await rememberAppearance();
+  });
+  rebuildCreator=()=>{
+   creator?.dispose();
+   creator=createCreator({armory,getAppearance:()=>committedAppearance,applyBody:applyProductionBody,getWarning:()=>ashen.appearanceWarning||appearanceLoaded?.warning});
    ashen.creator=creator;
-  }
+  };
+  rebuildCreator();
   tools=attachDevTools({params,canvas,camera,player,combat,setView});
   // Spell billboard systems arrive after the first visible scene registration. This
   // re-registers the scene while the player is moving; it measured 2-9 ms.

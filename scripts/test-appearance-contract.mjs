@@ -4,10 +4,16 @@ import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {EQUIPMENT_ITEMS,EQUIPMENT_PRESETS,EQUIPMENT_SLOTS} from '../src/ashen-reach/equipment-catalog.js';
 import {FITS_BY_RACE} from '../src/ashen-reach/equipment-contract.js';
-import {APPEARANCE_REGISTRY,AppearanceError,validateAppearance} from '../src/character/appearance/contract.js';
-import {appearanceKey,decodeAppearance,encodeAppearance} from '../src/character/appearance/codec.js';
-import {appearanceFromEquipment} from '../src/character/appearance/from-equipment.js';
+import {APPEARANCE_V1_REGISTRY as APPEARANCE_REGISTRY,AppearanceError,validateAppearance as validateCurrentAppearance} from '../src/character/appearance/contract.js';
+import {appearanceKey as currentKey,decodeAppearance as currentDecode,encodeAppearance as currentEncode} from '../src/character/appearance/codec.js';
+import {appearanceFromEquipment as currentFromEquipment} from '../src/character/appearance/from-equipment.js';
 
+// Schema 1 fixtures remain exact; these tests intentionally verify the frozen legacy registry.
+const validateAppearance=(r,registry=APPEARANCE_REGISTRY)=>validateCurrentAppearance(r,registry);
+const encodeAppearance=(r,registry=APPEARANCE_REGISTRY)=>currentEncode(r,registry);
+const decodeAppearance=(r,registry=APPEARANCE_REGISTRY)=>currentDecode(r,registry);
+const appearanceKey=(r,registry=APPEARANCE_REGISTRY)=>currentKey(r,registry);
+const appearanceFromEquipment=(r,registry=APPEARANCE_REGISTRY)=>currentFromEquipment(r,registry);
 const wayfarer=()=>appearanceFromEquipment({race:'human',loadout:EQUIPMENT_PRESETS.wayfarer.loadout});
 const clone=x=>structuredClone(x);
 const rejects=(action,code,path)=>assert.throws(action,e=>e instanceof AppearanceError && e.code===code && e.path===path,`${code} at ${path}`);

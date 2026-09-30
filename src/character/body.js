@@ -948,7 +948,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
                 socketHost.rebind(facade);
                 rebound = true;
             }
-            const hookResult = commitHook?.({
+            const hookResult = (meta.beforeCommit || commitHook)?.({
                 oldContainer: previous.container,
                 newContainer: candidate.container,
                 oldMeshes: previousMeshes,
@@ -978,11 +978,88 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             restoreVisualAnimation(previous, snapshot, state);
             throw error;
         }
-        if (previous && previous !== candidate) {
+        // Race transactions retain the original Human until a successful return.
+        // This ownership change occurs only after pose/socket/visibility commit.
+        if (meta.parkOriginal && !parkedVisual) parkedVisual = previous;
+        if (candidate === parkedVisual) parkedVisual = null;
+        if (previous && previous !== candidate && previous !== parkedVisual) {
             retireVisual(scene, previous);
         }
         visual.loadout = cloneLoadout(meta.loadout);
         visual.manifest = decorateOutfitManifest(meta.manifest, meta.loadout);
+    };
+
+    const stagedSources = new Set();
+    /** Stage a compatible source without resetting the mixer or retiring the live body.
+     * Commit reuses the outfit transaction's pose/socket/rollback path. Morphs precede skinning:
+     * https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#morph-targets
+     */
+    const stageSource = async (source, {parkOriginal=false,restoreOriginal=false}={}) => {
+        if (disposed) throw Error('Body disposed');
+        const retained=restoreOriginal;
+        let candidate;
+        if(retained) {
+            if(!parkedVisual)throw Error('No original body is parked');
+            candidate=parkedVisual;
+        } else {
+            const loaded = await loadGltf(engine, source);
+            if (disposed) { disposeCandidate(loaded); throw Error('Body disposed during source load'); }
+            try {
+                candidate = assembleBodyVisual({engine, scene, player, capsuleHeight,
+                    definition: def, container: loaded, mode: 'stage',
+                    loadout: EMPTY_SKINNED_LOADOUT, manifest: null});
+                candidate.root.scaling.set(visual.root.scaling.x, visual.root.scaling.y, visual.root.scaling.z);
+            } catch (error) { disposeCandidate(candidate || loaded); throw error; }
+            stagedSources.add(candidate);
+        }
+        let finished = false;
+        const stagedBody = Object.create(facade);
+        Object.defineProperties(stagedBody, {
+            root: {get: () => candidate.root}, container: {get: () => candidate.container},
+            skeleton: {get: () => candidate.skeleton},
+        });
+        stagedBody.setHandGripProvider = provider => { candidate.handGrips = provider; };
+        return {
+            body: stagedBody,
+            commit(beforeCommit, {immediate=false}={}) {
+                const publish=() => {
+                    if (disposed || finished) throw Error('Staged source is no longer available');
+                    // Inspection owns references to the old mixer. End it before preserving the
+                    // normal evaluated pose; the Armory recreates its preview after promotion.
+                    const preview = inspection?.getState();
+                    inspection?.dispose(); inspection = null;
+                    try {
+                        commitVisual(candidate, {loadout: EMPTY_SKINNED_LOADOUT, manifest: null, beforeCommit,parkOriginal});
+                    } catch (error) {
+                        if (preview) {
+                            inspection = createInspectionPreview(visual);
+                            inspection.select(preview.id); inspection.seek(preview.time);
+                            inspection.setPaused(preview.paused);
+                        }
+                        throw error;
+                    }
+                    finished = true; stagedSources.delete(candidate);
+                    // The actor is committed now. An optional Armory preview must never
+                    // reject this transaction and cause the caller to dispose live clothes.
+                    if (preview) {
+                        try {
+                            inspection = createInspectionPreview(candidate);
+                            inspection.select(preview.id); inspection.seek(preview.time);
+                            inspection.setPaused(preview.paused);
+                        } catch (error) {
+                            inspection?.dispose(); inspection = null;
+                            console.warn('Armory preview unavailable after body commit', error);
+                        }
+                    }
+                };
+                // Saved non-Human boot commits before the render loop exists.
+                return immediate ? Promise.resolve().then(publish) : waitCommit(publish);
+            },
+            dispose() {
+                if (finished) return;
+                finished = true; stagedSources.delete(candidate); if(!retained)disposeCandidate(candidate);
+            },
+        };
     };
 
     const controller = authored
@@ -1047,6 +1124,10 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
         }
         controller?.dispose();
         loadoutClient?.dispose();
+        for (const staged of stagedSources) disposeCandidate(staged);
+        stagedSources.clear();
+        if (parkedVisual && parkedVisual !== visual) retireVisual(scene, parkedVisual);
+        parkedVisual = null;
         retireVisual(scene, visual);
         visual = null;
     };
@@ -1144,6 +1225,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             return true;
         },
         setLoadout,
+        stageSource,
         dispose,
         bindSocketHost(host) {
             socketHost = host;

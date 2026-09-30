@@ -48,10 +48,10 @@ import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {MeshoptDecoder, MeshoptEncoder} from 'meshoptimizer';
 import {buildSegments, recomputeNormals, restWorld, softShape} from './girth-field.mjs';
 
-const BODY = 'public/ashen-reach/equipment/body.glb';
+const BODY = process.env.ASHEN_SHAPE_BODY || 'public/ashen-reach/equipment/body.glb';
 const GIRTH = 'docs/baselines/character-mmo/m004/makehuman-girth.json';
-const OUT_GLB = '.cache/character-mmo/m004/human-shape-family-v1.glb';
-const OUT_REPORT = 'docs/baselines/character-mmo/m004/shape-family.json';
+const OUT_GLB = process.env.ASHEN_SHAPE_OUT || '.cache/character-mmo/m004/human-shape-family-v1.glb';
+const OUT_REPORT = process.env.ASHEN_SHAPE_REPORT || 'docs/baselines/character-mmo/m004/shape-family.json';
 const MESH_NAME = 'HumanV1Body';
 const TARGET_NAMES = ['slender', 'stout'];
 

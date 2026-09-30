@@ -27,7 +27,7 @@ import {buildSegments, recomputeNormals, restWorld, rigidShape, softShape, track
 import {extendHems, vertexNormals} from './garment-coverage.mjs';
 
 const GIRTH = 'docs/baselines/character-mmo/m004/makehuman-girth.json';
-const BODY = '.cache/character-mmo/m004/human-shape-family-v1.glb';
+const BODY = process.env.ASHEN_GARMENT_BODY || '.cache/character-mmo/m004/human-shape-family-v1.glb';
 // 'track' moves each garment vertex by the body's displacement beneath it, preserving the
 // authored standoff. 'field' applies the girth field to the garment's own offsets, which
 // over-moves cloth that sits further from the bone than the skin does. Both are kept so the
@@ -116,6 +116,9 @@ async function main() {
 
     const rows = [];
     for (const garment of GARMENTS) {
+        // Production families are reproducible from the eight tracked canonical garments.
+        // The diagnostic plate requires an ignored Blender output and is not a catalogue item.
+        if (garment.rigid && process.env.ASHEN_SKIP_PLATE === '1') continue;
         const sourceBytes = await fs.readFile(garment.file);
         const doc = await io.read(garment.file);
         const root = doc.getRoot();

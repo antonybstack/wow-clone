@@ -1,0 +1,145 @@
+{
+  "url": "http://127.0.0.1:7274/?play&clean&pixelRatio=1",
+  "rows": [
+    {
+      "build": -0.95,
+      "height": 0.9,
+      "recipe": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      },
+      "compact": "compact-slender-0.9.png",
+      "full": "compact-slender-0.9-full.png",
+      "errors": [],
+      "gpuErrors": []
+    },
+    {
+      "build": -0.95,
+      "height": 1.15,
+      "recipe": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      },
+      "compact": "compact-slender-1.15.png",
+      "full": "compact-slender-1.15-full.png",
+      "errors": [],
+      "gpuErrors": []
+    },
+    {
+      "build": 0.95,
+      "height": 0.9,
+      "recipe": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      },
+      "compact": "compact-stout-0.9.png",
+      "full": "compact-stout-0.9-full.png",
+      "errors": [],
+      "gpuErrors": []
+    },
+    {
+      "build": 0.95,
+      "height": 1.15,
+      "recipe": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v2",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook"
+        }
+      },
+      "compact": "compact-stout-1.15.png",
+      "full": "compact-stout-1.15-full.png",
+      "errors": [],
+      "gpuErrors": []
+    }
+  ]
+}

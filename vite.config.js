@@ -1,8 +1,10 @@
+import {verifyProductionHumanShapes} from './scripts/character-assets/verify-production-human-shapes.mjs';
 import {verifyStartupAssets} from './scripts/ashen-reach/startup-provenance.mjs';
 import { defineConfig } from "vite";
 import {readFileSync,createReadStream,statSync} from 'node:fs';
 
 const pages = process.env.ASHEN_PAGES === "1";
+const humanShapeManifest=JSON.parse(readFileSync('public/ashen-reach/human-shape-v1/manifest.json','utf8'));
 const starterBuild=process.env.VITE_FAST_START!=='0';
 const starterWorldManifest=starterBuild?JSON.parse(readFileSync('public/ashen-reach/startup/starter/manifest.json','utf8')):null;
 const starterCharacterManifest=starterBuild?JSON.parse(readFileSync('public/ashen-reach/startup/character/manifest.json','utf8')):null;
@@ -64,6 +66,7 @@ function starterBrotliHeaders(req,res,next) {
 
 export default defineConfig({
   define:{
+    'import.meta.env.VITE_HUMAN_SHAPE_SOURCE':JSON.stringify(process.env.NODE_ENV==='production'?humanShapeManifest.provenance.sha256:''),
     'import.meta.env.VITE_FAST_START':JSON.stringify(starterBuild?'1':'0'),
     // Immutable bundles reject a newer deployment's mutable manifest instead
     // of mixing old worker generation with new prepared geometry/materials.
@@ -94,7 +97,7 @@ export default defineConfig({
     strictPort: true,
   },
   plugins: [
-    {name: "verify-prepared-startup", async buildStart(){if(starterBuild)await verifyStartupAssets();}},
+    {name: "verify-prepared-startup", async buildStart(){if(starterBuild)await verifyStartupAssets();await verifyProductionHumanShapes();}},
     {
       name: 'dev-only-crowd-probe-assets',
       configureServer(server) {
@@ -163,8 +166,6 @@ export default defineConfig({
           const tags = starterBuild ? [
             ['/HavokPhysics.wasm?v=20260923-1','fetch'],
             ['/ashen-reach/startup/starter/manifest.json','fetch'],
-            ['/ashen-reach/startup/character/manifest.json','fetch'],
-            ...['body','wayfarerTunic','wayfarerTrousers','wayfarerBoots'].map(id=>[starterCharacterManifest.items[id].url,'fetch']),
             ['/ashen-reach/startup/starter/'+starterWorldManifest.geometry.file,'fetch'],
             // HTML discovery avoids a module + manifest round trip for the
             // 36 KB of first-frame textures; the foliage atlas remains late.
@@ -188,7 +189,11 @@ export default defineConfig({
           // required by the first body, so discovering it after GLB parsing wastes
           // a round trip. Lite still owns loading/initialization and promise reuse.
           const decoder=starterBuild?'<link rel="preload" href="/meshopt_decoder.js" as="script">':'';
-          return html.replace("</head>", `${links}${decoder}</head>`);
+          // A saved appearance chooses its own compatible compact pack. Do not preload the
+          // neutral pack ahead of it. All URLs here are build-owned, never storage data.
+          // https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/rel/preload
+          const characterPreloads=starterBuild?`<script>(()=>{try{if(['ashen.appearance.v2','ashen.appearance.v1','ashen.creator.v1'].some(k=>localStorage.getItem(k)))return;}catch{}for(const href of ${JSON.stringify(['/ashen-reach/startup/character/manifest.json',...['body','wayfarerTunic','wayfarerTrousers','wayfarerBoots'].map(id=>starterCharacterManifest.items[id].url)])}){const link=document.createElement('link');link.rel='preload';link.as='fetch';link.crossOrigin='anonymous';link.href=href;link.fetchPriority=href.endsWith('.bin')?'low':'auto';document.head.append(link);}})();</script>`:'';
+          return html.replace("</head>", `${links}${decoder}${characterPreloads}</head>`);
         },
       },
     },

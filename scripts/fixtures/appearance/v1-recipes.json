@@ -3,7 +3,7 @@
   "generation": "appearanceFromEquipment({race,loadout:EQUIPMENT_PRESETS[preset].loadout}); empty uses {}",
   "source": "M001 active catalogue at bad1087",
   "sourceSha256": {
-    "src/ashen-reach/equipment-catalog.js": "64c6b05f58aac973444df3da6a2c04e0712fddf18a9b382c0f10a797a8793f73",
+    "src/ashen-reach/equipment-catalog.js": "029c3e0b8bc3896d7648befbb36b3f6f9085704c33c125acbeafaaef55db7098",
     "src/ashen-reach/equipment-contract.js": "6b82f2974bafd3ef93e1e8c4f78b206d1fa65724a25257a929b174dbda9282af"
   },
   "license": "project-authored identity data; no third-party asset bytes",
@@ -116,5 +116,10 @@
         }
       }
     }
-  }
+  },
+  "previousSourceSha256": {
+    "src/ashen-reach/equipment-catalog.js": "64c6b05f58aac973444df3da6a2c04e0712fddf18a9b382c0f10a797a8793f73",
+    "src/ashen-reach/equipment-contract.js": "6b82f2974bafd3ef93e1e8c4f78b206d1fa65724a25257a929b174dbda9282af"
+  },
+  "provenanceNote": "2026-09-30: revalidated all exact schema1 fixtures against current catalogue; refreshed stale source fingerprints after M007 coverage additions. Previous fingerprints retained; no recipe or expected selection changed."
 }

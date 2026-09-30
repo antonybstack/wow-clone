@@ -1,4 +1,39 @@
 /** Conservative light-range selection; independent of the gameplay camera. */
+import {computeAabb} from '@babylonjs/lite';
+
+const morphRanges = new WeakMap();
+// Lite retains target deltas and weights publicly, but exposes no local-light
+// range query. Reuse its AABB utility and the native signed-weight extent rule,
+// then pass that box through the existing conservative skin/world transform.
+// Scan immutable deltas once; changing weights requires only O(targetCount).
+// https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/shadow/enable-morph-target-shadows.ts
+function localMorphBounds(mesh, minimum, maximum) {
+ const morph = mesh.morphTargets;
+ if (!morph) return [minimum, maximum];
+ if (!Number.isInteger(morph.count) || morph.count < 1 ||
+  morph.count > 64 || morph.targets?.length !== morph.count ||
+  morph.weights?.length !== morph.count) return null;
+ let cached = morphRanges.get(morph);
+ if (!cached || cached.targets !== morph.targets ||
+  cached.positions.some((positions, i) => positions !== morph.targets[i]?.positions)) {
+  const positions = morph.targets.map(t => t?.positions);
+  if (positions.some(p => !p?.length || p.length % 3 || !p.every(Number.isFinite))) return null;
+  cached = {targets: morph.targets, positions, ranges: positions.map(p => computeAabb(p)), result: [[], []]};
+  morphRanges.set(morph, cached);
+ }
+ const [min, max] = cached.result;
+ for (let axis = 0; axis < 3; axis++) {min[axis] = minimum[axis]; max[axis] = maximum[axis];}
+ for (let i = 0; i < morph.count; i++) {
+  const weight = morph.weights[i];
+  if (!Number.isFinite(weight)) return null;
+  const range = cached.ranges[i];
+  for (let axis = 0; axis < 3; axis++) {
+   min[axis] += weight * range[weight < 0 ? 1 : 0][axis];
+   max[axis] += weight * range[weight < 0 ? 0 : 1][axis];
+  }
+ }
+ return cached.result;
+}
 
 function finiteAffine(matrix, offset = 0) {
  if (!matrix || matrix.length < offset + 16) return false;
@@ -20,7 +55,8 @@ function finiteAffine(matrix, offset = 0) {
  * This deliberately costs O(boneCount), with no vertex scan or
  * deep Lite imports; it also works for either four or eight skin influences.
  *
- * Morph, VAT and thin-instance deformation need other bounds; include them
+ * Morph deltas expand the local box before skinning. VAT and thin-instance
+ * deformation need other bounds; include them
  * conservatively. Missing, invalid or non-affine bounds/transforms also include.
  * Custom vertex displacement must supply bounds covering its displacement.
  */
@@ -71,13 +107,18 @@ function createBounds() {
 // False means unknown, never an empty box. Reuse storage across cache epochs.
 function evaluateWorldBounds(mesh, bounds) {
  if (!mesh) return false;
- const minimum = mesh.boundMin, maximum = mesh.boundMax;
+ let minimum = mesh.boundMin, maximum = mesh.boundMax;
  if (!minimum || !maximum) return false;
  for (let axis = 0; axis < 3; axis++) {
   if (!Number.isFinite(minimum[axis]) ||
    !Number.isFinite(maximum[axis]) || minimum[axis] > maximum[axis]) return false;
  }
- if (mesh.morphTargets || mesh.vat || mesh.thinInstances) return false;
+ if (mesh.vat || mesh.thinInstances) return false;
+ if (mesh.morphTargets) {
+  const local = localMorphBounds(mesh, minimum, maximum);
+  if (!local) return false;
+  [minimum, maximum] = local;
+ }
  const world = mesh.worldMatrix;
  if (!finiteAffine(world)) return false;
  const skeleton = mesh.skeleton;

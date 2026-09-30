@@ -1,0 +1,30 @@
+[
+  {
+    "profile": "default",
+    "runs": 20,
+    "p95Ms": 843.7000000476837,
+    "maxMs": 851.2000000476837,
+    "underOneSecond": 20
+  },
+  {
+    "profile": "largest",
+    "runs": 20,
+    "p95Ms": 965.9000000953674,
+    "maxMs": 966.1000001430511,
+    "underOneSecond": 20
+  },
+  {
+    "profile": "stout",
+    "runs": 20,
+    "p95Ms": 858.9000000953674,
+    "maxMs": 869,
+    "underOneSecond": 20
+  },
+  {
+    "profile": "neutral",
+    "runs": 20,
+    "p95Ms": 857.9000000953674,
+    "maxMs": 860.5,
+    "underOneSecond": 20
+  }
+]

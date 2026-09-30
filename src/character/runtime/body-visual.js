@@ -432,7 +432,9 @@ export function assembleBodyVisual(opts) {
     }
 
     if (mode === 'stage') {
-        setVisualVisible({ root }, false);
+        // Shadow membership reads each mesh's visibility, not the parent's flag.
+        // A staged morph must not enter a shadow pass before its native PBR family builds.
+        setVisualVisible({ root, meshes }, false);
     }
 
     for (const mesh of meshes) prepareLinearMaterial(scene, mesh.material);

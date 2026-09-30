@@ -6,8 +6,8 @@
 import {EQUIPMENT_ITEMS, EQUIPMENT_SLOTS} from '../../ashen-reach/equipment-catalog.js';
 import {declaredFitForRace, freezeEquipment, validateEquipmentSelection} from '../../ashen-reach/equipment-contract.js';
 
-export const APPEARANCE_SCHEMA_VERSION=1;
-export const APPEARANCE_CATALOG_VERSION='appearance-catalog-v1';
+export const APPEARANCE_SCHEMA_VERSION=2;
+export const APPEARANCE_CATALOG_VERSION='appearance-catalog-v2';
 export const MAX_APPEARANCE_BYTES=16*1024;
 const TOP_FIELDS=['schemaVersion','catalogVersion','race','fitFamily','fit','shape','components','dyes','equipment'];
 const FIT_FIELDS=['rig','bind','shape'];
@@ -19,10 +19,21 @@ const V1_PROFILES=Object.freeze(Object.fromEntries([
 ].map(([race,body])=>[race,Object.freeze({
   fit:Object.freeze({body,rig:'source-65',bind:1,shape:1}),capabilities:EMPTY_CAPABILITIES,
 })])));
+export const APPEARANCE_V1_REGISTRY=Object.freeze({
+  schemaVersion:1, catalogVersion:'appearance-catalog-v1',
+  profiles:V1_PROFILES, items:EQUIPMENT_ITEMS, slots:EQUIPMENT_SLOTS,
+});
+export const HUMAN_BUILD_LIMIT=0.95;
+export const PRODUCTION_HUMAN_FAMILY='ashen-human-shape-v1';
+export function neutralAppearanceShape(race,registry=APPEARANCE_REGISTRY) {
+  return registry.schemaVersion===2 && race==='human'
+    ? {family:PRODUCTION_HUMAN_FAMILY,height:1,build:0} : {};
+}
 export const APPEARANCE_REGISTRY=Object.freeze({
   schemaVersion:APPEARANCE_SCHEMA_VERSION,
   catalogVersion:APPEARANCE_CATALOG_VERSION,
-  profiles:V1_PROFILES,
+  profiles:Object.freeze({...V1_PROFILES,human:Object.freeze({...V1_PROFILES.human,
+    capabilities:Object.freeze({shape:Object.freeze(['family','height','build']),components:Object.freeze([]),dyes:Object.freeze([])})})}),
   items:EQUIPMENT_ITEMS,
   slots:EQUIPMENT_SLOTS,
 });
@@ -91,7 +102,16 @@ export function validateAppearance(input,registry=APPEARANCE_REGISTRY) {
   if(input.fitFamily!==profile.fit.body) error('FIT_MISMATCH','$.fitFamily','Fit family differs from race');
   assertFields(input.fit,FIT_FIELDS,'$.fit');
   for(const key of FIT_FIELDS) if(input.fit[key]!==profile.fit[key]) error('FIT_MISMATCH',`$.fit.${key}`,'Fit version differs from race');
-  for(const field of ['shape','components','dyes']) validateEmptyParameters(input[field],`$.${field}`);
+  if(registry.schemaVersion===2 && input.race==='human') {
+    assertFields(input.shape,['family','height','build'],'$.shape');
+    if(input.shape.family!==PRODUCTION_HUMAN_FAMILY) error('FIT_MISMATCH','$.shape.family','Unsupported shape family');
+    for(const [key,min,max] of [['height',0.9,1.15],['build',-HUMAN_BUILD_LIMIT,HUMAN_BUILD_LIMIT]]) {
+      const value=input.shape[key];
+      if(typeof value!=='number' || !Number.isFinite(value)) error('INVALID_VALUE',`$.shape.${key}`,'Expected a finite number');
+      if(value<min || value>max) error('OUT_OF_RANGE',`$.shape.${key}`,'Value exceeds the reviewed domain');
+    }
+  } else validateEmptyParameters(input.shape,'$.shape');
+  for(const field of ['components','dyes']) validateEmptyParameters(input[field],`$.${field}`);
   const equipment=validateEquipment(input.equipment,input.race,profile,registry);
   return freezeEquipment({
     schemaVersion:registry.schemaVersion,
@@ -99,6 +119,24 @@ export function validateAppearance(input,registry=APPEARANCE_REGISTRY) {
     race:input.race,
     fitFamily:profile.fit.body,
     fit:{rig:profile.fit.rig,bind:profile.fit.bind,shape:profile.fit.shape},
-    shape:{},components:{},dyes:{},equipment,
+    shape:registry.schemaVersion===2 && input.race==='human'
+      ? {family:input.shape.family,height:input.shape.height,build:input.shape.build} : {},
+    components:{},dyes:{},equipment,
   });
+}
+
+/** Explicit migration; unknown versions/catalogues are never guessed or silently clamped. */
+export function migrateAppearance(input) {
+  assertPlainRecord(input,'$');
+  if(input.schemaVersion===APPEARANCE_SCHEMA_VERSION) return validateAppearance(input);
+  const old=validateAppearance(input,APPEARANCE_V1_REGISTRY);
+  return validateAppearance({...old,schemaVersion:APPEARANCE_SCHEMA_VERSION,
+    catalogVersion:APPEARANCE_CATALOG_VERSION,shape:neutralAppearanceShape(old.race)});
+}
+/** glTF targets are additive; production uses exactly one signed axis, not two competing deltas.
+ * https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#morph-targets
+ */
+export function appearanceShapeWeights(recipe) {
+  const valid=validateAppearance(recipe),b=valid.shape.build || 0;
+  return [Math.max(0,-b),Math.max(0,b)];
 }

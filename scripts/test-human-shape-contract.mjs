@@ -87,8 +87,8 @@ test('capabilities advertise only what M004 actually delivered', () => {
     assert.equal(HUMAN_SHAPE_CAPABILITIES.appearanceRecipeField, null);
 });
 
-test('the M002 appearance recipe still advertises no shape field', async () => {
-    const {APPEARANCE_REGISTRY} = await import('../src/character/appearance/contract.js');
+test('the historical M002 schema retains its empty shape capability', async () => {
+    const {APPEARANCE_V1_REGISTRY:APPEARANCE_REGISTRY} = await import('../src/character/appearance/contract.js');
     // M004 is a candidate, not a shipped control. Extending schema 1 needs the migration
     // fixtures M006 owns; a silent new field would break every stored recipe's meaning.
     for (const profile of Object.values(APPEARANCE_REGISTRY.profiles ?? APPEARANCE_REGISTRY)) {

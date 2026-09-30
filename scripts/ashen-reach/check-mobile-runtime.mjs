@@ -4,6 +4,7 @@
  */
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
 import {chromium, webkit} from 'playwright';
 import {CDP_URL} from '../lib/cdp.mjs';
 
@@ -14,9 +15,14 @@ const disableDepthFallback = process.argv.includes('--disable-depth-fallback');
 assert(!disableDepthFallback || injectDepthFailure, 'disabling the fallback is only for the injected negative control');
 const dir = `ve-capture/ashen-reach/iphone-regression/${kind}${disableDepthFallback ? '-depth-rejected' : injectDepthFailure ? '-depth-fallback' : ''}-runtime`;
 await fs.mkdir(dir, {recursive: true});
+const beforePids=new Set(execFileSync('ps',['-axo','pid='],{encoding:'utf8'}).trim().split(/\s+/));
 const browser = kind === 'webkit' ? await webkit.launch({headless: true}) : await chromium.connectOverCDP(CDP_URL);
 const context = await browser.newContext({viewport: {width: 430, height: 734}, deviceScaleFactor: 3, isMobile: true, hasTouch: true});
 const page = await context.newPage();
+const savedAppearance=process.env.ASHEN_PROBE_APPEARANCE?JSON.parse(await fs.readFile(process.env.ASHEN_PROBE_APPEARANCE,'utf8')):null;
+if(savedAppearance)await context.addInitScript(recipe=>localStorage.setItem('ashen.appearance.v2',JSON.stringify(recipe)),savedAppearance);
+const ownedProcesses=execFileSync('ps',['-axo','pid=,command='],{encoding:'utf8'}).split('\n').filter(line=>/MiniBrowser|Playwright|WebKit.*Process/.test(line)&&!beforePids.has(line.trim().split(/\s+/)[0])).map(line=>line.trim());
+await fs.writeFile(`${dir}/ownership.json`,JSON.stringify({owner:'root',controllerPid:process.pid,cdpUrl:kind==='chromium'?CDP_URL:null,ownedProcesses,url,purpose:`${kind} mobile customization runtime check`,active:true}));
 const errors = [], checks = [], frames = [], writes = [];
 const report = {kind, url, injectDepthFailure, disableDepthFallback, device: 'desktop engine with mobile viewport/touch emulation', errors, checks};
 page.on('pageerror', e => errors.push(e.message));
@@ -94,6 +100,7 @@ async function pixels(name) {
 try {
   await page.goto(url, {waitUntil: 'commit'});
   await page.waitForFunction(() => window.ASHEN?.ready && ASHEN.hostilesReady, null, {timeout: 120000});
+  if(savedAppearance){report.appearance=await page.evaluate(()=>ASHEN.getAppearance());assert.deepEqual(report.appearance,savedAppearance);}
   report.loadedScripts = await page.evaluate(() => [...document.scripts].map(s => s.src).filter(Boolean));
   if (process.env.ASHEN_EXPECT_BUNDLE) assert(report.loadedScripts.some(src => src.endsWith(process.env.ASHEN_EXPECT_BUNDLE)), 'Production page must load the expected release bundle');
   await page.bringToFront();
@@ -125,6 +132,19 @@ try {
       await cdp.send('Page.startScreencast', {format: 'jpeg', quality: 85, maxWidth: 430, maxHeight: 734, everyNthFrame: 1});
       recording = true;
     }
+  }
+  if(process.argv.includes('--customization-controls')) {
+    await page.locator('#armory-launch').tap();
+    const control=page.locator('.creator-section input[aria-label="Build"]');
+    await control.scrollIntoViewIfNeeded();const box=await control.boundingBox();
+    const before=await page.evaluate(()=>ASHEN.getAppearance().shape.build);
+    await page.touchscreen.tap(box.x+box.width*.25,box.y+box.height*.5);
+    await page.evaluate(()=>ASHEN.creator.settled());
+    const after=await page.evaluate(()=>ASHEN.getAppearance().shape.build);
+    assert.notEqual(after,before,'native touch must edit the body control');
+    await page.screenshot({path:`${dir}/body-controls.png`,scale:'css'});
+    checks.push({name:'touch-body-control',before,after});
+    await page.locator('#armory [data-close]').first().tap();
   }
   const beforeImage = await pixels('before'), before = await pos();
   if (injectDepthFailure) assert(await page.evaluate(() => ASHEN.shadows.state.depthOnlyFragment), 'world shadow caster must use Lite depthOnlyFragment');
@@ -193,4 +213,5 @@ try {
   await fs.writeFile(`${dir}/report.json`, JSON.stringify(report, null, 2));
   console.log(JSON.stringify(report));
   await context.close(); await browser.close();
+  await fs.writeFile(`${dir}/ownership.json`,JSON.stringify({owner:'root',controllerPid:process.pid,url,active:false}));
 }
