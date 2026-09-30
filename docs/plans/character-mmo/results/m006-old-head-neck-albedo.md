@@ -3,7 +3,8 @@
 Status: **improved and measured; M006 not accepted.** The join is materially better but
 still legible at close range, and the other M006 defects are untouched.
 
-Reviewed clip: Telegram 810 (1280x720, 17.23 s, verified).
+Reviewed clips: Telegram 810 (first correction) and **813** (the corrected parameter, which
+supersedes it). Both 1280x720, verified.
 
 ## The defect
 
@@ -25,27 +26,61 @@ and made the rendered seam **worse**. The band's body statistics (sd 42–53 sRG
 wider neck) are not what actually shades; the offset that zeroes the band moved the whole
 head down about 67 sRGB in luminance, producing a dark ashen mask on a pale body.
 
-Measured at the rendered join, worst per-channel step:
-
-| build | front-quarter | back | hue break (R−B) |
-|---|---|---|---|
-| uncorrected | 23.0 | 32.9 | 41 / 44 |
-| full CIELAB fit | 27.7 | — | 15 |
-| chroma only (L=0) | 11.9 | 21.7 | 4.9 / 8.0 |
-| **chroma + 20% L (accepted)** | **10.9** | **16.1** | **4.5 / 9.2** |
-| chroma + 40% L | 12.1 | 13.6 * | 7.8 / 0.9 |
-
-\* the 40% back sample landed on row 520, the edge of the search window, so it is not trusted.
-
 An atlas-space delta of 0 alongside a *worse* rendered seam is the whole lesson here: the
 fitted quantity was not the visible one.
+
+## The second measurement was also wrong, and it chose the shipped parameter
+
+The first sweep searched each build for its **own** largest tonal step within the neck band.
+That works on the uncorrected head, where the join *is* the largest step. It stops working
+the moment the correction lands: the join drops below the brow and the edge of the search
+window, the search scores those instead, and the number is no longer the seam. The tell was
+visible and ignored — the reported row moved from 446 on the control to 469 and 520 on the
+corrected builds, and 520 is the window boundary.
+
+The camera and the pose are pinned, so the join sits at the same screen row in every build.
+Pinning that row from the control and re-sweeping gives the real numbers — worst per-channel
+step across the seam, front-quarter / back:
+
+| build | front-quarter | back | worst | hue break (R−B) |
+|---|---|---|---|---|
+| uncorrected | 21.7 | 33.2 | 33.2 | 40.6 / 52.3 |
+| **chroma only, L=0 (accepted)** | **8.3** | **7.5** | **8.3** | **6.0 / 13.5** |
+| chroma + 10% L | 4.2 | 9.6 | 9.6 | 6.9 / 14.6 |
+| chroma + 20% L (previously shipped) | 4.7 | 13.7 | 13.7 | 7.4 / 15.3 |
+| chroma + 30% L | 7.6 | 16.8 | 16.8 | 8.3 / 16.0 |
+| chroma + 40% L | 12.1 | 17.6 | 17.6 | 8.8 / 17.0 |
+
+`L_MATCH` was 0.20 for one day on the strength of the bad sweep. A seam is judged by where it
+is worst, not by the average of two views, so **0 wins**: 8.3 against 9.6 for the next best.
+It is also the value the physical argument predicts, since head and body differ in hue far
+more than in lightness. The correction now removes **62%** of the join step at the
+front-quarter and **77%** at the back.
+
+## A rejected alternative: diffusing the correction over the mesh graph
+
+One affine cannot follow a mismatch that varies around the neck, and the measured rim
+correction does vary — mean CIELAB distance 14.3, max 28.0 across 82 rim nodes. So
+`scripts/character-assets/diffuse-neck-seam.mjs` solves a *local* correction instead: the
+body's colour at each matching rim position minus the head's own, carried over the head by
+Dijkstra on real edge lengths with a cosine falloff, smoothed on the graph, and rasterised
+barycentrically into the atlas.
+
+It merges head vertices **by 3D position** (4,265 vertices into 4,089 nodes, 176 UV splits),
+which is exactly what the earlier spatial taper got wrong: a weight smooth in 3D is a step in
+texture space, and that step is what put the pale patch on the nape. Geodesic distance rather
+than Euclidean, because the chin is near the throat through the air and far across the skin.
+
+It measured **5.8 / 14.2** against the affine's 8.3 / 7.5 — no better, and worse at the back.
+Recorded as a negative result and not shipped; the script is kept because the machinery is
+correct and a future two-atlas seam may need it.
 
 ## The correction
 
 `scripts/character-assets/match-old-head-atlas.mjs` rewrites the head's **atlas image** —
 deliberately not one of the four previously rejected render-time routes (material factor,
 vertex-colour fade, per-vertex rim ratio, UV remap). It fits a per-channel affine in CIELAB
-from the head's rim band to the body's, then applies **chroma in full and only 20% of the
+from the head's rim band to the body's, then applies **chroma in full and none of the
 lightness offset**. Head and body differ in hue far more than in lightness, so matching
 chroma closes the break while leaving the head's own shading and pore detail intact.
 
@@ -89,7 +124,10 @@ candidate's body ends at the neck, so the coverage contract moves both head segm
 
 1. At close range the join is a **thin straight horizontal line** under the jaw. It is no
    longer a tonal block, but it is geometrically straight and catches the eye. Colour alone
-   will not remove it; it needs a blend band or overlapping geometry at the cut.
+   will not remove it — the diffused variant above confirms that a better colour field does
+   not help. Two meshes butted at a cut, carrying two atlases, need to become one mesh on one
+   atlas with a gradient-domain blend across the former seam. That is re-authoring, and it is
+   the actual remaining M006 art gate.
 2. The stubble stops in a **hard horizontal cut at the nape** instead of fading.
 3. The rear-scalp UV discontinuities are untouched, and are **not a visible defect** — see
    below. They should come off the M006 blocker list.

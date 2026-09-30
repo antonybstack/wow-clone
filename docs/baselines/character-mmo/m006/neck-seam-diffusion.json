@@ -1,0 +1,25 @@
+{
+ "generatedBy": "scripts/character-assets/diffuse-neck-seam.mjs",
+ "input": ".cache/character-mmo/m006/human-old-bald-atlas-matched.glb",
+ "output": ".cache/character-mmo/m006/human-old-bald-seam-diffused.glb",
+ "bytes": 6377520,
+ "parameters": {
+  "cutY": 1.5,
+  "rimEpsM": 0.002,
+  "falloffM": 0.075,
+  "smoothPasses": 12,
+  "strength": 1
+ },
+ "headVertices": 4265,
+ "mergedNodes": 4089,
+ "uvSplitNodes": 176,
+ "rimNodes": 82,
+ "bodyRimVertices": 41,
+ "rimCorrectionLabDistance": {
+  "min": 1.84,
+  "mean": 14.32,
+  "max": 28.01
+ },
+ "texelsTouched": 105473,
+ "largestChannelChange": 78
+}

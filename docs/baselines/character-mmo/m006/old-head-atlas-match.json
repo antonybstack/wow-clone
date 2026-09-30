@@ -8,15 +8,15 @@
  },
  "output": {
   "path": ".cache/character-mmo/m006/human-old-bald-atlas-matched.glb",
-  "sha256": "1ec5c3357e9935f62180ceded50899728e8b8e52f9d9763eb58b28ee4ce1016f",
-  "bytes": 6248344
+  "sha256": "8b26d4195fb3714cd849e320ba21b2be61058f93c37d9bb2b98edc2c5b52373d",
+  "bytes": 6249776
  },
  "band": {
   "cutY": 1.5,
   "metres": 0.015
  },
  "spreadLimit": 1,
- "lightnessMatch": 0.2,
+ "lightnessMatch": 0,
  "taper": {
   "fadeMetres": 0.13,
   "faceStrength": 1

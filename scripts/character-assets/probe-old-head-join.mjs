@@ -6,10 +6,16 @@
  * Here the armory camera is set to exact angles, so every build is sampled from the same
  * viewpoint under the same fill light.
  *
- * The join row is found from the image rather than assumed. The head and body are two
- * meshes butted at y=1.5 m, so the seam is a horizontal step in skin tone; the probe scans
- * a window for the row with the largest such step and reports the step there. That keeps
- * the metric honest when the pose or the framing shifts.
+ * The join row is found from the image rather than assumed, **on the uncorrected control**,
+ * and every build is then measured across that same row.
+ *
+ * Searching each build for its own largest step does not work once the correction lands: the
+ * join stops being the biggest edge in the neck band, the search locks onto whatever is (the
+ * brow, or the edge of the search window itself), and the reported number is no longer the
+ * seam. That mistake made a corrected build read 10.9/16.1 when the step across the actual
+ * join was 4.6/13.6 -- it understated the fix by more than half. The camera and the pose are
+ * pinned, so the join is at the same screen row in every build; pass that row in with
+ * `ASHEN_JOIN_ROW_FRONT` / `ASHEN_JOIN_ROW_BACK` and the comparison is like for like.
  *
  * Reported: worst per-channel difference across the join, luminance difference and warmth
  * (R-B) difference. Warmth is the hue break that reads as "wrong skin"; the atlas-space rim
@@ -78,6 +84,22 @@ function locateJoin(data, info) {
     return best;
 }
 
+/** The step across one specific row: the bands 4-12 px either side of it. */
+function stepAcross(data, info, row) {
+    const band = (y0, y1) => {
+        const keep = [];
+        for (let y = y0; y <= y1; y++) for (let x = 60; x <= 420; x += 2) {
+            const o = (y * info.width + x) * info.channels;
+            const r = [data[o], data[o + 1], data[o + 2]];
+            if (r[0] * .2126 + r[1] * .7152 + r[2] * .0722 > 95 && r[0] > r[2] + 8) keep.push(r);
+        }
+        return keep.length < 25 ? null : [0, 1, 2].map(c => keep.reduce((a, r) => a + r[c], 0) / keep.length);
+    };
+    const head = band(row - 12, row - 4), body = band(row + 4, row + 12);
+    if (!head || !body) return null;
+    return {head, body, step: Math.max(...[0, 1, 2].map(c => Math.abs(body[c] - head[c])))};
+}
+
 const results = [];
 try {
     await page.setViewportSize({width: 1280, height: 720});
@@ -98,15 +120,20 @@ try {
         const shot = path.join(dir, `${view.name}.png`);
         await page.screenshot({path: shot});
         const {data, info} = await sharp(shot).removeAlpha().raw().toBuffer({resolveWithObject: true});
-        const found = locateJoin(data, info);
-        if (!found) throw Error(`No skin step found in ${view.name}`);
+        const searched = locateJoin(data, info);
+        const pinned = Number(process.env[view.name === 'back' ? 'ASHEN_JOIN_ROW_BACK' : 'ASHEN_JOIN_ROW_FRONT'] || 0);
+        const row = pinned || searched?.row;
+        if (!row) throw Error(`No skin step found in ${view.name}`);
+        const measured = stepAcross(data, info, row);
+        if (!measured) throw Error(`Not enough skin across row ${row} in ${view.name}`);
         const lum = a => a[0] * .2126 + a[1] * .7152 + a[2] * .0722;
         results.push({
-            view: view.name, joinRow: found.row,
-            head: found.head.map(v => Math.round(v)), body: found.body.map(v => Math.round(v)),
-            maxChannelStep: Number(found.step.toFixed(1)),
-            lumStep: Number((lum(found.body) - lum(found.head)).toFixed(1)),
-            warmthStep: Number(((found.head[0] - found.head[2]) - (found.body[0] - found.body[2])).toFixed(1)),
+            view: view.name, joinRow: row, rowSource: pinned ? 'pinned' : 'searched',
+            searchedRow: searched?.row ?? null,
+            head: measured.head.map(v => Math.round(v)), body: measured.body.map(v => Math.round(v)),
+            maxChannelStep: Number(measured.step.toFixed(1)),
+            lumStep: Number((lum(measured.body) - lum(measured.head)).toFixed(1)),
+            warmthStep: Number(((measured.head[0] - measured.head[2]) - (measured.body[0] - measured.body[2])).toFixed(1)),
         });
     }
     const report = {label, file, sourceUrl: page.url(), viewport: [1280, 720], bodyRequests, views: results, errors};

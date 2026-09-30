@@ -160,11 +160,21 @@ const source = stats(bandTexels(headPrim, headAtlas));
 // worst per-channel error at the join *worse* than doing nothing (23 -> 28), which is what
 // put a dark ashen mask on a pale body. Chroma is fitted in full; lightness is left to the
 // head's own art, which is also what preserves its shading and pore detail.
-// 0.20 was chosen by sweeping against the rendered join, not the atlas. Worst per-channel
-// step across the seam, front-quarter / back: 23.0 / 32.9 uncorrected, 11.9 / 21.7 at 0,
-// 10.9 / 16.1 at 0.20, 12.1 / 13.6 at 0.40 -- and 0.40's back sample sat on the edge of the
-// search window, so it is not trusted. 0.20 is best or near-best in both views.
-const L_MATCH = Number(process.env.ASHEN_L_MATCH ?? 0.20);
+// 0: chroma is matched in full, lightness is left to the head's own art.
+//
+// An earlier sweep chose 0.20. That sweep was measured by searching each build for its own
+// largest step in the neck band, and once the correction lands the join stops being the
+// largest step there, so the search drifted onto the brow and the window edge and scored the
+// wrong rows. Re-swept across the join row itself -- pinned from the uncorrected control,
+// where the camera and pose are identical -- the worst per-channel step across the seam,
+// front-quarter / back, is:
+//
+//   uncorrected 21.7 / 33.2    L=0  8.0 / 7.4    L=0.10  4.2 / 9.6
+//   L=0.20  4.7 / 13.7         L=0.30  7.6 / 16.8      L=0.40  12.1 / 17.6
+//
+// A seam is judged by where it is worst, not by the average of two views, so 0 wins: 8.0
+// against 9.6 for the next best. It is also the value the physical argument above predicts.
+const L_MATCH = Number(process.env.ASHEN_L_MATCH ?? 0);
 const SPREAD_LIMIT = Number(process.env.ASHEN_SPREAD_LIMIT ?? 1.0);
 const gains = source.map((s, c) => (s.sd > 1e-3
     ? Math.min(SPREAD_LIMIT, Math.max(1 / SPREAD_LIMIT, target[c].sd / s.sd))
