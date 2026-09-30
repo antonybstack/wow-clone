@@ -2,7 +2,7 @@
  *
  * Proves the things the milestone actually claims: only verified controls are reachable,
  * two distinct Humans enter gameplay and wear both proof outfits, state survives a reload,
- * a touch drag works, and the default cold start is unchanged.
+ * a touch drag works, and the default cold start offers no live shape control.
  *
  * Shape is proved by pixels as well as by state. A weight vector in `ASHEN.humanShape` only
  * says the game was told to reshape; a screenshot difference says the character on screen is
@@ -37,6 +37,11 @@ const boot = async query => {
     await page.waitForFunction(() => globalThis.ASHEN?.whenPlayable, null, {timeout: 90000});
     await page.evaluate(() => ASHEN.whenRest);
 };
+/** The body controls are a section of the Armory now, so opening it is how they appear. */
+const openArmory = async (target) => {
+    await target.evaluate(() => ASHEN.armory.open());
+    await target.waitForSelector('#armory .creator-section', {timeout: 20000});
+};
 const settle = async () => {
     await page.evaluate(() => ASHEN.creator?.settled?.());
     await page.evaluate(() => ASHEN.whenNextGpuFrame());
@@ -60,7 +65,7 @@ async function differs(a, b) {
 }
 const setSlider = async (index, value) => {
     await page.evaluate(([i, v]) => {
-        const inputs = [...document.querySelectorAll('.creator-panel input[type="range"]')];
+        const inputs = [...document.querySelectorAll('.creator-section input[type="range"]')];
         const input = inputs[i];
         input.value = String(v);
         input.dispatchEvent(new Event('input', {bubbles: true}));
@@ -74,10 +79,10 @@ try {
 
     // --- the control surface is capability-gated -------------------------------------
     await boot('&creator=1');
-    await page.waitForSelector('.creator-panel:not([hidden])', {timeout: 20000});
+    await openArmory(page);
     const surface = await page.evaluate(() => ({
-        sliders: [...document.querySelectorAll('.creator-panel input[type="range"]')].map(i => i.getAttribute('aria-label')),
-        choices: [...document.querySelectorAll('.creator-panel select')].map(s => s.getAttribute('aria-label')),
+        sliders: [...document.querySelectorAll('.creator-section input[type="range"]')].map(i => i.getAttribute('aria-label')),
+        choices: [...document.querySelectorAll('.creator-section select')].map(s => s.getAttribute('aria-label')),
         pending: [...document.querySelectorAll('.creator-pending-row')].map(r => ({
             label: r.querySelector('span').textContent, reason: r.querySelector('small').textContent,
         })),
@@ -122,7 +127,7 @@ try {
 
     // --- state survives a reload --------------------------------------------------------
     await boot('&creator=1');
-    await page.waitForSelector('.creator-panel:not([hidden])', {timeout: 20000});
+    await openArmory(page);
     const restored = await page.evaluate(() => ({
         restored: ASHEN.creator.session.restored,
         discarded: ASHEN.creator.session.discarded,
@@ -143,7 +148,7 @@ try {
     const afterUndo = await page.evaluate(() => ({
         state: ASHEN.creator.state.controls.height,
         applied: ASHEN.humanShape.heightScale,
-        slider: Number(document.querySelector('.creator-panel input[type="range"]').value),
+        slider: Number(document.querySelector('.creator-section input[type="range"]').value),
     }));
     assert.equal(afterUndo.state, 0.93, 'undo returns the previous height');
     // Undo has to reach the body and the slider too, or the stored character, the drawn
@@ -188,14 +193,14 @@ try {
         await touch.goto(`${origin}/ashen-reach.html?play&clean&legacyStart=1&noEnemies=1&pixelRatio=1&creator=1`);
         await touch.waitForFunction(() => globalThis.ASHEN?.whenPlayable, null, {timeout: 90000});
         await touch.evaluate(() => ASHEN.whenRest);
-        await touch.waitForSelector('.creator-panel:not([hidden])', {timeout: 20000});
+        await openArmory(touch);
         // Start from the default, or the restored character may already sit at the end of
         // the slider and the drag would be a no-op that looks like a broken control.
         await touch.evaluate(() => ASHEN.creator.session.reset());
         const before = await touch.evaluate(() => ASHEN.creator.state.controls.height);
-        const box = await touch.locator('.creator-panel input[type="range"]').first().boundingBox();
+        const box = await touch.locator('.creator-section input[type="range"]').first().boundingBox();
         assert.ok(box && box.height >= 28, `touch target too small: ${JSON.stringify(box)}`);
-        await touch.locator('.creator-panel input[type="range"]').first()
+        await touch.locator('.creator-section input[type="range"]').first()
             .evaluate(i => { i.value = String(Number(i.max)); i.dispatchEvent(new Event('input', {bubbles: true})); });
         const after = await touch.evaluate(() => ASHEN.creator.state.controls.height);
         assert.notEqual(before, after, 'a touch-sized drag must change the character');
@@ -222,7 +227,7 @@ try {
         // `armory.open()` returns early when it is already open, so calling this twice in one
         // run left the reference camera active with the armory panel showing and the
         // character out of frame entirely -- which is what a 68% "noise floor" actually was.
-        await page.evaluate(() => { ASHEN.creator.close(); ASHEN.armory.close(); });
+        await page.evaluate(() => ASHEN.armory.close());
         await page.evaluate(() => ASHEN.reset());
         await page.waitForTimeout(600);
         await page.evaluate(() => {
@@ -239,11 +244,11 @@ try {
         await page.evaluate(() => ASHEN.whenNextGpuFrame());
     };
     await boot('&creator=1');
-    await page.waitForSelector('.creator-panel:not([hidden])', {timeout: 20000});
+    await openArmory(page);
     await page.evaluate(() => { ASHEN.creator.clear(); });
     await setSlider(0, 1.08);
     await setSlider(2, 0.7);
-    const savedState = await page.evaluate(() => { ASHEN.creator.close(); return ASHEN.creator.state; });
+    const savedState = await page.evaluate(() => { ASHEN.creator.save(); return ASHEN.creator.state; });
     await poseForCompare();
     const beforeShot = await shot('equivalence-before');
     // Same-run control. The churchyard grass is not reproduced pixel for pixel between two
@@ -257,7 +262,7 @@ try {
     const sameRunDrift = await differs(beforeShot, controlShot);
 
     await boot('&creator=1');
-    await page.waitForSelector('.creator-panel:not([hidden])', {timeout: 20000});
+    await openArmory(page);
     const restoredState = await page.evaluate(() => ASHEN.creator.state);
     assert.deepEqual(restoredState, savedState, 'restored state must equal what was saved');
     await poseForCompare();
@@ -311,15 +316,24 @@ try {
 
     // --- the default cold start is untouched -------------------------------------------------
     await boot('');
+    await openArmory(page);
     const cold = await page.evaluate(() => ({
         humanShape: ASHEN.humanShape ?? null,
-        creator: ASHEN.creator ?? null,
-        panel: document.querySelector('.creator-panel') ? 'present' : 'absent',
+        drivable: ASHEN.creator?.drivable ?? null,
+        sliders: [...document.querySelectorAll('.creator-section input[type="range"]')].length,
+        slidersDisabled: [...document.querySelectorAll('.creator-section input[type="range"]')].every(i => i.disabled),
+        note: document.querySelector('.creator-section .armory-note')?.textContent ?? '',
         playableMs: ASHEN.playableMs,
     }));
+    // The section is part of the Armory now, so it is present on every route. What must stay
+    // true is that the default route applies no shape and cannot be made to: the shipped body
+    // carries no morph targets, and offering live sliders over it would be the fake
+    // capability this whole surface exists to avoid.
     assert.equal(cold.humanShape, null, 'the default route must not apply a shape');
-    assert.equal(cold.creator, null, 'the creator must not load without ?creator=1');
-    assert.equal(cold.panel, 'absent');
+    assert.equal(cold.drivable, false, 'the default body has no shape targets, so the sliders must be inert');
+    assert.ok(cold.sliders > 0, 'the section should still be visible, to explain itself');
+    assert.equal(cold.slidersDisabled, true, 'every control must be disabled when the body cannot be driven');
+    assert.match(cold.note, /creator=1/, 'the section must say how to enable it');
     report.coldStart = cold;
 
     report.errors = errorsBeforeInjection;

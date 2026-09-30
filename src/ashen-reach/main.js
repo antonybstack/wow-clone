@@ -552,18 +552,22 @@ async function main(){
   combat.bindEquipment(() => equipment.getState());
   combat.setVisible(view==='play');
   armory=createArmory({scene,canvas,player,body,combat,equipment,getView:()=>view,setView});
-  // M006 creator, imported only when asked for. It reuses the armory's camera and stage,
-  // and drives the body through the same absolute setter a probe would call.
-  if(creatorWanted){
+  // M006 body controls, as a section of the armory rather than a second panel: one
+  // inspection surface, reached with C. Imported here, in the background pass after the game
+  // is playable, so it stays its own chunk and off the startup critical path.
+  //
+  // The sliders can only move a body that carries the M004 morph targets, which is the
+  // ?creator=1 route; on the default route the section still appears, disabled, saying why.
+  {
    const {createCreator}=await import('./creator.js');
    const {creatorStateToShape}=await import('../character/creator/contract.js');
    creator=createCreator({
     race:'human',
     armory,
+    drivable:Boolean(writeShapeWeights),
     applyShape:state=>{const {weights,heightScale}=creatorStateToShape(state);setHumanShapeLive({weights,heightScale});},
    });
    ashen.creator=creator;
-   creator.open();
   }
   tools=attachDevTools({params,canvas,camera,player,combat,setView});
   // Spell billboard systems arrive after the first visible scene registration. This

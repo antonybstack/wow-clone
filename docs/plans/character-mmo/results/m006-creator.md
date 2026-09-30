@@ -4,8 +4,9 @@ Status: **implemented, measured and visually reviewed.** M006 as a whole is stil
 creator is done, the source-art gate is not. See
 [the neck albedo result](m006-old-head-neck-albedo.md).
 
-Reviewed clips: Telegram 811 (the surface) and **815** (saved/restored visual equivalence).
-Both 1280x720, verified.
+Reviewed clips: Telegram 811 (the original surface), **815** (saved/restored visual
+equivalence) and **817** (merged into the Armory, which supersedes 811's layout). All
+1280x720, verified.
 
 ## The rule the surface enforces
 
@@ -138,3 +139,35 @@ the character's silhouette standing out as *unchanged* black against it.
 reaches the DOM and that `ASHEN.playableReady` stays false. Falling back quietly to the
 default character would be the worst outcome, because it looks exactly like the saved
 character was lost.
+
+
+## Merged into the Armory
+
+The first version was a second panel that hid the Armory's equipment panel while it was open
+and opened itself on the `?creator=1` route. Two inspection surfaces for one character is one
+too many, so the controls now live in the Armory's own panel as a `BODY` section: Race, then
+Height and Build, then Equipment.
+
+What changed with the merge:
+
+- **No separate open/close.** `C` opens the Armory, `Esc` closes it. `creator.open()` and
+  `close()` remain and delegate, so existing probes and capture scripts keep working.
+- **No Save button.** A change persists when the slider is released — `change` rather than
+  `input`, so a drag writes to storage once instead of once per frame — and on undo and reset.
+- **The unaccepted controls collapse** into `Not available yet (4)`. They still carry their
+  reasons; they just no longer crowd the equipment list they now share a panel with.
+- **The status line only appears when it says something.** A permanent "Starting from the
+  default character." costs a row to state what the sliders already show. Reset says nothing
+  either, for the same reason: the sliders visibly jump.
+- **The section appears on every route**, not only `?creator=1`. The sliders can only move a
+  body that carries the M004 morph targets, so on the default route they render disabled with
+  a line explaining how to enable them. Vanishing entirely would leave no trace of why.
+
+That last point changes a test. The cold-start check used to assert `ASHEN.creator` was null
+and no panel existed; it now asserts the section is present, every control is disabled,
+`drivable` is false, the note names the flag, and — unchanged, and the part that actually
+matters — the default route applies no shape. Offering live sliders over a body that cannot
+move is exactly the fake capability this surface exists to avoid.
+
+The Armory panel already had `overflow: auto`, so the taller content scrolls; the equipment
+slots below the fold and the return button remain reachable.

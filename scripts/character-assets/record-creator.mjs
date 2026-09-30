@@ -34,7 +34,7 @@ const settle = async () => {
 /** Drag a slider over `ms`, so the clip shows the body following the control. */
 const sweep = async (index, to, ms) => {
     await page.evaluate(async ([i, target, dur]) => {
-        const input = [...document.querySelectorAll('.creator-panel input[type="range"]')][i];
+        const input = [...document.querySelectorAll('.creator-section input[type="range"]')][i];
         const from = Number(input.value), t0 = performance.now();
         for (;;) {
             const k = Math.min(1, (performance.now() - t0) / dur);
@@ -51,7 +51,8 @@ try {
     await page.goto(`${origin}/ashen-reach.html?play&clean&legacyStart=1&noEnemies=1&pixelRatio=1&creator=1`);
     await page.waitForFunction(() => globalThis.ASHEN?.whenPlayable, null, {timeout: 90000});
     await page.evaluate(() => ASHEN.whenRest);
-    await page.waitForSelector('.creator-panel:not([hidden])', {timeout: 20000});
+    await page.evaluate(() => ASHEN.armory.open());
+    await page.waitForSelector('#armory .creator-section', {timeout: 20000});
     await page.evaluate(() => { ASHEN.dev.god = true; ASHEN.creator.clear(); });
     await settle();
     const canvas = await page.evaluate(() => [renderCanvas.width, renderCanvas.height]);
@@ -87,12 +88,13 @@ try {
     await page.waitForTimeout(800);
     if (process.env.ASHEN_CREATOR_RESTORE === '1') {
         mark('saved, then the page is reloaded');
-        await page.evaluate(() => ASHEN.creator.close());   // close() persists
+        await page.evaluate(() => ASHEN.creator.save());
         await page.waitForTimeout(700);
         await page.reload();
         await page.waitForFunction(() => globalThis.ASHEN?.whenPlayable, null, {timeout: 90000});
         await page.evaluate(() => ASHEN.whenRest);
-        await page.waitForSelector('.creator-panel:not([hidden])', {timeout: 20000});
+        await page.evaluate(() => ASHEN.armory.open());
+    await page.waitForSelector('#armory .creator-section', {timeout: 20000});
         await page.evaluate(() => { ASHEN.dev.god = true; });
         await settle();
         mark('restored: same sliders, same body, no re-entry needed');

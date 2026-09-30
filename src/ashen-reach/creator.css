@@ -1,8 +1,10 @@
-/* Creator panel. Shares the armory's panel chrome; only the creator-specific rows are here. */
-.creator-panel .creator-fields { display: flex; flex-direction: column; gap: .55rem; margin: .4rem 0 .8rem; }
+/* Body controls inside the Armory panel. Shares the panel's chrome; only the rows are here. */
+.creator-section { margin-bottom: .2rem; }
+.creator-section .creator-fields { display: flex; flex-direction: column; gap: .55rem; margin: .4rem 0 .6rem; }
 .creator-field { display: flex; flex-direction: column; gap: .2rem; font-size: .82rem; }
 .creator-field span { display: flex; justify-content: space-between; opacity: .86; }
 .creator-field input[type="range"] { width: 100%; }
+.creator-field input:disabled, .creator-field select:disabled { opacity: .45; }
 /* A comfortable touch target on a phone; the armory's own rows are mouse-sized. Width is
    included alongside the pointer query because the armory already treats 760px as its phone
    breakpoint, and because a coarse pointer is not reported in every remote-controlled
@@ -10,11 +12,10 @@
 @media (pointer: coarse), (max-width: 760px) {
   .creator-field input[type="range"] { height: 2.1rem; }
 }
-.creator-pending { margin-top: .6rem; border-top: 1px solid rgba(255,255,255,.12); padding-top: .5rem; }
-.creator-pending h2 { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; opacity: .6; margin: 0 0 .35rem; }
-.creator-pending-row { display: flex; flex-direction: column; margin-bottom: .4rem; opacity: .55; }
-.creator-pending-row span { font-size: .82rem; }
-.creator-pending-row small { font-size: .72rem; opacity: .8; }
-.creator-actions { display: flex; gap: .4rem; margin-top: .7rem; }
+.creator-pending { margin: .1rem 0 .5rem; opacity: .75; }
+.creator-pending summary { font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; opacity: .7; cursor: pointer; }
+.creator-pending-row { display: flex; flex-direction: column; margin: .35rem 0 0; opacity: .7; }
+.creator-pending-row span { font-size: .8rem; }
+.creator-pending-row small { font-size: .71rem; opacity: .8; }
+.creator-actions { display: flex; gap: .4rem; margin-bottom: .2rem; }
 .creator-actions button { flex: 1; }
-.creator-actions .creator-play { flex: 1.6; }
