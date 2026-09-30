@@ -1,10 +1,11 @@
 # M007 — mixed-outfit fit at body extremes, under motion
 
-Status: **measured and visually confirmed clean.** This closes the extreme-motion half of
-M007's fit gate. The mixed-fit matrix at neutral was already covered by the
+Status: **measured and visually confirmed clean on both extremes.** This closes the
+extreme-motion half of M007's fit gate. The mixed-fit matrix at neutral was already covered by the
 [close-fit follow-up](m007-close-fit-and-orc-wrist.md).
 
-Reviewed clip: Telegram 812 (1280x720, 17.53 s, verified).
+Reviewed clips: Telegram **812** (stout, the numeric peak) and **816** (slender). Both
+1280x720, verified.
 
 ## Why a new measurement
 
@@ -75,10 +76,14 @@ upper thigh — the region the measurement names, via the dominant skinning join
 `LeftUpLeg`/`RightUpLeg` — the top's hem, the belt and the trousers meet with no skin in any
 frame.
 
+The slender extreme was then driven and reviewed the same way (Telegram 816): Graveweaver top
+over Wayfarer trousers through orbit, hard turns, sprint, jump, land and cast, inspected at
+2.3× on the hip and thigh, where hem, belt and trousers meet with no skin.
+
 One correction worth recording: an earlier pass read a band of bare thigh on the slender body
-from a downscaled contact sheet. It was the Wayfarer trousers' own tan leather. A
-neutral/slender/stout comparison at the same camera showed the trousers covering the hip in
-all three, and the corrected metric puts slender at ≤5 exposed everywhere.
+from a downscaled contact sheet and called it a real defect. It was the Wayfarer trousers' own
+tan leather. A neutral/slender/stout comparison at the same camera showed the trousers
+covering the hip in all three, and the corrected metric puts slender at ≤5 exposed everywhere.
 
 ## What this does not cover
 
