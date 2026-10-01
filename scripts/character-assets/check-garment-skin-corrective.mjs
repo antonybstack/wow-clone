@@ -13,6 +13,8 @@ const url=process.env.ASHEN_TEST_URL,port=process.env.ASHEN_CDP_PORT;
 assert(url&&port,'Owned test URL and CDP port required');
 const dir=process.env.ASHEN_CAPTURE_DIR||'ve-capture/character-mmo/pilgrim-native-weights-2026-10-01';
 const candidate=process.env.ASHEN_SKIN_CANDIDATE||'.cache/character-mmo/wardrobe-v1/skin-corrective-shaped/pilgrimTunic.glb';
+const auditionLabel=process.env.ASHEN_GARMENT_AUDITION_LABEL;
+const record=process.env.ASHEN_GARMENT_RECORD!=='0';
 assert(candidate.startsWith('.cache/'),'Candidate must be isolated');
 const bytes=await fs.readFile(candidate),digest=createHash('sha256').update(bytes).digest('hex');
 await fs.mkdir(path.join(dir,'frames'),{recursive:true});
@@ -35,8 +37,8 @@ try{for(const corrected of [false,true]){
  await page.waitForFunction(()=>!ASHEN.equipment.getStatus().pending&&ASHEN.equipment.getState().torso==='pilgrimTunic');
  await page.waitForFunction(()=>[...document.querySelectorAll('#armory [data-equipment]')].every(e=>e.value===(ASHEN.equipment.getState()[e.dataset.equipment]||'')));
  await page.check('#armory [data-light]');
- const tag=await page.evaluate(label=>{const el=document.createElement('div');el.textContent=label;Object.assign(el.style,{position:'fixed',left:'20px',top:'80px',color:'white',background:'#111d',padding:'8px',zIndex:10000});document.body.append(el);return label;},corrected?'CANDIDATE: native body weights':'BASELINE: retained garment weights');
- if(corrected){manifest={...(await captureSurface(page)),frames:[],timeline:rows};cdp=await context.newCDPSession(page);
+ const tag=await page.evaluate(label=>{const el=document.createElement('div');el.textContent=label;Object.assign(el.style,{position:'fixed',left:'20px',top:'80px',color:'white',background:'#111d',padding:'8px',zIndex:10000});document.body.append(el);return label;},corrected?(auditionLabel||'CANDIDATE: native body weights'):'BASELINE: retained garment weights');
+ if(corrected&&record){manifest={...(await captureSurface(page)),frames:[],timeline:rows};cdp=await context.newCDPSession(page);
  cdp.on('Page.screencastFrame',e=>{void cdp.send('Page.screencastFrameAck',{sessionId:e.sessionId}).catch(()=>{});if(!recording)return;try{const name=`frame-${String(manifest.frames.length).padStart(6,'0')}.jpg`,data=Buffer.from(e.data,'base64');appendFrame(manifest,{name,timestamp:e.metadata.timestamp,bytes:data});writes.push(fs.writeFile(path.join(dir,'frames',name),data));}catch(e){errors.push(e.stack);recording=false;}});
  recording=true;await cdp.send('Page.startScreencast',{format:'jpeg',quality:88,maxWidth:1280,maxHeight:720,everyNthFrame:2});}
  for(const [build,height]of corrected?[[0,1],[-.95,.9],[.95,1.15]]:[[.95,1.15]]){
@@ -46,7 +48,7 @@ try{for(const corrected of [false,true]){
    for(const motion of ['idle','run','jump','land','fire','lava']){
     await page.selectOption('#armory [data-motion]',motion);await page.evaluate(()=>ASHEN.body.inspection.setPaused(false));
     const duration=await page.evaluate(()=>ASHEN.body.inspection.getState().duration);
-    await page.waitForTimeout(corrected?Math.ceil((duration+.15)*1000):100);
+    await page.waitForTimeout(corrected&&record?Math.ceil((duration+.15)*1000):100);
     await page.evaluate(()=>{ASHEN.body.inspection.setPaused(true);ASHEN.body.inspection.seek(.48);});await page.waitForTimeout(80);
     await page.screenshot({path:`${dir}/${corrected?'candidate':'baseline'}-${build}-${height}-${view}-${motion}.png`});
    }
@@ -57,10 +59,10 @@ try{for(const corrected of [false,true]){
    const state=await page.evaluate(()=>ASHEN.player.getDebugState());assert(state.usingPhysics);assert.equal(state.recoveries,0);rows.push({label:'Normal Havok run, turn and jump',build,height,time:Date.now()/1000});await page.evaluate(()=>ASHEN.armory.open());await page.check('#armory [data-light]');
   }
  }
- if(corrected){recording=false;await cdp.send('Page.stopScreencast');await Promise.all(writes);await writeCaptureManifest(dir,manifest,await captureSurface(page));}
+ if(corrected&&record){recording=false;await cdp.send('Page.stopScreencast');await Promise.all(writes);await writeCaptureManifest(dir,manifest,await captureSurface(page));}
  await context.close();context=null;
  }
  assert.deepEqual(errors,[]);assert(rows.filter(r=>r.state).every(r=>r.state.physics&&r.state.recoveries===0&&r.state.gpuErrors.length===0));
  await fs.writeFile(`${dir}/report.json`,JSON.stringify({candidate,digest,rows,errors,passed:true},null,2));
- console.log(JSON.stringify({frames:manifest.frames.length,rows:rows.length,errors}));
+ console.log(JSON.stringify({frames:manifest?.frames.length||0,rows:rows.length,errors}));
 }finally{recording=false;if(cdp)await cdp.send('Page.stopScreencast').catch(()=>{});await Promise.all(writes);await context?.close();await browser.close();await fs.writeFile(`${dir}/ownership.json`,JSON.stringify({...ownership,active:false,renderingClients:0}));}

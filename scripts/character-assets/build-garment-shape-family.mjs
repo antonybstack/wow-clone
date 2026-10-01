@@ -155,6 +155,10 @@ async function main() {
                 if (prim.listTargets().length) throw Error(`${garment.item}/${mesh.getName()} already has morph targets`);
                 prims.push({
                     mesh, prim,
+                    // Mixed armor items keep cloth and rigid plates separate.
+                    // This explicit offline factory metadata never infers
+                    // rigidity merely from a metal-looking runtime material.
+                    rigid: garment.rigid || prim.getExtras().deformation === 'rigid-bone',
                     positions: prim.getAttribute('POSITION').getArray(),
                     count: prim.getAttribute('POSITION').getCount(),
                     jointsArr: prim.getAttribute('JOINTS_0').getArray(),
@@ -172,10 +176,10 @@ async function main() {
         for (const name of TARGET_NAMES) {
             const shapedParts = prims.map((p) => {
                 const result = MODE === 'track'
-                    ? (garment.rigid
+                    ? (p.rigid
                         ? trackBodyRigid(p.positions, bodyPositions, bodyDeltas[name], {jointsArr: p.jointsArr, weightsArr: p.weightsArr})
                         : trackBodyShape(p.positions, bodyPositions, bodyDeltas[name]))
-                    : (garment.rigid
+                    : (p.rigid
                         ? rigidShape(p.positions, p.jointsArr, p.weightsArr, segments, name)
                         : softShape(p.positions, p.jointsArr, p.weightsArr, segments, name));
                 return {result, positions: result.shaped, indices: p.indices};
@@ -183,10 +187,11 @@ async function main() {
 
             // A plate has no hem to stretch, and stretching it would be exactly the bending
             // this milestone forbids.
-            if (!garment.rigid && HEMS) {
+            const softIndices = prims.flatMap((p,i) => p.rigid ? [] : [i]);
+            if (softIndices.length && HEMS) {
                 const shapedBody = shapedBodies[name];
                 hemReports[name] = extendHems(
-                    shapedParts, neutralParts,
+                    softIndices.map(i=>shapedParts[i]), softIndices.map(i=>neutralParts[i]),
                     shapedBody.positions, shapedBody.normals,
                     bodyPositions, bodyNeutralNormals,
                 );
@@ -195,7 +200,7 @@ async function main() {
             prims.forEach((p, i) => {
                 const shaped = shapedParts[i].positions;
                 const result = shapedParts[i].result;
-                const shapedNormals = garment.rigid ? p.baseNormals : recomputeNormals(shaped, p.indices, p.count);
+                const shapedNormals = p.rigid ? p.baseNormals : recomputeNormals(shaped, p.indices, p.count);
                 const posDelta = new Float32Array(p.count * 3);
                 const normDelta = new Float32Array(p.count * 3);
                 let moved = 0, maxDelta = 0, sumDelta = 0;
@@ -219,13 +224,14 @@ async function main() {
                     movedVertices: moved,
                     maxDisplacementM: Number(maxDelta.toFixed(6)),
                     meanDisplacementM: Number((sumDelta / p.count).toFixed(6)),
-                    ...(garment.rigid ? {rigidPieces: result.fits} : {}),
+                    ...(p.rigid ? {rigidPieces: result.fits} : {}),
                 };
             });
         }
 
         const pieces = prims.map(p => ({
             mesh: p.mesh.getName(), vertices: p.count, triangles: p.indices.length / 3,
+            deformation: p.rigid ? 'rigid-bone' : 'soft-skin',
             before: p.before, shapes: p.shapes,
         }));
         for (const p of prims) {

@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "id": "lectorCoat",
+  "revision": 1,
+  "status": "candidate-only; not advertised",
+  "slot": "torso",
+  "layer": "cloth",
+  "deformation": "soft-skin",
+  "blenderVersion": "5.2.1",
+  "fits": {
+    "human": {
+      "directory": "equipment",
+      "bodyMesh": "HumanV1Body",
+      "source": "public/ashen-reach/equipment/body.glb",
+      "sha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+      "interface": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "garment": "blender/characters/wardrobe/sources/human-wayfarer-before-lector.glb",
+      "garmentSha256": "3b4c929df3708afd760f3f056f0dc706e780552cfe1966d8ef3f5083b8749cd6",
+      "trousers": {
+        "source": "public/ashen-reach/equipment/wayfarerTrousers.glb",
+        "sha256": "169ad0333e5746e72512b8160008aefbf3d8bef7d75f2ff70203feca08538def"
+      }
+    },
+    "orc": {
+      "directory": "equipment-orc",
+      "bodyMesh": "BodyExposed",
+      "source": "public/ashen-reach/equipment-orc/body.glb",
+      "sha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b",
+      "interface": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "garment": "blender/characters/wardrobe/sources/orc-wayfarer-before-lector.glb",
+      "garmentSha256": "291c8ccdd6891c21aeb74342bc72ad0110ef2a658f22f9b10ba2099d59bebc1b",
+      "trousers": {
+        "source": "public/ashen-reach/equipment-orc/wayfarerTrousers.glb",
+        "sha256": "de739d3ac403b757b94b13f98213ffb2cce103a1a1cb49f6142aca620ad72df5"
+      }
+    },
+    "undead": {
+      "directory": "equipment-undead",
+      "bodyMesh": "UndeadV1Body",
+      "source": "public/ashen-reach/equipment-undead/body.glb",
+      "sha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d",
+      "interface": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "garment": "blender/characters/wardrobe/sources/undead-wayfarer-before-lector.glb",
+      "garmentSha256": "40ef02c1b771dcbc6272b63bc8b7039033698b847439a57527a82e367a6e8c9b",
+      "trousers": {
+        "source": "public/ashen-reach/equipment-undead/wayfarerTrousers.glb",
+        "sha256": "566bee577d31b5f961a20790b4c6697825ef955bb4da2fa77700069690aa6467"
+      }
+    }
+  },
+  "design": {
+    "name": "Lector travelling coat",
+    "requiredPieces": [
+      "lectorCoat",
+      "wayfarerTrousers",
+      "wayfarerBoots"
+    ],
+    "structure": "Accepted fitted Wayfarer torso/waist and source skin retained; real raised stand collar, native folded front lapels and widened sleeve cuffs. Failed Donitz tails, cropped torso and copied-body torso are retained as rejected auditions.",
+    "material": {
+      "baseColor": [
+        0.37,
+        0.48,
+        0.64,
+        1
+      ],
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "gussetMaterial": {
+      "name": "Lector underarm wool",
+      "baseColor": [
+        0.02,
+        0.025,
+        0.035,
+        1
+      ],
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "foldMaterial": {
+      "name": "Lector folded wool trim",
+      "baseColor": [
+        0.16,
+        0.115,
+        0.065,
+        1
+      ],
+      "roughness": 0.92,
+      "metallic": 0
+    }
+  },
+  "sourceRights": "Native structural tailoring of the vendored CC0 MakeHuman suits02 garment through the accepted per-race Wayfarer fit. Existing Tripo/Mixamo body/rig source grant limitations retained. New collar/lapel/cuff/lining modeling is project-authored."
+}

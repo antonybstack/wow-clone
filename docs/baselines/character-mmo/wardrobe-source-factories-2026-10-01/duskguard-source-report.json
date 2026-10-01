@@ -1,0 +1,784 @@
+{
+  "schema": 1,
+  "candidateOnly": true,
+  "toolSources": [
+    {
+      "path": "scripts/character-assets/build-duskguard-armor.mjs",
+      "sha256": "87638e1f3052fd53b283842ee2f7eae562058240ebc87fe5386e18e614bbd949"
+    },
+    {
+      "path": "scripts/character-assets/author-duskguard-plates.py",
+      "sha256": "2cb42e889d9cff2c054c188f311bf145d500393153e786bf783767aed6b5ae6f"
+    },
+    {
+      "path": "scripts/character-assets/normalize-human-bind.mjs",
+      "sha256": "a889a5f0aa55c8a03c22b5f4a17d89641c1eb13b5fe23c10264c07851840cfe8"
+    },
+    {
+      "path": "scripts/character-assets/verify-factory-equipment-bind.mjs",
+      "sha256": "5994c7a38681514b2b83c3a8b858d181867d160efa349fc95aa84ece34032684"
+    },
+    {
+      "path": "scripts/character-assets/native_cloth_panels.py",
+      "sha256": "b8a226729fb532ca2393b5ae0d7886cbb3d2dccb8f3cbca12fdae87597f1788b"
+    }
+  ],
+  "tooling": {
+    "blender": "5.2.1",
+    "node": "22.18.0"
+  },
+  "descriptor": {
+    "path": "blender/characters/wardrobe/duskguard-armor.json",
+    "sha256": "659a3ebe52140d44a63a9e73dbaa73f9fd55e1201cda9612eb26dbb02c580068"
+  },
+  "rights": "Project-authored native plate on the accepted body surfaces, reusing accepted CC0 cloth underlayers. Existing Tripo/Mixamo body/rig source grant limitations retained.",
+  "rows": [
+    {
+      "race": "human",
+      "id": "duskguardCuirass",
+      "artifact": ".cache/character-mmo/wardrobe-v1/duskguard/human/duskguardCuirass.glb",
+      "sha256": "064de522c22b31601c63f02708ec8b139bedd11c410b5718e35ada649a893832",
+      "bytes": 296596,
+      "meshes": [
+        "DuskguardUndercoat",
+        "DuskguardCuirass",
+        "DuskguardGussets"
+      ],
+      "rigidVertices": 1230,
+      "rigidTriangles": 1428,
+      "verification": {
+        "joints": 65,
+        "meshes": 3,
+        "primitives": 4,
+        "vertices": 5217,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.6857295036315918,
+            0.7521871328353882,
+            -0.2072688341140747
+          ],
+          "max": [
+            0.6904424428939819,
+            1.514944314956665,
+            0.15997488796710968
+          ],
+          "frame": "accepted body mesh"
+        }
+      }
+    },
+    {
+      "race": "human",
+      "id": "duskguardTassets",
+      "artifact": ".cache/character-mmo/wardrobe-v1/duskguard/human/duskguardTassets.glb",
+      "sha256": "bd6b56f087649dd0b27343817f64f24bdc06e77c13d1374b2330486a6c9bd65d",
+      "bytes": 155136,
+      "meshes": [
+        "DuskguardTrousers",
+        "DuskguardTrouserCuffs",
+        "DuskguardTassets"
+      ],
+      "rigidVertices": 178,
+      "rigidTriangles": 212,
+      "verification": {
+        "joints": 65,
+        "meshes": 3,
+        "primitives": 4,
+        "vertices": 2938,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.22918584942817688,
+            0.17471309006214142,
+            -0.14927007257938385
+          ],
+          "max": [
+            0.23214922845363617,
+            1.0970656871795654,
+            0.13863077759742737
+          ],
+          "frame": "accepted body mesh"
+        }
+      }
+    },
+    {
+      "race": "human",
+      "id": "duskguardGreaves",
+      "artifact": ".cache/character-mmo/wardrobe-v1/duskguard/human/duskguardGreaves.glb",
+      "sha256": "ebcd55139ab62ddb4e4c378f0565079df6cba2e8b52e66a385dc234405b9fdda",
+      "bytes": 249624,
+      "meshes": [
+        "DuskguardBootUnderlayer",
+        "DuskguardGreaves"
+      ],
+      "rigidVertices": 112,
+      "rigidTriangles": 112,
+      "verification": {
+        "joints": 65,
+        "meshes": 2,
+        "primitives": 3,
+        "vertices": 3642,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.2892144024372101,
+            -0.020063389092683792,
+            -0.1525457799434662
+          ],
+          "max": [
+            0.2892993092536926,
+            0.4542638063430786,
+            0.1737712025642395
+          ],
+          "frame": "accepted body mesh"
+        }
+      }
+    },
+    {
+      "race": "human",
+      "id": "duskguardVambraces",
+      "artifact": ".cache/character-mmo/wardrobe-v1/duskguard/human/duskguardVambraces.glb",
+      "sha256": "d5d57dde612831a70ec72eb50273276612ebc2ba177a847ccd3ab7405d1024eb",
+      "bytes": 182164,
+      "meshes": [
+        "DuskguardGloveUnderlayer",
+        "DuskguardVambraces"
+      ],
+      "rigidVertices": 158,
+      "rigidTriangles": 212,
+      "verification": {
+        "joints": 65,
+        "meshes": 2,
+        "primitives": 3,
+        "vertices": 2754,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.9207277894020081,
+            1.2895855903625488,
+            -0.1527949869632721
+          ],
+          "max": [
+            0.9167165756225586,
+            1.481928825378418,
+            0.06354129314422607
+          ],
+          "frame": "accepted body mesh"
+        }
+      }
+    },
+    {
+      "race": "human",
+      "native": {
+        "source": "public/ashen-reach/equipment/body.glb",
+        "bodyMesh": "HumanV1Body",
+        "heightUnit": 1.0079867745700635,
+        "halfTorsoWidth": 0.14953159780008718,
+        "pieces": [
+          {
+            "name": "UnderarmGussets",
+            "itemMesh": "DuskguardGussets",
+            "deformation": "soft-skin",
+            "vertices": 215,
+            "standoffM": 0.014111814843980889
+          },
+          {
+            "name": "Breastplate",
+            "itemMesh": "DuskguardCuirass",
+            "bone": "Spine2",
+            "sourcePoints": 132,
+            "vertices": 230,
+            "faces": 308,
+            "standoffM": 0.03527953710995223
+          },
+          {
+            "name": "UpperFauld",
+            "itemMesh": "DuskguardCuirass",
+            "bone": "Spine1",
+            "sourcePoints": 97,
+            "vertices": 148,
+            "faces": 167,
+            "standoffM": 0.03527953710995223
+          },
+          {
+            "name": "LowerFauld",
+            "itemMesh": "DuskguardCuirass",
+            "bone": "Spine",
+            "sourcePoints": 128,
+            "vertices": 142,
+            "faces": 153,
+            "standoffM": 0.03527953710995223
+          },
+          {
+            "name": "WaistPlate",
+            "itemMesh": "DuskguardCuirass",
+            "bone": "Hips",
+            "sourcePoints": 186,
+            "vertices": 198,
+            "faces": 240,
+            "standoffM": 0.03527953710995223
+          },
+          {
+            "name": "LeftTasset",
+            "itemMesh": "DuskguardTassets",
+            "bone": "LeftUpLeg",
+            "sourcePoints": 88,
+            "vertices": 64,
+            "faces": 95,
+            "standoffM": 0.03225557678624203
+          },
+          {
+            "name": "LeftGreave",
+            "itemMesh": "DuskguardGreaves",
+            "bone": "LeftLeg",
+            "sourcePoints": 26,
+            "vertices": 36,
+            "faces": 44,
+            "standoffM": 0.030239603237101904
+          },
+          {
+            "name": "LeftVambrace",
+            "itemMesh": "DuskguardVambraces",
+            "bone": "LeftForeArm",
+            "sourcePoints": 30,
+            "vertices": 54,
+            "faces": 95,
+            "standoffM": 0.03527953710995223
+          },
+          {
+            "name": "RightTasset",
+            "itemMesh": "DuskguardTassets",
+            "bone": "RightUpLeg",
+            "sourcePoints": 77,
+            "vertices": 52,
+            "faces": 83,
+            "standoffM": 0.03225557678624203
+          },
+          {
+            "name": "RightGreave",
+            "itemMesh": "DuskguardGreaves",
+            "bone": "RightLeg",
+            "sourcePoints": 25,
+            "vertices": 34,
+            "faces": 42,
+            "standoffM": 0.030239603237101904
+          },
+          {
+            "name": "RightVambrace",
+            "itemMesh": "DuskguardVambraces",
+            "bone": "RightForeArm",
+            "sourcePoints": 30,
+            "vertices": 54,
+            "faces": 92,
+            "standoffM": 0.03527953710995223
+          }
+        ],
+        "blenderVersion": "5.2.1 LTS",
+        "candidateOnly": true
+      },
+      "compileSeconds": 1.467803958
+    },
+    {
+      "race": "orc",
+      "id": "duskguardCuirass",
+      "artifact": ".cache/character-mmo/wardrobe-v1/duskguard/orc/duskguardCuirass.glb",
+      "sha256": "04eb29721188537e810e74f04a0a876c21a1e47872953e6219ced5e5d25f5bf0",
+      "bytes": 538604,
+      "meshes": [
+        "DuskguardUndercoat",
+        "DuskguardCuirass",
+        "DuskguardGussets"
+      ],
+      "rigidVertices": 2270,
+      "rigidTriangles": 2732,
+      "verification": {
+        "joints": 65,
+        "meshes": 3,
+        "primitives": 4,
+        "vertices": 7101,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.9918489456176758,
+            0.9270921945571899,
+            -0.3365778625011444
+          ],
+          "max": [
+            1.003433108329773,
+            1.9000134468078613,
+            0.26057249307632446
+          ],
+          "frame": "accepted body mesh"
+        }
+      }
+    },
+    {
+      "race": "orc",
+      "id": "duskguardTassets",
+      "artifact": ".cache/character-mmo/wardrobe-v1/duskguard/orc/duskguardTassets.glb",
+      "sha256": "6185fbbdefb2529288a949a2cd44aa3c051a5e92676cc4df7aa45ef1b9e5a58d",
+      "bytes": 240560,
+      "meshes": [
+        "DuskguardTrousers",
+        "DuskguardTrouserCuffs",
+        "DuskguardTassets"
+      ],
+      "rigidVertices": 484,
+      "rigidTriangles": 768,
+      "verification": {
+        "joints": 65,
+        "meshes": 3,
+        "primitives": 4,
+        "vertices": 3244,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.37943917512893677,
+            0.22537808120250702,
+            -0.2286345660686493
+          ],
+          "max": [
+            0.37830087542533875,
+            1.2396211624145508,
+            0.22377049922943115
+          ],
+          "frame": "accepted body mesh"
+        }
+      }
+    },
+    {
+      "race": "orc",
+      "id": "duskguardGreaves",
+      "artifact": ".cache/character-mmo/wardrobe-v1/duskguard/orc/duskguardGreaves.glb",
+      "sha256": "bfcca1111581b4aa0c43eb2f94c1137d0c60636edee563105ee195ed4c5757d2",
+      "bytes": 346780,
+      "meshes": [
+        "DuskguardBootUnderlayer",
+        "DuskguardGreaves"
+      ],
+      "rigidVertices": 94,
+      "rigidTriangles": 100,
+      "verification": {
+        "joints": 65,
+        "meshes": 2,
+        "primitives": 3,
+        "vertices": 3624,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.42377692461013794,
+            -0.030208483338356018,
+            -0.23749586939811707
+          ],
+          "max": [
+            0.42012640833854675,
+            0.5436902046203613,
+            0.31497976183891296
+          ],
+          "frame": "accepted body mesh"
+        }
+      }
+    },
+    {
+      "race": "orc",
+      "id": "duskguardVambraces",
+      "artifact": ".cache/character-mmo/wardrobe-v1/duskguard/orc/duskguardVambraces.glb",
+      "sha256": "ff829366fd17933c7a655f83f3cc0d0f5374bdc6894a2a092204f2a3e241eaa2",
+      "bytes": 253248,
+      "meshes": [
+        "DuskguardGloveUnderlayer",
+        "DuskguardVambraces"
+      ],
+      "rigidVertices": 216,
+      "rigidTriangles": 312,
+      "verification": {
+        "joints": 65,
+        "meshes": 2,
+        "primitives": 3,
+        "vertices": 2956,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -1.2131682634353638,
+            1.4722120761871338,
+            -0.14023269712924957
+          ],
+          "max": [
+            1.1724038124084473,
+            1.8501195907592773,
+            0.17177313566207886
+          ],
+          "frame": "accepted body mesh"
+        }
+      }
+    },
+    {
+      "race": "orc",
+      "native": {
+        "source": "public/ashen-reach/equipment-orc/body.glb",
+        "bodyMesh": "BodyExposed",
+        "heightUnit": 1.2904275628857145,
+        "halfTorsoWidth": 0.26284667529165745,
+        "pieces": [
+          {
+            "name": "UnderarmGussets",
+            "itemMesh": "DuskguardGussets",
+            "deformation": "soft-skin",
+            "vertices": 1100,
+            "standoffM": 0.018065985880400003
+          },
+          {
+            "name": "Breastplate",
+            "itemMesh": "DuskguardCuirass",
+            "bone": "Spine2",
+            "sourcePoints": 3776,
+            "vertices": 486,
+            "faces": 689,
+            "standoffM": 0.04516496470100001
+          },
+          {
+            "name": "UpperFauld",
+            "itemMesh": "DuskguardCuirass",
+            "bone": "Spine1",
+            "sourcePoints": 1075,
+            "vertices": 320,
+            "faces": 422,
+            "standoffM": 0.04516496470100001
+          },
+          {
+            "name": "LowerFauld",
+            "itemMesh": "DuskguardCuirass",
+            "bone": "Spine",
+            "sourcePoints": 1487,
+            "vertices": 244,
+            "faces": 262,
+            "standoffM": 0.04516496470100001
+          },
+          {
+            "name": "WaistPlate",
+            "itemMesh": "DuskguardCuirass",
+            "bone": "Hips",
+            "sourcePoints": 1831,
+            "vertices": 326,
+            "faces": 383,
+            "standoffM": 0.04516496470100001
+          },
+          {
+            "name": "LeftTasset",
+            "itemMesh": "DuskguardTassets",
+            "bone": "LeftUpLeg",
+            "sourcePoints": 229,
+            "vertices": 200,
+            "faces": 356,
+            "standoffM": 0.04129368201234286
+          },
+          {
+            "name": "LeftGreave",
+            "itemMesh": "DuskguardGreaves",
+            "bone": "LeftLeg",
+            "sourcePoints": 91,
+            "vertices": 30,
+            "faces": 33,
+            "standoffM": 0.03871282688657143
+          },
+          {
+            "name": "LeftVambrace",
+            "itemMesh": "DuskguardVambraces",
+            "bone": "LeftForeArm",
+            "sourcePoints": 242,
+            "vertices": 82,
+            "faces": 146,
+            "standoffM": 0.04516496470100001
+          },
+          {
+            "name": "RightTasset",
+            "itemMesh": "DuskguardTassets",
+            "bone": "RightUpLeg",
+            "sourcePoints": 220,
+            "vertices": 204,
+            "faces": 364,
+            "standoffM": 0.04129368201234286
+          },
+          {
+            "name": "RightGreave",
+            "itemMesh": "DuskguardGreaves",
+            "bone": "RightLeg",
+            "sourcePoints": 108,
+            "vertices": 36,
+            "faces": 47,
+            "standoffM": 0.03871282688657143
+          },
+          {
+            "name": "RightVambrace",
+            "itemMesh": "DuskguardVambraces",
+            "bone": "RightForeArm",
+            "sourcePoints": 237,
+            "vertices": 76,
+            "faces": 136,
+            "standoffM": 0.04516496470100001
+          }
+        ],
+        "blenderVersion": "5.2.1 LTS",
+        "candidateOnly": true
+      },
+      "compileSeconds": 1.721625292
+    },
+    {
+      "race": "undead",
+      "id": "duskguardCuirass",
+      "artifact": ".cache/character-mmo/wardrobe-v1/duskguard/undead/duskguardCuirass.glb",
+      "sha256": "a3dac0cc75bef392f9561447daaf2462d11dbad691e9619264b6dfbe4731c636",
+      "bytes": 338520,
+      "meshes": [
+        "DuskguardUndercoat",
+        "DuskguardCuirass",
+        "DuskguardGussets"
+      ],
+      "rigidVertices": 1550,
+      "rigidTriangles": 1808,
+      "verification": {
+        "joints": 65,
+        "meshes": 3,
+        "primitives": 4,
+        "vertices": 6522,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.7263170480728149,
+            0.8306885957717896,
+            -0.22223696112632751
+          ],
+          "max": [
+            0.7268720269203186,
+            1.6179382801055908,
+            0.15750759840011597
+          ],
+          "frame": "accepted body mesh"
+        }
+      }
+    },
+    {
+      "race": "undead",
+      "id": "duskguardTassets",
+      "artifact": ".cache/character-mmo/wardrobe-v1/duskguard/undead/duskguardTassets.glb",
+      "sha256": "c4f3c202054b27ba2549e07cfe917097d0cbc26c3605f5af2ae9203b04ffe39c",
+      "bytes": 156516,
+      "meshes": [
+        "DuskguardTrousers",
+        "DuskguardTrouserCuffs",
+        "DuskguardTassets"
+      ],
+      "rigidVertices": 224,
+      "rigidTriangles": 268,
+      "verification": {
+        "joints": 65,
+        "meshes": 3,
+        "primitives": 4,
+        "vertices": 2984,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.23588018119335175,
+            0.21912257373332977,
+            -0.15668149292469025
+          ],
+          "max": [
+            0.24347379803657532,
+            1.1609355211257935,
+            0.1285923719406128
+          ],
+          "frame": "accepted body mesh"
+        }
+      }
+    },
+    {
+      "race": "undead",
+      "id": "duskguardGreaves",
+      "artifact": ".cache/character-mmo/wardrobe-v1/duskguard/undead/duskguardGreaves.glb",
+      "sha256": "65e92cf980bd0a91cd0d9ed37c9964a42ba61472ce424e8254bfb24526fae5a7",
+      "bytes": 249068,
+      "meshes": [
+        "DuskguardBootUnderlayer",
+        "DuskguardGreaves"
+      ],
+      "rigidVertices": 104,
+      "rigidTriangles": 112,
+      "verification": {
+        "joints": 65,
+        "meshes": 2,
+        "primitives": 3,
+        "vertices": 3634,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.3074204921722412,
+            -0.016261357814073563,
+            -0.1521732658147812
+          ],
+          "max": [
+            0.3116702735424042,
+            0.5287650227546692,
+            0.18858177959918976
+          ],
+          "frame": "accepted body mesh"
+        }
+      }
+    },
+    {
+      "race": "undead",
+      "id": "duskguardVambraces",
+      "artifact": ".cache/character-mmo/wardrobe-v1/duskguard/undead/duskguardVambraces.glb",
+      "sha256": "172dbebdd2699eb4ee1e0a48b6fd8b98f69e85ff8b4a76d1c18e9e61fa279395",
+      "bytes": 184260,
+      "meshes": [
+        "DuskguardGloveUnderlayer",
+        "DuskguardVambraces"
+      ],
+      "rigidVertices": 236,
+      "rigidTriangles": 272,
+      "verification": {
+        "joints": 65,
+        "meshes": 2,
+        "primitives": 3,
+        "vertices": 2832,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.9661502242088318,
+            1.3904681205749512,
+            -0.14816047251224518
+          ],
+          "max": [
+            0.959929883480072,
+            1.5781785249710083,
+            0.11089785397052765
+          ],
+          "frame": "accepted body mesh"
+        }
+      }
+    },
+    {
+      "race": "undead",
+      "native": {
+        "source": "public/ashen-reach/equipment-undead/body.glb",
+        "bodyMesh": "UndeadV1Body",
+        "heightUnit": 1.0703888042528826,
+        "halfTorsoWidth": 0.15088449699338524,
+        "pieces": [
+          {
+            "name": "UnderarmGussets",
+            "itemMesh": "DuskguardGussets",
+            "deformation": "soft-skin",
+            "vertices": 1354,
+            "standoffM": 0.014985443259540357
+          },
+          {
+            "name": "Breastplate",
+            "itemMesh": "DuskguardCuirass",
+            "bone": "Spine2",
+            "sourcePoints": 1625,
+            "vertices": 260,
+            "faces": 345,
+            "standoffM": 0.03746360814885089
+          },
+          {
+            "name": "UpperFauld",
+            "itemMesh": "DuskguardCuirass",
+            "bone": "Spine1",
+            "sourcePoints": 1302,
+            "vertices": 276,
+            "faces": 342,
+            "standoffM": 0.03746360814885089
+          },
+          {
+            "name": "LowerFauld",
+            "itemMesh": "DuskguardCuirass",
+            "bone": "Spine",
+            "sourcePoints": 1013,
+            "vertices": 152,
+            "faces": 152,
+            "standoffM": 0.03746360814885089
+          },
+          {
+            "name": "WaistPlate",
+            "itemMesh": "DuskguardCuirass",
+            "bone": "Hips",
+            "sourcePoints": 1169,
+            "vertices": 216,
+            "faces": 274,
+            "standoffM": 0.03746360814885089
+          },
+          {
+            "name": "LeftTasset",
+            "itemMesh": "DuskguardTassets",
+            "bone": "LeftUpLeg",
+            "sourcePoints": 236,
+            "vertices": 86,
+            "faces": 111,
+            "standoffM": 0.034252441736092244
+          },
+          {
+            "name": "LeftGreave",
+            "itemMesh": "DuskguardGreaves",
+            "bone": "LeftLeg",
+            "sourcePoints": 48,
+            "vertices": 32,
+            "faces": 45,
+            "standoffM": 0.03211166412758648
+          },
+          {
+            "name": "LeftVambrace",
+            "itemMesh": "DuskguardVambraces",
+            "bone": "LeftForeArm",
+            "sourcePoints": 128,
+            "vertices": 74,
+            "faces": 111,
+            "standoffM": 0.03746360814885089
+          },
+          {
+            "name": "RightTasset",
+            "itemMesh": "DuskguardTassets",
+            "bone": "RightUpLeg",
+            "sourcePoints": 244,
+            "vertices": 88,
+            "faces": 114,
+            "standoffM": 0.034252441736092244
+          },
+          {
+            "name": "RightGreave",
+            "itemMesh": "DuskguardGreaves",
+            "bone": "RightLeg",
+            "sourcePoints": 46,
+            "vertices": 32,
+            "faces": 45,
+            "standoffM": 0.03211166412758648
+          },
+          {
+            "name": "RightVambrace",
+            "itemMesh": "DuskguardVambraces",
+            "bone": "RightForeArm",
+            "sourcePoints": 127,
+            "vertices": 74,
+            "faces": 111,
+            "standoffM": 0.03746360814885089
+          }
+        ],
+        "blenderVersion": "5.2.1 LTS",
+        "candidateOnly": true
+      },
+      "compileSeconds": 1.5236082080000002
+    }
+  ]
+}

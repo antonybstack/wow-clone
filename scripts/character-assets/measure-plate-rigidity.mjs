@@ -30,12 +30,17 @@ import {NodeIO} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {MeshoptDecoder, MeshoptEncoder} from 'meshoptimizer';
 
-const PIECES = [
+const INPUT = process.env.ASHEN_RIGIDITY_INPUT;
+const PIECES = INPUT ? JSON.parse(await fs.readFile(INPUT,'utf8')).pieces : [
     {id: 'wardenPauldrons', kind: 'plate', file: '.cache/character-mmo/m005/warden-pauldrons-shaped.glb'},
     {id: 'wayfarerTunic', kind: 'cloth', file: '.cache/character-mmo/m005/wayfarerTunic.glb'},
     {id: 'wayfarerTrousers', kind: 'cloth', file: '.cache/character-mmo/m005/wayfarerTrousers.glb'},
 ];
-const OUT = 'docs/baselines/character-mmo/m005/plate-rigidity.json';
+const OUT = process.env.ASHEN_RIGIDITY_OUT || 'docs/baselines/character-mmo/m005/plate-rigidity.json';
+if(INPUT && [INPUT,OUT,...PIECES.map(p=>p.file)].some(file=>{
+    const relative=path.relative(path.resolve('.cache'),path.resolve(file));
+    return !relative || relative.startsWith('..') || path.isAbsolute(relative);
+}))throw Error('Rigid audition paths must stay isolated under .cache');
 const SAMPLE = 120;   // vertices sampled per piece; 120 gives 7,140 distinct pairs
 
 await MeshoptDecoder.ready;
@@ -123,7 +128,7 @@ for (const piece of PIECES) {
             }
             const groups = [...byGroup.entries()]
                 .sort((a, b) => b[1].length - a[1].length)
-                .slice(0, 2)
+                .slice(0, INPUT ? undefined : 2)
                 .map(([joint, members]) => ({joint, members}));
             const shapes = {};
             prim.listTargets().forEach((target, i) => {
@@ -137,7 +142,7 @@ for (const piece of PIECES) {
             });
 
             const row = {
-                piece: piece.id, kind: piece.kind, mesh: mesh.getName(), vertices: count,
+                piece: piece.id, kind: INPUT ? (prim.getExtras().deformation==='rigid-bone'?'plate':'cloth') : piece.kind, mesh: mesh.getName(), vertices: count,
                 animation: {
                     verticesOnOneBoneAtFullWeight: singleBone,
                     fraction: Number((singleBone / count).toFixed(4)),
@@ -150,7 +155,7 @@ for (const piece of PIECES) {
             rows.push(row);
             const worst = Object.entries(shapes)
                 .map(([k, v]) => `${k} ${v.map(g => `${g.medianRatio}x±${g.worstDeviationMm}mm`).join(',')}`).join(' ');
-            console.log(`${piece.id.padEnd(17)} ${piece.kind.padEnd(5)} ${mesh.getName().padEnd(24)} `
+            console.log(`${piece.id.padEnd(17)} ${row.kind.padEnd(5)} ${mesh.getName().padEnd(24)} `
                 + `rigidVerts=${row.animation.fraction} maxSecondaryWeight=${row.animation.largestSecondaryWeight} `
                 + `bones=${bones.size} | ${worst}`);
         }

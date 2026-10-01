@@ -1,0 +1,199 @@
+{
+  "schema": 1,
+  "id": "duskguard",
+  "revision": 1,
+  "status": "candidate-only; not advertised",
+  "blenderVersion": "5.2.1",
+  "items": {
+    "duskguardCuirass": {
+      "slot": "torso",
+      "plate": "DuskguardCuirass",
+      "underlayer": "wayfarerTunic",
+      "rename": {
+        "WayfarerTunic": "DuskguardUndercoat"
+      },
+      "covers": [
+        "torso.upper",
+        "torso.lower",
+        "waist"
+      ],
+      "softCorrectives": [
+        "DuskguardGussets"
+      ]
+    },
+    "duskguardTassets": {
+      "slot": "legs",
+      "plate": "DuskguardTassets",
+      "underlayer": "wayfarerTrousers",
+      "rename": {
+        "WayfarerTrousers": "DuskguardTrousers",
+        "WayfarerTrousersCuffs": "DuskguardTrouserCuffs"
+      },
+      "covers": [
+        "leg.upper",
+        "leg.lower",
+        "waist"
+      ]
+    },
+    "duskguardGreaves": {
+      "slot": "boots",
+      "plate": "DuskguardGreaves",
+      "underlayer": "wayfarerBoots",
+      "rename": {
+        "WayfarerBoots": "DuskguardBootUnderlayer"
+      },
+      "covers": [
+        "foot"
+      ]
+    },
+    "duskguardVambraces": {
+      "slot": "gloves",
+      "plate": "DuskguardVambraces",
+      "underlayer": "graveweaverGloves",
+      "rename": {
+        "GraveweaverGloves": "DuskguardGloveUnderlayer"
+      },
+      "covers": [
+        "hand"
+      ]
+    }
+  },
+  "fits": {
+    "human": {
+      "directory": "equipment",
+      "bodyMesh": "HumanV1Body",
+      "source": "public/ashen-reach/equipment/body.glb",
+      "sha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+      "interface": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "underlayers": {
+        "wayfarerTunic": {
+          "source": "public/ashen-reach/equipment/wayfarerTunic.glb",
+          "sha256": "3b4c929df3708afd760f3f056f0dc706e780552cfe1966d8ef3f5083b8749cd6"
+        },
+        "wayfarerTrousers": {
+          "source": "public/ashen-reach/equipment/wayfarerTrousers.glb",
+          "sha256": "169ad0333e5746e72512b8160008aefbf3d8bef7d75f2ff70203feca08538def"
+        },
+        "wayfarerBoots": {
+          "source": "public/ashen-reach/equipment/wayfarerBoots.glb",
+          "sha256": "a55a9e4cd7b8658b6f2bd51dd3092af576e8d7dd279c9687bb3419a5c858bd98"
+        },
+        "graveweaverGloves": {
+          "source": "public/ashen-reach/equipment/graveweaverGloves.glb",
+          "sha256": "ae3a162fc15b038bbf713f924b0b6b69d88fcd18ff2cfcb676112d5c91bb6e75"
+        }
+      }
+    },
+    "orc": {
+      "directory": "equipment-orc",
+      "bodyMesh": "BodyExposed",
+      "source": "public/ashen-reach/equipment-orc/body.glb",
+      "sha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b",
+      "interface": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "underlayers": {
+        "wayfarerTunic": {
+          "source": "public/ashen-reach/equipment-orc/wayfarerTunic.glb",
+          "sha256": "291c8ccdd6891c21aeb74342bc72ad0110ef2a658f22f9b10ba2099d59bebc1b"
+        },
+        "wayfarerTrousers": {
+          "source": "public/ashen-reach/equipment-orc/wayfarerTrousers.glb",
+          "sha256": "de739d3ac403b757b94b13f98213ffb2cce103a1a1cb49f6142aca620ad72df5"
+        },
+        "wayfarerBoots": {
+          "source": "public/ashen-reach/equipment-orc/wayfarerBoots.glb",
+          "sha256": "800fc2b7cb43a30a4b103dcf607ddae68692b1bd9ee8f64325199fd043583be6"
+        },
+        "graveweaverGloves": {
+          "source": "public/ashen-reach/equipment-orc/graveweaverGloves.glb",
+          "sha256": "ae551225a6ceb06388b491342070e00a5c7ac2a377df1bac8ffcff13930331af"
+        }
+      }
+    },
+    "undead": {
+      "directory": "equipment-undead",
+      "bodyMesh": "UndeadV1Body",
+      "source": "public/ashen-reach/equipment-undead/body.glb",
+      "sha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d",
+      "interface": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "underlayers": {
+        "wayfarerTunic": {
+          "source": "public/ashen-reach/equipment-undead/wayfarerTunic.glb",
+          "sha256": "40ef02c1b771dcbc6272b63bc8b7039033698b847439a57527a82e367a6e8c9b"
+        },
+        "wayfarerTrousers": {
+          "source": "public/ashen-reach/equipment-undead/wayfarerTrousers.glb",
+          "sha256": "566bee577d31b5f961a20790b4c6697825ef955bb4da2fa77700069690aa6467"
+        },
+        "wayfarerBoots": {
+          "source": "public/ashen-reach/equipment-undead/wayfarerBoots.glb",
+          "sha256": "ce99e04c73153c47b97b69f94327983e3844d0f24c8a7757e4126f1baabc5c85"
+        },
+        "graveweaverGloves": {
+          "source": "public/ashen-reach/equipment-undead/graveweaverGloves.glb",
+          "sha256": "5c136ecbaca3b6f583d88b6ccdc298d014ebd18ee089d60e29546f2ba1698864"
+        }
+      }
+    }
+  },
+  "design": {
+    "name": "Duskguard articulated armor",
+    "requiredPieces": [
+      "duskguardCuirass",
+      "duskguardTassets",
+      "duskguardGreaves",
+      "duskguardVambraces",
+      "wardenPauldrons",
+      "ironSword"
+    ],
+    "structure": "Four overlapping spine/hip torso plates, separate thigh tassets, shin greaves and forearm vambraces over current fitted soft underlayers; steel faces and brass rims."
+  },
+  "sourceRights": "Project-authored native plate on the accepted body surfaces, reusing accepted CC0 cloth underlayers. Existing Tripo/Mixamo body/rig source grant limitations retained.",
+  "materials": {
+    "revision": 1,
+    "Duskguard blackened steel": {
+      "baseColor": [
+        0.19,
+        0.21,
+        0.245,
+        1
+      ],
+      "metallic": 0.9,
+      "roughness": 0.42
+    },
+    "Duskguard hammered brass rim": {
+      "baseColor": [
+        0.36,
+        0.27,
+        0.105,
+        1
+      ],
+      "metallic": 0.8,
+      "roughness": 0.42
+    },
+    "Duskguard underarm wool": {
+      "baseColor": [
+        0.07,
+        0.055,
+        0.04,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.95
+    }
+  }
+}

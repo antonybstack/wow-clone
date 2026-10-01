@@ -1,0 +1,1 @@
+145 character / 82 equipment tests; normal and ASHEN_PAGES=1 builds pass. Logs remain in .cache/character-mmo/wardrobe-v1/factory-*.log. Source motion: Telegram 830/831; result document records limits. No new FPS or cold-start cohort.

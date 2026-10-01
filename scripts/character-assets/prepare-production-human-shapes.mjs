@@ -15,6 +15,7 @@ import {MeshoptDecoder, MeshoptEncoder, MeshoptSimplifier} from 'meshoptimizer';
 import sharp from 'sharp';
 import {simplify} from '@gltf-transform/functions';
 import {EQUIPMENT_ITEMS} from '../../src/ashen-reach/equipment-catalog.js';
+import {retainFullStartupGeometry} from './startup-geometry-policy.mjs';
 import {startupProvenance} from '../ashen-reach/startup-provenance.mjs';
 const out=process.env.ASHEN_PRODUCTION_SHAPE_OUT || 'public/ashen-reach/human-shape-v1';
 const urlRoot='/ashen-reach/human-shape-v1';
@@ -58,7 +59,7 @@ try {
     const name=`${id}-${sha(encoded).slice(0,12)}.bin`;
     await fs.writeFile(path.join(out,name),encoded);
     manifest.items[id]={...base.items[id],url:`${urlRoot}/${name}`,bytes:bytes.length,encodedBytes:encoded.length,sha256:sha(bytes),compression:'gzip',shapeFamily:family,textures};
-    if(id==='body'||EQUIPMENT_ITEMS[id]?.deformation==='rigid-bone')manifest.compactItems[id]=manifest.items[id];
+    if(id==='body'||retainFullStartupGeometry(doc.getRoot(),EQUIPMENT_ITEMS[id]))manifest.compactItems[id]=manifest.items[id];
     else {
       // glTF Transform remaps ALL base/skin/morph attributes together. Preserve seam
       // boundaries and use this only for first-play clothing; full detail follows after play.
@@ -72,7 +73,7 @@ try {
     console.log(`${id}: ${encoded.length} full / ${manifest.compactItems[id].encodedBytes} compact bytes`);
   }
   manifest.startup={textures:manifest.items.body.textures};
-  manifest.provenance=await startupProvenance(['scripts/character-assets/prepare-production-human-shapes.mjs','scripts/character-assets/build-human-shape-family.mjs','scripts/character-assets/build-garment-shape-family.mjs'],['docs/baselines/character-mmo/m004/makehuman-girth.json','public/ashen-reach/equipment/manifest.json',...Object.keys(base.items).map(id=>`public/ashen-reach/equipment/${id}.glb`)]);
+  manifest.provenance=await startupProvenance(['scripts/character-assets/prepare-production-human-shapes.mjs','scripts/character-assets/build-human-shape-family.mjs','scripts/character-assets/build-garment-shape-family.mjs','scripts/character-assets/startup-geometry-policy.mjs'],['docs/baselines/character-mmo/m004/makehuman-girth.json','public/ashen-reach/equipment/manifest.json',...Object.keys(base.items).map(id=>`public/ashen-reach/equipment/${id}.glb`)]);
   manifest.reproduction={neutralIdentity:source.neutralIdentity,clips:source.clips,girthSource:source.girthSource,
     garments:fits.garments.map(({item,source,pieces,hems})=>({item,source,pieces,hems}))};
   manifest.tooling={node:process.versions.node};

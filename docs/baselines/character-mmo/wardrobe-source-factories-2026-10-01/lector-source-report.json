@@ -1,0 +1,208 @@
+{
+  "schema": 1,
+  "candidateOnly": true,
+  "toolSources": [
+    {
+      "path": "scripts/character-assets/build-lector-coat.mjs",
+      "sha256": "3cd59274b36fa4cc54244be176c8347ca0b2e01ccbbe1a89a22454d1c384b331"
+    },
+    {
+      "path": "scripts/character-assets/author-lector-coat.py",
+      "sha256": "5fa1e58f5385e6caaadcc00d03284ed3ac84a284f84849e077c33a23319cacf6"
+    },
+    {
+      "path": "scripts/character-assets/normalize-human-bind.mjs",
+      "sha256": "a889a5f0aa55c8a03c22b5f4a17d89641c1eb13b5fe23c10264c07851840cfe8"
+    },
+    {
+      "path": "scripts/character-assets/verify-factory-equipment-bind.mjs",
+      "sha256": "5994c7a38681514b2b83c3a8b858d181867d160efa349fc95aa84ece34032684"
+    },
+    {
+      "path": "scripts/character-assets/native_cloth_panels.py",
+      "sha256": "b8a226729fb532ca2393b5ae0d7886cbb3d2dccb8f3cbca12fdae87597f1788b"
+    }
+  ],
+  "tooling": {
+    "blender": "5.2.1",
+    "node": "22.18.0"
+  },
+  "descriptor": {
+    "path": "blender/characters/wardrobe/lector-coat.json",
+    "sha256": "8a88deebcc103cc4cd5082728936e1373c8f15c628696d7f1cb9f7e6f2f15877"
+  },
+  "rights": "Native structural tailoring of the vendored CC0 MakeHuman suits02 garment through the accepted per-race Wayfarer fit. Existing Tripo/Mixamo body/rig source grant limitations retained. New collar/lapel/cuff/lining modeling is project-authored.",
+  "rows": [
+    {
+      "race": "human",
+      "artifact": ".cache/character-mmo/wardrobe-v1/lector/human/lectorCoat.glb",
+      "sha256": "1eeaa3c838bd785b03e42170e01efd6397897ed7655ced6980f3b78d590757a4",
+      "bytes": 496572,
+      "vertices": 6052,
+      "triangles": 10526,
+      "verification": {
+        "joints": 65,
+        "meshes": 1,
+        "primitives": 3,
+        "vertices": 6052,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.6867488026618958,
+            0.752187192440033,
+            -0.1812065988779068
+          ],
+          "max": [
+            0.6913983821868896,
+            1.514944314956665,
+            0.1520855724811554
+          ],
+          "frame": "accepted body mesh"
+        }
+      },
+      "weightQuantization": {
+        "precision": 1000000,
+        "maxAppliedDelta": 0.000001430511474609375
+      },
+      "compileSeconds": 1.8947496250000002,
+      "native": {
+        "source": "blender/characters/wardrobe/sources/human-wayfarer-before-lector.glb",
+        "verticesBefore": 3776,
+        "verticesAfter": 5464,
+        "hemEdges": 962,
+        "removedFrontFaces": 0,
+        "extendedTailVertices": 0,
+        "subdividedTailEdges": 0,
+        "flaredCuffVertices": 273,
+        "foldedLapelFaces": 161,
+        "rearHipVertices": 0,
+        "underarmVertices": 215,
+        "hemWorldZ": 0.752187192440033,
+        "heightUnit": 1.0079867745700635,
+        "skinReduction": {
+          "vertices": 5464,
+          "changed": 304,
+          "maxDiscardedFraction": 0.050657820522686324,
+          "meanDiscardedFraction": 0.00027490360241217625
+        },
+        "blenderVersion": "5.2.1 LTS",
+        "candidateOnly": true
+      }
+    },
+    {
+      "race": "orc",
+      "artifact": ".cache/character-mmo/wardrobe-v1/lector/orc/lectorCoat.glb",
+      "sha256": "70b85312bae43d0e7da6a7b259a8c1e0aa5ec936924f6c75df450828dc1b754b",
+      "bytes": 534408,
+      "vertices": 6679,
+      "triangles": 10960,
+      "verification": {
+        "joints": 65,
+        "meshes": 1,
+        "primitives": 3,
+        "vertices": 6679,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.9918489456176758,
+            0.9270921945571899,
+            -0.2970219850540161
+          ],
+          "max": [
+            1.0034334659576416,
+            1.9000133275985718,
+            0.23009532690048218
+          ],
+          "frame": "accepted body mesh"
+        }
+      },
+      "weightQuantization": {
+        "precision": 1000000,
+        "maxAppliedDelta": 0.0000014007091522216797
+      },
+      "compileSeconds": 2.447092042,
+      "native": {
+        "source": "blender/characters/wardrobe/sources/orc-wayfarer-before-lector.glb",
+        "verticesBefore": 3776,
+        "verticesAfter": 6113,
+        "hemEdges": 962,
+        "removedFrontFaces": 0,
+        "extendedTailVertices": 0,
+        "subdividedTailEdges": 0,
+        "flaredCuffVertices": 217,
+        "foldedLapelFaces": 157,
+        "rearHipVertices": 0,
+        "underarmVertices": 1100,
+        "hemWorldZ": 0.9270921945571899,
+        "heightUnit": 1.2904275628857145,
+        "skinReduction": {
+          "vertices": 6113,
+          "changed": 213,
+          "maxDiscardedFraction": 0.05366995185613632,
+          "meanDiscardedFraction": 0.00021923505468583038
+        },
+        "blenderVersion": "5.2.1 LTS",
+        "candidateOnly": true
+      }
+    },
+    {
+      "race": "undead",
+      "artifact": ".cache/character-mmo/wardrobe-v1/lector/undead/lectorCoat.glb",
+      "sha256": "2fca3e1c7e58d29f6bdfc8a719792320cff013f821af952b7379ef6b2a9fe721",
+      "bytes": 554880,
+      "vertices": 7036,
+      "triangles": 11064,
+      "verification": {
+        "joints": 65,
+        "meshes": 1,
+        "primitives": 3,
+        "vertices": 7036,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.7280417680740356,
+            0.8306887149810791,
+            -0.1928890347480774
+          ],
+          "max": [
+            0.7303484082221985,
+            1.6179379224777222,
+            0.1414114087820053
+          ],
+          "frame": "accepted body mesh"
+        }
+      },
+      "weightQuantization": {
+        "precision": 1000000,
+        "maxAppliedDelta": 0.0000014901161193847656
+      },
+      "compileSeconds": 1.9933632500000003,
+      "native": {
+        "source": "blender/characters/wardrobe/sources/undead-wayfarer-before-lector.glb",
+        "verticesBefore": 3776,
+        "verticesAfter": 6603,
+        "hemEdges": 962,
+        "removedFrontFaces": 0,
+        "extendedTailVertices": 0,
+        "subdividedTailEdges": 0,
+        "flaredCuffVertices": 252,
+        "foldedLapelFaces": 152,
+        "rearHipVertices": 0,
+        "underarmVertices": 1354,
+        "hemWorldZ": 0.8306887149810791,
+        "heightUnit": 1.0703888042528826,
+        "skinReduction": {
+          "vertices": 6603,
+          "changed": 267,
+          "maxDiscardedFraction": 0.06198714020829112,
+          "meanDiscardedFraction": 0.0001848993473686202
+        },
+        "blenderVersion": "5.2.1 LTS",
+        "candidateOnly": true
+      }
+    }
+  ]
+}

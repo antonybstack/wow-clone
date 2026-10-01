@@ -13,7 +13,7 @@
     "test:character": "node --test scripts/test-character-fixture.mjs scripts/test-rig-contract.mjs scripts/test-body-validation.mjs scripts/test-retarget-contract.mjs scripts/test-body-profile-meta.mjs scripts/test-playable-body.mjs scripts/test-starter-outfit.mjs scripts/test-loadout-controller.mjs scripts/test-human-shape-contract.mjs scripts/test-creator-contract.mjs scripts/test-appearance-contract.mjs scripts/test-production-appearance.mjs scripts/test-production-human-shapes.mjs",
     "validate:character-body": "node scripts/validate-character-body.mjs",
     "prepare:equipment": "node scripts/ashen-reach/split-equipment.mjs",
-    "test:equipment": "node --test scripts/test-equipment-contract.mjs scripts/test-equipment-loader.mjs scripts/test-streamed-assets.mjs scripts/test-orc-streamed-assets.mjs scripts/test-ashen-equipment.mjs scripts/test-undead-race.mjs scripts/test-garment-shape-contract.mjs scripts/test-coverage-contract.mjs scripts/test-wardrobe-shoulders.mjs",
+    "test:equipment": "node --test scripts/test-equipment-contract.mjs scripts/test-equipment-loader.mjs scripts/test-streamed-assets.mjs scripts/test-orc-streamed-assets.mjs scripts/test-ashen-equipment.mjs scripts/test-undead-race.mjs scripts/test-garment-shape-contract.mjs scripts/test-coverage-contract.mjs scripts/test-wardrobe-shoulders.mjs scripts/test-wardrobe-factory-bind.mjs",
     "prepare:startup": "node scripts/ashen-reach/prepare-starter-character.mjs && node scripts/ashen-reach/prepare-starter-world.mjs",
     "prepare:human-shapes": "node scripts/character-assets/prepare-production-human-shapes.mjs"
   },

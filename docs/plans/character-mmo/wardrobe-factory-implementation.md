@@ -14,4 +14,6 @@ Milestone 6 is complete only when all five designs and the factory/player-visibl
 
 ## Front-fit corrective checkpoint
 
+The [native source factory checkpoint](results/wardrobe-source-factories-2026-10-01.md) compiles fifteen source-compatible fits, with independent written-file validation and reviewed motion (Telegram 830/831). Both new designs remain candidate-only. Current Wayfarer controls reproduce the Lector rear trouser/front skin defects; reducing Duskguard's plate standoff fails cloth clearance. Follow the [layer coverage implementation](layer-coverage-implementation.md), preserving original source masters and actual source animation, before advertising or publishing the new fits.
+
 The [Human Pilgrim correction](results/pilgrim-front-corrective-2026-10-01.md) is reviewed and reproducible. Use the frozen source and native front-only mask, preserve hanging/back cloth weights, and independently compare geometry/bind before publishing. Full or wraparound weight transfer fails live review. The shape-relative metric does not establish absolute garment fit. Next: structural Lector cloth design, articulated Duskguard design, per-race compilation and remote preparation; five-design acceptance remains open.
