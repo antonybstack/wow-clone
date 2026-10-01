@@ -1,0 +1,142 @@
+{
+  "url": "https://play.sparkify.dev/?play&clean",
+  "routes": [
+    {
+      "case": "spawn-movement",
+      "before": {
+        "x": -0.0005519592840515243,
+        "y": 0.888095471460812,
+        "z": -0.0009740457344981682,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "after": {
+        "x": -0.000828960427045397,
+        "y": 1.1697715099090331,
+        "z": 8.43269732178939,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "case": "cathedral-entry-return",
+      "build": -0.95,
+      "height": 0.9,
+      "start": {
+        "x": 0,
+        "y": 45.828444595630025,
+        "z": 280,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "inside": {
+        "x": 0,
+        "y": 45.828444595630025,
+        "z": 317.83079999899184,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "returned": {
+        "x": 0,
+        "y": 45.828444595630025,
+        "z": 298.92204999899093,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "case": "cathedral-entry-return",
+      "build": -0.95,
+      "height": 1.15,
+      "start": {
+        "x": 0,
+        "y": 46.050740643680726,
+        "z": 280,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "inside": {
+        "x": 0,
+        "y": 46.050740643680726,
+        "z": 317.81680000066126,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "returned": {
+        "x": 0,
+        "y": 46.050740643680726,
+        "z": 298.9038500013281,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "case": "cathedral-entry-return",
+      "build": 0.95,
+      "height": 0.9,
+      "start": {
+        "x": 0,
+        "y": 45.84014958789924,
+        "z": 280,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "inside": {
+        "x": 0,
+        "y": 45.84014958789924,
+        "z": 317.8300999996546,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "returned": {
+        "x": 0,
+        "y": 45.84014958789924,
+        "z": 298.9181999993185,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "case": "cathedral-entry-return",
+      "build": 0.95,
+      "height": 1.15,
+      "start": {
+        "x": 0,
+        "y": 46.05224053142938,
+        "z": 280,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "inside": {
+        "x": 0,
+        "y": 46.05224053142938,
+        "z": 317.8224000003229,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "returned": {
+        "x": 0,
+        "y": 46.05224053142938,
+        "z": 298.9108500004872,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

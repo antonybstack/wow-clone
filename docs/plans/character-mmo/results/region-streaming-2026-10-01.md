@@ -1,6 +1,6 @@
 # Milestone 3 — bounded actual-region appearance streaming
 
-Status: local implementation and verification complete; production verification pending. This is the two-fit Human region path from milestone 2; broader wardrobe/race support and online presence remain later milestones. Do not treat this draft as the milestone exit or a public crowd-capacity claim.
+Status: complete as the bounded two-fit Human streaming slice; committed, pushed and production-verified. This is the two-fit Human region path from milestone 2; broader wardrobe/race support and online presence remain later milestones. Do not treat this draft as the milestone exit or a public crowd-capacity claim.
 
 ## Policy and ownership
 
@@ -50,4 +50,8 @@ Reviewed live motion is [VE](https://ve.sparkify.dev/wow-clone/ashen-reach/chara
 
 Raw counters, tails, tests, captures manifest, publication/graph comparison and independent-review reconciliation are tracked in `docs/baselines/character-mmo/region-streaming-2026-10-01/`. Full frames/MP4 live under ignored `ve-capture/character-mmo/region-streaming-2026-10-01-v3/`; the public VE copy is the recovery path. Scripts reproduce the workloads from the accepted preparation.
 
-Production deployment and artifact/movement/customization/touch/WebKit checks remain the final gate. Milestone 4 has not started implementation. Physical phone resource limits and the broad 100-actor throughput target remain unaccepted.
+Source **32d2b01a786a7bba6a1761e495718d4e504e43d8** is committed/pushed. Production Pages deployment **1f745d0b-49d3-47bf-a0b5-b103a026b932** succeeded; rollback is **83510e4f-6613-4ed1-a06d-42878215b136** (source 1aae9c2). All **368** served artifacts match, including world geometry/textures/Havok and the five new asset/metadata files. Four immutable region files have the required year-long immutable policy; the manifest pointer is no-cache.
+
+Production spawn movement and cathedral entry/return at all four height/build endpoints passed with Havok active and zero recovery teleports. Thirty-three production customization/failure/saved-reload/race checks passed. Chromium native touch and injected depth-only bundle fallback passed; desktop WebKit 26.6 passed keyboard movement and displayed-frame change at a mobile viewport. No runtime/GPU errors were reported, so no rollback was required. These browser checks do not establish physical iPhone acceptance.
+
+The owned Chrome (PID 95251/CDP 9837) has only its blank default page after every disposable context closed; the static preview (PID 55814/port 5774) was stopped. Vite 5673 remains owned for the next milestone. No other session-owned rendering game, recorder, encoder or Grok worker remains. Milestone 4 is next. Physical phone resource limits and the broad 100-actor throughput target remain unaccepted.

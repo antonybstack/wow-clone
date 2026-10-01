@@ -23,4 +23,4 @@ await Promise.all(Array.from({length:8},async()=>{
  }
 }));
 rows.sort((a,b)=>a.file.localeCompare(b.file));await fs.writeFile(out,JSON.stringify(rows,null,2));
-assert(rows.every(r=>r.match&&r.cacheCorrect!==false),'Artifact or cache policy mismatch; inspect the report');console.log(JSON.stringify({checked:rows.length,matched:true,immutableRegionFiles:rows.filter(r=>r.cacheCorrect).length}));
+assert(rows.every(r=>r.match&&r.cacheCorrect!==false),'Artifact or cache policy mismatch; inspect the report');console.log(JSON.stringify({checked:rows.length,matched:true,regionCachePoliciesChecked:rows.filter(r=>r.cacheCorrect).length}));
