@@ -37,3 +37,15 @@
 
 /ashen-reach/human-shape-v1/texture-*
   Cache-Control: public, max-age=31536000, immutable
+
+/ashen-reach/region-actors-v1/*.glb
+  Cache-Control: public, max-age=31536000, immutable
+
+/ashen-reach/region-actors-v1/*.bin
+  Cache-Control: public, max-age=31536000, immutable
+
+/ashen-reach/region-actors-v1/46c726f07044d09f00aaf64d7e3e0347b3b4c5c641703d1f08ff993c326de05a.json
+  Cache-Control: public, max-age=31536000, immutable
+
+/ashen-reach/region-actors-v1/manifest.json
+  Cache-Control: no-cache

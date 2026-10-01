@@ -1,0 +1,16 @@
+{
+  "default": {
+    "runs": 20,
+    "p95Ms": 841.2000000476837,
+    "maxMs": 845.7000000476837,
+    "withinOneSecond": 20,
+    "errors": 0
+  },
+  "largest": {
+    "runs": 20,
+    "p95Ms": 943.7999999523163,
+    "maxMs": 944.9000000953674,
+    "withinOneSecond": 20,
+    "errors": 0
+  }
+}

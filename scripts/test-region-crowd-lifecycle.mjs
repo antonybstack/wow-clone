@@ -4,6 +4,7 @@ import {createRegionActor,setActorTransform,replaceActorAppearance} from '../src
 const names=['addToScene','attachVat','createVatBakeResults','disposeMeshGpu','invalidateRenderBundles','enableThinInstanceWorldBounds','getContainerMeshes','goToFrame','loadGltf','onBeforeRender','onSceneDispose','rebuildScenePbrPipelines','removeFromScene','removeThinInstance','setMeshVisible','setMorphTargetWeights','setThinInstanceCount','setThinInstanceMatrix','setThinInstances','setVatTime','getViewMatrix','getViewProjectionMatrix','projectWorldToScreen','prepareVatMany'];
 const mock=`data:text/javascript,${encodeURIComponent(`export const VERSION='1.31.1';\n`+names.map(n=>`export const ${n}=(...a)=>globalThis.__regionLite.${n}(...a);`).join('\n'))}`;
 registerHooks({resolve(specifier,context,next){if(specifier==='@babylonjs/lite')return {url:mock,shortCircuit:true};if(specifier.endsWith('linear-materials.js'))return {url:'data:text/javascript,export const prepareLinearMaterial=()=>{}',shortCircuit:true};return next(specifier,context);}});
+globalThis.requestAnimationFrame=fn=>setImmediate(()=>fn(performance.now()));globalThis.cancelAnimationFrame=id=>clearImmediate(id);
 const {createRegionCrowd}=await import('../src/character/region-crowd/renderer.js');
 const recipe=appearanceFromEquipment({race:'human',loadout:EQUIPMENT_PRESETS.wayfarer.loadout});
 const actor=(id='actor')=>createRegionActor({id,recipe,transform:{x:0,y:0,z:65,yaw:0},motion:{clip:'Walk_Loop',loop:true,startedAt:0,offsetSeconds:0}});
@@ -14,7 +15,7 @@ function fixture(){
  const bytes=new Uint8Array(8),hash=createHash('sha256').update(bytes).digest('hex'),data=new Float32Array(2*65*16),payloadHash=createHash('sha256').update(new Uint8Array(data.buffer)).digest('hex');
  const meshes=['HumanV1Body','WayfarerTunic','WayfarerTrousers','WayfarerBoots','ProbeIronSword','ProbeIronSword'];
  const clips={Walk_Loop:{fromRow:0,frameCount:2,fps:60,duration:1/60}};
- const manifest={sourceSha256:hash,variants:{wayfarer:{file:'human-wayfarer.glb',sha256:hash,recipe:encodeAppearance(recipe),assetSha256:Object.fromEntries(Object.values(recipe.equipment).filter(Boolean).map(id=>[id,hash])),meshes}}};
+ const manifest={sourceSha256:hash,variants:{wayfarer:{file:'human-wayfarer.glb',sha256:hash,bytes:bytes.byteLength,recipe:encodeAppearance(recipe),assetSha256:Object.fromEntries(Object.values(recipe.equipment).filter(Boolean).map(id=>[id,hash])),meshes}}};
  const prepared={schema:1,lite:'1.31.1',recipeVersion:2,manifest,variants:{wayfarer:{sha256:hash,clips,bounds:meshes.map(name=>({name,minimum:[-1,-1,-1],maximum:[1,2,1]})),payloads:meshes.map(()=>({file:'vat.bin',sha256:payloadHash,boneCount:65,frameCount:2,clips}))}}};
  globalThis.fetch=async(url,{signal}={})=>{signal?.throwIfAborted();return {ok:true,arrayBuffer:async()=>url.endsWith('prepared.json')?new TextEncoder().encode(JSON.stringify(prepared)).buffer:url.endsWith('vat.bin')?data.buffer:bytes.buffer};};
  globalThis.__regionLite={
@@ -60,4 +61,20 @@ test('appearance cannot change without revision and pending stale requests fail'
 test('teardown drains a native decode that has not yet produced an owned resource',async()=>{
  const f=fixture(),crowd=await createRegionCrowd(f.game,{clock:()=>.1});await crowd.set(actor());f.pauseLoad();const pending=crowd.set(actor(),'exact');await until(()=>f.entered);
  let complete=false;const retirement=crowd.dispose().then(()=>complete=true);await new Promise(r=>setImmediate(r));assert.equal(complete,false);f.gate.resolve();await retirement;assert.equal((await pending).status,'superseded');assert.equal(f.scene.meshes.length,0);assert.equal(f.counts.retired,12);assert.equal(crowd.resources().owned.size,0);
+});
+test('exact cache reuses compiled independent resources, reapplies shape and caps idle ownership',async()=>{
+ const f=fixture(),crowd=await createRegionCrowd(f.game,{clock:()=>.1});const a=actor('one');await crowd.set(a,'exact');const first=crowd.resources().actors.get('one').exact;crowd.remove('one');assert(first.meshes.every(m=>!m.visible));
+ await crowd.set(replaceActorAppearance(actor('two'),{...recipe,shape:{...recipe.shape,build:.7,height:.9}},2),'exact');assert.equal(crowd.resources().actors.get('two').exact,first);assert.equal(first.root.scaling.x,-.9);assert.equal(f.counts.loads,2);assert.equal(f.counts.rebuilds,2);
+ await crowd.set(actor('three'),'exact');await crowd.set(actor('four'),'exact');for(const id of ['two','three','four'])crowd.remove(id);assert.equal(crowd.streaming().idleExact,2);assert.equal(crowd.streaming().stats.evictions,1);assert.equal(crowd.resources().owned.size,3);await crowd.dispose();assert.equal(f.scene.meshes.length,0);
+});
+test('active exact budget refuses a new identity without destroying its coherent VAT appearance',async()=>{
+ const f=fixture(),crowd=await createRegionCrowd(f.game,{clock:()=>.1,budgets:{exact:1}});await crowd.set(actor('target'),'exact');await crowd.set(actor('other'),'vat');await assert.rejects(crowd.set(actor('other'),'exact'),/budget/);assert.equal(crowd.snapshot().actors.find(a=>a.id==='other').tier,'vat');assert.equal(crowd.streaming().activeExact,1);assert.equal(f.counts.loads,2);await crowd.dispose();
+});
+
+test('same-fit live exact revision updates native weights without another decode/build',async()=>{
+ const f=fixture(),crowd=await createRegionCrowd(f.game,{clock:()=>.1});await crowd.set(actor(),'exact');const original=crowd.resources().actors.get('actor').exact;await crowd.set(replaceActorAppearance(actor(),{...recipe,shape:{...recipe.shape,build:.5,height:1.1}},2),'exact');assert.equal(crowd.resources().actors.get('actor').exact,original);assert.equal(f.counts.loads,2);assert.equal(f.counts.rebuilds,2);assert.equal(crowd.streaming().idleExact,0);assert.equal(crowd.streaming().stats.exactLiveUpdates,1);await crowd.dispose();assert.equal(crowd.resources().sources.length,0);
+});
+
+test('implicit position coalescing retains a pending target priority ahead of nearby work',async()=>{
+ const f=fixture(),crowd=await createRegionCrowd(f.game,{clock:()=>.1});f.pauseLoad();const active=crowd.set(actor('active'),'exact');await until(()=>f.entered);const target=actor('target'),b=crowd.set(target,'exact',{priority:0}),c=crowd.set(actor('near'),'exact',{priority:1}),moved=crowd.set(setActorTransform(target,{x:1,y:0,z:65,yaw:0}));f.gate.resolve();await Promise.all([active,b,c,moved]);assert.deepEqual(crowd.snapshot().actors.map(a=>a.id),['active','target','near']);await crowd.dispose();
 });

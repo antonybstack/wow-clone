@@ -1,0 +1,94 @@
+{
+  "url": "http://127.0.0.1:5673/?play&clean",
+  "profile": {
+    "downloadMbit": 10,
+    "latencyMs": 80
+  },
+  "errors": [],
+  "failure": {
+    "failed": true,
+    "error": "Crowd asset HTTP 503: /__region_crowd__/human-wayfarer.glb",
+    "sameBody": true,
+    "cache": {
+      "entries": 0,
+      "reservedBytes": 0,
+      "peakReservedBytes": 1122792,
+      "ceilingBytes": 8388608,
+      "leases": 0
+    }
+  },
+  "before": {
+    "x": -0.00019695177680504865,
+    "z": -0.00034756193560637674,
+    "recoveries": 0
+  },
+  "arrivals": [
+    {
+      "status": "rejected",
+      "error": "signal is aborted without reason"
+    },
+    {
+      "status": "fulfilled"
+    }
+  ],
+  "after": {
+    "x": -0.0007420726912132797,
+    "z": 8.419064137047021,
+    "recoveries": 0,
+    "physics": true,
+    "sameBody": true,
+    "streaming": {
+      "limits": {
+        "pending": 32,
+        "exact": 8,
+        "idleExact": 2
+      },
+      "queue": {
+        "submitted": 0,
+        "superseded": 0,
+        "rejected": 0,
+        "peakPending": 0,
+        "completed": 0,
+        "pending": 0,
+        "active": 0,
+        "limit": 32,
+        "closed": false
+      },
+      "immutable": {
+        "entries": 3,
+        "reservedBytes": 4589720,
+        "peakReservedBytes": 4589720,
+        "ceilingBytes": 8388608,
+        "leases": 3
+      },
+      "activeExact": 0,
+      "idleExact": 0,
+      "owned": 2,
+      "allocation": {
+        "buffers": 108,
+        "textures": 39,
+        "bufferBytes": 3429776,
+        "textureBytes": 5342464,
+        "unknownTextureFormats": 0,
+        "knownCpuBytes": 4310488,
+        "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+      },
+      "stats": {
+        "exactLoads": 0,
+        "exactReuses": 0,
+        "evictions": 0,
+        "peakOwned": 2,
+        "preparations": []
+      }
+    },
+    "gpuErrors": []
+  },
+  "final": {
+    "entries": 0,
+    "reservedBytes": 0,
+    "peakReservedBytes": 4589720,
+    "ceilingBytes": 8388608,
+    "leases": 0
+  },
+  "passed": true
+}

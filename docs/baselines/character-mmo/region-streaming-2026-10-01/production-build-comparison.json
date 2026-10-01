@@ -1,0 +1,35 @@
+{
+  "previousSource": "1aae9c2",
+  "checked": 364,
+  "changed": [
+    "_headers"
+  ],
+  "normalEntryAndExistingAssetsByteIdentical": true,
+  "added": [
+    {
+      "file": "ashen-reach/region-actors-v1/7b8784032cbd92ff81db63363e1895ce19993ec1b38495ad9343fa4fa0d029a4.glb",
+      "bytes": 1122792,
+      "sha256": "7b8784032cbd92ff81db63363e1895ce19993ec1b38495ad9343fa4fa0d029a4"
+    },
+    {
+      "file": "ashen-reach/region-actors-v1/manifest.json",
+      "bytes": 761,
+      "sha256": "69a53a9f61bab45f77061612ee742f98a2e80c01abb0766330b71792d602b559"
+    },
+    {
+      "file": "ashen-reach/region-actors-v1/51e6433acb29345134304ea2c35f9855326be8afc7688ea5394fe4f64a1ed04d.glb",
+      "bytes": 1977648,
+      "sha256": "51e6433acb29345134304ea2c35f9855326be8afc7688ea5394fe4f64a1ed04d"
+    },
+    {
+      "file": "ashen-reach/region-actors-v1/e24ad02f33cfbcb1a2015026fd73edcb56453e0310216290095674ada700a6ed.bin",
+      "bytes": 1489280,
+      "sha256": "e24ad02f33cfbcb1a2015026fd73edcb56453e0310216290095674ada700a6ed"
+    },
+    {
+      "file": "ashen-reach/region-actors-v1/46c726f07044d09f00aaf64d7e3e0347b3b4c5c641703d1f08ff993c326de05a.json",
+      "bytes": 15149,
+      "sha256": "46c726f07044d09f00aaf64d7e3e0347b3b4c5c641703d1f08ff993c326de05a"
+    }
+  ]
+}

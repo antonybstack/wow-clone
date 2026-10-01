@@ -16,6 +16,11 @@ import {decodePreparedCrowdAppearance,planCrowdBatches} from '../crowd-probe/bat
 import {APPEARANCE_SCHEMA_VERSION,appearanceShapeWeights,validateAppearance} from '../appearance/contract.js';
 import {createRegionActor,actorVatParams,sampleActorMotion} from './actor-state.js';
 import {setDirectInstanceCount} from './direct-count.js';
+import {createRequestQueue} from './request-queue.js';
+import {acquireRegionAsset,regionAssetCacheSnapshot} from './asset-cache.js';
+import {yieldToFrame} from '../../ashen-reach/frame-budget.js';
+import {accountRegionResources} from './resource-accounting.js';
+import {REGION_STREAMING_LIMITS} from './streaming-policy.js';
 
 const updates=new WeakMap();
 function enroll(scene,update){
@@ -31,29 +36,43 @@ const matrixFor=actor=>{
 function validateBounds(mesh,bounds){
  if(bounds?.name!==mesh.name||bounds.minimum?.length!==3||bounds.maximum?.length!==3||bounds.minimum.some((v,i)=>!Number.isFinite(v)||!Number.isFinite(bounds.maximum[i])||v>bounds.maximum[i]))throw Error('Invalid prepared animated bounds');
 }
-async function checkedFetch(url,signal,hash){
+async function checkedFetch(url,signal,hash,expectedBytes){
  const response=await fetch(url,{signal});if(!response.ok)throw Error(`Crowd asset HTTP ${response.status}: ${url}`);
  const bytes=await response.arrayBuffer();signal.throwIfAborted();
+ if(expectedBytes!==undefined&&bytes.byteLength!==expectedBytes)throw Error('Prepared region byte size mismatch');
  if(hash){const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');if(digest!==hash)throw Error(`Crowd asset hash mismatch: ${url}`);}
  return bytes;
 }
-/** Developer-only assets until the streaming/presence milestone publishes them.
+/** Optional immutable assets are selected through release.js; the default root
+ * remains the developer preparation route. Neither path is a startup dependency.
  * Native conservative bounds were prepared before attachVat, from every baked
  * pose plus the single-axis morph range. GPU culling stays off for this first
  * correctness tier; visibility never drops an offscreen shadow caster.
  * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/mesh/compute-max-extents.ts
  */
-export async function createRegionCrowd(game,{capacity=100,assetRoot='/__region_crowd__',signal:requestSignal,clock}={}){
+export async function createRegionCrowd(game,{capacity=100,assetRoot='/__region_crowd__',preparedAsset,signal:requestSignal,clock,budgets={}}={}){
  if(VERSION!=='1.31.1'||!Array.isArray(game.scene._materialSwapQueue))throw Error('Region staging requires reviewed Lite 1.31.1');
  if(!Number.isInteger(capacity)||capacity<1||capacity>1000)throw RangeError('Crowd capacity must be 1–1000');
  const controller=new AbortController(),signal=AbortSignal.any([controller.signal,sceneLifetime(game.scene),...(requestSignal?[requestSignal]:[])]);
+ const limits=Object.freeze({...REGION_STREAMING_LIMITS,...budgets});
+ for(const [key,value] of Object.entries(limits))if(!(key in REGION_STREAMING_LIMITS)||!Number.isInteger(value)||value<0||value>REGION_STREAMING_LIMITS[key])throw RangeError('Unsupported region budget');
+ if(!limits.pending||!limits.exact)throw RangeError('Region needs queue and exact capacity');
  const epoch=performance.now(),now=clock||(()=> (performance.now()-epoch)/1000);
- const prepared=JSON.parse(new TextDecoder().decode(await checkedFetch(`${assetRoot}/prepared.json`,signal)));
+ if(preparedAsset&&(!/^[0-9a-f]{64}$/.test(preparedAsset.sha256)||preparedAsset.file!==`${preparedAsset.sha256}.json`||!Number.isInteger(preparedAsset.bytes)||preparedAsset.bytes<1||preparedAsset.bytes>128*1024))throw Error('Published preparation needs a bounded immutable hash descriptor');
+ const prepared=JSON.parse(new TextDecoder().decode(await checkedFetch(`${assetRoot}/${preparedAsset?.file||'prepared.json'}`,signal,preparedAsset?.sha256,preparedAsset?.bytes)));
  if(prepared.schema!==1||prepared.lite!==VERSION||prepared.recipeVersion!==APPEARANCE_SCHEMA_VERSION)throw Error('Region bake recipe/runtime mismatch; prepare the assets again');
  const variantCache=new WeakMap();
  const owned=new Set(),builds=new Set();
  const manifest=prepared.manifest,variants=new Map(),sources=[],pools=new Map(),actors=new Map(),desired=new Map();
- let disposal,disposed=false,leave=()=>{},chain=Promise.resolve();
+ const leases=[],idleExact=[],stats={exactLoads:0,exactReuses:0,exactLiveUpdates:0,evictions:0,peakOwned:0,preparations:[]};
+ const queue=createRequestQueue({limit:limits.pending,between:()=>yieldToFrame()});
+ let disposal,disposed=false,leave=()=>{};
+ async function asset(url,hash,bytes){const lease=acquireRegionAsset(url,hash,bytes,signal);leases.push(lease);return lease.promise;}
+ function own(resource){owned.add(resource);stats.peakOwned=Math.max(stats.peakOwned,owned.size);}
+ function releaseExact(resource){
+  if(!resource||resource.retiring||resource.disposed||resource.idle)return;hide(resource);resource.actorId=null;resource.idle=true;idleExact.push(resource);
+  while(idleExact.length>limits.idleExact){const evicted=idleExact.shift();stats.evictions++;disposeResource(evicted);}
+ }
  function disposeResource(resource){
   if(!resource||resource.retiring)return resource?.retirement;
   resource.retiring=true;hide(resource);
@@ -72,12 +91,16 @@ export async function createRegionCrowd(game,{capacity=100,assetRoot='/__region_
 
  function hide(resource){for(const mesh of resource.meshes)setMeshVisible(mesh,false);}
  function dispose(){
-  if(disposed)return disposal;disposed=true;leave();signal.removeEventListener('abort',dispose);controller.abort();desired.clear();
+  if(disposed)return disposal;disposed=true;leave();signal.removeEventListener('abort',dispose);controller.abort();desired.clear();queue.close();idleExact.length=0;
   actors.clear();pools.clear();
-  // A native decode can still be producing a container that is not in owned
-  // yet. Drain the serialized preparation chain as well as existing owners;
-  // its post-decode abort boundary disposes that final unregistered resource.
-  disposal=Promise.all([...owned].map(disposeResource).concat(chain));return disposal;
+  // A native decode can still be producing a container not in owned yet.
+  // Drain it before releasing the final shared immutable byte leases.
+  disposal=Promise.all([...owned].map(disposeResource).concat(queue.drain())).finally(()=>{
+   for(const lease of leases)lease.release();
+   // A closed manager may remain reachable through diagnostics. Drop its
+   // resolved byte promises and decoded source containers as well as GPU owners.
+   leases.length=0;variants.clear();sources.length=0;
+  });return disposal;
  }
  async function stage(resource){
   signal.throwIfAborted();hide(resource);
@@ -145,29 +168,34 @@ export async function createRegionCrowd(game,{capacity=100,assetRoot='/__region_
   // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/animation/animation-group.ts
   goToFrame(group,sample.frame,game.engine);entry.sample=sample;
  }
+ function applyExact(resource,actor){
+  const weights=appearanceShapeWeights(actor.recipe);resource.actorId=actor.id;resource.idle=false;
+  writeExactTransform(resource,actor);
+  for(const mesh of resource.meshes)if(mesh.morphTargets)setMorphTargetWeights(game.engine,mesh.morphTargets,weights);
+ }
  async function prepareExact(actor){
-  const variant=variantFor(actor.recipe),container=await loadGltf(game.engine,variant.bytes),resource={actorId:actor.id,container,root:container.entities[0],meshes:getContainerMeshes(container),added:false,disposed:false};
-  owned.add(resource);
+  const variant=variantFor(actor.recipe),key=variant.entry.sha256;
+  const index=idleExact.findIndex(r=>r.key===key&&!r.retiring&&!r.disposed);
+  if(index>=0){const resource=idleExact.splice(index,1)[0];applyExact(resource,actor);stats.exactReuses++;return resource;}
+  // One staging container beyond eight live plus two idle. Retiring owners
+  // still count until builds settle; never evict an in-use resource to decode.
+  if(owned.size-sources.length>=limits.exact+limits.idleExact+1)throw RangeError('Exact resource ceiling exceeded');
+  const started=performance.now(),container=await loadGltf(game.engine,variant.bytes),resource={key,actorId:actor.id,container,root:container.entities[0],meshes:getContainerMeshes(container),added:false,disposed:false,idle:false};
+  own(resource);stats.exactLoads++;
   try{
-   signal.throwIfAborted();const weights=appearanceShapeWeights(actor.recipe);
-   // A live skeleton uses a normal glTF hierarchy. Lite 1.31.1's generic thin
-   // fragment replaces finalWorld after the skeleton fragment, discarding the
-   // skinning influence. VAT supplies its own combined instanced projection;
-   // exact actors must instead transform the native synthetic container root.
-   // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/shader/fragments/thin-instance-fragment.ts
+   signal.throwIfAborted();
+   // Native glTF roots retain skinning; generic thin transforms discard it.
    // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/shader/fragments/skeleton-fragment.ts
    if(!resource.root?.position?.set||!resource.root?.scaling?.set||!resource.root?.rotationQuaternion?.set)throw Error('Exact actor requires a native glTF transform root');
-   writeExactTransform(resource,actor);
+   applyExact(resource,actor);
    for(let i=0;i<resource.meshes.length;i++){
-    const mesh=resource.meshes[i],bounds=prepared.variants[variant.name].bounds[i];
-    validateBounds(mesh,bounds);
-    mesh.boundMin=[...bounds.minimum];mesh.boundMax=[...bounds.maximum];
-    if(mesh.morphTargets)setMorphTargetWeights(game.engine,mesh.morphTargets,weights);
-    mesh.receiveShadows=true;
+    const mesh=resource.meshes[i],bounds=prepared.variants[variant.name].bounds[i];validateBounds(mesh,bounds);
+    mesh.boundMin=[...bounds.minimum];mesh.boundMax=[...bounds.maximum];mesh.receiveShadows=true;
    }
    for(const group of container.animationGroups)group.loopAnimation=false;
    await stage(resource);return resource;
   }catch(error){disposeResource(resource);throw error;}
+  finally{stats.preparations.push(performance.now()-started);if(stats.preparations.length>256)stats.preparations.shift();}
  }
  function writeTransform(entry){
   entry.paramKey=null;entry.started=false;const matrix=matrixFor(entry.actor);
@@ -196,20 +224,20 @@ export async function createRegionCrowd(game,{capacity=100,assetRoot='/__region_
  try{
   signal.throwIfAborted();
   for(const [name,entry] of Object.entries(manifest.variants)){
-   const bytes=await checkedFetch(`${assetRoot}/${entry.file}`,signal,entry.sha256);
+   const bytes=await asset(`${assetRoot}/${entry.file}`,entry.sha256,entry.bytes);
    variants.set(name,{name,entry,bytes,recipe:decodePreparedCrowdAppearance(entry.recipe)});
   }
   const seeds=[...variants.values()].map(v=>({id:`seed-${v.name}`,outfit:v.name,recipe:v.recipe})),plan=planCrowdBatches(seeds,manifest);
   const upload=[],targets=[],payloadCache=new Map();
   for(const variant of variants.values()){
-   const container=await loadGltf(game.engine,variant.bytes),meshes=getContainerMeshes(container),source={container,meshes,added:false,disposed:false};sources.push(source);owned.add(source);
+   const container=await loadGltf(game.engine,variant.bytes),meshes=getContainerMeshes(container),source={container,meshes,added:false,disposed:false};sources.push(source);own(source);
    const metadata=prepared.variants[variant.name];if(metadata.sha256!==variant.entry.sha256||metadata.bounds.length!==meshes.length)throw Error('Stale region preparation');
    for(const batch of plan.batches.filter(b=>b.sourceOutfit===variant.name)){
     const pool={...batch,variant:variant.name,ids:[],slots:new Map(),meshes:[],handles:[],params:new Float32Array(capacity*4)};pools.set(batch.key,pool);
     for(let i=0;i<meshes.length;i++)if(meshes[i].name===batch.mesh){
      const mesh=meshes[i],payload=metadata.payloads[i],bounds=metadata.bounds[i];
      validateBounds(mesh,bounds);
-     let data=payloadCache.get(payload.file);if(!data){data=new Float32Array(await checkedFetch(`${assetRoot}/${payload.file}`,signal,payload.sha256));payloadCache.set(payload.file,data);}
+     let data=payloadCache.get(payload.file);if(!data){data=new Float32Array(await asset(`${assetRoot}/${payload.file}`,payload.sha256,payload.frameCount*payload.boneCount*16*4));payloadCache.set(payload.file,data);}
      upload.push({...payload,data});targets.push({mesh,pool});pool.meshes.push(mesh);
      mesh.boundMin=[...bounds.minimum];mesh.boundMax=[...bounds.maximum];mesh.receiveShadows=true;
     }
@@ -228,8 +256,10 @@ export async function createRegionCrowd(game,{capacity=100,assetRoot='/__region_
  }catch(error){dispose();throw error;}
  return {
   now,dispose,
-  async set(actor,tier){
+  async set(actor,tier,options={}){
+   const priority=options.priority??desired.get(actor?.id)?.priority??2;
    if(disposed)return {status:'disposed'};
+   if(!Number.isInteger(priority)||priority<0||priority>4)throw RangeError('Priority must be 0–4');
    actor=createRegionActor(actor);
    variantFor(actor.recipe);sampleActorMotion(actor,now(),prepared.variants[variantFor(actor.recipe).name].clips);
    if(tier!==undefined&&!['vat','exact'].includes(tier))throw Error('Unknown actor tier');
@@ -240,36 +270,51 @@ export async function createRegionCrowd(game,{capacity=100,assetRoot='/__region_
    if(!old&&actors.size>=capacity)throw RangeError('Region actor capacity exceeded');
    const pending=desired.get(actor.id);
    if(pending?.pending&&pending.tier===selected&&pending.actor.appearanceRevision===actor.appearanceRevision){
-    pending.actor=actor;
+    pending.actor=actor;pending.priority=priority;queue.reprioritize(actor.id,priority);
     if(old){old.actor=createRegionActor({...old.actor,transform:actor.transform,motion:actor.motion});writeTransform(old);}
     return pending.pending;
    }
-   const token={actor,tier:selected};desired.set(actor.id,token);
+   const token={actor,tier:selected,priority};
    if(old&&old.tier===selected&&old.actor.appearanceRevision===actor.appearanceRevision){
-    old.actor=actor;writeTransform(old);return {status:'applied',tier:selected,revision:actor.appearanceRevision};
+    queue.cancel(actor.id);desired.set(actor.id,token);old.actor=actor;writeTransform(old);return {status:'applied',tier:selected,revision:actor.appearanceRevision};
    }
-   const run=async()=>{
+   const run=async current=>{
     if(disposed||desired.get(actor.id)!==token)return {status:'superseded'};
-    let exact=null;
+    let exact=null,reuseLive=false;
     try{
      if(!actors.has(actor.id)&&actors.size>=capacity)throw RangeError('Region actor capacity exceeded');
-     if(selected==='exact')exact=await prepareExact(token.actor);
-     if(disposed||desired.get(actor.id)!==token){disposeResource(exact);return {status:'superseded'};}
+     if(selected==='exact'){
+      const active=[...actors.values()].filter(e=>e.exact).length;
+      if(!actors.get(actor.id)?.exact&&active>=limits.exact)throw RangeError('Active exact actor budget exceeded');
+      const existing=actors.get(actor.id)?.exact;
+      reuseLive=Boolean(existing&&!existing.retiring&&existing.key===variantFor(token.actor.recipe).entry.sha256);
+      if(reuseLive)exact=existing;else exact=await prepareExact(token.actor);
+     }
+     if(disposed||!current()||desired.get(actor.id)!==token){if(!reuseLive){if(disposed)disposeResource(exact);else releaseExact(exact);}return {status:'superseded'};}
      const previous=actors.get(actor.id),entry={actor:token.actor,tier:selected,exact,pools:[],ended:false};
-     if(exact)writeExactTransform(exact,token.actor);
+     // Validated same-fit shape/height is a synchronous native weight update,
+     // not a decoder or pipeline change. Apply only after the current check.
+     if(exact)applyExact(exact,token.actor);
      if(exact)exactPose(entry,now());
-     if(previous){removeVat(previous);disposeResource(previous.exact);}
+     if(previous){removeVat(previous);if(previous.exact!==exact)releaseExact(previous.exact);}
      actors.set(actor.id,entry);
      if(exact){for(const mesh of exact.meshes)setMeshVisible(mesh,true);}else addVat(entry);
-     update();return {status:'applied',tier:selected,revision:actor.appearanceRevision};
-    }catch(error){disposeResource(exact);if(disposed||desired.get(actor.id)!==token)return {status:'superseded'};const kept=actors.get(actor.id);if(kept)desired.set(actor.id,{actor:kept.actor,tier:kept.tier});else desired.delete(actor.id);throw error;}
+     if(reuseLive)stats.exactLiveUpdates++;update();return {status:'applied',tier:selected,revision:actor.appearanceRevision};
+    }catch(error){
+     if(!reuseLive)disposeResource(exact);
+     else {const previous=actors.get(actor.id);if(previous){applyExact(exact,previous.actor);exactPose(previous,now());}}
+     if(disposed||desired.get(actor.id)!==token)return {status:'superseded'};const kept=actors.get(actor.id);if(kept)desired.set(actor.id,{actor:kept.actor,tier:kept.tier,priority});else desired.delete(actor.id);throw error;
+    }
     finally{token.pending=null;}
    };
-   const result=chain.then(run);token.pending=result;chain=result.catch(()=>{});return result;
+   // Admission precedes desired-state mutation: a full queue leaves the old
+   // coherent actor and its already accepted request untouched.
+   const result=queue.submit(actor.id,priority,run);desired.set(actor.id,token);token.pending=result;return result;
   },
-  remove(id){const pending=desired.delete(id);for(const resource of owned)if(resource.actorId===id&&!resource.retiring)disposeResource(resource);const entry=actors.get(id);if(!entry)return pending;removeVat(entry);disposeResource(entry.exact);actors.delete(id);return true;},
+  remove(id){const pending=desired.delete(id);queue.cancel(id);const entry=actors.get(id);if(!entry)return pending;removeVat(entry);releaseExact(entry.exact);actors.delete(id);return true;},
   get(id){return actors.get(id)?.actor;},
   snapshot(){return {count:actors.size,clock:now(),actors:[...actors.values()].map(e=>({id:e.actor.id,revision:e.actor.appearanceRevision,tier:e.tier,shape:e.actor.recipe.shape,sample:sampleActorMotion(e.actor,now(),prepared.variants[variantFor(e.actor.recipe).name].clips)})),batches:[...pools.values()].map(p=>({mesh:p.mesh,ids:[...p.ids],slots:[...p.slots],primitives:p.meshes.length}))};},
+  streaming(){return {limits,queue:queue.snapshot(),immutable:regionAssetCacheSnapshot(),activeExact:[...actors.values()].filter(e=>e.exact).length,idleExact:idleExact.length,owned:owned.size,allocation:accountRegionResources(owned),stats:{...stats,preparations:[...stats.preparations]}};},
   resources(){return {sources,pools,actors,prepared,pendingBuilds:builds,owned};},
  };
 }

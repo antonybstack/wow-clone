@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "elapsedSeconds": 1813.187,
+  "cycles": 121,
+  "sameIdleAllocation": true,
+  "idleAllocation": {
+    "buffers": 298,
+    "textures": 111,
+    "bufferBytes": 9095664,
+    "textureBytes": 10335776,
+    "unknownTextureFormats": 0,
+    "knownCpuBytes": 9827888,
+    "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+  },
+  "peakAllocationMaxBufferBytes": 20741968,
+  "peakAllocationMaxTextureBytes": 21021440,
+  "heapFirstMiB": 90.01699829101562,
+  "heapLast10minMiB": [
+    53.18882369995117,
+    92.83575820922852
+  ],
+  "worstIntervalMs": 33,
+  "p95Ms": 10.099999904632568,
+  "p99Ms": 14.5,
+  "above33_33": 0,
+  "ownersAfter": 0,
+  "bytesAfter": 0,
+  "errors": []
+}
