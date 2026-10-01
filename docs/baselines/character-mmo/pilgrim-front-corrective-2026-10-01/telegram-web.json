@@ -1,0 +1,34 @@
+{
+  "messageId": 829,
+  "client": "Telegram Web A on Edge",
+  "inline": {
+    "source": [
+      1280,
+      720
+    ],
+    "display": [
+      464,
+      261
+    ],
+    "objectFit": "contain",
+    "reviewed": true
+  },
+  "expandedViewer": {
+    "source": [
+      1280,
+      720
+    ],
+    "display": [
+      1280,
+      720
+    ],
+    "objectFit": "contain",
+    "reviewed": true
+  },
+  "fullscreen": {
+    "verified": false,
+    "reason": "Native and DOM fullscreen controls did not enter document fullscreen"
+  },
+  "ownedTabClosed": true,
+  "userTabUntouched": true
+}

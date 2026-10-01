@@ -32,9 +32,10 @@ import {
     jointMatrices, jointMatricesFromNamed, poseNodes, skinPositions,
 } from './pose-skin.mjs';
 
-const BODY = '.cache/character-mmo/m004/human-shape-family-v1.glb';
-const FIT_DIR = '.cache/character-mmo/m005';
-const OUT = process.env.ASHEN_POSED_FIT_REPORT || 'docs/baselines/character-mmo/m007/posed-garment-fit.json';
+const BODY = process.env.ASHEN_POSED_FIT_BODY || '.cache/character-mmo/m004/human-shape-family-v1.glb';
+const FIT_DIR = process.env.ASHEN_POSED_FIT_DIR || '.cache/character-mmo/m005';
+// Revised metrics must not silently overwrite the original accepted M007 evidence.
+const OUT = process.env.ASHEN_POSED_FIT_REPORT || '.cache/character-mmo/wardrobe-fit/posed-garment-fit-v2.json';
 const SAMPLES = Number(process.env.ASHEN_POSE_SAMPLES || 5);
 const NEAR_M = 0.06;   // beyond this a body vertex is not in the garment's neighbourhood
 // A newly uncovered vertex this close to a garment's own edge is hem churn, not a defect.
@@ -61,13 +62,21 @@ const UNCLAIMED_JOINT = /Hand|Thumb|Index|Middle|Ring|Pinky|Head|Neck|Eye/;
 const TARGETS = ['slender', 'stout'];
 
 /** Outfits as the catalogue actually mixes them. */
-const OUTFITS = {
+let OUTFITS = {
     wayfarer: ['wayfarerTunic', 'wayfarerTrousers', 'wayfarerBoots'],
+    pilgrim: ['pilgrimTunic', 'wayfarerTrousers', 'wayfarerBoots'],
     graveweaver: ['graveweaverTop', 'graveweaverSkirt', 'graveweaverGloves'],
     // The mixed cases M007 cares about: a piece from each set on one body.
     'mixed-top-wayfarer': ['wayfarerTunic', 'graveweaverSkirt', 'wayfarerBoots'],
     'mixed-top-graveweaver': ['graveweaverTop', 'wayfarerTrousers', 'wayfarerBoots'],
 };
+if (process.env.ASHEN_POSED_OUTFITS) {
+    const selected = process.env.ASHEN_POSED_OUTFITS.split(',');
+    if (selected.some(id => !OUTFITS[id])) throw Error('Unknown posed outfit');
+    OUTFITS = Object.fromEntries(selected.map(id => [id, OUTFITS[id]]));
+}
+const TIMES = process.env.ASHEN_POSE_TIMES?.split(',').map(Number);
+if (TIMES?.some(t => !Number.isFinite(t) || t < 0)) throw Error('Invalid explicit pose time');
 /** Clips that actually spend the garment's margin. */
 const CLIPS = (process.env.ASHEN_POSE_CLIPS || [
     'Idle_Loop', 'Walk_Loop', 'Jog_Fwd_Loop', 'Sprint_Loop',
@@ -210,7 +219,7 @@ function exposedToCamera(posed, v, parts, bodyOccluder) {
                 const p0 = gi[t] * 3, p1 = gi[t + 1] * 3, p2 = gi[t + 2] * 3;
                 // Skip the triangles that use this very vertex, or the surface it sits on
                 // blocks its own ray immediately.
-                if (gi[t] === v || gi[t + 1] === v || gi[t + 2] === v) continue;
+                if (part === bodyOccluder && (gi[t] === v || gi[t + 1] === v || gi[t + 2] === v)) continue;
                 if (rayHitsTriangle(px, py, pz, dx, 0, dz, VIEW_REACH,
                     gp[p0], gp[p0 + 1], gp[p0 + 2], gp[p1], gp[p1 + 1], gp[p1 + 2], gp[p2], gp[p2 + 1], gp[p2 + 2])) blocked = true;
             }
@@ -285,8 +294,7 @@ for (const outfit of Object.keys(OUTFITS)) {
         const clip = clipName === '__bind__' ? null : root.listAnimations().find(a => a.getName() === clipName);
         if (!clip && clipName !== '__bind__') { console.warn(`skipping missing clip ${clipName}`); continue; }
         const duration = clip ? (animationDuration(clip) || 0) : 0;
-        for (let s = 0; s < SAMPLES; s++) {
-            const time = duration * (SAMPLES === 1 ? 0 : s / (SAMPLES - 1));
+        for (const time of TIMES || Array.from({length:SAMPLES}, (_, s) => duration * (SAMPLES === 1 ? 0 : s / (SAMPLES - 1)))) {
             const control = coverageAt('neutral', outfit, clipName, time);
             for (const shape of TARGETS) {
                 const result = coverageAt(shape, outfit, clipName, time);
@@ -345,9 +353,12 @@ if (heightRows) {
 }
 
 const report = {
+    metricRevision: 2,
+    metricChange: 'Pilgrim is included. Only body self-triangles skip matching body indices; unrelated garment indices no longer suppress occlusion.',
     generatedBy: 'scripts/character-assets/measure-posed-garment-fit.mjs',
     heightSweep: heightRows,
     body: BODY, garmentDir: FIT_DIR,
+    explicitTimes: TIMES || null,
     bindPoseResidualM: Number(residual.toExponential(3)),
     method: 'morph then linear blend skin; control is the neutral body in the same pose at the same instant',
     clips: CLIPS.filter(c => root.listAnimations().some(a => a.getName() === c)),
@@ -364,7 +375,7 @@ const report = {
         newlyUncoveredAwayFromHem: 'the same, excluding vertices within hemExclusionMetres of a garment edge',
         exposedToCamera: 'the headline: newly uncovered AND visible from at least one of viewDirections horizontal directions, with cloth and the body itself as occluders',
     },
-    samplesPerClip: SAMPLES,
+    samplesPerClip: TIMES ? TIMES.length : SAMPLES,
     outfits: OUTFITS,
     summary: Object.fromEntries(Object.entries(byOutfit).map(([k, v]) =>
         [k, {worstExposedToCamera: v.worst, at: v.worstClip, meanExposedToCamera: Number((v.total / v.samples).toFixed(2)),

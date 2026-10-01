@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "id": "pilgrim-front-skin-v1",
+  "item": "pilgrimTunic",
+  "revision": 1,
+  "race": "human",
+  "mesh": "PilgrimTunic",
+  "mask": "front-abdomen",
+  "body": "public/ashen-reach/equipment/body.glb",
+  "bodyMesh": "HumanV1Body",
+  "bodySha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+  "source": "blender/characters/wardrobe/sources/pilgrimTunic-before-corrective.glb",
+  "sourceSha256": "e8ee89fed1056a1b0d1434bf138c05e698cf0564ce531ad1c7a39de45f4ef691",
+  "acceptedNeutralCandidateSha256": "38bb09b5f7513825b50262afe1726f333a11edd1e27fa7aa6e5bd79e7ba77bfe",
+  "blenderVersion": "5.2.1",
+  "policy": "Native nearest-face interpolated weight transfer through a vertex-group mask at actual Hips/Spine/Spine1/Spine2 landmarks, with a smooth front-only fade. Preserve original weights outside the mask. Full and lower-torso transfer auditions were rejected for new rear breaches.",
+  "rights": "Existing published Pilgrim source fit, derived from vendored CC0 Donitz MakeHuman cloth with project trim. Its original source-compatible Mixamo palette and Tripo-body adaptation retain the documented project grant limitation; this descriptor does not relicense them. See docs/ashen-equipment-authoring.md and docs/plans/character-mmo/results/m001.md."
+}

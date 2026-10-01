@@ -11,3 +11,7 @@ Active after identity source checkpoint `0017307`. M5's new head-family fit rema
 7. Rebuild and verify optional assets/startup provenance, all relevant tests and builds. Run isolated 1280×720/seven-enemy 15-route measurements and fresh default/largest selected cold cohorts, separately from recording. Preserve first-use GPU tails. Recheck mobile depth fallback/WebKit, shadows, disposal and normal cathedral traversal. Commit/push the accepted milestone, then deploy with the established production gates. Public presence hosting, physical phone and real-user acceptance remain external pending gates, not claims inferred from local checks.
 
 Milestone 6 is complete only when all five designs and the factory/player-visible exits pass. An individual shoulder pilot or publishing contract is a checkpoint. M5 hair/headwear integration follows its actual source-family fit acceptance, before M8 hub acceptance.
+
+## Front-fit corrective checkpoint
+
+The [Human Pilgrim correction](results/pilgrim-front-corrective-2026-10-01.md) is reviewed and reproducible. Use the frozen source and native front-only mask, preserve hanging/back cloth weights, and independently compare geometry/bind before publishing. Full or wraparound weight transfer fails live review. The shape-relative metric does not establish absolute garment fit. Next: structural Lector cloth design, articulated Duskguard design, per-race compilation and remote preparation; five-design acceptance remains open.

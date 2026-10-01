@@ -40,12 +40,13 @@ const MODE = process.env.ASHEN_FIT_MODE === 'field' ? 'field' : 'track';
 const HEMS = process.env.ASHEN_HEMS !== '0';
 const OUT_DIR = process.env.ASHEN_GARMENT_OUT || (MODE === 'field' ? '.cache/character-mmo/m005-field' : '.cache/character-mmo/m005');
 const OUT_REPORT = process.env.ASHEN_GARMENT_REPORT
-    || (MODE === 'field' ? 'docs/baselines/character-mmo/m005/garment-shape-family-field.json'
+    || (process.env.ASHEN_GARMENT_SOURCE_DIR ? path.join(OUT_DIR,'report.json')
+        : MODE === 'field' ? 'docs/baselines/character-mmo/m005/garment-shape-family-field.json'
         : 'docs/baselines/character-mmo/m005/garment-shape-family.json');
 const TARGET_NAMES = ['slender', 'stout'];
 
 /** `rigid: true` means the piece keeps its shape and only moves. */
-const GARMENTS = [
+let GARMENTS = [
     {item: 'wayfarerTunic', file: 'public/ashen-reach/equipment/wayfarerTunic.glb', rigid: false},
     {item: 'wayfarerTrousers', file: 'public/ashen-reach/equipment/wayfarerTrousers.glb', rigid: false},
     {item: 'wayfarerBoots', file: 'public/ashen-reach/equipment/wayfarerBoots.glb', rigid: false},
@@ -59,6 +60,19 @@ const GARMENTS = [
     // deliberately not in public/ and not in the production catalogue.
     {item: 'wardenPauldrons', file: process.env.ASHEN_PRODUCTION_PLATE==='1' ? 'public/ashen-reach/equipment/wardenPauldrons.glb' : '.cache/character-mmo/m005/warden-pauldrons.glb', rigid: true, ...(process.env.ASHEN_PRODUCTION_PLATE==='1' ? {} : {out: '.cache/character-mmo/m005/warden-pauldrons-shaped.glb'})},
 ];
+// Bounded offline auditions reuse the exact production shape/hem pipeline. They
+// must select known items explicitly and write under .cache rather than replacing
+// canonical garments or publishing an unreviewed fit.
+if (process.env.ASHEN_GARMENT_SOURCE_DIR) {
+    const source = process.env.ASHEN_GARMENT_SOURCE_DIR;
+    const selected = (process.env.ASHEN_GARMENT_ITEMS || '').split(',').filter(Boolean);
+    const isolated = dir => { const relative = path.relative(path.resolve('.cache'), path.resolve(dir));
+        return relative && !relative.startsWith('..') && !path.isAbsolute(relative); };
+    if (!isolated(source) || !isolated(OUT_DIR) || !isolated(OUT_REPORT) || !selected.length
+        || selected.some(id => !GARMENTS.some(g => g.item === id))) throw Error('Invalid isolated garment audition');
+    GARMENTS = GARMENTS.filter(g => selected.includes(g.item)).map(g => ({...g,
+        file: path.join(source, `${g.item}.glb`), out: path.join(OUT_DIR, `${g.item}.glb`)}));
+}
 
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 

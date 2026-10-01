@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "item": "pilgrimTunic",
+  "mask": "front-abdomen",
+  "maskLandmarksM": {
+    "hips": 1.007189154624939,
+    "spine": 1.096564769744873,
+    "spine1": 1.1997007131576538,
+    "spine2": 1.3234260082244873,
+    "lowerFadeStart": 0.9625013470649719,
+    "upperFadeEnd": 1.2615633606910706,
+    "frontCenterGltfZ": -0.017191516235470772,
+    "frontFadeLengthM": 0.08,
+    "forwardAxis": "glTF +Z"
+  },
+  "influenceReduction": {
+    "maxDiscardedFraction": 0.050808677858502176,
+    "meanDiscardedFraction": 0.011348581635244985,
+    "verticesAboveOnePercent": 1042
+  },
+  "method": "Native Data Transfer / nearest-face interpolated vertex groups, then strongest four normalized",
+  "tool": "Blender 5.2.1 LTS",
+  "toolSources": [
+    {
+      "path": "scripts/character-assets/build-garment-skin-corrective.mjs",
+      "sha256": "506b0f9713b5e6882c940d7e44a057bf5a4c607cb83905f1a6a2d1ae8fcec5f0"
+    },
+    {
+      "path": "scripts/character-assets/transfer-garment-skin.py",
+      "sha256": "d266f04ffdb225addd1ce21c0b5815d1ceaab823195e3ce4ee4f04283a193e2a"
+    },
+    {
+      "path": "blender/characters/wardrobe/pilgrim-front-corrective.json",
+      "sha256": "82ec26d1ec64f3e7da5e71551c420c0b94dcc195fcecc9722392351108032b5d"
+    },
+    {
+      "path": "scripts/character-assets/prepare-pilgrim-front-corrective.mjs",
+      "sha256": "dc6fe60a1375383c83d048e4b6ba8acb6ef20fa69120bd744fed0368946e57e0"
+    }
+  ],
+  "source": {
+    "body": "public/ashen-reach/equipment/body.glb",
+    "bodySha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+    "garment": "blender/characters/wardrobe/sources/pilgrimTunic-before-corrective.glb",
+    "garmentSha256": "e8ee89fed1056a1b0d1434bf138c05e698cf0564ce531ad1c7a39de45f4ef691"
+  },
+  "candidate": {
+    "path": "public/ashen-reach/equipment/pilgrimTunic-3e3d45a4b03a.glb",
+    "sha256": "3e3d45a4b03a6207ec0fa9b4d46cec50596816960c5cf19dc7aa71ca70bbf445",
+    "bytes": 479428,
+    "neutralSemanticSha256": "38bb09b5f7513825b50262afe1726f333a11edd1e27fa7aa6e5bd79e7ba77bfe"
+  },
+  "vertices": 8960,
+  "changed": 2412,
+  "maxMatchDistanceM": 8.683682849605958e-7,
+  "preserved": "All original geometry, UV, material, topology, joint order and inverse bind; only JOINTS_0/WEIGHTS_0 replaced within the declared mask.",
+  "verification": {
+    "passed": true,
+    "vertices": 8960,
+    "untouchedVertexRows": 6548,
+    "maxWeightSumError": 1.2730015441775322e-7,
+    "geometryUvIndicesBindTransformsMaterialsTextures": "identical",
+    "sourceBodySha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+    "candidateSha256": "38bb09b5f7513825b50262afe1726f333a11edd1e27fa7aa6e5bd79e7ba77bfe"
+  },
+  "corrective": {
+    "id": "pilgrim-front-skin-v1",
+    "revision": 1
+  },
+  "rights": "Existing published Pilgrim source fit, derived from vendored CC0 Donitz MakeHuman cloth with project trim. Its original source-compatible Mixamo palette and Tripo-body adaptation retain the documented project grant limitation; this descriptor does not relicense them. See docs/ashen-equipment-authoring.md and docs/plans/character-mmo/results/m001.md.",
+  "authoringSeconds": 1.789605125
+}

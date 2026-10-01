@@ -85,9 +85,9 @@
       }
     },
     "pilgrimTunic": {
-      "url": "/ashen-reach/equipment/pilgrimTunic.glb",
-      "bytes": 479776,
-      "sha256": "e8ee89fed1056a1b0d1434bf138c05e698cf0564ce531ad1c7a39de45f4ef691",
+      "url": "/ashen-reach/equipment/pilgrimTunic-3e3d45a4b03a.glb",
+      "bytes": 479428,
+      "sha256": "3e3d45a4b03a6207ec0fa9b4d46cec50596816960c5cf19dc7aa71ca70bbf445",
       "meshes": [
         "PilgrimTunic"
       ],
@@ -96,6 +96,10 @@
         "rig": "source-65",
         "bind": 1,
         "shape": 1
+      },
+      "corrective": {
+        "id": "pilgrim-front-skin-v1",
+        "revision": 1
       }
     },
     "wayfarerTrousers": {
