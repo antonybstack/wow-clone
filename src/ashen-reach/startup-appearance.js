@@ -3,7 +3,7 @@
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#dynamic_module_loading
  */
 let savedAppearanceTask;
-export const DEFAULT_BOOT_GEAR=Object.freeze({helmet:null,torso:'wayfarerTunic',legs:'wayfarerTrousers',boots:'wayfarerBoots',gloves:null,mainHand:'ironSword',offHand:null});
+export const DEFAULT_BOOT_GEAR=Object.freeze({helmet:null,torso:'wayfarerTunic',legs:'wayfarerTrousers',boots:'wayfarerBoots',gloves:null,mainHand:'ironSword',offHand:null,shoulders:null});
 export function usesHumanShapeStarter(appearance) {
   return appearance?.race==='human' && (appearance.shape.build!==0 || appearance.shape.height!==1 || Object.entries(DEFAULT_BOOT_GEAR).some(([key,id])=>appearance.equipment[key]!==id));
 }

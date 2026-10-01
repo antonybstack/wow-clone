@@ -4,7 +4,7 @@
  * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/loader-gltf/gltf-animation.ts
  */
 import {mat4} from 'gl-matrix';
-export function normalizeHumanBind(root, base, meshName='HumanV1Body') {
+export function normalizeHumanBind(root, base, meshName='HumanV1Body', baseMeshName='HumanV1Body') {
 const skin = root.listSkins()[0], baseSkin = base.listSkins()[0];
 if (!skin || !baseSkin || skin.listJoints().length !== 65 || baseSkin.listJoints().length !== 65) {
     throw Error('Old/bald and active Human must share a 65-joint skin');
@@ -78,7 +78,7 @@ function restPalette(docRoot, meshName) {
         return Array.from(mat4.multiply(value, value, bind.subarray(i * 16, i * 16 + 16)));
     });
 }
-const basePalette = restPalette(base, 'HumanV1Body');
+const basePalette = restPalette(base, baseMeshName);
 const candidatePalette = restPalette(root, meshName);
 for (let joint = 0; joint < 65; joint++) {
     for (let k = 0; k < 16; k++) {

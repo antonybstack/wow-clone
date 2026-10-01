@@ -7,22 +7,26 @@ import fs from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
 import {chromium, webkit} from 'playwright';
 import {CDP_URL} from '../lib/cdp.mjs';
+import {browserOwnership} from '../lib/browser-ownership.mjs';
 
 const kind = process.argv.includes('--webkit') ? 'webkit' : 'chromium';
 const url = process.env.ASHEN_TEST_URL || 'http://127.0.0.1:5173/ashen-reach.html?play&clean';
 const injectDepthFailure = process.argv.includes('--inject-depth-bundle-failure');
 const disableDepthFallback = process.argv.includes('--disable-depth-fallback');
 assert(!disableDepthFallback || injectDepthFailure, 'disabling the fallback is only for the injected negative control');
-const dir = `ve-capture/ashen-reach/iphone-regression/${kind}${disableDepthFallback ? '-depth-rejected' : injectDepthFailure ? '-depth-fallback' : ''}-runtime`;
+const dir = process.env.ASHEN_CAPTURE_DIR || `ve-capture/ashen-reach/iphone-regression/${kind}${disableDepthFallback ? '-depth-rejected' : injectDepthFailure ? '-depth-fallback' : ''}-runtime`;
 await fs.mkdir(dir, {recursive: true});
 const beforePids=new Set(execFileSync('ps',['-axo','pid='],{encoding:'utf8'}).trim().split(/\s+/));
 const browser = kind === 'webkit' ? await webkit.launch({headless: true}) : await chromium.connectOverCDP(CDP_URL);
+if(kind==='chromium')assert(browser.contexts().flatMap(c=>c.pages()).every(p=>p.url()==='about:blank'),'Another owned game page is active');
 const context = await browser.newContext({viewport: {width: 430, height: 734}, deviceScaleFactor: 3, isMobile: true, hasTouch: true});
 const page = await context.newPage();
 const savedAppearance=process.env.ASHEN_PROBE_APPEARANCE?JSON.parse(await fs.readFile(process.env.ASHEN_PROBE_APPEARANCE,'utf8')):null;
 if(savedAppearance)await context.addInitScript(recipe=>localStorage.setItem('ashen.appearance.v2',JSON.stringify(recipe)),savedAppearance);
 const ownedProcesses=execFileSync('ps',['-axo','pid=,command='],{encoding:'utf8'}).split('\n').filter(line=>/MiniBrowser|Playwright|WebKit.*Process/.test(line)&&!beforePids.has(line.trim().split(/\s+/)[0])).map(line=>line.trim());
-await fs.writeFile(`${dir}/ownership.json`,JSON.stringify({owner:'root',controllerPid:process.pid,cdpUrl:kind==='chromium'?CDP_URL:null,ownedProcesses,url,purpose:`${kind} mobile customization runtime check`,active:true}));
+const ownership={owner:'root',controllerPid:process.pid,cdpUrl:kind==='chromium'?CDP_URL:null,ownedProcesses,url,purpose:`${kind} mobile customization runtime check`,active:true,renderingClients:1,
+ ...(kind==='chromium'?await browserOwnership(browser,{cdpPort:new URL(CDP_URL).port,url,purpose:'Chromium mobile customization runtime check',renderingClients:1}):{browserPid:Number(ownedProcesses.find(line=>line.includes('MiniBrowser'))?.split(/\s+/)[0])||null})};
+await fs.writeFile(`${dir}/ownership.json`,JSON.stringify(ownership));
 const errors = [], checks = [], frames = [], writes = [];
 const report = {kind, url, injectDepthFailure, disableDepthFallback, device: 'desktop engine with mobile viewport/touch emulation', errors, checks};
 page.on('pageerror', e => errors.push(e.message));
@@ -213,5 +217,5 @@ try {
   await fs.writeFile(`${dir}/report.json`, JSON.stringify(report, null, 2));
   console.log(JSON.stringify(report));
   await context.close(); await browser.close();
-  await fs.writeFile(`${dir}/ownership.json`,JSON.stringify({owner:'root',controllerPid:process.pid,url,active:false}));
+  await fs.writeFile(`${dir}/ownership.json`,JSON.stringify({...ownership,active:false,renderingClients:0}));
 }

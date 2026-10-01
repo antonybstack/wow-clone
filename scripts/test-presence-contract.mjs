@@ -23,6 +23,9 @@ test("shared appearance accepts only published fits and the reviewed body domain
     validatePresenceAppearance(appearanceFromEquipment({ race: "orc" })),
   );
   const unsupported = JSON.parse(JSON.stringify(presenceAppearance()));
+  unsupported.equipment.shoulders = "wardenPauldrons";
+  assert.throws(()=>validatePresenceAppearance(unsupported),/Wayfarer and Warden/);
+  unsupported.equipment.shoulders = null;
   unsupported.equipment.mainHand = null;
   assert.throws(
     () => validatePresenceAppearance(unsupported),

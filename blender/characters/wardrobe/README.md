@@ -1,0 +1,7 @@
+# Independent wardrobe source recipes
+
+The first factory item is `warden-pauldrons.json`, built by `scripts/character-assets/prepare-warden-pauldrons.mjs`. It targets the actual accepted Human/Orc/Undead source bodies and requires Blender 5.2.1. Its per-race neutral artifacts, Human morph artifact and material/corrective/tool hashes are recorded in `public/ashen-reach/warden-pauldrons-provenance.json` and the equipment/family manifests. See [checkpoint evidence](../../../docs/plans/character-mmo/results/wardrobe-shoulders-2026-10-01.md) and [remaining factory work](../../../docs/plans/character-mmo/wardrobe-factory-implementation.md).
+
+Only one item recipe is accepted at this checkpoint. Historical cloth builders use the frozen legacy item catalogue; these armor artifacts do not come from their MakeHuman cloth cache or combined preloaded pack. Run the independent compiler after any accepted body/bind revision, then Human-family/startup preparation and fit/lifecycle gates before publication. A changed source hash is a reviewable revision, not a reason to bypass its pin.
+
+Use native Blender modeling/modifiers, existing fit fields and exact source skin/animation tooling. Store new editable output in an isolated source/cache path, preserve unrelated interactive Blender scenes, and use `--python-exit-code 1`. Never advertise a race without its compiled fit or manufacture a whole-outfit permutation cache. Original body/rig source-grant limitations remain separate from project-authored armor.

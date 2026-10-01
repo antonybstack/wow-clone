@@ -1,7 +1,7 @@
 /** M007 semantic coverage and seams: the rules, exhaustively.
  *
  * The catalogue is small enough that "exhaustive" is literal -- every slot takes every item
- * it accepts or nothing, 768 loadouts -- so these tests enumerate rather than sample.
+ * it accepts or nothing, 1536 loadouts -- so these tests enumerate rather than sample.
  */
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -41,7 +41,8 @@ test('every catalogue coverage declaration maps to a known segment', () => {
         const segments = itemSegments(item);
         for (const segment of segments) assert.ok(BODY_SEGMENTS.includes(segment), `${item.id} -> ${segment}`);
         // A skinned garment that covers nothing would be a declaration someone forgot.
-        if (item.parts && !item.factory) assert.ok(segments.length > 0, `${item.id} covers nothing`);
+        if (item.parts && !item.factory && item.layer !== 'plate') assert.ok(segments.length > 0, `${item.id} covers nothing`);
+        if(item.layer==='plate')assert.deepEqual(segments,[], 'an open shoulder cap must not hide the entire upper arm');
     }
 });
 
@@ -57,7 +58,7 @@ test('the migrated proof outfits mean the same thing in both vocabularies', () =
         assert.deepEqual([...item.covers].sort(), legacy, `${item.id} declares a different meaning in each vocabulary`);
     }
     // Both proof outfits, every piece: Wayfarer tunic/trousers/boots and the four Graveweaver pieces.
-    assert.equal(migrated, 7);
+    assert.equal(migrated, 8);
 });
 
 test('the legacy region adapter is total over what the catalogue uses', () => {
@@ -95,7 +96,7 @@ test('two-handed occupancy agrees with the catalogue validator on every combinat
         assert.equal(accepted, !conflict, `${JSON.stringify(loadout)} accepted=${accepted} conflict=${conflict}`);
         checked++;
     }
-    assert.equal(checked, 768);
+    assert.equal(checked, 1536);
 });
 
 test('the Orc adapter retains shipped visibility for every valid loadout', () => {
@@ -229,7 +230,7 @@ test('every valid combination resolves on every race without throwing', () => {
             }
         }
     }
-    assert.equal(valid.length, 672);
+    assert.equal(valid.length, 1344);
     assert.equal(pairs.size, 24, 'cross-set pair coverage');
     assert.equal(triples.size, 34, 'three-way coverage');
 });

@@ -2,9 +2,11 @@
 import {NodeIO} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {prune} from '@gltf-transform/functions';
+// This historical cloth/combined-pack builder owns only the frozen original items.
+// Independent M6 armor is reproduced afterwards by prepare-warden-pauldrons.mjs.
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
-import {EQUIPMENT_ITEMS,BASE_VISIBLE_MESHES} from '../../src/ashen-reach/equipment-catalog.js';
+import {LEGACY_EQUIPMENT_ITEMS as EQUIPMENT_ITEMS,BASE_VISIBLE_MESHES} from '../../src/ashen-reach/equipment-catalog.js';
 import {HUMAN_EQUIPMENT_FIT} from '../../src/ashen-reach/equipment-contract.js';
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS);
 const source='public/ashen-reach/wanderer-equipment.glb';

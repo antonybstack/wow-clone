@@ -40,12 +40,13 @@ export const BODY_SEGMENTS = Object.freeze([
 ]);
 
 /** Boundaries where garments meet. A seam belongs to the pair of slots that share it. */
-export const SEAMS = Object.freeze(['neck', 'waist', 'wrist', 'ankle']);
+export const SEAMS = Object.freeze(['neck', 'waist', 'wrist', 'ankle', 'shoulder']);
 
 /** Which seams each slot can present. Two items abut when they share one. */
 export const SLOT_SEAMS = Object.freeze({
     helmet: Object.freeze(['neck']),
-    torso: Object.freeze(['neck', 'waist', 'wrist']),
+    torso: Object.freeze(['neck', 'waist', 'wrist', 'shoulder']),
+    shoulders: Object.freeze(['shoulder']),
     legs: Object.freeze(['waist', 'ankle']),
     boots: Object.freeze(['ankle']),
     gloves: Object.freeze(['wrist']),

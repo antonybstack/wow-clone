@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "id": "wardenPauldrons",
+  "revision": 1,
+  "slot": "shoulders",
+  "layer": "plate",
+  "occupies": [
+    "shoulders"
+  ],
+  "deformation": "rigid-bone",
+  "blenderVersion": "5.2.1",
+  "sourceRights": "Project-authored armor derived from existing body surfaces; existing Tripo/Mixamo Human/Orc/Undead source grant limitation remains. No new license asserted.",
+  "fits": {
+    "human": {
+      "directory": "equipment",
+      "bodyMesh": "HumanV1Body",
+      "source": "public/ashen-reach/equipment/body.glb",
+      "sha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+      "interface": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "orc": {
+      "directory": "equipment-orc",
+      "bodyMesh": "BodyExposed",
+      "source": "public/ashen-reach/equipment-orc/body.glb",
+      "sha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b",
+      "interface": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "undead": {
+      "directory": "equipment-undead",
+      "bodyMesh": "UndeadV1Body",
+      "source": "public/ashen-reach/equipment-undead/body.glb",
+      "sha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d",
+      "interface": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    }
+  },
+  "material": {
+    "revision": 1,
+    "model": "metallic-roughness",
+    "baseColor": [
+      0.32,
+      0.33,
+      0.36,
+      1
+    ],
+    "metallic": 0.9,
+    "roughness": 0.38
+  },
+  "detail": {
+    "revision": 1,
+    "full": "authored-shell",
+    "compact": "same-rigid-geometry",
+    "humanShapeFamily": "ashen-human-shape-v1"
+  },
+  "corrective": {
+    "revision": 1,
+    "source": "scripts/character-assets/build_warden_pauldrons.py",
+    "humanShape": "trackBodyRigid",
+    "orcUndead": "Native BMesh convex cap envelope; inward closure removed before Solidify."
+  }
+}

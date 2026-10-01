@@ -145,6 +145,8 @@ The [October 1 source checkpoint](results/identity-source-2026-10-01.md) preserv
 
 ## 6 — Equipment authoring factory and five contrasting outfits
 
+Status: independent shoulder-slot/factory checkpoint implemented and locally verified; [evidence and open fit defects](results/wardrobe-shoulders-2026-10-01.md). Full five-design and remote exits remain open. Follow the [granular execution plan](wardrobe-factory-implementation.md).
+
 Define the actual release slots/layers and semantic neck/waist/wrist/ankle interfaces. Turn the diagnostic rigid pauldron into a real item only with an actual slot/layer and compatibility policy. Produce **five distinct complete outfit designs in total**, counting current designs only where their declared required pieces really exist; include at least one soft cloth outfit and one articulated rigid armor outfit. Presets using the same pieces do not count as new sets.
 
 The core factory uses accepted milestone 1 bodies and milestone 3 ownership; adult age and long hair are not prerequisites. Integrate the milestone 5 headwear/hair cases once that source family passes, before milestone 8. If art is blocked, report factory acceptance separately from the still-pending headwear extension.

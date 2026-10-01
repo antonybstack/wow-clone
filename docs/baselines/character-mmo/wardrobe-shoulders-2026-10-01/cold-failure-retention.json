@@ -1,0 +1,7 @@
+{
+ "conditions":{"gpuProbe":false,"traceGpu":false,"disableShaderCache":false,"profile":"50mbps","savedAppearance":null,"expectedAppearance":null,"network":{"latency":40,"downloadThroughput":6250000,"uploadThroughput":1250000},"cpu":"Apple M1 Max","viewport":[1280,720],"cache":"Fresh browser process/profile each run; OS and GPU-driver caches uncontrolled","timing":"Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"},
+ "rows":[
+  {"run":1,"browserPid":"33818","failed":true,"failure":{"name":"Error","message":"page.goto: net::ERR_UNSAFE_PORT at http://127.0.0.1:1/?play=&pixelRatio=1\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:1/?play=&pixelRatio=1\", waiting until \"domcontentloaded\"\u001b[22m\n"},"requests":[{"url":"http://127.0.0.1:1/?play=&pixelRatio=1","start":1642290.163673,"chunks":[]}],"errors":["GPUAdapter is not defined"]},
+  {"run":2,"browserPid":"33861","failed":true,"failure":{"name":"Error","message":"page.goto: net::ERR_UNSAFE_PORT at http://127.0.0.1:1/?play=&pixelRatio=1\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:1/?play=&pixelRatio=1\", waiting until \"domcontentloaded\"\u001b[22m\n"},"requests":[{"url":"http://127.0.0.1:1/?play=&pixelRatio=1","start":1642290.76303,"chunks":[]}],"errors":[]}
+ ]
+}

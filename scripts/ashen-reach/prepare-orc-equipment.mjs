@@ -4,6 +4,8 @@ Catalogue clothes are limb-graded onto this topology (not MHCLO). Each streamed
 garment borrows the actor skin: joint order and inverse binds match body.glb.
 OrcV1Body is split into Human coverage names so boots/gloves can hide skin.
 */
+// This historical cloth/combined-pack builder owns only the frozen original items.
+// Independent M6 armor is reproduced afterwards by prepare-warden-pauldrons.mjs.
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import path from 'node:path';
@@ -11,7 +13,7 @@ import {mat3, vec3} from 'gl-matrix';
 import {NodeIO} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {mergeDocuments, prune, unpartition} from '@gltf-transform/functions';
-import {BODY_REGIONS, EQUIPMENT_ITEMS, ORC_BASE_VISIBLE_MESHES} from '../../src/ashen-reach/equipment-catalog.js';
+import {BODY_REGIONS, LEGACY_EQUIPMENT_ITEMS as EQUIPMENT_ITEMS, ORC_BASE_VISIBLE_MESHES} from '../../src/ashen-reach/equipment-catalog.js';
 import {ORC_EQUIPMENT_FIT} from '../../src/ashen-reach/equipment-contract.js';
 import {removeWhiteOrcColors} from '../character-assets/remove-white-orc-colors.mjs';
 import {addOrcGloveCuff} from './add-orc-glove-cuff.mjs';

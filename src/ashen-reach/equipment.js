@@ -1,11 +1,13 @@
 import {installEquipmentGrips,spellStowsWeapon} from './equipment-grips.js';
 import {advancePropTransition,beginPropTransition} from './prop-transition.js';
-import {validateEquipmentCatalogue,resolveHandEquip} from './equipment-contract.js';
+import {validateEquipmentCatalogue,validateEquipmentSelection,resolveHandEquip} from './equipment-contract.js';
 import {createMageProp} from './mage-props.js';
 import {createArmingSword} from './arming-sword.js';
 import {getContainerMeshes,setMeshVisible,setParent} from '@babylonjs/lite';
 
-import {EQUIPMENT_ITEMS,EQUIPMENT_PRESETS,EQUIPMENT_SLOTS,BASE_VISIBLE_MESHES,resolveEquipmentVisibility,validateLoadout} from './equipment-catalog.js';
+// The diagnostic preloaded pack predates independently streamed shoulders. It exposes
+// only its actual meshes; optional factory items belong to equipment-stream.js.
+import {LEGACY_EQUIPMENT_ITEMS as EQUIPMENT_ITEMS,LEGACY_EQUIPMENT_PRESETS as EQUIPMENT_PRESETS,EQUIPMENT_SLOTS,BASE_VISIBLE_MESHES,resolveEquipmentVisibility,validateLoadout} from './equipment-catalog.js';
 export {EQUIPMENT_ITEMS} from './equipment-catalog.js';
 /** Prepared small catalogue; selection never reloads the actor or its pose. */
 export function createEquipment(engine,scene,body,sockets){
@@ -32,12 +34,12 @@ export function createEquipment(engine,scene,body,sockets){
         else beginPropTransition(prop,from.position,from.rotation,target);
     };
     const weaponSockets=[sockets.sockets.mainHand,sockets.sockets.offHand,sockets.sockets.back];
-    let visible=true;const selected={helmet:null,torso:'wayfarerTunic',boots:'wayfarerBoots',legs:'wayfarerTrousers',gloves:null,mainHand:'ironSword',offHand:null};
+    let visible=true;const selected={shoulders:null,helmet:null,torso:'wayfarerTunic',boots:'wayfarerBoots',legs:'wayfarerTrousers',gloves:null,mainHand:'ironSword',offHand:null};
     const apply=()=>{
         for(const prop of props)setMeshVisible(prop.root,visible&&selected[prop.item.slot]===prop.item.id);
-        for(const [name,shown]of Object.entries(resolveEquipmentVisibility(selected)))for(const mesh of bindings[name])setMeshVisible(mesh,visible&&shown);
+        for(const [name,shown]of Object.entries(resolveEquipmentVisibility(selected,EQUIPMENT_ITEMS)))for(const mesh of bindings[name])setMeshVisible(mesh,visible&&shown);
     };
-    const setLoadout=patch=>{const next=resolveHandEquip(selected,patch,EQUIPMENT_ITEMS);validateLoadout(next);Object.assign(selected,next);apply();};
+    const setLoadout=patch=>{const next=resolveHandEquip(selected,patch,EQUIPMENT_ITEMS);validateEquipmentSelection(next,EQUIPMENT_ITEMS,EQUIPMENT_SLOTS);Object.assign(selected,next);apply();};
     apply();
     installEquipmentGrips(body,()=>selected);
     return {items:EQUIPMENT_ITEMS,presets:EQUIPMENT_PRESETS,setLoadout,

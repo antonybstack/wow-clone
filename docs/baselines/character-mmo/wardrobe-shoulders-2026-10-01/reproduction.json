@@ -1,0 +1,37 @@
+{
+  "before": [
+    {
+      "path": "public/ashen-reach/equipment/wardenPauldrons.glb",
+      "sha256": "30914318b15c23321dd9378f3043a69536473b00771d3e63fd0dde4c69d77e92",
+      "bytes": 33512
+    },
+    {
+      "path": "public/ashen-reach/equipment-orc/wardenPauldrons.glb",
+      "sha256": "0eeed07f0db49a6b74dd2042121c1bec2b7ccd9418a07d88df219e513e3f75b2",
+      "bytes": 31032
+    },
+    {
+      "path": "public/ashen-reach/equipment-undead/wardenPauldrons.glb",
+      "sha256": "48130ebf8564bcfda94a806e74fd998b8f03cdba8917b7bbf22f517054d3c961",
+      "bytes": 26888
+    }
+  ],
+  "after": [
+    {
+      "path": "public/ashen-reach/equipment/wardenPauldrons.glb",
+      "sha256": "30914318b15c23321dd9378f3043a69536473b00771d3e63fd0dde4c69d77e92",
+      "bytes": 33512
+    },
+    {
+      "path": "public/ashen-reach/equipment-orc/wardenPauldrons.glb",
+      "sha256": "0eeed07f0db49a6b74dd2042121c1bec2b7ccd9418a07d88df219e513e3f75b2",
+      "bytes": 31032
+    },
+    {
+      "path": "public/ashen-reach/equipment-undead/wardenPauldrons.glb",
+      "sha256": "48130ebf8564bcfda94a806e74fd998b8f03cdba8917b7bbf22f517054d3c961",
+      "bytes": 26888
+    }
+  ],
+  "identical": true
+}

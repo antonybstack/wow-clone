@@ -130,6 +130,20 @@
         "bind": 1,
         "shape": 1
       }
+    },
+    "wardenPauldrons": {
+      "url": "/ashen-reach/equipment-undead/wardenPauldrons-48130ebf8564.glb",
+      "bytes": 26888,
+      "sha256": "48130ebf8564bcfda94a806e74fd998b8f03cdba8917b7bbf22f517054d3c961",
+      "meshes": [
+        "WardenPauldrons"
+      ],
+      "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
     }
   }
 }

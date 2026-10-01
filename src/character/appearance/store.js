@@ -4,7 +4,7 @@
  */
 import {APPEARANCE_V1_REGISTRY,migrateAppearance,validateAppearance,assertFields,AppearanceError,HUMAN_BUILD_LIMIT} from './contract.js';
 import {appearanceFromEquipment} from './from-equipment.js';
-import {encodeAppearance,decodeAppearance} from './codec.js';
+import {encodeAppearance,decodeAppearance,decodeMigratingAppearance} from './codec.js';
 import {EQUIPMENT_PRESETS} from '../../ashen-reach/equipment-catalog.js';
 export const APPEARANCE_STORAGE_KEY='ashen.appearance.v2';
 export const APPEARANCE_RECOVERY_KEY='ashen.appearance.recovery';
@@ -30,8 +30,8 @@ export function loadAppearance({storage=appearanceStorage()}={}) {
     const text=storage?.getItem(APPEARANCE_STORAGE_KEY);
     if(text!==null && text!==undefined) {
       // Reuse bounded decoding. Migration also validates schema/catalogue and plain records.
-      const old=decodeAppearance(text); // v2 is the normal key; no ambiguous version guessing.
-      return {appearance:old,restored:true,migrated:false,warning:null};
+      const old=decodeMigratingAppearance(text);
+      return {appearance:old,restored:true,migrated:text!==encodeAppearance(old),warning:null};
     }
     const oldRecipe=storage?.getItem(LEGACY_APPEARANCE_KEY);
     if(oldRecipe!==null && oldRecipe!==undefined) {
@@ -51,7 +51,7 @@ export function saveAppearance(recipe,{storage=appearanceStorage()}={}) {
   if(!storage)return false;
   try {
     const old=storage.getItem(APPEARANCE_STORAGE_KEY);
-    if(old!==null)try{decodeAppearance(old);}catch{
+    if(old!==null)try{decodeMigratingAppearance(old);}catch{
       // Back up before overwriting a corrupt/unknown current record. If recovery cannot be
       // stored, retain it and keep this session playable without claiming persistence.
       storage.setItem(APPEARANCE_RECOVERY_KEY,old);

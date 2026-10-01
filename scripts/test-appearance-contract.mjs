@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
-import {EQUIPMENT_ITEMS,EQUIPMENT_PRESETS,EQUIPMENT_SLOTS} from '../src/ashen-reach/equipment-catalog.js';
+import {LEGACY_EQUIPMENT_ITEMS as EQUIPMENT_ITEMS,LEGACY_EQUIPMENT_PRESETS as EQUIPMENT_PRESETS,LEGACY_EQUIPMENT_SLOTS as EQUIPMENT_SLOTS} from '../src/ashen-reach/equipment-catalog.js';
 import {FITS_BY_RACE} from '../src/ashen-reach/equipment-contract.js';
 import {APPEARANCE_V1_REGISTRY as APPEARANCE_REGISTRY,AppearanceError,validateAppearance as validateCurrentAppearance} from '../src/character/appearance/contract.js';
 import {appearanceKey as currentKey,decodeAppearance as currentDecode,encodeAppearance as currentEncode} from '../src/character/appearance/codec.js';

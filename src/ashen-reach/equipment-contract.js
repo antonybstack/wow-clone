@@ -12,7 +12,7 @@ export const FITS_BY_RACE = Object.freeze({
     human: HUMAN_EQUIPMENT_FIT, orc: ORC_EQUIPMENT_FIT, undead: UNDEAD_EQUIPMENT_FIT,
 });
 export const EQUIPMENT_RACES = Object.freeze(Object.keys(FITS_BY_RACE));
-export const SEAM_NAMES = Object.freeze(['neck', 'waist', 'wrists', 'ankles']);
+export const SEAM_NAMES = Object.freeze(['neck', 'waist', 'wrists', 'ankles', 'shoulders']);
 const FIT_KEYS = ['body', 'rig', 'bind', 'shape'];
 const HANDS = ['mainHand', 'offHand'];
 const own = (object, key) => Object.hasOwn(object, key);

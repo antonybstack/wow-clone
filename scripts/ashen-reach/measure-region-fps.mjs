@@ -7,6 +7,7 @@ import { chromium } from "playwright";
 import fs from "node:fs/promises";
 import os from "node:os";
 import assert from "node:assert/strict";
+import {browserOwnership} from '../lib/browser-ownership.mjs';
 import { CDP_URL } from "../lib/cdp.mjs";
 import { summarizeDurations, detectVsyncCap } from "../../src/ashen-reach/metrics.js";
 import { summarizeFrameIntervals } from "../character-assets/summarize-frame-intervals.mjs";
@@ -35,8 +36,9 @@ const selected = new Set((process.env.ASHEN_FPS_ROUTES || routes.map(r => r[0]).
   .split(',').filter(Boolean));
 assert([...selected].every(name => routes.some(r => r[0] === name)), 'Unknown benchmark route');
 const recordCapped = process.env.ASHEN_RECORD_CAPPED === '1';
-const browser = await chromium.connectOverCDP(CDP_URL),
-  context = await browser.newContext({
+const browser = await chromium.connectOverCDP(CDP_URL);
+assert(browser.contexts().flatMap(c=>c.pages()).every(p=>p.url()==='about:blank'),'Another owned page is active; isolate before benchmarking');
+const context = await browser.newContext({
     viewport: { width: 1280, height: 720 },
     deviceScaleFactor: 1,
   }),
@@ -72,6 +74,8 @@ if (orcAssetsOverride) {
   await page.route('**/ashen-reach/equipment-orc/manifest.json', r => r.fulfill({status: 200, contentType: 'application/json', body: manifest}));
   await page.route('**/ashen-reach/equipment-orc/graveweaverGloves.glb', r => r.fulfill({status: 200, contentType: 'model/gltf-binary', body: glove}));
 }
+const ownership=await browserOwnership(browser,{cdpPort:process.env.ASHEN_CDP_PORT||9337,url:url.href,purpose:'Isolated actual-region FPS measurement without recording',renderingClients:1});
+await fs.writeFile(file+'.ownership.json',JSON.stringify(ownership,null,2));
 try {
   await page.goto(url.href);
   await page.waitForFunction(() => globalThis.ASHEN?.ready, null, {
@@ -90,6 +94,11 @@ try {
     }, outfit);
     assert.equal(applied.status, 'applied', `Outfit ${outfit} failed to equip`);
     assert.equal(await page.evaluate(() => ASHEN.equipment.getStatus().pending), false);
+  }
+  if(process.env.ASHEN_BENCH_SHOULDERS){
+    const result=await page.evaluate(id=>ASHEN.equipment.equip('shoulders',id),process.env.ASHEN_BENCH_SHOULDERS);
+    assert.equal(result.status,'applied');
+    report.conditions.shoulders=process.env.ASHEN_BENCH_SHOULDERS;
   }
   if(process.env.ASHEN_BENCH_BUILD||process.env.ASHEN_BENCH_HEIGHT){
     await page.evaluate(async shape=>{await ASHEN.creator.set('build',shape.build);await ASHEN.creator.set('height',shape.height);},{build:Number(process.env.ASHEN_BENCH_BUILD||0),height:Number(process.env.ASHEN_BENCH_HEIGHT||1)});
@@ -181,4 +190,5 @@ try {
   await fs.writeFile(file, JSON.stringify(report, null, 2));
   await context.close();
   await browser.close();
+  await fs.writeFile(file+'.ownership.json',JSON.stringify({...ownership,active:false,renderingClients:0},null,2));
 }

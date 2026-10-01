@@ -64,7 +64,9 @@ test('failed speculative manifest and asset requests can retry through the same 
 test('early appearance uses the real v1 and creator migrations and preserves query overrides',async()=>{
   const before=Object.getOwnPropertyDescriptor(globalThis,'localStorage');
   try {
-    const v1=appearanceFromEquipment({race:'human',loadout:DEFAULT_BOOT_GEAR},APPEARANCE_V1_REGISTRY);
+    const legacyGear=Object.fromEntries(APPEARANCE_V1_REGISTRY.slots.map(slot=>[slot,DEFAULT_BOOT_GEAR[slot]]));
+    const v1=appearanceFromEquipment({race:'human',loadout:legacyGear},APPEARANCE_V1_REGISTRY);
+    assert.throws(()=>appearanceFromEquipment({race:'human',loadout:DEFAULT_BOOT_GEAR},APPEARANCE_V1_REGISTRY),{code:'UNKNOWN_FIELD'});
     for(const [key,record] of [['ashen.appearance.v1',v1],['ashen.creator.v1',{schemaVersion:1,race:'human',controls:{height:1.15,build:{slender:0,stout:.95}}}]]) {
       Object.defineProperty(globalThis,'localStorage',{configurable:true,value:{getItem(name){return name===key?JSON.stringify(record):null;}}});
       const api=await import(`../src/ashen-reach/startup-appearance.js?${key}`),result=await api.loadStartupAppearance(new URLSearchParams());

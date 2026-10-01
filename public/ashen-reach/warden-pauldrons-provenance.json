@@ -1,0 +1,124 @@
+{
+  "descriptor": {
+    "path": "blender/characters/wardrobe/warden-pauldrons.json",
+    "sha256": "a349816a40278532ccc7adc916a65e4b6049ebfa46077bd7f83a653c37e902fb"
+  },
+  "schema": 1,
+  "item": "wardenPauldrons",
+  "slot": "shoulders",
+  "generatedBy": "scripts/character-assets/prepare-warden-pauldrons.mjs",
+  "toolSources": [
+    {
+      "path": "scripts/character-assets/prepare-warden-pauldrons.mjs",
+      "sha256": "fe2c458161fc84e845af25ddbfc895ea748eb19981e249a51ffb6cdd17384567"
+    },
+    {
+      "path": "scripts/character-assets/build_warden_pauldrons.py",
+      "sha256": "9bd9ccaa792a0180beb16fc95183897b0e2621e5d447dccc4ff64e87e509f60b"
+    },
+    {
+      "path": "scripts/character-assets/normalize-human-bind.mjs",
+      "sha256": "a889a5f0aa55c8a03c22b5f4a17d89641c1eb13b5fe23c10264c07851840cfe8"
+    }
+  ],
+  "sourceRights": "Project-authored armor derived from existing body surfaces; existing Tripo/Mixamo Human/Orc/Undead source grant limitation remains. No new license asserted.",
+  "material": {
+    "revision": 1,
+    "model": "metallic-roughness",
+    "baseColor": [
+      0.32,
+      0.33,
+      0.36,
+      1
+    ],
+    "metallic": 0.9,
+    "roughness": 0.38
+  },
+  "detail": {
+    "revision": 1,
+    "full": "authored-shell",
+    "compact": "same-rigid-geometry",
+    "humanShapeFamily": "ashen-human-shape-v1"
+  },
+  "corrective": {
+    "revision": 1,
+    "source": "scripts/character-assets/build_warden_pauldrons.py",
+    "humanShape": "trackBodyRigid",
+    "orcUndead": "Native BMesh convex cap envelope; inward closure removed before Solidify."
+  },
+  "tooling": {
+    "blender": "5.2.1",
+    "node": "22.18.0"
+  },
+  "authoring": {
+    "standoffM": 0.032,
+    "thicknessM": 0.01,
+    "capRadius": "0.46 × actual upper-arm rest length, clamped 0.115–0.20 m",
+    "deformation": "one full-weight upper-arm bone per plate"
+  },
+  "fits": [
+    {
+      "race": "human",
+      "interface": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "source": {
+        "path": "public/ashen-reach/equipment/body.glb",
+        "sha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0"
+      },
+      "artifact": {
+        "path": "public/ashen-reach/equipment/wardenPauldrons.glb",
+        "sha256": "30914318b15c23321dd9378f3043a69536473b00771d3e63fd0dde4c69d77e92",
+        "bytes": 33512
+      },
+      "vertices": 236,
+      "triangles": 464,
+      "rigidity": "Every vertex is weighted 1.0 to one accepted upper-arm bone."
+    },
+    {
+      "race": "orc",
+      "interface": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "source": {
+        "path": "public/ashen-reach/equipment-orc/body.glb",
+        "sha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b"
+      },
+      "artifact": {
+        "path": "public/ashen-reach/equipment-orc/wardenPauldrons.glb",
+        "sha256": "0eeed07f0db49a6b74dd2042121c1bec2b7ccd9418a07d88df219e513e3f75b2",
+        "bytes": 31032
+      },
+      "vertices": 198,
+      "triangles": 388,
+      "rigidity": "Every vertex is weighted 1.0 to one accepted upper-arm bone."
+    },
+    {
+      "race": "undead",
+      "interface": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "source": {
+        "path": "public/ashen-reach/equipment-undead/body.glb",
+        "sha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d"
+      },
+      "artifact": {
+        "path": "public/ashen-reach/equipment-undead/wardenPauldrons.glb",
+        "sha256": "48130ebf8564bcfda94a806e74fd998b8f03cdba8917b7bbf22f517054d3c961",
+        "bytes": 26888
+      },
+      "vertices": 140,
+      "triangles": 264,
+      "rigidity": "Every vertex is weighted 1.0 to one accepted upper-arm bone."
+    }
+  ]
+}

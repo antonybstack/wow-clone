@@ -137,6 +137,20 @@
         "bind": 1,
         "shape": 1
       }
+    },
+    "wardenPauldrons": {
+      "url": "/ashen-reach/equipment-orc/wardenPauldrons-0eeed07f0db4.glb",
+      "bytes": 31032,
+      "sha256": "0eeed07f0db49a6b74dd2042121c1bec2b7ccd9418a07d88df219e513e3f75b2",
+      "meshes": [
+        "WardenPauldrons"
+      ],
+      "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
     }
   },
   "bindSha256": "5bdfea1bf692a085205a24fe496c876874fba82aa62ee92597128fcf88ab2079"

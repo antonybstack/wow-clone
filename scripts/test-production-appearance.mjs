@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {appearanceFromEquipment} from '../src/character/appearance/from-equipment.js';
-import {APPEARANCE_V1_REGISTRY,validateAppearance,migrateAppearance,appearanceShapeWeights} from '../src/character/appearance/contract.js';
-import {encodeAppearance,decodeAppearance} from '../src/character/appearance/codec.js';
+import {APPEARANCE_V1_REGISTRY,APPEARANCE_V2_REGISTRY,validateAppearance,migrateAppearance,appearanceShapeWeights} from '../src/character/appearance/contract.js';
+import {encodeAppearance,decodeAppearance,decodeMigratingAppearance} from '../src/character/appearance/codec.js';
 import {APPEARANCE_STORAGE_KEY,APPEARANCE_RECOVERY_KEY,LEGACY_CREATOR_KEY,defaultAppearance,migrateLegacyCreator,loadAppearance,saveAppearance} from '../src/character/appearance/store.js';
 const store=()=>{const data=new Map();return {data,getItem:k=>data.get(k)??null,setItem:(k,v)=>data.set(k,v)};};
 const shaped=(b,h=1)=>{const a=defaultAppearance();return {...a,shape:{...a.shape,build:b,height:h}};};
@@ -22,7 +22,7 @@ test('shape family, numeric domain and neutral-only races are enforced',()=>{
 test('v1 appearance migrates explicitly; future version/catalogue cannot be guessed',()=>{
  for(const race of ['human','orc','undead']) {
   const old=appearanceFromEquipment({race,loadout:{}},APPEARANCE_V1_REGISTRY),next=migrateAppearance(old);
-  assert.equal(next.schemaVersion,2);assert.deepEqual(next.equipment,old.equipment);
+  assert.equal(next.schemaVersion,2);assert.deepEqual(next.equipment,{...old.equipment,shoulders:null});
   assert.throws(()=>migrateAppearance({...old,catalogVersion:'foreign'}));
   assert.throws(()=>migrateAppearance({...old,schemaVersion:99}));
  }
@@ -61,4 +61,26 @@ test('queued controls, undo and failure retain one committed appearance',async()
  await session.undo();assert.equal(actual.shape.height,1);assert.equal(session.canUndo,false);
  fail=true;await assert.rejects(session.set('build',.5));assert.equal(session.state.controls.build,0);assert.equal(actual.shape.build,0);
  assert.throws(()=>session.set('build','0.5'));assert.throws(()=>session.set('build',{slender:'0.5'}));
+});
+
+test('seven-slot v2 recipes migrate exactly, including endpoints and all races',()=>{
+ for(const race of ['human','orc','undead'])for(const build of [-.95,0,.95]) {
+  const legacy=appearanceFromEquipment({race,loadout:{torso:'graveweaverTop',mainHand:'graveweaverGreatstaff'}},APPEARANCE_V2_REGISTRY);
+  const old=race==='human'?validateAppearance({...legacy,shape:{...legacy.shape,height:build>0?1.15:.9,build}},APPEARANCE_V2_REGISTRY):legacy;
+  const text=encodeAppearance(old,APPEARANCE_V2_REGISTRY),s=store();s.setItem(APPEARANCE_STORAGE_KEY,text);
+  const loaded=loadAppearance({storage:s});assert.equal(loaded.restored,true);assert.equal(loaded.migrated,true);
+  assert.deepEqual(loaded.appearance.shape,old.shape);assert.deepEqual(loaded.appearance.equipment,{...old.equipment,shoulders:null});
+  assert.deepEqual(decodeMigratingAppearance(text),loaded.appearance);assert.equal(s.getItem(APPEARANCE_STORAGE_KEY),text);
+  assert.equal(saveAppearance(loaded.appearance,{storage:s}),true);assert.equal(s.getItem(APPEARANCE_RECOVERY_KEY),null);
+  assert.deepEqual(decodeAppearance(s.getItem(APPEARANCE_STORAGE_KEY)),loaded.appearance);
+ }
+});
+test('historical catalogues reject future items/slots and unknown catalogues remain recoverable',()=>{
+ const old=appearanceFromEquipment({race:'human',loadout:{}},APPEARANCE_V2_REGISTRY);
+ for(const patch of [{catalogVersion:'appearance-catalog-v99'},{equipment:{...old.equipment,shoulders:'wardenPauldrons'}},{equipment:{...old.equipment,helmet:'wardenPauldrons'}}]) {
+  const text=JSON.stringify({...old,...patch}),s=store();s.setItem(APPEARANCE_STORAGE_KEY,text);
+  assert.throws(()=>decodeMigratingAppearance(text));assert.equal(loadAppearance({storage:s}).restored,false);
+  assert.equal(s.getItem(APPEARANCE_STORAGE_KEY),text);assert.equal(saveAppearance(defaultAppearance(),{storage:s}),true);assert.equal(s.getItem(APPEARANCE_RECOVERY_KEY),text);
+ }
+ const current=defaultAppearance();assert.deepEqual(decodeAppearance(encodeAppearance({...current,equipment:{...current.equipment,shoulders:'wardenPauldrons'}})).equipment.shoulders,'wardenPauldrons');
 });

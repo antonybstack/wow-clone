@@ -1,6 +1,6 @@
 import {createArcRotateCamera, createPointLight, addToScene} from '@babylonjs/lite';
 import {setInputEnabled} from '../input.js';
-import {ORC_BODY_URL} from './equipment-catalog.js';
+import {ORC_BODY_URL,EQUIPMENT_SLOTS} from './equipment-catalog.js';
 import './armory.css';
 
 /** In-scene developer inspection. The renderer, actor and animation manager are shared. */
@@ -26,7 +26,7 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
         <label class="armory-field">Race<select data-race><option value="human">Human</option><option value="orc">Orc</option><option value="undead">Undead</option></select></label>
         <p class="armory-note" data-race-note>Human is available. Orc is the print-sculpt body on the 65-joint source bind, wearing the same catalogue. Undead streams its own pack on the ashen-undead fit.</p>
         <h2>Equipment</h2><p class="armory-note" data-equipment-status role="status" aria-live="polite"></p><div class="armory-presets">${Object.entries(equipment.presets).map(([id,preset])=>`<button data-outfit="${id}">${preset.name}</button>`).join('')}</div>
-        <div class="armory-slots">${[['helmet','Helmet','Unequipped'],['torso','Torso','Base appearance'],['legs','Legs','Charcoal trousers'],['boots','Boots','Base appearance'],['gloves','Gloves','Unequipped'],['mainHand','Main hand','Unequipped'],['offHand','Off-hand','Unequipped']].map(([slot,label,value])=>`<button data-slot="${slot}" disabled><span>${label}</span><strong>${value}</strong><small>Items coming next</small></button>`).join('')}</div>
+        <div class="armory-slots">${[['helmet','Helmet','Unequipped'],['torso','Torso','Base appearance'],['legs','Legs','Charcoal trousers'],['boots','Boots','Base appearance'],['gloves','Gloves','Unequipped'],['mainHand','Main hand','Unequipped'],['offHand','Off-hand','Unequipped'],['shoulders','Shoulders','Unequipped']].map(([slot,label,value])=>`<button data-slot="${slot}" disabled><span>${label}</span><strong>${value}</strong><small>Items coming next</small></button>`).join('')}</div>
         <p class="armory-note">Select a fitted item or unequip it. Your selection stays equipped in the churchyard.</p>
         <label class="armory-check"><input type="checkbox" data-light> Inspection fill light</label>
         <button class="armory-return" data-close>Return to the churchyard <kbd>Esc</kbd></button>
@@ -39,9 +39,9 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
       </footer>`;
     document.body.append(launcher,element);
     const stage=element.querySelector('.armory-stage'),motion=element.querySelector('[data-motion]'),slider=element.querySelector('[data-time-slider]'),pause=element.querySelector('[data-pause]'),timeLabel=element.querySelector('[data-time]');
-    for(const slot of ['helmet','torso','legs','boots','gloves','mainHand','offHand']){
+    for(const slot of EQUIPMENT_SLOTS){
         const old=element.querySelector(`[data-slot="${slot}"]`),field=document.createElement('label');field.className='armory-equip';
-        field.innerHTML=`<span>${{helmet:'Head',torso:'Torso',legs:'Legs',boots:'Boots',gloves:'Gloves',mainHand:'Main hand',offHand:'Off-hand'}[slot]}</span><select data-equipment="${slot}" aria-label="${slot} equipment"><option value="">Unequipped</option>${Object.values(equipment.items).filter(item=>item.slot===slot).map(item=>`<option value="${item.id}">${item.name}</option>`).join('')}</select>`;
+        field.innerHTML=`<span>${{helmet:'Head',torso:'Torso',legs:'Legs',boots:'Boots',gloves:'Gloves',mainHand:'Main hand',offHand:'Off-hand',shoulders:'Shoulders'}[slot]}</span><select data-equipment="${slot}" aria-label="${slot} equipment"><option value="">Unequipped</option>${Object.values(equipment.items).filter(item=>item.slot===slot).map(item=>`<option value="${item.id}">${item.name}</option>`).join('')}</select>`;
         old.replaceWith(field);const select=field.querySelector('select');select.value=equipment.getState()[slot]||'';select.onchange=()=>changeEquipment(()=>equipment.equip(slot,select.value||null));
     }
     for(const button of element.querySelectorAll('[data-outfit]'))button.onclick=()=>changeEquipment(()=>equipment.equipPreset(button.dataset.outfit),true);

@@ -1,0 +1,34 @@
+{
+  "archiveUrl": "https://files2.makehumancommunity.org/asset_packs/suits03/suits03_cc-by.zip",
+  "archiveSha256": "74ace28794d27186a3f3ee26058f16906fe3c46f9f7e35a9ac7f622cd5e821eb",
+  "page": "https://static.makehumancommunity.org/assets/assetpacks/suits03.html",
+  "pageLicense": "CC-BY",
+  "headerLicense": "AGPL3",
+  "decision": "Not imported into the project; conflicting source license labels and author repo currently 502. Reuse clearly licensed Donitz source or author the new garment instead.",
+  "files": [
+    {
+      "path": "clothes/maciekg_wizard_robe/mage_robe_normal.png",
+      "sha256": "767a350da0cf551c469bc207b7eceeb202c19a40f092ea02c130906c60d1cdbd"
+    },
+    {
+      "path": "clothes/maciekg_wizard_robe/mage_robe_diffuse.png",
+      "sha256": "00b9bba158b2cfe8765868bb44dd18d59cf77f7e0bcf3b4f2bcad972d86216d2"
+    },
+    {
+      "path": "clothes/maciekg_wizard_robe/maciekg_wizard_robe.thumb",
+      "sha256": "149e8293c3554a004d83232e6d89a713ea59ba9648571a66803c4dbc5d30e7c8"
+    },
+    {
+      "path": "clothes/maciekg_wizard_robe/mage_robe.mhmat",
+      "sha256": "4620e456b879ad3197f03f753a21404417f7938dd0c916759b46a136d8ac5997"
+    },
+    {
+      "path": "clothes/maciekg_wizard_robe/mage_robe.obj",
+      "sha256": "148f761fce6f7b220bdd2bb176d8aa5eb379b1ec2dbabfa5fa9db29c648f8ff1"
+    },
+    {
+      "path": "clothes/maciekg_wizard_robe/maciekg_wizard_robe.mhclo",
+      "sha256": "e499357182b601bda1f3482b5842beb81a0f121b334ea6ac2077380ab2d72d60"
+    }
+  ]
+}

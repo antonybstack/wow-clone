@@ -5,8 +5,8 @@
  * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/12-thin-instances.md
  */
 import {EQUIPMENT_ITEMS} from '../../ashen-reach/equipment-catalog.js';
-import {APPEARANCE_V1_REGISTRY,migrateAppearance,validateAppearance} from '../appearance/contract.js';
-import {decodeAppearance} from '../appearance/codec.js';
+import {validateAppearance} from '../appearance/contract.js';
+import {decodeMigratingAppearance} from '../appearance/codec.js';
 
 const PROPS=Object.freeze({ironSword:'ProbeIronSword',graveweaverGreatstaff:'ProbeGreatstaff'});
 const MAX_CROWD=1000;
@@ -23,11 +23,7 @@ export function actorPhaseSeconds(id) {
 /** M003 manifests predate appearance v2. Reuse strict bounded decoding and the
  * existing explicit migration; unknown versions or catalogues still fail. */
 export function decodePreparedCrowdAppearance(text) {
-  try{return decodeAppearance(text);}
-  catch(error) {
-    if(error.code!=='UNSUPPORTED_SCHEMA')throw error;
-    return migrateAppearance(decodeAppearance(text,APPEARANCE_V1_REGISTRY));
-  }
+  return decodeMigratingAppearance(text);
 }
 export function planCrowdBatches(actors,prepared) {
   if(!Array.isArray(actors)||actors.length<1||actors.length>MAX_CROWD) throw RangeError(`Crowd must contain 1–${MAX_CROWD} actors`);

@@ -26,6 +26,7 @@ export const ORC_BODY_URL='/ashen-reach/equipment-orc/body.glb?v=b055e29393ca';
  */
 export const UNDEAD_BASE_VISIBLE_MESHES=['UndeadV1Body','UndeadV1Eyes'];
 const authoredItems={
+    wardenPauldrons:{id:'wardenPauldrons',slot:'shoulders',name:'Warden steel pauldrons',parts:[{mesh:'WardenPauldrons'}],coverage:[],covers:[],layer:'plate',deformation:'rigid-bone'},
     graveweaverHood:{id:'graveweaverHood',slot:'helmet',name:'Graveweaver hood',parts:[{mesh:'GraveweaverHood'}],coverage:['HumanHair'],covers:['head.scalp']},
     graveweaverTop:{id:'graveweaverTop',slot:'torso',name:'Graveweaver mail vestment',parts:[{mesh:'GraveweaverTop'},{mesh:'GraveweaverPendant'}],coverage:['BodyUnderTunic','BodyWaist'],covers:['torso.upper','torso.lower','waist']},
     graveweaverSkirt:{id:'graveweaverSkirt',slot:'legs',name:'Graveweaver robe skirt',parts:[{mesh:'GraveweaverSkirt'},{mesh:'WayfarerTrousers'},{mesh:'WayfarerTrousersCuffs',hideWhenSlots:['boots']}],coverage:['BodyUnderLegs','BodyWaist'],covers:['leg.upper','leg.lower','waist']},
@@ -39,8 +40,10 @@ const authoredItems={
     wayfarerTrousers:{id:'wayfarerTrousers',slot:'legs',name:'Wayfarer trousers',parts:[{mesh:'WayfarerTrousers'},{mesh:'WayfarerTrousersCuffs',hideWhenSlots:['boots']}],coverage:['BodyUnderLegs','BodyWaist'],covers:['leg.upper','leg.lower','waist']},
     wayfarerBoots:{id:'wayfarerBoots',slot:'boots',name:'Wayfarer boots',parts:[{mesh:'WayfarerBoots'}],coverage:['BodyUnderBoots'],covers:['foot']},
 };
-const seamsBySlot={helmet:['neck'],torso:['neck','waist','wrists'],legs:['waist','ankles'],boots:['ankles'],gloves:['wrists'],mainHand:[],offHand:[]};
+const seamsBySlot={shoulders:['shoulders'],helmet:['neck'],torso:['neck','waist','wrists'],legs:['waist','ankles'],boots:['ankles'],gloves:['wrists'],mainHand:[],offHand:[]};
 export const EQUIPMENT_ITEMS=freezeEquipment(Object.fromEntries(Object.entries(authoredItems).map(([id,item])=>[id,{...item,fit:{...HUMAN_EQUIPMENT_FIT},fits:{human:{...HUMAN_EQUIPMENT_FIT},orc:{...ORC_EQUIPMENT_FIT},undead:{...UNDEAD_EQUIPMENT_FIT}},seams:seamsBySlot[item.slot],occupies:item.occupies||[item.slot]}])));
+const LEGACY_ITEM_IDS=['graveweaverHood','graveweaverTop','graveweaverSkirt','graveweaverGloves','graveweaverStaff','graveweaverGreatstaff','graveweaverBook','ironSword','wayfarerTunic','pilgrimTunic','wayfarerTrousers','wayfarerBoots'];
+export const LEGACY_EQUIPMENT_ITEMS=freezeEquipment(Object.fromEntries(LEGACY_ITEM_IDS.map(id=>[id,EQUIPMENT_ITEMS[id]])));
 /**
  * Socket-local hold for a race. Human values stay on the item; a race entry under `grips`
  * is an optional correction.
@@ -57,20 +60,23 @@ export function gripHold(item, race='human'){
     return {position:extra.position||hold.position,rotation:extra.rotation||hold.rotation,scale:extra.scale??hold.scale};
 }
 /** Union coverage once: an unequipped item must never reveal another item's mask. */
-export function resolveEquipmentVisibility(selected){
-    validateLoadout(selected);
+export function resolveEquipmentVisibility(selected,items=EQUIPMENT_ITEMS){
+    validateEquipmentSelection(selected,items,EQUIPMENT_SLOTS);
     const visibility=Object.fromEntries(BASE_VISIBLE_MESHES.map(name=>[name,true]));
-    for(const item of Object.values(EQUIPMENT_ITEMS))for(const part of item.parts||[])visibility[part.mesh]=false;
+    for(const item of Object.values(items))for(const part of item.parts||[])visibility[part.mesh]=false;
     for(const [slot,id]of Object.entries(selected)){
         if(id===null)continue;
-        const item=EQUIPMENT_ITEMS[id];if(!item||item.slot!==slot)throw Error('Item does not fit this slot');
+        const item=items[id];if(!item||item.slot!==slot)throw Error('Item does not fit this slot');
         for(const name of item.coverage||[])visibility[name]=false;
         for(const part of item.parts||[])visibility[part.mesh]=!(part.hideWhenSlots||[]).some(other=>selected[other]);
     }
     return visibility;
 }
 
-export const EQUIPMENT_SLOTS=['helmet','torso','legs','boots','gloves','mainHand','offHand'];
+// Catalogue v3 appends a genuine armor slot. Keep old recipe registries exact;
+// adding this field to saved equipment requires an explicit catalogue migration.
+export const LEGACY_EQUIPMENT_SLOTS=Object.freeze(['helmet','torso','legs','boots','gloves','mainHand','offHand']);
+export const EQUIPMENT_SLOTS=Object.freeze([...LEGACY_EQUIPMENT_SLOTS,'shoulders']);
 const outfit=items=>({...Object.fromEntries(EQUIPMENT_SLOTS.map(slot=>[slot,null])),...items});
 export const EQUIPMENT_PRESETS={
     wayfarer:{name:'Wayfarer',loadout:outfit({torso:'wayfarerTunic',legs:'wayfarerTrousers',boots:'wayfarerBoots',mainHand:'ironSword'})},
@@ -79,6 +85,7 @@ export const EQUIPMENT_PRESETS={
     warden:{name:'Warden',loadout:outfit({helmet:'graveweaverHood',torso:'graveweaverTop',legs:'graveweaverSkirt',boots:'wayfarerBoots',gloves:'graveweaverGloves',mainHand:'graveweaverGreatstaff',offHand:null})},
     revenant:{name:'Revenant',loadout:outfit({helmet:'graveweaverHood',torso:'graveweaverTop',legs:'graveweaverSkirt'})},
 };
+export const LEGACY_EQUIPMENT_PRESETS=freezeEquipment(Object.fromEntries(['wayfarer','pilgrim','graveweaver','warden','revenant'].map(id=>[id,EQUIPMENT_PRESETS[id]]).map(([id,preset])=>[id,{...preset,loadout:Object.fromEntries(LEGACY_EQUIPMENT_SLOTS.map(slot=>[slot,preset.loadout[slot]]))}])));
 export function validateLoadout(loadout){
     validateEquipmentSelection(loadout,EQUIPMENT_ITEMS,EQUIPMENT_SLOTS);
 }

@@ -3,11 +3,11 @@
  * See the current glTF skinning contract for why bind/shape identity is explicit:
  * https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#skins
  */
-import {EQUIPMENT_ITEMS, EQUIPMENT_SLOTS} from '../../ashen-reach/equipment-catalog.js';
+import {EQUIPMENT_ITEMS, EQUIPMENT_SLOTS,LEGACY_EQUIPMENT_SLOTS,LEGACY_EQUIPMENT_ITEMS} from '../../ashen-reach/equipment-catalog.js';
 import {declaredFitForRace, freezeEquipment, validateEquipmentSelection} from '../../ashen-reach/equipment-contract.js';
 
 export const APPEARANCE_SCHEMA_VERSION=2;
-export const APPEARANCE_CATALOG_VERSION='appearance-catalog-v2';
+export const APPEARANCE_CATALOG_VERSION='appearance-catalog-v3';
 export const MAX_APPEARANCE_BYTES=16*1024;
 const TOP_FIELDS=['schemaVersion','catalogVersion','race','fitFamily','fit','shape','components','dyes','equipment'];
 const FIT_FIELDS=['rig','bind','shape'];
@@ -21,7 +21,7 @@ const V1_PROFILES=Object.freeze(Object.fromEntries([
 })])));
 export const APPEARANCE_V1_REGISTRY=Object.freeze({
   schemaVersion:1, catalogVersion:'appearance-catalog-v1',
-  profiles:V1_PROFILES, items:EQUIPMENT_ITEMS, slots:EQUIPMENT_SLOTS,
+  profiles:V1_PROFILES, items:LEGACY_EQUIPMENT_ITEMS, slots:LEGACY_EQUIPMENT_SLOTS,
 });
 export const HUMAN_BUILD_LIMIT=0.95;
 export const PRODUCTION_HUMAN_FAMILY='ashen-human-shape-v1';
@@ -37,6 +37,10 @@ export const APPEARANCE_REGISTRY=Object.freeze({
   items:EQUIPMENT_ITEMS,
   slots:EQUIPMENT_SLOTS,
 });
+/** The persisted v2 catalogue has exactly seven slots. It cannot accept future
+ * item IDs or wider body domains merely because the current catalogue grows.
+ */
+export const APPEARANCE_V2_REGISTRY=Object.freeze({...APPEARANCE_REGISTRY,catalogVersion:'appearance-catalog-v2',items:LEGACY_EQUIPMENT_ITEMS,slots:LEGACY_EQUIPMENT_SLOTS});
 
 export class AppearanceError extends Error {
   constructor(code,path,message){super(`${message} at ${path}`);this.name='AppearanceError';this.code=code;this.path=path;}
@@ -128,10 +132,14 @@ export function validateAppearance(input,registry=APPEARANCE_REGISTRY) {
 /** Explicit migration; unknown versions/catalogues are never guessed or silently clamped. */
 export function migrateAppearance(input) {
   assertPlainRecord(input,'$');
-  if(input.schemaVersion===APPEARANCE_SCHEMA_VERSION) return validateAppearance(input);
+  if(input.schemaVersion===APPEARANCE_SCHEMA_VERSION && input.catalogVersion===APPEARANCE_CATALOG_VERSION) return validateAppearance(input);
+  if(input.schemaVersion===2 && input.catalogVersion===APPEARANCE_V2_REGISTRY.catalogVersion){
+    const old=validateAppearance(input,APPEARANCE_V2_REGISTRY);
+    return validateAppearance({...old,catalogVersion:APPEARANCE_CATALOG_VERSION,equipment:{...old.equipment,shoulders:null}});
+  }
   const old=validateAppearance(input,APPEARANCE_V1_REGISTRY);
   return validateAppearance({...old,schemaVersion:APPEARANCE_SCHEMA_VERSION,
-    catalogVersion:APPEARANCE_CATALOG_VERSION,shape:neutralAppearanceShape(old.race)});
+    catalogVersion:APPEARANCE_CATALOG_VERSION,shape:neutralAppearanceShape(old.race),equipment:{...old.equipment,shoulders:null}});
 }
 /** glTF targets are additive; production uses exactly one signed axis, not two competing deltas.
  * https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#morph-targets

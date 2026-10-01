@@ -1,0 +1,2045 @@
+{
+  "timeline": [
+    {
+      "label": "human wayfarer build -0.95 height 0.9: front/side/back and native source run/jump/land/Fire Blast/Lava Ball diagnostic playback",
+      "timestamp": 1790866633.325,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": -0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerTunic",
+            "wayfarerTrousers",
+            "wayfarerBoots",
+            "ironSword",
+            "wardenPauldrons"
+          ],
+          "desired": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "human wayfarer: normal Havok run, turn and jump",
+      "timestamp": 1790866634.925,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": -0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerTunic",
+            "wayfarerTrousers",
+            "wayfarerBoots",
+            "ironSword",
+            "wardenPauldrons"
+          ],
+          "desired": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "human pilgrim build -0.95 height 0.9: front/side/back and native source run/jump/land/Fire Blast/Lava Ball diagnostic playback",
+      "timestamp": 1790866640.173,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": -0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerTrousers",
+            "wayfarerBoots",
+            "ironSword",
+            "wardenPauldrons",
+            "pilgrimTunic"
+          ],
+          "desired": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "human pilgrim: normal Havok run, turn and jump",
+      "timestamp": 1790866641.806,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": -0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerTrousers",
+            "wayfarerBoots",
+            "ironSword",
+            "wardenPauldrons",
+            "pilgrimTunic"
+          ],
+          "desired": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "human graveweaver build -0.95 height 0.9: front/side/back and native source run/jump/land/Fire Blast/Lava Ball diagnostic playback",
+      "timestamp": 1790866647.147,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": -0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerBoots",
+            "wardenPauldrons",
+            "pilgrimTunic",
+            "graveweaverHood",
+            "graveweaverTop",
+            "graveweaverSkirt",
+            "graveweaverGloves",
+            "graveweaverStaff",
+            "graveweaverBook"
+          ],
+          "desired": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "human graveweaver: normal Havok run, turn and jump",
+      "timestamp": 1790866648.736,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": -0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerBoots",
+            "wardenPauldrons",
+            "pilgrimTunic",
+            "graveweaverHood",
+            "graveweaverTop",
+            "graveweaverSkirt",
+            "graveweaverGloves",
+            "graveweaverStaff",
+            "graveweaverBook"
+          ],
+          "desired": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "human wayfarer build 0.95 height 1.15: front/side/back and native source run/jump/land/Fire Blast/Lava Ball diagnostic playback",
+      "timestamp": 1790866654.123,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerBoots",
+            "graveweaverStaff",
+            "graveweaverBook",
+            "wayfarerTunic",
+            "wayfarerTrousers",
+            "ironSword",
+            "wardenPauldrons"
+          ],
+          "desired": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "human wayfarer: normal Havok run, turn and jump",
+      "timestamp": 1790866655.726,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerBoots",
+            "graveweaverStaff",
+            "graveweaverBook",
+            "wayfarerTunic",
+            "wayfarerTrousers",
+            "ironSword",
+            "wardenPauldrons"
+          ],
+          "desired": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "human pilgrim build 0.95 height 1.15: front/side/back and native source run/jump/land/Fire Blast/Lava Ball diagnostic playback",
+      "timestamp": 1790866661.093,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerBoots",
+            "wayfarerTrousers",
+            "ironSword",
+            "wardenPauldrons",
+            "pilgrimTunic"
+          ],
+          "desired": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "human pilgrim: normal Havok run, turn and jump",
+      "timestamp": 1790866662.689,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerBoots",
+            "wayfarerTrousers",
+            "ironSword",
+            "wardenPauldrons",
+            "pilgrimTunic"
+          ],
+          "desired": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "human graveweaver build 0.95 height 1.15: front/side/back and native source run/jump/land/Fire Blast/Lava Ball diagnostic playback",
+      "timestamp": 1790866668.092,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerBoots",
+            "wardenPauldrons",
+            "pilgrimTunic",
+            "graveweaverHood",
+            "graveweaverTop",
+            "graveweaverSkirt",
+            "graveweaverGloves",
+            "graveweaverStaff",
+            "graveweaverBook"
+          ],
+          "desired": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "human graveweaver: normal Havok run, turn and jump",
+      "timestamp": 1790866669.675,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerBoots",
+            "wardenPauldrons",
+            "pilgrimTunic",
+            "graveweaverHood",
+            "graveweaverTop",
+            "graveweaverSkirt",
+            "graveweaverGloves",
+            "graveweaverStaff",
+            "graveweaverBook"
+          ],
+          "desired": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "orc wayfarer build 0 height 1: front/side/back and native source run/jump/land/Fire Blast/Lava Ball diagnostic playback",
+      "timestamp": 1790866675.096,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "orc",
+          "fitFamily": "ashen-orc",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerBoots",
+            "graveweaverBook",
+            "wardenPauldrons",
+            "wayfarerTunic",
+            "wayfarerTrousers",
+            "ironSword"
+          ],
+          "desired": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "orc wayfarer: normal Havok run, turn and jump",
+      "timestamp": 1790866676.681,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "orc",
+          "fitFamily": "ashen-orc",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerBoots",
+            "graveweaverBook",
+            "wardenPauldrons",
+            "wayfarerTunic",
+            "wayfarerTrousers",
+            "ironSword"
+          ],
+          "desired": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "orc pilgrim build 0 height 1: front/side/back and native source run/jump/land/Fire Blast/Lava Ball diagnostic playback",
+      "timestamp": 1790866682.008,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "orc",
+          "fitFamily": "ashen-orc",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerBoots",
+            "wayfarerTunic",
+            "wayfarerTrousers",
+            "ironSword",
+            "pilgrimTunic",
+            "wardenPauldrons"
+          ],
+          "desired": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "orc pilgrim: normal Havok run, turn and jump",
+      "timestamp": 1790866683.598,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "orc",
+          "fitFamily": "ashen-orc",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerBoots",
+            "wayfarerTunic",
+            "wayfarerTrousers",
+            "ironSword",
+            "pilgrimTunic",
+            "wardenPauldrons"
+          ],
+          "desired": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "orc graveweaver build 0 height 1: front/side/back and native source run/jump/land/Fire Blast/Lava Ball diagnostic playback",
+      "timestamp": 1790866688.869,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "orc",
+          "fitFamily": "ashen-orc",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerBoots",
+            "pilgrimTunic",
+            "wardenPauldrons",
+            "graveweaverHood",
+            "graveweaverTop",
+            "graveweaverSkirt",
+            "graveweaverGloves",
+            "graveweaverStaff",
+            "graveweaverBook"
+          ],
+          "desired": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "orc graveweaver: normal Havok run, turn and jump",
+      "timestamp": 1790866690.443,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "orc",
+          "fitFamily": "ashen-orc",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerBoots",
+            "pilgrimTunic",
+            "wardenPauldrons",
+            "graveweaverHood",
+            "graveweaverTop",
+            "graveweaverSkirt",
+            "graveweaverGloves",
+            "graveweaverStaff",
+            "graveweaverBook"
+          ],
+          "desired": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "undead wayfarer build 0 height 1: front/side/back and native source run/jump/land/Fire Blast/Lava Ball diagnostic playback",
+      "timestamp": 1790866695.819,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "undead",
+          "fitFamily": "ashen-undead",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "graveweaverStaff",
+            "graveweaverBook",
+            "wayfarerTunic",
+            "wayfarerTrousers",
+            "wayfarerBoots",
+            "ironSword",
+            "wardenPauldrons"
+          ],
+          "desired": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "undead wayfarer: normal Havok run, turn and jump",
+      "timestamp": 1790866697.411,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "undead",
+          "fitFamily": "ashen-undead",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "graveweaverStaff",
+            "graveweaverBook",
+            "wayfarerTunic",
+            "wayfarerTrousers",
+            "wayfarerBoots",
+            "ironSword",
+            "wardenPauldrons"
+          ],
+          "desired": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "undead pilgrim build 0 height 1: front/side/back and native source run/jump/land/Fire Blast/Lava Ball diagnostic playback",
+      "timestamp": 1790866702.608,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "undead",
+          "fitFamily": "ashen-undead",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerTrousers",
+            "wayfarerBoots",
+            "ironSword",
+            "wardenPauldrons",
+            "pilgrimTunic"
+          ],
+          "desired": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "undead pilgrim: normal Havok run, turn and jump",
+      "timestamp": 1790866704.208,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "undead",
+          "fitFamily": "ashen-undead",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerTrousers",
+            "wayfarerBoots",
+            "ironSword",
+            "wardenPauldrons",
+            "pilgrimTunic"
+          ],
+          "desired": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "undead graveweaver build 0 height 1: front/side/back and native source run/jump/land/Fire Blast/Lava Ball diagnostic playback",
+      "timestamp": 1790866709.483,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "undead",
+          "fitFamily": "ashen-undead",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerBoots",
+            "wardenPauldrons",
+            "pilgrimTunic",
+            "graveweaverHood",
+            "graveweaverTop",
+            "graveweaverSkirt",
+            "graveweaverGloves",
+            "graveweaverStaff",
+            "graveweaverBook"
+          ],
+          "desired": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "undead graveweaver: normal Havok run, turn and jump",
+      "timestamp": 1790866711.071,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "undead",
+          "fitFamily": "ashen-undead",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "wayfarerBoots",
+            "wardenPauldrons",
+            "pilgrimTunic",
+            "graveweaverHood",
+            "graveweaverTop",
+            "graveweaverSkirt",
+            "graveweaverGloves",
+            "graveweaverStaff",
+            "graveweaverBook"
+          ],
+          "desired": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "Saved shoulders restored after compact startup and full refinement",
+      "timestamp": 1790866722.289,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "graveweaverHood",
+            "graveweaverTop",
+            "graveweaverSkirt",
+            "wayfarerBoots",
+            "graveweaverGloves",
+            "graveweaverStaff",
+            "graveweaverBook",
+            "wardenPauldrons"
+          ],
+          "desired": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "Missing shoulder asset retains prior committed appearance",
+      "timestamp": 1790866733.192,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          }
+        },
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        },
+        "status": {
+          "pending": false,
+          "error": "/ashen-reach/human-shape-v1/wardenPauldrons-3daf20061e0e.bin: HTTP 503",
+          "cached": [
+            "graveweaverHood",
+            "graveweaverTop",
+            "graveweaverSkirt",
+            "wayfarerBoots",
+            "graveweaverGloves",
+            "graveweaverStaff",
+            "graveweaverBook"
+          ],
+          "desired": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": []
+      }
+    },
+    {
+      "label": "Rapid shoulder changes settle on final identity",
+      "timestamp": 1790866733.269,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "status": {
+          "pending": false,
+          "error": null,
+          "cached": [
+            "graveweaverHood",
+            "graveweaverTop",
+            "graveweaverSkirt",
+            "wayfarerBoots",
+            "graveweaverGloves",
+            "graveweaverStaff",
+            "graveweaverBook",
+            "wardenPauldrons"
+          ],
+          "desired": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "plates": [
+          {
+            "visible": true,
+            "bones": 65,
+            "morph": true
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "expectedHttpErrors": [
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+  ],
+  "defaultOptionalRequests": 0,
+  "failedRequests": 1,
+  "rapidResults": [
+    {
+      "status": "applied"
+    },
+    {
+      "status": "applied"
+    },
+    {
+      "status": "applied"
+    }
+  ],
+  "passed": true
+}

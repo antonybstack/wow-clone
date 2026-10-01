@@ -4,15 +4,24 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {chromium} from 'playwright';
+import {browserOwnership} from '../lib/browser-ownership.mjs';
+import {migrateAppearance} from '../../src/character/appearance/contract.js';
 const port=process.env.ASHEN_CDP_PORT,url=process.env.ASHEN_TEST_URL,out=process.argv[2];
 assert(port&&url&&out,'Require an audited owned browser, release URL and report');
-const browser=await chromium.connectOverCDP(`http://127.0.0.1:${port}`),context=await browser.newContext({viewport:{width:1280,height:720},deviceScaleFactor:1}),page=await context.newPage();
+const browser=await chromium.connectOverCDP(`http://127.0.0.1:${port}`);
+assert(browser.contexts().flatMap(c=>c.pages()).every(p=>p.url()==='about:blank'),'Another owned game page is active');
+const context=await browser.newContext({viewport:{width:1280,height:720},deviceScaleFactor:1}),page=await context.newPage();
+const saved=process.env.ASHEN_PROBE_APPEARANCE?JSON.parse(await fs.readFile(process.env.ASHEN_PROBE_APPEARANCE,'utf8')):null;
+if(saved)await context.addInitScript(recipe=>localStorage.setItem('ashen.appearance.v2',JSON.stringify(recipe)),saved);
+const ownership=await browserOwnership(browser,{cdpPort:port,url,purpose:'Normal cathedral traversal at supported body endpoints',renderingClients:1});
+await fs.writeFile(out+'.ownership.json',JSON.stringify(ownership));
 const report={url,routes:[],errors:[]};page.on('pageerror',e=>report.errors.push(e.message));
 page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text());});
 const state=()=>page.evaluate(()=>({x:ASHEN.player.body.position.x,y:ASHEN.player.body.position.y,z:ASHEN.player.body.position.z,physics:ASHEN.player.getDebugState().usingPhysics,recoveries:ASHEN.player.getDebugState().recoveries,gpuErrors:ASHEN.gpu.errors.slice()}));
 async function travel(key,ms){await page.keyboard.down(key);try{await page.waitForTimeout(ms);}finally{await page.keyboard.up(key);}}
 try {
  await page.goto(url);await page.waitForFunction(()=>globalThis.ASHEN?.ready,null,{timeout:90000});
+ if(saved){report.appearance=await page.evaluate(()=>ASHEN.getAppearance());assert.deepEqual(report.appearance,migrateAppearance(saved));}
  await page.evaluate(()=>{ASHEN.dev.god=true;ASHEN.setView('play');});
  const before=await state();await travel('KeyW',1200);const after=await state();assert(Math.hypot(after.x-before.x,after.z-before.z)>3);
  report.routes.push({case:'spawn-movement',before,after});
@@ -25,4 +34,4 @@ try {
   report.routes.push({case:'cathedral-entry-return',build,height,start,inside,returned});
  }
  assert.deepEqual(report.errors,[]);report.passed=true;
-}finally{for(const key of ['KeyW','KeyS'])await page.keyboard.up(key).catch(()=>{});await fs.writeFile(out,JSON.stringify(report,null,2));await context.close();await browser.close();}
+}finally{for(const key of ['KeyW','KeyS'])await page.keyboard.up(key).catch(()=>{});await fs.writeFile(out,JSON.stringify(report,null,2));await context.close();await browser.close();await fs.writeFile(out+'.ownership.json',JSON.stringify({...ownership,active:false,renderingClients:0}));}

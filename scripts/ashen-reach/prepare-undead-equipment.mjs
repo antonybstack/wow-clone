@@ -10,6 +10,8 @@ https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#skins
 
 Usage: node scripts/ashen-reach/prepare-undead-equipment.mjs
 */
+// This historical cloth/combined-pack builder owns only the frozen original items.
+// Independent M6 armor is reproduced afterwards by prepare-warden-pauldrons.mjs.
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {mat3, vec3} from 'gl-matrix';
@@ -17,7 +19,7 @@ import {NodeIO} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {mergeDocuments, prune, unpartition} from '@gltf-transform/functions';
 import {MeshoptDecoder, MeshoptEncoder} from 'meshoptimizer';
-import {EQUIPMENT_ITEMS, UNDEAD_BASE_VISIBLE_MESHES} from '../../src/ashen-reach/equipment-catalog.js';
+import {LEGACY_EQUIPMENT_ITEMS as EQUIPMENT_ITEMS, UNDEAD_BASE_VISIBLE_MESHES} from '../../src/ashen-reach/equipment-catalog.js';
 import {UNDEAD_EQUIPMENT_FIT} from '../../src/ashen-reach/equipment-contract.js';
 
 const SRC = 'public/characters/candidates/undead-source-v1.glb';

@@ -27,6 +27,7 @@ export const PRESENCE_FITS = Object.freeze({
     gloves: null,
     mainHand: "ironSword",
     offHand: null,
+    shoulders: null,
   }),
   warden: Object.freeze({
     helmet: "graveweaverHood",
@@ -36,6 +37,7 @@ export const PRESENCE_FITS = Object.freeze({
     gloves: "graveweaverGloves",
     mainHand: "graveweaverGreatstaff",
     offHand: null,
+    shoulders: null,
   }),
 });
 export function presenceAppearance(fit = "wayfarer", height = 1, build = 0) {

@@ -126,6 +126,20 @@
         "bind": 1,
         "shape": 1
       }
+    },
+    "wardenPauldrons": {
+      "url": "/ashen-reach/equipment/wardenPauldrons-30914318b15c.glb",
+      "bytes": 33512,
+      "sha256": "30914318b15c23321dd9378f3043a69536473b00771d3e63fd0dde4c69d77e92",
+      "meshes": [
+        "WardenPauldrons"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
     }
   },
   "bindSha256": "96bc48fe1c85ecfa78f169cbc0a637a71a8fcb1a8812f4a41b015a621b5522af",

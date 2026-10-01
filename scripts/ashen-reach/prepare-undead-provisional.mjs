@@ -28,7 +28,8 @@ import {createHash} from 'node:crypto';
 import {NodeIO} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {prune, unpartition} from '@gltf-transform/functions';
-import {BODY_REGIONS, EQUIPMENT_ITEMS, UNDEAD_BASE_VISIBLE_MESHES} from '../../src/ashen-reach/equipment-catalog.js';
+// This retired diagnostic owns the historical cloth pack, not new independent armor.
+import {BODY_REGIONS, LEGACY_EQUIPMENT_ITEMS as EQUIPMENT_ITEMS, UNDEAD_BASE_VISIBLE_MESHES} from '../../src/ashen-reach/equipment-catalog.js';
 import {UNDEAD_EQUIPMENT_FIT} from '../../src/ashen-reach/equipment-contract.js';
 
 const SRC = 'public/ashen-reach/equipment';

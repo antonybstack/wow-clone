@@ -14,6 +14,7 @@ import {ALL_EXTENSIONS, EXTMeshoptCompression} from '@gltf-transform/extensions'
 import {MeshoptDecoder, MeshoptEncoder, MeshoptSimplifier} from 'meshoptimizer';
 import sharp from 'sharp';
 import {simplify} from '@gltf-transform/functions';
+import {EQUIPMENT_ITEMS} from '../../src/ashen-reach/equipment-catalog.js';
 import {startupProvenance} from '../ashen-reach/startup-provenance.mjs';
 const out=process.env.ASHEN_PRODUCTION_SHAPE_OUT || 'public/ashen-reach/human-shape-v1';
 const urlRoot='/ashen-reach/human-shape-v1';
@@ -24,7 +25,7 @@ try {
   const body=path.join(work,'body.glb'), garments=path.join(work,'garments');
   const run=(file,extra)=>execFileSync(process.execPath,[file],{env:{...process.env,...extra},stdio:'inherit'});
   run('scripts/character-assets/build-human-shape-family.mjs',{ASHEN_SHAPE_OUT:body,ASHEN_SHAPE_REPORT:path.join(work,'body-report.json')});
-  run('scripts/character-assets/build-garment-shape-family.mjs',{ASHEN_GARMENT_BODY:body,ASHEN_GARMENT_OUT:garments,ASHEN_GARMENT_REPORT:path.join(work,'garment-report.json'),ASHEN_SKIP_PLATE:'1',ASHEN_FIT_MODE:'track',ASHEN_HEMS:'1'});
+  run('scripts/character-assets/build-garment-shape-family.mjs',{ASHEN_GARMENT_BODY:body,ASHEN_GARMENT_OUT:garments,ASHEN_GARMENT_REPORT:path.join(work,'garment-report.json'),ASHEN_SKIP_PLATE:'1',ASHEN_PRODUCTION_PLATE:'1',ASHEN_FIT_MODE:'track',ASHEN_HEMS:'1'});
   await Promise.all([MeshoptDecoder.ready,MeshoptEncoder.ready,MeshoptSimplifier.ready]);
   const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder,'meshopt.encoder':MeshoptEncoder}).setVertexLayout(VertexLayout.SEPARATE);
   await fs.mkdir(out,{recursive:true});
@@ -57,7 +58,7 @@ try {
     const name=`${id}-${sha(encoded).slice(0,12)}.bin`;
     await fs.writeFile(path.join(out,name),encoded);
     manifest.items[id]={...base.items[id],url:`${urlRoot}/${name}`,bytes:bytes.length,encodedBytes:encoded.length,sha256:sha(bytes),compression:'gzip',shapeFamily:family,textures};
-    if(id==='body')manifest.compactItems[id]=manifest.items[id];
+    if(id==='body'||EQUIPMENT_ITEMS[id]?.deformation==='rigid-bone')manifest.compactItems[id]=manifest.items[id];
     else {
       // glTF Transform remaps ALL base/skin/morph attributes together. Preserve seam
       // boundaries and use this only for first-play clothing; full detail follows after play.

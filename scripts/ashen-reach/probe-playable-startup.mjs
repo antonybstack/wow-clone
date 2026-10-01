@@ -8,11 +8,13 @@ import os from "node:os";
 import {execFileSync} from 'node:child_process';
 import assert from "node:assert/strict";
 import { chromium } from "playwright";
+import {migrateAppearance} from '../../src/character/appearance/contract.js';
 import {installGpuEventProbe} from '../lib/probe-gpu-events.mjs';
 const gpuProbe = process.env.ASHEN_PROBE_GPU_EVENTS === '1';
 const traceGpu = process.env.ASHEN_PROBE_CHROME_TRACE === '1';
 const disableShaderCache = process.env.ASHEN_PROBE_DISABLE_SHADER_CACHE === '1';
 const seed=process.env.ASHEN_PROBE_APPEARANCE?JSON.parse(await fs.readFile(process.env.ASHEN_PROBE_APPEARANCE,'utf8')):null;
+const expectedSeed=seed?migrateAppearance(seed):null;
 const destination = process.argv[2];
 assert(destination, "Specify report.json");
 const runs = Number(process.env.ASHEN_PROBE_RUNS || 5),
@@ -38,7 +40,7 @@ target.searchParams.set("pixelRatio", "1");
 const report = {
   conditions: {
     gpuProbe, traceGpu, disableShaderCache,
-    profile, savedAppearance:seed,
+    profile, savedAppearance:seed,expectedAppearance:expectedSeed,
     network: conditions[profile],
     cpu: os.cpus()[0]?.model,
     viewport: [1280, 720],
@@ -56,15 +58,14 @@ for (let run = 1; run <= runs; run++) {
   const browser = await chromium.launch({ channel: "chrome", headless: true, args:disableShaderCache?['--disable-gpu-shader-disk-cache']:[] });
   const browserPid=execFileSync('ps',['-axo','pid=,ppid=,command='],{encoding:'utf8'}).split('\n').map(line=>/^\s*(\d+)\s+(\d+)\s+(.*)$/.exec(line)).find(m=>m&&Number(m[2])===process.pid&&/Chrome|Chromium/.test(m[3]))?.[1]||null;
   await fs.writeFile(destination+'.ownership.json',JSON.stringify({owner:'probe-playable-startup',controllerPid:process.pid,browserPid,cdpPort:null,url:target.href,purpose:`${profile} cold run ${run}`,active:true}));
+  const errors=[],requests=new Map();let rowRecorded=false;
   try {
     const context = await browser.newContext({
         viewport: { width: 1280, height: 720 },
         deviceScaleFactor: 1,
         serviceWorkers: "block",
       }),
-      page = await context.newPage(),
-      errors = [],
-      requests = new Map();
+      page = await context.newPage();
     if(seed)await context.addInitScript(recipe=>localStorage.setItem('ashen.appearance.v2',JSON.stringify(recipe)),seed);
     if(gpuProbe)await context.addInitScript(installGpuEventProbe);
     const cdp = await context.newCDPSession(page);
@@ -208,14 +209,14 @@ for (let run = 1; run <= runs; run++) {
     row.errors = errors;
     row.run = run;row.browserPid=browserPid;
     if(seed) {
-      assert.equal(row.race,seed.race);assert.deepEqual(row.equipment,seed.equipment);
+      assert.equal(row.race,expectedSeed.race);assert.deepEqual(row.equipment,expectedSeed.equipment);
       if(seed.race==='human') {
         assert.equal(row.heightScale,seed.shape.height);
         if(row.shape)assert.deepEqual(row.shape.weights,[Math.max(0,-seed.shape.build),Math.max(0,seed.shape.build)]);
         else {assert.equal(seed.shape.build,0);assert.equal(seed.shape.height,1);}
       }
     }
-    report.rows.push(row);
+    report.rows.push(row);rowRecorded=true;
     await fs.writeFile(destination, JSON.stringify(report, null, 2));
     assert(row.grounded && row.physics && !row.loader);
     assert(row.marks['supported-frame-submitted'] >= row.marks['equipment-end']);
@@ -232,6 +233,16 @@ for (let run = 1; run <= runs; run++) {
         bytes: row.encodedBytesAtBoundary,
       }),
     );
+  } catch(error) {
+    // A failed first-use fence is part of the cohort. Retain its row and process
+    // ownership instead of disappearing on the first timeout. Do not count it as
+    // a successful start or retry it under the same run number.
+    const failure={name:error.name,message:error.message};
+    if(rowRecorded)report.rows.at(-1).validationFailure=failure;
+    else report.rows.push({run,browserPid,failed:true,failure,requests:[...requests.values()],errors});
+    await fs.writeFile(destination,JSON.stringify(report,null,2));
+    console.log(JSON.stringify({run,failed:true,failure}));
+    process.exitCode=1;
   } finally {
     await browser.close();
     await fs.writeFile(destination+'.ownership.json',JSON.stringify({owner:'probe-playable-startup',browserPid,url:target.href,active:false}));

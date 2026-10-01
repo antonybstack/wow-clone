@@ -57,7 +57,7 @@ const GARMENTS = [
     // The catalogue has no rigid element, so M005 authors one:
     // scripts/character-assets/build_warden_pauldrons.py. Prototype, developer-only,
     // deliberately not in public/ and not in the production catalogue.
-    {item: 'wardenPauldrons', file: '.cache/character-mmo/m005/warden-pauldrons.glb', rigid: true, out: '.cache/character-mmo/m005/warden-pauldrons-shaped.glb'},
+    {item: 'wardenPauldrons', file: process.env.ASHEN_PRODUCTION_PLATE==='1' ? 'public/ashen-reach/equipment/wardenPauldrons.glb' : '.cache/character-mmo/m005/warden-pauldrons.glb', rigid: true, ...(process.env.ASHEN_PRODUCTION_PLATE==='1' ? {} : {out: '.cache/character-mmo/m005/warden-pauldrons-shaped.glb'})},
 ];
 
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -118,7 +118,7 @@ async function main() {
     for (const garment of GARMENTS) {
         // Production families are reproducible from the eight tracked canonical garments.
         // The diagnostic plate requires an ignored Blender output and is not a catalogue item.
-        if (garment.rigid && process.env.ASHEN_SKIP_PLATE === '1') continue;
+        if (garment.rigid && process.env.ASHEN_SKIP_PLATE === '1' && process.env.ASHEN_PRODUCTION_PLATE !== '1') continue;
         const sourceBytes = await fs.readFile(garment.file);
         const doc = await io.read(garment.file);
         const root = doc.getRoot();
