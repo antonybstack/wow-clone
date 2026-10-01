@@ -1,0 +1,41 @@
+# Human identity source checkpoint — 2026-10-01
+
+Status: **unreleased source pipeline; milestone 5 remains open**. The active next-ten plan allows milestone 6's factory core to proceed on the accepted milestone 1 bodies when identity art is blocked. That is the next work package. No creator capability, saved recipe, default character, startup pack or production asset changes in this checkpoint.
+
+The old separate-head/neck premise was replaced with an actual connected surface. Pinned CC0 MakeHuman adult heads and eyes join the retained project torso on its existing 65-joint bind. Connected boundary loops are resampled by arc length and welded through Blender BMesh, preserving UV/deform/shape layers. The old source has 102 shared neck vertices, young 82; both report zero boundary/nonmanifold edges at that neck. This is a **new topology**, not M004 vertex identity. Torso/garment correspondence still requires a new-family fit audit.
+
+Native Cycles bakes source colour only onto a 1024 atlas. Source-derived linear colour adaptation preserves the adult face detail; bounded scalp/nape pigment corrections remove inherited painted short hair. The UV sampler now chooses an incident torso face by physical adjacency rather than the first UV corner on a shared anatomical vertex. The bald source has a complete scalp; the young source uses the licensed separate ponytail cap and length. Its cap is attached to Head, with only the hanging length blending toward Neck/Spine2. The existing measured girth field supplies ordered slender/stout targets on body and hair. Existing semantic `head.scalp` coverage hides/restores the component through the real equipment path.
+
+Blender's action export introduced a previously unnoticed regression: rounded clip durations and resampled joint curves. The assembler now reuses glTF Transform `copyToDocument` to copy the **original 57 compatible animation accessors**, remapping target nodes by name. The extracted existing bind adapter restores joint order and mesh/palette frames, avoiding the known Blender 0.01-parent error. Default morph weights/names are explicit, and emitted morph buffer strides are checked for the pinned Lite 1.31.1 loader. Source and joined hood weights use the existing explicit four-influence reduction rather than silent exporter truncation.
+
+## Verification and limits
+
+[Offline evidence](../../../baselines/character-mmo/identity-source-2026-10-01/source-contract.json) samples 57 clips × five times × three shapes: **855 samples per source, 2,565 across old/young/young-hair**. Coincident neck render vertices remain coincident under skin/morph; base and morph normal differences are zero. Clip duration differences are zero; maximum palette-element difference is 0.0000158548. This proves sampled continuity and compatible animation, not a full clothing fit or live milestone acceptance.
+
+The actual 1280×720 game checks review front/side/back, hood views, headwear hide/restore and normal Havok walk/jump/cast at tall/slender 1.15/−0.95 and short/stout 0.90/+0.95. No console/page/GPU errors or recovery teleports were observed. Armory framing/fill and the closer gameplay camera are diagnostic and identified in the recordings. Recording is **not an FPS benchmark**. All 141 existing character and 71 equipment tests pass. A clean canonical/source rebuild completed; final hood influence reduction and hash guards were then exercised independently.
+
+The [source summary](../../../baselines/character-mmo/identity-source-2026-10-01/source-summary.json) records bytes/hashes. Raw prepared GLBs are about **5.78/5.80/6.72 MB**, including all 57 source clips and embedded atlases. They are developer audition files, not accepted starter payloads or a per-combination publishing strategy. No startup, crowd, memory-budget or performance acceptance is claimed for this new topology.
+
+Two bounded Grok 4.6/high file/still reviews identified coverage, bind preparation, source pins, shape/defaults, influence, UV and hood deficiencies. Parent verified and corrected the valid pipeline findings. The [follow-up report](../../../baselines/character-mmo/identity-source-2026-10-01/grok-followup.md) is dated evidence; subsequent parent changes zero the lining source's active shapes, retain per-age fit hashes, reduce the final joined hood influences and improve torso UV selection. Its suggested front-opening displacement is a hypothesis, not accepted art.
+
+## Open visual and integration gates
+
+The outer hood improved after native surface wrapping was rejected for collapsing authored folds. A baked native lattice corrective and small rear lining now preserve the shell and close rear skin breaks. **The front opening still masks the young eyes and part of the old face.** It needs actual garment authoring, not more atlas/normal sweeps. An old stout torso/arm breach remains against the diagnostic M005 garment pack. Its cause and new-family correction must be measured; differing vertex counts alone do not establish the cause.
+
+Remaining work: the new-family garment/pose matrix; readable headwear opening; neck-side review; normal/hidden/tucked hair policies and shoulder/cape clearance; bounded skin/hair palette; shared per-piece family assets; compact selected identity before playable; creator recipe/version/migration/undo/persistence; remote presentation; isolated FPS/cold/resource gates; public release verification. The starter Human remains an option. No new age/hair control is advertised until its entire supported slice passes.
+
+## Reproduce
+
+Use pinned Blender 5.2.1, installed lockfile tools and tracked source provenance. Recover missing licensed inputs with `python3 scripts/character-assets/fetch-makehuman.py`; the existing archive hash and member hashes are verified. Then run:
+
+```sh
+node scripts/character-assets/reproduce-human-identity-source.mjs
+```
+
+This rebuilds canonical M004/M005 developer inputs without changing their historical reports, then old/young/young-hair grey and painted sources, sampled contracts and age-specific hood candidates. Isolated Blender subprocesses use **`--python-exit-code 1`**: its default status can be zero after a Python exception. Hood assembly also rejects a raw export whose hash differs from its fit record, and live checks pin the bytes they actually serve. All binaries/blends/logs remain under ignored `.cache/`; provenance and procedures are tracked. Source CC0 rights do not relicense the retained project torso/rig/animation; their prior rights limitation remains recorded in M001.
+
+Use the owned-browser procedure before `check-human-identity-source.mjs`; set `ASHEN_CDP_PORT`, `ASHEN_TEST_URL`, `ASHEN_IDENTITY_KIND=painted` and `ASHEN_IDENTITY_HOOD=1`. Every context closes in `finally`. The session owns only harness slot 5 (Chrome 79415, CDP 9837, Vite 5673); its page is blank between checks. The Grok reviewer has no browser and has finished. No other game renderer was started for this checkpoint.
+
+Documentation references are included at the non-obvious native operations: [BMesh splitting](https://docs.blender.org/api/current/bmesh.utils.html#bmesh.utils.edge_split), [Cycles baking](https://docs.blender.org/manual/en/latest/render/cycles/baking.html), [lattice deformation](https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/lattice.html), [glTF morphs/skins](https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#morph-targets), and [glTF Transform copyToDocument](https://gltf-transform.dev/modules/functions/functions/copyToDocument). Runtime stays Babylon Lite 1.31.1/WebGPU/Havok with the existing controls and animation.
+
+Reviewed motion: Telegram **825** ([young/long hair](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/identity-young-source-2026-10-01.mp4), 14.237 s) and **826** ([older/bald](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/identity-old-source-2026-10-01.mp4), 14.260 s). Both are H.264 1280×720, square pixels, rotation zero; Telegram returned matching dimensions. VE `video/mp4`, HTTP 206, direct playback, seek and fullscreen pass. Telegram client playback was not independently inspected. This source checkpoint does not change the current production Pages deployment.

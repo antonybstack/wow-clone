@@ -113,6 +113,11 @@ def main() -> None:
             fetch_item(item["url"], ROOT / item["path"], item["sha256"],
                        verify_only=verify_only, zip_member=item["zipMember"])
 
+    identity=ROOT/'blender/characters/candidates/identity-v1/provenance.json'
+    if identity.is_file():
+        for item in json.loads(identity.read_text())['files']:
+            if item.get('zipMember'):
+                fetch_item(item['url'],ROOT/item['path'],item['sha256'],verify_only=verify_only,zip_member=item['zipMember'])
 
 if __name__ == "__main__":
     main()

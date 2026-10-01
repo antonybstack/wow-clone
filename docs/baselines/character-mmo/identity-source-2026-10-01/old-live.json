@@ -1,0 +1,311 @@
+{
+  "age": "old",
+  "file": ".cache/character-mmo/identity-v1/human-old-painted.glb",
+  "sourceSha256": "e0fc808facca33a6668a9da92507ddd6c19cfa2363b1abdc6cb5507c730048f9",
+  "hoodSha256": "f354463285ae3a1c277a0203e9b841101fdd1b4c5b3402983f1dca4760143cf9",
+  "hood": "normalized native fit",
+  "timeline": [
+    {
+      "label": "front",
+      "timestamp": 1790859610.736,
+      "state": {
+        "height": 1.5732,
+        "armoryOpen": true,
+        "cameraActive": true,
+        "camera": {
+          "target": {
+            "x": -0.38007370828995285,
+            "y": 1.363962887962822,
+            "z": -0.00013007344500421758
+          },
+          "radius": 1.8900000000000001
+        },
+        "rootY": -0.7866,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "label": "side",
+      "timestamp": 1790859612.244,
+      "state": {
+        "height": 1.5732,
+        "armoryOpen": true,
+        "cameraActive": true,
+        "camera": {
+          "target": {
+            "x": -0.38007370828995285,
+            "y": 1.3639718268379497,
+            "z": -0.00013007344500421758
+          },
+          "radius": 1.8900000000000001
+        },
+        "rootY": -0.7866,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "label": "back",
+      "timestamp": 1790859613.756,
+      "state": {
+        "height": 1.5732,
+        "armoryOpen": true,
+        "cameraActive": true,
+        "camera": {
+          "target": {
+            "x": -7.3708289952865e-05,
+            "y": 1.3639733284259514,
+            "z": -0.38013007344500427
+          },
+          "radius": 1.8900000000000001
+        },
+        "rootY": -0.7866,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "label": "hood at source neck/scalp",
+      "timestamp": 1790859615.956,
+      "state": {
+        "height": 1.5732,
+        "armoryOpen": true,
+        "cameraActive": true,
+        "camera": {
+          "target": {
+            "x": 0.37992629171004716,
+            "y": 1.3639733284259514,
+            "z": -0.00013007344500431064
+          },
+          "radius": 1.8900000000000001
+        },
+        "rootY": -0.7866,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "label": "hood-back",
+      "timestamp": 1790859617.665,
+      "state": {
+        "height": 1.5732,
+        "armoryOpen": true,
+        "cameraActive": true,
+        "camera": {
+          "target": {
+            "x": 0.37992629171004716,
+            "y": 1.3639733284259514,
+            "z": -0.00013007344500431064
+          },
+          "radius": 1.8900000000000001
+        },
+        "rootY": -0.7866,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "label": "hood-side",
+      "timestamp": 1790859618.761,
+      "state": {
+        "height": 1.5732,
+        "armoryOpen": true,
+        "cameraActive": true,
+        "camera": {
+          "target": {
+            "x": 0.37992629171004716,
+            "y": 1.3639733284259514,
+            "z": -0.00013007344500431064
+          },
+          "radius": 1.8900000000000001
+        },
+        "rootY": -0.7866,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "label": "hood-front",
+      "timestamp": 1790859619.864,
+      "state": {
+        "height": 1.5732,
+        "armoryOpen": true,
+        "cameraActive": true,
+        "camera": {
+          "target": {
+            "x": -7.3708289952865e-05,
+            "y": 1.3639733284259514,
+            "z": -0.38013007344500427
+          },
+          "radius": 1.8900000000000001
+        },
+        "rootY": -0.7866,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "label": "headwear removed; component restored",
+      "timestamp": 1790859620.984,
+      "state": {
+        "height": 1.5732,
+        "armoryOpen": true,
+        "cameraActive": true,
+        "camera": {
+          "target": {
+            "x": -0.38007370828995285,
+            "y": 1.3639733284259514,
+            "z": -0.00013007344500421758
+          },
+          "radius": 1.8900000000000001
+        },
+        "rootY": -0.7866,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "label": "normal Havok locomotion",
+      "timestamp": 1790859620.987,
+      "state": {
+        "height": 1.5732,
+        "armoryOpen": false,
+        "cameraActive": false,
+        "camera": {
+          "target": {
+            "x": -0.38007370828995285,
+            "y": 1.3639733284259514,
+            "z": -0.00013007344500421758
+          },
+          "radius": 1.8900000000000001
+        },
+        "rootY": -0.7866,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "label": "source cast",
+      "timestamp": 1790859625.023,
+      "state": {
+        "height": 1.5732,
+        "armoryOpen": false,
+        "cameraActive": false,
+        "camera": {
+          "target": {
+            "x": -0.38007370828995285,
+            "y": 1.3639733284259514,
+            "z": -0.00013007344500421758
+          },
+          "radius": 1.8900000000000001
+        },
+        "rootY": -0.7866,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

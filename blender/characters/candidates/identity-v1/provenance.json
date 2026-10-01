@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "status": "source-candidate; not released",
+  "body": {
+    "path": ".cache/character-mmo/m004/human-shape-family-v1.glb",
+    "sha256": "e8e564c9c362ad2473ef6de9042f9a701c67643b5c205c64da2d86e91725f3f5",
+    "provenance": "docs/plans/character-mmo/results/m004.md",
+    "license": "Retained project Human source rights; CC0 head does not relicense torso/rig/animation"
+  },
+  "headAndEyesLicense": "MakeHuman CC0 assets; see blender/characters/sources/LICENSE.ASSETS.md",
+  "hairProvenance": "blender/characters/candidates/hair/m006-provenance.json",
+  "toolchain": {
+    "blender": "5.2.1",
+    "gltfTransform": "4.4.2",
+    "lite": "1.31.1"
+  },
+  "files": [
+    {
+      "path": "blender/characters/sources/base.obj",
+      "sha256": "8e761e6624b8f54536409135d1636da63b32486a90d4897f84e121d144f6fb4c"
+    },
+    {
+      "path": "blender/characters/sources/caucasian-male-young.target",
+      "sha256": "70e228ba7164737dae664454394536fc5935fa48d333c1a97d77e2dc6eacc5f5"
+    },
+    {
+      "path": "blender/characters/sources/caucasian-male-old.target",
+      "sha256": "b0d2b1d58cba0358af59833740e70229265f7da1c20a11240f4123b7192cfd6d"
+    },
+    {
+      "path": "blender/characters/sources/low-poly.obj",
+      "sha256": "783fe1e6331162c876520b4c2bed7a8ca06354ca15497e8ebd68bb1b59f4d3de"
+    },
+    {
+      "path": "blender/characters/sources/low-poly.mhclo",
+      "sha256": "68582e28e9176cba7cfcf35208f671b6201b8d1bc95c32decff61a3160ec34d8"
+    },
+    {
+      "path": "blender/characters/sources/brown_eye.png",
+      "sha256": "4659691c7295ad6206c78b003e5fd0e5f91dcd53032fa914a229bb48cabe424b"
+    },
+    {
+      "path": ".cache/character-mmo/identity-v1/young-skin-source.png",
+      "sha256": "862a26e335e958b70534cb5f0d7c47ef30ab148a56c42b3e9da969cf76f12963",
+      "url": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
+      "zipMember": "skins/young_caucasian_male/young_lightskinned_male_diffuse.png",
+      "bytes": 3693828
+    },
+    {
+      "path": ".cache/character-mmo/identity-v1/old-skin-source.png",
+      "sha256": "dfb2310ed3e0ad024ea7a3ad321215e2e9e2994cca64043d9f3d07c6543ec847",
+      "url": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
+      "zipMember": "skins/old_caucasian_male/old_lightskinned_male_diffuse.png",
+      "bytes": 4306141
+    }
+  ]
+}

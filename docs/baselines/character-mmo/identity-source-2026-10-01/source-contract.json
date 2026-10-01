@@ -1,0 +1,38 @@
+{
+  "scope": "Offline source continuity and animation evidence; not live acceptance",
+  "rows": [
+    {
+      "label": "old",
+      "vertices": 7038,
+      "neckSplitGroups": 196,
+      "samples": 855,
+      "maxSplitM": 0,
+      "maxNormalDifference": 0,
+      "maxMorphNormalDifference": 0,
+      "maxPaletteElementDifference": 0.000015854835510253906,
+      "maxDurationDifference": 0
+    },
+    {
+      "label": "young",
+      "vertices": 7211,
+      "neckSplitGroups": 140,
+      "samples": 855,
+      "maxSplitM": 0,
+      "maxNormalDifference": 0,
+      "maxMorphNormalDifference": 0,
+      "maxPaletteElementDifference": 0.000015854835510253906,
+      "maxDurationDifference": 0
+    },
+    {
+      "label": "young-hair",
+      "vertices": 7211,
+      "neckSplitGroups": 140,
+      "samples": 855,
+      "maxSplitM": 0,
+      "maxNormalDifference": 0,
+      "maxMorphNormalDifference": 0,
+      "maxPaletteElementDifference": 0.000015854835510253906,
+      "maxDurationDifference": 0
+    }
+  ]
+}
