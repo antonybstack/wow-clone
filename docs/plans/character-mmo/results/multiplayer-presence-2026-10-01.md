@@ -176,3 +176,15 @@ Primary references: [server input](https://docs.colyseus.io/netcode/server-input
 [prediction](https://docs.colyseus.io/netcode/client-prediction),
 [reconnection](https://docs.colyseus.io/room/reconnection),
 [Containers pricing](https://developers.cloudflare.com/containers/platform/pricing/).
+
+## Offline client release
+
+Source **8ae4c2da698c900af4d6dff2aacc5ad4f50c3433** is deployed as
+Pages **0c2f92c1-a4f8-43ab-838f-45c0f622df4b**. Rollback is
+**1f745d0b-49d3-47bf-a0b5-b103a026b932** / source `32d2b01`.
+All **372** staged artifacts match the public URL and five region cache-policy
+checks pass. Production movement/cathedral entry-return at body endpoints,
+transactional customization, touch/depth fallback and desktop WebKit pass.
+The production presence panel remains gated off: this releases the compatible
+offline client foundation, not a publicly hosted multiplayer service. Telegram
+824's ledger is updated to the finished source commit.
