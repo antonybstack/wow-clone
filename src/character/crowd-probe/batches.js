@@ -2,14 +2,33 @@
  * A shared item/bind/animation source can use one instance batch even when
  * another slot differs. This prevents whole-outfit grouping from multiplying
  * the unchanged body, boots and other shared pieces.
- * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/04-mesh.md
+ * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/12-thin-instances.md
  */
 import {EQUIPMENT_ITEMS} from '../../ashen-reach/equipment-catalog.js';
-import {validateAppearance} from '../appearance/contract.js';
+import {APPEARANCE_V1_REGISTRY,migrateAppearance,validateAppearance} from '../appearance/contract.js';
+import {decodeAppearance} from '../appearance/codec.js';
 
 const PROPS=Object.freeze({ironSword:'ProbeIronSword',graveweaverGreatstaff:'ProbeGreatstaff'});
 const MAX_CROWD=1000;
-export const animationPhase=index=>(index*.173)%1.7;
+/** Seconds, seeded by logical identity rather than a movable instance slot.
+ * Native VAT params.z is a FRAME offset; multiply this by the clip FPS.
+ * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/material/pbr/fragments/vat-fragment.ts
+ */
+export function actorPhaseSeconds(id) {
+  if(typeof id!=='string'||!id)throw TypeError('Expected a nonempty actor ID');
+  let seed=2166136261;
+  for(let i=0;i<id.length;i++)seed=Math.imul(seed^id.charCodeAt(i),16777619);
+  return (seed>>>0)/4294967296*1.7;
+}
+/** M003 manifests predate appearance v2. Reuse strict bounded decoding and the
+ * existing explicit migration; unknown versions or catalogues still fail. */
+export function decodePreparedCrowdAppearance(text) {
+  try{return decodeAppearance(text);}
+  catch(error) {
+    if(error.code!=='UNSUPPORTED_SCHEMA')throw error;
+    return migrateAppearance(decodeAppearance(text,APPEARANCE_V1_REGISTRY));
+  }
+}
 export function planCrowdBatches(actors,prepared) {
   if(!Array.isArray(actors)||actors.length<1||actors.length>MAX_CROWD) throw RangeError(`Crowd must contain 1–${MAX_CROWD} actors`);
   if(!prepared?.sourceSha256||!prepared.variants)throw Error('Missing prepared asset manifest');
@@ -20,6 +39,7 @@ export function planCrowdBatches(actors,prepared) {
     ids.add(actor.id);
     const recipe=validateAppearance(actor.recipe);
     if(recipe.race!=='human')throw Error('M003 exact batch prototype supports Human only');
+    if(recipe.shape.height!==1||recipe.shape.build!==0)throw Error('Prepared crowd assets support neutral Human shape only');
     const variant=prepared.variants[actor.outfit];
     if(!variant)throw Error(`Missing prepared outfit ${actor.outfit}`);
     const selected=[{mesh:'HumanV1Body',asset:prepared.sourceSha256,item:'body'}];

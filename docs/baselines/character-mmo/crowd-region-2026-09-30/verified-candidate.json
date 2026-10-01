@@ -1,0 +1,163 @@
+{
+  "errors": [],
+  "cases": [
+    {
+      "options": {
+        "count": 1,
+        "centerZ": 86
+      },
+      "ms": 105.09999990463257,
+      "pieces": 6,
+      "ready": true,
+      "vatMeshes": 6,
+      "visible": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "instances": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "casters": 44,
+      "cohortInCasters": true,
+      "queuedOwned": 0,
+      "pendingThinHooks": 0,
+      "vatTextures": 1,
+      "vatAtlasBytes": 965120,
+      "gpuErrors": [],
+      "after": {
+        "meshes": 136,
+        "vat": 0,
+        "casters": 38
+      }
+    },
+    {
+      "options": {
+        "count": 10,
+        "outfit": "warden",
+        "motion": "idle",
+        "centerZ": 100
+      },
+      "ms": 84.09999990463257,
+      "pieces": 110,
+      "ready": true,
+      "vatMeshes": 11,
+      "visible": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "instances": [
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10
+      ],
+      "casters": 49,
+      "cohortInCasters": true,
+      "queuedOwned": 0,
+      "pendingThinHooks": 0,
+      "vatTextures": 1,
+      "vatAtlasBytes": 965120,
+      "gpuErrors": [],
+      "after": {
+        "meshes": 136,
+        "vat": 0,
+        "casters": 38
+      }
+    },
+    {
+      "options": {
+        "count": 100,
+        "centerZ": 120
+      },
+      "ms": 92.40000009536743,
+      "pieces": 600,
+      "ready": true,
+      "vatMeshes": 6,
+      "visible": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "instances": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "casters": 44,
+      "cohortInCasters": true,
+      "queuedOwned": 0,
+      "pendingThinHooks": 0,
+      "vatTextures": 1,
+      "vatAtlasBytes": 965120,
+      "gpuErrors": [],
+      "after": {
+        "meshes": 136,
+        "vat": 0,
+        "casters": 38
+      }
+    }
+  ],
+  "baseline": {
+    "meshes": 136,
+    "casters": 38
+  },
+  "churn": [
+    {
+      "meshes": 136,
+      "vat": 0,
+      "casters": 38
+    },
+    {
+      "meshes": 136,
+      "vat": 0,
+      "casters": 38
+    },
+    {
+      "meshes": 136,
+      "vat": 0,
+      "casters": 38
+    },
+    {
+      "meshes": 136,
+      "vat": 0,
+      "casters": 38
+    },
+    {
+      "meshes": 136,
+      "vat": 0,
+      "casters": 38
+    }
+  ],
+  "gpuErrors": []
+}

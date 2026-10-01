@@ -1,0 +1,132 @@
+{
+  "errors": [],
+  "mount": {
+    "ms": 74.59999990463257,
+    "ids": [
+      1,
+      2,
+      3
+    ],
+    "parts": 5
+  },
+  "before": [
+    {
+      "clip": "Walk_Loop",
+      "timeSeconds": 2.2863999998569544,
+      "offsetSeconds": 0,
+      "fps": 60,
+      "frame": 56,
+      "nextFrame": 57,
+      "alpha": 0.18399999141726653
+    },
+    {
+      "clip": "Walk_Loop",
+      "timeSeconds": 2.2863999998569544,
+      "offsetSeconds": 0.17,
+      "fps": 60,
+      "frame": 66,
+      "nextFrame": 67,
+      "alpha": 0.38399999141725516
+    },
+    {
+      "clip": "Walk_Loop",
+      "timeSeconds": 2.2863999998569544,
+      "offsetSeconds": 0.34,
+      "fps": 60,
+      "frame": 76,
+      "nextFrame": 77,
+      "alpha": 0.5839999914172438
+    }
+  ],
+  "removal": {
+    "removed": true,
+    "count": 2,
+    "ids": [
+      1,
+      3
+    ],
+    "parts": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "play": [
+      {
+        "clip": "Walk_Loop",
+        "timeSeconds": 2.2863999998569544,
+        "offsetSeconds": 0,
+        "fps": 60,
+        "frame": 56,
+        "nextFrame": 57,
+        "alpha": 0.18399999141726653
+      },
+      null,
+      {
+        "clip": "Walk_Loop",
+        "timeSeconds": 2.2863999998569544,
+        "offsetSeconds": 0.34,
+        "fps": 60,
+        "frame": 76,
+        "nextFrame": 77,
+        "alpha": 0.5839999914172438
+      }
+    ]
+  },
+  "metrics": {
+    "samples": 600,
+    "fps": 126.77752656917927,
+    "meanMs": 7.887833333412806,
+    "medianMs": 7.799999952316284,
+    "p95Ms": 9.399999856948853,
+    "p99Ms": 14.599999904632568,
+    "worstMs": 49,
+    "minMs": 2.0999999046325684,
+    "above8_333": 33,
+    "above16_667": 4,
+    "drawCalls": 559,
+    "resolution": [
+      1280,
+      720
+    ],
+    "viewport": [
+      1280,
+      720
+    ],
+    "dpr": 1,
+    "maxDevicePixelRatio": 1,
+    "horizonTriangles": 125642,
+    "farTriangles": 289206,
+    "scatterTrees": 599,
+    "scatterRocks": 139,
+    "shafts": 0,
+    "shaftTriangles": 0,
+    "motes": 4200,
+    "moteTriangles": 8400,
+    "foliageInstances": 117242,
+    "triangles": 836917,
+    "drawBatches": 57,
+    "worldTriangles": 836917,
+    "sceneTriangles": 1178995,
+    "drawnMeshes": 97,
+    "hiddenMeshes": 45,
+    "totalMeshes": 142,
+    "triangleCountMs": 0.09999990463256836,
+    "gpuTimingSupported": true,
+    "gpuTimingEnabled": false,
+    "gpuTimingReadback": "disabled",
+    "gpuMs": null,
+    "gpuMeanMs": null,
+    "gpuP95Ms": null,
+    "gpuSamples": 0,
+    "vsyncCapped": false,
+    "capHz": null,
+    "capMs": null,
+    "capReason": "mean 7.888 ms is not locked to a known display interval"
+  },
+  "after": {
+    "vat": 0,
+    "ready": true
+  }
+}

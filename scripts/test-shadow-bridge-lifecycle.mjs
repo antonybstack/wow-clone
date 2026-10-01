@@ -9,9 +9,9 @@ const names = [
   'createPcfSpotlightShadowGenerator','createDirectionalLight','createSpotLight',
   'createShaderMaterial','addTask','onSceneDispose','setShadowCasterMaterial',
   'setShadowTaskCasterMeshes','setShadowGeneratorEnabled','getCsmReceiverTexture','onCsmReceiverUpdate',
-  'setShaderTexture','setShaderUniform','enableSkeletonShadows','getViewMatrix',
+  'setShaderTexture','setShaderUniform','enableSkeletonShadows','enableMorphTargetShadows','getViewMatrix',
   'acquireTexture','releaseTexture','enableMaterialPlugins','isPbrMaterial',
-  'markMaterialUboDirty','onBeforeRender','rebuildMaterial',
+  'markMaterialUboDirty','onBeforeRender','rebuildMaterial','computeAabb',
   'waitForGpuIdle','waitForGpuResourceRetirements',
 ];
 const mockUrl = version => `data:text/javascript,${encodeURIComponent([

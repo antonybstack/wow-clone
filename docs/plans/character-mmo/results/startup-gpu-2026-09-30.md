@@ -20,6 +20,16 @@ The [earlier asynchronous shader trial](../../../archive/plans/rendering-perform
 
 The optional probe records adapter/device acquisition, shader/pipeline calls, queue submission/fence identity and animation callback CPU duration. `ASHEN_PROBE_GPU_EVENTS=1` and `ASHEN_PROBE_CHROME_TRACE=1` are diagnostic only. Dawn tracing includes its [disabled category](https://chromium.googlesource.com/chromium/src/+/refs/heads/main/gpu/command_buffer/service/dawn_service_serializer.cc). An optional [Chromium shader-disk-cache switch](https://chromium.googlesource.com/chromium/src/+/HEAD/gpu/config/gpu_switches.cc) is explicitly reported and excluded from ordinary acceptance. Neither switch changes production code.
 
+## Deferred follow-up — 2026-09-30
+
+The user explicitly directed: “you can move on to milestones, just record this to followup later.” Milestone 2 crowd correctness is now active; this unresolved startup tail is retained without blocking its entry.
+
+- Preserve released source `b362dbc`, production deployment `60c0ca70-6575-4cd6-a717-b99984c9964f`, all baseline/candidate rows and the completed-GPU/dressed/grounded/input boundary. The released largest-outfit first row submitted at **581.7 ms** and completed at **1,245.7 ms**, approximately **664 ms** apart; actual first play reached **1,248.3 ms**. Earlier unchanged runs reached 8.15–9.75 seconds. These are different observations, not proof of one cause.
+- Resume with an isolated, actually slow GPU-service trace, correlating queue submission, backend/device spans and browser callback delivery. Compare unchanged builds and fresh processes; report uncontrolled OS/driver/CDN caches. Warm traces and disappearing outliers cannot establish a fix.
+- Revisit native asynchronous compilation or shadow scheduling only if that trace identifies applicable work; previously negative trials remain disabled. Physical iPhone startup remains a separate measurement.
+- This attempted continuation obtained no new game trace or benchmark. Shell process enumeration/external DNS were blocked, and Vite could not listen on localhost (`EPERM`). Browser approval review rejected raw CDP tracing on `play.sparkify.dev`, stating permission was declined. The owned diagnostic favicon tab was closed; no game renderer was started. Do not circumvent these denials through another runtime or browser surface.
+
+
 ## Measured loading change
 
 A saved character previously awaited the full game graph, then dynamically discovered the appearance store/contract, then its manifest and selected body/clothes. The new small asynchronous HTML entry invokes that **same** strict store/migration API and starts the **same** compact asset requests. Main reuses its result, manifest and asset/decompression promises. Saved neutral/race/recoverable-fallback records also start the starter they already use in main. Missing compact pieces fail explicitly. Speculative failures can retry through the same loader; untrusted storage supplies item identifiers, never fetch URLs. GPU scene ownership and the playable boundary remain in main.

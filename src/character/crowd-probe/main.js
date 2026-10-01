@@ -1,8 +1,8 @@
 /** Isolated native Lite crowd experiment. No default-game module imports this page.
  * VAT requires a genuine glTF mixer binding for every mesh:
- * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/src/vat/vat-baker.ts
+ * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/vat/vat-baker.ts
  * Thin-instance matrices/indices belong to each concrete mesh batch:
- * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/04-mesh.md
+ * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/12-thin-instances.md
  */
 import {
   addAnimationGroups,addToScene,attachVat,createAnimationManager,
@@ -16,8 +16,7 @@ import {
   setGpuTimingEnabled,setMeshoptBaseUrl,setShadowTaskCasterMeshes,setThinInstances,startEngine,
   stopAnimation,stopEngine,updateAnimationManager,
 } from '@babylonjs/lite';
-import {decodeAppearance} from '../appearance/codec.js';
-import {animationPhase,planCrowdBatches} from './batches.js';
+import {actorPhaseSeconds,decodePreparedCrowdAppearance,planCrowdBatches} from './batches.js';
 
 enableErrorDecoding();
 enableBoneControl();
@@ -54,7 +53,7 @@ function addProbeContainer(scene,container) {
   // addToScene normally installs an automatic glTF-group tick. This probe drives
   // independent managers itself and freezes the source mixer after VAT prep;
   // letting both clocks tick the same binding can overwrite the tested pose.
-  // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/src/scene/scene-core.ts
+  // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/scene/scene-core.ts
   const groups=container.animationGroups;
   container.animationGroups=[];
   try{addToScene(scene,container);}finally{container.animationGroups=groups;}
@@ -80,7 +79,7 @@ async function main() {
   const preparedResponse=await fetch('/__crowd_probe__/manifest.json');
   if(!preparedResponse.ok)throw Error('Prepare probe assets before opening this page');
   const preparedManifest=await preparedResponse.json();
-  const recipes=Object.fromEntries(Object.entries(preparedManifest.variants).map(([id,variant])=>[id,decodeAppearance(variant.recipe)]));
+  const recipes=Object.fromEntries(Object.entries(preparedManifest.variants).map(([id,variant])=>[id,decodePreparedCrowdAppearance(variant.recipe)]));
   const state={generation:0,owners:[],path:null,count:0,outfits:[],motion:'idle',handles:[],loadMs:0,errors:[],frameMs:[],draws:[],gpuMs:[],batchPlan:null};
   let vatAttached=false;
   let lastUi=0;
@@ -127,7 +126,7 @@ async function main() {
           const active=clips.find(g=>g.name===clipFor(i,motion));
           if(!active)throw Error(`Missing independent clip ${clipFor(i,motion)}`);
           active.loopAnimation=true;setAnimationWeight(active,1);playAnimation(active);
-          active.currentTime=animationPhase(i)%Math.max(.01,active.duration);
+          active.currentTime=actorPhaseSeconds(actors[i].id)%Math.max(.01,active.duration);
           owner.active=active;
         }
       } else {
@@ -149,7 +148,7 @@ async function main() {
             for(let k=0;k<indices.length;k++) {
               const actorIndex=indices[k],clip=handle.clips[clipFor(actorIndex,motion)];
               matrices.set(matrixAt(actorIndex,count),k*16);
-              params.set([clip.fromRow,clip.fromRow+clip.frameCount-1,animationPhase(actorIndex),clip.fps],k*4);
+              params.set([clip.fromRow,clip.fromRow+clip.frameCount-1,actorPhaseSeconds(actors[actorIndex].id)*clip.fps,clip.fps],k*4);
             }
             setThinInstances(mesh,matrices,indices.length);
             handle.setInstances(params);

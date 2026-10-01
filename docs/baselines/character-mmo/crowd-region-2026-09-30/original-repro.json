@@ -1,0 +1,60 @@
+{
+  "note": "HEAD town helper; only legacy recipe decode adapter changed to reach original rendering path",
+  "errors": [
+    "Error\n    at topoSort (http://127.0.0.1:5673/node_modules/.vite/deps/mesh-light-layout-C6aCPrLa.js?v=bce2d4f3:74:26)\n    at composeShader (http://127.0.0.1:5673/node_modules/.vite/deps/mesh-light-layout-C6aCPrLa.js?v=bce2d4f3:119:17)\n    at composePbr (http://127.0.0.1:5673/node_modules/.vite/deps/pbr-renderable-Dk6wMauN.js?v=bce2d4f3:315:89)\n    at rebuildSingle (http://127.0.0.1:5673/node_modules/.vite/deps/pbr-renderable-Dk6wMauN.js?v=bce2d4f3:486:20)\n    at resolvePendingTaskMeshes (http://127.0.0.1:5673/node_modules/.vite/deps/shadow-base-CuGEp5c7.js?v=bce2d4f3:25:22)\n    at Object.transactRenderTask [as _recordExplicit] (http://127.0.0.1:5673/node_modules/.vite/deps/shadow-base-CuGEp5c7.js?v=bce2d4f3:71:3)\n    at Object.record (http://127.0.0.1:5673/node_modules/.vite/deps/render-task-base-Df7DcQJ_.js?v=bce2d4f3:126:35)\n    at Object.record (http://127.0.0.1:5673/node_modules/.vite/deps/csm-refit-gate-Ba8je7xZ.js?v=bce2d4f3:341:29)\n    at Object.execute (http://127.0.0.1:5673/node_modules/.vite/deps/shadow-task-DMUU4CKr.js?v=bce2d4f3:46:19)\n    at Object.execute (http://127.0.0.1:5673/node_modules/.vite/deps/create-standard-material-Bfsru0P1.js?v=bce2d4f3:46:41)"
+  ],
+  "state": {
+    "text": "Error\n    at topoSort (http://127.0.0.1:5673/node_modules/.vite/deps/mesh-light-layout-C6aCPrLa.js?v=bce2d4f3:74:26)\n    at composeShader (http://127.0.0.1:5673/node_modules/.vite/deps/mesh-light-layout-C6aCPrLa.js?v=bce2d4f3:119:17)\n    at composePbr (http://127.0.0.1:5673/node_modules/.vite/deps/pbr-renderable-Dk6wMauN.js?v=bce2d4f3:315:89)\n    a",
+    "metrics": {
+      "samples": 600,
+      "fps": 180.3643359508804,
+      "meanMs": 5.5443333335717515,
+      "medianMs": 5.099999904632568,
+      "p95Ms": 10.799999952316284,
+      "p99Ms": 12.199999809265137,
+      "worstMs": 18.5,
+      "minMs": 1.9000000953674316,
+      "above8_333": 107,
+      "above16_667": 1,
+      "drawCalls": 190,
+      "resolution": [
+        1280,
+        713
+      ],
+      "viewport": [
+        1280,
+        713
+      ],
+      "dpr": 1,
+      "maxDevicePixelRatio": 1,
+      "horizonTriangles": 125642,
+      "farTriangles": 289206,
+      "scatterTrees": 599,
+      "scatterRocks": 139,
+      "shafts": 0,
+      "shaftTriangles": 0,
+      "motes": 4200,
+      "moteTriangles": 8400,
+      "foliageInstances": 117242,
+      "triangles": 941975,
+      "drawBatches": 57,
+      "worldTriangles": 941975,
+      "sceneTriangles": 1287318,
+      "drawnMeshes": 97,
+      "hiddenMeshes": 45,
+      "totalMeshes": 142,
+      "triangleCountMs": 1.1000001430511475,
+      "gpuTimingSupported": true,
+      "gpuTimingEnabled": false,
+      "gpuTimingReadback": "disabled",
+      "gpuMs": null,
+      "gpuMeanMs": null,
+      "gpuP95Ms": null,
+      "gpuSamples": 0,
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 5.544 ms is not locked to a known display interval"
+    }
+  }
+}
