@@ -1,0 +1,24 @@
+{
+  "url": "http://127.0.0.1:5673/?play&clean&pixelRatio=1",
+  "conditions": "Desktop Chromium WebGPU with native touch injection; one real client/one protocol peer; not physical iPhone acceptance",
+  "rows": [
+    {
+      "case": "native-touch-spell-replicates"
+    },
+    {
+      "case": "native-touch-attack-replicates"
+    },
+    {
+      "case": "entry-appearance-authority-agrees"
+    },
+    {
+      "case": "invalid-height-preserves-accepted-appearance"
+    },
+    {
+      "case": "leave-during-local-preparation-cancels-late-online-work",
+      "status": "Solo"
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

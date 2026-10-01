@@ -1,0 +1,1 @@
+{"name":"ashen-reach-presence-host","private":true,"type":"module","scripts":{"deploy":"wrangler deploy"},"dependencies":{"@cloudflare/containers":"0.3.7"},"devDependencies":{"wrangler":"4.145.0"}}

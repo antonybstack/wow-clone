@@ -177,8 +177,8 @@ export function createPhysicsOwnership(rig, operations = {
     };
 }
 
-/** A collision proxy is a transform only, with no GPU geometry or draw call. */
-function addStaticColliders(world, descriptors, own) {
+/** Shared authored collision installation; ownership stays with the caller. */
+export function addStaticColliders(world, descriptors, own) {
     const counts = { meshCount: 0, boxCount: 0, skipped: 0 };
     for (const entry of descriptors) {
         const mesh = entry.mesh || (entry._cpuPositions ? entry : null);
@@ -250,7 +250,8 @@ function addStaticColliders(world, descriptors, own) {
     return counts;
 }
 
-function createAvatar(engine, scene, spec) {
+function createAvatar(engine, scene, spec, headless = false) {
+    if (headless) return { body: createTransformNode("ServerPlayer"), head: createTransformNode("ServerHead") };
     const body = createCapsule(engine, {
         height: spec.height, radius: spec.radius, tessellation: 12, capSubdivisions: 5,
     });
@@ -284,7 +285,7 @@ function createAvatar(engine, scene, spec) {
  */
 export async function setupPlayer(engine, scene, rig, options = {}) {
     const spec = resolveCapsule(options.capsule);
-    const { body, head } = createAvatar(engine, scene, spec);
+    const { body, head } = createAvatar(engine, scene, spec, options.headless);
     const groundHeight = options.groundHeight || (() => 0.125);
     const spawn = resolveSpawnCenter(options.spawn || { x: 0, y: 1.15, z: 2.15 }, spec, groundHeight);
     const boundsRadius = options.boundsRadius ?? 180;
@@ -301,7 +302,9 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
     let physicsWorld = null;
     let usingPhysics = false;
     let sceneDisposed = false;
-    const own = createPhysicsOwnership(rig);
+    const own = createPhysicsOwnership(rig, options.physicsWorld ? {
+        removeBody: removePhysicsBody, releaseShape: releasePhysicsShape, disposeWorld: () => {},
+    } : undefined);
     // Startup tracing is injected rather than imported: this module is shared with
     // non-Ashen callers that have no startup timeline.
     const phase = options.onPhase || (() => {});
@@ -312,13 +315,16 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
         usingPhysics = false;
     };
     // Register before Havok's asynchronous WASM load: scene teardown may race it.
-    onSceneDispose(scene, () => { sceneDisposed = true; cleanupPhysics(); });
+    // Headless room actors are disposed explicitly on departure. Registering one
+    // scene callback per join would retain departed actors until the room ends.
+    if (!options.headless) onSceneDispose(scene, () => { sceneDisposed = true; cleanupPhysics(); });
     let heightScale = 1;
     let onPose = null;
     let jumpBuffer = 0;
     let coyote = 0;
     let previousJump = false;
     let flying = false;
+    let manualDrive = Boolean(options.manualStep), lastInput = input;
     let moveScale = 1;
     let counts = { meshCount: 0, boxCount: 0, skipped: 0, animatedCount: 0 };
     const animatedColliders = new Map();
@@ -341,13 +347,16 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
         rig.update(0, body.position);
     };
 
-    const step = (dt) => {
+    const step = (dt, command = null) => {
+        const input = command || lastInput;
+        if (command && controller) { const p=controller.getPosition(); body.position.set(p.x,p.y,p.z); }
         if (sceneDisposed) return;
         const h = Math.min(Math.max(dt, 0), 0.05);
         if (h <= 0) return;
-        pollInput();
-        rig.applyLook();
-        if (input.rmb || input.faceCamera) {
+        if (!command) { pollInput(); rig.applyLook(); }
+        lastInput = input;
+        if (command) { state.facing = command.yaw; }
+        else if (input.rmb || input.faceCamera) {
             state.facing = rig.yaw;
         } else if (input.turn) {
             const turn = input.turn * TURN_RATE * h;
@@ -436,8 +445,10 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
         // Havok's controller is kinematic and does not generate contacts against other
         // kinematic/static bodies added after setup. Resolve living enemy capsules in XZ
         // here so movement, jump and the bounds clamp below stay on the same path.
+        // Online presence has static-region authority. Local unsynchronized enemy
+        // collision is excluded while manually driven; M9 adds authoritative AI.
         for (const handle of animatedColliders.values()) {
-            if (flying || !handle.enabled) continue;
+            if (command || flying || !handle.enabled) continue;
             const other = handle.pose;
             const min = spec.radius * heightScale + handle.radius + 0.12;
             const dx = body.position.x - other.x;
@@ -488,17 +499,15 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
         state.speed = Math.hypot(state.vx, state.vz);
         if (flying) state.facing = rig.yaw;
         body.rotation.y = state.facing;
-        rig.update(h, body.position);
-        onPose?.(h);
-        endFrame();
+        if (!command) { rig.update(h, body.position); onPose?.(h); endFrame(); }
     };
 
     try {
         phase("havok-runtime-start");
-        const hknp = await (options.havok || loadHavok());
+        const hknp = options.physicsWorld ? null : await (options.havok || loadHavok());
         phase("havok-runtime-end");
         if (sceneDisposed) throw new Error("Physics scene disposed during initialization");
-        const world = createHavokWorld(scene, hknp, GRAVITY);
+        const world = options.physicsWorld || createHavokWorld(scene, hknp, GRAVITY);
         own.setWorld(world);
         physicsWorld = world;
         phase("havok-world-end");
@@ -508,7 +517,7 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
         counts.boxCount = staticCounts.boxCount;
         counts.skipped = staticCounts.skipped;
         // A missing collision asset is explicit in diagnostics; fallback still follows terrain.
-        if (!counts.meshCount && !counts.boxCount) {
+        if (!options.physicsWorld && !counts.meshCount && !counts.boxCount) {
             cleanupPhysics();
             if (descriptors.length) throw new Error(`All ${descriptors.length} authored colliders failed to initialize`);
             console.warn("No authored colliders; using terrain locomotion");
@@ -525,23 +534,25 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
             // the scene. See the official physics module documentation:
             // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/42-physics.md
             // This query-only sphere uses the same walls, ramps and terrain as movement.
-            const cameraShape = own.setCameraShape(createPhysicsShape(world, {
-                type: PhysicsShapeType.SPHERE, parameters: { radius: 0.22 },
-            }));
-            const cameraQuery = {
-                shape: cameraShape, rotation: identityQuat, ignoreBody: controller.getBody(),
-                shouldHitTriggers: false, startPosition: null, endPosition: null,
-            };
-            rig.setCollisionSweep?.((from, to) => {
-                if (sceneDisposed || own.disposed) return null;
-                cameraQuery.startPosition = from;
-                cameraQuery.endPosition = to;
-                return shapeCast(world, cameraQuery);
-            });
+            if (!options.headless) {
+                const cameraShape = own.setCameraShape(createPhysicsShape(world, {
+                    type: PhysicsShapeType.SPHERE, parameters: { radius: 0.22 },
+                }));
+                const cameraQuery = {
+                    shape: cameraShape, rotation: identityQuat, ignoreBody: controller.getBody(),
+                    shouldHitTriggers: false, startPosition: null, endPosition: null,
+                };
+                rig.setCollisionSweep?.((from, to) => {
+                    if (sceneDisposed || own.disposed) return null;
+                    cameraQuery.startPosition = from;
+                    cameraQuery.endPosition = to;
+                    return shapeCast(world, cameraQuery);
+                });
+            }
             usingPhysics = true;
             phase("havok-controller-end");
-            onPhysicsAfterStep(world, (dt) => {
-                if (!sceneDisposed && !own.disposed) step(dt);
+            if (!options.manualStep) onPhysicsAfterStep(world, (dt) => {
+                if (!sceneDisposed && !own.disposed && !manualDrive) step(dt);
             });
         }
     } catch (error) {
@@ -572,6 +583,11 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
         get capsuleRadius() { return spec.radius * heightScale; },
         get heightScale() { return heightScale; },
         setHeightScale(scale) {
+            // Online visuals may prepare a new silhouette, but client physics
+            // changes only when SDK adoption supplies the authoritative capsule.
+            // The headless server still accepts validated appearance requests.
+            // https://docs.colyseus.io/netcode/client-prediction
+            if (manualDrive && !options.headless) return capsuleHeightOf();
             const next = Math.min(1.15, Math.max(0.9, scale));
             if (!Number.isFinite(next) || Math.abs(next - heightScale) < 1e-4) return capsuleHeightOf();
             const oldHeight = capsuleHeightOf();
@@ -589,14 +605,15 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
         setFacing(yaw) { if (Number.isFinite(yaw)) body.rotation.y = state.facing = yaw; },
         setCastBlend(value) { state.castBlend = value; },
         setMoveScale(scale) {
+            if (manualDrive && !options.headless) return;
             moveScale = Number.isFinite(scale) ? Math.min(1, Math.max(0.2, scale)) : 1;
         },
         getGrounded: () => state.grounded,
         getSupport: () => state.support,
         getVy: () => state.vy,
         getMotion() {
-            motion.speed = state.speed; motion.forward = input.forward; motion.strafe = input.strafe;
-            motion.grounded = state.grounded; motion.vy = state.vy; motion.walk = input.walk;
+            motion.speed = state.speed; motion.forward = lastInput.forward; motion.strafe = lastInput.strafe;
+            motion.grounded = state.grounded; motion.vy = state.vy; motion.walk = lastInput.walk;
             motion.castBlend = state.castBlend;
             motion.jumpInFlight = state.jumpInFlight; motion.airTime = state.airTime;
             return motion;
@@ -607,10 +624,56 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
                 id: h.id, enabled: h.enabled, radius: h.radius, pose: { ...h.pose },
             })),
         }),
+        /** Shared online/server driver, using this same Havok CCT and movement rules.
+         * SDK adoption restores all scalar movement state; Havok contact caches are
+         * not rewindable. Measure corrections rather than asserting determinism.
+         * https://docs.colyseus.io/netcode/client-prediction#composite--engine-state-predictsim
+         * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/42-physics.md
+         */
+        setManualDrive(on) {
+            if (!usingPhysics) throw Error('Online drive requires Havok');
+            manualDrive=Boolean(on);
+            if (manualDrive) flying=false;
+            if (!manualDrive) {lastInput=input;const p=controller.getPosition();body.position.set(p.x,p.y,p.z);rig.update(0,body.position);}
+        },
+        driveInput(dt, command) {
+            if (!manualDrive || !controller || sceneDisposed) throw Error('Manual drive is not active');
+            step(dt,command);
+        },
+        getMovementState() {
+            const p=controller?.getPosition()||body.position,v=controller?.getVelocity()||velocity;
+            return {...state,x:p.x,y:p.y,z:p.z,jumpBuffer,coyote,previousJump,moveScale,heightScale,
+                controllerVx:v.x,controllerVy:v.y,controllerVz:v.z};
+        },
+        adoptMovementState(snapshot) {
+            if (!manualDrive || !controller) throw Error('Manual drive is not active');
+            for (const k of ['x','y','z','facing','vy','vx','vz','speed','support','airTime','jumps','landings','recoveries',
+                'jumpBuffer','coyote','moveScale','heightScale','controllerVx','controllerVy','controllerVz','castBlend'])
+                if (!Number.isFinite(snapshot[k])) throw Error(`Invalid movement snapshot ${k}`);
+            for (const k of ['grounded','jumpInFlight','previousJump'])
+                if (typeof snapshot[k]!=='boolean') throw Error(`Invalid movement snapshot ${k}`);
+            if (snapshot.heightScale<.9||snapshot.heightScale>1.15) throw Error('Unsupported movement height');
+            if (snapshot.heightScale!==heightScale) {
+                heightScale=snapshot.heightScale;
+                controller.setShapeOptions({capsuleHeight:capsuleHeightOf(),capsuleRadius:spec.radius*heightScale},true);
+                head.position.y=capsuleHeightOf()*.28;
+            }
+            for (const key of Object.keys(state)) if (key in snapshot) state[key]=snapshot[key];
+            jumpBuffer=snapshot.jumpBuffer;coyote=snapshot.coyote;previousJump=snapshot.previousJump;moveScale=snapshot.moveScale;
+            controller.setPosition(snapshot);
+            velocity.x=snapshot.controllerVx;velocity.y=snapshot.controllerVy;velocity.z=snapshot.controllerVz;
+            controller.setVelocity(velocity);body.position.set(snapshot.x,snapshot.y,snapshot.z);body.rotation.y=state.facing;
+        },
+        presentMovement(dt, pose) {
+            if (!manualDrive) return;
+            body.position.set(pose.x,pose.y,pose.z);rig.update(Math.min(.05,dt),body.position);onPose?.(dt);
+        },
+        dispose() { sceneDisposed=true;cleanupPhysics(); },
         groundHeight,
         setWorldPos: teleport,
         isFlying: () => flying,
         setFlying(on) {
+            if (manualDrive && on) return;
             flying = !!on;
             if (!flying) {
                 const x = body.position.x;

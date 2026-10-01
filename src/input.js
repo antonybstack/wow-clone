@@ -69,6 +69,20 @@ const keys = Object.create(null);
 let inputEnabled = true;
 let inputLockedUntilReload = false;
 const resetListeners = new Set();
+const actionListeners = new Set();
+
+/** Shared keyboard/HUD intent boundary. Online presence observes the existing
+ * controls here rather than duplicating key mappings or ignoring touch buttons.
+ * Intent values are 1=spell, 2=attack, 3=jump; they are not wire commands.
+ * The cooperative authority will decide whether an intent becomes an action.
+ */
+export function onActionInput(callback) {
+    actionListeners.add(callback);
+    return () => actionListeners.delete(callback);
+}
+export function notifyActionInput(action) {
+    if (isInputEnabled()) for (const listener of actionListeners) listener(action);
+}
 let touchMove = { forward: 0, strafe: 0, active: false };
 let touchJump = false;
 const touchPoints = new Map();
@@ -122,6 +136,7 @@ export function setTouchMove(forward, strafe, active) {
 
 export function setTouchJump(down) {
     if (down && !isInputEnabled()) return;
+    if (down && !touchJump) notifyActionInput(3);
     touchJump = !!down;
 }
 
@@ -468,6 +483,7 @@ export function initInput(canvas) {
             return;
         }
         keys[event.code] = true;
+        if (event.code === "Space") notifyActionInput(3);
         if (!event.ctrlKey && !event.metaKey && !event.altKey) {
             if (event.code === "KeyB") {
                 input.toggleBag = true;
@@ -495,11 +511,13 @@ export function initInput(canvas) {
             }
             if (event.code === "KeyT") {
                 input.attackPressed = true;
+                notifyActionInput(2);
             }
         }
         const n = SPELL_KEYS[event.code];
         if (n) {
             input.spellPressed = n;
+            notifyActionInput(1);
             if (n === 2) {
                 input.spellHeld2 = true;
                 input.castHold = true;

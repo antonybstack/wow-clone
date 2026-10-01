@@ -1,0 +1,4483 @@
+{
+  "conditions": {
+    "cpu": "Apple M1 Max",
+    "url": "http://127.0.0.1:5673/?play&clean&pixelRatio=1",
+    "endpoint": "http://127.0.0.1:2577",
+    "recording": false,
+    "renderingClients": 1,
+    "protocolPeers": 7,
+    "viewport": [
+      1280,
+      720
+    ],
+    "runs": 3,
+    "seconds": 12,
+    "camera": "Diagnostic existing spring-arm group view",
+    "physicalPhone": false
+  },
+  "rows": [
+    {
+      "tier": "vat",
+      "run": 1,
+      "cap": {
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 6.357 ms is not locked to a known display interval"
+      },
+      "tails": {
+        "samples": 1888,
+        "meanMs": 6.357468220389496,
+        "meanFps": 157.29532029634498,
+        "p50Ms": 5.1000001430511475,
+        "p95Ms": 12.700000047683716,
+        "p99Ms": 13.5,
+        "maxMs": 14.099999904632568,
+        "above6_94": 500,
+        "above8_33": 473,
+        "above16_67": 0,
+        "above33_33": 0
+      },
+      "metrics": {
+        "samples": 600,
+        "fps": 157.1791580456068,
+        "meanMs": 6.362166666587194,
+        "medianMs": 5.1000001430511475,
+        "p95Ms": 12.900000095367432,
+        "p99Ms": 13.700000047683716,
+        "worstMs": 14.099999904632568,
+        "minMs": 2.5,
+        "above8_333": 151,
+        "above16_667": 0,
+        "drawCalls": 615,
+        "resolution": [
+          1280,
+          720
+        ],
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "maxDevicePixelRatio": 1,
+        "horizonTriangles": 125642,
+        "farTriangles": 289206,
+        "scatterTrees": 599,
+        "scatterRocks": 139,
+        "shafts": 0,
+        "shaftTriangles": 0,
+        "motes": 4200,
+        "moteTriangles": 8400,
+        "foliageInstances": 117242,
+        "triangles": 941975,
+        "drawBatches": 57,
+        "worldTriangles": 941975,
+        "sceneTriangles": 1458621,
+        "drawnMeshes": 107,
+        "hiddenMeshes": 47,
+        "totalMeshes": 154,
+        "triangleCountMs": 0.20000004768371582,
+        "gpuTimingSupported": true,
+        "gpuTimingEnabled": false,
+        "gpuTimingReadback": "disabled",
+        "gpuMs": null,
+        "gpuMeanMs": null,
+        "gpuP95Ms": null,
+        "gpuSamples": 0,
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 6.362 ms is not locked to a known display interval"
+      },
+      "actors": {
+        "count": 7,
+        "clock": 1291.2107389653845,
+        "actors": [
+          {
+            "id": "jNvEhcFl9",
+            "revision": 1,
+            "tier": "vat",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.23273896538444205,
+              "frame": 13,
+              "row": 290,
+              "ended": false,
+              "phase": 0.17455421883621045
+            }
+          },
+          {
+            "id": "hqD_7kWON",
+            "revision": 1,
+            "tier": "vat",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.23273896538444205,
+              "frame": 13,
+              "row": 290,
+              "ended": false,
+              "phase": 0.17455421883621045
+            }
+          },
+          {
+            "id": "rQQNNkMmm",
+            "revision": 1,
+            "tier": "vat",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.23273896538444205,
+              "frame": 13,
+              "row": 290,
+              "ended": false,
+              "phase": 0.17455421883621045
+            }
+          },
+          {
+            "id": "jlQgdy6oJ",
+            "revision": 1,
+            "tier": "vat",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.23273896538444205,
+              "frame": 13,
+              "row": 290,
+              "ended": false,
+              "phase": 0.17455421883621045
+            }
+          },
+          {
+            "id": "af-DL8OjU",
+            "revision": 1,
+            "tier": "vat",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.29973896538444933,
+              "frame": 17,
+              "row": 294,
+              "ended": false,
+              "phase": 0.22480421733864925
+            }
+          },
+          {
+            "id": "uDAwvg9K8",
+            "revision": 1,
+            "tier": "vat",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.29973896538444933,
+              "frame": 17,
+              "row": 294,
+              "ended": false,
+              "phase": 0.22480421733864925
+            }
+          },
+          {
+            "id": "693xEyx1C",
+            "revision": 1,
+            "tier": "vat",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.29973896538444933,
+              "frame": 17,
+              "row": 294,
+              "ended": false,
+              "phase": 0.22480421733864925
+            }
+          }
+        ],
+        "batches": [
+          {
+            "mesh": "HumanV1Body",
+            "ids": [
+              "jNvEhcFl9",
+              "hqD_7kWON",
+              "rQQNNkMmm",
+              "jlQgdy6oJ",
+              "af-DL8OjU",
+              "uDAwvg9K8",
+              "693xEyx1C"
+            ],
+            "slots": [
+              [
+                "jNvEhcFl9",
+                0
+              ],
+              [
+                "hqD_7kWON",
+                1
+              ],
+              [
+                "rQQNNkMmm",
+                2
+              ],
+              [
+                "jlQgdy6oJ",
+                3
+              ],
+              [
+                "af-DL8OjU",
+                4
+              ],
+              [
+                "uDAwvg9K8",
+                5
+              ],
+              [
+                "693xEyx1C",
+                6
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerTunic",
+            "ids": [
+              "jNvEhcFl9",
+              "rQQNNkMmm",
+              "af-DL8OjU",
+              "693xEyx1C"
+            ],
+            "slots": [
+              [
+                "jNvEhcFl9",
+                0
+              ],
+              [
+                "rQQNNkMmm",
+                1
+              ],
+              [
+                "af-DL8OjU",
+                2
+              ],
+              [
+                "693xEyx1C",
+                3
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerTrousers",
+            "ids": [
+              "jNvEhcFl9",
+              "rQQNNkMmm",
+              "af-DL8OjU",
+              "693xEyx1C"
+            ],
+            "slots": [
+              [
+                "jNvEhcFl9",
+                0
+              ],
+              [
+                "rQQNNkMmm",
+                1
+              ],
+              [
+                "af-DL8OjU",
+                2
+              ],
+              [
+                "693xEyx1C",
+                3
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerBoots",
+            "ids": [
+              "jNvEhcFl9",
+              "hqD_7kWON",
+              "rQQNNkMmm",
+              "jlQgdy6oJ",
+              "af-DL8OjU",
+              "uDAwvg9K8",
+              "693xEyx1C"
+            ],
+            "slots": [
+              [
+                "jNvEhcFl9",
+                0
+              ],
+              [
+                "hqD_7kWON",
+                1
+              ],
+              [
+                "rQQNNkMmm",
+                2
+              ],
+              [
+                "jlQgdy6oJ",
+                3
+              ],
+              [
+                "af-DL8OjU",
+                4
+              ],
+              [
+                "uDAwvg9K8",
+                5
+              ],
+              [
+                "693xEyx1C",
+                6
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "ProbeIronSword",
+            "ids": [
+              "jNvEhcFl9",
+              "rQQNNkMmm",
+              "af-DL8OjU",
+              "693xEyx1C"
+            ],
+            "slots": [
+              [
+                "jNvEhcFl9",
+                0
+              ],
+              [
+                "rQQNNkMmm",
+                1
+              ],
+              [
+                "af-DL8OjU",
+                2
+              ],
+              [
+                "693xEyx1C",
+                3
+              ]
+            ],
+            "primitives": 2
+          },
+          {
+            "mesh": "GraveweaverHood",
+            "ids": [
+              "hqD_7kWON",
+              "jlQgdy6oJ",
+              "uDAwvg9K8"
+            ],
+            "slots": [
+              [
+                "hqD_7kWON",
+                0
+              ],
+              [
+                "jlQgdy6oJ",
+                1
+              ],
+              [
+                "uDAwvg9K8",
+                2
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "GraveweaverTop",
+            "ids": [
+              "hqD_7kWON",
+              "jlQgdy6oJ",
+              "uDAwvg9K8"
+            ],
+            "slots": [
+              [
+                "hqD_7kWON",
+                0
+              ],
+              [
+                "jlQgdy6oJ",
+                1
+              ],
+              [
+                "uDAwvg9K8",
+                2
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "GraveweaverPendant",
+            "ids": [
+              "hqD_7kWON",
+              "jlQgdy6oJ",
+              "uDAwvg9K8"
+            ],
+            "slots": [
+              [
+                "hqD_7kWON",
+                0
+              ],
+              [
+                "jlQgdy6oJ",
+                1
+              ],
+              [
+                "uDAwvg9K8",
+                2
+              ]
+            ],
+            "primitives": 2
+          },
+          {
+            "mesh": "GraveweaverSkirt",
+            "ids": [
+              "hqD_7kWON",
+              "jlQgdy6oJ",
+              "uDAwvg9K8"
+            ],
+            "slots": [
+              [
+                "hqD_7kWON",
+                0
+              ],
+              [
+                "jlQgdy6oJ",
+                1
+              ],
+              [
+                "uDAwvg9K8",
+                2
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerTrousers",
+            "ids": [
+              "hqD_7kWON",
+              "jlQgdy6oJ",
+              "uDAwvg9K8"
+            ],
+            "slots": [
+              [
+                "hqD_7kWON",
+                0
+              ],
+              [
+                "jlQgdy6oJ",
+                1
+              ],
+              [
+                "uDAwvg9K8",
+                2
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "GraveweaverGloves",
+            "ids": [
+              "hqD_7kWON",
+              "jlQgdy6oJ",
+              "uDAwvg9K8"
+            ],
+            "slots": [
+              [
+                "hqD_7kWON",
+                0
+              ],
+              [
+                "jlQgdy6oJ",
+                1
+              ],
+              [
+                "uDAwvg9K8",
+                2
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "ProbeGreatstaff",
+            "ids": [
+              "hqD_7kWON",
+              "jlQgdy6oJ",
+              "uDAwvg9K8"
+            ],
+            "slots": [
+              [
+                "hqD_7kWON",
+                0
+              ],
+              [
+                "jlQgdy6oJ",
+                1
+              ],
+              [
+                "uDAwvg9K8",
+                2
+              ]
+            ],
+            "primitives": 3
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 2
+        },
+        "queue": {
+          "submitted": 7,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 7,
+          "completed": 7,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 3,
+          "reservedBytes": 4589720,
+          "peakReservedBytes": 4589720,
+          "ceilingBytes": 8388608,
+          "leases": 3
+        },
+        "activeExact": 0,
+        "idleExact": 0,
+        "owned": 2,
+        "allocation": {
+          "buffers": 118,
+          "textures": 39,
+          "bufferBytes": 3399568,
+          "textureBytes": 5342464,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 4216280,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "exactLoads": 0,
+          "exactReuses": 0,
+          "exactLiveUpdates": 0,
+          "evictions": 0,
+          "peakOwned": 2,
+          "preparations": []
+        }
+      },
+      "enemies": 7,
+      "gpu": [],
+      "presenceErrors": [],
+      "before": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "roomId": "60EO9N0J_",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 38364,
+        "tickP95Ms": 0.6280420001130551,
+        "tickP99Ms": 0.873458000132814,
+        "tickMaxMs": 5.693875000113621,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3600,
+            "fps": 4818.805265426898,
+            "meanMs": 0.2075203177797246,
+            "medianMs": 0.12995800003409386,
+            "p95Ms": 0.43074999982491136,
+            "p99Ms": 0.7129170000553131,
+            "worstMs": 5.693875000113621,
+            "minMs": 0.02566699986346066,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 3600,
+            "fps": 2771.878187967169,
+            "meanMs": 0.3607662141651963,
+            "medianMs": 0.334082999965176,
+            "p95Ms": 0.5432500001043081,
+            "p99Ms": 0.7457919998560101,
+            "worstMs": 3.0699579999782145,
+            "minMs": 0.07783299987204373,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 2,
+            "samples": 2884,
+            "fps": 2339.024634452843,
+            "meanMs": 0.42752863106716493,
+            "medianMs": 0.413708999985829,
+            "p95Ms": 0.5796660000341944,
+            "p99Ms": 0.718457999988459,
+            "worstMs": 2.9185839999991003,
+            "minMs": 0.11533299996517599,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 2421.5537652415874,
+            "meanMs": 0.41295800008811057,
+            "medianMs": 0.41295800008811057,
+            "p95Ms": 0.41295800008811057,
+            "p99Ms": 0.41295800008811057,
+            "worstMs": 0.41295800008811057,
+            "minMs": 0.41295800008811057,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 1098,
+            "fps": 521.622518740175,
+            "meanMs": 1.9170951484518044,
+            "medianMs": 2.0394999999552965,
+            "p95Ms": 3.546375000034459,
+            "p99Ms": 6.095042000059038,
+            "worstMs": 9.76437500002794,
+            "minMs": 0.38100000005215406,
+            "above8_333": 3,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "xzkYJsrwP",
+            "receivedBytes": 115,
+            "sentBytes": 28014
+          },
+          {
+            "id": "jNvEhcFl9",
+            "receivedBytes": 120,
+            "sentBytes": 27853
+          },
+          {
+            "id": "hqD_7kWON",
+            "receivedBytes": 120,
+            "sentBytes": 28535
+          },
+          {
+            "id": "rQQNNkMmm",
+            "receivedBytes": 120,
+            "sentBytes": 29176
+          },
+          {
+            "id": "jlQgdy6oJ",
+            "receivedBytes": 120,
+            "sentBytes": 29858
+          },
+          {
+            "id": "af-DL8OjU",
+            "receivedBytes": 120,
+            "sentBytes": 30499
+          },
+          {
+            "id": "uDAwvg9K8",
+            "receivedBytes": 120,
+            "sentBytes": 31181
+          },
+          {
+            "id": "693xEyx1C",
+            "receivedBytes": 120,
+            "sentBytes": 31822
+          }
+        ],
+        "memory": {
+          "rss": 175702016,
+          "heapTotal": 45711360,
+          "heapUsed": 40610920,
+          "external": 40752078,
+          "arrayBuffers": 20242205
+        }
+      },
+      "after": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "roomId": "60EO9N0J_",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 38725,
+        "tickP95Ms": 0.7730419998988509,
+        "tickP99Ms": 0.9213750001508743,
+        "tickMaxMs": 5.693875000113621,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3600,
+            "fps": 4818.805265426898,
+            "meanMs": 0.2075203177797246,
+            "medianMs": 0.12995800003409386,
+            "p95Ms": 0.43074999982491136,
+            "p99Ms": 0.7129170000553131,
+            "worstMs": 5.693875000113621,
+            "minMs": 0.02566699986346066,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 3600,
+            "fps": 2771.878187967169,
+            "meanMs": 0.3607662141651963,
+            "medianMs": 0.334082999965176,
+            "p95Ms": 0.5432500001043081,
+            "p99Ms": 0.7457919998560101,
+            "worstMs": 3.0699579999782145,
+            "minMs": 0.07783299987204373,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 2,
+            "samples": 2884,
+            "fps": 2339.024634452843,
+            "meanMs": 0.42752863106716493,
+            "medianMs": 0.413708999985829,
+            "p95Ms": 0.5796660000341944,
+            "p99Ms": 0.718457999988459,
+            "worstMs": 2.9185839999991003,
+            "minMs": 0.11533299996517599,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 2421.5537652415874,
+            "meanMs": 0.41295800008811057,
+            "medianMs": 0.41295800008811057,
+            "p95Ms": 0.41295800008811057,
+            "p99Ms": 0.41295800008811057,
+            "worstMs": 0.41295800008811057,
+            "minMs": 0.41295800008811057,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 1459,
+            "fps": 615.3911628584709,
+            "meanMs": 1.6249827107608017,
+            "medianMs": 0.9197919999714941,
+            "p95Ms": 3.4332500000018626,
+            "p99Ms": 5.170375000103377,
+            "worstMs": 9.76437500002794,
+            "minMs": 0.38100000005215406,
+            "above8_333": 3,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "xzkYJsrwP",
+            "receivedBytes": 476,
+            "sentBytes": 77375
+          },
+          {
+            "id": "jNvEhcFl9",
+            "receivedBytes": 516,
+            "sentBytes": 77214
+          },
+          {
+            "id": "hqD_7kWON",
+            "receivedBytes": 516,
+            "sentBytes": 77896
+          },
+          {
+            "id": "rQQNNkMmm",
+            "receivedBytes": 516,
+            "sentBytes": 78537
+          },
+          {
+            "id": "jlQgdy6oJ",
+            "receivedBytes": 516,
+            "sentBytes": 79219
+          },
+          {
+            "id": "af-DL8OjU",
+            "receivedBytes": 516,
+            "sentBytes": 79860
+          },
+          {
+            "id": "uDAwvg9K8",
+            "receivedBytes": 516,
+            "sentBytes": 80542
+          },
+          {
+            "id": "693xEyx1C",
+            "receivedBytes": 516,
+            "sentBytes": 81183
+          }
+        ],
+        "memory": {
+          "rss": 175898624,
+          "heapTotal": 51216384,
+          "heapUsed": 40857336,
+          "external": 41022526,
+          "arrayBuffers": 20512653
+        }
+      }
+    },
+    {
+      "tier": "vat",
+      "run": 2,
+      "cap": {
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 6.358 ms is not locked to a known display interval"
+      },
+      "tails": {
+        "samples": 1888,
+        "meanMs": 6.357680084720506,
+        "meanFps": 157.2900785623537,
+        "p50Ms": 6.199999809265137,
+        "p95Ms": 12.200000047683716,
+        "p99Ms": 13.299999952316284,
+        "maxMs": 13.700000047683716,
+        "above6_94": 352,
+        "above8_33": 267,
+        "above16_67": 0,
+        "above33_33": 0
+      },
+      "metrics": {
+        "samples": 600,
+        "fps": 157.1256481472227,
+        "meanMs": 6.364333333174388,
+        "medianMs": 6.6000001430511475,
+        "p95Ms": 7,
+        "p99Ms": 7.200000047683716,
+        "worstMs": 8.700000047683716,
+        "minMs": 3.9000000953674316,
+        "above8_333": 1,
+        "above16_667": 0,
+        "drawCalls": 615,
+        "resolution": [
+          1280,
+          720
+        ],
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "maxDevicePixelRatio": 1,
+        "horizonTriangles": 125642,
+        "farTriangles": 289206,
+        "scatterTrees": 599,
+        "scatterRocks": 139,
+        "shafts": 0,
+        "shaftTriangles": 0,
+        "motes": 4200,
+        "moteTriangles": 8400,
+        "foliageInstances": 117242,
+        "triangles": 941975,
+        "drawBatches": 57,
+        "worldTriangles": 941975,
+        "sceneTriangles": 1458621,
+        "drawnMeshes": 107,
+        "hiddenMeshes": 47,
+        "totalMeshes": 154,
+        "triangleCountMs": 0.10000014305114746,
+        "gpuTimingSupported": true,
+        "gpuTimingEnabled": false,
+        "gpuTimingReadback": "disabled",
+        "gpuMs": null,
+        "gpuMeanMs": null,
+        "gpuP95Ms": null,
+        "gpuSamples": 0,
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 6.364 ms is not locked to a known display interval"
+      },
+      "actors": {
+        "count": 7,
+        "clock": 1303.2629514695707,
+        "actors": [
+          {
+            "id": "jNvEhcFl9",
+            "revision": 1,
+            "tier": "vat",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.6379514695706803,
+              "frame": 38,
+              "row": 315,
+              "ended": false,
+              "phase": 0.4784635879186841
+            }
+          },
+          {
+            "id": "hqD_7kWON",
+            "revision": 1,
+            "tier": "vat",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.6379514695706803,
+              "frame": 38,
+              "row": 315,
+              "ended": false,
+              "phase": 0.4784635879186841
+            }
+          },
+          {
+            "id": "rQQNNkMmm",
+            "revision": 1,
+            "tier": "vat",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.6379514695706803,
+              "frame": 38,
+              "row": 315,
+              "ended": false,
+              "phase": 0.4784635879186841
+            }
+          },
+          {
+            "id": "jlQgdy6oJ",
+            "revision": 1,
+            "tier": "vat",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.6379514695706803,
+              "frame": 38,
+              "row": 315,
+              "ended": false,
+              "phase": 0.4784635879186841
+            }
+          },
+          {
+            "id": "af-DL8OjU",
+            "revision": 1,
+            "tier": "vat",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.6379514695706803,
+              "frame": 38,
+              "row": 315,
+              "ended": false,
+              "phase": 0.4784635879186841
+            }
+          },
+          {
+            "id": "uDAwvg9K8",
+            "revision": 1,
+            "tier": "vat",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.6379514695706803,
+              "frame": 38,
+              "row": 315,
+              "ended": false,
+              "phase": 0.4784635879186841
+            }
+          },
+          {
+            "id": "693xEyx1C",
+            "revision": 1,
+            "tier": "vat",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.6379514695706803,
+              "frame": 38,
+              "row": 315,
+              "ended": false,
+              "phase": 0.4784635879186841
+            }
+          }
+        ],
+        "batches": [
+          {
+            "mesh": "HumanV1Body",
+            "ids": [
+              "jNvEhcFl9",
+              "hqD_7kWON",
+              "rQQNNkMmm",
+              "jlQgdy6oJ",
+              "af-DL8OjU",
+              "uDAwvg9K8",
+              "693xEyx1C"
+            ],
+            "slots": [
+              [
+                "jNvEhcFl9",
+                0
+              ],
+              [
+                "hqD_7kWON",
+                1
+              ],
+              [
+                "rQQNNkMmm",
+                2
+              ],
+              [
+                "jlQgdy6oJ",
+                3
+              ],
+              [
+                "af-DL8OjU",
+                4
+              ],
+              [
+                "uDAwvg9K8",
+                5
+              ],
+              [
+                "693xEyx1C",
+                6
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerTunic",
+            "ids": [
+              "jNvEhcFl9",
+              "rQQNNkMmm",
+              "af-DL8OjU",
+              "693xEyx1C"
+            ],
+            "slots": [
+              [
+                "jNvEhcFl9",
+                0
+              ],
+              [
+                "rQQNNkMmm",
+                1
+              ],
+              [
+                "af-DL8OjU",
+                2
+              ],
+              [
+                "693xEyx1C",
+                3
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerTrousers",
+            "ids": [
+              "jNvEhcFl9",
+              "rQQNNkMmm",
+              "af-DL8OjU",
+              "693xEyx1C"
+            ],
+            "slots": [
+              [
+                "jNvEhcFl9",
+                0
+              ],
+              [
+                "rQQNNkMmm",
+                1
+              ],
+              [
+                "af-DL8OjU",
+                2
+              ],
+              [
+                "693xEyx1C",
+                3
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerBoots",
+            "ids": [
+              "jNvEhcFl9",
+              "hqD_7kWON",
+              "rQQNNkMmm",
+              "jlQgdy6oJ",
+              "af-DL8OjU",
+              "uDAwvg9K8",
+              "693xEyx1C"
+            ],
+            "slots": [
+              [
+                "jNvEhcFl9",
+                0
+              ],
+              [
+                "hqD_7kWON",
+                1
+              ],
+              [
+                "rQQNNkMmm",
+                2
+              ],
+              [
+                "jlQgdy6oJ",
+                3
+              ],
+              [
+                "af-DL8OjU",
+                4
+              ],
+              [
+                "uDAwvg9K8",
+                5
+              ],
+              [
+                "693xEyx1C",
+                6
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "ProbeIronSword",
+            "ids": [
+              "jNvEhcFl9",
+              "rQQNNkMmm",
+              "af-DL8OjU",
+              "693xEyx1C"
+            ],
+            "slots": [
+              [
+                "jNvEhcFl9",
+                0
+              ],
+              [
+                "rQQNNkMmm",
+                1
+              ],
+              [
+                "af-DL8OjU",
+                2
+              ],
+              [
+                "693xEyx1C",
+                3
+              ]
+            ],
+            "primitives": 2
+          },
+          {
+            "mesh": "GraveweaverHood",
+            "ids": [
+              "hqD_7kWON",
+              "jlQgdy6oJ",
+              "uDAwvg9K8"
+            ],
+            "slots": [
+              [
+                "hqD_7kWON",
+                0
+              ],
+              [
+                "jlQgdy6oJ",
+                1
+              ],
+              [
+                "uDAwvg9K8",
+                2
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "GraveweaverTop",
+            "ids": [
+              "hqD_7kWON",
+              "jlQgdy6oJ",
+              "uDAwvg9K8"
+            ],
+            "slots": [
+              [
+                "hqD_7kWON",
+                0
+              ],
+              [
+                "jlQgdy6oJ",
+                1
+              ],
+              [
+                "uDAwvg9K8",
+                2
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "GraveweaverPendant",
+            "ids": [
+              "hqD_7kWON",
+              "jlQgdy6oJ",
+              "uDAwvg9K8"
+            ],
+            "slots": [
+              [
+                "hqD_7kWON",
+                0
+              ],
+              [
+                "jlQgdy6oJ",
+                1
+              ],
+              [
+                "uDAwvg9K8",
+                2
+              ]
+            ],
+            "primitives": 2
+          },
+          {
+            "mesh": "GraveweaverSkirt",
+            "ids": [
+              "hqD_7kWON",
+              "jlQgdy6oJ",
+              "uDAwvg9K8"
+            ],
+            "slots": [
+              [
+                "hqD_7kWON",
+                0
+              ],
+              [
+                "jlQgdy6oJ",
+                1
+              ],
+              [
+                "uDAwvg9K8",
+                2
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerTrousers",
+            "ids": [
+              "hqD_7kWON",
+              "jlQgdy6oJ",
+              "uDAwvg9K8"
+            ],
+            "slots": [
+              [
+                "hqD_7kWON",
+                0
+              ],
+              [
+                "jlQgdy6oJ",
+                1
+              ],
+              [
+                "uDAwvg9K8",
+                2
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "GraveweaverGloves",
+            "ids": [
+              "hqD_7kWON",
+              "jlQgdy6oJ",
+              "uDAwvg9K8"
+            ],
+            "slots": [
+              [
+                "hqD_7kWON",
+                0
+              ],
+              [
+                "jlQgdy6oJ",
+                1
+              ],
+              [
+                "uDAwvg9K8",
+                2
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "ProbeGreatstaff",
+            "ids": [
+              "hqD_7kWON",
+              "jlQgdy6oJ",
+              "uDAwvg9K8"
+            ],
+            "slots": [
+              [
+                "hqD_7kWON",
+                0
+              ],
+              [
+                "jlQgdy6oJ",
+                1
+              ],
+              [
+                "uDAwvg9K8",
+                2
+              ]
+            ],
+            "primitives": 3
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 2
+        },
+        "queue": {
+          "submitted": 7,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 7,
+          "completed": 7,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 3,
+          "reservedBytes": 4589720,
+          "peakReservedBytes": 4589720,
+          "ceilingBytes": 8388608,
+          "leases": 3
+        },
+        "activeExact": 0,
+        "idleExact": 0,
+        "owned": 2,
+        "allocation": {
+          "buffers": 118,
+          "textures": 39,
+          "bufferBytes": 3399568,
+          "textureBytes": 5342464,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 4216280,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "exactLoads": 0,
+          "exactReuses": 0,
+          "exactLiveUpdates": 0,
+          "evictions": 0,
+          "peakOwned": 2,
+          "preparations": []
+        }
+      },
+      "enemies": 7,
+      "gpu": [],
+      "presenceErrors": [],
+      "before": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "roomId": "60EO9N0J_",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 38725,
+        "tickP95Ms": 0.7730419998988509,
+        "tickP99Ms": 0.9213750001508743,
+        "tickMaxMs": 5.693875000113621,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3600,
+            "fps": 4818.805265426898,
+            "meanMs": 0.2075203177797246,
+            "medianMs": 0.12995800003409386,
+            "p95Ms": 0.43074999982491136,
+            "p99Ms": 0.7129170000553131,
+            "worstMs": 5.693875000113621,
+            "minMs": 0.02566699986346066,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 3600,
+            "fps": 2771.878187967169,
+            "meanMs": 0.3607662141651963,
+            "medianMs": 0.334082999965176,
+            "p95Ms": 0.5432500001043081,
+            "p99Ms": 0.7457919998560101,
+            "worstMs": 3.0699579999782145,
+            "minMs": 0.07783299987204373,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 2,
+            "samples": 2884,
+            "fps": 2339.024634452843,
+            "meanMs": 0.42752863106716493,
+            "medianMs": 0.413708999985829,
+            "p95Ms": 0.5796660000341944,
+            "p99Ms": 0.718457999988459,
+            "worstMs": 2.9185839999991003,
+            "minMs": 0.11533299996517599,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 2421.5537652415874,
+            "meanMs": 0.41295800008811057,
+            "medianMs": 0.41295800008811057,
+            "p95Ms": 0.41295800008811057,
+            "p99Ms": 0.41295800008811057,
+            "worstMs": 0.41295800008811057,
+            "minMs": 0.41295800008811057,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 1459,
+            "fps": 615.3911628584709,
+            "meanMs": 1.6249827107608017,
+            "medianMs": 0.9197919999714941,
+            "p95Ms": 3.4332500000018626,
+            "p99Ms": 5.170375000103377,
+            "worstMs": 9.76437500002794,
+            "minMs": 0.38100000005215406,
+            "above8_333": 3,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "xzkYJsrwP",
+            "receivedBytes": 476,
+            "sentBytes": 77375
+          },
+          {
+            "id": "jNvEhcFl9",
+            "receivedBytes": 516,
+            "sentBytes": 77214
+          },
+          {
+            "id": "hqD_7kWON",
+            "receivedBytes": 516,
+            "sentBytes": 77896
+          },
+          {
+            "id": "rQQNNkMmm",
+            "receivedBytes": 516,
+            "sentBytes": 78537
+          },
+          {
+            "id": "jlQgdy6oJ",
+            "receivedBytes": 516,
+            "sentBytes": 79219
+          },
+          {
+            "id": "af-DL8OjU",
+            "receivedBytes": 516,
+            "sentBytes": 79860
+          },
+          {
+            "id": "uDAwvg9K8",
+            "receivedBytes": 516,
+            "sentBytes": 80542
+          },
+          {
+            "id": "693xEyx1C",
+            "receivedBytes": 516,
+            "sentBytes": 81183
+          }
+        ],
+        "memory": {
+          "rss": 176652288,
+          "heapTotal": 51216384,
+          "heapUsed": 40788400,
+          "external": 41022526,
+          "arrayBuffers": 20512653
+        }
+      },
+      "after": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "roomId": "60EO9N0J_",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 39086,
+        "tickP95Ms": 0.8096670000813901,
+        "tickP99Ms": 0.9252919999416918,
+        "tickMaxMs": 5.693875000113621,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3600,
+            "fps": 4818.805265426898,
+            "meanMs": 0.2075203177797246,
+            "medianMs": 0.12995800003409386,
+            "p95Ms": 0.43074999982491136,
+            "p99Ms": 0.7129170000553131,
+            "worstMs": 5.693875000113621,
+            "minMs": 0.02566699986346066,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 3600,
+            "fps": 2771.878187967169,
+            "meanMs": 0.3607662141651963,
+            "medianMs": 0.334082999965176,
+            "p95Ms": 0.5432500001043081,
+            "p99Ms": 0.7457919998560101,
+            "worstMs": 3.0699579999782145,
+            "minMs": 0.07783299987204373,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 2,
+            "samples": 2884,
+            "fps": 2339.024634452843,
+            "meanMs": 0.42752863106716493,
+            "medianMs": 0.413708999985829,
+            "p95Ms": 0.5796660000341944,
+            "p99Ms": 0.718457999988459,
+            "worstMs": 2.9185839999991003,
+            "minMs": 0.11533299996517599,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 2421.5537652415874,
+            "meanMs": 0.41295800008811057,
+            "medianMs": 0.41295800008811057,
+            "p95Ms": 0.41295800008811057,
+            "p99Ms": 0.41295800008811057,
+            "worstMs": 0.41295800008811057,
+            "minMs": 0.41295800008811057,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 1820,
+            "fps": 692.6892439575898,
+            "meanMs": 1.4436488060455943,
+            "medianMs": 0.7976660002022982,
+            "p95Ms": 3.356834000092931,
+            "p99Ms": 4.569625000003725,
+            "worstMs": 9.76437500002794,
+            "minMs": 0.38100000005215406,
+            "above8_333": 3,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "xzkYJsrwP",
+            "receivedBytes": 837,
+            "sentBytes": 121502
+          },
+          {
+            "id": "jNvEhcFl9",
+            "receivedBytes": 914,
+            "sentBytes": 121341
+          },
+          {
+            "id": "hqD_7kWON",
+            "receivedBytes": 914,
+            "sentBytes": 122023
+          },
+          {
+            "id": "rQQNNkMmm",
+            "receivedBytes": 914,
+            "sentBytes": 122664
+          },
+          {
+            "id": "jlQgdy6oJ",
+            "receivedBytes": 914,
+            "sentBytes": 123346
+          },
+          {
+            "id": "af-DL8OjU",
+            "receivedBytes": 914,
+            "sentBytes": 123987
+          },
+          {
+            "id": "uDAwvg9K8",
+            "receivedBytes": 914,
+            "sentBytes": 124669
+          },
+          {
+            "id": "693xEyx1C",
+            "receivedBytes": 914,
+            "sentBytes": 125310
+          }
+        ],
+        "memory": {
+          "rss": 177192960,
+          "heapTotal": 51216384,
+          "heapUsed": 42581608,
+          "external": 41039351,
+          "arrayBuffers": 20529149
+        }
+      }
+    },
+    {
+      "tier": "vat",
+      "run": 3,
+      "cap": {
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 6.361 ms is not locked to a known display interval"
+      },
+      "tails": {
+        "samples": 1887,
+        "meanMs": 6.361208267166429,
+        "meanFps": 157.20283914638208,
+        "p50Ms": 6.599999904632568,
+        "p95Ms": 7,
+        "p99Ms": 7.1000001430511475,
+        "maxMs": 9.100000143051147,
+        "above6_94": 226,
+        "above8_33": 2,
+        "above16_67": 0,
+        "above33_33": 0
+      },
+      "metrics": {
+        "samples": 600,
+        "fps": 157.52993068880266,
+        "meanMs": 6.347999999920527,
+        "medianMs": 6.599999904632568,
+        "p95Ms": 7,
+        "p99Ms": 7.200000047683716,
+        "worstMs": 9.100000143051147,
+        "minMs": 3.299999952316284,
+        "above8_333": 1,
+        "above16_667": 0,
+        "drawCalls": 615,
+        "resolution": [
+          1280,
+          720
+        ],
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "maxDevicePixelRatio": 1,
+        "horizonTriangles": 125642,
+        "farTriangles": 289206,
+        "scatterTrees": 599,
+        "scatterRocks": 139,
+        "shafts": 0,
+        "shaftTriangles": 0,
+        "motes": 4200,
+        "moteTriangles": 8400,
+        "foliageInstances": 117242,
+        "triangles": 941975,
+        "drawBatches": 57,
+        "worldTriangles": 941975,
+        "sceneTriangles": 1458621,
+        "drawnMeshes": 107,
+        "hiddenMeshes": 47,
+        "totalMeshes": 154,
+        "triangleCountMs": 0.09999990463256836,
+        "gpuTimingSupported": true,
+        "gpuTimingEnabled": false,
+        "gpuTimingReadback": "disabled",
+        "gpuMs": null,
+        "gpuMeanMs": null,
+        "gpuP95Ms": null,
+        "gpuSamples": 0,
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 6.348 ms is not locked to a known display interval"
+      },
+      "actors": {
+        "count": 7,
+        "clock": 1315.2903379882546,
+        "actors": [
+          {
+            "id": "jNvEhcFl9",
+            "revision": 1,
+            "tier": "vat",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.008671242115042332,
+              "frame": 0,
+              "row": 277,
+              "ended": false,
+              "phase": 0.0065034313924643905
+            }
+          },
+          {
+            "id": "hqD_7kWON",
+            "revision": 1,
+            "tier": "vat",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.008671242115042332,
+              "frame": 0,
+              "row": 277,
+              "ended": false,
+              "phase": 0.0065034313924643905
+            }
+          },
+          {
+            "id": "rQQNNkMmm",
+            "revision": 1,
+            "tier": "vat",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.008671242115042332,
+              "frame": 0,
+              "row": 277,
+              "ended": false,
+              "phase": 0.0065034313924643905
+            }
+          },
+          {
+            "id": "jlQgdy6oJ",
+            "revision": 1,
+            "tier": "vat",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.008671242115042332,
+              "frame": 0,
+              "row": 277,
+              "ended": false,
+              "phase": 0.0065034313924643905
+            }
+          },
+          {
+            "id": "af-DL8OjU",
+            "revision": 1,
+            "tier": "vat",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.008671242115042332,
+              "frame": 0,
+              "row": 277,
+              "ended": false,
+              "phase": 0.0065034313924643905
+            }
+          },
+          {
+            "id": "uDAwvg9K8",
+            "revision": 1,
+            "tier": "vat",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.008671242115042332,
+              "frame": 0,
+              "row": 277,
+              "ended": false,
+              "phase": 0.0065034313924643905
+            }
+          },
+          {
+            "id": "693xEyx1C",
+            "revision": 1,
+            "tier": "vat",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.008671242115042332,
+              "frame": 0,
+              "row": 277,
+              "ended": false,
+              "phase": 0.0065034313924643905
+            }
+          }
+        ],
+        "batches": [
+          {
+            "mesh": "HumanV1Body",
+            "ids": [
+              "jNvEhcFl9",
+              "hqD_7kWON",
+              "rQQNNkMmm",
+              "jlQgdy6oJ",
+              "af-DL8OjU",
+              "uDAwvg9K8",
+              "693xEyx1C"
+            ],
+            "slots": [
+              [
+                "jNvEhcFl9",
+                0
+              ],
+              [
+                "hqD_7kWON",
+                1
+              ],
+              [
+                "rQQNNkMmm",
+                2
+              ],
+              [
+                "jlQgdy6oJ",
+                3
+              ],
+              [
+                "af-DL8OjU",
+                4
+              ],
+              [
+                "uDAwvg9K8",
+                5
+              ],
+              [
+                "693xEyx1C",
+                6
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerTunic",
+            "ids": [
+              "jNvEhcFl9",
+              "rQQNNkMmm",
+              "af-DL8OjU",
+              "693xEyx1C"
+            ],
+            "slots": [
+              [
+                "jNvEhcFl9",
+                0
+              ],
+              [
+                "rQQNNkMmm",
+                1
+              ],
+              [
+                "af-DL8OjU",
+                2
+              ],
+              [
+                "693xEyx1C",
+                3
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerTrousers",
+            "ids": [
+              "jNvEhcFl9",
+              "rQQNNkMmm",
+              "af-DL8OjU",
+              "693xEyx1C"
+            ],
+            "slots": [
+              [
+                "jNvEhcFl9",
+                0
+              ],
+              [
+                "rQQNNkMmm",
+                1
+              ],
+              [
+                "af-DL8OjU",
+                2
+              ],
+              [
+                "693xEyx1C",
+                3
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerBoots",
+            "ids": [
+              "jNvEhcFl9",
+              "hqD_7kWON",
+              "rQQNNkMmm",
+              "jlQgdy6oJ",
+              "af-DL8OjU",
+              "uDAwvg9K8",
+              "693xEyx1C"
+            ],
+            "slots": [
+              [
+                "jNvEhcFl9",
+                0
+              ],
+              [
+                "hqD_7kWON",
+                1
+              ],
+              [
+                "rQQNNkMmm",
+                2
+              ],
+              [
+                "jlQgdy6oJ",
+                3
+              ],
+              [
+                "af-DL8OjU",
+                4
+              ],
+              [
+                "uDAwvg9K8",
+                5
+              ],
+              [
+                "693xEyx1C",
+                6
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "ProbeIronSword",
+            "ids": [
+              "jNvEhcFl9",
+              "rQQNNkMmm",
+              "af-DL8OjU",
+              "693xEyx1C"
+            ],
+            "slots": [
+              [
+                "jNvEhcFl9",
+                0
+              ],
+              [
+                "rQQNNkMmm",
+                1
+              ],
+              [
+                "af-DL8OjU",
+                2
+              ],
+              [
+                "693xEyx1C",
+                3
+              ]
+            ],
+            "primitives": 2
+          },
+          {
+            "mesh": "GraveweaverHood",
+            "ids": [
+              "hqD_7kWON",
+              "jlQgdy6oJ",
+              "uDAwvg9K8"
+            ],
+            "slots": [
+              [
+                "hqD_7kWON",
+                0
+              ],
+              [
+                "jlQgdy6oJ",
+                1
+              ],
+              [
+                "uDAwvg9K8",
+                2
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "GraveweaverTop",
+            "ids": [
+              "hqD_7kWON",
+              "jlQgdy6oJ",
+              "uDAwvg9K8"
+            ],
+            "slots": [
+              [
+                "hqD_7kWON",
+                0
+              ],
+              [
+                "jlQgdy6oJ",
+                1
+              ],
+              [
+                "uDAwvg9K8",
+                2
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "GraveweaverPendant",
+            "ids": [
+              "hqD_7kWON",
+              "jlQgdy6oJ",
+              "uDAwvg9K8"
+            ],
+            "slots": [
+              [
+                "hqD_7kWON",
+                0
+              ],
+              [
+                "jlQgdy6oJ",
+                1
+              ],
+              [
+                "uDAwvg9K8",
+                2
+              ]
+            ],
+            "primitives": 2
+          },
+          {
+            "mesh": "GraveweaverSkirt",
+            "ids": [
+              "hqD_7kWON",
+              "jlQgdy6oJ",
+              "uDAwvg9K8"
+            ],
+            "slots": [
+              [
+                "hqD_7kWON",
+                0
+              ],
+              [
+                "jlQgdy6oJ",
+                1
+              ],
+              [
+                "uDAwvg9K8",
+                2
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerTrousers",
+            "ids": [
+              "hqD_7kWON",
+              "jlQgdy6oJ",
+              "uDAwvg9K8"
+            ],
+            "slots": [
+              [
+                "hqD_7kWON",
+                0
+              ],
+              [
+                "jlQgdy6oJ",
+                1
+              ],
+              [
+                "uDAwvg9K8",
+                2
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "GraveweaverGloves",
+            "ids": [
+              "hqD_7kWON",
+              "jlQgdy6oJ",
+              "uDAwvg9K8"
+            ],
+            "slots": [
+              [
+                "hqD_7kWON",
+                0
+              ],
+              [
+                "jlQgdy6oJ",
+                1
+              ],
+              [
+                "uDAwvg9K8",
+                2
+              ]
+            ],
+            "primitives": 1
+          },
+          {
+            "mesh": "ProbeGreatstaff",
+            "ids": [
+              "hqD_7kWON",
+              "jlQgdy6oJ",
+              "uDAwvg9K8"
+            ],
+            "slots": [
+              [
+                "hqD_7kWON",
+                0
+              ],
+              [
+                "jlQgdy6oJ",
+                1
+              ],
+              [
+                "uDAwvg9K8",
+                2
+              ]
+            ],
+            "primitives": 3
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 2
+        },
+        "queue": {
+          "submitted": 7,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 7,
+          "completed": 7,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 3,
+          "reservedBytes": 4589720,
+          "peakReservedBytes": 4589720,
+          "ceilingBytes": 8388608,
+          "leases": 3
+        },
+        "activeExact": 0,
+        "idleExact": 0,
+        "owned": 2,
+        "allocation": {
+          "buffers": 118,
+          "textures": 39,
+          "bufferBytes": 3399568,
+          "textureBytes": 5342464,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 4216280,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "exactLoads": 0,
+          "exactReuses": 0,
+          "exactLiveUpdates": 0,
+          "evictions": 0,
+          "peakOwned": 2,
+          "preparations": []
+        }
+      },
+      "enemies": 7,
+      "gpu": [],
+      "presenceErrors": [],
+      "before": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "roomId": "60EO9N0J_",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 39086,
+        "tickP95Ms": 0.8096670000813901,
+        "tickP99Ms": 0.9252919999416918,
+        "tickMaxMs": 5.693875000113621,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3600,
+            "fps": 4818.805265426898,
+            "meanMs": 0.2075203177797246,
+            "medianMs": 0.12995800003409386,
+            "p95Ms": 0.43074999982491136,
+            "p99Ms": 0.7129170000553131,
+            "worstMs": 5.693875000113621,
+            "minMs": 0.02566699986346066,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 3600,
+            "fps": 2771.878187967169,
+            "meanMs": 0.3607662141651963,
+            "medianMs": 0.334082999965176,
+            "p95Ms": 0.5432500001043081,
+            "p99Ms": 0.7457919998560101,
+            "worstMs": 3.0699579999782145,
+            "minMs": 0.07783299987204373,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 2,
+            "samples": 2884,
+            "fps": 2339.024634452843,
+            "meanMs": 0.42752863106716493,
+            "medianMs": 0.413708999985829,
+            "p95Ms": 0.5796660000341944,
+            "p99Ms": 0.718457999988459,
+            "worstMs": 2.9185839999991003,
+            "minMs": 0.11533299996517599,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 2421.5537652415874,
+            "meanMs": 0.41295800008811057,
+            "medianMs": 0.41295800008811057,
+            "p95Ms": 0.41295800008811057,
+            "p99Ms": 0.41295800008811057,
+            "worstMs": 0.41295800008811057,
+            "minMs": 0.41295800008811057,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 1820,
+            "fps": 692.6892439575898,
+            "meanMs": 1.4436488060455943,
+            "medianMs": 0.7976660002022982,
+            "p95Ms": 3.356834000092931,
+            "p99Ms": 4.569625000003725,
+            "worstMs": 9.76437500002794,
+            "minMs": 0.38100000005215406,
+            "above8_333": 3,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "xzkYJsrwP",
+            "receivedBytes": 837,
+            "sentBytes": 121502
+          },
+          {
+            "id": "jNvEhcFl9",
+            "receivedBytes": 914,
+            "sentBytes": 121341
+          },
+          {
+            "id": "hqD_7kWON",
+            "receivedBytes": 914,
+            "sentBytes": 122023
+          },
+          {
+            "id": "rQQNNkMmm",
+            "receivedBytes": 914,
+            "sentBytes": 122664
+          },
+          {
+            "id": "jlQgdy6oJ",
+            "receivedBytes": 914,
+            "sentBytes": 123346
+          },
+          {
+            "id": "af-DL8OjU",
+            "receivedBytes": 914,
+            "sentBytes": 123987
+          },
+          {
+            "id": "uDAwvg9K8",
+            "receivedBytes": 914,
+            "sentBytes": 124669
+          },
+          {
+            "id": "693xEyx1C",
+            "receivedBytes": 914,
+            "sentBytes": 125310
+          }
+        ],
+        "memory": {
+          "rss": 177209344,
+          "heapTotal": 51216384,
+          "heapUsed": 42607912,
+          "external": 41047214,
+          "arrayBuffers": 20537341
+        }
+      },
+      "after": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "roomId": "60EO9N0J_",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 39446,
+        "tickP95Ms": 0.8156250000465661,
+        "tickP99Ms": 0.9197919999714941,
+        "tickMaxMs": 5.693875000113621,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3600,
+            "fps": 4818.805265426898,
+            "meanMs": 0.2075203177797246,
+            "medianMs": 0.12995800003409386,
+            "p95Ms": 0.43074999982491136,
+            "p99Ms": 0.7129170000553131,
+            "worstMs": 5.693875000113621,
+            "minMs": 0.02566699986346066,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 3600,
+            "fps": 2771.878187967169,
+            "meanMs": 0.3607662141651963,
+            "medianMs": 0.334082999965176,
+            "p95Ms": 0.5432500001043081,
+            "p99Ms": 0.7457919998560101,
+            "worstMs": 3.0699579999782145,
+            "minMs": 0.07783299987204373,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 2,
+            "samples": 2884,
+            "fps": 2339.024634452843,
+            "meanMs": 0.42752863106716493,
+            "medianMs": 0.413708999985829,
+            "p95Ms": 0.5796660000341944,
+            "p99Ms": 0.718457999988459,
+            "worstMs": 2.9185839999991003,
+            "minMs": 0.11533299996517599,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 2421.5537652415874,
+            "meanMs": 0.41295800008811057,
+            "medianMs": 0.41295800008811057,
+            "p95Ms": 0.41295800008811057,
+            "p99Ms": 0.41295800008811057,
+            "worstMs": 0.41295800008811057,
+            "minMs": 0.41295800008811057,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 2180,
+            "fps": 757.4448256452418,
+            "meanMs": 1.3202281752312897,
+            "medianMs": 0.7516659998800606,
+            "p95Ms": 3.2649160000728443,
+            "p99Ms": 4.4099580000620335,
+            "worstMs": 9.76437500002794,
+            "minMs": 0.38100000005215406,
+            "above8_333": 3,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "xzkYJsrwP",
+            "receivedBytes": 1198,
+            "sentBytes": 165231
+          },
+          {
+            "id": "jNvEhcFl9",
+            "receivedBytes": 1309,
+            "sentBytes": 165070
+          },
+          {
+            "id": "hqD_7kWON",
+            "receivedBytes": 1309,
+            "sentBytes": 165752
+          },
+          {
+            "id": "rQQNNkMmm",
+            "receivedBytes": 1309,
+            "sentBytes": 166393
+          },
+          {
+            "id": "jlQgdy6oJ",
+            "receivedBytes": 1309,
+            "sentBytes": 167075
+          },
+          {
+            "id": "af-DL8OjU",
+            "receivedBytes": 1309,
+            "sentBytes": 167716
+          },
+          {
+            "id": "uDAwvg9K8",
+            "receivedBytes": 1309,
+            "sentBytes": 168398
+          },
+          {
+            "id": "693xEyx1C",
+            "receivedBytes": 1309,
+            "sentBytes": 169039
+          }
+        ],
+        "memory": {
+          "rss": 177520640,
+          "heapTotal": 51478528,
+          "heapUsed": 41889528,
+          "external": 41096646,
+          "arrayBuffers": 20586605
+        }
+      }
+    },
+    {
+      "tier": "exact",
+      "run": 1,
+      "cap": {
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.903 ms is not locked to a known display interval"
+      },
+      "tails": {
+        "samples": 2034,
+        "meanMs": 5.903195673502769,
+        "meanFps": 169.39977180302947,
+        "p50Ms": 5.799999952316284,
+        "p95Ms": 7,
+        "p99Ms": 8,
+        "maxMs": 10.400000095367432,
+        "above6_94": 109,
+        "above8_33": 12,
+        "above16_67": 0,
+        "above33_33": 0
+      },
+      "metrics": {
+        "samples": 600,
+        "fps": 168.92843065714712,
+        "meanMs": 5.919666666587194,
+        "medianMs": 5.799999952316284,
+        "p95Ms": 7,
+        "p99Ms": 8.700000047683716,
+        "worstMs": 10.400000095367432,
+        "minMs": 4.299999952316284,
+        "above8_333": 8,
+        "above16_667": 0,
+        "drawCalls": 775,
+        "resolution": [
+          1280,
+          720
+        ],
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "maxDevicePixelRatio": 1,
+        "horizonTriangles": 125642,
+        "farTriangles": 289206,
+        "scatterTrees": 599,
+        "scatterRocks": 139,
+        "shafts": 0,
+        "shaftTriangles": 0,
+        "motes": 4200,
+        "moteTriangles": 8400,
+        "foliageInstances": 117242,
+        "triangles": 941975,
+        "drawBatches": 57,
+        "worldTriangles": 941975,
+        "sceneTriangles": 1458621,
+        "drawnMeshes": 151,
+        "hiddenMeshes": 63,
+        "totalMeshes": 214,
+        "triangleCountMs": 0.20000004768371582,
+        "gpuTimingSupported": true,
+        "gpuTimingEnabled": false,
+        "gpuTimingReadback": "disabled",
+        "gpuMs": null,
+        "gpuMeanMs": null,
+        "gpuP95Ms": null,
+        "gpuSamples": 0,
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.920 ms is not locked to a known display interval"
+      },
+      "actors": {
+        "count": 7,
+        "clock": 1331.1817121374145,
+        "actors": [
+          {
+            "id": "jNvEhcFl9",
+            "revision": 2,
+            "tier": "exact",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.8037121374145499,
+              "frame": 48,
+              "row": 325,
+              "ended": false,
+              "phase": 0.6027840850965468
+            }
+          },
+          {
+            "id": "hqD_7kWON",
+            "revision": 2,
+            "tier": "exact",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.8037121374145499,
+              "frame": 48,
+              "row": 325,
+              "ended": false,
+              "phase": 0.6027840850965468
+            }
+          },
+          {
+            "id": "rQQNNkMmm",
+            "revision": 2,
+            "tier": "exact",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.8037121374145499,
+              "frame": 48,
+              "row": 325,
+              "ended": false,
+              "phase": 0.6027840850965468
+            }
+          },
+          {
+            "id": "jlQgdy6oJ",
+            "revision": 2,
+            "tier": "exact",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.8037121374145499,
+              "frame": 48,
+              "row": 325,
+              "ended": false,
+              "phase": 0.6027840850965468
+            }
+          },
+          {
+            "id": "af-DL8OjU",
+            "revision": 2,
+            "tier": "exact",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.8037121374145499,
+              "frame": 48,
+              "row": 325,
+              "ended": false,
+              "phase": 0.6027840850965468
+            }
+          },
+          {
+            "id": "uDAwvg9K8",
+            "revision": 2,
+            "tier": "exact",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.8037121374145499,
+              "frame": 48,
+              "row": 325,
+              "ended": false,
+              "phase": 0.6027840850965468
+            }
+          },
+          {
+            "id": "693xEyx1C",
+            "revision": 2,
+            "tier": "exact",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.8037121374145499,
+              "frame": 48,
+              "row": 325,
+              "ended": false,
+              "phase": 0.6027840850965468
+            }
+          }
+        ],
+        "batches": [
+          {
+            "mesh": "HumanV1Body",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerTunic",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerTrousers",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerBoots",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "ProbeIronSword",
+            "ids": [],
+            "slots": [],
+            "primitives": 2
+          },
+          {
+            "mesh": "GraveweaverHood",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "GraveweaverTop",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "GraveweaverPendant",
+            "ids": [],
+            "slots": [],
+            "primitives": 2
+          },
+          {
+            "mesh": "GraveweaverSkirt",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerTrousers",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "GraveweaverGloves",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "ProbeGreatstaff",
+            "ids": [],
+            "slots": [],
+            "primitives": 3
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 2
+        },
+        "queue": {
+          "submitted": 14,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 7,
+          "completed": 14,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 3,
+          "reservedBytes": 4589720,
+          "peakReservedBytes": 4589720,
+          "ceilingBytes": 8388608,
+          "leases": 3
+        },
+        "activeExact": 7,
+        "idleExact": 0,
+        "owned": 9,
+        "allocation": {
+          "buffers": 564,
+          "textures": 219,
+          "bufferBytes": 17846816,
+          "textureBytes": 18524784,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 18556172,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "exactLoads": 7,
+          "exactReuses": 0,
+          "exactLiveUpdates": 0,
+          "evictions": 0,
+          "peakOwned": 9,
+          "preparations": [
+            35,
+            50.60000014305115,
+            31.899999856948853,
+            78,
+            69.89999985694885,
+            127.79999995231628,
+            158
+          ]
+        }
+      },
+      "enemies": 7,
+      "gpu": [],
+      "presenceErrors": [],
+      "before": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "roomId": "60EO9N0J_",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 39562,
+        "tickP95Ms": 0.8220420000143349,
+        "tickP99Ms": 0.9197919999714941,
+        "tickMaxMs": 5.693875000113621,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3600,
+            "fps": 4818.805265426898,
+            "meanMs": 0.2075203177797246,
+            "medianMs": 0.12995800003409386,
+            "p95Ms": 0.43074999982491136,
+            "p99Ms": 0.7129170000553131,
+            "worstMs": 5.693875000113621,
+            "minMs": 0.02566699986346066,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 3600,
+            "fps": 2771.878187967169,
+            "meanMs": 0.3607662141651963,
+            "medianMs": 0.334082999965176,
+            "p95Ms": 0.5432500001043081,
+            "p99Ms": 0.7457919998560101,
+            "worstMs": 3.0699579999782145,
+            "minMs": 0.07783299987204373,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 2,
+            "samples": 2884,
+            "fps": 2339.024634452843,
+            "meanMs": 0.42752863106716493,
+            "medianMs": 0.413708999985829,
+            "p95Ms": 0.5796660000341944,
+            "p99Ms": 0.718457999988459,
+            "worstMs": 2.9185839999991003,
+            "minMs": 0.11533299996517599,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 2421.5537652415874,
+            "meanMs": 0.41295800008811057,
+            "medianMs": 0.41295800008811057,
+            "p95Ms": 0.41295800008811057,
+            "p99Ms": 0.41295800008811057,
+            "worstMs": 0.41295800008811057,
+            "minMs": 0.41295800008811057,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 2296,
+            "fps": 775.2262845929952,
+            "meanMs": 1.289945942074209,
+            "medianMs": 0.7498749999795109,
+            "p95Ms": 3.24350000009872,
+            "p99Ms": 4.389708000002429,
+            "worstMs": 9.76437500002794,
+            "minMs": 0.38100000005215406,
+            "above8_333": 3,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "xzkYJsrwP",
+            "receivedBytes": 1313,
+            "sentBytes": 191083
+          },
+          {
+            "id": "jNvEhcFl9",
+            "receivedBytes": 1829,
+            "sentBytes": 191323
+          },
+          {
+            "id": "hqD_7kWON",
+            "receivedBytes": 1874,
+            "sentBytes": 192050
+          },
+          {
+            "id": "rQQNNkMmm",
+            "receivedBytes": 1829,
+            "sentBytes": 192646
+          },
+          {
+            "id": "jlQgdy6oJ",
+            "receivedBytes": 1874,
+            "sentBytes": 193373
+          },
+          {
+            "id": "af-DL8OjU",
+            "receivedBytes": 1829,
+            "sentBytes": 193969
+          },
+          {
+            "id": "uDAwvg9K8",
+            "receivedBytes": 1874,
+            "sentBytes": 194696
+          },
+          {
+            "id": "693xEyx1C",
+            "receivedBytes": 1829,
+            "sentBytes": 195292
+          }
+        ],
+        "memory": {
+          "rss": 177831936,
+          "heapTotal": 51478528,
+          "heapUsed": 38937320,
+          "external": 40291772,
+          "arrayBuffers": 19781899
+        }
+      },
+      "after": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "roomId": "60EO9N0J_",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 39923,
+        "tickP95Ms": 0.845333999954164,
+        "tickP99Ms": 0.9301249999552965,
+        "tickMaxMs": 5.693875000113621,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3600,
+            "fps": 4818.805265426898,
+            "meanMs": 0.2075203177797246,
+            "medianMs": 0.12995800003409386,
+            "p95Ms": 0.43074999982491136,
+            "p99Ms": 0.7129170000553131,
+            "worstMs": 5.693875000113621,
+            "minMs": 0.02566699986346066,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 3600,
+            "fps": 2771.878187967169,
+            "meanMs": 0.3607662141651963,
+            "medianMs": 0.334082999965176,
+            "p95Ms": 0.5432500001043081,
+            "p99Ms": 0.7457919998560101,
+            "worstMs": 3.0699579999782145,
+            "minMs": 0.07783299987204373,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 2,
+            "samples": 2884,
+            "fps": 2339.024634452843,
+            "meanMs": 0.42752863106716493,
+            "medianMs": 0.413708999985829,
+            "p95Ms": 0.5796660000341944,
+            "p99Ms": 0.718457999988459,
+            "worstMs": 2.9185839999991003,
+            "minMs": 0.11533299996517599,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 2421.5537652415874,
+            "meanMs": 0.41295800008811057,
+            "medianMs": 0.41295800008811057,
+            "p95Ms": 0.41295800008811057,
+            "p99Ms": 0.41295800008811057,
+            "worstMs": 0.41295800008811057,
+            "minMs": 0.41295800008811057,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 2657,
+            "fps": 823.3217664750307,
+            "meanMs": 1.2145919623641184,
+            "medianMs": 0.7446250000502914,
+            "p95Ms": 3.1514579999493435,
+            "p99Ms": 4.2891250000102445,
+            "worstMs": 9.76437500002794,
+            "minMs": 0.38100000005215406,
+            "above8_333": 3,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "xzkYJsrwP",
+            "receivedBytes": 1674,
+            "sentBytes": 272651
+          },
+          {
+            "id": "jNvEhcFl9",
+            "receivedBytes": 2226,
+            "sentBytes": 272891
+          },
+          {
+            "id": "hqD_7kWON",
+            "receivedBytes": 2271,
+            "sentBytes": 273618
+          },
+          {
+            "id": "rQQNNkMmm",
+            "receivedBytes": 2226,
+            "sentBytes": 274214
+          },
+          {
+            "id": "jlQgdy6oJ",
+            "receivedBytes": 2271,
+            "sentBytes": 274941
+          },
+          {
+            "id": "af-DL8OjU",
+            "receivedBytes": 2226,
+            "sentBytes": 275537
+          },
+          {
+            "id": "uDAwvg9K8",
+            "receivedBytes": 2271,
+            "sentBytes": 276264
+          },
+          {
+            "id": "693xEyx1C",
+            "receivedBytes": 2226,
+            "sentBytes": 276860
+          }
+        ],
+        "memory": {
+          "rss": 177848320,
+          "heapTotal": 51478528,
+          "heapUsed": 36047416,
+          "external": 40308247,
+          "arrayBuffers": 19790070
+        }
+      }
+    },
+    {
+      "tier": "exact",
+      "run": 2,
+      "cap": {
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.898 ms is not locked to a known display interval"
+      },
+      "tails": {
+        "samples": 2035,
+        "meanMs": 5.898329238399533,
+        "meanFps": 169.5395356179443,
+        "p50Ms": 5.799999952316284,
+        "p95Ms": 7,
+        "p99Ms": 7.5,
+        "maxMs": 10.699999809265137,
+        "above6_94": 106,
+        "above8_33": 6,
+        "above16_67": 0,
+        "above33_33": 0
+      },
+      "metrics": {
+        "samples": 600,
+        "fps": 169.85138004246284,
+        "meanMs": 5.8875,
+        "medianMs": 5.799999952316284,
+        "p95Ms": 7,
+        "p99Ms": 8.100000143051147,
+        "worstMs": 10.699999809265137,
+        "minMs": 4.5,
+        "above8_333": 3,
+        "above16_667": 0,
+        "drawCalls": 775,
+        "resolution": [
+          1280,
+          720
+        ],
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "maxDevicePixelRatio": 1,
+        "horizonTriangles": 125642,
+        "farTriangles": 289206,
+        "scatterTrees": 599,
+        "scatterRocks": 139,
+        "shafts": 0,
+        "shaftTriangles": 0,
+        "motes": 4200,
+        "moteTriangles": 8400,
+        "foliageInstances": 117242,
+        "triangles": 941975,
+        "drawBatches": 57,
+        "worldTriangles": 941975,
+        "sceneTriangles": 1458621,
+        "drawnMeshes": 151,
+        "hiddenMeshes": 63,
+        "totalMeshes": 214,
+        "triangleCountMs": 0.2999999523162842,
+        "gpuTimingSupported": true,
+        "gpuTimingEnabled": false,
+        "gpuTimingReadback": "disabled",
+        "gpuMs": null,
+        "gpuMeanMs": null,
+        "gpuP95Ms": null,
+        "gpuSamples": 0,
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.888 ms is not locked to a known display interval"
+      },
+      "actors": {
+        "count": 7,
+        "clock": 1343.2092740923458,
+        "actors": [
+          {
+            "id": "jNvEhcFl9",
+            "revision": 2,
+            "tier": "exact",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.5822740923458696,
+              "frame": 34,
+              "row": 311,
+              "ended": false,
+              "phase": 0.4367055562445624
+            }
+          },
+          {
+            "id": "hqD_7kWON",
+            "revision": 2,
+            "tier": "exact",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.5822740923458696,
+              "frame": 34,
+              "row": 311,
+              "ended": false,
+              "phase": 0.4367055562445624
+            }
+          },
+          {
+            "id": "rQQNNkMmm",
+            "revision": 2,
+            "tier": "exact",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.5822740923458696,
+              "frame": 34,
+              "row": 311,
+              "ended": false,
+              "phase": 0.4367055562445624
+            }
+          },
+          {
+            "id": "jlQgdy6oJ",
+            "revision": 2,
+            "tier": "exact",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.5822740923458696,
+              "frame": 34,
+              "row": 311,
+              "ended": false,
+              "phase": 0.4367055562445624
+            }
+          },
+          {
+            "id": "af-DL8OjU",
+            "revision": 2,
+            "tier": "exact",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.5822740923458696,
+              "frame": 34,
+              "row": 311,
+              "ended": false,
+              "phase": 0.4367055562445624
+            }
+          },
+          {
+            "id": "uDAwvg9K8",
+            "revision": 2,
+            "tier": "exact",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.5822740923458696,
+              "frame": 34,
+              "row": 311,
+              "ended": false,
+              "phase": 0.4367055562445624
+            }
+          },
+          {
+            "id": "693xEyx1C",
+            "revision": 2,
+            "tier": "exact",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.5822740923458696,
+              "frame": 34,
+              "row": 311,
+              "ended": false,
+              "phase": 0.4367055562445624
+            }
+          }
+        ],
+        "batches": [
+          {
+            "mesh": "HumanV1Body",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerTunic",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerTrousers",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerBoots",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "ProbeIronSword",
+            "ids": [],
+            "slots": [],
+            "primitives": 2
+          },
+          {
+            "mesh": "GraveweaverHood",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "GraveweaverTop",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "GraveweaverPendant",
+            "ids": [],
+            "slots": [],
+            "primitives": 2
+          },
+          {
+            "mesh": "GraveweaverSkirt",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerTrousers",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "GraveweaverGloves",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "ProbeGreatstaff",
+            "ids": [],
+            "slots": [],
+            "primitives": 3
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 2
+        },
+        "queue": {
+          "submitted": 14,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 7,
+          "completed": 14,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 3,
+          "reservedBytes": 4589720,
+          "peakReservedBytes": 4589720,
+          "ceilingBytes": 8388608,
+          "leases": 3
+        },
+        "activeExact": 7,
+        "idleExact": 0,
+        "owned": 9,
+        "allocation": {
+          "buffers": 564,
+          "textures": 219,
+          "bufferBytes": 17846816,
+          "textureBytes": 18524784,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 18556172,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "exactLoads": 7,
+          "exactReuses": 0,
+          "exactLiveUpdates": 0,
+          "evictions": 0,
+          "peakOwned": 9,
+          "preparations": [
+            35,
+            50.60000014305115,
+            31.899999856948853,
+            78,
+            69.89999985694885,
+            127.79999995231628,
+            158
+          ]
+        }
+      },
+      "enemies": 7,
+      "gpu": [],
+      "presenceErrors": [],
+      "before": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "roomId": "60EO9N0J_",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 39923,
+        "tickP95Ms": 0.845333999954164,
+        "tickP99Ms": 0.9301249999552965,
+        "tickMaxMs": 5.693875000113621,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3600,
+            "fps": 4818.805265426898,
+            "meanMs": 0.2075203177797246,
+            "medianMs": 0.12995800003409386,
+            "p95Ms": 0.43074999982491136,
+            "p99Ms": 0.7129170000553131,
+            "worstMs": 5.693875000113621,
+            "minMs": 0.02566699986346066,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 3600,
+            "fps": 2771.878187967169,
+            "meanMs": 0.3607662141651963,
+            "medianMs": 0.334082999965176,
+            "p95Ms": 0.5432500001043081,
+            "p99Ms": 0.7457919998560101,
+            "worstMs": 3.0699579999782145,
+            "minMs": 0.07783299987204373,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 2,
+            "samples": 2884,
+            "fps": 2339.024634452843,
+            "meanMs": 0.42752863106716493,
+            "medianMs": 0.413708999985829,
+            "p95Ms": 0.5796660000341944,
+            "p99Ms": 0.718457999988459,
+            "worstMs": 2.9185839999991003,
+            "minMs": 0.11533299996517599,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 2421.5537652415874,
+            "meanMs": 0.41295800008811057,
+            "medianMs": 0.41295800008811057,
+            "p95Ms": 0.41295800008811057,
+            "p99Ms": 0.41295800008811057,
+            "worstMs": 0.41295800008811057,
+            "minMs": 0.41295800008811057,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 2657,
+            "fps": 823.3217664750307,
+            "meanMs": 1.2145919623641184,
+            "medianMs": 0.7446250000502914,
+            "p95Ms": 3.1514579999493435,
+            "p99Ms": 4.2891250000102445,
+            "worstMs": 9.76437500002794,
+            "minMs": 0.38100000005215406,
+            "above8_333": 3,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "xzkYJsrwP",
+            "receivedBytes": 1674,
+            "sentBytes": 272651
+          },
+          {
+            "id": "jNvEhcFl9",
+            "receivedBytes": 2226,
+            "sentBytes": 272891
+          },
+          {
+            "id": "hqD_7kWON",
+            "receivedBytes": 2271,
+            "sentBytes": 273618
+          },
+          {
+            "id": "rQQNNkMmm",
+            "receivedBytes": 2226,
+            "sentBytes": 274214
+          },
+          {
+            "id": "jlQgdy6oJ",
+            "receivedBytes": 2271,
+            "sentBytes": 274941
+          },
+          {
+            "id": "af-DL8OjU",
+            "receivedBytes": 2226,
+            "sentBytes": 275537
+          },
+          {
+            "id": "uDAwvg9K8",
+            "receivedBytes": 2271,
+            "sentBytes": 276264
+          },
+          {
+            "id": "693xEyx1C",
+            "receivedBytes": 2226,
+            "sentBytes": 276860
+          }
+        ],
+        "memory": {
+          "rss": 177848320,
+          "heapTotal": 51478528,
+          "heapUsed": 36221912,
+          "external": 40299943,
+          "arrayBuffers": 19790070
+        }
+      },
+      "after": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "roomId": "60EO9N0J_",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 40284,
+        "tickP95Ms": 0.8582079999614507,
+        "tickP99Ms": 0.9424170001875609,
+        "tickMaxMs": 5.693875000113621,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3600,
+            "fps": 4818.805265426898,
+            "meanMs": 0.2075203177797246,
+            "medianMs": 0.12995800003409386,
+            "p95Ms": 0.43074999982491136,
+            "p99Ms": 0.7129170000553131,
+            "worstMs": 5.693875000113621,
+            "minMs": 0.02566699986346066,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 3600,
+            "fps": 2771.878187967169,
+            "meanMs": 0.3607662141651963,
+            "medianMs": 0.334082999965176,
+            "p95Ms": 0.5432500001043081,
+            "p99Ms": 0.7457919998560101,
+            "worstMs": 3.0699579999782145,
+            "minMs": 0.07783299987204373,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 2,
+            "samples": 2884,
+            "fps": 2339.024634452843,
+            "meanMs": 0.42752863106716493,
+            "medianMs": 0.413708999985829,
+            "p95Ms": 0.5796660000341944,
+            "p99Ms": 0.718457999988459,
+            "worstMs": 2.9185839999991003,
+            "minMs": 0.11533299996517599,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 2421.5537652415874,
+            "meanMs": 0.41295800008811057,
+            "medianMs": 0.41295800008811057,
+            "p95Ms": 0.41295800008811057,
+            "p99Ms": 0.41295800008811057,
+            "worstMs": 0.41295800008811057,
+            "minMs": 0.41295800008811057,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 3018,
+            "fps": 863.7172214393827,
+            "meanMs": 1.1577863392992238,
+            "medianMs": 0.7422499998938292,
+            "p95Ms": 3.0892499999608845,
+            "p99Ms": 4.1797500000102445,
+            "worstMs": 9.76437500002794,
+            "minMs": 0.38100000005215406,
+            "above8_333": 3,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "xzkYJsrwP",
+            "receivedBytes": 2035,
+            "sentBytes": 354448
+          },
+          {
+            "id": "jNvEhcFl9",
+            "receivedBytes": 2624,
+            "sentBytes": 354688
+          },
+          {
+            "id": "hqD_7kWON",
+            "receivedBytes": 2669,
+            "sentBytes": 355415
+          },
+          {
+            "id": "rQQNNkMmm",
+            "receivedBytes": 2624,
+            "sentBytes": 356011
+          },
+          {
+            "id": "jlQgdy6oJ",
+            "receivedBytes": 2669,
+            "sentBytes": 356738
+          },
+          {
+            "id": "af-DL8OjU",
+            "receivedBytes": 2624,
+            "sentBytes": 357334
+          },
+          {
+            "id": "uDAwvg9K8",
+            "receivedBytes": 2669,
+            "sentBytes": 358061
+          },
+          {
+            "id": "693xEyx1C",
+            "receivedBytes": 2624,
+            "sentBytes": 358657
+          }
+        ],
+        "memory": {
+          "rss": 184369152,
+          "heapTotal": 59867136,
+          "heapUsed": 43326232,
+          "external": 40325023,
+          "arrayBuffers": 19815150
+        }
+      }
+    },
+    {
+      "tier": "exact",
+      "run": 3,
+      "cap": {
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.902 ms is not locked to a known display interval"
+      },
+      "tails": {
+        "samples": 2034,
+        "meanMs": 5.901819075806654,
+        "meanFps": 169.43928425378257,
+        "p50Ms": 5.799999952316284,
+        "p95Ms": 6.900000095367432,
+        "p99Ms": 7.200000047683716,
+        "maxMs": 10.100000143051147,
+        "above6_94": 97,
+        "above8_33": 3,
+        "above16_67": 0,
+        "above33_33": 0
+      },
+      "metrics": {
+        "samples": 600,
+        "fps": 169.52983724907216,
+        "meanMs": 5.89866666674614,
+        "medianMs": 5.700000047683716,
+        "p95Ms": 7,
+        "p99Ms": 7.400000095367432,
+        "worstMs": 9.900000095367432,
+        "minMs": 4.599999904632568,
+        "above8_333": 1,
+        "above16_667": 0,
+        "drawCalls": 775,
+        "resolution": [
+          1280,
+          720
+        ],
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "maxDevicePixelRatio": 1,
+        "horizonTriangles": 125642,
+        "farTriangles": 289206,
+        "scatterTrees": 599,
+        "scatterRocks": 139,
+        "shafts": 0,
+        "shaftTriangles": 0,
+        "motes": 4200,
+        "moteTriangles": 8400,
+        "foliageInstances": 117242,
+        "triangles": 941975,
+        "drawBatches": 57,
+        "worldTriangles": 941975,
+        "sceneTriangles": 1458621,
+        "drawnMeshes": 151,
+        "hiddenMeshes": 63,
+        "totalMeshes": 214,
+        "triangleCountMs": 0.20000004768371582,
+        "gpuTimingSupported": true,
+        "gpuTimingEnabled": false,
+        "gpuTimingReadback": "disabled",
+        "gpuMs": null,
+        "gpuMeanMs": null,
+        "gpuP95Ms": null,
+        "gpuSamples": 0,
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.899 ms is not locked to a known display interval"
+      },
+      "actors": {
+        "count": 7,
+        "clock": 1355.235716282346,
+        "actors": [
+          {
+            "id": "jNvEhcFl9",
+            "revision": 2,
+            "tier": "exact",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 1.2573829092762026,
+              "frame": 75,
+              "row": 352,
+              "ended": false,
+              "phase": 0.9430371538524547
+            }
+          },
+          {
+            "id": "hqD_7kWON",
+            "revision": 2,
+            "tier": "exact",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 1.2573829092762026,
+              "frame": 75,
+              "row": 352,
+              "ended": false,
+              "phase": 0.9430371538524547
+            }
+          },
+          {
+            "id": "rQQNNkMmm",
+            "revision": 2,
+            "tier": "exact",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 1.2573829092762026,
+              "frame": 75,
+              "row": 352,
+              "ended": false,
+              "phase": 0.9430371538524547
+            }
+          },
+          {
+            "id": "jlQgdy6oJ",
+            "revision": 2,
+            "tier": "exact",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 1.2573829092762026,
+              "frame": 75,
+              "row": 352,
+              "ended": false,
+              "phase": 0.9430371538524547
+            }
+          },
+          {
+            "id": "af-DL8OjU",
+            "revision": 2,
+            "tier": "exact",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 1.2573829092762026,
+              "frame": 75,
+              "row": 352,
+              "ended": false,
+              "phase": 0.9430371538524547
+            }
+          },
+          {
+            "id": "uDAwvg9K8",
+            "revision": 2,
+            "tier": "exact",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 1.2913829092760807,
+              "frame": 77,
+              "row": 354,
+              "ended": false,
+              "phase": 0.9685371530924041
+            }
+          },
+          {
+            "id": "693xEyx1C",
+            "revision": 2,
+            "tier": "exact",
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.18171628234586024,
+              "frame": 10,
+              "row": 287,
+              "ended": false,
+              "phase": 0.13628720769771988
+            }
+          }
+        ],
+        "batches": [
+          {
+            "mesh": "HumanV1Body",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerTunic",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerTrousers",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerBoots",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "ProbeIronSword",
+            "ids": [],
+            "slots": [],
+            "primitives": 2
+          },
+          {
+            "mesh": "GraveweaverHood",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "GraveweaverTop",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "GraveweaverPendant",
+            "ids": [],
+            "slots": [],
+            "primitives": 2
+          },
+          {
+            "mesh": "GraveweaverSkirt",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "WayfarerTrousers",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "GraveweaverGloves",
+            "ids": [],
+            "slots": [],
+            "primitives": 1
+          },
+          {
+            "mesh": "ProbeGreatstaff",
+            "ids": [],
+            "slots": [],
+            "primitives": 3
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 2
+        },
+        "queue": {
+          "submitted": 14,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 7,
+          "completed": 14,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 3,
+          "reservedBytes": 4589720,
+          "peakReservedBytes": 4589720,
+          "ceilingBytes": 8388608,
+          "leases": 3
+        },
+        "activeExact": 7,
+        "idleExact": 0,
+        "owned": 9,
+        "allocation": {
+          "buffers": 564,
+          "textures": 219,
+          "bufferBytes": 17846816,
+          "textureBytes": 18524784,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 18556172,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "exactLoads": 7,
+          "exactReuses": 0,
+          "exactLiveUpdates": 0,
+          "evictions": 0,
+          "peakOwned": 9,
+          "preparations": [
+            35,
+            50.60000014305115,
+            31.899999856948853,
+            78,
+            69.89999985694885,
+            127.79999995231628,
+            158
+          ]
+        }
+      },
+      "enemies": 7,
+      "gpu": [],
+      "presenceErrors": [],
+      "before": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "roomId": "60EO9N0J_",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 40284,
+        "tickP95Ms": 0.8582079999614507,
+        "tickP99Ms": 0.9424170001875609,
+        "tickMaxMs": 5.693875000113621,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3600,
+            "fps": 4818.805265426898,
+            "meanMs": 0.2075203177797246,
+            "medianMs": 0.12995800003409386,
+            "p95Ms": 0.43074999982491136,
+            "p99Ms": 0.7129170000553131,
+            "worstMs": 5.693875000113621,
+            "minMs": 0.02566699986346066,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 3600,
+            "fps": 2771.878187967169,
+            "meanMs": 0.3607662141651963,
+            "medianMs": 0.334082999965176,
+            "p95Ms": 0.5432500001043081,
+            "p99Ms": 0.7457919998560101,
+            "worstMs": 3.0699579999782145,
+            "minMs": 0.07783299987204373,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 2,
+            "samples": 2884,
+            "fps": 2339.024634452843,
+            "meanMs": 0.42752863106716493,
+            "medianMs": 0.413708999985829,
+            "p95Ms": 0.5796660000341944,
+            "p99Ms": 0.718457999988459,
+            "worstMs": 2.9185839999991003,
+            "minMs": 0.11533299996517599,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 2421.5537652415874,
+            "meanMs": 0.41295800008811057,
+            "medianMs": 0.41295800008811057,
+            "p95Ms": 0.41295800008811057,
+            "p99Ms": 0.41295800008811057,
+            "worstMs": 0.41295800008811057,
+            "minMs": 0.41295800008811057,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 3018,
+            "fps": 863.7172214393827,
+            "meanMs": 1.1577863392992238,
+            "medianMs": 0.7422499998938292,
+            "p95Ms": 3.0892499999608845,
+            "p99Ms": 4.1797500000102445,
+            "worstMs": 9.76437500002794,
+            "minMs": 0.38100000005215406,
+            "above8_333": 3,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "xzkYJsrwP",
+            "receivedBytes": 2035,
+            "sentBytes": 354448
+          },
+          {
+            "id": "jNvEhcFl9",
+            "receivedBytes": 2624,
+            "sentBytes": 354688
+          },
+          {
+            "id": "hqD_7kWON",
+            "receivedBytes": 2669,
+            "sentBytes": 355415
+          },
+          {
+            "id": "rQQNNkMmm",
+            "receivedBytes": 2624,
+            "sentBytes": 356011
+          },
+          {
+            "id": "jlQgdy6oJ",
+            "receivedBytes": 2669,
+            "sentBytes": 356738
+          },
+          {
+            "id": "af-DL8OjU",
+            "receivedBytes": 2624,
+            "sentBytes": 357334
+          },
+          {
+            "id": "uDAwvg9K8",
+            "receivedBytes": 2669,
+            "sentBytes": 358061
+          },
+          {
+            "id": "693xEyx1C",
+            "receivedBytes": 2624,
+            "sentBytes": 358657
+          }
+        ],
+        "memory": {
+          "rss": 184401920,
+          "heapTotal": 59867136,
+          "heapUsed": 40071680,
+          "external": 40325023,
+          "arrayBuffers": 19798374
+        }
+      },
+      "after": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "roomId": "60EO9N0J_",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 40645,
+        "tickP95Ms": 0.8663749999832362,
+        "tickP99Ms": 0.9513750001788139,
+        "tickMaxMs": 4.6986670000478625,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3600,
+            "fps": 4818.805265426898,
+            "meanMs": 0.2075203177797246,
+            "medianMs": 0.12995800003409386,
+            "p95Ms": 0.43074999982491136,
+            "p99Ms": 0.7129170000553131,
+            "worstMs": 5.693875000113621,
+            "minMs": 0.02566699986346066,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 3600,
+            "fps": 2771.878187967169,
+            "meanMs": 0.3607662141651963,
+            "medianMs": 0.334082999965176,
+            "p95Ms": 0.5432500001043081,
+            "p99Ms": 0.7457919998560101,
+            "worstMs": 3.0699579999782145,
+            "minMs": 0.07783299987204373,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 2,
+            "samples": 2884,
+            "fps": 2339.024634452843,
+            "meanMs": 0.42752863106716493,
+            "medianMs": 0.413708999985829,
+            "p95Ms": 0.5796660000341944,
+            "p99Ms": 0.718457999988459,
+            "worstMs": 2.9185839999991003,
+            "minMs": 0.11533299996517599,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 2421.5537652415874,
+            "meanMs": 0.41295800008811057,
+            "medianMs": 0.41295800008811057,
+            "p95Ms": 0.41295800008811057,
+            "p99Ms": 0.41295800008811057,
+            "worstMs": 0.41295800008811057,
+            "minMs": 0.41295800008811057,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 3379,
+            "fps": 899.6991249558168,
+            "meanMs": 1.1114826860025109,
+            "medianMs": 0.7393330000340939,
+            "p95Ms": 3.040333000011742,
+            "p99Ms": 4.09250000002794,
+            "worstMs": 9.76437500002794,
+            "minMs": 0.38100000005215406,
+            "above8_333": 3,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "xzkYJsrwP",
+            "receivedBytes": 2396,
+            "sentBytes": 434917
+          },
+          {
+            "id": "jNvEhcFl9",
+            "receivedBytes": 3021,
+            "sentBytes": 435157
+          },
+          {
+            "id": "hqD_7kWON",
+            "receivedBytes": 3066,
+            "sentBytes": 435884
+          },
+          {
+            "id": "rQQNNkMmm",
+            "receivedBytes": 3021,
+            "sentBytes": 436480
+          },
+          {
+            "id": "jlQgdy6oJ",
+            "receivedBytes": 3066,
+            "sentBytes": 437207
+          },
+          {
+            "id": "af-DL8OjU",
+            "receivedBytes": 3021,
+            "sentBytes": 437803
+          },
+          {
+            "id": "uDAwvg9K8",
+            "receivedBytes": 3066,
+            "sentBytes": 438530
+          },
+          {
+            "id": "693xEyx1C",
+            "receivedBytes": 3020,
+            "sentBytes": 439126
+          }
+        ],
+        "memory": {
+          "rss": 185614336,
+          "heapTotal": 59867136,
+          "heapUsed": 38574176,
+          "external": 40333593,
+          "arrayBuffers": 19798374
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

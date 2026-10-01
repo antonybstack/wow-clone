@@ -9,7 +9,7 @@ export CLOUDFLARE_ACCOUNT_ID=${CLOUDFLARE_ACCOUNT_ID:-6ea5db25020bce6cbefd6c1cc9
 PROJECT=${PAGES_PROJECT:-fardel}
 BRANCH=${PAGES_BRANCH:-main}
 
-if [[ -z "${CLOUDFLARE_API_TOKEN:-}" ]]; then
+if [[ "${ASHEN_BUILD_ONLY:-0}" != "1" && -z "${CLOUDFLARE_API_TOKEN:-}" ]]; then
   echo "CLOUDFLARE_API_TOKEN is required" >&2
   exit 2
 fi
@@ -23,7 +23,9 @@ for pack in forrest_ground_01 rock_wall_08 wood_planks_grey bark_brown_02; do
   mkdir -p "$STAGE/tex/$pack"
   cp -a "public/tex/$pack/diff.jpg" "$STAGE/tex/$pack/diff.jpg"
 done
-rsync -a --exclude 'wanderer.glb' --exclude 'wanderer-equipment.glb' public/ashen-reach/ "$STAGE/ashen-reach/"
+# The authoritative server cooks this duplicate collision export. Browsers use
+# the existing region geometry and only compare its release identifier.
+rsync -a --exclude 'wanderer.glb' --exclude 'wanderer-equipment.glb' --exclude 'presence-v1/' public/ashen-reach/ "$STAGE/ashen-reach/"
 cp -a public/meshopt_decoder.js "$STAGE/meshopt_decoder.js"
 cp -a public/HavokPhysics.wasm "$STAGE/HavokPhysics.wasm"
 rsync -a public/characters/bodies/ "$STAGE/characters/bodies/"
@@ -38,6 +40,11 @@ ASHEN_PAGES=1 ASHEN_PUBLIC_DIR="$STAGE" npm run build
 if ! cmp -s public/HavokPhysics.wasm dist/HavokPhysics.wasm; then
   echo "Deployment build is missing HavokPhysics.wasm" >&2
   exit 3
+fi
+
+if [[ "${ASHEN_BUILD_ONLY:-0}" == "1" ]]; then
+  echo "Verified Pages assets built in dist"
+  exit 0
 fi
 
 npx --yes wrangler@4 pages deploy dist \

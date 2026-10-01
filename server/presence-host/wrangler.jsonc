@@ -1,0 +1,10 @@
+{
+  "$schema":"./node_modules/wrangler/config-schema.json",
+  "name":"ashen-reach-presence",
+  "main":"worker.js",
+  "compatibility_date":"2026-10-01",
+  "account_id":"6ea5db25020bce6cbefd6c1cc999bef3",
+  "containers":[{"class_name":"PresenceContainer","image":"./Dockerfile","image_build_context":"../..","instance_type":"basic","max_instances":1}],
+  "durable_objects":{"bindings":[{"name":"PRESENCE","class_name":"PresenceContainer"}]},
+  "exports":{"PresenceContainer":{"type":"durable-object","storage":"sqlite"}}
+}

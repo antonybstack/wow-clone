@@ -11,7 +11,7 @@ const actor=(id='actor')=>createRegionActor({id,recipe,transform:{x:0,y:0,z:65,y
 function deferred(){let resolve;const promise=new Promise(r=>resolve=r);return {promise,resolve};}
 async function until(fn){for(let i=0;i<100;i++){if(fn())return;await new Promise(r=>setImmediate(r));}throw Error('Expected native boundary');}
 function fixture(){
- const scene={meshes:[],callbacks:[],_materialSwapQueue:[]},counts={loads:0,retired:0,rebuilds:0},gate=deferred();let defer=false,deferLoad=false,entered=false;
+ const scene={meshes:[],callbacks:[],_materialSwapQueue:[]},counts={loads:0,retired:0,rebuilds:0,poses:0,vatTimes:0,params:0},gate=deferred();let defer=false,deferLoad=false,entered=false;
  const bytes=new Uint8Array(8),hash=createHash('sha256').update(bytes).digest('hex'),data=new Float32Array(2*65*16),payloadHash=createHash('sha256').update(new Uint8Array(data.buffer)).digest('hex');
  const meshes=['HumanV1Body','WayfarerTunic','WayfarerTrousers','WayfarerBoots','ProbeIronSword','ProbeIronSword'];
  const clips={Walk_Loop:{fromRow:0,frameCount:2,fps:60,duration:1/60}};
@@ -22,13 +22,13 @@ function fixture(){
   loadGltf:async()=>{counts.loads++;if(deferLoad){entered=true;await gate.promise;}const m=meshes.map(name=>({name,skeleton:{boneCount:65},material:{},visible:true}));const vector=()=>({set(x,y,z,w){Object.assign(this,{x,y,z,w});}});const root={position:vector(),scaling:vector(),rotationQuaternion:vector()};return {entities:[root],meshes:m,animationGroups:[{name:'Walk_Loop'}]};},
   getContainerMeshes:c=>c.meshes,
   createVatBakeResults:(_e,values)=>values.map(()=>({texture:{destroy(){}},clips})),
-  attachVat:(_e,m,b)=>{m.skeleton=null;m.vat={texture:b.texture};return {setInstances(p){m.params=new Float32Array(p);}};},
+  attachVat:(_e,m,b)=>{m.skeleton=null;m.vat={texture:b.texture};return {setInstances(p){counts.params++;m.params=new Float32Array(p);}};},
   setThinInstances:(m,matrices,count)=>{m.thinInstances={matrices,count,_capacity:count};m._runtimeThinBuild=()=>{};},
-  invalidateRenderBundles(){},enableThinInstanceWorldBounds(){},setVatTime(){},setMorphTargetWeights(){},
+  invalidateRenderBundles(){},enableThinInstanceWorldBounds(){},setVatTime(){counts.vatTimes++;},setMorphTargetWeights(){},
   setThinInstanceCount:(m,count)=>m.thinInstances.count=count,
   setThinInstanceMatrix:(m,i,matrix)=>m.thinInstances.matrices.set(matrix,i*16),
   removeThinInstance:(m,i)=>{const t=m.thinInstances,last=--t.count;if(i!==last)t.matrices.copyWithin(i*16,last*16,last*16+16);},
-  goToFrame:(g,frame)=>g.currentTime=frame/60,
+  goToFrame:(g,frame)=>{counts.poses++;g.currentTime=frame/60;},
   setMeshVisible:(m,v)=>m.visible=v,
   addToScene:(s,c)=>{assert(c.meshes.every(m=>!m.visible));assert.equal(c.animationGroups.length,0);s.meshes.push(...c.meshes);s._materialSwapQueue.push(...c.meshes);},
   rebuildScenePbrPipelines:async(s,force)=>{assert(force);assert.equal(s._materialSwapQueue.length,0);counts.rebuilds++;if(defer){entered=true;await gate.promise;}},
@@ -77,4 +77,19 @@ test('same-fit live exact revision updates native weights without another decode
 
 test('implicit position coalescing retains a pending target priority ahead of nearby work',async()=>{
  const f=fixture(),crowd=await createRegionCrowd(f.game,{clock:()=>.1});f.pauseLoad();const active=crowd.set(actor('active'),'exact');await until(()=>f.entered);const target=actor('target'),b=crowd.set(target,'exact',{priority:0}),c=crowd.set(actor('near'),'exact',{priority:1}),moved=crowd.set(setActorTransform(target,{x:1,y:0,z:65,yaw:0}));f.gate.resolve();await Promise.all([active,b,c,moved]);assert.deepEqual(crowd.snapshot().actors.map(a=>a.id),['active','target','near']);await crowd.dispose();
+});
+
+test('per-frame pose writes do not re-evaluate every animation and survive an in-flight promotion',async()=>{
+ const f=fixture(),crowd=await createRegionCrowd(f.game,{clock:()=>.1});
+ await crowd.set(actor('vat'),'vat');await crowd.set(actor('exact'),'exact');
+ const before={...f.counts};
+ for(let i=1;i<=50;i++)for(const id of ['vat','exact'])assert(crowd.setTransform(id,{x:i,y:0,z:65+i,yaw:.2}));
+ assert.equal(f.counts.poses,before.poses);assert.equal(f.counts.vatTimes,before.vatTimes);assert.equal(f.counts.params,before.params);
+ f.scene.callbacks.forEach(fn=>fn());assert.equal(f.counts.poses,before.poses+1);
+ assert(crowd.resources().pools.values().next().value.meshes[0].thinInstances.matrices[12]===50);
+ const original=crowd.get('vat');f.pause();const promote=crowd.set(original,'exact');await until(()=>f.entered);
+ assert(crowd.setTransform('vat',{x:77,y:2,z:90,yaw:1}));
+ assert.equal(crowd.get('vat').appearanceRevision,original.appearanceRevision);assert.deepEqual(crowd.get('vat').motion,original.motion);
+ f.gate.resolve();assert.equal((await promote).tier,'exact');assert.equal(crowd.resources().actors.get('vat').exact.root.position.x,77);
+ assert.equal(crowd.setTransform('missing',{x:0,y:0,z:0,yaw:0}),false);await crowd.dispose();
 });

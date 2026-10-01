@@ -6,7 +6,7 @@ import { FireBlast } from "../spells/fire-blast.js";
 import { LavaBall } from "../spells/lava-ball.js";
 import { GravePulse } from "../spells/grave-pulse.js";
 import { Targeting } from "../targeting.js";
-import { setInputEnabled } from "../input.js";
+import { setInputEnabled, notifyActionInput } from "../input.js";
 import { createCombatHud } from "./combat-hud.js";
 import { enemySnapshot, updateEnemies } from "./enemies.js";
 import { createFireBlastAudio } from "./fire-blast-audio.js";
@@ -328,12 +328,14 @@ export async function createCombat(
     slot.onclick = () => {
       input.spellPressed = key;
       input.castInstant = true;
+      notifyActionInput(1);
       canvas.focus();
     };
   }
   for (const button of document.querySelectorAll("[data-attack]")) {
     button.addEventListener("pointerup", (event) => {
       input.attackPressed = true;
+      notifyActionInput(2);
       event.preventDefault();
       canvas.focus();
     });

@@ -369,7 +369,14 @@ async function main(){
  let committedAppearance=bootAppearance,currentHumanShape=bootAppearance?.race==='human'?bootAppearance.shape:null;
  if(basePivotHeight===null)basePivotHeight=rig.pivotHeight/(humanShape?.heightScale||1);
  let actorChain=Promise.resolve();
- const actorRequest=job=>{const result=actorChain.then(()=>{lifetime.throwIfAborted();return job();});actorChain=result.catch(()=>{});return result;};
+ const actorRequest=job=>{
+  // Online changes use the same local transaction, but must also receive a
+  // server revision. Keep arbitrary Armory edits from bypassing that boundary.
+  // https://docs.colyseus.io/state
+  if(ashen.presence&&!ashen.presence.closed&&!ashen.presence.appearanceApplying)
+   return Promise.reject(Error('Use Shared region to change your online character, or leave to use the Armory.'));
+  const result=actorChain.then(()=>{lifetime.throwIfAborted();return job();});actorChain=result.catch(()=>{});return result;
+ };
  let rebuildCreator=null;
  const rememberAppearance=async()=>{
   appearanceAPI ||= await import('../character/appearance/store.js');
@@ -696,7 +703,14 @@ async function main(){
   ashen.regionMs=performance.now()-boot;
   ashen.regionReady=true;
   regionBoundary.reach(ashen.regionMs);
+  // Only the small entry surface loads after the complete region. The SDK,
+  // remote actor sources and networking arrive on an explicit Join action.
   backgroundStatus.done();
+  // Optional shared controls must not turn a healthy solo region into a
+  // background-loading failure when their late chunk cannot be downloaded.
+  void import('../multiplayer/entry.js').then(({createPresenceEntry})=>{
+   if(!backgroundDisposed&&!deviceLost)ashen.presenceEntry=createPresenceEntry(ashen);
+  }).catch(error=>{ashen.presenceEntryError=error.message;console.warn('Shared-region controls unavailable',error);});
  })();
  ashen.whenRest.catch(error=>{combatBoundary.fail(error);hostilesBoundary.fail(error);regionBoundary.fail(error);if(backgroundDisposed||deviceLost)return;ashen.backgroundError=error.message;backgroundStatus.fail();console.error('Background startup failed',error);});
 }

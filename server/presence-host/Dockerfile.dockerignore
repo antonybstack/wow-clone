@@ -1,0 +1,15 @@
+**
+!package.json
+!package-lock.json
+!src/
+!src/**
+!server/
+!server/presence/
+!server/presence/**
+!public/
+!public/HavokPhysics.wasm
+!public/ashen-reach/
+!public/ashen-reach/presence-v1/
+!public/ashen-reach/presence-v1/**
+!public/ashen-reach/region-actors-v1/
+!public/ashen-reach/region-actors-v1/**

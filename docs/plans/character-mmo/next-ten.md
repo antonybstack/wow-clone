@@ -117,7 +117,7 @@ Work packages:
 
 ## 4 — Authoritative multiplayer presence
 
-Status: active, following the released bounded streaming slice.
+Status: local implementation and functional verification pass; public deployment remains pending the Cloudflare Workers Paid account gate. [Implementation, reviewed motion and remaining gates](results/multiplayer-presence-2026-10-01.md).
 
 **Scope:** one current-region room, initially two real clients and a functional ceiling of eight. This is a new bounded online slice, not a thousand-player service commitment.
 
@@ -191,6 +191,6 @@ Release the accepted multiplayer slice through verified client, server and asset
 
 Prefer native Lite animation/VAT/thin instances, evaluated sockets, Havok movement, existing equipment/lifetime/scheduler boundaries, glTF Transform/Meshoptimizer, the Playwright ownership harness and current Pages/VE/Telegram tooling. Link applicable official docs in comments at non-obvious bind, animation, shader, ownership and networking boundaries.
 
-The [version-pinned VAT specification](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/15-vertex-animation-texture.md) is the crowd starting point. [@litools/instancer](https://github.com/eldinor/lite-instancer) and [Colyseus](https://docs.colyseus.io/netcode) are evaluated reuse candidates, not adopted dependencies. Their current documentation can exceed the pinned runtime; validate the selected exact versions.
+The [version-pinned VAT specification](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/15-vertex-animation-texture.md) is the crowd starting point. [@litools/instancer](https://github.com/eldinor/lite-instancer) and [Colyseus](https://docs.colyseus.io/netcode) were evaluated reuse candidates. Milestone 4 adopts pinned Colyseus 0.18; the instancer remains unadopted. Their current documentation can exceed the pinned runtime; validate the selected exact versions.
 
 Defer bulk 30-set production until 6/8 establish the pipeline and budgets; full facial slider libraries, independent bone-length changes, cloth/hair simulation per actor, world expansion, terrain streaming, new rendering-feature experiments without a measured bottleneck, full PvP/economy systems and broad service/sharding infrastructure. The chosen finite region and current art direction remain the product setting.

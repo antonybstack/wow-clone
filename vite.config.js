@@ -98,12 +98,20 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ["@babylonjs/havok"],
+    // Lazy networking still needs stable dev prebundles: discovering it during
+    // a two-client check otherwise reloads every connected game page.
+    // This affects development optimization, not production startup imports.
+    // https://vite.dev/config/dep-optimization-options.html#optimizedeps-include
+    include: ["@babylonjs/havok", "@colyseus/schema", "@colyseus/sdk"],
   },
   server: {
     host: "127.0.0.1",
     port: Number(process.env.ASHEN_VITE_PORT) || 5173,
     strictPort: true,
+    // Captures and generated baseline HTML are artifacts, not application
+    // entries. Watching them can reload every owned live-check client.
+    // https://vite.dev/config/server-options.html#server-watch
+    watch: {ignored: ['**/.cache/**', '**/ve-capture/**', '**/docs/baselines/**']},
   },
   plugins: [
     {name: "verify-prepared-startup", async buildStart(){if(starterBuild)await verifyStartupAssets();await verifyProductionHumanShapes();}},
@@ -137,6 +145,8 @@ export default defineConfig({
         while(mainPending.length) {
           const chunk=mainPending.pop();if(mainSeen.has(chunk.fileName))continue;mainSeen.add(chunk.fileName);
           if(Object.keys(chunk.modules).some(id=>id.includes('/src/character/appearance/')))throw Error('Unsaved default startup eagerly imports optional appearance storage');
+          if(Object.keys(chunk.modules).some(id=>id.includes('/node_modules/@colyseus/')||id.includes('/src/character/region-crowd/')))
+            throw Error('Normal startup eagerly imports optional shared-region dependencies');
           for(const name of chunk.imports){const dependency=bundle[name];if(dependency?.type==='chunk')mainPending.push(dependency);}
         }
         for(const item of Object.values(bundle))if(item.type==='asset'&&item.fileName.endsWith('.html')) {

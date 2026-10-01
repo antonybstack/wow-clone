@@ -49,3 +49,9 @@
 
 /ashen-reach/region-actors-v1/manifest.json
   Cache-Control: no-cache
+
+/ashen-reach/presence-v1/collision-*
+  Cache-Control: public, max-age=31536000, immutable
+
+/ashen-reach/presence-v1/manifest.json
+  Cache-Control: no-cache

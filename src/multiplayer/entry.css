@@ -1,0 +1,67 @@
+#presence-entry {
+  position: fixed;
+  z-index: 25;
+  top: 50px;
+  left: 14px;
+  width: 220px;
+  color: #ded4a3;
+  background: #191a16ed;
+  border: 1px solid #726d51;
+  padding: 8px;
+  font:
+    12px Georgia,
+    serif;
+  max-height: 70vh;
+  overflow: auto;
+}
+#presence-entry:not([open]) {
+  width: auto;
+}
+#presence-entry summary {
+  cursor: pointer;
+}
+#presence-entry p {
+  line-height: 1.4;
+  margin: 8px 0;
+}
+#presence-entry button,
+#presence-entry input,
+#presence-entry select {
+  background: #24251f;
+  color: #ece3bc;
+  border: 1px solid #726d51;
+  padding: 5px;
+  margin: 3px 0;
+}
+#presence-entry button {
+  cursor: pointer;
+  margin-right: 6px;
+}
+#presence-entry :disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+#presence-entry fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+#presence-entry label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+#presence-entry input {
+  width: 90px;
+}
+#presence-entry select {
+  max-width: 140px;
+}
+@media (max-width: 600px) {
+  #presence-entry {
+    top: 44px;
+    left: 8px;
+    width: 195px;
+  }
+}

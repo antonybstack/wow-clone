@@ -1,0 +1,1701 @@
+{
+  "url": "http://127.0.0.1:5673/?play&clean&pixelRatio=1",
+  "endpoint": "http://127.0.0.1:2577",
+  "conditions": "Two rendering clients; functional only, no solo FPS claim",
+  "rows": [
+    {
+      "case": "real-input-shared-movement",
+      "before": {
+        "status": "shared",
+        "connected": true,
+        "sessionId": "-iYzXmUJv",
+        "players": {
+          "-iYzXmUJv": {
+            "x": -2.2499323438813343,
+            "y": 0.5403156266783204,
+            "z": -5.999735013527601,
+            "facing": 0,
+            "vy": 0,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 1,
+            "controllerVx": 0,
+            "controllerVy": 0,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "-iYzXmUJv",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v2\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null}}",
+            "revision": 1,
+            "clip": "Idle_Loop",
+            "motionStarted": 0,
+            "connected": true
+          },
+          "Kp8j0jjeS": {
+            "x": -0.7500452122272433,
+            "y": 0.5637926677962362,
+            "z": -5.999836105679276,
+            "facing": 0,
+            "vy": 0.0007789812339848983,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 1,
+            "controllerVx": 0,
+            "controllerVy": 0.0007789812339848983,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "Kp8j0jjeS",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v2\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null}}",
+            "revision": 1,
+            "clip": "Idle_Loop",
+            "motionStarted": 0,
+            "connected": true
+          }
+        },
+        "actors": {
+          "count": 1,
+          "clock": 1216.7812001515404,
+          "actors": [
+            {
+              "id": "Kp8j0jjeS",
+              "revision": 1,
+              "tier": "vat",
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "sample": {
+                "clip": "Idle_Loop",
+                "loop": true,
+                "timeSeconds": 1.7812001515403608,
+                "frame": 106,
+                "row": 106,
+                "ended": false,
+                "phase": 0.7124800606161443
+              }
+            }
+          ],
+          "batches": [
+            {
+              "mesh": "HumanV1Body",
+              "ids": [
+                "Kp8j0jjeS"
+              ],
+              "slots": [
+                [
+                  "Kp8j0jjeS",
+                  0
+                ]
+              ],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerTunic",
+              "ids": [
+                "Kp8j0jjeS"
+              ],
+              "slots": [
+                [
+                  "Kp8j0jjeS",
+                  0
+                ]
+              ],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerTrousers",
+              "ids": [
+                "Kp8j0jjeS"
+              ],
+              "slots": [
+                [
+                  "Kp8j0jjeS",
+                  0
+                ]
+              ],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerBoots",
+              "ids": [
+                "Kp8j0jjeS"
+              ],
+              "slots": [
+                [
+                  "Kp8j0jjeS",
+                  0
+                ]
+              ],
+              "primitives": 1
+            },
+            {
+              "mesh": "ProbeIronSword",
+              "ids": [
+                "Kp8j0jjeS"
+              ],
+              "slots": [
+                [
+                  "Kp8j0jjeS",
+                  0
+                ]
+              ],
+              "primitives": 2
+            },
+            {
+              "mesh": "GraveweaverHood",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "GraveweaverTop",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "GraveweaverPendant",
+              "ids": [],
+              "slots": [],
+              "primitives": 2
+            },
+            {
+              "mesh": "GraveweaverSkirt",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerTrousers",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "GraveweaverGloves",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "ProbeGreatstaff",
+              "ids": [],
+              "slots": [],
+              "primitives": 3
+            }
+          ]
+        },
+        "streaming": {
+          "limits": {
+            "pending": 32,
+            "exact": 8,
+            "idleExact": 2
+          },
+          "queue": {
+            "submitted": 1,
+            "superseded": 0,
+            "rejected": 0,
+            "peakPending": 1,
+            "completed": 1,
+            "pending": 0,
+            "active": 0,
+            "uniqueIds": 0,
+            "limit": 32,
+            "closed": false
+          },
+          "immutable": {
+            "entries": 3,
+            "reservedBytes": 4589720,
+            "peakReservedBytes": 4589720,
+            "ceilingBytes": 8388608,
+            "leases": 3
+          },
+          "activeExact": 0,
+          "idleExact": 0,
+          "owned": 2,
+          "allocation": {
+            "buffers": 118,
+            "textures": 39,
+            "bufferBytes": 3399568,
+            "textureBytes": 5342464,
+            "unknownTextureFormats": 0,
+            "knownCpuBytes": 4216280,
+            "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+          },
+          "stats": {
+            "exactLoads": 0,
+            "exactReuses": 0,
+            "exactLiveUpdates": 0,
+            "evictions": 0,
+            "peakOwned": 2,
+            "preparations": []
+          }
+        },
+        "drift": {
+          "ema": 1.1716647955940308e-34,
+          "peak": 1.4686596045135939e-34
+        },
+        "errors": []
+      },
+      "after": {
+        "status": "shared",
+        "connected": true,
+        "sessionId": "-iYzXmUJv",
+        "players": {
+          "-iYzXmUJv": {
+            "x": -2.163404732298069,
+            "y": 1.1843403592191473,
+            "z": 6.546508659331932,
+            "facing": 0,
+            "vy": 0,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 1,
+            "controllerVx": 0,
+            "controllerVy": 0,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "-iYzXmUJv",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v2\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null}}",
+            "revision": 1,
+            "clip": "Idle_Loop",
+            "motionStarted": 1218.771,
+            "connected": true
+          },
+          "Kp8j0jjeS": {
+            "x": -0.7500452122272433,
+            "y": 0.5644693327705032,
+            "z": -5.999836105679276,
+            "facing": 0,
+            "vy": 0.00007874189302078755,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 1,
+            "controllerVx": 0,
+            "controllerVy": 0.00007874189302078755,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "Kp8j0jjeS",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v2\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null}}",
+            "revision": 1,
+            "clip": "Idle_Loop",
+            "motionStarted": 0,
+            "connected": true
+          }
+        },
+        "actors": {
+          "count": 1,
+          "clock": 1219.0955156975115,
+          "actors": [
+            {
+              "id": "Kp8j0jjeS",
+              "revision": 1,
+              "tier": "vat",
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "sample": {
+                "clip": "Idle_Loop",
+                "loop": true,
+                "timeSeconds": 1.5955156975114733,
+                "frame": 95,
+                "row": 95,
+                "ended": false,
+                "phase": 0.6382062790045893
+              }
+            }
+          ],
+          "batches": [
+            {
+              "mesh": "HumanV1Body",
+              "ids": [
+                "Kp8j0jjeS"
+              ],
+              "slots": [
+                [
+                  "Kp8j0jjeS",
+                  0
+                ]
+              ],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerTunic",
+              "ids": [
+                "Kp8j0jjeS"
+              ],
+              "slots": [
+                [
+                  "Kp8j0jjeS",
+                  0
+                ]
+              ],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerTrousers",
+              "ids": [
+                "Kp8j0jjeS"
+              ],
+              "slots": [
+                [
+                  "Kp8j0jjeS",
+                  0
+                ]
+              ],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerBoots",
+              "ids": [
+                "Kp8j0jjeS"
+              ],
+              "slots": [
+                [
+                  "Kp8j0jjeS",
+                  0
+                ]
+              ],
+              "primitives": 1
+            },
+            {
+              "mesh": "ProbeIronSword",
+              "ids": [
+                "Kp8j0jjeS"
+              ],
+              "slots": [
+                [
+                  "Kp8j0jjeS",
+                  0
+                ]
+              ],
+              "primitives": 2
+            },
+            {
+              "mesh": "GraveweaverHood",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "GraveweaverTop",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "GraveweaverPendant",
+              "ids": [],
+              "slots": [],
+              "primitives": 2
+            },
+            {
+              "mesh": "GraveweaverSkirt",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerTrousers",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "GraveweaverGloves",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "ProbeGreatstaff",
+              "ids": [],
+              "slots": [],
+              "primitives": 3
+            }
+          ]
+        },
+        "streaming": {
+          "limits": {
+            "pending": 32,
+            "exact": 8,
+            "idleExact": 2
+          },
+          "queue": {
+            "submitted": 1,
+            "superseded": 0,
+            "rejected": 0,
+            "peakPending": 1,
+            "completed": 1,
+            "pending": 0,
+            "active": 0,
+            "uniqueIds": 0,
+            "limit": 32,
+            "closed": false
+          },
+          "immutable": {
+            "entries": 3,
+            "reservedBytes": 4589720,
+            "peakReservedBytes": 4589720,
+            "ceilingBytes": 8388608,
+            "leases": 3
+          },
+          "activeExact": 0,
+          "idleExact": 0,
+          "owned": 2,
+          "allocation": {
+            "buffers": 118,
+            "textures": 39,
+            "bufferBytes": 3399568,
+            "textureBytes": 5342464,
+            "unknownTextureFormats": 0,
+            "knownCpuBytes": 4216280,
+            "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+          },
+          "stats": {
+            "exactLoads": 0,
+            "exactReuses": 0,
+            "exactLiveUpdates": 0,
+            "evictions": 0,
+            "peakOwned": 2,
+            "preparations": []
+          }
+        },
+        "drift": {
+          "ema": 0.0004210889602572036,
+          "peak": 0.0011623247271101643
+        },
+        "errors": []
+      },
+      "seen": {
+        "status": "shared",
+        "connected": true,
+        "sessionId": "Kp8j0jjeS",
+        "players": {
+          "-iYzXmUJv": {
+            "x": -2.163404732298069,
+            "y": 1.1843403592191473,
+            "z": 6.546508659331932,
+            "facing": 0,
+            "vy": 0,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 1,
+            "controllerVx": 0,
+            "controllerVy": 0,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "-iYzXmUJv",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v2\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null}}",
+            "revision": 1,
+            "clip": "Idle_Loop",
+            "motionStarted": 1218.771,
+            "connected": true
+          },
+          "Kp8j0jjeS": {
+            "x": -0.7500452122272433,
+            "y": 0.5644693327705032,
+            "z": -5.999836105679276,
+            "facing": 0,
+            "vy": 0.00007874189302078755,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 1,
+            "controllerVx": 0,
+            "controllerVy": 0.00007874189302078755,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "Kp8j0jjeS",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v2\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null}}",
+            "revision": 1,
+            "clip": "Idle_Loop",
+            "motionStarted": 0,
+            "connected": true
+          }
+        },
+        "actors": {
+          "count": 1,
+          "clock": 1219.1068121101714,
+          "actors": [
+            {
+              "id": "-iYzXmUJv",
+              "revision": 1,
+              "tier": "vat",
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "sample": {
+                "clip": "Idle_Loop",
+                "loop": true,
+                "timeSeconds": 0.33581211017144597,
+                "frame": 20,
+                "row": 20,
+                "ended": false,
+                "phase": 0.1343248440685784
+              }
+            }
+          ],
+          "batches": [
+            {
+              "mesh": "HumanV1Body",
+              "ids": [
+                "-iYzXmUJv"
+              ],
+              "slots": [
+                [
+                  "-iYzXmUJv",
+                  0
+                ]
+              ],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerTunic",
+              "ids": [
+                "-iYzXmUJv"
+              ],
+              "slots": [
+                [
+                  "-iYzXmUJv",
+                  0
+                ]
+              ],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerTrousers",
+              "ids": [
+                "-iYzXmUJv"
+              ],
+              "slots": [
+                [
+                  "-iYzXmUJv",
+                  0
+                ]
+              ],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerBoots",
+              "ids": [
+                "-iYzXmUJv"
+              ],
+              "slots": [
+                [
+                  "-iYzXmUJv",
+                  0
+                ]
+              ],
+              "primitives": 1
+            },
+            {
+              "mesh": "ProbeIronSword",
+              "ids": [
+                "-iYzXmUJv"
+              ],
+              "slots": [
+                [
+                  "-iYzXmUJv",
+                  0
+                ]
+              ],
+              "primitives": 2
+            },
+            {
+              "mesh": "GraveweaverHood",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "GraveweaverTop",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "GraveweaverPendant",
+              "ids": [],
+              "slots": [],
+              "primitives": 2
+            },
+            {
+              "mesh": "GraveweaverSkirt",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerTrousers",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "GraveweaverGloves",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "ProbeGreatstaff",
+              "ids": [],
+              "slots": [],
+              "primitives": 3
+            }
+          ]
+        },
+        "streaming": {
+          "limits": {
+            "pending": 32,
+            "exact": 8,
+            "idleExact": 2
+          },
+          "queue": {
+            "submitted": 1,
+            "superseded": 0,
+            "rejected": 0,
+            "peakPending": 1,
+            "completed": 1,
+            "pending": 0,
+            "active": 0,
+            "uniqueIds": 0,
+            "limit": 32,
+            "closed": false
+          },
+          "immutable": {
+            "entries": 3,
+            "reservedBytes": 4589720,
+            "peakReservedBytes": 4589720,
+            "ceilingBytes": 8388608,
+            "leases": 3
+          },
+          "activeExact": 0,
+          "idleExact": 0,
+          "owned": 2,
+          "allocation": {
+            "buffers": 118,
+            "textures": 39,
+            "bufferBytes": 3399568,
+            "textureBytes": 5342464,
+            "unknownTextureFormats": 0,
+            "knownCpuBytes": 4216280,
+            "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+          },
+          "stats": {
+            "exactLoads": 0,
+            "exactReuses": 0,
+            "exactLiveUpdates": 0,
+            "evictions": 0,
+            "peakOwned": 2,
+            "preparations": []
+          }
+        },
+        "drift": {
+          "ema": 2.1787367782217184e-7,
+          "peak": 0.000001013201064273392
+        },
+        "errors": []
+      }
+    },
+    {
+      "case": "remote-exact-appearance",
+      "changed": {
+        "requestId": "921c7f46-9f25-448c-8d08-a5be22e38d80",
+        "status": "applied",
+        "revision": 2,
+        "recipe": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v2",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null
+          }
+        }
+      },
+      "appearance": {
+        "status": "shared",
+        "connected": true,
+        "sessionId": "Kp8j0jjeS",
+        "players": {
+          "-iYzXmUJv": {
+            "x": -2.163404732298069,
+            "y": 1.0969403592191473,
+            "z": 6.546508659331932,
+            "facing": 0,
+            "vy": 0,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 0.9,
+            "controllerVx": 0,
+            "controllerVy": 0,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "-iYzXmUJv",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v2\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":0.9,\"build\":0.95},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":\"graveweaverHood\",\"torso\":\"graveweaverTop\",\"legs\":\"graveweaverSkirt\",\"boots\":\"wayfarerBoots\",\"gloves\":\"graveweaverGloves\",\"mainHand\":\"graveweaverGreatstaff\",\"offHand\":null}}",
+            "revision": 2,
+            "clip": "Idle_Loop",
+            "motionStarted": 1218.771,
+            "connected": true
+          },
+          "Kp8j0jjeS": {
+            "x": -0.7500452122272433,
+            "y": 0.5644875543183713,
+            "z": -5.999836105679276,
+            "facing": 0,
+            "vy": 0.00005992851380983832,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 1,
+            "controllerVx": 0,
+            "controllerVy": 0.00005992851380983832,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "Kp8j0jjeS",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v2\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null}}",
+            "revision": 1,
+            "clip": "Idle_Loop",
+            "motionStarted": 0,
+            "connected": true
+          }
+        },
+        "actors": {
+          "count": 1,
+          "clock": 1219.361646831158,
+          "actors": [
+            {
+              "id": "-iYzXmUJv",
+              "revision": 2,
+              "tier": "exact",
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 0.9,
+                "build": 0.95
+              },
+              "sample": {
+                "clip": "Idle_Loop",
+                "loop": true,
+                "timeSeconds": 0.5906468311579829,
+                "frame": 35,
+                "row": 35,
+                "ended": false,
+                "phase": 0.23625873246319315
+              }
+            }
+          ],
+          "batches": [
+            {
+              "mesh": "HumanV1Body",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerTunic",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerTrousers",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerBoots",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "ProbeIronSword",
+              "ids": [],
+              "slots": [],
+              "primitives": 2
+            },
+            {
+              "mesh": "GraveweaverHood",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "GraveweaverTop",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "GraveweaverPendant",
+              "ids": [],
+              "slots": [],
+              "primitives": 2
+            },
+            {
+              "mesh": "GraveweaverSkirt",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerTrousers",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "GraveweaverGloves",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "ProbeGreatstaff",
+              "ids": [],
+              "slots": [],
+              "primitives": 3
+            }
+          ]
+        },
+        "streaming": {
+          "limits": {
+            "pending": 32,
+            "exact": 8,
+            "idleExact": 2
+          },
+          "queue": {
+            "submitted": 2,
+            "superseded": 0,
+            "rejected": 0,
+            "peakPending": 1,
+            "completed": 2,
+            "pending": 0,
+            "active": 0,
+            "uniqueIds": 0,
+            "limit": 32,
+            "closed": false
+          },
+          "immutable": {
+            "entries": 3,
+            "reservedBytes": 4589720,
+            "peakReservedBytes": 4589720,
+            "ceilingBytes": 8388608,
+            "leases": 3
+          },
+          "activeExact": 1,
+          "idleExact": 0,
+          "owned": 3,
+          "allocation": {
+            "buffers": 208,
+            "textures": 75,
+            "bufferBytes": 6200512,
+            "textureBytes": 7839120,
+            "unknownTextureFormats": 0,
+            "knownCpuBytes": 6974980,
+            "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+          },
+          "stats": {
+            "exactLoads": 1,
+            "exactReuses": 0,
+            "exactLiveUpdates": 0,
+            "evictions": 0,
+            "peakOwned": 3,
+            "preparations": [
+              23.40000009536743
+            ]
+          }
+        },
+        "drift": {
+          "ema": 1.2892230787730275e-7,
+          "peak": 5.982850964427955e-7
+        },
+        "errors": []
+      }
+    },
+    {
+      "case": "source-action",
+      "state": {
+        "status": "shared",
+        "connected": true,
+        "sessionId": "Kp8j0jjeS",
+        "players": {
+          "-iYzXmUJv": {
+            "x": -2.163404732298069,
+            "y": 1.0969403592191473,
+            "z": 6.546508659331932,
+            "facing": 0,
+            "vy": 0,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 0.9,
+            "controllerVx": 0,
+            "controllerVy": 0,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "-iYzXmUJv",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v2\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":0.9,\"build\":0.95},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":\"graveweaverHood\",\"torso\":\"graveweaverTop\",\"legs\":\"graveweaverSkirt\",\"boots\":\"wayfarerBoots\",\"gloves\":\"graveweaverGloves\",\"mainHand\":\"graveweaverGreatstaff\",\"offHand\":null}}",
+            "revision": 2,
+            "clip": "Spell_Simple_Enter",
+            "motionStarted": 1219.512,
+            "connected": true
+          },
+          "Kp8j0jjeS": {
+            "x": -0.7500452122272433,
+            "y": 0.5644966588808094,
+            "z": -5.999836105679276,
+            "facing": 0,
+            "vy": 0.000050506916613863736,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 1,
+            "controllerVx": 0,
+            "controllerVy": 0.000050506916613863736,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "Kp8j0jjeS",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v2\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null}}",
+            "revision": 1,
+            "clip": "Idle_Loop",
+            "motionStarted": 0,
+            "connected": true
+          }
+        },
+        "actors": {
+          "count": 1,
+          "clock": 1219.470473691167,
+          "actors": [
+            {
+              "id": "-iYzXmUJv",
+              "revision": 2,
+              "tier": "exact",
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 0.9,
+                "build": 0.95
+              },
+              "sample": {
+                "clip": "Idle_Loop",
+                "loop": true,
+                "timeSeconds": 0.6994736911669861,
+                "frame": 41,
+                "row": 41,
+                "ended": false,
+                "phase": 0.2797894764667944
+              }
+            }
+          ],
+          "batches": [
+            {
+              "mesh": "HumanV1Body",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerTunic",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerTrousers",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerBoots",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "ProbeIronSword",
+              "ids": [],
+              "slots": [],
+              "primitives": 2
+            },
+            {
+              "mesh": "GraveweaverHood",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "GraveweaverTop",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "GraveweaverPendant",
+              "ids": [],
+              "slots": [],
+              "primitives": 2
+            },
+            {
+              "mesh": "GraveweaverSkirt",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerTrousers",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "GraveweaverGloves",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "ProbeGreatstaff",
+              "ids": [],
+              "slots": [],
+              "primitives": 3
+            }
+          ]
+        },
+        "streaming": {
+          "limits": {
+            "pending": 32,
+            "exact": 8,
+            "idleExact": 2
+          },
+          "queue": {
+            "submitted": 2,
+            "superseded": 0,
+            "rejected": 0,
+            "peakPending": 1,
+            "completed": 2,
+            "pending": 0,
+            "active": 0,
+            "uniqueIds": 0,
+            "limit": 32,
+            "closed": false
+          },
+          "immutable": {
+            "entries": 3,
+            "reservedBytes": 4589720,
+            "peakReservedBytes": 4589720,
+            "ceilingBytes": 8388608,
+            "leases": 3
+          },
+          "activeExact": 1,
+          "idleExact": 0,
+          "owned": 3,
+          "allocation": {
+            "buffers": 208,
+            "textures": 75,
+            "bufferBytes": 6200512,
+            "textureBytes": 7839120,
+            "unknownTextureFormats": 0,
+            "knownCpuBytes": 6974980,
+            "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+          },
+          "stats": {
+            "exactLoads": 1,
+            "exactReuses": 0,
+            "exactLiveUpdates": 0,
+            "evictions": 0,
+            "peakOwned": 3,
+            "preparations": [
+              23.40000009536743
+            ]
+          }
+        },
+        "drift": {
+          "ema": 1.0469292123558996e-7,
+          "peak": 4.846109281186644e-7
+        },
+        "errors": []
+      }
+    },
+    {
+      "case": "automatic-reconnect-same-identity",
+      "state": {
+        "status": "shared",
+        "connected": true,
+        "sessionId": "-iYzXmUJv",
+        "players": {
+          "-iYzXmUJv": {
+            "x": -2.163404732298069,
+            "y": 1.0969403592191473,
+            "z": 6.546508659331932,
+            "facing": 0,
+            "vy": 0,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 0.9,
+            "controllerVx": 0,
+            "controllerVy": 0,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "-iYzXmUJv",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v2\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":0.9,\"build\":0.95},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":\"graveweaverHood\",\"torso\":\"graveweaverTop\",\"legs\":\"graveweaverSkirt\",\"boots\":\"wayfarerBoots\",\"gloves\":\"graveweaverGloves\",\"mainHand\":\"graveweaverGreatstaff\",\"offHand\":null}}",
+            "revision": 2,
+            "clip": "Idle_Loop",
+            "motionStarted": 1220.051,
+            "connected": true
+          },
+          "Kp8j0jjeS": {
+            "x": -0.7500452122272433,
+            "y": 0.5645172273803418,
+            "z": -5.999836105679276,
+            "facing": 0,
+            "vy": 0.00002918906219892125,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 1,
+            "controllerVx": 0,
+            "controllerVy": 0.00002918906219892125,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "Kp8j0jjeS",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v2\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null}}",
+            "revision": 1,
+            "clip": "Idle_Loop",
+            "motionStarted": 0,
+            "connected": true
+          }
+        },
+        "actors": {
+          "count": 1,
+          "clock": 1219.9988157331293,
+          "actors": [
+            {
+              "id": "Kp8j0jjeS",
+              "revision": 1,
+              "tier": "vat",
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "sample": {
+                "clip": "Idle_Loop",
+                "loop": true,
+                "timeSeconds": 2.498815733129277,
+                "frame": 149,
+                "row": 149,
+                "ended": false,
+                "phase": 0.9995262932517107
+              }
+            }
+          ],
+          "batches": [
+            {
+              "mesh": "HumanV1Body",
+              "ids": [
+                "Kp8j0jjeS"
+              ],
+              "slots": [
+                [
+                  "Kp8j0jjeS",
+                  0
+                ]
+              ],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerTunic",
+              "ids": [
+                "Kp8j0jjeS"
+              ],
+              "slots": [
+                [
+                  "Kp8j0jjeS",
+                  0
+                ]
+              ],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerTrousers",
+              "ids": [
+                "Kp8j0jjeS"
+              ],
+              "slots": [
+                [
+                  "Kp8j0jjeS",
+                  0
+                ]
+              ],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerBoots",
+              "ids": [
+                "Kp8j0jjeS"
+              ],
+              "slots": [
+                [
+                  "Kp8j0jjeS",
+                  0
+                ]
+              ],
+              "primitives": 1
+            },
+            {
+              "mesh": "ProbeIronSword",
+              "ids": [
+                "Kp8j0jjeS"
+              ],
+              "slots": [
+                [
+                  "Kp8j0jjeS",
+                  0
+                ]
+              ],
+              "primitives": 2
+            },
+            {
+              "mesh": "GraveweaverHood",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "GraveweaverTop",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "GraveweaverPendant",
+              "ids": [],
+              "slots": [],
+              "primitives": 2
+            },
+            {
+              "mesh": "GraveweaverSkirt",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerTrousers",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "GraveweaverGloves",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "ProbeGreatstaff",
+              "ids": [],
+              "slots": [],
+              "primitives": 3
+            }
+          ]
+        },
+        "streaming": {
+          "limits": {
+            "pending": 32,
+            "exact": 8,
+            "idleExact": 2
+          },
+          "queue": {
+            "submitted": 1,
+            "superseded": 0,
+            "rejected": 0,
+            "peakPending": 1,
+            "completed": 1,
+            "pending": 0,
+            "active": 0,
+            "uniqueIds": 0,
+            "limit": 32,
+            "closed": false
+          },
+          "immutable": {
+            "entries": 3,
+            "reservedBytes": 4589720,
+            "peakReservedBytes": 4589720,
+            "ceilingBytes": 8388608,
+            "leases": 3
+          },
+          "activeExact": 0,
+          "idleExact": 0,
+          "owned": 2,
+          "allocation": {
+            "buffers": 118,
+            "textures": 39,
+            "bufferBytes": 3399568,
+            "textureBytes": 5342464,
+            "unknownTextureFormats": 0,
+            "knownCpuBytes": 4216280,
+            "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+          },
+          "stats": {
+            "exactLoads": 0,
+            "exactReuses": 0,
+            "exactLiveUpdates": 0,
+            "evictions": 0,
+            "peakOwned": 2,
+            "preparations": []
+          }
+        },
+        "drift": {
+          "ema": 0.006495877950651308,
+          "peak": 0.033860550545039836
+        },
+        "errors": []
+      }
+    },
+    {
+      "case": "departure-no-ghost",
+      "state": {
+        "status": "shared",
+        "connected": true,
+        "sessionId": "Kp8j0jjeS",
+        "players": {
+          "Kp8j0jjeS": {
+            "x": -0.7500452122272433,
+            "y": 0.5645181774907764,
+            "z": -5.999836105679276,
+            "facing": 0,
+            "vy": 0.000028264791587923742,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 1,
+            "controllerVx": 0,
+            "controllerVy": 0.000028264791587923742,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "Kp8j0jjeS",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v2\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null}}",
+            "revision": 1,
+            "clip": "Idle_Loop",
+            "motionStarted": 0,
+            "connected": true
+          }
+        },
+        "actors": {
+          "count": 0,
+          "clock": 1220.033917777248,
+          "actors": [],
+          "batches": [
+            {
+              "mesh": "HumanV1Body",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerTunic",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerTrousers",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerBoots",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "ProbeIronSword",
+              "ids": [],
+              "slots": [],
+              "primitives": 2
+            },
+            {
+              "mesh": "GraveweaverHood",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "GraveweaverTop",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "GraveweaverPendant",
+              "ids": [],
+              "slots": [],
+              "primitives": 2
+            },
+            {
+              "mesh": "GraveweaverSkirt",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "WayfarerTrousers",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "GraveweaverGloves",
+              "ids": [],
+              "slots": [],
+              "primitives": 1
+            },
+            {
+              "mesh": "ProbeGreatstaff",
+              "ids": [],
+              "slots": [],
+              "primitives": 3
+            }
+          ]
+        },
+        "streaming": {
+          "limits": {
+            "pending": 32,
+            "exact": 8,
+            "idleExact": 2
+          },
+          "queue": {
+            "submitted": 2,
+            "superseded": 0,
+            "rejected": 0,
+            "peakPending": 1,
+            "completed": 2,
+            "pending": 0,
+            "active": 0,
+            "uniqueIds": 0,
+            "limit": 32,
+            "closed": false
+          },
+          "immutable": {
+            "entries": 3,
+            "reservedBytes": 4589720,
+            "peakReservedBytes": 4589720,
+            "ceilingBytes": 8388608,
+            "leases": 3
+          },
+          "activeExact": 0,
+          "idleExact": 1,
+          "owned": 3,
+          "allocation": {
+            "buffers": 208,
+            "textures": 75,
+            "bufferBytes": 6200512,
+            "textureBytes": 7839120,
+            "unknownTextureFormats": 0,
+            "knownCpuBytes": 6974980,
+            "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+          },
+          "stats": {
+            "exactLoads": 1,
+            "exactReuses": 0,
+            "exactLiveUpdates": 0,
+            "evictions": 0,
+            "peakOwned": 3,
+            "preparations": [
+              23.40000009536743
+            ]
+          }
+        },
+        "drift": {
+          "ema": 2.994699434112239e-8,
+          "peak": 1.3686843980218164e-7
+        },
+        "errors": []
+      }
+    }
+  ],
+  "errors": [],
+  "ids": [
+    "-iYzXmUJv",
+    "Kp8j0jjeS"
+  ],
+  "passed": true
+}

@@ -14,7 +14,7 @@ import {prepareLinearMaterial} from '../../ashen-reach/linear-materials.js';
 import {claimQueuedBuilds} from '../crowd-probe/town.js';
 import {decodePreparedCrowdAppearance,planCrowdBatches} from '../crowd-probe/batches.js';
 import {APPEARANCE_SCHEMA_VERSION,appearanceShapeWeights,validateAppearance} from '../appearance/contract.js';
-import {createRegionActor,actorVatParams,sampleActorMotion} from './actor-state.js';
+import {createRegionActor,setActorTransform,actorVatParams,sampleActorMotion} from './actor-state.js';
 import {setDirectInstanceCount} from './direct-count.js';
 import {createRequestQueue} from './request-queue.js';
 import {acquireRegionAsset,regionAssetCacheSnapshot} from './asset-cache.js';
@@ -197,11 +197,11 @@ export async function createRegionCrowd(game,{capacity=100,assetRoot='/__region_
   }catch(error){disposeResource(resource);throw error;}
   finally{stats.preparations.push(performance.now()-started);if(stats.preparations.length>256)stats.preparations.shift();}
  }
- function writeTransform(entry){
-  entry.paramKey=null;entry.started=false;const matrix=matrixFor(entry.actor);
+ function writeTransform(entry,motionChanged=true){
+  if(motionChanged){entry.paramKey=null;entry.started=false;}const matrix=matrixFor(entry.actor);
   if(entry.exact)writeExactTransform(entry.exact,entry.actor);
-  else for(const pool of entry.pools){const slot=pool.slots.get(entry.actor.id);for(const mesh of pool.meshes)setThinInstanceMatrix(mesh,slot,matrix);packParams(pool);}
-  update();
+  else for(const pool of entry.pools){const slot=pool.slots.get(entry.actor.id);for(const mesh of pool.meshes)setThinInstanceMatrix(mesh,slot,matrix);if(motionChanged)packParams(pool);}
+  if(motionChanged)update();
  }
  function update(){
   if(disposed)return;const t=now(),dirty=new Set();
@@ -256,6 +256,16 @@ export async function createRegionCrowd(game,{capacity=100,assetRoot='/__region_
  }catch(error){dispose();throw error;}
  return {
   now,dispose,
+  setTransform(id,transform){
+   if(disposed)return false;
+   const token=desired.get(id),entry=actors.get(id);if(!token&&!entry)return false;
+   const previous=token?.actor||entry.actor;
+   const moved=setActorTransform(previous,transform);
+   if(['x','y','z','yaw'].every(k=>moved.transform[k]===previous.transform[k]))return true;
+   if(token)token.actor=moved;
+   if(entry){entry.actor=entry.actor===previous?moved:setActorTransform(entry.actor,transform);writeTransform(entry,false);}
+   return true;
+  },
   async set(actor,tier,options={}){
    const priority=options.priority??desired.get(actor?.id)?.priority??2;
    if(disposed)return {status:'disposed'};
