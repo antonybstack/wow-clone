@@ -29,12 +29,17 @@ def ledger(path):
 def send(method, fields, token, path=None, field=None):
     # curl uses the system trust store (including the development proxy CA).
     # Config travels over stdin, so credentials cannot appear in process arguments.
-    config = [f'url = {json.dumps(f"https://api.telegram.org/bot{token}/{method}")}',
+    # curl config accepts escaped quotes/backslashes and literal UTF-8, but not
+    # JSON's \uXXXX escapes. Otherwise “1280×720” is delivered as “1280u00d7720”.
+    # https://everything.curl.dev/cmdline/configfile.html#when-to-use-quotes
+    def quote(value):
+        return json.dumps(value, ensure_ascii=False)
+    config = [f'url = {quote(f"https://api.telegram.org/bot{token}/{method}")}',
               'silent', 'show-error', 'max-time = 900']
-    config.extend(f'form-string = {json.dumps(f"{key}={value}")}' for key, value in fields.items())
+    config.extend(f'form-string = {quote(f"{key}={value}")}' for key, value in fields.items())
     if path:
         filename = str(path.resolve()).replace('\\', '\\\\').replace('"', '\\"')
-        config.append('form = ' + json.dumps(f'{field}=@"{filename}"'))
+        config.append('form = ' + quote(f'{field}=@"{filename}"'))
     response = subprocess.run(['curl', '-q', '--config', '-'], input='\n'.join(config) + '\n',
                               capture_output=True, text=True)
     if response.returncode:
