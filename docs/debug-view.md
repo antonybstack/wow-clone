@@ -41,6 +41,8 @@ Treat every open game page as GPU work, including a page in a detached headless 
 3. For FPS runs, inspect all known game tabs and ensure **only the measured game page is actively rendering**. Close or pause other pages owned by this session or its managed subagents and record what was done. Leave user and other agents' unrelated sessions untouched. If an active renderer remains unknown or cannot be isolated, mark the run contaminated and do not use it for a performance claim.
 4. Close each owned Playwright context/page and stop its harness when the check finishes. `browser.close()` on a CDP connection may only disconnect; confirm the browser process and its game tab actually stopped. Recheck the inventory at handoff and session end. Keep any intentionally retained game instance in the ownership record so the next session knows it exists.
 
+Repeated live checks should use a fresh owned Playwright `browser.newContext()` and close it in `finally`. Navigating the same page to `about:blank` can retain earlier game documents/renderers in Chromium's back/forward history; detaching CDP does not dispose them. Keep the harness's default page blank, audit targets before the next check, and restart only the owned harness if retained history/processes make isolation uncertain.
+
 This rule follows the 2026-09-27 investigation: two abandoned game pages reduced the same walk from about **173 to 96 FPS**. A local server without a game page is not the same GPU load; count rendering pages, not merely ports.
 
 ## Existing harnesses

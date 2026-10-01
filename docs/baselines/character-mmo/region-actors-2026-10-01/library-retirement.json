@@ -1,0 +1,160 @@
+{
+  "errors": [],
+  "before": {
+    "vatMeshes": 6,
+    "atlases": 6,
+    "atlasBytes": 5790720,
+    "buffers": [
+      {
+        "mesh": "HumanV1Body",
+        "name": "_gpuBuffer",
+        "size": 192,
+        "destroyed": 0
+      },
+      {
+        "mesh": "HumanV1Body",
+        "name": "_drawArgsBuffer",
+        "size": 20,
+        "destroyed": 0
+      },
+      {
+        "mesh": "WayfarerTunic",
+        "name": "_gpuBuffer",
+        "size": 192,
+        "destroyed": 0
+      },
+      {
+        "mesh": "WayfarerTunic",
+        "name": "_drawArgsBuffer",
+        "size": 20,
+        "destroyed": 0
+      },
+      {
+        "mesh": "WayfarerTrousers",
+        "name": "_gpuBuffer",
+        "size": 192,
+        "destroyed": 0
+      },
+      {
+        "mesh": "WayfarerTrousers",
+        "name": "_drawArgsBuffer",
+        "size": 20,
+        "destroyed": 0
+      },
+      {
+        "mesh": "WayfarerBoots",
+        "name": "_gpuBuffer",
+        "size": 192,
+        "destroyed": 0
+      },
+      {
+        "mesh": "WayfarerBoots",
+        "name": "_drawArgsBuffer",
+        "size": 20,
+        "destroyed": 0
+      },
+      {
+        "mesh": "ProbeIronSword",
+        "name": "_gpuBuffer",
+        "size": 192,
+        "destroyed": 0
+      },
+      {
+        "mesh": "ProbeIronSword",
+        "name": "_drawArgsBuffer",
+        "size": 20,
+        "destroyed": 0
+      },
+      {
+        "mesh": "ProbeIronSword",
+        "name": "_gpuBuffer",
+        "size": 192,
+        "destroyed": 0
+      },
+      {
+        "mesh": "ProbeIronSword",
+        "name": "_drawArgsBuffer",
+        "size": 20,
+        "destroyed": 0
+      }
+    ]
+  },
+  "after": {
+    "buffers": [
+      {
+        "mesh": "HumanV1Body",
+        "name": "_gpuBuffer",
+        "size": 192,
+        "destroyed": 0
+      },
+      {
+        "mesh": "HumanV1Body",
+        "name": "_drawArgsBuffer",
+        "size": 20,
+        "destroyed": 0
+      },
+      {
+        "mesh": "WayfarerTunic",
+        "name": "_gpuBuffer",
+        "size": 192,
+        "destroyed": 0
+      },
+      {
+        "mesh": "WayfarerTunic",
+        "name": "_drawArgsBuffer",
+        "size": 20,
+        "destroyed": 0
+      },
+      {
+        "mesh": "WayfarerTrousers",
+        "name": "_gpuBuffer",
+        "size": 192,
+        "destroyed": 0
+      },
+      {
+        "mesh": "WayfarerTrousers",
+        "name": "_drawArgsBuffer",
+        "size": 20,
+        "destroyed": 0
+      },
+      {
+        "mesh": "WayfarerBoots",
+        "name": "_gpuBuffer",
+        "size": 192,
+        "destroyed": 0
+      },
+      {
+        "mesh": "WayfarerBoots",
+        "name": "_drawArgsBuffer",
+        "size": 20,
+        "destroyed": 0
+      },
+      {
+        "mesh": "ProbeIronSword",
+        "name": "_gpuBuffer",
+        "size": 192,
+        "destroyed": 0
+      },
+      {
+        "mesh": "ProbeIronSword",
+        "name": "_drawArgsBuffer",
+        "size": 20,
+        "destroyed": 0
+      },
+      {
+        "mesh": "ProbeIronSword",
+        "name": "_gpuBuffer",
+        "size": 192,
+        "destroyed": 0
+      },
+      {
+        "mesh": "ProbeIronSword",
+        "name": "_drawArgsBuffer",
+        "size": 20,
+        "destroyed": 0
+      }
+    ],
+    "vatMeshes": 0,
+    "gpuErrors": []
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "errors": [],
+  "baseline": {
+    "meshes": 136,
+    "casters": 38
+  },
+  "disposal": {
+    "builds": 1,
+    "owned": 3,
+    "result": {
+      "status": "superseded"
+    },
+    "instrumentation": "dispose at native promise registration"
+  },
+  "after": {
+    "meshes": 136,
+    "casters": 38,
+    "vat": 0,
+    "gpuErrors": []
+  }
+}

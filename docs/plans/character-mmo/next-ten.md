@@ -1,6 +1,6 @@
 # Next ten major milestones — production customization and a multiplayer hub
 
-Reprioritized **2026-09-29**, release verification updated **2026-09-30**, game source **b362dbc**. Milestone **1 has a released, verified bounded customization subset**; the startup follow-up passes measured local/public p95 gates, while first-use GPU tails remain open. Milestone **2 is active; 3–10 remain planned**. The [public startup/GPU follow-up](results/startup-gpu-2026-09-30.md) adds shared early saved-character discovery and measures the resulting margin. First-use GPU outliers remain unattributed and explicitly deferred by the user on September 30; they do not block milestone 2. The [current-state review](../../reviews/current-state-priorities-2026-09-29.md) records what is released, active, candidate-only and unaccepted, plus verification and limitations. The [original M001–M010 sequence](../../archive/plans/character-mmo-next-ten-2026-09-27.md) is retained as history.
+Reprioritized **2026-09-29**, release verification updated **2026-09-30**, game source **b362dbc**. Milestone **1 has a released, verified bounded customization subset**; the startup follow-up passes measured local/public p95 gates, while first-use GPU tails remain open. Milestone **2’s bounded region correctness integration is complete; 3 is active and 4–10 remain planned**. The [public startup/GPU follow-up](results/startup-gpu-2026-09-30.md) adds shared early saved-character discovery and measures the resulting margin. First-use GPU outliers remain unattributed and explicitly deferred by the user on September 30; they do not block milestone 2. The [current-state review](../../reviews/current-state-priorities-2026-09-29.md) records what is released, active, candidate-only and unaccepted, plus verification and limitations. The [original M001–M010 sequence](../../archive/plans/character-mmo-next-ten-2026-09-27.md) is retained as history.
 
 These numbers are the current execution order. Original M001–M100 IDs remain references to the [long-term horizon](vision-roadmap.md), not a second queue. Completed M001–M005 proof work is reused; M006 creator infrastructure and M007 representative fit evidence are retained. Missing age/hair art and untested shape settings are not marked complete by reorganizing the plan.
 
@@ -67,6 +67,8 @@ Work packages:
 
 ## 2 — Correct crowd rendering in the region
 
+Status: bounded developer integration complete. [Result, failed experiments, raw measurements and live motion](results/region-actors-2026-10-01.md). Production presence and crowd capacity remain later exits.
+
 **Active from 2026-09-30:** milestone 1 is released. The user deferred investigation of the first-use GPU startup stall to [a recorded follow-up](results/startup-gpu-2026-09-30.md#deferred-follow-up--2026-09-30); it is not an additional prerequisite for starting this milestone. Retain ordinary startup and solo regression gates.
 
 The [native composition/lifecycle checkpoint](results/crowd-region-2026-09-30.md) now fixes and verifies the first actual-town actors live under unchanged shadows, with reviewed motion and isolated performance. Exact/VAT transitions, action clocks, animated bounds and varied churn remain next. Milestone 2 remains open.
@@ -91,6 +93,8 @@ Work packages:
 **Bounded implementer handoff:** Implement milestone 2 only after milestone 1 is accepted. Start at one actor and the recorded M003 failures. Use native Lite APIs and a measured instancer comparison. Fix actual-region correctness before scaling, preserve custom-world lighting and startup provenance, and report every approximation. The local player must never lose its live skeleton. Finish with a one/ten/100 actor motion/lifecycle report and isolated solo regression evidence.
 
 ## 3 — Bounded appearance streaming and memory
+
+Status: active, following the [completed milestone 2 result](results/region-actors-2026-10-01.md). Native direct-count performance and exact/VAT render correctness are proved; full-detail 100-actor cost is 64–66 FPS and remains an unaccepted future hub workload.
 
 **Why before networking:** a real arriving player should use the same tested transaction, cache and scheduling path as a synthetic actor; network arrival must not introduce a second asset lifecycle.
 

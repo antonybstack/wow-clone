@@ -148,9 +148,10 @@ export default defineConfig({
       name: 'dev-only-crowd-probe-assets',
       configureServer(server) {
         server.middlewares.use((req,res,next)=>{
-          const name=/^\/__crowd_probe__\/(human-(?:wayfarer|warden)\.glb|manifest\.json)$/.exec(req.url?.split('?')[0]||'')?.[1];
-          if(!name) return next();
-          const file=`.cache/character-mmo/m003/${name}`;
+          const match=/^\/__(crowd_probe|region_crowd)__\/(human-(?:wayfarer|warden)\.glb|manifest\.json|prepared\.json|vat-[a-f0-9]{64}\.bin)$/.exec(req.url?.split('?')[0]||'');
+          if(!match) return next();
+          const name=match[2],folder=match[1]==='region_crowd'?'region-crowd':'m003';
+          const file=`.cache/character-mmo/${folder}/${name}`;
           try {
             const info=statSync(file);
             res.setHeader('Content-Type',name.endsWith('.json')?'application/json':'model/gltf-binary');

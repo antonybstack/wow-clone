@@ -3,7 +3,15 @@ import {Batch} from './geometry.js';
 
 /** Original low-poly props; each origin is its authored hand grip. */
 export function createMageProp(engine,scene,kind){
- const root=createTransformNode(kind),wood=new Batch(kind+'Wood'),metal=new Batch(kind+'Metal'),accent=new Batch(kind+'Accent'),white=[1,1,1,1];
+ const root=createTransformNode(kind);
+ const meshes=magePropGeometry(kind).map(({batch,material})=>batch.commit(engine,scene,createPbrMaterial(material)));
+ for(const mesh of meshes){setParent(mesh,root);mesh.position.set(0,0,0);mesh.rotationQuaternion.set(0,0,0,1);mesh.scaling.set(1,1,1);}
+ return{root,meshes};
+}
+
+/** Same source batches feed the live prop and offline fitted actors. */
+export function magePropGeometry(kind){
+ const wood=new Batch(kind+'Wood'),metal=new Batch(kind+'Metal'),accent=new Batch(kind+'Accent'),white=[1,1,1,1];
  if(kind==='staff'||kind==='greatstaff'){
   const twoHanded=kind==='greatstaff';
   const shaft=twoHanded?[[0,-.98,0],[.03,-.62,.02],[.03,-.34,.015],[0,.12,0],[-.025,.54,.01],[0,.86,0]]:[[0,-.72,0],[.025,-.35,.015],[0,.12,0],[-.025,.54,.01],[0,.86,0]];
@@ -36,7 +44,5 @@ export function createMageProp(engine,scene,kind){
   {baseColorFactor:[.47,.40,.25,1],metallicFactor:.45,roughnessFactor:.6},
   {baseColorFactor:[.58,.53,.39,1],roughnessFactor:1},
  ];
- const meshes=[wood,metal,accent].map((batch,i)=>batch.commit(engine,scene,createPbrMaterial({metallicFactor:0,doubleSided:true,...materials[i]})));
- for(const mesh of meshes){setParent(mesh,root);mesh.position.set(0,0,0);mesh.rotationQuaternion.set(0,0,0,1);mesh.scaling.set(1,1,1);}
- return{root,meshes};
+ return [wood,metal,accent].map((batch,i)=>({batch,material:{metallicFactor:0,doubleSided:true,...materials[i]}}));
 }

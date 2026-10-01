@@ -6,23 +6,29 @@
  * https://gltf-transform.dev/modules/functions/functions/prune
  */
 import fs from 'node:fs/promises';
+import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
-import {NodeIO} from '@gltf-transform/core';
+import {NodeIO,VertexLayout} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {mergeDocuments,prune,unpartition} from '@gltf-transform/functions';
 import {MeshoptDecoder,MeshoptEncoder} from 'meshoptimizer';
 import {mat3,mat4,quat,vec3} from 'gl-matrix';
 import {EQUIPMENT_ITEMS,EQUIPMENT_PRESETS,resolveEquipmentVisibility} from '../../src/ashen-reach/equipment-catalog.js';
+import {armingSwordGeometry} from '../../src/ashen-reach/arming-sword.js';
+import {magePropGeometry} from '../../src/ashen-reach/mage-props.js';
 import {appearanceFromEquipment} from '../../src/character/appearance/from-equipment.js';
 import {encodeAppearance} from '../../src/character/appearance/codec.js';
 
-const source='public/ashen-reach/equipment/body.glb';
-const output='.cache/character-mmo/m003';
+const region=process.argv.includes('--region');
+const shapeManifest=region?JSON.parse(await fs.readFile('public/ashen-reach/human-shape-v1/manifest.json','utf8')):null;
+const source=region?`public${shapeManifest.items.body.url}`:'public/ashen-reach/equipment/body.glb';
+const output=region?'.cache/character-mmo/region-crowd':'.cache/character-mmo/m003';
+const retainedClips=region?['Idle_Loop','Walk_Loop','Sword_Attack','Spell_Simple_Enter']:['Idle_Loop','Walk_Loop'];
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 await Promise.all([MeshoptDecoder.ready,MeshoptEncoder.ready]);
-const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder,'meshopt.encoder':MeshoptEncoder});
-const sourceBytes=await fs.readFile(source);
-const manifest={schema:1,source,sourceSha256:hash(sourceBytes),method:'Merge active split garments onto the active body skin after exact ordered bind validation; retain meshes from resolveEquipmentVisibility; retain Idle/Walk clips; prune unreachable resources.',license:'Probe derivative of existing project Human and CC0 garment sources; see docs/plans/character-mmo/results/m001.md',variants:{}};
+const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder,'meshopt.encoder':MeshoptEncoder}).setVertexLayout(VertexLayout.SEPARATE);
+const sourceBytes=region?gunzipSync(await fs.readFile(source)):await fs.readFile(source);
+const manifest={schema:1,region,retainedClips,source,sourceSha256:hash(sourceBytes),method:'Merge active split garments onto the active body skin after exact ordered bind validation; retain meshes from resolveEquipmentVisibility; retain selected source clips; prune unreachable resources.',license:'Probe derivative of existing project Human and CC0 garment sources; see docs/plans/character-mmo/results/m001.md',variants:{}};
 function addRigidProp(doc,scene,skin,kind) {
   const handIndex=skin.listJoints().findIndex(node=>node.getName()==='mixamorig:RightHand');
   if(handIndex<0) throw Error('Missing RightHand for rigid prop');
@@ -38,9 +44,40 @@ function addRigidProp(doc,scene,skin,kind) {
     for(let row=0;row<3;row++)handPose[off+row]/=length;
   }
   const bind=mat4.multiply(mat4.create(),handPose,local);
+  if(region){
+    // The live socket places the grip midway from wrist to the first middle
+    // knuckle, with wrist rotation. Preserve its rest offset in this rigid
+    // fitted source; per-pose palm tracking remains an explicit approximation.
+    // src/character/sockets.js (PALM_BLEND and GRIP_LOCAL)
+    const palm=skin.listJoints().find(n=>n.getName()==='mixamorig:RightHandMiddle1');
+    if(!palm)throw Error('Missing source palm');
+    const p=palm.getWorldMatrix();for(let k=0;k<3;k++)bind[12+k]+=(p[12+k]-handWorld[12+k])*.5;
+  }
   const normalMatrix=mat3.normalFromMat4(mat3.create(),bind);
   const buffer=doc.getRoot().listBuffers()[0];
   const mesh=doc.createMesh(kind==='sword'?'ProbeIronSword':'ProbeGreatstaff');
+  if(region){
+    // Reuse the exact live authored batches, including material primitives;
+    // do not maintain a second sword/staff geometry recipe for crowd assets.
+    const parts=kind==='sword'?armingSwordGeometry():magePropGeometry('greatstaff');
+    for(const {batch,material} of parts){
+      const b=batch.buffers(),p=[],n=[];
+      for(let i=0;i<b.positions.length;i+=3){p.push(...vec3.transformMat4(vec3.create(),b.positions.subarray(i,i+3),bind));n.push(...vec3.normalize(vec3.create(),vec3.transformMat3(vec3.create(),b.normals.subarray(i,i+3),normalMatrix)));}
+      const vertices=p.length/3,joints=new Uint16Array(vertices*4),weights=new Float32Array(vertices*4);
+      for(let i=0;i<vertices;i++){joints[i*4]=handIndex;weights[i*4]=1;}
+      const accessor=(name,type,array)=>doc.createAccessor(name).setType(type).setArray(array).setBuffer(buffer);
+      const mat=doc.createMaterial(batch.name).setBaseColorFactor(material.baseColorFactor).setMetallicFactor(material.metallicFactor||0).setRoughnessFactor(material.roughnessFactor).setDoubleSided(true);
+      if(material.emissiveFactor)mat.setEmissiveFactor(material.emissiveFactor);
+      mesh.addPrimitive(doc.createPrimitive().setMaterial(mat)
+        .setAttribute('POSITION',accessor('prop-position','VEC3',new Float32Array(p)))
+        .setAttribute('NORMAL',accessor('prop-normal','VEC3',new Float32Array(n)))
+        .setAttribute('TEXCOORD_0',accessor('prop-uv','VEC2',b.uvs))
+        .setAttribute('JOINTS_0',accessor('prop-joints','VEC4',joints))
+        .setAttribute('WEIGHTS_0',accessor('prop-weights','VEC4',weights))
+        .setIndices(accessor('prop-indices','SCALAR',b.indices)));
+    }
+    scene.addChild(doc.createNode(mesh.getName()).setMesh(mesh).setSkin(skin));return mesh.getName();
+  }
   const materials={
     steel:doc.createMaterial('Probe steel').setBaseColorFactor([.53,.52,.49,1]).setMetallicFactor(.25).setRoughnessFactor(.65).setDoubleSided(true),
     leather:doc.createMaterial('Probe leather').setBaseColorFactor([.16,.09,.05,1]).setMetallicFactor(0).setRoughnessFactor(1).setDoubleSided(true),
@@ -96,8 +133,8 @@ for(const presetId of ['wayfarer','warden']) {
   for(const id of Object.values(recipe.equipment).filter(Boolean)) {
     const item=EQUIPMENT_ITEMS[id];
     if(!item.parts) continue; // Rigid props have a separate socket path.
-    const assetPath=`public/ashen-reach/equipment/${id}.glb`;
-    const bytes=await fs.readFile(assetPath);
+    const assetPath=region?`public${shapeManifest.items[id].url}`:`public/ashen-reach/equipment/${id}.glb`;
+    const bytes=region?gunzipSync(await fs.readFile(assetPath)):await fs.readFile(assetPath);
     assetSha256[id]=hash(bytes);
     const garment=await io.readBinary(bytes),groot=garment.getRoot();
     const sourceSkin=groot.listSkins()[0],joints=sourceSkin.listJoints().map(node=>node.getName());
@@ -126,7 +163,7 @@ for(const presetId of ['wayfarer','warden']) {
   if(recipe.equipment.mainHand) kept.push(addRigidProp(doc,scene,skin,presetId==='wayfarer'?'sword':'greatstaff'));
   // Explicitly dispose channels/samplers with unused clips; see the retained
   // glTF Transform cleanup pattern in scripts/ashen-reach/split-equipment.mjs.
-  for(const animation of root.listAnimations()) if(!['Idle_Loop','Walk_Loop'].includes(animation.getName())) {
+  for(const animation of root.listAnimations()) if(!retainedClips.includes(animation.getName())) {
     for(const channel of animation.listChannels()) channel.dispose();
     for(const sampler of animation.listSamplers()) sampler.dispose();
     animation.dispose();

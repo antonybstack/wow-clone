@@ -1,0 +1,51 @@
+# Milestone 2 — actor correctness in the actual region
+
+Completed the bounded developer integration on 2026-10-01. Native Babylon Lite **1.31.1** and Havok **1.3.14** remain pinned. This closes milestone 2's identity, phase, bounds, shadow and lifecycle proof. Production multiplayer and a supported crowd capacity are not delivered by this result; milestone 3 owns streaming and milestone 4 owns presence.
+
+## Implementation and reuse
+
+`src/character/region-crowd/` owns immutable actor IDs, increasing appearance revisions, transforms and source-action clocks. Neutral Human Wayfarer/Warden actors use native VAT/thin-instance batches; a nonzero signed build uses an independent exact morphed skeleton. Height is uniform at 0.90–1.15. Exact resources never attach/detach VAT and never alter the local player's skeleton. Idle, Walk, Sword_Attack and Spell_Simple_Enter share the same source clock; loop endpoints exclude the duplicate terminal row, while one-shot actions hold their final pose. Exact is deliberately quantized to the same 60 Hz source samples as VAT.
+
+The deterministic `prepare-crowd-probe.mjs --region` builder reuses the production Human shape/garment pack and the actual sword/staff factory batches. The ordinary factories now call those same geometry helpers; a semantic control proved unchanged positions, normals, UVs, indices and material values for sword, staff, greatstaff and book. Native `prepareVatMany`, `computeMaxExtents` and the independent native CPU deformer prepare/verify the candidate offline. Every baked row was tested at neutral, slender 0.95 and stout 0.95: **38,207,550 positions, zero bound escapes**. Preparation runs before scene registration, where these mesh frames are identity; the runtime synthetic glTF root applies the X reflection. Bounds are prototype-local and runtime instance/root transforms supply height, yaw and position.
+
+The generated GLBs are 1,122,792 / 1,977,648 bytes. Four clips share **one 1,489,280-byte atlas**, 358 rows × 65 bones. Source hashes, clip layout and bounds are in [prepared metadata](../../../baselines/character-mmo/region-actors-2026-10-01/prepared.json). These candidates stay under ignored `.cache/character-mmo/region-crowd`, served through the constrained developer endpoint. Their compact 256² materials are not a full-texture hero promotion.
+
+Evaluated **@litools/instancer 0.7.0**, MIT, peer Lite ^1.31.0, against the pinned runtime. Its whole-character helper produced six atlases (5,790,720 bytes) for the two-clip control, versus the native shared atlas (965,120 bytes). More seriously, `InstanceSet.dispose()` clears `mesh.thinInstances` before deferred native mesh retirement reads it. The reproduced remove-then-dispose sequence recorded **zero destroy calls on all 12 instrumented matrix/indirect buffers after three seconds**, despite zero remaining VAT meshes and no GPU errors. [Evidence](../../../baselines/character-mmo/region-actors-2026-10-01/library-retirement.json). Retained the small planner and native ownership; no dependency was added. This finding concerns the tested helper/retirement sequence, not every use of the library.
+
+## Defects found and corrected
+
+- The prior checkpoint fixed native VAT/thin composer registration under the existing custom-world shadows. New resources stay hidden until one awaited native PBR family rebuild completes; only owned queue entries are claimed. No blanket shadow exclusion is enabled.
+- Opting into native indirect count changes introduced a real one-actor GPU regression: **131–136 FPS / 4.61–4.99 ms GPU**, against the earlier ~185 FPS actor path. Capacity 1 and 100 reproduced it; dormant morph removal recovered only a small part. A direct-draw diagnostic recovered ~185 FPS / 1.15 ms GPU. The integration uses native fixed-capacity buffers, native count/matrix setters and swap-removal, with public `invalidateRenderBundles()` on membership changes. A narrowly guarded 1.31.1 bridge acknowledges the new direct capture count; it refuses indirect, culling and LOD pools. It allocates/draws no inactive padding and changes no geometry or shadows. This is a private compatibility seam, not a supported native direct-count API. Re-evaluate it on any Lite/backend upgrade. Native `setThinInstanceDrawCount` still promotes changed counts to indirect and is not a substitute.
+- CPU palette comparisons initially missed an on-screen bind pose: the generic thin-instance fragment overwrites a live skeleton's `finalWorld`. Exact actors now use ordinary native glTF root transforms and the existing X-mirror convention. Strengthened the live comparison to include mesh-world matrices after real frames: **all 16 pose and world-transform comparisons match**.
+- Transform updates preserve/coalesce a pending promotion; removal reports cancellation of a pending arrival; queued capacity is checked at commit. Stale appearances cannot overwrite a newer revision. Teardown hides immediately and drains both in-flight native builds and the preparation chain, including a decode that has not yet produced an owned container. Native deferred GPU retirement retains its resource owners.
+
+An independent **Grok 4.6 / high** review confirmed the direct-count invalidation path and requested stronger native/bundle tests. Those were implemented. [Review](../../../baselines/character-mmo/region-actors-2026-10-01/independent-review.md). Tests use the actual pinned count/sync/invalidation implementation, not just mocks.
+
+## Live correctness and measured limits
+
+The [live report](../../../baselines/character-mmo/region-actors-2026-10-01/region-final-correctness.json) covers Idle/Walk and both actions at 0.123, 0.723, 3.123 and 4096.123 seconds, exact/VAT switches, two outfit fits, height/build endpoints, middle removal, repeated target promotion, supersession and 100 mixed neutral actors. Every instrumented native matrix buffer is destroyed exactly once after disposal; baseline restores **136 meshes / 38 dynamic casters / zero VAT meshes**, with no runtime/GPU errors.
+
+[Real WebGPU bundle instrumentation and receiver probes](../../../baselines/character-mmo/region-actors-2026-10-01/region-bundles.json) prove color and shadow bundles record logical counts **3→2→0→1**, without indirect allocation. Middle removal eliminates **83** previously occluded receiver points while **160** survivor points remain occluded. Turning the camera away retains those 160 shadow points. Final removal leaves **zero ghost samples**. No draw was replaced by the instrumentation.
+
+M1 Max, one owned uncapped Chromium WebGPU game page, **1280×720 / seven enemies / three 12-second movement runs**, no recording, encoding or workers during samples:
+
+| Workload | Mean FPS across runs | Largest p95 / p99 interval | Maximum interval | GPU mean range |
+| --- | ---: | ---: | ---: | ---: |
+| Solo, five routes | 197.6–235.8 | 10.8 / 11.3 ms | 13.4 ms | See raw report |
+| Town, empty resident manager | 186.7–191.7 | 6.4 / 9.6 ms | 10.7 ms | 1.01–1.05 ms |
+| Town, one Wayfarer | 181.2–185.5 | 6.7 / 10.7 ms | 12.1 ms | 1.04–1.09 ms |
+| Town, 100 mixed full-detail actors | **64.2–66.1** | **31.7 / 32.0 ms** | **33.7 ms** | 4.64–4.70 ms |
+
+One actor adds **3.22%** mean frame time to the matched empty-manager control. Solo and one-actor windows contain zero intervals >16.67 ms. The 100-actor workload fails the future hub performance target; full-detail batching is a correctness tier, not the accepted hub representation. Some actors occlude others in the grid; this is not a claim that 100 are genuinely visible. [Conditions, tails and raw rows](../../../baselines/character-mmo/region-actors-2026-10-01/performance-summary.json) retain failed indirect measurements as well as accepted direct measurements. Native per-task timing returned “available” with all-zero readings in this Chrome; those readings are unusable, not zero pass cost. Total GPU timings are available.
+
+**30 focused tests**, **141 character tests**, **71 equipment tests**, developer build and staged Pages build pass. Changes to the ordinary prop factories produce new executable chunk hashes but preserve the measured geometry/material semantics; crowd candidates are not in the Pages graph. Production release verification is recorded separately when executed. The deferred first-use GPU startup tail remains deferred, not repaired by these measurements.
+
+## Motion and reproducibility
+
+Reviewed live [MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/region-actors-2026-10-01.mp4), Telegram **821**: five varied actors, source action holds, matched promotion/demotion, outfit change, middle removal, 100 mixed actors, then **16.4 m** of normal Havok movement with zero recoveries. **703 timestamped frames / 20.627 seconds / 1280×720 / square pixels / rotation 0**. VE returns `video/mp4`, byte-range 206; direct playback, seeking and fullscreen passed. Telegram returned matching dimensions/duration. Its client presentation was not independently inspected.
+
+Regenerate candidate assets with `node scripts/character-assets/prepare-crowd-probe.mjs --region`, then run `prepare-region-crowd-native.mjs` against an audited owned harness. Live scripts `check-region-crowd-live.mjs`, `check-region-crowd-bundles.mjs`, `measure-region-crowd.mjs` and `record-region-crowd.mjs` require `ASHEN_CDP_PORT` and `ASHEN_TEST_URL`; benchmarks and recording run separately.
+
+Owned harness: parent session, Chrome **95251**, CDP **9837**, npm/Vite parent **95192**, Vite listener **95216**, port **5673**, profile `/tmp/ashen-cdp-9837`. Every check uses and closes a disposable context; the default page stays blank. The owned predecessor harness was stopped after repeated navigation retained renderer history. This harness is intentionally retained for milestone 3, not an untracked game renderer. Grok review workers have ended.
+
+Remaining limits: two Human outfit fits, four source clips, exact signed-build fallback, 60 Hz quantized phase, compact textures, rest-palm prop offset approximation, and no independent physical-phone or arbitrary-morph crowd acceptance. Streaming budgets, content-addressed publication, longer clocks, broader catalogue/races and hub detail tiers follow in the next milestones.
