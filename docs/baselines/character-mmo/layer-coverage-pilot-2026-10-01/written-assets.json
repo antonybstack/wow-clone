@@ -1,0 +1,224 @@
+{
+  "schema": 1,
+  "coverageRevision": "body-and-layers-v1-candidate",
+  "rows": [
+    {
+      "race": "human",
+      "source": "public/ashen-reach/human-shape-v1/body-e69a14d75176.bin",
+      "sourceSha256": "e69a14d75176717920bae9ec438c80a4b842a8f014da256aec97db44ae743d9c",
+      "output": ".cache/character-mmo/coverage-pilot/human.glb",
+      "url": "/__coverage_pilot__/human.glb",
+      "bytes": 1912448,
+      "sha256": "f92b16558a8c4154d04f3878383347255058af9cbc72aaf08279eaadc7740bf7",
+      "landmarks": {
+        "hips": [
+          0.0034376357216387987,
+          1.007189154624939,
+          0.00343721779063344
+        ],
+        "neck": [
+          0.003437428968027234,
+          1.4609274864196777,
+          -0.051561616361141205
+        ],
+        "unit": 1.0079866961428994
+      },
+      "partition": {
+        "source": "HumanV1Body",
+        "covered": "HumanTorsoCore",
+        "originalTriangles": 5325,
+        "coveredTriangles": 414,
+        "exposedTriangles": 4911,
+        "vertexReindexing": false
+      },
+      "verification": {
+        "triangles": 5325,
+        "attributesExact": true,
+        "morphsExact": true,
+        "skinExact": true,
+        "framesExact": true,
+        "sourceAnimationExact": true
+      },
+      "joints": 65,
+      "clips": 57,
+      "candidateOnly": true
+    },
+    {
+      "race": "undead",
+      "source": "public/ashen-reach/equipment-undead/body.glb",
+      "sourceSha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d",
+      "output": ".cache/character-mmo/coverage-pilot/undead.glb",
+      "url": "/__coverage_pilot__/undead.glb",
+      "bytes": 8371408,
+      "sha256": "02cb6c3cc8777b527676959528093a7bc97ad7c24282ca4ec27570c3b7de8038",
+      "landmarks": {
+        "hips": [
+          0.003613085951656103,
+          1.0875619649887085,
+          -0.010839497670531273
+        ],
+        "neck": [
+          0.0036133350804448128,
+          1.5645273923873901,
+          -0.054201822727918625
+        ],
+        "unit": 1.0703889162916886
+      },
+      "partition": {
+        "source": "UndeadV1Body",
+        "covered": "UndeadTorsoCore",
+        "originalTriangles": 8741,
+        "coveredTriangles": 1352,
+        "exposedTriangles": 7389,
+        "vertexReindexing": false
+      },
+      "verification": {
+        "triangles": 8741,
+        "attributesExact": true,
+        "morphsExact": true,
+        "skinExact": true,
+        "framesExact": true,
+        "sourceAnimationExact": true
+      },
+      "joints": 65,
+      "clips": 57,
+      "candidateOnly": true
+    },
+    {
+      "race": "human",
+      "item": "wayfarerTrousers",
+      "source": "public/ashen-reach/human-shape-v1/wayfarerTrousers-b4e889479817.bin",
+      "sourceSha256": "b4e8894798176faf04d9cc00c13b95693c74275b2de6c4602ba28ab3e554586d",
+      "output": ".cache/character-mmo/coverage-pilot/human-wayfarerTrousers.glb",
+      "bytes": 160404,
+      "sha256": "90a6fe2cc47c449c5c3bad31f0ace378e3880a54f245b51067549c31e6f38f9d",
+      "url": "/__coverage_pilot__/human-wayfarerTrousers.glb",
+      "partition": {
+        "source": "WayfarerTrousers",
+        "covered": "WayfarerTrousersUnderTorso",
+        "originalTriangles": 2260,
+        "coveredTriangles": 323,
+        "exposedTriangles": 1937,
+        "vertexReindexing": false
+      },
+      "verification": {
+        "triangles": 2260,
+        "attributesExact": true,
+        "morphsExact": true,
+        "skinExact": true,
+        "framesExact": true,
+        "sourceAnimationExact": true
+      },
+      "candidateOnly": true
+    },
+    {
+      "race": "orc",
+      "item": "wayfarerTrousers",
+      "source": "public/ashen-reach/equipment-orc/wayfarerTrousers.glb",
+      "sourceSha256": "de739d3ac403b757b94b13f98213ffb2cce103a1a1cb49f6142aca620ad72df5",
+      "output": ".cache/character-mmo/coverage-pilot/orc-wayfarerTrousers.glb",
+      "bytes": 210676,
+      "sha256": "124da6c75972eb432d77739bd27d051dcce9f3208f95202009187bf91a6cbffb",
+      "url": "/__coverage_pilot__/orc-wayfarerTrousers.glb",
+      "partition": {
+        "source": "WayfarerTrousers",
+        "covered": "WayfarerTrousersUnderTorso",
+        "originalTriangles": 2260,
+        "coveredTriangles": 456,
+        "exposedTriangles": 1804,
+        "vertexReindexing": false
+      },
+      "verification": {
+        "triangles": 2260,
+        "attributesExact": true,
+        "morphsExact": true,
+        "skinExact": true,
+        "framesExact": true,
+        "sourceAnimationExact": true
+      },
+      "candidateOnly": true
+    },
+    {
+      "race": "orc",
+      "item": "graveweaverSkirt",
+      "source": "public/ashen-reach/equipment-orc/graveweaverSkirt.glb",
+      "sourceSha256": "d0eb5d0a032558c1d95a2758f5d0573eea8f8615136424111cfeb9db4a9abef2",
+      "output": ".cache/character-mmo/coverage-pilot/orc-graveweaverSkirt.glb",
+      "bytes": 520284,
+      "sha256": "aefdea6ff7247859248de6fbd6a681d0f13de5f9c48f870f0fe560dff216af46",
+      "url": "/__coverage_pilot__/orc-graveweaverSkirt.glb",
+      "partition": {
+        "source": "WayfarerTrousers",
+        "covered": "WayfarerTrousersUnderTorso",
+        "originalTriangles": 2260,
+        "coveredTriangles": 454,
+        "exposedTriangles": 1806,
+        "vertexReindexing": false
+      },
+      "verification": {
+        "triangles": 2260,
+        "attributesExact": true,
+        "morphsExact": true,
+        "skinExact": true,
+        "framesExact": true,
+        "sourceAnimationExact": true
+      },
+      "candidateOnly": true
+    },
+    {
+      "race": "undead",
+      "item": "wayfarerTrousers",
+      "source": "public/ashen-reach/equipment-undead/wayfarerTrousers.glb",
+      "sourceSha256": "566bee577d31b5f961a20790b4c6697825ef955bb4da2fa77700069690aa6467",
+      "output": ".cache/character-mmo/coverage-pilot/undead-wayfarerTrousers.glb",
+      "bytes": 146944,
+      "sha256": "051b2a33d0e25bd476f486cf3d8071d76d91cd04be625d298fe3b59bcc379e18",
+      "url": "/__coverage_pilot__/undead-wayfarerTrousers.glb",
+      "partition": {
+        "source": "WayfarerTrousers",
+        "covered": "WayfarerTrousersUnderTorso",
+        "originalTriangles": 2260,
+        "coveredTriangles": 306,
+        "exposedTriangles": 1954,
+        "vertexReindexing": false
+      },
+      "verification": {
+        "triangles": 2260,
+        "attributesExact": true,
+        "morphsExact": true,
+        "skinExact": true,
+        "framesExact": true,
+        "sourceAnimationExact": true
+      },
+      "candidateOnly": true
+    },
+    {
+      "race": "undead",
+      "item": "graveweaverSkirt",
+      "source": "public/ashen-reach/equipment-undead/graveweaverSkirt.glb",
+      "sourceSha256": "95451b57ba7c1199aab3825f416d8d21c96eb842ee3e432e79bdb4a6b01d3933",
+      "output": ".cache/character-mmo/coverage-pilot/undead-graveweaverSkirt.glb",
+      "bytes": 372352,
+      "sha256": "8be75fe7dc3901c5820972168d87d99d6859a16f4caed5a55987d5bdb07a7040",
+      "url": "/__coverage_pilot__/undead-graveweaverSkirt.glb",
+      "partition": {
+        "source": "WayfarerTrousers",
+        "covered": "WayfarerTrousersUnderTorso",
+        "originalTriangles": 2260,
+        "coveredTriangles": 309,
+        "exposedTriangles": 1951,
+        "vertexReindexing": false
+      },
+      "verification": {
+        "triangles": 2260,
+        "attributesExact": true,
+        "morphsExact": true,
+        "skinExact": true,
+        "framesExact": true,
+        "sourceAnimationExact": true
+      },
+      "candidateOnly": true
+    }
+  ],
+  "visualAccepted": false
+}

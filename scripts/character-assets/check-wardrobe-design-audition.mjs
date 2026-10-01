@@ -12,6 +12,8 @@ const port=process.env.ASHEN_CDP_PORT,url=process.env.ASHEN_TEST_URL;assert(port
 const controlPreset=process.env.ASHEN_WARDROBE_CONTROL; if(controlPreset)assert(['wayfarer','pilgrim','graveweaver'].includes(controlPreset));
 const kind=process.argv[2];assert(['lector','duskguard'].includes(kind));
 const audition=JSON.parse(await fs.readFile(`.cache/character-mmo/wardrobe-v1/auditions/${kind}/audition.json`,'utf8'));
+const layerPilot=new URL(url).searchParams.get('coveragePilot')==='layers-v1';
+const coverageRows=layerPilot?JSON.parse(await fs.readFile('.cache/character-mmo/coverage-pilot/report.json','utf8')).rows.filter(r=>r.item):[];
 const dir=process.env.ASHEN_CAPTURE_DIR||`ve-capture/character-mmo/${kind}-design-2026-10-01`;
 const defectFocus=process.env.ASHEN_AUDITION_DEFECT_ONLY==='1';
 const recordingEnabled=process.env.ASHEN_GARMENT_RECORD!=='0';
@@ -22,6 +24,13 @@ const ownership=await browserOwnership(browser,{cdpPort:port,url,purpose:`${kind
 await fs.writeFile(`${dir}/ownership.json`,JSON.stringify(ownership));
 const context=await browser.newContext({viewport:{width:1280,height:720},deviceScaleFactor:1});
 const page=await context.newPage(),errors=[],timeline=[],writes=[],requests=[];let cdp,manifest,recording=false;
+async function equipThroughUI(next){
+ for(const [slot,id]of Object.entries(next)){
+  const control=page.locator(`#armory [data-equipment="${slot}"]`);
+  if(await control.inputValue()!==(id||''))await control.selectOption(id||'');
+  await page.waitForFunction(({slot,id})=>!ASHEN.equipment.getStatus().pending&&ASHEN.equipment.getState()[slot]===id,{slot,id});
+ }
+}
 page.on('pageerror',e=>errors.push(e.stack));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
 page.on('request',r=>requests.push(r.url()));
 try{
@@ -38,14 +47,17 @@ try{
    const manifest=structuredClone(current);
    if(race==='human')for(const asset of [...Object.values(manifest.items),...Object.values(manifest.compactItems||{})]){delete asset.compression;delete asset.encodedBytes;}
    for(const row of rows){const entry={...manifest.items[row.alias],url:row.url,bytes:row.bytes,sha256:row.sha256};delete entry.compression;delete entry.encodedBytes;manifest.items[row.alias]=entry;if(manifest.compactItems)manifest.compactItems[row.alias]=entry;}
+   for(const row of coverageRows.filter(r=>r.race===race)){const entry={...manifest.items[row.item],url:row.url,bytes:row.bytes,sha256:row.sha256};delete entry.compression;delete entry.encodedBytes;manifest.items[row.item]=entry;if(manifest.compactItems)manifest.compactItems[row.item]=entry;}
    await route.fulfill({contentType:'application/json',body:JSON.stringify(manifest)});
   };
   await context.route(`**/ashen-reach/${directory}/manifest.json`,serveManifest);
+  if(layerPilot)await context.route(`**/__coverage_pilot__/${race}-manifest.json`,serveManifest);
   // Local creator defaults to the historical fit URL. Feed the same current
   // immutable family as the built creator; never accidentally audition old fits.
   if(race==='human')await context.route('**/__garment_fit__/manifest.json',serveManifest);
  }
  if(!controlPreset)for(const row of audition.rows)await context.route(`**${row.url}`,async route=>route.fulfill({contentType:'model/gltf-binary',body:await fs.readFile(row.file)}));
+ for(const row of coverageRows)await context.route(`**${row.url}`,async route=>route.fulfill({contentType:'model/gltf-binary',body:await fs.readFile(row.output)}));
  await page.goto(url);await page.waitForFunction(()=>globalThis.ASHEN?.whenRest,null,{timeout:90000});await page.evaluate(()=>ASHEN.whenRest);
  await page.evaluate(label=>{ASHEN.dev.god=true;const el=document.createElement('div');el.textContent=label;Object.assign(el.style,{position:'fixed',left:'20px',top:'80px',color:'white',background:'#111d',padding:'8px',zIndex:10000});document.body.append(el);},controlPreset?`BASELINE: ${controlPreset}; isolated preview`:`CANDIDATE: ${kind}; temporary legacy slots; isolated preview`);
  if(recordingEnabled){
@@ -79,6 +91,28 @@ try{
    }
    const state=await page.evaluate(()=>({appearance:ASHEN.getAppearance(),equipment:ASHEN.equipment.getState(),physics:ASHEN.player.getDebugState().usingPhysics,recoveries:ASHEN.player.getDebugState().recoveries,gpuErrors:ASHEN.gpu.errors.slice()}));
    assert(state.physics&&state.recoveries===0&&!state.gpuErrors.length);timeline.push({kind,race,build,height,timestamp:Date.now()/1000,state});
+   if(layerPilot){
+    for(const [label,patch]of [['torso-off',{torso:null}],['legs-off',{legs:null}],['bare-body',{torso:null,legs:null,boots:null}],['torso-without-legs',{legs:null,boots:null}]]){
+     // Actual selectors keep the visible labels synchronized with the worn
+     // outfit; direct debug API mutations alone left misleading old UI labels.
+     await equipThroughUI({...state.equipment,...patch});
+     const observed=await page.evaluate(()=>({selected:ASHEN.equipment.getState(),parts:ASHEN.scene.meshes.filter(m=>['HumanTorsoCore','UndeadTorsoCore','WayfarerTrousersUnderTorso'].includes(m.name)).map(m=>({name:m.name,visible:m.visible!==false}))}));
+     const torsoCore=observed.parts.filter(p=>p.name===`${race==='human'?'Human':'Undead'}TorsoCore`);
+     if(race!=='orc'){assert(torsoCore.length);assert(torsoCore.every(p=>p.visible===!observed.selected.torso));}
+     assert.equal(observed.parts.some(p=>p.name==='WayfarerTrousersUnderTorso'&&p.visible),!!observed.selected.legs&&!observed.selected.torso);
+     for(const view of ['front','back']){await page.locator(`#armory [data-view="${view}"]`).evaluate(e=>e.click());await page.waitForTimeout(recordingEnabled?350:50);await page.screenshot({path:`${dir}/${race}-${build}-${height}-${label}-${view}.png`});}
+     timeline.push({label,race,build,height,timestamp:Date.now()/1000,observed});
+    }
+    await equipThroughUI(state.equipment);
+    // Corrupt a never-loaded optional hood at HTTP 200. The normal loader must
+    // reject it while preserving the committed appearance and coverage mask.
+    const directory=race==='human'?'human-shape-v1':`equipment-${race}`,current=JSON.parse(await fs.readFile(`public/ashen-reach/${directory}/manifest.json`,'utf8')),hoodUrl=current.items.graveweaverHood.url;
+    const corrupt=route=>route.fulfill({contentType:'model/gltf-binary',body:Buffer.from([0])});await context.route(`**${hoodUrl}`,corrupt);
+    const failed=await page.evaluate(()=>ASHEN.equipment.equip('helmet','graveweaverHood'));assert.equal(failed.status,'failed');assert.deepEqual(await page.evaluate(()=>ASHEN.equipment.getState()),state.equipment);await context.unroute(`**${hoodUrl}`,corrupt);
+    timeline.push({label:'corrupt optional load rejected; appearance/coverage preserved',race,build,height,timestamp:Date.now()/1000});
+    const raced=await page.evaluate(async()=>{const first=ASHEN.equipment.equip('torso','graveweaverTop'),last=ASHEN.equipment.equip('torso','pilgrimTunic');return Promise.all([first,last]);});assert.equal(raced[1].status,'applied');assert.deepEqual(await page.evaluate(()=>ASHEN.equipment.getState()),state.equipment);
+    timeline.push({label:'latest torso request wins with prior coverage intact',race,build,height,results:raced.map(r=>r.status),timestamp:Date.now()/1000});
+   }
    await page.selectOption('#armory [data-motion]','idle');
    await page.evaluate(()=>{ASHEN.armory.close();ASHEN.setView('play');ASHEN.rig.distance=ASHEN.rig.distanceTarget=3.3;});
    await page.keyboard.down('KeyW');await page.keyboard.down('ShiftLeft');await page.waitForTimeout(450);await page.keyboard.down('KeyA');await page.waitForTimeout(200);await page.keyboard.up('KeyA');await page.keyboard.press('Space');await page.waitForTimeout(950);await page.keyboard.up('ShiftLeft');await page.keyboard.up('KeyW');

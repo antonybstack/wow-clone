@@ -1,0 +1,975 @@
+{
+  "kind": "lector",
+  "controlPreset": null,
+  "defectFocus": false,
+  "candidateOnly": true,
+  "temporaryAliases": true,
+  "timeline": [
+    {
+      "kind": "lector",
+      "race": "human",
+      "build": 0,
+      "height": 1,
+      "timestamp": 1790894826.071,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1,
+            "build": 0
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "label": "torso-off",
+      "race": "human",
+      "build": 0,
+      "height": 1,
+      "timestamp": 1790894827.328,
+      "observed": {
+        "selected": {
+          "helmet": null,
+          "torso": null,
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "parts": [
+          {
+            "name": "HumanTorsoCore",
+            "visible": true
+          },
+          {
+            "name": "WayfarerTrousersUnderTorso",
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "legs-off",
+      "race": "human",
+      "build": 0,
+      "height": 1,
+      "timestamp": 1790894828.595,
+      "observed": {
+        "selected": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": null,
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "parts": [
+          {
+            "name": "HumanTorsoCore",
+            "visible": false
+          },
+          {
+            "name": "WayfarerTrousersUnderTorso",
+            "visible": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "bare-body",
+      "race": "human",
+      "build": 0,
+      "height": 1,
+      "timestamp": 1790894829.811,
+      "observed": {
+        "selected": {
+          "helmet": null,
+          "torso": null,
+          "legs": null,
+          "boots": null,
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "parts": [
+          {
+            "name": "HumanTorsoCore",
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "torso-without-legs",
+      "race": "human",
+      "build": 0,
+      "height": 1,
+      "timestamp": 1790894831.042,
+      "observed": {
+        "selected": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": null,
+          "boots": null,
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "parts": [
+          {
+            "name": "HumanTorsoCore",
+            "visible": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "corrupt optional load rejected; appearance/coverage preserved",
+      "race": "human",
+      "build": 0,
+      "height": 1,
+      "timestamp": 1790894831.149
+    },
+    {
+      "label": "latest torso request wins with prior coverage intact",
+      "race": "human",
+      "build": 0,
+      "height": 1,
+      "results": [
+        "applied",
+        "applied"
+      ],
+      "timestamp": 1790894831.174
+    },
+    {
+      "label": "normal Havok run, turn and jump",
+      "race": "human",
+      "build": 0,
+      "height": 1,
+      "timestamp": 1790894832.803
+    },
+    {
+      "kind": "lector",
+      "race": "human",
+      "build": -0.95,
+      "height": 0.9,
+      "timestamp": 1790894869.102,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": -0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "label": "torso-off",
+      "race": "human",
+      "build": -0.95,
+      "height": 0.9,
+      "timestamp": 1790894870.342,
+      "observed": {
+        "selected": {
+          "helmet": null,
+          "torso": null,
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "parts": [
+          {
+            "name": "HumanTorsoCore",
+            "visible": true
+          },
+          {
+            "name": "WayfarerTrousersUnderTorso",
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "legs-off",
+      "race": "human",
+      "build": -0.95,
+      "height": 0.9,
+      "timestamp": 1790894871.567,
+      "observed": {
+        "selected": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": null,
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "parts": [
+          {
+            "name": "HumanTorsoCore",
+            "visible": false
+          },
+          {
+            "name": "WayfarerTrousersUnderTorso",
+            "visible": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "bare-body",
+      "race": "human",
+      "build": -0.95,
+      "height": 0.9,
+      "timestamp": 1790894872.839,
+      "observed": {
+        "selected": {
+          "helmet": null,
+          "torso": null,
+          "legs": null,
+          "boots": null,
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "parts": [
+          {
+            "name": "HumanTorsoCore",
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "torso-without-legs",
+      "race": "human",
+      "build": -0.95,
+      "height": 0.9,
+      "timestamp": 1790894874.125,
+      "observed": {
+        "selected": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": null,
+          "boots": null,
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "parts": [
+          {
+            "name": "HumanTorsoCore",
+            "visible": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "corrupt optional load rejected; appearance/coverage preserved",
+      "race": "human",
+      "build": -0.95,
+      "height": 0.9,
+      "timestamp": 1790894874.196
+    },
+    {
+      "label": "latest torso request wins with prior coverage intact",
+      "race": "human",
+      "build": -0.95,
+      "height": 0.9,
+      "results": [
+        "applied",
+        "applied"
+      ],
+      "timestamp": 1790894874.199
+    },
+    {
+      "label": "normal Havok run, turn and jump",
+      "race": "human",
+      "build": -0.95,
+      "height": 0.9,
+      "timestamp": 1790894875.821
+    },
+    {
+      "kind": "lector",
+      "race": "human",
+      "build": 0.95,
+      "height": 1.15,
+      "timestamp": 1790894912.247,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "label": "torso-off",
+      "race": "human",
+      "build": 0.95,
+      "height": 1.15,
+      "timestamp": 1790894913.501,
+      "observed": {
+        "selected": {
+          "helmet": null,
+          "torso": null,
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "parts": [
+          {
+            "name": "HumanTorsoCore",
+            "visible": true
+          },
+          {
+            "name": "WayfarerTrousersUnderTorso",
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "legs-off",
+      "race": "human",
+      "build": 0.95,
+      "height": 1.15,
+      "timestamp": 1790894914.726,
+      "observed": {
+        "selected": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": null,
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "parts": [
+          {
+            "name": "HumanTorsoCore",
+            "visible": false
+          },
+          {
+            "name": "WayfarerTrousersUnderTorso",
+            "visible": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "bare-body",
+      "race": "human",
+      "build": 0.95,
+      "height": 1.15,
+      "timestamp": 1790894915.971,
+      "observed": {
+        "selected": {
+          "helmet": null,
+          "torso": null,
+          "legs": null,
+          "boots": null,
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "parts": [
+          {
+            "name": "HumanTorsoCore",
+            "visible": true
+          },
+          {
+            "name": "WayfarerTrousersUnderTorso",
+            "visible": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "torso-without-legs",
+      "race": "human",
+      "build": 0.95,
+      "height": 1.15,
+      "timestamp": 1790894917.22,
+      "observed": {
+        "selected": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": null,
+          "boots": null,
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "parts": [
+          {
+            "name": "HumanTorsoCore",
+            "visible": false
+          },
+          {
+            "name": "WayfarerTrousersUnderTorso",
+            "visible": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "corrupt optional load rejected; appearance/coverage preserved",
+      "race": "human",
+      "build": 0.95,
+      "height": 1.15,
+      "timestamp": 1790894917.315
+    },
+    {
+      "label": "latest torso request wins with prior coverage intact",
+      "race": "human",
+      "build": 0.95,
+      "height": 1.15,
+      "results": [
+        "applied",
+        "applied"
+      ],
+      "timestamp": 1790894917.347
+    },
+    {
+      "label": "normal Havok run, turn and jump",
+      "race": "human",
+      "build": 0.95,
+      "height": 1.15,
+      "timestamp": 1790894918.981
+    },
+    {
+      "kind": "lector",
+      "race": "orc",
+      "build": 0,
+      "height": 1,
+      "timestamp": 1790894955.794,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "orc",
+          "fitFamily": "ashen-orc",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "label": "torso-off",
+      "race": "orc",
+      "build": 0,
+      "height": 1,
+      "timestamp": 1790894957.06,
+      "observed": {
+        "selected": {
+          "helmet": null,
+          "torso": null,
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "parts": [
+          {
+            "name": "HumanTorsoCore",
+            "visible": false
+          },
+          {
+            "name": "WayfarerTrousersUnderTorso",
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "legs-off",
+      "race": "orc",
+      "build": 0,
+      "height": 1,
+      "timestamp": 1790894958.273,
+      "observed": {
+        "selected": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": null,
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "parts": [
+          {
+            "name": "HumanTorsoCore",
+            "visible": false
+          },
+          {
+            "name": "WayfarerTrousersUnderTorso",
+            "visible": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "bare-body",
+      "race": "orc",
+      "build": 0,
+      "height": 1,
+      "timestamp": 1790894959.496,
+      "observed": {
+        "selected": {
+          "helmet": null,
+          "torso": null,
+          "legs": null,
+          "boots": null,
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "parts": [
+          {
+            "name": "HumanTorsoCore",
+            "visible": false
+          },
+          {
+            "name": "WayfarerTrousersUnderTorso",
+            "visible": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "torso-without-legs",
+      "race": "orc",
+      "build": 0,
+      "height": 1,
+      "timestamp": 1790894960.747,
+      "observed": {
+        "selected": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": null,
+          "boots": null,
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "parts": [
+          {
+            "name": "HumanTorsoCore",
+            "visible": false
+          },
+          {
+            "name": "WayfarerTrousersUnderTorso",
+            "visible": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "corrupt optional load rejected; appearance/coverage preserved",
+      "race": "orc",
+      "build": 0,
+      "height": 1,
+      "timestamp": 1790894960.801
+    },
+    {
+      "label": "latest torso request wins with prior coverage intact",
+      "race": "orc",
+      "build": 0,
+      "height": 1,
+      "results": [
+        "applied",
+        "applied"
+      ],
+      "timestamp": 1790894960.809
+    },
+    {
+      "label": "normal Havok run, turn and jump",
+      "race": "orc",
+      "build": 0,
+      "height": 1,
+      "timestamp": 1790894962.441
+    },
+    {
+      "kind": "lector",
+      "race": "undead",
+      "build": 0,
+      "height": 1,
+      "timestamp": 1790894999.304,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v3",
+          "race": "undead",
+          "fitFamily": "ashen-undead",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "label": "torso-off",
+      "race": "undead",
+      "build": 0,
+      "height": 1,
+      "timestamp": 1790895000.54,
+      "observed": {
+        "selected": {
+          "helmet": null,
+          "torso": null,
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "parts": [
+          {
+            "name": "HumanTorsoCore",
+            "visible": false
+          },
+          {
+            "name": "UndeadTorsoCore",
+            "visible": true
+          },
+          {
+            "name": "WayfarerTrousersUnderTorso",
+            "visible": false
+          },
+          {
+            "name": "WayfarerTrousersUnderTorso",
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "legs-off",
+      "race": "undead",
+      "build": 0,
+      "height": 1,
+      "timestamp": 1790895001.765,
+      "observed": {
+        "selected": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": null,
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "parts": [
+          {
+            "name": "HumanTorsoCore",
+            "visible": false
+          },
+          {
+            "name": "UndeadTorsoCore",
+            "visible": false
+          },
+          {
+            "name": "WayfarerTrousersUnderTorso",
+            "visible": false
+          },
+          {
+            "name": "WayfarerTrousersUnderTorso",
+            "visible": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "bare-body",
+      "race": "undead",
+      "build": 0,
+      "height": 1,
+      "timestamp": 1790895003.024,
+      "observed": {
+        "selected": {
+          "helmet": null,
+          "torso": null,
+          "legs": null,
+          "boots": null,
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "parts": [
+          {
+            "name": "HumanTorsoCore",
+            "visible": false
+          },
+          {
+            "name": "UndeadTorsoCore",
+            "visible": true
+          },
+          {
+            "name": "WayfarerTrousersUnderTorso",
+            "visible": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "torso-without-legs",
+      "race": "undead",
+      "build": 0,
+      "height": 1,
+      "timestamp": 1790895004.281,
+      "observed": {
+        "selected": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": null,
+          "boots": null,
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "parts": [
+          {
+            "name": "HumanTorsoCore",
+            "visible": false
+          },
+          {
+            "name": "UndeadTorsoCore",
+            "visible": false
+          },
+          {
+            "name": "WayfarerTrousersUnderTorso",
+            "visible": false
+          }
+        ]
+      }
+    },
+    {
+      "label": "corrupt optional load rejected; appearance/coverage preserved",
+      "race": "undead",
+      "build": 0,
+      "height": 1,
+      "timestamp": 1790895004.31
+    },
+    {
+      "label": "latest torso request wins with prior coverage intact",
+      "race": "undead",
+      "build": 0,
+      "height": 1,
+      "results": [
+        "applied",
+        "applied"
+      ],
+      "timestamp": 1790895004.327
+    },
+    {
+      "label": "normal Havok run, turn and jump",
+      "race": "undead",
+      "build": 0,
+      "height": 1,
+      "timestamp": 1790895005.969
+    }
+  ],
+  "errors": [],
+  "candidateRequests": [
+    "http://127.0.0.1:5673/__wardrobe_audition__/lector/human/pilgrimTunic.glb",
+    "http://127.0.0.1:5673/__wardrobe_audition__/lector/human/pilgrimTunic.glb",
+    "http://127.0.0.1:5673/__wardrobe_audition__/lector/orc/pilgrimTunic.glb",
+    "http://127.0.0.1:5673/__wardrobe_audition__/lector/orc/pilgrimTunic.glb",
+    "http://127.0.0.1:5673/__wardrobe_audition__/lector/undead/pilgrimTunic.glb",
+    "http://127.0.0.1:5673/__wardrobe_audition__/lector/undead/pilgrimTunic.glb"
+  ],
+  "runtimePassed": true,
+  "visualAcceptance": "requires parent review"
+}

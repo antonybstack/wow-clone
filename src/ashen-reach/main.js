@@ -117,12 +117,15 @@ async function main(){
  // and cannot be reshaped afterwards. Refitted garments come with it so M005's fit follows.
  // Lazily imported below; nothing about the creator is in the startup graph.
  const creatorWanted=params.has('creator');
+ const coveragePilot=import.meta.env.DEV&&['body-v1','layers-v1'].includes(params.get('coveragePilot'));
+ const layerPilot=coveragePilot&&params.get('coveragePilot')==='layers-v1'?(await import('./coverage-pilot.js')).pilotCoverageForRace:null;
+ if(coveragePilot&&(!creatorWanted||preloadedEquipment||humanHair||humanHead))throw Error('Coverage pilot requires the original streamed creator body');
  if(creatorWanted&&preloadedEquipment)throw Error('The creator needs streamed equipment');
  if(creatorWanted&&(humanHair||humanHead))throw Error('The creator and the head/hair candidates are different bodies');
  // One dynamic import for the whole creator route; the module is pure data and stays out of
  // the default startup graph, as the M004 route already keeps it.
  const shapeModule=creatorWanted?await import('../character/runtime/human-shape.js'):null;
- const shapeCandidate=humanHair
+ const shapeCandidate=coveragePilot?'/__coverage_pilot__/human.glb':humanHair
   ?'/__human_hair__/human-ponytail01-tail-shape-family-candidate.glb'
   :humanHead
   ?'/__human_head__/human-old-bald-atlas-matched.glb'
@@ -340,9 +343,13 @@ async function main(){
   // The creator reshapes the body live, so its garments must be the refitted pack; the
   // shipped pack has no targets and would stay at the neutral shape under every slider.
   human:{race:'human',manifestUrl:humanShape?.garmentManifestURL||(creatorWanted?shapeModule.HUMAN_GARMENT_FIT_MANIFEST:null)||(fastCharacter?'/ashen-reach/startup/character/manifest.json':'/ashen-reach/equipment/manifest.json'),
-   baseMeshes:humanHair?['HumanV1Body','HumanPonytail01']
+   baseMeshes:coveragePilot?['HumanV1Body','HumanTorsoCore']:humanHair?['HumanV1Body','HumanPonytail01']
     :humanHead?['HumanV1Body','OldBaldHeadV2Diagnostic','OldBaldEyesDiagnostic']:['HumanV1Body'],
    ...(humanHair?{bodySegments:{...RACE_BODY_SEGMENTS.human,HumanPonytail01:['head.scalp']}}:{}),
+   // Conservative physical geoset, derived after shape baking; exposed boundary
+   // skin still carries the original segments. Native mesh visibility owns it.
+   // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#meshes
+   ...(coveragePilot?{bodySegments:{...RACE_BODY_SEGMENTS.human,HumanTorsoCore:['torso.upper','torso.lower','waist']},loadBuffer:startupAssetBuffer}:{}),
    // The candidate's body ends at the neck, so it no longer carries either head segment;
    // the head and eyes do. Same split the Undead body already uses.
    ...(humanHead?{bodySegments:{
@@ -355,8 +362,14 @@ async function main(){
    ...(productionShapeStart?{shapeFamily:'ashen-human-shape-v1'}:{}),
    ...(bootAppearance?.race==='human'?{bootLoadout:bootAppearance.equipment}:{})},
   orc:{race:'orc',manifestUrl:'/ashen-reach/equipment-orc/manifest.json',baseMeshes:ORC_BASE_VISIBLE_MESHES,fitId:ORC_EQUIPMENT_FIT,bodyUrl:ORC_BODY_URL},
-  undead:{race:'undead',manifestUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/manifest.json`,baseMeshes:UNDEAD_BASE_VISIBLE_MESHES,fitId:UNDEAD_EQUIPMENT_FIT,bodyUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/body.glb`},
+  undead:{race:'undead',manifestUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/manifest.json`,baseMeshes:coveragePilot?[...UNDEAD_BASE_VISIBLE_MESHES,'UndeadTorsoCore']:UNDEAD_BASE_VISIBLE_MESHES,fitId:UNDEAD_EQUIPMENT_FIT,bodyUrl:coveragePilot?'/__coverage_pilot__/undead.glb':`/ashen-reach/${UNDEAD_PACK_DIR}/body.glb`,
+   ...(coveragePilot?{bodySegments:{...RACE_BODY_SEGMENTS.undead,UndeadTorsoCore:['torso.upper','torso.lower','waist']}}:{})},
  };
+ if(coveragePilot)packs.human.manifestUrl='/ashen-reach/human-shape-v1/manifest.json';
+ if(layerPilot)for(const pack of Object.values(packs)){
+  pack.garmentLayerCoverage=layerPilot(pack.race);
+  pack.manifestUrl=`/__coverage_pilot__/${pack.race}-manifest.json`;
+ }
  setLoadingStage(3,'Gathering your belongings.');
  markStartup('equipment-start');
  const createEquipment=preloadedEquipment?(await import('./equipment.js')).createEquipment:null;

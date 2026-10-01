@@ -64,6 +64,13 @@ function starterBrotliHeaders(req,res,next) {
   next();
 }
 
+function coveragePilotAsset(req,res,next){
+  const name=/^\/__coverage_pilot__\/((?:(?:human|undead)|(?:human|orc|undead)-(?:wayfarerTrousers|graveweaverSkirt))\.glb|(?:human|orc|undead)-manifest\.json)$/.exec(req.url?.split('?')[0]||'')?.[1];
+  if(!name)return next();
+  try{const file=`.cache/character-mmo/coverage-pilot/${name}`,info=statSync(file);res.setHeader('Content-Type',name.endsWith('.json')?'application/json':'model/gltf-binary');res.setHeader('Content-Length',String(info.size));createReadStream(file).pipe(res);}
+  catch{res.statusCode=404;res.end('Run node scripts/character-assets/prepare-coverage-pilot.mjs');}
+}
+
 export default defineConfig({
   define:{
     'import.meta.env.VITE_HUMAN_SHAPE_SOURCE':JSON.stringify(process.env.NODE_ENV==='production'?humanShapeManifest.provenance.sha256:''),
@@ -114,6 +121,8 @@ export default defineConfig({
     watch: {ignored: ['**/.cache/**', '**/ve-capture/**', '**/docs/baselines/**']},
   },
   plugins: [
+    // Local audited pilot only; no preview middleware or public asset publication.
+    {name:'dev-coverage-pilot',configureServer(server){server.middlewares.use(coveragePilotAsset);}},
     {name: "verify-prepared-startup", async buildStart(){if(starterBuild)await verifyStartupAssets();await verifyProductionHumanShapes();}},
     {
       // Separate bundler entry: Vite merges two ordinary HTML module scripts into

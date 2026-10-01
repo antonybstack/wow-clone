@@ -24,6 +24,7 @@ import {
   resolveHandEquip,
 } from "./equipment-contract.js";
 import { RACE_BODY_SEGMENTS, resolveCoverage } from "./coverage-contract.js";
+import {validateGarmentLayerCoverage,resolveGarmentLayerVisibility} from './garment-layer-coverage.js';
 import { installEquipmentGrips, spellStowsWeapon } from "./equipment-grips.js";
 import { createEquipmentLoader } from "./equipment-loader.js";
 import { createMageProp } from "./mage-props.js";
@@ -38,7 +39,7 @@ import {
  * remains visible when a hood covers its scalp. See docs/plans/character-mmo/m007-mixed-equipment.md
  * and https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#meshes.
  */
-function packVisibility(selected, race, provisionalUndead, bodySegments) {
+function packVisibility(selected, race, provisionalUndead, bodySegments, garmentLayerCoverage) {
   const vis = resolveEquipmentVisibility(selected);
   // The older diagnostic Undead pack uses six physical body geosets and is still exercised
   // by its compatibility tests. It is not the active single-body-mesh Undead pack. Keep its
@@ -47,6 +48,7 @@ function packVisibility(selected, race, provisionalUndead, bodySegments) {
   if (provisionalUndead) return vis;
   const hidden = new Set(resolveCoverage(selected, EQUIPMENT_ITEMS, race, bodySegments).hiddenMeshes);
   for (const name of Object.keys(bodySegments)) vis[name] = !hidden.has(name);
+  if(garmentLayerCoverage)Object.assign(vis,resolveGarmentLayerVisibility(selected,EQUIPMENT_ITEMS,garmentLayerCoverage));
   return vis;
 }
 
@@ -79,6 +81,7 @@ export async function createStreamedEquipment(
   // adapter for each variant mesh. A hood can then hide a ponytail without
   // hiding the Human's fused head/face.
   const bodySegments = options.bodySegments || RACE_BODY_SEGMENTS[race];
+  const garmentLayerCoverage=options.garmentLayerCoverage?validateGarmentLayerCoverage(options.garmentLayerCoverage,EQUIPMENT_ITEMS,baseMeshes):null;
   // Reuse the validated startup manifest. A no-cache HTTP manifest otherwise
   // incurs another conditional request on the input-critical path.
   let manifest=options.manifest;
@@ -111,6 +114,7 @@ export async function createStreamedEquipment(
     throw Error(`Missing ${race} body coverage: ${uncovered.join(", ")}`);
   const provisionalUndead = race === "undead" && manifest.provisional === true &&
     baseMeshes.length === BODY_REGIONS.length && BODY_REGIONS.every((name) => baseMeshes.includes(name));
+  if(provisionalUndead&&garmentLayerCoverage)throw Error('Provisional pack has no garment layer adapter');
   const described = Object.keys(bodySegments || {});
   const missingAdapter = baseMeshes.filter((name) => !described.includes(name));
   const missingBase = described.filter((name) => !baseMeshes.includes(name));
@@ -222,6 +226,8 @@ export async function createStreamedEquipment(
         for (const part of item.parts)
           if (!meshes.some((m) => m.name === part.mesh))
             throw Error("Missing garment part: " + part.mesh);
+        for(const part of garmentLayerCoverage?.partsByItem[id]||[])
+          if(!meshes.some(m=>m.name===part.mesh))throw Error('Missing garment coverage part: '+part.mesh);
         for (const mesh of meshes) {
           if (!mesh.skeleton || mesh.skeleton.boneCount !== 65)
             throw Error("Garment skin mismatch");
@@ -300,7 +306,7 @@ export async function createStreamedEquipment(
     }
   }
   function apply(next) {
-    const mask = packVisibility(next, race, provisionalUndead, bodySegments);
+    const mask = packVisibility(next, race, provisionalUndead, bodySegments, garmentLayerCoverage);
     for (const [name, meshes] of Object.entries(bindings))
       for (const mesh of meshes) setMeshVisible(mesh, visible && mask[name]);
     const casting = spellStowsWeapon(body);
