@@ -1,5 +1,7 @@
 # Wardrobe factory — independent shoulder checkpoint
 
+Source checkpoint: **`2358d7b`**, committed and pushed.
+
 Status: locally implemented and verified, **unreleased; milestone 6 remains open**. Implements the first slice of the [factory execution plan](../wardrobe-factory-implementation.md) on the accepted M1 bodies. M5's new head source remains a separate fit gate. Production is still source `8ae4c2d`, Pages `0c2f92c1-a4f8-43ab-838f-45c0f622df4b`.
 
 ## Implemented behavior
