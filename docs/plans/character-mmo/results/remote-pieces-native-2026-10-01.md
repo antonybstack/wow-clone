@@ -139,3 +139,41 @@ normals and it reads smooth at every size. That is most noticeable on the Orc be
 surfaces are largest. It is an art-quality question for the design, not a race fit problem,
 and **it does not block publishing the piece.**
 
+
+## Appearance streaming and promotion latency
+
+Measured apart from frame cost, as the gate requires. `measure-remote-pieces.mjs` answers what
+committed owners cost per frame; this answers how long an appearance takes to arrive, which is
+what a seat actually waits on. The existing `measure-production-promotion.mjs` covers only the
+*local* player's promotion. One owned renderer, no recording, no FPS claim.
+
+`scripts/character-assets/measure-remote-streaming.mjs`, wall clock around the public `upsert`:
+
+| case | human | orc | undead |
+|---|---|---|---|
+| cold, first of race (fresh page) | 255.7 ms | 206.9 ms | 123.6 ms |
+| warm restage, median of 5 | 182.4 ms | 149.4 ms | 120.6 ms |
+| same-body equipment change, median of 5 | **66.8 ms** | **69.4 ms** | **78.4 ms** |
+
+"Cold" means a fresh page, so the immutable cache and the browser's HTTP cache are both empty;
+the cache counters read zero in that row because the lease is already released by the time the
+upsert resolves, not because nothing was fetched.
+
+The same-body reuse path is roughly **2–3× cheaper than a restage** (minimum observed 18.1 ms),
+which is the behaviour the renderer is designed around: an equipment change on a held body must
+not pay for a body again.
+
+### Eight concurrent promotions
+
+All eight commit, but the burst is not free:
+
+* wall clock for eight concurrent `upsert` calls: **3,775 ms**
+* individual preparations degrade with concurrency: **212, 169, 381, 392, 453, 645, 620, 851 ms**
+* queue peaked at 8 pending against its limit of 32; none superseded or rejected
+* peak immutable reservation **4,496,592 B of the 8,388,608 B ceiling** (54%)
+
+So a seat burst of eight arrives over about four seconds on this machine, with the last actor
+waiting roughly four times as long as the first. That is a characterisation, not a failure —
+nothing was rejected and the byte ceiling was not approached — but it is the number the
+two-client and eight-seat work should be planned against rather than the 123–256 ms single-actor
+figures.

@@ -1,0 +1,159 @@
+{
+  "conditions": {
+    "cpu": "Apple M1 Max",
+    "url": "http://127.0.0.1:5873/ashen-reach.html?play&clean&pixelRatio=1",
+    "viewport": [
+      1280,
+      720
+    ],
+    "recording": false,
+    "renderingClients": 1,
+    "note": "Wall clock around upsert. Cold rows are a fresh page (empty immutable and HTTP caches); warm rows reuse it."
+  },
+  "rows": [
+    {
+      "case": "cold-first-of-race",
+      "race": "human",
+      "ms": 255.70000004768372,
+      "status": "applied",
+      "cacheEntries": 0,
+      "reservedBytes": 0
+    },
+    {
+      "case": "warm-restage-same-race",
+      "race": "human",
+      "ms": 136.59999990463257,
+      "samples": [
+        182.4,
+        199.2,
+        203.8,
+        136.6,
+        148.9
+      ],
+      "median": 182.4
+    },
+    {
+      "case": "same-body-equipment-change",
+      "race": "human",
+      "ms": 23.59999990463257,
+      "samples": [
+        23.6,
+        103.7,
+        108.6,
+        66.8,
+        39.5
+      ],
+      "median": 66.8
+    },
+    {
+      "case": "cold-first-of-race",
+      "race": "orc",
+      "ms": 206.89999985694885,
+      "status": "applied",
+      "cacheEntries": 0,
+      "reservedBytes": 0
+    },
+    {
+      "case": "warm-restage-same-race",
+      "race": "orc",
+      "ms": 137.29999995231628,
+      "samples": [
+        149.4,
+        141.3,
+        210.7,
+        190.6,
+        137.3
+      ],
+      "median": 149.4
+    },
+    {
+      "case": "same-body-equipment-change",
+      "race": "orc",
+      "ms": 18.09999990463257,
+      "samples": [
+        18.1,
+        92.3,
+        133.4,
+        69.4,
+        36.3
+      ],
+      "median": 69.4
+    },
+    {
+      "case": "cold-first-of-race",
+      "race": "undead",
+      "ms": 123.59999990463257,
+      "status": "applied",
+      "cacheEntries": 0,
+      "reservedBytes": 0
+    },
+    {
+      "case": "warm-restage-same-race",
+      "race": "undead",
+      "ms": 112.40000009536743,
+      "samples": [
+        173.8,
+        195.1,
+        116.2,
+        112.4,
+        120.6
+      ],
+      "median": 120.6
+    },
+    {
+      "case": "same-body-equipment-change",
+      "race": "undead",
+      "ms": 23,
+      "samples": [
+        23,
+        167.3,
+        143.4,
+        58.8,
+        78.4
+      ],
+      "median": 78.4
+    },
+    {
+      "case": "eight-concurrent-promotions",
+      "race": "mixed",
+      "ms": 3775.4000000953674,
+      "statuses": [
+        "applied",
+        "applied",
+        "applied",
+        "applied",
+        "applied",
+        "applied",
+        "applied",
+        "applied"
+      ],
+      "committed": 8,
+      "queue": {
+        "submitted": 8,
+        "superseded": 0,
+        "rejected": 0,
+        "peakPending": 8,
+        "completed": 8,
+        "pending": 0,
+        "active": 0,
+        "uniqueIds": 0,
+        "limit": 32,
+        "closed": false
+      },
+      "preparations": [
+        212.3,
+        169.4,
+        380.6,
+        391.7,
+        453.1,
+        644.8,
+        619.8,
+        851.4
+      ],
+      "peakReservedBytes": 4496592,
+      "ceilingBytes": 8388608
+    }
+  ],
+  "errors": [],
+  "passed": true
+}
