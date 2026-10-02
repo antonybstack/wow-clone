@@ -30,9 +30,10 @@ Two things gate it today, and both are measured rather than suspected:
   scalp** — only 75 of 333 above-brow vertices sit over another surface — so bald cannot be
   reached by collapsing a shell.
 * **Armor swapping works but is under-evidenced.** All 768 catalogue combinations validate by
-  rule with zero disagreements, and a same-body piece change costs **67–78 ms** median. Only
-  twelve outfits have been reviewed visually, extreme-shape fit is measured for the **Human
-  only**, and hot-swapping during motion, casting and attacking is unproven per slot.
+  rule with zero disagreements. Per-slot hot swapping under motion is now measured and passes
+  ([result](results/m6-swap-under-motion-2026-10-02.md)); what remains unevidenced is the
+  *look* of the matrix — only twelve outfits have been reviewed visually — and extreme-shape
+  fit, which is measured for the **Human only**.
 
 Performance and load time remain the first constraint. Keep the approved Gothic region, the
 existing Human/Orc/Undead sources, source-compatible animation and Havok movement. No terrain
@@ -218,16 +219,20 @@ reviewed in live motion. Flipping a flag without art is an explicit failure, not
 This milestone makes "change any piece at any time" a claim with measurements behind it.
 
 What is already true: eight slots; 768 catalogue combinations validated with zero
-resolver disagreements; a same-body piece change costs **67–78 ms** median and **18 ms** at
-best, against 120–182 ms for a restage; the Orc wrist, Human mixed waist and Undead bind
-defects are found and repaired; hem over-reach is bounded.
+resolver disagreements; the Orc wrist, Human mixed waist and Undead bind defects are found and
+repaired; hem over-reach is bounded. Two different swap paths are now timed and must not be
+conflated — the **remote per-piece renderer** that dresses presence actors costs 66.8–78.4 ms
+median against 120–182 ms for a restage, while the **player's own streamed equipment** costs a
+median of **18.8 ms** across all eight slots. Neither figure is a cold-network cost.
 
 Tasks:
 
-1. **Per-slot hot swap under motion.** Change each of the eight slots while idle, walking,
-   sprinting, mid-air, landing, casting and attacking. Assert no pose reset, no socket
-   detachment, no dropped weapon, and no frame over 33.33 ms attributable to one swap.
-   Today only torso swaps during motion have been reviewed.
+1. ~~**Per-slot hot swap under motion.**~~ **Closed 2026-10-02**
+   ([result](results/m6-swap-under-motion-2026-10-02.md), Telegram **841**). 168 rows — 8 slots
+   × 7 motions × 3 races — pass with no pose reset, no dropped weapon and no frame over
+   16.67 ms, worst 14.9 ms. The pose-reset detector is demonstrated against a control rather
+   than assumed: it fires on 6 of 6 injected clip restarts and stays clean on 9 of 9 untouched
+   windows, and the matrix's worst drift is one frame against the 140–890 ms a restart produces.
 2. **Swap storms and failure.** Extend the rapid-swap and corrupt-asset proofs from torso to
    every slot: a failed or superseded request must leave the last committed appearance intact,
    on every slot, for all three races.
@@ -241,12 +246,19 @@ Tasks:
 5. **Layering and coverage conflicts.** Every published piece declares body segments; prove no
    combination leaves a segment simultaneously claimed and visibly uncovered, and that the
    shoulders slot composes with torso and helmet in all three races.
-6. **A swap budget.** Publish the measured cost per slot and a ceiling, so a future piece that
-   breaks it fails a gate rather than being noticed later.
+6. **A swap budget.** Per-slot cost is now published for the player path (median 18.8 ms,
+   p95 32.8, worst 48.6). What is still missing is a **cold-network** measurement — the
+   residency cache evicts idle pieces, so 119 of 120 rows rebuilt from bytes a local dev server
+   had already served — and a ceiling that fails a future piece at a gate.
 
 **Exit:** every slot swaps correctly on every supported body and shape, during every motion in
 the source set, with measured cost and reviewed live motion; failures preserve the committed
 appearance.
+
+**Route note:** this work runs on the default production path. The `?creator=1` DEV route
+serves an older garment-fit candidate manifest carrying nine items, so shoulders, the Lector
+coat and the four Duskguard pieces are unreachable there and `equip('shoulders', …)` answers
+`No human fit`. The published packs all carry fifteen entries.
 
 ## 7 — Colour and material variation
 
