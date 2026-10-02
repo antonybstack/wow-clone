@@ -1,0 +1,30 @@
+{
+  "owner": "root",
+  "ownedGameHarness": {
+    "browserPid": 3959,
+    "gpuPid": 3976,
+    "cdpPort": 9837,
+    "viteParentPid": 3930,
+    "viteListenerPid": 3954,
+    "vitePort": 5673,
+    "stopped": true
+  },
+  "compressedPreview": {
+    "pid": 6212,
+    "port": 5774,
+    "stopped": true
+  },
+  "ownedVideoTab": {
+    "browser": "Edge 1",
+    "tab": "1147992517",
+    "closed": true
+  },
+  "ownedRenderingContexts": 0,
+  "grokWorker": {
+    "model": "grok-4.6",
+    "reasoningEffort": "high",
+    "sessionId": "01a0fa6a-f239-7c72-ad0b-6de08d1ff63b",
+    "finished": true
+  },
+  "unrelatedUserSessions": "preserved"
+}

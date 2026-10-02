@@ -1,0 +1,644 @@
+{
+  "url": "http://127.0.0.1:5673/ashen-reach.html?play&clean&pixelRatio=1",
+  "errors": [],
+  "rows": [
+    {
+      "case": "first-source-backed-lector",
+      "result": {
+        "status": "applied",
+        "revision": 1
+      },
+      "snapshot": {
+        "count": 1,
+        "actors": [
+          {
+            "id": "remote-one",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.48,
+              "frame": 28,
+              "row": 28,
+              "ended": false,
+              "phase": 0.3599999892711642
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": 0.95
+            }
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 1,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 1,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 1943832,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 1,
+        "activeExact": 1,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 110,
+          "textures": 14,
+          "bufferBytes": 2609340,
+          "textureBytes": 2455024,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 3227860,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 1,
+          "liveEquipmentChanges": 0,
+          "peakOwned": 1,
+          "preparations": [
+            146.20000004768372
+          ]
+        }
+      },
+      "nativeMeshes": [
+        {
+          "name": "HumanV1Body",
+          "visible": true,
+          "world": [
+            1.149999976158142,
+            0,
+            1.408343814298494e-16,
+            0,
+            0,
+            1.149999976158142,
+            0,
+            0,
+            1.408343814298494e-16,
+            0,
+            -1.149999976158142,
+            0,
+            2,
+            -0.7735434174537659,
+            -60,
+            1
+          ],
+          "inScene": true
+        },
+        {
+          "name": "HumanTorsoCore",
+          "visible": false,
+          "world": [
+            1.149999976158142,
+            0,
+            1.408343814298494e-16,
+            0,
+            0,
+            1.149999976158142,
+            0,
+            0,
+            1.408343814298494e-16,
+            0,
+            -1.149999976158142,
+            0,
+            2,
+            -0.7735434174537659,
+            -60,
+            1
+          ],
+          "inScene": true
+        },
+        {
+          "name": "LectorCoat",
+          "visible": true,
+          "world": [
+            1.149999976158142,
+            0,
+            1.408343814298494e-16,
+            0,
+            0,
+            1.149999976158142,
+            0,
+            0,
+            1.408343814298494e-16,
+            0,
+            -1.149999976158142,
+            0,
+            2,
+            -0.7735434174537659,
+            -60,
+            1
+          ],
+          "inScene": true
+        },
+        {
+          "name": "LectorCoat",
+          "visible": true,
+          "world": [
+            1.149999976158142,
+            0,
+            1.408343814298494e-16,
+            0,
+            0,
+            1.149999976158142,
+            0,
+            0,
+            1.408343814298494e-16,
+            0,
+            -1.149999976158142,
+            0,
+            2,
+            -0.7735434174537659,
+            -60,
+            1
+          ],
+          "inScene": true
+        },
+        {
+          "name": "LectorCoat",
+          "visible": true,
+          "world": [
+            1.149999976158142,
+            0,
+            1.408343814298494e-16,
+            0,
+            0,
+            1.149999976158142,
+            0,
+            0,
+            1.408343814298494e-16,
+            0,
+            -1.149999976158142,
+            0,
+            2,
+            -0.7735434174537659,
+            -60,
+            1
+          ],
+          "inScene": true
+        },
+        {
+          "name": "WayfarerTrousers",
+          "visible": true,
+          "world": [
+            1.149999976158142,
+            0,
+            1.408343814298494e-16,
+            0,
+            0,
+            1.149999976158142,
+            0,
+            0,
+            1.408343814298494e-16,
+            0,
+            -1.149999976158142,
+            0,
+            2,
+            -0.7735434174537659,
+            -60,
+            1
+          ],
+          "inScene": true
+        },
+        {
+          "name": "WayfarerTrousersCuffs",
+          "visible": false,
+          "world": [
+            1.149999976158142,
+            0,
+            1.408343814298494e-16,
+            0,
+            0,
+            1.149999976158142,
+            0,
+            0,
+            1.408343814298494e-16,
+            0,
+            -1.149999976158142,
+            0,
+            2,
+            -0.7735434174537659,
+            -60,
+            1
+          ],
+          "inScene": true
+        },
+        {
+          "name": "WayfarerTrousersUnderTorso",
+          "visible": false,
+          "world": [
+            1.149999976158142,
+            0,
+            1.408343814298494e-16,
+            0,
+            0,
+            1.149999976158142,
+            0,
+            0,
+            1.408343814298494e-16,
+            0,
+            -1.149999976158142,
+            0,
+            2,
+            -0.7735434174537659,
+            -60,
+            1
+          ],
+          "inScene": true
+        },
+        {
+          "name": "WayfarerBoots",
+          "visible": true,
+          "world": [
+            1.149999976158142,
+            0,
+            1.408343814298494e-16,
+            0,
+            0,
+            1.149999976158142,
+            0,
+            0,
+            1.408343814298494e-16,
+            0,
+            -1.149999976158142,
+            0,
+            2,
+            -0.7735434174537659,
+            -60,
+            1
+          ],
+          "inScene": true
+        },
+        {
+          "name": "staffWood",
+          "visible": true,
+          "world": [
+            -0.21258097887039185,
+            -0.8358904719352722,
+            -0.7606552243232727,
+            0,
+            0.18099458515644073,
+            0.7388250827789307,
+            -0.8624838590621948,
+            0,
+            1.1155941486358643,
+            -0.27914971113204956,
+            -0.005016098264604807,
+            0,
+            1.7285696268081665,
+            0.20273610949516296,
+            -60.091957092285156,
+            1
+          ],
+          "inScene": true
+        },
+        {
+          "name": "staffMetal",
+          "visible": true,
+          "world": [
+            -0.21258097887039185,
+            -0.8358904719352722,
+            -0.7606552243232727,
+            0,
+            0.18099458515644073,
+            0.7388250827789307,
+            -0.8624838590621948,
+            0,
+            1.1155941486358643,
+            -0.27914971113204956,
+            -0.005016098264604807,
+            0,
+            1.7285696268081665,
+            0.20273610949516296,
+            -60.091957092285156,
+            1
+          ],
+          "inScene": true
+        },
+        {
+          "name": "staffAccent",
+          "visible": true,
+          "world": [
+            -0.21258097887039185,
+            -0.8358904719352722,
+            -0.7606552243232727,
+            0,
+            0.18099458515644073,
+            0.7388250827789307,
+            -0.8624838590621948,
+            0,
+            1.1155941486358643,
+            -0.27914971113204956,
+            -0.005016098264604807,
+            0,
+            1.7285696268081665,
+            0.20273610949516296,
+            -60.091957092285156,
+            1
+          ],
+          "inScene": true
+        },
+        {
+          "name": "bookWood",
+          "visible": true,
+          "world": [
+            0.36605098843574524,
+            -0.7433261871337891,
+            0.7974790334701538,
+            0,
+            -0.167217418551445,
+            0.792995810508728,
+            0.8159018754959106,
+            0,
+            -1.077285885810852,
+            -0.37566444277763367,
+            0.14433027803897858,
+            0,
+            2.1875452995300293,
+            0.4026455581188202,
+            -60.21294021606445,
+            1
+          ],
+          "inScene": true
+        },
+        {
+          "name": "bookMetal",
+          "visible": true,
+          "world": [
+            0.36605098843574524,
+            -0.7433261871337891,
+            0.7974790334701538,
+            0,
+            -0.167217418551445,
+            0.792995810508728,
+            0.8159018754959106,
+            0,
+            -1.077285885810852,
+            -0.37566444277763367,
+            0.14433027803897858,
+            0,
+            2.1875452995300293,
+            0.4026455581188202,
+            -60.21294021606445,
+            1
+          ],
+          "inScene": true
+        },
+        {
+          "name": "bookAccent",
+          "visible": true,
+          "world": [
+            0.36605098843574524,
+            -0.7433261871337891,
+            0.7974790334701538,
+            0,
+            -0.167217418551445,
+            0.792995810508728,
+            0.8159018754959106,
+            0,
+            -1.077285885810852,
+            -0.37566444277763367,
+            0.14433027803897858,
+            0,
+            2.1875452995300293,
+            0.4026455581188202,
+            -60.21294021606445,
+            1
+          ],
+          "inScene": true
+        }
+      ]
+    },
+    {
+      "case": "same-body-native-armor",
+      "result": {
+        "status": "applied",
+        "revision": 2
+      },
+      "sameBody": true,
+      "snapshot": {
+        "count": 1,
+        "actors": [
+          {
+            "id": "remote-one",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "FireBlast_Upper",
+              "loop": false,
+              "timeSeconds": 0.48,
+              "frame": 28,
+              "row": 28,
+              "ended": false,
+              "phase": 0.3428571486959653
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": 0.95
+            }
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 2,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 2,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 1943832,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 1,
+        "activeExact": 1,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 158,
+          "textures": 32,
+          "bufferBytes": 2863452,
+          "textureBytes": 2804616,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 3500336,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 1,
+          "liveEquipmentChanges": 1,
+          "peakOwned": 1,
+          "preparations": [
+            146.20000004768372
+          ]
+        }
+      }
+    },
+    {
+      "case": "native-undead-body-swap",
+      "result": {
+        "status": "applied",
+        "revision": 3
+      },
+      "snapshot": {
+        "count": 1,
+        "actors": [
+          {
+            "id": "remote-one",
+            "revision": 3,
+            "race": "undead",
+            "sample": {
+              "clip": "FireBlast_Upper",
+              "loop": false,
+              "timeSeconds": 0.48,
+              "frame": 28,
+              "row": 28,
+              "ended": false,
+              "phase": 0.3428571486959653
+            },
+            "shape": {}
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 3,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 3,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 2984256,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 1,
+        "activeExact": 1,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 128,
+          "textures": 36,
+          "bufferBytes": 3455580,
+          "textureBytes": 5604980,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 4582812,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 2,
+          "liveEquipmentChanges": 1,
+          "peakOwned": 2,
+          "preparations": [
+            146.20000004768372,
+            126.79999995231628
+          ]
+        }
+      }
+    }
+  ],
+  "conditions": "One remote exact native owner; pose fixtures, not performance or traversal",
+  "baseline": {
+    "meshes": 138,
+    "casters": 38
+  },
+  "after": {
+    "meshes": 138,
+    "casters": 38,
+    "streaming": {
+      "limits": {
+        "pending": 32,
+        "exact": 8,
+        "idleExact": 0,
+        "idleGarments": 0
+      },
+      "queue": {
+        "submitted": 3,
+        "superseded": 0,
+        "rejected": 0,
+        "peakPending": 1,
+        "completed": 3,
+        "pending": 0,
+        "active": 0,
+        "uniqueIds": 0,
+        "limit": 32,
+        "closed": true
+      },
+      "immutable": {
+        "entries": 0,
+        "reservedBytes": 0,
+        "peakReservedBytes": 2984256,
+        "ceilingBytes": 8388608,
+        "leases": 0
+      },
+      "owned": 0,
+      "activeExact": 0,
+      "pendingBuilds": 0,
+      "allocation": {
+        "buffers": 0,
+        "textures": 0,
+        "bufferBytes": 0,
+        "textureBytes": 0,
+        "unknownTextureFormats": 0,
+        "knownCpuBytes": 0,
+        "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+      },
+      "stats": {
+        "bodyLoads": 2,
+        "liveEquipmentChanges": 1,
+        "peakOwned": 2,
+        "preparations": [
+          146.20000004768372,
+          126.79999995231628
+        ]
+      }
+    },
+    "gpuErrors": []
+  },
+  "passed": true
+}

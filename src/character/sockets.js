@@ -214,7 +214,9 @@ export function attachSockets(engine, scene, player, body) {
         mainHand: gripOffsetForSlot(definition, "mainHand"),
         offHand: gripOffsetForSlot(definition, "offHand"),
     };
-    let palmPush = 1;
+    // A remote Orc can start on its own palette rather than arriving through
+    // Human→Orc rebind. Initial mounting uses that same accepted grip policy.
+    let palmPush = skinned?.name?.startsWith('OrcV1') ? 1.25 : 1;
 
     for (const [slot, names] of Object.entries(SLOT_BONES)) {
         const bone = resolveBone(skeleton, names);

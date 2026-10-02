@@ -651,18 +651,8 @@ async function main(){
     const previous=impl;
     try{
      const manifest=await preloadHumanShapePack(previous.getState());lifetime.throwIfAborted();
-     // Prime Lite's lazy morph/PBR extension in a separate, non-rendering scene.
-     // Force the native group build before the live CSM sees its first morph mesh;
-     // the live scene remains registered and movement continues during downloads.
-     // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/01-scene.md
-     const {createPlane,createMorphTargets,rebuildScenePbrPipelines,createPbrMaterial}=await import('@babylonjs/lite');
-     const warmScene=createSceneContext(engine,{defaultRenderTask:false});
-     try {
-      const warm=createPlane(engine);warm.material=createPbrMaterial();
-      warm.morphTargets=createMorphTargets(engine,[{positions:new Float32Array(12),normals:new Float32Array(12)}],4,[0]);
-      setMeshVisible(warm,false);addToScene(warmScene,warm);
-      await rebuildScenePbrPipelines(warmScene,true);
-     }finally{disposeScene(warmScene);}
+     const {primeMorphMaterialSupport}=await import('./prime-morph-materials.js');
+     await primeMorphMaterialSupport(engine);lifetime.throwIfAborted();
      staged=await body.stageSource(await startupAssetBuffer(manifest.items.body));lifetime.throwIfAborted();
      next=await createStreamedEquipment(engine,scene,staged.body,sockets,{...packs.human,manifest,loadBuffer:startupAssetBuffer,shapeFamily:manifest.shapeFamily,bootLoadout:previous.getState(),getShapeWeights:()=>[Math.max(0,-shape.build),Math.max(0,shape.build)],visible:false});
      lifetime.throwIfAborted();

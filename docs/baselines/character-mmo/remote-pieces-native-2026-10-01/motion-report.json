@@ -1,0 +1,1863 @@
+{
+  "url": "http://127.0.0.1:5673/ashen-reach.html?play&clean&pixelRatio=1",
+  "conditions": "Three-race native piece motion; no FPS claim; local foreground hidden for native remote fit review",
+  "errors": [],
+  "rows": [
+    {
+      "case": "native-race-design-motion",
+      "actor": {
+        "id": "showcase",
+        "appearanceRevision": 1,
+        "recipe": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v4",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "transform": {
+          "x": 2,
+          "y": -0.7735434357096606,
+          "z": -60,
+          "yaw": 0
+        },
+        "motion": {
+          "clip": "Walk_Loop",
+          "loop": true,
+          "startedAt": 15.896799999952316,
+          "offsetSeconds": 0
+        }
+      },
+      "snapshot": {
+        "count": 1,
+        "actors": [
+          {
+            "id": "showcase",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 1.0813000001907351,
+              "frame": 64,
+              "row": 64,
+              "ended": false,
+              "phase": 0.8109749759741137
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": 0.95
+            }
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 1,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 1,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 1943832,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 1,
+        "activeExact": 1,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 70,
+          "textures": 10,
+          "bufferBytes": 2291032,
+          "textureBytes": 2455008,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 2967392,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 1,
+          "liveEquipmentChanges": 0,
+          "peakOwned": 1,
+          "preparations": [
+            98.09999990463257
+          ]
+        }
+      },
+      "gpuErrors": []
+    },
+    {
+      "case": "native-race-design-motion",
+      "actor": {
+        "id": "showcase",
+        "appearanceRevision": 2,
+        "recipe": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v4",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          }
+        },
+        "transform": {
+          "x": 2,
+          "y": -0.7735434357096606,
+          "z": -60,
+          "yaw": 0
+        },
+        "motion": {
+          "clip": "Walk_Loop",
+          "loop": true,
+          "startedAt": 22.747200000047684,
+          "offsetSeconds": 0
+        }
+      },
+      "snapshot": {
+        "count": 1,
+        "actors": [
+          {
+            "id": "showcase",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 1.0702000000476843,
+              "frame": 64,
+              "row": 64,
+              "ended": false,
+              "phase": 0.8026499761149299
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": 0.95
+            }
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 2,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 2,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 1943832,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 1,
+        "activeExact": 1,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 126,
+          "textures": 20,
+          "bufferBytes": 3462624,
+          "textureBytes": 3503608,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 4196788,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 1,
+          "liveEquipmentChanges": 1,
+          "peakOwned": 1,
+          "preparations": [
+            98.09999990463257
+          ]
+        }
+      },
+      "gpuErrors": []
+    },
+    {
+      "case": "native-race-design-motion",
+      "actor": {
+        "id": "showcase",
+        "appearanceRevision": 3,
+        "recipe": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v4",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "transform": {
+          "x": 2,
+          "y": -0.7735434357096606,
+          "z": -60,
+          "yaw": 0
+        },
+        "motion": {
+          "clip": "Walk_Loop",
+          "loop": true,
+          "startedAt": 29.56960000014305,
+          "offsetSeconds": 0
+        }
+      },
+      "snapshot": {
+        "count": 1,
+        "actors": [
+          {
+            "id": "showcase",
+            "revision": 3,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 1.0810999999046338,
+              "frame": 64,
+              "row": 64,
+              "ended": false,
+              "phase": 0.810824975764008
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": 0.95
+            }
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 3,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 3,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 1943832,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 1,
+        "activeExact": 1,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 58,
+          "textures": 10,
+          "bufferBytes": 2899348,
+          "textureBytes": 2455008,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 3564552,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 1,
+          "liveEquipmentChanges": 2,
+          "peakOwned": 1,
+          "preparations": [
+            98.09999990463257
+          ]
+        }
+      },
+      "gpuErrors": []
+    },
+    {
+      "case": "native-race-design-motion",
+      "actor": {
+        "id": "showcase",
+        "appearanceRevision": 4,
+        "recipe": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v4",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "lectorCoat",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          }
+        },
+        "transform": {
+          "x": 2,
+          "y": -0.7735434357096606,
+          "z": -60,
+          "yaw": 0
+        },
+        "motion": {
+          "clip": "Walk_Loop",
+          "loop": true,
+          "startedAt": 36.408200000047685,
+          "offsetSeconds": 0
+        }
+      },
+      "snapshot": {
+        "count": 1,
+        "actors": [
+          {
+            "id": "showcase",
+            "revision": 4,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 1.055499999999995,
+              "frame": 63,
+              "row": 63,
+              "ended": false,
+              "phase": 0.7916249764077334
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": 0.95
+            }
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 4,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 4,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 1943832,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 1,
+        "activeExact": 1,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 110,
+          "textures": 14,
+          "bufferBytes": 2609340,
+          "textureBytes": 2455024,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 3227860,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 1,
+          "liveEquipmentChanges": 3,
+          "peakOwned": 1,
+          "preparations": [
+            98.09999990463257
+          ]
+        }
+      },
+      "gpuErrors": []
+    },
+    {
+      "case": "native-race-design-motion",
+      "actor": {
+        "id": "showcase",
+        "appearanceRevision": 5,
+        "recipe": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v4",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "duskguardCuirass",
+            "legs": "duskguardTassets",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "transform": {
+          "x": 2,
+          "y": -0.7735434357096606,
+          "z": -60,
+          "yaw": 0
+        },
+        "motion": {
+          "clip": "Walk_Loop",
+          "loop": true,
+          "startedAt": 43.27379999995232,
+          "offsetSeconds": 0
+        }
+      },
+      "snapshot": {
+        "count": 1,
+        "actors": [
+          {
+            "id": "showcase",
+            "revision": 5,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 1.0494000000953676,
+              "frame": 62,
+              "row": 62,
+              "ended": false,
+              "phase": 0.7870499766156086
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": 0.95
+            }
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 5,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 5,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 1943832,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 1,
+        "activeExact": 1,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 158,
+          "textures": 32,
+          "bufferBytes": 2863452,
+          "textureBytes": 2804616,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 3500336,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 1,
+          "liveEquipmentChanges": 4,
+          "peakOwned": 1,
+          "preparations": [
+            98.09999990463257
+          ]
+        }
+      },
+      "gpuErrors": []
+    },
+    {
+      "case": "native-race-design-motion",
+      "actor": {
+        "id": "showcase",
+        "appearanceRevision": 6,
+        "recipe": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v4",
+          "race": "orc",
+          "fitFamily": "ashen-orc",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "transform": {
+          "x": 2,
+          "y": -0.7735434357096606,
+          "z": -60,
+          "yaw": 0
+        },
+        "motion": {
+          "clip": "Walk_Loop",
+          "loop": true,
+          "startedAt": 50.162,
+          "offsetSeconds": 0
+        }
+      },
+      "snapshot": {
+        "count": 1,
+        "actors": [
+          {
+            "id": "showcase",
+            "revision": 6,
+            "race": "orc",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 1.0677000000476866,
+              "frame": 64,
+              "row": 64,
+              "ended": false,
+              "phase": 0.800774976170811
+            },
+            "shape": {}
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 6,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 6,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 4496592,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 1,
+        "activeExact": 1,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 108,
+          "textures": 27,
+          "bufferBytes": 12823060,
+          "textureBytes": 5284516,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 6111556,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 2,
+          "liveEquipmentChanges": 4,
+          "peakOwned": 2,
+          "preparations": [
+            98.09999990463257,
+            96.79999995231628
+          ]
+        }
+      },
+      "gpuErrors": []
+    },
+    {
+      "case": "native-race-design-motion",
+      "actor": {
+        "id": "showcase",
+        "appearanceRevision": 7,
+        "recipe": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v4",
+          "race": "orc",
+          "fitFamily": "ashen-orc",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          }
+        },
+        "transform": {
+          "x": 2,
+          "y": -0.7735434357096606,
+          "z": -60,
+          "yaw": 0
+        },
+        "motion": {
+          "clip": "Walk_Loop",
+          "loop": true,
+          "startedAt": 56.984900000095365,
+          "offsetSeconds": 0
+        }
+      },
+      "snapshot": {
+        "count": 1,
+        "actors": [
+          {
+            "id": "showcase",
+            "revision": 7,
+            "race": "orc",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 1.0753999998569483,
+              "frame": 64,
+              "row": 64,
+              "ended": false,
+              "phase": 0.8065499758556488
+            },
+            "shape": {}
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 7,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 7,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 4496592,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 1,
+        "activeExact": 1,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 162,
+          "textures": 37,
+          "bufferBytes": 13664604,
+          "textureBytes": 6333116,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 6855256,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 2,
+          "liveEquipmentChanges": 5,
+          "peakOwned": 2,
+          "preparations": [
+            98.09999990463257,
+            96.79999995231628
+          ]
+        }
+      },
+      "gpuErrors": []
+    },
+    {
+      "case": "native-race-design-motion",
+      "actor": {
+        "id": "showcase",
+        "appearanceRevision": 8,
+        "recipe": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v4",
+          "race": "orc",
+          "fitFamily": "ashen-orc",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "transform": {
+          "x": 2,
+          "y": -0.7735434357096606,
+          "z": -60,
+          "yaw": 0
+        },
+        "motion": {
+          "clip": "Walk_Loop",
+          "loop": true,
+          "startedAt": 63.816799999952316,
+          "offsetSeconds": 0
+        }
+      },
+      "snapshot": {
+        "count": 1,
+        "actors": [
+          {
+            "id": "showcase",
+            "revision": 8,
+            "race": "orc",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 1.0659999999999954,
+              "frame": 63,
+              "row": 63,
+              "ended": false,
+              "phase": 0.7994999761730405
+            },
+            "shape": {}
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 8,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 8,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 4496592,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 1,
+        "activeExact": 1,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 96,
+          "textures": 27,
+          "bufferBytes": 13182544,
+          "textureBytes": 5284516,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 6459884,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 2,
+          "liveEquipmentChanges": 6,
+          "peakOwned": 2,
+          "preparations": [
+            98.09999990463257,
+            96.79999995231628
+          ]
+        }
+      },
+      "gpuErrors": []
+    },
+    {
+      "case": "native-race-design-motion",
+      "actor": {
+        "id": "showcase",
+        "appearanceRevision": 9,
+        "recipe": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v4",
+          "race": "orc",
+          "fitFamily": "ashen-orc",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "lectorCoat",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          }
+        },
+        "transform": {
+          "x": 2,
+          "y": -0.7735434357096606,
+          "z": -60,
+          "yaw": 0
+        },
+        "motion": {
+          "clip": "Walk_Loop",
+          "loop": true,
+          "startedAt": 70.629,
+          "offsetSeconds": 0
+        }
+      },
+      "snapshot": {
+        "count": 1,
+        "actors": [
+          {
+            "id": "showcase",
+            "revision": 9,
+            "race": "orc",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 1.0664999999999907,
+              "frame": 63,
+              "row": 63,
+              "ended": false,
+              "phase": 0.7998749761618611
+            },
+            "shape": {}
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 9,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 9,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 4496592,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 1,
+        "activeExact": 1,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 144,
+          "textures": 31,
+          "bufferBytes": 13074808,
+          "textureBytes": 5284532,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 6300476,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 2,
+          "liveEquipmentChanges": 7,
+          "peakOwned": 2,
+          "preparations": [
+            98.09999990463257,
+            96.79999995231628
+          ]
+        }
+      },
+      "gpuErrors": []
+    },
+    {
+      "case": "native-race-design-motion",
+      "actor": {
+        "id": "showcase",
+        "appearanceRevision": 10,
+        "recipe": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v4",
+          "race": "orc",
+          "fitFamily": "ashen-orc",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "duskguardCuirass",
+            "legs": "duskguardTassets",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "transform": {
+          "x": 2,
+          "y": -0.7735434357096606,
+          "z": -60,
+          "yaw": 0
+        },
+        "motion": {
+          "clip": "Walk_Loop",
+          "loop": true,
+          "startedAt": 77.49040000009536,
+          "offsetSeconds": 0
+        }
+      },
+      "snapshot": {
+        "count": 1,
+        "actors": [
+          {
+            "id": "showcase",
+            "revision": 10,
+            "race": "orc",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 1.0620999999046319,
+              "frame": 63,
+              "row": 63,
+              "ended": false,
+              "phase": 0.7965749761886897
+            },
+            "shape": {}
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 10,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 10,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 4496592,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 1,
+        "activeExact": 1,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 174,
+          "textures": 49,
+          "bufferBytes": 13335836,
+          "textureBytes": 5634124,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 6555256,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 2,
+          "liveEquipmentChanges": 8,
+          "peakOwned": 2,
+          "preparations": [
+            98.09999990463257,
+            96.79999995231628
+          ]
+        }
+      },
+      "gpuErrors": []
+    },
+    {
+      "case": "native-race-design-motion",
+      "actor": {
+        "id": "showcase",
+        "appearanceRevision": 11,
+        "recipe": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v4",
+          "race": "undead",
+          "fitFamily": "ashen-undead",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "transform": {
+          "x": 2,
+          "y": -0.7735434357096606,
+          "z": -60,
+          "yaw": 0
+        },
+        "motion": {
+          "clip": "Walk_Loop",
+          "loop": true,
+          "startedAt": 84.40870000004769,
+          "offsetSeconds": 0
+        }
+      },
+      "snapshot": {
+        "count": 1,
+        "actors": [
+          {
+            "id": "showcase",
+            "revision": 11,
+            "race": "undead",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 1.0705999999046298,
+              "frame": 64,
+              "row": 64,
+              "ended": false,
+              "phase": 0.8029499759986983
+            },
+            "shape": {}
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 11,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 11,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 4496592,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 1,
+        "activeExact": 1,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 62,
+          "textures": 14,
+          "bufferBytes": 3020288,
+          "textureBytes": 5255372,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 4200908,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 3,
+          "liveEquipmentChanges": 8,
+          "peakOwned": 2,
+          "preparations": [
+            98.09999990463257,
+            96.79999995231628,
+            92.09999990463257
+          ]
+        }
+      },
+      "gpuErrors": []
+    },
+    {
+      "case": "native-race-design-motion",
+      "actor": {
+        "id": "showcase",
+        "appearanceRevision": 12,
+        "recipe": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v4",
+          "race": "undead",
+          "fitFamily": "ashen-undead",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          }
+        },
+        "transform": {
+          "x": 2,
+          "y": -0.7735434357096606,
+          "z": -60,
+          "yaw": 0
+        },
+        "motion": {
+          "clip": "Walk_Loop",
+          "loop": true,
+          "startedAt": 91.2385,
+          "offsetSeconds": 0
+        }
+      },
+      "snapshot": {
+        "count": 1,
+        "actors": [
+          {
+            "id": "showcase",
+            "revision": 12,
+            "race": "undead",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 1.0774000000953663,
+              "frame": 64,
+              "row": 64,
+              "ended": false,
+              "phase": 0.8080499759897588
+            },
+            "shape": {}
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 12,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 12,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 4496592,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 1,
+        "activeExact": 1,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 116,
+          "textures": 24,
+          "bufferBytes": 3851464,
+          "textureBytes": 6303972,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 4935392,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 3,
+          "liveEquipmentChanges": 9,
+          "peakOwned": 2,
+          "preparations": [
+            98.09999990463257,
+            96.79999995231628,
+            92.09999990463257
+          ]
+        }
+      },
+      "gpuErrors": []
+    },
+    {
+      "case": "native-race-design-motion",
+      "actor": {
+        "id": "showcase",
+        "appearanceRevision": 13,
+        "recipe": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v4",
+          "race": "undead",
+          "fitFamily": "ashen-undead",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "transform": {
+          "x": 2,
+          "y": -0.7735434357096606,
+          "z": -60,
+          "yaw": 0
+        },
+        "motion": {
+          "clip": "Walk_Loop",
+          "loop": true,
+          "startedAt": 98.05820000004768,
+          "offsetSeconds": 0
+        }
+      },
+      "snapshot": {
+        "count": 1,
+        "actors": [
+          {
+            "id": "showcase",
+            "revision": 13,
+            "race": "undead",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 1.1452999999523286,
+              "frame": 68,
+              "row": 68,
+              "ended": false,
+              "phase": 0.8589749743647973
+            },
+            "shape": {}
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 13,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 13,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 4496592,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 1,
+        "activeExact": 1,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 50,
+          "textures": 14,
+          "bufferBytes": 3379772,
+          "textureBytes": 5255372,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 4549236,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 3,
+          "liveEquipmentChanges": 10,
+          "peakOwned": 2,
+          "preparations": [
+            98.09999990463257,
+            96.79999995231628,
+            92.09999990463257
+          ]
+        }
+      },
+      "gpuErrors": []
+    },
+    {
+      "case": "native-race-design-motion",
+      "actor": {
+        "id": "showcase",
+        "appearanceRevision": 14,
+        "recipe": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v4",
+          "race": "undead",
+          "fitFamily": "ashen-undead",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "lectorCoat",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          }
+        },
+        "transform": {
+          "x": 2,
+          "y": -0.7735434357096606,
+          "z": -60,
+          "yaw": 0
+        },
+        "motion": {
+          "clip": "Walk_Loop",
+          "loop": true,
+          "startedAt": 104.98379999995231,
+          "offsetSeconds": 0
+        }
+      },
+      "snapshot": {
+        "count": 1,
+        "actors": [
+          {
+            "id": "showcase",
+            "revision": 14,
+            "race": "undead",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 1.0428000001907378,
+              "frame": 62,
+              "row": 62,
+              "ended": false,
+              "phase": 0.7820999768346577
+            },
+            "shape": {}
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 14,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 14,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 4496592,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 1,
+        "activeExact": 1,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 98,
+          "textures": 18,
+          "bufferBytes": 3295508,
+          "textureBytes": 5255388,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 4410444,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 3,
+          "liveEquipmentChanges": 11,
+          "peakOwned": 2,
+          "preparations": [
+            98.09999990463257,
+            96.79999995231628,
+            92.09999990463257
+          ]
+        }
+      },
+      "gpuErrors": []
+    },
+    {
+      "case": "native-race-design-motion",
+      "actor": {
+        "id": "showcase",
+        "appearanceRevision": 15,
+        "recipe": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v4",
+          "race": "undead",
+          "fitFamily": "ashen-undead",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "duskguardCuirass",
+            "legs": "duskguardTassets",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "transform": {
+          "x": 2,
+          "y": -0.7735434357096606,
+          "z": -60,
+          "yaw": 0
+        },
+        "motion": {
+          "clip": "Walk_Loop",
+          "loop": true,
+          "startedAt": 111.77870000004768,
+          "offsetSeconds": 0
+        }
+      },
+      "snapshot": {
+        "count": 1,
+        "actors": [
+          {
+            "id": "showcase",
+            "revision": 15,
+            "race": "undead",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 1.0594999999999999,
+              "frame": 63,
+              "row": 63,
+              "ended": false,
+              "phase": 0.7946249763183302
+            },
+            "shape": {}
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 15,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 15,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 4496592,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 1,
+        "activeExact": 1,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 128,
+          "textures": 36,
+          "bufferBytes": 3455580,
+          "textureBytes": 5604980,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 4582812,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 3,
+          "liveEquipmentChanges": 12,
+          "peakOwned": 2,
+          "preparations": [
+            98.09999990463257,
+            96.79999995231628,
+            92.09999990463257
+          ]
+        }
+      },
+      "gpuErrors": []
+    }
+  ],
+  "timeline": [
+    {
+      "label": "human/wayfarer: native source motion",
+      "frame": 0,
+      "time": 1790908310963
+    },
+    {
+      "label": "human/graveweaver: native source motion",
+      "frame": 128,
+      "time": 1790908317907
+    },
+    {
+      "label": "human/pilgrim: native source motion",
+      "frame": 232,
+      "time": 1790908324750
+    },
+    {
+      "label": "human/lector: native source motion",
+      "frame": 338,
+      "time": 1790908331581
+    },
+    {
+      "label": "human/duskguard: native source motion",
+      "frame": 443,
+      "time": 1790908338409
+    },
+    {
+      "label": "orc/wayfarer: native source motion",
+      "frame": 548,
+      "time": 1790908345262
+    },
+    {
+      "label": "orc/graveweaver: native source motion",
+      "frame": 652,
+      "time": 1790908352157
+    },
+    {
+      "label": "orc/pilgrim: native source motion",
+      "frame": 754,
+      "time": 1790908358990
+    },
+    {
+      "label": "orc/lector: native source motion",
+      "frame": 857,
+      "time": 1790908365819
+    },
+    {
+      "label": "orc/duskguard: native source motion",
+      "frame": 960,
+      "time": 1790908372626
+    },
+    {
+      "label": "undead/wayfarer: native source motion",
+      "frame": 1062,
+      "time": 1790908379480
+    },
+    {
+      "label": "undead/graveweaver: native source motion",
+      "frame": 1170,
+      "time": 1790908386406
+    },
+    {
+      "label": "undead/pilgrim: native source motion",
+      "frame": 1274,
+      "time": 1790908393242
+    },
+    {
+      "label": "undead/lector: native source motion",
+      "frame": 1380,
+      "time": 1790908400156
+    },
+    {
+      "label": "undead/duskguard: native source motion",
+      "frame": 1484,
+      "time": 1790908406956
+    }
+  ],
+  "baseline": {
+    "meshes": 138,
+    "casters": 38
+  },
+  "after": {
+    "meshes": 138,
+    "casters": 32,
+    "streaming": {
+      "limits": {
+        "pending": 32,
+        "exact": 8,
+        "idleExact": 0,
+        "idleGarments": 0
+      },
+      "queue": {
+        "submitted": 15,
+        "superseded": 0,
+        "rejected": 0,
+        "peakPending": 1,
+        "completed": 15,
+        "pending": 0,
+        "active": 0,
+        "uniqueIds": 0,
+        "limit": 32,
+        "closed": true
+      },
+      "immutable": {
+        "entries": 0,
+        "reservedBytes": 0,
+        "peakReservedBytes": 4496592,
+        "ceilingBytes": 8388608,
+        "leases": 0
+      },
+      "owned": 0,
+      "activeExact": 0,
+      "pendingBuilds": 0,
+      "allocation": {
+        "buffers": 0,
+        "textures": 0,
+        "bufferBytes": 0,
+        "textureBytes": 0,
+        "unknownTextureFormats": 0,
+        "knownCpuBytes": 0,
+        "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+      },
+      "stats": {
+        "bodyLoads": 3,
+        "liveEquipmentChanges": 12,
+        "peakOwned": 2,
+        "preparations": [
+          98.09999990463257,
+          96.79999995231628,
+          92.09999990463257
+        ]
+      }
+    },
+    "gpuErrors": []
+  },
+  "passed": true
+}

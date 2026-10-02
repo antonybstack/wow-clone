@@ -167,6 +167,13 @@ export default defineConfig({
       name: 'dev-only-crowd-probe-assets',
       configureServer(server) {
         server.middlewares.use((req,res,next)=>{
+          const remote=/^\/__remote_pieces__\/(manifest\.json|prepared\.json|[A-Za-z][A-Za-z0-9]{0,63}-[a-f0-9]{64}\.glb)$/.exec(req.url?.split('?')[0]||'');
+          if(remote){
+            const file=`.cache/character-mmo/remote-pieces-v1/${remote[1]}`;
+            try{const info=statSync(file);res.setHeader('Content-Type',remote[1].endsWith('.json')?'application/json':'model/gltf-binary');res.setHeader('Content-Length',String(info.size));createReadStream(file).pipe(res);}
+            catch{res.statusCode=404;res.end('Prepare the native remote piece candidate first');}
+            return;
+          }
           const match=/^\/__(crowd_probe|region_crowd)__\/(human-(?:wayfarer|warden)\.glb|manifest\.json|prepared\.json|vat-[a-f0-9]{64}\.bin)$/.exec(req.url?.split('?')[0]||'');
           if(!match) return next();
           const name=match[2],folder=match[1]==='region_crowd'?'region-crowd':'m003';

@@ -35,3 +35,28 @@ test('a newer valid request aborts blocked fetch preparation',async()=>{
  const blocked=loader.request({torso:'blocked'});await started.promise;const next=loader.request({torso:'new'});
  assert.equal((await blocked).status,'superseded');assert.equal((await next).status,'applied');assert.equal(loader.getState().torso,'new');loader.dispose();
 });
+
+test('cancelled native material staging never publishes and retains the previous item',async()=>{
+ const gate=deferred(),started=deferred(),commits=[],dead=[];
+ const loader=createEquipmentLoader({initial:{torso:null},validate(){},maxIdle:0,
+  prepare:async id=>({dispose(){dead.push(id);}}),
+  beforeCommit:async(next,cache,signal)=>{if(next.torso==='blocked'){started.resolve(signal);await gate.promise;}},
+  commit:next=>commits.push(next.torso)});
+ await loader.request({torso:'old'});const pending=loader.request({torso:'blocked'});const signal=await started.promise;
+ assert.deepEqual(commits,['old']);const latest=loader.request({torso:'new'});assert(signal.aborted);assert.deepEqual(dead,[]);
+ gate.resolve();assert.equal((await pending).status,'superseded');assert.equal((await latest).status,'applied');
+ assert.deepEqual(commits,['old','new']);assert.deepEqual(dead,['blocked','old']);loader.dispose();await loader.drain();assert.deepEqual(dead,['blocked','old','new']);
+});
+test('native build failure preserves state and disposal waits for outstanding build owners',async()=>{
+ const gate=deferred(),started=deferred(),dead=[];let commits=0;
+ const loader=createEquipmentLoader({initial:{torso:null},validate(){},maxIdle:0,
+  prepare:async id=>({dispose(){dead.push(id);}}),
+  beforeCommit:async next=>{if(next.torso==='bad')throw Error('native shader build');if(next.torso==='blocked'){started.resolve();await gate.promise;}},
+  commit(){commits++;}});
+ await loader.request({torso:'old'});assert.equal((await loader.request({torso:'bad'})).status,'failed');assert.equal(loader.getState().torso,'old');assert.deepEqual(dead,['bad']);
+ const pending=loader.request({torso:'blocked'});await started.promise;loader.dispose();assert.deepEqual(dead,['bad']);gate.resolve();await pending;await loader.drain();
+ assert.equal(commits,1);assert.deepEqual(dead,['bad','old','blocked']);loader.dispose();assert.equal(dead.length,3);
+});
+test('idle retention rejects invalid budgets before preparing assets',()=>{
+ for(const maxIdle of [-1,.5,NaN,Infinity])assert.throws(()=>createEquipmentLoader({initial:{},validate(){},prepare(){},commit(){},maxIdle}),/idle budget/);
+});

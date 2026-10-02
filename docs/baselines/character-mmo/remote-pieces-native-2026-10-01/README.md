@@ -1,0 +1,11 @@
+# Native per-piece renderer checkpoint — 2026-10-01
+
+Actual root Ashen game, one owned Chrome 3959/CDP 9837/Vite 5673 context per check. Functional and capture timings are **not isolated performance measurements**. Raw generated candidate binaries remain ignored under `.cache/character-mmo/remote-pieces-v1`; regenerate with `prepare-remote-pieces.mjs` and `prepare-remote-pieces-native.mjs`. The latter requires the owned native WebGPU game and writes the pinned swept-bound descriptor. No candidate assets were published to the game.
+
+`native-prepared.json`: 142,120,095 sampled deformed points, zero bound escapes over three races/45 individual body+piece outputs and all 57 source clips. These are raw source/morph bounds; broader composed pose and socket gates remain pending.
+
+`functional-final.json`: eight owners, ten complete lifecycles, delayed/stale/corrupt transactions, 32-ID admission/rejection, cancellation, and disposal during an unreturned equipment boot and a **harness-delayed installed native material wait boundary**. The last two rows independently reproduce the review's concurrent retirement trigger. Final owners/leases/reservations/builds zero; meshes/casters return to baseline; no runtime/GPU errors. `functional-before-concurrent-retirement.json` retains the earlier completed-job proof. The material-delay injection is a lifecycle test, not a measurement of native shader duration.
+
+Motion: 15 race/design cases, native gait/airborne/cast composition, front/rear, one owner with complete same-body swaps. Local foreground deliberately hidden for remote review; fixtures are not traversal. Full timestamp manifest retained. Live [MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/remote-pieces-native-2026-10-01.mp4): 1280×720, 102.75481 s, SAR 1:1/rotation 0; Telegram 838 returned matching dimensions. Native Edge playback/seek/contain reviewed; owned tab 1147992517 closed. Telegram client fullscreen unverified.
+
+`grok-review.md` is the original independent review, not the final disposition. See the result document for accepted fixes and the cast-composition distinction. No independent final re-review or isolated renderer benchmark has run. Normal build/tests are retained separately. The user explicitly requested wrapping up before the remaining multiplayer, performance and publication gates.

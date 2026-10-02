@@ -60,6 +60,9 @@ export async function createStreamedEquipment(
   sockets,
   options = {},
 ) {
+  const maxIdle=options.maxIdle??2;
+  if(!Number.isSafeInteger(maxIdle)||maxIdle<0||maxIdle>2)throw RangeError('Unsupported equipment idle budget');
+  if(options.acquireBuffer&&options.loadBuffer)throw Error('Choose one equipment byte owner');
   const manifestUrl =
     options.manifestUrl || "/ashen-reach/equipment/manifest.json";
   let baseMeshes = options.baseMeshes || BASE_VISIBLE_MESHES;
@@ -198,12 +201,14 @@ export async function createStreamedEquipment(
         // Throws unless the manifest entry's fit is the one this item declares for this
         // race. No Human default: see declaredFitForRace in equipment-contract.js.
         assertAssetFit(asset, item, race);
-        const response = options.loadBuffer?null:await fetch(asset.url, { signal });
+        const lease=options.acquireBuffer?.(asset,signal);
+        try {
+        const response = lease||options.loadBuffer?null:await fetch(asset.url, { signal });
         if (response&&!response.ok)
           throw Error(
             `Could not load the ${race} ${item.name} from ${asset.url}`,
           );
-        const bytes = options.loadBuffer?await options.loadBuffer(asset):await response.arrayBuffer();
+        const bytes = lease?await lease.promise:options.loadBuffer?await options.loadBuffer(asset,{signal}):await response.arrayBuffer();
         if (bytes.byteLength !== asset.bytes)
           throw Error(
             `The ${race} ${item.name} is ${bytes.byteLength} bytes, not the ${asset.bytes} its manifest declares`,
@@ -225,6 +230,12 @@ export async function createStreamedEquipment(
         }
         signal.throwIfAborted();
         container = await loadGltf(engine, bytes);
+        } finally {
+          // Verified immutable bytes belong to the active native decoder only.
+          // Mesh/texture/palette owners remain independent after this lease ends.
+          // https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal
+          lease?.release();
+        }
         root = container.entities[0];
         meshes = getContainerMeshes(container);
         signal.throwIfAborted();
@@ -334,6 +345,9 @@ export async function createStreamedEquipment(
     validate: validateLoadout,
     prepare,
     commit(next) {
+      // A queued remote revision can change after an awaited native build but
+      // before this microtask. Recheck its owner before touching visibility.
+      if(options.canCommit&&!options.canCommit())throw Error('Equipment owner superseded');
       try {
         apply(next);
       } catch (error) {
@@ -341,7 +355,9 @@ export async function createStreamedEquipment(
         throw error;
       }
     },
-    maxIdle: 2,
+    maxIdle,
+    beforeCommit:options.beforeCommit
+      ? (next,cache,signal)=>options.beforeCommit(next,[...cache.values()],signal) : undefined,
   });
   const equipment = {
     items: EQUIPMENT_ITEMS,
@@ -361,6 +377,8 @@ export async function createStreamedEquipment(
     },
     getState: loader.getState,
     getStatus: loader.getStatus,
+    getOwnedMeshes:()=>[...base,...[...entries.values()].flatMap(entry=>entry.meshes)],
+    drain:loader.drain,
     releasePalettes() {
       const restore=[...entries.values()].map(entry=>entry.releasePalette());
       return ()=>restore.forEach(fn=>fn());
@@ -396,13 +414,18 @@ export async function createStreamedEquipment(
     },
     dispose() {
       stopped = true;
-      loader.dispose();
+      try{if(options.beforeCommit){visible=false;apply(loader.getState());}}
+      finally{loader.dispose();}
     },
   };
   installEquipmentGrips(body, loader.getState);
   const boot = await equipment.setLoadout(bootLoadout);
   if (boot.status !== "applied") {
     equipment.dispose();
+    // A failed staged boot must finish retiring garments before its caller
+    // retires the body palette they borrowed. drain is already settled for
+    // the ordinary player path; remote native builds may have delayed cleanup.
+    await equipment.drain();
     throw Error(boot.error || "Equipment boot failed");
   }
   return equipment;

@@ -3,7 +3,7 @@ import { CARRY_WEIGHT, TWO_HAND_STILL_TIME } from './body-visual.js';
 import {playAnimation, stopAnimation, setAnimationWeight} from '@babylonjs/lite';
 
 /** Diagnostic playback on the actor's existing manager; never owns gameplay input. */
-export function createInspectionPreview(visual) {
+export function createInspectionPreview(visual,{includeAirborne=false,terminalHold=false}={}) {
     const groups = visual.groups;
     const saved = groups.map(group => ({group, mask: group.mask, speed: group.speedRatio, loop: group.loopAnimation}));
     const options = [
@@ -16,13 +16,14 @@ export function createInspectionPreview(visual) {
         {id:'lava', label:'Lava Ball', clips:[visual.idle, visual.castMotions?.lava?.upper, visual.castMotions?.lava?.lower], layered:true},
         {id:'pulse', label:'Pyre Burst', clips:[visual.idle, visual.castMotions?.pulse?.upper, visual.castMotions?.pulse?.lower], layered:true},
         {id:'carry', label:'Two-handed carry (raw source clip)', clips:[visual.twoHand]},
+        ...(includeAirborne?[{id:'air',label:'Airborne',clips:[visual.jumpLoop]}]:[]),
     ].filter(option => option.clips.every(Boolean));
     // Gameplay composition, not a second animation path: when a two-handed
     // prop is held the game layers the carry clip on the arms over the
     // directional gait (body.js updateCarry). The standard options mirror that
     // here so the Armory shows the equipped state instead of a one-handed
     // stand-in; `carry` stays as the unmasked source audition.
-    const ARMED_BASE = new Set(['idle', 'walk', 'run', 'jump', 'land']);
+    const ARMED_BASE = new Set(['idle', 'walk', 'run', 'jump', 'land','air']);
     const armedCarry = () => (
         ARMED_BASE.has(selected?.id) && visual.twoHand && visual.carryMask
         && visual.handGrips?.()?.twoHanded ? visual.twoHand : null
@@ -35,7 +36,7 @@ export function createInspectionPreview(visual) {
         if (!selected) return;
         selected.clips.forEach((group, index) => {
             // Explicit seeking with a zero delta gives a genuinely frozen skinned pose.
-            group.currentTime = index === 0 && selected.layered ? time % (group.duration || 1) : Math.min(time, group.duration - 0.00001);
+            group.currentTime = index === 0 && selected.layered ? time % (group.duration || 1) : Math.min(time, group.duration - (terminalHold?0:.00001));
             const weight = selected.layered && index > 0 ? ease(time/.09)*ease((duration()-time)/.18) : 1;
             setAnimationWeight(group, weight);
         });
@@ -66,7 +67,7 @@ export function createInspectionPreview(visual) {
         if (!option) throw new Error(`Unavailable inspection animation: ${id}`);
         halt(); selected = option; time = 0; carried = null;
         for (const group of selected.clips) {
-            group.mask = undefined; group.speedRatio = 1; group.loopAnimation = true;
+            group.mask = undefined; group.speedRatio = 1; group.loopAnimation = !terminalHold;
             playAnimation(group); setAnimationWeight(group, 1);
         }
         evaluate();
@@ -75,7 +76,7 @@ export function createInspectionPreview(visual) {
     return {
         options: options.map(({id,label})=>({id,label})), select,
         setPaused(value) { paused = !!value; },
-        seek(value) { if (Number.isFinite(value)) { time = Math.max(0,Math.min(duration()-0.00001,value)); paused = true; evaluate(); } },
+        seek(value) { if (Number.isFinite(value)) { time = Math.max(0,Math.min(duration()-(terminalHold?0:.00001),value)); paused = true; evaluate(); } },
         update(dt) { if (!paused) time = (time + dt) % duration(); evaluate(); },
         getState: () => ({id:selected.id, time, duration:duration(), paused}),
         dispose() { halt(); for (const {group,mask,speed,loop} of saved) { group.mask=mask;group.speedRatio=speed;group.loopAnimation=loop; } },
