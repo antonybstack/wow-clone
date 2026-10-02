@@ -78,6 +78,28 @@ pulse, carry — not to raw clips.
 
 The check exercises the spell action, so **the sword fallback is in place but not exercised.**
 
+## Two things found while cleaning up
+
+**The publisher was not idempotent, despite the commit message saying so.** All 45
+content-addressed pieces were byte-identical on a republish, but the descriptor carried a
+fresh `publishedAt` each run, so every republish dirtied the working tree. It now reuses the
+previous timestamp when nothing else about the publication changed, and preserves key order,
+so two consecutive republishes of an unchanged set now produce byte-identical files. Verified
+by running it twice against a clean tree.
+
+**The committed collision release is stale against the current toolchain.** Running
+`scripts/multiplayer/prepare-collision.mjs` to start the presence server regenerated
+`collision-release.js` with hash `eec51748…` where the committed value is `3623939d…`. The
+regeneration is deterministic — two runs agree — and `sourceHash` is **unchanged**, so the
+world source is identical and only the serialisation moved, by 4 metadata bytes. That points
+at generator or lock drift rather than a world change.
+
+This was reverted rather than committed. The collision hash gates client/server seat
+compatibility through `matchesPresenceVersion`, both states are internally consistent, and
+regenerating a published compatibility artefact was a side effect of running a setup script,
+not part of this work. Anyone running `prepare-collision.mjs` will reproduce it; it should be
+regenerated deliberately, with the clients it gates, rather than incidentally.
+
 ## Open
 
 Eight seats under load, delayed and failed assets, latency and reconnect matrices; the

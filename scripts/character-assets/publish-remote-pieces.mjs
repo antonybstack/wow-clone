@@ -63,12 +63,21 @@ for(const [race,data]of Object.entries(manifest.races)){
 }
 // Deduplicate: a piece shared by two races is one immutable file, written once above.
 const files=new Set(published.map(p=>p.file));
+// Reuse the existing timestamp when nothing else about the publication changed. A fresh
+// `publishedAt` on every run made the descriptor differ from the committed one each time
+// even though all 45 content-addressed pieces were byte-identical, so "republishing an
+// unchanged set is idempotent" was true of the pieces and false of the descriptor.
+const previous=await fs.readFile(path.join(OUT,'prepared.json'),'utf8').then(JSON.parse,()=>null);
+const publishedBody={version:PUBLISH_VERSION,sourceCompilerSha256:compilerSha,
+ pieceCount:published.length,uniqueFiles:files.size,totalBytes,lite,catalogVersion:APPEARANCE_CATALOG_VERSION};
+const unchanged=previous&&Object.entries(publishedBody).every(([k,v])=>JSON.stringify(previous.published?.[k])===JSON.stringify(v));
+const publishedAt=unchanged?previous.published.publishedAt:new Date().toISOString();
 const descriptor={...prepared,candidateOnly:false,
  manifest:{...manifest,candidateOnly:false},
- published:{version:PUBLISH_VERSION,publishedAt:new Date().toISOString(),sourceCompilerSha256:compilerSha,
-  pieceCount:published.length,uniqueFiles:files.size,totalBytes,lite,catalogVersion:APPEARANCE_CATALOG_VERSION}};
+ // Key order matters only so an unchanged republish produces a byte-identical file.
+ published:{version:publishedBody.version,publishedAt,...Object.fromEntries(Object.entries(publishedBody).filter(([k])=>k!=='version'))}};
 await fs.writeFile(path.join(OUT,'prepared.json'),JSON.stringify(descriptor,null,1)+'\n');
-const index={schema:1,version:PUBLISH_VERSION,publishedAt:descriptor.published.publishedAt,
+const index={schema:1,version:PUBLISH_VERSION,publishedAt,
  lite,catalogVersion:APPEARANCE_CATALOG_VERSION,sourceCompilerSha256:compilerSha,
  uniqueFiles:files.size,totalBytes,pieces:published.sort((a,b)=>a.file.localeCompare(b.file))};
 await fs.writeFile(path.join(OUT,'index.json'),JSON.stringify(index,null,1)+'\n');
