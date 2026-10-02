@@ -233,9 +233,12 @@ Tasks:
    16.67 ms, worst 14.9 ms. The pose-reset detector is demonstrated against a control rather
    than assumed: it fires on 6 of 6 injected clip restarts and stays clean on 9 of 9 untouched
    windows, and the matrix's worst drift is one frame against the 140–890 ms a restart produces.
-2. **Swap storms and failure.** Extend the rapid-swap and corrupt-asset proofs from torso to
-   every slot: a failed or superseded request must leave the last committed appearance intact,
-   on every slot, for all three races.
+2. ~~**Swap storms and failure.**~~ **Closed 2026-10-02**
+   ([result](results/m6-swap-failure-2026-10-02.md)). 116 rows pass: corrupt bytes and HTTP 500
+   per slot per race, a recovery refetch after each, a six-round storm that fires every item in
+   a slot at once, and unknown items. The worn appearance is byte-identical across every
+   refusal. Two rows are untestable and recorded as such — the Undead boots wearing the only
+   helmet in the catalogue. Held and slow responses remain per-design rather than per-slot.
 3. **Visual review across the matrix.** 768 combinations validate by rule; twelve have been
    looked at. Review each design against each race at front/side/back, and record every
    exception as data with a reason rather than a silent allowance.
