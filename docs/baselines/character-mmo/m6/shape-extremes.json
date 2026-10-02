@@ -1,0 +1,167 @@
+{
+  "url": "http://127.0.0.1:5873/ashen-reach.html?play&clean&pixelRatio=1",
+  "combinations": 864,
+  "shapes": [
+    {
+      "id": "neutral",
+      "height": 1,
+      "build": 0
+    },
+    {
+      "id": "tall-slender",
+      "height": 1.15,
+      "build": -0.95
+    },
+    {
+      "id": "tall-stout",
+      "height": 1.15,
+      "build": 0.95
+    },
+    {
+      "id": "short-slender",
+      "height": 0.9,
+      "build": -0.95
+    },
+    {
+      "id": "short-stout",
+      "height": 0.9,
+      "build": 0.95
+    }
+  ],
+  "supportedDomain": {
+    "human": "height 0.90-1.15 x build -0.95..0.95, the released production range",
+    "orc": "neutral only: no verified shape family",
+    "undead": "neutral only: no verified shape family"
+  },
+  "conditions": "Default production route with a saved appearance seeded in storage, one owned rendering client at a time.",
+  "perShape": {
+    "neutral": {
+      "requested": {
+        "id": "neutral",
+        "height": 1,
+        "build": 0
+      },
+      "applied": null,
+      "bodyMeshes": [
+        "HumanV1Body",
+        "HumanTorsoCore"
+      ],
+      "checked": 864,
+      "hiddenSets": 2,
+      "stills": 10,
+      "seconds": 13.3
+    },
+    "tall-slender": {
+      "requested": {
+        "id": "tall-slender",
+        "height": 1.15,
+        "build": -0.95
+      },
+      "applied": {
+        "weights": [
+          0.95,
+          0
+        ],
+        "heightScale": 1.15,
+        "installWriters": true,
+        "assetURL": null,
+        "garmentManifestURL": null,
+        "applied": true
+      },
+      "bodyMeshes": [
+        "HumanV1Body",
+        "HumanTorsoCore"
+      ],
+      "checked": 864,
+      "hiddenSets": 2,
+      "stills": 10,
+      "seconds": 24
+    },
+    "tall-stout": {
+      "requested": {
+        "id": "tall-stout",
+        "height": 1.15,
+        "build": 0.95
+      },
+      "applied": {
+        "weights": [
+          0,
+          0.95
+        ],
+        "heightScale": 1.15,
+        "installWriters": true,
+        "assetURL": null,
+        "garmentManifestURL": null,
+        "applied": true
+      },
+      "bodyMeshes": [
+        "HumanV1Body",
+        "HumanTorsoCore"
+      ],
+      "checked": 864,
+      "hiddenSets": 2,
+      "stills": 10,
+      "seconds": 23.8
+    },
+    "short-slender": {
+      "requested": {
+        "id": "short-slender",
+        "height": 0.9,
+        "build": -0.95
+      },
+      "applied": {
+        "weights": [
+          0.95,
+          0
+        ],
+        "heightScale": 0.9,
+        "installWriters": true,
+        "assetURL": null,
+        "garmentManifestURL": null,
+        "applied": true
+      },
+      "bodyMeshes": [
+        "HumanV1Body",
+        "HumanTorsoCore"
+      ],
+      "checked": 864,
+      "hiddenSets": 2,
+      "stills": 10,
+      "seconds": 23.2
+    },
+    "short-stout": {
+      "requested": {
+        "id": "short-stout",
+        "height": 0.9,
+        "build": 0.95
+      },
+      "applied": {
+        "weights": [
+          0,
+          0.95
+        ],
+        "heightScale": 0.9,
+        "installWriters": true,
+        "assetURL": null,
+        "garmentManifestURL": null,
+        "applied": true
+      },
+      "bodyMeshes": [
+        "HumanV1Body",
+        "HumanTorsoCore"
+      ],
+      "checked": 864,
+      "hiddenSets": 2,
+      "stills": 10,
+      "seconds": 23.5
+    }
+  },
+  "disagreements": [],
+  "errors": [],
+  "passed": true,
+  "summary": {
+    "shapes": 5,
+    "disagreements": 0,
+    "consoleErrors": 0
+  }
+}

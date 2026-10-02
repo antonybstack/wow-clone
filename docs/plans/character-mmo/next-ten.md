@@ -252,10 +252,13 @@ Tasks:
    **Still open:** the mixed combinations, which are the overwhelming majority of the 6,048 valid loadouts. Method note carried
    forward: a single view at small scale is not enough to report a visual defect — two reads
    this milestone dissolved under another view.
-4. **Shape extremes beyond the Human.** Posed fit is measured for Human slender/stout at 0.95
-   with a worst case of 24 exposed vertices of 3,274. The Orc and Undead have no verified shape
-   family, so their "extremes" are neutral only — either state that as the supported domain or
-   give them a family.
+4. ~~**Shape extremes beyond the Human.**~~ **Closed 2026-10-02**
+   ([result](results/m6-shape-extremes-2026-10-02.md), Telegram **843**). 4,320 live
+   combinations — 864 garment loadouts × 5 shapes — agree with the coverage resolver, zero
+   disagreements. The supported domain is now stated rather than implied: Human
+   0.90–1.15 × −0.95…+0.95, **Orc and Undead neutral only**, since neither has a verified shape
+   family. One run reported 20 GPU errors on a shaped body and has not reproduced in three later
+   runs; recorded as an unreproduced transient, not as fixed.
 5. ~~**Layering and coverage conflicts.**~~ **Closed 2026-10-02**
    ([result](results/m6-coverage-matrix-live-2026-10-02.md)). 2,592 live combinations — 864
    garment loadouts × 3 races — agree with the resolver, zero disagreements, zero refusals. The
