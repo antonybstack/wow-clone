@@ -1,0 +1,5611 @@
+{
+ "schema": 1,
+ "lite": "1.31.1",
+ "catalogVersion": "appearance-catalog-v4",
+ "candidateOnly": false,
+ "manifest": {
+  "schema": 1,
+  "lite": "1.31.1",
+  "catalogVersion": "appearance-catalog-v4",
+  "candidateOnly": false,
+  "texturePolicy": {
+   "human": "at most 512px from published full texture masters; WebP quality 90",
+   "otherRaces": "at most 512px; WebP quality 90 for color/data, lossless encoding for resized normal maps"
+  },
+  "races": {
+   "human": {
+    "sourceManifest": {
+     "path": "public/ashen-reach/human-shape-v1/manifest.json",
+     "sha256": "63d6072e252b3b79c5457ed5fa1380a2450ec2e73faf16458302e50b3ddc6cf0"
+    },
+    "manifest": {
+     "schema": 1,
+     "fitId": "ashen-human",
+     "shapeFamily": "ashen-human-shape-v1",
+     "coverage": {
+      "schema": 1,
+      "revision": "conservative-geosets-v1",
+      "race": "human",
+      "bodySegments": {
+       "HumanV1Body": [
+        "head.scalp",
+        "head.face",
+        "neck",
+        "torso.upper",
+        "torso.lower",
+        "waist",
+        "arm.upper",
+        "arm.lower",
+        "hand",
+        "leg.upper",
+        "leg.lower",
+        "foot"
+       ],
+       "HumanTorsoCore": [
+        "torso.upper",
+        "torso.lower",
+        "waist"
+       ]
+      }
+     },
+     "garmentLayerCoverage": {
+      "schema": 1,
+      "coversByItem": {
+       "wayfarerTunic": [
+        "trousers.upper"
+       ],
+       "pilgrimTunic": [
+        "trousers.upper"
+       ],
+       "graveweaverTop": [
+        "trousers.upper"
+       ],
+       "lectorCoat": [
+        "trousers.upper"
+       ],
+       "duskguardCuirass": [
+        "trousers.upper"
+       ]
+      },
+      "partsByItem": {
+       "wayfarerTrousers": [
+        {
+         "mesh": "WayfarerTrousersUnderTorso",
+         "hideWhenRegions": [
+          "trousers.upper"
+         ]
+        }
+       ],
+       "duskguardTassets": [
+        {
+         "mesh": "DuskguardTrousersUnderTorso",
+         "hideWhenRegions": [
+          "trousers.upper"
+         ]
+        }
+       ]
+      }
+     },
+     "items": {
+      "body": {
+       "bytes": 1943832,
+       "sha256": "96e0f64514c98b475f3b00314c17fe37544506080e87c4dc354fb6b13ea6d552",
+       "meshes": [
+        "HumanV1Body",
+        "HumanTorsoCore"
+       ],
+       "shapeFamily": "ashen-human-shape-v1",
+       "textures": [
+        {
+         "name": "basecolor",
+         "sourceSha256": "423c672df75a5caabb65bd8ef20c8602c90abb81f6ab31d299e2c3483625afe3",
+         "sha256": "2f581f1dd3db9a56ff81095119936f2e5a138de18e968e871049c13be12ce8d6",
+         "normalMap": false,
+         "size": [
+          512,
+          512
+         ],
+         "bytes": 44538
+        }
+       ],
+       "coverageRevision": "conservative-geosets-v1",
+       "file": "body-96e0f64514c98b475f3b00314c17fe37544506080e87c4dc354fb6b13ea6d552.glb",
+       "source": {
+        "path": "public/ashen-reach/human-shape-v1/body-coverage-b93fb71aa490.bin",
+        "sha256": "f92b16558a8c4154d04f3878383347255058af9cbc72aaf08279eaadc7740bf7",
+        "bytes": 1912448
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       }
+      },
+      "graveweaverHood": {
+       "bytes": 387024,
+       "sha256": "291e25c5c270a34a1e655e751cd26e69c47110aa8f420987c07a1fc56def7330",
+       "meshes": [
+        "GraveweaverHood"
+       ],
+       "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "shapeFamily": "ashen-human-shape-v1",
+       "textures": [
+        {
+         "name": "GraveweaverHood",
+         "sourceSha256": "767ac140ff4d0c5f28d91ce0050b90a11f4d921c485eca74d56ad356d527fc99",
+         "sha256": "02b38c20c5e683300cb28ee0c41f00ac0bbccb9c8ef4bccdac8f71f03247407a",
+         "normalMap": false,
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8094
+        }
+       ],
+       "file": "graveweaverHood-291e25c5c270a34a1e655e751cd26e69c47110aa8f420987c07a1fc56def7330.glb",
+       "source": {
+        "path": "public/ashen-reach/human-shape-v1/graveweaverHood-c80ece48d7d5.bin",
+        "sha256": "51d95fe7904ae147dcde5242e5754695f9356b9950dba02c95b5f756c5d37863",
+        "bytes": 384520
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       }
+      },
+      "graveweaverTop": {
+       "bytes": 329596,
+       "sha256": "62e942afd726d5975c0098f808267a621e68625ab72365bea10c92034bb4aba7",
+       "meshes": [
+        "GraveweaverPendant",
+        "GraveweaverTop"
+       ],
+       "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "shapeFamily": "ashen-human-shape-v1",
+       "textures": [
+        {
+         "name": "GraveweaverTop",
+         "sourceSha256": "29d4e4e4beced64700aee7723b34dc6f6ac6d5c1b4f684ce2fdd2ba9e60c46f3",
+         "sha256": "3c7081b7ddad683f66b1fab333b30bd7f3474661484cde3e70c567122fd189be",
+         "normalMap": false,
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8738
+        }
+       ],
+       "file": "graveweaverTop-62e942afd726d5975c0098f808267a621e68625ab72365bea10c92034bb4aba7.glb",
+       "source": {
+        "path": "public/ashen-reach/human-shape-v1/graveweaverTop-25fe071857bb.bin",
+        "sha256": "3f01443c6449a5a7d31603630014052b8f814cffcb58b5b2025db99e382e91d4",
+        "bytes": 327624
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       }
+      },
+      "graveweaverSkirt": {
+       "bytes": 443556,
+       "sha256": "2e6115ef3c7ab3f69211481797f641e910fb799b284f806ceaac5ac69b84110b",
+       "meshes": [
+        "GraveweaverSkirt",
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs"
+       ],
+       "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "shapeFamily": "ashen-human-shape-v1",
+       "textures": [
+        {
+         "name": "GraveweaverSkirt",
+         "sourceSha256": "767ac140ff4d0c5f28d91ce0050b90a11f4d921c485eca74d56ad356d527fc99",
+         "sha256": "02b38c20c5e683300cb28ee0c41f00ac0bbccb9c8ef4bccdac8f71f03247407a",
+         "normalMap": false,
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8094
+        },
+        {
+         "name": "WayfarerTrousers",
+         "sourceSha256": "f465517766ccc5bd04e613c51aed5eb479406cfa838f3ee3612966310b58ac0d",
+         "sha256": "2e556df0e1e65cc2e17e6f50a2fc613a30073a9c4187e94ed5a33afb455c6486",
+         "normalMap": false,
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 3798
+        }
+       ],
+       "file": "graveweaverSkirt-2e6115ef3c7ab3f69211481797f641e910fb799b284f806ceaac5ac69b84110b.glb",
+       "source": {
+        "path": "public/ashen-reach/human-shape-v1/graveweaverSkirt-3c310deed571.bin",
+        "sha256": "0a203736ef86119b0ad0fb8173cc6075c75978b071d87c984938e1df0c1a5abf",
+        "bytes": 439340
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       }
+      },
+      "graveweaverGloves": {
+       "bytes": 226812,
+       "sha256": "577dbcd2a62ad4674681ce3a525b7be383995b3b0443cfb8c9e888bd28a6309a",
+       "meshes": [
+        "GraveweaverGloves"
+       ],
+       "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "shapeFamily": "ashen-human-shape-v1",
+       "textures": [
+        {
+         "name": "GraveweaverGloves",
+         "sourceSha256": "8cca22d0af154c160f1f8f279ea82165ef265dd8dad740f47a6562a76065cb20",
+         "sha256": "585343caeadcb85ae3b6ecf58a0a4a2fc3291ca1abe7d5a10ee9198024a5b962",
+         "normalMap": false,
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 3572
+        }
+       ],
+       "file": "graveweaverGloves-577dbcd2a62ad4674681ce3a525b7be383995b3b0443cfb8c9e888bd28a6309a.glb",
+       "source": {
+        "path": "public/ashen-reach/human-shape-v1/graveweaverGloves-5d2803e1bc07.bin",
+        "sha256": "22b3ae405b3e0d1cf23fb3018c5005f8149897f939a3967fd35e78e106574f57",
+        "bytes": 226036
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       }
+      },
+      "wayfarerTunic": {
+       "bytes": 338432,
+       "sha256": "9fd1076fae8d175a53ac9ffb2ba0099c8a2a0ea4b1b80b0f9c7daab42365dd24",
+       "meshes": [
+        "WayfarerTunic"
+       ],
+       "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "shapeFamily": "ashen-human-shape-v1",
+       "textures": [
+        {
+         "name": "WayfarerTunic",
+         "sourceSha256": "29d4e4e4beced64700aee7723b34dc6f6ac6d5c1b4f684ce2fdd2ba9e60c46f3",
+         "sha256": "3c7081b7ddad683f66b1fab333b30bd7f3474661484cde3e70c567122fd189be",
+         "normalMap": false,
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8738
+        }
+       ],
+       "file": "wayfarerTunic-9fd1076fae8d175a53ac9ffb2ba0099c8a2a0ea4b1b80b0f9c7daab42365dd24.glb",
+       "source": {
+        "path": "public/ashen-reach/human-shape-v1/wayfarerTunic-e65b2868e12f.bin",
+        "sha256": "ce19ceb275144ad7f817c7134d52e565be3963b627b90717db2a1595d1b820f1",
+        "bytes": 336460
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       }
+      },
+      "pilgrimTunic": {
+       "bytes": 770280,
+       "sha256": "157cbbc373128013136ea7a8b1f60ff6b0349992bede2055f0d8fa594e941967",
+       "meshes": [
+        "PilgrimTunic"
+       ],
+       "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "corrective": {
+        "id": "pilgrim-front-skin-v1",
+        "revision": 1
+       },
+       "shapeFamily": "ashen-human-shape-v1",
+       "textures": [
+        {
+         "name": "PilgrimTunic",
+         "sourceSha256": "767ac140ff4d0c5f28d91ce0050b90a11f4d921c485eca74d56ad356d527fc99",
+         "sha256": "02b38c20c5e683300cb28ee0c41f00ac0bbccb9c8ef4bccdac8f71f03247407a",
+         "normalMap": false,
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8094
+        }
+       ],
+       "file": "pilgrimTunic-157cbbc373128013136ea7a8b1f60ff6b0349992bede2055f0d8fa594e941967.glb",
+       "source": {
+        "path": "public/ashen-reach/human-shape-v1/pilgrimTunic-be2fd3a1ff9d.bin",
+        "sha256": "75f68a2b84288311ffb9ce2e5cd65fd3e65273e0b3f3844e85bd42a0483ebf20",
+        "bytes": 767772
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       }
+      },
+      "wayfarerTrousers": {
+       "bytes": 162116,
+       "sha256": "31bb8994d757721d4437b14c44e7c23327523f8c7967735199a99f64c49f33b1",
+       "meshes": [
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs",
+        "WayfarerTrousersUnderTorso"
+       ],
+       "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "shapeFamily": "ashen-human-shape-v1",
+       "textures": [
+        {
+         "name": "WayfarerTrousers",
+         "sourceSha256": "f465517766ccc5bd04e613c51aed5eb479406cfa838f3ee3612966310b58ac0d",
+         "sha256": "2e556df0e1e65cc2e17e6f50a2fc613a30073a9c4187e94ed5a33afb455c6486",
+         "normalMap": false,
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 3798
+        }
+       ],
+       "coverageRevision": "conservative-geosets-v1",
+       "file": "wayfarerTrousers-31bb8994d757721d4437b14c44e7c23327523f8c7967735199a99f64c49f33b1.glb",
+       "source": {
+        "path": "public/ashen-reach/human-shape-v1/wayfarerTrousers-coverage-b1eb36e8f614.bin",
+        "sha256": "90a6fe2cc47c449c5c3bad31f0ace378e3880a54f245b51067549c31e6f38f9d",
+        "bytes": 160404
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       }
+      },
+      "wayfarerBoots": {
+       "bytes": 313964,
+       "sha256": "a3b7a9391a6bf9874cdff19586ac614c772bd7f16f3328405c3bfc1a7252dd81",
+       "meshes": [
+        "WayfarerBoots"
+       ],
+       "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "shapeFamily": "ashen-human-shape-v1",
+       "textures": [
+        {
+         "name": "WayfarerBoots",
+         "sourceSha256": "feb2ba6d8d36f52eadf576515ee26d1f84587d7f4186ea4139ccb24beaa6bc84",
+         "sha256": "3023c38e0ae6d7253a20979cd3741233af3d65270d02e2f660c3b9d2712a4b1a",
+         "normalMap": false,
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 12498
+        }
+       ],
+       "file": "wayfarerBoots-a3b7a9391a6bf9874cdff19586ac614c772bd7f16f3328405c3bfc1a7252dd81.glb",
+       "source": {
+        "path": "public/ashen-reach/human-shape-v1/wayfarerBoots-14b43ef82011.bin",
+        "sha256": "06fc40ad2225bde2e6c8c43beccaaa47ff029e2e617ef596d08d1740039f8877",
+        "bytes": 310748
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       }
+      },
+      "wardenPauldrons": {
+       "bytes": 31932,
+       "sha256": "46a04d5e1a9952113d84d0174fbc5ab9c2adf2d1c33de6c6a8091ca9e7d3e857",
+       "meshes": [
+        "WardenPauldrons"
+       ],
+       "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "shapeFamily": "ashen-human-shape-v1",
+       "textures": [],
+       "file": "wardenPauldrons-46a04d5e1a9952113d84d0174fbc5ab9c2adf2d1c33de6c6a8091ca9e7d3e857.glb",
+       "source": {
+        "path": "public/ashen-reach/human-shape-v1/wardenPauldrons-3daf20061e0e.bin",
+        "sha256": "46a04d5e1a9952113d84d0174fbc5ab9c2adf2d1c33de6c6a8091ca9e7d3e857",
+        "bytes": 31932
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       }
+      },
+      "lectorCoat": {
+       "bytes": 553408,
+       "sha256": "8ca42033a4650f6af67fe2c41baee60d17ef638614592d44fe2558bb6b85b26b",
+       "meshes": [
+        "LectorCoat"
+       ],
+       "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "shapeFamily": "ashen-human-shape-v1",
+       "textures": [
+        {
+         "name": "WayfarerTunic",
+         "sourceSha256": "29d4e4e4beced64700aee7723b34dc6f6ac6d5c1b4f684ce2fdd2ba9e60c46f3",
+         "sha256": "3c7081b7ddad683f66b1fab333b30bd7f3474661484cde3e70c567122fd189be",
+         "normalMap": false,
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8738
+        }
+       ],
+       "file": "lectorCoat-8ca42033a4650f6af67fe2c41baee60d17ef638614592d44fe2558bb6b85b26b.glb",
+       "source": {
+        "path": "public/ashen-reach/human-shape-v1/lectorCoat-aa746caae4d7.bin",
+        "sha256": "807dd672d3eaaa00c825fc9603716dab380b1030f3f77c478b70697ff81763dc",
+        "bytes": 551440
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       }
+      },
+      "duskguardCuirass": {
+       "bytes": 425900,
+       "sha256": "1a82ab5f9f6fde14e93ea652496450ab2a035f2fbb25a8146dc1ce9caa2d9228",
+       "meshes": [
+        "DuskguardUndercoat",
+        "DuskguardCuirass",
+        "DuskguardGussets"
+       ],
+       "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "shapeFamily": "ashen-human-shape-v1",
+       "textures": [
+        {
+         "name": "WayfarerTunic",
+         "sourceSha256": "29d4e4e4beced64700aee7723b34dc6f6ac6d5c1b4f684ce2fdd2ba9e60c46f3",
+         "sha256": "3c7081b7ddad683f66b1fab333b30bd7f3474661484cde3e70c567122fd189be",
+         "normalMap": false,
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8738
+        }
+       ],
+       "file": "duskguardCuirass-1a82ab5f9f6fde14e93ea652496450ab2a035f2fbb25a8146dc1ce9caa2d9228.glb",
+       "source": {
+        "path": "public/ashen-reach/human-shape-v1/duskguardCuirass-87f33adb1a29.bin",
+        "sha256": "1b112f45fd3b71733a6fc6acd11df8b4f0d24a061a15984da5a06eeae969e8ec",
+        "bytes": 423932
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       }
+      },
+      "duskguardTassets": {
+       "bytes": 178680,
+       "sha256": "dff03b24114bfc955b9964c7a77d583f96f6c5f62f2bb238303e34fc37e95e0a",
+       "meshes": [
+        "DuskguardTrousers",
+        "DuskguardTrouserCuffs",
+        "DuskguardTassets",
+        "DuskguardTrousersUnderTorso"
+       ],
+       "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "shapeFamily": "ashen-human-shape-v1",
+       "textures": [
+        {
+         "name": "WayfarerTrousers",
+         "sourceSha256": "f465517766ccc5bd04e613c51aed5eb479406cfa838f3ee3612966310b58ac0d",
+         "sha256": "2e556df0e1e65cc2e17e6f50a2fc613a30073a9c4187e94ed5a33afb455c6486",
+         "normalMap": false,
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 3798
+        }
+       ],
+       "coverageRevision": "conservative-geosets-v1",
+       "file": "duskguardTassets-dff03b24114bfc955b9964c7a77d583f96f6c5f62f2bb238303e34fc37e95e0a.glb",
+       "source": {
+        "path": "public/ashen-reach/human-shape-v1/duskguardTassets-coverage-ee06988dee5f.bin",
+        "sha256": "252dfafe376591b2703529f9bc855ce3e1b39c8824a12cc602f81b6384e6b9ea",
+        "bytes": 176968
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       }
+      },
+      "duskguardGreaves": {
+       "bytes": 327600,
+       "sha256": "30524af703a0c2d3e178da20b06019e22453e82e3ec831924923fc128c494d6b",
+       "meshes": [
+        "DuskguardBootUnderlayer",
+        "DuskguardGreaves"
+       ],
+       "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "shapeFamily": "ashen-human-shape-v1",
+       "textures": [
+        {
+         "name": "WayfarerBoots",
+         "sourceSha256": "feb2ba6d8d36f52eadf576515ee26d1f84587d7f4186ea4139ccb24beaa6bc84",
+         "sha256": "3023c38e0ae6d7253a20979cd3741233af3d65270d02e2f660c3b9d2712a4b1a",
+         "normalMap": false,
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 12498
+        }
+       ],
+       "file": "duskguardGreaves-30524af703a0c2d3e178da20b06019e22453e82e3ec831924923fc128c494d6b.glb",
+       "source": {
+        "path": "public/ashen-reach/human-shape-v1/duskguardGreaves-030d302cbaf6.bin",
+        "sha256": "1a84536b9fd5482c12d1f64a6dbd537e49d71fd613e752cfe2b0bde98abb53b9",
+        "bytes": 324384
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       }
+      },
+      "duskguardVambraces": {
+       "bytes": 242388,
+       "sha256": "731fa0e3fb9e94c4b92b51f18b6a7c7717b853ba435a438ace3c6181d4a7e8d4",
+       "meshes": [
+        "DuskguardGloveUnderlayer",
+        "DuskguardVambraces"
+       ],
+       "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "shapeFamily": "ashen-human-shape-v1",
+       "textures": [
+        {
+         "name": "GraveweaverGloves",
+         "sourceSha256": "8cca22d0af154c160f1f8f279ea82165ef265dd8dad740f47a6562a76065cb20",
+         "sha256": "585343caeadcb85ae3b6ecf58a0a4a2fc3291ca1abe7d5a10ee9198024a5b962",
+         "normalMap": false,
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 3572
+        }
+       ],
+       "file": "duskguardVambraces-731fa0e3fb9e94c4b92b51f18b6a7c7717b853ba435a438ace3c6181d4a7e8d4.glb",
+       "source": {
+        "path": "public/ashen-reach/human-shape-v1/duskguardVambraces-b67e2bcbac26.bin",
+        "sha256": "9eb3734747268fd974fe8995e3eef9d5116d332d4dcf7ad6c301231244a4b962",
+        "bytes": 241612
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       }
+      }
+     }
+    }
+   },
+   "orc": {
+    "sourceManifest": {
+     "path": "public/ashen-reach/equipment-orc/manifest-coverage-v1.json",
+     "sha256": "5bc61536fd3579f09792ecb79066b8f09caf386f9738ffb6a887cd0e83438ae4"
+    },
+    "manifest": {
+     "schema": 1,
+     "fitId": "ashen-orc",
+     "profileId": "orc-sculpt-v1",
+     "bindSha256": "5bdfea1bf692a085205a24fe496c876874fba82aa62ee92597128fcf88ab2079",
+     "coverage": {
+      "schema": 1,
+      "revision": "conservative-geosets-v1",
+      "race": "orc",
+      "bodySegments": {
+       "BodyExposed": [
+        "head.face",
+        "neck",
+        "arm.upper",
+        "arm.lower"
+       ],
+       "BodyUnderTunic": [
+        "torso.upper",
+        "torso.lower"
+       ],
+       "BodyUnderLegs": [
+        "leg.upper",
+        "leg.lower"
+       ],
+       "BodyUnderBoots": [
+        "foot"
+       ],
+       "BodyWaist": [
+        "waist"
+       ],
+       "BodyHands": [
+        "hand"
+       ],
+       "OrcV1Hair": [
+        "head.scalp"
+       ],
+       "OrcV1Brows": [
+        "head.face"
+       ],
+       "OrcV1Eyes": [
+        "head.face"
+       ],
+       "OrcV1Shorts": [
+        "waist",
+        "leg.upper"
+       ]
+      }
+     },
+     "garmentLayerCoverage": {
+      "schema": 1,
+      "coversByItem": {
+       "wayfarerTunic": [
+        "trousers.upper"
+       ],
+       "pilgrimTunic": [
+        "trousers.upper"
+       ],
+       "graveweaverTop": [
+        "trousers.upper"
+       ],
+       "lectorCoat": [
+        "trousers.upper"
+       ],
+       "duskguardCuirass": [
+        "trousers.upper"
+       ]
+      },
+      "partsByItem": {
+       "wayfarerTrousers": [
+        {
+         "mesh": "WayfarerTrousersUnderTorso",
+         "hideWhenRegions": [
+          "trousers.upper"
+         ]
+        }
+       ],
+       "graveweaverSkirt": [
+        {
+         "mesh": "WayfarerTrousersUnderTorso",
+         "hideWhenRegions": [
+          "trousers.upper"
+         ]
+        }
+       ],
+       "duskguardTassets": [
+        {
+         "mesh": "DuskguardTrousersUnderTorso",
+         "hideWhenRegions": [
+          "trousers.upper"
+         ]
+        }
+       ]
+      }
+     },
+     "items": {
+      "body": {
+       "bytes": 4496592,
+       "sha256": "4f153d5594deebe5d825b5740a5dd092568971a5fef2643d52971f006b1cd96e",
+       "meshes": [
+        "BodyExposed",
+        "BodyUnderTunic",
+        "BodyUnderBoots",
+        "BodyUnderLegs",
+        "BodyWaist",
+        "BodyHands",
+        "OrcV1Hair",
+        "OrcV1Brows",
+        "OrcV1Eyes",
+        "OrcV1Shorts"
+       ],
+       "file": "body-4f153d5594deebe5d825b5740a5dd092568971a5fef2643d52971f006b1cd96e.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-orc/body.glb",
+        "sha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b",
+        "bytes": 8519660
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "OrcV1BodyAlbedo",
+         "sourceSha256": "2ba9223d5c668713ed738896310f20964bd77b7d63344b397ae291a17e421346",
+         "sha256": "2488193afdd0bd8467ab58611fec227c9268b5a079a5f28d6aa9e8bb1d716a34",
+         "normalMap": false,
+         "sourceSize": [
+          1024,
+          1024
+         ],
+         "size": [
+          512,
+          512
+         ],
+         "bytes": 10980
+        },
+        {
+         "name": "OrcV1BodyNormal",
+         "sourceSha256": "878801c65f95dfa190f5bf439e0f8a9b2c77f9586647c78b9ae66ec4c6a29b6c",
+         "sha256": "cc91552c6e94fe43dbd88193ad4d323fcfe4da27f4cbbf48e38e52680eb41a15",
+         "normalMap": true,
+         "sourceSize": [
+          1024,
+          1024
+         ],
+         "size": [
+          512,
+          512
+         ],
+         "bytes": 307940
+        },
+        {
+         "name": "OrcV1ShortsAlbedo",
+         "sourceSha256": "bb4cfb1689a23ebd2a6a2df94fcfb6cde28078c20bedc571fe022513c53d18f9",
+         "sha256": "b5ff8a3aee867a89e7426fe28c8b3a729a441cd477993f9c880a960b19ddcb0b",
+         "normalMap": false,
+         "sourceSize": [
+          512,
+          512
+         ],
+         "size": [
+          512,
+          512
+         ],
+         "bytes": 20724
+        },
+        {
+         "name": "OrcV1Eyes",
+         "sourceSha256": "abe20e0f35c839a7eb6197543d3cc1026f12d3779ff3b1c099b8bf7d25abbd50",
+         "sha256": "58123826a2c92bb02d835ae0c07982555d8f37c7ab0a5d2f28f2ab3e015a6b88",
+         "normalMap": false,
+         "sourceSize": [
+          128,
+          128
+         ],
+         "size": [
+          128,
+          128
+         ],
+         "bytes": 846
+        },
+        {
+         "name": "OrcV1Eyes",
+         "sourceSha256": "abe20e0f35c839a7eb6197543d3cc1026f12d3779ff3b1c099b8bf7d25abbd50",
+         "sha256": "58123826a2c92bb02d835ae0c07982555d8f37c7ab0a5d2f28f2ab3e015a6b88",
+         "normalMap": false,
+         "sourceSize": [
+          128,
+          128
+         ],
+         "size": [
+          128,
+          128
+         ],
+         "bytes": 846
+        },
+        {
+         "name": "OrcV1Eyes",
+         "sourceSha256": "1462dddf852a0c8f2ff2cbd79fd2a8a7b236951f30408cab64473b4ef19e45e6",
+         "sha256": "4908e75851b2a2edb5f4627c18ebc8b9fe737de338381f52bd442b439df116a0",
+         "normalMap": false,
+         "sourceSize": [
+          128,
+          128
+         ],
+         "size": [
+          128,
+          128
+         ],
+         "bytes": 906
+        },
+        {
+         "name": "OrcV1Eyes",
+         "sourceSha256": "1462dddf852a0c8f2ff2cbd79fd2a8a7b236951f30408cab64473b4ef19e45e6",
+         "sha256": "4908e75851b2a2edb5f4627c18ebc8b9fe737de338381f52bd442b439df116a0",
+         "normalMap": false,
+         "sourceSize": [
+          128,
+          128
+         ],
+         "size": [
+          128,
+          128
+         ],
+         "bytes": 906
+        },
+        {
+         "name": "OrcV1Eyes",
+         "sourceSha256": "1462dddf852a0c8f2ff2cbd79fd2a8a7b236951f30408cab64473b4ef19e45e6",
+         "sha256": "4908e75851b2a2edb5f4627c18ebc8b9fe737de338381f52bd442b439df116a0",
+         "normalMap": false,
+         "sourceSize": [
+          128,
+          128
+         ],
+         "size": [
+          128,
+          128
+         ],
+         "bytes": 906
+        },
+        {
+         "name": "OrcV1Eyes",
+         "sourceSha256": "f64f15c1546a837c5b584400c361ca9e420d811ff09a24595e2e11101d9af074",
+         "sha256": "f0bad66509b57767fa84ba82e0837ed73fe1d3b75b80249281ef07117e36da35",
+         "normalMap": false,
+         "sourceSize": [
+          128,
+          128
+         ],
+         "size": [
+          128,
+          128
+         ],
+         "bytes": 1420
+        },
+        {
+         "name": "OrcV1Eyes",
+         "sourceSha256": "f64f15c1546a837c5b584400c361ca9e420d811ff09a24595e2e11101d9af074",
+         "sha256": "f0bad66509b57767fa84ba82e0837ed73fe1d3b75b80249281ef07117e36da35",
+         "normalMap": false,
+         "sourceSize": [
+          128,
+          128
+         ],
+         "size": [
+          128,
+          128
+         ],
+         "bytes": 1420
+        },
+        {
+         "name": "OrcV1EyesColor",
+         "sourceSha256": "8087f623ac21961c6bb0b9cc19d628a0306ad46c904efe9f8cbb7dd32f3072e9",
+         "sha256": "9fd601c19dee16c8bddda1c7631d83fe8610147f8b3b629aefbbe012a24b3c7e",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 4994
+        },
+        {
+         "name": "OrcV1EyesRough",
+         "sourceSha256": "8a9bfecb59ddec6b73b3ed497f602b9951d94e7a2ae5d409cb281a676fa88328",
+         "sha256": "05067c6ebeeb801521959a47353663c82d900cb40459b230999593b5bdab51fe",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 1258
+        },
+        {
+         "name": "OrcV1EyesColor",
+         "sourceSha256": "79c61fd8505d6cdd6f9891b62cb96f85951f7d78d0edca214dda9a2f94182e0a",
+         "sha256": "b776742dd8614f33468b2d1755e4bb11a961fc8f7d11f76269a037eabaf327e7",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 5888
+        },
+        {
+         "name": "OrcV1EyesRough",
+         "sourceSha256": "8a9bfecb59ddec6b73b3ed497f602b9951d94e7a2ae5d409cb281a676fa88328",
+         "sha256": "05067c6ebeeb801521959a47353663c82d900cb40459b230999593b5bdab51fe",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 1258
+        },
+        {
+         "name": "OrcV1EyesColor",
+         "sourceSha256": "efe67aa160820f952249a7d07563763b57f446b77262c3a1bd2e80e516d63f32",
+         "sha256": "61d20bd64a5a0d575ea71d7d49b119ca5c1dfdf1385c19d25398bfd1fbfed80f",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 5082
+        },
+        {
+         "name": "OrcV1EyesRough",
+         "sourceSha256": "d80066b1d0e3382171ac836100fa722794b774603b86ae9d227651d96c15490d",
+         "sha256": "c98cccb8878e86c909250deb49cf0db3a7260e6f2c7f4d8fa4de859737d57a54",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 1146
+        },
+        {
+         "name": "OrcV1EyesColor",
+         "sourceSha256": "efe67aa160820f952249a7d07563763b57f446b77262c3a1bd2e80e516d63f32",
+         "sha256": "61d20bd64a5a0d575ea71d7d49b119ca5c1dfdf1385c19d25398bfd1fbfed80f",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 5082
+        },
+        {
+         "name": "OrcV1EyesRough",
+         "sourceSha256": "d80066b1d0e3382171ac836100fa722794b774603b86ae9d227651d96c15490d",
+         "sha256": "c98cccb8878e86c909250deb49cf0db3a7260e6f2c7f4d8fa4de859737d57a54",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 1146
+        },
+        {
+         "name": "OrcV1EyesColor",
+         "sourceSha256": "efe67aa160820f952249a7d07563763b57f446b77262c3a1bd2e80e516d63f32",
+         "sha256": "61d20bd64a5a0d575ea71d7d49b119ca5c1dfdf1385c19d25398bfd1fbfed80f",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 5082
+        },
+        {
+         "name": "OrcV1EyesRough",
+         "sourceSha256": "d80066b1d0e3382171ac836100fa722794b774603b86ae9d227651d96c15490d",
+         "sha256": "c98cccb8878e86c909250deb49cf0db3a7260e6f2c7f4d8fa4de859737d57a54",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 1146
+        },
+        {
+         "name": "OrcV1EyesColor",
+         "sourceSha256": "efe67aa160820f952249a7d07563763b57f446b77262c3a1bd2e80e516d63f32",
+         "sha256": "61d20bd64a5a0d575ea71d7d49b119ca5c1dfdf1385c19d25398bfd1fbfed80f",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 5082
+        },
+        {
+         "name": "OrcV1EyesRough",
+         "sourceSha256": "d80066b1d0e3382171ac836100fa722794b774603b86ae9d227651d96c15490d",
+         "sha256": "c98cccb8878e86c909250deb49cf0db3a7260e6f2c7f4d8fa4de859737d57a54",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 1146
+        },
+        {
+         "name": "OrcV1EyesColor",
+         "sourceSha256": "efe67aa160820f952249a7d07563763b57f446b77262c3a1bd2e80e516d63f32",
+         "sha256": "61d20bd64a5a0d575ea71d7d49b119ca5c1dfdf1385c19d25398bfd1fbfed80f",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 5082
+        },
+        {
+         "name": "OrcV1EyesRough",
+         "sourceSha256": "d80066b1d0e3382171ac836100fa722794b774603b86ae9d227651d96c15490d",
+         "sha256": "c98cccb8878e86c909250deb49cf0db3a7260e6f2c7f4d8fa4de859737d57a54",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 1146
+        },
+        {
+         "name": "OrcV1EyesColor",
+         "sourceSha256": "efe67aa160820f952249a7d07563763b57f446b77262c3a1bd2e80e516d63f32",
+         "sha256": "61d20bd64a5a0d575ea71d7d49b119ca5c1dfdf1385c19d25398bfd1fbfed80f",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 5082
+        },
+        {
+         "name": "OrcV1EyesRough",
+         "sourceSha256": "d80066b1d0e3382171ac836100fa722794b774603b86ae9d227651d96c15490d",
+         "sha256": "c98cccb8878e86c909250deb49cf0db3a7260e6f2c7f4d8fa4de859737d57a54",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 1146
+        },
+        {
+         "name": "OrcV1EyesColor",
+         "sourceSha256": "efe67aa160820f952249a7d07563763b57f446b77262c3a1bd2e80e516d63f32",
+         "sha256": "61d20bd64a5a0d575ea71d7d49b119ca5c1dfdf1385c19d25398bfd1fbfed80f",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 5082
+        },
+        {
+         "name": "OrcV1EyesRough",
+         "sourceSha256": "d80066b1d0e3382171ac836100fa722794b774603b86ae9d227651d96c15490d",
+         "sha256": "c98cccb8878e86c909250deb49cf0db3a7260e6f2c7f4d8fa4de859737d57a54",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 1146
+        },
+        {
+         "name": "OrcV1EyesColor",
+         "sourceSha256": "bb7e9a1c251ff6a5fcff078f96887ec4cda5f0b915e02f44034734f3a9fb796d",
+         "sha256": "49dd0e4e079724aa829823b29b2272d419a1ec4777fad60ea86194cffed68027",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 9654
+        },
+        {
+         "name": "OrcV1EyesRough",
+         "sourceSha256": "202f946b725dbf25cad30cd7ff1401f7eebfce6987b6ed191dc90b5dd7812012",
+         "sha256": "8e8907cfe1f12a953cd20a9105b9c5e3ba383a792eb12e390b70f05d92bd1d0a",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 2300
+        },
+        {
+         "name": "OrcV1EyesColor",
+         "sourceSha256": "94f7caf1ce3ccaf8b5e3303d40a834a04b9b14f8fce9baba3ef7318899c387a9",
+         "sha256": "3e4735453bfc5079b38f5af84b3be6d9827790a0f3e77792ea6ad6d34401f64b",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 9298
+        },
+        {
+         "name": "OrcV1EyesRough",
+         "sourceSha256": "f0de00a2d5fbc33fd2184e2a50903e2606319dbd928255df8fa30bae6c548564",
+         "sha256": "b82f6201836b870babed0bf82d5a5562cfd081af8ca2312610b93b47c74041fa",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 2394
+        }
+       ]
+      },
+      "graveweaverHood": {
+       "bytes": 208056,
+       "sha256": "f2d9e07fd0fa0c2f8863fe0d1ad89ddde7076fc833436e1a63544f8ccb72c991",
+       "meshes": [
+        "GraveweaverHood"
+       ],
+       "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "graveweaverHood-f2d9e07fd0fa0c2f8863fe0d1ad89ddde7076fc833436e1a63544f8ccb72c991.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-orc/graveweaverHood.glb",
+        "sha256": "e07841563d560e1f766e4cf52689574df6ed8b5a6862a98d2a1abcc56bb24e35",
+        "bytes": 414136
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "GraveweaverHood",
+         "sourceSha256": "767ac140ff4d0c5f28d91ce0050b90a11f4d921c485eca74d56ad356d527fc99",
+         "sha256": "02b38c20c5e683300cb28ee0c41f00ac0bbccb9c8ef4bccdac8f71f03247407a",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8094
+        }
+       ]
+      },
+      "graveweaverTop": {
+       "bytes": 180584,
+       "sha256": "d482435af141f88d1a7a3397d3bcd68cd0e8ae2086b32c743fb86ce74e387ea3",
+       "meshes": [
+        "GraveweaverTop",
+        "GraveweaverPendant"
+       ],
+       "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "graveweaverTop-d482435af141f88d1a7a3397d3bcd68cd0e8ae2086b32c743fb86ce74e387ea3.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-orc/graveweaverTop.glb",
+        "sha256": "8b044f691641ba7c197db148f82bf1315dabe287f16ae8cd7e2b28d83bfa7ea9",
+        "bytes": 329576
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "GraveweaverTop",
+         "sourceSha256": "29d4e4e4beced64700aee7723b34dc6f6ac6d5c1b4f684ce2fdd2ba9e60c46f3",
+         "sha256": "3c7081b7ddad683f66b1fab333b30bd7f3474661484cde3e70c567122fd189be",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8738
+        }
+       ]
+      },
+      "graveweaverSkirt": {
+       "bytes": 223416,
+       "sha256": "a860476ec787dc0bb2960bc61c5e28426cffa0e7b68797b6dba5f88e903a1bcf",
+       "meshes": [
+        "GraveweaverSkirt",
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs",
+        "WayfarerTrousersUnderTorso"
+       ],
+       "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "coverageRevision": "conservative-geosets-v1",
+       "file": "graveweaverSkirt-a860476ec787dc0bb2960bc61c5e28426cffa0e7b68797b6dba5f88e903a1bcf.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-orc/graveweaverSkirt-coverage-aefdea6ff724.glb",
+        "sha256": "aefdea6ff7247859248de6fbd6a681d0f13de5f9c48f870f0fe560dff216af46",
+        "bytes": 520284
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "GraveweaverSkirt",
+         "sourceSha256": "767ac140ff4d0c5f28d91ce0050b90a11f4d921c485eca74d56ad356d527fc99",
+         "sha256": "02b38c20c5e683300cb28ee0c41f00ac0bbccb9c8ef4bccdac8f71f03247407a",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8094
+        },
+        {
+         "name": "WayfarerTrousers",
+         "sourceSha256": "f465517766ccc5bd04e613c51aed5eb479406cfa838f3ee3612966310b58ac0d",
+         "sha256": "2e556df0e1e65cc2e17e6f50a2fc613a30073a9c4187e94ed5a33afb455c6486",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 3798
+        }
+       ]
+      },
+      "graveweaverGloves": {
+       "bytes": 144596,
+       "sha256": "6c1c3f48280270082327700a80ef886895ca5a2aee6076d9cb832dc7e4825e60",
+       "meshes": [
+        "GraveweaverGloves"
+       ],
+       "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "graveweaverGloves-6c1c3f48280270082327700a80ef886895ca5a2aee6076d9cb832dc7e4825e60.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-orc/graveweaverGloves.glb",
+        "sha256": "ae551225a6ceb06388b491342070e00a5c7ac2a377df1bac8ffcff13930331af",
+        "bytes": 238056
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "GraveweaverGloves",
+         "sourceSha256": "8cca22d0af154c160f1f8f279ea82165ef265dd8dad740f47a6562a76065cb20",
+         "sha256": "585343caeadcb85ae3b6ecf58a0a4a2fc3291ca1abe7d5a10ee9198024a5b962",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 3572
+        }
+       ]
+      },
+      "wayfarerTunic": {
+       "bytes": 185012,
+       "sha256": "95dc7e84116f0ed5931f28af123af6418eacaf698884a33358ff74cf9aa7399b",
+       "meshes": [
+        "WayfarerTunic"
+       ],
+       "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "wayfarerTunic-95dc7e84116f0ed5931f28af123af6418eacaf698884a33358ff74cf9aa7399b.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-orc/wayfarerTunic.glb",
+        "sha256": "291c8ccdd6891c21aeb74342bc72ad0110ef2a658f22f9b10ba2099d59bebc1b",
+        "bytes": 342792
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "WayfarerTunic",
+         "sourceSha256": "29d4e4e4beced64700aee7723b34dc6f6ac6d5c1b4f684ce2fdd2ba9e60c46f3",
+         "sha256": "3c7081b7ddad683f66b1fab333b30bd7f3474661484cde3e70c567122fd189be",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8738
+        }
+       ]
+      },
+      "pilgrimTunic": {
+       "bytes": 410692,
+       "sha256": "7894d553378aa2787ce6f7f676c5a3bbbc15c2b947ae2e79b7c75b3f5bba2600",
+       "meshes": [
+        "PilgrimTunic"
+       ],
+       "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "pilgrimTunic-7894d553378aa2787ce6f7f676c5a3bbbc15c2b947ae2e79b7c75b3f5bba2600.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-orc/pilgrimTunic.glb",
+        "sha256": "91fc9c23dddcd1b54efb8b3356cb6f93fcbfba97bc90241b176f18ef0e406270",
+        "bytes": 695392
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "PilgrimTunic",
+         "sourceSha256": "767ac140ff4d0c5f28d91ce0050b90a11f4d921c485eca74d56ad356d527fc99",
+         "sha256": "02b38c20c5e683300cb28ee0c41f00ac0bbccb9c8ef4bccdac8f71f03247407a",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8094
+        }
+       ]
+      },
+      "wayfarerTrousers": {
+       "bytes": 67456,
+       "sha256": "3095f6da9c866ec49df978efb47761405322c1693a61751e94bee720fd962e0e",
+       "meshes": [
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs",
+        "WayfarerTrousersUnderTorso"
+       ],
+       "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "coverageRevision": "conservative-geosets-v1",
+       "file": "wayfarerTrousers-3095f6da9c866ec49df978efb47761405322c1693a61751e94bee720fd962e0e.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-orc/wayfarerTrousers-coverage-124da6c75972.glb",
+        "sha256": "124da6c75972eb432d77739bd27d051dcce9f3208f95202009187bf91a6cbffb",
+        "bytes": 210676
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "WayfarerTrousers",
+         "sourceSha256": "f465517766ccc5bd04e613c51aed5eb479406cfa838f3ee3612966310b58ac0d",
+         "sha256": "2e556df0e1e65cc2e17e6f50a2fc613a30073a9c4187e94ed5a33afb455c6486",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 3798
+        }
+       ]
+      },
+      "wayfarerBoots": {
+       "bytes": 170216,
+       "sha256": "41931c772a4ba96131772da020715aae5e0b59865b0685e1d12c44f4b293b3d8",
+       "meshes": [
+        "WayfarerBoots"
+       ],
+       "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "wayfarerBoots-41931c772a4ba96131772da020715aae5e0b59865b0685e1d12c44f4b293b3d8.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-orc/wayfarerBoots.glb",
+        "sha256": "800fc2b7cb43a30a4b103dcf607ddae68692b1bd9ee8f64325199fd043583be6",
+        "bytes": 338720
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "WayfarerBoots",
+         "sourceSha256": "feb2ba6d8d36f52eadf576515ee26d1f84587d7f4186ea4139ccb24beaa6bc84",
+         "sha256": "3023c38e0ae6d7253a20979cd3741233af3d65270d02e2f660c3b9d2712a4b1a",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 12498
+        }
+       ]
+      },
+      "wardenPauldrons": {
+       "bytes": 22692,
+       "sha256": "0f34d3b6cf4c6bf75ecde7698d7334d0ab8ea26322417af3a65d0c0262f5b21c",
+       "meshes": [
+        "WardenPauldrons"
+       ],
+       "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "wardenPauldrons-0f34d3b6cf4c6bf75ecde7698d7334d0ab8ea26322417af3a65d0c0262f5b21c.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-orc/wardenPauldrons-0eeed07f0db4.glb",
+        "sha256": "0eeed07f0db49a6b74dd2042121c1bec2b7ccd9418a07d88df219e513e3f75b2",
+        "bytes": 31032
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": []
+      },
+      "lectorCoat": {
+       "bytes": 323988,
+       "sha256": "5d9814aca230669f8f936480218574e641355bb5ad2372eb6ddc5d03db7c4b66",
+       "meshes": [
+        "LectorCoat"
+       ],
+       "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "lectorCoat-5d9814aca230669f8f936480218574e641355bb5ad2372eb6ddc5d03db7c4b66.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-orc/lectorCoat-6b60897773e6.glb",
+        "sha256": "6b60897773e608d5176b58f5914cb77a87c34ce476d51bd8e3e1611ea86a5b37",
+        "bytes": 389196
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "WayfarerTunic",
+         "sourceSha256": "29d4e4e4beced64700aee7723b34dc6f6ac6d5c1b4f684ce2fdd2ba9e60c46f3",
+         "sha256": "3c7081b7ddad683f66b1fab333b30bd7f3474661484cde3e70c567122fd189be",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8738
+        }
+       ]
+      },
+      "duskguardCuirass": {
+       "bytes": 299612,
+       "sha256": "1fc77396037a9305dcfc6aecc43da0f94fd24b0815b97ef6a30f94fdaf4dbf70",
+       "meshes": [
+        "DuskguardCuirass",
+        "DuskguardGussets",
+        "DuskguardUndercoat"
+       ],
+       "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "duskguardCuirass-1fc77396037a9305dcfc6aecc43da0f94fd24b0815b97ef6a30f94fdaf4dbf70.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-orc/duskguardCuirass-a54e8b60c1f1.glb",
+        "sha256": "a54e8b60c1f152d0e3fcaf351edbcd859afde8499bca82e0dfef9666da51f159",
+        "bytes": 364824
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "WayfarerTunic",
+         "sourceSha256": "29d4e4e4beced64700aee7723b34dc6f6ac6d5c1b4f684ce2fdd2ba9e60c46f3",
+         "sha256": "3c7081b7ddad683f66b1fab333b30bd7f3474661484cde3e70c567122fd189be",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8738
+        }
+       ]
+      },
+      "duskguardTassets": {
+       "bytes": 84688,
+       "sha256": "8f2c3d990e5c75cc0b25ee651fca5d2b049175a8f52b1a5045b9e458c1075dea",
+       "meshes": [
+        "DuskguardTrousers",
+        "DuskguardTrouserCuffs",
+        "DuskguardTassets",
+        "DuskguardTrousersUnderTorso"
+       ],
+       "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "coverageRevision": "conservative-geosets-v1",
+       "file": "duskguardTassets-8f2c3d990e5c75cc0b25ee651fca5d2b049175a8f52b1a5045b9e458c1075dea.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-orc/duskguardTassets-coverage-ac83724683f0.glb",
+        "sha256": "ac83724683f007f757d4e43978ebd47e3fd284f0bbf2a50de5ecd98aef8beacb",
+        "bytes": 164532
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "WayfarerTrousers",
+         "sourceSha256": "f465517766ccc5bd04e613c51aed5eb479406cfa838f3ee3612966310b58ac0d",
+         "sha256": "2e556df0e1e65cc2e17e6f50a2fc613a30073a9c4187e94ed5a33afb455c6486",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 3798
+        }
+       ]
+      },
+      "duskguardGreaves": {
+       "bytes": 176824,
+       "sha256": "57fb78844549c2c0cfab87917dd274c6fc39adecf66260969c712f66cd320c7c",
+       "meshes": [
+        "DuskguardBootUnderlayer",
+        "DuskguardGreaves"
+       ],
+       "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "duskguardGreaves-57fb78844549c2c0cfab87917dd274c6fc39adecf66260969c712f66cd320c7c.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-orc/duskguardGreaves-5c047b0fbea0.glb",
+        "sha256": "5c047b0fbea0de4f8b3048b9fe72f2ba272f5bb32b798cbf5282f9ff1deeb1da",
+        "bytes": 249456
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "WayfarerBoots",
+         "sourceSha256": "feb2ba6d8d36f52eadf576515ee26d1f84587d7f4186ea4139ccb24beaa6bc84",
+         "sha256": "3023c38e0ae6d7253a20979cd3741233af3d65270d02e2f660c3b9d2712a4b1a",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 12498
+        }
+       ]
+      },
+      "duskguardVambraces": {
+       "bytes": 154356,
+       "sha256": "3ebe071c27f1c236074b9a4470ab8fb91ba2a4076b74922e4068d24f960f8f78",
+       "meshes": [
+        "DuskguardGloveUnderlayer",
+        "DuskguardVambraces"
+       ],
+       "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "duskguardVambraces-3ebe071c27f1c236074b9a4470ab8fb91ba2a4076b74922e4068d24f960f8f78.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-orc/duskguardVambraces-358c47ffff40.glb",
+        "sha256": "358c47ffff40888390ff98a0d94a6fbc61a90d14dcf5845f436a840c755a0e03",
+        "bytes": 188928
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "GraveweaverGloves",
+         "sourceSha256": "8cca22d0af154c160f1f8f279ea82165ef265dd8dad740f47a6562a76065cb20",
+         "sha256": "585343caeadcb85ae3b6ecf58a0a4a2fc3291ca1abe7d5a10ee9198024a5b962",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 3572
+        }
+       ]
+      }
+     }
+    }
+   },
+   "undead": {
+    "sourceManifest": {
+     "path": "public/ashen-reach/equipment-undead/manifest-coverage-v1.json",
+     "sha256": "f62d1724529084f665cbbebc43c9926ad393f9b87f9ed4db9b29fb40c88fd796"
+    },
+    "manifest": {
+     "schema": 1,
+     "fitId": "ashen-undead",
+     "profileId": "undead-tripo-v1",
+     "bindSha256": "6a7f392c9301863bbcc17b5e57cef5fe6dbe0f89e3736fbcb788be0c4fc62295",
+     "coverage": {
+      "schema": 1,
+      "revision": "conservative-geosets-v1",
+      "race": "undead",
+      "bodySegments": {
+       "UndeadV1Body": [
+        "head.face",
+        "neck",
+        "torso.upper",
+        "torso.lower",
+        "waist",
+        "arm.upper",
+        "arm.lower",
+        "hand",
+        "leg.upper",
+        "leg.lower",
+        "foot"
+       ],
+       "UndeadV1Eyes": [
+        "head.face"
+       ],
+       "UndeadTorsoCore": [
+        "torso.upper",
+        "torso.lower",
+        "waist"
+       ]
+      }
+     },
+     "garmentLayerCoverage": {
+      "schema": 1,
+      "coversByItem": {
+       "wayfarerTunic": [
+        "trousers.upper"
+       ],
+       "pilgrimTunic": [
+        "trousers.upper"
+       ],
+       "graveweaverTop": [
+        "trousers.upper"
+       ],
+       "lectorCoat": [
+        "trousers.upper"
+       ],
+       "duskguardCuirass": [
+        "trousers.upper"
+       ]
+      },
+      "partsByItem": {
+       "wayfarerTrousers": [
+        {
+         "mesh": "WayfarerTrousersUnderTorso",
+         "hideWhenRegions": [
+          "trousers.upper"
+         ]
+        }
+       ],
+       "graveweaverSkirt": [
+        {
+         "mesh": "WayfarerTrousersUnderTorso",
+         "hideWhenRegions": [
+          "trousers.upper"
+         ]
+        }
+       ],
+       "duskguardTassets": [
+        {
+         "mesh": "DuskguardTrousersUnderTorso",
+         "hideWhenRegions": [
+          "trousers.upper"
+         ]
+        }
+       ]
+      }
+     },
+     "items": {
+      "body": {
+       "bytes": 2984256,
+       "sha256": "b2193ae173473e5bfbb8bb056dfc00399945a8895e9d70c13318931094b7f262",
+       "meshes": [
+        "UndeadV1Body",
+        "UndeadV1Eyes",
+        "UndeadTorsoCore"
+       ],
+       "coverageRevision": "conservative-geosets-v1",
+       "file": "body-b2193ae173473e5bfbb8bb056dfc00399945a8895e9d70c13318931094b7f262.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-undead/body-coverage-02cb6c3cc877.glb",
+        "sha256": "02cb6c3cc8777b527676959528093a7bc97ad7c24282ca4ec27570c3b7de8038",
+        "bytes": 8371408
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "basecolor",
+         "sourceSha256": "a47e41e96ad9f7d6e07c0cc3033a440a410cfae4d72f8ce267d86c1174727ace",
+         "sha256": "c28236f618116737263872af9036012db81d3e9f8d43aed4bedce0a1d0c73391",
+         "normalMap": false,
+         "sourceSize": [
+          1024,
+          1024
+         ],
+         "size": [
+          512,
+          512
+         ],
+         "bytes": 123096
+        },
+        {
+         "name": "normal",
+         "sourceSha256": "5d6293309167a5644826be0016205521d52d14f30cdb8f91c292a1ff471fb50f",
+         "sha256": "56056bb627f6deec5bde4a20a4f0f60fba627311c5ef5d790a77bed7f5721c7e",
+         "normalMap": true,
+         "sourceSize": [
+          1024,
+          1024
+         ],
+         "size": [
+          512,
+          512
+         ],
+         "bytes": 496770
+        },
+        {
+         "name": "metallic-roughness",
+         "sourceSha256": "ca9e4bf850197710031d71381128eb5a46db904444250efed87fa3efffc7ffaa",
+         "sha256": "20cc1df99a9ae7ac3bb00e61609b836fa0ae77c704ecd3779195bcd78b1f6345",
+         "normalMap": false,
+         "sourceSize": [
+          1024,
+          1024
+         ],
+         "size": [
+          512,
+          512
+         ],
+         "bytes": 53860
+        }
+       ]
+      },
+      "graveweaverHood": {
+       "bytes": 207828,
+       "sha256": "d61b39f528888424ac96498a78af1d57ace8192840b5c125354f6680ff632b74",
+       "meshes": [
+        "GraveweaverHood"
+       ],
+       "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "graveweaverHood-d61b39f528888424ac96498a78af1d57ace8192840b5c125354f6680ff632b74.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-undead/graveweaverHood.glb",
+        "sha256": "5e67a23def5c9ea04a97e9f6844500296d832be20840c676463b1fd857f9af4e",
+        "bytes": 277312
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "GraveweaverHood",
+         "sourceSha256": "767ac140ff4d0c5f28d91ce0050b90a11f4d921c485eca74d56ad356d527fc99",
+         "sha256": "02b38c20c5e683300cb28ee0c41f00ac0bbccb9c8ef4bccdac8f71f03247407a",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8094
+        }
+       ]
+      },
+      "graveweaverTop": {
+       "bytes": 179904,
+       "sha256": "5231e9370725b8225eacfd623e290f95672af75f594bb94886a6bd4b7e3fb9cc",
+       "meshes": [
+        "GraveweaverTop",
+        "GraveweaverPendant"
+       ],
+       "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "graveweaverTop-5231e9370725b8225eacfd623e290f95672af75f594bb94886a6bd4b7e3fb9cc.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-undead/graveweaverTop.glb",
+        "sha256": "dccc6949b8ac9672954101de1bffdca0b7f5a8fae6f0b4ef0ad90e9a02cc031a",
+        "bytes": 245116
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "GraveweaverTop",
+         "sourceSha256": "29d4e4e4beced64700aee7723b34dc6f6ac6d5c1b4f684ce2fdd2ba9e60c46f3",
+         "sha256": "3c7081b7ddad683f66b1fab333b30bd7f3474661484cde3e70c567122fd189be",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8738
+        }
+       ]
+      },
+      "graveweaverSkirt": {
+       "bytes": 223036,
+       "sha256": "062e714aae5306d91b59205412b935deab8e50f0842c9353a6a9bfda81ddcdb2",
+       "meshes": [
+        "GraveweaverSkirt",
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs",
+        "WayfarerTrousersUnderTorso"
+       ],
+       "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "coverageRevision": "conservative-geosets-v1",
+       "file": "graveweaverSkirt-062e714aae5306d91b59205412b935deab8e50f0842c9353a6a9bfda81ddcdb2.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-undead/graveweaverSkirt-coverage-8be75fe7dc39.glb",
+        "sha256": "8be75fe7dc3901c5820972168d87d99d6859a16f4caed5a55987d5bdb07a7040",
+        "bytes": 372352
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "GraveweaverSkirt",
+         "sourceSha256": "767ac140ff4d0c5f28d91ce0050b90a11f4d921c485eca74d56ad356d527fc99",
+         "sha256": "02b38c20c5e683300cb28ee0c41f00ac0bbccb9c8ef4bccdac8f71f03247407a",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8094
+        },
+        {
+         "name": "WayfarerTrousers",
+         "sourceSha256": "f465517766ccc5bd04e613c51aed5eb479406cfa838f3ee3612966310b58ac0d",
+         "sha256": "2e556df0e1e65cc2e17e6f50a2fc613a30073a9c4187e94ed5a33afb455c6486",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 3798
+        }
+       ]
+      },
+      "graveweaverGloves": {
+       "bytes": 139572,
+       "sha256": "b98353385f6caafb798f0db12309bb8125ba22a2fafa6d61faa47f3dccdf8cc5",
+       "meshes": [
+        "GraveweaverGloves"
+       ],
+       "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "graveweaverGloves-b98353385f6caafb798f0db12309bb8125ba22a2fafa6d61faa47f3dccdf8cc5.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-undead/graveweaverGloves.glb",
+        "sha256": "5c136ecbaca3b6f583d88b6ccdc298d014ebd18ee089d60e29546f2ba1698864",
+        "bytes": 174144
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "GraveweaverGloves",
+         "sourceSha256": "8cca22d0af154c160f1f8f279ea82165ef265dd8dad740f47a6562a76065cb20",
+         "sha256": "585343caeadcb85ae3b6ecf58a0a4a2fc3291ca1abe7d5a10ee9198024a5b962",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 3572
+        }
+       ]
+      },
+      "wayfarerTunic": {
+       "bytes": 184468,
+       "sha256": "56dd6ced7fc7dd57c66705a6128971024208687d68df294faf167398fe13965c",
+       "meshes": [
+        "WayfarerTunic"
+       ],
+       "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "wayfarerTunic-56dd6ced7fc7dd57c66705a6128971024208687d68df294faf167398fe13965c.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-undead/wayfarerTunic.glb",
+        "sha256": "40ef02c1b771dcbc6272b63bc8b7039033698b847439a57527a82e367a6e8c9b",
+        "bytes": 249676
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "WayfarerTunic",
+         "sourceSha256": "29d4e4e4beced64700aee7723b34dc6f6ac6d5c1b4f684ce2fdd2ba9e60c46f3",
+         "sha256": "3c7081b7ddad683f66b1fab333b30bd7f3474661484cde3e70c567122fd189be",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8738
+        }
+       ]
+      },
+      "pilgrimTunic": {
+       "bytes": 410616,
+       "sha256": "88cfa80986606c62b36ca30c442cea46a4ce70b8f9ce091dad758ebb5a927535",
+       "meshes": [
+        "PilgrimTunic"
+       ],
+       "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "pilgrimTunic-88cfa80986606c62b36ca30c442cea46a4ce70b8f9ce091dad758ebb5a927535.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-undead/pilgrimTunic.glb",
+        "sha256": "4a832e759069b96f66eedcebb3ca85915d612ca43bee2c0bcb60992d5e485d95",
+        "bytes": 480100
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "PilgrimTunic",
+         "sourceSha256": "767ac140ff4d0c5f28d91ce0050b90a11f4d921c485eca74d56ad356d527fc99",
+         "sha256": "02b38c20c5e683300cb28ee0c41f00ac0bbccb9c8ef4bccdac8f71f03247407a",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8094
+        }
+       ]
+      },
+      "wayfarerTrousers": {
+       "bytes": 67104,
+       "sha256": "6e07a485fc3765029b22a78ed7a9e5eb722d8d9363248b0f01ffbfecee675523",
+       "meshes": [
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs",
+        "WayfarerTrousersUnderTorso"
+       ],
+       "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "coverageRevision": "conservative-geosets-v1",
+       "file": "wayfarerTrousers-6e07a485fc3765029b22a78ed7a9e5eb722d8d9363248b0f01ffbfecee675523.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-undead/wayfarerTrousers-coverage-051b2a33d0e2.glb",
+        "sha256": "051b2a33d0e25bd476f486cf3d8071d76d91cd04be625d298fe3b59bcc379e18",
+        "bytes": 146944
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "WayfarerTrousers",
+         "sourceSha256": "f465517766ccc5bd04e613c51aed5eb479406cfa838f3ee3612966310b58ac0d",
+         "sha256": "2e556df0e1e65cc2e17e6f50a2fc613a30073a9c4187e94ed5a33afb455c6486",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 3798
+        }
+       ]
+      },
+      "wayfarerBoots": {
+       "bytes": 169512,
+       "sha256": "0ee7a31c0ffe5d592ab4bf42b38b6f84c8a6c6ed70a65cc4b7997d6304ca4e60",
+       "meshes": [
+        "WayfarerBoots"
+       ],
+       "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "wayfarerBoots-0ee7a31c0ffe5d592ab4bf42b38b6f84c8a6c6ed70a65cc4b7997d6304ca4e60.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-undead/wayfarerBoots.glb",
+        "sha256": "ce99e04c73153c47b97b69f94327983e3844d0f24c8a7757e4126f1baabc5c85",
+        "bytes": 242148
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "WayfarerBoots",
+         "sourceSha256": "feb2ba6d8d36f52eadf576515ee26d1f84587d7f4186ea4139ccb24beaa6bc84",
+         "sha256": "3023c38e0ae6d7253a20979cd3741233af3d65270d02e2f660c3b9d2712a4b1a",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 12498
+        }
+       ]
+      },
+      "wardenPauldrons": {
+       "bytes": 20920,
+       "sha256": "9936911092d9fef8c138321a14ec178bd2db7bb21d927e2e39ddbc25cd33b45f",
+       "meshes": [
+        "WardenPauldrons"
+       ],
+       "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "wardenPauldrons-9936911092d9fef8c138321a14ec178bd2db7bb21d927e2e39ddbc25cd33b45f.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-undead/wardenPauldrons-48130ebf8564.glb",
+        "sha256": "48130ebf8564bcfda94a806e74fd998b8f03cdba8917b7bbf22f517054d3c961",
+        "bytes": 26888
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": []
+      },
+      "lectorCoat": {
+       "bytes": 330628,
+       "sha256": "aa9693c785e4b8c8596126e7752369ff30198c951b0042b9d185e2ea5a66b946",
+       "meshes": [
+        "LectorCoat"
+       ],
+       "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "lectorCoat-aa9693c785e4b8c8596126e7752369ff30198c951b0042b9d185e2ea5a66b946.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-undead/lectorCoat-711447547e62.glb",
+        "sha256": "711447547e62bbff736ddb03b66d26075af2f399e0884a32868214807d0f68dd",
+        "bytes": 395840
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "WayfarerTunic",
+         "sourceSha256": "29d4e4e4beced64700aee7723b34dc6f6ac6d5c1b4f684ce2fdd2ba9e60c46f3",
+         "sha256": "3c7081b7ddad683f66b1fab333b30bd7f3474661484cde3e70c567122fd189be",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8738
+        }
+       ]
+      },
+      "duskguardCuirass": {
+       "bytes": 273308,
+       "sha256": "b9db83552771c3582b2e60d5abab1f2970b1b4b9bbd04999ec6e9a14ba46e7ac",
+       "meshes": [
+        "DuskguardCuirass",
+        "DuskguardGussets",
+        "DuskguardUndercoat"
+       ],
+       "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "duskguardCuirass-b9db83552771c3582b2e60d5abab1f2970b1b4b9bbd04999ec6e9a14ba46e7ac.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-undead/duskguardCuirass-a3dac0cc75be.glb",
+        "sha256": "a3dac0cc75bef392f9561447daaf2462d11dbad691e9619264b6dfbe4731c636",
+        "bytes": 338520
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "WayfarerTunic",
+         "sourceSha256": "29d4e4e4beced64700aee7723b34dc6f6ac6d5c1b4f684ce2fdd2ba9e60c46f3",
+         "sha256": "3c7081b7ddad683f66b1fab333b30bd7f3474661484cde3e70c567122fd189be",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8738
+        }
+       ]
+      },
+      "duskguardTassets": {
+       "bytes": 77372,
+       "sha256": "5bc6fb9a19e4bc19622e64cfcb6d0156417453fe97581c0abd6117992eec7ccb",
+       "meshes": [
+        "DuskguardTrousers",
+        "DuskguardTrouserCuffs",
+        "DuskguardTassets",
+        "DuskguardTrousersUnderTorso"
+       ],
+       "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "coverageRevision": "conservative-geosets-v1",
+       "file": "duskguardTassets-5bc6fb9a19e4bc19622e64cfcb6d0156417453fe97581c0abd6117992eec7ccb.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-undead/duskguardTassets-coverage-3fd0a9c51a6b.glb",
+        "sha256": "3fd0a9c51a6bd3d51fcb381486e4d6396c91af648ebcb0ec9f13f757249647b4",
+        "bytes": 157220
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "WayfarerTrousers",
+         "sourceSha256": "f465517766ccc5bd04e613c51aed5eb479406cfa838f3ee3612966310b58ac0d",
+         "sha256": "2e556df0e1e65cc2e17e6f50a2fc613a30073a9c4187e94ed5a33afb455c6486",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 3798
+        }
+       ]
+      },
+      "duskguardGreaves": {
+       "bytes": 176436,
+       "sha256": "ae5f46bd2066ca25b7e1e514b51b3c6ba18475b5732ac44245ca734753badf10",
+       "meshes": [
+        "DuskguardBootUnderlayer",
+        "DuskguardGreaves"
+       ],
+       "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "duskguardGreaves-ae5f46bd2066ca25b7e1e514b51b3c6ba18475b5732ac44245ca734753badf10.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-undead/duskguardGreaves-65e92cf980bd.glb",
+        "sha256": "65e92cf980bd0a91cd0d9ed37c9964a42ba61472ce424e8254bfb24526fae5a7",
+        "bytes": 249068
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "WayfarerBoots",
+         "sourceSha256": "feb2ba6d8d36f52eadf576515ee26d1f84587d7f4186ea4139ccb24beaa6bc84",
+         "sha256": "3023c38e0ae6d7253a20979cd3741233af3d65270d02e2f660c3b9d2712a4b1a",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 12498
+        }
+       ]
+      },
+      "duskguardVambraces": {
+       "bytes": 149684,
+       "sha256": "205050450611ff7f63364fcae87bfa41ac1702a914720fd363221c4b1ad279f7",
+       "meshes": [
+        "DuskguardGloveUnderlayer",
+        "DuskguardVambraces"
+       ],
+       "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "duskguardVambraces-205050450611ff7f63364fcae87bfa41ac1702a914720fd363221c4b1ad279f7.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-undead/duskguardVambraces-172dbebdd269.glb",
+        "sha256": "172dbebdd2699eb4ee1e0a48b6fd8b98f69e85ff8b4a76d1c18e9e61fa279395",
+        "bytes": 184260
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "GraveweaverGloves",
+         "sourceSha256": "8cca22d0af154c160f1f8f279ea82165ef265dd8dad740f47a6562a76065cb20",
+         "sha256": "585343caeadcb85ae3b6ecf58a0a4a2fc3291ca1abe7d5a10ee9198024a5b962",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 3572
+        }
+       ]
+      }
+     }
+    }
+   }
+  },
+  "tooling": {
+   "node": "22.18.0",
+   "@gltf-transform/core": "4.4.2",
+   "meshoptimizer": "0.22.0",
+   "sharp": "0.35.4"
+  },
+  "compilerSha256": "e9bb55b8b67195c5fe92cb8ebfc86aa59ee654a614bcec4154ab5c721a531563"
+ },
+ "races": {
+  "human": {
+   "pieces": {
+    "body": {
+     "sha256": "96e0f64514c98b475f3b00314c17fe37544506080e87c4dc354fb6b13ea6d552",
+     "bounds": [
+      {
+       "name": "HumanV1Body",
+       "minimum": [
+        -0.9226998895844188,
+        -0.37261230803065515,
+        -1.5794350174980771
+       ],
+       "maximum": [
+        0.9290005874913303,
+        2.0057855359450083,
+        1.06896179784637
+       ]
+      },
+      {
+       "name": "HumanTorsoCore",
+       "minimum": [
+        -0.9226998895844188,
+        -0.37261230803065515,
+        -1.5794350174980771
+       ],
+       "maximum": [
+        0.9290005874913303,
+        2.0057855359450083,
+        1.06896179784637
+       ]
+      }
+     ],
+     "points": 5598540,
+     "escaped": 0
+    },
+    "graveweaverHood": {
+     "sha256": "291e25c5c270a34a1e655e751cd26e69c47110aa8f420987c07a1fc56def7330",
+     "bounds": [
+      {
+       "name": "GraveweaverHood",
+       "minimum": [
+        -0.4047622641032056,
+        -0.18613883205165993,
+        -1.348200164808217
+       ],
+       "maximum": [
+        0.3992851871005565,
+        1.8510790233502443,
+        0.7774235712595148
+       ]
+      }
+     ],
+     "points": 4038165,
+     "escaped": 0
+    },
+    "graveweaverTop": {
+     "sha256": "62e942afd726d5975c0098f808267a621e68625ab72365bea10c92034bb4aba7",
+     "bounds": [
+      {
+       "name": "GraveweaverPendant",
+       "minimum": [
+        -0.25190344618812577,
+        0.13264396015808677,
+        -0.9286004814134878
+       ],
+       "maximum": [
+        0.268967916494135,
+        1.5494952031715619,
+        0.4860088795030493
+       ]
+      },
+      {
+       "name": "GraveweaverPendant",
+       "minimum": [
+        -0.21329074489826477,
+        0.2015195433970256,
+        -0.7907720988791147
+       ],
+       "maximum": [
+        0.22332749002832208,
+        1.431762546794343,
+        0.3833134374086886
+       ]
+      },
+      {
+       "name": "GraveweaverTop",
+       "minimum": [
+        -0.7282943849116161,
+        -0.23577071844716935,
+        -1.3820379583713782
+       ],
+       "maximum": [
+        0.7564548823375865,
+        1.9065529489849946,
+        0.8922679306855279
+       ]
+      }
+     ],
+     "points": 3051495,
+     "escaped": 0
+    },
+    "graveweaverSkirt": {
+     "sha256": "2e6115ef3c7ab3f69211481797f641e910fb799b284f806ceaac5ac69b84110b",
+     "bounds": [
+      {
+       "name": "GraveweaverSkirt",
+       "minimum": [
+        -0.8630477663302847,
+        -0.4154363519215527,
+        -1.0957232666290495
+       ],
+       "maximum": [
+        0.7215345479696091,
+        1.5202090831987252,
+        0.907768629869089
+       ]
+      },
+      {
+       "name": "WayfarerTrousers",
+       "minimum": [
+        -0.7799195545935065,
+        -0.28912517333383797,
+        -0.9529847925083033
+       ],
+       "maximum": [
+        0.6608497743545143,
+        1.4850913305544489,
+        0.758723938738412
+       ]
+      },
+      {
+       "name": "WayfarerTrousersCuffs",
+       "minimum": [
+        -0.7799195545935065,
+        -0.28912517333383797,
+        -0.9529847925083033
+       ],
+       "maximum": [
+        0.6608497743545143,
+        1.4850913305544489,
+        0.758723938738412
+       ]
+      }
+     ],
+     "points": 5320665,
+     "escaped": 0
+    },
+    "graveweaverGloves": {
+     "sha256": "577dbcd2a62ad4674681ce3a525b7be383995b3b0443cfb8c9e888bd28a6309a",
+     "bounds": [
+      {
+       "name": "GraveweaverGloves",
+       "minimum": [
+        -0.9438484777736034,
+        -0.056455010411154374,
+        -1.5952731793362578
+       ],
+       "maximum": [
+        0.9470993311808626,
+        2.0285691925146216,
+        1.0920352730466674
+       ]
+      }
+     ],
+     "points": 2219580,
+     "escaped": 0
+    },
+    "wayfarerTunic": {
+     "sha256": "9fd1076fae8d175a53ac9ffb2ba0099c8a2a0ea4b1b80b0f9c7daab42365dd24",
+     "bounds": [
+      {
+       "name": "WayfarerTunic",
+       "minimum": [
+        -0.7479541609552378,
+        -0.23594715610462735,
+        -1.382020349858246
+       ],
+       "maximum": [
+        0.7565482656325535,
+        1.9067405426916006,
+        0.8924788686054559
+       ]
+      }
+     ],
+     "points": 3228480,
+     "escaped": 0
+    },
+    "pilgrimTunic": {
+     "sha256": "157cbbc373128013136ea7a8b1f60ff6b0349992bede2055f0d8fa594e941967",
+     "bounds": [
+      {
+       "name": "PilgrimTunic",
+       "minimum": [
+        -0.7821215521331417,
+        -0.27608235903208134,
+        -1.4097904888398647
+       ],
+       "maximum": [
+        0.761136219662865,
+        1.9354268851647407,
+        0.9156229351856886
+       ]
+      }
+     ],
+     "points": 7660800,
+     "escaped": 0
+    },
+    "wayfarerTrousers": {
+     "sha256": "31bb8994d757721d4437b14c44e7c23327523f8c7967735199a99f64c49f33b1",
+     "bounds": [
+      {
+       "name": "WayfarerTrousers",
+       "minimum": [
+        -0.7799195589638666,
+        -0.28912517333383797,
+        -0.9529847925083033
+       ],
+       "maximum": [
+        0.6608499480455332,
+        1.482813981074976,
+        0.7587239443173391
+       ]
+      },
+      {
+       "name": "WayfarerTrousersCuffs",
+       "minimum": [
+        -0.7799195589638666,
+        -0.28912517333383797,
+        -0.9529847925083033
+       ],
+       "maximum": [
+        0.6608499480455332,
+        1.482813981074976,
+        0.7587239443173391
+       ]
+      },
+      {
+       "name": "WayfarerTrousersUnderTorso",
+       "minimum": [
+        -0.7799195589638666,
+        -0.28912517333383797,
+        -0.9529847925083033
+       ],
+       "maximum": [
+        0.6608499480455332,
+        1.482813981074976,
+        0.7587239443173391
+       ]
+      }
+     ],
+     "points": 3539700,
+     "escaped": 0
+    },
+    "wayfarerBoots": {
+     "sha256": "a3b7a9391a6bf9874cdff19586ac614c772bd7f16f3328405c3bfc1a7252dd81",
+     "bounds": [
+      {
+       "name": "WayfarerBoots",
+       "minimum": [
+        -0.7222084576469168,
+        -0.3218173359100378,
+        -1.190820939888514
+       ],
+       "maximum": [
+        0.7280494444580483,
+        1.365277088002896,
+        0.9347779516072722
+       ]
+      }
+     ],
+     "points": 3018150,
+     "escaped": 0
+    },
+    "wardenPauldrons": {
+     "sha256": "46a04d5e1a9952113d84d0174fbc5ab9c2adf2d1c33de6c6a8091ca9e7d3e857",
+     "bounds": [
+      {
+       "name": "WardenPauldrons",
+       "minimum": [
+        -0.4870390113804468,
+        -0.1103604647995103,
+        -1.1713038413402483
+       ],
+       "maximum": [
+        0.4809108705680101,
+        1.695155283354795,
+        0.579108758040586
+       ]
+      }
+     ],
+     "points": 201780,
+     "escaped": 0
+    },
+    "lectorCoat": {
+     "sha256": "8ca42033a4650f6af67fe2c41baee60d17ef638614592d44fe2558bb6b85b26b",
+     "bounds": [
+      {
+       "name": "LectorCoat",
+       "minimum": [
+        -0.7479541915953634,
+        -0.251995409034653,
+        -1.3829114394585367
+       ],
+       "maximum": [
+        0.757484035757751,
+        1.9076232980367696,
+        0.896542725468015
+       ]
+      },
+      {
+       "name": "LectorCoat",
+       "minimum": [
+        -0.3715692186688049,
+        -0.11392225484507852,
+        -1.0741787659916944
+       ],
+       "maximum": [
+        0.39158253803657156,
+        1.6600787645024182,
+        0.5847748452183718
+       ]
+      },
+      {
+       "name": "LectorCoat",
+       "minimum": [
+        -0.5401763108833577,
+        -0.1712324166559368,
+        -1.1129848239294786
+       ],
+       "maximum": [
+        0.5771620110858404,
+        1.6403660255093349,
+        0.5580338369662583
+       ]
+      }
+     ],
+     "points": 5174460,
+     "escaped": 0
+    },
+    "duskguardCuirass": {
+     "sha256": "1a82ab5f9f6fde14e93ea652496450ab2a035f2fbb25a8146dc1ce9caa2d9228",
+     "bounds": [
+      {
+       "name": "DuskguardUndercoat",
+       "minimum": [
+        -0.7479541609552378,
+        -0.23594715610462735,
+        -1.382020349858246
+       ],
+       "maximum": [
+        0.7565482656325535,
+        1.9067405426916006,
+        0.8924788686054559
+       ]
+      },
+      {
+       "name": "DuskguardCuirass",
+       "minimum": [
+        -0.41061389832471007,
+        -0.14996358491345485,
+        -1.0518776347507084
+       ],
+       "maximum": [
+        0.3772150296079182,
+        1.6238484499649424,
+        0.5445286592664657
+       ]
+      },
+      {
+       "name": "DuskguardCuirass",
+       "minimum": [
+        -0.40512708718509916,
+        -0.1394622220261852,
+        -1.0436129577612947
+       ],
+       "maximum": [
+        0.3753770427566898,
+        1.618037924719106,
+        0.5358341552531038
+       ]
+      },
+      {
+       "name": "DuskguardGussets",
+       "minimum": [
+        -0.5401763108833577,
+        -0.1712324166559368,
+        -1.1129848239294786
+       ],
+       "maximum": [
+        0.5771620110858404,
+        1.6403660255093349,
+        0.5580338369662583
+       ]
+      }
+     ],
+     "points": 4460535,
+     "escaped": 0
+    },
+    "duskguardTassets": {
+     "sha256": "dff03b24114bfc955b9964c7a77d583f96f6c5f62f2bb238303e34fc37e95e0a",
+     "bounds": [
+      {
+       "name": "DuskguardTrousers",
+       "minimum": [
+        -0.7799195589638666,
+        -0.28912517333383797,
+        -0.9529847925083033
+       ],
+       "maximum": [
+        0.6608499480455332,
+        1.482813981074976,
+        0.7587239443173391
+       ]
+      },
+      {
+       "name": "DuskguardTrouserCuffs",
+       "minimum": [
+        -0.7799195589638666,
+        -0.28912517333383797,
+        -0.9529847925083033
+       ],
+       "maximum": [
+        0.6608499480455332,
+        1.482813981074976,
+        0.7587239443173391
+       ]
+      },
+      {
+       "name": "DuskguardTassets",
+       "minimum": [
+        -0.4806335176287255,
+        0.03395555804961428,
+        -0.6539851092479492
+       ],
+       "maximum": [
+        0.4154853011904932,
+        1.2748514619953277,
+        0.4329843551122168
+       ]
+      },
+      {
+       "name": "DuskguardTassets",
+       "minimum": [
+        -0.4786005419970354,
+        0.03683415520512326,
+        -0.6502442036143485
+       ],
+       "maximum": [
+        0.41341832265531386,
+        1.2721838731817297,
+        0.4298482419427416
+       ]
+      },
+      {
+       "name": "DuskguardTrousersUnderTorso",
+       "minimum": [
+        -0.7799195589638666,
+        -0.28912517333383797,
+        -0.9529847925083033
+       ],
+       "maximum": [
+        0.6608499480455332,
+        1.482813981074976,
+        0.7587239443173391
+       ]
+      }
+     ],
+     "points": 3691890,
+     "escaped": 0
+    },
+    "duskguardGreaves": {
+     "sha256": "30524af703a0c2d3e178da20b06019e22453e82e3ec831924923fc128c494d6b",
+     "bounds": [
+      {
+       "name": "DuskguardBootUnderlayer",
+       "minimum": [
+        -0.7222084576469168,
+        -0.3218173359100378,
+        -1.190820939888514
+       ],
+       "maximum": [
+        0.7280494444580483,
+        1.365277088002896,
+        0.9347779516072722
+       ]
+      },
+      {
+       "name": "DuskguardGreaves",
+       "minimum": [
+        -0.5565056583810046,
+        -0.05084323056025823,
+        -0.893928413866676
+       ],
+       "maximum": [
+        0.5656815773674386,
+        1.207972084769836,
+        0.6969884560250612
+       ]
+      },
+      {
+       "name": "DuskguardGreaves",
+       "minimum": [
+        -0.5562177372762231,
+        -0.05062522835764548,
+        -0.8950156422578704
+       ],
+       "maximum": [
+        0.5662228322829166,
+        1.2085144834744737,
+        0.6967190461417772
+       ]
+      }
+     ],
+     "points": 3113910,
+     "escaped": 0
+    },
+    "duskguardVambraces": {
+     "sha256": "731fa0e3fb9e94c4b92b51f18b6a7c7717b853ba435a438ace3c6181d4a7e8d4",
+     "bounds": [
+      {
+       "name": "DuskguardGloveUnderlayer",
+       "minimum": [
+        -0.9438484777736034,
+        -0.056455010411154374,
+        -1.5952731793362578
+       ],
+       "maximum": [
+        0.9470993311808626,
+        2.0285691925146216,
+        1.0920352730466674
+       ]
+      },
+      {
+       "name": "DuskguardVambraces",
+       "minimum": [
+        -0.661648111356042,
+        -0.10363197060207836,
+        -1.3200038593817276
+       ],
+       "maximum": [
+        0.7465189408265098,
+        1.9190441113472503,
+        0.8732521645642426
+       ]
+      },
+      {
+       "name": "DuskguardVambraces",
+       "minimum": [
+        -0.6597827532194538,
+        -0.10212150470639843,
+        -1.318163100318156
+       ],
+       "maximum": [
+        0.5810099070266317,
+        1.7989579962360926,
+        0.8038530105123469
+       ]
+      }
+     ],
+     "points": 2354670,
+     "escaped": 0
+    }
+   },
+   "clips": {
+    "TPose": {
+     "fromRow": 0,
+     "frameCount": 151,
+     "fps": 60,
+     "duration": 2.5
+    },
+    "Crouch_Fwd_Loop": {
+     "fromRow": 0,
+     "frameCount": 121,
+     "fps": 60,
+     "duration": 2
+    },
+    "Crouch_Idle_Loop": {
+     "fromRow": 0,
+     "frameCount": 177,
+     "fps": 60,
+     "duration": 2.933333396911621
+    },
+    "Dance_Loop": {
+     "fromRow": 0,
+     "frameCount": 61,
+     "fps": 60,
+     "duration": 1
+    },
+    "Death01": {
+     "fromRow": 0,
+     "frameCount": 145,
+     "fps": 60,
+     "duration": 2.4000000953674316
+    },
+    "Driving_Loop": {
+     "fromRow": 0,
+     "frameCount": 101,
+     "fps": 60,
+     "duration": 1.6666666269302368
+    },
+    "Fixing_Kneeling": {
+     "fromRow": 0,
+     "frameCount": 313,
+     "fps": 60,
+     "duration": 5.199999809265137
+    },
+    "Hit_Chest": {
+     "fromRow": 0,
+     "frameCount": 21,
+     "fps": 60,
+     "duration": 0.3333333432674408
+    },
+    "Hit_Head": {
+     "fromRow": 0,
+     "frameCount": 27,
+     "fps": 60,
+     "duration": 0.4333333373069763
+    },
+    "Idle_Loop": {
+     "fromRow": 0,
+     "frameCount": 151,
+     "fps": 60,
+     "duration": 2.5
+    },
+    "Idle_Talking_Loop": {
+     "fromRow": 0,
+     "frameCount": 177,
+     "fps": 60,
+     "duration": 2.933333396911621
+    },
+    "Idle_Torch_Loop": {
+     "fromRow": 0,
+     "frameCount": 77,
+     "fps": 60,
+     "duration": 1.2666666507720947
+    },
+    "Interact": {
+     "fromRow": 0,
+     "frameCount": 121,
+     "fps": 60,
+     "duration": 2
+    },
+    "Jog_Fwd_Loop": {
+     "fromRow": 0,
+     "frameCount": 57,
+     "fps": 60,
+     "duration": 0.9333333373069763
+    },
+    "Jump_Land": {
+     "fromRow": 0,
+     "frameCount": 77,
+     "fps": 60,
+     "duration": 1.2666666507720947
+    },
+    "Jump_Loop": {
+     "fromRow": 0,
+     "frameCount": 151,
+     "fps": 60,
+     "duration": 2.5
+    },
+    "Jump_Start": {
+     "fromRow": 0,
+     "frameCount": 81,
+     "fps": 60,
+     "duration": 1.3333333730697632
+    },
+    "PickUp_Table": {
+     "fromRow": 0,
+     "frameCount": 51,
+     "fps": 60,
+     "duration": 0.8333333134651184
+    },
+    "Pistol_Aim_Down": {
+     "fromRow": 0,
+     "frameCount": 11,
+     "fps": 60,
+     "duration": 0.1666666716337204
+    },
+    "Pistol_Aim_Neutral": {
+     "fromRow": 0,
+     "frameCount": 11,
+     "fps": 60,
+     "duration": 0.1666666716337204
+    },
+    "Pistol_Aim_Up": {
+     "fromRow": 0,
+     "frameCount": 11,
+     "fps": 60,
+     "duration": 0.1666666716337204
+    },
+    "Pistol_Idle_Loop": {
+     "fromRow": 0,
+     "frameCount": 101,
+     "fps": 60,
+     "duration": 1.6666666269302368
+    },
+    "Pistol_Reload": {
+     "fromRow": 0,
+     "frameCount": 101,
+     "fps": 60,
+     "duration": 1.6666666269302368
+    },
+    "Pistol_Shoot": {
+     "fromRow": 0,
+     "frameCount": 39,
+     "fps": 60,
+     "duration": 0.6333333253860474
+    },
+    "Punch_Cross": {
+     "fromRow": 0,
+     "frameCount": 61,
+     "fps": 60,
+     "duration": 1
+    },
+    "Punch_Jab": {
+     "fromRow": 0,
+     "frameCount": 53,
+     "fps": 60,
+     "duration": 0.8666666746139526
+    },
+    "Push_Loop": {
+     "fromRow": 0,
+     "frameCount": 161,
+     "fps": 60,
+     "duration": 2.6666667461395264
+    },
+    "Roll": {
+     "fromRow": 0,
+     "frameCount": 89,
+     "fps": 60,
+     "duration": 1.4666666984558105
+    },
+    "Roll_RM": {
+     "fromRow": 0,
+     "frameCount": 89,
+     "fps": 60,
+     "duration": 1.4666666984558105
+    },
+    "Sitting_Enter": {
+     "fromRow": 0,
+     "frameCount": 79,
+     "fps": 60,
+     "duration": 1.2999999523162842
+    },
+    "Sitting_Exit": {
+     "fromRow": 0,
+     "frameCount": 63,
+     "fps": 60,
+     "duration": 1.0333333015441895
+    },
+    "Sitting_Idle_Loop": {
+     "fromRow": 0,
+     "frameCount": 101,
+     "fps": 60,
+     "duration": 1.6666666269302368
+    },
+    "Sitting_Talking_Loop": {
+     "fromRow": 0,
+     "frameCount": 177,
+     "fps": 60,
+     "duration": 2.933333396911621
+    },
+    "Spell_Simple_Enter": {
+     "fromRow": 0,
+     "frameCount": 33,
+     "fps": 60,
+     "duration": 0.5333333611488342
+    },
+    "Spell_Simple_Exit": {
+     "fromRow": 0,
+     "frameCount": 27,
+     "fps": 60,
+     "duration": 0.4333333373069763
+    },
+    "Spell_Simple_Idle_Loop": {
+     "fromRow": 0,
+     "frameCount": 127,
+     "fps": 60,
+     "duration": 2.0999999046325684
+    },
+    "Spell_Simple_Shoot": {
+     "fromRow": 0,
+     "frameCount": 31,
+     "fps": 60,
+     "duration": 0.5
+    },
+    "Sprint_Loop": {
+     "fromRow": 0,
+     "frameCount": 41,
+     "fps": 60,
+     "duration": 0.6666666865348816
+    },
+    "Swim_Fwd_Loop": {
+     "fromRow": 0,
+     "frameCount": 81,
+     "fps": 60,
+     "duration": 1.3333333730697632
+    },
+    "Swim_Idle_Loop": {
+     "fromRow": 0,
+     "frameCount": 201,
+     "fps": 60,
+     "duration": 3.3333332538604736
+    },
+    "Sword_Attack": {
+     "fromRow": 0,
+     "frameCount": 93,
+     "fps": 60,
+     "duration": 1.5333333015441895
+    },
+    "Sword_Attack_RM": {
+     "fromRow": 0,
+     "frameCount": 93,
+     "fps": 60,
+     "duration": 1.5333333015441895
+    },
+    "Sword_Idle": {
+     "fromRow": 0,
+     "frameCount": 101,
+     "fps": 60,
+     "duration": 1.6666666269302368
+    },
+    "Walk_Formal_Loop": {
+     "fromRow": 0,
+     "frameCount": 81,
+     "fps": 60,
+     "duration": 1.3333333730697632
+    },
+    "Walk_Loop": {
+     "fromRow": 0,
+     "frameCount": 81,
+     "fps": 60,
+     "duration": 1.3333333730697632
+    },
+    "Jog_Bwd_Loop": {
+     "fromRow": 0,
+     "frameCount": 57,
+     "fps": 60,
+     "duration": 0.9333333373069763
+    },
+    "Jog_Left_Loop": {
+     "fromRow": 0,
+     "frameCount": 57,
+     "fps": 60,
+     "duration": 0.9333333373069763
+    },
+    "Jog_Right_Loop": {
+     "fromRow": 0,
+     "frameCount": 57,
+     "fps": 60,
+     "duration": 0.9333333373069763
+    },
+    "Turn90_L": {
+     "fromRow": 0,
+     "frameCount": 121,
+     "fps": 60,
+     "duration": 2
+    },
+    "Turn90_R": {
+     "fromRow": 0,
+     "frameCount": 121,
+     "fps": 60,
+     "duration": 2
+    },
+    "Walk_Carry_Loop": {
+     "fromRow": 0,
+     "frameCount": 121,
+     "fps": 60,
+     "duration": 2
+    },
+    "PyreBurst_Upper": {
+     "fromRow": 0,
+     "frameCount": 115,
+     "fps": 60,
+     "duration": 1.899999976158142
+    },
+    "PyreBurst_Lower": {
+     "fromRow": 0,
+     "frameCount": 115,
+     "fps": 60,
+     "duration": 1.899999976158142
+    },
+    "FireBlast_Upper": {
+     "fromRow": 0,
+     "frameCount": 85,
+     "fps": 60,
+     "duration": 1.399999976158142
+    },
+    "FireBlast_Lower": {
+     "fromRow": 0,
+     "frameCount": 85,
+     "fps": 60,
+     "duration": 1.399999976158142
+    },
+    "LavaBall_Upper": {
+     "fromRow": 0,
+     "frameCount": 139,
+     "fps": 60,
+     "duration": 2.299999952316284
+    },
+    "LavaBall_Lower": {
+     "fromRow": 0,
+     "frameCount": 139,
+     "fps": 60,
+     "duration": 2.299999952316284
+    }
+   }
+  },
+  "orc": {
+   "pieces": {
+    "body": {
+     "sha256": "4f153d5594deebe5d825b5740a5dd092568971a5fef2643d52971f006b1cd96e",
+     "bounds": [
+      {
+       "name": "OrcV1Brows",
+       "minimum": [
+        -0.11585409881178091,
+        0.2655346242685875,
+        -1.2596438642955368
+       ],
+       "maximum": [
+        0.20248714042522242,
+        1.901582602084641,
+        0.7193009304072588
+       ]
+      },
+      {
+       "name": "OrcV1Eyes",
+       "minimum": [
+        -0.21120339737053295,
+        0.3196014563419698,
+        -1.4192609099895872
+       ],
+       "maximum": [
+        0.36671596363212633,
+        2.0530540866727884,
+        0.8803815468351752
+       ]
+      },
+      {
+       "name": "OrcV1Hair",
+       "minimum": [
+        -0.12003266473595653,
+        0.274048837398313,
+        -1.295900746687926
+       ],
+       "maximum": [
+        0.22600131364648168,
+        1.9455739294238725,
+        0.7423785730248387
+       ]
+      },
+      {
+       "name": "OrcV1Shorts",
+       "minimum": [
+        -0.4743174522248339,
+        -0.19525534966679614,
+        -0.9258273820549412
+       ],
+       "maximum": [
+        0.4890021463879157,
+        1.731733112558388,
+        0.6747269872109177
+       ]
+      },
+      {
+       "name": "BodyExposed",
+       "minimum": [
+        -1.291853521945049,
+        -0.32438029863070683,
+        -1.9105736936208324
+       ],
+       "maximum": [
+        1.2459540293943951,
+        2.5378791658714412,
+        1.4871977923498532
+       ]
+      },
+      {
+       "name": "BodyUnderTunic",
+       "minimum": [
+        -1.291853521945049,
+        -0.32438029863070683,
+        -1.9105736936208324
+       ],
+       "maximum": [
+        1.2459540293943951,
+        2.5378791658714412,
+        1.4871977923498532
+       ]
+      },
+      {
+       "name": "BodyUnderBoots",
+       "minimum": [
+        -1.291853521945049,
+        -0.32438029863070683,
+        -1.9105736936208324
+       ],
+       "maximum": [
+        1.2459540293943951,
+        2.5378791658714412,
+        1.4871977923498532
+       ]
+      },
+      {
+       "name": "BodyUnderLegs",
+       "minimum": [
+        -1.291853521945049,
+        -0.32438029863070683,
+        -1.9105736936208324
+       ],
+       "maximum": [
+        1.2459540293943951,
+        2.5378791658714412,
+        1.4871977923498532
+       ]
+      },
+      {
+       "name": "BodyWaist",
+       "minimum": [
+        -1.291853521945049,
+        -0.32438029863070683,
+        -1.9105736936208324
+       ],
+       "maximum": [
+        1.2459540293943951,
+        2.5378791658714412,
+        1.4871977923498532
+       ]
+      },
+      {
+       "name": "BodyHands",
+       "minimum": [
+        -1.291853521945049,
+        -0.32438029863070683,
+        -1.9105736936208324
+       ],
+       "maximum": [
+        1.2459540293943951,
+        2.5378791658714412,
+        1.4871977923498532
+       ]
+      }
+     ],
+     "points": 41574375,
+     "escaped": 0
+    },
+    "graveweaverHood": {
+     "sha256": "f2d9e07fd0fa0c2f8863fe0d1ad89ddde7076fc833436e1a63544f8ccb72c991",
+     "bounds": [
+      {
+       "name": "GraveweaverHood",
+       "minimum": [
+        -0.5599897552501827,
+        -0.03883246548451076,
+        -1.609554937995527
+       ],
+       "maximum": [
+        0.6173937802329528,
+        2.253930684044315,
+        1.0417575813894884
+       ]
+      }
+     ],
+     "points": 1346055,
+     "escaped": 0
+    },
+    "graveweaverTop": {
+     "sha256": "d482435af141f88d1a7a3397d3bcd68cd0e8ae2086b32c743fb86ce74e387ea3",
+     "bounds": [
+      {
+       "name": "GraveweaverPendant",
+       "minimum": [
+        -0.3304211476995864,
+        0.3556917267177093,
+        -1.0968773953701285
+       ],
+       "maximum": [
+        0.36885721592600107,
+        1.877700902835081,
+        0.7103194292915831
+       ]
+      },
+      {
+       "name": "GraveweaverPendant",
+       "minimum": [
+        -0.28824776107858385,
+        0.4621942774360641,
+        -0.9420129963521597
+       ],
+       "maximum": [
+        0.3218530833309592,
+        1.7530885488075272,
+        0.6050876998096961
+       ]
+      },
+      {
+       "name": "GraveweaverTop",
+       "minimum": [
+        -1.110184424076242,
+        -0.28957096402633,
+        -1.724698035262585
+       ],
+       "maximum": [
+        1.1243509208920597,
+        2.4525519812129892,
+        1.35533287569155
+       ]
+      }
+     ],
+     "points": 1017165,
+     "escaped": 0
+    },
+    "graveweaverSkirt": {
+     "sha256": "a860476ec787dc0bb2960bc61c5e28426cffa0e7b68797b6dba5f88e903a1bcf",
+     "bounds": [
+      {
+       "name": "GraveweaverSkirt",
+       "minimum": [
+        -1.0945677869243007,
+        -0.419252404514839,
+        -1.2744069916332592
+       ],
+       "maximum": [
+        0.9402297106862398,
+        1.7328604796311455,
+        1.0987117601701477
+       ]
+      },
+      {
+       "name": "WayfarerTrousers",
+       "minimum": [
+        -0.9991801033227488,
+        -0.29553369046139755,
+        -1.043312527819656
+       ],
+       "maximum": [
+        0.8502714770216258,
+        1.7010865387977547,
+        0.9997920300615639
+       ]
+      },
+      {
+       "name": "WayfarerTrousersCuffs",
+       "minimum": [
+        -0.9991801033227488,
+        -0.29553369046139755,
+        -1.043312527819656
+       ],
+       "maximum": [
+        0.8502714770216258,
+        1.7010865387977547,
+        0.9997920300615639
+       ]
+      },
+      {
+       "name": "WayfarerTrousersUnderTorso",
+       "minimum": [
+        -0.9991801033227488,
+        -0.29553369046139755,
+        -1.043312527819656
+       ],
+       "maximum": [
+        0.8502714770216258,
+        1.7010865387977547,
+        0.9997920300615639
+       ]
+      }
+     ],
+     "points": 2166855,
+     "escaped": 0
+    },
+    "graveweaverGloves": {
+     "sha256": "6c1c3f48280270082327700a80ef886895ca5a2aee6076d9cb832dc7e4825e60",
+     "bounds": [
+      {
+       "name": "GraveweaverGloves",
+       "minimum": [
+        -1.2368863743874363,
+        0.0638231657464701,
+        -1.914385859090885
+       ],
+       "maximum": [
+        1.2001348077010094,
+        2.4734813275537855,
+        1.4909649761615749
+       ]
+      }
+     ],
+     "points": 780900,
+     "escaped": 0
+    },
+    "wayfarerTunic": {
+     "sha256": "95dc7e84116f0ed5931f28af123af6418eacaf698884a33358ff74cf9aa7399b",
+     "bounds": [
+      {
+       "name": "WayfarerTunic",
+       "minimum": [
+        -1.11003493154834,
+        -0.28964585609132953,
+        -1.724540544423415
+       ],
+       "maximum": [
+        1.1230721904288683,
+        2.452038799036567,
+        1.354962866345671
+       ]
+      }
+     ],
+     "points": 1076160,
+     "escaped": 0
+    },
+    "pilgrimTunic": {
+     "sha256": "7894d553378aa2787ce6f7f676c5a3bbbc15c2b947ae2e79b7c75b3f5bba2600",
+     "bounds": [
+      {
+       "name": "PilgrimTunic",
+       "minimum": [
+        -1.1401190546585611,
+        -0.31522630686544173,
+        -1.77108916715065
+       ],
+       "maximum": [
+        1.1571972832385566,
+        2.4866216485147814,
+        1.4101356692603406
+       ]
+      }
+     ],
+     "points": 2553600,
+     "escaped": 0
+    },
+    "wayfarerTrousers": {
+     "sha256": "3095f6da9c866ec49df978efb47761405322c1693a61751e94bee720fd962e0e",
+     "bounds": [
+      {
+       "name": "WayfarerTrousers",
+       "minimum": [
+        -0.9991815842511447,
+        -0.29551064960699025,
+        -1.043312527819656
+       ],
+       "maximum": [
+        0.850271444318939,
+        1.698860657892951,
+        0.9997919882938262
+       ]
+      },
+      {
+       "name": "WayfarerTrousersCuffs",
+       "minimum": [
+        -0.9991815842511447,
+        -0.29551064960699025,
+        -1.043312527819656
+       ],
+       "maximum": [
+        0.850271444318939,
+        1.698860657892951,
+        0.9997919882938262
+       ]
+      },
+      {
+       "name": "WayfarerTrousersUnderTorso",
+       "minimum": [
+        -0.9991815842511447,
+        -0.29551064960699025,
+        -1.043312527819656
+       ],
+       "maximum": [
+        0.850271444318939,
+        1.698860657892951,
+        0.9997919882938262
+       ]
+      }
+     ],
+     "points": 1179900,
+     "escaped": 0
+    },
+    "wayfarerBoots": {
+     "sha256": "41931c772a4ba96131772da020715aae5e0b59865b0685e1d12c44f4b293b3d8",
+     "bounds": [
+      {
+       "name": "WayfarerBoots",
+       "minimum": [
+        -0.9576101716630594,
+        -0.3601840040200095,
+        -1.3858748078870284
+       ],
+       "maximum": [
+        0.9569010937552338,
+        1.5557217218805193,
+        1.1715282671672458
+       ]
+      }
+     ],
+     "points": 1006050,
+     "escaped": 0
+    },
+    "wardenPauldrons": {
+     "sha256": "0f34d3b6cf4c6bf75ecde7698d7334d0ab8ea26322417af3a65d0c0262f5b21c",
+     "bounds": [
+      {
+       "name": "WardenPauldrons",
+       "minimum": [
+        -0.6300200199454049,
+        0.07351481948022169,
+        -1.397930378357125
+       ],
+       "maximum": [
+        0.6459530203894113,
+        2.0529573737368887,
+        0.8030207734328438
+       ]
+      }
+     ],
+     "points": 56430,
+     "escaped": 0
+    },
+    "lectorCoat": {
+     "sha256": "5d9814aca230669f8f936480218574e641355bb5ad2372eb6ddc5d03db7c4b66",
+     "bounds": [
+      {
+       "name": "LectorCoat",
+       "minimum": [
+        -1.1100348616789364,
+        -0.3085292904519912,
+        -1.724993325213953
+       ],
+       "maximum": [
+        1.123072606400703,
+        2.4520394087686905,
+        1.3595033212049363
+       ]
+      },
+      {
+       "name": "LectorCoat",
+       "minimum": [
+        -0.5393096956949843,
+        -0.05077459151823856,
+        -1.3044522187335443
+       ],
+       "maximum": [
+        0.5496881687457242,
+        2.045968711285454,
+        0.8167102181258157
+       ]
+      },
+      {
+       "name": "LectorCoat",
+       "minimum": [
+        -0.8299290762896694,
+        -0.059419895036390516,
+        -1.3689247914302956
+       ],
+       "maximum": [
+        0.9029037180448127,
+        2.0226897700348214,
+        0.8034062356207612
+       ]
+      }
+     ],
+     "points": 1903515,
+     "escaped": 0
+    },
+    "duskguardCuirass": {
+     "sha256": "1fc77396037a9305dcfc6aecc43da0f94fd24b0815b97ef6a30f94fdaf4dbf70",
+     "bounds": [
+      {
+       "name": "DuskguardUndercoat",
+       "minimum": [
+        -1.11003493154834,
+        -0.28964585609132953,
+        -1.724540544423415
+       ],
+       "maximum": [
+        1.1230721904288683,
+        2.452038799036567,
+        1.354962866345671
+       ]
+      },
+      {
+       "name": "DuskguardCuirass",
+       "minimum": [
+        -0.5550616797259498,
+        -0.14777956815707083,
+        -1.3145059596609574
+       ],
+       "maximum": [
+        0.529339550566087,
+        2.0419286856066456,
+        0.7869393661988155
+       ]
+      },
+      {
+       "name": "DuskguardCuirass",
+       "minimum": [
+        -0.5501536927517157,
+        -0.13420786262207263,
+        -1.30215227084968
+       ],
+       "maximum": [
+        0.5256804100798804,
+        2.0331923095264006,
+        0.7739276937217454
+       ]
+      },
+      {
+       "name": "DuskguardGussets",
+       "minimum": [
+        -0.8299290762896694,
+        -0.059419895036390516,
+        -1.3689247914302956
+       ],
+       "maximum": [
+        0.9029037180448127,
+        2.0226897700348214,
+        0.8034062356207612
+       ]
+      }
+     ],
+     "points": 2023785,
+     "escaped": 0
+    },
+    "duskguardTassets": {
+     "sha256": "8f2c3d990e5c75cc0b25ee651fca5d2b049175a8f52b1a5045b9e458c1075dea",
+     "bounds": [
+      {
+       "name": "DuskguardTrousers",
+       "minimum": [
+        -0.9991815842511447,
+        -0.29551064960699025,
+        -1.043312527819656
+       ],
+       "maximum": [
+        0.850271444318939,
+        1.698860657892951,
+        0.9997919882938262
+       ]
+      },
+      {
+       "name": "DuskguardTrouserCuffs",
+       "minimum": [
+        -0.9991815842511447,
+        -0.29551064960699025,
+        -1.043312527819656
+       ],
+       "maximum": [
+        0.850271444318939,
+        1.698860657892951,
+        0.9997919882938262
+       ]
+      },
+      {
+       "name": "DuskguardTassets",
+       "minimum": [
+        -0.6437633356073678,
+        0.10911068588593234,
+        -0.82961589452236
+       ],
+       "maximum": [
+        0.5788104324734209,
+        1.4569441814302482,
+        0.5821719810749391
+       ]
+      },
+      {
+       "name": "DuskguardTassets",
+       "minimum": [
+        -0.6401160844760663,
+        0.11277468581527475,
+        -0.8239602874125478
+       ],
+       "maximum": [
+        0.5754972801185718,
+        1.4569441814302482,
+        0.5775605721766162
+       ]
+      },
+      {
+       "name": "DuskguardTrousersUnderTorso",
+       "minimum": [
+        -0.9991815842511447,
+        -0.29551064960699025,
+        -1.043312527819656
+       ],
+       "maximum": [
+        0.850271444318939,
+        1.698860657892951,
+        0.9997919882938262
+       ]
+      }
+     ],
+     "points": 1317840,
+     "escaped": 0
+    },
+    "duskguardGreaves": {
+     "sha256": "57fb78844549c2c0cfab87917dd274c6fc39adecf66260969c712f66cd320c7c",
+     "bounds": [
+      {
+       "name": "DuskguardBootUnderlayer",
+       "minimum": [
+        -0.9576101716630594,
+        -0.3601840040200095,
+        -1.3858748078870284
+       ],
+       "maximum": [
+        0.9569010937552338,
+        1.5557217218805193,
+        1.1715282671672458
+       ]
+      },
+      {
+       "name": "DuskguardGreaves",
+       "minimum": [
+        -0.726156449828504,
+        -0.12074216089096741,
+        -1.0381453129842997
+       ],
+       "maximum": [
+        0.7277136104191915,
+        1.2735251052325949,
+        0.8806897961392662
+       ]
+      },
+      {
+       "name": "DuskguardGreaves",
+       "minimum": [
+        -0.726156449828504,
+        -0.12074216089096741,
+        -1.0375681655666236
+       ],
+       "maximum": [
+        0.7277136104191915,
+        1.2674252578735454,
+        0.8806897961392662
+       ]
+      }
+     ],
+     "points": 1032840,
+     "escaped": 0
+    },
+    "duskguardVambraces": {
+     "sha256": "3ebe071c27f1c236074b9a4470ab8fb91ba2a4076b74922e4068d24f960f8f78",
+     "bounds": [
+      {
+       "name": "DuskguardGloveUnderlayer",
+       "minimum": [
+        -1.2368863743874363,
+        0.0638231657464701,
+        -1.914385859090885
+       ],
+       "maximum": [
+        1.2001348077010094,
+        2.4734813275537855,
+        1.4909649761615749
+       ]
+      },
+      {
+       "name": "DuskguardVambraces",
+       "minimum": [
+        -1.0237991911352882,
+        0.025997615281174394,
+        -1.6823312909919597
+       ],
+       "maximum": [
+        0.9948470717151234,
+        2.383540920530961,
+        1.2359864808120813
+       ]
+      },
+      {
+       "name": "DuskguardVambraces",
+       "minimum": [
+        -1.022035501539825,
+        0.03356828960225437,
+        -1.678415948866841
+       ],
+       "maximum": [
+        0.9937115559303897,
+        2.376223008682749,
+        1.234947846855693
+       ]
+      }
+     ],
+     "points": 842460,
+     "escaped": 0
+    }
+   },
+   "clips": {
+    "TPose": {
+     "fromRow": 0,
+     "frameCount": 151,
+     "fps": 60,
+     "duration": 2.5
+    },
+    "Crouch_Fwd_Loop": {
+     "fromRow": 0,
+     "frameCount": 121,
+     "fps": 60,
+     "duration": 2
+    },
+    "Crouch_Idle_Loop": {
+     "fromRow": 0,
+     "frameCount": 177,
+     "fps": 60,
+     "duration": 2.933333396911621
+    },
+    "Dance_Loop": {
+     "fromRow": 0,
+     "frameCount": 61,
+     "fps": 60,
+     "duration": 1
+    },
+    "Death01": {
+     "fromRow": 0,
+     "frameCount": 145,
+     "fps": 60,
+     "duration": 2.4000000953674316
+    },
+    "Driving_Loop": {
+     "fromRow": 0,
+     "frameCount": 101,
+     "fps": 60,
+     "duration": 1.6666666269302368
+    },
+    "Fixing_Kneeling": {
+     "fromRow": 0,
+     "frameCount": 313,
+     "fps": 60,
+     "duration": 5.199999809265137
+    },
+    "Hit_Chest": {
+     "fromRow": 0,
+     "frameCount": 21,
+     "fps": 60,
+     "duration": 0.3333333432674408
+    },
+    "Hit_Head": {
+     "fromRow": 0,
+     "frameCount": 27,
+     "fps": 60,
+     "duration": 0.4333333373069763
+    },
+    "Idle_Loop": {
+     "fromRow": 0,
+     "frameCount": 151,
+     "fps": 60,
+     "duration": 2.5
+    },
+    "Idle_Talking_Loop": {
+     "fromRow": 0,
+     "frameCount": 177,
+     "fps": 60,
+     "duration": 2.933333396911621
+    },
+    "Idle_Torch_Loop": {
+     "fromRow": 0,
+     "frameCount": 77,
+     "fps": 60,
+     "duration": 1.2666666507720947
+    },
+    "Interact": {
+     "fromRow": 0,
+     "frameCount": 121,
+     "fps": 60,
+     "duration": 2
+    },
+    "Jog_Fwd_Loop": {
+     "fromRow": 0,
+     "frameCount": 57,
+     "fps": 60,
+     "duration": 0.9333333373069763
+    },
+    "Jump_Land": {
+     "fromRow": 0,
+     "frameCount": 77,
+     "fps": 60,
+     "duration": 1.2666666507720947
+    },
+    "Jump_Loop": {
+     "fromRow": 0,
+     "frameCount": 151,
+     "fps": 60,
+     "duration": 2.5
+    },
+    "Jump_Start": {
+     "fromRow": 0,
+     "frameCount": 81,
+     "fps": 60,
+     "duration": 1.3333333730697632
+    },
+    "PickUp_Table": {
+     "fromRow": 0,
+     "frameCount": 51,
+     "fps": 60,
+     "duration": 0.8333333134651184
+    },
+    "Pistol_Aim_Down": {
+     "fromRow": 0,
+     "frameCount": 11,
+     "fps": 60,
+     "duration": 0.1666666716337204
+    },
+    "Pistol_Aim_Neutral": {
+     "fromRow": 0,
+     "frameCount": 11,
+     "fps": 60,
+     "duration": 0.1666666716337204
+    },
+    "Pistol_Aim_Up": {
+     "fromRow": 0,
+     "frameCount": 11,
+     "fps": 60,
+     "duration": 0.1666666716337204
+    },
+    "Pistol_Idle_Loop": {
+     "fromRow": 0,
+     "frameCount": 101,
+     "fps": 60,
+     "duration": 1.6666666269302368
+    },
+    "Pistol_Reload": {
+     "fromRow": 0,
+     "frameCount": 101,
+     "fps": 60,
+     "duration": 1.6666666269302368
+    },
+    "Pistol_Shoot": {
+     "fromRow": 0,
+     "frameCount": 39,
+     "fps": 60,
+     "duration": 0.6333333253860474
+    },
+    "Punch_Cross": {
+     "fromRow": 0,
+     "frameCount": 61,
+     "fps": 60,
+     "duration": 1
+    },
+    "Punch_Jab": {
+     "fromRow": 0,
+     "frameCount": 53,
+     "fps": 60,
+     "duration": 0.8666666746139526
+    },
+    "Push_Loop": {
+     "fromRow": 0,
+     "frameCount": 161,
+     "fps": 60,
+     "duration": 2.6666667461395264
+    },
+    "Roll": {
+     "fromRow": 0,
+     "frameCount": 89,
+     "fps": 60,
+     "duration": 1.4666666984558105
+    },
+    "Roll_RM": {
+     "fromRow": 0,
+     "frameCount": 89,
+     "fps": 60,
+     "duration": 1.4666666984558105
+    },
+    "Sitting_Enter": {
+     "fromRow": 0,
+     "frameCount": 79,
+     "fps": 60,
+     "duration": 1.2999999523162842
+    },
+    "Sitting_Exit": {
+     "fromRow": 0,
+     "frameCount": 63,
+     "fps": 60,
+     "duration": 1.0333333015441895
+    },
+    "Sitting_Idle_Loop": {
+     "fromRow": 0,
+     "frameCount": 101,
+     "fps": 60,
+     "duration": 1.6666666269302368
+    },
+    "Sitting_Talking_Loop": {
+     "fromRow": 0,
+     "frameCount": 177,
+     "fps": 60,
+     "duration": 2.933333396911621
+    },
+    "Spell_Simple_Enter": {
+     "fromRow": 0,
+     "frameCount": 33,
+     "fps": 60,
+     "duration": 0.5333333611488342
+    },
+    "Spell_Simple_Exit": {
+     "fromRow": 0,
+     "frameCount": 27,
+     "fps": 60,
+     "duration": 0.4333333373069763
+    },
+    "Spell_Simple_Idle_Loop": {
+     "fromRow": 0,
+     "frameCount": 127,
+     "fps": 60,
+     "duration": 2.0999999046325684
+    },
+    "Spell_Simple_Shoot": {
+     "fromRow": 0,
+     "frameCount": 31,
+     "fps": 60,
+     "duration": 0.5
+    },
+    "Sprint_Loop": {
+     "fromRow": 0,
+     "frameCount": 41,
+     "fps": 60,
+     "duration": 0.6666666865348816
+    },
+    "Swim_Fwd_Loop": {
+     "fromRow": 0,
+     "frameCount": 81,
+     "fps": 60,
+     "duration": 1.3333333730697632
+    },
+    "Swim_Idle_Loop": {
+     "fromRow": 0,
+     "frameCount": 201,
+     "fps": 60,
+     "duration": 3.3333332538604736
+    },
+    "Sword_Attack": {
+     "fromRow": 0,
+     "frameCount": 93,
+     "fps": 60,
+     "duration": 1.5333333015441895
+    },
+    "Sword_Attack_RM": {
+     "fromRow": 0,
+     "frameCount": 93,
+     "fps": 60,
+     "duration": 1.5333333015441895
+    },
+    "Sword_Idle": {
+     "fromRow": 0,
+     "frameCount": 101,
+     "fps": 60,
+     "duration": 1.6666666269302368
+    },
+    "Walk_Formal_Loop": {
+     "fromRow": 0,
+     "frameCount": 81,
+     "fps": 60,
+     "duration": 1.3333333730697632
+    },
+    "Walk_Loop": {
+     "fromRow": 0,
+     "frameCount": 81,
+     "fps": 60,
+     "duration": 1.3333333730697632
+    },
+    "Jog_Bwd_Loop": {
+     "fromRow": 0,
+     "frameCount": 57,
+     "fps": 60,
+     "duration": 0.9333333373069763
+    },
+    "Jog_Left_Loop": {
+     "fromRow": 0,
+     "frameCount": 57,
+     "fps": 60,
+     "duration": 0.9333333373069763
+    },
+    "Jog_Right_Loop": {
+     "fromRow": 0,
+     "frameCount": 57,
+     "fps": 60,
+     "duration": 0.9333333373069763
+    },
+    "Turn90_L": {
+     "fromRow": 0,
+     "frameCount": 121,
+     "fps": 60,
+     "duration": 2
+    },
+    "Turn90_R": {
+     "fromRow": 0,
+     "frameCount": 121,
+     "fps": 60,
+     "duration": 2
+    },
+    "Walk_Carry_Loop": {
+     "fromRow": 0,
+     "frameCount": 121,
+     "fps": 60,
+     "duration": 2
+    },
+    "PyreBurst_Upper": {
+     "fromRow": 0,
+     "frameCount": 115,
+     "fps": 60,
+     "duration": 1.899999976158142
+    },
+    "PyreBurst_Lower": {
+     "fromRow": 0,
+     "frameCount": 115,
+     "fps": 60,
+     "duration": 1.899999976158142
+    },
+    "FireBlast_Upper": {
+     "fromRow": 0,
+     "frameCount": 85,
+     "fps": 60,
+     "duration": 1.399999976158142
+    },
+    "FireBlast_Lower": {
+     "fromRow": 0,
+     "frameCount": 85,
+     "fps": 60,
+     "duration": 1.399999976158142
+    },
+    "LavaBall_Upper": {
+     "fromRow": 0,
+     "frameCount": 139,
+     "fps": 60,
+     "duration": 2.299999952316284
+    },
+    "LavaBall_Lower": {
+     "fromRow": 0,
+     "frameCount": 139,
+     "fps": 60,
+     "duration": 2.299999952316284
+    }
+   }
+  },
+  "undead": {
+   "pieces": {
+    "body": {
+     "sha256": "b2193ae173473e5bfbb8bb056dfc00399945a8895e9d70c13318931094b7f262",
+     "bounds": [
+      {
+       "name": "UndeadV1Body",
+       "minimum": [
+        -0.970893520350792,
+        -0.2896258395024226,
+        -1.6507639042572724
+       ],
+       "maximum": [
+        0.9569669878498823,
+        2.4723007113102327,
+        1.1219438963417603
+       ]
+      },
+      {
+       "name": "UndeadV1Eyes",
+       "minimum": [
+        -0.14071826590308828,
+        0.19892632340743366,
+        -1.2167029924452708
+       ],
+       "maximum": [
+        0.2443428382821049,
+        2.0606440006087534,
+        0.6178955266011935
+       ]
+      },
+      {
+       "name": "UndeadTorsoCore",
+       "minimum": [
+        -0.970893520350792,
+        -0.2896258395024226,
+        -1.6507639042572724
+       ],
+       "maximum": [
+        0.9569669878498823,
+        2.4723007113102327,
+        1.1219438963417603
+       ]
+      }
+     ],
+     "points": 7493220,
+     "escaped": 0
+    },
+    "graveweaverHood": {
+     "sha256": "d61b39f528888424ac96498a78af1d57ace8192840b5c125354f6680ff632b74",
+     "bounds": [
+      {
+       "name": "GraveweaverHood",
+       "minimum": [
+        -0.37452295589250606,
+        -0.08011677784145695,
+        -1.388416275017789
+       ],
+       "maximum": [
+        0.4062984394012299,
+        2.266650389349823,
+        0.7830657830369785
+       ]
+      }
+     ],
+     "points": 1346055,
+     "escaped": 0
+    },
+    "graveweaverTop": {
+     "sha256": "5231e9370725b8225eacfd623e290f95672af75f594bb94886a6bd4b7e3fb9cc",
+     "bounds": [
+      {
+       "name": "GraveweaverPendant",
+       "minimum": [
+        -0.23432263258116826,
+        0.25517770157588415,
+        -0.9624367465837418
+       ],
+       "maximum": [
+        0.2572091173347959,
+        1.9659585417904746,
+        0.4822239387869407
+       ]
+      },
+      {
+       "name": "GraveweaverPendant",
+       "minimum": [
+        -0.19427309586241726,
+        0.3242662631503299,
+        -0.838193971247662
+       ],
+       "maximum": [
+        0.21179477908702293,
+        1.856352103681231,
+        0.3911921784273933
+       ]
+      },
+      {
+       "name": "GraveweaverTop",
+       "minimum": [
+        -0.7687262553054997,
+        -0.1342709036487748,
+        -1.4377267601008712
+       ],
+       "maximum": [
+        0.7794696963103609,
+        2.310706570073869,
+        0.9349308223938124
+       ]
+      }
+     ],
+     "points": 1017165,
+     "escaped": 0
+    },
+    "graveweaverSkirt": {
+     "sha256": "062e714aae5306d91b59205412b935deab8e50f0842c9353a6a9bfda81ddcdb2",
+     "bounds": [
+      {
+       "name": "GraveweaverSkirt",
+       "minimum": [
+        -0.8920161810370753,
+        -0.3501033775388933,
+        -1.1789187589912349
+       ],
+       "maximum": [
+        0.7318860655814816,
+        1.6096709410581436,
+        0.9619762126187972
+       ]
+      },
+      {
+       "name": "WayfarerTrousers",
+       "minimum": [
+        -0.7922726256305304,
+        -0.21981875551045515,
+        -1.0022282512618892
+       ],
+       "maximum": [
+        0.6523897767264326,
+        1.6125947878889821,
+        0.7666918869864028
+       ]
+      },
+      {
+       "name": "WayfarerTrousersCuffs",
+       "minimum": [
+        -0.7922726256305304,
+        -0.21981875551045515,
+        -1.0022282512618892
+       ],
+       "maximum": [
+        0.6523897767264326,
+        1.6125947878889821,
+        0.7666918869864028
+       ]
+      },
+      {
+       "name": "WayfarerTrousersUnderTorso",
+       "minimum": [
+        -0.7922726256305304,
+        -0.21981875551045515,
+        -1.0022282512618892
+       ],
+       "maximum": [
+        0.6523897767264326,
+        1.6125947878889821,
+        0.7666918869864028
+       ]
+      }
+     ],
+     "points": 2166855,
+     "escaped": 0
+    },
+    "graveweaverGloves": {
+     "sha256": "b98353385f6caafb798f0db12309bb8125ba22a2fafa6d61faa47f3dccdf8cc5",
+     "bounds": [
+      {
+       "name": "GraveweaverGloves",
+       "minimum": [
+        -0.9895002316134818,
+        0.04934213550301163,
+        -1.6722796421740787
+       ],
+       "maximum": [
+        0.9725487245816478,
+        2.497766492640596,
+        1.1419128266678162
+       ]
+      }
+     ],
+     "points": 739860,
+     "escaped": 0
+    },
+    "wayfarerTunic": {
+     "sha256": "56dd6ced7fc7dd57c66705a6128971024208687d68df294faf167398fe13965c",
+     "bounds": [
+      {
+       "name": "WayfarerTunic",
+       "minimum": [
+        -0.7687493994629317,
+        -0.1343252375805477,
+        -1.437641538549569
+       ],
+       "maximum": [
+        0.7795037435709247,
+        2.3107633363412403,
+        0.9351064861019887
+       ]
+      }
+     ],
+     "points": 1076160,
+     "escaped": 0
+    },
+    "pilgrimTunic": {
+     "sha256": "88cfa80986606c62b36ca30c442cea46a4ce70b8f9ce091dad758ebb5a927535",
+     "bounds": [
+      {
+       "name": "PilgrimTunic",
+       "minimum": [
+        -0.7842666398980422,
+        -0.1493448464673448,
+        -1.4851552020326886
+       ],
+       "maximum": [
+        0.793631850200814,
+        2.327417605272039,
+        0.9684003352243011
+       ]
+      }
+     ],
+     "points": 2553600,
+     "escaped": 0
+    },
+    "wayfarerTrousers": {
+     "sha256": "6e07a485fc3765029b22a78ed7a9e5eb722d8d9363248b0f01ffbfecee675523",
+     "bounds": [
+      {
+       "name": "WayfarerTrousers",
+       "minimum": [
+        -0.7922641812412199,
+        -0.21971886378770644,
+        -1.0022233264102338
+       ],
+       "maximum": [
+        0.6523897335249476,
+        1.6119807167581723,
+        0.7666919741355032
+       ]
+      },
+      {
+       "name": "WayfarerTrousersCuffs",
+       "minimum": [
+        -0.7922641812412199,
+        -0.21971886378770644,
+        -1.0022233264102338
+       ],
+       "maximum": [
+        0.6523897335249476,
+        1.6119807167581723,
+        0.7666919741355032
+       ]
+      },
+      {
+       "name": "WayfarerTrousersUnderTorso",
+       "minimum": [
+        -0.7922641812412199,
+        -0.21971886378770644,
+        -1.0022233264102338
+       ],
+       "maximum": [
+        0.6523897335249476,
+        1.6119807167581723,
+        0.7666919741355032
+       ]
+      }
+     ],
+     "points": 1179900,
+     "escaped": 0
+    },
+    "wayfarerBoots": {
+     "sha256": "0ee7a31c0ffe5d592ab4bf42b38b6f84c8a6c6ed70a65cc4b7997d6304ca4e60",
+     "bounds": [
+      {
+       "name": "WayfarerBoots",
+       "minimum": [
+        -0.7391617028414899,
+        -0.25217545618205883,
+        -1.2902269727036264
+       ],
+       "maximum": [
+        0.7496410539318379,
+        1.4458740453219718,
+        0.9857709232382463
+       ]
+      }
+     ],
+     "points": 1006050,
+     "escaped": 0
+    },
+    "wardenPauldrons": {
+     "sha256": "9936911092d9fef8c138321a14ec178bd2db7bb21d927e2e39ddbc25cd33b45f",
+     "bounds": [
+      {
+       "name": "WardenPauldrons",
+       "minimum": [
+        -0.4614513652724612,
+        -0.00043565866524777934,
+        -1.1964984454503764
+       ],
+       "maximum": [
+        0.45451884428848266,
+        2.029412515629281,
+        0.5746923376148962
+       ]
+      }
+     ],
+     "points": 39900,
+     "escaped": 0
+    },
+    "lectorCoat": {
+     "sha256": "aa9693c785e4b8c8596126e7752369ff30198c951b0042b9d185e2ea5a66b946",
+     "bounds": [
+      {
+       "name": "LectorCoat",
+       "minimum": [
+        -0.7705150504742035,
+        -0.15492988895130932,
+        -1.4418092448972903
+       ],
+       "maximum": [
+        0.783143711751858,
+        2.3152611249414936,
+        0.9405684949511472
+       ]
+      },
+      {
+       "name": "LectorCoat",
+       "minimum": [
+        -0.3484398382366598,
+        -0.008422925646731116,
+        -1.095711099994061
+       ],
+       "maximum": [
+        0.3756564435267655,
+        2.0274248862894613,
+        0.575097193673529
+       ]
+      },
+      {
+       "name": "LectorCoat",
+       "minimum": [
+        -0.45085809571703916,
+        -0.0806495472618209,
+        -1.1562655219623033
+       ],
+       "maximum": [
+        0.438209387173885,
+        2.0177424606432655,
+        0.5574321809046492
+       ]
+      }
+     ],
+     "points": 2005260,
+     "escaped": 0
+    },
+    "duskguardCuirass": {
+     "sha256": "b9db83552771c3582b2e60d5abab1f2970b1b4b9bbd04999ec6e9a14ba46e7ac",
+     "bounds": [
+      {
+       "name": "DuskguardUndercoat",
+       "minimum": [
+        -0.7687493994629317,
+        -0.1343252375805477,
+        -1.437641538549569
+       ],
+       "maximum": [
+        0.7795037435709247,
+        2.3107633363412403,
+        0.9351064861019887
+       ]
+      },
+      {
+       "name": "DuskguardCuirass",
+       "minimum": [
+        -0.38630749354863814,
+        -0.04797227584340476,
+        -1.0845044722849242
+       ],
+       "maximum": [
+        0.360657033514469,
+        2.0307169291129052,
+        0.5485521233458546
+       ]
+      },
+      {
+       "name": "DuskguardCuirass",
+       "minimum": [
+        -0.38406060720112034,
+        -0.04098920789632039,
+        -1.0783123747026553
+       ],
+       "maximum": [
+        0.35864869005147937,
+        2.0249295294968053,
+        0.5417704648636612
+       ]
+      },
+      {
+       "name": "DuskguardGussets",
+       "minimum": [
+        -0.45085809571703916,
+        -0.0806495472618209,
+        -1.1562655219623033
+       ],
+       "maximum": [
+        0.438209387173885,
+        2.0177424606432655,
+        0.5574321809046492
+       ]
+      }
+     ],
+     "points": 1858770,
+     "escaped": 0
+    },
+    "duskguardTassets": {
+     "sha256": "5bc6fb9a19e4bc19622e64cfcb6d0156417453fe97581c0abd6117992eec7ccb",
+     "bounds": [
+      {
+       "name": "DuskguardTrousers",
+       "minimum": [
+        -0.7922641812412199,
+        -0.21971886378770644,
+        -1.0022233264102338
+       ],
+       "maximum": [
+        0.6523897335249476,
+        1.6119807167581723,
+        0.7666919741355032
+       ]
+      },
+      {
+       "name": "DuskguardTrouserCuffs",
+       "minimum": [
+        -0.7922641812412199,
+        -0.21971886378770644,
+        -1.0022233264102338
+       ],
+       "maximum": [
+        0.6523897335249476,
+        1.6119807167581723,
+        0.7666919741355032
+       ]
+      },
+      {
+       "name": "DuskguardTassets",
+       "minimum": [
+        -0.4828411937187911,
+        0.1338817708167821,
+        -0.6517252455574003
+       ],
+       "maximum": [
+        0.41474810423784103,
+        1.3642744276024164,
+        0.4278008064569172
+       ]
+      },
+      {
+       "name": "DuskguardTassets",
+       "minimum": [
+        -0.481025440050326,
+        0.13845048237715707,
+        -0.6445835497584931
+       ],
+       "maximum": [
+        0.4125980519959783,
+        1.3609464843902936,
+        0.42350629964760733
+       ]
+      },
+      {
+       "name": "DuskguardTrousersUnderTorso",
+       "minimum": [
+        -0.7922641812412199,
+        -0.21971886378770644,
+        -1.0022233264102338
+       ],
+       "maximum": [
+        0.6523897335249476,
+        1.6119807167581723,
+        0.7666919741355032
+       ]
+      }
+     ],
+     "points": 1243740,
+     "escaped": 0
+    },
+    "duskguardGreaves": {
+     "sha256": "ae5f46bd2066ca25b7e1e514b51b3c6ba18475b5732ac44245ca734753badf10",
+     "bounds": [
+      {
+       "name": "DuskguardBootUnderlayer",
+       "minimum": [
+        -0.7391617028414899,
+        -0.25217545618205883,
+        -1.2902269727036264
+       ],
+       "maximum": [
+        0.7496410539318379,
+        1.4458740453219718,
+        0.9857709232382463
+       ]
+      },
+      {
+       "name": "DuskguardGreaves",
+       "minimum": [
+        -0.5630278541327705,
+        0.03884614262120574,
+        -0.8200293071983233
+       ],
+       "maximum": [
+        0.5257922132581578,
+        1.2246756041135043,
+        0.6538136115655342
+       ]
+      },
+      {
+       "name": "DuskguardGreaves",
+       "minimum": [
+        -0.5630278541327705,
+        0.03884614262120574,
+        -0.8200293071983233
+       ],
+       "maximum": [
+        0.5257922132581578,
+        1.2246756041135043,
+        0.6538136115655342
+       ]
+      }
+     ],
+     "points": 1035690,
+     "escaped": 0
+    },
+    "duskguardVambraces": {
+     "sha256": "205050450611ff7f63364fcae87bfa41ac1702a914720fd363221c4b1ad279f7",
+     "bounds": [
+      {
+       "name": "DuskguardGloveUnderlayer",
+       "minimum": [
+        -0.9895002316134818,
+        0.04934213550301163,
+        -1.6722796421740787
+       ],
+       "maximum": [
+        0.9725487245816478,
+        2.497766492640596,
+        1.1419128266678162
+       ]
+      },
+      {
+       "name": "DuskguardVambraces",
+       "minimum": [
+        -0.7324696638330344,
+        -0.0024059809273667965,
+        -1.4181523569599992
+       ],
+       "maximum": [
+        0.7490388239071979,
+        2.300397168426337,
+        0.8933468114332852
+       ]
+      },
+      {
+       "name": "DuskguardVambraces",
+       "minimum": [
+        -0.7228678932625292,
+        -0.0016456094984381986,
+        -1.4097318460566963
+       ],
+       "maximum": [
+        0.7397361790525483,
+        2.2928285020147294,
+        0.8838095360851268
+       ]
+      }
+     ],
+     "points": 807120,
+     "escaped": 0
+    }
+   },
+   "clips": {
+    "TPose": {
+     "fromRow": 0,
+     "frameCount": 151,
+     "fps": 60,
+     "duration": 2.5
+    },
+    "Crouch_Fwd_Loop": {
+     "fromRow": 0,
+     "frameCount": 121,
+     "fps": 60,
+     "duration": 2
+    },
+    "Crouch_Idle_Loop": {
+     "fromRow": 0,
+     "frameCount": 177,
+     "fps": 60,
+     "duration": 2.933333396911621
+    },
+    "Dance_Loop": {
+     "fromRow": 0,
+     "frameCount": 61,
+     "fps": 60,
+     "duration": 1
+    },
+    "Death01": {
+     "fromRow": 0,
+     "frameCount": 145,
+     "fps": 60,
+     "duration": 2.4000000953674316
+    },
+    "Driving_Loop": {
+     "fromRow": 0,
+     "frameCount": 101,
+     "fps": 60,
+     "duration": 1.6666666269302368
+    },
+    "Fixing_Kneeling": {
+     "fromRow": 0,
+     "frameCount": 313,
+     "fps": 60,
+     "duration": 5.199999809265137
+    },
+    "Hit_Chest": {
+     "fromRow": 0,
+     "frameCount": 21,
+     "fps": 60,
+     "duration": 0.3333333432674408
+    },
+    "Hit_Head": {
+     "fromRow": 0,
+     "frameCount": 27,
+     "fps": 60,
+     "duration": 0.4333333373069763
+    },
+    "Idle_Loop": {
+     "fromRow": 0,
+     "frameCount": 151,
+     "fps": 60,
+     "duration": 2.5
+    },
+    "Idle_Talking_Loop": {
+     "fromRow": 0,
+     "frameCount": 177,
+     "fps": 60,
+     "duration": 2.933333396911621
+    },
+    "Idle_Torch_Loop": {
+     "fromRow": 0,
+     "frameCount": 77,
+     "fps": 60,
+     "duration": 1.2666666507720947
+    },
+    "Interact": {
+     "fromRow": 0,
+     "frameCount": 121,
+     "fps": 60,
+     "duration": 2
+    },
+    "Jog_Fwd_Loop": {
+     "fromRow": 0,
+     "frameCount": 57,
+     "fps": 60,
+     "duration": 0.9333333373069763
+    },
+    "Jump_Land": {
+     "fromRow": 0,
+     "frameCount": 77,
+     "fps": 60,
+     "duration": 1.2666666507720947
+    },
+    "Jump_Loop": {
+     "fromRow": 0,
+     "frameCount": 151,
+     "fps": 60,
+     "duration": 2.5
+    },
+    "Jump_Start": {
+     "fromRow": 0,
+     "frameCount": 81,
+     "fps": 60,
+     "duration": 1.3333333730697632
+    },
+    "PickUp_Table": {
+     "fromRow": 0,
+     "frameCount": 51,
+     "fps": 60,
+     "duration": 0.8333333134651184
+    },
+    "Pistol_Aim_Down": {
+     "fromRow": 0,
+     "frameCount": 11,
+     "fps": 60,
+     "duration": 0.1666666716337204
+    },
+    "Pistol_Aim_Neutral": {
+     "fromRow": 0,
+     "frameCount": 11,
+     "fps": 60,
+     "duration": 0.1666666716337204
+    },
+    "Pistol_Aim_Up": {
+     "fromRow": 0,
+     "frameCount": 11,
+     "fps": 60,
+     "duration": 0.1666666716337204
+    },
+    "Pistol_Idle_Loop": {
+     "fromRow": 0,
+     "frameCount": 101,
+     "fps": 60,
+     "duration": 1.6666666269302368
+    },
+    "Pistol_Reload": {
+     "fromRow": 0,
+     "frameCount": 101,
+     "fps": 60,
+     "duration": 1.6666666269302368
+    },
+    "Pistol_Shoot": {
+     "fromRow": 0,
+     "frameCount": 39,
+     "fps": 60,
+     "duration": 0.6333333253860474
+    },
+    "Punch_Cross": {
+     "fromRow": 0,
+     "frameCount": 61,
+     "fps": 60,
+     "duration": 1
+    },
+    "Punch_Jab": {
+     "fromRow": 0,
+     "frameCount": 53,
+     "fps": 60,
+     "duration": 0.8666666746139526
+    },
+    "Push_Loop": {
+     "fromRow": 0,
+     "frameCount": 161,
+     "fps": 60,
+     "duration": 2.6666667461395264
+    },
+    "Roll": {
+     "fromRow": 0,
+     "frameCount": 89,
+     "fps": 60,
+     "duration": 1.4666666984558105
+    },
+    "Roll_RM": {
+     "fromRow": 0,
+     "frameCount": 89,
+     "fps": 60,
+     "duration": 1.4666666984558105
+    },
+    "Sitting_Enter": {
+     "fromRow": 0,
+     "frameCount": 79,
+     "fps": 60,
+     "duration": 1.2999999523162842
+    },
+    "Sitting_Exit": {
+     "fromRow": 0,
+     "frameCount": 63,
+     "fps": 60,
+     "duration": 1.0333333015441895
+    },
+    "Sitting_Idle_Loop": {
+     "fromRow": 0,
+     "frameCount": 101,
+     "fps": 60,
+     "duration": 1.6666666269302368
+    },
+    "Sitting_Talking_Loop": {
+     "fromRow": 0,
+     "frameCount": 177,
+     "fps": 60,
+     "duration": 2.933333396911621
+    },
+    "Spell_Simple_Enter": {
+     "fromRow": 0,
+     "frameCount": 33,
+     "fps": 60,
+     "duration": 0.5333333611488342
+    },
+    "Spell_Simple_Exit": {
+     "fromRow": 0,
+     "frameCount": 27,
+     "fps": 60,
+     "duration": 0.4333333373069763
+    },
+    "Spell_Simple_Idle_Loop": {
+     "fromRow": 0,
+     "frameCount": 127,
+     "fps": 60,
+     "duration": 2.0999999046325684
+    },
+    "Spell_Simple_Shoot": {
+     "fromRow": 0,
+     "frameCount": 31,
+     "fps": 60,
+     "duration": 0.5
+    },
+    "Sprint_Loop": {
+     "fromRow": 0,
+     "frameCount": 41,
+     "fps": 60,
+     "duration": 0.6666666865348816
+    },
+    "Swim_Fwd_Loop": {
+     "fromRow": 0,
+     "frameCount": 81,
+     "fps": 60,
+     "duration": 1.3333333730697632
+    },
+    "Swim_Idle_Loop": {
+     "fromRow": 0,
+     "frameCount": 201,
+     "fps": 60,
+     "duration": 3.3333332538604736
+    },
+    "Sword_Attack": {
+     "fromRow": 0,
+     "frameCount": 93,
+     "fps": 60,
+     "duration": 1.5333333015441895
+    },
+    "Sword_Attack_RM": {
+     "fromRow": 0,
+     "frameCount": 93,
+     "fps": 60,
+     "duration": 1.5333333015441895
+    },
+    "Sword_Idle": {
+     "fromRow": 0,
+     "frameCount": 101,
+     "fps": 60,
+     "duration": 1.6666666269302368
+    },
+    "Walk_Formal_Loop": {
+     "fromRow": 0,
+     "frameCount": 81,
+     "fps": 60,
+     "duration": 1.3333333730697632
+    },
+    "Walk_Loop": {
+     "fromRow": 0,
+     "frameCount": 81,
+     "fps": 60,
+     "duration": 1.3333333730697632
+    },
+    "Jog_Bwd_Loop": {
+     "fromRow": 0,
+     "frameCount": 57,
+     "fps": 60,
+     "duration": 0.9333333373069763
+    },
+    "Jog_Left_Loop": {
+     "fromRow": 0,
+     "frameCount": 57,
+     "fps": 60,
+     "duration": 0.9333333373069763
+    },
+    "Jog_Right_Loop": {
+     "fromRow": 0,
+     "frameCount": 57,
+     "fps": 60,
+     "duration": 0.9333333373069763
+    },
+    "Turn90_L": {
+     "fromRow": 0,
+     "frameCount": 121,
+     "fps": 60,
+     "duration": 2
+    },
+    "Turn90_R": {
+     "fromRow": 0,
+     "frameCount": 121,
+     "fps": 60,
+     "duration": 2
+    },
+    "Walk_Carry_Loop": {
+     "fromRow": 0,
+     "frameCount": 121,
+     "fps": 60,
+     "duration": 2
+    },
+    "PyreBurst_Upper": {
+     "fromRow": 0,
+     "frameCount": 115,
+     "fps": 60,
+     "duration": 1.899999976158142
+    },
+    "PyreBurst_Lower": {
+     "fromRow": 0,
+     "frameCount": 115,
+     "fps": 60,
+     "duration": 1.899999976158142
+    },
+    "FireBlast_Upper": {
+     "fromRow": 0,
+     "frameCount": 85,
+     "fps": 60,
+     "duration": 1.399999976158142
+    },
+    "FireBlast_Lower": {
+     "fromRow": 0,
+     "frameCount": 85,
+     "fps": 60,
+     "duration": 1.399999976158142
+    },
+    "LavaBall_Upper": {
+     "fromRow": 0,
+     "frameCount": 139,
+     "fps": 60,
+     "duration": 2.299999952316284
+    },
+    "LavaBall_Lower": {
+     "fromRow": 0,
+     "frameCount": 139,
+     "fps": 60,
+     "duration": 2.299999952316284
+    }
+   }
+  }
+ },
+ "points": 142120095,
+ "escaped": 0,
+ "finalByteCache": {
+  "entries": 0,
+  "reservedBytes": 0,
+  "peakReservedBytes": 4496592,
+  "ceilingBytes": 8388608,
+  "leases": 0
+ },
+ "errors": [],
+ "gpuErrors": [],
+ "published": {
+  "version": 1,
+  "publishedAt": "2026-10-02T05:14:12.333Z",
+  "sourceCompilerSha256": "e9bb55b8b67195c5fe92cb8ebfc86aa59ee654a614bcec4154ab5c721a531563",
+  "pieceCount": 45,
+  "uniqueFiles": 45,
+  "totalBytes": 19418944,
+  "lite": "1.31.1",
+  "catalogVersion": "appearance-catalog-v4"
+ }
+}

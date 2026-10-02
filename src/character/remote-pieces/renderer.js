@@ -38,6 +38,9 @@ function enroll(scene,update){
 const POSES=Object.freeze({Idle_Loop:'idle',Walk_Loop:'walk',Sprint_Loop:'run',Jump_Start:'jump',Jump_Loop:'air',Jump_Land:'land',FireBlast_Upper:'fire',LavaBall_Upper:'lava',PyreBurst_Upper:'pulse',Walk_Carry_Loop:'carry'});
 const sameShape=(a,b)=>JSON.stringify(a.shape)===JSON.stringify(b.shape)&&a.race===b.race;
 
+/** Published descriptor contract. Bump only with a matching publisher change. */
+export const REMOTE_PIECES_PUBLISH_VERSION=1;
+
 export async function createRemotePieceActors(game,{root='/__remote_pieces__',capacity=8,clock,signal:requestSignal}={}){
  if(VERSION!=='1.31.1'||!Array.isArray(game.scene._materialSwapQueue))throw Error('Remote staging requires reviewed Lite 1.31.1');
  if(!Number.isSafeInteger(capacity)||capacity<1||capacity>REGION_STREAMING_LIMITS.exact)throw RangeError('Remote exact capacity must be 1–8');
@@ -45,7 +48,18 @@ export async function createRemotePieceActors(game,{root='/__remote_pieces__',ca
  const response=await fetch(`${root}/prepared.json`,{signal});if(!response.ok)throw Error('Prepare native remote bounds first');
  const bytes=await response.arrayBuffer();if(bytes.byteLength>512*1024)throw Error('Remote descriptor exceeds budget');
  const prepared=JSON.parse(new TextDecoder().decode(bytes)),source=prepared.manifest;
- if(prepared.schema!==1||prepared.lite!==VERSION||prepared.catalogVersion!==APPEARANCE_CATALOG_VERSION||prepared.candidateOnly!==true||prepared.escaped!==0||source?.schema!==1||source.catalogVersion!==APPEARANCE_CATALOG_VERSION||source.lite!==VERSION||source.candidateOnly!==true)throw Error('Remote piece contract mismatch');
+ // Two descriptors are acceptable and nothing between them: the DEV candidate set, and a
+ // published set carrying a version and the hash of the compiler that produced it. A
+ // descriptor that is neither -- candidateOnly cleared without a published block, or the two
+ // flags disagreeing between descriptor and manifest -- is refused rather than guessed at.
+ // Each piece is separately hash-sealed below and re-verified on fetch; the descriptor
+ // itself is trusted by origin, which is why its provenance is checked here.
+ const candidate=prepared.candidateOnly===true&&source.candidateOnly===true;
+ const release=prepared.candidateOnly===false&&source.candidateOnly===false
+  &&prepared.published?.version===REMOTE_PIECES_PUBLISH_VERSION
+  &&/^[0-9a-f]{64}$/.test(prepared.published?.sourceCompilerSha256||'')
+  &&prepared.published?.lite===VERSION&&prepared.published?.catalogVersion===APPEARANCE_CATALOG_VERSION;
+ if(prepared.schema!==1||prepared.lite!==VERSION||prepared.catalogVersion!==APPEARANCE_CATALOG_VERSION||prepared.escaped!==0||source?.schema!==1||source.catalogVersion!==APPEARANCE_CATALOG_VERSION||source.lite!==VERSION||!(candidate||release))throw Error('Remote piece contract mismatch');
  const manifests=new Map();
  for(const [race,data]of Object.entries(source.races)){
   if(!FITS_BY_RACE[race]||data.manifest.fitId!==FITS_BY_RACE[race].body||!prepared.races[race]?.clips)throw Error('Unsupported remote race fit');
