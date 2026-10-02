@@ -35,7 +35,24 @@ function enroll(scene,update){
 // The same source-backed composition used by the Armory/player, with one native
 // manager and evaluated finger/carry masks. Source time stays actor-owned; this
 // exact tier samples at 60 Hz. VAT equivalence remains a separate M8 gate.
-const POSES=Object.freeze({Idle_Loop:'idle',Walk_Loop:'walk',Sprint_Loop:'run',Jump_Start:'jump',Jump_Loop:'air',Jump_Land:'land',FireBlast_Upper:'fire',LavaBall_Upper:'lava',PyreBurst_Upper:'pulse',Walk_Carry_Loop:'carry'});
+// Source clip -> composed player pose. These are compositions, not raw clips: the upper and
+// lower layers, the carry/finger policy and the ease in/out are the player's own, so an
+// action endpoint returns the overlay to idle rather than holding a raw final frame.
+// Spell_Simple_Enter is the simple cast, which *is* the fire composition, so it maps
+// faithfully rather than approximately.
+const POSES=Object.freeze({Idle_Loop:'idle',Walk_Loop:'walk',Sprint_Loop:'run',Jump_Start:'jump',Jump_Loop:'air',Jump_Land:'land',FireBlast_Upper:'fire',LavaBall_Upper:'lava',PyreBurst_Upper:'pulse',Walk_Carry_Loop:'carry',Spell_Simple_Enter:'fire'});
+/**
+ * Clips a seat may legitimately send that have no composed pose yet.
+ *
+ * The composition vocabulary is idle/walk/run/jump/land/air/fire/lava/pulse/carry; there is no
+ * sword-attack composition. Rejecting the actor would make a remote player stop updating
+ * entirely for the duration of a swing, which is worse than showing them in locomotion, and
+ * inventing a pose would be claiming a capability the player composition does not have. So
+ * these fall back and are counted, which keeps the gap visible in telemetry instead of
+ * hidden. Giving them a real composed pose is M8's matching bake/pose work.
+ */
+const UNCOMPOSED=Object.freeze({Sword_Attack:'idle'});
+export const REMOTE_PIECE_MOTIONS=Object.freeze([...Object.keys(POSES),...Object.keys(UNCOMPOSED)]);
 const sameShape=(a,b)=>JSON.stringify(a.shape)===JSON.stringify(b.shape)&&a.race===b.race;
 
 /** Published descriptor contract. Bump only with a matching publisher change. */
@@ -78,11 +95,11 @@ export async function createRemotePieceActors(game,{root='/__remote_pieces__',ca
  signal.throwIfAborted();
  const actors=new Map(),desired=new Map(),owned=new Set(),builds=new Set();
  const queue=createRequestQueue({limit:REGION_STREAMING_LIMITS.pending,between:()=>yieldToFrame()}),epoch=performance.now(),now=clock||(()=> (performance.now()-epoch)/1000);
- const stats={bodyLoads:0,liveEquipmentChanges:0,peakOwned:0,preparations:[]};let disposed=false,disposal,leave=()=>{};
+ const stats={bodyLoads:0,liveEquipmentChanges:0,peakOwned:0,uncomposedMotions:0,preparations:[]};let disposed=false,disposal,leave=()=>{};
  const current=token=>!disposed&&desired.get(token.actor.id)===token;
  function checkActor(input){
   const actor=createRegionActor(input),manifest=manifests.get(actor.recipe.race);
-  if(!manifest||!POSES[actor.motion.clip]||!prepared.races[actor.recipe.race].clips[actor.motion.clip])throw Error('Unsupported remote source motion or race');
+  if(!manifest||!(POSES[actor.motion.clip]||UNCOMPOSED[actor.motion.clip])||!prepared.races[actor.recipe.race].clips[actor.motion.clip])throw Error('Unsupported remote source motion or race');
   for(const id of Object.values(actor.recipe.equipment))if(id&&!EQUIPMENT_ITEMS[id].factory&&!manifest.items[id])throw Error('Remote item has no race-specific fit');
   return actor;
  }
@@ -95,7 +112,9 @@ export async function createRemotePieceActors(game,{root='/__remote_pieces__',ca
   const {x,y,z,yaw}=actor.transform,h=actor.recipe.shape.height||1;resource.origin.position.set(x,y,z);resource.origin.scaling.set(h,h,h);resource.origin.rotationQuaternion.set(0,Math.sin(yaw/2),0,Math.cos(yaw/2));
  }
  function pose(resource,actor,force=false){
-  const time=now(),sample=sampleActorMotion(actor,time,prepared.races[actor.recipe.race].clips),id=POSES[sample.clip];
+  const time=now(),sample=sampleActorMotion(actor,time,prepared.races[actor.recipe.race].clips);
+  let id=POSES[sample.clip];
+  if(!id){id=UNCOMPOSED[sample.clip];stats.uncomposedMotions=(stats.uncomposedMotions||0)+1;}
   if(resource.poseId!==id){resource.preview.select(id);resource.poseId=id;}
   // Source sampling and the existing hand/back easing have separate jobs:
   // seeking the skeleton must still advance an in-flight prop transition.

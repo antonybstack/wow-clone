@@ -160,6 +160,9 @@ export class PresenceRoom extends Room {
       copyMovement(avatar, resource.player.getMovementState());
       const now = this.state.elapsed;
       if (command.action && now - resource.lastAction >= 0.8) {
+        // Spell_Simple_Enter is the simple cast, which the client composes as the fire
+        // layer; Sword_Attack has no composed pose yet and remote actors fall back to
+        // locomotion for it, counted in the renderer's uncomposedMotions.
         avatar.clip =
           command.action === 1 ? "Spell_Simple_Enter" : "Sword_Attack";
         avatar.motionStarted = now;

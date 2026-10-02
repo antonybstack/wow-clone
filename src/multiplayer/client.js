@@ -14,8 +14,6 @@ import {
   onInputReset,
 } from "../input.js";
 import { sceneLifetime } from "../ashen-reach/scene-lifetime.js";
-import { createRegionCrowd } from "../character/region-crowd/renderer.js";
-import { REGION_ACTOR_RELEASE } from "../character/region-crowd/release.js";
 import { createRegionActor } from "../character/region-crowd/actor-state.js";
 import {
   PRESENCE_PROTOCOL,
@@ -24,8 +22,13 @@ import {
   TICK_RATE,
   PHYSICS_SUBSTEPS,
   validatePresenceAppearance,
+  presenceHeightScale,
+  HUMAN_CAPSULE,
 } from "./protocol.js";
 import { COLLISION_RELEASE } from "./collision-release.js";
+
+/** Published immutable piece root. Served statically; see publish-remote-pieces.mjs. */
+const REMOTE_PIECE_ROOT = "/ashen-reach/remote-pieces/v1";
 
 const updates = new WeakMap();
 function enroll(scene, callback) {
@@ -285,8 +288,15 @@ export async function joinPresence(
     }
     combined.throwIfAborted();
     await initialState(room, combined);
-    crowd = await createRegionCrowd(game, {
-      ...REGION_ACTOR_RELEASE,
+    // Native per-piece presence, imported only once a shared region is actually joined, so
+    // neither the renderer nor its published asset graph is referenced by normal startup.
+    // Every seat is an exact owner: the room seats eight and the renderer's exact capacity is
+    // eight, so there is no crowd tier to choose here. Larger populations are M8's problem.
+    const { createRemotePieceActors } = await import(
+      "../character/remote-pieces/renderer.js"
+    );
+    crowd = await createRemotePieceActors(game, {
+      root: REMOTE_PIECE_ROOT,
       capacity: 8,
       clock: () => room.clock.renderNow() / 1000 - 0.1,
       signal: combined,
@@ -417,12 +427,13 @@ export async function joinPresence(
         const recipe = cached.recipe,
           transform = {
             x: predict.value(avatar, "x"),
-            y: predict.value(avatar, "y") - (1.748 * recipe.shape.height) / 2,
+            y:
+              predict.value(avatar, "y") -
+              (HUMAN_CAPSULE.height * presenceHeightScale(recipe)) / 2,
             z: predict.value(avatar, "z"),
             yaw: predict.value(avatar, "facing"),
           };
-        const tier = id === api.target ? "exact" : "vat",
-          key = `${avatar.revision}:${avatar.clip}:${avatar.motionStarted}:${tier}`;
+        const key = `${avatar.revision}:${avatar.clip}:${avatar.motionStarted}`;
         if (cached.key !== key) {
           cached.key = key;
           const actor = createRegionActor({
@@ -438,7 +449,7 @@ export async function joinPresence(
             },
           });
           void crowd
-            .set(actor, tier, { priority: id === api.target ? 1 : 2 })
+            .upsert(actor, { priority: id === api.target ? 1 : 2 })
             .catch((error) => {
               if (!closed && !errors.includes(error.message))
                 errors.push(error.message);

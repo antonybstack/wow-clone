@@ -1,0 +1,1048 @@
+{
+  "url": "http://127.0.0.1:5873/ashen-reach.html?play&clean&pixelRatio=1",
+  "endpoint": "http://127.0.0.1:2577",
+  "conditions": "Two rendering clients; functional only, no solo FPS claim",
+  "rows": [
+    {
+      "case": "real-input-shared-movement",
+      "before": {
+        "status": "shared",
+        "connected": true,
+        "sessionId": "ETKOMjcyv",
+        "players": {
+          "ETKOMjcyv": {
+            "x": -2.2499323438813343,
+            "y": 0.5403156266783204,
+            "z": -5.999735013527601,
+            "facing": 0,
+            "vy": 0,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 1,
+            "controllerVx": 0,
+            "controllerVy": 0,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "ETKOMjcyv",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v4\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+            "revision": 1,
+            "clip": "Idle_Loop",
+            "motionStarted": 0,
+            "connected": true
+          },
+          "DXP-jzrX5": {
+            "x": -0.7500452122272433,
+            "y": 0.5637664786381655,
+            "z": -5.999836105679276,
+            "facing": 0,
+            "vy": 0.0008061130486948251,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 1,
+            "controllerVx": 0,
+            "controllerVy": 0.0008061130486948251,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "DXP-jzrX5",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v4\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+            "revision": 1,
+            "clip": "Idle_Loop",
+            "motionStarted": 0,
+            "connected": true
+          }
+        },
+        "actors": {
+          "count": 1,
+          "actors": [
+            {
+              "id": "DXP-jzrX5",
+              "revision": 1,
+              "race": "human",
+              "sample": {
+                "clip": "Idle_Loop",
+                "loop": true,
+                "timeSeconds": 1.2646737752430681,
+                "frame": 75,
+                "row": 75,
+                "ended": false,
+                "phase": 0.5058695100972272
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              }
+            }
+          ]
+        },
+        "streaming": {
+          "limits": {
+            "pending": 32,
+            "exact": 8,
+            "idleExact": 0,
+            "idleGarments": 0
+          },
+          "queue": {
+            "submitted": 1,
+            "superseded": 0,
+            "rejected": 0,
+            "peakPending": 1,
+            "completed": 1,
+            "pending": 0,
+            "active": 0,
+            "uniqueIds": 0,
+            "limit": 32,
+            "closed": false
+          },
+          "immutable": {
+            "entries": 0,
+            "reservedBytes": 0,
+            "peakReservedBytes": 1943832,
+            "ceilingBytes": 8388608,
+            "leases": 0
+          },
+          "owned": 1,
+          "activeExact": 1,
+          "pendingBuilds": 0,
+          "allocation": {
+            "buffers": 70,
+            "textures": 10,
+            "bufferBytes": 2291032,
+            "textureBytes": 2455008,
+            "unknownTextureFormats": 0,
+            "knownCpuBytes": 2967392,
+            "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+          },
+          "stats": {
+            "bodyLoads": 1,
+            "liveEquipmentChanges": 0,
+            "peakOwned": 1,
+            "uncomposedMotions": 0,
+            "preparations": [
+              87.30000019073486
+            ]
+          }
+        },
+        "drift": {
+          "ema": 2.842834014485856e-19,
+          "peak": 1.2096541284172434e-18
+        },
+        "errors": []
+      },
+      "after": {
+        "status": "shared",
+        "connected": true,
+        "sessionId": "ETKOMjcyv",
+        "players": {
+          "ETKOMjcyv": {
+            "x": -2.163404732298069,
+            "y": 1.1843403592191473,
+            "z": 6.546508659331932,
+            "facing": 0,
+            "vy": 0,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 1,
+            "controllerVx": 0,
+            "controllerVy": 0,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "ETKOMjcyv",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v4\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+            "revision": 1,
+            "clip": "Idle_Loop",
+            "motionStarted": 180.732,
+            "connected": true
+          },
+          "DXP-jzrX5": {
+            "x": -0.7500452122272433,
+            "y": 0.5644767552598131,
+            "z": -5.999836105679276,
+            "facing": 0,
+            "vy": 0.00007113902186580807,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 1,
+            "controllerVx": 0,
+            "controllerVy": 0.00007113902186580807,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "DXP-jzrX5",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v4\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+            "revision": 1,
+            "clip": "Idle_Loop",
+            "motionStarted": 0,
+            "connected": true
+          }
+        },
+        "actors": {
+          "count": 1,
+          "actors": [
+            {
+              "id": "DXP-jzrX5",
+              "revision": 1,
+              "race": "human",
+              "sample": {
+                "clip": "Idle_Loop",
+                "loop": true,
+                "timeSeconds": 1.0749663229777582,
+                "frame": 64,
+                "row": 64,
+                "ended": false,
+                "phase": 0.42998652919110325
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              }
+            }
+          ]
+        },
+        "streaming": {
+          "limits": {
+            "pending": 32,
+            "exact": 8,
+            "idleExact": 0,
+            "idleGarments": 0
+          },
+          "queue": {
+            "submitted": 1,
+            "superseded": 0,
+            "rejected": 0,
+            "peakPending": 1,
+            "completed": 1,
+            "pending": 0,
+            "active": 0,
+            "uniqueIds": 0,
+            "limit": 32,
+            "closed": false
+          },
+          "immutable": {
+            "entries": 0,
+            "reservedBytes": 0,
+            "peakReservedBytes": 1943832,
+            "ceilingBytes": 8388608,
+            "leases": 0
+          },
+          "owned": 1,
+          "activeExact": 1,
+          "pendingBuilds": 0,
+          "allocation": {
+            "buffers": 70,
+            "textures": 10,
+            "bufferBytes": 2291032,
+            "textureBytes": 2455008,
+            "unknownTextureFormats": 0,
+            "knownCpuBytes": 2967392,
+            "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+          },
+          "stats": {
+            "bodyLoads": 1,
+            "liveEquipmentChanges": 0,
+            "peakOwned": 1,
+            "uncomposedMotions": 0,
+            "preparations": [
+              87.30000019073486
+            ]
+          }
+        },
+        "drift": {
+          "ema": 0.00021853899496360247,
+          "peak": 0.00029393263328913137
+        },
+        "errors": []
+      },
+      "seen": {
+        "status": "shared",
+        "connected": true,
+        "sessionId": "DXP-jzrX5",
+        "players": {
+          "ETKOMjcyv": {
+            "x": -2.163404732298069,
+            "y": 1.1843403592191473,
+            "z": 6.546508659331932,
+            "facing": 0,
+            "vy": 0,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 1,
+            "controllerVx": 0,
+            "controllerVy": 0,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "ETKOMjcyv",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v4\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+            "revision": 1,
+            "clip": "Idle_Loop",
+            "motionStarted": 180.732,
+            "connected": true
+          },
+          "DXP-jzrX5": {
+            "x": -0.7500452122272433,
+            "y": 0.5644767552598131,
+            "z": -5.999836105679276,
+            "facing": 0,
+            "vy": 0.00007113902186580807,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 1,
+            "controllerVx": 0,
+            "controllerVy": 0.00007113902186580807,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "DXP-jzrX5",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v4\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+            "revision": 1,
+            "clip": "Idle_Loop",
+            "motionStarted": 0,
+            "connected": true
+          }
+        },
+        "actors": {
+          "count": 1,
+          "actors": [
+            {
+              "id": "ETKOMjcyv",
+              "revision": 1,
+              "race": "human",
+              "sample": {
+                "clip": "Idle_Loop",
+                "loop": true,
+                "timeSeconds": 0.31250318428004675,
+                "frame": 18,
+                "row": 18,
+                "ended": false,
+                "phase": 0.1250012737120187
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              }
+            }
+          ]
+        },
+        "streaming": {
+          "limits": {
+            "pending": 32,
+            "exact": 8,
+            "idleExact": 0,
+            "idleGarments": 0
+          },
+          "queue": {
+            "submitted": 1,
+            "superseded": 0,
+            "rejected": 0,
+            "peakPending": 1,
+            "completed": 1,
+            "pending": 0,
+            "active": 0,
+            "uniqueIds": 0,
+            "limit": 32,
+            "closed": false
+          },
+          "immutable": {
+            "entries": 0,
+            "reservedBytes": 0,
+            "peakReservedBytes": 1943832,
+            "ceilingBytes": 8388608,
+            "leases": 0
+          },
+          "owned": 1,
+          "activeExact": 1,
+          "pendingBuilds": 0,
+          "allocation": {
+            "buffers": 70,
+            "textures": 10,
+            "bufferBytes": 2291032,
+            "textureBytes": 2455008,
+            "unknownTextureFormats": 0,
+            "knownCpuBytes": 2967392,
+            "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+          },
+          "stats": {
+            "bodyLoads": 1,
+            "liveEquipmentChanges": 0,
+            "peakOwned": 1,
+            "uncomposedMotions": 0,
+            "preparations": [
+              84.69999980926514
+            ]
+          }
+        },
+        "drift": {
+          "ema": 6.003564191279285e-7,
+          "peak": 0.0000017616195550980937
+        },
+        "errors": []
+      }
+    },
+    {
+      "case": "remote-exact-appearance",
+      "changed": {
+        "requestId": "e3e46ecd-b309-401d-9092-aa2b82d116cb",
+        "status": "applied",
+        "revision": 2,
+        "recipe": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v4",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        }
+      },
+      "appearance": {
+        "status": "shared",
+        "connected": true,
+        "sessionId": "DXP-jzrX5",
+        "players": {
+          "ETKOMjcyv": {
+            "x": -2.163404732298069,
+            "y": 1.0969403592191473,
+            "z": 6.546508659331932,
+            "facing": 0,
+            "vy": 0,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 0.9,
+            "controllerVx": 0,
+            "controllerVy": 0,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "ETKOMjcyv",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v4\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":0.9,\"build\":0.95},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":\"graveweaverHood\",\"torso\":\"graveweaverTop\",\"legs\":\"graveweaverSkirt\",\"boots\":\"wayfarerBoots\",\"gloves\":\"graveweaverGloves\",\"mainHand\":\"graveweaverGreatstaff\",\"offHand\":null,\"shoulders\":null}}",
+            "revision": 2,
+            "clip": "Idle_Loop",
+            "motionStarted": 180.732,
+            "connected": true
+          },
+          "DXP-jzrX5": {
+            "x": -0.7500452122272433,
+            "y": 0.5644949604093317,
+            "z": -5.999836105679276,
+            "facing": 0,
+            "vy": 0.00005229582747385891,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 1,
+            "controllerVx": 0,
+            "controllerVy": 0.00005229582747385891,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "DXP-jzrX5",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v4\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+            "revision": 1,
+            "clip": "Idle_Loop",
+            "motionStarted": 0,
+            "connected": true
+          }
+        },
+        "actors": {
+          "count": 1,
+          "actors": [
+            {
+              "id": "ETKOMjcyv",
+              "revision": 2,
+              "race": "human",
+              "sample": {
+                "clip": "Idle_Loop",
+                "loop": true,
+                "timeSeconds": 0.6277640317385647,
+                "frame": 37,
+                "row": 37,
+                "ended": false,
+                "phase": 0.25110561269542586
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 0.9,
+                "build": 0.95
+              }
+            }
+          ]
+        },
+        "streaming": {
+          "limits": {
+            "pending": 32,
+            "exact": 8,
+            "idleExact": 0,
+            "idleGarments": 0
+          },
+          "queue": {
+            "submitted": 2,
+            "superseded": 0,
+            "rejected": 0,
+            "peakPending": 1,
+            "completed": 1,
+            "pending": 0,
+            "active": 1,
+            "uniqueIds": 1,
+            "limit": 32,
+            "closed": false
+          },
+          "immutable": {
+            "entries": 0,
+            "reservedBytes": 0,
+            "peakReservedBytes": 1943832,
+            "ceilingBytes": 8388608,
+            "leases": 0
+          },
+          "owned": 2,
+          "activeExact": 1,
+          "pendingBuilds": 0,
+          "allocation": {
+            "buffers": 126,
+            "textures": 24,
+            "bufferBytes": 4296048,
+            "textureBytes": 4910032,
+            "unknownTextureFormats": 0,
+            "knownCpuBytes": 6049180,
+            "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+          },
+          "stats": {
+            "bodyLoads": 2,
+            "liveEquipmentChanges": 0,
+            "peakOwned": 2,
+            "uncomposedMotions": 0,
+            "preparations": [
+              84.69999980926514,
+              99.60000014305115
+            ]
+          }
+        },
+        "drift": {
+          "ema": 2.901751319174799e-7,
+          "peak": 8.425771721827973e-7
+        },
+        "errors": []
+      }
+    },
+    {
+      "case": "source-action",
+      "state": {
+        "status": "shared",
+        "connected": true,
+        "sessionId": "DXP-jzrX5",
+        "players": {
+          "ETKOMjcyv": {
+            "x": -2.163404732298069,
+            "y": 1.0969403592191473,
+            "z": 6.546508659331932,
+            "facing": 0,
+            "vy": 0,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 0.9,
+            "controllerVx": 0,
+            "controllerVy": 0,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "ETKOMjcyv",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v4\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":0.9,\"build\":0.95},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":\"graveweaverHood\",\"torso\":\"graveweaverTop\",\"legs\":\"graveweaverSkirt\",\"boots\":\"wayfarerBoots\",\"gloves\":\"graveweaverGloves\",\"mainHand\":\"graveweaverGreatstaff\",\"offHand\":null,\"shoulders\":null}}",
+            "revision": 2,
+            "clip": "Spell_Simple_Enter",
+            "motionStarted": 181.574,
+            "connected": true
+          },
+          "DXP-jzrX5": {
+            "x": -0.7500452122272433,
+            "y": 0.5645014193713757,
+            "z": -5.999836105679276,
+            "facing": 0,
+            "vy": 0.000045557596567877086,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 1,
+            "controllerVx": 0,
+            "controllerVy": 0.000045557596567877086,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "DXP-jzrX5",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v4\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+            "revision": 1,
+            "clip": "Idle_Loop",
+            "motionStarted": 0,
+            "connected": true
+          }
+        },
+        "actors": {
+          "count": 1,
+          "actors": [
+            {
+              "id": "ETKOMjcyv",
+              "revision": 2,
+              "race": "human",
+              "sample": {
+                "clip": "Spell_Simple_Enter",
+                "loop": false,
+                "timeSeconds": 0,
+                "frame": 0,
+                "row": 0,
+                "ended": false,
+                "phase": 0
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 0.9,
+                "build": 0.95
+              }
+            }
+          ]
+        },
+        "streaming": {
+          "limits": {
+            "pending": 32,
+            "exact": 8,
+            "idleExact": 0,
+            "idleGarments": 0
+          },
+          "queue": {
+            "submitted": 2,
+            "superseded": 0,
+            "rejected": 0,
+            "peakPending": 1,
+            "completed": 2,
+            "pending": 0,
+            "active": 0,
+            "uniqueIds": 0,
+            "limit": 32,
+            "closed": false
+          },
+          "immutable": {
+            "entries": 0,
+            "reservedBytes": 0,
+            "peakReservedBytes": 1943832,
+            "ceilingBytes": 8388608,
+            "leases": 0
+          },
+          "owned": 1,
+          "activeExact": 1,
+          "pendingBuilds": 0,
+          "allocation": {
+            "buffers": 108,
+            "textures": 20,
+            "bufferBytes": 3425904,
+            "textureBytes": 3503608,
+            "unknownTextureFormats": 0,
+            "knownCpuBytes": 4196788,
+            "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+          },
+          "stats": {
+            "bodyLoads": 2,
+            "liveEquipmentChanges": 0,
+            "peakOwned": 2,
+            "uncomposedMotions": 0,
+            "preparations": [
+              84.69999980926514,
+              99.60000014305115
+            ]
+          }
+        },
+        "drift": {
+          "ema": 2.1181374323160797e-7,
+          "peak": 6.142387585212593e-7
+        },
+        "errors": []
+      }
+    },
+    {
+      "case": "automatic-reconnect-same-identity",
+      "state": {
+        "status": "shared",
+        "connected": true,
+        "sessionId": "ETKOMjcyv",
+        "players": {
+          "ETKOMjcyv": {
+            "x": -2.163404732298069,
+            "y": 1.0969403592191473,
+            "z": 6.546508659331932,
+            "facing": 0,
+            "vy": 0,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 0.9,
+            "controllerVx": 0,
+            "controllerVy": 0,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "ETKOMjcyv",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v4\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":0.9,\"build\":0.95},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":\"graveweaverHood\",\"torso\":\"graveweaverTop\",\"legs\":\"graveweaverSkirt\",\"boots\":\"wayfarerBoots\",\"gloves\":\"graveweaverGloves\",\"mainHand\":\"graveweaverGreatstaff\",\"offHand\":null,\"shoulders\":null}}",
+            "revision": 2,
+            "clip": "Idle_Loop",
+            "motionStarted": 182.11,
+            "connected": true
+          },
+          "DXP-jzrX5": {
+            "x": -0.7500452122272433,
+            "y": 0.5645216703392304,
+            "z": -5.999836105679276,
+            "facing": 0,
+            "vy": 0.000024657154686933477,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 1,
+            "controllerVx": 0,
+            "controllerVy": 0.000024657154686933477,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "DXP-jzrX5",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v4\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+            "revision": 1,
+            "clip": "Idle_Loop",
+            "motionStarted": 0,
+            "connected": true
+          }
+        },
+        "actors": {
+          "count": 1,
+          "actors": [
+            {
+              "id": "DXP-jzrX5",
+              "revision": 1,
+              "race": "human",
+              "sample": {
+                "clip": "Idle_Loop",
+                "loop": true,
+                "timeSeconds": 2.126722632128889,
+                "frame": 127,
+                "row": 127,
+                "ended": false,
+                "phase": 0.8506890528515555
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              }
+            }
+          ]
+        },
+        "streaming": {
+          "limits": {
+            "pending": 32,
+            "exact": 8,
+            "idleExact": 0,
+            "idleGarments": 0
+          },
+          "queue": {
+            "submitted": 1,
+            "superseded": 0,
+            "rejected": 0,
+            "peakPending": 1,
+            "completed": 1,
+            "pending": 0,
+            "active": 0,
+            "uniqueIds": 0,
+            "limit": 32,
+            "closed": false
+          },
+          "immutable": {
+            "entries": 0,
+            "reservedBytes": 0,
+            "peakReservedBytes": 1943832,
+            "ceilingBytes": 8388608,
+            "leases": 0
+          },
+          "owned": 1,
+          "activeExact": 1,
+          "pendingBuilds": 0,
+          "allocation": {
+            "buffers": 70,
+            "textures": 10,
+            "bufferBytes": 2291032,
+            "textureBytes": 2455008,
+            "unknownTextureFormats": 0,
+            "knownCpuBytes": 2967392,
+            "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+          },
+          "stats": {
+            "bodyLoads": 1,
+            "liveEquipmentChanges": 0,
+            "peakOwned": 1,
+            "uncomposedMotions": 0,
+            "preparations": [
+              87.30000019073486
+            ]
+          }
+        },
+        "drift": {
+          "ema": 0,
+          "peak": 0
+        },
+        "errors": []
+      }
+    },
+    {
+      "case": "departure-no-ghost",
+      "state": {
+        "status": "shared",
+        "connected": true,
+        "sessionId": "DXP-jzrX5",
+        "players": {
+          "DXP-jzrX5": {
+            "x": -0.7500452122272433,
+            "y": 0.5645224713737599,
+            "z": -5.999836105679276,
+            "facing": 0,
+            "vy": 0.00002382232961893573,
+            "vx": 0,
+            "vz": 0,
+            "speed": 0,
+            "support": 2,
+            "airTime": 0,
+            "jumps": 0,
+            "landings": 1,
+            "recoveries": 0,
+            "jumpBuffer": 0,
+            "coyote": 0.085,
+            "moveScale": 1,
+            "heightScale": 1,
+            "controllerVx": 0,
+            "controllerVy": 0.00002382232961893573,
+            "controllerVz": 0,
+            "castBlend": 0,
+            "grounded": true,
+            "jumpInFlight": false,
+            "previousJump": false,
+            "id": "DXP-jzrX5",
+            "recipe": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v4\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+            "revision": 1,
+            "clip": "Idle_Loop",
+            "motionStarted": 0,
+            "connected": true
+          }
+        },
+        "actors": {
+          "count": 0,
+          "actors": []
+        },
+        "streaming": {
+          "limits": {
+            "pending": 32,
+            "exact": 8,
+            "idleExact": 0,
+            "idleGarments": 0
+          },
+          "queue": {
+            "submitted": 2,
+            "superseded": 0,
+            "rejected": 0,
+            "peakPending": 1,
+            "completed": 2,
+            "pending": 0,
+            "active": 0,
+            "uniqueIds": 0,
+            "limit": 32,
+            "closed": false
+          },
+          "immutable": {
+            "entries": 0,
+            "reservedBytes": 0,
+            "peakReservedBytes": 1943832,
+            "ceilingBytes": 8388608,
+            "leases": 0
+          },
+          "owned": 1,
+          "activeExact": 0,
+          "pendingBuilds": 0,
+          "allocation": {
+            "buffers": 18,
+            "textures": 4,
+            "bufferBytes": 870144,
+            "textureBytes": 1406424,
+            "unknownTextureFormats": 0,
+            "knownCpuBytes": 1852392,
+            "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+          },
+          "stats": {
+            "bodyLoads": 2,
+            "liveEquipmentChanges": 0,
+            "peakOwned": 2,
+            "uncomposedMotions": 0,
+            "preparations": [
+              84.69999980926514,
+              99.60000014305115
+            ]
+          }
+        },
+        "drift": {
+          "ema": 6.031548896899261e-8,
+          "peak": 1.7347916785782418e-7
+        },
+        "errors": []
+      }
+    }
+  ],
+  "errors": [],
+  "ids": [
+    "ETKOMjcyv",
+    "DXP-jzrX5"
+  ],
+  "passed": true
+}
