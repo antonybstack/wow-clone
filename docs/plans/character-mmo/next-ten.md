@@ -239,9 +239,15 @@ Tasks:
    a slot at once, and unknown items. The worn appearance is byte-identical across every
    refusal. Two rows are untestable and recorded as such — the Undead boots wearing the only
    helmet in the catalogue. Held and slow responses remain per-design rather than per-slot.
-3. **Visual review across the matrix.** 768 combinations validate by rule; twelve have been
-   looked at. Review each design against each race at front/side/back, and record every
-   exception as data with a reason rather than a silent allowance.
+3. **Visual review across the matrix.** **Design-by-race half closed 2026-10-02**
+   ([result](results/m6-design-matrix-2026-10-02.md), Telegram **842**): 45 stills, 5 designs ×
+   3 races × front/side/back, one pinned camera and a frozen pose; every declared piece renders,
+   no GPU or console errors. Three judgement items recorded — the Duskguard cuirass reads as
+   quilted padding rather than plate on all three races, the lilac staff head and grimoire are
+   flat and unlit, and the Human Graveweaver hood bulges at the crown over the fused scalp hair.
+   **Still open:** the mixed combinations, which are most of the 768. Method note carried
+   forward: a single view at small scale is not enough to report a visual defect — two reads
+   this milestone dissolved under another view.
 4. **Shape extremes beyond the Human.** Posed fit is measured for Human slender/stout at 0.95
    with a worst case of 24 exposed vertices of 3,274. The Orc and Undead have no verified shape
    family, so their "extremes" are neutral only — either state that as the supported domain or
