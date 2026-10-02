@@ -110,25 +110,32 @@ Reviewed motion: Telegram **839**,
 [VE](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/remote-pieces-final-2026-10-01.mp4)
 (`video/mp4`, HTTP 200, `accept-ranges: bytes`, 206 on a range request, 28,288,526 bytes).
 
-### Found in review: the Orc Duskguard cuirass
+### Retracted: the "Orc Duskguard cuirass defect"
 
-The Orc wearing `duskguardCuirass` renders as a smooth inflated shell. Its plate edges and
-silhouette are gone and it reads as quilted padding; the Human and Undead in the same slot
-stay crisp in the same capture, as does the Orc in the other four designs.
+An earlier revision of this section, and Telegram 839's caption, reported the Orc in
+`duskguardCuirass` as a defect that blocked publishing that piece. **That was wrong.** The
+comparison was against an *Undead in a different design* — Wayfarer mail, which is textured —
+so the Duskguard design's own smooth untextured plate was mistaken for an Orc-specific
+failure. Compared like with like, Human, Orc and Undead in Duskguard at the same pose and
+camera all read the same way; the Orc is simply larger.
 
-It is not a missing-fit fallback. The descriptor carries three distinct files, and the Orc
-loads its own:
+Everything measured since agrees:
 
-| race | file | bytes |
-|---|---|---|
-| human | `duskguardCuirass-1a82ab…9228.glb` | 425,900 |
-| orc | `duskguardCuirass-1fc773…dbf70.glb` | 299,612 |
-| undead | `duskguardCuirass-b9db83…e7ac.glb` | 273,308 |
+| | human | orc | undead |
+|---|---|---|---|
+| cuirass bbox (m) | 0.385 × 0.494 × 0.367 | 0.639 × 0.737 × 0.597 | 0.395 × 0.518 × 0.380 |
+| depth / width | 0.953 | 0.935 | 0.962 |
+| vertices / triangles | 5,217 / 8,258 | **7,101 / 10,452** | 6,522 / 9,166 |
+| materials | identical names, roughness 0.419, metallic 0.899, untextured | same | same |
 
-The Orc piece is 30% smaller than the Human's, which is consistent with a simplified or
-over-smoothed derivation losing the plate detail. That is the Orc fit's geometry, not the
-renderer: bounds, sockets and the grip policy all check out on the same actor.
+The Orc carries *more* geometry than the Human, not less, and the proportions match. The
+"30% smaller file" in the first report was the prepared remote descriptor, whose byte size is
+texture-dominated under texture-only preparation and says nothing about geometry — that
+inference was unsound.
 
-**This is an open defect and blocks publishing that piece.** It belongs with the race-fit
-work, not the remote lifecycle, and the fix is in the Orc Duskguard preparation rather than
-another atlas or offset sweep.
+What remains is an observation about the design rather than a fit defect: the Duskguard
+plate is untextured with no normal map, so its form comes entirely from geometry and vertex
+normals and it reads smooth at every size. That is most noticeable on the Orc because the
+surfaces are largest. It is an art-quality question for the design, not a race fit problem,
+and **it does not block publishing the piece.**
+
