@@ -152,6 +152,23 @@ This run is **neutral**, not equipped. The open equipped-forest 240 Hz cap quali
 separate measurement and is not retired by it; this neutral forest run read 241.6–243.6 FPS
 without tripping the heuristic, which is an observation, not that qualification.
 
+## Cold startup, after publication
+
+Twenty fresh Chrome processes, 50 Mbit/s / 40 ms, `ASHEN_PAGES=1` production build on the
+compressed preview server, nothing else rendering: **p50 1,089.5 ms, p95 1,095.0 ms, max
+1,106.9 ms, 0/20 under a second.**
+
+That is the same figure this machine produced last session for both the current HEAD and the
+pre-session commit, and it remains an environmental result, not a code one: `595438c`, which
+recorded p95 843 ms with 20/20 under a second, re-measured at 1,125 ms here. Publishing and
+the renderer swap did not move it.
+
+The payload confirms publication stayed out of the startup path. Bytes transferred at the
+playable boundary are **4,766,645**, about 12.6 KB above last session's 4,754,054 — the size
+of the client, protocol and generated-catalogue changes, not of 19.4 MB of pieces. The Pages
+bundle itself grew from 770 MB to 802 MB, which is the published set plus its compressed
+variants; none of it is fetched before the game is playable.
+
 ## Open
 
 Eight seats under load, delayed and failed assets, latency and reconnect matrices; the
