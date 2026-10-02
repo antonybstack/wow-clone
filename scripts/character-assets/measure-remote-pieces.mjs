@@ -15,7 +15,12 @@ try{
   ASHEN.dev.god=true;ASHEN.player.setWorldPos(0,ASHEN.world.groundHeight(0,-65)+1.7,-65);ASHEN.rig.yaw=0;ASHEN.rig.pitch=-.1;ASHEN.rig.distance=ASHEN.rig.distanceTarget=14;ASHEN.setView('play');
   const {createRemotePieceActors}=await import('/src/character/remote-pieces/renderer.js');globalThis.REMOTE=await createRemotePieceActors(ASHEN);
  });
- report.surface=await page.evaluate(()=>({canvas:[ASHEN.canvas.width,ASHEN.canvas.height],enemies:ASHEN.combat.enemies.length,physics:ASHEN.player.usingPhysics}));assert.deepEqual(report.surface.canvas,[1280,720]);assert.equal(report.surface.enemies,7);assert(report.surface.physics);
+ // The render buffer, not the viewport. ASHEN exposes no canvas; the engine applies
+ // maxDevicePixelRatio 0.75 unless the route pins pixelRatio=1, so a default URL renders
+ // 960x540 inside a 1280x720 window. The assertion below is what keeps a lower-resolution
+ // run from being reported as the 1280x720 gate.
+ report.surface=await page.evaluate(()=>{const c=document.getElementById('renderCanvas');
+  return {canvas:[c?.width,c?.height],devicePixelRatio:globalThis.devicePixelRatio,enemies:ASHEN.combat.enemies.length,physics:ASHEN.player.usingPhysics};});assert.deepEqual(report.surface.canvas,[1280,720]);assert.equal(report.surface.enemies,7);assert(report.surface.physics);
  for(const count of [0,1,8]){
   await page.evaluate(async count=>{
    for(let i=REMOTE.snapshot().count;i<count;i++){
