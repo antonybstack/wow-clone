@@ -1,0 +1,1394 @@
+{
+  "url": "http://127.0.0.1:5774/?play&clean&pixelRatio=1",
+  "rows": [
+    {
+      "case": "neutral",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1,
+          "build": 0
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "shape": null,
+      "height": 1.748,
+      "rootY": -0.874,
+      "gpuErrors": [],
+      "meshes": 138,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "failed-body",
+      "failed": true,
+      "same": true,
+      "build": 0,
+      "status": "Could not apply that change. Your character is unchanged. /ashen-reach/human-shape-v1/body-coverage-b93fb71aa490.bin: HTTP 500"
+    },
+    {
+      "case": "failed-garment",
+      "failed": true,
+      "same": true,
+      "build": 0,
+      "meshesBefore": 138,
+      "meshesAfter": 138,
+      "gpuErrors": []
+    },
+    {
+      "case": "race-during-texture-refinement",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "orc",
+        "fitFamily": "ashen-orc",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {},
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0.95,
+          0
+        ],
+        "heightScale": 1,
+        "applied": true,
+        "live": true
+      },
+      "height": 1.748,
+      "rootY": -0.874,
+      "gpuErrors": [],
+      "meshes": 148,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "domain",
+      "preset": "wayfarer",
+      "build": -0.95,
+      "height": 1.5732,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0.95,
+          0
+        ],
+        "heightScale": 0.9,
+        "applied": true,
+        "live": true
+      },
+      "rootY": -0.7866,
+      "gpuErrors": [],
+      "meshes": 138,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "domain",
+      "preset": "graveweaver",
+      "build": -0.95,
+      "height": 1.5732,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0.95,
+          0
+        ],
+        "heightScale": 0.9,
+        "applied": true,
+        "live": true
+      },
+      "rootY": -0.7866,
+      "gpuErrors": [],
+      "meshes": 151,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "domain",
+      "preset": "wayfarer",
+      "build": -0.95,
+      "height": 2.0101999999999998,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0.95,
+          0
+        ],
+        "heightScale": 1.15,
+        "applied": true,
+        "live": true
+      },
+      "rootY": -1.0050999999999999,
+      "gpuErrors": [],
+      "meshes": 144,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "domain",
+      "preset": "graveweaver",
+      "build": -0.95,
+      "height": 2.0101999999999998,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0.95,
+          0
+        ],
+        "heightScale": 1.15,
+        "applied": true,
+        "live": true
+      },
+      "rootY": -1.0050999999999999,
+      "gpuErrors": [],
+      "meshes": 149,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "domain",
+      "preset": "wayfarer",
+      "build": -0.5,
+      "height": 1.5732,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.5
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0.5,
+          0
+        ],
+        "heightScale": 0.9,
+        "applied": true,
+        "live": true
+      },
+      "rootY": -0.7866,
+      "gpuErrors": [],
+      "meshes": 142,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "domain",
+      "preset": "graveweaver",
+      "build": -0.5,
+      "height": 1.5732,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.5
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0.5,
+          0
+        ],
+        "heightScale": 0.9,
+        "applied": true,
+        "live": true
+      },
+      "rootY": -0.7866,
+      "gpuErrors": [],
+      "meshes": 150,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "domain",
+      "preset": "wayfarer",
+      "build": -0.5,
+      "height": 2.0101999999999998,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.5
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0.5,
+          0
+        ],
+        "heightScale": 1.15,
+        "applied": true,
+        "live": true
+      },
+      "rootY": -1.0050999999999999,
+      "gpuErrors": [],
+      "meshes": 144,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "domain",
+      "preset": "graveweaver",
+      "build": -0.5,
+      "height": 2.0101999999999998,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.5
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0.5,
+          0
+        ],
+        "heightScale": 1.15,
+        "applied": true,
+        "live": true
+      },
+      "rootY": -1.0050999999999999,
+      "gpuErrors": [],
+      "meshes": 151,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "domain",
+      "preset": "wayfarer",
+      "build": 0,
+      "height": 1.5732,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0,
+          0
+        ],
+        "heightScale": 0.9,
+        "applied": true,
+        "live": true
+      },
+      "rootY": -0.7866,
+      "gpuErrors": [],
+      "meshes": 142,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "domain",
+      "preset": "graveweaver",
+      "build": 0,
+      "height": 1.5732,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0,
+          0
+        ],
+        "heightScale": 0.9,
+        "applied": true,
+        "live": true
+      },
+      "rootY": -0.7866,
+      "gpuErrors": [],
+      "meshes": 149,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "domain",
+      "preset": "wayfarer",
+      "build": 0,
+      "height": 2.0101999999999998,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0,
+          0
+        ],
+        "heightScale": 1.15,
+        "applied": true,
+        "live": true
+      },
+      "rootY": -1.0050999999999999,
+      "gpuErrors": [],
+      "meshes": 144,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "domain",
+      "preset": "graveweaver",
+      "build": 0,
+      "height": 2.0101999999999998,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0,
+          0
+        ],
+        "heightScale": 1.15,
+        "applied": true,
+        "live": true
+      },
+      "rootY": -1.0050999999999999,
+      "gpuErrors": [],
+      "meshes": 150,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "domain",
+      "preset": "wayfarer",
+      "build": 0.5,
+      "height": 1.5732,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.5
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0,
+          0.5
+        ],
+        "heightScale": 0.9,
+        "applied": true,
+        "live": true
+      },
+      "rootY": -0.7866,
+      "gpuErrors": [],
+      "meshes": 142,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "domain",
+      "preset": "graveweaver",
+      "build": 0.5,
+      "height": 1.5732,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.5
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0,
+          0.5
+        ],
+        "heightScale": 0.9,
+        "applied": true,
+        "live": true
+      },
+      "rootY": -0.7866,
+      "gpuErrors": [],
+      "meshes": 151,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "domain",
+      "preset": "wayfarer",
+      "build": 0.5,
+      "height": 2.0101999999999998,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.5
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0,
+          0.5
+        ],
+        "heightScale": 1.15,
+        "applied": true,
+        "live": true
+      },
+      "rootY": -1.0050999999999999,
+      "gpuErrors": [],
+      "meshes": 144,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "domain",
+      "preset": "graveweaver",
+      "build": 0.5,
+      "height": 2.0101999999999998,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.5
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0,
+          0.5
+        ],
+        "heightScale": 1.15,
+        "applied": true,
+        "live": true
+      },
+      "rootY": -1.0050999999999999,
+      "gpuErrors": [],
+      "meshes": 149,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "domain",
+      "preset": "wayfarer",
+      "build": 0.95,
+      "height": 1.5732,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0,
+          0.95
+        ],
+        "heightScale": 0.9,
+        "applied": true,
+        "live": true
+      },
+      "rootY": -0.7866,
+      "gpuErrors": [],
+      "meshes": 142,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "domain",
+      "preset": "graveweaver",
+      "build": 0.95,
+      "height": 1.5732,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0,
+          0.95
+        ],
+        "heightScale": 0.9,
+        "applied": true,
+        "live": true
+      },
+      "rootY": -0.7866,
+      "gpuErrors": [],
+      "meshes": 150,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "domain",
+      "preset": "wayfarer",
+      "build": 0.95,
+      "height": 2.0101999999999998,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0,
+          0.95
+        ],
+        "heightScale": 1.15,
+        "applied": true,
+        "live": true
+      },
+      "rootY": -1.0050999999999999,
+      "gpuErrors": [],
+      "meshes": 144,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "domain",
+      "preset": "graveweaver",
+      "build": 0.95,
+      "height": 2.0101999999999998,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0,
+          0.95
+        ],
+        "heightScale": 1.15,
+        "applied": true,
+        "live": true
+      },
+      "rootY": -1.0050999999999999,
+      "gpuErrors": [],
+      "meshes": 151,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "saved-first-playable",
+      "shape": {
+        "weights": [
+          0.95,
+          0
+        ],
+        "heightScale": 0.9,
+        "installWriters": true,
+        "assetURL": null,
+        "garmentManifestURL": null,
+        "applied": true
+      },
+      "gpuErrors": []
+    },
+    {
+      "case": "race",
+      "race": "orc",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "orc",
+        "fitFamily": "ashen-orc",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {},
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0.95,
+          0
+        ],
+        "heightScale": 0.9,
+        "installWriters": true,
+        "assetURL": null,
+        "garmentManifestURL": null,
+        "applied": true
+      },
+      "height": 1.748,
+      "rootY": -0.874,
+      "gpuErrors": [],
+      "meshes": 157,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "race",
+      "race": "undead",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "undead",
+        "fitFamily": "ashen-undead",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {},
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0.95,
+          0
+        ],
+        "heightScale": 0.9,
+        "installWriters": true,
+        "assetURL": null,
+        "garmentManifestURL": null,
+        "applied": true
+      },
+      "height": 1.748,
+      "rootY": -0.874,
+      "gpuErrors": [],
+      "meshes": 148,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "race",
+      "race": "human",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0.95,
+          0
+        ],
+        "heightScale": 0.9,
+        "applied": true,
+        "live": true
+      },
+      "height": 1.5732,
+      "rootY": -0.7866,
+      "gpuErrors": [],
+      "meshes": 144,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "saved-race-outfit",
+      "race": "orc",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "orc",
+        "fitFamily": "ashen-orc",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {},
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        }
+      },
+      "shape": null,
+      "height": 1.748,
+      "rootY": -0.874,
+      "gpuErrors": [],
+      "meshes": 154,
+      "bodyName": "BodyRoot"
+    },
+    {
+      "case": "saved-race-outfit",
+      "race": "undead",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v3",
+        "race": "undead",
+        "fitFamily": "ashen-undead",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {},
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        }
+      },
+      "shape": null,
+      "height": 1.748,
+      "rootY": -0.874,
+      "gpuErrors": [],
+      "meshes": 147,
+      "bodyName": "BodyRoot"
+    }
+  ],
+  "errors": [],
+  "promotionIntervals": [
+    4.3999998569488525,
+    4,
+    5.400000095367432,
+    5.200000047683716,
+    11.899999856948853,
+    4.200000047683716,
+    2.9000000953674316,
+    3,
+    18.399999856948853,
+    3.5,
+    4.5,
+    2.4000000953674316,
+    22.5,
+    3.799999952316284,
+    2.6000001430511475,
+    3.5999999046325684,
+    8.099999904632568,
+    25.90000009536743,
+    3.299999952316284,
+    3.4000000953674316,
+    2.8999998569488525,
+    5.300000190734863,
+    3.3999998569488525,
+    14.799999952316284,
+    3.6000001430511475,
+    4.599999904632568,
+    3.299999952316284,
+    9.300000190734863,
+    5.199999809265137,
+    5.300000190734863,
+    10.299999952316284,
+    3.5999999046325684,
+    5.900000095367432,
+    3.5,
+    12,
+    8.299999952316284,
+    3.799999952316284,
+    3.799999952316284,
+    29,
+    4.1000001430511475,
+    1.5,
+    1.8999998569488525,
+    21.100000143051147,
+    3.799999952316284,
+    3.5999999046325684,
+    1.5,
+    23.700000047683716,
+    3.799999952316284,
+    3.1000001430511475,
+    5.799999952316284,
+    5.700000047683716,
+    2.799999952316284,
+    9.799999952316284,
+    14.5,
+    3.299999952316284,
+    2.200000047683716,
+    4.1000001430511475,
+    35,
+    3.799999952316284,
+    1.7000000476837158,
+    1.5,
+    8.699999809265137,
+    12.700000047683716,
+    3,
+    1.7000000476837158,
+    6.799999952316284,
+    5.799999952316284,
+    5.6000001430511475,
+    4,
+    5.299999952316284,
+    5,
+    16.40000009536743,
+    2.6999998092651367,
+    2.3000001907348633,
+    5.799999952316284,
+    18.5,
+    3.8999998569488525,
+    4.400000095367432,
+    4.799999952316284,
+    13.5,
+    7.299999952316284,
+    4.900000095367432,
+    32.09999990463257,
+    3.1000001430511475,
+    2.0999999046325684,
+    2.299999952316284,
+    12.100000143051147,
+    8.700000047683716,
+    11.799999952316284,
+    4.5,
+    4.200000047683716,
+    9.099999904632568,
+    5,
+    4,
+    8.400000095367432,
+    5.099999904632568,
+    13.700000047683716,
+    3.299999952316284,
+    3.5999999046325684,
+    8.100000143051147,
+    11,
+    6.200000047683716,
+    6.699999809265137,
+    5.900000095367432,
+    9.299999952316284,
+    4.1000001430511475,
+    7.099999904632568,
+    4.5,
+    27,
+    3.799999952316284,
+    2.1000001430511475,
+    1.5,
+    23.299999952316284,
+    3.8999998569488525,
+    3.6000001430511475,
+    1.7999999523162842,
+    20,
+    4.200000047683716,
+    6.700000047683716,
+    3,
+    3.3999998569488525,
+    5.799999952316284,
+    16,
+    3.6000001430511475,
+    2.8999998569488525,
+    6.900000095367432,
+    4.5,
+    3,
+    3.700000047683716,
+    7.799999952316284,
+    4.099999904632568,
+    26.90000009536743,
+    3.5999999046325684,
+    1.6000001430511475,
+    1.2999999523162842
+  ]
+}

@@ -134,7 +134,11 @@ async function main(){
  const fastCharacter=(fastStart||productionShapeStart)&&!shapeCandidate;
  let humanFamilyReady=Boolean(productionShapeStart||creatorWanted||humanShape?.garmentManifestURL);
  const bodyUrl=shapeCandidate||(preloadedEquipment?'/ashen-reach/wanderer-equipment.glb':'/ashen-reach/equipment/body.glb');
- const bodyBufP=fastCharacter?starterCharacterP.then(m=>startupAssetBuffer(m.items.body)):fetchBuffer(bodyUrl,'high');
+ // Full/legacy loading follows the manifest's actual covered body, while
+ // default first play still starts the existing shared compact promises.
+ // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#meshes
+ const fullBodyManifestP=!fastCharacter&&!shapeCandidate&&!preloadedEquipment?fetch('/ashen-reach/equipment/manifest-coverage-v1.json').then(async response=>{if(!response.ok)throw Error('Human body manifest unavailable');return response.json();}):null;
+ const bodyBufP=fastCharacter?starterCharacterP.then(m=>startupAssetBuffer(m.items.body)):fullBodyManifestP?fullBodyManifestP.then(m=>fetchBuffer(m.items.body.url,'high')):fetchBuffer(bodyUrl,'high');
  bodyBufP.catch(()=>{});
  // Havok's 650 KB WASM gates grounded movement and needs nothing from the scene, so it
  // downloads and compiles alongside the body instead of starting inside setupPlayer once
@@ -300,7 +304,7 @@ async function main(){
  onBeforeRender(scene,()=>{gpu.frames++;});
  globalThis.ASHEN=ashen;
  const sourceBody=resolvePlayableBody('?character=human-source');
- const playable={...sourceBody,assetURL:bodyUrl,buffer:await bodyBufP,directionalSpeed:3.5,
+ const playable={...sourceBody,assetURL:fastCharacter?(await starterCharacterP).items.body.url:fullBodyManifestP?(await fullBodyManifestP).items.body.url:bodyUrl,buffer:await bodyBufP,directionalSpeed:3.5,
   // Left-foot low-contact phases measured on this fitted GLB by audit-gaits.mjs.
   gaitContacts:{Walk_Loop:.233333,Sprint_Loop:.175,Jog_Bwd_Loop:.333333,Jog_Left_Loop:.208333,Jog_Right_Loop:.983333},
   landing:{duration:.42,standingWeight:.4,movingWeight:.23},
@@ -342,7 +346,7 @@ async function main(){
  const packs={
   // The creator reshapes the body live, so its garments must be the refitted pack; the
   // shipped pack has no targets and would stay at the neutral shape under every slider.
-  human:{race:'human',manifestUrl:humanShape?.garmentManifestURL||(creatorWanted?shapeModule.HUMAN_GARMENT_FIT_MANIFEST:null)||(fastCharacter?'/ashen-reach/startup/character/manifest.json':'/ashen-reach/equipment/manifest.json'),
+  human:{race:'human',manifestUrl:humanShape?.garmentManifestURL||(creatorWanted?shapeModule.HUMAN_GARMENT_FIT_MANIFEST:null)||((humanHair||humanHead)?'/ashen-reach/equipment/manifest.json':fastCharacter?'/ashen-reach/startup/character/manifest.json':'/ashen-reach/equipment/manifest-coverage-v1.json'),
    baseMeshes:coveragePilot?['HumanV1Body','HumanTorsoCore']:humanHair?['HumanV1Body','HumanPonytail01']
     :humanHead?['HumanV1Body','OldBaldHeadV2Diagnostic','OldBaldEyesDiagnostic']:['HumanV1Body'],
    ...(humanHair?{bodySegments:{...RACE_BODY_SEGMENTS.human,HumanPonytail01:['head.scalp']}}:{}),
@@ -358,11 +362,11 @@ async function main(){
     OldBaldEyesDiagnostic:['head.face'],
    }}:{}),
    getShapeWeights:()=>ashen.humanShape?.weights||[0,0],
-   fitId:HUMAN_EQUIPMENT_FIT,...(fastCharacter?{manifest:await starterCharacterP,loadBuffer:startupAssetBuffer}:{}),
+   fitId:HUMAN_EQUIPMENT_FIT,...(fullBodyManifestP?{manifest:await fullBodyManifestP}:{}),...(fastCharacter?{manifest:await starterCharacterP,loadBuffer:startupAssetBuffer}:{}),
    ...(productionShapeStart?{shapeFamily:'ashen-human-shape-v1'}:{}),
    ...(bootAppearance?.race==='human'?{bootLoadout:bootAppearance.equipment}:{})},
-  orc:{race:'orc',manifestUrl:'/ashen-reach/equipment-orc/manifest.json',baseMeshes:ORC_BASE_VISIBLE_MESHES,fitId:ORC_EQUIPMENT_FIT,bodyUrl:ORC_BODY_URL},
-  undead:{race:'undead',manifestUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/manifest.json`,baseMeshes:coveragePilot?[...UNDEAD_BASE_VISIBLE_MESHES,'UndeadTorsoCore']:UNDEAD_BASE_VISIBLE_MESHES,fitId:UNDEAD_EQUIPMENT_FIT,bodyUrl:coveragePilot?'/__coverage_pilot__/undead.glb':`/ashen-reach/${UNDEAD_PACK_DIR}/body.glb`,
+  orc:{race:'orc',manifestUrl:'/ashen-reach/equipment-orc/manifest-coverage-v1.json',baseMeshes:ORC_BASE_VISIBLE_MESHES,fitId:ORC_EQUIPMENT_FIT,bodyUrl:ORC_BODY_URL},
+  undead:{race:'undead',manifestUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/manifest-coverage-v1.json`,baseMeshes:coveragePilot?[...UNDEAD_BASE_VISIBLE_MESHES,'UndeadTorsoCore']:UNDEAD_BASE_VISIBLE_MESHES,fitId:UNDEAD_EQUIPMENT_FIT,bodyUrl:coveragePilot?'/__coverage_pilot__/undead.glb':`/ashen-reach/${UNDEAD_PACK_DIR}/body.glb`,
    ...(coveragePilot?{bodySegments:{...RACE_BODY_SEGMENTS.undead,UndeadTorsoCore:['torso.upper','torso.lower','waist']}}:{})},
  };
  if(coveragePilot)packs.human.manifestUrl='/ashen-reach/human-shape-v1/manifest.json';
@@ -439,10 +443,16 @@ async function main(){
     :(parkedGarments||loadout);
    let staged=null,next=null,committed=false;
    try {
-    staged=await body.stageSource(pack.bodyUrl,{parkOriginal:race!=='human',restoreOriginal:race==='human'});
+    // Resolve body and garments from one manifest revision before staging.
+    // Original canonical GLBs remain the unsplit fitting/animation masters.
+    const response=race==='human'?null:await fetch(pack.manifestUrl);
+    if(response&&!response.ok)throw Error(`No ${race} equipment manifest`);
+    const raceManifest=response?await response.json():pack.manifest;
+    const stagePack=raceManifest?{...pack,manifest:raceManifest}:pack;
+    staged=await body.stageSource(race==='human'||coveragePilot?pack.bodyUrl:raceManifest.items.body.url,{parkOriginal:race!=='human',restoreOriginal:race==='human'});
     lifetime.throwIfAborted();
     if(race!=='human')staged.body.root.scaling.set(-1,1,1);
-    next=await createStreamedEquipment(engine,scene,staged.body,sockets,{...pack,bootLoadout,visible:false});
+    next=await createStreamedEquipment(engine,scene,staged.body,sockets,{...stagePack,bootLoadout,visible:false});
     lifetime.throwIfAborted();
     await staged.commit(()=>{
      const previousHeight=player.heightScale,previousPivot=rig.pivotHeight;

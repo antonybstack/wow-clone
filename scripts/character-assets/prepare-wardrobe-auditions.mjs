@@ -7,6 +7,8 @@ import fs from 'node:fs/promises';import {execFileSync} from 'node:child_process
 import {createHash} from 'node:crypto';
 import {NodeIO,VertexLayout} from '@gltf-transform/core';import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {MeshoptDecoder,MeshoptEncoder} from 'meshoptimizer';
+import {deriveUpperTrousers} from './derive-coverage-geosets.mjs';
+import {verifyCoveragePartition} from './verify-coverage-partition.mjs';
 const kind=process.argv[2];if(!['lector','duskguard'].includes(kind))throw Error('Expected known source design');
 await Promise.all([MeshoptDecoder.ready,MeshoptEncoder.ready]);
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder,'meshopt.encoder':MeshoptEncoder}).setVertexLayout(VertexLayout.SEPARATE);
@@ -39,8 +41,14 @@ for(const race of ['human','orc','undead']){
  }
  if(race==='human')execFileSync(process.execPath,['scripts/character-assets/build-garment-shape-family.mjs'],{stdio:'inherit',env:{...process.env,ASHEN_GARMENT_SOURCE_DIR:`${dir}/raw`,ASHEN_GARMENT_ITEMS:specs.map(s=>s.id).join(','),ASHEN_GARMENT_OUT:`${dir}/shaped`,ASHEN_GARMENT_REPORT:`${dir}/shape-report.json`}});
  for(const spec of specs){
-  const file=`${dir}/${race==='human'?'shaped':'raw'}/${spec.id}.glb`,bytes=await fs.readFile(file);
-  rows.push({race,originalItem:spec.source,alias:spec.id,file,bytes:bytes.length,sha256:sha(bytes),url:`/__wardrobe_audition__/${kind}/${race}/${spec.id}.glb`});
+  let file=`${dir}/${race==='human'?'shaped':'raw'}/${spec.id}.glb`,bytes=await fs.readFile(file),coverage=null;
+  if(kind==='duskguard'&&spec.id==='graveweaverSkirt'){
+   const reference=(await io.readBinary(bytes)).getRoot(),doc=await io.readBinary(bytes);
+   coverage=deriveUpperTrousers(doc);bytes=await io.writeBinary(doc);
+   coverage.verification=verifyCoveragePartition(reference,(await io.readBinary(bytes)).getRoot(),coverage.partition.source,coverage.partition.covered);
+   file=`${dir}/graveweaverSkirt-covered.glb`;await fs.writeFile(file,bytes);
+  }
+  rows.push({coverage,race,originalItem:spec.source,alias:spec.id,file,bytes:bytes.length,sha256:sha(bytes),url:`/__wardrobe_audition__/${kind}/${race}/${spec.id}.glb`});
  }
 }
 await fs.writeFile(`${root}/audition.json`,JSON.stringify({schema:1,kind,candidateOnly:true,temporaryAliases:true,rows},null,2)+'\n');

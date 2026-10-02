@@ -24,6 +24,7 @@ import {
   resolveHandEquip,
 } from "./equipment-contract.js";
 import { RACE_BODY_SEGMENTS, resolveCoverage } from "./coverage-contract.js";
+import {manifestBodyCoverage} from './coverage-manifest.js';
 import {validateGarmentLayerCoverage,resolveGarmentLayerVisibility} from './garment-layer-coverage.js';
 import { installEquipmentGrips, spellStowsWeapon } from "./equipment-grips.js";
 import { createEquipmentLoader } from "./equipment-loader.js";
@@ -61,7 +62,7 @@ export async function createStreamedEquipment(
 ) {
   const manifestUrl =
     options.manifestUrl || "/ashen-reach/equipment/manifest.json";
-  const baseMeshes = options.baseMeshes || BASE_VISIBLE_MESHES;
+  let baseMeshes = options.baseMeshes || BASE_VISIBLE_MESHES;
   const expectedFit = options.fitId || HUMAN_EQUIPMENT_FIT;
   const bootLoadout = options.bootLoadout || {
     torso: "wayfarerTunic",
@@ -80,8 +81,8 @@ export async function createStreamedEquipment(
   // Keep the default race adapter exact, while requiring an explicit semantic
   // adapter for each variant mesh. A hood can then hide a ponytail without
   // hiding the Human's fused head/face.
-  const bodySegments = options.bodySegments || RACE_BODY_SEGMENTS[race];
-  const garmentLayerCoverage=options.garmentLayerCoverage?validateGarmentLayerCoverage(options.garmentLayerCoverage,EQUIPMENT_ITEMS,baseMeshes):null;
+  let bodySegments = options.bodySegments || RACE_BODY_SEGMENTS[race];
+  let garmentLayerCoverage=null;
   // Reuse the validated startup manifest. A no-cache HTTP manifest otherwise
   // incurs another conditional request on the input-critical path.
   let manifest=options.manifest;
@@ -97,6 +98,10 @@ export async function createStreamedEquipment(
     throw Error(
       `Equipment pack is ${manifest.fitId || "unlabelled"}, not ${expectedFit.body}`,
     );
+  const publishedCoverage=manifestBodyCoverage(manifest,race);
+  if(publishedCoverage){baseMeshes=publishedCoverage.baseMeshes;bodySegments=publishedCoverage.bodySegments;}
+  const layerRules=manifest.garmentLayerCoverage||options.garmentLayerCoverage;
+  if(layerRules)garmentLayerCoverage=validateGarmentLayerCoverage(layerRules,EQUIPMENT_ITEMS,baseMeshes);
   const base = getContainerMeshes(body.container),
     donor = base.find((m) => m.skeleton);
   if (!donor || donor.skeleton.boneCount !== 65)

@@ -6,6 +6,7 @@ import {createHash} from 'node:crypto';
 import {NodeIO} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {MeshoptDecoder} from 'meshoptimizer';
+import {verifyCoveragePartition} from './character-assets/verify-coverage-partition.mjs';
 import {PRODUCTION_HUMAN_FAMILY} from '../src/character/appearance/contract.js';
 const root='public/ashen-reach/human-shape-v1';
 await MeshoptDecoder.ready;
@@ -14,10 +15,14 @@ const manifest=JSON.parse(await fs.readFile(`${root}/manifest.json`,'utf8'));
 test('published family declares one deformation layout and ten content-addressed artifacts',()=>{
  assert.equal(manifest.shapeFamily,PRODUCTION_HUMAN_FAMILY);assert.deepEqual(manifest.targetNames,['slender','stout']);assert.equal(Object.keys(manifest.items).length,10);assert.equal(manifest.reproduction.clips,57);assert.equal(manifest.reproduction.neutralIdentity.matchesShippedBody,true);
 });
-for(const [id,asset] of Object.entries(manifest.items))test(`${id} retains repaired canonical topology, bind and neutral geometry`,async()=>{
+for(const [id,asset] of Object.entries(manifest.items))test(`${id} retains repaired canonical geometry, complete index union, bind and neutral shape`,async()=>{
  const encoded=await fs.readFile(`public${asset.url}`),bytes=gunzipSync(encoded);
  assert.equal(encoded.length,asset.encodedBytes);assert.equal(bytes.length,asset.bytes);assert.equal(createHash('sha256').update(bytes).digest('hex'),asset.sha256);assert.equal(asset.shapeFamily,PRODUCTION_HUMAN_FAMILY);
- const base=(await io.read(`public/ashen-reach/equipment/${id}.glb`)).getRoot(),packed=(await io.readBinary(bytes)).getRoot();
+ const actual=(await io.readBinary(bytes)).getRoot();
+ const unpartitioned=asset.coverageSource?gunzipSync(await fs.readFile('public'+asset.coverageSource.url)):bytes;
+ const base=(await io.read(`public/ashen-reach/equipment/${id}.glb`)).getRoot(),packed=(await io.readBinary(unpartitioned)).getRoot();
+ if(asset.coverageSource){const source=id==='body'?'HumanV1Body':'WayfarerTrousers',covered=id==='body'?'HumanTorsoCore':'WayfarerTrousersUnderTorso';verifyCoveragePartition(packed,actual,source,covered);}
+
  assert.deepEqual(packed.listAnimations().map(a=>a.getName()),base.listAnimations().map(a=>a.getName()));
  const bs=base.listSkins()[0],ps=packed.listSkins()[0];assert.deepEqual(ps.listJoints().map(j=>j.getName()),bs.listJoints().map(j=>j.getName()));assert.deepEqual(ps.getInverseBindMatrices().getArray(),bs.getInverseBindMatrices().getArray());
  assert.deepEqual(packed.listMeshes().map(m=>m.getName()),base.listMeshes().map(m=>m.getName()));
@@ -38,7 +43,7 @@ for(const [id,asset] of Object.entries(manifest.compactItems))test(`${id} compac
  assert.deepEqual(compact.listSkins()[0].getInverseBindMatrices().getArray(),full.listSkins()[0].getInverseBindMatrices().getArray());
  assert.deepEqual(compact.listAnimations().map(a=>a.getName()),full.listAnimations().map(a=>a.getName()));
  for(const [mi,mesh]of compact.listMeshes().entries())for(const [pi,p]of mesh.listPrimitives().entries()) {
-  const source=full.listMeshes()[mi].listPrimitives()[pi];
+  const source=full.listMeshes().find(m=>m.getName()===mesh.getName()).listPrimitives()[pi];
   const tuple=(p,i)=>JSON.stringify([...p.listSemantics().sort().flatMap(s=>p.getAttribute(s).getElement(i,[])),...p.listTargets().flatMap(t=>t.listSemantics().sort().flatMap(s=>t.getAttribute(s).getElement(i,[])))]);
   const originals=new Set(Array.from({length:source.getAttribute('POSITION').getCount()},(_,i)=>tuple(source,i)));
   for(let i=0;i<p.getAttribute('POSITION').getCount();i++)assert(originals.has(tuple(p,i)),`${id} compact vertex ${i} loses correspondence`);

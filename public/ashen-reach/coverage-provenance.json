@@ -1,0 +1,752 @@
+{
+  "schema": 1,
+  "revision": "conservative-geosets-v1",
+  "candidateOnly": false,
+  "generatedBy": "scripts/character-assets/prepare-coverage-release.mjs",
+  "reports": [
+    {
+      "race": "human",
+      "directory": "equipment",
+      "manifestName": "manifest-coverage-v1.json",
+      "publicationManifest": "public/ashen-reach/equipment/manifest-coverage-v1.json",
+      "sourceManifest": "public/ashen-reach/equipment/manifest.json",
+      "sourceManifestSha256": "0a6ae6cf2459d3f55aae8d475c0296cf591b17164c654f71ffb0fb5cde526cfe",
+      "artifacts": [
+        "body-coverage-0388c68822fa.glb",
+        "wayfarerTrousers-coverage-48d4f61d94cf.glb"
+      ],
+      "rows": [
+        {
+          "race": "human",
+          "id": "body",
+          "detail": "full",
+          "source": {
+            "url": "/ashen-reach/equipment/body.glb",
+            "bytes": 3399784,
+            "sha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+            "meshes": [
+              "HumanV1Body"
+            ]
+          },
+          "output": {
+            "url": "/ashen-reach/equipment/body-coverage-0388c68822fa.glb",
+            "sha256": "0388c68822fa3406a9c36fddba3ce9cef31f9b88684c561e95278f082c1aea98",
+            "bytes": 3400420
+          },
+          "partition": {
+            "source": "HumanV1Body",
+            "covered": "HumanTorsoCore",
+            "originalTriangles": 5325,
+            "coveredTriangles": 414,
+            "exposedTriangles": 4911,
+            "vertexReindexing": false
+          },
+          "landmarks": {
+            "hips": [
+              0.0034376357216387987,
+              1.007189154624939,
+              0.00343721779063344
+            ],
+            "neck": [
+              0.003437428968027234,
+              1.4609274864196777,
+              -0.051561616361141205
+            ],
+            "unit": 1.0079866961428994
+          },
+          "verification": {
+            "triangles": 5325,
+            "attributesExact": true,
+            "morphsExact": true,
+            "skinExact": true,
+            "framesExact": true,
+            "sourceAnimationExact": true
+          }
+        },
+        {
+          "race": "human",
+          "id": "wayfarerTrousers",
+          "detail": "full",
+          "source": {
+            "url": "/ashen-reach/equipment/wayfarerTrousers.glb",
+            "bytes": 146288,
+            "sha256": "169ad0333e5746e72512b8160008aefbf3d8bef7d75f2ff70203feca08538def",
+            "meshes": [
+              "WayfarerTrousers",
+              "WayfarerTrousersCuffs"
+            ],
+            "fit": {
+              "body": "ashen-human",
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            }
+          },
+          "output": {
+            "url": "/ashen-reach/equipment/wayfarerTrousers-coverage-48d4f61d94cf.glb",
+            "sha256": "48d4f61d94cf7b464890797b479f66408de52a65eeb05e05abbe2730299205b3",
+            "bytes": 146972
+          },
+          "partition": {
+            "source": "WayfarerTrousers",
+            "covered": "WayfarerTrousersUnderTorso",
+            "originalTriangles": 2260,
+            "coveredTriangles": 323,
+            "exposedTriangles": 1937,
+            "vertexReindexing": false
+          },
+          "landmarks": {
+            "hips": [
+              0.0034376357216387987,
+              1.007189154624939,
+              0.00343721779063344
+            ],
+            "neck": [
+              0.003437428968027234,
+              1.4609274864196777,
+              -0.051561616361141205
+            ],
+            "unit": 1.0079866961428994
+          },
+          "verification": {
+            "triangles": 2260,
+            "attributesExact": true,
+            "morphsExact": true,
+            "skinExact": true,
+            "framesExact": true,
+            "sourceAnimationExact": true
+          }
+        }
+      ]
+    },
+    {
+      "race": "human",
+      "directory": "human-shape-v1",
+      "manifestName": "manifest.json",
+      "publicationManifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "sourceManifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "sourceManifestSha256": "03e2f01255bd12ebc82aaa270374440c5738fc72afb16355a0a010d00b8e81ff",
+      "artifacts": [
+        "body-coverage-b93fb71aa490.bin",
+        "wayfarerTrousers-coverage-b1eb36e8f614.bin",
+        "wayfarerTrousers-compact-coverage-f834210550a3.bin"
+      ],
+      "rows": [
+        {
+          "race": "human",
+          "id": "body",
+          "detail": "full",
+          "source": {
+            "url": "/ashen-reach/human-shape-v1/body-e69a14d75176.bin",
+            "bytes": 1911684,
+            "sha256": "6c552cec7a794fdd7aa7876d6bedcb7f279101f0ca06169f6bc9e53444947417",
+            "meshes": [
+              "HumanV1Body"
+            ],
+            "encodedBytes": 991600,
+            "compression": "gzip",
+            "shapeFamily": "ashen-human-shape-v1",
+            "textures": [
+              {
+                "materials": [
+                  "HumanV1Body"
+                ],
+                "url": "/ashen-reach/human-shape-v1/texture-423c672df75a.png"
+              }
+            ]
+          },
+          "output": {
+            "url": "/ashen-reach/human-shape-v1/body-coverage-b93fb71aa490.bin",
+            "sha256": "f92b16558a8c4154d04f3878383347255058af9cbc72aaf08279eaadc7740bf7",
+            "bytes": 1912448,
+            "encodedBytes": 991320
+          },
+          "partition": {
+            "source": "HumanV1Body",
+            "covered": "HumanTorsoCore",
+            "originalTriangles": 5325,
+            "coveredTriangles": 414,
+            "exposedTriangles": 4911,
+            "vertexReindexing": false
+          },
+          "landmarks": {
+            "hips": [
+              0.0034376357216387987,
+              1.007189154624939,
+              0.00343721779063344
+            ],
+            "neck": [
+              0.003437428968027234,
+              1.4609274864196777,
+              -0.051561616361141205
+            ],
+            "unit": 1.0079866961428994
+          },
+          "verification": {
+            "triangles": 5325,
+            "attributesExact": true,
+            "morphsExact": true,
+            "skinExact": true,
+            "framesExact": true,
+            "sourceAnimationExact": true
+          }
+        },
+        {
+          "race": "human",
+          "id": "wayfarerTrousers",
+          "detail": "full",
+          "source": {
+            "url": "/ashen-reach/human-shape-v1/wayfarerTrousers-b4e889479817.bin",
+            "bytes": 159600,
+            "sha256": "f539c32bb3a85fcd85ea2e7cc5d6fa72b92d71f4ebba1d49f9652951a4864532",
+            "meshes": [
+              "WayfarerTrousers",
+              "WayfarerTrousersCuffs"
+            ],
+            "fit": {
+              "body": "ashen-human",
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "encodedBytes": 110541,
+            "compression": "gzip",
+            "shapeFamily": "ashen-human-shape-v1",
+            "textures": [
+              {
+                "materials": [
+                  "WayfarerTrousers"
+                ],
+                "url": "/ashen-reach/human-shape-v1/texture-f465517766cc.png"
+              }
+            ]
+          },
+          "output": {
+            "url": "/ashen-reach/human-shape-v1/wayfarerTrousers-coverage-b1eb36e8f614.bin",
+            "sha256": "90a6fe2cc47c449c5c3bad31f0ace378e3880a54f245b51067549c31e6f38f9d",
+            "bytes": 160404,
+            "encodedBytes": 110770
+          },
+          "partition": {
+            "source": "WayfarerTrousers",
+            "covered": "WayfarerTrousersUnderTorso",
+            "originalTriangles": 2260,
+            "coveredTriangles": 323,
+            "exposedTriangles": 1937,
+            "vertexReindexing": false
+          },
+          "landmarks": {
+            "hips": [
+              0.0034376357216387987,
+              1.007189154624939,
+              0.00343721779063344
+            ],
+            "neck": [
+              0.003437428968027234,
+              1.4609274864196777,
+              -0.051561616361141205
+            ],
+            "unit": 1.0079866961428994
+          },
+          "verification": {
+            "triangles": 2260,
+            "attributesExact": true,
+            "morphsExact": true,
+            "skinExact": true,
+            "framesExact": true,
+            "sourceAnimationExact": true
+          }
+        },
+        {
+          "race": "human",
+          "id": "wayfarerTrousers",
+          "detail": "startup",
+          "source": {
+            "url": "/ashen-reach/human-shape-v1/wayfarerTrousers-compact-dbd143c2f155.bin",
+            "bytes": 98016,
+            "sha256": "32e88da9edbd9f0bb6f9329caf8252c26f52895082598420bd2711212616a49c",
+            "meshes": [
+              "WayfarerTrousers",
+              "WayfarerTrousersCuffs"
+            ],
+            "fit": {
+              "body": "ashen-human",
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "encodedBytes": 79637,
+            "compression": "gzip",
+            "shapeFamily": "ashen-human-shape-v1",
+            "textures": [
+              {
+                "materials": [
+                  "WayfarerTrousers"
+                ],
+                "url": "/ashen-reach/human-shape-v1/texture-f465517766cc.png"
+              }
+            ],
+            "detail": "startup",
+            "simplification": {
+              "ratio": 0.4,
+              "error": 0.002,
+              "lockBorder": true
+            }
+          },
+          "output": {
+            "url": "/ashen-reach/human-shape-v1/wayfarerTrousers-compact-coverage-f834210550a3.bin",
+            "sha256": "f22c03201c822c8778e5831006cc3ddd91d8aa3c2a546c523de5f6e0dc618711",
+            "bytes": 99544,
+            "encodedBytes": 80443
+          },
+          "partition": {
+            "source": "WayfarerTrousers",
+            "covered": "WayfarerTrousersUnderTorso",
+            "originalTriangles": 1438,
+            "coveredTriangles": 213,
+            "exposedTriangles": 1225,
+            "vertexReindexing": false
+          },
+          "landmarks": {
+            "hips": [
+              0.0034376357216387987,
+              1.007189154624939,
+              0.00343721779063344
+            ],
+            "neck": [
+              0.003437428968027234,
+              1.4609274864196777,
+              -0.051561616361141205
+            ],
+            "unit": 1.0079866961428994
+          },
+          "verification": {
+            "triangles": 1438,
+            "attributesExact": true,
+            "morphsExact": true,
+            "skinExact": true,
+            "framesExact": true,
+            "sourceAnimationExact": true
+          }
+        }
+      ]
+    },
+    {
+      "race": "human",
+      "directory": "startup/character",
+      "manifestName": "manifest.json",
+      "publicationManifest": "public/ashen-reach/startup/character/manifest.json",
+      "sourceManifest": "public/ashen-reach/startup/character/manifest.json",
+      "sourceManifestSha256": "960b118f61d6f9ba753cb0c2380553119a598c6324560f5f15226c5689371043",
+      "artifacts": [
+        "body-coverage-20f02477c128.bin",
+        "wayfarerTrousers-coverage-18aaf5475c09.bin"
+      ],
+      "rows": [
+        {
+          "race": "human",
+          "id": "body",
+          "detail": "full",
+          "source": {
+            "url": "/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+            "bytes": 1782376,
+            "sha256": "02ca1155e90d640d6602835d75806f8bbf31ef7d2554adcd8ee2be5e42fcc097",
+            "meshes": [
+              "HumanV1Body"
+            ],
+            "encodedBytes": 873654,
+            "compression": "gzip"
+          },
+          "output": {
+            "url": "/ashen-reach/startup/character/body-coverage-20f02477c128.bin",
+            "sha256": "1b338ad79a4b464d94b076a06fb1ce6eb3ca9a719a1ed2376699986db9059ea9",
+            "bytes": 1783016,
+            "encodedBytes": 873800
+          },
+          "partition": {
+            "source": "HumanV1Body",
+            "covered": "HumanTorsoCore",
+            "originalTriangles": 5325,
+            "coveredTriangles": 414,
+            "exposedTriangles": 4911,
+            "vertexReindexing": false
+          },
+          "landmarks": {
+            "hips": [
+              0.0034376357216387987,
+              1.007189154624939,
+              0.00343721779063344
+            ],
+            "neck": [
+              0.003437428968027234,
+              1.4609274864196777,
+              -0.051561616361141205
+            ],
+            "unit": 1.0079866961428994
+          },
+          "verification": {
+            "triangles": 5325,
+            "attributesExact": true,
+            "morphsExact": true,
+            "skinExact": true,
+            "framesExact": true,
+            "sourceAnimationExact": true
+          }
+        },
+        {
+          "race": "human",
+          "id": "wayfarerTrousers",
+          "detail": "full",
+          "source": {
+            "url": "/ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+            "bytes": 146288,
+            "sha256": "169ad0333e5746e72512b8160008aefbf3d8bef7d75f2ff70203feca08538def",
+            "meshes": [
+              "WayfarerTrousers",
+              "WayfarerTrousersCuffs",
+              "WayfarerTrousersUnderTorso"
+            ],
+            "fit": {
+              "body": "ashen-human",
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "encodedBytes": 129664,
+            "compression": "gzip"
+          },
+          "output": {
+            "url": "/ashen-reach/startup/character/wayfarerTrousers-coverage-18aaf5475c09.bin",
+            "sha256": "48d4f61d94cf7b464890797b479f66408de52a65eeb05e05abbe2730299205b3",
+            "bytes": 146972,
+            "encodedBytes": 129888
+          },
+          "partition": {
+            "source": "WayfarerTrousers",
+            "covered": "WayfarerTrousersUnderTorso",
+            "originalTriangles": 2260,
+            "coveredTriangles": 323,
+            "exposedTriangles": 1937,
+            "vertexReindexing": false
+          },
+          "landmarks": {
+            "hips": [
+              0.0034376357216387987,
+              1.007189154624939,
+              0.00343721779063344
+            ],
+            "neck": [
+              0.003437428968027234,
+              1.4609274864196777,
+              -0.051561616361141205
+            ],
+            "unit": 1.0079866961428994
+          },
+          "verification": {
+            "triangles": 2260,
+            "attributesExact": true,
+            "morphsExact": true,
+            "skinExact": true,
+            "framesExact": true,
+            "sourceAnimationExact": true
+          }
+        }
+      ]
+    },
+    {
+      "race": "orc",
+      "directory": "equipment-orc",
+      "manifestName": "manifest-coverage-v1.json",
+      "publicationManifest": "public/ashen-reach/equipment-orc/manifest-coverage-v1.json",
+      "sourceManifest": "public/ashen-reach/equipment-orc/manifest.json",
+      "sourceManifestSha256": "07e87862867d30e0d13de1234db3c8c5e85a47de64d7aec7c07a418442e8aa21",
+      "artifacts": [
+        "graveweaverSkirt-coverage-aefdea6ff724.glb",
+        "wayfarerTrousers-coverage-124da6c75972.glb"
+      ],
+      "rows": [
+        {
+          "race": "orc",
+          "id": "graveweaverSkirt",
+          "detail": "full",
+          "source": {
+            "url": "/ashen-reach/equipment-orc/graveweaverSkirt.glb",
+            "bytes": 519004,
+            "sha256": "d0eb5d0a032558c1d95a2758f5d0573eea8f8615136424111cfeb9db4a9abef2",
+            "meshes": [
+              "GraveweaverSkirt",
+              "WayfarerTrousers",
+              "WayfarerTrousersCuffs"
+            ],
+            "fit": {
+              "body": "ashen-orc",
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            }
+          },
+          "output": {
+            "url": "/ashen-reach/equipment-orc/graveweaverSkirt-coverage-aefdea6ff724.glb",
+            "sha256": "aefdea6ff7247859248de6fbd6a681d0f13de5f9c48f870f0fe560dff216af46",
+            "bytes": 520284
+          },
+          "partition": {
+            "source": "WayfarerTrousers",
+            "covered": "WayfarerTrousersUnderTorso",
+            "originalTriangles": 2260,
+            "coveredTriangles": 454,
+            "exposedTriangles": 1806,
+            "vertexReindexing": false
+          },
+          "landmarks": {
+            "hips": [
+              5.21540641784668e-8,
+              1.1476376056671143,
+              -0.0034061800688505173
+            ],
+            "neck": [
+              -0.000047304423787863925,
+              1.8147759437561035,
+              -0.04991782084107399
+            ],
+            "unit": 1.2904276973322817
+          },
+          "verification": {
+            "triangles": 2260,
+            "attributesExact": true,
+            "morphsExact": true,
+            "skinExact": true,
+            "framesExact": true,
+            "sourceAnimationExact": true
+          }
+        },
+        {
+          "race": "orc",
+          "id": "wayfarerTrousers",
+          "detail": "full",
+          "source": {
+            "url": "/ashen-reach/equipment-orc/wayfarerTrousers.glb",
+            "bytes": 209732,
+            "sha256": "de739d3ac403b757b94b13f98213ffb2cce103a1a1cb49f6142aca620ad72df5",
+            "meshes": [
+              "WayfarerTrousers",
+              "WayfarerTrousersCuffs"
+            ],
+            "fit": {
+              "body": "ashen-orc",
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            }
+          },
+          "output": {
+            "url": "/ashen-reach/equipment-orc/wayfarerTrousers-coverage-124da6c75972.glb",
+            "sha256": "124da6c75972eb432d77739bd27d051dcce9f3208f95202009187bf91a6cbffb",
+            "bytes": 210676
+          },
+          "partition": {
+            "source": "WayfarerTrousers",
+            "covered": "WayfarerTrousersUnderTorso",
+            "originalTriangles": 2260,
+            "coveredTriangles": 456,
+            "exposedTriangles": 1804,
+            "vertexReindexing": false
+          },
+          "landmarks": {
+            "hips": [
+              5.21540641784668e-8,
+              1.1476376056671143,
+              -0.0034061800688505173
+            ],
+            "neck": [
+              -0.000047304423787863925,
+              1.8147759437561035,
+              -0.04991782084107399
+            ],
+            "unit": 1.2904276973322817
+          },
+          "verification": {
+            "triangles": 2260,
+            "attributesExact": true,
+            "morphsExact": true,
+            "skinExact": true,
+            "framesExact": true,
+            "sourceAnimationExact": true
+          }
+        }
+      ]
+    },
+    {
+      "race": "undead",
+      "directory": "equipment-undead",
+      "manifestName": "manifest-coverage-v1.json",
+      "publicationManifest": "public/ashen-reach/equipment-undead/manifest-coverage-v1.json",
+      "sourceManifest": "public/ashen-reach/equipment-undead/manifest.json",
+      "sourceManifestSha256": "291f3a8b0edaba0ffecff595cfa43a5818954806d3c2139e583ded1d44773c99",
+      "artifacts": [
+        "body-coverage-02cb6c3cc877.glb",
+        "graveweaverSkirt-coverage-8be75fe7dc39.glb",
+        "wayfarerTrousers-coverage-051b2a33d0e2.glb"
+      ],
+      "rows": [
+        {
+          "race": "undead",
+          "id": "body",
+          "detail": "full",
+          "source": {
+            "url": "/ashen-reach/equipment-undead/body.glb",
+            "bytes": 8370504,
+            "sha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d",
+            "meshes": [
+              "UndeadV1Body",
+              "UndeadV1Eyes"
+            ]
+          },
+          "output": {
+            "url": "/ashen-reach/equipment-undead/body-coverage-02cb6c3cc877.glb",
+            "sha256": "02cb6c3cc8777b527676959528093a7bc97ad7c24282ca4ec27570c3b7de8038",
+            "bytes": 8371408
+          },
+          "partition": {
+            "source": "UndeadV1Body",
+            "covered": "UndeadTorsoCore",
+            "originalTriangles": 8741,
+            "coveredTriangles": 1352,
+            "exposedTriangles": 7389,
+            "vertexReindexing": false
+          },
+          "landmarks": {
+            "hips": [
+              0.003613085951656103,
+              1.0875619649887085,
+              -0.010839497670531273
+            ],
+            "neck": [
+              0.0036133350804448128,
+              1.5645273923873901,
+              -0.054201822727918625
+            ],
+            "unit": 1.0703889162916886
+          },
+          "verification": {
+            "triangles": 8741,
+            "attributesExact": true,
+            "morphsExact": true,
+            "skinExact": true,
+            "framesExact": true,
+            "sourceAnimationExact": true
+          }
+        },
+        {
+          "race": "undead",
+          "id": "graveweaverSkirt",
+          "detail": "full",
+          "source": {
+            "url": "/ashen-reach/equipment-undead/graveweaverSkirt.glb",
+            "bytes": 371668,
+            "sha256": "95451b57ba7c1199aab3825f416d8d21c96eb842ee3e432e79bdb4a6b01d3933",
+            "meshes": [
+              "GraveweaverSkirt",
+              "WayfarerTrousers",
+              "WayfarerTrousersCuffs"
+            ],
+            "fit": {
+              "body": "ashen-undead",
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            }
+          },
+          "output": {
+            "url": "/ashen-reach/equipment-undead/graveweaverSkirt-coverage-8be75fe7dc39.glb",
+            "sha256": "8be75fe7dc3901c5820972168d87d99d6859a16f4caed5a55987d5bdb07a7040",
+            "bytes": 372352
+          },
+          "partition": {
+            "source": "WayfarerTrousers",
+            "covered": "WayfarerTrousersUnderTorso",
+            "originalTriangles": 2260,
+            "coveredTriangles": 309,
+            "exposedTriangles": 1951,
+            "vertexReindexing": false
+          },
+          "landmarks": {
+            "hips": [
+              0.003613085951656103,
+              1.0875619649887085,
+              -0.010839497670531273
+            ],
+            "neck": [
+              0.0036133350804448128,
+              1.5645273923873901,
+              -0.054201822727918625
+            ],
+            "unit": 1.0703889162916886
+          },
+          "verification": {
+            "triangles": 2260,
+            "attributesExact": true,
+            "morphsExact": true,
+            "skinExact": true,
+            "framesExact": true,
+            "sourceAnimationExact": true
+          }
+        },
+        {
+          "race": "undead",
+          "id": "wayfarerTrousers",
+          "detail": "full",
+          "source": {
+            "url": "/ashen-reach/equipment-undead/wayfarerTrousers.glb",
+            "bytes": 146260,
+            "sha256": "566bee577d31b5f961a20790b4c6697825ef955bb4da2fa77700069690aa6467",
+            "meshes": [
+              "WayfarerTrousers",
+              "WayfarerTrousersCuffs"
+            ],
+            "fit": {
+              "body": "ashen-undead",
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            }
+          },
+          "output": {
+            "url": "/ashen-reach/equipment-undead/wayfarerTrousers-coverage-051b2a33d0e2.glb",
+            "sha256": "051b2a33d0e25bd476f486cf3d8071d76d91cd04be625d298fe3b59bcc379e18",
+            "bytes": 146944
+          },
+          "partition": {
+            "source": "WayfarerTrousers",
+            "covered": "WayfarerTrousersUnderTorso",
+            "originalTriangles": 2260,
+            "coveredTriangles": 306,
+            "exposedTriangles": 1954,
+            "vertexReindexing": false
+          },
+          "landmarks": {
+            "hips": [
+              0.003613085951656103,
+              1.0875619649887085,
+              -0.010839497670531273
+            ],
+            "neck": [
+              0.0036133350804448128,
+              1.5645273923873901,
+              -0.054201822727918625
+            ],
+            "unit": 1.0703889162916886
+          },
+          "verification": {
+            "triangles": 2260,
+            "attributesExact": true,
+            "morphsExact": true,
+            "skinExact": true,
+            "framesExact": true,
+            "sourceAnimationExact": true
+          }
+        }
+      ]
+    }
+  ]
+}

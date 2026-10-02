@@ -7,6 +7,7 @@ import fs from 'node:fs/promises';import path from 'node:path';import assert fro
 import {gunzipSync} from 'node:zlib';
 import {chromium} from 'playwright';
 import {browserOwnership} from '../lib/browser-ownership.mjs';
+import {pilotCoverageForRace} from '../../src/ashen-reach/coverage-pilot.js';
 import {appendFrame,captureSurface,writeCaptureManifest} from '../lib/capture-manifest.mjs';
 const port=process.env.ASHEN_CDP_PORT,url=process.env.ASHEN_TEST_URL;assert(port&&url);
 const controlPreset=process.env.ASHEN_WARDROBE_CONTROL; if(controlPreset)assert(['wayfarer','pilgrim','graveweaver'].includes(controlPreset));
@@ -47,17 +48,21 @@ try{
    const manifest=structuredClone(current);
    if(race==='human')for(const asset of [...Object.values(manifest.items),...Object.values(manifest.compactItems||{})]){delete asset.compression;delete asset.encodedBytes;}
    for(const row of rows){const entry={...manifest.items[row.alias],url:row.url,bytes:row.bytes,sha256:row.sha256};delete entry.compression;delete entry.encodedBytes;manifest.items[row.alias]=entry;if(manifest.compactItems)manifest.compactItems[row.alias]=entry;}
-   for(const row of coverageRows.filter(r=>r.race===race)){const entry={...manifest.items[row.item],url:row.url,bytes:row.bytes,sha256:row.sha256};delete entry.compression;delete entry.encodedBytes;manifest.items[row.item]=entry;if(manifest.compactItems)manifest.compactItems[row.item]=entry;}
+   for(const row of coverageRows.filter(r=>r.race===race&&!rows.some(a=>a.alias===r.item))){const entry={...manifest.items[row.item],url:row.url,bytes:row.bytes,sha256:row.sha256};delete entry.compression;delete entry.encodedBytes;manifest.items[row.item]=entry;if(manifest.compactItems)manifest.compactItems[row.item]=entry;}
+   if(layerPilot){manifest.garmentLayerCoverage=structuredClone(pilotCoverageForRace(race));
+    for(const row of rows.filter(a=>a.coverage))manifest.garmentLayerCoverage.partsByItem[row.alias]=[{mesh:row.coverage.partition.covered,hideWhenRegions:['trousers.upper']}];
+   }
    await route.fulfill({contentType:'application/json',body:JSON.stringify(manifest)});
   };
   await context.route(`**/ashen-reach/${directory}/manifest.json`,serveManifest);
+  if(race!=='human')await context.route(`**/ashen-reach/${directory}/manifest-coverage-v1.json`,serveManifest);
   if(layerPilot)await context.route(`**/__coverage_pilot__/${race}-manifest.json`,serveManifest);
   // Local creator defaults to the historical fit URL. Feed the same current
   // immutable family as the built creator; never accidentally audition old fits.
   if(race==='human')await context.route('**/__garment_fit__/manifest.json',serveManifest);
  }
  if(!controlPreset)for(const row of audition.rows)await context.route(`**${row.url}`,async route=>route.fulfill({contentType:'model/gltf-binary',body:await fs.readFile(row.file)}));
- for(const row of coverageRows)await context.route(`**${row.url}`,async route=>route.fulfill({contentType:'model/gltf-binary',body:await fs.readFile(row.output)}));
+ for(const row of coverageRows.filter(r=>!audition.rows.some(a=>!controlPreset&&a.race===r.race&&a.alias===r.item)))await context.route(`**${row.url}`,async route=>route.fulfill({contentType:'model/gltf-binary',body:await fs.readFile(row.output)}));
  await page.goto(url);await page.waitForFunction(()=>globalThis.ASHEN?.whenRest,null,{timeout:90000});await page.evaluate(()=>ASHEN.whenRest);
  await page.evaluate(label=>{ASHEN.dev.god=true;const el=document.createElement('div');el.textContent=label;Object.assign(el.style,{position:'fixed',left:'20px',top:'80px',color:'white',background:'#111d',padding:'8px',zIndex:10000});document.body.append(el);},controlPreset?`BASELINE: ${controlPreset}; isolated preview`:`CANDIDATE: ${kind}; temporary legacy slots; isolated preview`);
  if(recordingEnabled){
@@ -81,12 +86,22 @@ try{
    await page.evaluate(()=>{ASHEN.reset();ASHEN.setView('play');ASHEN.armory.open();ASHEN.armory.setFocus({height:.9*ASHEN.player.heightScale,radius:3.5*ASHEN.player.heightScale,beta:1.4});ASHEN.scene.camera=ASHEN.armory.camera;});
    for(const view of defectFocus?['front','back']:['front','side','back']){
     await page.locator(`#armory [data-view="${view}"]`).evaluate(e=>e.click());
-    for(const motion of defectFocus?['run','fire']:['idle','run','jump','land','fire','lava']){
+    for(const motion of defectFocus?['run','fire']:(process.env.ASHEN_AUDITION_EXTRA_MOTION==='1'?['walk','pulse','carry']:['idle','run','jump','land','fire','lava'])){
      await page.selectOption('#armory [data-motion]',motion);await page.evaluate(()=>ASHEN.body.inspection.setPaused(false));
      const duration=await page.evaluate(()=>ASHEN.body.inspection.getState().duration);
      await page.waitForTimeout(recordingEnabled?Math.ceil((duration+.12)*1000):100);
      await page.evaluate(()=>{ASHEN.body.inspection.setPaused(true);ASHEN.body.inspection.seek(.48);});await page.waitForTimeout(70);
      await page.screenshot({path:`${dir}/${race}-${build}-${height}-${view}-${motion}.png`});
+     if(process.env.ASHEN_AUDITION_SKIN_PROBE==='1'){
+      await page.evaluate(async()=>{const url=performance.getEntriesByType('resource').find(e=>e.name.includes('/@babylonjs_lite.js'))?.name;if(!url)throw Error('Missing optimized Lite module URL');const {setMeshVisible}=await import(url);globalThis.SKIN_PROBE_SET=setMeshVisible;const race=ASHEN.equipment.race,names=race==='human'?['HumanV1Body','HumanTorsoCore']:race==='undead'?['UndeadV1Body','UndeadV1Eyes','UndeadTorsoCore']:['BodyExposed','BodyUnderTunic','BodyUnderLegs','BodyUnderBoots','BodyWaist','BodyHands','OrcV1Shorts','OrcV1Hair','OrcV1Brows','OrcV1Eyes'];globalThis.SKIN_PROBE=ASHEN.scene.meshes.filter(m=>names.includes(m.name)).map(m=>[m,m.visible]);for(const [m]of SKIN_PROBE)setMeshVisible(m,false);});
+      await page.waitForTimeout(80);await page.screenshot({path:`${dir}/${race}-${build}-${height}-${view}-${motion}-body-hidden-diagnostic.png`});
+      if(kind==='duskguard'){
+       await page.evaluate(()=>{globalThis.PLATE_PROBE=ASHEN.scene.meshes.filter(m=>m.name==='GraveweaverSkirt').map(m=>[m,m.visible]);for(const[m]of PLATE_PROBE)SKIN_PROBE_SET(m,false);});
+       await page.waitForTimeout(80);await page.screenshot({path:`${dir}/${race}-${build}-${height}-${view}-${motion}-body-and-tassets-hidden-diagnostic.png`});
+       await page.evaluate(()=>{for(const[m,v]of PLATE_PROBE)SKIN_PROBE_SET(m,v);delete globalThis.PLATE_PROBE;});
+      }
+      await page.evaluate(()=>{for(const[m,visible]of SKIN_PROBE)SKIN_PROBE_SET(m,visible);delete globalThis.SKIN_PROBE;delete globalThis.SKIN_PROBE_SET;});
+     }
     }
    }
    const state=await page.evaluate(()=>({appearance:ASHEN.getAppearance(),equipment:ASHEN.equipment.getState(),physics:ASHEN.player.getDebugState().usingPhysics,recoveries:ASHEN.player.getDebugState().recoveries,gpuErrors:ASHEN.gpu.errors.slice()}));
@@ -110,7 +125,7 @@ try{
     const corrupt=route=>route.fulfill({contentType:'model/gltf-binary',body:Buffer.from([0])});await context.route(`**${hoodUrl}`,corrupt);
     const failed=await page.evaluate(()=>ASHEN.equipment.equip('helmet','graveweaverHood'));assert.equal(failed.status,'failed');assert.deepEqual(await page.evaluate(()=>ASHEN.equipment.getState()),state.equipment);await context.unroute(`**${hoodUrl}`,corrupt);
     timeline.push({label:'corrupt optional load rejected; appearance/coverage preserved',race,build,height,timestamp:Date.now()/1000});
-    const raced=await page.evaluate(async()=>{const first=ASHEN.equipment.equip('torso','graveweaverTop'),last=ASHEN.equipment.equip('torso','pilgrimTunic');return Promise.all([first,last]);});assert.equal(raced[1].status,'applied');assert.deepEqual(await page.evaluate(()=>ASHEN.equipment.getState()),state.equipment);
+    const raced=await page.evaluate(async torso=>{const first=ASHEN.equipment.equip('torso',torso==='pilgrimTunic'?'graveweaverTop':'pilgrimTunic'),last=ASHEN.equipment.equip('torso',torso);return Promise.all([first,last]);},state.equipment.torso);assert.equal(raced[1].status,'applied');assert.deepEqual(await page.evaluate(()=>ASHEN.equipment.getState()),state.equipment);
     timeline.push({label:'latest torso request wins with prior coverage intact',race,build,height,results:raced.map(r=>r.status),timestamp:Date.now()/1000});
    }
    await page.selectOption('#armory [data-motion]','idle');

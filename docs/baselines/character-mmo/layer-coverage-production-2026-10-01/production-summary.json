@@ -1,0 +1,100 @@
+{
+  "default": {
+    "runs": 20,
+    "validated": 20,
+    "under1000ms": 20,
+    "p95Ms": 841.4000000953674,
+    "maxMs": 847.9000000953674,
+    "minMs": 830.2999999523163,
+    "encodedBytesAtBoundary": 3188088
+  },
+  "largest": {
+    "runs": 20,
+    "validated": 20,
+    "under1000ms": 20,
+    "p95Ms": 950.6999998092651,
+    "maxMs": 950.9000000953674,
+    "minMs": 941.7000000476837,
+    "encodedBytesAtBoundary": 3753882
+  },
+  "fps-neutral": {
+    "rows": 15,
+    "minFPS": 221.0151869831353,
+    "maxFPS": 262.9912336286808,
+    "p99MaxMs": 9.700000047683716,
+    "maxMs": 13.300000190734863,
+    "above16_67": 0,
+    "above33_33": 0,
+    "above6_94": 1727,
+    "above8_33": 528,
+    "cappedRows": []
+  },
+  "fps-largest": {
+    "rows": 15,
+    "minFPS": 211.99676798472143,
+    "maxFPS": 247.77551904654038,
+    "p99MaxMs": 10,
+    "maxMs": 13.400000095367432,
+    "above16_67": 0,
+    "above33_33": 0,
+    "above6_94": 327,
+    "above8_33": 166,
+    "cappedRows": []
+  },
+  "fps-largest-saved": {
+    "rows": 14,
+    "minFPS": 214.9704738311551,
+    "maxFPS": 250.17494751773287,
+    "p99MaxMs": 9.900000095367432,
+    "maxMs": 12.799999952316284,
+    "above16_67": 0,
+    "above33_33": 0,
+    "above6_94": 439,
+    "above8_33": 261,
+    "cappedRows": [
+      {
+        "route": "forest",
+        "run": 2,
+        "cap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.239 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.000-5.700 ms (full range 2.400-11.300 ms)"
+        }
+      }
+    ]
+  },
+  "fps-largest-saved-forest-check": {
+    "rows": 3,
+    "minFPS": 232.2326991673854,
+    "maxFPS": 235.81840899625158,
+    "p99MaxMs": 7.200000047683716,
+    "maxMs": 10.700000047683716,
+    "above16_67": 0,
+    "above33_33": 0,
+    "above6_94": 41,
+    "above8_33": 15,
+    "cappedRows": [
+      {
+        "route": "forest",
+        "run": 1,
+        "cap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.241 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.000-5.600 ms (full range 2.500-8.700 ms)"
+        }
+      },
+      {
+        "route": "forest",
+        "run": 3,
+        "cap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.245 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 2.900-5.700 ms (full range 2.300-8.400 ms)"
+        }
+      }
+    ]
+  }
+}

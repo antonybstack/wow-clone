@@ -11,6 +11,7 @@ import {browserOwnership} from '../lib/browser-ownership.mjs';
 import { CDP_URL } from "../lib/cdp.mjs";
 import { summarizeDurations, detectVsyncCap } from "../../src/ashen-reach/metrics.js";
 import { summarizeFrameIntervals } from "../character-assets/summarize-frame-intervals.mjs";
+import {migrateAppearance} from '../../src/character/appearance/contract.js';
 const file = process.argv[2];
 assert(file, "Specify report.json");
 const url = new URL(
@@ -36,6 +37,11 @@ const selected = new Set((process.env.ASHEN_FPS_ROUTES || routes.map(r => r[0]).
   .split(',').filter(Boolean));
 assert([...selected].every(name => routes.some(r => r[0] === name)), 'Unknown benchmark route');
 const recordCapped = process.env.ASHEN_RECORD_CAPPED === '1';
+const savedAppearance=process.env.ASHEN_BENCH_APPEARANCE
+  ? JSON.parse(await fs.readFile(process.env.ASHEN_BENCH_APPEARANCE,'utf8')) : null;
+const expectedAppearance=savedAppearance?migrateAppearance(savedAppearance):null;
+assert(!savedAppearance||(!outfit&&race==='human'&&!process.env.ASHEN_BENCH_SHOULDERS&&!process.env.ASHEN_BENCH_BUILD&&!process.env.ASHEN_BENCH_HEIGHT),
+  'A saved appearance must be measured without conflicting equipment/shape overrides');
 const browser = await chromium.connectOverCDP(CDP_URL);
 assert(browser.contexts().flatMap(c=>c.pages()).every(p=>p.url()==='about:blank'),'Another owned page is active; isolate before benchmarking');
 const context = await browser.newContext({
@@ -43,6 +49,9 @@ const context = await browser.newContext({
     deviceScaleFactor: 1,
   }),
   page = await context.newPage();
+// Exercise the real saved-character startup, rather than calling a preset the
+// "largest outfit" when its individual items differ from the accepted fixture.
+if(savedAppearance)await context.addInitScript(recipe=>localStorage.setItem('ashen.appearance.v2',JSON.stringify(recipe)),savedAppearance);
 const report = {
   conditions: {
     cpu: os.cpus()[0].model,
@@ -57,6 +66,7 @@ const report = {
     orcAssetsOverride: orcAssetsOverride || null,
     routes: [...selected],
     recordCapped,
+    savedAppearance:expectedAppearance,
   },
   rows: [],
   errors: [],
@@ -81,6 +91,14 @@ try {
   await page.waitForFunction(() => globalThis.ASHEN?.ready, null, {
     timeout: 90000,
   });
+  if(savedAppearance){
+    assert.deepEqual(await page.evaluate(()=>ASHEN.getAppearance()),expectedAppearance);
+    // Force an ordinary full-detail promotion before settled throughput. Startup
+    // latency is measured separately with the compact representation intact.
+    const result=await page.evaluate(()=>ASHEN.equipment.setLoadout(ASHEN.getAppearance().equipment));
+    assert.equal(result.status,'applied');
+    await page.waitForTimeout(3000);
+  }
   // The URL's `race` parameter does not select the playable actor. Use the same
   // race-switch path as gameplay and assert the settled state before sampling;
   // otherwise an Undead-labelled run silently measures Human.

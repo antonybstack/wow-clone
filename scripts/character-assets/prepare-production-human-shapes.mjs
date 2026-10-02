@@ -16,6 +16,7 @@ import sharp from 'sharp';
 import {simplify} from '@gltf-transform/functions';
 import {EQUIPMENT_ITEMS} from '../../src/ashen-reach/equipment-catalog.js';
 import {retainFullStartupGeometry} from './startup-geometry-policy.mjs';
+import {compileCoverageManifest,writeCoverageCompilation} from './compile-coverage-manifest.mjs';
 import {startupProvenance} from '../ashen-reach/startup-provenance.mjs';
 const out=process.env.ASHEN_PRODUCTION_SHAPE_OUT || 'public/ashen-reach/human-shape-v1';
 const urlRoot='/ashen-reach/human-shape-v1';
@@ -31,7 +32,7 @@ try {
   const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder,'meshopt.encoder':MeshoptEncoder}).setVertexLayout(VertexLayout.SEPARATE);
   await fs.mkdir(out,{recursive:true});
   const base=JSON.parse(await fs.readFile('public/ashen-reach/equipment/manifest.json','utf8'));
-  const manifest={schema:base.schema,fitId:base.fitId,shapeFamily:family,targetNames:['slender','stout'],items:{},compactItems:{}};
+  let manifest={schema:base.schema,fitId:base.fitId,shapeFamily:family,targetNames:['slender','stout'],items:{},compactItems:{}};
   const source=JSON.parse(await fs.readFile(path.join(work,'body-report.json'),'utf8'));
   const fits=JSON.parse(await fs.readFile(path.join(work,'garment-report.json'),'utf8'));
   for(const id of Object.keys(base.items)) {
@@ -58,7 +59,8 @@ try {
     }
     const name=`${id}-${sha(encoded).slice(0,12)}.bin`;
     await fs.writeFile(path.join(out,name),encoded);
-    manifest.items[id]={...base.items[id],url:`${urlRoot}/${name}`,bytes:bytes.length,encodedBytes:encoded.length,sha256:sha(bytes),compression:'gzip',shapeFamily:family,textures};
+    const sourceMetadata={...base.items[id]};delete sourceMetadata.coverageSource;delete sourceMetadata.coverageRevision;
+    manifest.items[id]={...sourceMetadata,meshes:doc.getRoot().listMeshes().map(m=>m.getName()),url:`${urlRoot}/${name}`,bytes:bytes.length,encodedBytes:encoded.length,sha256:sha(bytes),compression:'gzip',shapeFamily:family,textures};
     if(id==='body'||retainFullStartupGeometry(doc.getRoot(),EQUIPMENT_ITEMS[id]))manifest.compactItems[id]=manifest.items[id];
     else {
       // glTF Transform remaps ALL base/skin/morph attributes together. Preserve seam
@@ -72,8 +74,12 @@ try {
     }
     console.log(`${id}: ${encoded.length} full / ${manifest.compactItems[id].encodedBytes} compact bytes`);
   }
+  if(out!=='public/ashen-reach/human-shape-v1'){await fs.mkdir(path.join(work,'source-public',urlRoot),{recursive:true});for(const name of await fs.readdir(out))await fs.copyFile(path.join(out,name),path.join(work,'source-public',urlRoot,name));}
+  const coverage=await compileCoverageManifest({io,manifest,race:'human',outDirectory:out,urlRoot,sourceRoot:out==='public/ashen-reach/human-shape-v1'?'public':path.join(work,'source-public')});
+  await writeCoverageCompilation(coverage);manifest=coverage.manifest;
+  manifest.coverageProof=coverage.reports;
   manifest.startup={textures:manifest.items.body.textures};
-  manifest.provenance=await startupProvenance(['scripts/character-assets/prepare-production-human-shapes.mjs','scripts/character-assets/build-human-shape-family.mjs','scripts/character-assets/build-garment-shape-family.mjs','scripts/character-assets/startup-geometry-policy.mjs'],['docs/baselines/character-mmo/m004/makehuman-girth.json','public/ashen-reach/equipment/manifest.json',...Object.keys(base.items).map(id=>`public/ashen-reach/equipment/${id}.glb`)]);
+  manifest.provenance=await startupProvenance(['scripts/character-assets/prepare-production-human-shapes.mjs','scripts/character-assets/build-human-shape-family.mjs','scripts/character-assets/build-garment-shape-family.mjs','scripts/character-assets/startup-geometry-policy.mjs','scripts/character-assets/compile-coverage-manifest.mjs','scripts/character-assets/derive-coverage-geosets.mjs','scripts/character-assets/partition-coverage-mesh.mjs','scripts/character-assets/verify-coverage-partition.mjs','src/ashen-reach/coverage-contract.js','src/ashen-reach/coverage-pilot.js'],['docs/baselines/character-mmo/m004/makehuman-girth.json','public/ashen-reach/equipment/manifest.json',...Object.keys(base.items).map(id=>`public/ashen-reach/equipment/${id}.glb`)]);
   manifest.reproduction={neutralIdentity:source.neutralIdentity,clips:source.clips,girthSource:source.girthSource,
     garments:fits.garments.map(({item,source,pieces,hems})=>({item,source,pieces,hems}))};
   manifest.tooling={node:process.versions.node};

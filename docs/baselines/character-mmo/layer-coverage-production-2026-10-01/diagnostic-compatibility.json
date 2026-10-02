@@ -1,0 +1,41 @@
+{
+  "rows": [
+    {
+      "query": "humanHair=ponytail",
+      "physics": true,
+      "recoveries": 0,
+      "gpuErrors": [],
+      "race": "human",
+      "ready": true,
+      "meshes": [
+        "HumanV1Body",
+        "HumanPonytail01"
+      ],
+      "errors": []
+    },
+    {
+      "query": "humanHead=old-bald",
+      "physics": true,
+      "recoveries": 0,
+      "gpuErrors": [],
+      "race": "human",
+      "ready": true,
+      "meshes": [
+        "HumanV1Body",
+        "OldBaldEyesDiagnostic",
+        "OldBaldHeadV2Diagnostic"
+      ],
+      "errors": []
+    },
+    {
+      "query": "preloadedEquipment",
+      "physics": true,
+      "recoveries": 0,
+      "gpuErrors": [],
+      "race": "human",
+      "ready": true,
+      "meshes": [],
+      "errors": []
+    }
+  ]
+}

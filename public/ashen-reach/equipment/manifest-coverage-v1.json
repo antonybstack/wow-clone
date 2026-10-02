@@ -1,0 +1,229 @@
+{
+  "schema": 1,
+  "fitId": "ashen-human",
+  "sourceSha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+  "items": {
+    "body": {
+      "url": "/ashen-reach/equipment/body-coverage-0388c68822fa.glb",
+      "bytes": 3400420,
+      "sha256": "0388c68822fa3406a9c36fddba3ce9cef31f9b88684c561e95278f082c1aea98",
+      "meshes": [
+        "HumanV1Body",
+        "HumanTorsoCore"
+      ],
+      "coverageRevision": "conservative-geosets-v1",
+      "coverageSource": {
+        "url": "/ashen-reach/equipment/body.glb",
+        "bytes": 3399784,
+        "sha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+        "meshes": [
+          "HumanV1Body"
+        ]
+      }
+    },
+    "graveweaverHood": {
+      "url": "/ashen-reach/equipment/graveweaverHood.glb",
+      "bytes": 276880,
+      "sha256": "828b7e66b2edfc4d8fb2411c87c0fe7f1da52359b192691774d0c34392c63799",
+      "meshes": [
+        "GraveweaverHood"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "graveweaverTop": {
+      "url": "/ashen-reach/equipment/graveweaverTop.glb",
+      "bytes": 245104,
+      "sha256": "935bc9c509c562e08161bac0d7babc60b5273c38aea6764258966dcc060f1b78",
+      "meshes": [
+        "GraveweaverTop",
+        "GraveweaverPendant"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "graveweaverSkirt": {
+      "url": "/ashen-reach/equipment/graveweaverSkirt.glb?v=5a9b020c3e2e",
+      "bytes": 368684,
+      "sha256": "5a9b020c3e2ed0e7e099ba11caa2d86ebc11b036c4f03b0d1a0c9cfe9f818063",
+      "meshes": [
+        "GraveweaverSkirt",
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "graveweaverGloves": {
+      "url": "/ashen-reach/equipment/graveweaverGloves.glb",
+      "bytes": 174004,
+      "sha256": "ae3a162fc15b038bbf713f924b0b6b69d88fcd18ff2cfcb676112d5c91bb6e75",
+      "meshes": [
+        "GraveweaverGloves"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "wayfarerTunic": {
+      "url": "/ashen-reach/equipment/wayfarerTunic.glb",
+      "bytes": 249636,
+      "sha256": "3b4c929df3708afd760f3f056f0dc706e780552cfe1966d8ef3f5083b8749cd6",
+      "meshes": [
+        "WayfarerTunic"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "pilgrimTunic": {
+      "url": "/ashen-reach/equipment/pilgrimTunic-3e3d45a4b03a.glb",
+      "bytes": 479428,
+      "sha256": "3e3d45a4b03a6207ec0fa9b4d46cec50596816960c5cf19dc7aa71ca70bbf445",
+      "meshes": [
+        "PilgrimTunic"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "corrective": {
+        "id": "pilgrim-front-skin-v1",
+        "revision": 1
+      }
+    },
+    "wayfarerTrousers": {
+      "url": "/ashen-reach/equipment/wayfarerTrousers-coverage-48d4f61d94cf.glb",
+      "bytes": 146972,
+      "sha256": "48d4f61d94cf7b464890797b479f66408de52a65eeb05e05abbe2730299205b3",
+      "meshes": [
+        "WayfarerTrousers",
+        "WayfarerTrousersCuffs",
+        "WayfarerTrousersUnderTorso"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "coverageRevision": "conservative-geosets-v1",
+      "coverageSource": {
+        "url": "/ashen-reach/equipment/wayfarerTrousers.glb",
+        "bytes": 146288,
+        "sha256": "169ad0333e5746e72512b8160008aefbf3d8bef7d75f2ff70203feca08538def",
+        "meshes": [
+          "WayfarerTrousers",
+          "WayfarerTrousersCuffs"
+        ],
+        "fit": {
+          "body": "ashen-human",
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        }
+      }
+    },
+    "wayfarerBoots": {
+      "url": "/ashen-reach/equipment/wayfarerBoots.glb",
+      "bytes": 242544,
+      "sha256": "a55a9e4cd7b8658b6f2bd51dd3092af576e8d7dd279c9687bb3419a5c858bd98",
+      "meshes": [
+        "WayfarerBoots"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "wardenPauldrons": {
+      "url": "/ashen-reach/equipment/wardenPauldrons-30914318b15c.glb",
+      "bytes": 33512,
+      "sha256": "30914318b15c23321dd9378f3043a69536473b00771d3e63fd0dde4c69d77e92",
+      "meshes": [
+        "WardenPauldrons"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    }
+  },
+  "bindSha256": "96bc48fe1c85ecfa78f169cbc0a637a71a8fcb1a8812f4a41b015a621b5522af",
+  "profileId": "human-tripo-v1",
+  "garments": true,
+  "coverage": {
+    "schema": 1,
+    "revision": "conservative-geosets-v1",
+    "race": "human",
+    "bodySegments": {
+      "HumanV1Body": [
+        "head.scalp",
+        "head.face",
+        "neck",
+        "torso.upper",
+        "torso.lower",
+        "waist",
+        "arm.upper",
+        "arm.lower",
+        "hand",
+        "leg.upper",
+        "leg.lower",
+        "foot"
+      ],
+      "HumanTorsoCore": [
+        "torso.upper",
+        "torso.lower",
+        "waist"
+      ]
+    }
+  },
+  "garmentLayerCoverage": {
+    "schema": 1,
+    "coversByItem": {
+      "wayfarerTunic": [
+        "trousers.upper"
+      ],
+      "pilgrimTunic": [
+        "trousers.upper"
+      ],
+      "graveweaverTop": [
+        "trousers.upper"
+      ]
+    },
+    "partsByItem": {
+      "wayfarerTrousers": [
+        {
+          "mesh": "WayfarerTrousersUnderTorso",
+          "hideWhenRegions": [
+            "trousers.upper"
+          ]
+        }
+      ]
+    }
+  }
+}

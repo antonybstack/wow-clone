@@ -1,0 +1,82 @@
+{
+  "byteIdenticalRepeat": true,
+  "files": [
+    {
+      "path": "ashen-reach/equipment/body-coverage-0388c68822fa.glb",
+      "sha256": "0388c68822fa3406a9c36fddba3ce9cef31f9b88684c561e95278f082c1aea98"
+    },
+    {
+      "path": "ashen-reach/equipment/manifest-coverage-v1.json",
+      "sha256": "ea686fe5eb8f24c75e654079bd9b6cf794e9ef3bb9a92af936d33c1cd7811d55"
+    },
+    {
+      "path": "ashen-reach/equipment/wayfarerTrousers-coverage-48d4f61d94cf.glb",
+      "sha256": "48d4f61d94cf7b464890797b479f66408de52a65eeb05e05abbe2730299205b3"
+    },
+    {
+      "path": "ashen-reach/equipment-orc/graveweaverSkirt-coverage-aefdea6ff724.glb",
+      "sha256": "aefdea6ff7247859248de6fbd6a681d0f13de5f9c48f870f0fe560dff216af46"
+    },
+    {
+      "path": "ashen-reach/equipment-orc/manifest-coverage-v1.json",
+      "sha256": "77962c79e179e568253a9bf70f2a21b0f6b8ba5bb19b81bd20cf0a1427d99cb8"
+    },
+    {
+      "path": "ashen-reach/equipment-orc/wayfarerTrousers-coverage-124da6c75972.glb",
+      "sha256": "124da6c75972eb432d77739bd27d051dcce9f3208f95202009187bf91a6cbffb"
+    },
+    {
+      "path": "ashen-reach/equipment-undead/body-coverage-02cb6c3cc877.glb",
+      "sha256": "02cb6c3cc8777b527676959528093a7bc97ad7c24282ca4ec27570c3b7de8038"
+    },
+    {
+      "path": "ashen-reach/equipment-undead/graveweaverSkirt-coverage-8be75fe7dc39.glb",
+      "sha256": "8be75fe7dc3901c5820972168d87d99d6859a16f4caed5a55987d5bdb07a7040"
+    },
+    {
+      "path": "ashen-reach/equipment-undead/manifest-coverage-v1.json",
+      "sha256": "a95029e4a7caf388f2a290676c3ea38670d6429268788aa5a14aa3b937f47aef"
+    },
+    {
+      "path": "ashen-reach/equipment-undead/wayfarerTrousers-coverage-051b2a33d0e2.glb",
+      "sha256": "051b2a33d0e25bd476f486cf3d8071d76d91cd04be625d298fe3b59bcc379e18"
+    },
+    {
+      "path": "ashen-reach/human-shape-v1/body-coverage-b93fb71aa490.bin",
+      "sha256": "b93fb71aa49031d067f1b743a6f95041e1f453ce07c25864b87ff7da0daa01ce"
+    },
+    {
+      "path": "ashen-reach/human-shape-v1/manifest.json",
+      "sha256": "42e319e700e5e53437771087ba67a38254fd313d706d56d46b407b736a10c2cc"
+    },
+    {
+      "path": "ashen-reach/human-shape-v1/wayfarerTrousers-compact-coverage-f834210550a3.bin",
+      "sha256": "f834210550a30bc9bd1d6168ee4710e802ba7ecc65752c2b9d959e8af4b16a80"
+    },
+    {
+      "path": "ashen-reach/human-shape-v1/wayfarerTrousers-coverage-b1eb36e8f614.bin",
+      "sha256": "b1eb36e8f6143e1cfbb1ed5cb29b24ee747cfb6060ee5862f12d052fd276b433"
+    },
+    {
+      "path": "ashen-reach/startup/character/body-coverage-20f02477c128.bin",
+      "sha256": "20f02477c1284f32919813c0e52dfda913bfda1602242dc456ef7c5dab08cbfc"
+    },
+    {
+      "path": "ashen-reach/startup/character/manifest.json",
+      "sha256": "e755c9eaab79e1116400d028e552b98d0ce3c8b8e78f0e679cb2acd84e7c7127"
+    },
+    {
+      "path": "ashen-reach/startup/character/wayfarerTrousers-coverage-18aaf5475c09.bin",
+      "sha256": "18aaf5475c094cd7cfe3448c62a0d68ddfa9d83ef616230c95b892bbd60ef68e"
+    },
+    {
+      "path": "report.json",
+      "sha256": "b4014d3eae6075db54c7d564883cbf47c2ce61521e0b159b81bedff17975f22a"
+    }
+  ],
+  "canonicalManifestsByteIdenticalToHEAD": [
+    "public/ashen-reach/equipment/manifest.json",
+    "public/ashen-reach/equipment-orc/manifest.json",
+    "public/ashen-reach/equipment-undead/manifest.json"
+  ]
+}

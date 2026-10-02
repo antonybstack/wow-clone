@@ -63,13 +63,13 @@ try{
   try{await ASHEN.equipment.switchRace(race);return {failed:false};}
   catch{return {failed:true,sameRoot:root===ASHEN.body.root,sameAppearance:JSON.stringify(before)===JSON.stringify(ASHEN.getAppearance()),meshesBefore:meshes,meshesAfter:ASHEN.scene.meshes.length};}
  },target);
- for(const [pattern,target]of [['**/equipment-undead/body.glb','undead'],['**/equipment-undead/manifest.json','undead']]) {
+ for(const [pattern,target]of [['**/equipment-undead/body*.glb*','undead'],['**/equipment-undead/manifest*.json','undead']]) {
   await page.route(pattern,r=>r.fulfill({status:500,body:'intentional race failure'}));
   const result=await refusedRace(target);assert(result.failed&&result.sameRoot&&result.sameAppearance);assert.equal(result.meshesBefore,result.meshesAfter);report.rows.push({case:'failed-race',pattern,...result});await page.unroute(pattern);
  }
  const pilgrim=await page.evaluate(()=>ASHEN.equipment.equip('torso','pilgrimTunic'));assert.equal(pilgrim.status,'applied');
  assert.equal(await page.evaluate(()=>ASHEN.equipment.getState().torso),'pilgrimTunic');
- const returnPattern='**/ashen-reach/equipment/pilgrimTunic.glb';await page.route(returnPattern,r=>r.fulfill({status:500,body:'intentional Human return failure'}));
+ const returnPattern='**/ashen-reach/**/pilgrimTunic*';await page.route(returnPattern,r=>r.fulfill({status:500,body:'intentional Human return failure'}));
  const failedReturn=await refusedRace('human');assert(failedReturn.failed&&failedReturn.sameRoot&&failedReturn.sameAppearance);assert.equal(failedReturn.meshesBefore,failedReturn.meshesAfter);report.rows.push({case:'failed-Human-return',...failedReturn});await page.unroute(returnPattern);
  await page.evaluate(()=>ASHEN.equipment.switchRace('human'));
  await page.evaluate(()=>ASHEN.armory.open());
