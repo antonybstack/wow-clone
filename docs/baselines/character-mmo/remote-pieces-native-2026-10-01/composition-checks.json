@@ -1,0 +1,1240 @@
+{
+  "url": "http://127.0.0.1:5873/ashen-reach.html?play&clean",
+  "conditions": "Native composition: held decoder removal, full-seat restage, shared build, pose/bounds/sockets; no FPS claim",
+  "errors": [],
+  "rows": [
+    {
+      "case": "remove-during-held-native-source-leaks-nothing",
+      "during": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 1,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 0,
+          "pending": 0,
+          "active": 1,
+          "uniqueIds": 1,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 1,
+          "reservedBytes": 4496592,
+          "peakReservedBytes": 4496592,
+          "ceilingBytes": 8388608,
+          "leases": 1
+        },
+        "owned": 1,
+        "activeExact": 0,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 0,
+          "textures": 0,
+          "bufferBytes": 0,
+          "textureBytes": 0,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 0,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 0,
+          "liveEquipmentChanges": 0,
+          "peakOwned": 1,
+          "preparations": []
+        }
+      },
+      "removed": false,
+      "pending": {
+        "status": "superseded"
+      },
+      "whileStillHeld": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 1,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 1,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 4496592,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 0,
+        "activeExact": 0,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 0,
+          "textures": 0,
+          "bufferBytes": 0,
+          "textureBytes": 0,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 0,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 0,
+          "liveEquipmentChanges": 0,
+          "peakOwned": 1,
+          "preparations": [
+            18.700000047683716
+          ]
+        }
+      },
+      "meshes": 138,
+      "remoteNodes": 0
+    },
+    {
+      "case": "released-source-does-not-resurrect-the-removed-actor",
+      "after": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 1,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 1,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 4496592,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 0,
+        "activeExact": 0,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 0,
+          "textures": 0,
+          "bufferBytes": 0,
+          "textureBytes": 0,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 0,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 0,
+          "liveEquipmentChanges": 0,
+          "peakOwned": 1,
+          "preparations": [
+            18.700000047683716
+          ]
+        }
+      },
+      "meshes": 138,
+      "remoteNodes": 0,
+      "actor": null
+    },
+    {
+      "case": "eight-live-plus-one-stage-race-change",
+      "during": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 10,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 9,
+          "pending": 0,
+          "active": 1,
+          "uniqueIds": 1,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 4496592,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 9,
+        "activeExact": 8,
+        "pendingBuilds": 1,
+        "allocation": {
+          "buffers": 1318,
+          "textures": 336,
+          "bufferBytes": 67460724,
+          "textureBytes": 40762112,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 44812164,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 8,
+          "liveEquipmentChanges": 0,
+          "peakOwned": 9,
+          "preparations": [
+            18.700000047683716,
+            222.09999990463257,
+            230.90000009536743,
+            405.40000009536743,
+            653.5999999046326,
+            731.6000001430511,
+            757.2000000476837,
+            941.5,
+            937.1000001430511
+          ]
+        }
+      },
+      "committed": 8,
+      "staged": 9
+    },
+    {
+      "case": "eight-live-plus-one-stage-race-commits-atomically",
+      "result": {
+        "status": "applied",
+        "revision": 2
+      },
+      "actor": {
+        "id": "seat-0",
+        "appearanceRevision": 2,
+        "recipe": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v4",
+          "race": "orc",
+          "fitFamily": "ashen-orc",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "lectorCoat",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          }
+        },
+        "transform": {
+          "x": 2,
+          "y": -0.7735434357096606,
+          "z": -60,
+          "yaw": 3.141592653589793
+        },
+        "motion": {
+          "clip": "Walk_Loop",
+          "loop": true,
+          "startedAt": 0,
+          "offsetSeconds": 0
+        }
+      },
+      "after": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 10,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 10,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 4496592,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 8,
+        "activeExact": 8,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 1238,
+          "textures": 314,
+          "bufferBytes": 65720380,
+          "textureBytes": 39006096,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 42132540,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 9,
+          "liveEquipmentChanges": 0,
+          "peakOwned": 9,
+          "preparations": [
+            18.700000047683716,
+            222.09999990463257,
+            230.90000009536743,
+            405.40000009536743,
+            653.5999999046326,
+            731.6000001430511,
+            757.2000000476837,
+            941.5,
+            937.1000001430511,
+            810.5999999046326
+          ]
+        }
+      },
+      "snapshot": {
+        "count": 8,
+        "actors": [
+          {
+            "id": "seat-0",
+            "revision": 2,
+            "race": "orc",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.6222326579093931,
+              "frame": 37,
+              "row": 37,
+              "ended": false,
+              "phase": 0.46667447952406155
+            },
+            "shape": {}
+          },
+          {
+            "id": "seat-1",
+            "revision": 1,
+            "race": "orc",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.6225326578617079,
+              "frame": 37,
+              "row": 37,
+              "ended": false,
+              "phase": 0.4668994794815921
+            },
+            "shape": {}
+          },
+          {
+            "id": "seat-2",
+            "revision": 1,
+            "race": "undead",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.6228326578140262,
+              "frame": 37,
+              "row": 37,
+              "ended": false,
+              "phase": 0.46712447943912533
+            },
+            "shape": {}
+          },
+          {
+            "id": "seat-3",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.6230326578617102,
+              "frame": 37,
+              "row": 37,
+              "ended": false,
+              "phase": 0.467274479470418
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": 0.95
+            }
+          },
+          {
+            "id": "seat-4",
+            "revision": 1,
+            "race": "orc",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.6232326579093943,
+              "frame": 37,
+              "row": 37,
+              "ended": false,
+              "phase": 0.4674244795017107
+            },
+            "shape": {}
+          },
+          {
+            "id": "seat-5",
+            "revision": 1,
+            "race": "undead",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.6234326577186593,
+              "frame": 37,
+              "row": 37,
+              "ended": false,
+              "phase": 0.4675744793541891
+            },
+            "shape": {}
+          },
+          {
+            "id": "seat-6",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.6236326577663434,
+              "frame": 37,
+              "row": 37,
+              "ended": false,
+              "phase": 0.4677244793854818
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": 0.95
+            }
+          },
+          {
+            "id": "seat-7",
+            "revision": 1,
+            "race": "orc",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.6238326578140274,
+              "frame": 37,
+              "row": 37,
+              "ended": false,
+              "phase": 0.4678744794167745
+            },
+            "shape": {}
+          }
+        ]
+      }
+    },
+    {
+      "case": "eight-live-plus-one-stage-shape-change",
+      "during": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 19,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 18,
+          "pending": 0,
+          "active": 1,
+          "uniqueIds": 1,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 4496592,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 9,
+        "activeExact": 8,
+        "pendingBuilds": 1,
+        "allocation": {
+          "buffers": 1270,
+          "textures": 319,
+          "bufferBytes": 56379168,
+          "textureBytes": 37932604,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 41184792,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 17,
+          "liveEquipmentChanges": 0,
+          "peakOwned": 9,
+          "preparations": [
+            18.700000047683716,
+            222.09999990463257,
+            230.90000009536743,
+            405.40000009536743,
+            653.5999999046326,
+            731.6000001430511,
+            757.2000000476837,
+            941.5,
+            937.1000001430511,
+            810.5999999046326,
+            221.70000004768372,
+            379.40000009536743,
+            379.10000014305115,
+            638.5,
+            695.1000001430511,
+            803.8999998569489,
+            864.1000001430511,
+            966.8000001907349
+          ]
+        }
+      },
+      "committed": 8,
+      "staged": 9
+    },
+    {
+      "case": "eight-live-plus-one-stage-shape-commits-atomically",
+      "result": {
+        "status": "applied",
+        "revision": 2
+      },
+      "actor": {
+        "id": "seat-0",
+        "appearanceRevision": 2,
+        "recipe": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v4",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": -0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "lectorCoat",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          }
+        },
+        "transform": {
+          "x": 2,
+          "y": -0.7735434357096606,
+          "z": -60,
+          "yaw": 3.141592653589793
+        },
+        "motion": {
+          "clip": "Walk_Loop",
+          "loop": true,
+          "startedAt": 0,
+          "offsetSeconds": 0
+        }
+      },
+      "after": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 19,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 1,
+          "completed": 19,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 4496592,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 8,
+        "activeExact": 8,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 1204,
+          "textures": 297,
+          "bufferBytes": 55254912,
+          "textureBytes": 36176588,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 39059924,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 18,
+          "liveEquipmentChanges": 0,
+          "peakOwned": 9,
+          "preparations": [
+            18.700000047683716,
+            222.09999990463257,
+            230.90000009536743,
+            405.40000009536743,
+            653.5999999046326,
+            731.6000001430511,
+            757.2000000476837,
+            941.5,
+            937.1000001430511,
+            810.5999999046326,
+            221.70000004768372,
+            379.40000009536743,
+            379.10000014305115,
+            638.5,
+            695.1000001430511,
+            803.8999998569489,
+            864.1000001430511,
+            966.8000001907349,
+            822.7000000476837
+          ]
+        }
+      },
+      "snapshot": {
+        "count": 8,
+        "actors": [
+          {
+            "id": "seat-0",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.45946579241752517,
+              "frame": 27,
+              "row": 27,
+              "ended": false,
+              "phase": 0.3445993340432834
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": -0.95
+            }
+          },
+          {
+            "id": "seat-1",
+            "revision": 1,
+            "race": "orc",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.4595657925605785,
+              "frame": 27,
+              "row": 27,
+              "ended": false,
+              "phase": 0.34467433414833826
+            },
+            "shape": {}
+          },
+          {
+            "id": "seat-2",
+            "revision": 1,
+            "race": "undead",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.4597657923698435,
+              "frame": 27,
+              "row": 27,
+              "ended": false,
+              "phase": 0.34482433400081663
+            },
+            "shape": {}
+          },
+          {
+            "id": "seat-3",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.4598657925128933,
+              "frame": 27,
+              "row": 27,
+              "ended": false,
+              "phase": 0.3448993341058688
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": 0.95
+            }
+          },
+          {
+            "id": "seat-4",
+            "revision": 1,
+            "race": "orc",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.46006579256057734,
+              "frame": 27,
+              "row": 27,
+              "ended": false,
+              "phase": 0.3450493341371615
+            },
+            "shape": {}
+          },
+          {
+            "id": "seat-5",
+            "revision": 1,
+            "race": "undead",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.4601657924652116,
+              "frame": 27,
+              "row": 27,
+              "ended": false,
+              "phase": 0.34512433406340204
+            },
+            "shape": {}
+          },
+          {
+            "id": "seat-6",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.46026579236984233,
+              "frame": 27,
+              "row": 27,
+              "ended": false,
+              "phase": 0.3451993339896399
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": 0.95
+            }
+          },
+          {
+            "id": "seat-7",
+            "revision": 1,
+            "race": "orc",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.4604657924175264,
+              "frame": 27,
+              "row": 27,
+              "ended": false,
+              "phase": 0.3453493340209326
+            },
+            "shape": {}
+          }
+        ]
+      }
+    },
+    {
+      "case": "shared-material-build-two-owners",
+      "both": [
+        "fulfilled",
+        "fulfilled"
+      ],
+      "survivor": true,
+      "owned": 1,
+      "survivorMeshes": 15,
+      "gpuErrors": []
+    },
+    {
+      "case": "composed-pose-bounds-sockets-human",
+      "race": "human",
+      "meshCount": 20,
+      "unboundedMeshes": [],
+      "sockets": [
+        {
+          "slot": "head",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 2.0039544105529785,
+            "y": 1.0251206159591675,
+            "z": -59.972328186035156
+          },
+          "local": {
+            "x": -0.0034386180341243744,
+            "y": 1.5640556812286377,
+            "z": -0.02406340092420578
+          }
+        },
+        {
+          "slot": "back",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 2.013094902038574,
+            "y": 0.6929227113723755,
+            "z": -59.92500305175781
+          },
+          "local": {
+            "x": -0.011386871337890625,
+            "y": 1.2751879692077637,
+            "z": -0.06521569192409515
+          }
+        },
+        {
+          "slot": "torso",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 2.003952980041504,
+            "y": 0.6061123609542847,
+            "z": -59.980228424072266
+          },
+          "local": {
+            "x": -0.0034373740199953318,
+            "y": 1.1997007131576538,
+            "z": -0.01719362847507
+          }
+        },
+        {
+          "slot": "mainHand",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 1.6816983222961426,
+            "y": 0.24490852653980255,
+            "z": -59.90869903564453
+          },
+          "local": {
+            "x": 0.2767840406738638,
+            "y": 0.8856103969561157,
+            "z": -0.07939303836526307
+          }
+        },
+        {
+          "slot": "offHand",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 2.325411081314087,
+            "y": 0.21876464784145355,
+            "z": -60.092796325683594
+          },
+          "local": {
+            "x": -0.2829661322520462,
+            "y": 0.8628765724829814,
+            "z": 0.08069204803239294
+          }
+        },
+        {
+          "slot": "leftArm",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 2.2016103267669678,
+            "y": 0.819571316242218,
+            "z": -59.932796478271484
+          },
+          "local": {
+            "x": -0.175313338637352,
+            "y": 1.3853172063827515,
+            "z": -0.058438800275325775
+          }
+        },
+        {
+          "slot": "rightArm",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 1.8062965869903564,
+            "y": 0.8195698261260986,
+            "z": -59.932796478271484
+          },
+          "local": {
+            "x": 0.16843774914741516,
+            "y": 1.3853158950805664,
+            "z": -0.058438800275325775
+          }
+        },
+        {
+          "slot": "leftForeArm",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 2.481135606765747,
+            "y": 0.8183021545410156,
+            "z": -59.932796478271484
+          },
+          "local": {
+            "x": -0.4183788001537323,
+            "y": 1.3842135667800903,
+            "z": -0.058438800275325775
+          }
+        },
+        {
+          "slot": "rightForeArm",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 1.526770830154419,
+            "y": 0.8183003664016724,
+            "z": -59.932796478271484
+          },
+          "local": {
+            "x": 0.4115036427974701,
+            "y": 1.3842120170593262,
+            "z": -0.058438800275325775
+          }
+        },
+        {
+          "slot": "leftFoot",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 2.2174224853515625,
+            "y": -0.6351925134658813,
+            "z": -59.948604583740234
+          },
+          "local": {
+            "x": -0.18906304240226746,
+            "y": 0.1203051283955574,
+            "z": -0.044692620635032654
+          }
+        },
+        {
+          "slot": "rightFoot",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 1.7904881238937378,
+            "y": -0.6351808905601501,
+            "z": -59.9486083984375
+          },
+          "local": {
+            "x": 0.18218424916267395,
+            "y": 0.12031523138284683,
+            "z": -0.04468930512666702
+          }
+        }
+      ],
+      "handGapMetres": 0.09500554213295273,
+      "endpoint": {
+        "poseId": "pulse",
+        "sample": {
+          "clip": "PyreBurst_Upper",
+          "loop": false,
+          "timeSeconds": 1.399400000095369,
+          "frame": 83,
+          "row": 83,
+          "ended": false,
+          "phase": 0.7365263250818552
+        },
+        "handStill": null
+      },
+      "originParented": null,
+      "visualParentIsOrigin": true
+    },
+    {
+      "case": "composed-pose-bounds-sockets-orc",
+      "race": "orc",
+      "meshCount": 28,
+      "unboundedMeshes": [],
+      "sockets": [
+        {
+          "slot": "head",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 1.9999406337738037,
+            "y": 1.1423873901367188,
+            "z": -59.992042541503906
+          },
+          "local": {
+            "x": 0.00005936622619628906,
+            "y": 1.9159307479858398,
+            "z": -0.00795745849609375
+          }
+        },
+        {
+          "slot": "back",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 2.0187549591064453,
+            "y": 0.7963839173316956,
+            "z": -59.90095138549805
+          },
+          "local": {
+            "x": -0.018754959106445312,
+            "y": 1.5699273347854614,
+            "z": -0.09904861450195312
+          }
+        },
+        {
+          "slot": "torso",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 1.9999843835830688,
+            "y": 0.6621047854423523,
+            "z": -59.961212158203125
+          },
+          "local": {
+            "x": 0.000015616416931152344,
+            "y": 1.4356482028961182,
+            "z": -0.038787841796875
+          }
+        },
+        {
+          "slot": "mainHand",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 1.5399590730667114,
+            "y": 0.25124210119247437,
+            "z": -59.893043518066406
+          },
+          "local": {
+            "x": 0.4600409677812809,
+            "y": 1.0247855646719761,
+            "z": -0.10695514120543531
+          }
+        },
+        {
+          "slot": "offHand",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 2.4446051120758057,
+            "y": 0.2181074023246765,
+            "z": -60.17595672607422
+          },
+          "local": {
+            "x": -0.4446050143905934,
+            "y": 0.9916508078096778,
+            "z": 0.1759563716996224
+          }
+        },
+        {
+          "slot": "leftArm",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 2.3021230697631836,
+            "y": 0.9246404767036438,
+            "z": -60.02387619018555
+          },
+          "local": {
+            "x": -0.3021230697631836,
+            "y": 1.6981838941574097,
+            "z": 0.023876190185546875
+          }
+        },
+        {
+          "slot": "rightArm",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 1.6978774070739746,
+            "y": 0.9246411919593811,
+            "z": -60.02387619018555
+          },
+          "local": {
+            "x": 0.3021225929260254,
+            "y": 1.698184609413147,
+            "z": 0.023876190185546875
+          }
+        },
+        {
+          "slot": "leftForeArm",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 2.6247315406799316,
+            "y": 0.9246678948402405,
+            "z": -60.02387619018555
+          },
+          "local": {
+            "x": -0.6247315406799316,
+            "y": 1.6982113122940063,
+            "z": 0.023876190185546875
+          }
+        },
+        {
+          "slot": "rightForeArm",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 1.3752692937850952,
+            "y": 0.9246119856834412,
+            "z": -60.02387619018555
+          },
+          "local": {
+            "x": 0.6247307062149048,
+            "y": 1.698155403137207,
+            "z": 0.023876190185546875
+          }
+        },
+        {
+          "slot": "leftFoot",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 2.224775791168213,
+            "y": -0.6750363111495972,
+            "z": -60.011112213134766
+          },
+          "local": {
+            "x": -0.2247757911682129,
+            "y": 0.0985071063041687,
+            "z": 0.011112213134765625
+          }
+        },
+        {
+          "slot": "rightFoot",
+          "parentIsOrigin": true,
+          "translation": {
+            "x": 1.7752234935760498,
+            "y": -0.6750379800796509,
+            "z": -60.0111083984375
+          },
+          "local": {
+            "x": 0.2247765064239502,
+            "y": 0.09850543737411499,
+            "z": 0.0111083984375
+          }
+        }
+      ],
+      "handGapMetres": 0.09629715806914743,
+      "endpoint": {
+        "poseId": "pulse",
+        "sample": {
+          "clip": "PyreBurst_Upper",
+          "loop": false,
+          "timeSeconds": 1.3985999999046328,
+          "frame": 83,
+          "row": 83,
+          "ended": false,
+          "phase": 0.7361052723446053
+        },
+        "handStill": null
+      },
+      "originParented": null,
+      "visualParentIsOrigin": true
+    }
+  ],
+  "baseline": {
+    "meshes": 138,
+    "casters": 38,
+    "remoteNodes": 0
+  },
+  "gripComparison": {
+    "human": {
+      "x": 0.2767840406738638,
+      "y": 0.8856103969561157,
+      "z": -0.07939303836526307
+    },
+    "orc": {
+      "x": 0.4600409677812809,
+      "y": 1.0247855646719761,
+      "z": -0.10695514120543531
+    },
+    "differs": true
+  },
+  "after": {
+    "meshes": 138,
+    "casters": 38,
+    "streaming": {
+      "limits": {
+        "pending": 32,
+        "exact": 8,
+        "idleExact": 0,
+        "idleGarments": 0
+      },
+      "queue": {
+        "submitted": 23,
+        "superseded": 0,
+        "rejected": 0,
+        "peakPending": 2,
+        "completed": 23,
+        "pending": 0,
+        "active": 0,
+        "uniqueIds": 0,
+        "limit": 32,
+        "closed": false
+      },
+      "immutable": {
+        "entries": 0,
+        "reservedBytes": 0,
+        "peakReservedBytes": 4496592,
+        "ceilingBytes": 8388608,
+        "leases": 0
+      },
+      "owned": 0,
+      "activeExact": 0,
+      "pendingBuilds": 0,
+      "allocation": {
+        "buffers": 0,
+        "textures": 0,
+        "bufferBytes": 0,
+        "textureBytes": 0,
+        "unknownTextureFormats": 0,
+        "knownCpuBytes": 0,
+        "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+      },
+      "stats": {
+        "bodyLoads": 22,
+        "liveEquipmentChanges": 0,
+        "peakOwned": 9,
+        "preparations": [
+          18.700000047683716,
+          222.09999990463257,
+          230.90000009536743,
+          405.40000009536743,
+          653.5999999046326,
+          731.6000001430511,
+          757.2000000476837,
+          941.5,
+          937.1000001430511,
+          810.5999999046326,
+          221.70000004768372,
+          379.40000009536743,
+          379.10000014305115,
+          638.5,
+          695.1000001430511,
+          803.8999998569489,
+          864.1000001430511,
+          966.8000001907349,
+          822.7000000476837,
+          214.70000004768372,
+          219.69999980926514,
+          193.40000009536743,
+          159.60000014305115
+        ]
+      }
+    },
+    "remoteNodes": 0,
+    "gpuErrors": []
+  },
+  "passed": true
+}
