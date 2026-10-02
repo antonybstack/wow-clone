@@ -264,10 +264,13 @@ Tasks:
    were empty on two of three races. An `ASHEN_CONTROL=1` inversion now fails all 2,592 rows
    while the real run passes all 2,592. What this does not prove is that the result *looks*
    right — a correctly hidden mesh can still leave a seam gap, which is task 3's remainder.
-6. **A swap budget.** Per-slot cost is now published for the player path (median 18.8 ms,
-   p95 32.8, worst 48.6). What is still missing is a **cold-network** measurement — the
-   residency cache evicts idle pieces, so 119 of 120 rows rebuilt from bytes a local dev server
-   had already served — and a ceiling that fails a future piece at a gate.
+6. **A swap budget.** **Measured 2026-10-02** ([result](results/m6-swap-budget-2026-10-02.md)).
+   Three tiers at 50 Mbit/s / 40 ms: **cold** 86.1 ms median / 122.6 worst, **rebuilt** 18.8 /
+   48.6, **resident** 0.5 / 4.8. Frame cost is separate and is the one that matters: zero of 51
+   cold swaps exceed 33.33 ms, but **11 of 51 exceed 16.67 ms**, so a first-time piece can drop
+   a frame at 60 Hz where a rebuilt one never did (0 of 168). Ceilings are proposed — 200 ms
+   cold latency, 33.33 ms worst frame, 10 ms resident, 512 KiB per piece — and **nothing
+   enforces them yet**; wiring this into a gate is what remains.
 
 **Exit:** every slot swaps correctly on every supported body and shape, during every motion in
 the source set, with measured cost and reviewed live motion; failures preserve the committed
