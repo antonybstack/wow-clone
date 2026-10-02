@@ -1,38 +1,89 @@
-# Next ten major milestones — production customization and a multiplayer hub
+# Character customization and armor — current milestone queue
 
-Reprioritized **2026-09-29**, release verification updated **2026-10-01**, game source **8ae4c2d**. Milestone **1 has a released, verified bounded customization subset**; the startup follow-up passes measured local/public p95 gates, while first-use GPU tails remain open. Milestone **2–3’s bounded region correctness/streaming integrations are complete; 4’s local client/authority slice is verified with public hosting pending; 5 has an unreleased source checkpoint and 6’s factory core is next; 7–10 remain planned**. The [public startup/GPU follow-up](results/startup-gpu-2026-09-30.md) adds shared early saved-character discovery and measures the resulting margin. First-use GPU outliers remain unattributed and explicitly deferred by the user on September 30; they do not block milestone 2. The [current-state review](../../reviews/current-state-priorities-2026-09-29.md) records what is released, active, candidate-only and unaccepted, plus verification and limitations. The [original M001–M010 sequence](../../archive/plans/character-mmo-next-ten-2026-09-27.md) is retained as history.
+Reprioritized **2026-10-02**, game source **8ae4c2d**. The queue now runs on one axis: **what a
+player can change about their character, and how reliably armor pieces swap on the body.**
+Multiplayer is parked at what it has already proved, not cancelled — see *Parked* below.
 
-These numbers are the current execution order. Original M001–M100 IDs remain references to the [long-term horizon](vision-roadmap.md), not a second queue. Completed M001–M005 proof work is reused; M006 creator infrastructure and M007 representative fit evidence are retained. Missing age/hair art and untested shape settings are not marked complete by reorganizing the plan.
+Milestones **1–4 are delivered** and are kept here with their evidence rather than deleted.
+What follows them was reordered on 2026-10-02: the former hub-capacity, cooperative-loop and
+further-multiplayer milestones leave the critical path, and **armor swapping becomes a
+milestone in its own right** rather than an implicit property of the wardrobe work.
+
+Renumbering changes no evidence and closes no gate. Missing head, hair, age and dye art is not
+complete because the plan moved; the capability flags in
+`src/character/creator/contract.js` stay false until the art passes, and flipping them is not
+an exit. The [original M001–M010 sequence](../../archive/plans/character-mmo-next-ten-2026-09-27.md)
+and the [long-term horizon](vision-roadmap.md) remain references, not a second queue.
 
 ## Priority and intended outcome
 
-First release the customization already proved, then establish crowd correctness and bounded asset ownership, then put two real players in the region. Complete modular Human identity, rehearse the wardrobe factory and add an Elf fit proof on that foundation. Finish with an actual crowded multiplayer hub, one cooperative region loop and a measured release.
+A player should be able to build a character they recognise, dress it from the catalogue,
+change any piece at any time, and have all of that persist and reload exactly. Everything in
+5–10 serves that sentence.
 
-Performance and load time remain the first constraint. Keep the approved Gothic region, existing Human/Orc/Undead sources, source-compatible animation and Havok movement. Use authored/generated source assets converted into editable templates, procedural fitting/assembly and cheaper crowd representations. No terrain streaming, additional regions, full combat redesign, arbitrary limb lengths or per-character cloth simulation is in these ten.
+Two things gate it today, and both are measured rather than suspected:
+
+* **Identity is blocked on head geometry, not texture.** At the y=1.5 m neck cut the head's
+  and body's shading normals disagree by a **median of 44°** (p90 112, max 168) and the
+  surface tangent breaks by a **median of 65.5°**. Five colour corrections could not fix that,
+  and welding the normals traded the seam for a brightness step. Hair is **fused to the
+  scalp** — only 75 of 333 above-brow vertices sit over another surface — so bald cannot be
+  reached by collapsing a shell.
+* **Armor swapping works but is under-evidenced.** All 768 catalogue combinations validate by
+  rule with zero disagreements, and a same-body piece change costs **67–78 ms** median. Only
+  twelve outfits have been reviewed visually, extreme-shape fit is measured for the **Human
+  only**, and hot-swapping during motion, casting and attacking is unproven per slot.
+
+Performance and load time remain the first constraint. Keep the approved Gothic region, the
+existing Human/Orc/Undead sources, source-compatible animation and Havok movement. No terrain
+streaming, additional regions, combat redesign, arbitrary limb lengths or per-character cloth
+simulation is in this queue.
+
+Two inherited open items travel with this queue whatever its order, and neither blocks 5 or 6:
+the [first-use GPU startup tail](results/startup-gpu-2026-09-30.md), explicitly deferred by the
+user on 2026-09-30, and the released/candidate/unaccepted boundary catalogued in the
+[current-state review](../../reviews/current-state-priorities-2026-09-29.md).
 
 ## Sequence
 
-| # | Major milestone | Player-visible result | Depends on | Original horizon work |
+| # | Milestone | Player-visible result | Depends on | State |
 | --- | --- | --- | --- | --- |
-| 1 | Production body customization | Height/build can be edited, saved and played on the normal production URL. | Existing M004–M007 evidence | M006/M007 runtime, M032/M036, M051 |
-| 2 | Correct crowd rendering in the region | Dressed actors animate, cast the intended shadows and retain identity through detail changes in Hollowmere. | 1; M003 failure cases | M009 correctness, M044/M045/M049 |
-| 3 | Bounded appearance streaming and memory | Arriving players and outfit changes converge without stalled movement or steadily growing memory. | 1–2 | M037/M038, M052–M060 |
-| 4 | Authoritative multiplayer presence | Two to eight real clients see one another move and change appearance in the current region. | 1–3 | M061–M068, first M070 gate |
-| 5 | Modular Human identity | The tall/slender/young/long-haired and short/stout/older/bald examples both work as real saved characters. | 1, 3 and 4 | M006 art, M011–M016/M034/M035 |
-| 6 | Wardrobe factory and five contrasting outfits | Cloth and articulated armor mix through a repeatable publishing pipeline. | Core: 1 and 3; hair/headwear integration: 5 | M021–M030, first M081/M082 slice |
-| 7 | Race extensibility and Elf proof | One logical outfit resolves to correct Human/Orc/Undead/Elf fits, with honest race controls. | 4–6 | M008, M017–M019 |
-| 8 | Scalable multiplayer hub | A varied busy town uses measured rendering and replication budgets, including reveal/arrival bursts. | 2–4 and 5–7 | M009/M010, M041–M050, M066/M069 |
-| 9 | Cooperative region gameplay | Players travel and complete one existing-region encounter together, with consistent targets, actions and rewards. | 4 and 8 | Bounded M071–M080 |
-| 10 | Device acceptance and content release rehearsal | A stable multiplayer slice is released with actual device limits and one independently published content update. | 1–9 | M089 rehearsal, M091–M098 |
+| 1 | Production body customization | Height/build edited, saved and played on the production URL. | — | **Delivered** |
+| 2 | Correct crowd rendering in the region | Dressed actors animate and keep identity through detail changes. | 1 | **Delivered** |
+| 3 | Bounded appearance streaming and memory | Outfit changes converge without stalls or growth. | 1–2 | **Delivered** |
+| 4 | Authoritative multiplayer presence | Two to eight clients see one another move and change appearance. | 1–3 | **Delivered locally; public hosting parked** |
+| 5 | Modular Human identity: head, hair, adult age | The young/long-haired and older/bald examples are real saved characters. | 1 | Open — art/geometry |
+| 6 | **Armor swapping as a verified capability** | Any piece in any slot can be changed at any moment, on any supported body, without a visual or fit defect. | 1, 3 | Open — evidence |
+| 7 | Colour and material variation | A player can recolour pieces within an authored, published palette. | 6 | Open — no dye channel exists |
+| 8 | Equipment authoring factory | New pieces reach the catalogue through a repeatable publishing pipeline. | 6; hair/headwear needs 5 | Partly built |
+| 9 | Race fits and an Elf proof | One logical outfit resolves to correct Human/Orc/Undead/Elf fits. | 5, 6, 8 | Open — licensed source |
+| 10 | Device acceptance and content release | The customization slice releases with real device limits and one published content update. | 1–9 | Open |
 
-Execute one bounded work package at a time. Do not launch ten writers or ten game renderers. A negative experiment can close a research package; a delivery milestone stays open until its player-visible exit passes. Replan on evidence at the end of 3 and 8, preserving IDs/results rather than forcing a failed assumption into production. If milestone 5 hits a source-art blocker, the milestone 6 factory core may proceed on accepted bodies; its hair/headwear integration still waits for 5, before hub acceptance.
+Execute one bounded package at a time. A negative experiment can close a research package; a
+delivery milestone stays open until its player-visible exit passes. Replan on evidence at the
+end of 6.
+
+## Parked
+
+Milestones that left the critical path on 2026-10-02. Their results stand and nothing is
+reverted; they are simply not what the next packages work on.
+
+* **Public multiplayer hosting.** Local two-client and eight-seat behaviour is proved
+  ([result](results/native-presence-2026-10-01.md)); the account rejected Cloudflare
+  Containers without Workers Paid, so there is no verified public endpoint.
+* **Scalable hub capacity** (former milestone 8) and the **cooperative region loop** (former
+  milestone 9).
+* **Latency, jitter and socket-outage matrix.** Needs Toxiproxy, absent on this machine;
+  transport has only been exercised on loopback.
+* `Sword_Attack` **has no composed pose**, so remote actors fall back to locomotion and the
+  renderer counts it as `uncomposedMotions`. That returns with the hub work.
 
 ## Shared acceptance
 
 - **Solo desktop:** M1 Max, uncapped Chromium WebGPU, actual 1280×720 render buffer, device scale 1, seven enemies, three 12-second runs on each of meadow/town/bridge/cathedral/forest, without recording. Each route must exceed 144 mean FPS; investigate repeatable >5% regressions in mean frame time or p95/p99 against a fresh paired baseline. Report interval tails and samples over 6.94/8.33/16.67/33.33 ms. This is throughput, not a guarantee that every frame meets 144 Hz.
 - **Default cold play:** p95 <=1,000 ms at 50 Mbit/s / 40 ms in 20 fresh browser processes against the compressed production build, using the existing dressed/grounded/GPU-completed/input-enabled definition and a movement check. Retain every outlier. The released milestone 1 build passes this local profile, but the follow-up public-URL cohorts pass p95 but retain a 1,248 ms saved-outfit first run and earlier multi-second GPU outliers; retain that first-use limitation as a deferred follow-up while continuing the authorized milestones. A quiet-machine requirement does not permit dropping bad rows.
 - **Customized cold play:** separately measure supported saved Human characters, including endpoints and the largest supported outfit. Goal is the same one-second playable area, with the selected height/build silhouette present at the first playable frame. Material/mesh detail may arrive progressively under a documented policy. Loading the default character and silently replacing identity is not success. Other race paths have separately reported gates until compact starters are proved.
-- **Crowd:** preserve the solo gates and publish separate capacity/quality tables. Milestone 2's 100 actors test correctness and lifecycle, with measured cost but no crowd FPS pass bar. The milestone 8 hub experiment targets 100 genuinely visible dressed actors above 120 mean FPS on the desktop profile, while seeking 144. Neither that count nor 300/1,000 is currently accepted. A missed count is a failed target with a measured lower ceiling, not a pass obtained by hiding actors.
+- **Crowd:** preserve the solo gates and publish separate capacity/quality tables. Milestone 2's 100 actors test correctness and lifecycle, with measured cost but no crowd FPS pass bar. The hub-capacity experiment that targeted 100 genuinely visible dressed actors above 120 mean FPS is **parked** with the multiplayer work; no count of 100, 300 or 1,000 is accepted. If it returns, a missed count is a failed target with a measured lower ceiling, not a pass obtained by hiding actors. The eight-seat native proof that does exist sustains ~170 mean FPS with zero frames above 16.67 ms, and that is a cost report, not a capacity claim.
 - **Resource tails:** report startup, settled, streaming and promotion frames separately; no unexplained repeatable >33.33 ms stall caused by a normal single appearance change. Fix the cause or explicitly lower the supported workload. Unknown GPU memory/timing stays unavailable, never zero.
 - **Visual and device:** review live motion, preserve fit/coverage/grips and ordinary traversal, test touch and WebKit where affected, and deliver reviewed MP4/GIF through the existing Telegram/VE procedure. Physical iPhone results are separate from emulation and required before a new phone support claim.
 - **Ownership and release:** follow the [execution contract](execution-contract.md), [browser ownership](../../debug-view.md#browser-ownership-and-performance-isolation) and [deployment/rollback procedure](../../DEPLOY.md). Track every renderer. Multiplayer functional checks may own several explicitly tracked clients; FPS checks use one rendering client plus non-rendering protocol load generators. Commit/push each accepted package. Production releases require exact bundle/assets, loading/movement and rollback verification.
@@ -85,7 +136,7 @@ Work packages:
 4. Keep exact and baked actors in distinct owned render resources. Native attachVat drops the live skeleton; do not repeatedly attach/detach on the local player's container. Establish a shared logical actor ID, appearance revision, position and clip clock across representations.
 5. Prove promotion/demotion at matched pose/action phase, including Idle/Walk and a non-looping action. Retain weapon placement, body coverage, shape silhouette, scale and direction. Use tested shape buckets for baked actors; local/inspected actors stay exact. No per-instance arbitrary-morph claim.
 6. Establish conservative animated bounds for body, clothing and attachments; test frustum edge, building occlusion and reveal. Keep shadow visibility separate from color-pass visibility.
-7. Repeat at one and ten varied actors, then a 100-actor correctness smoke test. Swap outfits, remove a middle batch member, promote the same target repeatedly and tear down during a pending load. No slot/ID confusion, bind pose, black meshes, ghost casters or disposed shared resources. Measure its cost without applying milestone 8's crowd FPS target here.
+7. Repeat at one and ten varied actors, then a 100-actor correctness smoke test. Swap outfits, remove a middle batch member, promote the same target repeatedly and tear down during a pending load. No slot/ID confusion, bind pose, black meshes, ghost casters or disposed shared resources. Measure its cost without applying the parked hub milestone's crowd FPS target here.
 8. Measure a fresh actual-town baseline/candidate and the solo routes separately from capture. Record draw submissions, prepared/upload bytes, CPU work and GPU data where available. Deliver reviewed live motion.
 
 **Exit:** the actual region has correct declared shadows, dress/phase/bounds and transitions, with reversible lifecycle and passing solo gates. The result selects an integration and initial resource budgets; it does not declare a supported 300/1,000-player limit. If native VAT remains blocked, close a bounded investigation with a demonstrated alternative, revise this plan and finish the delivery through that alternative.
@@ -123,78 +174,133 @@ Status: local implementation and functional verification pass; public deployment
 
 First close a library-selection and two-real-client package using a mature server/game networking library; Colyseus is the first candidate to assess, with at most one alternative if it fails the requirements. Record the selected version, host/operating cost, update/patch rates, prediction/reconciliation support, collision strategy and reasons. Reuse supported reconnect/state tools rather than building a generic networking framework. Then complete terrain collision parity, the eight-client checks and the latency/failure matrix below. Rejecting a library should not require finishing the eight-client workload.
 
-Use server-assigned room-scoped actor IDs and authenticated expiring reconnect credentials from the selected library. An untrusted caller cannot claim another actor ID. Durable account-bound character records belong to milestone 9; a full account product is not required for this presence slice. Server owns the validated appearance revision and movement state. Clients send bounded inputs/requests, not arbitrary asset URLs or authoritative positions.
+Use server-assigned room-scoped actor IDs and authenticated expiring reconnect credentials from the selected library. An untrusted caller cannot claim another actor ID. Durable account-bound character records belong to the parked cooperative-loop milestone; a full account product is not required for this presence slice. Server owns the validated appearance revision and movement state. Clients send bounded inputs/requests, not arbitrary asset URLs or authoritative positions.
 
-Preserve the current 0.90–1.15 height-scaled movement capsule and validate the same dimensions on the server; do not introduce a visual-only height policy implicitly. A different movement policy requires a separately accepted traversal change. Remote clients interpolate snapshots and use the milestone 2–3 actor path; they do not each instantiate a local Havok player controller. Reuse shared terrain/collision data or a reproducible server collision export; validate doors, bridges and slopes, not only a flat spawn area. Combat hit-volume fairness remains an explicit milestone 9 decision.
+Preserve the current 0.90–1.15 height-scaled movement capsule and validate the same dimensions on the server; do not introduce a visual-only height policy implicitly. A different movement policy requires a separately accepted traversal change. Remote clients interpolate snapshots and use the milestone 2–3 actor path; they do not each instantiate a local Havok player controller. Reuse shared terrain/collision data or a reproducible server collision export; validate doors, bridges and slopes, not only a flat spawn area. Combat hit-volume fairness remains an explicit decision for the parked cooperative-loop milestone.
 
 Test joins/leaves, out-of-order input, reconnect, stale appearance revisions and late assets at 40/100/200 ms latency with representative loss/jitter. Use deterministic network-only clients for service load; own every rendering client used for visual checks. Offline solo play remains available.
 
 **Exit:** two to eight players can enter, traverse and see the same supported appearances and action timing; authoritative validation rejects impossible movement/appearance without corrupting state; reconnect does not duplicate actors. Record server tick tails, per-client bytes, correction distances and device frame cost. No combat/economy authority claim yet.
 
-## 5 — Modular Human head, hair, adult age and palette
+## 5 — Modular Human identity: head, hair and adult age
 
-**Scope:** finish the two original example characters through a production source family. Preserve the supplied Human reference and neutral/starter option.
+**Dependency:** milestone 1. **Blocked on geometry and source art, not on runtime.** The
+creator already offers every verified control and refuses the rest with a reason; this
+milestone is what makes those reasons go away.
 
-Author a complete scalp and a continuous neck boundary with matching skinning/tangents; preserve M004 correspondence where possible or explicitly rebuild/version the family and garment fit where not. Begin with a grey-material geometry/pose proof at neck and hood, then texture/palette. Pause further old-head atlas/normal sweeps until the geometry premise changes.
+Tasks:
 
-Provide bald and one long hairstyle as actual separate components, two readable adult-age appearances from the same accepted source family and bounded skin/hair palette channels. Hair has normal/tucked/hidden headwear behavior; age is not a skin tint. Keep eyes/brows and head/body materials coherent, long hair clear of cape/shoulders in the supported motion matrix, and near/far variants within budgets.
+1. **Close the neck seam at its cause.** The head and body are two meshes carrying two atlases
+   butted at y=1.5 m with a 44° median normal break and a 65.5° median tangent break. Colour
+   is exhausted — chroma matching took the join step from 21.7/33.2 to 8.3/7.5 and the residual
+   is a shading discontinuity. Make the surfaces tangent-continuous at the cut, or merge head
+   and body into one mesh on one atlas with a gradient-domain blend across the former seam.
+   Preserve the source-65 rig, M004 morph correspondence and M005 garment fit.
+2. **Author a real bald scalp.** Collapsing the shipped shell cannot work: only 22.5% of the
+   above-brow head sits over another surface, so the hair *is* the skull's outer surface. This
+   needs a re-authored head, with the M004/M005 correspondence rebuilt or explicitly restated.
+3. **Settle long hair.** The CC0 ponytail is fitted to the 65-joint bind and reviewed live, and
+   the hood already hides it through semantic coverage. It still needs an accepted tie and
+   colour policy, and behaviour at the shape extremes.
+4. **Make adult age read as age.** Cross-topology young→old delta transfer preserved the face
+   but read as a *different person*, not an older one. Either author the older variant or
+   record the approach as closed with its evidence.
+5. **Then, and only then, flip the capability flags** in `creator/contract.js` for `faceOrAge`
+   and `hair`, with the live checks extended to cover them.
 
-**Exit:** both original user examples can be created, saved, restored, equipped and shown to another milestone 4 client on production. Live front/side/back and gameplay review closes the neck, scalp, hood and age-readability gates. Assets are reproducible and optional detail payloads stay within startup/stream budgets. Two failed source approaches trigger a source/design re-evaluation rather than an indefinite parameter sweep.
+**Exit:** both named examples — tall/slender/young/long-haired and short/stout/older/bald —
+save, reload and enter gameplay with the saved identity visible at the first playable frame,
+reviewed in live motion. Flipping a flag without art is an explicit failure, not an exit.
 
-The [October 1 source checkpoint](results/identity-source-2026-10-01.md) preserves compatible animation and proves a connected neck/scalp in sampled poses, with reviewed live motion. Hood opening and old-stout garment fit still fail; production identity controls remain disabled. Follow the permitted factory-core route below while those source-family fits remain open.
+## 6 — Armor swapping as a verified capability
 
-## 6 — Equipment authoring factory and five contrasting outfits
+**Dependency:** milestones 1 and 3. The mechanism exists and is fast; the evidence is thin.
+This milestone makes "change any piece at any time" a claim with measurements behind it.
 
-Status: [five real designs integrated and locally reviewed](results/five-design-catalogue-2026-10-01.md), with catalogue v4 migration, reproducible per-piece/full/compact publishing, mixed-boundary motion and four passing cold cohorts. Unreleased; equipped forest uncapped qualification, remote composition and M5 headwear remain open. The [DEV native remote checkpoint](results/remote-pieces-native-2026-10-01.md) passes functional ownership/retirement checks and delivers Telegram 838; isolated cost, publication and actual presence expansion remain pending. Continue [native per-piece remote integration](remote-piece-implementation.md), then the remaining [factory execution plan](wardrobe-factory-implementation.md).
+What is already true: eight slots; 768 catalogue combinations validated with zero
+resolver disagreements; a same-body piece change costs **67–78 ms** median and **18 ms** at
+best, against 120–182 ms for a restage; the Orc wrist, Human mixed waist and Undead bind
+defects are found and repaired; hem over-reach is bounded.
 
-Define the actual release slots/layers and semantic neck/waist/wrist/ankle interfaces. Turn the diagnostic rigid pauldron into a real item only with an actual slot/layer and compatibility policy. Produce **five distinct complete outfit designs in total**, counting current designs only where their declared required pieces really exist; include at least one soft cloth outfit and one articulated rigid armor outfit. Presets using the same pieces do not count as new sets.
+Tasks:
 
-The core factory uses accepted milestone 1 bodies and milestone 3 ownership; adult age and long hair are not prerequisites. Integrate the milestone 5 headwear/hair cases once that source family passes, before milestone 8. If art is blocked, report factory acceptance separately from the still-pending headwear extension.
+1. **Per-slot hot swap under motion.** Change each of the eight slots while idle, walking,
+   sprinting, mid-air, landing, casting and attacking. Assert no pose reset, no socket
+   detachment, no dropped weapon, and no frame over 33.33 ms attributable to one swap.
+   Today only torso swaps during motion have been reviewed.
+2. **Swap storms and failure.** Extend the rapid-swap and corrupt-asset proofs from torso to
+   every slot: a failed or superseded request must leave the last committed appearance intact,
+   on every slot, for all three races.
+3. **Visual review across the matrix.** 768 combinations validate by rule; twelve have been
+   looked at. Review each design against each race at front/side/back, and record every
+   exception as data with a reason rather than a silent allowance.
+4. **Shape extremes beyond the Human.** Posed fit is measured for Human slender/stout at 0.95
+   with a worst case of 24 exposed vertices of 3,274. The Orc and Undead have no verified shape
+   family, so their "extremes" are neutral only — either state that as the supported domain or
+   give them a family.
+5. **Layering and coverage conflicts.** Every published piece declares body segments; prove no
+   combination leaves a segment simultaneously claimed and visibly uncovered, and that the
+   shoulders slot composes with torso and helmet in all three races.
+6. **A swap budget.** Publish the measured cost per slot and a ceiling, so a future piece that
+   breaks it fails a gate rather than being noticed later.
 
-Reuse the existing fitting field, rig/bind checks, semantic coverage and glTF tooling. Add artist corrective fits and silhouette-preserving detail generation where required; do not create a full-outfit binary for every combination. Publish per-piece immutable artifacts and compact manifests. Keep rigid plates rigid and weapon/shield grips coherent through the current source actions.
+**Exit:** every slot swaps correctly on every supported body and shape, during every motion in
+the source set, with measured cost and reviewed live motion; failures preserve the committed
+appearance.
 
-**Exit:** adding one item is a repeatable source → fit → validate → preview → publish operation with license/hash/version data, reversible asset release and measured authoring time/payload. All five designs mix at permitted boundaries, shapes and poses; one new cloth and one new rigid design go through reviewed live motion. The evidence sets the 30-set content budget and defect/corrective-fit cost.
+## 7 — Colour and material variation
 
-## 7 — Race extensibility and an Elf fit proof
+**Dependency:** milestone 6. **No dye channel exists today** — the appearance contract carries
+a `dyes` field whose capability list is empty for every race, and the creator's `skinColor` and
+`hairColor` controls are disabled for exactly that reason.
 
-Consolidate current Orc/Undead under the one recipe/actor/publishing contract, retaining their approved sources and distinct binds. Neutral-only controls stay explicit until a real shape family is accepted; do not gate the milestone on inventing sliders for every race.
+Tasks:
 
-Create one licensed editable Elf body/head/hair source with an approved distinct silhouette and ears, one complete proof outfit plus one mixed boundary case. Test Human/Elf garment sharing through actual frame/topology/bind/fit evidence; otherwise generate family-specific fits. Use existing source-compatible animation or a verified offline retarget, not a new procedural gait. Race switching remains transactional and cancellation-safe.
+1. Choose and prove one mechanism — authored tint masks per piece, or a palette index — and
+   measure its cost against the existing published pieces rather than adding a material per
+   colour.
+2. Extend the appearance recipe through an explicit migration, not a silent field, and keep
+   content-addressed publication hash-sealed under recolouring.
+3. Add creator controls behind real capability flags, with persistence and undo.
+4. Prove a recoloured piece still passes the fit, coverage and swap gates from milestone 6.
 
-**Exit:** supported shared logical item IDs resolve to validated race-specific assets; the current three races retain catalogue support and the Elf proof items gain explicit Elf fits. New items lacking a race fit remain unavailable for that race. A remote client sees the correct race/appearance, and no fallback silently dresses an Elf in an incompatible Human fit. Current races regress cleanly. Elf source absence remains an open delivery dependency, never a capability flag or a renamed Human.
+**Exit:** a player recolours pieces within an authored palette, the choice saves and reloads,
+and no fit or coverage gate regresses.
 
-## 8 — Scalable rendering and replication in the actual hub
+## 8 — Equipment authoring factory
 
-Use the accepted diverse body/head/hair/cloth/plate/race library to establish exact nearby, standard and distant tiers. Select by projected size, visibility, target/party relevance and frame budget with hysteresis. Bound promotions, animation evaluation, shadow casters, nameplates and effects separately. Approximate distant shapes with tested buckets while retaining race and outfit identity.
+**Dependency:** milestone 6; hair and headwear integration waits for 5. The per-piece build and
+publish path exists — `build-duskguard-armor.mjs`, `prepare-remote-pieces.mjs` and
+`publish-remote-pieces.mjs`, the last refusing stale or mismatched input and republishing
+byte-identically. What is missing is the authoring side: adding a *new* piece should be a
+documented, repeatable operation rather than a bespoke script per design.
 
-Introduce server spatial interest/admission/update budgets using the chosen networking library's supported tools. Presence, replicated interest, visible actors, animated actors, exact-detail actors and shadowed actors are different counters. Test moving crowds around buildings and sudden reveal/arrival waves; offscreen actors required for shadows remain accounted for.
+**Exit:** a new piece reaches the catalogue, the published set and the creator through the
+documented pipeline, with provenance and licensing recorded, and passes milestone 6's gates
+without hand-editing.
 
-Measure 100/300/1,000 logical actors with actual varied outfits in diagnostic and real-region runs. Seek 100 genuinely visible actors above 120 mean FPS on desktop, with 144 as the improvement target; 300/1,000 are stress/capacity points, not promised counts. Evaluate physical-phone tiers independently. A lower measured limit must be reported as a missed experimental target and used explicitly for product admission/quality, never concealed by the camera.
+## 9 — Race fits and an Elf proof
 
-**Exit:** a device-specific count/quality table has settled and arrival-tail evidence, bounded memory and server fan-out, correct targeting/identity through tier changes, and passing solo/startup gates. This is the architecture acceptance point before bulk 30-set production.
+**Dependency:** milestones 5, 6 and 8. Human, Orc and Undead fits exist for all 45 published
+pieces. The Elf remains an explicit **licensed source dependency**: a missing Elf source is a
+blocker, not permission to relabel the Human.
 
-## 9 — One cooperative loop in the current region
+**Exit:** one logical outfit resolves to correct per-race assets with no silent Human
+fallback, race controls stay honest, and Human/Orc/Undead regressions pass.
 
-Connect the existing traversal/objective/encounter foundation into one repeatable party activity across the current region. Two to eight players can meet, travel, target enemies, use the current attacks/spells, complete the objective and return with an idempotent reward.
+## 10 — Device acceptance and content release
 
-Server validates cooldowns, resources, range, hits, enemy state and reward grants; clients render the current effects from accepted intent/events. Establish the cosmetic-height combat rule and test it across races/body extremes. Add only the party/inventory/character persistence needed for this loop, using established auth/storage services from the authority decision. Keep cosmetic recipe and gameplay item entitlement distinct.
+**Dependency:** 1–9. Physical iPhone startup, memory and thermal behaviour remain unmeasured
+and cannot be inferred from emulation. Release follows the existing production verification and
+rollback procedure.
 
-**Exit:** functional multiplayer tests show consistent outcomes through loss/reconnect, no duplicate damage/rewards or client-asserted entitlement, and usable target/nameplate/party presentation at the supported crowd tier. Movement, current visual direction and solo performance remain intact. Broader classes, PvP balance, economy and crafting stay outside this milestone.
-
-## 10 — Hardware, endurance and an independent content update
-
-Run a browser/device matrix and at least two hours of current-region play, appearance churn, arrivals and reconnects. Physical iPhone 14 Pro Max needs actual startup, memory, touch, thermal and supported-population evidence; emulation cannot close that gate. Unsupported or unavailable devices remain explicitly pending, without a new support claim.
-
-Rehearse a single new armor/content tier using the factory: record authoring effort, fitted variants, patch bytes, compatibility/version migration, publication and rollback. This is a recurring-content pipeline rehearsal; it does not assert that a full quarterly PvP season or 30 sets already exists.
-
-Release the accepted multiplayer slice through verified client, server and asset compatibility gates. Drill rollback while preserving character/appearance/reward records. Run a bounded real-user trial and compare it with synthetic counts. Reconcile the 100-milestone horizon, actual content cost and supported capacities.
-
-**Exit:** a measured multiplayer release with documented desktop/phone limits, stable endurance, successful content update/rollback and an evidence-based next ten. A whole MMO launch or guaranteed thousand-player hub is not implied.
+**Exit:** the customization slice releases with measured device limits and one independently
+published content update.
 
 ## Reuse and deferred work
 
 Prefer native Lite animation/VAT/thin instances, evaluated sockets, Havok movement, existing equipment/lifetime/scheduler boundaries, glTF Transform/Meshoptimizer, the Playwright ownership harness and current Pages/VE/Telegram tooling. Link applicable official docs in comments at non-obvious bind, animation, shader, ownership and networking boundaries.
 
-The [version-pinned VAT specification](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/15-vertex-animation-texture.md) is the crowd starting point. [@litools/instancer](https://github.com/eldinor/lite-instancer) and [Colyseus](https://docs.colyseus.io/netcode) were evaluated reuse candidates. Milestone 4 adopts pinned Colyseus 0.18; the instancer remains unadopted. Their current documentation can exceed the pinned runtime; validate the selected exact versions.
+The [version-pinned VAT specification](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/15-vertex-animation-texture.md) is the crowd starting point. [@litools/instancer](https://github.com/eldinor/lite-instancer) and [Colyseus](https://docs.colyseus.io/netcode) were evaluated reuse candidates. Milestone 4 adopted pinned Colyseus 0.18 and that code stays in the tree while multiplayer is parked; the instancer remains unadopted. Their current documentation can exceed the pinned runtime; validate the selected exact versions.
 
-Defer bulk 30-set production until 6/8 establish the pipeline and budgets; full facial slider libraries, independent bone-length changes, cloth/hair simulation per actor, world expansion, terrain streaming, new rendering-feature experiments without a measured bottleneck, full PvP/economy systems and broad service/sharding infrastructure. The chosen finite region and current art direction remain the product setting.
+Defer bulk 30-set production until milestones 6 and 8 establish the swap budget and the authoring pipeline; full facial slider libraries, independent bone-length changes, cloth/hair simulation per actor, world expansion, terrain streaming, new rendering-feature experiments without a measured bottleneck, full PvP/economy systems and broad service/sharding infrastructure. The chosen finite region and current art direction remain the product setting.
