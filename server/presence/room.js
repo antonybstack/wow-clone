@@ -17,6 +17,7 @@ import {
   PATCH_INTERVAL,
   PHYSICS_SUBSTEPS,
   RECONNECT_SECONDS,
+  presenceHeightScale,
 } from "../../src/multiplayer/protocol.js";
 import { assertFields } from "../../src/character/appearance/contract.js";
 import { COLLISION_RELEASE } from "../../src/multiplayer/collision-release.js";
@@ -105,7 +106,7 @@ export class PresenceRoom extends Room {
     const resource = await this.physics.actor(
       ((spawnSlot % 4) - 1.5) * 1.5,
       -6 - Math.floor(spawnSlot / 4) * 2,
-      recipe.shape.height,
+      presenceHeightScale(recipe),
     );
     const avatar = new Avatar();
     avatar.id = client.sessionId;
@@ -210,7 +211,7 @@ export class PresenceRoom extends Room {
       const now = this.clock.elapsedTime;
       if (now - resource.lastAppearance < 100)
         throw Error("Appearance updates are too frequent");
-      resource.player.setHeightScale(request.recipe.shape.height);
+      resource.player.setHeightScale(presenceHeightScale(request.recipe));
       avatar.recipe = JSON.stringify(request.recipe);
       avatar.revision++;
       resource.lastAppearance = now;

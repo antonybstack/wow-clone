@@ -10,6 +10,7 @@ import {
   assertFields,
 } from "../character/appearance/contract.js";
 import { appearanceFromEquipment } from "../character/appearance/from-equipment.js";
+import { PRESENCE_PIECE_CATALOGUE } from "./presence-catalogue.js";
 
 export const PRESENCE_PROTOCOL = "ashen-presence-v1";
 // Appearance changes can preserve the movement protocol yet break older clients.
@@ -61,17 +62,47 @@ export function presenceAppearance(fit = "wayfarer", height = 1, build = 0) {
     shape: { ...recipe.shape, height, build },
   });
 }
+/**
+ * A seat may only claim an appearance the shared region can actually render.
+ *
+ * This used to be Human plus two hand-listed outfits. It is now checked against
+ * `PRESENCE_PIECE_CATALOGUE`, which the publisher derives from the pieces it just published,
+ * so the server's authority cannot outrun the assets: a race or an item that was never
+ * published is refused here rather than accepted and then failing on every other client.
+ *
+ * Widening this means publishing pieces, not editing a list. Identity fields and races with
+ * no published body stay refused by construction.
+ */
 export function validatePresenceAppearance(recipe) {
   const accepted = validateAppearance(recipe);
-  if (accepted.race !== "human")
-    throw Error("Shared region currently supports Human only");
-  if (
-    !Object.values(PRESENCE_FITS).some((fit) =>
-      Object.keys(fit).every((k) => fit[k] === accepted.equipment[k]),
-    )
-  )
-    throw Error("Shared region currently supports Wayfarer and Warden only");
+  if (PRESENCE_PIECE_CATALOGUE.catalogVersion !== APPEARANCE_CATALOG_VERSION)
+    throw Error("Published piece catalogue is stale against the appearance catalogue");
+  const supported = PRESENCE_PIECE_CATALOGUE.races[accepted.race];
+  if (!supported)
+    throw Error(
+      `Shared region has no published ${accepted.race} body; supported: ${Object.keys(PRESENCE_PIECE_CATALOGUE.races).join(", ")}`,
+    );
+  for (const [slot, id] of Object.entries(accepted.equipment)) {
+    if (id == null) continue;
+    if (!supported.includes(id))
+      throw Error(`Shared region has no published ${accepted.race} fit for ${id} in ${slot}`);
+  }
   return accepted;
+}
+/**
+ * Capsule height scale for a seat, for any supported race.
+ *
+ * Only the Human has a verified shape family, so by the appearance contract the Orc and the
+ * Undead carry an empty `shape` object. Reading `recipe.shape.height` directly therefore
+ * yields undefined for two of the three published races and feeds that straight into the
+ * physics capsule. Their bodies are authored at the default scale, so the absent value is 1.
+ */
+export function presenceHeightScale(recipe) {
+  const height = recipe?.shape?.height;
+  if (height === undefined) return 1;
+  if (!Number.isFinite(height) || height <= 0)
+    throw Error("Invalid seat height scale");
+  return height;
 }
 export function validateAppearanceRequest(request) {
   assertFields(
