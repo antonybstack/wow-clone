@@ -1,0 +1,3313 @@
+{
+  "conditions": {
+    "cpu": "Apple M1 Max",
+    "url": "http://127.0.0.1:5873/ashen-reach.html?play&clean&pixelRatio=1",
+    "endpoint": "http://127.0.0.1:2577",
+    "recording": false,
+    "renderingClients": 1,
+    "protocolPeers": 7,
+    "viewport": [
+      1280,
+      720
+    ],
+    "runs": 3,
+    "seconds": 12,
+    "camera": "Diagnostic existing spring-arm group view",
+    "physicalPhone": false
+  },
+  "rows": [
+    {
+      "phase": "joined",
+      "run": 1,
+      "cap": {
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.852 ms is not locked to a known display interval"
+      },
+      "tails": {
+        "samples": 2052,
+        "meanMs": 5.851754385941675,
+        "meanFps": 170.88892220124825,
+        "p50Ms": 5.799999952316284,
+        "p95Ms": 6.6000001430511475,
+        "p99Ms": 7,
+        "maxMs": 9.5,
+        "above6_94": 23,
+        "above8_33": 9,
+        "above16_67": 0,
+        "above33_33": 0
+      },
+      "metrics": {
+        "samples": 600,
+        "fps": 170.94504116461934,
+        "meanMs": 5.849833333492279,
+        "medianMs": 5.799999952316284,
+        "p95Ms": 6.599999904632568,
+        "p99Ms": 7.199999809265137,
+        "worstMs": 8.899999856948853,
+        "minMs": 4.5,
+        "above8_333": 3,
+        "above16_667": 0,
+        "drawCalls": 777,
+        "resolution": [
+          1280,
+          720
+        ],
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "maxDevicePixelRatio": 1,
+        "horizonTriangles": 125642,
+        "farTriangles": 289206,
+        "scatterTrees": 599,
+        "scatterRocks": 139,
+        "shafts": 0,
+        "shaftTriangles": 0,
+        "motes": 4200,
+        "moteTriangles": 8400,
+        "foliageInstances": 117242,
+        "triangles": 941975,
+        "drawBatches": 57,
+        "worldTriangles": 941975,
+        "sceneTriangles": 1454431,
+        "drawnMeshes": 151,
+        "hiddenMeshes": 65,
+        "totalMeshes": 216,
+        "triangleCountMs": 0.2999999523162842,
+        "gpuTimingSupported": true,
+        "gpuTimingEnabled": false,
+        "gpuTimingReadback": "disabled",
+        "gpuMs": null,
+        "gpuMeanMs": null,
+        "gpuP95Ms": null,
+        "gpuSamples": 0,
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.850 ms is not locked to a known display interval"
+      },
+      "actors": {
+        "count": 7,
+        "actors": [
+          {
+            "id": "uP52QlAEF",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.16869635598146715,
+              "frame": 10,
+              "row": 10,
+              "ended": false,
+              "phase": 0.12652226321544308
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            }
+          },
+          {
+            "id": "57bf82e_X",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.16869635598146715,
+              "frame": 10,
+              "row": 10,
+              "ended": false,
+              "phase": 0.12652226321544308
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            }
+          },
+          {
+            "id": "7TG9Y_lNc",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.16869635598146715,
+              "frame": 10,
+              "row": 10,
+              "ended": false,
+              "phase": 0.12652226321544308
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            }
+          },
+          {
+            "id": "Anpg9hDoy",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.16869635598146715,
+              "frame": 10,
+              "row": 10,
+              "ended": false,
+              "phase": 0.12652226321544308
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            }
+          },
+          {
+            "id": "pNtfcCkLe",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.16869635598146715,
+              "frame": 10,
+              "row": 10,
+              "ended": false,
+              "phase": 0.12652226321544308
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            }
+          },
+          {
+            "id": "0fut5zsuV",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.16919635820406143,
+              "frame": 10,
+              "row": 10,
+              "ended": false,
+              "phase": 0.12689726487121286
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            }
+          },
+          {
+            "id": "ofG7J1yog",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.16919635820406143,
+              "frame": 10,
+              "row": 10,
+              "ended": false,
+              "phase": 0.12689726487121286
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            }
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 7,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 7,
+          "completed": 7,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 1943832,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 7,
+        "activeExact": 7,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 604,
+          "textures": 100,
+          "bufferBytes": 19441840,
+          "textureBytes": 20330856,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 24459932,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 7,
+          "liveEquipmentChanges": 0,
+          "peakOwned": 7,
+          "uncomposedMotions": 0,
+          "preparations": [
+            131.40000009536743,
+            148.09999990463257,
+            124.20000004768372,
+            207.29999995231628,
+            164.70000004768372,
+            358.59999990463257,
+            444.30000019073486
+          ]
+        }
+      },
+      "enemies": 7,
+      "gpu": [],
+      "presenceErrors": [],
+      "before": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "catalogVersion": "appearance-catalog-v4",
+        "roomId": "w7X9QBJkn",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 3916,
+        "tickP95Ms": 0.9038340000006428,
+        "tickP99Ms": 1.2296249999999418,
+        "tickMaxMs": 7.260374999998021,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3263,
+            "fps": 4923.978933708878,
+            "meanMs": 0.20308779007037145,
+            "medianMs": 0.14649999998800922,
+            "p95Ms": 0.4880830000038259,
+            "p99Ms": 0.6696670000019367,
+            "worstMs": 4.746041999998852,
+            "minMs": 0.02358300000014424,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 2,
+            "fps": 255.13458349255754,
+            "meanMs": 3.919500000003609,
+            "medianMs": 7.260374999998021,
+            "p95Ms": 7.260374999998021,
+            "p99Ms": 7.260374999998021,
+            "worstMs": 7.260374999998021,
+            "minMs": 0.5786250000091968,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 714.9240393206734,
+            "meanMs": 1.398750000000291,
+            "medianMs": 1.398750000000291,
+            "p95Ms": 1.398750000000291,
+            "p99Ms": 1.398750000000291,
+            "worstMs": 1.398750000000291,
+            "minMs": 1.398750000000291,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 649,
+            "fps": 1182.2829432216342,
+            "meanMs": 0.8458212187981613,
+            "medianMs": 0.7994580000013229,
+            "p95Ms": 1.223041999997804,
+            "p99Ms": 1.6168330000000424,
+            "worstMs": 3.156083000001672,
+            "minMs": 0.414041999996698,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 4,
+            "samples": 1,
+            "fps": 1746.4716905639843,
+            "meanMs": 0.5725830000010319,
+            "medianMs": 0.5725830000010319,
+            "p95Ms": 0.5725830000010319,
+            "p99Ms": 0.5725830000010319,
+            "worstMs": 0.5725830000010319,
+            "minMs": 0.5725830000010319,
+            "above8_333": 0,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "lUb_-9fvB",
+            "receivedBytes": 162,
+            "sentBytes": 35282
+          },
+          {
+            "id": "uP52QlAEF",
+            "receivedBytes": 172,
+            "sentBytes": 35260
+          },
+          {
+            "id": "57bf82e_X",
+            "receivedBytes": 172,
+            "sentBytes": 35959
+          },
+          {
+            "id": "7TG9Y_lNc",
+            "receivedBytes": 172,
+            "sentBytes": 36617
+          },
+          {
+            "id": "Anpg9hDoy",
+            "receivedBytes": 172,
+            "sentBytes": 37316
+          },
+          {
+            "id": "pNtfcCkLe",
+            "receivedBytes": 172,
+            "sentBytes": 37974
+          },
+          {
+            "id": "0fut5zsuV",
+            "receivedBytes": 172,
+            "sentBytes": 38673
+          },
+          {
+            "id": "ofG7J1yog",
+            "receivedBytes": 172,
+            "sentBytes": 39331
+          }
+        ],
+        "memory": {
+          "rss": 136790016,
+          "heapTotal": 41975808,
+          "heapUsed": 38244448,
+          "external": 40471901,
+          "arrayBuffers": 19883250
+        }
+      },
+      "after": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "catalogVersion": "appearance-catalog-v4",
+        "roomId": "w7X9QBJkn",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 4277,
+        "tickP95Ms": 0.9150419999932637,
+        "tickP99Ms": 1.2296249999999418,
+        "tickMaxMs": 7.260374999998021,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3263,
+            "fps": 4923.978933708878,
+            "meanMs": 0.20308779007037145,
+            "medianMs": 0.14649999998800922,
+            "p95Ms": 0.4880830000038259,
+            "p99Ms": 0.6696670000019367,
+            "worstMs": 4.746041999998852,
+            "minMs": 0.02358300000014424,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 2,
+            "fps": 255.13458349255754,
+            "meanMs": 3.919500000003609,
+            "medianMs": 7.260374999998021,
+            "p95Ms": 7.260374999998021,
+            "p99Ms": 7.260374999998021,
+            "worstMs": 7.260374999998021,
+            "minMs": 0.5786250000091968,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 714.9240393206734,
+            "meanMs": 1.398750000000291,
+            "medianMs": 1.398750000000291,
+            "p95Ms": 1.398750000000291,
+            "p99Ms": 1.398750000000291,
+            "worstMs": 1.398750000000291,
+            "minMs": 1.398750000000291,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 1010,
+            "fps": 1234.1243722315476,
+            "meanMs": 0.8102911039604517,
+            "medianMs": 0.7701669999951264,
+            "p95Ms": 1.10241600000154,
+            "p99Ms": 1.518166999998357,
+            "worstMs": 3.156083000001672,
+            "minMs": 0.414041999996698,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 4,
+            "samples": 1,
+            "fps": 1746.4716905639843,
+            "meanMs": 0.5725830000010319,
+            "medianMs": 0.5725830000010319,
+            "p95Ms": 0.5725830000010319,
+            "p99Ms": 0.5725830000010319,
+            "worstMs": 0.5725830000010319,
+            "minMs": 0.5725830000010319,
+            "above8_333": 0,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "lUb_-9fvB",
+            "receivedBytes": 523,
+            "sentBytes": 80646
+          },
+          {
+            "id": "uP52QlAEF",
+            "receivedBytes": 574,
+            "sentBytes": 80624
+          },
+          {
+            "id": "57bf82e_X",
+            "receivedBytes": 573,
+            "sentBytes": 81323
+          },
+          {
+            "id": "7TG9Y_lNc",
+            "receivedBytes": 573,
+            "sentBytes": 81981
+          },
+          {
+            "id": "Anpg9hDoy",
+            "receivedBytes": 573,
+            "sentBytes": 82680
+          },
+          {
+            "id": "pNtfcCkLe",
+            "receivedBytes": 573,
+            "sentBytes": 83338
+          },
+          {
+            "id": "0fut5zsuV",
+            "receivedBytes": 573,
+            "sentBytes": 84037
+          },
+          {
+            "id": "ofG7J1yog",
+            "receivedBytes": 573,
+            "sentBytes": 84695
+          }
+        ],
+        "memory": {
+          "rss": 140886016,
+          "heapTotal": 46694400,
+          "heapUsed": 39924752,
+          "external": 40701354,
+          "arrayBuffers": 20112703
+        }
+      }
+    },
+    {
+      "phase": "joined",
+      "run": 2,
+      "cap": {
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.857 ms is not locked to a known display interval"
+      },
+      "tails": {
+        "samples": 2050,
+        "meanMs": 5.856585365853658,
+        "meanFps": 170.7479593536565,
+        "p50Ms": 5.700000047683716,
+        "p95Ms": 6.700000047683716,
+        "p99Ms": 7.8999998569488525,
+        "maxMs": 11.200000047683716,
+        "above6_94": 41,
+        "above8_33": 13,
+        "above16_67": 0,
+        "above33_33": 0
+      },
+      "metrics": {
+        "samples": 600,
+        "fps": 171.04250406923452,
+        "meanMs": 5.846499999761582,
+        "medianMs": 5.700000047683716,
+        "p95Ms": 6.700000047683716,
+        "p99Ms": 7.199999809265137,
+        "worstMs": 8.399999856948853,
+        "minMs": 4.8999998569488525,
+        "above8_333": 1,
+        "above16_667": 0,
+        "drawCalls": 777,
+        "resolution": [
+          1280,
+          720
+        ],
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "maxDevicePixelRatio": 1,
+        "horizonTriangles": 125642,
+        "farTriangles": 289206,
+        "scatterTrees": 599,
+        "scatterRocks": 139,
+        "shafts": 0,
+        "shaftTriangles": 0,
+        "motes": 4200,
+        "moteTriangles": 8400,
+        "foliageInstances": 117242,
+        "triangles": 941975,
+        "drawBatches": 57,
+        "worldTriangles": 941975,
+        "sceneTriangles": 1454431,
+        "drawnMeshes": 151,
+        "hiddenMeshes": 65,
+        "totalMeshes": 216,
+        "triangleCountMs": 0.2999999523162842,
+        "gpuTimingSupported": true,
+        "gpuTimingEnabled": false,
+        "gpuTimingReadback": "disabled",
+        "gpuMs": null,
+        "gpuMeanMs": null,
+        "gpuP95Ms": null,
+        "gpuSamples": 0,
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.846 ms is not locked to a known display interval"
+      },
+      "actors": {
+        "count": 7,
+        "actors": [
+          {
+            "id": "uP52QlAEF",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.5461751236782959,
+              "frame": 32,
+              "row": 32,
+              "ended": false,
+              "phase": 0.40963133055075696
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            }
+          },
+          {
+            "id": "57bf82e_X",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.8781751236782895,
+              "frame": 52,
+              "row": 52,
+              "ended": false,
+              "phase": 0.6586313231299741
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            }
+          },
+          {
+            "id": "7TG9Y_lNc",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.5131751236783089,
+              "frame": 30,
+              "row": 30,
+              "ended": false,
+              "phase": 0.38488133128837415
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            }
+          },
+          {
+            "id": "Anpg9hDoy",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.5131751236783089,
+              "frame": 30,
+              "row": 30,
+              "ended": false,
+              "phase": 0.38488133128837415
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            }
+          },
+          {
+            "id": "pNtfcCkLe",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.5461751236782959,
+              "frame": 32,
+              "row": 32,
+              "ended": false,
+              "phase": 0.40963133055075696
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            }
+          },
+          {
+            "id": "0fut5zsuV",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.5461751236782959,
+              "frame": 32,
+              "row": 32,
+              "ended": false,
+              "phase": 0.40963133055075696
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            }
+          },
+          {
+            "id": "ofG7J1yog",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.5461751236782959,
+              "frame": 32,
+              "row": 32,
+              "ended": false,
+              "phase": 0.40963133055075696
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            }
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 7,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 7,
+          "completed": 7,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 1943832,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 7,
+        "activeExact": 7,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 604,
+          "textures": 100,
+          "bufferBytes": 19441840,
+          "textureBytes": 20330856,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 24459932,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 7,
+          "liveEquipmentChanges": 0,
+          "peakOwned": 7,
+          "uncomposedMotions": 0,
+          "preparations": [
+            131.40000009536743,
+            148.09999990463257,
+            124.20000004768372,
+            207.29999995231628,
+            164.70000004768372,
+            358.59999990463257,
+            444.30000019073486
+          ]
+        }
+      },
+      "enemies": 7,
+      "gpu": [],
+      "presenceErrors": [],
+      "before": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "catalogVersion": "appearance-catalog-v4",
+        "roomId": "w7X9QBJkn",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 4277,
+        "tickP95Ms": 0.9150419999932637,
+        "tickP99Ms": 1.2296249999999418,
+        "tickMaxMs": 7.260374999998021,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3263,
+            "fps": 4923.978933708878,
+            "meanMs": 0.20308779007037145,
+            "medianMs": 0.14649999998800922,
+            "p95Ms": 0.4880830000038259,
+            "p99Ms": 0.6696670000019367,
+            "worstMs": 4.746041999998852,
+            "minMs": 0.02358300000014424,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 2,
+            "fps": 255.13458349255754,
+            "meanMs": 3.919500000003609,
+            "medianMs": 7.260374999998021,
+            "p95Ms": 7.260374999998021,
+            "p99Ms": 7.260374999998021,
+            "worstMs": 7.260374999998021,
+            "minMs": 0.5786250000091968,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 714.9240393206734,
+            "meanMs": 1.398750000000291,
+            "medianMs": 1.398750000000291,
+            "p95Ms": 1.398750000000291,
+            "p99Ms": 1.398750000000291,
+            "worstMs": 1.398750000000291,
+            "minMs": 1.398750000000291,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 1010,
+            "fps": 1234.1243722315476,
+            "meanMs": 0.8102911039604517,
+            "medianMs": 0.7701669999951264,
+            "p95Ms": 1.10241600000154,
+            "p99Ms": 1.518166999998357,
+            "worstMs": 3.156083000001672,
+            "minMs": 0.414041999996698,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 4,
+            "samples": 1,
+            "fps": 1746.4716905639843,
+            "meanMs": 0.5725830000010319,
+            "medianMs": 0.5725830000010319,
+            "p95Ms": 0.5725830000010319,
+            "p99Ms": 0.5725830000010319,
+            "worstMs": 0.5725830000010319,
+            "minMs": 0.5725830000010319,
+            "above8_333": 0,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "lUb_-9fvB",
+            "receivedBytes": 523,
+            "sentBytes": 80646
+          },
+          {
+            "id": "uP52QlAEF",
+            "receivedBytes": 574,
+            "sentBytes": 80624
+          },
+          {
+            "id": "57bf82e_X",
+            "receivedBytes": 573,
+            "sentBytes": 81323
+          },
+          {
+            "id": "7TG9Y_lNc",
+            "receivedBytes": 573,
+            "sentBytes": 81981
+          },
+          {
+            "id": "Anpg9hDoy",
+            "receivedBytes": 573,
+            "sentBytes": 82680
+          },
+          {
+            "id": "pNtfcCkLe",
+            "receivedBytes": 573,
+            "sentBytes": 83338
+          },
+          {
+            "id": "0fut5zsuV",
+            "receivedBytes": 573,
+            "sentBytes": 84037
+          },
+          {
+            "id": "ofG7J1yog",
+            "receivedBytes": 573,
+            "sentBytes": 84695
+          }
+        ],
+        "memory": {
+          "rss": 141410304,
+          "heapTotal": 46694400,
+          "heapUsed": 37720384,
+          "external": 40701354,
+          "arrayBuffers": 20104399
+        }
+      },
+      "after": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "catalogVersion": "appearance-catalog-v4",
+        "roomId": "w7X9QBJkn",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 4638,
+        "tickP95Ms": 0.8582079999905545,
+        "tickP99Ms": 1.0163339999999152,
+        "tickMaxMs": 5.198207999987062,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3263,
+            "fps": 4923.978933708878,
+            "meanMs": 0.20308779007037145,
+            "medianMs": 0.14649999998800922,
+            "p95Ms": 0.4880830000038259,
+            "p99Ms": 0.6696670000019367,
+            "worstMs": 4.746041999998852,
+            "minMs": 0.02358300000014424,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 2,
+            "fps": 255.13458349255754,
+            "meanMs": 3.919500000003609,
+            "medianMs": 7.260374999998021,
+            "p95Ms": 7.260374999998021,
+            "p99Ms": 7.260374999998021,
+            "worstMs": 7.260374999998021,
+            "minMs": 0.5786250000091968,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 714.9240393206734,
+            "meanMs": 1.398750000000291,
+            "medianMs": 1.398750000000291,
+            "p95Ms": 1.398750000000291,
+            "p99Ms": 1.398750000000291,
+            "worstMs": 1.398750000000291,
+            "minMs": 1.398750000000291,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 1371,
+            "fps": 1268.8124618802876,
+            "meanMs": 0.7881385390226013,
+            "medianMs": 0.7475410000006377,
+            "p95Ms": 1.0432499999878928,
+            "p99Ms": 1.4509170000092126,
+            "worstMs": 5.198207999987062,
+            "minMs": 0.414041999996698,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 4,
+            "samples": 1,
+            "fps": 1746.4716905639843,
+            "meanMs": 0.5725830000010319,
+            "medianMs": 0.5725830000010319,
+            "p95Ms": 0.5725830000010319,
+            "p99Ms": 0.5725830000010319,
+            "worstMs": 0.5725830000010319,
+            "minMs": 0.5725830000010319,
+            "above8_333": 0,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "lUb_-9fvB",
+            "receivedBytes": 884,
+            "sentBytes": 124585
+          },
+          {
+            "id": "uP52QlAEF",
+            "receivedBytes": 970,
+            "sentBytes": 124563
+          },
+          {
+            "id": "57bf82e_X",
+            "receivedBytes": 970,
+            "sentBytes": 125262
+          },
+          {
+            "id": "7TG9Y_lNc",
+            "receivedBytes": 969,
+            "sentBytes": 125920
+          },
+          {
+            "id": "Anpg9hDoy",
+            "receivedBytes": 969,
+            "sentBytes": 126619
+          },
+          {
+            "id": "pNtfcCkLe",
+            "receivedBytes": 969,
+            "sentBytes": 127277
+          },
+          {
+            "id": "0fut5zsuV",
+            "receivedBytes": 969,
+            "sentBytes": 127976
+          },
+          {
+            "id": "ofG7J1yog",
+            "receivedBytes": 969,
+            "sentBytes": 128634
+          }
+        ],
+        "memory": {
+          "rss": 142344192,
+          "heapTotal": 47480832,
+          "heapUsed": 40257440,
+          "external": 40709539,
+          "arrayBuffers": 20120888
+        }
+      }
+    },
+    {
+      "phase": "joined",
+      "run": 3,
+      "cap": {
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.855 ms is not locked to a known display interval"
+      },
+      "tails": {
+        "samples": 2051,
+        "meanMs": 5.854851292029408,
+        "meanFps": 170.79853101672546,
+        "p50Ms": 5.700000047683716,
+        "p95Ms": 6.700000047683716,
+        "p99Ms": 7.200000047683716,
+        "maxMs": 10.600000143051147,
+        "above6_94": 37,
+        "above8_33": 12,
+        "above16_67": 0,
+        "above33_33": 0
+      },
+      "metrics": {
+        "samples": 600,
+        "fps": 170.64846416382252,
+        "meanMs": 5.86,
+        "medianMs": 5.700000047683716,
+        "p95Ms": 6.799999952316284,
+        "p99Ms": 8,
+        "worstMs": 10.600000143051147,
+        "minMs": 4.900000095367432,
+        "above8_333": 4,
+        "above16_667": 0,
+        "drawCalls": 777,
+        "resolution": [
+          1280,
+          720
+        ],
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "maxDevicePixelRatio": 1,
+        "horizonTriangles": 125642,
+        "farTriangles": 289206,
+        "scatterTrees": 599,
+        "scatterRocks": 139,
+        "shafts": 0,
+        "shaftTriangles": 0,
+        "motes": 4200,
+        "moteTriangles": 8400,
+        "foliageInstances": 117242,
+        "triangles": 941975,
+        "drawBatches": 57,
+        "worldTriangles": 941975,
+        "sceneTriangles": 1454431,
+        "drawnMeshes": 151,
+        "hiddenMeshes": 65,
+        "totalMeshes": 216,
+        "triangleCountMs": 0.19999980926513672,
+        "gpuTimingSupported": true,
+        "gpuTimingEnabled": false,
+        "gpuTimingReadback": "disabled",
+        "gpuMs": null,
+        "gpuMeanMs": null,
+        "gpuP95Ms": null,
+        "gpuSamples": 0,
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.860 ms is not locked to a known display interval"
+      },
+      "actors": {
+        "count": 7,
+        "actors": [
+          {
+            "id": "uP52QlAEF",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.040212656561692484,
+              "frame": 2,
+              "row": 2,
+              "ended": false,
+              "phase": 0.03015949152244647
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            }
+          },
+          {
+            "id": "57bf82e_X",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.040212656561692484,
+              "frame": 2,
+              "row": 2,
+              "ended": false,
+              "phase": 0.03015949152244647
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            }
+          },
+          {
+            "id": "7TG9Y_lNc",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.040212656561692484,
+              "frame": 2,
+              "row": 2,
+              "ended": false,
+              "phase": 0.03015949152244647
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            }
+          },
+          {
+            "id": "Anpg9hDoy",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.040212656561692484,
+              "frame": 2,
+              "row": 2,
+              "ended": false,
+              "phase": 0.03015949152244647
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            }
+          },
+          {
+            "id": "pNtfcCkLe",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.040212656561692484,
+              "frame": 2,
+              "row": 2,
+              "ended": false,
+              "phase": 0.03015949152244647
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            }
+          },
+          {
+            "id": "0fut5zsuV",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.040212656561692484,
+              "frame": 2,
+              "row": 2,
+              "ended": false,
+              "phase": 0.03015949152244647
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            }
+          },
+          {
+            "id": "ofG7J1yog",
+            "revision": 1,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.040212656561692484,
+              "frame": 2,
+              "row": 2,
+              "ended": false,
+              "phase": 0.03015949152244647
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            }
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 7,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 7,
+          "completed": 7,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 1943832,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 7,
+        "activeExact": 7,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 604,
+          "textures": 100,
+          "bufferBytes": 19441840,
+          "textureBytes": 20330856,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 24459932,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 7,
+          "liveEquipmentChanges": 0,
+          "peakOwned": 7,
+          "uncomposedMotions": 0,
+          "preparations": [
+            131.40000009536743,
+            148.09999990463257,
+            124.20000004768372,
+            207.29999995231628,
+            164.70000004768372,
+            358.59999990463257,
+            444.30000019073486
+          ]
+        }
+      },
+      "enemies": 7,
+      "gpu": [],
+      "presenceErrors": [],
+      "before": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "catalogVersion": "appearance-catalog-v4",
+        "roomId": "w7X9QBJkn",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 4638,
+        "tickP95Ms": 0.8582079999905545,
+        "tickP99Ms": 1.0163339999999152,
+        "tickMaxMs": 5.198207999987062,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3263,
+            "fps": 4923.978933708878,
+            "meanMs": 0.20308779007037145,
+            "medianMs": 0.14649999998800922,
+            "p95Ms": 0.4880830000038259,
+            "p99Ms": 0.6696670000019367,
+            "worstMs": 4.746041999998852,
+            "minMs": 0.02358300000014424,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 2,
+            "fps": 255.13458349255754,
+            "meanMs": 3.919500000003609,
+            "medianMs": 7.260374999998021,
+            "p95Ms": 7.260374999998021,
+            "p99Ms": 7.260374999998021,
+            "worstMs": 7.260374999998021,
+            "minMs": 0.5786250000091968,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 714.9240393206734,
+            "meanMs": 1.398750000000291,
+            "medianMs": 1.398750000000291,
+            "p95Ms": 1.398750000000291,
+            "p99Ms": 1.398750000000291,
+            "worstMs": 1.398750000000291,
+            "minMs": 1.398750000000291,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 1371,
+            "fps": 1268.8124618802876,
+            "meanMs": 0.7881385390226013,
+            "medianMs": 0.7475410000006377,
+            "p95Ms": 1.0432499999878928,
+            "p99Ms": 1.4509170000092126,
+            "worstMs": 5.198207999987062,
+            "minMs": 0.414041999996698,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 4,
+            "samples": 1,
+            "fps": 1746.4716905639843,
+            "meanMs": 0.5725830000010319,
+            "medianMs": 0.5725830000010319,
+            "p95Ms": 0.5725830000010319,
+            "p99Ms": 0.5725830000010319,
+            "worstMs": 0.5725830000010319,
+            "minMs": 0.5725830000010319,
+            "above8_333": 0,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "lUb_-9fvB",
+            "receivedBytes": 884,
+            "sentBytes": 124585
+          },
+          {
+            "id": "uP52QlAEF",
+            "receivedBytes": 970,
+            "sentBytes": 124563
+          },
+          {
+            "id": "57bf82e_X",
+            "receivedBytes": 970,
+            "sentBytes": 125262
+          },
+          {
+            "id": "7TG9Y_lNc",
+            "receivedBytes": 969,
+            "sentBytes": 125920
+          },
+          {
+            "id": "Anpg9hDoy",
+            "receivedBytes": 969,
+            "sentBytes": 126619
+          },
+          {
+            "id": "pNtfcCkLe",
+            "receivedBytes": 969,
+            "sentBytes": 127277
+          },
+          {
+            "id": "0fut5zsuV",
+            "receivedBytes": 969,
+            "sentBytes": 127976
+          },
+          {
+            "id": "ofG7J1yog",
+            "receivedBytes": 969,
+            "sentBytes": 128634
+          }
+        ],
+        "memory": {
+          "rss": 142376960,
+          "heapTotal": 47480832,
+          "heapUsed": 38168480,
+          "external": 40717731,
+          "arrayBuffers": 20120783
+        }
+      },
+      "after": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "catalogVersion": "appearance-catalog-v4",
+        "roomId": "w7X9QBJkn",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 4999,
+        "tickP95Ms": 0.8516670000099111,
+        "tickP99Ms": 1.005749999996624,
+        "tickMaxMs": 5.198207999987062,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3263,
+            "fps": 4923.978933708878,
+            "meanMs": 0.20308779007037145,
+            "medianMs": 0.14649999998800922,
+            "p95Ms": 0.4880830000038259,
+            "p99Ms": 0.6696670000019367,
+            "worstMs": 4.746041999998852,
+            "minMs": 0.02358300000014424,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 2,
+            "fps": 255.13458349255754,
+            "meanMs": 3.919500000003609,
+            "medianMs": 7.260374999998021,
+            "p95Ms": 7.260374999998021,
+            "p99Ms": 7.260374999998021,
+            "worstMs": 7.260374999998021,
+            "minMs": 0.5786250000091968,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 714.9240393206734,
+            "meanMs": 1.398750000000291,
+            "medianMs": 1.398750000000291,
+            "p95Ms": 1.398750000000291,
+            "p99Ms": 1.398750000000291,
+            "worstMs": 1.398750000000291,
+            "minMs": 1.398750000000291,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 1732,
+            "fps": 1299.4171385649315,
+            "meanMs": 0.7695758123556797,
+            "medianMs": 0.7334159999954863,
+            "p95Ms": 1.0073750000010477,
+            "p99Ms": 1.3267919999925653,
+            "worstMs": 5.198207999987062,
+            "minMs": 0.414041999996698,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 4,
+            "samples": 1,
+            "fps": 1746.4716905639843,
+            "meanMs": 0.5725830000010319,
+            "medianMs": 0.5725830000010319,
+            "p95Ms": 0.5725830000010319,
+            "p99Ms": 0.5725830000010319,
+            "worstMs": 0.5725830000010319,
+            "minMs": 0.5725830000010319,
+            "above8_333": 0,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "lUb_-9fvB",
+            "receivedBytes": 1245,
+            "sentBytes": 167667
+          },
+          {
+            "id": "uP52QlAEF",
+            "receivedBytes": 1369,
+            "sentBytes": 167645
+          },
+          {
+            "id": "57bf82e_X",
+            "receivedBytes": 1368,
+            "sentBytes": 168344
+          },
+          {
+            "id": "7TG9Y_lNc",
+            "receivedBytes": 1368,
+            "sentBytes": 169002
+          },
+          {
+            "id": "Anpg9hDoy",
+            "receivedBytes": 1368,
+            "sentBytes": 169701
+          },
+          {
+            "id": "pNtfcCkLe",
+            "receivedBytes": 1368,
+            "sentBytes": 170359
+          },
+          {
+            "id": "0fut5zsuV",
+            "receivedBytes": 1368,
+            "sentBytes": 171058
+          },
+          {
+            "id": "ofG7J1yog",
+            "receivedBytes": 1368,
+            "sentBytes": 171716
+          }
+        ],
+        "memory": {
+          "rss": 143065088,
+          "heapTotal": 47742976,
+          "heapUsed": 38817040,
+          "external": 40726203,
+          "arrayBuffers": 20137167
+        }
+      }
+    },
+    {
+      "phase": "after-appearance-change",
+      "run": 1,
+      "cap": {
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.890 ms is not locked to a known display interval"
+      },
+      "tails": {
+        "samples": 2038,
+        "meanMs": 5.890088321884201,
+        "meanFps": 169.77674108630455,
+        "p50Ms": 5.799999952316284,
+        "p95Ms": 6.599999904632568,
+        "p99Ms": 8.899999856948853,
+        "maxMs": 16.09999990463257,
+        "above6_94": 48,
+        "above8_33": 29,
+        "above16_67": 0,
+        "above33_33": 0
+      },
+      "metrics": {
+        "samples": 600,
+        "fps": 169.59213092055356,
+        "meanMs": 5.896500000158945,
+        "medianMs": 5.799999952316284,
+        "p95Ms": 6.5,
+        "p99Ms": 9.200000047683716,
+        "worstMs": 11.099999904632568,
+        "minMs": 4.5,
+        "above8_333": 10,
+        "above16_667": 0,
+        "drawCalls": 777,
+        "resolution": [
+          1280,
+          720
+        ],
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "maxDevicePixelRatio": 1,
+        "horizonTriangles": 125642,
+        "farTriangles": 289206,
+        "scatterTrees": 599,
+        "scatterRocks": 139,
+        "shafts": 0,
+        "shaftTriangles": 0,
+        "motes": 4200,
+        "moteTriangles": 8400,
+        "foliageInstances": 117242,
+        "triangles": 941975,
+        "drawBatches": 57,
+        "worldTriangles": 941975,
+        "sceneTriangles": 1454431,
+        "drawnMeshes": 151,
+        "hiddenMeshes": 65,
+        "totalMeshes": 216,
+        "triangleCountMs": 0.2999999523162842,
+        "gpuTimingSupported": true,
+        "gpuTimingEnabled": false,
+        "gpuTimingReadback": "disabled",
+        "gpuMs": null,
+        "gpuMeanMs": null,
+        "gpuP95Ms": null,
+        "gpuSamples": 0,
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.897 ms is not locked to a known display interval"
+      },
+      "actors": {
+        "count": 7,
+        "actors": [
+          {
+            "id": "uP52QlAEF",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Spell_Simple_Enter",
+              "loop": false,
+              "timeSeconds": 0.09822369964194877,
+              "frame": 5,
+              "row": 5,
+              "ended": false,
+              "phase": 0.18416942722346982
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            }
+          },
+          {
+            "id": "57bf82e_X",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Spell_Simple_Enter",
+              "loop": false,
+              "timeSeconds": 0.09822369964194877,
+              "frame": 5,
+              "row": 5,
+              "ended": false,
+              "phase": 0.18416942722346982
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            }
+          },
+          {
+            "id": "7TG9Y_lNc",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Spell_Simple_Enter",
+              "loop": false,
+              "timeSeconds": 0.09822369964194877,
+              "frame": 5,
+              "row": 5,
+              "ended": false,
+              "phase": 0.18416942722346982
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            }
+          },
+          {
+            "id": "Anpg9hDoy",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Spell_Simple_Enter",
+              "loop": false,
+              "timeSeconds": 0.09822369964194877,
+              "frame": 5,
+              "row": 5,
+              "ended": false,
+              "phase": 0.18416942722346982
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            }
+          },
+          {
+            "id": "pNtfcCkLe",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Spell_Simple_Enter",
+              "loop": false,
+              "timeSeconds": 0.09822369964194877,
+              "frame": 5,
+              "row": 5,
+              "ended": false,
+              "phase": 0.18416942722346982
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            }
+          },
+          {
+            "id": "0fut5zsuV",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Spell_Simple_Enter",
+              "loop": false,
+              "timeSeconds": 0.09822369964194877,
+              "frame": 5,
+              "row": 5,
+              "ended": false,
+              "phase": 0.18416942722346982
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            }
+          },
+          {
+            "id": "ofG7J1yog",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Spell_Simple_Enter",
+              "loop": false,
+              "timeSeconds": 0.09822369964194877,
+              "frame": 5,
+              "row": 5,
+              "ended": false,
+              "phase": 0.18416942722346982
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            }
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 14,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 7,
+          "completed": 14,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 1943832,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 7,
+        "activeExact": 7,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 604,
+          "textures": 100,
+          "bufferBytes": 19441840,
+          "textureBytes": 20330856,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 24459932,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 14,
+          "liveEquipmentChanges": 0,
+          "peakOwned": 8,
+          "uncomposedMotions": 0,
+          "preparations": [
+            131.40000009536743,
+            148.09999990463257,
+            124.20000004768372,
+            207.29999995231628,
+            164.70000004768372,
+            358.59999990463257,
+            444.30000019073486,
+            410.60000014305115,
+            638.2999999523163,
+            466.90000009536743,
+            738.1999998092651,
+            450.39999985694885,
+            669.7000000476837,
+            482.2000000476837
+          ]
+        }
+      },
+      "enemies": 7,
+      "gpu": [],
+      "presenceErrors": [],
+      "before": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "catalogVersion": "appearance-catalog-v4",
+        "roomId": "w7X9QBJkn",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 5098,
+        "tickP95Ms": 0.8522499999962747,
+        "tickP99Ms": 1.005749999996624,
+        "tickMaxMs": 5.198207999987062,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3263,
+            "fps": 4923.978933708878,
+            "meanMs": 0.20308779007037145,
+            "medianMs": 0.14649999998800922,
+            "p95Ms": 0.4880830000038259,
+            "p99Ms": 0.6696670000019367,
+            "worstMs": 4.746041999998852,
+            "minMs": 0.02358300000014424,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 2,
+            "fps": 255.13458349255754,
+            "meanMs": 3.919500000003609,
+            "medianMs": 7.260374999998021,
+            "p95Ms": 7.260374999998021,
+            "p99Ms": 7.260374999998021,
+            "worstMs": 7.260374999998021,
+            "minMs": 0.5786250000091968,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 714.9240393206734,
+            "meanMs": 1.398750000000291,
+            "medianMs": 1.398750000000291,
+            "p95Ms": 1.398750000000291,
+            "p99Ms": 1.398750000000291,
+            "worstMs": 1.398750000000291,
+            "minMs": 1.398750000000291,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 1831,
+            "fps": 1306.8145540710514,
+            "meanMs": 0.765219515565351,
+            "medianMs": 0.730041999995592,
+            "p95Ms": 1.0040420000004815,
+            "p99Ms": 1.326042000000598,
+            "worstMs": 5.198207999987062,
+            "minMs": 0.414041999996698,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 4,
+            "samples": 1,
+            "fps": 1746.4716905639843,
+            "meanMs": 0.5725830000010319,
+            "medianMs": 0.5725830000010319,
+            "p95Ms": 0.5725830000010319,
+            "p99Ms": 0.5725830000010319,
+            "worstMs": 0.5725830000010319,
+            "minMs": 0.5725830000010319,
+            "above8_333": 0,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "lUb_-9fvB",
+            "receivedBytes": 1344,
+            "sentBytes": 190269
+          },
+          {
+            "id": "uP52QlAEF",
+            "receivedBytes": 1881,
+            "sentBytes": 190659
+          },
+          {
+            "id": "57bf82e_X",
+            "receivedBytes": 1925,
+            "sentBytes": 191403
+          },
+          {
+            "id": "7TG9Y_lNc",
+            "receivedBytes": 1880,
+            "sentBytes": 192016
+          },
+          {
+            "id": "Anpg9hDoy",
+            "receivedBytes": 1925,
+            "sentBytes": 192760
+          },
+          {
+            "id": "pNtfcCkLe",
+            "receivedBytes": 1880,
+            "sentBytes": 193373
+          },
+          {
+            "id": "0fut5zsuV",
+            "receivedBytes": 1925,
+            "sentBytes": 194117
+          },
+          {
+            "id": "ofG7J1yog",
+            "receivedBytes": 1880,
+            "sentBytes": 194730
+          }
+        ],
+        "memory": {
+          "rss": 143572992,
+          "heapTotal": 48529408,
+          "heapUsed": 41918256,
+          "external": 40751007,
+          "arrayBuffers": 20162356
+        }
+      },
+      "after": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "catalogVersion": "appearance-catalog-v4",
+        "roomId": "w7X9QBJkn",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 5459,
+        "tickP95Ms": 0.8531659999862313,
+        "tickP99Ms": 1.0004590000025928,
+        "tickMaxMs": 5.198207999987062,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3263,
+            "fps": 4923.978933708878,
+            "meanMs": 0.20308779007037145,
+            "medianMs": 0.14649999998800922,
+            "p95Ms": 0.4880830000038259,
+            "p99Ms": 0.6696670000019367,
+            "worstMs": 4.746041999998852,
+            "minMs": 0.02358300000014424,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 2,
+            "fps": 255.13458349255754,
+            "meanMs": 3.919500000003609,
+            "medianMs": 7.260374999998021,
+            "p95Ms": 7.260374999998021,
+            "p99Ms": 7.260374999998021,
+            "worstMs": 7.260374999998021,
+            "minMs": 0.5786250000091968,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 714.9240393206734,
+            "meanMs": 1.398750000000291,
+            "medianMs": 1.398750000000291,
+            "p95Ms": 1.398750000000291,
+            "p99Ms": 1.398750000000291,
+            "worstMs": 1.398750000000291,
+            "minMs": 1.398750000000291,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 2192,
+            "fps": 1330.5934213317692,
+            "meanMs": 0.7515443740877032,
+            "medianMs": 0.7208749999990687,
+            "p95Ms": 0.980375000013737,
+            "p99Ms": 1.294041000001016,
+            "worstMs": 5.198207999987062,
+            "minMs": 0.37787500000558794,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 4,
+            "samples": 1,
+            "fps": 1746.4716905639843,
+            "meanMs": 0.5725830000010319,
+            "medianMs": 0.5725830000010319,
+            "p95Ms": 0.5725830000010319,
+            "p99Ms": 0.5725830000010319,
+            "worstMs": 0.5725830000010319,
+            "minMs": 0.5725830000010319,
+            "above8_333": 0,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "lUb_-9fvB",
+            "receivedBytes": 1705,
+            "sentBytes": 274700
+          },
+          {
+            "id": "uP52QlAEF",
+            "receivedBytes": 2280,
+            "sentBytes": 275090
+          },
+          {
+            "id": "57bf82e_X",
+            "receivedBytes": 2324,
+            "sentBytes": 275834
+          },
+          {
+            "id": "7TG9Y_lNc",
+            "receivedBytes": 2279,
+            "sentBytes": 276447
+          },
+          {
+            "id": "Anpg9hDoy",
+            "receivedBytes": 2324,
+            "sentBytes": 277191
+          },
+          {
+            "id": "pNtfcCkLe",
+            "receivedBytes": 2279,
+            "sentBytes": 277804
+          },
+          {
+            "id": "0fut5zsuV",
+            "receivedBytes": 2324,
+            "sentBytes": 278548
+          },
+          {
+            "id": "ofG7J1yog",
+            "receivedBytes": 2279,
+            "sentBytes": 279161
+          }
+        ],
+        "memory": {
+          "rss": 143933440,
+          "heapTotal": 48529408,
+          "heapUsed": 42805312,
+          "external": 40742934,
+          "arrayBuffers": 20154283
+        }
+      }
+    },
+    {
+      "phase": "after-appearance-change",
+      "run": 2,
+      "cap": {
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.866 ms is not locked to a known display interval"
+      },
+      "tails": {
+        "samples": 2047,
+        "meanMs": 5.866096726964029,
+        "meanFps": 170.47110652018608,
+        "p50Ms": 5.799999952316284,
+        "p95Ms": 6.5,
+        "p99Ms": 7.8999998569488525,
+        "maxMs": 11,
+        "above6_94": 26,
+        "above8_33": 17,
+        "above16_67": 0,
+        "above33_33": 0
+      },
+      "metrics": {
+        "samples": 600,
+        "fps": 170.38677798141384,
+        "meanMs": 5.8690000001589455,
+        "medianMs": 5.799999952316284,
+        "p95Ms": 6.5,
+        "p99Ms": 8.700000047683716,
+        "worstMs": 10.399999856948853,
+        "minMs": 4.799999952316284,
+        "above8_333": 6,
+        "above16_667": 0,
+        "drawCalls": 777,
+        "resolution": [
+          1280,
+          720
+        ],
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "maxDevicePixelRatio": 1,
+        "horizonTriangles": 125642,
+        "farTriangles": 289206,
+        "scatterTrees": 599,
+        "scatterRocks": 139,
+        "shafts": 0,
+        "shaftTriangles": 0,
+        "motes": 4200,
+        "moteTriangles": 8400,
+        "foliageInstances": 117242,
+        "triangles": 941975,
+        "drawBatches": 57,
+        "worldTriangles": 941975,
+        "sceneTriangles": 1454431,
+        "drawnMeshes": 151,
+        "hiddenMeshes": 65,
+        "totalMeshes": 216,
+        "triangleCountMs": 0.2999999523162842,
+        "gpuTimingSupported": true,
+        "gpuTimingEnabled": false,
+        "gpuTimingReadback": "disabled",
+        "gpuMs": null,
+        "gpuMeanMs": null,
+        "gpuP95Ms": null,
+        "gpuSamples": 0,
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.869 ms is not locked to a known display interval"
+      },
+      "actors": {
+        "count": 7,
+        "actors": [
+          {
+            "id": "uP52QlAEF",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.44380675193889374,
+              "frame": 26,
+              "row": 26,
+              "ended": false,
+              "phase": 0.3328550540343167
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            }
+          },
+          {
+            "id": "57bf82e_X",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.44380675193889374,
+              "frame": 26,
+              "row": 26,
+              "ended": false,
+              "phase": 0.3328550540343167
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            }
+          },
+          {
+            "id": "7TG9Y_lNc",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.44380675193889374,
+              "frame": 26,
+              "row": 26,
+              "ended": false,
+              "phase": 0.3328550540343167
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            }
+          },
+          {
+            "id": "Anpg9hDoy",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.44380675193889374,
+              "frame": 26,
+              "row": 26,
+              "ended": false,
+              "phase": 0.3328550540343167
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            }
+          },
+          {
+            "id": "pNtfcCkLe",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.44380675193889374,
+              "frame": 26,
+              "row": 26,
+              "ended": false,
+              "phase": 0.3328550540343167
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            }
+          },
+          {
+            "id": "0fut5zsuV",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.44380675193889374,
+              "frame": 26,
+              "row": 26,
+              "ended": false,
+              "phase": 0.3328550540343167
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            }
+          },
+          {
+            "id": "ofG7J1yog",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Walk_Loop",
+              "loop": true,
+              "timeSeconds": 0.44380675193889374,
+              "frame": 26,
+              "row": 26,
+              "ended": false,
+              "phase": 0.3328550540343167
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            }
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 14,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 7,
+          "completed": 14,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 1943832,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 7,
+        "activeExact": 7,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 604,
+          "textures": 100,
+          "bufferBytes": 19441840,
+          "textureBytes": 20330856,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 24459932,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 14,
+          "liveEquipmentChanges": 0,
+          "peakOwned": 8,
+          "uncomposedMotions": 0,
+          "preparations": [
+            131.40000009536743,
+            148.09999990463257,
+            124.20000004768372,
+            207.29999995231628,
+            164.70000004768372,
+            358.59999990463257,
+            444.30000019073486,
+            410.60000014305115,
+            638.2999999523163,
+            466.90000009536743,
+            738.1999998092651,
+            450.39999985694885,
+            669.7000000476837,
+            482.2000000476837
+          ]
+        }
+      },
+      "enemies": 7,
+      "gpu": [],
+      "presenceErrors": [],
+      "before": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "catalogVersion": "appearance-catalog-v4",
+        "roomId": "w7X9QBJkn",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 5459,
+        "tickP95Ms": 0.8531659999862313,
+        "tickP99Ms": 1.0004590000025928,
+        "tickMaxMs": 5.198207999987062,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3263,
+            "fps": 4923.978933708878,
+            "meanMs": 0.20308779007037145,
+            "medianMs": 0.14649999998800922,
+            "p95Ms": 0.4880830000038259,
+            "p99Ms": 0.6696670000019367,
+            "worstMs": 4.746041999998852,
+            "minMs": 0.02358300000014424,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 2,
+            "fps": 255.13458349255754,
+            "meanMs": 3.919500000003609,
+            "medianMs": 7.260374999998021,
+            "p95Ms": 7.260374999998021,
+            "p99Ms": 7.260374999998021,
+            "worstMs": 7.260374999998021,
+            "minMs": 0.5786250000091968,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 714.9240393206734,
+            "meanMs": 1.398750000000291,
+            "medianMs": 1.398750000000291,
+            "p95Ms": 1.398750000000291,
+            "p99Ms": 1.398750000000291,
+            "worstMs": 1.398750000000291,
+            "minMs": 1.398750000000291,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 2192,
+            "fps": 1330.5934213317692,
+            "meanMs": 0.7515443740877032,
+            "medianMs": 0.7208749999990687,
+            "p95Ms": 0.980375000013737,
+            "p99Ms": 1.294041000001016,
+            "worstMs": 5.198207999987062,
+            "minMs": 0.37787500000558794,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 4,
+            "samples": 1,
+            "fps": 1746.4716905639843,
+            "meanMs": 0.5725830000010319,
+            "medianMs": 0.5725830000010319,
+            "p95Ms": 0.5725830000010319,
+            "p99Ms": 0.5725830000010319,
+            "worstMs": 0.5725830000010319,
+            "minMs": 0.5725830000010319,
+            "above8_333": 0,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "lUb_-9fvB",
+            "receivedBytes": 1705,
+            "sentBytes": 274700
+          },
+          {
+            "id": "uP52QlAEF",
+            "receivedBytes": 2280,
+            "sentBytes": 275090
+          },
+          {
+            "id": "57bf82e_X",
+            "receivedBytes": 2324,
+            "sentBytes": 275834
+          },
+          {
+            "id": "7TG9Y_lNc",
+            "receivedBytes": 2279,
+            "sentBytes": 276447
+          },
+          {
+            "id": "Anpg9hDoy",
+            "receivedBytes": 2324,
+            "sentBytes": 277191
+          },
+          {
+            "id": "pNtfcCkLe",
+            "receivedBytes": 2279,
+            "sentBytes": 277804
+          },
+          {
+            "id": "0fut5zsuV",
+            "receivedBytes": 2324,
+            "sentBytes": 278548
+          },
+          {
+            "id": "ofG7J1yog",
+            "receivedBytes": 2279,
+            "sentBytes": 279161
+          }
+        ],
+        "memory": {
+          "rss": 143949824,
+          "heapTotal": 48529408,
+          "heapUsed": 41148448,
+          "external": 40742934,
+          "arrayBuffers": 20145769
+        }
+      },
+      "after": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "catalogVersion": "appearance-catalog-v4",
+        "roomId": "w7X9QBJkn",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 5820,
+        "tickP95Ms": 0.8570830000098795,
+        "tickP99Ms": 1.0054999999993015,
+        "tickMaxMs": 5.198207999987062,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3263,
+            "fps": 4923.978933708878,
+            "meanMs": 0.20308779007037145,
+            "medianMs": 0.14649999998800922,
+            "p95Ms": 0.4880830000038259,
+            "p99Ms": 0.6696670000019367,
+            "worstMs": 4.746041999998852,
+            "minMs": 0.02358300000014424,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 2,
+            "fps": 255.13458349255754,
+            "meanMs": 3.919500000003609,
+            "medianMs": 7.260374999998021,
+            "p95Ms": 7.260374999998021,
+            "p99Ms": 7.260374999998021,
+            "worstMs": 7.260374999998021,
+            "minMs": 0.5786250000091968,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 714.9240393206734,
+            "meanMs": 1.398750000000291,
+            "medianMs": 1.398750000000291,
+            "p95Ms": 1.398750000000291,
+            "p99Ms": 1.398750000000291,
+            "worstMs": 1.398750000000291,
+            "minMs": 1.398750000000291,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 2553,
+            "fps": 1347.7070664673256,
+            "meanMs": 0.742001006658849,
+            "medianMs": 0.7140000000072177,
+            "p95Ms": 0.9660830000066198,
+            "p99Ms": 1.284749999991618,
+            "worstMs": 5.198207999987062,
+            "minMs": 0.37787500000558794,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 4,
+            "samples": 1,
+            "fps": 1746.4716905639843,
+            "meanMs": 0.5725830000010319,
+            "medianMs": 0.5725830000010319,
+            "p95Ms": 0.5725830000010319,
+            "p99Ms": 0.5725830000010319,
+            "worstMs": 0.5725830000010319,
+            "minMs": 0.5725830000010319,
+            "above8_333": 0,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "lUb_-9fvB",
+            "receivedBytes": 2066,
+            "sentBytes": 357756
+          },
+          {
+            "id": "uP52QlAEF",
+            "receivedBytes": 2675,
+            "sentBytes": 358146
+          },
+          {
+            "id": "57bf82e_X",
+            "receivedBytes": 2720,
+            "sentBytes": 358890
+          },
+          {
+            "id": "7TG9Y_lNc",
+            "receivedBytes": 2675,
+            "sentBytes": 359503
+          },
+          {
+            "id": "Anpg9hDoy",
+            "receivedBytes": 2720,
+            "sentBytes": 360247
+          },
+          {
+            "id": "pNtfcCkLe",
+            "receivedBytes": 2675,
+            "sentBytes": 360860
+          },
+          {
+            "id": "0fut5zsuV",
+            "receivedBytes": 2719,
+            "sentBytes": 361604
+          },
+          {
+            "id": "ofG7J1yog",
+            "receivedBytes": 2674,
+            "sentBytes": 362217
+          }
+        ],
+        "memory": {
+          "rss": 150159360,
+          "heapTotal": 56918016,
+          "heapUsed": 40461168,
+          "external": 40382500,
+          "arrayBuffers": 19793849
+        }
+      }
+    },
+    {
+      "phase": "after-appearance-change",
+      "run": 3,
+      "cap": {
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.870 ms is not locked to a known display interval"
+      },
+      "tails": {
+        "samples": 2045,
+        "meanMs": 5.870073349609934,
+        "meanFps": 170.3556225692563,
+        "p50Ms": 5.799999952316284,
+        "p95Ms": 6.5,
+        "p99Ms": 7.099999904632568,
+        "maxMs": 11.300000190734863,
+        "above6_94": 25,
+        "above8_33": 15,
+        "above16_67": 0,
+        "above33_33": 0
+      },
+      "metrics": {
+        "samples": 600,
+        "fps": 169.8754246885617,
+        "meanMs": 5.886666666666667,
+        "medianMs": 5.799999952316284,
+        "p95Ms": 6.599999904632568,
+        "p99Ms": 7.099999904632568,
+        "worstMs": 11.300000190734863,
+        "minMs": 4.8999998569488525,
+        "above8_333": 4,
+        "above16_667": 0,
+        "drawCalls": 777,
+        "resolution": [
+          1280,
+          720
+        ],
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "maxDevicePixelRatio": 1,
+        "horizonTriangles": 125642,
+        "farTriangles": 289206,
+        "scatterTrees": 599,
+        "scatterRocks": 139,
+        "shafts": 0,
+        "shaftTriangles": 0,
+        "motes": 4200,
+        "moteTriangles": 8400,
+        "foliageInstances": 117242,
+        "triangles": 941975,
+        "drawBatches": 57,
+        "worldTriangles": 941975,
+        "sceneTriangles": 1454431,
+        "drawnMeshes": 151,
+        "hiddenMeshes": 65,
+        "totalMeshes": 216,
+        "triangleCountMs": 0.3000001907348633,
+        "gpuTimingSupported": true,
+        "gpuTimingEnabled": false,
+        "gpuTimingReadback": "disabled",
+        "gpuMs": null,
+        "gpuMeanMs": null,
+        "gpuP95Ms": null,
+        "gpuSamples": 0,
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.887 ms is not locked to a known display interval"
+      },
+      "actors": {
+        "count": 7,
+        "actors": [
+          {
+            "id": "uP52QlAEF",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Spell_Simple_Enter",
+              "loop": false,
+              "timeSeconds": 0,
+              "frame": 0,
+              "row": 0,
+              "ended": false,
+              "phase": 0
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            }
+          },
+          {
+            "id": "57bf82e_X",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Spell_Simple_Enter",
+              "loop": false,
+              "timeSeconds": 0,
+              "frame": 0,
+              "row": 0,
+              "ended": false,
+              "phase": 0
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            }
+          },
+          {
+            "id": "7TG9Y_lNc",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Spell_Simple_Enter",
+              "loop": false,
+              "timeSeconds": 0,
+              "frame": 0,
+              "row": 0,
+              "ended": false,
+              "phase": 0
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            }
+          },
+          {
+            "id": "Anpg9hDoy",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Spell_Simple_Enter",
+              "loop": false,
+              "timeSeconds": 0,
+              "frame": 0,
+              "row": 0,
+              "ended": false,
+              "phase": 0
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            }
+          },
+          {
+            "id": "pNtfcCkLe",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Spell_Simple_Enter",
+              "loop": false,
+              "timeSeconds": 0,
+              "frame": 0,
+              "row": 0,
+              "ended": false,
+              "phase": 0
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            }
+          },
+          {
+            "id": "0fut5zsuV",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Spell_Simple_Enter",
+              "loop": false,
+              "timeSeconds": 0,
+              "frame": 0,
+              "row": 0,
+              "ended": false,
+              "phase": 0
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            }
+          },
+          {
+            "id": "ofG7J1yog",
+            "revision": 2,
+            "race": "human",
+            "sample": {
+              "clip": "Spell_Simple_Enter",
+              "loop": false,
+              "timeSeconds": 0,
+              "frame": 0,
+              "row": 0,
+              "ended": false,
+              "phase": 0
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            }
+          }
+        ]
+      },
+      "streaming": {
+        "limits": {
+          "pending": 32,
+          "exact": 8,
+          "idleExact": 0,
+          "idleGarments": 0
+        },
+        "queue": {
+          "submitted": 14,
+          "superseded": 0,
+          "rejected": 0,
+          "peakPending": 7,
+          "completed": 14,
+          "pending": 0,
+          "active": 0,
+          "uniqueIds": 0,
+          "limit": 32,
+          "closed": false
+        },
+        "immutable": {
+          "entries": 0,
+          "reservedBytes": 0,
+          "peakReservedBytes": 1943832,
+          "ceilingBytes": 8388608,
+          "leases": 0
+        },
+        "owned": 7,
+        "activeExact": 7,
+        "pendingBuilds": 0,
+        "allocation": {
+          "buffers": 604,
+          "textures": 100,
+          "bufferBytes": 19441840,
+          "textureBytes": 20330856,
+          "unknownTextureFormats": 0,
+          "knownCpuBytes": 24459932,
+          "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+        },
+        "stats": {
+          "bodyLoads": 14,
+          "liveEquipmentChanges": 0,
+          "peakOwned": 8,
+          "uncomposedMotions": 0,
+          "preparations": [
+            131.40000009536743,
+            148.09999990463257,
+            124.20000004768372,
+            207.29999995231628,
+            164.70000004768372,
+            358.59999990463257,
+            444.30000019073486,
+            410.60000014305115,
+            638.2999999523163,
+            466.90000009536743,
+            738.1999998092651,
+            450.39999985694885,
+            669.7000000476837,
+            482.2000000476837
+          ]
+        }
+      },
+      "enemies": 7,
+      "gpu": [],
+      "presenceErrors": [],
+      "before": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "catalogVersion": "appearance-catalog-v4",
+        "roomId": "w7X9QBJkn",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 5820,
+        "tickP95Ms": 0.8570830000098795,
+        "tickP99Ms": 1.0054999999993015,
+        "tickMaxMs": 5.198207999987062,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3263,
+            "fps": 4923.978933708878,
+            "meanMs": 0.20308779007037145,
+            "medianMs": 0.14649999998800922,
+            "p95Ms": 0.4880830000038259,
+            "p99Ms": 0.6696670000019367,
+            "worstMs": 4.746041999998852,
+            "minMs": 0.02358300000014424,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 2,
+            "fps": 255.13458349255754,
+            "meanMs": 3.919500000003609,
+            "medianMs": 7.260374999998021,
+            "p95Ms": 7.260374999998021,
+            "p99Ms": 7.260374999998021,
+            "worstMs": 7.260374999998021,
+            "minMs": 0.5786250000091968,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 714.9240393206734,
+            "meanMs": 1.398750000000291,
+            "medianMs": 1.398750000000291,
+            "p95Ms": 1.398750000000291,
+            "p99Ms": 1.398750000000291,
+            "worstMs": 1.398750000000291,
+            "minMs": 1.398750000000291,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 2553,
+            "fps": 1347.7070664673256,
+            "meanMs": 0.742001006658849,
+            "medianMs": 0.7140000000072177,
+            "p95Ms": 0.9660830000066198,
+            "p99Ms": 1.284749999991618,
+            "worstMs": 5.198207999987062,
+            "minMs": 0.37787500000558794,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 4,
+            "samples": 1,
+            "fps": 1746.4716905639843,
+            "meanMs": 0.5725830000010319,
+            "medianMs": 0.5725830000010319,
+            "p95Ms": 0.5725830000010319,
+            "p99Ms": 0.5725830000010319,
+            "worstMs": 0.5725830000010319,
+            "minMs": 0.5725830000010319,
+            "above8_333": 0,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "lUb_-9fvB",
+            "receivedBytes": 2066,
+            "sentBytes": 357756
+          },
+          {
+            "id": "uP52QlAEF",
+            "receivedBytes": 2675,
+            "sentBytes": 358146
+          },
+          {
+            "id": "57bf82e_X",
+            "receivedBytes": 2720,
+            "sentBytes": 358890
+          },
+          {
+            "id": "7TG9Y_lNc",
+            "receivedBytes": 2675,
+            "sentBytes": 359503
+          },
+          {
+            "id": "Anpg9hDoy",
+            "receivedBytes": 2720,
+            "sentBytes": 360247
+          },
+          {
+            "id": "pNtfcCkLe",
+            "receivedBytes": 2675,
+            "sentBytes": 360860
+          },
+          {
+            "id": "0fut5zsuV",
+            "receivedBytes": 2719,
+            "sentBytes": 361604
+          },
+          {
+            "id": "ofG7J1yog",
+            "receivedBytes": 2674,
+            "sentBytes": 362217
+          }
+        ],
+        "memory": {
+          "rss": 150159360,
+          "heapTotal": 56918016,
+          "heapUsed": 42756720,
+          "external": 40382500,
+          "arrayBuffers": 19793849
+        }
+      },
+      "after": {
+        "ready": true,
+        "protocol": "ashen-presence-v1",
+        "catalogVersion": "appearance-catalog-v4",
+        "roomId": "w7X9QBJkn",
+        "collisionHash": "3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21",
+        "clients": 8,
+        "actors": 8,
+        "capacity": 8,
+        "tickRate": 30,
+        "physicsHz": 60,
+        "patchIntervalMs": 50,
+        "ticks": 6180,
+        "tickP95Ms": 0.8599999999860302,
+        "tickP99Ms": 1.005749999996624,
+        "tickMaxMs": 5.198207999987062,
+        "tickTailsByActorCount": [
+          {
+            "actors": 0,
+            "samples": 3263,
+            "fps": 4923.978933708878,
+            "meanMs": 0.20308779007037145,
+            "medianMs": 0.14649999998800922,
+            "p95Ms": 0.4880830000038259,
+            "p99Ms": 0.6696670000019367,
+            "worstMs": 4.746041999998852,
+            "minMs": 0.02358300000014424,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 1,
+            "samples": 2,
+            "fps": 255.13458349255754,
+            "meanMs": 3.919500000003609,
+            "medianMs": 7.260374999998021,
+            "p95Ms": 7.260374999998021,
+            "p99Ms": 7.260374999998021,
+            "worstMs": 7.260374999998021,
+            "minMs": 0.5786250000091968,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 3,
+            "samples": 1,
+            "fps": 714.9240393206734,
+            "meanMs": 1.398750000000291,
+            "medianMs": 1.398750000000291,
+            "p95Ms": 1.398750000000291,
+            "p99Ms": 1.398750000000291,
+            "worstMs": 1.398750000000291,
+            "minMs": 1.398750000000291,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 8,
+            "samples": 2913,
+            "fps": 1361.6085147592746,
+            "meanMs": 0.7344254895297823,
+            "medianMs": 0.7082919999957085,
+            "p95Ms": 0.953417000004265,
+            "p99Ms": 1.2510830000101123,
+            "worstMs": 5.198207999987062,
+            "minMs": 0.37787500000558794,
+            "above8_333": 0,
+            "above16_667": 0
+          },
+          {
+            "actors": 4,
+            "samples": 1,
+            "fps": 1746.4716905639843,
+            "meanMs": 0.5725830000010319,
+            "medianMs": 0.5725830000010319,
+            "p95Ms": 0.5725830000010319,
+            "p99Ms": 0.5725830000010319,
+            "worstMs": 0.5725830000010319,
+            "minMs": 0.5725830000010319,
+            "above8_333": 0,
+            "above16_667": 0
+          }
+        ],
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0
+        },
+        "traffic": [
+          {
+            "id": "lUb_-9fvB",
+            "receivedBytes": 2426,
+            "sentBytes": 437971
+          },
+          {
+            "id": "uP52QlAEF",
+            "receivedBytes": 3074,
+            "sentBytes": 438361
+          },
+          {
+            "id": "57bf82e_X",
+            "receivedBytes": 3118,
+            "sentBytes": 439105
+          },
+          {
+            "id": "7TG9Y_lNc",
+            "receivedBytes": 3073,
+            "sentBytes": 439718
+          },
+          {
+            "id": "Anpg9hDoy",
+            "receivedBytes": 3118,
+            "sentBytes": 440462
+          },
+          {
+            "id": "pNtfcCkLe",
+            "receivedBytes": 3073,
+            "sentBytes": 441075
+          },
+          {
+            "id": "0fut5zsuV",
+            "receivedBytes": 3118,
+            "sentBytes": 441819
+          },
+          {
+            "id": "ofG7J1yog",
+            "receivedBytes": 3073,
+            "sentBytes": 442432
+          }
+        ],
+        "memory": {
+          "rss": 150175744,
+          "heapTotal": 56918016,
+          "heapUsed": 38919088,
+          "external": 40407720,
+          "arrayBuffers": 19777115
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

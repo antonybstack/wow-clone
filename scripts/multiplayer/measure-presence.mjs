@@ -129,8 +129,12 @@ try {
   }
   await page.waitForFunction(() => ASHEN.presence.crowd.snapshot().count === 7);
   await page.waitForTimeout(3000);
-  for (const tier of ["vat", "exact"]) {
-    if (tier === "exact") {
+  // Presence renders every seat with the native per-piece renderer, so there is no longer a
+  // vat/exact tier to choose: the room seats eight and the renderer's exact capacity is
+  // eight. The two phases that remain are still the interesting ones -- seven peers as they
+  // joined, then the same seven after each has changed appearance, which is seven restages.
+  for (const phase of ["joined", "after-appearance-change"]) {
+    if (phase === "after-appearance-change") {
       for (let i = 0; i < 7; i++) {
         const r = rooms[i];
         await new Promise((resolve, reject) => {
@@ -177,7 +181,10 @@ try {
       assert.deepEqual(sample.metrics.resolution, [1280, 720]);
       assert.equal(sample.enemies, 7);
       assert.equal(sample.actors.count, 7);
-      assert(sample.actors.actors.every((a) => a.tier === tier));
+      // Every seat must be a committed exact native owner, which replaces the old
+      // per-actor tier assertion.
+      assert.equal(sample.streaming.activeExact, 7);
+      assert.equal(sample.streaming.owned, 7);
       assert.deepEqual(sample.gpu, []);
       assert.deepEqual(sample.presenceErrors, []);
       const cap = detectVsyncCap(sample.frames),
@@ -185,7 +192,7 @@ try {
       delete sample.frames;
       assert(!cap.vsyncCapped);
       rows.push({
-        tier,
+        phase,
         run,
         cap,
         tails,
@@ -194,10 +201,10 @@ try {
         after: await health(),
       });
       await fs.writeFile(out, JSON.stringify(report, null, 2));
-      console.log(JSON.stringify({ tier, run, tails }));
+      console.log(JSON.stringify({ phase, run, tails }));
     }
     // Review aid is outside every measurement window.
-    await page.screenshot({ path: out.replace(".json", `-${tier}.png`) });
+    await page.screenshot({ path: out.replace(".json", `-${phase}.png`) });
   }
   assert.deepEqual(errors, []);
   report.passed = true;

@@ -100,6 +100,36 @@ regenerating a published compatibility artefact was a side effect of running a s
 not part of this work. Anyone running `prepare-collision.mjs` will reproduce it; it should be
 regenerated deliberately, with the clients it gates, rather than incidentally.
 
+## Eight seats
+
+`measure-presence.mjs` — one rendering client plus seven non-rendering native SDK peers, no
+recording, 1280×720, seven enemies, three 12-second runs per phase. It previously measured the
+crowd renderer's vat and exact tiers; with every seat an exact native owner there is no tier to
+pick, so the two phases are now the seven peers as they joined and the same seven after each
+has changed appearance, which is seven restages.
+
+| phase | mean FPS | mean ms | p95 ms | max ms | >16.67 ms | cap flag |
+|---|---|---|---|---|---|---|
+| joined | 170.7–170.9 | 5.854 | 6.6–6.7 | 11.2 | **0** | none |
+| after appearance change | 169.8–170.5 | 5.875 | 6.5–6.6 | 16.1 | **0** | none |
+
+All seven are committed exact owners (`owned` 7, `activeExact` 7); `bodyLoads` goes 7 → 14
+across the appearance phase, which is exactly the seven restages and no more.
+`uncomposedMotions` stays 0, no GPU or presence errors, no cap heuristic tripped.
+
+Eight seats therefore sustain about **170 FPS** with not one frame over 16.67 ms, above the
+>144 route requirement and the >120 crowd target. This is the shared-region spawn area with
+its own camera, **not** the open-meadow diagnostic that measured 160.5 FPS for eight owners;
+the two numbers describe different scenes and should not be differenced.
+
+## Authority and traversal
+
+* `check-authority.mjs` — 11 network-only protocol cases pass, with no renderer and no
+  client-side authoritative positions.
+* `check-region-traversal.mjs` — all six routes pass (assigned spawn, churchyard→town,
+  town→bridge, bridge approach, cathedral entry and return) with **zero recovery teleports**,
+  so shared authority never had to correct the client back onto the region.
+
 ## Open
 
 Eight seats under load, delayed and failed assets, latency and reconnect matrices; the
