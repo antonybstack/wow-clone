@@ -377,6 +377,10 @@ export async function createStreamedEquipment(
     },
     getState: loader.getState,
     getStatus: loader.getStatus,
+    // The segment map this pack is actually driving visibility with. A published coverage
+    // manifest replaces RACE_BODY_SEGMENTS above, so a check that reads the static constant
+    // is reading the fallback rather than the running game.
+    getBodySegments:()=>structuredClone(bodySegments ?? {}),
     getOwnedMeshes:()=>[...base,...[...entries.values()].flatMap(entry=>entry.meshes)],
     drain:loader.drain,
     releasePalettes() {

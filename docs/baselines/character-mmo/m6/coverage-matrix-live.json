@@ -1,0 +1,70 @@
+{
+  "url": "http://127.0.0.1:5873/ashen-reach.html?play&clean&pixelRatio=1",
+  "conditions": "Default production route, one owned rendering client, functional only. 864 garment combinations per race; hand slots excluded because no hand item claims a body segment.",
+  "combinations": 864,
+  "races": [
+    "human",
+    "orc",
+    "undead"
+  ],
+  "perRace": {
+    "human": {
+      "bodyMeshes": [
+        "HumanV1Body",
+        "HumanTorsoCore"
+      ],
+      "liveOnly": [
+        "HumanTorsoCore"
+      ],
+      "fallbackOnly": [],
+      "checked": 864,
+      "refused": 0,
+      "hiddenSets": 2,
+      "seconds": 3.9
+    },
+    "orc": {
+      "bodyMeshes": [
+        "BodyExposed",
+        "BodyUnderTunic",
+        "BodyUnderLegs",
+        "BodyUnderBoots",
+        "BodyWaist",
+        "BodyHands",
+        "OrcV1Hair",
+        "OrcV1Brows",
+        "OrcV1Eyes",
+        "OrcV1Shorts"
+      ],
+      "liveOnly": [],
+      "fallbackOnly": [],
+      "checked": 864,
+      "refused": 0,
+      "hiddenSets": 32,
+      "seconds": 5.5
+    },
+    "undead": {
+      "bodyMeshes": [
+        "UndeadV1Body",
+        "UndeadV1Eyes",
+        "UndeadTorsoCore"
+      ],
+      "liveOnly": [
+        "UndeadTorsoCore"
+      ],
+      "fallbackOnly": [],
+      "checked": 864,
+      "refused": 0,
+      "hiddenSets": 2,
+      "seconds": 5.2
+    }
+  },
+  "disagreements": [],
+  "errors": [],
+  "passed": true,
+  "summary": {
+    "combinations": 864,
+    "races": 3,
+    "disagreements": 0,
+    "consoleErrors": 0
+  }
+}

@@ -421,6 +421,7 @@ async function main(){
   equipPreset:id=>equipRequest(()=>impl.equipPreset(id)),
   getState:()=>impl.getState(),
   getStatus:()=>impl.getStatus?.(),
+  getBodySegments:()=>impl.getBodySegments?.()??null,
   setVisible:value=>impl.setVisible(value),
   update:dt=>impl.update(dt),
   get attachment(){return impl.attachment;},

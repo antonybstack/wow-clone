@@ -29,11 +29,14 @@ Two things gate it today, and both are measured rather than suspected:
   and welding the normals traded the seam for a brightness step. Hair is **fused to the
   scalp** — only 75 of 333 above-brow vertices sit over another surface — so bald cannot be
   reached by collapsing a shell.
-* **Armor swapping works but is under-evidenced.** All 768 catalogue combinations validate by
-  rule with zero disagreements. Per-slot hot swapping under motion is now measured and passes
-  ([result](results/m6-swap-under-motion-2026-10-02.md)); what remains unevidenced is the
-  *look* of the matrix — only twelve outfits have been reviewed visually — and extreme-shape
-  fit, which is measured for the **Human only**.
+* **Armor swapping works but is under-evidenced.** The catalogue now enumerates **6,912**
+  combinations, 6,048 valid, with zero validator disagreements — the "768" carried in this plan
+  dated from an 8-item catalogue and is corrected. Per-slot hot swapping under motion
+  ([result](results/m6-swap-under-motion-2026-10-02.md)), failure and storm handling
+  ([result](results/m6-swap-failure-2026-10-02.md)) and the coverage contract against the live
+  engine ([result](results/m6-coverage-matrix-live-2026-10-02.md)) are now measured and pass.
+  What remains unevidenced is the *look* of the mixed matrix and extreme-shape fit, which is
+  measured for the **Human only**.
 
 Performance and load time remain the first constraint. Keep the approved Gothic region, the
 existing Human/Orc/Undead sources, source-compatible animation and Havok movement. No terrain
@@ -218,8 +221,9 @@ reviewed in live motion. Flipping a flag without art is an explicit failure, not
 **Dependency:** milestones 1 and 3. The mechanism exists and is fast; the evidence is thin.
 This milestone makes "change any piece at any time" a claim with measurements behind it.
 
-What is already true: eight slots; 768 catalogue combinations validated with zero
-resolver disagreements; the Orc wrist, Human mixed waist and Undead bind defects are found and
+What is already true: eight slots; **6,912** catalogue combinations enumerated and 6,048 valid
+with zero occupancy disagreements, and 2,592 live garment combinations agreeing with the
+coverage resolver; the Orc wrist, Human mixed waist and Undead bind defects are found and
 repaired; hem over-reach is bounded. Two different swap paths are now timed and must not be
 conflated — the **remote per-piece renderer** that dresses presence actors costs 66.8–78.4 ms
 median against 120–182 ms for a restage, while the **player's own streamed equipment** costs a
@@ -245,16 +249,21 @@ Tasks:
    no GPU or console errors. Three judgement items recorded — the Duskguard cuirass reads as
    quilted padding rather than plate on all three races, the lilac staff head and grimoire are
    flat and unlit, and the Human Graveweaver hood bulges at the crown over the fused scalp hair.
-   **Still open:** the mixed combinations, which are most of the 768. Method note carried
+   **Still open:** the mixed combinations, which are the overwhelming majority of the 6,048 valid loadouts. Method note carried
    forward: a single view at small scale is not enough to report a visual defect — two reads
    this milestone dissolved under another view.
 4. **Shape extremes beyond the Human.** Posed fit is measured for Human slender/stout at 0.95
    with a worst case of 24 exposed vertices of 3,274. The Orc and Undead have no verified shape
    family, so their "extremes" are neutral only — either state that as the supported domain or
    give them a family.
-5. **Layering and coverage conflicts.** Every published piece declares body segments; prove no
-   combination leaves a segment simultaneously claimed and visibly uncovered, and that the
-   shoulders slot composes with torso and helmet in all three races.
+5. ~~**Layering and coverage conflicts.**~~ **Closed 2026-10-02**
+   ([result](results/m6-coverage-matrix-live-2026-10-02.md)). 2,592 live combinations — 864
+   garment loadouts × 3 races — agree with the resolver, zero disagreements, zero refusals. The
+   first version of this check was vacuous: it read the static `RACE_BODY_SEGMENTS`, which omits
+   the published `HumanTorsoCore` and `UndeadTorsoCore` geosets, so both sides of the comparison
+   were empty on two of three races. An `ASHEN_CONTROL=1` inversion now fails all 2,592 rows
+   while the real run passes all 2,592. What this does not prove is that the result *looks*
+   right — a correctly hidden mesh can still leave a seam gap, which is task 3's remainder.
 6. **A swap budget.** Per-slot cost is now published for the player path (median 18.8 ms,
    p95 32.8, worst 48.6). What is still missing is a **cold-network** measurement — the
    residency cache evicts idle pieces, so 119 of 120 rows rebuilt from bytes a local dev server
