@@ -130,6 +130,28 @@ the two numbers describe different scenes and should not be differenced.
   town→bridge, bridge approach, cathedral entry and return) with **zero recovery teleports**,
   so shared authority never had to correct the client back onto the region.
 
+## Solo five-route gate, after publication and the renderer swap
+
+Isolated, uncapped, 1280×720, seven enemies, three 12-second runs per route, presence server
+stopped and nothing else rendering.
+
+| route | mean FPS | p95 ms | worst ms | >16.67 ms | cap flag |
+|---|---|---|---|---|---|
+| meadow | 208.7–210.7 | 5.5–9.7 | 11.3 | 0 | none |
+| town | 227.0–227.8 | 5.4 | 8.1 | 0 | none |
+| bridge | 254.3–256.4 | 4.9–7.7 | 9.6 | 0 | none |
+| cathedral | 262.1–270.5 | 4.7–7.3 | 9.4 | 0 | none |
+| forest | 241.6–243.6 | 5.2–6.9 | 10.4 | 0 | none |
+
+Every route clears the **>144 mean FPS** preservation gate with margin and no route put a
+frame over 16.67 ms. Publishing 19.4 MB into `public/` and swapping the presence renderer did
+not disturb solo throughput, which is expected — the published pieces are fetched only on
+joining a shared region, and the renderer is imported only then.
+
+This run is **neutral**, not equipped. The open equipped-forest 240 Hz cap qualification is a
+separate measurement and is not retired by it; this neutral forest run read 241.6–243.6 FPS
+without tripping the heuristic, which is an observation, not that qualification.
+
 ## Open
 
 Eight seats under load, delayed and failed assets, latency and reconnect matrices; the
