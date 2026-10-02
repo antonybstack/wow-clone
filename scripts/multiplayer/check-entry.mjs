@@ -5,6 +5,7 @@ import { Client } from "@colyseus/sdk";
 import { chromium } from "playwright";
 import {
   PRESENCE_PROTOCOL,
+  PRESENCE_CATALOG,
   presenceAppearance,
 } from "../../src/multiplayer/protocol.js";
 import { COLLISION_RELEASE } from "../../src/multiplayer/collision-release.js";
@@ -81,6 +82,7 @@ try {
     h = await (await fetch(endpoint + "/presence")).json();
   peer = await new Client(endpoint).joinById(h.roomId, {
     protocol: PRESENCE_PROTOCOL,
+    catalogVersion: PRESENCE_CATALOG,
     collisionHash: COLLISION_RELEASE.collisionHash,
     recipe: presenceAppearance(),
   });

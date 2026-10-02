@@ -5,6 +5,7 @@ import { gunzipSync, brotliDecompressSync } from "node:zlib";
 import { NodeIO } from "@gltf-transform/core";
 import { ALL_EXTENSIONS } from "@gltf-transform/extensions";
 import { MeshoptDecoder } from "meshoptimizer";
+import { verifyCoveragePartition } from './character-assets/verify-coverage-partition.mjs';
 import { verifyStartupAssets } from "./ashen-reach/startup-provenance.mjs";
 import {
   partitionWorld,
@@ -38,11 +39,16 @@ test("starter body preserves every source vertex, joint, weight and animation sa
   const original = (
     await read("public/ashen-reach/equipment/body.glb")
   ).getRoot();
-  const starter = (
+  const actualStarter = (
     await io.readBinary(
       gunzipSync(await fs.readFile("public" + manifest.items.body.url)),
     )
   ).getRoot();
+  // Check the unchanged source geometry separately from its conservative split.
+  // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#meshes
+  const starter = (await io.readBinary(gunzipSync(await fs.readFile(
+    'public' + manifest.items.body.coverageSource.url)))).getRoot();
+  verifyCoveragePartition(starter, actualStarter, 'HumanV1Body', 'HumanTorsoCore');
   assert.deepEqual(
     starter
       .listNodes()
@@ -108,11 +114,17 @@ test("starter body preserves every source vertex, joint, weight and animation sa
       }));
   assert.equal(original.listAnimations().length, 57);
   assert.deepEqual(clips(starter), clips(original));
-  for (const id of ["wayfarerTunic", "wayfarerTrousers", "wayfarerBoots"])
-    assert.deepEqual(
-      gunzipSync(await fs.readFile("public" + manifest.items[id].url)),
-      await fs.readFile(`public/ashen-reach/equipment/${id}.glb`),
-    );
+  for (const id of ["wayfarerTunic", "wayfarerTrousers", "wayfarerBoots"]) {
+    const entry = manifest.items[id];
+    const current = gunzipSync(await fs.readFile("public" + entry.url));
+    const canonical = await fs.readFile(`public/ashen-reach/equipment/${id}.glb`);
+    const source = entry.coverageSource
+      ? gunzipSync(await fs.readFile("public" + entry.coverageSource.url)) : current;
+    assert.deepEqual(source, canonical, `${id} unsplit starter source`);
+    if (entry.coverageSource) verifyCoveragePartition(
+      (await io.readBinary(source)).getRoot(), (await io.readBinary(current)).getRoot(),
+      'WayfarerTrousers', 'WayfarerTrousersUnderTorso');
+  }
 });
 test("partition preserves triangle attributes across the playable frontier", () => {
   const positions = new Float32Array([

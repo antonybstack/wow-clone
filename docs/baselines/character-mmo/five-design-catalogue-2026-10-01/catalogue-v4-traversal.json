@@ -1,0 +1,170 @@
+{
+  "url": "http://127.0.0.1:5774/?play&clean",
+  "routes": [
+    {
+      "case": "spawn-movement",
+      "before": {
+        "x": -0.0006919466943052058,
+        "y": 1.019536557004293,
+        "z": -0.001221082325009597,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "after": {
+        "x": -0.0008350684043925227,
+        "y": 1.3015605902645122,
+        "z": 8.40194714255054,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "case": "cathedral-entry-return",
+      "build": -0.95,
+      "height": 0.9,
+      "start": {
+        "x": 0,
+        "y": 45.821229699899106,
+        "z": 280,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "inside": {
+        "x": 0,
+        "y": 45.821229699899106,
+        "z": 317.8357000010052,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "returned": {
+        "x": 0,
+        "y": 45.821229699899106,
+        "z": 298.91645000101016,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "case": "cathedral-entry-return",
+      "build": -0.95,
+      "height": 1.15,
+      "start": {
+        "x": 0,
+        "y": 46.058924403909344,
+        "z": 280,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "inside": {
+        "x": 0,
+        "y": 46.058924403909344,
+        "z": 317.83009999967175,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "returned": {
+        "x": 0,
+        "y": 46.058924403909344,
+        "z": 298.9087500000109,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "case": "cathedral-entry-return",
+      "build": 0.95,
+      "height": 0.9,
+      "start": {
+        "x": 0,
+        "y": 45.83794707617853,
+        "z": 280,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "inside": {
+        "x": 0,
+        "y": 45.83794707617853,
+        "z": 317.82029999900595,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "returned": {
+        "x": 0,
+        "y": 45.83794707617853,
+        "z": 298.90629999901165,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "case": "cathedral-entry-return",
+      "build": 0.95,
+      "height": 1.15,
+      "start": {
+        "x": 0,
+        "y": 46.05083049921228,
+        "z": 280,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "inside": {
+        "x": 0,
+        "y": 46.05083049921228,
+        "z": 317.8350000000066,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "returned": {
+        "x": 0,
+        "y": 46.05083049921228,
+        "z": 298.9262500000134,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    }
+  ],
+  "errors": [],
+  "appearance": {
+    "schemaVersion": 2,
+    "catalogVersion": "appearance-catalog-v4",
+    "race": "human",
+    "fitFamily": "ashen-human",
+    "fit": {
+      "rig": "source-65",
+      "bind": 1,
+      "shape": 1
+    },
+    "shape": {
+      "family": "ashen-human-shape-v1",
+      "height": 1.15,
+      "build": 0.95
+    },
+    "components": {},
+    "dyes": {},
+    "equipment": {
+      "helmet": null,
+      "torso": "duskguardCuirass",
+      "legs": "duskguardTassets",
+      "boots": "duskguardGreaves",
+      "gloves": "duskguardVambraces",
+      "mainHand": "ironSword",
+      "offHand": null,
+      "shoulders": "wardenPauldrons"
+    }
+  },
+  "passed": true
+}

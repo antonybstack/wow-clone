@@ -55,6 +55,11 @@ let GARMENTS = [
     {item: 'graveweaverSkirt', file: 'public/ashen-reach/equipment/graveweaverSkirt.glb', rigid: false},
     {item: 'graveweaverHood', file: 'public/ashen-reach/equipment/graveweaverHood.glb', rigid: false},
     {item: 'graveweaverGloves', file: 'public/ashen-reach/equipment/graveweaverGloves.glb', rigid: false},
+    // These real source fits are published independently, never as outfit
+    // permutations. Plate rigidity is carried by each primitive's factory extras.
+    {item: 'lectorCoat', file: 'public/ashen-reach/equipment/lectorCoat.glb', rigid: false},
+    ...['duskguardCuirass','duskguardTassets','duskguardGreaves','duskguardVambraces']
+        .map(item=>({item,file:`public/ashen-reach/equipment/${item}.glb`,rigid:false})),
     // The catalogue has no rigid element, so M005 authors one:
     // scripts/character-assets/build_warden_pauldrons.py. Prototype, developer-only,
     // deliberately not in public/ and not in the production catalogue.

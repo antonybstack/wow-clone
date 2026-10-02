@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: independent factory gate accepts the written source-compatible plate
+ok 1 - independent factory gate accepts the written source-compatible plate
+  ---
+  duration_ms: 71.767667
+  type: 'test'
+  ...
+# Subtest: gate rejects a changed joint pose even with unchanged inverse binds
+ok 2 - gate rejects a changed joint pose even with unchanged inverse binds
+  ---
+  duration_ms: 47.807416
+  type: 'test'
+  ...
+# Subtest: gate rejects a 100x geometry explosion independent of the skin palette
+ok 3 - gate rejects a 100x geometry explosion independent of the skin palette
+  ---
+  duration_ms: 39.892041
+  type: 'test'
+  ...
+# Subtest: gate rejects normalized two-bone weights on a declared rigid plate
+ok 4 - gate rejects normalized two-bone weights on a declared rigid plate
+  ---
+  duration_ms: 38.544083
+  type: 'test'
+  ...
+# Subtest: gate rejects wrong inverse bind and absent explicit deformation
+ok 5 - gate rejects wrong inverse bind and absent explicit deformation
+  ---
+  duration_ms: 78.643792
+  type: 'test'
+  ...
+# Subtest: mixed startup geometry preserves any actual rigid primitive without treating metal as rigidity
+ok 6 - mixed startup geometry preserves any actual rigid primitive without treating metal as rigidity
+  ---
+  duration_ms: 33.954625
+  type: 'test'
+  ...
+# Subtest: native stability anchors retain reviewed rows and reject source/weight changes
+ok 7 - native stability anchors retain reviewed rows and reject source/weight changes
+  ---
+  duration_ms: 2.536291
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 385.548417

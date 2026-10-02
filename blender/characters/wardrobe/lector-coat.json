@@ -2,7 +2,7 @@
   "schema": 1,
   "id": "lectorCoat",
   "revision": 1,
-  "status": "candidate-only; not advertised",
+  "status": "reviewed-source; production integration pending",
   "slot": "torso",
   "layer": "cloth",
   "deformation": "soft-skin",
@@ -104,5 +104,16 @@
       "metallic": 0
     }
   },
-  "sourceRights": "Native structural tailoring of the vendored CC0 MakeHuman suits02 garment through the accepted per-race Wayfarer fit. Existing Tripo/Mixamo body/rig source grant limitations retained. New collar/lapel/cuff/lining modeling is project-authored."
+  "sourceRights": "Native structural tailoring of the vendored CC0 MakeHuman suits02 garment through the accepted per-race Wayfarer fit. Existing Tripo/Mixamo body/rig source grant limitations retained. New collar/lapel/cuff/lining modeling is project-authored.",
+  "review": {
+    "date": "2026-10-01",
+    "result": "docs/plans/character-mmo/results/layer-coverage-production-2026-10-01.md",
+    "motion": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/lector-extra-motion-2026-10-01.mp4",
+    "scope": "Accepted M1 bodies on three races; Human neutral/slender/stout under native source motion with conservative coverage. Mixed-design catalogue and remote gates remain pending.",
+    "limitations": "Inherited coat surface marks remain; steel thigh reflection is confirmed with native body/tassets hiding. M5 identity and physical phone fit are not accepted."
+  },
+  "nativeWeightStability": {
+    "path": "blender/characters/wardrobe/weights/lector-orc-native-stability.json",
+    "sha256": "6519e3f9ac642f9d01691d1761c857e52c6e79558e653e34302fdf92413b1e65"
+  }
 }

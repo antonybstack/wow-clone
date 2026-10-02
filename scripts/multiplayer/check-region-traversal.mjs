@@ -8,6 +8,7 @@ import { Client } from "@colyseus/sdk";
 import { chromium } from "playwright";
 import {
   PRESENCE_PROTOCOL,
+  PRESENCE_CATALOG,
   presenceAppearance,
 } from "../../src/multiplayer/protocol.js";
 import { COLLISION_RELEASE } from "../../src/multiplayer/collision-release.js";
@@ -82,6 +83,7 @@ try {
   await page.waitForFunction(() => ASHEN.player.heightScale === 1.15);
   peer = await new Client(endpoint).joinById(h.roomId, {
     protocol: PRESENCE_PROTOCOL,
+    catalogVersion: PRESENCE_CATALOG,
     collisionHash: COLLISION_RELEASE.collisionHash,
     recipe: presenceAppearance(),
   });

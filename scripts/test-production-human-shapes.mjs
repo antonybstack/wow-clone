@@ -12,8 +12,8 @@ const root='public/ashen-reach/human-shape-v1';
 await MeshoptDecoder.ready;
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder});
 const manifest=JSON.parse(await fs.readFile(`${root}/manifest.json`,'utf8'));
-test('published family declares one deformation layout and ten content-addressed artifacts',()=>{
- assert.equal(manifest.shapeFamily,PRODUCTION_HUMAN_FAMILY);assert.deepEqual(manifest.targetNames,['slender','stout']);assert.equal(Object.keys(manifest.items).length,10);assert.equal(manifest.reproduction.clips,57);assert.equal(manifest.reproduction.neutralIdentity.matchesShippedBody,true);
+test('published family declares one deformation layout and fifteen content-addressed artifacts',()=>{
+ assert.equal(manifest.shapeFamily,PRODUCTION_HUMAN_FAMILY);assert.deepEqual(manifest.targetNames,['slender','stout']);assert.equal(Object.keys(manifest.items).length,15);assert.equal(manifest.reproduction.clips,57);assert.equal(manifest.reproduction.neutralIdentity.matchesShippedBody,true);
 });
 for(const [id,asset] of Object.entries(manifest.items))test(`${id} retains repaired canonical geometry, complete index union, bind and neutral shape`,async()=>{
  const encoded=await fs.readFile(`public${asset.url}`),bytes=gunzipSync(encoded);
@@ -21,7 +21,7 @@ for(const [id,asset] of Object.entries(manifest.items))test(`${id} retains repai
  const actual=(await io.readBinary(bytes)).getRoot();
  const unpartitioned=asset.coverageSource?gunzipSync(await fs.readFile('public'+asset.coverageSource.url)):bytes;
  const base=(await io.read(`public/ashen-reach/equipment/${id}.glb`)).getRoot(),packed=(await io.readBinary(unpartitioned)).getRoot();
- if(asset.coverageSource){const source=id==='body'?'HumanV1Body':'WayfarerTrousers',covered=id==='body'?'HumanTorsoCore':'WayfarerTrousersUnderTorso';verifyCoveragePartition(packed,actual,source,covered);}
+ if(asset.coverageSource){const source=id==='body'?'HumanV1Body':id==='duskguardTassets'?'DuskguardTrousers':'WayfarerTrousers',covered=id==='body'?'HumanTorsoCore':`${source}UnderTorso`;verifyCoveragePartition(packed,actual,source,covered);}
 
  assert.deepEqual(packed.listAnimations().map(a=>a.getName()),base.listAnimations().map(a=>a.getName()));
  const bs=base.listSkins()[0],ps=packed.listSkins()[0];assert.deepEqual(ps.listJoints().map(j=>j.getName()),bs.listJoints().map(j=>j.getName()));assert.deepEqual(ps.getInverseBindMatrices().getArray(),bs.getInverseBindMatrices().getArray());

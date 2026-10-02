@@ -42,7 +42,7 @@ test('every catalogue coverage declaration maps to a known segment', () => {
         for (const segment of segments) assert.ok(BODY_SEGMENTS.includes(segment), `${item.id} -> ${segment}`);
         // A skinned garment that covers nothing would be a declaration someone forgot.
         if (item.parts && !item.factory && item.layer !== 'plate') assert.ok(segments.length > 0, `${item.id} covers nothing`);
-        if(item.layer==='plate')assert.deepEqual(segments,[], 'an open shoulder cap must not hide the entire upper arm');
+        if(item.slot==='shoulders')assert.deepEqual(segments,[], 'an open shoulder cap must not hide the entire upper arm');
     }
 });
 
@@ -57,8 +57,8 @@ test('the migrated proof outfits mean the same thing in both vocabularies', () =
         const legacy = [...new Set((item.coverage || []).flatMap(r => LEGACY_REGION_SEGMENTS[r]))].sort();
         assert.deepEqual([...item.covers].sort(), legacy, `${item.id} declares a different meaning in each vocabulary`);
     }
-    // Both proof outfits, every piece: Wayfarer tunic/trousers/boots and the four Graveweaver pieces.
-    assert.equal(migrated, 8);
+    // The original semantic pieces plus the five actual Lector/Duskguard fits.
+    assert.equal(migrated, 13);
 });
 
 test('the legacy region adapter is total over what the catalogue uses', () => {
@@ -96,7 +96,7 @@ test('two-handed occupancy agrees with the catalogue validator on every combinat
         assert.equal(accepted, !conflict, `${JSON.stringify(loadout)} accepted=${accepted} conflict=${conflict}`);
         checked++;
     }
-    assert.equal(checked, 1536);
+    assert.equal(checked, 6912);
 });
 
 test('the Orc adapter retains shipped visibility for every valid loadout', () => {
@@ -230,7 +230,7 @@ test('every valid combination resolves on every race without throwing', () => {
             }
         }
     }
-    assert.equal(valid.length, 1344);
-    assert.equal(pairs.size, 24, 'cross-set pair coverage');
-    assert.equal(triples.size, 34, 'three-way coverage');
+    assert.equal(valid.length, 6048);
+    assert.equal(pairs.size, 63, 'cross-set pair coverage');
+    assert.equal(triples.size, 143, 'three-way coverage');
 });

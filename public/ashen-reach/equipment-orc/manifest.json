@@ -151,6 +151,82 @@
         "bind": 1,
         "shape": 1
       }
+    },
+    "lectorCoat": {
+      "url": "/ashen-reach/equipment-orc/lectorCoat-6b60897773e6.glb",
+      "bytes": 389196,
+      "sha256": "6b60897773e608d5176b58f5914cb77a87c34ce476d51bd8e3e1611ea86a5b37",
+      "meshes": [
+        "LectorCoat"
+      ],
+      "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "duskguardCuirass": {
+      "url": "/ashen-reach/equipment-orc/duskguardCuirass-a54e8b60c1f1.glb",
+      "bytes": 364824,
+      "sha256": "a54e8b60c1f152d0e3fcaf351edbcd859afde8499bca82e0dfef9666da51f159",
+      "meshes": [
+        "DuskguardCuirass",
+        "DuskguardGussets",
+        "DuskguardUndercoat"
+      ],
+      "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "duskguardTassets": {
+      "url": "/ashen-reach/equipment-orc/duskguardTassets-8acdbf29f9ac.glb",
+      "bytes": 163888,
+      "sha256": "8acdbf29f9aca5f0e1147b00e98dde9df7502ed245a5238b395a1981a1d0b702",
+      "meshes": [
+        "DuskguardTassets",
+        "DuskguardTrouserCuffs",
+        "DuskguardTrousers"
+      ],
+      "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "duskguardGreaves": {
+      "url": "/ashen-reach/equipment-orc/duskguardGreaves-5c047b0fbea0.glb",
+      "bytes": 249456,
+      "sha256": "5c047b0fbea0de4f8b3048b9fe72f2ba272f5bb32b798cbf5282f9ff1deeb1da",
+      "meshes": [
+        "DuskguardBootUnderlayer",
+        "DuskguardGreaves"
+      ],
+      "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "duskguardVambraces": {
+      "url": "/ashen-reach/equipment-orc/duskguardVambraces-358c47ffff40.glb",
+      "bytes": 188928,
+      "sha256": "358c47ffff40888390ff98a0d94a6fbc61a90d14dcf5845f436a840c755a0e03",
+      "meshes": [
+        "DuskguardGloveUnderlayer",
+        "DuskguardVambraces"
+      ],
+      "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
     }
   },
   "bindSha256": "5bdfea1bf692a085205a24fe496c876874fba82aa62ee92597128fcf88ab2079"

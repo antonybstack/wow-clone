@@ -1,0 +1,14 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.evaluate: TypeError: ASHEN.getAppearance is not a function
+    at eval (eval at evaluate (:311:30), <anonymous>:1:24)
+    at UtilityScript.evaluate (<anonymous>:313:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+    at snapshot (/Users/antbly/dev/wow-clone/scripts/character-assets/check-five-design-transactions.mjs:15:25)
+    at /Users/antbly/dev/wow-clone/scripts/character-assets/check-five-design-transactions.mjs:45:135 {
+  log: []
+}
+
+Node.js v22.18.0

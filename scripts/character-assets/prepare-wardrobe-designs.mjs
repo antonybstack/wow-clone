@@ -36,7 +36,7 @@ for(const spec of specifications){
    const item=EQUIPMENT_ITEMS[id];if(!item)throw Error(`Factory item absent from catalogue: ${id}`);
    assertAssetFit({fit:fit.interface},item,race);
    const file=`.cache/character-mmo/wardrobe-v1/${spec.kind}/${race}/${id}.glb`,source=await fs.readFile(file);
-   const row=report.rows.find(r=>r.race===race&&(r.id===id||id==='lectorCoat'));
+   const row=report.rows.find(r=>r.race===race&&r.id===id);
    if(!row||row.sha256!==sha(source))throw Error('Factory artifact/report mismatch');
    const doc=await io.readBinary(source),root=doc.getRoot(),expected=item.parts.map(p=>p.mesh).sort();
    if(JSON.stringify(root.listMeshes().map(m=>m.getName()).sort())!==JSON.stringify(expected))throw Error(`${race}/${id}: factory mesh catalogue mismatch`);

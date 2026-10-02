@@ -6,6 +6,7 @@ import assert from "node:assert/strict";
 import { Client } from "@colyseus/sdk";
 import {
   PRESENCE_PROTOCOL,
+  PRESENCE_CATALOG,
   PRESENCE_ROOM,
   presenceAppearance,
 } from "../../src/multiplayer/protocol.js";
@@ -22,6 +23,7 @@ const h = await health();
 assert.equal(h.actors, 0, "Run separately from browser/network clients");
 const options = {
   protocol: PRESENCE_PROTOCOL,
+  catalogVersion: PRESENCE_CATALOG,
   collisionHash: COLLISION_RELEASE.collisionHash,
   recipe: presenceAppearance(),
 };
@@ -54,6 +56,8 @@ const receipt = (room, request) =>
 try {
   await reject("caller-cannot-claim-id", () => join({ actorId: "victim" }));
   await reject("caller-cannot-claim-position", () => join({ x: 1000 }));
+  await reject("old-catalogue", () => join({ catalogVersion: "appearance-catalog-v3" }));
+  await reject("missing-catalogue", () => join({ catalogVersion: undefined }));
   await reject("wrong-world", () => join({ collisionHash: "bad" }));
   await reject("unsupported-race", () =>
     join({ recipe: { ...options.recipe, race: "orc" } }),

@@ -1,0 +1,99 @@
+{
+  "performanceConditions": "M1 Max; one owned uncapped Chromium WebGPU page; 1280x720; seven enemies; three 12-second runs/route; no recording",
+  "fps": {
+    "neutral": {
+      "rows": 15,
+      "fpsMin": 220.21038253554264,
+      "fpsMax": 261.719466060213,
+      "maxMs": 12.200000047683716,
+      "maxP99Ms": 10.300000190734863,
+      "capFlags": [],
+      "above6_94": 2068,
+      "above8_33": 754,
+      "above16_67": 0,
+      "above33_33": 0,
+      "uncappedGatePassed": true
+    },
+    "duskguard": {
+      "rows": 15,
+      "fpsMin": 214.3327196839388,
+      "fpsMax": 248.9982589301777,
+      "maxMs": 19,
+      "maxP99Ms": 8.400000095367432,
+      "capFlags": [
+        [
+          "forest",
+          3
+        ]
+      ],
+      "above6_94": 152,
+      "above8_33": 89,
+      "above16_67": 1,
+      "above33_33": 0,
+      "uncappedGatePassed": false
+    },
+    "largest": {
+      "rows": 15,
+      "fpsMin": 215.1675191193809,
+      "fpsMax": 250.73304011828233,
+      "maxMs": 13.399999856948853,
+      "maxP99Ms": 9.299999952316284,
+      "capFlags": [
+        [
+          "forest",
+          2
+        ]
+      ],
+      "above6_94": 773,
+      "above8_33": 363,
+      "above16_67": 0,
+      "above33_33": 0,
+      "uncappedGatePassed": false
+    }
+  },
+  "cold": {
+    "default": {
+      "rows": 20,
+      "underOneSecond": 20,
+      "p95Ms": 842,
+      "maxMs": 849.2000000476837,
+      "encodedBytesAtBoundary": [
+        3188923
+      ],
+      "failures": []
+    },
+    "largest": {
+      "rows": 20,
+      "underOneSecond": 20,
+      "p95Ms": 951.8999998569489,
+      "maxMs": 952.7999999523163,
+      "encodedBytesAtBoundary": [
+        3756961
+      ],
+      "failures": []
+    },
+    "duskguard": {
+      "rows": 20,
+      "underOneSecond": 20,
+      "p95Ms": 950.2000000476837,
+      "maxMs": 954.2999999523163,
+      "encodedBytesAtBoundary": [
+        3718713
+      ],
+      "failures": []
+    },
+    "lector": {
+      "rows": 20,
+      "underOneSecond": 20,
+      "p95Ms": 860.7000000476837,
+      "maxMs": 861.7999999523163,
+      "encodedBytesAtBoundary": [
+        3239863
+      ],
+      "failures": []
+    }
+  },
+  "candidateOnly": true,
+  "publicDeployment": "0c2f92c1-a4f8-43ab-838f-45c0f622df4b",
+  "coldConditions": "Compressed local Pages; 50 Mbit/s / 40 ms; twenty fresh browser/process profiles each; OS/driver caches uncontrolled; no shader/trace experiments"
+}

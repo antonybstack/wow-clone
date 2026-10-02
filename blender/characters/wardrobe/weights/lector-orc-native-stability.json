@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "race": "orc",
+  "item": "lectorCoat",
+  "source": {
+    "path": "public/ashen-reach/equipment-orc/lectorCoat-6b60897773e6.glb",
+    "sha256": "6b60897773e608d5176b58f5914cb77a87c34ce476d51bd8e3e1611ea86a5b37"
+  },
+  "reason": "Native Data Transfer varied below 1e-8 near a 1e-6 quantization boundary; anchor only these two reviewed rows, retaining their exact correspondence.",
+  "maximumDelta": 0.000002,
+  "rows": [
+    {
+      "primitive": 1,
+      "vertex": 208,
+      "position": [
+        0.09032492339611053,
+        1.7605777978897095,
+        0.010049628093838692
+      ],
+      "joints": [
+        7,
+        4,
+        3,
+        8
+      ],
+      "weights": [
+        0.3753179907798767,
+        0.28830400109291077,
+        0.2508470118045807,
+        0.08553099632263184
+      ]
+    },
+    {
+      "primitive": 1,
+      "vertex": 234,
+      "position": [
+        0.08611733466386795,
+        1.7605777978897095,
+        0.007059754803776741
+      ],
+      "joints": [
+        7,
+        4,
+        3,
+        8
+      ],
+      "weights": [
+        0.3753179907798767,
+        0.28830400109291077,
+        0.2508470118045807,
+        0.08553099632263184
+      ]
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "meshes": [
+    {
+      "mesh": "LectorCoat",
+      "primitive": 0,
+      "attributes": [
+        {
+          "semantic": "POSITION",
+          "count": 16095,
+          "otherCount": 16095,
+          "changed": 0,
+          "max": 0,
+          "first": []
+        },
+        {
+          "semantic": "NORMAL",
+          "count": 16095,
+          "otherCount": 16095,
+          "changed": 0,
+          "max": 0,
+          "first": []
+        },
+        {
+          "semantic": "TEXCOORD_0",
+          "count": 10730,
+          "otherCount": 10730,
+          "changed": 0,
+          "max": 0,
+          "first": []
+        },
+        {
+          "semantic": "JOINTS_0",
+          "count": 21460,
+          "otherCount": 21460,
+          "changed": 0,
+          "max": 0,
+          "first": []
+        },
+        {
+          "semantic": "WEIGHTS_0",
+          "count": 21460,
+          "otherCount": 21460,
+          "changed": 0,
+          "max": 0,
+          "first": []
+        },
+        {
+          "semantic": "indices",
+          "count": 28407,
+          "otherCount": 28407,
+          "changed": 0,
+          "max": 0,
+          "first": []
+        }
+      ]
+    },
+    {
+      "mesh": "LectorCoat",
+      "primitive": 1,
+      "attributes": [
+        {
+          "semantic": "POSITION",
+          "count": 777,
+          "otherCount": 777,
+          "changed": 0,
+          "max": 0,
+          "first": []
+        },
+        {
+          "semantic": "NORMAL",
+          "count": 777,
+          "otherCount": 777,
+          "changed": 0,
+          "max": 0,
+          "first": []
+        },
+        {
+          "semantic": "TEXCOORD_0",
+          "count": 518,
+          "otherCount": 518,
+          "changed": 0,
+          "max": 0,
+          "first": []
+        },
+        {
+          "semantic": "JOINTS_0",
+          "count": 1036,
+          "otherCount": 1036,
+          "changed": 0,
+          "max": 0,
+          "first": []
+        },
+        {
+          "semantic": "WEIGHTS_0",
+          "count": 1036,
+          "otherCount": 1036,
+          "changed": 4,
+          "max": 0.0000010132789611816406,
+          "first": [
+            [
+              832,
+              0.3753179907798767,
+              0.3753190040588379
+            ],
+            [
+              833,
+              0.28830400109291077,
+              0.2883029878139496
+            ],
+            [
+              936,
+              0.3753179907798767,
+              0.3753190040588379
+            ],
+            [
+              937,
+              0.28830400109291077,
+              0.2883029878139496
+            ]
+          ]
+        },
+        {
+          "semantic": "indices",
+          "count": 1017,
+          "otherCount": 1017,
+          "changed": 0,
+          "max": 0,
+          "first": []
+        }
+      ]
+    },
+    {
+      "mesh": "LectorCoat",
+      "primitive": 2,
+      "attributes": [
+        {
+          "semantic": "POSITION",
+          "count": 3165,
+          "otherCount": 3165,
+          "changed": 0,
+          "max": 0,
+          "first": []
+        },
+        {
+          "semantic": "NORMAL",
+          "count": 3165,
+          "otherCount": 3165,
+          "changed": 0,
+          "max": 0,
+          "first": []
+        },
+        {
+          "semantic": "TEXCOORD_0",
+          "count": 2110,
+          "otherCount": 2110,
+          "changed": 0,
+          "max": 0,
+          "first": []
+        },
+        {
+          "semantic": "JOINTS_0",
+          "count": 4220,
+          "otherCount": 4220,
+          "changed": 0,
+          "max": 0,
+          "first": []
+        },
+        {
+          "semantic": "WEIGHTS_0",
+          "count": 4220,
+          "otherCount": 4220,
+          "changed": 0,
+          "max": 0,
+          "first": []
+        },
+        {
+          "semantic": "indices",
+          "count": 3456,
+          "otherCount": 3456,
+          "changed": 0,
+          "max": 0,
+          "first": []
+        }
+      ]
+    }
+  ],
+  "texturesEqual": [
+    true
+  ]
+}

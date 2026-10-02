@@ -2,7 +2,7 @@
   "schema": 1,
   "id": "duskguard",
   "revision": 1,
-  "status": "candidate-only; not advertised",
+  "status": "reviewed-source; production integration pending",
   "blenderVersion": "5.2.1",
   "items": {
     "duskguardCuirass": {
@@ -195,5 +195,12 @@
       "metallic": 0,
       "roughness": 0.95
     }
+  },
+  "review": {
+    "date": "2026-10-01",
+    "result": "docs/plans/character-mmo/results/layer-coverage-production-2026-10-01.md",
+    "motion": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/duskguard-coverage-motion-2026-10-01.mp4",
+    "scope": "Accepted M1 bodies on three races; Human neutral/slender/stout under native source motion with conservative coverage. Mixed-design catalogue and remote gates remain pending.",
+    "limitations": "Inherited coat surface marks remain; steel thigh reflection is confirmed with native body/tassets hiding. M5 identity and physical phone fit are not accepted."
   }
 }

@@ -171,6 +171,100 @@
         "bind": 1,
         "shape": 1
       }
+    },
+    "lectorCoat": {
+      "url": "/ashen-reach/equipment/lectorCoat-aa01a6300d3d.glb",
+      "bytes": 361368,
+      "sha256": "aa01a6300d3d8e73efd4eaf1e6832c67a75d6aa9c400aa48946fc7bc2b2101e3",
+      "meshes": [
+        "LectorCoat"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "duskguardCuirass": {
+      "url": "/ashen-reach/equipment/duskguardCuirass-064de522c22b.glb",
+      "bytes": 296596,
+      "sha256": "064de522c22b31601c63f02708ec8b139bedd11c410b5718e35ada649a893832",
+      "meshes": [
+        "DuskguardCuirass",
+        "DuskguardGussets",
+        "DuskguardUndercoat"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "duskguardTassets": {
+      "url": "/ashen-reach/equipment/duskguardTassets-coverage-e813d3927fc0.glb",
+      "bytes": 155844,
+      "sha256": "e813d3927fc0643bf3c0d2f4e09f931a2ab9b21f4b20c948de4ae10de039beff",
+      "meshes": [
+        "DuskguardTrousers",
+        "DuskguardTrouserCuffs",
+        "DuskguardTassets",
+        "DuskguardTrousersUnderTorso"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "coverageRevision": "conservative-geosets-v1",
+      "coverageSource": {
+        "url": "/ashen-reach/equipment/duskguardTassets-bd6b56f08764.glb",
+        "bytes": 155136,
+        "sha256": "bd6b56f087649dd0b27343817f64f24bdc06e77c13d1374b2330486a6c9bd65d",
+        "meshes": [
+          "DuskguardTassets",
+          "DuskguardTrouserCuffs",
+          "DuskguardTrousers"
+        ],
+        "fit": {
+          "body": "ashen-human",
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        }
+      }
+    },
+    "duskguardGreaves": {
+      "url": "/ashen-reach/equipment/duskguardGreaves-ebcd55139ab6.glb",
+      "bytes": 249624,
+      "sha256": "ebcd55139ab62ddb4e4c378f0565079df6cba2e8b52e66a385dc234405b9fdda",
+      "meshes": [
+        "DuskguardBootUnderlayer",
+        "DuskguardGreaves"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "duskguardVambraces": {
+      "url": "/ashen-reach/equipment/duskguardVambraces-d5d57dde6128.glb",
+      "bytes": 182164,
+      "sha256": "d5d57dde612831a70ec72eb50273276612ebc2ba177a847ccd3ab7405d1024eb",
+      "meshes": [
+        "DuskguardGloveUnderlayer",
+        "DuskguardVambraces"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
     }
   },
   "bindSha256": "96bc48fe1c85ecfa78f169cbc0a637a71a8fcb1a8812f4a41b015a621b5522af",
@@ -213,12 +307,26 @@
       ],
       "graveweaverTop": [
         "trousers.upper"
+      ],
+      "lectorCoat": [
+        "trousers.upper"
+      ],
+      "duskguardCuirass": [
+        "trousers.upper"
       ]
     },
     "partsByItem": {
       "wayfarerTrousers": [
         {
           "mesh": "WayfarerTrousersUnderTorso",
+          "hideWhenRegions": [
+            "trousers.upper"
+          ]
+        }
+      ],
+      "duskguardTassets": [
+        {
+          "mesh": "DuskguardTrousersUnderTorso",
           "hideWhenRegions": [
             "trousers.upper"
           ]

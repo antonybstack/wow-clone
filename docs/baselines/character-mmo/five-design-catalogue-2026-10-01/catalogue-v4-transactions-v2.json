@@ -1,0 +1,2817 @@
+{
+  "url": "http://127.0.0.1:5774/?play&clean&pixelRatio=1",
+  "conditions": "Functional transaction/resource checks; concurrent encoding/source reproduction affected timing; no frame-time acceptance",
+  "rows": [
+    {
+      "case": "default-skips-optional",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v4",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1,
+          "build": 0
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "shape": null,
+      "equipment": {
+        "helmet": null,
+        "torso": "wayfarerTunic",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "ironSword",
+        "offHand": null
+      },
+      "meshes": 138,
+      "parts": [
+        {
+          "name": "HumanTorsoCore",
+          "visible": false
+        },
+        {
+          "name": "WayfarerTrousersUnderTorso",
+          "visible": false
+        }
+      ],
+      "gpuErrors": [],
+      "physics": {
+        "facing": 0,
+        "grounded": true,
+        "vy": 0,
+        "support": 2,
+        "speed": 0,
+        "vx": 0,
+        "vz": 0,
+        "castBlend": 0,
+        "jumps": 0,
+        "landings": 1,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": -0.0005133988051618624,
+          "y": 0.8881060191951967,
+          "z": -0.000905997834485071
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 1.748,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": -0.14615683190069262,
+              "y": 1.5387320900730599,
+              "z": 16.269571294931513
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -5.1581662673670605,
+              "y": 1.7108461986799397,
+              "z": 28.081268262462107
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": 6.653731314425515,
+              "y": 1.6132686148594724,
+              "z": 47.729113344906615
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": -0.59778094937989,
+              "y": 2.5566351151252316,
+              "z": 64.09056575201696
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": -1.9545983324583278,
+              "y": 4.5816517990268775,
+              "z": 86.26977198591739
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": -0.9964365210412033,
+              "y": 6.167498305408417,
+              "z": 106.17209930047069
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": 2.8505740994475577,
+              "y": 9.851254436365574,
+              "z": 125.89127677027524
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case": "corrupt-new-plate-preserves-appearance",
+      "result": {
+        "status": "failed",
+        "error": "Failed to fetch"
+      },
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v4",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0,
+          0.95
+        ],
+        "heightScale": 1,
+        "applied": true,
+        "live": true
+      },
+      "equipment": {
+        "helmet": null,
+        "torso": "wayfarerTunic",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "ironSword",
+        "offHand": null
+      },
+      "meshes": 138,
+      "parts": [
+        {
+          "name": "HumanTorsoCore",
+          "visible": true
+        },
+        {
+          "name": "WayfarerTrousersUnderTorso",
+          "visible": true
+        }
+      ],
+      "gpuErrors": [],
+      "physics": {
+        "facing": 0,
+        "grounded": true,
+        "vy": 0,
+        "support": 2,
+        "speed": 0,
+        "vx": 0,
+        "vz": 0,
+        "castBlend": 0,
+        "jumps": 0,
+        "landings": 1,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": -0.0005133988051618624,
+          "y": 0.8881060191951967,
+          "z": -0.000905997834485071
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 1.748,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": -0.14615683190069262,
+              "y": 1.5387320900730599,
+              "z": 16.269571294931513
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -5.023454222419422,
+              "y": 1.6909191804775832,
+              "z": 27.972828513117975
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": 6.653731314425515,
+              "y": 1.6132686148594724,
+              "z": 47.729113344906615
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": -0.732479285935657,
+              "y": 2.5617847797889253,
+              "z": 64.19902252875731
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": -1.9545983324583278,
+              "y": 4.5816517990268775,
+              "z": 86.26977198591739
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": -0.8452690138200055,
+              "y": 6.185338295124756,
+              "z": 106.25609274695509
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": 2.761934350486647,
+              "y": 9.808947973839777,
+              "z": 126.03976754169199
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case": "latest-new-design-wins",
+      "results": [
+        "applied",
+        "applied"
+      ],
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v4",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "duskguardTassets",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        }
+      },
+      "shape": {
+        "weights": [
+          0,
+          0.95
+        ],
+        "heightScale": 1,
+        "applied": true,
+        "live": true
+      },
+      "equipment": {
+        "helmet": null,
+        "torso": "duskguardCuirass",
+        "legs": "duskguardTassets",
+        "boots": "duskguardGreaves",
+        "gloves": "duskguardVambraces",
+        "mainHand": "ironSword",
+        "offHand": null,
+        "shoulders": "wardenPauldrons"
+      },
+      "meshes": 155,
+      "parts": [
+        {
+          "name": "HumanTorsoCore",
+          "visible": false
+        },
+        {
+          "name": "DuskguardTrousersUnderTorso",
+          "visible": false
+        }
+      ],
+      "gpuErrors": [],
+      "physics": {
+        "facing": 0,
+        "grounded": true,
+        "vy": 0,
+        "support": 2,
+        "speed": 0,
+        "vx": 0,
+        "vz": 0,
+        "castBlend": 0,
+        "jumps": 0,
+        "landings": 1,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": -0.0005133988051618624,
+          "y": 0.8881060191951967,
+          "z": -0.000905997834485071
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 1.748,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": -0.14615683190069262,
+              "y": 1.5387320900730599,
+              "z": 16.269571294931513
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -4.923975515807287,
+              "y": 1.6765333482914921,
+              "z": 27.89867299382369
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": 6.653731314425515,
+              "y": 1.6132686148594724,
+              "z": 47.729113344906615
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": -0.8781133186611911,
+              "y": 2.567410098884547,
+              "z": 64.31628453938782
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": -1.9545983324583278,
+              "y": 4.5816517990268775,
+              "z": 86.26977198591739
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": -0.6818287349226166,
+              "y": 6.20474527500047,
+              "z": 106.34690533341168
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": 2.666098244183941,
+              "y": 9.763171630743948,
+              "z": 126.20031376978137
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case": "new-design-save-reload",
+      "race": "human",
+      "preset": "lector",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v4",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "lectorCoat",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0,
+          0.95
+        ],
+        "heightScale": 1,
+        "installWriters": true,
+        "assetURL": null,
+        "garmentManifestURL": null,
+        "applied": true
+      },
+      "equipment": {
+        "helmet": null,
+        "torso": "lectorCoat",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": null
+      },
+      "meshes": 144,
+      "parts": [
+        {
+          "name": "HumanTorsoCore",
+          "visible": false
+        },
+        {
+          "name": "WayfarerTrousersUnderTorso",
+          "visible": false
+        }
+      ],
+      "gpuErrors": [],
+      "physics": {
+        "facing": 0,
+        "grounded": true,
+        "vy": 0,
+        "support": 2,
+        "speed": 0,
+        "vx": 0,
+        "vz": 0,
+        "castBlend": 0,
+        "jumps": 0,
+        "landings": 1,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": -0.0003387757764878452,
+          "y": 0.8881537021746121,
+          "z": -0.0005978395672458982
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 1.748,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": -0.14603951572930782,
+              "y": 1.538729639706853,
+              "z": 16.26963809224559
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -5.501832103524355,
+              "y": 1.7621802299625262,
+              "z": 28.358486420595717
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": 6.654337927353437,
+              "y": 1.6132493763077718,
+              "z": 47.729916760287054
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": -0.2482022455561272,
+              "y": 2.5434858661385413,
+              "z": 63.80980138071815
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": -1.954140640272614,
+              "y": 4.58168581601881,
+              "z": 86.26968249056063
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": -1.3703715687192775,
+              "y": 6.118826866223633,
+              "z": 105.97036040471966
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": 3.0133324321858996,
+              "y": 9.927377667502224,
+              "z": 125.6098634956567
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case": "new-design-save-reload",
+      "race": "human",
+      "preset": "duskguard",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v4",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "duskguardTassets",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        }
+      },
+      "shape": {
+        "weights": [
+          0,
+          0.95
+        ],
+        "heightScale": 1,
+        "installWriters": true,
+        "assetURL": null,
+        "garmentManifestURL": null,
+        "applied": true
+      },
+      "equipment": {
+        "helmet": null,
+        "torso": "duskguardCuirass",
+        "legs": "duskguardTassets",
+        "boots": "duskguardGreaves",
+        "gloves": "duskguardVambraces",
+        "mainHand": "ironSword",
+        "offHand": null,
+        "shoulders": "wardenPauldrons"
+      },
+      "meshes": 149,
+      "parts": [
+        {
+          "name": "HumanTorsoCore",
+          "visible": false
+        },
+        {
+          "name": "DuskguardTrousersUnderTorso",
+          "visible": false
+        }
+      ],
+      "gpuErrors": [],
+      "physics": {
+        "facing": 0,
+        "grounded": true,
+        "vy": 0,
+        "support": 2,
+        "speed": 0,
+        "vx": 0,
+        "vz": 0,
+        "castBlend": 0,
+        "jumps": 0,
+        "landings": 1,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": -0.0002825666074241433,
+          "y": 0.8881690829185243,
+          "z": -0.0004986469218146226
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 1.748,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": -0.14252820236157837,
+              "y": 1.5386515410844015,
+              "z": 16.271530016527034
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -5.5571524600642555,
+              "y": 1.770459902694578,
+              "z": 28.40229309287598
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": 6.656409255385001,
+              "y": 1.613224850754708,
+              "z": 47.730807289645995
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": -0.18888049419795822,
+              "y": 2.541274693421615,
+              "z": 63.76202300734026
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": -1.9526728765070092,
+              "y": 4.581956743614012,
+              "z": 86.27064005291231
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": -1.441283697968187,
+              "y": 6.105744822175541,
+              "z": 105.93166640044753
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": 3.0142721995753847,
+              "y": 9.92790403578489,
+              "z": 125.61043806622688
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case": "new-piece-swap-plateau",
+      "race": "human",
+      "cycles": 12,
+      "meshCounts": [
+        150,
+        150,
+        150,
+        150,
+        150,
+        150,
+        150,
+        150,
+        150,
+        150,
+        150,
+        150
+      ],
+      "intervals": [
+        14.100000143051147,
+        8.5,
+        4.099999904632568,
+        4,
+        6.5,
+        30.100000143051147,
+        4.199999809265137,
+        1.7000000476837158,
+        1.7000000476837158,
+        9.200000047683716,
+        6.799999952316284,
+        4.200000047683716,
+        4.200000047683716,
+        6.799999952316284,
+        4.299999952316284,
+        3.5999999046325684,
+        6.900000095367432,
+        5.5,
+        31.90000009536743,
+        4,
+        1.8999998569488525,
+        1.4000000953674316,
+        15.899999856948853,
+        8,
+        2.9000000953674316,
+        4.200000047683716,
+        7.5,
+        8.899999856948853,
+        3.3000001907348633,
+        4.299999952316284,
+        4.5,
+        26.200000047683716,
+        3,
+        2.299999952316284,
+        2.8999998569488525,
+        19.600000143051147,
+        12,
+        4.599999904632568,
+        33.200000047683716,
+        3.700000047683716,
+        2.799999952316284,
+        3.0999999046325684,
+        3.4000000953674316,
+        14.900000095367432,
+        3.8999998569488525,
+        4.5,
+        6.900000095367432,
+        3.5,
+        2.799999952316284,
+        5.099999904632568,
+        9.600000143051147,
+        4.599999904632568,
+        4,
+        5.6000001430511475,
+        6.799999952316284,
+        5.700000047683716,
+        32.39999985694885,
+        3.5,
+        1.6000001430511475,
+        1.2999999523162842,
+        9.799999952316284,
+        7.900000095367432,
+        4.3999998569488525,
+        3.5,
+        29.700000047683716,
+        3.299999952316284,
+        1.7000000476837158,
+        1.2999999523162842,
+        14.299999952316284,
+        5.700000047683716,
+        4.200000047683716,
+        4,
+        6.5,
+        33.40000009536743,
+        3.5999999046325684,
+        1.4000000953674316,
+        1.1999998092651367,
+        17.700000047683716,
+        3.9000000953674316,
+        2.5999999046325684,
+        6.400000095367432,
+        4.299999952316284,
+        4.900000095367432,
+        4.299999952316284,
+        7.5,
+        4.299999952316284,
+        5.200000047683716,
+        6.5,
+        33.59999990463257,
+        3.5,
+        2,
+        1.4000000953674316,
+        11.299999952316284,
+        6.299999952316284,
+        5.299999952316284,
+        4.300000190734863,
+        27,
+        2.5999999046325684,
+        2.4000000953674316,
+        2.1999998092651367,
+        15.5,
+        4.1000001430511475,
+        30.399999856948853,
+        3.8000001907348633,
+        4.8999998569488525,
+        2.1000001430511475,
+        19.09999990463257,
+        4,
+        4.599999904632568,
+        5.700000047683716,
+        5.6000001430511475,
+        2.8999998569488525,
+        8.400000095367432,
+        4.299999952316284,
+        10.900000095367432,
+        3.6999998092651367,
+        4,
+        11.200000047683716,
+        3.5,
+        3.5,
+        11.200000047683716,
+        10.700000047683716,
+        2.700000047683716,
+        5.299999952316284,
+        32.39999985694885,
+        2.9000000953674316,
+        2.700000047683716,
+        2.299999952316284,
+        37,
+        3.5,
+        1.7999999523162842,
+        4,
+        11.5,
+        7.200000047683716,
+        2.799999952316284,
+        8,
+        4.1000001430511475,
+        30.299999952316284,
+        3.799999952316284,
+        1.7000000476837158,
+        2.200000047683716,
+        15.5,
+        3.5999999046325684,
+        2.799999952316284,
+        7.799999952316284,
+        3.700000047683716,
+        4.200000047683716,
+        3.799999952316284,
+        5.6000001430511475,
+        7.199999809265137,
+        5.1000001430511475,
+        6.799999952316284,
+        34.799999952316284,
+        3.5,
+        1.5,
+        1.2999999523162842,
+        12,
+        7.200000047683716,
+        4.1000001430511475,
+        22.699999809265137,
+        3.3000001907348633,
+        1.8999998569488525,
+        1.7000000476837158,
+        13.099999904632568,
+        5.6000001430511475,
+        11,
+        3.299999952316284,
+        4.400000095367432,
+        3.799999952316284,
+        27.299999952316284,
+        4,
+        1.7999999523162842,
+        1.7999999523162842,
+        18.700000047683716,
+        4,
+        6.400000095367432,
+        3.5999999046325684,
+        5.400000095367432,
+        4.3999998569488525,
+        4.800000190734863,
+        7.099999904632568,
+        6.799999952316284,
+        5.200000047683716,
+        7.200000047683716,
+        32.39999985694885,
+        2.8000001907348633,
+        2.1999998092651367,
+        2,
+        34.90000009536743,
+        3.299999952316284,
+        1.6000001430511475,
+        1.5,
+        8.5,
+        6.199999809265137,
+        3.4000000953674316,
+        5.5,
+        4.700000047683716,
+        5.299999952316284,
+        6.799999952316284,
+        7.900000095367432,
+        3.700000047683716,
+        5.3999998569488525,
+        29.5,
+        5.200000047683716,
+        2.5999999046325684,
+        2,
+        17.100000143051147,
+        4.5,
+        9.599999904632568,
+        3.299999952316284,
+        4.200000047683716,
+        6.6000001430511475,
+        11.099999904632568,
+        3.9000000953674316,
+        4.199999809265137,
+        5.300000190734863,
+        33.09999990463257,
+        2.9000000953674316,
+        2.299999952316284,
+        2.0999999046325684,
+        19.200000047683716,
+        4.099999904632568,
+        4.300000190734863,
+        6.299999952316284,
+        10.399999856948853,
+        3,
+        4.5,
+        22.90000009536743,
+        4.099999904632568,
+        2.1000001430511475,
+        2.5,
+        24.5,
+        4.299999952316284,
+        9.400000095367432,
+        2.5,
+        13.799999952316284,
+        3.700000047683716,
+        5.299999952316284,
+        4.799999952316284,
+        32.299999952316284,
+        3.200000047683716,
+        2.5,
+        1.9000000953674316,
+        17.799999952316284,
+        4.3999998569488525,
+        9.700000047683716,
+        3.700000047683716,
+        4.799999952316284,
+        6.700000047683716,
+        7,
+        3.799999952316284,
+        6.1000001430511475,
+        6.199999809265137,
+        30.600000143051147,
+        3.799999952316284,
+        1.7999999523162842,
+        1.6000001430511475,
+        13.899999856948853,
+        7.299999952316284,
+        4.200000047683716,
+        23.90000009536743,
+        3.3999998569488525,
+        2.200000047683716,
+        2,
+        11.600000143051147,
+        6.8999998569488525,
+        32.799999952316284,
+        4,
+        3,
+        1.7000000476837158,
+        18.40000009536743,
+        3.8999998569488525,
+        3.700000047683716,
+        5.1000001430511475,
+        4.5,
+        4.099999904632568,
+        5.299999952316284,
+        4.299999952316284,
+        7.200000047683716,
+        4.799999952316284,
+        6.900000095367432,
+        32,
+        3.799999952316284,
+        5.1000001430511475,
+        1.6999998092651367,
+        9.300000190734863,
+        8.199999809265137,
+        4,
+        3.3000001907348633,
+        24.899999856948853,
+        3.4000000953674316,
+        1.5999999046325684,
+        1.4000000953674316,
+        20.799999952316284,
+        6.299999952316284,
+        5,
+        28.5,
+        5.200000047683716,
+        2.4000000953674316,
+        2.1999998092651367,
+        15.900000095367432,
+        7.599999904632568,
+        5.800000190734863,
+        7.799999952316284,
+        5.200000047683716,
+        7.099999904632568,
+        11.099999904632568,
+        5.800000190734863,
+        38.299999952316284,
+        4.200000047683716,
+        8,
+        2.1999998092651367,
+        4.5,
+        6.700000047683716,
+        3,
+        3.6000001430511475,
+        5.099999904632568,
+        16.09999990463257,
+        3.5,
+        3.6000001430511475,
+        10,
+        5.8999998569488525,
+        9.200000047683716,
+        4.1000001430511475,
+        22.799999952316284,
+        3,
+        5,
+        3.5999999046325684,
+        21.700000047683716,
+        3.799999952316284,
+        5.400000095367432,
+        5.299999952316284,
+        30.200000047683716,
+        3,
+        2.299999952316284,
+        2.5999999046325684,
+        21.90000009536743,
+        4.700000047683716,
+        6.299999952316284,
+        5.799999952316284,
+        4.799999952316284,
+        7.1000001430511475,
+        6,
+        5.599999904632568,
+        33.299999952316284,
+        3.700000047683716,
+        2.299999952316284,
+        2.700000047683716,
+        12.900000095367432,
+        6.700000047683716,
+        22.09999990463257,
+        3,
+        2.5999999046325684,
+        4.200000047683716,
+        15.400000095367432,
+        32.200000047683716,
+        3.6999998092651367,
+        2.8000001907348633,
+        1.5999999046325684,
+        19,
+        3.5,
+        2.5,
+        5.599999904632568,
+        4.700000047683716,
+        5.200000047683716,
+        5,
+        4.5,
+        6.200000047683716,
+        5.8999998569488525,
+        6.800000190734863,
+        31.299999952316284,
+        6.3999998569488525,
+        2.1000001430511475,
+        1.3999998569488525,
+        12,
+        6.6000001430511475,
+        4.700000047683716,
+        4.199999809265137,
+        24,
+        3,
+        2.3000001907348633,
+        2,
+        18.899999856948853,
+        5.400000095367432,
+        28.09999990463257,
+        3.700000047683716,
+        3.0999999046325684,
+        1.5
+      ]
+    },
+    {
+      "case": "new-design-save-reload",
+      "race": "orc",
+      "preset": "lector",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v4",
+        "race": "orc",
+        "fitFamily": "ashen-orc",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {},
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "lectorCoat",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        }
+      },
+      "shape": null,
+      "equipment": {
+        "helmet": null,
+        "torso": "lectorCoat",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": null
+      },
+      "meshes": 154,
+      "parts": [
+        {
+          "name": "HumanTorsoCore",
+          "visible": false
+        },
+        {
+          "name": "WayfarerTrousersUnderTorso",
+          "visible": false
+        }
+      ],
+      "gpuErrors": [],
+      "physics": {
+        "facing": 0,
+        "grounded": true,
+        "vy": 0,
+        "support": 2,
+        "speed": 0,
+        "vx": 0,
+        "vz": 0,
+        "castBlend": 0,
+        "jumps": 0,
+        "landings": 1,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": -0.00031811141821881244,
+          "y": 0.8881593705724324,
+          "z": -0.0005613730549909828
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 1.748,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": -0.1445717413227388,
+              "y": 1.5387040959856861,
+              "z": 16.270595962966606
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -5.520867314188963,
+              "y": 1.7650192443916168,
+              "z": 28.37337896463466
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": 6.651588020708467,
+              "y": 1.6132907186100955,
+              "z": 47.728336124758776
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": -0.2288369199373454,
+              "y": 2.5427590299847753,
+              "z": 63.794006829884765
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": -1.9590504671029962,
+              "y": 4.580866327754224,
+              "z": 86.26709922939442
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": -1.3834896211408996,
+              "y": 6.116462969218824,
+              "z": 105.96177482931267
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": 3.0150975359571643,
+              "y": 9.928362234882355,
+              "z": 125.61085491596087
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case": "new-design-save-reload",
+      "race": "orc",
+      "preset": "duskguard",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v4",
+        "race": "orc",
+        "fitFamily": "ashen-orc",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {},
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "duskguardTassets",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        }
+      },
+      "shape": null,
+      "equipment": {
+        "helmet": null,
+        "torso": "duskguardCuirass",
+        "legs": "duskguardTassets",
+        "boots": "duskguardGreaves",
+        "gloves": "duskguardVambraces",
+        "mainHand": "ironSword",
+        "offHand": null,
+        "shoulders": "wardenPauldrons"
+      },
+      "meshes": 159,
+      "parts": [
+        {
+          "name": "HumanTorsoCore",
+          "visible": false
+        },
+        {
+          "name": "DuskguardTrousersUnderTorso",
+          "visible": false
+        }
+      ],
+      "gpuErrors": [],
+      "physics": {
+        "facing": 0,
+        "grounded": true,
+        "vy": 0,
+        "support": 2,
+        "speed": 0,
+        "vx": 0,
+        "vz": 0,
+        "castBlend": 0,
+        "jumps": 0,
+        "landings": 1,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": -0.0003425110558088838,
+          "y": 0.8881526905561274,
+          "z": -0.0006044312363034328
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 1.748,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": -0.15448131394497194,
+              "y": 1.5389148477308852,
+              "z": 16.265070719738066
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -5.565048735393569,
+              "y": 1.771628846554405,
+              "z": 28.40825004781001
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": 6.655739180809423,
+              "y": 1.613239270410931,
+              "z": 47.73022778216674
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": -0.17945909793251488,
+              "y": 2.5409467202060196,
+              "z": 63.75549199142502
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": -1.9572569993783977,
+              "y": 4.581149142561763,
+              "z": 86.2679240348034
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": -1.4248973768257929,
+              "y": 6.108960308596652,
+              "z": 105.94245840473661
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": 3.0145279273030154,
+              "y": 9.928033732172764,
+              "z": 125.61027902869485
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case": "new-piece-swap-plateau",
+      "race": "orc",
+      "cycles": 12,
+      "meshCounts": [
+        161,
+        161,
+        161,
+        161,
+        161,
+        161,
+        161,
+        161,
+        161,
+        161,
+        161,
+        161
+      ],
+      "intervals": [
+        11.599999904632568,
+        3,
+        4.400000095367432,
+        8.900000095367432,
+        12,
+        7.099999904632568,
+        3.200000047683716,
+        6.599999904632568,
+        5.200000047683716,
+        5.400000095367432,
+        5.299999952316284,
+        8,
+        4.700000047683716,
+        4.199999809265137,
+        10.300000190734863,
+        5.3999998569488525,
+        6,
+        4.299999952316284,
+        9.400000095367432,
+        7.700000047683716,
+        5.099999904632568,
+        7.6000001430511475,
+        7.5,
+        5.199999809265137,
+        6.6000001430511475,
+        5.5,
+        6.799999952316284,
+        7.599999904632568,
+        6.6000001430511475,
+        5.8999998569488525,
+        5.900000095367432,
+        8.799999952316284,
+        6.6000001430511475,
+        4.5,
+        6,
+        6.799999952316284,
+        6.099999904632568,
+        6.700000047683716,
+        6.700000047683716,
+        6,
+        7.700000047683716,
+        8.299999952316284,
+        5.3999998569488525,
+        5.6000001430511475,
+        8.200000047683716,
+        6.699999809265137,
+        5.900000095367432,
+        6.400000095367432,
+        4.5,
+        8.5,
+        5.299999952316284,
+        6.700000047683716,
+        4,
+        7.099999904632568,
+        7.400000095367432,
+        7.099999904632568,
+        6.099999904632568,
+        7.6000001430511475,
+        5.099999904632568,
+        4.799999952316284,
+        6.300000190734863,
+        5.8999998569488525,
+        6.200000047683716,
+        6.900000095367432,
+        6.299999952316284,
+        5.8999998569488525,
+        5.5,
+        7.800000190734863,
+        4.699999809265137,
+        8.200000047683716,
+        6.1000001430511475,
+        5,
+        9.399999856948853,
+        4.200000047683716,
+        10.5,
+        4.599999904632568,
+        3.6000001430511475,
+        5.299999952316284,
+        7.599999904632568,
+        6.700000047683716,
+        5.400000095367432,
+        4.799999952316284,
+        7.099999904632568,
+        6.400000095367432,
+        6.799999952316284,
+        4.700000047683716,
+        7.700000047683716,
+        6.3999998569488525,
+        4.800000190734863,
+        7.5,
+        6.799999952316284,
+        6.700000047683716,
+        4.799999952316284,
+        5.599999904632568,
+        7.700000047683716,
+        6.099999904632568,
+        7.300000190734863,
+        5.5,
+        6.5,
+        5.799999952316284,
+        5.8999998569488525,
+        6.6000001430511475,
+        5.599999904632568,
+        6.900000095367432,
+        6.3999998569488525,
+        4.900000095367432,
+        7.900000095367432,
+        5.799999952316284,
+        6.099999904632568,
+        5.6000001430511475,
+        7.5,
+        7,
+        6.5,
+        4.799999952316284,
+        6.8999998569488525,
+        5.800000190734863,
+        5.3999998569488525,
+        7.299999952316284,
+        9,
+        4.400000095367432,
+        5.700000047683716,
+        5.299999952316284,
+        5.200000047683716,
+        7.299999952316284,
+        6,
+        5.599999904632568,
+        7.400000095367432,
+        5.299999952316284,
+        7.299999952316284,
+        5.900000095367432,
+        5,
+        8.099999904632568,
+        6.300000190734863,
+        5.699999809265137,
+        6,
+        6.700000047683716,
+        6.1000001430511475,
+        5.799999952316284,
+        6.3999998569488525,
+        5.400000095367432,
+        8.799999952316284,
+        4.200000047683716,
+        4.799999952316284,
+        6.799999952316284,
+        5.700000047683716,
+        6.799999952316284,
+        7.400000095367432,
+        6.299999952316284,
+        4.799999952316284,
+        6.200000047683716,
+        6.5,
+        5.5,
+        7,
+        7.299999952316284,
+        7.200000047683716,
+        5.6000001430511475,
+        5.599999904632568,
+        7.299999952316284,
+        5.299999952316284,
+        7,
+        6,
+        7.400000095367432,
+        6.5,
+        4.299999952316284,
+        7.900000095367432,
+        5,
+        5.799999952316284,
+        6.099999904632568,
+        7.5,
+        5.300000190734863,
+        5.8999998569488525,
+        6.400000095367432,
+        5.299999952316284,
+        7.099999904632568,
+        6.1000001430511475,
+        7.700000047683716,
+        5.5,
+        6.799999952316284,
+        6.5,
+        4.799999952316284,
+        7.099999904632568,
+        6.1000001430511475,
+        7.700000047683716,
+        4.799999952316284,
+        6.5,
+        8.899999856948853,
+        7.300000190734863,
+        6.3999998569488525,
+        4.400000095367432,
+        5.200000047683716,
+        7.199999809265137,
+        5.700000047683716,
+        6.6000001430511475,
+        7,
+        6.3999998569488525,
+        5.299999952316284,
+        4.700000047683716,
+        8.299999952316284,
+        5.400000095367432,
+        6.299999952316284,
+        6.400000095367432,
+        7.599999904632568,
+        6.200000047683716,
+        4.400000095367432,
+        6.5,
+        7,
+        5,
+        7.3999998569488525,
+        6.900000095367432,
+        8.599999904632568,
+        4.700000047683716,
+        5,
+        7.799999952316284,
+        6,
+        6,
+        5.200000047683716,
+        8,
+        5.200000047683716,
+        7.299999952316284,
+        5.599999904632568,
+        5,
+        7.200000047683716,
+        5.700000047683716,
+        5.5,
+        6.200000047683716,
+        7.099999904632568,
+        7.700000047683716,
+        5.700000047683716,
+        4.599999904632568,
+        6.299999952316284,
+        7.700000047683716,
+        4.6000001430511475,
+        7.799999952316284,
+        6,
+        5.700000047683716,
+        7.199999809265137,
+        5.800000190734863,
+        5.799999952316284,
+        6.700000047683716,
+        6.799999952316284,
+        5,
+        8.200000047683716,
+        5.3999998569488525,
+        7.400000095367432,
+        8.599999904632568,
+        5.400000095367432,
+        4.700000047683716,
+        10,
+        4.199999809265137,
+        4.700000047683716,
+        4.6000001430511475,
+        9.899999856948853,
+        5.1000001430511475,
+        3.6999998092651367,
+        8.300000190734863,
+        10.299999952316284,
+        5.8999998569488525,
+        6.300000190734863,
+        5.8999998569488525,
+        7.6000001430511475,
+        5.599999904632568,
+        5.700000047683716,
+        7.5,
+        6.5,
+        6.200000047683716,
+        5.8999998569488525,
+        6.400000095367432,
+        5,
+        5,
+        7.700000047683716,
+        5.299999952316284,
+        6.099999904632568,
+        6.900000095367432,
+        6.5,
+        5.700000047683716,
+        5.3999998569488525,
+        8.299999952316284,
+        6.5,
+        5,
+        7,
+        6,
+        4.700000047683716,
+        7.700000047683716,
+        7.200000047683716,
+        5.700000047683716,
+        5.5,
+        7.5,
+        5.3999998569488525,
+        6.700000047683716,
+        4.900000095367432,
+        6.5,
+        5.799999952316284,
+        5.200000047683716,
+        7.8999998569488525,
+        5.400000095367432,
+        6.099999904632568,
+        6.900000095367432,
+        6.700000047683716,
+        4.599999904632568,
+        4.400000095367432,
+        8.799999952316284,
+        6.299999952316284,
+        5.099999904632568,
+        7
+      ]
+    },
+    {
+      "case": "new-design-save-reload",
+      "race": "undead",
+      "preset": "lector",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v4",
+        "race": "undead",
+        "fitFamily": "ashen-undead",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {},
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "lectorCoat",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        }
+      },
+      "shape": null,
+      "equipment": {
+        "helmet": null,
+        "torso": "lectorCoat",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": null
+      },
+      "meshes": 147,
+      "parts": [
+        {
+          "name": "HumanTorsoCore",
+          "visible": false
+        },
+        {
+          "name": "UndeadTorsoCore",
+          "visible": false
+        },
+        {
+          "name": "WayfarerTrousersUnderTorso",
+          "visible": false
+        }
+      ],
+      "gpuErrors": [],
+      "physics": {
+        "facing": 0,
+        "grounded": true,
+        "vy": 0,
+        "support": 2,
+        "speed": 0,
+        "vx": 0,
+        "vz": 0,
+        "castBlend": 0,
+        "jumps": 0,
+        "landings": 1,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": -0.0003833135117033653,
+          "y": 0.8881415493140818,
+          "z": -0.0006764355656695526
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 1.748,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": -0.15485681755331696,
+              "y": 1.53891938877522,
+              "z": 16.264782031226602
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -5.421184293825395,
+              "y": 1.7500774830460193,
+              "z": 28.293401357196636
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": 6.663142028353088,
+              "y": 1.6131205197611471,
+              "z": 47.734793498047175
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": -0.3252154929473338,
+              "y": 2.546369906089481,
+              "z": 63.87200893809791
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": -1.9545521267436006,
+              "y": 4.581679531836857,
+              "z": 86.2699504958334
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": -1.29020146171504,
+              "y": 6.131786973837517,
+              "z": 106.01388872678372
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": 3.0159186914545355,
+              "y": 9.928866272695258,
+              "z": 125.6124073042876
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case": "new-design-save-reload",
+      "race": "undead",
+      "preset": "duskguard",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v4",
+        "race": "undead",
+        "fitFamily": "ashen-undead",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {},
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "duskguardTassets",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        }
+      },
+      "shape": null,
+      "equipment": {
+        "helmet": null,
+        "torso": "duskguardCuirass",
+        "legs": "duskguardTassets",
+        "boots": "duskguardGreaves",
+        "gloves": "duskguardVambraces",
+        "mainHand": "ironSword",
+        "offHand": null,
+        "shoulders": "wardenPauldrons"
+      },
+      "meshes": 152,
+      "parts": [
+        {
+          "name": "HumanTorsoCore",
+          "visible": false
+        },
+        {
+          "name": "UndeadTorsoCore",
+          "visible": false
+        },
+        {
+          "name": "DuskguardTrousersUnderTorso",
+          "visible": false
+        }
+      ],
+      "gpuErrors": [],
+      "physics": {
+        "facing": 0,
+        "grounded": true,
+        "vy": 0,
+        "support": 2,
+        "speed": 0,
+        "vx": 0,
+        "vz": 0,
+        "castBlend": 0,
+        "jumps": 0,
+        "landings": 1,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": -0.00029510517240645065,
+          "y": 0.8881656304647988,
+          "z": -0.0005207738001822864
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 1.748,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": -0.14541268567781435,
+              "y": 1.538728770508554,
+              "z": 16.2702845919008
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -5.588711000282967,
+              "y": 1.7751939763030427,
+              "z": 28.427390869003872
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": 6.652641537265886,
+              "y": 1.6132804650735975,
+              "z": 47.728690947680384
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": -0.1596698139412829,
+              "y": 2.5402053620802616,
+              "z": 63.739315569724155
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": -1.9535854630791638,
+              "y": 4.581839509762909,
+              "z": 86.27044067425543
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": -1.4554415389188675,
+              "y": 6.103016060073957,
+              "z": 105.92532604388889
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": 3.014943891079769,
+              "y": 9.928277386732894,
+              "z": 125.61078733682659
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case": "new-piece-swap-plateau",
+      "race": "undead",
+      "cycles": 12,
+      "meshCounts": [
+        154,
+        154,
+        154,
+        154,
+        154,
+        154,
+        154,
+        154,
+        154,
+        154,
+        154,
+        154
+      ],
+      "intervals": [
+        10.600000143051147,
+        3,
+        2.799999952316284,
+        8.899999856948853,
+        11.900000095367432,
+        4.900000095367432,
+        2.5999999046325684,
+        12.099999904632568,
+        4.1000001430511475,
+        4.099999904632568,
+        3.4000000953674316,
+        5.799999952316284,
+        6.099999904632568,
+        5.6000001430511475,
+        6.5,
+        6.099999904632568,
+        6,
+        6.299999952316284,
+        6,
+        13.5,
+        4.800000190734863,
+        3,
+        3.799999952316284,
+        11.099999904632568,
+        3.799999952316284,
+        3.9000000953674316,
+        5,
+        11.400000095367432,
+        4,
+        3.3999998569488525,
+        5.400000095367432,
+        12.899999856948853,
+        4.200000047683716,
+        3,
+        6.1000001430511475,
+        4.3999998569488525,
+        3.299999952316284,
+        7.1000001430511475,
+        5.700000047683716,
+        5.5,
+        7.699999809265137,
+        6,
+        5.1000001430511475,
+        7.700000047683716,
+        9.099999904632568,
+        4.099999904632568,
+        6.6000001430511475,
+        8.299999952316284,
+        6,
+        6.400000095367432,
+        5.699999809265137,
+        7.900000095367432,
+        5.099999904632568,
+        6,
+        6.5,
+        5.6000001430511475,
+        7.5,
+        5.8999998569488525,
+        5.5,
+        5.800000190734863,
+        4.799999952316284,
+        8.099999904632568,
+        5.5,
+        5.299999952316284,
+        8,
+        6.5,
+        6.200000047683716,
+        5.799999952316284,
+        5.300000190734863,
+        6.8999998569488525,
+        6.1000001430511475,
+        5.599999904632568,
+        7.299999952316284,
+        4.799999952316284,
+        7,
+        5.400000095367432,
+        8.200000047683716,
+        5.3999998569488525,
+        7.1000001430511475,
+        6.8999998569488525,
+        4.200000047683716,
+        7,
+        6.799999952316284,
+        4.1000001430511475,
+        8,
+        4.099999904632568,
+        6.200000047683716,
+        7.400000095367432,
+        5.699999809265137,
+        7.800000190734863,
+        5.299999952316284,
+        4.599999904632568,
+        7.6000001430511475,
+        6.799999952316284,
+        4.3999998569488525,
+        5.700000047683716,
+        6.299999952316284,
+        5.200000047683716,
+        6.799999952316284,
+        6,
+        6,
+        6.300000190734863,
+        6.3999998569488525,
+        7.799999952316284,
+        5.900000095367432,
+        4.700000047683716,
+        7.599999904632568,
+        6.299999952316284,
+        5.400000095367432,
+        7.599999904632568,
+        5.800000190734863,
+        6.099999904632568,
+        5.700000047683716,
+        7.799999952316284,
+        5.5,
+        5,
+        6.900000095367432,
+        8,
+        4.199999809265137,
+        7.1000001430511475,
+        6.299999952316284,
+        3.9000000953674316,
+        8.299999952316284,
+        7.200000047683716,
+        4.8999998569488525,
+        7.400000095367432,
+        6.5,
+        5.200000047683716,
+        7.3999998569488525,
+        7.1000001430511475,
+        5.5,
+        4,
+        8.599999904632568,
+        6.099999904632568,
+        4.800000190734863,
+        7.8999998569488525,
+        6.299999952316284,
+        6.800000190734863,
+        7.199999809265137,
+        4.6000001430511475,
+        6,
+        5.799999952316284,
+        6.5,
+        5.200000047683716,
+        4.799999952316284,
+        7.599999904632568,
+        6.200000047683716,
+        4.799999952316284,
+        5.900000095367432,
+        7.599999904632568,
+        7.300000190734863,
+        5.5,
+        4.8999998569488525,
+        7.700000047683716,
+        5.599999904632568,
+        5.6000001430511475,
+        7.099999904632568,
+        5.900000095367432,
+        7.099999904632568,
+        5.400000095367432,
+        9.899999856948853,
+        5,
+        6.900000095367432,
+        3.799999952316284,
+        4.299999952316284,
+        11,
+        4.200000047683716,
+        3.799999952316284,
+        8.300000190734863,
+        7.099999904632568,
+        5.700000047683716,
+        5.8999998569488525,
+        6.700000047683716,
+        6.400000095367432,
+        7.8999998569488525,
+        5,
+        6.300000190734863,
+        6.5,
+        5,
+        7.599999904632568,
+        6.599999904632568,
+        5.700000047683716,
+        4.299999952316284,
+        8.600000143051147,
+        4.799999952316284,
+        6.5,
+        7.299999952316284,
+        6,
+        7,
+        4.799999952316284,
+        6.6000001430511475,
+        5.8999998569488525,
+        7.1000001430511475,
+        5.799999952316284,
+        7.200000047683716,
+        5.8999998569488525,
+        5.800000190734863,
+        5.199999809265137,
+        7.6000001430511475,
+        7.200000047683716,
+        7.3999998569488525,
+        4.700000047683716,
+        5.599999904632568,
+        7.200000047683716,
+        4.400000095367432,
+        7.5,
+        6,
+        5.299999952316284,
+        6.200000047683716,
+        6.299999952316284,
+        8.099999904632568,
+        6.800000190734863,
+        5,
+        5,
+        5.8999998569488525,
+        7.299999952316284,
+        5.200000047683716,
+        6.5,
+        6.200000047683716,
+        3.9000000953674316,
+        7.8999998569488525,
+        5.400000095367432,
+        5.599999904632568,
+        7.5,
+        7.700000047683716,
+        5.799999952316284,
+        4.299999952316284,
+        8,
+        5.400000095367432,
+        5.299999952316284,
+        7,
+        6.5,
+        6.6000001430511475,
+        5.799999952316284,
+        6.700000047683716,
+        6.799999952316284,
+        4.599999904632568,
+        4.900000095367432,
+        7.799999952316284,
+        6.299999952316284,
+        5.400000095367432,
+        6.599999904632568,
+        5.700000047683716,
+        4.900000095367432,
+        8,
+        5.3999998569488525,
+        5.700000047683716,
+        7.200000047683716,
+        7.299999952316284,
+        4.299999952316284,
+        4.700000047683716,
+        8.400000095367432,
+        6.199999809265137,
+        5.900000095367432,
+        5.299999952316284,
+        7,
+        7.299999952316284,
+        4.900000095367432,
+        6.299999952316284,
+        6.900000095367432,
+        4.5,
+        8.399999856948853,
+        4.700000047683716,
+        5.900000095367432,
+        6.700000047683716,
+        6,
+        7.199999809265137,
+        4.700000047683716,
+        6.1000001430511475,
+        7.199999809265137,
+        6.400000095367432,
+        6,
+        7.5,
+        4.099999904632568,
+        7.300000190734863,
+        6.199999809265137,
+        5,
+        7,
+        6.800000190734863,
+        5,
+        6.599999904632568,
+        4.700000047683716,
+        7.799999952316284,
+        5.599999904632568,
+        5.1000001430511475,
+        7.599999904632568,
+        5.200000047683716,
+        6.400000095367432,
+        6.299999952316284,
+        4.700000047683716,
+        8.099999904632568,
+        5,
+        6.599999904632568
+      ]
+    },
+    {
+      "case": "saved-lector-compact-play-before-full",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v4",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "lectorCoat",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0.95,
+          0
+        ],
+        "heightScale": 0.9,
+        "installWriters": true,
+        "assetURL": null,
+        "garmentManifestURL": null,
+        "applied": true
+      },
+      "equipment": {
+        "helmet": null,
+        "torso": "lectorCoat",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": null
+      },
+      "meshes": 189,
+      "parts": [
+        {
+          "name": "HumanTorsoCore",
+          "visible": false
+        },
+        {
+          "name": "WayfarerTrousersUnderTorso",
+          "visible": false
+        }
+      ],
+      "gpuErrors": [],
+      "physics": {
+        "facing": 0,
+        "grounded": true,
+        "vy": 0,
+        "support": 2,
+        "speed": 0,
+        "vx": 0,
+        "vz": 0,
+        "castBlend": 0,
+        "jumps": 0,
+        "landings": 1,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": -0.0017339035822348061,
+          "y": 1.1056320466211806,
+          "z": 2.832339104355987
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 2,
+          "boxCount": 33,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 1.5732,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": 3.580394906355525,
+              "y": 1.324564865592879,
+              "z": 16
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -3.8894697155169853,
+              "y": 1.6477259811026683,
+              "z": 30
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": 2.928819246428747,
+              "y": 1.5673904652287836,
+              "z": 48
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": -1.652739280759643,
+              "y": 2.513678872972124,
+              "z": 62
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": 1.7720018013288021,
+              "y": 4.909179606556347,
+              "z": 86
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": -1.906665666750373,
+              "y": 6.13827632342876,
+              "z": 108
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": 1.0306760737604208,
+              "y": 8.924054821409728,
+              "z": 126
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case": "full-lector-refines-same-identity",
+      "heldResponses": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v4",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "lectorCoat",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        }
+      },
+      "shape": {
+        "weights": [
+          0.95,
+          0
+        ],
+        "heightScale": 0.9,
+        "installWriters": true,
+        "assetURL": null,
+        "garmentManifestURL": null,
+        "applied": true
+      },
+      "equipment": {
+        "helmet": null,
+        "torso": "lectorCoat",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": null
+      },
+      "meshes": 144,
+      "parts": [
+        {
+          "name": "HumanTorsoCore",
+          "visible": false
+        },
+        {
+          "name": "WayfarerTrousersUnderTorso",
+          "visible": false
+        }
+      ],
+      "gpuErrors": [],
+      "physics": {
+        "facing": 0,
+        "grounded": true,
+        "vy": 0,
+        "support": 2,
+        "speed": 0,
+        "vx": 0,
+        "vz": 0,
+        "castBlend": 0,
+        "jumps": 0,
+        "landings": 1,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": -0.0017339035822348061,
+          "y": 1.1056320466211806,
+          "z": 2.832339104355987
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 1.5732,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": -0.14216582849652223,
+              "y": 1.5386587905696523,
+              "z": 16.272089226927363
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -5.526013945502894,
+              "y": 1.7658176830751522,
+              "z": 28.378058304886757
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": 6.657736854125747,
+              "y": 1.6132039656232715,
+              "z": 47.731609219170934
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": -0.23081450967535053,
+              "y": 2.5428252771852384,
+              "z": 63.795260002126334
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": -1.9523697855206223,
+              "y": 4.5820392740288245,
+              "z": 86.27104194723061
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": -1.4266365052987628,
+              "y": 6.108536283685716,
+              "z": 105.93893248272677
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": 3.016321321385098,
+              "y": 9.929090704541169,
+              "z": 125.61263872438623
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

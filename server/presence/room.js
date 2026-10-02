@@ -10,6 +10,8 @@ import {
   validatePresenceAppearance,
   validateAppearanceRequest,
   PRESENCE_PROTOCOL,
+  PRESENCE_CATALOG,
+  matchesPresenceVersion,
   ROOM_LIMIT,
   TICK_RATE,
   PATCH_INTERVAL,
@@ -87,11 +89,8 @@ export class PresenceRoom extends Room {
     }
   }
   onAuth(client, options) {
-    assertFields(options, ["protocol", "collisionHash", "recipe"], "join");
-    if (
-      options.protocol !== PRESENCE_PROTOCOL ||
-      options.collisionHash !== COLLISION_RELEASE.collisionHash
-    )
+    assertFields(options, ["protocol", "catalogVersion", "collisionHash", "recipe"], "join");
+    if (!matchesPresenceVersion(options, COLLISION_RELEASE.collisionHash))
       throw new ServerError(
         4003,
         "Client and shared-region versions differ; reload before joining",
@@ -263,6 +262,7 @@ export class PresenceRoom extends Room {
       p = (q) => sorted[Math.max(0, Math.ceil(q * sorted.length) - 1)] ?? null;
     return {
       protocol: PRESENCE_PROTOCOL,
+      catalogVersion: PRESENCE_CATALOG,
       roomId: this.roomId,
       collisionHash: COLLISION_RELEASE.collisionHash,
       clients: this.clients.length,

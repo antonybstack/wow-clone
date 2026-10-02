@@ -19,6 +19,8 @@ import { REGION_ACTOR_RELEASE } from "../character/region-crowd/release.js";
 import { createRegionActor } from "../character/region-crowd/actor-state.js";
 import {
   PRESENCE_PROTOCOL,
+  PRESENCE_CATALOG,
+  matchesPresenceVersion,
   TICK_RATE,
   PHYSICS_SUBSTEPS,
   validatePresenceAppearance,
@@ -267,14 +269,12 @@ export async function joinPresence(
     });
     if (!response.ok) throw Error(`Shared region HTTP ${response.status}`);
     const discovery = await response.json();
-    if (
-      discovery.protocol !== PRESENCE_PROTOCOL ||
-      discovery.collisionHash !== COLLISION_RELEASE.collisionHash
-    )
+    if (!matchesPresenceVersion(discovery, COLLISION_RELEASE.collisionHash))
       throw Error("Shared-region version differs; reload before joining");
     const sdk = new Client(base.href);
     room = await sdk.joinById(discovery.roomId, {
       protocol: PRESENCE_PROTOCOL,
+      catalogVersion: PRESENCE_CATALOG,
       collisionHash: COLLISION_RELEASE.collisionHash,
       recipe: accepted,
     });

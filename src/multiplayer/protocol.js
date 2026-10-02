@@ -5,12 +5,21 @@
  */
 import { schema, t } from "@colyseus/schema";
 import {
+  APPEARANCE_CATALOG_VERSION,
   validateAppearance,
   assertFields,
 } from "../character/appearance/contract.js";
 import { appearanceFromEquipment } from "../character/appearance/from-equipment.js";
 
 export const PRESENCE_PROTOCOL = "ashen-presence-v1";
+// Appearance changes can preserve the movement protocol yet break older clients.
+// Reject incompatible seats before they can receive undecodable room state.
+// https://docs.colyseus.io/room/authentication
+export const PRESENCE_CATALOG = APPEARANCE_CATALOG_VERSION;
+export function matchesPresenceVersion(value, collisionHash) {
+  return value?.protocol === PRESENCE_PROTOCOL &&
+    value.catalogVersion === PRESENCE_CATALOG && value.collisionHash === collisionHash;
+}
 export const PRESENCE_ROOM = "ashen-reach";
 export const ROOM_LIMIT = 8;
 export const TICK_RATE = 30;
@@ -143,6 +152,7 @@ export const RegionState = schema(
   {
     players: t.map(Avatar),
     protocol: t.string().default(PRESENCE_PROTOCOL),
+    catalogVersion: t.string().default(PRESENCE_CATALOG),
     collisionHash: t.string().default(""),
     elapsed: t.float64().default(0),
   },

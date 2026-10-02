@@ -10,10 +10,11 @@
       "manifestName": "manifest-coverage-v1.json",
       "publicationManifest": "public/ashen-reach/equipment/manifest-coverage-v1.json",
       "sourceManifest": "public/ashen-reach/equipment/manifest.json",
-      "sourceManifestSha256": "0a6ae6cf2459d3f55aae8d475c0296cf591b17164c654f71ffb0fb5cde526cfe",
+      "sourceManifestSha256": "5d2ca7423e88c4f0f4cd5245eb0372d2571936c7256e52a5660290b9082738bd",
       "artifacts": [
         "body-coverage-0388c68822fa.glb",
-        "wayfarerTrousers-coverage-48d4f61d94cf.glb"
+        "wayfarerTrousers-coverage-48d4f61d94cf.glb",
+        "duskguardTassets-coverage-e813d3927fc0.glb"
       ],
       "rows": [
         {
@@ -116,6 +117,61 @@
             "framesExact": true,
             "sourceAnimationExact": true
           }
+        },
+        {
+          "race": "human",
+          "id": "duskguardTassets",
+          "detail": "full",
+          "source": {
+            "url": "/ashen-reach/equipment/duskguardTassets-bd6b56f08764.glb",
+            "bytes": 155136,
+            "sha256": "bd6b56f087649dd0b27343817f64f24bdc06e77c13d1374b2330486a6c9bd65d",
+            "meshes": [
+              "DuskguardTassets",
+              "DuskguardTrouserCuffs",
+              "DuskguardTrousers"
+            ],
+            "fit": {
+              "body": "ashen-human",
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            }
+          },
+          "output": {
+            "url": "/ashen-reach/equipment/duskguardTassets-coverage-e813d3927fc0.glb",
+            "sha256": "e813d3927fc0643bf3c0d2f4e09f931a2ab9b21f4b20c948de4ae10de039beff",
+            "bytes": 155844
+          },
+          "partition": {
+            "source": "DuskguardTrousers",
+            "covered": "DuskguardTrousersUnderTorso",
+            "originalTriangles": 2260,
+            "coveredTriangles": 323,
+            "exposedTriangles": 1937,
+            "vertexReindexing": false
+          },
+          "landmarks": {
+            "hips": [
+              0.0034376357216387987,
+              1.007189154624939,
+              0.00343721779063344
+            ],
+            "neck": [
+              0.003437428968027234,
+              1.4609274864196777,
+              -0.051561616361141205
+            ],
+            "unit": 1.0079866961428994
+          },
+          "verification": {
+            "triangles": 2260,
+            "attributesExact": true,
+            "morphsExact": true,
+            "skinExact": true,
+            "framesExact": true,
+            "sourceAnimationExact": true
+          }
         }
       ]
     },
@@ -125,10 +181,11 @@
       "manifestName": "manifest.json",
       "publicationManifest": "public/ashen-reach/human-shape-v1/manifest.json",
       "sourceManifest": "public/ashen-reach/human-shape-v1/manifest.json",
-      "sourceManifestSha256": "03e2f01255bd12ebc82aaa270374440c5738fc72afb16355a0a010d00b8e81ff",
+      "sourceManifestSha256": "2e1bee849150dad97dc3dc0eae8567879884a82b1a236a2918ce4e9ea2bcf04e",
       "artifacts": [
         "body-coverage-b93fb71aa490.bin",
         "wayfarerTrousers-coverage-b1eb36e8f614.bin",
+        "duskguardTassets-coverage-ee06988dee5f.bin",
         "wayfarerTrousers-compact-coverage-f834210550a3.bin"
       ],
       "rows": [
@@ -259,6 +316,73 @@
         },
         {
           "race": "human",
+          "id": "duskguardTassets",
+          "detail": "full",
+          "source": {
+            "url": "/ashen-reach/human-shape-v1/duskguardTassets-2ec5cfae9131.bin",
+            "bytes": 176140,
+            "sha256": "74abdbb68a22498e6bb40d19fda5c04551aa866b0ecf97a2bceee99ec3bc0f9e",
+            "meshes": [
+              "DuskguardTrousers",
+              "DuskguardTrouserCuffs",
+              "DuskguardTassets"
+            ],
+            "fit": {
+              "body": "ashen-human",
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "encodedBytes": 118920,
+            "compression": "gzip",
+            "shapeFamily": "ashen-human-shape-v1",
+            "textures": [
+              {
+                "materials": [
+                  "WayfarerTrousers"
+                ],
+                "url": "/ashen-reach/human-shape-v1/texture-f465517766cc.png"
+              }
+            ]
+          },
+          "output": {
+            "url": "/ashen-reach/human-shape-v1/duskguardTassets-coverage-ee06988dee5f.bin",
+            "sha256": "252dfafe376591b2703529f9bc855ce3e1b39c8824a12cc602f81b6384e6b9ea",
+            "bytes": 176968,
+            "encodedBytes": 119121
+          },
+          "partition": {
+            "source": "DuskguardTrousers",
+            "covered": "DuskguardTrousersUnderTorso",
+            "originalTriangles": 2260,
+            "coveredTriangles": 323,
+            "exposedTriangles": 1937,
+            "vertexReindexing": false
+          },
+          "landmarks": {
+            "hips": [
+              0.0034376357216387987,
+              1.007189154624939,
+              0.00343721779063344
+            ],
+            "neck": [
+              0.003437428968027234,
+              1.4609274864196777,
+              -0.051561616361141205
+            ],
+            "unit": 1.0079866961428994
+          },
+          "verification": {
+            "triangles": 2260,
+            "attributesExact": true,
+            "morphsExact": true,
+            "skinExact": true,
+            "framesExact": true,
+            "sourceAnimationExact": true
+          }
+        },
+        {
+          "race": "human",
           "id": "wayfarerTrousers",
           "detail": "startup",
           "source": {
@@ -337,10 +461,11 @@
       "manifestName": "manifest.json",
       "publicationManifest": "public/ashen-reach/startup/character/manifest.json",
       "sourceManifest": "public/ashen-reach/startup/character/manifest.json",
-      "sourceManifestSha256": "960b118f61d6f9ba753cb0c2380553119a598c6324560f5f15226c5689371043",
+      "sourceManifestSha256": "8511243f75a628a7533959f40b35460dc16f7ae7df302c3163c571fbb41f7647",
       "artifacts": [
         "body-coverage-20f02477c128.bin",
-        "wayfarerTrousers-coverage-18aaf5475c09.bin"
+        "wayfarerTrousers-coverage-18aaf5475c09.bin",
+        "duskguardTassets-coverage-e813d3927fc0.glb"
       ],
       "rows": [
         {
@@ -403,8 +528,7 @@
             "sha256": "169ad0333e5746e72512b8160008aefbf3d8bef7d75f2ff70203feca08538def",
             "meshes": [
               "WayfarerTrousers",
-              "WayfarerTrousersCuffs",
-              "WayfarerTrousersUnderTorso"
+              "WayfarerTrousersCuffs"
             ],
             "fit": {
               "body": "ashen-human",
@@ -450,6 +574,61 @@
             "framesExact": true,
             "sourceAnimationExact": true
           }
+        },
+        {
+          "race": "human",
+          "id": "duskguardTassets",
+          "detail": "full",
+          "source": {
+            "url": "/ashen-reach/equipment/duskguardTassets-bd6b56f08764.glb",
+            "bytes": 155136,
+            "sha256": "bd6b56f087649dd0b27343817f64f24bdc06e77c13d1374b2330486a6c9bd65d",
+            "meshes": [
+              "DuskguardTassets",
+              "DuskguardTrouserCuffs",
+              "DuskguardTrousers"
+            ],
+            "fit": {
+              "body": "ashen-human",
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            }
+          },
+          "output": {
+            "url": "/ashen-reach/startup/character/duskguardTassets-coverage-e813d3927fc0.glb",
+            "sha256": "e813d3927fc0643bf3c0d2f4e09f931a2ab9b21f4b20c948de4ae10de039beff",
+            "bytes": 155844
+          },
+          "partition": {
+            "source": "DuskguardTrousers",
+            "covered": "DuskguardTrousersUnderTorso",
+            "originalTriangles": 2260,
+            "coveredTriangles": 323,
+            "exposedTriangles": 1937,
+            "vertexReindexing": false
+          },
+          "landmarks": {
+            "hips": [
+              0.0034376357216387987,
+              1.007189154624939,
+              0.00343721779063344
+            ],
+            "neck": [
+              0.003437428968027234,
+              1.4609274864196777,
+              -0.051561616361141205
+            ],
+            "unit": 1.0079866961428994
+          },
+          "verification": {
+            "triangles": 2260,
+            "attributesExact": true,
+            "morphsExact": true,
+            "skinExact": true,
+            "framesExact": true,
+            "sourceAnimationExact": true
+          }
         }
       ]
     },
@@ -459,10 +638,11 @@
       "manifestName": "manifest-coverage-v1.json",
       "publicationManifest": "public/ashen-reach/equipment-orc/manifest-coverage-v1.json",
       "sourceManifest": "public/ashen-reach/equipment-orc/manifest.json",
-      "sourceManifestSha256": "07e87862867d30e0d13de1234db3c8c5e85a47de64d7aec7c07a418442e8aa21",
+      "sourceManifestSha256": "15f62ad27faeec39b04f468874d39f1fbbc13101e94f6b5e066dd0353e00aacd",
       "artifacts": [
         "graveweaverSkirt-coverage-aefdea6ff724.glb",
-        "wayfarerTrousers-coverage-124da6c75972.glb"
+        "wayfarerTrousers-coverage-124da6c75972.glb",
+        "duskguardTassets-coverage-ac83724683f0.glb"
       ],
       "rows": [
         {
@@ -573,6 +753,61 @@
             "framesExact": true,
             "sourceAnimationExact": true
           }
+        },
+        {
+          "race": "orc",
+          "id": "duskguardTassets",
+          "detail": "full",
+          "source": {
+            "url": "/ashen-reach/equipment-orc/duskguardTassets-8acdbf29f9ac.glb",
+            "bytes": 163888,
+            "sha256": "8acdbf29f9aca5f0e1147b00e98dde9df7502ed245a5238b395a1981a1d0b702",
+            "meshes": [
+              "DuskguardTassets",
+              "DuskguardTrouserCuffs",
+              "DuskguardTrousers"
+            ],
+            "fit": {
+              "body": "ashen-orc",
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            }
+          },
+          "output": {
+            "url": "/ashen-reach/equipment-orc/duskguardTassets-coverage-ac83724683f0.glb",
+            "sha256": "ac83724683f007f757d4e43978ebd47e3fd284f0bbf2a50de5ecd98aef8beacb",
+            "bytes": 164532
+          },
+          "partition": {
+            "source": "DuskguardTrousers",
+            "covered": "DuskguardTrousersUnderTorso",
+            "originalTriangles": 2260,
+            "coveredTriangles": 456,
+            "exposedTriangles": 1804,
+            "vertexReindexing": false
+          },
+          "landmarks": {
+            "hips": [
+              5.21540641784668e-8,
+              1.1476376056671143,
+              -0.0034061800688505173
+            ],
+            "neck": [
+              -0.000047304423787863925,
+              1.8147759437561035,
+              -0.04991782084107399
+            ],
+            "unit": 1.2904276973322817
+          },
+          "verification": {
+            "triangles": 2260,
+            "attributesExact": true,
+            "morphsExact": true,
+            "skinExact": true,
+            "framesExact": true,
+            "sourceAnimationExact": true
+          }
         }
       ]
     },
@@ -582,11 +817,12 @@
       "manifestName": "manifest-coverage-v1.json",
       "publicationManifest": "public/ashen-reach/equipment-undead/manifest-coverage-v1.json",
       "sourceManifest": "public/ashen-reach/equipment-undead/manifest.json",
-      "sourceManifestSha256": "291f3a8b0edaba0ffecff595cfa43a5818954806d3c2139e583ded1d44773c99",
+      "sourceManifestSha256": "3580bf3589b2a45a3734695e8978394f04b47a8507e62e6a62d809766b1bad0a",
       "artifacts": [
         "body-coverage-02cb6c3cc877.glb",
         "graveweaverSkirt-coverage-8be75fe7dc39.glb",
-        "wayfarerTrousers-coverage-051b2a33d0e2.glb"
+        "wayfarerTrousers-coverage-051b2a33d0e2.glb",
+        "duskguardTassets-coverage-3fd0a9c51a6b.glb"
       ],
       "rows": [
         {
@@ -719,6 +955,61 @@
           "partition": {
             "source": "WayfarerTrousers",
             "covered": "WayfarerTrousersUnderTorso",
+            "originalTriangles": 2260,
+            "coveredTriangles": 306,
+            "exposedTriangles": 1954,
+            "vertexReindexing": false
+          },
+          "landmarks": {
+            "hips": [
+              0.003613085951656103,
+              1.0875619649887085,
+              -0.010839497670531273
+            ],
+            "neck": [
+              0.0036133350804448128,
+              1.5645273923873901,
+              -0.054201822727918625
+            ],
+            "unit": 1.0703889162916886
+          },
+          "verification": {
+            "triangles": 2260,
+            "attributesExact": true,
+            "morphsExact": true,
+            "skinExact": true,
+            "framesExact": true,
+            "sourceAnimationExact": true
+          }
+        },
+        {
+          "race": "undead",
+          "id": "duskguardTassets",
+          "detail": "full",
+          "source": {
+            "url": "/ashen-reach/equipment-undead/duskguardTassets-c4f3c202054b.glb",
+            "bytes": 156516,
+            "sha256": "c4f3c202054b27ba2549e07cfe917097d0cbc26c3605f5af2ae9203b04ffe39c",
+            "meshes": [
+              "DuskguardTassets",
+              "DuskguardTrouserCuffs",
+              "DuskguardTrousers"
+            ],
+            "fit": {
+              "body": "ashen-undead",
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            }
+          },
+          "output": {
+            "url": "/ashen-reach/equipment-undead/duskguardTassets-coverage-3fd0a9c51a6b.glb",
+            "sha256": "3fd0a9c51a6bd3d51fcb381486e4d6396c91af648ebcb0ec9f13f757249647b4",
+            "bytes": 157220
+          },
+          "partition": {
+            "source": "DuskguardTrousers",
+            "covered": "DuskguardTrousersUnderTorso",
             "originalTriangles": 2260,
             "coveredTriangles": 306,
             "exposedTriangles": 1954,

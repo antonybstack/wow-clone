@@ -35,3 +35,18 @@ test('mixed startup geometry preserves any actual rigid primitive without treati
  assert.equal(retainFullStartupGeometry(root,{deformation:'mixed'}),false);
  assert.equal(retainFullStartupGeometry(root,{deformation:'rigid-bone'}),true);
 });
+
+import fs from 'node:fs/promises';
+import {pinNativeWeightRows} from './character-assets/native-weight-stability.mjs';
+test('native stability anchors retain reviewed rows and reject source/weight changes',async()=>{
+ const policy=JSON.parse(await fs.readFile('blender/characters/wardrobe/weights/lector-orc-native-stability.json'));
+ const root=(await io.read(policy.source.path)).getRoot(),p=root.listMeshes()[0].listPrimitives()[1];
+ const raw=p.getAttribute('WEIGHTS_0').getArray(),stable=raw.slice(),rows=policy.rows;
+ assert.equal(pinNativeWeightRows(p,raw,stable,rows,policy.maximumDelta),0);assert.deepEqual(stable,raw);
+ const noisy=raw.slice();noisy[rows[0].vertex*4]+=.000001;
+ assert(pinNativeWeightRows(p,noisy,stable,rows,policy.maximumDelta)<.000002);assert.deepEqual(stable,raw);
+ const changed=raw.slice();changed[rows[0].vertex*4]+=.000003;
+ assert.throws(()=>pinNativeWeightRows(p,changed,raw.slice(),rows,policy.maximumDelta),/exceeds/);
+ assert.throws(()=>pinNativeWeightRows(p,raw,raw.slice(),[{...rows[0],position:[0,0,0]}],policy.maximumDelta),/correspondence/);
+ assert.throws(()=>pinNativeWeightRows(p,raw,raw.slice(),[{...rows[0],joints:[0,0,0,0]}],policy.maximumDelta),/correspondence/);
+});

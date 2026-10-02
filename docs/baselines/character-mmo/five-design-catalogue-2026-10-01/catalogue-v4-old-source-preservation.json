@@ -1,0 +1,66 @@
+{
+  "equipment": {
+    "unchangedExistingItems": [
+      "body",
+      "graveweaverHood",
+      "graveweaverTop",
+      "graveweaverSkirt",
+      "graveweaverGloves",
+      "wayfarerTunic",
+      "pilgrimTunic",
+      "wayfarerTrousers",
+      "wayfarerBoots",
+      "wardenPauldrons"
+    ],
+    "newItems": [
+      "duskguardCuirass",
+      "duskguardGreaves",
+      "duskguardTassets",
+      "duskguardVambraces",
+      "lectorCoat"
+    ]
+  },
+  "equipment-orc": {
+    "unchangedExistingItems": [
+      "body",
+      "graveweaverHood",
+      "graveweaverTop",
+      "graveweaverSkirt",
+      "graveweaverGloves",
+      "wayfarerTunic",
+      "pilgrimTunic",
+      "wayfarerTrousers",
+      "wayfarerBoots",
+      "wardenPauldrons"
+    ],
+    "newItems": [
+      "duskguardCuirass",
+      "duskguardGreaves",
+      "duskguardTassets",
+      "duskguardVambraces",
+      "lectorCoat"
+    ]
+  },
+  "equipment-undead": {
+    "unchangedExistingItems": [
+      "body",
+      "graveweaverHood",
+      "graveweaverTop",
+      "graveweaverSkirt",
+      "graveweaverGloves",
+      "wayfarerTunic",
+      "pilgrimTunic",
+      "wayfarerTrousers",
+      "wayfarerBoots",
+      "wardenPauldrons"
+    ],
+    "newItems": [
+      "duskguardCuirass",
+      "duskguardGreaves",
+      "duskguardTassets",
+      "duskguardVambraces",
+      "lectorCoat"
+    ]
+  },
+  "legacyV1Recipes": "exactly unchanged"
+}

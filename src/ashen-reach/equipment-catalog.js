@@ -26,6 +26,11 @@ export const ORC_BODY_URL='/ashen-reach/equipment-orc/body.glb?v=b055e29393ca';
  */
 export const UNDEAD_BASE_VISIBLE_MESHES=['UndeadV1Body','UndeadV1Eyes'];
 const authoredItems={
+    lectorCoat:{id:'lectorCoat',slot:'torso',name:'Lector travelling coat',parts:[{mesh:'LectorCoat'}],coverage:['BodyUnderTunic','BodyWaist'],covers:['torso.upper','torso.lower','waist'],layer:'cloth',deformation:'soft-skin'},
+    duskguardCuirass:{id:'duskguardCuirass',slot:'torso',name:'Duskguard articulated cuirass',parts:[{mesh:'DuskguardUndercoat'},{mesh:'DuskguardCuirass'},{mesh:'DuskguardGussets'}],coverage:['BodyUnderTunic','BodyWaist'],covers:['torso.upper','torso.lower','waist'],layer:'plate',deformation:'mixed'},
+    duskguardTassets:{id:'duskguardTassets',slot:'legs',name:'Duskguard tassets',parts:[{mesh:'DuskguardTrousers'},{mesh:'DuskguardTrouserCuffs',hideWhenSlots:['boots']},{mesh:'DuskguardTassets'}],coverage:['BodyUnderLegs','BodyWaist'],covers:['leg.upper','leg.lower','waist'],layer:'plate',deformation:'mixed'},
+    duskguardGreaves:{id:'duskguardGreaves',slot:'boots',name:'Duskguard greaves',parts:[{mesh:'DuskguardBootUnderlayer'},{mesh:'DuskguardGreaves'}],coverage:['BodyUnderBoots'],covers:['foot'],layer:'plate',deformation:'mixed'},
+    duskguardVambraces:{id:'duskguardVambraces',slot:'gloves',name:'Duskguard vambraces',parts:[{mesh:'DuskguardGloveUnderlayer'},{mesh:'DuskguardVambraces'}],coverage:['BodyHands'],covers:['hand'],layer:'plate',deformation:'mixed'},
     wardenPauldrons:{id:'wardenPauldrons',slot:'shoulders',name:'Warden steel pauldrons',parts:[{mesh:'WardenPauldrons'}],coverage:[],covers:[],layer:'plate',deformation:'rigid-bone'},
     graveweaverHood:{id:'graveweaverHood',slot:'helmet',name:'Graveweaver hood',parts:[{mesh:'GraveweaverHood'}],coverage:['HumanHair'],covers:['head.scalp']},
     graveweaverTop:{id:'graveweaverTop',slot:'torso',name:'Graveweaver mail vestment',parts:[{mesh:'GraveweaverTop'},{mesh:'GraveweaverPendant'}],coverage:['BodyUnderTunic','BodyWaist'],covers:['torso.upper','torso.lower','waist']},
@@ -44,6 +49,10 @@ const seamsBySlot={shoulders:['shoulders'],helmet:['neck'],torso:['neck','waist'
 export const EQUIPMENT_ITEMS=freezeEquipment(Object.fromEntries(Object.entries(authoredItems).map(([id,item])=>[id,{...item,fit:{...HUMAN_EQUIPMENT_FIT},fits:{human:{...HUMAN_EQUIPMENT_FIT},orc:{...ORC_EQUIPMENT_FIT},undead:{...UNDEAD_EQUIPMENT_FIT}},seams:seamsBySlot[item.slot],occupies:item.occupies||[item.slot]}])));
 const LEGACY_ITEM_IDS=['graveweaverHood','graveweaverTop','graveweaverSkirt','graveweaverGloves','graveweaverStaff','graveweaverGreatstaff','graveweaverBook','ironSword','wayfarerTunic','pilgrimTunic','wayfarerTrousers','wayfarerBoots'];
 export const LEGACY_EQUIPMENT_ITEMS=freezeEquipment(Object.fromEntries(LEGACY_ITEM_IDS.map(id=>[id,EQUIPMENT_ITEMS[id]])));
+/** Catalogue v3 has exactly thirteen IDs. New source fits are never accepted
+ * retroactively by a saved older recipe merely because the current map grows.
+ */
+export const EQUIPMENT_V3_ITEMS=freezeEquipment(Object.fromEntries([...LEGACY_ITEM_IDS,'wardenPauldrons'].map(id=>[id,EQUIPMENT_ITEMS[id]])));
 /**
  * Socket-local hold for a race. Human values stay on the item; a race entry under `grips`
  * is an optional correction.
@@ -79,6 +88,8 @@ export const LEGACY_EQUIPMENT_SLOTS=Object.freeze(['helmet','torso','legs','boot
 export const EQUIPMENT_SLOTS=Object.freeze([...LEGACY_EQUIPMENT_SLOTS,'shoulders']);
 const outfit=items=>({...Object.fromEntries(EQUIPMENT_SLOTS.map(slot=>[slot,null])),...items});
 export const EQUIPMENT_PRESETS={
+    lector:{name:'Lector',loadout:outfit({torso:'lectorCoat',legs:'wayfarerTrousers',boots:'wayfarerBoots',mainHand:'graveweaverStaff',offHand:'graveweaverBook'})},
+    duskguard:{name:'Duskguard',loadout:outfit({torso:'duskguardCuirass',legs:'duskguardTassets',boots:'duskguardGreaves',gloves:'duskguardVambraces',shoulders:'wardenPauldrons',mainHand:'ironSword'})},
     wayfarer:{name:'Wayfarer',loadout:outfit({torso:'wayfarerTunic',legs:'wayfarerTrousers',boots:'wayfarerBoots',mainHand:'ironSword'})},
     pilgrim:{name:'Pilgrim',loadout:outfit({torso:'pilgrimTunic',legs:'wayfarerTrousers',boots:'wayfarerBoots'})},
     graveweaver:{name:'Graveweaver',loadout:outfit({helmet:'graveweaverHood',torso:'graveweaverTop',legs:'graveweaverSkirt',boots:'wayfarerBoots',gloves:'graveweaverGloves',mainHand:'graveweaverStaff',offHand:'graveweaverBook'})},

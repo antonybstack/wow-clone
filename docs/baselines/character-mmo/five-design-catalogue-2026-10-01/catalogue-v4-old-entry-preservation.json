@@ -1,0 +1,366 @@
+{
+  "base": "5d65896",
+  "rows": [
+    {
+      "manifest": "public/ashen-reach/equipment/manifest.json",
+      "group": "items",
+      "id": "body",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment/manifest.json",
+      "group": "items",
+      "id": "graveweaverHood",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment/manifest.json",
+      "group": "items",
+      "id": "graveweaverTop",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment/manifest.json",
+      "group": "items",
+      "id": "graveweaverSkirt",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment/manifest.json",
+      "group": "items",
+      "id": "graveweaverGloves",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment/manifest.json",
+      "group": "items",
+      "id": "wayfarerTunic",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment/manifest.json",
+      "group": "items",
+      "id": "pilgrimTunic",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment/manifest.json",
+      "group": "items",
+      "id": "wayfarerTrousers",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment/manifest.json",
+      "group": "items",
+      "id": "wayfarerBoots",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment/manifest.json",
+      "group": "items",
+      "id": "wardenPauldrons",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-orc/manifest.json",
+      "group": "items",
+      "id": "body",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-orc/manifest.json",
+      "group": "items",
+      "id": "graveweaverHood",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-orc/manifest.json",
+      "group": "items",
+      "id": "graveweaverTop",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-orc/manifest.json",
+      "group": "items",
+      "id": "graveweaverSkirt",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-orc/manifest.json",
+      "group": "items",
+      "id": "graveweaverGloves",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-orc/manifest.json",
+      "group": "items",
+      "id": "wayfarerTunic",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-orc/manifest.json",
+      "group": "items",
+      "id": "pilgrimTunic",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-orc/manifest.json",
+      "group": "items",
+      "id": "wayfarerTrousers",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-orc/manifest.json",
+      "group": "items",
+      "id": "wayfarerBoots",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-orc/manifest.json",
+      "group": "items",
+      "id": "wardenPauldrons",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-undead/manifest.json",
+      "group": "items",
+      "id": "body",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-undead/manifest.json",
+      "group": "items",
+      "id": "graveweaverHood",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-undead/manifest.json",
+      "group": "items",
+      "id": "graveweaverTop",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-undead/manifest.json",
+      "group": "items",
+      "id": "graveweaverSkirt",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-undead/manifest.json",
+      "group": "items",
+      "id": "graveweaverGloves",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-undead/manifest.json",
+      "group": "items",
+      "id": "wayfarerTunic",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-undead/manifest.json",
+      "group": "items",
+      "id": "pilgrimTunic",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-undead/manifest.json",
+      "group": "items",
+      "id": "wayfarerTrousers",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-undead/manifest.json",
+      "group": "items",
+      "id": "wayfarerBoots",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-undead/manifest.json",
+      "group": "items",
+      "id": "wardenPauldrons",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "group": "items",
+      "id": "body",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "group": "items",
+      "id": "graveweaverHood",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "group": "items",
+      "id": "graveweaverTop",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "group": "items",
+      "id": "graveweaverSkirt",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "group": "items",
+      "id": "graveweaverGloves",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "group": "items",
+      "id": "wayfarerTunic",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "group": "items",
+      "id": "pilgrimTunic",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "group": "items",
+      "id": "wayfarerTrousers",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "group": "items",
+      "id": "wayfarerBoots",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "group": "items",
+      "id": "wardenPauldrons",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "group": "compactItems",
+      "id": "body",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "group": "compactItems",
+      "id": "graveweaverHood",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "group": "compactItems",
+      "id": "graveweaverTop",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "group": "compactItems",
+      "id": "graveweaverSkirt",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "group": "compactItems",
+      "id": "graveweaverGloves",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "group": "compactItems",
+      "id": "wayfarerTunic",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "group": "compactItems",
+      "id": "pilgrimTunic",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "group": "compactItems",
+      "id": "wayfarerTrousers",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "group": "compactItems",
+      "id": "wayfarerBoots",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "group": "compactItems",
+      "id": "wardenPauldrons",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/startup/character/manifest.json",
+      "group": "items",
+      "id": "body",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/startup/character/manifest.json",
+      "group": "items",
+      "id": "graveweaverHood",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/startup/character/manifest.json",
+      "group": "items",
+      "id": "graveweaverTop",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/startup/character/manifest.json",
+      "group": "items",
+      "id": "graveweaverSkirt",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/startup/character/manifest.json",
+      "group": "items",
+      "id": "graveweaverGloves",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/startup/character/manifest.json",
+      "group": "items",
+      "id": "wayfarerTunic",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/startup/character/manifest.json",
+      "group": "items",
+      "id": "pilgrimTunic",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/startup/character/manifest.json",
+      "group": "items",
+      "id": "wayfarerTrousers",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/startup/character/manifest.json",
+      "group": "items",
+      "id": "wayfarerBoots",
+      "unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/startup/character/manifest.json",
+      "group": "items",
+      "id": "wardenPauldrons",
+      "unchanged": true
+    }
+  ],
+  "verified": true
+}

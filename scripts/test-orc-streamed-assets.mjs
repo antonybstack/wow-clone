@@ -4,10 +4,12 @@ import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {NodeIO} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
+import {MeshoptDecoder} from 'meshoptimizer';
 import {ORC_BASE_VISIBLE_MESHES, ORC_BODY_URL} from '../src/ashen-reach/equipment-catalog.js';
 import {ORC_EQUIPMENT_FIT} from '../src/ashen-reach/equipment-contract.js';
 
-const io = new NodeIO().registerExtensions(ALL_EXTENSIONS);
+await MeshoptDecoder.ready;
+const io = new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder': MeshoptDecoder});
 const dir = 'public/ashen-reach/equipment-orc';
 const manifest = JSON.parse(await fs.readFile(`${dir}/manifest.json`, 'utf8'));
 const source = await io.read(`${dir}/body.glb`);
@@ -20,7 +22,7 @@ const rig = doc => {
 };
 const IDENTITY = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
 
-test('Orc sculpt pack streams eight catalogue garments on the actor bind', async () => {
+test('Orc sculpt pack streams all published catalogue garments on the actor bind', async () => {
     assert.equal(manifest.profileId, 'orc-sculpt-v1');
     assert.equal(manifest.garments, true);
     assert.deepEqual(manifest.items.body.meshes, [...ORC_BASE_VISIBLE_MESHES]);

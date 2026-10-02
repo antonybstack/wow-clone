@@ -2,6 +2,9 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { appearanceFromEquipment } from "../src/character/appearance/from-equipment.js";
 import {
+  PRESENCE_PROTOCOL,
+  PRESENCE_CATALOG,
+  matchesPresenceVersion,
   presenceAppearance,
   validatePresenceAppearance,
   validateAppearanceRequest,
@@ -60,4 +63,12 @@ test("appearance requests cannot claim positions or another actor and reject get
   });
   assert.throws(() => validateAppearanceRequest(getter));
   assert.equal(read, false);
+});
+
+test("discovery and seat versions reject old, missing and mismatched catalogues", () => {
+  const value = {protocol:PRESENCE_PROTOCOL, catalogVersion:PRESENCE_CATALOG, collisionHash:'region'};
+  assert(matchesPresenceVersion(value, 'region'));
+  for (const mismatch of [{catalogVersion:undefined}, {catalogVersion:'appearance-catalog-v3'},
+    {catalogVersion:'appearance-catalog-v5'}, {protocol:'old'}, {collisionHash:'other'}])
+    assert.equal(matchesPresenceVersion({...value, ...mismatch}, 'region'), false);
 });

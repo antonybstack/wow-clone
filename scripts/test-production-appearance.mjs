@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {appearanceFromEquipment} from '../src/character/appearance/from-equipment.js';
-import {APPEARANCE_V1_REGISTRY,APPEARANCE_V2_REGISTRY,validateAppearance,migrateAppearance,appearanceShapeWeights} from '../src/character/appearance/contract.js';
+import {APPEARANCE_V1_REGISTRY,APPEARANCE_V2_REGISTRY,APPEARANCE_V3_REGISTRY,APPEARANCE_CATALOG_VERSION,validateAppearance,migrateAppearance,appearanceShapeWeights} from '../src/character/appearance/contract.js';
 import {encodeAppearance,decodeAppearance,decodeMigratingAppearance} from '../src/character/appearance/codec.js';
 import {APPEARANCE_STORAGE_KEY,APPEARANCE_RECOVERY_KEY,LEGACY_CREATOR_KEY,defaultAppearance,migrateLegacyCreator,loadAppearance,saveAppearance} from '../src/character/appearance/store.js';
 const store=()=>{const data=new Map();return {data,getItem:k=>data.get(k)??null,setItem:(k,v)=>data.set(k,v)};};
@@ -83,4 +83,32 @@ test('historical catalogues reject future items/slots and unknown catalogues rem
   assert.equal(s.getItem(APPEARANCE_STORAGE_KEY),text);assert.equal(saveAppearance(defaultAppearance(),{storage:s}),true);assert.equal(s.getItem(APPEARANCE_RECOVERY_KEY),text);
  }
  const current=defaultAppearance();assert.deepEqual(decodeAppearance(encodeAppearance({...current,equipment:{...current.equipment,shoulders:'wardenPauldrons'}})).equipment.shoulders,'wardenPauldrons');
+});
+
+test('v3 migration preserves armor, shape, race and original storage bytes',()=>{
+ const ids=Object.keys(APPEARANCE_V3_REGISTRY.items).sort();
+ assert.deepEqual(ids,['graveweaverBook','graveweaverGloves','graveweaverGreatstaff','graveweaverHood','graveweaverSkirt','graveweaverStaff','graveweaverTop','ironSword','pilgrimTunic','wardenPauldrons','wayfarerBoots','wayfarerTrousers','wayfarerTunic'].sort());
+ for(const race of ['human','orc','undead']){
+  const base=appearanceFromEquipment({race,loadout:{torso:'pilgrimTunic',shoulders:'wardenPauldrons'}},APPEARANCE_V3_REGISTRY);
+  const old=race==='human'?validateAppearance({...base,shape:{...base.shape,height:.9,build:-.95}},APPEARANCE_V3_REGISTRY):base;
+  const text=encodeAppearance(old,APPEARANCE_V3_REGISTRY),s=store();s.setItem(APPEARANCE_STORAGE_KEY,text);
+  const loaded=loadAppearance({storage:s});assert(loaded.restored&&loaded.migrated);
+  assert.deepEqual(loaded.appearance,{...old,catalogVersion:APPEARANCE_CATALOG_VERSION});
+  assert.equal(s.getItem(APPEARANCE_STORAGE_KEY),text);
+  for(const [slot,id]of [['torso','lectorCoat'],['torso','duskguardCuirass'],['legs','duskguardTassets'],['boots','duskguardGreaves'],['gloves','duskguardVambraces']]){
+   const invalid={...old,equipment:{...old.equipment,[slot]:id}},raw=JSON.stringify(invalid);s.setItem(APPEARANCE_STORAGE_KEY,raw);
+   assert.throws(()=>migrateAppearance(invalid),e=>e.code==='UNSUPPORTED_ITEM');
+   assert.equal(loadAppearance({storage:s}).restored,false);assert.equal(s.getItem(APPEARANCE_STORAGE_KEY),raw);
+   const valid=validateAppearance({...invalid,catalogVersion:APPEARANCE_CATALOG_VERSION});
+   assert.deepEqual(decodeAppearance(encodeAppearance(valid)),valid);
+  }
+ }
+});
+
+test('v1 and v2 registries reject every v4 piece even in its correct slot',()=>{
+ for(const registry of [APPEARANCE_V1_REGISTRY,APPEARANCE_V2_REGISTRY]){
+  const old=appearanceFromEquipment({race:'human',loadout:{}},registry);
+  for(const [slot,id]of [['torso','lectorCoat'],['torso','duskguardCuirass'],['legs','duskguardTassets'],['boots','duskguardGreaves'],['gloves','duskguardVambraces']])
+   assert.throws(()=>decodeMigratingAppearance(JSON.stringify({...old,equipment:{...old.equipment,[slot]:id}})),e=>e.code==='UNSUPPORTED_ITEM');
+ }
 });
