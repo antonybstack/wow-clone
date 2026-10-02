@@ -93,3 +93,42 @@ zero nor eight is. That is recorded, not accounted for.
 solo five-route gate and not M8 hub capacity. It says what eight exact owners cost in one
 scene; it does not retire the open equipped-forest 240 Hz cap qualification, and appearance
 streaming and promotion are still unmeasured separately.
+
+## Final behaviour recaptured (2026-10-01)
+
+The Telegram 838 capture predates the final retirement fence and the identical-frame sample
+optimisation, so the three-race × five-design motion was recaptured on current source at a
+pinned `pixelRatio=1`.
+
+1,247 frames, 103.933 s, 1280×720, zero page and zero GPU errors. Every owner, lease, byte
+reservation and pending build returned to zero, scene meshes and dynamic casters back to
+baseline. Three body loads against twelve live equipment changes with `peakOwned` 2 — the
+same-body reuse path held across all five designs on each race, rather than restaging per
+outfit.
+
+Reviewed motion: Telegram **839**,
+[VE](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/remote-pieces-final-2026-10-01.mp4)
+(`video/mp4`, HTTP 200, `accept-ranges: bytes`, 206 on a range request, 28,288,526 bytes).
+
+### Found in review: the Orc Duskguard cuirass
+
+The Orc wearing `duskguardCuirass` renders as a smooth inflated shell. Its plate edges and
+silhouette are gone and it reads as quilted padding; the Human and Undead in the same slot
+stay crisp in the same capture, as does the Orc in the other four designs.
+
+It is not a missing-fit fallback. The descriptor carries three distinct files, and the Orc
+loads its own:
+
+| race | file | bytes |
+|---|---|---|
+| human | `duskguardCuirass-1a82ab…9228.glb` | 425,900 |
+| orc | `duskguardCuirass-1fc773…dbf70.glb` | 299,612 |
+| undead | `duskguardCuirass-b9db83…e7ac.glb` | 273,308 |
+
+The Orc piece is 30% smaller than the Human's, which is consistent with a simplified or
+over-smoothed derivation losing the plate detail. That is the Orc fit's geometry, not the
+renderer: bounds, sockets and the grip policy all check out on the same actor.
+
+**This is an open defect and blocks publishing that piece.** It belongs with the race-fit
+work, not the remote lifecycle, and the fix is in the Orc Duskguard preparation rather than
+another atlas or offset sweep.
