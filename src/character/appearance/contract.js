@@ -5,13 +5,20 @@
  */
 import {EQUIPMENT_ITEMS, EQUIPMENT_SLOTS,LEGACY_EQUIPMENT_SLOTS,LEGACY_EQUIPMENT_ITEMS,EQUIPMENT_V3_ITEMS} from '../../ashen-reach/equipment-catalog.js';
 import {declaredFitForRace, freezeEquipment, validateEquipmentSelection} from '../../ashen-reach/equipment-contract.js';
+import {isDyeId} from '../../ashen-reach/dye-palette.js';
 
 export const APPEARANCE_SCHEMA_VERSION=2;
-export const APPEARANCE_CATALOG_VERSION='appearance-catalog-v4';
+export const APPEARANCE_CATALOG_VERSION='appearance-catalog-v5';
 export const MAX_APPEARANCE_BYTES=16*1024;
 const TOP_FIELDS=['schemaVersion','catalogVersion','race','fitFamily','fit','shape','components','dyes','equipment'];
 const FIT_FIELDS=['rig','bind','shape'];
 const EMPTY_CAPABILITIES=Object.freeze({shape:Object.freeze([]),components:Object.freeze([]),dyes:Object.freeze([])});
+/** Slots whose pieces pass through the loader's material-build window, which is the only place a
+ * dye can be applied. The hand slots are excluded because a factory prop never reaches it, so
+ * listing them would promise a colour the renderer cannot produce.
+ * See results/m7-dye-mechanism-2026-10-03.md for why mutating a live material does nothing. */
+const UNDYEABLE_SLOTS=Object.freeze(['mainHand','offHand']);
+export const DYEABLE_SLOTS=Object.freeze(EQUIPMENT_SLOTS.filter(slot=>!UNDYEABLE_SLOTS.includes(slot)));
 // M001's three playable fit identities are fixed for catalog v1. A later equipment-fit
 // revision needs an explicit catalogue/version decision, not a silent recipe rewrite.
 const V1_PROFILES=Object.freeze(Object.fromEntries([
@@ -32,16 +39,30 @@ export function neutralAppearanceShape(race,registry=APPEARANCE_REGISTRY) {
 export const APPEARANCE_REGISTRY=Object.freeze({
   schemaVersion:APPEARANCE_SCHEMA_VERSION,
   catalogVersion:APPEARANCE_CATALOG_VERSION,
-  profiles:Object.freeze({...V1_PROFILES,human:Object.freeze({...V1_PROFILES.human,
-    capabilities:Object.freeze({shape:Object.freeze(['family','height','build']),components:Object.freeze([]),dyes:Object.freeze([])})})}),
+  profiles:Object.freeze(Object.fromEntries(Object.entries(V1_PROFILES).map(([race,profile])=>[race,Object.freeze({...profile,
+    capabilities:Object.freeze({
+      shape:race==='human'?Object.freeze(['family','height','build']):Object.freeze([]),
+      components:Object.freeze([]),
+      // Every race can dye: the factor multiplies the piece's own texture and is independent of
+      // the body it is fitted to.
+      dyes:DYEABLE_SLOTS,
+    })})]))),
   items:EQUIPMENT_ITEMS,
   slots:EQUIPMENT_SLOTS,
 });
 /** The persisted v2 catalogue has exactly seven slots. It cannot accept future
  * item IDs or wider body domains merely because the current catalogue grows.
  */
-export const APPEARANCE_V2_REGISTRY=Object.freeze({...APPEARANCE_REGISTRY,catalogVersion:'appearance-catalog-v2',items:LEGACY_EQUIPMENT_ITEMS,slots:LEGACY_EQUIPMENT_SLOTS});
-export const APPEARANCE_V3_REGISTRY=Object.freeze({...APPEARANCE_REGISTRY,catalogVersion:'appearance-catalog-v3',items:EQUIPMENT_V3_ITEMS});
+export const APPEARANCE_V2_REGISTRY=Object.freeze({...APPEARANCE_REGISTRY,catalogVersion:'appearance-catalog-v2',items:LEGACY_EQUIPMENT_ITEMS,slots:LEGACY_EQUIPMENT_SLOTS,
+  profiles:Object.freeze(Object.fromEntries(Object.entries(APPEARANCE_REGISTRY.profiles).map(([race,p])=>[race,Object.freeze({...p,
+    capabilities:Object.freeze({...p.capabilities,dyes:Object.freeze([])})})])))});
+export const APPEARANCE_V3_REGISTRY=Object.freeze({...APPEARANCE_REGISTRY,catalogVersion:'appearance-catalog-v3',items:EQUIPMENT_V3_ITEMS,
+  profiles:Object.freeze(Object.fromEntries(Object.entries(APPEARANCE_REGISTRY.profiles).map(([race,p])=>[race,Object.freeze({...p,
+    capabilities:Object.freeze({...p.capabilities,dyes:Object.freeze([])})})])))});
+/** v4 is the last catalogue without dyes. It is kept whole, rather than reconstructed, so a saved
+ * v4 recipe is read and upgraded instead of refused -- the same shape as the v1-v2-v3 chain. */
+export const APPEARANCE_V4_REGISTRY=Object.freeze({...APPEARANCE_REGISTRY,catalogVersion:'appearance-catalog-v4',
+  profiles:APPEARANCE_V3_REGISTRY.profiles});
 
 export class AppearanceError extends Error {
   constructor(code,path,message){super(`${message} at ${path}`);this.name='AppearanceError';this.code=code;this.path=path;}
@@ -71,6 +92,30 @@ function validateEmptyParameters(value,path) {
     if(typeof value[key]==='number' && !Number.isFinite(value[key])) error('INVALID_VALUE',field,'Non-finite number');
     error('UNSUPPORTED_PARAMETER',field,'Parameter is not supported by this catalogue');
   }
+}
+/** Dyes are keyed by SLOT, not by item id.
+ *
+ * The recipe already states which item fills each slot, so keying by item would be a second
+ * source of truth that could disagree with the first. An explicit `undyed` is dropped rather
+ * than stored, so a neutral choice and an absent one cannot encode two different ways.
+ */
+function validateDyes(value,equipment,profile,registry) {
+  const path='$.dyes';
+  const allowed=profile.capabilities.dyes;
+  if(allowed.length===0) { validateEmptyParameters(value,path); return {}; }
+  assertFields(value,[...allowed],path,{complete:false,unknownCode:'UNSUPPORTED_PARAMETER'});
+  const normalized={};
+  for(const slot of Object.keys(value)) {
+    const field=safePath(path,slot);
+    const id=value[slot];
+    if(typeof id!=='string') error('INVALID_TYPE',field,'Dye value must be a dye id');
+    if(!isDyeId(id)) error('INVALID_VALUE',field,'Unknown dye');
+    // A dye on an empty slot would survive a piece being removed and silently re-apply to
+    // whatever is equipped next.
+    if(!equipment[slot]) error('INVALID_VALUE',field,'Dye on an empty slot');
+    if(id!=='undyed') normalized[slot]=id;
+  }
+  return normalized;
 }
 function validateEquipment(value,race,profile,registry) {
   const path='$.equipment';
@@ -116,8 +161,11 @@ export function validateAppearance(input,registry=APPEARANCE_REGISTRY) {
       if(value<min || value>max) error('OUT_OF_RANGE',`$.shape.${key}`,'Value exceeds the reviewed domain');
     }
   } else validateEmptyParameters(input.shape,'$.shape');
-  for(const field of ['components','dyes']) validateEmptyParameters(input[field],`$.${field}`);
+  validateEmptyParameters(input.components,'$.components');
   const equipment=validateEquipment(input.equipment,input.race,profile,registry);
+  // Dyes are validated after equipment, because a dye is only meaningful against the slot it
+  // sits on and the slot has to be known to be filled.
+  const dyes=validateDyes(input.dyes,equipment,profile,registry);
   return freezeEquipment({
     schemaVersion:registry.schemaVersion,
     catalogVersion:registry.catalogVersion,
@@ -126,7 +174,7 @@ export function validateAppearance(input,registry=APPEARANCE_REGISTRY) {
     fit:{rig:profile.fit.rig,bind:profile.fit.bind,shape:profile.fit.shape},
     shape:registry.schemaVersion===2 && input.race==='human'
       ? {family:input.shape.family,height:input.shape.height,build:input.shape.build} : {},
-    components:{},dyes:{},equipment,
+    components:{},dyes,equipment,
   });
 }
 
@@ -134,6 +182,10 @@ export function validateAppearance(input,registry=APPEARANCE_REGISTRY) {
 export function migrateAppearance(input) {
   assertPlainRecord(input,'$');
   if(input.schemaVersion===APPEARANCE_SCHEMA_VERSION && input.catalogVersion===APPEARANCE_CATALOG_VERSION) return validateAppearance(input);
+  if(input.schemaVersion===2 && input.catalogVersion===APPEARANCE_V4_REGISTRY.catalogVersion){
+    const old=validateAppearance(input,APPEARANCE_V4_REGISTRY);
+    return validateAppearance({...old,catalogVersion:APPEARANCE_CATALOG_VERSION});
+  }
   if(input.schemaVersion===2 && input.catalogVersion===APPEARANCE_V3_REGISTRY.catalogVersion){
     const old=validateAppearance(input,APPEARANCE_V3_REGISTRY);
     return validateAppearance({...old,catalogVersion:APPEARANCE_CATALOG_VERSION});
