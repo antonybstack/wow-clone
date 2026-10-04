@@ -15,6 +15,7 @@ import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
 import { browserOwnership } from '../lib/browser-ownership.mjs';
 import { EQUIPMENT_ITEMS, EQUIPMENT_SLOTS } from '../../src/ashen-reach/equipment-catalog.js';
+import { SWAP_BUDGET } from '../lib/swap-budget.mjs';
 
 const url = process.env.ASHEN_TEST_URL, port = process.env.ASHEN_CDP_PORT, out = process.argv[2];
 assert(url && port && out, 'ASHEN_TEST_URL, ASHEN_CDP_PORT and an output path are required');
@@ -122,13 +123,26 @@ try {
             }
         }
     }
-    report.passed = errors.length === 0;
+    // The budget is enforced here, not merely reported. A breach is a failure: the ceilings
+    // are derived from this measurement's own distribution with headroom, so exceeding one
+    // means the content moved and the budget needs re-measuring rather than relaxing.
+    const breaches = [];
+    for (const row of rows) {
+        if (row.coldMs > SWAP_BUDGET.coldLatencyMs) breaches.push({ ...row, ceiling: 'coldLatencyMs', limit: SWAP_BUDGET.coldLatencyMs, value: row.coldMs });
+        if (row.coldWorstFrameMs !== null && row.coldWorstFrameMs > SWAP_BUDGET.worstFrameMs) breaches.push({ ...row, ceiling: 'worstFrameMs', limit: SWAP_BUDGET.worstFrameMs, value: row.coldWorstFrameMs });
+        if (row.residentMs !== null && row.residentMs > SWAP_BUDGET.warmSwapMs) breaches.push({ ...row, ceiling: 'warmSwapMs', limit: SWAP_BUDGET.warmSwapMs, value: row.residentMs });
+        if (row.bytes > SWAP_BUDGET.pieceBytes) breaches.push({ ...row, ceiling: 'pieceBytes', limit: SWAP_BUDGET.pieceBytes, value: row.bytes });
+    }
+    report.budget = SWAP_BUDGET;
+    report.breaches = breaches;
+    report.passed = errors.length === 0 && breaches.length === 0;
+    if (breaches.length) console.error(JSON.stringify({ breaches: breaches.map(b => ({ race: b.race, slot: b.slot, item: b.item, ceiling: b.ceiling, limit: b.limit, value: b.value })) }, null, 2));
 } catch (e) {
     report.failure = e.stack;
     console.error(e);
 } finally {
     if (!report.passed) process.exitCode = 1;
-    report.summary = { rows: rows.length, skipped: skipped.length, consoleErrors: errors.length };
+    report.summary = { rows: rows.length, skipped: skipped.length, breaches: report.breaches?.length ?? null, consoleErrors: errors.length };
     await fs.writeFile(out, JSON.stringify(report, null, 2));
     await browser.close();
     await fs.writeFile(out + '.ownership.json', JSON.stringify({ ...ownership, active: false, renderingClients: 0 }, null, 2));
