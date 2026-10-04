@@ -292,9 +292,17 @@ a `dyes` field whose capability list is empty for every race, and the creator's 
 
 Tasks:
 
-1. Choose and prove one mechanism — authored tint masks per piece, or a palette index — and
-   measure its cost against the existing published pieces rather than adding a material per
-   colour.
+1. **Mechanism chosen 2026-10-03** ([result](results/m7-dye-mechanism-2026-10-03.md)): drive
+   the authored `baseColorFactor` from the recipe where the piece's material is built in the
+   loader. The channel already exists in the art — Graveweaver `0.78,0.86,0.83` and Lector
+   `0.37,0.48,0.64` are the *same* 256² texture tinted differently. Two alternatives are ruled
+   out by measurement against a static control: mutating the factor on a live material does
+   nothing, and replacing the material at runtime loses the ORM/normal/emissive maps and the
+   ashen plugins without applying the factor. **The constraint that shapes the palette:** the
+   factor is a multiply, so dyes can darken and tint but never brighten. **The cost:** a dye
+   change is a piece rebuild — 18.8 ms median, 48.6 worst — so the control must commit on
+   release, not per frame. No asset regeneration, which keeps it clear of the sealed catalogue.
+   Still to build: the per-piece override, the palette, and a cost measurement on a real piece.
 2. Extend the appearance recipe through an explicit migration, not a silent field, and keep
    content-addressed publication hash-sealed under recolouring.
 3. Add creator controls behind real capability flags, with persistence and undo.
