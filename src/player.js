@@ -95,6 +95,26 @@ export function plantSpawnOnTerrain(spawn, spec, groundHeight) {
 }
 const JUMP_BUFFER = 0.12;
 const COYOTE_TIME = 0.085;
+/**
+ * Downward position correction applied while grounded and clearly above the terrain.
+ *
+ * Measured defect: walking ratchets the capsule upward and it never sheds the altitude. From
+ * spawn the gap to the terrain grows 33 -> 61 -> 96 -> 131 mm and plateaus near 145, which is
+ * where `checkSupport` finally stops reporting SUPPORTED. The cause is that a grounded frame
+ * sets vertical velocity from the support slope alone, which is zero when standing still, so
+ * nothing ever pulls the capsule back down.
+ *
+ * A velocity bias does not work: Havok projects velocity onto the support plane while
+ * SUPPORTED, so a downward term is cancelled before it moves anything. This corrects the
+ * position instead, which the solver then resolves -- it can only remove clearance, never push
+ * the capsule into geometry, because the next `integrate` pushes it back out of any penetration.
+ *
+ * It is applied only when the capsule bottom is clearly above the terrain function, so standing
+ * on a path slab, a step or a prop -- all of which sit above that function legitimately -- is
+ * left alone, and true contact is not jittered.
+ */
+const GROUND_STICK_SPEED = 1.2;
+const GROUND_STICK_TOLERANCE = 0.008;
 
 // A supported capsule can have positive Y velocity while climbing a slope or
 // resolving contact penetration. Only an actual jump impulse rejects support
@@ -431,6 +451,15 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
             controller.integrate(h, support, GRAVITY);
             const p = controller.getPosition();
             body.position.set(p.x, p.y, p.z);
+            // Shed altitude the support plane let the capsule keep. See GROUND_STICK_SPEED.
+            if (state.grounded && !state.jumpInFlight) {
+                const clearance = p.y - capsuleHeightOf() * 0.5 - groundHeight(p.x, p.z);
+                if (clearance > GROUND_STICK_TOLERANCE) {
+                    const step = Math.min(clearance - GROUND_STICK_TOLERANCE, GROUND_STICK_SPEED * h);
+                    body.position.y = p.y - step;
+                    controller.setPosition({ x: p.x, y: body.position.y, z: p.z });
+                }
+            }
         } else {
             body.position.x += velocity.x * h;
             body.position.y += velocity.y * h;

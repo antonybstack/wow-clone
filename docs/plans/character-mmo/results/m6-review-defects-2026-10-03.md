@@ -9,31 +9,57 @@ which looks at a hand, a sole, or the gap between a foot and the ground. **A fra
 show a defect is not evidence that it is absent**, and the review gates are recorded as having
 that blind spot.
 
-## 1. The character stands about 10 cm above the ground — measured
+## 1. The character floats, and the float grows as you walk — fixed
 
-This is the largest finding and it is not about the boots.
+**Two statements in the first version of this document were wrong and are corrected here.**
 
-The capsule reports `grounded: true` and rests on the Havok collision world. The grass and
-terrain the player looks at are the visual heightfield. Those are two different surfaces.
-Dropping the player at a 121-point grid over 60 × 60 m and letting physics settle:
+The first version reported a **constant 102.7 mm offset**, measured by dropping the capsule from
+1.5 m at a 121-point grid and comparing against `height(x, z)`. Both choices inflated it: a
+dropped capsule keeps residual clearance, and a fresh walk immediately afterwards measured
+**8.7 mm**. The figure was an artefact of the method.
 
-| | gap (capsule bottom − visual terrain) |
-| --- | --- |
-| median | **102.7 mm** |
-| p95 | 141.9 mm |
-| max | 153.1 mm |
-| min | −10.0 mm |
-| points above 10 mm | **117 of 120** |
-| points above 50 mm | **103 of 120** |
+The real behaviour is a **ratchet during locomotion**. Walking out from spawn along a fixed
+turning route, the gap to the terrain grows and never sheds:
 
-[Data](../../../baselines/character-mmo/m6/ground-contact.json) ·
-[measurement](../../../../scripts/character-assets/measure-ground-contact.mjs).
+| leg | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| gap (mm) | 33 | 61 | 96 | 131 | 109 | 145 | 141 | 113 | 143 | 129 |
 
-It is region-wide, not a bad spot. Of the gap, **35 mm is deliberate**: `player.js` sets
-`controller.keepDistance = 0.035` on the Havok character controller. The remaining ~68 mm is a
-disagreement between the collision world the capsule rests on and the heightfield that is drawn.
-The non-physics fallback path in the same file clamps to `groundHeight(x, z) + height/2`, which
-would place the capsule exactly on the visual ground — so the two paths do not agree either.
+It plateaus near 145 mm, which is where `checkSupport` finally stops reporting SUPPORTED and
+gravity takes over again. Placed exactly on the ground the capsule stays there (gap ≈ 0), so the
+collision surface and the heightfield agree — nothing was ever pulling the capsule back down.
+
+**Cause.** A grounded frame sets vertical velocity from the support slope alone:
+
+```js
+state.vy = surfaceVerticalSpeed(velocity.x, velocity.z, support?.averageSurfaceNormal, …);
+```
+
+which is zero when standing still, and gravity is applied only in the `else` branch, when not
+grounded. `checkSupport` reports SUPPORTED while the surface is merely within its probe
+distance, so a hovering capsule counts as grounded and holds its altitude indefinitely.
+
+**The fix is positional, not a velocity.** A downward velocity bias was tried first and did
+nothing: Havok projects velocity onto the support plane while SUPPORTED, so the term was
+cancelled before it moved anything — `vy` read −0.9 while the gap stayed at 82–137 mm. The
+correction instead moves the capsule down, bounded, and only where its bottom is clearly above
+`groundHeight(x, z)`, so standing on a path slab, a step or a prop — all legitimately above that
+function — is left alone. The solver resolves the contact, so it can only remove clearance.
+
+| | before | after |
+| --- | --- | --- |
+| median gap over the route | 128.7 mm | **16.6 mm** |
+| max | 145.0 mm | **26.1 mm** |
+| accumulation over distance | yes | **none** |
+| standing jitter (peak-to-peak) | — | **0.00000 m** |
+
+Traversal passes with zero recoveries, including the cathedral entry and return at both shape
+endpoints; 157 character / 106 equipment / 4 player-physics tests and the build pass. Reviewed
+live motion is Telegram **844**.
+
+[Measurement](../../../../scripts/character-assets/measure-ground-contact.mjs) ·
+[recorder](../../../../scripts/character-assets/record-ground-contact.mjs). The grid baseline is
+retained as the record of the method that misled me, not as the characterisation.
 
 **The garment assets are not at fault.** Posed offline with the existing LBS evaluator, in the
 body's own space where the ground is y = 0:
@@ -48,21 +74,22 @@ body's own space where the ground is y = 0:
 [measurement](../../../../scripts/character-assets/measure-foot-contact.mjs). The boot is authored
 to sit 14 mm *into* the ground at idle. The float is entirely the runtime's.
 
-## 2. The soles read as too bulky — largely a consequence of 1
+## 2. The soles read as too bulky — **not** a consequence of 1, as I first claimed
 
-With the character 10 cm up, the sole's **underside** is visible from an ordinary camera angle.
-It is a flat plate in a different, redder material from the upper, and seen from below and edge-on
-it reads as a thick slab. A planted foot would never show that face.
+The first version of this document said the bulky sole was largely downstream of the float, and
+that closing the gap would make the same geometry read differently. **That is wrong.** With the
+fix in place and the gap at 18 mm, the sole's underside is still visible as a flat orange plate,
+and the sole still oversails the upper on every side.
 
-This is a judgement that the measurement supports rather than proves: close the 10 cm gap and the
-same geometry will read differently. Whether the sole is still too large after that is an art
-question that should be asked again afterwards, not before.
+It is an asset question: the sole is a separate, wider slab in a different material from the
+boot shell. Open, and unaffected by the grounding fix.
 
 ## 3. Speckled artifacts along the boot seam — reproduced, cause not yet measured
 
 Scattered bright single pixels run along the instep and ankle line. Reproduced at a pinned camera
 with a frozen pose, and present on **both** `wayfarerBoots` and `duskguardGreaves` in the same
-place — so it is not one asset's seam.
+place — so it is not one asset's seam. **Unchanged by the grounding fix**, so it is independent
+of it.
 
 What is established: the Human body is a single mesh that the coverage contract cannot partially
 hide, so the body's foot is always drawn inside the boot; and `WayfarerBoots` is
