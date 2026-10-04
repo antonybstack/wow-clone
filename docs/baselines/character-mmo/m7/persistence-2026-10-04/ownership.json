@@ -8,7 +8,7 @@
   "url": "http://127.0.0.1:7074/ashen-reach.html?play&clean&pixelRatio=1",
   "purpose": "M7 saved dyes and v5 grip verification",
   "renderingClients": 0,
-  "active": true,
+  "active": false,
   "vitePort": 5873,
   "vitePid": 74199,
   "preexisting": {
@@ -27,18 +27,39 @@
       "owner": "root",
       "pid": 63256,
       "port": 7074,
-      "purpose": "Candidate Pages build"
+      "purpose": "Candidate Pages build",
+      "active": false,
+      "stopped": true
     },
     {
       "owner": "root",
       "pid": 95835,
       "port": 7075,
-      "purpose": "1412770 baseline Pages build"
+      "purpose": "1412770 baseline Pages build",
+      "active": false,
+      "stopped": true
     }
   ],
   "mediaReview": {
     "nativeEdge": 2931,
     "telegramClosedAndPaused": true,
     "veContextClosed": true
+  },
+  "finalAuditUtc": "2026-10-04T18:49:05.192312+00:00",
+  "cleanup": {
+    "ownedHarnessStopped": true,
+    "ownedChromeAndGpuHelpersAbsent": true,
+    "slotStateRemoved": true,
+    "allOwnedProbeContextsClosed": true,
+    "visibleEdgeGameTabs": 0,
+    "ownedPreviewListenersAbsent": [
+      7074,
+      7075
+    ],
+    "preservedListeners": {
+      "4000": 20311,
+      "5173": 27997
+    },
+    "managedSubagentsRunning": 0
   }
 }

@@ -1,3 +1,7 @@
+
+> ashen-reach@1.0.0 deploy
+> bash scripts/deploy-pages.sh
+
 Staging 252M of playable assets
 
 > ashen-reach@1.0.0 build
@@ -176,46 +180,60 @@ dist/assets/entry-DVqnJsvn.css                              0.86 kB │ gzip:   
 dist/assets/creator-B5d1-Jhl.css                            0.93 kB │ gzip:   0.39 kB
 dist/assets/armory-dUCANNuh.css                             4.89 kB │ gzip:   1.62 kB
 dist/assets/ashenReach-CELGCeSv.css                         6.79 kB │ gzip:   2.15 kB
-dist/assets/lite-error-decoder-DmoQFdbt.js                  0.07 kB │ gzip:   0.08 kB
-dist/assets/prime-morph-materials-CUuSY32q.js               0.46 kB │ gzip:   0.34 kB
-dist/assets/startup-assets-MwjIWQ3G.js                      0.69 kB │ gzip:   0.44 kB
+dist/assets/lite-error-decoder-DeS5Fp72.js                  0.07 kB │ gzip:   0.08 kB
+dist/assets/native-material-staging-DoASHgt_.js             0.35 kB │ gzip:   0.27 kB
+dist/assets/prime-morph-materials-DFyn-mvX.js               0.46 kB │ gzip:   0.34 kB
+dist/assets/startup-assets-2q_kAJMF.js                      0.69 kB │ gzip:   0.44 kB
 dist/assets/rolldown-runtime-hePW80VL.js                    0.71 kB │ gzip:   0.42 kB
 dist/assets/module-preload-BZ1Pz5am.js                      1.21 kB │ gzip:   0.69 kB
-dist/assets/dye-palette-BJXTVYGy.js                         1.23 kB │ gzip:   0.66 kB
-dist/assets/equipment-G7wVMiO9.js                           2.34 kB │ gzip:   1.15 kB
+dist/assets/dye-palette-PVDI2Yum.js                         1.25 kB │ gzip:   0.67 kB
+dist/assets/equipment-BoC27LK8.js                           2.34 kB │ gzip:   1.15 kB
 dist/assets/local-light-probe-Cmr1GCo8.js                   2.48 kB │ gzip:   1.19 kB
 dist/assets/human-shape-CLK6o720.js                         2.48 kB │ gzip:   1.24 kB
-dist/assets/sun-shadow-probe-DUX926F9.js                    2.49 kB │ gzip:   1.17 kB
-dist/assets/foliage-lod-probe-D26-BZM5.js                   2.69 kB │ gzip:   1.39 kB
-dist/assets/linear-materials--jLwZK0x.js                    3.08 kB │ gzip:   1.41 kB
-dist/assets/startupPreload-CLS-SHaO.js                      3.20 kB │ gzip:   1.56 kB
-dist/assets/townsfolk-CV7A_xLc.js                           3.32 kB │ gzip:   1.60 kB
+dist/assets/sun-shadow-probe-DNn2f1fU.js                    2.49 kB │ gzip:   1.17 kB
+dist/assets/foliage-lod-probe-XElk0Wnx.js                   2.69 kB │ gzip:   1.39 kB
+dist/assets/linear-materials-Cm6Z6aN9.js                    3.08 kB │ gzip:   1.41 kB
+dist/assets/startupPreload-CI7akLjO.js                      3.20 kB │ gzip:   1.56 kB
+dist/assets/townsfolk-CKi3w-_0.js                           3.32 kB │ gzip:   1.60 kB
 dist/assets/local-specular-c6fg4PgS.js                      3.94 kB │ gzip:   1.60 kB
-dist/assets/entry-BBTEs3Ut.js                               4.30 kB │ gzip:   2.00 kB
-dist/assets/npc-Q-KTzexz.js                                 4.73 kB │ gzip:   2.28 kB
-dist/assets/actor-state-9KtX-lqj.js                         6.16 kB │ gzip:   2.28 kB
-dist/assets/creator-qeFwujkX.js                             6.26 kB │ gzip:   2.70 kB
+dist/assets/entry-CmWM24sN.js                               4.33 kB │ gzip:   2.01 kB
+dist/assets/npc-CtX5DFX7.js                                 4.73 kB │ gzip:   2.28 kB
+dist/assets/actor-state-OX6-GTpJ.js                         6.16 kB │ gzip:   2.29 kB
 dist/assets/input-Dr2x9id5.js                               6.72 kB │ gzip:   2.57 kB
-dist/assets/sun-shadows-CfYqdp8M.js                         9.61 kB │ gzip:   4.28 kB
-dist/assets/armory-BjENDSLP.js                              9.95 kB │ gzip:   3.97 kB
-dist/assets/appearance-storage-BJQ2diBV.js                 10.50 kB │ gzip:   3.82 kB
+dist/assets/creator-BFQxn-Z6.js                             8.82 kB │ gzip:   3.55 kB
+dist/assets/sun-shadows-nZC_1fWZ.js                         9.61 kB │ gzip:   4.28 kB
+dist/assets/armory-DEWSRbsB.js                              9.95 kB │ gzip:   3.97 kB
+dist/assets/appearance-storage-DOvRzJkd.js                 10.51 kB │ gzip:   3.82 kB
 dist/assets/equipment-catalog-BSw-Lbk_.js                  11.22 kB │ gzip:   3.45 kB
-dist/assets/geometry-BpXncg73.js                           12.62 kB │ gzip:   5.41 kB
-dist/assets/enemies-BoD2DMwK.js                            15.47 kB │ gzip:   6.12 kB
-dist/assets/renderer-KGmKNp4-.js                           16.48 kB │ gzip:   6.61 kB
-dist/assets/materials-BLWI75NN.js                          24.52 kB │ gzip:  10.21 kB
-dist/assets/inspection-preview-CuogJzC4.js                 34.50 kB │ gzip:  12.72 kB
-dist/assets/combat-CbJGF5Km.js                             48.03 kB │ gzip:  17.84 kB
-dist/assets/scene-DaIiLmLj.js                              52.96 kB │ gzip:  20.89 kB
-dist/assets/protocol-BsCRp2fu.js                          102.00 kB │ gzip:  29.90 kB
-dist/assets/client-D-3lie1M.js                            123.18 kB │ gzip:  42.43 kB
-dist/assets/ashenReach-02kUMcqf.js                        220.99 kB │ gzip:  79.39 kB
-dist/assets/lite-runtime-DQoTKb0g.js                      717.53 kB │ gzip: 219.06 kB
+dist/assets/geometry-Db1Ipwzu.js                           12.62 kB │ gzip:   5.41 kB
+dist/assets/enemies-4vMsdcGJ.js                            15.47 kB │ gzip:   6.12 kB
+dist/assets/renderer-Ch-AiZNm.js                           16.43 kB │ gzip:   6.58 kB
+dist/assets/materials-MezIMWLv.js                          24.52 kB │ gzip:  10.21 kB
+dist/assets/inspection-preview-DlMmi3bI.js                 34.50 kB │ gzip:  12.72 kB
+dist/assets/combat-DDaB2ygR.js                             48.03 kB │ gzip:  17.84 kB
+dist/assets/scene-CRS_2dCj.js                              52.96 kB │ gzip:  20.89 kB
+dist/assets/protocol-BOumjmGx.js                          101.99 kB │ gzip:  29.90 kB
+dist/assets/client-amQaJPNz.js                            123.25 kB │ gzip:  42.46 kB
+dist/assets/ashenReach-7zN-Nhqf.js                        222.81 kB │ gzip:  79.97 kB
+dist/assets/lite-runtime-UjztHAVH.js                      717.57 kB │ gzip: 219.07 kB
 
+✓ built in 1.08s
 [plugin builtin:vite-reporter]
 (!) Some chunks are larger than 500 kB after minification. Consider:
 - Using dynamic import() to code-split the application
 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
-✓ built in 1.01s
-Verified Pages assets built in dist
+
+ ⛅️ wrangler 4.146.0 (update available 4.147.0)
+───────────────────────────────────────────────
+Uploading... (339/494)
+Uploading... (390/494)
+Uploading... (442/494)
+Uploading... (494/494)
+✨ Success! Uploaded 155 files (339 already uploaded) (25.55 sec)
+
+✨ Uploading _headers
+🌎 Deploying...
+✨ Deployment complete! Take a peek over at https://b3fdafd8.fardel.pages.dev
+https://play.sparkify.dev
+https://play.sparkify.dev/ashen-reach.html?play&clean

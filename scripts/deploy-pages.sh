@@ -55,4 +55,7 @@ npx --yes wrangler@4 pages deploy dist \
   --commit-message="$(git log -1 --pretty=%s | tr -d '\n' | cut -c1-120)"
 
 echo "https://play.sparkify.dev"
-echo "https://play.sparkify.dev/ashen-reach.html?play&clean"
+# Pages redirects .html to extensionless URLs; use the root entry to avoid that
+# extra cold-navigation round trip. Keep local Vite routes unchanged.
+# https://developers.cloudflare.com/pages/configuration/serving-pages/#route-matching
+echo "https://play.sparkify.dev/?play&clean"

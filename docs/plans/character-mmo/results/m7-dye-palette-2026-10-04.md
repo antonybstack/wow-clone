@@ -88,6 +88,8 @@ with zero GPU or console errors across all ten entries.
 
 ## Two findings that are not about the palette
 
+**Later 2026-10-04 correction:** the missing-garment interval below was a defect of that implementation, rather than a necessary property of recolouring. [Saved colours and atomic recolouring](m7-saved-colours-2026-10-04.md) retain the old owner through native preparation: forty changes now have zero gaps. The original measurement is retained here.
+
 **A dye change un-renders the piece for up to three frames.** The first review cut opened on a
 bare torso, because its first frame landed inside the first dye's rebuild. One frame cannot
 tell a sub-frame swap from a visible flicker, so

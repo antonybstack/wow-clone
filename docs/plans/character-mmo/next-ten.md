@@ -58,7 +58,7 @@ user on 2026-09-30, and the released/candidate/unaccepted boundary catalogued in
 | 4 | Authoritative multiplayer presence | Two to eight clients see one another move and change appearance. | 1–3 | **Delivered locally; public hosting parked** |
 | 5 | Modular Human identity: head, hair, adult age | The young/long-haired and older/bald examples are real saved characters. | 1 | Open — art/geometry |
 | 6 | **Armor swapping as a verified capability** | Any piece in any slot can be changed at any moment, on any supported body, without a visual or fit defect. | 1, 3 | Open — evidence |
-| 7 | Colour and material variation | A player can recolour pieces within an authored, published palette. | 6 | Local implementation accepted; release checks in progress |
+| 7 | Colour and material variation | A player can recolour pieces within an authored, published palette. | 6 | Delivered: bounded equipment colours; phone acceptance stays in 10 |
 | 8 | Equipment authoring factory | New pieces reach the catalogue through a repeatable publishing pipeline. | 6; hair/headwear needs 5 | Partly built |
 | 9 | Race fits and an Elf proof | One logical outfit resolves to correct Human/Orc/Undead/Elf fits. | 5, 6, 8 | Open — licensed source |
 | 10 | Device acceptance and content release | The customization slice releases with real device limits and one published content update. | 1–9 | Open |
@@ -296,7 +296,7 @@ coat and the four Duskguard pieces are unreachable there and `equip('shoulders',
 
 Tasks:
 
-The runtime persistence, creator controls and missing-garment fence were completed on 2026-10-04. The final result records the 25-case default-path check, native remote lifecycle, neutral geometry/coverage and performance limits. Physical-phone acceptance remains milestone 10.
+The runtime persistence, creator controls and missing-garment fence were completed and released on 2026-10-04 as source `4063f49` / Pages `b3fdafd8-c343-4147-ae2e-760a155c8d06` (Telegram 849). The final result records the 25-row default-path check, native remote lifecycle, neutral geometry/coverage and 213–247 FPS with the largest dyed outfit at 1280×720. Public root startup p95 is 954 ms default / 1,037 ms largest dyed; the latter misses the one-second target and remains a follow-up. Physical-phone acceptance and the narrow Armory preview remain milestone 10.
 
 1. **Mechanism chosen 2026-10-03** ([result](results/m7-dye-mechanism-2026-10-03.md)): drive
    the authored `baseColorFactor` from the recipe where the piece's material is built in the
@@ -305,7 +305,7 @@ The runtime persistence, creator controls and missing-garment fence were complet
    out by measurement against a static control: mutating the factor on a live material does
    nothing, and replacing the material at runtime loses the ORM/normal/emissive maps and the
    ashen plugins without applying the factor. **The constraint that shapes the palette:** the
-   factor is a multiply, so dyes can darken and tint but never brighten. **The cost:** a dye
+   factor multiplies the source texture and cannot exceed its untinted colour; a pale entry can lighten an originally dark factor. **The cost:** a dye
    change is a piece rebuild — 18.8 ms median, 48.6 worst — so the control must commit on
    release, not per frame. No asset regeneration, which keeps it clear of the sealed catalogue.
    **Built and proved the same day**: nine palette entries apply in the running game with no GPU
@@ -316,8 +316,8 @@ The runtime persistence, creator controls and missing-garment fence were complet
    the signal. In pairwise terms v1 was already saturated and had no spread — eight dyes 8–11
    units from undyed but **1.70–3.64 from each other**. `ashen-dye-v2` carries ten entries at a
    minimum pairwise separation of **3.80** against 1.70, a 2.24× improvement predicted at 2.19×
-   before the run, for 7.5 ms median and zero GPU errors. **Still open:** the dye does not
-   persist, since the recipe field still rejects every key — that is task 2. Two findings
+   before the run, for 7.5 ms median and zero GPU errors. **At that checkpoint:** the dye did not
+   persist, since the recipe field rejected every key. Task 2 below now closes that defect. Two findings
    recorded against the mechanism rather than the palette: a dye change un-renders the piece for
    a median of 1 frame and up to 3 (~50 ms at 60 Hz) on 60% of changes, against an idle control
    of 0 gaps in 180 frames; and `sage`/`ash`, the designed minimum, is only just distinguishable

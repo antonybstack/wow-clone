@@ -1,6 +1,6 @@
 # M7 — saved equipment colours and atomic recolouring
 
-2026-10-04. Resumed Claude's `1412770` checkpoint; human identity art and the unreviewed mixed-armor matrix remain separate work. Local acceptance is recorded below. Reviewed motion is [VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m7-saved-colours-2026-10-04.mp4) / Telegram **849**. Production identifiers are added after release verification.
+2026-10-04. Resumed Claude's `1412770` checkpoint; human identity art and the unreviewed mixed-armor matrix remain separate work. Local acceptance is recorded below. Reviewed motion is [VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m7-saved-colours-2026-10-04.mp4) / Telegram **849**. Source **`4063f49`** is pushed and deployed; production verification is recorded below.
 
 ## Player-visible behaviour
 
@@ -69,6 +69,27 @@ The largest saved outfit was also paired against the same baseline, with identic
 | Forest | 228.6–236.0 | 5.4–5.5 ms | 5.9–8.0 ms | 12.9 ms | +0.11% |
 
 Across **41,478 candidate intervals**, zero exceed 16.67 or 33.33 ms. This clears the settled >144 FPS target with headroom. The paired route-average p95/p99 values all improve, with no repeatable >5% regression demonstrated. Recolour transactions retain their separate, slower tail above; these throughput runs do not include streaming or filming.
+
+## Production release
+
+Source **`4063f4909a5d2bf9b30c71f700deeb26e18b7dca`** is pushed and released at [play.sparkify.dev](https://play.sparkify.dev). Cloudflare Pages deployment **`b3fdafd8-c343-4147-ae2e-760a155c8d06`**, immutable host [b3fdafd8.fardel.pages.dev](https://b3fdafd8.fardel.pages.dev). Previous production/rollback is **`0c2f92c1-a4f8-43ab-838f-45c0f622df4b`** / source **`8ae4c2d`**, read before release. No rollback was required for loading or movement.
+
+All **494 served artifacts** match the build, including the five optional region-actor files and their cache policies; **275 executable/critical resources** also match with browser compression negotiation, including woodland geometry, textures and Havok. The public colour report records **24 successful colour cases plus one explicitly unavailable shared-region surface**. The local authority-control timer is tested locally; public hosting/transport remains parked. Spawn movement and all four Human endpoint cathedral entry/return routes pass with Havok and no recovery teleport. Chromium native touch, interrupted input, injected native depth fallback and desktop WebKit pass, including narrow-layout saved-colour controls; zero runtime/GPU errors. Production captures are retained with the reports.
+
+Public startup used the same fresh-process, 50 Mbit/s / 40 ms, 1280×720 protocol, twenty rows per cohort. All eighty rows validate dressed/grounded/GPU-completed first play and subsequent input with no runtime/GPU errors. The original `.html` gate URL receives a **308** to `/ashen-reach`; the normal root is **200**. This is the documented [Pages route behaviour](https://developers.cloudflare.com/pages/configuration/serving-pages/#route-matching). Both sets are retained, rather than replacing a slow cohort with a faster URL. Sequential WAN cohorts and uncontrolled CDN/driver state limit attribution beyond the observed redirect.
+
+| Production entry / character | p50 | p95 | Maximum | <=1 second |
+| --- | ---: | ---: | ---: | ---: |
+| `.html` / default | 921.8 ms | **1,015.3 ms** | 1,034.0 ms | 18/20 |
+| `.html` / largest dyed | 1,021.8 ms | **1,065.7 ms** | 1,090.8 ms | 1/20 |
+| Root / default | 887.9 ms | **954.2 ms** | 968.6 ms | 20/20 |
+| Root / largest dyed | 995.9 ms | **1,037.2 ms** | 1,066.6 ms | 10/20 |
+
+The ordinary default entry clears the one-second target; the largest saved outfit does **not** clear the public p95 target. This small WAN overrun is retained as a startup-budget follow-up, separate from the earlier multi-second first-use GPU stall. Neither is claimed repaired by recolouring. The deploy script now prints the canonical root entry, with its documentation reference; no served game artifact changes after `4063f49`.
+
+M7's bounded equipment-colour release is accepted: save/restoration, atomic failure, native lifecycle, live motion and settled throughput pass. The one-second claim remains bounded to the default root cohort. Full M5/M6 art and physical-phone acceptance stay open. The narrow Armory captures prove scrollable colour controls, but also show its existing side panel obscures much of the character at 430 px; a dedicated mobile preview remains M10 work.
+
+`production-release.json` records deployment and gates; `ownership.json` records final cleanup. All test contexts close after their checks, and both owned compressed-preview servers are stopped. The owned Chrome/Vite harness is stopped at handoff; unrelated user Edge tabs and Vite 5173/4000 sessions are preserved.
 
 ## Capture/preview corrections and follow-up
 

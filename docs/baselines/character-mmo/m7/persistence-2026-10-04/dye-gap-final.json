@@ -1,0 +1,40 @@
+{
+  "item": "wayfarerTunic",
+  "slot": "torso",
+  "rounds": 4,
+  "dyeChanges": 40,
+  "sampledFrames": 662,
+  "meshName": "WayfarerTunic",
+  "control": {
+    "frames": 175,
+    "absent": 0
+  },
+  "gapReasons": {
+    "missing": 0,
+    "invisible": 0
+  },
+  "framesWithPieceAbsent": 0,
+  "gapCount": 0,
+  "longestGapFrames": 0,
+  "medianGapFrames": 0,
+  "gapsPerChange": 0,
+  "costMs": {
+    "median": 14.7,
+    "worst": 21.1
+  },
+  "frameTimes": {
+    "samples": 717,
+    "meanMs": 5.844072524411409,
+    "meanFps": 171.11355066571764,
+    "p50Ms": 5.299999997019768,
+    "p95Ms": 12.5,
+    "p99Ms": 13.600000001490116,
+    "maxMs": 21.899999998509884,
+    "above6_94": 197,
+    "above8_33": 170,
+    "above16_67": 4,
+    "above33_33": 0
+  },
+  "note": "A gap is a run of consecutive animation frames in which the piece's mesh is either absent from scene.meshes or present with visible:false. Both are needed: a dye change disposes and re-appends the mesh, and the scene mesh count does not change. The control is the same sampler over an idle scene with no dye change, so a sampler that reports gaps on its own is caught rather than believed.",
+  "errors": []
+}

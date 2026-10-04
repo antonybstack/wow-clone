@@ -1,0 +1,49 @@
+{
+  "sourceCommit": "4063f4909a5d2bf9b30c71f700deeb26e18b7dca",
+  "production": {
+    "Id": "b3fdafd8-c343-4147-ae2e-760a155c8d06",
+    "Environment": "Production",
+    "Branch": "main",
+    "Source": "4063f49",
+    "Deployment": "https://b3fdafd8.fardel.pages.dev",
+    "Status": "13 seconds ago",
+    "Build": "https://dash.cloudflare.com/6ea5db25020bce6cbefd6c1cc999bef3/pages/view/fardel/b3fdafd8-c343-4147-ae2e-760a155c8d06"
+  },
+  "rollback": {
+    "Id": "0c2f92c1-a4f8-43ab-838f-45c0f622df4b",
+    "Environment": "Production",
+    "Branch": "main",
+    "Source": "8ae4c2d",
+    "Deployment": "https://0c2f92c1.fardel.pages.dev",
+    "Status": "3 days ago",
+    "Build": "https://dash.cloudflare.com/6ea5db25020bce6cbefd6c1cc999bef3/pages/view/fardel/0c2f92c1-a4f8-43ab-838f-45c0f622df4b"
+  },
+  "artifactVerification": {
+    "all": 494,
+    "critical": 275,
+    "match": true
+  },
+  "status": "accepted-bounded-equipment-colours",
+  "verification": {
+    "allArtifactMatches": 494,
+    "criticalArtifactMatches": 275,
+    "localCharacterTests": 166,
+    "localEquipmentTests": 112,
+    "presenceTests": 5,
+    "productionColourCasesPassed": 24,
+    "publicSharedRegionSurface": "unavailable; authority timer checked locally only",
+    "traversalRoutes": 5,
+    "recoveries": 0,
+    "chromiumNativeTouch": "passed",
+    "injectedNativeDepthFallback": "passed",
+    "desktopWebKit": "passed",
+    "runtimeGpuErrors": 0,
+    "physicalIphone": "not checked this release",
+    "startupCohorts": "production-cold-summary.json",
+    "startupLimit": "Default root p95 954.2 ms; largest root p95 1037.2 ms misses one second",
+    "motionTelegramMessage": 849,
+    "motionVeUrl": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m7-saved-colours-2026-10-04.mp4",
+    "ownedBrowserCleanup": "completed; see ownership.json"
+  },
+  "rollbackRequired": false
+}
