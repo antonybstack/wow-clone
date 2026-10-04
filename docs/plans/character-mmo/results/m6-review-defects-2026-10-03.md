@@ -118,3 +118,52 @@ defect is reproduced and framed, no more.
   sole are legible, not only torso and silhouette.
 * Ground contact gets a numeric gate — capsule bottom against the visual heightfield — because no
   existing gate compared them, and a 10 cm error survived every one of them.
+
+---
+
+## Update, same day — the grip investigated and a fix identified but not shipped
+
+**Measured.** Perpendicular distance from each posed finger joint to the weapon's own grip axis,
+at a frozen idle, selecting the handle part by smallest cross-section and requiring it to be the
+*visible* mesh of the equipped item.
+[Data](../../../baselines/character-mmo/m6/weapon-grip.json) ·
+[measurement](../../../../scripts/character-assets/measure-weapon-grip.mjs).
+
+For the Human with `ironSword` against a grip of radius **19 mm**:
+
+| joint | Index | Middle | Ring | Pinky | Thumb |
+| --- | --- | --- | --- | --- | --- |
+| segment 1 | 34.0 | 37.6 | 36.8 | 33.2 | 69.7 |
+| segment 2 | 25.2 | 23.1 | 14.4 | 11.1 | 47.3 |
+| segment 3 (tip) | **15.2** | **22.4** | **15.1** | **17.7** | **23.5** |
+
+All distances in mm. **This rules out the obvious explanation**: the fingertips sit within a few
+millimetres of a 19 mm grip surface, and so does the thumb tip. The weapon is not placed away
+from the hand.
+
+**What is actually wrong** is visible once the camera is close enough: the hilt reads as passing
+*across* the hand, with the crossguard standing about a fist's width clear of the knuckles — the
+hand grips the lower part of the handle and leaves bare grip showing above it.
+
+**Two experiments.**
+
+1. *Tighter fingers.* Raising `hand-grip.js` closure from `shaft: [.58, .72, .60]` to
+   `[.80, .92, .86]` (thumb `[.8,.5,.3]` to `[.85,.80,.62]`) produced **no visible change** at a
+   close framing. Reverted.
+2. *Sliding the weapon along its own axis.* Nudging the prop by +30, +60 and −30 mm, **+60 mm
+   seats the crossguard directly on the fist** and brings the pommel in behind it. Confirmed
+   against the unmodified build at an identical camera. That is a one-line catalogue change:
+   `ironSword.gripPosition` y from `-.080` to `-.020`, and the Orc override `-.092` to `-.032`.
+
+**It is not shipped, and the reason matters.** The catalogue is sealed twice. The appearance
+fixture records a sha256 of `equipment-catalog.js`, and the Vite build refuses outright — *Stale
+Human family: src/ashen-reach/equipment-catalog.js. Run npm run prepare:human-shapes* — because
+the catalogue is an input to the **prepared, published** Human shape family. Shipping a 60 mm
+grip tweak therefore means regenerating `public/ashen-reach/human-shape-v1/` in full: body and
+garment GLBs rebuilt, meshopt re-encoded, compact textures repacked. That is a release-shaped
+operation on protected production assets, and disproportionate to the change, so it waits for a
+decision rather than being done unilaterally.
+
+**Still not explained** even with the fix applied: the hand does not read as *wrapping* the grip,
+only as being adjacent to it with the crossguard now seated. That is the hand's rotation relative
+to the grip rather than its position, and it is art judgement, not a measurement.
