@@ -309,11 +309,19 @@ Tasks:
    change is a piece rebuild — 18.8 ms median, 48.6 worst — so the control must commit on
    release, not per frame. No asset regeneration, which keeps it clear of the sealed catalogue.
    **Built and proved the same day**: nine palette entries apply in the running game with no GPU
-   errors, at **12 ms median / 19.7 worst**, against a static control of 0.04. The predicted
-   constraint is now visible — `bone` (2.84 separation) and `ash` (8.24) are hard to tell from
-   undyed, while oxblood (11.29) and moss (10.86) read at once, so **a palette should spend its
-   entries on saturation, not lightness**. Reviewed sheet: Telegram **845**. Still open: the dye
-   does not persist, since the recipe field still rejects every key.
+   errors, at **12 ms median / 19.7 worst**, against a static control of 0.04. Reviewed sheet: Telegram **845**.
+   **Palette respent 2026-10-04** ([result](results/m7-dye-palette-2026-10-04.md), Telegram
+   **848**): the v1 reading that entries should be spent "on saturation, not lightness" was
+   drawn from each entry's distance from *undyed*, on a crop where the dye drives only 26% of
+   the signal. In pairwise terms v1 was already saturated and had no spread — eight dyes 8–11
+   units from undyed but **1.70–3.64 from each other**. `ashen-dye-v2` carries ten entries at a
+   minimum pairwise separation of **3.80** against 1.70, a 2.24× improvement predicted at 2.19×
+   before the run, for 7.5 ms median and zero GPU errors. **Still open:** the dye does not
+   persist, since the recipe field still rejects every key — that is task 2. Two findings
+   recorded against the mechanism rather than the palette: a dye change un-renders the piece for
+   a median of 1 frame and up to 3 (~50 ms at 60 Hz) on 60% of changes, against an idle control
+   of 0 gaps in 180 frames; and `sage`/`ash`, the designed minimum, is only just distinguishable
+   at this scene's light level.
 2. **Attempted and reverted 2026-10-03** ([result](results/m7-dye-mechanism-2026-10-03.md)).
    The contract change is small and verified in isolation — v4→v5 with a kept v4 registry,
    `DYEABLE_SLOTS` excluding the factory-built hands, dyes keyed by slot, `undyed` normalised

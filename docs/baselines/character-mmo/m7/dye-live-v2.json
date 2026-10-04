@@ -1,0 +1,278 @@
+{
+  "url": "http://127.0.0.1:5873/ashen-reach.html?play&clean",
+  "palette": "ashen-dye-v2",
+  "item": "wayfarerTunic",
+  "slot": "torso",
+  "clip": {
+    "x": 575,
+    "y": 330,
+    "width": 130,
+    "height": 110
+  },
+  "control": {
+    "a": [
+      34.62,
+      33.21,
+      30.06
+    ],
+    "b": [
+      34.63,
+      33.22,
+      30.06
+    ],
+    "drift": 0.01,
+    "maskedDrift": 0.05
+  },
+  "mask": {
+    "reference": "pitch",
+    "sharePct": 53.5,
+    "pixels": 14300,
+    "responsive": 7650
+  },
+  "closestPairs": [
+    {
+      "a": "sage",
+      "b": "ash",
+      "gap": 3.8,
+      "maskedGap": 7.14
+    },
+    {
+      "a": "amber",
+      "b": "oxblood",
+      "gap": 3.83,
+      "maskedGap": 7.03
+    },
+    {
+      "a": "undyed",
+      "b": "sage",
+      "gap": 4.03,
+      "maskedGap": 7.51
+    },
+    {
+      "a": "verdigris",
+      "b": "ash",
+      "gap": 4.04,
+      "maskedGap": 7.55
+    },
+    {
+      "a": "moss",
+      "b": "pitch",
+      "gap": 4.04,
+      "maskedGap": 7.43
+    }
+  ],
+  "note": "rgb is the mean sRGB of a pinned crop at a frozen pose; masked is the same mean over only the pixels a dye change actually moves, which is the garment rather than the surrounding face, background and trousers. fromUndyed and maskedFromUndyed are Euclidean distances from the undyed capture; closestPairs is the pairwise separation that decides whether a player can tell two entries apart. ms is the cost of the dye change, which rebuilds the piece.",
+  "rows": [
+    {
+      "dye": "undyed",
+      "factor": [
+        1,
+        1,
+        1
+      ],
+      "ms": 0.2,
+      "rgb": [
+        34.55,
+        33.19,
+        30.01
+      ],
+      "masked": [
+        18.32,
+        19.08,
+        19.43
+      ],
+      "fromUndyed": 0,
+      "maskedFromUndyed": 0
+    },
+    {
+      "dye": "sage",
+      "factor": [
+        0.786,
+        0.906,
+        0.624
+      ],
+      "ms": 14.7,
+      "rgb": [
+        32.63,
+        32.34,
+        26.57
+      ],
+      "masked": [
+        14.77,
+        17.52,
+        13
+      ],
+      "fromUndyed": 4.03,
+      "maskedFromUndyed": 7.51
+    },
+    {
+      "dye": "heather",
+      "factor": [
+        0.852,
+        0.319,
+        0.753
+      ],
+      "ms": 16.7,
+      "rgb": [
+        33.4,
+        26.95,
+        27.95
+      ],
+      "masked": [
+        16.14,
+        7.41,
+        15.54
+      ],
+      "fromUndyed": 6.67,
+      "maskedFromUndyed": 12.49
+    },
+    {
+      "dye": "verdigris",
+      "factor": [
+        0.331,
+        0.753,
+        0.849
+      ],
+      "ms": 3.3,
+      "rgb": [
+        28.48,
+        31.04,
+        28.79
+      ],
+      "masked": [
+        6.99,
+        15.08,
+        17.16
+      ],
+      "fromUndyed": 6.55,
+      "maskedFromUndyed": 12.23
+    },
+    {
+      "dye": "ash",
+      "factor": [
+        0.55,
+        0.55,
+        0.54
+      ],
+      "ms": 14.1,
+      "rgb": [
+        30.64,
+        29.17,
+        25.93
+      ],
+      "masked": [
+        10.99,
+        11.58,
+        11.8
+      ],
+      "fromUndyed": 6.94,
+      "maskedFromUndyed": 12.97
+    },
+    {
+      "dye": "amber",
+      "factor": [
+        0.691,
+        0.516,
+        0.136
+      ],
+      "ms": 6.9,
+      "rgb": [
+        32.07,
+        28.91,
+        22.09
+      ],
+      "masked": [
+        13.55,
+        10.99,
+        4.55
+      ],
+      "fromUndyed": 9.34,
+      "maskedFromUndyed": 17.6
+    },
+    {
+      "dye": "indigo",
+      "factor": [
+        0.288,
+        0.141,
+        0.689
+      ],
+      "ms": 7.5,
+      "rgb": [
+        28.39,
+        25.61,
+        27.42
+      ],
+      "masked": [
+        6.74,
+        4.89,
+        14.54
+      ],
+      "fromUndyed": 10.1,
+      "maskedFromUndyed": 18.96
+    },
+    {
+      "dye": "moss",
+      "factor": [
+        0.131,
+        0.564,
+        0.226
+      ],
+      "ms": 22.8,
+      "rgb": [
+        26.95,
+        29.37,
+        22.9
+      ],
+      "masked": [
+        4,
+        11.86,
+        6.08
+      ],
+      "fromUndyed": 11.09,
+      "maskedFromUndyed": 20.87
+    },
+    {
+      "dye": "oxblood",
+      "factor": [
+        0.591,
+        0.1,
+        0.1
+      ],
+      "ms": 6.8,
+      "rgb": [
+        31.14,
+        25.2,
+        21.85
+      ],
+      "masked": [
+        11.93,
+        4.16,
+        4.16
+      ],
+      "fromUndyed": 11.92,
+      "maskedFromUndyed": 22.28
+    },
+    {
+      "dye": "pitch",
+      "factor": [
+        0.12,
+        0.12,
+        0.13
+      ],
+      "ms": 6.6,
+      "rgb": [
+        26.98,
+        25.39,
+        22.21
+      ],
+      "masked": [
+        4.21,
+        4.54,
+        4.85
+      ],
+      "fromUndyed": 13.38,
+      "maskedFromUndyed": 24.96
+    }
+  ],
+  "errors": []
+}
