@@ -2,10 +2,58 @@
  * Persistence belongs to the actor transaction after a successful visual commit.
  */
 import {creatorControlsForRace as legacyControls} from './contract.js';
-import {HUMAN_BUILD_LIMIT,validateAppearance,assertFields,DYEABLE_SLOTS} from '../appearance/contract.js';
+import {APPEARANCE_REGISTRY,HUMAN_BUILD_LIMIT,validateAppearance,assertFields,DYEABLE_SLOTS} from '../appearance/contract.js';
+import {HUMAN_IDENTITY_PRESETS,findHumanIdentityPreset} from '../appearance/human-identity.js';
 export function creatorControlsForRace(race) {
  const {available,unavailable}=legacyControls(race);
  return {available:available.map(c=>c.id==='build'?{...c,kind:'range',min:-HUMAN_BUILD_LIMIT,max:HUMAN_BUILD_LIMIT,default:0,axes:undefined}:c),unavailable:unavailable.map(c=>({...c,reason:`${c.label} customization is not available yet.`}))};
+}
+
+/** The actor owns visual commit and storage, just as it does for shape and dyes.
+ * Undo stores component identifiers only: a later equipment, dye or shape edit
+ * must survive undoing a face choice. No asset URL enters the saved recipe.
+ * https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement
+ */
+export function createProductionIdentitySession({getAppearance,getActorGeneration,applyIdentity,registry=APPEARANCE_REGISTRY}) {
+ if(typeof getActorGeneration!=='function')throw Error('Identity editing needs the actor ownership generation');
+ const lifetime=new AbortController();
+ let undo=[],pending=Promise.resolve(),pendingCount=0,race=getAppearance().race;
+ const generation=getActorGeneration();
+ const refresh=()=>{
+  if(getAppearance().race!==race||getActorGeneration()!==generation){lifetime.abort();undo=[];}
+ };
+ const assertOwner=()=>{refresh();lifetime.signal.throwIfAborted();};
+ const commit=async(components,recordUndo=true)=>{
+  refresh();const before=getAppearance();
+  if(before.race!=='human')throw Error('This race has no accepted Human identity');
+  const desired=validateAppearance({...before,components},registry);
+  if(JSON.stringify(before.components)===JSON.stringify(desired.components))return before;
+  // The actor transaction checks this signal after staging and before commit.
+  // Disposing an old race's editor must not leave a queued choice able to alter
+  // a later Human actor after a Human → Orc → Human round trip.
+  // https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal/throwIfAborted
+  await applyIdentity(desired.components,{signal:lifetime.signal,throwIfStale:assertOwner});
+  assertOwner();
+  if(recordUndo){undo.push(before.components);if(undo.length>32)undo.shift();}
+  return getAppearance();
+ };
+ const queue=job=>{
+  pendingCount++;const run=pending.catch(()=>{}).then(()=>{assertOwner();return job();});
+  pending=run.finally(()=>pendingCount--);pending.catch(()=>{});return pending;
+ };
+ return {
+  get state(){return getAppearance();},
+  get selected(){return getAppearance().race==='human'?findHumanIdentityPreset(getAppearance().components)?.id??null:null;},
+  get canUndo(){refresh();return !lifetime.signal.aborted&&!pendingCount&&undo.length>0;},
+  set(id){
+   const preset=HUMAN_IDENTITY_PRESETS.find(p=>p.id===id);
+   if(!preset)throw Error('Unknown Human identity preset');
+   return queue(()=>commit(preset.id==='starter'?{}:preset.components));
+  },
+  undo(){return queue(async()=>{refresh();const components=undo.pop();if(!components)return getAppearance();try{return await commit(components,false);}catch(error){refresh();if(!lifetime.signal.aborted)undo.push(components);throw error;}});},
+  reset(){return this.set('starter');},refresh,settled:()=>pending,
+  dispose(){lifetime.abort();undo=[];},
+ };
 }
 
 /** Equipment colour has its own history; skin/hair colour capabilities remain

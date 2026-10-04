@@ -3,7 +3,7 @@
  * JSON serialization is specified by ECMAScript, and we construct fixed property order:
  * https://tc39.es/ecma262/#sec-json.stringify
  */
-import {APPEARANCE_REGISTRY,APPEARANCE_V1_REGISTRY,APPEARANCE_V2_REGISTRY,APPEARANCE_V3_REGISTRY,migrateAppearance, AppearanceError, MAX_APPEARANCE_BYTES, validateAppearance} from './contract.js';
+import {APPEARANCE_REGISTRY,migrateAppearance, AppearanceError, MAX_APPEARANCE_BYTES, validateAppearance} from './contract.js';
 
 const bytes=text=>new TextEncoder().encode(text).length;
 export function encodeAppearance(recipe,registry=APPEARANCE_REGISTRY) {
@@ -22,15 +22,12 @@ export function decodeAppearance(text,registry=APPEARANCE_REGISTRY) {
 /** Known catalogue migrations retain the strict decoder and its byte bound.
  * Unknown/future records and corrupt input are never interpreted as a default.
  */
-export function decodeMigratingAppearance(text){
- try{return decodeAppearance(text);}
+export function decodeMigratingAppearance(text,registry=APPEARANCE_REGISTRY){
+ try{return decodeAppearance(text,registry);}
  catch(error){
   if(!['UNSUPPORTED_SCHEMA','UNSUPPORTED_CATALOG'].includes(error.code))throw error;
   // decodeAppearance already bounded and parsed this text before that error.
-  const header=JSON.parse(text);
-  const legacy=[APPEARANCE_V1_REGISTRY,APPEARANCE_V2_REGISTRY,APPEARANCE_V3_REGISTRY].find(r=>r.schemaVersion===header.schemaVersion&&r.catalogVersion===header.catalogVersion);
-  if(!legacy)throw error;
-  return migrateAppearance(decodeAppearance(text,legacy));
+  return migrateAppearance(JSON.parse(text),registry);
  }
 }
 /** Exact canonical JSON gives collision-free semantic identity within this schema version. */

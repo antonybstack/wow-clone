@@ -8,6 +8,18 @@ native goal, beginning with M5 saved Human identity. Continue through verificati
 delivery and commit/push without another “proceed.” Respect explicit stop/pause
 requests and record real dependencies. [Continuation mechanism and scope](autonomous-continuation.md).
 
+**M5 saved-identity implementation checkpoint:** the opt-in v6 recipe and identity-only
+undo session are implemented; production remains v5 and no new visible controls are
+enabled. Fourteen new tests cover authored combinations, v1–v5 migration, failure,
+history and actor retirement. A valid Grok finding about stale choices across a
+race round trip is corrected with a mandatory owner generation and cancellation
+guard; the live transaction must use it before commit. Valid v4 saved records now
+restore through the storage decoder. Character 180/180, equipment 112/112,
+startup-prefetch 6/6 and build pass. Next: immutable
+selected packs and the existing actor transaction, then cold/live/release gates.
+Follow [the granular implementation plan](plans/character-mmo/m5-saved-identity-2026-10-04.md);
+M5 task 2 remains open until the saved playable integration is delivered.
+
 ## Immediate focus: character customization and armor swapping
 
 **Latest user review, 2026-10-04:** “this looks much better, what's next?” refers

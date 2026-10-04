@@ -1,0 +1,70 @@
+{
+  "scope": "Candidate vocabulary/history and v4 storage restoration; no live identity or production release acceptance",
+  "productionCatalogue": "appearance-catalog-v5",
+  "candidateCatalogue": "appearance-catalog-v6",
+  "checks": {
+    "character": {
+      "tests": 180,
+      "pass": 180,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "equipment": {
+      "tests": 112,
+      "pass": 112,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "final-contract-prefetch-presence": {
+      "tests": 47,
+      "pass": 47,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    }
+  },
+  "identityTests": 14,
+  "startupPrefetch": {
+    "tests": 6,
+    "pass": 6,
+    "fail": 0
+  },
+  "presence": {
+    "tests": 5,
+    "pass": 5,
+    "fail": 0
+  },
+  "build": {
+    "pass": true,
+    "note": "Final source: prepared-asset provenance and default optional-module graph guards pass"
+  },
+  "sourcesSha256": {
+    "src/character/appearance/human-identity.js": "33bda691ee7ff8d5775f98949846e3c484e09e266af72e8e8670a223ac2dbff1",
+    "src/character/appearance/contract.js": "541e1302f02edfc58d162afdb05b6b2348883621eafd85a9f45d19d09bb92849",
+    "src/character/appearance/codec.js": "8f32af8e2c4f284351bd53b6c356fe04877be8754822a99520eba18277d91d27",
+    "src/character/creator/production.js": "3bff9c1ebb727a4d8dc90a34dc0b2afe277d031a4980714483fc43ddcf6cb102",
+    "scripts/test-human-identity-recipe.mjs": "e81ad1591b3368ef0edf41b293bd024e58d235a91abab1fa1f05abc0cbfd761e"
+  },
+  "review": {
+    "model": "grok-4.6",
+    "reasoningEffort": "high",
+    "sessionId": "01a10923-d79b-78b1-a3bf-1d7955ef1542",
+    "initialStopReason": "cancelled (10-turn limit)",
+    "resumeStopReason": "end_turn",
+    "validFinding": "Queued choices/undo lacked actor ownership across replacements",
+    "correction": "Mandatory owner generation, AbortSignal, pre-commit throwIfStale, post-stage ownership/history checks, disposal",
+    "report": "docs/reviews/character-mmo/m5-identity-contract-2026-10-04.md"
+  },
+  "browserOwnership": {
+    "openedInstances": [],
+    "ownedRenderersRunning": 0,
+    "preservedUserVitePorts": [
+      5173,
+      4000
+    ],
+    "grokReviewFinished": true
+  },
+  "remaining": "M5 selected-pack transaction, first-play startup, live fit/motion, device and production acceptance"
+}

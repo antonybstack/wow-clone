@@ -1,0 +1,41 @@
+{
+  "scope": "Offline lossless prepared-body census, not startup or live acceptance",
+  "rows": [
+    {
+      "label": "released",
+      "bodySha256": "f92b16558a8c4154d04f3878383347255058af9cbc72aaf08279eaadc7740bf7",
+      "encodedBytes": 991320,
+      "joints": 65,
+      "bindSha256": "8ed2783f695e4b987e38222b2a9a82c4c95bc0ca37ca82f23cc445e40aac810c",
+      "clips": 57,
+      "animationValuesSha256": "4d17f973a08a8b25af0150422c160b4e21eeff644581da44bba8acefa09f520f"
+    },
+    {
+      "label": "old",
+      "bodySha256": "cd84ad03d7c716d1e10d4761e3dc06668afa6e6bda9e4e603f65d13b0a8f0cdc",
+      "encodedBytes": 1246960,
+      "joints": 65,
+      "bindSha256": "141145491944d023bcc381b3d7951f19574b0ca8bb9229e3d46e987f8d161d63",
+      "clips": 57,
+      "animationValuesSha256": "4d17f973a08a8b25af0150422c160b4e21eeff644581da44bba8acefa09f520f"
+    },
+    {
+      "label": "young",
+      "bodySha256": "56063a86062654d2f6f7291886774ed61156a765946031150aa3e93e99c0468b",
+      "encodedBytes": 1241709,
+      "joints": 65,
+      "bindSha256": "141145491944d023bcc381b3d7951f19574b0ca8bb9229e3d46e987f8d161d63",
+      "clips": 57,
+      "animationValuesSha256": "4d17f973a08a8b25af0150422c160b4e21eeff644581da44bba8acefa09f520f"
+    },
+    {
+      "label": "young-hair",
+      "bodySha256": "7de8d55f317d6b003af3d8f331f2c2ec5ddd06d96dc77fad664fd8072ed390e2",
+      "encodedBytes": 1541533,
+      "joints": 65,
+      "bindSha256": "141145491944d023bcc381b3d7951f19574b0ca8bb9229e3d46e987f8d161d63",
+      "clips": 57,
+      "animationValuesSha256": "4d17f973a08a8b25af0150422c160b4e21eeff644581da44bba8acefa09f520f"
+    }
+  ]
+}
