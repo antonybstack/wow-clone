@@ -1,6 +1,6 @@
 # Character customization and armor — current milestone queue
 
-Reprioritized **2026-10-02**, game source **8ae4c2d**. The queue now runs on one axis: **what a
+Reprioritized **2026-10-02**; updated **2026-10-04**, released source **4063f49**. The queue now runs on one axis: **what a
 player can change about their character, and how reliably armor pieces swap on the body.**
 Multiplayer is parked at what it has already proved, not cancelled — see *Parked* below.
 
@@ -23,12 +23,12 @@ change any piece at any time, and have all of that persist and reload exactly. E
 
 Two things gate it today, and both are measured rather than suspected:
 
-* **Identity is blocked on head geometry, not texture.** At the y=1.5 m neck cut the head's
-  and body's shading normals disagree by a **median of 44°** (p90 112, max 168) and the
-  surface tangent breaks by a **median of 65.5°**. Five colour corrections could not fix that,
-  and welding the normals traded the seam for a brightness step. Hair is **fused to the
-  scalp** — only 75 of 333 above-brow vertices sit over another surface — so bald cannot be
-  reached by collapsing a shell.
+* **Identity now has a connected source audition.** The October 1 welded CC0 heads
+  supersede the separate-head 44° normal break and fused-hair collapse experiments.
+  The [October 4 checkpoint](results/m5-connected-identity-2026-10-04.md) reuses that source,
+  adds eye morphs and current torso/eye/hair coverage, corrects the hood opening and
+  removes discarded curve/rig dependencies. The named examples are playable DEV
+  auditions. Saved identity, compact first-play budgets and release acceptance remain open.
 * **Armor swapping works but is under-evidenced.** The catalogue now enumerates **6,912**
   combinations, 6,048 valid, with zero validator disagreements — the "768" carried in this plan
   dated from an 8-item catalogue and is corrected. Per-slot hot swapping under motion
@@ -56,7 +56,7 @@ user on 2026-09-30, and the released/candidate/unaccepted boundary catalogued in
 | 2 | Correct crowd rendering in the region | Dressed actors animate and keep identity through detail changes. | 1 | **Delivered** |
 | 3 | Bounded appearance streaming and memory | Outfit changes converge without stalls or growth. | 1–2 | **Delivered** |
 | 4 | Authoritative multiplayer presence | Two to eight clients see one another move and change appearance. | 1–3 | **Delivered locally; public hosting parked** |
-| 5 | Modular Human identity: head, hair, adult age | The young/long-haired and older/bald examples are real saved characters. | 1 | Open — art/geometry |
+| 5 | Modular Human identity: head, hair, adult age | The young/long-haired and older/bald examples are real saved characters. | 1 | Connected source audition; saved identity/startup gates open |
 | 6 | **Armor swapping as a verified capability** | Any piece in any slot can be changed at any moment, on any supported body, without a visual or fit defect. | 1, 3 | Open — evidence |
 | 7 | Colour and material variation | A player can recolour pieces within an authored, published palette. | 6 | Delivered: bounded equipment colours; phone acceptance stays in 10 |
 | 8 | Equipment authoring factory | New pieces reach the catalogue through a repeatable publishing pipeline. | 6; hair/headwear needs 5 | Partly built |
@@ -188,29 +188,42 @@ Test joins/leaves, out-of-order input, reconnect, stale appearance revisions and
 
 ## 5 — Modular Human identity: head, hair and adult age
 
-**Dependency:** milestone 1. **Blocked on geometry and source art, not on runtime.** The
-creator already offers every verified control and refuses the rest with a reason; this
-milestone is what makes those reasons go away.
+**Dependency:** milestone 1. The [connected identity checkpoint](results/m5-connected-identity-2026-10-04.md)
+replaces the former separate-head/neck work. Preserve its source, exact 57 curves and
+65-joint bind. A DEV audition does not satisfy saved production identity.
 
-Tasks:
+Tasks, in order:
 
-1. **Close the neck seam at its cause.** The head and body are two meshes carrying two atlases
-   butted at y=1.5 m with a 44° median normal break and a 65.5° median tangent break. Colour
-   is exhausted — chroma matching took the join step from 21.7/33.2 to 8.3/7.5 and the residual
-   is a shading discontinuity. Make the surfaces tangent-continuous at the cut, or merge head
-   and body into one mesh on one atlas with a gradient-domain blend across the former seam.
-   Preserve the source-65 rig, M004 morph correspondence and M005 garment fit.
-2. **Author a real bald scalp.** Collapsing the shipped shell cannot work: only 22.5% of the
-   above-brow head sits over another surface, so the hair *is* the skull's outer surface. This
-   needs a re-authored head, with the M004/M005 correspondence rebuilt or explicitly restated.
-3. **Settle long hair.** The CC0 ponytail is fitted to the 65-joint bind and reviewed live, and
-   the hood already hides it through semantic coverage. It still needs an accepted tie and
-   colour policy, and behaviour at the shape extremes.
-4. **Make adult age read as age.** Cross-topology young→old delta transfer preserved the face
-   but read as a *different person*, not an older one. Either author the older variant or
-   record the approach as closed with its evidence.
-5. **Then, and only then, flip the capability flags** in `creator/contract.js` for `faceOrAge`
-   and `hair`, with the live checks extended to cover them.
+1. **Connected head/scalp and current-fit source proof — implemented.** Reuse the welded
+   October 1 source; verify the current garment pack rather than the obsolete M005
+   nine-item audition. October 4 adds matching eyeball morphs, semantic eye/hair/torso
+   ownership, a per-head brow opening and cleaned animation dependencies. Retained
+   clothing geometry/shape/skin below 1.46 m is measured; live still and motion review
+   have their own evidence. The shape domain remains Human height 0.90–1.15 and build
+   −0.95..+0.95. Do not restart colour sweeps on the rejected neck cut.
+2. **Define and publish the bounded identity recipe.** Keep the released starter as an
+   explicit choice. Represent supported head and hair identifiers in the appearance
+   registry with a new catalogue version and explicit migration from v5. Initially offer
+   only authored, reviewed combinations; do not imply continuous ageing or arbitrary
+   independent combinations. State whether prime/weathered are head presets or the
+   same person's age transformation. Preserve equipment and colour authority through
+   head/hair changes, undo, failed loads and reload.
+3. **Selected identity before first play.** Publish immutable per-component/per-piece
+   descriptors and shared bind provenance. Reuse the current staged body/equipment
+   transaction, promise cache and compact/full upgrade. Default starter requests must
+   have no new identity dependencies. Measure twenty cold selected starts against the
+   production build at 50 Mbit/s / 40 ms; retain every overrun. The connected source body
+   is larger than the released shape body and is not yet a one-second acceptance claim.
+4. **Finish long-hair policy and motion fit.** The separate CC0 ponytail has ordered shape
+   targets and hides/restores through hood coverage. Set an authored tie and bounded
+   colour policy, review shoulders and cape clearance across the full outfit/motion
+   matrix, and keep hair simulation outside this scope. Skin/hair colour controls remain
+   unavailable until their own channels have actual accepted art.
+5. **Production acceptance and capability flags.** Extend save/reload/first-frame,
+   cancellation, disposal, desktop mobile and WebKit checks to the published identity
+   combinations. Measure isolated settled throughput, review live motion, then release
+   through the normal production gates. Only advertise age/hair capabilities that these
+   combinations actually support. Physical-phone acceptance remains milestone 10.
 
 **Exit:** both named examples — tall/slender/young/long-haired and short/stout/older/bald —
 save, reload and enter gameplay with the saved identity visible at the first playable frame,

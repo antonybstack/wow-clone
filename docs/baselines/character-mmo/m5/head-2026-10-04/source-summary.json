@@ -1,0 +1,20 @@
+{
+  "scope": "Connected source with matched eye morphs, discarded curve cleanup and nape paint correction; no release claim",
+  "assets": [
+    {
+      "label": "old",
+      "sha256": "cea3187c683411b4eceed42047bffaf773c983ac182b62eb4bdc67885ab841fe",
+      "bytes": 3803572
+    },
+    {
+      "label": "young",
+      "sha256": "7c8f5a311347ccb9b48d95b3d07c43095ea5927000afd364105211c55cab2838",
+      "bytes": 3867724
+    },
+    {
+      "label": "young-hair",
+      "sha256": "9ce5a854edd120274114c7bda4c0e2f9c3374dcbfab3aa2f482d5d17cecbab64",
+      "bytes": 4788904
+    }
+  ]
+}

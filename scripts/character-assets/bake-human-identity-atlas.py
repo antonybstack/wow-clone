@@ -128,7 +128,10 @@ clamp=lambda x:max(0,min(1,x))
 for vertex in mesh.vertices:
     x,y,z=vertex.co
     scalp.data[vertex.index].value=max(clamp((z-168)/4),clamp((y-4)/3)*clamp((z-151)/4),clamp((abs(x)-5)/2)*clamp((z-164)/4))
-    neck_fix.data[vertex.index].value=clamp((y-3)/3)*clamp((2.6-abs(x))/1.2)*clamp((z-146)/2)*clamp((157-z)/3)
+    # The old torso paints hair tips behind both ears, beyond the former 2.6 cm
+    # central nape mask. Cover that anatomical band on both sides of the weld;
+    # retain the throat and the face, rather than recolouring the whole neck.
+    neck_fix.data[vertex.index].value=clamp((y+8)/3)*clamp((10-abs(x))/2)*clamp((z-146)/2)*clamp((158-z)/2)
 noise=nodes.new('ShaderNodeTexNoise');noise.inputs['Scale'].default_value=180
 noise.inputs['Detail'].default_value=1
 links.new(head_uv.outputs['UV'],noise.inputs['Vector'])

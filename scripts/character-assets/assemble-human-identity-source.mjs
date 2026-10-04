@@ -4,7 +4,7 @@
  */
 import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
-import {NodeIO, VertexLayout} from '@gltf-transform/core';
+import {NodeIO, VertexLayout, PropertyType} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {compressTexture,copyToDocument,prune,unpartition} from '@gltf-transform/functions';
 import sharp from 'sharp';
@@ -31,8 +31,10 @@ const girth=JSON.parse(await fs.readFile('docs/baselines/character-mmo/m004/make
 const {segments}=buildSegments(root.listSkins()[0].listJoints(),restWorld(root),girth);
 // Retain torso/rim correspondence, then ease into the same measured Head field.
 // Its accepted width change is only ~0.26%, not a new skull-size slider.
-// Hair uses this field too, so cap and neck have actual ordered shape targets.
-for(const candidate of root.listMeshes().filter(m=>['HumanV1Body','HumanPonytail01'].includes(m.getName()))){
+// Hair and eyeballs use this field too. A rigid Head attachment follows pose,
+// but does not follow the socket width change driven by a native morph target.
+// https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#morph-targets
+for(const candidate of root.listMeshes().filter(m=>['HumanV1Body','HumanPonytail01','HumanIdentityEyes'].includes(m.getName()))){
  const body=candidate.getName()==='HumanV1Body';
  for(const prim of candidate.listPrimitives()){
   const position=prim.getAttribute('POSITION').getArray(),baseNormals=prim.getAttribute('NORMAL').getArray();
@@ -76,7 +78,15 @@ for(const candidate of root.listMeshes().filter(m=>['HumanV1Body','HumanPonytail
 // source-node dependencies once channels address the existing accepted rig.
 // https://gltf-transform.dev/modules/functions/functions/copyToDocument
 const existingNodes=new Map(root.listNodes().map(node=>[node.getName(),node]));
-for(const animation of root.listAnimations())animation.dispose();
+for(const animation of root.listAnimations()){
+ // Property.dispose detaches the animation, but is deliberately non-recursive.
+ // Dispose its owned channels/samplers too: their otherwise orphaned references
+ // keep the discarded Blender curves and duplicate bones alive through prune.
+ // https://gltf-transform.dev/modules/core/classes/Property#dispose
+ for(const channel of animation.listChannels())channel.dispose();
+ for(const sampler of animation.listSamplers())sampler.dispose();
+ animation.dispose();
+}
 const sourceAnimations=base.listAnimations();
 const copies=copyToDocument(doc,baseDoc,sourceAnimations);
 for(const source of sourceAnimations){
@@ -87,6 +97,15 @@ for(const source of sourceAnimations){
   assert(target,`Missing source animation target ${channel.getTargetNode().getName()}`);
   channel.setTargetNode(target);
  }
+}
+// copyToDocument includes target-node dependencies. All channels now address
+// the accepted rig, so release the copied node hierarchy explicitly; pruning
+// alone does not remove an entire disconnected hierarchy of empty bone nodes.
+// https://gltf-transform.dev/modules/core/classes/Property#dispose
+const retainedNodes=new Set(existingNodes.values());
+for(const copied of copies.values())if(copied.propertyType===PropertyType.NODE){
+ assert(!retainedNodes.has(copied),'Do not dispose the accepted actor rig');
+ copied.dispose();
 }
 await doc.transform(unpartition(),prune());
 assert.equal(root.listAnimations().length,57);

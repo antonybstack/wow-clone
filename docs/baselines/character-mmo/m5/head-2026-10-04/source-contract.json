@@ -1,0 +1,71 @@
+{
+  "scope": "Offline source continuity and animation evidence; not live acceptance",
+  "rows": [
+    {
+      "label": "old",
+      "vertices": 7038,
+      "neckSplitGroups": 196,
+      "samples": 855,
+      "maxSplitM": 0,
+      "maxNormalDifference": 0,
+      "maxMorphNormalDifference": 0,
+      "maxPaletteElementDifference": 0.000015854835510253906,
+      "maxDurationDifference": 0,
+      "sourceCurvesExact": true,
+      "unusedAccessors": 0,
+      "maxEyeFieldDifferenceM": 1.862645149230957e-9,
+      "nodes": 68,
+      "retainedClothingSurface": {
+        "belowM": 1.46,
+        "samples": 2617,
+        "maxPositionM": 0.0000011581759185685542,
+        "maxMorphM": 2.384185791015625e-7,
+        "maxWeightDifference": 1.1920928955078125e-7
+      }
+    },
+    {
+      "label": "young",
+      "vertices": 7211,
+      "neckSplitGroups": 140,
+      "samples": 855,
+      "maxSplitM": 0,
+      "maxNormalDifference": 0,
+      "maxMorphNormalDifference": 0,
+      "maxPaletteElementDifference": 0.000015854835510253906,
+      "maxDurationDifference": 0,
+      "sourceCurvesExact": true,
+      "unusedAccessors": 0,
+      "maxEyeFieldDifferenceM": 1.862645149230957e-9,
+      "nodes": 68,
+      "retainedClothingSurface": {
+        "belowM": 1.46,
+        "samples": 2617,
+        "maxPositionM": 0.0000011581759185685542,
+        "maxMorphM": 2.384185791015625e-7,
+        "maxWeightDifference": 1.1920928955078125e-7
+      }
+    },
+    {
+      "label": "young-hair",
+      "vertices": 7211,
+      "neckSplitGroups": 140,
+      "samples": 855,
+      "maxSplitM": 0,
+      "maxNormalDifference": 0,
+      "maxMorphNormalDifference": 0,
+      "maxPaletteElementDifference": 0.000015854835510253906,
+      "maxDurationDifference": 0,
+      "sourceCurvesExact": true,
+      "unusedAccessors": 0,
+      "maxEyeFieldDifferenceM": 1.862645149230957e-9,
+      "nodes": 69,
+      "retainedClothingSurface": {
+        "belowM": 1.46,
+        "samples": 2617,
+        "maxPositionM": 0.0000011581759185685542,
+        "maxMorphM": 2.384185791015625e-7,
+        "maxWeightDifference": 1.1920928955078125e-7
+      }
+    }
+  ]
+}

@@ -81,8 +81,14 @@ async function main(){
  const bootAppearance=appearanceLoaded?.restored?appearanceLoaded.appearance:null;
  const defaultBootGear=DEFAULT_BOOT_GEAR;
  const productionShapeStart=usesHumanShapeStarter(bootAppearance);
+ // DEV source art stays outside public/ and the production module graph. Reuse
+ // the released pack/body path; an audition never overwrites saved appearance.
+ // https://vite.dev/guide/env-and-mode.html#env-variables
+ const identityReview=import.meta.env.DEV&&params.has('humanIdentity')
+  ?await (await import('./identity-review.js')).loadIdentityReview(params):null;
+ const humanFamilyStart=productionShapeStart||Boolean(identityReview);
  const starterWorldP=fastStart?preloadStarterWorld():null;
- const starterCharacterP=productionShapeStart?preloadHumanShapePack(bootAppearance.equipment,{compact:true}):(fastStart?preloadStarterCharacter():null);
+ const starterCharacterP=identityReview?Promise.resolve(identityReview.manifest):productionShapeStart?preloadHumanShapePack(bootAppearance.equipment,{compact:true}):(fastStart?preloadStarterCharacter():null);
  starterWorldP?.catch(()=>{});starterCharacterP?.catch(()=>{});
  // M004 developer shape family. `resolveHumanShape` answers null for every URL that does
  // not name `humanShape` or `humanHeight`, so the default route below is untouched. When a
@@ -92,7 +98,7 @@ async function main(){
  const developerShape=params.has('humanShape')||params.has('humanHeight')
   ?(await import('../character/runtime/human-shape.js')).resolveHumanShape(params)
   :null;
- const humanShape=developerShape||(productionShapeStart?{weights:[Math.max(0,-bootAppearance.shape.build),Math.max(0,bootAppearance.shape.build)],heightScale:bootAppearance.shape.height,installWriters:true,assetURL:null,garmentManifestURL:null}:null);
+ const humanShape=developerShape||(humanFamilyStart?{weights:identityReview?[0,0]:[Math.max(0,-bootAppearance.shape.build),Math.max(0,bootAppearance.shape.build)],heightScale:identityReview?1:bootAppearance.shape.height,installWriters:true,assetURL:null,garmentManifestURL:null}:null);
  // Diagnostic M006 tail on the M004 shape family. This explicit route has its
  // own mesh/coverage adapter; the starter body and startup path stay identical.
  // The candidate is served by Vite from .cache and is not a released asset.
@@ -131,8 +137,8 @@ async function main(){
   ?'/__human_head__/human-old-bald-atlas-matched.glb'
   :humanShape?.assetURL
   ||(creatorWanted?shapeModule.HUMAN_SHAPE_ASSET:null);
- const fastCharacter=(fastStart||productionShapeStart)&&!shapeCandidate;
- let humanFamilyReady=Boolean(productionShapeStart||creatorWanted||humanShape?.garmentManifestURL);
+ const fastCharacter=(fastStart||humanFamilyStart)&&!shapeCandidate;
+ let humanFamilyReady=Boolean(humanFamilyStart||creatorWanted||humanShape?.garmentManifestURL);
  const bodyUrl=shapeCandidate||(preloadedEquipment?'/ashen-reach/wanderer-equipment.glb':'/ashen-reach/equipment/body.glb');
  // Full/legacy loading follows the manifest's actual covered body, while
  // default first play still starts the existing shared compact promises.
@@ -363,13 +369,14 @@ async function main(){
    }}:{}),
    getShapeWeights:()=>ashen.humanShape?.weights||[0,0],
    fitId:HUMAN_EQUIPMENT_FIT,...(fullBodyManifestP?{manifest:await fullBodyManifestP}:{}),...(fastCharacter?{manifest:await starterCharacterP,loadBuffer:startupAssetBuffer}:{}),
-   ...(productionShapeStart?{shapeFamily:'ashen-human-shape-v1'}:{}),
+   ...(humanFamilyStart?{shapeFamily:'ashen-human-shape-v1'}:{}),
    ...(bootAppearance?.race==='human'?{bootLoadout:bootAppearance.equipment,dyes:bootAppearance.dyes}:{})},
   orc:{race:'orc',manifestUrl:'/ashen-reach/equipment-orc/manifest-coverage-v1.json',baseMeshes:ORC_BASE_VISIBLE_MESHES,fitId:ORC_EQUIPMENT_FIT,bodyUrl:ORC_BODY_URL},
   undead:{race:'undead',manifestUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/manifest-coverage-v1.json`,baseMeshes:coveragePilot?[...UNDEAD_BASE_VISIBLE_MESHES,'UndeadTorsoCore']:UNDEAD_BASE_VISIBLE_MESHES,fitId:UNDEAD_EQUIPMENT_FIT,bodyUrl:coveragePilot?'/__coverage_pilot__/undead.glb':`/ashen-reach/${UNDEAD_PACK_DIR}/body.glb`,
    ...(coveragePilot?{bodySegments:{...RACE_BODY_SEGMENTS.undead,UndeadTorsoCore:['torso.upper','torso.lower','waist']}}:{})},
  };
  if(coveragePilot)packs.human.manifestUrl='/ashen-reach/human-shape-v1/manifest.json';
+ if(identityReview)packs.human.manifestUrl=identityReview.manifestUrl;
  if(layerPilot)for(const pack of Object.values(packs)){
   pack.garmentLayerCoverage=layerPilot(pack.race);
   pack.manifestUrl=`/__coverage_pilot__/${pack.race}-manifest.json`;
@@ -401,7 +408,8 @@ async function main(){
   const {validateAppearance}=await import('../character/appearance/contract.js');
   const base=appearanceFromEquipment({race:currentRace,loadout:impl.getState()});
   committedAppearance=validateAppearance({...base,dyes:impl.getDyes?.()||{},shape:currentRace==='human'?(currentHumanShape||base.shape):{}});
-  if(!appearanceAPI.saveAppearance(committedAppearance))ashen.appearanceWarning='Could not save; this character lasts for this session only.';
+  if(identityReview)ashen.appearanceWarning=identityReview.warning;
+  else if(!appearanceAPI.saveAppearance(committedAppearance))ashen.appearanceWarning='Could not save; this character lasts for this session only.';
   return committedAppearance;
  };
  const equipRequest=job=>actorRequest(async()=>{
@@ -438,6 +446,7 @@ async function main(){
   get race(){return currentRace;},
   switchRace:(race,{restoreAppearance=null}={})=>actorRequest(async()=>{
    if(race===currentRace)return;
+   if(identityReview)throw Error('This Human identity audition has no alternate race fit. Use the normal game route to change race.');
    const pack=packs[race];
    if(!pack)throw Error('Unknown race pack');
    // ?preloadedEquipment serves one baked Human-fit GLB instead of a streamed per-race pack, so
@@ -560,7 +569,7 @@ async function main(){
  let backgroundDisposed=false;onSceneDispose(scene,()=>{backgroundDisposed=true;backgroundStatus.dispose();});
  ashen.whenRest=(async()=>{
   markStartup('bg-start');
-  if(productionShapeStart)void actorRequest(async()=>{
+  if(humanFamilyStart)void actorRequest(async()=>{
    const full=(await starterCharacterP).fullManifest,previous=impl;
    let next=null;
    try {
@@ -653,6 +662,7 @@ async function main(){
   committedAppearance ||= appearanceFromEquipment({race:currentRace,loadout:impl.getState()});
   currentHumanShape ||= currentRace==='human'?committedAppearance.shape:null;
   ashen.getAppearance=()=>committedAppearance;
+  if(identityReview){ashen.identityReview={label:identityReview.label,sourceSha256:identityReview.manifest.identityReview.sourceSha256};ashen.appearanceWarning=identityReview.warning;}
   const {createCreator}=await import('./creator.js');
   const applyProductionBody=shape=>actorRequest(async()=>{
    if(currentRace!=='human')throw Error('Body adjustment is only available for Human');
@@ -735,7 +745,7 @@ async function main(){
   backgroundStatus.done();
   // Optional shared controls must not turn a healthy solo region into a
   // background-loading failure when their late chunk cannot be downloaded.
-  void import('../multiplayer/entry.js').then(({createPresenceEntry})=>{
+  if(!identityReview)void import('../multiplayer/entry.js').then(({createPresenceEntry})=>{
    if(!backgroundDisposed&&!deviceLost)ashen.presenceEntry=createPresenceEntry(ashen);
   }).catch(error=>{ashen.presenceEntryError=error.message;console.warn('Shared-region controls unavailable',error);});
  })();

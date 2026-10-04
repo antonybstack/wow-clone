@@ -1,0 +1,2250 @@
+{
+  "url": "http://127.0.0.1:5873/ashen-reach.html?play&clean&pixelRatio=1",
+  "direct": true,
+  "scope": "Connected source audition with current clothing; no identity recipe acceptance",
+  "rows": [
+    {
+      "label": "old",
+      "shape": {
+        "name": "neutral",
+        "build": 0,
+        "height": 1
+      },
+      "outfit": "warden",
+      "angle": "front",
+      "file": "old-neutral-warden-front.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1,
+          "build": 0
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "old",
+      "shape": {
+        "name": "neutral",
+        "build": 0,
+        "height": 1
+      },
+      "outfit": "warden",
+      "angle": "side",
+      "file": "old-neutral-warden-side.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1,
+          "build": 0
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "old",
+      "shape": {
+        "name": "neutral",
+        "build": 0,
+        "height": 1
+      },
+      "outfit": "warden",
+      "angle": "back",
+      "file": "old-neutral-warden-back.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1,
+          "build": 0
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "old",
+      "shape": {
+        "name": "short-stout",
+        "build": 0.95,
+        "height": 0.9
+      },
+      "outfit": "warden",
+      "angle": "front",
+      "file": "old-short-stout-warden-front.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "old",
+      "shape": {
+        "name": "short-stout",
+        "build": 0.95,
+        "height": 0.9
+      },
+      "outfit": "warden",
+      "angle": "side",
+      "file": "old-short-stout-warden-side.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "old",
+      "shape": {
+        "name": "short-stout",
+        "build": 0.95,
+        "height": 0.9
+      },
+      "outfit": "warden",
+      "angle": "back",
+      "file": "old-short-stout-warden-back.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "old",
+      "shape": {
+        "name": "tall-slender",
+        "build": -0.95,
+        "height": 1.15
+      },
+      "outfit": "warden",
+      "angle": "front",
+      "file": "old-tall-slender-warden-front.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "old",
+      "shape": {
+        "name": "tall-slender",
+        "build": -0.95,
+        "height": 1.15
+      },
+      "outfit": "warden",
+      "angle": "side",
+      "file": "old-tall-slender-warden-side.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "old",
+      "shape": {
+        "name": "tall-slender",
+        "build": -0.95,
+        "height": 1.15
+      },
+      "outfit": "warden",
+      "angle": "back",
+      "file": "old-tall-slender-warden-back.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "young",
+      "shape": {
+        "name": "neutral",
+        "build": 0,
+        "height": 1
+      },
+      "outfit": "warden",
+      "angle": "front",
+      "file": "young-neutral-warden-front.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1,
+          "build": 0
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "young",
+      "shape": {
+        "name": "neutral",
+        "build": 0,
+        "height": 1
+      },
+      "outfit": "warden",
+      "angle": "side",
+      "file": "young-neutral-warden-side.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1,
+          "build": 0
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "young",
+      "shape": {
+        "name": "neutral",
+        "build": 0,
+        "height": 1
+      },
+      "outfit": "warden",
+      "angle": "back",
+      "file": "young-neutral-warden-back.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1,
+          "build": 0
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "young",
+      "shape": {
+        "name": "short-stout",
+        "build": 0.95,
+        "height": 0.9
+      },
+      "outfit": "warden",
+      "angle": "front",
+      "file": "young-short-stout-warden-front.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "young",
+      "shape": {
+        "name": "short-stout",
+        "build": 0.95,
+        "height": 0.9
+      },
+      "outfit": "warden",
+      "angle": "side",
+      "file": "young-short-stout-warden-side.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "young",
+      "shape": {
+        "name": "short-stout",
+        "build": 0.95,
+        "height": 0.9
+      },
+      "outfit": "warden",
+      "angle": "back",
+      "file": "young-short-stout-warden-back.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "young",
+      "shape": {
+        "name": "tall-slender",
+        "build": -0.95,
+        "height": 1.15
+      },
+      "outfit": "warden",
+      "angle": "front",
+      "file": "young-tall-slender-warden-front.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "young",
+      "shape": {
+        "name": "tall-slender",
+        "build": -0.95,
+        "height": 1.15
+      },
+      "outfit": "warden",
+      "angle": "side",
+      "file": "young-tall-slender-warden-side.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "young",
+      "shape": {
+        "name": "tall-slender",
+        "build": -0.95,
+        "height": 1.15
+      },
+      "outfit": "warden",
+      "angle": "back",
+      "file": "young-tall-slender-warden-back.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "young-hair",
+      "shape": {
+        "name": "neutral",
+        "build": 0,
+        "height": 1
+      },
+      "outfit": "warden",
+      "angle": "front",
+      "file": "young-hair-neutral-warden-front.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1,
+          "build": 0
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ],
+        "HumanPonytail01": [
+          "head.scalp"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "young-hair",
+      "shape": {
+        "name": "neutral",
+        "build": 0,
+        "height": 1
+      },
+      "outfit": "warden",
+      "angle": "side",
+      "file": "young-hair-neutral-warden-side.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1,
+          "build": 0
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ],
+        "HumanPonytail01": [
+          "head.scalp"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "young-hair",
+      "shape": {
+        "name": "neutral",
+        "build": 0,
+        "height": 1
+      },
+      "outfit": "warden",
+      "angle": "back",
+      "file": "young-hair-neutral-warden-back.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1,
+          "build": 0
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ],
+        "HumanPonytail01": [
+          "head.scalp"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "young-hair",
+      "shape": {
+        "name": "short-stout",
+        "build": 0.95,
+        "height": 0.9
+      },
+      "outfit": "warden",
+      "angle": "front",
+      "file": "young-hair-short-stout-warden-front.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ],
+        "HumanPonytail01": [
+          "head.scalp"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "young-hair",
+      "shape": {
+        "name": "short-stout",
+        "build": 0.95,
+        "height": 0.9
+      },
+      "outfit": "warden",
+      "angle": "side",
+      "file": "young-hair-short-stout-warden-side.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ],
+        "HumanPonytail01": [
+          "head.scalp"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "young-hair",
+      "shape": {
+        "name": "short-stout",
+        "build": 0.95,
+        "height": 0.9
+      },
+      "outfit": "warden",
+      "angle": "back",
+      "file": "young-hair-short-stout-warden-back.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ],
+        "HumanPonytail01": [
+          "head.scalp"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "young-hair",
+      "shape": {
+        "name": "tall-slender",
+        "build": -0.95,
+        "height": 1.15
+      },
+      "outfit": "warden",
+      "angle": "front",
+      "file": "young-hair-tall-slender-warden-front.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ],
+        "HumanPonytail01": [
+          "head.scalp"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "young-hair",
+      "shape": {
+        "name": "tall-slender",
+        "build": -0.95,
+        "height": 1.15
+      },
+      "outfit": "warden",
+      "angle": "side",
+      "file": "young-hair-tall-slender-warden-side.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ],
+        "HumanPonytail01": [
+          "head.scalp"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "label": "young-hair",
+      "shape": {
+        "name": "tall-slender",
+        "build": -0.95,
+        "height": 1.15
+      },
+      "outfit": "warden",
+      "angle": "back",
+      "file": "young-hair-tall-slender-warden-back.png",
+      "manifestHits": 1,
+      "bodyHits": 1,
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {},
+        "dyes": {},
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "graveweaverTop",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverGreatstaff",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ],
+        "HumanPonytail01": [
+          "head.scalp"
+        ]
+      },
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityEyes"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

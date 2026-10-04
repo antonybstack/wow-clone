@@ -1,0 +1,754 @@
+{
+  "scope": "DEV source checkpoint; launch requests uncapped Chromium, cap hints retained; no selected-startup or production identity claim",
+  "reports": {
+    "fps-released-body": {
+      "conditions": {
+        "cpu": "Apple M1 Max",
+        "url": "http://127.0.0.1:5873/ashen-reach.html?play=&clean=&pixelRatio=1&gpuTiming=",
+        "viewport": [
+          1280,
+          720
+        ],
+        "seconds": 12,
+        "runs": 3,
+        "uncappedRequired": true,
+        "recording": false,
+        "race": "human",
+        "outfit": "lector",
+        "orcAssetsOverride": null,
+        "routes": [
+          "meadow",
+          "town",
+          "bridge",
+          "cathedral",
+          "forest"
+        ],
+        "recordCapped": true,
+        "savedAppearance": null,
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "lectorCoat",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          }
+        }
+      },
+      "errors": [],
+      "all": {
+        "samples": 41537,
+        "meanMs": 4.335079567614488,
+        "meanFps": 230.67627350385197,
+        "p50Ms": 4.299999997019768,
+        "p95Ms": 5.800000004470348,
+        "p99Ms": 7.899999998509884,
+        "maxMs": 13.600000001490116,
+        "above6_94": 703,
+        "above8_33": 285,
+        "above16_67": 0,
+        "above33_33": 0
+      },
+      "routes": {
+        "meadow": {
+          "samples": 7858,
+          "meanMs": 4.58259099007381,
+          "meanFps": 218.21716189947236,
+          "p50Ms": 4.4000000059604645,
+          "p95Ms": 5.899999998509884,
+          "p99Ms": 8.899999998509884,
+          "maxMs": 11.899999998509884,
+          "above6_94": 159,
+          "above8_33": 110,
+          "above16_67": 0,
+          "above33_33": 0,
+          "maxRunP95Ms": 6,
+          "capHints": [],
+          "enemies": [
+            7
+          ],
+          "havok": true,
+          "recoveries": 0
+        },
+        "town": {
+          "samples": 7699,
+          "meanMs": 4.678386803480778,
+          "meanFps": 213.74889294232526,
+          "p50Ms": 4.5,
+          "p95Ms": 5.899999998509884,
+          "p99Ms": 7.899999998509884,
+          "maxMs": 12.399999998509884,
+          "above6_94": 147,
+          "above8_33": 41,
+          "above16_67": 0,
+          "above33_33": 0,
+          "maxRunP95Ms": 5.899999998509884,
+          "capHints": [],
+          "enemies": [
+            7
+          ],
+          "havok": true,
+          "recoveries": 0
+        },
+        "bridge": {
+          "samples": 8677,
+          "meanMs": 4.150097960124295,
+          "meanFps": 240.95816764046938,
+          "p50Ms": 4.100000001490116,
+          "p95Ms": 5.5999999940395355,
+          "p99Ms": 7.399999998509884,
+          "maxMs": 12.299999997019768,
+          "above6_94": 104,
+          "above8_33": 27,
+          "above16_67": 0,
+          "above33_33": 0,
+          "maxRunP95Ms": 5.700000002980232,
+          "capHints": [
+            1
+          ],
+          "enemies": [
+            7
+          ],
+          "havok": true,
+          "recoveries": 0
+        },
+        "cathedral": {
+          "samples": 8919,
+          "meanMs": 4.037706020854857,
+          "meanFps": 247.665380994796,
+          "p50Ms": 3.899999998509884,
+          "p95Ms": 5.5,
+          "p99Ms": 7.699999995529652,
+          "maxMs": 11.600000001490116,
+          "above6_94": 145,
+          "above8_33": 37,
+          "above16_67": 0,
+          "above33_33": 0,
+          "maxRunP95Ms": 5.600000001490116,
+          "capHints": [],
+          "enemies": [
+            7
+          ],
+          "havok": true,
+          "recoveries": 0
+        },
+        "forest": {
+          "samples": 8384,
+          "meanMs": 4.295634541984911,
+          "meanFps": 232.7944777951068,
+          "p50Ms": 4.199999995529652,
+          "p95Ms": 6,
+          "p99Ms": 8.100000001490116,
+          "maxMs": 13.600000001490116,
+          "above6_94": 148,
+          "above8_33": 70,
+          "above16_67": 0,
+          "above33_33": 0,
+          "maxRunP95Ms": 6.200000002980232,
+          "capHints": [],
+          "enemies": [
+            7
+          ],
+          "havok": true,
+          "recoveries": 0
+        }
+      }
+    },
+    "fps-old": {
+      "conditions": {
+        "cpu": "Apple M1 Max",
+        "url": "http://127.0.0.1:5873/ashen-reach.html?play=&clean=&pixelRatio=1&humanIdentity=old&gpuTiming=",
+        "viewport": [
+          1280,
+          720
+        ],
+        "seconds": 12,
+        "runs": 3,
+        "uncappedRequired": true,
+        "recording": false,
+        "race": "human",
+        "outfit": "lector",
+        "orcAssetsOverride": null,
+        "routes": [
+          "meadow",
+          "town",
+          "bridge",
+          "cathedral",
+          "forest"
+        ],
+        "recordCapped": true,
+        "savedAppearance": null,
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "lectorCoat",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          }
+        }
+      },
+      "errors": [],
+      "all": {
+        "samples": 42609,
+        "meanMs": 4.225910019010348,
+        "meanFps": 236.63542183848645,
+        "p50Ms": 3.899999998509884,
+        "p95Ms": 8.899999998509884,
+        "p99Ms": 10.099999994039536,
+        "maxMs": 15.100000001490116,
+        "above6_94": 5310,
+        "above8_33": 2872,
+        "above16_67": 0,
+        "above33_33": 0
+      },
+      "routes": {
+        "meadow": {
+          "samples": 7675,
+          "meanMs": 4.692078175896154,
+          "meanFps": 213.12517876132935,
+          "p50Ms": 4.299999997019768,
+          "p95Ms": 9.5,
+          "p99Ms": 10.600000001490116,
+          "maxMs": 15.100000001490116,
+          "above6_94": 763,
+          "above8_33": 674,
+          "above16_67": 0,
+          "above33_33": 0,
+          "maxRunP95Ms": 9.800000004470348,
+          "capHints": [],
+          "enemies": [
+            7
+          ],
+          "havok": true,
+          "recoveries": 0
+        },
+        "town": {
+          "samples": 7781,
+          "meanMs": 4.628582444415885,
+          "meanFps": 216.0488685270026,
+          "p50Ms": 4,
+          "p95Ms": 9.800000004470348,
+          "p99Ms": 10.299999997019768,
+          "maxMs": 14.600000001490116,
+          "above6_94": 1485,
+          "above8_33": 1300,
+          "above16_67": 0,
+          "above33_33": 0,
+          "maxRunP95Ms": 10,
+          "capHints": [],
+          "enemies": [
+            7
+          ],
+          "havok": true,
+          "recoveries": 0
+        },
+        "bridge": {
+          "samples": 9107,
+          "meanMs": 3.9545514439452005,
+          "meanFps": 252.87318022657067,
+          "p50Ms": 3.5,
+          "p95Ms": 8.399999998509884,
+          "p99Ms": 9.600000001490116,
+          "maxMs": 11.700000002980232,
+          "above6_94": 1575,
+          "above8_33": 462,
+          "above16_67": 0,
+          "above33_33": 0,
+          "maxRunP95Ms": 8.600000001490116,
+          "capHints": [],
+          "enemies": [
+            7
+          ],
+          "havok": true,
+          "recoveries": 0
+        },
+        "cathedral": {
+          "samples": 9392,
+          "meanMs": 3.8342738500851787,
+          "meanFps": 260.8055759965567,
+          "p50Ms": 3.6999999955296516,
+          "p95Ms": 7.799999997019768,
+          "p99Ms": 8.399999998509884,
+          "maxMs": 11.5,
+          "above6_94": 1013,
+          "above8_33": 122,
+          "above16_67": 0,
+          "above33_33": 0,
+          "maxRunP95Ms": 8.100000001490116,
+          "capHints": [],
+          "enemies": [
+            7
+          ],
+          "havok": true,
+          "recoveries": 0
+        },
+        "forest": {
+          "samples": 8654,
+          "meanMs": 4.161023804021262,
+          "meanFps": 240.32546966772657,
+          "p50Ms": 4,
+          "p95Ms": 7.700000002980232,
+          "p99Ms": 9,
+          "maxMs": 11,
+          "above6_94": 474,
+          "above8_33": 314,
+          "above16_67": 0,
+          "above33_33": 0,
+          "maxRunP95Ms": 8.600000001490116,
+          "capHints": [
+            2,
+            3
+          ],
+          "enemies": [
+            7
+          ],
+          "havok": true,
+          "recoveries": 0
+        }
+      }
+    },
+    "fps-young-hair": {
+      "conditions": {
+        "cpu": "Apple M1 Max",
+        "url": "http://127.0.0.1:5873/ashen-reach.html?play=&clean=&pixelRatio=1&humanIdentity=young-hair&gpuTiming=",
+        "viewport": [
+          1280,
+          720
+        ],
+        "seconds": 12,
+        "runs": 3,
+        "uncappedRequired": true,
+        "recording": false,
+        "race": "human",
+        "outfit": "lector",
+        "orcAssetsOverride": null,
+        "routes": [
+          "meadow",
+          "town",
+          "bridge",
+          "cathedral",
+          "forest"
+        ],
+        "recordCapped": true,
+        "savedAppearance": null,
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "lectorCoat",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          }
+        }
+      },
+      "errors": [],
+      "all": {
+        "samples": 41302,
+        "meanMs": 4.360188368601825,
+        "meanFps": 229.34788946301157,
+        "p50Ms": 4.399999998509884,
+        "p95Ms": 5.699999995529652,
+        "p99Ms": 6,
+        "maxMs": 13.399999998509884,
+        "above6_94": 109,
+        "above8_33": 50,
+        "above16_67": 0,
+        "above33_33": 0
+      },
+      "routes": {
+        "meadow": {
+          "samples": 7698,
+          "meanMs": 4.679631073005589,
+          "meanFps": 213.6920591386982,
+          "p50Ms": 4.5999999940395355,
+          "p95Ms": 5.899999998509884,
+          "p99Ms": 6.100000001490116,
+          "maxMs": 13.399999998509884,
+          "above6_94": 15,
+          "above8_33": 8,
+          "above16_67": 0,
+          "above33_33": 0,
+          "maxRunP95Ms": 5.899999998509884,
+          "capHints": [],
+          "enemies": [
+            7
+          ],
+          "havok": true,
+          "recoveries": 0
+        },
+        "town": {
+          "samples": 7768,
+          "meanMs": 4.6369979402671895,
+          "meanFps": 215.65677036776486,
+          "p50Ms": 4.600000001490116,
+          "p95Ms": 5.799999997019768,
+          "p99Ms": 6.100000001490116,
+          "maxMs": 12.400000005960464,
+          "above6_94": 25,
+          "above8_33": 16,
+          "above16_67": 0,
+          "above33_33": 0,
+          "maxRunP95Ms": 5.799999997019768,
+          "capHints": [],
+          "enemies": [
+            7
+          ],
+          "havok": true,
+          "recoveries": 0
+        },
+        "bridge": {
+          "samples": 8625,
+          "meanMs": 4.175744927535886,
+          "meanFps": 239.4782289995145,
+          "p50Ms": 4.200000002980232,
+          "p95Ms": 5.399999998509884,
+          "p99Ms": 5.799999997019768,
+          "maxMs": 12.600000001490116,
+          "above6_94": 25,
+          "above8_33": 11,
+          "above16_67": 0,
+          "above33_33": 0,
+          "maxRunP95Ms": 5.4000000059604645,
+          "capHints": [
+            1,
+            2,
+            3
+          ],
+          "enemies": [
+            7
+          ],
+          "havok": true,
+          "recoveries": 0
+        },
+        "cathedral": {
+          "samples": 8860,
+          "meanMs": 4.064345372460664,
+          "meanFps": 246.04208263791642,
+          "p50Ms": 4.199999995529652,
+          "p95Ms": 5.300000004470348,
+          "p99Ms": 5.600000001490116,
+          "maxMs": 10.699999995529652,
+          "above6_94": 22,
+          "above8_33": 6,
+          "above16_67": 0,
+          "above33_33": 0,
+          "maxRunP95Ms": 5.399999998509884,
+          "capHints": [],
+          "enemies": [
+            7
+          ],
+          "havok": true,
+          "recoveries": 0
+        },
+        "forest": {
+          "samples": 8351,
+          "meanMs": 4.312609268351274,
+          "meanFps": 231.87818273699153,
+          "p50Ms": 4.399999998509884,
+          "p95Ms": 5.699999995529652,
+          "p99Ms": 5.899999998509884,
+          "maxMs": 11.600000001490116,
+          "above6_94": 22,
+          "above8_33": 9,
+          "above16_67": 0,
+          "above33_33": 0,
+          "maxRunP95Ms": 5.799999997019768,
+          "capHints": [],
+          "enemies": [
+            7
+          ],
+          "havok": true,
+          "recoveries": 0
+        }
+      }
+    },
+    "fps-released-confirmation": {
+      "conditions": {
+        "cpu": "Apple M1 Max",
+        "url": "http://127.0.0.1:5873/ashen-reach.html?play=&clean=&pixelRatio=1&gpuTiming=",
+        "viewport": [
+          1280,
+          720
+        ],
+        "seconds": 12,
+        "runs": 3,
+        "uncappedRequired": true,
+        "recording": false,
+        "race": "human",
+        "outfit": "lector",
+        "orcAssetsOverride": null,
+        "routes": [
+          "meadow",
+          "town"
+        ],
+        "recordCapped": true,
+        "savedAppearance": null,
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "lectorCoat",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          }
+        }
+      },
+      "errors": [],
+      "all": {
+        "samples": 15323,
+        "meanMs": 4.70022841480089,
+        "meanFps": 212.75561775913434,
+        "p50Ms": 4.5,
+        "p95Ms": 5.899999998509884,
+        "p99Ms": 6.899999998509884,
+        "maxMs": 12.799999997019768,
+        "above6_94": 146,
+        "above8_33": 89,
+        "above16_67": 0,
+        "above33_33": 0
+      },
+      "routes": {
+        "meadow": {
+          "samples": 7822,
+          "meanMs": 4.603694707235239,
+          "meanFps": 217.21683638760499,
+          "p50Ms": 4.5,
+          "p95Ms": 5.899999998509884,
+          "p99Ms": 6.100000001490116,
+          "maxMs": 11.899999998509884,
+          "above6_94": 29,
+          "above8_33": 19,
+          "above16_67": 0,
+          "above33_33": 0,
+          "maxRunP95Ms": 5.899999998509884,
+          "capHints": [],
+          "enemies": [
+            7
+          ],
+          "havok": true,
+          "recoveries": 0
+        },
+        "town": {
+          "samples": 7501,
+          "meanMs": 4.800893214238101,
+          "meanFps": 208.29457256709662,
+          "p50Ms": 4.5,
+          "p95Ms": 5.9000000059604645,
+          "p99Ms": 8.200000002980232,
+          "maxMs": 12.799999997019768,
+          "above6_94": 117,
+          "above8_33": 70,
+          "above16_67": 0,
+          "above33_33": 0,
+          "maxRunP95Ms": 6,
+          "capHints": [],
+          "enemies": [
+            7
+          ],
+          "havok": true,
+          "recoveries": 0
+        }
+      }
+    },
+    "fps-old-confirmation": {
+      "conditions": {
+        "cpu": "Apple M1 Max",
+        "url": "http://127.0.0.1:5873/ashen-reach.html?play=&clean=&pixelRatio=1&humanIdentity=old&gpuTiming=",
+        "viewport": [
+          1280,
+          720
+        ],
+        "seconds": 12,
+        "runs": 3,
+        "uncappedRequired": true,
+        "recording": false,
+        "race": "human",
+        "outfit": "lector",
+        "orcAssetsOverride": null,
+        "routes": [
+          "meadow",
+          "town"
+        ],
+        "recordCapped": true,
+        "savedAppearance": null,
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "lectorCoat",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          }
+        }
+      },
+      "errors": [],
+      "all": {
+        "samples": 15549,
+        "meanMs": 4.632568010804841,
+        "meanFps": 215.862993844372,
+        "p50Ms": 4.5,
+        "p95Ms": 5.899999998509884,
+        "p99Ms": 6.600000001490116,
+        "maxMs": 12.899999998509884,
+        "above6_94": 147,
+        "above8_33": 104,
+        "above16_67": 0,
+        "above33_33": 0
+      },
+      "routes": {
+        "meadow": {
+          "samples": 7760,
+          "meanMs": 4.641275773196452,
+          "meanFps": 215.4580009606494,
+          "p50Ms": 4.5,
+          "p95Ms": 5.899999998509884,
+          "p99Ms": 8.100000001490116,
+          "maxMs": 12.700000002980232,
+          "above6_94": 88,
+          "above8_33": 73,
+          "above16_67": 0,
+          "above33_33": 0,
+          "maxRunP95Ms": 5.9000000059604645,
+          "capHints": [],
+          "enemies": [
+            7
+          ],
+          "havok": true,
+          "recoveries": 0
+        },
+        "town": {
+          "samples": 7789,
+          "meanMs": 4.623892669148799,
+          "meanFps": 216.26799572406327,
+          "p50Ms": 4.5,
+          "p95Ms": 5.800000004470348,
+          "p99Ms": 6.299999997019768,
+          "maxMs": 12.899999998509884,
+          "above6_94": 59,
+          "above8_33": 31,
+          "above16_67": 0,
+          "above33_33": 0,
+          "maxRunP95Ms": 5.800000004470348,
+          "capHints": [],
+          "enemies": [
+            7
+          ],
+          "havok": true,
+          "recoveries": 0
+        }
+      }
+    }
+  },
+  "confirmationPairs": {
+    "meadow": {
+      "baseMeanMs": 4.603694707235239,
+      "candidateMeanMs": 4.641275773196452,
+      "changePercent": 0.8163240256168658,
+      "baseP95Ms": 5.899999998509884,
+      "candidateP95Ms": 5.899999998509884
+    },
+    "town": {
+      "baseMeanMs": 4.800893214238101,
+      "candidateMeanMs": 4.623892669148799,
+      "changePercent": -3.686825288351936,
+      "baseP95Ms": 5.9000000059604645,
+      "candidateP95Ms": 5.800000004470348
+    }
+  }
+}

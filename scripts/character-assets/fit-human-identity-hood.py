@@ -12,16 +12,20 @@ import sys
 import json
 import bmesh
 import hashlib
+import os
 from mathutils.kdtree import KDTree
 
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 import mh_io
 DIR=ROOT/'.cache/character-mmo/identity-v1'
+OUT=Path(os.environ.get('ASHEN_IDENTITY_FIT_DIR',str(DIR)))
+OUT.mkdir(parents=True,exist_ok=True)
+SOURCE_HOOD=Path(os.environ.get('ASHEN_IDENTITY_HOOD_SOURCE',str(ROOT/'.cache/character-mmo/m005/graveweaverHood.glb')))
 age=sys.argv[sys.argv.index('--')+1] if '--' in sys.argv else 'young'
 if age not in ('young','old'):raise ValueError('Expected young or old fit family')
 bpy.ops.wm.read_factory_settings(use_empty=True)
-bpy.ops.import_scene.gltf(filepath=str(ROOT/'.cache/character-mmo/m005/graveweaverHood.glb'))
+bpy.ops.import_scene.gltf(filepath=str(SOURCE_HOOD))
 hood=next(o for o in bpy.data.objects if o.type=='MESH')
 armature=hood.parent
 armature.data.pose_position='REST'
@@ -40,6 +44,13 @@ for target_age in (age,):
             obj.data.pose_position='REST'
             obj.animation_data_clear()
     targets.append(next(o for o in imported if o.type=='MESH' and o.name.startswith('HumanV1Body')))
+    eyes=next(o for o in imported if o.type=='MESH' and o.name.startswith('HumanIdentityEyes'))
+    # Compute the eye ceiling in the garment's actual authoring frame. The
+    # younger head's sockets sit higher than the older one's; one fixed arch
+    # exposed the old eyes while still masking the younger right eye.
+    eye_to_hood=hood.matrix_world.inverted() @ eyes.matrix_world
+    eye_ceiling=max((eye_to_hood @ v.co).z for v in eyes.data.vertices)
+    eye_half_width=max(abs((eye_to_hood @ v.co).x) for v in eyes.data.vertices)
 group=hood.vertex_groups.new(name='IdentitySkullFit')
 for v in hood.data.vertices:
     # The source glTF units are cm under the imported 0.01 armature frame.
@@ -68,7 +79,11 @@ for point in lattice.points:
     point.co_deform.z=point.co.z+3.2/cage.scale.z*top
     front=max(0,min(1,-point.co.y*cage.scale.y/12))
     opening=max(0,min(1,(z-149)/11));opening=opening*opening*(3-2*opening)
-    point.co_deform.z+=3.8/cage.scale.z*front*opening*(1-top)
+    # Lift the authored front curtain clear of the eyes. Moving it forward
+    # alone leaves its frontal projection over the face; retain the folds and
+    # use the native cage to raise the opening while easing into the crown.
+    point.co_deform.z+=10.5/cage.scale.z*front*opening*(1-top)
+    point.co_deform.y-=3/cage.scale.y*front*opening*(1-top)
 mod=hood.modifiers.new('NativeLatticeCorrective','LATTICE');mod.object=cage;mod.vertex_group=group.name
 depsgraph=bpy.context.evaluated_depsgraph_get()
 fitted=[]
@@ -85,7 +100,26 @@ for index,key in enumerate(keys):
     evaluated=hood.evaluated_get(depsgraph)
     mesh=evaluated.to_mesh()
     if len(mesh.vertices)!=len(hood.data.vertices):raise ValueError('Fitter changed topology')
-    fitted.append([v.co.copy() for v in mesh.vertices])
+    coords=[]
+    for vertex in mesh.vertices:
+        co=vertex.co.copy()
+        # The original opening has an asymmetric curtain over one eye. A
+        # symmetric cage cannot remove that occlusion. Raise this front lip to
+        # an authored brow arch, preserving its UVs/topology and side folds.
+        # This is one item's offline sculpt corrective, not a general fitter.
+        front=max(0,min(1,(-co.y-3)/4))
+        lower=max(0,min(1,(co.z-153)/5))
+        side=max(0,min(1,(11-abs(co.x))/2))
+        arch=eye_ceiling+4-1.5*(min(abs(co.x),9)/9)**2
+        co.z+=max(0,arch-co.z)*front*lower*side
+        # Side curtains can cover an outer eye even when the brow arch clears.
+        # Ease those front panels outside the measured sockets, retaining the
+        # lower collar and the crown rather than scaling the whole hood again.
+        panel=max(0,min(1,(eye_ceiling+2-co.z)/3))*max(0,min(1,(5-co.y)/4))*lower
+        if abs(co.x)>1:
+            co.x+=(1 if co.x>0 else -1)*max(0,eye_half_width+1.8-abs(co.x))*panel
+        coords.append(co)
+    fitted.append(coords)
     evaluated.to_mesh_clear()
 for modifier in list(hood.modifiers):
     if modifier.type in ('SHRINKWRAP','LATTICE'):hood.modifiers.remove(modifier)
@@ -172,15 +206,15 @@ if any(sum(g.weight>1e-7 for g in v.groups)>4 for v in hood.data.vertices):raise
 bpy.ops.object.select_all(action='DESELECT')
 hood.select_set(True);armature.select_set(True)
 bpy.context.view_layer.objects.active=armature
-bpy.ops.export_scene.gltf(filepath=str(DIR/'hood-raw.glb'),use_selection=True,
+bpy.ops.export_scene.gltf(filepath=str(OUT/'hood-raw.glb'),use_selection=True,
  export_format='GLB',export_animations=False,export_skins=True,
  export_all_influences=False,export_normals=True,export_texcoords=True)
 print('IDENTITY_HOOD',max((a-b).length for a,b in zip(fitted[0],original[:len(fitted[0])])),len(fitted[0]))
-(DIR/'hood-fit.json').write_text(json.dumps({'age':age,'method':'native lattice corrective',
- 'rawSha256':hashlib.sha256((DIR/'hood-raw.glb').read_bytes()).hexdigest(),
+(OUT/'hood-fit.json').write_text(json.dumps({'age':age,'method':'native lattice corrective',
+ 'rawSha256':hashlib.sha256((OUT/'hood-raw.glb').read_bytes()).hexdigest(),
  'targetSha256':hashlib.sha256((DIR/f'human-{age}-grey.glb').read_bytes()).hexdigest(),
- 'sourceHoodSha256':hashlib.sha256((ROOT/'.cache/character-mmo/m005/graveweaverHood.glb').read_bytes()).hexdigest(),
+ 'sourceHoodSha256':hashlib.sha256(SOURCE_HOOD.read_bytes()).hexdigest(),
  'weightReduction':reduction,
- 'cageAuthoringCm':{'widthExpansion':.18,'depthExpansion':.14,'topLift':3.2},
+ 'cageAuthoringCm':{'widthExpansion':.18,'depthExpansion':.14,'topLift':3.2,'openingLift':10.5,'openingForward':3,'eyeCeiling':eye_ceiling,'eyeHalfWidth':eye_half_width,'browClearance':4,'sideEyeClearance':1.8},
  'targetShapeMatched':True,'fitScope':'one age; no union claim',
  'vertices':len(hood.data.vertices),'maxNeutralCorrectionM':max((a-b).length for a,b in zip(fitted[0],original[:len(fitted[0])]))*.01},indent=2))

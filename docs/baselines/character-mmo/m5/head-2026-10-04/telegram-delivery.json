@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 850,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 41.491415,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 42
+  },
+  "verified": true,
+  "file": "m5-connected-identity-2026-10-04.mp4",
+  "sha256": "b96382213049ed65ca220152ec18ce9835a1fc46068c418e777924376c18470a",
+  "sentAt": "2026-10-04T20:53:24.866418+00:00"
+}

@@ -182,3 +182,44 @@ The prepared starter terrain uses an actual Brotli `.br` file. Serve it with `Co
 
 
 After `npm run prepare:startup`, restart any running Vite dev server: the HTML preload plugin reads generated manifests when the server starts. Production cold-start reports use fresh browser processes/profiles and nearest-rank percentiles (`ceil(p × n)`, one-based); state the maximum and count under the target alongside p95. Readiness requires the first dressed, grounded frame's native GPU completion, not merely scene construction or render submission. See [the final startup report](complete/2026-09/one-second-startup-implementation-2026-09-27.md).
+
+
+## Connected Human identity audition (M5)
+
+This DEV route reuses the actual game, native equipment loader and Havok movement.
+The [source result](plans/character-mmo/results/m5-connected-identity-2026-10-04.md)
+records acceptance and limitations. It is not a saved or released identity choice.
+
+From the root, reproduce the pinned connected source and current per-head hood:
+
+```sh
+node scripts/character-assets/reproduce-human-identity-review.mjs
+```
+
+With matching source GLBs already present, `--reuse-source` validates their hashes
+and rebuilds only the current hood fits and prepared audition packs. Do not
+regenerate the tracked `source-summary.json` to suppress a mismatch; inspect the
+source change first. Native Blender 5.2.1, pinned source downloads and the existing
+M004/M005 pipeline are the recovery path for ignored `.cache` assets.
+
+After auditing renderer ownership, open one of these on the current owned Vite server:
+`/ashen-reach.html?play&clean&pixelRatio=1&humanIdentity=old`, `young` or `young-hair`.
+Use the Armory for height/build and clothing changes. Edits are temporary; the
+route ignores existing appearance storage and does not overwrite it. Alternate
+race and Shared region belong to the ordinary game route. Mixing other body
+candidate parameters into this route is rejected.
+
+The middleware serves a single explicit label and hashed file from
+`.cache/character-mmo/identity-review-v1`. It never substitutes the production
+`human-shape-v1` manifest globally. The optional module and source assets must be
+absent from a production build. Coverage names in the manifest own the eye,
+separate hair and torso meshes; a hood hides hair while preserving the face.
+
+Run `check-human-identity-current-fits.mjs` with `ASHEN_IDENTITY_DIRECT=1` against
+an audited `ASHEN_CDP_PORT` / `ASHEN_TEST_URL`. Its source-control mode instead
+intercepts the manifest explicitly. `record-human-identity-review.mjs` uses the
+same owned browser and records the named body extremes with native animation
+inspection plus real walk/jump/cast/attack controls. Encode its timestamped frames
+with `scripts/encode-capture.py`; record performance separately. Freeze runtime
+and asset changes while recording: a Vite development reload invalidates the film.
+Close contexts, pause video players and tear down the owned harness afterwards.

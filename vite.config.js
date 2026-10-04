@@ -57,6 +57,21 @@ function humanHeadAsset(req,res,next) {
   } catch {res.statusCode=404;res.end('Run node scripts/character-assets/match-old-head-atlas.mjs');}
 }
 
+function humanIdentityReviewAsset(req,res,next) {
+  // Strict one-label/one-file serving, never a global replacement for the
+  // production family URL. Ignored audition assets cannot enter Pages output.
+  // https://vite.dev/guide/api-plugin.html#configureserver
+  const match=/^\/__identity_review__\/(old|young|young-hair)\/(manifest\.json|(?:body|hood|texture)-[a-f0-9]{12}\.(?:bin|glb|png|jpg|webp))$/.exec(req.url?.split('?')[0]||'');
+  if(!match)return next();
+  const file=`.cache/character-mmo/identity-review-v1/${match[1]}/${match[2]}`;
+  try {
+    const info=statSync(file);
+    const type={json:'application/json',bin:'application/octet-stream',glb:'model/gltf-binary',png:'image/png',jpg:'image/jpeg',webp:'image/webp'}[match[2].split('.').pop()];
+    res.setHeader('Content-Type',type);res.setHeader('Content-Length',String(info.size));
+    res.setHeader('Cache-Control','no-store');createReadStream(file).pipe(res);
+  } catch {res.statusCode=404;res.end('Run the connected identity audition preparation.');}
+}
+
 function starterBrotliHeaders(req,res,next) {
   if (/^\/ashen-reach\/startup\/starter\/near-[a-f0-9]{12}\.br(?:\?|$)/.test(req.url||'')) {
     res.setHeader('Content-Encoding','br');res.setHeader('Content-Type','application/octet-stream');
@@ -186,6 +201,11 @@ export default defineConfig({
           } catch {res.statusCode=404;res.end('Run node scripts/character-assets/prepare-crowd-probe.mjs');}
         });
       },
+    },
+    {
+      name: 'dev-only-connected-human-identity',
+      apply: 'serve',
+      configureServer(server) { server.middlewares.use(humanIdentityReviewAsset); },
     },
     {
       // M004 Human shape family candidate. Developer asset under .cache/, deliberately

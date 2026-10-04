@@ -7,7 +7,7 @@ import assert from 'node:assert/strict';
 import {NodeIO,VertexLayout} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {normalizeHumanBind} from './normalize-human-bind.mjs';
-const dir='.cache/character-mmo/identity-v1';
+const dir=process.env.ASHEN_IDENTITY_FIT_DIR||'.cache/character-mmo/identity-v1';
 const fit=JSON.parse(await fs.readFile(`${dir}/hood-fit.json`,'utf8'));
 assert.equal(createHash('sha256').update(await fs.readFile(`${dir}/hood-raw.glb`)).digest('hex'),fit.rawSha256,'Stale or failed hood export');
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).setVertexLayout(VertexLayout.SEPARATE);

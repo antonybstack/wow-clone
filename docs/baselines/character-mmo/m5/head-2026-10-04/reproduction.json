@@ -1,0 +1,7 @@
+{
+  "fullSourceAndCurrentHoodReproduction": true,
+  "sourcePinsMatch": true,
+  "command": "node scripts/character-assets/reproduce-human-identity-review.mjs",
+  "blenderVersion": "5.2.1 LTS",
+  "productionAssetsWritten": false
+}

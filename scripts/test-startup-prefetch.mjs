@@ -15,7 +15,7 @@ test('early starter selection retains neutral/race/diagnostic boundaries',()=>{
   assert.equal(usesHumanShapeStarter({...human,equipment:{...human.equipment,gloves:'graveweaverGloves'}}),true);
   assert.equal(usesHumanShapeStarter(defaultAppearance('orc')),false);
   assert.equal(usesHumanShapeStarter(null),false);
-  for(const name of ['preloadedEquipment','humanShape','humanHeight','humanHair','humanHead','plate','creator','garmentFit'])assert.equal(permitsSavedAppearance(new URLSearchParams(name)),false);
+  for(const name of ['preloadedEquipment','humanShape','humanHeight','humanHair','humanHead','humanIdentity','plate','creator','garmentFit'])assert.equal(permitsSavedAppearance(new URLSearchParams(name)),false);
 });
 test('early and main startup share the existing validated appearance; corrupt data survives',async()=>{
   const storageBefore=Object.getOwnPropertyDescriptor(globalThis,'localStorage');

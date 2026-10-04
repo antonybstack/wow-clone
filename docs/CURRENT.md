@@ -4,7 +4,25 @@ Updated 2026-10-04 (local). Read this file first. Follow the latest user request
 
 ## Immediate focus: character customization and armor swapping
 
-**Current handoff checkpoint:** Codex resumed Claude at `1412770` and released source `4063f49` as Pages `b3fdafd8-c343-4147-ae2e-760a155c8d06`. The runtime side of catalogue v5 now has slot-keyed saved equipment colours, Armory selects with undo/reset, failure-safe material replacement, and restoration through compact/full, body and race changes. See [the M7 saved-colours result](plans/character-mmo/results/m7-saved-colours-2026-10-04.md) for acceptance and release state. Head/hair/age, the remaining mixed-armor visual matrix, authoring and Elf work retain their open gates.
+**Current handoff checkpoint:** M5 now has a playable connected Human source audition,
+reusing the October 1 welded neck/scalp. Eye morphs, current garment coverage, a readable
+per-head hood opening and discarded curve/rig cleanup are implemented. See
+[the M5 checkpoint](plans/character-mmo/results/m5-connected-identity-2026-10-04.md).
+`?humanIdentity=old|young|young-hair` is DEV-only and does not write the saved character.
+The current fifteen-piece fit matrix (162 rows plus 27 final hood views), exact
+57-clip source contract and full source reproduction pass. Isolated M1 Max / 1280×720 /
+seven-enemy candidate route means are 213–261 FPS older and 214–246 FPS young/ponytail,
+with zero of 83,911 intervals over 16.67 ms. The older pass's initial 9–10 ms p95 tails
+are retained; a paired meadow/town repeat returns 5.8–5.9 ms, +0.82%/−3.69% mean frame
+time versus the released body. Cap hints remain labelled. Reviewed motion is Telegram
+**850** / [VE](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m5-connected-identity-2026-10-04.mp4).
+Telegram Web inline/fullscreen and VE play/seek proportions pass; standalone VE native
+fullscreen remains unverified. Owned renderers/harness are stopped.
+Saved identity, compact selected startup and production acceptance remain open; continue
+with M5 task 2 in the [current queue](plans/character-mmo/next-ten.md#5--modular-human-identity-head-hair-and-adult-age).
+The latest production release remains M7 source `4063f49` / Pages
+`b3fdafd8-c343-4147-ae2e-760a155c8d06`, described in
+[the saved-colours result](plans/character-mmo/results/m7-saved-colours-2026-10-04.md).
 
 Largest dyed-outfit settled throughput is **213–247 FPS**, M1 Max / uncapped Chromium / 1280×720 / seven enemies / three 12-second runs per route, with zero of 41,478 intervals over 16.67 ms. Public root startup p95 is **954 ms default (20/20 <=1 s)** / **1,037 ms largest dyed (10/20)**; the latter remains an explicit startup-budget follow-up. All 494 production artifacts, normal traversal and desktop mobile Chromium/WebKit gates pass. Telegram **849** and VE playback proportions were reviewed. The previous release/rollback is `0c2f92c1-a4f8-43ab-838f-45c0f622df4b` / `8ae4c2d`.
 
@@ -146,13 +164,26 @@ The first five are bounded evidence, contract, prototype, template and fitting w
 
 The active game is root `index.html` / `ashen-reach.html`, Vite **5173**, debug global **ASHEN**. Babylon Lite **1.31.1** / WebGPU and Havok **1.3.14** remain pinned. The current region is finite; source-compatible animation, equipment, spells, terrain and cathedral traversal remain the playable foundation.
 
-Production: [play.sparkify.dev](https://play.sparkify.dev), game source **`8ae4c2da698c900af4d6dff2aacc5ad4f50c3433`**, Cloudflare Pages **`0c2f92c1-a4f8-43ab-838f-45c0f622df4b`**. Rollback **`1f745d0b-49d3-47bf-a0b5-b103a026b932`** (`32d2b01`). The [presence result](plans/character-mmo/results/multiplayer-presence-2026-10-01.md) records the verified compatible offline client release; public multiplayer remains disabled without an accepted endpoint. All 372 served resources match; production movement/cathedral traversal, customization, native touch/depth fallback and desktop WebKit pass. This is not a public multiplayer or physical-phone acceptance claim. Subsequent documentation-only work does not imply a new deployment. Deferred first-use GPU startup tails remain open.
+Production: [play.sparkify.dev](https://play.sparkify.dev), source
+**`4063f4909a5d2bf9b30c71f700deeb26e18b7dca`**, Cloudflare Pages
+**`b3fdafd8-c343-4147-ae2e-760a155c8d06`**. Rollback is
+**`0c2f92c1-a4f8-43ab-838f-45c0f622df4b`** (`8ae4c2d`). All 494 served artifacts,
+movement/cathedral traversal, customization, native touch/depth fallback and desktop WebKit
+pass. The [M7 result](plans/character-mmo/results/m7-saved-colours-2026-10-04.md) owns the
+current release evidence. Public multiplayer remains parked without an accepted endpoint.
 
-M1 Max, isolated uncapped Chromium WebGPU, actual **1280×720/seven enemies**, three 12-second runs on each of five routes, without recording: **197.3–235.6 mean FPS** neutral / **195.7–233.3** largest body, maximum settled interval **12.6 / 15.2 ms**, zero intervals >16.67 ms. This is throughput, not a per-frame 144 Hz guarantee or a crowd-capacity result. Morph-aware local-light bounds fixed the first-edit bridge/cathedral shadow regression.
+M1 Max, isolated uncapped Chromium WebGPU, actual **1280×720/seven enemies**, three
+12-second runs per route: largest dyed outfit **213–247 FPS**, zero of 41,478 settled
+intervals over 16.67 ms. Root cold startup at 50 Mbit/s / 40 ms: default p95 **954 ms**
+(20/20 <=1 s), largest saved dyed outfit p95 **1,037 ms** (10/20 <=1 s). The largest-outfit
+WAN overrun and deferred first-use GPU tails remain open. These are throughput and bounded
+startup observations, not an every-frame 144 Hz, crowd capacity or physical-phone claim.
 
-Default play retains the compact starter. Supported saved Human silhouettes/outfits are present before play; compact clothing refines afterwards on the same identity. The final local four-profile gate passes all 80 rows; public p95 is under one second in both measured cohorts but the retained largest-outfit first run and prior multi-second GPU stalls prevent a universal claim. Physical iPhone startup/customization/memory remain unmeasured; the user's older ~60 FPS iPhone 14 Pro Max report is not new-release acceptance.
-
-Reviewed [customization motion](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/production-customization-2026-09-30.mp4) is Telegram **818**; the [current startup/movement clip](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/startup-gpu-2026-09-30.mp4) is **819**, verified 1280×720 metadata. Direct VE playback/seek/fullscreen passed; Telegram client presentation was not independently inspected for this new clip.
+Reviewed [M7 live motion](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m7-saved-colours-2026-10-04.mp4)
+is Telegram **849**; VE seek/fullscreen and Telegram Web A inline/expanded proportions pass.
+The newer M5 audition is unreleased and cannot be mistaken for this production identity.
+The user's older ~60 FPS iPhone 14 Pro Max observation remains distinct from new-release
+physical-device acceptance.
 
 The [native remote per-piece checkpoint](plans/character-mmo/results/remote-pieces-native-2026-10-01.md) is DEV-only and unreleased. Three race bodies and individual pieces use native visuals/mixers/sockets plus the existing bounded queue/cache/equipment transactions; 142,120,095 raw-source deformed points have zero bound escapes. Eight-owner/ten-cycle/late/corrupt/stale/32-ID and concurrent boot/material-fence disposal checks pass with zero final owners/leases/builds or runtime/GPU errors. Reviewed motion is Telegram **838** / VE. The independent retirement finding is fixed; player-style cast composition remains explicitly different from raw VAT. Focused composition checks now also cover the gaps that result named: removal during a held native source leaks no owner, lease or reserved bytes **while the source is still held**; eight committed seats plus one hidden stage reach exactly nine owners and commit a race change and a shape change atomically; two owners sharing one scene material build survive one being removed; and composed Human/Orc actors carry finite written bounds on every mesh with all eleven sockets parented to their own origin, the main-hand weapon 95 mm from the hand, and Orc and Human grips evaluating differently — (0.460, 1.025, −0.107) against (0.277, 0.886, −0.079) — so the Orc palm policy runs on a natively staged body.
 

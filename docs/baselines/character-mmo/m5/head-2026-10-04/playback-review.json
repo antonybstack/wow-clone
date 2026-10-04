@@ -1,0 +1,60 @@
+{
+  "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m5-connected-identity-2026-10-04.mp4",
+  "head": {
+    "status": 200,
+    "contentType": "video/mp4",
+    "bytes": 24185190
+  },
+  "range": {
+    "status": 206,
+    "requestedBytes": 1024,
+    "receivedBytes": 1024
+  },
+  "vePlayback": {
+    "nativeSize": [
+      1280,
+      720
+    ],
+    "renderedInlineSize": [
+      1280,
+      720
+    ],
+    "duration": 41.491415,
+    "seekVerifiedAtSeconds": [
+      24.00191,
+      26.217471
+    ],
+    "error": null,
+    "fullscreenVerified": false,
+    "fullscreenLimitation": "Standalone browser native fullscreen control did not activate; native-app fallback lacked computer-use permissions. Do not infer pass."
+  },
+  "telegramWebA": {
+    "messageId": 850,
+    "nativeSize": [
+      1280,
+      720
+    ],
+    "inlineSize": [
+      737,
+      414.5625
+    ],
+    "expandedSize": [
+      1280,
+      720
+    ],
+    "fullscreenElementBox": [
+      2510,
+      1279
+    ],
+    "fullscreenContent": "16:9 video contained with visible side letterboxing, reviewed in motion",
+    "fullscreenReviewed": true,
+    "playbackError": null,
+    "desktopApplicationReviewed": false
+  },
+  "cleanup": {
+    "ownedVeTabClosed": true,
+    "botViewerClosed": true,
+    "preservedUserTelegramTab": true,
+    "remainingTelegramVideos": 0
+  }
+}
