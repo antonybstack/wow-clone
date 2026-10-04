@@ -1,0 +1,268 @@
+{
+  "body": "public/ashen-reach/equipment/body.glb",
+  "boots": {
+    "wayfarerBoots": "public/ashen-reach/equipment/wayfarerBoots.glb",
+    "duskguardGreaves": "public/ashen-reach/equipment/duskguardGreaves.glb"
+  },
+  "clips": [
+    "Idle_Loop",
+    "Walk_Loop",
+    "Sprint_Loop"
+  ],
+  "footCut": 0.12,
+  "note": "exposed = body foot vertices within 50 mm of the boot whose outward normal does not hit it, i.e. the foot is outside the shell there.",
+  "rows": [
+    {
+      "clip": "Idle_Loop",
+      "boot": "wayfarerBoots",
+      "footVertices": 490,
+      "exposed": 38,
+      "parts": [
+        "WayfarerBoots"
+      ],
+      "worst": [
+        {
+          "v": 75,
+          "distance": 0.00001,
+          "y": 0.0034
+        },
+        {
+          "v": 197,
+          "distance": 0.00022,
+          "y": 0.0327
+        },
+        {
+          "v": 1745,
+          "distance": 0.00025,
+          "y": 0.0034
+        },
+        {
+          "v": 1746,
+          "distance": 0.00046,
+          "y": 0.0137
+        },
+        {
+          "v": 73,
+          "distance": 0.00054,
+          "y": 0.0069
+        },
+        {
+          "v": 74,
+          "distance": 0.00054,
+          "y": 0.0069
+        }
+      ]
+    },
+    {
+      "clip": "Idle_Loop",
+      "boot": "duskguardGreaves",
+      "footVertices": 490,
+      "exposed": 38,
+      "parts": [
+        "DuskguardBootUnderlayer",
+        "DuskguardGreaves",
+        "DuskguardGreaves"
+      ],
+      "worst": [
+        {
+          "v": 75,
+          "distance": 0.00001,
+          "y": 0.0034
+        },
+        {
+          "v": 197,
+          "distance": 0.00022,
+          "y": 0.0327
+        },
+        {
+          "v": 1745,
+          "distance": 0.00025,
+          "y": 0.0034
+        },
+        {
+          "v": 1746,
+          "distance": 0.00046,
+          "y": 0.0137
+        },
+        {
+          "v": 73,
+          "distance": 0.00054,
+          "y": 0.0069
+        },
+        {
+          "v": 74,
+          "distance": 0.00054,
+          "y": 0.0069
+        }
+      ]
+    },
+    {
+      "clip": "Walk_Loop",
+      "boot": "wayfarerBoots",
+      "footVertices": 490,
+      "exposed": 37,
+      "parts": [
+        "WayfarerBoots"
+      ],
+      "worst": [
+        {
+          "v": 160,
+          "distance": 0.00003,
+          "y": 0.0181
+        },
+        {
+          "v": 1745,
+          "distance": 0.00027,
+          "y": 0.0034
+        },
+        {
+          "v": 1746,
+          "distance": 0.00043,
+          "y": 0.0137
+        },
+        {
+          "v": 99,
+          "distance": 0.00044,
+          "y": 0.0034
+        },
+        {
+          "v": 89,
+          "distance": 0.00074,
+          "y": 0.0077
+        },
+        {
+          "v": 72,
+          "distance": 0.00075,
+          "y": 0.0129
+        }
+      ]
+    },
+    {
+      "clip": "Walk_Loop",
+      "boot": "duskguardGreaves",
+      "footVertices": 490,
+      "exposed": 37,
+      "parts": [
+        "DuskguardBootUnderlayer",
+        "DuskguardGreaves",
+        "DuskguardGreaves"
+      ],
+      "worst": [
+        {
+          "v": 160,
+          "distance": 0.00003,
+          "y": 0.0181
+        },
+        {
+          "v": 1745,
+          "distance": 0.00027,
+          "y": 0.0034
+        },
+        {
+          "v": 1746,
+          "distance": 0.00043,
+          "y": 0.0137
+        },
+        {
+          "v": 99,
+          "distance": 0.00044,
+          "y": 0.0034
+        },
+        {
+          "v": 89,
+          "distance": 0.00074,
+          "y": 0.0077
+        },
+        {
+          "v": 72,
+          "distance": 0.00075,
+          "y": 0.0129
+        }
+      ]
+    },
+    {
+      "clip": "Sprint_Loop",
+      "boot": "wayfarerBoots",
+      "footVertices": 490,
+      "exposed": 37,
+      "parts": [
+        "WayfarerBoots"
+      ],
+      "worst": [
+        {
+          "v": 197,
+          "distance": 0.00022,
+          "y": 0.0327
+        },
+        {
+          "v": 1745,
+          "distance": 0.00026,
+          "y": 0.0034
+        },
+        {
+          "v": 1746,
+          "distance": 0.00045,
+          "y": 0.0137
+        },
+        {
+          "v": 73,
+          "distance": 0.00065,
+          "y": 0.0069
+        },
+        {
+          "v": 74,
+          "distance": 0.00065,
+          "y": 0.0069
+        },
+        {
+          "v": 157,
+          "distance": 0.00074,
+          "y": 0.0086
+        }
+      ]
+    },
+    {
+      "clip": "Sprint_Loop",
+      "boot": "duskguardGreaves",
+      "footVertices": 490,
+      "exposed": 37,
+      "parts": [
+        "DuskguardBootUnderlayer",
+        "DuskguardGreaves",
+        "DuskguardGreaves"
+      ],
+      "worst": [
+        {
+          "v": 197,
+          "distance": 0.00022,
+          "y": 0.0327
+        },
+        {
+          "v": 1745,
+          "distance": 0.00026,
+          "y": 0.0034
+        },
+        {
+          "v": 1746,
+          "distance": 0.00045,
+          "y": 0.0137
+        },
+        {
+          "v": 73,
+          "distance": 0.00065,
+          "y": 0.0069
+        },
+        {
+          "v": 74,
+          "distance": 0.00065,
+          "y": 0.0069
+        },
+        {
+          "v": 157,
+          "distance": 0.00074,
+          "y": 0.0086
+        }
+      ]
+    }
+  ]
+}
