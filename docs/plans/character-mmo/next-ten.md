@@ -271,9 +271,15 @@ Tasks:
    Three tiers at 50 Mbit/s / 40 ms: **cold** 86.1 ms median / 122.6 worst, **rebuilt** 18.8 /
    48.6, **resident** 0.5 / 4.8. Frame cost is separate and is the one that matters: zero of 51
    cold swaps exceed 33.33 ms, but **11 of 51 exceed 16.67 ms**, so a first-time piece can drop
-   a frame at 60 Hz where a rebuilt one never did (0 of 168). Ceilings are proposed — 200 ms
-   cold latency, 33.33 ms worst frame, 10 ms resident, 512 KiB per piece — and **nothing
-   enforces them yet**; wiring this into a gate is what remains.
+   a frame at 60 Hz where a rebuilt one never did (0 of 168). **Enforced 2026-10-03**
+   ([result](results/m6-swap-budget-enforced-2026-10-03.md)): 200 ms cold latency, 33.33 ms
+   worst frame, **60 ms warm swap**, **896 KiB** per piece. 51 live rows pass with zero
+   breaches, and the byte gate runs offline in every test run. Setting them honestly moved two
+   of the four: the 512 KiB byte ceiling sat below the published p95 — generalised from the
+   pieces one measurement happened to fetch, never seeing the shape-family pack's 768 KB
+   maximum — and is now *derived* from the latency ceiling; and the 10 ms resident ceiling was
+   breached on its first run, so resident and rebuilt became one warm-swap ceiling after 240
+   re-equips showed a p99 of 21.1 ms where 36 samples had shown a worst of 4.8.
 
 **Exit:** every slot swaps correctly on every supported body and shape, during every motion in
 the source set, with measured cost and reviewed live motion; failures preserve the committed
