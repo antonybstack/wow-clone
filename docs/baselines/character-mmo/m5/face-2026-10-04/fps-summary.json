@@ -1,0 +1,377 @@
+{
+  "conditions": "M1 Max; Chromium 154 WebGPU, uncapped flags; 1280x720 viewport and canvas/DPR 1; seven enemies; Lector, build +0.95, height 0.90; five routes, three 12-second runs; no recording or other active game renderer. Sequential released, older, ponytail cohorts.",
+  "scope": "Settled local throughput, not startup or physical device acceptance. Near-240-Hz cap heuristics retained, not evidence of headroom beyond that pacing.",
+  "cohorts": [
+    {
+      "label": "released",
+      "all": {
+        "samples": 41765,
+        "meanMs": 4.3112821740681975,
+        "meanFps": 231.94955923202386,
+        "p50Ms": 4.200000002980232,
+        "p95Ms": 5.5999999940395355,
+        "p99Ms": 6.100000008940697,
+        "maxMs": 14.099999994039536,
+        "above6_94": 171,
+        "above8_33": 59,
+        "above16_67": 0,
+        "above33_33": 0
+      },
+      "fullWindowCapHints": [
+        {
+          "route": "forest",
+          "run": 3,
+          "hz": 240
+        }
+      ],
+      "rollingCapHints": [],
+      "routes": [
+        {
+          "route": "meadow",
+          "samples": 7724,
+          "meanMs": 4.661833247020339,
+          "meanFps": 214.50788713628074,
+          "p50Ms": 4.5,
+          "p95Ms": 5.799999997019768,
+          "p99Ms": 6.200000002980232,
+          "maxMs": 8.600000008940697,
+          "above6_94": 30,
+          "above8_33": 7,
+          "above16_67": 0,
+          "above33_33": 0,
+          "minRunFps": 212.13131144809196,
+          "maxRunFps": 216.3463541017448,
+          "meanFrameTimeChangeVsReleasedPercent": 0.0
+        },
+        {
+          "route": "town",
+          "samples": 7699,
+          "meanMs": 4.677373684891433,
+          "meanFps": 213.79519092736572,
+          "p50Ms": 4.5,
+          "p95Ms": 5.799999997019768,
+          "p99Ms": 6.4000000059604645,
+          "maxMs": 14.099999994039536,
+          "above6_94": 45,
+          "above8_33": 28,
+          "above16_67": 0,
+          "above33_33": 0,
+          "minRunFps": 212.38834822034278,
+          "maxRunFps": 215.9208290295167,
+          "meanFrameTimeChangeVsReleasedPercent": 0.0
+        },
+        {
+          "route": "bridge",
+          "samples": 8848,
+          "meanMs": 4.0704339963837,
+          "meanFps": 245.67404873495823,
+          "p50Ms": 3.9000000059604645,
+          "p95Ms": 5.299999997019768,
+          "p99Ms": 5.600000008940697,
+          "maxMs": 11.5,
+          "above6_94": 24,
+          "above8_33": 2,
+          "above16_67": 0,
+          "above33_33": 0,
+          "minRunFps": 242.7261292926546,
+          "maxRunFps": 248.80470454980463,
+          "meanFrameTimeChangeVsReleasedPercent": 0.0
+        },
+        {
+          "route": "cathedral",
+          "samples": 9073,
+          "meanMs": 3.969084095668467,
+          "meanFps": 251.94729461422045,
+          "p50Ms": 3.9000000059604645,
+          "p95Ms": 5.0999999940395355,
+          "p99Ms": 5.799999997019768,
+          "maxMs": 10.600000008940697,
+          "above6_94": 51,
+          "above8_33": 13,
+          "above16_67": 0,
+          "above33_33": 0,
+          "minRunFps": 250.71424406733908,
+          "maxRunFps": 253.3901975809853,
+          "meanFrameTimeChangeVsReleasedPercent": 0.0
+        },
+        {
+          "route": "forest",
+          "samples": 8421,
+          "meanMs": 4.276796104974594,
+          "meanFps": 233.81989121175098,
+          "p50Ms": 4.200000002980232,
+          "p95Ms": 5.5,
+          "p99Ms": 6,
+          "maxMs": 11.600000008940697,
+          "above6_94": 21,
+          "above8_33": 9,
+          "above16_67": 0,
+          "above33_33": 0,
+          "minRunFps": 232.35664120113844,
+          "maxRunFps": 235.7311831539081,
+          "meanFrameTimeChangeVsReleasedPercent": 0.0
+        }
+      ],
+      "errors": []
+    },
+    {
+      "label": "old",
+      "all": {
+        "samples": 40624,
+        "meanMs": 4.432665419455965,
+        "meanFps": 225.59789773682786,
+        "p50Ms": 4.300000011920929,
+        "p95Ms": 5.700000002980232,
+        "p99Ms": 6.200000002980232,
+        "maxMs": 13.300000011920929,
+        "above6_94": 187,
+        "above8_33": 97,
+        "above16_67": 0,
+        "above33_33": 0
+      },
+      "fullWindowCapHints": [
+        {
+          "route": "bridge",
+          "run": 2,
+          "hz": 240
+        },
+        {
+          "route": "bridge",
+          "run": 3,
+          "hz": 240
+        },
+        {
+          "route": "cathedral",
+          "run": 1,
+          "hz": 240
+        }
+      ],
+      "rollingCapHints": [
+        {
+          "route": "bridge",
+          "run": 2
+        }
+      ],
+      "routes": [
+        {
+          "route": "meadow",
+          "samples": 7566,
+          "meanMs": 4.760547184773595,
+          "meanFps": 210.05988622451991,
+          "p50Ms": 4.5999999940395355,
+          "p95Ms": 5.800000011920929,
+          "p99Ms": 6.5,
+          "maxMs": 13.099999994039536,
+          "above6_94": 55,
+          "above8_33": 37,
+          "above16_67": 0,
+          "above33_33": 0,
+          "minRunFps": 209.87582347095665,
+          "maxRunFps": 210.39305019958638,
+          "meanFrameTimeChangeVsReleasedPercent": 2.117491821835338
+        },
+        {
+          "route": "town",
+          "samples": 7511,
+          "meanMs": 4.793915590466521,
+          "meanFps": 208.597748777359,
+          "p50Ms": 4.600000008940697,
+          "p95Ms": 5.899999991059303,
+          "p99Ms": 6.5,
+          "maxMs": 10.799999997019768,
+          "above6_94": 43,
+          "above8_33": 20,
+          "above16_67": 0,
+          "above33_33": 0,
+          "minRunFps": 207.23100382475235,
+          "maxRunFps": 210.20270439145972,
+          "meanFrameTimeChangeVsReleasedPercent": 2.491609895346514
+        },
+        {
+          "route": "bridge",
+          "samples": 8538,
+          "meanMs": 4.218587491213647,
+          "meanFps": 237.04616819795046,
+          "p50Ms": 4.100000008940697,
+          "p95Ms": 5.5,
+          "p99Ms": 6,
+          "maxMs": 13.300000011920929,
+          "above6_94": 41,
+          "above8_33": 22,
+          "above16_67": 0,
+          "above33_33": 0,
+          "minRunFps": 235.4793299626583,
+          "maxRunFps": 237.94849585240942,
+          "meanFrameTimeChangeVsReleasedPercent": 3.6397468909106667
+        },
+        {
+          "route": "cathedral",
+          "samples": 8745,
+          "meanMs": 4.118193253288616,
+          "meanFps": 242.82493280310294,
+          "p50Ms": 4,
+          "p95Ms": 5.399999991059303,
+          "p99Ms": 5.800000011920929,
+          "maxMs": 10.799999997019768,
+          "above6_94": 23,
+          "above8_33": 8,
+          "above16_67": 0,
+          "above33_33": 0,
+          "minRunFps": 241.26899493462417,
+          "maxRunFps": 244.05074256388824,
+          "meanFrameTimeChangeVsReleasedPercent": 3.7567648864601733
+        },
+        {
+          "route": "forest",
+          "samples": 8264,
+          "meanMs": 4.358095353339427,
+          "meanFps": 229.45803589032116,
+          "p50Ms": 4.299999997019768,
+          "p95Ms": 5.5999999940395355,
+          "p99Ms": 6,
+          "maxMs": 12.400000005960464,
+          "above6_94": 25,
+          "above8_33": 10,
+          "above16_67": 0,
+          "above33_33": 0,
+          "minRunFps": 225.0120795082116,
+          "maxRunFps": 231.71361463266996,
+          "meanFrameTimeChangeVsReleasedPercent": 1.9009381408262138
+        }
+      ],
+      "errors": []
+    },
+    {
+      "label": "young-hair",
+      "all": {
+        "samples": 40948,
+        "meanMs": 4.3978289537942565,
+        "meanFps": 227.38492344893115,
+        "p50Ms": 4.300000011920929,
+        "p95Ms": 5.600000008940697,
+        "p99Ms": 6.0999999940395355,
+        "maxMs": 12.700000002980232,
+        "above6_94": 156,
+        "above8_33": 101,
+        "above16_67": 0,
+        "above33_33": 0
+      },
+      "fullWindowCapHints": [
+        {
+          "route": "bridge",
+          "run": 1,
+          "hz": 240
+        },
+        {
+          "route": "bridge",
+          "run": 2,
+          "hz": 240
+        },
+        {
+          "route": "bridge",
+          "run": 3,
+          "hz": 240
+        },
+        {
+          "route": "cathedral",
+          "run": 1,
+          "hz": 240
+        }
+      ],
+      "rollingCapHints": [
+        {
+          "route": "bridge",
+          "run": 3
+        }
+      ],
+      "routes": [
+        {
+          "route": "meadow",
+          "samples": 7538,
+          "meanMs": 4.778071106393479,
+          "meanFps": 209.2894763876394,
+          "p50Ms": 4.5999999940395355,
+          "p95Ms": 5.899999991059303,
+          "p99Ms": 6.5999999940395355,
+          "maxMs": 12.200000002980232,
+          "above6_94": 57,
+          "above8_33": 39,
+          "above16_67": 0,
+          "above33_33": 0,
+          "minRunFps": 203.91843262699985,
+          "maxRunFps": 212.81026153589872,
+          "meanFrameTimeChangeVsReleasedPercent": 2.4933937619376234
+        },
+        {
+          "route": "town",
+          "samples": 7730,
+          "meanMs": 4.6594437257419274,
+          "meanFps": 214.6178940793558,
+          "p50Ms": 4.5,
+          "p95Ms": 5.700000002980232,
+          "p99Ms": 6.0999999940395355,
+          "maxMs": 12.700000002980232,
+          "above6_94": 34,
+          "above8_33": 26,
+          "above16_67": 0,
+          "above33_33": 0,
+          "minRunFps": 213.6360607677497,
+          "maxRunFps": 215.99693455956313,
+          "meanFrameTimeChangeVsReleasedPercent": -0.38333390396882994
+        },
+        {
+          "route": "bridge",
+          "samples": 8636,
+          "meanMs": 4.170634553033122,
+          "meanFps": 239.77166718497148,
+          "p50Ms": 4.100000008940697,
+          "p95Ms": 5.300000011920929,
+          "p99Ms": 5.799999997019768,
+          "maxMs": 11.299999997019768,
+          "above6_94": 26,
+          "above8_33": 14,
+          "above16_67": 0,
+          "above33_33": 0,
+          "minRunFps": 237.37537792664747,
+          "maxRunFps": 241.78771321979625,
+          "meanFrameTimeChangeVsReleasedPercent": 2.4616676437559937
+        },
+        {
+          "route": "cathedral",
+          "samples": 8824,
+          "meanMs": 4.080893019038647,
+          "meanFps": 245.04440457877385,
+          "p50Ms": 4,
+          "p95Ms": 5.200000002980232,
+          "p99Ms": 5.600000008940697,
+          "maxMs": 10.799999997019768,
+          "above6_94": 18,
+          "above8_33": 8,
+          "above16_67": 0,
+          "above33_33": 0,
+          "minRunFps": 243.60576522536036,
+          "maxRunFps": 246.23689055113968,
+          "meanFrameTimeChangeVsReleasedPercent": 2.8169955756845555
+        },
+        {
+          "route": "forest",
+          "samples": 8220,
+          "meanMs": 4.382031630169954,
+          "meanFps": 228.2046512661105,
+          "p50Ms": 4.399999991059303,
+          "p95Ms": 5.5999999940395355,
+          "p99Ms": 6,
+          "maxMs": 11.400000005960464,
+          "above6_94": 21,
+          "above8_33": 14,
+          "above16_67": 0,
+          "above33_33": 0,
+          "minRunFps": 222.79969682588842,
+          "maxRunFps": 235.00020818586836,
+          "meanFrameTimeChangeVsReleasedPercent": 2.46061590527904
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

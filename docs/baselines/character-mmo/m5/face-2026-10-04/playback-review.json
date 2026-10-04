@@ -1,0 +1,56 @@
+{
+  "reviewedAt": "2026-10-04T22:30:23.800115+00:00",
+  "fileSha256": "697a1afa9f799c15139b4da8ae4ec3acb701d59bc266ca41940d5ed8946b3d30",
+  "motionReviewed": true,
+  "judgement": "Source skull/eye placement defect corrected; reviewed old/young/ponytail, close face/profile, hood and source/control motion. User taste approval is not claimed.",
+  "ve": {
+    "playback": true,
+    "seek": true,
+    "decoded": [
+      1280,
+      720
+    ],
+    "durationSeconds": 74.096267,
+    "renderedBox": [
+      1280,
+      720
+    ],
+    "observedTimesSeconds": [
+      0.740962,
+      5.186722,
+      9.089722,
+      29.554578,
+      47.675361,
+      54.022685,
+      63.829264,
+      74.096267
+    ],
+    "nativeFullscreen": "unverified: named native control did not visibly enter fullscreen under browser automation"
+  },
+  "telegram": {
+    "messageId": 851,
+    "webInlinePlayback": true,
+    "webInlineDecoded": [
+      1280,
+      720
+    ],
+    "webInlineRenderedBox": [
+      737,
+      414.5625
+    ],
+    "webInlineObjectFit": "contain",
+    "webMediaViewerPlayback": true,
+    "webMediaViewerDecoded": [
+      1280,
+      720
+    ],
+    "webMediaViewerRenderedBox": [
+      1280,
+      720
+    ],
+    "webMediaViewerObjectFit": "contain",
+    "webFullscreen": "unverified: requested control did not visibly enter fullscreen under browser automation",
+    "desktopApp": "unavailable"
+  },
+  "scope": "Reviewed live captured motion; no physical iPhone or production identity acceptance from this DEV source correction"
+}

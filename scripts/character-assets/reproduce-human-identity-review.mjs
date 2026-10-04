@@ -14,7 +14,7 @@ import {NodeIO,VertexLayout} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {MeshoptDecoder} from 'meshoptimizer';
 const flags=process.argv.slice(2);assert(flags.every(f=>f==='--reuse-source'));
-const dir=path.resolve('.cache/character-mmo/m5-head-2026-10-04');
+const dir=path.resolve(process.env.ASHEN_IDENTITY_HOOD_DIR||'.cache/character-mmo/m5-face-2026-10-04');
 await fs.mkdir(dir,{recursive:true});
 const sha=b=>createHash('sha256').update(b).digest('hex');
 async function run(command,args,extra={}){
@@ -23,7 +23,7 @@ async function run(command,args,extra={}){
 }
 const node=(file,args=[],extra={})=>run(process.execPath,[`scripts/character-assets/${file}`,...args],extra);
 if(!flags.includes('--reuse-source'))await node('reproduce-human-identity-source.mjs',['old','young','young-hair']);
-const pins=JSON.parse(await fs.readFile('docs/baselines/character-mmo/m5/head-2026-10-04/source-summary.json','utf8'));
+const pins=JSON.parse(await fs.readFile(process.env.ASHEN_IDENTITY_SOURCE_SUMMARY||'docs/baselines/character-mmo/m5/face-2026-10-04/source-summary.json','utf8'));
 for(const asset of pins.assets)assert.equal(sha(await fs.readFile(`.cache/character-mmo/identity-v1/human-${asset.label}-painted.glb`)),asset.sha256,`${asset.label}: source reproduction differs; inspect before recording a new pin`);
 await node('check-human-identity-contract.mjs',['old','young','young-hair']);
 const manifest=JSON.parse(await fs.readFile('public/ashen-reach/human-shape-v1/manifest.json','utf8'));

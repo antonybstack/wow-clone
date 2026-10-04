@@ -4,22 +4,31 @@ Updated 2026-10-04 (local). Read this file first. Follow the latest user request
 
 ## Immediate focus: character customization and armor swapping
 
-**Current handoff checkpoint:** M5 now has a playable connected Human source audition,
-reusing the October 1 welded neck/scalp. Eye morphs, current garment coverage, a readable
-per-head hood opening and discarded curve/rig cleanup are implemented. See
-[the M5 checkpoint](plans/character-mmo/results/m5-connected-identity-2026-10-04.md).
-`?humanIdentity=old|young|young-hair` is DEV-only and does not write the saved character.
-The current fifteen-piece fit matrix (162 rows plus 27 final hood views), exact
-57-clip source contract and full source reproduction pass. Isolated M1 Max / 1280×720 /
-seven-enemy candidate route means are 213–261 FPS older and 214–246 FPS young/ponytail,
-with zero of 83,911 intervals over 16.67 ms. The older pass's initial 9–10 ms p95 tails
-are retained; a paired meadow/town repeat returns 5.8–5.9 ms, +0.82%/−3.69% mean frame
-time versus the released body. Cap hints remain labelled. Reviewed motion is Telegram
-**850** / [VE](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m5-connected-identity-2026-10-04.mp4).
-Telegram Web inline/fullscreen and VE play/seek proportions pass; standalone VE native
-fullscreen remains unverified. Owned renderers/harness are stopped.
-Saved identity, compact selected startup and production acceptance remain open; continue
-with M5 task 2 in the [current queue](plans/character-mmo/next-ten.md#5--modular-human-identity-head-hair-and-adult-age).
+**Superseding user review, 2026-10-04:** the M5 audition's face is disproportionate
+and jarring. Its art acceptance is withdrawn. Rework head/face/neck proportions
+against the released Human at a matched camera before continuing saved identity
+or publishing these candidates. The source, fit and performance receipts below
+remain engineering evidence; they do not establish visual acceptance.
+Current correction work: [face refactor](plans/character-mmo/face-refactor-2026-10-04.md).
+
+**Current handoff checkpoint:** the [Human face correction](plans/character-mmo/results/m5-face-refactor-2026-10-04.md)
+replaces the rejected October 4 audition. Native anatomical scaling and independent
+eye landmarks correct its oversized skull and age offset; jaw/lips, eye detail,
+fitted brows, the welded neck and the current hood are refactored. The exact
+65-joint bind / 57 source clips and current clothing interface remain verified.
+`?humanIdentity=old|young|young-hair` remains DEV-only and does not write the saved
+character. Full pinned source reproduction, 162 live fits, 166 character / 112
+equipment / six prefetch tests and the production build pass. Isolated M1 Max /
+1280×720 / seven-enemy candidate route means are **209–245 FPS**, pooled p99
+**6.1–6.2 ms**, worst **13.3 ms**, with zero of 81,572 intervals over 16.67 ms.
+All individual run means exceed 203 FPS; cap hints and meadow pacing bursts are
+retained in the result. Reviewed live motion is Telegram **851** /
+[VE](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m5-face-refactor-2026-10-04.mp4).
+VE play/seek and Telegram Web inline/media-viewer proportions pass. Fullscreen
+activation and Telegram Desktop remain unverified. Owned renderers/harness/media
+are stopped. This corrects the source art defect; user taste approval and production
+identity acceptance are not claimed. Saved identity and compact selected startup
+are next in [M5 task 2](plans/character-mmo/next-ten.md#5--modular-human-identity-head-hair-and-adult-age).
 The latest production release remains M7 source `4063f49` / Pages
 `b3fdafd8-c343-4147-ae2e-760a155c8d06`, described in
 [the saved-colours result](plans/character-mmo/results/m7-saved-colours-2026-10-04.md).

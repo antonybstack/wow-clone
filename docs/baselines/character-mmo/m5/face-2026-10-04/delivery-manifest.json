@@ -1,0 +1,136 @@
+{
+  "file": "ve-capture/character-mmo/m5-face-2026-10-04/m5-face-refactor-2026-10-04.mp4",
+  "bytes": 43035310,
+  "sha256": "697a1afa9f799c15139b4da8ae4ec3acb701d59bc266ca41940d5ed8946b3d30",
+  "encoded": {
+    "width": 1280,
+    "height": 720,
+    "duration": 74.096267,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "sourceElapsedSeconds": 74.09746193885803,
+  "segments": [
+    {
+      "label": "old",
+      "shape": {
+        "build": 0.95,
+        "height": 0.9
+      },
+      "sourceSha256": "1f935826de52dc17a3850a41ba857fc9095cd87c5202977d24bc265c630e3a3a",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "canvas": {
+        "width": 1280,
+        "height": 720,
+        "cssWidth": 1280,
+        "cssHeight": 720
+      },
+      "devicePixelRatio": 1,
+      "sourceFrame": {
+        "width": 1280,
+        "height": 720
+      },
+      "frameCount": 826,
+      "firstTimestamp": 1791151519.701607,
+      "lastTimestamp": 1791151544.375233,
+      "elapsedSeconds": 24.673625946044922,
+      "encoded": {
+        "width": 1280,
+        "height": 720,
+        "duration": 24.673216,
+        "sampleAspectRatio": "1:1",
+        "rotation": 0,
+        "codec": "h264"
+      },
+      "changingFrameDimensions": false
+    },
+    {
+      "label": "young",
+      "shape": {
+        "build": 0,
+        "height": 1
+      },
+      "sourceSha256": "28c64e1fe96ab267c57f69bae6a976f4560c2b5b60e2318daf6e99ee995d151a",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "canvas": {
+        "width": 1280,
+        "height": 720,
+        "cssWidth": 1280,
+        "cssHeight": 720
+      },
+      "devicePixelRatio": 1,
+      "sourceFrame": {
+        "width": 1280,
+        "height": 720
+      },
+      "frameCount": 832,
+      "firstTimestamp": 1791151555.568187,
+      "lastTimestamp": 1791151580.228646,
+      "elapsedSeconds": 24.66045904159546,
+      "encoded": {
+        "width": 1280,
+        "height": 720,
+        "duration": 24.660067,
+        "sampleAspectRatio": "1:1",
+        "rotation": 0,
+        "codec": "h264"
+      },
+      "changingFrameDimensions": false
+    },
+    {
+      "label": "young-hair",
+      "shape": {
+        "build": -0.95,
+        "height": 1.15
+      },
+      "sourceSha256": "5619fa1f05ac4ed1545032bdfaa93c4fa3f6d79c6c901abeea161546fd54a0ac",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "canvas": {
+        "width": 1280,
+        "height": 720,
+        "cssWidth": 1280,
+        "cssHeight": 720
+      },
+      "devicePixelRatio": 1,
+      "sourceFrame": {
+        "width": 1280,
+        "height": 720
+      },
+      "frameCount": 809,
+      "firstTimestamp": 1791151591.235717,
+      "lastTimestamp": 1791151615.999094,
+      "elapsedSeconds": 24.76337695121765,
+      "encoded": {
+        "width": 1280,
+        "height": 720,
+        "duration": 24.762984,
+        "sampleAspectRatio": "1:1",
+        "rotation": 0,
+        "codec": "h264"
+      },
+      "changingFrameDimensions": false
+    }
+  ],
+  "ve": {
+    "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m5-face-refactor-2026-10-04.mp4",
+    "remoteUpload": true,
+    "contentType": "video/mp4",
+    "httpStatus": 200,
+    "rangeStatus": 206,
+    "contentLength": 43035310
+  },
+  "scope": "DEV source audition; no production identity release",
+  "telegramMessageId": 851,
+  "telegramDimensionsVerified": true,
+  "review": "playback-review.json"
+}

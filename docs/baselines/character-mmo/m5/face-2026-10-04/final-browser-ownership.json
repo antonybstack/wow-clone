@@ -1,0 +1,35 @@
+{
+  "owner": "/root",
+  "gameHarness": {
+    "slot": 7,
+    "chromePid": 37901,
+    "cdpPort": 10037,
+    "viteParentPid": 37852,
+    "viteListenerPid": 37876,
+    "vitePort": 5873,
+    "purpose": "serial face comparisons, fit/motion checks and isolated performance",
+    "state": "stopped; process and listener audit clear"
+  },
+  "veReview": {
+    "browser": "Edge 1",
+    "browserPid": 2931,
+    "tabId": "1147995323",
+    "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m5-face-refactor-2026-10-04.mp4",
+    "purpose": "final decoded MP4 motion/play/seek review",
+    "state": "closed"
+  },
+  "telegramReview": {
+    "browser": "Edge 1",
+    "browserPid": 2931,
+    "tabId": "1147992685",
+    "state": "user tab preserved; viewer/chat exited, zero video elements and zero playing videos"
+  },
+  "remainingOwnedGameRenderers": 0,
+  "remainingOwnedMediaPlayers": 0,
+  "userVitePortsPreserved": [
+    5173,
+    4000
+  ],
+  "userEdgeTabsPreserved": true,
+  "auditedAt": "2026-10-04T22:30:23.800774+00:00"
+}

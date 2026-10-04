@@ -23,7 +23,11 @@ change any piece at any time, and have all of that persist and reload exactly. E
 
 Two things gate it today, and both are measured rather than suspected:
 
-* **Identity now has a connected source audition.** The October 1 welded CC0 heads
+* **Identity has a connected source audition; its first face art was rejected.**
+  The user found the October 4 head disproportionate and jarring. The
+  [face correction](results/m5-face-refactor-2026-10-04.md) is now implemented and
+  delivered as a DEV audition; saved production identity remains the next task.
+  The October 1 welded CC0 heads
   supersede the separate-head 44° normal break and fused-hair collapse experiments.
   The [October 4 checkpoint](results/m5-connected-identity-2026-10-04.md) reuses that source,
   adds eye morphs and current torso/eye/hair coverage, corrects the hood opening and
@@ -194,7 +198,10 @@ replaces the former separate-head/neck work. Preserve its source, exact 57 curve
 
 Tasks, in order:
 
-1. **Connected head/scalp and current-fit source proof — implemented.** Reuse the welded
+1. **Connected head/scalp and current-fit source proof — corrected DEV audition
+   delivered.** The [face refactor result](results/m5-face-refactor-2026-10-04.md)
+   supersedes the rejected proportions; it does not claim user taste approval or
+   saved/production identity acceptance. Reuse the welded
    October 1 source; verify the current garment pack rather than the obsolete M005
    nine-item audition. October 4 adds matching eyeball morphs, semantic eye/hair/torso
    ownership, a per-head brow opening and cleaned animation dependencies. Retained

@@ -11,7 +11,7 @@ import {createHash} from 'node:crypto';
 import {EQUIPMENT_PRESETS} from '../../src/ashen-reach/equipment-catalog.js';
 const port=process.env.ASHEN_CDP_PORT,url=process.env.ASHEN_TEST_URL;
 assert(port&&url,'Require an audited owned browser and game URL');
-const out=process.env.ASHEN_IDENTITY_REVIEW_OUT||'docs/baselines/character-mmo/m5/head-2026-10-04/current-fits';
+const out=process.env.ASHEN_IDENTITY_REVIEW_OUT||'docs/baselines/character-mmo/m5/face-2026-10-04/current-fits';
 const labels=process.argv.slice(2).length?process.argv.slice(2):['old','young','young-hair'];
 const direct=process.env.ASHEN_IDENTITY_DIRECT==='1';
 const seed=JSON.parse(await fs.readFile('docs/baselines/character-mmo/m7/persistence-2026-10-04/seed-largest-undyed.json','utf8'));
@@ -43,7 +43,10 @@ try{
    const target=new URL(url);if(direct)target.searchParams.set('humanIdentity',label);
    await page.goto(target.href);await page.waitForFunction(()=>globalThis.ASHEN?.ready,null,{timeout:90000});
    assert(manifestHits&&bodyHits,'The candidate must actually reach the running game');
-   if(direct)assert.equal(await page.evaluate(()=>ASHEN.identityReview?.label),label);
+   if(direct){
+    assert.equal(await page.evaluate(()=>ASHEN.identityReview?.label),label);
+    assert.equal(await page.evaluate(()=>ASHEN.identityReview?.sourceSha256),manifest.identityReview.sourceSha256);
+   }
    await page.evaluate(()=>{ASHEN.dev.god=true;ASHEN.armory.open();ASHEN.body.inspection.setPaused(true);ASHEN.body.inspection.seek(0);});
    const cases=[{name:'neutral',build:0,height:1},{name:'short-stout',build:.95,height:.9},{name:'tall-slender',build:-.95,height:1.15}];
    for(const shape of cases){
@@ -58,11 +61,12 @@ try{
      for(const [angle,alpha]of [['front',Math.PI/2],['side',0],['back',-Math.PI/2]]){
       await page.evaluate(a=>{ASHEN.armory.camera.alpha=a;},alpha);await page.waitForTimeout(90);
       const file=`${label}-${shape.name}-${outfit}-${angle}.png`;await page.screenshot({path:path.join(out,file)});
-      const state=await page.evaluate(()=>({appearance:ASHEN.getAppearance(),equipment:ASHEN.equipment.getState(),bodySegments:ASHEN.equipment.getBodySegments(),visible:ASHEN.scene.meshes.filter(m=>m.visible!==false&&['HumanV1Body','HumanTorsoCore','HumanIdentityEyes','HumanPonytail01'].includes(m.name)).map(m=>m.name),gpuErrors:ASHEN.gpu.errors.slice(),physics:ASHEN.player.getDebugState().usingPhysics,recoveries:ASHEN.player.getDebugState().recoveries}));
+      const state=await page.evaluate(()=>({appearance:ASHEN.getAppearance(),equipment:ASHEN.equipment.getState(),bodySegments:ASHEN.equipment.getBodySegments(),visible:ASHEN.scene.meshes.filter(m=>m.visible!==false&&['HumanV1Body','HumanTorsoCore','HumanIdentityEyes','HumanIdentityBrows','HumanPonytail01'].includes(m.name)).map(m=>m.name),gpuErrors:ASHEN.gpu.errors.slice(),physics:ASHEN.player.getDebugState().usingPhysics,recoveries:ASHEN.player.getDebugState().recoveries}));
       assert(state.physics);assert.deepEqual(state.gpuErrors,[]);assert.equal(state.appearance.shape.build,shape.build);assert.equal(state.appearance.shape.height,shape.height);
       assert(state.visible.includes('HumanIdentityEyes'),'Native eyes must remain visible');
+      assert(state.visible.includes('HumanIdentityBrows'),'Fitted brows must remain visible');
       if(label==='young-hair')assert.equal(state.visible.includes('HumanPonytail01'),outfit!=='warden','Hood must hide the separate hair only');
-      report.rows.push({label,shape,outfit,angle,file,manifestHits,bodyHits,...state});
+      report.rows.push({label,sourceSha256:manifest.identityReview.sourceSha256,bodySha256:manifest.items.body.sha256,shape,outfit,angle,file,manifestHits,bodyHits,...state});
      }
      await fs.writeFile(`${out}/report.json`,JSON.stringify(report,null,2));
     }

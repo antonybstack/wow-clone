@@ -1,0 +1,20 @@
+{
+  "scope": "Corrected face source pins; retained source brow detail. DEV audition, no production or user aesthetic approval",
+  "assets": [
+    {
+      "label": "old",
+      "sha256": "1f935826de52dc17a3850a41ba857fc9095cd87c5202977d24bc265c630e3a3a",
+      "bytes": 4138460
+    },
+    {
+      "label": "young",
+      "sha256": "28c64e1fe96ab267c57f69bae6a976f4560c2b5b60e2318daf6e99ee995d151a",
+      "bytes": 4129708
+    },
+    {
+      "label": "young-hair",
+      "sha256": "5619fa1f05ac4ed1545032bdfaa93c4fa3f6d79c6c901abeea161546fd54a0ac",
+      "bytes": 5050968
+    }
+  ]
+}

@@ -22,7 +22,7 @@ import {manifestBodyCoverage} from '../../src/ashen-reach/coverage-manifest.js';
 const labels=process.argv.slice(2).length?process.argv.slice(2):['old','young','young-hair'];
 const sourceDir='.cache/character-mmo/identity-v1',out='.cache/character-mmo/identity-review-v1';
 const sha=b=>createHash('sha256').update(b).digest('hex');
-const sourceSummary=JSON.parse(await fs.readFile(process.env.ASHEN_IDENTITY_SOURCE_SUMMARY||'docs/baselines/character-mmo/m5/head-2026-10-04/source-summary.json','utf8'));
+const sourceSummary=JSON.parse(await fs.readFile(process.env.ASHEN_IDENTITY_SOURCE_SUMMARY||'docs/baselines/character-mmo/m5/face-2026-10-04/source-summary.json','utf8'));
 const published=JSON.parse(await fs.readFile('public/ashen-reach/human-shape-v1/manifest.json','utf8'));
 await Promise.all([MeshoptDecoder.ready,MeshoptEncoder.ready]);
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder,'meshopt.encoder':MeshoptEncoder}).setVertexLayout(VertexLayout.SEPARATE);
@@ -67,11 +67,17 @@ for(const label of labels){
  const body={...base,url:`/__identity_review__/${label}/${name}`,bytes:bytes.length,encodedBytes:encoded.length,sha256:sha(bytes),compression:'gzip',meshes:actual.listMeshes().map(m=>m.getName()),textures};
  delete body.coverageSource;
  manifest.items.body=body;manifest.compactItems.body=body;manifest.startup.textures=textures;
- if(process.env.ASHEN_IDENTITY_UNFITTED!=='1'){
-  const age=label.split('-')[0],fitDir=`.cache/character-mmo/m5-head-2026-10-04/hood-${age}`;
+ if(process.env.ASHEN_IDENTITY_UNFITTED==='1'){
+  // Explicit published-hood control for the DEV live comparison. Retain the
+  // same runtime provenance guard as fitted auditions; absence used to make
+  // this documented control fail before ASHEN.ready.
+  manifest.identityHoodReview={age:label.split('-')[0],kind:'published-control',sha256:published.items.graveweaverHood.sha256};
+ }else{
+  const age=label.split('-')[0],fitDir=`${process.env.ASHEN_IDENTITY_HOOD_DIR||'.cache/character-mmo/m5-face-2026-10-04'}/hood-${age}`;
   const fit=JSON.parse(await fs.readFile(`${fitDir}/hood-${age}-fit.json`,'utf8'));
   const hoodBytes=await fs.readFile(`${fitDir}/hood-${age}.glb`);
   assert.equal(sha(hoodBytes),fit.assembledSha256,`${age}: stale hood fit`);
+  assert.equal(sha(await fs.readFile(`${sourceDir}/human-${age}-grey.glb`)),fit.targetSha256,`${age}: hood was fitted to another skull`);
   const name=`hood-${sha(hoodBytes).slice(0,12)}.glb`;
   await fs.writeFile(path.join(dir,name),hoodBytes);
   const item={...published.items.graveweaverHood,url:`/__identity_review__/${label}/${name}`,bytes:hoodBytes.length,sha256:sha(hoodBytes),compression:null};
@@ -80,6 +86,7 @@ for(const label of labels){
   manifest.identityHoodReview={age,sha256:fit.assembledSha256,fit};
  }
  manifest.coverage.bodySegments.HumanIdentityEyes=['head.face'];
+ manifest.coverage.bodySegments.HumanIdentityBrows=['head.face'];
  if(label.endsWith('-hair'))manifest.coverage.bodySegments.HumanPonytail01=['head.scalp'];
  assert.deepEqual(manifestBodyCoverage(manifest,'human').baseMeshes.sort(),[...body.meshes].sort());
  manifest.identityReview={label,sourceSha256:sha(source),publishedClothesUnchanged:process.env.ASHEN_IDENTITY_UNFITTED==='1',productionAcceptance:false};

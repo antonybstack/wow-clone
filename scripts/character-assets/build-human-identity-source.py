@@ -24,6 +24,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import mh_io
 import mh_studio
 import mh_hair
+from human_identity_recipe import FACE_TARGETS, EYE_GLOBE_SCALE, CORNEA_BULGE_M
 
 AGE = sys.argv[sys.argv.index('--') + 1] if '--' in sys.argv else 'old'
 if AGE not in ('young', 'old'):
@@ -85,8 +86,31 @@ rim = ordered_boundary(rim_edges)
 
 source, uvs, faces = mh_io.load_obj(SRC / 'base.obj')
 mh_io.apply_target(source, SRC / f'caucasian-male-{AGE}.target')
+mh_io.apply_targets(source, [(SRC/name, weight) for name, weight in FACE_TARGETS])
 coords, ground = mh_io.mh_coords_to_blender(source)
-fit = lambda v: (v[0]*133+.3, v[1]*105+11, (v[2]-1.5)*119+CUT)
+# Fit an anatomical head, not the whole body's ground-relative age offset.
+# MakeHuman targets also move the body: applying one global age transform put
+# the old eye sockets 4.1 cm below the young ones. Independent axis scales then
+# widened the skull by 33%, lengthened it by 19%, and moved its face rearward.
+# Use one similarity transform for head, native eye proxy and hair. The eye
+# landmark (cm in this source rig) was measured against the released Human's
+# face at the same camera; it is not a runtime head-size slider.
+# Targets/proxies are native MakeHuman tools, preserving anatomical relations:
+# https://static.makehumancommunity.org/mpfb/docs/assets/concept_targets.html
+eye_proxy = mh_io.load_mhclo(SRC / 'low-poly.mhclo')
+eye_coords, _ = mh_io.mh_coords_to_blender(mh_io.fit_proxy(source, eye_proxy), zmin=ground)
+eye_center = Vector(tuple(sum(v[k] for v in eye_coords)/len(eye_coords) for k in range(3)))
+# Existing Human v1 authoring operations, in metres before the shared fit. Keep
+# the source globe centres as landmarks; a back tuck changes the render-vertex
+# centroid slightly but does not move the anatomical eye centre.
+mh_studio.shrink_eye_globes(eye_coords, EYE_GLOBE_SCALE)
+mh_studio.bulge_cornea(eye_coords, CORNEA_BULGE_M)
+mh_studio.tuck_globe_backs(eye_coords)
+fit_scale = 100.0  # source metres -> retained rig centimetres, uniformly
+eye_anchor = Vector((0.0, -8.0, 165.5))
+fit_offset = eye_anchor - eye_center * fit_scale
+def fit(v):
+    return tuple(Vector(v)*fit_scale + fit_offset)
 fitted = [fit(v) for v in coords]
 loops = [corners for group, corners in faces if group == 'body' and
          all(fitted[i][2] > 142 for i, _ in corners)]
@@ -222,9 +246,9 @@ if len(seam)*2 != before or any(e.is_boundary for v in seam for e in v.link_edge
     raise ValueError(f'Neck weld incomplete: {before} -> {len(seam)}')
 # Smooth actual geometry in a narrow neck band, carrying the same displacement
 # through every shape layer. A painted normal cannot repair a disconnected rim.
-band = [v for v in bm.verts if 148 <= v.co.z <= 155]
+band = [v for v in bm.verts if 148 <= v.co.z <= 157]
 shape_layers = list(bm.verts.layers.shape.values())
-for _ in range(3):
+for _ in range(8):
     previous = {v:v.co.copy() for v in band}
     bmesh.ops.smooth_vert(bm,verts=band,factor=.32,use_axis_x=True,
                           use_axis_y=True,use_axis_z=True)
@@ -253,9 +277,7 @@ assert all(sum(g.weight>1e-7 for g in v.groups)<=4 for v in body.data.vertices)
 
 
 # Reuse MakeHuman's own fitted CC0 eye proxy and the accepted rig's Head bone.
-proxy = mh_io.load_mhclo(SRC / 'low-poly.mhclo')
 _, eye_uv, eye_faces = mh_io.load_obj(SRC / 'low-poly.obj')
-eye_coords,_ = mh_io.mh_coords_to_blender(mh_io.fit_proxy(source,proxy),zmin=ground)
 eyes = mh_studio.build_mesh('HumanIdentityEyes',[fit(v) for v in eye_coords],
                             eye_uv,mh_io.obj_loops(eye_faces))
 eyes.parent = armature
@@ -264,6 +286,36 @@ eyes.data.materials.append(mh_studio.mat_clay('EyeGrey',(.12,.12,.12)))
 mh_studio.assign_weights(eyes,[[(head_bone,1.0)] for _ in eyes.data.vertices])
 mod = eyes.modifiers.new('Armature','ARMATURE')
 mod.object = armature
+
+# Use the fitted CC0 brow proxy rather than letting scalp pigment removal and
+# a low-resolution skin atlas erase the brow silhouette. One tiny native mesh,
+# on the same Head bind/morph field as the eyes; no procedural face rig.
+# https://static.makehumancommunity.org/mpfb/docs/assets/concept_clothes_hair_bodyparts.html
+brow_proxy = mh_io.load_mhclo(SRC / 'eyebrow001.mhclo')
+brow_coords, _ = mh_io.mh_coords_to_blender(mh_io.fit_proxy(source, brow_proxy), zmin=ground)
+_, brow_uv, brow_faces = mh_io.load_obj(SRC / 'eyebrow001.obj')
+brows = mh_studio.build_mesh('HumanIdentityBrows', [fit(v) for v in brow_coords],
+                             brow_uv, mh_io.obj_loops(brow_faces))
+brows.parent = armature
+brows.matrix_parent_inverse = body.matrix_parent_inverse.copy()
+mh_studio.assign_weights(brows, [[(head_bone, 1.0)] for _ in brows.data.vertices])
+brow_mod = brows.modifiers.new('Armature', 'ARMATURE'); brow_mod.object = armature
+brow_material = mh_studio.mat_pbr('IdentityBrows', albedo_path=SRC/'eyebrow001.png',
+                                  rough=.8, specular=.15, alpha_clip=.12,
+                                  double_sided=True)
+mh_hair.wire_export_mask(brow_material, .12)
+brows.data.materials.append(brow_material)
+# The fitted proxy was authored on the unmodified source. Project it onto the
+# corrected face with native Shrinkwrap and a 1.5 mm standoff to prevent the
+# checker-like z fighting seen in the actual front view. Preserve its UVs and
+# topology; the modifier is baked offline and never runs in the game.
+# https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/shrinkwrap.html
+armature.data.pose_position = 'REST'
+wrap = brows.modifiers.new('NativeBrowSurfaceFit', 'SHRINKWRAP')
+wrap.target = body; wrap.wrap_method = 'NEAREST_SURFACEPOINT'; wrap.offset = .15
+bpy.context.view_layer.objects.active = brows
+bpy.ops.object.modifier_apply(modifier=wrap.name)
+armature.data.pose_position = 'POSE'
 
 hair = None
 if WITH_HAIR:
@@ -299,6 +351,11 @@ if WITH_HAIR:
     for face in hair.data.polygons:face.use_smooth=True
 
 report = {'age':AGE,'label':LABEL,'hair':WITH_HAIR,'source':'MakeHuman CC0','neckBefore':before,
+          'fit':{'method':'uniform eye-landmark similarity; no whole-body age offset',
+                 'scaleCmPerM':fit_scale,'eyeAnchorCm':list(eye_anchor),
+                 'sourceEyeCenterM':list(eye_center),'translationCm':list(fit_offset)},
+          'faceTargets':dict(FACE_TARGETS),'eyes':{'globeScale':EYE_GLOBE_SCALE,
+                 'corneaBulgeM':CORNEA_BULGE_M,'browStandoffCm':.15},
           'sharedNeckVertices':len(seam),'neckBoundaryEdges':neck_boundary,
           'neckNonManifoldEdges':neck_non_manifold,
           'headWeightReduction':head_weight_reduction,'bodyWeightReduction':body_weight_reduction,'vertices':len(body.data.vertices),'faces':len(body.data.polygons),
@@ -307,7 +364,7 @@ report = {'age':AGE,'label':LABEL,'hair':WITH_HAIR,'source':'MakeHuman CC0','nec
 (OUT/f'{LABEL}-source.json').write_text(json.dumps(report,indent=2))
 bpy.ops.wm.save_as_mainfile(filepath=str(OUT/f'human-{LABEL}-source.blend'))
 bpy.ops.object.select_all(action='DESELECT')
-for obj in (armature,body,eyes)+((hair,) if hair else ()):
+for obj in (armature,body,eyes,brows)+((hair,) if hair else ()):
     obj.select_set(True)
 bpy.context.view_layer.objects.active = armature
 bpy.ops.export_scene.gltf(filepath=str(OUT/f'human-{LABEL}-grey-raw.glb'),

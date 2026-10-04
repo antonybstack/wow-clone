@@ -1,0 +1,19 @@
+{
+  "command": "node scripts/character-assets/reproduce-human-identity-review.mjs",
+  "fullSourceRebuilt": true,
+  "exitCode": 0,
+  "sourcePinsMatched": true,
+  "hoodTargetsMatched": true,
+  "garmentCacheSideEffectsRemoved": true,
+  "m005CacheRestoration": "Original Pilgrim source reproduced exact historical 669469f375802e5a41e765c8ab23369d520761560c0ec30ba132ad5b672605c4; cache restored, historical report unchanged",
+  "blender": "5.2.1",
+  "verification": {
+    "character": 166,
+    "equipment": 112,
+    "startupPrefetch": 6,
+    "productionBuild": true
+  },
+  "productionPublished": false,
+  "finalBrowTextureOwnershipVerified": true,
+  "fullReproductionAfterTextureChange": true
+}

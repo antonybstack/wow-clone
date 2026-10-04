@@ -6,6 +6,7 @@ import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import {NodeIO} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
+import sharp from 'sharp';
 import {animationDuration,applyMorph,globalMatrices,jointMatrices,poseNodes,skinPositions} from './pose-skin.mjs';
 import {buildSegments,restWorld,softShape} from './girth-field.mjs';
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS);
@@ -13,6 +14,7 @@ const base=(await io.read('.cache/character-mmo/m004/human-shape-family-v1.glb')
 const baseClips=new Map(base.listAnimations().map(c=>[c.getName(),c]));
 const girth=JSON.parse(await fs.readFile('docs/baselines/character-mmo/m004/makehuman-girth.json','utf8'));
 const report={scope:'Offline source continuity and animation evidence; not live acceptance',rows:[]};
+const sourceBrowSize=await sharp('blender/characters/sources/eyebrow001.png').metadata();
 for(const label of process.argv.slice(2).length?process.argv.slice(2):['old','young','young-hair']){
  const root=(await io.read(`.cache/character-mmo/identity-v1/human-${label}-painted.glb`)).getRoot();
  const skin=root.listSkins()[0],prim=root.listMeshes().find(m=>m.getName()==='HumanV1Body').listPrimitives()[0];
@@ -43,16 +45,28 @@ for(const label of process.argv.slice(2).length?process.argv.slice(2):['old','yo
  assert.deepEqual(eyes.getExtras().targetNames,['slender','stout']);assert.deepEqual(eyes.getWeights(),[0,0]);
  const {segments}=buildSegments(skin.listJoints(),restWorld(root),girth);
  let maxEyeFieldDifferenceM=0;
- for(const p of eyes.listPrimitives()){
+ let maxBrowFieldDifferenceM=0;
+ const brows=root.listMeshes().find(m=>m.getName()==='HumanIdentityBrows');assert(brows,'Fitted brows absent');
+ const browMaterial=brows.listPrimitives()[0].getMaterial();
+ const browTextureSizePx=browMaterial.getBaseColorTexture().getSize();
+ assert.deepEqual(browTextureSizePx,[sourceBrowSize.width,sourceBrowSize.height],`${label}: brow texture was mistaken for an eye texture`);
+ assert.equal(browMaterial.getAlphaMode(),'MASK','Brow strands require authored alpha coverage');
+ assert.deepEqual(brows.getExtras().targetNames,['slender','stout']);assert.deepEqual(brows.getWeights(),[0,0]);
+ for(const attachment of [eyes,brows])for(const p of attachment.listPrimitives()){
   assert.equal(p.listTargets().length,2);
   const pos=p.getAttribute('POSITION').getArray();
   for(const [index,name]of ['slender','stout'].entries()){
    const expected=softShape(pos,p.getAttribute('JOINTS_0').getArray(),p.getAttribute('WEIGHTS_0').getArray(),segments,name).shaped;
    const delta=p.listTargets()[index].getAttribute('POSITION').getArray();
-   for(let k=0;k<pos.length;k++)maxEyeFieldDifferenceM=Math.max(maxEyeFieldDifferenceM,Math.abs(pos[k]+delta[k]-expected[k]));
+   for(let k=0;k<pos.length;k++){
+    const error=Math.abs(pos[k]+delta[k]-expected[k]);
+    if(attachment===eyes)maxEyeFieldDifferenceM=Math.max(maxEyeFieldDifferenceM,error);
+    else maxBrowFieldDifferenceM=Math.max(maxBrowFieldDifferenceM,error);
+   }
   }
  }
  assert(maxEyeFieldDifferenceM<1e-7,`${label}: eyeball morph differs from the Head field`);
+ assert(maxBrowFieldDifferenceM<1e-7,`${label}: brow morph differs from the Head field`);
  const position=prim.getAttribute('POSITION').getArray(),normal=prim.getAttribute('NORMAL').getArray(),joints=prim.getAttribute('JOINTS_0').getArray(),weights=prim.getAttribute('WEIGHTS_0').getArray();
  // The head changes topology. Prove clothing correspondence by retained
  // physical positions, morph displacement and named joint weights, never by
@@ -114,7 +128,7 @@ for(const label of process.argv.slice(2).length?process.argv.slice(2):['old','yo
    }
   }
  }
- const row={label,vertices:position.length/3,neckSplitGroups:splitGroups.length,samples,maxSplitM,maxNormalDifference,maxMorphNormalDifference,maxPaletteElementDifference,maxDurationDifference,sourceCurvesExact:true,unusedAccessors:unusedAccessors.length,maxEyeFieldDifferenceM,nodes:root.listNodes().length,retainedClothingSurface:{belowM:1.46,samples:retainedSamples,maxPositionM:maxRetainedPositionM,maxMorphM:maxRetainedMorphM,maxWeightDifference:maxRetainedWeightDifference}};
+ const row={label,vertices:position.length/3,neckSplitGroups:splitGroups.length,samples,maxSplitM,maxNormalDifference,maxMorphNormalDifference,maxPaletteElementDifference,maxDurationDifference,sourceCurvesExact:true,unusedAccessors:unusedAccessors.length,maxEyeFieldDifferenceM,maxBrowFieldDifferenceM,browTextureSizePx,nodes:root.listNodes().length,retainedClothingSurface:{belowM:1.46,samples:retainedSamples,maxPositionM:maxRetainedPositionM,maxMorphM:maxRetainedMorphM,maxWeightDifference:maxRetainedWeightDifference}};
  report.rows.push(row);
 }
 await fs.writeFile('.cache/character-mmo/identity-v1/source-contract.json',JSON.stringify(report,null,2));

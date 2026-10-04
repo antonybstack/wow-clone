@@ -10,12 +10,12 @@ import {browserOwnership} from '../lib/browser-ownership.mjs';
 import {captureSurface,appendFrame,writeCaptureManifest} from '../lib/capture-manifest.mjs';
 const port=process.env.ASHEN_CDP_PORT,url=process.env.ASHEN_TEST_URL;
 assert(port&&url,'Require an audited owned browser');
-const out='ve-capture/character-mmo/m5-identity-2026-10-04';
-const pins=JSON.parse(await fs.readFile('docs/baselines/character-mmo/m5/head-2026-10-04/source-summary.json','utf8'));
+const out=process.env.ASHEN_IDENTITY_MOTION_OUT||'ve-capture/character-mmo/m5-face-2026-10-04';
+const pins=JSON.parse(await fs.readFile(process.env.ASHEN_IDENTITY_SOURCE_SUMMARY||'docs/baselines/character-mmo/m5/face-2026-10-04/source-summary.json','utf8'));
 const browser=await chromium.connectOverCDP(`http://127.0.0.1:${port}`);
 assert(browser.contexts().flatMap(c=>c.pages()).every(p=>p.url()==='about:blank'));
 try{
- for(const [label,build,height]of [['old',.95,.9],['young-hair',-.95,1.15]]){
+ for(const [label,build,height]of [['old',.95,.9],['young',0,1],['young-hair',-.95,1.15]]){
   const dir=path.join(out,label);await fs.mkdir(path.join(dir,'frames'),{recursive:true});
   const context=await browser.newContext({viewport:{width:1280,height:720},deviceScaleFactor:1}),page=await context.newPage();
   const errors=[],timeline=[],writes=[];let cdp,manifest,recording=false;
@@ -40,6 +40,14 @@ try{
    for(const [angle,alpha]of [['front',Math.PI/2],['side',0],['back',-Math.PI/2]]){
     await page.evaluate(a=>{ASHEN.armory.camera.alpha=a;},alpha);await mark(`Wayfarer ${angle}`);await page.waitForTimeout(1100);await page.screenshot({path:`${dir}/${angle}.png`});
    }
+   // Face proportion work needs actual close motion, including the profile.
+   // Keep the same narrow FOV and use distance/focus; a FOV change would make
+   // the before/after comparison ambiguous. Remain inside the usable stage.
+   await page.evaluate(()=>ASHEN.armory.setFocus({height:1.64*ASHEN.player.heightScale,radius:1.45*ASHEN.player.heightScale,beta:Math.PI/2}));
+   for(const [angle,alpha]of [['face-front',Math.PI/2],['face-three-quarter',Math.PI/4],['face-profile',0]]){
+    await page.evaluate(a=>{ASHEN.armory.camera.alpha=a;},alpha);await mark(`Corrected ${angle}`);await page.waitForTimeout(1000);await page.screenshot({path:`${dir}/${angle}.png`});
+   }
+   await page.evaluate(()=>ASHEN.armory.setFocus({height:1.5*ASHEN.player.heightScale,radius:2.1*ASHEN.player.heightScale,beta:Math.PI/2}));
    await page.evaluate(async()=>{await ASHEN.equipment.equipPreset('warden');ASHEN.armory.camera.alpha=Math.PI/2;ASHEN.body.inspection.select('idle');});
    await mark('Hood face opening; separate hair hidden');await page.waitForTimeout(1300);await page.screenshot({path:`${dir}/hood-front.png`});
    await page.evaluate(()=>{ASHEN.armory.camera.alpha=0;});await page.waitForTimeout(900);await page.screenshot({path:`${dir}/hood-side.png`});

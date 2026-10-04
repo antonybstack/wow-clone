@@ -67,22 +67,23 @@ bpy.context.collection.objects.link(cage)
 cage.parent=armature;cage.location=(0,3,159)
 # Newly resized lattice data spans U/V [-1,1], W [-2,2], rather than
 # an assumed unit cube. Derive scales from actual native points so the cage
-# measures exactly 30 x 44 x 42 cm and the top lift really is 3.2 cm.
+# measures exactly 30 x 44 x 42 cm. The corrected skull fits inside the released
+# crown: do not enlarge it to accommodate the rejected 133%-wide head.
 span=[max(p.co[k] for p in lattice.points)-min(p.co[k] for p in lattice.points) for k in range(3)]
 cage.scale=tuple(size/extent for size,extent in zip((30,44,42),span))
 for point in lattice.points:
     z=159+point.co.z*cage.scale.z
     t=max(0,min(1,(z-146)/14));fade=t*t*(3-2*t)
-    point.co_deform.x=point.co.x*(1+.18*fade)
-    point.co_deform.y=point.co.y*(1+.14*fade)
+    point.co_deform.x=point.co.x
+    point.co_deform.y=point.co.y
     top=max(0,min(1,(z-162)/16));top=top*top*(3-2*top)
-    point.co_deform.z=point.co.z+3.2/cage.scale.z*top
+    point.co_deform.z=point.co.z
     front=max(0,min(1,-point.co.y*cage.scale.y/12))
     opening=max(0,min(1,(z-149)/11));opening=opening*opening*(3-2*opening)
     # Lift the authored front curtain clear of the eyes. Moving it forward
     # alone leaves its frontal projection over the face; retain the folds and
     # use the native cage to raise the opening while easing into the crown.
-    point.co_deform.z+=10.5/cage.scale.z*front*opening*(1-top)
+    point.co_deform.z+=8/cage.scale.z*front*opening*(1-top)
     point.co_deform.y-=3/cage.scale.y*front*opening*(1-top)
 mod=hood.modifiers.new('NativeLatticeCorrective','LATTICE');mod.object=cage;mod.vertex_group=group.name
 depsgraph=bpy.context.evaluated_depsgraph_get()

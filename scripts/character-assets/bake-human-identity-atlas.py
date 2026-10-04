@@ -2,7 +2,7 @@
 
 Native Cycles colour-only bake; no lighting painted into skin. The welded neck
 samples the original torso's UV at its boundary and blends to the CC0 head over
-9 cm. Both colour sources use Blender's image colour conversion. Native island
+6 cm. Both colour sources use Blender's image colour conversion. Native island
 packing preserves their source UVs in a separate map during the bake.
 https://docs.blender.org/manual/en/latest/render/cycles/baking.html
 https://docs.blender.org/manual/en/latest/modeling/meshes/editing/uv.html
@@ -63,7 +63,10 @@ if len(seam)<20:raise ValueError('Continuous source seam lost')
 sample_uv=mesh.uv_layers.new(name='BodySampleUV')
 fade=mesh.attributes.new(name='NeckSourceBlend',type='FLOAT',domain='POINT')
 for vertex in mesh.vertices:
-    t=max(0,min(1,(vertex.co.z-150)/9))
+    # Keep the inherited torso's tendon paint below the corrected jaw. The
+    # former 9 cm band blended it across the lower face, especially on the old
+    # target whose whole-body offset had lowered the chin.
+    t=max(0,min(1,(vertex.co.z-150)/6))
     fade.data[vertex.index].value=t*t*(3-2*t)
 for face in mesh.polygons:
     for loop_index in face.loop_indices:
@@ -189,10 +192,12 @@ atlas_uv=mesh.uv_layers['IdentityAtlas']
 atlas_uv.name='UVMap';mesh.uv_layers.active=atlas_uv;atlas_uv.active_render=True
 assert len(mesh.uv_layers)==1
 eyes=next(o for o in bpy.data.objects if o.type=='MESH' and o.name.startswith('HumanIdentityEyes'))
-eye_image=DIR/'eye-albedo.png'
-mh_studio.write_eye_albedo(ROOT/'blender/characters/sources/brown_eye.png',eye_image)
 eyes.data.materials.clear()
-eyes.data.materials.append(mh_studio.mat_pbr('IdentityEyes',albedo_path=eye_image,rough=.15,specular=.7,double_sided=True))
+# Preserve the CC0 atlas's sclera variation and iris edge. The prior whitening
+# helper erased these and painted fixed catchlights, creating a stark stare.
+# Actual PBR light supplies moving highlights on the fitted eye surface.
+# https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#metallic-roughness-material
+eyes.data.materials.append(mh_studio.mat_pbr('IdentityEyes',albedo_path=ROOT/'blender/characters/sources/brown_eye.png',rough=.38,specular=.4,double_sided=True))
 # Restore source action export; the frozen rest pose was only for baking.
 armature.data.pose_position='POSE'
 bpy.ops.wm.save_as_mainfile(filepath=str(DIR/f'human-{LABEL}-painted.blend'))

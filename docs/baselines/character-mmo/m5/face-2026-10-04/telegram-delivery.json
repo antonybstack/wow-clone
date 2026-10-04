@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 851,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 74.096267,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 75
+  },
+  "verified": true,
+  "file": "m5-face-refactor-2026-10-04.mp4",
+  "sha256": "697a1afa9f799c15139b4da8ae4ec3acb701d59bc266ca41940d5ed8946b3d30",
+  "sentAt": "2026-10-04T22:26:23.920431+00:00"
+}

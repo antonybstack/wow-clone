@@ -52,6 +52,92 @@
       "url": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
       "zipMember": "skins/old_caucasian_male/old_lightskinned_male_diffuse.png",
       "bytes": 4306141
+    },
+    {
+      "path": "blender/characters/sources/eyebrow001.mhclo",
+      "sha256": "54c8892c2ba577f4152d779ce1f20f7cd323beb8cbd9cb701796165c221b4f5b",
+      "license": "MakeHuman CC0 system asset; LICENSE.ASSETS.md"
+    },
+    {
+      "path": "blender/characters/sources/eyebrow001.obj",
+      "sha256": "88b13146395133f3901715e11706cdfd293e5d6087ad7c5e01efe1485a26b513",
+      "license": "MakeHuman CC0 system asset; LICENSE.ASSETS.md"
+    },
+    {
+      "path": "blender/characters/sources/eyebrow001.png",
+      "sha256": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b",
+      "license": "MakeHuman CC0 system asset; LICENSE.ASSETS.md"
+    },
+    {
+      "path": "blender/characters/sources/head-scale-vert-decr.target",
+      "sha256": "928f8900b8955ec72659156e3153c00cdd2e55ba23eaaab7f8eeee7a5e64f528",
+      "license": "MakeHuman CC0 system target; LICENSE.ASSETS.md"
+    },
+    {
+      "path": "blender/characters/sources/measure-neck-circ-incr.target",
+      "sha256": "caa38a399ef4dcdd713e5cb3e496afa8c6c938dea41fd848703d4549a48a74c0",
+      "license": "MakeHuman CC0 system target; LICENSE.ASSETS.md"
+    },
+    {
+      "path": "blender/characters/sources/chin-bones-incr.target",
+      "sha256": "245b7a9506a10d5828531922ab2ec6da0e813f71bd995dae48c9a4dfad171a49",
+      "license": "MakeHuman CC0 system target; LICENSE.ASSETS.md"
+    },
+    {
+      "path": "blender/characters/sources/chin-prognathism-incr.target",
+      "sha256": "81d086ad10c3e210d9a6ddb69ca0aaf2b3f91c2bcd5c7b49173f1303d017bf66",
+      "license": "MakeHuman CC0 system target; LICENSE.ASSETS.md"
+    },
+    {
+      "path": "blender/characters/sources/chin-width-incr.target",
+      "sha256": "deef506bfe1883d9d4c38667332c9970785226566efbae4724fd3d60c02efcf4",
+      "license": "MakeHuman CC0 system target; LICENSE.ASSETS.md"
+    },
+    {
+      "path": "blender/characters/sources/l-eye-height1-incr.target",
+      "sha256": "75ce5285db2e3721ae5434c8a9d27669eb632da7e588000a112d34264216de20",
+      "license": "MakeHuman CC0 system target; LICENSE.ASSETS.md"
+    },
+    {
+      "path": "blender/characters/sources/r-eye-height1-incr.target",
+      "sha256": "daab8f4115ade91e776f9bb4622926ddd20cff2ddcfe74e1ff3654132b727933",
+      "license": "MakeHuman CC0 system target; LICENSE.ASSETS.md"
+    },
+    {
+      "path": "blender/characters/sources/l-eye-height2-incr.target",
+      "sha256": "8521b63c1bf07af06194e96e14eb522dce43615ef1139b8117f104f5132fbc69",
+      "license": "MakeHuman CC0 system target; LICENSE.ASSETS.md"
+    },
+    {
+      "path": "blender/characters/sources/r-eye-height2-incr.target",
+      "sha256": "35e1f070ab8a77dc103aab81c478f04136f6afec378a7003d8834e49ff02d916",
+      "license": "MakeHuman CC0 system target; LICENSE.ASSETS.md"
+    },
+    {
+      "path": "blender/characters/sources/eye-left-opened-up.target",
+      "sha256": "c379cbc9106315180fc5646ff8fd063268f47d2f564598606559d82a589c1310",
+      "license": "MakeHuman CC0 system target; LICENSE.ASSETS.md"
+    },
+    {
+      "path": "blender/characters/sources/eye-right-opened-up.target",
+      "sha256": "1e342b3b0731d5cdbd5e223817303c0364782f0de52887cc3e414fdb451c184f",
+      "license": "MakeHuman CC0 system target; LICENSE.ASSETS.md"
+    },
+    {
+      "path": "blender/characters/sources/mouth-upperlip-volume-incr.target",
+      "sha256": "b124cbd9b9be318264f61a143da603b42e0357ed92b4b6afd1b31a83daaf8568",
+      "license": "MakeHuman CC0 system target; LICENSE.ASSETS.md"
+    },
+    {
+      "path": "blender/characters/sources/mouth-lowerlip-volume-incr.target",
+      "sha256": "dbdaf045b00c67bf8672d53bc8cf94eb3e3dea316de6fe18a278f7080564c65d",
+      "license": "MakeHuman CC0 system target; LICENSE.ASSETS.md"
+    },
+    {
+      "path": "blender/characters/sources/mouth-philtrum-volume-incr.target",
+      "sha256": "5b3020ed98d17882e43d47c10886ccf72a0976bb772ec8599553bab5ecefcf91",
+      "license": "MakeHuman CC0 system target; LICENSE.ASSETS.md"
     }
-  ]
+  ],
+  "fitRecipe": "scripts/character-assets/human_identity_recipe.py"
 }

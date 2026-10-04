@@ -19,7 +19,6 @@ const blender=(script,args)=>run(process.env.ASHEN_BLENDER||'/Applications/Blend
  ['--background','--factory-startup','--python-exit-code','1','--python',`scripts/character-assets/${script}`,'--',...args]);
 await run('python3',['scripts/character-assets/fetch-makehuman.py','--verify-only']);
 await node('build-human-shape-family.mjs',[],{ASHEN_SHAPE_REPORT:`${dir}/canonical-body.json`});
-await node('build-garment-shape-family.mjs',[],{ASHEN_GARMENT_REPORT:`${dir}/canonical-garments.json`,ASHEN_SKIP_PLATE:'1'});
 for(const label of labels){
  const [age,hair]=label.split('-');
  await blender('build-human-identity-source.py',[age,...(hair?['hair']:[])]);
@@ -28,10 +27,7 @@ for(const label of labels){
  await node('assemble-human-identity-source.mjs',[label,'painted']);
 }
 await node('check-human-identity-contract.mjs',labels);
-// The two base ages must exist before their garment fit can be evaluated.
-for(const age of ['young','old']){
- try{await fs.access(`${dir}/human-${age}-grey.glb`);}catch{continue;}
- await blender('fit-human-identity-hood.py',[age]);
- await node('assemble-human-identity-hood.mjs');
-}
+// Clothing is prepared by reproduce-human-identity-review from the current
+// published pack. Head authoring must not overwrite unrelated M005 caches or
+// refit obsolete source clothing as a side effect.
 console.log('Source checkpoint rebuilt. Live visual, fit, startup and performance acceptance remain separate gates.');

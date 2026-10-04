@@ -34,7 +34,7 @@ const {segments}=buildSegments(root.listSkins()[0].listJoints(),restWorld(root),
 // Hair and eyeballs use this field too. A rigid Head attachment follows pose,
 // but does not follow the socket width change driven by a native morph target.
 // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#morph-targets
-for(const candidate of root.listMeshes().filter(m=>['HumanV1Body','HumanPonytail01','HumanIdentityEyes'].includes(m.getName()))){
+for(const candidate of root.listMeshes().filter(m=>['HumanV1Body','HumanPonytail01','HumanIdentityEyes','HumanIdentityBrows'].includes(m.getName()))){
  const body=candidate.getName()==='HumanV1Body';
  for(const prim of candidate.listPrimitives()){
   const position=prim.getAttribute('POSITION').getArray(),baseNormals=prim.getAttribute('NORMAL').getArray();
@@ -110,9 +110,14 @@ for(const copied of copies.values())if(copied.propertyType===PropertyType.NODE){
 await doc.transform(unpartition(),prune());
 assert.equal(root.listAnimations().length,57);
 assert.equal(root.listSkins().length,1);
+// Identify eye textures by their actual owner. "eyebrow001" contains "eye";
+// matching its name silently capped the licensed brow strands at 256 pixels.
+// Native material ownership is also the basis of the runtime texture upgrades.
+const eyeTextures=new Set(root.listMeshes().filter(m=>m.getName()==='HumanIdentityEyes')
+ .flatMap(m=>m.listPrimitives().map(p=>p.getMaterial()?.getBaseColorTexture())).filter(Boolean));
 for(const texture of root.listTextures()){
  const size=texture.getSize();if(size&&Math.max(...size)>1024)await compressTexture(texture,{encoder:sharp,targetFormat:'png',resize:[1024,1024],effort:8});
- if(texture.getName().includes('eye')&&Math.max(...texture.getSize())>256)await compressTexture(texture,{encoder:sharp,targetFormat:'png',resize:[256,256],effort:8});
+ if(eyeTextures.has(texture)&&Math.max(...texture.getSize())>256)await compressTexture(texture,{encoder:sharp,targetFormat:'png',resize:[256,256],effort:8});
 }
 const bytes=await io.writeBinary(doc);
 const json=JSON.parse(Buffer.from(bytes).subarray(20,20+Buffer.from(bytes).readUInt32LE(12)).toString());

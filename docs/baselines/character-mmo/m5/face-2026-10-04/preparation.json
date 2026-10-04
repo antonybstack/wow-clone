@@ -1,0 +1,69 @@
+[
+  {
+    "label": "old",
+    "sourceSha256": "1f935826de52dc17a3850a41ba857fc9095cd87c5202977d24bc265c630e3a3a",
+    "bodySha256": "cd84ad03d7c716d1e10d4761e3dc06668afa6e6bda9e4e603f65d13b0a8f0cdc",
+    "bytes": 2152300,
+    "encodedBytes": 1246960,
+    "meshes": [
+      "HumanV1Body",
+      "HumanIdentityBrows",
+      "HumanIdentityEyes",
+      "HumanTorsoCore"
+    ],
+    "textures": 3,
+    "partition": {
+      "triangles": 13206,
+      "attributesExact": true,
+      "morphsExact": true,
+      "skinExact": true,
+      "framesExact": true,
+      "sourceAnimationExact": true
+    }
+  },
+  {
+    "label": "young",
+    "sourceSha256": "28c64e1fe96ab267c57f69bae6a976f4560c2b5b60e2318daf6e99ee995d151a",
+    "bodySha256": "56063a86062654d2f6f7291886774ed61156a765946031150aa3e93e99c0468b",
+    "bytes": 2146644,
+    "encodedBytes": 1241709,
+    "meshes": [
+      "HumanV1Body",
+      "HumanIdentityBrows",
+      "HumanIdentityEyes",
+      "HumanTorsoCore"
+    ],
+    "textures": 3,
+    "partition": {
+      "triangles": 13086,
+      "attributesExact": true,
+      "morphsExact": true,
+      "skinExact": true,
+      "framesExact": true,
+      "sourceAnimationExact": true
+    }
+  },
+  {
+    "label": "young-hair",
+    "sourceSha256": "5619fa1f05ac4ed1545032bdfaa93c4fa3f6d79c6c901abeea161546fd54a0ac",
+    "bodySha256": "7de8d55f317d6b003af3d8f331f2c2ec5ddd06d96dc77fad664fd8072ed390e2",
+    "bytes": 2476560,
+    "encodedBytes": 1541533,
+    "meshes": [
+      "HumanV1Body",
+      "HumanIdentityBrows",
+      "HumanIdentityEyes",
+      "HumanPonytail01",
+      "HumanTorsoCore"
+    ],
+    "textures": 4,
+    "partition": {
+      "triangles": 13086,
+      "attributesExact": true,
+      "morphsExact": true,
+      "skinExact": true,
+      "framesExact": true,
+      "sourceAnimationExact": true
+    }
+  }
+]

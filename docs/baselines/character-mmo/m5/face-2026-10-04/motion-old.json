@@ -1,0 +1,928 @@
+{
+  "label": "old",
+  "build": 0.95,
+  "height": 0.9,
+  "scope": "DEV source audition; no saved identity or release acceptance",
+  "timeline": [
+    {
+      "name": "Wayfarer front",
+      "timestamp": 1791151519.682,
+      "state": {
+        "identity": {
+          "label": "old",
+          "sourceSha256": "1f935826de52dc17a3850a41ba857fc9095cd87c5202977d24bc265c630e3a3a"
+        },
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Wayfarer side",
+      "timestamp": 1791151521.115,
+      "state": {
+        "identity": {
+          "label": "old",
+          "sourceSha256": "1f935826de52dc17a3850a41ba857fc9095cd87c5202977d24bc265c630e3a3a"
+        },
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Wayfarer back",
+      "timestamp": 1791151522.525,
+      "state": {
+        "identity": {
+          "label": "old",
+          "sourceSha256": "1f935826de52dc17a3850a41ba857fc9095cd87c5202977d24bc265c630e3a3a"
+        },
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Corrected face-front",
+      "timestamp": 1791151523.933,
+      "state": {
+        "identity": {
+          "label": "old",
+          "sourceSha256": "1f935826de52dc17a3850a41ba857fc9095cd87c5202977d24bc265c630e3a3a"
+        },
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Corrected face-three-quarter",
+      "timestamp": 1791151525.218,
+      "state": {
+        "identity": {
+          "label": "old",
+          "sourceSha256": "1f935826de52dc17a3850a41ba857fc9095cd87c5202977d24bc265c630e3a3a"
+        },
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Corrected face-profile",
+      "timestamp": 1791151526.515,
+      "state": {
+        "identity": {
+          "label": "old",
+          "sourceSha256": "1f935826de52dc17a3850a41ba857fc9095cd87c5202977d24bc265c630e3a3a"
+        },
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Hood face opening; separate hair hidden",
+      "timestamp": 1791151527.841,
+      "state": {
+        "identity": {
+          "label": "old",
+          "sourceSha256": "1f935826de52dc17a3850a41ba857fc9095cd87c5202977d24bc265c630e3a3a"
+        },
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Hood removed; hair restored",
+      "timestamp": 1791151531.749,
+      "state": {
+        "identity": {
+          "label": "old",
+          "sourceSha256": "1f935826de52dc17a3850a41ba857fc9095cd87c5202977d24bc265c630e3a3a"
+        },
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Native inspection walk",
+      "timestamp": 1791151532.561,
+      "state": {
+        "identity": {
+          "label": "old",
+          "sourceSha256": "1f935826de52dc17a3850a41ba857fc9095cd87c5202977d24bc265c630e3a3a"
+        },
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Native inspection run",
+      "timestamp": 1791151533.469,
+      "state": {
+        "identity": {
+          "label": "old",
+          "sourceSha256": "1f935826de52dc17a3850a41ba857fc9095cd87c5202977d24bc265c630e3a3a"
+        },
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Native inspection jump",
+      "timestamp": 1791151534.38,
+      "state": {
+        "identity": {
+          "label": "old",
+          "sourceSha256": "1f935826de52dc17a3850a41ba857fc9095cd87c5202977d24bc265c630e3a3a"
+        },
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Native inspection land",
+      "timestamp": 1791151535.298,
+      "state": {
+        "identity": {
+          "label": "old",
+          "sourceSha256": "1f935826de52dc17a3850a41ba857fc9095cd87c5202977d24bc265c630e3a3a"
+        },
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Native inspection fire",
+      "timestamp": 1791151536.216,
+      "state": {
+        "identity": {
+          "label": "old",
+          "sourceSha256": "1f935826de52dc17a3850a41ba857fc9095cd87c5202977d24bc265c630e3a3a"
+        },
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Native inspection lava",
+      "timestamp": 1791151537.123,
+      "state": {
+        "identity": {
+          "label": "old",
+          "sourceSha256": "1f935826de52dc17a3850a41ba857fc9095cd87c5202977d24bc265c630e3a3a"
+        },
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Native inspection pulse",
+      "timestamp": 1791151538.045,
+      "state": {
+        "identity": {
+          "label": "old",
+          "sourceSha256": "1f935826de52dc17a3850a41ba857fc9095cd87c5202977d24bc265c630e3a3a"
+        },
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Native inspection carry",
+      "timestamp": 1791151538.964,
+      "state": {
+        "identity": {
+          "label": "old",
+          "sourceSha256": "1f935826de52dc17a3850a41ba857fc9095cd87c5202977d24bc265c630e3a3a"
+        },
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Normal grounded controls",
+      "timestamp": 1791151539.871,
+      "state": {
+        "identity": {
+          "label": "old",
+          "sourceSha256": "1f935826de52dc17a3850a41ba857fc9095cd87c5202977d24bc265c630e3a3a"
+        },
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Walk jump cast and attack complete",
+      "timestamp": 1791151544.398,
+      "state": {
+        "identity": {
+          "label": "old",
+          "sourceSha256": "1f935826de52dc17a3850a41ba857fc9095cd87c5202977d24bc265c630e3a3a"
+        },
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v5",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

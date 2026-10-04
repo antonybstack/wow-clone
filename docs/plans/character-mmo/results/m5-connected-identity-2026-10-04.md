@@ -1,5 +1,12 @@
 # M5 connected Human source checkpoint — 2026-10-04
 
+**Superseded art judgement:** the user subsequently rejected this audition's
+face as disproportionate and jarring. Its mechanical checks remain evidence,
+but neither the motion delivery nor green tests establish aesthetic acceptance.
+See [the corrective plan](../face-refactor-2026-10-04.md). Current reproduction
+tools now target the corrected face source; the hashes below identify this
+historical, rejected version.
+
 The connected young/bald, young/ponytail and older/bald Human sources are playable
 through the existing Armory, equipment and Havok path on the explicit DEV route
 `?humanIdentity=young|young-hair|old`. The source audition is reproducible and does
