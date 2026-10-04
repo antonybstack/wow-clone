@@ -4,12 +4,11 @@ Updated 2026-10-04 (local). Read this file first. Follow the latest user request
 
 ## Immediate focus: character customization and armor swapping
 
-**Superseding user review, 2026-10-04:** the M5 audition's face is disproportionate
-and jarring. Its art acceptance is withdrawn. Rework head/face/neck proportions
-against the released Human at a matched camera before continuing saved identity
-or publishing these candidates. The source, fit and performance receipts below
-remain engineering evidence; they do not establish visual acceptance.
-Current correction work: [face refactor](plans/character-mmo/face-refactor-2026-10-04.md).
+**Latest user review, 2026-10-04:** “this looks much better, what's next?” refers
+to the corrected face delivered as Telegram 851. Preserve this improved direction
+while integrating saved Human identity. The earlier disproportionate audition
+remains superseded. Production identity, startup and device acceptance still need
+their own evidence. [Face correction](plans/character-mmo/results/m5-face-refactor-2026-10-04.md).
 
 **Current handoff checkpoint:** the [Human face correction](plans/character-mmo/results/m5-face-refactor-2026-10-04.md)
 replaces the rejected October 4 audition. Native anatomical scaling and independent
@@ -26,8 +25,8 @@ retained in the result. Reviewed live motion is Telegram **851** /
 [VE](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m5-face-refactor-2026-10-04.mp4).
 VE play/seek and Telegram Web inline/media-viewer proportions pass. Fullscreen
 activation and Telegram Desktop remain unverified. Owned renderers/harness/media
-are stopped. This corrects the source art defect; user taste approval and production
-identity acceptance are not claimed. Saved identity and compact selected startup
+are stopped. The user has positively reviewed the corrected face direction;
+production identity acceptance remains open. Saved identity and compact selected startup
 are next in [M5 task 2](plans/character-mmo/next-ten.md#5--modular-human-identity-head-hair-and-adult-age).
 The latest production release remains M7 source `4063f49` / Pages
 `b3fdafd8-c343-4147-ae2e-760a155c8d06`, described in

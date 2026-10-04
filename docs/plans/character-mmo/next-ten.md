@@ -200,8 +200,9 @@ Tasks, in order:
 
 1. **Connected head/scalp and current-fit source proof — corrected DEV audition
    delivered.** The [face refactor result](results/m5-face-refactor-2026-10-04.md)
-   supersedes the rejected proportions; it does not claim user taste approval or
-   saved/production identity acceptance. Reuse the welded
+   supersedes the rejected proportions. The user subsequently reviewed it as
+   “much better”; preserve that direction. Saved/production identity acceptance
+   remains open. Reuse the welded
    October 1 source; verify the current garment pack rather than the obsolete M005
    nine-item audition. October 4 adds matching eyeball morphs, semantic eye/hair/torso
    ownership, a per-head brow opening and cleaned animation dependencies. Retained

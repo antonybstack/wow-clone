@@ -7,6 +7,10 @@ audition's engineering checks remain valid for its mechanics; its art judgement
 is withdrawn. This result is a corrected DEV audition, not a production identity
 release or a claim of user aesthetic approval.
 
+**Subsequent user review:** “this looks much better, what's next?” Preserve the
+corrected face direction for M5's saved-identity integration. This positive art
+review does not close the remaining startup, persistence or production gates.
+
 ## Diagnosis and implemented correction
 
 The old fit multiplied head width by 133%, depth by 105% and height by 119%.
