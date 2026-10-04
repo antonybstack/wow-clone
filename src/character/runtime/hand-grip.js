@@ -26,19 +26,29 @@ export function evaluateHandAnimation(visual,deltaMs) {
     let state=cache.get(visual);
     if(!state){state={bones:samples.map(s=>getBoneByName(visual.skeleton,s.name)),masks:new WeakMap(),plain:createAnimationGroupMask(names,1)};cache.set(visual,state);}
     const active=visual.handGrips();
+    // Only the hands that are actually gripping are overridden. A hand with no kind keeps the
+    // clip's own fingers: writing `rest` for it, and masking its bones out of every clip, is
+    // what made an idle hand splay whenever the other one held a weapon.
+    const sideOf=name=>name.includes('Right')?'right':'left';
+    const overridden=active?new Set(names.filter(name=>active[sideOf(name)])):null;
     // Write deferred overrides before the single native evaluation, never bake a
     // skeleton afterward: baking would replace the evaluated whole-body pose.
     for(let i=0;i<samples.length;i++){
-        const s=samples[i],kind=active?.[s.name.includes('Right')?'right':'left'];
-        if(state.bones[i])setBonePoseDeferred(visual.skeleton,state.bones[i],...s.position,...(kind?rotations[kind][i]:s.rest));
+        const s=samples[i],kind=active?.[sideOf(s.name)];
+        if(!state.bones[i])continue;
+        if(kind)setBonePoseDeferred(visual.skeleton,state.bones[i],...s.position,...rotations[kind][i]);
+        else if(!active)setBonePoseDeferred(visual.skeleton,state.bones[i],...s.position,...s.rest);
     }
-    if(!active){updateAnimationManager(visual.manager,deltaMs);return;}
+    if(!active||overridden.size===0){updateAnimationManager(visual.manager,deltaMs);return;}
     const saved=visual.groups.map(g=>g.mask);
     for(const group of visual.groups){
         const mask=group.mask;
         if(!mask||mask.disabled){group.mask=state.plain;continue;}
-        let filtered=state.masks.get(mask);
-        if(!filtered){filtered=createAnimationGroupMask(mask.mode===0?mask.names.filter(n=>!fingers.has(n)):[...new Set([...mask.names,...names])],mask.mode);state.masks.set(mask,filtered);}
+        const key=[...overridden].sort().join('|');
+        let byKey=state.masks.get(mask);
+        if(!byKey){byKey=new Map();state.masks.set(mask,byKey);}
+        let filtered=byKey.get(key);
+        if(!filtered){filtered=createAnimationGroupMask(mask.mode===0?mask.names.filter(n=>!overridden.has(n)):[...new Set([...mask.names,...overridden])],mask.mode);byKey.set(key,filtered);}
         group.mask=filtered;
     }
     try{updateAnimationManager(visual.manager,deltaMs);}

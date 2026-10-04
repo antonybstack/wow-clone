@@ -17,6 +17,15 @@ export function installEquipmentGrips(body,getLoadout) {
         // Pyre keeps the sword hand closed on the grip and the free hand in a
         // fist, so the slam does not play open spell fingers.
         if(body.getState?.().holdWeapon)return {right:main?.gripPose||'shaft',left:'shaft',twoHanded:false};
-        return {right:main?.gripPose||'relaxed',left:(twoHanded?main:off)?.gripPose||'relaxed',twoHanded};
+        // Empty hands follow the authored clip rather than a canned pose. The override replaces
+        // the clip's finger rotations outright, and its `relaxed` blend -- 12 to 22 per cent from
+        // the sample rest toward a fist -- reads as splayed, flattened fingers next to the clip's
+        // own relaxed curl. The override exists to close fingers around a weapon; with nothing
+        // held there is nothing to close around.
+        if(!main&&!off)return null;
+        // A hand holding nothing is left undefined rather than given 'relaxed', so it keeps
+        // following the clip while the other hand grips. Overriding both was why drawing a
+        // sword also splayed the free hand.
+        return {right:main?.gripPose||(main?'shaft':undefined),left:(twoHanded?main:off)?.gripPose,twoHanded};
     });
 }
