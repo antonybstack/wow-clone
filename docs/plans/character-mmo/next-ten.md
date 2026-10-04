@@ -317,7 +317,14 @@ Tasks:
    re-encode is not bit-exact. Reverted; the repository is consistent and the diff is ready to
    re-apply once that release decision is made.
 3. Add creator controls behind real capability flags, with persistence and undo.
-4. Prove a recoloured piece still passes the fit, coverage and swap gates from milestone 6.
+4. ~~Prove a recoloured piece still passes the fit, coverage and swap gates from milestone 6.~~
+   **Closed 2026-10-03** ([result](results/m7-dye-neutrality-2026-10-03.md)). 54 rows — 6 slots ×
+   2 dyes × 3 races plus a plateau check per slot — pass with the visible mesh set, triangle
+   count and coverage agreement all unchanged, and every plateau flat, so the rebuild path does
+   not accumulate meshes. The colour shift is asserted too, since a neutrality check passes
+   trivially when the dye silently fails; margins run 1.94× to 25.15× over a floor set by
+   characterised capture noise. Two metrics were discarded first and the third chosen by
+   measuring all three on the weakest case.
 
 **Exit:** a player recolours pieces within an authored palette, the choice saves and reloads,
 and no fit or coverage gate regresses.
