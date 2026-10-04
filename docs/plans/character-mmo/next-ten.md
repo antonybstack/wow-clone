@@ -308,8 +308,14 @@ Tasks:
    undyed, while oxblood (11.29) and moss (10.86) read at once, so **a palette should spend its
    entries on saturation, not lightness**. Reviewed sheet: Telegram **845**. Still open: the dye
    does not persist, since the recipe field still rejects every key.
-2. Extend the appearance recipe through an explicit migration, not a silent field, and keep
-   content-addressed publication hash-sealed under recolouring.
+2. **Attempted and reverted 2026-10-03** ([result](results/m7-dye-mechanism-2026-10-03.md)).
+   The contract change is small and verified in isolation — v4→v5 with a kept v4 registry,
+   `DYEABLE_SLOTS` excluding the factory-built hands, dyes keyed by slot, `undyed` normalised
+   away — but **persisting a dye is a catalogue revision, not a wiring change**. Three guards
+   pin the catalogue version into the published remote pieces, so a bump requires re-preparing
+   and republishing all 45 pieces / 19.4 MB, whose content-addressed names would change if the
+   re-encode is not bit-exact. Reverted; the repository is consistent and the diff is ready to
+   re-apply once that release decision is made.
 3. Add creator controls behind real capability flags, with persistence and undo.
 4. Prove a recoloured piece still passes the fit, coverage and swap gates from milestone 6.
 
