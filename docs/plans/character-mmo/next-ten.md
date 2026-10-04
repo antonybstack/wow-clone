@@ -302,7 +302,12 @@ Tasks:
    factor is a multiply, so dyes can darken and tint but never brighten. **The cost:** a dye
    change is a piece rebuild — 18.8 ms median, 48.6 worst — so the control must commit on
    release, not per frame. No asset regeneration, which keeps it clear of the sealed catalogue.
-   Still to build: the per-piece override, the palette, and a cost measurement on a real piece.
+   **Built and proved the same day**: nine palette entries apply in the running game with no GPU
+   errors, at **12 ms median / 19.7 worst**, against a static control of 0.04. The predicted
+   constraint is now visible — `bone` (2.84 separation) and `ash` (8.24) are hard to tell from
+   undyed, while oxblood (11.29) and moss (10.86) read at once, so **a palette should spend its
+   entries on saturation, not lightness**. Reviewed sheet: Telegram **845**. Still open: the dye
+   does not persist, since the recipe field still rejects every key.
 2. Extend the appearance recipe through an explicit migration, not a silent field, and keep
    content-addressed publication hash-sealed under recolouring.
 3. Add creator controls behind real capability flags, with persistence and undo.

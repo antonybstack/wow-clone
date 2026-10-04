@@ -275,7 +275,15 @@ export async function createStreamedEquipment(
         root.scaling.set(1, 1, 1);
         setMeshVisible(root, false);
         for (const mesh of meshes) setMeshVisible(mesh, false);
-        for (const mesh of meshes) prepareLinearMaterial(scene, mesh.material);
+        // The dye is applied here and nowhere else. `baseColorFactor` is honoured when the
+        // material is built into the scene, so this is the one window where it takes: mutating
+        // it on a live material does nothing, and replacing the material loses the ORM, normal
+        // and emissive maps and the ashen plugins. See the M7 mechanism note.
+        const dye = options.getDye?.(item.id) ?? null;
+        for (const mesh of meshes) {
+          if (dye && mesh.material) mesh.material.baseColorFactor = dye;
+          prepareLinearMaterial(scene, mesh.material);
+        }
         addToScene(scene, container);
       }
       setMeshVisible(root, false);
@@ -377,6 +385,17 @@ export async function createStreamedEquipment(
     },
     getState: loader.getState,
     getStatus: loader.getStatus,
+    /** Re-apply the loadout with a piece forgotten, so its material is rebuilt under a new dye.
+     *  The slot is emptied first because a worn piece cannot be forgotten while it is live. */
+    async rebuildPiece(id) {
+        const worn = loader.getState();
+        const slot = Object.keys(worn).find(key => worn[key] === id);
+        if (!slot) return { status: 'failed', error: `${id} is not worn` };
+        const cleared = await loader.request({ [slot]: null });
+        if (cleared.status !== 'applied') return cleared;
+        loader.forget(id);
+        return loader.request({ [slot]: id });
+    },
     // The segment map this pack is actually driving visibility with. A published coverage
     // manifest replaces RACE_BODY_SEGMENTS above, so a check that reads the static constant
     // is reading the fallback rather than the running game.

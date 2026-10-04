@@ -8,6 +8,7 @@ import {createRenderLoop} from './render-loop.js';
 import {createObjective} from './objective.js';
 import {createStarterWorld,preloadStarterWorld} from './starter-world.js';
 import {createStreamedEquipment} from './equipment-stream.js';
+import {dyeFactor, isDyeId} from './dye-palette.js';
 import {preloadStarterCharacter,preloadHumanShapePack,startupAssetBuffer,upgradeStarterCharacter} from './startup-assets.js';
 import {loadStartupAppearance,usesHumanShapeStarter,DEFAULT_BOOT_GEAR} from './startup-appearance.js';
 import {showBackgroundLoading} from './background-loading.js';
@@ -190,6 +191,9 @@ async function main(){
  let capsule=null;
  let combat=null;
  let equipment=null;
+ // Dyes are per item id and are read when a piece's material is built, so changing one rebuilds
+ // that piece. See docs/plans/character-mmo/results/m7-dye-mechanism-2026-10-03.md
+ const dyes=new Map();
  let armory=null;
  let creator=null;
  let tools={tick(){}};
@@ -369,6 +373,9 @@ async function main(){
   undead:{race:'undead',manifestUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/manifest-coverage-v1.json`,baseMeshes:coveragePilot?[...UNDEAD_BASE_VISIBLE_MESHES,'UndeadTorsoCore']:UNDEAD_BASE_VISIBLE_MESHES,fitId:UNDEAD_EQUIPMENT_FIT,bodyUrl:coveragePilot?'/__coverage_pilot__/undead.glb':`/ashen-reach/${UNDEAD_PACK_DIR}/body.glb`,
    ...(coveragePilot?{bodySegments:{...RACE_BODY_SEGMENTS.undead,UndeadTorsoCore:['torso.upper','torso.lower','waist']}}:{})},
  };
+ // Every streamed pack resolves dyes through the same map, so a dye survives a race switch and
+ // a body restage: all four createStreamedEquipment call sites spread one of these packs.
+ for(const pack of Object.values(packs)) pack.getDye=id=>dyeFactor(dyes.get(id)??null);
  if(coveragePilot)packs.human.manifestUrl='/ashen-reach/human-shape-v1/manifest.json';
  if(layerPilot)for(const pack of Object.values(packs)){
   pack.garmentLayerCoverage=layerPilot(pack.race);
@@ -422,6 +429,16 @@ async function main(){
   getState:()=>impl.getState(),
   getStatus:()=>impl.getStatus?.(),
   getBodySegments:()=>impl.getBodySegments?.()??null,
+  getDyes:()=>Object.fromEntries(dyes),
+  setDye:(id,dye)=>equipRequest(async()=>{
+   if(dye!==null&&!isDyeId(dye))throw Error(`Unknown dye ${dye}`);
+   if(!Object.hasOwn(impl.items,id))throw Error(`Unknown item ${id}`);
+   if((dyes.get(id)??null)===dye)return {status:'applied'};
+   if(dye===null)dyes.delete(id);else dyes.set(id,dye);
+   const result=await impl.rebuildPiece?.(id);
+   if(result&&result.status!=='applied')throw Error(result.error||'Dye rebuild failed');
+   return result??{status:'applied'};
+  }),
   setVisible:value=>impl.setVisible(value),
   update:dt=>impl.update(dt),
   get attachment(){return impl.attachment;},

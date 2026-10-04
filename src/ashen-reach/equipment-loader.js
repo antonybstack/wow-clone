@@ -44,7 +44,17 @@ export function createEquipmentLoader({initial,validate,prepare,commit,maxIdle=2
         };
         const result=chain.then(run);chain=result.catch(()=>{});return result;
     }
-    return {request,getState:()=>({...selected}),getStatus:()=>({...status,cached:[...cache.keys()],desired:{...desired}}),drain:()=>chain,
+    /** Drop a prepared piece so the next request rebuilds it.
+     *
+     * A dye is applied when the piece's material is built into the scene, so changing one has
+     * to rebuild that piece; the cache would otherwise serve the previously dyed copy. Only a
+     * piece that is not currently worn can be forgotten, because disposing a live entry would
+     * take its meshes out from under the committed appearance. */
+    function forget(id) {
+        if(disposed||ids(selected).has(id)||!cache.has(id))return false;
+        cache.get(id).dispose();cache.delete(id);return true;
+    }
+    return {request,forget,getState:()=>({...selected}),getStatus:()=>({...status,cached:[...cache.keys()],desired:{...desired}}),drain:()=>chain,
         dispose(){
             if(disposed)return;disposed=true;sequence++;active?.abort();
             const values=[...cache.values()];cache.clear();status={pending:false,error:null};
