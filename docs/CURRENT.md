@@ -2,6 +2,12 @@
 
 Updated 2026-10-04 (local). Read this file first. Follow the latest user request; historical milestone documents are not an active task queue.
 
+**Autonomous continuation, 2026-10-04:** the user authorized automatic continuation
+through the active character-customization queue. This Codex session has an active
+native goal, beginning with M5 saved Human identity. Continue through verification,
+delivery and commit/push without another “proceed.” Respect explicit stop/pause
+requests and record real dependencies. [Continuation mechanism and scope](autonomous-continuation.md).
+
 ## Immediate focus: character customization and armor swapping
 
 **Latest user review, 2026-10-04:** “this looks much better, what's next?” refers
