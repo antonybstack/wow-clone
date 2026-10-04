@@ -129,6 +129,7 @@ for (let run = 1; run <= runs; run++) {
       heightScale: ASHEN.player.heightScale,
       race: ASHEN.equipment.race,
       equipment: ASHEN.equipment.getState(),
+      dyes: ASHEN.equipment.getDyes(),
       marks: ASHEN.startup.timings(),
       resources: performance.getEntriesByType('resource').map(r=>({
         name:r.name,start:r.startTime,responseStart:r.responseStart,end:r.responseEnd,
@@ -210,6 +211,7 @@ for (let run = 1; run <= runs; run++) {
     row.run = run;row.browserPid=browserPid;
     if(seed) {
       assert.equal(row.race,expectedSeed.race);assert.deepEqual(row.equipment,expectedSeed.equipment);
+      assert.deepEqual(row.dyes,expectedSeed.dyes);
       if(seed.race==='human') {
         assert.equal(row.heightScale,seed.shape.height);
         if(row.shape)assert.deepEqual(row.shape.weights,[Math.max(0,-seed.shape.build),Math.max(0,seed.shape.build)]);

@@ -35,16 +35,17 @@ const report = { url, dyes: DYES, slots: DYEABLE, races: RACES, rows, failures, 
 page.on('pageerror', e => errors.push(e.stack));
 page.on('console', m => { if (m.type() === 'error') errors.push(m.text().slice(0, 300)); });
 
-/** Mean sRGB of the crop. Chosen over counting changed pixels after measuring both on the
- *  weakest case, a dyed pauldron: the mean shifts 0.286 against 0.021 of capture noise, a 13.6x
- *  separation, while the changed-pixel share moves only 3.57% to 4.67%. The scene's motes and
- *  grass are symmetric noise that a mean averages away, whereas a dye shifts a whole region in
- *  one direction, so the mean survives the piece being small. */
+/** Mean sRGB on pixels selected by a separate, strong reference colour.
+ * Noise controls and tested colours use the same mask; small pauldrons must
+ * clear both the mask coverage gate and the unchanged noise-relative threshold.
+ */
+let mask=null;
 const meanRgb = async () => {
     const buffer = await page.screenshot({ clip: CLIP });
     const { data, info } = await sharp(buffer).raw().toBuffer({ resolveWithObject: true });
     let r = 0, g = 0, b = 0, n = 0;
-    for (let i = 0; i < data.length; i += info.channels) { r += data[i]; g += data[i + 1]; b += data[i + 2]; n++; }
+    for (let i = 0,px=0; i < data.length; i += info.channels,px++) { if(mask&&!mask[px])continue;r += data[i]; g += data[i + 1]; b += data[i + 2]; n++; }
+    assert(n>0,'No garment pixels in colour sample');
     return [r / n, g / n, b / n];
 };
 const apart = (a, b) => +Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]).toFixed(4);
@@ -84,6 +85,22 @@ try {
             await page.evaluate(() => { ASHEN.rig.yaw = Math.PI; ASHEN.rig.pitch = 0.03; });
             await page.waitForTimeout(600);
 
+            // The old whole-character crop lets moving background pixels drown
+            // a small pauldron's tint. Characterise noise on the SAME responding
+            // pixels used by the dye rows, with an independent strong reference.
+            // Keep the noise threshold; a reference that fails to recolour must
+            // fail the mask-coverage assertion rather than manufacture a pass.
+            mask=null;
+            const neutral=await sharp(await page.screenshot({clip:CLIP})).raw().toBuffer({resolveWithObject:true});
+            assert.equal((await page.evaluate(i=>ASHEN.equipment.setDye(i,'pitch'),item)).status,'applied');
+            await page.waitForTimeout(600);
+            const reference=await sharp(await page.screenshot({clip:CLIP})).raw().toBuffer();
+            const pixels=neutral.info.width*neutral.info.height,channels=neutral.info.channels;
+            mask=new Uint8Array(pixels);let hits=0;
+            for(let p=0;p<pixels;p++){const i=p*channels;if(Math.abs(neutral.data[i]-reference[i])+Math.abs(neutral.data[i+1]-reference[i+1])+Math.abs(neutral.data[i+2]-reference[i+2])>8){mask[p]=1;hits++;}}
+            assert(hits>pixels*.002,`${race}/${slot}: reference colour did not cover enough pixels (${hits})`);
+            await page.evaluate(i=>ASHEN.equipment.setDye(i,null),item);await page.waitForTimeout(600);
+
             // Capture noise, characterised rather than sampled once. The scene's motes and
             // grass keep moving, so a single pair lands anywhere between 0.003 and 0.06 and a
             // threshold built on one sample fails whenever that sample is unlucky -- which is
@@ -102,7 +119,7 @@ try {
             const beforeRgb = await meanRgb();
 
             for (const dye of DYES) {
-                const row = { race, slot, item, dye, noise, noiseSamples };
+                const row = { race, slot, item, dye, noise, noiseSamples,maskPixels:hits,maskShare:hits/pixels };
                 try {
                     const applied = await page.evaluate(([i, d]) => ASHEN.equipment.setDye(i, d), [item, dye]);
                     assert.equal(applied.status, 'applied', `${dye}: ${applied.error}`);
@@ -112,7 +129,7 @@ try {
                     Object.assign(row, { moved, triangles: [before.triangles, after.triangles], meshes: [before.meshes, after.meshes] });
 
                     // The dye happened at all.
-                    assert.equal(after.dyes[item], dye, `${item} does not record ${dye}`);
+                    assert.equal(after.dyes[slot], dye, `${slot}/${item} does not record ${dye}`);
                     // Relative to the measured noise, with a small absolute floor for the
                     // capture's own quantisation. An absolute floor of 0.5 was the earlier
                     // mistake: it is a whole-body figure that no small piece can reach.
@@ -143,8 +160,8 @@ try {
                     console.log(JSON.stringify({ race, slot, dye, passed: row.passed, moved: row.moved, noise, err: row.error }));
                 }
             }
-            // Repeated dyes must not accumulate meshes. The rebuild path forgets and re-equips,
-            // so a missed disposal would show here rather than in a single transition.
+            // Repeated replacement transactions must retire their old resources.
+            // A missed disposal shows as growth rather than a single transition.
             const counts = [];
             for (const dye of [...DYES, null, ...DYES, null]) {
                 await page.evaluate(([i, d]) => ASHEN.equipment.setDye(i, d), [item, dye]);

@@ -58,7 +58,7 @@ user on 2026-09-30, and the released/candidate/unaccepted boundary catalogued in
 | 4 | Authoritative multiplayer presence | Two to eight clients see one another move and change appearance. | 1–3 | **Delivered locally; public hosting parked** |
 | 5 | Modular Human identity: head, hair, adult age | The young/long-haired and older/bald examples are real saved characters. | 1 | Open — art/geometry |
 | 6 | **Armor swapping as a verified capability** | Any piece in any slot can be changed at any moment, on any supported body, without a visual or fit defect. | 1, 3 | Open — evidence |
-| 7 | Colour and material variation | A player can recolour pieces within an authored, published palette. | 6 | Open — no dye channel exists |
+| 7 | Colour and material variation | A player can recolour pieces within an authored, published palette. | 6 | Local implementation accepted; release checks in progress |
 | 8 | Equipment authoring factory | New pieces reach the catalogue through a repeatable publishing pipeline. | 6; hair/headwear needs 5 | Partly built |
 | 9 | Race fits and an Elf proof | One logical outfit resolves to correct Human/Orc/Undead/Elf fits. | 5, 6, 8 | Open — licensed source |
 | 10 | Device acceptance and content release | The customization slice releases with real device limits and one published content update. | 1–9 | Open |
@@ -292,11 +292,11 @@ coat and the four Duskguard pieces are unreachable there and `equip('shoulders',
 
 ## 7 — Colour and material variation
 
-**Dependency:** milestone 6. **No dye channel exists today** — the appearance contract carries
-a `dyes` field whose capability list is empty for every race, and the creator's `skinColor` and
-`hairColor` controls are disabled for exactly that reason.
+**Dependency:** preserve milestone 6's accepted fit, coverage and swap behaviour. Catalogue v5 now exposes six equipment dye slots on Human/Orc/Undead. The independent skin/hair colour, age and hairstyle capabilities remain unavailable. [Saved-colours acceptance](results/m7-saved-colours-2026-10-04.md) supersedes the runtime-only state below; those dated findings remain evidence of what was tested.
 
 Tasks:
+
+The runtime persistence, creator controls and missing-garment fence were completed on 2026-10-04. The final result records the 25-case default-path check, native remote lifecycle, neutral geometry/coverage and performance limits. Physical-phone acceptance remains milestone 10.
 
 1. **Mechanism chosen 2026-10-03** ([result](results/m7-dye-mechanism-2026-10-03.md)): drive
    the authored `baseColorFactor` from the recipe where the piece's material is built in the
@@ -322,15 +322,8 @@ Tasks:
    a median of 1 frame and up to 3 (~50 ms at 60 Hz) on 60% of changes, against an idle control
    of 0 gaps in 180 frames; and `sage`/`ash`, the designed minimum, is only just distinguishable
    at this scene's light level.
-2. **Attempted and reverted 2026-10-03** ([result](results/m7-dye-mechanism-2026-10-03.md)).
-   The contract change is small and verified in isolation — v4→v5 with a kept v4 registry,
-   `DYEABLE_SLOTS` excluding the factory-built hands, dyes keyed by slot, `undyed` normalised
-   away — but **persisting a dye is a catalogue revision, not a wiring change**. Three guards
-   pin the catalogue version into the published remote pieces, so a bump requires re-preparing
-   and republishing all 45 pieces / 19.4 MB, whose content-addressed names would change if the
-   re-encode is not bit-exact. Reverted; the repository is consistent and the diff is ready to
-   re-apply once that release decision is made.
-3. Add creator controls behind real capability flags, with persistence and undo.
+2. **Contract and publication completed 2026-10-04.** The v4→v5 migration retains the v4 registry, uses slot keys, excludes factory-built hands and normalises `undyed` away. Claude's `1412770` republish changes only metadata: all 45 asset hashes and 19.4 MB of piece bytes remain unchanged. The former re-encoding risk did not materialise. Runtime restoration now feeds dyes to every player stream and native remote revision before material registration; refused changes preserve the committed recipe and local storage.
+3. **Creator controls completed 2026-10-04.** Equipment colours use the published race capability list, native selects, separate bounded undo and reset. Commit on `change`, with the old garment visible until its replacement's native material fence completes. Skin/hair colour capabilities stay false. Ordinary Armory colour edits are locked while local shared-region authority owns appearance; this control test does not establish public hosting.
 4. ~~Prove a recoloured piece still passes the fit, coverage and swap gates from milestone 6.~~
    **Closed 2026-10-03** ([result](results/m7-dye-neutrality-2026-10-03.md)). 54 rows — 6 slots ×
    2 dyes × 3 races plus a plateau check per slot — pass with the visible mesh set, triangle

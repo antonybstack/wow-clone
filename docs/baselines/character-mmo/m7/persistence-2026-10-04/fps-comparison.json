@@ -1,0 +1,576 @@
+{
+  "baseline": "1412770",
+  "candidate": "working-tree saved colours / final native fence",
+  "conditions": {
+    "cpu": "Apple M1 Max",
+    "url": "http://127.0.0.1:7074/ashen-reach.html?play=&clean=&pixelRatio=1&gpuTiming=",
+    "viewport": [
+      1280,
+      720
+    ],
+    "seconds": 12,
+    "runs": 3,
+    "uncappedRequired": true,
+    "recording": false,
+    "race": "human",
+    "outfit": null,
+    "orcAssetsOverride": null,
+    "routes": [
+      "meadow",
+      "town",
+      "bridge",
+      "cathedral",
+      "forest"
+    ],
+    "recordCapped": true,
+    "savedAppearance": null
+  },
+  "retainedBaselineAbort": {
+    "summary": {
+      "samples": 600,
+      "fps": 235.57126030624264,
+      "meanMs": 4.245,
+      "medianMs": 4.200000002980232,
+      "p95Ms": 5.5,
+      "p99Ms": 5.700000002980232,
+      "worstMs": 8.600000001490116,
+      "minMs": 2.899999998509884,
+      "above8_333": 1,
+      "above16_667": 0,
+      "drawCalls": 516,
+      "resolution": [
+        1280,
+        720
+      ],
+      "viewport": [
+        1280,
+        720
+      ],
+      "dpr": 1,
+      "maxDevicePixelRatio": 1,
+      "horizonTriangles": 125642,
+      "farTriangles": 289206,
+      "scatterTrees": 599,
+      "scatterRocks": 139,
+      "shafts": 0,
+      "shaftTriangles": 0,
+      "motes": 4200,
+      "moteTriangles": 8400,
+      "foliageInstances": 117242,
+      "triangles": 836895,
+      "drawBatches": 57,
+      "worldTriangles": 836895,
+      "sceneTriangles": 1105335,
+      "drawnMeshes": 91,
+      "hiddenMeshes": 47,
+      "totalMeshes": 138,
+      "triangleCountMs": 0.19999999552965164,
+      "gpuTimingSupported": true,
+      "gpuTimingEnabled": true,
+      "gpuTimingReadback": "ok",
+      "gpuMs": 1.2450937493781222,
+      "gpuMeanMs": 1.2889473745302,
+      "gpuP95Ms": 1.4536986234525704,
+      "gpuSamples": 600,
+      "vsyncCapped": true,
+      "capHz": 240,
+      "capMs": 4.166666666666667,
+      "capReason": "mean 4.245 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.000-5.700 ms (full range 2.900-8.600 ms)"
+    },
+    "x": -135.24632927355648,
+    "z": 203.03848630749198,
+    "recoveries": 0,
+    "enemies": 7,
+    "physics": true,
+    "route": "forest",
+    "run": 1,
+    "before": {
+      "x": -85.63009867766078,
+      "z": 180.00121777465114,
+      "recoveries": 0
+    },
+    "fullWindow": {
+      "samples": 2826,
+      "fps": 235.43133252801266,
+      "meanMs": 4.247523000707714,
+      "medianMs": 4.200000002980232,
+      "p95Ms": 5.5,
+      "p99Ms": 5.899999998509884,
+      "worstMs": 12.5,
+      "minMs": 2.5,
+      "above8_333": 11,
+      "above16_667": 0
+    },
+    "fullWindowCap": {
+      "vsyncCapped": true,
+      "capHz": 240,
+      "capMs": 4.166666666666667,
+      "capReason": "mean 4.248 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 2.800-5.900 ms (full range 2.500-12.500 ms)"
+    },
+    "tails": {
+      "samples": 2826,
+      "meanMs": 4.247523000707714,
+      "meanFps": 235.43133252801266,
+      "p50Ms": 4.200000002980232,
+      "p95Ms": 5.5,
+      "p99Ms": 5.899999998509884,
+      "maxMs": 12.5,
+      "above6_94": 23,
+      "above8_33": 11,
+      "above16_67": 0,
+      "above33_33": 0
+    }
+  },
+  "rows": [
+    {
+      "route": "meadow",
+      "meanFrameTimeChangePercent": 0.010637854793538182,
+      "baseline": {
+        "fpsRange": [
+          220.87249216826046,
+          221.12653768320925,
+          221.20982451459108
+        ],
+        "p95": [
+          5.700000002980232,
+          5.700000002980232,
+          5.700000002980232
+        ],
+        "p99": [
+          6,
+          8.099999994039536,
+          8.399999998509884
+        ],
+        "maxMs": 12.200000002980232,
+        "samples": 7962,
+        "above6_94": 123,
+        "above8_33": 49,
+        "above16_67": 0,
+        "above33_33": 0,
+        "capFlags": [
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.527 ms is not locked to a known display interval"
+          },
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.522 ms is not locked to a known display interval"
+          },
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.521 ms is not locked to a known display interval"
+          }
+        ]
+      },
+      "candidate": {
+        "fpsRange": [
+          221.16482362657965,
+          220.9562834703653,
+          221.01702822483844
+        ],
+        "p95": [
+          5.800000004470348,
+          5.700000002980232,
+          5.700000002980232
+        ],
+        "p99": [
+          9.5,
+          9,
+          8.099999994039536
+        ],
+        "maxMs": 12.399999998509884,
+        "samples": 7960,
+        "above6_94": 196,
+        "above8_33": 134,
+        "above16_67": 0,
+        "above33_33": 0,
+        "capFlags": [
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.522 ms is not locked to a known display interval"
+          },
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.526 ms is not locked to a known display interval"
+          },
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.525 ms is not locked to a known display interval"
+          }
+        ]
+      }
+    },
+    {
+      "route": "town",
+      "meanFrameTimeChangePercent": -0.2938932362203328,
+      "baseline": {
+        "fpsRange": [
+          219.59811130626468,
+          219.52763249938982,
+          220.39531222663763
+        ],
+        "p95": [
+          5.700000002980232,
+          5.700000002980232,
+          5.9000000059604645
+        ],
+        "p99": [
+          7.299999997019768,
+          8.5,
+          8.800000004470348
+        ],
+        "maxMs": 12.100000001490116,
+        "samples": 7919,
+        "above6_94": 201,
+        "above8_33": 97,
+        "above16_67": 0,
+        "above33_33": 0,
+        "capFlags": [
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.554 ms is not locked to a known display interval"
+          },
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.555 ms is not locked to a known display interval"
+          },
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.537 ms is not locked to a known display interval"
+          }
+        ]
+      },
+      "candidate": {
+        "fpsRange": [
+          220.33220598767738,
+          220.73032584791022,
+          220.40081963119331
+        ],
+        "p95": [
+          5.799999997019768,
+          5.700000002980232,
+          5.700000002980232
+        ],
+        "p99": [
+          7.899999998509884,
+          8.799999997019768,
+          8.800000004470348
+        ],
+        "maxMs": 12.700000002980232,
+        "samples": 7941,
+        "above6_94": 163,
+        "above8_33": 89,
+        "above16_67": 0,
+        "above33_33": 0,
+        "capFlags": [
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.539 ms is not locked to a known display interval"
+          },
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.530 ms is not locked to a known display interval"
+          },
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.537 ms is not locked to a known display interval"
+          }
+        ]
+      }
+    },
+    {
+      "route": "bridge",
+      "meanFrameTimeChangePercent": -0.09925098295007206,
+      "baseline": {
+        "fpsRange": [
+          247.39724428813847,
+          246.1958739703054,
+          246.93105918004966
+        ],
+        "p95": [
+          5.399999998509884,
+          5.399999998509884,
+          5.399999998509884
+        ],
+        "p99": [
+          7.700000002980232,
+          5.700000002980232,
+          7.299999997019768
+        ],
+        "maxMs": 11.600000001490116,
+        "samples": 8889,
+        "above6_94": 123,
+        "above8_33": 23,
+        "above16_67": 0,
+        "above33_33": 0,
+        "capFlags": [
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.042 ms is not locked to a known display interval"
+          },
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.062 ms is not locked to a known display interval"
+          },
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.050 ms is not locked to a known display interval"
+          }
+        ]
+      },
+      "candidate": {
+        "fpsRange": [
+          246.36244763334352,
+          247.35276720177552,
+          247.5449570628082
+        ],
+        "p95": [
+          5.399999998509884,
+          5.399999998509884,
+          5.399999998509884
+        ],
+        "p99": [
+          6,
+          7.199999995529652,
+          7.199999995529652
+        ],
+        "maxMs": 10.900000005960464,
+        "samples": 8899,
+        "above6_94": 95,
+        "above8_33": 15,
+        "above16_67": 0,
+        "above33_33": 0,
+        "capFlags": [
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.059 ms is not locked to a known display interval"
+          },
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.043 ms is not locked to a known display interval"
+          },
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.040 ms is not locked to a known display interval"
+          }
+        ]
+      }
+    },
+    {
+      "route": "cathedral",
+      "meanFrameTimeChangePercent": -0.19205824522030568,
+      "baseline": {
+        "fpsRange": [
+          252.63719232759314,
+          253.33855394580377,
+          253.2636858197958
+        ],
+        "p95": [
+          5.200000002980232,
+          5.200000002980232,
+          5.200000002980232
+        ],
+        "p99": [
+          5.4000000059604645,
+          5.399999998509884,
+          5.5
+        ],
+        "maxMs": 12.099999994039536,
+        "samples": 9113,
+        "above6_94": 32,
+        "above8_33": 9,
+        "above16_67": 0,
+        "above33_33": 0,
+        "capFlags": [
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 3.958 ms is not locked to a known display interval"
+          },
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 3.947 ms is not locked to a known display interval"
+          },
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 3.948 ms is not locked to a known display interval"
+          }
+        ]
+      },
+      "candidate": {
+        "fpsRange": [
+          253.21094804168553,
+          253.77834802456317,
+          253.71070649192527
+        ],
+        "p95": [
+          5.200000002980232,
+          5.200000002980232,
+          5.200000002980232
+        ],
+        "p99": [
+          5.600000001490116,
+          6.0999999940395355,
+          5.399999998509884
+        ],
+        "maxMs": 11.699999995529652,
+        "samples": 9132,
+        "above6_94": 48,
+        "above8_33": 8,
+        "above16_67": 0,
+        "above33_33": 0,
+        "capFlags": [
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 3.949 ms is not locked to a known display interval"
+          },
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 3.940 ms is not locked to a known display interval"
+          },
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 3.941 ms is not locked to a known display interval"
+          }
+        ]
+      }
+    },
+    {
+      "route": "forest",
+      "meanFrameTimeChangePercent": 0.1280390779767826,
+      "baseline": {
+        "fpsRange": [
+          238.2261315740067,
+          240.25324891702763,
+          244.87960086293947
+        ],
+        "p95": [
+          5.5,
+          5.5,
+          5.399999998509884
+        ],
+        "p99": [
+          5.799999997019768,
+          5.700000002980232,
+          5.600000001490116
+        ],
+        "maxMs": 10.799999997019768,
+        "samples": 8684,
+        "above6_94": 24,
+        "above8_33": 9,
+        "above16_67": 0,
+        "above33_33": 0,
+        "capFlags": [
+          {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.198 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 2.900-5.800 ms (full range 2.700-10.500 ms)"
+          },
+          {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.162 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 2.800-5.700 ms (full range 2.100-10.700 ms)"
+          },
+          {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.084 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 2.800-5.600 ms (full range 2.400-10.800 ms)"
+          }
+        ]
+      },
+      "candidate": {
+        "fpsRange": [
+          236.67110963012328,
+          241.67347006787185,
+          244.11370318232926
+        ],
+        "p95": [
+          5.5,
+          5.4000000059604645,
+          5.399999998509884
+        ],
+        "p99": [
+          7.600000001490116,
+          5.700000002980232,
+          5.700000002980232
+        ],
+        "maxMs": 13.700000002980232,
+        "samples": 8673,
+        "above6_94": 65,
+        "above8_33": 24,
+        "above16_67": 0,
+        "above33_33": 0,
+        "capFlags": [
+          {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.225 ms is not locked to a known display interval"
+          },
+          {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.138 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 2.800-5.700 ms (full range 2.500-9.200 ms)"
+          },
+          {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.096 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 2.800-5.700 ms (full range 2.400-13.700 ms)"
+          }
+        ]
+      }
+    }
+  ]
+}

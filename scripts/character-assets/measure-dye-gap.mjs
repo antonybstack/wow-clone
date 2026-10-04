@@ -6,17 +6,17 @@
  * captured frame cannot tell those apart, so this samples scene membership every animation
  * frame across many dye changes and reports the distribution.
  *
- * The probe is existence plus the `visible` flag, and both are needed. A dye change disposes the
- * piece's mesh and appends a new one -- its index in scene.meshes moves from 77 to 137 across a
- * single dye -- so membership alone cannot see the gap, and the mesh count is 138 whether the
- * torso is worn or bare. On this path `visible` is what the equipment system toggles between
- * worn and bare, which was verified directly rather than assumed; the project's standing warning
- * that `visible` is not render proof is about evicted meshes on the streaming path, not this one.
+ * Existence plus native visibility detects the old gap; the idle control checks the sampler.
+ * Staging now permits two meshes with the same name, so look for ANY visible matching owner.
+ * Pipeline fencing and the separately reviewed clip also check rendered output: membership
+ * alone cannot establish whether a native renderable has finished building.
  */
 import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
 import { DYE_IDS } from '../../src/ashen-reach/dye-palette.js';
+import {summarizeFrameIntervals} from './summarize-frame-intervals.mjs';
+import {browserOwnership} from '../lib/browser-ownership.mjs';
 
 const url = process.env.ASHEN_TEST_URL, port = process.env.ASHEN_CDP_PORT, out = process.argv[2];
 assert(url && port && out, 'ASHEN_TEST_URL, ASHEN_CDP_PORT and an output path are required');
@@ -26,6 +26,8 @@ const ROUNDS = Number(process.env.ASHEN_DYE_ROUNDS || 4);
 
 const browser = await chromium.connectOverCDP(`http://127.0.0.1:${port}`);
 assert(browser.contexts().flatMap(c => c.pages()).every(p => p.url() === 'about:blank'), 'Another owned page is active');
+const ownership=await browserOwnership(browser,{cdpPort:port,url,purpose:'Live recolour visibility and streaming frame intervals; no settled FPS claim',renderingClients:1});
+await fs.writeFile(out+'.ownership.json',JSON.stringify(ownership,null,2));
 const context = await browser.newContext({ viewport: { width: 1280, height: 720 }, deviceScaleFactor: 1 });
 const page = await context.newPage();
 const errors = [];
@@ -41,7 +43,7 @@ try {
     await page.waitForTimeout(900);
 
     const result = await page.evaluate(async ([item, ids, rounds, meshName]) => {
-        const find = () => ASHEN.scene.meshes.find(m => m.name === meshName);
+        const find = () => ASHEN.scene.meshes.find(m => m.name === meshName&&m.visible!==false);
         if (!find()) return { error: `no mesh named ${meshName} while the piece is worn` };
 
         let sampling = true, frames = 0, absent = 0;
@@ -65,7 +67,7 @@ try {
         await new Promise(r => setTimeout(r, 1500));
         const controlFrames = frames, controlAbsent = absent;
 
-        const costs = [];
+        const costs = [];ASHEN.renderLoop.beginMeasurement();
         for (let r = 0; r < rounds; r++) {
             for (const id of ids) {
                 const t0 = performance.now();
@@ -78,7 +80,7 @@ try {
         }
         sampling = false;
         if (run) runs.push(run);
-        return { changes: costs.length, frames, absentFrames: absent, gapRuns: runs, costs, reasons,
+        return { changes: costs.length, frames, absentFrames: absent, gapRuns: runs, costs, reasons,intervals:ASHEN.renderLoop.endMeasurement(),
                  control: { frames: controlFrames, absent: controlAbsent } };
     }, [ITEM, DYE_IDS, ROUNDS, process.env.ASHEN_DYE_MESH || 'WayfarerTunic']);
 
@@ -94,6 +96,7 @@ try {
         medianGapFrames: runs.length ? runs[Math.floor(runs.length / 2)] : 0,
         gapsPerChange: +(runs.length / result.changes).toFixed(2),
         costMs: { median: sorted[Math.floor(sorted.length / 2)], worst: sorted.at(-1) },
+        frameTimes:summarizeFrameIntervals(result.intervals),
         note: 'A gap is a run of consecutive animation frames in which the piece\'s mesh is either '
             + 'absent from scene.meshes or present with visible:false. Both are needed: a dye change '
             + 'disposes and re-appends the mesh, and the scene mesh count does not change. The control '
@@ -103,10 +106,13 @@ try {
     };
     await fs.writeFile(out, JSON.stringify(report, null, 2));
     console.log(JSON.stringify(report, null, 2));
+    assert.equal(report.framesWithPieceAbsent,0,'A dye change exposed a missing garment frame');
+    assert.equal(report.frameTimes.above33_33,0,'A dye change breached the 33.33 ms frame budget');
     if (errors.length) process.exitCode = 1;
 } catch (e) {
     console.error(e); process.exitCode = 1;
 } finally {
     await context.close();
     await browser.close();
+    await fs.writeFile(out+'.ownership.json',JSON.stringify({...ownership,active:false,renderingClients:0},null,2));
 }

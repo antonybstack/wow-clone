@@ -1,0 +1,174 @@
+{
+  "url": "http://127.0.0.1:7074/ashen-reach.html?play&clean&pixelRatio=1",
+  "routes": [
+    {
+      "case": "spawn-movement",
+      "before": {
+        "x": -0.0007000616002028527,
+        "y": 0.800402199802698,
+        "z": -0.0012354027475501646,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "after": {
+        "x": -0.001029392557083848,
+        "y": 1.0756738769774954,
+        "z": 8.49308512325391,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "case": "cathedral-entry-return",
+      "build": -0.95,
+      "height": 0.9,
+      "start": {
+        "x": 0,
+        "y": 45.38834486876431,
+        "z": 280,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "inside": {
+        "x": -0.07724207565906867,
+        "y": 33.02190098737717,
+        "z": 317.56721402872034,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "returned": {
+        "x": -0.23917625051186442,
+        "y": 35.52894282400721,
+        "z": 298.8561205615117,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "case": "cathedral-entry-return",
+      "build": -0.95,
+      "height": 1.15,
+      "start": {
+        "x": 0,
+        "y": 45.55786480271485,
+        "z": 280,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "inside": {
+        "x": 0.853086426210793,
+        "y": 36.54397914254513,
+        "z": 315.11517245757517,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "returned": {
+        "x": 1.0196548066141984,
+        "y": 36.097359392589865,
+        "z": 296.4643114865412,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "case": "cathedral-entry-return",
+      "build": 0.95,
+      "height": 0.9,
+      "start": {
+        "x": 0,
+        "y": 45.3820551580034,
+        "z": 280,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "inside": {
+        "x": -0.07477736952061471,
+        "y": 33.01932291657831,
+        "z": 317.5499470533518,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "returned": {
+        "x": -0.24932523990172065,
+        "y": 35.527818066472335,
+        "z": 298.85945562969084,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "case": "cathedral-entry-return",
+      "build": 0.95,
+      "height": 1.15,
+      "start": {
+        "x": 0,
+        "y": 45.55680147216267,
+        "z": 280,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "inside": {
+        "x": 0.8067791232817676,
+        "y": 36.44066278526286,
+        "z": 315.1300433945739,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      },
+      "returned": {
+        "x": 1.5814458402693505,
+        "y": 35.912667906901916,
+        "z": 298.11436865695305,
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    }
+  ],
+  "errors": [],
+  "appearance": {
+    "schemaVersion": 2,
+    "catalogVersion": "appearance-catalog-v5",
+    "race": "human",
+    "fitFamily": "ashen-human",
+    "fit": {
+      "rig": "source-65",
+      "bind": 1,
+      "shape": 1
+    },
+    "shape": {
+      "family": "ashen-human-shape-v1",
+      "height": 0.9,
+      "build": -0.95
+    },
+    "components": {},
+    "dyes": {
+      "torso": "moss",
+      "legs": "oxblood",
+      "shoulders": "indigo"
+    },
+    "equipment": {
+      "helmet": "graveweaverHood",
+      "torso": "pilgrimTunic",
+      "legs": "graveweaverSkirt",
+      "boots": "wayfarerBoots",
+      "gloves": "graveweaverGloves",
+      "mainHand": "graveweaverStaff",
+      "offHand": "graveweaverBook",
+      "shoulders": "wardenPauldrons"
+    }
+  },
+  "passed": true
+}

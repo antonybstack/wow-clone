@@ -1,0 +1,44 @@
+{
+  "owner": "root",
+  "browserPid": 74262,
+  "gpuHelperPids": [
+    74288
+  ],
+  "cdpPort": 10037,
+  "url": "http://127.0.0.1:7074/ashen-reach.html?play&clean&pixelRatio=1",
+  "purpose": "M7 saved dyes and v5 grip verification",
+  "renderingClients": 0,
+  "active": true,
+  "vitePort": 5873,
+  "vitePid": 74199,
+  "preexisting": {
+    "edgePid": 2931,
+    "edgeTabs": [
+      "Telegram",
+      "YouTube"
+    ],
+    "gameTabs": 0,
+    "vite5173": 27997,
+    "vite4000": 20311,
+    "policy": "preserved; no game tabs and no CDP Chrome parents before start"
+  },
+  "previewServers": [
+    {
+      "owner": "root",
+      "pid": 63256,
+      "port": 7074,
+      "purpose": "Candidate Pages build"
+    },
+    {
+      "owner": "root",
+      "pid": 95835,
+      "port": 7075,
+      "purpose": "1412770 baseline Pages build"
+    }
+  ],
+  "mediaReview": {
+    "nativeEdge": 2931,
+    "telegramClosedAndPaused": true,
+    "veContextClosed": true
+  }
+}

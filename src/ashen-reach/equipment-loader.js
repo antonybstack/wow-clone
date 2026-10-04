@@ -1,5 +1,5 @@
 /** Serial preparation bounds in-flight GPU work; only the newest selection commits. */
-export function createEquipmentLoader({initial,validate,prepare,commit,maxIdle=2,beforeCommit}) {
+export function createEquipmentLoader({initial,validate,prepare,commit,maxIdle=2,beforeCommit,isReusable=()=>true}) {
     if(!Number.isSafeInteger(maxIdle)||maxIdle<0)throw RangeError('Invalid equipment idle budget');
     let selected={...initial},desired={...initial},sequence=0,disposed=false,chain=Promise.resolve();
     let status={pending:false,error:null},active=null;
@@ -8,7 +8,7 @@ export function createEquipmentLoader({initial,validate,prepare,commit,maxIdle=2
         const idle=[...cache.keys()].filter(id=>!keep.has(id));
         for(const id of idle.slice(0,Math.max(0,idle.length-maxIdle))){cache.get(id).dispose();cache.delete(id);}
     }
-    function request(patch){
+    function request(patch,{context}={}){
         if(disposed)return Promise.resolve({status:'disposed'});
         const next={...desired,...patch};
         try{validate(next);}catch(error){return Promise.resolve({status:'failed',error:error.message});}
@@ -17,12 +17,18 @@ export function createEquipmentLoader({initial,validate,prepare,commit,maxIdle=2
         const run=async()=>{
             if(stale())return {status:'superseded'};
             const controller=new AbortController();active=controller;
+            const replacements=new Map();
             try{
                 for(const id of ids(next)){
-                    if(!cache.has(id)){
-                        const value=await prepare(id,controller.signal);
+                    if(!cache.has(id)||!isReusable(cache.get(id),id,context)){
+                        const value=await prepare(id,controller.signal,context);
                         if(disposed){value.dispose();return {status:'disposed'};}
-                        cache.set(id,value);
+                        // A new material for a worn item is a hidden replacement, not an
+                        // unequip/re-equip. Keep the committed owner through preparation,
+                        // failure and the native pipeline fence, then exchange both at once.
+                        // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/scene/scene-rebuild.ts
+                        if(cache.has(id))replacements.set(id,value);
+                        else cache.set(id,value);
                     }
                     if(stale()){trim();return {status:'superseded'};}
                 }
@@ -31,8 +37,12 @@ export function createEquipmentLoader({initial,validate,prepare,commit,maxIdle=2
                 // Cancellation must be checked after non-interruptible native
                 // pipeline work, before the single visibility commit.
                 // https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal
-                if(beforeCommit){await beforeCommit(next,cache,controller.signal);if(stale()){trim();return {status:'superseded'};}}
-                commit(next,cache);
+                const staged=new Map([...cache,...replacements]);
+                const fence=beforeCommit?.(next,staged,controller.signal,context);
+                if(fence){await fence;if(stale()){trim();return {status:'superseded'};}}
+                commit(next,staged,context);
+                for(const [id,value]of replacements){const old=cache.get(id);cache.set(id,value);old.dispose();}
+                replacements.clear();
                 selected={...next};status={pending:false,error:null};trim();
                 return {status:'applied'};
             }catch(error){
@@ -40,16 +50,12 @@ export function createEquipmentLoader({initial,validate,prepare,commit,maxIdle=2
                 if(stale())return {status:'superseded'};
                 desired={...selected};status={pending:false,error:error.message};
                 return {status:'failed',error:error.message};
-            }finally{if(active===controller)active=null;}
+            }finally{for(const value of replacements.values())value.dispose();if(active===controller)active=null;}
         };
         const result=chain.then(run);chain=result.catch(()=>{});return result;
     }
-    /** Drop a prepared piece so the next request rebuilds it.
-     *
-     * A dye is applied when the piece's material is built into the scene, so changing one has
-     * to rebuild that piece; the cache would otherwise serve the previously dyed copy. Only a
-     * piece that is not currently worn can be forgotten, because disposing a live entry would
-     * take its meshes out from under the committed appearance. */
+    /** Explicitly invalidate an idle prepared resource. Worn resources instead
+     * use the replacement transaction above and remain visible until commit. */
     function forget(id) {
         if(disposed||ids(selected).has(id)||!cache.has(id))return false;
         cache.get(id).dispose();cache.delete(id);return true;

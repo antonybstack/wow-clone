@@ -1,0 +1,39 @@
+{
+  "client": "Telegram Web A, user Edge PID 2931",
+  "messageId": 849,
+  "source": {
+    "width": 1280,
+    "height": 720,
+    "squarePixels": true
+  },
+  "inline": {
+    "width": 737,
+    "height": 414.5625,
+    "objectFit": "contain",
+    "visuallyReviewed": true
+  },
+  "expanded": {
+    "width": 1280,
+    "height": 720,
+    "objectFit": "contain",
+    "visuallyReviewed": true
+  },
+  "fullscreen": {
+    "player": [
+      2510,
+      1279
+    ],
+    "content": [
+      2273.777777777778,
+      1279
+    ],
+    "objectFit": "contain",
+    "visuallyReviewed": true,
+    "note": "Full-screen player control and screenshot checked; read-only DOM fullscreenElement flag was false. This is Web A presentation, not Telegram desktop or iOS app acceptance."
+  },
+  "cleanup": {
+    "viewerClosed": true,
+    "allTelegramVideosPaused": true
+  },
+  "passed": true
+}

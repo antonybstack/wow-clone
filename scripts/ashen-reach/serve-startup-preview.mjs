@@ -1,6 +1,8 @@
 /** Static built-bundle preview with precomputed HTTP compression.
  * Vite dev modules and uncompressed WASM are not representative of Pages.
  * This measures local transport/CPU only; production CDN checks remain required.
+ * Compressed responses are a startup snapshot. Restart after EVERY rebuild;
+ * otherwise a browser can receive old compressed HTML while curl sees new bytes.
  */
 import http from "node:http";
 import fs from "node:fs/promises";

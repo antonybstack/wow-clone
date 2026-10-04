@@ -1,10 +1,12 @@
 /** Armory body editor, imported after playable. The recipe owns committed identity;
  * slider values are drafts until body and garments have committed successfully.
  */
-import {creatorControlsForRace,createProductionCreatorSession} from '../character/creator/production.js';
+import {creatorControlsForRace,createProductionCreatorSession,createProductionDyeSession} from '../character/creator/production.js';
+import {APPEARANCE_REGISTRY} from '../character/appearance/contract.js';
+import {DYE_IDS,DYE_PALETTE} from './dye-palette.js';
 import './creator.css';
 const text=(tag,cls,value)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(value!=null)n.textContent=value;return n;};
-export function createCreator({armory,getAppearance,applyBody,warning=null,getWarning=()=>warning}) {
+export function createCreator({armory,getAppearance,applyBody,applyDyes,warning=null,getWarning=()=>warning}) {
  const session=createProductionCreatorSession({getAppearance,applyBody});
  const race=getAppearance().race,{available,unavailable}=creatorControlsForRace(race);
  const panel=document.querySelector('#armory .armory-panel');
@@ -38,12 +40,45 @@ export function createCreator({armory,getAppearance,applyBody,warning=null,getWa
  const actions=text('div','creator-actions'),undo=text('button',null,'Undo'),reset=text('button',null,'Reset');actions.append(undo,reset);section.append(actions);
  undo.onclick=()=>run(()=>session.undo());reset.onclick=()=>run(()=>session.reset());reset.disabled=!available.length;
  panel.insertBefore(section,panel.querySelector('h2'));
+ const dyeSession=applyDyes?createProductionDyeSession({getAppearance,applyDyes}):null;
+ let dyeSection=null,refreshDyes=()=>{};
+ if(dyeSession){
+  dyeSection=text('section','creator-section creator-dyes');dyeSection.append(text('h2',null,'Equipment colours'));
+  dyeSection.append(text('p','armory-note','Choose a tint for a worn piece. Undyed restores its original colour.'));
+  const dyeStatus=text('p','armory-note');dyeStatus.setAttribute('role','status');dyeStatus.setAttribute('aria-live','polite');dyeStatus.hidden=true;dyeSection.append(dyeStatus);
+  const fields=text('div','creator-fields');dyeSection.append(fields);
+  const dyeInputs=new Map(),labels={helmet:'Head',torso:'Torso',legs:'Legs',boots:'Boots',gloves:'Gloves',shoulders:'Shoulders'};
+  const controls=text('div','creator-actions'),undoDye=text('button',null,'Undo colour'),resetDye=text('button',null,'Reset colours');controls.append(undoDye,resetDye);
+  const runDye=async job=>{
+   dyeStatus.textContent='Preparing colour…';dyeStatus.hidden=false;
+   for(const select of dyeInputs.values())select.disabled=true;
+   undoDye.disabled=resetDye.disabled=true;
+   try{await job();dyeStatus.textContent=getWarning()||'';dyeStatus.hidden=!dyeStatus.textContent;}
+   catch(error){dyeStatus.textContent=`Your colour is unchanged. ${error.message}`;}
+   finally{refreshDyes();}
+  };
+  for(const slot of APPEARANCE_REGISTRY.profiles[race].capabilities.dyes){
+   const field=text('label','creator-field');field.append(text('span',null,labels[slot]));
+   const select=document.createElement('select');select.dataset.dye=slot;select.setAttribute('aria-label',`${labels[slot]} colour`);
+   for(const id of DYE_IDS){const option=text('option',null,DYE_PALETTE[id].name);option.value=id;select.append(option);}
+   select.onchange=()=>runDye(()=>dyeSession.set(slot,select.value));
+   field.append(select);fields.append(field);dyeInputs.set(slot,select);
+  }
+  refreshDyes=()=>{
+   dyeSession.refresh();const a=getAppearance();
+   for(const [slot,select]of dyeInputs){select.value=a.dyes[slot]||'undyed';select.disabled=!a.equipment[slot];select.parentElement.hidden=!a.equipment[slot];}
+   undoDye.disabled=!dyeSession.canUndo;resetDye.disabled=!Object.keys(a.dyes).length;
+  };
+  undoDye.onclick=()=>runDye(()=>dyeSession.undo());resetDye.onclick=()=>runDye(()=>dyeSession.reset());
+  dyeSection.append(controls);section.after(dyeSection);refreshDyes();
+ }
  refresh();
  return {
   open:()=>armory.open(),close:()=>armory.close(),get isOpen(){return armory.isOpen;},
   get state(){return session.state;},get drivable(){return race==='human';},
   set:(id,value)=>run(()=>session.set(id,value)),undo:()=>run(()=>session.undo()),reset:()=>run(()=>session.reset()),clear:()=>run(()=>session.reset()),
   refresh:()=>{session.refresh();refresh();},save:()=>session.save(),session,element:section,
-  settled:()=>pending,dispose:()=>section.remove(),
+  refreshEquipment:refreshDyes,dyes:dyeSession,
+  settled:async()=>{await pending;await dyeSession?.settled();},dispose:()=>{section.remove();dyeSection?.remove();},
  };
 }

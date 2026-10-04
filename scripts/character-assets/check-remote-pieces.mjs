@@ -30,6 +30,19 @@ try{
   ASHEN.dev.god=true;ASHEN.player.setWorldPos(2,ASHEN.world.groundHeight(2,-64)+1.7,-64);ASHEN.rig.yaw=0;ASHEN.rig.pitch=-.08;ASHEN.rig.distance=ASHEN.rig.distanceTarget=2.5;ASHEN.setView('play');
  });
  report.baseline=await page.evaluate(()=>({meshes:ASHEN.scene.meshes.length,casters:ASHEN.shadows.state.dynamicCasters}));
+ if(!record){
+  const dyed=await row('saved colours on native remote pieces and same-body revisions',async()=>{
+   const input=actorInput('dyed','human','wayfarer',1,{height:1,build:0});input.recipe.dyes={torso:'moss'};
+   const remoteMeshes=()=>ASHEN.scene.meshes.filter(mesh=>{if(mesh.visible===false)return false;for(let p=mesh;p;p=p.parent)if(p.name==='RemoteActor:dyed')return true;return false;});
+   const factors=()=>remoteMeshes().filter(m=>m.name==='WayfarerTunic').map(m=>m.material.baseColorFactor);
+   const first=await REMOTE.upsert(input),initial=factors();
+   input.appearanceRevision=2;input.recipe.dyes={torso:'oxblood'};
+   const changed=await REMOTE.upsert(input),recoloured=factors(),streaming=REMOTE.streaming();
+   await REMOTE.remove('dyed');return {first,changed,initial,recoloured,streaming,after:REMOTE.streaming(),gpuErrors:ASHEN.gpu.errors.slice()};
+  });
+  assert.equal(dyed.first.status,'applied');assert.equal(dyed.changed.status,'applied');
+  assert.deepEqual(dyed.initial,[[.131,.564,.226,1]]);assert.deepEqual(dyed.recoloured,[[.591,.1,.1,1]]);assert.equal(dyed.after.owned,0);assert.deepEqual(dyed.gpuErrors,[]);
+ }
  if(record){
   await page.evaluate(async()=>{
    // Existing gameplay camera, local foreground hidden only for remote fit review.

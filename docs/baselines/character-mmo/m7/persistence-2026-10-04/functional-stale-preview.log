@@ -1,0 +1,11 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.waitForFunction: Timeout 30000ms exceeded.
+    at /Users/antbly/dev/wow-clone/scripts/character-assets/check-dye-persistence.mjs:85:14 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v22.18.0

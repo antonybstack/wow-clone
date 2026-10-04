@@ -121,7 +121,7 @@ export async function joinPresence(
     cleanupPromise;
   const applyLocal = async (value) => {
     combined.throwIfAborted();
-    const gear = await game.equipment.setLoadout(value.equipment);
+    const gear = await game.equipment.setLoadout(value.equipment,{dyes:value.dyes});
     if (gear.status !== "applied") throw Error("Outfit did not commit");
     combined.throwIfAborted();
     await game.creator.set("height", value.shape.height);

@@ -9,25 +9,13 @@ import {addToScene,attachVat,createVatBakeResults,disposeMeshGpu,getContainerMes
   prepareVatMany,rebuildScenePbrPipelines,removeFromScene,setMeshVisible,setThinInstances,VERSION} from '@babylonjs/lite';
 import {sceneLifetime} from '../../ashen-reach/scene-lifetime.js';
 import {actorPhaseSeconds,decodePreparedCrowdAppearance,planCrowdBatches} from './batches.js';
+import {claimQueuedBuilds} from '../../ashen-reach/native-material-staging.js';
+export {claimQueuedBuilds} from '../../ashen-reach/native-material-staging.js';
 
 // Native onBeforeRender has no unsubscribe. One scene-owned callback holds only
 // currently live handles, so repeated mount/remove does not retain old cohorts.
 // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/scene/scene-core.ts
 const playbackByScene=new WeakMap();
-/** Lite 1.31.1 enqueues one full-family runtime rebuild per new thin mesh.
- * This diagnostic supplies one awaited public family rebuild instead. Remove
- * ONLY our newly enqueued meshes synchronously, before the first await/frame;
- * hidden meshes still participate in the normal native material-swap drain.
- * No public batched post-registration material-build API exists in 1.31.1.
- * Fail closed on migration; never change an unrelated queued material swap.
- * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/scene/scene-material-swap.ts
- * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/scene/scene-runtime-mesh-build.ts
- */
-export function claimQueuedBuilds(scene,meshes) {
-  const owned=new Set(meshes),queue=scene._materialSwapQueue;
-  for(let i=queue.length-1;i>=0;i--)if(owned.has(queue[i]))queue.splice(i,1);
-  for(const mesh of meshes)if(mesh.thinInstances)mesh._runtimeThinBuild=undefined;
-}
 function enrollPlayback(scene,handles) {
   let live=playbackByScene.get(scene);
   if(!live) {

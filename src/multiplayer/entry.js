@@ -85,7 +85,7 @@ export function createPresenceEntry(game) {
     fields.disabled = busy || !connected;
     const armory = document.querySelector("#armory");
     for (const el of armory?.querySelectorAll(
-      "[data-race],[data-equipment],[data-outfit],.creator-section input,.creator-actions button",
+      "[data-race],[data-equipment],[data-outfit],.creator-section input,.creator-section select,.creator-actions button",
     ) || []) {
       if (active) {
         if (!el.hasAttribute("data-presence-disabled")) {

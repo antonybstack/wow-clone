@@ -23,7 +23,7 @@ import {manifestBodyCoverage} from '../../ashen-reach/coverage-manifest.js';
 import {validateGarmentLayerCoverage} from '../../ashen-reach/garment-layer-coverage.js';
 import {sceneLifetime} from '../../ashen-reach/scene-lifetime.js';
 import {yieldToFrame} from '../../ashen-reach/frame-budget.js';
-import {claimQueuedBuilds} from '../crowd-probe/town.js';
+import {claimQueuedBuilds} from '../../ashen-reach/native-material-staging.js';
 import {primeMorphMaterialSupport} from '../../ashen-reach/prime-morph-materials.js';
 
 const liveByScene=new WeakMap();
@@ -177,7 +177,7 @@ export async function createRemotePieceActors(game,{root='/__remote_pieces__',ca
    resource.preview=createInspectionPreview(resource.visual,{includeAirborne:true,terminalHold:true});resource.body.inspection=resource.preview;
    pose(resource,token.actor);
    resource.equipment=await createStreamedEquipment(game.engine,game.scene,resource.body,resource.sockets,{
-    manifest,race,fitId:FITS_BY_RACE[race],bootLoadout:token.actor.recipe.equipment,visible:false,maxIdle:0,
+    manifest,race,fitId:FITS_BY_RACE[race],bootLoadout:token.actor.recipe.equipment,dyes:token.actor.recipe.dyes,visible:false,maxIdle:0,
     shapeFamily:manifest.shapeFamily,getShapeWeights:()=>weights,
     acquireBuffer:(asset,request)=>acquireRegionAsset(asset.url,asset.sha256,asset.bytes,AbortSignal.any([stageSignal,resource.requestSignal,request])),
     beforeCommit:(next,entries,request)=>rebuild(resource,entries,AbortSignal.any([stageSignal,resource.requestSignal,request])),canCommit:()=>resource.canCommit(),
@@ -212,7 +212,7 @@ export async function createRemotePieceActors(game,{root='/__remote_pieces__',ca
      if(!previous&&actors.size>=capacity)throw RangeError('Remote exact actor capacity exceeded');
      if(previous&&sameShape(previous.actor.recipe,token.actor.recipe)){
       const resource=previous.resource;resource.canCommit=()=>valid()&&current(token);resource.requestSignal=token.controller.signal;
-      const result=await resource.equipment.setLoadout(token.actor.recipe.equipment);
+      const result=await resource.equipment.setLoadout(token.actor.recipe.equipment,{dyes:token.actor.recipe.dyes});
       if(!valid()||!current(token))return {status:'superseded'};
       if(result.status!=='applied')throw Error(result.error||'Remote equipment transaction failed');
       previous.actor=token.actor;resource.meshes=resource.equipment.getOwnedMeshes();pose(resource,previous.actor,true);stats.liveEquipmentChanges++;

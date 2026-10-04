@@ -28,6 +28,7 @@ import {manifestBodyCoverage} from './coverage-manifest.js';
 import {validateGarmentLayerCoverage,resolveGarmentLayerVisibility} from './garment-layer-coverage.js';
 import { installEquipmentGrips, spellStowsWeapon } from "./equipment-grips.js";
 import { createEquipmentLoader } from "./equipment-loader.js";
+import {dyeFactor,isDyeId} from './dye-palette.js';
 import { createMageProp } from "./mage-props.js";
 import {
   advancePropTransition,
@@ -109,7 +110,20 @@ export async function createStreamedEquipment(
     donor = base.find((m) => m.skeleton);
   if (!donor || donor.skeleton.boneCount !== 65)
     throw Error("Unsupported equipment rig");
-  const entries = new Map();
+  // Recolouring can briefly own two versions of one item. Index by the resource,
+  // not item ID, so disposing the retired version cannot delete its replacement.
+  const entries = new Set();
+  let liveEntries=new Map(),dyes={...(options.dyes||{})};
+  function dyeSelection(selection,input=dyes) {
+    if(!input||typeof input!=='object'||Array.isArray(input))throw Error('Expected slot dyes');
+    const result={};
+    for(const [slot,id]of Object.entries(input)){
+      if(!Object.values(EQUIPMENT_ITEMS).some(item=>item.slot===slot&&!item.factory))throw Error(`No dye channel for ${slot}`);
+      if(!isDyeId(id))throw Error(`Unknown dye ${id}`);
+      if(selection[slot]&&id!=='undyed')result[slot]=id;
+    }
+    return result;
+  }
   let visible = options.visible !== false,
     stopped = false;
   const bindings = Object.fromEntries(
@@ -167,7 +181,7 @@ export async function createStreamedEquipment(
       entry.transition = null;
     } else beginPropTransition(entry, from.position, from.rotation, target);
   }
-  async function prepare(id, requestSignal) {
+  async function prepare(id, requestSignal, context) {
     const signal = AbortSignal.any([requestSignal, AbortSignal.timeout(15000)]);
     signal.throwIfAborted();
     const item = EQUIPMENT_ITEMS[id];
@@ -279,7 +293,8 @@ export async function createStreamedEquipment(
         // material is built into the scene, so this is the one window where it takes: mutating
         // it on a live material does nothing, and replacing the material loses the ORM, normal
         // and emissive maps and the ashen plugins. See the M7 mechanism note.
-        const dye = options.getDye?.(item.id) ?? null;
+        const dye = context?.dyes?.[item.slot]
+          ? dyeFactor(context.dyes[item.slot]) : options.getDye?.(item.id) ?? null;
         for (const mesh of meshes) {
           if (dye && mesh.material) mesh.material.baseColorFactor = dye;
           prepareLinearMaterial(scene, mesh.material);
@@ -290,6 +305,7 @@ export async function createStreamedEquipment(
       let dead = false, textureUpgrade = null;
       const entry = {
         item,
+        dye:context?.dyes?.[item.slot]??null,
         root,
         meshes,
         attachment: null,
@@ -313,14 +329,14 @@ export async function createStreamedEquipment(
           // socket rebind would follow that frozen garment and leave weapons behind.
           if (root?.parent) setParent(root, null);
           removeFromScene(scene, container || root);
-          entries.delete(id);
+          entries.delete(entry);
         },
       };
       if (stopped) {
         entry.dispose();
         throw Error("Equipment disposed");
       }
-      entries.set(id, entry);
+      entries.add(entry);
       return entry;
     } catch (error) {
       for (const [mesh, skeleton] of owned) mesh.skeleton = skeleton;
@@ -329,7 +345,7 @@ export async function createStreamedEquipment(
       throw error;
     }
   }
-  function apply(next) {
+  function apply(next,cache=liveEntries) {
     const mask = packVisibility(next, race, provisionalUndead, bodySegments, garmentLayerCoverage);
     for (const [name, meshes] of Object.entries(bindings))
       for (const mesh of meshes) setMeshVisible(mesh, visible && mask[name]);
@@ -340,7 +356,7 @@ export async function createStreamedEquipment(
       sockets.sockets.back,
     ]);
     for (const entry of entries.values()) {
-      const equipped = next[entry.item.slot] === entry.item.id;
+      const equipped = next[entry.item.slot] === entry.item.id && cache.get(entry.item.id)===entry;
       if (equipped) setAttachment(entry, casting);
       setMeshVisible(entry.root, visible && equipped);
       if (equipped && entry.item.parts)
@@ -352,49 +368,68 @@ export async function createStreamedEquipment(
     initial,
     validate: validateLoadout,
     prepare,
-    commit(next) {
+    isReusable:(entry,id,context)=>entry.dye===(context?.dyes?.[EQUIPMENT_ITEMS[id].slot]??null),
+    commit(next,cache,context) {
       // A queued remote revision can change after an awaited native build but
       // before this microtask. Recheck its owner before touching visibility.
       if(options.canCommit&&!options.canCommit())throw Error('Equipment owner superseded');
       try {
-        apply(next);
+        apply(next,cache);
       } catch (error) {
         apply(loader.getState());
         throw error;
       }
+      liveEntries=new Map(Object.values(next).filter(Boolean).map(id=>[id,cache.get(id)]));
+      dyes={...context.dyes};
     },
     maxIdle,
-    beforeCommit:options.beforeCommit
-      ? (next,cache,signal)=>options.beforeCommit(next,[...cache.values()],signal) : undefined,
+    beforeCommit:(next,cache,signal,context)=>{
+      if(options.beforeCommit)return options.beforeCommit(next,[...cache.values()],signal);
+      const liveRecolour=context?.recolour&&Object.values(next).some(id=>id&&liveEntries.has(id)&&cache.get(id)!==liveEntries.get(id));
+      if(!liveRecolour||!scene._built)return;
+      // Lite builds runtime PBR meshes asynchronously. Retain the old visible
+      // piece until the replacement has a native renderable, not just GLB bytes.
+      // Reuse the pinned staging adapter and public pipeline fence used by exact
+      // remote actors; a GPU-idle fence alone does not cover future shader work.
+      // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/scene/scene-rebuild.ts
+      return (async()=>{
+        const {claimQueuedBuilds}=await import('./native-material-staging.js');
+        const {rebuildScenePbrPipelines}=await import('@babylonjs/lite');
+        claimQueuedBuilds(scene,[...cache.values()].flatMap(entry=>entry.meshes));
+        await rebuildScenePbrPipelines(scene,true);signal.throwIfAborted();
+      })();
+    },
   });
+  function request(patch,input=dyes){
+    let nextDyes;
+    try{nextDyes=dyeSelection({...loader.getStatus().desired,...patch},input);}
+    catch(error){return Promise.resolve({status:'failed',error:error.message});}
+    const recolour=Object.keys(nextDyes).some(slot=>nextDyes[slot]!==dyes[slot])||Object.keys(dyes).some(slot=>nextDyes[slot]!==dyes[slot]);
+    return loader.request(patch,{context:{dyes:nextDyes,recolour}});
+  }
   const equipment = {
     items: EQUIPMENT_ITEMS,
     presets: EQUIPMENT_PRESETS,
-    setLoadout: (patch) =>
-      loader.request(
-        resolveHandEquip(loader.getState(), patch, EQUIPMENT_ITEMS),
-      ),
+    setLoadout: (patch,{dyes:nextDyes=dyes}={}) =>
+      request(resolveHandEquip(loader.getState(),patch,EQUIPMENT_ITEMS),nextDyes),
     equip: (slot, id) =>
-      loader.request(
+      request(
         resolveHandEquip(loader.getState(), { [slot]: id }, EQUIPMENT_ITEMS),
       ),
     equipPreset(id) {
       if (!Object.hasOwn(EQUIPMENT_PRESETS, id))
         return Promise.resolve({ status: "failed", error: "Unknown outfit" });
-      return loader.request(EQUIPMENT_PRESETS[id].loadout);
+      return request(EQUIPMENT_PRESETS[id].loadout);
     },
     getState: loader.getState,
     getStatus: loader.getStatus,
-    /** Re-apply the loadout with a piece forgotten, so its material is rebuilt under a new dye.
-     *  The slot is emptied first because a worn piece cannot be forgotten while it is live. */
-    async rebuildPiece(id) {
-        const worn = loader.getState();
-        const slot = Object.keys(worn).find(key => worn[key] === id);
-        if (!slot) return { status: 'failed', error: `${id} is not worn` };
-        const cleared = await loader.request({ [slot]: null });
-        if (cleared.status !== 'applied') return cleared;
-        loader.forget(id);
-        return loader.request({ [slot]: id });
+    getDyes:()=>({...dyes}),
+    setDyes:next=>request({},next),
+    setDye(slot,id){
+      if(!loader.getState()[slot])return Promise.resolve({status:'failed',error:`No worn item in ${slot}`});
+      if(EQUIPMENT_ITEMS[loader.getState()[slot]].factory)return Promise.resolve({status:'failed',error:`No dye channel for ${slot}`});
+      const next={...dyes};if(id===null||id==='undyed')delete next[slot];else next[slot]=id;
+      return request({},next);
     },
     // The segment map this pack is actually driving visibility with. A published coverage
     // manifest replaces RACE_BODY_SEGMENTS above, so a check that reads the static constant
@@ -426,18 +461,21 @@ export async function createStreamedEquipment(
         sockets.sockets.back,
       ]);
       for (const entry of entries.values())
-        if (selected[entry.item.slot] === entry.item.id)
+        if (liveEntries.get(entry.item.id)===entry&&selected[entry.item.slot] === entry.item.id)
           setAttachment(entry, casting);
       for (const entry of entries.values())
-        if (selected[entry.item.slot] === entry.item.id)
+        if (liveEntries.get(entry.item.id)===entry&&selected[entry.item.slot] === entry.item.id)
           advancePropTransition(entry, dt);
     },
     get attachment() {
-      return entries.get(loader.getState().mainHand)?.attachment || "hand";
+      return liveEntries.get(loader.getState().mainHand)?.attachment || "hand";
     },
     dispose() {
       stopped = true;
-      try{if(options.beforeCommit){visible=false;apply(loader.getState());}}
+      // Hide this stream's garment owners immediately, but leave the shared
+      // body's geosets to its successor. Compact→full can use that same body.
+      // Disposal still drains any material work before freeing borrowed palettes.
+      try{visible=false;for(const entry of entries)setMeshVisible(entry.root,false);}
       finally{loader.dispose();}
     },
   };

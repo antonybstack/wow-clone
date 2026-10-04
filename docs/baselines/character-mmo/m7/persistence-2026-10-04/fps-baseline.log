@@ -1,0 +1,29 @@
+{"route":"meadow","run":1,"samples":2651,"fps":220.87249216826046,"meanMs":4.527499056959075,"medianMs":4.300000004470348,"p95Ms":5.700000002980232,"p99Ms":6,"worstMs":9.100000001490116,"minMs":2.7999999970197678,"above8_333":1,"above16_667":0,"gpuMeanMs":1.1406311805360327,"capped":false,"rollingCapHint":false}
+{"route":"meadow","run":2,"samples":2655,"fps":221.12653768320925,"meanMs":4.522297551787394,"medianMs":4.300000004470348,"p95Ms":5.700000002980232,"p99Ms":8.099999994039536,"worstMs":11.100000001490116,"minMs":2.399999998509884,"above8_333":20,"above16_667":0,"gpuMeanMs":1.1383589979303141,"capped":false,"rollingCapHint":false}
+{"route":"meadow","run":3,"samples":2656,"fps":221.20982451459108,"meanMs":4.520594879519194,"medianMs":4.299999997019768,"p95Ms":5.700000002980232,"p99Ms":8.399999998509884,"worstMs":12.200000002980232,"minMs":2.2999999970197678,"above8_333":28,"above16_667":0,"gpuMeanMs":1.1495540589609556,"capped":false,"rollingCapHint":false}
+{"route":"town","run":1,"samples":2637,"fps":219.59811130626468,"meanMs":4.553773227153762,"medianMs":4.399999998509884,"p95Ms":5.700000002980232,"p99Ms":7.299999997019768,"worstMs":11.400000005960464,"minMs":2.5,"above8_333":16,"above16_667":0,"gpuMeanMs":1.1104813417761286,"capped":false,"rollingCapHint":false}
+{"route":"town","run":2,"samples":2636,"fps":219.52763249938982,"meanMs":4.555235204856407,"medianMs":4.300000004470348,"p95Ms":5.700000002980232,"p99Ms":8.5,"worstMs":10.899999998509884,"minMs":2.5,"above8_333":30,"above16_667":0,"gpuMeanMs":1.098648777464821,"capped":false,"rollingCapHint":false}
+{"route":"town","run":3,"samples":2646,"fps":220.39531222663763,"meanMs":4.537301587302713,"medianMs":4.300000004470348,"p95Ms":5.9000000059604645,"p99Ms":8.800000004470348,"worstMs":12.100000001490116,"minMs":2.399999998509884,"above8_333":51,"above16_667":0,"gpuMeanMs":0.9049961052466576,"capped":false,"rollingCapHint":false}
+{"route":"bridge","run":1,"samples":2968,"fps":247.39724428813847,"meanMs":4.042082210242086,"medianMs":3.9000000059604645,"p95Ms":5.399999998509884,"p99Ms":7.700000002980232,"worstMs":11.600000001490116,"minMs":2.2999999970197678,"above8_333":17,"above16_667":0,"gpuMeanMs":1.2575433823992435,"capped":false,"rollingCapHint":false}
+{"route":"bridge","run":2,"samples":2956,"fps":246.1958739703054,"meanMs":4.061806495264879,"medianMs":4,"p95Ms":5.399999998509884,"p99Ms":5.700000002980232,"worstMs":11.100000001490116,"minMs":2.3000000044703484,"above8_333":2,"above16_667":0,"gpuMeanMs":1.2155815111508257,"capped":false,"rollingCapHint":false}
+{"route":"bridge","run":3,"samples":2965,"fps":246.93105918004966,"meanMs":4.049713322093073,"medianMs":4,"p95Ms":5.399999998509884,"p99Ms":7.299999997019768,"worstMs":10.399999998509884,"minMs":2,"above8_333":4,"above16_667":0,"gpuMeanMs":1.1726139610579946,"capped":false,"rollingCapHint":false}
+{"route":"cathedral","run":1,"samples":3032,"fps":252.63719232759314,"meanMs":3.9582453825852606,"medianMs":3.899999998509884,"p95Ms":5.200000002980232,"p99Ms":5.4000000059604645,"worstMs":12.099999994039536,"minMs":2.399999998509884,"above8_333":2,"above16_667":0,"gpuMeanMs":1.191292046331647,"capped":false,"rollingCapHint":false}
+{"route":"cathedral","run":2,"samples":3041,"fps":253.33855394580377,"meanMs":3.9472870766205133,"medianMs":3.899999998509884,"p95Ms":5.200000002980232,"p99Ms":5.399999998509884,"worstMs":9.300000004470348,"minMs":2.0999999940395355,"above8_333":4,"above16_667":0,"gpuMeanMs":1.2008999889627385,"capped":false,"rollingCapHint":false}
+{"route":"cathedral","run":3,"samples":3040,"fps":253.2636858197958,"meanMs":3.9484539473674407,"medianMs":3.899999998509884,"p95Ms":5.200000002980232,"p99Ms":5.5,"worstMs":10.399999998509884,"minMs":2.2999999970197678,"above8_333":3,"above16_667":0,"gpuMeanMs":1.2247455031557912,"capped":false,"rollingCapHint":false}
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert(!row.fullWindowCap.vsyncCapped)
+
+    at file:///Users/antbly/dev/wow-clone/scripts/ashen-reach/measure-region-fps.mjs:192:26 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '=='
+}
+
+Node.js v22.18.0

@@ -2,10 +2,47 @@
  * Persistence belongs to the actor transaction after a successful visual commit.
  */
 import {creatorControlsForRace as legacyControls} from './contract.js';
-import {HUMAN_BUILD_LIMIT,validateAppearance,assertFields} from '../appearance/contract.js';
+import {HUMAN_BUILD_LIMIT,validateAppearance,assertFields,DYEABLE_SLOTS} from '../appearance/contract.js';
 export function creatorControlsForRace(race) {
  const {available,unavailable}=legacyControls(race);
  return {available:available.map(c=>c.id==='build'?{...c,kind:'range',min:-HUMAN_BUILD_LIMIT,max:HUMAN_BUILD_LIMIT,default:0,axes:undefined}:c),unavailable:unavailable.map(c=>({...c,reason:`${c.label} customization is not available yet.`}))};
+}
+
+/** Equipment colour has its own history; skin/hair colour capabilities remain
+ * unavailable. Native selects commit on change, after the player's choice,
+ * rather than rebuilding a material on every pointer/preview frame.
+ * https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event
+ */
+export function createProductionDyeSession({getAppearance,applyDyes}) {
+ let undo=[],pending=Promise.resolve(),pendingCount=0;
+ const signature=a=>JSON.stringify([a.race,a.equipment]);
+ let scope=signature(getAppearance());
+ const refresh=()=>{const next=signature(getAppearance());if(next!==scope){scope=next;undo=[];}};
+ const commit=async(next,recordUndo=true)=>{
+  refresh();const before=getAppearance(),desired=validateAppearance({...before,dyes:next});
+  if(JSON.stringify(before.dyes)===JSON.stringify(desired.dyes))return before;
+  await applyDyes(desired.dyes);
+  if(recordUndo){undo.push(before.dyes);if(undo.length>32)undo.shift();}
+  return getAppearance();
+ };
+ const queue=job=>{
+  pendingCount++;const run=pending.catch(()=>{}).then(job);
+  pending=run.finally(()=>pendingCount--);pending.catch(()=>{});return pending;
+ };
+ return {
+  get state(){return getAppearance();},
+  get canUndo(){refresh();return pendingCount===0&&undo.length>0;},
+  set(slot,id){
+   if(!DYEABLE_SLOTS.includes(slot))throw Error(`No dye channel for ${slot}`);
+   return queue(()=>{
+    const before=getAppearance();if(!before.equipment[slot])throw Error(`No worn item in ${slot}`);
+    const next={...before.dyes};if(id===null||id==='undyed')delete next[slot];else next[slot]=id;
+    return commit(next);
+   });
+  },
+  undo(){return queue(async()=>{refresh();const dyes=undo.pop();if(!dyes)return getAppearance();try{return await commit(dyes,false);}catch(e){undo.push(dyes);throw e;}});},
+  reset:()=>queue(()=>commit({})),refresh,settled:()=>pending,
+ };
 }
 export function createProductionCreatorSession({getAppearance,applyBody}) {
  let draft=getAppearance(),undo=[],pending=Promise.resolve(),pendingCount=0,error=null;

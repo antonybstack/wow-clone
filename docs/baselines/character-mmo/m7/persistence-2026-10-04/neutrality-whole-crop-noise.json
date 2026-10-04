@@ -1,0 +1,1215 @@
+{
+  "url": "http://127.0.0.1:7074/ashen-reach.html?play&clean&pixelRatio=1",
+  "dyes": [
+    "oxblood",
+    "moss"
+  ],
+  "slots": [
+    "helmet",
+    "torso",
+    "legs",
+    "boots",
+    "gloves",
+    "shoulders"
+  ],
+  "races": [
+    "human",
+    "orc",
+    "undead"
+  ],
+  "rows": [
+    {
+      "race": "human",
+      "slot": "helmet",
+      "item": "graveweaverHood",
+      "dye": "oxblood",
+      "noise": 0.031,
+      "noiseSamples": [
+        0.0229,
+        0.031,
+        0.0136,
+        0.0035
+      ],
+      "moved": 0.4148,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        139,
+        139
+      ],
+      "floor": 0.12,
+      "margin": 3.46,
+      "passed": true
+    },
+    {
+      "race": "human",
+      "slot": "helmet",
+      "item": "graveweaverHood",
+      "dye": "moss",
+      "noise": 0.031,
+      "noiseSamples": [
+        0.0229,
+        0.031,
+        0.0136,
+        0.0035
+      ],
+      "moved": 0.4089,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        139,
+        139
+      ],
+      "floor": 0.12,
+      "margin": 3.41,
+      "passed": true
+    },
+    {
+      "race": "human",
+      "slot": "helmet",
+      "item": "graveweaverHood",
+      "case": "plateau",
+      "counts": [
+        139,
+        139,
+        139,
+        139,
+        139,
+        139
+      ],
+      "passed": true
+    },
+    {
+      "race": "human",
+      "slot": "torso",
+      "item": "lectorCoat",
+      "dye": "oxblood",
+      "noise": 0.0331,
+      "noiseSamples": [
+        0.0081,
+        0.0331,
+        0.018,
+        0.0174
+      ],
+      "moved": 1.7219,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        142,
+        142
+      ],
+      "floor": 0.12,
+      "margin": 14.35,
+      "passed": true
+    },
+    {
+      "race": "human",
+      "slot": "torso",
+      "item": "lectorCoat",
+      "dye": "moss",
+      "noise": 0.0331,
+      "noiseSamples": [
+        0.0081,
+        0.0331,
+        0.018,
+        0.0174
+      ],
+      "moved": 1.3771,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        142,
+        142
+      ],
+      "floor": 0.12,
+      "margin": 11.48,
+      "passed": true
+    },
+    {
+      "race": "human",
+      "slot": "torso",
+      "item": "lectorCoat",
+      "case": "plateau",
+      "counts": [
+        142,
+        142,
+        142,
+        142,
+        142,
+        142
+      ],
+      "passed": true
+    },
+    {
+      "race": "human",
+      "slot": "legs",
+      "item": "duskguardTassets",
+      "dye": "oxblood",
+      "noise": 0.057,
+      "noiseSamples": [
+        0.0215,
+        0.043,
+        0.0286,
+        0.057
+      ],
+      "moved": 1.5212,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        147,
+        147
+      ],
+      "floor": 0.1425,
+      "margin": 10.68,
+      "passed": true
+    },
+    {
+      "race": "human",
+      "slot": "legs",
+      "item": "duskguardTassets",
+      "dye": "moss",
+      "noise": 0.057,
+      "noiseSamples": [
+        0.0215,
+        0.043,
+        0.0286,
+        0.057
+      ],
+      "moved": 1.7632,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        147,
+        147
+      ],
+      "floor": 0.1425,
+      "margin": 12.37,
+      "passed": true
+    },
+    {
+      "race": "human",
+      "slot": "legs",
+      "item": "duskguardTassets",
+      "case": "plateau",
+      "counts": [
+        147,
+        147,
+        147,
+        147,
+        147,
+        147
+      ],
+      "passed": true
+    },
+    {
+      "race": "human",
+      "slot": "boots",
+      "item": "duskguardGreaves",
+      "dye": "oxblood",
+      "noise": 0.0792,
+      "noiseSamples": [
+        0.0273,
+        0.0743,
+        0.0792,
+        0.0203
+      ],
+      "moved": 0.6568,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        149,
+        149
+      ],
+      "floor": 0.198,
+      "margin": 3.32,
+      "passed": true
+    },
+    {
+      "race": "human",
+      "slot": "boots",
+      "item": "duskguardGreaves",
+      "dye": "moss",
+      "noise": 0.0792,
+      "noiseSamples": [
+        0.0273,
+        0.0743,
+        0.0792,
+        0.0203
+      ],
+      "moved": 0.7229,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        149,
+        149
+      ],
+      "floor": 0.198,
+      "margin": 3.65,
+      "passed": true
+    },
+    {
+      "race": "human",
+      "slot": "boots",
+      "item": "duskguardGreaves",
+      "case": "plateau",
+      "counts": [
+        149,
+        149,
+        149,
+        149,
+        149,
+        149
+      ],
+      "passed": true
+    },
+    {
+      "race": "human",
+      "slot": "gloves",
+      "item": "duskguardVambraces",
+      "dye": "oxblood",
+      "noise": 0.0666,
+      "noiseSamples": [
+        0.0055,
+        0.0369,
+        0.0666,
+        0.0391
+      ],
+      "moved": 0.3992,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        152,
+        152
+      ],
+      "floor": 0.1665,
+      "margin": 2.4,
+      "passed": true
+    },
+    {
+      "race": "human",
+      "slot": "gloves",
+      "item": "duskguardVambraces",
+      "dye": "moss",
+      "noise": 0.0666,
+      "noiseSamples": [
+        0.0055,
+        0.0369,
+        0.0666,
+        0.0391
+      ],
+      "moved": 0.3424,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        152,
+        152
+      ],
+      "floor": 0.1665,
+      "margin": 2.06,
+      "passed": true
+    },
+    {
+      "race": "human",
+      "slot": "gloves",
+      "item": "duskguardVambraces",
+      "case": "plateau",
+      "counts": [
+        152,
+        152,
+        152,
+        152,
+        152,
+        152
+      ],
+      "passed": true
+    },
+    {
+      "race": "human",
+      "slot": "shoulders",
+      "item": "wardenPauldrons",
+      "dye": "oxblood",
+      "noise": 0.0987,
+      "noiseSamples": [
+        0.0987,
+        0.0372,
+        0.0312,
+        0.0458
+      ],
+      "moved": 0.2365,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        153,
+        153
+      ],
+      "floor": 0.2467,
+      "margin": 0.96,
+      "passed": false,
+      "error": "oxblood shifted the crop mean by 0.2365, under the 0.2467 floor set by 0.0987 capture noise"
+    },
+    {
+      "race": "human",
+      "slot": "shoulders",
+      "item": "wardenPauldrons",
+      "dye": "moss",
+      "noise": 0.0987,
+      "noiseSamples": [
+        0.0987,
+        0.0372,
+        0.0312,
+        0.0458
+      ],
+      "moved": 0.2098,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        153,
+        153
+      ],
+      "floor": 0.2467,
+      "margin": 0.85,
+      "passed": false,
+      "error": "moss shifted the crop mean by 0.2098, under the 0.2467 floor set by 0.0987 capture noise"
+    },
+    {
+      "race": "human",
+      "slot": "shoulders",
+      "item": "wardenPauldrons",
+      "case": "plateau",
+      "counts": [
+        153,
+        153,
+        153,
+        153,
+        153,
+        153
+      ],
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "helmet",
+      "item": "graveweaverHood",
+      "dye": "oxblood",
+      "noise": 0.0373,
+      "noiseSamples": [
+        0.0176,
+        0.0036,
+        0.0335,
+        0.0373
+      ],
+      "moved": 0.4826,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "floor": 0.12,
+      "margin": 4.02,
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "helmet",
+      "item": "graveweaverHood",
+      "dye": "moss",
+      "noise": 0.0373,
+      "noiseSamples": [
+        0.0176,
+        0.0036,
+        0.0335,
+        0.0373
+      ],
+      "moved": 0.4972,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "floor": 0.12,
+      "margin": 4.14,
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "helmet",
+      "item": "graveweaverHood",
+      "case": "plateau",
+      "counts": [
+        159,
+        159,
+        159,
+        159,
+        159,
+        159
+      ],
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "torso",
+      "item": "lectorCoat",
+      "dye": "oxblood",
+      "noise": 0.0279,
+      "noiseSamples": [
+        0.0045,
+        0.0149,
+        0.005,
+        0.0279
+      ],
+      "moved": 2.8551,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "floor": 0.12,
+      "margin": 23.79,
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "torso",
+      "item": "lectorCoat",
+      "dye": "moss",
+      "noise": 0.0279,
+      "noiseSamples": [
+        0.0045,
+        0.0149,
+        0.005,
+        0.0279
+      ],
+      "moved": 2.3312,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "floor": 0.12,
+      "margin": 19.43,
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "torso",
+      "item": "lectorCoat",
+      "case": "plateau",
+      "counts": [
+        159,
+        159,
+        159,
+        159,
+        159,
+        159
+      ],
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "legs",
+      "item": "duskguardTassets",
+      "dye": "oxblood",
+      "noise": 0.0483,
+      "noiseSamples": [
+        0.0099,
+        0.0283,
+        0.0483,
+        0.013
+      ],
+      "moved": 3.0286,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "floor": 0.1208,
+      "margin": 25.08,
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "legs",
+      "item": "duskguardTassets",
+      "dye": "moss",
+      "noise": 0.0483,
+      "noiseSamples": [
+        0.0099,
+        0.0283,
+        0.0483,
+        0.013
+      ],
+      "moved": 3.2858,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "floor": 0.1208,
+      "margin": 27.21,
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "legs",
+      "item": "duskguardTassets",
+      "case": "plateau",
+      "counts": [
+        159,
+        159,
+        159,
+        159,
+        159,
+        159
+      ],
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "boots",
+      "item": "duskguardGreaves",
+      "dye": "oxblood",
+      "noise": 0.034,
+      "noiseSamples": [
+        0.0037,
+        0.034,
+        0.0186,
+        0.0053
+      ],
+      "moved": 1.4504,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "floor": 0.12,
+      "margin": 12.09,
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "boots",
+      "item": "duskguardGreaves",
+      "dye": "moss",
+      "noise": 0.034,
+      "noiseSamples": [
+        0.0037,
+        0.034,
+        0.0186,
+        0.0053
+      ],
+      "moved": 1.5085,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "floor": 0.12,
+      "margin": 12.57,
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "boots",
+      "item": "duskguardGreaves",
+      "case": "plateau",
+      "counts": [
+        159,
+        159,
+        159,
+        159,
+        159,
+        159
+      ],
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "gloves",
+      "item": "duskguardVambraces",
+      "dye": "oxblood",
+      "noise": 0.0449,
+      "noiseSamples": [
+        0.0119,
+        0.0449,
+        0.0282,
+        0.0043
+      ],
+      "moved": 1.8158,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "floor": 0.12,
+      "margin": 15.13,
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "gloves",
+      "item": "duskguardVambraces",
+      "dye": "moss",
+      "noise": 0.0449,
+      "noiseSamples": [
+        0.0119,
+        0.0449,
+        0.0282,
+        0.0043
+      ],
+      "moved": 1.4946,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "floor": 0.12,
+      "margin": 12.46,
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "gloves",
+      "item": "duskguardVambraces",
+      "case": "plateau",
+      "counts": [
+        159,
+        159,
+        159,
+        159,
+        159,
+        159
+      ],
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "shoulders",
+      "item": "wardenPauldrons",
+      "dye": "oxblood",
+      "noise": 0.0382,
+      "noiseSamples": [
+        0.0163,
+        0.0118,
+        0.0074,
+        0.0382
+      ],
+      "moved": 0.6959,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "floor": 0.12,
+      "margin": 5.8,
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "shoulders",
+      "item": "wardenPauldrons",
+      "dye": "moss",
+      "noise": 0.0382,
+      "noiseSamples": [
+        0.0163,
+        0.0118,
+        0.0074,
+        0.0382
+      ],
+      "moved": 0.6257,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "floor": 0.12,
+      "margin": 5.21,
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "shoulders",
+      "item": "wardenPauldrons",
+      "case": "plateau",
+      "counts": [
+        159,
+        159,
+        159,
+        159,
+        159,
+        159
+      ],
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "helmet",
+      "item": "graveweaverHood",
+      "dye": "oxblood",
+      "noise": 0.0706,
+      "noiseSamples": [
+        0.0176,
+        0.0412,
+        0.0706,
+        0.0459
+      ],
+      "moved": 0.4298,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        144,
+        144
+      ],
+      "floor": 0.1765,
+      "margin": 2.44,
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "helmet",
+      "item": "graveweaverHood",
+      "dye": "moss",
+      "noise": 0.0706,
+      "noiseSamples": [
+        0.0176,
+        0.0412,
+        0.0706,
+        0.0459
+      ],
+      "moved": 0.4398,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        144,
+        144
+      ],
+      "floor": 0.1765,
+      "margin": 2.49,
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "helmet",
+      "item": "graveweaverHood",
+      "case": "plateau",
+      "counts": [
+        144,
+        144,
+        144,
+        144,
+        144,
+        144
+      ],
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "torso",
+      "item": "lectorCoat",
+      "dye": "oxblood",
+      "noise": 0.0636,
+      "noiseSamples": [
+        0.0636,
+        0.0605,
+        0.0377,
+        0.0277
+      ],
+      "moved": 1.5792,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        147,
+        147
+      ],
+      "floor": 0.159,
+      "margin": 9.93,
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "torso",
+      "item": "lectorCoat",
+      "dye": "moss",
+      "noise": 0.0636,
+      "noiseSamples": [
+        0.0636,
+        0.0605,
+        0.0377,
+        0.0277
+      ],
+      "moved": 1.3308,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        147,
+        147
+      ],
+      "floor": 0.159,
+      "margin": 8.37,
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "torso",
+      "item": "lectorCoat",
+      "case": "plateau",
+      "counts": [
+        147,
+        147,
+        147,
+        147,
+        147,
+        147
+      ],
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "legs",
+      "item": "duskguardTassets",
+      "dye": "oxblood",
+      "noise": 0.0663,
+      "noiseSamples": [
+        0.0254,
+        0.0663,
+        0.0034,
+        0.0277
+      ],
+      "moved": 1.9331,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        152,
+        152
+      ],
+      "floor": 0.1658,
+      "margin": 11.66,
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "legs",
+      "item": "duskguardTassets",
+      "dye": "moss",
+      "noise": 0.0663,
+      "noiseSamples": [
+        0.0254,
+        0.0663,
+        0.0034,
+        0.0277
+      ],
+      "moved": 2.3022,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        152,
+        152
+      ],
+      "floor": 0.1658,
+      "margin": 13.89,
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "legs",
+      "item": "duskguardTassets",
+      "case": "plateau",
+      "counts": [
+        152,
+        152,
+        152,
+        152,
+        152,
+        152
+      ],
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "boots",
+      "item": "duskguardGreaves",
+      "dye": "oxblood",
+      "noise": 0.0253,
+      "noiseSamples": [
+        0.0253,
+        0.0015,
+        0.0177,
+        0.0071
+      ],
+      "moved": 0.8947,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        155,
+        155
+      ],
+      "floor": 0.12,
+      "margin": 7.46,
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "boots",
+      "item": "duskguardGreaves",
+      "dye": "moss",
+      "noise": 0.0253,
+      "noiseSamples": [
+        0.0253,
+        0.0015,
+        0.0177,
+        0.0071
+      ],
+      "moved": 1.0625,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        155,
+        155
+      ],
+      "floor": 0.12,
+      "margin": 8.85,
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "boots",
+      "item": "duskguardGreaves",
+      "case": "plateau",
+      "counts": [
+        155,
+        155,
+        155,
+        155,
+        155,
+        155
+      ],
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "gloves",
+      "item": "duskguardVambraces",
+      "dye": "oxblood",
+      "noise": 0.0338,
+      "noiseSamples": [
+        0.0234,
+        0.0302,
+        0.026,
+        0.0338
+      ],
+      "moved": 0.4504,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        158,
+        158
+      ],
+      "floor": 0.12,
+      "margin": 3.75,
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "gloves",
+      "item": "duskguardVambraces",
+      "dye": "moss",
+      "noise": 0.0338,
+      "noiseSamples": [
+        0.0234,
+        0.0302,
+        0.026,
+        0.0338
+      ],
+      "moved": 0.33,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        158,
+        158
+      ],
+      "floor": 0.12,
+      "margin": 2.75,
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "gloves",
+      "item": "duskguardVambraces",
+      "case": "plateau",
+      "counts": [
+        158,
+        158,
+        158,
+        158,
+        158,
+        158
+      ],
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "shoulders",
+      "item": "wardenPauldrons",
+      "dye": "oxblood",
+      "noise": 0.0318,
+      "noiseSamples": [
+        0.0218,
+        0.0318,
+        0.0099,
+        0.0254
+      ],
+      "moved": 0.537,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "floor": 0.12,
+      "margin": 4.48,
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "shoulders",
+      "item": "wardenPauldrons",
+      "dye": "moss",
+      "noise": 0.0318,
+      "noiseSamples": [
+        0.0218,
+        0.0318,
+        0.0099,
+        0.0254
+      ],
+      "moved": 0.4275,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "floor": 0.12,
+      "margin": 3.56,
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "shoulders",
+      "item": "wardenPauldrons",
+      "case": "plateau",
+      "counts": [
+        159,
+        159,
+        159,
+        159,
+        159,
+        159
+      ],
+      "passed": true
+    }
+  ],
+  "failures": [
+    {
+      "race": "human",
+      "slot": "shoulders",
+      "dye": "oxblood",
+      "error": "oxblood shifted the crop mean by 0.2365, under the 0.2467 floor set by 0.0987 capture noise"
+    },
+    {
+      "race": "human",
+      "slot": "shoulders",
+      "dye": "moss",
+      "error": "moss shifted the crop mean by 0.2098, under the 0.2467 floor set by 0.0987 capture noise"
+    }
+  ],
+  "errors": [],
+  "passed": false,
+  "summary": {
+    "rows": 54,
+    "failed": 2,
+    "consoleErrors": 0
+  }
+}

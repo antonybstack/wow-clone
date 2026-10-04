@@ -1,0 +1,248 @@
+{
+  "url": "http://127.0.0.1:7074/ashen-reach.html?play&clean&pixelRatio=1",
+  "errors": [],
+  "timeline": [
+    {
+      "label": "Human · Armory colours apply to the moving character",
+      "frame": 0,
+      "time": 1791137025749
+    },
+    {
+      "label": "Human torso · oxblood",
+      "frame": 54,
+      "time": 1791137027552
+    },
+    {
+      "label": "Human torso · moss",
+      "frame": 110,
+      "time": 1791137029786
+    },
+    {
+      "label": "Human torso · indigo",
+      "frame": 166,
+      "time": 1791137032022
+    },
+    {
+      "label": "Undo colour · returns to Moss",
+      "frame": 223,
+      "time": 1791137034268
+    },
+    {
+      "label": "Save and reload · the selected colour is present at first play",
+      "frame": 274,
+      "time": 1791137036316
+    },
+    {
+      "label": "Restored Human · Moss",
+      "frame": 514,
+      "time": 1791137047222
+    },
+    {
+      "label": "Human · graveweaver · torso keeps the saved slot colour",
+      "frame": 560,
+      "time": 1791137049232
+    },
+    {
+      "label": "Human · pilgrim · torso keeps the saved slot colour",
+      "frame": 613,
+      "time": 1791137051406
+    },
+    {
+      "label": "Human · lector · torso keeps the saved slot colour",
+      "frame": 666,
+      "time": 1791137053530
+    },
+    {
+      "label": "Human · duskguard · torso keeps the saved slot colour",
+      "frame": 719,
+      "time": 1791137055665
+    },
+    {
+      "label": "human · saved colour and source-compatible moving equipment",
+      "frame": 781,
+      "time": 1791137058145
+    },
+    {
+      "label": "human · sword grip · existing inspection camera close-up",
+      "frame": 847,
+      "time": 1791137060761
+    },
+    {
+      "label": "human · Duskguard mix · colour and fitted parts",
+      "frame": 909,
+      "time": 1791137063330
+    },
+    {
+      "label": "orc · saved colour and source-compatible moving equipment",
+      "frame": 978,
+      "time": 1791137066203
+    },
+    {
+      "label": "orc · sword grip · existing inspection camera close-up",
+      "frame": 1042,
+      "time": 1791137068809
+    },
+    {
+      "label": "orc · Duskguard mix · colour and fitted parts",
+      "frame": 1103,
+      "time": 1791137071379
+    },
+    {
+      "label": "undead · saved colour and source-compatible moving equipment",
+      "frame": 1172,
+      "time": 1791137074221
+    },
+    {
+      "label": "undead · sword grip · existing inspection camera close-up",
+      "frame": 1237,
+      "time": 1791137076825
+    },
+    {
+      "label": "undead · Duskguard mix · colour and fitted parts",
+      "frame": 1301,
+      "time": 1791137079425
+    },
+    {
+      "label": "Normal controls · walking, jumping and spell motion with the saved outfit",
+      "frame": 1358,
+      "time": 1791137081730
+    }
+  ],
+  "rows": [
+    {
+      "case": "human",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1,
+          "build": 0
+        },
+        "components": {},
+        "dyes": {
+          "torso": "moss"
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "duskguardTassets",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        }
+      },
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "case": "orc",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "orc",
+        "fitFamily": "ashen-orc",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {},
+        "components": {},
+        "dyes": {
+          "torso": "oxblood"
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "duskguardTassets",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        }
+      },
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "case": "undead",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "undead",
+        "fitFamily": "ashen-undead",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {},
+        "components": {},
+        "dyes": {
+          "torso": "indigo"
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "duskguardTassets",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        }
+      },
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    },
+    {
+      "case": "ordinary-input",
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v5",
+        "race": "undead",
+        "fitFamily": "ashen-undead",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {},
+        "components": {},
+        "dyes": {
+          "torso": "indigo"
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "duskguardTassets",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        }
+      },
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    }
+  ],
+  "frames": 1496,
+  "elapsedSeconds": 61.85759902000427,
+  "passed": true
+}

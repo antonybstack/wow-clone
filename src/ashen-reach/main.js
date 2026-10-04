@@ -8,7 +8,6 @@ import {createRenderLoop} from './render-loop.js';
 import {createObjective} from './objective.js';
 import {createStarterWorld,preloadStarterWorld} from './starter-world.js';
 import {createStreamedEquipment} from './equipment-stream.js';
-import {dyeFactor, isDyeId} from './dye-palette.js';
 import {preloadStarterCharacter,preloadHumanShapePack,startupAssetBuffer,upgradeStarterCharacter} from './startup-assets.js';
 import {loadStartupAppearance,usesHumanShapeStarter,DEFAULT_BOOT_GEAR} from './startup-appearance.js';
 import {showBackgroundLoading} from './background-loading.js';
@@ -191,9 +190,6 @@ async function main(){
  let capsule=null;
  let combat=null;
  let equipment=null;
- // Dyes are per item id and are read when a piece's material is built, so changing one rebuilds
- // that piece. See docs/plans/character-mmo/results/m7-dye-mechanism-2026-10-03.md
- const dyes=new Map();
  let armory=null;
  let creator=null;
  let tools={tick(){}};
@@ -368,14 +364,11 @@ async function main(){
    getShapeWeights:()=>ashen.humanShape?.weights||[0,0],
    fitId:HUMAN_EQUIPMENT_FIT,...(fullBodyManifestP?{manifest:await fullBodyManifestP}:{}),...(fastCharacter?{manifest:await starterCharacterP,loadBuffer:startupAssetBuffer}:{}),
    ...(productionShapeStart?{shapeFamily:'ashen-human-shape-v1'}:{}),
-   ...(bootAppearance?.race==='human'?{bootLoadout:bootAppearance.equipment}:{})},
+   ...(bootAppearance?.race==='human'?{bootLoadout:bootAppearance.equipment,dyes:bootAppearance.dyes}:{})},
   orc:{race:'orc',manifestUrl:'/ashen-reach/equipment-orc/manifest-coverage-v1.json',baseMeshes:ORC_BASE_VISIBLE_MESHES,fitId:ORC_EQUIPMENT_FIT,bodyUrl:ORC_BODY_URL},
   undead:{race:'undead',manifestUrl:`/ashen-reach/${UNDEAD_PACK_DIR}/manifest-coverage-v1.json`,baseMeshes:coveragePilot?[...UNDEAD_BASE_VISIBLE_MESHES,'UndeadTorsoCore']:UNDEAD_BASE_VISIBLE_MESHES,fitId:UNDEAD_EQUIPMENT_FIT,bodyUrl:coveragePilot?'/__coverage_pilot__/undead.glb':`/ashen-reach/${UNDEAD_PACK_DIR}/body.glb`,
    ...(coveragePilot?{bodySegments:{...RACE_BODY_SEGMENTS.undead,UndeadTorsoCore:['torso.upper','torso.lower','waist']}}:{})},
  };
- // Every streamed pack resolves dyes through the same map, so a dye survives a race switch and
- // a body restage: all four createStreamedEquipment call sites spread one of these packs.
- for(const pack of Object.values(packs)) pack.getDye=id=>dyeFactor(dyes.get(id)??null);
  if(coveragePilot)packs.human.manifestUrl='/ashen-reach/human-shape-v1/manifest.json';
  if(layerPilot)for(const pack of Object.values(packs)){
   pack.garmentLayerCoverage=layerPilot(pack.race);
@@ -407,7 +400,7 @@ async function main(){
   const {appearanceFromEquipment}=await import('../character/appearance/from-equipment.js');
   const {validateAppearance}=await import('../character/appearance/contract.js');
   const base=appearanceFromEquipment({race:currentRace,loadout:impl.getState()});
-  committedAppearance=validateAppearance({...base,shape:currentRace==='human'?(currentHumanShape||base.shape):{}});
+  committedAppearance=validateAppearance({...base,dyes:impl.getDyes?.()||{},shape:currentRace==='human'?(currentHumanShape||base.shape):{}});
   if(!appearanceAPI.saveAppearance(committedAppearance))ashen.appearanceWarning='Could not save; this character lasts for this session only.';
   return committedAppearance;
  };
@@ -415,6 +408,7 @@ async function main(){
   const result=await reshaped(job());
   if(result?.status==='applied'){
    await rememberAppearance();
+   creator?.refreshEquipment?.();
    void impl.upgradeTextures?.().catch(error=>{ashen.appearanceDetailError=error.message;});
   }
   return result;
@@ -423,21 +417,20 @@ async function main(){
  equipment={
   get items(){return impl.items;},
   get presets(){return impl.presets;},
-  setLoadout:patch=>equipRequest(()=>impl.setLoadout(patch)),
+  setLoadout:(patch,options)=>equipRequest(()=>impl.setLoadout(patch,options)),
   equip:(slot,id)=>equipRequest(()=>impl.equip(slot,id)),
   equipPreset:id=>equipRequest(()=>impl.equipPreset(id)),
   getState:()=>impl.getState(),
   getStatus:()=>impl.getStatus?.(),
   getBodySegments:()=>impl.getBodySegments?.()??null,
-  getDyes:()=>Object.fromEntries(dyes),
-  setDye:(id,dye)=>equipRequest(async()=>{
-   if(dye!==null&&!isDyeId(dye))throw Error(`Unknown dye ${dye}`);
-   if(!Object.hasOwn(impl.items,id))throw Error(`Unknown item ${id}`);
-   if((dyes.get(id)??null)===dye)return {status:'applied'};
-   if(dye===null)dyes.delete(id);else dyes.set(id,dye);
-   const result=await impl.rebuildPiece?.(id);
-   if(result&&result.status!=='applied')throw Error(result.error||'Dye rebuild failed');
-   return result??{status:'applied'};
+  getDyes:()=>impl.getDyes?.()||{},
+  setDyes:next=>equipRequest(()=>impl.setDyes(next)),
+  // Older capture callers pass an item ID. Resolve it only when worn; the
+  // canonical state and creator controls use slots, like the saved recipe.
+  setDye:(slotOrItem,dye)=>equipRequest(()=>{
+   const slot=Object.keys(impl.getState()).find(slot=>slot===slotOrItem||impl.getState()[slot]===slotOrItem);
+   if(!slot)return {status:'failed',error:`No worn item ${slotOrItem}`};
+   return impl.setDye(slot,dye);
   }),
   setVisible:value=>impl.setVisible(value),
   update:dt=>impl.update(dt),
@@ -470,7 +463,7 @@ async function main(){
     staged=await body.stageSource(race==='human'||coveragePilot?pack.bodyUrl:raceManifest.items.body.url,{parkOriginal:race!=='human',restoreOriginal:race==='human'});
     lifetime.throwIfAborted();
     if(race!=='human')staged.body.root.scaling.set(-1,1,1);
-    next=await createStreamedEquipment(engine,scene,staged.body,sockets,{...stagePack,bootLoadout,visible:false});
+    next=await createStreamedEquipment(engine,scene,staged.body,sockets,{...stagePack,bootLoadout,dyes:restoreAppearance?.dyes||previousImpl.getDyes?.()||{},visible:false});
     lifetime.throwIfAborted();
     await staged.commit(()=>{
      const previousHeight=player.heightScale,previousPivot=rig.pivotHeight;
@@ -571,7 +564,7 @@ async function main(){
    const full=(await starterCharacterP).fullManifest,previous=impl;
    let next=null;
    try {
-    next=await createStreamedEquipment(engine,scene,body,sockets,{...packs.human,manifest:full,bootLoadout:previous.getState(),visible:false});
+    next=await createStreamedEquipment(engine,scene,body,sockets,{...packs.human,manifest:full,bootLoadout:previous.getState(),dyes:previous.getDyes(),visible:false});
     lifetime.throwIfAborted();reshapeEquipment?.();
     previous.setVisible(false);impl=next;next.setVisible(view==='play');
     packs.human={...packs.human,manifest:full};previous.dispose();
@@ -672,7 +665,7 @@ async function main(){
      const {primeMorphMaterialSupport}=await import('./prime-morph-materials.js');
      await primeMorphMaterialSupport(engine);lifetime.throwIfAborted();
      staged=await body.stageSource(await startupAssetBuffer(manifest.items.body));lifetime.throwIfAborted();
-     next=await createStreamedEquipment(engine,scene,staged.body,sockets,{...packs.human,manifest,loadBuffer:startupAssetBuffer,shapeFamily:manifest.shapeFamily,bootLoadout:previous.getState(),getShapeWeights:()=>[Math.max(0,-shape.build),Math.max(0,shape.build)],visible:false});
+     next=await createStreamedEquipment(engine,scene,staged.body,sockets,{...packs.human,manifest,loadBuffer:startupAssetBuffer,shapeFamily:manifest.shapeFamily,bootLoadout:previous.getState(),dyes:previous.getDyes(),getShapeWeights:()=>[Math.max(0,-shape.build),Math.max(0,shape.build)],visible:false});
      lifetime.throwIfAborted();
      // The primed native extension lets addToScene build only the arriving meshes.
      // addToScene already requests the native PBR runtime rebuild; do not request it twice.
@@ -706,7 +699,10 @@ async function main(){
   });
   rebuildCreator=()=>{
    creator?.dispose();
-   creator=createCreator({armory,getAppearance:()=>committedAppearance,applyBody:applyProductionBody,getWarning:()=>ashen.appearanceWarning||appearanceLoaded?.warning});
+   creator=createCreator({armory,getAppearance:()=>committedAppearance,applyBody:applyProductionBody,applyDyes:async dyes=>{
+    const result=await equipment.setDyes(dyes);
+    if(result.status!=='applied')throw Error(result.error||'Dye change did not commit');
+   },getWarning:()=>ashen.appearanceWarning||appearanceLoaded?.warning});
    ashen.creator=creator;
   };
   rebuildCreator();

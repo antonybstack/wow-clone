@@ -60,3 +60,30 @@ test('native build failure preserves state and disposal waits for outstanding bu
 test('idle retention rejects invalid budgets before preparing assets',()=>{
  for(const maxIdle of [-1,.5,NaN,Infinity])assert.throws(()=>createEquipmentLoader({initial:{},validate(){},prepare(){},commit(){},maxIdle}),/idle budget/);
 });
+
+test('a recolour retains the committed item until its replacement commits; failure preserves it',async()=>{
+ const gate=deferred(),started=deferred(),dead=[];let shown=null,fail=false;
+ const loader=createEquipmentLoader({initial:{torso:null},validate(){},maxIdle:0,
+  isReusable:(entry,id,context)=>entry.tint===context.tint,
+  prepare:async(id,signal,context)=>({id,tint:context.tint,dispose(){dead.push(this.tint);}}),
+  beforeCommit:async(next,cache)=>{if(cache.get(next.torso).tint==='red'){started.resolve();await gate.promise;}if(fail)throw Error('pipeline');},
+  commit:(next,cache)=>{shown=cache.get(next.torso);}});
+ await loader.request({torso:'coat'},{context:{tint:'original'}});
+ const replacement=loader.request({},{context:{tint:'red'}});await started.promise;
+ assert.equal(shown.tint,'original');assert.deepEqual(dead,[]);assert.equal(loader.getState().torso,'coat');
+ gate.resolve();assert.equal((await replacement).status,'applied');assert.equal(shown.tint,'red');assert.deepEqual(dead,['original']);
+ fail=true;assert.equal((await loader.request({},{context:{tint:'blue'}})).status,'failed');
+ assert.equal(shown.tint,'red');assert.deepEqual(dead,['original','blue']);loader.dispose();assert.deepEqual(dead,['original','blue','red']);
+});
+test('cancelled recolour never publishes; disposal during its native fence retains both owners',async()=>{
+ const gate=deferred(),started=deferred(),dead=[];let shown=null;
+ const loader=createEquipmentLoader({initial:{torso:null},validate(){},maxIdle:0,
+  isReusable:(e,id,c)=>e.tint===c.tint,
+  prepare:async(id,signal,c)=>({tint:c.tint,dispose(){dead.push(this.tint);}}),
+  beforeCommit:async(next,cache)=>{if(cache.get(next.torso).tint==='blocked'){started.resolve();await gate.promise;}},
+  commit:(next,cache)=>{shown=cache.get(next.torso).tint;}});
+ await loader.request({torso:'coat'},{context:{tint:'original'}});
+ const pending=loader.request({},{context:{tint:'blocked'}});await started.promise;loader.dispose();
+ assert.equal(shown,'original');assert.deepEqual(dead,[]);gate.resolve();await pending;await loader.drain();
+ assert.equal(shown,'original');assert.deepEqual(dead.sort(),['blocked','original']);
+});

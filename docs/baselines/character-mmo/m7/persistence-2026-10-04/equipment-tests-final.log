@@ -1,0 +1,686 @@
+
+> ashen-reach@1.0.0 test:equipment
+> node --test scripts/test-equipment-contract.mjs scripts/test-equipment-loader.mjs scripts/test-streamed-assets.mjs scripts/test-orc-streamed-assets.mjs scripts/test-ashen-equipment.mjs scripts/test-undead-race.mjs scripts/test-garment-shape-contract.mjs scripts/test-coverage-contract.mjs scripts/test-wardrobe-shoulders.mjs scripts/test-wardrobe-factory-bind.mjs scripts/test-coverage-partition.mjs scripts/test-garment-layer-coverage.mjs scripts/test-coverage-manifest.mjs scripts/test-remote-pieces-publication.mjs scripts/test-swap-budget.mjs
+
+TAP version 13
+# Subtest: Equipment pack preserves all 57 authored clips exactly
+ok 1 - Equipment pack preserves all 57 authored clips exactly
+  ---
+  duration_ms: 194.772917
+  type: 'test'
+  ...
+# Subtest: Equipment uses the original ordered source bind and rest hierarchy
+ok 2 - Equipment uses the original ordered source bind and rest hierarchy
+  ---
+  duration_ms: 17.866708
+  type: 'test'
+  ...
+# Subtest: Every legacy preloaded garment retains valid normalized source weights
+ok 3 - Every legacy preloaded garment retains valid normalized source weights
+  ---
+  duration_ms: 24.298083
+  type: 'test'
+  ...
+# Subtest: Body coverage partitions preserve every original material triangle exactly once
+ok 4 - Body coverage partitions preserve every original material triangle exactly once
+  ---
+  duration_ms: 327.803583
+  type: 'test'
+  ...
+# Subtest: Shared waist coverage survives either garment being removed
+ok 5 - Shared waist coverage survives either garment being removed
+  ---
+  duration_ms: 0.741042
+  type: 'test'
+  ...
+# Subtest: Boots tuck only trouser cuffs; barefoot restores cuffs and underlying feet
+ok 6 - Boots tuck only trouser cuffs; barefoot restores cuffs and underlying feet
+  ---
+  duration_ms: 0.189459
+  type: 'test'
+  ...
+# Subtest: Torso alternatives are exclusive and invalid combinations fail
+ok 7 - Torso alternatives are exclusive and invalid combinations fail
+  ---
+  duration_ms: 0.359209
+  type: 'test'
+  ...
+# Subtest: Hood and gloves independently hide hair and underlying hands
+ok 8 - Hood and gloves independently hide hair and underlying hands
+  ---
+  duration_ms: 0.1055
+  type: 'test'
+  ...
+# Subtest: Every preset is complete and valid; staff supports the independent book slot
+ok 9 - Every preset is complete and valid; staff supports the independent book slot
+  ---
+  duration_ms: 0.355708
+  type: 'test'
+  ...
+# Subtest: every catalogue coverage declaration maps to a known segment
+ok 10 - every catalogue coverage declaration maps to a known segment
+  ---
+  duration_ms: 2.203958
+  type: 'test'
+  ...
+# Subtest: the migrated proof outfits mean the same thing in both vocabularies
+ok 11 - the migrated proof outfits mean the same thing in both vocabularies
+  ---
+  duration_ms: 0.40875
+  type: 'test'
+  ...
+# Subtest: the legacy region adapter is total over what the catalogue uses
+ok 12 - the legacy region adapter is total over what the catalogue uses
+  ---
+  duration_ms: 0.146417
+  type: 'test'
+  ...
+# Subtest: unknown segments and regions are rejected rather than ignored
+ok 13 - unknown segments and regions are rejected rather than ignored
+  ---
+  duration_ms: 0.425875
+  type: 'test'
+  ...
+# Subtest: separate Human ponytail follows hood coverage while the fused face stays visible
+ok 14 - separate Human ponytail follows hood coverage while the fused face stays visible
+  ---
+  duration_ms: 3.235541
+  type: 'test'
+  ...
+# Subtest: two-handed occupancy agrees with the catalogue validator on every combination
+ok 15 - two-handed occupancy agrees with the catalogue validator on every combination
+  ---
+  duration_ms: 42.45775
+  type: 'test'
+  ...
+# Subtest: the Orc adapter retains shipped visibility for every valid loadout
+ok 16 - the Orc adapter retains shipped visibility for every valid loadout
+  ---
+  duration_ms: 294.2365
+  type: 'test'
+  ...
+# Subtest: a one-mesh body can only be hidden when everything it carries is covered
+ok 17 - a one-mesh body can only be hidden when everything it carries is covered
+  ---
+  duration_ms: 0.495333
+  type: 'test'
+  ...
+# Subtest: hair under headwear: the hood covers the scalp only where a scalp geoset exists
+ok 18 - hair under headwear: the hood covers the scalp only where a scalp geoset exists
+  ---
+  duration_ms: 0.971666
+  type: 'test'
+  ...
+# Subtest: the adapter names only meshes the shipped packs actually contain
+ok 19 - the adapter names only meshes the shipped packs actually contain
+  ---
+  duration_ms: 511.585125
+  type: 'test'
+  ...
+# Subtest: bare states resolve: no helmet, no gloves, nothing at all
+ok 20 - bare states resolve: no helmet, no gloves, nothing at all
+  ---
+  duration_ms: 0.408792
+  type: 'test'
+  ...
+# Subtest: seams name the boundary two garments actually share
+ok 21 - seams name the boundary two garments actually share
+  ---
+  duration_ms: 14.435125
+  type: 'test'
+  ...
+# Subtest: every valid combination resolves on every race without throwing
+ok 22 - every valid combination resolves on every race without throwing
+  ---
+  duration_ms: 147.486875
+  type: 'test'
+  ...
+# Subtest: legacy packs do not pretend to have published body geosets
+ok 23 - legacy packs do not pretend to have published body geosets
+  ---
+  duration_ms: 1.599833
+  type: 'test'
+  ...
+# Subtest: published adapter is exact and independent from equipment slot names
+ok 24 - published adapter is exact and independent from equipment slot names
+  ---
+  duration_ms: 1.157709
+  type: 'test'
+  ...
+# Subtest: wrong revision/race, missing core, unknown semantics and stale body revisions fail closed
+ok 25 - wrong revision/race, missing core, unknown semantics and stale body revisions fail closed
+  ---
+  duration_ms: 1.442459
+  type: 'test'
+  ...
+# Subtest: coverage index partition preserves exact triangle union, shared attributes, morphs and node frame
+ok 26 - coverage index partition preserves exact triangle union, shared attributes, morphs and node frame
+  ---
+  duration_ms: 13.28825
+  type: 'test'
+  ...
+# Subtest: coverage rejects all/none masks before mutating the document
+ok 27 - coverage rejects all/none masks before mutating the document
+  ---
+  duration_ms: 0.635542
+  type: 'test'
+  ...
+# Subtest: coverage rejects nonboolean classifiers, invalid source indices and reused instances
+ok 28 - coverage rejects nonboolean classifiers, invalid source indices and reused instances
+  ---
+  duration_ms: 0.885125
+  type: 'test'
+  ...
+# Subtest: coverage refuses node morph animation that needs explicit duplicated channels
+ok 29 - coverage refuses node morph animation that needs explicit duplicated channels
+  ---
+  duration_ms: 0.752834
+  type: 'test'
+  ...
+# Subtest: independent written-file gate accepts exact union and rejects reversed or duplicated triangles
+ok 30 - independent written-file gate accepts exact union and rejects reversed or duplicated triangles
+  ---
+  duration_ms: 6.325459
+  type: 'test'
+  ...
+# Subtest: written gate rejects changed morph attributes, frames and ownership metadata
+ok 31 - written gate rejects changed morph attributes, frames and ownership metadata
+  ---
+  duration_ms: 4.406
+  type: 'test'
+  ...
+# Subtest: all current Human presets satisfy declared fits and occupancy
+ok 32 - all current Human presets satisfy declared fits and occupancy
+  ---
+  duration_ms: 0.755625
+  type: 'test'
+  ...
+# Subtest: different race, rig, bind or shape cannot reuse these fits silently
+ok 33 - different race, rig, bind or shape cannot reuse these fits silently
+  ---
+  duration_ms: 6.383708
+  type: 'test'
+  ...
+# Subtest: Orc factory props declare a reviewed grip correction and keep Human defaults
+ok 34 - Orc factory props declare a reviewed grip correction and keep Human defaults
+  ---
+  duration_ms: 2.083833
+  type: 'test'
+  ...
+# Subtest: items keep the Human fit and declare an Orc entry in the per-race map
+ok 35 - items keep the Human fit and declare an Orc entry in the per-race map
+  ---
+  duration_ms: 2.205333
+  type: 'test'
+  ...
+# Subtest: mutating a mapped Orc fit fails validation
+ok 36 - mutating a mapped Orc fit fails validation
+  ---
+  duration_ms: 0.41375
+  type: 'test'
+  ...
+# Subtest: coverage typos, missing meshes and invalid cuff precedence fail before rendering
+ok 37 - coverage typos, missing meshes and invalid cuff precedence fail before rendering
+  ---
+  duration_ms: 0.459083
+  type: 'test'
+  ...
+# Subtest: two-hand occupancy rejects a book in either selection order without modifying selection
+ok 38 - two-hand occupancy rejects a book in either selection order without modifying selection
+  ---
+  duration_ms: 0.431333
+  type: 'test'
+  ...
+# Subtest: catalogue nested declarations cannot mutate after validation
+ok 39 - catalogue nested declarations cannot mutate after validation
+  ---
+  duration_ms: 1.453542
+  type: 'test'
+  ...
+# Subtest: invalid grip transforms and malformed requests are rejected
+ok 40 - invalid grip transforms and malformed requests are rejected
+  ---
+  duration_ms: 0.78625
+  type: 'test'
+  ...
+# Subtest: the two-handed greatstaff occupies both hands and stays catalogue-valid
+ok 41 - the two-handed greatstaff occupies both hands and stays catalogue-valid
+  ---
+  duration_ms: 0.435625
+  type: 'test'
+  ...
+# Subtest: interactive hand selection resolves conflict in the most recent direction
+ok 42 - interactive hand selection resolves conflict in the most recent direction
+  ---
+  duration_ms: 0.161542
+  type: 'test'
+  ...
+# Subtest: superseded preparation never commits and queued selections merge
+ok 43 - superseded preparation never commits and queued selections merge
+  ---
+  duration_ms: 4.968375
+  type: 'test'
+  ...
+# Subtest: failed load preserves visible state and can retry; unused entries are bounded
+ok 44 - failed load preserves visible state and can retry; unused entries are bounded
+  ---
+  duration_ms: 0.385917
+  type: 'test'
+  ...
+# Subtest: dispose during preparation retires late resource and never commits
+ok 45 - dispose during preparation retires late resource and never commits
+  ---
+  duration_ms: 0.238167
+  type: 'test'
+  ...
+# Subtest: failed commit and invalid request preserve previous loadout
+ok 46 - failed commit and invalid request preserve previous loadout
+  ---
+  duration_ms: 0.320083
+  type: 'test'
+  ...
+# Subtest: a newer valid request aborts blocked fetch preparation
+ok 47 - a newer valid request aborts blocked fetch preparation
+  ---
+  duration_ms: 0.255083
+  type: 'test'
+  ...
+# Subtest: cancelled native material staging never publishes and retains the previous item
+ok 48 - cancelled native material staging never publishes and retains the previous item
+  ---
+  duration_ms: 0.41825
+  type: 'test'
+  ...
+# Subtest: native build failure preserves state and disposal waits for outstanding build owners
+ok 49 - native build failure preserves state and disposal waits for outstanding build owners
+  ---
+  duration_ms: 0.546667
+  type: 'test'
+  ...
+# Subtest: idle retention rejects invalid budgets before preparing assets
+ok 50 - idle retention rejects invalid budgets before preparing assets
+  ---
+  duration_ms: 0.3635
+  type: 'test'
+  ...
+# Subtest: a recolour retains the committed item until its replacement commits; failure preserves it
+ok 51 - a recolour retains the committed item until its replacement commits; failure preserves it
+  ---
+  duration_ms: 0.39525
+  type: 'test'
+  ...
+# Subtest: cancelled recolour never publishes; disposal during its native fence retains both owners
+ok 52 - cancelled recolour never publishes; disposal during its native fence retains both owners
+  ---
+  duration_ms: 0.528917
+  type: 'test'
+  ...
+# Subtest: upper trousers remain visible bare or with a torso without declared long coverage
+ok 53 - upper trousers remain visible bare or with a torso without declared long coverage
+  ---
+  duration_ms: 0.658584
+  type: 'test'
+  ...
+# Subtest: long torso hides only the declared geoset and unequip restores it
+ok 54 - long torso hides only the declared geoset and unequip restores it
+  ---
+  duration_ms: 0.501916
+  type: 'test'
+  ...
+# Subtest: inactive leg alternative cannot override selected geoset visibility
+ok 55 - inactive leg alternative cannot override selected geoset visibility
+  ---
+  duration_ms: 0.080792
+  type: 'test'
+  ...
+# Subtest: race adapter reflects already cropped Human robe rather than requiring nonexistent parts
+ok 56 - race adapter reflects already cropped Human robe rather than requiring nonexistent parts
+  ---
+  duration_ms: 0.237875
+  type: 'test'
+  ...
+# Subtest: unknown regions/items, body masking and duplicate parts fail the explicit contract
+ok 57 - unknown regions/items, body masking and duplicate parts fail the explicit contract
+  ---
+  duration_ms: 0.309709
+  type: 'test'
+  ...
+# Subtest: no garment control means the default route
+ok 58 - no garment control means the default route
+  ---
+  duration_ms: 0.930125
+  type: 'test'
+  ...
+# Subtest: the refitted pack is requested only when a shape target is driven
+ok 59 - the refitted pack is requested only when a shape target is driven
+  ---
+  duration_ms: 0.176625
+  type: 'test'
+  ...
+# Subtest: an unknown garmentFit is rejected rather than treated as shipped
+ok 60 - an unknown garmentFit is rejected rather than treated as shipped
+  ---
+  duration_ms: 0.292167
+  type: 'test'
+  ...
+# Subtest: garment fit and the plate are advertised as candidates, not shipped behaviour
+ok 61 - garment fit and the plate are advertised as candidates, not shipped behaviour
+  ---
+  duration_ms: 0.297708
+  type: 'test'
+  ...
+# Subtest: the plate rides a body variant and only when a shape is driven
+ok 62 - the plate rides a body variant and only when a shape is driven
+  ---
+  duration_ms: 0.543542
+  type: 'test'
+  ...
+# Subtest: the plated body is the same skin carrying one more mesh
+ok 63 - the plated body is the same skin carrying one more mesh
+  ---
+  duration_ms: 5.143042
+  type: 'test'
+  ...
+# Subtest: every garment carries the same targets in the same order as the body
+ok 64 - every garment carries the same targets in the same order as the body
+  ---
+  duration_ms: 15.372833
+  type: 'test'
+  ...
+# Subtest: the refit reduces the coverage the shape takes away
+ok 65 - the refit reduces the coverage the shape takes away
+  ---
+  duration_ms: 3.837084
+  type: 'test'
+  ...
+# Subtest: a rigid piece stays a similarity and cloth does not
+ok 66 - a rigid piece stays a similarity and cloth does not
+  ---
+  duration_ms: 3.901167
+  type: 'test'
+  ...
+# Subtest: Orc sculpt pack streams all published catalogue garments on the actor bind
+ok 67 - Orc sculpt pack streams all published catalogue garments on the actor bind
+  ---
+  duration_ms: 430.003708
+  type: 'test'
+  ...
+# Subtest: the published descriptor declares a version the runtime accepts
+ok 68 - the published descriptor declares a version the runtime accepts
+  ---
+  duration_ms: 0.612625
+  type: 'test'
+  ...
+# Subtest: it pins the installed Lite and catalogue, not a remembered one
+ok 69 - it pins the installed Lite and catalogue, not a remembered one
+  ---
+  duration_ms: 0.120417
+  type: 'test'
+  ...
+# Subtest: the native sweep found no bound escapes
+ok 70 - the native sweep found no bound escapes
+  ---
+  duration_ms: 0.160792
+  type: 'test'
+  ...
+# Subtest: every published piece is content-addressed and matches its recorded hash
+ok 71 - every published piece is content-addressed and matches its recorded hash
+  ---
+  duration_ms: 77.186208
+  type: 'test'
+  ...
+# Subtest: the index agrees with the descriptor and the files on disk
+ok 72 - the index agrees with the descriptor and the files on disk
+  ---
+  duration_ms: 2.478917
+  type: 'test'
+  ...
+# Subtest: nothing stale: the descriptor names the compiler that is actually present
+ok 73 - nothing stale: the descriptor names the compiler that is actually present
+  ---
+  duration_ms: 1.161708
+  type: 'test'
+  ...
+# Subtest: Tripo human pack streams the catalogue on the actor bind
+ok 74 - Tripo human pack streams the catalogue on the actor bind
+  ---
+  duration_ms: 377.620625
+  type: 'test'
+  ...
+# Subtest: Graveweaver skirt underlayer stops below the mixed-outfit waist
+ok 75 - Graveweaver skirt underlayer stops below the mixed-outfit waist
+  ---
+  duration_ms: 12.233834
+  type: 'test'
+  ...
+# Subtest: every published piece is within the swap byte ceiling
+ok 76 - every published piece is within the swap byte ceiling
+  ---
+  duration_ms: 0.877416
+  type: 'test'
+  ...
+# Subtest: the ceiling still has headroom over the largest published piece
+ok 77 - the ceiling still has headroom over the largest published piece
+  ---
+  duration_ms: 0.255166
+  type: 'test'
+  ...
+# Subtest: the byte ceiling is consistent with the latency ceiling it is derived from
+ok 78 - the byte ceiling is consistent with the latency ceiling it is derived from
+  ---
+  duration_ms: 0.069292
+  type: 'test'
+  ...
+# Subtest: the budget separates latency from frame cost
+ok 79 - the budget separates latency from frame cost
+  ---
+  duration_ms: 0.069291
+  type: 'test'
+  ...
+# Subtest: the Undead fit is a distinct identity wired into the race map
+ok 80 - the Undead fit is a distinct identity wired into the race map
+  ---
+  duration_ms: 2.842542
+  type: 'test'
+  ...
+# Subtest: an unrecognised fit is an error, not a Human
+ok 81 - an unrecognised fit is an error, not a Human
+  ---
+  duration_ms: 0.440083
+  type: 'test'
+  ...
+# Subtest: an item with no fit for a race is refused, never given the Human one
+ok 82 - an item with no fit for a race is refused, never given the Human one
+  ---
+  duration_ms: 0.449041
+  type: 'test'
+  ...
+# Subtest: a manifest entry carrying another race fit is rejected for that race
+ok 83 - a manifest entry carrying another race fit is rejected for that race
+  ---
+  duration_ms: 0.351166
+  type: 'test'
+  ...
+# Subtest: every catalogue item declares a real Undead fit
+ok 84 - every catalogue item declares a real Undead fit
+  ---
+  duration_ms: 0.302834
+  type: 'test'
+  ...
+# Subtest: Undead uses the authored grip until a correction is measured
+ok 85 - Undead uses the authored grip until a correction is measured
+  ---
+  duration_ms: 0.106792
+  type: 'test'
+  ...
+# Subtest: the provisional Undead pack boots and its garments clear every fit guard
+ok 86 - the provisional Undead pack boots and its garments clear every fit guard
+  ---
+  duration_ms: 33.900416
+  type: 'test'
+  ...
+# Subtest: an Undead pack pointed at the Human directory is refused outright
+ok 87 - an Undead pack pointed at the Human directory is refused outright
+  ---
+  duration_ms: 14.948834
+  type: 'test'
+  ...
+# Subtest: a pack whose declared race and fit disagree is refused
+ok 88 - a pack whose declared race and fit disagree is refused
+  ---
+  duration_ms: 0.744041
+  type: 'test'
+  ...
+# Subtest: a Human-fit garment inside the Undead manifest fails loudly and changes nothing
+ok 89 - a Human-fit garment inside the Undead manifest fails loudly and changes nothing
+  ---
+  duration_ms: 1.613125
+  type: 'test'
+  ...
+# Subtest: a garment the Undead pack does not carry is refused by name
+ok 90 - a garment the Undead pack does not carry is refused by name
+  ---
+  duration_ms: 3.22575
+  type: 'test'
+  ...
+# Subtest: a deleted or corrupted Undead asset fails loudly and preserves the loadout
+ok 91 - a deleted or corrupted Undead asset fails loudly and preserves the loadout
+  ---
+  duration_ms: 6.720166
+  type: 'test'
+  ...
+# Subtest: an Undead body missing a coverage region names the region
+ok 92 - an Undead body missing a coverage region names the region
+  ---
+  duration_ms: 1.591084
+  type: 'test'
+  ...
+# Subtest: a missing Undead manifest is named, not silently replaced
+ok 93 - a missing Undead manifest is named, not silently replaced
+  ---
+  duration_ms: 0.344542
+  type: 'test'
+  ...
+# Subtest: an invented race is stopped before it can inherit any Human mapping
+ok 94 - an invented race is stopped before it can inherit any Human mapping
+  ---
+  duration_ms: 0.138167
+  type: 'test'
+  ...
+# Subtest: every declared race boots through the same path with its own visibility mapping
+ok 95 - every declared race boots through the same path with its own visibility mapping
+  ---
+  duration_ms: 5.834875
+  type: 'test'
+  ...
+# Subtest: the provisional pack declares the Undead fit and never a Human one
+ok 96 - the provisional pack declares the Undead fit and never a Human one
+  ---
+  duration_ms: 3.991542
+  type: 'test'
+  ...
+# Subtest: provisional pack bytes, hashes and bind match what the manifest claims
+ok 97 - provisional pack bytes, hashes and bind match what the manifest claims
+  ---
+  duration_ms: 298.580459
+  type: 'test'
+  ...
+# Subtest: active Undead garments carry the actor rest pose and inverse bind
+ok 98 - active Undead garments carry the actor rest pose and inverse bind
+  ---
+  duration_ms: 147.934625
+  type: 'test'
+  ...
+# Subtest: the provisional Undead body carries no hair geoset
+ok 99 - the provisional Undead body carries no hair geoset
+  ---
+  duration_ms: 40.386958
+  type: 'test'
+  ...
+# Subtest: the shipped Human and Orc packs still declare their own fit
+ok 100 - the shipped Human and Orc packs still declare their own fit
+  ---
+  duration_ms: 0.86075
+  type: 'test'
+  ...
+# Subtest: independent factory gate accepts the written source-compatible plate
+ok 101 - independent factory gate accepts the written source-compatible plate
+  ---
+  duration_ms: 244.830833
+  type: 'test'
+  ...
+# Subtest: gate rejects a changed joint pose even with unchanged inverse binds
+ok 102 - gate rejects a changed joint pose even with unchanged inverse binds
+  ---
+  duration_ms: 165.967833
+  type: 'test'
+  ...
+# Subtest: gate rejects a 100x geometry explosion independent of the skin palette
+ok 103 - gate rejects a 100x geometry explosion independent of the skin palette
+  ---
+  duration_ms: 98.389791
+  type: 'test'
+  ...
+# Subtest: gate rejects normalized two-bone weights on a declared rigid plate
+ok 104 - gate rejects normalized two-bone weights on a declared rigid plate
+  ---
+  duration_ms: 135.626209
+  type: 'test'
+  ...
+# Subtest: gate rejects wrong inverse bind and absent explicit deformation
+ok 105 - gate rejects wrong inverse bind and absent explicit deformation
+  ---
+  duration_ms: 136.163792
+  type: 'test'
+  ...
+# Subtest: mixed startup geometry preserves any actual rigid primitive without treating metal as rigidity
+ok 106 - mixed startup geometry preserves any actual rigid primitive without treating metal as rigidity
+  ---
+  duration_ms: 46.278042
+  type: 'test'
+  ...
+# Subtest: native stability anchors retain reviewed rows and reject source/weight changes
+ok 107 - native stability anchors retain reviewed rows and reject source/weight changes
+  ---
+  duration_ms: 6.938084
+  type: 'test'
+  ...
+# Subtest: published plate descriptor declares the actual slot, material/detail revision and every accepted fit
+ok 108 - published plate descriptor declares the actual slot, material/detail revision and every accepted fit
+  ---
+  duration_ms: 1.839917
+  type: 'test'
+  ...
+# Subtest: human independently streamed plate retains its own exact rest bind and rigid articulation
+ok 109 - human independently streamed plate retains its own exact rest bind and rigid articulation
+  ---
+  duration_ms: 228.739459
+  type: 'test'
+  ...
+# Subtest: orc independently streamed plate retains its own exact rest bind and rigid articulation
+ok 110 - orc independently streamed plate retains its own exact rest bind and rigid articulation
+  ---
+  duration_ms: 263.472708
+  type: 'test'
+  ...
+# Subtest: undead independently streamed plate retains its own exact rest bind and rigid articulation
+ok 111 - undead independently streamed plate retains its own exact rest bind and rigid articulation
+  ---
+  duration_ms: 148.202667
+  type: 'test'
+  ...
+# Subtest: Human shape plate stays a similarity per arm and compact uses full rigid geometry
+ok 112 - Human shape plate stays a similarity per arm and compact uses full rigid geometry
+  ---
+  duration_ms: 5.181625
+  type: 'test'
+  ...
+1..112
+# tests 112
+# suites 0
+# pass 112
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1286.34775

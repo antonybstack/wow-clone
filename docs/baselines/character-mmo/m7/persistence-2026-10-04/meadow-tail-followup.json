@@ -1,0 +1,107 @@
+{
+  "conditions": {
+    "cpu": "Apple M1 Max",
+    "url": "http://127.0.0.1:7074/ashen-reach.html?play=&clean=&pixelRatio=1&gpuTiming=",
+    "viewport": [
+      1280,
+      720
+    ],
+    "seconds": 12,
+    "runs": 3,
+    "uncappedRequired": true,
+    "recording": false,
+    "race": "human",
+    "outfit": null,
+    "orcAssetsOverride": null,
+    "routes": [
+      "meadow"
+    ],
+    "recordCapped": true,
+    "savedAppearance": null
+  },
+  "baseline": [
+    {
+      "samples": 2649,
+      "meanMs": 4.531408078521322,
+      "meanFps": 220.68195639672285,
+      "p50Ms": 4.299999997019768,
+      "p95Ms": 5.699999995529652,
+      "p99Ms": 5.9000000059604645,
+      "maxMs": 8.899999998509884,
+      "above6_94": 6,
+      "above8_33": 1,
+      "above16_67": 0,
+      "above33_33": 0
+    },
+    {
+      "samples": 2663,
+      "meanMs": 4.508974840407796,
+      "meanFps": 221.7799023934139,
+      "p50Ms": 4.200000002980232,
+      "p95Ms": 5.700000002980232,
+      "p99Ms": 8.200000002980232,
+      "maxMs": 10.599999994039536,
+      "above6_94": 84,
+      "above8_33": 20,
+      "above16_67": 0,
+      "above33_33": 0
+    },
+    {
+      "samples": 2672,
+      "meanMs": 4.492589820357608,
+      "meanFps": 222.58876060053942,
+      "p50Ms": 4.200000002980232,
+      "p95Ms": 7.700000002980232,
+      "p99Ms": 9.200000002980232,
+      "maxMs": 11.600000001490116,
+      "above6_94": 163,
+      "above8_33": 84,
+      "above16_67": 0,
+      "above33_33": 0
+    }
+  ],
+  "candidate": [
+    {
+      "samples": 2578,
+      "meanMs": 4.657176105506412,
+      "meanFps": 214.72239343014107,
+      "p50Ms": 4.399999998509884,
+      "p95Ms": 5.800000004470348,
+      "p99Ms": 8.100000001490116,
+      "maxMs": 9.699999995529652,
+      "above6_94": 44,
+      "above8_33": 17,
+      "above16_67": 0,
+      "above33_33": 0
+    },
+    {
+      "samples": 2604,
+      "meanMs": 4.6101382488467815,
+      "meanFps": 216.9132347061714,
+      "p50Ms": 4.399999998509884,
+      "p95Ms": 5.899999998509884,
+      "p99Ms": 8.200000002980232,
+      "maxMs": 12.600000001490116,
+      "above6_94": 42,
+      "above8_33": 22,
+      "above16_67": 0,
+      "above33_33": 0
+    },
+    {
+      "samples": 2584,
+      "meanMs": 4.645820433438263,
+      "meanFps": 215.24723443947735,
+      "p50Ms": 4.399999998509884,
+      "p95Ms": 5.9000000059604645,
+      "p99Ms": 8.100000001490116,
+      "maxMs": 10.300000004470348,
+      "above6_94": 63,
+      "above8_33": 15,
+      "above16_67": 0,
+      "above33_33": 0
+    }
+  ],
+  "meanFrameTimeChangePercent": 2.809154025716065,
+  "p99MeanChangePercent": 4.721030014921657,
+  "interpretation": "Original p99 excess does not repeat as a >5% aggregate difference in this single prescribed follow-up. Per-run tail variability remains; retain every original row."
+}

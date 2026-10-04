@@ -51,7 +51,7 @@ test('shape records reject hidden/getter/prototype fields without evaluating the
 });
 
 // Exercise queued drafts and failed application through the real production session.
-import {createProductionCreatorSession} from '../src/character/creator/production.js';
+import {createProductionCreatorSession,createProductionDyeSession} from '../src/character/creator/production.js';
 test('queued controls, undo and failure retain one committed appearance',async()=>{
  let actual=defaultAppearance(),fail=false;
  const session=createProductionCreatorSession({getAppearance:()=>actual,applyBody:async shape=>{await Promise.resolve();if(fail)throw Error('injected');actual=validateAppearance({...actual,shape});}});
@@ -61,6 +61,28 @@ test('queued controls, undo and failure retain one committed appearance',async()
  await session.undo();assert.equal(actual.shape.height,1);assert.equal(session.canUndo,false);
  fail=true;await assert.rejects(session.set('build',.5));assert.equal(session.state.controls.build,0);assert.equal(actual.shape.build,0);
  assert.throws(()=>session.set('build','0.5'));assert.throws(()=>session.set('build',{slender:'0.5'}));
+});
+
+test('equipment colours commit in order, undo independently and preserve the recipe on failure',async()=>{
+ let actual=defaultAppearance(),fail=false;
+ const session=createProductionDyeSession({getAppearance:()=>actual,applyDyes:async dyes=>{if(fail)throw Error('network');actual=validateAppearance({...actual,dyes});}});
+ await Promise.all([session.set('torso','moss'),session.set('boots','oxblood')]);
+ assert.deepEqual(actual.dyes,{torso:'moss',boots:'oxblood'});
+ await session.undo();assert.deepEqual(actual.dyes,{torso:'moss'});
+ fail=true;await assert.rejects(session.set('torso','indigo'));assert.deepEqual(actual.dyes,{torso:'moss'});
+ await assert.rejects(session.undo());assert(session.canUndo);
+ fail=false;await session.undo();assert.deepEqual(actual.dyes,{});assert.equal(session.canUndo,false);
+ await session.set('torso','sage');await session.set('torso','undyed');assert.deepEqual(actual.dyes,{});
+ assert.throws(()=>session.set('mainHand','moss'),/No dye channel/);
+ await assert.rejects(session.set('shoulders','moss'),/No worn item/);
+ await assert.rejects(session.set('torso','neon'));assert.deepEqual(actual.dyes,{});
+});
+test('colour history expires with the equipment scope; body adjustment does not erase it',async()=>{
+ let actual=defaultAppearance();const session=createProductionDyeSession({getAppearance:()=>actual,applyDyes:async dyes=>{actual=validateAppearance({...actual,dyes});}});
+ await session.set('torso','moss');actual=validateAppearance({...actual,shape:{...actual.shape,height:.9}});assert(session.canUndo);
+ actual=validateAppearance({...actual,equipment:{...actual.equipment,torso:'lectorCoat'}});assert.equal(session.canUndo,false);
+ await session.undo();assert.deepEqual(actual.dyes,{torso:'moss'});
+ const storage=store();assert(saveAppearance(actual,{storage}));assert.deepEqual(loadAppearance({storage}).appearance,actual);
 });
 
 test('seven-slot v2 recipes migrate exactly, including endpoints and all races',()=>{

@@ -148,6 +148,18 @@ try {
     assert.notEqual(after,before,'native touch must edit the body control');
     await page.screenshot({path:`${dir}/body-controls.png`,scale:'css'});
     checks.push({name:'touch-body-control',before,after});
+    // Exercise the narrow-layout select/change path separately from the native
+    // touch drag above; selectOption does not prove the OS colour picker UI.
+    const colour=page.locator('[data-dye="torso"]');
+    await colour.scrollIntoViewIfNeeded();
+    const beforeColour=await page.evaluate(()=>ASHEN.getAppearance().dyes.torso||'undyed');
+    const nextColour=beforeColour==='moss'?'oxblood':'moss';
+    await colour.selectOption(nextColour);
+    await page.waitForFunction(id=>ASHEN.getAppearance().dyes.torso===id,nextColour);
+    await page.evaluate(()=>ASHEN.creator.settled());
+    assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('ashen.appearance.v2')).dyes.torso),nextColour);
+    await page.screenshot({path:`${dir}/colour-controls.png`,scale:'css'});
+    checks.push({name:'mobile-layout-colour-select-and-persistence',before:beforeColour,after:nextColour});
     await page.locator('#armory [data-close]').first().tap();
   }
   const beforeImage = await pixels('before'), before = await pos();

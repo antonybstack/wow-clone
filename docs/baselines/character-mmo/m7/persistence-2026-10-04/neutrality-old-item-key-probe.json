@@ -1,0 +1,1381 @@
+{
+  "url": "http://127.0.0.1:5873/ashen-reach.html?play&clean&pixelRatio=1",
+  "dyes": [
+    "oxblood",
+    "moss"
+  ],
+  "slots": [
+    "helmet",
+    "torso",
+    "legs",
+    "boots",
+    "gloves",
+    "shoulders"
+  ],
+  "races": [
+    "human",
+    "orc",
+    "undead"
+  ],
+  "rows": [
+    {
+      "race": "human",
+      "slot": "helmet",
+      "item": "graveweaverHood",
+      "dye": "oxblood",
+      "noise": 0.0639,
+      "noiseSamples": [
+        0.01,
+        0.0639,
+        0.0185,
+        0.0239
+      ],
+      "moved": 0.4062,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        139,
+        139
+      ],
+      "passed": false,
+      "error": "graveweaverHood does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "human",
+      "slot": "helmet",
+      "item": "graveweaverHood",
+      "dye": "moss",
+      "noise": 0.0639,
+      "noiseSamples": [
+        0.01,
+        0.0639,
+        0.0185,
+        0.0239
+      ],
+      "moved": 0.4417,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        139,
+        139
+      ],
+      "passed": false,
+      "error": "graveweaverHood does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "human",
+      "slot": "helmet",
+      "item": "graveweaverHood",
+      "case": "plateau",
+      "counts": [
+        139,
+        139,
+        139,
+        139,
+        139,
+        139
+      ],
+      "passed": true
+    },
+    {
+      "race": "human",
+      "slot": "torso",
+      "item": "lectorCoat",
+      "dye": "oxblood",
+      "noise": 0.036,
+      "noiseSamples": [
+        0.0297,
+        0.036,
+        0.0179,
+        0.005
+      ],
+      "moved": 1.7314,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        142,
+        142
+      ],
+      "passed": false,
+      "error": "lectorCoat does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "human",
+      "slot": "torso",
+      "item": "lectorCoat",
+      "dye": "moss",
+      "noise": 0.036,
+      "noiseSamples": [
+        0.0297,
+        0.036,
+        0.0179,
+        0.005
+      ],
+      "moved": 1.3738,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        142,
+        142
+      ],
+      "passed": false,
+      "error": "lectorCoat does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "human",
+      "slot": "torso",
+      "item": "lectorCoat",
+      "case": "plateau",
+      "counts": [
+        142,
+        142,
+        142,
+        142,
+        142,
+        142
+      ],
+      "passed": true
+    },
+    {
+      "race": "human",
+      "slot": "legs",
+      "item": "duskguardTassets",
+      "dye": "oxblood",
+      "noise": 0.0598,
+      "noiseSamples": [
+        0.0422,
+        0.0533,
+        0.0314,
+        0.0598
+      ],
+      "moved": 1.4927,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        147,
+        147
+      ],
+      "passed": false,
+      "error": "duskguardTassets does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "human",
+      "slot": "legs",
+      "item": "duskguardTassets",
+      "dye": "moss",
+      "noise": 0.0598,
+      "noiseSamples": [
+        0.0422,
+        0.0533,
+        0.0314,
+        0.0598
+      ],
+      "moved": 1.7127,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        147,
+        147
+      ],
+      "passed": false,
+      "error": "duskguardTassets does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "human",
+      "slot": "legs",
+      "item": "duskguardTassets",
+      "case": "plateau",
+      "counts": [
+        147,
+        147,
+        147,
+        147,
+        147,
+        147
+      ],
+      "passed": true
+    },
+    {
+      "race": "human",
+      "slot": "boots",
+      "item": "duskguardGreaves",
+      "dye": "oxblood",
+      "noise": 0.0648,
+      "noiseSamples": [
+        0.0058,
+        0.0141,
+        0.0648,
+        0.0132
+      ],
+      "moved": 0.6005,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        149,
+        149
+      ],
+      "passed": false,
+      "error": "duskguardGreaves does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "human",
+      "slot": "boots",
+      "item": "duskguardGreaves",
+      "dye": "moss",
+      "noise": 0.0648,
+      "noiseSamples": [
+        0.0058,
+        0.0141,
+        0.0648,
+        0.0132
+      ],
+      "moved": 0.6721,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        149,
+        149
+      ],
+      "passed": false,
+      "error": "duskguardGreaves does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "human",
+      "slot": "boots",
+      "item": "duskguardGreaves",
+      "case": "plateau",
+      "counts": [
+        149,
+        149,
+        149,
+        149,
+        149,
+        149
+      ],
+      "passed": true
+    },
+    {
+      "race": "human",
+      "slot": "gloves",
+      "item": "duskguardVambraces",
+      "dye": "oxblood",
+      "noise": 0.0222,
+      "noiseSamples": [
+        0.0134,
+        0.0116,
+        0.0222,
+        0.0116
+      ],
+      "moved": 0.4005,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        152,
+        152
+      ],
+      "passed": false,
+      "error": "duskguardVambraces does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "human",
+      "slot": "gloves",
+      "item": "duskguardVambraces",
+      "dye": "moss",
+      "noise": 0.0222,
+      "noiseSamples": [
+        0.0134,
+        0.0116,
+        0.0222,
+        0.0116
+      ],
+      "moved": 0.3181,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        152,
+        152
+      ],
+      "passed": false,
+      "error": "duskguardVambraces does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "human",
+      "slot": "gloves",
+      "item": "duskguardVambraces",
+      "case": "plateau",
+      "counts": [
+        152,
+        152,
+        152,
+        152,
+        152,
+        152
+      ],
+      "passed": true
+    },
+    {
+      "race": "human",
+      "slot": "shoulders",
+      "item": "wardenPauldrons",
+      "dye": "oxblood",
+      "noise": 0.0272,
+      "noiseSamples": [
+        0.0187,
+        0.0202,
+        0.0272,
+        0.0036
+      ],
+      "moved": 0.2568,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        153,
+        153
+      ],
+      "passed": false,
+      "error": "wardenPauldrons does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "human",
+      "slot": "shoulders",
+      "item": "wardenPauldrons",
+      "dye": "moss",
+      "noise": 0.0272,
+      "noiseSamples": [
+        0.0187,
+        0.0202,
+        0.0272,
+        0.0036
+      ],
+      "moved": 0.1833,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        153,
+        153
+      ],
+      "passed": false,
+      "error": "wardenPauldrons does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "human",
+      "slot": "shoulders",
+      "item": "wardenPauldrons",
+      "case": "plateau",
+      "counts": [
+        153,
+        153,
+        153,
+        153,
+        153,
+        153
+      ],
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "helmet",
+      "item": "graveweaverHood",
+      "dye": "oxblood",
+      "noise": 0.0459,
+      "noiseSamples": [
+        0.0459,
+        0.0092,
+        0.0103,
+        0.0057
+      ],
+      "moved": 0.49,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "passed": false,
+      "error": "graveweaverHood does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "helmet",
+      "item": "graveweaverHood",
+      "dye": "moss",
+      "noise": 0.0459,
+      "noiseSamples": [
+        0.0459,
+        0.0092,
+        0.0103,
+        0.0057
+      ],
+      "moved": 0.5224,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "passed": false,
+      "error": "graveweaverHood does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "helmet",
+      "item": "graveweaverHood",
+      "case": "plateau",
+      "counts": [
+        159,
+        159,
+        159,
+        159,
+        159,
+        159
+      ],
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "torso",
+      "item": "lectorCoat",
+      "dye": "oxblood",
+      "noise": 0.0224,
+      "noiseSamples": [
+        0.0219,
+        0.0167,
+        0.0135,
+        0.0224
+      ],
+      "moved": 2.8203,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "passed": false,
+      "error": "lectorCoat does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "torso",
+      "item": "lectorCoat",
+      "dye": "moss",
+      "noise": 0.0224,
+      "noiseSamples": [
+        0.0219,
+        0.0167,
+        0.0135,
+        0.0224
+      ],
+      "moved": 2.3256,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "passed": false,
+      "error": "lectorCoat does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "torso",
+      "item": "lectorCoat",
+      "case": "plateau",
+      "counts": [
+        159,
+        159,
+        159,
+        159,
+        159,
+        159
+      ],
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "legs",
+      "item": "duskguardTassets",
+      "dye": "oxblood",
+      "noise": 0.0629,
+      "noiseSamples": [
+        0.0369,
+        0.0629,
+        0.0075,
+        0.036
+      ],
+      "moved": 2.9776,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "passed": false,
+      "error": "duskguardTassets does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "legs",
+      "item": "duskguardTassets",
+      "dye": "moss",
+      "noise": 0.0629,
+      "noiseSamples": [
+        0.0369,
+        0.0629,
+        0.0075,
+        0.036
+      ],
+      "moved": 3.3056,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "passed": false,
+      "error": "duskguardTassets does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "legs",
+      "item": "duskguardTassets",
+      "case": "plateau",
+      "counts": [
+        159,
+        159,
+        159,
+        159,
+        159,
+        159
+      ],
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "boots",
+      "item": "duskguardGreaves",
+      "dye": "oxblood",
+      "noise": 0.0345,
+      "noiseSamples": [
+        0.0345,
+        0.0224,
+        0.0107,
+        0.005
+      ],
+      "moved": 1.4233,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "passed": false,
+      "error": "duskguardGreaves does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "boots",
+      "item": "duskguardGreaves",
+      "dye": "moss",
+      "noise": 0.0345,
+      "noiseSamples": [
+        0.0345,
+        0.0224,
+        0.0107,
+        0.005
+      ],
+      "moved": 1.4884,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "passed": false,
+      "error": "duskguardGreaves does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "boots",
+      "item": "duskguardGreaves",
+      "case": "plateau",
+      "counts": [
+        159,
+        159,
+        159,
+        159,
+        159,
+        159
+      ],
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "gloves",
+      "item": "duskguardVambraces",
+      "dye": "oxblood",
+      "noise": 0.0508,
+      "noiseSamples": [
+        0.0508,
+        0.0287,
+        0.0025,
+        0.0089
+      ],
+      "moved": 1.8003,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "passed": false,
+      "error": "duskguardVambraces does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "gloves",
+      "item": "duskguardVambraces",
+      "dye": "moss",
+      "noise": 0.0508,
+      "noiseSamples": [
+        0.0508,
+        0.0287,
+        0.0025,
+        0.0089
+      ],
+      "moved": 1.4862,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "passed": false,
+      "error": "duskguardVambraces does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "gloves",
+      "item": "duskguardVambraces",
+      "case": "plateau",
+      "counts": [
+        159,
+        159,
+        159,
+        159,
+        159,
+        159
+      ],
+      "passed": true
+    },
+    {
+      "race": "orc",
+      "slot": "shoulders",
+      "item": "wardenPauldrons",
+      "dye": "oxblood",
+      "noise": 0.0377,
+      "noiseSamples": [
+        0.011,
+        0.0028,
+        0.0377,
+        0.0158
+      ],
+      "moved": 0.6949,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "passed": false,
+      "error": "wardenPauldrons does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "shoulders",
+      "item": "wardenPauldrons",
+      "dye": "moss",
+      "noise": 0.0377,
+      "noiseSamples": [
+        0.011,
+        0.0028,
+        0.0377,
+        0.0158
+      ],
+      "moved": 0.5881,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "passed": false,
+      "error": "wardenPauldrons does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "shoulders",
+      "item": "wardenPauldrons",
+      "case": "plateau",
+      "counts": [
+        159,
+        159,
+        159,
+        159,
+        159,
+        159
+      ],
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "helmet",
+      "item": "graveweaverHood",
+      "dye": "oxblood",
+      "noise": 0.0345,
+      "noiseSamples": [
+        0.0283,
+        0.0345,
+        0.0294,
+        0.0079
+      ],
+      "moved": 0.4226,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        144,
+        144
+      ],
+      "passed": false,
+      "error": "graveweaverHood does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "helmet",
+      "item": "graveweaverHood",
+      "dye": "moss",
+      "noise": 0.0345,
+      "noiseSamples": [
+        0.0283,
+        0.0345,
+        0.0294,
+        0.0079
+      ],
+      "moved": 0.4003,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        144,
+        144
+      ],
+      "passed": false,
+      "error": "graveweaverHood does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "helmet",
+      "item": "graveweaverHood",
+      "case": "plateau",
+      "counts": [
+        144,
+        144,
+        144,
+        144,
+        144,
+        144
+      ],
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "torso",
+      "item": "lectorCoat",
+      "dye": "oxblood",
+      "noise": 0.0341,
+      "noiseSamples": [
+        0.0341,
+        0.015,
+        0.0076,
+        0.0251
+      ],
+      "moved": 1.5878,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        147,
+        147
+      ],
+      "passed": false,
+      "error": "lectorCoat does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "torso",
+      "item": "lectorCoat",
+      "dye": "moss",
+      "noise": 0.0341,
+      "noiseSamples": [
+        0.0341,
+        0.015,
+        0.0076,
+        0.0251
+      ],
+      "moved": 1.3635,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        147,
+        147
+      ],
+      "passed": false,
+      "error": "lectorCoat does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "torso",
+      "item": "lectorCoat",
+      "case": "plateau",
+      "counts": [
+        147,
+        147,
+        147,
+        147,
+        147,
+        147
+      ],
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "legs",
+      "item": "duskguardTassets",
+      "dye": "oxblood",
+      "noise": 0.0654,
+      "noiseSamples": [
+        0.0194,
+        0.0627,
+        0.0654,
+        0.0102
+      ],
+      "moved": 1.9588,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        152,
+        152
+      ],
+      "passed": false,
+      "error": "duskguardTassets does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "legs",
+      "item": "duskguardTassets",
+      "dye": "moss",
+      "noise": 0.0654,
+      "noiseSamples": [
+        0.0194,
+        0.0627,
+        0.0654,
+        0.0102
+      ],
+      "moved": 2.2725,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        152,
+        152
+      ],
+      "passed": false,
+      "error": "duskguardTassets does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "legs",
+      "item": "duskguardTassets",
+      "case": "plateau",
+      "counts": [
+        152,
+        152,
+        152,
+        152,
+        152,
+        152
+      ],
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "boots",
+      "item": "duskguardGreaves",
+      "dye": "oxblood",
+      "noise": 0.062,
+      "noiseSamples": [
+        0.0124,
+        0.0109,
+        0.062,
+        0.0163
+      ],
+      "moved": 0.9089,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        155,
+        155
+      ],
+      "passed": false,
+      "error": "duskguardGreaves does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "boots",
+      "item": "duskguardGreaves",
+      "dye": "moss",
+      "noise": 0.062,
+      "noiseSamples": [
+        0.0124,
+        0.0109,
+        0.062,
+        0.0163
+      ],
+      "moved": 1.1184,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        155,
+        155
+      ],
+      "passed": false,
+      "error": "duskguardGreaves does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "boots",
+      "item": "duskguardGreaves",
+      "case": "plateau",
+      "counts": [
+        155,
+        155,
+        155,
+        155,
+        155,
+        155
+      ],
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "gloves",
+      "item": "duskguardVambraces",
+      "dye": "oxblood",
+      "noise": 0.0802,
+      "noiseSamples": [
+        0.0802,
+        0.0578,
+        0.0312,
+        0.0331
+      ],
+      "moved": 0.435,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        158,
+        158
+      ],
+      "passed": false,
+      "error": "duskguardVambraces does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "gloves",
+      "item": "duskguardVambraces",
+      "dye": "moss",
+      "noise": 0.0802,
+      "noiseSamples": [
+        0.0802,
+        0.0578,
+        0.0312,
+        0.0331
+      ],
+      "moved": 0.3648,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        158,
+        158
+      ],
+      "passed": false,
+      "error": "duskguardVambraces does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "gloves",
+      "item": "duskguardVambraces",
+      "case": "plateau",
+      "counts": [
+        158,
+        158,
+        158,
+        158,
+        158,
+        158
+      ],
+      "passed": true
+    },
+    {
+      "race": "undead",
+      "slot": "shoulders",
+      "item": "wardenPauldrons",
+      "dye": "oxblood",
+      "noise": 0.0708,
+      "noiseSamples": [
+        0.0456,
+        0.0708,
+        0.0058,
+        0.0333
+      ],
+      "moved": 0.5281,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "passed": false,
+      "error": "wardenPauldrons does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "shoulders",
+      "item": "wardenPauldrons",
+      "dye": "moss",
+      "noise": 0.0708,
+      "noiseSamples": [
+        0.0456,
+        0.0708,
+        0.0058,
+        0.0333
+      ],
+      "moved": 0.462,
+      "triangles": [
+        1266797,
+        1266797
+      ],
+      "meshes": [
+        159,
+        159
+      ],
+      "passed": false,
+      "error": "wardenPauldrons does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "shoulders",
+      "item": "wardenPauldrons",
+      "case": "plateau",
+      "counts": [
+        159,
+        159,
+        159,
+        159,
+        159,
+        159
+      ],
+      "passed": true
+    }
+  ],
+  "failures": [
+    {
+      "race": "human",
+      "slot": "helmet",
+      "dye": "oxblood",
+      "error": "graveweaverHood does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "human",
+      "slot": "helmet",
+      "dye": "moss",
+      "error": "graveweaverHood does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "human",
+      "slot": "torso",
+      "dye": "oxblood",
+      "error": "lectorCoat does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "human",
+      "slot": "torso",
+      "dye": "moss",
+      "error": "lectorCoat does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "human",
+      "slot": "legs",
+      "dye": "oxblood",
+      "error": "duskguardTassets does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "human",
+      "slot": "legs",
+      "dye": "moss",
+      "error": "duskguardTassets does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "human",
+      "slot": "boots",
+      "dye": "oxblood",
+      "error": "duskguardGreaves does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "human",
+      "slot": "boots",
+      "dye": "moss",
+      "error": "duskguardGreaves does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "human",
+      "slot": "gloves",
+      "dye": "oxblood",
+      "error": "duskguardVambraces does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "human",
+      "slot": "gloves",
+      "dye": "moss",
+      "error": "duskguardVambraces does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "human",
+      "slot": "shoulders",
+      "dye": "oxblood",
+      "error": "wardenPauldrons does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "human",
+      "slot": "shoulders",
+      "dye": "moss",
+      "error": "wardenPauldrons does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "helmet",
+      "dye": "oxblood",
+      "error": "graveweaverHood does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "helmet",
+      "dye": "moss",
+      "error": "graveweaverHood does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "torso",
+      "dye": "oxblood",
+      "error": "lectorCoat does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "torso",
+      "dye": "moss",
+      "error": "lectorCoat does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "legs",
+      "dye": "oxblood",
+      "error": "duskguardTassets does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "legs",
+      "dye": "moss",
+      "error": "duskguardTassets does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "boots",
+      "dye": "oxblood",
+      "error": "duskguardGreaves does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "boots",
+      "dye": "moss",
+      "error": "duskguardGreaves does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "gloves",
+      "dye": "oxblood",
+      "error": "duskguardVambraces does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "gloves",
+      "dye": "moss",
+      "error": "duskguardVambraces does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "shoulders",
+      "dye": "oxblood",
+      "error": "wardenPauldrons does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "orc",
+      "slot": "shoulders",
+      "dye": "moss",
+      "error": "wardenPauldrons does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "helmet",
+      "dye": "oxblood",
+      "error": "graveweaverHood does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "helmet",
+      "dye": "moss",
+      "error": "graveweaverHood does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "torso",
+      "dye": "oxblood",
+      "error": "lectorCoat does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "torso",
+      "dye": "moss",
+      "error": "lectorCoat does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "legs",
+      "dye": "oxblood",
+      "error": "duskguardTassets does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "legs",
+      "dye": "moss",
+      "error": "duskguardTassets does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "boots",
+      "dye": "oxblood",
+      "error": "duskguardGreaves does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "boots",
+      "dye": "moss",
+      "error": "duskguardGreaves does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "gloves",
+      "dye": "oxblood",
+      "error": "duskguardVambraces does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "gloves",
+      "dye": "moss",
+      "error": "duskguardVambraces does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "shoulders",
+      "dye": "oxblood",
+      "error": "wardenPauldrons does not record oxblood\n+ actual - expected\n\n+ undefined\n- 'oxblood'\n"
+    },
+    {
+      "race": "undead",
+      "slot": "shoulders",
+      "dye": "moss",
+      "error": "wardenPauldrons does not record moss\n+ actual - expected\n\n+ undefined\n- 'moss'\n"
+    }
+  ],
+  "errors": [],
+  "passed": false,
+  "summary": {
+    "rows": 54,
+    "failed": 36,
+    "consoleErrors": 0
+  }
+}
