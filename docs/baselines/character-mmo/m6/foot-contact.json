@@ -1,0 +1,99 @@
+{
+  "note": "In the body's own space the ground plane is y = 0. A positive lowest Y is a gap between the visual mesh and the ground; negative means it sinks below.",
+  "body": "public/ashen-reach/equipment/body.glb",
+  "pieces": {
+    "wayfarerBoots": "public/ashen-reach/equipment/wayfarerBoots.glb",
+    "duskguardGreaves": "public/ashen-reach/equipment/duskguardGreaves.glb"
+  },
+  "clips": [
+    "Idle_Loop",
+    "Walk_Loop",
+    "Sprint_Loop"
+  ],
+  "rows": [
+    {
+      "clip": "Idle_Loop",
+      "body": {
+        "lowestY": 0.003918748814612627,
+        "lowestFootY": 0.003918748814612627,
+        "footVertices": 490
+      },
+      "pieces": {
+        "WayfarerBoots": {
+          "lowestY": -0.014340168796479702,
+          "lowestFootY": -0.014340168796479702,
+          "footVertices": 1776,
+          "piece": "wayfarerBoots"
+        },
+        "DuskguardBootUnderlayer": {
+          "lowestY": -0.014340168796479702,
+          "lowestFootY": -0.014340168796479702,
+          "footVertices": 1776,
+          "piece": "duskguardGreaves"
+        },
+        "DuskguardGreaves": {
+          "lowestY": 0.17225846648216248,
+          "lowestFootY": null,
+          "footVertices": 0,
+          "piece": "duskguardGreaves"
+        }
+      }
+    },
+    {
+      "clip": "Walk_Loop",
+      "body": {
+        "lowestY": -0.002620786428451538,
+        "lowestFootY": -0.002620786428451538,
+        "footVertices": 490
+      },
+      "pieces": {
+        "WayfarerBoots": {
+          "lowestY": -0.012707764282822609,
+          "lowestFootY": -0.012707764282822609,
+          "footVertices": 1776,
+          "piece": "wayfarerBoots"
+        },
+        "DuskguardBootUnderlayer": {
+          "lowestY": -0.012707764282822609,
+          "lowestFootY": -0.012707764282822609,
+          "footVertices": 1776,
+          "piece": "duskguardGreaves"
+        },
+        "DuskguardGreaves": {
+          "lowestY": 0.17752650380134583,
+          "lowestFootY": null,
+          "footVertices": 0,
+          "piece": "duskguardGreaves"
+        }
+      }
+    },
+    {
+      "clip": "Sprint_Loop",
+      "body": {
+        "lowestY": 0.03411285951733589,
+        "lowestFootY": 0.03411285951733589,
+        "footVertices": 490
+      },
+      "pieces": {
+        "WayfarerBoots": {
+          "lowestY": 0.02414821647107601,
+          "lowestFootY": 0.02414821647107601,
+          "footVertices": 1776,
+          "piece": "wayfarerBoots"
+        },
+        "DuskguardBootUnderlayer": {
+          "lowestY": 0.02414821647107601,
+          "lowestFootY": 0.02414821647107601,
+          "footVertices": 1776,
+          "piece": "duskguardGreaves"
+        },
+        "DuskguardGreaves": {
+          "lowestY": 0.21622450649738312,
+          "lowestFootY": null,
+          "footVertices": 0,
+          "piece": "duskguardGreaves"
+        }
+      }
+    }
+  ]
+}

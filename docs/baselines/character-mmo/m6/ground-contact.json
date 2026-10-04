@@ -1,0 +1,1109 @@
+{
+  "url": "http://127.0.0.1:5873/ashen-reach.html?play&clean&pixelRatio=1",
+  "note": "gap = capsule bottom minus visual terrain height at the settled position. Positive means the player stands above the ground that is drawn.",
+  "step": 6,
+  "span": 30,
+  "summary": {
+    "sampled": 121,
+    "settledAndGrounded": 120,
+    "gapMedian": 0.1027,
+    "gapP95": 0.1419,
+    "gapMax": 0.1531,
+    "gapMin": -0.01,
+    "above10mm": 117,
+    "above50mm": 103,
+    "below": 0
+  },
+  "rows": [
+    {
+      "x": -30,
+      "z": -30,
+      "capsuleBottomY": 0.1172,
+      "terrainY": 0.0137,
+      "grounded": true,
+      "drift": 0.01,
+      "gap": 0.1036
+    },
+    {
+      "x": -30,
+      "z": -24,
+      "capsuleBottomY": -0.3466,
+      "terrainY": -0.4747,
+      "grounded": true,
+      "drift": 0.004,
+      "gap": 0.1281
+    },
+    {
+      "x": -30,
+      "z": -18,
+      "capsuleBottomY": -0.1825,
+      "terrainY": -0.2556,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.0731
+    },
+    {
+      "x": -30,
+      "z": -12,
+      "capsuleBottomY": -0.3994,
+      "terrainY": -0.4255,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.0261
+    },
+    {
+      "x": -30,
+      "z": -6,
+      "capsuleBottomY": 0.081,
+      "terrainY": -0.0433,
+      "grounded": true,
+      "drift": 0.006,
+      "gap": 0.1243
+    },
+    {
+      "x": -30,
+      "z": 0,
+      "capsuleBottomY": 0.32,
+      "terrainY": 0.2244,
+      "grounded": true,
+      "drift": 0.005,
+      "gap": 0.0956
+    },
+    {
+      "x": -30,
+      "z": 6,
+      "capsuleBottomY": 0.4564,
+      "terrainY": 0.3579,
+      "grounded": true,
+      "drift": 0.002,
+      "gap": 0.0986
+    },
+    {
+      "x": -30,
+      "z": 12,
+      "capsuleBottomY": 0.8519,
+      "terrainY": 0.7755,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.0764
+    },
+    {
+      "x": -30,
+      "z": 18,
+      "capsuleBottomY": 0.7567,
+      "terrainY": 0.6394,
+      "grounded": true,
+      "drift": 0.005,
+      "gap": 0.1173
+    },
+    {
+      "x": -30,
+      "z": 24,
+      "capsuleBottomY": 1.1933,
+      "terrainY": 1.0825,
+      "grounded": true,
+      "drift": 0.003,
+      "gap": 0.1108
+    },
+    {
+      "x": -30,
+      "z": 30,
+      "capsuleBottomY": 0.9421,
+      "terrainY": 0.8648,
+      "grounded": true,
+      "drift": 0.002,
+      "gap": 0.0772
+    },
+    {
+      "x": -24,
+      "z": -30,
+      "capsuleBottomY": -0.2349,
+      "terrainY": -0.3602,
+      "grounded": true,
+      "drift": 0.007,
+      "gap": 0.1253
+    },
+    {
+      "x": -24,
+      "z": -24,
+      "capsuleBottomY": -0.5075,
+      "terrainY": -0.5622,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.0548
+    },
+    {
+      "x": -24,
+      "z": -18,
+      "capsuleBottomY": -0.073,
+      "terrainY": -0.1266,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.0536
+    },
+    {
+      "x": -24,
+      "z": -12,
+      "capsuleBottomY": -0.0406,
+      "terrainY": -0.1791,
+      "grounded": true,
+      "drift": 0.004,
+      "gap": 0.1385
+    },
+    {
+      "x": -24,
+      "z": -6,
+      "capsuleBottomY": 0.4623,
+      "terrainY": 0.3457,
+      "grounded": true,
+      "drift": 0.011,
+      "gap": 0.1166
+    },
+    {
+      "x": -24,
+      "z": 0,
+      "capsuleBottomY": 0.3717,
+      "terrainY": 0.2664,
+      "grounded": true,
+      "drift": 0.007,
+      "gap": 0.1053
+    },
+    {
+      "x": -24,
+      "z": 6,
+      "capsuleBottomY": 0.5137,
+      "terrainY": 0.3876,
+      "grounded": true,
+      "drift": 0.011,
+      "gap": 0.1261
+    },
+    {
+      "x": -24,
+      "z": 12,
+      "capsuleBottomY": 0.633,
+      "terrainY": 0.5218,
+      "grounded": true,
+      "drift": 0.003,
+      "gap": 0.1111
+    },
+    {
+      "x": -24,
+      "z": 18,
+      "capsuleBottomY": 0.7648,
+      "terrainY": 0.6161,
+      "grounded": true,
+      "drift": 0.003,
+      "gap": 0.1487
+    },
+    {
+      "x": -24,
+      "z": 24,
+      "capsuleBottomY": 1.4177,
+      "terrainY": 1.3088,
+      "grounded": true,
+      "drift": 0.007,
+      "gap": 0.1089
+    },
+    {
+      "x": -24,
+      "z": 30,
+      "capsuleBottomY": 1.4342,
+      "terrainY": 1.3419,
+      "grounded": true,
+      "drift": 0.004,
+      "gap": 0.0923
+    },
+    {
+      "x": -18,
+      "z": -30,
+      "capsuleBottomY": -0.4558,
+      "terrainY": -0.4744,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.0187
+    },
+    {
+      "x": -18,
+      "z": -24,
+      "capsuleBottomY": -0.226,
+      "terrainY": -0.2545,
+      "grounded": true,
+      "drift": 0.003,
+      "gap": 0.0285
+    },
+    {
+      "x": -18,
+      "z": -18,
+      "capsuleBottomY": 0.2142,
+      "terrainY": 0.1396,
+      "grounded": true,
+      "drift": 0,
+      "gap": 0.0746
+    },
+    {
+      "x": -18,
+      "z": -12,
+      "capsuleBottomY": 0.1664,
+      "terrainY": 0.0767,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.0897
+    },
+    {
+      "x": -18,
+      "z": -6,
+      "capsuleBottomY": 0.5081,
+      "terrainY": 0.3962,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.1119
+    },
+    {
+      "x": -18,
+      "z": 0,
+      "capsuleBottomY": 0.1092,
+      "terrainY": -0.016,
+      "grounded": true,
+      "drift": 0.014,
+      "gap": 0.1251
+    },
+    {
+      "x": -18,
+      "z": 6,
+      "capsuleBottomY": 0.2634,
+      "terrainY": 0.1688,
+      "grounded": true,
+      "drift": 0.006,
+      "gap": 0.0946
+    },
+    {
+      "x": -18,
+      "z": 12,
+      "capsuleBottomY": 0.2928,
+      "terrainY": 0.1936,
+      "grounded": true,
+      "drift": 0.002,
+      "gap": 0.0992
+    },
+    {
+      "x": -18,
+      "z": 18,
+      "capsuleBottomY": 0.8582,
+      "terrainY": 0.7211,
+      "grounded": true,
+      "drift": 0.01,
+      "gap": 0.1371
+    },
+    {
+      "x": -18,
+      "z": 24,
+      "capsuleBottomY": 1.5647,
+      "terrainY": 1.5181,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.0466
+    },
+    {
+      "x": -18,
+      "z": 30,
+      "capsuleBottomY": 1.8966,
+      "terrainY": 1.7547,
+      "grounded": true,
+      "drift": 0.011,
+      "gap": 0.1419
+    },
+    {
+      "x": -12,
+      "z": -30,
+      "capsuleBottomY": -0.2539,
+      "terrainY": -0.2733,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.0193
+    },
+    {
+      "x": -12,
+      "z": -24,
+      "capsuleBottomY": 0.2754,
+      "terrainY": 0.1553,
+      "grounded": true,
+      "drift": 0.015,
+      "gap": 0.1201
+    },
+    {
+      "x": -12,
+      "z": -18,
+      "capsuleBottomY": 0.2791,
+      "terrainY": 0.1893,
+      "grounded": true,
+      "drift": 0.011,
+      "gap": 0.0898
+    },
+    {
+      "x": -12,
+      "z": -12,
+      "capsuleBottomY": 0.1886,
+      "terrainY": 0.0545,
+      "grounded": true,
+      "drift": 0.002,
+      "gap": 0.1341
+    },
+    {
+      "x": -12,
+      "z": -6,
+      "capsuleBottomY": 0.0836,
+      "terrainY": 0.0711,
+      "grounded": true,
+      "drift": 0.002,
+      "gap": 0.0125
+    },
+    {
+      "x": -12,
+      "z": 0,
+      "capsuleBottomY": -0.2224,
+      "terrainY": -0.3434,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.121
+    },
+    {
+      "x": -12,
+      "z": 6,
+      "capsuleBottomY": 0.1481,
+      "terrainY": 0.03,
+      "grounded": true,
+      "drift": 0.007,
+      "gap": 0.1181
+    },
+    {
+      "x": -12,
+      "z": 12,
+      "capsuleBottomY": 0.2272,
+      "terrainY": 0.1047,
+      "grounded": true,
+      "drift": 0.004,
+      "gap": 0.1224
+    },
+    {
+      "x": -12,
+      "z": 18,
+      "capsuleBottomY": 0.9988,
+      "terrainY": 0.9206,
+      "grounded": true,
+      "drift": 0.003,
+      "gap": 0.0782
+    },
+    {
+      "x": -12,
+      "z": 24,
+      "capsuleBottomY": 1.5678,
+      "terrainY": 1.4477,
+      "grounded": true,
+      "drift": 0.002,
+      "gap": 0.1201
+    },
+    {
+      "x": -12,
+      "z": 30,
+      "capsuleBottomY": 1.7954,
+      "terrainY": 1.6698,
+      "grounded": true,
+      "drift": 0.004,
+      "gap": 0.1256
+    },
+    {
+      "x": -6,
+      "z": -30,
+      "capsuleBottomY": 0.0425,
+      "terrainY": -0.0559,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.0985
+    },
+    {
+      "x": -6,
+      "z": -24,
+      "capsuleBottomY": 0.3852,
+      "terrainY": 0.2689,
+      "grounded": true,
+      "drift": 0,
+      "gap": 0.1163
+    },
+    {
+      "x": -6,
+      "z": -18,
+      "capsuleBottomY": 0.0299,
+      "terrainY": -0.1083,
+      "grounded": true,
+      "drift": 0.011,
+      "gap": 0.1382
+    },
+    {
+      "x": -6,
+      "z": -12,
+      "capsuleBottomY": -0.0839,
+      "terrainY": -0.164,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.0801
+    },
+    {
+      "x": -6,
+      "z": -6,
+      "capsuleBottomY": -0.1931,
+      "terrainY": -0.2789,
+      "grounded": true,
+      "drift": 0.011,
+      "gap": 0.0859
+    },
+    {
+      "x": -6,
+      "z": 0,
+      "capsuleBottomY": -0.2304,
+      "terrainY": -0.3485,
+      "grounded": false,
+      "drift": 0.113,
+      "gap": 0.1181
+    },
+    {
+      "x": -6,
+      "z": 6,
+      "capsuleBottomY": 0.1469,
+      "terrainY": 0.1551,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": -0.0082
+    },
+    {
+      "x": -6,
+      "z": 12,
+      "capsuleBottomY": 0.3553,
+      "terrainY": 0.25,
+      "grounded": true,
+      "drift": 0.012,
+      "gap": 0.1054
+    },
+    {
+      "x": -6,
+      "z": 18,
+      "capsuleBottomY": 1.0327,
+      "terrainY": 0.9657,
+      "grounded": true,
+      "drift": 0.012,
+      "gap": 0.067
+    },
+    {
+      "x": -6,
+      "z": 24,
+      "capsuleBottomY": 1.0894,
+      "terrainY": 0.9697,
+      "grounded": true,
+      "drift": 0.005,
+      "gap": 0.1197
+    },
+    {
+      "x": -6,
+      "z": 30,
+      "capsuleBottomY": 1.1601,
+      "terrainY": 1.0875,
+      "grounded": true,
+      "drift": 0.003,
+      "gap": 0.0726
+    },
+    {
+      "x": 0,
+      "z": -30,
+      "capsuleBottomY": -0.0575,
+      "terrainY": -0.1023,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.0448
+    },
+    {
+      "x": 0,
+      "z": -24,
+      "capsuleBottomY": 0.0709,
+      "terrainY": 0.0064,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.0645
+    },
+    {
+      "x": 0,
+      "z": -18,
+      "capsuleBottomY": -0.3454,
+      "terrainY": -0.4788,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.1334
+    },
+    {
+      "x": 0,
+      "z": -12,
+      "capsuleBottomY": -0.1528,
+      "terrainY": -0.2483,
+      "grounded": true,
+      "drift": 0.007,
+      "gap": 0.0956
+    },
+    {
+      "x": 0,
+      "z": -6,
+      "capsuleBottomY": -0.1918,
+      "terrainY": -0.313,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.1212
+    },
+    {
+      "x": 0,
+      "z": 0,
+      "capsuleBottomY": 0.0841,
+      "terrainY": 0.0104,
+      "grounded": true,
+      "drift": 0.003,
+      "gap": 0.0737
+    },
+    {
+      "x": 0,
+      "z": 6,
+      "capsuleBottomY": 0.4675,
+      "terrainY": 0.3528,
+      "grounded": true,
+      "drift": 0.003,
+      "gap": 0.1147
+    },
+    {
+      "x": 0,
+      "z": 12,
+      "capsuleBottomY": 0.4427,
+      "terrainY": 0.3471,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.0957
+    },
+    {
+      "x": 0,
+      "z": 18,
+      "capsuleBottomY": 0.666,
+      "terrainY": 0.6761,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": -0.01
+    },
+    {
+      "x": 0,
+      "z": 24,
+      "capsuleBottomY": 0.39,
+      "terrainY": 0.2925,
+      "grounded": true,
+      "drift": 0.005,
+      "gap": 0.0975
+    },
+    {
+      "x": 0,
+      "z": 30,
+      "capsuleBottomY": 0.5248,
+      "terrainY": 0.4458,
+      "grounded": true,
+      "drift": 0.003,
+      "gap": 0.079
+    },
+    {
+      "x": 6,
+      "z": -30,
+      "capsuleBottomY": -0.2968,
+      "terrainY": -0.335,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.0382
+    },
+    {
+      "x": 6,
+      "z": -24,
+      "capsuleBottomY": -0.195,
+      "terrainY": -0.3146,
+      "grounded": true,
+      "drift": 0.004,
+      "gap": 0.1196
+    },
+    {
+      "x": 6,
+      "z": -18,
+      "capsuleBottomY": -0.3815,
+      "terrainY": -0.5346,
+      "grounded": true,
+      "drift": 0.009,
+      "gap": 0.1531
+    },
+    {
+      "x": 6,
+      "z": -12,
+      "capsuleBottomY": -0.0198,
+      "terrainY": -0.0344,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.0145
+    },
+    {
+      "x": 6,
+      "z": -6,
+      "capsuleBottomY": 0.0313,
+      "terrainY": -0.0725,
+      "grounded": true,
+      "drift": 0.007,
+      "gap": 0.1038
+    },
+    {
+      "x": 6,
+      "z": 0,
+      "capsuleBottomY": 0.4723,
+      "terrainY": 0.3743,
+      "grounded": true,
+      "drift": 0.002,
+      "gap": 0.098
+    },
+    {
+      "x": 6,
+      "z": 6,
+      "capsuleBottomY": 0.37,
+      "terrainY": 0.2953,
+      "grounded": true,
+      "drift": 0.011,
+      "gap": 0.0747
+    },
+    {
+      "x": 6,
+      "z": 12,
+      "capsuleBottomY": 0.2975,
+      "terrainY": 0.1985,
+      "grounded": true,
+      "drift": 0.008,
+      "gap": 0.0989
+    },
+    {
+      "x": 6,
+      "z": 18,
+      "capsuleBottomY": 0.2999,
+      "terrainY": 0.1743,
+      "grounded": true,
+      "drift": 0.012,
+      "gap": 0.1256
+    },
+    {
+      "x": 6,
+      "z": 24,
+      "capsuleBottomY": -0.0361,
+      "terrainY": -0.1655,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.1294
+    },
+    {
+      "x": 6,
+      "z": 30,
+      "capsuleBottomY": 0.2957,
+      "terrainY": 0.1747,
+      "grounded": true,
+      "drift": 0.004,
+      "gap": 0.121
+    },
+    {
+      "x": 12,
+      "z": -30,
+      "capsuleBottomY": -0.3514,
+      "terrainY": -0.42,
+      "grounded": true,
+      "drift": 0.01,
+      "gap": 0.0686
+    },
+    {
+      "x": 12,
+      "z": -24,
+      "capsuleBottomY": -0.2636,
+      "terrainY": -0.3586,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.095
+    },
+    {
+      "x": 12,
+      "z": -18,
+      "capsuleBottomY": -0.1178,
+      "terrainY": -0.2033,
+      "grounded": true,
+      "drift": 0.008,
+      "gap": 0.0855
+    },
+    {
+      "x": 12,
+      "z": -12,
+      "capsuleBottomY": 0.332,
+      "terrainY": 0.2549,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.0771
+    },
+    {
+      "x": 12,
+      "z": -6,
+      "capsuleBottomY": 0.1358,
+      "terrainY": 0.1064,
+      "grounded": true,
+      "drift": 0,
+      "gap": 0.0295
+    },
+    {
+      "x": 12,
+      "z": 0,
+      "capsuleBottomY": 0.5007,
+      "terrainY": 0.3836,
+      "grounded": true,
+      "drift": 0,
+      "gap": 0.1171
+    },
+    {
+      "x": 12,
+      "z": 6,
+      "capsuleBottomY": 0.0772,
+      "terrainY": -0.06,
+      "grounded": true,
+      "drift": 0.007,
+      "gap": 0.1372
+    },
+    {
+      "x": 12,
+      "z": 12,
+      "capsuleBottomY": -0.0342,
+      "terrainY": -0.0443,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.0101
+    },
+    {
+      "x": 12,
+      "z": 18,
+      "capsuleBottomY": -0.0915,
+      "terrainY": -0.1722,
+      "grounded": true,
+      "drift": 0.002,
+      "gap": 0.0807
+    },
+    {
+      "x": 12,
+      "z": 24,
+      "capsuleBottomY": -0.0296,
+      "terrainY": -0.13,
+      "grounded": true,
+      "drift": 0.003,
+      "gap": 0.1005
+    },
+    {
+      "x": 12,
+      "z": 30,
+      "capsuleBottomY": 0.4255,
+      "terrainY": 0.3044,
+      "grounded": true,
+      "drift": 0,
+      "gap": 0.1211
+    },
+    {
+      "x": 18,
+      "z": -30,
+      "capsuleBottomY": -0.0775,
+      "terrainY": -0.1803,
+      "grounded": true,
+      "drift": 0.002,
+      "gap": 0.1027
+    },
+    {
+      "x": 18,
+      "z": -24,
+      "capsuleBottomY": 0.0012,
+      "terrainY": -0.1464,
+      "grounded": true,
+      "drift": 0.002,
+      "gap": 0.1476
+    },
+    {
+      "x": 18,
+      "z": -18,
+      "capsuleBottomY": 0.3124,
+      "terrainY": 0.1811,
+      "grounded": true,
+      "drift": 0.015,
+      "gap": 0.1314
+    },
+    {
+      "x": 18,
+      "z": -12,
+      "capsuleBottomY": 0.3818,
+      "terrainY": 0.2594,
+      "grounded": true,
+      "drift": 0.002,
+      "gap": 0.1224
+    },
+    {
+      "x": 18,
+      "z": -6,
+      "capsuleBottomY": 0.1222,
+      "terrainY": 0.0025,
+      "grounded": true,
+      "drift": 0.006,
+      "gap": 0.1196
+    },
+    {
+      "x": 18,
+      "z": 0,
+      "capsuleBottomY": 0.1763,
+      "terrainY": 0.0642,
+      "grounded": true,
+      "drift": 0.004,
+      "gap": 0.112
+    },
+    {
+      "x": 18,
+      "z": 6,
+      "capsuleBottomY": -0.3616,
+      "terrainY": -0.3847,
+      "grounded": true,
+      "drift": 0,
+      "gap": 0.0232
+    },
+    {
+      "x": 18,
+      "z": 12,
+      "capsuleBottomY": 0.0462,
+      "terrainY": -0.0734,
+      "grounded": true,
+      "drift": 0.004,
+      "gap": 0.1196
+    },
+    {
+      "x": 18,
+      "z": 18,
+      "capsuleBottomY": 0.0101,
+      "terrainY": -0.1359,
+      "grounded": true,
+      "drift": 0.002,
+      "gap": 0.1461
+    },
+    {
+      "x": 18,
+      "z": 24,
+      "capsuleBottomY": 0.375,
+      "terrainY": 0.2574,
+      "grounded": true,
+      "drift": 0.016,
+      "gap": 0.1176
+    },
+    {
+      "x": 18,
+      "z": 30,
+      "capsuleBottomY": 0.5332,
+      "terrainY": 0.4803,
+      "grounded": true,
+      "drift": 0.007,
+      "gap": 0.0529
+    },
+    {
+      "x": 24,
+      "z": -30,
+      "capsuleBottomY": 0.2409,
+      "terrainY": 0.1624,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.0784
+    },
+    {
+      "x": 24,
+      "z": -24,
+      "capsuleBottomY": 0.1187,
+      "terrainY": 0.0009,
+      "grounded": true,
+      "drift": 0,
+      "gap": 0.1179
+    },
+    {
+      "x": 24,
+      "z": -18,
+      "capsuleBottomY": 0.2574,
+      "terrainY": 0.2483,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.0091
+    },
+    {
+      "x": 24,
+      "z": -12,
+      "capsuleBottomY": -0.0098,
+      "terrainY": -0.0906,
+      "grounded": true,
+      "drift": 0.013,
+      "gap": 0.0808
+    },
+    {
+      "x": 24,
+      "z": -6,
+      "capsuleBottomY": -0.0947,
+      "terrainY": -0.2245,
+      "grounded": true,
+      "drift": 0.003,
+      "gap": 0.1298
+    },
+    {
+      "x": 24,
+      "z": 0,
+      "capsuleBottomY": -0.104,
+      "terrainY": -0.2201,
+      "grounded": true,
+      "drift": 0.009,
+      "gap": 0.1161
+    },
+    {
+      "x": 24,
+      "z": 6,
+      "capsuleBottomY": -0.1967,
+      "terrainY": -0.3369,
+      "grounded": true,
+      "drift": 0.009,
+      "gap": 0.1402
+    },
+    {
+      "x": 24,
+      "z": 12,
+      "capsuleBottomY": 0.2719,
+      "terrainY": 0.1805,
+      "grounded": true,
+      "drift": 0.004,
+      "gap": 0.0914
+    },
+    {
+      "x": 24,
+      "z": 18,
+      "capsuleBottomY": 0.2792,
+      "terrainY": 0.1269,
+      "grounded": true,
+      "drift": 0.007,
+      "gap": 0.1523
+    },
+    {
+      "x": 24,
+      "z": 24,
+      "capsuleBottomY": 0.6494,
+      "terrainY": 0.5624,
+      "grounded": true,
+      "drift": 0.009,
+      "gap": 0.087
+    },
+    {
+      "x": 24,
+      "z": 30,
+      "capsuleBottomY": 0.4805,
+      "terrainY": 0.3599,
+      "grounded": true,
+      "drift": 0.006,
+      "gap": 0.1206
+    },
+    {
+      "x": 30,
+      "z": -30,
+      "capsuleBottomY": 0.2771,
+      "terrainY": 0.2241,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.053
+    },
+    {
+      "x": 30,
+      "z": -24,
+      "capsuleBottomY": 0.0041,
+      "terrainY": -0.1343,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.1385
+    },
+    {
+      "x": 30,
+      "z": -18,
+      "capsuleBottomY": 0.0617,
+      "terrainY": -0.0141,
+      "grounded": true,
+      "drift": 0.008,
+      "gap": 0.0758
+    },
+    {
+      "x": 30,
+      "z": -12,
+      "capsuleBottomY": -0.4116,
+      "terrainY": -0.4624,
+      "grounded": true,
+      "drift": 0.002,
+      "gap": 0.0508
+    },
+    {
+      "x": 30,
+      "z": -6,
+      "capsuleBottomY": -0.1209,
+      "terrainY": -0.2397,
+      "grounded": true,
+      "drift": 0.006,
+      "gap": 0.1188
+    },
+    {
+      "x": 30,
+      "z": 0,
+      "capsuleBottomY": -0.1558,
+      "terrainY": -0.1905,
+      "grounded": true,
+      "drift": 0.001,
+      "gap": 0.0347
+    },
+    {
+      "x": 30,
+      "z": 6,
+      "capsuleBottomY": 0.0928,
+      "terrainY": 0.048,
+      "grounded": true,
+      "drift": 0.017,
+      "gap": 0.0447
+    },
+    {
+      "x": 30,
+      "z": 12,
+      "capsuleBottomY": 0.5379,
+      "terrainY": 0.4267,
+      "grounded": true,
+      "drift": 0.002,
+      "gap": 0.1112
+    },
+    {
+      "x": 30,
+      "z": 18,
+      "capsuleBottomY": 0.3513,
+      "terrainY": 0.2557,
+      "grounded": true,
+      "drift": 0.005,
+      "gap": 0.0956
+    },
+    {
+      "x": 30,
+      "z": 24,
+      "capsuleBottomY": 0.5854,
+      "terrainY": 0.4744,
+      "grounded": true,
+      "drift": 0.003,
+      "gap": 0.111
+    },
+    {
+      "x": 30,
+      "z": 30,
+      "capsuleBottomY": 0.116,
+      "terrainY": -0.0149,
+      "grounded": true,
+      "drift": 0.011,
+      "gap": 0.1309
+    }
+  ],
+  "errors": []
+}
