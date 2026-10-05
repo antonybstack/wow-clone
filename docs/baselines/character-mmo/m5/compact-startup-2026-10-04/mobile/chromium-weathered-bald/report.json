@@ -1,0 +1,135 @@
+{
+  "kind": "chromium",
+  "url": "http://127.0.0.1:7174/",
+  "injectDepthFailure": false,
+  "disableDepthFallback": false,
+  "device": "desktop engine with mobile viewport/touch emulation",
+  "errors": [],
+  "checks": [
+    {
+      "name": "touch-body-control",
+      "before": 0.95,
+      "after": -0.52
+    },
+    {
+      "name": "mobile-layout-colour-select-and-persistence",
+      "before": "oxblood",
+      "after": "moss"
+    },
+    {
+      "name": "mobile-layout-identity-select-persistence-and-independent-undo",
+      "before": "weathered-bald",
+      "after": "prime-bald"
+    },
+    {
+      "name": "native touch advances simulation and displayed world",
+      "traveled": 24.864257100882217,
+      "imageDelta": 18.7815625
+    },
+    {
+      "name": "capture-loss"
+    },
+    {
+      "name": "cancel"
+    },
+    {
+      "name": "modal"
+    },
+    {
+      "name": "blur"
+    }
+  ],
+  "appearance": {
+    "schemaVersion": 2,
+    "catalogVersion": "appearance-catalog-v6",
+    "race": "human",
+    "fitFamily": "ashen-human",
+    "fit": {
+      "rig": "source-65",
+      "bind": 1,
+      "shape": 1
+    },
+    "shape": {
+      "family": "ashen-human-shape-v1",
+      "height": 0.9,
+      "build": 0.95
+    },
+    "components": {
+      "head": "human-weathered-v1",
+      "hair": "human-bald-v1"
+    },
+    "dyes": {
+      "helmet": "moss",
+      "torso": "oxblood",
+      "legs": "indigo"
+    },
+    "equipment": {
+      "helmet": "graveweaverHood",
+      "torso": "pilgrimTunic",
+      "legs": "graveweaverSkirt",
+      "boots": "wayfarerBoots",
+      "gloves": "graveweaverGloves",
+      "mainHand": "graveweaverStaff",
+      "offHand": "graveweaverBook",
+      "shoulders": "wardenPauldrons"
+    }
+  },
+  "loadedScripts": [
+    "http://127.0.0.1:7174/assets/startupPreload-DD-RUbIc.js",
+    "http://127.0.0.1:7174/assets/ashenReach-uZtkcESt.js"
+  ],
+  "runtime": {
+    "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+    "physics": true,
+    "canvas": [
+      322,
+      550
+    ],
+    "post": {
+      "hdr": true,
+      "format": "rgba16float",
+      "bloom": true,
+      "notes": [],
+      "volumetric": {
+        "enabled": true,
+        "shadows": true,
+        "debug": 0,
+        "density": 0.006,
+        "sunPower": 3.4,
+        "height": 48,
+        "maxDistance": 850,
+        "steps": 48,
+        "mapSize": 2048,
+        "casters": 115,
+        "shadowVersion": 631,
+        "resolution": [
+          322,
+          550
+        ],
+        "integrationResolution": [
+          161,
+          275
+        ]
+      },
+      "display": {
+        "exposure": 0.9,
+        "saturation": 1.05,
+        "output": "srgb",
+        "toneMap": "ACES fitted",
+        "resolution": [
+          322,
+          550
+        ]
+      }
+    }
+  },
+  "compatibility": {
+    "depthBundle": "native",
+    "probeError": null,
+    "fallbackError": null,
+    "errors": [],
+    "frames": 5643
+  },
+  "gpuFailures": [],
+  "passed": true
+}

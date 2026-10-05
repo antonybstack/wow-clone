@@ -1,0 +1,96 @@
+{
+  "baseCommit": "394a738f134a4da30f21ad954c116660a67f4354",
+  "scope": "M5 first compact startup checkpoint, unreleased",
+  "checks": {
+    "character": 195,
+    "characterFailed": 0,
+    "startupFocused": 14,
+    "startupFocusedFailed": 0,
+    "build": "pass",
+    "savedRouteRows": 8,
+    "compactRefinementRows": 11,
+    "recordedMotionCases": 3,
+    "mobileCases": 7,
+    "localPagesArtifacts": 845,
+    "localIdentityCachePolicies": 17,
+    "performanceAcceptance": false,
+    "coldCohortAcceptance": false
+  },
+  "sourcePreparation": [
+    {
+      "preset": "prime-bald",
+      "sourceLabel": "young",
+      "bodySha256": "1c5b331c1e49d7946a80404efb8cc4dc099dd8a6396e0b290787fc2f5254e01f",
+      "bodyEncodedBytes": 1215036,
+      "hoodSha256": "659b5670771d2dd461d57c38c536e13baea8dad15a39b0830972b2cd9573ffb2",
+      "hoodEncodedBytes": 376208,
+      "compactHoodSha256": "cbccc099a1b7fa6924a2fe89f836d32ab1fbb015f51cc4b4b9bf5c7cb71428df",
+      "compactHoodEncodedBytes": 197700,
+      "bodyGeometryLossless": true,
+      "bindExact": true
+    },
+    {
+      "preset": "prime-ponytail",
+      "sourceLabel": "young-hair",
+      "bodySha256": "f147dbbe9939aaff24da4fb62cf9defc0e6100cdc54c6a2b05af5945228eee3b",
+      "bodyEncodedBytes": 1514649,
+      "hoodSha256": "659b5670771d2dd461d57c38c536e13baea8dad15a39b0830972b2cd9573ffb2",
+      "hoodEncodedBytes": 376208,
+      "compactHoodSha256": "cbccc099a1b7fa6924a2fe89f836d32ab1fbb015f51cc4b4b9bf5c7cb71428df",
+      "compactHoodEncodedBytes": 197700,
+      "bodyGeometryLossless": true,
+      "bindExact": true
+    },
+    {
+      "preset": "weathered-bald",
+      "sourceLabel": "old",
+      "bodySha256": "fec63c32f0fdbb34870b2c2a5386ca616136a4c33bd1fb32cf1f45516a6e9a4e",
+      "bodyEncodedBytes": 1220349,
+      "hoodSha256": "f5017f6011345c7fe1e8d9db78a48ca6117d5b51382cd8f36b72cbbb1d9c9fa3",
+      "hoodEncodedBytes": 379232,
+      "compactHoodSha256": "9206b0624a51c0c138623d03d6edc860695094c1ca25e03b5cf8447066368e43",
+      "compactHoodEncodedBytes": 199577,
+      "bodyGeometryLossless": true,
+      "bindExact": true
+    }
+  ],
+  "telegram": {
+    "messageId": 853,
+    "verified": true,
+    "width": 1280,
+    "height": 720,
+    "duration": 50.329861
+  },
+  "motion": {
+    "ve": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m5-compact-identity-2026-10-04.mp4",
+    "bytes": 27238005,
+    "sha256": "d1acfbc46421043303d82641080b48470b23665701408f670b8a3bb9b11d33fe",
+    "sourceFrames": "ve-capture/character-mmo/m5-compact-identity-2026-10-04/v3",
+    "inline": [
+      737,
+      414.5625
+    ],
+    "viewer": [
+      1280,
+      720
+    ],
+    "objectFit": "contain",
+    "directVePlayback": true,
+    "directVeUiSeek": false,
+    "telegramFullscreen": false
+  },
+  "contamination": {
+    "owner": "user",
+    "process": "Wow.exe",
+    "pid": 92396,
+    "preserved": true,
+    "effect": "Startup timing and FPS acceptance deferred; functional checks only"
+  },
+  "remaining": [
+    "Isolated 20-run startup cohorts/default and selected endpoints/largest",
+    "Unhooded/Weathered paired settled performance",
+    "Full current outfit and representative mixed motion fits",
+    "Production release/rollback gates",
+    "Physical device and fullscreen checks"
+  ]
+}

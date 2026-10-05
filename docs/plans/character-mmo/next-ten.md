@@ -35,7 +35,11 @@ Two things gate it today, and both are measured rather than suspected:
   adds eye morphs and current torso/eye/hair coverage, corrects the hood opening and
   removes discarded curve/rig dependencies. The named examples now save/reload on
   the ordinary local route. Three lossless selected-startup pilots miss one second;
-  compact first-play budgets, complete fit/device checks and release remain open.
+  The [first compact checkpoint](results/m5-compact-identity-startup-2026-10-04.md)
+  preserves the full face/curves, reduces hood bytes about 47%, overlaps catalogue
+  loading, and verifies refinement plus desktop touch/WebKit. Startup/FPS acceptance
+  waits for isolation from the user's native WoW client; remaining payload, complete
+  outfit/motion fits and release gates stay open.
 * **Armor swapping works but is under-evidenced.** The catalogue now enumerates **6,912**
   combinations, 6,048 valid, with zero validator disagreements — the "768" carried in this plan
   dated from an 8-item catalogue and is corrected. Per-slot hot swapping under motion

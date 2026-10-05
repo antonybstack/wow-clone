@@ -30,7 +30,18 @@ export function startupAssetBuffer(asset) {
   }
   return pending.get(asset.url);
 }
-let starterManifestTask, shapeManifestTask;
+let starterManifestTask, shapeManifestTask, identityCatalogueTask;
+/** Start the fixed catalogue request before the optional identity module arrives.
+ * This reuses the same promise; storage never supplies a URL or bypasses validation.
+ * https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+ */
+export function preloadHumanIdentityCatalogue(){
+ return identityCatalogueTask??=fetch('/ashen-reach/human-identity-v1/manifest.json',{priority:'high'}).then(async response=>{
+  if(!response.ok)throw Error(`Human identity catalogue: HTTP ${response.status}`);
+  return response.json();
+ }).catch(error=>{identityCatalogueTask=null;throw error;});
+}
+export function invalidateHumanIdentityCatalogue(){identityCatalogueTask=null;}
 export function clearStartupBuffers() {pending.clear();}
 export function preloadStarterCharacter() {
   return starterManifestTask ??= loadStarterCharacter().catch(error => {starterManifestTask=null;throw error;});
@@ -63,9 +74,11 @@ export async function preloadHumanShapePack(loadout = {}, {compact = false} = {}
   return selected;
 }
 export function preloadSavedHumanPack(appearance,options={}){
- return appearance.components?.head
-  ?import('./human-identity-assets.js').then(api=>api.preloadHumanIdentityPack(appearance.components,appearance.equipment,options))
-  :preloadHumanShapePack(appearance.equipment,options);
+ if(!appearance.components?.head)return preloadHumanShapePack(appearance.equipment,options);
+ // The validated saved recipe selects this fixed optional catalogue. Main owns
+ // error reporting and the loader checks its sealed version/preset/coverage.
+ preloadHumanIdentityCatalogue().catch(()=>{});
+ return import('./human-identity-assets.js').then(api=>api.preloadHumanIdentityPack(appearance.components,appearance.equipment,options));
 }
 async function loadHumanShapeManifest() {
   const response = await fetch('/ashen-reach/human-shape-v1/manifest.json');

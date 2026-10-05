@@ -117,12 +117,22 @@ The valid Grok coverage finding was fixed before these checks. See
 
 ## Checkpoint D — hair and acceptance, then release
 
-**Next actionable work:** the three 50 Mbit/s / 40 ms compressed-build cold pilots
+**First compact checkpoint implemented:** lossless dense native accessor storage,
+compact fitted hood and overlapped selected catalogue/module request. Character
+195/195, startup 14/14, 11 live refinement cases, 8 repeated saved-route cases,
+7 desktop mobile/WebKit cases, native Pages bytes/cache policies and final build pass.
+Reviewed motion is Telegram 853. [Result](results/m5-compact-identity-startup-2026-10-04.md).
+The full approved body/face and all 57 curves remain exact; no full-body promotion
+was needed for this storage/hood pass. No cold-cohort/FPS acceptance is claimed while
+user WoW is running. Next inspect remaining payload and complete outfit/motion fits;
+run isolated cohorts and release gates once conditions allow.
+
+**Previous diagnostic context:** the three 50 Mbit/s / 40 ms compressed-build cold pilots
 take 2502.6, 1198.0 and 1149.4 ms. They retain the selected face and supported
 silhouette; none meets one second. Keep the first-use GPU tail distinct from the
 repeatable payload overrun. Inspect bytes/decode/upload marks, begin with the
-head-specific hood using the existing glTF Transform/meshoptimizer compact policy,
-then measure whether protected face geometry and hair detail need a bounded compact
+head-specific hood using the existing glTF Transform/meshoptimizer compact policy
+(now delivered), then measure whether protected face geometry and hair detail need a bounded compact
 representation. Keep full accepted sources lossless. If the compact body differs,
 promote its full body and gear through the existing native transaction after play,
 with actor/shape/gear/dye/phase guards and measured staging cost. Do not simply replace

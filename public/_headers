@@ -38,6 +38,20 @@
 /ashen-reach/human-shape-v1/texture-*
   Cache-Control: public, max-age=31536000, immutable
 
+# Revalidate the mutable index when content-addressed identity packs rotate.
+# https://developers.cloudflare.com/pages/configuration/headers/
+/ashen-reach/human-identity-v1/manifest.json
+  Cache-Control: no-cache
+
+/ashen-reach/human-identity-v1/manifest-*.json
+  Cache-Control: public, max-age=31536000, immutable
+
+/ashen-reach/human-identity-v1/*.bin
+  Cache-Control: public, max-age=31536000, immutable
+
+/ashen-reach/human-identity-v1/texture-*
+  Cache-Control: public, max-age=31536000, immutable
+
 /ashen-reach/region-actors-v1/*.glb
   Cache-Control: public, max-age=31536000, immutable
 

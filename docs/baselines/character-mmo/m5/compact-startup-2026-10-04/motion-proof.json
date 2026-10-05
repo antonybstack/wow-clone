@@ -1,0 +1,17 @@
+{
+  "segments": [
+    "prime-bald",
+    "prime-ponytail",
+    "weathered-bald"
+  ],
+  "expectedElapsedSeconds": 50.33085083961487,
+  "encoded": {
+    "width": 1280,
+    "height": 720,
+    "duration": 50.329861,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "durationErrorSeconds": -0.000989839614867094
+}

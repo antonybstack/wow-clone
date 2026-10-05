@@ -1,0 +1,578 @@
+{
+  "scope": "Desktop mobile engines with touch, not physical iPhone or performance acceptance",
+  "rows": [
+    {
+      "kind": "chromium",
+      "preset": "prime-bald",
+      "depth": false,
+      "passed": true,
+      "checks": [
+        {
+          "name": "touch-body-control",
+          "before": -0.95,
+          "after": -0.52
+        },
+        {
+          "name": "mobile-layout-colour-select-and-persistence",
+          "before": "oxblood",
+          "after": "moss"
+        },
+        {
+          "name": "mobile-layout-identity-select-persistence-and-independent-undo",
+          "before": "prime-bald",
+          "after": "weathered-bald"
+        },
+        {
+          "name": "native touch advances simulation and displayed world",
+          "traveled": 25.221213234717663,
+          "imageDelta": 18.254166666666666
+        },
+        {
+          "name": "capture-loss"
+        },
+        {
+          "name": "cancel"
+        },
+        {
+          "name": "modal"
+        },
+        {
+          "name": "blur"
+        }
+      ],
+      "errors": [],
+      "runtime": {
+        "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+        "physics": true,
+        "canvas": [
+          322,
+          550
+        ],
+        "post": {
+          "hdr": true,
+          "format": "rgba16float",
+          "bloom": true,
+          "notes": [],
+          "volumetric": {
+            "enabled": true,
+            "shadows": true,
+            "debug": 0,
+            "density": 0.006,
+            "sunPower": 3.4,
+            "height": 48,
+            "maxDistance": 850,
+            "steps": 48,
+            "mapSize": 2048,
+            "casters": 115,
+            "shadowVersion": 671,
+            "resolution": [
+              322,
+              550
+            ],
+            "integrationResolution": [
+              161,
+              275
+            ]
+          },
+          "display": {
+            "exposure": 0.9,
+            "saturation": 1.05,
+            "output": "srgb",
+            "toneMap": "ACES fitted",
+            "resolution": [
+              322,
+              550
+            ]
+          }
+        }
+      },
+      "report": ".cache/character-mmo/m5-startup-2026-10-04/mobile/chromium-prime-bald/report.json"
+    },
+    {
+      "kind": "chromium",
+      "preset": "prime-ponytail",
+      "depth": false,
+      "passed": true,
+      "checks": [
+        {
+          "name": "touch-body-control",
+          "before": -0.95,
+          "after": -0.52
+        },
+        {
+          "name": "mobile-layout-colour-select-and-persistence",
+          "before": "oxblood",
+          "after": "moss"
+        },
+        {
+          "name": "mobile-layout-identity-select-persistence-and-independent-undo",
+          "before": "prime-ponytail",
+          "after": "weathered-bald"
+        },
+        {
+          "name": "native touch advances simulation and displayed world",
+          "traveled": 22.735456128426367,
+          "imageDelta": 18.202916666666667
+        },
+        {
+          "name": "capture-loss"
+        },
+        {
+          "name": "cancel"
+        },
+        {
+          "name": "modal"
+        },
+        {
+          "name": "blur"
+        }
+      ],
+      "errors": [],
+      "runtime": {
+        "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+        "physics": true,
+        "canvas": [
+          322,
+          550
+        ],
+        "post": {
+          "hdr": true,
+          "format": "rgba16float",
+          "bloom": true,
+          "notes": [],
+          "volumetric": {
+            "enabled": true,
+            "shadows": true,
+            "debug": 0,
+            "density": 0.006,
+            "sunPower": 3.4,
+            "height": 48,
+            "maxDistance": 850,
+            "steps": 48,
+            "mapSize": 2048,
+            "casters": 115,
+            "shadowVersion": 614,
+            "resolution": [
+              322,
+              550
+            ],
+            "integrationResolution": [
+              161,
+              275
+            ]
+          },
+          "display": {
+            "exposure": 0.9,
+            "saturation": 1.05,
+            "output": "srgb",
+            "toneMap": "ACES fitted",
+            "resolution": [
+              322,
+              550
+            ]
+          }
+        }
+      },
+      "report": ".cache/character-mmo/m5-startup-2026-10-04/mobile/chromium-prime-ponytail/report.json"
+    },
+    {
+      "kind": "chromium",
+      "preset": "weathered-bald",
+      "depth": false,
+      "passed": true,
+      "checks": [
+        {
+          "name": "touch-body-control",
+          "before": 0.95,
+          "after": -0.52
+        },
+        {
+          "name": "mobile-layout-colour-select-and-persistence",
+          "before": "oxblood",
+          "after": "moss"
+        },
+        {
+          "name": "mobile-layout-identity-select-persistence-and-independent-undo",
+          "before": "weathered-bald",
+          "after": "prime-bald"
+        },
+        {
+          "name": "native touch advances simulation and displayed world",
+          "traveled": 24.864257100882217,
+          "imageDelta": 18.7815625
+        },
+        {
+          "name": "capture-loss"
+        },
+        {
+          "name": "cancel"
+        },
+        {
+          "name": "modal"
+        },
+        {
+          "name": "blur"
+        }
+      ],
+      "errors": [],
+      "runtime": {
+        "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+        "physics": true,
+        "canvas": [
+          322,
+          550
+        ],
+        "post": {
+          "hdr": true,
+          "format": "rgba16float",
+          "bloom": true,
+          "notes": [],
+          "volumetric": {
+            "enabled": true,
+            "shadows": true,
+            "debug": 0,
+            "density": 0.006,
+            "sunPower": 3.4,
+            "height": 48,
+            "maxDistance": 850,
+            "steps": 48,
+            "mapSize": 2048,
+            "casters": 115,
+            "shadowVersion": 631,
+            "resolution": [
+              322,
+              550
+            ],
+            "integrationResolution": [
+              161,
+              275
+            ]
+          },
+          "display": {
+            "exposure": 0.9,
+            "saturation": 1.05,
+            "output": "srgb",
+            "toneMap": "ACES fitted",
+            "resolution": [
+              322,
+              550
+            ]
+          }
+        }
+      },
+      "report": ".cache/character-mmo/m5-startup-2026-10-04/mobile/chromium-weathered-bald/report.json"
+    },
+    {
+      "kind": "webkit",
+      "preset": "prime-bald",
+      "depth": false,
+      "passed": true,
+      "checks": [
+        {
+          "name": "touch-body-control",
+          "before": -0.95,
+          "after": -0.54
+        },
+        {
+          "name": "mobile-layout-colour-select-and-persistence",
+          "before": "oxblood",
+          "after": "moss"
+        },
+        {
+          "name": "mobile-layout-identity-select-persistence-and-independent-undo",
+          "before": "prime-bald",
+          "after": "weathered-bald"
+        },
+        {
+          "name": "keyboard advances WebKit simulation and displayed world",
+          "traveled": 22.5561909548261,
+          "imageDelta": 20.305729166666666
+        }
+      ],
+      "errors": [],
+      "runtime": {
+        "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15",
+        "physics": true,
+        "canvas": [
+          322,
+          550
+        ],
+        "post": {
+          "hdr": true,
+          "format": "rgba16float",
+          "bloom": true,
+          "notes": [],
+          "volumetric": {
+            "enabled": true,
+            "shadows": true,
+            "debug": 0,
+            "density": 0.006,
+            "sunPower": 3.4,
+            "height": 48,
+            "maxDistance": 850,
+            "steps": 48,
+            "mapSize": 2048,
+            "casters": 115,
+            "shadowVersion": 822,
+            "resolution": [
+              322,
+              550
+            ],
+            "integrationResolution": [
+              161,
+              275
+            ]
+          },
+          "display": {
+            "exposure": 0.9,
+            "saturation": 1.05,
+            "output": "srgb",
+            "toneMap": "ACES fitted",
+            "resolution": [
+              322,
+              550
+            ]
+          }
+        }
+      },
+      "report": ".cache/character-mmo/m5-startup-2026-10-04/mobile/webkit-prime-bald/report.json"
+    },
+    {
+      "kind": "webkit",
+      "preset": "prime-ponytail",
+      "depth": false,
+      "passed": true,
+      "checks": [
+        {
+          "name": "touch-body-control",
+          "before": -0.95,
+          "after": -0.54
+        },
+        {
+          "name": "mobile-layout-colour-select-and-persistence",
+          "before": "oxblood",
+          "after": "moss"
+        },
+        {
+          "name": "mobile-layout-identity-select-persistence-and-independent-undo",
+          "before": "prime-ponytail",
+          "after": "weathered-bald"
+        },
+        {
+          "name": "keyboard advances WebKit simulation and displayed world",
+          "traveled": 20.14152756462682,
+          "imageDelta": 20.2459375
+        }
+      ],
+      "errors": [],
+      "runtime": {
+        "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15",
+        "physics": true,
+        "canvas": [
+          322,
+          550
+        ],
+        "post": {
+          "hdr": true,
+          "format": "rgba16float",
+          "bloom": true,
+          "notes": [],
+          "volumetric": {
+            "enabled": true,
+            "shadows": true,
+            "debug": 0,
+            "density": 0.006,
+            "sunPower": 3.4,
+            "height": 48,
+            "maxDistance": 850,
+            "steps": 48,
+            "mapSize": 2048,
+            "casters": 115,
+            "shadowVersion": 817,
+            "resolution": [
+              322,
+              550
+            ],
+            "integrationResolution": [
+              161,
+              275
+            ]
+          },
+          "display": {
+            "exposure": 0.9,
+            "saturation": 1.05,
+            "output": "srgb",
+            "toneMap": "ACES fitted",
+            "resolution": [
+              322,
+              550
+            ]
+          }
+        }
+      },
+      "report": ".cache/character-mmo/m5-startup-2026-10-04/mobile/webkit-prime-ponytail/report.json"
+    },
+    {
+      "kind": "webkit",
+      "preset": "weathered-bald",
+      "depth": false,
+      "passed": true,
+      "checks": [
+        {
+          "name": "touch-body-control",
+          "before": 0.95,
+          "after": -0.54
+        },
+        {
+          "name": "mobile-layout-colour-select-and-persistence",
+          "before": "oxblood",
+          "after": "moss"
+        },
+        {
+          "name": "mobile-layout-identity-select-persistence-and-independent-undo",
+          "before": "weathered-bald",
+          "after": "prime-bald"
+        },
+        {
+          "name": "keyboard advances WebKit simulation and displayed world",
+          "traveled": 19.93722838820348,
+          "imageDelta": 20.46291666666667
+        }
+      ],
+      "errors": [],
+      "runtime": {
+        "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15",
+        "physics": true,
+        "canvas": [
+          322,
+          550
+        ],
+        "post": {
+          "hdr": true,
+          "format": "rgba16float",
+          "bloom": true,
+          "notes": [],
+          "volumetric": {
+            "enabled": true,
+            "shadows": true,
+            "debug": 0,
+            "density": 0.006,
+            "sunPower": 3.4,
+            "height": 48,
+            "maxDistance": 850,
+            "steps": 48,
+            "mapSize": 2048,
+            "casters": 115,
+            "shadowVersion": 808,
+            "resolution": [
+              322,
+              550
+            ],
+            "integrationResolution": [
+              161,
+              275
+            ]
+          },
+          "display": {
+            "exposure": 0.9,
+            "saturation": 1.05,
+            "output": "srgb",
+            "toneMap": "ACES fitted",
+            "resolution": [
+              322,
+              550
+            ]
+          }
+        }
+      },
+      "report": ".cache/character-mmo/m5-startup-2026-10-04/mobile/webkit-weathered-bald/report.json"
+    },
+    {
+      "kind": "chromium",
+      "preset": "prime-ponytail",
+      "depth": true,
+      "passed": true,
+      "checks": [
+        {
+          "name": "touch-body-control",
+          "before": -0.95,
+          "after": -0.52
+        },
+        {
+          "name": "mobile-layout-colour-select-and-persistence",
+          "before": "oxblood",
+          "after": "moss"
+        },
+        {
+          "name": "mobile-layout-identity-select-persistence-and-independent-undo",
+          "before": "prime-ponytail",
+          "after": "weathered-bald"
+        },
+        {
+          "name": "native touch advances simulation and displayed world",
+          "traveled": 24.4953863885329,
+          "imageDelta": 18.843020833333334
+        },
+        {
+          "name": "capture-loss"
+        },
+        {
+          "name": "cancel"
+        },
+        {
+          "name": "modal"
+        },
+        {
+          "name": "blur"
+        }
+      ],
+      "errors": [],
+      "runtime": {
+        "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+        "physics": true,
+        "canvas": [
+          322,
+          550
+        ],
+        "post": {
+          "hdr": true,
+          "format": "rgba16float",
+          "bloom": true,
+          "notes": [],
+          "volumetric": {
+            "enabled": true,
+            "shadows": true,
+            "debug": 0,
+            "density": 0.006,
+            "sunPower": 3.4,
+            "height": 48,
+            "maxDistance": 850,
+            "steps": 48,
+            "mapSize": 2048,
+            "casters": 115,
+            "shadowVersion": 644,
+            "resolution": [
+              322,
+              550
+            ],
+            "integrationResolution": [
+              161,
+              275
+            ]
+          },
+          "display": {
+            "exposure": 0.9,
+            "saturation": 1.05,
+            "output": "srgb",
+            "toneMap": "ACES fitted",
+            "resolution": [
+              322,
+              550
+            ]
+          }
+        }
+      },
+      "report": ".cache/character-mmo/m5-startup-2026-10-04/mobile/chromium-prime-ponytail-depth-fallback/report.json"
+    }
+  ]
+}

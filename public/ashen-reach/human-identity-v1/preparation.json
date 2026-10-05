@@ -2,28 +2,37 @@
   {
     "preset": "prime-bald",
     "sourceLabel": "young",
-    "bodySha256": "0d24b123eb60b6089c3321c3b69e0f9452c43bd154d702e3360f7c387f6884f9",
-    "bodyEncodedBytes": 1241379,
+    "bodySha256": "1c5b331c1e49d7946a80404efb8cc4dc099dd8a6396e0b290787fc2f5254e01f",
+    "bodyEncodedBytes": 1215036,
     "hoodSha256": "659b5670771d2dd461d57c38c536e13baea8dad15a39b0830972b2cd9573ffb2",
     "hoodEncodedBytes": 376208,
+    "compactHoodSha256": "cbccc099a1b7fa6924a2fe89f836d32ab1fbb015f51cc4b4b9bf5c7cb71428df",
+    "compactHoodEncodedBytes": 197700,
+    "bodyGeometryLossless": true,
     "bindExact": true
   },
   {
     "preset": "prime-ponytail",
     "sourceLabel": "young-hair",
-    "bodySha256": "c9aef7610b24ac1439f5fd60f692e87bb7e7c9e2eccd18088de75d361ef573dc",
-    "bodyEncodedBytes": 1541329,
+    "bodySha256": "f147dbbe9939aaff24da4fb62cf9defc0e6100cdc54c6a2b05af5945228eee3b",
+    "bodyEncodedBytes": 1514649,
     "hoodSha256": "659b5670771d2dd461d57c38c536e13baea8dad15a39b0830972b2cd9573ffb2",
     "hoodEncodedBytes": 376208,
+    "compactHoodSha256": "cbccc099a1b7fa6924a2fe89f836d32ab1fbb015f51cc4b4b9bf5c7cb71428df",
+    "compactHoodEncodedBytes": 197700,
+    "bodyGeometryLossless": true,
     "bindExact": true
   },
   {
     "preset": "weathered-bald",
     "sourceLabel": "old",
-    "bodySha256": "48805108877aaf6b954cef0385f60f0e504aad02c85c4c398ccae4593e1ee0e3",
-    "bodyEncodedBytes": 1246743,
+    "bodySha256": "fec63c32f0fdbb34870b2c2a5386ca616136a4c33bd1fb32cf1f45516a6e9a4e",
+    "bodyEncodedBytes": 1220349,
     "hoodSha256": "f5017f6011345c7fe1e8d9db78a48ca6117d5b51382cd8f36b72cbbb1d9c9fa3",
     "hoodEncodedBytes": 379232,
+    "compactHoodSha256": "9206b0624a51c0c138623d03d6edc860695094c1ca25e03b5cf8447066368e43",
+    "compactHoodEncodedBytes": 199577,
+    "bodyGeometryLossless": true,
     "bindExact": true
   }
 ]

@@ -11,7 +11,8 @@ import {createHash} from 'node:crypto';
 import {gzipSync,gunzipSync} from 'node:zlib';
 import {NodeIO,VertexLayout} from '@gltf-transform/core';
 import {ALL_EXTENSIONS,EXTMeshoptCompression} from '@gltf-transform/extensions';
-import {MeshoptDecoder,MeshoptEncoder} from 'meshoptimizer';
+import {MeshoptDecoder,MeshoptEncoder,MeshoptSimplifier} from 'meshoptimizer';
+import {simplify} from '@gltf-transform/functions';
 import sharp from 'sharp';
 import {normalizeHumanBind} from './normalize-human-bind.mjs';
 import {assertCopiedSkinBind} from '../../src/character/runtime/fit-contract.js';
@@ -24,7 +25,7 @@ const urlRoot='/ashen-reach/human-identity-v1';
 const review='.cache/character-mmo/identity-review-v1';
 const pinRoot='docs/baselines/character-mmo/m5/face-2026-10-04';
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
-await Promise.all([MeshoptDecoder.ready,MeshoptEncoder.ready]);
+await Promise.all([MeshoptDecoder.ready,MeshoptEncoder.ready,MeshoptSimplifier.ready]);
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder,'meshopt.encoder':MeshoptEncoder}).setVertexLayout(VertexLayout.SEPARATE);
 const published=JSON.parse(await fs.readFile('public/ashen-reach/human-shape-v1/manifest.json','utf8'));
 const sourcePins=JSON.parse(await fs.readFile(`${pinRoot}/source-summary.json`,'utf8'));
@@ -43,6 +44,10 @@ let ownedReferences='';
 async function encode(doc,id,metadata){
  const root=doc.getRoot(),textures=[];
  const geometrySha256=identityGeometryHash(root),animationsSha256=identityAnimationHash(root);
+ // Dense storage is lossless: native meshopt compresses the same morph values
+ // better than sparse index/value pairs here. Keep exact curves/geometry checks.
+ // https://gltf-transform.dev/modules/core/classes/Accessor
+ for(const accessor of root.listAccessors())if(accessor.getSparse())accessor.setSparse(false);
  for(const texture of root.listTextures()){
   const image=Buffer.from(texture.getImage()),ext={'image/png':'png','image/jpeg':'jpg','image/webp':'webp'}[texture.getMimeType()];assert(ext);
   const name=`texture-${sha(image).slice(0,12)}.${ext}`;await fs.writeFile(path.join(out,name),image);
@@ -93,8 +98,16 @@ for(const preset of HUMAN_IDENTITY_PRESETS.filter(p=>p.sourceLabel)){
  const hoodBytes=await fs.readFile(`${review}/${label}/${path.basename(audition.items.graveweaverHood.url)}`);assert.equal(sha(hoodBytes),hoodPin.assembledSha256);
  const hoodDoc=await io.readBinary(hoodBytes);normalizeHumanBind(hoodDoc.getRoot(),reference,'GraveweaverHood','HumanV1Body',{exactReference:true});
  const hood=await encode(hoodDoc,'graveweaverHood',published.items.graveweaverHood);
+ // Same native first-play policy as the released clothes: remap every base,
+ // skin and morph stream together and retain the face opening's boundary.
+ // Full fitted hood remains untouched and upgrades through the existing actor.
+ // https://gltf-transform.dev/modules/functions/functions/simplify
+ const hoodPolicy={ratio:.4,error:.002,lockBorder:true};
+ await hoodDoc.transform(simplify({simplifier:MeshoptSimplifier,...hoodPolicy}));
+ const compactHood=await encode(hoodDoc,'graveweaverHood-compact',published.items.graveweaverHood);
+ compactHood.textures=hood.textures;compactHood.detail='startup';compactHood.simplification=hoodPolicy;
  const manifest=structuredClone(published);
- manifest.items.body=body;manifest.compactItems.body=body;manifest.items.graveweaverHood=hood;manifest.compactItems.graveweaverHood=hood;
+ manifest.items.body=body;manifest.compactItems.body=body;manifest.items.graveweaverHood=hood;manifest.compactItems.graveweaverHood=compactHood;
  manifest.startup={textures:body.textures};
  manifest.coverage=audition.coverage;
  manifestBodyCoverage(manifest,'human');
@@ -107,11 +120,11 @@ for(const preset of HUMAN_IDENTITY_PRESETS.filter(p=>p.sourceLabel)){
  const bytes=Buffer.from(JSON.stringify(manifest)),name=`manifest-${preset.id}-${sha(bytes).slice(0,12)}.json`;
  await fs.writeFile(path.join(out,name),bytes);index.presets[preset.id]={url:`${urlRoot}/${name}`,sha256:sha(bytes),bytes:bytes.length,components:preset.components,manifest};
  ownedReferences+=bytes.toString();
- reports.push({preset:preset.id,sourceLabel:label,bodySha256:body.sha256,bodyEncodedBytes:body.encodedBytes,hoodSha256:hood.sha256,hoodEncodedBytes:hood.encodedBytes,bindExact:true});
+ reports.push({preset:preset.id,sourceLabel:label,bodySha256:body.sha256,bodyEncodedBytes:body.encodedBytes,hoodSha256:hood.sha256,hoodEncodedBytes:hood.encodedBytes,compactHoodSha256:compactHood.sha256,compactHoodEncodedBytes:compactHood.encodedBytes,bodyGeometryLossless:true,bindExact:true});
 }
 index.provenance=await startupProvenance(['scripts/character-assets/prepare-production-human-identities.mjs'],['public/ashen-reach/human-shape-v1/manifest.json',`${pinRoot}/source-summary.json`,`${pinRoot}/preparation.json`,`${pinRoot}/hood-old-fit.json`,`${pinRoot}/hood-young-fit.json`]);
 await fs.writeFile(path.join(out,'manifest.json'),JSON.stringify(index));
 await fs.writeFile(path.join(out,'preparation.json'),JSON.stringify(reports,null,2));
 ownedReferences+=JSON.stringify(index);
-for(const name of await fs.readdir(out))if(/^(?:body|graveweaverHood|texture|manifest-[a-z-]+)-[a-f0-9]{12}\.(?:bin|json|png|jpg|webp)$/.test(name)&&!ownedReferences.includes(name))await fs.unlink(path.join(out,name));
+for(const name of await fs.readdir(out))if(/^(?:body|graveweaverHood(?:-compact)?|texture|manifest-[a-z-]+)-[a-f0-9]{12}\.(?:bin|json|png|jpg|webp)$/.test(name)&&!ownedReferences.includes(name))await fs.unlink(path.join(out,name));
 console.log(JSON.stringify(reports));

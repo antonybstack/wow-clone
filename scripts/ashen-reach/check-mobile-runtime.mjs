@@ -13,6 +13,8 @@ const kind = process.argv.includes('--webkit') ? 'webkit' : 'chromium';
 const url = process.env.ASHEN_TEST_URL || 'http://127.0.0.1:5173/ashen-reach.html?play&clean';
 const injectDepthFailure = process.argv.includes('--inject-depth-bundle-failure');
 const disableDepthFallback = process.argv.includes('--disable-depth-fallback');
+const identityControls = process.argv.includes('--identity-controls');
+assert(!identityControls||process.argv.includes('--customization-controls'),'Identity controls require the customization check');
 assert(!disableDepthFallback || injectDepthFailure, 'disabling the fallback is only for the injected negative control');
 const dir = process.env.ASHEN_CAPTURE_DIR || `ve-capture/ashen-reach/iphone-regression/${kind}${disableDepthFallback ? '-depth-rejected' : injectDepthFailure ? '-depth-fallback' : ''}-runtime`;
 await fs.mkdir(dir, {recursive: true});
@@ -160,6 +162,26 @@ try {
     assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('ashen.appearance.v2')).dyes.torso),nextColour);
     await page.screenshot({path:`${dir}/colour-controls.png`,scale:'css'});
     checks.push({name:'mobile-layout-colour-select-and-persistence',before:beforeColour,after:nextColour});
+    if(identityControls){
+      const identity=page.getByLabel('Face and hair',{exact:true});
+      await identity.scrollIntoViewIfNeeded();
+      const beforeIdentity=await page.evaluate(()=>({selected:ASHEN.creator.identity.selected,appearance:ASHEN.getAppearance()}));
+      const nextIdentity=beforeIdentity.selected==='weathered-bald'?'prime-bald':'weathered-bald';
+      await identity.selectOption(nextIdentity);
+      await page.waitForFunction(id=>ASHEN.creator.identity.selected===id,nextIdentity);
+      await page.evaluate(()=>ASHEN.creator.settled());
+      const selected=await page.evaluate(()=>({appearance:ASHEN.getAppearance(),stored:JSON.parse(localStorage.getItem('ashen.appearance.v2'))}));
+      assert.deepEqual(selected.stored,selected.appearance);
+      assert.deepEqual(selected.appearance.shape,beforeIdentity.appearance.shape);
+      assert.deepEqual(selected.appearance.equipment,beforeIdentity.appearance.equipment);
+      assert.deepEqual(selected.appearance.dyes,beforeIdentity.appearance.dyes);
+      await page.screenshot({path:`${dir}/identity-controls.png`,scale:'css'});
+      await page.getByRole('button',{name:'Undo identity',exact:true}).tap();
+      await page.waitForFunction(id=>ASHEN.creator.identity.selected===id,beforeIdentity.selected);
+      await page.evaluate(()=>ASHEN.creator.settled());
+      assert.deepEqual(await page.evaluate(()=>ASHEN.getAppearance()),beforeIdentity.appearance);
+      checks.push({name:'mobile-layout-identity-select-persistence-and-independent-undo',before:beforeIdentity.selected,after:nextIdentity});
+    }
     await page.locator('#armory [data-close]').first().tap();
   }
   const beforeImage = await pixels('before'), before = await pos();

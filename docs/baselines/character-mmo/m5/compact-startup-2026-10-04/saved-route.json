@@ -1,0 +1,1500 @@
+{
+  "url": "http://127.0.0.1:7174/",
+  "scope": "M5 ordinary-route identity persistence/transactions, not a startup or FPS benchmark",
+  "rows": [
+    {
+      "case": "selected-first-play-reload-race-return",
+      "preset": "starter",
+      "first": {
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "dyes": {
+          "torso": "moss"
+        },
+        "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v6\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1.15,\"build\":-0.95},\"components\":{},\"dyes\":{\"torso\":\"moss\"},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+        "height": 1.15,
+        "shape": {
+          "weights": [
+            0.95,
+            0
+          ],
+          "heightScale": 1.15,
+          "installWriters": true,
+          "assetURL": null,
+          "garmentManifestURL": null,
+          "applied": true
+        },
+        "meshes": 129,
+        "visible": [
+          "HumanV1Body"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": 0
+      },
+      "settled": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {},
+          "dyes": {
+            "torso": "moss"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": null,
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        },
+        "dyes": {
+          "torso": "moss"
+        },
+        "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v6\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1.15,\"build\":-0.95},\"components\":{},\"dyes\":{\"torso\":\"moss\"},\"equipment\":{\"helmet\":\"graveweaverHood\",\"torso\":\"graveweaverTop\",\"legs\":\"graveweaverSkirt\",\"boots\":null,\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+        "height": 1.15,
+        "shape": {
+          "weights": [
+            0.95,
+            0
+          ],
+          "heightScale": 1.15,
+          "applied": true,
+          "live": true
+        },
+        "meshes": 140,
+        "visible": [
+          "HumanV1Body",
+          "HumanTorsoCore"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": 0
+      },
+      "requests": [
+        "/",
+        "/assets/startupPreload-DD-RUbIc.js",
+        "/assets/ashenReach-uZtkcESt.js",
+        "/assets/modulepreload-polyfill-P2Xu9kJm.js",
+        "/assets/module-preload-BZ1Pz5am.js",
+        "/assets/rolldown-runtime-hePW80VL.js",
+        "/assets/lite-runtime-CapxqNuF.js",
+        "/assets/equipment-catalog-BSw-Lbk_.js",
+        "/assets/coverage-manifest-CA9Ys9Y5.js",
+        "/assets/local-specular-c6fg4PgS.js",
+        "/assets/linear-materials-QPZyxGxM.js",
+        "/assets/geometry-DPyvdsr1.js",
+        "/assets/sun-shadows-CWTyvg8q.js",
+        "/assets/materials-8xkTIMsm.js",
+        "/assets/prop-transition-DTKUsvbn.js",
+        "/assets/dye-palette-PVDI2Yum.js",
+        "/assets/startup-assets-B6SaWrRC.js",
+        "/assets/input-Dr2x9id5.js",
+        "/assets/rig-DP5KCSAf.js",
+        "/assets/inspection-preview-Btv59myr.js",
+        "/assets/bind-contract-BTQu1skm.js",
+        "/assets/ashenReach-CELGCeSv.css",
+        "/HavokPhysics.wasm",
+        "/ashen-reach/startup/starter/manifest.json",
+        "/ashen-reach/startup/starter/near-61b52956fc8e.br",
+        "/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "/ashen-reach/startup/starter/texture-876257499921.webp",
+        "/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "/meshopt_decoder.js",
+        "/assets/appearance-storage-q-oYgHIU.js",
+        "/ashen-reach/human-shape-v1/manifest.json",
+        "/ashen-reach/favicon.png",
+        "/ashen-reach/human-shape-v1/body-coverage-b93fb71aa490.bin",
+        "/ashen-reach/human-shape-v1/wayfarerTunic-compact-000ff23bf965.bin",
+        "/ashen-reach/human-shape-v1/wayfarerTrousers-compact-coverage-f834210550a3.bin",
+        "/ashen-reach/human-shape-v1/wayfarerBoots-compact-287d89851371.bin",
+        "/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "/ashen-reach/startup/starter/texture-876257499921.webp",
+        "/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "/ashen-reach/startup/starter/texture-a659b1767619.webp",
+        "/assets/combat-Qm_K-zFw.js",
+        "/assets/enemies-D9QpwVHG.js",
+        "/assets/npc-Cpf7CNik.js",
+        "/assets/townsfolk-idaMX-fq.js",
+        "/assets/armory-B2MxrpGa.js",
+        "/assets/armory-dUCANNuh.css",
+        "/ashen-reach/human-shape-v1/wayfarerTunic-e65b2868e12f.bin",
+        "/assets/world-worker-Cvw93lBX.js",
+        "/assets/lite-error-CbM31Lpb.js",
+        "/assets/typed-arrays-mqcHaLDm.js",
+        "/assets/multiply-mat4-into-buffer-DfBnM-FI.js",
+        "/assets/engine-Bmc5IJPK.js",
+        "/ashen-reach/training-dummy.glb",
+        "/characters/base.glb",
+        "/ashen-reach/human-shape-v1/wayfarerTrousers-coverage-b1eb36e8f614.bin",
+        "/ashen-reach/human-shape-v1/wayfarerBoots-14b43ef82011.bin",
+        "/ashen-reach/fire-blast/fire_01.png",
+        "/ashen-reach/fire-blast/smoke_01.png",
+        "/ashen-reach/fire-blast/spark_05.png",
+        "/ashen-reach/human-shape-v1/texture-29d4e4e4bece.png",
+        "/ashen-reach/fire-blast/fire_01.png",
+        "/ashen-reach/fire-blast/spark_05.png",
+        "/ashen-reach/fire-blast/fire_01.png",
+        "/ashen-reach/fire-blast/smoke_01.png",
+        "/ashen-reach/fire-blast/spark_05.png",
+        "/ashen-reach/human-shape-v1/texture-f465517766cc.png",
+        "/ashen-reach/fire-blast/fireball-julien-matthey.wav",
+        "/ashen-reach/fire-blast/lava-charge.wav",
+        "/ashen-reach/human-shape-v1/texture-feb2ba6d8d36.png",
+        "/assets/creator-BWp5oStF.js",
+        "/assets/human-shape-CLK6o720.js",
+        "/assets/creator-B5d1-Jhl.css",
+        "/ashen-reach/woodland/trees.json",
+        "/tex/wood_planks_grey/diff.jpg",
+        "/tex/rock_wall_08/diff.jpg",
+        "/ashen-reach/horizon-rock.jpg",
+        "/ashen-reach/grave-face.jpg",
+        "/tex/bark_brown_02/diff.jpg",
+        "/tex/forrest_ground_01/diff.jpg",
+        "/ashen-reach/stone-detail.png",
+        "/ashen-reach/sky-generated.jpg",
+        "/ashen-reach/foliage-atlas.png",
+        "/ashen-reach/human-shape-v1/texture-423c672df75a.png",
+        "/assets/entry-CCfyyhfN.js",
+        "/assets/entry-DVqnJsvn.css",
+        "/ashen-reach/equipment-orc/manifest-coverage-v1.json",
+        "/ashen-reach/equipment-orc/body.glb",
+        "/ashen-reach/equipment-orc/wayfarerTunic.glb",
+        "/ashen-reach/equipment-orc/wayfarerTrousers-coverage-124da6c75972.glb",
+        "/ashen-reach/equipment-orc/wayfarerBoots.glb",
+        "/ashen-reach/equipment-undead/manifest-coverage-v1.json",
+        "/ashen-reach/equipment-undead/body-coverage-02cb6c3cc877.glb",
+        "/ashen-reach/equipment-undead/graveweaverHood.glb",
+        "/ashen-reach/equipment-undead/graveweaverTop.glb",
+        "/ashen-reach/equipment-undead/graveweaverSkirt-coverage-8be75fe7dc39.glb",
+        "/ashen-reach/human-shape-v1/graveweaverHood-c80ece48d7d5.bin",
+        "/ashen-reach/human-shape-v1/graveweaverTop-25fe071857bb.bin",
+        "/ashen-reach/human-shape-v1/graveweaverSkirt-3c310deed571.bin"
+      ]
+    },
+    {
+      "case": "selected-first-play-reload-race-return",
+      "preset": "prime-bald",
+      "first": {
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "dyes": {
+          "torso": "moss"
+        },
+        "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v6\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1.15,\"build\":-0.95},\"components\":{\"head\":\"human-prime-v1\",\"hair\":\"human-bald-v1\"},\"dyes\":{\"torso\":\"moss\"},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+        "height": 1.15,
+        "shape": {
+          "weights": [
+            0.95,
+            0
+          ],
+          "heightScale": 1.15,
+          "installWriters": true,
+          "assetURL": null,
+          "garmentManifestURL": null,
+          "applied": true
+        },
+        "meshes": 131,
+        "visible": [
+          "HumanV1Body",
+          "HumanIdentityBrows",
+          "HumanIdentityEyes"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": 0
+      },
+      "settled": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "torso": "moss"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": null,
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        },
+        "dyes": {
+          "torso": "moss"
+        },
+        "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v6\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1.15,\"build\":-0.95},\"components\":{\"head\":\"human-prime-v1\",\"hair\":\"human-bald-v1\"},\"dyes\":{\"torso\":\"moss\"},\"equipment\":{\"helmet\":\"graveweaverHood\",\"torso\":\"graveweaverTop\",\"legs\":\"graveweaverSkirt\",\"boots\":null,\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+        "height": 1.15,
+        "shape": {
+          "weights": [
+            0.95,
+            0
+          ],
+          "heightScale": 1.15,
+          "applied": true,
+          "live": true
+        },
+        "meshes": 142,
+        "visible": [
+          "HumanV1Body",
+          "HumanIdentityBrows",
+          "HumanIdentityEyes",
+          "HumanTorsoCore"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": 0
+      },
+      "requests": [
+        "/",
+        "/assets/startupPreload-DD-RUbIc.js",
+        "/assets/ashenReach-uZtkcESt.js",
+        "/assets/modulepreload-polyfill-P2Xu9kJm.js",
+        "/assets/module-preload-BZ1Pz5am.js",
+        "/assets/rolldown-runtime-hePW80VL.js",
+        "/assets/lite-runtime-CapxqNuF.js",
+        "/assets/equipment-catalog-BSw-Lbk_.js",
+        "/assets/coverage-manifest-CA9Ys9Y5.js",
+        "/assets/local-specular-c6fg4PgS.js",
+        "/assets/linear-materials-QPZyxGxM.js",
+        "/assets/geometry-DPyvdsr1.js",
+        "/assets/sun-shadows-CWTyvg8q.js",
+        "/assets/materials-8xkTIMsm.js",
+        "/assets/prop-transition-DTKUsvbn.js",
+        "/assets/dye-palette-PVDI2Yum.js",
+        "/assets/startup-assets-B6SaWrRC.js",
+        "/assets/input-Dr2x9id5.js",
+        "/assets/rig-DP5KCSAf.js",
+        "/assets/inspection-preview-Btv59myr.js",
+        "/assets/bind-contract-BTQu1skm.js",
+        "/assets/ashenReach-CELGCeSv.css",
+        "/HavokPhysics.wasm",
+        "/ashen-reach/startup/starter/manifest.json",
+        "/ashen-reach/startup/starter/near-61b52956fc8e.br",
+        "/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "/ashen-reach/startup/starter/texture-876257499921.webp",
+        "/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "/meshopt_decoder.js",
+        "/assets/appearance-storage-q-oYgHIU.js",
+        "/ashen-reach/human-identity-v1/manifest.json",
+        "/assets/human-identity-assets-DMixArJa.js",
+        "/ashen-reach/favicon.png",
+        "/ashen-reach/human-identity-v1/body-31f3ba87f47d.bin",
+        "/ashen-reach/human-shape-v1/wayfarerTunic-compact-000ff23bf965.bin",
+        "/ashen-reach/human-shape-v1/wayfarerTrousers-compact-coverage-f834210550a3.bin",
+        "/ashen-reach/human-shape-v1/wayfarerBoots-compact-287d89851371.bin",
+        "/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "/ashen-reach/startup/starter/texture-876257499921.webp",
+        "/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "/assets/world-worker-Cvw93lBX.js",
+        "/ashen-reach/startup/starter/texture-a659b1767619.webp",
+        "/assets/combat-Qm_K-zFw.js",
+        "/assets/enemies-D9QpwVHG.js",
+        "/assets/npc-Cpf7CNik.js",
+        "/assets/townsfolk-idaMX-fq.js",
+        "/assets/armory-B2MxrpGa.js",
+        "/assets/armory-dUCANNuh.css",
+        "/ashen-reach/human-shape-v1/wayfarerTunic-e65b2868e12f.bin",
+        "/assets/lite-error-CbM31Lpb.js",
+        "/assets/typed-arrays-mqcHaLDm.js",
+        "/assets/multiply-mat4-into-buffer-DfBnM-FI.js",
+        "/assets/engine-Bmc5IJPK.js",
+        "/ashen-reach/training-dummy.glb",
+        "/characters/base.glb",
+        "/ashen-reach/human-shape-v1/wayfarerTrousers-coverage-b1eb36e8f614.bin",
+        "/ashen-reach/fire-blast/fire_01.png",
+        "/ashen-reach/fire-blast/smoke_01.png",
+        "/ashen-reach/fire-blast/spark_05.png",
+        "/ashen-reach/human-shape-v1/wayfarerBoots-14b43ef82011.bin",
+        "/ashen-reach/fire-blast/fire_01.png",
+        "/ashen-reach/fire-blast/spark_05.png",
+        "/ashen-reach/fire-blast/fire_01.png",
+        "/ashen-reach/fire-blast/smoke_01.png",
+        "/ashen-reach/fire-blast/spark_05.png",
+        "/ashen-reach/human-shape-v1/texture-29d4e4e4bece.png",
+        "/ashen-reach/fire-blast/fireball-julien-matthey.wav",
+        "/ashen-reach/fire-blast/lava-charge.wav",
+        "/ashen-reach/human-shape-v1/texture-f465517766cc.png",
+        "/assets/creator-BWp5oStF.js",
+        "/assets/human-shape-CLK6o720.js",
+        "/assets/creator-B5d1-Jhl.css",
+        "/ashen-reach/human-shape-v1/texture-feb2ba6d8d36.png",
+        "/ashen-reach/woodland/trees.json",
+        "/tex/wood_planks_grey/diff.jpg",
+        "/tex/rock_wall_08/diff.jpg",
+        "/ashen-reach/grave-face.jpg",
+        "/tex/bark_brown_02/diff.jpg",
+        "/ashen-reach/horizon-rock.jpg",
+        "/tex/forrest_ground_01/diff.jpg",
+        "/ashen-reach/stone-detail.png",
+        "/ashen-reach/sky-generated.jpg",
+        "/ashen-reach/foliage-atlas.png",
+        "/ashen-reach/human-identity-v1/texture-681b40f22cda.png",
+        "/ashen-reach/human-identity-v1/texture-9940f7d0b1b2.png",
+        "/ashen-reach/human-identity-v1/texture-e5bb21f35558.png",
+        "/assets/entry-CCfyyhfN.js",
+        "/assets/entry-DVqnJsvn.css",
+        "/ashen-reach/equipment-orc/manifest-coverage-v1.json",
+        "/ashen-reach/equipment-orc/body.glb",
+        "/ashen-reach/equipment-orc/wayfarerTunic.glb",
+        "/ashen-reach/equipment-orc/wayfarerTrousers-coverage-124da6c75972.glb",
+        "/ashen-reach/equipment-orc/wayfarerBoots.glb",
+        "/ashen-reach/equipment-undead/manifest-coverage-v1.json",
+        "/ashen-reach/equipment-undead/body-coverage-02cb6c3cc877.glb",
+        "/ashen-reach/equipment-undead/graveweaverHood.glb",
+        "/ashen-reach/equipment-undead/graveweaverTop.glb",
+        "/ashen-reach/equipment-undead/graveweaverSkirt-coverage-8be75fe7dc39.glb",
+        "/ashen-reach/human-identity-v1/graveweaverHood-9f3b17772a7f.bin",
+        "/ashen-reach/human-shape-v1/graveweaverTop-25fe071857bb.bin",
+        "/ashen-reach/human-shape-v1/graveweaverSkirt-3c310deed571.bin"
+      ]
+    },
+    {
+      "case": "selected-first-play-reload-race-return",
+      "preset": "prime-ponytail",
+      "first": {
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "dyes": {
+          "torso": "moss"
+        },
+        "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v6\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1.15,\"build\":-0.95},\"components\":{\"head\":\"human-prime-v1\",\"hair\":\"human-ponytail01-v1\"},\"dyes\":{\"torso\":\"moss\"},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+        "height": 1.15,
+        "shape": {
+          "weights": [
+            0.95,
+            0
+          ],
+          "heightScale": 1.15,
+          "installWriters": true,
+          "assetURL": null,
+          "garmentManifestURL": null,
+          "applied": true
+        },
+        "meshes": 132,
+        "visible": [
+          "HumanV1Body",
+          "HumanIdentityBrows",
+          "HumanIdentityEyes",
+          "HumanPonytail01"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": 0
+      },
+      "settled": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "torso": "moss"
+          },
+          "equipment": {
+            "helmet": null,
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": null,
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        },
+        "dyes": {
+          "torso": "moss"
+        },
+        "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v6\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1.15,\"build\":-0.95},\"components\":{\"head\":\"human-prime-v1\",\"hair\":\"human-ponytail01-v1\"},\"dyes\":{\"torso\":\"moss\"},\"equipment\":{\"helmet\":null,\"torso\":\"graveweaverTop\",\"legs\":\"graveweaverSkirt\",\"boots\":null,\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+        "height": 1.15,
+        "shape": {
+          "weights": [
+            0.95,
+            0
+          ],
+          "heightScale": 1.15,
+          "applied": true,
+          "live": true
+        },
+        "meshes": 143,
+        "visible": [
+          "HumanV1Body",
+          "HumanIdentityBrows",
+          "HumanIdentityEyes",
+          "HumanPonytail01"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": 0
+      },
+      "requests": [
+        "/",
+        "/assets/startupPreload-DD-RUbIc.js",
+        "/assets/ashenReach-uZtkcESt.js",
+        "/assets/modulepreload-polyfill-P2Xu9kJm.js",
+        "/assets/module-preload-BZ1Pz5am.js",
+        "/assets/rolldown-runtime-hePW80VL.js",
+        "/assets/lite-runtime-CapxqNuF.js",
+        "/assets/equipment-catalog-BSw-Lbk_.js",
+        "/assets/coverage-manifest-CA9Ys9Y5.js",
+        "/assets/local-specular-c6fg4PgS.js",
+        "/assets/linear-materials-QPZyxGxM.js",
+        "/assets/geometry-DPyvdsr1.js",
+        "/assets/sun-shadows-CWTyvg8q.js",
+        "/assets/materials-8xkTIMsm.js",
+        "/assets/prop-transition-DTKUsvbn.js",
+        "/assets/dye-palette-PVDI2Yum.js",
+        "/assets/startup-assets-B6SaWrRC.js",
+        "/assets/input-Dr2x9id5.js",
+        "/assets/rig-DP5KCSAf.js",
+        "/assets/inspection-preview-Btv59myr.js",
+        "/assets/bind-contract-BTQu1skm.js",
+        "/assets/ashenReach-CELGCeSv.css",
+        "/HavokPhysics.wasm",
+        "/ashen-reach/startup/starter/manifest.json",
+        "/ashen-reach/startup/starter/near-61b52956fc8e.br",
+        "/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "/ashen-reach/startup/starter/texture-876257499921.webp",
+        "/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "/meshopt_decoder.js",
+        "/assets/appearance-storage-q-oYgHIU.js",
+        "/ashen-reach/human-identity-v1/manifest.json",
+        "/assets/human-identity-assets-DMixArJa.js",
+        "/ashen-reach/favicon.png",
+        "/ashen-reach/human-identity-v1/body-fc1092b22cb1.bin",
+        "/ashen-reach/human-shape-v1/wayfarerTunic-compact-000ff23bf965.bin",
+        "/ashen-reach/human-shape-v1/wayfarerTrousers-compact-coverage-f834210550a3.bin",
+        "/ashen-reach/human-shape-v1/wayfarerBoots-compact-287d89851371.bin",
+        "/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "/ashen-reach/startup/starter/texture-876257499921.webp",
+        "/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "/assets/world-worker-Cvw93lBX.js",
+        "/ashen-reach/startup/starter/texture-a659b1767619.webp",
+        "/assets/combat-Qm_K-zFw.js",
+        "/assets/enemies-D9QpwVHG.js",
+        "/assets/npc-Cpf7CNik.js",
+        "/assets/townsfolk-idaMX-fq.js",
+        "/assets/armory-B2MxrpGa.js",
+        "/assets/armory-dUCANNuh.css",
+        "/ashen-reach/human-shape-v1/wayfarerTunic-e65b2868e12f.bin",
+        "/assets/lite-error-CbM31Lpb.js",
+        "/assets/typed-arrays-mqcHaLDm.js",
+        "/assets/multiply-mat4-into-buffer-DfBnM-FI.js",
+        "/assets/engine-Bmc5IJPK.js",
+        "/ashen-reach/training-dummy.glb",
+        "/characters/base.glb",
+        "/ashen-reach/human-shape-v1/wayfarerTrousers-coverage-b1eb36e8f614.bin",
+        "/ashen-reach/fire-blast/fire_01.png",
+        "/ashen-reach/fire-blast/smoke_01.png",
+        "/ashen-reach/fire-blast/spark_05.png",
+        "/ashen-reach/human-shape-v1/wayfarerBoots-14b43ef82011.bin",
+        "/ashen-reach/fire-blast/fire_01.png",
+        "/ashen-reach/fire-blast/spark_05.png",
+        "/ashen-reach/fire-blast/fire_01.png",
+        "/ashen-reach/fire-blast/smoke_01.png",
+        "/ashen-reach/fire-blast/spark_05.png",
+        "/ashen-reach/human-shape-v1/texture-29d4e4e4bece.png",
+        "/ashen-reach/fire-blast/fireball-julien-matthey.wav",
+        "/ashen-reach/fire-blast/lava-charge.wav",
+        "/ashen-reach/human-shape-v1/texture-f465517766cc.png",
+        "/assets/creator-BWp5oStF.js",
+        "/assets/human-shape-CLK6o720.js",
+        "/assets/creator-B5d1-Jhl.css",
+        "/ashen-reach/human-shape-v1/texture-feb2ba6d8d36.png",
+        "/ashen-reach/woodland/trees.json",
+        "/tex/rock_wall_08/diff.jpg",
+        "/tex/wood_planks_grey/diff.jpg",
+        "/tex/bark_brown_02/diff.jpg",
+        "/ashen-reach/grave-face.jpg",
+        "/ashen-reach/horizon-rock.jpg",
+        "/tex/forrest_ground_01/diff.jpg",
+        "/ashen-reach/stone-detail.png",
+        "/ashen-reach/sky-generated.jpg",
+        "/ashen-reach/foliage-atlas.png",
+        "/ashen-reach/human-identity-v1/texture-681b40f22cda.png",
+        "/ashen-reach/human-identity-v1/texture-9940f7d0b1b2.png",
+        "/ashen-reach/human-identity-v1/texture-e5bb21f35558.png",
+        "/ashen-reach/human-identity-v1/texture-099440732c1f.png",
+        "/assets/entry-CCfyyhfN.js",
+        "/assets/entry-DVqnJsvn.css",
+        "/ashen-reach/equipment-orc/manifest-coverage-v1.json",
+        "/ashen-reach/equipment-orc/body.glb",
+        "/ashen-reach/equipment-orc/wayfarerTunic.glb",
+        "/ashen-reach/equipment-orc/wayfarerTrousers-coverage-124da6c75972.glb",
+        "/ashen-reach/equipment-orc/wayfarerBoots.glb",
+        "/ashen-reach/equipment-undead/manifest-coverage-v1.json",
+        "/ashen-reach/equipment-undead/body-coverage-02cb6c3cc877.glb",
+        "/ashen-reach/equipment-undead/graveweaverHood.glb",
+        "/ashen-reach/equipment-undead/graveweaverTop.glb",
+        "/ashen-reach/equipment-undead/graveweaverSkirt-coverage-8be75fe7dc39.glb",
+        "/ashen-reach/human-identity-v1/graveweaverHood-9f3b17772a7f.bin",
+        "/ashen-reach/human-shape-v1/graveweaverTop-25fe071857bb.bin",
+        "/ashen-reach/human-shape-v1/graveweaverSkirt-3c310deed571.bin",
+        "/ashen-reach/human-identity-v1/texture-242ee5c2d82d.webp"
+      ]
+    },
+    {
+      "case": "selected-first-play-reload-race-return",
+      "preset": "weathered-bald",
+      "first": {
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "dyes": {
+          "torso": "moss"
+        },
+        "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v6\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":0.9,\"build\":0.95},\"components\":{\"head\":\"human-weathered-v1\",\"hair\":\"human-bald-v1\"},\"dyes\":{\"torso\":\"moss\"},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "installWriters": true,
+          "assetURL": null,
+          "garmentManifestURL": null,
+          "applied": true
+        },
+        "meshes": 131,
+        "visible": [
+          "HumanV1Body",
+          "HumanIdentityBrows",
+          "HumanIdentityEyes"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": 0
+      },
+      "settled": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "torso": "moss"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": null,
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        },
+        "dyes": {
+          "torso": "moss"
+        },
+        "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v6\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":0.9,\"build\":0.95},\"components\":{\"head\":\"human-weathered-v1\",\"hair\":\"human-bald-v1\"},\"dyes\":{\"torso\":\"moss\"},\"equipment\":{\"helmet\":\"graveweaverHood\",\"torso\":\"graveweaverTop\",\"legs\":\"graveweaverSkirt\",\"boots\":null,\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "meshes": 142,
+        "visible": [
+          "HumanV1Body",
+          "HumanIdentityBrows",
+          "HumanIdentityEyes",
+          "HumanTorsoCore"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": 0
+      },
+      "requests": [
+        "/",
+        "/assets/startupPreload-DD-RUbIc.js",
+        "/assets/ashenReach-uZtkcESt.js",
+        "/assets/modulepreload-polyfill-P2Xu9kJm.js",
+        "/assets/module-preload-BZ1Pz5am.js",
+        "/assets/rolldown-runtime-hePW80VL.js",
+        "/assets/lite-runtime-CapxqNuF.js",
+        "/assets/equipment-catalog-BSw-Lbk_.js",
+        "/assets/coverage-manifest-CA9Ys9Y5.js",
+        "/assets/local-specular-c6fg4PgS.js",
+        "/assets/linear-materials-QPZyxGxM.js",
+        "/assets/geometry-DPyvdsr1.js",
+        "/assets/sun-shadows-CWTyvg8q.js",
+        "/assets/materials-8xkTIMsm.js",
+        "/assets/prop-transition-DTKUsvbn.js",
+        "/assets/dye-palette-PVDI2Yum.js",
+        "/assets/startup-assets-B6SaWrRC.js",
+        "/assets/input-Dr2x9id5.js",
+        "/assets/rig-DP5KCSAf.js",
+        "/assets/inspection-preview-Btv59myr.js",
+        "/assets/bind-contract-BTQu1skm.js",
+        "/assets/ashenReach-CELGCeSv.css",
+        "/HavokPhysics.wasm",
+        "/ashen-reach/startup/starter/manifest.json",
+        "/ashen-reach/startup/starter/near-61b52956fc8e.br",
+        "/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "/ashen-reach/startup/starter/texture-876257499921.webp",
+        "/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "/meshopt_decoder.js",
+        "/assets/appearance-storage-q-oYgHIU.js",
+        "/ashen-reach/human-identity-v1/manifest.json",
+        "/assets/human-identity-assets-DMixArJa.js",
+        "/ashen-reach/favicon.png",
+        "/ashen-reach/human-identity-v1/body-ddf25d841211.bin",
+        "/ashen-reach/human-shape-v1/wayfarerTunic-compact-000ff23bf965.bin",
+        "/ashen-reach/human-shape-v1/wayfarerTrousers-compact-coverage-f834210550a3.bin",
+        "/ashen-reach/human-shape-v1/wayfarerBoots-compact-287d89851371.bin",
+        "/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "/ashen-reach/startup/starter/texture-876257499921.webp",
+        "/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "/assets/world-worker-Cvw93lBX.js",
+        "/ashen-reach/startup/starter/texture-a659b1767619.webp",
+        "/assets/combat-Qm_K-zFw.js",
+        "/assets/enemies-D9QpwVHG.js",
+        "/assets/npc-Cpf7CNik.js",
+        "/assets/townsfolk-idaMX-fq.js",
+        "/assets/armory-B2MxrpGa.js",
+        "/assets/armory-dUCANNuh.css",
+        "/ashen-reach/human-shape-v1/wayfarerTunic-e65b2868e12f.bin",
+        "/ashen-reach/training-dummy.glb",
+        "/characters/base.glb",
+        "/assets/lite-error-CbM31Lpb.js",
+        "/assets/typed-arrays-mqcHaLDm.js",
+        "/assets/multiply-mat4-into-buffer-DfBnM-FI.js",
+        "/assets/engine-Bmc5IJPK.js",
+        "/ashen-reach/human-shape-v1/wayfarerTrousers-coverage-b1eb36e8f614.bin",
+        "/ashen-reach/fire-blast/fire_01.png",
+        "/ashen-reach/fire-blast/smoke_01.png",
+        "/ashen-reach/fire-blast/spark_05.png",
+        "/ashen-reach/human-shape-v1/wayfarerBoots-14b43ef82011.bin",
+        "/ashen-reach/fire-blast/fire_01.png",
+        "/ashen-reach/fire-blast/spark_05.png",
+        "/ashen-reach/fire-blast/fire_01.png",
+        "/ashen-reach/fire-blast/smoke_01.png",
+        "/ashen-reach/fire-blast/spark_05.png",
+        "/ashen-reach/human-shape-v1/texture-29d4e4e4bece.png",
+        "/ashen-reach/fire-blast/fireball-julien-matthey.wav",
+        "/ashen-reach/human-shape-v1/texture-f465517766cc.png",
+        "/ashen-reach/fire-blast/lava-charge.wav",
+        "/ashen-reach/human-shape-v1/texture-feb2ba6d8d36.png",
+        "/assets/creator-BWp5oStF.js",
+        "/assets/human-shape-CLK6o720.js",
+        "/assets/creator-B5d1-Jhl.css",
+        "/ashen-reach/woodland/trees.json",
+        "/tex/rock_wall_08/diff.jpg",
+        "/tex/wood_planks_grey/diff.jpg",
+        "/tex/bark_brown_02/diff.jpg",
+        "/ashen-reach/grave-face.jpg",
+        "/ashen-reach/horizon-rock.jpg",
+        "/ashen-reach/stone-detail.png",
+        "/tex/forrest_ground_01/diff.jpg",
+        "/ashen-reach/sky-generated.jpg",
+        "/ashen-reach/foliage-atlas.png",
+        "/ashen-reach/human-identity-v1/texture-0c2e3d315bb3.png",
+        "/ashen-reach/human-identity-v1/texture-9940f7d0b1b2.png",
+        "/ashen-reach/human-identity-v1/texture-e5bb21f35558.png",
+        "/assets/entry-CCfyyhfN.js",
+        "/assets/entry-DVqnJsvn.css",
+        "/ashen-reach/equipment-orc/manifest-coverage-v1.json",
+        "/ashen-reach/equipment-orc/body.glb",
+        "/ashen-reach/equipment-orc/wayfarerTunic.glb",
+        "/ashen-reach/equipment-orc/wayfarerTrousers-coverage-124da6c75972.glb",
+        "/ashen-reach/equipment-orc/wayfarerBoots.glb",
+        "/ashen-reach/equipment-undead/manifest-coverage-v1.json",
+        "/ashen-reach/equipment-undead/body-coverage-02cb6c3cc877.glb",
+        "/ashen-reach/equipment-undead/graveweaverHood.glb",
+        "/ashen-reach/equipment-undead/graveweaverTop.glb",
+        "/ashen-reach/equipment-undead/graveweaverSkirt-coverage-8be75fe7dc39.glb",
+        "/ashen-reach/human-identity-v1/graveweaverHood-a9d24c7d258a.bin",
+        "/ashen-reach/human-shape-v1/graveweaverTop-25fe071857bb.bin",
+        "/ashen-reach/human-shape-v1/graveweaverSkirt-3c310deed571.bin"
+      ]
+    },
+    {
+      "case": "actual-ui-and-independent-undo-queued-reset",
+      "chosen": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1,
+            "build": 0
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        },
+        "dyes": {},
+        "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v6\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{\"head\":\"human-prime-v1\",\"hair\":\"human-ponytail01-v1\"},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+        "height": 1,
+        "shape": {
+          "weights": [
+            0,
+            0
+          ],
+          "heightScale": 1,
+          "applied": true,
+          "live": true
+        },
+        "meshes": 141,
+        "visible": [
+          "HumanV1Body",
+          "HumanIdentityBrows",
+          "HumanIdentityEyes",
+          "HumanPonytail01",
+          "HumanTorsoCore"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": 0
+      },
+      "edited": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "torso": "indigo"
+          },
+          "equipment": {
+            "helmet": null,
+            "torso": "lectorCoat",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "lectorCoat",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        },
+        "dyes": {
+          "torso": "indigo"
+        },
+        "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v6\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":0.9,\"build\":0.95},\"components\":{\"head\":\"human-prime-v1\",\"hair\":\"human-ponytail01-v1\"},\"dyes\":{\"torso\":\"indigo\"},\"equipment\":{\"helmet\":null,\"torso\":\"lectorCoat\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "meshes": 144,
+        "visible": [
+          "HumanV1Body",
+          "HumanIdentityBrows",
+          "HumanIdentityEyes",
+          "HumanPonytail01"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": 0
+      },
+      "undone": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {
+            "torso": "indigo"
+          },
+          "equipment": {
+            "helmet": null,
+            "torso": "lectorCoat",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "lectorCoat",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        },
+        "dyes": {
+          "torso": "indigo"
+        },
+        "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v6\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":0.9,\"build\":0.95},\"components\":{},\"dyes\":{\"torso\":\"indigo\"},\"equipment\":{\"helmet\":null,\"torso\":\"lectorCoat\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "meshes": 140,
+        "visible": [
+          "HumanV1Body",
+          "HumanTorsoCore"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": 0
+      },
+      "final": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {},
+          "dyes": {
+            "torso": "indigo"
+          },
+          "equipment": {
+            "helmet": null,
+            "torso": "lectorCoat",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "lectorCoat",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        },
+        "dyes": {
+          "torso": "indigo"
+        },
+        "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v6\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":0.9,\"build\":0.95},\"components\":{},\"dyes\":{\"torso\":\"indigo\"},\"equipment\":{\"helmet\":null,\"torso\":\"lectorCoat\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "meshes": 140,
+        "visible": [
+          "HumanV1Body",
+          "HumanTorsoCore"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "case": "failed-source-preserves-and-can-retry",
+      "failure": "http",
+      "hits": 2,
+      "message": "/ashen-reach/human-identity-v1/body-ddf25d841211.bin: HTTP 500",
+      "before": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1,
+            "build": 0
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        },
+        "dyes": {},
+        "storage": null,
+        "height": 1,
+        "shape": null,
+        "meshes": 138,
+        "visible": [
+          "HumanV1Body"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": 0
+      },
+      "final": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1,
+            "build": 0
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        },
+        "dyes": {},
+        "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v6\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{\"head\":\"human-weathered-v1\",\"hair\":\"human-bald-v1\"},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+        "height": 1,
+        "shape": {
+          "weights": [
+            0,
+            0
+          ],
+          "heightScale": 1,
+          "applied": true,
+          "live": true
+        },
+        "meshes": 140,
+        "visible": [
+          "HumanV1Body",
+          "HumanIdentityBrows",
+          "HumanIdentityEyes",
+          "HumanTorsoCore"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "case": "failed-source-preserves-and-can-retry",
+      "failure": "corrupt",
+      "hits": 2,
+      "message": "Failed to fetch",
+      "before": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1,
+            "build": 0
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        },
+        "dyes": {},
+        "storage": null,
+        "height": 1,
+        "shape": null,
+        "meshes": 138,
+        "visible": [
+          "HumanV1Body"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": 0
+      },
+      "final": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1,
+            "build": 0
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        },
+        "dyes": {},
+        "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v6\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{\"head\":\"human-weathered-v1\",\"hair\":\"human-bald-v1\"},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+        "height": 1,
+        "shape": {
+          "weights": [
+            0,
+            0
+          ],
+          "heightScale": 1,
+          "applied": true,
+          "live": true
+        },
+        "meshes": 140,
+        "visible": [
+          "HumanV1Body",
+          "HumanIdentityBrows",
+          "HumanIdentityEyes",
+          "HumanTorsoCore"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "case": "disposed-editor-refuses-held-identity-before-stage",
+      "hits": 1,
+      "rejected": {
+        "ok": false,
+        "name": "AbortError",
+        "message": "signal is aborted without reason"
+      },
+      "before": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1,
+            "build": 0
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        },
+        "dyes": {},
+        "storage": null,
+        "height": 1,
+        "shape": null,
+        "meshes": 138,
+        "visible": [
+          "HumanV1Body"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": 0
+      },
+      "after": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1,
+            "build": 0
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        },
+        "dyes": {},
+        "storage": null,
+        "height": 1,
+        "shape": null,
+        "meshes": 138,
+        "visible": [
+          "HumanV1Body"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": 0
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

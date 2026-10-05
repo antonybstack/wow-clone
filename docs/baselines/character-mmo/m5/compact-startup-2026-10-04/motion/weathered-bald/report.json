@@ -1,0 +1,2028 @@
+{
+  "preset": "weathered-bald",
+  "build": 0.95,
+  "height": 0.9,
+  "timeline": [
+    {
+      "name": "Compact hood front",
+      "timestamp": 1791163410.668,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "stored": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "installWriters": true,
+          "assetURL": null,
+          "garmentManifestURL": null,
+          "applied": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "grounded": true,
+        "hair": null,
+        "hoods": 1,
+        "faceMeshes": [
+          "HumanIdentityBrows",
+          "HumanIdentityEyes"
+        ],
+        "gpuErrors": [],
+        "detailError": null
+      }
+    },
+    {
+      "name": "Compact hood profile",
+      "timestamp": 1791163411.28,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "stored": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "installWriters": true,
+          "assetURL": null,
+          "garmentManifestURL": null,
+          "applied": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "grounded": true,
+        "hair": null,
+        "hoods": 1,
+        "faceMeshes": [
+          "HumanIdentityBrows",
+          "HumanIdentityEyes"
+        ],
+        "gpuErrors": [],
+        "detailError": null
+      }
+    },
+    {
+      "name": "Compact hood back",
+      "timestamp": 1791163411.892,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "stored": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "installWriters": true,
+          "assetURL": null,
+          "garmentManifestURL": null,
+          "applied": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "grounded": true,
+        "hair": null,
+        "hoods": 1,
+        "faceMeshes": [
+          "HumanIdentityBrows",
+          "HumanIdentityEyes"
+        ],
+        "gpuErrors": [],
+        "detailError": null
+      }
+    },
+    {
+      "name": "Compact hood native walk",
+      "timestamp": 1791163412.508,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "stored": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "installWriters": true,
+          "assetURL": null,
+          "garmentManifestURL": null,
+          "applied": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "grounded": true,
+        "hair": null,
+        "hoods": 1,
+        "faceMeshes": [
+          "HumanIdentityBrows",
+          "HumanIdentityEyes"
+        ],
+        "gpuErrors": [],
+        "detailError": null
+      }
+    },
+    {
+      "name": "Compact hood native jump",
+      "timestamp": 1791163413.013,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "stored": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "installWriters": true,
+          "assetURL": null,
+          "garmentManifestURL": null,
+          "applied": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "grounded": true,
+        "hair": null,
+        "hoods": 1,
+        "faceMeshes": [
+          "HumanIdentityBrows",
+          "HumanIdentityEyes"
+        ],
+        "gpuErrors": [],
+        "detailError": null
+      }
+    },
+    {
+      "name": "Compact hood native fire",
+      "timestamp": 1791163413.527,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "stored": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "installWriters": true,
+          "assetURL": null,
+          "garmentManifestURL": null,
+          "applied": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "grounded": true,
+        "hair": null,
+        "hoods": 1,
+        "faceMeshes": [
+          "HumanIdentityBrows",
+          "HumanIdentityEyes"
+        ],
+        "gpuErrors": [],
+        "detailError": null
+      }
+    },
+    {
+      "name": "Full hood front",
+      "timestamp": 1791163414.184,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "stored": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "grounded": true,
+        "hair": null,
+        "hoods": 1,
+        "faceMeshes": [
+          "HumanIdentityBrows",
+          "HumanIdentityEyes"
+        ],
+        "gpuErrors": [],
+        "detailError": null
+      }
+    },
+    {
+      "name": "Full hood profile",
+      "timestamp": 1791163415.288,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "stored": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "grounded": true,
+        "hair": null,
+        "hoods": 1,
+        "faceMeshes": [
+          "HumanIdentityBrows",
+          "HumanIdentityEyes"
+        ],
+        "gpuErrors": [],
+        "detailError": null
+      }
+    },
+    {
+      "name": "Full hood back",
+      "timestamp": 1791163416.404,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "stored": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "grounded": true,
+        "hair": null,
+        "hoods": 1,
+        "faceMeshes": [
+          "HumanIdentityBrows",
+          "HumanIdentityEyes"
+        ],
+        "gpuErrors": [],
+        "detailError": null
+      }
+    },
+    {
+      "name": "Full hood native walk",
+      "timestamp": 1791163417.56,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "stored": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "grounded": true,
+        "hair": null,
+        "hoods": 1,
+        "faceMeshes": [
+          "HumanIdentityBrows",
+          "HumanIdentityEyes"
+        ],
+        "gpuErrors": [],
+        "detailError": null
+      }
+    },
+    {
+      "name": "Full hood native run",
+      "timestamp": 1791163418.374,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "stored": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "grounded": true,
+        "hair": null,
+        "hoods": 1,
+        "faceMeshes": [
+          "HumanIdentityBrows",
+          "HumanIdentityEyes"
+        ],
+        "gpuErrors": [],
+        "detailError": null
+      }
+    },
+    {
+      "name": "Full hood native jump",
+      "timestamp": 1791163419.199,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "stored": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "grounded": true,
+        "hair": null,
+        "hoods": 1,
+        "faceMeshes": [
+          "HumanIdentityBrows",
+          "HumanIdentityEyes"
+        ],
+        "gpuErrors": [],
+        "detailError": null
+      }
+    },
+    {
+      "name": "Full hood native land",
+      "timestamp": 1791163420.007,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "stored": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "grounded": true,
+        "hair": null,
+        "hoods": 1,
+        "faceMeshes": [
+          "HumanIdentityBrows",
+          "HumanIdentityEyes"
+        ],
+        "gpuErrors": [],
+        "detailError": null
+      }
+    },
+    {
+      "name": "Full hood native fire",
+      "timestamp": 1791163420.82,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "stored": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "grounded": true,
+        "hair": null,
+        "hoods": 1,
+        "faceMeshes": [
+          "HumanIdentityBrows",
+          "HumanIdentityEyes"
+        ],
+        "gpuErrors": [],
+        "detailError": null
+      }
+    },
+    {
+      "name": "Full hood native carry",
+      "timestamp": 1791163421.635,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "stored": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "grounded": true,
+        "hair": null,
+        "hoods": 1,
+        "faceMeshes": [
+          "HumanIdentityBrows",
+          "HumanIdentityEyes"
+        ],
+        "gpuErrors": [],
+        "detailError": null
+      }
+    },
+    {
+      "name": "Hood removed; selected hair restored",
+      "timestamp": 1791163422.454,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "stored": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "dyes": {
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "grounded": true,
+        "hair": null,
+        "hoods": 0,
+        "faceMeshes": [
+          "HumanIdentityBrows",
+          "HumanIdentityEyes"
+        ],
+        "gpuErrors": [],
+        "detailError": null
+      }
+    },
+    {
+      "name": "Normal Havok controls",
+      "timestamp": 1791163423.462,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "stored": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "dyes": {
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "grounded": true,
+        "hair": null,
+        "hoods": 0,
+        "faceMeshes": [
+          "HumanIdentityBrows",
+          "HumanIdentityEyes"
+        ],
+        "gpuErrors": [],
+        "detailError": null
+      }
+    },
+    {
+      "name": "Normal walk jump cast attack complete",
+      "timestamp": 1791163427.406,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "stored": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "dyes": {
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "height": 0.9,
+        "shape": {
+          "weights": [
+            0,
+            0.95
+          ],
+          "heightScale": 0.9,
+          "applied": true,
+          "live": true
+        },
+        "physics": true,
+        "recoveries": 0,
+        "grounded": true,
+        "hair": null,
+        "hoods": 0,
+        "faceMeshes": [
+          "HumanIdentityBrows",
+          "HumanIdentityEyes"
+        ],
+        "gpuErrors": [],
+        "detailError": null
+      }
+    }
+  ],
+  "scope": "Functional and visual compact-to-full identity refinement; no timing or FPS acceptance",
+  "passed": true
+}

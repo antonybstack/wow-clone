@@ -18,9 +18,12 @@ await Promise.all(Array.from({length:8},async()=>{
  for(;;){const i=index++;if(i>=files.length)return;const p=files[i],file=path.relative(root,p),response=await fetch(new URL(file,base.endsWith('/')?base:base+'/'));const actual=Buffer.from(await response.arrayBuffer());
   const encoded=await fs.readFile(p),expected=file.endsWith('.br')&&response.headers.get('content-encoding')==='br'?brotliDecompressSync(encoded):encoded;
   const row={file,status:response.status,bytes:actual.length,match:response.ok&&hash(actual)===hash(expected)};
-  if(file.includes('/region-actors-v1/')){row.cacheControl=response.headers.get('cache-control');const mutable=file.endsWith('manifest.json');row.cacheCorrect=mutable?row.cacheControl==='no-cache':row.cacheControl?.includes('immutable')&&!row.cacheControl.includes('no-cache');}
+  // These mutable catalogues rotate immutable URLs. Checking only byte equality
+  // would accept a deployment that strands returning clients on a stale index.
+  // Authoring preparation.json is a receipt rather than a runtime descriptor.
+  if(file.includes('/region-actors-v1/')||(file.includes('/human-identity-v1/')&&!file.endsWith('/preparation.json'))){row.cacheControl=response.headers.get('cache-control');const mutable=file.endsWith('/manifest.json');row.cacheCorrect=mutable?row.cacheControl==='no-cache':row.cacheControl?.includes('immutable')&&!row.cacheControl.includes('no-cache');}
   rows.push(row);
  }
 }));
 rows.sort((a,b)=>a.file.localeCompare(b.file));await fs.writeFile(out,JSON.stringify(rows,null,2));
-assert(rows.every(r=>r.match&&r.cacheCorrect!==false),'Artifact or cache policy mismatch; inspect the report');console.log(JSON.stringify({checked:rows.length,matched:true,regionCachePoliciesChecked:rows.filter(r=>r.cacheCorrect).length}));
+assert(rows.every(r=>r.match&&r.cacheCorrect!==false),'Artifact or cache policy mismatch; inspect the report');console.log(JSON.stringify({checked:rows.length,matched:true,regionCachePoliciesChecked:rows.filter(r=>r.cacheCorrect&&r.file.includes('/region-actors-v1/')).length,identityCachePoliciesChecked:rows.filter(r=>r.cacheCorrect&&r.file.includes('/human-identity-v1/')).length}));

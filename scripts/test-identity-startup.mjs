@@ -34,7 +34,7 @@ test('selected early/main requests share embedded descriptors, native decompress
   assert.equal([...requests.keys()].filter(url=>/manifest-prime/.test(url)).length,0,'Embedded selected manifest must avoid a second round trip');
   const retry={url:'/retry-selected.bin',bytes:3,compression:'gzip'};await assert.rejects(shared.startupAssetBuffer(retry),/HTTP 500/);await shared.startupAssetBuffer(retry);assert.equal(requests.get(retry.url),2);
   await assert.rejects(api.preloadHumanIdentityPack({head:'unknown',hair:'unknown'}),/Unsupported/);
- }finally{globalThis.fetch=original;}
+ }finally{(await import('../src/ashen-reach/startup-fetch.js')).invalidateHumanIdentityCatalogue();globalThis.fetch=original;}
 });
 test('incompatible index and a preset/body mismatch fail before selected assets load',async()=>{
  const original=globalThis.fetch;
@@ -45,5 +45,24 @@ test('incompatible index and a preset/body mismatch fail before selected assets 
   const changed=structuredClone(fixture);changed.presets[preset.id].manifest.identity.preset='weathered-bald';
   globalThis.fetch=async()=>new Response(JSON.stringify(changed));
   const mismatch=await import('../src/ashen-reach/human-identity-assets.js?wrong-preset');await assert.rejects(mismatch.preloadHumanIdentityPack(preset.components),/descriptor differs/);
- }finally{globalThis.fetch=original;}
+ }finally{(await import('../src/ashen-reach/startup-fetch.js')).invalidateHumanIdentityCatalogue();globalThis.fetch=original;}
+});
+test('saved preloader starts the fixed catalogue immediately and shares it with the optional module',async()=>{
+ const original=globalThis.fetch,index=structuredClone(fixture),requests=[];
+ for(const entry of Object.values(index.presets))for(const tier of ['items','compactItems'])for(const [id,a]of Object.entries(entry.manifest[tier])){
+  a.url=`/parallel-${tier}-${entry.manifest.identity.preset}-${id}.bin`;a.bytes=3;a.compression='gzip';
+ }
+ let release;
+ const gate=new Promise(resolve=>{release=resolve;});
+ globalThis.fetch=url=>{requests.push(url);return url.endsWith('human-identity-v1/manifest.json')?gate:Promise.resolve(new Response(gzipSync(new Uint8Array([1,2,3]))));};
+ const shared=await import('../src/ashen-reach/startup-fetch.js');
+ try{
+  const recipe={...defaultAppearance(),components:HUMAN_IDENTITY_PRESETS[2].components};
+  const selected=shared.preloadSavedHumanPack(recipe,{compact:true});
+  assert.deepEqual(requests,['/ashen-reach/human-identity-v1/manifest.json'],'Catalogue must start without waiting for the dynamic module');
+  release(new Response(JSON.stringify(index)));
+  const result=await selected;
+  assert.equal(result.identity.preset,'prime-ponytail');assert.equal(requests.filter(u=>u.endsWith('manifest.json')).length,1);
+  assert.deepEqual(new Uint8Array(await shared.startupAssetBuffer(result.items.body)),new Uint8Array([1,2,3]));
+ }finally{release(new Response(JSON.stringify(index)));shared.invalidateHumanIdentityCatalogue();globalThis.fetch=original;}
 });

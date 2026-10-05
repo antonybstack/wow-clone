@@ -8,6 +8,22 @@ native goal, beginning with M5 saved Human identity. Continue through verificati
 delivery and commit/push without another “proceed.” Respect explicit stop/pause
 requests and record real dependencies. [Continuation mechanism and scope](autonomous-continuation.md).
 
+**M5 compact-startup checkpoint, 2026-10-04:** the selected catalogue now overlaps
+its optional module request; lossless native accessor storage saves about 26 KB per
+body, and fitted startup hoods are about 47% smaller. The full approved face,
+65-joint bind and 57 source curves stay exact. Character **195/195**, focused startup
+**14/14**, **11** compact/refinement cases, **8** repeated saved-route cases, **7**
+desktop mobile/WebKit cases and build pass. Local native Pages verifies **845**
+artifacts / **17** identity cache policies; a valid Grok cache-header finding is fixed.
+Reviewed live motion is Telegram **853** /
+[VE](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m5-compact-identity-2026-10-04.mp4).
+**M5 stays open and unreleased.** The user-owned WoW client is active; no new
+isolated FPS or cold-cohort acceptance is claimed. A contaminated one-run waterfall
+takes 1125 ms and proves request overlap only. Next: inspect remaining selected
+payload costs with native tools, complete the outfit/motion fits, then isolated
+startup/FPS cohorts and release gates. Owned renderers and test servers are stopped.
+[Result and exact limits](plans/character-mmo/results/m5-compact-identity-startup-2026-10-04.md).
+
 **M5 saved-identity checkpoint, 2026-10-04:** local v6 now publishes the corrected
 three authored bodies and fitted hoods, loads the saved identity before play, and
 offers four Face and hair choices with independent undo in the normal Armory.
