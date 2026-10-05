@@ -44,7 +44,8 @@ errors. Eight injected-depth and four Weathered WebKit checks pass. The fresh
 **6.1 ms**, worst **10.9 ms**, no frame over 16.7 ms. Six pacing hints retain
 their strict collector failure and are resolved by native callback/launch/control
 evidence and five same-cohort rows over the inferred hard ceiling. Progressive
-startup is captured at native 1280×720; public playback and Telegram are pending.
+startup is reviewed on VE at native 1280×720 and in a full-window container;
+Telegram861 returned matching1280×720 dimensions; new Web A playback review is pending.
 
 Unchanged creator/grounding/scheduler tests and saved, mobile, contact, height and
 cathedral traversal checks retain their recorded passes. The earlier 45 settled
@@ -58,21 +59,31 @@ and public timing are required for this changed candidate. A single paired
 early-background diagnostic has 18–19 ms tails with and without skyline
 installation; its 0.3 ms maximum difference does not establish a new skyline spike.
 
-**M5 remains open:** current production's original-largest/hooded public p95 is
-**1,078.3 / 1,101.5 ms** (17/20 and 20/20 misses). All public functional gates pass.
-Earlier public failures are retained. Next: finish affected native gates, upload
-the exact sealed candidate, then verify public bytes, movement and representative
-cold cohorts. Local timing alone does not close the release.
+**M5 remains open:** the latest skyline production hood p95 is **1,038 ms**,
+maximum **1,656.6 ms**, four one-second misses in20. All522 public bytes/cache
+policies, bridge/tower return, saved/mobile/depth/WebKit checks pass. The manager
+stopped at the failed hood cohort; original/default have not run on this release.
+Earlier failures remain retained. Local timing alone does not close the release.
+
+The next local candidate overlaps Havok setup with body transfer, gives selected
+identity bodies priority over clothes, and defers exact near tree detail behind a
+required conservative tree preview. Collision and settled geometry remain unchanged.
+All120 local cold starts pass (p95649–867ms, max884.8ms, zero misses).
+Native522 bytes, four lifecycle cases, bridge/tower return, saved8, mobile8,
+depth8 and Weathered WebKit4 pass. Final15hood FPS is210.5–245.1 (maxp996.2ms,
+worst11.7ms, no16.7ms frame). Native/VE motion is reviewed; Telegram 862 returned matching 1280×720 dimensions.
+Commit and sealed public upload are next; M5 stays open until public cold checks and Web A playback pass.
 
 ## Production and rollback
 
 Production is [play.sparkify.dev](https://play.sparkify.dev), **M5 candidate / catalogue v6**,
-source **63433ace3412412027095041d5700a8069584895**, Pages
-**bdc10f74-8a12-41e3-a078-935d4d7611a4**. The exact 522-file sealed upload is
-complete; all 521 public bytes/cache policies and movement/mobile/WebKit checks
-pass. Public original-largest/hood startup fails; default was not run after the
-priority failure. All earlier rows remain recorded. Havok matches. Rollback target:
-**b3fdafd8-c343-4147-ae2e-760a155c8d06** / source `4063f49` (M7 / catalogue v5).
+source **24dbaa41eeb96e3779a7cbd1a95cb311182e66fe**, Pages
+**b07d7028-9015-43de-a857-c281f2cfc455**. The exact 523-file sealed upload is
+complete; all522 public bytes/cache policies and functional checks pass. The
+public hood cold check fails. Previous production for immediate rollback is
+**bdc10f74-8a12-41e3-a078-935d4d7611a4** / `63433ac`. Historical M7 target
+**b3fdafd8-c343-4147-ae2e-760a155c8d06** / `4063f49` has the older elevated-floor
+correction defect; use the immediate preceding63433ac for loading/movement rollback.
 Do not mark M5 complete until movement, public startup and Telegram delivery pass.
 
 ## Scope, limits and ownership

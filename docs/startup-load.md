@@ -14,8 +14,12 @@ Primary code: `src/ashen-reach/main.js`, `starter-world.js`, `startup-assets.js`
 `scripts/ashen-reach/prepare-starter-character.mjs` derives compact assets from the current Human equipment body and selected starter clothes. It preserves geometry/bind/animation and prepares smaller initial textures with deferred full texture URLs. `prepare-starter-world.mjs` builds deterministic nearby/region payloads. Existing provenance/hash validation guards stale prepared assets.
 
 The starting-world manifest describes two native HTTP-Brotli packets. Required
-`geometry` contains exact near render/collision blocks and nearby foliage;
-optional `geometry.skyline` contains the same 44 non-colliding distant proxies.
+`geometry` contains starting terrain/collision, landmarks, nearby foliage and a
+conservative tree preview (149,963 encoded bytes). Optional `geometry.skyline`
+contains two exact non-colliding near tree blocks and 44 distant proxies
+(593,607 bytes). Trunk collision remains required; the preview keeps obstacles
+visible when optional loading fails. Its exact block dependencies retire it as
+detail arrives, avoiding sustained overlap. Settled geometry stays exact.
 Only the required packet is preloaded before play. `startSkyline()` begins after
 the playable fence, yields mesh creation across frames, and updates the shadow
 list once. Region completion retires the proxies through Lite's ref-counted

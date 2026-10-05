@@ -101,7 +101,7 @@ export async function createStarterWorld(engine, scene, prepared) {
     gates = null;
   let skylinePromise=null, skylineAbort=null, proxiesRetired=false;
   const completeRecords=new Set();
-  const proxies = new Map(),
+  const proxies = new Map(), proxyTargets = new Map(), proxyRequirements = new Map(),
     installedBlocks = new Set(),
     installedCollisions = new Set(),
     installedBoxes = new Set(),
@@ -259,11 +259,18 @@ export async function createStarterWorld(engine, scene, prepared) {
       p.set(p.x, p.y, p.z);
       if (block.indexOffset + b.indices.length === record.indices) {
         completeRecords.add(record.name);
-        const proxy = proxies.get(record.name);
-        if (proxy) setMeshVisible(proxy, false);
+        for(const [name,proxy] of proxies)
+          if(proxyTargets.get(name)===record.name)setMeshVisible(proxy,false);
       }
     }
     installedBlocks.add(key);
+    // Retire a starting preview as soon as its exact near ranges are present,
+    // rather than overlapping it until the whole world record finishes.
+    for(const [name,keys] of proxyRequirements) {
+      if(keys.every(k=>installedBlocks.has(k))) {
+        setMeshVisible(proxies.get(name),false);proxyRequirements.delete(name);
+      }
+    }
     streaming.blocks++;
     const ms = performance.now() - started;
     streaming.worstInstallMs = Math.max(streaming.worstInstallMs, ms);
@@ -299,7 +306,10 @@ export async function createStarterWorld(engine, scene, prepared) {
     install({ ...block, buffers: readBlock(block) });
   }
   function installProxy(block, b) {
-    if(disposed||proxiesRetired||completeRecords.has(block.name)||proxies.has(block.name))return false;
+    const target=block.target??block.name;
+    const requirements=block.requiresBlocks;
+    if(disposed||proxiesRetired||completeRecords.has(target)||proxies.has(block.name)
+      ||requirements?.every(k=>installedBlocks.has(k)))return false;
     const
       mesh = createMeshFromData(
         engine,
@@ -315,6 +325,8 @@ export async function createStarterWorld(engine, scene, prepared) {
     mesh.material = mats[block.material];
     addToScene(scene, mesh);
     proxies.set(block.name, mesh);
+    proxyTargets.set(block.name,target);
+    if(requirements)proxyRequirements.set(block.name,requirements);
     meshes.push(mesh);
     shadowMeshes.push(mesh);
     return true;
@@ -441,8 +453,21 @@ export async function createStarterWorld(engine, scene, prepared) {
           if(packetBytes.byteLength!==packet.rawBytes)throw Error('Skyline geometry is truncated');
           if(disposed||proxiesRetired)return {installed,cancelled:true};
           // Decode all ranges before mutating the scene, refusing malformed offsets.
+          const backgroundBlocks=(packet.blocks??[]).map(block=>{
+            const record=records[block.meshId];
+            if(!record?.world||record.collision)throw Error('Background geometry may not install collision');
+            return {block,buffers:readBlock(block,packetBytes)};
+          });
           const blocks=packet.proxies.map(block=>({block,buffers:readBlock(block,packetBytes)}));
           let started=performance.now();
+          // Exact near render blocks share install() with the region worker.
+          // Whichever arrives first wins the existing block key; late/retried
+          // packets cannot duplicate uploads or resurrect a disposed scene.
+          for(const {block,buffers}of backgroundBlocks){
+            if(disposed||proxiesRetired)return {installed,cancelled:true};
+            install({...block,buffers});
+            if(performance.now()-started>=1){await yieldToFrame();started=performance.now();}
+          }
           for(const {block,buffers}of blocks){
             if(disposed||proxiesRetired)return {installed,cancelled:true};
             if(installProxy(block,buffers))installed++;
@@ -475,6 +500,8 @@ export async function createStarterWorld(engine, scene, prepared) {
         removeFromScene(scene, mesh);
       }
       proxies.clear();
+      proxyTargets.clear();
+      proxyRequirements.clear();
     },
   };
   async function loadRegion(player) {

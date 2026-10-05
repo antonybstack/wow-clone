@@ -7,9 +7,9 @@ const pending = new Map();
  * installation share one request and one decompression.
  * https://developer.mozilla.org/en-US/docs/Web/API/DecompressionStream
  */
-export function startupAssetBuffer(asset) {
+export function startupAssetBuffer(asset, {priority = 'high'} = {}) {
   if (!pending.has(asset.url)) {
-    const task = fetch(asset.url, { priority: "high" })
+    const task = fetch(asset.url, { priority })
       .then(async (response) => {
         if (!response.ok) throw Error(`${asset.url}: HTTP ${response.status}`);
         const bytes =

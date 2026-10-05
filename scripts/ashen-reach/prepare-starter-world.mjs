@@ -30,9 +30,9 @@ const data = partitionWorld(source);
 const output = "public/ashen-reach/startup/starter";
 await fs.mkdir(output, { recursive: true });
 const hash = (b) => createHash("sha256").update(b).digest("hex");
-// Two immutable packets with the same packing: the required near packet (exact initial
-// blocks + near foliage) gates first play; the distant non-colliding skyline proxies are a
-// separate packet the runtime may fetch in the background. Offsets are packet-relative.
+// Two immutable packets with the same packing: required terrain/landmarks, foliage
+// and tree previews gate first play; exact tree detail and distant non-colliding
+// proxies arrive in the background. Offsets are packet-relative.
 const packet = () => {
   const buffers = [];
   let offset = 0;
@@ -52,13 +52,37 @@ const packet = () => {
   };
 };
 const near = packet(), skyline = packet();
-const blocks = data.batches.filter((b) => b.initial).map(near.describe);
+// Keep starting terrain/collision and landmarks required. The churchyard tree
+// render stream has no collision; its trunk colliders already live in boxes.
+// Transfer those exact blocks after play, sharing the optional skyline packet.
+const initial = data.batches.filter((b) => b.initial);
+const deferredTree = b => data.meshes[b.meshId].name === 'Bare woodland'
+  && data.meshes[b.meshId].world && !data.meshes[b.meshId].collision;
+const blocks = initial.filter(b => !deferredTree(b)).map(near.describe);
+const backgroundBlocks = initial.filter(deferredTree).map(skyline.describe);
 // A temporary, non-colliding skyline made from the existing geometry. Welding
 // only affects these distant proxies; final meshes retain every source byte.
 // https://github.com/zeux/meshoptimizer/blob/v0.22/js/README.md#simplification
 await MeshoptSimplifier.ready;
 const proxies = [];
-for (const batch of source.batches) {
+const startingProxies = [];
+const proxySources = source.batches.map(batch => ({batch, required:false}));
+for(const batch of source.batches.filter(b => b.name === 'Bare woodland' && b.world && !b.collision)) {
+  const triangles=[];
+  for(let i=0;i<batch.buffers.indices.length;i+=3) {
+    let x=0,z=0;
+    for(let q=0;q<3;q++) {
+      const v=batch.buffers.indices[i+q]*3;
+      x+=batch.buffers.positions[v]/3;z+=batch.buffers.positions[v+2]/3;
+    }
+    if(nearStart(x,z))triangles.push(i);
+  }
+  // Reuse the same conservative Meshopt proxy path for starting tree silhouettes.
+  // Collision remains required, so trunks must stay visible even if the optional
+  // packet fails. Compact the near source first to keep error relative to its bounds.
+  proxySources.push({required:true,batch:{...batch,buffers:selectTriangles(batch.buffers,triangles)}});
+}
+for (const {batch, required} of proxySources) {
   if (
     !batch.world ||
     (batch.name.startsWith("Woodland") && !batch.name.endsWith("reduced"))
@@ -88,7 +112,7 @@ for (const batch of source.batches) {
       x += data.positions[v] / 3;
       z += data.positions[v + 2] / 3;
     }
-    if (!nearStart(x, z))
+    if (required || !nearStart(x, z))
       for (let q = 0; q < 3; q++) far.push(remap[data.indices[i + q]]);
   }
   if (!far.length) continue;
@@ -109,8 +133,9 @@ for (const batch of source.batches) {
     { ...data, indices: original },
     Array.from({ length: original.length / 3 }, (_, i) => i * 3),
   );
-  proxies.push(
-    skyline.describe({ name: batch.name, material: batch.material, buffers }),
+  (required ? startingProxies : proxies).push(
+    (required ? near : skyline).describe({ name: required ? batch.name + ' near preview' : batch.name,
+      ...(required ? {target:batch.name,requiresBlocks:backgroundBlocks.map(b=>`${b.meshId}:${b.indexOffset}`)} : {}), material: batch.material, buffers }),
   );
 }
 const placements = await generateFoliagePlacements({
@@ -200,7 +225,8 @@ const preparedManifest={
     geometry: {
       ...nearPacket,
       blocks,
-      skyline: { ...skylinePacket, proxies },
+      proxies: startingProxies,
+      skyline: { ...skylinePacket, blocks: backgroundBlocks, proxies },
     },
   };
 // Validate both immutable packets before publishing their shared mutable index.

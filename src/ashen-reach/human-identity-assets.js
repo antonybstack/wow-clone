@@ -24,6 +24,10 @@ export async function preloadHumanIdentityPack(components,loadout={}, {compact=f
  const selected=compact?{...full,items:full.compactItems,fullManifest:full}:full;
  const ids=new Set(['body',...Object.values(loadout).filter(id=>full.items[id])]);
  for(const id of ids)if(!selected.items?.[id])throw Error(`Missing selected Human piece ${id}`);
- for(const id of ids)startupAssetBuffer(selected.items[id]).catch(()=>{});
+ // The body gates skinning and collision attachment; independent gear transfers
+ // can overlap at lower priority. All pieces still gate the dressed first frame,
+ // and equipment installation reuses these exact fetch/decompression promises.
+ // https://developer.mozilla.org/en-US/docs/Web/API/RequestInit#priority
+ for(const id of ids)startupAssetBuffer(selected.items[id],{priority:id==='body'?'high':'low'}).catch(()=>{});
  return selected;
 }

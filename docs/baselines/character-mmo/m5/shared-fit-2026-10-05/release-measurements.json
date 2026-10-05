@@ -7400,7 +7400,7 @@
    ]
   },
   "motion": {
-   "stage": "Reviewed native motion/source frames and direct public VE normal/full-window playback; Telegram pending",
+   "stage": "Native/source-frame and VE normal/full-window reviewed; Telegram sent861, API dimensions pass; new Web A playback pending",
    "manifest": "ve-capture/character-mmo/m5/incremental-skyline-2026-10-05/capture-manifest.json",
    "publishReceipt": ".cache/character-mmo/m5-moving-fit-2026-10-05/skyline-motion-publish.json",
    "report": "ve-capture/character-mmo/m5/incremental-skyline-2026-10-05/report.json",
@@ -7451,6 +7451,14 @@
     ],
     "objectFit": "contain",
     "nativeFullscreenAttempt": "Browser refused requestFullscreen with TypeError/not granted; full-window letterboxing independently reviewed. Earlier859/860 native browser fullscreen retained as prior evidence."
+   },
+   "telegram": {
+    "messageId": 861,
+    "returnedWidth": 1280,
+    "returnedHeight": 720,
+    "returnedDurationSeconds": 19,
+    "matchedFileDimensions": true,
+    "sendLog": ".cache/character-mmo/m5-moving-fit-2026-10-05/skyline-telegram-send.log"
    }
   },
   "tests": {
@@ -7464,6 +7472,680 @@
     "log": ".cache/character-mmo/m5-moving-fit-2026-10-05/proxy-split-pages-build.log"
    },
    "unchanged": "Character221/221,equipment113/113,ground/lifetime14/14,scheduler14/14,seal4/4 retained by unchanged inputs"
+  },
+  "release": {
+   "stage": "Public functional gates pass; hood cold gate failed; M5 open",
+   "deployment": {
+    "id": "b07d7028-9015-43de-a857-c281f2cfc455",
+    "url": "https://b07d7028.fardel.pages.dev",
+    "environment": "production",
+    "createdOn": "2026-10-05T22:46:44.776095Z",
+    "stage": {
+     "name": "deploy",
+     "started_on": null,
+     "ended_on": "2026-10-05T22:46:46.083595Z",
+     "status": "success"
+    },
+    "commit": "24dbaa41eeb96e3779a7cbd1a95cb311182e66fe",
+    "previousProduction": {
+     "id": "bdc10f74-8a12-41e3-a078-935d4d7611a4",
+     "commit": "63433ace3412412027095041d5700a8069584895"
+    },
+    "historicalM7Rollback": {
+     "id": "b3fdafd8-c343-4147-ae2e-760a155c8d06",
+     "commit": "4063f4909a5d2bf9b30c71f700deeb26e18b7dca"
+    },
+    "rollbackCaution": "Historical M7 has the old elevated-terrain correction defect; immediate preceding63433ac is the recorded loading/movement-safe rollback."
+   },
+   "sealVerifiedBeforeUpload": true,
+   "rebuild": false,
+   "url": "https://play.sparkify.dev/",
+   "gatesManager": ".cache/character-mmo/m5-moving-fit-2026-10-05/skyline-public-gates-manager.log",
+   "functional": {
+    "artifacts": {
+     "checked": 522,
+     "matched": true,
+     "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/skyline-public-http.json"
+    },
+    "bridge": {
+     "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/skyline-public-bridge/report.json",
+     "passed": true,
+     "errors": [],
+     "checks": 0
+    },
+    "west-bell": {
+     "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/skyline-public-west-bell/report.json",
+     "passed": true,
+     "errors": [],
+     "checks": 0
+    },
+    "saved": {
+     "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/skyline-public-saved/report.json",
+     "passed": true,
+     "errors": [],
+     "checks": 8
+    },
+    "mobile": {
+     "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/skyline-public-mobile/report.json",
+     "passed": true,
+     "errors": [],
+     "checks": 8
+    },
+    "depth": {
+     "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/skyline-public-depth/report.json",
+     "passed": true,
+     "errors": [],
+     "checks": 8
+    },
+    "webkit": {
+     "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/skyline-public-webkit/report.json",
+     "passed": true,
+     "errors": [],
+     "checks": 4
+    },
+    "gateManager": {
+     "completed": [
+      "artifacts",
+      "bridge",
+      "west-bell",
+      "saved",
+      "mobile",
+      "depth",
+      "webkit"
+     ],
+     "allExitZero": true,
+     "log": ".cache/character-mmo/m5-moving-fit-2026-10-05/skyline-public-gates-manager.log"
+    }
+   },
+   "remainingStartupResearch": {
+    "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/claude-initial-support-latency.md",
+    "decision": "No source change. Median grounded-frame submission is21-26ms; first GPU queue completion95-109ms dominates, not missing support. Retain actual GPU-completed fence and existing physics tick semantics. Async shader option had an earlier negative trial; no evidence justifies another change."
+   },
+   "publicStartup": {
+    "profile": "prime-ponytail-hood",
+    "conditions": {
+     "gpuProbe": false,
+     "traceGpu": false,
+     "disableShaderCache": false,
+     "disableHttpCache": true,
+     "profile": "50mbps",
+     "savedAppearance": {
+      "schemaVersion": 2,
+      "catalogVersion": "appearance-catalog-v6",
+      "race": "human",
+      "fitFamily": "ashen-human",
+      "fit": {
+       "rig": "source-65",
+       "bind": 1,
+       "shape": 1
+      },
+      "shape": {
+       "family": "ashen-human-shape-v1",
+       "height": 1.15,
+       "build": -0.95
+      },
+      "components": {
+       "head": "human-prime-v1",
+       "hair": "human-ponytail01-v1"
+      },
+      "dyes": {
+       "helmet": "moss",
+       "torso": "oxblood",
+       "legs": "indigo"
+      },
+      "equipment": {
+       "helmet": "graveweaverHood",
+       "torso": "pilgrimTunic",
+       "legs": "graveweaverSkirt",
+       "boots": "wayfarerBoots",
+       "gloves": "graveweaverGloves",
+       "mainHand": "graveweaverStaff",
+       "offHand": "graveweaverBook",
+       "shoulders": "wardenPauldrons"
+      }
+     },
+     "expectedAppearance": {
+      "schemaVersion": 2,
+      "catalogVersion": "appearance-catalog-v6",
+      "race": "human",
+      "fitFamily": "ashen-human",
+      "fit": {
+       "rig": "source-65",
+       "bind": 1,
+       "shape": 1
+      },
+      "shape": {
+       "family": "ashen-human-shape-v1",
+       "height": 1.15,
+       "build": -0.95
+      },
+      "components": {
+       "head": "human-prime-v1",
+       "hair": "human-ponytail01-v1"
+      },
+      "dyes": {
+       "helmet": "moss",
+       "torso": "oxblood",
+       "legs": "indigo"
+      },
+      "equipment": {
+       "helmet": "graveweaverHood",
+       "torso": "pilgrimTunic",
+       "legs": "graveweaverSkirt",
+       "boots": "wayfarerBoots",
+       "gloves": "graveweaverGloves",
+       "mainHand": "graveweaverStaff",
+       "offHand": "graveweaverBook",
+       "shoulders": "wardenPauldrons"
+      }
+     },
+     "network": {
+      "latency": 40,
+      "downloadThroughput": 6250000,
+      "uploadThroughput": 1250000
+     },
+     "cpu": "Apple M1 Max",
+     "viewport": [
+      1280,
+      720
+     ],
+     "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+     "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+    },
+    "count": 20,
+    "p95Ms": 1038,
+    "maxMs": 1656.6000000238419,
+    "misses": [
+     {
+      "run": 1,
+      "playableMs": 1015.6999999880791
+     },
+     {
+      "run": 2,
+      "playableMs": 1012.1999999880791
+     },
+     {
+      "run": 3,
+      "playableMs": 1038
+     },
+     {
+      "run": 14,
+      "playableMs": 1656.6000000238419
+     }
+    ],
+    "failed": true,
+    "validationRuntimeFailures": 0,
+    "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/startup-skyline-public/prime-ponytail-hood-cache-disabled.json",
+    "remainingCohorts": "Original/default not collected because manager stopped at failed hood. No unchanged-product retry."
+   }
+  },
+  "remainingInvestigation": {
+   "characterBrotli": "Read-only lossless saved hood comparison saves127063B total (body71748B);11-20ms estimated, broad migration rejected for now. claude-character-brotli-feasibility.md",
+   "emptyRecordVisibility": "71registered world records/6initial;181410192unuploaded bytes. Two-file native visibility candidate tested5hood rows903.1,887.6,897.1,891.5,888.4ms;firstGPU107.7-119.8ms. No meaningful gain; reverted. claude-empty-record-visibility-review.md found no defect. No acceptance attribution."
   }
+ },
+ "nearTreeFollowup": {
+  "stage": "Native gates and reviewed motion pass; commit/sealed public upload next",
+  "changes": "API-safe identity fetch priority and existing Havok/body transfer overlap; lossless near tree detail deferred behind a required521triangle conservative Meshopt preview, retired by exact block keys",
+  "build": {
+   "seal": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-final2-pages-seal.json",
+   "sealSha256": "9490c616bbbe1f2556ba29a59302c9789e272b16420095828fa91feb93f53486",
+   "fileCount": 523,
+   "totalBytes": 288588764,
+   "headAtSeal": "24dbaa41eeb96e3779a7cbd1a95cb311182e66fe",
+   "productInputsSha256": "59d61eb367e7c568d833415e6a87f477088a30d7bca5cf422866ed55c0af09fb",
+   "dirtyAtSeal": 13
+  },
+  "preservation": {
+   "source": "24dbaa4",
+   "attributeRangesExact": 324,
+   "metadataGeometryCollisionFoliageAndFarProxiesExact": true,
+   "additionalRequiredPreviewTriangles": 521,
+   "requiredEncodedBytes": 149963,
+   "backgroundEncodedBytes": 593607
+  },
+  "startupNative": {
+   "conditions": {
+    "gpuProbe": false,
+    "traceGpu": false,
+    "disableShaderCache": false,
+    "disableHttpCache": true,
+    "profile": "50mbps",
+    "savedAppearance": {
+     "schemaVersion": 2,
+     "catalogVersion": "appearance-catalog-v6",
+     "race": "human",
+     "fitFamily": "ashen-human",
+     "fit": {
+      "rig": "source-65",
+      "bind": 1,
+      "shape": 1
+     },
+     "shape": {
+      "family": "ashen-human-shape-v1",
+      "height": 0.9,
+      "build": 0.95
+     },
+     "components": {
+      "head": "human-weathered-v1",
+      "hair": "human-bald-v1"
+     },
+     "dyes": {
+      "helmet": "moss",
+      "torso": "oxblood",
+      "legs": "indigo"
+     },
+     "equipment": {
+      "helmet": "graveweaverHood",
+      "torso": "pilgrimTunic",
+      "legs": "graveweaverSkirt",
+      "boots": "wayfarerBoots",
+      "gloves": "graveweaverGloves",
+      "mainHand": "graveweaverStaff",
+      "offHand": "graveweaverBook",
+      "shoulders": "wardenPauldrons"
+     }
+    },
+    "expectedAppearance": {
+     "schemaVersion": 2,
+     "catalogVersion": "appearance-catalog-v6",
+     "race": "human",
+     "fitFamily": "ashen-human",
+     "fit": {
+      "rig": "source-65",
+      "bind": 1,
+      "shape": 1
+     },
+     "shape": {
+      "family": "ashen-human-shape-v1",
+      "height": 0.9,
+      "build": 0.95
+     },
+     "components": {
+      "head": "human-weathered-v1",
+      "hair": "human-bald-v1"
+     },
+     "dyes": {
+      "helmet": "moss",
+      "torso": "oxblood",
+      "legs": "indigo"
+     },
+     "equipment": {
+      "helmet": "graveweaverHood",
+      "torso": "pilgrimTunic",
+      "legs": "graveweaverSkirt",
+      "boots": "wayfarerBoots",
+      "gloves": "graveweaverGloves",
+      "mainHand": "graveweaverStaff",
+      "offHand": "graveweaverBook",
+      "shoulders": "wardenPauldrons"
+     }
+    },
+    "network": {
+     "latency": 40,
+     "downloadThroughput": 6250000,
+     "uploadThroughput": 1250000
+    },
+    "cpu": "Apple M1 Max",
+    "viewport": [
+     1280,
+     720
+    ],
+    "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+    "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+   },
+   "count": 120,
+   "rows": [
+    {
+     "profile": "default",
+     "count": 20,
+     "p95Ms": 649,
+     "maxMs": 653.3000000119209,
+     "misses": [],
+     "failures": 0,
+     "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/startup-near-tree-final/default-cache-disabled.json"
+    },
+    {
+     "profile": "original-largest",
+     "count": 20,
+     "p95Ms": 806.5,
+     "maxMs": 882.6999999880791,
+     "misses": [],
+     "failures": 0,
+     "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/startup-near-tree-final/original-largest-cache-disabled.json"
+    },
+    {
+     "profile": "prime-bald",
+     "count": 20,
+     "p95Ms": 704.5999999940395,
+     "maxMs": 709,
+     "misses": [],
+     "failures": 0,
+     "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/startup-near-tree-final/prime-bald-cache-disabled.json"
+    },
+    {
+     "profile": "prime-ponytail-hood",
+     "count": 20,
+     "p95Ms": 867.2999999821186,
+     "maxMs": 884.7999999821186,
+     "misses": [],
+     "failures": 0,
+     "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/startup-near-tree-final/prime-ponytail-hood-cache-disabled.json"
+    },
+    {
+     "profile": "prime-ponytail-open",
+     "count": 20,
+     "p95Ms": 833.4000000059605,
+     "maxMs": 852,
+     "misses": [],
+     "failures": 0,
+     "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/startup-near-tree-final/prime-ponytail-open-cache-disabled.json"
+    },
+    {
+     "profile": "weathered-bald",
+     "count": 20,
+     "p95Ms": 817.0999999940395,
+     "maxMs": 817.7000000178814,
+     "misses": [],
+     "failures": 0,
+     "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/startup-near-tree-final/weathered-bald-cache-disabled.json"
+    }
+   ],
+   "misses": 0,
+   "failures": 0
+  },
+  "tests": {
+   "passed": 26,
+   "failed": 0,
+   "log": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-preview-tests-final2.log"
+  },
+  "lifecycle": {
+   "passed": true,
+   "cases": 4,
+   "requiredPreviewVisibleAtPlay": true,
+   "hiddenAfterExactBlocks": true,
+   "retiredByRegion": true,
+   "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-lifecycle.json",
+   "staleVisibilityAssertion": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-lifecycle-stale-visibility-assertion.json"
+  },
+  "functional": {
+   "artifacts": {
+    "files": 522,
+    "matched": true,
+    "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-final-native-http.json"
+   },
+   "bridge": {
+    "passed": true
+   },
+   "westBell": {
+    "passed": true
+   },
+   "manager": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-final-functional-manager.log",
+   "saved": {
+    "passed": true,
+    "cases": 8,
+    "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-final-saved/report.json"
+   },
+   "mobile": {
+    "passed": true,
+    "cases": 8,
+    "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-final-mobile/report.json"
+   },
+   "depth": {
+    "passed": true,
+    "cases": 8,
+    "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-final-depth/report.json"
+   },
+   "webkit": {
+    "passed": true,
+    "cases": 4,
+    "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-final-webkit/report.json"
+   },
+   "managerExit": 0
+  },
+  "review": {
+   "reviewer": "ExistingClaude terminal, selectedOpus5.5/high; effective effort not verified",
+   "reports": [
+    ".cache/character-mmo/m5-moving-fit-2026-10-05/claude-body-priority-review.md",
+    ".cache/character-mmo/m5-moving-fit-2026-10-05/claude-empty-record-visibility-review.md",
+    ".cache/character-mmo/m5-moving-fit-2026-10-05/claude-character-brotli-feasibility.md"
+   ],
+   "validDefectFixed": "Equipment loadBuffer(asset,{signal}) contract preserved by options argument; unprefetched full-detail/Armory loads accept the defaulthigh priority. Shared fetch remains caller-signal independent."
+  },
+  "retainedControls": {
+   "fiveBodyPriorityDiagnosticRows": "Pre-options-fix diagnostic only; first play succeeded but unprefetched background paths were invalid. Not final acceptance.",
+   "emptyRecordVisibility": "No meaningful measured gain; reverted. Allfive rows retained.",
+   "firstTreePreview": "Prototype overlapped exactnear geometry; fixed with block-key retirement before final gating.",
+   "staleProvenance": "Compiler/verifier comments changed after an initial bake; refusal retained, baked again before final source freeze."
+  },
+  "limitations": [
+   "Public cold acceptance and Web A playback pending",
+   "Physical iPhone startup/memory/thermal acceptance distinct"
+  ],
+  "fps": {
+   "count": 15,
+   "fpsMin": 210.5289466888766,
+   "fpsMax": 245.1396871412735,
+   "maxP99Ms": 6.199999988079071,
+   "worstMs": 11.699999988079071,
+   "above16_667": 0,
+   "hints": [
+    {
+     "route": "bridge",
+     "run": 1,
+     "cap": {
+      "vsyncCapped": true,
+      "capHz": 240,
+      "capMs": 4.166666666666667,
+      "capReason": "mean 4.092 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.200-5.600 ms (full range 2.500-9.100 ms)"
+     }
+    },
+    {
+     "route": "bridge",
+     "run": 2,
+     "cap": {
+      "vsyncCapped": true,
+      "capHz": 240,
+      "capMs": 4.166666666666667,
+      "capReason": "mean 4.089 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 2.900-5.500 ms (full range 2.600-9.000 ms)"
+     }
+    },
+    {
+     "route": "cathedral",
+     "run": 1,
+     "cap": {
+      "vsyncCapped": true,
+      "capHz": 240,
+      "capMs": 4.166666666666667,
+      "capReason": "mean 4.100 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.100-5.300 ms (full range 2.600-8.900 ms)"
+     }
+    },
+    {
+     "route": "cathedral",
+     "run": 2,
+     "cap": {
+      "vsyncCapped": true,
+      "capHz": 240,
+      "capMs": 4.166666666666667,
+      "capReason": "mean 4.105 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.100-5.400 ms (full range 2.500-9.000 ms)"
+     }
+    },
+    {
+     "route": "cathedral",
+     "run": 3,
+     "cap": {
+      "vsyncCapped": true,
+      "capHz": 240,
+      "capMs": 4.166666666666667,
+      "capReason": "mean 4.101 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.000-5.400 ms (full range 2.500-8.700 ms)"
+     }
+    }
+   ],
+   "hardCeilingFalsifiers": [
+    {
+     "route": "bridge",
+     "run": 1,
+     "samples": 2934,
+     "ceiling": 2883,
+     "fps": 244.365598920715
+    },
+    {
+     "route": "bridge",
+     "run": 2,
+     "samples": 2936,
+     "ceiling": 2883,
+     "fps": 244.53421063590557
+    },
+    {
+     "route": "bridge",
+     "run": 3,
+     "samples": 2943,
+     "ceiling": 2883,
+     "fps": 245.1396871412735
+    },
+    {
+     "route": "cathedral",
+     "run": 1,
+     "samples": 2928,
+     "ceiling": 2882,
+     "fps": 243.916661807337
+    },
+    {
+     "route": "cathedral",
+     "run": 2,
+     "samples": 2924,
+     "ceiling": 2882,
+     "fps": 243.6098243740707
+    },
+    {
+     "route": "cathedral",
+     "run": 3,
+     "samples": 2927,
+     "ceiling": 2883,
+     "fps": 243.8313257023075
+    }
+   ],
+   "conditions": {
+    "cpu": "Apple M1 Max",
+    "url": "http://127.0.0.1:7175/?play=&clean=&pixelRatio=1&gpuTiming=",
+    "viewport": [
+     1280,
+     720
+    ],
+    "seconds": 12,
+    "runs": 3,
+    "uncappedRequired": true,
+    "recording": false,
+    "race": "human",
+    "outfit": null,
+    "orcAssetsOverride": null,
+    "routes": [
+     "meadow",
+     "town",
+     "bridge",
+     "cathedral",
+     "forest"
+    ],
+    "recordCapped": true,
+    "savedAppearance": {
+     "schemaVersion": 2,
+     "catalogVersion": "appearance-catalog-v6",
+     "race": "human",
+     "fitFamily": "ashen-human",
+     "fit": {
+      "rig": "source-65",
+      "bind": 1,
+      "shape": 1
+     },
+     "shape": {
+      "family": "ashen-human-shape-v1",
+      "height": 1.15,
+      "build": -0.95
+     },
+     "components": {
+      "head": "human-prime-v1",
+      "hair": "human-ponytail01-v1"
+     },
+     "dyes": {
+      "helmet": "moss",
+      "torso": "oxblood",
+      "legs": "indigo"
+     },
+     "equipment": {
+      "helmet": "graveweaverHood",
+      "torso": "pilgrimTunic",
+      "legs": "graveweaverSkirt",
+      "boots": "wayfarerBoots",
+      "gloves": "graveweaverGloves",
+      "mainHand": "graveweaverStaff",
+      "offHand": "graveweaverBook",
+      "shoulders": "wardenPauldrons"
+     }
+    }
+   },
+   "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/fps-near-tree-final/prime-ponytail-hood.json",
+   "accepted": true,
+   "pacingEvidence": "All hints retained; unchanged scheduler14/14, calibrated60Hz720callbacks/12s control, nativeuncapped627RAF/569submissions proof retained; ownedChrome51793 removes vsync/frame limits. Same newcohort exceeds240Hz ceiling by>1%."
+  },
+  "motion": {
+   "stage": "Native/source-frame and VE normal/full-window playback reviewed; Telegram862 API dimensions verified; Web A pending",
+   "report": "ve-capture/character-mmo/m5/near-tree-startup-2026-10-05/report.json",
+   "manifest": "ve-capture/character-mmo/m5/near-tree-startup-2026-10-05/capture-manifest.json",
+   "physics": true,
+   "recoveries": 0,
+   "flying": false,
+   "enemies": 7,
+   "canvasViewport": [
+    1280,
+    720
+   ],
+   "scope": "Native live normal-keyboard startup/frontier/region/town; invulnerability only. Recording excluded from load/FPS claims.",
+   "local": "ve-capture/character-mmo/m5/near-tree-startup-2026-10-05.mp4",
+   "sha256": "98fac6371083cc11ae226725c203c953885591f989b3254f80689e7a2de764b1",
+   "bytes": 41225651,
+   "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m5-near-tree-startup-2026-10-05-98fac6371083.mp4",
+   "encoded": {
+    "width": 1280,
+    "height": 720,
+    "duration": 18.904232,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+   },
+   "playback": {
+    "source": [
+     1280,
+     720
+    ],
+    "normalContainer": [
+     1280,
+     720
+    ],
+    "fullWindowContainer": [
+     2514,
+     1275
+    ],
+    "objectFit": "contain",
+    "playedToEnd": true,
+    "error": null,
+    "nativeFullscreen": "Visible control click did not enter native fullscreen; no new native fullscreen claim."
+   },
+   "http": {
+    "sha256Matched": true,
+    "contentType": "video/mp4",
+    "rangeStatus": 206,
+    "rangeBytes": 1000
+   },
+   "telegram": {
+    "messageId": 862,
+    "width": 1280,
+    "height": 720,
+    "durationProbed": 18.904232,
+    "dimensionsMatched": true,
+    "playbackReview": "pending",
+    "sendLog": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-telegram-send.log"
+   }
+  },
+  "reusedEvidence": "Character221/equipment113/ground-lifetime14/scheduler14/seal4 and18height/support/remainingcathedral cases retain source/asset-identical prior passes. Fresh native bridge/tower/saved/mobile/depth/WebKit cover changed integration. No prior timing attributed to new candidate."
  }
 }

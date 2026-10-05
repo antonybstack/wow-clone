@@ -32,7 +32,8 @@ test('starter terrain is actual Brotli data with matching HTTP metadata',async()
   const result=await verifyStarterGeometry(manifest,file=>fs.readFile(root+file));
   assert(result.proxies>0&&result.near>0);
   if(manifest.geometry.skyline){
-    assert.equal(manifest.geometry.proxies,undefined);
+    const names=[...(manifest.geometry.proxies??[]),...manifest.geometry.skyline.proxies].map(p=>p.name);
+    assert.equal(new Set(names).size,names.length);
     assert(manifest.geometry.skyline.file.startsWith('skyline-')&&manifest.geometry.skyline.file.endsWith('.br'));
     assert(result.skyline>0);
   }
@@ -212,4 +213,23 @@ test('split starter packets verify; corrupt hash, size, length, layout or placem
   // asset test above requires proxies, so a regenerated manifest cannot silently lose them.
   const dropped=syntheticStarter();delete dropped.manifest.geometry.skyline;
   assert.equal((await verifyStarterGeometry(dropped.manifest,dropped.read)).proxies,0);
+});
+test('background render blocks may not duplicate required blocks or install collision',async()=>{
+  const fixture=()=>{
+    const c=syntheticStarter(),g=c.manifest.geometry;
+    c.manifest.meshes=[{world:true,collision:false},{world:true,collision:true}];
+    Object.assign(g.blocks[0],{meshId:1,indexOffset:0});
+    g.skyline.blocks=[{...g.skyline.proxies[0],meshId:0,indexOffset:0}];
+    g.skyline.proxies=[];
+    return c;
+  };
+  const valid=fixture();await verifyStarterGeometry(valid.manifest,valid.read);
+  for(const mutate of [
+    c=>{c.manifest.meshes[0].collision=true;},
+    c=>{c.manifest.geometry.blocks[0].meshId=0;},
+    c=>{c.manifest.geometry.skyline.blocks[0].meshId=99;},
+  ]){
+    const c=fixture();mutate(c);
+    await assert.rejects(verifyStarterGeometry(c.manifest,c.read),/Invalid non-colliding background block/);
+  }
 });

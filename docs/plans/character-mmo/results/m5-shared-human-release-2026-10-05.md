@@ -1,8 +1,9 @@
 # M5 shared Human coverage and creator release
 
 Updated 2026-10-05. **Candidate deployed; M5 acceptance remains open.**
-Native gates pass. Production functional checks pass; latest public original-largest
-and hooded ponytail startup p95 is 1,078.3 / 1,101.5 ms against the 1,000 ms target.
+Native gates pass. Latest production24dbaa4 functional checks pass, but hooded
+startup p95 is1,038 ms with four misses in20 against the1,000 ms target.
+Original/default cold cohorts have not run on24dbaa4; the manager stopped at hood.
 
 ## Resulting behavior
 
@@ -272,3 +273,60 @@ canvas and source/encoded frames are 1280×720, square pixels, zero rotation;
 is excluded from startup/FPS claims. Public candidate verification and Telegram
 delivery still own the final exit. `skylineFollowup` in the measurement receipt
 records its separate seal, failed controls, exact comparisons and gate reuse.
+
+## Skyline production24dbaa4 and next diagnostic
+
+Pages b07d7028-9015-43de-a857-c281f2cfc455 passes522 public served bytes/cache
+policies, bridge/tower return, saved8, mobile8, depth8 and Weathered WebKit4.
+Hood20 retains p95 1,038 ms, maximum1,656.6 ms, misses1/2/3/14. The outlier
+combines late module discovery and393.4ms engine initialization; its first GPU
+completion is approximately108ms. It is distinct from the older775ms GPU outlier.
+No unchanged-product acceptance rerun was taken. M5 remains open.
+
+Reviewed skyline motion is Telegram861, returned1280×720 and19s, with source
+timestamps/SAR1:1/rotation0. Direct VE normal and full-window playback is reviewed;
+new Web A playback remains pending.
+
+Claude Opus5.5/high found no useful physics rewrite and only11–20ms estimated
+benefit from a broad character Brotli migration. Those speculative changes were
+rejected. A five-row native empty-record visibility experiment also showed no
+meaningful gain and was reverted; its report and every row remain in the cache.
+The next local candidate overlaps existing Havok initialization with the body
+transfer, preserves the equipment loader options signature, and lowers identity
+clothing fetch priority. A native options regression catches the unprefetched
+equipment/full-detail path identified by Claude. Exact near tree detail is moved
+after play, with a required conservative Meshopt preview keeping trunks visible
+even when optional loading fails. This candidate is not yet accepted or deployed.
+
+## Near tree preview: final native candidate
+
+Required packet is149,963B (was275,386), optional593,607B. Two exact near tree
+blocks move after play; a521triangle conservative Meshopt preview preserves
+visible trunks while their existing collision stays required. Exact block-key
+dependencies hide the preview once detail arrives. All324 old attribute ranges,
+metadata, terrain/collision/foliage and44far proxies match24dbaa4 byte-for-byte.
+The existing Havok setup overlaps body transfer; it performs no additional
+physics step. Identity-body priority is high, clothing low; loader options and
+shared promises retain the existing equipment contract.
+
+Final26 focused tests,522 native bytes/cache policies, four install/retry/late/
+dispose cases, bridge/tower return, saved8, mobile8, depth8 and Weathered WebKit4
+pass. All120 fresh-process/cache-disabled local starts pass: defaultp95649ms,
+original806.5, Primebald704.6, hood867.3, Weathered817.1, openponytail833.4;
+maximum884.8ms, zero misses. Same50Mbit/sdown/10up/40ms/native1280×720/DPR1
+prescription. The fresh15hood route rows are210.5–245.1FPS, maxp996.2ms,
+worst11.7ms, no frame over16.667ms. Five unchanged pacing hints remain; six
+same-cohort rows exceed the hard240Hz ceiling by>1%, with unchanged calibrated
+controls and native callback/launch proof. No row is hidden or rerun.
+
+[Final near-tree startup motion](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m5-near-tree-startup-2026-10-05-98fac6371083.mp4)
+is reviewed from source frames and directVE normal/full-window playback through
+its18.904s duration. Source/canvas/viewport and encoded1280×720, SAR1:1, rotation0;
+zero recoveries, activeHavok and seven enemies. Recording affects timing and
+HUDFPS; it is excluded from benchmarks. PublicSHA and206range responses match.
+Nativefullscreen control did not enter fullscreen; full-window letterboxing is
+reviewed. Publiccold acceptance still owns M5 closure.
+
+Telegram message **862** returned matching 1280×720 dimensions and the probed
+18.904-second duration. Web A inline/expanded playback is pending. The delivery
+ledger will be associated with the finished commit after committing.

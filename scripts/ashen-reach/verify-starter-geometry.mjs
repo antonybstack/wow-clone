@@ -5,7 +5,8 @@ import {brotliDecompressSync} from "node:zlib";
 const digest=bytes=>createHash("sha256").update(bytes).digest("hex");
 /** Each packet's attribute ranges must tile its decoded bytes exactly: 4-byte aligned, no
  * gap, no overlap, nothing outside. That proves the required near packet carries only its
- * blocks/foliage and the skyline packet only its proxies. */
+ * required blocks/foliage/previews and the background blocks/proxies stay in
+ * their declared packets. */
 function assertTiled(label, descriptors, rawBytes) {
   const ranges = descriptors.flatMap((d) => Object.entries(d.attributes).map(([name, a]) => ({name: `${d.name ?? 'foliage'}/${name}`, start: a.offset, end: a.offset + a.length * 4})))
     .sort((a, b) => a.start - b.start);
@@ -30,13 +31,26 @@ async function verifyPacket(label, prefix, packet, descriptors, read) {
   assertTiled(label, descriptors, packet.rawBytes);
   return raw;
 }
-/** Required near packet (initial blocks + near foliage) and, when present, the separate
- * background skyline packet (distant non-colliding proxies). A legacy single packet that
- * still embeds `geometry.proxies` is accepted only without a skyline packet. */
+/** Required near packet (terrain/landmarks, near foliage and starting previews),
+ * plus an optional packet of non-colliding render blocks and distant proxies.
+ * Proxy names are unique across packets; legacy single-packet manifests still work. */
 export async function verifyStarterGeometry(manifest, read) {
   const g = manifest.geometry, foliage = Object.values(manifest.foliage ?? {});
-  if (g.proxies && g.skyline) throw Error("Starter geometry declares proxies in both packets");
+  const proxyNames = [...(g.proxies ?? []), ...(g.skyline?.proxies ?? [])].map(p => p.name);
+  if (new Set(proxyNames).size !== proxyNames.length) throw Error("Corrupt starter geometry: duplicate proxies");
   const near = await verifyPacket("near", "near", g, [...g.blocks, ...foliage, ...(g.proxies ?? [])], read);
-  const skyline = g.skyline ? await verifyPacket("skyline", "skyline", g.skyline, g.skyline.proxies, read) : null;
-  return { near: near.length, skyline: skyline?.length ?? 0, proxies: (g.skyline?.proxies ?? g.proxies ?? []).length };
+  const backgroundBlocks = g.skyline?.blocks ?? [];
+  const keys = new Set(g.blocks.map(b => `${b.meshId}:${b.indexOffset}`));
+  for (const b of backgroundBlocks) {
+    const mesh = manifest.meshes[b.meshId], key = `${b.meshId}:${b.indexOffset}`;
+    if (!mesh?.world || mesh.collision || keys.has(key))
+      throw Error('Invalid non-colliding background block');
+    keys.add(key);
+  }
+  for(const proxy of g.proxies??[]) {
+    if(proxy.requiresBlocks && (!proxy.requiresBlocks.length || proxy.requiresBlocks.some(k=>!keys.has(k))))
+      throw Error('Corrupt starting preview dependencies');
+  }
+  const skyline = g.skyline ? await verifyPacket("skyline", "skyline", g.skyline, [...backgroundBlocks, ...g.skyline.proxies], read) : null;
+  return { near: near.length, skyline: skyline?.length ?? 0, proxies: proxyNames.length };
 }

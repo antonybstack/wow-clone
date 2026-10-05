@@ -61,6 +61,24 @@ test('failed speculative manifest and asset requests can retry through the same 
     assert.deepEqual(new Uint8Array(await api.startupAssetBuffer(asset)),new Uint8Array([7]));assert.equal(assetCalls,2);
   } finally {globalThis.fetch=original;}
 });
+test('shared asset loader accepts equipment options and retains first request priority',async()=>{
+  const original=globalThis.fetch, requests=[];
+  globalThis.fetch=async (url,options)=>{
+    assert(['high','low','auto'].includes(options.priority));
+    requests.push({url,...options});
+    return new Response(new Uint8Array([7]));
+  };
+  try {
+    const api=await import('../src/ashen-reach/startup-fetch.js?priority-options');
+    const signal=AbortSignal.abort();
+    await api.startupAssetBuffer({url:'/full-detail-not-prefetched.bin',bytes:1},{signal});
+    const asset={url:'/low-prefetched.bin',bytes:1};
+    const prefetched=api.startupAssetBuffer(asset,{priority:'low'});
+    assert.equal(prefetched,api.startupAssetBuffer(asset,{signal,priority:'high'}));
+    await prefetched;
+    assert.deepEqual(requests,[{url:'/full-detail-not-prefetched.bin',priority:'high'},{url:'/low-prefetched.bin',priority:'low'}]);
+  }finally{globalThis.fetch=original;}
+});
 test('early appearance uses the real v1 and creator migrations and preserves query overrides',async()=>{
   const before=Object.getOwnPropertyDescriptor(globalThis,'localStorage');
   try {

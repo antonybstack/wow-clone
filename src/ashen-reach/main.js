@@ -314,7 +314,7 @@ async function main(){
  globalThis.ASHEN=ashen;
  const sourceBody=resolvePlayableBody('?character=human-source');
  const playable={...sourceBody,...ASHEN_PLAYABLE_MOTION,
-  assetURL:fastCharacter?(await starterCharacterP).items.body.url:fullBodyManifestP?(await fullBodyManifestP).items.body.url:bodyUrl,buffer:await bodyBufP};
+  assetURL:fastCharacter?(await starterCharacterP).items.body.url:fullBodyManifestP?(await fullBodyManifestP).items.body.url:bodyUrl};
  capsule=resolveCapsule(playable.capsule);
  // Both near and outer terrain participate in Havok; exploration has no corridor clamp.
  markStartup('havok-start');
@@ -325,6 +325,12 @@ async function main(){
  // Collision authority never leaves the capsule; the visual only follows it.
  if(humanShape&&humanShape.heightScale!==1)player.setHeightScale(humanShape.heightScale);
  world.releaseInitialCollisionSources?.();
+ // Capsule dimensions come from the existing character contract, not downloaded
+ // glTF bytes. Cook starting collision while the body transfer finishes; the
+ // render loop still starts only after the skinned body and gear are installed.
+ // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/42-physics.md
+ try {playable.buffer=await bodyBufP;}
+ catch(error){disposeScene(scene);throw error;}
  markStartup('body-start');
  body=await attachBody(engine,scene,player,player.capsuleHeight,playable);
  const starterBodyContainer=body.container;
