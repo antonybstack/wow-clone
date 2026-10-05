@@ -1,6 +1,6 @@
 # Character customization and armor — current milestone queue
 
-Reprioritized **2026-10-02**; updated **2026-10-04**, released source **4063f49**. The queue now runs on one axis: **what a
+Reprioritized **2026-10-02**; updated **2026-10-05**, released source **4063f49**. The queue now runs on one axis: **what a
 player can change about their character, and how reliably armor pieces swap on the body.**
 Multiplayer is parked at what it has already proved, not cancelled — see *Parked* below.
 
@@ -23,7 +23,7 @@ change any piece at any time, and have all of that persist and reload exactly. E
 
 Two things gate it today, and both are measured rather than suspected:
 
-* **Saved identity works locally; compact startup and release remain open.**
+* **Saved identity and local compact startup work; fit/release gates remain open.**
   The user found the October 4 head disproportionate and jarring. The
   [face correction](results/m5-face-refactor-2026-10-04.md) is now implemented and
   delivered as an approved source audition. The later
@@ -41,9 +41,12 @@ Two things gate it today, and both are measured rather than suspected:
   [native playable-library checkpoint](results/m5-playable-library-2026-10-04.md)
   saves a further 399 KB/body with the exact face/geometry and all 22 playable curves;
   full 57-curve assets remain unchanged. Actual native refinement/save/mobile
-  checks and reviewed motion pass. Startup/FPS acceptance
-  waits for isolation from the user's native WoW client; remaining payload, complete
-  outfit/motion fits and release gates stay open.
+  checks and reviewed motion pass. The [native packaging checkpoint](results/m5-startup-packaging-2026-10-05.md)
+  now passes six local twenty-run cold cohorts with p95 808–972 ms and preserves all
+  measured art/physics bytes. Settled observations and clean affected-route repeats
+  exceed 200 FPS; the initial batch's media-isolation uncertainty and variable tails
+  remain explicit. Actual Pages/public cohorts, complete outfit/motion fits (including
+  a newly observed moving upper-back patch), boot defects and release gates stay open.
 * **Armor swapping works but is under-evidenced.** The catalogue now enumerates **6,912**
   combinations, 6,048 valid, with zero validator disagreements — the "768" carried in this plan
   dated from an 8-item catalogue and is corrected. Per-slot hot swapping under motion
@@ -203,6 +206,16 @@ Test joins/leaves, out-of-order input, reconnect, stale appearance revisions and
 
 ## 5 — Modular Human identity: head, hair and adult age
 
+**Latest checkpoint:** [native startup packaging and local cohorts](results/m5-startup-packaging-2026-10-05.md)
+passes 120/120 local ordinary-build cold starts, p95 808–972 ms, with the saved native
+identity/shape present at first play. Native Pages bytes/cache policies and ten
+prefetch/eight saved cases also pass. These build seals are distinct; public CDN and
+physical-phone acceptance are not inferred. Reviewed motion is Telegram 857 / VE.
+Identify the moving upper-back patch, finish representative outfit/motion fits and
+valid boot defects, then run the actual Pages/public quiet-machine release gates.
+No user WoW process is present at the current audit; previous paragraphs below
+record historical checks. M5 remains open and unreleased.
+
 **Latest supporting checkpoint:** [mobile Armory preview](results/m5-mobile-preview-2026-10-04.md)
 delivers native stage viewport/orbit/pinch, responsive controls and height framing.
 Fifteen built layout cases, disposal/reopen and desktop mobile/WebKit/depth fallback
@@ -211,7 +224,7 @@ for the partial viewport; custom AO and world shadows stay active. M5 remains
 open: normal saved-route full outfit/motion fits, isolated startup/FPS cohorts and
 release gates are next. User WoW currently prevents valid isolated measurement.
 
-**Current checkpoint:** [saved integration](results/m5-saved-identity-2026-10-04.md)
+**Original saved checkpoint:** [saved integration](results/m5-saved-identity-2026-10-04.md)
 delivers task 2 locally and the functional portion of tasks 3/5. The ordinary Armory
 and four saved first-play identities work without a developer query. The lossless
 selected-startup pilot misses one second in all three runs. Task 3's compact

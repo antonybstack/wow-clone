@@ -93,8 +93,10 @@ try {
   });
   if(savedAppearance){
     assert.deepEqual(await page.evaluate(()=>ASHEN.getAppearance()),expectedAppearance);
-    // Force an ordinary full-detail promotion before settled throughput. Startup
-    // latency is measured separately with the compact representation intact.
+    // Settle full clothing detail through the existing equipment transaction.
+    // Selected bodies already retain exact playable motion; do not download
+    // the unused full source library to manufacture a settled benchmark.
+    // Startup latency is measured separately with compact clothing intact.
     const result=await page.evaluate(()=>ASHEN.equipment.setLoadout(ASHEN.getAppearance().equipment));
     assert.equal(result.status,'applied');
     await page.waitForTimeout(3000);

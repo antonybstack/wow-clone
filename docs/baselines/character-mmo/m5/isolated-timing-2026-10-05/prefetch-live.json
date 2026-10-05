@@ -1,0 +1,2470 @@
+{
+  "url": "http://127.0.0.1:7174/",
+  "rows": [
+    {
+      "name": "unsaved-default",
+      "marks": {
+        "begin": 66.30000001192093,
+        "havok-runtime-available": 82.1000000089407,
+        "engine-created": 93.20000000298023,
+        "gpu-probe-end": 95.90000000596046,
+        "world-start": 97.90000000596046,
+        "world-end": 133.20000000298023,
+        "havok-start": 134.30000001192093,
+        "havok-runtime-start": 135.20000000298023,
+        "havok-runtime-end": 135.20000000298023,
+        "havok-world-end": 137.1000000089407,
+        "havok-colliders-end": 143.90000000596046,
+        "havok-controller-end": 145.20000000298023,
+        "havok-end": 146.20000000298023,
+        "body-start": 146.40000000596046,
+        "body-end": 165.1000000089407,
+        "equipment-start": 166.20000000298023,
+        "equipment-end": 178.30000001192093,
+        "register-start": 183.5,
+        "register-end": 208.1000000089407,
+        "first-render-return": 215.80000001192093,
+        "supported-frame-submitted": 243.1000000089407,
+        "first-gpu-completed": 330.70000000298023,
+        "supported-frame-completed": 343.20000000298023,
+        "playable": 345.6000000089407,
+        "bg-start": 345.70000000298023
+      },
+      "shape": null,
+      "height": 1,
+      "equipment": {
+        "helmet": null,
+        "torso": "wayfarerTunic",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "ironSword",
+        "offHand": null
+      },
+      "race": "human",
+      "grounded": true,
+      "physics": true,
+      "gpuErrors": [],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:7174/assets/startupPreload-k_HV7yYB.js",
+          "start": 7.5,
+          "end": 10.900000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashenReach-aDGXLqXz.js",
+          "start": 7.700000002980232,
+          "end": 11.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/rolldown-runtime-8BhlS34s.js",
+          "start": 7.700000002980232,
+          "end": 11.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/modulepreload-polyfill-BwpvBbVl.js",
+          "start": 7.700000002980232,
+          "end": 11.800000011920929
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/module-preload-mISdBNlB.js",
+          "start": 7.700000002980232,
+          "end": 11.900000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/startup-preload-Cq2EyfQu.js",
+          "start": 7.9000000059604645,
+          "end": 15.400000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/appearance-common-D262BE4P.js",
+          "start": 7.9000000059604645,
+          "end": 15.400000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashen-boot-aVFD6xGk.js",
+          "start": 7.9000000059604645,
+          "end": 16.80000001192093
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/lite-runtime-DlqavT_F.js",
+          "start": 7.9000000059604645,
+          "end": 14.600000008940697
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashen-reach-CELGCeSv.css",
+          "start": 8.100000008940697,
+          "end": 17.700000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashen-reach-BJiN7hDd.js",
+          "start": 8.100000008940697,
+          "end": 17.900000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/HavokPhysics.wasm?v=20260923-1",
+          "start": 8.200000002980232,
+          "end": 23.900000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/manifest.json",
+          "start": 8.200000002980232,
+          "end": 25.80000001192093
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 8.300000011920929,
+          "end": 26.700000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 8.300000011920929,
+          "end": 27.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 8.300000011920929,
+          "end": 27.900000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 8.300000011920929,
+          "end": 28.30000001192093
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 8.300000011920929,
+          "end": 28.600000008940697
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/near-61b52956fc8e.br",
+          "start": 8.300000011920929,
+          "end": 64.90000000596046
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 8.400000005960464,
+          "end": 28.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 8.400000005960464,
+          "end": 29.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/meshopt_decoder.js",
+          "start": 8.5,
+          "end": 29.30000001192093
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 8.5,
+          "end": 29.900000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/character/manifest.json",
+          "start": 18.400000005960464,
+          "end": 29.200000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/character/body-coverage-20f02477c128.bin",
+          "start": 18.5,
+          "end": 35.6000000089407
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "start": 18.5,
+          "end": 33.400000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerTrousers-coverage-18aaf5475c09.bin",
+          "start": 18.5,
+          "end": 33
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "start": 18.5,
+          "end": 33.400000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/favicon.png",
+          "start": 83.90000000596046,
+          "end": 85.6000000089407
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 98.80000001192093,
+          "end": 99.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 98.80000001192093,
+          "end": 99.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 98.80000001192093,
+          "end": 99.6000000089407
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 98.80000001192093,
+          "end": 99.70000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 98.90000000596046,
+          "end": 99.90000000596046
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 98.90000000596046,
+          "end": 100
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 103.90000000596046,
+          "end": 104.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 118.20000000298023,
+          "end": 118.90000000596046
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-a659b1767619.webp",
+          "start": 346.5,
+          "end": 348.80000001192093
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/combat-Ds6n7k7J.js",
+          "start": 349,
+          "end": 350.6000000089407
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/enemies-CMzmu_4s.js",
+          "start": 349.20000000298023,
+          "end": 350.70000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/npc-BoN1hn_X.js",
+          "start": 349.30000001192093,
+          "end": 351.1000000089407
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/townsfolk-C3sChNKU.js",
+          "start": 349.40000000596046,
+          "end": 352.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/armory-Tw6o_XN0.js",
+          "start": 349.40000000596046,
+          "end": 353.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/armory-BBP9tBaM.css",
+          "start": 349.70000000298023,
+          "end": 353
+        }
+      ],
+      "normalizedEquipment": {
+        "helmet": null,
+        "torso": "wayfarerTunic",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "ironSword",
+        "offHand": null,
+        "shoulders": null
+      },
+      "requests": [
+        "http://127.0.0.1:7174/",
+        "http://127.0.0.1:7174/assets/startupPreload-k_HV7yYB.js",
+        "http://127.0.0.1:7174/assets/ashenReach-aDGXLqXz.js",
+        "http://127.0.0.1:7174/assets/rolldown-runtime-8BhlS34s.js",
+        "http://127.0.0.1:7174/assets/modulepreload-polyfill-BwpvBbVl.js",
+        "http://127.0.0.1:7174/assets/module-preload-mISdBNlB.js",
+        "http://127.0.0.1:7174/assets/lite-runtime-DlqavT_F.js",
+        "http://127.0.0.1:7174/assets/appearance-common-D262BE4P.js",
+        "http://127.0.0.1:7174/assets/startup-preload-Cq2EyfQu.js",
+        "http://127.0.0.1:7174/assets/ashen-boot-aVFD6xGk.js",
+        "http://127.0.0.1:7174/assets/ashen-reach-BJiN7hDd.js",
+        "http://127.0.0.1:7174/assets/ashen-reach-CELGCeSv.css",
+        "http://127.0.0.1:7174/HavokPhysics.wasm?v=20260923-1",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/manifest.json",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/near-61b52956fc8e.br",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "http://127.0.0.1:7174/meshopt_decoder.js",
+        "http://127.0.0.1:7174/ashen-reach/startup/character/manifest.json",
+        "http://127.0.0.1:7174/ashen-reach/startup/character/body-coverage-20f02477c128.bin",
+        "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+        "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerTrousers-coverage-18aaf5475c09.bin",
+        "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+        "http://127.0.0.1:7174/ashen-reach/favicon.png",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "http://127.0.0.1:7174/assets/world-worker-Cvw93lBX.js",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-a659b1767619.webp",
+        "http://127.0.0.1:7174/assets/combat-Ds6n7k7J.js",
+        "http://127.0.0.1:7174/assets/enemies-CMzmu_4s.js",
+        "http://127.0.0.1:7174/assets/npc-BoN1hn_X.js",
+        "http://127.0.0.1:7174/assets/townsfolk-C3sChNKU.js",
+        "http://127.0.0.1:7174/assets/armory-Tw6o_XN0.js",
+        "http://127.0.0.1:7174/assets/armory-BBP9tBaM.css",
+        "http://127.0.0.1:7174/assets/lite-error-CbM31Lpb.js",
+        "http://127.0.0.1:7174/assets/typed-arrays-mqcHaLDm.js",
+        "http://127.0.0.1:7174/assets/multiply-mat4-into-buffer-DfBnM-FI.js",
+        "http://127.0.0.1:7174/assets/engine-Bmc5IJPK.js",
+        "http://127.0.0.1:7174/ashen-reach/training-dummy.glb",
+        "http://127.0.0.1:7174/characters/base.glb"
+      ]
+    },
+    {
+      "name": "early-largest-before-lite",
+      "marks": {
+        "begin": 130.79999999701977,
+        "havok-runtime-available": 143.59999999403954,
+        "engine-created": 146.70000000298023,
+        "gpu-probe-end": 148.79999999701977,
+        "world-start": 150.8999999910593,
+        "world-end": 202.79999999701977,
+        "havok-start": 203.70000000298023,
+        "havok-runtime-start": 204.59999999403954,
+        "havok-runtime-end": 204.59999999403954,
+        "havok-world-end": 206.5,
+        "havok-colliders-end": 213.79999999701977,
+        "havok-controller-end": 215,
+        "havok-end": 216.09999999403954,
+        "body-start": 216.29999999701977,
+        "body-end": 235.8999999910593,
+        "equipment-start": 238.3999999910593,
+        "equipment-end": 256.70000000298023,
+        "register-start": 262.3999999910593,
+        "register-end": 288.09999999403954,
+        "first-render-return": 298.70000000298023,
+        "supported-frame-submitted": 324.09999999403954,
+        "first-gpu-completed": 420.3999999910593,
+        "supported-frame-completed": 432,
+        "playable": 434.29999999701977,
+        "bg-start": 434.3999999910593
+      },
+      "shape": {
+        "weights": [
+          0.95,
+          0
+        ],
+        "heightScale": 0.9,
+        "installWriters": true,
+        "assetURL": null,
+        "garmentManifestURL": null,
+        "applied": true
+      },
+      "height": 0.9,
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "pilgrimTunic",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": null
+      },
+      "race": "human",
+      "grounded": true,
+      "physics": true,
+      "gpuErrors": [],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:7174/assets/startupPreload-k_HV7yYB.js",
+          "start": 5.700000002980232,
+          "end": 27.700000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashenReach-aDGXLqXz.js",
+          "start": 5.700000002980232,
+          "end": 27.899999991059303
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/rolldown-runtime-8BhlS34s.js",
+          "start": 5.700000002980232,
+          "end": 28
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/modulepreload-polyfill-BwpvBbVl.js",
+          "start": 5.799999997019768,
+          "end": 28.099999994039536
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/module-preload-mISdBNlB.js",
+          "start": 5.799999997019768,
+          "end": 28.299999997019768
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/appearance-common-D262BE4P.js",
+          "start": 5.899999991059303,
+          "end": 28.700000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/startup-preload-Cq2EyfQu.js",
+          "start": 5.899999991059303,
+          "end": 29.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/lite-runtime-DlqavT_F.js",
+          "start": 5.899999991059303,
+          "end": 104.09999999403954
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashen-reach-CELGCeSv.css",
+          "start": 6,
+          "end": 29.299999997019768
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashen-reach-BJiN7hDd.js",
+          "start": 6,
+          "end": 31.099999994039536
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashen-boot-aVFD6xGk.js",
+          "start": 6,
+          "end": 30.700000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/HavokPhysics.wasm?v=20260923-1",
+          "start": 6,
+          "end": 37.3999999910593
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/manifest.json",
+          "start": 6.0999999940395355,
+          "end": 38.599999994039536
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/near-61b52956fc8e.br",
+          "start": 6.0999999940395355,
+          "end": 71.70000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 6.200000002980232,
+          "end": 39.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 6.200000002980232,
+          "end": 39.29999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/meshopt_decoder.js",
+          "start": 6.299999997019768,
+          "end": 43.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 6.299999997019768,
+          "end": 39.8999999910593
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 6.299999997019768,
+          "end": 40.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 6.299999997019768,
+          "end": 41.599999994039536
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 6.299999997019768,
+          "end": 43.79999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 6.299999997019768,
+          "end": 43.8999999910593
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 6.299999997019768,
+          "end": 44.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/appearance-storage-DNe9gDzL.js",
+          "start": 63.20000000298023,
+          "end": 75.8999999910593
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/human-shape-v1/manifest.json",
+          "start": 79,
+          "end": 80.8999999910593
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/human-shape-v1/graveweaverHood-compact-6976171552b8.bin",
+          "start": 81.8999999910593,
+          "end": 86
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/human-shape-v1/body-coverage-b93fb71aa490.bin",
+          "start": 81.8999999910593,
+          "end": 87.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/human-shape-v1/pilgrimTunic-compact-d94d573275dc.bin",
+          "start": 81.8999999910593,
+          "end": 88
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/human-shape-v1/graveweaverSkirt-compact-27daf8474125.bin",
+          "start": 82,
+          "end": 88.79999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/human-shape-v1/wayfarerBoots-compact-287d89851371.bin",
+          "start": 82,
+          "end": 89.70000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/human-shape-v1/graveweaverGloves-compact-106f6454299a.bin",
+          "start": 82.09999999403954,
+          "end": 89.8999999910593
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/favicon.png",
+          "start": 146.09999999403954,
+          "end": 149.09999999403954
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 151.70000000298023,
+          "end": 154.79999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 151.79999999701977,
+          "end": 157.59999999403954
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 151.79999999701977,
+          "end": 160.59999999403954
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 151.79999999701977,
+          "end": 160.70000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 151.79999999701977,
+          "end": 163.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 151.8999999910593,
+          "end": 164.09999999403954
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 158.3999999910593,
+          "end": 170.8999999910593
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 184.3999999910593,
+          "end": 189.29999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/combat-Ds6n7k7J.js",
+          "start": 437.5,
+          "end": 444.8999999910593
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/enemies-CMzmu_4s.js",
+          "start": 437.59999999403954,
+          "end": 445.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/npc-BoN1hn_X.js",
+          "start": 437.59999999403954,
+          "end": 446.59999999403954
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/townsfolk-C3sChNKU.js",
+          "start": 437.70000000298023,
+          "end": 446.79999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/armory-Tw6o_XN0.js",
+          "start": 437.79999999701977,
+          "end": 447.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/armory-BBP9tBaM.css",
+          "start": 438,
+          "end": 448.09999999403954
+        }
+      ],
+      "normalizedEquipment": {
+        "helmet": "graveweaverHood",
+        "torso": "pilgrimTunic",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": null
+      },
+      "requests": [
+        "http://127.0.0.1:7174/",
+        "http://127.0.0.1:7174/assets/startupPreload-k_HV7yYB.js",
+        "http://127.0.0.1:7174/assets/ashenReach-aDGXLqXz.js",
+        "http://127.0.0.1:7174/assets/rolldown-runtime-8BhlS34s.js",
+        "http://127.0.0.1:7174/assets/modulepreload-polyfill-BwpvBbVl.js",
+        "http://127.0.0.1:7174/assets/module-preload-mISdBNlB.js",
+        "http://127.0.0.1:7174/assets/lite-runtime-DlqavT_F.js",
+        "http://127.0.0.1:7174/assets/appearance-common-D262BE4P.js",
+        "http://127.0.0.1:7174/assets/startup-preload-Cq2EyfQu.js",
+        "http://127.0.0.1:7174/assets/ashen-boot-aVFD6xGk.js",
+        "http://127.0.0.1:7174/assets/ashen-reach-BJiN7hDd.js",
+        "http://127.0.0.1:7174/assets/ashen-reach-CELGCeSv.css",
+        "http://127.0.0.1:7174/HavokPhysics.wasm?v=20260923-1",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/manifest.json",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "http://127.0.0.1:7174/meshopt_decoder.js",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/near-61b52956fc8e.br",
+        "http://127.0.0.1:7174/assets/appearance-storage-DNe9gDzL.js",
+        "http://127.0.0.1:7174/ashen-reach/human-shape-v1/manifest.json",
+        "http://127.0.0.1:7174/ashen-reach/human-shape-v1/body-coverage-b93fb71aa490.bin",
+        "http://127.0.0.1:7174/ashen-reach/human-shape-v1/graveweaverHood-compact-6976171552b8.bin",
+        "http://127.0.0.1:7174/ashen-reach/human-shape-v1/pilgrimTunic-compact-d94d573275dc.bin",
+        "http://127.0.0.1:7174/ashen-reach/human-shape-v1/graveweaverSkirt-compact-27daf8474125.bin",
+        "http://127.0.0.1:7174/ashen-reach/human-shape-v1/wayfarerBoots-compact-287d89851371.bin",
+        "http://127.0.0.1:7174/ashen-reach/human-shape-v1/graveweaverGloves-compact-106f6454299a.bin",
+        "http://127.0.0.1:7174/ashen-reach/favicon.png",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "http://127.0.0.1:7174/assets/world-worker-Cvw93lBX.js",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-a659b1767619.webp",
+        "http://127.0.0.1:7174/assets/combat-Ds6n7k7J.js",
+        "http://127.0.0.1:7174/assets/enemies-CMzmu_4s.js",
+        "http://127.0.0.1:7174/assets/npc-BoN1hn_X.js",
+        "http://127.0.0.1:7174/assets/townsfolk-C3sChNKU.js",
+        "http://127.0.0.1:7174/assets/armory-Tw6o_XN0.js",
+        "http://127.0.0.1:7174/assets/armory-BBP9tBaM.css",
+        "http://127.0.0.1:7174/ashen-reach/human-shape-v1/graveweaverHood-c80ece48d7d5.bin",
+        "http://127.0.0.1:7174/assets/lite-error-CbM31Lpb.js",
+        "http://127.0.0.1:7174/assets/typed-arrays-mqcHaLDm.js",
+        "http://127.0.0.1:7174/assets/multiply-mat4-into-buffer-DfBnM-FI.js",
+        "http://127.0.0.1:7174/assets/engine-Bmc5IJPK.js",
+        "http://127.0.0.1:7174/ashen-reach/training-dummy.glb",
+        "http://127.0.0.1:7174/characters/base.glb"
+      ]
+    },
+    {
+      "name": "early-selected-before-lite",
+      "marks": {
+        "begin": 299.6000000089407,
+        "havok-runtime-available": 315.6000000089407,
+        "engine-created": 319.90000000596046,
+        "gpu-probe-end": 322.5,
+        "world-start": 324.90000000596046,
+        "world-end": 407.1000000089407,
+        "havok-start": 408.20000000298023,
+        "havok-runtime-start": 409,
+        "havok-runtime-end": 409,
+        "havok-world-end": 411.20000000298023,
+        "havok-colliders-end": 418.6000000089407,
+        "havok-controller-end": 419.90000000596046,
+        "havok-end": 421.1000000089407,
+        "body-start": 421.29999999701977,
+        "body-end": 446,
+        "equipment-start": 447.79999999701977,
+        "equipment-end": 473.20000000298023,
+        "register-start": 483.79999999701977,
+        "register-end": 514.7000000029802,
+        "first-render-return": 527.5,
+        "supported-frame-submitted": 557.2000000029802,
+        "first-gpu-completed": 662.4000000059605,
+        "supported-frame-completed": 674.2999999970198,
+        "playable": 677.2000000029802,
+        "bg-start": 677.4000000059605
+      },
+      "shape": {
+        "weights": [
+          0.95,
+          0
+        ],
+        "heightScale": 1.15,
+        "installWriters": true,
+        "assetURL": null,
+        "garmentManifestURL": null,
+        "applied": true
+      },
+      "height": 1.15,
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "pilgrimTunic",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": "wardenPauldrons"
+      },
+      "race": "human",
+      "grounded": true,
+      "physics": true,
+      "gpuErrors": [],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:7174/assets/startupPreload-k_HV7yYB.js",
+          "start": 17.200000002980232,
+          "end": 84.6000000089407
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashenReach-aDGXLqXz.js",
+          "start": 17.299999997019768,
+          "end": 84.79999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/rolldown-runtime-8BhlS34s.js",
+          "start": 17.299999997019768,
+          "end": 85.29999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/modulepreload-polyfill-BwpvBbVl.js",
+          "start": 17.400000005960464,
+          "end": 85.70000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/module-preload-mISdBNlB.js",
+          "start": 17.400000005960464,
+          "end": 85.90000000596046
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/appearance-common-D262BE4P.js",
+          "start": 17.400000005960464,
+          "end": 86.1000000089407
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/startup-preload-Cq2EyfQu.js",
+          "start": 17.400000005960464,
+          "end": 87.29999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashen-boot-aVFD6xGk.js",
+          "start": 17.400000005960464,
+          "end": 89.29999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/lite-runtime-DlqavT_F.js",
+          "start": 17.400000005960464,
+          "end": 260.79999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashen-reach-CELGCeSv.css",
+          "start": 17.5,
+          "end": 87.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashen-reach-BJiN7hDd.js",
+          "start": 17.5,
+          "end": 91.79999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/HavokPhysics.wasm?v=20260923-1",
+          "start": 17.5,
+          "end": 106
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/manifest.json",
+          "start": 17.5,
+          "end": 108.1000000089407
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 17.600000008940697,
+          "end": 109.29999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 17.600000008940697,
+          "end": 109.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/near-61b52956fc8e.br",
+          "start": 17.600000008940697,
+          "end": 193.29999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 17.700000002980232,
+          "end": 109.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 17.700000002980232,
+          "end": 109.6000000089407
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 17.700000002980232,
+          "end": 125.1000000089407
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 17.799999997019768,
+          "end": 122.90000000596046
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 17.799999997019768,
+          "end": 123.1000000089407
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 17.799999997019768,
+          "end": 123.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/meshopt_decoder.js",
+          "start": 17.900000005960464,
+          "end": 122
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/appearance-storage-DNe9gDzL.js",
+          "start": 135.1000000089407,
+          "end": 203.1000000089407
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/human-identity-v1/manifest.json",
+          "start": 207.1000000089407,
+          "end": 212.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/human-identity-assets-0cYFmHI8.js",
+          "start": 207.29999999701977,
+          "end": 213.79999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/human-identity-v1/graveweaverHood-compact-e35c2fd3b285.bin",
+          "start": 214.90000000596046,
+          "end": 222.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/human-identity-v1/body-compact-93ebf3f0db40.bin",
+          "start": 214.90000000596046,
+          "end": 223.79999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/human-shape-v1/pilgrimTunic-compact-d94d573275dc.bin",
+          "start": 215.1000000089407,
+          "end": 225.1000000089407
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/human-shape-v1/graveweaverSkirt-compact-27daf8474125.bin",
+          "start": 215.1000000089407,
+          "end": 226.40000000596046
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/human-shape-v1/wayfarerBoots-compact-287d89851371.bin",
+          "start": 215.20000000298023,
+          "end": 226.70000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/human-shape-v1/graveweaverGloves-compact-106f6454299a.bin",
+          "start": 215.20000000298023,
+          "end": 227.1000000089407
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/human-shape-v1/wardenPauldrons-3daf20061e0e.bin",
+          "start": 215.20000000298023,
+          "end": 227.29999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/favicon.png",
+          "start": 316.6000000089407,
+          "end": 344.90000000596046
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 325.79999999701977,
+          "end": 352.90000000596046
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 325.79999999701977,
+          "end": 355.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 325.90000000596046,
+          "end": 356.29999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 325.90000000596046,
+          "end": 357.1000000089407
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 325.90000000596046,
+          "end": 359.70000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 325.90000000596046,
+          "end": 361.40000000596046
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 357.5,
+          "end": 371.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 386.90000000596046,
+          "end": 393.29999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-a659b1767619.webp",
+          "start": 678.2999999970198,
+          "end": 689.7999999970198
+        }
+      ],
+      "normalizedEquipment": {
+        "helmet": "graveweaverHood",
+        "torso": "pilgrimTunic",
+        "legs": "graveweaverSkirt",
+        "boots": "wayfarerBoots",
+        "gloves": "graveweaverGloves",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": "wardenPauldrons"
+      },
+      "nativeIdentity": {
+        "rootScale": [
+          -1.15,
+          1.15,
+          1.15
+        ],
+        "groups": [
+          "FireBlast_Lower",
+          "FireBlast_Upper",
+          "Hit_Chest",
+          "Idle_Loop",
+          "Jog_Bwd_Loop",
+          "Jog_Left_Loop",
+          "Jog_Right_Loop",
+          "Jump_Land",
+          "Jump_Loop",
+          "Jump_Start",
+          "LavaBall_Lower",
+          "LavaBall_Upper",
+          "PyreBurst_Lower",
+          "PyreBurst_Upper",
+          "Spell_Simple_Enter",
+          "Spell_Simple_Exit",
+          "Spell_Simple_Idle_Loop",
+          "Sprint_Loop",
+          "Turn90_L",
+          "Turn90_R",
+          "Walk_Carry_Loop",
+          "Walk_Loop"
+        ],
+        "meshes": [
+          {
+            "name": "HumanV1Body",
+            "visible": true,
+            "weights": [
+              0.949999988079071,
+              0
+            ]
+          },
+          {
+            "name": "HumanIdentityBrows",
+            "visible": true,
+            "weights": [
+              0.949999988079071,
+              0
+            ]
+          },
+          {
+            "name": "HumanIdentityEyes",
+            "visible": true,
+            "weights": [
+              0.949999988079071,
+              0
+            ]
+          },
+          {
+            "name": "HumanPonytail01",
+            "visible": false,
+            "weights": [
+              0.949999988079071,
+              0
+            ]
+          }
+        ]
+      },
+      "requests": [
+        "http://127.0.0.1:7174/",
+        "http://127.0.0.1:7174/assets/startupPreload-k_HV7yYB.js",
+        "http://127.0.0.1:7174/assets/ashenReach-aDGXLqXz.js",
+        "http://127.0.0.1:7174/assets/rolldown-runtime-8BhlS34s.js",
+        "http://127.0.0.1:7174/assets/modulepreload-polyfill-BwpvBbVl.js",
+        "http://127.0.0.1:7174/assets/module-preload-mISdBNlB.js",
+        "http://127.0.0.1:7174/assets/lite-runtime-DlqavT_F.js",
+        "http://127.0.0.1:7174/assets/appearance-common-D262BE4P.js",
+        "http://127.0.0.1:7174/assets/startup-preload-Cq2EyfQu.js",
+        "http://127.0.0.1:7174/assets/ashen-boot-aVFD6xGk.js",
+        "http://127.0.0.1:7174/assets/ashen-reach-BJiN7hDd.js",
+        "http://127.0.0.1:7174/assets/ashen-reach-CELGCeSv.css",
+        "http://127.0.0.1:7174/HavokPhysics.wasm?v=20260923-1",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/manifest.json",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "http://127.0.0.1:7174/meshopt_decoder.js",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/near-61b52956fc8e.br",
+        "http://127.0.0.1:7174/assets/appearance-storage-DNe9gDzL.js",
+        "http://127.0.0.1:7174/ashen-reach/human-identity-v1/manifest.json",
+        "http://127.0.0.1:7174/assets/human-identity-assets-0cYFmHI8.js",
+        "http://127.0.0.1:7174/ashen-reach/human-identity-v1/body-compact-93ebf3f0db40.bin",
+        "http://127.0.0.1:7174/ashen-reach/human-identity-v1/graveweaverHood-compact-e35c2fd3b285.bin",
+        "http://127.0.0.1:7174/ashen-reach/human-shape-v1/pilgrimTunic-compact-d94d573275dc.bin",
+        "http://127.0.0.1:7174/ashen-reach/human-shape-v1/graveweaverSkirt-compact-27daf8474125.bin",
+        "http://127.0.0.1:7174/ashen-reach/human-shape-v1/wayfarerBoots-compact-287d89851371.bin",
+        "http://127.0.0.1:7174/ashen-reach/human-shape-v1/graveweaverGloves-compact-106f6454299a.bin",
+        "http://127.0.0.1:7174/ashen-reach/human-shape-v1/wardenPauldrons-3daf20061e0e.bin",
+        "http://127.0.0.1:7174/ashen-reach/favicon.png",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-a659b1767619.webp",
+        "http://127.0.0.1:7174/assets/combat-Ds6n7k7J.js",
+        "http://127.0.0.1:7174/assets/world-worker-Cvw93lBX.js",
+        "http://127.0.0.1:7174/assets/enemies-CMzmu_4s.js",
+        "http://127.0.0.1:7174/assets/npc-BoN1hn_X.js",
+        "http://127.0.0.1:7174/assets/townsfolk-C3sChNKU.js",
+        "http://127.0.0.1:7174/assets/armory-Tw6o_XN0.js",
+        "http://127.0.0.1:7174/assets/armory-BBP9tBaM.css",
+        "http://127.0.0.1:7174/ashen-reach/human-identity-v1/graveweaverHood-9f3b17772a7f.bin",
+        "http://127.0.0.1:7174/ashen-reach/training-dummy.glb",
+        "http://127.0.0.1:7174/characters/base.glb",
+        "http://127.0.0.1:7174/assets/lite-error-CbM31Lpb.js",
+        "http://127.0.0.1:7174/assets/typed-arrays-mqcHaLDm.js",
+        "http://127.0.0.1:7174/assets/multiply-mat4-into-buffer-DfBnM-FI.js",
+        "http://127.0.0.1:7174/assets/engine-Bmc5IJPK.js",
+        "http://127.0.0.1:7174/ashen-reach/human-shape-v1/pilgrimTunic-be2fd3a1ff9d.bin"
+      ]
+    },
+    {
+      "name": "saved-neutral",
+      "marks": {
+        "begin": 53.599999994039536,
+        "havok-runtime-available": 72,
+        "engine-created": 75.59999999403954,
+        "gpu-probe-end": 84,
+        "world-start": 86.29999999701977,
+        "world-end": 119.8999999910593,
+        "havok-start": 121,
+        "havok-runtime-start": 121.79999999701977,
+        "havok-runtime-end": 121.8999999910593,
+        "havok-world-end": 123.70000000298023,
+        "havok-colliders-end": 130.79999999701977,
+        "havok-controller-end": 132,
+        "havok-end": 133.09999999403954,
+        "body-start": 133.20000000298023,
+        "body-end": 151,
+        "equipment-start": 152,
+        "equipment-end": 163.79999999701977,
+        "register-start": 168.70000000298023,
+        "register-end": 192.20000000298023,
+        "first-render-return": 200.29999999701977,
+        "supported-frame-submitted": 227.79999999701977,
+        "first-gpu-completed": 315.29999999701977,
+        "supported-frame-completed": 328,
+        "playable": 330.29999999701977,
+        "bg-start": 330.3999999910593
+      },
+      "shape": null,
+      "height": 1,
+      "equipment": {
+        "helmet": null,
+        "torso": "wayfarerTunic",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "ironSword",
+        "offHand": null,
+        "shoulders": null
+      },
+      "race": "human",
+      "grounded": true,
+      "physics": true,
+      "gpuErrors": [],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:7174/assets/startupPreload-k_HV7yYB.js",
+          "start": 3.7000000029802322,
+          "end": 7.799999997019768
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashenReach-aDGXLqXz.js",
+          "start": 3.7999999970197678,
+          "end": 8.099999994039536
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/rolldown-runtime-8BhlS34s.js",
+          "start": 3.7999999970197678,
+          "end": 8.200000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/modulepreload-polyfill-BwpvBbVl.js",
+          "start": 3.7999999970197678,
+          "end": 8.599999994039536
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/module-preload-mISdBNlB.js",
+          "start": 4,
+          "end": 8.899999991059303
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/appearance-common-D262BE4P.js",
+          "start": 4,
+          "end": 9
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/lite-runtime-DlqavT_F.js",
+          "start": 4,
+          "end": 13.399999991059303
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/startup-preload-Cq2EyfQu.js",
+          "start": 4.0999999940395355,
+          "end": 9.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashen-boot-aVFD6xGk.js",
+          "start": 4.0999999940395355,
+          "end": 12.299999997019768
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashen-reach-CELGCeSv.css",
+          "start": 4.200000002980232,
+          "end": 8.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashen-reach-BJiN7hDd.js",
+          "start": 4.200000002980232,
+          "end": 10.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/HavokPhysics.wasm?v=20260923-1",
+          "start": 4.299999997019768,
+          "end": 21.200000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/manifest.json",
+          "start": 4.299999997019768,
+          "end": 16.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 4.299999997019768,
+          "end": 15.399999991059303
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/near-61b52956fc8e.br",
+          "start": 4.299999997019768,
+          "end": 49.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 4.399999991059303,
+          "end": 15
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 4.399999991059303,
+          "end": 21.899999991059303
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 4.399999991059303,
+          "end": 21.899999991059303
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 4.399999991059303,
+          "end": 23.700000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 4.399999991059303,
+          "end": 23.799999997019768
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 4.399999991059303,
+          "end": 24.399999991059303
+        },
+        {
+          "name": "http://127.0.0.1:7174/meshopt_decoder.js",
+          "start": 4.5,
+          "end": 22.799999997019768
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 4.5,
+          "end": 23.899999991059303
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/appearance-storage-DNe9gDzL.js",
+          "start": 54.099999994039536,
+          "end": 55.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/character/manifest.json",
+          "start": 60.29999999701977,
+          "end": 61.29999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/favicon.png",
+          "start": 72.09999999403954,
+          "end": 73.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/character/body-coverage-20f02477c128.bin",
+          "start": 74.29999999701977,
+          "end": 78.59999999403954
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerTrousers-coverage-18aaf5475c09.bin",
+          "start": 74.3999999910593,
+          "end": 76
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "start": 74.3999999910593,
+          "end": 76.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "start": 74.3999999910593,
+          "end": 76.8999999910593
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 87.09999999403954,
+          "end": 87.59999999403954
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 87.20000000298023,
+          "end": 87.59999999403954
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 87.20000000298023,
+          "end": 87.70000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 87.20000000298023,
+          "end": 87.79999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 87.29999999701977,
+          "end": 87.8999999910593
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 87.29999999701977,
+          "end": 88
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 91.8999999910593,
+          "end": 92.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 105.70000000298023,
+          "end": 106.3999999910593
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-a659b1767619.webp",
+          "start": 331.09999999403954,
+          "end": 332.8999999910593
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/combat-Ds6n7k7J.js",
+          "start": 333.59999999403954,
+          "end": 334.8999999910593
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/enemies-CMzmu_4s.js",
+          "start": 333.70000000298023,
+          "end": 336.59999999403954
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/npc-BoN1hn_X.js",
+          "start": 333.79999999701977,
+          "end": 336.09999999403954
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/townsfolk-C3sChNKU.js",
+          "start": 333.79999999701977,
+          "end": 337.8999999910593
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/armory-Tw6o_XN0.js",
+          "start": 334,
+          "end": 337.8999999910593
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/armory-BBP9tBaM.css",
+          "start": 334.09999999403954,
+          "end": 338.59999999403954
+        }
+      ],
+      "normalizedEquipment": {
+        "helmet": null,
+        "torso": "wayfarerTunic",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "ironSword",
+        "offHand": null,
+        "shoulders": null
+      },
+      "requests": [
+        "http://127.0.0.1:7174/",
+        "http://127.0.0.1:7174/assets/startupPreload-k_HV7yYB.js",
+        "http://127.0.0.1:7174/assets/ashenReach-aDGXLqXz.js",
+        "http://127.0.0.1:7174/assets/rolldown-runtime-8BhlS34s.js",
+        "http://127.0.0.1:7174/assets/modulepreload-polyfill-BwpvBbVl.js",
+        "http://127.0.0.1:7174/assets/module-preload-mISdBNlB.js",
+        "http://127.0.0.1:7174/assets/lite-runtime-DlqavT_F.js",
+        "http://127.0.0.1:7174/assets/appearance-common-D262BE4P.js",
+        "http://127.0.0.1:7174/assets/startup-preload-Cq2EyfQu.js",
+        "http://127.0.0.1:7174/assets/ashen-boot-aVFD6xGk.js",
+        "http://127.0.0.1:7174/assets/ashen-reach-BJiN7hDd.js",
+        "http://127.0.0.1:7174/assets/ashen-reach-CELGCeSv.css",
+        "http://127.0.0.1:7174/HavokPhysics.wasm?v=20260923-1",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/manifest.json",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/near-61b52956fc8e.br",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "http://127.0.0.1:7174/meshopt_decoder.js",
+        "http://127.0.0.1:7174/assets/appearance-storage-DNe9gDzL.js",
+        "http://127.0.0.1:7174/ashen-reach/startup/character/manifest.json",
+        "http://127.0.0.1:7174/ashen-reach/favicon.png",
+        "http://127.0.0.1:7174/ashen-reach/startup/character/body-coverage-20f02477c128.bin",
+        "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+        "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerTrousers-coverage-18aaf5475c09.bin",
+        "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "http://127.0.0.1:7174/assets/world-worker-Cvw93lBX.js",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-a659b1767619.webp",
+        "http://127.0.0.1:7174/assets/combat-Ds6n7k7J.js",
+        "http://127.0.0.1:7174/assets/enemies-CMzmu_4s.js",
+        "http://127.0.0.1:7174/assets/npc-BoN1hn_X.js",
+        "http://127.0.0.1:7174/assets/townsfolk-C3sChNKU.js",
+        "http://127.0.0.1:7174/assets/armory-Tw6o_XN0.js",
+        "http://127.0.0.1:7174/assets/armory-BBP9tBaM.css",
+        "http://127.0.0.1:7174/assets/lite-error-CbM31Lpb.js",
+        "http://127.0.0.1:7174/assets/typed-arrays-mqcHaLDm.js",
+        "http://127.0.0.1:7174/assets/multiply-mat4-into-buffer-DfBnM-FI.js",
+        "http://127.0.0.1:7174/assets/engine-Bmc5IJPK.js"
+      ]
+    },
+    {
+      "name": "v1-migration",
+      "marks": {
+        "begin": 57.400000005960464,
+        "havok-runtime-available": 75.5,
+        "engine-created": 80.6000000089407,
+        "gpu-probe-end": 89.40000000596046,
+        "world-start": 91.70000000298023,
+        "world-end": 126.90000000596046,
+        "havok-start": 127.80000001192093,
+        "havok-runtime-start": 128.70000000298023,
+        "havok-runtime-end": 128.70000000298023,
+        "havok-world-end": 130.6000000089407,
+        "havok-colliders-end": 137.6000000089407,
+        "havok-controller-end": 138.90000000596046,
+        "havok-end": 140,
+        "body-start": 140,
+        "body-end": 158,
+        "equipment-start": 159,
+        "equipment-end": 170.90000000596046,
+        "register-start": 176.30000001192093,
+        "register-end": 199.70000000298023,
+        "first-render-return": 207.70000000298023,
+        "supported-frame-submitted": 235.20000000298023,
+        "first-gpu-completed": 323.5,
+        "supported-frame-completed": 336.30000001192093,
+        "playable": 338.80000001192093,
+        "bg-start": 339
+      },
+      "shape": null,
+      "height": 1,
+      "equipment": {
+        "helmet": null,
+        "torso": "wayfarerTunic",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "ironSword",
+        "offHand": null,
+        "shoulders": null
+      },
+      "race": "human",
+      "grounded": true,
+      "physics": true,
+      "gpuErrors": [],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:7174/assets/startupPreload-k_HV7yYB.js",
+          "start": 3.7000000029802322,
+          "end": 7.300000011920929
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashenReach-aDGXLqXz.js",
+          "start": 3.800000011920929,
+          "end": 7.4000000059604645
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/rolldown-runtime-8BhlS34s.js",
+          "start": 3.800000011920929,
+          "end": 7.800000011920929
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/modulepreload-polyfill-BwpvBbVl.js",
+          "start": 3.9000000059604645,
+          "end": 8.200000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/module-preload-mISdBNlB.js",
+          "start": 3.9000000059604645,
+          "end": 7.9000000059604645
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/appearance-common-D262BE4P.js",
+          "start": 4,
+          "end": 11.100000008940697
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/startup-preload-Cq2EyfQu.js",
+          "start": 4,
+          "end": 10.800000011920929
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/lite-runtime-DlqavT_F.js",
+          "start": 4,
+          "end": 10.300000011920929
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashen-reach-CELGCeSv.css",
+          "start": 4.100000008940697,
+          "end": 12.200000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashen-reach-BJiN7hDd.js",
+          "start": 4.100000008940697,
+          "end": 12
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashen-boot-aVFD6xGk.js",
+          "start": 4.100000008940697,
+          "end": 11.700000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/HavokPhysics.wasm?v=20260923-1",
+          "start": 4.100000008940697,
+          "end": 19.400000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/manifest.json",
+          "start": 4.200000002980232,
+          "end": 21.700000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 4.200000002980232,
+          "end": 21
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 4.200000002980232,
+          "end": 21.100000008940697
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/near-61b52956fc8e.br",
+          "start": 4.200000002980232,
+          "end": 51.80000001192093
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 4.300000011920929,
+          "end": 21
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 4.300000011920929,
+          "end": 21.100000008940697
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 4.300000011920929,
+          "end": 22.100000008940697
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 4.300000011920929,
+          "end": 22.80000001192093
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 4.300000011920929,
+          "end": 22.900000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/meshopt_decoder.js",
+          "start": 4.4000000059604645,
+          "end": 22.200000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 4.4000000059604645,
+          "end": 22.80000001192093
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/appearance-storage-DNe9gDzL.js",
+          "start": 57.80000001192093,
+          "end": 59.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/character/manifest.json",
+          "start": 64.40000000596046,
+          "end": 65.6000000089407
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/favicon.png",
+          "start": 75.70000000298023,
+          "end": 77.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "start": 78.1000000089407,
+          "end": 81.6000000089407
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/character/body-coverage-20f02477c128.bin",
+          "start": 78.1000000089407,
+          "end": 82.90000000596046
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerTrousers-coverage-18aaf5475c09.bin",
+          "start": 78.20000000298023,
+          "end": 81.30000001192093
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "start": 78.20000000298023,
+          "end": 81.70000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 92.5,
+          "end": 93
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 92.5,
+          "end": 93.1000000089407
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 92.6000000089407,
+          "end": 93.30000001192093
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 92.6000000089407,
+          "end": 93.40000000596046
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 92.70000000298023,
+          "end": 93.80000001192093
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 92.70000000298023,
+          "end": 94
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 97.40000000596046,
+          "end": 97.6000000089407
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 111.40000000596046,
+          "end": 112.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-a659b1767619.webp",
+          "start": 339.80000001192093,
+          "end": 341.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/combat-Ds6n7k7J.js",
+          "start": 342.30000001192093,
+          "end": 343.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/npc-BoN1hn_X.js",
+          "start": 342.40000000596046,
+          "end": 344.30000001192093
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/enemies-CMzmu_4s.js",
+          "start": 342.40000000596046,
+          "end": 344.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/townsfolk-C3sChNKU.js",
+          "start": 342.6000000089407,
+          "end": 344.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/armory-Tw6o_XN0.js",
+          "start": 342.6000000089407,
+          "end": 345.30000001192093
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/armory-BBP9tBaM.css",
+          "start": 342.90000000596046,
+          "end": 346.20000000298023
+        }
+      ],
+      "normalizedEquipment": {
+        "helmet": null,
+        "torso": "wayfarerTunic",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "ironSword",
+        "offHand": null,
+        "shoulders": null
+      },
+      "requests": [
+        "http://127.0.0.1:7174/",
+        "http://127.0.0.1:7174/assets/startupPreload-k_HV7yYB.js",
+        "http://127.0.0.1:7174/assets/ashenReach-aDGXLqXz.js",
+        "http://127.0.0.1:7174/assets/rolldown-runtime-8BhlS34s.js",
+        "http://127.0.0.1:7174/assets/modulepreload-polyfill-BwpvBbVl.js",
+        "http://127.0.0.1:7174/assets/module-preload-mISdBNlB.js",
+        "http://127.0.0.1:7174/assets/lite-runtime-DlqavT_F.js",
+        "http://127.0.0.1:7174/assets/appearance-common-D262BE4P.js",
+        "http://127.0.0.1:7174/assets/startup-preload-Cq2EyfQu.js",
+        "http://127.0.0.1:7174/assets/ashen-boot-aVFD6xGk.js",
+        "http://127.0.0.1:7174/assets/ashen-reach-BJiN7hDd.js",
+        "http://127.0.0.1:7174/assets/ashen-reach-CELGCeSv.css",
+        "http://127.0.0.1:7174/HavokPhysics.wasm?v=20260923-1",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/manifest.json",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/near-61b52956fc8e.br",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "http://127.0.0.1:7174/meshopt_decoder.js",
+        "http://127.0.0.1:7174/assets/appearance-storage-DNe9gDzL.js",
+        "http://127.0.0.1:7174/ashen-reach/startup/character/manifest.json",
+        "http://127.0.0.1:7174/ashen-reach/favicon.png",
+        "http://127.0.0.1:7174/ashen-reach/startup/character/body-coverage-20f02477c128.bin",
+        "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+        "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerTrousers-coverage-18aaf5475c09.bin",
+        "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "http://127.0.0.1:7174/assets/world-worker-Cvw93lBX.js",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-a659b1767619.webp",
+        "http://127.0.0.1:7174/assets/combat-Ds6n7k7J.js",
+        "http://127.0.0.1:7174/assets/enemies-CMzmu_4s.js",
+        "http://127.0.0.1:7174/assets/npc-BoN1hn_X.js",
+        "http://127.0.0.1:7174/assets/townsfolk-C3sChNKU.js",
+        "http://127.0.0.1:7174/assets/armory-Tw6o_XN0.js",
+        "http://127.0.0.1:7174/assets/armory-BBP9tBaM.css"
+      ]
+    },
+    {
+      "name": "creator-migration",
+      "marks": {
+        "begin": 59.5,
+        "havok-runtime-available": 78.09999999403954,
+        "engine-created": 83,
+        "gpu-probe-end": 87.5,
+        "world-start": 89.5,
+        "world-end": 150.29999999701977,
+        "havok-start": 151.40000000596046,
+        "havok-runtime-start": 152.20000000298023,
+        "havok-runtime-end": 152.20000000298023,
+        "havok-world-end": 154.40000000596046,
+        "havok-colliders-end": 161.79999999701977,
+        "havok-controller-end": 163.09999999403954,
+        "havok-end": 164.20000000298023,
+        "body-start": 164.40000000596046,
+        "body-end": 185.59999999403954,
+        "equipment-start": 187.5,
+        "equipment-end": 202.5,
+        "register-start": 208.70000000298023,
+        "register-end": 234.70000000298023,
+        "first-render-return": 242.59999999403954,
+        "supported-frame-submitted": 272.70000000298023,
+        "first-gpu-completed": 367.29999999701977,
+        "supported-frame-completed": 386.09999999403954,
+        "playable": 388.5,
+        "bg-start": 388.5
+      },
+      "shape": {
+        "weights": [
+          0,
+          0.95
+        ],
+        "heightScale": 1.15,
+        "installWriters": true,
+        "assetURL": null,
+        "garmentManifestURL": null,
+        "applied": true
+      },
+      "height": 1.15,
+      "equipment": {
+        "helmet": null,
+        "torso": "wayfarerTunic",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "ironSword",
+        "offHand": null,
+        "shoulders": null
+      },
+      "race": "human",
+      "grounded": true,
+      "physics": true,
+      "gpuErrors": [],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:7174/assets/startupPreload-k_HV7yYB.js",
+          "start": 4,
+          "end": 7.5999999940395355
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/rolldown-runtime-8BhlS34s.js",
+          "start": 4.0999999940395355,
+          "end": 8.200000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashenReach-aDGXLqXz.js",
+          "start": 4.0999999940395355,
+          "end": 7.700000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/modulepreload-polyfill-BwpvBbVl.js",
+          "start": 4.200000002980232,
+          "end": 8.700000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/module-preload-mISdBNlB.js",
+          "start": 4.200000002980232,
+          "end": 8.700000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/appearance-common-D262BE4P.js",
+          "start": 4.200000002980232,
+          "end": 11.400000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/startup-preload-Cq2EyfQu.js",
+          "start": 4.200000002980232,
+          "end": 11.400000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashen-reach-BJiN7hDd.js",
+          "start": 4.200000002980232,
+          "end": 13.900000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashen-boot-aVFD6xGk.js",
+          "start": 4.200000002980232,
+          "end": 12.799999997019768
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/lite-runtime-DlqavT_F.js",
+          "start": 4.200000002980232,
+          "end": 10.900000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashen-reach-CELGCeSv.css",
+          "start": 4.299999997019768,
+          "end": 13.700000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/HavokPhysics.wasm?v=20260923-1",
+          "start": 4.299999997019768,
+          "end": 20.599999994039536
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/manifest.json",
+          "start": 4.299999997019768,
+          "end": 21.900000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/near-61b52956fc8e.br",
+          "start": 4.299999997019768,
+          "end": 53.900000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 4.4000000059604645,
+          "end": 24.599999994039536
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 4.4000000059604645,
+          "end": 24.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 4.4000000059604645,
+          "end": 24.599999994039536
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 4.5,
+          "end": 24.900000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 4.5,
+          "end": 25
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 4.5,
+          "end": 25
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 4.5,
+          "end": 26.400000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 4.5,
+          "end": 26.400000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/meshopt_decoder.js",
+          "start": 4.5999999940395355,
+          "end": 25.799999997019768
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/appearance-storage-DNe9gDzL.js",
+          "start": 59.900000005960464,
+          "end": 61.29999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/human-shape-v1/manifest.json",
+          "start": 67.29999999701977,
+          "end": 69.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/favicon.png",
+          "start": 79.90000000596046,
+          "end": 81.40000000596046
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/human-shape-v1/body-coverage-b93fb71aa490.bin",
+          "start": 81.90000000596046,
+          "end": 86.40000000596046
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/human-shape-v1/wayfarerTunic-compact-000ff23bf965.bin",
+          "start": 82,
+          "end": 84.09999999403954
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/human-shape-v1/wayfarerBoots-compact-287d89851371.bin",
+          "start": 82,
+          "end": 84.59999999403954
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/human-shape-v1/wayfarerTrousers-compact-coverage-f834210550a3.bin",
+          "start": 82,
+          "end": 84.90000000596046
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 90.20000000298023,
+          "end": 90.70000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 90.29999999701977,
+          "end": 90.79999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 90.29999999701977,
+          "end": 90.90000000596046
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 90.29999999701977,
+          "end": 91
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 90.40000000596046,
+          "end": 91.09999999403954
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 90.5,
+          "end": 91.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 110,
+          "end": 110.79999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 134.29999999701977,
+          "end": 135
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-a659b1767619.webp",
+          "start": 389.29999999701977,
+          "end": 390.90000000596046
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/combat-Ds6n7k7J.js",
+          "start": 391.40000000596046,
+          "end": 392.79999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/enemies-CMzmu_4s.js",
+          "start": 391.5,
+          "end": 394.09999999403954
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/npc-BoN1hn_X.js",
+          "start": 391.59999999403954,
+          "end": 393.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/townsfolk-C3sChNKU.js",
+          "start": 391.70000000298023,
+          "end": 393.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/armory-Tw6o_XN0.js",
+          "start": 391.70000000298023,
+          "end": 394.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/armory-BBP9tBaM.css",
+          "start": 391.90000000596046,
+          "end": 395.09999999403954
+        }
+      ],
+      "normalizedEquipment": {
+        "helmet": null,
+        "torso": "wayfarerTunic",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "ironSword",
+        "offHand": null,
+        "shoulders": null
+      },
+      "requests": [
+        "http://127.0.0.1:7174/",
+        "http://127.0.0.1:7174/assets/startupPreload-k_HV7yYB.js",
+        "http://127.0.0.1:7174/assets/ashenReach-aDGXLqXz.js",
+        "http://127.0.0.1:7174/assets/rolldown-runtime-8BhlS34s.js",
+        "http://127.0.0.1:7174/assets/modulepreload-polyfill-BwpvBbVl.js",
+        "http://127.0.0.1:7174/assets/module-preload-mISdBNlB.js",
+        "http://127.0.0.1:7174/assets/lite-runtime-DlqavT_F.js",
+        "http://127.0.0.1:7174/assets/appearance-common-D262BE4P.js",
+        "http://127.0.0.1:7174/assets/startup-preload-Cq2EyfQu.js",
+        "http://127.0.0.1:7174/assets/ashen-boot-aVFD6xGk.js",
+        "http://127.0.0.1:7174/assets/ashen-reach-BJiN7hDd.js",
+        "http://127.0.0.1:7174/assets/ashen-reach-CELGCeSv.css",
+        "http://127.0.0.1:7174/HavokPhysics.wasm?v=20260923-1",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/manifest.json",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/near-61b52956fc8e.br",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "http://127.0.0.1:7174/meshopt_decoder.js",
+        "http://127.0.0.1:7174/assets/appearance-storage-DNe9gDzL.js",
+        "http://127.0.0.1:7174/ashen-reach/human-shape-v1/manifest.json",
+        "http://127.0.0.1:7174/ashen-reach/favicon.png",
+        "http://127.0.0.1:7174/ashen-reach/human-shape-v1/body-coverage-b93fb71aa490.bin",
+        "http://127.0.0.1:7174/ashen-reach/human-shape-v1/wayfarerTunic-compact-000ff23bf965.bin",
+        "http://127.0.0.1:7174/ashen-reach/human-shape-v1/wayfarerTrousers-compact-coverage-f834210550a3.bin",
+        "http://127.0.0.1:7174/ashen-reach/human-shape-v1/wayfarerBoots-compact-287d89851371.bin",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "http://127.0.0.1:7174/assets/world-worker-Cvw93lBX.js",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-a659b1767619.webp",
+        "http://127.0.0.1:7174/assets/combat-Ds6n7k7J.js",
+        "http://127.0.0.1:7174/assets/enemies-CMzmu_4s.js",
+        "http://127.0.0.1:7174/assets/npc-BoN1hn_X.js",
+        "http://127.0.0.1:7174/assets/townsfolk-C3sChNKU.js",
+        "http://127.0.0.1:7174/assets/armory-Tw6o_XN0.js",
+        "http://127.0.0.1:7174/assets/armory-BBP9tBaM.css",
+        "http://127.0.0.1:7174/ashen-reach/human-shape-v1/wayfarerTunic-e65b2868e12f.bin",
+        "http://127.0.0.1:7174/assets/lite-error-CbM31Lpb.js",
+        "http://127.0.0.1:7174/assets/typed-arrays-mqcHaLDm.js",
+        "http://127.0.0.1:7174/assets/multiply-mat4-into-buffer-DfBnM-FI.js",
+        "http://127.0.0.1:7174/assets/engine-Bmc5IJPK.js"
+      ]
+    },
+    {
+      "name": "unknown-version-retained",
+      "marks": {
+        "begin": 58.29999999701977,
+        "havok-runtime-available": 77.59999999403954,
+        "engine-created": 93,
+        "gpu-probe-end": 95,
+        "world-start": 97.09999999403954,
+        "world-end": 132.09999999403954,
+        "havok-start": 133.20000000298023,
+        "havok-runtime-start": 134,
+        "havok-runtime-end": 134,
+        "havok-world-end": 135.79999999701977,
+        "havok-colliders-end": 142.90000000596046,
+        "havok-controller-end": 144.09999999403954,
+        "havok-end": 145.09999999403954,
+        "body-start": 145.29999999701977,
+        "body-end": 164,
+        "equipment-start": 165.20000000298023,
+        "equipment-end": 176.70000000298023,
+        "register-start": 181.59999999403954,
+        "register-end": 205.09999999403954,
+        "first-render-return": 212.70000000298023,
+        "supported-frame-submitted": 239.29999999701977,
+        "first-gpu-completed": 326.40000000596046,
+        "supported-frame-completed": 339.29999999701977,
+        "playable": 341.79999999701977,
+        "bg-start": 341.90000000596046
+      },
+      "shape": null,
+      "height": 1,
+      "equipment": {
+        "helmet": null,
+        "torso": "wayfarerTunic",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "ironSword",
+        "offHand": null
+      },
+      "race": "human",
+      "grounded": true,
+      "physics": true,
+      "gpuErrors": [],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:7174/assets/startupPreload-k_HV7yYB.js",
+          "start": 3.5999999940395355,
+          "end": 7.4000000059604645
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashenReach-aDGXLqXz.js",
+          "start": 3.7999999970197678,
+          "end": 7.799999997019768
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/modulepreload-polyfill-BwpvBbVl.js",
+          "start": 3.7999999970197678,
+          "end": 8.200000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/module-preload-mISdBNlB.js",
+          "start": 3.7999999970197678,
+          "end": 8.200000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/rolldown-runtime-8BhlS34s.js",
+          "start": 3.7999999970197678,
+          "end": 7.9000000059604645
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/startup-preload-Cq2EyfQu.js",
+          "start": 3.9000000059604645,
+          "end": 11.599999994039536
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/appearance-common-D262BE4P.js",
+          "start": 3.9000000059604645,
+          "end": 11.700000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/lite-runtime-DlqavT_F.js",
+          "start": 3.9000000059604645,
+          "end": 10.700000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashen-reach-BJiN7hDd.js",
+          "start": 4,
+          "end": 14.599999994039536
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashen-boot-aVFD6xGk.js",
+          "start": 4,
+          "end": 13.700000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/ashen-reach-CELGCeSv.css",
+          "start": 4.0999999940395355,
+          "end": 14.299999997019768
+        },
+        {
+          "name": "http://127.0.0.1:7174/HavokPhysics.wasm?v=20260923-1",
+          "start": 4.0999999940395355,
+          "end": 25.400000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/manifest.json",
+          "start": 4.0999999940395355,
+          "end": 27.200000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/near-61b52956fc8e.br",
+          "start": 4.0999999940395355,
+          "end": 51.900000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 4.200000002980232,
+          "end": 26.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/meshopt_decoder.js",
+          "start": 4.299999997019768,
+          "end": 27.700000002980232
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 4.299999997019768,
+          "end": 26.400000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 4.299999997019768,
+          "end": 26.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 4.299999997019768,
+          "end": 26.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 4.299999997019768,
+          "end": 27.599999994039536
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 4.299999997019768,
+          "end": 28.099999994039536
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 4.299999997019768,
+          "end": 28.400000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 4.299999997019768,
+          "end": 28.400000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/appearance-storage-DNe9gDzL.js",
+          "start": 12.799999997019768,
+          "end": 28.099999994039536
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/character/manifest.json",
+          "start": 60.5,
+          "end": 61.400000005960464
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/favicon.png",
+          "start": 77.79999999701977,
+          "end": 81.09999999403954
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/character/body-coverage-20f02477c128.bin",
+          "start": 78.5,
+          "end": 85.40000000596046
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+          "start": 78.5,
+          "end": 81.90000000596046
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerTrousers-coverage-18aaf5475c09.bin",
+          "start": 78.5,
+          "end": 82.29999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+          "start": 78.5,
+          "end": 82.79999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+          "start": 97.79999999701977,
+          "end": 98.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+          "start": 97.79999999701977,
+          "end": 98.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+          "start": 98,
+          "end": 98.79999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+          "start": 98,
+          "end": 99
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+          "start": 98,
+          "end": 99.20000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+          "start": 98,
+          "end": 99.29999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+          "start": 102.29999999701977,
+          "end": 102.70000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+          "start": 117.90000000596046,
+          "end": 118.79999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-a659b1767619.webp",
+          "start": 342.70000000298023,
+          "end": 344.29999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/combat-Ds6n7k7J.js",
+          "start": 345.20000000298023,
+          "end": 346.70000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/enemies-CMzmu_4s.js",
+          "start": 345.29999999701977,
+          "end": 349.09999999403954
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/npc-BoN1hn_X.js",
+          "start": 345.40000000596046,
+          "end": 348.29999999701977
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/townsfolk-C3sChNKU.js",
+          "start": 345.59999999403954,
+          "end": 348.70000000298023
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/armory-Tw6o_XN0.js",
+          "start": 345.59999999403954,
+          "end": 349.5
+        },
+        {
+          "name": "http://127.0.0.1:7174/assets/armory-BBP9tBaM.css",
+          "start": 345.79999999701977,
+          "end": 349.59999999403954
+        }
+      ],
+      "normalizedEquipment": {
+        "helmet": null,
+        "torso": "wayfarerTunic",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "ironSword",
+        "offHand": null,
+        "shoulders": null
+      },
+      "requests": [
+        "http://127.0.0.1:7174/",
+        "http://127.0.0.1:7174/assets/startupPreload-k_HV7yYB.js",
+        "http://127.0.0.1:7174/assets/ashenReach-aDGXLqXz.js",
+        "http://127.0.0.1:7174/assets/rolldown-runtime-8BhlS34s.js",
+        "http://127.0.0.1:7174/assets/modulepreload-polyfill-BwpvBbVl.js",
+        "http://127.0.0.1:7174/assets/module-preload-mISdBNlB.js",
+        "http://127.0.0.1:7174/assets/lite-runtime-DlqavT_F.js",
+        "http://127.0.0.1:7174/assets/appearance-common-D262BE4P.js",
+        "http://127.0.0.1:7174/assets/startup-preload-Cq2EyfQu.js",
+        "http://127.0.0.1:7174/assets/ashen-boot-aVFD6xGk.js",
+        "http://127.0.0.1:7174/assets/ashen-reach-BJiN7hDd.js",
+        "http://127.0.0.1:7174/assets/ashen-reach-CELGCeSv.css",
+        "http://127.0.0.1:7174/HavokPhysics.wasm?v=20260923-1",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/manifest.json",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/near-61b52956fc8e.br",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "http://127.0.0.1:7174/meshopt_decoder.js",
+        "http://127.0.0.1:7174/assets/appearance-storage-DNe9gDzL.js",
+        "http://127.0.0.1:7174/ashen-reach/startup/character/manifest.json",
+        "http://127.0.0.1:7174/ashen-reach/favicon.png",
+        "http://127.0.0.1:7174/ashen-reach/startup/character/body-coverage-20f02477c128.bin",
+        "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+        "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerTrousers-coverage-18aaf5475c09.bin",
+        "http://127.0.0.1:7174/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-876257499921.webp",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "http://127.0.0.1:7174/assets/world-worker-Cvw93lBX.js",
+        "http://127.0.0.1:7174/ashen-reach/startup/starter/texture-a659b1767619.webp",
+        "http://127.0.0.1:7174/assets/combat-Ds6n7k7J.js",
+        "http://127.0.0.1:7174/assets/enemies-CMzmu_4s.js",
+        "http://127.0.0.1:7174/assets/npc-BoN1hn_X.js",
+        "http://127.0.0.1:7174/assets/townsfolk-C3sChNKU.js",
+        "http://127.0.0.1:7174/assets/armory-Tw6o_XN0.js",
+        "http://127.0.0.1:7174/assets/armory-BBP9tBaM.css",
+        "http://127.0.0.1:7174/assets/lite-error-CbM31Lpb.js",
+        "http://127.0.0.1:7174/assets/typed-arrays-mqcHaLDm.js",
+        "http://127.0.0.1:7174/assets/multiply-mat4-into-buffer-DfBnM-FI.js",
+        "http://127.0.0.1:7174/assets/engine-Bmc5IJPK.js"
+      ]
+    },
+    {
+      "name": "stale-shape-provenance",
+      "rejected": true,
+      "manifestHits": 1,
+      "error": "Technical detailsError: The character family has been updated. Reload to use matching assets.\n    at d (http://127.0.0.1:7174/assets/startup-preload-Cq2EyfQu.js:2:2156)"
+    },
+    {
+      "name": "stale-identity-provenance",
+      "rejected": true,
+      "manifestHits": 2,
+      "error": "Technical detailsError: Human identities have changed. Reload to use matching assets.\n    at u (http://127.0.0.1:7174/assets/human-identity-assets-0cYFmHI8.js:1:373)\n    at async Module.d (http://127.0.0.1:7174/assets/human-identity-assets-0cYFmHI8.js:1:800)"
+    },
+    {
+      "name": "stale-starter-provenance",
+      "rejected": true,
+      "manifestHits": 1,
+      "error": "Technical detailsError: The character has been updated. Reload to use the matching starting assets.\n    at c (http://127.0.0.1:7174/assets/startup-preload-Cq2EyfQu.js:2:1127)"
+    }
+  ],
+  "passed": true
+}

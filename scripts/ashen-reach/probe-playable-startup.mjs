@@ -9,12 +9,18 @@ import {execFileSync} from 'node:child_process';
 import assert from "node:assert/strict";
 import { chromium } from "playwright";
 import {migrateAppearance} from '../../src/character/appearance/contract.js';
+import {findHumanIdentityPreset} from '../../src/character/appearance/human-identity.js';
+import {ASHEN_PLAYABLE_CLIP_NAMES} from '../../src/character/runtime/ashen-playable-motion.js';
+import {EQUIPMENT_ITEMS} from '../../src/ashen-reach/equipment-catalog.js';
 import {installGpuEventProbe} from '../lib/probe-gpu-events.mjs';
 const gpuProbe = process.env.ASHEN_PROBE_GPU_EVENTS === '1';
 const traceGpu = process.env.ASHEN_PROBE_CHROME_TRACE === '1';
 const disableShaderCache = process.env.ASHEN_PROBE_DISABLE_SHADER_CACHE === '1';
 const seed=process.env.ASHEN_PROBE_APPEARANCE?JSON.parse(await fs.readFile(process.env.ASHEN_PROBE_APPEARANCE,'utf8')):null;
 const expectedSeed=seed?migrateAppearance(seed):null;
+const identity=expectedSeed?.race==='human'?findHumanIdentityPreset(expectedSeed.components):null;
+const identityPack=identity&&identity.id!=='starter'
+  ? JSON.parse(await fs.readFile('public/ashen-reach/human-identity-v1/manifest.json','utf8')).presets[identity.id].manifest:null;
 const destination = process.argv[2];
 assert(destination, "Specify report.json");
 const runs = Number(process.env.ASHEN_PROBE_RUNS || 5),
@@ -127,6 +133,13 @@ for (let run = 1; run <= runs; run++) {
       origin: performance.timeOrigin,
       shape: ASHEN.humanShape,
       heightScale: ASHEN.player.heightScale,
+      // Observe the actual native actor at the playable boundary; saved recipe
+      // bookkeeping alone could pass while the wrong head/body was rendering.
+      // Native morph/skin ordering: https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#skins
+      storedAppearance: JSON.parse(localStorage.getItem('ashen.appearance.v2')),
+      rootScale: [ASHEN.body.root.scaling.x,ASHEN.body.root.scaling.y,ASHEN.body.root.scaling.z],
+      nativeIdentity: ASHEN.scene.meshes.filter(m=>['HumanV1Body','HumanIdentityEyes','HumanIdentityBrows','HumanPonytail01'].includes(m.name)).map(m=>({name:m.name,visible:m.visible!==false,weights:m.morphTargets?Array.from(m.morphTargets.weights):null})),
+      animationGroups: ASHEN.body.animationGroups.map(g=>g.name).sort(),
       race: ASHEN.equipment.race,
       equipment: ASHEN.equipment.getState(),
       dyes: ASHEN.equipment.getDyes(),
@@ -209,17 +222,36 @@ for (let run = 1; run <= runs; run++) {
     }
     row.errors = errors;
     row.run = run;row.browserPid=browserPid;
+    report.rows.push(row);rowRecorded=true;
+    await fs.writeFile(destination, JSON.stringify(report, null, 2));
     if(seed) {
       assert.equal(row.race,expectedSeed.race);assert.deepEqual(row.equipment,expectedSeed.equipment);
       assert.deepEqual(row.dyes,expectedSeed.dyes);
+      assert.deepEqual(migrateAppearance(row.storedAppearance),expectedSeed);
       if(seed.race==='human') {
         assert.equal(row.heightScale,seed.shape.height);
+        assert.deepEqual(row.rootScale.map(Math.abs),[seed.shape.height,seed.shape.height,seed.shape.height]);
         if(row.shape)assert.deepEqual(row.shape.weights,[Math.max(0,-seed.shape.build),Math.max(0,seed.shape.build)]);
         else {assert.equal(seed.shape.build,0);assert.equal(seed.shape.height,1);}
       }
     }
-    report.rows.push(row);rowRecorded=true;
-    await fs.writeFile(destination, JSON.stringify(report, null, 2));
+    if(identityPack){
+      const visible=row.nativeIdentity.filter(m=>m.visible).map(m=>m.name);
+      assert(visible.includes('HumanIdentityEyes')&&visible.includes('HumanIdentityBrows'),'Selected native facial meshes must render at first play');
+      const covered=Object.values(expectedSeed.equipment).some(id=>EQUIPMENT_ITEMS[id]?.covers?.includes('head.scalp'));
+      assert.equal(visible.includes('HumanPonytail01'),identity.id==='prime-ponytail'&&!covered,'First-play hair must agree with the selected identity and headwear');
+      assert.deepEqual(row.animationGroups,[...ASHEN_PLAYABLE_CLIP_NAMES].sort());
+      const paths=row.requests.map(r=>new URL(r.url).pathname);
+      assert(paths.includes(identityPack.compactItems.body.url),'The selected compact body must load before first play');
+      assert(!paths.includes(identityPack.items.body.url),'Unused full motion library must not load before first play');
+      const weights=[Math.max(0,-seed.shape.build),Math.max(0,seed.shape.build)];
+      assert(row.nativeIdentity.find(m=>m.name==='HumanV1Body')?.weights,'Selected body must declare native morphs');
+      for(const mesh of row.nativeIdentity.filter(m=>m.visible&&m.weights)){
+        assert.equal(mesh.weights.length,2);
+        mesh.weights.forEach((w,i)=>assert(Math.abs(w-weights[i])<1e-5,`${mesh.name} native morph ${i} differs at first play`));
+      }
+      row.selectedIdentity={id:identity.id,bodyUrl:identityPack.compactItems.body.url,bodySha256:identityPack.compactItems.body.sha256};
+    }
     assert(row.grounded && row.physics && !row.loader);
     assert(row.marks['supported-frame-submitted'] >= row.marks['equipment-end']);
     assert(row.marks['supported-frame-completed'] >= row.marks['supported-frame-submitted']);
@@ -227,6 +259,7 @@ for (let run = 1; run <= runs; run++) {
     assert.deepEqual(row.canvas, [1280, 720]);
     assert.deepEqual(errors, []);
     assert.deepEqual(row.input.gpuErrors, []);
+    await fs.writeFile(destination, JSON.stringify(report, null, 2));
     console.log(
       JSON.stringify({
         run,

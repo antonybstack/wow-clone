@@ -1,6 +1,30 @@
 # Current state and immediate focus — Ashen Reach
 
-Updated 2026-10-04 (local). Read this file first. Follow the latest user request; historical milestone documents are not an active task queue.
+Updated 2026-10-05 (local). Read this file first. Follow the latest user request; historical milestone documents are not an active task queue.
+
+**M5 startup-packaging checkpoint, 2026-10-05:** native Rolldown groups reduce the
+ordinary entry's preloads from 20 to eight, keeping early saved validation separate
+from Lite. All **286** measured art/physics payloads stay exact. Six local compressed
+20-run cohorts pass **120/120 within one second**, p95 **808–972 ms**, with actual
+saved native identity/morphs/clothing and Havok/input verified at first play.
+Character **200/200**, focused startup **10/10**, ordinary and native Pages prefetch
+**10 cases each**, saved integration **8 each**, desktop mobile checks and native
+Pages **513 artifacts / 20 identity cache policies** pass. The measured ordinary
+and Pages staging seals are separate; no public-CDN or physical-phone claim.
+Nine five-route FPS cohorts observe **211–264 FPS**, with no interval over 16.67 ms;
+their tail comparisons are provisional because Telegram resumed autoplay sometime
+after the starting audit. Six clean affected-route repeats observe **206–251 FPS**,
+matched mean cost +0.08–2.29%; the variable bald bridge p95 remains recorded.
+Reviewed Pages startup motion is Telegram **857** /
+[VE](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m5-startup-packaging-2026-10-05-b23afd39c102.mp4).
+Actual public hash/play/seek and Telegram inline/expanded/full-window proportions
+pass; native OS fullscreen and Telegram Desktop remain distinct unverified states.
+**M5 stays open and unreleased.** Live close review exposes a light upper-back
+patch during normal movement; static walk controls have not reproduced it yet.
+Next: identify its actual mesh/pose and compact/full stage, correct a valid fit
+defect, complete representative outfit/motion fits and valid boot fixes, then the
+actual Pages/public release cohorts. The earlier first-use GPU tail is retained.
+[Result, exact conditions and continuation](plans/character-mmo/results/m5-startup-packaging-2026-10-05.md).
 
 **Autonomous continuation, 2026-10-04:** the user authorized automatic continuation
 through the active character-customization queue. This Codex session has an active

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 2,
+  "catalogVersion": "appearance-catalog-v6",
+  "race": "human",
+  "fitFamily": "ashen-human",
+  "fit": {
+    "rig": "source-65",
+    "bind": 1,
+    "shape": 1
+  },
+  "shape": {
+    "family": "ashen-human-shape-v1",
+    "height": 1,
+    "build": 0
+  },
+  "components": {
+    "head": "human-prime-v1",
+    "hair": "human-bald-v1"
+  },
+  "dyes": {},
+  "equipment": {
+    "helmet": null,
+    "torso": "wayfarerTunic",
+    "legs": "wayfarerTrousers",
+    "boots": "wayfarerBoots",
+    "gloves": null,
+    "mainHand": "ironSword",
+    "offHand": null,
+    "shoulders": null
+  }
+}

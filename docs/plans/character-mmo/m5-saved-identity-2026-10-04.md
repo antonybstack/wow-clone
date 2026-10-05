@@ -117,6 +117,36 @@ The valid Grok coverage finding was fixed before these checks. See
 
 ## Checkpoint D — hair and acceptance, then release
 
+**Native packaging/local timing checkpoint implemented, 2026-10-05:** Rolldown
+static grouping and independent pure saved validation pass 120/120 local ordinary
+compressed starts, p95 808–972 ms, with actual native identity/shape at first play.
+Measured art/physics remains exact. Native Pages staging separately verifies 513
+served artifacts, 20 identity cache policies and ten prefetch/eight saved cases.
+Nine FPS cohorts and six affected-route repeats retain media-isolation/cap/tail
+limits. Reviewed Pages motion is Telegram 857 / VE. This closes the recorded local
+ordinary-build overrun; it does not establish final Pages/public/device acceptance.
+[Result and continuation](results/m5-startup-packaging-2026-10-05.md).
+
+Next concrete fit package:
+
+1. Reproduce the light right upper-back patch seen in the saved tall/stout,
+   exposed-ponytail, largest mixed outfit during normal W movement. Record actual
+   active clip/mask/phase, native mesh ownership and compact/full clothing stage.
+   A static walk comparison did not reproduce it; its UI labels were stale after
+   API-driven changes, so retain it as diagnostic evidence only.
+2. Use matched bald/ponytail and native component-visibility controls at the **same
+   observed pose** to identify the part before changing art. Do not label a hair
+   tip, hand, neck or garment pixel as skin from colour alone. Reuse the current
+   native mixer/coverage/source authoring path; preserve the approved face and binds.
+3. Correct a reproduced valid defect, then review the exposed/hooded identities
+   across representative presets, body endpoints, ordinary composed gait/casts and
+   compact/full clothing. Raw carry previews remain diagnostics, not melee damage.
+   Keep visible boot sole/seam work explicit in M6 and the authorized defect queue.
+4. Run final **Pages-output** cold/FPS cohorts after all required source changes,
+   with media/game isolation checked at useful boundaries. Retain variable bridge
+   tails and first-use GPU outliers. Then commit/push and release through the normal
+   public bundle/asset/load/movement/rollback gate; no approval round is needed.
+
 **Saved-route fit checkpoint implemented:** 630 live views cover the three selected
 identities, all five Human body cases, every seven named preset plus bare and two
 mixes. Native actor weights/root scale, actual body/garment visibility and photographed

@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: saved identity requires selected starter even at neutral shape and default equipment
+ok 1 - saved identity requires selected starter even at neutral shape and default equipment
+  ---
+  duration_ms: 1.065625
+  type: 'test'
+  ...
+# Subtest: selected early/main requests share embedded descriptors, native decompression and retry
+ok 2 - selected early/main requests share embedded descriptors, native decompression and retry
+  ---
+  duration_ms: 20.917417
+  type: 'test'
+  ...
+# Subtest: incompatible index and a preset/body mismatch fail before selected assets load
+ok 3 - incompatible index and a preset/body mismatch fail before selected assets load
+  ---
+  duration_ms: 2.5735
+  type: 'test'
+  ...
+# Subtest: saved preloader starts the fixed catalogue immediately and shares it with the optional module
+ok 4 - saved preloader starts the fixed catalogue immediately and shares it with the optional module
+  ---
+  duration_ms: 4.554417
+  type: 'test'
+  ...
+# Subtest: early starter selection retains neutral/race/diagnostic boundaries
+ok 5 - early starter selection retains neutral/race/diagnostic boundaries
+  ---
+  duration_ms: 1.462125
+  type: 'test'
+  ...
+# Subtest: early and main startup share the existing validated appearance; corrupt data survives
+ok 6 - early and main startup share the existing validated appearance; corrupt data survives
+  ---
+  duration_ms: 1.504708
+  type: 'test'
+  ...
+# Subtest: prefetch and main share one manifest and decompression; refinement selects full pieces
+ok 7 - prefetch and main share one manifest and decompression; refinement selects full pieces
+  ---
+  duration_ms: 10.719042
+  type: 'test'
+  ...
+# Subtest: failed speculative manifest and asset requests can retry through the same loader
+ok 8 - failed speculative manifest and asset requests can retry through the same loader
+  ---
+  duration_ms: 1.549625
+  type: 'test'
+  ...
+# Subtest: early appearance uses the real v1 and creator migrations and preserves query overrides
+ok 9 - early appearance uses the real v1 and creator migrations and preserves query overrides
+  ---
+  duration_ms: 1.333084
+  type: 'test'
+  ...
+# Subtest: gzip size mismatch releases its promise and missing compact pieces fail explicitly
+ok 10 - gzip size mismatch releases its promise and missing compact pieces fail explicitly
+  ---
+  duration_ms: 8.677458
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 75.693125

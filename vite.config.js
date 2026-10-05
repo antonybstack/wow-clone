@@ -3,6 +3,7 @@ import {verifyProductionHumanIdentities} from './scripts/character-assets/verify
 import {verifyStartupAssets} from './scripts/ashen-reach/startup-provenance.mjs';
 import { defineConfig } from "vite";
 import {readFileSync,createReadStream,statSync} from 'node:fs';
+import {resolve} from 'node:path';
 
 const pages = process.env.ASHEN_PAGES === "1";
 const humanShapeManifest=JSON.parse(readFileSync('public/ashen-reach/human-shape-v1/manifest.json','utf8'));
@@ -10,6 +11,25 @@ const humanIdentityManifest=JSON.parse(readFileSync('public/ashen-reach/human-id
 const starterBuild=process.env.VITE_FAST_START!=='0';
 const starterWorldManifest=starterBuild?JSON.parse(readFileSync('public/ashen-reach/startup/starter/manifest.json','utf8')):null;
 const starterCharacterManifest=starterBuild?JSON.parse(readFileSync('public/ashen-reach/startup/character/manifest.json','utf8')):null;
+
+/** Group only the existing normal entry's static application dependencies.
+ * Many tiny shared chunks exhaust HTTP/1.1 connection slots before the selected
+ * body can be discovered. Native Rolldown graph information avoids a second
+ * module loader or a list that drifts whenever an ordinary import changes.
+ * Optional storage and its pure catalogue remain separate from Lite/GPU code.
+ * https://rolldown.rs/reference/TypeAlias.CodeSplittingGroup#dynamic-name
+ * https://rolldown.rs/reference/Interface.ChunkingContext
+ */
+function bootDependencyChunk(id,context) {
+  const entry=resolve('src/ashen-reach/main.js');
+  if(id===entry||!id.includes('/src/'))return null;
+  const seen=new Set(),pending=[entry];
+  while(pending.length){
+    const next=pending.pop();if(seen.has(next))continue;seen.add(next);
+    pending.push(...(context.getModuleInfo(next)?.importedIds||[]));
+  }
+  return seen.has(id)?'ashen-boot':null;
+}
 
 function humanShapeAsset(req,res,next) {
   const name=/^\/__human_shape__\/(human-shape-family-v1\.glb)$/.exec(req.url?.split('?')[0]||'')?.[1];
@@ -107,7 +127,7 @@ export default defineConfig({
       // several serial 40 ms requests. Compare this native bundler grouping with
       // the split build; it changes packaging, not Lite's runtime implementation.
       // https://rolldown.rs/reference/TypeAlias.CodeSplittingGroup
-      output: {codeSplitting:{groups:[
+      output: {strictExecutionOrder:true,codeSplitting:{groups:[
         ...(process.env.ASHEN_LITE_BUNDLE!=='0'?[{name:'lite-runtime',test:/node_modules\/@babylonjs\/lite\//,includeDependenciesRecursively:false}]:[]),
         // Vite's shared preload helper otherwise lands inside the Lite chunk,
         // making a pure dynamic storage import wait for the entire renderer.
@@ -116,6 +136,10 @@ export default defineConfig({
         // requests queue behind Lite and recreate the serial discovery delay.
         {name:'startup-bootstrap',test:/src\/ashen-reach\/startup-(?:preload|fetch|appearance)\.js$/,includeDependenciesRecursively:false},
         {name:'appearance-storage',test:/src\/character\/appearance\//,includeDependenciesRecursively:false},
+        // These pure values also serve the optional saved decoder. Putting them
+        // in the GPU-dependent boot chunk would delay validation until Lite loads.
+        {name:'appearance-common',test:/src\/ashen-reach\/(?:equipment-catalog|equipment-contract|dye-palette|coverage-contract|coverage-manifest)\.js$/,includeDependenciesRecursively:false},
+        ...(process.env.ASHEN_BOOT_BUNDLE!=='0'?[{name:bootDependencyChunk,includeDependenciesRecursively:false}]:[]),
       ]}},
       input: pages
         ? { index: "index.html", ashenReach: "ashen-reach.html", startupPreload: "src/ashen-reach/startup-preload.js" }
@@ -166,11 +190,27 @@ export default defineConfig({
         const chunks=Object.values(bundle).filter(item=>item.type==='chunk');
         for(const file of ['startup-fetch.js','startup-appearance.js','startup-preload.js']) {
           const owners=chunks.filter(chunk=>Object.keys(chunk.modules).some(id=>id.endsWith(`/src/ashen-reach/${file}`)));
-          if(owners.length!==1||owners[0]!==entry)throw Error(`Early/main startup must share one ${file} module`);
+          // Strict native execution ordering may emit an entry facade. Check
+          // source-module identity in its real dependency graph, not whether a
+          // wrapper happens to contain the loader implementation itself.
+          if(owners.length!==1||!seen.has(owners[0].fileName))throw Error(`Early startup must own one shared ${file} module`);
         }
-        if(starterBuild&&(!entry.code.includes(starterCharacterManifest.provenance.sha256)||!entry.code.includes(humanShapeManifest.provenance.sha256)))throw Error('Early shared loader lost its compiled provenance guards');
+        const earlyCode=[...seen].map(name=>bundle[name]?.code||'').join('\n');
+        if(starterBuild&&(!earlyCode.includes(starterCharacterManifest.provenance.sha256)||!earlyCode.includes(humanShapeManifest.provenance.sha256)))throw Error('Early shared loader lost its compiled provenance guards');
         const main=chunks.find(chunk=>chunk.isEntry&&chunk.name==='ashenReach');
         if(!main)throw Error('Missing normal game entry');
+        const appearance=chunks.find(chunk=>Object.keys(chunk.modules).some(id=>id.endsWith('/src/character/appearance/store.js')));
+        if(!appearance)throw Error('Missing optional saved-appearance module');
+        const identityLoader=chunks.find(chunk=>Object.keys(chunk.modules).some(id=>id.endsWith('/src/ashen-reach/human-identity-assets.js')));
+        if(!identityLoader)throw Error('Missing optional selected-identity module');
+        if(!identityLoader.code.includes(humanIdentityManifest.provenance.sha256))throw Error('Selected identity loader lost its compiled provenance guard');
+        const appearancePending=[appearance,identityLoader],appearanceSeen=new Set();
+        while(appearancePending.length){
+          const chunk=appearancePending.pop();if(appearanceSeen.has(chunk.fileName))continue;appearanceSeen.add(chunk.fileName);
+          if(Object.keys(chunk.modules).some(id=>id.includes('/node_modules/@babylonjs/lite/')||id.endsWith('/src/ashen-reach/main.js')||id.includes('/node_modules/@colyseus/')||id.includes('/src/character/region-crowd/')))
+            throw Error('Saved-appearance validation/selected descriptors eagerly import renderer/shared-region code');
+          for(const name of chunk.imports){const dependency=bundle[name];if(dependency?.type==='chunk')appearancePending.push(dependency);}
+        }
         const mainPending=[main],mainSeen=new Set();
         while(mainPending.length) {
           const chunk=mainPending.pop();if(mainSeen.has(chunk.fileName))continue;mainSeen.add(chunk.fileName);
@@ -178,6 +218,10 @@ export default defineConfig({
           if(Object.keys(chunk.modules).some(id=>id.includes('/node_modules/@colyseus/')||id.includes('/src/character/region-crowd/')))
             throw Error('Normal startup eagerly imports optional shared-region dependencies');
           for(const name of chunk.imports){const dependency=bundle[name];if(dependency?.type==='chunk')mainPending.push(dependency);}
+        }
+        for(const file of ['startup-fetch.js','startup-appearance.js']){
+          const owner=chunks.find(chunk=>Object.keys(chunk.modules).some(id=>id.endsWith(`/src/ashen-reach/${file}`)));
+          if(!mainSeen.has(owner.fileName))throw Error(`Early/main startup must share one ${file} module`);
         }
         for(const item of Object.values(bundle))if(item.type==='asset'&&item.fileName.endsWith('.html')) {
           item.source=String(item.source).replace('<!-- ASHEN_STARTUP_PRELOAD -->',`<script type="module" async crossorigin src="/${entry.fileName}"></script>`);

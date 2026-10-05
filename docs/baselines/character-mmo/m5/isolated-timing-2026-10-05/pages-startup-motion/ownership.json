@@ -1,0 +1,12 @@
+{
+  "owner": "root",
+  "browserPid": 29442,
+  "gpuHelperPids": [
+    29448
+  ],
+  "cdpPort": 10037,
+  "url": "http://127.0.0.1:7175/?play&pixelRatio=1&dev",
+  "purpose": "Live progressive startup recording; excluded from FPS/load measurements",
+  "renderingClients": 0,
+  "active": false
+}

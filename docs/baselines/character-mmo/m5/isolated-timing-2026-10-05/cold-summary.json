@@ -1,0 +1,102 @@
+{
+  "conditions": {
+    "cpu": "Apple M1 Max",
+    "viewport": [
+      1280,
+      720
+    ],
+    "dpr": 1,
+    "network": "50 Mbit/s down / 10 Mbit/s up / 40 ms CDP latency",
+    "cache": "Fresh Chromium process/profile per run; OS/GPU-driver caches uncontrolled",
+    "transport": "Verified compressed local build, not public CDN acceptance",
+    "quantile": "Nearest rank",
+    "firstUseGpuTail": "Earlier 2930ms pilot retained; not explained or fixed"
+  },
+  "cohorts": [
+    {
+      "name": "default",
+      "runs": 20,
+      "failures": 0,
+      "underOneSecond": 20,
+      "p50Ms": 826.2999999970198,
+      "p95Ms": 830.5,
+      "maxMs": 830.7999999970198,
+      "inputP95Ms": 48.30000001192093,
+      "inputMaxMs": 51.900000005960464,
+      "encodedBytesAtBoundary": 3218374,
+      "passed": true,
+      "report": "cold-default-20.json"
+    },
+    {
+      "name": "original-largest",
+      "runs": 20,
+      "failures": 0,
+      "underOneSecond": 20,
+      "p50Ms": 936.2999999970198,
+      "p95Ms": 940.5999999940395,
+      "maxMs": 941.0999999940395,
+      "inputP95Ms": 52.900000005960464,
+      "inputMaxMs": 54.3999999910593,
+      "encodedBytesAtBoundary": 3787125,
+      "passed": true,
+      "report": "cold-original-largest-20.json"
+    },
+    {
+      "name": "prime-bald-neutral",
+      "runs": 20,
+      "failures": 0,
+      "underOneSecond": 20,
+      "p50Ms": 804.5999999940395,
+      "p95Ms": 807.7999999970198,
+      "maxMs": 808.2000000029802,
+      "inputP95Ms": 55.900000005960464,
+      "inputMaxMs": 56.8999999910593,
+      "encodedBytesAtBoundary": 2999883,
+      "passed": true,
+      "report": "cold-prime-bald-neutral-20.json"
+    },
+    {
+      "name": "prime-ponytail-largest",
+      "runs": 20,
+      "failures": 0,
+      "underOneSecond": 20,
+      "p50Ms": 965.6000000089407,
+      "p95Ms": 971.7999999970198,
+      "maxMs": 971.8000000119209,
+      "inputP95Ms": 52.3999999910593,
+      "inputMaxMs": 52.79999999701977,
+      "encodedBytesAtBoundary": 3895929,
+      "passed": true,
+      "report": "cold-prime-ponytail-largest-20.json"
+    },
+    {
+      "name": "weathered-largest",
+      "runs": 20,
+      "failures": 0,
+      "underOneSecond": 20,
+      "p50Ms": 918.5,
+      "p95Ms": 923.4000000059605,
+      "maxMs": 925.7999999970198,
+      "inputP95Ms": 54.5,
+      "inputMaxMs": 54.70000000298023,
+      "encodedBytesAtBoundary": 3603299,
+      "passed": true,
+      "report": "cold-weathered-largest-20.json"
+    },
+    {
+      "name": "prime-ponytail-open",
+      "runs": 20,
+      "failures": 0,
+      "underOneSecond": 20,
+      "p50Ms": 938,
+      "p95Ms": 947.1000000089407,
+      "maxMs": 947.8000000119209,
+      "inputP95Ms": 52.5,
+      "inputMaxMs": 53.400000005960464,
+      "encodedBytesAtBoundary": 3698002,
+      "passed": true,
+      "report": "cold-prime-ponytail-open-20.json"
+    }
+  ],
+  "passed": true
+}

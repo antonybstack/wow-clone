@@ -1,0 +1,68 @@
+{
+  "scope": "Observed real public MP4 and Telegram Web playback; no private UI screenshot saved",
+  "ve": {
+    "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m5-startup-packaging-2026-10-05-b23afd39c102.mp4",
+    "intrinsic": [
+      1280,
+      720
+    ],
+    "duration": 20.170234,
+    "playedAt": 13.324076,
+    "completedAt": 20.170234,
+    "seekFrom": 20.170234,
+    "seekTo": 9.883397,
+    "resumedAt": 10.082569,
+    "secondCompletion": 20.170234,
+    "error": null,
+    "ownedTabClosed": true
+  },
+  "telegram": {
+    "messageId": 857,
+    "inline": {
+      "intrinsic": [
+        1280,
+        720
+      ],
+      "rect": [
+        738.1875,
+        415.21875
+      ],
+      "playedAt": 9.965882
+    },
+    "expanded": {
+      "intrinsic": [
+        1280,
+        720
+      ],
+      "rect": [
+        1280,
+        720
+      ],
+      "playedAt": 15.943256,
+      "objectFit": "contain"
+    },
+    "fullscreenControl": {
+      "intrinsic": [
+        1280,
+        720
+      ],
+      "rect": [
+        2514,
+        1275
+      ],
+      "playedAt": 12.651135,
+      "objectFit": "contain",
+      "observed": "Full-window video with proportional side letterboxing; chat UI absent",
+      "documentFullscreenElement": false,
+      "nativeOsFullscreenVerified": false
+    },
+    "finalVideoPauseTimes": [
+      8.117742,
+      37.766012,
+      3.679922,
+      5.742598
+    ],
+    "allFourPaused": true,
+    "telegramDesktopVerified": false
+  }
+}
