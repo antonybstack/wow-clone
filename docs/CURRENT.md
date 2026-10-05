@@ -12,7 +12,7 @@ creator release. [Workflow review](reviews/workflow-2026-10-05.md) records the
 changes to reduce repeated checks and context use. [Next-ten](plans/character-mmo/next-ten.md)
 remains the broader queue.
 
-## Local candidate — accepted locally, production pending
+## Local candidate — startup follow-up gated locally
 
 Catalogue v6 retains the approved original Human, Prime bald/ponytail and
 Weathered bald. Identity, height/build, gear and dyes save/reload before first
@@ -26,7 +26,7 @@ bridges/towers; the final midpoint sphere sweep ignores the player's body and
 refuses downward correction from embedded platforms. No sole inflation or
 unverified sole-art edit is included.
 
-**Final native Pages gates pass:** character 221/221, equipment 113/113,
+**Base native Pages gates pass:** character 221/221, equipment 113/113,
 ground/lifetime 14/14, scheduler 14/14, seal 4/4; all 519 served artifacts;
 five cathedral ascent/return routes, four contact fixtures, 18 height routes,
 eight saved identity, eight mobile, eight injected-depth and four WebKit cases.
@@ -43,16 +43,36 @@ no acceptance row was rerun or detector threshold relaxed.
 pass, but the default 20-run cache-disabled cohort has p95 **1,018.7 ms**,
 maximum **1,620.9 ms**, and three one-second misses (runs 1, 14, 16). The first
 row includes a 775 ms GPU-completion cost; subsequent latency is before world
-loading finishes. Original-largest and hooded ponytail public cohorts have not
-run. Retain every failed row. M5 remains **open**. Next: test build-derived
-response preload headers without changing readiness or benchmark conditions,
-then complete the affected public startup gates and motion delivery.
+loading finishes. Header-only original-largest and hooded ponytail public cohorts also fail:
+p95 **1,099.3 / 1,149.7 ms**. Retain every failed row. M5 remains **open**.
+
+**New local startup follow-up:** original starter and shaped-original first-play
+bodies reuse the existing 22-clip compactor; default encoded body falls from
+873,849 to 471,314 bytes and shaped original from 991,365 to 588,749. Full
+57-clip sources, geometry, rig, morphs and playable curves remain unchanged.
+A presence-only native preload discovers the two saved-appearance modules and
+fixed identity index earlier; runtime validation still selects the actual body.
+All 120 isolated local starts pass, cohort p95 **838–985 ms**, maximum **996.3 ms**.
+All 521 served artifacts, five cathedral routes, four contact fixtures, 18 height
+routes, eight saved transactions, mobile/depth/WebKit and corrupt-save/denied-storage
+fallback pass. The first hood cohort was contaminated by restarted Telegram
+autoplay and is retained as invalid; the isolated cohort uses a temporary playback
+guard. The saved check's no-index assertion was updated for bounded preloading;
+it still refuses alternate identity binaries or a wrong first-play head.
+Affected original-largest FPS passes all 15 routes/runs: **210–248 FPS**, maximum
+p99 **6.2 ms**, worst **9.6 ms**, no cap hints. The 30 unchanged named-character
+rows are retained with explicit dependency equivalence. Exact sealed public
+confirmation is next.
+The hooded body remains bandwidth-bound; local green does not establish a public
+one-second pass. Reviewed native MP4s are
+delivered as Telegram **859 / 860** with matching returned dimensions and correct
+Web A inline/expanded/fullscreen proportions.
 
 ## Production and rollback
 
 Production is [play.sparkify.dev](https://play.sparkify.dev), **M5 candidate / catalogue v6**,
-source **99acaba9e03661d5ab3208669c67d4efbf90668c**, Pages
-**6272e037-01ea-4e8c-963e-5a2313564891**. The exact sealed upload is complete;
+source **d44ecb7ce6e9c2f9f6e54da0fedf932f9e23e55a**, Pages
+**7c31855d-8af9-40e2-8b64-4ed9fe1df818**. The exact sealed upload is complete;
 public default startup acceptance failed; functional checks pass. All 519 public bytes/cache policies and
 the versioned Havok binary already match. Rollback target:
 **b3fdafd8-c343-4147-ae2e-760a155c8d06** / source `4063f49` (M7 / catalogue v5).
@@ -76,7 +96,8 @@ Do not mark M5 complete until movement, public startup and Telegram delivery pas
   [Ownership procedure](debug-view.md#browser-ownership-and-performance-isolation);
   dated inventory `.cache/character-mmo/m5-moving-fit-2026-10-05/ownership.md`.
 - Claude terminal `term_d4cf5b10-02ae-4b08-abfb-9c35d86ef78b`, selected Opus 5.5 / high,
-  completed bounded scheduler/review/receipt tasks, owns no renderer and is idle.
+  completed bounded implementation and read-only compaction/preload/critical-chain
+  reviews; owns no renderer. Effective internal effort is not independently verified.
 - Preserve unrelated checkout/user sessions, including the pre-existing AGENTS.md edit.
   Commit/push completed work, deliver live MP4 via `tg file`, and follow [release gates](DEPLOY.md).
 - User authorizes autonomous continuation. The native goal reports `blocked`; ongoing

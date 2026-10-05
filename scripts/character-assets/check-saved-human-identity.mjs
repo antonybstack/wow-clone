@@ -42,7 +42,15 @@ try{
     assert(!requests.some(u=>u.startsWith('/ashen-reach/startup/character/body-')),'Wrong face cannot precede selected first play');
     assert(first.visible.includes('HumanIdentityEyes')&&first.visible.includes('HumanIdentityBrows'));
     assert.equal(first.visible.includes('HumanPonytail01'),preset.id==='prime-ponytail');
-   }else assert(!requests.some(u=>u.includes('/human-identity-v1/')),'Original identity must not request selected identity index');
+   }else {
+    // The presence-only native preload may discover the fixed small index for any save.
+    // Runtime validation still owns selection: an original Human must never download
+    // a selected identity body/garment or render its head before play.
+    // https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/preload
+    assert(!requests.some(u=>u.startsWith('/ashen-reach/human-identity-v1/')&&u.endsWith('.bin')),'Original identity must not request selected identity binaries');
+    assert(requests.filter(u=>u==='/ashen-reach/human-identity-v1/manifest.json').length<=1,'Optional index must be reused');
+    assert(!first.visible.includes('HumanIdentityEyes')&&!first.visible.includes('HumanPonytail01'),'Original identity must render its original head');
+   }
    await ready(page);assert.deepEqual((await snapshot(page)).appearance,recipe);
    await page.evaluate(()=>{ASHEN.dev.god=true;ASHEN.armory.open();ASHEN.body.inspection.setPaused(true);ASHEN.body.inspection.seek(0);ASHEN.armory.setFocus({height:1.5*ASHEN.player.heightScale,radius:2.2*ASHEN.player.heightScale,beta:Math.PI/2});ASHEN.armory.camera.alpha=Math.PI/2;});
    await page.screenshot({path:path.join(out,`${preset.id}-restored.png`)});

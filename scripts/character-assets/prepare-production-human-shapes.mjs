@@ -17,6 +17,7 @@ import {simplify} from '@gltf-transform/functions';
 import {EQUIPMENT_ITEMS} from '../../src/ashen-reach/equipment-catalog.js';
 import {retainFullStartupGeometry} from './startup-geometry-policy.mjs';
 import {compileCoverageManifest,writeCoverageCompilation} from './compile-coverage-manifest.mjs';
+import {compactPlayableAnimations} from './compact-playable-animations.mjs';
 import {startupProvenance} from '../ashen-reach/startup-provenance.mjs';
 const out=process.env.ASHEN_PRODUCTION_SHAPE_OUT || 'public/ashen-reach/human-shape-v1';
 const urlRoot='/ashen-reach/human-shape-v1';
@@ -61,7 +62,18 @@ try {
     await fs.writeFile(path.join(out,name),encoded);
     const sourceMetadata={...base.items[id]};delete sourceMetadata.coverageSource;delete sourceMetadata.coverageRevision;
     manifest.items[id]={...sourceMetadata,meshes:doc.getRoot().listMeshes().map(m=>m.getName()),url:`${urlRoot}/${name}`,bytes:bytes.length,encodedBytes:encoded.length,sha256:sha(bytes),compression:'gzip',shapeFamily:family,textures};
-    if(id==='body'||retainFullStartupGeometry(doc.getRoot(),EQUIPMENT_ITEMS[id]))manifest.compactItems[id]=manifest.items[id];
+    if(id==='body') {
+      // First play of a saved shaped original needs only the shared playable clips. Keep
+      // items.body as the full 57-clip source; publish a distinct compact body through the
+      // same helper and metadata pattern as the identity pack (detail 'playable').
+      // https://gltf-transform.dev/modules/functions/functions/prune
+      const playableClips=await compactPlayableAnimations(doc);
+      const compact=await io.writeBinary(doc),packed=gzipSync(compact,{level:9});
+      const compactName=`${id}-compact-${sha(packed).slice(0,12)}.bin`;
+      await fs.writeFile(path.join(out,compactName),packed);
+      manifest.compactItems[id]={...manifest.items[id],url:`${urlRoot}/${compactName}`,bytes:compact.length,encodedBytes:packed.length,sha256:sha(compact),detail:'playable',playableClips};
+    }
+    else if(retainFullStartupGeometry(doc.getRoot(),EQUIPMENT_ITEMS[id]))manifest.compactItems[id]=manifest.items[id];
     else {
       // glTF Transform remaps ALL base/skin/morph attributes together. Preserve seam
       // boundaries and use this only for first-play clothing; full detail follows after play.

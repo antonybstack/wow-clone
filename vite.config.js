@@ -2,6 +2,7 @@ import {verifyProductionHumanShapes} from './scripts/character-assets/verify-pro
 import {verifyProductionHumanIdentities} from './scripts/character-assets/verify-production-human-identities.mjs';
 import {verifyStartupAssets} from './scripts/ashen-reach/startup-provenance.mjs';
 import {writeEarlyHints} from './scripts/ashen-reach/early-hints.mjs';
+import {startupAppearanceContract,savedPreloadModules,savedPreloadScript,injectHeadScript} from './scripts/ashen-reach/saved-preload.mjs';
 import { defineConfig } from "vite";
 import {readFileSync,createReadStream,statSync} from 'node:fs';
 import {resolve} from 'node:path';
@@ -229,8 +230,21 @@ export default defineConfig({
           const owner=chunks.find(chunk=>Object.keys(chunk.modules).some(id=>id.endsWith(`/src/ashen-reach/${file}`)));
           if(!mainSeen.has(owner.fileName))throw Error(`Early/main startup must share one ${file} module`);
         }
+        // Returning players: when a saved-appearance key exists, overlap the two optional pure
+        // modules' static graph and the fixed identity index with the generic module graph.
+        // Gate keys/params share the runtime exports; the fixed index URL is guarded.
+        // https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/modulepreload
+        let savedPreload='';
+        if(starterBuild){
+          const contract=startupAppearanceContract();
+          const indexUrl='/ashen-reach/human-identity-v1/manifest.json';
+          if(!readFileSync('src/ashen-reach/startup-fetch.js','utf8').includes(`fetch('${indexUrl}'`))throw Error('Saved preload: identity index URL changed');
+          const {files}=savedPreloadModules(bundle,[identityLoader.fileName,appearance.fileName],new Set([...seen,...mainSeen]));
+          savedPreload=savedPreloadScript({...contract,modules:files.map(name=>`/${name}`),fetches:[indexUrl]});
+        }
         for(const item of Object.values(bundle))if(item.type==='asset'&&item.fileName.endsWith('.html')) {
           item.source=String(item.source).replace('<!-- ASHEN_STARTUP_PRELOAD -->',`<script type="module" async crossorigin src="/${entry.fileName}"></script>`);
+          if(savedPreload&&item.source.includes(`/${entry.fileName}`))item.source=injectHeadScript(item.source,savedPreload);
         }
       }},
     },
@@ -341,7 +355,7 @@ export default defineConfig({
           // A saved appearance chooses its own compatible compact pack. Do not preload the
           // neutral pack ahead of it. All URLs here are build-owned, never storage data.
           // https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/rel/preload
-          const characterPreloads=starterBuild?`<script>(()=>{try{if(['ashen.appearance.v2','ashen.appearance.v1','ashen.creator.v1'].some(k=>localStorage.getItem(k)))return;}catch{}for(const href of ${JSON.stringify(['/ashen-reach/startup/character/manifest.json',...['body','wayfarerTunic','wayfarerTrousers','wayfarerBoots'].map(id=>starterCharacterManifest.items[id].url)])}){const link=document.createElement('link');link.rel='preload';link.as='fetch';link.crossOrigin='anonymous';link.href=href;link.fetchPriority=href.endsWith('.bin')?'low':'auto';document.head.append(link);}})();</script>`:'';
+          const characterPreloads=starterBuild?`<script>(()=>{try{if(${JSON.stringify(startupAppearanceContract().keys)}.some(k=>localStorage.getItem(k)))return;}catch{}for(const href of ${JSON.stringify(['/ashen-reach/startup/character/manifest.json',...['body','wayfarerTunic','wayfarerTrousers','wayfarerBoots'].map(id=>starterCharacterManifest.items[id].url)])}){const link=document.createElement('link');link.rel='preload';link.as='fetch';link.crossOrigin='anonymous';link.href=href;link.fetchPriority=href.endsWith('.bin')?'low':'auto';document.head.append(link);}})();</script>`:'';
           return html.replace("</head>", `${links}${decoder}${characterPreloads}</head>`);
         },
       },

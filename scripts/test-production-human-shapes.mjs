@@ -9,6 +9,7 @@ import {MeshoptDecoder} from 'meshoptimizer';
 import {verifyCoveragePartition} from './character-assets/verify-coverage-partition.mjs';
 import {verifyHumanCoveragePolicy} from './character-assets/verify-human-coverage-policy.mjs';
 import {PRODUCTION_HUMAN_FAMILY} from '../src/character/appearance/contract.js';
+import {ASHEN_PLAYABLE_CLIP_NAMES} from '../src/character/runtime/ashen-playable-motion.js';
 const root='public/ashen-reach/human-shape-v1';
 await MeshoptDecoder.ready;
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder});
@@ -49,7 +50,26 @@ for(const [id,asset] of Object.entries(manifest.compactItems))test(`${id} compac
  const read=async a=>(await io.readBinary(gunzipSync(await fs.readFile('public'+a.url)))).getRoot();
  const full=await read(manifest.items[id]),compact=await read(asset);
  assert.deepEqual(compact.listSkins()[0].getInverseBindMatrices().getArray(),full.listSkins()[0].getInverseBindMatrices().getArray());
- assert.deepEqual(compact.listAnimations().map(a=>a.getName()),full.listAnimations().map(a=>a.getName()));
+ if(id==='body'){
+  // Distinct first-play body: full 57-clip source in items, exactly the 22 playable clips
+  // with byte-identical samples here (compactPlayableAnimations), plus its metadata contract.
+  const playable=new Set(ASHEN_PLAYABLE_CLIP_NAMES);
+  const clips=root=>root.listAnimations().map(a=>({name:a.getName(),channels:a.listChannels().map(c=>[c.getTargetNode().getName(),c.getTargetPath(),c.getSampler().getInterpolation(),Array.from(c.getSampler().getInput().getArray()),Array.from(c.getSampler().getOutput().getArray())])}));
+  assert.equal(full.listAnimations().length,57);assert.equal(playable.size,22);
+  assert.notEqual(asset.url,manifest.items.body.url);assert.equal(asset.detail,'playable');
+  assert.deepEqual(asset.playableClips,compact.listAnimations().map(a=>a.getName()));
+  assert.deepEqual(clips(compact).map(c=>c.name).sort(),[...playable].sort());
+  assert.deepEqual(clips(compact),clips(full).filter(c=>playable.has(c.name)));
+  assert.deepEqual(compact.listNodes().map(n=>[n.getName(),n.getTranslation(),n.getRotation(),n.getScale()]),full.listNodes().map(n=>[n.getName(),n.getTranslation(),n.getRotation(),n.getScale()]));
+  for(const [mi,mesh]of compact.listMeshes().entries())for(const [pi,p]of mesh.listPrimitives().entries()){
+   const source=full.listMeshes()[mi].listPrimitives()[pi];assert.equal(full.listMeshes()[mi].getName(),mesh.getName());
+   assert.deepEqual(p.getIndices().getArray(),source.getIndices().getArray());
+   for(const sem of source.listSemantics())assert.deepEqual(p.getAttribute(sem).getArray(),source.getAttribute(sem).getArray(),`body/${mesh.getName()}/${sem}`);
+   assert.equal(p.listTargets().length,source.listTargets().length);
+   for(const [ti,t]of source.listTargets().entries())for(const sem of t.listSemantics())assert.deepEqual(p.listTargets()[ti].getAttribute(sem).getArray(),t.getAttribute(sem).getArray());
+  }
+ }
+ else assert.deepEqual(compact.listAnimations().map(a=>a.getName()),full.listAnimations().map(a=>a.getName()));
  for(const [mi,mesh]of compact.listMeshes().entries())for(const [pi,p]of mesh.listPrimitives().entries()) {
   const source=full.listMeshes().find(m=>m.getName()===mesh.getName()).listPrimitives()[pi];
   const tuple=(p,i)=>JSON.stringify([...p.listSemantics().sort().flatMap(s=>p.getAttribute(s).getElement(i,[])),...p.listTargets().flatMap(t=>t.listSemantics().sort().flatMap(s=>t.getAttribute(s).getElement(i,[])))]);

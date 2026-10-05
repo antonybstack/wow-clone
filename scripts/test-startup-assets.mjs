@@ -7,6 +7,7 @@ import { ALL_EXTENSIONS } from "@gltf-transform/extensions";
 import { MeshoptDecoder } from "meshoptimizer";
 import { verifyCoveragePartition } from './character-assets/verify-coverage-partition.mjs';
 import { verifyStartupAssets } from "./ashen-reach/startup-provenance.mjs";
+import { ASHEN_PLAYABLE_CLIP_NAMES } from "../src/character/runtime/ashen-playable-motion.js";
 import {
   partitionWorld,
   selectTriangles,
@@ -32,7 +33,7 @@ test('starter terrain is actual Brotli data with matching HTTP metadata',async()
   const headers=await fs.readFile('public/_headers','utf8');
   assert.match(headers,/\/ashen-reach\/startup\/starter\/\*\.br\s+Content-Type: application\/octet-stream\s+Content-Encoding: br/);
 });
-test("starter body preserves every source vertex, joint, weight and animation sample", async () => {
+test("starter body preserves every source vertex, joint and weight, and exactly the playable animation samples", async () => {
   const manifest = JSON.parse(
     await fs.readFile("public/ashen-reach/startup/character/manifest.json"),
   );
@@ -48,7 +49,7 @@ test("starter body preserves every source vertex, joint, weight and animation sa
   // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#meshes
   const starter = (await io.readBinary(gunzipSync(await fs.readFile(
     'public' + manifest.items.body.coverageSource.url)))).getRoot();
-  verifyCoveragePartition(starter, actualStarter, 'HumanV1Body', 'HumanTorsoCore');
+  verifyCoveragePartition(starter, actualStarter, 'HumanV1Body', ['HumanTorsoCore', 'HumanFootCore']);
   assert.deepEqual(
     starter
       .listNodes()
@@ -112,8 +113,18 @@ test("starter body preserves every source vertex, joint, weight and animation sa
             output: array(c.getSampler().getOutput()),
           })),
       }));
+  // Source stays the full 57-clip library; first play carries exactly the 22 playable clips
+  // with byte-identical samples (compactPlayableAnimations), never resampled or renamed.
+  const playable = new Set(ASHEN_PLAYABLE_CLIP_NAMES);
   assert.equal(original.listAnimations().length, 57);
-  assert.deepEqual(clips(starter), clips(original));
+  assert.equal(playable.size, 22);
+  assert.deepEqual(clips(starter).map((c) => c.name).sort(), [...playable].sort());
+  assert.deepEqual(clips(starter), clips(original).filter((c) => playable.has(c.name)));
+  assert.deepEqual(clips(actualStarter), clips(starter), "coverage split keeps the compact clips");
+  assert.equal(manifest.items.body.detail, "playable");
+  assert.deepEqual(manifest.items.body.playableClips, clips(starter).map((c) => c.name));
+  assert.deepEqual(manifest.startup.sourceAnimations, original.listAnimations().map((a) => a.getName()));
+  assert.deepEqual(manifest.startup.animations, manifest.items.body.playableClips);
   for (const id of ["wayfarerTunic", "wayfarerTrousers", "wayfarerBoots"]) {
     const entry = manifest.items[id];
     const current = gunzipSync(await fs.readFile("public" + entry.url));

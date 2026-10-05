@@ -1586,10 +1586,23 @@
     "validationFailures": 0,
     "rawReport": ".cache/character-mmo/m5-moving-fit-2026-10-05/startup-raf-public/default-cache-disabled.json"
    },
-   "unrun": [
-    "original-largest",
-    "prime-ponytail-hood"
-   ]
+   "unrun": [],
+   "original-largest": {
+    "count": 20,
+    "p95Ms": 1099.2999999821186,
+    "maximumMs": 1107.800000011921,
+    "misses": 19,
+    "sourceCommit": "d44ecb7",
+    "rawReport": ".cache/character-mmo/m5-moving-fit-2026-10-05/startup-public-headers/original-largest-cache-disabled.json"
+   },
+   "prime-ponytail-hood": {
+    "count": 20,
+    "p95Ms": 1149.699999988079,
+    "maximumMs": 2392,
+    "misses": 20,
+    "sourceCommit": "d44ecb7",
+    "rawReport": ".cache/character-mmo/m5-moving-fit-2026-10-05/startup-public-headers/prime-ponytail-hood-cache-disabled.json"
+   }
   }
  },
  "pacingProof": {
@@ -4110,13 +4123,17 @@
   "ceiling": 722
  },
  "release": {
-  "pagesDeploymentId": "6272e037-01ea-4e8c-963e-5a2313564891",
+  "pagesDeploymentId": "7c31855d-8af9-40e2-8b64-4ed9fe1df818",
   "productionUrl": "https://play.sparkify.dev/",
-  "telegramMessageId": null,
+  "telegramMessageId": 859,
   "previousProductionId": "b3fdafd8-c343-4147-ae2e-760a155c8d06",
-  "note": "Sealed deployment published. All 519 public artifacts and functional movement, saved, mobile, depth fallback and WebKit gates pass. Public default p95 1018.7ms fails; M5 open. Telegram pending.",
+  "note": "Candidate deployed with startup headers; M5 open. Reviewed native clips delivered859/860 and retain correct proportions in Telegram Web A inline, expanded and fullscreen; no Telegram Desktop/device claim. Public header-only cold profiles fail; original clip compaction and earlier saved pure-code/catalogue discovery are being gated.",
   "sealSha256": "33207c2c23ee7d8758a773d5b9784028ba5751f13a7f96d6cf26d71680867934",
-  "sourceCommit": "99acaba9e03661d5ab3208669c67d4efbf90668c"
+  "sourceCommit": "d44ecb7ce6e9c2f9f6e54da0fedf932f9e23e55a",
+  "telegramMessageIds": [
+   859,
+   860
+  ]
  },
  "preFinalReceipt": "docs/baselines/character-mmo/m5/shared-fit-2026-10-05/release-measurements-pre-final-grounding.json",
  "tests": {
@@ -4172,7 +4189,8 @@
    "sourceReportSha256": "b5b6736fdd0eb7e54911382d1bcdb53c733b67bba3d7d2106125315aa693965e",
    "runtimeErrors": [],
    "scope": "Normal Havok gameplay and labelled native Armory previews; no FPS claim",
-   "telegramMessageId": null
+   "telegramMessageId": 859,
+   "telegramMetadataVerified": true
   },
   {
    "name": "bridge",
@@ -4204,14 +4222,2470 @@
    "sourceReportSha256": "f6e50d15b77f634f8b1d2761e9a83398ed28d8ac1c0aa1922c2f2bbabc3b4f0c",
    "runtimeErrors": [],
    "scope": "Live approach and nave entry/exit; full bridge return verified afterward without recording",
-   "telegramMessageId": null,
+   "telegramMessageId": 860,
    "bridgeFootGap": {
     "entryMin": 0.00809303420383145,
     "steadyMin": 0.00809303420383145,
     "max": 0.008665532076388871
    },
    "returnZ": 142.320269878539,
-   "gpuErrors": []
+   "gpuErrors": [],
+   "telegramMetadataVerified": true
   }
- ]
+ ],
+ "startupFollowup": {
+  "stage": "native-passed-public-pending",
+  "build": {
+   "seal": ".cache/character-mmo/m5-moving-fit-2026-10-05/compact-preload-checked-pages-seal.json",
+   "sealSha256": "f86cd4d2b3a5e350bea9da306afbdb912adce3c9f3c3e402a0634dde8dc75c7a",
+   "productInputsSha256": "d039c93929d610cf40c62b959e0f6362e152c43484068bf994cb27a54f3bf488",
+   "fileCount": 522,
+   "totalBytes": 288560563,
+   "servedFiles": 521,
+   "initialGateSealSha256": "14b1973addda925451e555d938b00e015b35fa818db1accaf9698bc65ef9bf25",
+   "servedBytesUnchangedAfterSavedHelperCorrection": true,
+   "sealFileSha256": "e2846a58f9e20396242cfcd3c492e090e0161cd47530cc80392c36bcaa62a189"
+  },
+  "startupNative": {
+   "default": {
+    "source": ".cache/character-mmo/m5-moving-fit-2026-10-05/startup-compact-preload-isolated/default-cache-disabled.json",
+    "sha256": "35ff95247eba1d259e1bc7e6b1b151c72a71289b8680a5bbd390156a26cfd674",
+    "appearance": null,
+    "expectedAppearance": null,
+    "conditions": {
+     "profile": "50mbps",
+     "disableHttpCache": true,
+     "network": {
+      "latency": 40,
+      "downloadThroughput": 6250000,
+      "uploadThroughput": 1250000
+     },
+     "cpu": "Apple M1 Max",
+     "viewport": [
+      1280,
+      720
+     ],
+     "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+     "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+    },
+    "runs": 20,
+    "p95Ms": 837.5,
+    "maximumMs": 841.3999999761581,
+    "misses": 0,
+    "rows": [
+     {
+      "run": 1,
+      "playableMs": 822.6999999880791,
+      "inputResponseUpperBoundMs": 34.599999994039536,
+      "encodedBytesAtBoundary": 2995667,
+      "browserPid": "69102"
+     },
+     {
+      "run": 2,
+      "playableMs": 835.4000000059605,
+      "inputResponseUpperBoundMs": 35.79999998211861,
+      "encodedBytesAtBoundary": 2995707,
+      "browserPid": "69178"
+     },
+     {
+      "run": 3,
+      "playableMs": 832.6999999880791,
+      "inputResponseUpperBoundMs": 35.900000005960464,
+      "encodedBytesAtBoundary": 2995456,
+      "browserPid": "69267"
+     },
+     {
+      "run": 4,
+      "playableMs": 836.5,
+      "inputResponseUpperBoundMs": 34.900000005960464,
+      "encodedBytesAtBoundary": 2995679,
+      "browserPid": "69349"
+     },
+     {
+      "run": 5,
+      "playableMs": 827.8000000119209,
+      "inputResponseUpperBoundMs": 40.5,
+      "encodedBytesAtBoundary": 2995694,
+      "browserPid": "69435"
+     },
+     {
+      "run": 6,
+      "playableMs": 841.3999999761581,
+      "inputResponseUpperBoundMs": 36.099999994039536,
+      "encodedBytesAtBoundary": 2995711,
+      "browserPid": "69505"
+     },
+     {
+      "run": 7,
+      "playableMs": 823.5,
+      "inputResponseUpperBoundMs": 37.5,
+      "encodedBytesAtBoundary": 2995696,
+      "browserPid": "69595"
+     },
+     {
+      "run": 8,
+      "playableMs": 828.1999999880791,
+      "inputResponseUpperBoundMs": 36.599999994039536,
+      "encodedBytesAtBoundary": 2995457,
+      "browserPid": "69651"
+     },
+     {
+      "run": 9,
+      "playableMs": 825.5,
+      "inputResponseUpperBoundMs": 37,
+      "encodedBytesAtBoundary": 2995749,
+      "browserPid": "69741"
+     },
+     {
+      "run": 10,
+      "playableMs": 826.6000000238419,
+      "inputResponseUpperBoundMs": 36.599999994039536,
+      "encodedBytesAtBoundary": 2995695,
+      "browserPid": "69811"
+     },
+     {
+      "run": 11,
+      "playableMs": 830.1999999880791,
+      "inputResponseUpperBoundMs": 34.20000001788139,
+      "encodedBytesAtBoundary": 2995655,
+      "browserPid": "69887"
+     },
+     {
+      "run": 12,
+      "playableMs": 820.6000000238419,
+      "inputResponseUpperBoundMs": 38.5,
+      "encodedBytesAtBoundary": 2995653,
+      "browserPid": "69957"
+     },
+     {
+      "run": 13,
+      "playableMs": 837.5,
+      "inputResponseUpperBoundMs": 35.400000005960464,
+      "encodedBytesAtBoundary": 2995567,
+      "browserPid": "70028"
+     },
+     {
+      "run": 14,
+      "playableMs": 827.5999999940395,
+      "inputResponseUpperBoundMs": 39.30000001192093,
+      "encodedBytesAtBoundary": 2995664,
+      "browserPid": "70130"
+     },
+     {
+      "run": 15,
+      "playableMs": 826.3000000119209,
+      "inputResponseUpperBoundMs": 37.099999994039536,
+      "encodedBytesAtBoundary": 2995730,
+      "browserPid": "70200"
+     },
+     {
+      "run": 16,
+      "playableMs": 834.5999999940395,
+      "inputResponseUpperBoundMs": 34.10000002384186,
+      "encodedBytesAtBoundary": 2995487,
+      "browserPid": "70270"
+     },
+     {
+      "run": 17,
+      "playableMs": 830.0999999940395,
+      "inputResponseUpperBoundMs": 34.79999998211861,
+      "encodedBytesAtBoundary": 2995727,
+      "browserPid": "70367"
+     },
+     {
+      "run": 18,
+      "playableMs": 825,
+      "inputResponseUpperBoundMs": 35.400000005960464,
+      "encodedBytesAtBoundary": 2995743,
+      "browserPid": "70437"
+     },
+     {
+      "run": 19,
+      "playableMs": 826.3000000119209,
+      "inputResponseUpperBoundMs": 38.80000001192093,
+      "encodedBytesAtBoundary": 2995717,
+      "browserPid": "70510"
+     },
+     {
+      "run": 20,
+      "playableMs": 829.9000000059605,
+      "inputResponseUpperBoundMs": 33.60000002384186,
+      "encodedBytesAtBoundary": 2995715,
+      "browserPid": "70587"
+     }
+    ]
+   },
+   "original-largest": {
+    "source": ".cache/character-mmo/m5-moving-fit-2026-10-05/startup-compact-preload-isolated/original-largest-cache-disabled.json",
+    "sha256": "05235f55a3339a9e3df91601b303d39bff3b9bc3d07f2d44f324ec0b9a98b577",
+    "appearance": {
+     "schemaVersion": 2,
+     "catalogVersion": "appearance-catalog-v6",
+     "race": "human",
+     "fitFamily": "ashen-human",
+     "fit": {
+      "rig": "source-65",
+      "bind": 1,
+      "shape": 1
+     },
+     "shape": {
+      "family": "ashen-human-shape-v1",
+      "height": 1.15,
+      "build": -0.95
+     },
+     "components": {},
+     "dyes": {
+      "helmet": "moss",
+      "torso": "oxblood",
+      "legs": "indigo"
+     },
+     "equipment": {
+      "helmet": "graveweaverHood",
+      "torso": "pilgrimTunic",
+      "legs": "graveweaverSkirt",
+      "boots": "wayfarerBoots",
+      "gloves": "graveweaverGloves",
+      "mainHand": "graveweaverStaff",
+      "offHand": "graveweaverBook",
+      "shoulders": "wardenPauldrons"
+     }
+    },
+    "expectedAppearance": {
+     "schemaVersion": 2,
+     "catalogVersion": "appearance-catalog-v6",
+     "race": "human",
+     "fitFamily": "ashen-human",
+     "fit": {
+      "rig": "source-65",
+      "bind": 1,
+      "shape": 1
+     },
+     "shape": {
+      "family": "ashen-human-shape-v1",
+      "height": 1.15,
+      "build": -0.95
+     },
+     "components": {},
+     "dyes": {
+      "helmet": "moss",
+      "torso": "oxblood",
+      "legs": "indigo"
+     },
+     "equipment": {
+      "helmet": "graveweaverHood",
+      "torso": "pilgrimTunic",
+      "legs": "graveweaverSkirt",
+      "boots": "wayfarerBoots",
+      "gloves": "graveweaverGloves",
+      "mainHand": "graveweaverStaff",
+      "offHand": "graveweaverBook",
+      "shoulders": "wardenPauldrons"
+     }
+    },
+    "conditions": {
+     "profile": "50mbps",
+     "disableHttpCache": true,
+     "network": {
+      "latency": 40,
+      "downloadThroughput": 6250000,
+      "uploadThroughput": 1250000
+     },
+     "cpu": "Apple M1 Max",
+     "viewport": [
+      1280,
+      720
+     ],
+     "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+     "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+    },
+    "runs": 20,
+    "p95Ms": 917.6000000238419,
+    "maximumMs": 922.1999999880791,
+    "misses": 0,
+    "rows": [
+     {
+      "run": 1,
+      "playableMs": 909.4000000059605,
+      "inputResponseUpperBoundMs": 36.69999998807907,
+      "encodedBytesAtBoundary": 3576964,
+      "browserPid": "67307"
+     },
+     {
+      "run": 2,
+      "playableMs": 910.5999999940395,
+      "inputResponseUpperBoundMs": 39.099999994039536,
+      "encodedBytesAtBoundary": 3576970,
+      "browserPid": "67379"
+     },
+     {
+      "run": 3,
+      "playableMs": 903.5,
+      "inputResponseUpperBoundMs": 34.29999998211861,
+      "encodedBytesAtBoundary": 3576975,
+      "browserPid": "67453"
+     },
+     {
+      "run": 4,
+      "playableMs": 914.9000000059605,
+      "inputResponseUpperBoundMs": 39.900000005960464,
+      "encodedBytesAtBoundary": 3576712,
+      "browserPid": "67523"
+     },
+     {
+      "run": 5,
+      "playableMs": 904.7000000178814,
+      "inputResponseUpperBoundMs": 34.69999998807907,
+      "encodedBytesAtBoundary": 3576779,
+      "browserPid": "67619"
+     },
+     {
+      "run": 6,
+      "playableMs": 916.1999999880791,
+      "inputResponseUpperBoundMs": 37.69999998807907,
+      "encodedBytesAtBoundary": 3576967,
+      "browserPid": "67689"
+     },
+     {
+      "run": 7,
+      "playableMs": 922.1999999880791,
+      "inputResponseUpperBoundMs": 40.69999998807907,
+      "encodedBytesAtBoundary": 3576953,
+      "browserPid": "67760"
+     },
+     {
+      "run": 8,
+      "playableMs": 912.6999999880791,
+      "inputResponseUpperBoundMs": 41.599999994039536,
+      "encodedBytesAtBoundary": 3576981,
+      "browserPid": "67836"
+     },
+     {
+      "run": 9,
+      "playableMs": 900.9000000059605,
+      "inputResponseUpperBoundMs": 39.30000001192093,
+      "encodedBytesAtBoundary": 3576950,
+      "browserPid": "67906"
+     },
+     {
+      "run": 10,
+      "playableMs": 910,
+      "inputResponseUpperBoundMs": 37.69999998807907,
+      "encodedBytesAtBoundary": 3576986,
+      "browserPid": "67996"
+     },
+     {
+      "run": 11,
+      "playableMs": 911.3000000119209,
+      "inputResponseUpperBoundMs": 37.29999998211861,
+      "encodedBytesAtBoundary": 3576969,
+      "browserPid": "68292"
+     },
+     {
+      "run": 12,
+      "playableMs": 912.6999999880791,
+      "inputResponseUpperBoundMs": 39.29999998211861,
+      "encodedBytesAtBoundary": 3576969,
+      "browserPid": "68363"
+     },
+     {
+      "run": 13,
+      "playableMs": 906.9000000059605,
+      "inputResponseUpperBoundMs": 38.5,
+      "encodedBytesAtBoundary": 3576962,
+      "browserPid": "68453"
+     },
+     {
+      "run": 14,
+      "playableMs": 913.3000000119209,
+      "inputResponseUpperBoundMs": 39.599999994039536,
+      "encodedBytesAtBoundary": 3576959,
+      "browserPid": "68529"
+     },
+     {
+      "run": 15,
+      "playableMs": 904.5999999940395,
+      "inputResponseUpperBoundMs": 39.39999997615814,
+      "encodedBytesAtBoundary": 3576972,
+      "browserPid": "68599"
+     },
+     {
+      "run": 16,
+      "playableMs": 910.1999999880791,
+      "inputResponseUpperBoundMs": 38.599999994039536,
+      "encodedBytesAtBoundary": 3576985,
+      "browserPid": "68670"
+     },
+     {
+      "run": 17,
+      "playableMs": 900.4000000059605,
+      "inputResponseUpperBoundMs": 39.5,
+      "encodedBytesAtBoundary": 3576951,
+      "browserPid": "68770"
+     },
+     {
+      "run": 18,
+      "playableMs": 917.6000000238419,
+      "inputResponseUpperBoundMs": 39.79999998211861,
+      "encodedBytesAtBoundary": 3576985,
+      "browserPid": "68860"
+     },
+     {
+      "run": 19,
+      "playableMs": 912.0999999940395,
+      "inputResponseUpperBoundMs": 37.900000005960464,
+      "encodedBytesAtBoundary": 3576968,
+      "browserPid": "68935"
+     },
+     {
+      "run": 20,
+      "playableMs": 912,
+      "inputResponseUpperBoundMs": 40.29999998211861,
+      "encodedBytesAtBoundary": 3576965,
+      "browserPid": "69011"
+     }
+    ]
+   },
+   "prime-bald": {
+    "source": ".cache/character-mmo/m5-moving-fit-2026-10-05/startup-compact-preload-isolated/prime-bald-cache-disabled.json",
+    "sha256": "b4ef2759c5685374b7f942c2d3f090a2848eda9a9903c3f75bce1f0edd1db8dc",
+    "appearance": {
+     "schemaVersion": 2,
+     "catalogVersion": "appearance-catalog-v6",
+     "race": "human",
+     "fitFamily": "ashen-human",
+     "fit": {
+      "rig": "source-65",
+      "bind": 1,
+      "shape": 1
+     },
+     "shape": {
+      "family": "ashen-human-shape-v1",
+      "height": 1,
+      "build": 0
+     },
+     "components": {
+      "head": "human-prime-v1",
+      "hair": "human-bald-v1"
+     },
+     "dyes": {},
+     "equipment": {
+      "helmet": null,
+      "torso": "wayfarerTunic",
+      "legs": "wayfarerTrousers",
+      "boots": "wayfarerBoots",
+      "gloves": null,
+      "mainHand": "ironSword",
+      "offHand": null,
+      "shoulders": null
+     }
+    },
+    "expectedAppearance": {
+     "schemaVersion": 2,
+     "catalogVersion": "appearance-catalog-v6",
+     "race": "human",
+     "fitFamily": "ashen-human",
+     "fit": {
+      "rig": "source-65",
+      "bind": 1,
+      "shape": 1
+     },
+     "shape": {
+      "family": "ashen-human-shape-v1",
+      "height": 1,
+      "build": 0
+     },
+     "components": {
+      "head": "human-prime-v1",
+      "hair": "human-bald-v1"
+     },
+     "dyes": {},
+     "equipment": {
+      "helmet": null,
+      "torso": "wayfarerTunic",
+      "legs": "wayfarerTrousers",
+      "boots": "wayfarerBoots",
+      "gloves": null,
+      "mainHand": "ironSword",
+      "offHand": null,
+      "shoulders": null
+     }
+    },
+    "conditions": {
+     "profile": "50mbps",
+     "disableHttpCache": true,
+     "network": {
+      "latency": 40,
+      "downloadThroughput": 6250000,
+      "uploadThroughput": 1250000
+     },
+     "cpu": "Apple M1 Max",
+     "viewport": [
+      1280,
+      720
+     ],
+     "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+     "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+    },
+    "runs": 20,
+    "p95Ms": 859.1999999880791,
+    "maximumMs": 865.1999999880791,
+    "misses": 0,
+    "rows": [
+     {
+      "run": 1,
+      "playableMs": 822.3000000119209,
+      "inputResponseUpperBoundMs": 39.30000001192093,
+      "encodedBytesAtBoundary": 3181596,
+      "browserPid": "70678"
+     },
+     {
+      "run": 2,
+      "playableMs": 831,
+      "inputResponseUpperBoundMs": 39.30000001192093,
+      "encodedBytesAtBoundary": 3181558,
+      "browserPid": "70749"
+     },
+     {
+      "run": 3,
+      "playableMs": 824.3000000119209,
+      "inputResponseUpperBoundMs": 47.79999998211861,
+      "encodedBytesAtBoundary": 3181593,
+      "browserPid": "70826"
+     },
+     {
+      "run": 4,
+      "playableMs": 812.5,
+      "inputResponseUpperBoundMs": 42.900000005960464,
+      "encodedBytesAtBoundary": 3181578,
+      "browserPid": "70896"
+     },
+     {
+      "run": 5,
+      "playableMs": 865.1999999880791,
+      "inputResponseUpperBoundMs": 37.69999998807907,
+      "encodedBytesAtBoundary": 3181519,
+      "browserPid": "70966"
+     },
+     {
+      "run": 6,
+      "playableMs": 825.6999999880791,
+      "inputResponseUpperBoundMs": 44.30000001192093,
+      "encodedBytesAtBoundary": 3181609,
+      "browserPid": "71042"
+     },
+     {
+      "run": 7,
+      "playableMs": 813.5,
+      "inputResponseUpperBoundMs": 44.79999998211861,
+      "encodedBytesAtBoundary": 3181354,
+      "browserPid": "71114"
+     },
+     {
+      "run": 8,
+      "playableMs": 813.5,
+      "inputResponseUpperBoundMs": 46.599999994039536,
+      "encodedBytesAtBoundary": 3181517,
+      "browserPid": "71184"
+     },
+     {
+      "run": 9,
+      "playableMs": 819.5,
+      "inputResponseUpperBoundMs": 45.79999998211861,
+      "encodedBytesAtBoundary": 3181586,
+      "browserPid": "71280"
+     },
+     {
+      "run": 10,
+      "playableMs": 814.4000000059605,
+      "inputResponseUpperBoundMs": 47.5,
+      "encodedBytesAtBoundary": 3181440,
+      "browserPid": "71351"
+     },
+     {
+      "run": 11,
+      "playableMs": 817.4000000059605,
+      "inputResponseUpperBoundMs": 42,
+      "encodedBytesAtBoundary": 3181570,
+      "browserPid": "71421"
+     },
+     {
+      "run": 12,
+      "playableMs": 817.8000000119209,
+      "inputResponseUpperBoundMs": 34.400000005960464,
+      "encodedBytesAtBoundary": 3181606,
+      "browserPid": "71561"
+     },
+     {
+      "run": 13,
+      "playableMs": 818.8000000119209,
+      "inputResponseUpperBoundMs": 48.400000005960464,
+      "encodedBytesAtBoundary": 3181555,
+      "browserPid": "71632"
+     },
+     {
+      "run": 14,
+      "playableMs": 859.1999999880791,
+      "inputResponseUpperBoundMs": 43.20000001788139,
+      "encodedBytesAtBoundary": 3181371,
+      "browserPid": "71703"
+     },
+     {
+      "run": 15,
+      "playableMs": 856.7000000178814,
+      "inputResponseUpperBoundMs": 39.20000001788139,
+      "encodedBytesAtBoundary": 3181591,
+      "browserPid": "71779"
+     },
+     {
+      "run": 16,
+      "playableMs": 813.9000000059605,
+      "inputResponseUpperBoundMs": 45.70000001788139,
+      "encodedBytesAtBoundary": 3181598,
+      "browserPid": "71869"
+     },
+     {
+      "run": 17,
+      "playableMs": 818.5999999940395,
+      "inputResponseUpperBoundMs": 37.29999998211861,
+      "encodedBytesAtBoundary": 3181562,
+      "browserPid": "71939"
+     },
+     {
+      "run": 18,
+      "playableMs": 818.9000000059605,
+      "inputResponseUpperBoundMs": 39.099999994039536,
+      "encodedBytesAtBoundary": 3181591,
+      "browserPid": "72053"
+     },
+     {
+      "run": 19,
+      "playableMs": 823.6000000238419,
+      "inputResponseUpperBoundMs": 47.099999994039536,
+      "encodedBytesAtBoundary": 3181324,
+      "browserPid": "72124"
+     },
+     {
+      "run": 20,
+      "playableMs": 821.5,
+      "inputResponseUpperBoundMs": 39.19999998807907,
+      "encodedBytesAtBoundary": 3181580,
+      "browserPid": "72194"
+     }
+    ]
+   },
+   "prime-ponytail-hood": {
+    "source": ".cache/character-mmo/m5-moving-fit-2026-10-05/startup-compact-preload-isolated/prime-ponytail-hood-cache-disabled.json",
+    "sha256": "7c08672fae7d4ba34b4c8881d5fdc73e706d8ef463a63b174c5fef0511bae751",
+    "appearance": {
+     "schemaVersion": 2,
+     "catalogVersion": "appearance-catalog-v6",
+     "race": "human",
+     "fitFamily": "ashen-human",
+     "fit": {
+      "rig": "source-65",
+      "bind": 1,
+      "shape": 1
+     },
+     "shape": {
+      "family": "ashen-human-shape-v1",
+      "height": 1.15,
+      "build": -0.95
+     },
+     "components": {
+      "head": "human-prime-v1",
+      "hair": "human-ponytail01-v1"
+     },
+     "dyes": {
+      "helmet": "moss",
+      "torso": "oxblood",
+      "legs": "indigo"
+     },
+     "equipment": {
+      "helmet": "graveweaverHood",
+      "torso": "pilgrimTunic",
+      "legs": "graveweaverSkirt",
+      "boots": "wayfarerBoots",
+      "gloves": "graveweaverGloves",
+      "mainHand": "graveweaverStaff",
+      "offHand": "graveweaverBook",
+      "shoulders": "wardenPauldrons"
+     }
+    },
+    "expectedAppearance": {
+     "schemaVersion": 2,
+     "catalogVersion": "appearance-catalog-v6",
+     "race": "human",
+     "fitFamily": "ashen-human",
+     "fit": {
+      "rig": "source-65",
+      "bind": 1,
+      "shape": 1
+     },
+     "shape": {
+      "family": "ashen-human-shape-v1",
+      "height": 1.15,
+      "build": -0.95
+     },
+     "components": {
+      "head": "human-prime-v1",
+      "hair": "human-ponytail01-v1"
+     },
+     "dyes": {
+      "helmet": "moss",
+      "torso": "oxblood",
+      "legs": "indigo"
+     },
+     "equipment": {
+      "helmet": "graveweaverHood",
+      "torso": "pilgrimTunic",
+      "legs": "graveweaverSkirt",
+      "boots": "wayfarerBoots",
+      "gloves": "graveweaverGloves",
+      "mainHand": "graveweaverStaff",
+      "offHand": "graveweaverBook",
+      "shoulders": "wardenPauldrons"
+     }
+    },
+    "conditions": {
+     "profile": "50mbps",
+     "disableHttpCache": true,
+     "network": {
+      "latency": 40,
+      "downloadThroughput": 6250000,
+      "uploadThroughput": 1250000
+     },
+     "cpu": "Apple M1 Max",
+     "viewport": [
+      1280,
+      720
+     ],
+     "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+     "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+    },
+    "runs": 20,
+    "p95Ms": 984.7000000178814,
+    "maximumMs": 986.6999999880791,
+    "misses": 0,
+    "rows": [
+     {
+      "run": 1,
+      "playableMs": 977.7999999821186,
+      "inputResponseUpperBoundMs": 38.20000001788139,
+      "encodedBytesAtBoundary": 4080864,
+      "browserPid": "65595"
+     },
+     {
+      "run": 2,
+      "playableMs": 980.9000000059605,
+      "inputResponseUpperBoundMs": 36.599999994039536,
+      "encodedBytesAtBoundary": 4080862,
+      "browserPid": "65669"
+     },
+     {
+      "run": 3,
+      "playableMs": 980.9000000059605,
+      "inputResponseUpperBoundMs": 36.19999998807907,
+      "encodedBytesAtBoundary": 4080857,
+      "browserPid": "65769"
+     },
+     {
+      "run": 4,
+      "playableMs": 981.6999999880791,
+      "inputResponseUpperBoundMs": 36.70000001788139,
+      "encodedBytesAtBoundary": 4080824,
+      "browserPid": "65841"
+     },
+     {
+      "run": 5,
+      "playableMs": 983,
+      "inputResponseUpperBoundMs": 40.900000005960464,
+      "encodedBytesAtBoundary": 4080874,
+      "browserPid": "65911"
+     },
+     {
+      "run": 6,
+      "playableMs": 981.5,
+      "inputResponseUpperBoundMs": 39.39999997615814,
+      "encodedBytesAtBoundary": 4080859,
+      "browserPid": "65993"
+     },
+     {
+      "run": 7,
+      "playableMs": 986.6999999880791,
+      "inputResponseUpperBoundMs": 40.69999998807907,
+      "encodedBytesAtBoundary": 4080793,
+      "browserPid": "66086"
+     },
+     {
+      "run": 8,
+      "playableMs": 976,
+      "inputResponseUpperBoundMs": 36.29999998211861,
+      "encodedBytesAtBoundary": 4080767,
+      "browserPid": "66156"
+     },
+     {
+      "run": 9,
+      "playableMs": 979.2999999821186,
+      "inputResponseUpperBoundMs": 37.099999994039536,
+      "encodedBytesAtBoundary": 4080723,
+      "browserPid": "66232"
+     },
+     {
+      "run": 10,
+      "playableMs": 978.2999999821186,
+      "inputResponseUpperBoundMs": 38.20000001788139,
+      "encodedBytesAtBoundary": 4080584,
+      "browserPid": "66360"
+     },
+     {
+      "run": 11,
+      "playableMs": 982.8000000119209,
+      "inputResponseUpperBoundMs": 36,
+      "encodedBytesAtBoundary": 4080571,
+      "browserPid": "66436"
+     },
+     {
+      "run": 12,
+      "playableMs": 984.7000000178814,
+      "inputResponseUpperBoundMs": 37.69999998807907,
+      "encodedBytesAtBoundary": 4080739,
+      "browserPid": "66512"
+     },
+     {
+      "run": 13,
+      "playableMs": 978.9000000059605,
+      "inputResponseUpperBoundMs": 35.900000005960464,
+      "encodedBytesAtBoundary": 4080465,
+      "browserPid": "66602"
+     },
+     {
+      "run": 14,
+      "playableMs": 982.7000000178814,
+      "inputResponseUpperBoundMs": 37.30000001192093,
+      "encodedBytesAtBoundary": 4080791,
+      "browserPid": "66678"
+     },
+     {
+      "run": 15,
+      "playableMs": 975.0999999940395,
+      "inputResponseUpperBoundMs": 36.29999998211861,
+      "encodedBytesAtBoundary": 4080589,
+      "browserPid": "66748"
+     },
+     {
+      "run": 16,
+      "playableMs": 982.2000000178814,
+      "inputResponseUpperBoundMs": 37.5,
+      "encodedBytesAtBoundary": 4080590,
+      "browserPid": "66838"
+     },
+     {
+      "run": 17,
+      "playableMs": 978,
+      "inputResponseUpperBoundMs": 35.30000001192093,
+      "encodedBytesAtBoundary": 4080404,
+      "browserPid": "66914"
+     },
+     {
+      "run": 18,
+      "playableMs": 977.4000000059605,
+      "inputResponseUpperBoundMs": 36.39999997615814,
+      "encodedBytesAtBoundary": 4080816,
+      "browserPid": "66984"
+     },
+     {
+      "run": 19,
+      "playableMs": 974.3000000119209,
+      "inputResponseUpperBoundMs": 37.20000001788139,
+      "encodedBytesAtBoundary": 4080865,
+      "browserPid": "67076"
+     },
+     {
+      "run": 20,
+      "playableMs": 981.0999999940395,
+      "inputResponseUpperBoundMs": 37.79999998211861,
+      "encodedBytesAtBoundary": 4080870,
+      "browserPid": "67216"
+     }
+    ]
+   },
+   "weathered-bald": {
+    "source": ".cache/character-mmo/m5-moving-fit-2026-10-05/startup-compact-preload-isolated/weathered-bald-cache-disabled.json",
+    "sha256": "d88f23715a3695e19dcb219419a32653558c66da306b5fdecc47f5508b4377a4",
+    "appearance": {
+     "schemaVersion": 2,
+     "catalogVersion": "appearance-catalog-v6",
+     "race": "human",
+     "fitFamily": "ashen-human",
+     "fit": {
+      "rig": "source-65",
+      "bind": 1,
+      "shape": 1
+     },
+     "shape": {
+      "family": "ashen-human-shape-v1",
+      "height": 0.9,
+      "build": 0.95
+     },
+     "components": {
+      "head": "human-weathered-v1",
+      "hair": "human-bald-v1"
+     },
+     "dyes": {
+      "helmet": "moss",
+      "torso": "oxblood",
+      "legs": "indigo"
+     },
+     "equipment": {
+      "helmet": "graveweaverHood",
+      "torso": "pilgrimTunic",
+      "legs": "graveweaverSkirt",
+      "boots": "wayfarerBoots",
+      "gloves": "graveweaverGloves",
+      "mainHand": "graveweaverStaff",
+      "offHand": "graveweaverBook",
+      "shoulders": "wardenPauldrons"
+     }
+    },
+    "expectedAppearance": {
+     "schemaVersion": 2,
+     "catalogVersion": "appearance-catalog-v6",
+     "race": "human",
+     "fitFamily": "ashen-human",
+     "fit": {
+      "rig": "source-65",
+      "bind": 1,
+      "shape": 1
+     },
+     "shape": {
+      "family": "ashen-human-shape-v1",
+      "height": 0.9,
+      "build": 0.95
+     },
+     "components": {
+      "head": "human-weathered-v1",
+      "hair": "human-bald-v1"
+     },
+     "dyes": {
+      "helmet": "moss",
+      "torso": "oxblood",
+      "legs": "indigo"
+     },
+     "equipment": {
+      "helmet": "graveweaverHood",
+      "torso": "pilgrimTunic",
+      "legs": "graveweaverSkirt",
+      "boots": "wayfarerBoots",
+      "gloves": "graveweaverGloves",
+      "mainHand": "graveweaverStaff",
+      "offHand": "graveweaverBook",
+      "shoulders": "wardenPauldrons"
+     }
+    },
+    "conditions": {
+     "profile": "50mbps",
+     "disableHttpCache": true,
+     "network": {
+      "latency": 40,
+      "downloadThroughput": 6250000,
+      "uploadThroughput": 1250000
+     },
+     "cpu": "Apple M1 Max",
+     "viewport": [
+      1280,
+      720
+     ],
+     "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+     "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+    },
+    "runs": 20,
+    "p95Ms": 973.9000000059605,
+    "maximumMs": 996.2999999821186,
+    "misses": 0,
+    "rows": [
+     {
+      "run": 1,
+      "playableMs": 971.0999999940395,
+      "inputResponseUpperBoundMs": 39.900000005960464,
+      "encodedBytesAtBoundary": 3787298,
+      "browserPid": "72277"
+     },
+     {
+      "run": 2,
+      "playableMs": 930.0999999940395,
+      "inputResponseUpperBoundMs": 42.20000001788139,
+      "encodedBytesAtBoundary": 3787307,
+      "browserPid": "72367"
+     },
+     {
+      "run": 3,
+      "playableMs": 930.4000000059605,
+      "inputResponseUpperBoundMs": 42.30000001192093,
+      "encodedBytesAtBoundary": 3787153,
+      "browserPid": "72437"
+     },
+     {
+      "run": 4,
+      "playableMs": 926.7000000178814,
+      "inputResponseUpperBoundMs": 43.400000005960464,
+      "encodedBytesAtBoundary": 3787015,
+      "browserPid": "72513"
+     },
+     {
+      "run": 5,
+      "playableMs": 932.1999999880791,
+      "inputResponseUpperBoundMs": 43,
+      "encodedBytesAtBoundary": 3787065,
+      "browserPid": "72603"
+     },
+     {
+      "run": 6,
+      "playableMs": 925.8000000119209,
+      "inputResponseUpperBoundMs": 40.79999998211861,
+      "encodedBytesAtBoundary": 3787075,
+      "browserPid": "72679"
+     },
+     {
+      "run": 7,
+      "playableMs": 929.6999999880791,
+      "inputResponseUpperBoundMs": 43.599999994039536,
+      "encodedBytesAtBoundary": 3787139,
+      "browserPid": "72750"
+     },
+     {
+      "run": 8,
+      "playableMs": 931.3000000119209,
+      "inputResponseUpperBoundMs": 41.29999998211861,
+      "encodedBytesAtBoundary": 3786775,
+      "browserPid": "72820"
+     },
+     {
+      "run": 9,
+      "playableMs": 938.7000000178814,
+      "inputResponseUpperBoundMs": 37.5,
+      "encodedBytesAtBoundary": 3787008,
+      "browserPid": "72916"
+     },
+     {
+      "run": 10,
+      "playableMs": 967.5,
+      "inputResponseUpperBoundMs": 43.80000001192093,
+      "encodedBytesAtBoundary": 3787222,
+      "browserPid": "72986"
+     },
+     {
+      "run": 11,
+      "playableMs": 932.9000000059605,
+      "inputResponseUpperBoundMs": 42.10000002384186,
+      "encodedBytesAtBoundary": 3787040,
+      "browserPid": "73056"
+     },
+     {
+      "run": 12,
+      "playableMs": 933.5999999940395,
+      "inputResponseUpperBoundMs": 41.400000005960464,
+      "encodedBytesAtBoundary": 3787205,
+      "browserPid": "73152"
+     },
+     {
+      "run": 13,
+      "playableMs": 973.9000000059605,
+      "inputResponseUpperBoundMs": 42.599999994039536,
+      "encodedBytesAtBoundary": 3787086,
+      "browserPid": "73222"
+     },
+     {
+      "run": 14,
+      "playableMs": 929.9000000059605,
+      "inputResponseUpperBoundMs": 42.10000002384186,
+      "encodedBytesAtBoundary": 3787092,
+      "browserPid": "73292"
+     },
+     {
+      "run": 15,
+      "playableMs": 930.4000000059605,
+      "inputResponseUpperBoundMs": 42.599999994039536,
+      "encodedBytesAtBoundary": 3787329,
+      "browserPid": "73368"
+     },
+     {
+      "run": 16,
+      "playableMs": 934.9000000059605,
+      "inputResponseUpperBoundMs": 41.099999994039536,
+      "encodedBytesAtBoundary": 3786834,
+      "browserPid": "73439"
+     },
+     {
+      "run": 17,
+      "playableMs": 996.2999999821186,
+      "inputResponseUpperBoundMs": 39.30000001192093,
+      "encodedBytesAtBoundary": 3787213,
+      "browserPid": "73509"
+     },
+     {
+      "run": 18,
+      "playableMs": 935.2999999821186,
+      "inputResponseUpperBoundMs": 42,
+      "encodedBytesAtBoundary": 3787023,
+      "browserPid": "73605"
+     },
+     {
+      "run": 19,
+      "playableMs": 959.0999999940395,
+      "inputResponseUpperBoundMs": 39.5,
+      "encodedBytesAtBoundary": 3786829,
+      "browserPid": "73698"
+     },
+     {
+      "run": 20,
+      "playableMs": 932.9000000059605,
+      "inputResponseUpperBoundMs": 41.79999998211861,
+      "encodedBytesAtBoundary": 3787104,
+      "browserPid": "73795"
+     }
+    ]
+   },
+   "prime-ponytail-open": {
+    "source": ".cache/character-mmo/m5-moving-fit-2026-10-05/startup-compact-preload-isolated/prime-ponytail-open-cache-disabled.json",
+    "sha256": "7bb14296efcef6caed99a3a5ba84549ff0ee6beece486f83a833786f4ea56a7c",
+    "appearance": {
+     "schemaVersion": 2,
+     "catalogVersion": "appearance-catalog-v6",
+     "race": "human",
+     "fitFamily": "ashen-human",
+     "fit": {
+      "rig": "source-65",
+      "bind": 1,
+      "shape": 1
+     },
+     "shape": {
+      "family": "ashen-human-shape-v1",
+      "height": 1.15,
+      "build": 0.95
+     },
+     "components": {
+      "head": "human-prime-v1",
+      "hair": "human-ponytail01-v1"
+     },
+     "dyes": {
+      "torso": "oxblood",
+      "legs": "indigo"
+     },
+     "equipment": {
+      "helmet": null,
+      "torso": "pilgrimTunic",
+      "legs": "graveweaverSkirt",
+      "boots": "wayfarerBoots",
+      "gloves": "graveweaverGloves",
+      "mainHand": "graveweaverStaff",
+      "offHand": "graveweaverBook",
+      "shoulders": "wardenPauldrons"
+     }
+    },
+    "expectedAppearance": {
+     "schemaVersion": 2,
+     "catalogVersion": "appearance-catalog-v6",
+     "race": "human",
+     "fitFamily": "ashen-human",
+     "fit": {
+      "rig": "source-65",
+      "bind": 1,
+      "shape": 1
+     },
+     "shape": {
+      "family": "ashen-human-shape-v1",
+      "height": 1.15,
+      "build": 0.95
+     },
+     "components": {
+      "head": "human-prime-v1",
+      "hair": "human-ponytail01-v1"
+     },
+     "dyes": {
+      "torso": "oxblood",
+      "legs": "indigo"
+     },
+     "equipment": {
+      "helmet": null,
+      "torso": "pilgrimTunic",
+      "legs": "graveweaverSkirt",
+      "boots": "wayfarerBoots",
+      "gloves": "graveweaverGloves",
+      "mainHand": "graveweaverStaff",
+      "offHand": "graveweaverBook",
+      "shoulders": "wardenPauldrons"
+     }
+    },
+    "conditions": {
+     "profile": "50mbps",
+     "disableHttpCache": true,
+     "network": {
+      "latency": 40,
+      "downloadThroughput": 6250000,
+      "uploadThroughput": 1250000
+     },
+     "cpu": "Apple M1 Max",
+     "viewport": [
+      1280,
+      720
+     ],
+     "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+     "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+    },
+    "runs": 20,
+    "p95Ms": 952.1000000238419,
+    "maximumMs": 959.6999999880791,
+    "misses": 0,
+    "rows": [
+     {
+      "run": 1,
+      "playableMs": 948.9000000059605,
+      "inputResponseUpperBoundMs": 29.299999982118607,
+      "encodedBytesAtBoundary": 3882190,
+      "browserPid": "73890"
+     },
+     {
+      "run": 2,
+      "playableMs": 949.5,
+      "inputResponseUpperBoundMs": 30,
+      "encodedBytesAtBoundary": 3881617,
+      "browserPid": "73940"
+     },
+     {
+      "run": 3,
+      "playableMs": 952.1000000238419,
+      "inputResponseUpperBoundMs": 30.600000023841858,
+      "encodedBytesAtBoundary": 3882185,
+      "browserPid": "74037"
+     },
+     {
+      "run": 4,
+      "playableMs": 945.2000000178814,
+      "inputResponseUpperBoundMs": 32.599999994039536,
+      "encodedBytesAtBoundary": 3882134,
+      "browserPid": "74110"
+     },
+     {
+      "run": 5,
+      "playableMs": 944.6000000238419,
+      "inputResponseUpperBoundMs": 31.599999994039536,
+      "encodedBytesAtBoundary": 3882163,
+      "browserPid": "74244"
+     },
+     {
+      "run": 6,
+      "playableMs": 946.4000000059605,
+      "inputResponseUpperBoundMs": 30.400000005960464,
+      "encodedBytesAtBoundary": 3882171,
+      "browserPid": "74342"
+     },
+     {
+      "run": 7,
+      "playableMs": 945.3000000119209,
+      "inputResponseUpperBoundMs": 33.69999998807907,
+      "encodedBytesAtBoundary": 3881971,
+      "browserPid": "74412"
+     },
+     {
+      "run": 8,
+      "playableMs": 947,
+      "inputResponseUpperBoundMs": 32.5,
+      "encodedBytesAtBoundary": 3882162,
+      "browserPid": "74486"
+     },
+     {
+      "run": 9,
+      "playableMs": 947.5,
+      "inputResponseUpperBoundMs": 32.19999998807907,
+      "encodedBytesAtBoundary": 3882026,
+      "browserPid": "74563"
+     },
+     {
+      "run": 10,
+      "playableMs": 959.6999999880791,
+      "inputResponseUpperBoundMs": 32.900000005960464,
+      "encodedBytesAtBoundary": 3882166,
+      "browserPid": "74654"
+     },
+     {
+      "run": 11,
+      "playableMs": 947.7999999821186,
+      "inputResponseUpperBoundMs": 33.599999994039536,
+      "encodedBytesAtBoundary": 3882138,
+      "browserPid": "74750"
+     },
+     {
+      "run": 12,
+      "playableMs": 946.8000000119209,
+      "inputResponseUpperBoundMs": 30.400000005960464,
+      "encodedBytesAtBoundary": 3882160,
+      "browserPid": "74821"
+     },
+     {
+      "run": 13,
+      "playableMs": 951.5,
+      "inputResponseUpperBoundMs": 32.5,
+      "encodedBytesAtBoundary": 3882018,
+      "browserPid": "74912"
+     },
+     {
+      "run": 14,
+      "playableMs": 941.8000000119209,
+      "inputResponseUpperBoundMs": 33.099999994039536,
+      "encodedBytesAtBoundary": 3881845,
+      "browserPid": "74988"
+     },
+     {
+      "run": 15,
+      "playableMs": 947.5999999940395,
+      "inputResponseUpperBoundMs": 33,
+      "encodedBytesAtBoundary": 3882011,
+      "browserPid": "75059"
+     },
+     {
+      "run": 16,
+      "playableMs": 950.9000000059605,
+      "inputResponseUpperBoundMs": 35,
+      "encodedBytesAtBoundary": 3882137,
+      "browserPid": "75150"
+     },
+     {
+      "run": 17,
+      "playableMs": 946.9000000059605,
+      "inputResponseUpperBoundMs": 39,
+      "encodedBytesAtBoundary": 3881983,
+      "browserPid": "75226"
+     },
+     {
+      "run": 18,
+      "playableMs": 943.5999999940395,
+      "inputResponseUpperBoundMs": 34.39999997615814,
+      "encodedBytesAtBoundary": 3881769,
+      "browserPid": "75296"
+     },
+     {
+      "run": 19,
+      "playableMs": 948.2999999821186,
+      "inputResponseUpperBoundMs": 34.599999994039536,
+      "encodedBytesAtBoundary": 3882156,
+      "browserPid": "75386"
+     },
+     {
+      "run": 20,
+      "playableMs": 949.1999999880791,
+      "inputResponseUpperBoundMs": 33.400000005960464,
+      "encodedBytesAtBoundary": 3882180,
+      "browserPid": "75466"
+     }
+    ]
+   }
+  },
+  "functional": {
+   "levels": {
+    "source": ".cache/character-mmo/m5-moving-fit-2026-10-05/compact-preload-levels/report.json",
+    "sha256": "75c041a0b3a66455c3abeca77883b904277dc1032e942dba0550ae3cd75869f9",
+    "passed": true,
+    "count": 5,
+    "routes": [
+     {
+      "id": "west-bell",
+      "samples": 54,
+      "recoveriesDelta": 0,
+      "physics": true
+     },
+     {
+      "id": "east-bell",
+      "samples": 70,
+      "recoveriesDelta": 0,
+      "physics": true
+     },
+     {
+      "id": "west-chapel",
+      "samples": 16,
+      "recoveriesDelta": 0,
+      "physics": true
+     },
+     {
+      "id": "east-chapel",
+      "samples": 16,
+      "recoveriesDelta": 0,
+      "physics": true
+     },
+     {
+      "id": "gallery-parapet",
+      "samples": 36,
+      "recoveriesDelta": 0,
+      "physics": true
+     }
+    ]
+   },
+   "contact": {
+    "source": ".cache/character-mmo/m5-moving-fit-2026-10-05/compact-preload-contact.json",
+    "sha256": "7b22c2272232bc979f1536ce07088ddda8ff59cd55ba507f7572fee615bf57b2",
+    "passed": true,
+    "count": 4,
+    "surfaces": [
+     {
+      "id": "meadow",
+      "standing": {
+       "minGap": 0.007967824825185543,
+       "maxGap": 0.007967824825185543,
+       "peakToPeakY": 0
+      },
+      "moving": {
+       "travelZ": 22.160797259335403,
+       "minGap": 0.00519396901383673,
+       "maxGap": 0.014741725994222077
+      },
+      "landed": {
+       "gap": 0.008562713720498438,
+       "grounded": true,
+       "physics": true,
+       "recoveries": 0
+      }
+     },
+     {
+      "id": "bridge",
+      "standing": {
+       "minGap": 0.008482534349077753,
+       "maxGap": 0.008482534349077753,
+       "peakToPeakY": 0
+      },
+      "moving": {
+       "travelZ": 21.963899595135445,
+       "minGap": 0.00835862209907745,
+       "maxGap": 0.008478412603448504
+      },
+      "landed": {
+       "gap": 0.008355860039362284,
+       "grounded": true,
+       "physics": true,
+       "recoveries": 0
+      }
+     },
+     {
+      "id": "nave",
+      "standing": {
+       "minGap": 0.007187188093062957,
+       "maxGap": 0.007187188093062957,
+       "peakToPeakY": 0
+      },
+      "moving": {
+       "travelZ": null,
+       "minGap": null,
+       "maxGap": null
+      },
+      "landed": {
+       "gap": null,
+       "grounded": null,
+       "physics": null,
+       "recoveries": null
+      }
+     },
+     {
+      "id": "gallery",
+      "standing": {
+       "minGap": 0.007187188093062957,
+       "maxGap": 0.007187188093062957,
+       "peakToPeakY": 0
+      },
+      "moving": {
+       "travelZ": null,
+       "minGap": null,
+       "maxGap": null
+      },
+      "landed": {
+       "gap": null,
+       "grounded": null,
+       "physics": null,
+       "recoveries": null
+      }
+     }
+    ]
+   },
+   "height": {
+    "source": ".cache/character-mmo/m5-moving-fit-2026-10-05/compact-preload-height.json",
+    "sha256": "d4d364808efd394020078b840d5235e48560051878f2ed264fdfda8e55b3e42e",
+    "passed": true,
+    "count": 18,
+    "seconds": 6,
+    "heights": [
+     {
+      "id": "min",
+      "scale": 0.9,
+      "shape": "slender"
+     },
+     {
+      "id": "default",
+      "scale": 1,
+      "shape": "neutral"
+     },
+     {
+      "id": "max",
+      "scale": 1.15,
+      "shape": "stout"
+     }
+    ],
+    "rows": [
+     {
+      "height": "min",
+      "scale": 0.9,
+      "shape": "slender",
+      "route": "meadow",
+      "travelM": 42.04,
+      "recoveriesDelta": 0
+     },
+     {
+      "height": "min",
+      "scale": 0.9,
+      "shape": "slender",
+      "route": "town",
+      "travelM": 40.15,
+      "recoveriesDelta": 0
+     },
+     {
+      "height": "min",
+      "scale": 0.9,
+      "shape": "slender",
+      "route": "bridge-approach",
+      "travelM": 42.02,
+      "recoveriesDelta": 0
+     },
+     {
+      "height": "min",
+      "scale": 0.9,
+      "shape": "slender",
+      "route": "bridge",
+      "travelM": 42.04,
+      "recoveriesDelta": 0
+     },
+     {
+      "height": "min",
+      "scale": 0.9,
+      "shape": "slender",
+      "route": "cathedral",
+      "travelM": 42.04,
+      "recoveriesDelta": 0
+     },
+     {
+      "height": "min",
+      "scale": 0.9,
+      "shape": "slender",
+      "route": "forest",
+      "travelM": 33.72,
+      "recoveriesDelta": 0
+     },
+     {
+      "height": "default",
+      "scale": 1,
+      "shape": "neutral",
+      "route": "meadow",
+      "travelM": 42.04,
+      "recoveriesDelta": 0
+     },
+     {
+      "height": "default",
+      "scale": 1,
+      "shape": "neutral",
+      "route": "town",
+      "travelM": 40.19,
+      "recoveriesDelta": 0
+     },
+     {
+      "height": "default",
+      "scale": 1,
+      "shape": "neutral",
+      "route": "bridge-approach",
+      "travelM": 42.03,
+      "recoveriesDelta": 0
+     },
+     {
+      "height": "default",
+      "scale": 1,
+      "shape": "neutral",
+      "route": "bridge",
+      "travelM": 42.05,
+      "recoveriesDelta": 0
+     },
+     {
+      "height": "default",
+      "scale": 1,
+      "shape": "neutral",
+      "route": "cathedral",
+      "travelM": 42.05,
+      "recoveriesDelta": 0
+     },
+     {
+      "height": "default",
+      "scale": 1,
+      "shape": "neutral",
+      "route": "forest",
+      "travelM": 33.69,
+      "recoveriesDelta": 0
+     },
+     {
+      "height": "max",
+      "scale": 1.15,
+      "shape": "stout",
+      "route": "meadow",
+      "travelM": 42.04,
+      "recoveriesDelta": 0
+     },
+     {
+      "height": "max",
+      "scale": 1.15,
+      "shape": "stout",
+      "route": "town",
+      "travelM": 40.26,
+      "recoveriesDelta": 0
+     },
+     {
+      "height": "max",
+      "scale": 1.15,
+      "shape": "stout",
+      "route": "bridge-approach",
+      "travelM": 42.03,
+      "recoveriesDelta": 0
+     },
+     {
+      "height": "max",
+      "scale": 1.15,
+      "shape": "stout",
+      "route": "bridge",
+      "travelM": 42.02,
+      "recoveriesDelta": 0
+     },
+     {
+      "height": "max",
+      "scale": 1.15,
+      "shape": "stout",
+      "route": "cathedral",
+      "travelM": 42.03,
+      "recoveriesDelta": 0
+     },
+     {
+      "height": "max",
+      "scale": 1.15,
+      "shape": "stout",
+      "route": "forest",
+      "travelM": 33.64,
+      "recoveriesDelta": 0
+     }
+    ]
+   },
+   "saved": {
+    "source": ".cache/character-mmo/m5-moving-fit-2026-10-05/compact-preload-saved/report.json",
+    "sha256": "c615722d3c0cb5c0c151c74c577aa66a6405ff2e72633836c2e73b2c09cd1226",
+    "passed": true,
+    "count": 8,
+    "scope": "M5 ordinary-route identity persistence/transactions, not a startup or FPS benchmark",
+    "cases": [
+     {
+      "case": "selected-first-play-reload-race-return",
+      "preset": "starter"
+     },
+     {
+      "case": "selected-first-play-reload-race-return",
+      "preset": "prime-bald"
+     },
+     {
+      "case": "selected-first-play-reload-race-return",
+      "preset": "prime-ponytail"
+     },
+     {
+      "case": "selected-first-play-reload-race-return",
+      "preset": "weathered-bald"
+     },
+     {
+      "case": "actual-ui-and-independent-undo-queued-reset",
+      "preset": null
+     },
+     {
+      "case": "failed-source-preserves-and-can-retry",
+      "preset": null
+     },
+     {
+      "case": "failed-source-preserves-and-can-retry",
+      "preset": null
+     },
+     {
+      "case": "disposed-editor-refuses-held-identity-before-stage",
+      "preset": null
+     }
+    ]
+   },
+   "mobile": {
+    "source": ".cache/character-mmo/m5-moving-fit-2026-10-05/compact-preload-mobile/report.json",
+    "sha256": "0577bb3b76da0186d912e58e6def24e0ee6de270cebfe6a1f578feca30f01424",
+    "passed": true,
+    "count": 8,
+    "kind": "chromium",
+    "device": "desktop engine with mobile viewport/touch emulation",
+    "injectDepthFailure": false,
+    "depthBundle": "native",
+    "appearance": null,
+    "checks": [
+     "touch-body-control",
+     "mobile-layout-colour-select-and-persistence",
+     "mobile-layout-identity-select-persistence-and-independent-undo",
+     "native touch advances simulation and displayed world",
+     "capture-loss",
+     "cancel",
+     "modal",
+     "blur"
+    ]
+   },
+   "depth": {
+    "source": ".cache/character-mmo/m5-moving-fit-2026-10-05/compact-preload-depth/report.json",
+    "sha256": "e96e64ead6b2a759ae4f7c7f3af5495dc9a873bdda078bfb5d333f9e5935ce88",
+    "passed": true,
+    "count": 8,
+    "kind": "chromium",
+    "device": "desktop engine with mobile viewport/touch emulation",
+    "injectDepthFailure": true,
+    "depthBundle": "empty-fragment",
+    "appearance": null,
+    "checks": [
+     "touch-body-control",
+     "mobile-layout-colour-select-and-persistence",
+     "mobile-layout-identity-select-persistence-and-independent-undo",
+     "native touch advances simulation and displayed world",
+     "capture-loss",
+     "cancel",
+     "modal",
+     "blur"
+    ]
+   },
+   "webkit": {
+    "source": ".cache/character-mmo/m5-moving-fit-2026-10-05/compact-preload-webkit/report.json",
+    "sha256": "36541de633f5a24b910fed2d9f6e290114aa148c106a19e65266ddac0c4aff74",
+    "passed": true,
+    "count": 4,
+    "kind": "webkit",
+    "device": "desktop engine with mobile viewport/touch emulation",
+    "injectDepthFailure": false,
+    "depthBundle": "native",
+    "appearance": {
+     "schemaVersion": 2,
+     "catalogVersion": "appearance-catalog-v6",
+     "race": "human",
+     "fitFamily": "ashen-human",
+     "fit": {
+      "rig": "source-65",
+      "bind": 1,
+      "shape": 1
+     },
+     "shape": {
+      "family": "ashen-human-shape-v1",
+      "height": 0.9,
+      "build": 0.95
+     },
+     "components": {
+      "head": "human-weathered-v1",
+      "hair": "human-bald-v1"
+     },
+     "dyes": {
+      "helmet": "moss",
+      "torso": "oxblood",
+      "legs": "indigo"
+     },
+     "equipment": {
+      "helmet": "graveweaverHood",
+      "torso": "pilgrimTunic",
+      "legs": "graveweaverSkirt",
+      "boots": "wayfarerBoots",
+      "gloves": "graveweaverGloves",
+      "mainHand": "graveweaverStaff",
+      "offHand": "graveweaverBook",
+      "shoulders": "wardenPauldrons"
+     }
+    },
+    "checks": [
+     "touch-body-control",
+     "mobile-layout-colour-select-and-persistence",
+     "mobile-layout-identity-select-persistence-and-independent-undo",
+     "keyboard advances WebKit simulation and displayed world"
+    ]
+   }
+  },
+  "fpsAffectedOriginal": {
+   "recordCapped": true,
+   "browserPid": 51793,
+   "hintedRows": 0,
+   "source": ".cache/character-mmo/m5-moving-fit-2026-10-05/fps-compact-preload-original-largest.json",
+   "sha256": "4cdc1fac6f3192b8f95b304dd7836444e9a6439af3e50249b684778dd2aaeb51",
+   "savedAppearance": {
+    "schemaVersion": 2,
+    "catalogVersion": "appearance-catalog-v6",
+    "race": "human",
+    "fitFamily": "ashen-human",
+    "fit": {
+     "rig": "source-65",
+     "bind": 1,
+     "shape": 1
+    },
+    "shape": {
+     "family": "ashen-human-shape-v1",
+     "height": 1.15,
+     "build": -0.95
+    },
+    "components": {},
+    "dyes": {
+     "helmet": "moss",
+     "torso": "oxblood",
+     "legs": "indigo"
+    },
+    "equipment": {
+     "helmet": "graveweaverHood",
+     "torso": "pilgrimTunic",
+     "legs": "graveweaverSkirt",
+     "boots": "wayfarerBoots",
+     "gloves": "graveweaverGloves",
+     "mainHand": "graveweaverStaff",
+     "offHand": "graveweaverBook",
+     "shoulders": "wardenPauldrons"
+    }
+   },
+   "conditions": {
+    "cpu": "Apple M1 Max",
+    "url": "http://127.0.0.1:7175/?play=&clean=&pixelRatio=1&gpuTiming=",
+    "viewport": [
+     1280,
+     720
+    ],
+    "seconds": 12,
+    "runs": 3,
+    "routes": [
+     "meadow",
+     "town",
+     "bridge",
+     "cathedral",
+     "forest"
+    ],
+    "recording": false,
+    "race": "human"
+   },
+   "minimumFps": 210.42551419768506,
+   "maximumFps": 248.10464050654002,
+   "rows": [
+    {
+     "route": "meadow",
+     "run": 1,
+     "fps": 210.42551419768506,
+     "meanMs": 4.752275425405619,
+     "medianMs": 4.5,
+     "p95Ms": 5.800000011920929,
+     "p99Ms": 6.200000017881393,
+     "worstMs": 9.200000017881393,
+     "samples": 2527,
+     "frameSpanMs": 12009.0,
+     "tails": {
+      "samples": 2527,
+      "meanMs": 4.752275425405619,
+      "meanFps": 210.42551419768506,
+      "p50Ms": 4.5,
+      "p95Ms": 5.800000011920929,
+      "p99Ms": 6.200000017881393,
+      "maxMs": 9.200000017881393,
+      "above6_94": 8,
+      "above8_33": 4,
+      "above16_67": 0,
+      "above33_33": 0
+     },
+     "gpuMeanMs": 1.0411698855568914,
+     "fullWindowCap": {
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 4.752 ms is not locked to a known display interval"
+     },
+     "rollingCapHint": false,
+     "frames": 2527,
+     "travelM": 84.0610121383877,
+     "physics": true,
+     "enemies": 7,
+     "recoveries": 0
+    },
+    {
+     "route": "meadow",
+     "run": 2,
+     "fps": 212.43626911936968,
+     "meanMs": 4.707294117644722,
+     "medianMs": 4.5,
+     "p95Ms": 5.800000011920929,
+     "p99Ms": 6,
+     "worstMs": 9,
+     "samples": 2550,
+     "frameSpanMs": 12003.59999999404,
+     "tails": {
+      "samples": 2550,
+      "meanMs": 4.707294117644722,
+      "meanFps": 212.43626911936968,
+      "p50Ms": 4.5,
+      "p95Ms": 5.800000011920929,
+      "p99Ms": 6,
+      "maxMs": 9,
+      "above6_94": 5,
+      "above8_33": 4,
+      "above16_67": 0,
+      "above33_33": 0
+     },
+     "gpuMeanMs": 0.9687211277876738,
+     "fullWindowCap": {
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 4.707 ms is not locked to a known display interval"
+     },
+     "rollingCapHint": false,
+     "frames": 2550,
+     "travelM": 84.02343590845673,
+     "physics": true,
+     "enemies": 7,
+     "recoveries": 0
+    },
+    {
+     "route": "meadow",
+     "run": 3,
+     "fps": 212.7110029824696,
+     "meanMs": 4.7012142577430005,
+     "medianMs": 4.5,
+     "p95Ms": 5.800000011920929,
+     "p99Ms": 6,
+     "worstMs": 8.700000017881393,
+     "samples": 2553,
+     "frameSpanMs": 12002.200000017881,
+     "tails": {
+      "samples": 2553,
+      "meanMs": 4.7012142577430005,
+      "meanFps": 212.7110029824696,
+      "p50Ms": 4.5,
+      "p95Ms": 5.800000011920929,
+      "p99Ms": 6,
+      "maxMs": 8.700000017881393,
+      "above6_94": 6,
+      "above8_33": 2,
+      "above16_67": 0,
+      "above33_33": 0
+     },
+     "gpuMeanMs": 0.9862344706455851,
+     "fullWindowCap": {
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 4.701 ms is not locked to a known display interval"
+     },
+     "rollingCapHint": false,
+     "frames": 2553,
+     "travelM": 84.01356512960044,
+     "physics": true,
+     "enemies": 7,
+     "recoveries": 0
+    },
+    {
+     "route": "town",
+     "run": 1,
+     "fps": 213.42148870450507,
+     "meanMs": 4.68556379242842,
+     "medianMs": 4.5,
+     "p95Ms": 5.800000011920929,
+     "p99Ms": 6,
+     "worstMs": 9.599999994039536,
+     "samples": 2563,
+     "frameSpanMs": 12009.09999999404,
+     "tails": {
+      "samples": 2563,
+      "meanMs": 4.68556379242842,
+      "meanFps": 213.42148870450507,
+      "p50Ms": 4.5,
+      "p95Ms": 5.800000011920929,
+      "p99Ms": 6,
+      "maxMs": 9.599999994039536,
+      "above6_94": 10,
+      "above8_33": 5,
+      "above16_67": 0,
+      "above33_33": 0
+     },
+     "gpuMeanMs": 1.0172002709680152,
+     "fullWindowCap": {
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 4.686 ms is not locked to a known display interval"
+     },
+     "rollingCapHint": false,
+     "frames": 2563,
+     "travelM": 49.15034278311888,
+     "physics": true,
+     "enemies": 7,
+     "recoveries": 0
+    },
+    {
+     "route": "town",
+     "run": 2,
+     "fps": 213.89839826103847,
+     "meanMs": 4.675116822425265,
+     "medianMs": 4.5,
+     "p95Ms": 5.800000011920929,
+     "p99Ms": 6,
+     "worstMs": 9.200000017881393,
+     "samples": 2568,
+     "frameSpanMs": 12005.699999988079,
+     "tails": {
+      "samples": 2568,
+      "meanMs": 4.675116822425265,
+      "meanFps": 213.89839826103847,
+      "p50Ms": 4.5,
+      "p95Ms": 5.800000011920929,
+      "p99Ms": 6,
+      "maxMs": 9.200000017881393,
+      "above6_94": 5,
+      "above8_33": 3,
+      "above16_67": 0,
+      "above33_33": 0
+     },
+     "gpuMeanMs": 1.0328517119928717,
+     "fullWindowCap": {
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 4.675 ms is not locked to a known display interval"
+     },
+     "rollingCapHint": false,
+     "frames": 2568,
+     "travelM": 49.12746969252902,
+     "physics": true,
+     "enemies": 7,
+     "recoveries": 0
+    },
+    {
+     "route": "town",
+     "run": 3,
+     "fps": 213.99060407178146,
+     "meanMs": 4.673102374460132,
+     "medianMs": 4.5,
+     "p95Ms": 5.800000011920929,
+     "p99Ms": 6,
+     "worstMs": 9.300000011920929,
+     "samples": 2569,
+     "frameSpanMs": 12005.199999988079,
+     "tails": {
+      "samples": 2569,
+      "meanMs": 4.673102374460132,
+      "meanFps": 213.99060407178146,
+      "p50Ms": 4.5,
+      "p95Ms": 5.800000011920929,
+      "p99Ms": 6,
+      "maxMs": 9.300000011920929,
+      "above6_94": 7,
+      "above8_33": 4,
+      "above16_67": 0,
+      "above33_33": 0
+     },
+     "gpuMeanMs": 1.0196084923147875,
+     "fullWindowCap": {
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 4.673 ms is not locked to a known display interval"
+     },
+     "rollingCapHint": false,
+     "frames": 2569,
+     "travelM": 49.13487228337305,
+     "physics": true,
+     "enemies": 7,
+     "recoveries": 0
+    },
+    {
+     "route": "bridge",
+     "run": 1,
+     "fps": 246.32224314025194,
+     "meanMs": 4.059722691915468,
+     "medianMs": 4.0999999940395355,
+     "p95Ms": 5.0999999940395355,
+     "p99Ms": 5.5,
+     "worstMs": 9.099999994039536,
+     "samples": 2957,
+     "frameSpanMs": 12004.59999999404,
+     "tails": {
+      "samples": 2957,
+      "meanMs": 4.059722691915468,
+      "meanFps": 246.32224314025194,
+      "p50Ms": 4.0999999940395355,
+      "p95Ms": 5.0999999940395355,
+      "p99Ms": 5.5,
+      "maxMs": 9.099999994039536,
+      "above6_94": 4,
+      "above8_33": 3,
+      "above16_67": 0,
+      "above33_33": 0
+     },
+     "gpuMeanMs": 1.0439602579476792,
+     "fullWindowCap": {
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 4.060 ms is not locked to a known display interval"
+     },
+     "rollingCapHint": false,
+     "frames": 2957,
+     "travelM": 84.02842553235644,
+     "physics": true,
+     "enemies": 7,
+     "recoveries": 0
+    },
+    {
+     "route": "bridge",
+     "run": 2,
+     "fps": 246.65750343621144,
+     "meanMs": 4.054204660587639,
+     "medianMs": 4.0999999940395355,
+     "p95Ms": 5.0999999940395355,
+     "p99Ms": 5.5,
+     "worstMs": 9.099999994039536,
+     "samples": 2961,
+     "frameSpanMs": 12004.5,
+     "tails": {
+      "samples": 2961,
+      "meanMs": 4.054204660587639,
+      "meanFps": 246.65750343621144,
+      "p50Ms": 4.0999999940395355,
+      "p95Ms": 5.0999999940395355,
+      "p99Ms": 5.5,
+      "maxMs": 9.099999994039536,
+      "above6_94": 6,
+      "above8_33": 3,
+      "above16_67": 0,
+      "above33_33": 0
+     },
+     "gpuMeanMs": 0.9924202775846779,
+     "fullWindowCap": {
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 4.054 ms is not locked to a known display interval"
+     },
+     "rollingCapHint": false,
+     "frames": 2961,
+     "travelM": 84.02618736423622,
+     "physics": true,
+     "enemies": 7,
+     "recoveries": 0
+    },
+    {
+     "route": "bridge",
+     "run": 3,
+     "fps": 247.01951995685369,
+     "meanMs": 4.048263069148008,
+     "medianMs": 4,
+     "p95Ms": 5.0999999940395355,
+     "p99Ms": 5.4000000059604645,
+     "worstMs": 9,
+     "samples": 2965,
+     "frameSpanMs": 12003.100000023842,
+     "tails": {
+      "samples": 2965,
+      "meanMs": 4.048263069148008,
+      "meanFps": 247.01951995685369,
+      "p50Ms": 4,
+      "p95Ms": 5.0999999940395355,
+      "p99Ms": 5.4000000059604645,
+      "maxMs": 9,
+      "above6_94": 4,
+      "above8_33": 3,
+      "above16_67": 0,
+      "above33_33": 0
+     },
+     "gpuMeanMs": 1.011049601030833,
+     "fullWindowCap": {
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 4.048 ms is not locked to a known display interval"
+     },
+     "rollingCapHint": false,
+     "frames": 2965,
+     "travelM": 84.01636296544709,
+     "physics": true,
+     "enemies": 7,
+     "recoveries": 0
+    },
+    {
+     "route": "cathedral",
+     "run": 1,
+     "fps": 248.10464050654002,
+     "meanMs": 4.030557421087979,
+     "medianMs": 4,
+     "p95Ms": 4.800000011920929,
+     "p99Ms": 5.299999982118607,
+     "worstMs": 8.799999982118607,
+     "samples": 2978,
+     "frameSpanMs": 12003.0,
+     "tails": {
+      "samples": 2978,
+      "meanMs": 4.030557421087979,
+      "meanFps": 248.10464050654002,
+      "p50Ms": 4,
+      "p95Ms": 4.800000011920929,
+      "p99Ms": 5.299999982118607,
+      "maxMs": 8.799999982118607,
+      "above6_94": 4,
+      "above8_33": 3,
+      "above16_67": 0,
+      "above33_33": 0
+     },
+     "gpuMeanMs": 1.24637028977937,
+     "fullWindowCap": {
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 4.031 ms is not locked to a known display interval"
+     },
+     "rollingCapHint": false,
+     "frames": 2978,
+     "travelM": 63.88409999990216,
+     "physics": true,
+     "enemies": 7,
+     "recoveries": 0
+    },
+    {
+     "route": "cathedral",
+     "run": 2,
+     "fps": 247.58826371624392,
+     "meanMs": 4.038963660838466,
+     "medianMs": 4,
+     "p95Ms": 5,
+     "p99Ms": 5.300000011920929,
+     "worstMs": 8.900000005960464,
+     "samples": 2972,
+     "frameSpanMs": 12003.800000011921,
+     "tails": {
+      "samples": 2972,
+      "meanMs": 4.038963660838466,
+      "meanFps": 247.58826371624392,
+      "p50Ms": 4,
+      "p95Ms": 5,
+      "p99Ms": 5.300000011920929,
+      "maxMs": 8.900000005960464,
+      "above6_94": 5,
+      "above8_33": 4,
+      "above16_67": 0,
+      "above33_33": 0
+     },
+     "gpuMeanMs": 1.236113459451716,
+     "fullWindowCap": {
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 4.039 ms is not locked to a known display interval"
+     },
+     "rollingCapHint": false,
+     "frames": 2972,
+     "travelM": 63.90440000015076,
+     "physics": true,
+     "enemies": 7,
+     "recoveries": 0
+    },
+    {
+     "route": "cathedral",
+     "run": 3,
+     "fps": 247.57588884063546,
+     "meanMs": 4.039165545089489,
+     "medianMs": 4,
+     "p95Ms": 5,
+     "p99Ms": 5.300000011920929,
+     "worstMs": 8.800000011920929,
+     "samples": 2972,
+     "frameSpanMs": 12004.40000000596,
+     "tails": {
+      "samples": 2972,
+      "meanMs": 4.039165545089489,
+      "meanFps": 247.57588884063546,
+      "p50Ms": 4,
+      "p95Ms": 5,
+      "p99Ms": 5.300000011920929,
+      "maxMs": 8.800000011920929,
+      "above6_94": 4,
+      "above8_33": 2,
+      "above16_67": 0,
+      "above33_33": 0
+     },
+     "gpuMeanMs": 1.2359977947536251,
+     "fullWindowCap": {
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 4.039 ms is not locked to a known display interval"
+     },
+     "rollingCapHint": false,
+     "frames": 2972,
+     "travelM": 63.87430000006816,
+     "physics": true,
+     "enemies": 7,
+     "recoveries": 0
+    },
+    {
+     "route": "forest",
+     "run": 1,
+     "fps": 229.0311565658123,
+     "meanMs": 4.366218181816015,
+     "medianMs": 4.300000011920929,
+     "p95Ms": 5.199999988079071,
+     "p99Ms": 5.600000023841858,
+     "worstMs": 8.800000011920929,
+     "samples": 2750,
+     "frameSpanMs": 12007.09999999404,
+     "tails": {
+      "samples": 2750,
+      "meanMs": 4.366218181816015,
+      "meanFps": 229.0311565658123,
+      "p50Ms": 4.300000011920929,
+      "p95Ms": 5.199999988079071,
+      "p99Ms": 5.600000023841858,
+      "maxMs": 8.800000011920929,
+      "above6_94": 4,
+      "above8_33": 4,
+      "above16_67": 0,
+      "above33_33": 0
+     },
+     "gpuMeanMs": 1.2057061706161936,
+     "fullWindowCap": {
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 4.366 ms is not locked to a known display interval"
+     },
+     "rollingCapHint": false,
+     "frames": 2750,
+     "travelM": 54.6793619882445,
+     "physics": true,
+     "enemies": 7,
+     "recoveries": 0
+    },
+    {
+     "route": "forest",
+     "run": 2,
+     "fps": 234.14658525794513,
+     "meanMs": 4.270828886521494,
+     "medianMs": 4.299999982118607,
+     "p95Ms": 5.199999988079071,
+     "p99Ms": 5.5,
+     "worstMs": 9.099999994039536,
+     "samples": 2811,
+     "frameSpanMs": 12005.300000011921,
+     "tails": {
+      "samples": 2811,
+      "meanMs": 4.270828886521494,
+      "meanFps": 234.14658525794513,
+      "p50Ms": 4.299999982118607,
+      "p95Ms": 5.199999988079071,
+      "p99Ms": 5.5,
+      "maxMs": 9.099999994039536,
+      "above6_94": 5,
+      "above8_33": 4,
+      "above16_67": 0,
+      "above33_33": 0
+     },
+     "gpuMeanMs": 1.2510210962609762,
+     "fullWindowCap": {
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 4.271 ms is not locked to a known display interval"
+     },
+     "rollingCapHint": false,
+     "frames": 2811,
+     "travelM": 54.673069870060715,
+     "physics": true,
+     "enemies": 7,
+     "recoveries": 0
+    },
+    {
+     "route": "forest",
+     "run": 3,
+     "fps": 235.31665708752132,
+     "meanMs": 4.249592920351873,
+     "medianMs": 4.299999982118607,
+     "p95Ms": 5.299999982118607,
+     "p99Ms": 5.5999999940395355,
+     "worstMs": 9.099999994039536,
+     "samples": 2825,
+     "frameSpanMs": 12005.09999999404,
+     "tails": {
+      "samples": 2825,
+      "meanMs": 4.249592920351873,
+      "meanFps": 235.31665708752132,
+      "p50Ms": 4.299999982118607,
+      "p95Ms": 5.299999982118607,
+      "p99Ms": 5.5999999940395355,
+      "maxMs": 9.099999994039536,
+      "above6_94": 5,
+      "above8_33": 3,
+      "above16_67": 0,
+      "above33_33": 0
+     },
+     "gpuMeanMs": 1.2303479686700927,
+     "fullWindowCap": {
+      "vsyncCapped": false,
+      "capHz": null,
+      "capMs": null,
+      "capReason": "mean 4.250 ms is not locked to a known display interval"
+     },
+     "rollingCapHint": false,
+     "frames": 2825,
+     "travelM": 54.75047216150771,
+     "physics": true,
+     "enemies": 7,
+     "recoveries": 0
+    }
+   ]
+  },
+  "storageFallback": {
+   "source": ".cache/character-mmo/m5-moving-fit-2026-10-05/compact-preload-storage.json",
+   "sha256": "0b912cd2bca3f20122314eeb4d51ff9e66b9b6ee4478d4497abc32eb6d7e528b",
+   "passed": true,
+   "cases": [
+    "corrupt record",
+    "denied storage"
+   ]
+  },
+  "nativeHttp": {
+   "source": ".cache/character-mmo/m5-moving-fit-2026-10-05/compact-preload-native-http.json",
+   "sha256": "6ed7671855d62e053e1591cfcfabaebd297ad1ea5e50a3257be3c4342a585577",
+   "checked": 521,
+   "matched": true
+  },
+  "reusedNamedFps": {
+   "source": "same receipt fps.prime-ponytail-hood / fps.prime-ponytail-open",
+   "rows": 30,
+   "reason": "90 identity asset metadata rows are exact against 99acaba; all full shaped and nonbody compact assets exact. No render/physics/camera/scheduler changes. Original compact body change measured separately."
+  },
+  "tests": {
+   "character": [
+    221,
+    221
+   ],
+   "equipment": [
+    113,
+    113
+   ],
+   "compactClipsCoverage": [
+    55,
+    55
+   ],
+   "preloadHeaderFetchIdentity": [
+    23,
+    23
+   ]
+  },
+  "invalidCohort": {
+   "path": ".cache/character-mmo/m5-moving-fit-2026-10-05/startup-compact-preload",
+   "reason": "Telegram inline autoplay resumed; invalid for performance acceptance, all rows retained"
+  },
+  "failedSavedAssertion": {
+   "path": ".cache/character-mmo/m5-moving-fit-2026-10-05/compact-preload-saved-original-stale-assertion.log",
+   "reason": "Obsolete no-index assertion conflicts with intentional presence-only discovery. Replacement retains no-selected-binaries/no-wrong-head/index-once guards and passes8 cases."
+  },
+  "public": null
+ }
 }

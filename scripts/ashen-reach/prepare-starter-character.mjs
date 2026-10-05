@@ -17,6 +17,7 @@ import {
 import { MeshoptDecoder, MeshoptEncoder } from "meshoptimizer";
 import sharp from "sharp";
 import {compileCoverageManifest,writeCoverageCompilation} from '../character-assets/compile-coverage-manifest.mjs';
+import {compactPlayableAnimations} from '../character-assets/compact-playable-animations.mjs';
 await Promise.all([MeshoptEncoder.ready, MeshoptDecoder.ready]);
 const io = new NodeIO()
   .registerExtensions(ALL_EXTENSIONS)
@@ -56,6 +57,13 @@ for (const texture of doc.getRoot().listTextures()) {
     )
     .setMimeType("image/webp");
 }
+// First play needs only the shared playable clips (ASHEN_PLAYABLE_CLIP_NAMES). The existing
+// helper removes the other source clips and their orphaned accessors, asserting unchanged
+// geometry and exact playable curves; rig, skin, morphs and materials are not pruned. The full
+// 57-clip source stays published (equipment/body.glb, human-shape-v1 items.body).
+// https://gltf-transform.dev/modules/functions/functions/prune
+const sourceAnimations = doc.getRoot().listAnimations().map((a) => a.getName());
+const playableClips = await compactPlayableAnimations(doc);
 doc.createExtension(EXTMeshoptCompression).setRequired(true);
 const body = await io.writeBinary(doc);
 const encode = async (id, bytes) => {
@@ -73,7 +81,7 @@ const encode = async (id, bytes) => {
     compression: "gzip",
   };
 };
-manifest.items.body = {...await encode("body", body),meshes:doc.getRoot().listMeshes().map(m=>m.getName())};
+manifest.items.body = {...await encode("body", body),meshes:doc.getRoot().listMeshes().map(m=>m.getName()),detail:'playable',playableClips};
 for (const id of ["wayfarerTunic", "wayfarerTrousers", "wayfarerBoots"])
   manifest.items[id] = await encode(
     id,
@@ -89,9 +97,10 @@ manifest.startup = {
     .getRoot()
     .listAnimations()
     .map((a) => a.getName()),
+  sourceAnimations,
 };
 manifest.provenance = await startupProvenance(
-  ["scripts/ashen-reach/prepare-starter-character.mjs","scripts/character-assets/compile-coverage-manifest.mjs","scripts/character-assets/derive-coverage-geosets.mjs","scripts/character-assets/partition-coverage-mesh.mjs","scripts/character-assets/verify-coverage-partition.mjs","src/ashen-reach/coverage-contract.js","src/ashen-reach/coverage-pilot.js"],
+  ["scripts/ashen-reach/prepare-starter-character.mjs","scripts/character-assets/compile-coverage-manifest.mjs","scripts/character-assets/derive-coverage-geosets.mjs","scripts/character-assets/partition-coverage-mesh.mjs","scripts/character-assets/verify-coverage-partition.mjs","src/ashen-reach/coverage-contract.js","src/ashen-reach/coverage-pilot.js","scripts/character-assets/compact-playable-animations.mjs","src/character/runtime/ashen-playable-motion.js"],
   [
     "public/ashen-reach/equipment/manifest.json",
     ...["body", "wayfarerTunic", "wayfarerTrousers", "wayfarerBoots"].map(

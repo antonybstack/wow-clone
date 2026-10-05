@@ -148,14 +148,15 @@ Pages **6272e037-01ea-4e8c-963e-5a2313564891** publishes the exact locally gated
 product-input fingerprint is
 `9aa3a4e2da09fafe525c212787fd87df0251200eb17401fd1c6ce37c25673274`.
 All public served-byte/cache checks and the versioned Havok binary match.
-Movement, public startup and Telegram acceptance are still pending.
+The subsequent functional production checks pass; public startup remains open.
 Previous production for rollback is
 `b3fdafd8-c343-4147-ae2e-760a155c8d06` / source `4063f49`.
 The sealed upload must publish the exact gated bytes without rebuilding.
 
 Physical iPhone startup/thermal/memory acceptance remains separate from desktop
-emulation and WebKit. Telegram Desktop/native OS fullscreen are unavailable;
-Web A inline/expanded/full-window and direct VE playback can be verified.
+emulation and WebKit. Telegram Desktop is unavailable. Native-sized MP4s are
+delivered as Telegram 859/860; matching returned dimensions and Web A inline,
+expanded and fullscreen playback were reviewed, alongside direct VE playback.
 The authored boot sole silhouette remains a follow-up art choice: the controls
 proved exposed body faces, not a sole penetration defect. Sampling speckles
 remain a documented aliasing limitation. No blanket standoff, new anti-aliasing
@@ -169,7 +170,10 @@ ascent/return, saved identities, mobile, injected depth fallback and Weathered
 WebKit pass. The first public default cache-disabled cohort retains all 20 rows:
 p95 1,018.7 ms, median 956.8 ms, maximum 1,620.9 ms; misses are run 1 (1,620.9),
 run 14 (1,000.9) and run 16 (1,018.7). No validation/runtime failures.
-Original-largest and hooded ponytail public cohorts have not run.
+Header-only source d44ecb7 / Pages 7c31855d-8af9-40e2-8b64-4ed9fe1df818
+also retains all failed public rows: original-largest p95 1,099.3 ms / maximum
+1,107.8 ms / 19 misses, hooded ponytail p95 1,149.7 ms / maximum 2,392 ms /
+20 misses. No source quality or playable boundary was changed.
 
 The first row's GPU completion costs 775 ms; later startup overhead is before
 world loading finishes. Pages currently sends a decoder-only 103. Its automatic
@@ -178,3 +182,45 @@ response headers are under investigation. Chromium's disabled-cache condition
 does not use Early Hints, so an HTTP 103 alone is not proof of improved acceptance.
 See [Pages Early Hints](https://developers.cloudflare.com/pages/configuration/early-hints/)
 and [Chrome Early Hints](https://developer.chrome.com/docs/web-platform/early-hints).
+
+## Follow-up: existing clip compaction and native saved discovery
+
+Default and shaped-original first-play bodies now use the same 22-clip compactor
+as named identities. The default encoded body is 471,314 bytes (was 873,849),
+and shaped original is 588,749 (was 991,365). The full 57-clip source and every
+pre-existing shape/identity binary remain byte-identical. Independent geometry,
+rig, morph, coverage and exact playable-curve checks pass; no new animation
+loader, fitting system or lower-detail body is introduced.
+
+The generated HTML preloads the two small optional saved-appearance module
+graphs and fixed identity index when any existing save key is present. It shares
+pure gate constants with runtime, never decodes saves or accepts asset URLs from
+storage, and retains existing migration/provenance checks and promise reuse.
+See [native modulepreload](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/modulepreload).
+Original saves may discover that small unused index; the live check prohibits
+selected identity binaries and incorrect head rendering instead. Empty/denied
+storage skips discovery; corrupt records retain the ordinary safe fallback.
+
+All 120 isolated local starts pass (six prescribed 20-run cohorts): p95 837.5,
+917.6, 859.2, 984.7, 973.9 and 952.1 ms for default, original-largest, Prime bald,
+hooded ponytail, Weathered and open ponytail respectively; maximum 996.3 ms.
+The first hood cohort was contaminated by Telegram autoplay and is retained
+under `startup-compact-preload`, invalid for performance acceptance. No source
+changed before the isolated cohort. Modules/index load once; eight existing
+world texture preload/fetch pairs remain and are not caused by this change.
+
+Final character 221/221, equipment 113/113, focused clip/coverage 55/55 and
+preload/header/fetch/identity 23/23 pass. All 521 native served artifacts match.
+Five cathedral routes, four support fixtures, 18 height routes, eight saved
+transactions, mobile/depth/WebKit and live corrupt-save/denied-storage fallbacks
+pass with Havok and no recoveries. The adversarial read-only review found no
+current compaction defect; it identified a future compact-proof-row guard gap
+in the standalone coverage verifier. Record that follow-up without claiming it
+has been implemented. Affected original-largest FPS passes all 15 runs at 210.4–248.1 FPS, maximum
+p99 6.2 ms and worst 9.6 ms, without cap hints. Thirty named-character rows are
+reused with exact asset/dependency equivalence. Public cold confirmation still
+owns release acceptance; the hood body remains the measured transfer bottleneck.
+The follow-up seal is `f86cd4d2b3a5e350bea9da306afbdb912adce3c9f3c3e402a0634dde8dc75c7a`;
+522 dist files / 521 served / 288,560,563 bytes. The helper-only correction after
+the initial seal changes no served byte. See `startupFollowup` in the measurement
+receipt for the exact build, gate paths, digests and retained failure dispositions.
