@@ -6,7 +6,7 @@ import {
   acquireTexture, releaseTexture,
 } from "@babylonjs/lite";
 import {clearStartupBuffers} from './startup-fetch.js';
-export {preloadStarterCharacter,preloadHumanShapePack,startupAssetBuffer} from './startup-fetch.js';
+export {preloadStarterCharacter,preloadHumanShapePack,preloadSavedHumanPack,startupAssetBuffer} from './startup-fetch.js';
 export async function upgradeStarterCharacter(engine, scene, container, manifest, shouldAbort = () => false) {
   let disposed = false;
   onSceneDispose(scene, () => {

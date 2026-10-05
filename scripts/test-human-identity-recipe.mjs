@@ -9,15 +9,15 @@ import {createProductionIdentitySession} from '../src/character/creator/producti
 const identity=(id,base=migrateAppearance(defaultAppearance(),candidate))=>validateAppearance({...base,components:HUMAN_IDENTITY_PRESETS.find(p=>p.id===id).components},candidate);
 const storage=()=>{const data=new Map();return {getItem:key=>data.get(key)??null,setItem:(key,value)=>data.set(key,value)};};
 
-test('candidate is opt-in; released v5 and all historical component domains remain closed',()=>{
- assert.equal(APPEARANCE_REGISTRY,APPEARANCE_V5_REGISTRY);
- assert.equal(APPEARANCE_REGISTRY.catalogVersion,'appearance-catalog-v5');
+test('current v6 supports authored identity while historical component domains remain closed',()=>{
+ assert.equal(APPEARANCE_REGISTRY,candidate);
+ assert.equal(APPEARANCE_REGISTRY.catalogVersion,'appearance-catalog-v6');
  assert.equal(candidate.catalogVersion,'appearance-catalog-v6');
  for(const registry of [APPEARANCE_V1_REGISTRY,APPEARANCE_V2_REGISTRY,APPEARANCE_V3_REGISTRY,APPEARANCE_V4_REGISTRY,APPEARANCE_V5_REGISTRY]){
   const old=appearanceFromEquipment({race:'human',loadout:{}},registry);
   assert.throws(()=>validateAppearance({...old,components:HUMAN_IDENTITY_PRESETS[1].components},registry),{code:'UNSUPPORTED_PARAMETER'});
  }
- assert.throws(()=>validateAppearance(identity('prime-bald')),{code:'UNSUPPORTED_CATALOG'});
+ assert.deepEqual(validateAppearance(identity('prime-bald')),identity('prime-bald'));
 });
 
 test('four authored identities are canonical, immutable and distinguishable without URLs',()=>{
@@ -75,7 +75,7 @@ test('v1 through v5 migrate through the bounded decoder without changing existin
  }
  assert.throws(()=>decodeMigratingAppearance(JSON.stringify({...defaultAppearance(),catalogVersion:'appearance-catalog-v99'}),candidate),{code:'UNSUPPORTED_CATALOG'});
  assert.throws(()=>decodeMigratingAppearance(JSON.stringify({...defaultAppearance(),schemaVersion:99}),candidate),{code:'UNSUPPORTED_SCHEMA',path:'$.schemaVersion'});
- assert.throws(()=>decodeMigratingAppearance(encodeAppearance(identity('prime-bald'),candidate)),{code:'UNSUPPORTED_CATALOG'});
+ assert.deepEqual(decodeMigratingAppearance(encodeAppearance(identity('prime-bald'),candidate)),identity('prime-bald'));
  assert.throws(()=>decodeMigratingAppearance(' '.repeat(16385),candidate),{code:'TOO_LARGE'});
 });
 
@@ -116,13 +116,13 @@ test('queued identity changes, failed loads and failed undo leave history consis
  assert.throws(()=>session.set('old-ponytail'));await session.set('prime-bald');assert.equal(session.selected,'prime-bald');
 });
 
-test('identity history expires when changing race and production session cannot expose the candidate',async()=>{
+test('identity history expires when changing race and historical session cannot expose identities',async()=>{
  let actual=identity('starter');
  const session=createProductionIdentitySession({getActorGeneration:()=>0,getAppearance:()=>actual,registry:candidate,applyIdentity:async components=>{actual=validateAppearance({...actual,components},candidate);}});
  await session.set('prime-bald');actual=migrateAppearance(defaultAppearance('orc'),candidate);
  assert.equal(session.canUndo,false);assert.equal(session.selected,null);
  await assert.rejects(session.set('prime-bald'),{name:'AbortError'});await assert.rejects(session.undo(),{name:'AbortError'});assert.equal(actual.race,'orc');
- const released=createProductionIdentitySession({getActorGeneration:()=>0,getAppearance:()=>defaultAppearance(),applyIdentity:async()=>{throw Error('must not stage');}});
+ const released=createProductionIdentitySession({getActorGeneration:()=>0,getAppearance:()=>appearanceFromEquipment({race:'human',loadout:{}},APPEARANCE_V5_REGISTRY),registry:APPEARANCE_V5_REGISTRY,applyIdentity:async()=>{throw Error('must not stage');}});
  await assert.rejects(released.set('prime-bald'),{code:'UNSUPPORTED_PARAMETER'});
  assert.deepEqual(await released.reset(),released.state);
 });
@@ -161,10 +161,13 @@ test('in-flight undo checks owner before commit and cannot re-arm history on a r
  await assert.rejects(pending,{name:'AbortError'});assert.equal(encodeAppearance(actual,candidate),before);assert.equal(session.canUndo,false);
 });
 
-test('unreleased identity storage and presence recipes are refused without destroying the saved bytes',async()=>{
- const recipe=identity('prime-ponytail'),raw=encodeAppearance(recipe,candidate),s=storage();s.setItem(APPEARANCE_STORAGE_KEY,raw);
- const loaded=loadAppearance({storage:s});assert.equal(loaded.restored,false);assert.match(loaded.warning,/UNSUPPORTED_CATALOG/);assert.equal(s.getItem(APPEARANCE_STORAGE_KEY),raw);
- const {validatePresenceAppearance}=await import('../src/multiplayer/protocol.js');
- assert.throws(()=>validatePresenceAppearance(recipe),{code:'UNSUPPORTED_CATALOG'});
- assert.throws(()=>validatePresenceAppearance({...defaultAppearance(),components:recipe.components}),{code:'UNSUPPORTED_PARAMETER'});
+test('selected identity persists locally while unpublished shared-region identity is refused',async()=>{
+ for(const preset of HUMAN_IDENTITY_PRESETS){
+  const recipe=identity(preset.id),raw=encodeAppearance(recipe),s=storage();s.setItem(APPEARANCE_STORAGE_KEY,raw);
+  const loaded=loadAppearance({storage:s});assert(loaded.restored);assert.equal(loaded.warning,null);
+  assert.deepEqual(loaded.appearance,recipe);assert.equal(s.getItem(APPEARANCE_STORAGE_KEY),raw);
+  const {validatePresenceAppearance}=await import('../src/multiplayer/protocol.js');
+  if(preset.id==='starter')assert.deepEqual(validatePresenceAppearance(recipe),recipe);
+  else assert.throws(()=>validatePresenceAppearance(recipe),/no published head\/hair identity fit/);
+ }
 });

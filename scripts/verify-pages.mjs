@@ -6,7 +6,7 @@ import crypto from 'node:crypto';
 const base=process.env.ASHEN_RELEASE_URL||'https://play.sparkify.dev',destination=process.argv[2];
 if(!destination)throw Error('Usage: node scripts/verify-pages.mjs <report.json>');
 async function walk(dir){const files=[];for(const e of await fs.readdir(dir,{withFileTypes:true})){const p=path.join(dir,e.name);if(e.isDirectory())files.push(...await walk(p));else files.push(p);}return files;}
-const files=(await walk('dist')).filter(p=>p.endsWith('.js')||(p.includes('/ashen-reach/')&&/\.(png|jpe?g|webp)$/.test(p))||p.includes('/tex/')||p.includes('/startup/')||p.includes('/human-shape-v1/')||p.endsWith('/favicon.png')||/woodland|HavokPhysics|index.html|ashen-reach.html/.test(p));
+const files=(await walk('dist')).filter(p=>p.endsWith('.js')||(p.includes('/ashen-reach/')&&/\.(png|jpe?g|webp)$/.test(p))||p.includes('/tex/')||p.includes('/startup/')||p.includes('/human-shape-v1/')||p.includes('/human-identity-v1/')||(p.includes('/remote-pieces/v1/')&&p.endsWith('.json'))||p.endsWith('/favicon.png')||/woodland|HavokPhysics|index.html|ashen-reach.html/.test(p));
 const results=[];let cursor=0;
 // Match browser negotiation so a stale compressed preview cannot pass through
 // a fresh uncompressed response. Fetch decodes HTTP content encodings for us.

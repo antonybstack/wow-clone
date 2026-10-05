@@ -23,16 +23,19 @@ change any piece at any time, and have all of that persist and reload exactly. E
 
 Two things gate it today, and both are measured rather than suspected:
 
-* **Identity has a connected source audition; its first face art was rejected.**
+* **Saved identity works locally; compact startup and release remain open.**
   The user found the October 4 head disproportionate and jarring. The
   [face correction](results/m5-face-refactor-2026-10-04.md) is now implemented and
-  delivered as a DEV audition; saved production identity remains the next task.
+  delivered as an approved source audition. The later
+  [saved integration](results/m5-saved-identity-2026-10-04.md) activates four authored
+  choices in the normal local Armory, preserving the approved face direction.
   The October 1 welded CC0 heads
   supersede the separate-head 44° normal break and fused-hair collapse experiments.
   The [October 4 checkpoint](results/m5-connected-identity-2026-10-04.md) reuses that source,
   adds eye morphs and current torso/eye/hair coverage, corrects the hood opening and
-  removes discarded curve/rig dependencies. The named examples are playable DEV
-  auditions. Saved identity, compact first-play budgets and release acceptance remain open.
+  removes discarded curve/rig dependencies. The named examples now save/reload on
+  the ordinary local route. Three lossless selected-startup pilots miss one second;
+  compact first-play budgets, complete fit/device checks and release remain open.
 * **Armor swapping works but is under-evidenced.** The catalogue now enumerates **6,912**
   combinations, 6,048 valid, with zero validator disagreements — the "768" carried in this plan
   dated from an 8-item catalogue and is corrected. Per-slot hot swapping under motion
@@ -60,7 +63,7 @@ user on 2026-09-30, and the released/candidate/unaccepted boundary catalogued in
 | 2 | Correct crowd rendering in the region | Dressed actors animate and keep identity through detail changes. | 1 | **Delivered** |
 | 3 | Bounded appearance streaming and memory | Outfit changes converge without stalls or growth. | 1–2 | **Delivered** |
 | 4 | Authoritative multiplayer presence | Two to eight clients see one another move and change appearance. | 1–3 | **Delivered locally; public hosting parked** |
-| 5 | Modular Human identity: head, hair, adult age | The young/long-haired and older/bald examples are real saved characters. | 1 | Connected source audition; saved identity/startup gates open |
+| 5 | Modular Human identity: head, hair, adult age | The young/long-haired and older/bald examples are real saved characters. | 1 | Local saved identity delivered; compact startup/full acceptance open |
 | 6 | **Armor swapping as a verified capability** | Any piece in any slot can be changed at any moment, on any supported body, without a visual or fit defect. | 1, 3 | Open — evidence |
 | 7 | Colour and material variation | A player can recolour pieces within an authored, published palette. | 6 | Delivered: bounded equipment colours; phone acceptance stays in 10 |
 | 8 | Equipment authoring factory | New pieces reach the catalogue through a repeatable publishing pipeline. | 6; hair/headwear needs 5 | Partly built |
@@ -191,6 +194,13 @@ Test joins/leaves, out-of-order input, reconnect, stale appearance revisions and
 **Exit:** two to eight players can enter, traverse and see the same supported appearances and action timing; authoritative validation rejects impossible movement/appearance without corrupting state; reconnect does not duplicate actors. Record server tick tails, per-client bytes, correction distances and device frame cost. No combat/economy authority claim yet.
 
 ## 5 — Modular Human identity: head, hair and adult age
+
+**Current checkpoint:** [saved integration](results/m5-saved-identity-2026-10-04.md)
+delivers task 2 locally and the functional portion of tasks 3/5. The ordinary Armory
+and four saved first-play identities work without a developer query. The lossless
+selected-startup pilot misses one second in all three runs. Task 3's compact
+payload/cohorts, task 4's full fit matrix, touch/WebKit and production release
+remain open; proceed through those gates before calling M5 complete.
 
 **Dependency:** milestone 1. The [connected identity checkpoint](results/m5-connected-identity-2026-10-04.md)
 replaces the former separate-head/neck work. Preserve its source, exact 57 curves and

@@ -4,7 +4,7 @@
  * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/loader-gltf/gltf-animation.ts
  */
 import {mat4} from 'gl-matrix';
-export function normalizeHumanBind(root, base, meshName='HumanV1Body', baseMeshName='HumanV1Body') {
+export function normalizeHumanBind(root, base, meshName='HumanV1Body', baseMeshName='HumanV1Body', {exactReference=false}={}) {
 const skin = root.listSkins()[0], baseSkin = base.listSkins()[0];
 if (!skin || !baseSkin || skin.listJoints().length !== 65 || baseSkin.listJoints().length !== 65) {
     throw Error('Old/bald and active Human must share a 65-joint skin');
@@ -25,7 +25,7 @@ for (let old = 0; old < from.length; old++) {
         if (Math.abs(value - expected) / Math.max(1, Math.abs(expected)) > .002) {
             throw Error(`Old/bald inverse bind changed at ${from[old].getName()}[${k}]`);
         }
-        newBind[target * 16 + k] = value;
+        newBind[target * 16 + k] = exactReference ? expected : value;
     }
 }
 // The streamed equipment path borrows the live body's palette by joint *index*.
@@ -52,6 +52,21 @@ for (const joint of to) {
     skin.addJoint(matching);
 }
 skin.getInverseBindMatrices().setArray(newBind);
+if(exactReference){
+    // A tolerated Blender round trip is suitable for an audition, but published
+    // clothing borrows this palette by index. Copy native reference TRS/IBMs,
+    // retaining hierarchy, geometry and every animation accessor unchanged.
+    // https://gltf-transform.dev/modules/core/classes/Node
+    const reference=new Map(base.listNodes().map(node=>[node.getName(),node]));
+    const rig=new Set();
+    for(const joint of skin.listJoints())for(let node=joint;node;node=node.getParentNode())rig.add(node);
+    for(const node of rig){
+        const ref=reference.get(node.getName());
+        if(!ref||node.getParentNode()?.getName()!==ref.getParentNode()?.getName())
+            throw Error(`Canonical Human rest ancestry differs at ${node.getName()}`);
+        node.setTranslation(ref.getTranslation()).setRotation(ref.getRotation()).setScale(ref.getScale());
+    }
+}
 // Blender also nests exported skinned meshes under the armature's 0.01 scale
 // node. The active Human keeps its mesh at the scene root and only the joints
 // under that node. Lite computes inverse(meshWorld) * jointWorld * IBM for each

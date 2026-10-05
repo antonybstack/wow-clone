@@ -75,6 +75,8 @@ export function presenceAppearance(fit = "wayfarer", height = 1, build = 0) {
  */
 export function validatePresenceAppearance(recipe) {
   const accepted = validateAppearance(recipe);
+  if(Object.keys(accepted.components).length)
+    throw Error('Shared region has no published head/hair identity fit yet. Use the original adventurer or play solo.');
   if (PRESENCE_PIECE_CATALOGUE.catalogVersion !== APPEARANCE_CATALOG_VERSION)
     throw Error("Published piece catalogue is stale against the appearance catalogue");
   const supported = PRESENCE_PIECE_CATALOGUE.races[accepted.race];

@@ -8,6 +8,9 @@ import assert from 'node:assert/strict';
 import {chromium} from 'playwright';
 import {browserOwnership} from '../lib/browser-ownership.mjs';
 import {captureSurface,appendFrame,writeCaptureManifest} from '../lib/capture-manifest.mjs';
+import {defaultAppearance} from '../../src/character/appearance/store.js';
+import {HUMAN_IDENTITY_PRESETS} from '../../src/character/appearance/human-identity.js';
+const saved=process.env.ASHEN_IDENTITY_SAVED==='1';
 const port=process.env.ASHEN_CDP_PORT,url=process.env.ASHEN_TEST_URL;
 assert(port&&url,'Require an audited owned browser');
 const out=process.env.ASHEN_IDENTITY_MOTION_OUT||'ve-capture/character-mmo/m5-face-2026-10-04';
@@ -19,14 +22,17 @@ try{
   const dir=path.join(out,label);await fs.mkdir(path.join(dir,'frames'),{recursive:true});
   const context=await browser.newContext({viewport:{width:1280,height:720},deviceScaleFactor:1}),page=await context.newPage();
   const errors=[],timeline=[],writes=[];let cdp,manifest,recording=false;
-  const target=new URL(url);target.searchParams.set('humanIdentity',label);
+  const target=new URL(url),preset=HUMAN_IDENTITY_PRESETS.find(p=>p.sourceLabel===label);
+  if(saved){const base=defaultAppearance();await context.addInitScript(recipe=>localStorage.setItem('ashen.appearance.v2',JSON.stringify(recipe)),{...base,components:preset.components,shape:{...base.shape,build,height}});}
+  else target.searchParams.set('humanIdentity',label);
   const ownership=await browserOwnership(browser,{cdpPort:port,url:target.href,purpose:`Connected identity ${label} live motion`,renderingClients:1});
   await fs.writeFile(`${dir}/ownership.json`,JSON.stringify(ownership,null,2));
   page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
   const mark=async name=>timeline.push({name,timestamp:Date.now()/1000,state:await page.evaluate(()=>({identity:ASHEN.identityReview,appearance:ASHEN.getAppearance(),gear:ASHEN.equipment.getState(),hair:ASHEN.scene.meshes.find(m=>m.name==='HumanPonytail01')?.visible,physics:ASHEN.player.getDebugState().usingPhysics,recoveries:ASHEN.player.getDebugState().recoveries,gpuErrors:ASHEN.gpu.errors.slice()}))});
   try{
    await page.goto(target.href);await page.waitForFunction(()=>globalThis.ASHEN?.ready,null,{timeout:90000});
-   assert.equal(await page.evaluate(()=>ASHEN.identityReview.sourceSha256),pins.assets.find(a=>a.label===label).sha256);
+   if(saved)assert.deepEqual(await page.evaluate(()=>ASHEN.getAppearance().components),preset.components);
+   else assert.equal(await page.evaluate(()=>ASHEN.identityReview.sourceSha256),pins.assets.find(a=>a.label===label).sha256);
    await page.evaluate(async s=>{ASHEN.dev.god=true;await ASHEN.creator.set('build',s.build);await ASHEN.creator.set('height',s.height);await ASHEN.equipment.equipPreset('wayfarer');ASHEN.armory.open();ASHEN.body.inspection.select('idle');ASHEN.body.inspection.setPaused(false);ASHEN.armory.setFocus({height:1.5*s.height,radius:2.1*s.height,beta:Math.PI/2});}, {build,height});
    await page.check('#armory [data-light]');
    manifest={...await captureSurface(page),frames:[],timeline};
@@ -57,6 +63,13 @@ try{
    for(const motion of ['walk','run','jump','land','fire','lava','pulse','carry']){
     await page.selectOption('#armory [data-motion]',motion);await mark(`Native inspection ${motion}`);await page.waitForTimeout(900);
    }
+   if(saved){
+    await page.getByLabel('Face and hair',{exact:true}).selectOption(label==='old'?'prime-bald':'weathered-bald');
+    await page.evaluate(()=>ASHEN.creator.settled());await page.waitForFunction(id=>ASHEN.creator.identity.selected===id,label==='old'?'prime-bald':'weathered-bald');
+    await mark('Authored identity changed through Armory');await page.waitForTimeout(1100);
+    await page.getByRole('button',{name:'Undo identity',exact:true}).click();await page.waitForFunction(id=>ASHEN.creator.identity.selected===id,preset.id);
+    await mark('Identity undo preserves outfit and body');await page.waitForTimeout(1100);
+   }
    await page.evaluate(()=>{ASHEN.armory.close();ASHEN.setView('play');ASHEN.rig.distance=ASHEN.rig.distanceTarget=2.5;});
    await mark('Normal grounded controls');await page.keyboard.down('KeyW');await page.waitForTimeout(1300);await page.keyboard.press('Space');await page.waitForTimeout(900);await page.keyboard.up('KeyW');
    await page.keyboard.press('Digit1');await page.waitForTimeout(1400);await page.keyboard.press('KeyT');await page.waitForTimeout(900);await mark('Walk jump cast and attack complete');
@@ -65,7 +78,7 @@ try{
    if(label==='young-hair'){assert.equal(timeline[0].state.hair,true);assert.equal(timeline.find(t=>t.name.startsWith('Hood face')).state.hair,false);assert.equal(timeline.find(t=>t.name.startsWith('Hood removed')).state.hair,true);}
    await cdp.send('Page.stopScreencast');recording=false;await Promise.all(writes);
    await writeCaptureManifest(dir,manifest,await captureSurface(page));
-   await fs.writeFile(`${dir}/report.json`,JSON.stringify({label,build,height,scope:'DEV source audition; no saved identity or release acceptance',timeline,errors,passed:true},null,2));
+   await fs.writeFile(`${dir}/report.json`,JSON.stringify({label,build,height,scope:saved?'Ordinary route saved identities and live Armory transactions; separate release/performance gates':'DEV source audition; no saved identity or release acceptance',timeline,errors,passed:true},null,2));
    console.log(JSON.stringify({label,frames:manifest.frames.length,elapsedSeconds:manifest.elapsedSeconds}));
   }finally{
    recording=false;if(cdp)await cdp.send('Page.stopScreencast').catch(()=>{});await Promise.all(writes);await context.close();

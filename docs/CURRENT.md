@@ -8,17 +8,24 @@ native goal, beginning with M5 saved Human identity. Continue through verificati
 delivery and commit/push without another “proceed.” Respect explicit stop/pause
 requests and record real dependencies. [Continuation mechanism and scope](autonomous-continuation.md).
 
-**M5 saved-identity implementation checkpoint:** the opt-in v6 recipe and identity-only
-undo session are implemented; production remains v5 and no new visible controls are
-enabled. Fourteen new tests cover authored combinations, v1–v5 migration, failure,
-history and actor retirement. A valid Grok finding about stale choices across a
-race round trip is corrected with a mandatory owner generation and cancellation
-guard; the live transaction must use it before commit. Valid v4 saved records now
-restore through the storage decoder. Character 180/180, equipment 112/112,
-startup-prefetch 6/6 and build pass. Next: immutable
-selected packs and the existing actor transaction, then cold/live/release gates.
-Follow [the granular implementation plan](plans/character-mmo/m5-saved-identity-2026-10-04.md);
-M5 task 2 remains open until the saved playable integration is delivered.
+**M5 saved-identity checkpoint, 2026-10-04:** local v6 now publishes the corrected
+three authored bodies and fitted hoods, loads the saved identity before play, and
+offers four Face and hair choices with independent undo in the normal Armory.
+Exact canonical 65-joint bind, accepted geometry and 57 source curves are guarded.
+Eight actual-route cases pass on both development and the compressed build,
+including race return, hood/hair restoration, failed downloads and cancellation.
+Character **191/191**, equipment **112/112**, presence **5/5**, prefetch **6/6**,
+selected-startup **3/3** and build pass. Reviewed motion is Telegram **852** /
+[VE](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m5-saved-identity-2026-10-04.mp4).
+The paired largest-outfit repeat measures **208–242 FPS**, with **0.9–4.3%** extra
+mean frame cost; the slower first cohort and near-240 Hz pacing flags remain in
+the evidence. The three cold selected pilots take **2503 / 1198 / 1149 ms**,
+**0/3 within one second**. **M5 remains open and unreleased.** Next: reduce the
+selected startup payload through the existing compact native pipeline, then finish
+20-run cohorts, full fit/device checks and release gates. Production remains v5 /
+M7 `4063f49`; local v6 does not imply a deployment.
+[Checkpoint result and exact limits](plans/character-mmo/results/m5-saved-identity-2026-10-04.md)
+and [granular continuation plan](plans/character-mmo/m5-saved-identity-2026-10-04.md).
 
 ## Immediate focus: character customization and armor swapping
 
@@ -28,7 +35,7 @@ while integrating saved Human identity. The earlier disproportionate audition
 remains superseded. Production identity, startup and device acceptance still need
 their own evidence. [Face correction](plans/character-mmo/results/m5-face-refactor-2026-10-04.md).
 
-**Current handoff checkpoint:** the [Human face correction](plans/character-mmo/results/m5-face-refactor-2026-10-04.md)
+**Approved source checkpoint (preceding the saved integration above):** the [Human face correction](plans/character-mmo/results/m5-face-refactor-2026-10-04.md)
 replaces the rejected October 4 audition. Native anatomical scaling and independent
 eye landmarks correct its oversized skull and age offset; jaw/lips, eye detail,
 fitted brows, the welded neck and the current hood are refactored. The exact
@@ -44,8 +51,9 @@ retained in the result. Reviewed live motion is Telegram **851** /
 VE play/seek and Telegram Web inline/media-viewer proportions pass. Fullscreen
 activation and Telegram Desktop remain unverified. Owned renderers/harness/media
 are stopped. The user has positively reviewed the corrected face direction;
-production identity acceptance remains open. Saved identity and compact selected startup
-are next in [M5 task 2](plans/character-mmo/next-ten.md#5--modular-human-identity-head-hair-and-adult-age).
+production identity acceptance remains open. Saved integration is implemented locally;
+compact selected startup and the remaining gates are next in
+[M5 task 3](plans/character-mmo/next-ten.md#5--modular-human-identity-head-hair-and-adult-age).
 The latest production release remains M7 source `4063f49` / Pages
 `b3fdafd8-c343-4147-ae2e-760a155c8d06`, described in
 [the saved-colours result](plans/character-mmo/results/m7-saved-colours-2026-10-04.md).

@@ -96,7 +96,7 @@ test("discovery and seat versions reject old, missing and mismatched catalogues"
   // The rejected versions have to move with the current catalogue: v5 is now what the published
   // set carries, so the "future catalogue" case is v6 and v4 joins the superseded ones.
   for (const mismatch of [{catalogVersion:undefined}, {catalogVersion:'appearance-catalog-v3'},
-    {catalogVersion:'appearance-catalog-v4'}, {catalogVersion:'appearance-catalog-v6'},
+    {catalogVersion:'appearance-catalog-v4'}, {catalogVersion:'appearance-catalog-v5'},
     {protocol:'old'}, {collisionHash:'other'}])
     assert.equal(matchesPresenceVersion({...value, ...mismatch}, 'region'), false);
 });

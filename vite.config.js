@@ -1,10 +1,12 @@
 import {verifyProductionHumanShapes} from './scripts/character-assets/verify-production-human-shapes.mjs';
+import {verifyProductionHumanIdentities} from './scripts/character-assets/verify-production-human-identities.mjs';
 import {verifyStartupAssets} from './scripts/ashen-reach/startup-provenance.mjs';
 import { defineConfig } from "vite";
 import {readFileSync,createReadStream,statSync} from 'node:fs';
 
 const pages = process.env.ASHEN_PAGES === "1";
 const humanShapeManifest=JSON.parse(readFileSync('public/ashen-reach/human-shape-v1/manifest.json','utf8'));
+const humanIdentityManifest=JSON.parse(readFileSync('public/ashen-reach/human-identity-v1/manifest.json','utf8'));
 const starterBuild=process.env.VITE_FAST_START!=='0';
 const starterWorldManifest=starterBuild?JSON.parse(readFileSync('public/ashen-reach/startup/starter/manifest.json','utf8')):null;
 const starterCharacterManifest=starterBuild?JSON.parse(readFileSync('public/ashen-reach/startup/character/manifest.json','utf8')):null;
@@ -89,6 +91,7 @@ function coveragePilotAsset(req,res,next){
 export default defineConfig({
   define:{
     'import.meta.env.VITE_HUMAN_SHAPE_SOURCE':JSON.stringify(process.env.NODE_ENV==='production'?humanShapeManifest.provenance.sha256:''),
+    'import.meta.env.VITE_HUMAN_IDENTITY_SOURCE':JSON.stringify(process.env.NODE_ENV==='production'?humanIdentityManifest.provenance.sha256:''),
     'import.meta.env.VITE_FAST_START':JSON.stringify(starterBuild?'1':'0'),
     // Immutable bundles reject a newer deployment's mutable manifest instead
     // of mixing old worker generation with new prepared geometry/materials.
@@ -138,7 +141,10 @@ export default defineConfig({
   plugins: [
     // Local audited pilot only; no preview middleware or public asset publication.
     {name:'dev-coverage-pilot',configureServer(server){server.middlewares.use(coveragePilotAsset);}},
-    {name: "verify-prepared-startup", async buildStart(){if(starterBuild)await verifyStartupAssets();await verifyProductionHumanShapes();}},
+    // Prepared inputs are allowed to change while authoring. Enforce sealed
+    // descriptors on release builds, without terminating dev during regeneration.
+    // https://vite.dev/guide/api-plugin.html#conditional-application
+    {name: "verify-prepared-startup", apply:'build', async buildStart(){if(starterBuild)await verifyStartupAssets();await verifyProductionHumanShapes();await verifyProductionHumanIdentities();}},
     {
       // Separate bundler entry: Vite merges two ordinary HTML module scripts into
       // one renderer entry, which defeats starting saved-appearance fetches early.

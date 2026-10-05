@@ -9,7 +9,7 @@ import {isDyeId} from '../../ashen-reach/dye-palette.js';
 import {IDENTITY_CATALOG_VERSION,findHumanIdentityPreset} from './human-identity.js';
 
 export const APPEARANCE_SCHEMA_VERSION=2;
-export const APPEARANCE_CATALOG_VERSION='appearance-catalog-v5';
+export const APPEARANCE_CATALOG_VERSION='appearance-catalog-v6';
 export const MAX_APPEARANCE_BYTES=16*1024;
 const TOP_FIELDS=['schemaVersion','catalogVersion','race','fitFamily','fit','shape','components','dyes','equipment'];
 const FIT_FIELDS=['rig','bind','shape'];
@@ -64,9 +64,8 @@ export const APPEARANCE_V3_REGISTRY=Object.freeze({...APPEARANCE_V5_REGISTRY,cat
  * v4 recipe is read and upgraded instead of refused -- the same shape as the v1-v2-v3 chain. */
 export const APPEARANCE_V4_REGISTRY=Object.freeze({...APPEARANCE_V5_REGISTRY,catalogVersion:'appearance-catalog-v4',
   profiles:APPEARANCE_V3_REGISTRY.profiles});
-/** Candidate contract only. The production registry remains v5 until selected
- * startup, live transaction/fit and production acceptance pass. Use this registry
- * explicitly when preparing or testing the M5 pack; no capability flag is flipped.
+/** Authored Human identities share the released clothing bind and shape domain.
+ * Historical registries remain independently closed to head/hair identifiers.
  */
 export const APPEARANCE_IDENTITY_REGISTRY=Object.freeze({...APPEARANCE_V5_REGISTRY,
  catalogVersion:IDENTITY_CATALOG_VERSION,
@@ -74,10 +73,9 @@ export const APPEARANCE_IDENTITY_REGISTRY=Object.freeze({...APPEARANCE_V5_REGIST
   capabilities:Object.freeze({...p.capabilities,components:race==='human'?Object.freeze(['head','hair']):Object.freeze([])}),
  })]))),
 });
-/** Activating the candidate later changes this selection and the current version,
- * not the historical profiles above. v1–v5 never inherit identity capabilities.
+/** v1–v5 never inherit identity capabilities when the current catalogue advances.
  */
-export const APPEARANCE_REGISTRY=APPEARANCE_V5_REGISTRY;
+export const APPEARANCE_REGISTRY=APPEARANCE_IDENTITY_REGISTRY;
 
 export class AppearanceError extends Error {
   constructor(code,path,message){super(`${message} at ${path}`);this.name='AppearanceError';this.code=code;this.path=path;}

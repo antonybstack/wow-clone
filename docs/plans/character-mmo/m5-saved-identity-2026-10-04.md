@@ -6,8 +6,9 @@ currently remains v5 / M7 source `4063f49`. Physical-phone acceptance stays in M
 
 ## Checkpoint A — bounded recipe and history
 
-Implemented candidate `appearance-catalog-v6`, explicitly selected through
-`APPEARANCE_IDENTITY_REGISTRY`. Production still uses the frozen v5 registry.
+Implemented `appearance-catalog-v6`, now activated in the local integration.
+The public production deployment still uses v5; its decoder profile stays frozen
+independently from v6.
 Choices are Original adventurer, Prime bald, Prime ponytail, Weathered bald.
 The original starter normalizes to `components:{}`; other choices carry exact
 `head` and `hair` identifiers. Prime and Weathered are distinct authored head
@@ -25,16 +26,22 @@ no undo entry; failed undo retains its entry. Equipment/dye/shape changes surviv
 identity undo. Actor replacement expires history and refuses pending jobs, even
 after a race round trip back to Human. The session requires an owner generation;
 staging receives an AbortSignal and `throwIfStale`, which the transaction must
-check before commit. Dispose the session with the editor. Candidate sessions require an
-explicit registry until the playable integration is accepted.
+check before commit. Dispose the session with the editor. The ordinary local route
+now uses this session and checks ownership at its native commit boundary.
 
-Verification: fourteen new contract/history tests; full character suite **180/180**,
-equipment **112/112**, startup-prefetch **6/6**, build pass. This checkpoint does
-not activate a visible control or constitute M5 delivery.
+Original contract checkpoint verification: fourteen contract/history tests;
+character **180/180**, equipment **112/112**, startup-prefetch **6/6**, build pass.
+The later local integration below adds the visible control; M5 release remains open.
 [Independent Grok review and correction](../../reviews/character-mmo/m5-identity-contract-2026-10-04.md);
 [verification receipt](../../baselines/character-mmo/m5/saved-identity-2026-10-04/contract-checkpoint.json).
 
 ## Checkpoint B — immutable selected packs
+
+**Implemented:** three sealed connected-body packs, canonical bind/rest copying,
+unchanged accepted geometry/source curves, embedded compact textures and full-map
+upgrades, shared clothing and default starter path. The same runtime coverage adapter
+guards publication and loading. Eight sealed-pack tests include deliberate defects.
+Do not change the source acceptance pins to change compact detail.
 
 1. Prepare separate candidate outputs from the pinned corrected sources and fitted
    hood, using the existing source reproduction and native glTF pipeline. Never
@@ -63,12 +70,20 @@ not activate a visible control or constitute M5 delivery.
    not invent an animation or skinning loader, alter elapsed animation time, or
    simplify the approved full-detail source to manufacture the performance gate.
 
-The current prepared body encoded sizes are 991,320 bytes released,
-1,246,960 Weathered bald, 1,241,709 Prime bald, 1,541,533 Prime ponytail. Their
+The current lossless body encoded sizes are 991,320 bytes released,
+1,246,743 Weathered bald, 1,241,379 Prime bald, 1,541,329 Prime ponytail. Their
 animation accessors account for 1,248,560 decoded bytes per corrected source;
 this census is not proof of the cold-start bottleneck or an acceptance result.
 
 ## Checkpoint C — one actor transaction and usable controls
+
+**Implemented locally:** all five integration steps below. The publisher regenerates
+v6 remote metadata through its original native bounds sweep (142,120,095 points);
+all 45 piece binaries remain unchanged. Nonstarter heads remain refused by the
+parked shared-region protocol, which has no published head fit. Actual controls,
+save/first-frame identity, race return, failed source loads, retry and disposal pass.
+The valid Grok coverage finding was fixed before these checks. See
+[the checkpoint result](results/m5-saved-identity-2026-10-04.md).
 
 1. Extend the existing `actorRequest` / `body.stageSource` transaction. Stage the
    selected body plus its equipment while the current actor remains visible.
@@ -101,6 +116,25 @@ this census is not proof of the cold-start bottleneck or an acceptance result.
    metadata through the existing publisher and keep unchanged bytes unchanged.
 
 ## Checkpoint D — hair and acceptance, then release
+
+**Next actionable work:** the three 50 Mbit/s / 40 ms compressed-build cold pilots
+take 2502.6, 1198.0 and 1149.4 ms. They retain the selected face and supported
+silhouette; none meets one second. Keep the first-use GPU tail distinct from the
+repeatable payload overrun. Inspect bytes/decode/upload marks, begin with the
+head-specific hood using the existing glTF Transform/meshoptimizer compact policy,
+then measure whether protected face geometry and hair detail need a bounded compact
+representation. Keep full accepted sources lossless. If the compact body differs,
+promote its full body and gear through the existing native transaction after play,
+with actor/shape/gear/dye/phase guards and measured staging cost. Do not simply replace
+the identity with a starter or add a second skinning/animation system. Use small
+pilot runs to choose a representation, then run the complete 20-run cohorts below.
+
+Already reviewed: saved source motion at neutral/short-stout/tall-slender, fitted
+hood hiding/restoring separate hair, actual choice/undo, normal walk/jump/cast/attack
+(Telegram 852). Largest hooded ponytail paired route repeat: 208–242 FPS;
+0.9–4.3% additional mean frame cost. The slower first cohort remains evidence;
+near-240 Hz flags limit ceiling claims. This does not close unhooded throughput,
+Weathered/default cohorts, all outfit combinations, touch/WebKit or production gates.
 
 Verify ponytail tie/material policy; hood hide/restore; shoulders/cape clearance;
 body endpoints; every current outfit plus representative mixed combinations;

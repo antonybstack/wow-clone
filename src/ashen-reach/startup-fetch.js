@@ -62,6 +62,11 @@ export async function preloadHumanShapePack(loadout = {}, {compact = false} = {}
   for(const id of ids)startupAssetBuffer(selected.items[id]).catch(() => {});
   return selected;
 }
+export function preloadSavedHumanPack(appearance,options={}){
+ return appearance.components?.head
+  ?import('./human-identity-assets.js').then(api=>api.preloadHumanIdentityPack(appearance.components,appearance.equipment,options))
+  :preloadHumanShapePack(appearance.equipment,options);
+}
 async function loadHumanShapeManifest() {
   const response = await fetch('/ashen-reach/human-shape-v1/manifest.json');
   if (!response.ok) throw Error(`Human body family: HTTP ${response.status}`);

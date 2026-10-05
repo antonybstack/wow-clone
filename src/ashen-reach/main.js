@@ -8,7 +8,7 @@ import {createRenderLoop} from './render-loop.js';
 import {createObjective} from './objective.js';
 import {createStarterWorld,preloadStarterWorld} from './starter-world.js';
 import {createStreamedEquipment} from './equipment-stream.js';
-import {preloadStarterCharacter,preloadHumanShapePack,startupAssetBuffer,upgradeStarterCharacter} from './startup-assets.js';
+import {preloadStarterCharacter,preloadHumanShapePack,preloadSavedHumanPack,startupAssetBuffer,upgradeStarterCharacter} from './startup-assets.js';
 import {loadStartupAppearance,usesHumanShapeStarter,DEFAULT_BOOT_GEAR} from './startup-appearance.js';
 import {showBackgroundLoading} from './background-loading.js';
 import {height} from './geometry.js';
@@ -88,7 +88,7 @@ async function main(){
   ?await (await import('./identity-review.js')).loadIdentityReview(params):null;
  const humanFamilyStart=productionShapeStart||Boolean(identityReview);
  const starterWorldP=fastStart?preloadStarterWorld():null;
- const starterCharacterP=identityReview?Promise.resolve(identityReview.manifest):productionShapeStart?preloadHumanShapePack(bootAppearance.equipment,{compact:true}):(fastStart?preloadStarterCharacter():null);
+ const starterCharacterP=identityReview?Promise.resolve(identityReview.manifest):productionShapeStart?preloadSavedHumanPack(bootAppearance,{compact:true}):(fastStart?preloadStarterCharacter():null);
  starterWorldP?.catch(()=>{});starterCharacterP?.catch(()=>{});
  // M004 developer shape family. `resolveHumanShape` answers null for every URL that does
  // not name `humanShape` or `humanHeight`, so the default route below is untouched. When a
@@ -232,6 +232,10 @@ async function main(){
  // The creator drives these live from weight 0, so the writers have to exist before a
  // target is driven; the one-shot M004 route only needed them once a weight was non-zero.
  let writeShapeWeights=null,basePivotHeight=null;
+ const installShapeWriters=setMorphTargetWeights=>{
+  const writeWeights=weights=>{let n=0;const visit=node=>{if(node?.morphTargets){setMorphTargetWeights(engine,node.morphTargets,weights);n++;}for(const c of node?.children||[])visit(c);};visit(body.root);return n;};
+  ashen.setShapeWeights=writeWeights;writeShapeWeights=writeWeights;
+ };
  const applyHumanShape=async request=>{
   if(request.weights.some(w=>w>0)||request.installWriters){
    const {setMorphTargetWeights}=await import('@babylonjs/lite');
@@ -251,14 +255,12 @@ async function main(){
    // A garment arrives at its own pace, and it arrives at weight 0, which is the shipped
    // shape. Re-applying over this actor's root after every change keeps a newly
    // equipped piece from being the only thing still wearing the neutral body's shape.
-   const writeWeights=weights=>{let n=0;const visit=node=>{if(node?.morphTargets){setMorphTargetWeights(engine,node.morphTargets,weights);n++;}for(const c of node?.children||[])visit(c);};visit(body.root);return n;};
-   reshapeEquipment=()=>writeWeights(request.weights);
+   installShapeWriters(setMorphTargetWeights);
+   reshapeEquipment=()=>writeShapeWeights(request.weights);
    reshapeEquipment();
    // A probe cannot import '@babylonjs/lite' by bare specifier inside the page, and
    // re-importing the package raw would build a second registry. Expose the bound writer
    // instead, so a weight sweep measures the same call the game itself makes.
-   ashen.setShapeWeights=writeWeights;
-   writeShapeWeights=writeWeights;
   }
   if(request.heightScale!==1){
    const s=request.heightScale,root=body.root;
@@ -391,6 +393,7 @@ async function main(){
  reshapeEquipment?.();
  let currentRace='human';
  let committedAppearance=bootAppearance,currentHumanShape=bootAppearance?.race==='human'?bootAppearance.shape:null;
+ let currentHumanComponents=bootAppearance?.race==='human'?bootAppearance.components:{},actorGeneration=0;
  if(basePivotHeight===null)basePivotHeight=rig.pivotHeight/(humanShape?.heightScale||1);
  let actorChain=Promise.resolve();
  const actorRequest=job=>{
@@ -407,7 +410,7 @@ async function main(){
   const {appearanceFromEquipment}=await import('../character/appearance/from-equipment.js');
   const {validateAppearance}=await import('../character/appearance/contract.js');
   const base=appearanceFromEquipment({race:currentRace,loadout:impl.getState()});
-  committedAppearance=validateAppearance({...base,dyes:impl.getDyes?.()||{},shape:currentRace==='human'?(currentHumanShape||base.shape):{}});
+  committedAppearance=validateAppearance({...base,components:currentRace==='human'?currentHumanComponents:{},dyes:impl.getDyes?.()||{},shape:currentRace==='human'?(currentHumanShape||base.shape):{}});
   if(identityReview)ashen.appearanceWarning=identityReview.warning;
   else if(!appearanceAPI.saveAppearance(committedAppearance))ashen.appearanceWarning='Could not save; this character lasts for this session only.';
   return committedAppearance;
@@ -487,7 +490,7 @@ async function main(){
     committed=true;
     parkedGarments=pack.garments===false?loadout:null;
     previousImpl.dispose();
-    await rememberAppearance();rebuildCreator?.();
+    actorGeneration++;await rememberAppearance();rebuildCreator?.();
    }catch(error){
     if(!committed){next?.dispose();staged?.dispose();parkedGarments=previousParkedGarments;}
     throw error;
@@ -607,8 +610,9 @@ async function main(){
   const texturesP=regionP.then(async()=>{
    if(world.upgradeTextures)await world.upgradeTextures();
    if(fastCharacter&&body.container===starterBodyContainer){
-    await upgradeStarterCharacter(engine,scene,starterBodyContainer,await starterCharacterP);
-    await impl.upgradeTextures?.();
+    const detailEquipment=impl,abort=()=>lifetime.aborted||body.container!==starterBodyContainer||impl!==detailEquipment;
+    if(await upgradeStarterCharacter(engine,scene,starterBodyContainer,await starterCharacterP,abort)&&!abort())
+     await detailEquipment.upgradeTextures?.(abort);
    }
   });
   texturesP.catch(()=>{});
@@ -707,9 +711,55 @@ async function main(){
    currentHumanShape=desired.shape;
    await rememberAppearance();
   });
+  const applyProductionIdentity=(components,{signal,throwIfStale})=>actorRequest(async()=>{
+   if(identityReview)throw Error('Use the normal game route to save identity changes.');
+   if(currentRace!=='human')throw Error('Identity adjustment is only available for Human');
+   const desired=validateAppearance({...committedAppearance,components}),previous=impl;
+   const {preloadHumanIdentityPack}=await import('./human-identity-assets.js');
+   const manifest=await preloadHumanIdentityPack(desired.components,previous.getState());
+   const check=()=>{lifetime.throwIfAborted();signal.throwIfAborted();throwIfStale();};
+   check();const {primeMorphMaterialSupport}=await import('./prime-morph-materials.js');
+   await primeMorphMaterialSupport(engine);check();
+   let staged=null,next=null,committed=false;
+   try{
+    const source=await startupAssetBuffer(manifest.items.body);check();
+    staged=await body.stageSource(source);check();
+    const weights=[Math.max(0,-desired.shape.build),Math.max(0,desired.shape.build)];
+    next=await createStreamedEquipment(engine,scene,staged.body,sockets,{...packs.human,manifest,loadBuffer:startupAssetBuffer,shapeFamily:manifest.shapeFamily,bootLoadout:previous.getState(),dyes:previous.getDyes(),getShapeWeights:()=>weights,visible:false});check();
+    const {setMorphTargetWeights}=await import('@babylonjs/lite');
+    let morphed=0;
+    const visit=node=>{if(node?.morphTargets){setMorphTargetWeights(engine,node.morphTargets,weights);morphed++;}for(const c of node?.children||[])visit(c);};
+    visit(staged.body.root);staged.body.root.scaling.set(-desired.shape.height,desired.shape.height,desired.shape.height);
+    if(!morphed)throw Error('Selected identity is missing its compatible body morphs');
+    attachLinearMaterials();
+    // Native source commit preserves mixer phase and sockets. Check the owner
+    // at the render boundary, not only before an asynchronous file arrives.
+    // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#skins
+    await staged.commit(()=>{
+     check();previous.setVisible(false);const restorePalettes=previous.releasePalettes?.();impl=next;next.setVisible(true);
+     return ()=>{restorePalettes?.();next.setVisible(false);impl=previous;previous.setVisible(true);};
+    });
+    committed=true;
+    packs.human={...packs.human,manifest,loadBuffer:startupAssetBuffer,shapeFamily:manifest.shapeFamily};
+    humanFamilyReady=true;
+    // All fallible loading and shape validation precede promotion. Identity
+    // preserves the existing capsule/height; the prepared visual already has
+    // the same scale. No asynchronous writer setup may reject a committed body.
+    if(!writeShapeWeights)installShapeWriters(setMorphTargetWeights);
+    reshapeEquipment=()=>writeShapeWeights(weights);
+    ashen.humanShape={weights,heightScale:desired.shape.height,applied:true,live:true};
+    currentHumanComponents=desired.components;currentHumanShape=desired.shape;
+    committedAppearance=desired;
+    if(!appearanceAPI.saveAppearance(desired))ashen.appearanceWarning='Could not save; this character lasts for this session only.';
+    try{previous.dispose();}catch(error){console.warn('Retired identity equipment cleanup failed',error);}
+    const detailContainer=body.container,detailEquipment=impl;
+    const abort=()=>lifetime.aborted||body.container!==detailContainer||impl!==detailEquipment;
+    void (async()=>{if(await upgradeStarterCharacter(engine,scene,detailContainer,manifest,abort)&&!abort())await detailEquipment.upgradeTextures?.(abort);})().catch(error=>{if(!abort())ashen.appearanceDetailError=error.message;});
+   }catch(error){if(!committed){next?.dispose();staged?.dispose();}throw error;}
+  });
   rebuildCreator=()=>{
    creator?.dispose();
-   creator=createCreator({armory,getAppearance:()=>committedAppearance,applyBody:applyProductionBody,applyDyes:async dyes=>{
+   creator=createCreator({armory,getAppearance:()=>committedAppearance,getActorGeneration:()=>actorGeneration,applyIdentity:identityReview?null:applyProductionIdentity,applyBody:applyProductionBody,applyDyes:async dyes=>{
     const result=await equipment.setDyes(dyes);
     if(result.status!=='applied')throw Error(result.error||'Dye change did not commit');
    },getWarning:()=>ashen.appearanceWarning||appearanceLoaded?.warning});

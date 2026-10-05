@@ -1,14 +1,16 @@
 /** Armory body editor, imported after playable. The recipe owns committed identity;
  * slider values are drafts until body and garments have committed successfully.
  */
-import {creatorControlsForRace,createProductionCreatorSession,createProductionDyeSession} from '../character/creator/production.js';
+import {creatorControlsForRace,createProductionCreatorSession,createProductionDyeSession,createProductionIdentitySession} from '../character/creator/production.js';
 import {APPEARANCE_REGISTRY} from '../character/appearance/contract.js';
+import {HUMAN_IDENTITY_PRESETS} from '../character/appearance/human-identity.js';
 import {DYE_IDS,DYE_PALETTE} from './dye-palette.js';
 import './creator.css';
 const text=(tag,cls,value)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(value!=null)n.textContent=value;return n;};
-export function createCreator({armory,getAppearance,applyBody,applyDyes,warning=null,getWarning=()=>warning}) {
+export function createCreator({armory,getAppearance,getActorGeneration,applyIdentity,applyBody,applyDyes,warning=null,getWarning=()=>warning}) {
  const session=createProductionCreatorSession({getAppearance,applyBody});
  const race=getAppearance().race,{available,unavailable}=creatorControlsForRace(race);
+ const identitySession=race==='human'&&applyIdentity?createProductionIdentitySession({getAppearance,getActorGeneration,applyIdentity}):null;
  const panel=document.querySelector('#armory .armory-panel');
  if(!panel)throw Error('Body editing needs the Armory panel');
  const section=text('section','creator-section');section.append(text('h2',null,'Body'));
@@ -33,13 +35,33 @@ export function createCreator({armory,getAppearance,applyBody,applyDyes,warning=
   field.append(label,input);fields.append(field);inputs.set(c.id,{input,output});
  }
  if(!available.length)fields.append(text('p','armory-note',`Body adjustment is not available for ${race} yet.`));
- if(unavailable.length) {
-  const d=text('details','creator-pending');d.append(text('summary',null,`Not available yet (${unavailable.length})`));
-  for(const c of unavailable){const row=text('div','creator-pending-row');const label=text('span',null,c.label);label.setAttribute('aria-disabled','true');row.append(label,text('small',null,c.reason));d.append(row);}section.append(d);
+ const pendingControls=identitySession?unavailable.filter(c=>!['age','hair'].includes(c.id)):unavailable;
+ if(pendingControls.length) {
+  const d=text('details','creator-pending');d.append(text('summary',null,`Not available yet (${pendingControls.length})`));
+  for(const c of pendingControls){const row=text('div','creator-pending-row');const label=text('span',null,c.label);label.setAttribute('aria-disabled','true');row.append(label,text('small',null,c.reason));d.append(row);}section.append(d);
  }
  const actions=text('div','creator-actions'),undo=text('button',null,'Undo'),reset=text('button',null,'Reset');actions.append(undo,reset);section.append(actions);
  undo.onclick=()=>run(()=>session.undo());reset.onclick=()=>run(()=>session.reset());reset.disabled=!available.length;
  panel.insertBefore(section,panel.querySelector('h2'));
+ let identitySection=null,refreshIdentity=()=>{};
+ if(identitySession){
+  identitySection=text('section','creator-section creator-identity');identitySection.append(text('h2',null,'Identity'));
+  identitySection.append(text('p','armory-note','Prime and Weathered are distinct faces with authored hairstyles.'));
+  const label=text('label','creator-field');label.append(text('span',null,'Face and hair'));
+  const select=document.createElement('select');select.setAttribute('aria-label','Face and hair');
+  for(const preset of HUMAN_IDENTITY_PRESETS){const option=text('option',null,preset.label);option.value=preset.id;select.append(option);}label.append(select);identitySection.append(label);
+  const message=text('p','armory-note');message.setAttribute('role','status');message.setAttribute('aria-live','polite');message.hidden=true;identitySection.append(message);
+  const actions=text('div','creator-actions'),undoIdentity=text('button',null,'Undo identity'),resetIdentity=text('button',null,'Original face');actions.append(undoIdentity,resetIdentity);identitySection.append(actions);
+  refreshIdentity=()=>{select.value=identitySession.selected;undoIdentity.disabled=!identitySession.canUndo;resetIdentity.disabled=select.value==='starter';};
+  const runIdentity=async job=>{
+   message.textContent='Preparing identity…';message.hidden=false;select.disabled=undoIdentity.disabled=resetIdentity.disabled=true;
+   try{await job();message.textContent=getWarning()||'';message.hidden=!message.textContent;}
+   catch(error){message.textContent=`Your identity is unchanged. ${error.message}`;}
+   finally{select.disabled=false;refreshIdentity();refresh();refreshDyes();}
+  };
+  select.onchange=()=>runIdentity(()=>identitySession.set(select.value));undoIdentity.onclick=()=>runIdentity(()=>identitySession.undo());resetIdentity.onclick=()=>runIdentity(()=>identitySession.reset());
+  section.before(identitySection);refreshIdentity();
+ }
  const dyeSession=applyDyes?createProductionDyeSession({getAppearance,applyDyes}):null;
  let dyeSection=null,refreshDyes=()=>{};
  if(dyeSession){
@@ -78,7 +100,7 @@ export function createCreator({armory,getAppearance,applyBody,applyDyes,warning=
   get state(){return session.state;},get drivable(){return race==='human';},
   set:(id,value)=>run(()=>session.set(id,value)),undo:()=>run(()=>session.undo()),reset:()=>run(()=>session.reset()),clear:()=>run(()=>session.reset()),
   refresh:()=>{session.refresh();refresh();},save:()=>session.save(),session,element:section,
-  refreshEquipment:refreshDyes,dyes:dyeSession,
-  settled:async()=>{await pending;await dyeSession?.settled();},dispose:()=>{section.remove();dyeSection?.remove();},
+  refreshEquipment:()=>{refreshDyes();refreshIdentity();},dyes:dyeSession,identity:identitySession,
+  settled:async()=>{await pending;await dyeSession?.settled();await identitySession?.settled();},dispose:()=>{identitySession?.dispose();section.remove();identitySection?.remove();dyeSection?.remove();},
  };
 }

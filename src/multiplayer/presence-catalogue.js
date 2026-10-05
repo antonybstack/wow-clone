@@ -7,7 +7,7 @@
  */
 export const PRESENCE_PIECE_CATALOGUE=Object.freeze({
  publishVersion:1,
- catalogVersion:"appearance-catalog-v5",
+ catalogVersion:"appearance-catalog-v6",
  sourceCompilerSha256:"e9bb55b8b67195c5fe92cb8ebfc86aa59ee654a614bcec4154ab5c721a531563",
  races:Object.freeze({
   human:Object.freeze(["duskguardCuirass","duskguardGreaves","duskguardTassets","duskguardVambraces","graveweaverBook","graveweaverGloves","graveweaverGreatstaff","graveweaverHood","graveweaverSkirt","graveweaverStaff","graveweaverTop","ironSword","lectorCoat","pilgrimTunic","wardenPauldrons","wayfarerBoots","wayfarerTrousers","wayfarerTunic"]),
