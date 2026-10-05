@@ -14,6 +14,7 @@ import {captureSurface,appendFrame,writeCaptureManifest} from '../lib/capture-ma
 import {defaultAppearance} from '../../src/character/appearance/store.js';
 import {validateAppearance} from '../../src/character/appearance/contract.js';
 import {EQUIPMENT_PRESETS} from '../../src/ashen-reach/equipment-catalog.js';
+import {ASHEN_PLAYABLE_CLIP_NAMES} from '../../src/character/runtime/ashen-playable-motion.js';
 const port=process.env.ASHEN_CDP_PORT,url=process.env.ASHEN_TEST_URL;
 assert(port&&url,'Require an audited owned browser and ordinary built route');
 const out=process.argv[2]||'.cache/character-mmo/m5-startup-2026-10-04/live';
@@ -43,7 +44,8 @@ async function run(preset,build,height,mode='normal'){
  const recipe=validateAppearance({...base,components:manifest.identity.components,
   shape:{...base.shape,height,build},equipment:{...EQUIPMENT_PRESETS.graveweaver.loadout,torso:'pilgrimTunic',shoulders:'wardenPauldrons'},
   dyes:{helmet:'moss',torso:'oxblood',legs:'indigo'}});
- // Rigid shoulders and body are already full at first play. Hold only actual
+ // Rigid shoulders and the exact body geometry are already full at first play.
+ // The body keeps its complete playable subset; hold only actual
  // differing refinement URLs, never an inferred filename pattern or all assets.
  const fullUrls=new Set(Object.values(recipe.equipment).filter(id=>id&&manifest.items[id]&&manifest.items[id].url!==manifest.compactItems[id]?.url).map(id=>manifest.items[id].url));
  assert(fullUrls.has(manifest.items.graveweaverHood.url));
@@ -71,7 +73,9 @@ async function run(preset,build,height,mode='normal'){
   assert.deepEqual(first.stored,recipe);assert.deepEqual(first.gear,recipe.equipment);assert.deepEqual(first.dyes,recipe.dyes);
   assert(first.faceMeshes.includes('HumanIdentityEyes')&&first.faceMeshes.includes('HumanIdentityBrows'));
   assert.deepEqual(first.shape.weights,[Math.max(0,-build),Math.max(0,build)]);assert.equal(first.height,height);
-  assert(requests.includes(manifest.items.body.url));assert(requests.includes(manifest.compactItems.graveweaverHood.url));
+  assert(requests.includes(manifest.compactItems.body.url));assert(requests.includes(manifest.compactItems.graveweaverHood.url));
+  assert(!requests.includes(manifest.items.body.url),'Unused library must not trigger a full-body download');
+  assert.deepEqual(await page.evaluate(()=>ASHEN.body.animationGroups.map(g=>g.name).sort()),[...ASHEN_PLAYABLE_CLIP_NAMES].sort());
   assert(!requests.some(u=>u.startsWith('/ashen-reach/startup/character/body-')),'Selected face must be present at first play');
   await page.waitForFunction(()=>ASHEN.ready,null,{timeout:90000});
   assert.deepEqual((await state(page)).appearance,recipe);
@@ -143,7 +147,7 @@ async function run(preset,build,height,mode='normal'){
   }
   if(captureThis){
    await page.evaluate(()=>{ASHEN.armory.camera.alpha=Math.PI/2;ASHEN.body.inspection.setPaused(false);});
-   for(const motion of ['walk','run','jump','land','fire','carry']){await page.selectOption('#armory [data-motion]',motion);await mark(`Full hood native ${motion}`);await page.waitForTimeout(800);}
+   for(const motion of ['walk','run','jump','land','fire','lava','pulse','carry']){await page.selectOption('#armory [data-motion]',motion);await mark(`Full hood native ${motion}`);await page.waitForTimeout(['lava','pulse'].includes(motion)?2000:800);}
    await page.evaluate(()=>ASHEN.equipment.equip('helmet',null));await mark('Hood removed; selected hair restored');
    if(preset==='prime-ponytail')assert.equal((await state(page)).hair,true);
    await page.waitForTimeout(1000);

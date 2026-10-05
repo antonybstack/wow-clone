@@ -1,0 +1,5140 @@
+[
+  {
+    "file": "ashen-reach.html",
+    "status": 200,
+    "bytes": 15770,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/animation-provenance.json",
+    "status": 200,
+    "bytes": 3778,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/ANIMATION-SOURCES.md",
+    "status": 200,
+    "bytes": 792,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/coverage-provenance.json",
+    "status": 200,
+    "bytes": 34223,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/body.glb",
+    "status": 200,
+    "bytes": 8519660,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/duskguardCuirass-a54e8b60c1f1.glb",
+    "status": 200,
+    "bytes": 364824,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/duskguardCuirass.glb",
+    "status": 200,
+    "bytes": 364824,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/duskguardGreaves-5c047b0fbea0.glb",
+    "status": 200,
+    "bytes": 249456,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/duskguardGreaves.glb",
+    "status": 200,
+    "bytes": 249456,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/duskguardTassets-8acdbf29f9ac.glb",
+    "status": 200,
+    "bytes": 163888,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/duskguardTassets-coverage-ac83724683f0.glb",
+    "status": 200,
+    "bytes": 164532,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/duskguardTassets.glb",
+    "status": 200,
+    "bytes": 163888,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/duskguardVambraces-358c47ffff40.glb",
+    "status": 200,
+    "bytes": 188928,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/duskguardVambraces.glb",
+    "status": 200,
+    "bytes": 188928,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/graveweaverGloves.glb",
+    "status": 200,
+    "bytes": 238056,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/graveweaverHood.glb",
+    "status": 200,
+    "bytes": 414136,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/graveweaverSkirt-coverage-aefdea6ff724.glb",
+    "status": 200,
+    "bytes": 520284,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/graveweaverSkirt.glb",
+    "status": 200,
+    "bytes": 519004,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/graveweaverTop.glb",
+    "status": 200,
+    "bytes": 329576,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/lectorCoat-6b60897773e6.glb",
+    "status": 200,
+    "bytes": 389196,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/lectorCoat.glb",
+    "status": 200,
+    "bytes": 389196,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/manifest-coverage-v1.json",
+    "status": 200,
+    "bytes": 9733,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/manifest.json",
+    "status": 200,
+    "bytes": 6336,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/pilgrimTunic.glb",
+    "status": 200,
+    "bytes": 695392,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/provenance.json",
+    "status": 200,
+    "bytes": 2995,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/wardenPauldrons-0eeed07f0db4.glb",
+    "status": 200,
+    "bytes": 31032,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/wardenPauldrons.glb",
+    "status": 200,
+    "bytes": 31032,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/wayfarerBoots.glb",
+    "status": 200,
+    "bytes": 338720,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/wayfarerTrousers-coverage-124da6c75972.glb",
+    "status": 200,
+    "bytes": 210676,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/wayfarerTrousers.glb",
+    "status": 200,
+    "bytes": 209732,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-orc/wayfarerTunic.glb",
+    "status": 200,
+    "bytes": 342792,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-provenance.json",
+    "status": 200,
+    "bytes": 4106,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead-provisional/body.glb",
+    "status": 200,
+    "bytes": 3086812,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead-provisional/graveweaverGloves.glb",
+    "status": 200,
+    "bytes": 169868,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead-provisional/graveweaverHood.glb",
+    "status": 200,
+    "bytes": 298748,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead-provisional/graveweaverSkirt.glb",
+    "status": 200,
+    "bytes": 318680,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead-provisional/graveweaverTop.glb",
+    "status": 200,
+    "bytes": 227432,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead-provisional/manifest.json",
+    "status": 200,
+    "bytes": 3918,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead-provisional/pilgrimTunic.glb",
+    "status": 200,
+    "bytes": 546144,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead-provisional/provenance.json",
+    "status": 200,
+    "bytes": 2167,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead-provisional/wayfarerBoots.glb",
+    "status": 200,
+    "bytes": 225352,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead-provisional/wayfarerTrousers.glb",
+    "status": 200,
+    "bytes": 115004,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead-provisional/wayfarerTunic.glb",
+    "status": 200,
+    "bytes": 238640,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/body-coverage-02cb6c3cc877.glb",
+    "status": 200,
+    "bytes": 8371408,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/body.glb",
+    "status": 200,
+    "bytes": 8370504,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/duskguardCuirass-a3dac0cc75be.glb",
+    "status": 200,
+    "bytes": 338520,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/duskguardCuirass.glb",
+    "status": 200,
+    "bytes": 338520,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/duskguardGreaves-65e92cf980bd.glb",
+    "status": 200,
+    "bytes": 249068,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/duskguardGreaves.glb",
+    "status": 200,
+    "bytes": 249068,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/duskguardTassets-c4f3c202054b.glb",
+    "status": 200,
+    "bytes": 156516,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/duskguardTassets-coverage-3fd0a9c51a6b.glb",
+    "status": 200,
+    "bytes": 157220,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/duskguardTassets.glb",
+    "status": 200,
+    "bytes": 156516,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/duskguardVambraces-172dbebdd269.glb",
+    "status": 200,
+    "bytes": 184260,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/duskguardVambraces.glb",
+    "status": 200,
+    "bytes": 184260,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/graveweaverGloves.glb",
+    "status": 200,
+    "bytes": 174144,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/graveweaverHood.glb",
+    "status": 200,
+    "bytes": 277312,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/graveweaverSkirt-coverage-8be75fe7dc39.glb",
+    "status": 200,
+    "bytes": 372352,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/graveweaverSkirt.glb",
+    "status": 200,
+    "bytes": 371668,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/graveweaverTop.glb",
+    "status": 200,
+    "bytes": 245116,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/lectorCoat-711447547e62.glb",
+    "status": 200,
+    "bytes": 395840,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/lectorCoat.glb",
+    "status": 200,
+    "bytes": 395840,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/manifest-coverage-v1.json",
+    "status": 200,
+    "bytes": 9809,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/manifest.json",
+    "status": 200,
+    "bytes": 6232,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/pilgrimTunic.glb",
+    "status": 200,
+    "bytes": 480100,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/provenance.json",
+    "status": 200,
+    "bytes": 1986,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/wardenPauldrons-48130ebf8564.glb",
+    "status": 200,
+    "bytes": 26888,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/wardenPauldrons.glb",
+    "status": 200,
+    "bytes": 26888,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/wayfarerBoots.glb",
+    "status": 200,
+    "bytes": 242148,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/wayfarerTrousers-coverage-051b2a33d0e2.glb",
+    "status": 200,
+    "bytes": 146944,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/wayfarerTrousers.glb",
+    "status": 200,
+    "bytes": 146260,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment-undead/wayfarerTunic.glb",
+    "status": 200,
+    "bytes": 249676,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/body-coverage-0388c68822fa.glb",
+    "status": 200,
+    "bytes": 3400420,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/body.glb",
+    "status": 200,
+    "bytes": 3399784,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/duskguardCuirass-064de522c22b.glb",
+    "status": 200,
+    "bytes": 296596,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/duskguardCuirass.glb",
+    "status": 200,
+    "bytes": 296596,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/duskguardGreaves-ebcd55139ab6.glb",
+    "status": 200,
+    "bytes": 249624,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/duskguardGreaves.glb",
+    "status": 200,
+    "bytes": 249624,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/duskguardTassets-bd6b56f08764.glb",
+    "status": 200,
+    "bytes": 155136,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/duskguardTassets-coverage-e813d3927fc0.glb",
+    "status": 200,
+    "bytes": 155844,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/duskguardTassets.glb",
+    "status": 200,
+    "bytes": 155136,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/duskguardVambraces-d5d57dde6128.glb",
+    "status": 200,
+    "bytes": 182164,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/duskguardVambraces.glb",
+    "status": 200,
+    "bytes": 182164,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/graveweaverGloves.glb",
+    "status": 200,
+    "bytes": 174004,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/graveweaverHood.glb",
+    "status": 200,
+    "bytes": 276880,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/graveweaverSkirt.glb",
+    "status": 200,
+    "bytes": 368684,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/graveweaverTop.glb",
+    "status": 200,
+    "bytes": 245104,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/lectorCoat-aa01a6300d3d.glb",
+    "status": 200,
+    "bytes": 361368,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/lectorCoat.glb",
+    "status": 200,
+    "bytes": 361368,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/manifest-coverage-v1.json",
+    "status": 200,
+    "bytes": 8935,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/manifest.json",
+    "status": 200,
+    "bytes": 6206,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/pilgrimTunic-3e3d45a4b03a.glb",
+    "status": 200,
+    "bytes": 479428,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/pilgrimTunic.glb",
+    "status": 200,
+    "bytes": 479428,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/provenance.json",
+    "status": 200,
+    "bytes": 2044,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/wardenPauldrons-30914318b15c.glb",
+    "status": 200,
+    "bytes": 33512,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/wardenPauldrons.glb",
+    "status": 200,
+    "bytes": 33512,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/wayfarerBoots.glb",
+    "status": 200,
+    "bytes": 242544,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/wayfarerTrousers-coverage-48d4f61d94cf.glb",
+    "status": 200,
+    "bytes": 146972,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/wayfarerTrousers.glb",
+    "status": 200,
+    "bytes": 146288,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/equipment/wayfarerTunic.glb",
+    "status": 200,
+    "bytes": 249636,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/favicon.png",
+    "status": 200,
+    "bytes": 1570,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/fire-blast/AUDIO-SOURCES.md",
+    "status": 200,
+    "bytes": 1464,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/fire-blast/fire_01.png",
+    "status": 200,
+    "bytes": 99891,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/fire-blast/fireball-julien-matthey.wav",
+    "status": 200,
+    "bytes": 346694,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/fire-blast/lava-audio-provenance.json",
+    "status": 200,
+    "bytes": 350,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/fire-blast/lava-charge.wav",
+    "status": 200,
+    "bytes": 264678,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/fire-blast/License.txt",
+    "status": 200,
+    "bytes": 629,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/fire-blast/smoke_01.png",
+    "status": 200,
+    "bytes": 97452,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/fire-blast/SOURCES.md",
+    "status": 200,
+    "bytes": 754,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/fire-blast/spark_05.png",
+    "status": 200,
+    "bytes": 64808,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/fire-cast-provenance.json",
+    "status": 200,
+    "bytes": 713,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/foliage-atlas.png",
+    "status": 200,
+    "bytes": 1015303,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/grave-face.jpg",
+    "status": 200,
+    "bytes": 159005,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/grave-face.png",
+    "status": 200,
+    "bytes": 4208500,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/horizon-rock-source.md",
+    "status": 200,
+    "bytes": 482,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/horizon-rock.jpg",
+    "status": 200,
+    "bytes": 65793,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-identity-v1/body-31f3ba87f47d.bin",
+    "status": 200,
+    "bytes": 1215036,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/human-identity-v1/body-compact-93ebf3f0db40.bin",
+    "status": 200,
+    "bytes": 1115427,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/human-identity-v1/body-compact-9b9badc117c3.bin",
+    "status": 200,
+    "bytes": 815696,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/human-identity-v1/body-compact-c92a93fe6274.bin",
+    "status": 200,
+    "bytes": 820921,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/human-identity-v1/body-ddf25d841211.bin",
+    "status": 200,
+    "bytes": 1220349,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/human-identity-v1/body-fc1092b22cb1.bin",
+    "status": 200,
+    "bytes": 1514649,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/human-identity-v1/graveweaverHood-9f3b17772a7f.bin",
+    "status": 200,
+    "bytes": 376208,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/human-identity-v1/graveweaverHood-a9d24c7d258a.bin",
+    "status": 200,
+    "bytes": 379232,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/human-identity-v1/graveweaverHood-compact-d0aac250ac39.bin",
+    "status": 200,
+    "bytes": 199577,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/human-identity-v1/graveweaverHood-compact-e35c2fd3b285.bin",
+    "status": 200,
+    "bytes": 197700,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/human-identity-v1/manifest-prime-bald-6a3cf8bd7811.json",
+    "status": 200,
+    "bytes": 21730,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/human-identity-v1/manifest-prime-ponytail-da549b1292b6.json",
+    "status": 200,
+    "bytes": 22135,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/human-identity-v1/manifest-weathered-bald-67b601d8b646.json",
+    "status": 200,
+    "bytes": 21740,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/human-identity-v1/manifest.json",
+    "status": 200,
+    "bytes": 69097,
+    "match": true,
+    "cacheControl": "no-cache",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/human-identity-v1/preparation.json",
+    "status": 200,
+    "bytes": 3470,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-identity-v1/texture-099440732c1f.png",
+    "status": 200,
+    "bytes": 480446,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/human-identity-v1/texture-0c2e3d315bb3.png",
+    "status": 200,
+    "bytes": 1016398,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/human-identity-v1/texture-242ee5c2d82d.webp",
+    "status": 200,
+    "bytes": 5592,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/human-identity-v1/texture-681b40f22cda.png",
+    "status": 200,
+    "bytes": 1015495,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/human-identity-v1/texture-9940f7d0b1b2.png",
+    "status": 200,
+    "bytes": 89619,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/human-identity-v1/texture-e5bb21f35558.png",
+    "status": 200,
+    "bytes": 33019,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/body-coverage-b93fb71aa490.bin",
+    "status": 200,
+    "bytes": 991320,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/body-e69a14d75176.bin",
+    "status": 200,
+    "bytes": 991600,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/duskguardCuirass-87f33adb1a29.bin",
+    "status": 200,
+    "bytes": 357832,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/duskguardGreaves-030d302cbaf6.bin",
+    "status": 200,
+    "bytes": 271753,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/duskguardTassets-2ec5cfae9131.bin",
+    "status": 200,
+    "bytes": 118920,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/duskguardTassets-coverage-ee06988dee5f.bin",
+    "status": 200,
+    "bytes": 119121,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/duskguardVambraces-b67e2bcbac26.bin",
+    "status": 200,
+    "bytes": 194817,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/graveweaverGloves-5d2803e1bc07.bin",
+    "status": 200,
+    "bytes": 187037,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/graveweaverGloves-compact-106f6454299a.bin",
+    "status": 200,
+    "bytes": 93745,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/graveweaverHood-c80ece48d7d5.bin",
+    "status": 200,
+    "bytes": 339803,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/graveweaverHood-compact-6976171552b8.bin",
+    "status": 200,
+    "bytes": 211307,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/graveweaverSkirt-3c310deed571.bin",
+    "status": 200,
+    "bytes": 359705,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/graveweaverSkirt-compact-27daf8474125.bin",
+    "status": 200,
+    "bytes": 203047,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/graveweaverTop-25fe071857bb.bin",
+    "status": 200,
+    "bytes": 278671,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/graveweaverTop-compact-127089532d9e.bin",
+    "status": 200,
+    "bytes": 147253,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/lectorCoat-aa746caae4d7.bin",
+    "status": 200,
+    "bytes": 488900,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/lectorCoat-compact-de8ccead1032.bin",
+    "status": 200,
+    "bytes": 246615,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/manifest.json",
+    "status": 200,
+    "bytes": 50294,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/pilgrimTunic-be2fd3a1ff9d.bin",
+    "status": 200,
+    "bytes": 672999,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/pilgrimTunic-compact-d94d573275dc.bin",
+    "status": 200,
+    "bytes": 315468,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/texture-29d4e4e4bece.png",
+    "status": 200,
+    "bytes": 73950,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/texture-423c672df75a.png",
+    "status": 200,
+    "bytes": 1630548,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/texture-767ac140ff4d.png",
+    "status": 200,
+    "bytes": 77573,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/texture-8cca22d0af15.png",
+    "status": 200,
+    "bytes": 38137,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/texture-f465517766cc.png",
+    "status": 200,
+    "bytes": 83625,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/texture-feb2ba6d8d36.png",
+    "status": 200,
+    "bytes": 85131,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/wardenPauldrons-3daf20061e0e.bin",
+    "status": 200,
+    "bytes": 19909,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/wayfarerBoots-14b43ef82011.bin",
+    "status": 200,
+    "bytes": 266189,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/wayfarerBoots-compact-287d89851371.bin",
+    "status": 200,
+    "bytes": 157978,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/wayfarerTrousers-b4e889479817.bin",
+    "status": 200,
+    "bytes": 110541,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/wayfarerTrousers-compact-coverage-f834210550a3.bin",
+    "status": 200,
+    "bytes": 80443,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/wayfarerTrousers-compact-dbd143c2f155.bin",
+    "status": 200,
+    "bytes": 79637,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/wayfarerTrousers-coverage-b1eb36e8f614.bin",
+    "status": 200,
+    "bytes": 110770,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/wayfarerTunic-compact-000ff23bf965.bin",
+    "status": 200,
+    "bytes": 153792,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/human-shape-v1/wayfarerTunic-e65b2868e12f.bin",
+    "status": 200,
+    "bytes": 292366,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/lava-cast-provenance.json",
+    "status": 200,
+    "bytes": 349,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/pilgrim-front-corrective-provenance.json",
+    "status": 200,
+    "bytes": 3175,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/presence-v1/collision-3623939d1d15add04b47ed7ab24cdbeb8d864ee032c29c74407657ad90fd0b21.json",
+    "status": 200,
+    "bytes": 199029,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/presence-v1/collision-444fed2cecb92463135accfe05a7a8f438b7e4e8358ed1b9afe35e27c7a835b7.bin",
+    "status": 200,
+    "bytes": 17518656,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/presence-v1/manifest.json",
+    "status": 200,
+    "bytes": 550,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/pyre-cast-provenance.json",
+    "status": 200,
+    "bytes": 627,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/reach-sky.hdr",
+    "status": 200,
+    "bytes": 2646208,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/region-actors-v1/46c726f07044d09f00aaf64d7e3e0347b3b4c5c641703d1f08ff993c326de05a.json",
+    "status": 200,
+    "bytes": 15149,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/region-actors-v1/51e6433acb29345134304ea2c35f9855326be8afc7688ea5394fe4f64a1ed04d.glb",
+    "status": 200,
+    "bytes": 1977648,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/region-actors-v1/7b8784032cbd92ff81db63363e1895ce19993ec1b38495ad9343fa4fa0d029a4.glb",
+    "status": 200,
+    "bytes": 1122792,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/region-actors-v1/e24ad02f33cfbcb1a2015026fd73edcb56453e0310216290095674ada700a6ed.bin",
+    "status": 200,
+    "bytes": 1489280,
+    "match": true,
+    "cacheControl": "public, max-age=31536000, immutable",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/region-actors-v1/manifest.json",
+    "status": 200,
+    "bytes": 761,
+    "match": true,
+    "cacheControl": "no-cache",
+    "cacheCorrect": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/body-4f153d5594deebe5d825b5740a5dd092568971a5fef2643d52971f006b1cd96e.glb",
+    "status": 200,
+    "bytes": 4496592,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/body-96e0f64514c98b475f3b00314c17fe37544506080e87c4dc354fb6b13ea6d552.glb",
+    "status": 200,
+    "bytes": 1943832,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/body-b2193ae173473e5bfbb8bb056dfc00399945a8895e9d70c13318931094b7f262.glb",
+    "status": 200,
+    "bytes": 2984256,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/duskguardCuirass-1a82ab5f9f6fde14e93ea652496450ab2a035f2fbb25a8146dc1ce9caa2d9228.glb",
+    "status": 200,
+    "bytes": 425900,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/duskguardCuirass-1fc77396037a9305dcfc6aecc43da0f94fd24b0815b97ef6a30f94fdaf4dbf70.glb",
+    "status": 200,
+    "bytes": 299612,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/duskguardCuirass-b9db83552771c3582b2e60d5abab1f2970b1b4b9bbd04999ec6e9a14ba46e7ac.glb",
+    "status": 200,
+    "bytes": 273308,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/duskguardGreaves-30524af703a0c2d3e178da20b06019e22453e82e3ec831924923fc128c494d6b.glb",
+    "status": 200,
+    "bytes": 327600,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/duskguardGreaves-57fb78844549c2c0cfab87917dd274c6fc39adecf66260969c712f66cd320c7c.glb",
+    "status": 200,
+    "bytes": 176824,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/duskguardGreaves-ae5f46bd2066ca25b7e1e514b51b3c6ba18475b5732ac44245ca734753badf10.glb",
+    "status": 200,
+    "bytes": 176436,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/duskguardTassets-5bc6fb9a19e4bc19622e64cfcb6d0156417453fe97581c0abd6117992eec7ccb.glb",
+    "status": 200,
+    "bytes": 77372,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/duskguardTassets-8f2c3d990e5c75cc0b25ee651fca5d2b049175a8f52b1a5045b9e458c1075dea.glb",
+    "status": 200,
+    "bytes": 84688,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/duskguardTassets-dff03b24114bfc955b9964c7a77d583f96f6c5f62f2bb238303e34fc37e95e0a.glb",
+    "status": 200,
+    "bytes": 178680,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/duskguardVambraces-205050450611ff7f63364fcae87bfa41ac1702a914720fd363221c4b1ad279f7.glb",
+    "status": 200,
+    "bytes": 149684,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/duskguardVambraces-3ebe071c27f1c236074b9a4470ab8fb91ba2a4076b74922e4068d24f960f8f78.glb",
+    "status": 200,
+    "bytes": 154356,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/duskguardVambraces-731fa0e3fb9e94c4b92b51f18b6a7c7717b853ba435a438ace3c6181d4a7e8d4.glb",
+    "status": 200,
+    "bytes": 242388,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/graveweaverGloves-577dbcd2a62ad4674681ce3a525b7be383995b3b0443cfb8c9e888bd28a6309a.glb",
+    "status": 200,
+    "bytes": 226812,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/graveweaverGloves-6c1c3f48280270082327700a80ef886895ca5a2aee6076d9cb832dc7e4825e60.glb",
+    "status": 200,
+    "bytes": 144596,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/graveweaverGloves-b98353385f6caafb798f0db12309bb8125ba22a2fafa6d61faa47f3dccdf8cc5.glb",
+    "status": 200,
+    "bytes": 139572,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/graveweaverHood-291e25c5c270a34a1e655e751cd26e69c47110aa8f420987c07a1fc56def7330.glb",
+    "status": 200,
+    "bytes": 387024,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/graveweaverHood-d61b39f528888424ac96498a78af1d57ace8192840b5c125354f6680ff632b74.glb",
+    "status": 200,
+    "bytes": 207828,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/graveweaverHood-f2d9e07fd0fa0c2f8863fe0d1ad89ddde7076fc833436e1a63544f8ccb72c991.glb",
+    "status": 200,
+    "bytes": 208056,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/graveweaverSkirt-062e714aae5306d91b59205412b935deab8e50f0842c9353a6a9bfda81ddcdb2.glb",
+    "status": 200,
+    "bytes": 223036,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/graveweaverSkirt-2e6115ef3c7ab3f69211481797f641e910fb799b284f806ceaac5ac69b84110b.glb",
+    "status": 200,
+    "bytes": 443556,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/graveweaverSkirt-a860476ec787dc0bb2960bc61c5e28426cffa0e7b68797b6dba5f88e903a1bcf.glb",
+    "status": 200,
+    "bytes": 223416,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/graveweaverTop-5231e9370725b8225eacfd623e290f95672af75f594bb94886a6bd4b7e3fb9cc.glb",
+    "status": 200,
+    "bytes": 179904,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/graveweaverTop-62e942afd726d5975c0098f808267a621e68625ab72365bea10c92034bb4aba7.glb",
+    "status": 200,
+    "bytes": 329596,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/graveweaverTop-d482435af141f88d1a7a3397d3bcd68cd0e8ae2086b32c743fb86ce74e387ea3.glb",
+    "status": 200,
+    "bytes": 180584,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/index.json",
+    "status": 200,
+    "bytes": 11710,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/lectorCoat-5d9814aca230669f8f936480218574e641355bb5ad2372eb6ddc5d03db7c4b66.glb",
+    "status": 200,
+    "bytes": 323988,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/lectorCoat-8ca42033a4650f6af67fe2c41baee60d17ef638614592d44fe2558bb6b85b26b.glb",
+    "status": 200,
+    "bytes": 553408,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/lectorCoat-aa9693c785e4b8c8596126e7752369ff30198c951b0042b9d185e2ea5a66b946.glb",
+    "status": 200,
+    "bytes": 330628,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/pilgrimTunic-157cbbc373128013136ea7a8b1f60ff6b0349992bede2055f0d8fa594e941967.glb",
+    "status": 200,
+    "bytes": 770280,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/pilgrimTunic-7894d553378aa2787ce6f7f676c5a3bbbc15c2b947ae2e79b7c75b3f5bba2600.glb",
+    "status": 200,
+    "bytes": 410692,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/pilgrimTunic-88cfa80986606c62b36ca30c442cea46a4ce70b8f9ce091dad758ebb5a927535.glb",
+    "status": 200,
+    "bytes": 410616,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/prepared.json",
+    "status": 200,
+    "bytes": 141603,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/wardenPauldrons-0f34d3b6cf4c6bf75ecde7698d7334d0ab8ea26322417af3a65d0c0262f5b21c.glb",
+    "status": 200,
+    "bytes": 22692,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/wardenPauldrons-46a04d5e1a9952113d84d0174fbc5ab9c2adf2d1c33de6c6a8091ca9e7d3e857.glb",
+    "status": 200,
+    "bytes": 31932,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/wardenPauldrons-9936911092d9fef8c138321a14ec178bd2db7bb21d927e2e39ddbc25cd33b45f.glb",
+    "status": 200,
+    "bytes": 20920,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/wayfarerBoots-0ee7a31c0ffe5d592ab4bf42b38b6f84c8a6c6ed70a65cc4b7997d6304ca4e60.glb",
+    "status": 200,
+    "bytes": 169512,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/wayfarerBoots-41931c772a4ba96131772da020715aae5e0b59865b0685e1d12c44f4b293b3d8.glb",
+    "status": 200,
+    "bytes": 170216,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/wayfarerBoots-a3b7a9391a6bf9874cdff19586ac614c772bd7f16f3328405c3bfc1a7252dd81.glb",
+    "status": 200,
+    "bytes": 313964,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/wayfarerTrousers-3095f6da9c866ec49df978efb47761405322c1693a61751e94bee720fd962e0e.glb",
+    "status": 200,
+    "bytes": 67456,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/wayfarerTrousers-31bb8994d757721d4437b14c44e7c23327523f8c7967735199a99f64c49f33b1.glb",
+    "status": 200,
+    "bytes": 162116,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/wayfarerTrousers-6e07a485fc3765029b22a78ed7a9e5eb722d8d9363248b0f01ffbfecee675523.glb",
+    "status": 200,
+    "bytes": 67104,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/wayfarerTunic-56dd6ced7fc7dd57c66705a6128971024208687d68df294faf167398fe13965c.glb",
+    "status": 200,
+    "bytes": 184468,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/wayfarerTunic-95dc7e84116f0ed5931f28af123af6418eacaf698884a33358ff74cf9aa7399b.glb",
+    "status": 200,
+    "bytes": 185012,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/remote-pieces/v1/wayfarerTunic-9fd1076fae8d175a53ac9ffb2ba0099c8a2a0ea4b1b80b0f9c7daab42365dd24.glb",
+    "status": 200,
+    "bytes": 338432,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/sky-generated.jpg",
+    "status": 200,
+    "bytes": 218160,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
+    "status": 200,
+    "bytes": 873654,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/startup/character/body-coverage-20f02477c128.bin",
+    "status": 200,
+    "bytes": 873800,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/startup/character/body-texture-423c672df75a.png",
+    "status": 200,
+    "bytes": 1630548,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/startup/character/duskguardTassets-coverage-e813d3927fc0.glb",
+    "status": 200,
+    "bytes": 155844,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/startup/character/manifest.json",
+    "status": 200,
+    "bytes": 12460,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+    "status": 200,
+    "bytes": 212257,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/startup/character/wayfarerTrousers-coverage-18aaf5475c09.bin",
+    "status": 200,
+    "bytes": 129888,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+    "status": 200,
+    "bytes": 129664,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+    "status": 200,
+    "bytes": 218705,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/startup/starter/manifest.json",
+    "status": 200,
+    "bytes": 325911,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/startup/starter/near-61b52956fc8e.br",
+    "status": 200,
+    "bytes": 3291020,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/startup/starter/near-669ce12a9c1e.bin.gz",
+    "status": 200,
+    "bytes": 291992,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+    "status": 200,
+    "bytes": 1246,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/startup/starter/texture-582e83089a5d.webp",
+    "status": 200,
+    "bytes": 1924,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/startup/starter/texture-6dc86c298450.webp",
+    "status": 200,
+    "bytes": 4838,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/startup/starter/texture-876257499921.webp",
+    "status": 200,
+    "bytes": 14858,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/startup/starter/texture-a659b1767619.webp",
+    "status": 200,
+    "bytes": 133886,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+    "status": 200,
+    "bytes": 5170,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/startup/starter/texture-b4691e418e94.webp",
+    "status": 200,
+    "bytes": 2820,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+    "status": 200,
+    "bytes": 3300,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/startup/starter/texture-db0580d45a99.webp",
+    "status": 200,
+    "bytes": 2224,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/stone-detail-source.md",
+    "status": 200,
+    "bytes": 588,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/stone-detail.png",
+    "status": 200,
+    "bytes": 921347,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/training-dummy.glb",
+    "status": 200,
+    "bytes": 1061704,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/wanderer-equipment.glb",
+    "status": 200,
+    "bytes": 26195548,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/wanderer.glb",
+    "status": 200,
+    "bytes": 20841992,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/warden-pauldrons-provenance.json",
+    "status": 200,
+    "bytes": 3901,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/wardrobe-designs-provenance.json",
+    "status": 200,
+    "bytes": 49992,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/woodland/LICENSE-EZ-TREE.txt",
+    "status": 200,
+    "bytes": 1073,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/woodland/SOURCE.md",
+    "status": 200,
+    "bytes": 1679,
+    "match": true
+  },
+  {
+    "file": "ashen-reach/woodland/trees.json",
+    "status": 200,
+    "bytes": 346526,
+    "match": true
+  },
+  {
+    "file": "assets/abs-BFlyxCvm.js",
+    "status": 200,
+    "bytes": 310,
+    "match": true
+  },
+  {
+    "file": "assets/abs-BFlyxCvm.js.map",
+    "status": 200,
+    "bytes": 1089,
+    "match": true
+  },
+  {
+    "file": "assets/acos-DUEcbSau.js",
+    "status": 200,
+    "bytes": 321,
+    "match": true
+  },
+  {
+    "file": "assets/acos-DUEcbSau.js.map",
+    "status": 200,
+    "bytes": 1132,
+    "match": true
+  },
+  {
+    "file": "assets/acosh-Dy8GyTjQ.js",
+    "status": 200,
+    "bytes": 324,
+    "match": true
+  },
+  {
+    "file": "assets/acosh-Dy8GyTjQ.js.map",
+    "status": 200,
+    "bytes": 1141,
+    "match": true
+  },
+  {
+    "file": "assets/actor-state-BAYHj9ld.js",
+    "status": 200,
+    "bytes": 5933,
+    "match": true
+  },
+  {
+    "file": "assets/actor-state-BAYHj9ld.js.map",
+    "status": 200,
+    "bytes": 20476,
+    "match": true
+  },
+  {
+    "file": "assets/add-BNXxk90C.js",
+    "status": 200,
+    "bytes": 348,
+    "match": true
+  },
+  {
+    "file": "assets/add-BNXxk90C.js.map",
+    "status": 200,
+    "bytes": 1272,
+    "match": true
+  },
+  {
+    "file": "assets/angle-between-CoGwfWGM.js",
+    "status": 200,
+    "bytes": 393,
+    "match": true
+  },
+  {
+    "file": "assets/angle-between-CoGwfWGM.js.map",
+    "status": 200,
+    "bytes": 1376,
+    "match": true
+  },
+  {
+    "file": "assets/appearance-storage-q-oYgHIU.js",
+    "status": 200,
+    "bytes": 12193,
+    "match": true
+  },
+  {
+    "file": "assets/appearance-storage-q-oYgHIU.js.map",
+    "status": 200,
+    "bytes": 36158,
+    "match": true
+  },
+  {
+    "file": "assets/armory-B2MxrpGa.js",
+    "status": 200,
+    "bytes": 9994,
+    "match": true
+  },
+  {
+    "file": "assets/armory-B2MxrpGa.js.map",
+    "status": 200,
+    "bytes": 24368,
+    "match": true
+  },
+  {
+    "file": "assets/armory-dUCANNuh.css",
+    "status": 200,
+    "bytes": 4896,
+    "match": true
+  },
+  {
+    "file": "assets/ashenReach-CELGCeSv.css",
+    "status": 200,
+    "bytes": 6793,
+    "match": true
+  },
+  {
+    "file": "assets/ashenReach-CQG-7TR0.js",
+    "status": 200,
+    "bytes": 214945,
+    "match": true
+  },
+  {
+    "file": "assets/ashenReach-CQG-7TR0.js.map",
+    "status": 200,
+    "bytes": 734903,
+    "match": true
+  },
+  {
+    "file": "assets/asin-C5ngIz8f.js",
+    "status": 200,
+    "bytes": 321,
+    "match": true
+  },
+  {
+    "file": "assets/asin-C5ngIz8f.js.map",
+    "status": 200,
+    "bytes": 1132,
+    "match": true
+  },
+  {
+    "file": "assets/asinh-BB-jcxC0.js",
+    "status": 200,
+    "bytes": 324,
+    "match": true
+  },
+  {
+    "file": "assets/asinh-BB-jcxC0.js.map",
+    "status": 200,
+    "bytes": 1141,
+    "match": true
+  },
+  {
+    "file": "assets/atan-C8h0EOlt.js",
+    "status": 200,
+    "bytes": 321,
+    "match": true
+  },
+  {
+    "file": "assets/atan-C8h0EOlt.js.map",
+    "status": 200,
+    "bytes": 1132,
+    "match": true
+  },
+  {
+    "file": "assets/atan2-DMT-o15M.js",
+    "status": 200,
+    "bytes": 354,
+    "match": true
+  },
+  {
+    "file": "assets/atan2-DMT-o15M.js.map",
+    "status": 200,
+    "bytes": 1290,
+    "match": true
+  },
+  {
+    "file": "assets/atanh-iVt3fkn3.js",
+    "status": 200,
+    "bytes": 324,
+    "match": true
+  },
+  {
+    "file": "assets/atanh-iVt3fkn3.js.map",
+    "status": 200,
+    "bytes": 1141,
+    "match": true
+  },
+  {
+    "file": "assets/axis-angle-from-quaternion-EdT0l-FM.js",
+    "status": 200,
+    "bytes": 493,
+    "match": true
+  },
+  {
+    "file": "assets/axis-angle-from-quaternion-EdT0l-FM.js.map",
+    "status": 200,
+    "bytes": 1686,
+    "match": true
+  },
+  {
+    "file": "assets/batches-Z-kHaXze.js",
+    "status": 200,
+    "bytes": 2138,
+    "match": true
+  },
+  {
+    "file": "assets/batches-Z-kHaXze.js.map",
+    "status": 200,
+    "bytes": 6282,
+    "match": true
+  },
+  {
+    "file": "assets/bind-contract-BTQu1skm.js",
+    "status": 200,
+    "bytes": 4504,
+    "match": true
+  },
+  {
+    "file": "assets/bind-contract-BTQu1skm.js.map",
+    "status": 200,
+    "bytes": 13425,
+    "match": true
+  },
+  {
+    "file": "assets/bitwise-and-C79URrLI.js",
+    "status": 200,
+    "bytes": 370,
+    "match": true
+  },
+  {
+    "file": "assets/bitwise-and-C79URrLI.js.map",
+    "status": 200,
+    "bytes": 1327,
+    "match": true
+  },
+  {
+    "file": "assets/bitwise-left-shift-CoBNBfYb.js",
+    "status": 200,
+    "bytes": 389,
+    "match": true
+  },
+  {
+    "file": "assets/bitwise-left-shift-CoBNBfYb.js.map",
+    "status": 200,
+    "bytes": 1374,
+    "match": true
+  },
+  {
+    "file": "assets/bitwise-not-T1ytnch4.js",
+    "status": 200,
+    "bytes": 341,
+    "match": true
+  },
+  {
+    "file": "assets/bitwise-not-T1ytnch4.js.map",
+    "status": 200,
+    "bytes": 1178,
+    "match": true
+  },
+  {
+    "file": "assets/bitwise-or-Py2yLszv.js",
+    "status": 200,
+    "bytes": 368,
+    "match": true
+  },
+  {
+    "file": "assets/bitwise-or-Py2yLszv.js.map",
+    "status": 200,
+    "bytes": 1317,
+    "match": true
+  },
+  {
+    "file": "assets/bitwise-right-shift-Dqk_2Uq4.js",
+    "status": 200,
+    "bytes": 392,
+    "match": true
+  },
+  {
+    "file": "assets/bitwise-right-shift-Dqk_2Uq4.js.map",
+    "status": 200,
+    "bytes": 1381,
+    "match": true
+  },
+  {
+    "file": "assets/bitwise-xor-DTEmDUtU.js",
+    "status": 200,
+    "bytes": 371,
+    "match": true
+  },
+  {
+    "file": "assets/bitwise-xor-DTEmDUtU.js.map",
+    "status": 200,
+    "bytes": 1327,
+    "match": true
+  },
+  {
+    "file": "assets/bodyPreview-Cvnd5wQ3.css",
+    "status": 200,
+    "bytes": 1581,
+    "match": true
+  },
+  {
+    "file": "assets/bodyPreview-DSR8iSK8.js",
+    "status": 200,
+    "bytes": 18002,
+    "match": true
+  },
+  {
+    "file": "assets/bodyPreview-DSR8iSK8.js.map",
+    "status": 200,
+    "bytes": 67761,
+    "match": true
+  },
+  {
+    "file": "assets/boolean-to-float-CnxDyz0e.js",
+    "status": 200,
+    "bytes": 318,
+    "match": true
+  },
+  {
+    "file": "assets/boolean-to-float-CnxDyz0e.js.map",
+    "status": 200,
+    "bytes": 1153,
+    "match": true
+  },
+  {
+    "file": "assets/boolean-to-int-BL9zYZ58.js",
+    "status": 200,
+    "bytes": 323,
+    "match": true
+  },
+  {
+    "file": "assets/boolean-to-int-BL9zYZ58.js.map",
+    "status": 200,
+    "bytes": 1218,
+    "match": true
+  },
+  {
+    "file": "assets/branch-DSdvaYtp.js",
+    "status": 200,
+    "bytes": 354,
+    "match": true
+  },
+  {
+    "file": "assets/branch-DSdvaYtp.js.map",
+    "status": 200,
+    "bytes": 1281,
+    "match": true
+  },
+  {
+    "file": "assets/cancel-delay-DwgYrFgH.js",
+    "status": 200,
+    "bytes": 530,
+    "match": true
+  },
+  {
+    "file": "assets/cancel-delay-DwgYrFgH.js.map",
+    "status": 200,
+    "bytes": 1869,
+    "match": true
+  },
+  {
+    "file": "assets/ceil-BGPsWf0H.js",
+    "status": 200,
+    "bytes": 321,
+    "match": true
+  },
+  {
+    "file": "assets/ceil-BGPsWf0H.js.map",
+    "status": 200,
+    "bytes": 1132,
+    "match": true
+  },
+  {
+    "file": "assets/characterCrowdProbe-Bgk78l_H.js",
+    "status": 200,
+    "bytes": 7854,
+    "match": true
+  },
+  {
+    "file": "assets/characterCrowdProbe-Bgk78l_H.js.map",
+    "status": 200,
+    "bytes": 23533,
+    "match": true
+  },
+  {
+    "file": "assets/characterLab-CfmDqSaW.js",
+    "status": 200,
+    "bytes": 261077,
+    "match": true
+  },
+  {
+    "file": "assets/characterLab-CfmDqSaW.js.map",
+    "status": 200,
+    "bytes": 918251,
+    "match": true
+  },
+  {
+    "file": "assets/characterLab-hGmVlny6.css",
+    "status": 200,
+    "bytes": 1660,
+    "match": true
+  },
+  {
+    "file": "assets/clamp-d1THnTnY.js",
+    "status": 200,
+    "bytes": 384,
+    "match": true
+  },
+  {
+    "file": "assets/clamp-d1THnTnY.js.map",
+    "status": 200,
+    "bytes": 1469,
+    "match": true
+  },
+  {
+    "file": "assets/client-CKc9z18k.js",
+    "status": 200,
+    "bytes": 123522,
+    "match": true
+  },
+  {
+    "file": "assets/client-CKc9z18k.js.map",
+    "status": 200,
+    "bytes": 659182,
+    "match": true
+  },
+  {
+    "file": "assets/combat-U3dndU4f.js",
+    "status": 200,
+    "bytes": 48075,
+    "match": true
+  },
+  {
+    "file": "assets/combat-U3dndU4f.js.map",
+    "status": 200,
+    "bytes": 150661,
+    "match": true
+  },
+  {
+    "file": "assets/combine-matrix-Djvir1Ue.js",
+    "status": 200,
+    "bytes": 471,
+    "match": true
+  },
+  {
+    "file": "assets/combine-matrix-Djvir1Ue.js.map",
+    "status": 200,
+    "bytes": 1540,
+    "match": true
+  },
+  {
+    "file": "assets/combine-matrix2d-BJuwmISx.js",
+    "status": 200,
+    "bytes": 477,
+    "match": true
+  },
+  {
+    "file": "assets/combine-matrix2d-BJuwmISx.js.map",
+    "status": 200,
+    "bytes": 1559,
+    "match": true
+  },
+  {
+    "file": "assets/combine-matrix3d-C4OQRdA6.js",
+    "status": 200,
+    "bytes": 477,
+    "match": true
+  },
+  {
+    "file": "assets/combine-matrix3d-C4OQRdA6.js.map",
+    "status": 200,
+    "bytes": 1559,
+    "match": true
+  },
+  {
+    "file": "assets/combine2-BPBXyIJd.js",
+    "status": 200,
+    "bytes": 379,
+    "match": true
+  },
+  {
+    "file": "assets/combine2-BPBXyIJd.js.map",
+    "status": 200,
+    "bytes": 1334,
+    "match": true
+  },
+  {
+    "file": "assets/combine3-DSTimn77.js",
+    "status": 200,
+    "bytes": 412,
+    "match": true
+  },
+  {
+    "file": "assets/combine3-DSTimn77.js.map",
+    "status": 200,
+    "bytes": 1516,
+    "match": true
+  },
+  {
+    "file": "assets/combine4-D-6FgzH2.js",
+    "status": 200,
+    "bytes": 445,
+    "match": true
+  },
+  {
+    "file": "assets/combine4-D-6FgzH2.js.map",
+    "status": 200,
+    "bytes": 1676,
+    "match": true
+  },
+  {
+    "file": "assets/compose-mat4-CADQB8A0.js",
+    "status": 200,
+    "bytes": 197,
+    "match": true
+  },
+  {
+    "file": "assets/compose-mat4-CADQB8A0.js.map",
+    "status": 200,
+    "bytes": 877,
+    "match": true
+  },
+  {
+    "file": "assets/conditional-BRMHx06t.js",
+    "status": 200,
+    "bytes": 399,
+    "match": true
+  },
+  {
+    "file": "assets/conditional-BRMHx06t.js.map",
+    "status": 200,
+    "bytes": 1455,
+    "match": true
+  },
+  {
+    "file": "assets/console-log-_LQ3zELS.js",
+    "status": 200,
+    "bytes": 972,
+    "match": true
+  },
+  {
+    "file": "assets/console-log-_LQ3zELS.js.map",
+    "status": 200,
+    "bytes": 3641,
+    "match": true
+  },
+  {
+    "file": "assets/constant-8ba2LFkz.js",
+    "status": 200,
+    "bytes": 258,
+    "match": true
+  },
+  {
+    "file": "assets/constant-8ba2LFkz.js.map",
+    "status": 200,
+    "bytes": 928,
+    "match": true
+  },
+  {
+    "file": "assets/constant-e-DvKB8KvI.js",
+    "status": 200,
+    "bytes": 232,
+    "match": true
+  },
+  {
+    "file": "assets/constant-e-DvKB8KvI.js.map",
+    "status": 200,
+    "bytes": 879,
+    "match": true
+  },
+  {
+    "file": "assets/constant-inf-B_CxAHSb.js",
+    "status": 200,
+    "bytes": 235,
+    "match": true
+  },
+  {
+    "file": "assets/constant-inf-B_CxAHSb.js.map",
+    "status": 200,
+    "bytes": 907,
+    "match": true
+  },
+  {
+    "file": "assets/constant-nan-J_GBazdN.js",
+    "status": 200,
+    "bytes": 235,
+    "match": true
+  },
+  {
+    "file": "assets/constant-nan-J_GBazdN.js.map",
+    "status": 200,
+    "bytes": 885,
+    "match": true
+  },
+  {
+    "file": "assets/constant-pi-pxCrYLR6.js",
+    "status": 200,
+    "bytes": 236,
+    "match": true
+  },
+  {
+    "file": "assets/constant-pi-pxCrYLR6.js.map",
+    "status": 200,
+    "bytes": 887,
+    "match": true
+  },
+  {
+    "file": "assets/constant-tau-x7irwZj2.js",
+    "status": 200,
+    "bytes": 241,
+    "match": true
+  },
+  {
+    "file": "assets/constant-tau-x7irwZj2.js.map",
+    "status": 200,
+    "bytes": 903,
+    "match": true
+  },
+  {
+    "file": "assets/cos-D9kmNSc2.js",
+    "status": 200,
+    "bytes": 318,
+    "match": true
+  },
+  {
+    "file": "assets/cos-D9kmNSc2.js.map",
+    "status": 200,
+    "bytes": 1123,
+    "match": true
+  },
+  {
+    "file": "assets/cosh-CiJuDwKT.js",
+    "status": 200,
+    "bytes": 321,
+    "match": true
+  },
+  {
+    "file": "assets/cosh-CiJuDwKT.js.map",
+    "status": 200,
+    "bytes": 1132,
+    "match": true
+  },
+  {
+    "file": "assets/coverage-manifest-CA9Ys9Y5.js",
+    "status": 200,
+    "bytes": 3962,
+    "match": true
+  },
+  {
+    "file": "assets/coverage-manifest-CA9Ys9Y5.js.map",
+    "status": 200,
+    "bytes": 16538,
+    "match": true
+  },
+  {
+    "file": "assets/create-quat-from-rotation-mat4-PcdXSPCR.js",
+    "status": 200,
+    "bytes": 531,
+    "match": true
+  },
+  {
+    "file": "assets/create-quat-from-rotation-mat4-PcdXSPCR.js.map",
+    "status": 200,
+    "bytes": 3035,
+    "match": true
+  },
+  {
+    "file": "assets/creator-B5d1-Jhl.css",
+    "status": 200,
+    "bytes": 931,
+    "match": true
+  },
+  {
+    "file": "assets/creator-BWp5oStF.js",
+    "status": 200,
+    "bytes": 11565,
+    "match": true
+  },
+  {
+    "file": "assets/creator-BWp5oStF.js.map",
+    "status": 200,
+    "bytes": 42480,
+    "match": true
+  },
+  {
+    "file": "assets/cross-85_Qe_Y-.js",
+    "status": 200,
+    "bytes": 358,
+    "match": true
+  },
+  {
+    "file": "assets/cross-85_Qe_Y-.js.map",
+    "status": 200,
+    "bytes": 1294,
+    "match": true
+  },
+  {
+    "file": "assets/cube-root-CfnbbJNp.js",
+    "status": 200,
+    "bytes": 334,
+    "match": true
+  },
+  {
+    "file": "assets/cube-root-CfnbbJNp.js.map",
+    "status": 200,
+    "bytes": 1165,
+    "match": true
+  },
+  {
+    "file": "assets/data-switch-D5mShwuu.js",
+    "status": 200,
+    "bytes": 515,
+    "match": true
+  },
+  {
+    "file": "assets/data-switch-D5mShwuu.js.map",
+    "status": 200,
+    "bytes": 1986,
+    "match": true
+  },
+  {
+    "file": "assets/deg-to-rad-DYBA1pnf.js",
+    "status": 200,
+    "bytes": 335,
+    "match": true
+  },
+  {
+    "file": "assets/deg-to-rad-DYBA1pnf.js.map",
+    "status": 200,
+    "bytes": 1177,
+    "match": true
+  },
+  {
+    "file": "assets/determinant-Q9X2QB6C.js",
+    "status": 200,
+    "bytes": 345,
+    "match": true
+  },
+  {
+    "file": "assets/determinant-Q9X2QB6C.js.map",
+    "status": 200,
+    "bytes": 1200,
+    "match": true
+  },
+  {
+    "file": "assets/divide-CDQpBcy7.js",
+    "status": 200,
+    "bytes": 357,
+    "match": true
+  },
+  {
+    "file": "assets/divide-CDQpBcy7.js.map",
+    "status": 200,
+    "bytes": 1293,
+    "match": true
+  },
+  {
+    "file": "assets/do-n-sadE0Gn2.js",
+    "status": 200,
+    "bytes": 710,
+    "match": true
+  },
+  {
+    "file": "assets/do-n-sadE0Gn2.js.map",
+    "status": 200,
+    "bytes": 2631,
+    "match": true
+  },
+  {
+    "file": "assets/dot-DPnU4EhI.js",
+    "status": 200,
+    "bytes": 351,
+    "match": true
+  },
+  {
+    "file": "assets/dot-DPnU4EhI.js.map",
+    "status": 200,
+    "bytes": 1275,
+    "match": true
+  },
+  {
+    "file": "assets/dye-palette-PVDI2Yum.js",
+    "status": 200,
+    "bytes": 1303,
+    "match": true
+  },
+  {
+    "file": "assets/dye-palette-PVDI2Yum.js.map",
+    "status": 200,
+    "bytes": 7301,
+    "match": true
+  },
+  {
+    "file": "assets/editor-property-CJ21UUlY.js",
+    "status": 200,
+    "bytes": 725,
+    "match": true
+  },
+  {
+    "file": "assets/editor-property-CJ21UUlY.js.map",
+    "status": 200,
+    "bytes": 2892,
+    "match": true
+  },
+  {
+    "file": "assets/enemies-CtPYjQQt.js",
+    "status": 200,
+    "bytes": 15520,
+    "match": true
+  },
+  {
+    "file": "assets/enemies-CtPYjQQt.js.map",
+    "status": 200,
+    "bytes": 57406,
+    "match": true
+  },
+  {
+    "file": "assets/engine-Bmc5IJPK.js",
+    "status": 200,
+    "bytes": 83,
+    "match": true
+  },
+  {
+    "file": "assets/engine-Bmc5IJPK.js.map",
+    "status": 200,
+    "bytes": 14673,
+    "match": true
+  },
+  {
+    "file": "assets/entry-BCGXs-tJ.js",
+    "status": 200,
+    "bytes": 4602,
+    "match": true
+  },
+  {
+    "file": "assets/entry-BCGXs-tJ.js.map",
+    "status": 200,
+    "bytes": 9683,
+    "match": true
+  },
+  {
+    "file": "assets/entry-DVqnJsvn.css",
+    "status": 200,
+    "bytes": 869,
+    "match": true
+  },
+  {
+    "file": "assets/equality-B5zTF1ff.js",
+    "status": 200,
+    "bytes": 367,
+    "match": true
+  },
+  {
+    "file": "assets/equality-B5zTF1ff.js.map",
+    "status": 200,
+    "bytes": 1310,
+    "match": true
+  },
+  {
+    "file": "assets/equipment-CaE5kAXb.js",
+    "status": 200,
+    "bytes": 2395,
+    "match": true
+  },
+  {
+    "file": "assets/equipment-CaE5kAXb.js.map",
+    "status": 200,
+    "bytes": 7774,
+    "match": true
+  },
+  {
+    "file": "assets/equipment-catalog-BSw-Lbk_.js",
+    "status": 200,
+    "bytes": 11283,
+    "match": true
+  },
+  {
+    "file": "assets/equipment-catalog-BSw-Lbk_.js.map",
+    "status": 200,
+    "bytes": 30461,
+    "match": true
+  },
+  {
+    "file": "assets/exponential-CAT4yh2t.js",
+    "status": 200,
+    "bytes": 342,
+    "match": true
+  },
+  {
+    "file": "assets/exponential-CAT4yh2t.js.map",
+    "status": 200,
+    "bytes": 1181,
+    "match": true
+  },
+  {
+    "file": "assets/extract-matrix-C_aSjqEn.js",
+    "status": 200,
+    "bytes": 428,
+    "match": true
+  },
+  {
+    "file": "assets/extract-matrix-C_aSjqEn.js.map",
+    "status": 200,
+    "bytes": 1403,
+    "match": true
+  },
+  {
+    "file": "assets/extract-matrix2d-B2GQ6mQb.js",
+    "status": 200,
+    "bytes": 434,
+    "match": true
+  },
+  {
+    "file": "assets/extract-matrix2d-B2GQ6mQb.js.map",
+    "status": 200,
+    "bytes": 1422,
+    "match": true
+  },
+  {
+    "file": "assets/extract-matrix3d-LWZ8G1Is.js",
+    "status": 200,
+    "bytes": 434,
+    "match": true
+  },
+  {
+    "file": "assets/extract-matrix3d-LWZ8G1Is.js.map",
+    "status": 200,
+    "bytes": 1422,
+    "match": true
+  },
+  {
+    "file": "assets/extract2-jkstHhPV.js",
+    "status": 200,
+    "bytes": 370,
+    "match": true
+  },
+  {
+    "file": "assets/extract2-jkstHhPV.js.map",
+    "status": 200,
+    "bytes": 1317,
+    "match": true
+  },
+  {
+    "file": "assets/extract3-CuwGM4ms.js",
+    "status": 200,
+    "bytes": 401,
+    "match": true
+  },
+  {
+    "file": "assets/extract3-CuwGM4ms.js.map",
+    "status": 200,
+    "bytes": 1483,
+    "match": true
+  },
+  {
+    "file": "assets/extract4-BIXZ8PHi.js",
+    "status": 200,
+    "bytes": 432,
+    "match": true
+  },
+  {
+    "file": "assets/extract4-BIXZ8PHi.js.map",
+    "status": 200,
+    "bytes": 1627,
+    "match": true
+  },
+  {
+    "file": "assets/fg-math-CX88zdiW.js",
+    "status": 200,
+    "bytes": 16153,
+    "match": true
+  },
+  {
+    "file": "assets/fg-math-CX88zdiW.js.map",
+    "status": 200,
+    "bytes": 76159,
+    "match": true
+  },
+  {
+    "file": "assets/fixture-worker-DTSnt5MN.js",
+    "status": 200,
+    "bytes": 13175,
+    "match": true
+  },
+  {
+    "file": "assets/fixture-worker-DTSnt5MN.js.map",
+    "status": 200,
+    "bytes": 43864,
+    "match": true
+  },
+  {
+    "file": "assets/float-to-boolean-DYEmT3lC.js",
+    "status": 200,
+    "bytes": 316,
+    "match": true
+  },
+  {
+    "file": "assets/float-to-boolean-DYEmT3lC.js.map",
+    "status": 200,
+    "bytes": 1153,
+    "match": true
+  },
+  {
+    "file": "assets/float-to-int-CqHASVhb.js",
+    "status": 200,
+    "bytes": 433,
+    "match": true
+  },
+  {
+    "file": "assets/float-to-int-CqHASVhb.js.map",
+    "status": 200,
+    "bytes": 1518,
+    "match": true
+  },
+  {
+    "file": "assets/floor-Du3K8pyH.js",
+    "status": 200,
+    "bytes": 316,
+    "match": true
+  },
+  {
+    "file": "assets/floor-Du3K8pyH.js.map",
+    "status": 200,
+    "bytes": 1107,
+    "match": true
+  },
+  {
+    "file": "assets/foliage-lod-probe-B30oheAf.js",
+    "status": 200,
+    "bytes": 2745,
+    "match": true
+  },
+  {
+    "file": "assets/foliage-lod-probe-B30oheAf.js.map",
+    "status": 200,
+    "bytes": 6659,
+    "match": true
+  },
+  {
+    "file": "assets/foliage-lod-probe-CC0SUAo5.js",
+    "status": 200,
+    "bytes": 2747,
+    "match": true
+  },
+  {
+    "file": "assets/foliage-lod-probe-CC0SUAo5.js.map",
+    "status": 200,
+    "bytes": 6659,
+    "match": true
+  },
+  {
+    "file": "assets/for-loop-r9mAQtLw.js",
+    "status": 200,
+    "bytes": 879,
+    "match": true
+  },
+  {
+    "file": "assets/for-loop-r9mAQtLw.js.map",
+    "status": 200,
+    "bytes": 3267,
+    "match": true
+  },
+  {
+    "file": "assets/fraction-B55SUBiu.js",
+    "status": 200,
+    "bytes": 333,
+    "match": true
+  },
+  {
+    "file": "assets/fraction-B55SUBiu.js.map",
+    "status": 200,
+    "bytes": 1163,
+    "match": true
+  },
+  {
+    "file": "assets/frame-metrics-BLj3v_ns.js",
+    "status": 200,
+    "bytes": 1258,
+    "match": true
+  },
+  {
+    "file": "assets/frame-metrics-BLj3v_ns.js.map",
+    "status": 200,
+    "bytes": 3492,
+    "match": true
+  },
+  {
+    "file": "assets/generate-mipmaps-f60TfV7u.js",
+    "status": 200,
+    "bytes": 1858,
+    "match": true
+  },
+  {
+    "file": "assets/generate-mipmaps-f60TfV7u.js.map",
+    "status": 200,
+    "bytes": 7177,
+    "match": true
+  },
+  {
+    "file": "assets/geometry-DPyvdsr1.js",
+    "status": 200,
+    "bytes": 12670,
+    "match": true
+  },
+  {
+    "file": "assets/geometry-DPyvdsr1.js.map",
+    "status": 200,
+    "bytes": 48317,
+    "match": true
+  },
+  {
+    "file": "assets/get-property-BmSzQDYd.js",
+    "status": 200,
+    "bytes": 788,
+    "match": true
+  },
+  {
+    "file": "assets/get-property-BmSzQDYd.js.map",
+    "status": 200,
+    "bytes": 2659,
+    "match": true
+  },
+  {
+    "file": "assets/get-variable-C_H9hfuO.js",
+    "status": 200,
+    "bytes": 288,
+    "match": true
+  },
+  {
+    "file": "assets/get-variable-C_H9hfuO.js.map",
+    "status": 200,
+    "bytes": 1006,
+    "match": true
+  },
+  {
+    "file": "assets/gpu-resource-retirement-CcFTRIM0.js",
+    "status": 200,
+    "bytes": 488,
+    "match": true
+  },
+  {
+    "file": "assets/gpu-resource-retirement-CcFTRIM0.js.map",
+    "status": 200,
+    "bytes": 5442,
+    "match": true
+  },
+  {
+    "file": "assets/greater-than-DzdSSk6S.js",
+    "status": 200,
+    "bytes": 377,
+    "match": true
+  },
+  {
+    "file": "assets/greater-than-DzdSSk6S.js.map",
+    "status": 200,
+    "bytes": 1336,
+    "match": true
+  },
+  {
+    "file": "assets/greater-than-or-equal-CyhwqiDs.js",
+    "status": 200,
+    "bytes": 400,
+    "match": true
+  },
+  {
+    "file": "assets/greater-than-or-equal-CyhwqiDs.js.map",
+    "status": 200,
+    "bytes": 1394,
+    "match": true
+  },
+  {
+    "file": "assets/havok-BZX47koC.js",
+    "status": 200,
+    "bytes": 138,
+    "match": true
+  },
+  {
+    "file": "assets/havok-BZX47koC.js.map",
+    "status": 200,
+    "bytes": 44378,
+    "match": true
+  },
+  {
+    "file": "assets/havok-floating-origin-B3DTHsth.js",
+    "status": 200,
+    "bytes": 3183,
+    "match": true
+  },
+  {
+    "file": "assets/havok-floating-origin-B3DTHsth.js.map",
+    "status": 200,
+    "bytes": 11787,
+    "match": true
+  },
+  {
+    "file": "assets/havok-thin-instances-BKnLHrq2.js",
+    "status": 200,
+    "bytes": 5763,
+    "match": true
+  },
+  {
+    "file": "assets/havok-thin-instances-BKnLHrq2.js.map",
+    "status": 200,
+    "bytes": 23832,
+    "match": true
+  },
+  {
+    "file": "assets/HavokPhysics-BqNY-4N9.wasm",
+    "status": 200,
+    "bytes": 2094563,
+    "match": true
+  },
+  {
+    "file": "assets/human-identity-assets-VMGCsebH.js",
+    "status": 200,
+    "bytes": 1439,
+    "match": true
+  },
+  {
+    "file": "assets/human-identity-assets-VMGCsebH.js.map",
+    "status": 200,
+    "bytes": 3540,
+    "match": true
+  },
+  {
+    "file": "assets/human-shape-CLK6o720.js",
+    "status": 200,
+    "bytes": 2534,
+    "match": true
+  },
+  {
+    "file": "assets/human-shape-CLK6o720.js.map",
+    "status": 200,
+    "bytes": 11003,
+    "match": true
+  },
+  {
+    "file": "assets/input-Dr2x9id5.js",
+    "status": 200,
+    "bytes": 6770,
+    "match": true
+  },
+  {
+    "file": "assets/input-Dr2x9id5.js.map",
+    "status": 200,
+    "bytes": 27267,
+    "match": true
+  },
+  {
+    "file": "assets/inspection-preview-Btv59myr.js",
+    "status": 200,
+    "bytes": 33017,
+    "match": true
+  },
+  {
+    "file": "assets/inspection-preview-Btv59myr.js.map",
+    "status": 200,
+    "bytes": 112113,
+    "match": true
+  },
+  {
+    "file": "assets/int-to-boolean-BJjfx9c3.js",
+    "status": 200,
+    "bytes": 336,
+    "match": true
+  },
+  {
+    "file": "assets/int-to-boolean-BJjfx9c3.js.map",
+    "status": 200,
+    "bytes": 1288,
+    "match": true
+  },
+  {
+    "file": "assets/int-to-float-DqrTcNWJ.js",
+    "status": 200,
+    "bytes": 323,
+    "match": true
+  },
+  {
+    "file": "assets/int-to-float-DqrTcNWJ.js.map",
+    "status": 200,
+    "bytes": 1250,
+    "match": true
+  },
+  {
+    "file": "assets/invert-matrix-FYN20SMg.js",
+    "status": 200,
+    "bytes": 346,
+    "match": true
+  },
+  {
+    "file": "assets/invert-matrix-FYN20SMg.js.map",
+    "status": 200,
+    "bytes": 1210,
+    "match": true
+  },
+  {
+    "file": "assets/is-infinity-BPGORm3u.js",
+    "status": 200,
+    "bytes": 344,
+    "match": true
+  },
+  {
+    "file": "assets/is-infinity-BPGORm3u.js.map",
+    "status": 200,
+    "bytes": 1186,
+    "match": true
+  },
+  {
+    "file": "assets/is-nan-DqrM5cbD.js",
+    "status": 200,
+    "bytes": 329,
+    "match": true
+  },
+  {
+    "file": "assets/is-nan-DqrM5cbD.js.map",
+    "status": 200,
+    "bytes": 1149,
+    "match": true
+  },
+  {
+    "file": "assets/leading-zeros-DUAVX7m7.js",
+    "status": 200,
+    "bytes": 346,
+    "match": true
+  },
+  {
+    "file": "assets/leading-zeros-DUAVX7m7.js.map",
+    "status": 200,
+    "bytes": 1192,
+    "match": true
+  },
+  {
+    "file": "assets/length-DXfanUxn.js",
+    "status": 200,
+    "bytes": 330,
+    "match": true
+  },
+  {
+    "file": "assets/length-DXfanUxn.js.map",
+    "status": 200,
+    "bytes": 1153,
+    "match": true
+  },
+  {
+    "file": "assets/less-than-or-equal-DnhNwkon.js",
+    "status": 200,
+    "bytes": 391,
+    "match": true
+  },
+  {
+    "file": "assets/less-than-or-equal-DnhNwkon.js.map",
+    "status": 200,
+    "bytes": 1373,
+    "match": true
+  },
+  {
+    "file": "assets/less-than-tfoJfsJs.js",
+    "status": 200,
+    "bytes": 369,
+    "match": true
+  },
+  {
+    "file": "assets/less-than-tfoJfsJs.js.map",
+    "status": 200,
+    "bytes": 1314,
+    "match": true
+  },
+  {
+    "file": "assets/linear-materials-QPZyxGxM.js",
+    "status": 200,
+    "bytes": 3136,
+    "match": true
+  },
+  {
+    "file": "assets/linear-materials-QPZyxGxM.js.map",
+    "status": 200,
+    "bytes": 14683,
+    "match": true
+  },
+  {
+    "file": "assets/lite-error-CbM31Lpb.js",
+    "status": 200,
+    "bytes": 120,
+    "match": true
+  },
+  {
+    "file": "assets/lite-error-CbM31Lpb.js.map",
+    "status": 200,
+    "bytes": 2782,
+    "match": true
+  },
+  {
+    "file": "assets/lite-error-decoder-5PiGoSPS.js",
+    "status": 200,
+    "bytes": 73,
+    "match": true
+  },
+  {
+    "file": "assets/lite-runtime-CapxqNuF.js",
+    "status": 200,
+    "bytes": 783609,
+    "match": true
+  },
+  {
+    "file": "assets/lite-runtime-CapxqNuF.js.map",
+    "status": 200,
+    "bytes": 2884073,
+    "match": true
+  },
+  {
+    "file": "assets/local-light-probe-Cmr1GCo8.js",
+    "status": 200,
+    "bytes": 2536,
+    "match": true
+  },
+  {
+    "file": "assets/local-light-probe-Cmr1GCo8.js.map",
+    "status": 200,
+    "bytes": 5204,
+    "match": true
+  },
+  {
+    "file": "assets/local-specular-c6fg4PgS.js",
+    "status": 200,
+    "bytes": 4001,
+    "match": true
+  },
+  {
+    "file": "assets/local-specular-c6fg4PgS.js.map",
+    "status": 200,
+    "bytes": 7970,
+    "match": true
+  },
+  {
+    "file": "assets/log-mBAAjBnb.js",
+    "status": 200,
+    "bytes": 318,
+    "match": true
+  },
+  {
+    "file": "assets/log-mBAAjBnb.js.map",
+    "status": 200,
+    "bytes": 1123,
+    "match": true
+  },
+  {
+    "file": "assets/log10-BL9CI9AD.js",
+    "status": 200,
+    "bytes": 324,
+    "match": true
+  },
+  {
+    "file": "assets/log10-BL9CI9AD.js.map",
+    "status": 200,
+    "bytes": 1141,
+    "match": true
+  },
+  {
+    "file": "assets/log2-DhnGV4ex.js",
+    "status": 200,
+    "bytes": 321,
+    "match": true
+  },
+  {
+    "file": "assets/log2-DhnGV4ex.js.map",
+    "status": 200,
+    "bytes": 1132,
+    "match": true
+  },
+  {
+    "file": "assets/materials-8xkTIMsm.js",
+    "status": 200,
+    "bytes": 24571,
+    "match": true
+  },
+  {
+    "file": "assets/materials-8xkTIMsm.js.map",
+    "status": 200,
+    "bytes": 49331,
+    "match": true
+  },
+  {
+    "file": "assets/matrix-compose-DKGcKroI.js",
+    "status": 200,
+    "bytes": 488,
+    "match": true
+  },
+  {
+    "file": "assets/matrix-compose-DKGcKroI.js.map",
+    "status": 200,
+    "bytes": 1648,
+    "match": true
+  },
+  {
+    "file": "assets/matrix-decompose-DQnkDheR.js",
+    "status": 200,
+    "bytes": 579,
+    "match": true
+  },
+  {
+    "file": "assets/matrix-decompose-DQnkDheR.js.map",
+    "status": 200,
+    "bytes": 1858,
+    "match": true
+  },
+  {
+    "file": "assets/matrix-multiplication-D5Dqp1C0.js",
+    "status": 200,
+    "bytes": 401,
+    "match": true
+  },
+  {
+    "file": "assets/matrix-multiplication-D5Dqp1C0.js.map",
+    "status": 200,
+    "bytes": 1433,
+    "match": true
+  },
+  {
+    "file": "assets/max-BURu2K-m.js",
+    "status": 200,
+    "bytes": 349,
+    "match": true
+  },
+  {
+    "file": "assets/max-BURu2K-m.js.map",
+    "status": 200,
+    "bytes": 1272,
+    "match": true
+  },
+  {
+    "file": "assets/min-BYCGxDZc.js",
+    "status": 200,
+    "bytes": 349,
+    "match": true
+  },
+  {
+    "file": "assets/min-BYCGxDZc.js.map",
+    "status": 200,
+    "bytes": 1272,
+    "match": true
+  },
+  {
+    "file": "assets/mix-BrhfMq0Z.js",
+    "status": 200,
+    "bytes": 407,
+    "match": true
+  },
+  {
+    "file": "assets/mix-BrhfMq0Z.js.map",
+    "status": 200,
+    "bytes": 1496,
+    "match": true
+  },
+  {
+    "file": "assets/module-preload-BZ1Pz5am.js",
+    "status": 200,
+    "bytes": 1218,
+    "match": true
+  },
+  {
+    "file": "assets/modulepreload-polyfill-P2Xu9kJm.js",
+    "status": 200,
+    "bytes": 670,
+    "match": true
+  },
+  {
+    "file": "assets/modulo-BSsllY8O.js",
+    "status": 200,
+    "bytes": 358,
+    "match": true
+  },
+  {
+    "file": "assets/modulo-BSsllY8O.js.map",
+    "status": 200,
+    "bytes": 1293,
+    "match": true
+  },
+  {
+    "file": "assets/multi-gate-dx4XUDgp.js",
+    "status": 200,
+    "bytes": 989,
+    "match": true
+  },
+  {
+    "file": "assets/multi-gate-dx4XUDgp.js.map",
+    "status": 200,
+    "bytes": 3698,
+    "match": true
+  },
+  {
+    "file": "assets/multiply-BWL3veoM.js",
+    "status": 200,
+    "bytes": 364,
+    "match": true
+  },
+  {
+    "file": "assets/multiply-BWL3veoM.js.map",
+    "status": 200,
+    "bytes": 1308,
+    "match": true
+  },
+  {
+    "file": "assets/multiply-mat4-into-buffer-DfBnM-FI.js",
+    "status": 200,
+    "bytes": 774,
+    "match": true
+  },
+  {
+    "file": "assets/multiply-mat4-into-buffer-DfBnM-FI.js.map",
+    "status": 200,
+    "bytes": 3662,
+    "match": true
+  },
+  {
+    "file": "assets/native-material-staging-O3kMPM5E.js",
+    "status": 200,
+    "bytes": 420,
+    "match": true
+  },
+  {
+    "file": "assets/native-material-staging-O3kMPM5E.js.map",
+    "status": 200,
+    "bytes": 1588,
+    "match": true
+  },
+  {
+    "file": "assets/negation-BwDOPga5.js",
+    "status": 200,
+    "bytes": 334,
+    "match": true
+  },
+  {
+    "file": "assets/negation-BwDOPga5.js.map",
+    "status": 200,
+    "bytes": 1159,
+    "match": true
+  },
+  {
+    "file": "assets/no-op-B6yEVs_u.js",
+    "status": 200,
+    "bytes": 474,
+    "match": true
+  },
+  {
+    "file": "assets/no-op-B6yEVs_u.js.map",
+    "status": 200,
+    "bytes": 1711,
+    "match": true
+  },
+  {
+    "file": "assets/normalize-Dp_6hs9q.js",
+    "status": 200,
+    "bytes": 337,
+    "match": true
+  },
+  {
+    "file": "assets/normalize-Dp_6hs9q.js.map",
+    "status": 200,
+    "bytes": 1178,
+    "match": true
+  },
+  {
+    "file": "assets/npc-BFBnTLuf.js",
+    "status": 200,
+    "bytes": 4777,
+    "match": true
+  },
+  {
+    "file": "assets/npc-BFBnTLuf.js.map",
+    "status": 200,
+    "bytes": 18201,
+    "match": true
+  },
+  {
+    "file": "assets/on-select-B0Oss0Re.js",
+    "status": 200,
+    "bytes": 636,
+    "match": true
+  },
+  {
+    "file": "assets/on-select-B0Oss0Re.js.map",
+    "status": 200,
+    "bytes": 2118,
+    "match": true
+  },
+  {
+    "file": "assets/one-bits-counter-CAEUjQkp.js",
+    "status": 200,
+    "bytes": 354,
+    "match": true
+  },
+  {
+    "file": "assets/one-bits-counter-CAEUjQkp.js.map",
+    "status": 200,
+    "bytes": 1216,
+    "match": true
+  },
+  {
+    "file": "assets/play-animation-Z5M9Y0fn.js",
+    "status": 200,
+    "bytes": 1130,
+    "match": true
+  },
+  {
+    "file": "assets/play-animation-Z5M9Y0fn.js.map",
+    "status": 200,
+    "bytes": 3852,
+    "match": true
+  },
+  {
+    "file": "assets/pointer-template-BwK3RynH.js",
+    "status": 200,
+    "bytes": 2299,
+    "match": true
+  },
+  {
+    "file": "assets/pointer-template-BwK3RynH.js.map",
+    "status": 200,
+    "bytes": 9020,
+    "match": true
+  },
+  {
+    "file": "assets/power-J_BZwtg3.js",
+    "status": 200,
+    "bytes": 355,
+    "match": true
+  },
+  {
+    "file": "assets/power-J_BZwtg3.js.map",
+    "status": 200,
+    "bytes": 1286,
+    "match": true
+  },
+  {
+    "file": "assets/prime-morph-materials-Cifvye2d.js",
+    "status": 200,
+    "bytes": 527,
+    "match": true
+  },
+  {
+    "file": "assets/prime-morph-materials-Cifvye2d.js.map",
+    "status": 200,
+    "bytes": 2133,
+    "match": true
+  },
+  {
+    "file": "assets/prop-transition-DTKUsvbn.js",
+    "status": 200,
+    "bytes": 4838,
+    "match": true
+  },
+  {
+    "file": "assets/prop-transition-DTKUsvbn.js.map",
+    "status": 200,
+    "bytes": 16204,
+    "match": true
+  },
+  {
+    "file": "assets/protocol-WiSWCrxY.js",
+    "status": 200,
+    "bytes": 102201,
+    "match": true
+  },
+  {
+    "file": "assets/protocol-WiSWCrxY.js.map",
+    "status": 200,
+    "bytes": 637013,
+    "match": true
+  },
+  {
+    "file": "assets/quat-conjugate-CQkUER9u.js",
+    "status": 200,
+    "bytes": 359,
+    "match": true
+  },
+  {
+    "file": "assets/quat-conjugate-CQkUER9u.js.map",
+    "status": 200,
+    "bytes": 1221,
+    "match": true
+  },
+  {
+    "file": "assets/quaternion-from-angles-CYXZUWiB.js",
+    "status": 200,
+    "bytes": 448,
+    "match": true
+  },
+  {
+    "file": "assets/quaternion-from-angles-CYXZUWiB.js.map",
+    "status": 200,
+    "bytes": 1576,
+    "match": true
+  },
+  {
+    "file": "assets/quaternion-from-axis-angle-BU-Btc-u.js",
+    "status": 200,
+    "bytes": 426,
+    "match": true
+  },
+  {
+    "file": "assets/quaternion-from-axis-angle-BU-Btc-u.js.map",
+    "status": 200,
+    "bytes": 1482,
+    "match": true
+  },
+  {
+    "file": "assets/quaternion-from-directions-BSurTimM.js",
+    "status": 200,
+    "bytes": 429,
+    "match": true
+  },
+  {
+    "file": "assets/quaternion-from-directions-BSurTimM.js.map",
+    "status": 200,
+    "bytes": 1488,
+    "match": true
+  },
+  {
+    "file": "assets/quaternion-from-up-forward-7icD7m4Z.js",
+    "status": 200,
+    "bytes": 415,
+    "match": true
+  },
+  {
+    "file": "assets/quaternion-from-up-forward-7icD7m4Z.js.map",
+    "status": 200,
+    "bytes": 1420,
+    "match": true
+  },
+  {
+    "file": "assets/quaternion-multiplication-1vHFEkXR.js",
+    "status": 200,
+    "bytes": 420,
+    "match": true
+  },
+  {
+    "file": "assets/quaternion-multiplication-1vHFEkXR.js.map",
+    "status": 200,
+    "bytes": 1441,
+    "match": true
+  },
+  {
+    "file": "assets/quaternion-slerp-B-TyXsNZ.js",
+    "status": 200,
+    "bytes": 412,
+    "match": true
+  },
+  {
+    "file": "assets/quaternion-slerp-B-TyXsNZ.js.map",
+    "status": 200,
+    "bytes": 1466,
+    "match": true
+  },
+  {
+    "file": "assets/rad-to-deg-DsSZym3A.js",
+    "status": 200,
+    "bytes": 336,
+    "match": true
+  },
+  {
+    "file": "assets/rad-to-deg-DsSZym3A.js.map",
+    "status": 200,
+    "bytes": 1177,
+    "match": true
+  },
+  {
+    "file": "assets/random-CHzuGoA1.js",
+    "status": 200,
+    "bytes": 379,
+    "match": true
+  },
+  {
+    "file": "assets/random-CHzuGoA1.js.map",
+    "status": 200,
+    "bytes": 1340,
+    "match": true
+  },
+  {
+    "file": "assets/receive-custom-event-CipTiFWq.js",
+    "status": 200,
+    "bytes": 633,
+    "match": true
+  },
+  {
+    "file": "assets/receive-custom-event-CipTiFWq.js.map",
+    "status": 200,
+    "bytes": 2343,
+    "match": true
+  },
+  {
+    "file": "assets/renderer-Cf9mZqON.js",
+    "status": 200,
+    "bytes": 16524,
+    "match": true
+  },
+  {
+    "file": "assets/renderer-Cf9mZqON.js.map",
+    "status": 200,
+    "bytes": 49187,
+    "match": true
+  },
+  {
+    "file": "assets/rgb-from-oklch-DSioqEI4.js",
+    "status": 200,
+    "bytes": 468,
+    "match": true
+  },
+  {
+    "file": "assets/rgb-from-oklch-DSioqEI4.js.map",
+    "status": 200,
+    "bytes": 1815,
+    "match": true
+  },
+  {
+    "file": "assets/rgb-to-oklch-YXGzskms.js",
+    "status": 200,
+    "bytes": 462,
+    "match": true
+  },
+  {
+    "file": "assets/rgb-to-oklch-YXGzskms.js.map",
+    "status": 200,
+    "bytes": 1797,
+    "match": true
+  },
+  {
+    "file": "assets/rig-DP5KCSAf.js",
+    "status": 200,
+    "bytes": 1924,
+    "match": true
+  },
+  {
+    "file": "assets/rig-DP5KCSAf.js.map",
+    "status": 200,
+    "bytes": 4849,
+    "match": true
+  },
+  {
+    "file": "assets/rolldown-runtime-hePW80VL.js",
+    "status": 200,
+    "bytes": 716,
+    "match": true
+  },
+  {
+    "file": "assets/rotate2d-DnEhXAik.js",
+    "status": 200,
+    "bytes": 375,
+    "match": true
+  },
+  {
+    "file": "assets/rotate2d-DnEhXAik.js.map",
+    "status": 200,
+    "bytes": 1329,
+    "match": true
+  },
+  {
+    "file": "assets/rotate3d-DwHkdT5Y.js",
+    "status": 200,
+    "bytes": 379,
+    "match": true
+  },
+  {
+    "file": "assets/rotate3d-DwHkdT5Y.js.map",
+    "status": 200,
+    "bytes": 1333,
+    "match": true
+  },
+  {
+    "file": "assets/round-CUCLvlze.js",
+    "status": 200,
+    "bytes": 325,
+    "match": true
+  },
+  {
+    "file": "assets/round-CUCLvlze.js.map",
+    "status": 200,
+    "bytes": 1141,
+    "match": true
+  },
+  {
+    "file": "assets/saturate-k3m66iJ9.js",
+    "status": 200,
+    "bytes": 334,
+    "match": true
+  },
+  {
+    "file": "assets/saturate-k3m66iJ9.js.map",
+    "status": 200,
+    "bytes": 1169,
+    "match": true
+  },
+  {
+    "file": "assets/scene-DZBtv2yZ.js",
+    "status": 200,
+    "bytes": 53011,
+    "match": true
+  },
+  {
+    "file": "assets/scene-DZBtv2yZ.js.map",
+    "status": 200,
+    "bytes": 201800,
+    "match": true
+  },
+  {
+    "file": "assets/scene-rebuild-DUjyCfo9.js",
+    "status": 200,
+    "bytes": 4323,
+    "match": true
+  },
+  {
+    "file": "assets/scene-rebuild-DUjyCfo9.js.map",
+    "status": 200,
+    "bytes": 19958,
+    "match": true
+  },
+  {
+    "file": "assets/scene-runtime-mesh-build-BFGvWaZa.js",
+    "status": 200,
+    "bytes": 6331,
+    "match": true
+  },
+  {
+    "file": "assets/scene-runtime-mesh-build-BFGvWaZa.js.map",
+    "status": 200,
+    "bytes": 24325,
+    "match": true
+  },
+  {
+    "file": "assets/scene-start-CP78_HDX.js",
+    "status": 200,
+    "bytes": 431,
+    "match": true
+  },
+  {
+    "file": "assets/scene-start-CP78_HDX.js.map",
+    "status": 200,
+    "bytes": 1449,
+    "match": true
+  },
+  {
+    "file": "assets/scene-tick-yhFdQY2W.js",
+    "status": 200,
+    "bytes": 757,
+    "match": true
+  },
+  {
+    "file": "assets/scene-tick-yhFdQY2W.js.map",
+    "status": 200,
+    "bytes": 2474,
+    "match": true
+  },
+  {
+    "file": "assets/send-custom-event-3XHH7MVC.js",
+    "status": 200,
+    "bytes": 604,
+    "match": true
+  },
+  {
+    "file": "assets/send-custom-event-3XHH7MVC.js.map",
+    "status": 200,
+    "bytes": 2209,
+    "match": true
+  },
+  {
+    "file": "assets/sequence-BfzSWnoI.js",
+    "status": 200,
+    "bytes": 349,
+    "match": true
+  },
+  {
+    "file": "assets/sequence-BfzSWnoI.js.map",
+    "status": 200,
+    "bytes": 1285,
+    "match": true
+  },
+  {
+    "file": "assets/set-delay-l0qGj_Dc.js",
+    "status": 200,
+    "bytes": 1291,
+    "match": true
+  },
+  {
+    "file": "assets/set-delay-l0qGj_Dc.js.map",
+    "status": 200,
+    "bytes": 4426,
+    "match": true
+  },
+  {
+    "file": "assets/set-property-Cu2bCVPH.js",
+    "status": 200,
+    "bytes": 898,
+    "match": true
+  },
+  {
+    "file": "assets/set-property-Cu2bCVPH.js.map",
+    "status": 200,
+    "bytes": 2843,
+    "match": true
+  },
+  {
+    "file": "assets/set-variable-DVIIYe6R.js",
+    "status": 200,
+    "bytes": 676,
+    "match": true
+  },
+  {
+    "file": "assets/set-variable-DVIIYe6R.js.map",
+    "status": 200,
+    "bytes": 2379,
+    "match": true
+  },
+  {
+    "file": "assets/shader-pipeline-cache-o2hNKN0n.js",
+    "status": 200,
+    "bytes": 1642,
+    "match": true
+  },
+  {
+    "file": "assets/shader-pipeline-cache-o2hNKN0n.js.map",
+    "status": 200,
+    "bytes": 6599,
+    "match": true
+  },
+  {
+    "file": "assets/shader-renderable-Cm8mAHvm.js",
+    "status": 200,
+    "bytes": 15454,
+    "match": true
+  },
+  {
+    "file": "assets/shader-renderable-Cm8mAHvm.js.map",
+    "status": 200,
+    "bytes": 64903,
+    "match": true
+  },
+  {
+    "file": "assets/shader-thin-instance-dFSYzJ_v.js",
+    "status": 200,
+    "bytes": 2884,
+    "match": true
+  },
+  {
+    "file": "assets/shader-thin-instance-dFSYzJ_v.js.map",
+    "status": 200,
+    "bytes": 10820,
+    "match": true
+  },
+  {
+    "file": "assets/sign-Aa1Ng1ad.js",
+    "status": 200,
+    "bytes": 322,
+    "match": true
+  },
+  {
+    "file": "assets/sign-Aa1Ng1ad.js.map",
+    "status": 200,
+    "bytes": 1132,
+    "match": true
+  },
+  {
+    "file": "assets/sin-CqNFb7-L.js",
+    "status": 200,
+    "bytes": 319,
+    "match": true
+  },
+  {
+    "file": "assets/sin-CqNFb7-L.js.map",
+    "status": 200,
+    "bytes": 1123,
+    "match": true
+  },
+  {
+    "file": "assets/sinh-BwGLy3iT.js",
+    "status": 200,
+    "bytes": 322,
+    "match": true
+  },
+  {
+    "file": "assets/sinh-BwGLy3iT.js.map",
+    "status": 200,
+    "bytes": 1132,
+    "match": true
+  },
+  {
+    "file": "assets/smooth-step-BavxaWxP.js",
+    "status": 200,
+    "bytes": 385,
+    "match": true
+  },
+  {
+    "file": "assets/smooth-step-BavxaWxP.js.map",
+    "status": 200,
+    "bytes": 1428,
+    "match": true
+  },
+  {
+    "file": "assets/sockets-COAzZyAw.js",
+    "status": 200,
+    "bytes": 8241,
+    "match": true
+  },
+  {
+    "file": "assets/sockets-COAzZyAw.js.map",
+    "status": 200,
+    "bytes": 36498,
+    "match": true
+  },
+  {
+    "file": "assets/square-root-DCscRiml.js",
+    "status": 200,
+    "bytes": 341,
+    "match": true
+  },
+  {
+    "file": "assets/square-root-DCscRiml.js.map",
+    "status": 200,
+    "bytes": 1180,
+    "match": true
+  },
+  {
+    "file": "assets/starter-outfit-worker-BiqNvION.js",
+    "status": 200,
+    "bytes": 12888,
+    "match": true
+  },
+  {
+    "file": "assets/starter-outfit-worker-BiqNvION.js.map",
+    "status": 200,
+    "bytes": 55398,
+    "match": true
+  },
+  {
+    "file": "assets/startup-assets-Cn019YSu.js",
+    "status": 200,
+    "bytes": 746,
+    "match": true
+  },
+  {
+    "file": "assets/startup-assets-Cn019YSu.js.map",
+    "status": 200,
+    "bytes": 2579,
+    "match": true
+  },
+  {
+    "file": "assets/startupPreload-CWTcdncO.js",
+    "status": 200,
+    "bytes": 3862,
+    "match": true
+  },
+  {
+    "file": "assets/startupPreload-CWTcdncO.js.map",
+    "status": 200,
+    "bytes": 11091,
+    "match": true
+  },
+  {
+    "file": "assets/stop-animation-g7_berl8.js",
+    "status": 200,
+    "bytes": 1093,
+    "match": true
+  },
+  {
+    "file": "assets/stop-animation-g7_berl8.js.map",
+    "status": 200,
+    "bytes": 3662,
+    "match": true
+  },
+  {
+    "file": "assets/stop-event-propagation-Detxasfi.js",
+    "status": 200,
+    "bytes": 483,
+    "match": true
+  },
+  {
+    "file": "assets/stop-event-propagation-Detxasfi.js.map",
+    "status": 200,
+    "bytes": 1709,
+    "match": true
+  },
+  {
+    "file": "assets/subtract-CwDUt9h0.js",
+    "status": 200,
+    "bytes": 364,
+    "match": true
+  },
+  {
+    "file": "assets/subtract-CwDUt9h0.js.map",
+    "status": 200,
+    "bytes": 1308,
+    "match": true
+  },
+  {
+    "file": "assets/sun-shadow-probe-p69P5EK-.js",
+    "status": 200,
+    "bytes": 2545,
+    "match": true
+  },
+  {
+    "file": "assets/sun-shadow-probe-p69P5EK-.js.map",
+    "status": 200,
+    "bytes": 5107,
+    "match": true
+  },
+  {
+    "file": "assets/sun-shadows-CWTyvg8q.js",
+    "status": 200,
+    "bytes": 9667,
+    "match": true
+  },
+  {
+    "file": "assets/sun-shadows-CWTyvg8q.js.map",
+    "status": 200,
+    "bytes": 24735,
+    "match": true
+  },
+  {
+    "file": "assets/switch-D5lFDC_A.js",
+    "status": 200,
+    "bytes": 521,
+    "match": true
+  },
+  {
+    "file": "assets/switch-D5lFDC_A.js.map",
+    "status": 200,
+    "bytes": 1942,
+    "match": true
+  },
+  {
+    "file": "assets/tan-D4LI046q.js",
+    "status": 200,
+    "bytes": 319,
+    "match": true
+  },
+  {
+    "file": "assets/tan-D4LI046q.js.map",
+    "status": 200,
+    "bytes": 1123,
+    "match": true
+  },
+  {
+    "file": "assets/tanh-ClywP50X.js",
+    "status": 200,
+    "bytes": 322,
+    "match": true
+  },
+  {
+    "file": "assets/tanh-ClywP50X.js.map",
+    "status": 200,
+    "bytes": 1132,
+    "match": true
+  },
+  {
+    "file": "assets/thin-instance-cull-binding-Dt-7VLnz.js",
+    "status": 200,
+    "bytes": 14561,
+    "match": true
+  },
+  {
+    "file": "assets/thin-instance-cull-binding-Dt-7VLnz.js.map",
+    "status": 200,
+    "bytes": 43437,
+    "match": true
+  },
+  {
+    "file": "assets/thin-instance-gpu-spZwzoSw.js",
+    "status": 200,
+    "bytes": 2996,
+    "match": true
+  },
+  {
+    "file": "assets/thin-instance-gpu-spZwzoSw.js.map",
+    "status": 200,
+    "bytes": 11964,
+    "match": true
+  },
+  {
+    "file": "assets/throttle-CEiOsDLU.js",
+    "status": 200,
+    "bytes": 1027,
+    "match": true
+  },
+  {
+    "file": "assets/throttle-CEiOsDLU.js.map",
+    "status": 200,
+    "bytes": 3684,
+    "match": true
+  },
+  {
+    "file": "assets/townsfolk-WSYOg0Gy.js",
+    "status": 200,
+    "bytes": 3371,
+    "match": true
+  },
+  {
+    "file": "assets/townsfolk-WSYOg0Gy.js.map",
+    "status": 200,
+    "bytes": 10737,
+    "match": true
+  },
+  {
+    "file": "assets/trailing-zeros-CGBw1_8Q.js",
+    "status": 200,
+    "bytes": 349,
+    "match": true
+  },
+  {
+    "file": "assets/trailing-zeros-CGBw1_8Q.js.map",
+    "status": 200,
+    "bytes": 1199,
+    "match": true
+  },
+  {
+    "file": "assets/transform-vector-DDAZX8Sm.js",
+    "status": 200,
+    "bytes": 386,
+    "match": true
+  },
+  {
+    "file": "assets/transform-vector-DDAZX8Sm.js.map",
+    "status": 200,
+    "bytes": 1388,
+    "match": true
+  },
+  {
+    "file": "assets/transpose-DfYxnEi3.js",
+    "status": 200,
+    "bytes": 337,
+    "match": true
+  },
+  {
+    "file": "assets/transpose-DfYxnEi3.js.map",
+    "status": 200,
+    "bytes": 1178,
+    "match": true
+  },
+  {
+    "file": "assets/trunc-DuPt1jok.js",
+    "status": 200,
+    "bytes": 325,
+    "match": true
+  },
+  {
+    "file": "assets/trunc-DuPt1jok.js.map",
+    "status": 200,
+    "bytes": 1141,
+    "match": true
+  },
+  {
+    "file": "assets/typed-arrays-mqcHaLDm.js",
+    "status": 200,
+    "bytes": 140,
+    "match": true
+  },
+  {
+    "file": "assets/typed-arrays-mqcHaLDm.js.map",
+    "status": 200,
+    "bytes": 1111,
+    "match": true
+  },
+  {
+    "file": "assets/uniform-copy-batch-CB6Qu_Sv.js",
+    "status": 200,
+    "bytes": 1770,
+    "match": true
+  },
+  {
+    "file": "assets/uniform-copy-batch-CB6Qu_Sv.js.map",
+    "status": 200,
+    "bytes": 5947,
+    "match": true
+  },
+  {
+    "file": "assets/value-interpolation-0JOSvU0p.js",
+    "status": 200,
+    "bytes": 3910,
+    "match": true
+  },
+  {
+    "file": "assets/value-interpolation-0JOSvU0p.js.map",
+    "status": 200,
+    "bytes": 15483,
+    "match": true
+  },
+  {
+    "file": "assets/vector-slerp-8x8GpOjT.js",
+    "status": 200,
+    "bytes": 391,
+    "match": true
+  },
+  {
+    "file": "assets/vector-slerp-8x8GpOjT.js.map",
+    "status": 200,
+    "bytes": 1440,
+    "match": true
+  },
+  {
+    "file": "assets/wait-all-CsYJq09I.js",
+    "status": 200,
+    "bytes": 1072,
+    "match": true
+  },
+  {
+    "file": "assets/wait-all-CsYJq09I.js.map",
+    "status": 200,
+    "bytes": 3908,
+    "match": true
+  },
+  {
+    "file": "assets/while-loop-D4zxWlkm.js",
+    "status": 200,
+    "bytes": 467,
+    "match": true
+  },
+  {
+    "file": "assets/while-loop-D4zxWlkm.js.map",
+    "status": 200,
+    "bytes": 1690,
+    "match": true
+  },
+  {
+    "file": "assets/world-worker-Cvw93lBX.js",
+    "status": 200,
+    "bytes": 142096,
+    "match": true
+  },
+  {
+    "file": "assets/world-worker-Cvw93lBX.js.map",
+    "status": 200,
+    "bytes": 568800,
+    "match": true
+  },
+  {
+    "file": "body-preview.html",
+    "status": 200,
+    "bytes": 916,
+    "match": true
+  },
+  {
+    "file": "character-crowd-probe.html",
+    "status": 200,
+    "bytes": 1372,
+    "match": true
+  },
+  {
+    "file": "character-lab.html",
+    "status": 200,
+    "bytes": 1025,
+    "match": true
+  },
+  {
+    "file": "characters/animations/human-mage-armed-v1.json",
+    "status": 200,
+    "bytes": 1751904,
+    "match": true
+  },
+  {
+    "file": "characters/base-thirdperson.glb",
+    "status": 200,
+    "bytes": 3043420,
+    "match": true
+  },
+  {
+    "file": "characters/base.glb",
+    "status": 200,
+    "bytes": 1891828,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/human-animated-v1.glb",
+    "status": 200,
+    "bytes": 17958208,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/human-v1-textures/albedo.png",
+    "status": 200,
+    "bytes": 4993670,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/human-v1-textures/brown_eye.png",
+    "status": 200,
+    "bytes": 610817,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/human-v1-textures/eye-rough.png",
+    "status": 200,
+    "bytes": 30359,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/human-v1-textures/eye.png",
+    "status": 200,
+    "bytes": 225704,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/human-v1-textures/eyebrow.png",
+    "status": 200,
+    "bytes": 89619,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/human-v1-textures/hair-normal.png",
+    "status": 200,
+    "bytes": 1626745,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/human-v1-textures/hair.png",
+    "status": 200,
+    "bytes": 3553543,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/human-v1-textures/normal.png",
+    "status": 200,
+    "bytes": 5153371,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/human-v1-textures/roughness.png",
+    "status": 200,
+    "bytes": 113635,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/human-v1.glb",
+    "status": 200,
+    "bytes": 16903268,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/human-v1.profile.json",
+    "status": 200,
+    "bytes": 681,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/orc-animated-v1.glb",
+    "status": 200,
+    "bytes": 13700296,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/orc-v1-textures/albedo.png",
+    "status": 200,
+    "bytes": 4788807,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/orc-v1-textures/brown_eye.png",
+    "status": 200,
+    "bytes": 610817,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/orc-v1-textures/eye.png",
+    "status": 200,
+    "bytes": 225704,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/orc-v1-textures/eyebrow.png",
+    "status": 200,
+    "bytes": 89619,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/orc-v1-textures/hair.png",
+    "status": 200,
+    "bytes": 1604487,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/orc-v1-textures/normal.png",
+    "status": 200,
+    "bytes": 4612960,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/orc-v1-textures/roughness.png",
+    "status": 200,
+    "bytes": 136305,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/orc-v1.glb",
+    "status": 200,
+    "bytes": 12645132,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/orc-v1.profile.json",
+    "status": 200,
+    "bytes": 677,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/undead-animated-v1.glb",
+    "status": 200,
+    "bytes": 12622476,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/undead-v1-textures/albedo.png",
+    "status": 200,
+    "bytes": 3745844,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/undead-v1-textures/brown_eye.png",
+    "status": 200,
+    "bytes": 610817,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/undead-v1-textures/eye.png",
+    "status": 200,
+    "bytes": 229452,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/undead-v1-textures/eyebrow.png",
+    "status": 200,
+    "bytes": 89619,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/undead-v1-textures/hair.png",
+    "status": 200,
+    "bytes": 1949672,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/undead-v1-textures/normal.png",
+    "status": 200,
+    "bytes": 4224003,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/undead-v1-textures/roughness.png",
+    "status": 200,
+    "bytes": 140791,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/undead-v1.glb",
+    "status": 200,
+    "bytes": 11563464,
+    "match": true
+  },
+  {
+    "file": "characters/bodies/undead-v1.profile.json",
+    "status": 200,
+    "bytes": 681,
+    "match": true
+  },
+  {
+    "file": "characters/candidates/human-source-v1.glb",
+    "status": 200,
+    "bytes": 3399784,
+    "match": true
+  },
+  {
+    "file": "characters/candidates/human-source-v1.provenance.json",
+    "status": 200,
+    "bytes": 1255,
+    "match": true
+  },
+  {
+    "file": "characters/candidates/orc-equipped-preview.glb",
+    "status": 200,
+    "bytes": 16855668,
+    "match": true
+  },
+  {
+    "file": "characters/candidates/orc-graveweaver-preview.glb",
+    "status": 200,
+    "bytes": 15424332,
+    "match": true
+  },
+  {
+    "file": "characters/candidates/orc-pilgrim-preview.glb",
+    "status": 200,
+    "bytes": 14911352,
+    "match": true
+  },
+  {
+    "file": "characters/candidates/orc-source-v1.glb",
+    "status": 200,
+    "bytes": 7896932,
+    "match": true
+  },
+  {
+    "file": "characters/candidates/orc-source-v1.provenance.json",
+    "status": 200,
+    "bytes": 1324,
+    "match": true
+  },
+  {
+    "file": "characters/candidates/orc-wayfarer-preview.glb",
+    "status": 200,
+    "bytes": 14738928,
+    "match": true
+  },
+  {
+    "file": "characters/candidates/undead-source-v1.glb",
+    "status": 200,
+    "bytes": 8370504,
+    "match": true
+  },
+  {
+    "file": "characters/candidates/undead-source-v1.provenance.json",
+    "status": 200,
+    "bytes": 1374,
+    "match": true
+  },
+  {
+    "file": "characters/garments/mage-leather.png",
+    "status": 200,
+    "bytes": 3338346,
+    "match": true
+  },
+  {
+    "file": "characters/garments/mage-wool.png",
+    "status": 200,
+    "bytes": 3170004,
+    "match": true
+  },
+  {
+    "file": "characters/garments/mageBoots.human-v1.v1.glb",
+    "status": 200,
+    "bytes": 4265500,
+    "match": true
+  },
+  {
+    "file": "characters/garments/mageCoat.human-v1.v1.glb",
+    "status": 200,
+    "bytes": 8649668,
+    "match": true
+  },
+  {
+    "file": "characters/garments/starter-fits.v1.json",
+    "status": 200,
+    "bytes": 14617,
+    "match": true
+  },
+  {
+    "file": "characters/garments/starterBoots.human-v1.v1.glb",
+    "status": 200,
+    "bytes": 493776,
+    "match": true
+  },
+  {
+    "file": "characters/garments/starterBoots.orc-v1.v1.glb",
+    "status": 200,
+    "bytes": 493908,
+    "match": true
+  },
+  {
+    "file": "characters/garments/starterBoots.undead-v1.v1.glb",
+    "status": 200,
+    "bytes": 493908,
+    "match": true
+  },
+  {
+    "file": "characters/garments/starterShirt.human-v1.v1.glb",
+    "status": 200,
+    "bytes": 476444,
+    "match": true
+  },
+  {
+    "file": "characters/garments/starterShirt.orc-v1.v1.glb",
+    "status": 200,
+    "bytes": 474156,
+    "match": true
+  },
+  {
+    "file": "characters/garments/starterShirt.undead-v1.v1.glb",
+    "status": 200,
+    "bytes": 474920,
+    "match": true
+  },
+  {
+    "file": "characters/garments/starterTrousers.human-v1.v1.glb",
+    "status": 200,
+    "bytes": 268572,
+    "match": true
+  },
+  {
+    "file": "characters/garments/starterTrousers.orc-v1.v1.glb",
+    "status": 200,
+    "bytes": 267784,
+    "match": true
+  },
+  {
+    "file": "characters/garments/starterTrousers.undead-v1.v1.glb",
+    "status": 200,
+    "bytes": 269084,
+    "match": true
+  },
+  {
+    "file": "characters/items/boot.glb",
+    "status": 200,
+    "bytes": 14836,
+    "match": true
+  },
+  {
+    "file": "characters/items/cape.glb",
+    "status": 200,
+    "bytes": 3839116,
+    "match": true
+  },
+  {
+    "file": "characters/items/cowl.glb",
+    "status": 200,
+    "bytes": 3956684,
+    "match": true
+  },
+  {
+    "file": "characters/items/robe.glb",
+    "status": 200,
+    "bytes": 4017948,
+    "match": true
+  },
+  {
+    "file": "characters/items/sleeve-fore.glb",
+    "status": 200,
+    "bytes": 3785020,
+    "match": true
+  },
+  {
+    "file": "characters/items/sleeve.glb",
+    "status": 200,
+    "bytes": 3802540,
+    "match": true
+  },
+  {
+    "file": "characters/items/staff.glb",
+    "status": 200,
+    "bytes": 26300,
+    "match": true
+  },
+  {
+    "file": "characters/lab/fabric-normal.png",
+    "status": 200,
+    "bytes": 2035690,
+    "match": true
+  },
+  {
+    "file": "characters/lab/floor-albedo.png",
+    "status": 200,
+    "bytes": 1319020,
+    "match": true
+  },
+  {
+    "file": "characters/lab/floor-normal.png",
+    "status": 200,
+    "bytes": 1648765,
+    "match": true
+  },
+  {
+    "file": "characters/lab/knit-copper.png",
+    "status": 200,
+    "bytes": 2150734,
+    "match": true
+  },
+  {
+    "file": "characters/lab/knit-indigo.png",
+    "status": 200,
+    "bytes": 1779924,
+    "match": true
+  },
+  {
+    "file": "characters/lab/knit-normal.png",
+    "status": 200,
+    "bytes": 2128323,
+    "match": true
+  },
+  {
+    "file": "characters/lab/skin-albedo.png",
+    "status": 200,
+    "bytes": 1113713,
+    "match": true
+  },
+  {
+    "file": "characters/lab/skin-normal.png",
+    "status": 200,
+    "bytes": 1665115,
+    "match": true
+  },
+  {
+    "file": "characters/lab/trousers-albedo.png",
+    "status": 200,
+    "bytes": 1639103,
+    "match": true
+  },
+  {
+    "file": "characters/lab/tunic-albedo.png",
+    "status": 200,
+    "bytes": 1874155,
+    "match": true
+  },
+  {
+    "file": "characters/lab/wood-albedo.png",
+    "status": 200,
+    "bytes": 1117928,
+    "match": true
+  },
+  {
+    "file": "env/dikhololo_night_2k.hdr",
+    "status": 200,
+    "bytes": 7050455,
+    "match": true
+  },
+  {
+    "file": "env/studio_small_08_1k.hdr",
+    "status": 200,
+    "bytes": 1508872,
+    "match": true
+  },
+  {
+    "file": "favicon.svg",
+    "status": 200,
+    "bytes": 255,
+    "match": true
+  },
+  {
+    "file": "HavokPhysics.wasm",
+    "status": 200,
+    "bytes": 2094563,
+    "match": true
+  },
+  {
+    "file": "image-references/elden-castle.jpg",
+    "status": 200,
+    "bytes": 678645,
+    "match": true
+  },
+  {
+    "file": "image-references/elden-cliff.jpg",
+    "status": 200,
+    "bytes": 644360,
+    "match": true
+  },
+  {
+    "file": "image-references/image copy.png",
+    "status": 200,
+    "bytes": 970429,
+    "match": true
+  },
+  {
+    "file": "image-references/image.png",
+    "status": 200,
+    "bytes": 3523960,
+    "match": true
+  },
+  {
+    "file": "image-references/poc-a-plate.jpg",
+    "status": 200,
+    "bytes": 216047,
+    "match": true
+  },
+  {
+    "file": "image-references/ruins-start.jpg",
+    "status": 200,
+    "bytes": 252146,
+    "match": true
+  },
+  {
+    "file": "image-references/side.jpg",
+    "status": 200,
+    "bytes": 198635,
+    "match": true
+  },
+  {
+    "file": "index.html",
+    "status": 200,
+    "bytes": 15770,
+    "match": true
+  },
+  {
+    "file": "meshopt_decoder.js",
+    "status": 200,
+    "bytes": 25486,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_01/island_tree_01_1k.gltf",
+    "status": 200,
+    "bytes": 8576,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_01/island_tree_01.bin",
+    "status": 200,
+    "bytes": 60709812,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_01/textures/island_tree_01_arm_1k.jpg",
+    "status": 200,
+    "bytes": 727403,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_01/textures/island_tree_01_branches_arm_1k.jpg",
+    "status": 200,
+    "bytes": 484806,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_01/textures/island_tree_01_branches_diff_1k.jpg",
+    "status": 200,
+    "bytes": 528304,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_01/textures/island_tree_01_branches_nor_gl_1k.jpg",
+    "status": 200,
+    "bytes": 819101,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_01/textures/island_tree_01_diff_1k.jpg",
+    "status": 200,
+    "bytes": 791327,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_01/textures/island_tree_01_leaves_arm_1k.jpg",
+    "status": 200,
+    "bytes": 489476,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_01/textures/island_tree_01_leaves_diff_1k.jpg",
+    "status": 200,
+    "bytes": 191886,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_01/textures/island_tree_01_leaves_nor_gl_1k.jpg",
+    "status": 200,
+    "bytes": 379443,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_01/textures/island_tree_01_nor_gl_1k.jpg",
+    "status": 200,
+    "bytes": 1207134,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_02/island_tree_02_1k.gltf",
+    "status": 200,
+    "bytes": 8545,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_02/island_tree_02.bin",
+    "status": 200,
+    "bytes": 40686576,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_02/textures/island_tree_02_arm_1k.jpg",
+    "status": 200,
+    "bytes": 688305,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_02/textures/island_tree_02_branches_arm_1k.jpg",
+    "status": 200,
+    "bytes": 484806,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_02/textures/island_tree_02_branches_diff_1k.jpg",
+    "status": 200,
+    "bytes": 528304,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_02/textures/island_tree_02_branches_nor_gl_1k.jpg",
+    "status": 200,
+    "bytes": 819101,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_02/textures/island_tree_02_diff_1k.jpg",
+    "status": 200,
+    "bytes": 738738,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_02/textures/island_tree_02_leaves_arm_1k.jpg",
+    "status": 200,
+    "bytes": 489476,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_02/textures/island_tree_02_leaves_diff_1k.jpg",
+    "status": 200,
+    "bytes": 191886,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_02/textures/island_tree_02_leaves_nor_gl_1k.jpg",
+    "status": 200,
+    "bytes": 379443,
+    "match": true
+  },
+  {
+    "file": "models/island_tree_02/textures/island_tree_02_nor_gl_1k.jpg",
+    "status": 200,
+    "bytes": 1157226,
+    "match": true
+  },
+  {
+    "file": "models/tree_small_02/textures/tree_small_02_arm_1k.jpg",
+    "status": 200,
+    "bytes": 708242,
+    "match": true
+  },
+  {
+    "file": "models/tree_small_02/textures/tree_small_02_branch_arm_1k.jpg",
+    "status": 200,
+    "bytes": 375732,
+    "match": true
+  },
+  {
+    "file": "models/tree_small_02/textures/tree_small_02_branch_diff_1k.jpg",
+    "status": 200,
+    "bytes": 449977,
+    "match": true
+  },
+  {
+    "file": "models/tree_small_02/textures/tree_small_02_branch_nor_gl_1k.jpg",
+    "status": 200,
+    "bytes": 581596,
+    "match": true
+  },
+  {
+    "file": "models/tree_small_02/textures/tree_small_02_diff_1k.jpg",
+    "status": 200,
+    "bytes": 863246,
+    "match": true
+  },
+  {
+    "file": "models/tree_small_02/textures/tree_small_02_leaves_arm_1k.jpg",
+    "status": 200,
+    "bytes": 633698,
+    "match": true
+  },
+  {
+    "file": "models/tree_small_02/textures/tree_small_02_leaves_diff_1k.jpg",
+    "status": 200,
+    "bytes": 340003,
+    "match": true
+  },
+  {
+    "file": "models/tree_small_02/textures/tree_small_02_leaves_nor_gl_1k.jpg",
+    "status": 200,
+    "bytes": 681604,
+    "match": true
+  },
+  {
+    "file": "models/tree_small_02/textures/tree_small_02_nor_gl_1k.jpg",
+    "status": 200,
+    "bytes": 1228646,
+    "match": true
+  },
+  {
+    "file": "models/tree_small_02/tree_small_02_1k.gltf",
+    "status": 200,
+    "bytes": 9075,
+    "match": true
+  },
+  {
+    "file": "models/tree_small_02/tree_small_02.bin",
+    "status": 200,
+    "bytes": 95102324,
+    "match": true
+  },
+  {
+    "file": "tex/bark_brown_02/ao.jpg",
+    "status": 200,
+    "bytes": 1919982,
+    "match": true
+  },
+  {
+    "file": "tex/bark_brown_02/diff.jpg",
+    "status": 200,
+    "bytes": 124450,
+    "match": true
+  },
+  {
+    "file": "tex/bark_brown_02/nor.jpg",
+    "status": 200,
+    "bytes": 3707907,
+    "match": true
+  },
+  {
+    "file": "tex/bark_brown_02/rough.jpg",
+    "status": 200,
+    "bytes": 1236654,
+    "match": true
+  },
+  {
+    "file": "tex/brown_mud_leaves_01/ao.jpg",
+    "status": 200,
+    "bytes": 3813568,
+    "match": true
+  },
+  {
+    "file": "tex/brown_mud_leaves_01/diff.jpg",
+    "status": 200,
+    "bytes": 4539452,
+    "match": true
+  },
+  {
+    "file": "tex/brown_mud_leaves_01/nor.jpg",
+    "status": 200,
+    "bytes": 5688696,
+    "match": true
+  },
+  {
+    "file": "tex/brown_mud_leaves_01/rough.jpg",
+    "status": 200,
+    "bytes": 2421908,
+    "match": true
+  },
+  {
+    "file": "tex/fabric_pattern_07/ao.jpg",
+    "status": 200,
+    "bytes": 1387251,
+    "match": true
+  },
+  {
+    "file": "tex/fabric_pattern_07/diff.jpg",
+    "status": 200,
+    "bytes": 2650991,
+    "match": true
+  },
+  {
+    "file": "tex/fabric_pattern_07/nor.jpg",
+    "status": 200,
+    "bytes": 2572375,
+    "match": true
+  },
+  {
+    "file": "tex/fabric_pattern_07/rough.jpg",
+    "status": 200,
+    "bytes": 1657764,
+    "match": true
+  },
+  {
+    "file": "tex/forest_leaves_03/ao.jpg",
+    "status": 200,
+    "bytes": 2727774,
+    "match": true
+  },
+  {
+    "file": "tex/forest_leaves_03/diff.jpg",
+    "status": 200,
+    "bytes": 3404048,
+    "match": true
+  },
+  {
+    "file": "tex/forest_leaves_03/nor.jpg",
+    "status": 200,
+    "bytes": 5277984,
+    "match": true
+  },
+  {
+    "file": "tex/forest_leaves_03/rough.jpg",
+    "status": 200,
+    "bytes": 2738845,
+    "match": true
+  },
+  {
+    "file": "tex/forrest_ground_01/ao.jpg",
+    "status": 200,
+    "bytes": 2493578,
+    "match": true
+  },
+  {
+    "file": "tex/forrest_ground_01/diff.jpg",
+    "status": 200,
+    "bytes": 127416,
+    "match": true
+  },
+  {
+    "file": "tex/forrest_ground_01/disp.jpg",
+    "status": 200,
+    "bytes": 1036491,
+    "match": true
+  },
+  {
+    "file": "tex/forrest_ground_01/nor.jpg",
+    "status": 200,
+    "bytes": 5551101,
+    "match": true
+  },
+  {
+    "file": "tex/forrest_ground_01/rough.jpg",
+    "status": 200,
+    "bytes": 920422,
+    "match": true
+  },
+  {
+    "file": "tex/leather_white/diff.jpg",
+    "status": 200,
+    "bytes": 3460639,
+    "match": true
+  },
+  {
+    "file": "tex/leather_white/nor.jpg",
+    "status": 200,
+    "bytes": 3176928,
+    "match": true
+  },
+  {
+    "file": "tex/leather_white/rough.jpg",
+    "status": 200,
+    "bytes": 3142711,
+    "match": true
+  },
+  {
+    "file": "tex/metal_plate/diff.jpg",
+    "status": 200,
+    "bytes": 2670774,
+    "match": true
+  },
+  {
+    "file": "tex/metal_plate/metal.jpg",
+    "status": 200,
+    "bytes": 3399238,
+    "match": true
+  },
+  {
+    "file": "tex/metal_plate/nor.jpg",
+    "status": 200,
+    "bytes": 2516654,
+    "match": true
+  },
+  {
+    "file": "tex/metal_plate/rough.jpg",
+    "status": 200,
+    "bytes": 3045988,
+    "match": true
+  },
+  {
+    "file": "tex/rock_wall_08/ao.jpg",
+    "status": 200,
+    "bytes": 2394856,
+    "match": true
+  },
+  {
+    "file": "tex/rock_wall_08/diff.jpg",
+    "status": 200,
+    "bytes": 321767,
+    "match": true
+  },
+  {
+    "file": "tex/rock_wall_08/disp.jpg",
+    "status": 200,
+    "bytes": 992032,
+    "match": true
+  },
+  {
+    "file": "tex/rock_wall_08/nor.jpg",
+    "status": 200,
+    "bytes": 4903478,
+    "match": true
+  },
+  {
+    "file": "tex/rock_wall_08/rough.jpg",
+    "status": 200,
+    "bytes": 1621868,
+    "match": true
+  },
+  {
+    "file": "tex/wood_planks_grey/diff.jpg",
+    "status": 200,
+    "bytes": 75407,
+    "match": true
+  },
+  {
+    "file": "tex/wood_planks_grey/nor.jpg",
+    "status": 200,
+    "bytes": 647815,
+    "match": true
+  },
+  {
+    "file": "tex/wood_planks_grey/rough.jpg",
+    "status": 200,
+    "bytes": 829157,
+    "match": true
+  },
+  {
+    "file": "tex/wool_grey/diff.jpg",
+    "status": 200,
+    "bytes": 601315,
+    "match": true
+  },
+  {
+    "file": "tex/wool_grey/nor.jpg",
+    "status": 200,
+    "bytes": 3176928,
+    "match": true
+  },
+  {
+    "file": "tex/wool_grey/rough.jpg",
+    "status": 200,
+    "bytes": 3142711,
+    "match": true
+  }
+]

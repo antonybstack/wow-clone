@@ -9,6 +9,9 @@ import {verifyProductionHumanIdentities} from './character-assets/verify-product
 import {identityGeometryHash,identityAnimationHash} from './character-assets/human-identity-proof.mjs';
 import {parseGlb} from '../src/character/runtime/glb.js';
 import {assertCopiedSkinBind} from '../src/character/runtime/fit-contract.js';
+import {ASHEN_PLAYABLE_CLIP_NAMES,ASHEN_PLAYABLE_MOTION} from '../src/character/runtime/ashen-playable-motion.js';
+import {resolvePlayableBody,resolvePlayableClips} from '../src/character/runtime/playable-body.js';
+import {compactPlayableAnimations} from './character-assets/compact-playable-animations.mjs';
 await MeshoptDecoder.ready;
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder}).setVertexLayout(VertexLayout.SEPARATE);
 const index=JSON.parse(await fs.readFile('public/ashen-reach/human-identity-v1/manifest.json','utf8'));
@@ -42,7 +45,23 @@ test('release guard refuses a stale authoring input and a modified embedded desc
  const tampered=structuredClone(index);tampered.presets['prime-bald'].manifest.identity.preset='weathered-bald';
  await assert.rejects(verifyProductionHumanIdentities({readFile:(file,...args)=>file.endsWith('human-identity-v1/manifest.json')?Promise.resolve(JSON.stringify(tampered)):fs.readFile(file,...args)}),/Embedded identity descriptor/);
 });
-for(const [preset,entry]of Object.entries(index.presets))for(const [tier,id]of [['items','body'],['items','graveweaverHood'],['compactItems','graveweaverHood']])test(`${preset}/${tier}/${id} has exact native bind, geometry/morph proof and source curves`,async()=>{
+test('playable contract includes directional, channel, carry, hit and all spell layers',()=>{
+ const definition={...resolvePlayableBody('?character=human-source'),...ASHEN_PLAYABLE_MOTION};
+ const resolved=resolvePlayableClips(ASHEN_PLAYABLE_CLIP_NAMES,definition);
+ assert.deepEqual(resolved.clips,definition.clips);
+ for(const clip of ['Jog_Bwd_Loop','Jog_Left_Loop','Jog_Right_Loop','Turn90_L','Turn90_R','Hit_Chest',
+  'Spell_Simple_Enter','Spell_Simple_Idle_Loop','Spell_Simple_Exit','Walk_Carry_Loop',
+  'FireBlast_Upper','FireBlast_Lower','LavaBall_Upper','LavaBall_Lower','PyreBurst_Upper','PyreBurst_Lower'])
+  assert(ASHEN_PLAYABLE_CLIP_NAMES.includes(clip),`Missing ${clip}`);
+});
+test('compact compiler refuses a missing playable curve before changing the source',async()=>{
+ const doc=await read(index.presets['prime-bald'].manifest.items.body),root=doc.getRoot();
+ root.listAnimations().find(a=>a.getName()==='LavaBall_Lower').dispose();
+ const before=identityAnimationHash(root);
+ await assert.rejects(compactPlayableAnimations(doc),/Missing playable source clip: LavaBall_Lower/);
+ assert.equal(identityAnimationHash(root),before);
+});
+for(const [preset,entry]of Object.entries(index.presets))for(const [tier,id]of [['items','body'],['compactItems','body'],['items','graveweaverHood'],['compactItems','graveweaverHood']])test(`${preset}/${tier}/${id} has exact native bind, geometry/morph proof and source curves`,async()=>{
  const asset=entry.manifest[tier][id],doc=await read(asset),root=doc.getRoot(),actual=await raw(doc);
  assert.equal(assertCopiedSkinBind(referenceRaw.json,referenceRaw.binary,actual.json,actual.binary).jointCount,65);
  assert.equal(identityGeometryHash(root),asset.geometrySha256);assert.equal(identityAnimationHash(root),asset.animationsSha256);
@@ -51,12 +70,26 @@ for(const [preset,entry]of Object.entries(index.presets))for(const [tier,id]of [
   for(const p of mesh.listPrimitives())assert.equal(p.listTargets().length,2);
  }
  if(id==='body'){
-  assert.deepEqual(entry.manifest.compactItems.body,asset,'First play preserves the exact full body and face');
-  assert.equal(root.listAnimations().length,57);assert.equal(identityAnimationHash(root),identityAnimationHash(reference.getRoot()));
+  if(tier==='items'){
+   assert.equal(root.listAnimations().length,57);assert.equal(identityAnimationHash(root),identityAnimationHash(reference.getRoot()));
+  }else{
+   const full=(await read(entry.manifest.items.body)).getRoot();
+   assert.deepEqual(root.listAnimations().map(a=>a.getName()).sort(),[...ASHEN_PLAYABLE_CLIP_NAMES].sort());
+   assert.deepEqual(asset.playableClips,root.listAnimations().map(a=>a.getName()));
+   assert.equal(identityGeometryHash(root),identityGeometryHash(full),'First play preserves the exact full body and face');
+   assert.equal(identityAnimationHash(root),identityAnimationHash(full,{names:new Set(ASHEN_PLAYABLE_CLIP_NAMES)}),'Playable samples/interpolation/timestamps stay exact');
+   assert.equal(asset.coverageRevision,entry.manifest.items.body.coverageRevision);
+   assert(asset.encodedBytes<entry.manifest.items.body.encodedBytes*.8);
+   const sampler=root.listAnimations()[0].listSamplers()[0],input=sampler.getInput(),original=input.getArray().slice(),times=original.slice();
+   times[0]+=.0001;input.setArray(times);
+   assert.notEqual(identityAnimationHash(root),asset.animationsSha256,'Curve proof must catch altered time');
+   input.setArray(original);
+  }
   assert(root.listMeshes().some(m=>m.getName()==='HumanIdentityEyes'));assert(root.listMeshes().some(m=>m.getName()==='HumanIdentityBrows'));
   assert.equal(root.listMeshes().some(m=>m.getName()==='HumanPonytail01'),preset==='prime-ponytail');
  }
- if(tier==='compactItems'){
+ if(tier==='compactItems')assert.deepEqual(asset.textures,entry.manifest.items[id].textures,'Compact visual must upgrade to the full source texture');
+ if(tier==='compactItems'&&id==='graveweaverHood'){
   assert.deepEqual(asset.simplification,{ratio:.4,error:.002,lockBorder:true});
   assert(asset.encodedBytes<entry.manifest.items[id].encodedBytes*.6);
   assert.deepEqual(asset.textures,entry.manifest.items[id].textures,'Compact hood must upgrade to the full source texture');

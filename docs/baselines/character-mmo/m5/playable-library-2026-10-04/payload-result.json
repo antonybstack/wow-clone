@@ -1,0 +1,42 @@
+{
+  "fullDescriptorsUnchanged": true,
+  "compactNonBodyDescriptorsUnchanged": true,
+  "rows": [
+    {
+      "preset": "prime-bald",
+      "fullBodyEncodedBytes": 1215036,
+      "playableBodyEncodedBytes": 815696,
+      "savedBytes": 399340,
+      "savedFraction": 0.32866515889241144,
+      "fullSha256": "1c5b331c1e49d7946a80404efb8cc4dc099dd8a6396e0b290787fc2f5254e01f",
+      "compactSha256": "3414b39da300129ac209c5da918e12961a0c60f72e589d66af572b80daac3600",
+      "geometrySha256": "8d760063b58264ad48e8e87e0dede8af6a0f8aa531d09ec9f99e08f4bf504189",
+      "fullGroups": 57,
+      "playableGroups": 22
+    },
+    {
+      "preset": "prime-ponytail",
+      "fullBodyEncodedBytes": 1514649,
+      "playableBodyEncodedBytes": 1115427,
+      "savedBytes": 399222,
+      "savedFraction": 0.2635739369319229,
+      "fullSha256": "f147dbbe9939aaff24da4fb62cf9defc0e6100cdc54c6a2b05af5945228eee3b",
+      "compactSha256": "3079d6fe96c6b88a55fecc80f754176562aaff89decba714a68c9fd2f793b280",
+      "geometrySha256": "390203105ba64971a96b03610ef33a712cc592da6481553274df892633e07927",
+      "fullGroups": 57,
+      "playableGroups": 22
+    },
+    {
+      "preset": "weathered-bald",
+      "fullBodyEncodedBytes": 1220349,
+      "playableBodyEncodedBytes": 820921,
+      "savedBytes": 399428,
+      "savedFraction": 0.32730636891577736,
+      "fullSha256": "fec63c32f0fdbb34870b2c2a5386ca616136a4c33bd1fb32cf1f45516a6e9a4e",
+      "compactSha256": "4b685c529371d68f5e6b638c7b6af599497e7998eb194e79df69a49045b960c4",
+      "geometrySha256": "5384ab3382a6be640cae6587ac34f4f75813f8f8a5af6112dd0b60189a474ef6",
+      "fullGroups": 57,
+      "playableGroups": 22
+    }
+  ]
+}

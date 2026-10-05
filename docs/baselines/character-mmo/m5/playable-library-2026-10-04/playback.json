@@ -1,0 +1,52 @@
+{
+  "ve": {
+    "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m5-playable-library-2026-10-04.mp4",
+    "httpStatus": 200,
+    "contentType": "video/mp4",
+    "rangeStatus": 206,
+    "dimensions": [
+      1280,
+      720
+    ],
+    "element": [
+      1280,
+      720
+    ],
+    "objectFit": "contain",
+    "actualPlayback": true,
+    "nativeUiSeek": {
+      "clickScrubber": {
+        "before": 37.40138,
+        "after": 30.907893
+      },
+      "leftKey": {
+        "before": 54.358788,
+        "after": 53.802335
+      }
+    },
+    "ownedTabClosed": true
+  },
+  "telegram": {
+    "messageId": 854,
+    "sourceDimensions": [
+      1280,
+      720
+    ],
+    "duration": 61.915974,
+    "inlineElement": [
+      737,
+      414.5625
+    ],
+    "expandedElement": [
+      1280,
+      720
+    ],
+    "objectFit": "contain",
+    "expandedMotionReviewed": true,
+    "inlineMotionReviewed": false,
+    "fullscreenVerified": false,
+    "desktopAppAvailable": false,
+    "finalPlayingVideos": 0,
+    "userTabRetained": true
+  }
+}

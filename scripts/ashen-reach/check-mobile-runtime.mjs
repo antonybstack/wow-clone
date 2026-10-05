@@ -26,8 +26,13 @@ const page = await context.newPage();
 const savedAppearance=process.env.ASHEN_PROBE_APPEARANCE?JSON.parse(await fs.readFile(process.env.ASHEN_PROBE_APPEARANCE,'utf8')):null;
 if(savedAppearance)await context.addInitScript(recipe=>localStorage.setItem('ashen.appearance.v2',JSON.stringify(recipe)),savedAppearance);
 const ownedProcesses=execFileSync('ps',['-axo','pid=,command='],{encoding:'utf8'}).split('\n').filter(line=>/MiniBrowser|Playwright|WebKit.*Process/.test(line)&&!beforePids.has(line.trim().split(/\s+/)[0])).map(line=>line.trim());
+// macOS WebKit's browser launcher is Playwright.app, rather than MiniBrowser.
+// Preserve its actual OS PID; a null PID is not a usable ownership record.
+// https://playwright.dev/docs/api/class-webkit#webkit-launch
+const webkitBrowserPid=kind==='webkit'?Number(ownedProcesses.find(line=>line.includes('MiniBrowser')||line.includes('/Playwright.app/Contents/MacOS/Playwright'))?.split(/\s+/)[0]):null;
+if(kind==='webkit')assert(Number.isSafeInteger(webkitBrowserPid)&&webkitBrowserPid>0,'Cannot account for the owned WebKit browser PID');
 const ownership={owner:'root',controllerPid:process.pid,cdpUrl:kind==='chromium'?CDP_URL:null,ownedProcesses,url,purpose:`${kind} mobile customization runtime check`,active:true,renderingClients:1,
- ...(kind==='chromium'?await browserOwnership(browser,{cdpPort:new URL(CDP_URL).port,url,purpose:'Chromium mobile customization runtime check',renderingClients:1}):{browserPid:Number(ownedProcesses.find(line=>line.includes('MiniBrowser'))?.split(/\s+/)[0])||null})};
+ ...(kind==='chromium'?await browserOwnership(browser,{cdpPort:new URL(CDP_URL).port,url,purpose:'Chromium mobile customization runtime check',renderingClients:1}):{browserPid:webkitBrowserPid})};
 await fs.writeFile(`${dir}/ownership.json`,JSON.stringify(ownership));
 const errors = [], checks = [], frames = [], writes = [];
 const report = {kind, url, injectDepthFailure, disableDepthFallback, device: 'desktop engine with mobile viewport/touch emulation', errors, checks};

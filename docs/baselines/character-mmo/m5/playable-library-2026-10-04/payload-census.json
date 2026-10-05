@@ -1,0 +1,1133 @@
+[
+  {
+    "id": "prime-bald",
+    "encodedBytes": 1215036,
+    "glbBytes": 2064036,
+    "jsonBytes": 693804,
+    "groups": {
+      "animation": {
+        "accessors": 3285,
+        "accessorBytes": 1248560,
+        "views": 3,
+        "meshoptBytes": 756891
+      },
+      "mesh": {
+        "accessors": 19,
+        "accessorBytes": 528868,
+        "views": 16,
+        "meshoptBytes": 295725
+      },
+      "morph": {
+        "accessors": 12,
+        "accessorBytes": 384144,
+        "views": 12,
+        "meshoptBytes": 291840
+      },
+      "skin": {
+        "accessors": 1,
+        "accessorBytes": 4160,
+        "views": 1,
+        "meshoptBytes": 2567
+      }
+    },
+    "clips": [
+      {
+        "name": "TPose",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 1696
+      },
+      {
+        "name": "Crouch_Fwd_Loop",
+        "channels": 53,
+        "accessors": 68,
+        "accessorBytes": 17956
+      },
+      {
+        "name": "Crouch_Idle_Loop",
+        "channels": 53,
+        "accessors": 79,
+        "accessorBytes": 18772
+      },
+      {
+        "name": "Dance_Loop",
+        "channels": 53,
+        "accessors": 59,
+        "accessorBytes": 10836
+      },
+      {
+        "name": "Death01",
+        "channels": 53,
+        "accessors": 87,
+        "accessorBytes": 42556
+      },
+      {
+        "name": "Driving_Loop",
+        "channels": 53,
+        "accessors": 62,
+        "accessorBytes": 3916
+      },
+      {
+        "name": "Fixing_Kneeling",
+        "channels": 53,
+        "accessors": 95,
+        "accessorBytes": 78784
+      },
+      {
+        "name": "Hit_Chest",
+        "channels": 52,
+        "accessors": 60,
+        "accessorBytes": 8352
+      },
+      {
+        "name": "Hit_Head",
+        "channels": 53,
+        "accessors": 61,
+        "accessorBytes": 10240
+      },
+      {
+        "name": "Idle_Loop",
+        "channels": 53,
+        "accessors": 71,
+        "accessorBytes": 18960
+      },
+      {
+        "name": "Idle_Talking_Loop",
+        "channels": 53,
+        "accessors": 80,
+        "accessorBytes": 32556
+      },
+      {
+        "name": "Idle_Torch_Loop",
+        "channels": 53,
+        "accessors": 71,
+        "accessorBytes": 10540
+      },
+      {
+        "name": "Interact",
+        "channels": 53,
+        "accessors": 68,
+        "accessorBytes": 16204
+      },
+      {
+        "name": "Jog_Fwd_Loop",
+        "channels": 53,
+        "accessors": 60,
+        "accessorBytes": 9724
+      },
+      {
+        "name": "Jump_Land",
+        "channels": 53,
+        "accessors": 73,
+        "accessorBytes": 19628
+      },
+      {
+        "name": "Jump_Loop",
+        "channels": 53,
+        "accessors": 71,
+        "accessorBytes": 14396
+      },
+      {
+        "name": "Jump_Start",
+        "channels": 53,
+        "accessors": 72,
+        "accessorBytes": 21256
+      },
+      {
+        "name": "PickUp_Table",
+        "channels": 53,
+        "accessors": 60,
+        "accessorBytes": 9372
+      },
+      {
+        "name": "Pistol_Aim_Down",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 1696
+      },
+      {
+        "name": "Pistol_Aim_Neutral",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 1696
+      },
+      {
+        "name": "Pistol_Aim_Up",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 1696
+      },
+      {
+        "name": "Pistol_Idle_Loop",
+        "channels": 53,
+        "accessors": 62,
+        "accessorBytes": 6692
+      },
+      {
+        "name": "Pistol_Reload",
+        "channels": 53,
+        "accessors": 74,
+        "accessorBytes": 18204
+      },
+      {
+        "name": "Pistol_Shoot",
+        "channels": 53,
+        "accessors": 57,
+        "accessorBytes": 3972
+      },
+      {
+        "name": "Punch_Cross",
+        "channels": 53,
+        "accessors": 67,
+        "accessorBytes": 9828
+      },
+      {
+        "name": "Punch_Jab",
+        "channels": 53,
+        "accessors": 63,
+        "accessorBytes": 8956
+      },
+      {
+        "name": "Push_Loop",
+        "channels": 53,
+        "accessors": 73,
+        "accessorBytes": 25548
+      },
+      {
+        "name": "Roll",
+        "channels": 53,
+        "accessors": 80,
+        "accessorBytes": 27168
+      },
+      {
+        "name": "Roll_RM",
+        "channels": 53,
+        "accessors": 80,
+        "accessorBytes": 27168
+      },
+      {
+        "name": "Sitting_Enter",
+        "channels": 53,
+        "accessors": 87,
+        "accessorBytes": 27824
+      },
+      {
+        "name": "Sitting_Exit",
+        "channels": 53,
+        "accessors": 69,
+        "accessorBytes": 23144
+      },
+      {
+        "name": "Sitting_Idle_Loop",
+        "channels": 53,
+        "accessors": 77,
+        "accessorBytes": 7492
+      },
+      {
+        "name": "Sitting_Talking_Loop",
+        "channels": 53,
+        "accessors": 78,
+        "accessorBytes": 31040
+      },
+      {
+        "name": "Spell_Simple_Enter",
+        "channels": 53,
+        "accessors": 67,
+        "accessorBytes": 10712
+      },
+      {
+        "name": "Spell_Simple_Exit",
+        "channels": 53,
+        "accessors": 64,
+        "accessorBytes": 8732
+      },
+      {
+        "name": "Spell_Simple_Idle_Loop",
+        "channels": 53,
+        "accessors": 70,
+        "accessorBytes": 9760
+      },
+      {
+        "name": "Spell_Simple_Shoot",
+        "channels": 53,
+        "accessors": 64,
+        "accessorBytes": 10236
+      },
+      {
+        "name": "Sprint_Loop",
+        "channels": 53,
+        "accessors": 60,
+        "accessorBytes": 7404
+      },
+      {
+        "name": "Swim_Fwd_Loop",
+        "channels": 53,
+        "accessors": 62,
+        "accessorBytes": 14044
+      },
+      {
+        "name": "Swim_Idle_Loop",
+        "channels": 53,
+        "accessors": 82,
+        "accessorBytes": 36332
+      },
+      {
+        "name": "Sword_Attack",
+        "channels": 53,
+        "accessors": 67,
+        "accessorBytes": 16400
+      },
+      {
+        "name": "Sword_Attack_RM",
+        "channels": 53,
+        "accessors": 67,
+        "accessorBytes": 16400
+      },
+      {
+        "name": "Sword_Idle",
+        "channels": 53,
+        "accessors": 71,
+        "accessorBytes": 21844
+      },
+      {
+        "name": "Walk_Formal_Loop",
+        "channels": 53,
+        "accessors": 66,
+        "accessorBytes": 13616
+      },
+      {
+        "name": "Walk_Loop",
+        "channels": 53,
+        "accessors": 64,
+        "accessorBytes": 15440
+      },
+      {
+        "name": "Jog_Bwd_Loop",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 24592
+      },
+      {
+        "name": "Jog_Left_Loop",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 24592
+      },
+      {
+        "name": "Jog_Right_Loop",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 24592
+      },
+      {
+        "name": "Turn90_L",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 51728
+      },
+      {
+        "name": "Turn90_R",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 51728
+      },
+      {
+        "name": "Walk_Carry_Loop",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 51728
+      },
+      {
+        "name": "PyreBurst_Lower",
+        "channels": 10,
+        "accessors": 11,
+        "accessorBytes": 18400
+      },
+      {
+        "name": "FireBlast_Lower",
+        "channels": 10,
+        "accessors": 11,
+        "accessorBytes": 13600
+      },
+      {
+        "name": "LavaBall_Lower",
+        "channels": 10,
+        "accessors": 11,
+        "accessorBytes": 22240
+      },
+      {
+        "name": "PyreBurst_Upper",
+        "channels": 43,
+        "accessors": 44,
+        "accessorBytes": 79580
+      },
+      {
+        "name": "FireBlast_Upper",
+        "channels": 43,
+        "accessors": 44,
+        "accessorBytes": 58820
+      },
+      {
+        "name": "LavaBall_Upper",
+        "channels": 43,
+        "accessors": 44,
+        "accessorBytes": 96188
+      }
+    ],
+    "accounting": "Animation meshoptBytes counts shared buffer views once; per-clip accessorBytes measures unique clip accessors, not separately encodable compressed bytes."
+  },
+  {
+    "id": "prime-ponytail",
+    "encodedBytes": 1514649,
+    "glbBytes": 2393952,
+    "jsonBytes": 698144,
+    "groups": {
+      "animation": {
+        "accessors": 3285,
+        "accessorBytes": 1248560,
+        "views": 3,
+        "meshoptBytes": 756891
+      },
+      "mesh": {
+        "accessors": 25,
+        "accessorBytes": 779492,
+        "views": 21,
+        "meshoptBytes": 434296
+      },
+      "morph": {
+        "accessors": 16,
+        "accessorBytes": 571440,
+        "views": 16,
+        "meshoptBytes": 440782
+      },
+      "skin": {
+        "accessors": 1,
+        "accessorBytes": 4160,
+        "views": 1,
+        "meshoptBytes": 2567
+      }
+    },
+    "clips": [
+      {
+        "name": "TPose",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 1696
+      },
+      {
+        "name": "Crouch_Fwd_Loop",
+        "channels": 53,
+        "accessors": 68,
+        "accessorBytes": 17956
+      },
+      {
+        "name": "Crouch_Idle_Loop",
+        "channels": 53,
+        "accessors": 79,
+        "accessorBytes": 18772
+      },
+      {
+        "name": "Dance_Loop",
+        "channels": 53,
+        "accessors": 59,
+        "accessorBytes": 10836
+      },
+      {
+        "name": "Death01",
+        "channels": 53,
+        "accessors": 87,
+        "accessorBytes": 42556
+      },
+      {
+        "name": "Driving_Loop",
+        "channels": 53,
+        "accessors": 62,
+        "accessorBytes": 3916
+      },
+      {
+        "name": "Fixing_Kneeling",
+        "channels": 53,
+        "accessors": 95,
+        "accessorBytes": 78784
+      },
+      {
+        "name": "Hit_Chest",
+        "channels": 52,
+        "accessors": 60,
+        "accessorBytes": 8352
+      },
+      {
+        "name": "Hit_Head",
+        "channels": 53,
+        "accessors": 61,
+        "accessorBytes": 10240
+      },
+      {
+        "name": "Idle_Loop",
+        "channels": 53,
+        "accessors": 71,
+        "accessorBytes": 18960
+      },
+      {
+        "name": "Idle_Talking_Loop",
+        "channels": 53,
+        "accessors": 80,
+        "accessorBytes": 32556
+      },
+      {
+        "name": "Idle_Torch_Loop",
+        "channels": 53,
+        "accessors": 71,
+        "accessorBytes": 10540
+      },
+      {
+        "name": "Interact",
+        "channels": 53,
+        "accessors": 68,
+        "accessorBytes": 16204
+      },
+      {
+        "name": "Jog_Fwd_Loop",
+        "channels": 53,
+        "accessors": 60,
+        "accessorBytes": 9724
+      },
+      {
+        "name": "Jump_Land",
+        "channels": 53,
+        "accessors": 73,
+        "accessorBytes": 19628
+      },
+      {
+        "name": "Jump_Loop",
+        "channels": 53,
+        "accessors": 71,
+        "accessorBytes": 14396
+      },
+      {
+        "name": "Jump_Start",
+        "channels": 53,
+        "accessors": 72,
+        "accessorBytes": 21256
+      },
+      {
+        "name": "PickUp_Table",
+        "channels": 53,
+        "accessors": 60,
+        "accessorBytes": 9372
+      },
+      {
+        "name": "Pistol_Aim_Down",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 1696
+      },
+      {
+        "name": "Pistol_Aim_Neutral",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 1696
+      },
+      {
+        "name": "Pistol_Aim_Up",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 1696
+      },
+      {
+        "name": "Pistol_Idle_Loop",
+        "channels": 53,
+        "accessors": 62,
+        "accessorBytes": 6692
+      },
+      {
+        "name": "Pistol_Reload",
+        "channels": 53,
+        "accessors": 74,
+        "accessorBytes": 18204
+      },
+      {
+        "name": "Pistol_Shoot",
+        "channels": 53,
+        "accessors": 57,
+        "accessorBytes": 3972
+      },
+      {
+        "name": "Punch_Cross",
+        "channels": 53,
+        "accessors": 67,
+        "accessorBytes": 9828
+      },
+      {
+        "name": "Punch_Jab",
+        "channels": 53,
+        "accessors": 63,
+        "accessorBytes": 8956
+      },
+      {
+        "name": "Push_Loop",
+        "channels": 53,
+        "accessors": 73,
+        "accessorBytes": 25548
+      },
+      {
+        "name": "Roll",
+        "channels": 53,
+        "accessors": 80,
+        "accessorBytes": 27168
+      },
+      {
+        "name": "Roll_RM",
+        "channels": 53,
+        "accessors": 80,
+        "accessorBytes": 27168
+      },
+      {
+        "name": "Sitting_Enter",
+        "channels": 53,
+        "accessors": 87,
+        "accessorBytes": 27824
+      },
+      {
+        "name": "Sitting_Exit",
+        "channels": 53,
+        "accessors": 69,
+        "accessorBytes": 23144
+      },
+      {
+        "name": "Sitting_Idle_Loop",
+        "channels": 53,
+        "accessors": 77,
+        "accessorBytes": 7492
+      },
+      {
+        "name": "Sitting_Talking_Loop",
+        "channels": 53,
+        "accessors": 78,
+        "accessorBytes": 31040
+      },
+      {
+        "name": "Spell_Simple_Enter",
+        "channels": 53,
+        "accessors": 67,
+        "accessorBytes": 10712
+      },
+      {
+        "name": "Spell_Simple_Exit",
+        "channels": 53,
+        "accessors": 64,
+        "accessorBytes": 8732
+      },
+      {
+        "name": "Spell_Simple_Idle_Loop",
+        "channels": 53,
+        "accessors": 70,
+        "accessorBytes": 9760
+      },
+      {
+        "name": "Spell_Simple_Shoot",
+        "channels": 53,
+        "accessors": 64,
+        "accessorBytes": 10236
+      },
+      {
+        "name": "Sprint_Loop",
+        "channels": 53,
+        "accessors": 60,
+        "accessorBytes": 7404
+      },
+      {
+        "name": "Swim_Fwd_Loop",
+        "channels": 53,
+        "accessors": 62,
+        "accessorBytes": 14044
+      },
+      {
+        "name": "Swim_Idle_Loop",
+        "channels": 53,
+        "accessors": 82,
+        "accessorBytes": 36332
+      },
+      {
+        "name": "Sword_Attack",
+        "channels": 53,
+        "accessors": 67,
+        "accessorBytes": 16400
+      },
+      {
+        "name": "Sword_Attack_RM",
+        "channels": 53,
+        "accessors": 67,
+        "accessorBytes": 16400
+      },
+      {
+        "name": "Sword_Idle",
+        "channels": 53,
+        "accessors": 71,
+        "accessorBytes": 21844
+      },
+      {
+        "name": "Walk_Formal_Loop",
+        "channels": 53,
+        "accessors": 66,
+        "accessorBytes": 13616
+      },
+      {
+        "name": "Walk_Loop",
+        "channels": 53,
+        "accessors": 64,
+        "accessorBytes": 15440
+      },
+      {
+        "name": "Jog_Bwd_Loop",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 24592
+      },
+      {
+        "name": "Jog_Left_Loop",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 24592
+      },
+      {
+        "name": "Jog_Right_Loop",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 24592
+      },
+      {
+        "name": "Turn90_L",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 51728
+      },
+      {
+        "name": "Turn90_R",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 51728
+      },
+      {
+        "name": "Walk_Carry_Loop",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 51728
+      },
+      {
+        "name": "PyreBurst_Lower",
+        "channels": 10,
+        "accessors": 11,
+        "accessorBytes": 18400
+      },
+      {
+        "name": "FireBlast_Lower",
+        "channels": 10,
+        "accessors": 11,
+        "accessorBytes": 13600
+      },
+      {
+        "name": "LavaBall_Lower",
+        "channels": 10,
+        "accessors": 11,
+        "accessorBytes": 22240
+      },
+      {
+        "name": "PyreBurst_Upper",
+        "channels": 43,
+        "accessors": 44,
+        "accessorBytes": 79580
+      },
+      {
+        "name": "FireBlast_Upper",
+        "channels": 43,
+        "accessors": 44,
+        "accessorBytes": 58820
+      },
+      {
+        "name": "LavaBall_Upper",
+        "channels": 43,
+        "accessors": 44,
+        "accessorBytes": 96188
+      }
+    ],
+    "accounting": "Animation meshoptBytes counts shared buffer views once; per-clip accessorBytes measures unique clip accessors, not separately encodable compressed bytes."
+  },
+  {
+    "id": "weathered-bald",
+    "encodedBytes": 1220349,
+    "glbBytes": 2068816,
+    "jsonBytes": 693808,
+    "groups": {
+      "animation": {
+        "accessors": 3285,
+        "accessorBytes": 1248560,
+        "views": 3,
+        "meshoptBytes": 756891
+      },
+      "mesh": {
+        "accessors": 19,
+        "accessorBytes": 533284,
+        "views": 16,
+        "meshoptBytes": 297949
+      },
+      "morph": {
+        "accessors": 12,
+        "accessorBytes": 387312,
+        "views": 12,
+        "meshoptBytes": 294283
+      },
+      "skin": {
+        "accessors": 1,
+        "accessorBytes": 4160,
+        "views": 1,
+        "meshoptBytes": 2567
+      }
+    },
+    "clips": [
+      {
+        "name": "TPose",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 1696
+      },
+      {
+        "name": "Crouch_Fwd_Loop",
+        "channels": 53,
+        "accessors": 68,
+        "accessorBytes": 17956
+      },
+      {
+        "name": "Crouch_Idle_Loop",
+        "channels": 53,
+        "accessors": 79,
+        "accessorBytes": 18772
+      },
+      {
+        "name": "Dance_Loop",
+        "channels": 53,
+        "accessors": 59,
+        "accessorBytes": 10836
+      },
+      {
+        "name": "Death01",
+        "channels": 53,
+        "accessors": 87,
+        "accessorBytes": 42556
+      },
+      {
+        "name": "Driving_Loop",
+        "channels": 53,
+        "accessors": 62,
+        "accessorBytes": 3916
+      },
+      {
+        "name": "Fixing_Kneeling",
+        "channels": 53,
+        "accessors": 95,
+        "accessorBytes": 78784
+      },
+      {
+        "name": "Hit_Chest",
+        "channels": 52,
+        "accessors": 60,
+        "accessorBytes": 8352
+      },
+      {
+        "name": "Hit_Head",
+        "channels": 53,
+        "accessors": 61,
+        "accessorBytes": 10240
+      },
+      {
+        "name": "Idle_Loop",
+        "channels": 53,
+        "accessors": 71,
+        "accessorBytes": 18960
+      },
+      {
+        "name": "Idle_Talking_Loop",
+        "channels": 53,
+        "accessors": 80,
+        "accessorBytes": 32556
+      },
+      {
+        "name": "Idle_Torch_Loop",
+        "channels": 53,
+        "accessors": 71,
+        "accessorBytes": 10540
+      },
+      {
+        "name": "Interact",
+        "channels": 53,
+        "accessors": 68,
+        "accessorBytes": 16204
+      },
+      {
+        "name": "Jog_Fwd_Loop",
+        "channels": 53,
+        "accessors": 60,
+        "accessorBytes": 9724
+      },
+      {
+        "name": "Jump_Land",
+        "channels": 53,
+        "accessors": 73,
+        "accessorBytes": 19628
+      },
+      {
+        "name": "Jump_Loop",
+        "channels": 53,
+        "accessors": 71,
+        "accessorBytes": 14396
+      },
+      {
+        "name": "Jump_Start",
+        "channels": 53,
+        "accessors": 72,
+        "accessorBytes": 21256
+      },
+      {
+        "name": "PickUp_Table",
+        "channels": 53,
+        "accessors": 60,
+        "accessorBytes": 9372
+      },
+      {
+        "name": "Pistol_Aim_Down",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 1696
+      },
+      {
+        "name": "Pistol_Aim_Neutral",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 1696
+      },
+      {
+        "name": "Pistol_Aim_Up",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 1696
+      },
+      {
+        "name": "Pistol_Idle_Loop",
+        "channels": 53,
+        "accessors": 62,
+        "accessorBytes": 6692
+      },
+      {
+        "name": "Pistol_Reload",
+        "channels": 53,
+        "accessors": 74,
+        "accessorBytes": 18204
+      },
+      {
+        "name": "Pistol_Shoot",
+        "channels": 53,
+        "accessors": 57,
+        "accessorBytes": 3972
+      },
+      {
+        "name": "Punch_Cross",
+        "channels": 53,
+        "accessors": 67,
+        "accessorBytes": 9828
+      },
+      {
+        "name": "Punch_Jab",
+        "channels": 53,
+        "accessors": 63,
+        "accessorBytes": 8956
+      },
+      {
+        "name": "Push_Loop",
+        "channels": 53,
+        "accessors": 73,
+        "accessorBytes": 25548
+      },
+      {
+        "name": "Roll",
+        "channels": 53,
+        "accessors": 80,
+        "accessorBytes": 27168
+      },
+      {
+        "name": "Roll_RM",
+        "channels": 53,
+        "accessors": 80,
+        "accessorBytes": 27168
+      },
+      {
+        "name": "Sitting_Enter",
+        "channels": 53,
+        "accessors": 87,
+        "accessorBytes": 27824
+      },
+      {
+        "name": "Sitting_Exit",
+        "channels": 53,
+        "accessors": 69,
+        "accessorBytes": 23144
+      },
+      {
+        "name": "Sitting_Idle_Loop",
+        "channels": 53,
+        "accessors": 77,
+        "accessorBytes": 7492
+      },
+      {
+        "name": "Sitting_Talking_Loop",
+        "channels": 53,
+        "accessors": 78,
+        "accessorBytes": 31040
+      },
+      {
+        "name": "Spell_Simple_Enter",
+        "channels": 53,
+        "accessors": 67,
+        "accessorBytes": 10712
+      },
+      {
+        "name": "Spell_Simple_Exit",
+        "channels": 53,
+        "accessors": 64,
+        "accessorBytes": 8732
+      },
+      {
+        "name": "Spell_Simple_Idle_Loop",
+        "channels": 53,
+        "accessors": 70,
+        "accessorBytes": 9760
+      },
+      {
+        "name": "Spell_Simple_Shoot",
+        "channels": 53,
+        "accessors": 64,
+        "accessorBytes": 10236
+      },
+      {
+        "name": "Sprint_Loop",
+        "channels": 53,
+        "accessors": 60,
+        "accessorBytes": 7404
+      },
+      {
+        "name": "Swim_Fwd_Loop",
+        "channels": 53,
+        "accessors": 62,
+        "accessorBytes": 14044
+      },
+      {
+        "name": "Swim_Idle_Loop",
+        "channels": 53,
+        "accessors": 82,
+        "accessorBytes": 36332
+      },
+      {
+        "name": "Sword_Attack",
+        "channels": 53,
+        "accessors": 67,
+        "accessorBytes": 16400
+      },
+      {
+        "name": "Sword_Attack_RM",
+        "channels": 53,
+        "accessors": 67,
+        "accessorBytes": 16400
+      },
+      {
+        "name": "Sword_Idle",
+        "channels": 53,
+        "accessors": 71,
+        "accessorBytes": 21844
+      },
+      {
+        "name": "Walk_Formal_Loop",
+        "channels": 53,
+        "accessors": 66,
+        "accessorBytes": 13616
+      },
+      {
+        "name": "Walk_Loop",
+        "channels": 53,
+        "accessors": 64,
+        "accessorBytes": 15440
+      },
+      {
+        "name": "Jog_Bwd_Loop",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 24592
+      },
+      {
+        "name": "Jog_Left_Loop",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 24592
+      },
+      {
+        "name": "Jog_Right_Loop",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 24592
+      },
+      {
+        "name": "Turn90_L",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 51728
+      },
+      {
+        "name": "Turn90_R",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 51728
+      },
+      {
+        "name": "Walk_Carry_Loop",
+        "channels": 53,
+        "accessors": 54,
+        "accessorBytes": 51728
+      },
+      {
+        "name": "PyreBurst_Lower",
+        "channels": 10,
+        "accessors": 11,
+        "accessorBytes": 18400
+      },
+      {
+        "name": "FireBlast_Lower",
+        "channels": 10,
+        "accessors": 11,
+        "accessorBytes": 13600
+      },
+      {
+        "name": "LavaBall_Lower",
+        "channels": 10,
+        "accessors": 11,
+        "accessorBytes": 22240
+      },
+      {
+        "name": "PyreBurst_Upper",
+        "channels": 43,
+        "accessors": 44,
+        "accessorBytes": 79580
+      },
+      {
+        "name": "FireBlast_Upper",
+        "channels": 43,
+        "accessors": 44,
+        "accessorBytes": 58820
+      },
+      {
+        "name": "LavaBall_Upper",
+        "channels": 43,
+        "accessors": 44,
+        "accessorBytes": 96188
+      }
+    ],
+    "accounting": "Animation meshoptBytes counts shared buffer views once; per-clip accessorBytes measures unique clip accessors, not separately encodable compressed bytes."
+  }
+]

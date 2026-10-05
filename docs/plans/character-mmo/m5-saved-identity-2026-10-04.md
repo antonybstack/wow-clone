@@ -117,6 +117,21 @@ The valid Grok coverage finding was fixed before these checks. See
 
 ## Checkpoint D — hair and acceptance, then release
 
+**Native playable-library checkpoint implemented:** same approved visual and exact
+22 playable curves at first play, about 399 KB/body saved; all full 57-curve assets
+unchanged. Native pruning and shared runtime/compiler/melee names replace the
+need to promote a second body just to restore unused library motions. Character
+200/200, startup 14/14, sealed 16/16, ordinary refinement/save checks, 30 extra
+native operations, three final desktop mobile checks and local Pages 848 artifacts / 20 identity cache policies pass.
+Reviewed motion Telegram 854; VE play/seek passes.
+[Result](results/m5-playable-library-2026-10-04.md).
+
+The earlier promotion proposal below applies when compacting the visible body or
+playable motion behavior. This library subset preserves both, so the existing
+gear-only refinement keeps its actual actor/group objects/phase. Isolated startup
+and FPS cohorts remain open while user WoW runs. Continue full outfit/motion fits
+and mobile Armory preview/heading layout, then isolated measurement/release.
+
 **First compact checkpoint implemented:** lossless dense native accessor storage,
 compact fitted hood and overlapped selected catalogue/module request. Character
 195/195, startup 14/14, 11 live refinement cases, 8 repeated saved-route cases,

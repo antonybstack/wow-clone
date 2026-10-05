@@ -37,7 +37,11 @@ Two things gate it today, and both are measured rather than suspected:
   the ordinary local route. Three lossless selected-startup pilots miss one second;
   The [first compact checkpoint](results/m5-compact-identity-startup-2026-10-04.md)
   preserves the full face/curves, reduces hood bytes about 47%, overlaps catalogue
-  loading, and verifies refinement plus desktop touch/WebKit. Startup/FPS acceptance
+  loading, and verifies refinement plus desktop touch/WebKit. The
+  [native playable-library checkpoint](results/m5-playable-library-2026-10-04.md)
+  saves a further 399 KB/body with the exact face/geometry and all 22 playable curves;
+  full 57-curve assets remain unchanged. Actual native refinement/save/mobile
+  checks and reviewed motion pass. Startup/FPS acceptance
   waits for isolation from the user's native WoW client; remaining payload, complete
   outfit/motion fits and release gates stay open.
 * **Armor swapping works but is under-evidenced.** The catalogue now enumerates **6,912**
@@ -203,7 +207,7 @@ Test joins/leaves, out-of-order input, reconnect, stale appearance revisions and
 delivers task 2 locally and the functional portion of tasks 3/5. The ordinary Armory
 and four saved first-play identities work without a developer query. The lossless
 selected-startup pilot misses one second in all three runs. Task 3's compact
-payload/cohorts, task 4's full fit matrix, touch/WebKit and production release
+cohorts, task 4's full fit matrix, mobile preview/heading layout and production release
 remain open; proceed through those gates before calling M5 complete.
 
 **Dependency:** milestone 1. The [connected identity checkpoint](results/m5-connected-identity-2026-10-04.md)

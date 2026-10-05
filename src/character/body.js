@@ -50,6 +50,7 @@ import { advanceGaitPhase, gaitTime, landingWeight } from "./runtime/gait-phase.
 
 import { evaluateHandAnimation } from './runtime/hand-grip.js';
 import { createInspectionPreview } from './runtime/inspection-preview.js';
+import { ASHEN_MELEE_CLIP } from './runtime/ashen-playable-motion.js';
 
 export const BODY_URL = "/characters/base.glb";
 export const FIT_MANIFEST_URL = "/characters/garments/starter-fits.v1.json";
@@ -75,7 +76,7 @@ const LAND_TIMEOUT_MS = 450;
 const MASKED_CAST_WEIGHT = 1 - Number.EPSILON;
 // PyreBurst_Upper's chop arrives at 1.1s. Auto attack plays that weapon arm
 // faster, and masked, so the swing is a one-hand cut rather than the nova slam.
-const MELEE_CLIP = "PyreBurst_Upper";
+const MELEE_CLIP = ASHEN_MELEE_CLIP;
 const MELEE_RATE = 2.2;
 const MELEE_RELEASE = 1.1 / MELEE_RATE;
 const MELEE_END = 1.9 / MELEE_RATE;

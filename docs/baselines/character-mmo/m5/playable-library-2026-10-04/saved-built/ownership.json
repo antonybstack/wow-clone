@@ -1,0 +1,12 @@
+{
+  "owner": "root",
+  "browserPid": 34412,
+  "gpuHelperPids": [
+    34426
+  ],
+  "cdpPort": 10037,
+  "url": "http://127.0.0.1:7174/",
+  "purpose": "M5 ordinary-route identity persistence/transactions, not a startup or FPS benchmark",
+  "renderingClients": 0,
+  "active": false
+}

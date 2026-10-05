@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-04",
+  "baseCommit": "03274d4",
+  "fullAndCompactVisualEqual": true,
+  "fullDescriptorsUnchanged": true,
+  "characterTests": {
+    "pass": 200,
+    "fail": 0
+  },
+  "focusedStartupTests": {
+    "pass": 14,
+    "fail": 0
+  },
+  "sealedPackTests": {
+    "pass": 16,
+    "fail": 0
+  },
+  "build": true,
+  "localPagesArtifacts": 848,
+  "localIdentityCachePolicies": 20,
+  "compactRefinementCases": 11,
+  "builtMotionCases": 3,
+  "builtSavedCases": 8,
+  "additionalNativeMotionCases": 3,
+  "additionalNativeOperations": 30,
+  "finalDesktopMobileChecks": 3,
+  "pageGpuErrors": 0,
+  "recoveries": 0,
+  "telegramMessageId": 854,
+  "telegramReturnedDimensions": [
+    1280,
+    720
+  ],
+  "telegramReturnedDuration": 61.916,
+  "productionDeployed": false,
+  "isolatedPerformanceAccepted": false,
+  "contamination": {
+    "userOwnedWowPid": 92396,
+    "active": true
+  },
+  "next": "Complete ordinary outfit/motion fits; run isolated startup/FPS cohorts once possible; complete release gates."
+}

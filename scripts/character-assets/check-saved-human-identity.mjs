@@ -38,7 +38,7 @@ try{
    const first=await snapshot(page);assert(first.physics);assert.equal(first.recoveries,0);assert.deepEqual(first.gear,recipe.equipment);assert.deepEqual(first.dyes,recipe.dyes);assert.equal(first.height,recipe.shape.height);
    assert.deepEqual(first.shape.weights,[Math.max(0,-recipe.shape.build),Math.max(0,recipe.shape.build)]);assert.deepEqual(first.gpuErrors,[]);
    if(preset.id!=='starter'){
-    assert(requests.includes(index.presets[preset.id].manifest.items.body.url));
+    assert(requests.includes(index.presets[preset.id].manifest.compactItems.body.url));
     assert(!requests.some(u=>u.startsWith('/ashen-reach/startup/character/body-')),'Wrong face cannot precede selected first play');
     assert(first.visible.includes('HumanIdentityEyes')&&first.visible.includes('HumanIdentityBrows'));
     assert.equal(first.visible.includes('HumanPonytail01'),preset.id==='prime-ponytail');

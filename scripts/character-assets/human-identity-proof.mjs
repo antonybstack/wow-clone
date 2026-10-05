@@ -13,8 +13,8 @@ export function identityGeometryHash(root){
   indices:Array.from({length:p.getIndices().getCount()/3},(_,i)=>{const a=Array.from(p.getIndices().getArray().subarray(i*3,i*3+3)),k=a.indexOf(Math.min(...a));return a.slice(k).concat(a.slice(0,k));}),
  }))})));
 }
-export function identityAnimationHash(root){
- return hash(root.listAnimations().map(a=>({name:a.getName(),channels:a.listChannels().map(c=>({
+export function identityAnimationHash(root,{names=null}={}){
+ return hash(root.listAnimations().filter(a=>!names||names.has(a.getName())).map(a=>({name:a.getName(),channels:a.listChannels().map(c=>({
   node:c.getTargetNode().getName(),path:c.getTargetPath(),interpolation:c.getSampler().getInterpolation(),
   input:array(c.getSampler().getInput()),output:array(c.getSampler().getOutput()),
  }))})));

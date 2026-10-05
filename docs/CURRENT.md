@@ -8,6 +8,22 @@ native goal, beginning with M5 saved Human identity. Continue through verificati
 delivery and commit/push without another “proceed.” Respect explicit stop/pause
 requests and record real dependencies. [Continuation mechanism and scope](autonomous-continuation.md).
 
+**M5 playable-library checkpoint, 2026-10-04:** selected bodies now omit unused
+library clips through native glTF Transform while retaining the exact approved
+visual and all 22 playable curves. Each body saves about 399 KB (26–33%); full 57-clip
+assets stay byte-identical. Shared runtime/compiler motion and melee names guard
+drift; no body promotion or full-library background download is added. Character
+**200/200**, startup **14/14**, sealed packs **16/16**, 11 refinement / 8 built saved
+cases, 30 extra native operations, three final desktop mobile cases and build pass.
+Local native Pages matches **848** artifacts / **20** identity cache policies.
+Reviewed motion is Telegram **854** /
+[VE](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m5-playable-library-2026-10-04.mp4);
+VE actual play/seek passes. **M5 stays open and unreleased.** User-owned WoW is
+active; no new startup/FPS acceptance. Next: full outfit/motion fits and inherited
+mobile Armory preview/heading layout, then isolated cohorts and release gates.
+All owned renderers/test servers/reviewer processes are stopped.
+[Result and exact limits](plans/character-mmo/results/m5-playable-library-2026-10-04.md).
+
 **M5 compact-startup checkpoint, 2026-10-04:** the selected catalogue now overlaps
 its optional module request; lossless native accessor storage saves about 26 KB per
 body, and fitted startup hoods are about 47% smaller. The full approved face,

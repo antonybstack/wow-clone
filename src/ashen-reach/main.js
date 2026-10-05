@@ -20,6 +20,7 @@ import {setupPlayer,loadHavok,plantSpawnOnTerrain,resolveCapsule} from '../playe
 import {attachBody} from '../character/body.js';
 import {attachSockets} from '../character/sockets.js';
 import {resolvePlayableBody} from '../character/runtime/playable-body.js';
+import {ASHEN_PLAYABLE_MOTION} from '../character/runtime/ashen-playable-motion.js';
 import {attachDevTools,dev} from './dev-tools.js';
 import {createLocalLights} from './local-lights.js';
 import {buildPostPipeline,buildDirectPipeline} from './post.js';
@@ -312,13 +313,8 @@ async function main(){
  onBeforeRender(scene,()=>{gpu.frames++;});
  globalThis.ASHEN=ashen;
  const sourceBody=resolvePlayableBody('?character=human-source');
- const playable={...sourceBody,assetURL:fastCharacter?(await starterCharacterP).items.body.url:fullBodyManifestP?(await fullBodyManifestP).items.body.url:bodyUrl,buffer:await bodyBufP,directionalSpeed:3.5,
-  // Left-foot low-contact phases measured on this fitted GLB by audit-gaits.mjs.
-  gaitContacts:{Walk_Loop:.233333,Sprint_Loop:.175,Jog_Bwd_Loop:.333333,Jog_Left_Loop:.208333,Jog_Right_Loop:.983333},
-  landing:{duration:.42,standingWeight:.4,movingWeight:.23},
-  castMotion:{lowerClip:'FireBlast_Lower',releaseTime:.55,followThrough:.85,fadeOut:0,hand:'mainHand'},
-  castMotions:{lava:{upperClip:'LavaBall_Upper',lowerClip:'LavaBall_Lower',releaseTime:1.5,followThrough:0.8,fadeOut:0,hand:'mainHand'},pulse:{upperClip:'PyreBurst_Upper',lowerClip:'PyreBurst_Lower',releaseTime:1.1,followThrough:0.8,fadeOut:0,holdWeapon:true,hand:'mainHand'}},
-  clips:{...sourceBody.clips,cast:'FireBlast_Upper',walkBack:'Jog_Bwd_Loop',strafeL:'Jog_Left_Loop',strafeR:'Jog_Right_Loop',turnL:'Turn90_L',turnR:'Turn90_R',hit:'Hit_Chest'}};
+ const playable={...sourceBody,...ASHEN_PLAYABLE_MOTION,
+  assetURL:fastCharacter?(await starterCharacterP).items.body.url:fullBodyManifestP?(await fullBodyManifestP).items.body.url:bodyUrl,buffer:await bodyBufP};
  capsule=resolveCapsule(playable.capsule);
  // Both near and outer terrain participate in Havok; exploration has no corridor clamp.
  markStartup('havok-start');

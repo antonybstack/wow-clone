@@ -1,0 +1,3248 @@
+{
+  "url": "http://127.0.0.1:7174/",
+  "scope": "Native compact identity directional/hit/melee/channel diagnostics; no timing acceptance",
+  "rows": [
+    {
+      "preset": "prime-bald",
+      "checks": [
+        {
+          "operation": "KeyS",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 1.0529666666785662,
+                "w": 0.923199999988079,
+                "loop": true
+              },
+              {
+                "name": "Jog_Bwd_Loop",
+                "t": 0.3303108017448257,
+                "w": 0.07680000001192093,
+                "loop": true
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "",
+              "channelBlocked": false,
+              "gaitPhase": 0.020571428934145652,
+              "gaitFrequency": 1.071428594990394,
+              "locoName": "Jog_Bwd_Loop",
+              "backing": true,
+              "strafing": false
+            },
+            "label": "Jog_Bwd_Loop",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-prime-v1",
+                "hair": "human-bald-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "KeyQ",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 1.0848666666696252,
+                "w": 0.9136598760053724,
+                "loop": true
+              },
+              {
+                "name": "Jog_Left_Loop",
+                "t": 0.26024413473185326,
+                "w": 0.08634012399462765,
+                "loop": true
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "",
+              "channelBlocked": false,
+              "gaitPhase": 0.07050000031128967,
+              "gaitFrequency": 2.1428571337339837,
+              "locoName": "Jog_Left_Loop",
+              "backing": false,
+              "strafing": true
+            },
+            "label": "Jog_Left_Loop",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-prime-v1",
+                "hair": "human-bald-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "KeyE",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 1.1162666666755854,
+                "w": 0.9050271989443318,
+                "loop": true
+              },
+              {
+                "name": "Jog_Right_Loop",
+                "t": 0.10204413384970451,
+                "w": 0.08490594637985317,
+                "loop": true
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "",
+              "channelBlocked": false,
+              "gaitPhase": 0.12600000008777235,
+              "gaitFrequency": 2.1428571337339837,
+              "locoName": "Jog_Right_Loop",
+              "backing": false,
+              "strafing": true
+            },
+            "label": "Jog_Right_Loop",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-prime-v1",
+                "hair": "human-bald-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "KeyA",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 1.148566666672605,
+                "w": 0.9076023656545215,
+                "loop": true
+              },
+              {
+                "name": "Turn90_L",
+                "t": 0.06883132979805899,
+                "w": 0.08973572333243872,
+                "loop": true
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "",
+              "channelBlocked": false,
+              "gaitPhase": 0.1375714285907772,
+              "gaitFrequency": 0,
+              "locoName": "Turn90_L",
+              "backing": false,
+              "strafing": false
+            },
+            "label": "Turn90_L",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-prime-v1",
+                "hair": "human-bald-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "KeyD",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 1.2011666666666447,
+                "w": 0.9139223711935007,
+                "loop": true
+              },
+              {
+                "name": "Turn90_R",
+                "t": 0.06948068192716954,
+                "w": 0.08607762880649919,
+                "loop": true
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "",
+              "channelBlocked": false,
+              "gaitPhase": 0.1375714285907772,
+              "gaitFrequency": 0,
+              "locoName": "Turn90_R",
+              "backing": false,
+              "strafing": false
+            },
+            "label": "Turn90_R",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-prime-v1",
+                "hair": "human-bald-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "native actor playHit diagnostic",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Hit_Chest",
+                "t": 0.005899999991059304,
+                "w": 1,
+                "loop": false
+              },
+              {
+                "name": "Idle_Loop",
+                "t": 1.2346666666666448,
+                "w": 1,
+                "loop": true
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "",
+              "channelBlocked": false,
+              "gaitPhase": 0.1375714285907772,
+              "gaitFrequency": 0,
+              "locoName": "Idle_Loop",
+              "backing": false,
+              "strafing": false
+            },
+            "label": "Idle_Loop + Hit_Chest",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-prime-v1",
+                "hair": "human-bald-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "native actor playMelee diagnostic",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 1.5638666666696244,
+                "w": 1,
+                "loop": true
+              },
+              {
+                "name": "PyreBurst_Upper",
+                "t": 0.01385999999344349,
+                "w": 0.022841999979078768,
+                "loop": false
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": true,
+              "meleeElapsed": 0.006299999997019768,
+              "meleeRelease": 0.5,
+              "holdWeapon": true,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "",
+              "channelBlocked": false,
+              "gaitPhase": 0.1375714285907772,
+              "gaitFrequency": 0,
+              "locoName": "Idle_Loop",
+              "backing": false,
+              "strafing": false
+            },
+            "label": "Idle_Loop + Auto attack",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-prime-v1",
+                "hair": "human-bald-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "animationLab channel enter",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 2.4898666666696228,
+                "w": 1,
+                "loop": true
+              },
+              {
+                "name": "Spell_Simple_Enter",
+                "t": 0.023700000002980236,
+                "w": 0.9999999999999998,
+                "loop": false
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": true,
+              "channelPhase": "enter",
+              "channelBlocked": false,
+              "gaitPhase": 0,
+              "gaitFrequency": 0,
+              "locoName": "Idle_Loop",
+              "backing": false,
+              "strafing": false
+            },
+            "label": "Idle_Loop + Spell_Simple_Enter",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-prime-v1",
+                "hair": "human-bald-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "animationLab channel loop",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 0.49566666666664233,
+                "w": 1,
+                "loop": true
+              },
+              {
+                "name": "Spell_Simple_Idle_Loop",
+                "t": 0.02069999998807907,
+                "w": 0.9999999999999998,
+                "loop": true
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": true,
+              "channelPhase": "loop",
+              "channelBlocked": false,
+              "gaitPhase": 0,
+              "gaitFrequency": 0,
+              "locoName": "Idle_Loop",
+              "backing": false,
+              "strafing": false
+            },
+            "label": "Idle_Loop + Spell_Simple_Idle_Loop",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-prime-v1",
+                "hair": "human-bald-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "animationLab channel exit",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 0.7916666666666415,
+                "w": 1,
+                "loop": true
+              },
+              {
+                "name": "Spell_Simple_Exit",
+                "t": 0.02219999998807907,
+                "w": 0.9999999999999998,
+                "loop": false
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "exit",
+              "channelBlocked": false,
+              "gaitPhase": 0,
+              "gaitFrequency": 0,
+              "locoName": "Idle_Loop",
+              "backing": false,
+              "strafing": false
+            },
+            "label": "Idle_Loop + Spell_Simple_Exit",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-prime-v1",
+                "hair": "human-bald-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        }
+      ],
+      "final": {
+        "groups": [
+          "Hit_Chest",
+          "Idle_Loop",
+          "Jump_Land",
+          "Jump_Loop",
+          "Jump_Start",
+          "Spell_Simple_Enter",
+          "Spell_Simple_Exit",
+          "Spell_Simple_Idle_Loop",
+          "Sprint_Loop",
+          "Walk_Loop",
+          "Jog_Bwd_Loop",
+          "Jog_Left_Loop",
+          "Jog_Right_Loop",
+          "Turn90_L",
+          "Turn90_R",
+          "Walk_Carry_Loop",
+          "PyreBurst_Upper",
+          "PyreBurst_Lower",
+          "FireBlast_Upper",
+          "FireBlast_Lower",
+          "LavaBall_Upper",
+          "LavaBall_Lower"
+        ],
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 1.195766666675582,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "actor": {
+          "phase": "loco",
+          "jump": "",
+          "castingShoot": false,
+          "melee": false,
+          "meleeElapsed": 0,
+          "meleeRelease": 0.5,
+          "holdWeapon": false,
+          "castElapsed": 0,
+          "castReleaseTime": 0.55,
+          "castLegWeight": 1,
+          "channeling": false,
+          "channelPhase": "",
+          "channelBlocked": false,
+          "gaitPhase": 0,
+          "gaitFrequency": 0,
+          "locoName": "Idle_Loop",
+          "backing": false,
+          "strafing": false
+        },
+        "label": "Idle_Loop",
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1,
+            "build": 0
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        }
+      }
+    },
+    {
+      "preset": "prime-ponytail",
+      "checks": [
+        {
+          "operation": "KeyS",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 0.4537666666606884,
+                "w": 0.9259999999999999,
+                "loop": true
+              },
+              {
+                "name": "Jog_Bwd_Loop",
+                "t": 0.3296108017367328,
+                "w": 0.07400000000000001,
+                "loop": true
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "",
+              "channelBlocked": false,
+              "gaitPhase": 0.019821428928667784,
+              "gaitFrequency": 1.0714285928821996,
+              "locoName": "Jog_Bwd_Loop",
+              "backing": true,
+              "strafing": false
+            },
+            "label": "Jog_Bwd_Loop",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-prime-v1",
+                "hair": "human-ponytail01-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "KeyQ",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 0.4789666666636686,
+                "w": 0.9202806372076722,
+                "loop": true
+              },
+              {
+                "name": "Jog_Left_Loop",
+                "t": 0.2517441345554795,
+                "w": 0.07971936279232777,
+                "loop": true
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "",
+              "channelBlocked": false,
+              "gaitPhase": 0.06139285730394839,
+              "gaitFrequency": 2.142857133733983,
+              "locoName": "Jog_Left_Loop",
+              "backing": false,
+              "strafing": true
+            },
+            "label": "Jog_Left_Loop",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-prime-v1",
+                "hair": "human-ponytail01-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "KeyE",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 0.512866666669629,
+                "w": 0.9091944748601067,
+                "loop": true
+              },
+              {
+                "name": "Jog_Right_Loop",
+                "t": 0.09634413368525181,
+                "w": 0.0908055251398932,
+                "loop": true
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "",
+              "channelBlocked": false,
+              "gaitPhase": 0.11989285708043118,
+              "gaitFrequency": 2.142857133733983,
+              "locoName": "Jog_Right_Loop",
+              "backing": false,
+              "strafing": true
+            },
+            "label": "Jog_Right_Loop",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-prime-v1",
+                "hair": "human-ponytail01-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "KeyA",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 0.5400666666726093,
+                "w": 0.877977801696232,
+                "loop": true
+              },
+              {
+                "name": "Jog_Right_Loop",
+                "t": 0.10674413369121222,
+                "w": 0.028687454008767,
+                "loop": true
+              },
+              {
+                "name": "Turn90_L",
+                "t": 0.07142873845964262,
+                "w": 0.09333474429500103,
+                "loop": true
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "",
+              "channelBlocked": false,
+              "gaitPhase": 0.13103571418223403,
+              "gaitFrequency": 0,
+              "locoName": "Turn90_L",
+              "backing": false,
+              "strafing": false
+            },
+            "label": "Turn90_L",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-prime-v1",
+                "hair": "human-ponytail01-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "KeyD",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 0.5873666666696291,
+                "w": 0.9795999999642372,
+                "loop": true
+              },
+              {
+                "name": "Turn90_R",
+                "t": 0.0165584803083091,
+                "w": 0.020400000035762787,
+                "loop": true
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "",
+              "channelBlocked": false,
+              "gaitPhase": 0.13103571418223403,
+              "gaitFrequency": 0,
+              "locoName": "Turn90_R",
+              "backing": false,
+              "strafing": false
+            },
+            "label": "Turn90_R",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-prime-v1",
+                "hair": "human-ponytail01-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "native actor playHit diagnostic",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Hit_Chest",
+                "t": 0.005299999997019768,
+                "w": 1,
+                "loop": false
+              },
+              {
+                "name": "Idle_Loop",
+                "t": 0.6216666666666489,
+                "w": 1,
+                "loop": true
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "",
+              "channelBlocked": false,
+              "gaitPhase": 0.13103571418223403,
+              "gaitFrequency": 0,
+              "locoName": "Idle_Loop",
+              "backing": false,
+              "strafing": false
+            },
+            "label": "Idle_Loop + Hit_Chest",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-prime-v1",
+                "hair": "human-ponytail01-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "native actor playMelee diagnostic",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 0.957266666660688,
+                "w": 1,
+                "loop": true
+              },
+              {
+                "name": "PyreBurst_Upper",
+                "t": 0.05895999999344349,
+                "w": 0.3275006879862904,
+                "loop": false
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": true,
+              "meleeElapsed": 0.026799999997019767,
+              "meleeRelease": 0.5,
+              "holdWeapon": true,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "",
+              "channelBlocked": false,
+              "gaitPhase": 0.13103571418223403,
+              "gaitFrequency": 0,
+              "locoName": "Idle_Loop",
+              "backing": false,
+              "strafing": false
+            },
+            "label": "Idle_Loop + Auto attack",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-prime-v1",
+                "hair": "human-ponytail01-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "animationLab channel enter",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 0.7843666666547157,
+                "w": 1,
+                "loop": true
+              },
+              {
+                "name": "Spell_Simple_Enter",
+                "t": 0.019900000005960466,
+                "w": 0.9999999999999998,
+                "loop": false
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": true,
+              "channelPhase": "enter",
+              "channelBlocked": false,
+              "gaitPhase": 0,
+              "gaitFrequency": 0,
+              "locoName": "Idle_Loop",
+              "backing": false,
+              "strafing": false
+            },
+            "label": "Idle_Loop + Spell_Simple_Enter",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-prime-v1",
+                "hair": "human-ponytail01-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "animationLab channel loop",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 1.2734666666487542,
+                "w": 1,
+                "loop": true
+              },
+              {
+                "name": "Spell_Simple_Idle_Loop",
+                "t": 0.0035,
+                "w": 0.9999999999999998,
+                "loop": true
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": true,
+              "channelPhase": "loop",
+              "channelBlocked": false,
+              "gaitPhase": 0,
+              "gaitFrequency": 0,
+              "locoName": "Idle_Loop",
+              "backing": false,
+              "strafing": false
+            },
+            "label": "Idle_Loop + Spell_Simple_Idle_Loop",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-prime-v1",
+                "hair": "human-ponytail01-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "animationLab channel exit",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 1.561266666645773,
+                "w": 1,
+                "loop": true
+              },
+              {
+                "name": "Spell_Simple_Exit",
+                "t": 0.022099999994039537,
+                "w": 0.9999999999999998,
+                "loop": false
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "exit",
+              "channelBlocked": false,
+              "gaitPhase": 0,
+              "gaitFrequency": 0,
+              "locoName": "Idle_Loop",
+              "backing": false,
+              "strafing": false
+            },
+            "label": "Idle_Loop + Spell_Simple_Exit",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-prime-v1",
+                "hair": "human-ponytail01-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        }
+      ],
+      "final": {
+        "groups": [
+          "Hit_Chest",
+          "Idle_Loop",
+          "Jump_Land",
+          "Jump_Loop",
+          "Jump_Start",
+          "Spell_Simple_Enter",
+          "Spell_Simple_Exit",
+          "Spell_Simple_Idle_Loop",
+          "Sprint_Loop",
+          "Walk_Loop",
+          "Jog_Bwd_Loop",
+          "Jog_Left_Loop",
+          "Jog_Right_Loop",
+          "Turn90_L",
+          "Turn90_R",
+          "Walk_Carry_Loop",
+          "PyreBurst_Upper",
+          "PyreBurst_Lower",
+          "FireBlast_Upper",
+          "FireBlast_Lower",
+          "LavaBall_Upper",
+          "LavaBall_Lower"
+        ],
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 1.950866666654713,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "actor": {
+          "phase": "loco",
+          "jump": "",
+          "castingShoot": false,
+          "melee": false,
+          "meleeElapsed": 0,
+          "meleeRelease": 0.5,
+          "holdWeapon": false,
+          "castElapsed": 0,
+          "castReleaseTime": 0.55,
+          "castLegWeight": 1,
+          "channeling": false,
+          "channelPhase": "",
+          "channelBlocked": false,
+          "gaitPhase": 0,
+          "gaitFrequency": 0,
+          "locoName": "Idle_Loop",
+          "backing": false,
+          "strafing": false
+        },
+        "label": "Idle_Loop",
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1,
+            "build": 0
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        }
+      }
+    },
+    {
+      "preset": "weathered-bald",
+      "checks": [
+        {
+          "operation": "KeyS",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 0.38706666665770445,
+                "w": 0.9468000000119209,
+                "loop": true
+              },
+              {
+                "name": "Jog_Bwd_Loop",
+                "t": 0.3244108014344718,
+                "w": 0.05319999998807907,
+                "loop": true
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "",
+              "channelBlocked": false,
+              "gaitPhase": 0.014250000057108414,
+              "gaitFrequency": 1.0714285956694862,
+              "locoName": "Jog_Bwd_Loop",
+              "backing": true,
+              "strafing": false
+            },
+            "label": "Jog_Bwd_Loop",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-weathered-v1",
+                "hair": "human-bald-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "KeyQ",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 0.41456666665770436,
+                "w": 0.8875499164172387,
+                "loop": true
+              },
+              {
+                "name": "Jog_Left_Loop",
+                "t": 0.2627441342710998,
+                "w": 0.11245008358276135,
+                "loop": true
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "",
+              "channelBlocked": false,
+              "gaitPhase": 0.07317857123479299,
+              "gaitFrequency": 2.1428571337339837,
+              "locoName": "Jog_Left_Loop",
+              "backing": false,
+              "strafing": true
+            },
+            "label": "Jog_Left_Loop",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-weathered-v1",
+                "hair": "human-bald-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "KeyE",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 0.44056666665770433,
+                "w": 0.858044390545097,
+                "loop": true
+              },
+              {
+                "name": "Jog_Left_Loop",
+                "t": 0.31474413427109965,
+                "w": 0.05040991015098163,
+                "loop": true
+              },
+              {
+                "name": "Jog_Right_Loop",
+                "t": 0.10474413337703008,
+                "w": 0.09154569930392152,
+                "loop": true
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "",
+              "channelBlocked": false,
+              "gaitPhase": 0.12889285671187634,
+              "gaitFrequency": 2.1428571337339837,
+              "locoName": "Jog_Right_Loop",
+              "backing": false,
+              "strafing": true
+            },
+            "label": "Jog_Right_Loop",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-weathered-v1",
+                "hair": "human-bald-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "KeyA",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 0.4608666666696253,
+                "w": 0.879195439043755,
+                "loop": true
+              },
+              {
+                "name": "Jog_Right_Loop",
+                "t": 0.11254413338895103,
+                "w": 0.05016136564054353,
+                "loop": true
+              },
+              {
+                "name": "Turn90_L",
+                "t": 0.05324687778017671,
+                "w": 0.07064319531570155,
+                "loop": true
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "",
+              "channelBlocked": false,
+              "gaitPhase": 0.1372499995462113,
+              "gaitFrequency": 0,
+              "locoName": "Turn90_L",
+              "backing": false,
+              "strafing": false
+            },
+            "label": "Turn90_L",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-weathered-v1",
+                "hair": "human-bald-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "KeyD",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 0.5250666666577043,
+                "w": 0.9208000000119209,
+                "loop": true
+              },
+              {
+                "name": "Turn90_R",
+                "t": 0.06428586460400226,
+                "w": 0.07919999998807907,
+                "loop": true
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "",
+              "channelBlocked": false,
+              "gaitPhase": 0.1372499995462113,
+              "gaitFrequency": 0,
+              "locoName": "Turn90_R",
+              "backing": false,
+              "strafing": false
+            },
+            "label": "Turn90_R",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-weathered-v1",
+                "hair": "human-bald-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "native actor playHit diagnostic",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Hit_Chest",
+                "t": 0.006400000005960464,
+                "w": 1,
+                "loop": false
+              },
+              {
+                "name": "Idle_Loop",
+                "t": 0.5584666666636647,
+                "w": 1,
+                "loop": true
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "",
+              "channelBlocked": false,
+              "gaitPhase": 0.1372499995462113,
+              "gaitFrequency": 0,
+              "locoName": "Idle_Loop",
+              "backing": false,
+              "strafing": false
+            },
+            "label": "Idle_Loop + Hit_Chest",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-weathered-v1",
+                "hair": "human-bald-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "native actor playMelee diagnostic",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 0.9056666666666442,
+                "w": 1,
+                "loop": true
+              },
+              {
+                "name": "PyreBurst_Upper",
+                "t": 0.060500000000000005,
+                "w": 0.34174562682215737,
+                "loop": false
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": true,
+              "meleeElapsed": 0.027499999999999997,
+              "meleeRelease": 0.5,
+              "holdWeapon": true,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "",
+              "channelBlocked": false,
+              "gaitPhase": 0.1372499995462113,
+              "gaitFrequency": 0,
+              "locoName": "Idle_Loop",
+              "backing": false,
+              "strafing": false
+            },
+            "label": "Idle_Loop + Auto attack",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-weathered-v1",
+                "hair": "human-bald-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "animationLab channel enter",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 2.223666666666643,
+                "w": 1,
+                "loop": true
+              },
+              {
+                "name": "Spell_Simple_Enter",
+                "t": 0.03459999999403954,
+                "w": 0.9999999999999998,
+                "loop": false
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": true,
+              "channelPhase": "enter",
+              "channelBlocked": false,
+              "gaitPhase": 0,
+              "gaitFrequency": 0,
+              "locoName": "Idle_Loop",
+              "backing": false,
+              "strafing": false
+            },
+            "label": "Idle_Loop + Spell_Simple_Enter",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-weathered-v1",
+                "hair": "human-bald-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "animationLab channel loop",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 0.2042666666755853,
+                "w": 1,
+                "loop": true
+              },
+              {
+                "name": "Spell_Simple_Idle_Loop",
+                "t": 0.005400000005960465,
+                "w": 0.9999999999999998,
+                "loop": true
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": true,
+              "channelPhase": "loop",
+              "channelBlocked": false,
+              "gaitPhase": 0,
+              "gaitFrequency": 0,
+              "locoName": "Idle_Loop",
+              "backing": false,
+              "strafing": false
+            },
+            "label": "Idle_Loop + Spell_Simple_Idle_Loop",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-weathered-v1",
+                "hair": "human-bald-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        },
+        {
+          "operation": "animationLab channel exit",
+          "state": {
+            "groups": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ],
+            "playing": [
+              {
+                "name": "Idle_Loop",
+                "t": 0.544566666672605,
+                "w": 1,
+                "loop": true
+              },
+              {
+                "name": "Spell_Simple_Exit",
+                "t": 0.02229999999701977,
+                "w": 0.9999999999999998,
+                "loop": false
+              }
+            ],
+            "actor": {
+              "phase": "loco",
+              "jump": "",
+              "castingShoot": false,
+              "melee": false,
+              "meleeElapsed": 0,
+              "meleeRelease": 0.5,
+              "holdWeapon": false,
+              "castElapsed": 0,
+              "castReleaseTime": 0.55,
+              "castLegWeight": 1,
+              "channeling": false,
+              "channelPhase": "exit",
+              "channelBlocked": false,
+              "gaitPhase": 0,
+              "gaitFrequency": 0,
+              "locoName": "Idle_Loop",
+              "backing": false,
+              "strafing": false
+            },
+            "label": "Idle_Loop + Spell_Simple_Exit",
+            "physics": true,
+            "recoveries": 0,
+            "gpuErrors": [],
+            "appearance": {
+              "schemaVersion": 2,
+              "catalogVersion": "appearance-catalog-v6",
+              "race": "human",
+              "fitFamily": "ashen-human",
+              "fit": {
+                "rig": "source-65",
+                "bind": 1,
+                "shape": 1
+              },
+              "shape": {
+                "family": "ashen-human-shape-v1",
+                "height": 1,
+                "build": 0
+              },
+              "components": {
+                "head": "human-weathered-v1",
+                "hair": "human-bald-v1"
+              },
+              "dyes": {},
+              "equipment": {
+                "helmet": null,
+                "torso": "wayfarerTunic",
+                "legs": "wayfarerTrousers",
+                "boots": "wayfarerBoots",
+                "gloves": null,
+                "mainHand": "ironSword",
+                "offHand": null,
+                "shoulders": null
+              }
+            }
+          }
+        }
+      ],
+      "final": {
+        "groups": [
+          "Hit_Chest",
+          "Idle_Loop",
+          "Jump_Land",
+          "Jump_Loop",
+          "Jump_Start",
+          "Spell_Simple_Enter",
+          "Spell_Simple_Exit",
+          "Spell_Simple_Idle_Loop",
+          "Sprint_Loop",
+          "Walk_Loop",
+          "Jog_Bwd_Loop",
+          "Jog_Left_Loop",
+          "Jog_Right_Loop",
+          "Turn90_L",
+          "Turn90_R",
+          "Walk_Carry_Loop",
+          "PyreBurst_Upper",
+          "PyreBurst_Lower",
+          "FireBlast_Upper",
+          "FireBlast_Lower",
+          "LavaBall_Upper",
+          "LavaBall_Lower"
+        ],
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 0.9408666666696244,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "actor": {
+          "phase": "loco",
+          "jump": "",
+          "castingShoot": false,
+          "melee": false,
+          "meleeElapsed": 0,
+          "meleeRelease": 0.5,
+          "holdWeapon": false,
+          "castElapsed": 0,
+          "castReleaseTime": 0.55,
+          "castLegWeight": 1,
+          "channeling": false,
+          "channelPhase": "",
+          "channelBlocked": false,
+          "gaitPhase": 0,
+          "gaitFrequency": 0,
+          "locoName": "Idle_Loop",
+          "backing": false,
+          "strafing": false
+        },
+        "label": "Idle_Loop",
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1,
+            "build": 0
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}
