@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "stage": "local-gates-passed-production-pending",
+ "stage": "local-gates-passed-public-startup-blocked",
  "build": {
   "freezeTime": "2026-10-05T19:35:33.226Z",
   "productInputsSha256": "9aa3a4e2da09fafe525c212787fd87df0251200eb17401fd1c6ce37c25673274",
@@ -1562,7 +1562,35 @@
     ]
    }
   },
-  "public": {}
+  "public": {
+   "status": "failed-p95",
+   "default": {
+    "count": 20,
+    "p95Ms": 1018.7000000178814,
+    "maximumMs": 1620.9000000059605,
+    "medianMs": 956.7999999970198,
+    "misses": [
+     {
+      "run": 1,
+      "playableMs": 1620.9000000059605
+     },
+     {
+      "run": 14,
+      "playableMs": 1000.9000000059605
+     },
+     {
+      "run": 16,
+      "playableMs": 1018.7000000178814
+     }
+    ],
+    "validationFailures": 0,
+    "rawReport": ".cache/character-mmo/m5-moving-fit-2026-10-05/startup-raf-public/default-cache-disabled.json"
+   },
+   "unrun": [
+    "original-largest",
+    "prime-ponytail-hood"
+   ]
+  }
  },
  "pacingProof": {
   "browserPid": 51793,
@@ -4082,12 +4110,13 @@
   "ceiling": 722
  },
  "release": {
-  "pagesDeploymentId": null,
-  "productionUrl": null,
+  "pagesDeploymentId": "6272e037-01ea-4e8c-963e-5a2313564891",
+  "productionUrl": "https://play.sparkify.dev/",
   "telegramMessageId": null,
   "previousProductionId": "b3fdafd8-c343-4147-ae2e-760a155c8d06",
-  "note": "Filled by root only after actual production verification.",
-  "sealSha256": "33207c2c23ee7d8758a773d5b9784028ba5751f13a7f96d6cf26d71680867934"
+  "note": "Sealed deployment published. All 519 public artifacts and functional movement, saved, mobile, depth fallback and WebKit gates pass. Public default p95 1018.7ms fails; M5 open. Telegram pending.",
+  "sealSha256": "33207c2c23ee7d8758a773d5b9784028ba5751f13a7f96d6cf26d71680867934",
+  "sourceCommit": "99acaba9e03661d5ab3208669c67d4efbf90668c"
  },
  "preFinalReceipt": "docs/baselines/character-mmo/m5/shared-fit-2026-10-05/release-measurements-pre-final-grounding.json",
  "tests": {

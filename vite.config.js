@@ -1,6 +1,7 @@
 import {verifyProductionHumanShapes} from './scripts/character-assets/verify-production-human-shapes.mjs';
 import {verifyProductionHumanIdentities} from './scripts/character-assets/verify-production-human-identities.mjs';
 import {verifyStartupAssets} from './scripts/ashen-reach/startup-provenance.mjs';
+import {writeEarlyHints} from './scripts/ashen-reach/early-hints.mjs';
 import { defineConfig } from "vite";
 import {readFileSync,createReadStream,statSync} from 'node:fs';
 import {resolve} from 'node:path';
@@ -169,6 +170,11 @@ export default defineConfig({
     // descriptors on release builds, without terminating dev during regeneration.
     // https://vite.dev/guide/api-plugin.html#conditional-application
     {name: "verify-prepared-startup", apply:'build', async buildStart(){if(starterBuild)await verifyStartupAssets();await verifyProductionHumanShapes();await verifyProductionHumanIdentities();}},
+    // Pages skips crossorigin/fetchpriority links when generating Early Hints, so hint the
+    // built startup module graph with explicit Link headers in the copied _headers. Runs
+    // after the HTML (including the early saved-character entry) is final.
+    // https://developers.cloudflare.com/pages/configuration/early-hints/
+    {name: 'pages-early-hints', apply:'build', writeBundle:{order:'post',async handler(options,bundle){await writeEarlyHints(options.dir,bundle);}}},
     {
       // Separate bundler entry: Vite merges two ordinary HTML module scripts into
       // one renderer entry, which defeats starting saved-appearance fetches early.

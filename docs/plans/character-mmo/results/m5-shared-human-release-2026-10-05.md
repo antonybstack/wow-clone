@@ -1,8 +1,8 @@
 # M5 shared Human coverage and creator release
 
-Updated 2026-10-05. **Release pending:** final native Pages and production gates
-are in progress. This result must not be read as a deployed M5 until the release
-identifier and public verification below are recorded.
+Updated 2026-10-05. **Candidate deployed; M5 acceptance remains open.**
+Native gates pass. Production functional checks pass, but public default startup
+p95 is 1,018.7 ms against the 1,000 ms target.
 
 ## Resulting behavior
 
@@ -141,7 +141,14 @@ and Telegram Desktop remain unavailable. Clip performance is not a benchmark.
 
 ## Deployment and limits
 
-Source commit / exact build seal / Pages release / public acceptance: **pending**.
+Source **99acaba9e03661d5ab3208669c67d4efbf90668c** is committed and pushed.
+Pages **6272e037-01ea-4e8c-963e-5a2313564891** publishes the exact locally gated
+520-file dist (519 served files), without rebuilding. The seal digest is
+`33207c2c23ee7d8758a773d5b9784028ba5751f13a7f96d6cf26d71680867934`;
+product-input fingerprint is
+`9aa3a4e2da09fafe525c212787fd87df0251200eb17401fd1c6ce37c25673274`.
+All public served-byte/cache checks and the versioned Havok binary match.
+Movement, public startup and Telegram acceptance are still pending.
 Previous production for rollback is
 `b3fdafd8-c343-4147-ae2e-760a155c8d06` / source `4063f49`.
 The sealed upload must publish the exact gated bytes without rebuilding.
@@ -154,3 +161,20 @@ proved exposed body faces, not a sole penetration defect. Sampling speckles
 remain a documented aliasing limitation. No blanket standoff, new anti-aliasing
 system or unverified sole edit is included. The structural equipment factory
 is the next conditional milestone after this release is accepted.
+
+## Public startup blocker after 99acaba deployment
+
+All 519 public artifacts/cache policies, complete bridge return, west bell-tower
+ascent/return, saved identities, mobile, injected depth fallback and Weathered
+WebKit pass. The first public default cache-disabled cohort retains all 20 rows:
+p95 1,018.7 ms, median 956.8 ms, maximum 1,620.9 ms; misses are run 1 (1,620.9),
+run 14 (1,000.9) and run 16 (1,018.7). No validation/runtime failures.
+Original-largest and hooded ponytail public cohorts have not run.
+
+The first row's GPU completion costs 775 ms; later startup overhead is before
+world loading finishes. Pages currently sends a decoder-only 103. Its automatic
+Link extraction skips our crossorigin/fetchpriority tags. Explicit build-derived
+response headers are under investigation. Chromium's disabled-cache condition
+does not use Early Hints, so an HTTP 103 alone is not proof of improved acceptance.
+See [Pages Early Hints](https://developers.cloudflare.com/pages/configuration/early-hints/)
+and [Chrome Early Hints](https://developer.chrome.com/docs/web-platform/early-hints).

@@ -39,19 +39,24 @@ launch controls, native callback admission, a calibrated 60 Hz control and a
 falsifying row in each cohort. The original collector failure is retained;
 no acceptance row was rerun or detector threshold relaxed.
 
-**Next action:** deliver the reviewed native-resolution MP4, commit/push
-the candidate, upload those exact gated bytes, then verify public loading,
-movement/mobile/WebKit and prescribed cold cohorts. Roll back for loading or
-movement failure. M5 remains **open until public acceptance**.
+**Public release is blocked on startup:** functional gates and all 519 artifacts
+pass, but the default 20-run cache-disabled cohort has p95 **1,018.7 ms**,
+maximum **1,620.9 ms**, and three one-second misses (runs 1, 14, 16). The first
+row includes a 775 ms GPU-completion cost; subsequent latency is before world
+loading finishes. Original-largest and hooded ponytail public cohorts have not
+run. Retain every failed row. M5 remains **open**. Next: test build-derived
+response preload headers without changing readiness or benchmark conditions,
+then complete the affected public startup gates and motion delivery.
 
 ## Production and rollback
 
-Production is [play.sparkify.dev](https://play.sparkify.dev), M7 / catalogue v5,
-source **4063f4909a5d2bf9b30c71f700deeb26e18b7dca**, Pages
-**b3fdafd8-c343-4147-ae2e-760a155c8d06** (confirmed by API 2026-10-05).
-This is the previous-production rollback target for M5. Earlier rollback:
-**0c2f92c1-a4f8-43ab-838f-45c0f622df4b** / `8ae4c2d`.
-Local identity work is not yet this production release.
+Production is [play.sparkify.dev](https://play.sparkify.dev), **M5 candidate / catalogue v6**,
+source **99acaba9e03661d5ab3208669c67d4efbf90668c**, Pages
+**6272e037-01ea-4e8c-963e-5a2313564891**. The exact sealed upload is complete;
+public default startup acceptance failed; functional checks pass. All 519 public bytes/cache policies and
+the versioned Havok binary already match. Rollback target:
+**b3fdafd8-c343-4147-ae2e-760a155c8d06** / source `4063f49` (M7 / catalogue v5).
+Do not mark M5 complete until movement, public startup and Telegram delivery pass.
 
 ## Scope, limits and ownership
 
