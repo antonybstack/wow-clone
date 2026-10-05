@@ -1,0 +1,56 @@
+{
+  "owner": "root",
+  "ownedChrome": {
+    "browserPid": 26252,
+    "gpuHelperPid": 26262,
+    "cdpPort": 10037,
+    "vitePort": 5873,
+    "viteParentPid": 26184,
+    "viteListenerPid": 26222,
+    "stopped": true
+  },
+  "ownedPreview": {
+    "port": 7174,
+    "controllerPids": [
+      45575,
+      51828,
+      64306
+    ],
+    "allStopped": true
+  },
+  "ownedWebKit": {
+    "browserPid": 69307,
+    "stopped": true
+  },
+  "ownedGrok": {
+    "model": "grok-4.6",
+    "effort": "high",
+    "pids": [
+      30653,
+      44692
+    ],
+    "allExited": true,
+    "browserAllowed": false
+  },
+  "ownedMedia": {
+    "edgeBrowserPid": 2931,
+    "tabId": "1147995580",
+    "closed": true
+  },
+  "preservedUserState": {
+    "wowPid": 92396,
+    "wowRendering": true,
+    "grokPid": 35466,
+    "vitePorts": [
+      5173,
+      4000
+    ],
+    "edgeBrowserId": "1",
+    "telegramTab": "1147992685",
+    "telegramViewerMessage": 855,
+    "telegramPlayingVideos": 0,
+    "telegramNativeFullscreen": false
+  },
+  "timingAcceptance": false,
+  "reason": "User-owned WoW rendering on the machine"
+}

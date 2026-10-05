@@ -1,0 +1,958 @@
+{
+  "url": "http://127.0.0.1:7174/",
+  "scope": "Armory preview layout, controls and motion; timing contaminated by user WoW",
+  "rows": [
+    {
+      "label": "portrait-full",
+      "state": {
+        "stage": {
+          "x": 0,
+          "y": 54,
+          "width": 430,
+          "height": 285.765625
+        },
+        "viewport": {
+          "x": 0,
+          "y": 0.537104053133515,
+          "width": 1,
+          "height": 0.3893264645776567
+        },
+        "pose": {
+          "alpha": 1.5707963267948966,
+          "beta": 1.36,
+          "radius": 5.52,
+          "target": {
+            "x": -0.0012998072455925724,
+            "y": 0.9112704990957404,
+            "z": -0.002293777351425705
+          },
+          "fov": 0.56,
+          "near": 0.05,
+          "far": 450
+        },
+        "canvas": [
+          322,
+          550
+        ],
+        "window": [
+          430,
+          734
+        ],
+        "presenceHidden": true,
+        "horizontalOverflow": false,
+        "race": "human",
+        "height": 1.15,
+        "cameraRadius": 5.52,
+        "physics": true,
+        "recoveries": 0,
+        "gpu": [],
+        "grounding": {
+          "ambient": true,
+          "compatible": false,
+          "contactEnabled": false
+        },
+        "projected": {
+          "clipW": 5.520000272797436,
+          "behindCamera": false,
+          "x": 161.00000000212816,
+          "y": 147.50000555777908,
+          "z": 0.00894785380457462,
+          "cssX": 215.00000000284194,
+          "cssY": 196.84546196256335,
+          "offscreen": false,
+          "clipped": false
+        },
+        "previewEntropy": 5.00407997014554
+      }
+    },
+    {
+      "label": "portrait-face",
+      "state": {
+        "stage": {
+          "x": 0,
+          "y": 54,
+          "width": 430,
+          "height": 285.765625
+        },
+        "viewport": {
+          "x": 0,
+          "y": 0.537104053133515,
+          "width": 1,
+          "height": 0.3893264645776567
+        },
+        "pose": {
+          "alpha": 1.5707963267948966,
+          "beta": 1.46,
+          "radius": 1.8399999999999999,
+          "target": {
+            "x": -0.0012998072455925724,
+            "y": 1.8082704990957403,
+            "z": -0.002293777351425705
+          },
+          "fov": 0.56,
+          "near": 0.05,
+          "far": 450
+        },
+        "canvas": [
+          322,
+          550
+        ],
+        "window": [
+          430,
+          734
+        ],
+        "presenceHidden": true,
+        "horizontalOverflow": false,
+        "race": "human",
+        "height": 1.15,
+        "cameraRadius": 1.8399999999999999,
+        "physics": true,
+        "recoveries": 0,
+        "gpu": [],
+        "grounding": {
+          "ambient": true,
+          "compatible": false,
+          "contactEnabled": false
+        },
+        "projected": {
+          "clipW": 1.8399999971642624,
+          "behindCamera": false,
+          "x": 161.0000000063844,
+          "y": 147.4999967829447,
+          "z": 0.027065809423008243,
+          "cssX": 215.00000000852575,
+          "cssY": 196.845450252148,
+          "offscreen": false,
+          "clipped": false
+        },
+        "previewEntropy": 5.291667427918583
+      }
+    },
+    {
+      "label": "portrait-weathered",
+      "state": {
+        "stage": {
+          "x": 0,
+          "y": 54,
+          "width": 430,
+          "height": 285.765625
+        },
+        "viewport": {
+          "x": 0,
+          "y": 0.537104053133515,
+          "width": 1,
+          "height": 0.3893264645776567
+        },
+        "pose": {
+          "alpha": 1.5707963267948966,
+          "beta": 1.46,
+          "radius": 1.8399999999999999,
+          "target": {
+            "x": -0.0012998072455925724,
+            "y": 1.8082704990957403,
+            "z": -0.002293777351425705
+          },
+          "fov": 0.56,
+          "near": 0.05,
+          "far": 450
+        },
+        "canvas": [
+          322,
+          550
+        ],
+        "window": [
+          430,
+          734
+        ],
+        "presenceHidden": true,
+        "horizontalOverflow": false,
+        "race": "human",
+        "height": 1.15,
+        "cameraRadius": 1.8399999999999999,
+        "physics": true,
+        "recoveries": 0,
+        "gpu": [],
+        "grounding": {
+          "ambient": true,
+          "compatible": false,
+          "contactEnabled": false
+        },
+        "projected": {
+          "clipW": 1.8399999971642624,
+          "behindCamera": false,
+          "x": 161.0000000063844,
+          "y": 147.4999967829447,
+          "z": 0.027065809423008243,
+          "cssX": 215.00000000852575,
+          "cssY": 196.845450252148,
+          "offscreen": false,
+          "clipped": false
+        },
+        "previewEntropy": 5.289509656118753
+      }
+    },
+    {
+      "label": "portrait-short",
+      "state": {
+        "stage": {
+          "x": 0,
+          "y": 54,
+          "width": 430,
+          "height": 285.765625
+        },
+        "viewport": {
+          "x": 0,
+          "y": 0.537104053133515,
+          "width": 1,
+          "height": 0.3893264645776567
+        },
+        "pose": {
+          "alpha": 1.5707963267948966,
+          "beta": 1.36,
+          "radius": 4.32,
+          "target": {
+            "x": -0.0012998072455925724,
+            "y": 0.7162704990957406,
+            "z": -0.002293777351425705
+          },
+          "fov": 0.56,
+          "near": 0.05,
+          "far": 450
+        },
+        "canvas": [
+          322,
+          550
+        ],
+        "window": [
+          430,
+          734
+        ],
+        "presenceHidden": true,
+        "horizontalOverflow": false,
+        "race": "human",
+        "height": 0.9,
+        "cameraRadius": 4.32,
+        "physics": true,
+        "recoveries": 0,
+        "gpu": [],
+        "grounding": {
+          "ambient": true,
+          "compatible": false,
+          "contactEnabled": false
+        },
+        "projected": {
+          "clipW": 4.3200000009257495,
+          "behindCamera": false,
+          "x": 161.00000000271928,
+          "y": 147.5000030079268,
+          "z": 0.011464236543466984,
+          "cssX": 215.00000000363133,
+          "cssY": 196.8454585596696,
+          "offscreen": false,
+          "clipped": false
+        },
+        "previewEntropy": 5.028921135031851
+      }
+    },
+    {
+      "label": "portrait-tall",
+      "state": {
+        "stage": {
+          "x": 0,
+          "y": 54,
+          "width": 430,
+          "height": 285.765625
+        },
+        "viewport": {
+          "x": 0,
+          "y": 0.537104053133515,
+          "width": 1,
+          "height": 0.3893264645776567
+        },
+        "pose": {
+          "alpha": 1.5707963267948966,
+          "beta": 1.36,
+          "radius": 5.52,
+          "target": {
+            "x": -0.0012998072455925724,
+            "y": 0.9112704990957405,
+            "z": -0.002293777351425705
+          },
+          "fov": 0.56,
+          "near": 0.05,
+          "far": 450
+        },
+        "canvas": [
+          322,
+          550
+        ],
+        "window": [
+          430,
+          734
+        ],
+        "presenceHidden": true,
+        "horizontalOverflow": false,
+        "race": "human",
+        "height": 1.15,
+        "cameraRadius": 5.52,
+        "physics": true,
+        "recoveries": 0,
+        "gpu": [],
+        "grounding": {
+          "ambient": true,
+          "compatible": false,
+          "contactEnabled": false
+        },
+        "projected": {
+          "clipW": 5.520000272797436,
+          "behindCamera": false,
+          "x": 161.00000000212816,
+          "y": 147.50000555777908,
+          "z": 0.00894785380457462,
+          "cssX": 215.00000000284194,
+          "cssY": 196.84546196256335,
+          "offscreen": false,
+          "clipped": false
+        },
+        "previewEntropy": 5.0728179568723135
+      }
+    },
+    {
+      "label": "portrait-native-touch",
+      "state": {
+        "stage": {
+          "x": 0,
+          "y": 54,
+          "width": 430,
+          "height": 285.765625
+        },
+        "viewport": {
+          "x": 0,
+          "y": 0.537104053133515,
+          "width": 1,
+          "height": 0.3893264645776567
+        },
+        "pose": {
+          "alpha": 1.0149283974674075,
+          "beta": 1.36,
+          "radius": 3.154285714285714,
+          "target": {
+            "x": -0.0012998072455925724,
+            "y": 0.9112704990957405,
+            "z": -0.002293777351425705
+          },
+          "fov": 0.56,
+          "near": 0.05,
+          "far": 450
+        },
+        "canvas": [
+          322,
+          550
+        ],
+        "window": [
+          430,
+          734
+        ],
+        "presenceHidden": true,
+        "horizontalOverflow": false,
+        "race": "human",
+        "height": 1.15,
+        "cameraRadius": 3.154285714285714,
+        "physics": true,
+        "recoveries": 0,
+        "gpu": [],
+        "grounding": {
+          "ambient": true,
+          "compatible": false,
+          "contactEnabled": false
+        },
+        "projected": {
+          "clipW": 3.154285652527652,
+          "behindCamera": false,
+          "x": 160.99999939211898,
+          "y": 147.50000714846487,
+          "z": 0.01574208671039029,
+          "cssX": 214.9999991882334,
+          "cssY": 196.84546408540584,
+          "offscreen": false,
+          "clipped": false
+        },
+        "previewEntropy": 5.083272513606062
+      }
+    },
+    {
+      "label": "portrait-orc",
+      "state": {
+        "stage": {
+          "x": 0,
+          "y": 54,
+          "width": 430,
+          "height": 285.765625
+        },
+        "viewport": {
+          "x": 0,
+          "y": 0.537104053133515,
+          "width": 1,
+          "height": 0.3893264645776567
+        },
+        "pose": {
+          "alpha": 1.5707963267948966,
+          "beta": 1.36,
+          "radius": 5.856,
+          "target": {
+            "x": -0.0012998072455925724,
+            "y": 0.9658704990957405,
+            "z": -0.002293777351425705
+          },
+          "fov": 0.56,
+          "near": 0.05,
+          "far": 450
+        },
+        "canvas": [
+          322,
+          550
+        ],
+        "window": [
+          430,
+          734
+        ],
+        "presenceHidden": true,
+        "horizontalOverflow": false,
+        "race": "orc",
+        "height": 1,
+        "cameraRadius": 5.856,
+        "physics": true,
+        "recoveries": 0,
+        "gpu": [],
+        "grounding": {
+          "ambient": true,
+          "compatible": false,
+          "contactEnabled": false
+        },
+        "projected": {
+          "clipW": 5.856000348921508,
+          "behindCamera": false,
+          "x": 161.00000000200603,
+          "y": 147.49999698091943,
+          "z": 0.00842807601010047,
+          "cssX": 215.00000000267886,
+          "cssY": 196.84545051635428,
+          "offscreen": false,
+          "clipped": false
+        },
+        "previewEntropy": 5.048349236261856
+      }
+    },
+    {
+      "label": "portrait-undead",
+      "state": {
+        "stage": {
+          "x": 0,
+          "y": 54,
+          "width": 430,
+          "height": 285.765625
+        },
+        "viewport": {
+          "x": 0,
+          "y": 0.537104053133515,
+          "width": 1,
+          "height": 0.3893264645776567
+        },
+        "pose": {
+          "alpha": 1.5707963267948966,
+          "beta": 1.36,
+          "radius": 4.8,
+          "target": {
+            "x": -0.0012998072455925724,
+            "y": 0.7942704990957405,
+            "z": -0.002293777351425705
+          },
+          "fov": 0.56,
+          "near": 0.05,
+          "far": 450
+        },
+        "canvas": [
+          322,
+          550
+        ],
+        "window": [
+          430,
+          734
+        ],
+        "presenceHidden": true,
+        "horizontalOverflow": false,
+        "race": "undead",
+        "height": 1,
+        "cameraRadius": 4.8,
+        "physics": true,
+        "recoveries": 0,
+        "gpu": [],
+        "grounding": {
+          "ambient": true,
+          "compatible": false,
+          "contactEnabled": false
+        },
+        "projected": {
+          "clipW": 4.800000109674424,
+          "behindCamera": false,
+          "x": 161.00000000244736,
+          "y": 147.49999670544318,
+          "z": 0.010306700297599196,
+          "cssX": 215.0000000032682,
+          "cssY": 196.8454501487187,
+          "offscreen": false,
+          "clipped": false
+        },
+        "previewEntropy": 5.024630015635921
+      }
+    },
+    {
+      "label": "portrait-reopened",
+      "state": {
+        "stage": {
+          "x": 0,
+          "y": 54,
+          "width": 430,
+          "height": 285.765625
+        },
+        "viewport": {
+          "x": 0,
+          "y": 0.537104053133515,
+          "width": 1,
+          "height": 0.3893264645776567
+        },
+        "pose": {
+          "alpha": 1.5707963267948966,
+          "beta": 1.46,
+          "radius": 1.8399999999999999,
+          "target": {
+            "x": -0.0012998072455925724,
+            "y": 1.8082704990957403,
+            "z": -0.002293777351425705
+          },
+          "fov": 0.56,
+          "near": 0.05,
+          "far": 450
+        },
+        "canvas": [
+          322,
+          550
+        ],
+        "window": [
+          430,
+          734
+        ],
+        "presenceHidden": true,
+        "horizontalOverflow": false,
+        "race": "human",
+        "height": 1.15,
+        "cameraRadius": 1.8399999999999999,
+        "physics": true,
+        "recoveries": 0,
+        "gpu": [],
+        "grounding": {
+          "ambient": true,
+          "compatible": false,
+          "contactEnabled": false
+        },
+        "projected": {
+          "clipW": 1.8399999971642624,
+          "behindCamera": false,
+          "x": 161.0000000063844,
+          "y": 147.4999967829447,
+          "z": 0.027065809423008243,
+          "cssX": 215.00000000852575,
+          "cssY": 196.845450252148,
+          "offscreen": false,
+          "clipped": false
+        },
+        "previewEntropy": 5.324600515821658
+      }
+    },
+    {
+      "label": "resize-390x844",
+      "state": {
+        "stage": {
+          "x": 0,
+          "y": 54,
+          "width": 390,
+          "height": 356.171875
+        },
+        "viewport": {
+          "x": 0,
+          "y": 0.5140143661137441,
+          "width": 1,
+          "height": 0.4220045912322275
+        },
+        "pose": {
+          "alpha": 1.5707963267948966,
+          "beta": 1.36,
+          "radius": 5.52,
+          "target": {
+            "x": -0.0012998072455925724,
+            "y": 0.9112704990957404,
+            "z": -0.002293777351425705
+          },
+          "fov": 0.56,
+          "near": 0.05,
+          "far": 450
+        },
+        "canvas": [
+          292,
+          633
+        ],
+        "window": [
+          390,
+          844
+        ],
+        "presenceHidden": true,
+        "horizontalOverflow": false,
+        "race": "human",
+        "height": 1.15,
+        "cameraRadius": 5.52,
+        "physics": true,
+        "recoveries": 0,
+        "gpu": [],
+        "grounding": {
+          "ambient": true,
+          "compatible": false,
+          "contactEnabled": false
+        },
+        "projected": {
+          "clipW": 5.520000272797436,
+          "behindCamera": false,
+          "x": 145.99999999709203,
+          "y": 174.00000692783624,
+          "z": 0.00894785380457462,
+          "cssX": 194.99999999611606,
+          "cssY": 232.00000923711497,
+          "offscreen": false,
+          "clipped": false
+        },
+        "previewEntropy": 5.109089134333772
+      }
+    },
+    {
+      "label": "resize-320x568",
+      "state": {
+        "stage": {
+          "x": 0,
+          "y": 54,
+          "width": 320,
+          "height": 177.53125
+        },
+        "viewport": {
+          "x": 0,
+          "y": 0.592374559859155,
+          "width": 1,
+          "height": 0.3125550176056338
+        },
+        "pose": {
+          "alpha": 1.5707963267948966,
+          "beta": 1.36,
+          "radius": 5.52,
+          "target": {
+            "x": -0.0012998072455925724,
+            "y": 0.9112704990957404,
+            "z": -0.002293777351425705
+          },
+          "fov": 0.56,
+          "near": 0.05,
+          "far": 450
+        },
+        "canvas": [
+          240,
+          426
+        ],
+        "window": [
+          320,
+          568
+        ],
+        "presenceHidden": true,
+        "horizontalOverflow": false,
+        "race": "human",
+        "height": 1.15,
+        "cameraRadius": 5.52,
+        "physics": true,
+        "recoveries": 0,
+        "gpu": [],
+        "grounding": {
+          "ambient": true,
+          "compatible": false,
+          "contactEnabled": false
+        },
+        "projected": {
+          "clipW": 5.520000272797436,
+          "behindCamera": false,
+          "x": 120.0000000024008,
+          "y": 107.00000346391812,
+          "z": 0.00894785380457462,
+          "cssX": 160.00000000320105,
+          "cssY": 142.66667128522414,
+          "offscreen": false,
+          "clipped": false
+        },
+        "previewEntropy": 4.950822767772479
+      }
+    },
+    {
+      "label": "resize-844x390",
+      "state": {
+        "stage": {
+          "x": 0,
+          "y": 62,
+          "width": 534,
+          "height": 178
+        },
+        "viewport": {
+          "x": 0,
+          "y": 0.3846153846153846,
+          "width": 0.6327014218009479,
+          "height": 0.4564102564102564
+        },
+        "pose": {
+          "alpha": 1.5707963267948966,
+          "beta": 1.36,
+          "radius": 5.52,
+          "target": {
+            "x": -0.0012998072455925724,
+            "y": 0.9112704990957404,
+            "z": -0.002293777351425705
+          },
+          "fov": 0.56,
+          "near": 0.05,
+          "far": 450
+        },
+        "canvas": [
+          633,
+          292
+        ],
+        "window": [
+          844,
+          390
+        ],
+        "presenceHidden": true,
+        "horizontalOverflow": false,
+        "race": "human",
+        "height": 1.15,
+        "cameraRadius": 5.52,
+        "physics": true,
+        "recoveries": 0,
+        "gpu": [],
+        "grounding": {
+          "ambient": true,
+          "compatible": false,
+          "contactEnabled": false
+        },
+        "projected": {
+          "clipW": 5.520000272797436,
+          "behindCamera": false,
+          "x": 200.5000000014824,
+          "y": 113.00000346391812,
+          "z": 0.00894785380457462,
+          "cssX": 267.3333333353098,
+          "cssY": 150.92466216071256,
+          "offscreen": false,
+          "clipped": false
+        },
+        "previewEntropy": 5.139209623433999
+      }
+    },
+    {
+      "label": "resize-768x1024",
+      "state": {
+        "stage": {
+          "x": 0,
+          "y": 90,
+          "width": 458,
+          "height": 749
+        },
+        "viewport": {
+          "x": 0,
+          "y": 0.1806640625,
+          "width": 0.5963541666666666,
+          "height": 0.7314453125
+        },
+        "pose": {
+          "alpha": 1.5707963267948966,
+          "beta": 1.36,
+          "radius": 5.52,
+          "target": {
+            "x": -0.0012998072455925724,
+            "y": 0.9112704990957404,
+            "z": -0.002293777351425705
+          },
+          "fov": 0.56,
+          "near": 0.05,
+          "far": 450
+        },
+        "canvas": [
+          576,
+          768
+        ],
+        "window": [
+          768,
+          1024
+        ],
+        "presenceHidden": true,
+        "horizontalOverflow": false,
+        "race": "human",
+        "height": 1.15,
+        "cameraRadius": 5.52,
+        "physics": true,
+        "recoveries": 0,
+        "gpu": [],
+        "grounding": {
+          "ambient": true,
+          "compatible": false,
+          "contactEnabled": false
+        },
+        "projected": {
+          "clipW": 5.520000272797436,
+          "behindCamera": false,
+          "x": 171.9999999983788,
+          "y": 348.50001455362616,
+          "z": 0.00894785380457462,
+          "cssX": 229.33333333117173,
+          "cssY": 464.66668607150154,
+          "offscreen": false,
+          "clipped": false
+        },
+        "previewEntropy": 5.176329295416508
+      }
+    },
+    {
+      "label": "resize-1280x720",
+      "state": {
+        "stage": {
+          "x": 0,
+          "y": 90,
+          "width": 970,
+          "height": 445
+        },
+        "viewport": {
+          "x": 0,
+          "y": 0.2569444444444444,
+          "width": 0.7578125,
+          "height": 0.6180555555555556
+        },
+        "pose": {
+          "alpha": 1.5707963267948966,
+          "beta": 1.36,
+          "radius": 5.52,
+          "target": {
+            "x": -0.0012998072455925724,
+            "y": 0.9112704990957404,
+            "z": -0.002293777351425705
+          },
+          "fov": 0.56,
+          "near": 0.05,
+          "far": 450
+        },
+        "canvas": [
+          960,
+          540
+        ],
+        "window": [
+          1280,
+          720
+        ],
+        "presenceHidden": true,
+        "horizontalOverflow": false,
+        "race": "human",
+        "height": 1.15,
+        "cameraRadius": 5.52,
+        "physics": true,
+        "recoveries": 0,
+        "gpu": [],
+        "grounding": {
+          "ambient": true,
+          "compatible": false,
+          "contactEnabled": false
+        },
+        "projected": {
+          "clipW": 5.520000272797436,
+          "behindCamera": false,
+          "x": 364.00000000802197,
+          "y": 234.5000086597953,
+          "z": 0.00894785380457462,
+          "cssX": 485.33333334402926,
+          "cssY": 312.6666782130604,
+          "offscreen": false,
+          "clipped": false
+        },
+        "previewEntropy": 5.296599599136243
+      }
+    },
+    {
+      "label": "resize-430x734",
+      "state": {
+        "stage": {
+          "x": 0,
+          "y": 54,
+          "width": 430,
+          "height": 285.765625
+        },
+        "viewport": {
+          "x": 0,
+          "y": 0.537104053133515,
+          "width": 1,
+          "height": 0.3893264645776567
+        },
+        "pose": {
+          "alpha": 1.5707963267948966,
+          "beta": 1.36,
+          "radius": 5.52,
+          "target": {
+            "x": -0.0012998072455925724,
+            "y": 0.9112704990957404,
+            "z": -0.002293777351425705
+          },
+          "fov": 0.56,
+          "near": 0.05,
+          "far": 450
+        },
+        "canvas": [
+          322,
+          550
+        ],
+        "window": [
+          430,
+          734
+        ],
+        "presenceHidden": true,
+        "horizontalOverflow": false,
+        "race": "human",
+        "height": 1.15,
+        "cameraRadius": 5.52,
+        "physics": true,
+        "recoveries": 0,
+        "gpu": [],
+        "grounding": {
+          "ambient": true,
+          "compatible": false,
+          "contactEnabled": false
+        },
+        "projected": {
+          "clipW": 5.520000272797436,
+          "behindCamera": false,
+          "x": 161.00000000212816,
+          "y": 147.50000555777908,
+          "z": 0.00894785380457462,
+          "cssX": 215.00000000284194,
+          "cssY": 196.84546196256335,
+          "offscreen": false,
+          "clipped": false
+        },
+        "previewEntropy": 5.05381193797075
+      }
+    }
+  ],
+  "errors": [],
+  "lifecycle": {
+    "reopenCycles": 3,
+    "controlHooksAfterClose": 15,
+    "disposedWhileOpen": true
+  },
+  "passed": true
+}

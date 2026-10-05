@@ -1,4 +1,4 @@
-import {createArcRotateCamera, createPointLight, addToScene} from '@babylonjs/lite';
+import {createArcRotateCamera, createPointLight, addToScene, attachControl, setCameraLimits, onSceneDispose} from '@babylonjs/lite';
 import {setInputEnabled} from '../input.js';
 import {ORC_BODY_URL,EQUIPMENT_SLOTS} from './equipment-catalog.js';
 import './armory.css';
@@ -58,7 +58,7 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
    if(frame&&result?.status!=='failed')face('full');
   }catch(error){label.textContent='Could not equip that item. Your current outfit is unchanged.';}
  }
-    let open=false, priorView='play', focusHeight=.78, drag=null, lastPaint=0;
+    let open=false, priorView='play', focusHeight=.78, lastPaint=0, detachControls=null;
     const raceField=element.querySelector('[data-race]'),raceNote=element.querySelector('[data-race-note]'),equipmentStatus=element.querySelector('[data-equipment-status]');
     let race=equipment.race||'human';raceField.value=race;
     /**
@@ -79,6 +79,23 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
     // refused any race without a pack.
     const raceUi=()=>RACE_UI[race]??RACE_UI.human;
     const raceScale=()=>raceUi().scale;
+    const frameScale=()=>raceScale()*(race==='human'?player.heightScale:1);
+    let lastFrameScale=frameScale();
+    // Native viewport and projection keep the preview inside its actual CSS stage.
+    // Babylon's viewport y starts at the bottom; DOM rectangles start at the top.
+    // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/02-camera.md
+    const layoutPreview=()=>{
+        if(!open)return;
+        const r=stage.getBoundingClientRect(),c=canvas.getBoundingClientRect();
+        if(!r.width||!r.height||!c.width||!c.height)return;
+        camera.viewport={x:(r.left-c.left)/c.width,y:1-(r.bottom-c.top)/c.height,width:r.width/c.width,height:r.height/c.height};
+    };
+    const stageLayout=new ResizeObserver(layoutPreview);
+    const clearInertia=()=>{
+        camera.inertialAlphaOffset=camera.inertialBetaOffset=camera.inertialRadiusOffset=0;
+    };
+    const removeLimits=setCameraLimits(camera,{lowerBetaLimit:.35,upperBetaLimit:2.55,lowerRadiusLimit:.8,upperRadiusLimit:8});
+    camera.angularSensibility=625;camera.inertia=.8;
     const setRaceUi=()=>{
         raceField.value=race;
         for(const select of element.querySelectorAll('[data-equipment]'))select.disabled=false;
@@ -105,7 +122,7 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
             const preview=body.beginInspection();
             motion.innerHTML=preview.options.map(({id,label})=>`<option value="${id}">${label}</option>`).join('');
             slider.value='0';pause.textContent='Pause';
-            focusHeight=.78*raceScale();camera.radius=4.8*raceScale();camera.beta=1.36;face('front');
+            lastFrameScale=frameScale();focusHeight=.78*lastFrameScale;camera.radius=4.8*lastFrameScale;camera.beta=1.36;face('front');
             update(0);
         }catch(error){
             raceField.value=previous;
@@ -120,7 +137,8 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
     raceField.onchange=chooseRace;
     setRaceUi();
     const face = kind => {
-        const facing=player.getFacing(),scale=raceScale();
+        const facing=player.getFacing(),scale=frameScale();
+        lastFrameScale=scale;clearInertia();
         if(kind==='front') camera.alpha=Math.PI/2-facing;
         if(kind==='back') camera.alpha=-Math.PI/2-facing;
         if(kind==='side') camera.alpha=-facing;
@@ -133,7 +151,8 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
     };
     const close = () => {
         if(!open)return;
-        open=false;drag=null;key.intensity=0;rim.intensity=0;
+        open=false;key.intensity=0;rim.intensity=0;
+        stageLayout.disconnect();detachControls?.();detachControls=null;clearInertia();
         element.hidden=true;document.body.classList.remove('armory-open');launcher.setAttribute('aria-expanded','false');
         body.endInspection();
         setInputEnabled(true);setView(priorView);canvas.focus();
@@ -146,9 +165,14 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
         combat.interrupt('Armory opened');setInputEnabled(false);setView('play');combat.setVisible(false);
         const preview=body.beginInspection();
         motion.innerHTML=preview.options.map(({id,label})=>`<option value="${id}">${label}</option>`).join('');
-        slider.value='0';pause.textContent='Pause';focusHeight=.78*raceScale();camera.radius=4.8*raceScale();camera.beta=1.36;face('front');
+        lastFrameScale=frameScale();slider.value='0';pause.textContent='Pause';focusHeight=.78*lastFrameScale;camera.radius=4.8*lastFrameScale;camera.beta=1.36;face('front');
         open=true;scene.camera=camera;element.hidden=false;launcher.setAttribute('aria-expanded','true');
-        document.body.classList.add('armory-open');element.querySelector('[data-close]').focus();update(0);
+        document.body.classList.add('armory-open');stageLayout.observe(stage);layoutPreview();
+        // Reuse Lite's orbit, wheel and two-finger pinch with explicit lifetime.
+        // The existing scene supplies its sole render loop; no extra preview renderer.
+        // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/02-camera.md#arc-rotate-controlsts
+        detachControls=attachControl(camera,stage,scene,{keyboard:false,pointerMappings:{secondaryButton:'rotate'}});
+        element.querySelector('[data-close]').focus();update(0);
     };
     launcher.addEventListener('click',show);
     for(const button of element.querySelectorAll('[data-close]'))button.onclick=close;
@@ -157,12 +181,8 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
     pause.onclick=()=>{const preview=body.inspection;if(preview){preview.setPaused(!preview.getState().paused);update(0);}};
     slider.oninput=()=>body.inspection?.seek(Number(slider.value));
     stage.tabIndex=-1;
-    stage.onpointerdown=e=>{stage.focus();if(e.button!==0&&e.button!==2)return;stage.setPointerCapture(e.pointerId);drag={x:e.clientX,y:e.clientY};e.preventDefault();};
-    stage.onpointermove=e=>{if(!drag)return;camera.alpha-=(e.clientX-drag.x)*.008;camera.beta=Math.max(.35,Math.min(2.55,camera.beta+(e.clientY-drag.y)*.006));drag={x:e.clientX,y:e.clientY};};
-    stage.onpointerup=stage.onpointercancel=()=>{drag=null;};
-    stage.addEventListener('wheel',e=>{e.preventDefault();camera.radius=Math.max(.8,Math.min(6,camera.radius*Math.exp(e.deltaY*.001)));},{passive:false});
     // Capture before the shared gameplay key handlers, including V/R/H and spells.
-    window.addEventListener('keydown',e=>{
+    const onKeyDown=e=>{
         if(!open){
             if(e.code==='KeyC'&&!e.repeat&&!e.metaKey&&!e.ctrlKey&&!e.altKey&&!/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)){e.preventDefault();e.stopImmediatePropagation();show();}
             return;
@@ -175,15 +195,16 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
             if(e.shiftKey&&i<=0){e.preventDefault();controls.at(-1).focus();}
             else if(!e.shiftKey&&(i===controls.length-1||i<0)){e.preventDefault();controls[0].focus();}
         }
-    },true);
+    };
+    window.addEventListener('keydown',onKeyDown,true);
     const update = dt => {
         if(!open)return;
         if(equipment.race&&equipment.race!==race){race=equipment.race;setRaceUi();}
         const p=player.body.position,feet=p.y-player.capsuleHeight/2;
-        // Offset toward the panel to keep the character centered in the usable stage.
-        const offset=innerWidth>760?.38:0;
-        camera.target.x=p.x-Math.sin(camera.alpha)*offset;
-        camera.target.z=p.z+Math.cos(camera.alpha)*offset;
+        const scale=frameScale();
+        if(scale!==lastFrameScale){focusHeight*=scale/lastFrameScale;camera.radius*=scale/lastFrameScale;lastFrameScale=scale;}
+        camera.target.x=p.x;
+        camera.target.z=p.z;
         camera.target.y=feet+focusHeight;
         const lit=element.querySelector('[data-light]').checked;
         key.position.set(p.x+Math.cos(camera.alpha+.6)*2.1,feet+2.5,p.z+Math.sin(camera.alpha+.6)*2.1);
@@ -199,10 +220,17 @@ export function createArmory({scene, canvas, player, body, combat, equipment, ge
     // setFocus lets a capture script frame a body region the five preset views do
     // not cover (torso, legs, shoulder junction) without hand-dragging the stage.
     const setFocus = ({height, radius, beta, alpha}={}) => {
+        clearInertia();lastFrameScale=frameScale();
         if(height!==undefined)focusHeight=height*raceScale();
         if(radius!==undefined)camera.radius=radius*raceScale();
         if(beta!==undefined)camera.beta=beta;
         if(alpha!==undefined)camera.alpha=alpha-player.getFacing();
     };
+    onSceneDispose(scene,()=>{
+        stageLayout.disconnect();detachControls?.();removeLimits();
+        if(open){open=false;setInputEnabled(true);}
+        window.removeEventListener('keydown',onKeyDown,true);
+        document.body.classList.remove('armory-open');element.remove();launcher.remove();
+    });
     return {open:show,close,update,camera,setFocus,get isOpen(){return open;},getState:()=>({open, race,preview:body.inspection?.getState()||null})};
 }

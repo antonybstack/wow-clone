@@ -1,14 +1,14 @@
 /** Shadow-tested single scattering in world space. See docs/shadowed-volumetric-fog-plan-2026-09-23.md. */
 import {
  createRenderTarget,createEffectWrapper,createEffectRenderTask,
- setEffectTexture,setEffectUniforms,disposeEffectWrapper,getViewProjectionMatrix,invertMat4,getCameraPosition,
+ setEffectTexture,setEffectUniforms,disposeEffectWrapper,getViewProjectionMatrix,invertMat4,getCameraPosition,getEffectiveAspectRatio,resolveCameraViewport,
 } from '@babylonjs/lite';
 import {SUN_DIR,SUN_COLOR} from './atmosphere.js';
 
 import {HDR_FORMAT} from './color-management.js';
 import {SUN_SHADOW_WGSL} from './sun-shadows.js';
 import {LOCAL_LIGHT_UNIFORMS,LOCAL_LIGHT_WGSL} from './local-light-shared.js';
-const MAP_SIZE=2048,STEPS=48,UNIFORM_BYTES=768;
+const MAP_SIZE=2048,STEPS=48,UNIFORM_BYTES=784;
 const fogShadowWGSL=SUN_SHADOW_WGSL.replaceAll('shaderUniforms.','u.').replaceAll('shaderSystem.view','u.view').replaceAll('u.sunFarMatrix','u.lightVP').replace(/var light=0.0;[\s\S]*?return light\/9.0;/,'return textureSampleCompareLevel(sunCascades,sunCascadesSampler,uv,layer,q.z);');
 const vec=a=>`vec3<f32>(${a.join(',')})`;
 function triangleSunBlocker(meshes,origin){
@@ -39,14 +39,16 @@ const COMMON=`
 struct Params {
  invVP:mat4x4<f32>,lightVP:mat4x4<f32>,camera:vec4<f32>,sun:vec4<f32>,
  medium:vec4<f32>,options:vec4<f32>,screen:vec4<f32>,sunCascade0:mat4x4<f32>,sunCascade1:mat4x4<f32>,sunCascade2:mat4x4<f32>,view:mat4x4<f32>,sunSplits:vec4<f32>,sunLengths:vec4<f32>,sunShadowParams:vec4<f32>,
- ${LOCAL_LIGHT_UNIFORMS.map(v=>`${v.name}:${v.type}`).join(',')}
+ ${LOCAL_LIGHT_UNIFORMS.map(v=>`${v.name}:${v.type}`).join(',')},viewport:vec4<f32>
 };
 @group(0) @binding(0) var<uniform> u:Params;
 @group(0) @binding(1) var sceneDepth:texture_depth_2d;
 fn worldAt(uv:vec2<f32>,depth:f32)->vec3<f32>{
- let p=u.invVP*vec4<f32>(uv.x*2.0-1.0,1.0-uv.y*2.0,depth,1.0);
+ let local=(uv*u.screen.xy-u.viewport.xy)/u.viewport.zw;
+ let p=u.invVP*vec4<f32>(local.x*2.0-1.0,1.0-local.y*2.0,depth,1.0);
  return p.xyz/p.w;
 }
+fn inViewport(uv:vec2<f32>)->bool{let p=uv*u.screen.xy;return all(p>=u.viewport.xy)&&all(p<u.viewport.xy+u.viewport.zw);}
 fn pixelAt(uv:vec2<f32>)->vec2<i32>{
  return clamp(vec2<i32>(uv*vec2<f32>(textureDimensions(sceneDepth))),vec2<i32>(0),vec2<i32>(textureDimensions(sceneDepth))-1);
 }
@@ -96,6 +98,7 @@ fn density(p:vec3<f32>)->f32{
 }
 @fragment fn effectFragment(@builtin(position) pixel:vec4<f32>)->@location(0) vec4<f32>{
  let uv=pixel.xy/ceil(u.screen.xy*0.5);
+ if(!inViewport(uv)){return vec4<f32>(0.0,0.0,0.0,1.0);}
  let endpoint=worldAt(uv,textureLoad(sceneDepth,pixelAt(uv),0));
  let delta=endpoint-u.camera.xyz;
  let distance=min(length(delta),u.medium.w);
@@ -132,7 +135,7 @@ const COMPOSITE=`${COMMON}
 @fragment fn effectFragment(@builtin(position) pixel:vec4<f32>)->@location(0) vec4<f32>{
  let uv=pixel.xy/u.screen.xy;
  let color=textureLoad(source,vec2<i32>(pixel.xy),0).rgb;
- if(u.options.w<0.5){return vec4<f32>(color,1.0);}
+ if(u.options.w<0.5 || !inViewport(uv)){return vec4<f32>(color,1.0);}
  let d=distanceAt(uv);
  let dims=vec2<i32>(textureDimensions(volume));
  let coord=uv*vec2<f32>(dims)-0.5;
@@ -141,6 +144,7 @@ const COMPOSITE=`${COMMON}
  for(var y=0;y<2;y++){for(var x=0;x<2;x++){
   let p=clamp(base+vec2<i32>(x,y),vec2<i32>(0),dims-1);
   let sampleUV=(vec2<f32>(p)+0.5)/vec2<f32>(dims);
+  if(!inViewport(sampleUV)){continue;}
   let gap=abs(distanceAt(sampleUV)-d);
   let spatial=mix(1.0-f.x,f.x,f32(x))*mix(1.0-f.y,f.y,f32(y));
   let weight=max(spatial,0.001)*exp(-gap/max(1.5,d*0.025));
@@ -178,7 +182,11 @@ export function createVolumetricFog(engine,scene,sourceRT,sun,world,shadows,sour
  setEffectTexture(integrate,'shadow',shadowTexture);setEffectTexture(integrate,'cascades',shadows.csmTexture);
  for(const s of localLights.slots)setEffectTexture(integrate,`localShadow${s.index}`,s.texture);
  function update(){
-  const inv=invertMat4(getViewProjectionMatrix(scene.camera,sourceRT._width/sourceRT._height));
+  // Use the same native aspect/viewport as the scene task. Custom fog still
+  // samples the full depth texture, so convert those pixels into camera-local UVs.
+  // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/02-camera.md
+  const width=sourceRT._width,height=sourceRT._height;
+  const inv=invertMat4(getViewProjectionMatrix(scene.camera,getEffectiveAspectRatio(scene.camera,width,height)));
   if(!inv)return;
   const camera=getCameraPosition(scene.camera);
   uniforms.set(inv,0);uniforms.set(sg._lightMatrix,16);
@@ -190,6 +198,8 @@ export function createVolumetricFog(engine,scene,sourceRT,sun,world,shadows,sour
   uniforms.set(shadows.data.subarray(64,68),116);uniforms.set(shadows.data.subarray(68,72),120);
   uniforms.set([+shadows.state.enabled,1/MAP_SIZE,shadows.state.range,.1],124);
   let offset=128;for(const spec of LOCAL_LIGHT_UNIFORMS){const value=localLights.values[spec.name];uniforms.set(value,offset);offset+=value.length;}
+  const viewport=resolveCameraViewport(scene.camera,width,height);
+  uniforms.set([viewport.x,viewport.y,viewport.width,viewport.height],offset);
   // Lite uploads immediately: pack current lamp matrices/weights before writing.
   setEffectUniforms(integrate,uniforms);setEffectUniforms(composite,uniforms);
   state.shadowVersion=sg._version;

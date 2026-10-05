@@ -1,12 +1,12 @@
 #armory-launch{position:fixed;left:14px;top:14px;z-index:4;border:1px solid #766b4b;background:#171b16d9;color:#dcd1ad;font:12px Georgia;padding:6px 12px;cursor:pointer;letter-spacing:.05em}
-body.armory-open #armory-launch,body.armory-open #help,body.armory-open #combat{display:none}
+body.armory-open #armory-launch,body.armory-open #help,body.armory-open #combat,body.armory-open #presence-entry{display:none}
 #armory{position:fixed;inset:0;z-index:5;color:#ddd4b9;font:13px Georgia,serif;text-shadow:0 1px 2px #000;pointer-events:none}
 #armory button,#armory select,#armory input{font:inherit;color:inherit;pointer-events:auto}
 #armory button,#armory select{background:#20231dcf;border:1px solid #5a5b46;border-radius:2px;cursor:pointer;padding:9px 12px}
 #armory button:hover:not(:disabled){background:#343b2d;border-color:#a09466}
 #armory :focus-visible,#armory-launch:focus-visible{outline:2px solid #e1c87e;outline-offset:3px}
-.armory-stage{position:absolute;inset:0 320px 0 0;pointer-events:auto;cursor:grab;touch-action:none}.armory-stage:active{cursor:grabbing}
-.armory-heading{position:absolute;left:30px;top:27px;pointer-events:none}.armory-heading small{font:10px monospace;letter-spacing:.17em;color:#ada47f}.armory-heading h1{font-size:34px;font-weight:normal;margin:12px 0 5px}.armory-heading p{color:#aaa88e;margin:0;font-size:12px}
+.armory-stage{position:absolute;inset:90px 310px 185px 0;pointer-events:auto;cursor:grab;touch-action:none}.armory-stage:active{cursor:grabbing}
+.armory-heading{position:absolute;left:0;right:310px;top:0;height:90px;padding:16px 30px;pointer-events:none;background:#101710f2}.armory-heading small{font:10px monospace;letter-spacing:.17em;color:#ada47f}.armory-heading h1{font-size:34px;font-weight:normal;margin:7px 0 3px}.armory-heading p{color:#aaa88e;margin:0;font-size:12px}
 .armory-panel{position:absolute;right:0;top:0;bottom:0;width:310px;background:linear-gradient(105deg,#161c17f2,#0d120fed);border-left:1px solid #625d414f;box-shadow:-20px 0 70px #0005;padding:22px 20px;overflow:auto;pointer-events:auto;text-shadow:none}
 .armory-panel-title{display:flex;align-items:center;justify-content:space-between;font-size:15px;border-bottom:1px solid #605c3b66;padding-bottom:16px;margin-bottom:20px}.armory-panel-title button{padding:2px 10px!important;font:23px Georgia!important}
 .armory-field{display:grid;gap:8px;font-size:12px;color:#b8b197}.armory-field select{width:100%;font-size:14px!important}
@@ -14,12 +14,42 @@ body.armory-open #armory-launch,body.armory-open #help,body.armory-open #combat{
 .armory-slots{display:grid;gap:6px}.armory-slots button{display:grid;grid-template-columns:77px 1fr;text-align:left;padding:9px 10px!important;cursor:default!important;background:#1e251b80!important;border-color:#4b50383f!important}.armory-slots span{font-size:11px;color:#8f947f}.armory-slots strong{font-size:12px;font-weight:normal;color:#c6c5b0}.armory-slots small{grid-column:2;font:9px system-ui;color:#787f6c;margin-top:3px}
 .armory-check{display:flex;align-items:center;gap:8px;font-size:12px;margin:17px 0 22px}.armory-check input{accent-color:#b8a967}
 .armory-return{width:100%;font-size:12px!important}.armory-return kbd{font:9px monospace;color:#9a9d85;margin-left:8px}
-.armory-tools{position:absolute;bottom:24px;left:30px;width:min(450px,calc(100vw - 380px));pointer-events:auto;background:#101710dc;border:1px solid #505a3a70;padding:13px 16px;box-shadow:0 5px 25px #0006}.armory-views{display:flex;gap:5px;margin-bottom:12px}.armory-views button{padding:6px 10px!important;font-size:11px!important}.armory-animation{display:flex;align-items:end;gap:12px}.armory-animation label{display:grid;gap:5px;font:10px monospace;color:#929a7e}.armory-animation select{min-width:145px;padding:6px 8px!important;font:12px Georgia!important}.armory-animation button{padding:6px 12px!important;font-size:12px!important}.armory-animation output{font:10px monospace;color:#aab093;white-space:nowrap;margin:0 0 8px auto}.armory-tools input[type=range]{width:100%;margin:13px 0 2px;accent-color:#c7b46b;height:13px}.armory-tools p{font:9px/1.5 monospace;color:#929b81;margin:7px 0 0}
+.armory-tools{position:absolute;bottom:0;left:0;width:calc(100% - 310px);height:185px;pointer-events:auto;background:#101710f2;border-top:1px solid #505a3a70;padding:13px 30px}.armory-tools>*{max-width:450px}.armory-views{display:flex;gap:5px;margin-bottom:12px}.armory-views button{padding:6px 10px!important;font-size:11px!important}.armory-animation{display:flex;align-items:end;gap:12px}.armory-animation label{display:grid;gap:5px;font:10px monospace;color:#929a7e}.armory-animation select{min-width:145px;padding:6px 8px!important;font:12px Georgia!important}.armory-animation button{padding:6px 12px!important;font-size:12px!important}.armory-animation output{font:10px monospace;color:#aab093;white-space:nowrap;margin:0 0 8px auto}.armory-tools input[type=range]{width:100%;margin:13px 0 2px;accent-color:#c7b46b;height:13px}.armory-tools p{font:9px/1.5 monospace;color:#929b81;margin:7px 0 0}
 @media(max-height:720px){.armory-panel{padding:15px 17px}.armory-panel-title{margin-bottom:12px;padding-bottom:10px}.armory-note{margin:8px 0 10px}.armory-slots button{padding:6px 8px!important}.armory-check{margin:12px 0}.armory-heading h1{font-size:28px}}
-@media(max-width:760px){.armory-panel{width:230px;padding:12px}.armory-stage{right:230px}.armory-heading{left:15px;top:20px}.armory-heading h1{font-size:23px}.armory-heading small{font-size:8px}.armory-heading p{display:none}.armory-tools{left:12px;width:calc(100vw - 254px);bottom:12px;padding:8px}.armory-views{flex-wrap:wrap}.armory-animation{flex-wrap:wrap;gap:6px}.armory-animation output{display:none}.armory-animation select{min-width:100px}.armory-slots button{grid-template-columns:65px 1fr}}
+@media(max-width:760px){.armory-panel{width:230px;padding:12px}.armory-stage{right:230px}.armory-heading{right:230px;padding:20px 15px}.armory-heading h1{font-size:23px}.armory-heading small{font-size:8px}.armory-heading p{display:none}.armory-tools{width:calc(100% - 230px);padding:8px 12px}.armory-views{flex-wrap:wrap}.armory-animation{flex-wrap:wrap;gap:6px}.armory-animation output{display:none}.armory-animation select{min-width:100px}.armory-slots button{grid-template-columns:65px 1fr}}
 
 .armory-equip{display:grid;gap:5px;padding:7px 9px;background:#2e34233d;border:1px solid #68644966}.armory-equip span{font-size:11px;color:#b9b18e}.armory-equip select{width:100%;padding:6px!important;font-size:12px!important}
 
 @media(max-height:760px){.armory-equip{grid-template-columns:67px 1fr;align-items:center;gap:5px;padding:6px 8px}.armory-panel h2{margin-top:12px}.armory-note{margin-bottom:10px}}
 
-.armory-presets{display:flex;gap:5px;margin-bottom:9px}.armory-presets button{flex:1;font-size:11px!important;padding:7px 3px!important}
+.armory-presets{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}.armory-presets button{flex:1 0 70px;font-size:11px!important;padding:7px 3px!important}
+
+/* Portrait phones keep a full-width live preview above scrolling controls.
+   CSS owns stage sizing; ResizeObserver forwards that rectangle to Lite's viewport.
+   https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver */
+@media(max-width:600px) and (orientation:portrait){
+ #armory{display:grid;grid-template-rows:54px minmax(100px,1fr) auto minmax(0,36%)}
+ #armory[hidden]{display:none}
+ .armory-heading{position:static;grid-row:1;height:auto;padding:8px 14px}
+ .armory-heading h1{font-size:19px;margin:3px 0 0}
+ .armory-stage{position:static;grid-row:2;min-height:0}
+ .armory-tools{position:static;grid-row:3;width:auto;height:auto;min-width:0;margin:0;padding:8px 12px;border-width:1px 0;box-shadow:none}
+ .armory-tools>*{max-width:none}
+ .armory-views{flex-wrap:nowrap;margin-bottom:8px;gap:4px}
+ .armory-views button{flex:1;min-height:36px;padding:6px 5px!important}
+ .armory-animation{flex-wrap:nowrap;align-items:center}
+ .armory-animation label{display:flex;align-items:center;gap:8px;flex:1}
+ .armory-animation select{width:100%;min-width:0;min-height:36px}
+ .armory-animation button{min-height:36px}
+ .armory-tools input[type=range]{height:24px;margin:6px 0 0}
+ .armory-tools p{display:none}
+ .armory-panel{position:static;grid-row:4;width:auto;min-height:0;padding:12px 14px calc(12px + env(safe-area-inset-bottom));border-width:1px 0 0;box-shadow:none;overscroll-behavior:contain}
+ .armory-panel-title{position:sticky;top:-12px;z-index:1;background:#161c17;padding:8px 0;margin-bottom:12px}
+}
+@media(max-height:500px) and (orientation:landscape){
+ .armory-stage{top:62px;bottom:150px}
+ .armory-heading{height:62px;padding:12px 30px}.armory-heading h1{font-size:21px;margin-top:4px}
+ .armory-tools{height:150px;padding:6px 30px}
+ .armory-views{margin-bottom:5px}.armory-tools p{display:none}
+ .armory-tools input[type=range]{margin-top:6px}
+}

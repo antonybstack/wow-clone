@@ -109,3 +109,19 @@ The Orc work (bind → Grommash-scale anatomy → armory race switch → garment
 3. **Verify both the worker and the reviewer against the artifact.** Workers report optimistically; nested-vision reviewers can mistake intended art for defects (the tunic's silver emblem was called a hole until the texture was extracted and compared). Neither prose nor a verdict is acceptance; only the asset, the live capture and the gates are.
 4. **Convert every recurring trap into a script check, a doc line, or a `.gitignore` entry** instead of re-discovering it: MakeHuman→GLB vertex indices do not correspond; bulk must be transferred by nearest neighbour with helpers/deltas skipped; displacement must fade to zero at the neck for hood-like children; garment albedos must not be downsampled below 512 px or nearest-filtered; derived `*-preview.glb` files stay ignored.
 5. **Keep the parent's independent gates regardless of worker claims.** `test-source-motion`, the Orc body validator, the lean table, the armory/two-handed/stream browser checks and the build were re-run by the parent after every pass.
+
+## October 4 — native preview viewports and delivery identity
+
+The mobile Armory correction reused Lite's viewport and orbit/pinch controls.
+Reading only camera aspect support was insufficient: native 1.31.1 contacts still
+reconstruct full-texture depth UVs. Read the downstream pass implementation too;
+keep supported native paths and explicitly gate an incompatible pass rather than
+inventing another caster. The partial preview keeps correct AO/world shadows and
+restores native contacts on closing. A source review's stated unreviewed areas
+remain work for the parent; “no finding” does not cover them.
+
+A replaced preliminary VE key returned fresh HEAD metadata with stale GET/video
+bytes. Use a revision/content-specific key, compare a full download hash with the
+local clip, and correct the caption. Neither a successful upload nor matching HEAD
+metadata alone identifies the video the user will play.
+[Evidence and remaining limits](../plans/character-mmo/results/m5-mobile-preview-2026-10-04.md).

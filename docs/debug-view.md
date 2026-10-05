@@ -124,6 +124,12 @@ The helper reads `CLOUDFLARE_API_TOKEN` from the environment and sets MP4/WebM M
 
 Before sharing the returned URL, check HTTP success, `Content-Type: video/mp4` (or `video/webm`), matching content length, and a byte-range GET returning `206`/`Content-Range`. Verify browser video metadata/playback when practical. Include the verified public URL in the normal chat response and the authorized Telegram caption/message so the user can copy it; sending the binary alone is insufficient for link sharing.
 
+Use a new revision or content hash in the object key when recapturing a pass. In
+the October 4 mobile Armory check, overwriting a preliminary key returned fresh
+HEAD metadata but stale GET/video bytes. The final hash-specific URL downloaded
+the exact local SHA-256 and played correctly. Verify a full GET hash against the
+local file as well as metadata; correct any already-sent caption to that final URL.
+
 For character asset work, consult [blender-lite](../.agents/skills/blender-lite/SKILL.md) and [equipment authoring](ashen-equipment-authoring.md). The old shrine export npm commands no longer exist.
 
 After a repository move, verify the Vite process working directory and HTTP route before attaching the browser. A listening port can belong to a server rooted in a removed directory. Record any temporary port in the pass evidence; root Vite defaults to 5173. If an owned browser has no game tab after a failed navigation, create one explicitly and wait for `ASHEN.ready`.

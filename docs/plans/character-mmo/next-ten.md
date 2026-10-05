@@ -203,11 +203,19 @@ Test joins/leaves, out-of-order input, reconnect, stale appearance revisions and
 
 ## 5 — Modular Human identity: head, hair and adult age
 
+**Latest supporting checkpoint:** [mobile Armory preview](results/m5-mobile-preview-2026-10-04.md)
+delivers native stage viewport/orbit/pinch, responsive controls and height framing.
+Fifteen built layout cases, disposal/reopen and desktop mobile/WebKit/depth fallback
+pass, with reviewed Telegram 855 / VE motion. Native 1.31.1 contacts are gated only
+for the partial viewport; custom AO and world shadows stay active. M5 remains
+open: normal saved-route full outfit/motion fits, isolated startup/FPS cohorts and
+release gates are next. User WoW currently prevents valid isolated measurement.
+
 **Current checkpoint:** [saved integration](results/m5-saved-identity-2026-10-04.md)
 delivers task 2 locally and the functional portion of tasks 3/5. The ordinary Armory
 and four saved first-play identities work without a developer query. The lossless
 selected-startup pilot misses one second in all three runs. Task 3's compact
-cohorts, task 4's full fit matrix, mobile preview/heading layout and production release
+cohorts, task 4's full fit matrix and production release
 remain open; proceed through those gates before calling M5 complete.
 
 **Dependency:** milestone 1. The [connected identity checkpoint](results/m5-connected-identity-2026-10-04.md)

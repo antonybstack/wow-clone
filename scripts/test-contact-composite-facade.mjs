@@ -1,12 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {registerHooks} from 'node:module';
+import {getEffectiveAspectRatio,resolveCameraViewport} from '@babylonjs/lite';
 
 const names = [
   'createRenderTarget', 'createSurfaceRenderTargetTexture', 'disposeRenderTargetTexture', 'createEffectWrapper',
   'createEffectRenderTask', 'createScreenSpaceContactShadowsPostProcessTask',
   'setEffectTexture', 'setEffectUniforms', 'disposeEffectWrapper',
-  'getViewProjectionMatrix', 'invertMat4', 'getCameraPosition',
+  'getViewProjectionMatrix', 'invertMat4', 'getCameraPosition','getEffectiveAspectRatio','resolveCameraViewport',
 ];
 const mockUrl = `data:text/javascript,${encodeURIComponent(names.map(name =>
   `export const ${name}=(...args)=>globalThis.__contactLite.${name}(...args);`).join('\n'))}`;
@@ -65,6 +66,7 @@ test('contact composite uses one task-owned, resize-aware sampled facade', () =>
     getViewProjectionMatrix: () => new Float32Array(16),
     invertMat4: () => new Float32Array(16),
     getCameraPosition: () => ({x: 0, y: 0, z: 0}),
+    getEffectiveAspectRatio,resolveCameraViewport,
   };
 
   const contact = createContactOcclusion(engine, scene, sourceRT);
@@ -72,6 +74,14 @@ test('contact composite uses one task-owned, resize-aware sampled facade', () =>
   assert.equal(contact.output, compositeResult.rt);
   assert.equal(contact.outputTexture, compositeResult.texture);
   assert.equal(contact.compositeTask.target, compositeResult.rt);
+  scene.camera.viewport={x:0,y:.5,width:1,height:.5};
+  contact.contactTask.execute();
+  assert.equal(contact.contactTask.enabled,false,'Lite 1.31.1 full-texture contacts must not shade a sub-viewport');
+  assert.equal(contact.state.contactViewportCompatible,false);
+  assert.equal(contact.state.ambient,true);
+  delete scene.camera.viewport;contact.contactTask.execute();
+  assert.equal(contact.contactTask.enabled,true,'ordinary gameplay must retain native contacts');
+  assert.equal(contact.state.contactViewportCompatible,true);
   contact.aoTask.record();
   contact.compositeTask.record();
   assert.deepEqual(contact.state.aoResolution, [640, 360]);

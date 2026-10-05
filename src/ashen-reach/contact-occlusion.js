@@ -2,30 +2,31 @@
  * See docs/contact-occlusion-plan-2026-09-24.md. No history blending in this slice. */
 import {
  createRenderTarget,createSurfaceRenderTargetTexture,disposeRenderTargetTexture,createEffectWrapper,createEffectRenderTask,createScreenSpaceContactShadowsPostProcessTask,
- setEffectTexture,setEffectUniforms,disposeEffectWrapper,getViewProjectionMatrix,invertMat4,getCameraPosition,
+ setEffectTexture,setEffectUniforms,disposeEffectWrapper,getViewProjectionMatrix,invertMat4,getCameraPosition,getEffectiveAspectRatio,resolveCameraViewport,
 } from '@babylonjs/lite';
 import {HDR_FORMAT} from './color-management.js';
 import {SUN_DIR} from './atmosphere.js';
 
-const BYTES=192;
+const BYTES=208;
 const COMMON=`
-struct Params {invVP:mat4x4<f32>,vp:mat4x4<f32>,camera:vec4<f32>,ao:vec4<f32>,screen:vec4<f32>,options:vec4<f32>};
+struct Params {invVP:mat4x4<f32>,vp:mat4x4<f32>,camera:vec4<f32>,ao:vec4<f32>,screen:vec4<f32>,options:vec4<f32>,viewport:vec4<f32>};
 @group(0) @binding(0) var<uniform> u:Params;
 @group(0) @binding(1) var depthMap:texture_depth_2d;
 fn coord(uv:vec2<f32>)->vec2<i32>{return clamp(vec2<i32>(uv*u.screen.xy),vec2<i32>(0),vec2<i32>(u.screen.xy)-1);}
 fn uvAt(p:vec2<i32>)->vec2<f32>{return (vec2<f32>(p)+.5)/u.screen.xy;}
+fn inViewport(p:vec2<i32>)->bool{return all(vec2<f32>(p)>=u.viewport.xy)&&all(vec2<f32>(p)<u.viewport.xy+u.viewport.zw);}
 fn world(p:vec2<i32>)->vec3<f32>{
- let uv=uvAt(p);let q=u.invVP*vec4<f32>(uv.x*2.0-1.0,1.0-uv.y*2.0,textureLoad(depthMap,p,0),1.0);
+ let uv=(vec2<f32>(p)+.5-u.viewport.xy)/u.viewport.zw;let q=u.invVP*vec4<f32>(uv.x*2.0-1.0,1.0-uv.y*2.0,textureLoad(depthMap,p,0),1.0);
  return q.xyz/q.w;
 }
 fn normalAt(p:vec2<i32>,center:vec3<f32>)->vec3<f32>{
- let hi=vec2<i32>(u.screen.xy)-1;
- let l=world(clamp(p-vec2<i32>(1,0),vec2<i32>(0),hi));let r=world(clamp(p+vec2<i32>(1,0),vec2<i32>(0),hi));
- let t=world(clamp(p-vec2<i32>(0,1),vec2<i32>(0),hi));let b=world(clamp(p+vec2<i32>(0,1),vec2<i32>(0),hi));
+ let lo=vec2<i32>(u.viewport.xy);let hi=vec2<i32>(u.viewport.xy+u.viewport.zw)-1;
+ let l=world(clamp(p-vec2<i32>(1,0),lo,hi));let r=world(clamp(p+vec2<i32>(1,0),lo,hi));
+ let t=world(clamp(p-vec2<i32>(0,1),lo,hi));let b=world(clamp(p+vec2<i32>(0,1),lo,hi));
  var dx=select(center-l,r-center,length(r-center)<length(center-l));
  var dy=select(center-t,b-center,length(b-center)<length(center-t));
- if(p.x==0){dx=r-center;}else if(p.x==hi.x){dx=center-l;}
- if(p.y==0){dy=b-center;}else if(p.y==hi.y){dy=center-t;}
+ if(p.x==lo.x){dx=r-center;}else if(p.x==hi.x){dx=center-l;}
+ if(p.y==lo.y){dy=b-center;}else if(p.y==hi.y){dy=center-t;}
  var n=cross(dx,dy);if(dot(n,u.camera.xyz-center)<0.0){n=-n;}
  return n/max(length(n),.000001);
 }
@@ -33,18 +34,18 @@ fn normalAt(p:vec2<i32>,center:vec3<f32>)->vec3<f32>{
 const AO=`${COMMON}
 @fragment fn effectFragment(@builtin(position) pixel:vec4<f32>)->@location(0) vec4<f32>{
  let p=coord(pixel.xy/ceil(u.screen.xy*.5));
- if(u.options.x<.5 || textureLoad(depthMap,p,0)<=0.0){return vec4<f32>(0.0);}
+ if(u.options.x<.5 || !inViewport(p) || textureLoad(depthMap,p,0)<=0.0){return vec4<f32>(0.0);}
  let center=world(p);let distance=length(center-u.camera.xyz);
  if(u.options.x<.5 || u.ao.w<.5 || distance>45.0){return vec4<f32>(0.0,distance,0.0,1.0);}
  let n=normalAt(p,center);let clip=u.vp*vec4<f32>(center,1.0);
  let projectionScale=length(vec3<f32>(u.vp[0][1],u.vp[1][1],u.vp[2][1]));
- let radiusPixels=min(80.0,u.ao.x*projectionScale*u.screen.y*.5/max(abs(clip.w),.01));
+ let radiusPixels=min(80.0,u.ao.x*projectionScale*u.viewport.w*.5/max(abs(clip.w),.01));
  var sum=0.0;
  for(var d=0u;d<8u;d++){
   let angle=(f32(d)+.25)*.78539816;let direction=vec2<f32>(cos(angle),sin(angle));var horizon=0.0;
   for(var s=1u;s<=3u;s++){
    let offset=direction*radiusPixels*f32(s)/3.0;let q=p+vec2<i32>(round(offset));
-   if(any(q<vec2<i32>(0))||any(q>=vec2<i32>(u.screen.xy))){continue;}
+   if(!inViewport(q)){continue;}
    if(textureLoad(depthMap,q,0)<=0.0){continue;}
    let delta=world(q)-center;let len=length(delta);
    if(len>.015 && len<u.ao.x){
@@ -64,7 +65,7 @@ const COMPOSITE=`${COMMON}
 @group(0) @binding(4) var contact:texture_2d<f32>;
 @fragment fn effectFragment(@builtin(position) pixel:vec4<f32>)->@location(0) vec4<f32>{
  let p=vec2<i32>(pixel.xy);let color=textureLoad(source,p,0);
- if(u.options.x<.5 || textureLoad(depthMap,p,0)<=0.0){return color;}
+ if(u.options.x<.5 || !inViewport(p) || textureLoad(depthMap,p,0)<=0.0){return color;}
  let distance=length(world(p)-u.camera.xyz);let dims=vec2<i32>(textureDimensions(ambient));
  let location=pixel.xy/u.screen.xy*vec2<f32>(dims)-.5;let base=vec2<i32>(floor(location));let fraction=fract(location);
  var sum=0.0;var weights=0.0;
@@ -87,7 +88,7 @@ const COMPOSITE=`${COMMON}
 }`;
 
 export function createContactOcclusion(engine,scene,sourceRT,sourceSurface=null){
- const state={enabled:true,ambient:true,contact:true,radius:.55,ambientStrength:.30,contactStrength:.14,debug:0,resolution:[],aoResolution:[]};
+ const state={enabled:true,ambient:true,contact:true,contactViewportCompatible:true,radius:.55,ambientStrength:.30,contactStrength:.14,debug:0,resolution:[],aoResolution:[]};
  // Native task captures a camera once. Forward reads AND cache writes to the
  // active camera, since the game swaps reference/play cameras without rebuilding.
  const camera=new Proxy({}, {get:(_,key)=>scene.camera[key],set:(_,key,value)=>{scene.camera[key]=value;return true;}});
@@ -113,10 +114,16 @@ export function createContactOcclusion(engine,scene,sourceRT,sourceSurface=null)
  catch(error){disposeRenderTargetTexture(compositeTarget);throw error;}
  const data=new Float32Array(BYTES/4);let lastCamera=null,lastPosition=null;
  function update(){
-  const vp=getViewProjectionMatrix(scene.camera,sourceRT._width/sourceRT._height),inv=invertMat4(vp),p=getCameraPosition(scene.camera);
+  // Match Lite's scene projection and bottom-origin viewport conversion rather
+  // than reconstructing depth as if every active camera occupied the full surface.
+  // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/02-camera.md
+  const width=sourceRT._width,height=sourceRT._height;
+  const vp=getViewProjectionMatrix(scene.camera,getEffectiveAspectRatio(scene.camera,width,height)),inv=invertMat4(vp),p=getCameraPosition(scene.camera);
   if(inv)data.set(inv,0);data.set(vp,16);data.set([p.x,p.y,p.z,1],32);
   data.set([Math.max(.05,Math.min(1.5,state.radius)),Math.max(0,Math.min(1,state.ambientStrength)),Math.max(0,Math.min(1,state.contactStrength)),+state.ambient],36);
-  data.set([sourceRT._width,sourceRT._height,0,0],40);data.set([+(state.enabled&&!!inv),+state.contact,state.debug,0],44);
+  data.set([sourceRT._width,sourceRT._height,0,0],40);data.set([+(state.enabled&&!!inv),+(state.contact&&state.contactViewportCompatible),state.debug,0],44);
+  const viewport=resolveCameraViewport(scene.camera,width,height);
+  data.set([viewport.x,viewport.y,viewport.width,viewport.height],48);
   setEffectUniforms(aoEffect,data);setEffectUniforms(composeEffect,data);
  }
  const contactExecute=contactTask.execute.bind(contactTask);
@@ -126,7 +133,14 @@ export function createContactOcclusion(engine,scene,sourceRT,sourceSurface=null)
   lastCamera=scene.camera;
   if(lastPosition){lastPosition.x=p.x;lastPosition.y=p.y;lastPosition.z=p.z;}
   else lastPosition={x:p.x,y:p.y,z:p.z};
-  contactTask.enabled=state.enabled&&state.contact;
+  // Lite 1.31.1 contact shadows adjust projection aspect but reconstruct depth
+  // with full-texture UVs (ssWorldFromDepth), without viewport offset/scale.
+  // Disable this native pass in a sub-viewport rather than create a second caster.
+  // Ambient occlusion above is viewport-aware; normal gameplay retains contacts.
+  // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/post-process/screen-space-contact-shadows.ts
+  const v=scene.camera.viewport;
+  state.contactViewportCompatible=!v||(v.x===0&&v.y===0&&v.width===1&&v.height===1);
+  contactTask.enabled=state.enabled&&state.contact&&state.contactViewportCompatible;
   return contactExecute();
  };
  const record=aoTask.record.bind(aoTask),execute=aoTask.execute.bind(aoTask);

@@ -117,6 +117,17 @@ The valid Grok coverage finding was fixed before these checks. See
 
 ## Checkpoint D — hair and acceptance, then release
 
+**Mobile Armory checkpoint implemented:** native Lite stage viewport/orbit/pinch,
+responsive portrait controls and live Human-height framing. Custom AO/fog match
+the viewport; native 1.31.1 contacts are disabled in a partial viewport because
+their depth UVs assume the full texture, then restored during gameplay. Character
+200/200, lighting/projection 10/10, 15 final built layout cases, disposal/reopen and
+three final desktop mobile checks pass. Reviewed motion is Telegram 855; VE exact
+file hash/play/seek and Telegram inline/expanded proportions pass. Native fullscreen,
+Telegram Desktop and physical phone remain unverified. Full saved-route outfit/
+motion fits and isolated startup/FPS/release gates remain open while user WoW runs.
+[Result](results/m5-mobile-preview-2026-10-04.md).
+
 **Native playable-library checkpoint implemented:** same approved visual and exact
 22 playable curves at first play, about 399 KB/body saved; all full 57-curve assets
 unchanged. Native pruning and shared runtime/compiler/melee names replace the
@@ -129,8 +140,8 @@ Reviewed motion Telegram 854; VE play/seek passes.
 The earlier promotion proposal below applies when compacting the visible body or
 playable motion behavior. This library subset preserves both, so the existing
 gear-only refinement keeps its actual actor/group objects/phase. Isolated startup
-and FPS cohorts remain open while user WoW runs. Continue full outfit/motion fits
-and mobile Armory preview/heading layout, then isolated measurement/release.
+and FPS cohorts remain open while user WoW runs. Continue full outfit/motion fits,
+then isolated measurement/release; the mobile layout checkpoint above is delivered.
 
 **First compact checkpoint implemented:** lossless dense native accessor storage,
 compact fitted hood and overlapped selected catalogue/module request. Character

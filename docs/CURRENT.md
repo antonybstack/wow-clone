@@ -8,6 +8,21 @@ native goal, beginning with M5 saved Human identity. Continue through verificati
 delivery and commit/push without another “proceed.” Respect explicit stop/pause
 requests and record real dependencies. [Continuation mechanism and scope](autonomous-continuation.md).
 
+**M5 mobile-preview checkpoint, 2026-10-04:** portrait Armory now has a full-width
+live stage above scrolling controls, with native Lite viewport/orbit/pinch and
+height-aware framing. Custom fog/AO use the viewport; native 1.31.1 contact shadows
+are disabled only in a partial viewport because their depth UVs assume the full
+texture, and resume during play. Character **200/200**, lighting/projection **10/10**,
+15 final built layout cases, modal disposal/reopen and three final desktop mobile
+checks pass. Art/physics bytes are unchanged. Reviewed motion is Telegram **855** /
+[VE](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m5-mobile-preview-2026-10-04-b78dff00487c.mp4),
+with exact public file hash, actual play/seek and Telegram inline/expanded portrait
+proportions. Native Telegram fullscreen / Desktop and physical phone are unverified.
+**M5 remains open and unreleased.** User WoW is active; no isolated load/FPS claim.
+Next: normal saved-route full outfit/motion fits, then isolated cohorts and release.
+All owned game browsers, servers and reviewer processes are stopped; Telegram is
+left paused. [Result and exact limits](plans/character-mmo/results/m5-mobile-preview-2026-10-04.md).
+
 **M5 playable-library checkpoint, 2026-10-04:** selected bodies now omit unused
 library clips through native glTF Transform while retaining the exact approved
 visual and all 22 playable curves. Each body saves about 399 KB (26–33%); full 57-clip

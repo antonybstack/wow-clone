@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 855,
+  "expected": {
+    "width": 430,
+    "height": 734,
+    "duration": 10.099637,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 430,
+    "height": 734,
+    "duration": 11
+  },
+  "verified": true,
+  "file": "mobile-armory.mp4",
+  "sha256": "b78dff00487c1b69a7656a93433664ec3cdc297c9d5d965beaa8a1124e8a5fd5",
+  "sentAt": "2026-10-05T03:04:58.552077+00:00"
+}

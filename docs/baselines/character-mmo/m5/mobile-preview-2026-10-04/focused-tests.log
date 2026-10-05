@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: contact composite uses one task-owned, resize-aware sampled facade
+ok 1 - contact composite uses one task-owned, resize-aware sampled facade
+  ---
+  duration_ms: 1.684708
+  type: 'test'
+  ...
+# Subtest: HUD projection culls depth and offscreen points while reusing its result
+ok 2 - HUD projection culls depth and offscreen points while reusing its result
+  ---
+  duration_ms: 1.082667
+  type: 'test'
+  ...
+# Subtest: HUD projection uses active viewport and CSS dimensions across resize and DPR
+ok 3 - HUD projection uses active viewport and CSS dimensions across resize and DPR
+  ---
+  duration_ms: 0.17375
+  type: 'test'
+  ...
+# Subtest: nearest two lights fit the shadow budget
+ok 4 - nearest two lights fit the shadow budget
+  ---
+  duration_ms: 0.793375
+  type: 'test'
+  ...
+# Subtest: hysteresis retains an established light near the midpoint
+ok 5 - hysteresis retains an established light near the midpoint
+  ---
+  duration_ms: 0.147125
+  type: 'test'
+  ...
+# Subtest: slots fade out before replacing a fixture, without duplicates
+ok 6 - slots fade out before replacing a fixture, without duplicates
+  ---
+  duration_ms: 0.247459
+  type: 'test'
+  ...
+# Subtest: large deltas cannot create an instant budget transition
+ok 7 - large deltas cannot create an instant budget transition
+  ---
+  duration_ms: 0.064417
+  type: 'test'
+  ...
+# Subtest: shared uniform contract exactly occupies 256 aligned bytes
+ok 8 - shared uniform contract exactly occupies 256 aligned bytes
+  ---
+  duration_ms: 0.065334
+  type: 'test'
+  ...
+# Subtest: fog uploads current lamp data on first frame and slot reassignment
+ok 9 - fog uploads current lamp data on first frame and slot reassignment
+  ---
+  duration_ms: 0.866833
+  type: 'test'
+  ...
+# Subtest: selected fixtures never contribute to the old vertex bake
+ok 10 - selected fixtures never contribute to the old vertex bake
+  ---
+  duration_ms: 0.737625
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 310.183334
