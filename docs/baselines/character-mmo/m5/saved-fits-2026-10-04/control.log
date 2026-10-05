@@ -1,0 +1,17 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Actual scalp coverage must hide and restore the separate ponytail
+
+false !== true
+
+    at file:///Users/antbly/dev/wow-clone/scripts/character-assets/check-human-identity-current-fits.mjs:133:29 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: 'strictEqual'
+}
+
+Node.js v22.18.0

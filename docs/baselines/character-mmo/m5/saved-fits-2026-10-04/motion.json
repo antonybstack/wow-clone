@@ -1,0 +1,3801 @@
+{
+  "label": "young-hair",
+  "build": -0.95,
+  "height": 1.15,
+  "fits": true,
+  "scope": "Ordinary saved route: all preset rear Walk fits, five shape Walk/Pyre probes, two loadouts with nine native preview choices, real turn/walk/jump/cast/attack; no exhaustive all-motion matrix or FPS claim",
+  "timeline": [
+    {
+      "name": "Wayfarer front",
+      "timestamp": 1791172335.86,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0.95,
+          0
+        ],
+        "inspection": {
+          "id": "idle",
+          "time": 0.11290000000596051,
+          "duration": 2.5,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 0.11290000000596051,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Wayfarer side",
+      "timestamp": 1791172337.175,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0.95,
+          0
+        ],
+        "inspection": {
+          "id": "idle",
+          "time": 1.422100000008939,
+          "duration": 2.5,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 1.422100000008939,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Wayfarer back",
+      "timestamp": 1791172338.495,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0.95,
+          0
+        ],
+        "inspection": {
+          "id": "idle",
+          "time": 0.24260000000893506,
+          "duration": 2.5,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 0.24260000000893506,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Corrected face-front",
+      "timestamp": 1791172339.797,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0.95,
+          0
+        ],
+        "inspection": {
+          "id": "idle",
+          "time": 1.5419999999999923,
+          "duration": 2.5,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 1.5419999999999923,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Corrected face-three-quarter",
+      "timestamp": 1791172341.003,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0.95,
+          0
+        ],
+        "inspection": {
+          "id": "idle",
+          "time": 0.24280000001190788,
+          "duration": 2.5,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 0.24280000001190788,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Corrected face-profile",
+      "timestamp": 1791172342.21,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0.95,
+          0
+        ],
+        "inspection": {
+          "id": "idle",
+          "time": 1.4539000000059463,
+          "duration": 2.5,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 1.4539000000059463,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Hood face opening; separate hair hidden",
+      "timestamp": 1791172343.543,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": false,
+        "height": 1.15,
+        "shapeWeights": [
+          0.95,
+          0
+        ],
+        "inspection": {
+          "id": "idle",
+          "time": 0.009099999994039536,
+          "duration": 2.5,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 0.009099999994039536,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "Walk_Carry_Loop",
+            "t": 0.9,
+            "w": 0.9999999999999998,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Hood removed; hair restored",
+      "timestamp": 1791172347.311,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0.95,
+          0
+        ],
+        "inspection": {
+          "id": "idle",
+          "time": 1.2594999999999967,
+          "duration": 2.5,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 1.2594999999999967,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "Walk_Carry_Loop",
+            "t": 0.9,
+            "w": 0.9999999999999998,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "lector · rear hair/shoulder clearance",
+      "timestamp": 1791172348.343,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "lectorCoat",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "lectorCoat",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0.95,
+          0
+        ],
+        "inspection": {
+          "id": "walk",
+          "time": 0.12089999999105934,
+          "duration": 1.3333333730697632,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Walk_Loop",
+            "t": 0.12089999999105934,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "duskguard · rear hair/shoulder clearance",
+      "timestamp": 1791172350.098,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "duskguardCuirass",
+            "legs": "duskguardTassets",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "duskguardTassets",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0.95,
+          0
+        ],
+        "inspection": {
+          "id": "walk",
+          "time": 0.12720000000298026,
+          "duration": 1.3333333730697632,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Walk_Loop",
+            "t": 0.12720000000298026,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "wayfarer · rear hair/shoulder clearance",
+      "timestamp": 1791172351.819,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0.95,
+          0
+        ],
+        "inspection": {
+          "id": "walk",
+          "time": 0.13059999999403957,
+          "duration": 1.3333333730697632,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Walk_Loop",
+            "t": 0.13059999999403957,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "pilgrim · rear hair/shoulder clearance",
+      "timestamp": 1791172353.514,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "pilgrimTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "pilgrimTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0.95,
+          0
+        ],
+        "inspection": {
+          "id": "walk",
+          "time": 0.12200000000000003,
+          "duration": 1.3333333730697632,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Walk_Loop",
+            "t": 0.12200000000000003,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "graveweaver · rear hair/shoulder clearance",
+      "timestamp": 1791172355.267,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": null
+        },
+        "hair": false,
+        "height": 1.15,
+        "shapeWeights": [
+          0.95,
+          0
+        ],
+        "inspection": {
+          "id": "walk",
+          "time": 0.12009999999403954,
+          "duration": 1.3333333730697632,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Walk_Loop",
+            "t": 0.12009999999403954,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "warden · rear hair/shoulder clearance",
+      "timestamp": 1791172356.973,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": false,
+        "height": 1.15,
+        "shapeWeights": [
+          0.95,
+          0
+        ],
+        "inspection": {
+          "id": "walk",
+          "time": 0.12609999999403956,
+          "duration": 1.3333333730697632,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Walk_Loop",
+            "t": 0.12609999999403956,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "Walk_Carry_Loop",
+            "t": 0.12609999999403956,
+            "w": 0.9999999999999998,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "revenant · rear hair/shoulder clearance",
+      "timestamp": 1791172358.654,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": null,
+            "gloves": null,
+            "mainHand": null,
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": null,
+          "gloves": null,
+          "mainHand": null,
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": false,
+        "height": 1.15,
+        "shapeWeights": [
+          0.95,
+          0
+        ],
+        "inspection": {
+          "id": "walk",
+          "time": 0.12070000000298026,
+          "duration": 1.3333333730697632,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Walk_Loop",
+            "t": 0.12070000000298026,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "neutral · unhooded pauldrons · walk",
+      "timestamp": 1791172360.433,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1,
+            "build": 0
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "duskguardCuirass",
+            "legs": "duskguardTassets",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "duskguardTassets",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "hair": true,
+        "height": 1,
+        "shapeWeights": [
+          0,
+          0
+        ],
+        "inspection": {
+          "id": "walk",
+          "time": 0.13060000000894073,
+          "duration": 1.3333333730697632,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Walk_Loop",
+            "t": 0.13060000000894073,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "neutral · unhooded pauldrons · Pyre Burst",
+      "timestamp": 1791172362.064,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1,
+            "build": 0
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "duskguardCuirass",
+            "legs": "duskguardTassets",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "duskguardTassets",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "hair": true,
+        "height": 1,
+        "shapeWeights": [
+          0,
+          0
+        ],
+        "inspection": {
+          "id": "pulse",
+          "time": 0.12839999999105933,
+          "duration": 1.899999976158142,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 0.12839999999105933,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "PyreBurst_Upper",
+            "t": 0.12839999999105933,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "PyreBurst_Lower",
+            "t": 0.12839999999105933,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "short-stout · unhooded pauldrons · walk",
+      "timestamp": 1791172364.296,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "duskguardCuirass",
+            "legs": "duskguardTassets",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "duskguardTassets",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "hair": true,
+        "height": 0.9,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "walk",
+          "time": 0.12410000000894073,
+          "duration": 1.3333333730697632,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Walk_Loop",
+            "t": 0.12410000000894073,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "short-stout · unhooded pauldrons · Pyre Burst",
+      "timestamp": 1791172365.911,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "duskguardCuirass",
+            "legs": "duskguardTassets",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "duskguardTassets",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "hair": true,
+        "height": 0.9,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "pulse",
+          "time": 0.11890000000596049,
+          "duration": 1.899999976158142,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 0.11890000000596049,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "PyreBurst_Upper",
+            "t": 0.11890000000596049,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "PyreBurst_Lower",
+            "t": 0.11890000000596049,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "tall-slender · unhooded pauldrons · walk",
+      "timestamp": 1791172368.161,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "duskguardCuirass",
+            "legs": "duskguardTassets",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "duskguardTassets",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0.95,
+          0
+        ],
+        "inspection": {
+          "id": "walk",
+          "time": 0.11910000000894072,
+          "duration": 1.3333333730697632,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Walk_Loop",
+            "t": 0.11910000000894072,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "tall-slender · unhooded pauldrons · Pyre Burst",
+      "timestamp": 1791172369.8,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "duskguardCuirass",
+            "legs": "duskguardTassets",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "duskguardTassets",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0.95,
+          0
+        ],
+        "inspection": {
+          "id": "pulse",
+          "time": 0.11760000000894072,
+          "duration": 1.899999976158142,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 0.11760000000894072,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "PyreBurst_Upper",
+            "t": 0.11760000000894072,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "PyreBurst_Lower",
+            "t": 0.11760000000894072,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "short-slender · unhooded pauldrons · walk",
+      "timestamp": 1791172372.041,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "duskguardCuirass",
+            "legs": "duskguardTassets",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "duskguardTassets",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "hair": true,
+        "height": 0.9,
+        "shapeWeights": [
+          0.95,
+          0
+        ],
+        "inspection": {
+          "id": "walk",
+          "time": 0.11690000000596049,
+          "duration": 1.3333333730697632,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Walk_Loop",
+            "t": 0.11690000000596049,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "short-slender · unhooded pauldrons · Pyre Burst",
+      "timestamp": 1791172373.662,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "duskguardCuirass",
+            "legs": "duskguardTassets",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "duskguardTassets",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "hair": true,
+        "height": 0.9,
+        "shapeWeights": [
+          0.95,
+          0
+        ],
+        "inspection": {
+          "id": "pulse",
+          "time": 0.136,
+          "duration": 1.899999976158142,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 0.136,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "PyreBurst_Upper",
+            "t": 0.136,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "PyreBurst_Lower",
+            "t": 0.136,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "tall-stout · unhooded pauldrons · walk",
+      "timestamp": 1791172375.922,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "duskguardCuirass",
+            "legs": "duskguardTassets",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "duskguardTassets",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "walk",
+          "time": 0.12640000000596047,
+          "duration": 1.3333333730697632,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Walk_Loop",
+            "t": 0.12640000000596047,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "tall-stout · unhooded pauldrons · Pyre Burst",
+      "timestamp": 1791172377.556,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "duskguardCuirass",
+            "legs": "duskguardTassets",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "duskguardTassets",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": "wardenPauldrons"
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "pulse",
+          "time": 0.12890000000596047,
+          "duration": 1.899999976158142,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 0.12890000000596047,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "PyreBurst_Upper",
+            "t": 0.12890000000596047,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "PyreBurst_Lower",
+            "t": 0.12890000000596047,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "wayfarer · idle · one-handed",
+      "timestamp": 1791172379.837,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "idle",
+          "time": 0.12000000000000002,
+          "duration": 2.5,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 0.12000000000000002,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "wayfarer · walk · one-handed",
+      "timestamp": 1791172382.638,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "walk",
+          "time": 0.1172999999970198,
+          "duration": 1.3333333730697632,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Walk_Loop",
+            "t": 0.1172999999970198,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "wayfarer · run · one-handed",
+      "timestamp": 1791172384.269,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "run",
+          "time": 0.11650000000000003,
+          "duration": 0.6666666865348816,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Sprint_Loop",
+            "t": 0.11650000000000003,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "wayfarer · jump · one-handed",
+      "timestamp": 1791172385.217,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "jump",
+          "time": 0.13060000000894073,
+          "duration": 1.3333333730697632,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Jump_Start",
+            "t": 0.13060000000894073,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "wayfarer · land · one-handed",
+      "timestamp": 1791172386.845,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "land",
+          "time": 0.13579999999701978,
+          "duration": 1.2666666507720947,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Jump_Land",
+            "t": 0.13579999999701978,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "wayfarer · fire · one-handed",
+      "timestamp": 1791172388.398,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "fire",
+          "time": 0.13400000000000004,
+          "duration": 1.399999976158142,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 0.13400000000000004,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "FireBlast_Upper",
+            "t": 0.13400000000000004,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "FireBlast_Lower",
+            "t": 0.13400000000000004,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "wayfarer · lava · one-handed",
+      "timestamp": 1791172390.084,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "lava",
+          "time": 0.11180000001192095,
+          "duration": 2.299999952316284,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 0.11180000001192095,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "LavaBall_Upper",
+            "t": 0.11180000001192095,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "LavaBall_Lower",
+            "t": 0.11180000001192095,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "wayfarer · pulse · one-handed",
+      "timestamp": 1791172392.678,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "pulse",
+          "time": 0.12070000000298026,
+          "duration": 1.899999976158142,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 0.12070000000298026,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "PyreBurst_Upper",
+            "t": 0.12070000000298026,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "PyreBurst_Lower",
+            "t": 0.12070000000298026,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "wayfarer · carry · raw source pose",
+      "timestamp": 1791172394.869,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "carry",
+          "time": 0.13489999999105934,
+          "duration": 2,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Walk_Carry_Loop",
+            "t": 0.13489999999105934,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "warden · idle · two-handed",
+      "timestamp": 1791172397.275,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": false,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "idle",
+          "time": 0.1259000000059605,
+          "duration": 2.5,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 0.1259000000059605,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "Walk_Carry_Loop",
+            "t": 0.9,
+            "w": 0.9999999999999998,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "warden · walk · two-handed",
+      "timestamp": 1791172400.071,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": false,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "walk",
+          "time": 0.1178999999910593,
+          "duration": 1.3333333730697632,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Walk_Loop",
+            "t": 0.1178999999910593,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "Walk_Carry_Loop",
+            "t": 0.1178999999910593,
+            "w": 0.9999999999999998,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "warden · run · two-handed",
+      "timestamp": 1791172401.688,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": false,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "run",
+          "time": 0.12729999999701977,
+          "duration": 0.6666666865348816,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Sprint_Loop",
+            "t": 0.12729999999701977,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "Walk_Carry_Loop",
+            "t": 0.12729999999701977,
+            "w": 0.9999999999999998,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "warden · jump · two-handed",
+      "timestamp": 1791172402.662,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": false,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "jump",
+          "time": 0.12629999999701977,
+          "duration": 1.3333333730697632,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Jump_Start",
+            "t": 0.12629999999701977,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "Walk_Carry_Loop",
+            "t": 0.9,
+            "w": 0.9999999999999998,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "warden · land · two-handed",
+      "timestamp": 1791172404.29,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": false,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "land",
+          "time": 0.12700000000000003,
+          "duration": 1.2666666507720947,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Jump_Land",
+            "t": 0.12700000000000003,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "Walk_Carry_Loop",
+            "t": 0.9,
+            "w": 0.9999999999999998,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "warden · fire · two-handed",
+      "timestamp": 1791172405.848,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": false,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "fire",
+          "time": 0.12600000000000003,
+          "duration": 1.399999976158142,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 0.12600000000000003,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "FireBlast_Upper",
+            "t": 0.12600000000000003,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "FireBlast_Lower",
+            "t": 0.12600000000000003,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "warden · lava · two-handed",
+      "timestamp": 1791172407.54,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": false,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "lava",
+          "time": 0.11979999999701976,
+          "duration": 2.299999952316284,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 0.11979999999701976,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "LavaBall_Upper",
+            "t": 0.11979999999701976,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "LavaBall_Lower",
+            "t": 0.11979999999701976,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "warden · pulse · two-handed",
+      "timestamp": 1791172410.134,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": false,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "pulse",
+          "time": 0.1237999999970198,
+          "duration": 1.899999976158142,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 0.1237999999970198,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "PyreBurst_Upper",
+            "t": 0.1237999999970198,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "PyreBurst_Lower",
+            "t": 0.1237999999970198,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "warden · carry · raw source pose",
+      "timestamp": 1791172412.318,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": "graveweaverHood",
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": false,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "carry",
+          "time": 0.1257999999970198,
+          "duration": 2,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Walk_Carry_Loop",
+            "t": 0.1257999999970198,
+            "w": 1,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Hood removed after two-handed motion · ponytail restored",
+      "timestamp": 1791172414.629,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "walk",
+          "time": 0.12459999999403955,
+          "duration": 1.3333333730697632,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Walk_Loop",
+            "t": 0.12459999999403955,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "Walk_Carry_Loop",
+            "t": 0.12459999999403955,
+            "w": 0.9999999999999998,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Authored identity changed through Armory",
+      "timestamp": 1791172416.275,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-weathered-v1",
+            "hair": "human-bald-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "walk",
+          "time": 0.4294666269272555,
+          "duration": 1.3333333730697632,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Walk_Loop",
+            "t": 0.4294666269272555,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "Walk_Carry_Loop",
+            "t": 0.4294666269272555,
+            "w": 0.9999999999999998,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Identity undo preserves outfit and body",
+      "timestamp": 1791172417.532,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": {
+          "id": "walk",
+          "time": 0.3728332538604711,
+          "duration": 1.3333333730697632,
+          "paused": false
+        },
+        "playing": [
+          {
+            "name": "Walk_Loop",
+            "t": 0.3728332538604711,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "Walk_Carry_Loop",
+            "t": 0.3728332538604711,
+            "w": 0.9999999999999998,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Normal controls · KeyA turn",
+      "timestamp": 1791172418.692,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": null,
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 0.028499999999999998,
+            "w": 0.9483999999761581,
+            "loop": true
+          },
+          {
+            "name": "Turn90_L",
+            "t": 0.04188321484341538,
+            "w": 0.05160000002384185,
+            "loop": true
+          },
+          {
+            "name": "Walk_Carry_Loop",
+            "t": 0.22799999999999976,
+            "w": 0.9999999999999998,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Normal controls · KeyD turn",
+      "timestamp": 1791172419.539,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": null,
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 0.3347000000029803,
+            "w": 0.9463999999761581,
+            "loop": true
+          },
+          {
+            "name": "Turn90_R",
+            "t": 0.04350659526295275,
+            "w": 0.053600000023841854,
+            "loop": true
+          },
+          {
+            "name": "Walk_Carry_Loop",
+            "t": 0.8999999999999999,
+            "w": 0.9999999999999998,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Normal grounded controls",
+      "timestamp": 1791172420.344,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": null,
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 0.30900000000000005,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "Walk_Carry_Loop",
+            "t": 0.8999999999999999,
+            "w": 0.9999999999999998,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Walk jump cast and attack complete",
+      "timestamp": 1791172424.902,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": null,
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 2.339599999994039,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "Walk_Carry_Loop",
+            "t": 0.8999999999999999,
+            "w": 0.9999999999999998,
+            "loop": true
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    },
+    {
+      "name": "Native actor melee diagnostic · no damage assertion",
+      "timestamp": 1791172424.918,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v6",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "gear": {
+          "helmet": null,
+          "torso": "graveweaverTop",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverGreatstaff",
+          "offHand": null,
+          "shoulders": null
+        },
+        "hair": true,
+        "height": 1.15,
+        "shapeWeights": [
+          0,
+          0.95
+        ],
+        "inspection": null,
+        "playing": [
+          {
+            "name": "Idle_Loop",
+            "t": 2.339599999994039,
+            "w": 1,
+            "loop": true
+          },
+          {
+            "name": "Walk_Carry_Loop",
+            "t": 0.8999999999999999,
+            "w": 0.9999999999999998,
+            "loop": true
+          },
+          {
+            "name": "PyreBurst_Upper",
+            "t": 0,
+            "w": 1,
+            "loop": false
+          }
+        ],
+        "physics": true,
+        "recoveries": 0,
+        "gpuErrors": []
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

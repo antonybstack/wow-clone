@@ -1,0 +1,1268 @@
+
+> ashen-reach@1.0.0 test:character
+> node --test scripts/test-character-fixture.mjs scripts/test-rig-contract.mjs scripts/test-body-validation.mjs scripts/test-retarget-contract.mjs scripts/test-body-profile-meta.mjs scripts/test-playable-body.mjs scripts/test-starter-outfit.mjs scripts/test-loadout-controller.mjs scripts/test-human-shape-contract.mjs scripts/test-creator-contract.mjs scripts/test-appearance-contract.mjs scripts/test-production-appearance.mjs scripts/test-production-human-shapes.mjs scripts/test-dye-palette.mjs scripts/test-human-identity-recipe.mjs scripts/test-production-human-identities.mjs scripts/test-identity-startup.mjs
+
+TAP version 13
+# Subtest: every current race and preset has one immutable round-trip
+ok 1 - every current race and preset has one immutable round-trip
+  ---
+  duration_ms: 11.463916
+  type: 'test'
+  ...
+# Subtest: adapter fills known empty slots and never retains or mutates source state
+ok 2 - adapter fills known empty slots and never retains or mutates source state
+  ---
+  duration_ms: 12.390166
+  type: 'test'
+  ...
+# Subtest: canonical bytes and semantic key ignore caller property order but reflect gear changes
+ok 3 - canonical bytes and semantic key ignore caller property order but reflect gear changes
+  ---
+  duration_ms: 2.881333
+  type: 'test'
+  ...
+# Subtest: race, fit family, bind and catalogue versions must agree
+ok 4 - race, fit family, bind and catalogue versions must agree
+  ---
+  duration_ms: 0.235167
+  type: 'test'
+  ...
+# Subtest: occupancy, item slot and declared per-race fit reuse current equipment rules
+ok 5 - occupancy, item slot and declared per-race fit reuse current equipment rules
+  ---
+  duration_ms: 0.480666
+  type: 'test'
+  ...
+# Subtest: unimplemented shape, component, dye and arbitrary descriptor fields are rejected
+ok 6 - unimplemented shape, component, dye and arbitrary descriptor fields are rejected
+  ---
+  duration_ms: 0.516417
+  type: 'test'
+  ...
+# Subtest: untrusted JSON and object prototypes cannot smuggle fields or code
+ok 7 - untrusted JSON and object prototypes cannot smuggle fields or code
+  ---
+  duration_ms: 7.980667
+  type: 'test'
+  ...
+# Subtest: decoder bounds UTF-8 bytes and returns controlled parse errors
+ok 8 - decoder bounds UTF-8 bytes and returns controlled parse errors
+  ---
+  duration_ms: 1.521792
+  type: 'test'
+  ...
+# Subtest: committed seed fixtures stay canonical and document three active families
+ok 9 - committed seed fixtures stay canonical and document three active families
+  ---
+  duration_ms: 42.599708
+  type: 'test'
+  ...
+# Subtest: body profile meta schema version and ids are stable
+ok 10 - body profile meta schema version and ids are stable
+  ---
+  duration_ms: 6.763917
+  type: 'test'
+  ...
+# Subtest: JSON profiles parse, match BODY_PROFILES, and are finite
+ok 11 - JSON profiles parse, match BODY_PROFILES, and are finite
+  ---
+  duration_ms: 73.623
+  type: 'test'
+  ...
+# Subtest: missing field or non-finite number is rejected
+ok 12 - missing field or non-finite number is rejected
+  ---
+  duration_ms: 7.210417
+  type: 'test'
+  ...
+# Subtest: capsule heights keep BODY_PROFILES unless bind height disagrees by > 0.03 m
+ok 13 - capsule heights keep BODY_PROFILES unless bind height disagrees by > 0.03 m
+  ---
+  duration_ms: 0.251917
+  type: 'test'
+  ...
+# Subtest: valid normalized skin data produces a schema report and bind signature
+ok 14 - valid normalized skin data produces a schema report and bind signature
+  ---
+  duration_ms: 26.836416
+  type: 'test'
+  ...
+# Subtest: negative, NaN, and infinite weights are distinct errors
+ok 15 - negative, NaN, and infinite weights are distinct errors
+  ---
+  duration_ms: 52.1605
+  type: 'test'
+  ...
+# Subtest: zero-weight vertex is an error and source weights are not rewritten
+ok 16 - zero-weight vertex is an error and source weights are not rewritten
+  ---
+  duration_ms: 20.646958
+  type: 'test'
+  ...
+# Subtest: out-of-range joint index is an error
+ok 17 - out-of-range joint index is an error
+  ---
+  duration_ms: 12.97925
+  type: 'test'
+  ...
+# Subtest: attribute count mismatch is an error
+ok 18 - attribute count mismatch is an error
+  ---
+  duration_ms: 28.613083
+  type: 'test'
+  ...
+# Subtest: missing JOINTS_0/WEIGHTS_0 pair is an error
+ok 19 - missing JOINTS_0/WEIGHTS_0 pair is an error
+  ---
+  duration_ms: 14.142542
+  type: 'test'
+  ...
+# Subtest: invalid material reference is an error; missing material is a warning unless required
+ok 20 - invalid material reference is an error; missing material is a warning unless required
+  ---
+  duration_ms: 2.910125
+  type: 'test'
+  ...
+# Subtest: declared morph must exist; empty morph support is valid
+ok 21 - declared morph must exist; empty morph support is valid
+  ---
+  duration_ms: 3.414583
+  type: 'test'
+  ...
+# Subtest: phantom extras.targetNames do not establish morph support
+ok 22 - phantom extras.targetNames do not establish morph support
+  ---
+  duration_ms: 11.930333
+  type: 'test'
+  ...
+# Subtest: invalid morph target accessor is rejected and does not satisfy the profile
+ok 23 - invalid morph target accessor is rejected and does not satisfy the profile
+  ---
+  duration_ms: 11.779084
+  type: 'test'
+  ...
+# Subtest: morph target count mismatch is an error
+ok 24 - morph target count mismatch is an error
+  ---
+  duration_ms: 15.579
+  type: 'test'
+  ...
+# Subtest: valid morph data satisfies the profile; unrelated meshes need not share morphs
+ok 25 - valid morph data satisfies the profile; unrelated meshes need not share morphs
+  ---
+  duration_ms: 15.165833
+  type: 'test'
+  ...
+# Subtest: malformed GLB returns GLB_MALFORMED instead of throwing
+ok 26 - malformed GLB returns GLB_MALFORMED instead of throwing
+  ---
+  duration_ms: 0.246791
+  type: 'test'
+  ...
+# Subtest: validator does not mutate source bytes
+ok 27 - validator does not mutate source bytes
+  ---
+  duration_ms: 1.639792
+  type: 'test'
+  ...
+# Subtest: sparse and normalized accessors are rejected, extra influences are unchecked
+ok 28 - sparse and normalized accessors are rejected, extra influences are unchecked
+  ---
+  duration_ms: 6.059417
+  type: 'test'
+  ...
+# Subtest: missing semantic joint is a structured error; bind hashes are not compared across races
+ok 29 - missing semantic joint is a structured error; bind hashes are not compared across races
+  ---
+  duration_ms: 1.109583
+  type: 'test'
+  ...
+# Subtest: weight tolerance is 1e-4 and weights are not normalized by the validator
+ok 30 - weight tolerance is 1e-4 and weights are not normalized by the validator
+  ---
+  duration_ms: 2.622958
+  type: 'test'
+  ...
+# Subtest: non-identity import root is a warning, nonfinite transform is an error
+ok 31 - non-identity import root is a warning, nonfinite transform is an error
+  ---
+  duration_ms: 2.124
+  type: 'test'
+  ...
+# Subtest: malformed top-level collections return GLTF_INVALID instead of throwing
+ok 32 - malformed top-level collections return GLTF_INVALID instead of throwing
+  ---
+  duration_ms: 2.4135
+  type: 'test'
+  ...
+# Subtest: malformed node TRS/matrix shape is TRANSFORM_MALFORMED, not a non-identity warning
+ok 33 - malformed node TRS/matrix shape is TRANSFORM_MALFORMED, not a non-identity warning
+  ---
+  duration_ms: 4.960125
+  type: 'test'
+  ...
+# Subtest: placeholder profile does not advertise fullness and is not production-fit
+ok 34 - placeholder profile does not advertise fullness and is not production-fit
+  ---
+  duration_ms: 0.21575
+  type: 'test'
+  ...
+# Subtest: base.glb inspects as a Mixamo placeholder without a fullness morph
+ok 35 - base.glb inspects as a Mixamo placeholder without a fullness morph
+  ---
+  duration_ms: 238.527125
+  type: 'test'
+  ...
+# Subtest: CLI: missing path, unknown flag, and unknown profile fail; base.glb exits 0
+ok 36 - CLI: missing path, unknown flag, and unknown profile fail; base.glb exits 0
+  ---
+  duration_ms: 1330.471292
+  type: 'test'
+  ...
+# Subtest: browser ArrayBuffer fixture input decodes the compressed source
+ok 37 - browser ArrayBuffer fixture input decodes the compressed source
+  ---
+  duration_ms: 386.124125
+  type: 'test'
+  ...
+# Subtest: optimized source decodes to the strict single-buffer fixture without losing the rig
+ok 38 - optimized source decodes to the strict single-buffer fixture without losing the rig
+  ---
+  duration_ms: 15.18325
+  type: 'test'
+  ...
+# Subtest: assembly keeps one joint hierarchy, immutable source, and mesh-specific weights
+ok 39 - assembly keeps one joint hierarchy, immutable source, and mesh-specific weights
+  ---
+  duration_ms: 1601.819416
+  type: 'test'
+  ...
+# Subtest: unsupported profile/outfit and damaged GLB fail before replacement
+ok 40 - unsupported profile/outfit and damaged GLB fail before replacement
+  ---
+  duration_ms: 0.802208
+  type: 'test'
+  ...
+# Subtest: garment shells preserve source skin attributes but own shape and topology
+ok 41 - garment shells preserve source skin attributes but own shape and topology
+  ---
+  duration_ms: 290.585125
+  type: 'test'
+  ...
+# Subtest: full outfit includes a skinned sleeve region separate from the torso shell
+ok 42 - full outfit includes a skinned sleeve region separate from the torso shell
+  ---
+  duration_ms: 287.231459
+  type: 'test'
+  ...
+# Subtest: full outfit masks covered body triangles and keeps hand joints off the sleeve
+ok 43 - full outfit masks covered body triangles and keeps hand joints off the sleeve
+  ---
+  duration_ms: 286.11075
+  type: 'test'
+  ...
+# Subtest: frame metrics retain stalls, distinguish absent GPU timing, and flag overflow
+ok 44 - frame metrics retain stalls, distinguish absent GPU timing, and flag overflow
+  ---
+  duration_ms: 0.375542
+  type: 'test'
+  ...
+# Subtest: compacted garment probes retain the exact source vertex identity and skin weights
+ok 45 - compacted garment probes retain the exact source vertex identity and skin weights
+  ---
+  duration_ms: 314.204375
+  type: 'test'
+  ...
+# Subtest: only the two M004-verified controls are offered on the Human
+ok 46 - only the two M004-verified controls are offered on the Human
+  ---
+  duration_ms: 7.85625
+  type: 'test'
+  ...
+# Subtest: every declared control is either offered or explained, never dropped
+ok 47 - every declared control is either offered or explained, never dropped
+  ---
+  duration_ms: 0.368083
+  type: 'test'
+  ...
+# Subtest: races without a verified body family offer nothing
+ok 48 - races without a verified body family offer nothing
+  ---
+  duration_ms: 0.136625
+  type: 'test'
+  ...
+# Subtest: an unknown race is an error, not an empty creator
+ok 49 - an unknown race is an error, not an empty creator
+  ---
+  duration_ms: 0.234667
+  type: 'test'
+  ...
+# Subtest: the default state is the shipped character
+ok 50 - the default state is the shipped character
+  ---
+  duration_ms: 1.8215
+  type: 'test'
+  ...
+# Subtest: a saved record cannot smuggle in an unverified control
+ok 51 - a saved record cannot smuggle in an unverified control
+  ---
+  duration_ms: 0.178584
+  type: 'test'
+  ...
+# Subtest: a forged record is discarded on load rather than honoured
+ok 52 - a forged record is discarded on load rather than honoured
+  ---
+  duration_ms: 0.542167
+  type: 'test'
+  ...
+# Subtest: prototype pollution in a stored record is rejected
+ok 53 - prototype pollution in a stored record is rejected
+  ---
+  duration_ms: 0.12375
+  type: 'test'
+  ...
+# Subtest: out-of-range values clamp; wrong-shaped values are errors
+ok 54 - out-of-range values clamp; wrong-shaped values are errors
+  ---
+  duration_ms: 0.589666
+  type: 'test'
+  ...
+# Subtest: height never leaves the range the capsule accepts
+ok 55 - height never leaves the range the capsule accepts
+  ---
+  duration_ms: 4.327333
+  type: 'test'
+  ...
+# Subtest: a record from another schema version is discarded, not reinterpreted
+ok 56 - a record from another schema version is discarded, not reinterpreted
+  ---
+  duration_ms: 0.585833
+  type: 'test'
+  ...
+# Subtest: a record saved for another race does not load into this one
+ok 57 - a record saved for another race does not load into this one
+  ---
+  duration_ms: 0.288083
+  type: 'test'
+  ...
+# Subtest: malformed JSON and non-records fall back to the default
+ok 58 - malformed JSON and non-records fall back to the default
+  ---
+  duration_ms: 0.265458
+  type: 'test'
+  ...
+# Subtest: blocked storage never prevents a cold start
+ok 59 - blocked storage never prevents a cold start
+  ---
+  duration_ms: 0.614584
+  type: 'test'
+  ...
+# Subtest: a session round-trips through storage
+ok 60 - a session round-trips through storage
+  ---
+  duration_ms: 1.417583
+  type: 'test'
+  ...
+# Subtest: undo steps back only over real changes, and reset returns the shipped character
+ok 61 - undo steps back only over real changes, and reset returns the shipped character
+  ---
+  duration_ms: 0.16125
+  type: 'test'
+  ...
+# Subtest: undo history is bounded
+ok 62 - undo history is bounded
+  ---
+  duration_ms: 4.683667
+  type: 'test'
+  ...
+# Subtest: two distinct characters produce two distinct runtime shapes and queries
+ok 63 - two distinct characters produce two distinct runtime shapes and queries
+  ---
+  duration_ms: 0.807167
+  type: 'test'
+  ...
+# Subtest: a state that drives no target asks for no candidate asset
+ok 64 - a state that drives no target asks for no candidate asset
+  ---
+  duration_ms: 0.090584
+  type: 'test'
+  ...
+# Subtest: every dye is expressible as a multiply over an authored texture
+ok 65 - every dye is expressible as a multiply over an authored texture
+  ---
+  duration_ms: 2.822666
+  type: 'test'
+  ...
+# Subtest: undyed is the neutral factor, so it is a palette entry rather than a special case
+ok 66 - undyed is the neutral factor, so it is a palette entry rather than a special case
+  ---
+  duration_ms: 4.500541
+  type: 'test'
+  ...
+# Subtest: an unknown dye resolves to null rather than silently falling back to neutral
+ok 67 - an unknown dye resolves to null rather than silently falling back to neutral
+  ---
+  duration_ms: 0.182625
+  type: 'test'
+  ...
+# Subtest: a known dye resolves to its factor with an opaque alpha
+ok 68 - a known dye resolves to its factor with an opaque alpha
+  ---
+  duration_ms: 0.336958
+  type: 'test'
+  ...
+# Subtest: the palette is not mutable through what it exports
+ok 69 - the palette is not mutable through what it exports
+  ---
+  duration_ms: 0.194125
+  type: 'test'
+  ...
+# Subtest: no two entries are closer than the separation the palette was designed for
+ok 70 - no two entries are closer than the separation the palette was designed for
+  ---
+  duration_ms: 0.26775
+  type: 'test'
+  ...
+# Subtest: every hue family is represented, so the palette is not spent on lightness alone
+ok 71 - every hue family is represented, so the palette is not spent on lightness alone
+  ---
+  duration_ms: 6.644875
+  type: 'test'
+  ...
+# Subtest: current v6 supports authored identity while historical component domains remain closed
+ok 72 - current v6 supports authored identity while historical component domains remain closed
+  ---
+  duration_ms: 6.419916
+  type: 'test'
+  ...
+# Subtest: four authored identities are canonical, immutable and distinguishable without URLs
+ok 73 - four authored identities are canonical, immutable and distinguishable without URLs
+  ---
+  duration_ms: 4.790459
+  type: 'test'
+  ...
+# Subtest: unsupported mixes and arbitrary component data are refused
+ok 74 - unsupported mixes and arbitrary component data are refused
+  ---
+  duration_ms: 0.517208
+  type: 'test'
+  ...
+# Subtest: Human identity cannot silently apply to Orc or Undead
+ok 75 - Human identity cannot silently apply to Orc or Undead
+  ---
+  duration_ms: 0.7635
+  type: 'test'
+  ...
+# Subtest: v1 through v5 migrate through the bounded decoder without changing existing identity or gear
+ok 76 - v1 through v5 migrate through the bounded decoder without changing existing identity or gear
+  ---
+  duration_ms: 7.494625
+  type: 'test'
+  ...
+# Subtest: production storage restores v4 and preserves its original record without treating it as corrupt
+ok 77 - production storage restores v4 and preserves its original record without treating it as corrupt
+  ---
+  duration_ms: 3.356584
+  type: 'test'
+  ...
+# Subtest: identity-only undo preserves later shape, equipment and colour edits
+ok 78 - identity-only undo preserves later shape, equipment and colour edits
+  ---
+  duration_ms: 2.065625
+  type: 'test'
+  ...
+# Subtest: queued identity changes, failed loads and failed undo leave history consistent
+ok 79 - queued identity changes, failed loads and failed undo leave history consistent
+  ---
+  duration_ms: 5.08925
+  type: 'test'
+  ...
+# Subtest: identity history expires when changing race and historical session cannot expose identities
+ok 80 - identity history expires when changing race and historical session cannot expose identities
+  ---
+  duration_ms: 2.225375
+  type: 'test'
+  ...
+# Subtest: owner generation refuses queued choices after a race round trip even before editor disposal
+ok 81 - owner generation refuses queued choices after a race round trip even before editor disposal
+  ---
+  duration_ms: 0.994958
+  type: 'test'
+  ...
+# Subtest: staged actor receives cancellation and can refuse commit before disposing its editor
+ok 82 - staged actor receives cancellation and can refuse commit before disposing its editor
+  ---
+  duration_ms: 2.010375
+  type: 'test'
+  ...
+# Subtest: replacement Human refuses queued undo even without an intermediate race change
+ok 83 - replacement Human refuses queued undo even without an intermediate race change
+  ---
+  duration_ms: 0.540666
+  type: 'test'
+  ...
+# Subtest: in-flight undo checks owner before commit and cannot re-arm history on a replacement
+ok 84 - in-flight undo checks owner before commit and cannot re-arm history on a replacement
+  ---
+  duration_ms: 0.425834
+  type: 'test'
+  ...
+# Subtest: selected identity persists locally while unpublished shared-region identity is refused
+ok 85 - selected identity persists locally while unpublished shared-region identity is refused
+  ---
+  duration_ms: 69.718792
+  type: 'test'
+  ...
+# Subtest: the default route asks for no shape at all
+ok 86 - the default route asks for no shape at all
+  ---
+  duration_ms: 2.455834
+  type: 'test'
+  ...
+# Subtest: named shapes resolve to the target order the GLB declares
+ok 87 - named shapes resolve to the target order the GLB declares
+  ---
+  duration_ms: 0.617416
+  type: 'test'
+  ...
+# Subtest: neutral needs no candidate asset, a driven target does
+ok 88 - neutral needs no candidate asset, a driven target does
+  ---
+  duration_ms: 0.188125
+  type: 'test'
+  ...
+# Subtest: unknown shapes and out-of-range controls are rejected, not coerced
+ok 89 - unknown shapes and out-of-range controls are rejected, not coerced
+  ---
+  duration_ms: 0.384833
+  type: 'test'
+  ...
+# Subtest: height is clamped to the range the gameplay capsule already accepts
+ok 90 - height is clamped to the range the gameplay capsule already accepts
+  ---
+  duration_ms: 0.106334
+  type: 'test'
+  ...
+# Subtest: capabilities advertise only what M004 actually delivered
+ok 91 - capabilities advertise only what M004 actually delivered
+  ---
+  duration_ms: 0.064208
+  type: 'test'
+  ...
+# Subtest: the historical M002 schema retains its empty shape capability
+ok 92 - the historical M002 schema retains its empty shape capability
+  ---
+  duration_ms: 12.309792
+  type: 'test'
+  ...
+# Subtest: the built candidate keeps the shipped body identical at weight zero
+ok 93 - the built candidate keeps the shipped body identical at weight zero
+  ---
+  duration_ms: 13.921625
+  type: 'test'
+  ...
+# Subtest: both shapes keep stature and limb span
+ok 94 - both shapes keep stature and limb span
+  ---
+  duration_ms: 22.045375
+  type: 'test'
+  ...
+# Subtest: morph accessors are not interleaved
+ok 95 - morph accessors are not interleaved
+  ---
+  duration_ms: 8.681417
+  type: 'test'
+  ...
+# Subtest: saved identity requires selected starter even at neutral shape and default equipment
+ok 96 - saved identity requires selected starter even at neutral shape and default equipment
+  ---
+  duration_ms: 1.285042
+  type: 'test'
+  ...
+# Subtest: selected early/main requests share embedded descriptors, native decompression and retry
+ok 97 - selected early/main requests share embedded descriptors, native decompression and retry
+  ---
+  duration_ms: 94.290291
+  type: 'test'
+  ...
+# Subtest: incompatible index and a preset/body mismatch fail before selected assets load
+ok 98 - incompatible index and a preset/body mismatch fail before selected assets load
+  ---
+  duration_ms: 4.475792
+  type: 'test'
+  ...
+# Subtest: saved preloader starts the fixed catalogue immediately and shares it with the optional module
+ok 99 - saved preloader starts the fixed catalogue immediately and shares it with the optional module
+  ---
+  duration_ms: 29.478042
+  type: 'test'
+  ...
+# Subtest: normalizeCompleteLoadout requires all three slots and rejects mismatches
+ok 100 - normalizeCompleteLoadout requires all three slots and rejects mismatches
+  ---
+  duration_ms: 1.371375
+  type: 'test'
+  ...
+# Subtest: decorateOutfitManifest keeps honest outfit + component ids for HUD/capture
+ok 101 - decorateOutfitManifest keeps honest outfit + component ids for HUD/capture
+  ---
+  duration_ms: 0.273083
+  type: 'test'
+  ...
+# Subtest: later request commits first; stale compose cannot overwrite it
+ok 102 - later request commits first; stale compose cannot overwrite it
+  ---
+  duration_ms: 63.065292
+  type: 'test'
+  ...
+# Subtest: failed load preserves the live outfit and disposes the staged container once
+ok 103 - failed load preserves the live outfit and disposes the staged container once
+  ---
+  duration_ms: 12.439542
+  type: 'test'
+  ...
+# Subtest: failed loader before a container is returned leaves the live outfit in place
+ok 104 - failed loader before a container is returned leaves the live outfit in place
+  ---
+  duration_ms: 14.799625
+  type: 'test'
+  ...
+# Subtest: identical selection is unchanged and still cancels an in-flight swap
+ok 105 - identical selection is unchanged and still cancels an in-flight swap
+  ---
+  duration_ms: 55.980875
+  type: 'test'
+  ...
+# Subtest: authored nonadditive cast restore reapplies loco leg mask and keeps clip time
+ok 106 - authored nonadditive cast restore reapplies loco leg mask and keeps clip time
+  ---
+  duration_ms: 0.470667
+  type: 'test'
+  ...
+# Subtest: injected commit failure keeps the live identity and retires the candidate once
+ok 107 - injected commit failure keeps the live identity and retires the candidate once
+  ---
+  duration_ms: 7.13425
+  type: 'test'
+  ...
+# Subtest: invalid selection fails closed without compose and without touching the live outfit
+ok 108 - invalid selection fails closed without compose and without touching the live outfit
+  ---
+  duration_ms: 1.19125
+  type: 'test'
+  ...
+# Subtest: canonical buffer remains usable after overlapping compose work
+ok 109 - canonical buffer remains usable after overlapping compose work
+  ---
+  duration_ms: 43.829708
+  type: 'test'
+  ...
+# Subtest: loadout client clones canonical into the worker and keeps the source usable
+ok 110 - loadout client clones canonical into the worker and keeps the source usable
+  ---
+  duration_ms: 1143.811625
+  type: 'test'
+  ...
+# Subtest: partial fit fetch failure does not mark unsent fits; retry composes the full loadout
+ok 111 - partial fit fetch failure does not mark unsent fits; retry composes the full loadout
+  ---
+  duration_ms: 363.926333
+  type: 'test'
+  ...
+# Subtest: invalid fit bytes are dropped and a later request can retry
+ok 112 - invalid fit bytes are dropped and a later request can retry
+  ---
+  duration_ms: 657.464458
+  type: 'test'
+  ...
+# Unknown character 'unknown', using legacy Mixamo
+# Subtest: root default is clothed Human; explicit query escape hatches remain
+ok 113 - root default is clothed Human; explicit query escape hatches remain
+  ---
+  duration_ms: 2.291042
+  type: 'test'
+  ...
+# Subtest: orc and undead are explicit authored routes with own capsules and staff-only gear
+ok 114 - orc and undead are explicit authored routes with own capsules and staff-only gear
+  ---
+  duration_ms: 0.699792
+  type: 'test'
+  ...
+# Subtest: authored clip map is exact names and fails closed
+ok 115 - authored clip map is exact names and fails closed
+  ---
+  duration_ms: 0.397083
+  type: 'test'
+  ...
+# Subtest: Human animated GLB actually contains the required clip names
+ok 116 - Human animated GLB actually contains the required clip names
+  ---
+  duration_ms: 99.728334
+  type: 'test'
+  ...
+# Subtest: source channel capabilities resolve from the actual GLB; optional absence does not break authored rigs
+ok 117 - source channel capabilities resolve from the actual GLB; optional absence does not break authored rigs
+  ---
+  duration_ms: 54.160833
+  type: 'test'
+  ...
+# Subtest: appearance wipe is gated; Human keeps authored materials
+ok 118 - appearance wipe is gated; Human keeps authored materials
+  ---
+  duration_ms: 0.3335
+  type: 'test'
+  ...
+# Subtest: Human default loadout is staff only and rejects legacy armor
+ok 119 - Human default loadout is staff only and rejects legacy armor
+  ---
+  duration_ms: 0.358625
+  type: 'test'
+  ...
+# Subtest: production recipe preserves one signed axis, equipment and canonical round trip
+ok 120 - production recipe preserves one signed axis, equipment and canonical round trip
+  ---
+  duration_ms: 7.367583
+  type: 'test'
+  ...
+# Subtest: shape family, numeric domain and neutral-only races are enforced
+ok 121 - shape family, numeric domain and neutral-only races are enforced
+  ---
+  duration_ms: 2.345083
+  type: 'test'
+  ...
+# Subtest: v1 appearance migrates explicitly; future version/catalogue cannot be guessed
+ok 122 - v1 appearance migrates explicitly; future version/catalogue cannot be guessed
+  ---
+  duration_ms: 0.445875
+  type: 'test'
+  ...
+# Subtest: legacy single axes migrate exactly; mixed axes and wider domains remain recoverable
+ok 123 - legacy single axes migrate exactly; mixed axes and wider domains remain recoverable
+  ---
+  duration_ms: 0.800041
+  type: 'test'
+  ...
+# Subtest: bad current storage is backed up before overwrite; blocked storage stays playable
+ok 124 - bad current storage is backed up before overwrite; blocked storage stays playable
+  ---
+  duration_ms: 1.265542
+  type: 'test'
+  ...
+# Subtest: shape records reject hidden/getter/prototype fields without evaluating them
+ok 125 - shape records reject hidden/getter/prototype fields without evaluating them
+  ---
+  duration_ms: 0.612792
+  type: 'test'
+  ...
+# Subtest: queued controls, undo and failure retain one committed appearance
+ok 126 - queued controls, undo and failure retain one committed appearance
+  ---
+  duration_ms: 2.002833
+  type: 'test'
+  ...
+# Subtest: equipment colours commit in order, undo independently and preserve the recipe on failure
+ok 127 - equipment colours commit in order, undo independently and preserve the recipe on failure
+  ---
+  duration_ms: 2.533667
+  type: 'test'
+  ...
+# Subtest: colour history expires with the equipment scope; body adjustment does not erase it
+ok 128 - colour history expires with the equipment scope; body adjustment does not erase it
+  ---
+  duration_ms: 0.672167
+  type: 'test'
+  ...
+# Subtest: seven-slot v2 recipes migrate exactly, including endpoints and all races
+ok 129 - seven-slot v2 recipes migrate exactly, including endpoints and all races
+  ---
+  duration_ms: 115.356291
+  type: 'test'
+  ...
+# Subtest: historical catalogues reject future items/slots and unknown catalogues remain recoverable
+ok 130 - historical catalogues reject future items/slots and unknown catalogues remain recoverable
+  ---
+  duration_ms: 4.92125
+  type: 'test'
+  ...
+# Subtest: v3 migration preserves armor, shape, race and original storage bytes
+ok 131 - v3 migration preserves armor, shape, race and original storage bytes
+  ---
+  duration_ms: 42.50475
+  type: 'test'
+  ...
+# Subtest: v1 and v2 registries reject every v4 piece even in its correct slot
+ok 132 - v1 and v2 registries reject every v4 piece even in its correct slot
+  ---
+  duration_ms: 5.958917
+  type: 'test'
+  ...
+# Subtest: sealed selected packs agree with current inputs, embedded descriptors and all content addresses
+not ok 133 - sealed selected packs agree with current inputs, embedded descriptors and all content addresses
+  ---
+  duration_ms: 33.788958
+  type: 'test'
+  location: '/Users/antbly/dev/wow-clone/scripts/test-production-human-identities.mjs:39:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Stale identity input: src/character/appearance/human-identity.js. Run npm run prepare:human-identities
+    + actual - expected
+
+    + 'bd69a957b641105ca8f62891b4ea29990e02f0f239dcb5dfec3dd6ebed9e429a'
+    - '33bda691ee7ff8d5775f98949846e3c484e09e266af72e8e8670a223ac2dbff1'
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '33bda691ee7ff8d5775f98949846e3c484e09e266af72e8e8670a223ac2dbff1'
+  actual: 'bd69a957b641105ca8f62891b4ea29990e02f0f239dcb5dfec3dd6ebed9e429a'
+  operator: 'strictEqual'
+  stack: |-
+    verifyProductionHumanIdentities (file:///Users/antbly/dev/wow-clone/scripts/character-assets/verify-production-human-identities.mjs:19:77)
+    async TestContext.<anonymous> (file:///Users/antbly/dev/wow-clone/scripts/test-production-human-identities.mjs:40:16)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: release guard refuses a stale authoring input and a modified embedded descriptor
+not ok 134 - release guard refuses a stale authoring input and a modified embedded descriptor
+  ---
+  duration_ms: 80.085459
+  type: 'test'
+  location: '/Users/antbly/dev/wow-clone/scripts/test-production-human-identities.mjs:42:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /Embedded identity descriptor/. Input:
+
+    'AssertionError [ERR_ASSERTION]: Stale identity input: src/character/appearance/human-identity.js. Run npm run prepare:human-identities\n' +
+      '+ actual - expected\n' +
+      '\n' +
+      "+ 'bd69a957b641105ca8f62891b4ea29990e02f0f239dcb5dfec3dd6ebed9e429a'\n" +
+      "- '33bda691ee7ff8d5775f98949846e3c484e09e266af72e8e8670a223ac2dbff1'\n"
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+  error: |-
+    Stale identity input: src/character/appearance/human-identity.js. Run npm run prepare:human-identities
+    + actual - expected
+
+    + 'bd69a957b641105ca8f62891b4ea29990e02f0f239dcb5dfec3dd6ebed9e429a'
+    - '33bda691ee7ff8d5775f98949846e3c484e09e266af72e8e8670a223ac2dbff1'
+
+  stack: |-
+    verifyProductionHumanIdentities (file:///Users/antbly/dev/wow-clone/scripts/character-assets/verify-production-human-identities.mjs:19:77)
+    async waitForActual (node:assert:565:5)
+    async Function.rejects (node:assert:686:25)
+    async TestContext.<anonymous> (file:///Users/antbly/dev/wow-clone/scripts/test-production-human-identities.mjs:46:2)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  operator: 'rejects'
+  stack: |-
+    async TestContext.<anonymous> (file:///Users/antbly/dev/wow-clone/scripts/test-production-human-identities.mjs:46:2)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: playable contract includes directional, channel, carry, hit and all spell layers
+ok 135 - playable contract includes directional, channel, carry, hit and all spell layers
+  ---
+  duration_ms: 2.205834
+  type: 'test'
+  ...
+# Subtest: compact compiler refuses a missing playable curve before changing the source
+ok 136 - compact compiler refuses a missing playable curve before changing the source
+  ---
+  duration_ms: 524.039041
+  type: 'test'
+  ...
+# Subtest: prime-bald/items/body has exact native bind, geometry/morph proof and source curves
+ok 137 - prime-bald/items/body has exact native bind, geometry/morph proof and source curves
+  ---
+  duration_ms: 814.268417
+  type: 'test'
+  ...
+# Subtest: prime-bald/compactItems/body has exact native bind, geometry/morph proof and source curves
+ok 138 - prime-bald/compactItems/body has exact native bind, geometry/morph proof and source curves
+  ---
+  duration_ms: 705.048791
+  type: 'test'
+  ...
+# Subtest: prime-bald/items/graveweaverHood has exact native bind, geometry/morph proof and source curves
+ok 139 - prime-bald/items/graveweaverHood has exact native bind, geometry/morph proof and source curves
+  ---
+  duration_ms: 117.6885
+  type: 'test'
+  ...
+# Subtest: prime-bald/compactItems/graveweaverHood has exact native bind, geometry/morph proof and source curves
+ok 140 - prime-bald/compactItems/graveweaverHood has exact native bind, geometry/morph proof and source curves
+  ---
+  duration_ms: 182.895791
+  type: 'test'
+  ...
+# Subtest: prime-ponytail/items/body has exact native bind, geometry/morph proof and source curves
+ok 141 - prime-ponytail/items/body has exact native bind, geometry/morph proof and source curves
+  ---
+  duration_ms: 549.608125
+  type: 'test'
+  ...
+# Subtest: prime-ponytail/compactItems/body has exact native bind, geometry/morph proof and source curves
+ok 142 - prime-ponytail/compactItems/body has exact native bind, geometry/morph proof and source curves
+  ---
+  duration_ms: 627.586916
+  type: 'test'
+  ...
+# Subtest: prime-ponytail/items/graveweaverHood has exact native bind, geometry/morph proof and source curves
+ok 143 - prime-ponytail/items/graveweaverHood has exact native bind, geometry/morph proof and source curves
+  ---
+  duration_ms: 66.508833
+  type: 'test'
+  ...
+# Subtest: prime-ponytail/compactItems/graveweaverHood has exact native bind, geometry/morph proof and source curves
+ok 144 - prime-ponytail/compactItems/graveweaverHood has exact native bind, geometry/morph proof and source curves
+  ---
+  duration_ms: 116.076625
+  type: 'test'
+  ...
+# Subtest: weathered-bald/items/body has exact native bind, geometry/morph proof and source curves
+ok 145 - weathered-bald/items/body has exact native bind, geometry/morph proof and source curves
+  ---
+  duration_ms: 414.340333
+  type: 'test'
+  ...
+# Subtest: weathered-bald/compactItems/body has exact native bind, geometry/morph proof and source curves
+ok 146 - weathered-bald/compactItems/body has exact native bind, geometry/morph proof and source curves
+  ---
+  duration_ms: 545.1295
+  type: 'test'
+  ...
+# Subtest: weathered-bald/items/graveweaverHood has exact native bind, geometry/morph proof and source curves
+ok 147 - weathered-bald/items/graveweaverHood has exact native bind, geometry/morph proof and source curves
+  ---
+  duration_ms: 79.118834
+  type: 'test'
+  ...
+# Subtest: weathered-bald/compactItems/graveweaverHood has exact native bind, geometry/morph proof and source curves
+ok 148 - weathered-bald/compactItems/graveweaverHood has exact native bind, geometry/morph proof and source curves
+  ---
+  duration_ms: 106.834292
+  type: 'test'
+  ...
+# Subtest: published family declares one deformation layout and fifteen content-addressed artifacts
+ok 149 - published family declares one deformation layout and fifteen content-addressed artifacts
+  ---
+  duration_ms: 3.219667
+  type: 'test'
+  ...
+# Subtest: body retains repaired canonical geometry, complete index union, bind and neutral shape
+ok 150 - body retains repaired canonical geometry, complete index union, bind and neutral shape
+  ---
+  duration_ms: 1330.2805
+  type: 'test'
+  ...
+# Subtest: graveweaverHood retains repaired canonical geometry, complete index union, bind and neutral shape
+ok 151 - graveweaverHood retains repaired canonical geometry, complete index union, bind and neutral shape
+  ---
+  duration_ms: 32.525958
+  type: 'test'
+  ...
+# Subtest: graveweaverTop retains repaired canonical geometry, complete index union, bind and neutral shape
+ok 152 - graveweaverTop retains repaired canonical geometry, complete index union, bind and neutral shape
+  ---
+  duration_ms: 37.236208
+  type: 'test'
+  ...
+# Subtest: graveweaverSkirt retains repaired canonical geometry, complete index union, bind and neutral shape
+ok 153 - graveweaverSkirt retains repaired canonical geometry, complete index union, bind and neutral shape
+  ---
+  duration_ms: 52.626458
+  type: 'test'
+  ...
+# Subtest: graveweaverGloves retains repaired canonical geometry, complete index union, bind and neutral shape
+ok 154 - graveweaverGloves retains repaired canonical geometry, complete index union, bind and neutral shape
+  ---
+  duration_ms: 36.689625
+  type: 'test'
+  ...
+# Subtest: wayfarerTunic retains repaired canonical geometry, complete index union, bind and neutral shape
+ok 155 - wayfarerTunic retains repaired canonical geometry, complete index union, bind and neutral shape
+  ---
+  duration_ms: 11.975083
+  type: 'test'
+  ...
+# Subtest: pilgrimTunic retains repaired canonical geometry, complete index union, bind and neutral shape
+ok 156 - pilgrimTunic retains repaired canonical geometry, complete index union, bind and neutral shape
+  ---
+  duration_ms: 15.896583
+  type: 'test'
+  ...
+# Subtest: wayfarerTrousers retains repaired canonical geometry, complete index union, bind and neutral shape
+ok 157 - wayfarerTrousers retains repaired canonical geometry, complete index union, bind and neutral shape
+  ---
+  duration_ms: 22.901834
+  type: 'test'
+  ...
+# Subtest: wayfarerBoots retains repaired canonical geometry, complete index union, bind and neutral shape
+ok 158 - wayfarerBoots retains repaired canonical geometry, complete index union, bind and neutral shape
+  ---
+  duration_ms: 6.940208
+  type: 'test'
+  ...
+# Subtest: wardenPauldrons retains repaired canonical geometry, complete index union, bind and neutral shape
+ok 159 - wardenPauldrons retains repaired canonical geometry, complete index union, bind and neutral shape
+  ---
+  duration_ms: 14.394
+  type: 'test'
+  ...
+# Subtest: lectorCoat retains repaired canonical geometry, complete index union, bind and neutral shape
+ok 160 - lectorCoat retains repaired canonical geometry, complete index union, bind and neutral shape
+  ---
+  duration_ms: 49.136333
+  type: 'test'
+  ...
+# Subtest: duskguardCuirass retains repaired canonical geometry, complete index union, bind and neutral shape
+ok 161 - duskguardCuirass retains repaired canonical geometry, complete index union, bind and neutral shape
+  ---
+  duration_ms: 27.102375
+  type: 'test'
+  ...
+# Subtest: duskguardTassets retains repaired canonical geometry, complete index union, bind and neutral shape
+ok 162 - duskguardTassets retains repaired canonical geometry, complete index union, bind and neutral shape
+  ---
+  duration_ms: 55.83525
+  type: 'test'
+  ...
+# Subtest: duskguardGreaves retains repaired canonical geometry, complete index union, bind and neutral shape
+ok 163 - duskguardGreaves retains repaired canonical geometry, complete index union, bind and neutral shape
+  ---
+  duration_ms: 16.3685
+  type: 'test'
+  ...
+# Subtest: duskguardVambraces retains repaired canonical geometry, complete index union, bind and neutral shape
+ok 164 - duskguardVambraces retains repaired canonical geometry, complete index union, bind and neutral shape
+  ---
+  duration_ms: 21.261292
+  type: 'test'
+  ...
+# Subtest: body compact keeps corresponding skin/morph vertices and the canonical bind
+ok 165 - body compact keeps corresponding skin/morph vertices and the canonical bind
+  ---
+  duration_ms: 413.351708
+  type: 'test'
+  ...
+# Subtest: graveweaverHood compact keeps corresponding skin/morph vertices and the canonical bind
+ok 166 - graveweaverHood compact keeps corresponding skin/morph vertices and the canonical bind
+  ---
+  duration_ms: 138.25775
+  type: 'test'
+  ...
+# Subtest: graveweaverTop compact keeps corresponding skin/morph vertices and the canonical bind
+ok 167 - graveweaverTop compact keeps corresponding skin/morph vertices and the canonical bind
+  ---
+  duration_ms: 70.480458
+  type: 'test'
+  ...
+# Subtest: graveweaverSkirt compact keeps corresponding skin/morph vertices and the canonical bind
+ok 168 - graveweaverSkirt compact keeps corresponding skin/morph vertices and the canonical bind
+  ---
+  duration_ms: 107.103875
+  type: 'test'
+  ...
+# Subtest: graveweaverGloves compact keeps corresponding skin/morph vertices and the canonical bind
+ok 169 - graveweaverGloves compact keeps corresponding skin/morph vertices and the canonical bind
+  ---
+  duration_ms: 40.934
+  type: 'test'
+  ...
+# Subtest: wayfarerTunic compact keeps corresponding skin/morph vertices and the canonical bind
+ok 170 - wayfarerTunic compact keeps corresponding skin/morph vertices and the canonical bind
+  ---
+  duration_ms: 91.951125
+  type: 'test'
+  ...
+# Subtest: pilgrimTunic compact keeps corresponding skin/morph vertices and the canonical bind
+ok 171 - pilgrimTunic compact keeps corresponding skin/morph vertices and the canonical bind
+  ---
+  duration_ms: 159.793166
+  type: 'test'
+  ...
+# Subtest: wayfarerTrousers compact keeps corresponding skin/morph vertices and the canonical bind
+ok 172 - wayfarerTrousers compact keeps corresponding skin/morph vertices and the canonical bind
+  ---
+  duration_ms: 56.410208
+  type: 'test'
+  ...
+# Subtest: wayfarerBoots compact keeps corresponding skin/morph vertices and the canonical bind
+ok 173 - wayfarerBoots compact keeps corresponding skin/morph vertices and the canonical bind
+  ---
+  duration_ms: 70.543667
+  type: 'test'
+  ...
+# Subtest: wardenPauldrons compact keeps corresponding skin/morph vertices and the canonical bind
+ok 174 - wardenPauldrons compact keeps corresponding skin/morph vertices and the canonical bind
+  ---
+  duration_ms: 14.481417
+  type: 'test'
+  ...
+# Subtest: lectorCoat compact keeps corresponding skin/morph vertices and the canonical bind
+ok 175 - lectorCoat compact keeps corresponding skin/morph vertices and the canonical bind
+  ---
+  duration_ms: 120.034334
+  type: 'test'
+  ...
+# Subtest: duskguardCuirass compact keeps corresponding skin/morph vertices and the canonical bind
+ok 176 - duskguardCuirass compact keeps corresponding skin/morph vertices and the canonical bind
+  ---
+  duration_ms: 121.403625
+  type: 'test'
+  ...
+# Subtest: duskguardTassets compact keeps corresponding skin/morph vertices and the canonical bind
+ok 177 - duskguardTassets compact keeps corresponding skin/morph vertices and the canonical bind
+  ---
+  duration_ms: 102.926334
+  type: 'test'
+  ...
+# Subtest: duskguardGreaves compact keeps corresponding skin/morph vertices and the canonical bind
+ok 178 - duskguardGreaves compact keeps corresponding skin/morph vertices and the canonical bind
+  ---
+  duration_ms: 93.099542
+  type: 'test'
+  ...
+# Subtest: duskguardVambraces compact keeps corresponding skin/morph vertices and the canonical bind
+ok 179 - duskguardVambraces compact keeps corresponding skin/morph vertices and the canonical bind
+  ---
+  duration_ms: 67.546166
+  type: 'test'
+  ...
+# Subtest: schema version and semantic states are clip-independent
+ok 180 - schema version and semantic states are clip-independent
+  ---
+  duration_ms: 5.7685
+  type: 'test'
+  ...
+# Subtest: valid synthetic mapping is accepted with absent-clip warning
+ok 181 - valid synthetic mapping is accepted with absent-clip warning
+  ---
+  duration_ms: 1.086875
+  type: 'test'
+  ...
+# Subtest: missing required joint is an error
+ok 182 - missing required joint is an error
+  ---
+  duration_ms: 0.168708
+  type: 'test'
+  ...
+# Subtest: duplicate semantic mapping is an error
+ok 183 - duplicate semantic mapping is an error
+  ---
+  duration_ms: 0.11625
+  type: 'test'
+  ...
+# Subtest: nonfinite or non-positive unit scale is an error
+ok 184 - nonfinite or non-positive unit scale is an error
+  ---
+  duration_ms: 0.2165
+  type: 'test'
+  ...
+# Subtest: absent optional fingers warn; mapping still valid
+ok 185 - absent optional fingers warn; mapping still valid
+  ---
+  duration_ms: 0.126333
+  type: 'test'
+  ...
+# Subtest: runtime/live retarget mode is forbidden
+ok 186 - runtime/live retarget mode is forbidden
+  ---
+  duration_ms: 0.180875
+  type: 'test'
+  ...
+# Subtest: Human inventory integration maps required joints and reports zero clips
+ok 187 - Human inventory integration maps required joints and reports zero clips
+  ---
+  duration_ms: 130.298167
+  type: 'test'
+  ...
+# Subtest: Mixamo base.glb resolves every semantic joint
+ok 188 - Mixamo base.glb resolves every semantic joint
+  ---
+  duration_ms: 2.454792
+  type: 'test'
+  ...
+# Subtest: sockets point at semantic joints that exist on the rig
+ok 189 - sockets point at semantic joints that exist on the rig
+  ---
+  duration_ms: 0.382792
+  type: 'test'
+  ...
+# Subtest: animation vocabulary is the M4 state set, not a clip filename list
+ok 190 - animation vocabulary is the M4 state set, not a clip filename list
+  ---
+  duration_ms: 0.425417
+  type: 'test'
+  ...
+# Subtest: three race profiles exist; only Human Mixamo is inspectable, none are production-fit
+ok 191 - three race profiles exist; only Human Mixamo is inspectable, none are production-fit
+  ---
+  duration_ms: 6.687209
+  type: 'test'
+  ...
+# Subtest: bind signature accepts compatible mesh additions, but rejects proportion and joint-order changes
+ok 192 - bind signature accepts compatible mesh additions, but rejects proportion and joint-order changes
+  ---
+  duration_ms: 862.750916
+  type: 'test'
+  ...
+# Subtest: bind signature includes inverse bind values and import-root transforms
+ok 193 - bind signature includes inverse bind values and import-root transforms
+  ---
+  duration_ms: 67.955625
+  type: 'test'
+  ...
+# Subtest: unsupported profile is rejected; Human defaults to mage with explicit starter escape hatch
+ok 194 - unsupported profile is rejected; Human defaults to mage with explicit starter escape hatch
+  ---
+  duration_ms: 2.45375
+  type: 'test'
+  ...
+# Subtest: body mode preserves source scene and does not mutate the input buffer
+ok 195 - body mode preserves source scene and does not mutate the input buffer
+  ---
+  duration_ms: 122.671458
+  type: 'test'
+  ...
+# Subtest: starter compose is source-immutable and keeps joints, IBM, animations
+ok 196 - starter compose is source-immutable and keeps joints, IBM, animations
+  ---
+  duration_ms: 842.759834
+  type: 'test'
+  ...
+# Subtest: starter has three nonempty skinned garments on the body skin; shorts unparented; head/hands kept
+ok 197 - starter has three nonempty skinned garments on the body skin; shorts unparented; head/hands kept
+  ---
+  duration_ms: 40205.516209
+  type: 'test'
+  ...
+# Subtest: compose does not apply Orc/Undead profile to the Human buffer
+ok 198 - compose does not apply Orc/Undead profile to the Human buffer
+  ---
+  duration_ms: 14.758625
+  type: 'test'
+  ...
+# Subtest: orc starter compose keeps orc skin, IBM, and animations
+ok 199 - orc starter compose keeps orc skin, IBM, and animations
+  ---
+  duration_ms: 285.820084
+  type: 'test'
+  ...
+# Subtest: undead starter compose keeps undead skin, IBM, and animations
+ok 200 - undead starter compose keeps undead skin, IBM, and animations
+  ---
+  duration_ms: 253.535875
+  type: 'test'
+  ...
+1..200
+# tests 200
+# suites 0
+# pass 198
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 42362.117208

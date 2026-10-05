@@ -4,6 +4,12 @@
  * Geometry, skin and morph data will remain owned by the selected native pack:
  * https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#skins
  * Source pins and visual review: docs/plans/character-mmo/results/m5-face-refactor-2026-10-04.md
+ * Ponytail policy: one authored CC0 proxy/atlas includes the scalp and tie. Its
+ * native Head/Neck/Spine2 skin and ordered slender/stout morphs follow this rig;
+ * scalp-covering headwear hides the whole separate hair mesh and removal restores
+ * it. No independent tie, hair-colour channel or runtime cloth is published.
+ * Native mask material: https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#alpha-coverage
+ * Ordinary-route fit evidence: docs/plans/character-mmo/results/m5-saved-fits-2026-10-04.md
  */
 export const IDENTITY_CATALOG_VERSION='appearance-catalog-v6';
 const preset=(id,label,head,hair,sourceLabel)=>Object.freeze({

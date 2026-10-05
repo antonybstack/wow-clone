@@ -253,6 +253,12 @@ Tasks, in order:
    colour policy, review shoulders and cape clearance across the full outfit/motion
    matrix, and keep hair simulation outside this scope. Skin/hair colour controls remain
    unavailable until their own channels have actual accepted art.
+   The [saved-route fit checkpoint](results/m5-saved-fits-2026-10-04.md) now documents
+   the authored proxy/tie/material policy and verifies 630 static views plus bounded
+   native motion (Telegram 856), with actual morph/coverage observations and a failing
+   negative control. Ten loadouts and selected motion probes do not close the complete
+   outfit/motion matrix. Existing boot sole/seam defects, further representative fits
+   and the isolated timing/release exit remain open.
 5. **Production acceptance and capability flags.** Extend save/reload/first-frame,
    cancellation, disposal, desktop mobile and WebKit checks to the published identity
    combinations. Measure isolated settled throughput, review live motion, then release

@@ -1,0 +1,298 @@
+{
+  "url": "http://127.0.0.1:7174/",
+  "direct": false,
+  "saved": true,
+  "control": true,
+  "scope": "Published saved v6 ordinary-route outfit/shape fits; no startup, FPS or exhaustive mixed-loadout acceptance",
+  "firstPlay": [
+    {
+      "label": "young-hair",
+      "preset": "prime-ponytail",
+      "requests": [
+        "/",
+        "/assets/startupPreload-DAGgyAND.js",
+        "/assets/ashenReach-Cl7qGm5N.js",
+        "/assets/modulepreload-polyfill-P2Xu9kJm.js",
+        "/assets/module-preload-BZ1Pz5am.js",
+        "/assets/rolldown-runtime-hePW80VL.js",
+        "/assets/lite-runtime-CapxqNuF.js",
+        "/assets/equipment-catalog-BSw-Lbk_.js",
+        "/assets/coverage-manifest-CA9Ys9Y5.js",
+        "/assets/local-specular-c6fg4PgS.js",
+        "/assets/linear-materials-QPZyxGxM.js",
+        "/assets/geometry-DPyvdsr1.js",
+        "/assets/sun-shadows-CWTyvg8q.js",
+        "/assets/materials-8xkTIMsm.js",
+        "/assets/prop-transition-DTKUsvbn.js",
+        "/assets/dye-palette-PVDI2Yum.js",
+        "/assets/startup-assets-CsGRZ7GU.js",
+        "/assets/input-Dr2x9id5.js",
+        "/assets/rig-DP5KCSAf.js",
+        "/assets/inspection-preview-Btv59myr.js",
+        "/assets/bind-contract-BTQu1skm.js",
+        "/assets/ashenReach-CELGCeSv.css",
+        "/HavokPhysics.wasm",
+        "/ashen-reach/startup/starter/manifest.json",
+        "/ashen-reach/startup/starter/near-61b52956fc8e.br",
+        "/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "/ashen-reach/startup/starter/texture-876257499921.webp",
+        "/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "/meshopt_decoder.js",
+        "/assets/appearance-storage-q-oYgHIU.js",
+        "/ashen-reach/human-identity-v1/manifest.json",
+        "/assets/human-identity-assets-nQgkT-Rm.js",
+        "/ashen-reach/favicon.png",
+        "/ashen-reach/human-identity-v1/body-compact-93ebf3f0db40.bin",
+        "/ashen-reach/human-shape-v1/wayfarerTunic-compact-000ff23bf965.bin",
+        "/ashen-reach/human-shape-v1/wayfarerTrousers-compact-coverage-f834210550a3.bin",
+        "/ashen-reach/human-shape-v1/wayfarerBoots-compact-287d89851371.bin",
+        "/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "/ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+        "/ashen-reach/startup/starter/texture-db0580d45a99.webp",
+        "/ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+        "/ashen-reach/startup/starter/texture-b4691e418e94.webp",
+        "/ashen-reach/startup/starter/texture-582e83089a5d.webp",
+        "/ashen-reach/startup/starter/texture-876257499921.webp",
+        "/ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+        "/assets/world-worker-Cvw93lBX.js",
+        "/ashen-reach/startup/starter/texture-a659b1767619.webp",
+        "/assets/combat-DGusCbHl.js",
+        "/assets/enemies-CiMBbeKx.js",
+        "/assets/npc-EvLgzCUs.js",
+        "/assets/townsfolk-DjVF_zR4.js",
+        "/assets/armory-rODR6_K_.js",
+        "/assets/armory-BBP9tBaM.css",
+        "/ashen-reach/human-shape-v1/wayfarerTunic-e65b2868e12f.bin",
+        "/ashen-reach/training-dummy.glb",
+        "/characters/base.glb",
+        "/ashen-reach/human-shape-v1/wayfarerTrousers-coverage-b1eb36e8f614.bin",
+        "/ashen-reach/human-shape-v1/wayfarerBoots-14b43ef82011.bin",
+        "/ashen-reach/fire-blast/fire_01.png",
+        "/ashen-reach/fire-blast/smoke_01.png",
+        "/ashen-reach/fire-blast/spark_05.png",
+        "/ashen-reach/human-shape-v1/texture-29d4e4e4bece.png",
+        "/ashen-reach/fire-blast/fire_01.png",
+        "/ashen-reach/fire-blast/spark_05.png",
+        "/ashen-reach/fire-blast/fire_01.png",
+        "/ashen-reach/fire-blast/smoke_01.png",
+        "/ashen-reach/fire-blast/spark_05.png",
+        "/ashen-reach/human-shape-v1/texture-f465517766cc.png",
+        "/ashen-reach/fire-blast/fireball-julien-matthey.wav",
+        "/ashen-reach/fire-blast/lava-charge.wav",
+        "/ashen-reach/human-shape-v1/texture-feb2ba6d8d36.png",
+        "/assets/creator-BWp5oStF.js",
+        "/assets/human-shape-CLK6o720.js",
+        "/assets/creator-B5d1-Jhl.css",
+        "/assets/lite-error-CbM31Lpb.js",
+        "/assets/typed-arrays-mqcHaLDm.js",
+        "/assets/multiply-mat4-into-buffer-DfBnM-FI.js",
+        "/assets/engine-Bmc5IJPK.js"
+      ],
+      "appearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v6",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1,
+          "build": 0
+        },
+        "components": {
+          "head": "human-prime-v1",
+          "hair": "human-ponytail01-v1"
+        },
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "stored": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v6",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1,
+          "build": 0
+        },
+        "components": {
+          "head": "human-prime-v1",
+          "hair": "human-ponytail01-v1"
+        },
+        "dyes": {},
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null,
+          "shoulders": null
+        }
+      },
+      "height": 1,
+      "capsuleHeight": 1.748,
+      "rootScale": [
+        -1,
+        1,
+        1
+      ],
+      "shapeWeights": [
+        0,
+        0
+      ],
+      "equipment": {
+        "helmet": null,
+        "torso": "wayfarerTunic",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "ironSword",
+        "offHand": null,
+        "shoulders": null
+      },
+      "bodySegments": {
+        "HumanV1Body": [
+          "head.scalp",
+          "head.face",
+          "neck",
+          "torso.upper",
+          "torso.lower",
+          "waist",
+          "arm.upper",
+          "arm.lower",
+          "hand",
+          "leg.upper",
+          "leg.lower",
+          "foot"
+        ],
+        "HumanTorsoCore": [
+          "torso.upper",
+          "torso.lower",
+          "waist"
+        ],
+        "HumanIdentityEyes": [
+          "head.face"
+        ],
+        "HumanIdentityBrows": [
+          "head.face"
+        ],
+        "HumanPonytail01": [
+          "head.scalp"
+        ]
+      },
+      "meshes": [
+        {
+          "name": "HumanV1Body",
+          "visible": true,
+          "weights": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "HumanIdentityBrows",
+          "visible": true,
+          "weights": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "HumanIdentityEyes",
+          "visible": true,
+          "weights": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "HumanPonytail01",
+          "visible": true,
+          "weights": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "HumanTorsoCore",
+          "visible": false,
+          "weights": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "WayfarerTunic",
+          "visible": true,
+          "weights": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "WayfarerTrousers",
+          "visible": true,
+          "weights": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "WayfarerTrousersCuffs",
+          "visible": false,
+          "weights": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "WayfarerBoots",
+          "visible": true,
+          "weights": [
+            0,
+            0
+          ]
+        }
+      ],
+      "visible": [
+        "HumanV1Body",
+        "HumanIdentityBrows",
+        "HumanIdentityEyes",
+        "HumanPonytail01"
+      ],
+      "gpuErrors": [],
+      "physics": true,
+      "recoveries": 0
+    }
+  ],
+  "rows": [],
+  "errors": [],
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: Actual scalp coverage must hide and restore the separate ponytail\n\nfalse !== true\n\n    at file:///Users/antbly/dev/wow-clone/scripts/character-assets/check-human-identity-current-fits.mjs:133:29"
+}

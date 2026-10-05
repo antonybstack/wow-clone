@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 856,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 89.919685,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 90
+  },
+  "verified": true,
+  "file": "saved-fits.mp4",
+  "sha256": "a45481a376da24a1addf265c5266cb78636f559ea559470902fec826c8bb59a8",
+  "sentAt": "2026-10-05T04:01:17.778126+00:00"
+}

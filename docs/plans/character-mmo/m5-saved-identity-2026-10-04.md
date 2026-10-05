@@ -117,6 +117,18 @@ The valid Grok coverage finding was fixed before these checks. See
 
 ## Checkpoint D — hair and acceptance, then release
 
+**Saved-route fit checkpoint implemented:** 630 live views cover the three selected
+identities, all five Human body cases, every seven named preset plus bare and two
+mixes. Native actor weights/root scale, actual body/garment visibility and photographed
+controls are checked; an inverted hair prediction fails. The authored native hair/
+tie/material policy is documented, with bounded live motion delivered as Telegram
+856. [Result and explicit limits](results/m5-saved-fits-2026-10-04.md). All 286 built
+art/physics payloads stay exact; only identity provenance is resealed for a source
+comment. This is not the exhaustive outfit/motion/mix exit or isolated performance
+acceptance. User WoW was active during checks but is absent at the final cleanup
+audit. Run fresh isolated cohorts next; correct existing boot sole/seam defects and
+remaining fit gaps, then complete release gates.
+
 **Mobile Armory checkpoint implemented:** native Lite stage viewport/orbit/pinch,
 responsive portrait controls and live Human-height framing. Custom AO/fog match
 the viewport; native 1.31.1 contacts are disabled in a partial viewport because

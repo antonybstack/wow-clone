@@ -1,0 +1,36 @@
+{
+  "messageId": 856,
+  "domMessageId": 917,
+  "duration": 89.919685,
+  "returnedDuration": 90,
+  "intrinsic": {
+    "width": 1280,
+    "height": 720
+  },
+  "inline": {
+    "width": 738.1875,
+    "height": 415.21875,
+    "objectFit": "contain",
+    "observedPlayingTimes": [
+      75.435577,
+      57.733613,
+      77.528399
+    ],
+    "loopResetObserved": true
+  },
+  "viewer": {
+    "width": 1280,
+    "height": 720,
+    "objectFit": "contain",
+    "playTimes": [
+      0.18275,
+      23.440544
+    ],
+    "finalPausedTime": 55.474716
+  },
+  "allFiveVideoElementsPaused": true,
+  "nativeFullscreenVerified": false,
+  "telegramDesktopVerified": false,
+  "previousOffscreenViewerGhostHadNoDecodedFrame": true,
+  "screenshotsPersisted": false
+}

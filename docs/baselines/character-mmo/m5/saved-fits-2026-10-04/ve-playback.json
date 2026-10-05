@@ -1,0 +1,31 @@
+{
+  "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m5-saved-fits-2026-10-04-a45481a376da.mp4",
+  "ownedTab": "1147995584",
+  "httpStatus": 200,
+  "contentType": "video/mp4",
+  "bytes": 44115272,
+  "rangeStatus": 206,
+  "range": "bytes 0-4095/44115272",
+  "publicSha256": "a45481a376da24a1addf265c5266cb78636f559ea559470902fec826c8bb59a8",
+  "localSha256": "a45481a376da24a1addf265c5266cb78636f559ea559470902fec826c8bb59a8",
+  "intrinsic": {
+    "width": 1280,
+    "height": 720
+  },
+  "rect": {
+    "width": 1280,
+    "height": 720
+  },
+  "objectFit": "contain",
+  "duration": 89.919685,
+  "playTimes": [
+    12.426203,
+    27.887274
+  ],
+  "endSeenInNativeControls": true,
+  "nativeSeekTimes": [
+    44.959842,
+    44.060603
+  ],
+  "seekPaused": true
+}

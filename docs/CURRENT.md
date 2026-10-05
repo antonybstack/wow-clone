@@ -8,6 +8,23 @@ native goal, beginning with M5 saved Human identity. Continue through verificati
 delivery and commit/push without another “proceed.” Respect explicit stop/pause
 requests and record real dependencies. [Continuation mechanism and scope](autonomous-continuation.md).
 
+**M5 saved-fit checkpoint, 2026-10-04:** the ordinary built saved route now verifies
+three selected identities × five body cases × ten loadouts in **630** live views.
+Native root/morph values, actual body/garment coverage, photographed controls and
+hair hide/restore pass; an inverted hair prediction correctly fails. Authored
+ponytail/tie/material policy is documented; the existing native morph/skin path is
+retained. Character **200/200**, build and all **286** art/physics byte comparisons
+pass. Bounded reviewed native motion is Telegram **856** /
+[VE](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m5-saved-fits-2026-10-04-a45481a376da.mp4),
+with exact public hash, actual play/seek and Telegram inline/expanded proportions.
+This is ten loadouts and bounded motion, not an exhaustive all-motion/mix acceptance.
+**M5 stays open and unreleased.** User WoW was active during the checks; no new
+load/FPS acceptance. At the final cleanup audit it is no longer present, so isolated
+cohorts are next after a fresh audit. Boot sole/seam defects and fit gaps remain.
+Owned game browsers,
+servers, reviewer and VE tab are stopped; Telegram is paused. The native goal remains
+active. [Result and limits](plans/character-mmo/results/m5-saved-fits-2026-10-04.md).
+
 **M5 mobile-preview checkpoint, 2026-10-04:** portrait Armory now has a full-width
 live stage above scrolling controls, with native Lite viewport/orbit/pinch and
 height-aware framing. Custom fog/AO use the viewport; native 1.31.1 contact shadows
