@@ -1,8 +1,8 @@
 # M5 shared Human coverage and creator release
 
 Updated 2026-10-05. **Candidate deployed; M5 acceptance remains open.**
-Native gates pass. Production functional checks pass, but public default startup
-p95 is 1,018.7 ms against the 1,000 ms target.
+Native gates pass. Production functional checks pass; latest public original-largest
+and hooded ponytail startup p95 is 1,078.3 / 1,101.5 ms against the 1,000 ms target.
 
 ## Resulting behavior
 
@@ -118,7 +118,7 @@ two cohorts were each collected once with hints retained. See
 [the pacing procedure](../../../debug-view.md#measure-above-the-headless-chrome-60-fps-cap).
 
 OS, GPU-driver and CDN caches are uncontrolled. The older first-use GPU outliers
-remain limitations, not discarded samples. Public startup, Telegram delivery and production acceptance are still pending.
+remain limitations, not discarded samples. Public startup acceptance remains open.
 
 ## Final native motion
 
@@ -136,8 +136,9 @@ scaled capture is retained as a 960×540-canvas diagnostic, not native evidence.
 Published bytes match each local SHA-256; both responses are `video/mp4` and
 support verified range requests (206). Direct VE playback retains proportions
 at 1280×720 and a 2514×1275 full-window container using `object-fit: contain`.
-Telegram delivery/inline/expanded playback is pending. Native OS fullscreen
-and Telegram Desktop remain unavailable. Clip performance is not a benchmark.
+Telegram 859/860 returned matching dimensions; Web A inline, expanded and native
+browser fullscreen proportions were reviewed. Telegram Desktop remains unavailable.
+Clip performance is not a benchmark.
 
 ## Deployment and limits
 
@@ -224,3 +225,50 @@ The follow-up seal is `f86cd4d2b3a5e350bea9da306afbdb912adce3c9f3c3e402a0634dde8
 522 dist files / 521 served / 288,560,563 bytes. The helper-only correction after
 the initial seal changes no served byte. See `startupFollowup` in the measurement
 receipt for the exact build, gate paths, digests and retained failure dispositions.
+
+## Incremental skyline candidate after the compaction release
+
+Compaction/preload source `63433ac` / Pages
+`bdc10f74-8a12-41e3-a078-935d4d7611a4` passes all 521 public bytes and functional
+checks, but original-largest/hooded public p95 remains 1,078.3 / 1,101.5 ms
+(maxima 1,103.5 / 1,117 ms; 17/20 and 20/20 misses). Those rows are retained.
+
+The next candidate separates the 44 distant, non-colliding skyline proxies into
+an optional background packet. Required geometry is 275,386 bytes, down from
+717,693; skyline is 447,199. All 324 attribute ranges and scene/collision/foliage
+metadata compare exactly to `63433ac`. Settled region geometry is unchanged;
+the first playable churchyard intentionally appears before the distant skyline.
+Lite's native per-device texture promise cache now overlaps the sky upload, and
+removing discarded HTTP warm fetches eliminates all eight duplicate downloads.
+
+Native 120 cold starts pass: default p95 680.9 ms, original-largest 808.9,
+Prime bald 736.3, hooded ponytail 902.5, Weathered 849.5 and open ponytail 865.6;
+maximum 908.5 ms, no misses. All eight required texture URLs download once in
+every row. The 24 focused startup/preload/header tests and build pass. Native
+522-file/cache checks, four install/retry/retire/dispose cases, eight injected
+depth-fallback and four Weathered WebKit checks pass without GPU/runtime errors.
+
+Unchanged source/character/collision/traversal gates are reused with explicit
+dependency equivalence. `ready` waits region-dependent foliage and textures,
+after proxy retirement and the final native caster registration. The affected
+hooded-ponytail confirmation covers 15 route runs at 210.6–244.6 FPS, maximum p99
+6.1 ms, worst 10.9 ms, no interval above 16.667 ms. The strict collector stopped
+on bridge1's unchanged possible-240 hint after seven rows. All seven remain;
+only the missing eight were then collected. Six hints are resolved with verified
+uncapped launch flags, the unchanged calibrated control, native 627 callbacks /
+569 renders and five same-cohort rows exceeding the hard 240 Hz ceiling by >1%.
+No detector threshold, quality setting or earlier row changed.
+
+A single matched early-background diagnostic reports 18.7 ms maximum with
+skyline installation and 18.4 ms while skyline is held; p95 18.2 / 17.2 ms.
+Other existing background jobs are active and the region worker is held in both.
+This pair does not establish a new skyline spike or a production percentile;
+retain these transient tails separately from settled FPS.
+
+Native progressive-startup motion captures the saved hooded body, ordinary
+Havok travel, loading frontier and completed region with zero recoveries. Viewport,
+canvas and source/encoded frames are 1280×720, square pixels, zero rotation;
+1,602 source frames preserve 19.167 seconds of elapsed capture time. Recording
+is excluded from startup/FPS claims. Public candidate verification and Telegram
+delivery still own the final exit. `skylineFollowup` in the measurement receipt
+records its separate seal, failed controls, exact comparisons and gate reuse.

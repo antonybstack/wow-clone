@@ -43,6 +43,17 @@ Treat every open game page as GPU work, including a page in a detached headless 
 
 Repeated live checks should use a fresh owned Playwright `browser.newContext()` and close it in `finally`. Navigating the same page to `about:blank` can retain earlier game documents/renderers in Chromium's back/forward history; detaching CDP does not dispose them. Keep the harness's default page blank, audit targets before the next check, and restart only the owned harness if retained history/processes make isolation uncertain.
 
+Cold-start and FPS isolation also require an audit of known video playback. Closing
+Telegram's viewer can restart inline autoplay after an immediate pause check. Record
+the initial playback state, finish motion review before measurements, and check for
+playing videos **before and after** the cohort. If the review page resumes repeatedly,
+a temporary document `play` listener may pause its video elements for that measurement
+window. Record the listener's owner and cleanup obligation; remove it afterward and
+restore only user references that were originally playing. Keep contaminated rows as
+invalid evidence and rerun only the affected cohort after correcting isolation. Do
+not attribute that slowdown to game code. The M5 follow-up retained a contaminated
+hood cohort before collecting the isolated 120 starts.
+
 This rule follows the 2026-09-27 investigation: two abandoned game pages reduced the same walk from about **173 to 96 FPS**. A local server without a game page is not the same GPU load; count rendering pages, not merely ports.
 
 ## Existing harnesses

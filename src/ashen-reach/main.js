@@ -568,6 +568,12 @@ async function main(){
  let backgroundDisposed=false;onSceneDispose(scene,()=>{backgroundDisposed=true;backgroundStatus.dispose();});
  ashen.whenRest=(async()=>{
   markStartup('bg-start');
+  // The starting area's exact render/collision is already playable. Distant, non-colliding
+  // skyline proxies share the existing background lifecycle and native shadow registration.
+  const startSkyline=()=>world.startSkyline?.({onInstalled:()=>{
+   if(!backgroundDisposed&&!deviceLost)shadows.setWorld(world);
+  }}).then(()=>{delete ashen.skylineError;}).catch(error=>{if(!backgroundDisposed&&!deviceLost)ashen.skylineError=error.message;});
+  void startSkyline();
   if(humanFamilyStart)void actorRequest(async()=>{
    const full=(await starterCharacterP).fullManifest,previous=impl;
    let next=null;
@@ -587,9 +593,9 @@ async function main(){
    if(world.startRegion){
     for(;;){
      try{await world.startRegion(player);break;}
-     catch(error){if(backgroundDisposed||deviceLost||error.reloadRequired)throw error;ashen.backgroundError=error.message;await backgroundStatus.retry(error);}
+     catch(error){if(backgroundDisposed||deviceLost||error.reloadRequired)throw error;ashen.backgroundError=error.message;await backgroundStatus.retry(error);void startSkyline();}
     }
-    delete ashen.backgroundError;world.retireProxies();shadows.setWorld(world);
+    delete ashen.backgroundError;world.retireProxies();shadows.setWorld(world);delete ashen.skylineError;
    }
    if(world.startNearbyFoliage){
     for(;;){

@@ -40,24 +40,16 @@ export function preloadStarterWorld() {
     const manifest = await response.json();
     const expected=import.meta.env.VITE_STARTER_WORLD_SOURCE;
     if(expected&&manifest.provenance?.sha256!==expected)throw Error('The world has been updated. Reload to use the matching starting assets.');
-    // Discover tiny first-frame maps while geometry is still in flight. Waiting
-    // for geometry before surface() starts them adds multiple network round trips.
-    const textures = Promise.all(
-      // Vegetation is installed after input unlocks. Its larger atlas must
-      // not compete with, or delay, the required ground/body downloads.
-      [...new Set(Object.entries(manifest.textureURLs)
-        .filter(([source]) => !source.endsWith('/foliage-atlas.png'))
-        .map(([, url]) => url))].map((url) =>
-        checkedFetch(url).then((r) => r.arrayBuffer()),
-      ),
-    );
-    textures.catch(() => {});
+    // HTML already preloads the required maps. Fetching and discarding them here
+    // consumes those responses before Lite can use them, forcing eight duplicate
+    // downloads with HTTP caching disabled. Let surface()/sky() consume the native
+    // preloads and Lite's per-device promise cache; both remain required before play.
+    // https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/preload
     const bytesReady = (async () => {
       const response2 = await checkedFetch(ROOT + manifest.geometry.file);
       const bytes = manifest.geometry.compression === 'http-br'
         ? await response2.arrayBuffer() // Native HTTP Content-Encoding decoding.
         : await new Response(response2.body.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
-      await textures;
       if (bytes.byteLength !== manifest.geometry.rawBytes)
         throw Error("Starting world geometry is truncated");
       return bytes;
@@ -77,6 +69,11 @@ export async function createStarterWorld(engine, scene, prepared) {
   const { manifest, bytesReady } = await prepared;
   engine.ashenTextureURLs = manifest.textureURLs;
   engine.ashenTextureUpgrades = [];
+  // sky() consumes this exact URL/options later. Lite caches its promise per device,
+  // including with the HTTP cache disabled; overlap that upload with required geometry.
+  // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/texture/texture-2d.ts
+  loadTexture2D(engine, manifest.textureURLs['/ashen-reach/sky-generated.jpg'],
+    {invertY:false,mipMaps:true}).catch(()=>{});
   const mats = await Promise.all(
     manifest.surfaces.map((s) => surface(engine, s.name, s.url, s.options)),
   );
@@ -102,6 +99,8 @@ export async function createStarterWorld(engine, scene, prepared) {
     wakeWorker = null,
     gateMesh = null,
     gates = null;
+  let skylinePromise=null, skylineAbort=null, proxiesRetired=false;
+  const completeRecords=new Set();
   const proxies = new Map(),
     installedBlocks = new Set(),
     installedCollisions = new Set(),
@@ -259,6 +258,7 @@ export async function createStarterWorld(engine, scene, prepared) {
       const p = record.mesh.position;
       p.set(p.x, p.y, p.z);
       if (block.indexOffset + b.indices.length === record.indices) {
+        completeRecords.add(record.name);
         const proxy = proxies.get(record.name);
         if (proxy) setMeshVisible(proxy, false);
       }
@@ -286,20 +286,21 @@ export async function createStarterWorld(engine, scene, prepared) {
     collisionSources.delete(mesh);
   }
 
-  const readBlock = (block) =>
+  const readBlock = (block, packetBytes=bytes) =>
     Object.fromEntries(
       Object.entries(block.attributes).map(([key, a]) => [
         key,
         key === "indices"
-          ? new Uint32Array(bytes, a.offset, a.length)
-          : new Float32Array(bytes, a.offset, a.length),
+          ? new Uint32Array(packetBytes, a.offset, a.length)
+          : new Float32Array(packetBytes, a.offset, a.length),
       ]),
     );
   for (const block of manifest.geometry.blocks) {
     install({ ...block, buffers: readBlock(block) });
   }
-  for (const block of manifest.geometry.proxies ?? []) {
-    const b = readBlock(block),
+  function installProxy(block, b) {
+    if(disposed||proxiesRetired||completeRecords.has(block.name)||proxies.has(block.name))return false;
+    const
       mesh = createMeshFromData(
         engine,
         block.name + " skyline",
@@ -316,7 +317,10 @@ export async function createStarterWorld(engine, scene, prepared) {
     proxies.set(block.name, mesh);
     meshes.push(mesh);
     shadowMeshes.push(mesh);
+    return true;
   }
+  // Retain the old packet contract for a compatible prepared manifest.
+  for(const block of manifest.geometry.proxies??[])installProxy(block,readBlock(block));
   const intersectsStart = (entry) => {
     const { position: p, size: s } = entry,
       b = manifest.bounds;
@@ -421,15 +425,53 @@ export async function createStarterWorld(engine, scene, prepared) {
         throw error;
       }));
     },
+    startSkyline({onInstalled=()=>{}}={}) {
+      const packet=manifest.geometry.skyline;
+      if(!packet||disposed||proxiesRetired)return Promise.resolve({installed:0,cancelled:disposed||proxiesRetired});
+      return skylinePromise??=(async()=>{
+        skylineAbort=new AbortController();
+        let installed=0;
+        try {
+          // Optional non-colliding proxies start only after the playable boundary.
+          // Native HTTP decoding and the existing mesh path keep final geometry unchanged.
+          // https://developer.mozilla.org/en-US/docs/Web/API/RequestInit#priority
+          const response=await fetch(ROOT+packet.file,{signal:skylineAbort.signal,priority:'low'});
+          if(!response.ok)throw Error(`Skyline: HTTP ${response.status}`);
+          const packetBytes=await response.arrayBuffer();
+          if(packetBytes.byteLength!==packet.rawBytes)throw Error('Skyline geometry is truncated');
+          if(disposed||proxiesRetired)return {installed,cancelled:true};
+          // Decode all ranges before mutating the scene, refusing malformed offsets.
+          const blocks=packet.proxies.map(block=>({block,buffers:readBlock(block,packetBytes)}));
+          let started=performance.now();
+          for(const {block,buffers}of blocks){
+            if(disposed||proxiesRetired)return {installed,cancelled:true};
+            if(installProxy(block,buffers))installed++;
+            if(performance.now()-started>=1){
+              await yieldToFrame();started=performance.now();
+            }
+          }
+          // Register far casters once, avoiding a forced cascade rebuild for every slice.
+          if(installed&&!disposed&&!proxiesRetired)onInstalled();
+          return {installed,cancelled:false};
+        }catch(error){
+          if(disposed||proxiesRetired)return {installed,cancelled:true};
+          skylinePromise=null;throw error;
+        }
+      })();
+    },
     releaseInitialCollisionSources() {
       for (const mesh of collisionSources) releaseCollisionSource(mesh);
     },
     retireProxies() {
+      proxiesRetired=true;
+      skylineAbort?.abort();
       for (const mesh of proxies.values()) {
         const index = meshes.indexOf(mesh);
         if (index >= 0) meshes.splice(index, 1);
         const shadowIndex = shadowMeshes.indexOf(mesh);
         if (shadowIndex >= 0) shadowMeshes.splice(shadowIndex, 1);
+        // Lite's last-scene removal owns ref-counted GPU retirement. Do not destroy twice.
+        // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/scene/scene-remove.ts
         removeFromScene(scene, mesh);
       }
       proxies.clear();
@@ -564,6 +606,8 @@ export async function createStarterWorld(engine, scene, prepared) {
   };
   onSceneDispose(scene, () => {
     disposed = true;
+    proxiesRetired=true;
+    skylineAbort?.abort();
     worker?.terminate();
     wakeWorker?.();
     for (const mesh of collisionSources) releaseCollisionSource(mesh);

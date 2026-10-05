@@ -1,6 +1,7 @@
 # Progressive startup — current lifecycle
 
-Current release evidence: [bounded production customization](plans/character-mmo/results/production-customization-2026-09-30.md) and [public startup/GPU follow-up](plans/character-mmo/results/startup-gpu-2026-09-30.md). Read [CURRENT](CURRENT.md) before assuming a source asset or ordering from an older report remains active.
+Current candidate and release evidence: [saved Human creator](plans/character-mmo/results/m5-shared-human-release-2026-10-05.md).
+Read [CURRENT](CURRENT.md) for the actual deployed source and open gates.
 
 ## Playable boundary
 
@@ -11,6 +12,31 @@ Primary code: `src/ashen-reach/main.js`, `starter-world.js`, `startup-assets.js`
 ## Reproducible assets and measurements
 
 `scripts/ashen-reach/prepare-starter-character.mjs` derives compact assets from the current Human equipment body and selected starter clothes. It preserves geometry/bind/animation and prepares smaller initial textures with deferred full texture URLs. `prepare-starter-world.mjs` builds deterministic nearby/region payloads. Existing provenance/hash validation guards stale prepared assets.
+
+The starting-world manifest describes two native HTTP-Brotli packets. Required
+`geometry` contains exact near render/collision blocks and nearby foliage;
+optional `geometry.skyline` contains the same 44 non-colliding distant proxies.
+Only the required packet is preloaded before play. `startSkyline()` begins after
+the playable fence, yields mesh creation across frames, and updates the shadow
+list once. Region completion retires the proxies through Lite's ref-counted
+`removeFromScene`; retirement/disposal aborts their fetch and prevents late
+installation. Optional failure can retry without duplicating already installed
+meshes. The legacy combined packet remains readable.
+
+HTML preloads the eight required textures. Surface construction consumes those
+responses, while the sky's exact URL/options are started early through Lite's
+per-device `loadTexture2D` promise cache. Do not fetch and discard texture bytes
+to warm an HTTP cache: with cache-disabled navigation that consumes the preload
+and triggers duplicate downloads. The actual material/sky loads still gate play.
+See [native preload behavior](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/preload)
+and [pinned Lite texture loading](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/texture/texture-2d.ts).
+
+The world-specific `verify-starter-geometry.mjs` checks immutable SHA/filename,
+encoded/decoded lengths and complete aligned attribute ranges before publishing
+the mutable manifest, and again at build. It lives outside shared character
+compiler provenance to avoid regenerating unrelated characters. Full-region
+render/collision, source motion, and the dressed/grounded/GPU-completed playable
+contract remain unchanged; the first playable distant skyline arrives later.
 
 Use `npm run prepare:startup` only when an intended source/preparation change requires rebuilding; it is not a routine prerequisite for a documentation or contract change. Read each script's current imports and source files before running it.
 

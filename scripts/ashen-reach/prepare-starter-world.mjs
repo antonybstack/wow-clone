@@ -3,6 +3,7 @@ import {
   startupProvenance,
   pruneStartupAssets,
 } from "./startup-provenance.mjs";
+import {verifyStarterGeometry} from './verify-starter-geometry.mjs';
 import fs from "node:fs/promises";
 import path from "node:path";
 import { brotliCompressSync, constants } from "node:zlib";
@@ -29,19 +30,29 @@ const data = partitionWorld(source);
 const output = "public/ashen-reach/startup/starter";
 await fs.mkdir(output, { recursive: true });
 const hash = (b) => createHash("sha256").update(b).digest("hex");
-const buffers = [];
-let offset = 0;
-const describe = ({ buffers: arrays, ...block }) => {
-  const attributes = {};
-  for (const [name, array] of Object.entries(arrays)) {
-    const bytes = Buffer.from(array.buffer, array.byteOffset, array.byteLength);
-    attributes[name] = { offset, length: array.length };
-    buffers.push(bytes);
-    offset += bytes.length;
-  }
-  return { ...block, attributes };
+// Two immutable packets with the same packing: the required near packet (exact initial
+// blocks + near foliage) gates first play; the distant non-colliding skyline proxies are a
+// separate packet the runtime may fetch in the background. Offsets are packet-relative.
+const packet = () => {
+  const buffers = [];
+  let offset = 0;
+  return {
+    buffers,
+    get rawBytes() { return offset; },
+    describe: ({ buffers: arrays, ...block }) => {
+      const attributes = {};
+      for (const [name, array] of Object.entries(arrays)) {
+        const bytes = Buffer.from(array.buffer, array.byteOffset, array.byteLength);
+        attributes[name] = { offset, length: array.length };
+        buffers.push(bytes);
+        offset += bytes.length;
+      }
+      return { ...block, attributes };
+    },
+  };
 };
-const blocks = data.batches.filter((b) => b.initial).map(describe);
+const near = packet(), skyline = packet();
+const blocks = data.batches.filter((b) => b.initial).map(near.describe);
 // A temporary, non-colliding skyline made from the existing geometry. Welding
 // only affects these distant proxies; final meshes retain every source byte.
 // https://github.com/zeux/meshoptimizer/blob/v0.22/js/README.md#simplification
@@ -99,7 +110,7 @@ for (const batch of source.batches) {
     Array.from({ length: original.length / 3 }, (_, i) => i * 3),
   );
   proxies.push(
-    describe({ name: batch.name, material: batch.material, buffers }),
+    skyline.describe({ name: batch.name, material: batch.material, buffers }),
   );
 }
 const placements = await generateFoliagePlacements({
@@ -127,7 +138,7 @@ for (const [name, pool] of Object.entries(placements)) {
       matrices.push(...pool.matrices.subarray(i * 16, i * 16 + 16));
       colors.push(...pool.colors.subarray(i * 4, i * 4 + 4));
     }
-  foliage[name] = describe({
+  foliage[name] = near.describe({
     count: matrices.length / 16,
     buffers: {
       matrices: new Float32Array(matrices),
@@ -138,11 +149,16 @@ for (const [name, pool] of Object.entries(placements)) {
 // Pages serves these actual Brotli bytes with Content-Encoding: br. Native
 // HTTP decoding works in Chromium/WebKit and needs no JavaScript decoder.
 // https://developers.cloudflare.com/pages/configuration/headers/
-const bytes = brotliCompressSync(Buffer.concat(buffers), {
-    params: { [constants.BROTLI_PARAM_QUALITY]: 11 },
-  }),
-  file = `near-${hash(bytes).slice(0, 12)}.br`;
-await fs.writeFile(path.join(output, file), bytes);
+async function writePacket(prefix, { buffers, rawBytes }) {
+  const bytes = brotliCompressSync(Buffer.concat(buffers), {
+      params: { [constants.BROTLI_PARAM_QUALITY]: 11 },
+    }),
+    file = `${prefix}-${hash(bytes).slice(0, 12)}.br`;
+  await fs.writeFile(path.join(output, file), bytes);
+  return { compression: "http-br", file, sha256: hash(bytes), encodedBytes: bytes.length, rawBytes };
+}
+const nearPacket = await writePacket("near", near),
+  skylinePacket = await writePacket("skyline", skyline);
 const textureURLs = {};
 for (const url of new Set([
   ...data.surfaces.map((s) => s.url),
@@ -164,9 +180,7 @@ for (const url of new Set([
   textureURLs[url] = `/ashen-reach/startup/starter/${name}`;
 }
 const { batches, ...manifest } = data;
-await fs.writeFile(
-  path.join(output, "manifest.json"),
-  JSON.stringify({
+const preparedManifest={
     ...manifest,
     provenance: await startupProvenance(
       [
@@ -184,22 +198,21 @@ await fs.writeFile(
     textureURLs,
     foliage,
     geometry: {
-      compression: "http-br",
-      file,
-      sha256: hash(bytes),
-      encodedBytes: bytes.length,
-      rawBytes: offset,
+      ...nearPacket,
       blocks,
-      proxies,
+      skyline: { ...skylinePacket, proxies },
     },
-  }),
-);
+  };
+// Validate both immutable packets before publishing their shared mutable index.
+await verifyStarterGeometry(preparedManifest,file=>fs.readFile(path.join(output,file)));
+await fs.writeFile(path.join(output,'manifest.json'),JSON.stringify(preparedManifest));
 console.log(
   JSON.stringify({
     meshes: data.meshes.length,
     blocks: blocks.length,
-    encodedBytes: bytes.length,
-    rawBytes: offset,
+    encodedBytes: nearPacket.encodedBytes,
+    rawBytes: nearPacket.rawBytes,
+    skyline: { proxies: proxies.length, encodedBytes: skylinePacket.encodedBytes, rawBytes: skylinePacket.rawBytes },
   }),
 );
 

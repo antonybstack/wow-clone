@@ -1,6 +1,7 @@
 import {verifyProductionHumanShapes} from './scripts/character-assets/verify-production-human-shapes.mjs';
 import {verifyProductionHumanIdentities} from './scripts/character-assets/verify-production-human-identities.mjs';
 import {verifyStartupAssets} from './scripts/ashen-reach/startup-provenance.mjs';
+import {verifyStarterGeometry} from './scripts/ashen-reach/verify-starter-geometry.mjs';
 import {writeEarlyHints} from './scripts/ashen-reach/early-hints.mjs';
 import {startupAppearanceContract,savedPreloadModules,savedPreloadScript,injectHeadScript} from './scripts/ashen-reach/saved-preload.mjs';
 import { defineConfig } from "vite";
@@ -97,7 +98,7 @@ function humanIdentityReviewAsset(req,res,next) {
 }
 
 function starterBrotliHeaders(req,res,next) {
-  if (/^\/ashen-reach\/startup\/starter\/near-[a-f0-9]{12}\.br(?:\?|$)/.test(req.url||'')) {
+  if (/^\/ashen-reach\/startup\/starter\/(?:near|skyline)-[a-f0-9]{12}\.br(?:\?|$)/.test(req.url||'')) {
     res.setHeader('Content-Encoding','br');res.setHeader('Content-Type','application/octet-stream');
   }
   next();
@@ -170,7 +171,7 @@ export default defineConfig({
     // Prepared inputs are allowed to change while authoring. Enforce sealed
     // descriptors on release builds, without terminating dev during regeneration.
     // https://vite.dev/guide/api-plugin.html#conditional-application
-    {name: "verify-prepared-startup", apply:'build', async buildStart(){if(starterBuild)await verifyStartupAssets();await verifyProductionHumanShapes();await verifyProductionHumanIdentities();}},
+    {name: "verify-prepared-startup", apply:'build', async buildStart(){if(starterBuild){await verifyStartupAssets();await verifyStarterGeometry(starterWorldManifest,file=>readFileSync('public/ashen-reach/startup/starter/'+file));}await verifyProductionHumanShapes();await verifyProductionHumanIdentities();}},
     // Pages skips crossorigin/fetchpriority links when generating Early Hints, so hint the
     // built startup module graph with explicit Link headers in the copied _headers. Runs
     // after the HTML (including the early saved-character entry) is final.

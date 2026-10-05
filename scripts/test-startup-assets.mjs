@@ -1,12 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
-import { gunzipSync, brotliDecompressSync } from "node:zlib";
+import { gunzipSync, brotliDecompressSync, brotliCompressSync, constants } from "node:zlib";
+import { createHash } from "node:crypto";
 import { NodeIO } from "@gltf-transform/core";
 import { ALL_EXTENSIONS } from "@gltf-transform/extensions";
 import { MeshoptDecoder } from "meshoptimizer";
 import { verifyCoveragePartition } from './character-assets/verify-coverage-partition.mjs';
 import { verifyStartupAssets } from "./ashen-reach/startup-provenance.mjs";
+import { verifyStarterGeometry } from "./ashen-reach/verify-starter-geometry.mjs";
 import { ASHEN_PLAYABLE_CLIP_NAMES } from "../src/character/runtime/ashen-playable-motion.js";
 import {
   partitionWorld,
@@ -25,11 +27,15 @@ test(
 );
 test('starter terrain is actual Brotli data with matching HTTP metadata',async()=>{
   const root='public/ashen-reach/startup/starter/',manifest=JSON.parse(await fs.readFile(root+'manifest.json'));
-  assert.equal(manifest.geometry.compression,'http-br');assert(manifest.geometry.file.endsWith('.br'));
-  const bytes=brotliDecompressSync(await fs.readFile(root+manifest.geometry.file));
-  assert.equal(bytes.length,manifest.geometry.rawBytes);
-  for(const block of [...manifest.geometry.blocks,...manifest.geometry.proxies])
-    for(const a of Object.values(block.attributes))assert(a.offset+a.length*4<=bytes.length);
+  // Required near packet and (when split) the background skyline packet: hash, size,
+  // decoded length and exact descriptor tiling of each, and proxies in exactly one packet.
+  const result=await verifyStarterGeometry(manifest,file=>fs.readFile(root+file));
+  assert(result.proxies>0&&result.near>0);
+  if(manifest.geometry.skyline){
+    assert.equal(manifest.geometry.proxies,undefined);
+    assert(manifest.geometry.skyline.file.startsWith('skyline-')&&manifest.geometry.skyline.file.endsWith('.br'));
+    assert(result.skyline>0);
+  }
   const headers=await fs.readFile('public/_headers','utf8');
   assert.match(headers,/\/ashen-reach\/startup\/starter\/\*\.br\s+Content-Type: application\/octet-stream\s+Content-Encoding: br/);
 });
@@ -166,4 +172,44 @@ test("partition preserves triangle attributes across the playable frontier", () 
     );
   assert.equal(data.batches[1].vertexOffset, 3);
   assert.equal(data.batches[1].indexOffset, 3);
+});
+
+// In-memory packets following the generator's packing: proves the contract the verifier
+// enforces without regenerated assets. Same Brotli/http-br form, tiny geometry.
+function syntheticStarter() {
+  const packet=(prefix,blocks)=>{let offset=0;const buffers=[];const described=blocks.map(({name,arrays})=>({name,attributes:Object.fromEntries(Object.entries(arrays).map(([k,a])=>{const r=[k,{offset,length:a.length}];buffers.push(Buffer.from(a.buffer));offset+=a.byteLength;return r;}))}));
+    const bytes=brotliCompressSync(Buffer.concat(buffers),{params:{[constants.BROTLI_PARAM_QUALITY]:1}}),sha=createHash('sha256').update(bytes).digest('hex');
+    return {descriptor:{compression:'http-br',file:`${prefix}-${sha.slice(0,12)}.br`,sha256:sha,encodedBytes:bytes.length,rawBytes:offset},described,bytes};};
+  const tri=n=>({positions:new Float32Array(9).fill(n),indices:new Uint32Array([0,1,2])});
+  const near=packet('near',[{name:'Earth',arrays:tri(1)},{name:undefined,arrays:{matrices:new Float32Array(16).fill(2),colors:new Float32Array(4)}}]);
+  const sky=packet('skyline',[{name:'Earth',arrays:tri(3)}]);
+  const files=new Map([[near.descriptor.file,near.bytes],[sky.descriptor.file,sky.bytes]]);
+  const manifest={foliage:{grass:{count:1,attributes:near.described[1].attributes}},
+    geometry:{...near.descriptor,blocks:[near.described[0]],skyline:{...sky.descriptor,proxies:sky.described}}};
+  return {manifest,files,read:async f=>{if(!files.has(f))throw Error('missing '+f);return files.get(f);}};
+}
+test('split starter packets verify; corrupt hash, size, length, layout or placement is refused',async()=>{
+  const ok=syntheticStarter();
+  assert.deepEqual(await verifyStarterGeometry(ok.manifest,ok.read),{near:ok.manifest.geometry.rawBytes,skyline:ok.manifest.geometry.skyline.rawBytes,proxies:1});
+  const cases={
+    'near sha':m=>{m.geometry.sha256='0'.repeat(64);},
+    'skyline size':m=>{m.geometry.skyline.encodedBytes++;},
+    'decoded length':m=>{m.geometry.skyline.rawBytes+=4;},
+    'overlap':m=>{m.geometry.skyline.proxies[0].attributes.indices.offset=0;},
+    'gap':m=>{m.geometry.blocks[0].attributes.indices.offset+=4;},
+    'out of bounds':m=>{m.geometry.blocks[0].attributes.indices.length+=1;},
+    'misaligned':m=>{m.geometry.blocks[0].attributes.positions.offset=2;},
+    'proxies in both packets':m=>{m.geometry.proxies=m.geometry.skyline.proxies;},
+    'stray proxy bytes left in near':m=>{m.geometry.blocks=[];},
+    'wrong packet prefix':m=>{m.geometry.skyline.file=m.geometry.skyline.file.replace('skyline','near');},
+    'not http-br':m=>{m.geometry.skyline.compression='gzip';},
+  };
+  for(const [name,mutate] of Object.entries(cases)){
+    const c=syntheticStarter();mutate(c.manifest);
+    await assert.rejects(verifyStarterGeometry(c.manifest,c.read),/Corrupt|both packets|missing/,name);
+  }
+  // Dropping the skyline descriptor leaves a valid near-only packet with no proxies; the real
+  // asset test above requires proxies, so a regenerated manifest cannot silently lose them.
+  const dropped=syntheticStarter();delete dropped.manifest.geometry.skyline;
+  assert.equal((await verifyStarterGeometry(dropped.manifest,dropped.read)).proxies,0);
 });
