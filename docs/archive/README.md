@@ -38,6 +38,8 @@ These documents are retained for rationale, sources and unresolved limitations. 
 
 ## Previous entry-point snapshots
 
+- [CURRENT before focused release/workflow cleanup — 2026-10-05](state/CURRENT-before-focused-release-2026-10-05.md)
+
 - [CURRENT-before-character-vision-2026-09-27](state/CURRENT-before-character-vision-2026-09-27.md)
 - [README-before-character-vision-2026-09-27](state/README-before-character-vision-2026-09-27.md)
 - [character-system-north-star-before-character-vision-2026-09-27](state/character-system-north-star-before-character-vision-2026-09-27.md)

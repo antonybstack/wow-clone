@@ -1,0 +1,249 @@
+{
+  "hips": [
+    0.0034376357216387987,
+    1.007189154624939,
+    0.00343721779063344
+  ],
+  "neck": [
+    0.003437428968027234,
+    1.4609274864196777,
+    -0.051561616361141205
+  ],
+  "unit": 1.0079866961428994,
+  "vertices": [
+    {
+      "index": 1299,
+      "position": [
+        -0.06492675840854645,
+        1.2605881690979004,
+        -0.13800010085105896
+      ],
+      "influences": [
+        {
+          "name": "mixamorig:Spine1",
+          "weight": 0.6435803771018982
+        },
+        {
+          "name": "mixamorig:Spine2",
+          "weight": 0.1364223212003708
+        },
+        {
+          "name": "mixamorig:RightShoulder",
+          "weight": 0.1222151592373848
+        },
+        {
+          "name": "mixamorig:RightArm",
+          "weight": 0.09778214246034622
+        }
+      ]
+    },
+    {
+      "index": 1300,
+      "position": [
+        -0.06674202531576157,
+        1.3082326650619507,
+        -0.16379255056381226
+      ],
+      "influences": [
+        {
+          "name": "mixamorig:Spine2",
+          "weight": 0.3418704569339752
+        },
+        {
+          "name": "mixamorig:RightShoulder",
+          "weight": 0.28157803416252136
+        },
+        {
+          "name": "mixamorig:Spine1",
+          "weight": 0.2541532516479492
+        },
+        {
+          "name": "mixamorig:RightArm",
+          "weight": 0.1223982498049736
+        }
+      ]
+    },
+    {
+      "index": 2633,
+      "position": [
+        0.000429861422162503,
+        1.3206439018249512,
+        -0.14487703144550323
+      ],
+      "influences": [
+        {
+          "name": "mixamorig:Spine2",
+          "weight": 0.49008697271347046
+        },
+        {
+          "name": "mixamorig:Spine1",
+          "weight": 0.2654607594013214
+        },
+        {
+          "name": "mixamorig:RightShoulder",
+          "weight": 0.12357645481824875
+        },
+        {
+          "name": "mixamorig:LeftShoulder",
+          "weight": 0.12087581306695938
+        }
+      ]
+    },
+    {
+      "index": 1298,
+      "position": [
+        -0.052574947476387024,
+        1.2120630741119385,
+        -0.1208043321967125
+      ],
+      "influences": [
+        {
+          "name": "mixamorig:Spine1",
+          "weight": 0.6877698302268982
+        },
+        {
+          "name": "mixamorig:Spine",
+          "weight": 0.21656548976898193
+        },
+        {
+          "name": "mixamorig:RightArm",
+          "weight": 0.050380315631628036
+        },
+        {
+          "name": "mixamorig:Spine2",
+          "weight": 0.04528438299894333
+        }
+      ]
+    },
+    {
+      "index": 2461,
+      "position": [
+        0.0004297927371226251,
+        1.2664856910705566,
+        -0.12682293355464935
+      ],
+      "influences": [
+        {
+          "name": "mixamorig:Spine1",
+          "weight": 0.7018609642982483
+        },
+        {
+          "name": "mixamorig:Spine2",
+          "weight": 0.15230028331279755
+        },
+        {
+          "name": "mixamorig:Spine",
+          "weight": 0.08903206884860992
+        },
+        {
+          "name": "mixamorig:RightShoulder",
+          "weight": 0.05680667608976364
+        }
+      ]
+    },
+    {
+      "index": 1295,
+      "position": [
+        -0.12639781832695007,
+        1.2147670984268188,
+        -0.11822472512722015
+      ],
+      "influences": [
+        {
+          "name": "mixamorig:Spine1",
+          "weight": 0.6101700067520142
+        },
+        {
+          "name": "mixamorig:Spine",
+          "weight": 0.18193255364894867
+        },
+        {
+          "name": "mixamorig:RightArm",
+          "weight": 0.13100814819335938
+        },
+        {
+          "name": "mixamorig:RightShoulder",
+          "weight": 0.07688935846090317
+        }
+      ]
+    },
+    {
+      "index": 1294,
+      "position": [
+        -0.03224235773086548,
+        1.1633079051971436,
+        -0.09414932876825333
+      ],
+      "influences": [
+        {
+          "name": "mixamorig:Spine",
+          "weight": 0.6118400692939758
+        },
+        {
+          "name": "mixamorig:Spine1",
+          "weight": 0.30620312690734863
+        },
+        {
+          "name": "mixamorig:Hips",
+          "weight": 0.08195678144693375
+        },
+        {
+          "name": "mixamorig:Hips",
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "index": 2457,
+      "position": [
+        0.00042981014121323824,
+        1.2148997783660889,
+        -0.10618796944618225
+      ],
+      "influences": [
+        {
+          "name": "mixamorig:Spine1",
+          "weight": 0.7316311001777649
+        },
+        {
+          "name": "mixamorig:Spine",
+          "weight": 0.2273741215467453
+        },
+        {
+          "name": "mixamorig:Spine2",
+          "weight": 0.03619886189699173
+        },
+        {
+          "name": "mixamorig:Hips",
+          "weight": 0.004795900080353022
+        }
+      ]
+    },
+    {
+      "index": 1292,
+      "position": [
+        -0.08032450824975967,
+        1.1633384227752686,
+        -0.08383244276046753
+      ],
+      "influences": [
+        {
+          "name": "mixamorig:Spine1",
+          "weight": 0.4964213967323303
+        },
+        {
+          "name": "mixamorig:Spine",
+          "weight": 0.4041428565979004
+        },
+        {
+          "name": "mixamorig:Hips",
+          "weight": 0.07149884104728699
+        },
+        {
+          "name": "mixamorig:RightArm",
+          "weight": 0.02793695777654648
+        }
+      ]
+    }
+  ]
+}

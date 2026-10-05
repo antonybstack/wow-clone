@@ -1,0 +1,72 @@
+{
+  "scope": "Published saved v6 ordinary-route outfit/shape fits; no startup, FPS or exhaustive mixed-loadout acceptance",
+  "url": "http://127.0.0.1:7175/",
+  "passed": true,
+  "rows": 3150,
+  "identities": [
+    "prime-bald",
+    "prime-ponytail",
+    "weathered-bald"
+  ],
+  "bodyCases": [
+    "neutral",
+    "short-slender",
+    "short-stout",
+    "tall-slender",
+    "tall-stout"
+  ],
+  "outfits": [
+    "bare",
+    "duskguard",
+    "graveweaver",
+    "lector",
+    "mixed-hood",
+    "mixed-open",
+    "pilgrim",
+    "revenant",
+    "warden",
+    "wayfarer"
+  ],
+  "motions": [
+    {
+      "id": "run",
+      "time": 0.58
+    },
+    {
+      "id": "walk",
+      "time": 0.65
+    },
+    {
+      "id": "fire",
+      "time": 0.2
+    },
+    {
+      "id": "lava",
+      "time": 0.35
+    },
+    {
+      "id": "pulse",
+      "time": 0.6
+    },
+    {
+      "id": "jump",
+      "time": 0.1
+    },
+    {
+      "id": "land",
+      "time": 0.12
+    }
+  ],
+  "angles": [
+    "back",
+    "front",
+    "side"
+  ],
+  "errors": [],
+  "recoveries": [
+    0
+  ],
+  "rawReportSha256": "ac699e39767ed5818dd86cf9e4fe9e0fe2d9130fd2f845dd4ba175f05acca10a",
+  "encoding": "gzip; unpack with Python gzip or gzip -dc",
+  "viewsAreSampledNotContinuous": true
+}

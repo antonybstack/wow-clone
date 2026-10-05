@@ -1,6 +1,6 @@
 # Execution contract for character and multiplayer milestones
 
-Status updated 2026-09-29: M001–M005 proof work completed; M006 creator surface implemented with source art open; M007 representative fit evidenced with production domain acceptance pending. Read [CURRENT](../../CURRENT.md), the [reprioritized next-ten plan](next-ten.md), and the single assigned package. These instructions are designed for Claude Opus 5.5 or GPT-6 Sol at medium effort. Historical M001–M010 references below retain their original scope; new milestones use the active plan's scope and release gates. Do not implement all 100 horizon items from an isolated brief.
+Status updated 2026-09-29: M001–M005 proof work completed; M006 creator surface implemented with source art open; M007 representative fit evidenced with production domain acceptance pending. Read [CURRENT](../../CURRENT.md), the [focused 12-hour plan](next-12-hours-2026-10-05.md) for immediate order, and the single assigned package. The [reprioritized next-ten plan](next-ten.md) retains broader exits. These instructions are designed for Claude Opus 5.5 or GPT-6 Sol at medium effort. Historical M001–M010 references below retain their original scope; new milestones use the active plan's scope and release gates. Do not implement all 100 horizon items from an isolated brief.
 
 ## Baseline and ownership
 
@@ -41,6 +41,11 @@ Use `scripts/ashen-reach/probe-playable-startup.mjs` against a production build 
 M003 defines a distinct matrix and does not inherit the solo seven-enemy result as proof. Report capacity curves; a 1,000-actor run can fail. Keep a settled diagnostic scene separate from actual-region confirmation. Include spawn/stream/churn tails separately from settled throughput. Later M009/M010 set supported crowd quality tiers from these results. Physical iPhone startup, memory and population capacity require physical hardware and may remain explicitly pending if unavailable.
 
 ## Verification and delivery
+
+Use the [workflow review](../../reviews/workflow-2026-10-05.md): choose the smallest
+discriminating check, freeze related source changes before full gates, avoid
+repeating unchanged matrices, and retain compact summaries rather than printing
+raw reports. Required release gates below remain unchanged.
 
 - Run focused tests for changed behavior, `npm run test:character`, `npm run test:equipment`, and `npm run build` where the brief requires them. Do not change expected assets/counts to make a mismatch disappear.
 - Inspect actual game motion for visual/runtime work; numeric contracts do not establish tailoring. Check movement, jump/land, both spells, two-handed contact, race switching, cancelled loading and resource teardown when touched.

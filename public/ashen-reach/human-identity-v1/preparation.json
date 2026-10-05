@@ -2,10 +2,10 @@
   {
     "preset": "prime-bald",
     "sourceLabel": "young",
-    "bodySha256": "1c5b331c1e49d7946a80404efb8cc4dc099dd8a6396e0b290787fc2f5254e01f",
-    "bodyEncodedBytes": 1215036,
-    "compactBodySha256": "3414b39da300129ac209c5da918e12961a0c60f72e589d66af572b80daac3600",
-    "compactBodyEncodedBytes": 815696,
+    "bodySha256": "cafcfd8ca0c3d36d13af1735956fe015c4ba03549b04eddac813bb7212793930",
+    "bodyEncodedBytes": 1215045,
+    "compactBodySha256": "01a5f6875186614e1b123d106d19054a19b34925ec87f507632610e57354e960",
+    "compactBodyEncodedBytes": 815709,
     "playableClips": [
       "Hit_Chest",
       "Idle_Loop",
@@ -35,15 +35,51 @@
     "compactHoodSha256": "cbccc099a1b7fa6924a2fe89f836d32ab1fbb015f51cc4b4b9bf5c7cb71428df",
     "compactHoodEncodedBytes": 197700,
     "bodyGeometryLossless": true,
-    "bindExact": true
+    "bindExact": true,
+    "torsoCoverage": {
+      "revision": "human-medial-back-v1",
+      "partition": {
+        "source": "HumanV1Body",
+        "covered": "HumanTorsoCore",
+        "originalTriangles": 13086,
+        "coveredTriangles": 446,
+        "exposedTriangles": 12640,
+        "vertexReindexing": false
+      },
+      "originalCoreTriangles": 414,
+      "addedTriangles": 32,
+      "landmarks": {
+        "hips": [
+          0.0034376357216387987,
+          1.007189154624939,
+          0.00343721779063344
+        ],
+        "neck": [
+          0.003437428968027234,
+          1.4609274864196777,
+          -0.051561616361141205
+        ],
+        "unit": 1.0079866961428994,
+        "halfWidth": 0.14667571746548147,
+        "backLimitZ": -0.016722516132224547
+      },
+      "verification": {
+        "triangles": 13086,
+        "attributesExact": true,
+        "morphsExact": true,
+        "skinExact": true,
+        "framesExact": true,
+        "sourceAnimationExact": true
+      }
+    }
   },
   {
     "preset": "prime-ponytail",
     "sourceLabel": "young-hair",
-    "bodySha256": "f147dbbe9939aaff24da4fb62cf9defc0e6100cdc54c6a2b05af5945228eee3b",
-    "bodyEncodedBytes": 1514649,
-    "compactBodySha256": "3079d6fe96c6b88a55fecc80f754176562aaff89decba714a68c9fd2f793b280",
-    "compactBodyEncodedBytes": 1115427,
+    "bodySha256": "50381125142fabd5b9e90daaba423c0d46f0535db7495490f86b927e0d8f832b",
+    "bodyEncodedBytes": 1514651,
+    "compactBodySha256": "41c8de6f9421f9265e12d467120936eb0826f7c35705bfbf9643cf4ecf1121f6",
+    "compactBodyEncodedBytes": 1115445,
     "playableClips": [
       "Hit_Chest",
       "Idle_Loop",
@@ -73,15 +109,51 @@
     "compactHoodSha256": "cbccc099a1b7fa6924a2fe89f836d32ab1fbb015f51cc4b4b9bf5c7cb71428df",
     "compactHoodEncodedBytes": 197700,
     "bodyGeometryLossless": true,
-    "bindExact": true
+    "bindExact": true,
+    "torsoCoverage": {
+      "revision": "human-medial-back-v1",
+      "partition": {
+        "source": "HumanV1Body",
+        "covered": "HumanTorsoCore",
+        "originalTriangles": 13086,
+        "coveredTriangles": 446,
+        "exposedTriangles": 12640,
+        "vertexReindexing": false
+      },
+      "originalCoreTriangles": 414,
+      "addedTriangles": 32,
+      "landmarks": {
+        "hips": [
+          0.0034376357216387987,
+          1.007189154624939,
+          0.00343721779063344
+        ],
+        "neck": [
+          0.003437428968027234,
+          1.4609274864196777,
+          -0.051561616361141205
+        ],
+        "unit": 1.0079866961428994,
+        "halfWidth": 0.14667571746548147,
+        "backLimitZ": -0.016722516132224547
+      },
+      "verification": {
+        "triangles": 13086,
+        "attributesExact": true,
+        "morphsExact": true,
+        "skinExact": true,
+        "framesExact": true,
+        "sourceAnimationExact": true
+      }
+    }
   },
   {
     "preset": "weathered-bald",
     "sourceLabel": "old",
-    "bodySha256": "fec63c32f0fdbb34870b2c2a5386ca616136a4c33bd1fb32cf1f45516a6e9a4e",
-    "bodyEncodedBytes": 1220349,
-    "compactBodySha256": "4b685c529371d68f5e6b638c7b6af599497e7998eb194e79df69a49045b960c4",
-    "compactBodyEncodedBytes": 820921,
+    "bodySha256": "d7e276457fa7f180f1e2d25fe08f31267e3ba526d6c641822fdc6af565d565dd",
+    "bodyEncodedBytes": 1220363,
+    "compactBodySha256": "860404749d93d2c7a302e6165ffddb7ee04d6666d7a853573a8b4b523045ab07",
+    "compactBodyEncodedBytes": 820934,
     "playableClips": [
       "Hit_Chest",
       "Idle_Loop",
@@ -111,6 +183,42 @@
     "compactHoodSha256": "9206b0624a51c0c138623d03d6edc860695094c1ca25e03b5cf8447066368e43",
     "compactHoodEncodedBytes": 199577,
     "bodyGeometryLossless": true,
-    "bindExact": true
+    "bindExact": true,
+    "torsoCoverage": {
+      "revision": "human-medial-back-v1",
+      "partition": {
+        "source": "HumanV1Body",
+        "covered": "HumanTorsoCore",
+        "originalTriangles": 13206,
+        "coveredTriangles": 446,
+        "exposedTriangles": 12760,
+        "vertexReindexing": false
+      },
+      "originalCoreTriangles": 414,
+      "addedTriangles": 32,
+      "landmarks": {
+        "hips": [
+          0.0034376357216387987,
+          1.007189154624939,
+          0.00343721779063344
+        ],
+        "neck": [
+          0.003437428968027234,
+          1.4609274864196777,
+          -0.051561616361141205
+        ],
+        "unit": 1.0079866961428994,
+        "halfWidth": 0.14667571746548147,
+        "backLimitZ": -0.016722516132224547
+      },
+      "verification": {
+        "triangles": 13206,
+        "attributesExact": true,
+        "morphsExact": true,
+        "skinExact": true,
+        "framesExact": true,
+        "sourceAnimationExact": true
+      }
+    }
   }
 ]

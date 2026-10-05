@@ -1,7 +1,7 @@
 # M5 saved Human identity implementation
 
 Scope: finish M5 tasks 2–5 on the corrected face approved by the user. Continue
-autonomously under [the active goal](../../autonomous-continuation.md). Production
+autonomously under [the continuation scope](../../autonomous-continuation.md). Production
 currently remains v5 / M7 source `4063f49`. Physical-phone acceptance stays in M10.
 
 ## Checkpoint A — bounded recipe and history
@@ -127,25 +127,16 @@ limits. Reviewed Pages motion is Telegram 857 / VE. This closes the recorded loc
 ordinary-build overrun; it does not establish final Pages/public/device acceptance.
 [Result and continuation](results/m5-startup-packaging-2026-10-05.md).
 
-Next concrete fit package:
+**The subsequent saved-back correction is verified and delivered:** native
+sprint and detailed GPU picking identify the exposed faces; the publisher repairs
+only the existing back partition, with independent source preservation and live
+review. [Result](results/m5-moving-back-coverage-2026-10-05.md).
 
-1. Reproduce the light right upper-back patch seen in the saved tall/stout,
-   exposed-ponytail, largest mixed outfit during normal W movement. Record actual
-   active clip/mask/phase, native mesh ownership and compact/full clothing stage.
-   A static walk comparison did not reproduce it; its UI labels were stale after
-   API-driven changes, so retain it as diagnostic evidence only.
-2. Use matched bald/ponytail and native component-visibility controls at the **same
-   observed pose** to identify the part before changing art. Do not label a hair
-   tip, hand, neck or garment pixel as skin from colour alone. Reuse the current
-   native mixer/coverage/source authoring path; preserve the approved face and binds.
-3. Correct a reproduced valid defect, then review the exposed/hooded identities
-   across representative presets, body endpoints, ordinary composed gait/casts and
-   compact/full clothing. Raw carry previews remain diagnostics, not melee damage.
-   Keep visible boot sole/seam work explicit in M6 and the authorized defect queue.
-4. Run final **Pages-output** cold/FPS cohorts after all required source changes,
-   with media/game isolation checked at useful boundaries. Retain variable bridge
-   tails and first-use GPU outliers. Then commit/push and release through the normal
-   public bundle/asset/load/movement/rollback gate; no approval round is needed.
+The user's [focused 12-hour plan](next-12-hours-2026-10-05.md) now owns immediate
+continuation: shared default Human reproduction, valid authored boot correction,
+source freeze, final Pages/public quiet-machine cohorts and verified release.
+Do not repeat the previous static-walk diagnostic or expand an unchanged capture
+matrix. Preserve the acceptance conditions below and the historical receipts.
 
 **Saved-route fit checkpoint implemented:** 630 live views cover the three selected
 identities, all five Human body cases, every seven named preset plus bare and two

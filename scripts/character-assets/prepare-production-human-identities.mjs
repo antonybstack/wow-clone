@@ -21,6 +21,8 @@ import {startupProvenance} from '../ashen-reach/startup-provenance.mjs';
 import {identityGeometryHash,identityAnimationHash} from './human-identity-proof.mjs';
 import {manifestBodyCoverage} from '../../src/ashen-reach/coverage-manifest.js';
 import {compactPlayableAnimations} from './compact-playable-animations.mjs';
+import {repairIdentityTorsoCoverage} from './repair-identity-torso-coverage.mjs';
+import {verifyCoveragePartition} from './verify-coverage-partition.mjs';
 const out=process.env.ASHEN_IDENTITY_OUT||'public/ashen-reach/human-identity-v1';
 const urlRoot='/ashen-reach/human-identity-v1';
 const review='.cache/character-mmo/identity-review-v1';
@@ -84,11 +86,27 @@ for(const preset of HUMAN_IDENTITY_PRESETS.filter(p=>p.sourceLabel)){
  normalizeHumanBind(doc.getRoot(),reference,'HumanV1Body','HumanV1Body',{exactReference:true});
  assert.equal(identityGeometryHash(doc.getRoot()),acceptedGeometry,'Canonical bind copy changed accepted face geometry');
  assert.equal(identityAnimationHash(doc.getRoot()),acceptedCurves,'Canonical bind copy changed source animation');
+ // The old accepted split left medial back triangles with arm influences
+ // visible under shirts. Reclassify indices only; retain the accepted source
+ // pins as independent proof rather than rewriting them to accept this output.
+ const fullSource=await fs.readFile(`.cache/character-mmo/identity-v1/human-${label}-painted.glb`);assert.equal(sha(fullSource),pin.sha256);
+ const sourceDoc=await io.readBinary(fullSource);
+ normalizeHumanBind(sourceDoc.getRoot(),reference,'HumanV1Body','HumanV1Body',{exactReference:true});
+ verifyCoveragePartition(sourceDoc.getRoot(),doc.getRoot(),'HumanV1Body','HumanTorsoCore');
+ const otherGeometry=()=>identityGeometryHash({listMeshes:()=>doc.getRoot().listMeshes().filter(m=>!['HumanV1Body','HumanTorsoCore'].includes(m.getName()))});
+ const acceptedOtherGeometry=otherGeometry(),torsoCoverage=repairIdentityTorsoCoverage(doc);
+ // This bounded policy is reviewed on the three pinned authored bodies. A
+ // changed classifier or source must earn a new fit review, not hide a larger
+ // surface merely because it still repairs the original five picked faces.
+ assert.equal(torsoCoverage.addedTriangles,32,'Unreviewed identity back partition');
+ assert.equal(otherGeometry(),acceptedOtherGeometry,'Coverage changed accepted eyes, brows or ponytail');
+ assert.equal(identityAnimationHash(doc.getRoot()),acceptedCurves,'Coverage changed source curves');
+ const repaired=await io.writeBinary(doc);
+ torsoCoverage.verification=verifyCoveragePartition(sourceDoc.getRoot(),(await io.readBinary(repaired)).getRoot(),'HumanV1Body','HumanTorsoCore');
  const body=await encode(doc,'body',published.items.body);
  body.coverageRevision=audition.items.body.coverageRevision;
  // Restore full accepted texture maps, not the already embedded 256px preview.
  body.textures=[];
- const fullSource=await fs.readFile(`.cache/character-mmo/identity-v1/human-${label}-painted.glb`);assert.equal(sha(fullSource),pin.sha256);
  const fullRoot=(await io.readBinary(fullSource)).getRoot();
  for(const texture of fullRoot.listTextures()){
   const bytes=Buffer.from(texture.getImage()),ext={'image/png':'png','image/jpeg':'jpg','image/webp':'webp'}[texture.getMimeType()];assert(ext);
@@ -122,6 +140,7 @@ for(const preset of HUMAN_IDENTITY_PRESETS.filter(p=>p.sourceLabel)){
  manifestBodyCoverage(manifest,'human');
  manifest.identity={preset:preset.id,components:preset.components,sourceLabel:label,sourceSha256:pin.sha256,
   bind:'canonical-source-65-v1',sourceBodySha256:prepared.bodySha256,sourceHoodSha256:hoodPin.assembledSha256,
+  torsoCoverage,
   head:{id:preset.components.head,url:body.url,meshes:['HumanV1Body','HumanIdentityEyes','HumanIdentityBrows']},
   hair:{id:preset.components.hair,url:body.url,meshes:label.endsWith('-hair')?['HumanPonytail01']:[]}};
  delete manifest.provenance;delete manifest.reproduction;delete manifest.coverageProof;
@@ -129,7 +148,7 @@ for(const preset of HUMAN_IDENTITY_PRESETS.filter(p=>p.sourceLabel)){
  const bytes=Buffer.from(JSON.stringify(manifest)),name=`manifest-${preset.id}-${sha(bytes).slice(0,12)}.json`;
  await fs.writeFile(path.join(out,name),bytes);index.presets[preset.id]={url:`${urlRoot}/${name}`,sha256:sha(bytes),bytes:bytes.length,components:preset.components,manifest};
  ownedReferences+=bytes.toString();
- reports.push({preset:preset.id,sourceLabel:label,bodySha256:body.sha256,bodyEncodedBytes:body.encodedBytes,compactBodySha256:compactBody.sha256,compactBodyEncodedBytes:compactBody.encodedBytes,playableClips,hoodSha256:hood.sha256,hoodEncodedBytes:hood.encodedBytes,compactHoodSha256:compactHood.sha256,compactHoodEncodedBytes:compactHood.encodedBytes,bodyGeometryLossless:true,bindExact:true});
+ reports.push({preset:preset.id,sourceLabel:label,bodySha256:body.sha256,bodyEncodedBytes:body.encodedBytes,compactBodySha256:compactBody.sha256,compactBodyEncodedBytes:compactBody.encodedBytes,playableClips,hoodSha256:hood.sha256,hoodEncodedBytes:hood.encodedBytes,compactHoodSha256:compactHood.sha256,compactHoodEncodedBytes:compactHood.encodedBytes,bodyGeometryLossless:true,bindExact:true,torsoCoverage});
 }
 index.provenance=await startupProvenance(['scripts/character-assets/prepare-production-human-identities.mjs'],['public/ashen-reach/human-shape-v1/manifest.json',`${pinRoot}/source-summary.json`,`${pinRoot}/preparation.json`,`${pinRoot}/hood-old-fit.json`,`${pinRoot}/hood-young-fit.json`]);
 await fs.writeFile(path.join(out,'manifest.json'),JSON.stringify(index));

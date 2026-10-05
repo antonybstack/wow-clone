@@ -4,6 +4,9 @@ Start with **[CURRENT.md](CURRENT.md)** for the shipped game and current initiat
 
 ## Active plan
 
+- **[Next 12 hours: release the creator and prove the equipment factory](plans/character-mmo/next-12-hours-2026-10-05.md)**
+- **[Workflow review and immediate changes](reviews/workflow-2026-10-05.md)**
+
 - **[Long-term vision: 100 milestones, ten categories](plans/character-mmo/vision-roadmap.md)**
 - **[Next ten milestones](plans/character-mmo/next-ten.md)**
 - **[Current-state review and changed priorities — 2026-09-29](reviews/current-state-priorities-2026-09-29.md)**

@@ -33,6 +33,11 @@ export async function verifyProductionHumanIdentities({readFile=fs.readFile}={})
   manifestBodyCoverage(manifest,'human');
   assert.equal(manifest.identity.preset,preset.id);assert.deepEqual(entry.components,preset.components);assert.deepEqual(manifest.identity.components,preset.components);
   assert.equal(manifest.identity.bind,'canonical-source-65-v1');assert.equal(manifest.fitId,current.fitId);assert.equal(manifest.shapeFamily,current.shapeFamily);assert.deepEqual(manifest.targetNames,current.targetNames);
+  const torso=manifest.identity.torsoCoverage;
+  assert.equal(torso?.revision,'human-medial-back-v1','Missing reviewed back coverage policy');
+  assert(torso.addedTriangles>0&&torso.partition.coveredTriangles===torso.originalCoreTriangles+torso.addedTriangles,'Invalid back coverage counts');
+  assert.equal(torso.verification?.triangles,torso.partition.originalTriangles,'Invalid written triangle union');
+  for(const field of ['attributesExact','morphsExact','skinExact','framesExact','sourceAnimationExact'])assert.equal(torso.verification[field],true,`Missing written ${field} proof`);
   const playable=manifest.compactItems?.body;
   assert.equal(playable?.detail,'playable');
   assert(Array.isArray(playable.playableClips),'Missing compact playable-clip declaration');

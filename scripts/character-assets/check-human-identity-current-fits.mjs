@@ -35,6 +35,11 @@ const mixed={
  'mixed-open':{...EQUIPMENT_PRESETS.duskguard.loadout,torso:'lectorCoat',gloves:'graveweaverGloves',offHand:'graveweaverBook'},
 };
 const outfits=process.env.ASHEN_IDENTITY_OUTFITS?.split(',')||(saved?['bare',...Object.keys(EQUIPMENT_PRESETS),...Object.keys(mixed)]:['bare','wayfarer','pilgrim','warden','lector','duskguard']);
+// Optional bounded native-pose matrix. This is visual evidence, not continuous
+// gameplay or performance acceptance; the ordinary-input clip remains separate.
+const motionCases=(process.env.ASHEN_IDENTITY_FIT_MOTIONS||'idle:0').split(',').map(value=>{
+ const [id,raw]=value.split(':'),time=Number(raw);assert(id&&raw!==undefined&&Number.isFinite(time)&&time>=0,'Require motion:seconds');return {id,time};
+});
 const report={url,direct,saved,control,scope:saved?'Published saved v6 ordinary-route outfit/shape fits; no startup, FPS or exhaustive mixed-loadout acceptance':'Connected source audition with current clothing; no identity recipe acceptance',firstPlay:[],rows:[],errors:[]};
 // The first-play boundary precedes optional creator controls/getAppearance.
 // Read actual native meshes/gear and saved data there; assert the committed
@@ -45,7 +50,7 @@ const snapshot=page=>page.evaluate(parts=>{
  const names=new Set([...parts,...Object.keys(bodySegments),...identityNames]);
  const meshes=ASHEN.scene.meshes.filter(m=>names.has(m.name)).map(m=>({name:m.name,visible:m.visible!==false,weights:m.morphTargets?Array.from(m.morphTargets.weights):null}));
  const root=ASHEN.body.root;
- return {appearance:ASHEN.getAppearance?.()??null,stored:JSON.parse(localStorage.getItem('ashen.appearance.v2')),height:ASHEN.player.heightScale,capsuleHeight:ASHEN.player.capsuleHeight,rootScale:[root.scaling.x,root.scaling.y,root.scaling.z],shapeWeights:ASHEN.humanShape?.weights??null,equipment:ASHEN.equipment.getState(),bodySegments,meshes,visible:meshes.filter(m=>m.visible&&identityNames.includes(m.name)).map(m=>m.name),gpuErrors:ASHEN.gpu.errors.slice(),physics:ASHEN.player.getDebugState().usingPhysics,recoveries:ASHEN.player.getDebugState().recoveries};
+ return {appearance:ASHEN.getAppearance?.()??null,stored:JSON.parse(localStorage.getItem('ashen.appearance.v2')),height:ASHEN.player.heightScale,capsuleHeight:ASHEN.player.capsuleHeight,rootScale:[root.scaling.x,root.scaling.y,root.scaling.z],shapeWeights:ASHEN.humanShape?.weights??null,equipment:ASHEN.equipment.getState(),bodySegments,meshes,visible:meshes.filter(m=>m.visible&&identityNames.includes(m.name)).map(m=>m.name),preview:ASHEN.body.inspection?.getState()??null,playing:ASHEN.body.getPlaying(),gpuErrors:ASHEN.gpu.errors.slice(),physics:ASHEN.player.getDebugState().usingPhysics,recoveries:ASHEN.player.getDebugState().recoveries};
 },partNames);
 await fs.mkdir(out,{recursive:true});
 const browser=await chromium.connectOverCDP(`http://127.0.0.1:${port}`);
@@ -108,10 +113,19 @@ try{
      await page.evaluate(full=>{ASHEN.armory.close();ASHEN.armory.open();ASHEN.body.inspection.select('idle');ASHEN.body.inspection.setPaused(true);ASHEN.body.inspection.seek(0);ASHEN.armory.setFocus({height:(full ? .85 : 1.48)*ASHEN.player.heightScale,radius:(full?3.5:2.2)*ASHEN.player.heightScale,beta:Math.PI/2});},saved);
      assert.deepEqual(await page.locator('#armory [data-equipment]').evaluateAll(nodes=>Object.fromEntries(nodes.map(n=>[n.dataset.equipment,n.value||null]))),loadout,'Photographed equipment controls must name the actual pieces');
      if(saved)await page.check('#armory [data-light]');
+     for(const motion of motionCases){
+     // Use the real selector so a diagnostic API pose cannot leave a stale
+     // photographed "Idle" label, as the first back-patch control did.
+     await page.selectOption('#armory [data-motion]',motion.id);
+     await page.evaluate(m=>{ASHEN.body.inspection.setPaused(true);ASHEN.body.inspection.seek(m.time);},motion);
+     assert.equal(await page.locator('#armory [data-motion]').inputValue(),motion.id);
      for(const [angle,alpha]of [['front',Math.PI/2],['side',0],['back',-Math.PI/2]]){
       await page.evaluate(a=>{ASHEN.armory.camera.alpha=a;},alpha);await page.waitForTimeout(90);
-      const file=`${label}-${shape.name}-${outfit}-${angle}.png`;await page.screenshot({path:path.join(out,file)});
+      const suffix=process.env.ASHEN_IDENTITY_FIT_MOTIONS?`-${motion.id}-${motion.time}`:'';
+      const file=`${label}-${shape.name}-${outfit}${suffix}-${angle}.png`;await page.screenshot({path:path.join(out,file)});
       const state=await snapshot(page);
+      assert.equal(state.preview.id,motion.id);assert(state.preview.paused);
+      assert(Math.abs(state.preview.time-motion.time)<1e-4,'Requested phase must reach the native preview without clamping');
       assert(state.physics);assert.deepEqual(state.gpuErrors,[]);assert.equal(state.appearance.shape.build,shape.build);assert.equal(state.appearance.shape.height,shape.height);
       assert.equal(state.height,shape.height);
       if(!(preset?.id==='starter'&&shape.build===0&&state.shapeWeights===null))assert.deepEqual(state.shapeWeights,[Math.max(0,-shape.build),Math.max(0,shape.build)]);
@@ -143,12 +157,13 @@ try{
       }
       if(saved){assert.deepEqual(state.stored,state.appearance);assert.deepEqual(state.appearance.components,seed.components);}
       const body=saved?manifest?.compactItems.body:manifest?.items.body;
-      report.rows.push({label,preset:saved?preset.id:null,sourceSha256:manifest?.identityReview?.sourceSha256||manifest?.identity?.sourceSha256,bodyUrl:body?.url,bodySha256:body?.sha256,shape,outfit,angle,view:saved?'full-body':'head',file,manifestHits,bodyHits,...state});
+      report.rows.push({label,preset:saved?preset.id:null,sourceSha256:manifest?.identityReview?.sourceSha256||manifest?.identity?.sourceSha256,bodyUrl:body?.url,bodySha256:body?.sha256,shape,outfit,motion,angle,view:saved?'full-body':'head',file,manifestHits,bodyHits,...state});
+     }
      }
      // Full silhouettes do not resolve a neck, scalp or tie. Save separate live
      // detail views at both neutral and maximum displacement, using the same
      // native camera rather than enlarging or retouching the full-body pixels.
-     if(saved&&['neutral','tall-slender','tall-stout'].includes(shape.name)){
+     if(saved&&motionCases.length===1&&['neutral','tall-slender','tall-stout'].includes(shape.name)){
       await page.evaluate(()=>ASHEN.armory.setFocus({height:1.53*ASHEN.player.heightScale,radius:1.7*ASHEN.player.heightScale,beta:Math.PI/2}));
       for(const [angle,alpha]of [['front',Math.PI/2],['back',-Math.PI/2]]){
        await page.evaluate(a=>ASHEN.armory.camera.alpha=a,alpha);await page.waitForTimeout(90);

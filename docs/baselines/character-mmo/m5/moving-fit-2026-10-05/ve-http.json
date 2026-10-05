@@ -1,0 +1,15 @@
+{
+  "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m5-back-coverage-2026-10-05-edcd54cd0daf.mp4",
+  "whole": {
+    "status": 200,
+    "type": "video/mp4",
+    "bytes": 11351047,
+    "sha256": "edcd54cd0daf7bfba8f5d75a881590d46495b47bb08088b792fa6ca93f1463d2"
+  },
+  "range": {
+    "status": 206,
+    "contentRange": "bytes 0-1023/11351047",
+    "bytes": 1024
+  },
+  "matched": true
+}

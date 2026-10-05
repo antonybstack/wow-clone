@@ -1,9 +1,13 @@
 # Autonomous continuation
 
 The user explicitly authorized automatic continuation on 2026-10-04. This Codex
-session now has an **active native goal** for the remaining implementable character
-customization and armor-swapping work in [CURRENT](CURRENT.md) and
-[the active queue](plans/character-mmo/next-ten.md), starting with saved Human identity.
+session created a native goal for the remaining implementable character
+customization and armor-swapping work. At the 2026-10-05 runtime check its status
+is **`blocked`**, not active; that status cannot be resumed by a repository file.
+The latest user instruction authorizes meaningful work to continue. The
+[focused 12-hour plan](plans/character-mmo/next-12-hours-2026-10-05.md) owns immediate
+order and [the active queue](plans/character-mmo/next-ten.md) retains broader scope.
+Do not claim automatic continuation is currently guaranteed.
 
 Continue through implementation, verification, live review, delivery, commit/push
 and release gates without requesting another “proceed.” Finish a bounded package

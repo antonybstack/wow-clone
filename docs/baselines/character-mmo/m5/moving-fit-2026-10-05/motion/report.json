@@ -1,0 +1,70 @@
+{
+  "start": {
+    "x": -0.0005983858960373521,
+    "z": -0.0010559750466327966,
+    "recoveries": 0
+  },
+  "end": {
+    "x": 0.3689946181885618,
+    "z": 70.4302969148361
+  },
+  "recoveries": 0,
+  "physics": true,
+  "dev": {
+    "enabled": true,
+    "god": true,
+    "flying": false
+  },
+  "marks": {
+    "begin": 183.40000000596046,
+    "engine-created": 282.40000000596046,
+    "gpu-probe-end": 284.59999999403954,
+    "world-start": 286.79999999701977,
+    "havok-runtime-available": 327.09999999403954,
+    "world-end": 686.7999999970198,
+    "havok-start": 750.7000000029802,
+    "havok-runtime-start": 751.5999999940395,
+    "havok-runtime-end": 751.5999999940395,
+    "havok-world-end": 753.7000000029802,
+    "havok-colliders-end": 760.9000000059605,
+    "havok-controller-end": 762.0999999940395,
+    "havok-end": 763.2000000029802,
+    "body-start": 763.5,
+    "body-end": 790.9000000059605,
+    "equipment-start": 792.9000000059605,
+    "equipment-end": 811.0999999940395,
+    "register-start": 820.4000000059605,
+    "register-end": 848.2999999970198,
+    "first-render-return": 859,
+    "supported-frame-submitted": 885.4000000059605,
+    "first-gpu-completed": 1072.7000000029802,
+    "supported-frame-completed": 1078.4000000059605,
+    "playable": 1081.4000000059605,
+    "bg-start": 1081.5999999940395,
+    "bg-imports-end": 1181.2999999970198,
+    "bg-dummy-end": 1897.9000000059605,
+    "bg-enemies-end": 1944.4000000059605,
+    "combat-ready": 2352.2000000029802,
+    "late-register-start": 2422.2000000029802,
+    "late-register-end": 2423.5999999940395,
+    "hostiles-ready": 2477.5,
+    "bg-foliage-end": 11589.09999999404,
+    "ready": 13184.59999999404,
+    "region-ready": 13184.59999999404
+  },
+  "streaming": {
+    "blocks": 1035,
+    "worstInstallMs": 2.2999999970197678,
+    "backgroundWorstInstallMs": 2.2999999970197678,
+    "backgroundSlowest": {
+      "name": "Grave stonework",
+      "triangles": 4096
+    },
+    "totalInstallMs": 832.4999998807907,
+    "allocatedBytes": 210049236
+  },
+  "enemies": 7,
+  "foliage": 117242,
+  "recording": true,
+  "errors": []
+}

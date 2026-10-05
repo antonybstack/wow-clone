@@ -1,0 +1,35 @@
+{
+  "messageId": 858,
+  "sourceWidth": 1280,
+  "sourceHeight": 720,
+  "durationSeconds": 19.458259,
+  "inline": {
+    "width": 738.1875,
+    "height": 415.21875,
+    "objectFit": "contain",
+    "visuallyReviewed": true
+  },
+  "expanded": {
+    "width": 1280,
+    "height": 720,
+    "objectFit": "contain",
+    "visuallyReviewed": true
+  },
+  "fullWindow": {
+    "elementWidth": 2514,
+    "elementHeight": 1275,
+    "objectFit": "contain",
+    "letterboxPreservesAspect": true,
+    "visuallyReviewed": true,
+    "documentFullscreenElement": null
+  },
+  "nativeOSFullscreen": "unverified",
+  "telegramDesktop": "unavailable",
+  "finalAudit": {
+    "loadedVideos": 4,
+    "allPaused": true,
+    "viewerLeftOpen": true,
+    "viewerTimeSeconds": 6.753349
+  },
+  "method": "Actual Telegram Web A UI transport/Fullscreen controls and screenshots; read-only DOM media metrics. Full-window is not claimed native OS fullscreen."
+}

@@ -1,0 +1,13 @@
+{
+  "scope": "Read-only CoreDevice inventory; no physical phone runtime acceptance",
+  "availablePhysicalPhones": 0,
+  "devices": [
+    {
+      "type": "iPhone",
+      "model": "iPhone 18 Pro",
+      "reality": "simulated",
+      "bootState": "shutdown",
+      "connectionState": "disconnected"
+    }
+  ]
+}

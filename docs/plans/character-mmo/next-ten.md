@@ -15,6 +15,12 @@ complete because the plan moved; the capability flags in
 an exit. The [original M001–M010 sequence](../../archive/plans/character-mmo-next-ten-2026-09-27.md)
 and the [long-term horizon](vision-roadmap.md) remain references, not a second queue.
 
+**Immediate priority, 2026-10-05:** the user's [focused 12-hour plan](next-12-hours-2026-10-05.md)
+now owns execution order: visible fit corrections, production saved creator,
+one real new item through the factory, then verified content delivery. The
+[workflow review](../../reviews/workflow-2026-10-05.md) bounds repeated checks.
+This broader queue retains its open exits; the focused plan does not mark them closed.
+
 ## Priority and intended outcome
 
 A player should be able to build a character they recognise, dress it from the catalogue,
@@ -45,8 +51,10 @@ Two things gate it today, and both are measured rather than suspected:
   now passes six local twenty-run cold cohorts with p95 808–972 ms and preserves all
   measured art/physics bytes. Settled observations and clean affected-route repeats
   exceed 200 FPS; the initial batch's media-isolation uncertainty and variable tails
-  remain explicit. Actual Pages/public cohorts, complete outfit/motion fits (including
-  a newly observed moving upper-back patch), boot defects and release gates stay open.
+  remain explicit. The [saved-back correction](results/m5-moving-back-coverage-2026-10-05.md) is now
+  verified and delivered. Shared default coverage, valid boot defects and actual
+  Pages/public release cohorts remain open. Further fit review targets changed
+  seams and unresolved cases rather than expanding unchanged screenshot grids.
 * **Armor swapping works but is under-evidenced.** The catalogue now enumerates **6,912**
   combinations, 6,048 valid, with zero validator disagreements — the "768" carried in this plan
   dated from an 8-item catalogue and is corrected. Per-slot hot swapping under motion
@@ -206,17 +214,14 @@ Test joins/leaves, out-of-order input, reconnect, stale appearance revisions and
 
 ## 5 — Modular Human identity: head, hair and adult age
 
-**Latest checkpoint:** [native startup packaging and local cohorts](results/m5-startup-packaging-2026-10-05.md)
-passes 120/120 local ordinary-build cold starts, p95 808–972 ms, with the saved native
-identity/shape present at first play. Native Pages bytes/cache policies and ten
-prefetch/eight saved cases also pass. These build seals are distinct; public CDN and
-physical-phone acceptance are not inferred. Reviewed motion is Telegram 857 / VE.
-Identify the moving upper-back patch, finish representative outfit/motion fits and
-valid boot defects, then run the actual Pages/public quiet-machine release gates.
-No user WoW process is present at the current audit; previous paragraphs below
-record historical checks. M5 remains open and unreleased.
+**Latest checkpoint:** [saved-back correction](results/m5-moving-back-coverage-2026-10-05.md)
+is verified and delivered as Telegram 858 / VE. The native index-only repair
+preserves the approved source interface. Follow the [12-hour plan](next-12-hours-2026-10-05.md)
+for shared Human/boot corrections and final Pages/public release gates. M5 stays
+open and unreleased. Earlier packaging/mobile paragraphs are dated evidence;
+their conditions do not describe the current process inventory.
 
-**Latest supporting checkpoint:** [mobile Armory preview](results/m5-mobile-preview-2026-10-04.md)
+**Earlier supporting checkpoint, 2026-10-04:** [mobile Armory preview](results/m5-mobile-preview-2026-10-04.md)
 delivers native stage viewport/orbit/pinch, responsive controls and height framing.
 Fifteen built layout cases, disposal/reopen and desktop mobile/WebKit/depth fallback
 pass, with reviewed Telegram 855 / VE motion. Native 1.31.1 contacts are gated only

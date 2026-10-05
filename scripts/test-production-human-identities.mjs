@@ -61,6 +61,25 @@ test('compact compiler refuses a missing playable curve before changing the sour
  await assert.rejects(compactPlayableAnimations(doc),/Missing playable source clip: LavaBall_Lower/);
  assert.equal(identityAnimationHash(root),before);
 });
+// These are the actual indexed back faces identified by Lite's GPU picker in
+// ordinary Sprint_Loop at native phase .58. Weathered's head has a different
+// vertex count; identify the unchanged torso by positions, not Prime's IDs.
+// Meshopt may rotate triangle corners, so compare their cyclic keys.
+// https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/18-picking.md
+for(const [preset,entry]of Object.entries(index.presets))test(`${preset} covers the reproduced back triangles in both native bodies`,async()=>{
+ const faces=[[1299,1300,2633],[1298,1299,2461],[1295,1299,1298],[1294,1298,2457],[1294,1292,1298]];
+ const fixture={1299:[-.0649267584,1.2605881691,-.1380001009],1300:[-.0667420253,1.3082326651,-.1637925506],2633:[.0004298614,1.3206439018,-.1448770314],
+  1298:[-.0525749475,1.2120630741,-.1208043322],2461:[.0004297927,1.2664856911,-.1268229336],1295:[-.1263978183,1.2147670984,-.1182247251],
+  1294:[-.0322423577,1.1633079052,-.0941493288],2457:[.0004298101,1.2148997784,-.1061879694],1292:[-.0803245082,1.1633384228,-.0838324428]};
+ const positionKey=p=>p.map(v=>v.toFixed(6)).join(',');
+ const key=t=>{const first=t.slice().sort()[0],i=t.indexOf(first);return t.slice(i).concat(t.slice(0,i)).join('|');};
+ for(const tier of ['items','compactItems']){
+  const root=(await read(entry.manifest[tier].body)).getRoot(),core=root.listMeshes().find(m=>m.getName()==='HumanTorsoCore').listPrimitives()[0],indices=core.getIndices().getArray();
+  const position=core.getAttribute('POSITION').getArray();
+  const hidden=new Set(Array.from({length:indices.length/3},(_,i)=>key(Array.from(indices.slice(i*3,i*3+3),v=>positionKey(Array.from(position.slice(v*3,v*3+3)))))));
+  for(const face of faces)assert(hidden.has(key(face.map(v=>positionKey(fixture[v])))),`${preset}/${tier}: reproduced skin triangle stays exposed`);
+ }
+});
 for(const [preset,entry]of Object.entries(index.presets))for(const [tier,id]of [['items','body'],['compactItems','body'],['items','graveweaverHood'],['compactItems','graveweaverHood']])test(`${preset}/${tier}/${id} has exact native bind, geometry/morph proof and source curves`,async()=>{
  const asset=entry.manifest[tier][id],doc=await read(asset),root=doc.getRoot(),actual=await raw(doc);
  assert.equal(assertCopiedSkinBind(referenceRaw.json,referenceRaw.binary,actual.json,actual.binary).jointCount,65);

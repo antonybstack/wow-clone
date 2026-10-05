@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 858,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 19.458259,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 20
+  },
+  "verified": true,
+  "file": "pages-motion.mp4",
+  "sha256": "edcd54cd0daf7bfba8f5d75a881590d46495b47bb08088b792fa6ca93f1463d2",
+  "sentAt": "2026-10-05T14:22:34.354546+00:00"
+}
