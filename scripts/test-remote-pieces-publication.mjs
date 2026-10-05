@@ -62,7 +62,14 @@ test('the index agrees with the descriptor and the files on disk',async()=>{
     assert.equal(index.sourceCompilerSha256,descriptor.published.sourceCompilerSha256);
     const onDisk=(await fs.readdir(DIR)).filter(f=>f.endsWith('.glb')).sort();
     const listed=[...new Set(index.pieces.map(p=>p.file))].sort();
-    assert.deepEqual(onDisk,listed,'published files and index disagree');
+    assert(listed.every(file=>onDisk.includes(file)),'published index points at missing files');
+    // The publisher intentionally retains old immutable URLs for returning
+    // clients. Every retained file must still match its own content address;
+    // an unreferenced historical piece is not a stale current descriptor.
+    for(const file of onDisk.filter(file=>!listed.includes(file))){
+        const address=/-([a-f0-9]{64})\.glb$/.exec(file)?.[1];
+        assert(address&&sha(await fs.readFile(`${DIR}/${file}`))===address,'invalid retained immutable piece');
+    }
     assert.equal(index.totalBytes,index.pieces.reduce((n,p)=>n+p.bytes,0));
 });
 
@@ -71,4 +78,5 @@ test('nothing stale: the descriptor names the compiler that is actually present'
     assert.equal(descriptor.published.sourceCompilerSha256,current,
         'published set was built by a different prepare-remote-pieces.mjs; re-prepare and re-publish');
     assert.equal(descriptor.manifest.compilerSha256,current);
+    for(const data of Object.values(descriptor.manifest.races))assert.equal(sha(await fs.readFile(data.sourceManifest.path)),data.sourceManifest.sha256,'published source manifest changed; re-prepare and re-publish');
 });

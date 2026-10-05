@@ -16,7 +16,7 @@
    "human": {
     "sourceManifest": {
      "path": "public/ashen-reach/human-shape-v1/manifest.json",
-     "sha256": "7ba5da7ae693f5f2524146fbe7895acf456b184989dd5fbe45e6d8a2ad30363c"
+     "sha256": "5d870be8a059f9ac9d323cabf46ed4470e24133e587cfadabb72cfc99b26a630"
     },
     "manifest": {
      "schema": 1,
@@ -38,13 +38,15 @@
         "arm.lower",
         "hand",
         "leg.upper",
-        "leg.lower",
-        "foot"
+        "leg.lower"
        ],
        "HumanTorsoCore": [
         "torso.upper",
         "torso.lower",
         "waist"
+       ],
+       "HumanFootCore": [
+        "foot"
        ]
       }
      },
@@ -88,11 +90,12 @@
      },
      "items": {
       "body": {
-       "bytes": 1943832,
-       "sha256": "96e0f64514c98b475f3b00314c17fe37544506080e87c4dc354fb6b13ea6d552",
+       "bytes": 1944448,
+       "sha256": "b34e5fe6362fad3ab0193121a43e96845f7c4b3a636905b7dd951d4b955f127e",
        "meshes": [
         "HumanV1Body",
-        "HumanTorsoCore"
+        "HumanTorsoCore",
+        "HumanFootCore"
        ],
        "shapeFamily": "ashen-human-shape-v1",
        "textures": [
@@ -109,11 +112,11 @@
         }
        ],
        "coverageRevision": "conservative-geosets-v1",
-       "file": "body-96e0f64514c98b475f3b00314c17fe37544506080e87c4dc354fb6b13ea6d552.glb",
+       "file": "body-b34e5fe6362fad3ab0193121a43e96845f7c4b3a636905b7dd951d4b955f127e.glb",
        "source": {
-        "path": "public/ashen-reach/human-shape-v1/body-coverage-b93fb71aa490.bin",
-        "sha256": "f92b16558a8c4154d04f3878383347255058af9cbc72aaf08279eaadc7740bf7",
-        "bytes": 1912448
+        "path": "public/ashen-reach/human-shape-v1/body-coverage-e6892517e0a4.bin",
+        "sha256": "56c4c88d8c226916ce933d2ab992a1536f8ea5ef1b36401599f5cf0b5d42c736",
+        "bytes": 1913064
        },
        "verification": {
         "geometryExact": true,
@@ -2722,7 +2725,7 @@
   "human": {
    "pieces": {
     "body": {
-     "sha256": "96e0f64514c98b475f3b00314c17fe37544506080e87c4dc354fb6b13ea6d552",
+     "sha256": "b34e5fe6362fad3ab0193121a43e96845f7c4b3a636905b7dd951d4b955f127e",
      "bounds": [
       {
        "name": "HumanV1Body",
@@ -2749,9 +2752,22 @@
         2.0057855359450083,
         1.06896179784637
        ]
+      },
+      {
+       "name": "HumanFootCore",
+       "minimum": [
+        -0.9226998895844188,
+        -0.37261230803065515,
+        -1.5794350174980771
+       ],
+       "maximum": [
+        0.9290005874913303,
+        2.0057855359450083,
+        1.06896179784637
+       ]
       }
      ],
-     "points": 5598540,
+     "points": 8397810,
      "escaped": 0
     },
     "graveweaverHood": {
@@ -5587,7 +5603,7 @@
    }
   }
  },
- "points": 142120095,
+ "points": 144919365,
  "escaped": 0,
  "finalByteCache": {
   "entries": 0,
@@ -5600,11 +5616,11 @@
  "gpuErrors": [],
  "published": {
   "version": 1,
-  "publishedAt": "2026-10-04T23:57:46.891Z",
+  "publishedAt": "2026-10-05T15:38:28.169Z",
   "sourceCompilerSha256": "e9bb55b8b67195c5fe92cb8ebfc86aa59ee654a614bcec4154ab5c721a531563",
   "pieceCount": 45,
   "uniqueFiles": 45,
-  "totalBytes": 19418944,
+  "totalBytes": 19419560,
   "lite": "1.31.1",
   "catalogVersion": "appearance-catalog-v6"
  }

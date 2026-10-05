@@ -33,7 +33,7 @@ try {
     for (let x = -SPAN; x <= SPAN; x += STEP) {
         for (let z = -SPAN; z <= SPAN; z += STEP) {
             const row = await page.evaluate(async ([px, pz]) => {
-                const { height } = await import('/src/ashen-reach/geometry.js');
+                const height = ASHEN.world.groundHeight;
                 const terrain = height(px, pz);
                 // Drop from clearly above so physics resolves the contact rather than starting inside it.
                 ASHEN.player.setWorldPos(px, terrain + ASHEN.player.capsuleHeight / 2 + 1.5, pz);

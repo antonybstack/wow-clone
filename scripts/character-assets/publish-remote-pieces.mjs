@@ -44,6 +44,14 @@ if(prepared.candidateOnly!==true||manifest.candidateOnly!==true)refuse('source d
 if(prepared.escaped!==0)refuse(`native sweep recorded ${prepared.escaped} bound escapes`);
 if(!Number.isSafeInteger(prepared.points)||prepared.points<1)refuse('native sweep recorded no sampled points');
 
+// Native bounds belong to exact piece hashes, and their semantic adapters come
+// from this source pack. Refuse a stale source before writing any publication.
+for(const [race,data]of Object.entries(manifest.races)){
+ const source=data.sourceManifest;
+ if(!source?.path?.startsWith('public/ashen-reach/')||source.path.includes('..')||!/^[a-f0-9]{64}$/.test(source.sha256))refuse(`${race} has invalid source manifest provenance`);
+ if(sha(await fs.readFile(source.path))!==source.sha256)refuse(`${race} source manifest changed; re-prepare before publication`);
+}
+
 const published=[];let totalBytes=0;
 await fs.mkdir(OUT,{recursive:true});
 for(const [race,data]of Object.entries(manifest.races)){

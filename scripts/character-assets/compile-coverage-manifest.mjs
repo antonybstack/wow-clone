@@ -7,7 +7,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {gzipSync,gunzipSync} from 'node:zlib';
-import {deriveTorsoCore,deriveUpperTrousers} from './derive-coverage-geosets.mjs';
+import {deriveTorsoCore,deriveUpperTrousers,deriveHumanFootCore,HUMAN_BACK_COVERAGE_REVISION} from './derive-coverage-geosets.mjs';
 import {verifyCoveragePartition} from './verify-coverage-partition.mjs';
 import {RACE_BODY_SEGMENTS} from '../../src/ashen-reach/coverage-contract.js';
 import {pilotCoverageForRace} from '../../src/ashen-reach/coverage-pilot.js';
@@ -20,6 +20,10 @@ export async function compileCoverageManifest({io,manifest,race,sourceRoot='publ
  const rules=structuredClone(pilotCoverageForRace(race));
  const segments=structuredClone(RACE_BODY_SEGMENTS[race]);
  if(race!=='orc')segments[race==='human'?'HumanTorsoCore':'UndeadTorsoCore']=['torso.upper','torso.lower','waist'];
+ if(race==='human'){
+  segments.HumanV1Body=segments.HumanV1Body.filter(segment=>segment!=='foot');
+  segments.HumanFootCore=['foot'];
+ }
  for(const [detail,items]of [['full',next.items],['startup',next.compactItems]]){
   if(!items)continue;
   for(const id of Object.keys(items)){
@@ -33,9 +37,10 @@ export async function compileCoverageManifest({io,manifest,race,sourceRoot='publ
    const encoded=await fs.readFile(path.join(sourceRoot,original.url.replace(/^\//,''))),bytes=original.compression==='gzip'?gunzipSync(encoded):encoded;
    if(bytes.length!==original.bytes||sha(bytes)!==original.sha256)throw Error(`Coverage source mismatch: ${race}/${id}/${detail}`);
    const reference=(await io.readBinary(bytes)).getRoot(),doc=await io.readBinary(bytes);
-   const derived=body?deriveTorsoCore(doc,race):deriveUpperTrousers(doc,dusk?'DuskguardTrousers':'WayfarerTrousers',dusk?'DuskguardTrousersUnderTorso':'WayfarerTrousersUnderTorso');
+   const derived=body?deriveTorsoCore(doc,race,race==='human'?{revision:HUMAN_BACK_COVERAGE_REVISION}:undefined):deriveUpperTrousers(doc,dusk?'DuskguardTrousers':'WayfarerTrousers',dusk?'DuskguardTrousersUnderTorso':'WayfarerTrousersUnderTorso');
+   if(body&&race==='human')derived.footCoverage=deriveHumanFootCore(doc);
    const written=await io.writeBinary(doc),actual=(await io.readBinary(written)).getRoot();
-   const verification=verifyCoveragePartition(reference,actual,derived.partition.source,derived.partition.covered);
+   const verification=verifyCoveragePartition(reference,actual,derived.partition.source,derived.footCoverage?[derived.partition.covered,derived.footCoverage.partition.covered]:derived.partition.covered);
    const packed=original.compression==='gzip'?gzipSync(written,{level:9}):written,ext=original.compression==='gzip'?'bin':'glb';
    const name=`${id}${original.detail==='startup'?'-compact':''}-coverage-${sha(packed).slice(0,12)}.${ext}`;
    const sourceAsset={...original};delete sourceAsset.coverageSource;delete sourceAsset.coverageRevision;

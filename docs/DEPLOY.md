@@ -33,10 +33,35 @@ Live:
 ## Build and verify before publishing
 
 `ASHEN_BUILD_ONLY=1 npm run deploy` runs the same staged Pages build and Havok
-comparison without publishing. Use its `dist` with the compressed startup
-preview for cold-load/performance gates, then commit/push and deploy through the
-normal command. Server-only `ashen-reach/presence-v1` collision is omitted from
-Pages; the browser compares the compiled world release identifier.
+comparison without publishing. Run the cold-load and performance gates against
+that `dist`, using the compressed startup preview. Once they pass, seal it and
+upload **those exact bytes** without a rebuild:
+
+```bash
+node scripts/character-assets/pages-seal.mjs seal --dist dist --out .cache/<release>/pages-seal.json --scope "<what was gated>"
+# commit/push the product inputs (a seal taken before the commit is fine)
+ASHEN_PAGES_SEAL=.cache/<release>/pages-seal.json npm run deploy
+```
+
+The seal records the SHA-256 of every `dist` file, including `_headers` and
+`_redirects`, plus the source HEAD. It also records a fingerprint of the product
+inputs: git blob IDs for `src`, `public`, `scripts`, the root HTML, the Vite
+config and the package files, covering uncommitted and untracked files as well.
+The seal file must live outside `dist` and is never overwritten.
+
+Sealed upload skips staging and the build. It refuses in these cases:
+- a changed, missing or extra file, a symlink, or an unsafe path
+- a tampered seal
+- a Havok binary that differs from `public/HavokPhysics.wasm`
+- uncommitted product inputs (unrelated docs, `.cache` and `__pycache__` files are ignored)
+- committed inputs whose fingerprint differs from the sealed one
+
+A later documentation-only commit is accepted, and Pages attributes the upload
+to that HEAD, which verifiably contains the same product bytes. Changed product
+inputs need a new build, new gates and a new seal. Plain `npm run deploy` still
+rebuilds and uploads unsealed; use it only when no gate evidence depends on the
+bytes. Server-only `ashen-reach/presence-v1` collision is omitted from Pages;
+the browser compares the compiled world release identifier.
 
 Shared-region controls are published as an optional lazy client surface. They
 remain unavailable on the public URL unless `VITE_PRESENCE_URL` selects a

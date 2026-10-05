@@ -14,29 +14,44 @@ if [[ "${ASHEN_BUILD_ONLY:-0}" != "1" && -z "${CLOUDFLARE_API_TOKEN:-}" ]]; then
   exit 2
 fi
 
-STAGE=$(mktemp -d)
-cleanup() { rm -rf "$STAGE"; }
-trap cleanup EXIT
+# ASHEN_PAGES_SEAL=<seal.json> uploads the already gated dist WITHOUT rebuilding.
+# The seal (written by scripts/character-assets/pages-seal.mjs after gates pass)
+# must match every dist file, and the committed product inputs must be identical
+# to those that produced it. See docs/DEPLOY.md.
+SEAL=${ASHEN_PAGES_SEAL:-}
+if [[ -n "$SEAL" && "${ASHEN_BUILD_ONLY:-0}" == "1" ]]; then
+  echo "ASHEN_PAGES_SEAL uploads an existing build; do not combine it with ASHEN_BUILD_ONLY" >&2
+  exit 2
+fi
 
-mkdir -p "$STAGE/tex" "$STAGE/ashen-reach" "$STAGE/characters"
-for pack in forrest_ground_01 rock_wall_08 wood_planks_grey bark_brown_02; do
-  mkdir -p "$STAGE/tex/$pack"
-  cp -a "public/tex/$pack/diff.jpg" "$STAGE/tex/$pack/diff.jpg"
-done
-# The authoritative server cooks this duplicate collision export. Browsers use
-# the existing region geometry and only compare its release identifier.
-rsync -a --exclude 'wanderer.glb' --exclude 'wanderer-equipment.glb' --exclude 'presence-v1/' public/ashen-reach/ "$STAGE/ashen-reach/"
-cp -a public/meshopt_decoder.js "$STAGE/meshopt_decoder.js"
-cp -a public/HavokPhysics.wasm "$STAGE/HavokPhysics.wasm"
-rsync -a public/characters/bodies/ "$STAGE/characters/bodies/"
-rsync -a public/characters/garments/ "$STAGE/characters/garments/"
-rsync -a public/characters/animations/ "$STAGE/characters/animations/"
-cp -a public/characters/base.glb "$STAGE/characters/base.glb"
-[[ -f public/characters/base-thirdperson.glb ]] && cp -a public/characters/base-thirdperson.glb "$STAGE/characters/base-thirdperson.glb"
-cp -a public/_headers "$STAGE/_headers"
+if [[ -n "$SEAL" ]]; then
+  node scripts/character-assets/pages-seal.mjs verify --dist dist --seal "$SEAL"
+else
+  STAGE=$(mktemp -d)
+  cleanup() { rm -rf "$STAGE"; }
+  trap cleanup EXIT
 
-echo "Staging $(du -sh "$STAGE" | awk '{print $1}') of playable assets"
-ASHEN_PAGES=1 ASHEN_PUBLIC_DIR="$STAGE" npm run build
+  mkdir -p "$STAGE/tex" "$STAGE/ashen-reach" "$STAGE/characters"
+  for pack in forrest_ground_01 rock_wall_08 wood_planks_grey bark_brown_02; do
+    mkdir -p "$STAGE/tex/$pack"
+    cp -a "public/tex/$pack/diff.jpg" "$STAGE/tex/$pack/diff.jpg"
+  done
+  # The authoritative server cooks this duplicate collision export. Browsers use
+  # the existing region geometry and only compare its release identifier.
+  rsync -a --exclude 'wanderer.glb' --exclude 'wanderer-equipment.glb' --exclude 'presence-v1/' public/ashen-reach/ "$STAGE/ashen-reach/"
+  cp -a public/meshopt_decoder.js "$STAGE/meshopt_decoder.js"
+  cp -a public/HavokPhysics.wasm "$STAGE/HavokPhysics.wasm"
+  rsync -a public/characters/bodies/ "$STAGE/characters/bodies/"
+  rsync -a public/characters/garments/ "$STAGE/characters/garments/"
+  rsync -a public/characters/animations/ "$STAGE/characters/animations/"
+  cp -a public/characters/base.glb "$STAGE/characters/base.glb"
+  [[ -f public/characters/base-thirdperson.glb ]] && cp -a public/characters/base-thirdperson.glb "$STAGE/characters/base-thirdperson.glb"
+  cp -a public/_headers "$STAGE/_headers"
+
+  echo "Staging $(du -sh "$STAGE" | awk '{print $1}') of playable assets"
+  ASHEN_PAGES=1 ASHEN_PUBLIC_DIR="$STAGE" npm run build
+fi
+# Both paths: the uploaded dist must carry the exact Havok binary.
 if ! cmp -s public/HavokPhysics.wasm dist/HavokPhysics.wasm; then
   echo "Deployment build is missing HavokPhysics.wasm" >&2
   exit 3
@@ -44,6 +59,8 @@ fi
 
 if [[ "${ASHEN_BUILD_ONLY:-0}" == "1" ]]; then
   echo "Verified Pages assets built in dist"
+  echo "After gates pass: node scripts/character-assets/pages-seal.mjs seal --dist dist --out <file outside dist>"
+  echo "Then upload those exact bytes: ASHEN_PAGES_SEAL=<file> npm run deploy"
   exit 0
 fi
 

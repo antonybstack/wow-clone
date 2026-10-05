@@ -11,7 +11,14 @@ export function partitionCoverageMesh(doc, meshName, coveredName, vertexCovered)
   const node=nodes[0];
   if(root.listAnimations().some(a=>a.listChannels().some(c=>c.getTargetNode()===node&&c.getTargetPath()==='weights')))throw Error('Animated node morph weights require an explicit coverage adapter');
   const planned=[];let originalTriangles=0,coveredTriangles=0;
-  for(const [sourcePrimitive,primitive]of mesh.listPrimitives().entries()){
+  for(const [ordinal,primitive]of mesh.listPrimitives().entries()){
+    // A second segment can split the remaining exposed surface. Retain its
+    // original primitive identity even when a preceding split removed a whole
+    // primitive; the independent union verifier checks against that source.
+    const previous=primitive.getExtras().coveragePartition;
+    if(previous&&previous.sourceMesh!==meshName)throw Error('Coverage source ownership differs');
+    const sourcePrimitive=previous?.sourcePrimitive??ordinal;
+    if(!Number.isInteger(sourcePrimitive)||sourcePrimitive<0)throw Error('Invalid coverage primitive ownership');
     const accessor=primitive.getIndices(),indices=accessor?.getArray(),positions=primitive.getAttribute('POSITION');
     if(primitive.getMode()!==4||!indices||indices.length%3||!positions)throw Error('Coverage requires indexed triangles');
     const keep=[],hide=[];

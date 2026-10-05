@@ -9,6 +9,7 @@ import {gunzipSync} from 'node:zlib';
 import {HUMAN_IDENTITY_PRESETS,IDENTITY_CATALOG_VERSION} from '../../src/character/appearance/human-identity.js';
 import {manifestBodyCoverage} from '../../src/ashen-reach/coverage-manifest.js';
 import {ASHEN_PLAYABLE_CLIP_NAMES} from '../../src/character/runtime/ashen-playable-motion.js';
+import {verifyHumanCoveragePolicy} from './verify-human-coverage-policy.mjs';
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 export async function verifyProductionHumanIdentities({readFile=fs.readFile}={}){
  const index=JSON.parse(await readFile('public/ashen-reach/human-identity-v1/manifest.json','utf8'));
@@ -31,6 +32,7 @@ export async function verifyProductionHumanIdentities({readFile=fs.readFile}={})
   assert.equal(descriptor.toString(),JSON.stringify(entry.manifest),'Embedded identity descriptor differs from immutable file');
   const manifest=entry.manifest;
   manifestBodyCoverage(manifest,'human');
+  verifyHumanCoveragePolicy(manifest,{identity:true});
   assert.equal(manifest.identity.preset,preset.id);assert.deepEqual(entry.components,preset.components);assert.deepEqual(manifest.identity.components,preset.components);
   assert.equal(manifest.identity.bind,'canonical-source-65-v1');assert.equal(manifest.fitId,current.fitId);assert.equal(manifest.shapeFamily,current.shapeFamily);assert.deepEqual(manifest.targetNames,current.targetNames);
   const torso=manifest.identity.torsoCoverage;

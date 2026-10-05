@@ -2,6 +2,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { createHash } from "node:crypto";
+import {verifyHumanCoveragePolicy} from '../character-assets/verify-human-coverage-policy.mjs';
 const digest = (bytes) => createHash("sha256").update(bytes).digest("hex");
 export async function startupProvenance(roots, assets = []) {
   const files = new Map();
@@ -29,6 +30,7 @@ export async function verifyStartupAssets() {
   for (const kind of ["starter", "character"]) {
     const root = `public/ashen-reach/startup/${kind}`,
       manifest = JSON.parse(await fs.readFile(`${root}/manifest.json`, "utf8"));
+    if(kind==='character')verifyHumanCoveragePolicy(manifest);
     if (manifest.provenance?.schema !== 1)
       throw Error(`Rebuild ${kind}: npm run prepare:startup`);
     for (const [file, expected] of Object.entries(manifest.provenance.inputs))

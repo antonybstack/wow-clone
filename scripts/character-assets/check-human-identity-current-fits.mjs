@@ -46,7 +46,7 @@ const report={url,direct,saved,control,scope:saved?'Published saved v6 ordinary-
 // appearance after ready instead of delaying the first-play observation.
 const partNames=[...new Set(Object.values(EQUIPMENT_ITEMS).flatMap(item=>(item.parts||[]).map(part=>part.mesh)))];
 const snapshot=page=>page.evaluate(parts=>{
- const bodySegments=ASHEN.equipment.getBodySegments(),identityNames=['HumanV1Body','HumanTorsoCore','HumanIdentityEyes','HumanIdentityBrows','HumanPonytail01'];
+ const bodySegments=ASHEN.equipment.getBodySegments(),identityNames=['HumanV1Body','HumanTorsoCore','HumanFootCore','HumanIdentityEyes','HumanIdentityBrows','HumanPonytail01'];
  const names=new Set([...parts,...Object.keys(bodySegments),...identityNames]);
  const meshes=ASHEN.scene.meshes.filter(m=>names.has(m.name)).map(m=>({name:m.name,visible:m.visible!==false,weights:m.morphTargets?Array.from(m.morphTargets.weights):null}));
  const root=ASHEN.body.root;

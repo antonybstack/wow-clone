@@ -4,12 +4,13 @@
   "sourceSha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
   "items": {
     "body": {
-      "url": "/ashen-reach/equipment/body-coverage-0388c68822fa.glb",
-      "bytes": 3400420,
-      "sha256": "0388c68822fa3406a9c36fddba3ce9cef31f9b88684c561e95278f082c1aea98",
+      "url": "/ashen-reach/equipment/body-coverage-75f772ab0d3d.glb",
+      "bytes": 3400908,
+      "sha256": "75f772ab0d3d3f641f23e23d296db12a3d23aa2aefe7bd9474beca8b39d793b1",
       "meshes": [
         "HumanV1Body",
-        "HumanTorsoCore"
+        "HumanTorsoCore",
+        "HumanFootCore"
       ],
       "coverageRevision": "conservative-geosets-v1",
       "coverageSource": {
@@ -286,13 +287,15 @@
         "arm.lower",
         "hand",
         "leg.upper",
-        "leg.lower",
-        "foot"
+        "leg.lower"
       ],
       "HumanTorsoCore": [
         "torso.upper",
         "torso.lower",
         "waist"
+      ],
+      "HumanFootCore": [
+        "foot"
       ]
     }
   },

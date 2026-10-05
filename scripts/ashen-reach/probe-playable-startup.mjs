@@ -16,6 +16,7 @@ import {installGpuEventProbe} from '../lib/probe-gpu-events.mjs';
 const gpuProbe = process.env.ASHEN_PROBE_GPU_EVENTS === '1';
 const traceGpu = process.env.ASHEN_PROBE_CHROME_TRACE === '1';
 const disableShaderCache = process.env.ASHEN_PROBE_DISABLE_SHADER_CACHE === '1';
+const disableHttpCache = process.env.ASHEN_PROBE_DISABLE_HTTP_CACHE === '1';
 const seed=process.env.ASHEN_PROBE_APPEARANCE?JSON.parse(await fs.readFile(process.env.ASHEN_PROBE_APPEARANCE,'utf8')):null;
 const expectedSeed=seed?migrateAppearance(seed):null;
 const identity=expectedSeed?.race==='human'?findHumanIdentityPreset(expectedSeed.components):null;
@@ -45,13 +46,13 @@ target.searchParams.set("play", "");
 target.searchParams.set("pixelRatio", "1");
 const report = {
   conditions: {
-    gpuProbe, traceGpu, disableShaderCache,
+    gpuProbe, traceGpu, disableShaderCache, disableHttpCache,
     profile, savedAppearance:seed,expectedAppearance:expectedSeed,
     network: conditions[profile],
     cpu: os.cpus()[0]?.model,
     viewport: [1280, 720],
     cache:
-      "Fresh browser process/profile each run; OS and GPU-driver caches uncontrolled",
+      `Fresh browser process/profile each run; HTTP cache ${disableHttpCache ? 'disabled through CDP (including prefetch reuse)' : 'initially empty, native prefetch reuse allowed'}; OS and GPU-driver caches uncontrolled`,
     timing:
       "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled",
   },
@@ -77,6 +78,11 @@ for (let run = 1; run <= runs; run++) {
     const cdp = await context.newCDPSession(page);
     if(traceGpu)await cdp.send('Tracing.start',{categories:'gpu,gpu.dawn,gpu.dawn.validation,gpu.dawn.recording,gpu.dawn.gpu_work,disabled-by-default-gpu.dawn,disabled-by-default-gpu.service,toplevel,blink.user_timing,devtools.timeline',transferMode:'ReturnAsStream'});
     await cdp.send("Network.enable");
+    // An empty profile and a disabled cache are different conditions: disabling
+    // also prevents native prefetch reuse. Record the prescribed policy rather
+    // than silently labelling an empty-profile cohort as cache-disabled.
+    // https://chromedevtools.github.io/devtools-protocol/tot/Network/#method-setCacheDisabled
+    if(disableHttpCache) await cdp.send('Network.setCacheDisabled',{cacheDisabled:true});
     await cdp.send("Network.emulateNetworkConditions", {
       offline: false,
       ...conditions[profile],

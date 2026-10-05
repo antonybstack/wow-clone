@@ -96,7 +96,7 @@ export function plantSpawnOnTerrain(spawn, spec, groundHeight) {
 const JUMP_BUFFER = 0.12;
 const COYOTE_TIME = 0.085;
 /**
- * Downward position correction applied while grounded and clearly above the terrain.
+ * Downward position correction applied while grounded and clearly above the supporting surface.
  *
  * Measured defect: walking ratchets the capsule upward and it never sheds the altitude. From
  * spawn the gap to the terrain grows 33 -> 61 -> 96 -> 131 mm and plateaus near 145, which is
@@ -106,15 +106,78 @@ const COYOTE_TIME = 0.085;
  *
  * A velocity bias does not work: Havok projects velocity onto the support plane while
  * SUPPORTED, so a downward term is cancelled before it moves anything. This corrects the
- * position instead, which the solver then resolves -- it can only remove clearance, never push
- * the capsule into geometry, because the next `integrate` pushes it back out of any penetration.
+ * position instead, by at most GROUND_STICK_SPEED * dt per step.
  *
- * It is applied only when the capsule bottom is clearly above the terrain function, so standing
- * on a path slab, a step or a prop -- all of which sit above that function legitimately -- is
- * left alone, and true contact is not jittered.
+ * The clearance is measured to the actual Havok surface directly below the capsule, not to the
+ * terrain function. The first version (b9acd80) used `groundHeight`, which is the terrain under
+ * bridges, slabs and galleries; on the Ashen bridge it kept driving a supported capsule down
+ * toward the terrain below the deck and the route stalled near z 166.
+ *
+ * The probe is a native sweep of one small owned sphere, straight down from the capsule's own
+ * midpoint. A ray that starts at the foot was tried first: once the foot touched a
+ * 0.28 m tower platform, its origin was inside that closed collision mesh and Havok returned the
+ * platform's underside with an UPWARD normal, so the correction sank the capsule until it sat on
+ * the underside (native diagnostic, platform-ray-diagnostic.json). Starting at the midpoint means
+ * the sweep meets the top surface before any underside, even after the foot has penetrated it;
+ * a fixed 5 cm start still reached the underside once the foot was 0.10 m deep. `ignoreBody` excludes the capsule the sweep
+ * starts inside; Lite's `physicsRaycast` has no ignore option, `shapeCast` does
+ * (node_modules/@babylonjs/lite/lib/physics/havok-queries.js, `shapeCast` / `ignoredBody`).
+ * No hit, an initial overlap (fraction 0), a non-walkable normal, a surface above the foot or
+ * within tolerance, or one beyond the probe means no correction: the solver resolves it.
+ * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/42-physics.md
  */
 const GROUND_STICK_SPEED = 1.2;
 const GROUND_STICK_TOLERANCE = 0.008;
+// Longer than the measured 145 mm ratchet plateau; far shorter than any deck-to-terrain drop.
+const GROUND_STICK_PROBE = 0.28;
+// Small enough that its contact point is effectively the point under the capsule centre.
+const GROUND_STICK_RADIUS = 0.01;
+
+/** Only a grounded, non-jumping capsule is corrected; airborne motion stays Havok's. */
+export function shouldGroundStick(state) {
+    return !!state?.grounded && !state.jumpInFlight;
+}
+
+/**
+ * One reusable Lite `ShapeCastQuery` for the owned probe sphere. Nothing is allocated per step:
+ * {@link groundStickQuery} rewrites the two positions in place.
+ * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/42-physics.md
+ */
+export function createGroundStickQuery(shape, ignoreBody) {
+    return {
+        shape, rotation: { x: 0, y: 0, z: 0, w: 1 }, ignoreBody, shouldHitTriggers: false,
+        startPosition: { x: 0, y: 0, z: 0 }, endPosition: { x: 0, y: 0, z: 0 },
+    };
+}
+
+/**
+ * Sphere centre from the capsule midpoint (foot + current half height, inside the ignored
+ * player body) down until its lowest point reaches foot - PROBE.
+ */
+export function groundStickQuery(x, z, bottomY, halfHeight, query) {
+    query.startPosition.x = query.endPosition.x = x;
+    query.startPosition.z = query.endPosition.z = z;
+    query.startPosition.y = bottomY + halfHeight;
+    query.endPosition.y = bottomY - GROUND_STICK_PROBE + GROUND_STICK_RADIUS;
+    return query;
+}
+
+/**
+ * Metres to lower the capsule this step (0 = leave it to the solver). `cast` is a Lite
+ * `ShapeCastResult`: `hitPoint` is the contact on the hit body, `fraction` where along the sweep
+ * contact first occurs. Only a finite, walkable surface between the foot and the probe counts.
+ */
+export function groundStickStep(bottomY, cast, dt, maxSlopeCosine) {
+    if (!cast?.hasHit || !(dt > 0) || !Number.isFinite(dt) || !Number.isFinite(bottomY)) return 0;
+    // Overlap at the start position: something already occupies the space above the foot.
+    if (!(cast.fraction > 0) || !Number.isFinite(cast.fraction)) return 0;
+    const y = cast.hitPoint?.y, normalY = cast.hitNormal?.y;
+    if (!Number.isFinite(y) || !Number.isFinite(normalY)) return 0;
+    if (!(normalY >= (Number.isFinite(maxSlopeCosine) ? maxSlopeCosine : 1))) return 0;
+    const clearance = bottomY - y;
+    if (!(clearance > GROUND_STICK_TOLERANCE) || clearance > GROUND_STICK_PROBE + 1e-6) return 0;
+    return Math.min(clearance - GROUND_STICK_TOLERANCE, GROUND_STICK_SPEED * dt);
+}
 
 // A supported capsule can have positive Y velocity while climbing a slope or
 // resolving contact penetration. Only an actual jump impulse rejects support
@@ -320,6 +383,7 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
         .map((mesh) => ({ mesh, type: mesh.metadata.collider }));
     let controller = null;
     let physicsWorld = null;
+    let stickQuery = null;
     let usingPhysics = false;
     let sceneDisposed = false;
     const own = createPhysicsOwnership(rig, options.physicsWorld ? {
@@ -332,6 +396,7 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
         own.dispose();
         controller = null;
         physicsWorld = null;
+        stickQuery = null;
         usingPhysics = false;
     };
     // Register before Havok's asynchronous WASM load: scene teardown may race it.
@@ -452,10 +517,11 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
             const p = controller.getPosition();
             body.position.set(p.x, p.y, p.z);
             // Shed altitude the support plane let the capsule keep. See GROUND_STICK_SPEED.
-            if (state.grounded && !state.jumpInFlight) {
-                const clearance = p.y - capsuleHeightOf() * 0.5 - groundHeight(p.x, p.z);
-                if (clearance > GROUND_STICK_TOLERANCE) {
-                    const step = Math.min(clearance - GROUND_STICK_TOLERANCE, GROUND_STICK_SPEED * h);
+            if (shouldGroundStick(state) && physicsWorld && stickQuery) {
+                const half = capsuleHeightOf() * 0.5, bottom = p.y - half;
+                groundStickQuery(p.x, p.z, bottom, half, stickQuery);
+                const step = groundStickStep(bottom, shapeCast(physicsWorld, stickQuery), h, controller.maxSlopeCosine);
+                if (step > 0) {
                     body.position.y = p.y - step;
                     controller.setPosition({ x: p.x, y: body.position.y, z: p.z });
                 }
@@ -558,6 +624,11 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
             controller.maxCharacterSpeedForSolver = 18;
             controller.maxSlopeCosine = Math.cos(Math.PI * 0.27);
             controller.keepDistance = 0.035;
+            // Ground probe: owned like any caller shape, so dispose releases it exactly once.
+            // Created for headless room actors too; they step the same grounded correction.
+            stickQuery = createGroundStickQuery(own.shape(createPhysicsShape(world, {
+                type: PhysicsShapeType.SPHERE, parameters: { radius: GROUND_STICK_RADIUS },
+            })), controller.getBody());
             // Lite's shapeCast queries the existing Havok world. Its ignoreBody
             // option excludes the player's capsule; release the query shape with
             // the scene. See the official physics module documentation:

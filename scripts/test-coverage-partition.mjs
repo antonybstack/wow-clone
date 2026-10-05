@@ -36,3 +36,20 @@ test('written gate rejects changed morph attributes, frames and ownership metada
  ({reference,actual}=await written());actual.listNodes().find(n=>n.getMesh()?.getName()==='Core').setTranslation([9,2,3]);assert.throws(()=>verifyCoveragePartition(reference,actual,'Body','Core'),/world frame/);
  ({reference,actual}=await written());actual.listMeshes()[1].listPrimitives()[0].setExtras({coveragePartition:{sourceMesh:'Body',sourcePrimitive:99}});assert.throws(()=>verifyCoveragePartition(reference,actual,'Body','Core'),/Unexpected/);
 });
+
+test('sequential body segments preserve original primitive ordinals and reject loss or duplication across three parts',async()=>{
+ const {doc,p}=fixture(),buffer=doc.getRoot().listBuffers()[0],mesh=doc.getRoot().listMeshes()[0];
+ // First primitive is completely covered. The surviving second primitive must
+ // retain ordinal 1 when it is split again rather than being renumbered to 0.
+ p.setIndices(doc.createAccessor().setType('SCALAR').setArray(new Uint16Array([0,1,2])).setBuffer(buffer));
+ const q=p.clone().setIndices(doc.createAccessor().setType('SCALAR').setArray(new Uint16Array([1,3,2,0,3,2])).setBuffer(buffer));mesh.addPrimitive(q);
+ const io=new NodeIO(),source=(await io.readBinary(await io.writeBinary(doc))).getRoot();
+ partitionCoverageMesh(doc,'Body','Torso',(primitive)=>primitive===p);
+ partitionCoverageMesh(doc,'Body','Feet',(_,v)=>v!==1);
+ const actual=(await io.readBinary(await io.writeBinary(doc))).getRoot();
+ assert.equal(verifyCoveragePartition(source,actual,'Body',['Torso','Feet']).triangles,3);
+ assert.equal(actual.listMeshes().find(m=>m.getName()==='Feet').listPrimitives()[0].getExtras().coveragePartition.sourcePrimitive,1);
+ const foot=actual.listMeshes().find(m=>m.getName()==='Feet').listPrimitives()[0].getIndices(),old=foot.getArray().slice();
+ foot.setArray(new Uint16Array([...old,...old]));assert.throws(()=>verifyCoveragePartition(source,actual,'Body',['Torso','Feet']),/Triangle union/);
+ foot.setArray(new Uint16Array([]));assert.throws(()=>verifyCoveragePartition(source,actual,'Body',['Torso','Feet']),/Triangle union/);
+});

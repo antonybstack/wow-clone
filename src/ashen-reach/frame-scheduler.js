@@ -1,6 +1,11 @@
 /** Inject synchronous render, asynchronous RAF-style scheduling, and completion promises.
  * stop/dispose is terminal; visibility uses setHidden. Pending counts acknowledgements,
  * not GPU execution depth. maxPending is the configured budget; waits counts saturation.
+ * Every render, including after a completion frees a slot, runs from a requestFrame callback:
+ * requestAnimationFrame is one-shot and its callback frequency generally matches the display
+ * refresh rate, which is the pacing this loop must keep. Rendering directly from a completion
+ * bypassed it (a GPU-completion-driven loop, ~4x the RAF rate in standard Chrome).
+ * https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame
  */
 export function createFrameScheduler({render, waitForCompletion, requestFrame, cancelFrame,
  now = () => performance.now(), maxPending = 8, hidden = false, onError = () => {}}) {
@@ -44,8 +49,8 @@ export function createFrameScheduler({render, waitForCompletion, requestFrame, c
   state.pending--;
   if (token !== generation || stopped) return;
   if (rejected) { fail(error); return; }
-  if (waiting && !hidden && running) renderNow();
-  else schedule();
+  // Released budget only requests (at most one) frame; it never renders directly.
+  schedule();
  }
  function renderNow() {
   if (rendering || !running || stopped || hidden) return;

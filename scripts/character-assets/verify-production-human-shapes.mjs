@@ -5,9 +5,11 @@
 import fs from 'node:fs/promises';
 import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
+import {verifyHumanCoveragePolicy} from './verify-human-coverage-policy.mjs';
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 export async function verifyProductionHumanShapes() {
  const manifest=JSON.parse(await fs.readFile('public/ashen-reach/human-shape-v1/manifest.json','utf8'));
+ verifyHumanCoveragePolicy(manifest);
  if(manifest.provenance?.schema!==1||hash(JSON.stringify(manifest.provenance.inputs))!==manifest.provenance.sha256)throw Error('Human family provenance missing or corrupt');
  for(const [file,expected] of Object.entries(manifest.provenance.inputs))
   if(hash(await fs.readFile(file))!==expected)throw Error(`Stale Human family: ${file}. Run npm run prepare:human-shapes`);

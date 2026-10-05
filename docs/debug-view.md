@@ -57,7 +57,28 @@ ASHEN_CDP_PORT=10037 ASHEN_URL='http://127.0.0.1:5873/ashen-reach.html?play&clea
 node scripts/harness/down.mjs --slot 7
 ```
 
-Slot 7 uses Vite 5873 and CDP 10037; choose another free slot if occupied, using the ports printed by `up.mjs`. `--uncapped` passes Chromium's `--disable-frame-rate-limit` and `--disable-gpu-vsync`. Keep the ordinary 9337 browser and unrelated user Chrome untouched. The measurement script reports `vsyncCapped`; verify it is `false` before claiming an uncapped result. Do not measure while recording.
+Slot 7 uses Vite 5873 and CDP 10037; choose another free slot if occupied, using the ports printed by `up.mjs`. `--uncapped` passes Chromium's `--disable-frame-rate-limit` and `--disable-gpu-vsync`. Keep the ordinary 9337 browser and unrelated user Chrome untouched. The measurement script reports `vsyncCapped`; treat a flag as an unresolved pacing check until investigated. Do not measure while recording.
+
+Calibrate the scheduler before an expensive matrix: independently count native
+animation-frame callbacks and admitted game renders, then run one standard Chrome
+positive control without pacing-removal flags. Renders must never outnumber callbacks
+(allow one frame at a measurement boundary); backpressure may skip callbacks. On
+2026-10-05 the repaired scheduler counted 180 callbacks / 180 renders in standard
+Chrome, and its 12-second control correctly detected 60 Hz (720 frames, ceiling 722).
+The previous completion-driven loop counted 180 callbacks / 731 renders. See
+[requestAnimationFrame pacing](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame).
+
+The unchanged statistical detector can also flag ordinary throughput near a known
+interval: a 235.85 FPS forest run produced a possible-240 hint, while six other runs
+in that same browser/context counted 2,960–2,984 frames over approximately 12 seconds,
+above the hard 240 Hz ceiling of 2,883–2,884. Retain the hint and every original row.
+Do not adjust its thresholds or remeasure until the hint disappears. A recorded hint
+may be classified as a false positive only with the verified launch PID/flags,
+calibrated control, native callback invariant, and a row in the **same cohort**
+exceeding `floor(elapsedSeconds × hintedHz) + 2` by at least 1%. Otherwise it remains
+unresolved. `ASHEN_RECORD_CAPPED=1` only retains suspected rows; it does not remove
+pacing or establish acceptance. The [M5 release receipt](plans/character-mmo/results/m5-shared-human-release-2026-10-05.md)
+records the independent evidence and hint disposition.
 
 At 960×540 internal render resolution in a 1280×720 viewport, the default headless browser measured 60.001 FPS with no enemies. The isolated uncapped browser measured about 493 FPS with no enemies and 425 FPS with seven enemies (600 retained frame samples; seven-enemy p95 3.5 ms, p99 10.9 ms). This used WebGPU on Apple Metal 3. These are scene and machine specific `requestAnimationFrame` intervals, not GPU timings or a promise that every frame fits the 8.33 ms budget. A visible display remains bounded by its refresh rate. Report resolution, enemy count, frame-time tails, browser flags and whether recording was active with future FPS claims.
 

@@ -1,0 +1,25 @@
+{
+  "sharedOldCore": 414,
+  "sharedNewCore": 446,
+  "sharedAdded": 32,
+  "identities": [
+    {
+      "preset": "prime-bald",
+      "added": 32,
+      "exactSharedTriangleSet": false,
+      "maxNearestTriangleCoordinateDelta": 2.384185791015625e-7
+    },
+    {
+      "preset": "prime-ponytail",
+      "added": 32,
+      "exactSharedTriangleSet": false,
+      "maxNearestTriangleCoordinateDelta": 2.384185791015625e-7
+    },
+    {
+      "preset": "weathered-bald",
+      "added": 32,
+      "exactSharedTriangleSet": false,
+      "maxNearestTriangleCoordinateDelta": 2.384185791015625e-7
+    }
+  ]
+}

@@ -1,12 +1,12 @@
 {
  "schema": 1,
  "version": 1,
- "publishedAt": "2026-10-04T23:57:46.891Z",
+ "publishedAt": "2026-10-05T15:38:28.169Z",
  "lite": "1.31.1",
  "catalogVersion": "appearance-catalog-v6",
  "sourceCompilerSha256": "e9bb55b8b67195c5fe92cb8ebfc86aa59ee654a614bcec4154ab5c721a531563",
  "uniqueFiles": 45,
- "totalBytes": 19418944,
+ "totalBytes": 19419560,
  "pieces": [
   {
    "race": "orc",
@@ -16,18 +16,18 @@
    "sha256": "4f153d5594deebe5d825b5740a5dd092568971a5fef2643d52971f006b1cd96e"
   },
   {
-   "race": "human",
-   "id": "body",
-   "file": "body-96e0f64514c98b475f3b00314c17fe37544506080e87c4dc354fb6b13ea6d552.glb",
-   "bytes": 1943832,
-   "sha256": "96e0f64514c98b475f3b00314c17fe37544506080e87c4dc354fb6b13ea6d552"
-  },
-  {
    "race": "undead",
    "id": "body",
    "file": "body-b2193ae173473e5bfbb8bb056dfc00399945a8895e9d70c13318931094b7f262.glb",
    "bytes": 2984256,
    "sha256": "b2193ae173473e5bfbb8bb056dfc00399945a8895e9d70c13318931094b7f262"
+  },
+  {
+   "race": "human",
+   "id": "body",
+   "file": "body-b34e5fe6362fad3ab0193121a43e96845f7c4b3a636905b7dd951d4b955f127e.glb",
+   "bytes": 1944448,
+   "sha256": "b34e5fe6362fad3ab0193121a43e96845f7c4b3a636905b7dd951d4b955f127e"
   },
   {
    "race": "human",

@@ -87,6 +87,11 @@ for(const label of labels){
  }
  manifest.coverage.bodySegments.HumanIdentityEyes=['head.face'];
  manifest.coverage.bodySegments.HumanIdentityBrows=['head.face'];
+ // This audition deliberately reproduces the pinned historical torso-only
+ // bytes. The production publisher adds reviewed back/foot partitions later;
+ // inheriting its adapter here would falsely advertise an absent foot mesh.
+ delete manifest.coverage.bodySegments.HumanFootCore;
+ if(!manifest.coverage.bodySegments.HumanV1Body.includes('foot'))manifest.coverage.bodySegments.HumanV1Body.push('foot');
  if(label.endsWith('-hair'))manifest.coverage.bodySegments.HumanPonytail01=['head.scalp'];
  assert.deepEqual(manifestBodyCoverage(manifest,'human').baseMeshes.sort(),[...body.meshes].sort());
  manifest.identityReview={label,sourceSha256:sha(source),publishedClothesUnchanged:process.env.ASHEN_IDENTITY_UNFITTED==='1',productionAcceptance:false};

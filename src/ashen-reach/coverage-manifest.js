@@ -4,6 +4,8 @@ import {BODY_SEGMENTS} from './coverage-contract.js';
  * https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#meshes
  */
 export const PUBLISHED_COVERAGE_REVISION='conservative-geosets-v1';
+// This is the semantic adapter schema. Reviewed geometry policies are recorded
+// separately in coverageProof/identity; the build verifies them independently.
 export function manifestBodyCoverage(manifest,race){
  const coverage=manifest.coverage;
  if(!coverage)return null;

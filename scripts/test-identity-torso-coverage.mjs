@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {Document,NodeIO} from '@gltf-transform/core';
-import {deriveTorsoCore} from './character-assets/derive-coverage-geosets.mjs';
+import {deriveTorsoCore,HUMAN_BACK_COVERAGE_REVISION} from './character-assets/derive-coverage-geosets.mjs';
 import {repairIdentityTorsoCoverage} from './character-assets/repair-identity-torso-coverage.mjs';
 import {verifyCoveragePartition} from './character-assets/verify-coverage-partition.mjs';
 
@@ -47,4 +47,21 @@ test('repair rejects an unsplit body before changing its geometry',()=>{
  const doc=fixture(),body=doc.getRoot().listMeshes()[0],p=body.listPrimitives()[0],indices=p.getIndices().getArray().slice();
  assert.throws(()=>repairIdentityTorsoCoverage(doc),/accepted Human torso partition/);
  assert.equal(body.listPrimitives()[0],p);assert.deepEqual(p.getIndices().getArray(),indices);
+});
+
+test('shared production Human uses the same bounded back policy on an unsplit source',async()=>{
+ const doc=fixture(),io=new NodeIO(),source=(await io.readBinary(await io.writeBinary(doc))).getRoot();
+ const result=deriveTorsoCore(doc,'human',{revision:HUMAN_BACK_COVERAGE_REVISION});
+ assert.equal(result.partitionPolicy,HUMAN_BACK_COVERAGE_REVISION);
+ assert.equal(result.partition.coveredTriangles,2);
+ const actual=(await io.readBinary(await io.writeBinary(doc))).getRoot();
+ assert.deepEqual(Array.from(actual.listMeshes().find(m=>m.getName()==='HumanTorsoCore').listPrimitives()[0].getIndices().getArray()),[0,1,2,3,4,5]);
+ assert.equal(verifyCoveragePartition(source,actual,'HumanV1Body','HumanTorsoCore').triangles,6);
+});
+
+test('the Human back policy refuses unreviewed races or unknown policies before mutation',()=>{
+ const doc=fixture(),count=doc.getRoot().listMeshes().length;
+ assert.throws(()=>deriveTorsoCore(doc,'undead',{revision:HUMAN_BACK_COVERAGE_REVISION}),/Human only/);
+ assert.throws(()=>deriveTorsoCore(doc,'human',{revision:'unreviewed'}),/Unknown torso coverage policy/);
+ assert.equal(doc.getRoot().listMeshes().length,count);
 });
