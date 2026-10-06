@@ -398,12 +398,16 @@ async function main(){
  let currentHumanComponents=bootAppearance?.race==='human'?bootAppearance.components:{},actorGeneration=0;
  if(basePivotHeight===null)basePivotHeight=rig.pivotHeight/(humanShape?.heightScale||1);
  let actorChain=Promise.resolve();
+ const admitActorRequest=()=>{
+  lifetime.throwIfAborted();
+  if(ashen.presence&&!ashen.presence.closed&&!ashen.presence.appearanceApplying)
+   throw Error('Use Shared region to change your online character, or leave to use the Armory.');
+ };
  const actorRequest=job=>{
   // Online changes use the same local transaction, but must also receive a
   // server revision. Keep arbitrary Armory edits from bypassing that boundary.
   // https://docs.colyseus.io/state
-  if(ashen.presence&&!ashen.presence.closed&&!ashen.presence.appearanceApplying)
-   return Promise.reject(Error('Use Shared region to change your online character, or leave to use the Armory.'));
+  try{admitActorRequest();}catch(error){return Promise.reject(error);}
   const result=actorChain.then(()=>{lifetime.throwIfAborted();return job();});actorChain=result.catch(()=>{});return result;
  };
  let rebuildCreator=null;
@@ -417,34 +421,49 @@ async function main(){
   else if(!appearanceAPI.saveAppearance(committedAppearance))ashen.appearanceWarning='Could not save; this character lasts for this session only.';
   return committedAppearance;
  };
- const equipRequest=job=>actorRequest(async()=>{
-  const result=await reshaped(job());
+ const equipRevisions=new Map();let activeEquip=null;
+ const equipRequest=(job,key)=>{
+  // A refused online/disposed call must not invalidate previously admitted work.
+  try{admitActorRequest();}catch(error){return Promise.reject(error);}
+  const revision=key===undefined?null:(equipRevisions.get(key)||0)+1;
+  if(key!==undefined)equipRevisions.set(key,revision);
+  // Keep the actor barrier for source/body swaps while letting the native
+  // equipment loader cancel an obsolete fetch as soon as intent changes.
+  // https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort
+  if(key!==undefined&&activeEquip?.key===key)activeEquip.owner.cancelPending?.();
+  return actorRequest(async()=>{
+  if(key!==undefined&&revision!==equipRevisions.get(key))return {status:'superseded'};
+  const owner={owner:impl,key};activeEquip=owner;
+  let result;
+  try{result=await reshaped(job());}finally{if(activeEquip===owner)activeEquip=null;}
   if(result?.status==='applied'){
    await rememberAppearance();
    creator?.refreshEquipment?.();
    void impl.upgradeTextures?.().catch(error=>{ashen.appearanceDetailError=error.message;});
   }
   return result;
- });
+  });
+ };
  let parkedGarments=null;
  equipment={
   get items(){return impl.items;},
   get presets(){return impl.presets;},
+  // Partial patches retain their order; coalescing them would drop another slot.
   setLoadout:(patch,options)=>equipRequest(()=>impl.setLoadout(patch,options)),
-  equip:(slot,id)=>equipRequest(()=>impl.equip(slot,id)),
-  equipPreset:id=>equipRequest(()=>impl.equipPreset(id)),
+  equip:(slot,id)=>equipRequest(()=>impl.equip(slot,id),`slot:${slot}`),
+  equipPreset:id=>equipRequest(()=>impl.equipPreset(id),'loadout'),
   getState:()=>impl.getState(),
   getStatus:()=>impl.getStatus?.(),
   getBodySegments:()=>impl.getBodySegments?.()??null,
   getDyes:()=>impl.getDyes?.()||{},
-  setDyes:next=>equipRequest(()=>impl.setDyes(next)),
+  setDyes:next=>equipRequest(()=>impl.setDyes(next),'dyes'),
   // Older capture callers pass an item ID. Resolve it only when worn; the
   // canonical state and creator controls use slots, like the saved recipe.
   setDye:(slotOrItem,dye)=>equipRequest(()=>{
    const slot=Object.keys(impl.getState()).find(slot=>slot===slotOrItem||impl.getState()[slot]===slotOrItem);
    if(!slot)return {status:'failed',error:`No worn item ${slotOrItem}`};
    return impl.setDye(slot,dye);
-  }),
+  },`dye:${slotOrItem}`),
   setVisible:value=>impl.setVisible(value),
   update:dt=>impl.update(dt),
   get attachment(){return impl.attachment;},

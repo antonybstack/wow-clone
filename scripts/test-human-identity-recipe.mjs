@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {APPEARANCE_REGISTRY,APPEARANCE_IDENTITY_REGISTRY as candidate,APPEARANCE_V1_REGISTRY,APPEARANCE_V2_REGISTRY,APPEARANCE_V3_REGISTRY,APPEARANCE_V4_REGISTRY,APPEARANCE_V5_REGISTRY,validateAppearance,migrateAppearance} from '../src/character/appearance/contract.js';
+import {APPEARANCE_REGISTRY,APPEARANCE_IDENTITY_REGISTRY as candidate,APPEARANCE_V1_REGISTRY,APPEARANCE_V2_REGISTRY,APPEARANCE_V3_REGISTRY,APPEARANCE_V4_REGISTRY,APPEARANCE_V5_REGISTRY,APPEARANCE_V6_REGISTRY,validateAppearance,migrateAppearance} from '../src/character/appearance/contract.js';
 import {HUMAN_IDENTITY_PRESETS,findHumanIdentityPreset} from '../src/character/appearance/human-identity.js';
 import {appearanceFromEquipment} from '../src/character/appearance/from-equipment.js';
 import {encodeAppearance,decodeAppearance,decodeMigratingAppearance,appearanceKey} from '../src/character/appearance/codec.js';
@@ -9,10 +9,12 @@ import {createProductionIdentitySession} from '../src/character/creator/producti
 const identity=(id,base=migrateAppearance(defaultAppearance(),candidate))=>validateAppearance({...base,components:HUMAN_IDENTITY_PRESETS.find(p=>p.id===id).components},candidate);
 const storage=()=>{const data=new Map();return {getItem:key=>data.get(key)??null,setItem:(key,value)=>data.set(key,value)};};
 
-test('current v6 supports authored identity while historical component domains remain closed',()=>{
+test('current v7 (and frozen v6) support authored identity while historical component domains remain closed',()=>{
  assert.equal(APPEARANCE_REGISTRY,candidate);
- assert.equal(APPEARANCE_REGISTRY.catalogVersion,'appearance-catalog-v6');
- assert.equal(candidate.catalogVersion,'appearance-catalog-v6');
+ assert.equal(APPEARANCE_REGISTRY.catalogVersion,'appearance-catalog-v7');
+ assert.equal(candidate.catalogVersion,'appearance-catalog-v7');
+ assert.equal(APPEARANCE_V6_REGISTRY.catalogVersion,'appearance-catalog-v6');
+ assert.equal(APPEARANCE_V6_REGISTRY.profiles,candidate.profiles);
  for(const registry of [APPEARANCE_V1_REGISTRY,APPEARANCE_V2_REGISTRY,APPEARANCE_V3_REGISTRY,APPEARANCE_V4_REGISTRY,APPEARANCE_V5_REGISTRY]){
   const old=appearanceFromEquipment({race:'human',loadout:{}},registry);
   assert.throws(()=>validateAppearance({...old,components:HUMAN_IDENTITY_PRESETS[1].components},registry),{code:'UNSUPPORTED_PARAMETER'});

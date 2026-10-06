@@ -381,7 +381,10 @@ test('active Undead garments carry the actor rest pose and inverse bind', async 
     assert.equal(active.profileId, 'undead-tripo-v1');
     assert.equal(active.garments, true);
     assert.equal(active.bindSha256, createHash('sha256').update(JSON.stringify(bodyRig)).digest('hex'));
-    assert.equal(Object.keys(active.items).length, 15);
+    const authoredIds = Object.values(EQUIPMENT_ITEMS)
+        .filter(item => item.parts?.some(part => part.mesh))
+        .map(item => item.id);
+    assert.deepEqual(Object.keys(active.items).sort(), ['body', ...authoredIds].sort());
     for (const [id, asset] of Object.entries(active.items)) {
         const bytes = await fs.readFile(`public${new URL(asset.url,'https://play.sparkify.dev').pathname}`);
         assert.equal(bytes.length, asset.bytes, id);

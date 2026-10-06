@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "id": "bastionShoulders",
+  "revision": 1,
+  "slot": "shoulders",
+  "layer": "plate",
+  "occupies": [
+    "shoulders"
+  ],
+  "deformation": "rigid-bone",
+  "blenderVersion": "5.2.1",
+  "sourceRights": "Original project-authored crests and lames built on the existing source-derived native shoulder cap. Existing Tripo/Mixamo body/rig grants remain unchanged; no new rights are asserted.",
+  "fits": {
+    "human": {
+      "directory": "equipment",
+      "bodyMesh": "HumanV1Body",
+      "source": "public/ashen-reach/equipment/body.glb",
+      "sha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+      "interface": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "orc": {
+      "directory": "equipment-orc",
+      "bodyMesh": "BodyExposed",
+      "source": "public/ashen-reach/equipment-orc/body.glb",
+      "sha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b",
+      "interface": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    },
+    "undead": {
+      "directory": "equipment-undead",
+      "bodyMesh": "UndeadV1Body",
+      "source": "public/ashen-reach/equipment-undead/body.glb",
+      "sha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d",
+      "interface": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
+    }
+  },
+  "material": {
+    "revision": 1,
+    "model": "metallic-roughness",
+    "baseColor": [
+      0.2,
+      0.225,
+      0.265,
+      1
+    ],
+    "metallic": 0.92,
+    "roughness": 0.44
+  },
+  "detail": {
+    "revision": 1,
+    "full": "authored-shell",
+    "compact": "same-rigid-geometry",
+    "humanShapeFamily": "ashen-human-shape-v1"
+  },
+  "corrective": {
+    "revision": 1,
+    "source": "scripts/character-assets/build_bastion_shoulders.py",
+    "humanShape": "trackBodyRigid",
+    "orcUndead": "The existing native convex-cap fit on each actual accepted source body, with separately authored crests/lames."
+  },
+  "mesh": "BastionShoulders",
+  "status": "Source descriptor; live/production acceptance is recorded in the dated M8 result, not inferred from factory compilation.",
+  "rigidBones": [
+    "LeftArm",
+    "RightArm"
+  ],
+  "builder": {
+    "path": "scripts/character-assets/build_bastion_shoulders.py",
+    "sha256": "f32671dec9fec176c5a69d1bb495d2e3e5d3d1a0348cb68d0bdb2af5baaaa195",
+    "dependencies": [
+      {
+        "path": "scripts/character-assets/build_warden_pauldrons.py",
+        "sha256": "9bd9ccaa792a0180beb16fc95183897b0e2621e5d447dccc4ff64e87e509f60b"
+      }
+    ]
+  },
+  "design": {
+    "name": "Bastion crested shoulders",
+    "structure": "Native per-race shell with a raised curved crest and two closed curved surface lames per upper arm; six structural operands integrated into one steel shell by native EXACT Boolean union."
+  },
+  "humanShape": {
+    "family": "ashen-human-shape-v1",
+    "mode": "trackBodyRigid",
+    "body": {
+      "source": "public/ashen-reach/human-shape-v1/body-e69a14d75176.bin",
+      "sha256": "e69a14d75176717920bae9ec438c80a4b842a8f014da256aec97db44ae743d9c",
+      "decodedSha256": "6c552cec7a794fdd7aa7876d6bedcb7f279101f0ca06169f6bc9e53444947417",
+      "compression": "gzip",
+      "bodyMesh": "HumanV1Body"
+    }
+  },
+  "structure": {
+    "partsPerBone": 3
+  }
+}

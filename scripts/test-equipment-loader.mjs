@@ -1,6 +1,17 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {createEquipmentLoader} from '../src/ashen-reach/equipment-loader.js';
 const deferred=()=>{let resolve;const promise=new Promise(r=>resolve=r);return {promise,resolve};};
+test('an actor barrier can cancel held preparation before the next job starts',async()=>{
+ const gate=deferred(),started=deferred(),commits=[],dead=[];
+ const loader=createEquipmentLoader({initial:{shoulders:null},validate(){},maxIdle:0,
+  prepare:async(id,signal)=>{started.resolve(signal);await gate.promise;return {dispose(){dead.push(id);}};},commit:x=>commits.push({...x})});
+ const old=loader.request({shoulders:'plate'}),signal=await started.promise;
+ loader.cancelPending();assert(signal.aborted);assert.equal(loader.getStatus().pending,false);
+ assert.deepEqual(loader.getStatus().desired,{shoulders:null});assert.deepEqual(loader.getState(),{shoulders:null});
+ gate.resolve();assert.equal((await old).status,'superseded');assert.deepEqual(commits,[]);assert.deepEqual(dead,['plate']);
+ assert.equal((await loader.request({shoulders:null})).status,'applied');
+ assert.deepEqual(commits,[{shoulders:null}]);loader.dispose();loader.cancelPending();assert.equal((await loader.request({})).status,'disposed');
+});
 test('superseded preparation never commits and queued selections merge',async()=>{
  const gate=deferred(),started=deferred(),commits=[],dead=[];
  const loader=createEquipmentLoader({initial:{torso:null,boots:null},validate(){},maxIdle:0,prepare:async id=>{if(id==='old'){started.resolve();await gate.promise;}return {dispose(){dead.push(id);}};},commit:x=>commits.push({...x})});

@@ -423,6 +423,7 @@ export async function createStreamedEquipment(
     },
     getState: loader.getState,
     getStatus: loader.getStatus,
+    cancelPending: loader.cancelPending,
     getDyes:()=>({...dyes}),
     setDyes:next=>request({},next),
     setDye(slot,id){

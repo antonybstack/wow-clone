@@ -1,12 +1,12 @@
 {
  "schema": 1,
  "lite": "1.31.1",
- "catalogVersion": "appearance-catalog-v6",
+ "catalogVersion": "appearance-catalog-v7",
  "candidateOnly": false,
  "manifest": {
   "schema": 1,
   "lite": "1.31.1",
-  "catalogVersion": "appearance-catalog-v6",
+  "catalogVersion": "appearance-catalog-v7",
   "candidateOnly": false,
   "texturePolicy": {
    "human": "at most 512px from published full texture masters; WebP quality 90",
@@ -16,7 +16,7 @@
    "human": {
     "sourceManifest": {
      "path": "public/ashen-reach/human-shape-v1/manifest.json",
-     "sha256": "31c74bff6e03eb8be41bfbba9fb2296aaea6ad582ecf28befe594dd7528f7fff"
+     "sha256": "e3280fcec469fbf62fa1cdce19907477abbcbf0876effabef89b6575b1606071"
     },
     "manifest": {
      "schema": 1,
@@ -702,6 +702,34 @@
         "sourceCurvesExact": true,
         "triangleWindingExact": true
        }
+      },
+      "bastionShoulders": {
+       "bytes": 111928,
+       "sha256": "04799fbd208a7cf9efa8d4775ce5c64551155c529cb94c8425e5888675c60e69",
+       "meshes": [
+        "BastionShoulders"
+       ],
+       "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "shapeFamily": "ashen-human-shape-v1",
+       "textures": [],
+       "file": "bastionShoulders-04799fbd208a7cf9efa8d4775ce5c64551155c529cb94c8425e5888675c60e69.glb",
+       "source": {
+        "path": "public/ashen-reach/human-shape-v1/bastionShoulders-f494b2e91fe7.bin",
+        "sha256": "04799fbd208a7cf9efa8d4775ce5c64551155c529cb94c8425e5888675c60e69",
+        "bytes": 111928
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       }
       }
      }
     }
@@ -709,7 +737,7 @@
    "orc": {
     "sourceManifest": {
      "path": "public/ashen-reach/equipment-orc/manifest-coverage-v1.json",
-     "sha256": "5bc61536fd3579f09792ecb79066b8f09caf386f9738ffb6a887cd0e83438ae4"
+     "sha256": "27610dfe63fb3a7af10ee9bb83c5dee4c2a9520541eefe74354767e3c3495c98"
     },
     "manifest": {
      "schema": 1,
@@ -1933,6 +1961,33 @@
          "bytes": 3572
         }
        ]
+      },
+      "bastionShoulders": {
+       "bytes": 68032,
+       "sha256": "6cc27a15b31966a12e353d0a7294ef9bad4d917687d7a7000df57862e16f97bb",
+       "meshes": [
+        "BastionShoulders"
+       ],
+       "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "bastionShoulders-6cc27a15b31966a12e353d0a7294ef9bad4d917687d7a7000df57862e16f97bb.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-orc/bastionShoulders-4dd06c4dd966.glb",
+        "sha256": "4dd06c4dd9665dda77076efc87bb5cfbd4c405a32cc22a81878684a7ed574d2b",
+        "bytes": 165168
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": []
       }
      }
     }
@@ -1940,7 +1995,7 @@
    "undead": {
     "sourceManifest": {
      "path": "public/ashen-reach/equipment-undead/manifest-coverage-v1.json",
-     "sha256": "f62d1724529084f665cbbebc43c9926ad393f9b87f9ed4db9b29fb40c88fd796"
+     "sha256": "8b5808f1027d620f75b3cd27b72eb15d533c175a5626380014c206ae71e1f115"
     },
     "manifest": {
      "schema": 1,
@@ -2708,6 +2763,33 @@
          "bytes": 3572
         }
        ]
+      },
+      "bastionShoulders": {
+       "bytes": 43116,
+       "sha256": "5f041f152113805554b63a9b9421a3831e8a9ea6fbf071965f7669ee604809fc",
+       "meshes": [
+        "BastionShoulders"
+       ],
+       "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "bastionShoulders-5f041f152113805554b63a9b9421a3831e8a9ea6fbf071965f7669ee604809fc.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-undead/bastionShoulders-c4008ce240e4.glb",
+        "sha256": "c4008ce240e47c5134f5014df41bb6a00933baece722f945b439093e4b7c50d4",
+        "bytes": 93532
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": []
       }
      }
     }
@@ -3295,6 +3377,26 @@
       }
      ],
      "points": 2354670,
+     "escaped": 0
+    },
+    "bastionShoulders": {
+     "sha256": "04799fbd208a7cf9efa8d4775ce5c64551155c529cb94c8425e5888675c60e69",
+     "bounds": [
+      {
+       "name": "BastionShoulders",
+       "minimum": [
+        -0.5158372326789575,
+        -0.13194903086525844,
+        -1.2090192523921683
+       ],
+       "maximum": [
+        0.511039081520871,
+        1.7272616851361078,
+        0.6115517233422838
+       ]
+      }
+     ],
+     "points": 2407680,
      "escaped": 0
     }
    },
@@ -4321,6 +4423,26 @@
      ],
      "points": 842460,
      "escaped": 0
+    },
+    "bastionShoulders": {
+     "sha256": "6cc27a15b31966a12e353d0a7294ef9bad4d917687d7a7000df57862e16f97bb",
+     "bounds": [
+      {
+       "name": "BastionShoulders",
+       "minimum": [
+        -0.6704968274837024,
+        0.04870918258226846,
+        -1.4402767803062357
+       ],
+       "maximum": [
+        0.6858013739187123,
+        2.096752529145058,
+        0.8481092554809242
+       ]
+      }
+     ],
+     "points": 695970,
+     "escaped": 0
     }
    },
    "clips": {
@@ -5255,6 +5377,26 @@
      ],
      "points": 807120,
      "escaped": 0
+    },
+    "bastionShoulders": {
+     "sha256": "5f041f152113805554b63a9b9421a3831e8a9ea6fbf071965f7669ee604809fc",
+     "bounds": [
+      {
+       "name": "BastionShoulders",
+       "minimum": [
+        -0.4989361839254485,
+        -0.028608361170053272,
+        -1.2426338101500758
+       ],
+       "maximum": [
+        0.4969798258858906,
+        2.075497702618469,
+        0.6200074216736247
+       ]
+      }
+     ],
+     "points": 361950,
+     "escaped": 0
     }
    },
    "clips": {
@@ -5603,7 +5745,7 @@
    }
   }
  },
- "points": 144919365,
+ "points": 148384965,
  "escaped": 0,
  "finalByteCache": {
   "entries": 0,
@@ -5616,12 +5758,12 @@
  "gpuErrors": [],
  "published": {
   "version": 1,
-  "publishedAt": "2026-10-05T15:38:28.169Z",
+  "publishedAt": "2026-10-06T00:49:42.062Z",
   "sourceCompilerSha256": "e9bb55b8b67195c5fe92cb8ebfc86aa59ee654a614bcec4154ab5c721a531563",
-  "pieceCount": 45,
-  "uniqueFiles": 45,
-  "totalBytes": 19419560,
+  "pieceCount": 48,
+  "uniqueFiles": 48,
+  "totalBytes": 19642636,
   "lite": "1.31.1",
-  "catalogVersion": "appearance-catalog-v6"
+  "catalogVersion": "appearance-catalog-v7"
  }
 }

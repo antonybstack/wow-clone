@@ -16,7 +16,9 @@
     "test:equipment": "node --test scripts/test-equipment-contract.mjs scripts/test-equipment-loader.mjs scripts/test-streamed-assets.mjs scripts/test-orc-streamed-assets.mjs scripts/test-ashen-equipment.mjs scripts/test-undead-race.mjs scripts/test-garment-shape-contract.mjs scripts/test-coverage-contract.mjs scripts/test-wardrobe-shoulders.mjs scripts/test-wardrobe-factory-bind.mjs scripts/test-coverage-partition.mjs scripts/test-garment-layer-coverage.mjs scripts/test-coverage-manifest.mjs scripts/test-remote-pieces-publication.mjs scripts/test-swap-budget.mjs",
     "prepare:startup": "node scripts/ashen-reach/prepare-starter-character.mjs && node scripts/ashen-reach/prepare-starter-world.mjs",
     "prepare:human-shapes": "node scripts/character-assets/prepare-production-human-shapes.mjs",
-    "prepare:human-identities": "node scripts/character-assets/prepare-production-human-identities.mjs"
+    "prepare:human-identities": "node scripts/character-assets/prepare-production-human-identities.mjs",
+    "prepare:factory": "node scripts/character-assets/prepare-factory-content.mjs",
+    "test:factory": "node --test scripts/test-equipment-factory.mjs scripts/test-appearance-catalog-v7.mjs"
   },
   "dependencies": {
     "@babylonjs/havok": "1.3.14",

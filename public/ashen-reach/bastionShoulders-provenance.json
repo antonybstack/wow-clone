@@ -1,0 +1,883 @@
+{
+  "schema": 1,
+  "item": "bastionShoulders",
+  "mesh": "BastionShoulders",
+  "slot": "shoulders",
+  "layer": "plate",
+  "occupies": [
+    "shoulders"
+  ],
+  "deformation": "rigid-bone",
+  "descriptor": {
+    "path": "blender/characters/wardrobe/bastion-shoulders.json",
+    "sha256": "6c2fa9bbd6a85d3b2dfc1051ebb817e14611d31e0c49af2a510632fea7cb40ff"
+  },
+  "blender": "5.2.1",
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "blenderVersion": "Blender 5.2.1 LTS\n\tbuild date: 2026-08-25\n\tbuild time: 01:35:57\n\tbuild commit date: 2026-08-24\n\tbuild commit time: 16:50\n\tbuild hash: 9e2066aef7ef\n\tbuild branch: blender-v5.2-release\n\tbuild platform: Darwin\n\tbuild type: Release\n\tbuild c flags:  -Wall -Werror=implicit-function-declaration -Werror=return-type -Wno-tautological-compare -Wno-unknown-pragmas -Wno-char-subscripts -Wstrict-prototypes -Wmissing-prototypes -Wunused-parameter -Wundef -Wundef-prefix -Werror=unguarded-availability-new  -mmacosx-version-min=11.2  -std=gnu11  -pipe -funsigned-char -fno-strict-aliasing -ffp-contract=off  \n\tbuild c++ flags:  -Wall -Wno-tautological-compare -Wno-unknown-pragmas -Wno-char-subscripts -Wno-overloaded-virtual -Wno-sign-compare -Wno-invalid-offsetof -Wno-suggest-override -Wundef -Wundef-prefix -Wunused-parameter -Wmismatched-tags -Werror=unguarded-availability-new  -mmacosx-version-min=11.2 -ftemplate-depth=1024   -pipe -funsigned-char -fno-strict-aliasing -ffp-contract=off  \n\tbuild link flags: -fexceptions -framework CoreServices -framework Foundation -framework IOKit -framework AppKit -framework Cocoa -framework Carbon -framework AudioUnit -framework AudioToolbox -framework CoreAudio -framework Metal -framework QuartzCore -framework CoreImage -framework OpenGL -framework Accelerate -liconv -Xlinker -no_warn_duplicate_libraries\n\tbuild system: CMake"
+  },
+  "toolSources": [
+    {
+      "path": "scripts/character-assets/equipment-factory.mjs",
+      "sha256": "75fe36feada1597e62a1559169c0937546bb74e4dad44da03fd186e017b23167"
+    },
+    {
+      "path": "scripts/character-assets/equipment-factory-contract.mjs",
+      "sha256": "09a16eb89d0be32a1b4c15829d5d1b8be6acc4c7b9f89ebb23cdf1a57c9a2502"
+    },
+    {
+      "path": "scripts/character-assets/normalize-human-bind.mjs",
+      "sha256": "c2781998b91d42fcb3225caa2f7bee0b8309ee30f047916751189a67d7d08f68"
+    },
+    {
+      "path": "scripts/character-assets/verify-factory-equipment-bind.mjs",
+      "sha256": "5994c7a38681514b2b83c3a8b858d181867d160efa349fc95aa84ece34032684"
+    },
+    {
+      "path": "scripts/character-assets/girth-field.mjs",
+      "sha256": "ceeea9466718a30c31593423a67e9b430ed33caf9069092db61f7738ec74b565"
+    },
+    {
+      "path": "scripts/character-assets/startup-geometry-policy.mjs",
+      "sha256": "825433a38683a1800c0f65e6490be7c6d41b764a506e4d81cc11340163d8c7e5"
+    },
+    {
+      "path": "scripts/character-assets/build_bastion_shoulders.py",
+      "sha256": "f32671dec9fec176c5a69d1bb495d2e3e5d3d1a0348cb68d0bdb2af5baaaa195"
+    },
+    {
+      "path": "scripts/character-assets/build_warden_pauldrons.py",
+      "sha256": "9bd9ccaa792a0180beb16fc95183897b0e2621e5d447dccc4ff64e87e509f60b"
+    }
+  ],
+  "sourceRights": "Original project-authored crests and lames built on the existing source-derived native shoulder cap. Existing Tripo/Mixamo body/rig grants remain unchanged; no new rights are asserted.",
+  "material": {
+    "revision": 1,
+    "model": "metallic-roughness",
+    "baseColor": [
+      0.2,
+      0.225,
+      0.265,
+      1
+    ],
+    "metallic": 0.92,
+    "roughness": 0.44
+  },
+  "detail": {
+    "revision": 1,
+    "full": "authored-shell",
+    "compact": "same-rigid-geometry",
+    "humanShapeFamily": "ashen-human-shape-v1"
+  },
+  "byteIdenticalRebuild": true,
+  "races": {
+    "human": {
+      "source": {
+        "path": "public/ashen-reach/equipment/body.glb",
+        "sha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0"
+      },
+      "interface": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "artifact": {
+        "sha256": "7ae3f575fcf36e4c32ebec87bcfdb206ac696909379d1b6d506ae2a1491ee3c3",
+        "bytes": 186880
+      },
+      "structure": {
+        "schema": 1,
+        "item": "bastionShoulders",
+        "mesh": "BastionShoulders",
+        "source": "public/ashen-reach/equipment/body.glb",
+        "structure": [
+          {
+            "side": "Left",
+            "bone": "mixamorig:LeftArm",
+            "parts": [
+              {
+                "part": "raised curved crest",
+                "sourceFaces": 23,
+                "closedLayerVertices": 54
+              },
+              {
+                "part": "overlapping curved lame 1",
+                "sourceFaces": 15,
+                "closedLayerVertices": 44
+              },
+              {
+                "part": "overlapping curved lame 2",
+                "sourceFaces": 14,
+                "closedLayerVertices": 42
+              }
+            ],
+            "nativeAxis": [
+              0.9999897480010986,
+              -1.765569805911582e-7,
+              -0.004540574736893177
+            ],
+            "projectedCapSpanM": 0.09962999866797927
+          },
+          {
+            "side": "Right",
+            "bone": "mixamorig:RightArm",
+            "parts": [
+              {
+                "part": "raised curved crest",
+                "sourceFaces": 29,
+                "closedLayerVertices": 64
+              },
+              {
+                "part": "overlapping curved lame 1",
+                "sourceFaces": 20,
+                "closedLayerVertices": 56
+              },
+              {
+                "part": "overlapping curved lame 2",
+                "sourceFaces": 17,
+                "closedLayerVertices": 46
+              }
+            ],
+            "nativeAxis": [
+              -0.9999896883964539,
+              3.923482339018847e-8,
+              -0.004541823174804449
+            ],
+            "projectedCapSpanM": 0.1001313845182638
+          }
+        ],
+        "operandClearances": [
+          {
+            "part": "BastionLayer1",
+            "against": "BastionShoulders",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.0012270227545420204,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer2",
+            "against": "BastionShoulders",
+            "crossingEdges": 16,
+            "minimumNearestNormalM": -0.006572382750234389,
+            "belowNearestNormalVertices": 1
+          },
+          {
+            "part": "BastionLayer2",
+            "against": "BastionLayer1",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": -0.007972701460733228,
+            "belowNearestNormalVertices": 2
+          },
+          {
+            "part": "BastionLayer3",
+            "against": "BastionShoulders",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": -0.023016803793233537,
+            "belowNearestNormalVertices": 1
+          },
+          {
+            "part": "BastionLayer3",
+            "against": "BastionLayer1",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": -0.004499018538765193,
+            "belowNearestNormalVertices": 2
+          },
+          {
+            "part": "BastionLayer3",
+            "against": "BastionLayer2",
+            "crossingEdges": 14,
+            "minimumNearestNormalM": -0.002132602303817443,
+            "belowNearestNormalVertices": 2
+          },
+          {
+            "part": "BastionLayer4",
+            "against": "BastionShoulders",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": -0.00005937054620600012,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer4",
+            "against": "BastionLayer1",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.023551111290951554,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer4",
+            "against": "BastionLayer2",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.04454193850140409,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer4",
+            "against": "BastionLayer3",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": -0.21492747958911615,
+            "belowNearestNormalVertices": 17
+          },
+          {
+            "part": "BastionLayer5",
+            "against": "BastionShoulders",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": -0.01806920761832875,
+            "belowNearestNormalVertices": 4
+          },
+          {
+            "part": "BastionLayer5",
+            "against": "BastionLayer1",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.049930191116105194,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer5",
+            "against": "BastionLayer2",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.06680775507969208,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer5",
+            "against": "BastionLayer3",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": -0.29880545007872306,
+            "belowNearestNormalVertices": 24
+          },
+          {
+            "part": "BastionLayer5",
+            "against": "BastionLayer4",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": -0.006846082802576952,
+            "belowNearestNormalVertices": 2
+          },
+          {
+            "part": "BastionLayer6",
+            "against": "BastionShoulders",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": -0.028013294905126936,
+            "belowNearestNormalVertices": 2
+          },
+          {
+            "part": "BastionLayer6",
+            "against": "BastionLayer1",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.17910586619419894,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer6",
+            "against": "BastionLayer2",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.06585755372365813,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer6",
+            "against": "BastionLayer3",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": -0.31977436796335035,
+            "belowNearestNormalVertices": 20
+          },
+          {
+            "part": "BastionLayer6",
+            "against": "BastionLayer4",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": -0.0038067125423242305,
+            "belowNearestNormalVertices": 1
+          },
+          {
+            "part": "BastionLayer6",
+            "against": "BastionLayer5",
+            "crossingEdges": 20,
+            "minimumNearestNormalM": -0.009730177304219212,
+            "belowNearestNormalVertices": 5
+          }
+        ],
+        "assembly": "Blender EXACT Boolean UNION; operand intersections removed from final render surfaces",
+        "rights": "Original project-authored crests/lames on the existing source-derived native cap. Existing body/rig source grants remain unchanged."
+      },
+      "vertices": 2816,
+      "triangles": 1935,
+      "bones": [
+        "mixamorig:LeftArm",
+        "mixamorig:RightArm"
+      ],
+      "bind": {
+        "joints": 65,
+        "meshes": 1,
+        "primitives": 1,
+        "vertices": 2816,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.3249322474002838,
+            1.3399933576583862,
+            -0.20320528745651245
+          ],
+          "max": [
+            0.3324131667613983,
+            1.508573293685913,
+            0.0856369286775589
+          ],
+          "frame": "accepted body mesh"
+        }
+      }
+    },
+    "orc": {
+      "source": {
+        "path": "public/ashen-reach/equipment-orc/body.glb",
+        "sha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b"
+      },
+      "interface": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "artifact": {
+        "sha256": "4dd06c4dd9665dda77076efc87bb5cfbd4c405a32cc22a81878684a7ed574d2b",
+        "bytes": 165168
+      },
+      "structure": {
+        "schema": 1,
+        "item": "bastionShoulders",
+        "mesh": "BastionShoulders",
+        "source": "public/ashen-reach/equipment-orc/body.glb",
+        "structure": [
+          {
+            "side": "Left",
+            "bone": "mixamorig:LeftArm",
+            "parts": [
+              {
+                "part": "raised curved crest",
+                "sourceFaces": 35,
+                "closedLayerVertices": 82
+              },
+              {
+                "part": "overlapping curved lame 1",
+                "sourceFaces": 14,
+                "closedLayerVertices": 38
+              },
+              {
+                "part": "overlapping curved lame 2",
+                "sourceFaces": 10,
+                "closedLayerVertices": 24
+              }
+            ],
+            "nativeAxis": [
+              1,
+              1.625872982913279e-7,
+              0.00008466363942716271
+            ],
+            "projectedCapSpanM": 0.14662643547870136
+          },
+          {
+            "side": "Right",
+            "bone": "mixamorig:RightArm",
+            "parts": [
+              {
+                "part": "raised curved crest",
+                "sourceFaces": 29,
+                "closedLayerVertices": 64
+              },
+              {
+                "part": "overlapping curved lame 1",
+                "sourceFaces": 14,
+                "closedLayerVertices": 40
+              },
+              {
+                "part": "overlapping curved lame 2",
+                "sourceFaces": 9,
+                "closedLayerVertices": 26
+              }
+            ],
+            "nativeAxis": [
+              -1,
+              -0.0000022318843093671603,
+              -0.00009033957758219913
+            ],
+            "projectedCapSpanM": 0.14631452914010337
+          }
+        ],
+        "operandClearances": [
+          {
+            "part": "BastionLayer1",
+            "against": "BastionShoulders",
+            "crossingEdges": 29,
+            "minimumNearestNormalM": -0.017368764451844286,
+            "belowNearestNormalVertices": 9
+          },
+          {
+            "part": "BastionLayer2",
+            "against": "BastionShoulders",
+            "crossingEdges": 28,
+            "minimumNearestNormalM": -0.0007306593193455375,
+            "belowNearestNormalVertices": 1
+          },
+          {
+            "part": "BastionLayer2",
+            "against": "BastionLayer1",
+            "crossingEdges": 10,
+            "minimumNearestNormalM": -0.002458861466485377,
+            "belowNearestNormalVertices": 2
+          },
+          {
+            "part": "BastionLayer3",
+            "against": "BastionShoulders",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.008816303562753564,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer3",
+            "against": "BastionLayer1",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": -0.006580940524169638,
+            "belowNearestNormalVertices": 3
+          },
+          {
+            "part": "BastionLayer3",
+            "against": "BastionLayer2",
+            "crossingEdges": 21,
+            "minimumNearestNormalM": -0.008576233567828676,
+            "belowNearestNormalVertices": 3
+          },
+          {
+            "part": "BastionLayer4",
+            "against": "BastionShoulders",
+            "crossingEdges": 18,
+            "minimumNearestNormalM": -0.007610432410006986,
+            "belowNearestNormalVertices": 2
+          },
+          {
+            "part": "BastionLayer4",
+            "against": "BastionLayer1",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": -0.029232611002789174,
+            "belowNearestNormalVertices": 5
+          },
+          {
+            "part": "BastionLayer4",
+            "against": "BastionLayer2",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.15427411688251524,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer4",
+            "against": "BastionLayer3",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.11928346620611542,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer5",
+            "against": "BastionShoulders",
+            "crossingEdges": 24,
+            "minimumNearestNormalM": -0.001047779074478768,
+            "belowNearestNormalVertices": 2
+          },
+          {
+            "part": "BastionLayer5",
+            "against": "BastionLayer1",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": -0.009195887836905836,
+            "belowNearestNormalVertices": 2
+          },
+          {
+            "part": "BastionLayer5",
+            "against": "BastionLayer2",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.14986750506160762,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer5",
+            "against": "BastionLayer3",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.1256192909415224,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer5",
+            "against": "BastionLayer4",
+            "crossingEdges": 8,
+            "minimumNearestNormalM": -0.004013853057909314,
+            "belowNearestNormalVertices": 3
+          },
+          {
+            "part": "BastionLayer6",
+            "against": "BastionShoulders",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.00878882418299859,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer6",
+            "against": "BastionLayer1",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.002169954728261647,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer6",
+            "against": "BastionLayer2",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.15597860702920086,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer6",
+            "against": "BastionLayer3",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.17699990085512612,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer6",
+            "against": "BastionLayer4",
+            "crossingEdges": 4,
+            "minimumNearestNormalM": -0.007933770911385765,
+            "belowNearestNormalVertices": 3
+          },
+          {
+            "part": "BastionLayer6",
+            "against": "BastionLayer5",
+            "crossingEdges": 24,
+            "minimumNearestNormalM": -0.010741368888138925,
+            "belowNearestNormalVertices": 5
+          }
+        ],
+        "assembly": "Blender EXACT Boolean UNION; operand intersections removed from final render surfaces",
+        "rights": "Original project-authored crests/lames on the existing source-derived native cap. Existing body/rig source grants remain unchanged."
+      },
+      "vertices": 2442,
+      "triangles": 1789,
+      "bones": [
+        "mixamorig:LeftArm",
+        "mixamorig:RightArm"
+      ],
+      "bind": {
+        "joints": 65,
+        "meshes": 1,
+        "primitives": 1,
+        "vertices": 2442,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.512217104434967,
+            1.6392496824264526,
+            -0.16205903887748718
+          ],
+          "max": [
+            0.5095387101173401,
+            1.8430448770523071,
+            0.13256169855594635
+          ],
+          "frame": "accepted body mesh"
+        }
+      }
+    },
+    "undead": {
+      "source": {
+        "path": "public/ashen-reach/equipment-undead/body.glb",
+        "sha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d"
+      },
+      "interface": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "artifact": {
+        "sha256": "c4008ce240e47c5134f5014df41bb6a00933baece722f945b439093e4b7c50d4",
+        "bytes": 93532
+      },
+      "structure": {
+        "schema": 1,
+        "item": "bastionShoulders",
+        "mesh": "BastionShoulders",
+        "source": "public/ashen-reach/equipment-undead/body.glb",
+        "structure": [
+          {
+            "side": "Left",
+            "bone": "mixamorig:LeftArm",
+            "parts": [
+              {
+                "part": "raised curved crest",
+                "sourceFaces": 12,
+                "closedLayerVertices": 42
+              },
+              {
+                "part": "overlapping curved lame 1",
+                "sourceFaces": 8,
+                "closedLayerVertices": 28
+              },
+              {
+                "part": "overlapping curved lame 2",
+                "sourceFaces": 9,
+                "closedLayerVertices": 26
+              }
+            ],
+            "nativeAxis": [
+              0.998977541923523,
+              -0.025100598111748695,
+              -0.03759993985295296
+            ],
+            "projectedCapSpanM": 0.12769715180179875
+          },
+          {
+            "side": "Right",
+            "bone": "mixamorig:RightArm",
+            "parts": [
+              {
+                "part": "raised curved crest",
+                "sourceFaces": 15,
+                "closedLayerVertices": 44
+              },
+              {
+                "part": "overlapping curved lame 1",
+                "sourceFaces": 7,
+                "closedLayerVertices": 28
+              },
+              {
+                "part": "overlapping curved lame 2",
+                "sourceFaces": 11,
+                "closedLayerVertices": 28
+              }
+            ],
+            "nativeAxis": [
+              -0.9989760518074036,
+              0.022997453808784485,
+              -0.038961607962846756
+            ],
+            "projectedCapSpanM": 0.13367422062141693
+          }
+        ],
+        "operandClearances": [
+          {
+            "part": "BastionLayer1",
+            "against": "BastionShoulders",
+            "crossingEdges": 7,
+            "minimumNearestNormalM": 0.006724110803214215,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer2",
+            "against": "BastionShoulders",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.002389073113596294,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer2",
+            "against": "BastionLayer1",
+            "crossingEdges": 13,
+            "minimumNearestNormalM": -0.0001254163840692553,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer3",
+            "against": "BastionShoulders",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.009223121273000803,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer3",
+            "against": "BastionLayer1",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": -0.002233591774845306,
+            "belowNearestNormalVertices": 2
+          },
+          {
+            "part": "BastionLayer3",
+            "against": "BastionLayer2",
+            "crossingEdges": 21,
+            "minimumNearestNormalM": -0.004903331289365931,
+            "belowNearestNormalVertices": 5
+          },
+          {
+            "part": "BastionLayer4",
+            "against": "BastionShoulders",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.007195653754569874,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer4",
+            "against": "BastionLayer1",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.0031605809220541787,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer4",
+            "against": "BastionLayer2",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": -0.04302552246245317,
+            "belowNearestNormalVertices": 4
+          },
+          {
+            "part": "BastionLayer4",
+            "against": "BastionLayer3",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.116060380725703,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer5",
+            "against": "BastionShoulders",
+            "crossingEdges": 8,
+            "minimumNearestNormalM": 0.0027962342942553227,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer5",
+            "against": "BastionLayer1",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.044259236098991996,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer5",
+            "against": "BastionLayer2",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": -0.0023606949516975506,
+            "belowNearestNormalVertices": 2
+          },
+          {
+            "part": "BastionLayer5",
+            "against": "BastionLayer3",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.26308873422990575,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer5",
+            "against": "BastionLayer4",
+            "crossingEdges": 18,
+            "minimumNearestNormalM": -0.0005529172362107653,
+            "belowNearestNormalVertices": 1
+          },
+          {
+            "part": "BastionLayer6",
+            "against": "BastionShoulders",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.009512657310530748,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer6",
+            "against": "BastionLayer1",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.06875330264672702,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer6",
+            "against": "BastionLayer2",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": -0.002992328338496497,
+            "belowNearestNormalVertices": 1
+          },
+          {
+            "part": "BastionLayer6",
+            "against": "BastionLayer3",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": 0.26210552464189685,
+            "belowNearestNormalVertices": 0
+          },
+          {
+            "part": "BastionLayer6",
+            "against": "BastionLayer4",
+            "crossingEdges": 0,
+            "minimumNearestNormalM": -0.011547544340471672,
+            "belowNearestNormalVertices": 2
+          },
+          {
+            "part": "BastionLayer6",
+            "against": "BastionLayer5",
+            "crossingEdges": 20,
+            "minimumNearestNormalM": -0.006135730680769738,
+            "belowNearestNormalVertices": 4
+          }
+        ],
+        "assembly": "Blender EXACT Boolean UNION; operand intersections removed from final render surfaces",
+        "rights": "Original project-authored crests/lames on the existing source-derived native cap. Existing body/rig source grants remain unchanged."
+      },
+      "vertices": 1270,
+      "triangles": 814,
+      "bones": [
+        "mixamorig:LeftArm",
+        "mixamorig:RightArm"
+      ],
+      "bind": {
+        "joints": 65,
+        "meshes": 1,
+        "primitives": 1,
+        "vertices": 1270,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.36658844351768494,
+            1.425152063369751,
+            -0.20115754008293152
+          ],
+          "max": [
+            0.3685305714607239,
+            1.6125308275222778,
+            0.07066728174686432
+          ],
+          "frame": "accepted body mesh"
+        }
+      }
+    }
+  },
+  "humanShape": {
+    "family": "ashen-human-shape-v1",
+    "sha256": "0c1f3a71ae65e1c8778e851d249dcbdf5123053bce174793567bcd6c81031b07",
+    "bytes": 323280,
+    "targets": [
+      "slender",
+      "stout"
+    ],
+    "body": {
+      "source": "public/ashen-reach/human-shape-v1/body-e69a14d75176.bin",
+      "sha256": "e69a14d75176717920bae9ec438c80a4b842a8f014da256aec97db44ae743d9c",
+      "decodedSha256": "6c552cec7a794fdd7aa7876d6bedcb7f279101f0ca06169f6bc9e53444947417",
+      "compression": "gzip",
+      "bodyMesh": "HumanV1Body"
+    },
+    "bind": {
+      "joints": 65,
+      "meshes": 1,
+      "primitives": 1,
+      "vertices": 2816,
+      "worstPaletteDelta": 0,
+      "inverseBindExact": true,
+      "bounds": {
+        "min": [
+          -0.3249322474002838,
+          1.3399933576583862,
+          -0.20320528745651245
+        ],
+        "max": [
+          0.3324131667613983,
+          1.508573293685913,
+          0.0856369286775589
+        ],
+        "frame": "accepted body mesh"
+      }
+    }
+  },
+  "generatedBy": "scripts/character-assets/equipment-factory.mjs"
+}

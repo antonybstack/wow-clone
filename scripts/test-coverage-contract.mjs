@@ -57,8 +57,9 @@ test('the migrated proof outfits mean the same thing in both vocabularies', () =
         const legacy = [...new Set((item.coverage || []).flatMap(r => LEGACY_REGION_SEGMENTS[r]))].sort();
         assert.deepEqual([...item.covers].sort(), legacy, `${item.id} declares a different meaning in each vocabulary`);
     }
-    // The original semantic pieces plus the five actual Lector/Duskguard fits.
-    assert.equal(migrated, 13);
+    // The original semantic pieces, the five actual Lector/Duskguard fits and, from catalogue
+    // v7, the factory Bastion plate (an explicit empty `covers`, like the Warden plate).
+    assert.equal(migrated, 14);
 });
 
 test('the legacy region adapter is total over what the catalogue uses', () => {
@@ -96,7 +97,8 @@ test('two-handed occupancy agrees with the catalogue validator on every combinat
         assert.equal(accepted, !conflict, `${JSON.stringify(loadout)} accepted=${accepted} conflict=${conflict}`);
         checked++;
     }
-    assert.equal(checked, 6912);
+    // v7: the shoulder slot has three choices (none, Warden, Bastion) instead of two, x1.5.
+    assert.equal(checked, 10368);
 });
 
 test('the Orc adapter retains shipped visibility for every valid loadout', () => {
@@ -230,7 +232,9 @@ test('every valid combination resolves on every race without throwing', () => {
             }
         }
     }
-    assert.equal(valid.length, 6048);
+    // v7: 6,048 valid v6 loadouts x 3/2 shoulder choices. Shoulders are not a garment slot
+    // here, so the pair/triple garment coverage below is unchanged.
+    assert.equal(valid.length, 9072);
     assert.equal(pairs.size, 63, 'cross-set pair coverage');
     assert.equal(triples.size, 143, 'three-way coverage');
 });

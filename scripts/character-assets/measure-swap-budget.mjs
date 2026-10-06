@@ -21,11 +21,15 @@ const url = process.env.ASHEN_TEST_URL, port = process.env.ASHEN_CDP_PORT, out =
 assert(url && port && out, 'ASHEN_TEST_URL, ASHEN_CDP_PORT and an output path are required');
 const RACES = (process.env.ASHEN_RACES || 'human,orc,undead').split(',');
 const REPEATS = Number(process.env.ASHEN_REPEATS || 3);
+const requestedItems = (process.env.ASHEN_SWAP_ITEMS || '').split(',').filter(Boolean);
+for (const id of requestedItems) assert(EQUIPMENT_ITEMS[id]?.parts?.length, `Unknown or procedural swap item ${id}`);
+const savedAppearance = process.env.ASHEN_SWAP_APPEARANCE ? JSON.parse(await fs.readFile(process.env.ASHEN_SWAP_APPEARANCE, 'utf8')) : null;
+assert(!savedAppearance || RACES.length === 1 && RACES[0] === 'human', 'Saved Human swap cohort must run separately');
 // The shared acceptance profile's network condition, so this figure sits beside the cold-start one.
 const NETWORK = { downloadThroughput: 50 * 1024 * 1024 / 8, uploadThroughput: 50 * 1024 * 1024 / 8, latency: 40, offline: false };
 // A factory prop is built in the page with no response to fetch, so it has no cold cost to
 // measure. Excluded by its catalogue shape rather than by name.
-const NETWORK_SLOTS = EQUIPMENT_SLOTS.filter(slot => Object.values(EQUIPMENT_ITEMS).some(i => i.slot === slot && i.parts?.length));
+const NETWORK_SLOTS = EQUIPMENT_SLOTS.filter(slot => Object.values(EQUIPMENT_ITEMS).some(i => i.slot === slot && i.parts?.length && (!requestedItems.length || requestedItems.includes(i.id))));
 const ROTATION = Object.fromEntries(EQUIPMENT_SLOTS.map(slot =>
     [slot, Object.entries(EQUIPMENT_ITEMS).filter(([, i]) => i.slot === slot).map(([id]) => id)]));
 const isPieceRequest = (requestUrl, id) => {
@@ -39,7 +43,8 @@ const ownership = await browserOwnership(browser, { cdpPort: port, url, purpose:
 await fs.writeFile(out + '.ownership.json', JSON.stringify(ownership, null, 2));
 const rows = [], errors = [], skipped = [];
 const report = {
-    url, network: { ...NETWORK, note: '50 Mbit/s, 40 ms, matching the shared cold-start profile' },
+    url, network: { ...NETWORK, note: 'Legacy swap budget uses 50 Mibit/s (50*1024*1024), 40 ms; startup uses decimal 50 Mbit/s.' },
+    requestedItems, savedAppearance,
     conditions: 'One owned rendering client at a time. Each cold row is a fresh context with the HTTP cache disabled against a piece that context has never loaded. Hand slots are excluded: a factory prop is built in the page and has no response to fetch.',
     slots: NETWORK_SLOTS,
     repeats: REPEATS, rows, skipped, errors,
@@ -50,6 +55,7 @@ try {
         for (const slot of NETWORK_SLOTS) {
             for (let repeat = 1; repeat <= REPEATS; repeat++) {
                 const context = await browser.newContext({ viewport: { width: 1280, height: 720 }, deviceScaleFactor: 1 });
+                if (savedAppearance) await context.addInitScript(recipe => localStorage.setItem('ashen.appearance.v2', JSON.stringify(recipe)), savedAppearance);
                 const page = await context.newPage();
                 page.on('pageerror', e => errors.push(e.stack));
                 page.on('console', m => { if (m.type() === 'error') errors.push(m.text().slice(0, 300)); });
@@ -69,18 +75,27 @@ try {
                     await cdp.send('Network.emulateNetworkConditions', NETWORK);
                     const booted = new Set(await page.evaluate(() => ASHEN.equipment.getStatus().cached));
                     const worn = await page.evaluate(s => ASHEN.equipment.getState()[s] ?? null, slot);
-                    const target = ROTATION[slot].find(id => id !== worn && !booted.has(id)) ?? null;
+                    const target = ROTATION[slot].find(id => (!requestedItems.length || requestedItems.includes(id)) && id !== worn && !booted.has(id)) ?? null;
                     if (!target) {
+                        assert(!requestedItems.length, `Explicit target ${requestedItems.join(',')} is already loaded; no cold measurement is possible`);
                         skipped.push({ race, slot, repeat, reason: 'every item in this slot is loaded at boot on this race' });
                         continue;
                     }
-                    let hits = 0, bytes = 0;
-                    await page.route('**/*.glb*', async route => {
+                    let hits = 0, bytes = 0, contentEncoding = null;
+                    const responseReads = [];
+                    await page.route('**/*', async route => {
                         if (isPieceRequest(route.request().url(), target)) hits++;
                         await route.continue();
                     });
-                    page.on('response', async response => {
-                        if (isPieceRequest(response.url(), target)) bytes = Number(response.headers()['content-length'] ?? 0);
+                    page.on('response', response => {
+                        if (isPieceRequest(response.url(), target)) {
+                            contentEncoding = response.headers()['content-encoding'] ?? null;
+                            // Pages may stream without Content-Length. Read the actual
+                            // published response body instead of accepting zero bytes.
+                            // This is decoded HTTP-body size, not wire-header overhead.
+                            // https://playwright.dev/docs/api/class-response#response-body
+                            responseReads.push(response.body().then(body => {bytes = body.byteLength;}));
+                        }
                     });
                     // Latency and frame cost are different claims. A 130 ms fetch is fine; a
                     // 130 ms frame is not, and only the second is a stall the player sees.
@@ -101,6 +116,8 @@ try {
                     assert.equal(cold.status, 'applied', `${race}/${slot} cold ${target}: ${cold.error}`);
                     // Without a request there is no cold measurement, only a resident one wearing its name.
                     assert(hits > 0, `${race}/${slot} ${target} was never fetched, so this is not a cold cost`);
+                    await Promise.all(responseReads);
+                    assert(bytes > 0, 'Fetched item has no measured response body');
 
                     const other = ROTATION[slot].find(id => id !== target) ?? null;
                     let resident = null;
@@ -114,7 +131,7 @@ try {
                             return { ms: performance.now() - t0, status: result.status };
                         }, [slot, target]);
                     }
-                    rows.push({ race, slot, item: target, repeat, bytes, hits, coldMs: +cold.ms.toFixed(1),
+                    rows.push({ race, slot, item: target, repeat, bytes, contentEncoding, hits, coldMs: +cold.ms.toFixed(1),
                         coldWorstFrameMs: cold.worstFrameMs === null ? null : +cold.worstFrameMs.toFixed(2), coldFrames: cold.frames,
                         residentMs: resident ? +resident.ms.toFixed(1) : null });
                     console.log(JSON.stringify(rows.at(-1)));

@@ -81,7 +81,11 @@ for(const preset of HUMAN_IDENTITY_PRESETS.filter(p=>p.sourceLabel)){
  const label=preset.sourceLabel,pin=sourcePins.assets.find(a=>a.label===label),prepared=preparedPins.find(a=>a.label===label);
  const audition=JSON.parse(await fs.readFile(`${review}/${label}/manifest.json`,'utf8'));
  assert.equal(audition.identityReview.sourceSha256,pin.sha256);assert.equal(audition.items.body.sha256,prepared.bodySha256);
- for(const [id,asset]of Object.entries(published.items))if(!['body','graveweaverHood'].includes(id))assert.deepEqual(audition.items[id],asset,`${label}/${id}: obsolete clothing audition`);
+ // The pinned identity audition proves its original shared garments. Later catalogue
+ // pieces come from the independently verified production shape family; they must not
+ // require rewriting the accepted face/body audition or its source pins.
+ // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#morph-targets
+ for(const [id,asset]of Object.entries(audition.items))if(!['body','graveweaverHood'].includes(id))assert.deepEqual(published.items[id],asset,`${label}/${id}: obsolete clothing audition`);
  const bodyBytes=gunzipSync(await fs.readFile(`${review}/${label}/${path.basename(audition.items.body.url)}`));assert.equal(sha(bodyBytes),prepared.bodySha256);
  const doc=await io.readBinary(bodyBytes),acceptedGeometry=identityGeometryHash(doc.getRoot()),acceptedCurves=identityAnimationHash(doc.getRoot());
  normalizeHumanBind(doc.getRoot(),reference,'HumanV1Body','HumanV1Body',{exactReference:true});

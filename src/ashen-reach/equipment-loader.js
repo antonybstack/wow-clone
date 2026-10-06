@@ -60,7 +60,14 @@ export function createEquipmentLoader({initial,validate,prepare,commit,maxIdle=2
         if(disposed||ids(selected).has(id)||!cache.has(id))return false;
         cache.get(id).dispose();cache.delete(id);return true;
     }
-    return {request,forget,getState:()=>({...selected}),getStatus:()=>({...status,cached:[...cache.keys()],desired:{...desired}}),drain:()=>chain,
+    // Actor-level body/race barriers serialize commits. A newer equipment intent
+    // must still invalidate a held piece fetch before it reaches that barrier.
+    // https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort
+    function cancelPending() {
+        if(disposed||!status.pending)return;
+        sequence++;active?.abort();desired={...selected};status={pending:false,error:null};
+    }
+    return {request,forget,cancelPending,getState:()=>({...selected}),getStatus:()=>({...status,cached:[...cache.keys()],desired:{...desired}}),drain:()=>chain,
         dispose(){
             if(disposed)return;disposed=true;sequence++;active?.abort();
             const values=[...cache.values()];cache.clear();status={pending:false,error:null};

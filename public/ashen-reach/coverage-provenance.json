@@ -10,7 +10,7 @@
       "manifestName": "manifest-coverage-v1.json",
       "publicationManifest": "public/ashen-reach/equipment/manifest-coverage-v1.json",
       "sourceManifest": "public/ashen-reach/equipment/manifest.json",
-      "sourceManifestSha256": "5d2ca7423e88c4f0f4cd5245eb0372d2571936c7256e52a5660290b9082738bd",
+      "sourceManifestSha256": "7a265a713f9317016a24fd59828e3488bd5ac1c648931a7ec6897bedd83dde3e",
       "artifacts": [
         "body-coverage-75f772ab0d3d.glb",
         "wayfarerTrousers-coverage-48d4f61d94cf.glb",
@@ -203,11 +203,12 @@
       "manifestName": "manifest.json",
       "publicationManifest": "public/ashen-reach/human-shape-v1/manifest.json",
       "sourceManifest": "public/ashen-reach/human-shape-v1/manifest.json",
-      "sourceManifestSha256": "df9814933113966defdbe10c8f2ba6e51a445f70fc9e1d33608beeafa93d16c6",
+      "sourceManifestSha256": "5ae192bd96dd31567f483b762d3bb70722339569a770ad6d4eb604c6d92ff4db",
       "artifacts": [
         "body-coverage-e6892517e0a4.bin",
         "wayfarerTrousers-coverage-b1eb36e8f614.bin",
         "duskguardTassets-coverage-ee06988dee5f.bin",
+        "body-coverage-a59b206b45da.bin",
         "wayfarerTrousers-compact-coverage-f834210550a3.bin"
       ],
       "rows": [
@@ -427,6 +428,112 @@
         },
         {
           "race": "human",
+          "id": "body",
+          "detail": "startup",
+          "source": {
+            "url": "/ashen-reach/human-shape-v1/body-compact-b2297196330a.bin",
+            "bytes": 1024260,
+            "sha256": "39ddc0a020217dfa3e367a7b015f7bd20b7d12b71c8a0c6a140fcb3c6d85698c",
+            "meshes": [
+              "HumanV1Body"
+            ],
+            "encodedBytes": 589058,
+            "compression": "gzip",
+            "shapeFamily": "ashen-human-shape-v1",
+            "textures": [
+              {
+                "materials": [
+                  "HumanV1Body"
+                ],
+                "url": "/ashen-reach/human-shape-v1/texture-423c672df75a.png"
+              }
+            ],
+            "detail": "playable",
+            "playableClips": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ]
+          },
+          "output": {
+            "url": "/ashen-reach/human-shape-v1/body-coverage-a59b206b45da.bin",
+            "sha256": "072d6ee0f1608a1b454e734acde29050a3ef149bc56ef53440bb2be7e0e246ee",
+            "bytes": 1025640,
+            "encodedBytes": 588749
+          },
+          "partition": {
+            "source": "HumanV1Body",
+            "covered": "HumanTorsoCore",
+            "originalTriangles": 5325,
+            "coveredTriangles": 446,
+            "exposedTriangles": 4879,
+            "vertexReindexing": false
+          },
+          "landmarks": {
+            "hips": [
+              0.0034376357216387987,
+              1.007189154624939,
+              0.00343721779063344
+            ],
+            "neck": [
+              0.003437428968027234,
+              1.4609274864196777,
+              -0.051561616361141205
+            ],
+            "unit": 1.0079866961428994,
+            "halfWidth": 0.14667571746548147,
+            "backLimitZ": -0.016722516132224547
+          },
+          "partitionPolicy": "human-medial-back-v1",
+          "footCoverage": {
+            "revision": "human-ankle-foot-v1",
+            "partition": {
+              "source": "HumanV1Body",
+              "covered": "HumanFootCore",
+              "originalTriangles": 4879,
+              "coveredTriangles": 448,
+              "exposedTriangles": 4431,
+              "vertexReindexing": false
+            },
+            "landmarks": {
+              "unit": 1.0079866961428994,
+              "footY": [
+                0.12030518054962158,
+                0.12031520903110504
+              ],
+              "ankleLimitY": 0.13039507599253403
+            }
+          },
+          "verification": {
+            "triangles": 5325,
+            "attributesExact": true,
+            "morphsExact": true,
+            "skinExact": true,
+            "framesExact": true,
+            "sourceAnimationExact": true
+          }
+        },
+        {
+          "race": "human",
           "id": "wayfarerTrousers",
           "detail": "startup",
           "source": {
@@ -505,9 +612,9 @@
       "manifestName": "manifest.json",
       "publicationManifest": "public/ashen-reach/startup/character/manifest.json",
       "sourceManifest": "public/ashen-reach/startup/character/manifest.json",
-      "sourceManifestSha256": "dbbad278ea8f46ef9337e27271ed6ad8d1dcc3a0d1fb1af41696b0eda9cbabed",
+      "sourceManifestSha256": "14c4c4e53f8f0d7393c6a5a8765a0fa546ff9ab2d4926de53c9d8b6b25705421",
       "artifacts": [
-        "body-coverage-ea2daae91eff.bin",
+        "body-coverage-843a7f392521.bin",
         "wayfarerTrousers-coverage-18aaf5475c09.bin",
         "duskguardTassets-coverage-e813d3927fc0.glb"
       ],
@@ -517,20 +624,45 @@
           "id": "body",
           "detail": "full",
           "source": {
-            "url": "/ashen-reach/startup/character/body-a3cdd02ae8b7.bin",
-            "bytes": 1782376,
-            "sha256": "02ca1155e90d640d6602835d75806f8bbf31ef7d2554adcd8ee2be5e42fcc097",
+            "url": "/ashen-reach/startup/character/body-52077db3d449.bin",
+            "bytes": 894956,
+            "sha256": "2c4f2730c2b865c9efcbde43b3ce959768b8c51caca0acf8ba092079715de7d6",
             "meshes": [
               "HumanV1Body"
             ],
-            "encodedBytes": 873654,
-            "compression": "gzip"
+            "encodedBytes": 471153,
+            "compression": "gzip",
+            "detail": "playable",
+            "playableClips": [
+              "Hit_Chest",
+              "Idle_Loop",
+              "Jump_Land",
+              "Jump_Loop",
+              "Jump_Start",
+              "Spell_Simple_Enter",
+              "Spell_Simple_Exit",
+              "Spell_Simple_Idle_Loop",
+              "Sprint_Loop",
+              "Walk_Loop",
+              "Jog_Bwd_Loop",
+              "Jog_Left_Loop",
+              "Jog_Right_Loop",
+              "Turn90_L",
+              "Turn90_R",
+              "Walk_Carry_Loop",
+              "PyreBurst_Upper",
+              "PyreBurst_Lower",
+              "FireBlast_Upper",
+              "FireBlast_Lower",
+              "LavaBall_Upper",
+              "LavaBall_Lower"
+            ]
           },
           "output": {
-            "url": "/ashen-reach/startup/character/body-coverage-ea2daae91eff.bin",
-            "sha256": "193c8bde4c5eda2ec2c508327354a457ce1348a9335622a4ce52ce5142e21e1a",
-            "bytes": 1783504,
-            "encodedBytes": 873849
+            "url": "/ashen-reach/startup/character/body-coverage-843a7f392521.bin",
+            "sha256": "11404f784ddb042b8c92452d6cc0f850de350a422c4e56ab6cd5bc2d390cdd3e",
+            "bytes": 896072,
+            "encodedBytes": 471314
           },
           "partition": {
             "source": "HumanV1Body",
@@ -704,7 +836,7 @@
       "manifestName": "manifest-coverage-v1.json",
       "publicationManifest": "public/ashen-reach/equipment-orc/manifest-coverage-v1.json",
       "sourceManifest": "public/ashen-reach/equipment-orc/manifest.json",
-      "sourceManifestSha256": "15f62ad27faeec39b04f468874d39f1fbbc13101e94f6b5e066dd0353e00aacd",
+      "sourceManifestSha256": "359e8945f8a655a73d3d6cac7c935975326bd1931d933653206fa87fd9c9c51b",
       "artifacts": [
         "graveweaverSkirt-coverage-aefdea6ff724.glb",
         "wayfarerTrousers-coverage-124da6c75972.glb",
@@ -883,7 +1015,7 @@
       "manifestName": "manifest-coverage-v1.json",
       "publicationManifest": "public/ashen-reach/equipment-undead/manifest-coverage-v1.json",
       "sourceManifest": "public/ashen-reach/equipment-undead/manifest.json",
-      "sourceManifestSha256": "3580bf3589b2a45a3734695e8978394f04b47a8507e62e6a62d809766b1bad0a",
+      "sourceManifestSha256": "d378bfc509877e3046f5c5131142865cdbb72886dbb9a1995ac1280ed1519248",
       "artifacts": [
         "body-coverage-02cb6c3cc877.glb",
         "graveweaverSkirt-coverage-8be75fe7dc39.glb",

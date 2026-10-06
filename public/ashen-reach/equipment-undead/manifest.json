@@ -220,6 +220,20 @@
         "bind": 1,
         "shape": 1
       }
+    },
+    "bastionShoulders": {
+      "url": "/ashen-reach/equipment-undead/bastionShoulders-c4008ce240e4.glb",
+      "bytes": 93532,
+      "sha256": "c4008ce240e47c5134f5014df41bb6a00933baece722f945b439093e4b7c50d4",
+      "meshes": [
+        "BastionShoulders"
+      ],
+      "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
     }
   }
 }

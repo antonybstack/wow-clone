@@ -44,6 +44,9 @@ const authoredItems={
     pilgrimTunic:{id:'pilgrimTunic',slot:'torso',name:'Pilgrim cloth tunic',parts:[{mesh:'PilgrimTunic'}],coverage:['BodyUnderTunic','BodyWaist']},
     wayfarerTrousers:{id:'wayfarerTrousers',slot:'legs',name:'Wayfarer trousers',parts:[{mesh:'WayfarerTrousers'},{mesh:'WayfarerTrousersCuffs',hideWhenSlots:['boots']}],coverage:['BodyUnderLegs','BodyWaist'],covers:['leg.upper','leg.lower','waist']},
     wayfarerBoots:{id:'wayfarerBoots',slot:'boots',name:'Wayfarer boots',parts:[{mesh:'WayfarerBoots'}],coverage:['BodyUnderBoots'],covers:['foot']},
+    // M8 factory item (blender/characters/wardrobe/bastion-shoulders.json). Appended last so
+    // the released item order, and every frozen registry built from it, is unchanged.
+    bastionShoulders:{id:'bastionShoulders',slot:'shoulders',name:'Bastion crested shoulders',parts:[{mesh:'BastionShoulders'}],coverage:[],covers:[],layer:'plate',deformation:'rigid-bone'},
 };
 const seamsBySlot={shoulders:['shoulders'],helmet:['neck'],torso:['neck','waist','wrists'],legs:['waist','ankles'],boots:['ankles'],gloves:['wrists'],mainHand:[],offHand:[]};
 export const EQUIPMENT_ITEMS=freezeEquipment(Object.fromEntries(Object.entries(authoredItems).map(([id,item])=>[id,{...item,fit:{...HUMAN_EQUIPMENT_FIT},fits:{human:{...HUMAN_EQUIPMENT_FIT},orc:{...ORC_EQUIPMENT_FIT},undead:{...UNDEAD_EQUIPMENT_FIT}},seams:seamsBySlot[item.slot],occupies:item.occupies||[item.slot]}])));
@@ -53,6 +56,11 @@ export const LEGACY_EQUIPMENT_ITEMS=freezeEquipment(Object.fromEntries(LEGACY_IT
  * retroactively by a saved older recipe merely because the current map grows.
  */
 export const EQUIPMENT_V3_ITEMS=freezeEquipment(Object.fromEntries([...LEGACY_ITEM_IDS,'wardenPauldrons'].map(id=>[id,EQUIPMENT_ITEMS[id]])));
+/** Catalogues v4-v6 accepted exactly these eighteen IDs (in this order). They are frozen here
+ * so an item added for v7 or later can never be smuggled into an older saved recipe or a
+ * network profile that still declares v6. */
+export const EQUIPMENT_V6_ITEM_IDS=Object.freeze(['lectorCoat','duskguardCuirass','duskguardTassets','duskguardGreaves','duskguardVambraces','wardenPauldrons',...LEGACY_ITEM_IDS]);
+export const EQUIPMENT_V6_ITEMS=freezeEquipment(Object.fromEntries(EQUIPMENT_V6_ITEM_IDS.map(id=>[id,EQUIPMENT_ITEMS[id]])));
 /**
  * Socket-local hold for a race. Human values stay on the item; a race entry under `grips`
  * is an optional correction.

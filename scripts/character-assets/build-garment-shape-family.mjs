@@ -23,6 +23,8 @@ import {createHash} from 'node:crypto';
 import {NodeIO, VertexLayout} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {MeshoptDecoder, MeshoptEncoder} from 'meshoptimizer';
+import {fileURLToPath} from 'node:url';
+import {EQUIPMENT_ITEMS} from '../../src/ashen-reach/equipment-catalog.js';
 import {buildSegments, recomputeNormals, restWorld, rigidShape, softShape, trackBodyRigid, trackBodyShape} from './girth-field.mjs';
 import {extendHems, vertexNormals} from './garment-coverage.mjs';
 
@@ -45,38 +47,44 @@ const OUT_REPORT = process.env.ASHEN_GARMENT_REPORT
         : 'docs/baselines/character-mmo/m005/garment-shape-family.json');
 const TARGET_NAMES = ['slender', 'stout'];
 
-/** `rigid: true` means the piece keeps its shape and only moves. */
-let GARMENTS = [
-    {item: 'wayfarerTunic', file: 'public/ashen-reach/equipment/wayfarerTunic.glb', rigid: false},
-    {item: 'wayfarerTrousers', file: 'public/ashen-reach/equipment/wayfarerTrousers.glb', rigid: false},
-    {item: 'wayfarerBoots', file: 'public/ashen-reach/equipment/wayfarerBoots.glb', rigid: false},
-    {item: 'pilgrimTunic', file: 'public/ashen-reach/equipment/pilgrimTunic.glb', rigid: false},
-    {item: 'graveweaverTop', file: 'public/ashen-reach/equipment/graveweaverTop.glb', rigid: false},
-    {item: 'graveweaverSkirt', file: 'public/ashen-reach/equipment/graveweaverSkirt.glb', rigid: false},
-    {item: 'graveweaverHood', file: 'public/ashen-reach/equipment/graveweaverHood.glb', rigid: false},
-    {item: 'graveweaverGloves', file: 'public/ashen-reach/equipment/graveweaverGloves.glb', rigid: false},
-    // These real source fits are published independently, never as outfit
-    // permutations. Plate rigidity is carried by each primitive's factory extras.
-    {item: 'lectorCoat', file: 'public/ashen-reach/equipment/lectorCoat.glb', rigid: false},
-    ...['duskguardCuirass','duskguardTassets','duskguardGreaves','duskguardVambraces']
-        .map(item=>({item,file:`public/ashen-reach/equipment/${item}.glb`,rigid:false})),
-    // The catalogue has no rigid element, so M005 authors one:
-    // scripts/character-assets/build_warden_pauldrons.py. Prototype, developer-only,
-    // deliberately not in public/ and not in the production catalogue.
-    {item: 'wardenPauldrons', file: process.env.ASHEN_PRODUCTION_PLATE==='1' ? 'public/ashen-reach/equipment/wardenPauldrons.glb' : '.cache/character-mmo/m005/warden-pauldrons.glb', rigid: true, ...(process.env.ASHEN_PRODUCTION_PLATE==='1' ? {} : {out: '.cache/character-mmo/m005/warden-pauldrons-shaped.glb'})},
-];
-// Bounded offline auditions reuse the exact production shape/hem pipeline. They
-// must select known items explicitly and write under .cache rather than replacing
-// canonical garments or publishing an unreviewed fit.
-if (process.env.ASHEN_GARMENT_SOURCE_DIR) {
-    const source = process.env.ASHEN_GARMENT_SOURCE_DIR;
-    const selected = (process.env.ASHEN_GARMENT_ITEMS || '').split(',').filter(Boolean);
-    const isolated = dir => { const relative = path.relative(path.resolve('.cache'), path.resolve(dir));
-        return relative && !relative.startsWith('..') && !path.isAbsolute(relative); };
-    if (!isolated(source) || !isolated(OUT_DIR) || !isolated(OUT_REPORT) || !selected.length
-        || selected.some(id => !GARMENTS.some(g => g.item === id))) throw Error('Invalid isolated garment audition');
-    GARMENTS = GARMENTS.filter(g => selected.includes(g.item)).map(g => ({...g,
-        file: path.join(source, `${g.item}.glb`), out: path.join(OUT_DIR, `${g.item}.glb`)}));
+const HUMAN_MANIFEST = 'public/ashen-reach/equipment/manifest.json';
+/** Historical row order only. It is serialized into the human-shape-v1 provenance, so the
+ * released garments keep their exact order; membership is not decided here. */
+const RELEASED_ORDER = Object.freeze(['wayfarerTunic', 'wayfarerTrousers', 'wayfarerBoots', 'pilgrimTunic', 'graveweaverTop',
+    'graveweaverSkirt', 'graveweaverHood', 'graveweaverGloves', 'lectorCoat', 'duskguardCuirass', 'duskguardTassets',
+    'duskguardGreaves', 'duskguardVambraces', 'wardenPauldrons']);
+const isGarment = (items, id) => Object.hasOwn(items, id) && !items[id].factory;
+
+/**
+ * Which Human pieces receive the shape family. Membership is every catalogued, non-procedural
+ * item the shipped Human manifest carries -- the same set prepare-production-human-shapes
+ * reads back -- so a newly published catalogue item is shaped without a one-off branch.
+ * `rigid: true` (from the catalogue's `deformation: 'rigid-bone'`) means the whole piece keeps
+ * its shape and only moves; mixed items still mark rigid primitives through factory extras.
+ * Outside production the Warden plate keeps its M005 diagnostic source under .cache.
+ */
+export function selectShapeGarments(shipped, items, {productionPlate = false} = {}) {
+    const shippedIds = Object.keys(shipped?.items ?? {}).filter(id => id !== 'body');
+    for (const id of shippedIds) if (!isGarment(items, id)) throw Error(`Shipped Human item ${id} is not a catalogued garment`);
+    const ordered = [...RELEASED_ORDER.filter(id => shippedIds.includes(id)), ...shippedIds.filter(id => !RELEASED_ORDER.includes(id))];
+    const garments = ordered.map(item => {
+        const garment = {item, file: `public/ashen-reach/equipment/${item}.glb`, rigid: items[item].deformation === 'rigid-bone'};
+        if (item === 'wardenPauldrons' && !productionPlate) return {...garment, file: '.cache/character-mmo/m005/warden-pauldrons.glb',
+            out: '.cache/character-mmo/m005/warden-pauldrons-shaped.glb', diagnostic: true};
+        return garment;
+    });
+    // Catalogued but not yet in the Human manifest: reported, never silently fabricated.
+    const awaiting = Object.keys(items).filter(id => isGarment(items, id) && !shippedIds.includes(id));
+    return {garments, awaiting};
+}
+
+/** Bounded offline auditions reuse the exact production shape/hem pipeline. They must select
+ * known catalogued garments explicitly and write under .cache rather than replacing canonical
+ * garments or publishing an unreviewed fit. */
+export function selectAuditionGarments(items, selected, source, outDir) {
+    if (!selected.length || selected.some(id => !isGarment(items, id))) throw Error('Invalid isolated garment audition');
+    return selected.map(item => ({item, rigid: items[item].deformation === 'rigid-bone',
+        file: path.join(source, `${item}.glb`), out: path.join(outDir, `${item}.glb`)}));
 }
 
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -99,6 +107,17 @@ function semanticHash(prim, skin) {
 }
 
 async function main() {
+    const shipped = JSON.parse(await fs.readFile(HUMAN_MANIFEST, 'utf8'));
+    let {garments: GARMENTS, awaiting} = selectShapeGarments(shipped, EQUIPMENT_ITEMS, {productionPlate: process.env.ASHEN_PRODUCTION_PLATE === '1'});
+    if (process.env.ASHEN_GARMENT_SOURCE_DIR) {
+        const source = process.env.ASHEN_GARMENT_SOURCE_DIR;
+        const isolated = dir => { const relative = path.relative(path.resolve('.cache'), path.resolve(dir));
+            return relative && !relative.startsWith('..') && !path.isAbsolute(relative); };
+        if (!isolated(source) || !isolated(OUT_DIR) || !isolated(OUT_REPORT)) throw Error('Invalid isolated garment audition');
+        GARMENTS = selectAuditionGarments(EQUIPMENT_ITEMS, (process.env.ASHEN_GARMENT_ITEMS || '').split(',').filter(Boolean), source, OUT_DIR);
+        awaiting = [];
+    }
+    if (awaiting.length) console.log(`catalogued but not in ${HUMAN_MANIFEST}, not shaped: ${awaiting.join(', ')}`);
     await MeshoptDecoder.ready;
     await MeshoptEncoder.ready;
     const io = new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({
@@ -135,9 +154,9 @@ async function main() {
 
     const rows = [];
     for (const garment of GARMENTS) {
-        // Production families are reproducible from the eight tracked canonical garments.
-        // The diagnostic plate requires an ignored Blender output and is not a catalogue item.
-        if (garment.rigid && process.env.ASHEN_SKIP_PLATE === '1' && process.env.ASHEN_PRODUCTION_PLATE !== '1') continue;
+        // Production families are reproducible from the tracked canonical garments. The M005
+        // diagnostic Warden source is an ignored Blender output, so it alone may be skipped.
+        if (garment.diagnostic && process.env.ASHEN_SKIP_PLATE === '1') continue;
         const sourceBytes = await fs.readFile(garment.file);
         const doc = await io.read(garment.file);
         const root = doc.getRoot();
@@ -280,7 +299,6 @@ async function main() {
     // A manifest the real streamed loader accepts, so the refitted pack can be served to
     // the actual game route instead of only measured offline. `equipment-stream.js` checks
     // the declared byte length and SHA-256 of every item, so both are recomputed here.
-    const shipped = JSON.parse(await fs.readFile('public/ashen-reach/equipment/manifest.json', 'utf8'));
     const bodyBytes = await fs.readFile(BODY);
     const manifest = {
         schema: shipped.schema,
@@ -297,7 +315,7 @@ async function main() {
     };
     for (const row of rows) {
         const base = shipped.items[row.item];
-        if (!base) continue;   // the prototype plate is not a catalogue item
+        if (!base) continue;   // an isolated audition of a piece the Human manifest does not carry yet
         manifest.items[row.item] = {
             url: `/__garment_fit__/${path.basename(row.output.path)}`,
             bytes: row.output.bytes,
@@ -325,8 +343,9 @@ async function main() {
             : 'Cloth takes the girth field applied to its own offsets; a rigid piece takes one translation for the whole piece.',
         garments: rows,
         manifest: {path: path.join(OUT_DIR, 'manifest.json')},
+        ...(awaiting.length ? {awaitingHumanManifest: awaiting} : {}),
     }, null, 1)}\n`);
     console.log(`wrote ${OUT_REPORT}`);
 }
 
-await main();
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) await main();

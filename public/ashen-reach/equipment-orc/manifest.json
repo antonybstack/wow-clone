@@ -227,6 +227,20 @@
         "bind": 1,
         "shape": 1
       }
+    },
+    "bastionShoulders": {
+      "url": "/ashen-reach/equipment-orc/bastionShoulders-4dd06c4dd966.glb",
+      "bytes": 165168,
+      "sha256": "4dd06c4dd9665dda77076efc87bb5cfbd4c405a32cc22a81878684a7ed574d2b",
+      "meshes": [
+        "BastionShoulders"
+      ],
+      "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
     }
   },
   "bindSha256": "5bdfea1bf692a085205a24fe496c876874fba82aa62ee92597128fcf88ab2079"

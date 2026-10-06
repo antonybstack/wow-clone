@@ -39,8 +39,8 @@ The current capability boundary is:
   is 210–245 FPS at 1280×720. Reviewed Telegram 859/860/862 and VE motion pass.
   Earlier checkpoint failures remain in their result reports. Arbitrary facial/age
   sliders, all mixed fits and physical iPhone acceptance are not implied.
-* **Armor swapping works but is under-evidenced.** The catalogue now enumerates **6,912**
-  combinations, 6,048 valid, with zero validator disagreements — the "768" carried in this plan
+* **Armor swapping works but is under-evidenced.** Catalogue v7 now enumerates **10,368**
+  combinations, 9,072 valid, with zero validator disagreements — the "768" carried in this plan
   dated from an 8-item catalogue and is corrected. Per-slot hot swapping under motion
   ([result](results/m6-swap-under-motion-2026-10-02.md)), failure and storm handling
   ([result](results/m6-swap-failure-2026-10-02.md)) and the coverage contract against the live
@@ -277,7 +277,7 @@ reviewed in live motion. Flipping a flag without art is an explicit failure, not
 **Dependency:** milestones 1 and 3. The mechanism exists and is fast; the evidence is thin.
 This milestone makes "change any piece at any time" a claim with measurements behind it.
 
-What is already true: eight slots; **6,912** catalogue combinations enumerated and 6,048 valid
+What is already true: eight slots; catalogue v7 has **10,368** combinations enumerated and 9,072 valid
 with zero occupancy disagreements, and 2,592 live garment combinations agreeing with the
 coverage resolver; the Orc wrist, Human mixed waist and Undead bind defects are found and
 repaired; hem over-reach is bounded. Two different swap paths are now timed and must not be
@@ -305,7 +305,7 @@ Tasks:
    no GPU or console errors. Three judgement items recorded — the Duskguard cuirass reads as
    quilted padding rather than plate on all three races, the lilac staff head and grimoire are
    flat and unlit, and the Human Graveweaver hood bulges at the crown over the fused scalp hair.
-   **Still open:** the mixed combinations, which are the overwhelming majority of the 6,048 valid loadouts. Method note carried
+   **Still open:** the mixed combinations, which are the overwhelming majority of the 9,072 valid loadouts. Method note carried
    forward: a single view at small scale is not enough to report a visual defect — two reads
    this milestone dissolved under another view.
 4. ~~**Shape extremes beyond the Human.**~~ **Closed 2026-10-02**

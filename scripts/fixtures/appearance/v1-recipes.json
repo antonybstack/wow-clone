@@ -3,7 +3,7 @@
   "generation": "appearanceFromEquipment with frozen LEGACY_EQUIPMENT_PRESETS and APPEARANCE_V1_REGISTRY; empty uses {}",
   "source": "M001 active catalogue at bad1087; exact seven-slot fixtures retained through explicit v3/v4 registry migrations",
   "sourceSha256": {
-    "src/ashen-reach/equipment-catalog.js": "18777955993765ebcc1713210970862ca269be0e52bad9f97927a4d00630ef3a",
+    "src/ashen-reach/equipment-catalog.js": "47d7bde0ffe0d4d0428f9e5b54e4231593ca4dd25cbdbf18c389335ca44e8caa",
     "src/ashen-reach/equipment-contract.js": "8b210b6b3246238fcb866a898b59303c2a47bbeb7caa64df02c6812567eca395"
   },
   "license": "project-authored identity data; no third-party asset bytes",
@@ -118,8 +118,8 @@
     }
   },
   "previousSourceSha256": {
-    "src/ashen-reach/equipment-catalog.js": "64c6b05f58aac973444df3da6a2c04e0712fddf18a9b382c0f10a797a8793f73",
-    "src/ashen-reach/equipment-contract.js": "6b82f2974bafd3ef93e1e8c4f78b206d1fa65724a25257a929b174dbda9282af"
+    "src/ashen-reach/equipment-catalog.js": "18777955993765ebcc1713210970862ca269be0e52bad9f97927a4d00630ef3a",
+    "src/ashen-reach/equipment-contract.js": "8b210b6b3246238fcb866a898b59303c2a47bbeb7caa64df02c6812567eca395"
   },
-  "provenanceNote": "2026-09-30: revalidated all exact schema1 fixtures against current catalogue; refreshed stale source fingerprints after M007 coverage additions. Previous fingerprints retained; no recipe or expected selection changed."
+  "provenanceNote": "2026-09-30: revalidated all exact schema1 fixtures against current catalogue; refreshed stale source fingerprints after M007 coverage additions. Previous fingerprints retained; no recipe or expected selection changed. 2026-10-05: refreshed the equipment-catalog.js fingerprint after catalogue v7 appended bastionShoulders; v1 recipes and the frozen v1 registry are unchanged."
 }

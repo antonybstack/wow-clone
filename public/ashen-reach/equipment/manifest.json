@@ -220,6 +220,20 @@
         "bind": 1,
         "shape": 1
       }
+    },
+    "bastionShoulders": {
+      "url": "/ashen-reach/equipment/bastionShoulders-7ae3f575fcf3.glb",
+      "bytes": 186880,
+      "sha256": "7ae3f575fcf36e4c32ebec87bcfdb206ac696909379d1b6d506ae2a1491ee3c3",
+      "meshes": [
+        "BastionShoulders"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
     }
   },
   "bindSha256": "96bc48fe1c85ecfa78f169cbc0a637a71a8fcb1a8812f4a41b015a621b5522af",
