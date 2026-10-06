@@ -1,0 +1,591 @@
+{
+  "status": "offline-only-not-promoted",
+  "sourceCommit": "58546b9",
+  "ops": {
+    "method": "exp16",
+    "unit": {
+      "file": "scripts/test-character-normal-quantization.mjs",
+      "tests": 6,
+      "pass": 6,
+      "fail": 0,
+      "exit": 0
+    },
+    "ownedProcesses": "none",
+    "ok": 9,
+    "fail": 0,
+    "maxComponentError": 3.0517578125e-05,
+    "maxErrorLimit": 0.0001,
+    "proof": {
+      "positionsUVsWeightsMorphPositions": "exact",
+      "bonesBindsCurves": "exact",
+      "textureBytes": "exact",
+      "nodesPrimitivesVertices": "unchanged",
+      "khrMeshQuantization": false,
+      "outputNormals": "Float32 after EXPONENTIAL roundtrip"
+    },
+    "control": {
+      "bodies": "prior-byte-identical",
+      "clothing": "per-asset-this-pass-all-identical",
+      "priorClothingReuseAnnotation": "superseded"
+    },
+    "totals": {
+      "uniqueBodiesGzipSaved": 233222,
+      "uniqueBodies50MbitMs": 37.31552,
+      "seedOutfitGzipSaved": 108045,
+      "seedOutfit50MbitMs": 17.2872,
+      "seedTransferGzipIn": 2166532,
+      "seedTransferGzipSaved": 209829,
+      "seedTransferPercent": 9.684732,
+      "seedTransfer50MbitMs": 33.57264
+    },
+    "meaningfulVs100to220ms": false,
+    "playableClaim": false,
+    "published": false,
+    "candidatesDir": ".cache/character-mmo/startup-normals-2026-10-06/exp16"
+  },
+  "assets": [
+    {
+      "tag": "prime-bald-body",
+      "preset": "prime-bald",
+      "id": "body",
+      "kind": "body",
+      "url": "/ashen-reach/human-identity-v1/body-compact-091816686646.bin",
+      "method": "exp16",
+      "ok": true,
+      "original": {
+        "gzipBytes": 815738,
+        "decodedBytes": 1181096,
+        "decodedSha256": "f06f4e38b18f0d8d8aa5b35f3e435f8646f77f9075b50ad073e776e3be4a81a0"
+      },
+      "control": {
+        "gzipBytes": 815738,
+        "decodedBytes": 1181096,
+        "identical": true,
+        "source": "prior-fixed16/dedup-receipt"
+      },
+      "countsBefore": {
+        "nodes": 71,
+        "meshes": 5,
+        "primitives": 5,
+        "vertices": 22553
+      },
+      "inMemory": {
+        "maxErrorLimit": 0.0001,
+        "maxComponentError": 2.968311309814453e-05,
+        "renderedCorners": 40350,
+        "method": "exp16"
+      },
+      "countsAfter": {
+        "nodes": 71,
+        "meshes": 5,
+        "primitives": 5,
+        "vertices": 22553
+      },
+      "candidates": {
+        "gzipBin": ".cache/character-mmo/startup-normals-2026-10-06/exp16/prime-bald-body.bin",
+        "decodedGlb": ".cache/character-mmo/startup-normals-2026-10-06/exp16/prime-bald-body.glb",
+        "gzipSha256": "2fc8adca209e9a8247c690f703da8f2528e6e2f0fc2e372af53caf5b3a240e8b",
+        "decodedSha256": "5f44bd2768e86c3e5e51142c2a16f8cff6dcaa119c2e9d432215d1e3a53851df",
+        "published": false
+      },
+      "quantized": {
+        "gzipBytes": 750302,
+        "decodedBytes": 1111640,
+        "gzipSaved": 65436,
+        "decodedSaved": 69456,
+        "gzipPercent": 8.021693239741191,
+        "decodedPercent": 5.880639677045727,
+        "theoretical50MbitSavedMs": 10.469759999999999
+      },
+      "packedProof": {
+        "maxComponentError": 2.968311309814453e-05,
+        "renderedCorners": 40350
+      },
+      "countsUnchanged": true
+    },
+    {
+      "tag": "prime-ponytail-body",
+      "preset": "prime-ponytail",
+      "id": "body",
+      "kind": "body",
+      "url": "/ashen-reach/human-identity-v1/body-compact-bacdc1e12bd0.bin",
+      "method": "exp16",
+      "ok": true,
+      "original": {
+        "gzipBytes": 1115442,
+        "decodedBytes": 1510952,
+        "decodedSha256": "e945fd251487bbe92f881b5a66532c58e7178c0d9889103b0ad75c5e684dc544"
+      },
+      "control": {
+        "gzipBytes": 1115442,
+        "decodedBytes": 1510952,
+        "identical": true,
+        "source": "prior-fixed16/dedup-receipt"
+      },
+      "countsBefore": {
+        "nodes": 72,
+        "meshes": 6,
+        "primitives": 6,
+        "vertices": 26455
+      },
+      "inMemory": {
+        "maxErrorLimit": 0.0001,
+        "maxComponentError": 2.968311309814453e-05,
+        "renderedCorners": 56406,
+        "method": "exp16"
+      },
+      "countsAfter": {
+        "nodes": 72,
+        "meshes": 6,
+        "primitives": 6,
+        "vertices": 26455
+      },
+      "candidates": {
+        "gzipBin": ".cache/character-mmo/startup-normals-2026-10-06/exp16/prime-ponytail-body.bin",
+        "decodedGlb": ".cache/character-mmo/startup-normals-2026-10-06/exp16/prime-ponytail-body.glb",
+        "gzipSha256": "8736492b2d2315caacc000696de2d0c9b582f2677d410e0dcf618303162b4740",
+        "decodedSha256": "4022506679cc60033deb03554ca81ac96e924e413d839b928996680ff29c61cb",
+        "published": false
+      },
+      "quantized": {
+        "gzipBytes": 1013658,
+        "decodedBytes": 1406980,
+        "gzipSaved": 101784,
+        "decodedSaved": 103972,
+        "gzipPercent": 9.124992603828797,
+        "decodedPercent": 6.881224552467584,
+        "theoretical50MbitSavedMs": 16.28544
+      },
+      "packedProof": {
+        "maxComponentError": 2.968311309814453e-05,
+        "renderedCorners": 56406
+      },
+      "countsUnchanged": true
+    },
+    {
+      "tag": "weathered-bald-body",
+      "preset": "weathered-bald",
+      "id": "body",
+      "kind": "body",
+      "url": "/ashen-reach/human-identity-v1/body-compact-edea421bcae7.bin",
+      "method": "exp16",
+      "ok": true,
+      "original": {
+        "gzipBytes": 820973,
+        "decodedBytes": 1185872,
+        "decodedSha256": "a2d76274b8300437e08bdbc67c154fb98340e7b33f37b563157157570d027cc2"
+      },
+      "control": {
+        "gzipBytes": 820973,
+        "decodedBytes": 1185872,
+        "identical": true,
+        "source": "prior-fixed16/dedup-receipt"
+      },
+      "countsBefore": {
+        "nodes": 71,
+        "meshes": 5,
+        "primitives": 5,
+        "vertices": 22751
+      },
+      "inMemory": {
+        "maxErrorLimit": 0.0001,
+        "maxComponentError": 2.968311309814453e-05,
+        "renderedCorners": 40710,
+        "method": "exp16"
+      },
+      "countsAfter": {
+        "nodes": 71,
+        "meshes": 5,
+        "primitives": 5,
+        "vertices": 22751
+      },
+      "candidates": {
+        "gzipBin": ".cache/character-mmo/startup-normals-2026-10-06/exp16/weathered-bald-body.bin",
+        "decodedGlb": ".cache/character-mmo/startup-normals-2026-10-06/exp16/weathered-bald-body.glb",
+        "gzipSha256": "eeeac5364c3f82acbd91b32b8e793d9dd2333a6cd58e212417f15ff30d6f9c5c",
+        "decodedSha256": "1bbc4d687509a62897af702a3ce705fa4d77efc6151859121ba2b5e8987449d4",
+        "published": false
+      },
+      "quantized": {
+        "gzipBytes": 754971,
+        "decodedBytes": 1115924,
+        "gzipSaved": 66002,
+        "decodedSaved": 69948,
+        "gzipPercent": 8.03948485516576,
+        "decodedPercent": 5.8984443514983065,
+        "theoretical50MbitSavedMs": 10.560319999999999
+      },
+      "packedProof": {
+        "maxComponentError": 2.968311309814453e-05,
+        "renderedCorners": 40710
+      },
+      "countsUnchanged": true
+    },
+    {
+      "tag": "prime-ponytail-graveweaverHood",
+      "preset": "prime-ponytail",
+      "id": "graveweaverHood",
+      "kind": "clothing",
+      "url": "/ashen-reach/human-identity-v1/graveweaverHood-compact-e35c2fd3b285.bin",
+      "method": "exp16",
+      "ok": true,
+      "original": {
+        "gzipBytes": 197700,
+        "decodedBytes": 218488,
+        "decodedSha256": "cbccc099a1b7fa6924a2fe89f836d32ab1fbb015f51cc4b4b9bf5c7cb71428df"
+      },
+      "control": {
+        "gzipBytes": 197700,
+        "decodedBytes": 218488,
+        "gzipShaEqual": true,
+        "decodedShaEqual": true,
+        "identical": true,
+        "source": "this-pass-per-asset"
+      },
+      "countsBefore": {
+        "nodes": 67,
+        "meshes": 1,
+        "primitives": 1,
+        "vertices": 2464
+      },
+      "inMemory": {
+        "maxErrorLimit": 0.0001,
+        "maxComponentError": 3.0040740966796875e-05,
+        "renderedCorners": 13290,
+        "method": "exp16"
+      },
+      "countsAfter": {
+        "nodes": 67,
+        "meshes": 1,
+        "primitives": 1,
+        "vertices": 2464
+      },
+      "candidates": {
+        "gzipBin": ".cache/character-mmo/startup-normals-2026-10-06/exp16/prime-ponytail-graveweaverHood.bin",
+        "decodedGlb": ".cache/character-mmo/startup-normals-2026-10-06/exp16/prime-ponytail-graveweaverHood.glb",
+        "gzipSha256": "f92fa265546a345dc1682b71f1db3249267ab0419a668827e7c1442929d88ce9",
+        "decodedSha256": "2e6112726a15c48d867f272f0075d9ae0f9423367b5b56012b8e31b27efff24e",
+        "published": false
+      },
+      "quantized": {
+        "gzipBytes": 177087,
+        "decodedBytes": 198560,
+        "gzipSaved": 20613,
+        "decodedSaved": 19928,
+        "gzipPercent": 10.426403641881638,
+        "decodedPercent": 9.12086704990663,
+        "theoretical50MbitSavedMs": 3.29808
+      },
+      "packedProof": {
+        "maxComponentError": 3.0040740966796875e-05,
+        "renderedCorners": 13290
+      },
+      "countsUnchanged": true
+    },
+    {
+      "tag": "prime-ponytail-pilgrimTunic",
+      "preset": "prime-ponytail",
+      "id": "pilgrimTunic",
+      "kind": "clothing",
+      "url": "/ashen-reach/human-shape-v1/pilgrimTunic-compact-d94d573275dc.bin",
+      "method": "exp16",
+      "ok": true,
+      "original": {
+        "gzipBytes": 315468,
+        "decodedBytes": 349852,
+        "decodedSha256": "f682a61ef927051d1bd7f7b2a796c0010604944bdfbca648761db13c67851834"
+      },
+      "control": {
+        "gzipBytes": 315468,
+        "decodedBytes": 349852,
+        "gzipShaEqual": true,
+        "decodedShaEqual": true,
+        "identical": true,
+        "source": "this-pass-per-asset"
+      },
+      "countsBefore": {
+        "nodes": 70,
+        "meshes": 1,
+        "primitives": 1,
+        "vertices": 3924
+      },
+      "inMemory": {
+        "maxErrorLimit": 0.0001,
+        "maxComponentError": 3.039836883544922e-05,
+        "renderedCorners": 19614,
+        "method": "exp16"
+      },
+      "countsAfter": {
+        "nodes": 70,
+        "meshes": 1,
+        "primitives": 1,
+        "vertices": 3924
+      },
+      "candidates": {
+        "gzipBin": ".cache/character-mmo/startup-normals-2026-10-06/exp16/prime-ponytail-pilgrimTunic.bin",
+        "decodedGlb": ".cache/character-mmo/startup-normals-2026-10-06/exp16/prime-ponytail-pilgrimTunic.glb",
+        "gzipSha256": "383a7d96ea513e48490a1327f1908131122a315e38940dfc167312bfdbc60500",
+        "decodedSha256": "4945df94dbc476ed6719afa1aa74e9f33da45c05007b1d382284c0ad6922fbd5",
+        "published": false
+      },
+      "quantized": {
+        "gzipBytes": 282390,
+        "decodedBytes": 316932,
+        "gzipSaved": 33078,
+        "decodedSaved": 32920,
+        "gzipPercent": 10.485374110844841,
+        "decodedPercent": 9.409693241713638,
+        "theoretical50MbitSavedMs": 5.292479999999999
+      },
+      "packedProof": {
+        "maxComponentError": 3.039836883544922e-05,
+        "renderedCorners": 19614
+      },
+      "countsUnchanged": true
+    },
+    {
+      "tag": "prime-ponytail-graveweaverSkirt",
+      "preset": "prime-ponytail",
+      "id": "graveweaverSkirt",
+      "kind": "clothing",
+      "url": "/ashen-reach/human-shape-v1/graveweaverSkirt-compact-27daf8474125.bin",
+      "method": "exp16",
+      "ok": true,
+      "original": {
+        "gzipBytes": 203047,
+        "decodedBytes": 235456,
+        "decodedSha256": "c6c7c2037c78d155600a9e3faf10751e14a96312c786e7f0d16ec93f81c592c4"
+      },
+      "control": {
+        "gzipBytes": 203047,
+        "decodedBytes": 235456,
+        "gzipShaEqual": true,
+        "decodedShaEqual": true,
+        "identical": true,
+        "source": "this-pass-per-asset"
+      },
+      "countsBefore": {
+        "nodes": 72,
+        "meshes": 3,
+        "primitives": 3,
+        "vertices": 2570
+      },
+      "inMemory": {
+        "maxErrorLimit": 0.0001,
+        "maxComponentError": 3.0517578125e-05,
+        "renderedCorners": 12219,
+        "method": "exp16"
+      },
+      "countsAfter": {
+        "nodes": 72,
+        "meshes": 3,
+        "primitives": 3,
+        "vertices": 2570
+      },
+      "candidates": {
+        "gzipBin": ".cache/character-mmo/startup-normals-2026-10-06/exp16/prime-ponytail-graveweaverSkirt.bin",
+        "decodedGlb": ".cache/character-mmo/startup-normals-2026-10-06/exp16/prime-ponytail-graveweaverSkirt.glb",
+        "gzipSha256": "f52f181bec2878e9095db0a6471719fc0b284aef260eb55a943e5c630218c620",
+        "decodedSha256": "cb9b2d22585e5daf9176aca0d2dfbe71f53de0bf797f7f11c99e9617deebe680",
+        "published": false
+      },
+      "quantized": {
+        "gzipBytes": 181723,
+        "decodedBytes": 215056,
+        "gzipSaved": 21324,
+        "decodedSaved": 20400,
+        "gzipPercent": 10.502001999537052,
+        "decodedPercent": 8.664039141070944,
+        "theoretical50MbitSavedMs": 3.41184
+      },
+      "packedProof": {
+        "maxComponentError": 3.0517578125e-05,
+        "renderedCorners": 12219
+      },
+      "countsUnchanged": true
+    },
+    {
+      "tag": "prime-ponytail-wayfarerBoots",
+      "preset": "prime-ponytail",
+      "id": "wayfarerBoots",
+      "kind": "clothing",
+      "url": "/ashen-reach/human-shape-v1/wayfarerBoots-compact-287d89851371.bin",
+      "method": "exp16",
+      "ok": true,
+      "original": {
+        "gzipBytes": 157978,
+        "decodedBytes": 179416,
+        "decodedSha256": "e6e5f397e21e837cda004d7d47b91bac15a021da8e93672fb58daa120ec5515f"
+      },
+      "control": {
+        "gzipBytes": 157978,
+        "decodedBytes": 179416,
+        "gzipShaEqual": true,
+        "decodedShaEqual": true,
+        "identical": true,
+        "source": "this-pass-per-asset"
+      },
+      "countsBefore": {
+        "nodes": 70,
+        "meshes": 1,
+        "primitives": 1,
+        "vertices": 1947
+      },
+      "inMemory": {
+        "maxErrorLimit": 0.0001,
+        "maxComponentError": 1.52587890625e-05,
+        "renderedCorners": 9978,
+        "method": "exp16"
+      },
+      "countsAfter": {
+        "nodes": 70,
+        "meshes": 1,
+        "primitives": 1,
+        "vertices": 1947
+      },
+      "candidates": {
+        "gzipBin": ".cache/character-mmo/startup-normals-2026-10-06/exp16/prime-ponytail-wayfarerBoots.bin",
+        "decodedGlb": ".cache/character-mmo/startup-normals-2026-10-06/exp16/prime-ponytail-wayfarerBoots.glb",
+        "gzipSha256": "ed60f44068e2c615d4f5619dc03fe7cff89eb16dbcf181d1e804c361f9ab13f7",
+        "decodedSha256": "c7db9d59d99ecdb06459bc0bcef84094fd7ec2a8ee980049ed726455d6afec98",
+        "published": false
+      },
+      "quantized": {
+        "gzipBytes": 142031,
+        "decodedBytes": 164216,
+        "gzipSaved": 15947,
+        "decodedSaved": 15200,
+        "gzipPercent": 10.094443530111787,
+        "decodedPercent": 8.471931154412092,
+        "theoretical50MbitSavedMs": 2.55152
+      },
+      "packedProof": {
+        "maxComponentError": 1.52587890625e-05,
+        "renderedCorners": 9978
+      },
+      "countsUnchanged": true
+    },
+    {
+      "tag": "prime-ponytail-graveweaverGloves",
+      "preset": "prime-ponytail",
+      "id": "graveweaverGloves",
+      "kind": "clothing",
+      "url": "/ashen-reach/human-shape-v1/graveweaverGloves-compact-106f6454299a.bin",
+      "method": "exp16",
+      "ok": true,
+      "original": {
+        "gzipBytes": 93745,
+        "decodedBytes": 112892,
+        "decodedSha256": "9586f72f5aa14568c457a8006cb812f16019c5c81eb994da5136a834f6dfd789"
+      },
+      "control": {
+        "gzipBytes": 93745,
+        "decodedBytes": 112892,
+        "gzipShaEqual": true,
+        "decodedShaEqual": true,
+        "identical": true,
+        "source": "this-pass-per-asset"
+      },
+      "countsBefore": {
+        "nodes": 70,
+        "meshes": 1,
+        "primitives": 1,
+        "vertices": 1100
+      },
+      "inMemory": {
+        "maxErrorLimit": 0.0001,
+        "maxComponentError": 2.849102020263672e-05,
+        "renderedCorners": 5448,
+        "method": "exp16"
+      },
+      "countsAfter": {
+        "nodes": 70,
+        "meshes": 1,
+        "primitives": 1,
+        "vertices": 1100
+      },
+      "candidates": {
+        "gzipBin": ".cache/character-mmo/startup-normals-2026-10-06/exp16/prime-ponytail-graveweaverGloves.bin",
+        "decodedGlb": ".cache/character-mmo/startup-normals-2026-10-06/exp16/prime-ponytail-graveweaverGloves.glb",
+        "gzipSha256": "7b88fa180cdf4cb34fdbcdae76522ca7a0f06a1dcc3113de879e093e51b4f0ae",
+        "decodedSha256": "1e9442b9a4f87abb319929d01fdacee53cf8fe6a06456ddcc6b4a1d6fa7c0d03",
+        "published": false
+      },
+      "quantized": {
+        "gzipBytes": 85765,
+        "decodedBytes": 104888,
+        "gzipSaved": 7980,
+        "decodedSaved": 8004,
+        "gzipPercent": 8.512453997546537,
+        "decodedPercent": 7.089962087659002,
+        "theoretical50MbitSavedMs": 1.2768
+      },
+      "packedProof": {
+        "maxComponentError": 2.849102020263672e-05,
+        "renderedCorners": 5448
+      },
+      "countsUnchanged": true
+    },
+    {
+      "tag": "prime-ponytail-bastionShoulders",
+      "preset": "prime-ponytail",
+      "id": "bastionShoulders",
+      "kind": "clothing",
+      "url": "/ashen-reach/human-shape-v1/bastionShoulders-f494b2e91fe7.bin",
+      "method": "exp16",
+      "ok": true,
+      "original": {
+        "gzipBytes": 83152,
+        "decodedBytes": 111928,
+        "decodedSha256": "04799fbd208a7cf9efa8d4775ce5c64551155c529cb94c8425e5888675c60e69"
+      },
+      "control": {
+        "gzipBytes": 83152,
+        "decodedBytes": 111928,
+        "gzipShaEqual": true,
+        "decodedShaEqual": true,
+        "identical": true,
+        "source": "this-pass-per-asset"
+      },
+      "countsBefore": {
+        "nodes": 67,
+        "meshes": 1,
+        "primitives": 1,
+        "vertices": 2816
+      },
+      "inMemory": {
+        "maxErrorLimit": 0.0001,
+        "maxComponentError": 1.52587890625e-05,
+        "renderedCorners": 5805,
+        "method": "exp16"
+      },
+      "countsAfter": {
+        "nodes": 67,
+        "meshes": 1,
+        "primitives": 1,
+        "vertices": 2816
+      },
+      "candidates": {
+        "gzipBin": ".cache/character-mmo/startup-normals-2026-10-06/exp16/prime-ponytail-bastionShoulders.bin",
+        "decodedGlb": ".cache/character-mmo/startup-normals-2026-10-06/exp16/prime-ponytail-bastionShoulders.glb",
+        "gzipSha256": "cfa6fbe046741bb8e73a0f5b08ec25e9e31136f0830c5ba466367b7f70adde2b",
+        "decodedSha256": "abeb1fe34dcd033d310d5caca810f1c347a66c104083a2201407574164514dc9",
+        "published": false
+      },
+      "quantized": {
+        "gzipBytes": 74049,
+        "decodedBytes": 103528,
+        "gzipSaved": 9103,
+        "decodedSaved": 8400,
+        "gzipPercent": 10.947421589378488,
+        "decodedPercent": 7.504824530055035,
+        "theoretical50MbitSavedMs": 1.45648
+      },
+      "packedProof": {
+        "maxComponentError": 1.52587890625e-05,
+        "renderedCorners": 5805
+      },
+      "countsUnchanged": true
+    }
+  ]
+}
