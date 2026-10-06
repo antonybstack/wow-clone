@@ -5,34 +5,32 @@ historical milestone documents are evidence, not an active task queue.
 
 ## Immediate target
 
-[Active startup goal](plans/character-mmo/startup-goal-2026-10-06.md): largest saved
-hood/Bastion outfit below one second p95 in a fixed isolated production cohort,
-with unchanged art/physics and over 120 FPS. Implementation and verification are
-in progress; the current release below remains the accepted baseline.
+[Startup goal](plans/character-mmo/startup-goal-2026-10-06.md) achieved under the
+recorded conditions: largest saved hood/Bastion outfit **969.4 ms p95**, all 20
+production starts below one second, with unchanged art/physics and over 120 FPS.
+Next: **M6 boot-sole and mixed-outfit visual evidence**, preserving this baseline.
 
 The [focused 12-hour plan](plans/character-mmo/next-12-hours-2026-10-05.md) delivers
-its primary **saved Human creator release** and conditional **rigid shoulder factory/content
-release**. M5 and the bounded M8 proof are accepted on production. Next: attribute
-and improve the largest hooded outfit's startup headroom, then return to M6's boot
-sole and mixed-outfit visual evidence. Do not expand the startup payload first.
+its primary saved Human creator release and bounded rigid shoulder factory proof.
+M5 and the bounded M8 proof are accepted on production.
 [Workflow review](reviews/workflow-2026-10-05.md) records useful parallel work and
 avoidable retries; [next-ten](plans/character-mmo/next-ten.md) retains broader open exits.
 
 ## Current release
 
 Production [play.sparkify.dev](https://play.sparkify.dev) is source
-**0d577d27cc53bca05b2f695c45922458cf54c0b0**, Pages
-**f6265788-d4fd-45fe-abae-76f9c3d23247**. Havok's identical WASM now uses native HTTP
-Brotli: **501,493 bytes**, 21.8% smaller than the previous production transfer.
-All **537 served files** match the exact sealed build. Native streaming/preload,
-cathedral round trip, mobile eight, depth-fallback eight and WebKit four pass.
-Rollback: M8 source **5fba4d8**, Pages **63b6e02b-c93f-4b85-aebf-f2ae79bfb8a6**.
-[Startup result](plans/character-mmo/results/startup-headroom-2026-10-05.md) and
-[receipt](baselines/character-mmo/startup-headroom-2026-10-05/receipt.json) own evidence.
-The one-second largest-outfit target remains **open**. A faster world-only warmup
-was rejected for bind-pose/GPU regressions and is absent from production and HEAD.
-Keep actor-before-first-register ordering; investigate the existing validated body
-fetch dependency next, then return to M6. Do not repeat the rejected warmup.
+**08f9bbe5391fde6b3fd74b4756470e43300bd139**, Pages
+**b80c188b-c5a0-422b-9d57-c9201d8a740f**. Build-verified identity runtime JSON in
+HTML removes a dependent catalogue fetch while reusing the validated shared loader.
+The complete authoring audit remains published separately. All **537 served files**
+match the sealed build; **281 character/world/physics assets** are unchanged.
+Havok retains native HTTP Brotli delivery (501,493 encoded bytes).
+Rollback: **0d577d2**, Pages **f6265788-d4fd-45fe-abae-76f9c3d23247**.
+[Startup result](plans/character-mmo/results/startup-catalogue-2026-10-06.md) and
+[receipt](baselines/character-mmo/startup-catalogue-2026-10-06/receipt.json) own evidence.
+Unit 20, native entry three, saved identity eight, mobile eight, depth-fallback eight,
+WebKit four and cathedral round trip pass. Keep actor-before-first-register ordering;
+the rejected world-only warmup remains absent from production and HEAD.
 
 Catalogue v7 adds Bastion shoulders for Human, Orc and Undead, preserving frozen
 v1–v6 save registries. The [factory](equipment-factory.md) reuses Blender, glTF
@@ -58,22 +56,23 @@ Recording/encoding/media playback are excluded. Statistical pacing hints stay
 recorded and are independently resolved; these are not physical display-refresh claims.
 
 **Latest bridge check:** three isolated native runs on the new release measure
-**242.6–247.8 FPS**, maximum p99 **5.5 ms**, worst interval **9.7 ms**, seven enemies.
+**242.6–246.8 FPS**, maximum p99 **5.5 ms**, worst interval **9.9 ms**, seven enemies.
 The earlier M8 five-route performance matrix above remains the broader baseline.
 
-**Startup:** 20 final local hood starts have p95 **885.8 ms**. Public 20 per profile
-have p95 **746.2 / 881.9 / 1,021.6 ms** for default/original-largest/new hood.
-The hood misses one second twice (runs 9 and 11); no claim of completing that target.
-Conditions: fresh Chromium processes/profiles, HTTP cache disabled, decimal
-50 Mbit/s down, 10 up, 40 ms latency, native 1280×720/DPR 1. See the result for
-retained exploratory, first-use GPU, local emulator and rejected-warmup failures.
+**Startup:** fixed production cohorts of 20 each have p95 **743.1 / 851.2 / 969.4 ms**
+for default/original-largest/new hood, **zero one-second misses in all 60 starts**.
+Hood maximum is **984.2 ms**. Conditions: M1 Max, fresh Chromium processes/profiles,
+HTTP cache disabled, decimal 50 Mbit/s down, 10 up, 40 ms latency, native
+1280×720/DPR 1. OS/GPU-driver/CDN caches are not reset. The result retains all slower
+exploratory cohorts, including an unexplained first-use GPU completion stall.
 
-Reviewed released motion is Telegram **864**, returned 1280×720, and
-[VE video/mp4](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/havok-startup-2026-10-05.mp4).
-The 19.449-second timestamped capture preserves square pixels and zero rotation.
-Telegram Web A inline/expanded/actual VIDEO fullscreen and direct VE normal
-playback have correct proportions. VE fullscreen for this clip, Telegram Desktop
-and physical iPhone acceptance were not verified this pass.
+Reviewed released motion is Telegram **865**, returned 1280×720, and
+[VE video/mp4](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/startup-catalogue-08f9bbe.mp4).
+The 18.448-second timestamped capture preserves square pixels and zero rotation.
+Telegram Web A inline/expanded/actual VIDEO fullscreen and VE-hosted normal/native
+fullscreen playback retain proportions. VE used a local HTML wrapper loading the
+remote MP4 after direct document inspection stalled. Telegram Desktop and physical
+iPhone acceptance were not verified this pass. Recording is not a benchmark.
 
 ## Scope, limits and ownership
 
@@ -87,12 +86,13 @@ and physical iPhone acceptance were not verified this pass.
   iPhone startup/memory/thermal acceptance remains separate from emulation/WebKit
   and the user's earlier ~60 FPS feedback. Boot sole silhouette and sampling
   aliasing remain art follow-ups. M6 and the full M9/M10 exits are not closed.
-- **Owned instances are closed:** Chrome 80497/CDP 10037, Vite 5873, compressed
-  preview 7074, Pages 7175, every probe browser and temporary media tab. User
-  Edge/Orca sessions remain; only the two originally playing references are
-  restored. Telegram/other X stay paused; temporary media guards removed.
+- **Owned instances are closed:** Chrome 60234/CDP 10037, Vite 60205/60229 on
+  5873, compressed preview 82146 on 7074, every probe browser and temporary media
+  tab. No owned game listeners/processes remain; Orca tabs are empty. User Edge/Orca
+  sessions remain; only originally playing Shadowglass is restored. Telegram/X
+  stay paused; temporary media guards removed.
   [Ownership procedure](debug-view.md#browser-ownership-and-performance-isolation),
-  inventory `.cache/character-mmo/startup-headroom-2026-10-05/ownership.md`.
+  inventory `.cache/character-mmo/startup-catalogue-2026-10-06/ownership.md`.
 - Existing Claude terminal `term_d4cf5b10-02ae-4b08-abfb-9c35d86ef78b`, selected Opus
   5.5/high, completed bounded implementation/docs and adversarial reviews; no renderer.
   Effective internal effort is not independently verified. Preserve its existing draft.

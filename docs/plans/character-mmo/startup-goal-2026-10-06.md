@@ -1,4 +1,8 @@
-# Active startup goal — 2026-10-06
+# Startup goal — 2026-10-06
+
+**Measured target achieved:** production hood p95 969.4 ms, max 984.2 ms, zero
+misses in 20 starts; native bridge 242.6–246.8 FPS.
+[Result and delivery](results/startup-catalogue-2026-10-06.md).
 
 Bring the largest saved Human hood/Bastion outfit's playable startup below
 **1,000 ms p95** in one fixed, isolated **20-run production cohort**: M1 Max,
