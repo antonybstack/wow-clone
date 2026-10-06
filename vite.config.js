@@ -126,6 +126,10 @@ export default defineConfig({
   worker: { format: 'es' },
   publicDir: process.env.ASHEN_PUBLIC_DIR || "public",
   build: {
+    // Move off URLs observed serving cached HTML after a Pages rollback. Keep a
+    // stable namespace and Vite's content hashes; no runtime cache-busting.
+    // https://vite.dev/config/build-options.html#build-assetsdir
+    assetsDir: 'assets/v2',
     sourcemap: !pages,
     rollupOptions: {
       // Measured cold startup otherwise discovers PBR/shadow modules through

@@ -47,6 +47,10 @@ else
   cp -a public/characters/base.glb "$STAGE/characters/base.glb"
   [[ -f public/characters/base-thirdperson.glb ]] && cp -a public/characters/base-thirdperson.glb "$STAGE/characters/base-thirdperson.glb"
   cp -a public/_headers "$STAGE/_headers"
+  # Disable Pages' implicit SPA fallback: a missing module must be a 404,
+  # never a cacheable 200 response containing the game HTML.
+  # https://developers.cloudflare.com/pages/configuration/serving-pages/#single-page-application-spa-rendering
+  cp -a public/404.html "$STAGE/404.html"
 
   echo "Staging $(du -sh "$STAGE" | awk '{print $1}') of playable assets"
   ASHEN_PAGES=1 ASHEN_PUBLIC_DIR="$STAGE" npm run build

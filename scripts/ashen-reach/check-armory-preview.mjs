@@ -24,11 +24,11 @@ async function layout(page,label){
     await page.waitForTimeout(180);
     const state=await page.evaluate(()=>{
         const a=ASHEN,canvas=a.engine.canvas,r=document.querySelector('.armory-stage').getBoundingClientRect();
-        const camera=a.armory.camera;
+        const camera=a.armory.camera,presence=document.querySelector('#presence-entry');
         return {stage:{x:r.x,y:r.y,width:r.width,height:r.height},viewport:{...a.armory.camera.viewport},
             pose:{alpha:camera.alpha,beta:camera.beta,radius:camera.radius,target:{x:camera.target.x,y:camera.target.y,z:camera.target.z},fov:camera.fov,near:camera.nearPlane,far:camera.farPlane},
             canvas:[canvas.width,canvas.height],window:[innerWidth,innerHeight],
-            presenceHidden:getComputedStyle(document.querySelector('#presence-entry')).display==='none',
+            presenceHidden:!presence||getComputedStyle(presence).display==='none',
             horizontalOverflow:document.querySelector('#armory').scrollWidth>innerWidth,
             controls:[...document.querySelectorAll('.armory-tools button,.armory-tools select,[data-time-slider],.armory-panel-title [data-close]')].map(e=>{
                 const r=e.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);
@@ -75,6 +75,10 @@ try{
     page.on('pageerror',e=>report.errors.push(e.message));
     page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text());});
     await page.goto(url);await page.waitForFunction(()=>globalThis.ASHEN?.ready&&ASHEN.hostilesReady,null,{timeout:120000});
+    // Public hosting without a configured shared-region backend omits this
+    // optional launcher entirely. Opening/closing the creator must preserve
+    // the entry state that actually exists, rather than require the dev button.
+    const presenceWasVisible=await page.locator('#presence-entry').isVisible();
     await page.locator('#armory-launch').tap();
     report.rows.push({label:'portrait-full',state:await layout(page,'portrait-full')});
     let cdp,manifest,recording=false;const writes=[];
@@ -180,7 +184,7 @@ try{
         }
     }
     await page.locator('[data-close]').first().tap();
-    assert(await page.locator('#presence-entry').isVisible(),'Shared-region entry must return after closing');
+    assert.equal(await page.locator('#presence-entry').isVisible(),presenceWasVisible,'Shared-region entry must return to its prior state');
     await page.keyboard.down('KeyW');await page.waitForTimeout(400);await page.keyboard.up('KeyW');
     assert(!await page.evaluate(()=>ASHEN.scene.camera.viewport),'Play camera must remain full surface');
     assert(await page.evaluate(()=>ASHEN.grounding.state.contactViewportCompatible&&ASHEN.grounding.contactTask.enabled),'Native contacts must resume in gameplay');

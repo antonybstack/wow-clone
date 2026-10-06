@@ -13,6 +13,7 @@ import {findHumanIdentityPreset} from '../../src/character/appearance/human-iden
 import {ASHEN_PLAYABLE_CLIP_NAMES} from '../../src/character/runtime/ashen-playable-motion.js';
 import {EQUIPMENT_ITEMS} from '../../src/ashen-reach/equipment-catalog.js';
 import {installGpuEventProbe} from '../lib/probe-gpu-events.mjs';
+import {startupBudget} from '../lib/startup-budget.mjs';
 const gpuProbe = process.env.ASHEN_PROBE_GPU_EVENTS === '1';
 const traceGpu = process.env.ASHEN_PROBE_CHROME_TRACE === '1';
 const disableShaderCache = process.env.ASHEN_PROBE_DISABLE_SHADER_CACHE === '1';
@@ -27,6 +28,9 @@ assert(destination, "Specify report.json");
 const runs = Number(process.env.ASHEN_PROBE_RUNS || 5),
   profile = process.env.ASHEN_PROBE_PROFILE || "50mbps";
 assert(Number.isInteger(runs) && runs > 0 && runs <= 30);
+// Opt in for release gates; ordinary investigations remain measurement-only.
+const budgetMs=process.env.ASHEN_PROBE_MAX_MS===undefined?null:Number(process.env.ASHEN_PROBE_MAX_MS);
+assert(budgetMs===null||(Number.isFinite(budgetMs)&&budgetMs>0),'Invalid ASHEN_PROBE_MAX_MS');
 const conditions = {
   native: { latency: 0, downloadThroughput: -1, uploadThroughput: -1 },
   "50mbps": {
@@ -46,6 +50,7 @@ target.searchParams.set("play", "");
 target.searchParams.set("pixelRatio", "1");
 const report = {
   conditions: {
+    requestedRuns:runs, budgetMs,
     gpuProbe, traceGpu, disableShaderCache, disableHttpCache,
     profile, savedAppearance:seed,expectedAppearance:expectedSeed,
     network: conditions[profile],
@@ -127,6 +132,17 @@ for (let run = 1; run <= runs; run++) {
         .get(e.requestId)
         ?.chunks.push({ at: e.timestamp, bytes: e.encodedDataLength }),
     );
+    // Keep transport evidence when a public cold cohort differs from a local
+    // build or a deployment hostname. Record only diagnostic response fields,
+    // never request credentials or the complete response-header collection.
+    // https://chromedevtools.github.io/devtools-protocol/tot/Network/#event-responseReceived
+    cdp.on("Network.responseReceived", ({requestId,response}) => {
+      const r=requests.get(requestId);if(!r)return;
+      const headers=Object.fromEntries(Object.entries(response.headers).map(([k,v])=>[k.toLowerCase(),v]));
+      r.response={status:response.status,mimeType:response.mimeType,protocol:response.protocol,
+        remoteIPAddress:response.remoteIPAddress,cfRay:headers['cf-ray']??null,
+        cfCacheStatus:headers['cf-cache-status']??null,cacheControl:headers['cache-control']??null};
+    });
     cdp.on("Network.loadingFinished", (e) => {
       const r = requests.get(e.requestId);
       if (r) Object.assign(r, { end: e.timestamp, bytes: e.encodedDataLength });
@@ -176,6 +192,7 @@ for (let run = 1; run <= runs; run++) {
       .filter((r) => r.start <= boundary)
       .map((r) => ({
         url: r.url,
+        response: r.response,
         complete: r.end <= boundary,
         encodedBytesAtBoundary:
           r.end <= boundary
@@ -288,4 +305,10 @@ for (let run = 1; run <= runs; run++) {
     await browser.close();
     await fs.writeFile(destination+'.ownership.json',JSON.stringify({owner:'probe-playable-startup',browserPid,url:target.href,active:false}));
   }
+}
+if(budgetMs!==null){
+  report.budget=startupBudget(report.rows,runs,budgetMs);
+  await fs.writeFile(destination,JSON.stringify(report,null,2));
+  console.log(JSON.stringify({startupBudget:report.budget}));
+  if(!report.budget.passed)process.exitCode=1;
 }
