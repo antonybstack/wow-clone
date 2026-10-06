@@ -1,9 +1,12 @@
 # M5 shared Human coverage and creator release
 
-Updated 2026-10-05. **Candidate deployed; M5 acceptance remains open.**
-Native gates pass. Latest production24dbaa4 functional checks pass, but hooded
-startup p95 is1,038 ms with four misses in20 against the1,000 ms target.
-Original/default cold cohorts have not run on24dbaa4; the manager stopped at hood.
+Updated 2026-10-05. **M5 accepted on production.** Source `6934292`, Pages
+`f82f8e2e-0b77-4fff-a5bf-a8e2544aac0b`, exact sealed build. Final public cold
+p95 is **780.7 ms default / 922.5 ms original largest / 946 ms hooded ponytail**,
+60 starts, maximum **960.1 ms**, zero one-second misses or validation failures.
+Public assets, movement, saved identities, mobile/depth/WebKit and reviewed
+Telegram 862 inline/expanded/browser-fullscreen proportions pass. Historical
+candidate failures below remain evidence; they are not the current release state.
 
 ## Resulting behavior
 
@@ -330,3 +333,42 @@ reviewed. Publiccold acceptance still owns M5 closure.
 Telegram message **862** returned matching 1280×720 dimensions and the probed
 18.904-second duration. Web A inline/expanded playback is pending. The delivery
 ledger will be associated with the finished commit after committing.
+
+## Final production acceptance — 6934292
+
+Pages **f82f8e2e-0b77-4fff-a5bf-a8e2544aac0b** serves the sealed candidate
+at [play.sparkify.dev](https://play.sparkify.dev). Source was committed and pushed
+before the exact-byte upload; no rebuild occurred after the gates. Immediate
+preceding deployment **b07d7028-9015-43de-a857-c281f2cfc455** / `24dbaa4` is
+recorded for rollback. Loading and movement pass; no rollback was necessary.
+
+All 522 public files and cache policies match. Full bridge approach/nave/return,
+west bell tower ascent/descent, saved identity eight, mobile eight, injected-depth
+eight and Weathered WebKit four pass with no runtime/GPU errors. The bridge
+contact gap is 8.09–8.67 mm with active Havok and no recovery teleport.
+
+The three prescribed public cold cohorts each contain 20 fresh-process starts,
+HTTP cache disabled, M1 Max, 50 Mbit/s down / 10 up / 40 ms latency, native
+1280×720, DPR 1. Default p95/max: **780.7/831 ms**; original largest:
+**922.5/960.1 ms**; hooded ponytail: **946/947.4 ms**. All 60 starts are under
+one second, dressed, grounded, GPU-completed and input-enabled, followed by
+ordinary Havok movement. Media audits before and after record Telegram guard
+active/playing zero, both user references paused and no other game renderer.
+OS, GPU-driver and CDN caches remain uncontrolled; earlier misses/outliers are
+retained rather than reclassified or hidden.
+
+Telegram **862** is reviewed inline (738.19×415.22 display), expanded
+(1280×720) and actual browser video fullscreen (2514×1275 container). Source
+1280×720 and contain scaling preserve 16:9; fullscreen has visible side
+letterboxing. Playback has no media error. The player exits fullscreen and
+closes after review. Direct VE normal/full-window playback and byte/range
+verification remain accepted; its fullscreen control did not enter fullscreen.
+Telegram Desktop and physical iPhone acceptance remain distinct limitations.
+The delivery ledger now names completed source **6934292**.
+
+This closes the bounded authored Human creator release. It does not accept all
+6,048 mixed outfits, arbitrary facial/age sliders, Elf fits or physical-phone
+startup/thermal limits. Sole silhouette and sampling aliasing remain recorded
+art follow-ups. The conditional next package is one structural shoulder item
+through a repeatable descriptor-driven factory, followed by its verified content
+update if the remaining working budget supports it.

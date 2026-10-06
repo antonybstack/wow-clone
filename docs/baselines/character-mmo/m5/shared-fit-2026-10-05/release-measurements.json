@@ -7685,7 +7685,7 @@
   }
  },
  "nearTreeFollowup": {
-  "stage": "Native gates and reviewed motion pass; commit/sealed public upload next",
+  "stage": "Accepted production M5 release6934292; all public gates and finalTelegram playback pass",
   "changes": "API-safe identity fetch priority and existing Havok/body transfer overlap; lossless near tree detail deferred behind a required521triangle conservative Meshopt preview, retired by exact block keys",
   "build": {
    "seal": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-final2-pages-seal.json",
@@ -7711,76 +7711,6 @@
     "disableShaderCache": false,
     "disableHttpCache": true,
     "profile": "50mbps",
-    "savedAppearance": {
-     "schemaVersion": 2,
-     "catalogVersion": "appearance-catalog-v6",
-     "race": "human",
-     "fitFamily": "ashen-human",
-     "fit": {
-      "rig": "source-65",
-      "bind": 1,
-      "shape": 1
-     },
-     "shape": {
-      "family": "ashen-human-shape-v1",
-      "height": 0.9,
-      "build": 0.95
-     },
-     "components": {
-      "head": "human-weathered-v1",
-      "hair": "human-bald-v1"
-     },
-     "dyes": {
-      "helmet": "moss",
-      "torso": "oxblood",
-      "legs": "indigo"
-     },
-     "equipment": {
-      "helmet": "graveweaverHood",
-      "torso": "pilgrimTunic",
-      "legs": "graveweaverSkirt",
-      "boots": "wayfarerBoots",
-      "gloves": "graveweaverGloves",
-      "mainHand": "graveweaverStaff",
-      "offHand": "graveweaverBook",
-      "shoulders": "wardenPauldrons"
-     }
-    },
-    "expectedAppearance": {
-     "schemaVersion": 2,
-     "catalogVersion": "appearance-catalog-v6",
-     "race": "human",
-     "fitFamily": "ashen-human",
-     "fit": {
-      "rig": "source-65",
-      "bind": 1,
-      "shape": 1
-     },
-     "shape": {
-      "family": "ashen-human-shape-v1",
-      "height": 0.9,
-      "build": 0.95
-     },
-     "components": {
-      "head": "human-weathered-v1",
-      "hair": "human-bald-v1"
-     },
-     "dyes": {
-      "helmet": "moss",
-      "torso": "oxblood",
-      "legs": "indigo"
-     },
-     "equipment": {
-      "helmet": "graveweaverHood",
-      "torso": "pilgrimTunic",
-      "legs": "graveweaverSkirt",
-      "boots": "wayfarerBoots",
-      "gloves": "graveweaverGloves",
-      "mainHand": "graveweaverStaff",
-      "offHand": "graveweaverBook",
-      "shoulders": "wardenPauldrons"
-     }
-    },
     "network": {
      "latency": 40,
      "downloadThroughput": 6250000,
@@ -7792,7 +7722,8 @@
      720
     ],
     "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
-    "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+    "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled",
+    "appearance": "Six distinct saved/default recipes; exact seed and expected appearance are in each cohort report."
    },
    "count": 120,
    "rows": [
@@ -7919,8 +7850,11 @@
    "staleProvenance": "Compiler/verifier comments changed after an initial bake; refusal retained, baked again before final source freeze."
   },
   "limitations": [
-   "Public cold acceptance and Web A playback pending",
-   "Physical iPhone startup/memory/thermal acceptance distinct"
+   "Physical iPhone startup/memory/thermal acceptance distinct; desktop emulation/WebKit are not physical-phone acceptance",
+   "Telegram Desktop unavailable; WebA actualFullscreenAPI video verified",
+   "DirectVE normal/full-window reviewed; directVE fullscreen control did not enter fullscreen",
+   "OS/GPU-driver/CDN caches uncontrolled; historical GPU and public misses retained",
+   "Original bootsole silhouette and samplingaliasing are recorded artfollowups"
   ],
   "fps": {
    "count": 15,
@@ -8088,7 +8022,7 @@
    "pacingEvidence": "All hints retained; unchanged scheduler14/14, calibrated60Hz720callbacks/12s control, nativeuncapped627RAF/569submissions proof retained; ownedChrome51793 removes vsync/frame limits. Same newcohort exceeds240Hz ceiling by>1%."
   },
   "motion": {
-   "stage": "Native/source-frame and VE normal/full-window playback reviewed; Telegram862 API dimensions verified; Web A pending",
+   "stage": "Source/live motion andVE normal/full-window reviewed; Telegram862 inline/expanded/browserFullscreen reviewed withcorrectproportions",
    "report": "ve-capture/character-mmo/m5/near-tree-startup-2026-10-05/report.json",
    "manifest": "ve-capture/character-mmo/m5/near-tree-startup-2026-10-05/capture-manifest.json",
    "physics": true,
@@ -8142,10 +8076,148 @@
     "height": 720,
     "durationProbed": 18.904232,
     "dimensionsMatched": true,
-    "playbackReview": "pending",
-    "sendLog": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-telegram-send.log"
+    "playbackReview": {
+     "inline": {
+      "source": [
+       1280,
+       720
+      ],
+      "container": [
+       738.1875,
+       415.21875
+      ],
+      "fit": "contain",
+      "reviewed": true
+     },
+     "expanded": {
+      "source": [
+       1280,
+       720
+      ],
+      "container": [
+       1280,
+       720
+      ],
+      "fit": "contain",
+      "reviewed": true
+     },
+     "browserFullscreen": {
+      "documentFullscreenElement": "VIDEO",
+      "source": [
+       1280,
+       720
+      ],
+      "container": [
+       2514,
+       1275
+      ],
+      "fit": "contain",
+      "visibleSideLetterboxing": true,
+      "reviewed": true,
+      "error": null
+     },
+     "cleanup": "Fullscreenexited/viewerclosed/allvideospaused; temporarybenchmarkguardremoved"
+    },
+    "sendLog": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-telegram-send.log",
+    "ledgerCommit": "69342921618baaf1286d922e942facd1f4440494"
    }
   },
-  "reusedEvidence": "Character221/equipment113/ground-lifetime14/scheduler14/seal4 and18height/support/remainingcathedral cases retain source/asset-identical prior passes. Fresh native bridge/tower/saved/mobile/depth/WebKit cover changed integration. No prior timing attributed to new candidate."
+  "reusedEvidence": "Character221/equipment113/ground-lifetime14/scheduler14/seal4 and18height/support/remainingcathedral cases retain source/asset-identical prior passes. Fresh native bridge/tower/saved/mobile/depth/WebKit cover changed integration. No prior timing attributed to new candidate.",
+  "deployment": {
+   "source": "69342921618baaf1286d922e942facd1f4440494",
+   "id": "f82f8e2e-0b77-4fff-a5bf-a8e2544aac0b",
+   "url": "https://f82f8e2e.fardel.pages.dev",
+   "publicURL": "https://play.sparkify.dev/",
+   "previousProduction": {
+    "id": "b07d7028-9015-43de-a857-c281f2cfc455",
+    "source": "24dbaa41eeb96e3779a7cbd1a95cb311182e66fe"
+   },
+   "sealedUpload": true,
+   "log": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-sealed-deploy.log"
+  },
+  "public": {
+   "stage": "All functional checks and three prescribed20-run cold cohorts pass",
+   "manager": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-public-manager.log",
+   "artifacts": {
+    "passed": true,
+    "files": 522,
+    "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-public-http.json"
+   },
+   "bridge": {
+    "passed": true,
+    "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-public-bridge/report.json"
+   },
+   "westBell": {
+    "passed": true,
+    "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-public-west-bell/report.json"
+   },
+   "saved": {
+    "passed": true,
+    "cases": 8,
+    "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-public-saved/report.json"
+   },
+   "mobile": {
+    "passed": true,
+    "cases": 8,
+    "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-public-mobile/report.json"
+   },
+   "depth": {
+    "passed": true,
+    "cases": 8,
+    "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-public-depth/report.json"
+   },
+   "webkit": {
+    "passed": true,
+    "cases": 4,
+    "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/near-tree-public-webkit/report.json"
+   },
+   "managerExit": 0,
+   "startup": {
+    "count": 60,
+    "rows": [
+     {
+      "profile": "default",
+      "count": 20,
+      "p95Ms": 780.6999999880791,
+      "maxMs": 831,
+      "misses": [],
+      "failures": 0,
+      "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/startup-near-tree-public/default-cache-disabled.json"
+     },
+     {
+      "profile": "original-largest",
+      "count": 20,
+      "p95Ms": 922.5,
+      "maxMs": 960.0999999940395,
+      "misses": [],
+      "failures": 0,
+      "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/startup-near-tree-public/original-largest-cache-disabled.json"
+     },
+     {
+      "profile": "prime-ponytail-hood",
+      "count": 20,
+      "p95Ms": 946,
+      "maxMs": 947.4000000059605,
+      "misses": [],
+      "failures": 0,
+      "report": ".cache/character-mmo/m5-moving-fit-2026-10-05/startup-near-tree-public/prime-ponytail-hood-cache-disabled.json"
+     }
+    ],
+    "conditions": {
+     "cpu": "Apple M1 Max",
+     "viewport": [
+      1280,
+      720
+     ],
+     "dpr": 1,
+     "network": "50Mbit/s down,10Mbit/s up,40ms",
+     "cache": "Fresh browser process/profile each row, CDPHTTP cache disabled; OS/GPU-driver/CDN caches uncontrolled",
+     "timing": "Navigation to dressed, grounded, GPU-completed, input-enabled firstplay followed by ordinaryHavok movement"
+    },
+    "misses": 0,
+    "failures": 0,
+    "mediaBeforeAfter": "TGguardtrue/playing0, both originallyplaying userreferences paused before/after; no othergame renderer"
+   }
+  }
  }
 }

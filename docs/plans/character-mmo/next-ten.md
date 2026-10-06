@@ -1,6 +1,6 @@
 # Character customization and armor — current milestone queue
 
-Reprioritized **2026-10-02**; updated **2026-10-05**, released source **4063f49**. The queue now runs on one axis: **what a
+Reprioritized **2026-10-02**; updated **2026-10-05**, released source **6934292**. The queue now runs on one axis: **what a
 player can change about their character, and how reliably armor pieces swap on the body.**
 Multiplayer is parked at what it has already proved, not cancelled — see *Parked* below.
 
@@ -27,34 +27,18 @@ A player should be able to build a character they recognise, dress it from the c
 change any piece at any time, and have all of that persist and reload exactly. Everything in
 5–10 serves that sentence.
 
-Two things gate it today, and both are measured rather than suspected:
+The current capability boundary is:
 
-* **Saved identity and local compact startup work; fit/release gates remain open.**
-  The user found the October 4 head disproportionate and jarring. The
-  [face correction](results/m5-face-refactor-2026-10-04.md) is now implemented and
-  delivered as an approved source audition. The later
-  [saved integration](results/m5-saved-identity-2026-10-04.md) activates four authored
-  choices in the normal local Armory, preserving the approved face direction.
-  The October 1 welded CC0 heads
-  supersede the separate-head 44° normal break and fused-hair collapse experiments.
-  The [October 4 checkpoint](results/m5-connected-identity-2026-10-04.md) reuses that source,
-  adds eye morphs and current torso/eye/hair coverage, corrects the hood opening and
-  removes discarded curve/rig dependencies. The named examples now save/reload on
-  the ordinary local route. Three lossless selected-startup pilots miss one second;
-  The [first compact checkpoint](results/m5-compact-identity-startup-2026-10-04.md)
-  preserves the full face/curves, reduces hood bytes about 47%, overlaps catalogue
-  loading, and verifies refinement plus desktop touch/WebKit. The
-  [native playable-library checkpoint](results/m5-playable-library-2026-10-04.md)
-  saves a further 399 KB/body with the exact face/geometry and all 22 playable curves;
-  full 57-curve assets remain unchanged. Actual native refinement/save/mobile
-  checks and reviewed motion pass. The [native packaging checkpoint](results/m5-startup-packaging-2026-10-05.md)
-  now passes six local twenty-run cold cohorts with p95 808–972 ms and preserves all
-  measured art/physics bytes. Settled observations and clean affected-route repeats
-  exceed 200 FPS; the initial batch's media-isolation uncertainty and variable tails
-  remain explicit. The [saved-back correction](results/m5-moving-back-coverage-2026-10-05.md) is now
-  verified and delivered. Shared default coverage, valid boot defects and actual
-  Pages/public release cohorts remain open. Further fit review targets changed
-  seams and unresolved cases rather than expanding unchanged screenshot grids.
+* **Saved authored Human identity is released.** The [M5 production result](results/m5-shared-human-release-2026-10-05.md)
+  preserves the approved original, Prime bald/ponytail and Weathered bald direction.
+  Height/build, gear and dyes save/reload before dressed first play. Shared back/foot
+  coverage, elevated Havok support and native render pacing are corrected. Production
+  `6934292` / Pages `f82f8e2e-0b77-4fff-a5bf-a8e2544aac0b` passes public assets,
+  movement and compatibility checks. Public default/original/hood cold p95 is
+  781/923/946 ms across 60 starts with no misses; final native route confirmation
+  is 210–245 FPS at 1280×720. Reviewed Telegram 859/860/862 and VE motion pass.
+  Earlier checkpoint failures remain in their result reports. Arbitrary facial/age
+  sliders, all mixed fits and physical iPhone acceptance are not implied.
 * **Armor swapping works but is under-evidenced.** The catalogue now enumerates **6,912**
   combinations, 6,048 valid, with zero validator disagreements — the "768" carried in this plan
   dated from an 8-item catalogue and is corrected. Per-slot hot swapping under motion
@@ -82,7 +66,7 @@ user on 2026-09-30, and the released/candidate/unaccepted boundary catalogued in
 | 2 | Correct crowd rendering in the region | Dressed actors animate and keep identity through detail changes. | 1 | **Delivered** |
 | 3 | Bounded appearance streaming and memory | Outfit changes converge without stalls or growth. | 1–2 | **Delivered** |
 | 4 | Authoritative multiplayer presence | Two to eight clients see one another move and change appearance. | 1–3 | **Delivered locally; public hosting parked** |
-| 5 | Modular Human identity: head, hair, adult age | The young/long-haired and older/bald examples are real saved characters. | 1 | Local saved identity delivered; compact startup/full acceptance open |
+| 5 | Modular Human identity: head, hair, adult age | The young/long-haired and older/bald examples are real saved characters. | 1 | **Delivered: bounded authored Human presets on production** |
 | 6 | **Armor swapping as a verified capability** | Any piece in any slot can be changed at any moment, on any supported body, without a visual or fit defect. | 1, 3 | Open — evidence |
 | 7 | Colour and material variation | A player can recolour pieces within an authored, published palette. | 6 | Delivered: bounded equipment colours; phone acceptance stays in 10 |
 | 8 | Equipment authoring factory | New pieces reach the catalogue through a repeatable publishing pipeline. | 6; hair/headwear needs 5 | Partly built |
@@ -214,12 +198,13 @@ Test joins/leaves, out-of-order input, reconnect, stale appearance revisions and
 
 ## 5 — Modular Human identity: head, hair and adult age
 
-**Latest checkpoint:** [saved-back correction](results/m5-moving-back-coverage-2026-10-05.md)
-is verified and delivered as Telegram 858 / VE. The native index-only repair
-preserves the approved source interface. Follow the [12-hour plan](next-12-hours-2026-10-05.md)
-for shared Human/boot corrections and final Pages/public release gates. M5 stays
-open and unreleased. Earlier packaging/mobile paragraphs are dated evidence;
-their conditions do not describe the current process inventory.
+**Latest release:** [M5 shared Human production result](results/m5-shared-human-release-2026-10-05.md)
+is accepted on `play.sparkify.dev`, source `6934292`, Pages
+`f82f8e2e-0b77-4fff-a5bf-a8e2544aac0b`. The saved authored Human creator,
+shared coverage corrections, movement, final startup/FPS and motion delivery
+pass. Follow the [12-hour plan](next-12-hours-2026-10-05.md) for the conditional
+factory/content package. Earlier paragraphs below describe their dated
+checkpoint, not the current release or process inventory.
 
 **Earlier supporting checkpoint, 2026-10-04:** [mobile Armory preview](results/m5-mobile-preview-2026-10-04.md)
 delivers native stage viewport/orbit/pinch, responsive controls and height framing.
@@ -227,7 +212,7 @@ Fifteen built layout cases, disposal/reopen and desktop mobile/WebKit/depth fall
 pass, with reviewed Telegram 855 / VE motion. Native 1.31.1 contacts are gated only
 for the partial viewport; custom AO and world shadows stay active. M5 remains
 open: normal saved-route full outfit/motion fits, isolated startup/FPS cohorts and
-release gates are next. User WoW currently prevents valid isolated measurement.
+release gates were next at that checkpoint. Final isolated release evidence is above.
 
 **Original saved checkpoint:** [saved integration](results/m5-saved-identity-2026-10-04.md)
 delivers task 2 locally and the functional portion of tasks 3/5. The ordinary Armory
