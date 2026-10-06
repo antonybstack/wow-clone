@@ -3,13 +3,13 @@
 The user explicitly renewed autonomous completion of the active milestone queue on
 2026-10-06. The existing native goal already covers all remaining implementable
 character customization and armor-swapping work in CURRENT and next-ten, with
-verification, delivery, commit/push and production gates. At the fresh runtime
-check its status is still **`blocked`** (the UI displays “Goal stalled”).
+verification, delivery, commit/push and production gates. The user resumed it on 2026-10-06; a fresh `get_goal` check now reports
+**`active`**. The earlier `blocked` / “Goal stalled” state is resolved.
 
 The available goal tools can create, inspect, complete, pause or mark blocked;
 they cannot resume an existing unfinished goal. Creating another goal cannot
 replace it, and the unfinished goal must not be falsely marked complete.
-The supported user action is **Resume in the goal progress row**. A Computer Use
+The supported user action was **Resume in the goal progress row**. A Computer Use
 attempt to access the Codex app was denied for safety reasons. Do not bypass that
 denial through terminal injection, internal state edits or an undocumented API.
 An ordinary “continue” message has permitted work but has not changed the observed

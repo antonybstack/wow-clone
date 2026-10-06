@@ -310,7 +310,11 @@ Tasks:
    views; 18 boot views; selected continuous motion on four profiles. No new gross
    fit defect reproduced. New and frozen prior inputs cover 84 adjacent seam pairs,
    including empty slots; this does not certify every phase or multi-piece overlap.
-   Next: continuous hood/coat/robe/Bastion and exposed-cuff shape-corner review.
+   [Continuous follow-up](results/m6-clearance-2026-10-06.md): 324 full-cycle views
+   across the four Human corners and three mixed outfits; twelve explicitly
+   registered Havok jump/landing chapters. No new gross defect reproduced.
+   Recorder now holds Space across frames and asserts the jump instead of assuming
+   an instantaneous synthetic press was consumed. Broader catalogue acceptance remains open.
    **Still open:** broader mixed motion and three-way interactions among the 9,072 valid loadouts. Method note carried
    forward: a single view at small scale is not enough to report a visual defect — two reads
    this milestone dissolved under another view.

@@ -14,8 +14,15 @@ import {defaultAppearance} from '../../src/character/appearance/store.js';
 import {validateAppearance} from '../../src/character/appearance/contract.js';
 import {HUMAN_IDENTITY_PRESETS} from '../../src/character/appearance/human-identity.js';
 import {EQUIPMENT_PRESETS} from '../../src/ashen-reach/equipment-catalog.js';
-import {MIXED_FIT_CASES} from './mixed-fit-cases.mjs';
+import {MIXED_FIT_CASES,MIXED_FIT_PROFILES} from './mixed-fit-cases.mjs';
 const mixedReview=process.env.ASHEN_MIXED_MOTION==='1';
+const clearanceProfile = process.env.ASHEN_CLEARANCE_PROFILE
+ ? MIXED_FIT_PROFILES.find(p => p.id === process.env.ASHEN_CLEARANCE_PROFILE)
+ : null;
+if (process.env.ASHEN_CLEARANCE_PROFILE) {
+ assert(clearanceProfile?.race === 'human', 'Clearance profile must be a declared Human profile');
+ assert(!mixedReview, 'Choose mixed or clearance recording, not both');
+}
 
 const url=process.env.ASHEN_TEST_URL,dir=process.env.ASHEN_CAPTURE_DIR;
 assert(url&&dir,'An audited URL and new capture directory are required');
@@ -53,14 +60,19 @@ const mark=async name=>{
 };
 const travel=async name=>{
  await mark(`${name} · normal sprint / jump / Havok · invulnerable`);
- const before=await page.evaluate(()=>({...ASHEN.player.getDebugState().position}));
+ const initial=await page.evaluate(()=>ASHEN.player.getDebugState());
+ const before={...initial.position};
  // Plain W is the native sprint gait; Shift requests walk in src/input.js.
  await page.keyboard.down('KeyW');await page.waitForTimeout(2500);
- await page.keyboard.press('Space');await page.waitForTimeout(1400);
+ // Hold across native input frames; an instantaneous synthetic press can be missed.
+ await page.keyboard.down('Space');await page.waitForTimeout(150);await page.keyboard.up('Space');await page.waitForTimeout(1400);
  await page.keyboard.up('KeyW');await page.waitForTimeout(700);
- const after=await page.evaluate(()=>({...ASHEN.player.getDebugState().position}));
+ const final=await page.evaluate(()=>ASHEN.player.getDebugState());
+ const after={...final.position};
+ assert(final.jumps>initial.jumps,'Normal controls must register a jump');
+ assert(final.grounded,'Normal jump must land before chapter ends');
  assert(Math.hypot(after.x-before.x,after.z-before.z)>5,'Normal controls must travel');
- timeline.push({name:`${name} travel`,timestamp:manifest.frames.at(-1)?.timestamp,before,after});
+ timeline.push({name:`${name} travel`,timestamp:manifest.frames.at(-1)?.timestamp,before,after,jumpsBefore:initial.jumps,jumpsAfter:final.jumps,landed:final.grounded});
 };
 const inspectBoots=async(name,{both=false}={})=>{
  await page.getByRole('button',{name:'Armory',exact:true}).click();
@@ -86,7 +98,48 @@ try{
  await page.waitForTimeout(1000);await page.focus('#renderCanvas');
  manifest={version:1,...await captureSurface(page),frames:[],timeline,purpose:'Normal saved-source motion and labelled native Armory boot previews; no performance claim'};
  recording=true;await cdp.send('Page.startScreencast',{format:'jpeg',quality:90,maxWidth:1280,maxHeight:720,everyNthFrame:4});
- if(mixedReview){
+ if(clearanceProfile){
+  const profile=clearanceProfile;
+  await page.evaluate(()=>ASHEN.armory.open());
+  await page.getByLabel('Face and hair',{exact:true}).selectOption(profile.identity);
+  await page.waitForFunction(id=>ASHEN.creator.identity.selected===id,profile.identity);
+  await page.evaluate(async({height,build})=>{
+   await ASHEN.creator.set('height',height);await ASHEN.creator.set('build',build);
+   await ASHEN.creator.settled();
+  },profile);
+  const appearance=await page.evaluate(()=>ASHEN.getAppearance());
+  assert.equal(appearance.shape.height,profile.height);assert.equal(appearance.shape.build,profile.build);
+  assert.deepEqual(appearance.components,HUMAN_IDENTITY_PRESETS.find(p=>p.id===profile.identity).components);
+  for(const id of ['hood-coat-robe','open-cuffs','exposed-lower']){
+   const loadout=MIXED_FIT_CASES.find(c=>c.id===id).loadout;
+   assert.equal((await page.evaluate(l=>ASHEN.equipment.setLoadout(l),loadout)).status,'applied');
+   await page.evaluate(()=>{
+    ASHEN.armory.close();ASHEN.armory.open();
+    ASHEN.armory.setFocus({height:.86*ASHEN.player.heightScale,radius:3.25*ASHEN.player.heightScale,beta:1.42});
+   });
+   await page.check('#armory [data-light]');
+   // Use the actor's declared source options and native elapsed playback. A full
+   // cycle at each angle includes anticipation/contact/recovery, not fixed poses.
+   // Raw carry is explicitly labelled by the Armory and is not gameplay gait.
+   const motions=await page.locator('#armory [data-motion] option').evaluateAll(nodes=>nodes.map(n=>({id:n.value,label:n.textContent})));
+   assert(motions.length>=9,'Expected full current source preview set');
+   for(const motion of process.env.ASHEN_CLEARANCE_TRAVEL_ONLY==='1'?[]:motions){
+    for(const [view,alpha]of [['front',Math.PI/2],['side',0],['back',-Math.PI/2]]){
+     await page.selectOption('#armory [data-motion]',motion.id);
+     const preview=await page.evaluate(alpha=>{
+      ASHEN.armory.setFocus({alpha});ASHEN.body.inspection.seek(0);
+      ASHEN.body.inspection.setPaused(false);return ASHEN.body.inspection.getState();
+     },alpha);
+     assert.equal(preview.id,motion.id);assert(preview.duration>0&&preview.duration<15);
+     await mark(`${profile.id} · ${id} · ${motion.label} · ${view} · native preview`);
+     await page.waitForTimeout((preview.duration+.15)*1000);
+     assert.equal((await page.evaluate(()=>ASHEN.body.inspection.getState())).paused,false);
+    }
+   }
+   await page.getByRole('button',{name:'Close armory',exact:true}).click();
+   await page.focus('#renderCanvas');await travel(`${profile.id} · ${id}`);
+  }
+ }else if(mixedReview){
   // Bounded mixed-fit evidence uses the existing recorder and actual Armory.
   // The static matrix owns identity/shape corners; this chapter owns continuous
   // poses, real controls and mid-motion swaps. It is not a performance sample.
@@ -137,14 +190,14 @@ try{
  }
  await page.getByRole('button',{name:'Close armory',exact:true}).click();
  }
- await mark(mixedReview?'Mixed-fit review complete · Human, Orc and Undead':'Release fit review complete · original, Prime and Weathered');await page.waitForTimeout(700);
+ await mark(clearanceProfile?`${clearanceProfile.id} clearance review complete`:mixedReview?'Mixed-fit review complete · Human, Orc and Undead':'Release fit review complete · original, Prime and Weathered');await page.waitForTimeout(700);
  await cdp.send('Page.stopScreencast');recording=false;await Promise.all(writes);if(captureError)throw captureError;
  assert.deepEqual(errors,[]);await writeCaptureManifest(dir,manifest,await captureSurface(page));
  await fs.writeFile(`${dir}/report.json`,JSON.stringify({url,seed,timeline,errors,passed:true},null,2));
  console.log(JSON.stringify({frames:manifest.frames.length,elapsedSeconds:manifest.elapsedSeconds,chapters:timeline.length,errors}));
 }finally{
  recording=false;await cdp.send('Page.stopScreencast').catch(()=>{});await Promise.all(writes);
- for(const key of ['KeyW','ShiftLeft'])await page.keyboard.up(key).catch(()=>{});
+ for(const key of ['KeyW','ShiftLeft','Space'])await page.keyboard.up(key).catch(()=>{});
  await context.close();await browser.close();
  await fs.writeFile(`${dir}/ownership.json`,JSON.stringify({...ownership,active:false,renderingClients:0},null,2));
 }

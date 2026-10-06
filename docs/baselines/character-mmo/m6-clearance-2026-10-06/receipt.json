@@ -1,0 +1,336 @@
+{
+  "date": "2026-10-06",
+  "sourceHeadBeforeWork": "0056438",
+  "productionSourceUnchanged": "08f9bbe5391fde6b3fd74b4756470e43300bd139",
+  "scope": "Three targeted mixed outfits; all four Human shape corners; nine declared native preview motions at front/side/back. Raw carry is diagnostic, not gameplay. Not exhaustive catalogue acceptance.",
+  "profiles": [
+    {
+      "profile": "ponytail-tall-slender",
+      "previewViews": 81,
+      "frames": 4015,
+      "durationSeconds": 160.93847799301147,
+      "unreliableInitialJumpCount": 1,
+      "correctedTravels": [
+        {
+          "case": "ponytail-tall-slender \u00b7 hood-coat-robe travel",
+          "distanceMeters": 26.698691133452588,
+          "jumpsBefore": 0,
+          "jumpsAfter": 1,
+          "landed": true
+        },
+        {
+          "case": "ponytail-tall-slender \u00b7 open-cuffs travel",
+          "distanceMeters": 28.65023014087812,
+          "jumpsBefore": 1,
+          "jumpsAfter": 2,
+          "landed": true
+        },
+        {
+          "case": "ponytail-tall-slender \u00b7 exposed-lower travel",
+          "distanceMeters": 29.184768498634973,
+          "jumpsBefore": 2,
+          "jumpsAfter": 3,
+          "landed": true
+        }
+      ]
+    },
+    {
+      "profile": "ponytail-short-stout",
+      "previewViews": 81,
+      "frames": 4030,
+      "durationSeconds": 161.53224515914917,
+      "unreliableInitialJumpCount": 2,
+      "correctedTravels": [
+        {
+          "case": "ponytail-short-stout \u00b7 hood-coat-robe travel",
+          "distanceMeters": 26.58823438107318,
+          "jumpsBefore": 0,
+          "jumpsAfter": 1,
+          "landed": true
+        },
+        {
+          "case": "ponytail-short-stout \u00b7 open-cuffs travel",
+          "distanceMeters": 28.458994491552968,
+          "jumpsBefore": 1,
+          "jumpsAfter": 2,
+          "landed": true
+        },
+        {
+          "case": "ponytail-short-stout \u00b7 exposed-lower travel",
+          "distanceMeters": 28.51947974132748,
+          "jumpsBefore": 2,
+          "jumpsAfter": 3,
+          "landed": true
+        }
+      ]
+    },
+    {
+      "profile": "weathered-tall-stout",
+      "previewViews": 81,
+      "frames": 4025,
+      "durationSeconds": 161.23657989501953,
+      "unreliableInitialJumpCount": 0,
+      "correctedTravels": [
+        {
+          "case": "weathered-tall-stout \u00b7 hood-coat-robe travel",
+          "distanceMeters": 26.637943473015696,
+          "jumpsBefore": 0,
+          "jumpsAfter": 1,
+          "landed": true
+        },
+        {
+          "case": "weathered-tall-stout \u00b7 open-cuffs travel",
+          "distanceMeters": 28.420146295811758,
+          "jumpsBefore": 1,
+          "jumpsAfter": 2,
+          "landed": true
+        },
+        {
+          "case": "weathered-tall-stout \u00b7 exposed-lower travel",
+          "distanceMeters": 28.471883353812537,
+          "jumpsBefore": 2,
+          "jumpsAfter": 3,
+          "landed": true
+        }
+      ]
+    },
+    {
+      "profile": "weathered-short-slender",
+      "previewViews": 81,
+      "frames": 4025,
+      "durationSeconds": 161.26231813430786,
+      "unreliableInitialJumpCount": 2,
+      "correctedTravels": [
+        {
+          "case": "weathered-short-slender \u00b7 hood-coat-robe travel",
+          "distanceMeters": 26.59587133962074,
+          "jumpsBefore": 0,
+          "jumpsAfter": 1,
+          "landed": true
+        },
+        {
+          "case": "weathered-short-slender \u00b7 open-cuffs travel",
+          "distanceMeters": 28.4599022964712,
+          "jumpsBefore": 1,
+          "jumpsAfter": 2,
+          "landed": true
+        },
+        {
+          "case": "weathered-short-slender \u00b7 exposed-lower travel",
+          "distanceMeters": 28.42967336513711,
+          "jumpsBefore": 2,
+          "jumpsAfter": 3,
+          "landed": true
+        }
+      ]
+    }
+  ],
+  "previewViews": 324,
+  "correctedHavokSprintJumpTravels": 12,
+  "motionReview": "Root reviewed twelve 27-panel sampled live-frame sheets, selected full frames, advancing native playback of each profile, and delivery excerpts. No new gross fit defect reproduced; not every rendered frame independently judged.",
+  "initialTravelLimitation": "Initial instantaneous Space presses missed native game frames. Initial recordings retained as preview/movement evidence, not full jump acceptance. Recorder now holds Space for 150 ms and requires jump counter increment and landing. Only twelve gameplay chapters repeated.",
+  "highlight": {
+    "purpose": "Selected live excerpts; cuts remove intervals, speed remains 1x. Full manifests remain alongside each source.",
+    "edits": [
+      {
+        "profile": "ponytail-tall-slender",
+        "case": "hood-coat-robe",
+        "source": "ve-capture/character-mmo/m6-clearance-2026-10-06/ponytail-tall-slender.mp4",
+        "sourceSha256": "1733b08ebb41808fc0730920d8e3cca72a5db8a5c2cb9ccd9657283c5f84e025",
+        "startSeconds": 15.251990795135498,
+        "endSeconds": 24.069933891296387,
+        "durationSeconds": 8.817943096160889,
+        "speed": 1
+      },
+      {
+        "profile": "ponytail-tall-slender",
+        "case": "open-cuffs",
+        "source": "ve-capture/character-mmo/m6-clearance-2026-10-06/ponytail-tall-slender.mp4",
+        "sourceSha256": "1733b08ebb41808fc0730920d8e3cca72a5db8a5c2cb9ccd9657283c5f84e025",
+        "startSeconds": 77.42256689071655,
+        "endSeconds": 82.09660387039185,
+        "durationSeconds": 4.674036979675293,
+        "speed": 1
+      },
+      {
+        "profile": "ponytail-tall-slender",
+        "case": "exposed-lower",
+        "source": "ve-capture/character-mmo/m6-clearance-2026-10-06/ponytail-tall-slender-travel.mp4",
+        "sourceSha256": "cf1710f9fc82bf35649a9af26baf666bec6d12786741ca96dbd19027b66887da",
+        "startSeconds": 10.474285125732422,
+        "endSeconds": 15.356981992721558,
+        "durationSeconds": 4.882696866989136,
+        "speed": 1
+      },
+      {
+        "profile": "ponytail-short-stout",
+        "case": "hood-coat-robe",
+        "source": "ve-capture/character-mmo/m6-clearance-2026-10-06/ponytail-short-stout.mp4",
+        "sourceSha256": "9971c1912ed25181d99b1669cb3e3d50a715eb41bcdb2e3decb5e95ee77042b9",
+        "startSeconds": 15.779053211212158,
+        "endSeconds": 24.56768798828125,
+        "durationSeconds": 8.788634777069092,
+        "speed": 1
+      },
+      {
+        "profile": "ponytail-short-stout",
+        "case": "open-cuffs",
+        "source": "ve-capture/character-mmo/m6-clearance-2026-10-06/ponytail-short-stout.mp4",
+        "sourceSha256": "9971c1912ed25181d99b1669cb3e3d50a715eb41bcdb2e3decb5e95ee77042b9",
+        "startSeconds": 78.00826621055603,
+        "endSeconds": 82.70332717895508,
+        "durationSeconds": 4.695060968399048,
+        "speed": 1
+      },
+      {
+        "profile": "ponytail-short-stout",
+        "case": "exposed-lower",
+        "source": "ve-capture/character-mmo/m6-clearance-2026-10-06/ponytail-short-stout-travel.mp4",
+        "sourceSha256": "770cb721c2d724bed8c1e7105e803c950df80c528f8767926da4cd9b0f08a3df",
+        "startSeconds": 10.077515125274658,
+        "endSeconds": 14.860850095748901,
+        "durationSeconds": 4.783334970474243,
+        "speed": 1
+      },
+      {
+        "profile": "weathered-tall-stout",
+        "case": "hood-coat-robe",
+        "source": "ve-capture/character-mmo/m6-clearance-2026-10-06/weathered-tall-stout.mp4",
+        "sourceSha256": "9d7c296bfb8313915604f9edf9f39bde118118696f83e59b90713f67781fc140",
+        "startSeconds": 15.355419874191284,
+        "endSeconds": 24.338347911834717,
+        "durationSeconds": 8.982928037643433,
+        "speed": 1
+      },
+      {
+        "profile": "weathered-tall-stout",
+        "case": "open-cuffs",
+        "source": "ve-capture/character-mmo/m6-clearance-2026-10-06/weathered-tall-stout.mp4",
+        "sourceSha256": "9d7c296bfb8313915604f9edf9f39bde118118696f83e59b90713f67781fc140",
+        "startSeconds": 77.72920203208923,
+        "endSeconds": 82.41419792175293,
+        "durationSeconds": 4.684995889663696,
+        "speed": 1
+      },
+      {
+        "profile": "weathered-tall-stout",
+        "case": "exposed-lower",
+        "source": "ve-capture/character-mmo/m6-clearance-2026-10-06/weathered-tall-stout-travel.mp4",
+        "sourceSha256": "6ff6e58b4a955ab6b69e1e031a92153fa36f668b2df914bdfb9c32db6dadfc23",
+        "startSeconds": 10.06575894355774,
+        "endSeconds": 14.844782829284668,
+        "durationSeconds": 4.779023885726929,
+        "speed": 1
+      },
+      {
+        "profile": "weathered-short-slender",
+        "case": "hood-coat-robe",
+        "source": "ve-capture/character-mmo/m6-clearance-2026-10-06/weathered-short-slender.mp4",
+        "sourceSha256": "9822f151f102b45b4f41c608ea2c55799006aa0e6fafc7a6ae5924a7eca2c3c9",
+        "startSeconds": 15.26380705833435,
+        "endSeconds": 24.04730200767517,
+        "durationSeconds": 8.78349494934082,
+        "speed": 1
+      },
+      {
+        "profile": "weathered-short-slender",
+        "case": "open-cuffs",
+        "source": "ve-capture/character-mmo/m6-clearance-2026-10-06/weathered-short-slender.mp4",
+        "sourceSha256": "9822f151f102b45b4f41c608ea2c55799006aa0e6fafc7a6ae5924a7eca2c3c9",
+        "startSeconds": 77.7111611366272,
+        "endSeconds": 82.40209007263184,
+        "durationSeconds": 4.690928936004639,
+        "speed": 1
+      },
+      {
+        "profile": "weathered-short-slender",
+        "case": "exposed-lower",
+        "source": "ve-capture/character-mmo/m6-clearance-2026-10-06/weathered-short-slender-travel.mp4",
+        "sourceSha256": "4ccd620c23cf68847bb32849d177c975d48f24bcaaeddfa68cdb56968135e60a",
+        "startSeconds": 10.041479110717773,
+        "endSeconds": 14.828559160232544,
+        "durationSeconds": 4.7870800495147705,
+        "speed": 1
+      }
+    ],
+    "expectedSeconds": 73.35015940666199,
+    "encoded": {
+      "width": 1280,
+      "height": 720,
+      "duration": 73.313589,
+      "sampleAspectRatio": "1:1",
+      "rotation": 0,
+      "codec": "h264"
+    },
+    "sha256": "7173195fcebd70f2d774e078cea14aa233b8d7c37552874b5bbd7896344b81bd"
+  },
+  "runtimeErrors": 0,
+  "gpuErrors": 0,
+  "recoveryTeleports": 0,
+  "performance": "Not measured. Product assets/runtime unchanged; prior isolated startup/FPS baseline retained.",
+  "hashes": {
+    "ve-capture/character-mmo/m6-clearance-2026-10-06/ponytail-tall-slender/report.json": "85f65b8daaf78760bb24b7867726f87105e49ee0c91ae0b53033bc1ca346775b",
+    "ve-capture/character-mmo/m6-clearance-2026-10-06/ponytail-tall-slender/capture-manifest.json": "1d1c1650f4664fc6a4ea3ad9545174953d00a7c9c061e771993c873c1342d6e2",
+    "ve-capture/character-mmo/m6-clearance-2026-10-06/ponytail-tall-slender-travel/report.json": "b4ef3e4a30642251fecb1b4114f793096d5d8453cad7def7d3e7ee41d352888e",
+    "ve-capture/character-mmo/m6-clearance-2026-10-06/ponytail-tall-slender-travel/capture-manifest.json": "4105209929000bfb650287e268d622deabfd0ccefe4cb2fe325bc5f4202489c3",
+    "ve-capture/character-mmo/m6-clearance-2026-10-06/ponytail-short-stout/report.json": "c6887e5f8a8f041077d6257a1989b57425e1b3531ebf12071d13626bd363dc5c",
+    "ve-capture/character-mmo/m6-clearance-2026-10-06/ponytail-short-stout/capture-manifest.json": "99df18bfa99a9d7b334e6bfb7e61f6ac0d29143b3b13f30503d20687bf55ceda",
+    "ve-capture/character-mmo/m6-clearance-2026-10-06/ponytail-short-stout-travel/report.json": "07867480c7c040fbaa341e44aaf7fecb7ac1521b0edb944daf5c88ee676c30a9",
+    "ve-capture/character-mmo/m6-clearance-2026-10-06/ponytail-short-stout-travel/capture-manifest.json": "29c77c33ab466e861498edca6a449ad1c0a3c4420f6dddef9b9139d7641c6242",
+    "ve-capture/character-mmo/m6-clearance-2026-10-06/weathered-tall-stout/report.json": "ce44f384bb2796912c433a48a312e3891dba462088148212744c9536125f66c1",
+    "ve-capture/character-mmo/m6-clearance-2026-10-06/weathered-tall-stout/capture-manifest.json": "0885557cb9260e2d3eedae28b60ae9852871f747153ab354b36f9eb2fa73f663",
+    "ve-capture/character-mmo/m6-clearance-2026-10-06/weathered-tall-stout-travel/report.json": "f386dc4e6ec67ef704139d1fca512b5c54472b3ad99fed45773dbe489d69b26d",
+    "ve-capture/character-mmo/m6-clearance-2026-10-06/weathered-tall-stout-travel/capture-manifest.json": "98e2795cf19001fd57de4a90a6a0f388a77f7fbad7b0c4a2a93eee2794ba5a1c",
+    "ve-capture/character-mmo/m6-clearance-2026-10-06/weathered-short-slender/report.json": "eb6d06ca22e0fc8e25d26d1aba201090fa01dae536e581afd48ca16d457dbb6d",
+    "ve-capture/character-mmo/m6-clearance-2026-10-06/weathered-short-slender/capture-manifest.json": "7b415bcfe373109932f8a0f298fb27bb6ba7c9aafb09898a17d96b5e3efeee5a",
+    "ve-capture/character-mmo/m6-clearance-2026-10-06/weathered-short-slender-travel/report.json": "aba9e20b88f2cf2d1a8442799febe580fd6ed7e6585aa99afb05cc3393abc85b",
+    "ve-capture/character-mmo/m6-clearance-2026-10-06/weathered-short-slender-travel/capture-manifest.json": "98c37ce5a7d238ffe83eae0b248c7b804ee22a29bb6bfa01553e6f1ac8926971",
+    "ve-capture/character-mmo/m6-clearance-2026-10-06/highlight-edits.json": "1776a7bdc093ab82881e5c41bf24688d2a7dcd8e272a07bad4918641cf52b99f",
+    "ve-capture/character-mmo/m6-clearance-2026-10-06/clearance-highlights.mp4": "7173195fcebd70f2d774e078cea14aa233b8d7c37552874b5bbd7896344b81bd"
+  },
+  "delivery": {
+    "telegram": {
+      "ok": true,
+      "messageId": 867,
+      "expected": {
+        "width": 1280,
+        "height": 720,
+        "duration": 73.313589,
+        "sampleAspectRatio": "1:1",
+        "rotation": 0,
+        "codec": "h264"
+      },
+      "returned": {
+        "width": 1280,
+        "height": 720,
+        "duration": 74
+      },
+      "verified": true,
+      "file": "clearance-highlights.mp4",
+      "sha256": "7173195fcebd70f2d774e078cea14aa233b8d7c37552874b5bbd7896344b81bd",
+      "sentAt": "2026-10-06T15:47:41.130588+00:00"
+    },
+    "ve": {
+      "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m6-clearance-2026-10-06.mp4",
+      "bytes": 12409985,
+      "sha256": "7173195fcebd70f2d774e078cea14aa233b8d7c37552874b5bbd7896344b81bd",
+      "contentType": "video/mp4",
+      "rangeStatus": 206
+    },
+    "playback": "Local native video, remote VE playback/seeking through local wrapper, Telegram Web A inline and actual VIDEO fullscreen reviewed with correct proportions. No Telegram Desktop or physical iPhone verification.",
+    "transport": "First Telegram attempt failed curl 35 before delivery; chat confirmed no new message, retry succeeded once as 867. Python URL check lacked local CA roots; curl with normal certificate validation verified remote bytes."
+  },
+  "cleanup": {
+    "time": "2026-10-06T15:50:40.943223+00:00",
+    "chromePid": 50470,
+    "cdpPort": 10037,
+    "vitePid": 50440,
+    "vitePort": 5873,
+    "active": false,
+    "ownedListeners": 0,
+    "grokWorkerExited": true,
+    "ownedMediaTabClosed": true,
+    "telegramPlayingVideos": 0,
+    "userEdgeOrcaPreserved": true
+  }
+}

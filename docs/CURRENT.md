@@ -12,8 +12,14 @@ production starts below one second, with unchanged art/physics and over 120 FPS.
 adds **864 reviewed live views, 18 mixes, eight profiles** and Telegram **866**
 ([motion](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m6-mixed-fit-2026-10-06.mp4)).
 No new gross fit failure reproduced; reusable validation only, no product changes.
-Next: targeted continuous hood/coat/robe/Bastion and exposed-cuff motion at Human
-shape corners. M6's broad visual exit stays open; preserve the startup baseline.
+[Continuous clearance follow-up](plans/character-mmo/results/m6-clearance-2026-10-06.md)
+adds 324 full-cycle preview views and 12 asserted Havok sprint/jump/landing chapters
+at all four Human shape corners, delivered as Telegram **867** and
+[VE motion](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m6-clearance-2026-10-06.mp4).
+No new gross fit defect reproduced; a recorder
+Space-press timing defect is fixed. M6's broad visual exit stays open.
+Next: M10 short-landscape creator control visibility and touch usability, starting
+at 568×320 and 844×390. Preserve the startup baseline.
 
 The [focused 12-hour plan](plans/character-mmo/next-12-hours-2026-10-05.md) delivers
 its primary saved Human creator release and bounded rigid shoulder factory proof.
@@ -91,24 +97,22 @@ iPhone acceptance were not verified this pass. Recording is not a benchmark.
   iPhone startup/memory/thermal acceptance remains separate from emulation/WebKit
   and the user's earlier ~60 FPS feedback. Boot sole silhouette and sampling
   aliasing remain art follow-ups. M6 and the full M9/M10 exits are not closed.
-- **Owned instances are closed:** latest M6 Chrome 44590/CDP 10037 and Vite
-  44560 on 5873, all probe contexts and the temporary media review tab. No owned
+- **Owned instances are closed:** latest M6 Chrome 50470/CDP 10037 and Vite
+  50440 on 5873, all probe contexts and the temporary media review tab. No owned
   game listeners/processes remain. Telegram is paused; user Edge/Orca preserved.
   No FPS benchmark was performed for this validation-only change.
   [Ownership procedure](debug-view.md#browser-ownership-and-performance-isolation),
-  inventory `.cache/character-mmo/m6-mixed-fit-2026-10-06/ownership.md`.
+  inventory `.cache/character-mmo/m6-clearance-2026-10-06/ownership.md`.
 - Existing Claude terminal `term_d4cf5b10-02ae-4b08-abfb-9c35d86ef78b`, selected Opus
   5.5/high, completed bounded implementation/docs and adversarial reviews; no renderer.
   Effective internal effort is not independently verified. Preserve its existing draft.
 - Preserve unrelated checkout work, especially the pre-existing AGENTS.md edit and
   local caches. Product source is committed/pushed and released. Final receipts/docs
   do not require another build or performance matrix.
-- User authorizes autonomous continuation. Native continuation-goal state remains
-  `blocked` on the 2026-10-06 recheck. Resume in the goal progress row is required
-  to reactivate the scheduler; available tools cannot resume it, and Computer Use
-  access to the Codex app was denied. Checkpoints do not require user review or a
-  new “continue.” Hooks cannot guarantee continuation after runtime exit. There is no
-  access blocker for the work just delivered. [Continuation limits](autonomous-continuation.md).
+- User authorizes autonomous continuation. Native goal status was verified **active**
+  after Resume on 2026-10-06. Continue directly between milestone checkpoints;
+  do not wait for another “proceed.” Physical-device and external gates remain
+  explicit follow-ups. [Continuation limits](autonomous-continuation.md).
 
 ## References
 
