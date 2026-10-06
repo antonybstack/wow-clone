@@ -25,6 +25,21 @@ async function visit(label, pathAndQuery) {
   const page = await context.newPage();
   const requests = [];
   const redirects = [];
+  const fallbackLogs=[];
+  page.on('console',message=>{if(/wasm streaming compile failed|falling back to ArrayBuffer instantiation/.test(message.text()))fallbackLogs.push(message.text());});
+  // Functional instrumentation only, never a timing cohort. Observe the native
+  // streaming call instead of inferring success from a playable fallback load.
+  // https://developer.mozilla.org/en-US/docs/WebAssembly/Reference/JavaScript_interface/instantiateStreaming_static
+  await context.addInitScript(()=>{
+    window.__havokStreaming=[];
+    const instantiate=WebAssembly.instantiateStreaming;
+    WebAssembly.instantiateStreaming=async function(source, ...rest){
+      const response=await source;
+      const row={url:response.url,type:response.headers.get('content-type'),encoding:response.headers.get('content-encoding'),success:false};
+      window.__havokStreaming.push(row);
+      const result=await instantiate.call(this,response,...rest);row.success=true;return result;
+    };
+  });
   page.on('request', request => requests.push(request.url()));
   page.on('framenavigated', frame => { if (frame === page.mainFrame()) redirects.push(frame.url()); });
   try {
@@ -39,11 +54,15 @@ async function visit(label, pathAndQuery) {
       camera: globalThis.ASHEN.scene.camera === globalThis.ASHEN.camera ? 'play' : 'reference',
       usingPhysics: globalThis.ASHEN.player?.usingPhysics ?? null,
       url: location.pathname + location.search,
+      development: Array.from(document.scripts).some(s=>s.src.includes('/@vite/client')),
+      havokPreload: Array.from(document.querySelectorAll('link[rel="preload"]')).find(l=>l.href.includes('HavokPhysics'))?.href ?? null,
+      streaming: window.__havokStreaming.filter(r=>r.url.includes('HavokPhysics')),
     }));
     results.push({
       label, requested: pathAndQuery, playableMs: Math.round(playableMs), ...state,
       navigations: redirects.length,
       havokWasmRequests: requests.filter(url => /HavokPhysics(?:-[a-f0-9]{12})?\.wasm/.test(url)).length,
+      havokURLs: requests.filter(url => /HavokPhysics(?:-[a-f0-9]{12})?\.wasm/.test(url)),fallbackLogs,
       documentRequests: requests.filter(url => /\.html(\?|$)|\/(\?|$)/.test(new URL(url).pathname + (new URL(url).search ? '?' : ''))).length,
     });
   } finally {
@@ -61,6 +80,16 @@ console.log(JSON.stringify(results, null, 1));
 for (const row of results) {
   assert.equal(row.usingPhysics, true, `${row.label}: Havok did not take over the player`);
   assert.equal(row.havokWasmRequests, 1, `${row.label}: Havok WASM was requested ${row.havokWasmRequests} times, expected exactly 1`);
+  assert.deepEqual(row.fallbackLogs,[],`${row.label}: native streaming fell back`);
+  assert.equal(row.streaming.length,1,`${row.label}: expected native streaming compilation`);
+  assert.equal(row.streaming[0].success,true,`${row.label}: streaming compilation failed`);
+  assert.equal(row.streaming[0].type,'application/wasm');
+  assert.equal(row.streaming[0].url,row.havokURLs[0]);
+  if(!row.development){
+    assert.match(new URL(row.havokURLs[0]).pathname,/^\/physics\/HavokPhysics-[a-f0-9]{12}\.wasm\.br$/);
+    assert.equal(row.havokPreload,row.havokURLs[0],`${row.label}: preload and native loader differ`);
+    assert.equal(row.streaming[0].encoding,'br');
+  }
   // One navigation is the initial commit. Two means something redirected.
   assert.equal(row.navigations, 1, `${row.label}: ${row.navigations} main-frame navigations, expected 1 (no redirect hop)`);
 }
