@@ -80,3 +80,83 @@ retain `maximum-compact-budget.json` with the receipt. Do not hand-label a fixed
 outfit “largest” after the catalogue changes. Current generated recipe and budget
 are retained in the tracked baseline directory; raw verifier evidence remains in
 `budget-verify.md/json` in the task cache.
+
+## Public gates and decision
+
+[Receipt](../../../baselines/character-mmo/startup-normal-release-2026-10-06/release-receipt.json)
+retains all forty cold starts, sixteen FPS rows, raw-file hashes and conditions.
+Three entry aliases, normal spawn movement/four cathedral shape-corner returns,
+mobile touch, forced depth fallback and WebKit pass. Root inspected actual mobile
+and first-play captures. Physical iPhone remains unverified.
+
+M1 Max, 1280×720/DPR 1, seven enemies, uncapped Chromium launch flags, no recording,
+three 12-second runs per route with the maximum-payload outfit:
+
+| Route | Mean FPS range | Maximum p99 ms | Worst ms |
+|---|---:|---:|---:|
+| Meadow | 201.34–201.58 | 6.2 | 9.6 |
+| Town | 203.35–204.06 | 6.1 | 11.2 |
+| Bridge | 239.05–243.81 | 5.4 | 9.6 |
+| Cathedral | 239.34–239.64 | 5.4 | 9.1 |
+| Forest | 224.14–228.70 | 5.7 | 9.2 |
+
+No frame exceeds 16.67 ms. Bridge/cathedral carry possible-240-Hz statistical
+pacing hints; these are **not confirmed compositor caps or accepted uncapped
+limits**. The first bridge row (239.17 FPS) halted the initial script. It remains
+in the receipt alongside the continuation collected with `ASHEN_RECORD_CAPPED=1`.
+No passed meadow/town runs were repeated. This outfit differs from historical
+production benchmarks; no paired improvement or regression is established.
+
+Cold probes use the actual root URL, fresh Chromium process/profile per visit,
+disabled HTTP cache, 50 Mbit/s down/10 up/40 ms latency, 1280×720/DPR 1. OS,
+GPU-driver and CDN caches are uncontrolled. All forty dressed/grounded starts
+and input checks pass without recorded runtime/GPU errors.
+
+| Saved fixture | p95 ms | Worst ms | Misses above 1,000 ms |
+|---|---:|---:|---:|
+| Catalogue-derived maximum | 1,001.0 | 1,177.1 | 2/20 |
+| Historical hood/cloth/Bastion | 936.9 | 1,220.9 | 1/20 |
+
+**Both strict gates fail; do not promote.** The normal packing reduces actual
+asset bytes and passes compatibility/visual review, but does not establish the
+public one-second target. Retain all outliers; no favorable repeat replaces them.
+
+Maximum run 18 receives its HTML by 193.8 ms, store by 338.8 ms, stylesheet by
+461.7 ms and starts its body at 487.1 ms; Lite finishes at 745.7 ms and the body at
+966.0 ms. Historical run 16 instead finishes HTML at 432.9 ms and body at
+1,012.8 ms. These are different delays, not one proven CDN or GPU defect.
+The generated neutral-pack inline script follows the stylesheet and precedes
+both the saved catalogue and async preload module. Per the
+[HTML script processing model](https://html.spec.whatwg.org/multipage/scripting.html#prepare-the-script-element),
+this can hold parser progress behind CSS. A held-stylesheet control is the next
+bounded investigation; no CSS fix or measured speed gain is claimed yet.
+
+The initial cold brief mistakenly named the direct `.html` alias, which Pages
+redirects. Root corrected it before either cold cohort started. Settled FPS uses
+that alias, as recorded; cold timing uses `/` consistently with the baseline.
+
+## Confirmed stylesheet discovery barrier
+
+The held-CSS control reproduces the dependency on the real preview. With its
+stylesheet withheld for 1.5 seconds, original HTML has no parsed identity
+catalogue and makes zero body requests. Moving only the neutral preload script
+before the stylesheet yields the catalogue and one body request while CSS is
+still held. After release, both variants reach readiness with the exact maximum
+saved recipe, Havok and no GPU/page errors; each makes one shared body request.
+This establishes ordering, **not a measured startup-time improvement**.
+
+The first probe called a nonexistent `ASHEN.creator.getAppearance()` method and
+failed after readiness. Root corrected it to the existing `ASHEN.getAppearance()`
+API, preserved the failed run, and made held-state observations persist before
+subsequent assertions. The corrected control passes; its JSON is tracked with
+the baseline. No product defect is inferred from that probe failure.
+
+The build now inserts the neutral script before the first generated stylesheet,
+after the existing entry/module hints. CSS keeps its normal rendering behavior;
+saved recipe validation, source assets and readiness fences are unchanged. Native
+HTML ordering resolves the dependency without another loader. All 23 focused tests, the build, ten prefetch cases and the actual fixed-build
+held-CSS check pass. That last check intercepts CSS but does not rewrite HTML:
+the catalogue and one saved-body request appear before release, then the exact
+saved appearance and Havok reach readiness without errors. Only `index.html` and
+`ashen-reach.html` differ among 535 build files; every asset/runtime binary is
+unchanged. New public timing remains pending.

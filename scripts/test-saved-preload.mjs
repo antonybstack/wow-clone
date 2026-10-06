@@ -4,12 +4,27 @@ import fs from 'node:fs/promises';
 import vm from 'node:vm';
 import {
     MAX_SAVED_PRELOAD_CODE_BYTES, SAVED_PRELOAD_MARKER, injectHeadScript, savedPreloadModules, savedPreloadScript,
-    startupAppearanceContract,
+    startupAppearanceContract, injectNeutralPreload,
 } from './ashen-reach/saved-preload.mjs';
 
 import {SAVED_APPEARANCE_KEYS,SAVED_APPEARANCE_BLOCKING_PARAMS,permitsSavedAppearance} from '../src/ashen-reach/startup-appearance.js';
 const contract = startupAppearanceContract();
 const INDEX = '/ashen-reach/human-identity-v1/manifest.json';
+
+test('neutral preload cannot hold saved-module discovery behind a stylesheet', () => {
+    const hints = '<link rel="modulepreload" href="/engine.js">';
+    const css = '<link crossorigin href="/game.css" rel="stylesheet">';
+    const script = '<script>chooseNeutralPack()</script>';
+    const html = `<head>${hints}${css}</head><body><!-- saved module --></body>`;
+    const out = injectNeutralPreload(html, script);
+    assert(out.indexOf(hints) < out.indexOf('data-ashen-neutral-preload'));
+    assert(out.indexOf('data-ashen-neutral-preload') < out.indexOf(css));
+    assert.equal(out.replace('<script data-ashen-neutral-preload>chooseNeutralPack()</script>', ''), html);
+    assert.throws(() => injectNeutralPreload(out, script), /already injected/);
+    assert.throws(() => injectNeutralPreload('<body></body>', script), /head end/);
+    assert.equal(injectNeutralPreload('<head></head>', script), '<head><script data-ashen-neutral-preload>chooseNeutralPack()</script></head>');
+    assert.equal(injectNeutralPreload(html, ''), html);
+});
 
 // Run the generated inline script against a minimal page: what links would it add?
 function run(script, {storage = {}, search = '', denied = false} = {}) {

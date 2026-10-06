@@ -1,0 +1,107 @@
+{
+  "url": "https://5f312add.fardel.pages.dev/?play&clean&pixelRatio=1",
+  "rows": [
+    {
+      "move": false,
+      "held": 1,
+      "rewrites": 0,
+      "beforeRelease": {
+        "bodyHits": 0,
+        "cataloguePresent": 0
+      },
+      "errors": [],
+      "bodyHits": 1,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "duskguardCuirass",
+            "legs": "graveweaverSkirt",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "physics": true,
+        "gpuErrors": []
+      }
+    },
+    {
+      "move": true,
+      "held": 1,
+      "rewrites": 1,
+      "beforeRelease": {
+        "bodyHits": 1,
+        "cataloguePresent": 1
+      },
+      "errors": [],
+      "bodyHits": 1,
+      "state": {
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "duskguardCuirass",
+            "legs": "graveweaverSkirt",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "physics": true,
+        "gpuErrors": []
+      }
+    }
+  ],
+  "timingClaim": false,
+  "passed": true
+}

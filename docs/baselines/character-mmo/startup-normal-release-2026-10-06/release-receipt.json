@@ -1,0 +1,5091 @@
+{
+  "source": "cf43894751652a914b80f0fb4c9be503efc2363c",
+  "preview": "5f312add-f747-477d-bc8a-9b583028e2a0",
+  "productionPromoted": false,
+  "functional": {
+    "entry": 3,
+    "traversal": 5,
+    "mobileChromium": true,
+    "mobileDepthFallback": true,
+    "mobileWebKit": true,
+    "physicalPhone": false
+  },
+  "fps": [
+    {
+      "raw": "public-gates-fps.json",
+      "sha256": "391d0236025422767bc9fade3b593b9cd4f44a848d75a129662d91c214478ca2",
+      "conditions": {
+        "cpu": "Apple M1 Max",
+        "url": "https://5f312add.fardel.pages.dev/ashen-reach.html?play=&clean=&pixelRatio=1&gpuTiming=",
+        "viewport": [
+          1280,
+          720
+        ],
+        "seconds": 12,
+        "runs": 3,
+        "uncappedRequired": true,
+        "recording": false,
+        "race": "human",
+        "outfit": null,
+        "orcAssetsOverride": null,
+        "routes": [
+          "meadow",
+          "town",
+          "bridge",
+          "cathedral",
+          "forest"
+        ],
+        "recordCapped": false,
+        "savedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "duskguardCuirass",
+            "legs": "graveweaverSkirt",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        }
+      },
+      "errors": [],
+      "rows": [
+        {
+          "route": "meadow",
+          "run": 1,
+          "fullWindow": {
+            "samples": 2417,
+            "fps": 201.34116373026782,
+            "meanMs": 4.966694249069094,
+            "medianMs": 4.699999988079071,
+            "p95Ms": 5.9000000059604645,
+            "p99Ms": 6.199999988079071,
+            "worstMs": 9.599999994039536,
+            "minMs": 3,
+            "above8_333": 6,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.967 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2417,
+            "meanMs": 4.966694249069094,
+            "meanFps": 201.34116373026782,
+            "p50Ms": 4.699999988079071,
+            "p95Ms": 5.9000000059604645,
+            "p99Ms": 6.199999988079071,
+            "maxMs": 9.599999994039536,
+            "above6_94": 6,
+            "above8_33": 6,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          "enemies": 7,
+          "physics": true,
+          "recoveries": 0
+        },
+        {
+          "route": "meadow",
+          "run": 2,
+          "fullWindow": {
+            "samples": 2419,
+            "fps": 201.46581160989425,
+            "meanMs": 4.963621331128565,
+            "medianMs": 4.699999988079071,
+            "p95Ms": 5.9000000059604645,
+            "p99Ms": 6.200000017881393,
+            "worstMs": 8.699999988079071,
+            "minMs": 3.0999999940395355,
+            "above8_333": 3,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.964 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2419,
+            "meanMs": 4.963621331128565,
+            "meanFps": 201.46581160989425,
+            "p50Ms": 4.699999988079071,
+            "p95Ms": 5.9000000059604645,
+            "p99Ms": 6.200000017881393,
+            "maxMs": 8.699999988079071,
+            "above6_94": 7,
+            "above8_33": 3,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          "enemies": 7,
+          "physics": true,
+          "recoveries": 0
+        },
+        {
+          "route": "meadow",
+          "run": 3,
+          "fullWindow": {
+            "samples": 2420,
+            "fps": 201.58435305573545,
+            "meanMs": 4.960702479341306,
+            "medianMs": 4.600000023841858,
+            "p95Ms": 5.9000000059604645,
+            "p99Ms": 6.199999988079071,
+            "worstMs": 8.599999994039536,
+            "minMs": 3.2999999821186066,
+            "above8_333": 1,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.961 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2420,
+            "meanMs": 4.960702479341306,
+            "meanFps": 201.58435305573545,
+            "p50Ms": 4.600000023841858,
+            "p95Ms": 5.9000000059604645,
+            "p99Ms": 6.199999988079071,
+            "maxMs": 8.599999994039536,
+            "above6_94": 8,
+            "above8_33": 1,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          "enemies": 7,
+          "physics": true,
+          "recoveries": 0
+        },
+        {
+          "route": "town",
+          "run": 1,
+          "fullWindow": {
+            "samples": 2441,
+            "fps": 203.35227178040086,
+            "meanMs": 4.917574764445686,
+            "medianMs": 4.700000017881393,
+            "p95Ms": 5.9000000059604645,
+            "p99Ms": 6.0999999940395355,
+            "worstMs": 10.099999994039536,
+            "minMs": 3.300000011920929,
+            "above8_333": 4,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.918 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2441,
+            "meanMs": 4.917574764445686,
+            "meanFps": 203.35227178040086,
+            "p50Ms": 4.700000017881393,
+            "p95Ms": 5.9000000059604645,
+            "p99Ms": 6.0999999940395355,
+            "maxMs": 10.099999994039536,
+            "above6_94": 6,
+            "above8_33": 4,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          "enemies": 7,
+          "physics": true,
+          "recoveries": 0
+        },
+        {
+          "route": "town",
+          "run": 2,
+          "fullWindow": {
+            "samples": 2449,
+            "fps": 203.98983799092085,
+            "meanMs": 4.902204981625153,
+            "medianMs": 4.700000017881393,
+            "p95Ms": 5.9000000059604645,
+            "p99Ms": 6.0999999940395355,
+            "worstMs": 11.199999988079071,
+            "minMs": 3.300000011920929,
+            "above8_333": 5,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.902 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2449,
+            "meanMs": 4.902204981625153,
+            "meanFps": 203.98983799092085,
+            "p50Ms": 4.700000017881393,
+            "p95Ms": 5.9000000059604645,
+            "p99Ms": 6.0999999940395355,
+            "maxMs": 11.199999988079071,
+            "above6_94": 7,
+            "above8_33": 5,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          "enemies": 7,
+          "physics": true,
+          "recoveries": 0
+        },
+        {
+          "route": "town",
+          "run": 3,
+          "fullWindow": {
+            "samples": 2450,
+            "fps": 204.05783582079422,
+            "meanMs": 4.900571428573861,
+            "medianMs": 4.699999988079071,
+            "p95Ms": 5.9000000059604645,
+            "p99Ms": 6.0999999940395355,
+            "worstMs": 9.900000005960464,
+            "minMs": 3.4000000059604645,
+            "above8_333": 4,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.901 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2450,
+            "meanMs": 4.900571428573861,
+            "meanFps": 204.05783582079422,
+            "p50Ms": 4.699999988079071,
+            "p95Ms": 5.9000000059604645,
+            "p99Ms": 6.0999999940395355,
+            "maxMs": 9.900000005960464,
+            "above6_94": 5,
+            "above8_33": 4,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          "enemies": 7,
+          "physics": true,
+          "recoveries": 0
+        },
+        {
+          "route": "bridge",
+          "run": 1,
+          "fullWindow": {
+            "samples": 2871,
+            "fps": 239.17027657447517,
+            "meanMs": 4.181121560431905,
+            "medianMs": 4.199999988079071,
+            "p95Ms": 4.9000000059604645,
+            "p99Ms": 5.4000000059604645,
+            "worstMs": 9.100000023841858,
+            "minMs": 2.699999988079071,
+            "above8_333": 4,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.181 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.400 ms (full range 2.700-9.100 ms)"
+          },
+          "tails": {
+            "samples": 2871,
+            "meanMs": 4.181121560431905,
+            "meanFps": 239.17027657447517,
+            "p50Ms": 4.199999988079071,
+            "p95Ms": 4.9000000059604645,
+            "p99Ms": 5.4000000059604645,
+            "maxMs": 9.100000023841858,
+            "above6_94": 5,
+            "above8_33": 4,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          "enemies": 7,
+          "physics": true,
+          "recoveries": 0
+        }
+      ]
+    },
+    {
+      "raw": "timing-finish-fps.json",
+      "sha256": "12351c2c184e3aedb5f0e326e63865437a51db909cb71f9e08440bf1ca554c5d",
+      "conditions": {
+        "cpu": "Apple M1 Max",
+        "url": "https://5f312add.fardel.pages.dev/ashen-reach.html?play=&clean=&pixelRatio=1&gpuTiming=",
+        "viewport": [
+          1280,
+          720
+        ],
+        "seconds": 12,
+        "runs": 3,
+        "uncappedRequired": true,
+        "recording": false,
+        "race": "human",
+        "outfit": null,
+        "orcAssetsOverride": null,
+        "routes": [
+          "bridge",
+          "cathedral",
+          "forest"
+        ],
+        "recordCapped": true,
+        "savedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "duskguardCuirass",
+            "legs": "graveweaverSkirt",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        }
+      },
+      "errors": [],
+      "rows": [
+        {
+          "route": "bridge",
+          "run": 1,
+          "fullWindow": {
+            "samples": 2870,
+            "fps": 239.04913417557825,
+            "meanMs": 4.183240418120544,
+            "medianMs": 4.199999988079071,
+            "p95Ms": 4.9000000059604645,
+            "p99Ms": 5.399999976158142,
+            "worstMs": 9.599999994039536,
+            "minMs": 3,
+            "above8_333": 4,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.183 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.400 ms (full range 3.000-9.600 ms)"
+          },
+          "tails": {
+            "samples": 2870,
+            "meanMs": 4.183240418120544,
+            "meanFps": 239.04913417557825,
+            "p50Ms": 4.199999988079071,
+            "p95Ms": 4.9000000059604645,
+            "p99Ms": 5.399999976158142,
+            "maxMs": 9.599999994039536,
+            "above6_94": 6,
+            "above8_33": 4,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          "enemies": 7,
+          "physics": true,
+          "recoveries": 0
+        },
+        {
+          "route": "bridge",
+          "run": 2,
+          "fullWindow": {
+            "samples": 2883,
+            "fps": 240.13193513177427,
+            "meanMs": 4.164377384670815,
+            "medianMs": 4.199999988079071,
+            "p95Ms": 4.9000000059604645,
+            "p99Ms": 5.4000000059604645,
+            "worstMs": 9.199999988079071,
+            "minMs": 2.5999999940395355,
+            "above8_333": 3,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.164 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.400-5.400 ms (full range 2.600-9.200 ms)"
+          },
+          "tails": {
+            "samples": 2883,
+            "meanMs": 4.164377384670815,
+            "meanFps": 240.13193513177427,
+            "p50Ms": 4.199999988079071,
+            "p95Ms": 4.9000000059604645,
+            "p99Ms": 5.4000000059604645,
+            "maxMs": 9.199999988079071,
+            "above6_94": 4,
+            "above8_33": 3,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          "enemies": 7,
+          "physics": true,
+          "recoveries": 0
+        },
+        {
+          "route": "bridge",
+          "run": 3,
+          "fullWindow": {
+            "samples": 2927,
+            "fps": 243.81304612218585,
+            "meanMs": 4.101503245641967,
+            "medianMs": 4.100000023841858,
+            "p95Ms": 4.699999988079071,
+            "p99Ms": 5.299999982118607,
+            "worstMs": 9.5,
+            "minMs": 2.7000000178813934,
+            "above8_333": 4,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.102 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.300 ms (full range 2.700-9.500 ms)"
+          },
+          "tails": {
+            "samples": 2927,
+            "meanMs": 4.101503245641967,
+            "meanFps": 243.81304612218585,
+            "p50Ms": 4.100000023841858,
+            "p95Ms": 4.699999988079071,
+            "p99Ms": 5.299999982118607,
+            "maxMs": 9.5,
+            "above6_94": 4,
+            "above8_33": 4,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          "enemies": 7,
+          "physics": true,
+          "recoveries": 0
+        },
+        {
+          "route": "cathedral",
+          "run": 1,
+          "fullWindow": {
+            "samples": 2873,
+            "fps": 239.3408753892223,
+            "meanMs": 4.178141315702026,
+            "medianMs": 4.199999988079071,
+            "p95Ms": 5,
+            "p99Ms": 5.399999976158142,
+            "worstMs": 9.100000023841858,
+            "minMs": 2.9000000059604645,
+            "above8_333": 4,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.178 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.400 ms (full range 2.900-9.100 ms)"
+          },
+          "tails": {
+            "samples": 2873,
+            "meanMs": 4.178141315702026,
+            "meanFps": 239.3408753892223,
+            "p50Ms": 4.199999988079071,
+            "p95Ms": 5,
+            "p99Ms": 5.399999976158142,
+            "maxMs": 9.100000023841858,
+            "above6_94": 4,
+            "above8_33": 4,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          "enemies": 7,
+          "physics": true,
+          "recoveries": 0
+        },
+        {
+          "route": "cathedral",
+          "run": 2,
+          "fullWindow": {
+            "samples": 2875,
+            "fps": 239.51946147717737,
+            "meanMs": 4.175026086952375,
+            "medianMs": 4.199999988079071,
+            "p95Ms": 5,
+            "p99Ms": 5.300000011920929,
+            "worstMs": 9,
+            "minMs": 2.899999976158142,
+            "above8_333": 2,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.175 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.300 ms (full range 2.900-9.000 ms)"
+          },
+          "tails": {
+            "samples": 2875,
+            "meanMs": 4.175026086952375,
+            "meanFps": 239.51946147717737,
+            "p50Ms": 4.199999988079071,
+            "p95Ms": 5,
+            "p99Ms": 5.300000011920929,
+            "maxMs": 9,
+            "above6_94": 5,
+            "above8_33": 2,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          "enemies": 7,
+          "physics": true,
+          "recoveries": 0
+        },
+        {
+          "route": "cathedral",
+          "run": 3,
+          "fullWindow": {
+            "samples": 2877,
+            "fps": 239.64016492440965,
+            "meanMs": 4.172923183872089,
+            "medianMs": 4.199999988079071,
+            "p95Ms": 5,
+            "p99Ms": 5.300000011920929,
+            "worstMs": 8.700000017881393,
+            "minMs": 2.600000023841858,
+            "above8_333": 3,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.173 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.300 ms (full range 2.600-8.700 ms)"
+          },
+          "tails": {
+            "samples": 2877,
+            "meanMs": 4.172923183872089,
+            "meanFps": 239.64016492440965,
+            "p50Ms": 4.199999988079071,
+            "p95Ms": 5,
+            "p99Ms": 5.300000011920929,
+            "maxMs": 8.700000017881393,
+            "above6_94": 4,
+            "above8_33": 3,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          "enemies": 7,
+          "physics": true,
+          "recoveries": 0
+        },
+        {
+          "route": "forest",
+          "run": 1,
+          "fullWindow": {
+            "samples": 2691,
+            "fps": 224.13793103448276,
+            "meanMs": 4.461538461538462,
+            "medianMs": 4.4000000059604645,
+            "p95Ms": 5.5,
+            "p99Ms": 5.700000017881393,
+            "worstMs": 9.099999994039536,
+            "minMs": 2.5999999940395355,
+            "above8_333": 3,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.462 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2691,
+            "meanMs": 4.461538461538462,
+            "meanFps": 224.13793103448276,
+            "p50Ms": 4.4000000059604645,
+            "p95Ms": 5.5,
+            "p99Ms": 5.700000017881393,
+            "maxMs": 9.099999994039536,
+            "above6_94": 4,
+            "above8_33": 3,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          "enemies": 7,
+          "physics": true,
+          "recoveries": 0
+        },
+        {
+          "route": "forest",
+          "run": 2,
+          "fullWindow": {
+            "samples": 2745,
+            "fps": 228.69854282809086,
+            "meanMs": 4.3725683060065865,
+            "medianMs": 4.4000000059604645,
+            "p95Ms": 5.200000017881393,
+            "p99Ms": 5.699999988079071,
+            "worstMs": 9.199999988079071,
+            "minMs": 2.800000011920929,
+            "above8_333": 4,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.373 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2745,
+            "meanMs": 4.3725683060065865,
+            "meanFps": 228.69854282809086,
+            "p50Ms": 4.4000000059604645,
+            "p95Ms": 5.200000017881393,
+            "p99Ms": 5.699999988079071,
+            "maxMs": 9.199999988079071,
+            "above6_94": 5,
+            "above8_33": 4,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          "enemies": 7,
+          "physics": true,
+          "recoveries": 0
+        },
+        {
+          "route": "forest",
+          "run": 3,
+          "fullWindow": {
+            "samples": 2724,
+            "fps": 226.93759216193,
+            "meanMs": 4.4064977973612045,
+            "medianMs": 4.4000000059604645,
+            "p95Ms": 5.300000011920929,
+            "p99Ms": 5.699999988079071,
+            "worstMs": 9.099999994039536,
+            "minMs": 3,
+            "above8_333": 5,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.406 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2724,
+            "meanMs": 4.4064977973612045,
+            "meanFps": 226.93759216193,
+            "p50Ms": 4.4000000059604645,
+            "p95Ms": 5.300000011920929,
+            "p99Ms": 5.699999988079071,
+            "maxMs": 9.099999994039536,
+            "above6_94": 6,
+            "above8_33": 5,
+            "above16_67": 0,
+            "above33_33": 0
+          },
+          "enemies": 7,
+          "physics": true,
+          "recoveries": 0
+        }
+      ]
+    }
+  ],
+  "cold": {
+    "maximum": {
+      "raw": "timing-cold-maximum.json",
+      "sha256": "d294e40729decac166bd8fce1e4b19a74ed5e033c5bebfc039463cbae2c37ebd",
+      "conditions": {
+        "requestedRuns": 20,
+        "budgetMs": 1000,
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "savedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "duskguardCuirass",
+            "legs": "graveweaverSkirt",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "expectedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "duskguardCuirass",
+            "legs": "graveweaverSkirt",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "budget": {
+        "maxMs": 1000,
+        "expectedRuns": 20,
+        "recordedRuns": 20,
+        "validRuns": 20,
+        "complete": true,
+        "misses": 2,
+        "p95Ms": 1001,
+        "worstMs": 1177.0999999940395,
+        "passed": false
+      },
+      "rows": [
+        {
+          "run": 1,
+          "browserPid": "61735",
+          "playableMs": 982.1999999880791,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 444.39999997615814,
+            "engine-created": 458.7999999821186,
+            "gpu-probe-end": 461.09999999403954,
+            "world-start": 463,
+            "world-end": 540.3999999761581,
+            "havok-start": 541.2999999821186,
+            "havok-runtime-start": 542.1999999880791,
+            "havok-runtime-available": 647.5,
+            "havok-runtime-end": 647.5,
+            "havok-world-end": 649.2999999821186,
+            "havok-colliders-end": 655.7999999821186,
+            "havok-controller-end": 657.0999999940395,
+            "havok-end": 658.0999999940395,
+            "body-start": 769.8999999761581,
+            "body-end": 791.1999999880791,
+            "equipment-start": 793.0999999940395,
+            "equipment-end": 810.2999999821186,
+            "register-start": 819,
+            "register-end": 843.1999999880791,
+            "first-render-return": 853.5999999940395,
+            "supported-frame-submitted": 877.5999999940395,
+            "first-gpu-completed": 967.6999999880791,
+            "supported-frame-completed": 981.8999999761581,
+            "playable": 982.1999999880791,
+            "bg-start": 982.2999999821186
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 118.2999999821186,
+              "end": 153.19999998807907,
+              "domContentLoaded": 447.39999997615814,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3449287,
+          "input": {
+            "keyAt": 1214.3999999761581,
+            "observedAt": 1248.5999999940395,
+            "position": {
+              "x": -0.0005581313662527639,
+              "z": 0.23211506222948108
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 34.20000001788139
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 154.876953125,
+              "endMs": 423.2548828125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 154.904052734375,
+              "endMs": 235.61181640625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 154.990966796875,
+              "endMs": 229.35302734375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 155.033935546875,
+              "endMs": 246.921142578125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 258.614990234375,
+              "endMs": 767.677978515625,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 2,
+          "browserPid": "61834",
+          "playableMs": 920.4000000059605,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 452.7000000178814,
+            "engine-created": 466.59999999403954,
+            "gpu-probe-end": 468.5,
+            "world-start": 470.40000000596046,
+            "world-end": 495.5,
+            "havok-start": 496.5,
+            "havok-runtime-start": 497.2000000178814,
+            "havok-runtime-available": 622.7000000178814,
+            "havok-runtime-end": 622.7000000178814,
+            "havok-world-end": 624.5,
+            "havok-colliders-end": 631.2000000178814,
+            "havok-controller-end": 632.4000000059605,
+            "havok-end": 633.4000000059605,
+            "body-start": 712.5,
+            "body-end": 732.5,
+            "equipment-start": 735.0999999940395,
+            "equipment-end": 752.0999999940395,
+            "register-start": 760.7000000178814,
+            "register-end": 785.0999999940395,
+            "first-render-return": 794.7000000178814,
+            "supported-frame-submitted": 818.0999999940395,
+            "first-gpu-completed": 906.0999999940395,
+            "supported-frame-completed": 920.0999999940395,
+            "playable": 920.4000000059605,
+            "bg-start": 920.4000000059605
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 69.90000000596046,
+              "end": 99.30000001192093,
+              "domContentLoaded": 455.7000000178814,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3449454,
+          "input": {
+            "keyAt": 1153,
+            "observedAt": 1183.5999999940395,
+            "position": {
+              "x": -0.0004899268926879778,
+              "z": 0.23363542318298147
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 30.599999994039536
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 100.158935546875,
+              "endMs": 431.208984375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 100.18798828125,
+              "endMs": 170.3779296875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 100.276123046875,
+              "endMs": 168.414794921875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 100.31884765625,
+              "endMs": 169.883056640625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 192.712890625,
+              "endMs": 710.575927734375,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 3,
+          "browserPid": "61922",
+          "playableMs": 938.4000000059605,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 476.5,
+            "engine-created": 491.30000001192093,
+            "gpu-probe-end": 493,
+            "world-start": 494.90000000596046,
+            "world-end": 521.4000000059605,
+            "havok-start": 522.3000000119209,
+            "havok-runtime-start": 523.2000000178814,
+            "havok-runtime-available": 618.8000000119209,
+            "havok-runtime-end": 618.8000000119209,
+            "havok-world-end": 620.5999999940395,
+            "havok-colliders-end": 627.3000000119209,
+            "havok-controller-end": 628.5999999940395,
+            "havok-end": 629.5999999940395,
+            "body-start": 736.3000000119209,
+            "body-end": 756,
+            "equipment-start": 757.8000000119209,
+            "equipment-end": 775.2000000178814,
+            "register-start": 784.0999999940395,
+            "register-end": 807.9000000059605,
+            "first-render-return": 818.5999999940395,
+            "supported-frame-submitted": 844.8000000119209,
+            "first-gpu-completed": 925.0999999940395,
+            "supported-frame-completed": 938.0999999940395,
+            "playable": 938.4000000059605,
+            "bg-start": 938.5
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 92.59999999403954,
+              "end": 117.80000001192093,
+              "domContentLoaded": 479.5,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3449400,
+          "input": {
+            "keyAt": 1178.7000000178814,
+            "observedAt": 1209.0999999940395,
+            "position": {
+              "x": -0.0005747657606395284,
+              "z": 0.2334857075427994
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 30.399999976158142
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 119.006591796875,
+              "endMs": 454.56494140625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 119.034912109375,
+              "endMs": 243.57958984375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 119.120849609375,
+              "endMs": 179.045654296875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 119.161865234375,
+              "endMs": 210.5498046875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 247.6669921875,
+              "endMs": 734.37890625,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 4,
+          "browserPid": "62048",
+          "playableMs": 950.4000000059605,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 424.90000000596046,
+            "engine-created": 438.80000001192093,
+            "gpu-probe-end": 440.59999999403954,
+            "world-start": 442.5,
+            "world-end": 470.09999999403954,
+            "havok-start": 471,
+            "havok-runtime-start": 471.90000000596046,
+            "havok-runtime-available": 648.3000000119209,
+            "havok-runtime-end": 648.3000000119209,
+            "havok-world-end": 650,
+            "havok-colliders-end": 656.9000000059605,
+            "havok-controller-end": 658.0999999940395,
+            "havok-end": 659.0999999940395,
+            "body-start": 743.2000000178814,
+            "body-end": 763.5,
+            "equipment-start": 765.9000000059605,
+            "equipment-end": 783.5,
+            "register-start": 792,
+            "register-end": 815.3000000119209,
+            "first-render-return": 825.9000000059605,
+            "supported-frame-submitted": 849.5,
+            "first-gpu-completed": 933.4000000059605,
+            "supported-frame-completed": 950.0999999940395,
+            "playable": 950.4000000059605,
+            "bg-start": 950.5
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 71.80000001192093,
+              "end": 101.30000001192093,
+              "domContentLoaded": 427.80000001192093,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3449484,
+          "input": {
+            "keyAt": 1190.800000011921,
+            "observedAt": 1222.4000000059605,
+            "position": {
+              "x": -0.0005418453092450173,
+              "z": 0.23284380249507947
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 31.599999994039536
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 102.191162109375,
+              "endMs": 403.107177734375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 102.214111328125,
+              "endMs": 201.134033203125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 102.2841796875,
+              "endMs": 195.948974609375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 102.319091796875,
+              "endMs": 205.1640625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 220.97607421875,
+              "endMs": 741.069091796875,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 5,
+          "browserPid": "62121",
+          "playableMs": 908.2999999821186,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 479.19999998807907,
+            "engine-created": 487.7999999821186,
+            "gpu-probe-end": 493.90000000596046,
+            "world-start": 495.90000000596046,
+            "world-end": 521.2999999821186,
+            "havok-start": 522.5,
+            "havok-runtime-start": 523.2999999821186,
+            "havok-runtime-available": 587.2999999821186,
+            "havok-runtime-end": 587.2999999821186,
+            "havok-world-end": 589,
+            "havok-colliders-end": 595.6999999880791,
+            "havok-controller-end": 596.9000000059605,
+            "havok-end": 598,
+            "body-start": 701.5,
+            "body-end": 721.5999999940395,
+            "equipment-start": 723.2999999821186,
+            "equipment-end": 741.5,
+            "register-start": 750,
+            "register-end": 775,
+            "first-render-return": 785.7999999821186,
+            "supported-frame-submitted": 811,
+            "first-gpu-completed": 892.7999999821186,
+            "supported-frame-completed": 908,
+            "playable": 908.2999999821186,
+            "bg-start": 908.4000000059605
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 63.79999998211861,
+              "end": 98.40000000596046,
+              "domContentLoaded": 482.19999998807907,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3449232,
+          "input": {
+            "keyAt": 1152.4000000059605,
+            "observedAt": 1180.2999999821186,
+            "position": {
+              "x": -0.0005369175552472091,
+              "z": 0.23285249832251437
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 27.899999976158142
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 99.302001953125,
+              "endMs": 458.384033203125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 99.328125,
+              "endMs": 169.2080078125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 99.419189453125,
+              "endMs": 162.953125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 99.45703125,
+              "endMs": 161.781982421875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 188.214111328125,
+              "endMs": 699.593994140625,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 6,
+          "browserPid": "62188",
+          "playableMs": 913.0999999940395,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 455.40000000596046,
+            "engine-created": 463.69999998807907,
+            "gpu-probe-end": 468.69999998807907,
+            "world-start": 470.59999999403954,
+            "world-end": 497.5,
+            "havok-start": 498.30000001192093,
+            "havok-runtime-start": 499.09999999403954,
+            "havok-runtime-available": 614.3000000119209,
+            "havok-runtime-end": 614.3000000119209,
+            "havok-world-end": 616,
+            "havok-colliders-end": 622.8000000119209,
+            "havok-controller-end": 624,
+            "havok-end": 624.9000000059605,
+            "body-start": 708.8000000119209,
+            "body-end": 728.5999999940395,
+            "equipment-start": 731.1999999880791,
+            "equipment-end": 748.3000000119209,
+            "register-start": 757.1999999880791,
+            "register-end": 781.5999999940395,
+            "first-render-return": 791.3000000119209,
+            "supported-frame-submitted": 814.8000000119209,
+            "first-gpu-completed": 899.8000000119209,
+            "supported-frame-completed": 912.8000000119209,
+            "playable": 913.0999999940395,
+            "bg-start": 913.3000000119209
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 61.900000005960464,
+              "end": 98.09999999403954,
+              "domContentLoaded": 458.30000001192093,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3449652,
+          "input": {
+            "keyAt": 1150.800000011921,
+            "observedAt": 1179.199999988079,
+            "position": {
+              "x": -0.0004899469766828354,
+              "z": 0.23223538761547452
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 28.399999976158142
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 99.294921875,
+              "endMs": 433.802001953125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 99.32080078125,
+              "endMs": 147.005859375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 99.391845703125,
+              "endMs": 158.587646484375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 99.423828125,
+              "endMs": 155.65283203125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 183.00390625,
+              "endMs": 706.9248046875,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 7,
+          "browserPid": "62254",
+          "playableMs": 1001,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 549.5,
+            "engine-created": 564.1999999880791,
+            "gpu-probe-end": 565.9000000059605,
+            "world-start": 567.6999999880791,
+            "world-end": 592.9000000059605,
+            "havok-start": 594,
+            "havok-runtime-start": 594.7999999821186,
+            "havok-runtime-available": 688.5999999940395,
+            "havok-runtime-end": 688.5999999940395,
+            "havok-world-end": 690.4000000059605,
+            "havok-colliders-end": 697,
+            "havok-controller-end": 698.1999999880791,
+            "havok-end": 699.1999999880791,
+            "body-start": 795,
+            "body-end": 815.0999999940395,
+            "equipment-start": 817.5999999940395,
+            "equipment-end": 834.7999999821186,
+            "register-start": 843.7999999821186,
+            "register-end": 867.1999999880791,
+            "first-render-return": 877.2999999821186,
+            "supported-frame-submitted": 903.7999999821186,
+            "first-gpu-completed": 987.1999999880791,
+            "supported-frame-completed": 1000.6999999880791,
+            "playable": 1001,
+            "bg-start": 1001.0999999940395
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 118,
+              "end": 162.7999999821186,
+              "domContentLoaded": 552.5999999940395,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3449463,
+          "input": {
+            "keyAt": 1240.2999999821186,
+            "observedAt": 1271.7999999821186,
+            "position": {
+              "x": -0.0005481604291479343,
+              "z": 0.2307326580834135
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 31.5
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 163.44970703125,
+              "endMs": 528.139892578125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 163.476806640625,
+              "endMs": 244.829833984375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 163.575927734375,
+              "endMs": 244.005859375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 163.617919921875,
+              "endMs": 238.456787109375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 269.766845703125,
+              "endMs": 793.1787109375,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 8,
+          "browserPid": "62346",
+          "playableMs": 951.1999999880791,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 423.40000000596046,
+            "engine-created": 436.59999999403954,
+            "gpu-probe-end": 438.40000000596046,
+            "world-start": 440.2999999821186,
+            "world-end": 502.59999999403954,
+            "havok-start": 503.69999998807907,
+            "havok-runtime-start": 504.5,
+            "havok-runtime-available": 651.5,
+            "havok-runtime-end": 651.5,
+            "havok-world-end": 653.2999999821186,
+            "havok-colliders-end": 660,
+            "havok-controller-end": 661.1999999880791,
+            "havok-end": 662.1999999880791,
+            "body-start": 745.5999999940395,
+            "body-end": 766.5,
+            "equipment-start": 769.0999999940395,
+            "equipment-end": 786.5,
+            "register-start": 795,
+            "register-end": 818.5999999940395,
+            "first-render-return": 829.0999999940395,
+            "supported-frame-submitted": 888.7999999821186,
+            "first-gpu-completed": 937.0999999940395,
+            "supported-frame-completed": 951,
+            "playable": 951.1999999880791,
+            "bg-start": 951.4000000059605
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 72.40000000596046,
+              "end": 114.69999998807907,
+              "domContentLoaded": 426.5,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3449996,
+          "input": {
+            "keyAt": 1169.199999988079,
+            "observedAt": 1199.9000000059605,
+            "position": {
+              "x": -0.0005541495287682955,
+              "z": 0.23212208900116327
+            },
+            "frames": 20,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 30.700000017881393
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 115.5458984375,
+              "endMs": 402.1337890625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 115.570068359375,
+              "endMs": 183.0078125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 115.644775390625,
+              "endMs": 193.056884765625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 115.684814453125,
+              "endMs": 201.074951171875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 217.40087890625,
+              "endMs": 743.654052734375,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 9,
+          "browserPid": "62416",
+          "playableMs": 939.5999999940395,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 491.90000000596046,
+            "engine-created": 500.69999998807907,
+            "gpu-probe-end": 505.7999999821186,
+            "world-start": 507.69999998807907,
+            "world-end": 535.4000000059605,
+            "havok-start": 536.5,
+            "havok-runtime-start": 537.2999999821186,
+            "havok-runtime-available": 636.0999999940395,
+            "havok-runtime-end": 636.0999999940395,
+            "havok-world-end": 637.7999999821186,
+            "havok-colliders-end": 644.4000000059605,
+            "havok-controller-end": 645.6999999880791,
+            "havok-end": 646.6999999880791,
+            "body-start": 731.5,
+            "body-end": 752,
+            "equipment-start": 753.7999999821186,
+            "equipment-end": 771.5999999940395,
+            "register-start": 780.9000000059605,
+            "register-end": 805.4000000059605,
+            "first-render-return": 816.4000000059605,
+            "supported-frame-submitted": 861.0999999940395,
+            "first-gpu-completed": 924.4000000059605,
+            "supported-frame-completed": 939.2999999821186,
+            "playable": 939.5999999940395,
+            "bg-start": 939.6999999880791
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 80.7999999821186,
+              "end": 130.2999999821186,
+              "domContentLoaded": 495,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3449271,
+          "input": {
+            "keyAt": 1173.4000000059605,
+            "observedAt": 1203.4000000059605,
+            "position": {
+              "x": -0.000687431150122233,
+              "z": 0.22838688615420288
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 30
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 130.76513671875,
+              "endMs": 470.419921875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 130.7900390625,
+              "endMs": 187.451904296875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 130.85986328125,
+              "endMs": 173.134033203125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 130.89306640625,
+              "endMs": 195.9169921875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 202.698974609375,
+              "endMs": 729.6279296875,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 10,
+          "browserPid": "62488",
+          "playableMs": 933.2999999821186,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 451.7999999821186,
+            "engine-created": 467,
+            "gpu-probe-end": 468.69999998807907,
+            "world-start": 470.59999999403954,
+            "world-end": 496.09999999403954,
+            "havok-start": 497.09999999403954,
+            "havok-runtime-start": 497.89999997615814,
+            "havok-runtime-available": 631.0999999940395,
+            "havok-runtime-end": 631.0999999940395,
+            "havok-world-end": 632.7999999821186,
+            "havok-colliders-end": 639.5999999940395,
+            "havok-controller-end": 640.7999999821186,
+            "havok-end": 641.8999999761581,
+            "body-start": 730.8999999761581,
+            "body-end": 750.3999999761581,
+            "equipment-start": 752.1999999880791,
+            "equipment-end": 769.6999999880791,
+            "register-start": 778.5,
+            "register-end": 802.5,
+            "first-render-return": 811.8999999761581,
+            "supported-frame-submitted": 835.6999999880791,
+            "first-gpu-completed": 918.8999999761581,
+            "supported-frame-completed": 933,
+            "playable": 933.2999999821186,
+            "bg-start": 933.3999999761581
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 75.59999999403954,
+              "end": 118.09999999403954,
+              "domContentLoaded": 454.69999998807907,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3449496,
+          "input": {
+            "keyAt": 1174,
+            "observedAt": 1206.3999999761581,
+            "position": {
+              "x": -0.0005154191209129247,
+              "z": 0.23009043690061434
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 32.39999997615814
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 119.0458984375,
+              "endMs": 430.23095703125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 119.071044921875,
+              "endMs": 186.720947265625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 119.152099609375,
+              "endMs": 186.577880859375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 119.184814453125,
+              "endMs": 188.77880859375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 212.970947265625,
+              "endMs": 728.802001953125,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 11,
+          "browserPid": "62556",
+          "playableMs": 920.4000000059605,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 456,
+            "engine-created": 464.5,
+            "gpu-probe-end": 469.40000000596046,
+            "world-start": 471.2999999821186,
+            "world-end": 498.2999999821186,
+            "havok-start": 499.40000000596046,
+            "havok-runtime-start": 500.09999999403954,
+            "havok-runtime-available": 625.1999999880791,
+            "havok-runtime-end": 625.1999999880791,
+            "havok-world-end": 627,
+            "havok-colliders-end": 633.6999999880791,
+            "havok-controller-end": 635,
+            "havok-end": 635.9000000059605,
+            "body-start": 714.0999999940395,
+            "body-end": 734.0999999940395,
+            "equipment-start": 736.5,
+            "equipment-end": 753.6999999880791,
+            "register-start": 762.5,
+            "register-end": 786.2999999821186,
+            "first-render-return": 796.7999999821186,
+            "supported-frame-submitted": 842.4000000059605,
+            "first-gpu-completed": 905.7999999821186,
+            "supported-frame-completed": 920.0999999940395,
+            "playable": 920.4000000059605,
+            "bg-start": 920.5
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 65.59999999403954,
+              "end": 103.5,
+              "domContentLoaded": 459.09999999403954,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3449597,
+          "input": {
+            "keyAt": 1151.4000000059605,
+            "observedAt": 1181.4000000059605,
+            "position": {
+              "x": -0.0005677083169897029,
+              "z": 0.23209816193772836
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 30
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 104.602783203125,
+              "endMs": 434.593017578125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 104.6279296875,
+              "endMs": 154.520751953125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 104.706787109375,
+              "endMs": 165.3818359375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 104.739990234375,
+              "endMs": 167.335693359375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 190.049072265625,
+              "endMs": 712.28076171875,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 12,
+          "browserPid": "62643",
+          "playableMs": 929.5999999940395,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 478.40000000596046,
+            "engine-created": 486.90000000596046,
+            "gpu-probe-end": 492.69999998807907,
+            "world-start": 494.59999999403954,
+            "world-end": 520.4000000059605,
+            "havok-start": 521.4000000059605,
+            "havok-runtime-start": 522.1999999880791,
+            "havok-runtime-available": 620.9000000059605,
+            "havok-runtime-end": 620.9000000059605,
+            "havok-world-end": 622.5999999940395,
+            "havok-colliders-end": 629.2999999821186,
+            "havok-controller-end": 630.5999999940395,
+            "havok-end": 631.5999999940395,
+            "body-start": 723.0999999940395,
+            "body-end": 743.1999999880791,
+            "equipment-start": 745.0999999940395,
+            "equipment-end": 762.6999999880791,
+            "register-start": 771.5,
+            "register-end": 795.5,
+            "first-render-return": 806,
+            "supported-frame-submitted": 829.5,
+            "first-gpu-completed": 916.4000000059605,
+            "supported-frame-completed": 929.2999999821186,
+            "playable": 929.5999999940395,
+            "bg-start": 929.5999999940395
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 73.2999999821186,
+              "end": 103.09999999403954,
+              "domContentLoaded": 481.40000000596046,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3449429,
+          "input": {
+            "keyAt": 1166.5,
+            "observedAt": 1196.7999999821186,
+            "position": {
+              "x": -0.0005579068208653158,
+              "z": 0.2328154586528612
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 30.299999982118607
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 104.288818359375,
+              "endMs": 456.58203125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 104.323974609375,
+              "endMs": 174.5830078125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 104.44091796875,
+              "endMs": 176.845947265625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 104.488037109375,
+              "endMs": 179.19189453125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 201.7138671875,
+              "endMs": 721.3349609375,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 13,
+          "browserPid": "62717",
+          "playableMs": 984.9000000059605,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 474.40000000596046,
+            "engine-created": 489,
+            "gpu-probe-end": 490.59999999403954,
+            "world-start": 492.5,
+            "world-end": 517.4000000059605,
+            "havok-start": 518.4000000059605,
+            "havok-runtime-start": 519.3000000119209,
+            "havok-runtime-available": 689,
+            "havok-runtime-end": 689,
+            "havok-world-end": 690.8000000119209,
+            "havok-colliders-end": 697.5,
+            "havok-controller-end": 698.7000000178814,
+            "havok-end": 699.7000000178814,
+            "body-start": 781.0999999940395,
+            "body-end": 802.0999999940395,
+            "equipment-start": 803.8000000119209,
+            "equipment-end": 820.9000000059605,
+            "register-start": 829.7000000178814,
+            "register-end": 853.5999999940395,
+            "first-render-return": 862.9000000059605,
+            "supported-frame-submitted": 906.0999999940395,
+            "first-gpu-completed": 969.8000000119209,
+            "supported-frame-completed": 984.5999999940395,
+            "playable": 984.9000000059605,
+            "bg-start": 985
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 71.80000001192093,
+              "end": 119.40000000596046,
+              "domContentLoaded": 477.40000000596046,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3449464,
+          "input": {
+            "keyAt": 1213.300000011921,
+            "observedAt": 1246.2000000178814,
+            "position": {
+              "x": -0.0005041391038021372,
+              "z": 0.2336103428120574
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 32.900000005960464
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 120.8349609375,
+              "endMs": 451.882080078125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 120.86181640625,
+              "endMs": 229.948974609375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 120.949951171875,
+              "endMs": 228.919921875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 120.989990234375,
+              "endMs": 238.35595703125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 252.534912109375,
+              "endMs": 779.240966796875,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 14,
+          "browserPid": "62783",
+          "playableMs": 971.8000000119209,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 396.90000000596046,
+            "engine-created": 412,
+            "gpu-probe-end": 413.69999998807907,
+            "world-start": 415.59999999403954,
+            "world-end": 516.0999999940395,
+            "havok-start": 517.0999999940395,
+            "havok-runtime-start": 518,
+            "havok-runtime-available": 631.6999999880791,
+            "havok-runtime-end": 631.8000000119209,
+            "havok-world-end": 633.5,
+            "havok-colliders-end": 640.0999999940395,
+            "havok-controller-end": 641.3000000119209,
+            "havok-end": 642.3000000119209,
+            "body-start": 765.5,
+            "body-end": 786.6999999880791,
+            "equipment-start": 788.1999999880791,
+            "equipment-end": 805.4000000059605,
+            "register-start": 814.3000000119209,
+            "register-end": 838.3000000119209,
+            "first-render-return": 847.8000000119209,
+            "supported-frame-submitted": 893.3000000119209,
+            "first-gpu-completed": 957.3000000119209,
+            "supported-frame-completed": 971.4000000059605,
+            "playable": 971.8000000119209,
+            "bg-start": 971.9000000059605
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 81.59999999403954,
+              "end": 149.40000000596046,
+              "domContentLoaded": 400.19999998807907,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3449645,
+          "input": {
+            "keyAt": 1200.199999988079,
+            "observedAt": 1231.800000011921,
+            "position": {
+              "x": -0.0005246511126904482,
+              "z": 0.23217414523471397
+            },
+            "frames": 20,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 31.600000023841858
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 150.185302734375,
+              "endMs": 374.718017578125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 150.212158203125,
+              "endMs": 203.88525390625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 150.301025390625,
+              "endMs": 228.318115234375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 150.34521484375,
+              "endMs": 212.95703125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 254.5400390625,
+              "endMs": 763.551025390625,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 15,
+          "browserPid": "62850",
+          "playableMs": 932.4000000059605,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 396.7999999821186,
+            "engine-created": 411.19999998807907,
+            "gpu-probe-end": 413.09999999403954,
+            "world-start": 415,
+            "world-end": 501.59999999403954,
+            "havok-start": 502.59999999403954,
+            "havok-runtime-start": 503.5,
+            "havok-runtime-available": 602.5,
+            "havok-runtime-end": 602.5,
+            "havok-world-end": 604.2999999821186,
+            "havok-colliders-end": 611,
+            "havok-controller-end": 612.1999999880791,
+            "havok-end": 613.1999999880791,
+            "body-start": 725.9000000059605,
+            "body-end": 746.9000000059605,
+            "equipment-start": 748.5999999940395,
+            "equipment-end": 765.5,
+            "register-start": 774.1999999880791,
+            "register-end": 798.2999999821186,
+            "first-render-return": 808.7999999821186,
+            "supported-frame-submitted": 832.9000000059605,
+            "first-gpu-completed": 917.6999999880791,
+            "supported-frame-completed": 932.0999999940395,
+            "playable": 932.4000000059605,
+            "bg-start": 932.5
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 61.29999998211861,
+              "end": 98.09999999403954,
+              "domContentLoaded": 399.69999998807907,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3449785,
+          "input": {
+            "keyAt": 1170.5999999940395,
+            "observedAt": 1201.9000000059605,
+            "position": {
+              "x": -0.0005634194420714953,
+              "z": 0.2335057304565234
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 31.30000001192093
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 98.46484375,
+              "endMs": 375.288818359375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 98.490966796875,
+              "endMs": 181.990234375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 98.5751953125,
+              "endMs": 195.6240234375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 98.60888671875,
+              "endMs": 183.238037109375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 220.195068359375,
+              "endMs": 723.89111328125,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 16,
+          "browserPid": "62942",
+          "playableMs": 931.5,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 416.30000001192093,
+            "engine-created": 424.59999999403954,
+            "gpu-probe-end": 430.7000000178814,
+            "world-start": 432.7000000178814,
+            "world-end": 458.90000000596046,
+            "havok-start": 459.90000000596046,
+            "havok-runtime-start": 460.80000001192093,
+            "havok-runtime-available": 638.2000000178814,
+            "havok-runtime-end": 638.2000000178814,
+            "havok-world-end": 640,
+            "havok-colliders-end": 646.5,
+            "havok-controller-end": 647.7000000178814,
+            "havok-end": 648.5999999940395,
+            "body-start": 726.4000000059605,
+            "body-end": 747.7000000178814,
+            "equipment-start": 749.4000000059605,
+            "equipment-end": 766.5999999940395,
+            "register-start": 775.5,
+            "register-end": 800.3000000119209,
+            "first-render-return": 809.5,
+            "supported-frame-submitted": 833.0999999940395,
+            "first-gpu-completed": 918.0999999940395,
+            "supported-frame-completed": 931.2000000178814,
+            "playable": 931.5,
+            "bg-start": 931.5999999940395
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 66.59999999403954,
+              "end": 103.90000000596046,
+              "domContentLoaded": 419.30000001192093,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3449580,
+          "input": {
+            "keyAt": 1172.7000000178814,
+            "observedAt": 1202.0999999940395,
+            "position": {
+              "x": -0.00048026883079975956,
+              "z": 0.2329524666537229
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 29.399999976158142
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 105.010986328125,
+              "endMs": 394.76220703125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 105.037109375,
+              "endMs": 186.177001953125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 105.112060546875,
+              "endMs": 168.318115234375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 105.14599609375,
+              "endMs": 194.4521484375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 198.6650390625,
+              "endMs": 724.358154296875,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 17,
+          "browserPid": "63009",
+          "playableMs": 933.5,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 480.30000001192093,
+            "engine-created": 488.90000000596046,
+            "gpu-probe-end": 493.90000000596046,
+            "world-start": 495.80000001192093,
+            "world-end": 522.9000000059605,
+            "havok-start": 524,
+            "havok-runtime-start": 524.8000000119209,
+            "havok-runtime-available": 628.4000000059605,
+            "havok-runtime-end": 628.5,
+            "havok-world-end": 630.2000000178814,
+            "havok-colliders-end": 637.2000000178814,
+            "havok-controller-end": 638.4000000059605,
+            "havok-end": 639.5,
+            "body-start": 725.8000000119209,
+            "body-end": 746.3000000119209,
+            "equipment-start": 748.1000000238419,
+            "equipment-end": 765.9000000059605,
+            "register-start": 774.2000000178814,
+            "register-end": 798,
+            "first-render-return": 808.4000000059605,
+            "supported-frame-submitted": 832.5,
+            "first-gpu-completed": 918.8000000119209,
+            "supported-frame-completed": 933.2000000178814,
+            "playable": 933.5,
+            "bg-start": 933.6000000238419
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 62,
+              "end": 103.5,
+              "domContentLoaded": 483.30000001192093,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3449736,
+          "input": {
+            "keyAt": 1172.1000000238419,
+            "observedAt": 1203.2000000178814,
+            "position": {
+              "x": -0.0005261924026019198,
+              "z": 0.23217142531182822
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 31.099999994039536
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 104.68701171875,
+              "endMs": 459.14599609375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 104.714111328125,
+              "endMs": 187.450927734375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 104.80712890625,
+              "endMs": 184.343017578125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 104.843994140625,
+              "endMs": 188.990966796875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 209.72509765625,
+              "endMs": 723.885009765625,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 18,
+          "browserPid": "63075",
+          "playableMs": 1177.0999999940395,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 766.6999999880791,
+            "havok-runtime-available": 778.8000000119209,
+            "engine-created": 785.5,
+            "gpu-probe-end": 788.0999999940395,
+            "world-start": 790.0999999940395,
+            "world-end": 815.0999999940395,
+            "havok-start": 816.0999999940395,
+            "havok-runtime-start": 817,
+            "havok-runtime-end": 817,
+            "havok-world-end": 818.8000000119209,
+            "havok-colliders-end": 825.6999999880791,
+            "havok-controller-end": 827.0999999940395,
+            "havok-end": 828.0999999940395,
+            "body-start": 967.8000000119209,
+            "body-end": 988.9000000059605,
+            "equipment-start": 990.8000000119209,
+            "equipment-end": 1007.5999999940395,
+            "register-start": 1016,
+            "register-end": 1039.5999999940395,
+            "first-render-return": 1050.0999999940395,
+            "supported-frame-submitted": 1075.5999999940395,
+            "first-gpu-completed": 1157.0999999940395,
+            "supported-frame-completed": 1176.699999988079,
+            "playable": 1177.0999999940395,
+            "bg-start": 1177.199999988079
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 110.80000001192093,
+              "end": 193.80000001192093,
+              "domContentLoaded": 769.5999999940395,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3449388,
+          "input": {
+            "keyAt": 1416.699999988079,
+            "observedAt": 1446,
+            "position": {
+              "x": -0.0005529156773027216,
+              "z": 0.23282426655299396
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 29.30000001192093
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 196.255126953125,
+              "endMs": 745.737060546875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 196.288330078125,
+              "endMs": 338.76806640625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 196.38818359375,
+              "endMs": 462.070068359375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 196.439208984375,
+              "endMs": 336.77294921875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 487.05615234375,
+              "endMs": 966.045166015625,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 19,
+          "browserPid": "63189",
+          "playableMs": 955.3000000119209,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 501.09999999403954,
+            "engine-created": 515.2000000178814,
+            "gpu-probe-end": 517,
+            "world-start": 518.8000000119209,
+            "world-end": 544.3000000119209,
+            "havok-start": 545.3000000119209,
+            "havok-runtime-start": 546.0999999940395,
+            "havok-runtime-available": 650.5,
+            "havok-runtime-end": 650.5,
+            "havok-world-end": 652.2000000178814,
+            "havok-colliders-end": 658.9000000059605,
+            "havok-controller-end": 660.2000000178814,
+            "havok-end": 661.2000000178814,
+            "body-start": 748.5999999940395,
+            "body-end": 769.3000000119209,
+            "equipment-start": 771.0999999940395,
+            "equipment-end": 788,
+            "register-start": 796.8000000119209,
+            "register-end": 821.5,
+            "first-render-return": 831,
+            "supported-frame-submitted": 853.9000000059605,
+            "first-gpu-completed": 941.2000000178814,
+            "supported-frame-completed": 955,
+            "playable": 955.3000000119209,
+            "bg-start": 955.5
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 68.59999999403954,
+              "end": 111.2000000178814,
+              "domContentLoaded": 504.09999999403954,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3449404,
+          "input": {
+            "keyAt": 1186.4000000059605,
+            "observedAt": 1219.300000011921,
+            "position": {
+              "x": -0.0004653381573224659,
+              "z": 0.2322788151497845
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 32.900000005960464
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 111.73193359375,
+              "endMs": 479.641845703125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 111.7568359375,
+              "endMs": 207.86083984375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 111.837890625,
+              "endMs": 201.48583984375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 111.8759765625,
+              "endMs": 207.791748046875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 227.89794921875,
+              "endMs": 746.778076171875,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 20,
+          "browserPid": "63255",
+          "playableMs": 960.0999999940395,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 546.7999999821186,
+            "engine-created": 561.5,
+            "gpu-probe-end": 563.4000000059605,
+            "world-start": 565.1999999880791,
+            "world-end": 590.1999999880791,
+            "havok-start": 591.1999999880791,
+            "havok-runtime-start": 592.0999999940395,
+            "havok-runtime-available": 660.1999999880791,
+            "havok-runtime-end": 660.1999999880791,
+            "havok-world-end": 661.9000000059605,
+            "havok-colliders-end": 668.6999999880791,
+            "havok-controller-end": 670,
+            "havok-end": 671.0999999940395,
+            "body-start": 755,
+            "body-end": 775.2999999821186,
+            "equipment-start": 777.0999999940395,
+            "equipment-end": 794.5,
+            "register-start": 803.1999999880791,
+            "register-end": 827.1999999880791,
+            "first-render-return": 837.9000000059605,
+            "supported-frame-submitted": 863.4000000059605,
+            "first-gpu-completed": 945.2999999821186,
+            "supported-frame-completed": 959.7999999821186,
+            "playable": 960.0999999940395,
+            "bg-start": 960.1999999880791
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 71.2999999821186,
+              "end": 124.09999999403954,
+              "domContentLoaded": 549.9000000059605,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3449651,
+          "input": {
+            "keyAt": 1197.199999988079,
+            "observedAt": 1230.5,
+            "position": {
+              "x": -0.0005422572618578657,
+              "z": 0.23354307547831676
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 33.30000001192093
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 125.23291015625,
+              "endMs": 525.376953125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 125.2587890625,
+              "endMs": 208.801025390625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 125.3408203125,
+              "endMs": 208.528076171875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 125.3779296875,
+              "endMs": 187.421142578125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 234.9619140625,
+              "endMs": 753.034912109375,
+              "complete": true
+            }
+          ]
+        }
+      ]
+    },
+    "historical": {
+      "raw": "timing-cold-historical.json",
+      "sha256": "08a8ce34b9d5894dab16ac91a6e9918ed453d38b012c299f4af7d5b2d1cda354",
+      "conditions": {
+        "requestedRuns": 20,
+        "budgetMs": 1000,
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "savedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "expectedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "budget": {
+        "maxMs": 1000,
+        "expectedRuns": 20,
+        "recordedRuns": 20,
+        "validRuns": 20,
+        "complete": true,
+        "misses": 1,
+        "p95Ms": 936.9000000059605,
+        "worstMs": 1220.9000000059605,
+        "passed": false
+      },
+      "rows": [
+        {
+          "run": 1,
+          "browserPid": "63394",
+          "playableMs": 888.9000000059605,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 437.19999998807907,
+            "engine-created": 446.80000001192093,
+            "gpu-probe-end": 451.69999998807907,
+            "world-start": 453.59999999403954,
+            "world-end": 480.5,
+            "havok-start": 481.40000000596046,
+            "havok-runtime-start": 482.30000001192093,
+            "havok-runtime-available": 579.5999999940395,
+            "havok-runtime-end": 579.5999999940395,
+            "havok-world-end": 581.3000000119209,
+            "havok-colliders-end": 588.0999999940395,
+            "havok-controller-end": 589.5,
+            "havok-end": 590.5999999940395,
+            "body-start": 686.5,
+            "body-end": 706.6999999880791,
+            "equipment-start": 709.3000000119209,
+            "equipment-end": 725.3000000119209,
+            "register-start": 733.8000000119209,
+            "register-end": 757.4000000059605,
+            "first-render-return": 766,
+            "supported-frame-submitted": 790.8000000119209,
+            "first-gpu-completed": 875,
+            "supported-frame-completed": 888.5999999940395,
+            "playable": 888.9000000059605,
+            "bg-start": 889
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 81.5,
+              "end": 113.59999999403954,
+              "domContentLoaded": 440.19999998807907,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3135469,
+          "input": {
+            "keyAt": 1130.0999999940395,
+            "observedAt": 1161.5999999940395,
+            "position": {
+              "x": -0.0003945511466942847,
+              "z": 0.23310373335505136
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 31.5
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 114.46875,
+              "endMs": 415.907958984375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 114.495849609375,
+              "endMs": 204.9208984375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 114.57373046875,
+              "endMs": 192.461669921875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 114.60888671875,
+              "endMs": 197.98681640625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 218.225830078125,
+              "endMs": 684.472900390625,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 2,
+          "browserPid": "63462",
+          "playableMs": 910.5999999940395,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 490.5,
+            "engine-created": 504.40000000596046,
+            "gpu-probe-end": 506.19999998807907,
+            "world-start": 508.19999998807907,
+            "world-end": 534.5,
+            "havok-start": 535.5999999940395,
+            "havok-runtime-start": 536.5,
+            "havok-runtime-available": 620.8000000119209,
+            "havok-runtime-end": 620.8000000119209,
+            "havok-world-end": 622.4000000059605,
+            "havok-colliders-end": 629,
+            "havok-controller-end": 630.3000000119209,
+            "havok-end": 631.3000000119209,
+            "body-start": 709.5,
+            "body-end": 730.0999999940395,
+            "equipment-start": 731.8000000119209,
+            "equipment-end": 748.0999999940395,
+            "register-start": 756.5999999940395,
+            "register-end": 779.0999999940395,
+            "first-render-return": 788.8000000119209,
+            "supported-frame-submitted": 848.0999999940395,
+            "first-gpu-completed": 896.8000000119209,
+            "supported-frame-completed": 910.4000000059605,
+            "playable": 910.5999999940395,
+            "bg-start": 910.8000000119209
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 94.59999999403954,
+              "end": 133.19999998807907,
+              "domContentLoaded": 493.40000000596046,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3135248,
+          "input": {
+            "keyAt": 1140.5,
+            "observedAt": 1171.199999988079,
+            "position": {
+              "x": -0.0004624547779151367,
+              "z": 0.23298390342432312
+            },
+            "frames": 20,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 30.69999998807907
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 134.2041015625,
+              "endMs": 468.887939453125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 134.23095703125,
+              "endMs": 213.833984375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 134.322998046875,
+              "endMs": 209.18994140625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 134.363037109375,
+              "endMs": 232.475830078125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 235.9609375,
+              "endMs": 707.6669921875,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 3,
+          "browserPid": "63528",
+          "playableMs": 903.0999999940395,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 448.7999999821186,
+            "engine-created": 462.7999999821186,
+            "gpu-probe-end": 464.59999999403954,
+            "world-start": 466.5,
+            "world-end": 492.59999999403954,
+            "havok-start": 493.5,
+            "havok-runtime-start": 494.39999997615814,
+            "havok-runtime-available": 608,
+            "havok-runtime-end": 608,
+            "havok-world-end": 609.6999999880791,
+            "havok-colliders-end": 616.5,
+            "havok-controller-end": 617.8999999761581,
+            "havok-end": 618.8999999761581,
+            "body-start": 701.6999999880791,
+            "body-end": 722,
+            "equipment-start": 724.5,
+            "equipment-end": 740,
+            "register-start": 748.5,
+            "register-end": 771,
+            "first-render-return": 779.8999999761581,
+            "supported-frame-submitted": 805.2999999821186,
+            "first-gpu-completed": 888.1999999880791,
+            "supported-frame-completed": 902.6999999880791,
+            "playable": 903.0999999940395,
+            "bg-start": 903.1999999880791
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 66.69999998807907,
+              "end": 106.2999999821186,
+              "domContentLoaded": 452.09999999403954,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3135197,
+          "input": {
+            "keyAt": 1144.8999999761581,
+            "observedAt": 1174,
+            "position": {
+              "x": -0.00041782157419831717,
+              "z": 0.2330626678969439
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 29.100000023841858
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 107.196044921875,
+              "endMs": 426.97412109375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 107.219970703125,
+              "endMs": 207.640869140625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 107.295166015625,
+              "endMs": 206.405029296875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 107.39501953125,
+              "endMs": 207.1181640625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 236.633056640625,
+              "endMs": 699.84521484375,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 4,
+          "browserPid": "63620",
+          "playableMs": 925.2000000178814,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 397.30000001192093,
+            "engine-created": 411.5,
+            "gpu-probe-end": 413.90000000596046,
+            "world-start": 415.80000001192093,
+            "world-end": 440.7000000178814,
+            "havok-start": 441.7000000178814,
+            "havok-runtime-start": 442.40000000596046,
+            "havok-runtime-available": 603.8000000119209,
+            "havok-runtime-end": 603.9000000059605,
+            "havok-world-end": 605.5,
+            "havok-colliders-end": 612.7000000178814,
+            "havok-controller-end": 614,
+            "havok-end": 615,
+            "body-start": 723.3000000119209,
+            "body-end": 744.4000000059605,
+            "equipment-start": 746.2000000178814,
+            "equipment-end": 762,
+            "register-start": 770.8000000119209,
+            "register-end": 793.5,
+            "first-render-return": 803.1000000238419,
+            "supported-frame-submitted": 826.2000000178814,
+            "first-gpu-completed": 910.3000000119209,
+            "supported-frame-completed": 925,
+            "playable": 925.2000000178814,
+            "bg-start": 925.3000000119209
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 130.80000001192093,
+              "end": 157.80000001192093,
+              "domContentLoaded": 400.2000000178814,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3135056,
+          "input": {
+            "keyAt": 1165.5,
+            "observedAt": 1199,
+            "position": {
+              "x": -0.00044073382744119906,
+              "z": 0.23442223442782872
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 33.5
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 158.60009765625,
+              "endMs": 376.2431640625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 158.6220703125,
+              "endMs": 235.537109375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 158.692138671875,
+              "endMs": 224.201904296875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 158.721923828125,
+              "endMs": 226.22607421875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 249.096923828125,
+              "endMs": 721.369873046875,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 5,
+          "browserPid": "63697",
+          "playableMs": 888.7999999821186,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 483.5,
+            "engine-created": 492.2999999821186,
+            "gpu-probe-end": 498,
+            "world-start": 499.7999999821186,
+            "world-end": 526.3999999761581,
+            "havok-start": 527.5999999940395,
+            "havok-runtime-start": 528.3999999761581,
+            "havok-runtime-available": 597.1999999880791,
+            "havok-runtime-end": 597.1999999880791,
+            "havok-world-end": 598.8999999761581,
+            "havok-colliders-end": 605.7999999821186,
+            "havok-controller-end": 607.0999999940395,
+            "havok-end": 608.1999999880791,
+            "body-start": 686.5999999940395,
+            "body-end": 707.5999999940395,
+            "equipment-start": 709.3999999761581,
+            "equipment-end": 725.0999999940395,
+            "register-start": 733.3999999761581,
+            "register-end": 756.5,
+            "first-render-return": 766.0999999940395,
+            "supported-frame-submitted": 791.0999999940395,
+            "first-gpu-completed": 875.2999999821186,
+            "supported-frame-completed": 888.5,
+            "playable": 888.7999999821186,
+            "bg-start": 888.8999999761581
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 89,
+              "end": 115,
+              "domContentLoaded": 486.5,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3135184,
+          "input": {
+            "keyAt": 1134.5,
+            "observedAt": 1163.8999999761581,
+            "position": {
+              "x": -0.00046062767117133993,
+              "z": 0.232287127563515
+            },
+            "frames": 20,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 29.399999976158142
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 116.10400390625,
+              "endMs": 462.589111328125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 116.128173828125,
+              "endMs": 190.18017578125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 116.208251953125,
+              "endMs": 185.881103515625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 116.2470703125,
+              "endMs": 190.027099609375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 212.291015625,
+              "endMs": 684.570068359375,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 6,
+          "browserPid": "63782",
+          "playableMs": 879.5,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 477.5,
+            "engine-created": 492,
+            "gpu-probe-end": 493.69999998807907,
+            "world-start": 495.59999999403954,
+            "world-end": 520.5,
+            "havok-start": 521.5999999940395,
+            "havok-runtime-start": 522.3999999761581,
+            "havok-runtime-available": 591.5999999940395,
+            "havok-runtime-end": 591.6999999880791,
+            "havok-world-end": 593.2999999821186,
+            "havok-colliders-end": 600.2999999821186,
+            "havok-controller-end": 601.5999999940395,
+            "havok-end": 602.5999999940395,
+            "body-start": 679.0999999940395,
+            "body-end": 699.2999999821186,
+            "equipment-start": 701.1999999880791,
+            "equipment-end": 716.6999999880791,
+            "register-start": 724.8999999761581,
+            "register-end": 747.5999999940395,
+            "first-render-return": 757.6999999880791,
+            "supported-frame-submitted": 781.6999999880791,
+            "first-gpu-completed": 864.5999999940395,
+            "supported-frame-completed": 879.1999999880791,
+            "playable": 879.5,
+            "bg-start": 879.5
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 74.7999999821186,
+              "end": 113.5,
+              "domContentLoaded": 480.39999997615814,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3134999,
+          "input": {
+            "keyAt": 1118,
+            "observedAt": 1147.0999999940395,
+            "position": {
+              "x": -0.0005476715408734948,
+              "z": 0.2335335208689146
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 29.099999994039536
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 114.68310546875,
+              "endMs": 456.476318359375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 114.709228515625,
+              "endMs": 180.733154296875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 114.788330078125,
+              "endMs": 174.938232421875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 114.8232421875,
+              "endMs": 185.867431640625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 201.522216796875,
+              "endMs": 677.297119140625,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 7,
+          "browserPid": "63874",
+          "playableMs": 895.9000000059605,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 528.8000000119209,
+            "engine-created": 537.3000000119209,
+            "gpu-probe-end": 542.2000000178814,
+            "world-start": 544.1000000238419,
+            "world-end": 571.5,
+            "havok-start": 572.5,
+            "havok-runtime-start": 573.3000000119209,
+            "havok-runtime-available": 605.6000000238419,
+            "havok-runtime-end": 605.6000000238419,
+            "havok-world-end": 607.4000000059605,
+            "havok-colliders-end": 614.2000000178814,
+            "havok-controller-end": 615.4000000059605,
+            "havok-end": 616.5,
+            "body-start": 694.6000000238419,
+            "body-end": 714.5,
+            "equipment-start": 716.3000000119209,
+            "equipment-end": 732.2000000178814,
+            "register-start": 740.4000000059605,
+            "register-end": 763.7000000178814,
+            "first-render-return": 773.8000000119209,
+            "supported-frame-submitted": 796.4000000059605,
+            "first-gpu-completed": 880.8000000119209,
+            "supported-frame-completed": 895.6000000238419,
+            "playable": 895.9000000059605,
+            "bg-start": 896
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 63,
+              "end": 112.60000002384186,
+              "domContentLoaded": 531.7000000178814,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3135399,
+          "input": {
+            "keyAt": 1135.800000011921,
+            "observedAt": 1168.6000000238419,
+            "position": {
+              "x": -0.0004798878444222488,
+              "z": 0.2294531391911096
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 32.80000001192093
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 113.544921875,
+              "endMs": 507.39501953125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 113.573974609375,
+              "endMs": 196.81005859375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 113.655029296875,
+              "endMs": 174.781982421875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 113.69287109375,
+              "endMs": 195.244873046875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 200.904052734375,
+              "endMs": 692.60400390625,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 8,
+          "browserPid": "63941",
+          "playableMs": 870.9000000059605,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 424.5,
+            "engine-created": 438.80000001192093,
+            "gpu-probe-end": 441.60000002384186,
+            "world-start": 443.60000002384186,
+            "world-end": 468.5,
+            "havok-start": 469.5,
+            "havok-runtime-start": 470.40000000596046,
+            "havok-runtime-available": 582.1000000238419,
+            "havok-runtime-end": 582.1000000238419,
+            "havok-world-end": 583.8000000119209,
+            "havok-colliders-end": 590.6000000238419,
+            "havok-controller-end": 591.8000000119209,
+            "havok-end": 592.7000000178814,
+            "body-start": 668.1000000238419,
+            "body-end": 688.6000000238419,
+            "equipment-start": 690.1000000238419,
+            "equipment-end": 705.9000000059605,
+            "register-start": 714.4000000059605,
+            "register-end": 737.3000000119209,
+            "first-render-return": 747,
+            "supported-frame-submitted": 795.5,
+            "first-gpu-completed": 856.8000000119209,
+            "supported-frame-completed": 870.7000000178814,
+            "playable": 870.9000000059605,
+            "bg-start": 871.1000000238419
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 65.5,
+              "end": 84.40000000596046,
+              "domContentLoaded": 427.5,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3135334,
+          "input": {
+            "keyAt": 1103.800000011921,
+            "observedAt": 1133.2000000178814,
+            "position": {
+              "x": -0.0004607808582315722,
+              "z": 0.2329868573999408
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 29.400000005960464
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 85.398193359375,
+              "endMs": 403.126220703125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 85.420166015625,
+              "endMs": 181.849365234375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 85.495361328125,
+              "endMs": 155.0380859375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 85.5263671875,
+              "endMs": 184.73828125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 188.1474609375,
+              "endMs": 666.18505859375,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 9,
+          "browserPid": "64018",
+          "playableMs": 867.3999999761581,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 353.89999997615814,
+            "engine-created": 368.09999999403954,
+            "gpu-probe-end": 369.89999997615814,
+            "world-start": 371.89999997615814,
+            "world-end": 454.59999999403954,
+            "havok-start": 455.69999998807907,
+            "havok-runtime-start": 456.5,
+            "havok-runtime-available": 555.3999999761581,
+            "havok-runtime-end": 555.3999999761581,
+            "havok-world-end": 557.1999999880791,
+            "havok-colliders-end": 563.7999999821186,
+            "havok-controller-end": 565.0999999940395,
+            "havok-end": 566,
+            "body-start": 664.0999999940395,
+            "body-end": 685.1999999880791,
+            "equipment-start": 687,
+            "equipment-end": 702.2999999821186,
+            "register-start": 711.0999999940395,
+            "register-end": 733.5,
+            "first-render-return": 742.8999999761581,
+            "supported-frame-submitted": 766,
+            "first-gpu-completed": 853.5999999940395,
+            "supported-frame-completed": 867,
+            "playable": 867.3999999761581,
+            "bg-start": 867.3999999761581
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 77.09999999403954,
+              "end": 110.59999999403954,
+              "domContentLoaded": 357,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3135265,
+          "input": {
+            "keyAt": 1105,
+            "observedAt": 1134.199999988079,
+            "position": {
+              "x": -0.00043124413996588026,
+              "z": 0.23093898093387244
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 29.19999998807907
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 111.663818359375,
+              "endMs": 332.3759765625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 111.68701171875,
+              "endMs": 179.998779296875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 111.7548828125,
+              "endMs": 184.0419921875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 111.785888671875,
+              "endMs": 182.876953125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 208.5888671875,
+              "endMs": 662.118896484375,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 10,
+          "browserPid": "64091",
+          "playableMs": 882.8000000119209,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 475.5,
+            "engine-created": 488.7000000178814,
+            "gpu-probe-end": 490.90000000596046,
+            "world-start": 492.90000000596046,
+            "world-end": 518.0999999940395,
+            "havok-start": 519.0999999940395,
+            "havok-runtime-start": 519.9000000059605,
+            "havok-runtime-available": 591,
+            "havok-runtime-end": 591,
+            "havok-world-end": 592.7000000178814,
+            "havok-colliders-end": 599.5,
+            "havok-controller-end": 600.7000000178814,
+            "havok-end": 601.7000000178814,
+            "body-start": 683.4000000059605,
+            "body-end": 703.8000000119209,
+            "equipment-start": 706.0999999940395,
+            "equipment-end": 721.9000000059605,
+            "register-start": 730.4000000059605,
+            "register-end": 753.3000000119209,
+            "first-render-return": 762.0999999940395,
+            "supported-frame-submitted": 786.7000000178814,
+            "first-gpu-completed": 871.8000000119209,
+            "supported-frame-completed": 882.5,
+            "playable": 882.8000000119209,
+            "bg-start": 882.9000000059605
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 74.2000000178814,
+              "end": 109.2000000178814,
+              "domContentLoaded": 478.5,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3135216,
+          "input": {
+            "keyAt": 1119.300000011921,
+            "observedAt": 1149.5999999940395,
+            "position": {
+              "x": -0.0003949162721570584,
+              "z": 0.2324030890577243
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 30.299999982118607
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 110.39892578125,
+              "endMs": 453.860107421875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 110.42919921875,
+              "endMs": 193.9501953125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 110.529296875,
+              "endMs": 183.156982421875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 110.5712890625,
+              "endMs": 186.46728515625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 212.093994140625,
+              "endMs": 681.42822265625,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 11,
+          "browserPid": "64157",
+          "playableMs": 896.0999999940395,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 500,
+            "engine-created": 513,
+            "gpu-probe-end": 514.8000000119209,
+            "world-start": 516.6999999880791,
+            "world-end": 542.8000000119209,
+            "havok-start": 543.9000000059605,
+            "havok-runtime-start": 544.6999999880791,
+            "havok-runtime-available": 596.5,
+            "havok-runtime-end": 596.5,
+            "havok-world-end": 598.1999999880791,
+            "havok-colliders-end": 604.9000000059605,
+            "havok-controller-end": 606.1999999880791,
+            "havok-end": 607.1999999880791,
+            "body-start": 698.5,
+            "body-end": 719.4000000059605,
+            "equipment-start": 721.1999999880791,
+            "equipment-end": 736.6999999880791,
+            "register-start": 745.4000000059605,
+            "register-end": 767.6999999880791,
+            "first-render-return": 777.4000000059605,
+            "supported-frame-submitted": 802.0999999940395,
+            "first-gpu-completed": 883.5999999940395,
+            "supported-frame-completed": 895.9000000059605,
+            "playable": 896.0999999940395,
+            "bg-start": 896.1999999880791
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 79.19999998807907,
+              "end": 119.40000000596046,
+              "domContentLoaded": 503,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3135174,
+          "input": {
+            "keyAt": 1129.199999988079,
+            "observedAt": 1158.4000000059605,
+            "position": {
+              "x": -0.0004360460431093654,
+              "z": 0.2309305069879397
+            },
+            "frames": 20,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 29.200000017881393
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 120.391845703125,
+              "endMs": 478.2060546875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 120.419921875,
+              "endMs": 209.653076171875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 120.5009765625,
+              "endMs": 211.90380859375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 120.541015625,
+              "endMs": 211.951904296875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 240.0517578125,
+              "endMs": 696.62890625,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 12,
+          "browserPid": "64250",
+          "playableMs": 860.1999999880791,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 402.5,
+            "engine-created": 416.5,
+            "gpu-probe-end": 418.2999999821186,
+            "world-start": 420.2999999821186,
+            "world-end": 446.59999999403954,
+            "havok-start": 447.59999999403954,
+            "havok-runtime-start": 448.39999997615814,
+            "havok-runtime-available": 561.2999999821186,
+            "havok-runtime-end": 561.3999999761581,
+            "havok-world-end": 563,
+            "havok-colliders-end": 569.8999999761581,
+            "havok-controller-end": 571.0999999940395,
+            "havok-end": 572.1999999880791,
+            "body-start": 659.1999999880791,
+            "body-end": 679.1999999880791,
+            "equipment-start": 681,
+            "equipment-end": 697.0999999940395,
+            "register-start": 705.5999999940395,
+            "register-end": 728.1999999880791,
+            "first-render-return": 737.5999999940395,
+            "supported-frame-submitted": 762.5,
+            "first-gpu-completed": 847.5,
+            "supported-frame-completed": 859.8999999761581,
+            "playable": 860.1999999880791,
+            "bg-start": 860.2999999821186
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 57.69999998807907,
+              "end": 88.39999997615814,
+              "domContentLoaded": 405.59999999403954,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3135143,
+          "input": {
+            "keyAt": 1100,
+            "observedAt": 1128.3999999761581,
+            "position": {
+              "x": -0.0004366427670124015,
+              "z": 0.23302945402933428
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 28.399999976158142
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 89.27392578125,
+              "endMs": 381.069091796875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 89.296142578125,
+              "endMs": 162.659912109375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 89.3681640625,
+              "endMs": 158.87109375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 89.399169921875,
+              "endMs": 176.678955078125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 184.56103515625,
+              "endMs": 657.299072265625,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 13,
+          "browserPid": "64317",
+          "playableMs": 852.3000000119209,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 470,
+            "engine-created": 485,
+            "gpu-probe-end": 486.80000001192093,
+            "world-start": 488.80000001192093,
+            "world-end": 513.5,
+            "havok-start": 514.6999999880791,
+            "havok-runtime-start": 515.5999999940395,
+            "havok-runtime-available": 558.5999999940395,
+            "havok-runtime-end": 558.5999999940395,
+            "havok-world-end": 560.4000000059605,
+            "havok-colliders-end": 567.1999999880791,
+            "havok-controller-end": 568.5,
+            "havok-end": 569.5,
+            "body-start": 653.0999999940395,
+            "body-end": 673.8000000119209,
+            "equipment-start": 675.6999999880791,
+            "equipment-end": 691,
+            "register-start": 699.4000000059605,
+            "register-end": 722.3000000119209,
+            "first-render-return": 732,
+            "supported-frame-submitted": 754.6999999880791,
+            "first-gpu-completed": 839.3000000119209,
+            "supported-frame-completed": 852,
+            "playable": 852.3000000119209,
+            "bg-start": 852.4000000059605
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 61.69999998807907,
+              "end": 86.30000001192093,
+              "domContentLoaded": 473.09999999403954,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3135274,
+          "input": {
+            "keyAt": 1092.4000000059605,
+            "observedAt": 1119.699999988079,
+            "position": {
+              "x": -0.0004458935121229582,
+              "z": 0.23371312914414
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 27.299999982118607
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 87.10107421875,
+              "endMs": 448.8291015625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 87.1240234375,
+              "endMs": 153.69287109375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 87.195068359375,
+              "endMs": 150.77490234375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 87.22607421875,
+              "endMs": 150.56005859375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 176.822021484375,
+              "endMs": 651.148193359375,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 14,
+          "browserPid": "64383",
+          "playableMs": 900.5999999940395,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 432.5,
+            "engine-created": 447.40000000596046,
+            "gpu-probe-end": 449,
+            "world-start": 450.90000000596046,
+            "world-end": 482.69999998807907,
+            "havok-start": 483.59999999403954,
+            "havok-runtime-start": 484.5,
+            "havok-runtime-available": 596,
+            "havok-runtime-end": 596,
+            "havok-world-end": 597.7999999821186,
+            "havok-colliders-end": 604.4000000059605,
+            "havok-controller-end": 605.6999999880791,
+            "havok-end": 606.7999999821186,
+            "body-start": 698.5,
+            "body-end": 718.2999999821186,
+            "equipment-start": 720.0999999940395,
+            "equipment-end": 736.4000000059605,
+            "register-start": 744.9000000059605,
+            "register-end": 767.7999999821186,
+            "first-render-return": 777.5999999940395,
+            "supported-frame-submitted": 800.2999999821186,
+            "first-gpu-completed": 888,
+            "supported-frame-completed": 900.2999999821186,
+            "playable": 900.5999999940395,
+            "bg-start": 900.6999999880791
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 76.7999999821186,
+              "end": 117.40000000596046,
+              "domContentLoaded": 435.5,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3135129,
+          "input": {
+            "keyAt": 1136.4000000059605,
+            "observedAt": 1167.9000000059605,
+            "position": {
+              "x": -0.0004411888142907615,
+              "z": 0.23302143159302988
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 31.5
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 118.101806640625,
+              "endMs": 411.251708984375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 118.128662109375,
+              "endMs": 199.916748046875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 118.207763671875,
+              "endMs": 205.09375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 118.24169921875,
+              "endMs": 205.16357421875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 233.791748046875,
+              "endMs": 696.5947265625,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 15,
+          "browserPid": "64455",
+          "playableMs": 862.5,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 440.80000001192093,
+            "engine-created": 454.7000000178814,
+            "gpu-probe-end": 456.60000002384186,
+            "world-start": 458.40000000596046,
+            "world-end": 484.30000001192093,
+            "havok-start": 485.2000000178814,
+            "havok-runtime-start": 486.10000002384186,
+            "havok-runtime-available": 553.2000000178814,
+            "havok-runtime-end": 553.2000000178814,
+            "havok-world-end": 555,
+            "havok-colliders-end": 561.8000000119209,
+            "havok-controller-end": 563,
+            "havok-end": 564,
+            "body-start": 658.5,
+            "body-end": 679,
+            "equipment-start": 680.8000000119209,
+            "equipment-end": 697,
+            "register-start": 705.5,
+            "register-end": 729.2000000178814,
+            "first-render-return": 738.5,
+            "supported-frame-submitted": 763.5,
+            "first-gpu-completed": 847.6000000238419,
+            "supported-frame-completed": 862.2000000178814,
+            "playable": 862.5,
+            "bg-start": 862.6000000238419
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 57.30000001192093,
+              "end": 92.10000002384186,
+              "domContentLoaded": 443.7000000178814,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3135254,
+          "input": {
+            "keyAt": 1106.800000011921,
+            "observedAt": 1133.7000000178814,
+            "position": {
+              "x": -0.0004319109093343237,
+              "z": 0.20573780432417293
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 26.900000005960464
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 93.1162109375,
+              "endMs": 419.464111328125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 93.13916015625,
+              "endMs": 159.552978515625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 93.211181640625,
+              "endMs": 181.994140625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 93.243896484375,
+              "endMs": 157.18115234375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 206.27099609375,
+              "endMs": 656.58203125,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 16,
+          "browserPid": "64542",
+          "playableMs": 1220.9000000059605,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 647.6000000238419,
+            "engine-created": 663.1000000238419,
+            "havok-runtime-available": 670.5,
+            "gpu-probe-end": 671.5,
+            "world-start": 673.4000000059605,
+            "world-end": 804.6000000238419,
+            "havok-start": 805.6000000238419,
+            "havok-runtime-start": 806.5,
+            "havok-runtime-end": 806.5,
+            "havok-world-end": 808.5,
+            "havok-colliders-end": 815.3000000119209,
+            "havok-controller-end": 816.5,
+            "havok-end": 817.6000000238419,
+            "body-start": 1014.6000000238419,
+            "body-end": 1035.5,
+            "equipment-start": 1037.300000011921,
+            "equipment-end": 1053,
+            "register-start": 1061.300000011921,
+            "register-end": 1085.1000000238419,
+            "first-render-return": 1095,
+            "supported-frame-submitted": 1118.2000000178814,
+            "first-gpu-completed": 1207.4000000059605,
+            "supported-frame-completed": 1220.7000000178814,
+            "playable": 1220.9000000059605,
+            "bg-start": 1221.1000000238419
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 382,
+              "end": 433.10000002384186,
+              "domContentLoaded": 650.5,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3134906,
+          "input": {
+            "keyAt": 1456,
+            "observedAt": 1487.300000011921,
+            "position": {
+              "x": -0.0004655062796613016,
+              "z": 0.2315785185049912
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 31.30000001192093
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 433.5322265625,
+              "endMs": 625.923095703125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 433.55908203125,
+              "endMs": 506.66015625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 433.651123046875,
+              "endMs": 509.863037109375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 433.68798828125,
+              "endMs": 494.47509765625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 532.9521484375,
+              "endMs": 1012.81201171875,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 17,
+          "browserPid": "64634",
+          "playableMs": 936.9000000059605,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 496.09999999403954,
+            "engine-created": 510.19999998807907,
+            "gpu-probe-end": 512.6999999880791,
+            "world-start": 514.8000000119209,
+            "world-end": 540.5,
+            "havok-start": 541.5,
+            "havok-runtime-start": 542.3000000119209,
+            "havok-runtime-available": 647.6999999880791,
+            "havok-runtime-end": 647.6999999880791,
+            "havok-world-end": 649.4000000059605,
+            "havok-colliders-end": 656,
+            "havok-controller-end": 657.3000000119209,
+            "havok-end": 658.3000000119209,
+            "body-start": 734.5,
+            "body-end": 754.6999999880791,
+            "equipment-start": 757.3000000119209,
+            "equipment-end": 772.9000000059605,
+            "register-start": 781.3000000119209,
+            "register-end": 804,
+            "first-render-return": 813.6999999880791,
+            "supported-frame-submitted": 836.5,
+            "first-gpu-completed": 923.0999999940395,
+            "supported-frame-completed": 936.5,
+            "playable": 936.9000000059605,
+            "bg-start": 936.9000000059605
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 79.69999998807907,
+              "end": 130.19999998807907,
+              "domContentLoaded": 499,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3135605,
+          "input": {
+            "keyAt": 1176.0999999940395,
+            "observedAt": 1202.4000000059605,
+            "position": {
+              "x": -0.0004459647294844457,
+              "z": 0.23231300334122873
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 26.30000001192093
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 131.5966796875,
+              "endMs": 474.888671875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 131.624755859375,
+              "endMs": 221.4638671875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 131.765625,
+              "endMs": 231.71875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 131.8046875,
+              "endMs": 232.225830078125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 257.388671875,
+              "endMs": 732.643798828125,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 18,
+          "browserPid": "64706",
+          "playableMs": 871.0999999940395,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 491.7999999821186,
+            "engine-created": 504.7999999821186,
+            "gpu-probe-end": 507.89999997615814,
+            "world-start": 509.7999999821186,
+            "world-end": 535.3999999761581,
+            "havok-start": 536.2999999821186,
+            "havok-runtime-start": 537.0999999940395,
+            "havok-runtime-available": 561,
+            "havok-runtime-end": 561,
+            "havok-world-end": 562.6999999880791,
+            "havok-colliders-end": 569.3999999761581,
+            "havok-controller-end": 570.6999999880791,
+            "havok-end": 571.7999999821186,
+            "body-start": 671.1999999880791,
+            "body-end": 691.3999999761581,
+            "equipment-start": 693.1999999880791,
+            "equipment-end": 709.8999999761581,
+            "register-start": 718.0999999940395,
+            "register-end": 740.2999999821186,
+            "first-render-return": 748.8999999761581,
+            "supported-frame-submitted": 810.0999999940395,
+            "first-gpu-completed": 858.3999999761581,
+            "supported-frame-completed": 870.7999999821186,
+            "playable": 871.0999999940395,
+            "bg-start": 871.1999999880791
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 69.69999998807907,
+              "end": 113.2999999821186,
+              "domContentLoaded": 494.69999998807907,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3135233,
+          "input": {
+            "keyAt": 1101.7999999821186,
+            "observedAt": 1132.199999988079,
+            "position": {
+              "x": -0.000401878753549271,
+              "z": 0.23309080228542517
+            },
+            "frames": 20,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 30.400000005960464
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 114.620849609375,
+              "endMs": 470.23388671875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 114.64599609375,
+              "endMs": 188.23193359375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 114.724853515625,
+              "endMs": 189.238037109375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 114.7587890625,
+              "endMs": 167.270751953125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 213.56982421875,
+              "endMs": 669.43408203125,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 19,
+          "browserPid": "64792",
+          "playableMs": 896.4000000059605,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 491.40000000596046,
+            "engine-created": 500,
+            "gpu-probe-end": 505.09999999403954,
+            "world-start": 507.09999999403954,
+            "world-end": 534.0999999940395,
+            "havok-start": 535.0999999940395,
+            "havok-runtime-start": 535.9000000059605,
+            "havok-runtime-available": 600.1999999880791,
+            "havok-runtime-end": 600.1999999880791,
+            "havok-world-end": 602,
+            "havok-colliders-end": 608.5,
+            "havok-controller-end": 609.8000000119209,
+            "havok-end": 610.8000000119209,
+            "body-start": 696.5,
+            "body-end": 716.9000000059605,
+            "equipment-start": 719.4000000059605,
+            "equipment-end": 735,
+            "register-start": 743.3000000119209,
+            "register-end": 766.0999999940395,
+            "first-render-return": 775.5,
+            "supported-frame-submitted": 798.5999999940395,
+            "first-gpu-completed": 883.9000000059605,
+            "supported-frame-completed": 896,
+            "playable": 896.4000000059605,
+            "bg-start": 896.4000000059605
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 80.09999999403954,
+              "end": 128.09999999403954,
+              "domContentLoaded": 494.30000001192093,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3135319,
+          "input": {
+            "keyAt": 1135.9000000059605,
+            "observedAt": 1166.199999988079,
+            "position": {
+              "x": -0.00044552236596310824,
+              "z": 0.23301378414947527
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 30.299999982118607
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 129.17919921875,
+              "endMs": 469.64306640625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 129.205078125,
+              "endMs": 190.262939453125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 129.2939453125,
+              "endMs": 196.0048828125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 129.3310546875,
+              "endMs": 193.151123046875,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 220.27294921875,
+              "endMs": 694.72705078125,
+              "complete": true
+            }
+          ]
+        },
+        {
+          "run": 20,
+          "browserPid": "64858",
+          "playableMs": 866.3000000119209,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "errors": [],
+          "marks": {
+            "begin": 427.69999998807907,
+            "engine-created": 441,
+            "gpu-probe-end": 443.90000000596046,
+            "world-start": 445.90000000596046,
+            "world-end": 472.40000000596046,
+            "havok-start": 473.30000001192093,
+            "havok-runtime-start": 474.19999998807907,
+            "havok-runtime-available": 575.6999999880791,
+            "havok-runtime-end": 575.6999999880791,
+            "havok-world-end": 577.5,
+            "havok-colliders-end": 584.0999999940395,
+            "havok-controller-end": 585.3000000119209,
+            "havok-end": 586.3000000119209,
+            "body-start": 664.4000000059605,
+            "body-end": 684.4000000059605,
+            "equipment-start": 686.4000000059605,
+            "equipment-end": 702.5999999940395,
+            "register-start": 711.1999999880791,
+            "register-end": 733.8000000119209,
+            "first-render-return": 743.3000000119209,
+            "supported-frame-submitted": 766.1999999880791,
+            "first-gpu-completed": 852.6999999880791,
+            "supported-frame-completed": 866,
+            "playable": 866.3000000119209,
+            "bg-start": 866.4000000059605
+          },
+          "navigation": [
+            {
+              "start": 0,
+              "responseStart": 62,
+              "end": 94.09999999403954,
+              "domContentLoaded": 430.80000001192093,
+              "protocol": "h2"
+            }
+          ],
+          "encodedBytesAtBoundary": 3135213,
+          "input": {
+            "keyAt": 1107.5999999940395,
+            "observedAt": 1137.300000011921,
+            "position": {
+              "x": -0.00042223577734837125,
+              "z": 0.23235487816916067
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 29.700000017881393
+          },
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          },
+          "criticalRequests": [
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/lite-runtime-WizfYVCp.js",
+              "initialPriority": "High",
+              "startMs": 94.91015625,
+              "endMs": 405.926025390625,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/store-DbIrdhzX.js",
+              "initialPriority": "High",
+              "startMs": 94.93115234375,
+              "endMs": 168.35302734375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/ashen-reach-CELGCeSv.css",
+              "initialPriority": "VeryHigh",
+              "startMs": 95.001953125,
+              "endMs": 144.2001953125,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/assets/v2/startupPreload-CS1oHWZD.js",
+              "initialPriority": "High",
+              "startMs": 95.032958984375,
+              "endMs": 177.72802734375,
+              "complete": true
+            },
+            {
+              "url": "https://5f312add.fardel.pages.dev/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+              "initialPriority": "High",
+              "startMs": 181.446044921875,
+              "endMs": 662.467041015625,
+              "complete": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "fpsLimit": "Possible 240 Hz pacing hints remain unresolved; retained every original row, including the first bridge row before the diagnostic stop. All means exceed144FPS. Different outfit from historical production: no paired improvement/regression claim.",
+  "ownership": "Grok timing owner closed all benchmark/cold browsers and slot7 after forty starts; separate CSS diagnostic follows with its own ownership receipt."
+}

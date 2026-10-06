@@ -71,6 +71,24 @@ export function injectHeadScript(html, script) {
     return html.slice(0, at) + script + html.slice(at);
 }
 
+/** Keep the neutral-pack classic script ahead of blocking CSS. Otherwise the
+ * parser waits for CSS before reaching the saved catalogue and async module.
+ * Vite's earlier entry/module hints retain their discovery order. This helper
+ * operates on generated HTML before catalogue JSON is inserted, not arbitrary
+ * user markup. Development without a stylesheet keeps the head-end position.
+ * https://html.spec.whatwg.org/multipage/scripting.html#prepare-the-script-element
+ * https://vite.dev/guide/api-plugin.html#transformindexhtml
+ */
+export function injectNeutralPreload(html, script) {
+    if (!script) return html;
+    if (html.includes('data-ashen-neutral-preload')) throw Error('Neutral preload: already injected');
+    const headEnd = html.indexOf('</head>');
+    if (headEnd < 0) throw Error('Neutral preload: missing head end');
+    const style = /<link\b[^>]*\brel=["']stylesheet["'][^>]*>/i.exec(html.slice(0, headEnd));
+    const at = style ? style.index : headEnd;
+    return html.slice(0, at) + script.replace('<script>', '<script data-ashen-neutral-preload>') + html.slice(at);
+}
+
 /** Serialize sealed build data, never storage. Escaping '<' prevents HTML raw-text
  * termination even if a future catalogue label contains '</script>'. Place the
  * block after resource discovery links so its bytes do not hold up those requests.

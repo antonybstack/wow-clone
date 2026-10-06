@@ -4,7 +4,7 @@ import {verifyStartupAssets} from './scripts/ashen-reach/startup-provenance.mjs'
 import {verifyStarterGeometry} from './scripts/ashen-reach/verify-starter-geometry.mjs';
 import {writeEarlyHints} from './scripts/ashen-reach/early-hints.mjs';
 import {havokDeliveryPlugin} from './scripts/ashen-reach/havok-delivery.mjs';
-import {startupAppearanceContract,savedPreloadModules,savedPreloadScript,injectHeadScript,injectIdentityCatalogue,runtimeIdentityCatalogue} from './scripts/ashen-reach/saved-preload.mjs';
+import {startupAppearanceContract,savedPreloadModules,savedPreloadScript,injectHeadScript,injectNeutralPreload,injectIdentityCatalogue,runtimeIdentityCatalogue} from './scripts/ashen-reach/saved-preload.mjs';
 import { defineConfig } from "vite";
 import {readFileSync,createReadStream,statSync} from 'node:fs';
 import {resolve} from 'node:path';
@@ -390,7 +390,7 @@ export default defineConfig({
           // neutral pack ahead of it. All URLs here are build-owned, never storage data.
           // https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/rel/preload
           const characterPreloads=starterBuild?`<script>(()=>{try{if(${JSON.stringify(startupAppearanceContract().keys)}.some(k=>localStorage.getItem(k)))return;}catch{}for(const href of ${JSON.stringify(['/ashen-reach/startup/character/manifest.json',...['body','wayfarerTunic','wayfarerTrousers','wayfarerBoots'].map(id=>starterCharacterManifest.items[id].url)])}){const link=document.createElement('link');link.rel='preload';link.as='fetch';link.crossOrigin='anonymous';link.href=href;link.fetchPriority=href.endsWith('.bin')?'low':'auto';document.head.append(link);}})();</script>`:'';
-          return html.replace("</head>", `${links}${decoder}${characterPreloads}</head>`);
+          return injectNeutralPreload(html.replace("</head>", `${links}${decoder}</head>`), characterPreloads);
         },
       },
     },

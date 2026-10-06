@@ -55,12 +55,23 @@ skirt and Bastion shoulders total **2,300,424 compact asset bytes**. Procedural
 staff/book are retained. Three fixture tests and independent sums pass.
 The maximum payload is not necessarily the slowest rendering workload.
 
-**In progress:** one Grok operations worker owns public functional, isolated
-FPS and two separate twenty-start cold cohorts (maximum and historical fixtures).
-No new timing acceptance or production promotion yet. Product bytes are frozen;
-local `dist` is the flag-1 compact-normal build. Source-only fixture/docs changes
-require a new seal before any subsequent upload, not a rebuild of unchanged
-product bytes. Evidence: [candidate result](plans/character-mmo/results/startup-normal-release-2026-10-06.md)
+**Latest public gates:** entry, normal traversal, mobile touch/depth and WebKit
+pass. Maximum-outfit routes measure **201–244 FPS**, p99 <=6.2 ms, worst 11.2 ms,
+no >16.67 ms intervals. Possible 240 Hz pacing hints remain explicit; these are
+not confirmed uncapped limits. The two strict twenty-start cold gates fail:
+maximum outfit p95 **1,001 ms**, worst **1,177.1 ms**, 2 misses; historical outfit
+p95 **936.9 ms**, worst **1,220.9 ms**, 1 miss. All forty starts are grounded,
+dressed and responsive without recorded errors. **Do not promote.**
+
+**In progress:** the held-stylesheet control confirms an HTML parser barrier:
+the neutral classic preload follows CSS, holding up the saved catalogue/module.
+Original HTML makes zero saved-body requests while CSS is held; moving only that
+script ahead of CSS starts one shared body request and preserves the exact saved
+appearance, Havok and readiness. Root applied the generated-HTML ordering fix;
+23 focused tests, the build, ten prefetch cases and the fixed-page held-CSS
+control pass. Only the two game HTML aliases change among 535 built files.
+A new immutable preview and public timing are next; no speed gain is claimed yet. Evidence:
+[candidate result](plans/character-mmo/results/startup-normal-release-2026-10-06.md)
 and `.cache/character-mmo/startup-normal-release-2026-10-06/`.
 
 Closed investigations: [extra hints/Brotli/accessor dedup](plans/character-mmo/results/startup-transport-2026-10-06.md).
@@ -133,12 +144,11 @@ preserve proportions. Physical phone and Telegram Desktop remain unverified.
   found no new gross fit failure. They do not certify all 9,072 valid combinations.
   Boot sole silhouette/aliasing, broader cloth authoring, licensed Elf source and
   physical iPhone startup/memory/thermal checks remain explicit follow-ups.
-- **Exclusive game/timing owner:** Grok operations session
-  `01a11217-d931-71f0-8394-6c90b41f1187`, slot 7 / CDP 10037 / Vite 5873,
-  public preview `https://5f312add.fardel.pages.dev`. Current PIDs and phase are
-  recorded in `public-gates.md/json` under the candidate evidence directory.
-  The previous Chrome 58408/GPU 58414 and local preview 58073 are stopped.
-  Each mobile/cold probe runs alone; the worker closes owned contexts/harnesses.
+- **Exclusive browser owner:** Grok `01a112eb-107c-7881-b787-9a15f73ffd5a`,
+  slot 7 / CDP 10037 / Vite 5873, `https://5f312add.fardel.pages.dev`.
+  Forty cold processes and the FPS harness are closed. The CSS build/control
+  records its own PIDs and cleanup in `css-build.md` under the candidate
+  evidence directory. No timing/encoding/build runs overlap this check.
 - VE review tab 1147995772 and wrapper server 5966 are closed. Telegram and
   Shadowglass media are paused and guarded before timing; restore recorded
   prior playback afterwards (`__ashenPriorityMediaState` / pause handler).

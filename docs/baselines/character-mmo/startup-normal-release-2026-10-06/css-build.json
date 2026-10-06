@@ -1,0 +1,34 @@
+{
+  "tests": {
+    "pass": 23,
+    "fail": 0
+  },
+  "buildExit": 0,
+  "prefetchExit": 0,
+  "fixedCssExit": 0,
+  "files": 535,
+  "changed": {
+    "index.html": {
+      "before": {
+        "sha256": "7d57e67d9a5469441844f597d67acd9fe9ebb432a3c430a07fba95982d956592",
+        "bytes": 93936
+      },
+      "after": {
+        "sha256": "5642fa3de20c726baf9c6587212e3389b16c021f7a1a81b28bf59a6af2a92305",
+        "bytes": 93963
+      }
+    },
+    "ashen-reach.html": {
+      "before": {
+        "sha256": "7d57e67d9a5469441844f597d67acd9fe9ebb432a3c430a07fba95982d956592",
+        "bytes": 93936
+      },
+      "after": {
+        "sha256": "5642fa3de20c726baf9c6587212e3389b16c021f7a1a81b28bf59a6af2a92305",
+        "bytes": 93963
+      }
+    }
+  },
+  "publicTiming": "pending",
+  "productionPromoted": false
+}
