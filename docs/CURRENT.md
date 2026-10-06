@@ -104,7 +104,10 @@ iPhone acceptance were not verified this pass. Recording is not a benchmark.
   local caches. Product source is committed/pushed and released. Final receipts/docs
   do not require another build or performance matrix.
 - User authorizes autonomous continuation. Native continuation-goal state remains
-  `blocked`; hooks cannot guarantee continuation after runtime exit. There is no
+  `blocked` on the 2026-10-06 recheck. Resume in the goal progress row is required
+  to reactivate the scheduler; available tools cannot resume it, and Computer Use
+  access to the Codex app was denied. Checkpoints do not require user review or a
+  new “continue.” Hooks cannot guarantee continuation after runtime exit. There is no
   access blocker for the work just delivered. [Continuation limits](autonomous-continuation.md).
 
 ## References

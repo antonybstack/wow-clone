@@ -1,17 +1,34 @@
 # Autonomous continuation
 
-The user explicitly authorized automatic continuation on 2026-10-04. This Codex
-session created a native goal for the remaining implementable character
-customization and armor-swapping work. At the 2026-10-05 runtime check its status
-is **`blocked`**, not active; that status cannot be resumed by a repository file.
-The latest user instruction authorizes meaningful work to continue. The
-[focused 12-hour plan](plans/character-mmo/next-12-hours-2026-10-05.md) owns immediate
-order and [the active queue](plans/character-mmo/next-ten.md) retains broader scope.
-Do not claim automatic continuation is currently guaranteed.
+The user explicitly renewed autonomous completion of the active milestone queue on
+2026-10-06. The existing native goal already covers all remaining implementable
+character customization and armor-swapping work in CURRENT and next-ten, with
+verification, delivery, commit/push and production gates. At the fresh runtime
+check its status is still **`blocked`** (the UI displays “Goal stalled”).
+
+The available goal tools can create, inspect, complete, pause or mark blocked;
+they cannot resume an existing unfinished goal. Creating another goal cannot
+replace it, and the unfinished goal must not be falsely marked complete.
+The supported user action is **Resume in the goal progress row**. A Computer Use
+attempt to access the Codex app was denied for safety reasons. Do not bypass that
+denial through terminal injection, internal state edits or an undocumented API.
+An ordinary “continue” message has permitted work but has not changed the observed
+scheduler status. Verify `get_goal` reports `active` before claiming automatic
+continuation is enabled. This is a scheduler limitation, not a project access block.
+
+The [focused 12-hour plan](plans/character-mmo/next-12-hours-2026-10-05.md) and
+[active queue](plans/character-mmo/next-ten.md) retain the intended scope. Resume
+from CURRENT, currently M6 multi-piece continuous-motion clearance, then take
+remaining actionable M8/M9/M10 exits. Do not redo accepted M1–M5/M7 work or reopen
+parked multiplayer hosting merely because the native goal mentions its old M5
+starting point. Newly encountered valid regressions remain in scope.
 
 Continue through implementation, verification, live review, delivery, commit/push
 and release gates without requesting another “proceed.” Finish a bounded package
-before choosing the next. Record actual results and the next actionable item in
+before choosing the next. A successful commit, delivery or milestone checkpoint
+is not a reason to wait for another user message: continue directly to the next
+available task. If one gate requires external action, record it and advance other
+authorized tasks. Record actual results and the next actionable item in
 CURRENT so a fresh session can resume. Historical plans and parked multiplayer
 work are outside this authorization.
 
