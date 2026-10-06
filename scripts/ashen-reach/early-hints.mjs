@@ -112,13 +112,19 @@ export function parseHeaderRules(text) {
 }
 
 /**
- * Append Early Hints rules to existing `_headers` text, preserving every existing byte. Refuses a
+ * Add Early Hints to the existing rule for each route, preserving its policies. Refuses a
  * route that already declares `Link`, a line over the Pages limit, too many rules or an
  * oversized hint set rather than truncating silently.
  */
 export function appendEarlyHints(existing, routeItems) {
     const rules = parseHeaderRules(existing);
+    // Cloudflare constructHeaders keys its output by path: a later identical
+    // path REPLACES the earlier rule, unlike distinct matching URL patterns.
+    // https://github.com/cloudflare/workers-sdk/blob/main/packages/workers-shared/utils/configuration/constructConfiguration.ts
+    if (new Set(rules.map(r => r.route)).size !== rules.length)
+        throw Error('_headers contains duplicate route rules');
     const blocks = [];
+    const insertions = new Map();
     let added = 0;
     for (const [route, items] of Object.entries(routeItems)) {
         if (!items.length) continue;
@@ -136,12 +142,17 @@ export function appendEarlyHints(existing, routeItems) {
                 lines.push(line);
             }
         }
-        blocks.push([route, ...lines].join('\n'));
-        added++;
+        if (rules.some(r => r.route === route)) insertions.set(route, lines);
+        else {blocks.push([route, ...lines].join('\n')); added++;}
     }
     if (rules.length + added > MAX_HEADER_RULES) throw Error(`_headers would exceed ${MAX_HEADER_RULES} rules`);
-    if (!blocks.length) return existing;
-    const base = String(existing).endsWith('\n') ? String(existing) : `${existing}\n`;
+    if (!blocks.length && !insertions.size) return existing;
+    const merged = String(existing).split(/\r?\n/).map(line => {
+        const lines = !/^\s/.test(line) && insertions.get(line.trim());
+        return lines ? [line, ...lines].join('\n') : line;
+    }).join('\n');
+    if (!blocks.length) return merged;
+    const base = merged.endsWith('\n') ? merged : `${merged}\n`;
     return `${base}\n# Early Hints: generated at build from the startup module graph (scripts/ashen-reach/early-hints.mjs)\n${blocks.join('\n\n')}\n`;
 }
 

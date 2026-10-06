@@ -84,21 +84,25 @@ const existing = `/*
   Cache-Control: public, max-age=31536000, immutable
 `;
 
-test('existing header policies are preserved byte-for-byte and new rules are appended', () => {
+test('route-keyed Cloudflare configuration retains cache policy alongside generated hints', () => {
     const items = startupGraph(bundle(), 'index.html');
     const out = appendEarlyHints(existing, {'/': items, '/index.html': items});
-    assert(out.startsWith(existing));
     const rules = parseHeaderRules(out);
-    assert.deepEqual(rules.slice(0, 3), parseHeaderRules(existing));
+    assert.deepEqual(rules.slice(0, 3).map(r => ({...r, headers:r.headers.filter(h => !h.startsWith('Link:'))})), parseHeaderRules(existing));
     const root = rules.filter((r) => r.route === '/');
-    assert.equal(root.length, 2, 'Pages joins the cache rule and the Link rule for /');
-    assert.equal(root[1].headers.join(', '), `Link: ${items.map(linkValue).join(', ')}`);
+    assert.equal(root.length, 1);
+    // Cloudflare's constructHeaders assigns rules[rule.path], so duplicate
+    // path blocks discard earlier cache policies. Exercise that keyed result.
+    const configured=Object.fromEntries(rules.map(r=>[r.route,r.headers]));
+    assert(configured['/'].includes('Cache-Control: public, max-age=60, must-revalidate'));
+    assert(configured['/'].includes(`Link: ${items.map(linkValue).join(', ')}`));
     assert.equal(appendEarlyHints(existing, {'/': []}), existing, 'nothing to hint leaves headers untouched');
 });
 
 test('header constraints: existing Link refused, lines bounded, rule and size limits enforced', () => {
     const items = startupGraph(bundle(), 'index.html');
     assert.throws(() => appendEarlyHints(`/\n  link: </x.js>; rel=preload; as=script\n`, {'/': items}), /already declares Link/);
+    assert.throws(() => appendEarlyHints('/\n  X: first\n/\n  Y: second\n', {'/':items}), /duplicate route/);
     const many = Array.from({length: 40}, (_, i) => ({path: `/assets/chunk-${i}-0123456789abcdef.js`, as: 'script'}));
     const lines = appendEarlyHints('', {'/': many}).split('\n').filter((l) => l.startsWith('  Link:'));
     assert(lines.length > 1 && lines.every((l) => l.length <= MAX_HEADER_LINE), 'split across repeated Link lines');
@@ -106,6 +110,7 @@ test('header constraints: existing Link refused, lines bounded, rule and size li
     assert.throws(() => appendEarlyHints('', {'/': huge}), /exceed 4000 bytes/);
     const full = Array.from({length: MAX_HEADER_RULES}, (_, i) => `/r${i}\n  X: y`).join('\n');
     assert.throws(() => appendEarlyHints(full, {'/': items}), /exceed 100 rules/);
+    assert.equal(parseHeaderRules(appendEarlyHints(full, {'/r0':items})).length,MAX_HEADER_RULES,'Adding a header to an existing route consumes no new rule');
 });
 
 test('writeEarlyHints rewrites only the copied _headers in its own output directory', async () => {
@@ -121,6 +126,9 @@ test('writeEarlyHints rewrites only the copied _headers in its own output direct
         const routes = await writeEarlyHints(dir, b);
         assert.deepEqual(Object.keys(routes), ['/', '/index.html', '/ashen-reach', '/ashen-reach.html']);
         const text = await fs.readFile(path.join(dir, '_headers'), 'utf8');
-        assert(text.startsWith(existing) && (text.match(/^ {2}Link: /gm) || []).length === 4);
+        assert.equal((text.match(/^ {2}Link: /gm) || []).length,4);
+        const rules=parseHeaderRules(text);
+        assert.equal(new Set(rules.map(r=>r.route)).size,rules.length);
+        assert(rules.find(r=>r.route==='/').headers.includes('Cache-Control: public, max-age=60, must-revalidate'));
     } finally { await fs.rm(dir, {recursive: true, force: true}); }
 });

@@ -8,6 +8,11 @@
 /ashen-reach.html
   Cache-Control: public, max-age=60, must-revalidate
 
+# Pages canonicalizes the .html route before serving its static response.
+# https://developers.cloudflare.com/pages/configuration/serving-pages/#route-matching
+/ashen-reach
+  Cache-Control: public, max-age=60, must-revalidate
+
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 

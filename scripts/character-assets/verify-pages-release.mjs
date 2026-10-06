@@ -25,6 +25,13 @@ await Promise.all(Array.from({length:8},async()=>{
   const type=row.responseType?.split(';')[0].trim().toLowerCase();
   if(file.endsWith('.js'))row.match&&=['application/javascript','text/javascript'].includes(type);
   if(file.endsWith('.css'))row.match&&=type==='text/css';
+  if(file==='index.html'||file==='ashen-reach.html'){
+    row.cacheControl=response.headers.get('cache-control');
+    // Generated Early Hints must not replace the existing HTML cache rule.
+    const directives=row.cacheControl?.split(',').map(value=>value.trim());
+    row.cacheCorrect=['public','max-age=60','must-revalidate'].every(value=>directives?.includes(value))
+      && !directives?.includes('max-age=0');
+  }
   if(/^physics\/HavokPhysics-[a-f0-9]{12}\.wasm\.br$/.test(file)){
     row.type=response.headers.get('content-type');row.encoding=response.headers.get('content-encoding');row.cacheControl=response.headers.get('cache-control');
     row.cacheCorrect=row.cacheControl?.includes('immutable')&&row.cacheControl?.includes('no-transform');
@@ -43,7 +50,9 @@ await Promise.all(Array.from({length:8},async()=>{
 for(const file of [`assets/v2/missing-${randomUUID()}.js`,`missing-${randomUUID()}`]){
  const response=await fetch(new URL(file,base.endsWith('/')?base:base+'/'));
  await response.arrayBuffer();
+ const cacheControl=response.headers.get('cache-control');
  rows.push({file,negativeControl:true,status:response.status,match:response.status===404,
+  cacheControl,cacheCorrect:cacheControl?.split(',').map(v=>v.trim()).includes('no-store')===true,
   responseType:response.headers.get('content-type'),cfRay:response.headers.get('cf-ray'),
   cfCacheStatus:response.headers.get('cf-cache-status')});
 }
