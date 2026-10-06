@@ -8,7 +8,7 @@ body.armory-open #armory-launch,body.armory-open #help,body.armory-open #combat,
 .armory-stage{position:absolute;inset:90px 310px 185px 0;pointer-events:auto;cursor:grab;touch-action:none}.armory-stage:active{cursor:grabbing}
 .armory-heading{position:absolute;left:0;right:310px;top:0;height:90px;padding:16px 30px;pointer-events:none;background:#101710f2}.armory-heading small{font:10px monospace;letter-spacing:.17em;color:#ada47f}.armory-heading h1{font-size:34px;font-weight:normal;margin:7px 0 3px}.armory-heading p{color:#aaa88e;margin:0;font-size:12px}
 .armory-panel{position:absolute;right:0;top:0;bottom:0;width:310px;background:linear-gradient(105deg,#161c17f2,#0d120fed);border-left:1px solid #625d414f;box-shadow:-20px 0 70px #0005;padding:22px 20px;overflow:auto;pointer-events:auto;text-shadow:none}
-.armory-panel-title{display:flex;align-items:center;justify-content:space-between;font-size:15px;border-bottom:1px solid #605c3b66;padding-bottom:16px;margin-bottom:20px}.armory-panel-title button{padding:2px 10px!important;font:23px Georgia!important}
+.armory-panel-title{position:sticky;top:0;z-index:1;background:#161c17;display:flex;align-items:center;justify-content:space-between;font-size:15px;border-bottom:1px solid #605c3b66;padding-bottom:16px;margin-bottom:20px}.armory-panel-title button{padding:2px 10px!important;font:23px Georgia!important}
 .armory-field{display:grid;gap:8px;font-size:12px;color:#b8b197}.armory-field select{width:100%;font-size:14px!important}
 .armory-note{font:11px/1.6 system-ui,sans-serif;color:#969b88;margin:10px 0 19px}.armory-panel h2{font:10px monospace;letter-spacing:.15em;text-transform:uppercase;color:#b6ab7f;margin:19px 0 10px}
 .armory-slots{display:grid;gap:6px}.armory-slots button{display:grid;grid-template-columns:77px 1fr;text-align:left;padding:9px 10px!important;cursor:default!important;background:#1e251b80!important;border-color:#4b50383f!important}.armory-slots span{font-size:11px;color:#8f947f}.armory-slots strong{font-size:12px;font-weight:normal;color:#c6c5b0}.armory-slots small{grid-column:2;font:9px system-ui;color:#787f6c;margin-top:3px}
@@ -47,9 +47,26 @@ body.armory-open #armory-launch,body.armory-open #help,body.armory-open #combat,
  .armory-panel-title{position:sticky;top:-12px;z-index:1;background:#161c17;padding:8px 0;margin-bottom:12px}
 }
 @media(max-height:500px) and (orientation:landscape){
- .armory-stage{top:62px;bottom:150px}
- .armory-heading{height:62px;padding:12px 30px}.armory-heading h1{font-size:21px;margin-top:4px}
- .armory-tools{height:150px;padding:6px 30px}
- .armory-views{margin-bottom:5px}.armory-tools p{display:none}
- .armory-tools input[type=range]{margin-top:6px}
+ /* Keep at least half a 320px-high screen for the native camera viewport.
+    Shrink the chrome, not the touch targets; constrain the select's intrinsic
+    width so a long motion name cannot push Pause onto a third row. */
+ .armory-stage{top:38px;bottom:120px}
+ .armory-heading{height:38px;padding:7px 12px}
+ .armory-heading h1{font-size:20px;margin:0}
+ .armory-heading small,.armory-heading p{display:none}
+ .armory-tools{height:120px;padding:6px 12px;display:grid;grid-template-rows:36px 36px 24px;gap:4px}
+ .armory-tools>*{max-width:none;min-width:0}
+ .armory-views{flex-wrap:nowrap;margin:0;gap:4px}
+ .armory-views button{flex:1;min-width:0;min-height:36px;padding:6px 5px!important}
+ .armory-animation{flex-wrap:nowrap;align-items:center;gap:6px}
+ .armory-animation label{display:flex;align-items:center;gap:6px;flex:1;min-width:0}
+ .armory-animation select{width:100%;min-width:0;min-height:36px}
+ .armory-animation button{min-height:36px}
+ .armory-animation output,.armory-tools p{display:none}
+ .armory-tools input[type=range]{height:24px;margin:0}
+ /* The scroll container owns sticky positioning; Close stays available while
+    editing lower fields, without a new pointer listener or camera controller.
+    https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position#sticky */
+ .armory-panel{padding:12px;overscroll-behavior:contain}
+ .armory-panel-title{position:sticky;top:-12px;z-index:1;background:#161c17;padding:8px 0;margin-bottom:12px}
 }

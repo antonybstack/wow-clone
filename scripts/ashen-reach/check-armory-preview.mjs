@@ -15,7 +15,7 @@ assert(out&&port&&url,'Require output directory, owned CDP port and ordinary URL
 await fs.mkdir(out,{recursive:true});
 const browser=await chromium.connectOverCDP(`http://127.0.0.1:${port}`);
 assert(browser.contexts().flatMap(c=>c.pages()).every(p=>p.url()==='about:blank'),'Another owned game page is active');
-const ownership=await browserOwnership(browser,{cdpPort:port,url,purpose:'Armory preview layout, controls and motion; timing contaminated by user WoW',renderingClients:1});
+const ownership=await browserOwnership(browser,{cdpPort:port,url,purpose:'Armory preview layout, controls and motion; not a performance benchmark',renderingClients:1});
 await fs.writeFile(`${out}/ownership.json`,JSON.stringify(ownership,null,2));
 const recipe=JSON.parse(await fs.readFile(process.env.ASHEN_PROBE_APPEARANCE,'utf8'));
 const report={url,scope:ownership.purpose,rows:[],errors:[]};
@@ -30,6 +30,10 @@ async function layout(page,label){
             canvas:[canvas.width,canvas.height],window:[innerWidth,innerHeight],
             presenceHidden:getComputedStyle(document.querySelector('#presence-entry')).display==='none',
             horizontalOverflow:document.querySelector('#armory').scrollWidth>innerWidth,
+            controls:[...document.querySelectorAll('.armory-tools button,.armory-tools select,[data-time-slider],.armory-panel-title [data-close]')].map(e=>{
+                const r=e.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);
+                return {name:e.getAttribute('aria-label')||e.textContent,rect:r.toJSON(),reachable:e===hit||e.contains(hit)};
+            }),
             race:a.equipment.race,height:a.player.heightScale,cameraRadius:a.armory.camera.radius,
             physics:a.player.getDebugState().usingPhysics,recoveries:a.player.getDebugState().recoveries,gpu:a.gpu.errors.slice(),
             grounding:{ambient:a.grounding.state.ambient,compatible:a.grounding.state.contactViewportCompatible,contactEnabled:a.grounding.contactTask.enabled}};
@@ -45,6 +49,12 @@ async function layout(page,label){
         {viewport:resolveCameraViewport(camera,bw,bh),backingWidth:bw,backingHeight:bh,cssWidth:w,cssHeight:h},projected);
     state.projected=projected;
     assert(r.width>=150&&r.height>=100,`${label}: preview is unusably small`);
+    if(w>h&&h<=500)assert(r.height>=h/2,`${label}: short landscape preview must retain half the screen height`);
+    for(const c of state.controls){
+        const b=c.rect;
+        assert(b.x>=0&&b.y>=0&&b.right<=w+1&&b.bottom<=h+1&&c.reachable,`${label}: ${c.name} is clipped or covered`);
+        if(w<=600||h<=500)assert(b.width>=24&&b.height>=24,`${label}: ${c.name} target is too small`);
+    }
     assert(Math.abs(v.x-r.x/w)<.001&&Math.abs(v.y-(1-(r.y+r.height)/h))<.001);
     assert(Math.abs(v.width-r.width/w)<.001&&Math.abs(v.height-r.height/h)<.001);
     assert(Math.abs(state.projected.cssX-(r.x+r.width/2))<3,`${label}: camera center misses preview`);
@@ -121,9 +131,53 @@ try{
         if(recording){await cdp.send('Page.stopScreencast');await Promise.all(writes);await writeCaptureManifest(out,manifest,await captureSurface(page));await cdp.detach();}
     }
     // Resize a live modal to catch stale viewport bounds without reloading the actor.
-    for(const [width,height]of [[390,844],[320,568],[844,390],[768,1024],[1280,720],[430,734]]){
-        await page.setViewportSize({width,height});await page.getByRole('button',{name:'Full body',exact:true}).tap();
+    for(const [width,height]of [[390,844],[320,568],[568,320],[844,390],[768,1024],[1280,720],[430,734]]){
+        await page.setViewportSize({width,height});
+        // On this externally launched headless Chrome, changing mobile metrics
+        // can leave compositor input bounds at the preceding portrait width:
+        // DOM hits succeed but native pan does not (also reproduced without a
+        // game/canvas). Synchronize the visible surface after Playwright's resize.
+        // Test-only; no scrollTop mutation or application input replacement.
+        // https://chromedevtools.github.io/devtools-protocol/tot/Emulation/#method-setVisibleSize
+        const resize=await context.newCDPSession(page);
+        try{await resize.send('Emulation.setVisibleSize',{width,height});}finally{await resize.detach();}
+        // Inspect bounds before Playwright can auto-scroll a clipped control.
         report.rows.push({label:`resize-${width}x${height}`,state:await layout(page,`resize-${width}x${height}`)});
+        await page.getByRole('button',{name:'Full body',exact:true}).tap();
+        if(width>height&&height<=500){
+            const touch=await context.newCDPSession(page);
+            try{
+                const before=await page.evaluate(()=>({alpha:ASHEN.armory.camera.alpha,scroll:document.querySelector('.armory-panel').scrollTop}));
+                const stage=await page.locator('.armory-stage').boundingBox();
+                async function swipe(x,y,dx,dy){
+                    const point=(t)=>[{id:1,x:x+dx*t,y:y+dy*t,radiusX:4,radiusY:4,force:1}];
+                    await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:point(0)});
+                    for(let i=1;i<=8;i++){await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:point(i/8)});await page.waitForTimeout(25);}
+                    await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await page.waitForTimeout(500);
+                }
+                await swipe(stage.x+stage.width*.3,stage.y+stage.height*.5,70,0);
+                const orbit=await page.evaluate(()=>({alpha:ASHEN.armory.camera.alpha,scroll:document.querySelector('.armory-panel').scrollTop}));
+                assert(Math.abs(orbit.alpha-before.alpha)>.05,'Landscape touch orbit must work');assert.equal(orbit.scroll,before.scroll);
+                await page.getByRole('button',{name:'Full body',exact:true}).tap(); // Clears native camera inertia.
+                const alpha=await page.evaluate(()=>ASHEN.armory.camera.alpha),panel=await page.locator('.armory-panel').boundingBox();
+                assert(await page.locator('.armory-panel').evaluate(e=>e.scrollHeight-e.clientHeight-e.scrollTop>20),'Fixture must have room to scroll');
+                // Use the panel padding, away from selects and sliders: a native
+                // touch scroll must not rotate the neighboring camera stage.
+                await swipe(panel.x+5,panel.y+panel.height*.8,0,-panel.height*.5);
+                const scroll=await page.evaluate(()=>({alpha:ASHEN.armory.camera.alpha,scroll:document.querySelector('.armory-panel').scrollTop}));
+                assert(scroll.scroll>orbit.scroll+20,`Landscape panel must scroll with touch: ${JSON.stringify({before,orbit,scroll,panel})}`);assert(Math.abs(scroll.alpha-alpha)<.001,'Panel scrolling moved camera');
+                report.rows.push({label:`touch-${width}x${height}`,orbit,scroll,state:await layout(page,`touch-${width}x${height}`)});
+                await page.locator('.armory-panel-title [data-close]').tap();assert(!await page.evaluate(()=>ASHEN.armory.isOpen));
+                await page.locator('#armory-launch').tap();
+                assert(await page.locator('.armory-panel-title [data-close]').evaluate(e=>document.activeElement===e));
+                await page.keyboard.press('Shift+Tab');
+                assert(await page.locator('[data-time-slider]').evaluate(e=>document.activeElement===e),'Reverse Tab must wrap within modal');
+                await page.keyboard.press('Tab');
+                assert(await page.locator('.armory-panel-title [data-close]').evaluate(e=>document.activeElement===e),'Tab must wrap back to Close');
+                await page.keyboard.press('Escape');assert(!await page.evaluate(()=>ASHEN.armory.isOpen));
+                await page.locator('#armory-launch').tap();
+            }finally{await touch.detach();}
+        }
     }
     await page.locator('[data-close]').first().tap();
     assert(await page.locator('#presence-entry').isVisible(),'Shared-region entry must return after closing');
