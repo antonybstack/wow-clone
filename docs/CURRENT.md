@@ -11,14 +11,24 @@ repaired CDN bundle delivery and preserved HTML cache headers. **Final clean
 startup still fails: p95 1,219.6 ms, worst 1,358.5 ms, 14/20 misses.** Do not call
 the complete release or physical-device milestone accepted.
 
-Next investigate actual HTTP 103 Early Hints and existing Cloudflare delivery
-configuration on the custom domain. In final row 1, the document finishes at
-256.4 ms and startup module requests begin at 257.8 ms. A Link header alone is
-not proof of early fetching. Use the existing transport trace and native provider
-features before changing game assets or adding loading infrastructure. Choose a
-small discriminating check before another 20-start cohort. Then return to the
-remaining concrete M6 mixed-fit risks. Elf source/licensing and physical-device
-acceptance remain separate; historical region/multiplayer plans are parked.
+The [transport investigation](plans/character-mmo/results/startup-transport-2026-10-06.md)
+confirmed HTTP 103 delivery and Chromium reuse in fresh profiles. Disabled HTTP
+cache prevents reuse; neither policy meets the target reliably. A two-module
+hint candidate passed 20 tests and 540 preview delivery checks, but the paired
+visits did not show a reliable body-discovery gain. **Not promoted**; `d5393cf`
+removes it from default builds. Diagnostic tracing remains. Lossless Brotli saves
+only about 21 ms of outfit payload time; accessor dedup saves zero bytes.
+
+Next use native glTF Transform / Lite normal quantization for a bounded unpublished
+size/error check, preserving positions, UVs, weights, binds and source motion.
+The linked result specifies compaction and morph-range traps. Require meaningful
+savings before a live candidate. Do not repeat hint pairings or large load cohorts
+without a changed hypothesis. Local `dist` contains the rejected preview; rebuild
+before any subsequent seal. Production remains unchanged.
+
+Then return to the remaining concrete M6 mixed-fit risks. Elf source/licensing
+and physical-device acceptance remain separate; historical region/multiplayer
+plans are parked.
 
 ## Current release
 
@@ -84,11 +94,13 @@ preserve proportions. Physical phone and Telegram Desktop remain unverified.
 - **Owned game instances are closed:** Chrome 1643/CDP 10037, Vite 1613/1637
   on 5873, preview 13546 on 7074 and every probe context. The three ports are free;
   harness slot 7 is removed. Grok 4.6/high operations session
-  `01a11217-d931-71f0-8394-6c90b41f1187` owns only final ledger association,
-  no renderer. Evidence: `.cache/character-mmo/m10-landscape-2026-10-06/`.
-- Owned media wrapper closed. Telegram paused, temporary play guard removed after
-  final timing. The user's originally playing first Shadowglass video is restored;
-  its second remains paused. User Edge/Orca preserved, no Edge game pages.
+  `01a11217-d931-71f0-8394-6c90b41f1187` and offline asset worker
+  `01a11251-865b-7961-82f2-3af28b4e96bc` are finished. All fourteen new startup
+  probe ownership files are inactive; final audit finds no game listener/browser.
+  Evidence: `.cache/character-mmo/startup-transport-2026-10-06/`.
+- Owned media wrapper closed. Telegram paused and its temporary autoplay guard
+  removed. First Shadowglass video restored playing; second remains paused.
+  User Edge/Orca preserved, final Edge inventory contains no game pages.
 - [Grok operations workflow](reviews/workflow-2026-10-05.md#current-operating-rule--2026-10-06):
   delegate operations exclusively to Grok; root implements and reviews. Freeze
   product inputs for gates; one worker owns browser/timing. Preserve unrelated
