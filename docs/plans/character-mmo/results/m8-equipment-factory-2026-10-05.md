@@ -1,8 +1,9 @@
 # M8 — equipment factory and Bastion shoulders
 
-Status: factory, actual item and local functional gates pass; final performance
-and production release gates are in progress. The accepted production
-release remains M5 until the content release passes its public checks.
+Status: the bounded rigid-shoulder factory/content proof is accepted on production.
+Source **5fba4d8a52069db845ccafa4fc05faf418850bf4**, Pages
+**63b6e02b-c93f-4b85-aebf-f2ae79bfb8a6**. The broader M6 visual matrix,
+cloth authoring, Elf and physical-device exits remain open.
 
 The new `prepare:factory` entry point builds a real rigid shoulder item for Human,
 Orc and Undead through the existing glTF Transform, Meshoptimizer, native Lite and
@@ -118,4 +119,67 @@ p95 **886.3 ms**, maximum **890.3 ms**; new original largest outfit p95
 **812.3 ms**, maximum **817.1 ms**. There are no misses or validation failures.
 Conditions are decimal 50 Mbit/s down / 10 up / 40 ms latency at native
 1280×720/DPR 1. OS/GPU-driver caches are not reset. The final sealed build has
-537 files; production verification and delivery are still pending.
+537 files; its accepted production exit is recorded below.
+
+## Retained public loading observation
+
+The first public saved checker completes the four restored presets and actual
+UI/undo case, then times out waiting for full readiness on a fresh ordinary
+boot before failure injection. It records `TypeError: Failed to fetch` without
+a failed URL. An isolated ordinary-load diagnostic subsequently reaches playable
+and complete readiness with Havok, with no failed request, HTTP, runtime or GPU
+error. One bounded full saved confirmation passes all eight cases. The original
+five-case report/timeout remain retained. The exact cause is unconfirmed;
+no source change or timing-gate relaxation is used to obtain that confirmation.
+
+## Production and motion delivery
+
+The same sealed 537-file build is uploaded without rebuilding. All 536 served
+files match; public bridge and west bell return routes, saved eight, mobile eight,
+depth-fallback eight and WebKit four pass in the final gate set. The initial
+saved-check fetch timeout is retained above. Rollback is accepted M5 source
+`6934292`, Pages `f82f8e2e-0b77-4fff-a5bf-a8e2544aac0b`; no rollback was needed.
+
+Sixty fresh-process/cache-disabled public starts meet the prescribed p95 gate:
+**818.6 ms** default, **900.2 ms** original largest/Warden, **998.4 ms** new hooded
+Bastion. The hooded cohort has **one miss: run 11, 1,037.9 ms**. There are no
+validation failures. Its p95 margin is only 1.6 ms; this is not a guarantee that
+every start takes less than one second. All rows remain retained, with no lucky
+rerun. Improve largest-outfit headroom before expanding the startup payload.
+
+Telegram **863** returns matching 1280×720 dimensions (its duration field rounds
+up to 57 seconds). The actual file is 56.553714 seconds, SAR 1:1, rotation zero;
+1,379 native 1280×720 frames preserve 56.554413 seconds of capture timestamps.
+[VE video/mp4](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m8-bastion-factory-2026-10-05-7d1e3393cb1c.mp4)
+returns exact SHA-256 bytes, `video/mp4` and HTTP 206 ranges. Reviewed encoded
+motion and Telegram Web A inline, expanded and actual VIDEO fullscreen keep
+16:9 proportions with contain scaling. VE-hosted normal, full-window and actual
+VIDEO fullscreen also pass. Bring the owned tab to the foreground before native
+fullscreen; the earlier not-granted attempts remain tooling controls. Telegram
+Desktop remains unavailable.
+
+The [tracked receipt](../../../baselines/character-mmo/m8/factory-2026-10-05/receipt.json)
+records exact hashes, measurements, reused evidence, retained failures and scope.
+Chrome/CDP 10037, Vite 5873 and Pages 7175 are stopped, with no remaining owned
+process or game tab. Only the two originally playing user references are restored;
+Telegram and the other X reference stay paused. Temporary media guards are removed.
+
+## Largest-outfit startup headroom
+
+Retained traces already narrow the 1,037.9 ms hood miss. M8 run 11 spends
+202.5 ms in world setup and 223.8 ms waiting for the Havok runtime, compared with
+M8 cohort medians 111.1 / 183.35 ms. Body import (20.7 ms), equipment (15.1 ms),
+registration (22.5 ms) and supported GPU completion (97.6 ms) are close to their
+cohort medians 20.6 / 15.5 / 22.5 / 95.8 ms. Bastion's 83,152-byte resource completes
+at 463.2 ms, well before body import starts at 839.6 ms; Havok completes transfer
+at 780.5 ms. This supports investigating the shared world/Havok delivery tail,
+not calling new armor parsing or shader compilation the demonstrated bottleneck.
+
+The accepted M5/Warden hood median is 928.55 ms; new M8/Bastion is 949.05 ms.
+These separately timed cohorts are not a randomized item-only experiment. They
+cannot establish that the item caused the 20.5 ms median difference. Reduced
+item bytes could reduce network contention, but that benefit is unproven here.
+Next: compare Warden and Bastion saves on the same frozen v7 build/quiet machine,
+inspect request/response phases and use existing preload/priority/compact tools
+for one attributed candidate. Preserve visibly dressed, GPU-completed first play
+and report all misses. Do not repeat cohorts solely for a lower p95.

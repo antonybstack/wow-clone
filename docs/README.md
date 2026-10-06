@@ -14,12 +14,13 @@ Start with **[CURRENT.md](CURRENT.md)** for the shipped game and current initiat
 - [Execution contract and performance gates](plans/character-mmo/execution-contract.md)
 - [Architecture decisions, capability checks and research](plans/character-mmo/architecture.md)
 
-M001–M005 are completed proof work; M006's creator surface and M007's representative fit evidence exist, with production customization and source-art gaps still open. The active next-ten plan supersedes the original execution order, with detailed work packages and handoffs for its first three milestones. The active plan records bounded milestones 1–3 released, milestone 4 locally verified with public hosting pending, and source/factory work in milestones 5–6; later exits remain open. Earlier briefs remain evidence and reusable instructions; historical IDs are not a second task queue.
+M001–M005 are completed proof work. The active next-ten sequence has released body customization, crowd/streaming proofs, the bounded saved Human creator and authored equipment colours; multiplayer is verified locally with public hosting parked. The rigid shoulder factory/content proof is also released. Mixed-outfit visual acceptance, the licensed Elf source and physical-device acceptance remain open. CURRENT owns the release and next action; historical IDs are not a second task queue.
 
 ## Operating and authoring references
 
 - [Character contracts](character-system-north-star.md)
 - [Equipment source/authoring history and current runtime boundary](ashen-equipment-authoring.md)
+- [Repeatable rigid-item factory and content integration](equipment-factory.md)
 - [Orc sculpt pipeline](orc-sculpt-pipeline.md)
 - [Progressive startup lifecycle](startup-load.md)
 - [Play and regression checks](play-test-plan.md)

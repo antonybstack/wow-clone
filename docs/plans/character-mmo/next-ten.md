@@ -1,6 +1,6 @@
 # Character customization and armor — current milestone queue
 
-Reprioritized **2026-10-02**; updated **2026-10-05**, released source **6934292**. The queue now runs on one axis: **what a
+Reprioritized **2026-10-02**; updated **2026-10-05**, released source **5fba4d8**. The queue now runs on one axis: **what a
 player can change about their character, and how reliably armor pieces swap on the body.**
 Multiplayer is parked at what it has already proved, not cancelled — see *Parked* below.
 
@@ -69,7 +69,7 @@ user on 2026-09-30, and the released/candidate/unaccepted boundary catalogued in
 | 5 | Modular Human identity: head, hair, adult age | The young/long-haired and older/bald examples are real saved characters. | 1 | **Delivered: bounded authored Human presets on production** |
 | 6 | **Armor swapping as a verified capability** | Any piece in any slot can be changed at any moment, on any supported body, without a visual or fit defect. | 1, 3 | Open — evidence |
 | 7 | Colour and material variation | A player can recolour pieces within an authored, published palette. | 6 | Delivered: bounded equipment colours; phone acceptance stays in 10 |
-| 8 | Equipment authoring factory | New pieces reach the catalogue through a repeatable publishing pipeline. | 6; hair/headwear needs 5 | Partly built |
+| 8 | Equipment authoring factory | New pieces reach the catalogue through a repeatable publishing pipeline. | 6; hair/headwear needs 5 | **Delivered: bounded rigid-shoulder factory/content proof** |
 | 9 | Race fits and an Elf proof | One logical outfit resolves to correct Human/Orc/Undead/Elf fits. | 5, 6, 8 | Open — licensed source |
 | 10 | Device acceptance and content release | The customization slice releases with real device limits and one published content update. | 1–9 | Open |
 
@@ -393,6 +393,15 @@ The runtime persistence, creator controls and missing-garment fence were complet
 and no fit or coverage gate regresses.
 
 ## 8 — Equipment authoring factory
+
+**Released 2026-10-05:** [Bastion factory/content result](results/m8-equipment-factory-2026-10-05.md),
+source `5fba4d8` / Pages `63b6e02b-c93f-4b85-aebf-f2ae79bfb8a6`.
+The descriptor-driven command repeats actual Human/Orc/Undead rigid fits and
+Human shape support through existing tools. It passes bounded native motion,
+transaction/swap/performance gates and verified public delivery. Cloth authoring
+and the entire M6 mixed-fit matrix are not included in this proof.
+
+The following dependency brief records the earlier starting point.
 
 **Dependency:** milestone 6; hair and headwear integration waits for 5. The per-piece build and
 publish path exists — `build-duskguard-armor.mjs`, `prepare-remote-pieces.mjs` and

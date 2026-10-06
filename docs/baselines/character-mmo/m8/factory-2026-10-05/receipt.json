@@ -1,0 +1,1006 @@
+{
+  "schema": 1,
+  "scope": "M8 rigid shoulder equipment factory/content release",
+  "sourceCommit": "5fba4d8a52069db845ccafa4fc05faf418850bf4",
+  "rollback": {
+    "sourceCommit": "69342921618baaf1286d922e942facd1f4440494",
+    "pagesDeployment": "f82f8e2e-0b77-4fff-a5bf-a8e2544aac0b"
+  },
+  "dist": {
+    "fileCount": 537,
+    "totalBytes": 289905928,
+    "sealSha256": "a7a9ca67d90a2e404081c5dec4a4710978ae84743b3e560b886f413d7787e53a"
+  },
+  "productInputs": {
+    "sha256": "2685715c250bb95cf093a32315a9acde041d697387339bbacd5a49bb174d8e13",
+    "files": 1077
+  },
+  "factory": {
+    "descriptor": {
+      "path": "blender/characters/wardrobe/bastion-shoulders.json",
+      "sha256": "6c2fa9bbd6a85d3b2dfc1051ebb817e14611d31e0c49af2a510632fea7cb40ff"
+    },
+    "blender": "5.2.1",
+    "platform": "darwin",
+    "arch": "arm64",
+    "repeatByteIdentical": true,
+    "races": {
+      "human": {
+        "source": {
+          "path": "public/ashen-reach/equipment/body.glb",
+          "sha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0"
+        },
+        "interface": {
+          "body": "ashen-human",
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "artifact": {
+          "sha256": "7ae3f575fcf36e4c32ebec87bcfdb206ac696909379d1b6d506ae2a1491ee3c3",
+          "bytes": 186880
+        },
+        "vertices": 2816,
+        "triangles": 1935,
+        "bones": [
+          "mixamorig:LeftArm",
+          "mixamorig:RightArm"
+        ],
+        "bind": {
+          "joints": 65,
+          "meshes": 1,
+          "primitives": 1,
+          "vertices": 2816,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.3249322474002838,
+              1.3399933576583862,
+              -0.20320528745651245
+            ],
+            "max": [
+              0.3324131667613983,
+              1.508573293685913,
+              0.0856369286775589
+            ],
+            "frame": "accepted body mesh"
+          }
+        }
+      },
+      "orc": {
+        "source": {
+          "path": "public/ashen-reach/equipment-orc/body.glb",
+          "sha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b"
+        },
+        "interface": {
+          "body": "ashen-orc",
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "artifact": {
+          "sha256": "4dd06c4dd9665dda77076efc87bb5cfbd4c405a32cc22a81878684a7ed574d2b",
+          "bytes": 165168
+        },
+        "vertices": 2442,
+        "triangles": 1789,
+        "bones": [
+          "mixamorig:LeftArm",
+          "mixamorig:RightArm"
+        ],
+        "bind": {
+          "joints": 65,
+          "meshes": 1,
+          "primitives": 1,
+          "vertices": 2442,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.512217104434967,
+              1.6392496824264526,
+              -0.16205903887748718
+            ],
+            "max": [
+              0.5095387101173401,
+              1.8430448770523071,
+              0.13256169855594635
+            ],
+            "frame": "accepted body mesh"
+          }
+        }
+      },
+      "undead": {
+        "source": {
+          "path": "public/ashen-reach/equipment-undead/body.glb",
+          "sha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d"
+        },
+        "interface": {
+          "body": "ashen-undead",
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "artifact": {
+          "sha256": "c4008ce240e47c5134f5014df41bb6a00933baece722f945b439093e4b7c50d4",
+          "bytes": 93532
+        },
+        "vertices": 1270,
+        "triangles": 814,
+        "bones": [
+          "mixamorig:LeftArm",
+          "mixamorig:RightArm"
+        ],
+        "bind": {
+          "joints": 65,
+          "meshes": 1,
+          "primitives": 1,
+          "vertices": 1270,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.36658844351768494,
+              1.425152063369751,
+              -0.20115754008293152
+            ],
+            "max": [
+              0.3685305714607239,
+              1.6125308275222778,
+              0.07066728174686432
+            ],
+            "frame": "accepted body mesh"
+          }
+        }
+      }
+    },
+    "isolatedHumanShape": {
+      "family": "ashen-human-shape-v1",
+      "sha256": "0c1f3a71ae65e1c8778e851d249dcbdf5123053bce174793567bcd6c81031b07",
+      "bytes": 323280,
+      "targets": [
+        "slender",
+        "stout"
+      ],
+      "body": {
+        "source": "public/ashen-reach/human-shape-v1/body-e69a14d75176.bin",
+        "sha256": "e69a14d75176717920bae9ec438c80a4b842a8f014da256aec97db44ae743d9c",
+        "decodedSha256": "6c552cec7a794fdd7aa7876d6bedcb7f279101f0ca06169f6bc9e53444947417",
+        "compression": "gzip",
+        "bodyMesh": "HumanV1Body"
+      },
+      "bind": {
+        "joints": 65,
+        "meshes": 1,
+        "primitives": 1,
+        "vertices": 2816,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.3249322474002838,
+            1.3399933576583862,
+            -0.20320528745651245
+          ],
+          "max": [
+            0.3324131667613983,
+            1.508573293685913,
+            0.0856369286775589
+          ],
+          "frame": "accepted body mesh"
+        }
+      }
+    },
+    "shippedHumanShape": {
+      "file": "public/ashen-reach/human-shape-v1/bastionShoulders-f494b2e91fe7.bin",
+      "bytes": 83152
+    },
+    "identityVerification": {
+      "presets": 3,
+      "assets": 43,
+      "provenance": "a0379a36981637c0490c9c31509ceedba104affc5ea4d3de6366545f13d32570"
+    }
+  },
+  "equivalence": {
+    "unchangedExistingFiles": 258,
+    "changedExistingJson": 12,
+    "missing": [],
+    "changedExistingBinaries": []
+  },
+  "tests": {
+    "character": 223,
+    "equipment": 114,
+    "factoryAndCatalogueAndPresence": 26,
+    "overlappingSuites": true
+  },
+  "nativeFunctional": [
+    {
+      "gate": "artifacts",
+      "exit": 0
+    },
+    {
+      "gate": "bridge",
+      "exit": 0
+    },
+    {
+      "gate": "west-bell",
+      "exit": 0
+    },
+    {
+      "gate": "saved",
+      "exit": 0
+    },
+    {
+      "gate": "mobile",
+      "exit": 0
+    },
+    {
+      "gate": "depth",
+      "exit": 0
+    },
+    {
+      "gate": "webkit",
+      "exit": 0
+    }
+  ],
+  "liveItem": {
+    "passed": true,
+    "errors": [],
+    "cases": [
+      "actual-v6-first-play-migration",
+      "native-fit-ui-equip:human-neutral",
+      "native-fit-ui-equip:human-short-stout",
+      "native-fit-ui-equip:human-tall-slender",
+      "native-fit-ui-equip:human-short-slender",
+      "native-fit-ui-equip:human-tall-stout",
+      "native-fit-ui-equip:orc-neutral",
+      "native-fit-ui-equip:undead-neutral",
+      "dye-motion-havok-save-reload",
+      "transaction-refusal",
+      "transaction-retry",
+      "transaction-refusal",
+      "transaction-retry",
+      "transaction-refusal",
+      "transaction-refusal",
+      "independent-slot-intents",
+      "admission-refusal-preserves-pending"
+    ],
+    "fakeOnlineAdmissionOnly": true
+  },
+  "nativeHttp": {
+    "files": 536,
+    "allMatch": true
+  },
+  "nativeCold": [
+    {
+      "profile": "bastion-hood",
+      "runs": 20,
+      "valid": 20,
+      "exit": 0,
+      "p95Ms": 886.3000000119209,
+      "maxMs": 890.3000000119209,
+      "misses": [],
+      "failed": [],
+      "passed": true
+    },
+    {
+      "profile": "bastion-original",
+      "runs": 20,
+      "valid": 20,
+      "exit": 0,
+      "p95Ms": 812.3000000119209,
+      "maxMs": 817.0999999940395,
+      "misses": [],
+      "failed": [],
+      "passed": true
+    }
+  ],
+  "performance": {
+    "conditions": {
+      "cpu": "Apple M1 Max",
+      "url": "http://127.0.0.1:7175/?play=&clean=&pixelRatio=1&gpuTiming=",
+      "viewport": [
+        1280,
+        720
+      ],
+      "seconds": 12,
+      "runs": 3,
+      "uncappedRequired": true,
+      "recording": false,
+      "race": "human",
+      "outfit": null,
+      "orcAssetsOverride": null,
+      "routes": [
+        "meadow",
+        "town",
+        "bridge",
+        "cathedral",
+        "forest"
+      ],
+      "recordCapped": true,
+      "savedAppearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v7",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {
+          "head": "human-prime-v1",
+          "hair": "human-ponytail01-v1"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "bastionShoulders"
+        }
+      }
+    },
+    "routes": [
+      {
+        "route": "meadow",
+        "bastionMeanFps": 210.22646441579695,
+        "wardenControlMeanFps": 211.17083042294396,
+        "deltaPercent": -0.44720476083538463,
+        "fpsRange": [
+          210.07213420616955,
+          210.31851802502615
+        ],
+        "p95MaxMs": 5.9000000059604645,
+        "p99MaxMs": 6.199999988079071,
+        "worstMs": 9.300000011920929
+      },
+      {
+        "route": "town",
+        "bastionMeanFps": 210.17851276915988,
+        "wardenControlMeanFps": 210.4330164877873,
+        "deltaPercent": -0.12094286480097693,
+        "fpsRange": [
+          209.7529280438331,
+          210.56664750930892
+        ],
+        "p95MaxMs": 5.9000000059604645,
+        "p99MaxMs": 6.100000023841858,
+        "worstMs": 11.400000005960464
+      },
+      {
+        "route": "bridge",
+        "bastionMeanFps": 245.19656154990554,
+        "wardenControlMeanFps": 243.98438209520106,
+        "deltaPercent": 0.49682665927013314,
+        "fpsRange": [
+          244.71097784441113,
+          245.68387564207367
+        ],
+        "p95MaxMs": 5,
+        "p99MaxMs": 5.5,
+        "worstMs": 9.199999988079071
+      },
+      {
+        "route": "cathedral",
+        "bastionMeanFps": 244.78358905815648,
+        "wardenControlMeanFps": 242.93273527287613,
+        "deltaPercent": 0.7618791198318098,
+        "fpsRange": [
+          244.60959109577547,
+          245.07884674694753
+        ],
+        "p95MaxMs": 5.0999999940395355,
+        "p99MaxMs": 5.300000011920929,
+        "worstMs": 9.199999988079071
+      },
+      {
+        "route": "forest",
+        "bastionMeanFps": 229.5482386456532,
+        "wardenControlMeanFps": 229.18321199787482,
+        "deltaPercent": 0.1592728562429757,
+        "fpsRange": [
+          225.2075924277849,
+          232.66468961369276
+        ],
+        "p95MaxMs": 5.199999988079071,
+        "p99MaxMs": 5.5999999940395355,
+        "worstMs": 9.299999982118607
+      }
+    ],
+    "fullWindowHintsRetained": 3,
+    "hard240CounterexamplesOver1Percent": 6,
+    "above16_7Ms": 0,
+    "errors": [],
+    "wardenControlPredatesFinalAdmissionGuard": true
+  },
+  "swapBudgets": {
+    "neutral": {
+      "conditions": "One owned rendering client at a time. Each cold row is a fresh context with the HTTP cache disabled against a piece that context has never loaded. Hand slots are excluded: a factory prop is built in the page and has no response to fetch.",
+      "summary": {
+        "rows": 9,
+        "skipped": 0,
+        "breaches": 0,
+        "consoleErrors": 0
+      },
+      "budget": {
+        "profile": "50 Mbit/s, 40 ms",
+        "coldLatencyMs": 200,
+        "worstFrameMs": 33.33,
+        "warmSwapMs": 60,
+        "pieceBytes": 917504,
+        "measuredAt": "2026-10-02"
+      },
+      "breaches": [],
+      "passed": true
+    },
+    "shaped": {
+      "conditions": "One owned rendering client at a time. Each cold row is a fresh context with the HTTP cache disabled against a piece that context has never loaded. Hand slots are excluded: a factory prop is built in the page and has no response to fetch.",
+      "summary": {
+        "rows": 3,
+        "skipped": 0,
+        "breaches": 0,
+        "consoleErrors": 0
+      },
+      "budget": {
+        "profile": "50 Mbit/s, 40 ms",
+        "coldLatencyMs": 200,
+        "worstFrameMs": 33.33,
+        "warmSwapMs": 60,
+        "pieceBytes": 917504,
+        "measuredAt": "2026-10-02"
+      },
+      "breaches": [],
+      "passed": true
+    }
+  },
+  "video": {
+    "sha256": "7d1e3393cb1c11595b8c819a365b66e4cbaefc370bb87d111d9895280e944840",
+    "bytes": 32110177,
+    "frames": 1379,
+    "elapsedSeconds": 56.554413080215454,
+    "source": {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "canvas": {
+        "width": 1280,
+        "height": 720,
+        "cssWidth": 1280,
+        "cssHeight": 720
+      },
+      "devicePixelRatio": 1,
+      "frame": {
+        "width": 1280,
+        "height": 720
+      }
+    },
+    "encoded": {
+      "width": 1280,
+      "height": 720,
+      "duration": 56.553714,
+      "sampleAspectRatio": "1:1",
+      "rotation": 0,
+      "codec": "h264"
+    },
+    "timeline": [
+      {
+        "name": "human-neutral",
+        "timestamp": 1791251116.533
+      },
+      {
+        "name": "human-short-stout",
+        "timestamp": 1791251121.069
+      },
+      {
+        "name": "human-tall-slender",
+        "timestamp": 1791251125.489
+      },
+      {
+        "name": "human-short-slender",
+        "timestamp": 1791251129.945
+      },
+      {
+        "name": "human-tall-stout",
+        "timestamp": 1791251134.347
+      },
+      {
+        "name": "orc-neutral",
+        "timestamp": 1791251138.961
+      },
+      {
+        "name": "undead-neutral",
+        "timestamp": 1791251143.591
+      },
+      {
+        "name": "Adjacent collar lectorCoat",
+        "timestamp": 1791251149.128
+      },
+      {
+        "name": "Adjacent collar duskguardCuirass",
+        "timestamp": 1791251150.386
+      },
+      {
+        "name": "Adjacent collar graveweaverTop",
+        "timestamp": 1791251151.591
+      },
+      {
+        "name": "Shoulder dye preserves identity and shape",
+        "timestamp": 1791251152.23
+      },
+      {
+        "name": "ironSword idle",
+        "timestamp": 1791251152.254
+      },
+      {
+        "name": "ironSword walk",
+        "timestamp": 1791251153.109
+      },
+      {
+        "name": "ironSword run",
+        "timestamp": 1791251153.972
+      },
+      {
+        "name": "ironSword jump",
+        "timestamp": 1791251154.83
+      },
+      {
+        "name": "ironSword land",
+        "timestamp": 1791251155.694
+      },
+      {
+        "name": "ironSword fire",
+        "timestamp": 1791251156.551
+      },
+      {
+        "name": "ironSword lava",
+        "timestamp": 1791251157.404
+      },
+      {
+        "name": "ironSword pulse",
+        "timestamp": 1791251158.264
+      },
+      {
+        "name": "ironSword carry",
+        "timestamp": 1791251159.121
+      },
+      {
+        "name": "graveweaverGreatstaff idle",
+        "timestamp": 1791251159.987
+      },
+      {
+        "name": "graveweaverGreatstaff walk",
+        "timestamp": 1791251160.855
+      },
+      {
+        "name": "graveweaverGreatstaff run",
+        "timestamp": 1791251161.711
+      },
+      {
+        "name": "graveweaverGreatstaff jump",
+        "timestamp": 1791251162.579
+      },
+      {
+        "name": "graveweaverGreatstaff land",
+        "timestamp": 1791251163.438
+      },
+      {
+        "name": "graveweaverGreatstaff fire",
+        "timestamp": 1791251164.296
+      },
+      {
+        "name": "graveweaverGreatstaff lava",
+        "timestamp": 1791251165.151
+      },
+      {
+        "name": "graveweaverGreatstaff pulse",
+        "timestamp": 1791251166.012
+      },
+      {
+        "name": "graveweaverGreatstaff carry",
+        "timestamp": 1791251166.867
+      },
+      {
+        "name": "Normal Havok run, turn, jump and cast",
+        "timestamp": 1791251167.78
+      }
+    ]
+  },
+  "ve": {
+    "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m8-bastion-factory-2026-10-05-7d1e3393cb1c.mp4",
+    "sha256": "7d1e3393cb1c11595b8c819a365b66e4cbaefc370bb87d111d9895280e944840",
+    "bytes": 32110177,
+    "contentType": "video/mp4",
+    "rangeStatus": 206,
+    "range": "bytes 0-63/32110177",
+    "tlsVerification": "system curl, certificate verification enabled"
+  },
+  "retainedControls": [
+    "factory-curved/ordered: nonidentical indices",
+    "native-solidify/stacked: intersecting operands",
+    "union: unweighted source joint",
+    "union-rigid: missing cap",
+    "one-command-final: identity provenance ordered before coverage",
+    "pages-motion controls: native visibility, input sampling and target-facing harness failures",
+    "native swap initial: missing Content-Length incorrectly interpreted as zero",
+    "Python urllib media verification: local CA trust failed; system curl verified TLS instead"
+  ],
+  "evidenceRoot": ".cache/character-mmo/m8-factory-2026-10-05",
+  "limits": [
+    "Rigid-bone items only; no general cloth authoring",
+    "No arbitrary Human proportions or Orc/Undead shape range",
+    "No Elf source or physical iPhone acceptance",
+    "Mixed catalogue validation is not visual acceptance of all 9072 outfits",
+    "Local multi-race publication is not cross-race atomic; no concurrent publishers",
+    "Declared builder dependency pins do not sandbox/discover Python imports",
+    "OS/GPU-driver/CDN caches not reset",
+    "Telegram Desktop unavailable"
+  ],
+  "reusedEvidence": [
+    "M5 exact unchanged body, clothing, source animation and settled world dependencies",
+    "M5 calibrated capped native callback control and unchanged RAF-only scheduler",
+    "Unchanged six-profile local startup cohorts superseded here only by targeted new-item cohorts and fresh public representatives"
+  ],
+  "publicInitialFailure": {
+    "gate": "saved",
+    "completedCases": 5,
+    "error": "TypeError: Failed to fetch; fresh default full readiness timeout 90000ms before injection",
+    "failedUrlIdentified": false,
+    "isolatedDefaultDiagnostic": "passed, no failed requests/http/runtime/GPU errors; playable and full ready with Havok",
+    "evidence": [
+      "public-gates.json",
+      "public-saved/report.json",
+      "public-saved.log",
+      "public-load-diagnostic.json"
+    ],
+    "confirmation": "all 8 saved cases passed in one bounded confirmation"
+  },
+  "publicFunctional": [
+    {
+      "gate": "artifacts",
+      "exit": 0
+    },
+    {
+      "gate": "bridge",
+      "exit": 0
+    },
+    {
+      "gate": "west-bell",
+      "exit": 0
+    },
+    {
+      "gate": "saved",
+      "exit": 0,
+      "confirmation": true
+    },
+    {
+      "gate": "mobile",
+      "exit": 0,
+      "confirmation": true
+    },
+    {
+      "gate": "depth",
+      "exit": 0,
+      "confirmation": true
+    },
+    {
+      "gate": "webkit",
+      "exit": 0,
+      "confirmation": true
+    }
+  ],
+  "publicCold": [
+    {
+      "profile": "default",
+      "runs": 20,
+      "valid": 20,
+      "exit": 0,
+      "p95Ms": 818.5999999940395,
+      "maxMs": 828.5999999940395,
+      "misses": [],
+      "failed": [],
+      "passed": true
+    },
+    {
+      "profile": "original",
+      "runs": 20,
+      "valid": 20,
+      "exit": 0,
+      "p95Ms": 900.1999999880791,
+      "maxMs": 904.6000000238419,
+      "misses": [],
+      "failed": [],
+      "passed": true
+    },
+    {
+      "profile": "bastion-hood",
+      "runs": 20,
+      "valid": 20,
+      "exit": 0,
+      "p95Ms": 998.4000000059605,
+      "maxMs": 1037.9000000059605,
+      "misses": [
+        {
+          "run": 11,
+          "playableMs": 1037.9000000059605
+        }
+      ],
+      "failed": [],
+      "passed": true
+    }
+  ],
+  "publicColdNote": "Hood cohort p95 passes with only 1.6 ms margin; run11 took1037.9ms. No lucky rerun.",
+  "deployment": {
+    "id": "63b6e02b-c93f-4b85-aebf-f2ae79bfb8a6",
+    "url": "https://63b6e02b.fardel.pages.dev",
+    "publicUrl": "https://play.sparkify.dev/",
+    "source": "5fba4d8a52069db845ccafa4fc05faf418850bf4"
+  },
+  "recordedAt": "2026-10-06T02:29:35.086303+00:00",
+  "telegram": {
+    "ok": true,
+    "messageId": 863,
+    "expected": {
+      "width": 1280,
+      "height": 720,
+      "duration": 56.553714,
+      "sampleAspectRatio": "1:1",
+      "rotation": 0,
+      "codec": "h264"
+    },
+    "returned": {
+      "width": 1280,
+      "height": 720,
+      "duration": 57
+    },
+    "verified": true,
+    "file": "bastion-factory-2026-10-05.mp4",
+    "sha256": "7d1e3393cb1c11595b8c819a365b66e4cbaefc370bb87d111d9895280e944840",
+    "sentAt": "2026-10-06T02:20:51.287675+00:00"
+  },
+  "playback": {
+    "reviewedSourceFramesAndEncodedMovie": true,
+    "telegramWebA": {
+      "inline": {
+        "source": [
+          1280,
+          720
+        ],
+        "display": [
+          738.1875,
+          415.21875
+        ],
+        "fit": "contain",
+        "advancingToSeconds": 27.440126
+      },
+      "expanded": {
+        "source": [
+          1280,
+          720
+        ],
+        "display": [
+          1280,
+          720
+        ],
+        "fit": "contain"
+      },
+      "nativeVideoFullscreen": {
+        "source": [
+          1280,
+          720
+        ],
+        "display": [
+          2514,
+          1275
+        ],
+        "fit": "contain",
+        "element": "VIDEO",
+        "advancingToSeconds": 12.908811
+      }
+    },
+    "veHostedMp4": {
+      "normal": [
+        1280,
+        720
+      ],
+      "fullWindow": [
+        2514,
+        1275
+      ],
+      "nativeVideoFullscreen": [
+        2514,
+        1279
+      ],
+      "source": [
+        1280,
+        720
+      ],
+      "fit": "contain",
+      "element": "VIDEO",
+      "nativeFullscreenRequiresBringToFront": true
+    },
+    "telegramDesktop": "unavailable"
+  },
+  "cleanup": {
+    "time": "2026-10-06T02:26:55.257455+00:00",
+    "roots": [
+      51793,
+      51742,
+      52882
+    ],
+    "ownedBefore": {
+      "45172": {
+        "ppid": 51793,
+        "comm": "/Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/154.0.8037.97/Helpers/Google Chrome Helper.app/Contents/MacOS/Google Chrome Helper"
+      },
+      "51742": {
+        "ppid": 1,
+        "comm": "npm run dev"
+      },
+      "51788": {
+        "ppid": 51742,
+        "comm": "node"
+      },
+      "51793": {
+        "ppid": 1,
+        "comm": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+      },
+      "51799": {
+        "ppid": 51793,
+        "comm": "/Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/154.0.8037.97/Helpers/Google Chrome Helper.app/Contents/MacOS/Google Chrome Helper"
+      },
+      "51800": {
+        "ppid": 51793,
+        "comm": "/Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/154.0.8037.97/Helpers/Google Chrome Helper.app/Contents/MacOS/Google Chrome Helper"
+      },
+      "51801": {
+        "ppid": 51793,
+        "comm": "/Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/154.0.8037.97/Helpers/Google Chrome Helper.app/Contents/MacOS/Google Chrome Helper"
+      },
+      "51901": {
+        "ppid": 51793,
+        "comm": "/Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/154.0.8037.97/Helpers/Google Chrome Helper.app/Contents/MacOS/Google Chrome Helper"
+      },
+      "52882": {
+        "ppid": 52881,
+        "comm": "/Users/antbly/.nvm/versions/node/v22.18.0/bin/node"
+      },
+      "52903": {
+        "ppid": 52882,
+        "comm": "/Users/antbly/.npm/_npx/c943b712072b77c4/node_modules/@esbuild/darwin-arm64/bin/esbuild"
+      },
+      "52907": {
+        "ppid": 52882,
+        "comm": "/Users/antbly/.npm/_npx/c943b712072b77c4/node_modules/@esbuild/darwin-arm64/bin/esbuild"
+      },
+      "52908": {
+        "ppid": 52882,
+        "comm": "/Users/antbly/.npm/_npx/c943b712072b77c4/node_modules/@cloudflare/workerd-darwin-arm64/bin/workerd"
+      },
+      "52909": {
+        "ppid": 52882,
+        "comm": "/Users/antbly/.npm/_npx/c943b712072b77c4/node_modules/@cloudflare/workerd-darwin-arm64/bin/workerd"
+      }
+    },
+    "remainingOwned": {},
+    "tabsBefore": [],
+    "userSessionsPreserved": [
+      "Edge2931 four tabs",
+      "Orca1889",
+      "unrelated live checkout work"
+    ],
+    "userMediaRestored": [
+      "Shadowglass originally playing",
+      "X Shadowglass originally playing"
+    ],
+    "telegramPaused": true,
+    "pauseGuardsRemoved": true
+  },
+  "acceptedScope": "Repeatable rigid-shoulder factory and one content release. The whole mixed-fit matrix, cloth, Elf and physical device milestones remain open.",
+  "evidenceDigests": {
+    "one-command-accepted/factory/report.json": "1045e9823b80f6d87283a4459745b8e5ab46364025de59b2d5ee18f7930308cd",
+    "one-command-accepted/content-report.json": "318b2f9eb4af5014d3f389e20a8354aff8c428712a99e7ef477f31e40f75fb77",
+    "fps-bastion-final.json": "34a61152b3922fd4c2c24975fadf3c537018d67f0f19a9d3af8f23176a14d537",
+    "native-final-cold-gates.json": "7b584b73b6bab9549bab87f2166e049e2bb3b40b2380288d5e4cdeb6aba8e511",
+    "public-final-gates.json": "d7e1ffd97ee652f392c70da3d6ffd83b2a3ceaa59e7e43d0248ffcc484a5d05c",
+    "public-cold-gates.json": "32066b38122d8f4536624e292101bf2ee56ef49df843c5dfb90b06d045d98287",
+    "pages-motion-accepted/capture-manifest.json": "f08f4084be1b21b04028b7f2aecdd189fdf2977536a6128ef9b2eb1a5196c97b",
+    "pages-motion-accepted/report.json": "cce926433e7b6b2d45715845836a1436499af661e2ab9fa33c0746fc84c19b80",
+    "public-saved/report.json": "4300890320564470cf784eb34d2ec5d25eef99442aa7bbb2d1f8e922c27689a8",
+    "public-load-diagnostic.json": "de24998d8bcf5702698e7430a0dad308273b79ef0ebe9df9ea7e8ec27eda9f4c",
+    "public-saved-confirmation/report.json": "4c42f476fcce59b184281ec964d48ffd4201afa6b1215fe5e5e5c9ce36a9894c",
+    "pages-seal.json": "3a243b2c7bea6165bfbc85280857a38459f19851a3c836c5f9ea4c5ea8c4e481"
+  },
+  "hoodHeadroomAttribution": {
+    "causality": "Recorded cohorts, not a randomized paired item-only experiment",
+    "profiles": {
+      "M5 accepted hood": {
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "wardenPauldrons"
+        },
+        "medianPlayableMs": 928.5499999970198,
+        "phaseMedianMs": {
+          "world": 82.65000000596046,
+          "havok-runtime": 179.5,
+          "body-import": 20.400000005960464,
+          "equipment": 15.300000011920929,
+          "registration": 22.5,
+          "supported-gpu": 98.44999998807907
+        }
+      },
+      "M8 Bastion hood": {
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "bastionShoulders"
+        },
+        "medianPlayableMs": 949.0499999970198,
+        "phaseMedianMs": {
+          "world": 111.1000000089407,
+          "havok-runtime": 183.34999999403954,
+          "body-import": 20.599999994039536,
+          "equipment": 15.5,
+          "registration": 22.5,
+          "supported-gpu": 95.79999999701977
+        },
+        "run11PhaseMs": {
+          "world": 202.5,
+          "havok-runtime": 223.80000001192093,
+          "body-import": 20.69999998807907,
+          "equipment": 15.100000023841858,
+          "registration": 22.5,
+          "supported-gpu": 97.60000002384186
+        },
+        "run11CriticalResources": [
+          {
+            "name": "https://play.sparkify.dev/HavokPhysics.wasm?v=20260923-1",
+            "start": 180.30000001192093,
+            "responseStart": 505.5,
+            "end": 780.5,
+            "transferSize": 641096,
+            "encodedBodySize": 640796,
+            "initiator": "link",
+            "protocol": "h2"
+          },
+          {
+            "name": "https://play.sparkify.dev/ashen-reach/human-shape-v1/bastionShoulders-f494b2e91fe7.bin",
+            "start": 321.2000000178814,
+            "responseStart": 363.5,
+            "end": 463.2000000178814,
+            "transferSize": 83452,
+            "encodedBodySize": 83152,
+            "initiator": "fetch",
+            "protocol": "h3"
+          }
+        ]
+      }
+    }
+  }
+}
