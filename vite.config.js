@@ -16,6 +16,7 @@ const humanIdentityManifest=JSON.parse(readFileSync('public/ashen-reach/human-id
 const starterBuild=process.env.VITE_FAST_START!=='0';
 const starterWorldManifest=starterBuild?JSON.parse(readFileSync('public/ashen-reach/startup/starter/manifest.json','utf8')):null;
 const starterCharacterManifest=starterBuild?JSON.parse(readFileSync('public/ashen-reach/startup/character/manifest.json','utf8')):null;
+let savedHintScripts=[];
 
 /** Group only the existing normal entry's static application dependencies.
  * Many tiny shared chunks exhaust HTTP/1.1 connection slots before the selected
@@ -183,7 +184,7 @@ export default defineConfig({
     // built startup module graph with explicit Link headers in the copied _headers. Runs
     // after the HTML (including the early saved-character entry) is final.
     // https://developers.cloudflare.com/pages/configuration/early-hints/
-    {name: 'pages-early-hints', apply:'build', writeBundle:{order:'post',async handler(options,bundle){await writeEarlyHints(options.dir,bundle);}}},
+    {name: 'pages-early-hints', apply:'build', writeBundle:{order:'post',async handler(options,bundle){await writeEarlyHints(options.dir,bundle,{savedScripts:savedHintScripts});}}},
     {
       // Separate bundler entry: Vite merges two ordinary HTML module scripts into
       // one renderer entry, which defeats starting saved-appearance fetches early.
@@ -244,11 +245,17 @@ export default defineConfig({
         // Gate keys/params share the runtime exports; the fixed index URL is guarded.
         // https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/modulepreload
         let savedPreload='';
+        savedHintScripts=[];
         if(starterBuild){
           const contract=startupAppearanceContract();
           const indexUrl='/ashen-reach/human-identity-v1/manifest.json';
           if(!readFileSync('src/ashen-reach/startup-fetch.js','utf8').includes(`fetch('${indexUrl}'`))throw Error('Saved preload: identity index URL changed');
           const {files}=savedPreloadModules(bundle,[identityLoader.fileName,appearance.fileName],new Set([...seen,...mainSeen]));
+          // The saved descriptor graph is already checked above for renderer/
+          // shared-region imports and capped at 24 KiB raw by savedPreloadModules.
+          // HTTP 103 can fetch it before HTML; execution remains conditional.
+          // https://developer.chrome.com/docs/web-platform/early-hints
+          savedHintScripts=files;
           savedPreload=savedPreloadScript({...contract,modules:files.map(name=>`/${name}`),fetches:[]});
         }
         for(const item of Object.values(bundle))if(item.type==='asset'&&item.fileName.endsWith('.html')) {

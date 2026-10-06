@@ -70,7 +70,7 @@ for (let run = 1; run <= runs; run++) {
   const browser = await chromium.launch({ channel: "chrome", headless: true, args:disableShaderCache?['--disable-gpu-shader-disk-cache']:[] });
   const browserPid=execFileSync('ps',['-axo','pid=,ppid=,command='],{encoding:'utf8'}).split('\n').map(line=>/^\s*(\d+)\s+(\d+)\s+(.*)$/.exec(line)).find(m=>m&&Number(m[2])===process.pid&&/Chrome|Chromium/.test(m[3]))?.[1]||null;
   await fs.writeFile(destination+'.ownership.json',JSON.stringify({owner:'probe-playable-startup',controllerPid:process.pid,browserPid,cdpPort:null,url:target.href,purpose:`${profile} cold run ${run}`,active:true}));
-  const errors=[],requests=new Map();let rowRecorded=false;
+  const errors=[],requests=new Map(),earlyHints=[];let rowRecorded=false;
   try {
     const context = await browser.newContext({
         viewport: { width: 1280, height: 720 },
@@ -87,6 +87,8 @@ for (let run = 1; run <= runs; run++) {
     // also prevents native prefetch reuse. Record the prescribed policy rather
     // than silently labelling an empty-profile cohort as cache-disabled.
     // https://chromedevtools.github.io/devtools-protocol/tot/Network/#method-setCacheDisabled
+    // Chrome needs cache reuse for 103 preloads, even on a first visit:
+    // https://developer.chrome.com/docs/web-platform/early-hints
     if(disableHttpCache) await cdp.send('Network.setCacheDisabled',{cacheDisabled:true});
     await cdp.send("Network.emulateNetworkConditions", {
       offline: false,
@@ -124,6 +126,7 @@ for (let run = 1; run <= runs; run++) {
       requests.set(e.requestId, {
         url: e.request.url,
         start: e.timestamp,
+        initiator: e.initiator.type,
         chunks: [],
       });
     });
@@ -132,6 +135,14 @@ for (let run = 1; run <= runs; run++) {
         .get(e.requestId)
         ?.chunks.push({ at: e.timestamp, bytes: e.encodedDataLength }),
     );
+    // A final Link header does not prove 103 delivery or preload consumption.
+    // Keep only public resource hints, not the complete headers (cookies etc.).
+    // This event has no protocol timestamp; receiptAt is observer wall time.
+    // https://chromedevtools.github.io/devtools-protocol/tot/Network/#event-responseReceivedEarlyHints
+    cdp.on('Network.responseReceivedEarlyHints', ({requestId,headers}) => {
+      const link=Object.entries(headers).find(([key])=>key.toLowerCase()==='link')?.[1]??null;
+      earlyHints.push({requestId,receiptAt:Date.now(),link});
+    });
     // Keep transport evidence when a public cold cohort differs from a local
     // build or a deployment hostname. Record only diagnostic response fields,
     // never request credentials or the complete response-header collection.
@@ -141,7 +152,9 @@ for (let run = 1; run <= runs; run++) {
       const headers=Object.fromEntries(Object.entries(response.headers).map(([k,v])=>[k.toLowerCase(),v]));
       r.response={status:response.status,mimeType:response.mimeType,protocol:response.protocol,
         remoteIPAddress:response.remoteIPAddress,cfRay:headers['cf-ray']??null,
-        cfCacheStatus:headers['cf-cache-status']??null,cacheControl:headers['cache-control']??null};
+        cfCacheStatus:headers['cf-cache-status']??null,cacheControl:headers['cache-control']??null,
+        fromEarlyHints:response.fromEarlyHints??false,fromDiskCache:response.fromDiskCache??false,
+        fromPrefetchCache:response.fromPrefetchCache??false};
     });
     cdp.on("Network.loadingFinished", (e) => {
       const r = requests.get(e.requestId);
@@ -188,10 +201,16 @@ for (let run = 1; run <= runs; run++) {
       tasks: window.__loadTasks,
     }));
     const boundary = row.origin / 1000 - clockOffset + row.playableMs / 1000;
+    row.earlyHints=earlyHints.map(({requestId,receiptAt,link})=>({
+      url:requests.get(requestId)?.url??null,receiptMs:receiptAt-row.origin,link,
+    }));
     row.requests = [...requests.values()]
       .filter((r) => r.start <= boundary)
       .map((r) => ({
         url: r.url,
+        initiator: r.initiator,
+        startMs: (r.start + clockOffset) * 1000 - row.origin,
+        endMs: r.end===undefined?null:(r.end + clockOffset) * 1000 - row.origin,
         response: r.response,
         complete: r.end <= boundary,
         encodedBytesAtBoundary:

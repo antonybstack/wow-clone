@@ -132,3 +132,30 @@ test('writeEarlyHints rewrites only the copied _headers in its own output direct
         assert(rules.find(r=>r.route==='/').headers.includes('Cache-Control: public, max-age=60, must-revalidate'));
     } finally { await fs.rm(dir, {recursive: true, force: true}); }
 });
+
+test('saved descriptor hints reuse real chunks, deduplicate the generic graph and preserve HTML', async () => {
+    const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'ashen-saved-hints-'));
+    try {
+        const b = bundle();
+        b['ashen-reach.html'] = {...b['index.html'], fileName: 'ashen-reach.html'};
+        const original = structuredClone(b['ashen-reach.html']);
+        await fs.writeFile(path.join(dir, '_headers'), existing);
+        const routes = await writeEarlyHints(dir, b, {savedScripts: [
+            'assets/appearance-storage-e.js', 'assets/startup-preload-b.js', 'assets/appearance-storage-e.js',
+        ]});
+        for (const items of Object.values(routes)) {
+            assert.equal(items[0].path, '/assets/appearance-storage-e.js');
+            assert.equal(items.length, startupGraph(b, 'ashen-reach.html').length + 1);
+            assert.equal(new Set(items.map(item => item.path)).size, items.length);
+        }
+        assert.deepEqual(b['ashen-reach.html'], original, 'preload does not add executable HTML');
+        const headers = await fs.readFile(path.join(dir, '_headers'), 'utf8');
+        assert(headers.includes('</assets/appearance-storage-e.js>; rel=preload; as=script; crossorigin=anonymous'));
+        assert(!headers.includes('rel=modulepreload'), 'Chrome 103 consumes preload, not modulepreload');
+        for (const bad of ['assets/missing.js', 'assets/ashen-reach-f.css']) {
+            await fs.writeFile(path.join(dir, '_headers'), existing);
+            await assert.rejects(writeEarlyHints(dir, b, {savedScripts: [bad]}), /missing saved script/);
+            assert.equal(await fs.readFile(path.join(dir, '_headers'), 'utf8'), existing);
+        }
+    } finally { await fs.rm(dir, {recursive: true, force: true}); }
+});

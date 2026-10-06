@@ -12,9 +12,10 @@
  * `_headers` limits: 100 rules, 2,000 characters per line; repeated headers join with commas.
  * https://developers.cloudflare.com/pages/configuration/headers/
  *
- * Only the static import graph of each HTML module entry (and its imported CSS) is hinted:
- * dynamic imports (optional appearance/identity/shared-region code) and fetch preloads (world
- * geometry, textures, Havok, character data) are deliberately not.
+ * Hint the static entry graph and its CSS, plus the build-validated small saved-appearance
+ * descriptor graph. Those optional modules are fetched, not evaluated, for unsaved visitors;
+ * the runtime still validates storage before selecting any character assets. World/character
+ * payloads and all other dynamic imports remain outside this hint set.
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -157,14 +158,25 @@ export function appendEarlyHints(existing, routeItems) {
 }
 
 /** Vite `writeBundle` step: hint every routed HTML page present in this build. */
-export async function writeEarlyHints(outDir, bundle) {
+export async function writeEarlyHints(outDir, bundle, {savedScripts = []} = {}) {
     const file = path.join(outDir, '_headers');
     const existing = await fs.readFile(file, 'utf8').catch((error) => { if (error.code === 'ENOENT') return null; throw error; });
     if (existing === null) return null;
     const routeItems = {};
     for (const [html, routes] of Object.entries(EARLY_HINT_ROUTES)) {
         if (!bundle[html]) continue;
-        const items = startupGraph(bundle, html);
+        const generic = startupGraph(bundle, html);
+        // These are the same bounded pure chunks used by the conditional HTML
+        // modulepreload. Hinting them before HTML avoids a saved-body discovery
+        // round trip; native script preloading never executes the storage code.
+        // https://developer.chrome.com/docs/web-platform/early-hints
+        const saved = [...new Set(savedScripts)].map(name => {
+            if (bundle[name]?.type !== 'chunk' || !name.endsWith('.js'))
+                throw Error(`Early Hints: missing saved script ${name}`);
+            return {path: `/${name}`, as: 'script'};
+        });
+        const savedPaths = new Set(saved.map(item => item.path));
+        const items = [...saved, ...generic.filter(item => !savedPaths.has(item.path))];
         for (const route of routes) routeItems[route] = items;
     }
     await fs.writeFile(file, appendEarlyHints(existing, routeItems));
