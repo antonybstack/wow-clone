@@ -18,8 +18,9 @@ continuation is enabled. This is a scheduler limitation, not a project access bl
 
 The [focused 12-hour plan](plans/character-mmo/next-12-hours-2026-10-05.md) and
 [active queue](plans/character-mmo/next-ten.md) retain the intended scope. Resume
-from CURRENT, currently M6 multi-piece continuous-motion clearance, then take
-remaining actionable M8/M9/M10 exits. Do not redo accepted M1–M5/M7 work or reopen
+from CURRENT. M6 continuous-motion clearance and the bounded M8 factory proof
+are recorded; M10 landscape usability and delivery recovery are the active package.
+Then take the remaining actionable M6/M9/M10 exits. Do not redo accepted M1–M5/M7 work or reopen
 parked multiplayer hosting merely because the native goal mentions its old M5
 starting point. Newly encountered valid regressions remain in scope.
 

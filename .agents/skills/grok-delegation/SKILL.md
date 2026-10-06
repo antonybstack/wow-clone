@@ -1,15 +1,26 @@
 ---
 name: grok-delegation
-description: Optional Grok CLI or Cursor delegation for a requested, bounded subtask in wow-clone. Use when launching or reviewing Grok workers; direct parent implementation remains the default.
+description: Delegate bounded verification, benchmarks, deployment, capture or review to Grok in wow-clone. Use when launching, supervising or reviewing Grok workers; the parent owns feature implementation and acceptance.
 ---
 
-# Optional Grok delegation
+# Grok delegation
 
-The user endorsed **direct parent implementation and live review** on 2026-09-17. This skill is a tool for an explicitly requested or authorized useful subtask, not a mandate to delegate game work. The parent may implement. Do not revive older Grok-only, subscription-tier or compulsory judge-loop policies.
+The user's **2026-10-06** direction selects **Grok exclusively for delegated work**.
+Delegate bounded tests, benchmarks, builds/deployments and capture/VE operations
+while the parent implements features, diagnoses failures and reviews the result.
+Parallelize independent work; do not split a tightly coupled correction merely
+to keep a worker busy. This preference does not authorize unrelated publishing.
 
 ## When delegation is useful
 
 Choose a concrete independent task with clear ownership and an observable result. Do not split tightly coupled visual/runtime iteration merely to use more agents. Keep the parent responsible for the integrated game and reviewed evidence.
+
+For operations, pin the source commit/build and expected gates. Freeze shared
+product inputs until verification and sealed deployment finish; independent
+feature work needs separate source ownership. Give exactly one worker the game
+browser and timing window. Keep other renderers, recording, encoding, builds
+and asset generation out of that window. Require PID/port/URL ownership and
+cleanup in the result. See [the project operations rule](../../../docs/reviews/workflow-2026-10-05.md#current-operating-rule--2026-10-06).
 
 For an authorized Grok worker, the user's last specified effort is **high**, superseding xhigh/low. Historical launch configuration is `--model grok-4.6 --reasoning-effort high`; confirm current CLI model/flag availability at launch rather than inventing IDs. Existing workers need not be cancelled just to change effort.
 
@@ -29,7 +40,13 @@ Keep the parent active while a CLI worker runs and review completion; an ended t
 
 For a requested independent visual review, use [review guidance](references/judge.md). Ask for the few highest-impact observable corrections, not an exhaustive score-driven loop. Never claim a same-context implementer review is independent.
 
-Parent sends reviewed media through the user's already-authorized Telegram channel and polls at sensible boundaries. No worker messaging by default, no secrets in docs, and no claim of background monitoring after the session ends.
+A worker may publish root-reviewed media when its brief explicitly authorizes
+the exact file, destination and caption limits under existing user authorization.
+Use the existing VE and `tg file` tools, check delivery metadata and the ledger
+before retrying, and return sanitized evidence. Parent still reviews actual
+motion; API dimensions alone do not prove inline/fullscreen playback. No other
+worker messaging by default, no secrets in docs, and no claim of background
+monitoring after the session ends.
 
 ## Field lessons (Ashen Orc passes, 2026-09-18)
 
@@ -45,4 +62,3 @@ These come from eight resumed Grok passes on the Orc anatomy, garments and armor
 - **The playable Orc is the sculpt pipeline** (`docs/orc-sculpt-pipeline.md`). Do not revive ellipsoid muscle tables or a MakeHuman body warp.
 - **Form vs paint.** Voxel remesh + `--recook` cannot restore eyelids. Collapse the print FBX, bake the HP cage, keep normals on bind. Dummy brow spheres and `mesh.fill()` on the loincloth are known traps.
 - **Nested vision is advisory.** Relative LEFT/RIGHT questions helped; “is this good” and score loops did not. Verify claims against the GLB/PNG.
-

@@ -434,6 +434,13 @@ fallback, race controls stay honest, and Human/Orc/Undead regressions pass.
 
 ## 10 — Device acceptance and content release
 
+**2026-10-06 bounded progress:** [short landscape creator](results/m10-landscape-2026-10-06.md)
+fixes control reachability and preview height at 568×320 and 844×390. Native
+functional checks and >245 FPS bridge runs pass; motion is Telegram 868/869.
+CDN delivery and Early Hints header loss are repaired. Clean public startup still
+fails (1,219.6 ms p95, 14/20 misses); CURRENT owns the live deployment and next
+transport investigation. Physical-device acceptance remains separate.
+
 **Dependency:** 1–9. Physical iPhone startup, memory and thermal behaviour remain unmeasured
 and cannot be inferred from emulation. Release follows the existing production verification and
 rollback procedure.

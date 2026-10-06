@@ -14,7 +14,19 @@ SpacetimeDB (`db` / `dev-db`) is unrelated to this static client. Visual evidenc
 
 ## Ashen Reach
 
-Same Pages project and hostname. The deploy script builds only the playable routes (`index.html` → `ashen-reach.html?play&clean`) and copies the textures, bodies, and equipment the game actually loads. Unused `public/models` tree bins (over the 25 MB Pages file limit) stay off the upload.
+Same Pages project and hostname. The deploy script builds the playable routes;
+`index.html` contains the game directly, without a redirect. It copies the textures,
+bodies and equipment the game loads. Unused `public/models` tree bins (over the
+25 MB Pages file limit) stay off the upload.
+
+Always stage `public/404.html`. Pages otherwise serves root HTML for missing
+paths, including missing scripts. During the 2026-10-06 rollback investigation,
+some CSS/JS URLs returned cached HTML with status 200. Vite's stable `assets/v2`
+namespace moves the repaired build off those polluted URLs; content hashes remain
+Vite-owned. Do not add timestamp queries or a custom runtime loader.
+[Pages routing and caching](https://developers.cloudflare.com/pages/configuration/serving-pages/)
+and [Vite assetsDir](https://vite.dev/config/build-options.html#build-assetsdir)
+describe the native mechanisms. This change does not purge old browser/CDN rows.
 
 The staged root must include `HavokPhysics.wasm`. Without it, Cloudflare Pages can return the app HTML at that URL, leaving the game without a collision world and making spells report every target as blocked. The deploy script compares the built WebAssembly file with the source before publishing. An older deployment cached that HTML fallback for a year, so the client now requests a versioned WebAssembly URL and `.wasm` responses revalidate after 60 seconds. Production builds now use a content-addressed, build-time Brotli copy with native HTTP decoding; the versioned endpoint remains available for legacy/development consumers. Verify that the generated `/physics/HavokPhysics-<hash>.wasm.br` response decodes to the exact original binary, has `application/wasm` / `Content-Encoding: br`, and that the game reports `ASHEN.player.getDebugState().usingPhysics === true`. The full release verifier enforces these checks. See [Havok delivery](startup-load.md#havok-delivery) for the local Pages emulator limitation.
 
@@ -43,6 +55,24 @@ node scripts/character-assets/pages-seal.mjs seal --dist dist --out .cache/<rele
 ASHEN_PAGES_SEAL=.cache/<release>/pages-seal.json npm run deploy
 ```
 
+For a delivery change, first upload the same seal with `PAGES_BRANCH=<preview>`
+and verify its deployment-specific URL. Run
+`node scripts/character-assets/verify-pages-release.mjs dist <URL> <report.json>`
+on both preview and the final custom domain. It checks actual unmodified URLs,
+decoded bytes, executable MIME types, cache policies and two missing-path 404
+controls. A hash match fetched through a cache-busting query does not establish
+the correctness of URLs used by players. Stop live/performance gates if integrity
+fails; retain failed rows and diagnostic headers. Record the previous deployment
+before promotion and judge rollback against its known delivery state.
+
+Use `ASHEN_PROBE_RUNS=20 ASHEN_PROBE_MAX_MS=1000` for the startup release gate,
+alongside the prescribed profile, disabled HTTP cache, seed and exact build URL.
+It requires a complete valid cohort and zero starts above the inclusive limit,
+retains every failed row and returns nonzero when the budget fails. Without
+`ASHEN_PROBE_MAX_MS`, the tool is a measurement only; exit zero makes no timing
+claim. Restart the compressed preview after each build and keep all timing
+separate from builds, encoding, capture and other active game pages.
+
 The seal records the SHA-256 of every `dist` file, including `_headers` and
 `_redirects`, plus the source HEAD. It also records a fingerprint of the product
 inputs: git blob IDs for `src`, `public`, `scripts`, the root HTML, the Vite
@@ -68,3 +98,12 @@ remain unavailable on the public URL unless `VITE_PRESENCE_URL` selects a
 verified compatible HTTPS backend. The separate Colyseus/Cloudflare Containers
 host and its account gate are documented in [the presence result](plans/character-mmo/results/multiplayer-presence-2026-10-01.md).
 Static client deployment does not establish a public multiplayer release.
+
+Early Hints generation must **insert Link into the existing route block**.
+Repeated identical route blocks are not merged by Cloudflare's
+[configuration builder](https://github.com/cloudflare/workers-sdk/blob/main/packages/workers-shared/utils/configuration/constructConfiguration.ts):
+the last assignment replaces the previous rule for that path. The corrected
+build retains HTML `public, max-age=60, must-revalidate` together with Link,
+including the extensionless `/ashen-reach` route. The public verifier checks
+both policies, plus `no-store` on missing-file 404 responses. Distinct matching
+patterns still follow the documented header-combination behavior.

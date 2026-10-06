@@ -1,0 +1,6764 @@
+{
+  "schema": 1,
+  "scope": "M10 short-landscape CSS release, not complete physical-device acceptance",
+  "source": "772b672457c894962d356b19f91e9e2c4b83f5d9",
+  "deployment": {
+    "id": "9e1d53e5-eead-471b-bc7c-7d80d3d4a78c",
+    "url": "https://9e1d53e5.fardel.pages.dev",
+    "environment": "production",
+    "createdOn": "2026-10-06T16:16:03.441148Z",
+    "latestStage": {
+      "name": "deploy",
+      "started_on": null,
+      "ended_on": "2026-10-06T16:16:04.986699Z",
+      "status": "success"
+    },
+    "source": {
+      "branch": "main",
+      "commit_hash": "772b672457c894962d356b19f91e9e2c4b83f5d9",
+      "commit_message": "Make the character creator usable on short landscape screens",
+      "commit_dirty": true
+    },
+    "rollback": {
+      "id": "b80c188b-c5a0-422b-9d57-c9201d8a740f",
+      "source": "08f9bbe5391fde6b3fd74b4756470e43300bd139"
+    }
+  },
+  "sealSha256": "7dda25d3c8c799fef1e38067148d38a3f144e03428fc13161eb09b87b89c8b12",
+  "assets": {
+    "previousSource": "08f9bbe",
+    "compared": 330,
+    "changed": []
+  },
+  "http": {
+    "checked": 537,
+    "allMatch": true,
+    "sha256": "2afa5c4d64227cda721b2d753e7b7d1f89f9b5d7d16e742bbcd5359f478cb93e"
+  },
+  "gates": {
+    "preview": [
+      {
+        "gate": "entry",
+        "exit": 0
+      },
+      {
+        "gate": "armory",
+        "exit": 0
+      },
+      {
+        "gate": "mobile",
+        "exit": 0
+      },
+      {
+        "gate": "depth",
+        "exit": 0
+      },
+      {
+        "gate": "webkit",
+        "exit": 0
+      },
+      {
+        "gate": "bridge",
+        "exit": 0
+      },
+      {
+        "gate": "fps",
+        "exit": 0
+      },
+      {
+        "gate": "cold",
+        "exit": 0
+      }
+    ],
+    "productionEntry": {
+      "gate": "entry",
+      "exit": 0
+    },
+    "production": [
+      {
+        "gate": "armory",
+        "exit": 0
+      },
+      {
+        "gate": "mobile",
+        "exit": 0
+      },
+      {
+        "gate": "depth",
+        "exit": 0
+      },
+      {
+        "gate": "webkit",
+        "exit": 0
+      },
+      {
+        "gate": "bridge",
+        "exit": 0
+      },
+      {
+        "gate": "fps",
+        "exit": 0
+      },
+      {
+        "gate": "cold",
+        "exit": 0
+      }
+    ]
+  },
+  "creator": {
+    "local-final": {
+      "passed": true,
+      "errors": [],
+      "lifecycle": {
+        "reopenCycles": 3,
+        "controlHooksAfterClose": 15,
+        "disposedWhileOpen": true
+      },
+      "rows": [
+        {
+          "label": "portrait-full",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-face",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-weathered",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-short",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-tall",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-native-touch",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-orc",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-undead",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-reopened",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "resize-390x844",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 390,
+            "height": 356.171875
+          },
+          "window": [
+            390,
+            844
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "resize-320x568",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 320,
+            "height": 177.53125
+          },
+          "window": [
+            320,
+            568
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "resize-568x320",
+          "stage": {
+            "x": 0,
+            "y": 38,
+            "width": 338,
+            "height": 162
+          },
+          "window": [
+            568,
+            320
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "touch-568x320",
+          "stage": {
+            "x": 0,
+            "y": 38,
+            "width": 338,
+            "height": 162
+          },
+          "window": [
+            568,
+            320
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": {
+            "alpha": 1.0148461010444632,
+            "scroll": 178
+          },
+          "scroll": {
+            "alpha": 1.0148461010444632,
+            "scroll": 358
+          }
+        },
+        {
+          "label": "resize-844x390",
+          "stage": {
+            "x": 0,
+            "y": 38,
+            "width": 534,
+            "height": 232
+          },
+          "window": [
+            844,
+            390
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "touch-844x390",
+          "stage": {
+            "x": 0,
+            "y": 38,
+            "width": 534,
+            "height": 232
+          },
+          "window": [
+            844,
+            390
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": {
+            "alpha": 1.0148517582357732,
+            "scroll": 358
+          },
+          "scroll": {
+            "alpha": 1.0148517582357732,
+            "scroll": 622
+          }
+        },
+        {
+          "label": "resize-768x1024",
+          "stage": {
+            "x": 0,
+            "y": 90,
+            "width": 458,
+            "height": 749
+          },
+          "window": [
+            768,
+            1024
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "resize-1280x720",
+          "stage": {
+            "x": 0,
+            "y": 90,
+            "width": 970,
+            "height": 445
+          },
+          "window": [
+            1280,
+            720
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "resize-430x734",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        }
+      ],
+      "rawSha256": "95039cce153e6c32a2cacab042983119b41b18c8ff008c6ac9ea9ccfe882543e"
+    },
+    "preview-armory": {
+      "passed": true,
+      "errors": [],
+      "lifecycle": {
+        "reopenCycles": 3,
+        "controlHooksAfterClose": 15,
+        "disposedWhileOpen": true
+      },
+      "rows": [
+        {
+          "label": "portrait-full",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-face",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-weathered",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-short",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-tall",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-native-touch",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-orc",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-undead",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-reopened",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "resize-390x844",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 390,
+            "height": 356.171875
+          },
+          "window": [
+            390,
+            844
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "resize-320x568",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 320,
+            "height": 177.53125
+          },
+          "window": [
+            320,
+            568
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "resize-568x320",
+          "stage": {
+            "x": 0,
+            "y": 38,
+            "width": 338,
+            "height": 162
+          },
+          "window": [
+            568,
+            320
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "touch-568x320",
+          "stage": {
+            "x": 0,
+            "y": 38,
+            "width": 338,
+            "height": 162
+          },
+          "window": [
+            568,
+            320
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": {
+            "alpha": 1.0148976003444823,
+            "scroll": 178
+          },
+          "scroll": {
+            "alpha": 1.0148976003444823,
+            "scroll": 351
+          }
+        },
+        {
+          "label": "resize-844x390",
+          "stage": {
+            "x": 0,
+            "y": 38,
+            "width": 534,
+            "height": 232
+          },
+          "window": [
+            844,
+            390
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "touch-844x390",
+          "stage": {
+            "x": 0,
+            "y": 38,
+            "width": 534,
+            "height": 232
+          },
+          "window": [
+            844,
+            390
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": {
+            "alpha": 1.014895997639031,
+            "scroll": 351
+          },
+          "scroll": {
+            "alpha": 1.014895997639031,
+            "scroll": 572
+          }
+        },
+        {
+          "label": "resize-768x1024",
+          "stage": {
+            "x": 0,
+            "y": 90,
+            "width": 458,
+            "height": 749
+          },
+          "window": [
+            768,
+            1024
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "resize-1280x720",
+          "stage": {
+            "x": 0,
+            "y": 90,
+            "width": 970,
+            "height": 445
+          },
+          "window": [
+            1280,
+            720
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "resize-430x734",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        }
+      ],
+      "rawSha256": "382d95e1b6e24d98056dc2775ad04450a74a97870d16331ae2cd7cc900188123"
+    },
+    "production-final-armory": {
+      "passed": true,
+      "errors": [],
+      "lifecycle": {
+        "reopenCycles": 3,
+        "controlHooksAfterClose": 15,
+        "disposedWhileOpen": true
+      },
+      "rows": [
+        {
+          "label": "portrait-full",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-face",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-weathered",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-short",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-tall",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-native-touch",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-orc",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-undead",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "portrait-reopened",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "resize-390x844",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 390,
+            "height": 356.171875
+          },
+          "window": [
+            390,
+            844
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "resize-320x568",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 320,
+            "height": 177.53125
+          },
+          "window": [
+            320,
+            568
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "resize-568x320",
+          "stage": {
+            "x": 0,
+            "y": 38,
+            "width": 338,
+            "height": 162
+          },
+          "window": [
+            568,
+            320
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "touch-568x320",
+          "stage": {
+            "x": 0,
+            "y": 38,
+            "width": 338,
+            "height": 162
+          },
+          "window": [
+            568,
+            320
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": {
+            "alpha": 1.0148178604026625,
+            "scroll": 178
+          },
+          "scroll": {
+            "alpha": 1.0148178604026625,
+            "scroll": 350
+          }
+        },
+        {
+          "label": "resize-844x390",
+          "stage": {
+            "x": 0,
+            "y": 38,
+            "width": 534,
+            "height": 232
+          },
+          "window": [
+            844,
+            390
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "touch-844x390",
+          "stage": {
+            "x": 0,
+            "y": 38,
+            "width": 534,
+            "height": 232
+          },
+          "window": [
+            844,
+            390
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": {
+            "alpha": 1.0149067932805875,
+            "scroll": 350
+          },
+          "scroll": {
+            "alpha": 1.0149067932805875,
+            "scroll": 581
+          }
+        },
+        {
+          "label": "resize-768x1024",
+          "stage": {
+            "x": 0,
+            "y": 90,
+            "width": 458,
+            "height": 749
+          },
+          "window": [
+            768,
+            1024
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "resize-1280x720",
+          "stage": {
+            "x": 0,
+            "y": 90,
+            "width": 970,
+            "height": 445
+          },
+          "window": [
+            1280,
+            720
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        },
+        {
+          "label": "resize-430x734",
+          "stage": {
+            "x": 0,
+            "y": 54,
+            "width": 430,
+            "height": 285.765625
+          },
+          "window": [
+            430,
+            734
+          ],
+          "physics": true,
+          "recoveries": 0,
+          "gpu": [],
+          "reachableControls": 9,
+          "orbit": null,
+          "scroll": null
+        }
+      ],
+      "rawSha256": "9b8df31c07f756a4b8bf70fb2a57ef284a0f3ba1c5bb225d68e148e0e1cfd92a"
+    }
+  },
+  "cold": {
+    "preview-cold": {
+      "conditions": {
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "savedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "expectedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "declaredRuns": 20,
+      "recordedRuns": 20,
+      "validTimes": 20,
+      "completeValidCohort": true,
+      "disrupted": false,
+      "diagnostic": false,
+      "rows": [
+        {
+          "run": 1,
+          "playableMs": 887.3000000119209,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 2,
+          "playableMs": 874.1999999880791,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 3,
+          "playableMs": 872.1000000238419,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 4,
+          "playableMs": 880,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 5,
+          "playableMs": 878,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 6,
+          "playableMs": 873.6000000238419,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 7,
+          "playableMs": 876.0999999940395,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 8,
+          "playableMs": 875.2999999821186,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 9,
+          "playableMs": 872.9000000059605,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 10,
+          "playableMs": 868.8000000119209,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 11,
+          "playableMs": 866.9000000059605,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 12,
+          "playableMs": 875.3000000119209,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 13,
+          "playableMs": 874.5999999940395,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 14,
+          "playableMs": 873.0999999940395,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 15,
+          "playableMs": 874.5999999940395,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 16,
+          "playableMs": 878.5,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 17,
+          "playableMs": 874.1999999880791,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 18,
+          "playableMs": 871.5999999940395,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 19,
+          "playableMs": 867.8000000119209,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 20,
+          "playableMs": 876.0999999940395,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        }
+      ],
+      "p95Ms": 880,
+      "maximumObservedMs": 887.3000000119209,
+      "observedOneSecondMisses": 0,
+      "budgetPassed": true,
+      "rawSha256": "5f516587651f2784874bea1663ca396a99d6a7066f84727e660b02bc99e91226"
+    },
+    "production-final-cold": {
+      "conditions": {
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "savedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "expectedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "declaredRuns": 20,
+      "recordedRuns": 20,
+      "validTimes": 20,
+      "completeValidCohort": true,
+      "disrupted": false,
+      "diagnostic": false,
+      "rows": [
+        {
+          "run": 1,
+          "playableMs": 1110.5,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 2,
+          "playableMs": 1221,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 3,
+          "playableMs": 1145.2999999821186,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 4,
+          "playableMs": 1108.9000000059605,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 5,
+          "playableMs": 1155.9000000059605,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 6,
+          "playableMs": 1126.5,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 7,
+          "playableMs": 1107.7999999821186,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 8,
+          "playableMs": 1109.8999999761581,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 9,
+          "playableMs": 1153.2000000178814,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 10,
+          "playableMs": 1074.5999999940395,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 11,
+          "playableMs": 1090.0999999940395,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 12,
+          "playableMs": 1123.7999999821186,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 13,
+          "playableMs": 1145.4000000059605,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 14,
+          "playableMs": 1150.0999999940395,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 15,
+          "playableMs": 1185.1000000238419,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 16,
+          "playableMs": 1176,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 17,
+          "playableMs": 1006.0999999940395,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 18,
+          "playableMs": 1087.800000011921,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 19,
+          "playableMs": 1185.5,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 20,
+          "playableMs": 1224.5,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        }
+      ],
+      "p95Ms": 1221,
+      "maximumObservedMs": 1224.5,
+      "observedOneSecondMisses": 20,
+      "budgetPassed": false,
+      "rawSha256": "410fc453dde325e98ddb6119f0b8431263dcbd302f2b93f438c424f47637fea4"
+    },
+    "production-confirmation-cold": {
+      "conditions": {
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "savedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "expectedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "declaredRuns": 20,
+      "recordedRuns": 20,
+      "validTimes": 20,
+      "completeValidCohort": true,
+      "disrupted": false,
+      "diagnostic": true,
+      "rows": [
+        {
+          "run": 1,
+          "playableMs": 1323.1000000238419,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 2,
+          "playableMs": 1119.0999999940395,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 3,
+          "playableMs": 922.5,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 4,
+          "playableMs": 1152.1000000238419,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 5,
+          "playableMs": 1109,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 6,
+          "playableMs": 1095.2999999821186,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 7,
+          "playableMs": 1199.5,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 8,
+          "playableMs": 1111.800000011921,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 9,
+          "playableMs": 1172.300000011921,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 10,
+          "playableMs": 1083.199999988079,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 11,
+          "playableMs": 1145.0999999940395,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 12,
+          "playableMs": 1117.4000000059605,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 13,
+          "playableMs": 1074.199999988079,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 14,
+          "playableMs": 1161.800000011921,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 15,
+          "playableMs": 1094.5999999940395,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 16,
+          "playableMs": 1104,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 17,
+          "playableMs": 1176.2999999821186,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 18,
+          "playableMs": 1022.4000000059605,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 19,
+          "playableMs": 1271.4000000059605,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 20,
+          "playableMs": 1074.199999988079,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        }
+      ],
+      "p95Ms": 1271.4000000059605,
+      "maximumObservedMs": 1323.1000000238419,
+      "observedOneSecondMisses": 19,
+      "budgetPassed": false,
+      "rawSha256": "43b0a30322ffc7b034aa7f25f42d00e98d8e810014960079690fbf274a8a0721"
+    },
+    "prior-deployment-control": {
+      "conditions": {
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "savedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "expectedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "declaredRuns": 20,
+      "recordedRuns": 20,
+      "validTimes": 20,
+      "completeValidCohort": true,
+      "disrupted": false,
+      "diagnostic": true,
+      "rows": [
+        {
+          "run": 1,
+          "playableMs": 1315.8999999761581,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 2,
+          "playableMs": 906.0999999940395,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 3,
+          "playableMs": 903.6999999880791,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 4,
+          "playableMs": 1032.199999988079,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 5,
+          "playableMs": 909.2999999821186,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 6,
+          "playableMs": 910.2000000178814,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 7,
+          "playableMs": 980.3000000119209,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 8,
+          "playableMs": 965.7999999821186,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 9,
+          "playableMs": 907.7999999821186,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 10,
+          "playableMs": 912.9000000059605,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 11,
+          "playableMs": 928.5,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 12,
+          "playableMs": 904.6999999880791,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 13,
+          "playableMs": 980.8000000119209,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 14,
+          "playableMs": 923.6000000238419,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 15,
+          "playableMs": 896.5999999940395,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 16,
+          "playableMs": 886.9000000059605,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 17,
+          "playableMs": 884.1999999880791,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 18,
+          "playableMs": 969.8000000119209,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 19,
+          "playableMs": 941.3000000119209,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 20,
+          "playableMs": 916.0999999940395,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        }
+      ],
+      "p95Ms": 1032.199999988079,
+      "maximumObservedMs": 1315.8999999761581,
+      "observedOneSecondMisses": 2,
+      "budgetPassed": false,
+      "rawSha256": "ac77e1b20c58749caf7e663b88432e7cad4e75d80b3f4fea8147154358e3e410"
+    },
+    "candidate-deployment-control": {
+      "conditions": {
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "savedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "expectedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "declaredRuns": 20,
+      "recordedRuns": 20,
+      "validTimes": 20,
+      "completeValidCohort": true,
+      "disrupted": false,
+      "diagnostic": true,
+      "rows": [
+        {
+          "run": 1,
+          "playableMs": 977.4000000059605,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 2,
+          "playableMs": 923.9000000059605,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 3,
+          "playableMs": 901.6999999880791,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 4,
+          "playableMs": 908.1999999880791,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 5,
+          "playableMs": 880.8999999761581,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 6,
+          "playableMs": 913.9000000059605,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 7,
+          "playableMs": 898.3999999761581,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 8,
+          "playableMs": 884.4000000059605,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 9,
+          "playableMs": 969.5999999940395,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 10,
+          "playableMs": 902.4000000059605,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 11,
+          "playableMs": 897.3000000119209,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 12,
+          "playableMs": 956.1999999880791,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 13,
+          "playableMs": 899.5999999940395,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 14,
+          "playableMs": 912.3000000119209,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 15,
+          "playableMs": 938.6000000238419,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 16,
+          "playableMs": 1043.199999988079,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 17,
+          "playableMs": 896.9000000059605,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 18,
+          "playableMs": 925.8000000119209,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 19,
+          "playableMs": 928.6000000238419,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 20,
+          "playableMs": 879.9000000059605,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        }
+      ],
+      "p95Ms": 977.4000000059605,
+      "maximumObservedMs": 1043.199999988079,
+      "observedOneSecondMisses": 1,
+      "budgetPassed": false,
+      "rawSha256": "d726ad39c67f92ba775c9b8f2700821add8d538be0a333c3626608508718f4c1"
+    },
+    "rollback-public-cold": {
+      "conditions": {
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "savedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "expectedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "declaredRuns": 20,
+      "recordedRuns": 20,
+      "validTimes": 13,
+      "completeValidCohort": false,
+      "disrupted": true,
+      "diagnostic": true,
+      "rows": [
+        {
+          "run": 1,
+          "playableMs": 1776.2999999821186,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 2,
+          "playableMs": 1227.8999999761581,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 3,
+          "playableMs": 1193.199999988079,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 4,
+          "failed": true,
+          "errors": [
+            "Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of \"text/html\". Strict MIME type checking is enforced for module scripts per HTML spec."
+          ],
+          "failure": {
+            "name": "TimeoutError",
+            "message": "page.waitForFunction: Timeout 30000ms exceeded."
+          }
+        },
+        {
+          "run": 5,
+          "failed": true,
+          "errors": [
+            "Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of \"text/html\". Strict MIME type checking is enforced for module scripts per HTML spec."
+          ],
+          "failure": {
+            "name": "TimeoutError",
+            "message": "page.waitForFunction: Timeout 30000ms exceeded."
+          }
+        },
+        {
+          "run": 6,
+          "failed": true,
+          "errors": [
+            "Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of \"text/html\". Strict MIME type checking is enforced for module scripts per HTML spec."
+          ],
+          "failure": {
+            "name": "TimeoutError",
+            "message": "page.waitForFunction: Timeout 30000ms exceeded."
+          }
+        },
+        {
+          "run": 7,
+          "playableMs": 936,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 8,
+          "playableMs": 1694.0999999940395,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 9,
+          "playableMs": 1348.7999999821186,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 10,
+          "playableMs": 1273.800000011921,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 11,
+          "failed": true,
+          "errors": [
+            "Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of \"text/html\". Strict MIME type checking is enforced for module scripts per HTML spec."
+          ],
+          "failure": {
+            "name": "TimeoutError",
+            "message": "page.waitForFunction: Timeout 30000ms exceeded."
+          }
+        },
+        {
+          "run": 12,
+          "playableMs": 925.7000000178814,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 13,
+          "playableMs": 1502.9000000059605,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 14,
+          "playableMs": 974.8000000119209,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 15,
+          "failed": true,
+          "errors": [
+            "Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of \"text/html\". Strict MIME type checking is enforced for module scripts per HTML spec."
+          ],
+          "failure": {
+            "name": "Error",
+            "message": "page.waitForFunction: Target page, context or browser has been closed"
+          }
+        },
+        {
+          "run": 16,
+          "playableMs": 2004.800000011921,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 17,
+          "playableMs": 1517.7999999821186,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": [
+            "Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of \"text/html\". Strict MIME type checking is enforced for module scripts per HTML spec.",
+            "Background startup failed TypeError: Failed to fetch dynamically imported module: https://play.sparkify.dev/assets/enemies-BlveCXo-.js"
+          ],
+          "validationFailure": {
+            "name": "AssertionError",
+            "message": "Expected values to be strictly deep-equal:"
+          }
+        },
+        {
+          "run": 18,
+          "failed": true,
+          "errors": [
+            "Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of \"text/html\". Strict MIME type checking is enforced for module scripts per HTML spec."
+          ],
+          "failure": {
+            "name": "TimeoutError",
+            "message": "page.waitForFunction: Timeout 30000ms exceeded."
+          }
+        },
+        {
+          "run": 19,
+          "playableMs": 920,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 20,
+          "playableMs": 1282.2000000178814,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        }
+      ],
+      "p95Ms": null,
+      "maximumObservedMs": 2004.800000011921,
+      "observedOneSecondMisses": 9,
+      "budgetPassed": false,
+      "rawSha256": "b0158cdc38d61d2829c038566785f924e17efbc42f1d936e8cd54d2804ccabf5",
+      "note": "Interrupted browser at row15; controller retained20rows,14with timings and6failures. Deployment changed during the run. Failed disrupted cohort, not an old-release p95 or acceptance cohort."
+    },
+    "restored-diagnostic-cold": {
+      "conditions": {
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "savedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "expectedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "declaredRuns": 5,
+      "recordedRuns": 5,
+      "validTimes": 5,
+      "completeValidCohort": true,
+      "disrupted": false,
+      "diagnostic": true,
+      "rows": [
+        {
+          "run": 1,
+          "playableMs": 1115.699999988079,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 2,
+          "playableMs": 1198.2000000178814,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 3,
+          "playableMs": 1300.800000011921,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 4,
+          "playableMs": 1083.3999999761581,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        },
+        {
+          "run": 5,
+          "playableMs": 1111.800000011921,
+          "physics": true,
+          "grounded": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "errors": []
+        }
+      ],
+      "p95Ms": 1300.800000011921,
+      "maximumObservedMs": 1300.800000011921,
+      "observedOneSecondMisses": 5,
+      "budgetPassed": false,
+      "rawSha256": "690ff31c07de42f517e9317f331bf129eb635d6bd7c4a047d58479f296c27cfe"
+    }
+  },
+  "fps": {
+    "preview": {
+      "conditions": {
+        "cpu": "Apple M1 Max",
+        "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1&gpuTiming=",
+        "viewport": [
+          1280,
+          720
+        ],
+        "seconds": 12,
+        "runs": 3,
+        "uncappedRequired": true,
+        "recording": false,
+        "race": "human",
+        "outfit": null,
+        "orcAssetsOverride": null,
+        "routes": [
+          "bridge"
+        ],
+        "recordCapped": true,
+        "savedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        }
+      },
+      "rows": [
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 242.3850690820792,
+            "meanMs": 4.12566666662693,
+            "medianMs": 4.0999999940395355,
+            "p95Ms": 4.9000000059604645,
+            "p99Ms": 5.300000011920929,
+            "worstMs": 8.900000005960464,
+            "minMs": 2.899999976158142,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 461,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 786917,
+            "drawBatches": 57,
+            "worldTriangles": 786917,
+            "sceneTriangles": 1053003,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 58,
+            "totalMeshes": 149,
+            "triangleCountMs": 0.09999999403953552,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.269312166750797,
+            "gpuMeanMs": 1.119961031590015,
+            "gpuP95Ms": 1.3439169680001095,
+            "gpuSamples": 600,
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.126 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.300 ms (full range 2.900-8.900 ms)"
+          },
+          "x": 0,
+          "z": 299.669739885239,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "bridge",
+          "run": 1,
+          "before": {
+            "x": 0,
+            "z": 215.6338968524207,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2931,
+            "fps": 244.1299694321809,
+            "meanMs": 4.096178778565731,
+            "medianMs": 4.0999999940395355,
+            "p95Ms": 5.0999999940395355,
+            "p99Ms": 5.399999976158142,
+            "worstMs": 8.900000005960464,
+            "minMs": 2.5,
+            "above8_333": 4,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.096 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.100-5.400 ms (full range 2.500-8.900 ms)"
+          },
+          "tails": {
+            "samples": 2931,
+            "meanMs": 4.096178778565731,
+            "meanFps": 244.1299694321809,
+            "p50Ms": 4.0999999940395355,
+            "p95Ms": 5.0999999940395355,
+            "p99Ms": 5.399999976158142,
+            "maxMs": 8.900000005960464,
+            "above6_94": 4,
+            "above8_33": 4,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 243.63503471622343,
+            "meanMs": 4.104500000029803,
+            "medianMs": 4.0999999940395355,
+            "p95Ms": 4.899999976158142,
+            "p99Ms": 5.399999976158142,
+            "worstMs": 8.699999988079071,
+            "minMs": 2.800000011920929,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 461,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 786917,
+            "drawBatches": 57,
+            "worldTriangles": 786917,
+            "sceneTriangles": 1052995,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 58,
+            "totalMeshes": 149,
+            "triangleCountMs": 0.09999999403953552,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.3512692077259527,
+            "gpuMeanMs": 1.0367110773178205,
+            "gpuP95Ms": 1.346184824399701,
+            "gpuSamples": 600,
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.105 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.400-5.400 ms (full range 2.800-8.700 ms)"
+          },
+          "x": 0,
+          "z": 299.6268915752499,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "bridge",
+          "run": 2,
+          "before": {
+            "x": 0,
+            "z": 215.60964696921562,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2945,
+            "fps": 245.351239669056,
+            "meanMs": 4.075789473690282,
+            "medianMs": 4,
+            "p95Ms": 5,
+            "p99Ms": 5.4000000059604645,
+            "worstMs": 9.200000017881393,
+            "minMs": 2.5999999940395355,
+            "above8_333": 4,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.076 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2945,
+            "meanMs": 4.075789473690282,
+            "meanFps": 245.351239669056,
+            "p50Ms": 4,
+            "p95Ms": 5,
+            "p99Ms": 5.4000000059604645,
+            "maxMs": 9.200000017881393,
+            "above6_94": 4,
+            "above8_33": 4,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 243.1512400719117,
+            "meanMs": 4.112666666656732,
+            "medianMs": 4.0999999940395355,
+            "p95Ms": 5,
+            "p99Ms": 5.200000017881393,
+            "worstMs": 8.5,
+            "minMs": 2.800000011920929,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 461,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 786917,
+            "drawBatches": 57,
+            "worldTriangles": 786917,
+            "sceneTriangles": 1053003,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 58,
+            "totalMeshes": 149,
+            "triangleCountMs": 0.19999998807907104,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.280430348216731,
+            "gpuMeanMs": 1.0437227389665213,
+            "gpuP95Ms": 1.2947406946425102,
+            "gpuSamples": 600,
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.113 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.200 ms (full range 2.800-8.500 ms)"
+          },
+          "x": 0,
+          "z": 299.6223795826925,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "bridge",
+          "run": 3,
+          "before": {
+            "x": 0,
+            "z": 215.61999105154692,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2980,
+            "fps": 248.30436449068608,
+            "meanMs": 4.027315436243611,
+            "medianMs": 4,
+            "p95Ms": 5,
+            "p99Ms": 5.299999982118607,
+            "worstMs": 9.199999988079071,
+            "minMs": 2.5999999940395355,
+            "above8_333": 4,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.027 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2980,
+            "meanMs": 4.027315436243611,
+            "meanFps": 248.30436449068608,
+            "p50Ms": 4,
+            "p95Ms": 5,
+            "p99Ms": 5.299999982118607,
+            "maxMs": 9.199999988079071,
+            "above6_94": 5,
+            "above8_33": 4,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        }
+      ],
+      "errors": []
+    },
+    "production-final": {
+      "conditions": {
+        "cpu": "Apple M1 Max",
+        "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1&gpuTiming=",
+        "viewport": [
+          1280,
+          720
+        ],
+        "seconds": 12,
+        "runs": 3,
+        "uncappedRequired": true,
+        "recording": false,
+        "race": "human",
+        "outfit": null,
+        "orcAssetsOverride": null,
+        "routes": [
+          "bridge"
+        ],
+        "recordCapped": true,
+        "savedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        }
+      },
+      "rows": [
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 244.23006472215226,
+            "meanMs": 4.0944999999801315,
+            "medianMs": 4.0999999940395355,
+            "p95Ms": 4.9000000059604645,
+            "p99Ms": 5.200000017881393,
+            "worstMs": 8.700000017881393,
+            "minMs": 2.699999988079071,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 461,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 786917,
+            "drawBatches": 57,
+            "worldTriangles": 786917,
+            "sceneTriangles": 1052995,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 58,
+            "totalMeshes": 149,
+            "triangleCountMs": 0.19999998807907104,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.0525306177361786,
+            "gpuMeanMs": 1.0180082347066155,
+            "gpuP95Ms": 1.239075090212779,
+            "gpuSamples": 600,
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.094 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.200-5.200 ms (full range 2.700-8.700 ms)"
+          },
+          "x": 0,
+          "z": 299.66458728422305,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "bridge",
+          "run": 1,
+          "before": {
+            "x": 0,
+            "z": 215.64627808322808,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2943,
+            "fps": 245.18461743559405,
+            "meanMs": 4.078559293234142,
+            "medianMs": 4.0999999940395355,
+            "p95Ms": 4.9000000059604645,
+            "p99Ms": 5.299999982118607,
+            "worstMs": 9.5,
+            "minMs": 2.699999988079071,
+            "above8_333": 3,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.079 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2943,
+            "meanMs": 4.078559293234142,
+            "meanFps": 245.18461743559405,
+            "p50Ms": 4.0999999940395355,
+            "p95Ms": 4.9000000059604645,
+            "p99Ms": 5.299999982118607,
+            "maxMs": 9.5,
+            "above6_94": 5,
+            "above8_33": 3,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 244.09096456672017,
+            "meanMs": 4.096833333323399,
+            "medianMs": 4.0999999940395355,
+            "p95Ms": 4.5999999940395355,
+            "p99Ms": 5.199999988079071,
+            "worstMs": 8.700000017881393,
+            "minMs": 2.7999999821186066,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 461,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 786917,
+            "drawBatches": 57,
+            "worldTriangles": 786917,
+            "sceneTriangles": 1052995,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 58,
+            "totalMeshes": 149,
+            "triangleCountMs": 0.20000001788139343,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.0041583123119735,
+            "gpuMeanMs": 1.0598778379353457,
+            "gpuP95Ms": 1.3183474676595845,
+            "gpuSamples": 600,
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.097 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.500-5.200 ms (full range 2.800-8.700 ms)"
+          },
+          "x": 0,
+          "z": 299.6343210731244,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "bridge",
+          "run": 2,
+          "before": {
+            "x": 0,
+            "z": 215.61881235821937,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2955,
+            "fps": 246.1905039614204,
+            "meanMs": 4.0618950930646225,
+            "medianMs": 4,
+            "p95Ms": 4.9000000059604645,
+            "p99Ms": 5.399999976158142,
+            "worstMs": 8.900000005960464,
+            "minMs": 2.699999988079071,
+            "above8_333": 5,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.062 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2955,
+            "meanMs": 4.0618950930646225,
+            "meanFps": 246.1905039614204,
+            "p50Ms": 4,
+            "p95Ms": 4.9000000059604645,
+            "p99Ms": 5.399999976158142,
+            "maxMs": 8.900000005960464,
+            "above6_94": 5,
+            "above8_33": 5,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 245.00796275819332,
+            "meanMs": 4.081500000009934,
+            "medianMs": 4,
+            "p95Ms": 5,
+            "p99Ms": 5.100000023841858,
+            "worstMs": 5.300000011920929,
+            "minMs": 2.9000000059604645,
+            "above8_333": 0,
+            "above16_667": 0,
+            "drawCalls": 461,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 786917,
+            "drawBatches": 57,
+            "worldTriangles": 786917,
+            "sceneTriangles": 1052995,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 58,
+            "totalMeshes": 149,
+            "triangleCountMs": 0.09999999403953552,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.2846144028838615,
+            "gpuMeanMs": 0.9875194424520485,
+            "gpuP95Ms": 1.2105080400508466,
+            "gpuSamples": 600,
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.082 ms is not locked to a known display interval"
+          },
+          "x": 0,
+          "z": 299.6630563373113,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "bridge",
+          "run": 3,
+          "before": {
+            "x": 0,
+            "z": 215.64106116539372,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2999,
+            "fps": 249.83338887037652,
+            "meanMs": 4.002667555851951,
+            "medianMs": 4,
+            "p95Ms": 4.9000000059604645,
+            "p99Ms": 5.199999988079071,
+            "worstMs": 9.299999982118607,
+            "minMs": 2.5,
+            "above8_333": 2,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.003 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2999,
+            "meanMs": 4.002667555851951,
+            "meanFps": 249.83338887037652,
+            "p50Ms": 4,
+            "p95Ms": 4.9000000059604645,
+            "p99Ms": 5.199999988079071,
+            "maxMs": 9.299999982118607,
+            "above6_94": 4,
+            "above8_33": 2,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        }
+      ],
+      "errors": []
+    }
+  },
+  "compatibility": {
+    "preview": {
+      "mobile": {
+        "passed": true,
+        "errors": [],
+        "checks": [
+          "touch-body-control",
+          "mobile-layout-colour-select-and-persistence",
+          "mobile-layout-identity-select-persistence-and-independent-undo",
+          "native touch advances simulation and displayed world",
+          "capture-loss",
+          "cancel",
+          "modal",
+          "blur"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": null
+      },
+      "depth": {
+        "passed": true,
+        "errors": [],
+        "checks": [
+          "touch-body-control",
+          "mobile-layout-colour-select-and-persistence",
+          "mobile-layout-identity-select-persistence-and-independent-undo",
+          "native touch advances simulation and displayed world",
+          "capture-loss",
+          "cancel",
+          "modal",
+          "blur"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": null
+      },
+      "webkit": {
+        "passed": true,
+        "errors": [],
+        "checks": [
+          "touch-body-control",
+          "mobile-layout-colour-select-and-persistence",
+          "mobile-layout-identity-select-persistence-and-independent-undo",
+          "keyboard advances WebKit simulation and displayed world"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": null
+      },
+      "bridge": {
+        "passed": true,
+        "errors": [],
+        "checks": [],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": 0
+      }
+    },
+    "production-final": {
+      "mobile": {
+        "passed": true,
+        "errors": [],
+        "checks": [
+          "touch-body-control",
+          "mobile-layout-colour-select-and-persistence",
+          "mobile-layout-identity-select-persistence-and-independent-undo",
+          "native touch advances simulation and displayed world",
+          "capture-loss",
+          "cancel",
+          "modal",
+          "blur"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": null
+      },
+      "depth": {
+        "passed": true,
+        "errors": [],
+        "checks": [
+          "touch-body-control",
+          "mobile-layout-colour-select-and-persistence",
+          "mobile-layout-identity-select-persistence-and-independent-undo",
+          "native touch advances simulation and displayed world",
+          "capture-loss",
+          "cancel",
+          "modal",
+          "blur"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": null
+      },
+      "webkit": {
+        "passed": true,
+        "errors": [],
+        "checks": [
+          "touch-body-control",
+          "mobile-layout-colour-select-and-persistence",
+          "mobile-layout-identity-select-persistence-and-independent-undo",
+          "keyboard advances WebKit simulation and displayed world"
+        ],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": null
+      },
+      "bridge": {
+        "passed": true,
+        "errors": [],
+        "checks": [],
+        "gpuErrors": [],
+        "physics": true,
+        "recoveries": 0
+      }
+    }
+  },
+  "motion": [
+    {
+      "size": "568x320",
+      "sha256": "885bc84b5d3540abd78d87bf41f76dc3553e9bfd6a0d709d19105b8863f8628f",
+      "bytes": 2229358,
+      "capture": {
+        "viewport": {
+          "width": 568,
+          "height": 320
+        },
+        "canvas": {
+          "width": 568,
+          "height": 320,
+          "cssWidth": 568,
+          "cssHeight": 320
+        },
+        "sourceFrame": {
+          "width": 568,
+          "height": 320
+        },
+        "elapsedSeconds": 21.196969032287598,
+        "encoded": {
+          "width": 568,
+          "height": 320,
+          "duration": 21.195908,
+          "sampleAspectRatio": "1:1",
+          "rotation": 0,
+          "codec": "h264"
+        }
+      },
+      "frames": 2108,
+      "report": {
+        "passed": true,
+        "width": 568,
+        "height": 320,
+        "errors": [],
+        "physics": true,
+        "recoveries": 0,
+        "panelScrollBefore": 0,
+        "panelScrollAfter": 531
+      },
+      "manifestSha256": "0d39daafb983d096105770cafbc1ee3adb45620cce6f0845dea5813263640fae",
+      "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m10-landscape-2026-10-06-568x320.mp4",
+      "telegram": {
+        "viewport": "568x320",
+        "local": "ve-capture/character-mmo/m10-landscape-2026-10-06/568x320.mp4",
+        "key": "wow-clone/ashen-reach/character-mmo/m10-landscape-2026-10-06-568x320.mp4",
+        "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m10-landscape-2026-10-06-568x320.mp4",
+        "bytes": 2229358,
+        "sha256": "885bc84b5d3540abd78d87bf41f76dc3553e9bfd6a0d709d19105b8863f8628f",
+        "getHashMatch": true,
+        "contentType": "video/mp4",
+        "fullHttp": 200,
+        "rangeHttp": 206,
+        "contentRange": "bytes 0-1023/2229358",
+        "etag": "\"3a0ff62556a7134698f52e5b90b28e0d\"",
+        "telegramMessageId": 868,
+        "expected": {
+          "width": 568,
+          "height": 320,
+          "duration": 21.195908,
+          "sampleAspectRatio": "1:1",
+          "rotation": 0,
+          "codec": "h264"
+        },
+        "returned": {
+          "width": 568,
+          "height": 320,
+          "duration": 22
+        },
+        "verified": true,
+        "sentAt": "2026-10-06T16:44:38.008851+00:00"
+      }
+    },
+    {
+      "size": "844x390",
+      "sha256": "efb0d5752ed1c0dcbfa64534a748dc3b341cfdec5fc8bd747802f6030d7e72d1",
+      "bytes": 5482590,
+      "capture": {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "canvas": {
+          "width": 844,
+          "height": 390,
+          "cssWidth": 844,
+          "cssHeight": 390
+        },
+        "sourceFrame": {
+          "width": 844,
+          "height": 390
+        },
+        "elapsedSeconds": 21.30770993232727,
+        "encoded": {
+          "width": 844,
+          "height": 390,
+          "duration": 21.306652,
+          "sampleAspectRatio": "1:1",
+          "rotation": 0,
+          "codec": "h264"
+        }
+      },
+      "frames": 2114,
+      "report": {
+        "passed": true,
+        "width": 844,
+        "height": 390,
+        "errors": [],
+        "physics": true,
+        "recoveries": 0,
+        "panelScrollBefore": 0,
+        "panelScrollAfter": 657
+      },
+      "manifestSha256": "dc8095c4352b7cb0b1670ee4fdca2117169824541a5926ea22a9a9208036661a",
+      "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m10-landscape-2026-10-06-844x390.mp4",
+      "telegram": {
+        "viewport": "844x390",
+        "local": "ve-capture/character-mmo/m10-landscape-2026-10-06/844x390.mp4",
+        "key": "wow-clone/ashen-reach/character-mmo/m10-landscape-2026-10-06-844x390.mp4",
+        "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m10-landscape-2026-10-06-844x390.mp4",
+        "bytes": 5482590,
+        "sha256": "efb0d5752ed1c0dcbfa64534a748dc3b341cfdec5fc8bd747802f6030d7e72d1",
+        "getHashMatch": true,
+        "contentType": "video/mp4",
+        "fullHttp": 200,
+        "rangeHttp": 206,
+        "contentRange": "bytes 0-1023/5482590",
+        "etag": "\"87a5df0124e9fdd1afa40f22d42f4a9c\"",
+        "telegramMessageId": 869,
+        "expected": {
+          "width": 844,
+          "height": 390,
+          "duration": 21.306652,
+          "sampleAspectRatio": "1:1",
+          "rotation": 0,
+          "codec": "h264"
+        },
+        "returned": {
+          "width": 844,
+          "height": 390,
+          "duration": 22
+        },
+        "verified": true,
+        "sentAt": "2026-10-06T16:44:42.928439+00:00"
+      }
+    }
+  ],
+  "review": {
+    "provider": "Grok",
+    "model": "4.6",
+    "effort": "high",
+    "session": "01a111d4-1db2-7f53-8ca6-97a623b87668",
+    "turns": 4,
+    "sourceOnly": true
+  },
+  "failuresRetained": [
+    "local/local-2: rotated compositor input bounds stale; reproduced in plain HTML; no product input changes",
+    "local-3: Close disappears after scrolled landscape rotates to tablet; fixed sticky title at every size",
+    "production-armory: optional presence entry omitted without backend; verifier now handles absent element",
+    "844 recorder initial attempt: unqualified ASHEN lookup before module installed; fixed diagnostic only, no video produced",
+    "Public initial and confirmation cold cohorts exceed target. Deployment-host controls do not replace public acceptance.",
+    "Rollback cohort disrupted atrow15 and acrossrestore; retained20rows14timings6failures, no validcohortp95.",
+    "Restored fullartifact reads intermittentlyreturnHTML200forCSS/JS; initialinventorypassisnotcurrentall-edgeacceptance.",
+    "TargetednineURLpurgeHTTP401authenticationerror; no expandedcredentialsorcachepolicy."
+  ],
+  "limits": [
+    "Desktop mobile emulation and desktop WebKit are not physical iPhone acceptance",
+    "M6 broad fit and licensed Elf dependency remain open",
+    "Only bridge FPS and largest saved hood cold cohort repeated for this CSS-only change; prior five-route/default/original-largest baselines retained",
+    "OS, GPU driver and CDN caches not reset",
+    "Statistical frame-pacing hints are retained; browser is uncapped, throughput is not physical display refresh"
+  ],
+  "releaseAccepted": false,
+  "currentProduction": {
+    "source": "6004840807cb47a908fb47dd87848f49f39f3268",
+    "pages": "e39117b8-db74-4563-a6c0-b428c8d5d10e",
+    "url": "https://play.sparkify.dev",
+    "integrityAndFunctionalPass": true,
+    "startupBudgetPass": false
+  },
+  "deploymentActions": {
+    "rollback": {
+      "success": true,
+      "id": "b80c188b-c5a0-422b-9d57-c9201d8a740f",
+      "url": "https://b80c188b.fardel.pages.dev",
+      "source": "08f9bbe5391fde6b3fd74b4756470e43300bd139",
+      "reason": "Candidate public cold cohorts failed the one-second gate; same-origin prior build control follows",
+      "at": "2026-10-06T16:30:14.670Z"
+    },
+    "restore": {
+      "success": true,
+      "id": "9e1d53e5-eead-471b-bc7c-7d80d3d4a78c",
+      "url": "https://9e1d53e5.fardel.pages.dev",
+      "source": "772b672457c894962d356b19f91e9e2c4b83f5d9",
+      "reason": "Prior deployment exhibits intermittent module MIME failures; restore verified loading candidate; public cold latency remains unaccepted",
+      "at": "2026-10-06T16:33:03.472Z"
+    },
+    "targeted-cache-purge": {
+      "at": "2026-10-06T16:35:27.310Z",
+      "files": [
+        "https://play.sparkify.dev/ashen-reach.html",
+        "https://play.sparkify.dev/assets/armory-Ck2t7RBy.css",
+        "https://play.sparkify.dev/assets/client-BRvQ37Gb.js",
+        "https://play.sparkify.dev/assets/local-light-probe-CBpjDJJn.js",
+        "https://play.sparkify.dev/assets/renderer-CzNMLv6w.js",
+        "https://play.sparkify.dev/assets/scene-P8aI3nE0.js",
+        "https://play.sparkify.dev/ashen-reach",
+        "https://play.sparkify.dev/",
+        "https://play.sparkify.dev/?play=&clean=&pixelRatio=1"
+      ],
+      "status": 401,
+      "success": false,
+      "errors": [
+        {
+          "code": 10000,
+          "message": "Authentication error"
+        }
+      ]
+    }
+  },
+  "httpHistory": {
+    "production-http": {
+      "checked": 537,
+      "failures": [],
+      "rawSha256": "2afa5c4d64227cda721b2d753e7b7d1f89f9b5d7d16e742bbcd5359f478cb93e"
+    },
+    "restored-http": {
+      "checked": 537,
+      "failures": [
+        {
+          "file": "ashen-reach.html",
+          "status": 200,
+          "bytes": 87531,
+          "match": false
+        },
+        {
+          "file": "assets/armory-Ck2t7RBy.css",
+          "status": 200,
+          "bytes": 87531,
+          "match": false
+        },
+        {
+          "file": "assets/client-BRvQ37Gb.js",
+          "status": 200,
+          "bytes": 87531,
+          "match": false
+        },
+        {
+          "file": "assets/local-light-probe-CBpjDJJn.js",
+          "status": 200,
+          "bytes": 87531,
+          "match": false
+        },
+        {
+          "file": "assets/renderer-CzNMLv6w.js",
+          "status": 200,
+          "bytes": 87531,
+          "match": false
+        },
+        {
+          "file": "assets/scene-P8aI3nE0.js",
+          "status": 200,
+          "bytes": 87531,
+          "match": false
+        }
+      ],
+      "rawSha256": "68120731bee61c9bcd4bba1ea0cb1883f11de7ab1ae35989c71c0f01b6151ad5"
+    },
+    "restored-after-purge-http": {
+      "checked": 537,
+      "failures": [
+        {
+          "file": "assets/client-BRvQ37Gb.js",
+          "status": 200,
+          "bytes": 87531,
+          "match": false
+        },
+        {
+          "file": "assets/local-light-probe-CBpjDJJn.js",
+          "status": 200,
+          "bytes": 87531,
+          "match": false
+        },
+        {
+          "file": "assets/scene-P8aI3nE0.js",
+          "status": 200,
+          "bytes": 87531,
+          "match": false
+        }
+      ],
+      "rawSha256": "ec3011a3531e890358148ce506860a160a0263242f6a9854bbb93fd974899d3a"
+    },
+    "restored-diagnostic-http": {
+      "checked": 537,
+      "failures": [
+        {
+          "file": "assets/armory-Ck2t7RBy.css",
+          "status": 200,
+          "bytes": 87531,
+          "match": false,
+          "responseType": "text/html; charset=utf-8",
+          "cfRay": "a46616bc6be6dd21-ATL",
+          "cfCacheStatus": "HIT",
+          "age": "238"
+        },
+        {
+          "file": "assets/client-BRvQ37Gb.js",
+          "status": 200,
+          "bytes": 87531,
+          "match": false,
+          "responseType": "text/html; charset=utf-8",
+          "cfRay": "a46616be6b7869fb-DFW",
+          "cfCacheStatus": "HIT",
+          "age": "238"
+        },
+        {
+          "file": "assets/local-light-probe-CBpjDJJn.js",
+          "status": 200,
+          "bytes": 87531,
+          "match": false,
+          "responseType": "text/html; charset=utf-8",
+          "cfRay": "a46616c53a5b69fb-DFW",
+          "cfCacheStatus": "HIT",
+          "age": "238"
+        },
+        {
+          "file": "assets/scene-P8aI3nE0.js",
+          "status": 200,
+          "bytes": 87531,
+          "match": false,
+          "responseType": "text/html; charset=utf-8",
+          "cfRay": "a46616c92e9d69fb-DFW",
+          "cfCacheStatus": "HIT",
+          "age": "238"
+        }
+      ],
+      "rawSha256": "6be6676d322f55ebd31b37c5f498e9e9104eeb1e9f7cca6a4b5cd893b3c69346"
+    }
+  },
+  "deliveryOperations": {
+    "phase": 1,
+    "worker": "grok-4.6",
+    "head": "772b672457c894962d356b19f91e9e2c4b83f5d9",
+    "headShort": "772b672",
+    "completedAt": "2026-10-06T16:44:43Z",
+    "constraints": {
+      "build": false,
+      "deploy": false,
+      "rollback": false,
+      "purge": false,
+      "benchmark": false,
+      "gameBrowser": false,
+      "computerUseAvailable": false,
+      "newMediaTabs": [],
+      "newProcessIds": []
+    },
+    "clips": [
+      {
+        "viewport": "568x320",
+        "local": "ve-capture/character-mmo/m10-landscape-2026-10-06/568x320.mp4",
+        "key": "wow-clone/ashen-reach/character-mmo/m10-landscape-2026-10-06-568x320.mp4",
+        "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m10-landscape-2026-10-06-568x320.mp4",
+        "bytes": 2229358,
+        "sha256": "885bc84b5d3540abd78d87bf41f76dc3553e9bfd6a0d709d19105b8863f8628f",
+        "getHashMatch": true,
+        "contentType": "video/mp4",
+        "fullHttp": 200,
+        "rangeHttp": 206,
+        "contentRange": "bytes 0-1023/2229358",
+        "etag": "\"3a0ff62556a7134698f52e5b90b28e0d\"",
+        "telegramMessageId": 868,
+        "expected": {
+          "width": 568,
+          "height": 320,
+          "duration": 21.195908,
+          "sampleAspectRatio": "1:1",
+          "rotation": 0,
+          "codec": "h264"
+        },
+        "returned": {
+          "width": 568,
+          "height": 320,
+          "duration": 22
+        },
+        "verified": true,
+        "sentAt": "2026-10-06T16:44:38.008851+00:00"
+      },
+      {
+        "viewport": "844x390",
+        "local": "ve-capture/character-mmo/m10-landscape-2026-10-06/844x390.mp4",
+        "key": "wow-clone/ashen-reach/character-mmo/m10-landscape-2026-10-06-844x390.mp4",
+        "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m10-landscape-2026-10-06-844x390.mp4",
+        "bytes": 5482590,
+        "sha256": "efb0d5752ed1c0dcbfa64534a748dc3b341cfdec5fc8bd747802f6030d7e72d1",
+        "getHashMatch": true,
+        "contentType": "video/mp4",
+        "fullHttp": 200,
+        "rangeHttp": 206,
+        "contentRange": "bytes 0-1023/5482590",
+        "etag": "\"87a5df0124e9fdd1afa40f22d42f4a9c\"",
+        "telegramMessageId": 869,
+        "expected": {
+          "width": 844,
+          "height": 390,
+          "duration": 21.306652,
+          "sampleAspectRatio": "1:1",
+          "rotation": 0,
+          "codec": "h264"
+        },
+        "returned": {
+          "width": 844,
+          "height": 390,
+          "duration": 22
+        },
+        "verified": true,
+        "sentAt": "2026-10-06T16:44:42.928439+00:00"
+      }
+    ],
+    "mediaErrors": [],
+    "unverifiedPlayback": [
+      "physical phone",
+      "Telegram Desktop",
+      "Telegram WebA tab 1147992685",
+      "this-worker native playback"
+    ],
+    "filesWritten": [
+      ".cache/character-mmo/m10-landscape-2026-10-06/operations-phase1.md",
+      ".cache/character-mmo/m10-landscape-2026-10-06/operations-phase1.json",
+      ".cache/character-mmo/m10-landscape-2026-10-06/upload-local-hashes.json",
+      ".cache/character-mmo/m10-landscape-2026-10-06/ve-upload.log",
+      ".cache/character-mmo/m10-landscape-2026-10-06/ve-get-verify.json",
+      ".cache/character-mmo/m10-landscape-2026-10-06/ve-get-verify.log",
+      ".cache/character-mmo/m10-landscape-2026-10-06/tg-send.log"
+    ],
+    "autoLedgers": [
+      ".claude/telegram-deliveries.log",
+      "ve-capture/character-mmo/m10-landscape-2026-10-06/568x320.mp4.telegram.json",
+      "ve-capture/character-mmo/m10-landscape-2026-10-06/844x390.mp4.telegram.json"
+    ]
+  },
+  "deliveryRepair": {
+    "phase": 2,
+    "worker": "grok-4.6",
+    "accepted": false,
+    "head": "578dd30dca2b551ee2574a7fdf6cce3a4aca2e13",
+    "previousProduction": {
+      "deploymentId": "9e1d53e5-eead-471b-bc7c-7d80d3d4a78c",
+      "source": "772b672457c894962d356b19f91e9e2c4b83f5d9",
+      "avoided": "08f9bbe5391fde6b3fd74b4756470e43300bd139"
+    },
+    "seal": {
+      "path": ".cache/character-mmo/m10-landscape-2026-10-06/delivery-pages-seal.json",
+      "sha256": "031dadaaae523ab1d478f1389e4a971a3ea845a7cab1695d2de182751f8ccb6b",
+      "files": 539,
+      "bytes": 290553281,
+      "productInputsSha256": "469dac306cb8d720d4b0348468c03799b76deac7cfc9de99eccb6bec839a34b4",
+      "uncommittedProductInputs": 0
+    },
+    "deployments": {
+      "preview": {
+        "branch": "m10-delivery",
+        "url": "https://b5c3b241.fardel.pages.dev",
+        "alias": "https://m10-delivery.fardel.pages.dev"
+      },
+      "production": {
+        "url": "https://play.sparkify.dev",
+        "peek": "https://b9273b21.fardel.pages.dev"
+      }
+    },
+    "gates": {
+      "unit": {
+        "exit": 0,
+        "tests": 15,
+        "pass": 15
+      },
+      "build": {
+        "exit": 0
+      },
+      "previewFunctional": [
+        {
+          "gate": "entry",
+          "exit": 0
+        },
+        {
+          "gate": "armory",
+          "exit": 0
+        },
+        {
+          "gate": "mobile",
+          "exit": 0
+        },
+        {
+          "gate": "depth",
+          "exit": 0
+        },
+        {
+          "gate": "webkit",
+          "exit": 0
+        },
+        {
+          "gate": "bridge",
+          "exit": 0
+        }
+      ],
+      "previewCold": {
+        "exit": 0,
+        "budget": {
+          "maxMs": 1000,
+          "expectedRuns": 20,
+          "recordedRuns": 20,
+          "validRuns": 20,
+          "complete": true,
+          "misses": 0,
+          "p95Ms": 896.2999999821186,
+          "worstMs": 909.5,
+          "passed": true
+        }
+      },
+      "previewHttp": {
+        "checked": 540,
+        "matched": true,
+        "badRows": []
+      },
+      "productionHttp": {
+        "checked": 540,
+        "matched": true,
+        "badRows": [],
+        "negativeControls404": 2,
+        "jsMime": "application/javascript",
+        "cssMime": "text/css; charset=utf-8",
+        "html404Status": 200
+      },
+      "productionFunctional": [
+        {
+          "gate": "entry",
+          "exit": 0
+        },
+        {
+          "gate": "armory",
+          "exit": 0
+        },
+        {
+          "gate": "mobile",
+          "exit": 0
+        },
+        {
+          "gate": "bridge",
+          "exit": 0
+        }
+      ],
+      "productionFps": {
+        "exit": 0,
+        "conditions": {
+          "cpu": "Apple M1 Max",
+          "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1",
+          "viewport": [
+            1280,
+            720
+          ],
+          "seconds": 12,
+          "runs": 3,
+          "route": "bridge",
+          "enemies": 7,
+          "uncapped": true,
+          "recording": false
+        },
+        "fps": [
+          231.26395414720406,
+          231.74449794257046,
+          234.99825125338515
+        ],
+        "p99Ms": [
+          5.800000011920929,
+          5.700000017881393,
+          5.5999999940395355
+        ],
+        "worstMs": [
+          9.899999976158142,
+          9.200000017881393,
+          9.5
+        ],
+        "above16_667": [
+          0,
+          0,
+          0
+        ],
+        "recoveries": 0
+      },
+      "productionCold": {
+        "exit": 1,
+        "aborted": false,
+        "budget": {
+          "maxMs": 1000,
+          "expectedRuns": 20,
+          "recordedRuns": 20,
+          "validRuns": 20,
+          "complete": true,
+          "misses": 17,
+          "p95Ms": 1631.2999999821186,
+          "worstMs": 1818,
+          "passed": false
+        },
+        "playableMs": [
+          1141.6,
+          1425.7,
+          955.2,
+          1818,
+          1223.1,
+          1170.7,
+          1130.9,
+          1207,
+          1188.2,
+          1064,
+          1118.3,
+          1130.2,
+          1631.3,
+          1125.3,
+          917.1,
+          968.2,
+          1177.7,
+          1106.5,
+          1127.6,
+          1154.6
+        ],
+        "underBudgetRuns": [
+          3,
+          15,
+          16
+        ],
+        "jsServedAsHtml": false,
+        "physicsAllTrue": true,
+        "errors": []
+      }
+    },
+    "processes": {
+      "chrome": {
+        "pid": 1643,
+        "cdp": 10037,
+        "pages": 0
+      },
+      "vite": {
+        "launcher": 1613,
+        "listener": 1637,
+        "port": 5873
+      },
+      "preview": {
+        "pid": 13546,
+        "port": 7074,
+        "replaced": 25897
+      },
+      "preserved": {
+        "edge": 2931,
+        "orca": 1889,
+        "codexParent": 42378
+      }
+    },
+    "cohorts": {
+      "delivery-preview": {
+        "conditions": {
+          "requestedRuns": 20,
+          "budgetMs": 1000,
+          "gpuProbe": false,
+          "traceGpu": false,
+          "disableShaderCache": false,
+          "disableHttpCache": true,
+          "profile": "50mbps",
+          "savedAppearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v7",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "components": {
+              "head": "human-prime-v1",
+              "hair": "human-ponytail01-v1"
+            },
+            "dyes": {
+              "helmet": "moss",
+              "torso": "oxblood",
+              "legs": "indigo"
+            },
+            "equipment": {
+              "helmet": "graveweaverHood",
+              "torso": "pilgrimTunic",
+              "legs": "graveweaverSkirt",
+              "boots": "wayfarerBoots",
+              "gloves": "graveweaverGloves",
+              "mainHand": "graveweaverStaff",
+              "offHand": "graveweaverBook",
+              "shoulders": "bastionShoulders"
+            }
+          },
+          "expectedAppearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v7",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "components": {
+              "head": "human-prime-v1",
+              "hair": "human-ponytail01-v1"
+            },
+            "dyes": {
+              "helmet": "moss",
+              "torso": "oxblood",
+              "legs": "indigo"
+            },
+            "equipment": {
+              "helmet": "graveweaverHood",
+              "torso": "pilgrimTunic",
+              "legs": "graveweaverSkirt",
+              "boots": "wayfarerBoots",
+              "gloves": "graveweaverGloves",
+              "mainHand": "graveweaverStaff",
+              "offHand": "graveweaverBook",
+              "shoulders": "bastionShoulders"
+            }
+          },
+          "network": {
+            "latency": 40,
+            "downloadThroughput": 6250000,
+            "uploadThroughput": 1250000
+          },
+          "cpu": "Apple M1 Max",
+          "viewport": [
+            1280,
+            720
+          ],
+          "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+          "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+        },
+        "budget": {
+          "maxMs": 1000,
+          "expectedRuns": 20,
+          "recordedRuns": 20,
+          "validRuns": 20,
+          "complete": true,
+          "misses": 0,
+          "p95Ms": 896.2999999821186,
+          "worstMs": 909.5,
+          "passed": true
+        },
+        "rows": [
+          {
+            "run": 1,
+            "playableMs": 909.5,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 2,
+            "playableMs": 887.4000000059605,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 3,
+            "playableMs": 893.5999999940395,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 4,
+            "playableMs": 896.2999999821186,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 5,
+            "playableMs": 886.5,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 6,
+            "playableMs": 882.4000000059605,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 7,
+            "playableMs": 889.8000000119209,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 8,
+            "playableMs": 886.9000000059605,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 9,
+            "playableMs": 888.1999999880791,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 10,
+            "playableMs": 889.6999999880791,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 11,
+            "playableMs": 887.8000000119209,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 12,
+            "playableMs": 885.5999999940395,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 13,
+            "playableMs": 896.1999999880791,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 14,
+            "playableMs": 889,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 15,
+            "playableMs": 893.6999999880791,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 16,
+            "playableMs": 883.1999999880791,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 17,
+            "playableMs": 891.1999999880791,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 18,
+            "playableMs": 888,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 19,
+            "playableMs": 888.4000000059605,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 20,
+            "playableMs": 894,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          }
+        ],
+        "rawSha256": "aca0e86fbb32dc479be53ac818b11dc198e049c6c91ada37e6f4044dfeee27b7"
+      },
+      "delivery-production": {
+        "conditions": {
+          "requestedRuns": 20,
+          "budgetMs": 1000,
+          "gpuProbe": false,
+          "traceGpu": false,
+          "disableShaderCache": false,
+          "disableHttpCache": true,
+          "profile": "50mbps",
+          "savedAppearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v7",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "components": {
+              "head": "human-prime-v1",
+              "hair": "human-ponytail01-v1"
+            },
+            "dyes": {
+              "helmet": "moss",
+              "torso": "oxblood",
+              "legs": "indigo"
+            },
+            "equipment": {
+              "helmet": "graveweaverHood",
+              "torso": "pilgrimTunic",
+              "legs": "graveweaverSkirt",
+              "boots": "wayfarerBoots",
+              "gloves": "graveweaverGloves",
+              "mainHand": "graveweaverStaff",
+              "offHand": "graveweaverBook",
+              "shoulders": "bastionShoulders"
+            }
+          },
+          "expectedAppearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v7",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "components": {
+              "head": "human-prime-v1",
+              "hair": "human-ponytail01-v1"
+            },
+            "dyes": {
+              "helmet": "moss",
+              "torso": "oxblood",
+              "legs": "indigo"
+            },
+            "equipment": {
+              "helmet": "graveweaverHood",
+              "torso": "pilgrimTunic",
+              "legs": "graveweaverSkirt",
+              "boots": "wayfarerBoots",
+              "gloves": "graveweaverGloves",
+              "mainHand": "graveweaverStaff",
+              "offHand": "graveweaverBook",
+              "shoulders": "bastionShoulders"
+            }
+          },
+          "network": {
+            "latency": 40,
+            "downloadThroughput": 6250000,
+            "uploadThroughput": 1250000
+          },
+          "cpu": "Apple M1 Max",
+          "viewport": [
+            1280,
+            720
+          ],
+          "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+          "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+        },
+        "budget": {
+          "maxMs": 1000,
+          "expectedRuns": 20,
+          "recordedRuns": 20,
+          "validRuns": 20,
+          "complete": true,
+          "misses": 17,
+          "p95Ms": 1631.2999999821186,
+          "worstMs": 1818,
+          "passed": false
+        },
+        "rows": [
+          {
+            "run": 1,
+            "playableMs": 1141.6000000238419,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 2,
+            "playableMs": 1425.699999988079,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 3,
+            "playableMs": 955.1999999880791,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 4,
+            "playableMs": 1818,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 5,
+            "playableMs": 1223.0999999940395,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 6,
+            "playableMs": 1170.7000000178814,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 7,
+            "playableMs": 1130.9000000059605,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 8,
+            "playableMs": 1207,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 9,
+            "playableMs": 1188.2000000178814,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 10,
+            "playableMs": 1064,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 11,
+            "playableMs": 1118.300000011921,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 12,
+            "playableMs": 1130.2000000178814,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 13,
+            "playableMs": 1631.2999999821186,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 14,
+            "playableMs": 1125.300000011921,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 15,
+            "playableMs": 917.0999999940395,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 16,
+            "playableMs": 968.2000000178814,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 17,
+            "playableMs": 1177.699999988079,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 18,
+            "playableMs": 1106.5,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 19,
+            "playableMs": 1127.5999999940395,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          },
+          {
+            "run": 20,
+            "playableMs": 1154.5999999940395,
+            "physics": true,
+            "grounded": true,
+            "errors": [],
+            "gpuErrors": []
+          }
+        ],
+        "rawSha256": "2fa2c677f857b4af2124eb2cc24353874cd01c6eddae3e9adc8d7ac247e956ea"
+      }
+    },
+    "fps": {
+      "conditions": {
+        "cpu": "Apple M1 Max",
+        "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1&gpuTiming=",
+        "viewport": [
+          1280,
+          720
+        ],
+        "seconds": 12,
+        "runs": 3,
+        "uncappedRequired": true,
+        "recording": false,
+        "race": "human",
+        "outfit": null,
+        "orcAssetsOverride": null,
+        "routes": [
+          "bridge"
+        ],
+        "recordCapped": true,
+        "savedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        }
+      },
+      "rows": [
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 226.0312676586928,
+            "meanMs": 4.424166666666666,
+            "medianMs": 4.200000017881393,
+            "p95Ms": 5.4000000059604645,
+            "p99Ms": 5.799999982118607,
+            "worstMs": 8.800000011920929,
+            "minMs": 3.2000000178813934,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 461,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 786917,
+            "drawBatches": 57,
+            "worldTriangles": 786917,
+            "sceneTriangles": 1052995,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 58,
+            "totalMeshes": 149,
+            "triangleCountMs": 0.19999998807907104,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.2174808108625776,
+            "gpuMeanMs": 1.2692249631489203,
+            "gpuP95Ms": 1.5175624188737296,
+            "gpuSamples": 600,
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.424 ms is not locked to a known display interval"
+          },
+          "x": 0,
+          "z": 299.6515712731075,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "bridge",
+          "run": 1,
+          "before": {
+            "x": 0,
+            "z": 215.63154137494485,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2776,
+            "fps": 231.26395414720406,
+            "meanMs": 4.324063400574222,
+            "medianMs": 4.199999988079071,
+            "p95Ms": 5.4000000059604645,
+            "p99Ms": 5.800000011920929,
+            "worstMs": 9.899999976158142,
+            "minMs": 2.7999999821186066,
+            "above8_333": 5,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.324 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2776,
+            "meanMs": 4.324063400574222,
+            "meanFps": 231.26395414720406,
+            "p50Ms": 4.199999988079071,
+            "p95Ms": 5.4000000059604645,
+            "p99Ms": 5.800000011920929,
+            "maxMs": 9.899999976158142,
+            "above6_94": 6,
+            "above8_33": 5,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 226.71452862270922,
+            "meanMs": 4.410833333333334,
+            "medianMs": 4.199999988079071,
+            "p95Ms": 5.4000000059604645,
+            "p99Ms": 5.700000017881393,
+            "worstMs": 8.799999982118607,
+            "minMs": 3.100000023841858,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 461,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 786917,
+            "drawBatches": 57,
+            "worldTriangles": 786917,
+            "sceneTriangles": 1052995,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 58,
+            "totalMeshes": 149,
+            "triangleCountMs": 0.20000001788139343,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.2315935465113086,
+            "gpuMeanMs": 1.236932726000257,
+            "gpuP95Ms": 1.4895279262809475,
+            "gpuSamples": 600,
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.411 ms is not locked to a known display interval"
+          },
+          "x": 0,
+          "z": 299.6548104416807,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "bridge",
+          "run": 2,
+          "before": {
+            "x": 0,
+            "z": 215.6274165491384,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2782,
+            "fps": 231.74449794257046,
+            "meanMs": 4.315097052478087,
+            "medianMs": 4.199999988079071,
+            "p95Ms": 5.4000000059604645,
+            "p99Ms": 5.700000017881393,
+            "worstMs": 9.200000017881393,
+            "minMs": 2.7999999821186066,
+            "above8_333": 5,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.315 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2782,
+            "meanMs": 4.315097052478087,
+            "meanFps": 231.74449794257046,
+            "p50Ms": 4.199999988079071,
+            "p95Ms": 5.4000000059604645,
+            "p99Ms": 5.700000017881393,
+            "maxMs": 9.200000017881393,
+            "above6_94": 5,
+            "above8_33": 5,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 225.38597348008844,
+            "meanMs": 4.436833333323399,
+            "medianMs": 4.200000017881393,
+            "p95Ms": 5.4000000059604645,
+            "p99Ms": 6,
+            "worstMs": 9.200000017881393,
+            "minMs": 2.9000000059604645,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 461,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 786917,
+            "drawBatches": 57,
+            "worldTriangles": 786917,
+            "sceneTriangles": 1052995,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 58,
+            "totalMeshes": 149,
+            "triangleCountMs": 0,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.1698000985030723,
+            "gpuMeanMs": 1.2247161529780315,
+            "gpuP95Ms": 1.4547007181299534,
+            "gpuSamples": 600,
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.437 ms is not locked to a known display interval"
+          },
+          "x": 0,
+          "z": 299.68736200893164,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "bridge",
+          "run": 3,
+          "before": {
+            "x": 0,
+            "z": 215.6310828411399,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2822,
+            "fps": 234.99825125338515,
+            "meanMs": 4.255350815022693,
+            "medianMs": 4.100000023841858,
+            "p95Ms": 5.300000011920929,
+            "p99Ms": 5.5999999940395355,
+            "worstMs": 9.5,
+            "minMs": 2.7999999821186066,
+            "above8_333": 4,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.255 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2822,
+            "meanMs": 4.255350815022693,
+            "meanFps": 234.99825125338515,
+            "p50Ms": 4.100000023841858,
+            "p95Ms": 5.300000011920929,
+            "p99Ms": 5.5999999940395355,
+            "maxMs": 9.5,
+            "above6_94": 4,
+            "above8_33": 4,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        }
+      ],
+      "errors": []
+    },
+    "http": {
+      "delivery-preview-http": {
+        "servedFiles": 538,
+        "negativeControls": [
+          {
+            "file": "assets/v2/missing-e2a8cf29-db3f-4941-872c-00cbfa2cf056.js",
+            "negativeControl": true,
+            "status": 404,
+            "match": true,
+            "responseType": "text/html; charset=utf-8",
+            "cfRay": "a46636f81b8c6387-LAX",
+            "cfCacheStatus": null
+          },
+          {
+            "file": "missing-b4a5b468-5a89-4818-ba9f-055a1942e611",
+            "negativeControl": true,
+            "status": 404,
+            "match": true,
+            "responseType": "text/html; charset=utf-8",
+            "cfRay": "a46636f85c646387-LAX",
+            "cfCacheStatus": null
+          }
+        ],
+        "badRows": [],
+        "rawSha256": "71b0d7e90773f68c0b535b6c52aba5a4184441a18d8110b37030e3638f5b1cf4"
+      },
+      "delivery-production-http": {
+        "servedFiles": 538,
+        "negativeControls": [
+          {
+            "file": "assets/v2/missing-26836ea4-c843-4d17-8e0c-05a4ce059d76.js",
+            "negativeControl": true,
+            "status": 404,
+            "match": true,
+            "responseType": "text/html; charset=utf-8",
+            "cfRay": "a46638e738754aa7-DFW",
+            "cfCacheStatus": "BYPASS"
+          },
+          {
+            "file": "missing-6a304090-226d-4a51-a35a-00d17ddd202b",
+            "negativeControl": true,
+            "status": 404,
+            "match": true,
+            "responseType": "text/html; charset=utf-8",
+            "cfRay": "a46638e80c864aa7-DFW",
+            "cfCacheStatus": "DYNAMIC"
+          }
+        ],
+        "badRows": [],
+        "rawSha256": "55aabeffb8bdeb0b01c62bf5c7074133657900007121caf17bc45f9830544c57"
+      }
+    },
+    "timingEligibleForAcceptance": false,
+    "timingIsolationNote": "Phase2/3 timings after Telegram868/869delivery lack updated autoplay isolation proof; newclips were playing when final review began. Preserve them as potentially contaminated diagnostics, not performance acceptance."
+  },
+  "mediaReview": {
+    "reviewedAt": "2026-10-06T17:22:23.807863+00:00",
+    "telegram": [
+      {
+        "message": 868,
+        "dimensions": [
+          568,
+          320
+        ],
+        "inline": true,
+        "expanded": true,
+        "nativeFullscreen": "VIDEO",
+        "advancingFullscreenTime": 17.38
+      },
+      {
+        "message": 869,
+        "dimensions": [
+          844,
+          390
+        ],
+        "inline": true,
+        "expanded": true,
+        "nativeFullscreen": "VIDEO",
+        "advancingFullscreenTime": 8.595
+      }
+    ],
+    "ve": [
+      {
+        "dimensions": [
+          568,
+          320
+        ],
+        "nativeFullscreen": "VIDEO",
+        "advancingTime": 11.011
+      },
+      {
+        "dimensions": [
+          844,
+          390
+        ],
+        "nativeFullscreen": "VIDEO",
+        "advancingTime": 10.534
+      }
+    ],
+    "correctProportions": true,
+    "method": "Native Edge playback. VE remote MP4s through a local video wrapper. Local original playback also reviewed earlier.",
+    "cleanup": {
+      "ownedChrome1643Closed": true,
+      "ownedVite1613And1637Closed": true,
+      "ownedPreview13546Closed": true,
+      "portsFree": [
+        10037,
+        5873,
+        7074
+      ],
+      "edgeGamePages": 0,
+      "ownedMediaTabClosed": true,
+      "telegramPlaying": 0,
+      "telegramTemporaryGuardRemoved": true,
+      "shadowglassFirstVideoRestored": true,
+      "shadowglassSecondVideoPaused": true,
+      "userEdgeOrcaPreserved": true
+    },
+    "limits": [
+      "Physical phone and Telegram Desktop not tested"
+    ],
+    "timingExclusion": "Phase2/3 timings after Telegram868/869delivery lack updated autoplay isolation proof; newclips were playing when final review began. Preserve them as potentially contaminated diagnostics, not performance acceptance."
+  },
+  "followupOperations": {
+    "phase": 3,
+    "worker": "grok-4.6",
+    "accepted": false,
+    "head": "578dd30dca2b551ee2574a7fdf6cce3a4aca2e13",
+    "timingCompleteAt": "2026-10-06T17:12:12.564677+00:00",
+    "fps": {
+      "prior": {
+        "url": "https://9e1d53e5.fardel.pages.dev/?play=&clean=&pixelRatio=1&gpuTiming=",
+        "exit": 0,
+        "meanFps": 233.087558096562,
+        "fps": [
+          231.9673496585041,
+          231.99826730187408,
+          235.2970573293078
+        ],
+        "p99Ms": [
+          5.799999982118607,
+          5.800000011920929,
+          5.5999999940395355
+        ],
+        "worstMs": [
+          9.800000011920929,
+          9.099999994039536,
+          9.400000005960464
+        ],
+        "vsyncCapped": [
+          false,
+          false,
+          true
+        ],
+        "enemies": 7,
+        "physics": true,
+        "errors": []
+      },
+      "current": {
+        "url": "https://b9273b21.fardel.pages.dev/?play=&clean=&pixelRatio=1&gpuTiming=",
+        "exit": 0,
+        "meanFps": 232.95516950277545,
+        "fps": [
+          231.47492355029365,
+          232.07980814046644,
+          235.31077681756628
+        ],
+        "p99Ms": [
+          5.799999982118607,
+          5.799999982118607,
+          5.699999988079071
+        ],
+        "worstMs": [
+          9.299999982118607,
+          9.400000005960464,
+          8.900000005960464
+        ],
+        "vsyncCapped": [
+          false,
+          false,
+          true
+        ],
+        "enemies": 7,
+        "physics": true,
+        "errors": []
+      },
+      "deltaMeanFps": -0.1323885937865441,
+      "causalClaim": false,
+      "phase2PublicFpsRetained": [
+        231.26395414720406,
+        231.74449794257046,
+        234.99825125338515
+      ]
+    },
+    "docs": {
+      "gitDiffCheck": 0,
+      "relativeLinksChecked": 73,
+      "relativeLinksBroken": 0,
+      "skillValidatePython3": "ModuleNotFoundError: yaml",
+      "skillValidateUvPyyaml": "Skill is valid!"
+    },
+    "http": {
+      "missingAssetsV2Js": {
+        "status": 404,
+        "contentType": "text/html; charset=utf-8",
+        "cacheControl": "no-store",
+        "cfCacheStatus": "BYPASS",
+        "assetsStarImmutablePolicyOn404": false
+      },
+      "missingRoute": {
+        "status": 404,
+        "cacheControl": "no-store",
+        "cfCacheStatus": "DYNAMIC"
+      },
+      "root": {
+        "status": 200,
+        "cacheControl": "public, max-age=0, must-revalidate",
+        "cfCacheStatus": "DYNAMIC"
+      },
+      "existingJs": {
+        "status": 200,
+        "contentType": "application/javascript",
+        "cacheControl": "public, max-age=31536000, immutable",
+        "cfCacheStatus": "HIT"
+      },
+      "existingCss": {
+        "status": 200,
+        "contentType": "text/css; charset=utf-8",
+        "cacheControl": "public, max-age=31536000, immutable",
+        "cfCacheStatus": "HIT"
+      }
+    },
+    "deployments": {
+      "current": {
+        "shortId": "b9273b21",
+        "deploymentId": "b9273b21-5ee5-4d4c-acbe-a7d99f5c1877",
+        "createdOn": "2026-10-06T16:59:48.402517Z",
+        "commitHash": "578dd30dca2b551ee2574a7fdf6cce3a4aca2e13",
+        "environment": "production"
+      },
+      "preview": {
+        "shortId": "b5c3b241",
+        "deploymentId": "b5c3b241-9f37-4b8e-952e-abbc26494d79",
+        "createdOn": "2026-10-06T16:58:44.500576Z",
+        "commitHash": "578dd30dca2b551ee2574a7fdf6cce3a4aca2e13",
+        "environment": "preview"
+      },
+      "prior": {
+        "shortId": "9e1d53e5",
+        "deploymentId": "9e1d53e5-eead-471b-bc7c-7d80d3d4a78c",
+        "createdOn": "2026-10-06T16:16:03.441148Z",
+        "commitHash": "772b672457c894962d356b19f91e9e2c4b83f5d9",
+        "environment": "production"
+      }
+    },
+    "pending": {
+      "mediaReviewCompleteFlag": false,
+      "chromeViteDown": "pending until media-review-complete.flag",
+      "finalDocsCommit": false,
+      "tgRecord": "pending until final-docs-commit.txt"
+    },
+    "processes": {
+      "chrome": {
+        "pid": 1643,
+        "cdp": 10037,
+        "pages": 0,
+        "kept": true
+      },
+      "vite": {
+        "launcher": 1613,
+        "listener": 1637,
+        "port": 5873,
+        "kept": true
+      },
+      "preview": {
+        "pid": 13546,
+        "stopped": true
+      },
+      "preserved": {
+        "edge": 2931,
+        "orca": 1889
+      }
+    },
+    "timingEligibleForAcceptance": false
+  },
+  "headerRepair": {
+    "phase": 4,
+    "worker": "grok-4.6",
+    "accepted": false,
+    "head": "6004840807cb47a908fb47dd87848f49f39f3268",
+    "byteIdentity": {
+      "fileCount": 539,
+      "changed": [
+        "_headers"
+      ],
+      "onlyHeadersChanged": true,
+      "priorBytes": 290553281,
+      "newBytes": 290553357
+    },
+    "seal": {
+      "path": ".cache/character-mmo/m10-landscape-2026-10-06/header-pages-seal.json",
+      "sha256": "d6ade4bf91a05f55f6c9930c1a471d85e705e90123e0d9d0abf37543b350c245",
+      "files": 539,
+      "bytes": 290553357,
+      "uncommittedProductInputs": 0
+    },
+    "previousProduction": {
+      "deploymentId": "b9273b21-5ee5-4d4c-acbe-a7d99f5c1877",
+      "source": "578dd30dca2b551ee2574a7fdf6cce3a4aca2e13"
+    },
+    "deployments": {
+      "preview": {
+        "shortId": "b37875cf",
+        "deploymentId": "b37875cf-20ea-4040-9f96-6e1f1ab3b82f",
+        "url": "https://b37875cf.fardel.pages.dev",
+        "alias": "https://m10-headers.fardel.pages.dev",
+        "commitHash": "6004840807cb47a908fb47dd87848f49f39f3268"
+      },
+      "production": {
+        "shortId": "e39117b8",
+        "deploymentId": "e39117b8-db74-4563-a6c0-b428c8d5d10e",
+        "url": "https://e39117b8.fardel.pages.dev",
+        "alias": "https://play.sparkify.dev",
+        "commitHash": "6004840807cb47a908fb47dd87848f49f39f3268"
+      }
+    },
+    "http": {
+      "previewChecked": 540,
+      "previewMatched": true,
+      "productionChecked": 540,
+      "productionMatched": true,
+      "htmlMaxAge60": true,
+      "missing404NoStore": true,
+      "rootLinkPresent": true,
+      "rootBodySha256": "cb52dbddc1c84eb3ce0bc70cc64f0dc2c654d5c09e8d446745bca02e86c6b06a"
+    },
+    "native": {
+      "entry": 0,
+      "exploration": 0,
+      "reusedPriorArmoryDepthWebkitFps": true
+    },
+    "fpsNote": {
+      "phase3PublicMeans": {
+        "prior": 233.09,
+        "current": 232.96
+      },
+      "notVite": true,
+      "historical245to250WerePublic": true
+    },
+    "cold": {
+      "exit": 1,
+      "aborted": false,
+      "budget": {
+        "maxMs": 1000,
+        "expectedRuns": 20,
+        "recordedRuns": 20,
+        "validRuns": 20,
+        "complete": true,
+        "misses": 14,
+        "p95Ms": 1219.5999999940395,
+        "worstMs": 1358.5,
+        "passed": false
+      },
+      "playableMs": [
+        1088.8,
+        1207.1,
+        942.1,
+        949.3,
+        1159.3,
+        1132.5,
+        1219.6,
+        1085.6,
+        1175.6,
+        939.8,
+        1063.6,
+        1096,
+        921.3,
+        1358.5,
+        1075.2,
+        1157.1,
+        923.3,
+        1152,
+        1107.6,
+        918
+      ],
+      "underBudgetRuns": [
+        3,
+        4,
+        10,
+        13,
+        17,
+        20
+      ],
+      "jsServedAsHtml": false,
+      "timingEligibleForAcceptance": true,
+      "isolationReceipt": "media-review.json and media-review-complete.flag; Telegram guardactive, Shadowglasspaused, ownedmediatabclosed"
+    },
+    "processes": {
+      "chrome": {
+        "pid": 1643,
+        "cdp": 10037,
+        "pages": 0,
+        "kept": true
+      },
+      "vite": {
+        "launcher": 1613,
+        "listener": 1637,
+        "port": 5873,
+        "kept": true
+      },
+      "preview": {
+        "stopped": true
+      },
+      "preserved": {
+        "edge": 2931,
+        "orca": 1889
+      }
+    },
+    "coldRows": [
+      {
+        "run": 1,
+        "playableMs": 1088.800000011921,
+        "physics": true,
+        "grounded": true,
+        "errors": [],
+        "gpuErrors": []
+      },
+      {
+        "run": 2,
+        "playableMs": 1207.0999999940395,
+        "physics": true,
+        "grounded": true,
+        "errors": [],
+        "gpuErrors": []
+      },
+      {
+        "run": 3,
+        "playableMs": 942.1000000238419,
+        "physics": true,
+        "grounded": true,
+        "errors": [],
+        "gpuErrors": []
+      },
+      {
+        "run": 4,
+        "playableMs": 949.3000000119209,
+        "physics": true,
+        "grounded": true,
+        "errors": [],
+        "gpuErrors": []
+      },
+      {
+        "run": 5,
+        "playableMs": 1159.300000011921,
+        "physics": true,
+        "grounded": true,
+        "errors": [],
+        "gpuErrors": []
+      },
+      {
+        "run": 6,
+        "playableMs": 1132.5,
+        "physics": true,
+        "grounded": true,
+        "errors": [],
+        "gpuErrors": []
+      },
+      {
+        "run": 7,
+        "playableMs": 1219.5999999940395,
+        "physics": true,
+        "grounded": true,
+        "errors": [],
+        "gpuErrors": []
+      },
+      {
+        "run": 8,
+        "playableMs": 1085.5999999940395,
+        "physics": true,
+        "grounded": true,
+        "errors": [],
+        "gpuErrors": []
+      },
+      {
+        "run": 9,
+        "playableMs": 1175.6000000238419,
+        "physics": true,
+        "grounded": true,
+        "errors": [],
+        "gpuErrors": []
+      },
+      {
+        "run": 10,
+        "playableMs": 939.7999999821186,
+        "physics": true,
+        "grounded": true,
+        "errors": [],
+        "gpuErrors": []
+      },
+      {
+        "run": 11,
+        "playableMs": 1063.5999999940395,
+        "physics": true,
+        "grounded": true,
+        "errors": [],
+        "gpuErrors": []
+      },
+      {
+        "run": 12,
+        "playableMs": 1096,
+        "physics": true,
+        "grounded": true,
+        "errors": [],
+        "gpuErrors": []
+      },
+      {
+        "run": 13,
+        "playableMs": 921.3000000119209,
+        "physics": true,
+        "grounded": true,
+        "errors": [],
+        "gpuErrors": []
+      },
+      {
+        "run": 14,
+        "playableMs": 1358.5,
+        "physics": true,
+        "grounded": true,
+        "errors": [],
+        "gpuErrors": []
+      },
+      {
+        "run": 15,
+        "playableMs": 1075.2000000178814,
+        "physics": true,
+        "grounded": true,
+        "errors": [],
+        "gpuErrors": []
+      },
+      {
+        "run": 16,
+        "playableMs": 1157.0999999940395,
+        "physics": true,
+        "grounded": true,
+        "errors": [],
+        "gpuErrors": []
+      },
+      {
+        "run": 17,
+        "playableMs": 923.3000000119209,
+        "physics": true,
+        "grounded": true,
+        "errors": [],
+        "gpuErrors": []
+      },
+      {
+        "run": 18,
+        "playableMs": 1152,
+        "physics": true,
+        "grounded": true,
+        "errors": [],
+        "gpuErrors": []
+      },
+      {
+        "run": 19,
+        "playableMs": 1107.5999999940395,
+        "physics": true,
+        "grounded": true,
+        "errors": [],
+        "gpuErrors": []
+      },
+      {
+        "run": 20,
+        "playableMs": 918,
+        "physics": true,
+        "grounded": true,
+        "errors": [],
+        "gpuErrors": []
+      }
+    ],
+    "coldRawSha256": "951cee2af0dad5ba2a7f987f4449697ddd3136a81cc7921d66b8679b9327c7f6",
+    "rootHeaders": {
+      "localIndexSha256": "cb52dbddc1c84eb3ce0bc70cc64f0dc2c654d5c09e8d446745bca02e86c6b06a",
+      "localAshenSha256": "cb52dbddc1c84eb3ce0bc70cc64f0dc2c654d5c09e8d446745bca02e86c6b06a",
+      "localIndexBytes": 87567,
+      "rows": [
+        {
+          "url": "https://play.sparkify.dev/",
+          "status": 200,
+          "cacheControl": "public, max-age=60, must-revalidate",
+          "link": true,
+          "contentType": "text/html; charset=utf-8",
+          "cfCacheStatus": "DYNAMIC",
+          "cfRay": "a46657dd3f3a4862-DFW",
+          "bytes": 87567,
+          "sha256": "cb52dbddc1c84eb3ce0bc70cc64f0dc2c654d5c09e8d446745bca02e86c6b06a",
+          "equalsLocalIndex": true,
+          "equalsLocalAshen": true
+        },
+        {
+          "url": "https://play.sparkify.dev/index.html",
+          "status": 200,
+          "cacheControl": "public, max-age=60, must-revalidate",
+          "link": true,
+          "contentType": "text/html; charset=utf-8",
+          "cfCacheStatus": "DYNAMIC",
+          "cfRay": "a46657ddab7978d4-LAX",
+          "bytes": 87567,
+          "sha256": "cb52dbddc1c84eb3ce0bc70cc64f0dc2c654d5c09e8d446745bca02e86c6b06a",
+          "equalsLocalIndex": true,
+          "equalsLocalAshen": true
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach.html",
+          "status": 200,
+          "cacheControl": "public, max-age=60, must-revalidate",
+          "link": true,
+          "contentType": "text/html; charset=utf-8",
+          "cfCacheStatus": "DYNAMIC",
+          "cfRay": "a46657dd0be648f0-LAX",
+          "bytes": 87567,
+          "sha256": "cb52dbddc1c84eb3ce0bc70cc64f0dc2c654d5c09e8d446745bca02e86c6b06a",
+          "equalsLocalIndex": true,
+          "equalsLocalAshen": true
+        },
+        {
+          "url": "https://play.sparkify.dev/ashen-reach",
+          "status": 200,
+          "cacheControl": "public, max-age=60, must-revalidate",
+          "link": true,
+          "contentType": "text/html; charset=utf-8",
+          "cfCacheStatus": "DYNAMIC",
+          "cfRay": "a46657dc9a3648f0-LAX",
+          "bytes": 87567,
+          "sha256": "cb52dbddc1c84eb3ce0bc70cc64f0dc2c654d5c09e8d446745bca02e86c6b06a",
+          "equalsLocalIndex": true,
+          "equalsLocalAshen": true
+        },
+        {
+          "url": "https://e39117b8.fardel.pages.dev/",
+          "status": 200,
+          "cacheControl": "public, max-age=60, must-revalidate",
+          "link": true,
+          "contentType": "text/html; charset=utf-8",
+          "cfCacheStatus": null,
+          "cfRay": "a46657dd2cf816df-LAX",
+          "bytes": 87567,
+          "sha256": "cb52dbddc1c84eb3ce0bc70cc64f0dc2c654d5c09e8d446745bca02e86c6b06a",
+          "equalsLocalIndex": true,
+          "equalsLocalAshen": true
+        }
+      ]
+    }
+  },
+  "finalOperations": {
+    "phase": 5,
+    "worker": "grok-4.6",
+    "accepted": false,
+    "head": "6004840807cb47a908fb47dd87848f49f39f3268",
+    "production": "e39117b8-db74-4563-a6c0-b428c8d5d10e",
+    "fps": {
+      "exit": 0,
+      "meanFps": 246.9522362891729,
+      "fps": [
+        244.38391763936409,
+        246.20202558623174,
+        250.27076564192285
+      ],
+      "p99Ms": [
+        5.399999976158142,
+        5.300000011920929,
+        5.199999988079071
+      ],
+      "worstMs": [
+        10,
+        9.099999994039536,
+        9.5
+      ],
+      "vsyncCapped": [
+        true,
+        false,
+        false
+      ],
+      "enemies": 7,
+      "physics": true,
+      "errors": [],
+      "mediaIsolated": true,
+      "phase2Phase3PotentiallyContaminated": true
+    },
+    "coldNotRepeated": {
+      "misses": 14,
+      "p95Ms": 1219.6,
+      "worstMs": 1358.5,
+      "passed": false
+    },
+    "cleanup": {
+      "slot": 7,
+      "chromePidStopped": 1643,
+      "vitePidStopped": 1613,
+      "portsFree": [
+        10037,
+        5873,
+        7074
+      ],
+      "previewAlreadyStopped": 13546,
+      "preserved": {
+        "edge": 2931,
+        "orca": 1889
+      },
+      "ownedGameInstancesRemaining": 0
+    },
+    "gitDiffCheck": 0,
+    "ledgerAssociation": "Pending final documentation commit; local final-ledger.json will associate existing868/869 with thatHEAD, without resending."
+  },
+  "finalIsolatedFps": {
+    "conditions": {
+      "cpu": "Apple M1 Max",
+      "url": "https://play.sparkify.dev/?play=&clean=&pixelRatio=1&gpuTiming=",
+      "viewport": [
+        1280,
+        720
+      ],
+      "seconds": 12,
+      "runs": 3,
+      "uncappedRequired": true,
+      "recording": false,
+      "race": "human",
+      "outfit": null,
+      "orcAssetsOverride": null,
+      "routes": [
+        "bridge"
+      ],
+      "recordCapped": true,
+      "savedAppearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v7",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {
+          "head": "human-prime-v1",
+          "hair": "human-ponytail01-v1"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "bastionShoulders"
+        }
+      }
+    },
+    "rows": [
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 240.24985985654203,
+          "meanMs": 4.162333333293597,
+          "medianMs": 4.0999999940395355,
+          "p95Ms": 4.800000011920929,
+          "p99Ms": 5.299999982118607,
+          "worstMs": 10,
+          "minMs": 3.300000011920929,
+          "above8_333": 2,
+          "above16_667": 0,
+          "drawCalls": 461,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 786917,
+          "drawBatches": 57,
+          "worldTriangles": 786917,
+          "sceneTriangles": 1052995,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 58,
+          "totalMeshes": 149,
+          "triangleCountMs": 0.29999998211860657,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": true,
+          "gpuTimingReadback": "ok",
+          "gpuMs": 0.9942320415180254,
+          "gpuMeanMs": 1.0901002199387007,
+          "gpuP95Ms": 1.3166581577506737,
+          "gpuSamples": 600,
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.162 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.600-5.300 ms (full range 3.300-10.000 ms)"
+        },
+        "x": 0,
+        "z": 299.6642234229982,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "bridge",
+        "run": 1,
+        "before": {
+          "x": 0,
+          "z": 215.62998257906975,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2934,
+          "fps": 244.38391763936409,
+          "meanMs": 4.091922290384485,
+          "medianMs": 4.0999999940395355,
+          "p95Ms": 5,
+          "p99Ms": 5.399999976158142,
+          "worstMs": 10,
+          "minMs": 2.5999999940395355,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.092 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.100-5.400 ms (full range 2.600-10.000 ms)"
+        },
+        "tails": {
+          "samples": 2934,
+          "meanMs": 4.091922290384485,
+          "meanFps": 244.38391763936409,
+          "p50Ms": 4.0999999940395355,
+          "p95Ms": 5,
+          "p99Ms": 5.399999976158142,
+          "maxMs": 10,
+          "above6_94": 4,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 244.8180186049786,
+          "meanMs": 4.084666666686535,
+          "medianMs": 4,
+          "p95Ms": 5,
+          "p99Ms": 5.200000017881393,
+          "worstMs": 8.599999994039536,
+          "minMs": 2.5,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 461,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 786917,
+          "drawBatches": 57,
+          "worldTriangles": 786917,
+          "sceneTriangles": 1052999,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 58,
+          "totalMeshes": 149,
+          "triangleCountMs": 0.19999998807907104,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": true,
+          "gpuTimingReadback": "ok",
+          "gpuMs": 0.9748761152548853,
+          "gpuMeanMs": 0.9946697309308867,
+          "gpuP95Ms": 1.2365810093795302,
+          "gpuSamples": 600,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.085 ms is not locked to a known display interval"
+        },
+        "x": 0,
+        "z": 299.6597708693359,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "bridge",
+        "run": 2,
+        "before": {
+          "x": 0,
+          "z": 215.618477080191,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2956,
+          "fps": 246.20202558623174,
+          "meanMs": 4.061705006767916,
+          "medianMs": 4,
+          "p95Ms": 5,
+          "p99Ms": 5.300000011920929,
+          "worstMs": 9.099999994039536,
+          "minMs": 2.5,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.062 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2956,
+          "meanMs": 4.061705006767916,
+          "meanFps": 246.20202558623174,
+          "p50Ms": 4,
+          "p95Ms": 5,
+          "p99Ms": 5.300000011920929,
+          "maxMs": 9.099999994039536,
+          "above6_94": 4,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 245.14811031664965,
+          "meanMs": 4.079166666666667,
+          "medianMs": 4.0999999940395355,
+          "p95Ms": 4.899999976158142,
+          "p99Ms": 5.100000023841858,
+          "worstMs": 6.5,
+          "minMs": 2.7999999821186066,
+          "above8_333": 0,
+          "above16_667": 0,
+          "drawCalls": 461,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 786917,
+          "drawBatches": 57,
+          "worldTriangles": 786917,
+          "sceneTriangles": 1052995,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 58,
+          "totalMeshes": 149,
+          "triangleCountMs": 0.09999999403953552,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": true,
+          "gpuTimingReadback": "ok",
+          "gpuMs": 1.0076044777678332,
+          "gpuMeanMs": 1.002373555335682,
+          "gpuP95Ms": 1.2426312477430965,
+          "gpuSamples": 600,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.079 ms is not locked to a known display interval"
+        },
+        "x": 0,
+        "z": 299.6442002201167,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "bridge",
+        "run": 3,
+        "before": {
+          "x": 0,
+          "z": 215.62772347189085,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 3004,
+          "fps": 250.27076564192285,
+          "meanMs": 3.995672436750999,
+          "medianMs": 4,
+          "p95Ms": 4.899999976158142,
+          "p99Ms": 5.199999988079071,
+          "worstMs": 9.5,
+          "minMs": 2.5,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 3.996 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 3004,
+          "meanMs": 3.995672436750999,
+          "meanFps": 250.27076564192285,
+          "p50Ms": 4,
+          "p95Ms": 4.899999976158142,
+          "p99Ms": 5.199999988079071,
+          "maxMs": 9.5,
+          "above6_94": 4,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      }
+    ],
+    "errors": []
+  },
+  "finalIsolatedFpsSha256": "11541967fc6acfed788d6c53f5fa6f5b4e1fad25835112282989d7d61781c8c4",
+  "cleanup": {
+    "ownedChrome1643Closed": true,
+    "ownedVite1613And1637Closed": true,
+    "ownedPreview13546Closed": true,
+    "portsFree": [
+      10037,
+      5873,
+      7074
+    ],
+    "edgeGamePages": 0,
+    "ownedMediaTabClosed": true,
+    "telegramPlaying": 0,
+    "telegramTemporaryGuardRemoved": true,
+    "shadowglassFirstVideoRestored": true,
+    "shadowglassSecondVideoPaused": true,
+    "userEdgeOrcaPreserved": true
+  },
+  "screenshots": [
+    {
+      "path": "568x320.png",
+      "sha256": "f547c1dfb2393454fd0ca678a6f06ac294d7a7e2fe5cc2bdbefbc5485d9ccf54",
+      "source": "Grok actual production native creator capture, root visually reviewed"
+    },
+    {
+      "path": "844x390.png",
+      "sha256": "f83d10aaab39a9d415255d554d309672b06c9f8a2f7fd54986c568af959319c8",
+      "source": "Grok actual production native creator capture, root visually reviewed"
+    }
+  ]
+}
