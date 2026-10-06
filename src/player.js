@@ -34,7 +34,10 @@ export function loadHavok() {
     // A previous Pages deploy cached an HTML fallback at the old URL under
     // an immutable header. The versioned request bypasses that stale entry.
     havokRuntime ||= HavokPhysics({
-        locateFile: (file) => file.endsWith(".wasm") ? "/HavokPhysics.wasm?v=20260923-1" : file,
+        // Production serves these identical bytes as content-addressed HTTP
+        // Brotli; correct MIME preserves the package's instantiateStreaming.
+        // https://developer.mozilla.org/en-US/docs/WebAssembly/Reference/JavaScript_interface/instantiateStreaming_static
+        locateFile: (file) => file.endsWith(".wasm") ? (import.meta.env?.VITE_HAVOK_WASM_URL || "/HavokPhysics.wasm?v=20260923-1") : file,
     });
     return havokRuntime;
 }

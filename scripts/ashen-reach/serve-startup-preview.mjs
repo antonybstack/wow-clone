@@ -52,7 +52,7 @@ http
         req.headers["accept-encoding"]?.includes("br") && encoded.has(file);
       const bytes = compressed ? encoded.get(file) : await fs.readFile(file);
       res.writeHead(200, {
-        "Content-Type": mime[path.extname(file)] || "application/octet-stream",
+        "Content-Type": file.endsWith('.wasm.br') ? 'application/wasm' : mime[path.extname(file)] || "application/octet-stream",
         "Content-Length": bytes.length,
         "Cache-Control": "public, max-age=3600",
         Vary: "Accept-Encoding",

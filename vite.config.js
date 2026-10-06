@@ -3,12 +3,14 @@ import {verifyProductionHumanIdentities} from './scripts/character-assets/verify
 import {verifyStartupAssets} from './scripts/ashen-reach/startup-provenance.mjs';
 import {verifyStarterGeometry} from './scripts/ashen-reach/verify-starter-geometry.mjs';
 import {writeEarlyHints} from './scripts/ashen-reach/early-hints.mjs';
+import {havokDeliveryPlugin} from './scripts/ashen-reach/havok-delivery.mjs';
 import {startupAppearanceContract,savedPreloadModules,savedPreloadScript,injectHeadScript} from './scripts/ashen-reach/saved-preload.mjs';
 import { defineConfig } from "vite";
 import {readFileSync,createReadStream,statSync} from 'node:fs';
 import {resolve} from 'node:path';
 
 const pages = process.env.ASHEN_PAGES === "1";
+const havokDelivery=havokDeliveryPlugin();
 const humanShapeManifest=JSON.parse(readFileSync('public/ashen-reach/human-shape-v1/manifest.json','utf8'));
 const humanIdentityManifest=JSON.parse(readFileSync('public/ashen-reach/human-identity-v1/manifest.json','utf8'));
 const starterBuild=process.env.VITE_FAST_START!=='0';
@@ -166,6 +168,7 @@ export default defineConfig({
     watch: {ignored: ['**/.cache/**', '**/ve-capture/**', '**/docs/baselines/**']},
   },
   plugins: [
+    havokDelivery,
     // Local audited pilot only; no preview middleware or public asset publication.
     {name:'dev-coverage-pilot',configureServer(server){server.middlewares.use(coveragePilotAsset);}},
     // Prepared inputs are allowed to change while authoring. Enforce sealed
@@ -328,7 +331,7 @@ export default defineConfig({
           // Required starter resources begin with the HTML. NPCs, full-size
           // textures and alternate race packs remain background downloads.
           const tags = starterBuild ? [
-            ['/HavokPhysics.wasm?v=20260923-1','fetch'],
+            [havokDelivery.url,'fetch'],
             ['/ashen-reach/startup/starter/manifest.json','fetch'],
             ['/ashen-reach/startup/starter/'+starterWorldManifest.geometry.file,'fetch'],
             // HTML discovery avoids a module + manifest round trip for the
@@ -345,7 +348,7 @@ export default defineConfig({
           const links = tags
             .map(([href, as]) =>
               as === "fetch"
-                ? `<link rel="preload" href="${href}" as="fetch" crossorigin fetchpriority="${(href.endsWith('.bin')||href.endsWith('.br'))?'low':'auto'}">`
+                ? `<link rel="preload" href="${href}" as="fetch" crossorigin fetchpriority="${href!==havokDelivery.url&&(href.endsWith('.bin')||href.endsWith('.br'))?'low':'auto'}">`
                 : `<link rel="preload" href="${href}" as="image">`,
             )
             .join("");

@@ -59,3 +59,31 @@ Optional `ASHEN_PROBE_GPU_EVENTS=1`, `ASHEN_PROBE_CHROME_TRACE=1` and `ASHEN_PRO
 ## Historical notes
 
 The [previous startup document](archive/state/startup-load-before-character-vision-2026-09-27.md) preserves older texture optimization and whole-world overlay assumptions. It is useful lineage, not the current readiness contract.
+
+## Havok delivery
+
+Production builds emit a content-addressed `physics/HavokPhysics-<hash>.wasm.br`
+from the pinned, unchanged `public/HavokPhysics.wasm`. Build-time Brotli quality 11
+reduces the encoded binary to 501,493 bytes. Vite's shared delivery plugin selects
+one URL for the HTML preload and the existing memoized Havok `locateFile` option.
+The browser owns HTTP decoding and Emscripten owns streaming compilation; no
+additional runtime loader or decompressor is introduced. Development keeps the
+versioned public endpoint. The original WASM remains in the release for legacy
+consumers and the existing deployment integrity guard.
+
+The generated response requires `Content-Type: application/wasm`,
+`Content-Encoding: br`, and immutable `Cache-Control` with `no-transform`.
+[Streaming compilation](https://developer.mozilla.org/en-US/docs/WebAssembly/Reference/JavaScript_interface/instantiateStreaming_static)
+requires the WASM MIME type; [Cloudflare compression](https://developers.cloudflare.com/speed/optimization/content/compression/)
+must preserve the prepared representation. The full release verifier requests
+browser compression formats and compares the decoded response with both the
+prepared file and original WASM, including MIME, encoding and caching checks.
+
+The local `wrangler pages dev` version used on 2026-10-05 double-encoded this
+already-compressed WASM. Its failed startup reports are retained; they are not
+valid timing evidence. The real Pages preview returned the exact decoded binary.
+Use the existing compressed Node preview for local load measurements and validate
+the actual Pages preview's response headers and native browser behavior before
+production. Do not remove the MIME check or substitute a fallback physics engine
+to make a broken response pass. See `scripts/test-havok-delivery.mjs` for the
+build/URL/preview contract.

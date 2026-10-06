@@ -43,7 +43,7 @@ async function visit(label, pathAndQuery) {
     results.push({
       label, requested: pathAndQuery, playableMs: Math.round(playableMs), ...state,
       navigations: redirects.length,
-      havokWasmRequests: requests.filter(url => /HavokPhysics\.wasm/.test(url)).length,
+      havokWasmRequests: requests.filter(url => /HavokPhysics(?:-[a-f0-9]{12})?\.wasm/.test(url)).length,
       documentRequests: requests.filter(url => /\.html(\?|$)|\/(\?|$)/.test(new URL(url).pathname + (new URL(url).search ? '?' : ''))).length,
     });
   } finally {
