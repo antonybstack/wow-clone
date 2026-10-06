@@ -8,6 +8,21 @@ import {startupAppearanceContract,savedPreloadModules,savedPreloadScript,injectH
 import { defineConfig } from "vite";
 import {readFileSync,createReadStream,statSync} from 'node:fs';
 import {resolve} from 'node:path';
+import {brotliCompressSync} from 'node:zlib';
+
+// Diagnostic native bundler alternative: share the small, pure save validator
+// with the early fetch entry instead of waiting on two dynamic module requests.
+// Selection remains conditional at runtime; no second decoder or promise cache.
+// https://rolldown.rs/reference/TypeAlias.CodeSplittingGroup
+const coalesceSavedStartup=process.env.ASHEN_SAVED_BOOTSTRAP==='1';
+const savedStartupModules=new Set([
+  'src/ashen-reach/startup-preload.js','src/ashen-reach/startup-fetch.js','src/ashen-reach/startup-appearance.js',
+  'src/ashen-reach/human-identity-assets.js',
+  'src/character/appearance/store.js','src/character/appearance/contract.js',
+  'src/character/appearance/codec.js','src/character/appearance/from-equipment.js',
+  'src/character/appearance/human-identity.js',
+  ...['equipment-catalog','equipment-contract','dye-palette','coverage-contract','coverage-manifest'].map(name=>`src/ashen-reach/${name}.js`),
+].map(file=>resolve(file)));
 
 const pages = process.env.ASHEN_PAGES === "1";
 const havokDelivery=havokDeliveryPlugin();
@@ -141,6 +156,7 @@ export default defineConfig({
         // Vite's shared preload helper otherwise lands inside the Lite chunk,
         // making a pure dynamic storage import wait for the entire renderer.
         {name:'module-preload',test:/vite\/preload-helper/,priority:100,includeDependenciesRecursively:false},
+        ...(coalesceSavedStartup?[{name:'startup-bootstrap',test:id=>savedStartupModules.has(id),priority:90,includeDependenciesRecursively:false}]:[]),
         // Keep the early entry self-contained; otherwise its tiny shared helper
         // requests queue behind Lite and recreate the serial discovery delay.
         {name:'startup-bootstrap',test:/src\/ashen-reach\/startup-(?:preload|fetch|appearance)\.js$/,includeDependenciesRecursively:false},
@@ -199,7 +215,8 @@ export default defineConfig({
         const pending=[entry],seen=new Set();
         while(pending.length) {
           const chunk=pending.pop();if(seen.has(chunk.fileName))continue;seen.add(chunk.fileName);
-          if(Object.keys(chunk.modules).some(id=>id.includes('/node_modules/@babylonjs/lite/')||id.includes('/src/character/appearance/')))throw Error('Early character entry eagerly imports optional renderer/storage code');
+          if(Object.keys(chunk.modules).some(id=>id.includes('/node_modules/@babylonjs/lite/')||(!coalesceSavedStartup&&id.includes('/src/character/appearance/'))))throw Error('Early character entry eagerly imports optional renderer/storage code');
+          if(coalesceSavedStartup&&Object.keys(chunk.modules).some(id=>id.includes('/src/')&&!savedStartupModules.has(id)))throw Error('Early character entry exceeds its pure saved-module allowlist');
           for(const name of chunk.imports){const dependency=bundle[name];if(dependency?.type==='chunk')pending.push(dependency);}
         }
         const chunks=Object.values(bundle).filter(item=>item.type==='chunk');
@@ -211,6 +228,9 @@ export default defineConfig({
           if(owners.length!==1||!seen.has(owners[0].fileName))throw Error(`Early startup must own one shared ${file} module`);
         }
         const earlyCode=[...seen].map(name=>bundle[name]?.code||'').join('\n');
+        // Bound the total transferred pure graph, including already-shared
+        // equipment constants. A default player still fetches no custom assets.
+        if(coalesceSavedStartup&&brotliCompressSync(earlyCode).length>24*1024)throw Error('Coalesced startup exceeds 24 KiB compressed code budget');
         if(starterBuild&&(!earlyCode.includes(starterCharacterManifest.provenance.sha256)||!earlyCode.includes(humanShapeManifest.provenance.sha256)))throw Error('Early shared loader lost its compiled provenance guards');
         const main=chunks.find(chunk=>chunk.isEntry&&chunk.name==='ashenReach');
         if(!main)throw Error('Missing normal game entry');
@@ -229,7 +249,7 @@ export default defineConfig({
         const mainPending=[main],mainSeen=new Set();
         while(mainPending.length) {
           const chunk=mainPending.pop();if(mainSeen.has(chunk.fileName))continue;mainSeen.add(chunk.fileName);
-          if(Object.keys(chunk.modules).some(id=>id.includes('/src/character/appearance/')))throw Error('Unsaved default startup eagerly imports optional appearance storage');
+          if(Object.keys(chunk.modules).some(id=>id.includes('/src/character/appearance/')&&(!coalesceSavedStartup||!savedStartupModules.has(id))))throw Error('Unsaved default startup eagerly imports optional appearance storage');
           if(Object.keys(chunk.modules).some(id=>id.includes('/node_modules/@colyseus/')||id.includes('/src/character/region-crowd/')))
             throw Error('Normal startup eagerly imports optional shared-region dependencies');
           for(const name of chunk.imports){const dependency=bundle[name];if(dependency?.type==='chunk')mainPending.push(dependency);}
