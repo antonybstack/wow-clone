@@ -1,6 +1,11 @@
 # Character normal precision investigation — 2026-10-06
 
-**Offline candidate only; no published assets or runtime changes.** Normal-only
+**Historical offline investigation.** Integration is now being verified in the
+[startup normal release candidate](startup-normal-release-2026-10-06.md), after
+the bundling preview reduced the remaining miss to 25 ms. The decisions below
+record the earlier, larger startup gap.
+
+**Original conclusion: offline candidate only; no published assets or runtime changes.** Normal-only
 packing saves too little to justify asset regeneration and visual acceptance as
 the next one-second startup intervention. Keep the tested helper available for a
 future asset pass. Production remains `6004840` / `e39117b8`.

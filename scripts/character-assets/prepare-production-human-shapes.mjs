@@ -18,6 +18,8 @@ import {EQUIPMENT_ITEMS} from '../../src/ashen-reach/equipment-catalog.js';
 import {retainFullStartupGeometry} from './startup-geometry-policy.mjs';
 import {compileCoverageManifest,writeCoverageCompilation} from './compile-coverage-manifest.mjs';
 import {compactPlayableAnimations} from './compact-playable-animations.mjs';
+import {quantizeCharacterNormals,assertCharacterNormalProof,characterNormalProof} from './quantize-character-normals.mjs';
+import {compactNormalPolicy} from './compact-normal-policy.mjs';
 import {startupProvenance} from '../ashen-reach/startup-provenance.mjs';
 const out=process.env.ASHEN_PRODUCTION_SHAPE_OUT || 'public/ashen-reach/human-shape-v1';
 const urlRoot='/ashen-reach/human-shape-v1';
@@ -68,10 +70,12 @@ try {
       // same helper and metadata pattern as the identity pack (detail 'playable').
       // https://gltf-transform.dev/modules/functions/functions/prune
       const playableClips=await compactPlayableAnimations(doc);
+      const normals=await quantizeCharacterNormals(doc,{method:'exp16'});
       const compact=await io.writeBinary(doc),packed=gzipSync(compact,{level:9});
+      assertCharacterNormalProof(normals.before,characterNormalProof((await io.readBinary(compact)).getRoot()),normals.maxError);
       const compactName=`${id}-compact-${sha(packed).slice(0,12)}.bin`;
       await fs.writeFile(path.join(out,compactName),packed);
-      manifest.compactItems[id]={...manifest.items[id],url:`${urlRoot}/${compactName}`,bytes:compact.length,encodedBytes:packed.length,sha256:sha(compact),detail:'playable',playableClips};
+      manifest.compactItems[id]={...manifest.items[id],url:`${urlRoot}/${compactName}`,bytes:compact.length,encodedBytes:packed.length,sha256:sha(compact),detail:'playable',playableClips,normalPacking:compactNormalPolicy(normals)};
     }
     else if(retainFullStartupGeometry(doc.getRoot(),EQUIPMENT_ITEMS[id]))manifest.compactItems[id]=manifest.items[id];
     else {
@@ -79,10 +83,14 @@ try {
       // boundaries and use this only for first-play clothing; full detail follows after play.
       // https://gltf-transform.dev/modules/functions/functions/simplify
       await doc.transform(simplify({simplifier:MeshoptSimplifier,ratio:.4,error:.002,lockBorder:true}));
+      // Preserve the hood's reviewed opening records, including exact normals.
+      // Round eligible cloth before coverage partitioning so its source proof stays exact.
+      const normals=id==='graveweaverHood'?null:await quantizeCharacterNormals(doc,{method:'exp16'});
       const compact=await io.writeBinary(doc),packed=gzipSync(compact,{level:9});
+      if(normals)assertCharacterNormalProof(normals.before,characterNormalProof((await io.readBinary(compact)).getRoot()),normals.maxError);
       const compactName=`${id}-compact-${sha(packed).slice(0,12)}.bin`;
       await fs.writeFile(path.join(out,compactName),packed);
-      manifest.compactItems[id]={...manifest.items[id],url:`${urlRoot}/${compactName}`,bytes:compact.length,encodedBytes:packed.length,sha256:sha(compact),detail:'startup',simplification:{ratio:.4,error:.002,lockBorder:true}};
+      manifest.compactItems[id]={...manifest.items[id],url:`${urlRoot}/${compactName}`,bytes:compact.length,encodedBytes:packed.length,sha256:sha(compact),detail:'startup',simplification:{ratio:.4,error:.002,lockBorder:true},...(normals?{normalPacking:compactNormalPolicy(normals)}:{})};
     }
     console.log(`${id}: ${encoded.length} full / ${manifest.compactItems[id].encodedBytes} compact bytes`);
   }
@@ -91,7 +99,7 @@ try {
   await writeCoverageCompilation(coverage);manifest=coverage.manifest;
   manifest.coverageProof=coverage.reports;
   manifest.startup={textures:manifest.items.body.textures};
-  manifest.provenance=await startupProvenance(['scripts/character-assets/prepare-production-human-shapes.mjs','scripts/character-assets/build-human-shape-family.mjs','scripts/character-assets/build-garment-shape-family.mjs','scripts/character-assets/startup-geometry-policy.mjs','scripts/character-assets/compile-coverage-manifest.mjs','scripts/character-assets/derive-coverage-geosets.mjs','scripts/character-assets/partition-coverage-mesh.mjs','scripts/character-assets/verify-coverage-partition.mjs','src/ashen-reach/coverage-contract.js','src/ashen-reach/coverage-pilot.js','src/ashen-reach/equipment-catalog.js','src/ashen-reach/equipment-contract.js'],['docs/baselines/character-mmo/m004/makehuman-girth.json','public/ashen-reach/equipment/manifest.json',...Object.keys(base.items).map(id=>`public/ashen-reach/equipment/${id}.glb`)]);
+  manifest.provenance=await startupProvenance(['scripts/character-assets/prepare-production-human-shapes.mjs','scripts/character-assets/quantize-character-normals.mjs','scripts/character-assets/compact-normal-policy.mjs','scripts/character-assets/human-identity-proof.mjs','scripts/character-assets/build-human-shape-family.mjs','scripts/character-assets/build-garment-shape-family.mjs','scripts/character-assets/startup-geometry-policy.mjs','scripts/character-assets/compile-coverage-manifest.mjs','scripts/character-assets/derive-coverage-geosets.mjs','scripts/character-assets/partition-coverage-mesh.mjs','scripts/character-assets/verify-coverage-partition.mjs','src/ashen-reach/coverage-contract.js','src/ashen-reach/coverage-pilot.js','src/ashen-reach/equipment-catalog.js','src/ashen-reach/equipment-contract.js'],['docs/baselines/character-mmo/m004/makehuman-girth.json','public/ashen-reach/equipment/manifest.json',...Object.keys(base.items).map(id=>`public/ashen-reach/equipment/${id}.glb`)]);
   manifest.reproduction={neutralIdentity:source.neutralIdentity,clips:source.clips,girthSource:source.girthSource,
     garments:fits.garments.map(({item,source,pieces,hems})=>({item,source,pieces,hems}))};
   manifest.tooling={node:process.versions.node};

@@ -143,3 +143,26 @@ finds 5173/9337 free and no Chrome game browser. All Grok workers finished.
 Temporary media guards are removed; original Telegram/reference playback is
 restored. The Cloudflare login tab is the sole owned browser follow-up. It is not
 a game renderer. No new visual release or Telegram motion delivery is claimed.
+
+
+## Priority hypothesis follow-up
+
+Two diagnostic visits of preview `498be045` record native Chrome network priorities
+with `Network.requestWillBeSent` and `Network.resourceChangedPriority`. The saved
+startup facade, shared store, renderer and body all start at **High** priority;
+no changes occur before play. CSS starts VeryHigh; clothing starts Low. The facade
+and store start within 0.1 ms of one another. Adding `fetchpriority="high"` would
+not change the observed critical requests, so that hypothesis is closed without
+a product change. The probe now retains initial priority and changes in its receipt.
+
+These visits reach grounded play at 968.8 and 887.6 ms, without runtime errors.
+They are diagnostics, not replacements for the failed twenty-start gate. Both use
+fresh profiles/processes, disabled HTTP cache, 50 Mbit/s and guarded background
+media. Owned browser PIDs 8702/8784 were closed; unrelated Edge/Orca preserved.
+Evidence: `.cache/character-mmo/startup-priority-2026-10-06/ops-observe.md` and
+`observe-1.json` / `observe-2.json`.
+
+The next candidate applies the already tested floating normal filter to eligible
+compact bodies and clothing, with exact hood and rigid-item controls. Expected
+payload margin is about 29 ms at 50 Mbit/s; this is a hypothesis, not a measured
+improvement, and does not resolve custom-domain CDN outliers.

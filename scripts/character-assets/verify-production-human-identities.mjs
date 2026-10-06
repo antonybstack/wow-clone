@@ -9,6 +9,7 @@ import {gunzipSync} from 'node:zlib';
 import {HUMAN_IDENTITY_PRESETS,IDENTITY_CATALOG_VERSION} from '../../src/character/appearance/human-identity.js';
 import {manifestBodyCoverage} from '../../src/ashen-reach/coverage-manifest.js';
 import {ASHEN_PLAYABLE_CLIP_NAMES} from '../../src/character/runtime/ashen-playable-motion.js';
+import {verifyCompactNormalPolicy} from './compact-normal-policy.mjs';
 import {verifyHumanCoveragePolicy} from './verify-human-coverage-policy.mjs';
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 export async function verifyProductionHumanIdentities({readFile=fs.readFile}={}){
@@ -44,7 +45,7 @@ export async function verifyProductionHumanIdentities({readFile=fs.readFile}={})
   assert.equal(playable?.detail,'playable');
   assert(Array.isArray(playable.playableClips),'Missing compact playable-clip declaration');
   assert.deepEqual([...playable.playableClips].sort(),[...ASHEN_PLAYABLE_CLIP_NAMES].sort(),'Compact clip declaration differs from the current runtime');
-  assert.equal(playable.geometrySha256,manifest.items.body.geometrySha256,'Compact visual differs from the approved full body');
+  verifyCompactNormalPolicy(playable.normalPacking,manifest.items.body.geometrySha256);
   assert.equal(playable.coverageRevision,manifest.items.body.coverageRevision,'Compact body coverage differs');
   for(const tier of ['items','compactItems']){
    assert.deepEqual(Object.keys(manifest[tier]).sort(),Object.keys(current[tier]).sort());

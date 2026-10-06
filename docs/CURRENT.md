@@ -31,18 +31,29 @@ Edge's Cloudflare dashboard is signed out. An optional user sign-in request is
 pending in tab **1147995760**. With access, inspect the custom-domain cache/origin
 rules and available request logs. No settings have been changed.
 
-Code work can continue independently: the candidate's sole miss delays the tiny
-early entry facade until 322.5 ms and body discovery until 340.3 ms. Inspect actual
-browser priorities for that critical graph before trying native fetch priority.
-Do not repeat large cohorts without a changed candidate. Keep source, capture
-and timing windows separate; Grok owns operations and root owns implementation.
+The native-priority hypothesis is closed: two instrumented visits show the early
+facade, shared store, renderer and body already request at High priority, without
+priority changes. Do not add ineffective `fetchpriority` attributes or replace the
+failed gate with these diagnostics (968.8/887.6 ms).
 
-Closed investigations: [extra hints/Brotli/accessor dedup](plans/character-mmo/results/startup-transport-2026-10-06.md)
-and [normal-only packing](plans/character-mmo/results/startup-normals-2026-10-06.md).
-Normal rounding passes six tests/nine offline asset proofs and saves 209,829 bytes
-(~33.57 ms theoretical at 50 Mbit/s), but is not integrated or published. Fixed
-normal quantization would clamp morph offsets and is rejected. Normal rounding
-may buy later margin; it does not explain the custom-host delivery outlier.
+**In progress:** compact normal rounding integration, reusing the tested native
+meshoptimizer floating filter and existing GLB loader. Round eligible compact
+bodies/clothing only; full assets, protected hood and rigid pieces remain exact.
+Source comparisons enforce exact positions/UVs/weights/morph positions/curves/binds
+and <=0.0001 normal component error. Expected fixture savings ~180 KB/~29 ms at
+50 Mbit/s need actual generation and live verification; no acceptance claim yet.
+Asset generation and 61 tests pass; the read-only source review finds no confirmed
+blockers. The fixture saves 180,324 bytes; full/protected controls are byte-identical.
+Grok now owns native live checks and motion capture. Product inputs are frozen. Evidence goes under
+`.cache/character-mmo/startup-normal-release-2026-10-06/`. Production is unchanged.
+Local `dist` now contains the rebuilt flag-1 compact-normal candidate. The old
+seal is invalid; create a new seal only after verification and source commit.
+
+Closed investigations: [extra hints/Brotli/accessor dedup](plans/character-mmo/results/startup-transport-2026-10-06.md).
+The [normal investigation](plans/character-mmo/results/startup-normals-2026-10-06.md)
+is historical offline evidence; its integration is reopened because the bundling
+preview's remaining miss is 25 ms, rather than the original 100–220 ms gap. Fixed
+normal quantization would clamp morph offsets and remains rejected.
 
 After startup, return to remaining concrete M6 mixed-fit risks. Elf source/licensing
 and physical-device acceptance remain separate; region/multiplayer plans are parked.
@@ -108,13 +119,16 @@ preserve proportions. Physical phone and Telegram Desktop remain unverified.
   found no new gross fit failure. They do not certify all 9,072 valid combinations.
   Boot sole silhouette/aliasing, broader cloth authoring, licensed Elf source and
   physical iPhone startup/memory/thermal checks remain explicit follow-ups.
-- **All owned game instances are closed.** Final root audit finds no Chrome
-  game browser and ports 5173/5873/7074/7075/10037/9337 free. Grok 4.6/high
-  operations session `01a11217-d931-71f0-8394-6c90b41f1187` and asset worker
-  `01a11251-865b-7961-82f2-3af28b4e96bc` are finished. Probe ownership files
-  are inactive. Evidence: `.cache/character-mmo/startup-bootstrap-2026-10-06/`.
-- Temporary media autoplay guards removed; prior playback restored (three Telegram
-  videos and the first Shadowglass video playing). Pause/audit again before timing.
+- **One managed game renderer active during current verification:** Grok operations
+  session `01a11217-d931-71f0-8394-6c90b41f1187`, Chrome PID 58408 / GPU 58414,
+  CDP 10037, harness Vite 5873, compressed candidate `http://127.0.0.1:7074`
+  (preview PID 58073). Purpose: compact/full refinement and live motion, no FPS
+  claim. Worker must close all game contexts/harness/server after this phase.
+  Asset worker `01a11251-865b-7961-82f2-3af28b4e96bc` is finished; review worker
+  `01a112b9-8088-70f0-a773-27f9dc8b9a05` returned no confirmed blockers.
+- Media autoplay guards are currently active for the priority/normal investigation;
+  Telegram and Shadowglass videos are paused. Restore their recorded prior state
+  after the final timing window (`__ashenPriorityMediaState` / pause handler).
   User Edge 2931/Orca 1889 preserved. The sole owned browser follow-up is the
   signed-out Cloudflare tab 1147995760, held for optional user sign-in; no game page.
 - [Grok operations workflow](reviews/workflow-2026-10-05.md#current-operating-rule--2026-10-06):

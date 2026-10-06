@@ -127,8 +127,16 @@ for (let run = 1; run <= runs; run++) {
         url: e.request.url,
         start: e.timestamp,
         initiator: e.initiator.type,
+        initialPriority: e.request.initialPriority,
+        priorityChanges: [],
         chunks: [],
       });
+    });
+    // Inspect native scheduling before changing fetchpriority. Async entry
+    // scripts can receive a different priority from their modulepreload graph.
+    // https://chromedevtools.github.io/devtools-protocol/tot/Network/#event-resourceChangedPriority
+    cdp.on('Network.resourceChangedPriority', ({requestId,newPriority,timestamp}) => {
+      requests.get(requestId)?.priorityChanges.push({priority:newPriority,at:timestamp});
     });
     cdp.on("Network.dataReceived", (e) =>
       requests
@@ -209,6 +217,10 @@ for (let run = 1; run <= runs; run++) {
       .map((r) => ({
         url: r.url,
         initiator: r.initiator,
+        initialPriority: r.initialPriority,
+        priorityChanges: r.priorityChanges.filter(change=>change.at<=boundary).map(change=>({
+          priority:change.priority,atMs:(change.at+clockOffset)*1000-row.origin,
+        })),
         startMs: (r.start + clockOffset) * 1000 - row.origin,
         endMs: r.end===undefined?null:(r.end + clockOffset) * 1000 - row.origin,
         response: r.response,

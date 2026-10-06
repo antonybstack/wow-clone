@@ -1,3 +1,4 @@
+import {verifyCompactNormalPolicy,compactNormalPolicy} from './character-assets/compact-normal-policy.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {Document} from '@gltf-transform/core';
@@ -97,5 +98,33 @@ test('rounding a shared normal accessor cannot mutate a position stream', async 
     const {before, maxError} = await quantizeCharacterNormals(document, {method: 'exp16'});
     assert.equal(primitive.getAttribute('POSITION'), position);
     assert.notEqual(primitive.getAttribute('NORMAL'), position);
+    assertCharacterNormalProof(before, characterNormalProof(document.getRoot()), maxError);
+});
+
+
+test('release policy fixes the source fingerprint and tolerance, rejecting relaxed or non-finite evidence', async () => {
+    const {document} = fixture();
+    const result = await quantizeCharacterNormals(document, {method: 'exp16'});
+    const policy = compactNormalPolicy(result);
+    verifyCompactNormalPolicy(policy, result.sourceGeometrySha256);
+    assert.throws(() => verifyCompactNormalPolicy(policy, '0'.repeat(64)), /source differs/);
+    for (const patch of [{tolerance: 0.001}, {method: 'fixed16'}, {measuredMaxComponentError: NaN},
+        {measuredMaxComponentError: Infinity}, {measuredMaxComponentError: -1}, {measuredMaxComponentError: 0.00011},
+        {sourceGeometrySha256: ''}, {unreviewedOption: true}]) {
+        assert.throws(() => verifyCompactNormalPolicy({...policy, ...patch}));
+    }
+    assert.throws(() => compactNormalPolicy({...result, method: 'fixed16'}), /not a release policy/);
+});
+
+
+test('detached authoring targets cannot retain old normal buffers after rounding', async () => {
+    const {document, primitive} = fixture();
+    const original = primitive.listTargets()[0].getAttribute('NORMAL');
+    const orphan = document.createPrimitiveTarget('detached authoring target').setAttribute('NORMAL', original);
+    const detachedPrimitive = document.createPrimitive().addTarget(orphan);
+    const {before, maxError} = await quantizeCharacterNormals(document, {method: 'exp16'});
+    assert(detachedPrimitive.isDisposed());
+    assert(orphan.isDisposed());
+    assert(!document.getRoot().listAccessors().includes(original), 'unused original normal must not be serialized');
     assertCharacterNormalProof(before, characterNormalProof(document.getRoot()), maxError);
 });

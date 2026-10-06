@@ -1,0 +1,47 @@
+{
+  "attempt": 2,
+  "vs": "original-before",
+  "unit": {"pass": 8, "fail": 0, "exit": 0},
+  "prepare": {"humanShapes": 0, "humanIdentities": 0},
+  "verifyTests": {"pass": 61, "fail": 0, "exit": 0},
+  "verifyExports": {
+    "verifyProductionHumanShapes": "ok",
+    "verifyProductionHumanIdentities": {"presets": 3, "assets": 43, "provenance": "17b401adb21ee657518e9ad973629503e75d865c3fdc395d048a0af51131ee99"}
+  },
+  "controlsUnchanged": {
+    "shapeFullItems": 16,
+    "identityFullBodies": true,
+    "identityFullAndCompactHoods": true,
+    "shapeCompactProtected": ["graveweaverHood", "wardenPauldrons", "duskguardCuirass", "duskguardTassets", "duskguardGreaves", "duskguardVambraces", "bastionShoulders"]
+  },
+  "identityCompactBodyGzip": {
+    "prime-bald": {"before": 815738, "after": 750296, "delta": -65442, "offlinePrototype": 750302},
+    "prime-ponytail": {"before": 1115442, "after": 1013447, "delta": -101995, "offlinePrototype": 1013658},
+    "weathered-bald": {"before": 820973, "after": 754893, "delta": -66080, "offlinePrototype": 754971}
+  },
+  "seed": {
+    "gzipBefore": 2166532,
+    "gzipAfter": 1986208,
+    "gzipSaved": 180324,
+    "theoretical50MbitSavedMs": 28.85184,
+    "pieces": {
+      "body": -101995,
+      "graveweaverHood": 0,
+      "pilgrimTunic": -33078,
+      "graveweaverSkirt": -21324,
+      "wayfarerBoots": -15947,
+      "graveweaverGloves": -7980,
+      "bastionShoulders": 0
+    }
+  },
+  "proof": {
+    "tolerance": 0.0001,
+    "measuredMaxComponentErrorBodies": 0.00002968311309814453,
+    "positionsUVsWeightsMorphPositions": "exact",
+    "animationsRigTextures": "exact",
+    "hoodOpening": "exact",
+    "bindJoints": 65
+  },
+  "failures": [],
+  "attempt1": "identity compact bodies grew; archived under attempt-1/"
+}

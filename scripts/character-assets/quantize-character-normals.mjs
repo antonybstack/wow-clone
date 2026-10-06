@@ -3,7 +3,8 @@ import {createHash} from 'node:crypto';
 import {PropertyType} from '@gltf-transform/core';
 import {prune, quantize} from '@gltf-transform/functions';
 import {MeshoptEncoder, MeshoptDecoder} from 'meshoptimizer';
-import {identityAnimationHash} from './human-identity-proof.mjs';
+import {identityAnimationHash,identityGeometryHash} from './human-identity-proof.mjs';
+import {COMPACT_NORMAL_TOLERANCE} from './compact-normal-policy.mjs';
 
 const normalSemantic = /^(NORMAL|TANGENT)$/;
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
@@ -15,10 +16,10 @@ const elements = accessor => Array.from({length: accessor.getCount()}, (_, i) =>
  * https://gltf-transform.dev/modules/functions/functions/quantize
  * https://github.com/zeux/meshoptimizer/blob/v0.22/README.md#lossless-index-buffer-compression
  */
-export function characterNormalProof(root) {
+export function characterNormalProof(root, {animationNames = null} = {}) {
     const nodes = root.listNodes(), skins = root.listSkins();
     return {
-        animation: identityAnimationHash(root),
+        animation: identityAnimationHash(root, {names: animationNames}),
         rig: hash({
             nodes: nodes.map(node => ({name: node.getName(), matrix: node.getMatrix(),
                 children: node.listChildren().map(child => nodes.indexOf(child)),
@@ -101,7 +102,8 @@ export function assertCharacterNormalProof(before, after, maxError = 0.00002) {
 export async function quantizeCharacterNormals(document, {method = 'fixed16'} = {}) {
     assert(['fixed16', 'exp16'].includes(method), 'Unknown normal packing method');
     const before = characterNormalProof(document.getRoot());
-    const maxError = method === 'fixed16' ? 0.00002 : 0.0001;
+    const sourceGeometrySha256 = identityGeometryHash(document.getRoot());
+    const maxError = method === 'fixed16' ? 0.00002 : COMPACT_NORMAL_TOLERANCE;
     if (method === 'fixed16') {
         for (const mesh of before.meshes) for (const primitive of mesh.primitives) for (const vertex of primitive.vertices)
             for (const [target, semantic, value] of vertex.normals)
@@ -134,8 +136,12 @@ export async function quantizeCharacterNormals(document, {method = 'fixed16'} = 
                 owner.setAttribute(semantic, packed.get(source));
             }
     }
-    await document.transform(prune({propertyTypes: [PropertyType.ACCESSOR, PropertyType.BUFFER],
+    // Authoring can leave detached morph targets holding the replaced normals.
+    // Native tree-shaking must visit those targets before their accessors, or the
+    // writer serializes both old and rounded buffers. Keep every live attribute.
+    // https://gltf-transform.dev/modules/functions/functions/prune
+    await document.transform(prune({propertyTypes: [PropertyType.PRIMITIVE, PropertyType.PRIMITIVE_TARGET, PropertyType.ACCESSOR, PropertyType.BUFFER],
         keepAttributes: true, keepExtras: true}));
     const measured = assertCharacterNormalProof(before, characterNormalProof(document.getRoot()), maxError);
-    return {before, measured, maxError, method};
+    return {before, measured, maxError, method, sourceGeometrySha256};
 }

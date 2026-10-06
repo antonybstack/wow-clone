@@ -4,8 +4,8 @@
     "sourceLabel": "young",
     "bodySha256": "8421116a1439ee2c6e8e83f790f605b1fcb9583b732aba697f3737fb5b5586d5",
     "bodyEncodedBytes": 1215103,
-    "compactBodySha256": "f06f4e38b18f0d8d8aa5b35f3e435f8646f77f9075b50ad073e776e3be4a81a0",
-    "compactBodyEncodedBytes": 815738,
+    "compactBodySha256": "cca5feaedec0db51f4c751454ad6cd792df6fa63cebdb3f64790a3188d06bc2d",
+    "compactBodyEncodedBytes": 750296,
     "playableClips": [
       "Hit_Chest",
       "Idle_Loop",
@@ -34,7 +34,14 @@
     "hoodEncodedBytes": 376208,
     "compactHoodSha256": "cbccc099a1b7fa6924a2fe89f836d32ab1fbb015f51cc4b4b9bf5c7cb71428df",
     "compactHoodEncodedBytes": 197700,
-    "bodyGeometryLossless": true,
+    "fullBodyGeometryLossless": true,
+    "compactNormalPacking": {
+      "schema": 1,
+      "method": "meshopt-exp16-float32",
+      "tolerance": 0.0001,
+      "sourceGeometrySha256": "a23a3ca3739026f1a716216e127f577a4a5991c575c4f5250b043c3565c9f9a2",
+      "measuredMaxComponentError": 0.00002968311309814453
+    },
     "bindExact": true,
     "torsoCoverage": {
       "revision": "human-medial-back-v1",
@@ -97,8 +104,8 @@
     "sourceLabel": "young-hair",
     "bodySha256": "23f2d8ed1687501940f285eab805d00ad3c10cd552f1878a8bf30aef70cf0b1f",
     "bodyEncodedBytes": 1514681,
-    "compactBodySha256": "e945fd251487bbe92f881b5a66532c58e7178c0d9889103b0ad75c5e684dc544",
-    "compactBodyEncodedBytes": 1115442,
+    "compactBodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+    "compactBodyEncodedBytes": 1013447,
     "playableClips": [
       "Hit_Chest",
       "Idle_Loop",
@@ -127,7 +134,14 @@
     "hoodEncodedBytes": 376208,
     "compactHoodSha256": "cbccc099a1b7fa6924a2fe89f836d32ab1fbb015f51cc4b4b9bf5c7cb71428df",
     "compactHoodEncodedBytes": 197700,
-    "bodyGeometryLossless": true,
+    "fullBodyGeometryLossless": true,
+    "compactNormalPacking": {
+      "schema": 1,
+      "method": "meshopt-exp16-float32",
+      "tolerance": 0.0001,
+      "sourceGeometrySha256": "6bcc20191e96634dde0d604c1b31b4f1d8145d9c8cba6cf6f4cc87daf41272d8",
+      "measuredMaxComponentError": 0.00002968311309814453
+    },
     "bindExact": true,
     "torsoCoverage": {
       "revision": "human-medial-back-v1",
@@ -190,8 +204,8 @@
     "sourceLabel": "old",
     "bodySha256": "b18b632429125447380c2b37188c946f907f6287806b355df72b1198040f7679",
     "bodyEncodedBytes": 1220406,
-    "compactBodySha256": "a2d76274b8300437e08bdbc67c154fb98340e7b33f37b563157157570d027cc2",
-    "compactBodyEncodedBytes": 820973,
+    "compactBodySha256": "9b66fdb15e4c7996b16e699965a206ba1ebf4f52434f8e6a77bccd250b6a595f",
+    "compactBodyEncodedBytes": 754893,
     "playableClips": [
       "Hit_Chest",
       "Idle_Loop",
@@ -220,7 +234,14 @@
     "hoodEncodedBytes": 379232,
     "compactHoodSha256": "9206b0624a51c0c138623d03d6edc860695094c1ca25e03b5cf8447066368e43",
     "compactHoodEncodedBytes": 199577,
-    "bodyGeometryLossless": true,
+    "fullBodyGeometryLossless": true,
+    "compactNormalPacking": {
+      "schema": 1,
+      "method": "meshopt-exp16-float32",
+      "tolerance": 0.0001,
+      "sourceGeometrySha256": "f2133eee6b7cff5fab8e4f544a07af03a2aaba33a40f5c77fec8b5462836d3b7",
+      "measuredMaxComponentError": 0.00002968311309814453
+    },
     "bindExact": true,
     "torsoCoverage": {
       "revision": "human-medial-back-v1",

@@ -21,6 +21,8 @@ import {startupProvenance} from '../ashen-reach/startup-provenance.mjs';
 import {identityGeometryHash,identityAnimationHash} from './human-identity-proof.mjs';
 import {manifestBodyCoverage} from '../../src/ashen-reach/coverage-manifest.js';
 import {compactPlayableAnimations} from './compact-playable-animations.mjs';
+import {quantizeCharacterNormals,assertCharacterNormalProof,characterNormalProof} from './quantize-character-normals.mjs';
+import {compactNormalPolicy} from './compact-normal-policy.mjs';
 import {repairIdentityTorsoCoverage} from './repair-identity-torso-coverage.mjs';
 import {deriveHumanFootCore} from './derive-coverage-geosets.mjs';
 import {verifyCoveragePartition} from './verify-coverage-partition.mjs';
@@ -119,14 +121,20 @@ for(const preset of HUMAN_IDENTITY_PRESETS.filter(p=>p.sourceLabel)){
   const name=`texture-${sha(bytes).slice(0,12)}.${ext}`,materials=fullRoot.listMaterials().filter(m=>m.getBaseColorTexture()===texture).map(m=>m.getName());assert(materials.length);
   await fs.writeFile(path.join(out,name),bytes);body.textures.push({materials,url:`${urlRoot}/${name}`});
  }
- // The face/skin/morphs are identical, so no body replacement or background
- // download of unused motions is needed. Native Lite keeps this actor/mixer;
+ // Positions, skin weights and morph positions remain exact with bounded normal
+ // rounding; no body replacement or unused-motion download is needed. Lite keeps this actor/mixer;
  // optional identity editing still has the unchanged full 57-clip source.
  const playableClips=await compactPlayableAnimations(doc);
+ // Rounded Float32 normals use the same native loader/meshopt path. Keep the
+ // complete full source untouched and independently prove the written surface.
+ const normals=await quantizeCharacterNormals(doc,{method:'exp16'});
  const compactBody=await encode(doc,'body-compact',published.items.body);
+ const writtenCompact=await io.readBinary(gunzipSync(await fs.readFile(path.join(out,path.basename(compactBody.url)))));
+ assertCharacterNormalProof(normals.before,characterNormalProof(writtenCompact.getRoot()),normals.maxError);
+ compactBody.normalPacking=compactNormalPolicy(normals);
  compactBody.textures=body.textures;compactBody.coverageRevision=body.coverageRevision;
  compactBody.detail='playable';compactBody.playableClips=playableClips;
- assert.equal(compactBody.geometrySha256,body.geometrySha256,'Playable body changed approved visual');
+ assert.equal(compactBody.normalPacking.sourceGeometrySha256,body.geometrySha256,'Playable body rounding must start from the exact approved geometry');
  const age=label.split('-')[0],hoodPin=JSON.parse(await fs.readFile(`${pinRoot}/hood-${age}-fit.json`,'utf8'));
  const hoodBytes=await fs.readFile(`${review}/${label}/${path.basename(audition.items.graveweaverHood.url)}`);assert.equal(sha(hoodBytes),hoodPin.assembledSha256);
  const hoodDoc=await io.readBinary(hoodBytes);normalizeHumanBind(hoodDoc.getRoot(),reference,'GraveweaverHood','HumanV1Body',{exactReference:true});
@@ -156,9 +164,9 @@ for(const preset of HUMAN_IDENTITY_PRESETS.filter(p=>p.sourceLabel)){
  const bytes=Buffer.from(JSON.stringify(manifest)),name=`manifest-${preset.id}-${sha(bytes).slice(0,12)}.json`;
  await fs.writeFile(path.join(out,name),bytes);index.presets[preset.id]={url:`${urlRoot}/${name}`,sha256:sha(bytes),bytes:bytes.length,components:preset.components,manifest};
  ownedReferences+=bytes.toString();
- reports.push({preset:preset.id,sourceLabel:label,bodySha256:body.sha256,bodyEncodedBytes:body.encodedBytes,compactBodySha256:compactBody.sha256,compactBodyEncodedBytes:compactBody.encodedBytes,playableClips,hoodSha256:hood.sha256,hoodEncodedBytes:hood.encodedBytes,compactHoodSha256:compactHood.sha256,compactHoodEncodedBytes:compactHood.encodedBytes,bodyGeometryLossless:true,bindExact:true,torsoCoverage,footCoverage});
+ reports.push({preset:preset.id,sourceLabel:label,bodySha256:body.sha256,bodyEncodedBytes:body.encodedBytes,compactBodySha256:compactBody.sha256,compactBodyEncodedBytes:compactBody.encodedBytes,playableClips,hoodSha256:hood.sha256,hoodEncodedBytes:hood.encodedBytes,compactHoodSha256:compactHood.sha256,compactHoodEncodedBytes:compactHood.encodedBytes,fullBodyGeometryLossless:true,compactNormalPacking:compactBody.normalPacking,bindExact:true,torsoCoverage,footCoverage});
 }
-index.provenance=await startupProvenance(['scripts/character-assets/prepare-production-human-identities.mjs'],['public/ashen-reach/human-shape-v1/manifest.json',`${pinRoot}/source-summary.json`,`${pinRoot}/preparation.json`,`${pinRoot}/hood-old-fit.json`,`${pinRoot}/hood-young-fit.json`]);
+index.provenance=await startupProvenance(['scripts/character-assets/prepare-production-human-identities.mjs','scripts/character-assets/quantize-character-normals.mjs','scripts/character-assets/compact-normal-policy.mjs','scripts/character-assets/human-identity-proof.mjs'],['public/ashen-reach/human-shape-v1/manifest.json',`${pinRoot}/source-summary.json`,`${pinRoot}/preparation.json`,`${pinRoot}/hood-old-fit.json`,`${pinRoot}/hood-young-fit.json`]);
 await fs.writeFile(path.join(out,'manifest.json'),JSON.stringify(index));
 await fs.writeFile(path.join(out,'preparation.json'),JSON.stringify(reports,null,2));
 ownedReferences+=JSON.stringify(index);

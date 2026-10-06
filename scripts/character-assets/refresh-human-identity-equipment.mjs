@@ -35,6 +35,9 @@ for (const entry of Object.values(index.presets)) {
 }
 index.provenance = await startupProvenance([
     'scripts/character-assets/prepare-production-human-identities.mjs',
+    'scripts/character-assets/quantize-character-normals.mjs',
+    'scripts/character-assets/compact-normal-policy.mjs',
+    'scripts/character-assets/human-identity-proof.mjs',
     'scripts/character-assets/refresh-human-identity-equipment.mjs',
 ], ['public/ashen-reach/human-shape-v1/manifest.json', descriptorPath, ...new Set(accepted),
     'docs/baselines/character-mmo/m5/face-2026-10-04/source-summary.json',

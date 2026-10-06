@@ -1,3 +1,5 @@
+import {verifyCompactNormalPolicy} from './character-assets/compact-normal-policy.mjs';
+import {characterNormalProof,assertCharacterNormalProof} from './character-assets/quantize-character-normals.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -95,7 +97,8 @@ for(const [preset,entry]of Object.entries(index.presets))for(const [tier,id]of [
    const full=(await read(entry.manifest.items.body)).getRoot();
    assert.deepEqual(root.listAnimations().map(a=>a.getName()).sort(),[...ASHEN_PLAYABLE_CLIP_NAMES].sort());
    assert.deepEqual(asset.playableClips,root.listAnimations().map(a=>a.getName()));
-   assert.equal(identityGeometryHash(root),identityGeometryHash(full),'First play preserves the exact full body and face');
+   const policy=verifyCompactNormalPolicy(asset.normalPacking,identityGeometryHash(full));
+   assertCharacterNormalProof(characterNormalProof(full,{animationNames:new Set(ASHEN_PLAYABLE_CLIP_NAMES)}),characterNormalProof(root),policy.tolerance);
    assert.equal(identityAnimationHash(root),identityAnimationHash(full,{names:new Set(ASHEN_PLAYABLE_CLIP_NAMES)}),'Playable samples/interpolation/timestamps stay exact');
    assert.equal(asset.coverageRevision,entry.manifest.items.body.coverageRevision);
    assert(asset.encodedBytes<entry.manifest.items.body.encodedBytes*.8);

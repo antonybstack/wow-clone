@@ -1,3 +1,6 @@
+import {verifyCompactNormalPolicy} from './character-assets/compact-normal-policy.mjs';
+import {characterNormalProof,assertCharacterNormalProof} from './character-assets/quantize-character-normals.mjs';
+import {identityGeometryHash} from './character-assets/human-identity-proof.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -62,20 +65,28 @@ for(const [id,asset] of Object.entries(manifest.compactItems))test(`${id} compac
   assert.deepEqual(clips(compact).map(c=>c.name).sort(),[...playable].sort());
   assert.deepEqual(clips(compact),clips(full).filter(c=>playable.has(c.name)));
   assert.deepEqual(compact.listNodes().map(n=>[n.getName(),n.getTranslation(),n.getRotation(),n.getScale()]),full.listNodes().map(n=>[n.getName(),n.getTranslation(),n.getRotation(),n.getScale()]));
-  for(const [mi,mesh]of compact.listMeshes().entries())for(const [pi,p]of mesh.listPrimitives().entries()){
-   const source=full.listMeshes()[mi].listPrimitives()[pi];assert.equal(full.listMeshes()[mi].getName(),mesh.getName());
-   assert.deepEqual(p.getIndices().getArray(),source.getIndices().getArray());
-   for(const sem of source.listSemantics())assert.deepEqual(p.getAttribute(sem).getArray(),source.getAttribute(sem).getArray(),`body/${mesh.getName()}/${sem}`);
-   assert.equal(p.listTargets().length,source.listTargets().length);
-   for(const [ti,t]of source.listTargets().entries())for(const sem of t.listSemantics())assert.deepEqual(p.listTargets()[ti].getAttribute(sem).getArray(),t.getAttribute(sem).getArray());
-  }
+  const unpartitionedFull=await read(manifest.items.body.coverageSource??manifest.items.body);
+  const policy=verifyCompactNormalPolicy(asset.normalPacking,identityGeometryHash(unpartitionedFull));
+  assertCharacterNormalProof(characterNormalProof(full,{animationNames:playable}),characterNormalProof(compact),policy.tolerance);
  }
  else assert.deepEqual(compact.listAnimations().map(a=>a.getName()),full.listAnimations().map(a=>a.getName()));
  for(const [mi,mesh]of compact.listMeshes().entries())for(const [pi,p]of mesh.listPrimitives().entries()) {
   const source=full.listMeshes().find(m=>m.getName()===mesh.getName()).listPrimitives()[pi];
-  const tuple=(p,i)=>JSON.stringify([...p.listSemantics().sort().flatMap(s=>p.getAttribute(s).getElement(i,[])),...p.listTargets().flatMap(t=>t.listSemantics().sort().flatMap(s=>t.getAttribute(s).getElement(i,[])))]);
-  const originals=new Set(Array.from({length:source.getAttribute('POSITION').getCount()},(_,i)=>tuple(source,i)));
-  for(let i=0;i<p.getAttribute('POSITION').getCount();i++)assert(originals.has(tuple(p,i)),`${id} compact vertex ${i} loses correspondence`);
+  const tolerance=asset.normalPacking?verifyCompactNormalPolicy(asset.normalPacking).tolerance:0;
+  // Native simplification selects original vertices. Match all non-normal streams
+  // exactly (including both morph positions); allow only declared normal rounding.
+  const record=(primitive,i,normals)=>JSON.stringify([primitive,...primitive.listTargets()].map(owner=>
+   owner.listSemantics().sort().filter(sem=>normals===/^(NORMAL|TANGENT)$/.test(sem)).map(sem=>[sem,owner.getAttribute(sem).getElement(i,[])])));
+  const normalValues=(primitive,i)=>[primitive,...primitive.listTargets()].flatMap(owner=>owner.listSemantics().sort().filter(sem=>/^(NORMAL|TANGENT)$/.test(sem)).flatMap(sem=>owner.getAttribute(sem).getElement(i,[])));
+  const originals=new Map();
+  for(let i=0;i<source.getAttribute('POSITION').getCount();i++){
+   const key=record(source,i,false),candidates=originals.get(key)??[];
+   candidates.push({layout:JSON.parse(record(source,i,true)).map(target=>target.map(([sem,values])=>[sem,values.length])),values:normalValues(source,i)});originals.set(key,candidates);
+  }
+  for(let i=0;i<p.getAttribute('POSITION').getCount();i++){
+   const values=normalValues(p,i),layout=JSON.parse(record(p,i,true)).map(target=>target.map(([sem,v])=>[sem,v.length]));
+   assert(originals.get(record(p,i,false))?.some(candidate=>JSON.stringify(candidate.layout)===JSON.stringify(layout)&&candidate.values.length===values.length&&values.every((v,j)=>Number.isFinite(v)&&Math.abs(v-candidate.values[j])<=tolerance)),`${id} compact vertex ${i} loses correspondence`);
+  }
   assert(p.getIndices().getCount()<=source.getIndices().getCount());
  }
 });
