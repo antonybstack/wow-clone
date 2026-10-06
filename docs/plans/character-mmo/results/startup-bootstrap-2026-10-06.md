@@ -1,6 +1,6 @@
 # Saved-character startup bundling — 2026-10-06
 
-**Local candidate passes; public comparison pending.** Production remains
+**Preview only: strict public startup gate fails one of twenty starts.** Production remains
 `6004840` / `e39117b8`. `ASHEN_SAVED_BOOTSTRAP=1` opts into a native Rolldown
 group containing the existing pure save validator, selected identity descriptors
 and shared early fetch helpers. Default builds keep the released split graph.
@@ -63,12 +63,83 @@ All eight starts are grounded and accept input without recorded errors. Root
 reviewed saved/default first-play captures: dressed characters and churchyard
 are intact. Stills do not constitute release motion acceptance.
 
-The candidate justifies a public immutable preview comparison. It does **not**
-replace the failed production 20-start result or meet the public release gate
-by inference. No normal rounding or other asset candidate is included.
+No normal rounding or other asset candidate is included.
 
-Evidence: `.cache/character-mmo/startup-bootstrap-2026-10-06/`, especially
+## Public preview and release decision
+
+Source `03dfbc7750e548e83ea38cd4430ef2fc8d97a625` is pushed. The explicit flag-1
+rebuild is identical to all 536 frozen candidate files. Sealed preview
+**498be045-42c7-4d89-8ee4-7580b9291ad1**
+([immutable deployment](https://498be045.fardel.pages.dev)) passes **537 delivery
+checks**: 535 served paths plus two missing-file controls. Seal SHA-256:
+`5dff2f6f867b92023d810d7fc01a813a7ad9c9243771e6a4e061e2c626669866`.
+
+Three alternating saved visits to old `e39117b8` and new `498be045` give
+978.7 / 930.7 / 909.2 ms versus 955.7 / 897.8 / 941.3 ms. Default visits are
+674.0 versus 690.2 ms. Body discovery improves in two pairs, worsens in one;
+this small comparison does not establish a reliable public speedup. The candidate
+does remove three saved requests and one unsaved request. Actual unsaved JavaScript
+requests contain 12,583 additional raw bytes, or 3,584 bytes under the offline
+gzip-9 model. That model is not actual wire traffic. The build report's broader
+HTML-reference table includes conditional links and must not be used as an
+unsaved transfer comparison.
+
+The subsequent **strict 20-start candidate gate fails**: **p95 952.3 ms, maximum
+1,025.1 ms, one miss (run 7)**. All twenty are valid, grounded, input-responsive
+and free of recorded runtime/GPU errors. Fresh processes/profiles, cache disabled,
+the same 50 Mbit/s profile and isolated media conditions apply. No favorable rerun
+replaces that cohort. Do not promote the candidate or claim the public target met.
+
+Run 7 has late discovery: HTML completes at 160.7 ms, the 44-byte early entry
+facade at 322.5 ms, and the body starts at 340.3 ms. Body transfer itself is
+479.0 ms, within the other visits' 450.8–507 ms range. The shared store finishes
+at 310.3 ms. A next bounded code investigation can inspect actual browser request
+priorities for this critical early graph, then consider native fetch priority
+only if the trace supports it. Do not start another large cohort without a changed
+candidate. Normal rounding remains an optional later margin improvement, not a
+fix for delivery outliers.
+
+## Custom-domain delivery is a separate unresolved variable
+
+Three subsequent production-host diagnostics retain **1,265.0 / 925.2 /
+1,987.8 ms**. They do not replace the historical failed production cohort.
+The first spends 403.4 ms receiving HTML; its body is a cache HIT and takes
+503 ms. The third completes HTML at 428.6 ms and spends **1,157 ms** fetching
+the body, which reports MISS. Its body response has an `h3` protocol and a
+`MAN` CF-Ray suffix; the HTML reports `h2` / `SEA`. The fast visit reports
+`h2` / `LAX` and a body HIT.
+
+**Protocol correction:** the operations summaries saying “all h2” describe only
+navigation. All twenty immutable-preview body responses use **h3**, with LAX
+suffixes. HTTP/3 alone therefore does not explain the custom-host outlier.
+Cloudflare documents that CF-Ray suffixes can identify the origin-facing tier,
+so these headers do not prove the client's physical route.
+[CF-Ray reference](https://developers.cloudflare.com/fundamentals/reference/http-headers/#cf-ray).
+
+Public DNS shows different Cloudflare address sets for the two hosts. A bounded
+HTTP/2 curl check also sees a custom-domain body HIT and no `cf-cache-status`
+header on the identical immutable body; both have the same ETag. This is evidence
+of different delivery behavior, not proof of a misconfigured rule. Pages already
+uses tiered caching, and proxied custom domains additionally inherit zone rules.
+Do not disable HTTP/3, tiered caching or the DNS proxy based on a single MISS.
+[Pages serving behavior](https://developers.cloudflare.com/pages/configuration/serving-pages/),
+[custom-domain troubleshooting](https://developers.cloudflare.com/pages/configuration/debugging-pages/).
+
+The deployment credential can read Pages metadata but its DNS request returns
+403/code 10000. The Edge dashboard is signed out. An optional user sign-in request
+is pending; the owned login tab is `1147995760`. No settings were changed. With
+read access, inspect the custom-domain cache/origin rules and correlate the
+19:04:03–19:04:08 UTC MISS with available tiered-cache request logs. Lack of paid
+Log Explorer access must not be treated as a requirement to buy anything.
+[Tiered-cache latency investigation](https://developers.cloudflare.com/cache/troubleshooting/investigating-tiered-cache-latency/).
+
+[Tracked receipt](../../../baselines/character-mmo/startup-bootstrap-2026-10-06/receipt.json).
+Raw evidence: `.cache/character-mmo/startup-bootstrap-2026-10-06/`, especially
 `ops-build.md/json`, `prefetch.json`, `ops-browser.md/json`, the eight probe
 reports/screenshots and ownership files. Failed old-harness artifacts have
 `old-harness` in their names. All local game/probe processes are closed and the
-7074/7075/5873/10037 ports are free at the end of that pass.
+7074/7075/5873/10037 ports are free at the end of that pass. Final root audit also
+finds 5173/9337 free and no Chrome game browser. All Grok workers finished.
+Temporary media guards are removed; original Telegram/reference playback is
+restored. The Cloudflare login tab is the sole owned browser follow-up. It is not
+a game renderer. No new visual release or Telegram motion delivery is claimed.

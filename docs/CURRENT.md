@@ -5,30 +5,47 @@ historical milestone documents are evidence, not an active task queue.
 
 ## Immediate target
 
-Restore the **public one-second startup target**. The [M10 landscape package](plans/character-mmo/results/m10-landscape-2026-10-06.md)
-is functionally live: usable 568×320 and 844×390 creator layouts, reviewed motion,
-repaired CDN bundle delivery and preserved HTML cache headers. **Final clean
-startup still fails: p95 1,219.6 ms, worst 1,358.5 ms, 14/20 misses.** Do not call
-the complete release or physical-device milestone accepted.
+Restore the **public one-second startup target**. Production remains `6004840`
+with the historical clean failure: p95 **1,219.6 ms**, maximum **1,358.5 ms**,
+14/20 misses. M10 landscape is functionally live; complete release/startup and
+physical-device acceptance remain open.
 
-The [transport investigation](plans/character-mmo/results/startup-transport-2026-10-06.md)
-confirmed HTTP 103 delivery and Chromium reuse in fresh profiles. Disabled HTTP
-cache prevents reuse; neither policy meets the target reliably. A two-module
-hint candidate passed 20 tests and 540 preview delivery checks, but the paired
-visits did not show a reliable body-discovery gain. **Not promoted**; `d5393cf`
-removes it from default builds. Diagnostic tracing remains. Lossless Brotli saves
-only about 21 ms of outfit payload time; accessor dedup saves zero bytes.
+The [saved-startup bundling candidate](plans/character-mmo/results/startup-bootstrap-2026-10-06.md)
+uses native Rolldown to co-locate pure saved validation/descriptors and shared
+fetch helpers. Source **`03dfbc7` is pushed**; opt in with
+`ASHEN_SAVED_BOOTSTRAP=1` (default builds retain the released split graph).
+33 tests and ten live functional checks pass; all character assets/Lite bytes
+are unchanged. Local saved starts improve from 873–876 to 829–836 ms, with
+about 3.6 KiB additional modelled gzip code for unsaved starts. Public paired
+results are mixed. Preview **`498be045-42c7-4d89-8ee4-7580b9291ad1`** passes
+537 delivery checks, but its strict twenty-start gate **fails**: p95 **952.3 ms**,
+maximum **1,025.1 ms**, one miss. **Do not promote or claim the target met.**
+Local `dist` contains this experimental flag-1 build, not the production build.
 
-Next use native glTF Transform / Lite normal quantization for a bounded unpublished
-size/error check, preserving positions, UVs, weights, binds and source motion.
-The linked result specifies compaction and morph-range traps. Require meaningful
-savings before a live candidate. Do not repeat hint pairings or large load cohorts
-without a changed hypothesis. Local `dist` contains the rejected preview; rebuild
-before any subsequent seal. Production remains unchanged.
+Three production-host diagnostics are **1,265 / 925 / 1,988 ms**. Late HTML and
+one 1,157 ms body-cache MISS dominate. The response headers differ from the
+immutable Pages host. Navigation is h2 while some assets use h3; CF-Ray suffixes
+can identify an origin-facing cache tier, so neither a physical route nor an
+HTTP/3 defect is established. The deployment token's DNS request returns 403;
+Edge's Cloudflare dashboard is signed out. An optional user sign-in request is
+pending in tab **1147995760**. With access, inspect the custom-domain cache/origin
+rules and available request logs. No settings have been changed.
 
-Then return to the remaining concrete M6 mixed-fit risks. Elf source/licensing
-and physical-device acceptance remain separate; historical region/multiplayer
-plans are parked.
+Code work can continue independently: the candidate's sole miss delays the tiny
+early entry facade until 322.5 ms and body discovery until 340.3 ms. Inspect actual
+browser priorities for that critical graph before trying native fetch priority.
+Do not repeat large cohorts without a changed candidate. Keep source, capture
+and timing windows separate; Grok owns operations and root owns implementation.
+
+Closed investigations: [extra hints/Brotli/accessor dedup](plans/character-mmo/results/startup-transport-2026-10-06.md)
+and [normal-only packing](plans/character-mmo/results/startup-normals-2026-10-06.md).
+Normal rounding passes six tests/nine offline asset proofs and saves 209,829 bytes
+(~33.57 ms theoretical at 50 Mbit/s), but is not integrated or published. Fixed
+normal quantization would clamp morph offsets and is rejected. Normal rounding
+may buy later margin; it does not explain the custom-host delivery outlier.
+
+After startup, return to remaining concrete M6 mixed-fit risks. Elf source/licensing
+and physical-device acceptance remain separate; region/multiplayer plans are parked.
 
 ## Current release
 
@@ -91,16 +108,15 @@ preserve proportions. Physical phone and Telegram Desktop remain unverified.
   found no new gross fit failure. They do not certify all 9,072 valid combinations.
   Boot sole silhouette/aliasing, broader cloth authoring, licensed Elf source and
   physical iPhone startup/memory/thermal checks remain explicit follow-ups.
-- **Owned game instances are closed:** Chrome 1643/CDP 10037, Vite 1613/1637
-  on 5873, preview 13546 on 7074 and every probe context. The three ports are free;
-  harness slot 7 is removed. Grok 4.6/high operations session
-  `01a11217-d931-71f0-8394-6c90b41f1187` and offline asset worker
-  `01a11251-865b-7961-82f2-3af28b4e96bc` are finished. All fourteen new startup
-  probe ownership files are inactive; final audit finds no game listener/browser.
-  Evidence: `.cache/character-mmo/startup-transport-2026-10-06/`.
-- Owned media wrapper closed. Telegram paused and its temporary autoplay guard
-  removed. First Shadowglass video restored playing; second remains paused.
-  User Edge/Orca preserved, final Edge inventory contains no game pages.
+- **All owned game instances are closed.** Final root audit finds no Chrome
+  game browser and ports 5173/5873/7074/7075/10037/9337 free. Grok 4.6/high
+  operations session `01a11217-d931-71f0-8394-6c90b41f1187` and asset worker
+  `01a11251-865b-7961-82f2-3af28b4e96bc` are finished. Probe ownership files
+  are inactive. Evidence: `.cache/character-mmo/startup-bootstrap-2026-10-06/`.
+- Temporary media autoplay guards removed; prior playback restored (three Telegram
+  videos and the first Shadowglass video playing). Pause/audit again before timing.
+  User Edge 2931/Orca 1889 preserved. The sole owned browser follow-up is the
+  signed-out Cloudflare tab 1147995760, held for optional user sign-in; no game page.
 - [Grok operations workflow](reviews/workflow-2026-10-05.md#current-operating-rule--2026-10-06):
   delegate operations exclusively to Grok; root implements and reviews. Freeze
   product inputs for gates; one worker owns browser/timing. Preserve unrelated
