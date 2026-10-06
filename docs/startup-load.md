@@ -87,3 +87,22 @@ the actual Pages preview's response headers and native browser behavior before
 production. Do not remove the MIME check or substitute a fallback physics engine
 to make a broken response pass. See `scripts/test-havok-delivery.mjs` for the
 build/URL/preview contract.
+
+### Rejected world-only warmup experiment (2026-10-05)
+
+Do not register/render the live starting scene before the actor is attached to hide
+GPU startup behind the body transfer. A local experiment using native
+`registerSceneWithShadowSupport` → `renderFrame` → `waitForGpuIdle` →
+`unregisterScene` reduced initial timing, but a held-body/full-region check exposed
+a bind-pose actor and thousands of invalid GPU sampler bindings after streaming.
+The experiment was never deployed and was removed. Its five apparently valid cold
+starts covered only the playable boundary and are **not** functional acceptance.
+
+Priming native morph support avoided an earlier `morphedPos` compilation error, but
+did not establish late actor/streaming correctness. Native unregister preserves
+resources; it does not undo the first scene build. See [Lite's pinned scene lifecycle](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/scene/scene-core.ts).
+Keep the existing actor-before-first-register ordering. Inspect live motion through
+full region readiness before running a large performance matrix on a startup experiment.
+Evidence and the rejected source are retained under
+`.cache/character-mmo/startup-headroom-2026-10-05/`; the tracked result records the
+accepted release and the unfinished one-second largest-outfit target.

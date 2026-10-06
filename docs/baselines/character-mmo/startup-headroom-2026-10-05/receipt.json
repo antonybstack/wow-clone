@@ -1,0 +1,2554 @@
+{
+  "source": "0d577d27cc53bca05b2f695c45922458cf54c0b0",
+  "productionDeployment": "f6265788-d4fd-45fe-abae-76f9c3d23247",
+  "rollbackDeployment": "63b6e02b-c93f-4b85-aebf-f2ae79bfb8a6",
+  "status": "Havok transport released; largest-outfit one-second p95 gate NOT met",
+  "artifactCache": ".cache/character-mmo/startup-headroom-2026-10-05",
+  "seal": {
+    "kind": "ashen-pages-dist-seal",
+    "schema": 1,
+    "scope": "Havok HTTP Brotli: exact Pages CDN bytes and headers; 20 local cold starts; native streaming and matching preload; cathedral round trip; mobile/depth/WebKit; three bridge FPS runs; reviewed startup motion",
+    "createdAt": "2026-10-06T03:57:02.291Z",
+    "source": {
+      "head": "0d577d27cc53bca05b2f695c45922458cf54c0b0",
+      "productPaths": [
+        "src",
+        "public",
+        "scripts",
+        "ashen-reach.html",
+        "body-preview.html",
+        "character-crowd-probe.html",
+        "character-lab.html",
+        "index.html",
+        "vite.config.js",
+        "package.json",
+        "package-lock.json"
+      ],
+      "productInputsSha256": "879a76d4bbf6386d44709f949f29fee423feb0f5b2b1c407723e914fb2bec18f",
+      "productInputFiles": 1079,
+      "uncommittedProductInputs": 0
+    },
+    "fileCount": 538,
+    "totalBytes": 290407747,
+    "sealSha256": "5bf4532dcada95cf9aa71f60f371eecdf1f45f49d23f6fdf8e6bf75b8789243d"
+  },
+  "cold": {
+    "local-hood": {
+      "conditions": {
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "savedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "expectedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "rows": [
+        {
+          "run": 1,
+          "playableMs": 884.2000000178814,
+          "input": {
+            "keyAt": 1117.300000011921,
+            "observedAt": 1147.4000000059605,
+            "position": {
+              "x": -0.0004161409349869792,
+              "z": 0.22816563360543962
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 30.099999994039536
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 2,
+          "playableMs": 883.2999999821186,
+          "input": {
+            "keyAt": 1128.2999999821186,
+            "observedAt": 1156,
+            "position": {
+              "x": -0.0004909433791719614,
+              "z": 0.23293362921669064
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 27.700000017881393
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 3,
+          "playableMs": 875.8000000119209,
+          "input": {
+            "keyAt": 1119.4000000059605,
+            "observedAt": 1148.5999999940395,
+            "position": {
+              "x": -0.00041354181373617964,
+              "z": 0.23237022024786785
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 29.19999998807907
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 4,
+          "playableMs": 885.7999999821186,
+          "input": {
+            "keyAt": 1138.5999999940395,
+            "observedAt": 1172.5,
+            "position": {
+              "x": -0.0005143929116015715,
+              "z": 0.23149224777464894
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 33.900000005960464
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 5,
+          "playableMs": 875.7000000178814,
+          "input": {
+            "keyAt": 1107.6000000238419,
+            "observedAt": 1136.9000000059605,
+            "position": {
+              "x": -0.00045467601360571144,
+              "z": 0.22529763048811463
+            },
+            "frames": 20,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 29.299999982118607
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 6,
+          "playableMs": 873.8999999761581,
+          "input": {
+            "keyAt": 1102.0999999940395,
+            "observedAt": 1138.5,
+            "position": {
+              "x": -0.0004218181940940552,
+              "z": 0.22955561503889024
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 36.400000005960464
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 7,
+          "playableMs": 884.3999999761581,
+          "input": {
+            "keyAt": 1127.0999999940395,
+            "observedAt": 1153.5,
+            "position": {
+              "x": -0.0005034728873883882,
+              "z": 0.23221151857134487
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 26.400000005960464
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 8,
+          "playableMs": 878.0999999940395,
+          "input": {
+            "keyAt": 1122.5,
+            "observedAt": 1151.2999999821186,
+            "position": {
+              "x": -0.0004219585918475465,
+              "z": 0.22885536731961764
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 28.799999982118607
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 9,
+          "playableMs": 885.7999999821186,
+          "input": {
+            "keyAt": 1129.199999988079,
+            "observedAt": 1157,
+            "position": {
+              "x": -0.00043263503643263036,
+              "z": 0.22813652636933482
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 27.80000001192093
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 10,
+          "playableMs": 879.5999999940395,
+          "input": {
+            "keyAt": 1113.0999999940395,
+            "observedAt": 1137.699999988079,
+            "position": {
+              "x": -0.0004223182879247315,
+              "z": 0.23305473252034872
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 24.599999994039536
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 11,
+          "playableMs": 873.5999999940395,
+          "input": {
+            "keyAt": 1111.0999999940395,
+            "observedAt": 1137.199999988079,
+            "position": {
+              "x": -0.0004179188957160505,
+              "z": 0.235162496027578
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 26.099999994039536
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 12,
+          "playableMs": 879.0999999940395,
+          "input": {
+            "keyAt": 1110.5,
+            "observedAt": 1139,
+            "position": {
+              "x": -0.00041291236958664935,
+              "z": 0.23377133115683457
+            },
+            "frames": 20,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 28.5
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 13,
+          "playableMs": 884.1999999880791,
+          "input": {
+            "keyAt": 1125.0999999940395,
+            "observedAt": 1151.5,
+            "position": {
+              "x": -0.0004038721554858342,
+              "z": 0.23308728451642327
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 26.400000005960464
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 14,
+          "playableMs": 882.5999999940395,
+          "input": {
+            "keyAt": 1122.800000011921,
+            "observedAt": 1152.9000000059605,
+            "position": {
+              "x": -0.0005263463137418662,
+              "z": 0.22517115349529548
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 30.099999994039536
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 15,
+          "playableMs": 875.7000000178814,
+          "input": {
+            "keyAt": 1096.0999999940395,
+            "observedAt": 1122.0999999940395,
+            "position": {
+              "x": -0.00042106736712568506,
+              "z": 0.22815693990230562
+            },
+            "frames": 20,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 26
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 16,
+          "playableMs": 879.5999999940395,
+          "input": {
+            "keyAt": 1124.9000000059605,
+            "observedAt": 1152.0999999940395,
+            "position": {
+              "x": -0.00040804591879121477,
+              "z": 0.23307991905240452
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 27.19999998807907
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 17,
+          "playableMs": 872.2999999821186,
+          "input": {
+            "keyAt": 1106.7999999821186,
+            "observedAt": 1134.5,
+            "position": {
+              "x": -0.00042182150716048165,
+              "z": 0.22675560915048404
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 27.700000017881393
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 18,
+          "playableMs": 884.6999999880791,
+          "input": {
+            "keyAt": 1129.699999988079,
+            "observedAt": 1156.5999999940395,
+            "position": {
+              "x": -0.0004138579221997798,
+              "z": 0.23236966261803546
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 26.900000005960464
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 19,
+          "playableMs": 869.2999999821186,
+          "input": {
+            "keyAt": 1114.2999999821186,
+            "observedAt": 1140.199999988079,
+            "position": {
+              "x": -0.000490158485973836,
+              "z": 0.2273350144471955
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 25.900000005960464
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 20,
+          "playableMs": 869,
+          "input": {
+            "keyAt": 1109.7999999821186,
+            "observedAt": 1136.199999988079,
+            "position": {
+              "x": -0.0004552424460716263,
+              "z": 0.22599663085940855
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 26.400000005960464
+          },
+          "gpuErrors": [],
+          "errors": []
+        }
+      ],
+      "medianMs": 879.3499999940395,
+      "p95Ms": 885.7999999821186,
+      "maxMs": 885.7999999821186,
+      "misses": [],
+      "eligible": true
+    },
+    "public-default": {
+      "conditions": {
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "savedAppearance": null,
+        "expectedAppearance": null,
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "rows": [
+        {
+          "run": 1,
+          "playableMs": 712.9000000059605,
+          "input": {
+            "keyAt": 952.5,
+            "observedAt": 981.4000000059605,
+            "position": {
+              "x": -0.00026855083919243917,
+              "z": 0.23402608678381637
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 28.900000005960464
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 2,
+          "playableMs": 701.3000000119209,
+          "input": {
+            "keyAt": 929.0999999940395,
+            "observedAt": 956.0999999940395,
+            "position": {
+              "x": -0.00025692175490049966,
+              "z": 0.2312466086535093
+            },
+            "frames": 20,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 27
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 3,
+          "playableMs": 763.3000000119209,
+          "input": {
+            "keyAt": 1009.3000000119209,
+            "observedAt": 1036.800000011921,
+            "position": {
+              "x": -0.0002684798370897906,
+              "z": 0.23402621208174035
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 27.5
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 4,
+          "playableMs": 685.6999999880791,
+          "input": {
+            "keyAt": 930.0999999940395,
+            "observedAt": 955.9000000059605,
+            "position": {
+              "x": -0.00026580951448034905,
+              "z": 0.23193092433126195
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 25.80000001192093
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 5,
+          "playableMs": 746.1999999880791,
+          "input": {
+            "keyAt": 988.8999999761581,
+            "observedAt": 1016.7999999821186,
+            "position": {
+              "x": -0.0003793523114051714,
+              "z": 0.22613055461787931
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 27.900000005960464
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 6,
+          "playableMs": 704.7000000178814,
+          "input": {
+            "keyAt": 950.3000000119209,
+            "observedAt": 974.5,
+            "position": {
+              "x": -0.00026473936071935814,
+              "z": 0.22843281283776948
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 24.19999998807907
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 7,
+          "playableMs": 724.3000000119209,
+          "input": {
+            "keyAt": 969.5,
+            "observedAt": 1005.9000000059605,
+            "position": {
+              "x": -0.0002580016093911918,
+              "z": 0.22984470311146077
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 36.400000005960464
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 8,
+          "playableMs": 719.3000000119209,
+          "input": {
+            "keyAt": 962.9000000059605,
+            "observedAt": 987.3000000119209,
+            "position": {
+              "x": -0.0002872945582206086,
+              "z": 0.22979300967587624
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 24.400000005960464
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 9,
+          "playableMs": 726.1999999880791,
+          "input": {
+            "keyAt": 961.7999999821186,
+            "observedAt": 989.3999999761581,
+            "position": {
+              "x": -0.0002608739676929941,
+              "z": 0.2333396342445567
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 27.599999994039536
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 10,
+          "playableMs": 745.9000000059605,
+          "input": {
+            "keyAt": 994.0999999940395,
+            "observedAt": 1033.800000011921,
+            "position": {
+              "x": -0.00026899680249980416,
+              "z": 0.2326252998728158
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 39.70000001788139
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 11,
+          "playableMs": 714.5999999940395,
+          "input": {
+            "keyAt": 955.3000000119209,
+            "observedAt": 982.0999999940395,
+            "position": {
+              "x": -0.00028026552514951114,
+              "z": 0.2298054138510213
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 26.799999982118607
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 12,
+          "playableMs": 729.7999999821186,
+          "input": {
+            "keyAt": 968.6999999880791,
+            "observedAt": 1008.7999999821186,
+            "position": {
+              "x": -0.0002688305217845036,
+              "z": 0.23332559326770774
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 40.099999994039536
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 13,
+          "playableMs": 711.3000000119209,
+          "input": {
+            "keyAt": 949.3000000119209,
+            "observedAt": 975.7000000178814,
+            "position": {
+              "x": -0.0003107338557913817,
+              "z": 0.2311516461284478
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 26.400000005960464
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 14,
+          "playableMs": 738.8999999761581,
+          "input": {
+            "keyAt": 990.1999999880791,
+            "observedAt": 1026.699999988079,
+            "position": {
+              "x": -0.0002765355124333807,
+              "z": 0.23261199605939253
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 36.5
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 15,
+          "playableMs": 699.4000000059605,
+          "input": {
+            "keyAt": 948.4000000059605,
+            "observedAt": 987.3000000119209,
+            "position": {
+              "x": -0.00033290902225477034,
+              "z": 0.22481251365130214
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 38.900000005960464
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 16,
+          "playableMs": 724.5999999940395,
+          "input": {
+            "keyAt": 969.5999999940395,
+            "observedAt": 1006.2999999821186,
+            "position": {
+              "x": -0.0003003723183217959,
+              "z": 0.2332699312769222
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 36.69999998807907
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 17,
+          "playableMs": 651.0999999940395,
+          "input": {
+            "keyAt": 904.1999999880791,
+            "observedAt": 942.2999999821186,
+            "position": {
+              "x": -0.00025599284064049707,
+              "z": 0.23264824783034693
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 38.099999994039536
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 18,
+          "playableMs": 706.3999999761581,
+          "input": {
+            "keyAt": 951.5,
+            "observedAt": 985.5999999940395,
+            "position": {
+              "x": -0.00066447051150485,
+              "z": 0.23122740496749333
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 34.099999994039536
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 19,
+          "playableMs": 700.4000000059605,
+          "input": {
+            "keyAt": 936.0999999940395,
+            "observedAt": 972.5999999940395,
+            "position": {
+              "x": -0.0002411348799783997,
+              "z": 0.23057446788498093
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 36.5
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 20,
+          "playableMs": 714,
+          "input": {
+            "keyAt": 950.3000000119209,
+            "observedAt": 986.5999999940395,
+            "position": {
+              "x": -0.00028354453244180527,
+              "z": 0.2311996272843561
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 36.29999998211861
+          },
+          "gpuErrors": [],
+          "errors": []
+        }
+      ],
+      "medianMs": 714.2999999970198,
+      "p95Ms": 746.1999999880791,
+      "maxMs": 763.3000000119209,
+      "misses": [],
+      "eligible": true
+    },
+    "public-original": {
+      "conditions": {
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "savedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {},
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "expectedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {},
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "wardenPauldrons"
+          }
+        },
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "rows": [
+        {
+          "run": 1,
+          "playableMs": 782.1999999880791,
+          "input": {
+            "keyAt": 1021.1999999880791,
+            "observedAt": 1049.5999999940395,
+            "position": {
+              "x": -0.0005876707756046884,
+              "z": 0.2341629339466379
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 28.400000005960464
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 2,
+          "playableMs": 814.0999999940395,
+          "input": {
+            "keyAt": 1057.2999999821186,
+            "observedAt": 1085.5999999940395,
+            "position": {
+              "x": -0.0005006766699355124,
+              "z": 0.23081645315595972
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 28.30000001192093
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 3,
+          "playableMs": 853.9000000059605,
+          "input": {
+            "keyAt": 1098.0999999940395,
+            "observedAt": 1137.199999988079,
+            "position": {
+              "x": -0.0004913710220271115,
+              "z": 0.226632874719835
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 39.099999994039536
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 4,
+          "playableMs": 848.0999999940395,
+          "input": {
+            "keyAt": 1090.4000000059605,
+            "observedAt": 1119,
+            "position": {
+              "x": -0.0005316266382153027,
+              "z": 0.23286183544296915
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 28.599999994039536
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 5,
+          "playableMs": 816.6000000238419,
+          "input": {
+            "keyAt": 1056,
+            "observedAt": 1087.5,
+            "position": {
+              "x": -0.0005916547638826129,
+              "z": 0.2327559032543587
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 31.5
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 6,
+          "playableMs": 802.0999999940395,
+          "input": {
+            "keyAt": 1046.9000000059605,
+            "observedAt": 1072.2999999821186,
+            "position": {
+              "x": -0.0005233867379307956,
+              "z": 0.23427637635928794
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 25.399999976158142
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 7,
+          "playableMs": 847.9000000059605,
+          "input": {
+            "keyAt": 1088,
+            "observedAt": 1117.9000000059605,
+            "position": {
+              "x": -0.0005162702969816636,
+              "z": 0.23288893486709952
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 29.900000005960464
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 8,
+          "playableMs": 817.1000000238419,
+          "input": {
+            "keyAt": 1053.2000000178814,
+            "observedAt": 1103,
+            "position": {
+              "x": -0.0005068953282534703,
+              "z": 0.35400547880349864
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 49.79999998211861
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 9,
+          "playableMs": 838.2999999821186,
+          "input": {
+            "keyAt": 1080.199999988079,
+            "observedAt": 1107,
+            "position": {
+              "x": -0.0005212165065049092,
+              "z": 0.23428020617915016
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 26.80000001192093
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 10,
+          "playableMs": 785.8000000119209,
+          "input": {
+            "keyAt": 1030.300000011921,
+            "observedAt": 1058.300000011921,
+            "position": {
+              "x": -0.0004955440547232334,
+              "z": 0.2273255105030295
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 28
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 11,
+          "playableMs": 824.8000000119209,
+          "input": {
+            "keyAt": 1074,
+            "observedAt": 1114.2000000178814,
+            "position": {
+              "x": -0.000538308519368457,
+              "z": 0.23215004372191367
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 40.20000001788139
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 12,
+          "playableMs": 836.6000000238419,
+          "input": {
+            "keyAt": 1079.2000000178814,
+            "observedAt": 1105.1000000238419,
+            "position": {
+              "x": -0.00048570250382866403,
+              "z": 0.2322428780699351
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 25.900000005960464
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 13,
+          "playableMs": 881.9000000059605,
+          "input": {
+            "keyAt": 1132,
+            "observedAt": 1166.1000000238419,
+            "position": {
+              "x": -0.0005664424721750532,
+              "z": 0.23280039573986877
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 34.10000002384186
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 14,
+          "playableMs": 856.9000000059605,
+          "input": {
+            "keyAt": 1114.199999988079,
+            "observedAt": 1154,
+            "position": {
+              "x": -0.0006806380017315231,
+              "z": 0.2220988740207337
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 39.80000001192093
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 15,
+          "playableMs": 787,
+          "input": {
+            "keyAt": 1048.7999999821186,
+            "observedAt": 1099.3999999761581,
+            "position": {
+              "x": -0.0005719902284168236,
+              "z": 0.35809060541534454
+            },
+            "frames": 24,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 50.599999994039536
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 16,
+          "playableMs": 991.3000000119209,
+          "input": {
+            "keyAt": 1261,
+            "observedAt": 1287.800000011921,
+            "position": {
+              "x": -0.0006225644527328273,
+              "z": 0.15850135678949523
+            },
+            "frames": 23,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 26.80000001192093
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 17,
+          "playableMs": 854.2000000178814,
+          "input": {
+            "keyAt": 1105,
+            "observedAt": 1146.5,
+            "position": {
+              "x": -0.00063231524831653,
+              "z": 0.21658414979653168
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 41.5
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 18,
+          "playableMs": 832.3999999761581,
+          "input": {
+            "keyAt": 1085.7999999821186,
+            "observedAt": 1114.5,
+            "position": {
+              "x": -0.0005540215763604264,
+              "z": 0.22232231475791242
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 28.700000017881393
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 19,
+          "playableMs": 812.8999999761581,
+          "input": {
+            "keyAt": 1065.8999999761581,
+            "observedAt": 1095.3999999761581,
+            "position": {
+              "x": -0.0005450023561707043,
+              "z": 0.23213823127819289
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 29.5
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 20,
+          "playableMs": 840.8000000119209,
+          "input": {
+            "keyAt": 1085.6000000238419,
+            "observedAt": 1120.300000011921,
+            "position": {
+              "x": -0.0006105381814660889,
+              "z": 0.24462257970351248
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 34.69999998807907
+          },
+          "gpuErrors": [],
+          "errors": []
+        }
+      ],
+      "medianMs": 834.5,
+      "p95Ms": 881.9000000059605,
+      "maxMs": 991.3000000119209,
+      "misses": [],
+      "eligible": true
+    },
+    "public-hood-isolated": {
+      "conditions": {
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "savedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "expectedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "rows": [
+        {
+          "run": 1,
+          "playableMs": 957.5,
+          "input": {
+            "keyAt": 1214.2999999821186,
+            "observedAt": 1249.5999999940395,
+            "position": {
+              "x": -0.00044230106215088555,
+              "z": 0.23161946888641305
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 35.30000001192093
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 2,
+          "playableMs": 927.8999999761581,
+          "input": {
+            "keyAt": 1173.8999999761581,
+            "observedAt": 1211.699999988079,
+            "position": {
+              "x": -0.00046922544759243255,
+              "z": 0.23437195531107863
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 37.80000001192093
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 3,
+          "playableMs": 929.4000000059605,
+          "input": {
+            "keyAt": 1182,
+            "observedAt": 1215.300000011921,
+            "position": {
+              "x": -0.00045654344947316594,
+              "z": 0.24209433505459954
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 33.30000001192093
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 4,
+          "playableMs": 951.1999999880791,
+          "input": {
+            "keyAt": 1183.800000011921,
+            "observedAt": 1217,
+            "position": {
+              "x": -0.0004910193160607325,
+              "z": 0.22453349529358468
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 33.19999998807907
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 5,
+          "playableMs": 942,
+          "input": {
+            "keyAt": 1206.0999999940395,
+            "observedAt": 1245.5,
+            "position": {
+              "x": -0.00045193468214284094,
+              "z": 0.22950246829827559
+            },
+            "frames": 23,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 39.400000005960464
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 6,
+          "playableMs": 959.0999999940395,
+          "input": {
+            "keyAt": 1205.699999988079,
+            "observedAt": 1241.699999988079,
+            "position": {
+              "x": -0.0005278582093466241,
+              "z": 0.23006848556940085
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 36
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 7,
+          "playableMs": 948.2999999821186,
+          "input": {
+            "keyAt": 1197.7999999821186,
+            "observedAt": 1230.5,
+            "position": {
+              "x": -0.0004465223125765867,
+              "z": 0.23371201949637088
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 32.70000001788139
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 8,
+          "playableMs": 944.6000000238419,
+          "input": {
+            "keyAt": 1197.1000000238419,
+            "observedAt": 1229.300000011921,
+            "position": {
+              "x": -0.00045219675670125995,
+              "z": 0.23230200564677417
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 32.19999998807907
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 9,
+          "playableMs": 1021.5999999940395,
+          "input": {
+            "keyAt": 1277.7000000178814,
+            "observedAt": 1313.0999999940395,
+            "position": {
+              "x": -0.00044686920820181166,
+              "z": 0.22251140736928798
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 35.39999997615814
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 10,
+          "playableMs": 974,
+          "input": {
+            "keyAt": 1233,
+            "observedAt": 1262.1000000238419,
+            "position": {
+              "x": -0.0004420995457937708,
+              "z": 0.2344198243366873
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 29.100000023841858
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 11,
+          "playableMs": 1021.5999999940395,
+          "input": {
+            "keyAt": 1270.199999988079,
+            "observedAt": 1302.7999999821186,
+            "position": {
+              "x": -0.00048393156226111565,
+              "z": 0.22314600317722647
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 32.599999994039536
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 12,
+          "playableMs": 959.8000000119209,
+          "input": {
+            "keyAt": 1208.5,
+            "observedAt": 1246.5999999940395,
+            "position": {
+              "x": -0.0004659965873533315,
+              "z": 0.2371776531310117
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 38.099999994039536
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 13,
+          "playableMs": 933.6999999880791,
+          "input": {
+            "keyAt": 1182.199999988079,
+            "observedAt": 1218.5999999940395,
+            "position": {
+              "x": -0.0005270706880888933,
+              "z": 0.23286987535457487
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 36.400000005960464
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 14,
+          "playableMs": 956.0999999940395,
+          "input": {
+            "keyAt": 1224.5999999940395,
+            "observedAt": 1262.199999988079,
+            "position": {
+              "x": -0.0004424763765110037,
+              "z": 0.2330191594245773
+            },
+            "frames": 23,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 37.599999994039536
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 15,
+          "playableMs": 950,
+          "input": {
+            "keyAt": 1201.5,
+            "observedAt": 1233.699999988079,
+            "position": {
+              "x": -0.00046147791642385066,
+              "z": 0.2329856272976636
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 32.19999998807907
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 16,
+          "playableMs": 909.9000000059605,
+          "input": {
+            "keyAt": 1161.300000011921,
+            "observedAt": 1197.5999999940395,
+            "position": {
+              "x": -0.0005272154246686079,
+              "z": 0.23566961997871622
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 36.29999998211861
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 17,
+          "playableMs": 956.6999999880791,
+          "input": {
+            "keyAt": 1209.2999999821186,
+            "observedAt": 1247.3999999761581,
+            "position": {
+              "x": -0.0005015676291118868,
+              "z": 0.23291488054132536
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 38.099999994039536
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 18,
+          "playableMs": 929.5,
+          "input": {
+            "keyAt": 1196.1000000238419,
+            "observedAt": 1232.7000000178814,
+            "position": {
+              "x": -0.0004867128638379415,
+              "z": 0.22594109503993037
+            },
+            "frames": 23,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 36.599999994039536
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 19,
+          "playableMs": 916.1000000238419,
+          "input": {
+            "keyAt": 1161.2000000178814,
+            "observedAt": 1198.300000011921,
+            "position": {
+              "x": -0.0005923640226733726,
+              "z": 0.22715465195516035
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 37.099999994039536
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 20,
+          "playableMs": 942.6999999880791,
+          "input": {
+            "keyAt": 1200,
+            "observedAt": 1231.2999999821186,
+            "position": {
+              "x": -0.0005041288132953341,
+              "z": 0.23291036101332901
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 31.299999982118607
+          },
+          "gpuErrors": [],
+          "errors": []
+        }
+      ],
+      "medianMs": 949.1499999910593,
+      "p95Ms": 1021.5999999940395,
+      "maxMs": 1021.5999999940395,
+      "misses": [
+        9,
+        11
+      ],
+      "eligible": true
+    },
+    "public-hood-exploratory": {
+      "conditions": {
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "savedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "expectedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "rows": [
+        {
+          "run": 1,
+          "playableMs": 940.5,
+          "input": {
+            "keyAt": 1189.199999988079,
+            "observedAt": 1216.5,
+            "position": {
+              "x": -0.0004245140523433114,
+              "z": 0.23305085743318785
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 27.30000001192093
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 2,
+          "playableMs": 882.6999999880791,
+          "input": {
+            "keyAt": 1123.0999999940395,
+            "observedAt": 1155.2999999821186,
+            "position": {
+              "x": -0.00043681249370295007,
+              "z": 0.23302915430276328
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 32.19999998807907
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 3,
+          "playableMs": 922.3000000119209,
+          "input": {
+            "keyAt": 1176.4000000059605,
+            "observedAt": 1212.0999999940395,
+            "position": {
+              "x": -0.0004594602358652768,
+              "z": 0.23298918791121265
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 35.69999998807907
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 4,
+          "playableMs": 935,
+          "input": {
+            "keyAt": 1178.4000000059605,
+            "observedAt": 1203.6000000238419,
+            "position": {
+              "x": -0.0004460746739961198,
+              "z": 0.23091280940488065
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 25.200000017881393
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 5,
+          "playableMs": 924.1000000238419,
+          "input": {
+            "keyAt": 1173.7000000178814,
+            "observedAt": 1212.9000000059605,
+            "position": {
+              "x": -0.0004498658840806463,
+              "z": 0.23300611911790825
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 39.19999998807907
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 6,
+          "playableMs": 930.0999999940395,
+          "input": {
+            "keyAt": 1166.5999999940395,
+            "observedAt": 1206.2999999821186,
+            "position": {
+              "x": -0.00040415407304870076,
+              "z": 0.23238678705768695
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 39.69999998807907
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 7,
+          "playableMs": 945.2999999821186,
+          "input": {
+            "keyAt": 1179.199999988079,
+            "observedAt": 1207.199999988079,
+            "position": {
+              "x": -0.00047554739439701336,
+              "z": 0.2252607986413398
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 28
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 8,
+          "playableMs": 934.4000000059605,
+          "input": {
+            "keyAt": 1181.5999999940395,
+            "observedAt": 1220.800000011921,
+            "position": {
+              "x": -0.00044633446610423144,
+              "z": 0.2225123510317471
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 39.20000001788139
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 9,
+          "playableMs": 914.5,
+          "input": {
+            "keyAt": 1159.4000000059605,
+            "observedAt": 1191.5999999940395,
+            "position": {
+              "x": -0.00045071659621172695,
+              "z": 0.23230461790330542
+            },
+            "frames": 20,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 32.19999998807907
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 10,
+          "playableMs": 918.2000000178814,
+          "input": {
+            "keyAt": 1164.9000000059605,
+            "observedAt": 1205.0999999940395,
+            "position": {
+              "x": -0.00046089649076172285,
+              "z": 0.23368665330141275
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 40.19999998807907
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 11,
+          "playableMs": 933.0999999940395,
+          "input": {
+            "keyAt": 1172.3999999761581,
+            "observedAt": 1205.0999999940395,
+            "position": {
+              "x": -0.00048553438059174137,
+              "z": 0.23364317467440615
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 32.70000001788139
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 12,
+          "playableMs": 901.5,
+          "input": {
+            "keyAt": 1130.699999988079,
+            "observedAt": 1165.7999999821186,
+            "position": {
+              "x": -0.00045077807056692696,
+              "z": 0.23090450929404424
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 35.099999994039536
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 13,
+          "playableMs": 899.0999999940395,
+          "input": {
+            "keyAt": 1140.7000000178814,
+            "observedAt": 1171.7000000178814,
+            "position": {
+              "x": -0.0004368758900779138,
+              "z": 0.22322904259373688
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 31
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 14,
+          "playableMs": 976,
+          "input": {
+            "keyAt": 1194,
+            "observedAt": 1221.7000000178814,
+            "position": {
+              "x": -0.00048372536929463215,
+              "z": 0.2322463671305833
+            },
+            "frames": 19,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 27.700000017881393
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 15,
+          "playableMs": 936.7000000178814,
+          "input": {
+            "keyAt": 1179.5,
+            "observedAt": 1206.4000000059605,
+            "position": {
+              "x": -0.0004226035646841515,
+              "z": 0.23165422917440326
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 26.900000005960464
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 16,
+          "playableMs": 926.5,
+          "input": {
+            "keyAt": 1163.300000011921,
+            "observedAt": 1189.800000011921,
+            "position": {
+              "x": -0.00039915078025163357,
+              "z": 0.23309561614628188
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 26.5
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 17,
+          "playableMs": 1064.7999999821186,
+          "input": {
+            "keyAt": 1306.699999988079,
+            "observedAt": 1336,
+            "position": {
+              "x": -0.0003772502712830535,
+              "z": 0.23313426410111837
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 29.30000001192093
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 18,
+          "playableMs": 951.2000000178814,
+          "input": {
+            "keyAt": 1191,
+            "observedAt": 1219.6000000238419,
+            "position": {
+              "x": -0.0005009788230833331,
+              "z": 0.22521591965260937
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 28.600000023841858
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 19,
+          "playableMs": 946.6999999880791,
+          "input": {
+            "keyAt": 1171.5,
+            "observedAt": 1210.9000000059605,
+            "position": {
+              "x": -0.0003943050284838904,
+              "z": 0.23310416768088038
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 39.400000005960464
+          },
+          "gpuErrors": [],
+          "errors": []
+        },
+        {
+          "run": 20,
+          "playableMs": 928.3999999761581,
+          "input": {
+            "keyAt": 1170.0999999940395,
+            "observedAt": 1198.0999999940395,
+            "position": {
+              "x": -0.0004044145650999042,
+              "z": 0.22748632723967954
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 28
+          },
+          "gpuErrors": [],
+          "errors": []
+        }
+      ],
+      "medianMs": 931.5999999940395,
+      "p95Ms": 976,
+      "maxMs": 1064.7999999821186,
+      "misses": [
+        17
+      ],
+      "eligible": false
+    }
+  },
+  "gates": [
+    {
+      "gate": "entry",
+      "exit": 0
+    },
+    {
+      "gate": "bridge",
+      "exit": 0
+    },
+    {
+      "gate": "mobile",
+      "exit": 0
+    },
+    {
+      "gate": "depth",
+      "exit": 0
+    },
+    {
+      "gate": "webkit",
+      "exit": 0
+    }
+  ],
+  "fps": {
+    "conditions": {
+      "cpu": "Apple M1 Max",
+      "url": "https://bf429bb3.fardel.pages.dev/?play=&clean=&pixelRatio=1&gpuTiming=",
+      "viewport": [
+        1280,
+        720
+      ],
+      "seconds": 12,
+      "runs": 3,
+      "uncappedRequired": true,
+      "recording": false,
+      "race": "human",
+      "outfit": null,
+      "orcAssetsOverride": null,
+      "routes": [
+        "bridge"
+      ],
+      "recordCapped": true,
+      "savedAppearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v7",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {
+          "head": "human-prime-v1",
+          "hair": "human-ponytail01-v1"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "pilgrimTunic",
+          "legs": "graveweaverSkirt",
+          "boots": "wayfarerBoots",
+          "gloves": "graveweaverGloves",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "bastionShoulders"
+        }
+      }
+    },
+    "rows": [
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 236.70506549007126,
+          "meanMs": 4.224666666636864,
+          "medianMs": 4.199999988079071,
+          "p95Ms": 5.299999982118607,
+          "p99Ms": 5.5,
+          "worstMs": 9.099999994039536,
+          "minMs": 2.800000011920929,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 461,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 786917,
+          "drawBatches": 57,
+          "worldTriangles": 786917,
+          "sceneTriangles": 1052995,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 58,
+          "totalMeshes": 149,
+          "triangleCountMs": 0.19999998807907104,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": true,
+          "gpuTimingReadback": "ok",
+          "gpuMs": 1.2383166052947783,
+          "gpuMeanMs": 1.199050398604848,
+          "gpuP95Ms": 1.3423738026435625,
+          "gpuSamples": 600,
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.225 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.200-5.500 ms (full range 2.800-9.100 ms)"
+        },
+        "x": 0,
+        "z": 299.6684708058139,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "bridge",
+        "run": 1,
+        "before": {
+          "x": 0,
+          "z": 215.6343282518261,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2913,
+          "fps": 242.6387905543293,
+          "meanMs": 4.121352557500858,
+          "medianMs": 4.0999999940395355,
+          "p95Ms": 5.0999999940395355,
+          "p99Ms": 5.5,
+          "worstMs": 9.300000011920929,
+          "minMs": 2.7999999821186066,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.121 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.500 ms (full range 2.800-9.300 ms)"
+        },
+        "tails": {
+          "samples": 2913,
+          "meanMs": 4.121352557500858,
+          "meanFps": 242.6387905543293,
+          "p50Ms": 4.0999999940395355,
+          "p95Ms": 5.0999999940395355,
+          "p99Ms": 5.5,
+          "maxMs": 9.300000011920929,
+          "above6_94": 4,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 238.01023443951814,
+          "meanMs": 4.2015000000099345,
+          "medianMs": 4.199999988079071,
+          "p95Ms": 5.200000017881393,
+          "p99Ms": 5.5,
+          "worstMs": 9,
+          "minMs": 3.0999999940395355,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 461,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 786917,
+          "drawBatches": 57,
+          "worldTriangles": 786917,
+          "sceneTriangles": 1052999,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 58,
+          "totalMeshes": 149,
+          "triangleCountMs": 0,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": true,
+          "gpuTimingReadback": "ok",
+          "gpuMs": 1.121834830924643,
+          "gpuMeanMs": 1.1769114653610542,
+          "gpuP95Ms": 1.3095921529579986,
+          "gpuSamples": 600,
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.202 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.200-5.500 ms (full range 3.100-9.000 ms)"
+        },
+        "x": 0,
+        "z": 299.66823856145214,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "bridge",
+        "run": 2,
+        "before": {
+          "x": 0,
+          "z": 215.6362974162983,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2925,
+          "fps": 243.642391276944,
+          "meanMs": 4.104376068380144,
+          "medianMs": 4.0999999940395355,
+          "p95Ms": 5.0999999940395355,
+          "p99Ms": 5.4000000059604645,
+          "worstMs": 9.199999988079071,
+          "minMs": 2.5999999940395355,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.104 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.400 ms (full range 2.600-9.200 ms)"
+        },
+        "tails": {
+          "samples": 2925,
+          "meanMs": 4.104376068380144,
+          "meanFps": 243.642391276944,
+          "p50Ms": 4.0999999940395355,
+          "p95Ms": 5.0999999940395355,
+          "p99Ms": 5.4000000059604645,
+          "maxMs": 9.199999988079071,
+          "above6_94": 4,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 237.48268355432415,
+          "meanMs": 4.210833333333333,
+          "medianMs": 4.199999988079071,
+          "p95Ms": 5.199999988079071,
+          "p99Ms": 5.5,
+          "worstMs": 8.900000005960464,
+          "minMs": 2.7999999821186066,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 461,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 786917,
+          "drawBatches": 57,
+          "worldTriangles": 786917,
+          "sceneTriangles": 1053003,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 58,
+          "totalMeshes": 149,
+          "triangleCountMs": 0.19999998807907104,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": true,
+          "gpuTimingReadback": "ok",
+          "gpuMs": 1.0288816789788147,
+          "gpuMeanMs": 1.1999699807227073,
+          "gpuP95Ms": 1.3536964174853285,
+          "gpuSamples": 600,
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.211 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.200-5.500 ms (full range 2.800-8.900 ms)"
+        },
+        "x": 0,
+        "z": 299.65177647594896,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "bridge",
+        "run": 3,
+        "before": {
+          "x": 0,
+          "z": 215.62059605645027,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2975,
+          "fps": 247.8092826444336,
+          "meanMs": 4.035361344533808,
+          "medianMs": 4,
+          "p95Ms": 4.9000000059604645,
+          "p99Ms": 5.300000011920929,
+          "worstMs": 9.700000017881393,
+          "minMs": 2.7000000178813934,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.035 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2975,
+          "meanMs": 4.035361344533808,
+          "meanFps": 247.8092826444336,
+          "p50Ms": 4,
+          "p95Ms": 4.9000000059604645,
+          "p99Ms": 5.300000011920929,
+          "maxMs": 9.700000017881393,
+          "above6_94": 4,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      }
+    ]
+  },
+  "delivery": {
+    "telegramMessage": 864,
+    "width": 1280,
+    "height": 720,
+    "durationSeconds": 19.448849,
+    "ve": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/havok-startup-2026-10-05.mp4",
+    "review": "Native source motion, Telegram Web A inline/expanded/actual VIDEO fullscreen, direct VE normal playback reviewed. Correct contain proportions. VE fullscreen automation unavailable for direct media document; Telegram Desktop and physical iPhone not tested."
+  },
+  "retainedFailures": [
+    "native-http.json and native-cold.json: local Pages emulator double-encoding; real CDN passes exact decoded bytes",
+    "control-1-warden.json: first-use 3126.2 ms retained; no shoulder regression established",
+    "public-cold-hood.json: first two rows overlapped upload; entire cohort exploratory; run17 1064.8ms retained",
+    "public-cold-hood-isolated.json: 2 of20 miss one second; p95 1021.6 ms",
+    "motion/: first recording omitted pixelRatio=1 and dimension guard timed out before capture",
+    "frame-warm-cold.json: rejected prototype missing native morph initialization; GPU-invalid results",
+    "primed-warm-cold.json: initial five looked valid only at readiness boundary; subsequent full-region held-body check fails bind pose and GPU sampler bindings; NOT an accepted timing cohort",
+    "warm-boundary-first-failure.json: probe object-spread Vec3 produced _x/_z, then corrected to explicit x/z; later GPU errors are real"
+  ],
+  "evidenceSha256": {
+    "public-http.json": "fa4fcb772c2788aec05c08dfb883aae53897346d78990fbaaeb6cd5b4dc53a1a",
+    "public-bridge/report.json": "4e672c10c66af5f54180a9a301d7edf849b7dda583e568fe209eed6c8f36e09c",
+    "bridge-fps.json": "0e7b0fa1c7372c015cdfb4f13debeedc2a3ea4c1488c53273ae6d4ec0e354b70",
+    "grok-review.md": "56cbff99fae5844814e1825a4ad5de8d8148c0b252a76877afb290a6e0a314be",
+    "grok-warm-review.md": "5264ce64dc1f0244ac0bc0ea2703c24b42ea3da59483ee0f31648b25ef7f9567",
+    "pages-seal-final.json": "8cbaf2f363630ff3a050363add7bff6056a5e31d9708d8bceca044b07c16d218",
+    "main-world-warmup-rejected.js": "b382af58777dd3d2bf25564b026e7a5a7274162d69ef302e568890672cd4dc87",
+    "warm-boundaries-vector/report.json": "851956e2f9aa49c8907f1be863fddfa5549b2ce3ec73928567baf0519d006c7c"
+  }
+}

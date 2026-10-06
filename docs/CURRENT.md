@@ -16,14 +16,18 @@ avoidable retries; [next-ten](plans/character-mmo/next-ten.md) retains broader o
 ## Current release
 
 Production [play.sparkify.dev](https://play.sparkify.dev) is source
-**5fba4d8a52069db845ccafa4fc05faf418850bf4**, Pages
-**63b6e02b-c93f-4b85-aebf-f2ae79bfb8a6**. The exact tested 537-file sealed build
-is uploaded without rebuilding. All 536 served files match, including world,
-textures, character packs, bundles and Havok. Final public bridge/tower round trips,
-saved eight, mobile eight, depth-fallback eight and Weathered WebKit four pass.
-Rollback is accepted M5 **6934292**, Pages **f82f8e2e-0b77-4fff-a5bf-a8e2544aac0b**.
-No rollback was needed. [M8 result](plans/character-mmo/results/m8-equipment-factory-2026-10-05.md)
-and [receipt](baselines/character-mmo/m8/factory-2026-10-05/receipt.json) own evidence.
+**0d577d27cc53bca05b2f695c45922458cf54c0b0**, Pages
+**f6265788-d4fd-45fe-abae-76f9c3d23247**. Havok's identical WASM now uses native HTTP
+Brotli: **501,493 bytes**, 21.8% smaller than the previous production transfer.
+All **537 served files** match the exact sealed build. Native streaming/preload,
+cathedral round trip, mobile eight, depth-fallback eight and WebKit four pass.
+Rollback: M8 source **5fba4d8**, Pages **63b6e02b-c93f-4b85-aebf-f2ae79bfb8a6**.
+[Startup result](plans/character-mmo/results/startup-headroom-2026-10-05.md) and
+[receipt](baselines/character-mmo/startup-headroom-2026-10-05/receipt.json) own evidence.
+The one-second largest-outfit target remains **open**. A faster world-only warmup
+was rejected for bind-pose/GPU regressions and is absent from production and HEAD.
+Keep actor-before-first-register ordering; investigate the existing validated body
+fetch dependency next, then return to M6. Do not repeat the rejected warmup.
 
 Catalogue v7 adds Bastion shoulders for Human, Orc and Undead, preserving frozen
 v1–v6 save registries. The [factory](equipment-factory.md) reuses Blender, glTF
@@ -48,22 +52,23 @@ save. All 15 runs measure **209.8–245.7 FPS**, maximum p99 **6.2 ms**, worst i
 Recording/encoding/media playback are excluded. Statistical pacing hints stay
 recorded and are independently resolved; these are not physical display-refresh claims.
 
-**Startup:** 40 final local fresh-process/cache-disabled starts pass: new hood p95
-**886.3 ms**, original-largest/Bastion **812.3 ms**, no misses. Public 60 starts have
-p95 **818.6 / 900.2 / 998.4 ms** for default/original-largest/new hood. The hood has
-**one miss, run 11 at 1,037.9 ms**, and only 1.6 ms p95 margin. All validation passes;
-no favorable repeat replaces this cohort. Conditions: decimal 50 Mbit/s down,
-10 up, 40 ms latency, native 1280×720/DPR 1. One initial public saved-check boot
-also times out with an unidentified fetch error after five successful cases;
-isolated ordinary readiness and one complete eight-case confirmation pass. Its
-cause remains unconfirmed and the initial report is retained.
+**Latest bridge check:** three isolated native runs on the new release measure
+**242.6–247.8 FPS**, maximum p99 **5.5 ms**, worst interval **9.7 ms**, seven enemies.
+The earlier M8 five-route performance matrix above remains the broader baseline.
 
-Reviewed native motion is Telegram **863**, returned 1280×720, and
-[VE video/mp4](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m8-bastion-factory-2026-10-05-7d1e3393cb1c.mp4).
-The 56.554-second timestamped capture preserves square pixels and zero rotation.
-Telegram Web A inline/expanded/actual VIDEO fullscreen and VE-hosted normal,
-full-window/actual VIDEO fullscreen have correct contain proportions. The ledger
-points at the finished source commit. Telegram Desktop remains unavailable.
+**Startup:** 20 final local hood starts have p95 **885.8 ms**. Public 20 per profile
+have p95 **746.2 / 881.9 / 1,021.6 ms** for default/original-largest/new hood.
+The hood misses one second twice (runs 9 and 11); no claim of completing that target.
+Conditions: fresh Chromium processes/profiles, HTTP cache disabled, decimal
+50 Mbit/s down, 10 up, 40 ms latency, native 1280×720/DPR 1. See the result for
+retained exploratory, first-use GPU, local emulator and rejected-warmup failures.
+
+Reviewed released motion is Telegram **864**, returned 1280×720, and
+[VE video/mp4](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/havok-startup-2026-10-05.mp4).
+The 19.449-second timestamped capture preserves square pixels and zero rotation.
+Telegram Web A inline/expanded/actual VIDEO fullscreen and direct VE normal
+playback have correct proportions. VE fullscreen for this clip, Telegram Desktop
+and physical iPhone acceptance were not verified this pass.
 
 ## Scope, limits and ownership
 
@@ -77,12 +82,12 @@ points at the finished source commit. Telegram Desktop remains unavailable.
   iPhone startup/memory/thermal acceptance remains separate from emulation/WebKit
   and the user's earlier ~60 FPS feedback. Boot sole silhouette and sampling
   aliasing remain art follow-ups. M6 and the full M9/M10 exits are not closed.
-- **Owned instances are closed:** Chrome 51793/CDP 10037, Vite 5873 and Pages 7175,
-  their 13 processes and every temporary game/media context. Orca's all-worktree
-  browser inventory is empty. User Edge/Orca sessions remain; only the two originally
-  playing references are restored. Telegram/other X stay paused; media guards removed.
+- **Owned instances are closed:** Chrome 80497/CDP 10037, Vite 5873, compressed
+  preview 7074, Pages 7175, every probe browser and temporary media tab. User
+  Edge/Orca sessions remain; only the two originally playing references are
+  restored. Telegram/other X stay paused; temporary media guards removed.
   [Ownership procedure](debug-view.md#browser-ownership-and-performance-isolation),
-  inventory `.cache/character-mmo/m8-factory-2026-10-05/ownership.md` / `cleanup.json`.
+  inventory `.cache/character-mmo/startup-headroom-2026-10-05/ownership.md`.
 - Existing Claude terminal `term_d4cf5b10-02ae-4b08-abfb-9c35d86ef78b`, selected Opus
   5.5/high, completed bounded implementation/docs and adversarial reviews; no renderer.
   Effective internal effort is not independently verified. Preserve its existing draft.
