@@ -1,9 +1,14 @@
 # Current state and immediate focus — Ashen Reach
 
-Updated 2026-10-05. Read this before choosing work. Follow the latest user request;
+Updated 2026-10-06. Read this before choosing work. Follow the latest user request;
 historical milestone documents are evidence, not an active task queue.
 
 ## Immediate target
+
+[Active startup goal](plans/character-mmo/startup-goal-2026-10-06.md): largest saved
+hood/Bastion outfit below one second p95 in a fixed isolated production cohort,
+with unchanged art/physics and over 120 FPS. Implementation and verification are
+in progress; the current release below remains the accepted baseline.
 
 The [focused 12-hour plan](plans/character-mmo/next-12-hours-2026-10-05.md) delivers
 its primary **saved Human creator release** and conditional **rigid shoulder factory/content

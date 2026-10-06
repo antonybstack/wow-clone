@@ -5,8 +5,9 @@
  * fixed identity catalogue, and only then requests the selected body. This emits a tiny inline
  * head script that, only when one of the existing saved-appearance keys is present, adds native
  * `<link rel=modulepreload>` for those two optional modules' static graph (built Rolldown chunk
- * names, minus anything the page already preloads) and one `<link rel=preload as=fetch>` for the
- * fixed catalogue index. Nothing comes from storage except presence; no recipe is decoded here,
+ * names, minus anything the page already preloads). Production embeds the fixed
+ * catalogue as inert JSON before the early async module; other hosts retain fetch
+ * fallback. Nothing comes from storage except presence; no recipe is decoded here,
  * and no body, geometry or item URL is requested. The runtime keeps its own migration,
  * validation, provenance checks and shared fetch promises.
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/modulepreload
@@ -14,6 +15,7 @@
  * https://vite.dev/guide/api-plugin.html#transformindexhtml
  */
 
+import {EMBEDDED_IDENTITY_CATALOGUE_ID} from '../../src/ashen-reach/startup-fetch.js';
 import {SAVED_APPEARANCE_KEYS,SAVED_APPEARANCE_BLOCKING_PARAMS} from '../../src/ashen-reach/startup-appearance.js';
 
 export const SAVED_PRELOAD_MARKER = 'data-ashen-saved-preload';
@@ -67,4 +69,34 @@ export function injectHeadScript(html, script) {
     const firstAsset = html.search(/<(?:script|link)\b[^>]*(?:src|href)=/i);
     if (firstAsset !== -1 && firstAsset < at) throw Error('Saved preload: an external resource precedes the insertion point');
     return html.slice(0, at) + script + html.slice(at);
+}
+
+/** Serialize sealed build data, never storage. Escaping '<' prevents HTML raw-text
+ * termination even if a future catalogue label contains '</script>'. Place the
+ * block after resource discovery links so its bytes do not hold up those requests.
+ * https://html.spec.whatwg.org/multipage/scripting.html#the-script-element
+ */
+export function runtimeIdentityCatalogue(catalogue){
+    // The build verifies these source-file audit hashes before generating HTML.
+    // Runtime checks the aggregate SHA; the full inputs receipt remains published
+    // at the standalone manifest URL. All preset/asset/coverage data stays exact.
+    const {inputs,...provenance}=catalogue.provenance;
+    return {...catalogue,provenance};
+}
+export function identityCatalogueBlock(catalogue){
+    const json=JSON.stringify(catalogue).replaceAll('<','\\u003c');
+    if(Buffer.byteLength(json)>96*1024)throw Error('Embedded identity catalogue exceeds 96 KiB');
+    return `<script type="application/json" id="${EMBEDDED_IDENTITY_CATALOGUE_ID}">${json}</script>`;
+}
+
+/** An async module may execute before the HTML parser finishes. Move its tag
+ * after the complete data block, retaining resource hints ahead of both. Fail
+ * the build on a missing/duplicate tag rather than silently restoring a fetch.
+ * https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script#async
+ */
+export function injectIdentityCatalogue(html,catalogue,earlyScript){
+    if(!earlyScript||html.split(earlyScript).length!==2)throw Error('Identity catalogue: expected one early module tag');
+    if(html.split('</head>').length!==2)throw Error('Identity catalogue: expected one head end');
+    if(html.includes(`id="${EMBEDDED_IDENTITY_CATALOGUE_ID}"`))throw Error('Identity catalogue: already injected');
+    return html.replace(earlyScript,'').replace('</head>',`${identityCatalogueBlock(catalogue)}${earlyScript}</head>`);
 }

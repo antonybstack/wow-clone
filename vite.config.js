@@ -4,7 +4,7 @@ import {verifyStartupAssets} from './scripts/ashen-reach/startup-provenance.mjs'
 import {verifyStarterGeometry} from './scripts/ashen-reach/verify-starter-geometry.mjs';
 import {writeEarlyHints} from './scripts/ashen-reach/early-hints.mjs';
 import {havokDeliveryPlugin} from './scripts/ashen-reach/havok-delivery.mjs';
-import {startupAppearanceContract,savedPreloadModules,savedPreloadScript,injectHeadScript} from './scripts/ashen-reach/saved-preload.mjs';
+import {startupAppearanceContract,savedPreloadModules,savedPreloadScript,injectHeadScript,injectIdentityCatalogue,runtimeIdentityCatalogue} from './scripts/ashen-reach/saved-preload.mjs';
 import { defineConfig } from "vite";
 import {readFileSync,createReadStream,statSync} from 'node:fs';
 import {resolve} from 'node:path';
@@ -235,7 +235,8 @@ export default defineConfig({
           if(!mainSeen.has(owner.fileName))throw Error(`Early/main startup must share one ${file} module`);
         }
         // Returning players: when a saved-appearance key exists, overlap the two optional pure
-        // modules' static graph and the fixed identity index with the generic module graph.
+        // modules' static graph with the generic graph. The verified identity index
+        // travels in the HTML below, removing its fetch from the body dependency.
         // Gate keys/params share the runtime exports; the fixed index URL is guarded.
         // https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/modulepreload
         let savedPreload='';
@@ -244,11 +245,16 @@ export default defineConfig({
           const indexUrl='/ashen-reach/human-identity-v1/manifest.json';
           if(!readFileSync('src/ashen-reach/startup-fetch.js','utf8').includes(`fetch('${indexUrl}'`))throw Error('Saved preload: identity index URL changed');
           const {files}=savedPreloadModules(bundle,[identityLoader.fileName,appearance.fileName],new Set([...seen,...mainSeen]));
-          savedPreload=savedPreloadScript({...contract,modules:files.map(name=>`/${name}`),fetches:[indexUrl]});
+          savedPreload=savedPreloadScript({...contract,modules:files.map(name=>`/${name}`),fetches:[]});
         }
         for(const item of Object.values(bundle))if(item.type==='asset'&&item.fileName.endsWith('.html')) {
-          item.source=String(item.source).replace('<!-- ASHEN_STARTUP_PRELOAD -->',`<script type="module" async crossorigin src="/${entry.fileName}"></script>`);
-          if(savedPreload&&item.source.includes(`/${entry.fileName}`))item.source=injectHeadScript(item.source,savedPreload);
+          const earlyScript=`<script type="module" async crossorigin src="/${entry.fileName}"></script>`;
+          item.source=String(item.source).replace('<!-- ASHEN_STARTUP_PRELOAD -->',earlyScript);
+          if(savedPreload&&item.source.includes(`/${entry.fileName}`)){
+            item.source=injectHeadScript(item.source,savedPreload);
+            // The catalogue must precede even a cache-hot async module.
+            item.source=injectIdentityCatalogue(item.source,runtimeIdentityCatalogue(humanIdentityManifest),earlyScript);
+          }
         }
       }},
     },

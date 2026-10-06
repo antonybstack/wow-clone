@@ -30,16 +30,21 @@ export function startupAssetBuffer(asset, {priority = 'high'} = {}) {
   }
   return pending.get(asset.url);
 }
+export const EMBEDDED_IDENTITY_CATALOGUE_ID='ashen-human-identity-catalogue';
 let starterManifestTask, shapeManifestTask, identityCatalogueTask;
-/** Start the fixed catalogue request before the optional identity module arrives.
- * This reuses the same promise; storage never supplies a URL or bypasses validation.
- * https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+/** Production HTML can carry the exact build-verified catalogue as inert JSON.
+ * Reuse the same promise and downstream provenance/schema/coverage validation;
+ * only the transport changes. Dev and hosts without the block use the fixed URL.
+ * https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script/type
  */
 export function preloadHumanIdentityCatalogue(){
- return identityCatalogueTask??=fetch('/ashen-reach/human-identity-v1/manifest.json',{priority:'high'}).then(async response=>{
+ return identityCatalogueTask??=(async()=>{
+  const embedded=globalThis.document?.getElementById(EMBEDDED_IDENTITY_CATALOGUE_ID);
+  if(embedded?.type==='application/json')return JSON.parse(embedded.textContent);
+  const response=await fetch('/ashen-reach/human-identity-v1/manifest.json',{priority:'high'});
   if(!response.ok)throw Error(`Human identity catalogue: HTTP ${response.status}`);
   return response.json();
- }).catch(error=>{identityCatalogueTask=null;throw error;});
+ })().catch(error=>{identityCatalogueTask=null;throw error;});
 }
 export function invalidateHumanIdentityCatalogue(){identityCatalogueTask=null;}
 export function clearStartupBuffers() {pending.clear();}

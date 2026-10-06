@@ -35,6 +35,7 @@ try{
    await context.addInitScript(seed=>localStorage.setItem('ashen.appearance.v2',JSON.stringify(seed)),recipe);
    const requests=[];page.on('request',r=>requests.push(new URL(r.url()).pathname));
    await page.goto(url);await page.waitForFunction(()=>globalThis.ASHEN?.playableReady,null,{timeout:90000});
+   if(await page.locator('#ashen-human-identity-catalogue').count())assert(!requests.includes('/ashen-reach/human-identity-v1/manifest.json'),'Embedded catalogue must remove the separate request');
    const first=await snapshot(page);assert(first.physics);assert.equal(first.recoveries,0);assert.deepEqual(first.gear,recipe.equipment);assert.deepEqual(first.dyes,recipe.dyes);assert.equal(first.height,recipe.shape.height);
    assert.deepEqual(first.shape.weights,[Math.max(0,-recipe.shape.build),Math.max(0,recipe.shape.build)]);assert.deepEqual(first.gpuErrors,[]);
    if(preset.id!=='starter'){

@@ -86,3 +86,40 @@ test('generated URLs are validated and the script is injected once before any ex
     assert.throws(() => injectHeadScript('<html><body></body></html>', script), /no <head>/);
     assert.throws(() => injectHeadScript('<html><head><script src="/x.js"></script><meta charset="UTF-8"></head></html>', script), /precedes/);
 });
+
+test('embedded catalogue preserves exact data and cannot close its inert HTML block',async()=>{
+    const {identityCatalogueBlock}=await import('./ashen-reach/saved-preload.mjs');
+    const fixture=JSON.parse(await fs.readFile('public/ashen-reach/human-identity-v1/manifest.json','utf8'));
+    for(const input of [fixture,{label:'</script><script>alert(1)</script>',unicode:'\u2028\u2029'}]){
+        const block=identityCatalogueBlock(input);
+        assert.equal((block.match(/<\/script>/g)||[]).length,1);
+        assert(block.startsWith('<script type="application/json"'));
+        assert.deepEqual(JSON.parse(block.replace(/^<script[^>]*>/,'').replace(/<\/script>$/,'')),input);
+    }
+    assert.throws(()=>identityCatalogueBlock({large:'x'.repeat(96*1024)}),/exceeds/);
+});
+
+test('production catalogue precedes async execution and follows resource discovery',async()=>{
+    const {injectIdentityCatalogue}=await import('./ashen-reach/saved-preload.mjs');
+    const early='<script type="module" async crossorigin src="/early.js"></script>';
+    const html=`<head><meta charset="utf-8"><link rel="modulepreload" href="/main.js">${early}<link rel="preload" as="fetch" href="/world.bin"></head>`;
+    const input={schema:1,presets:{},provenance:{sha256:'exact'}};
+    const out=injectIdentityCatalogue(html,input,early);
+    assert(out.indexOf('/world.bin')<out.indexOf('id="ashen-human-identity-catalogue"'));
+    assert(out.indexOf('id="ashen-human-identity-catalogue"')<out.indexOf(early));
+    assert.deepEqual(JSON.parse(out.match(/type="application\/json"[^>]*>(.*?)<\/script>/)[1]),input);
+    assert.throws(()=>injectIdentityCatalogue(out,input,early),/already injected/);
+    assert.throws(()=>injectIdentityCatalogue(html.replace('</head>',''),input,early),/head end/);
+    assert.throws(()=>injectIdentityCatalogue(html+early,input,early),/one early module/);
+    assert.equal(run(savedPreloadScript({...contract,modules:['/early.js'],fetches:[]}),{storage:{'ashen.appearance.v2':'{}'}}).filter(l=>l.as==='fetch').length,0);
+});
+
+test('runtime catalogue omits only the verified source audit list',async()=>{
+    const {runtimeIdentityCatalogue}=await import('./ashen-reach/saved-preload.mjs');
+    const fixture=JSON.parse(await fs.readFile('public/ashen-reach/human-identity-v1/manifest.json','utf8'));
+    const original=structuredClone(fixture),runtime=runtimeIdentityCatalogue(fixture),expected=structuredClone(fixture);
+    delete expected.provenance.inputs;
+    assert.deepEqual(runtime,expected);assert.deepEqual(fixture,original);
+    assert.equal(runtime.provenance.sha256,fixture.provenance.sha256);
+    assert.deepEqual(runtime.presets,fixture.presets);
+});

@@ -104,3 +104,17 @@ test('gzip size mismatch releases its promise and missing compact pieces fail ex
     await assert.rejects(api.preloadHumanShapePack({}, {compact:true}),/Missing compact Human piece: body/);
   } finally {globalThis.fetch=original;}
 });
+
+test('embedded identity catalogue shares one promise without a request; malformed data can retry',async()=>{
+  const originalFetch=globalThis.fetch,originalDocument=Object.getOwnPropertyDescriptor(globalThis,'document');let calls=0;
+  let content=JSON.stringify({schema:1,provenance:{sha256:'test'},presets:{}});
+  Object.defineProperty(globalThis,'document',{configurable:true,value:{getElementById(id){assert.equal(id,'ashen-human-identity-catalogue');return {type:'application/json',textContent:content};}}});
+  globalThis.fetch=()=>{calls++;throw Error('Embedded catalogue must avoid the request');};
+  try{
+    const api=await import('../src/ashen-reach/startup-fetch.js?embedded');
+    const early=api.preloadHumanIdentityCatalogue(),main=api.preloadHumanIdentityCatalogue();assert.equal(early,main);
+    assert.deepEqual(await early,JSON.parse(content));assert.equal(calls,0);
+    api.invalidateHumanIdentityCatalogue();content='{invalid';await assert.rejects(api.preloadHumanIdentityCatalogue(),SyntaxError);
+    content=JSON.stringify({schema:1});assert.deepEqual(await api.preloadHumanIdentityCatalogue(),{schema:1});assert.equal(calls,0);
+  }finally{globalThis.fetch=originalFetch;if(originalDocument)Object.defineProperty(globalThis,'document',originalDocument);else delete globalThis.document;}
+});

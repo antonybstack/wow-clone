@@ -106,3 +106,29 @@ full region readiness before running a large performance matrix on a startup exp
 Evidence and the rejected source are retained under
 `.cache/character-mmo/startup-headroom-2026-10-05/`; the tracked result records the
 accepted release and the unfinished one-second largest-outfit target.
+
+### Embedded identity catalogue
+
+The production game HTML includes the build-verified Human identity runtime catalogue
+as an inert `application/json` data block. Native module/resource hints precede it;
+the early async module tag follows the completed block, so even cached modules
+see it before executing. `preloadHumanIdentityCatalogue` reads it
+through the existing shared promise, and the identity loader still checks compiled
+provenance, schema, selected preset, shape and coverage before requesting any body.
+HTML carries no user recipe or storage-derived URL. The build escapes `<` so a
+future label cannot terminate the raw-text script block, and caps data at 96 KiB.
+See [HTML data blocks](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script/type).
+
+Hosts without this block, including Vite development, retain the fixed catalogue
+fetch. A malformed block rejects and clears the shared promise; a mismatched
+provenance is refused by the existing loader. The ordinary saved-appearance
+migration/validation and asset fetch/decompression caches remain authoritative.
+This removes one saved-body request dependency at the cost of approximately 6.6 KB
+of extra compressed HTML for every visitor; compare default and saved cohorts.
+It does not change actor installation, first-frame fences or scene registration.
+
+The embedded copy omits only `provenance.inputs`, the authoring source-file audit
+list already checked by the build. The aggregate provenance SHA, schema and every
+preset manifest/asset/coverage descriptor remain identical. The full audit list
+remains at the standalone public manifest URL. This keeps compressed HTML below
+12 KB on the measured build; default-page overhead remains in the acceptance data.
