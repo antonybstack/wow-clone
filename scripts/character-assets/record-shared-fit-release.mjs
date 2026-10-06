@@ -14,6 +14,8 @@ import {defaultAppearance} from '../../src/character/appearance/store.js';
 import {validateAppearance} from '../../src/character/appearance/contract.js';
 import {HUMAN_IDENTITY_PRESETS} from '../../src/character/appearance/human-identity.js';
 import {EQUIPMENT_PRESETS} from '../../src/ashen-reach/equipment-catalog.js';
+import {MIXED_FIT_CASES} from './mixed-fit-cases.mjs';
+const mixedReview=process.env.ASHEN_MIXED_MOTION==='1';
 
 const url=process.env.ASHEN_TEST_URL,dir=process.env.ASHEN_CAPTURE_DIR;
 assert(url&&dir,'An audited URL and new capture directory are required');
@@ -84,6 +86,39 @@ try{
  await page.waitForTimeout(1000);await page.focus('#renderCanvas');
  manifest={version:1,...await captureSurface(page),frames:[],timeline,purpose:'Normal saved-source motion and labelled native Armory boot previews; no performance claim'};
  recording=true;await cdp.send('Page.startScreencast',{format:'jpeg',quality:90,maxWidth:1280,maxHeight:720,everyNthFrame:4});
+ if(mixedReview){
+  // Bounded mixed-fit evidence uses the existing recorder and actual Armory.
+  // The static matrix owns identity/shape corners; this chapter owns continuous
+  // poses, real controls and mid-motion swaps. It is not a performance sample.
+  for(const [race,identity,height,build]of [
+   ['human','prime-ponytail',1.15,-.95],['human','weathered-bald',.9,.95],
+   ['orc',null,1,0],['undead',null,1,0],
+  ]){
+   await page.evaluate(()=>ASHEN.armory.open());
+   if(await page.evaluate(()=>ASHEN.equipment.race)!==race){await page.selectOption('#armory [data-race]',race);await page.waitForFunction(r=>ASHEN.equipment.race===r,race);}
+   if(identity){
+    await page.getByLabel('Face and hair',{exact:true}).selectOption(identity);
+    await page.waitForFunction(id=>ASHEN.creator.identity.selected===id,identity);
+    await page.evaluate(async({height,build})=>{await ASHEN.creator.set('height',height);await ASHEN.creator.set('build',build);await ASHEN.creator.settled();},{height,build});
+   }
+   for(const id of ['cloth-plate','plate-robe']){
+    const loadout=MIXED_FIT_CASES.find(c=>c.id===id).loadout;
+    assert.equal((await page.evaluate(l=>ASHEN.equipment.setLoadout(l),loadout)).status,'applied');
+    await page.evaluate(()=>{ASHEN.armory.close();ASHEN.armory.open();ASHEN.armory.setFocus({height:.86*ASHEN.player.heightScale,radius:3.25*ASHEN.player.heightScale,beta:1.42});});
+    await page.check('#armory [data-light]');
+    await page.selectOption('#armory [data-motion]','run');await page.evaluate(()=>ASHEN.body.inspection.setPaused(false));
+    await mark(`${identity||race} · ${id} · native Armory run preview`);
+    for(const alpha of [Math.PI/2,0,-Math.PI/2]){await page.evaluate(alpha=>ASHEN.armory.setFocus({alpha}),alpha);await page.waitForTimeout(800);}
+    await page.selectOption('#armory [data-motion]','jump');await page.waitForTimeout(1000);
+    await page.selectOption('#armory [data-motion]','fire');await page.waitForTimeout(1000);
+   }
+   await page.getByRole('button',{name:'Close armory',exact:true}).click();
+   await page.focus('#renderCanvas');await travel(`${identity||race} · plate / robe / greaves`);
+   // Human boot/foot visibility is checked during swaps. The worn robe partly
+   // occludes the upper cuff; full sole views belong to the trouser stills.
+   if(identity){await inspectBoots(identity,{both:true});await page.getByRole('button',{name:'Close armory',exact:true}).click();}
+  }
+ }else{
  await travel('Original Human tall/slender');await inspectBoots('Original Human',{both:true});
  for(const [id,height,build,label]of [['prime-ponytail',1.15,-.95,'Prime ponytail tall/slender'],['weathered-bald',.9,.95,'Weathered bald short/stout']]){
   await page.getByLabel('Face and hair',{exact:true}).selectOption(id);
@@ -101,7 +136,8 @@ try{
   await travel(label);await inspectBoots(label);
  }
  await page.getByRole('button',{name:'Close armory',exact:true}).click();
- await mark('Release fit review complete · original, Prime and Weathered');await page.waitForTimeout(700);
+ }
+ await mark(mixedReview?'Mixed-fit review complete · Human, Orc and Undead':'Release fit review complete · original, Prime and Weathered');await page.waitForTimeout(700);
  await cdp.send('Page.stopScreencast');recording=false;await Promise.all(writes);if(captureError)throw captureError;
  assert.deepEqual(errors,[]);await writeCaptureManifest(dir,manifest,await captureSurface(page));
  await fs.writeFile(`${dir}/report.json`,JSON.stringify({url,seed,timeline,errors,passed:true},null,2));

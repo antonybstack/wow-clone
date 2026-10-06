@@ -1,0 +1,163 @@
+{
+  "date": "2026-10-06",
+  "sourceHead": "53c53c4",
+  "productSource": "08f9bbe5391fde6b3fd74b4756470e43300bd139",
+  "productionDeployment": "b80c188b-c5a0-422b-9d57-c9201d8a740f",
+  "productBytesChanged": false,
+  "scope": "Bounded M6 mixed outfit evidence; not exhaustive loadout or motion acceptance",
+  "views": {
+    "total": 864,
+    "profiles": {
+      "original": 108,
+      "prime-bald": 108,
+      "ponytail-tall-slender": 108,
+      "ponytail-short-stout": 108,
+      "weathered-tall-stout": 108,
+      "weathered-short-slender": 108,
+      "orc": 108,
+      "undead": 108
+    },
+    "cases": [
+      "bare-plate",
+      "bare-robe",
+      "cloth-plate",
+      "coat-plate",
+      "cuirass-bare",
+      "cuirass-trousers",
+      "exposed-lower",
+      "exposed-upper",
+      "hood-coat-robe",
+      "mail-bare",
+      "mail-plate",
+      "mail-robe",
+      "open-cuffs",
+      "pilgrim-bare",
+      "plate-robe",
+      "vestment-bare",
+      "vestment-plate",
+      "vestment-trousers"
+    ],
+    "motions": [
+      "idle at 0.2 s",
+      "run at 0.58 s"
+    ],
+    "angles": [
+      "front",
+      "side",
+      "back"
+    ],
+    "additionalBootViews": 18
+  },
+  "reports": {
+    "matrix": {
+      "passed": true,
+      "completedRows": 384,
+      "errors": []
+    },
+    "gaps": {
+      "passed": false,
+      "completedRows": 120,
+      "errors": []
+    },
+    "gaps-remaining": {
+      "passed": true,
+      "completedRows": 360,
+      "errors": []
+    }
+  },
+  "resumedRun": "gaps retained 120 completed views; Float32 .949999988079071 versus .95 exact-equality assertion stopped next profile. 1e-6 tolerance fixed harness; six remaining profiles passed 360 views. No duplicate replacement cohort. All 864 stored states subsequently rechecked for native morph weights and ponytail coverage.",
+  "seamPairInputs": {
+    "covered": 84,
+    "required": 84,
+    "categories": {
+      "helmet-torso": 12,
+      "torso-legs": 24,
+      "torso-gloves": 18,
+      "torso-shoulders": 18,
+      "legs-boots": 12
+    },
+    "basis": "18 new cases plus 10 frozen earlier reviewed loadouts; includes empty slots; not all pairs visually accepted at all shapes/phases"
+  },
+  "validation": {
+    "tests": 15,
+    "failed": 0,
+    "postFreezeFixtureTests": 2,
+    "physicsAllRows": true,
+    "recoveryTeleports": 0,
+    "gpuErrors": 0,
+    "runtimeErrors": 0,
+    "visualFinding": "No new gross fit failure reproduced in reviewed views/motion. Existing sole oversail and sampling aliasing remain art follow-ups.",
+    "performance": "Not measured; no product changes. Prior startup/bridge receipt remains baseline."
+  },
+  "motion": {
+    "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m6-mixed-fit-2026-10-06.mp4",
+    "frames": 1677,
+    "chapters": 23,
+    "travels": [
+      {
+        "name": "prime-ponytail \u00b7 plate / robe / greaves travel",
+        "distanceMeters": 25.467856455543952
+      },
+      {
+        "name": "weathered-bald \u00b7 plate / robe / greaves travel",
+        "distanceMeters": 27.38679183519613
+      },
+      {
+        "name": "orc \u00b7 plate / robe / greaves travel",
+        "distanceMeters": 27.403334538549764
+      },
+      {
+        "name": "undead \u00b7 plate / robe / greaves travel",
+        "distanceMeters": 21.63507332237535
+      }
+    ],
+    "telegram": {
+      "ok": true,
+      "messageId": 866,
+      "expected": {
+        "width": 1280,
+        "height": 720,
+        "duration": 67.486617,
+        "sampleAspectRatio": "1:1",
+        "rotation": 0,
+        "codec": "h264"
+      },
+      "returned": {
+        "width": 1280,
+        "height": 720,
+        "duration": 68
+      },
+      "verified": true,
+      "file": "mixed-fit.mp4",
+      "sha256": "e31bf22752b98b99bd6600f45acf8467014f797ebd4441ff7a82e44a43d1e527",
+      "sentAt": "2026-10-06T14:27:34.364366+00:00"
+    },
+    "review": "Local native video, remote VE video in local HTML wrapper, Telegram Web A inline and actual VIDEO fullscreen; correct proportions. No Telegram Desktop or physical iPhone check.",
+    "limits": "Two mixes on four profiles in continuous motion; boot preview robe partly obscures upper cuff. Fresh trouser boot stills show full sole."
+  },
+  "hashes": {
+    ".cache/character-mmo/m6-mixed-fit-2026-10-06/matrix/report.json": "493ba537e79bbb1afd7f46176fdcd860b19d7e70c3d2a192347761bf0a5ebf1e",
+    ".cache/character-mmo/m6-mixed-fit-2026-10-06/gaps/report.json": "f41d6f5d7469f665cea9b6e1918438e345c7a329af11f4d31cae1f7fef4d5f24",
+    ".cache/character-mmo/m6-mixed-fit-2026-10-06/gaps-remaining/report.json": "573066c462a288e3d9307d0a2954a9201872672953b480289939bee502bd78ce",
+    ".cache/character-mmo/m6-mixed-fit-2026-10-06/boot-baseline/report.json": "88dc7e48a3998b455a5b521a9d89298d7b321771688a18e15d1995f933ec6251",
+    ".cache/character-mmo/m6-mixed-fit-2026-10-06/final-unit.log": "c60a01071ceb15466158a06fdd2dfe431ae8de846a8bf68ebecab355a9cc8875",
+    ".cache/character-mmo/m6-mixed-fit-2026-10-06/frozen-fixture-unit.log": "850dbdf6fa34ee237ed0b76a602aefa43de5aa4d2fc9178d85da5f1f51b865fd",
+    "ve-capture/character-mmo/m6-mixed-fit-2026-10-06/report.json": "131eb7393fffcf211fd843c4af5225c33bceb44575057674c5b18891737744ac",
+    "ve-capture/character-mmo/m6-mixed-fit-2026-10-06/capture-manifest.json": "805c1cf046dce071d3559fcd6f6c3f4f28af9ea8e6b9da067a2063f7c8d68f67",
+    "ve-capture/character-mmo/m6-mixed-fit-2026-10-06/mixed-fit.mp4": "e31bf22752b98b99bd6600f45acf8467014f797ebd4441ff7a82e44a43d1e527"
+  },
+  "cleanup": {
+    "at": "2026-10-06T14:34:16.744740+00:00",
+    "owner": "root",
+    "chromePid": 44590,
+    "cdpPort": 10037,
+    "vitePid": 44560,
+    "vitePort": 5873,
+    "active": false,
+    "ownedListeners": 0,
+    "ownedGameProcesses": 0,
+    "mediaReviewTabClosed": true,
+    "telegramPaused": true,
+    "userEdgeOrcaPreserved": true
+  }
+}

@@ -8,7 +8,12 @@ historical milestone documents are evidence, not an active task queue.
 [Startup goal](plans/character-mmo/startup-goal-2026-10-06.md) achieved under the
 recorded conditions: largest saved hood/Bastion outfit **969.4 ms p95**, all 20
 production starts below one second, with unchanged art/physics and over 120 FPS.
-Next: **M6 boot-sole and mixed-outfit visual evidence**, preserving this baseline.
+[M6 mixed-fit checkpoint](plans/character-mmo/results/m6-mixed-fit-2026-10-06.md)
+adds **864 reviewed live views, 18 mixes, eight profiles** and Telegram **866**
+([motion](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m6-mixed-fit-2026-10-06.mp4)).
+No new gross fit failure reproduced; reusable validation only, no product changes.
+Next: targeted continuous hood/coat/robe/Bastion and exposed-cuff motion at Human
+shape corners. M6's broad visual exit stays open; preserve the startup baseline.
 
 The [focused 12-hour plan](plans/character-mmo/next-12-hours-2026-10-05.md) delivers
 its primary saved Human creator release and bounded rigid shoulder factory proof.
@@ -86,13 +91,12 @@ iPhone acceptance were not verified this pass. Recording is not a benchmark.
   iPhone startup/memory/thermal acceptance remains separate from emulation/WebKit
   and the user's earlier ~60 FPS feedback. Boot sole silhouette and sampling
   aliasing remain art follow-ups. M6 and the full M9/M10 exits are not closed.
-- **Owned instances are closed:** Chrome 60234/CDP 10037, Vite 60205/60229 on
-  5873, compressed preview 82146 on 7074, every probe browser and temporary media
-  tab. No owned game listeners/processes remain; Orca tabs are empty. User Edge/Orca
-  sessions remain; only originally playing Shadowglass is restored. Telegram/X
-  stay paused; temporary media guards removed.
+- **Owned instances are closed:** latest M6 Chrome 44590/CDP 10037 and Vite
+  44560 on 5873, all probe contexts and the temporary media review tab. No owned
+  game listeners/processes remain. Telegram is paused; user Edge/Orca preserved.
+  No FPS benchmark was performed for this validation-only change.
   [Ownership procedure](debug-view.md#browser-ownership-and-performance-isolation),
-  inventory `.cache/character-mmo/startup-catalogue-2026-10-06/ownership.md`.
+  inventory `.cache/character-mmo/m6-mixed-fit-2026-10-06/ownership.md`.
 - Existing Claude terminal `term_d4cf5b10-02ae-4b08-abfb-9c35d86ef78b`, selected Opus
   5.5/high, completed bounded implementation/docs and adversarial reviews; no renderer.
   Effective internal effort is not independently verified. Preserve its existing draft.

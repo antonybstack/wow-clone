@@ -305,7 +305,13 @@ Tasks:
    no GPU or console errors. Three judgement items recorded — the Duskguard cuirass reads as
    quilted padding rather than plate on all three races, the lilac staff head and grimoire are
    flat and unlit, and the Human Graveweaver hood bulges at the crown over the fused scalp hair.
-   **Still open:** the mixed combinations, which are the overwhelming majority of the 9,072 valid loadouts. Method note carried
+   **Bounded mixed checkpoint 2026-10-06:** [result](results/m6-mixed-fit-2026-10-06.md),
+   Telegram **866**: 864 live stills, 18 mixes × eight profiles × idle/run × three
+   views; 18 boot views; selected continuous motion on four profiles. No new gross
+   fit defect reproduced. New and frozen prior inputs cover 84 adjacent seam pairs,
+   including empty slots; this does not certify every phase or multi-piece overlap.
+   Next: continuous hood/coat/robe/Bastion and exposed-cuff shape-corner review.
+   **Still open:** broader mixed motion and three-way interactions among the 9,072 valid loadouts. Method note carried
    forward: a single view at small scale is not enough to report a visual defect — two reads
    this milestone dissolved under another view.
 4. ~~**Shape extremes beyond the Human.**~~ **Closed 2026-10-02**
