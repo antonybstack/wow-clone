@@ -36,18 +36,32 @@ facade, shared store, renderer and body already request at High priority, withou
 priority changes. Do not add ineffective `fetchpriority` attributes or replace the
 failed gate with these diagnostics (968.8/887.6 ms).
 
-**In progress:** compact normal rounding integration, reusing the tested native
-meshoptimizer floating filter and existing GLB loader. Round eligible compact
-bodies/clothing only; full assets, protected hood and rigid pieces remain exact.
-Source comparisons enforce exact positions/UVs/weights/morph positions/curves/binds
-and <=0.0001 normal component error. Expected fixture savings ~180 KB/~29 ms at
-50 Mbit/s need actual generation and live verification; no acceptance claim yet.
-Asset generation and 61 tests pass; the read-only source review finds no confirmed
-blockers. The fixture saves 180,324 bytes; full/protected controls are byte-identical.
-Grok now owns native live checks and motion capture. Product inputs are frozen. Evidence goes under
-`.cache/character-mmo/startup-normal-release-2026-10-06/`. Production is unchanged.
-Local `dist` now contains the rebuilt flag-1 compact-normal candidate. The old
-seal is invalid; create a new seal only after verification and source commit.
+**Current candidate:** compact normal precision, source **`cf43894` pushed**,
+preview **`5f312add-f747-477d-bc8a-9b583028e2a0`**
+([immutable preview](https://5f312add.fardel.pages.dev)). Native meshoptimizer
+rounds eligible compact normals offline; the GLB loader is unchanged. Full
+assets, protected hood, rigid pieces and non-normal source attributes remain
+exact. 61 asset/proof tests, ten prefetch checks, eleven compact-identity live
+cases and 536 public delivery checks pass. Reviewed motion is on Telegram **870**
+and [VE](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/startup-normal-2026-10-06-prime-ponytail.mp4).
+Telegram inline/expanded and VE inline playback preserve proportions; this
+browser rejected fullscreen requests, so fullscreen is not re-verified.
+
+The historical hood/cloth/Bastion fixture saves **180,324 bytes** and is now
+**1,986,208 bytes**. It was incorrectly described as the largest outfit.
+The new catalogue-derived fixture enumerates 9,072 valid loadouts across four
+Human profiles: Prime ponytail, hood, Duskguard chest/boots/gloves, Graveweaver
+skirt and Bastion shoulders total **2,300,424 compact asset bytes**. Procedural
+staff/book are retained. Three fixture tests and independent sums pass.
+The maximum payload is not necessarily the slowest rendering workload.
+
+**In progress:** one Grok operations worker owns public functional, isolated
+FPS and two separate twenty-start cold cohorts (maximum and historical fixtures).
+No new timing acceptance or production promotion yet. Product bytes are frozen;
+local `dist` is the flag-1 compact-normal build. Source-only fixture/docs changes
+require a new seal before any subsequent upload, not a rebuild of unchanged
+product bytes. Evidence: [candidate result](plans/character-mmo/results/startup-normal-release-2026-10-06.md)
+and `.cache/character-mmo/startup-normal-release-2026-10-06/`.
 
 Closed investigations: [extra hints/Brotli/accessor dedup](plans/character-mmo/results/startup-transport-2026-10-06.md).
 The [normal investigation](plans/character-mmo/results/startup-normals-2026-10-06.md)
@@ -119,18 +133,17 @@ preserve proportions. Physical phone and Telegram Desktop remain unverified.
   found no new gross fit failure. They do not certify all 9,072 valid combinations.
   Boot sole silhouette/aliasing, broader cloth authoring, licensed Elf source and
   physical iPhone startup/memory/thermal checks remain explicit follow-ups.
-- **One managed game renderer active during current verification:** Grok operations
-  session `01a11217-d931-71f0-8394-6c90b41f1187`, Chrome PID 58408 / GPU 58414,
-  CDP 10037, harness Vite 5873, compressed candidate `http://127.0.0.1:7074`
-  (preview PID 58073). Purpose: compact/full refinement and live motion, no FPS
-  claim. Worker must close all game contexts/harness/server after this phase.
-  Asset worker `01a11251-865b-7961-82f2-3af28b4e96bc` is finished; review worker
-  `01a112b9-8088-70f0-a773-27f9dc8b9a05` returned no confirmed blockers.
-- Media autoplay guards are currently active for the priority/normal investigation;
-  Telegram and Shadowglass videos are paused. Restore their recorded prior state
-  after the final timing window (`__ashenPriorityMediaState` / pause handler).
-  User Edge 2931/Orca 1889 preserved. The sole owned browser follow-up is the
-  signed-out Cloudflare tab 1147995760, held for optional user sign-in; no game page.
+- **Exclusive game/timing owner:** Grok operations session
+  `01a11217-d931-71f0-8394-6c90b41f1187`, slot 7 / CDP 10037 / Vite 5873,
+  public preview `https://5f312add.fardel.pages.dev`. Current PIDs and phase are
+  recorded in `public-gates.md/json` under the candidate evidence directory.
+  The previous Chrome 58408/GPU 58414 and local preview 58073 are stopped.
+  Each mobile/cold probe runs alone; the worker closes owned contexts/harnesses.
+- VE review tab 1147995772 and wrapper server 5966 are closed. Telegram and
+  Shadowglass media are paused and guarded before timing; restore recorded
+  prior playback afterwards (`__ashenPriorityMediaState` / pause handler).
+  User Edge 2931/Orca 1889 remain intact. Cloudflare tab 1147995760 remains
+  signed out for optional user sign-in. No game page is open in Edge.
 - [Grok operations workflow](reviews/workflow-2026-10-05.md#current-operating-rule--2026-10-06):
   delegate operations exclusively to Grok; root implements and reviews. Freeze
   product inputs for gates; one worker owns browser/timing. Preserve unrelated
