@@ -76,6 +76,12 @@ async function main(){
  const preloadedEquipment=params.has('preloadedEquipment');
  const fastStart=!preloadedEquipment&&!params.has('legacyStart')&&(params.has('fastStart')||import.meta.env.VITE_FAST_START==='1');
  const primeStartingWorld=fastStart&&import.meta.env.VITE_PRIME_STARTER_WORLD==='1';
+ // Discover the opt-in helper alongside startup transfers. Vite preloads its shared
+ // dependencies; waiting until Havok is ready added a measured ~41–43 ms round trip.
+ // Keep the original promise so a required import failure reaches the startup overlay.
+ // https://vite.dev/guide/features#async-chunk-loading-optimization
+ const primeWorldToolsP=primeStartingWorld?import('./prime-starter-world.js'):null;
+ primeWorldToolsP?.catch(()=>{});
  // Read a saved identity only when a record exists. An unsaved neutral boot imports no
  // editor/storage graph and never requests morph assets before its playable boundary.
  const startupAppearance=await loadStartupAppearance(params);
@@ -369,7 +375,7 @@ async function main(){
  let preparatoryFrame=null,waitForPrimeWork=null;
  try {
   if(primeStartingWorld&&!bodySettled){
-   const {primeStarterWorld,waitForSceneWork}=await import('./prime-starter-world.js');
+   const {primeStarterWorld,waitForSceneWork}=await primeWorldToolsP;
    // A transfer may finish during module discovery. Skip rather than adding queue work.
    if(!bodySettled){
     // Install the existing loss handler before the first native submission; start() stays late.

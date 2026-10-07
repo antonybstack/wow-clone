@@ -1,0 +1,1107 @@
+{
+  "updatedAt": "2026-10-07T09:10:11.162351+00:00",
+  "status": "default-off experimental checkpoint, not release-qualified",
+  "sourceParentCommit": "71724dabdcaaa5a89c363a5de86c6f9b701c0c75",
+  "sourceHashes": {
+    "src/ashen-reach/main.js": "1de3121f7751377734fba5824b9a7ca537b3e5240cc2fb32f9ee49deb3265078",
+    "src/ashen-reach/prime-starter-world.js": "c56afa2041b50339159d2c6a79562c5dd063c5209abfe3da08c15a74218f8344",
+    "vite.config.js": "b054ebb58ab404a0701749db64329d9bfc028842436a92ddb3f799111ea2865c"
+  },
+  "method": {
+    "kind": "bounded-local-comparison",
+    "createdAt": "2026-10-07T09:03:09.709Z",
+    "builds": {
+      "late": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-prime-2026-10-07/build-on-2",
+      "early": "build-early"
+    },
+    "outfits": [
+      "default",
+      "maximum"
+    ],
+    "pairs": 3,
+    "orders": [
+      [
+        "late",
+        "early"
+      ],
+      [
+        "early",
+        "late"
+      ],
+      [
+        "late",
+        "early"
+      ]
+    ],
+    "runs": 12,
+    "profile": "50mbps",
+    "httpCache": "fresh process/profile, initially empty with native preload reuse",
+    "viewport": [
+      1280,
+      720
+    ],
+    "shaderCache": "OS/driver caches uncontrolled; no forced cache policy",
+    "maxMs": null,
+    "releaseGate": false
+  },
+  "native": {
+    "cases": [
+      {
+        "name": "A-held-then-play",
+        "passed": true,
+        "failure": null
+      },
+      {
+        "name": "B-gzip",
+        "passed": true,
+        "failure": null
+      },
+      {
+        "name": "C-dispose",
+        "passed": true,
+        "failure": null
+      },
+      {
+        "name": "D-device-loss",
+        "passed": true,
+        "failure": null
+      },
+      {
+        "name": "E-default",
+        "passed": true,
+        "failure": null
+      },
+      {
+        "name": "F-maximum",
+        "passed": true,
+        "failure": null
+      }
+    ],
+    "importFailure": {
+      "passed": true,
+      "helperRequests": [
+        "http://127.0.0.1:7074/assets/v2/prime-starter-world-CUKDVDHB.js"
+      ],
+      "failedRequests": [
+        {
+          "url": "http://127.0.0.1:7074/assets/v2/prime-starter-world-CUKDVDHB.js",
+          "error": "net::ERR_FAILED"
+        }
+      ],
+      "pageErrors": [],
+      "overlay": {
+        "loadingPresent": true,
+        "loadingFailed": true,
+        "loadingOpacity": 1,
+        "overlayText": "TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:7074/assets/v2/prime-starter-world-CUKDVDHB.js",
+        "canvasInert": true,
+        "playableReady": false,
+        "ready": false,
+        "marks": [
+          "begin",
+          "havok-runtime-available",
+          "engine-created",
+          "gpu-probe-end",
+          "world-start",
+          "world-end",
+          "havok-start",
+          "havok-runtime-start",
+          "havok-runtime-end",
+          "havok-world-end",
+          "havok-colliders-end",
+          "havok-controller-end",
+          "havok-end"
+        ]
+      },
+      "retainedAttempt": "import-attempt1"
+    },
+    "flag0": {
+      "passed": true,
+      "helperHits": [],
+      "distance": 6.2987828229971505,
+      "errors": []
+    },
+    "rootStillReview": [
+      "native-A-held-then-play/firstplay.png",
+      "native-A-held-then-play/movement.png",
+      "native-F-maximum/screenshot.png"
+    ],
+    "motionScope": "Existing 1503c9b motion evidence retained; no new live motion acceptance claimed for early discovery"
+  },
+  "rows": [
+    {
+      "outfit": "default",
+      "pair": 1,
+      "mode": "late",
+      "file": "paired-default-1-late",
+      "playableMs": 570.4000000357628,
+      "marks": {
+        "begin": 190.30000001192093,
+        "engine-created": 199.19999998807907,
+        "gpu-probe-end": 204.60000002384186,
+        "world-start": 206.4000000357628,
+        "havok-runtime-available": 256.5,
+        "world-end": 359.30000001192093,
+        "havok-start": 360.5,
+        "havok-runtime-start": 361.4000000357628,
+        "havok-runtime-end": 361.4000000357628,
+        "havok-world-end": 363.4000000357628,
+        "havok-colliders-end": 370.30000001192093,
+        "havok-controller-end": 371.60000002384186,
+        "havok-end": 372.60000002384186,
+        "prime-world-start": 415,
+        "prime-world-registered": 428.9000000357628,
+        "prime-world-submitted": 435.30000001192093,
+        "body-start": 455,
+        "body-end": 467.60000002384186,
+        "equipment-start": 468.4000000357628,
+        "equipment-end": 478.30000001192093,
+        "register-start": 480.69999998807907,
+        "prime-world-completed": 515.1999999880791,
+        "register-end": 527.1000000238419,
+        "first-render-return": 531.6000000238419,
+        "first-gpu-completed": 555,
+        "supported-frame-submitted": 563.6999999880791,
+        "supported-frame-completed": 569.4000000357628,
+        "playable": 570.4000000357628,
+        "bg-start": 570.5
+      },
+      "errors": [],
+      "helperRequests": [
+        {
+          "url": "http://127.0.0.1:7074/assets/v2/prime-starter-world-CUKDVDHB.js",
+          "initiator": "script",
+          "initialPriority": "High",
+          "priorityChanges": [],
+          "startMs": 372.822998046875,
+          "endMs": 414.376953125,
+          "response": {
+            "status": 200,
+            "mimeType": "application/javascript",
+            "protocol": "http/1.1",
+            "remoteIPAddress": "127.0.0.1",
+            "cfRay": null,
+            "cfCacheStatus": null,
+            "cacheControl": "public, max-age=3600",
+            "fromEarlyHints": false,
+            "fromDiskCache": false,
+            "fromPrefetchCache": false
+          },
+          "complete": true,
+          "encodedBytesAtBoundary": 707
+        }
+      ],
+      "rawSha256": "d64e546a90e72759a040174256e1c3eb4ce468d9b776863966bc7d4691d0d94e",
+      "checks": {
+        "dressed": true,
+        "grounded": true,
+        "Havok": true,
+        "nativeCanvas": [
+          1280,
+          720
+        ],
+        "gpuErrors": [],
+        "inputDistance": 0.23308337410926153
+      }
+    },
+    {
+      "outfit": "default",
+      "pair": 1,
+      "mode": "early",
+      "file": "paired-default-1-early",
+      "playableMs": 538.6999999880791,
+      "marks": {
+        "begin": 194.5,
+        "engine-created": 202.89999997615814,
+        "gpu-probe-end": 204.5999999642372,
+        "world-start": 206.5999999642372,
+        "havok-runtime-available": 260.5999999642372,
+        "world-end": 310.89999997615814,
+        "havok-start": 311.89999997615814,
+        "havok-runtime-start": 312.69999998807907,
+        "havok-runtime-end": 312.69999998807907,
+        "havok-world-end": 314.7999999523163,
+        "havok-colliders-end": 321.39999997615814,
+        "havok-controller-end": 322.69999998807907,
+        "havok-end": 323.69999998807907,
+        "prime-world-start": 324,
+        "prime-world-registered": 338.5,
+        "prime-world-submitted": 345.5999999642372,
+        "prime-world-completed": 431.5,
+        "body-start": 461.89999997615814,
+        "body-end": 474.5,
+        "equipment-start": 475.5,
+        "equipment-end": 486.0999999642372,
+        "register-start": 488.5999999642372,
+        "register-end": 502,
+        "first-render-return": 506.0999999642372,
+        "supported-frame-submitted": 528.8999999761581,
+        "first-gpu-completed": 529.5,
+        "supported-frame-completed": 538.5,
+        "playable": 538.6999999880791,
+        "bg-start": 538.7999999523163
+      },
+      "errors": [],
+      "helperRequests": [
+        {
+          "url": "http://127.0.0.1:7075/assets/v2/prime-starter-world-CUKDVDHB.js",
+          "initiator": "script",
+          "initialPriority": "High",
+          "priorityChanges": [],
+          "startMs": 194.874755859375,
+          "endMs": 267.2626953125,
+          "response": {
+            "status": 200,
+            "mimeType": "application/javascript",
+            "protocol": "http/1.1",
+            "remoteIPAddress": "127.0.0.1",
+            "cfRay": null,
+            "cfCacheStatus": null,
+            "cacheControl": "public, max-age=3600",
+            "fromEarlyHints": false,
+            "fromDiskCache": false,
+            "fromPrefetchCache": false
+          },
+          "complete": true,
+          "encodedBytesAtBoundary": 707
+        }
+      ],
+      "rawSha256": "0632ec08672f8ba7d3bd1b64f4cb319f338b393e8361e3edfc013dd892ab9bca",
+      "checks": {
+        "dressed": true,
+        "grounded": true,
+        "Havok": true,
+        "nativeCanvas": [
+          1280,
+          720
+        ],
+        "gpuErrors": [],
+        "inputDistance": 0.23168287490843426
+      }
+    },
+    {
+      "outfit": "default",
+      "pair": 2,
+      "mode": "early",
+      "file": "paired-default-2-early",
+      "playableMs": 536.3000000119209,
+      "marks": {
+        "begin": 193.69999998807907,
+        "engine-created": 202,
+        "gpu-probe-end": 203.60000002384186,
+        "world-start": 205.5,
+        "havok-runtime-available": 260,
+        "world-end": 310.69999998807907,
+        "havok-start": 311.9000000357628,
+        "havok-runtime-start": 312.80000001192093,
+        "havok-runtime-end": 312.80000001192093,
+        "havok-world-end": 314.60000002384186,
+        "havok-colliders-end": 321.5,
+        "havok-controller-end": 322.80000001192093,
+        "havok-end": 323.80000001192093,
+        "prime-world-start": 324.10000002384186,
+        "prime-world-registered": 338.80000001192093,
+        "prime-world-submitted": 345.4000000357628,
+        "prime-world-completed": 431.30000001192093,
+        "body-start": 461.19999998807907,
+        "body-end": 474.10000002384186,
+        "equipment-start": 475.10000002384186,
+        "equipment-end": 485.80000001192093,
+        "register-start": 488,
+        "register-end": 500.19999998807907,
+        "first-render-return": 504.30000001192093,
+        "first-gpu-completed": 526.1000000238419,
+        "supported-frame-submitted": 529.3000000119209,
+        "supported-frame-completed": 535.5,
+        "playable": 536.3000000119209,
+        "bg-start": 536.4000000357628
+      },
+      "errors": [],
+      "helperRequests": [
+        {
+          "url": "http://127.0.0.1:7075/assets/v2/prime-starter-world-CUKDVDHB.js",
+          "initiator": "script",
+          "initialPriority": "High",
+          "priorityChanges": [],
+          "startMs": 194.079833984375,
+          "endMs": 266.7607421875,
+          "response": {
+            "status": 200,
+            "mimeType": "application/javascript",
+            "protocol": "http/1.1",
+            "remoteIPAddress": "127.0.0.1",
+            "cfRay": null,
+            "cfCacheStatus": null,
+            "cacheControl": "public, max-age=3600",
+            "fromEarlyHints": false,
+            "fromDiskCache": false,
+            "fromPrefetchCache": false
+          },
+          "complete": true,
+          "encodedBytesAtBoundary": 707
+        }
+      ],
+      "rawSha256": "2bd853da0a5e23914f808ea0ef9c0a85f4704b623320d7ac48bafe65db0fe4d3",
+      "checks": {
+        "dressed": true,
+        "grounded": true,
+        "Havok": true,
+        "nativeCanvas": [
+          1280,
+          720
+        ],
+        "gpuErrors": [],
+        "inputDistance": 0.23168408609359364
+      }
+    },
+    {
+      "outfit": "default",
+      "pair": 2,
+      "mode": "late",
+      "file": "paired-default-2-late",
+      "playableMs": 566.5,
+      "marks": {
+        "begin": 191.5999999642372,
+        "engine-created": 199.5,
+        "gpu-probe-end": 201.19999998807907,
+        "world-start": 203.29999995231628,
+        "havok-runtime-available": 257.19999998807907,
+        "world-end": 361.39999997615814,
+        "havok-start": 362.39999997615814,
+        "havok-runtime-start": 363.19999998807907,
+        "havok-runtime-end": 363.2999999523163,
+        "havok-world-end": 365.19999998807907,
+        "havok-colliders-end": 372,
+        "havok-controller-end": 373.0999999642372,
+        "havok-end": 374.19999998807907,
+        "prime-world-start": 416.39999997615814,
+        "prime-world-registered": 430.89999997615814,
+        "prime-world-submitted": 438.0999999642372,
+        "body-start": 456.2999999523163,
+        "body-end": 469,
+        "equipment-start": 469.89999997615814,
+        "equipment-end": 480,
+        "register-start": 483.5,
+        "prime-world-completed": 517.6999999880791,
+        "register-end": 529.1999999880791,
+        "first-render-return": 533.0999999642372,
+        "first-gpu-completed": 555.5,
+        "supported-frame-submitted": 560.5999999642372,
+        "supported-frame-completed": 565.7999999523163,
+        "playable": 566.5,
+        "bg-start": 566.6999999880791
+      },
+      "errors": [],
+      "helperRequests": [
+        {
+          "url": "http://127.0.0.1:7074/assets/v2/prime-starter-world-CUKDVDHB.js",
+          "initiator": "script",
+          "initialPriority": "High",
+          "priorityChanges": [],
+          "startMs": 374.421142578125,
+          "endMs": 415.70703125,
+          "response": {
+            "status": 200,
+            "mimeType": "application/javascript",
+            "protocol": "http/1.1",
+            "remoteIPAddress": "127.0.0.1",
+            "cfRay": null,
+            "cfCacheStatus": null,
+            "cacheControl": "public, max-age=3600",
+            "fromEarlyHints": false,
+            "fromDiskCache": false,
+            "fromPrefetchCache": false
+          },
+          "complete": true,
+          "encodedBytesAtBoundary": 707
+        }
+      ],
+      "rawSha256": "743932f20c122fce42238577c1fb4272f9d2216b58a515882bf6e452e7a06f40",
+      "checks": {
+        "dressed": true,
+        "grounded": true,
+        "Havok": true,
+        "nativeCanvas": [
+          1280,
+          720
+        ],
+        "gpuErrors": [],
+        "inputDistance": 0.23168411681654572
+      }
+    },
+    {
+      "outfit": "default",
+      "pair": 3,
+      "mode": "late",
+      "file": "paired-default-3-late",
+      "playableMs": 573.8999999761581,
+      "marks": {
+        "begin": 189.19999998807907,
+        "engine-created": 196.80000001192093,
+        "gpu-probe-end": 198.69999998807907,
+        "world-start": 200.69999998807907,
+        "havok-runtime-available": 255.80000001192093,
+        "world-end": 357.5,
+        "havok-start": 358.5,
+        "havok-runtime-start": 359.39999997615814,
+        "havok-runtime-end": 359.39999997615814,
+        "havok-world-end": 361.39999997615814,
+        "havok-colliders-end": 368.19999998807907,
+        "havok-controller-end": 369.39999997615814,
+        "havok-end": 370.39999997615814,
+        "prime-world-start": 412.80000001192093,
+        "prime-world-registered": 427.19999998807907,
+        "prime-world-submitted": 434.30000001192093,
+        "body-start": 454.19999998807907,
+        "body-end": 467.39999997615814,
+        "equipment-start": 468.39999997615814,
+        "equipment-end": 479,
+        "register-start": 481.19999998807907,
+        "prime-world-completed": 515,
+        "register-end": 526.8999999761581,
+        "first-render-return": 534.3999999761581,
+        "first-gpu-completed": 558.5,
+        "supported-frame-submitted": 566.1000000238419,
+        "supported-frame-completed": 573.1000000238419,
+        "playable": 573.8999999761581,
+        "bg-start": 574.1000000238419
+      },
+      "errors": [],
+      "helperRequests": [
+        {
+          "url": "http://127.0.0.1:7074/assets/v2/prime-starter-world-CUKDVDHB.js",
+          "initiator": "script",
+          "initialPriority": "High",
+          "priorityChanges": [],
+          "startMs": 370.692138671875,
+          "endMs": 412.176025390625,
+          "response": {
+            "status": 200,
+            "mimeType": "application/javascript",
+            "protocol": "http/1.1",
+            "remoteIPAddress": "127.0.0.1",
+            "cfRay": null,
+            "cfCacheStatus": null,
+            "cacheControl": "public, max-age=3600",
+            "fromEarlyHints": false,
+            "fromDiskCache": false,
+            "fromPrefetchCache": false
+          },
+          "complete": true,
+          "encodedBytesAtBoundary": 707
+        }
+      ],
+      "rawSha256": "e53eefd84ab59471ef2d87feed9bd5028f4a3c8eb3dc428450ac9a7e4fa9b5ea",
+      "checks": {
+        "dressed": true,
+        "grounded": true,
+        "Havok": true,
+        "nativeCanvas": [
+          1280,
+          720
+        ],
+        "gpuErrors": [],
+        "inputDistance": 0.23308346727690163
+      }
+    },
+    {
+      "outfit": "default",
+      "pair": 3,
+      "mode": "early",
+      "file": "paired-default-3-early",
+      "playableMs": 531.3000000119209,
+      "marks": {
+        "begin": 190.30000001192093,
+        "engine-created": 198.4000000357628,
+        "gpu-probe-end": 200.19999998807907,
+        "world-start": 202.19999998807907,
+        "havok-runtime-available": 255.9000000357628,
+        "world-end": 307.4000000357628,
+        "havok-start": 308.30000001192093,
+        "havok-runtime-start": 309.19999998807907,
+        "havok-runtime-end": 309.19999998807907,
+        "havok-world-end": 311.19999998807907,
+        "havok-colliders-end": 318,
+        "havok-controller-end": 319.4000000357628,
+        "havok-end": 320.4000000357628,
+        "prime-world-start": 320.69999998807907,
+        "prime-world-registered": 334.9000000357628,
+        "prime-world-submitted": 342.30000001192093,
+        "prime-world-completed": 427.30000001192093,
+        "body-start": 456.80000001192093,
+        "body-end": 469.80000001192093,
+        "equipment-start": 470.80000001192093,
+        "equipment-end": 482.5,
+        "register-start": 484.69999998807907,
+        "register-end": 495.60000002384186,
+        "first-render-return": 500.69999998807907,
+        "supported-frame-submitted": 524.9000000357628,
+        "first-gpu-completed": 525.6000000238419,
+        "supported-frame-completed": 531.1000000238419,
+        "playable": 531.3000000119209,
+        "bg-start": 531.5
+      },
+      "errors": [],
+      "helperRequests": [
+        {
+          "url": "http://127.0.0.1:7075/assets/v2/prime-starter-world-CUKDVDHB.js",
+          "initiator": "script",
+          "initialPriority": "High",
+          "priorityChanges": [],
+          "startMs": 190.5517578125,
+          "endMs": 263.376708984375,
+          "response": {
+            "status": 200,
+            "mimeType": "application/javascript",
+            "protocol": "http/1.1",
+            "remoteIPAddress": "127.0.0.1",
+            "cfRay": null,
+            "cfCacheStatus": null,
+            "cacheControl": "public, max-age=3600",
+            "fromEarlyHints": false,
+            "fromDiskCache": false,
+            "fromPrefetchCache": false
+          },
+          "complete": true,
+          "encodedBytesAtBoundary": 707
+        }
+      ],
+      "rawSha256": "831e14f658330421665128679defbd850239514452ed66c737309014c35178a7",
+      "checks": {
+        "dressed": true,
+        "grounded": true,
+        "Havok": true,
+        "nativeCanvas": [
+          1280,
+          720
+        ],
+        "gpuErrors": [],
+        "inputDistance": 0.232384081969073
+      }
+    },
+    {
+      "outfit": "maximum",
+      "pair": 1,
+      "mode": "late",
+      "file": "paired-maximum-1-late",
+      "playableMs": 774.4000000357628,
+      "marks": {
+        "begin": 192.10000002384186,
+        "engine-created": 203.4000000357628,
+        "gpu-probe-end": 209.69999998807907,
+        "world-start": 211.69999998807907,
+        "havok-runtime-available": 257.4000000357628,
+        "world-end": 396,
+        "havok-start": 397.10000002384186,
+        "havok-runtime-start": 398,
+        "havok-runtime-end": 398,
+        "havok-world-end": 399.80000001192093,
+        "havok-colliders-end": 406.69999998807907,
+        "havok-controller-end": 407.80000001192093,
+        "havok-end": 408.9000000357628,
+        "prime-world-start": 457.30000001192093,
+        "prime-world-registered": 471.69999998807907,
+        "prime-world-submitted": 479,
+        "prime-world-completed": 562,
+        "body-start": 656.1999999880791,
+        "body-end": 676,
+        "equipment-start": 677.8000000119209,
+        "equipment-end": 695.8000000119209,
+        "register-start": 704.1999999880791,
+        "register-end": 721.3000000119209,
+        "first-render-return": 725.8000000119209,
+        "supported-frame-submitted": 742.3000000119209,
+        "first-gpu-completed": 766.5,
+        "supported-frame-completed": 774,
+        "playable": 774.4000000357628,
+        "bg-start": 774.4000000357628
+      },
+      "errors": [],
+      "helperRequests": [
+        {
+          "url": "http://127.0.0.1:7074/assets/v2/prime-starter-world-CUKDVDHB.js",
+          "initiator": "script",
+          "initialPriority": "High",
+          "priorityChanges": [],
+          "startMs": 409.40966796875,
+          "endMs": 456.712646484375,
+          "response": {
+            "status": 200,
+            "mimeType": "application/javascript",
+            "protocol": "http/1.1",
+            "remoteIPAddress": "127.0.0.1",
+            "cfRay": null,
+            "cfCacheStatus": null,
+            "cacheControl": "public, max-age=3600",
+            "fromEarlyHints": false,
+            "fromDiskCache": false,
+            "fromPrefetchCache": false
+          },
+          "complete": true,
+          "encodedBytesAtBoundary": 707
+        }
+      ],
+      "rawSha256": "2db5918b655eebe8ece453a5ef5370ff36d59bd24f1bb6a1c2a7b63eef0427d6",
+      "checks": {
+        "dressed": true,
+        "grounded": true,
+        "Havok": true,
+        "nativeCanvas": [
+          1280,
+          720
+        ],
+        "gpuErrors": [],
+        "inputDistance": 0.2337800966525324
+      }
+    },
+    {
+      "outfit": "maximum",
+      "pair": 1,
+      "mode": "early",
+      "file": "paired-maximum-1-early",
+      "playableMs": 784.4000000357628,
+      "marks": {
+        "begin": 195.60000002384186,
+        "engine-created": 205.80000001192093,
+        "gpu-probe-end": 207.60000002384186,
+        "world-start": 209.5,
+        "havok-runtime-available": 261.19999998807907,
+        "world-end": 374.4000000357628,
+        "havok-start": 375.4000000357628,
+        "havok-runtime-start": 376.19999998807907,
+        "havok-runtime-end": 376.19999998807907,
+        "havok-world-end": 378.19999998807907,
+        "havok-colliders-end": 385.10000002384186,
+        "havok-controller-end": 386.30000001192093,
+        "havok-end": 387.30000001192093,
+        "prime-world-start": 387.60000002384186,
+        "prime-world-registered": 402.69999998807907,
+        "prime-world-submitted": 409.5,
+        "prime-world-completed": 493.5,
+        "body-start": 664.4000000357628,
+        "body-end": 684,
+        "equipment-start": 685.6999999880791,
+        "equipment-end": 704.1000000238419,
+        "register-start": 710.6000000238419,
+        "register-end": 729.9000000357628,
+        "first-render-return": 734.1000000238419,
+        "supported-frame-submitted": 748.5,
+        "first-gpu-completed": 775.1999999880791,
+        "supported-frame-completed": 784.1999999880791,
+        "playable": 784.4000000357628,
+        "bg-start": 784.6000000238419
+      },
+      "errors": [],
+      "helperRequests": [
+        {
+          "url": "http://127.0.0.1:7075/assets/v2/prime-starter-world-CUKDVDHB.js",
+          "initiator": "script",
+          "initialPriority": "High",
+          "priorityChanges": [],
+          "startMs": 195.7568359375,
+          "endMs": 261.245849609375,
+          "response": {
+            "status": 200,
+            "mimeType": "application/javascript",
+            "protocol": "http/1.1",
+            "remoteIPAddress": "127.0.0.1",
+            "cfRay": null,
+            "cfCacheStatus": null,
+            "cacheControl": "public, max-age=3600",
+            "fromEarlyHints": false,
+            "fromDiskCache": false,
+            "fromPrefetchCache": false
+          },
+          "complete": true,
+          "encodedBytesAtBoundary": 707
+        }
+      ],
+      "rawSha256": "7b200337a67fd9089a399969cb065672f8b2a99c718403d0deb9629c17c8464b",
+      "checks": {
+        "dressed": true,
+        "grounded": true,
+        "Havok": true,
+        "nativeCanvas": [
+          1280,
+          720
+        ],
+        "gpuErrors": [],
+        "inputDistance": 0.23448007208511465
+      }
+    },
+    {
+      "outfit": "maximum",
+      "pair": 2,
+      "mode": "early",
+      "file": "paired-maximum-2-early",
+      "playableMs": 774.6000000238419,
+      "marks": {
+        "begin": 189,
+        "engine-created": 199,
+        "gpu-probe-end": 200.70000004768372,
+        "world-start": 202.60000002384186,
+        "havok-runtime-available": 254.9000000357628,
+        "world-end": 368.30000001192093,
+        "havok-start": 369.30000001192093,
+        "havok-runtime-start": 370,
+        "havok-runtime-end": 370,
+        "havok-world-end": 371.9000000357628,
+        "havok-colliders-end": 379,
+        "havok-controller-end": 380.4000000357628,
+        "havok-end": 381.5,
+        "prime-world-start": 381.9000000357628,
+        "prime-world-registered": 396.4000000357628,
+        "prime-world-submitted": 404.2000000476837,
+        "prime-world-completed": 485.2000000476837,
+        "body-start": 658.5,
+        "body-end": 678.3000000119209,
+        "equipment-start": 680.2000000476837,
+        "equipment-end": 698,
+        "register-start": 707,
+        "register-end": 723.9000000357628,
+        "first-render-return": 728.1000000238419,
+        "supported-frame-submitted": 745.2000000476837,
+        "first-gpu-completed": 767.8000000119209,
+        "supported-frame-completed": 774.3000000119209,
+        "playable": 774.6000000238419,
+        "bg-start": 774.6000000238419
+      },
+      "errors": [],
+      "helperRequests": [
+        {
+          "url": "http://127.0.0.1:7075/assets/v2/prime-starter-world-CUKDVDHB.js",
+          "initiator": "script",
+          "initialPriority": "High",
+          "priorityChanges": [],
+          "startMs": 189.249755859375,
+          "endMs": 255.671875,
+          "response": {
+            "status": 200,
+            "mimeType": "application/javascript",
+            "protocol": "http/1.1",
+            "remoteIPAddress": "127.0.0.1",
+            "cfRay": null,
+            "cfCacheStatus": null,
+            "cacheControl": "public, max-age=3600",
+            "fromEarlyHints": false,
+            "fromDiskCache": false,
+            "fromPrefetchCache": false
+          },
+          "complete": true,
+          "encodedBytesAtBoundary": 707
+        }
+      ],
+      "rawSha256": "383c9a24141496091754906f076196aae2c900abd41d317be70b7813112724a2",
+      "checks": {
+        "dressed": true,
+        "grounded": true,
+        "Havok": true,
+        "nativeCanvas": [
+          1280,
+          720
+        ],
+        "gpuErrors": [],
+        "inputDistance": 0.23378009513266973
+      }
+    },
+    {
+      "outfit": "maximum",
+      "pair": 2,
+      "mode": "late",
+      "file": "paired-maximum-2-late",
+      "playableMs": 771.1999999880791,
+      "marks": {
+        "begin": 190.80000001192093,
+        "engine-created": 201.89999997615814,
+        "gpu-probe-end": 207.19999998807907,
+        "world-start": 209.10000002384186,
+        "havok-runtime-available": 256.5,
+        "world-end": 396,
+        "havok-start": 396.89999997615814,
+        "havok-runtime-start": 397.80000001192093,
+        "havok-runtime-end": 397.80000001192093,
+        "havok-world-end": 399.80000001192093,
+        "havok-colliders-end": 406.80000001192093,
+        "havok-controller-end": 408.10000002384186,
+        "havok-end": 409.10000002384186,
+        "prime-world-start": 456.5,
+        "prime-world-registered": 470.80000001192093,
+        "prime-world-submitted": 478.19999998807907,
+        "prime-world-completed": 560.6000000238419,
+        "body-start": 652.5,
+        "body-end": 672.1999999880791,
+        "equipment-start": 673.8999999761581,
+        "equipment-end": 692.3999999761581,
+        "register-start": 700.3999999761581,
+        "register-end": 717.8000000119209,
+        "first-render-return": 722.3000000119209,
+        "supported-frame-submitted": 737.1000000238419,
+        "first-gpu-completed": 763,
+        "supported-frame-completed": 770.8000000119209,
+        "playable": 771.1999999880791,
+        "bg-start": 771.3000000119209
+      },
+      "errors": [],
+      "helperRequests": [
+        {
+          "url": "http://127.0.0.1:7074/assets/v2/prime-starter-world-CUKDVDHB.js",
+          "initiator": "script",
+          "initialPriority": "High",
+          "priorityChanges": [],
+          "startMs": 409.47412109375,
+          "endMs": 455.76904296875,
+          "response": {
+            "status": 200,
+            "mimeType": "application/javascript",
+            "protocol": "http/1.1",
+            "remoteIPAddress": "127.0.0.1",
+            "cfRay": null,
+            "cfCacheStatus": null,
+            "cacheControl": "public, max-age=3600",
+            "fromEarlyHints": false,
+            "fromDiskCache": false,
+            "fromPrefetchCache": false
+          },
+          "complete": true,
+          "encodedBytesAtBoundary": 707
+        }
+      ],
+      "rawSha256": "4a81fa9d0231ad46aec626f74cd2ec49336af2e6cfc5adac42af07d2175da23f",
+      "checks": {
+        "dressed": true,
+        "grounded": true,
+        "Havok": true,
+        "nativeCanvas": [
+          1280,
+          720
+        ],
+        "gpuErrors": [],
+        "inputDistance": 0.2344814225061039
+      }
+    },
+    {
+      "outfit": "maximum",
+      "pair": 3,
+      "mode": "late",
+      "file": "paired-maximum-3-late",
+      "playableMs": 773.1999999880791,
+      "marks": {
+        "begin": 193,
+        "engine-created": 203,
+        "gpu-probe-end": 204.5999999642372,
+        "world-start": 206.69999998807907,
+        "havok-runtime-available": 258.69999998807907,
+        "world-end": 399.19999998807907,
+        "havok-start": 400.19999998807907,
+        "havok-runtime-start": 401.0999999642372,
+        "havok-runtime-end": 401.0999999642372,
+        "havok-world-end": 403.0999999642372,
+        "havok-colliders-end": 410,
+        "havok-controller-end": 411.30000001192093,
+        "havok-end": 412.30000001192093,
+        "prime-world-start": 459.39999997615814,
+        "prime-world-registered": 473.80000001192093,
+        "prime-world-submitted": 481.0999999642372,
+        "prime-world-completed": 564.3999999761581,
+        "body-start": 655.1999999880791,
+        "body-end": 675.1999999880791,
+        "equipment-start": 676.8999999761581,
+        "equipment-end": 695.0999999642372,
+        "register-start": 703.3999999761581,
+        "register-end": 720.3999999761581,
+        "first-render-return": 724.8999999761581,
+        "supported-frame-submitted": 745.0999999642372,
+        "first-gpu-completed": 764.8999999761581,
+        "supported-frame-completed": 772.8999999761581,
+        "playable": 773.1999999880791,
+        "bg-start": 773.3000000119209
+      },
+      "errors": [],
+      "helperRequests": [
+        {
+          "url": "http://127.0.0.1:7074/assets/v2/prime-starter-world-CUKDVDHB.js",
+          "initiator": "script",
+          "initialPriority": "High",
+          "priorityChanges": [],
+          "startMs": 412.832763671875,
+          "endMs": 458.77490234375,
+          "response": {
+            "status": 200,
+            "mimeType": "application/javascript",
+            "protocol": "http/1.1",
+            "remoteIPAddress": "127.0.0.1",
+            "cfRay": null,
+            "cfCacheStatus": null,
+            "cacheControl": "public, max-age=3600",
+            "fromEarlyHints": false,
+            "fromDiskCache": false,
+            "fromPrefetchCache": false
+          },
+          "complete": true,
+          "encodedBytesAtBoundary": 707
+        }
+      ],
+      "rawSha256": "d09ed542b48d0bd4089d7f7b3a50b408fbbf7ef4b24756b1c6fa4ac14022052c",
+      "checks": {
+        "dressed": true,
+        "grounded": true,
+        "Havok": true,
+        "nativeCanvas": [
+          1280,
+          720
+        ],
+        "gpuErrors": [],
+        "inputDistance": 0.23377916705556193
+      }
+    },
+    {
+      "outfit": "maximum",
+      "pair": 3,
+      "mode": "early",
+      "file": "paired-maximum-3-early",
+      "playableMs": 788.1999999880791,
+      "marks": {
+        "begin": 194.4000000357628,
+        "engine-created": 205.30000001192093,
+        "gpu-probe-end": 211,
+        "world-start": 213,
+        "havok-runtime-available": 260.30000001192093,
+        "world-end": 373.10000002384186,
+        "havok-start": 374.19999998807907,
+        "havok-runtime-start": 375,
+        "havok-runtime-end": 375,
+        "havok-world-end": 377.19999998807907,
+        "havok-colliders-end": 384.10000002384186,
+        "havok-controller-end": 385.30000001192093,
+        "havok-end": 386.19999998807907,
+        "prime-world-start": 386.60000002384186,
+        "prime-world-registered": 401.60000002384186,
+        "prime-world-submitted": 408.5,
+        "prime-world-completed": 494.69999998807907,
+        "body-start": 663.4000000357628,
+        "body-end": 683.3000000119209,
+        "equipment-start": 684.9000000357628,
+        "equipment-end": 703.1999999880791,
+        "register-start": 710.6000000238419,
+        "register-end": 731,
+        "first-render-return": 735.6000000238419,
+        "supported-frame-submitted": 753.9000000357628,
+        "first-gpu-completed": 776.1999999880791,
+        "supported-frame-completed": 787.9000000357628,
+        "playable": 788.1999999880791,
+        "bg-start": 788.3000000119209
+      },
+      "errors": [],
+      "helperRequests": [
+        {
+          "url": "http://127.0.0.1:7075/assets/v2/prime-starter-world-CUKDVDHB.js",
+          "initiator": "script",
+          "initialPriority": "High",
+          "priorityChanges": [],
+          "startMs": 194.843994140625,
+          "endMs": 260.593994140625,
+          "response": {
+            "status": 200,
+            "mimeType": "application/javascript",
+            "protocol": "http/1.1",
+            "remoteIPAddress": "127.0.0.1",
+            "cfRay": null,
+            "cfCacheStatus": null,
+            "cacheControl": "public, max-age=3600",
+            "fromEarlyHints": false,
+            "fromDiskCache": false,
+            "fromPrefetchCache": false
+          },
+          "complete": true,
+          "encodedBytesAtBoundary": 707
+        }
+      ],
+      "rawSha256": "b5a6e45c0b931c7df19ebdbfbc913cfab5dadf421f2817f353597b0b177d7848",
+      "checks": {
+        "dressed": true,
+        "grounded": true,
+        "Havok": true,
+        "nativeCanvas": [
+          1280,
+          720
+        ],
+        "gpuErrors": [],
+        "inputDistance": 0.2302800459986734
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "outfit": "default",
+      "pair": 1,
+      "lateMinusEarlyMs": 31.7
+    },
+    {
+      "outfit": "default",
+      "pair": 2,
+      "lateMinusEarlyMs": 30.2
+    },
+    {
+      "outfit": "default",
+      "pair": 3,
+      "lateMinusEarlyMs": 42.6
+    },
+    {
+      "outfit": "maximum",
+      "pair": 1,
+      "lateMinusEarlyMs": -10.0
+    },
+    {
+      "outfit": "maximum",
+      "pair": 2,
+      "lateMinusEarlyMs": -3.4
+    },
+    {
+      "outfit": "maximum",
+      "pair": 3,
+      "lateMinusEarlyMs": -15.0
+    }
+  ],
+  "decision": "Keep default-off checkpoint; default gains 30.2\u201342.6ms, maximum loses 3.4\u201315.0ms. No new public cohort or production promotion from this mixed comparison. Investigate maximum tail before further release gate.",
+  "retainedFailures": {
+    "initialFocusedInvocation": "20 pass, 8 test-loading-screen hook errors ECONNREFUSED CDP9337 (Vite/full-body suite not applicable to native built path)",
+    "initialHelperAbortAssertion": "expected intentional helper net::ERR_FAILED classified unexpected; original retained"
+  },
+  "cleanup": {
+    "accountedPids": [
+      73845,
+      73847,
+      73874,
+      82813,
+      82839,
+      82894,
+      84737,
+      84759,
+      84782,
+      84851,
+      84924,
+      84991,
+      85058,
+      85135,
+      85202,
+      85289,
+      85363,
+      85514,
+      85581,
+      85654
+    ],
+    "remainingOwnedPids": [],
+    "ports": [
+      10037,
+      7074,
+      7075
+    ],
+    "listenersRemaining": false,
+    "mediaGuardRemoved": true,
+    "priorMediaPlaybackRestored": true,
+    "unrelatedBrowsersPreserved": {
+      "edge": 2931,
+      "orca": 98938
+    }
+  }
+}

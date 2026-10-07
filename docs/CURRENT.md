@@ -16,7 +16,8 @@ authoritative. Work proceeds without further user approval.
    input-ready first play for default and maximum saved appearances. The current
    starting-world experiment is default-off. Preview 43730b3e has 60 valid starts,
    zero recorded runtime/GPU errors, but 2 misses: 1,053.5 ms default/1,036.4 ms maximum.
-   Next: remove observed late helper discovery, then address document/native-fence tails.
+   Early helper discovery is now checked locally: default gains 30–43 ms, maximum
+   loses 3–15 ms. Keep the flag off; next address maximum/document/native-fence tails.
 3. **Release accepted improvements:** commit/push, seal, preview integrity/entry/
    startup/traversal/mobile/WebKit/performance gates, then identical production
    bytes and repeated production checks with rollback available.
@@ -139,6 +140,21 @@ Freeze product inputs during gates, one writer per path. Preserve unrelated
 AGENTS.md/next-ten.md edits and caches; no reset/stash/clean.
 [Workflow](reviews/workflow-2026-10-05.md#current-operating-rule--2026-10-06),
 [continuation limits](autonomous-continuation.md).
+
+## Early discovery checkpoint
+
+The opt-in helper import starts alongside boot and retains its original observed
+promise for the later required await. Main syntax, both flag builds, 20 relevant
+unit checks, eight native controls and all twelve declared paired starts pass.
+The loading-screen suite's eight initial fixture errors (no CDP 9337) and the
+helper-abort assertion's expected network error remain recorded separately.
+Root reviewed actual first-play/movement/maximum stills; no new live motion or
+public qualification is claimed. Default improves 30–43 ms; maximum loses
+3–15 ms. Keep this as a default-off checkpoint, with no new public cohort from
+that mixed comparison alone. Next: improve maximum headroom before release.
+[Result](plans/character-mmo/results/startup-prime-early-2026-10-07.md).
+Owned Chrome/7074/7075 are closed; media guards removed and playback restored.
+Fresh Grok briefs with prepared operations replace the oversized reused session.
 
 ## Working references
 
