@@ -66,6 +66,11 @@ before release, retaining the failed sample and original goal exits.
 passes five actual browser controls, one public diagnostic visit and three CLI
 failure/I/O-cleanup fixtures. It changes QA only; the loading cause, production
 release and original acceptance exits remain open.
+[Bounded native capture](results/startup-native-capture-2026-10-07.md) subsequently
+completes all twenty declared visits without reproducing the application failure.
+It preserves all actual exits and native diagnostics; source/dist/production are
+unchanged. That campaign is exhausted, not qualification or cause resolution.
+Do not extend it; independent targeted fit work may proceed.
 [Canonical checkpoint](results/boot-sole-canonical-2026-10-07.md). The next work
 order is explicit in [CURRENT](../../CURRENT.md#next-five-priorities-in-execution-order):
 startup diagnosis/boot release, measured loading/audio hitches, mixed armor fit, one authored shield,

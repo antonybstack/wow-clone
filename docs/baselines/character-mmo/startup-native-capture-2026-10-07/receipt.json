@@ -1,0 +1,1892 @@
+{
+  "date": "2026-10-07",
+  "scope": "Bounded failure attribution only; original goal exits remain open",
+  "method": {
+    "declaredAt": "2026-10-07T23:04:51.584Z",
+    "purpose": "Bounded native-only failure attribution; no qualification, FPS, loader patch or retry",
+    "probeHead": "3ea495969c2d4c95f4e8737729dd0bbc4e139a46",
+    "releaseSource": "4ad2637e7e812e2db144cac6396273c3a7a10082",
+    "releaseId": "514fe898-2f57-4eae-9ae0-68141e077b6d",
+    "url": "https://514fe898.fardel.pages.dev/?play&clean&pixelRatio=1",
+    "historicalSealSha256": "fc5bec8da2efc78ef1b60620a271ad27b4e46c46b00a05c2a380381550aabbfb",
+    "before": {
+      "distFiles": 570,
+      "distBytes": 310982964,
+      "productInputs": {
+        "sha256": "648aa45bb6aaf34b3f84f3e4d0362180cefe564ba463465eb56c129424f8ede0",
+        "files": 1142,
+        "uncommitted": 0
+      }
+    },
+    "maxVisits": 20,
+    "earlyStop": "Stop on first failed or invalid actual CLI visit; never extend a clean unchanged campaign",
+    "sourceDifference": "Verified canonical CDP transport/orphan, native Log/Audits and native Default NetLog; no application fetch/Response promise instrumentation",
+    "profile": "50mbps",
+    "viewport": [
+      1280,
+      720
+    ],
+    "dpr": 1,
+    "httpCacheDisabledViaCDP": true,
+    "withinVisitPreloadReuse": "not independently disabled or proved",
+    "seed": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-covered-hair-2026-10-07/maximum-fixture/seed-maximum-compact.json",
+    "seedSha256": "b11f83f327ab7dbacddf34cdf4fb46aa6477b81014246f9daf0e4dea75a4820e",
+    "catalogue": "/Users/antbly/dev/wow-clone/dist/ashen-reach/human-identity-v1/manifest.json",
+    "catalogueSha256": "a3ae7b53a959a27060ff11aa4a3eb227e4c1d1e6458339ce941d2dd1ee9b5ab6",
+    "netLogMode": "Default; stripped native privacy mode, 64MB maximum, raw logs remain local",
+    "budgetMs": null,
+    "isolation": "Root CUA audit: twelve nongame Edge tabs and no Chrome; user Edge PID2931 and Orca98938 preserved; one owned fresh native game browser per visit; no builds/captures/FPS",
+    "referenceMedia": "Unchanged; diagnostic only",
+    "limitations": [
+      "Original 14/60 fetch failures and 362ms input cause remain open",
+      "A clean diagnostic does not clear rejected preview514fe898",
+      "Historical dist seal is not a seal for current QA-source fingerprint"
+    ]
+  },
+  "operatorExit": 0,
+  "worker": {
+    "sessionId": "01a117d9-83f4-70b2-a534-9c22da1f4c22",
+    "stopReason": "end_turn",
+    "num_turns": 6,
+    "nativeCliExit": 0
+  },
+  "completed": true,
+  "capturedFailure": false,
+  "rows": [
+    {
+      "visit": 1,
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 80447
+      },
+      "failed": false,
+      "rows": 1,
+      "ownership": {
+        "owner": "probe-playable-startup",
+        "browserPid": 80448,
+        "gpuHelperPids": [
+          80454
+        ],
+        "cdpPort": null,
+        "url": "https://514fe898.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+        "purpose": "50mbps cold run 1",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 80447
+      },
+      "netLogEvents": 56019,
+      "playableMs": 865.6000000238419,
+      "networkDiagnostics": {
+        "transportFailures": [],
+        "browserLog": [],
+        "browserIssues": [],
+        "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-native-capture-2026-10-07/visit-1.json.run-1.netlog.json",
+        "diagnosticOnly": true
+      },
+      "checks": {
+        "grounded": true,
+        "physics": true,
+        "loader": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": [],
+        "gpuErrors": [],
+        "input": {
+          "keyAt": 1105.800000011921,
+          "observedAt": 1134.800000011921,
+          "position": {
+            "x": -0.00011348441963280015,
+            "z": 0.2307997333893927
+          },
+          "frames": 21,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 29
+        },
+        "selectedIdentity": {
+          "id": "prime-ponytail",
+          "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "deferredHair": false,
+          "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+        }
+      },
+      "reportSha256": "84a5540275b6b3cc9099a52b81cbf603573df7cfef503075305f27addf25d4f1"
+    },
+    {
+      "visit": 2,
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 80504
+      },
+      "failed": false,
+      "rows": 1,
+      "ownership": {
+        "owner": "probe-playable-startup",
+        "browserPid": 80525,
+        "gpuHelperPids": [
+          80529
+        ],
+        "cdpPort": null,
+        "url": "https://514fe898.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+        "purpose": "50mbps cold run 1",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 80504
+      },
+      "netLogEvents": 56101,
+      "playableMs": 820.1999999880791,
+      "networkDiagnostics": {
+        "transportFailures": [],
+        "browserLog": [],
+        "browserIssues": [],
+        "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-native-capture-2026-10-07/visit-2.json.run-1.netlog.json",
+        "diagnosticOnly": true
+      },
+      "checks": {
+        "grounded": true,
+        "physics": true,
+        "loader": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": [],
+        "gpuErrors": [],
+        "input": {
+          "keyAt": 1056.0999999642372,
+          "observedAt": 1096.8999999761581,
+          "position": {
+            "x": -0.00007367111505400989,
+            "z": 0.3540699923252535
+          },
+          "frames": 22,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 40.80000001192093
+        },
+        "selectedIdentity": {
+          "id": "prime-ponytail",
+          "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "deferredHair": false,
+          "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+        }
+      },
+      "reportSha256": "d6a1b73b9d9334fb5b7097519fc8711524e21943fdc663ba216efd4a4ce78c2b"
+    },
+    {
+      "visit": 3,
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 80583
+      },
+      "failed": false,
+      "rows": 1,
+      "ownership": {
+        "owner": "probe-playable-startup",
+        "browserPid": 80584,
+        "gpuHelperPids": [
+          80588
+        ],
+        "cdpPort": null,
+        "url": "https://514fe898.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+        "purpose": "50mbps cold run 1",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 80583
+      },
+      "netLogEvents": 56279,
+      "playableMs": 802.9000000357628,
+      "networkDiagnostics": {
+        "transportFailures": [],
+        "browserLog": [],
+        "browserIssues": [],
+        "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-native-capture-2026-10-07/visit-3.json.run-1.netlog.json",
+        "diagnosticOnly": true
+      },
+      "checks": {
+        "grounded": true,
+        "physics": true,
+        "loader": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": [],
+        "gpuErrors": [],
+        "input": {
+          "keyAt": 1042.1000000238419,
+          "observedAt": 1073.9000000357628,
+          "position": {
+            "x": -0.00014572392983272644,
+            "z": 0.23494284030654278
+          },
+          "frames": 21,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 31.80000001192093
+        },
+        "selectedIdentity": {
+          "id": "prime-ponytail",
+          "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "deferredHair": false,
+          "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+        }
+      },
+      "reportSha256": "e6270aaf6bd606550e3a0efa56e14e3f05b185335222963cb824cf53176eb332"
+    },
+    {
+      "visit": 4,
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 80636
+      },
+      "failed": false,
+      "rows": 1,
+      "ownership": {
+        "owner": "probe-playable-startup",
+        "browserPid": 80657,
+        "gpuHelperPids": [
+          80661
+        ],
+        "cdpPort": null,
+        "url": "https://514fe898.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+        "purpose": "50mbps cold run 1",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 80636
+      },
+      "netLogEvents": 56156,
+      "playableMs": 829.1999999880791,
+      "networkDiagnostics": {
+        "transportFailures": [],
+        "browserLog": [],
+        "browserIssues": [],
+        "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-native-capture-2026-10-07/visit-4.json.run-1.netlog.json",
+        "diagnosticOnly": true
+      },
+      "checks": {
+        "grounded": true,
+        "physics": true,
+        "loader": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": [],
+        "gpuErrors": [],
+        "input": {
+          "keyAt": 1075.300000011921,
+          "observedAt": 1110.3999999761581,
+          "position": {
+            "x": -0.00003689737648862511,
+            "z": 0.23093488698678183
+          },
+          "frames": 22,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 35.09999996423721
+        },
+        "selectedIdentity": {
+          "id": "prime-ponytail",
+          "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "deferredHair": false,
+          "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+        }
+      },
+      "reportSha256": "dd5c3b3847501f90d5bbaf5ce2469051ca488d2a9872eebf83920fa8660d4a1d"
+    },
+    {
+      "visit": 5,
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 80709
+      },
+      "failed": false,
+      "rows": 1,
+      "ownership": {
+        "owner": "probe-playable-startup",
+        "browserPid": 80710,
+        "gpuHelperPids": [
+          80733
+        ],
+        "cdpPort": null,
+        "url": "https://514fe898.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+        "purpose": "50mbps cold run 1",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 80709
+      },
+      "netLogEvents": 57136,
+      "playableMs": 795.6999999880791,
+      "networkDiagnostics": {
+        "transportFailures": [],
+        "browserLog": [],
+        "browserIssues": [],
+        "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-native-capture-2026-10-07/visit-5.json.run-1.netlog.json",
+        "diagnosticOnly": true
+      },
+      "checks": {
+        "grounded": true,
+        "physics": true,
+        "loader": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": [],
+        "gpuErrors": [],
+        "input": {
+          "keyAt": 1055.300000011921,
+          "observedAt": 1098.3999999761581,
+          "position": {
+            "x": -0.000040274752001154016,
+            "z": 0.351328926829348
+          },
+          "frames": 24,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 43.09999996423721
+        },
+        "selectedIdentity": {
+          "id": "prime-ponytail",
+          "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "deferredHair": false,
+          "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+        }
+      },
+      "reportSha256": "ff5433df6909b5088eefe4a8f9bdee971cf0975b319494708aeb2f6fbd14a294"
+    },
+    {
+      "visit": 6,
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 80787
+      },
+      "failed": false,
+      "rows": 1,
+      "ownership": {
+        "owner": "probe-playable-startup",
+        "browserPid": 80788,
+        "gpuHelperPids": [
+          80812
+        ],
+        "cdpPort": null,
+        "url": "https://514fe898.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+        "purpose": "50mbps cold run 1",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 80787
+      },
+      "netLogEvents": 56835,
+      "playableMs": 808,
+      "networkDiagnostics": {
+        "transportFailures": [],
+        "browserLog": [],
+        "browserIssues": [],
+        "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-native-capture-2026-10-07/visit-6.json.run-1.netlog.json",
+        "diagnosticOnly": true
+      },
+      "checks": {
+        "grounded": true,
+        "physics": true,
+        "loader": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": [],
+        "gpuErrors": [],
+        "input": {
+          "keyAt": 1078.5,
+          "observedAt": 1110.2999999523163,
+          "position": {
+            "x": -0.00005231670269994359,
+            "z": 0.2337076766634238
+          },
+          "frames": 22,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 31.799999952316284
+        },
+        "selectedIdentity": {
+          "id": "prime-ponytail",
+          "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "deferredHair": false,
+          "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+        }
+      },
+      "reportSha256": "644bd6cfc38a8cb1551bc0d91b1298a6feced321205a4d5df591f3e3753eb877"
+    },
+    {
+      "visit": 7,
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 80860
+      },
+      "failed": false,
+      "rows": 1,
+      "ownership": {
+        "owner": "probe-playable-startup",
+        "browserPid": 80861,
+        "gpuHelperPids": [
+          80865
+        ],
+        "cdpPort": null,
+        "url": "https://514fe898.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+        "purpose": "50mbps cold run 1",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 80860
+      },
+      "netLogEvents": 57412,
+      "playableMs": 788.5,
+      "networkDiagnostics": {
+        "transportFailures": [],
+        "browserLog": [],
+        "browserIssues": [],
+        "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-native-capture-2026-10-07/visit-7.json.run-1.netlog.json",
+        "diagnosticOnly": true
+      },
+      "checks": {
+        "grounded": true,
+        "physics": true,
+        "loader": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": [],
+        "gpuErrors": [],
+        "input": {
+          "keyAt": 1053.800000011921,
+          "observedAt": 1094.7000000476837,
+          "position": {
+            "x": -0.000044661477224509074,
+            "z": 0.34922118588434775
+          },
+          "frames": 24,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 40.90000003576279
+        },
+        "selectedIdentity": {
+          "id": "prime-ponytail",
+          "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "deferredHair": false,
+          "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+        }
+      },
+      "reportSha256": "7ec1fc88559aca8e4745b142ecff9ce4ef3eb1cec492a30c0a6a2282c99c4ed0"
+    },
+    {
+      "visit": 8,
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 80916
+      },
+      "failed": false,
+      "rows": 1,
+      "ownership": {
+        "owner": "probe-playable-startup",
+        "browserPid": 80921,
+        "gpuHelperPids": [
+          80925
+        ],
+        "cdpPort": null,
+        "url": "https://514fe898.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+        "purpose": "50mbps cold run 1",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 80916
+      },
+      "netLogEvents": 56929,
+      "playableMs": 795.9000000357628,
+      "networkDiagnostics": {
+        "transportFailures": [],
+        "browserLog": [],
+        "browserIssues": [],
+        "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-native-capture-2026-10-07/visit-8.json.run-1.netlog.json",
+        "diagnosticOnly": true
+      },
+      "checks": {
+        "grounded": true,
+        "physics": true,
+        "loader": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": [],
+        "gpuErrors": [],
+        "input": {
+          "keyAt": 1054.7000000476837,
+          "observedAt": 1099.4000000357628,
+          "position": {
+            "x": -0.00004399444882275991,
+            "z": 0.3534223627427352
+          },
+          "frames": 24,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 44.69999998807907
+        },
+        "selectedIdentity": {
+          "id": "prime-ponytail",
+          "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "deferredHair": false,
+          "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+        }
+      },
+      "reportSha256": "df2ac7ef0bccf11df50750c44225757a44bab79a9fd81860e208b75c3848577c"
+    },
+    {
+      "visit": 9,
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 80993
+      },
+      "failed": false,
+      "rows": 1,
+      "ownership": {
+        "owner": "probe-playable-startup",
+        "browserPid": 80994,
+        "gpuHelperPids": [
+          80998
+        ],
+        "cdpPort": null,
+        "url": "https://514fe898.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+        "purpose": "50mbps cold run 1",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 80993
+      },
+      "netLogEvents": 57409,
+      "playableMs": 796,
+      "networkDiagnostics": {
+        "transportFailures": [],
+        "browserLog": [],
+        "browserIssues": [],
+        "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-native-capture-2026-10-07/visit-9.json.run-1.netlog.json",
+        "diagnosticOnly": true
+      },
+      "checks": {
+        "grounded": true,
+        "physics": true,
+        "loader": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": [],
+        "gpuErrors": [],
+        "input": {
+          "keyAt": 1053.5999999642372,
+          "observedAt": 1098,
+          "position": {
+            "x": -0.000035974991314825506,
+            "z": 0.34923651455849863
+          },
+          "frames": 24,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 44.40000003576279
+        },
+        "selectedIdentity": {
+          "id": "prime-ponytail",
+          "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "deferredHair": false,
+          "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+        }
+      },
+      "reportSha256": "e9cc9c6b41a26314efee582ff59bfe9e409ba6dcd6bbec6e8409d4a0ec3faba9"
+    },
+    {
+      "visit": 10,
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 81046
+      },
+      "failed": false,
+      "rows": 1,
+      "ownership": {
+        "owner": "probe-playable-startup",
+        "browserPid": 81047,
+        "gpuHelperPids": [
+          81051
+        ],
+        "cdpPort": null,
+        "url": "https://514fe898.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+        "purpose": "50mbps cold run 1",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 81046
+      },
+      "netLogEvents": 56859,
+      "playableMs": 796.2999999523163,
+      "networkDiagnostics": {
+        "transportFailures": [],
+        "browserLog": [],
+        "browserIssues": [],
+        "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-native-capture-2026-10-07/visit-10.json.run-1.netlog.json",
+        "diagnosticOnly": true
+      },
+      "checks": {
+        "grounded": true,
+        "physics": true,
+        "loader": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": [],
+        "gpuErrors": [],
+        "input": {
+          "keyAt": 1044.699999988079,
+          "observedAt": 1088,
+          "position": {
+            "x": -0.00004399034807803776,
+            "z": 0.3506223701462993
+          },
+          "frames": 23,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 43.30000001192093
+        },
+        "selectedIdentity": {
+          "id": "prime-ponytail",
+          "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "deferredHair": false,
+          "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+        }
+      },
+      "reportSha256": "e5371970f6e5df1e3dde120183334302cecaec89ec618b0342ead29c4f0cd84f"
+    },
+    {
+      "visit": 11,
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 81105
+      },
+      "failed": false,
+      "rows": 1,
+      "ownership": {
+        "owner": "probe-playable-startup",
+        "browserPid": 81126,
+        "gpuHelperPids": [
+          81130
+        ],
+        "cdpPort": null,
+        "url": "https://514fe898.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+        "purpose": "50mbps cold run 1",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 81105
+      },
+      "netLogEvents": 56369,
+      "playableMs": 796.3999999761581,
+      "networkDiagnostics": {
+        "transportFailures": [],
+        "browserLog": [],
+        "browserIssues": [],
+        "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-native-capture-2026-10-07/visit-11.json.run-1.netlog.json",
+        "diagnosticOnly": true
+      },
+      "checks": {
+        "grounded": true,
+        "physics": true,
+        "loader": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": [],
+        "gpuErrors": [],
+        "input": {
+          "keyAt": 1045.8999999761581,
+          "observedAt": 1079.199999988079,
+          "position": {
+            "x": -0.000048804924141207626,
+            "z": 0.23511387383561522
+          },
+          "frames": 22,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 33.30000001192093
+        },
+        "selectedIdentity": {
+          "id": "prime-ponytail",
+          "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "deferredHair": false,
+          "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+        }
+      },
+      "reportSha256": "1cb5f5aa409db3dc7c96eb968a4381d4d21f48e9e6e3a123e80bf40dcc1db54d"
+    },
+    {
+      "visit": 12,
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 81178
+      },
+      "failed": false,
+      "rows": 1,
+      "ownership": {
+        "owner": "probe-playable-startup",
+        "browserPid": 81179,
+        "gpuHelperPids": [
+          81183
+        ],
+        "cdpPort": null,
+        "url": "https://514fe898.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+        "purpose": "50mbps cold run 1",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 81178
+      },
+      "netLogEvents": 57726,
+      "playableMs": 779.8000000119209,
+      "networkDiagnostics": {
+        "transportFailures": [],
+        "browserLog": [],
+        "browserIssues": [],
+        "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-native-capture-2026-10-07/visit-12.json.run-1.netlog.json",
+        "diagnosticOnly": true
+      },
+      "checks": {
+        "grounded": true,
+        "physics": true,
+        "loader": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": [],
+        "gpuErrors": [],
+        "input": {
+          "keyAt": 1033.3999999761581,
+          "observedAt": 1064.1000000238419,
+          "position": {
+            "x": -0.00005878133696721568,
+            "z": 0.2301962680685834
+          },
+          "frames": 22,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 30.700000047683716
+        },
+        "selectedIdentity": {
+          "id": "prime-ponytail",
+          "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "deferredHair": false,
+          "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+        }
+      },
+      "reportSha256": "a6aca319fbb15896002b3530774d67fc6a1560a8e0905c55ebab2b74c22ffc70"
+    },
+    {
+      "visit": 13,
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 81315
+      },
+      "failed": false,
+      "rows": 1,
+      "ownership": {
+        "owner": "probe-playable-startup",
+        "browserPid": 81317,
+        "gpuHelperPids": [
+          81346
+        ],
+        "cdpPort": null,
+        "url": "https://514fe898.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+        "purpose": "50mbps cold run 1",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 81315
+      },
+      "netLogEvents": 56507,
+      "playableMs": 840.8000000119209,
+      "networkDiagnostics": {
+        "transportFailures": [],
+        "browserLog": [],
+        "browserIssues": [],
+        "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-native-capture-2026-10-07/visit-13.json.run-1.netlog.json",
+        "diagnosticOnly": true
+      },
+      "checks": {
+        "grounded": true,
+        "physics": true,
+        "loader": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": [],
+        "gpuErrors": [],
+        "input": {
+          "keyAt": 1076.199999988079,
+          "observedAt": 1111,
+          "position": {
+            "x": -0.00008207475856637688,
+            "z": 0.23295516186602847
+          },
+          "frames": 21,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 34.80000001192093
+        },
+        "selectedIdentity": {
+          "id": "prime-ponytail",
+          "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "deferredHair": false,
+          "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+        }
+      },
+      "reportSha256": "8c9c79c69e9cad232dc6aa4fcd157088908fd4b30d3c650969e5841d651fce0c"
+    },
+    {
+      "visit": 14,
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 81394
+      },
+      "failed": false,
+      "rows": 1,
+      "ownership": {
+        "owner": "probe-playable-startup",
+        "browserPid": 81395,
+        "gpuHelperPids": [
+          81399
+        ],
+        "cdpPort": null,
+        "url": "https://514fe898.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+        "purpose": "50mbps cold run 1",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 81394
+      },
+      "netLogEvents": 56462,
+      "playableMs": 795.1000000238419,
+      "networkDiagnostics": {
+        "transportFailures": [],
+        "browserLog": [],
+        "browserIssues": [],
+        "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-native-capture-2026-10-07/visit-14.json.run-1.netlog.json",
+        "diagnosticOnly": true
+      },
+      "checks": {
+        "grounded": true,
+        "physics": true,
+        "loader": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": [],
+        "gpuErrors": [],
+        "input": {
+          "keyAt": 1046,
+          "observedAt": 1079.1000000238419,
+          "position": {
+            "x": -0.00004649116368337649,
+            "z": 0.23371795660818934
+          },
+          "frames": 22,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 33.10000002384186
+        },
+        "selectedIdentity": {
+          "id": "prime-ponytail",
+          "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "deferredHair": false,
+          "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+        }
+      },
+      "reportSha256": "6336467df20c4c354bf94447cf2d7229b141005dee87b4b2e047bbd31caf657c"
+    },
+    {
+      "visit": 15,
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 81448
+      },
+      "failed": false,
+      "rows": 1,
+      "ownership": {
+        "owner": "probe-playable-startup",
+        "browserPid": 81449,
+        "gpuHelperPids": [
+          81517
+        ],
+        "cdpPort": null,
+        "url": "https://514fe898.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+        "purpose": "50mbps cold run 1",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 81448
+      },
+      "netLogEvents": 56435,
+      "playableMs": 790.2000000476837,
+      "networkDiagnostics": {
+        "transportFailures": [],
+        "browserLog": [],
+        "browserIssues": [],
+        "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-native-capture-2026-10-07/visit-15.json.run-1.netlog.json",
+        "diagnosticOnly": true
+      },
+      "checks": {
+        "grounded": true,
+        "physics": true,
+        "loader": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": [],
+        "gpuErrors": [],
+        "input": {
+          "keyAt": 1028.9000000357628,
+          "observedAt": 1060.4000000357628,
+          "position": {
+            "x": -0.00015372087909389342,
+            "z": 0.23212872779341243
+          },
+          "frames": 21,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 31.5
+        },
+        "selectedIdentity": {
+          "id": "prime-ponytail",
+          "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "deferredHair": false,
+          "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+        }
+      },
+      "reportSha256": "29ebaf9990a68348f8efac3f973c7c0cefef236e58ef3356f7ffba99aa7344fc"
+    },
+    {
+      "visit": 16,
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 81571
+      },
+      "failed": false,
+      "rows": 1,
+      "ownership": {
+        "owner": "probe-playable-startup",
+        "browserPid": 81572,
+        "gpuHelperPids": [
+          81596
+        ],
+        "cdpPort": null,
+        "url": "https://514fe898.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+        "purpose": "50mbps cold run 1",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 81571
+      },
+      "netLogEvents": 55902,
+      "playableMs": 765.8999999761581,
+      "networkDiagnostics": {
+        "transportFailures": [],
+        "browserLog": [],
+        "browserIssues": [],
+        "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-native-capture-2026-10-07/visit-16.json.run-1.netlog.json",
+        "diagnosticOnly": true
+      },
+      "checks": {
+        "grounded": true,
+        "physics": true,
+        "loader": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": [],
+        "gpuErrors": [],
+        "input": {
+          "keyAt": 1006.3000000119209,
+          "observedAt": 1038.199999988079,
+          "position": {
+            "x": -0.00018828570645837965,
+            "z": 0.233467730959472
+          },
+          "frames": 21,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 31.899999976158142
+        },
+        "selectedIdentity": {
+          "id": "prime-ponytail",
+          "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "deferredHair": false,
+          "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+        }
+      },
+      "reportSha256": "32e74b3add22f69917e5c83aa9b40eacb84299ff68bfc4b4306b03f47e21561d"
+    },
+    {
+      "visit": 17,
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 81709
+      },
+      "failed": false,
+      "rows": 1,
+      "ownership": {
+        "owner": "probe-playable-startup",
+        "browserPid": 81710,
+        "gpuHelperPids": [
+          81714
+        ],
+        "cdpPort": null,
+        "url": "https://514fe898.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+        "purpose": "50mbps cold run 1",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 81709
+      },
+      "netLogEvents": 56609,
+      "playableMs": 821,
+      "networkDiagnostics": {
+        "transportFailures": [],
+        "browserLog": [],
+        "browserIssues": [],
+        "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-native-capture-2026-10-07/visit-17.json.run-1.netlog.json",
+        "diagnosticOnly": true
+      },
+      "checks": {
+        "grounded": true,
+        "physics": true,
+        "loader": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": [],
+        "gpuErrors": [],
+        "input": {
+          "keyAt": 1078.1000000238419,
+          "observedAt": 1113.1000000238419,
+          "position": {
+            "x": -0.000039505412573478604,
+            "z": 0.22953028465394437
+          },
+          "frames": 23,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 35
+        },
+        "selectedIdentity": {
+          "id": "prime-ponytail",
+          "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "deferredHair": false,
+          "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+        }
+      },
+      "reportSha256": "7e58f051a49009b68c7b4a5a672c103931a96c6d620e6b0871d664d28c6cebeb"
+    },
+    {
+      "visit": 18,
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 81762
+      },
+      "failed": false,
+      "rows": 1,
+      "ownership": {
+        "owner": "probe-playable-startup",
+        "browserPid": 81783,
+        "gpuHelperPids": [
+          81787
+        ],
+        "cdpPort": null,
+        "url": "https://514fe898.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+        "purpose": "50mbps cold run 1",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 81762
+      },
+      "netLogEvents": 56269,
+      "playableMs": 793.3000000119209,
+      "networkDiagnostics": {
+        "transportFailures": [],
+        "browserLog": [],
+        "browserIssues": [],
+        "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-native-capture-2026-10-07/visit-18.json.run-1.netlog.json",
+        "diagnosticOnly": true
+      },
+      "checks": {
+        "grounded": true,
+        "physics": true,
+        "loader": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": [],
+        "gpuErrors": [],
+        "input": {
+          "keyAt": 1033.699999988079,
+          "observedAt": 1066.8999999761581,
+          "position": {
+            "x": -0.0001620342466241879,
+            "z": 0.23421405722921287
+          },
+          "frames": 21,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 33.19999998807907
+        },
+        "selectedIdentity": {
+          "id": "prime-ponytail",
+          "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "deferredHair": false,
+          "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+        }
+      },
+      "reportSha256": "5fe8baa21a62f11f2d5370ecde1341bc7f035fb66b794257717ab850a6284484"
+    },
+    {
+      "visit": 19,
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 81841
+      },
+      "failed": false,
+      "rows": 1,
+      "ownership": {
+        "owner": "probe-playable-startup",
+        "browserPid": 81842,
+        "gpuHelperPids": [
+          81846
+        ],
+        "cdpPort": null,
+        "url": "https://514fe898.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+        "purpose": "50mbps cold run 1",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 81841
+      },
+      "netLogEvents": 56236,
+      "playableMs": 793.9000000357628,
+      "networkDiagnostics": {
+        "transportFailures": [],
+        "browserLog": [],
+        "browserIssues": [],
+        "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-native-capture-2026-10-07/visit-19.json.run-1.netlog.json",
+        "diagnosticOnly": true
+      },
+      "checks": {
+        "grounded": true,
+        "physics": true,
+        "loader": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": [],
+        "gpuErrors": [],
+        "input": {
+          "keyAt": 1037.5,
+          "observedAt": 1066,
+          "position": {
+            "x": -0.00017349890744303007,
+            "z": 0.2299938257263363
+          },
+          "frames": 21,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 28.5
+        },
+        "selectedIdentity": {
+          "id": "prime-ponytail",
+          "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "deferredHair": false,
+          "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+        }
+      },
+      "reportSha256": "70cd6baf8afe201a31deeb2ea9a1a7e19363a07132e3e6a60dd8cdecf6b93b41"
+    },
+    {
+      "visit": 20,
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 81894
+      },
+      "failed": false,
+      "rows": 1,
+      "ownership": {
+        "owner": "probe-playable-startup",
+        "browserPid": 81915,
+        "gpuHelperPids": [
+          81919
+        ],
+        "cdpPort": null,
+        "url": "https://514fe898.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+        "purpose": "50mbps cold run 1",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 81894
+      },
+      "netLogEvents": 56620,
+      "playableMs": 793.8999999761581,
+      "networkDiagnostics": {
+        "transportFailures": [],
+        "browserLog": [],
+        "browserIssues": [],
+        "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-native-capture-2026-10-07/visit-20.json.run-1.netlog.json",
+        "diagnosticOnly": true
+      },
+      "checks": {
+        "grounded": true,
+        "physics": true,
+        "loader": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "errors": [],
+        "gpuErrors": [],
+        "input": {
+          "keyAt": 1045.3999999761581,
+          "observedAt": 1087.199999988079,
+          "position": {
+            "x": -0.00004350637225270862,
+            "z": 0.3555232241376889
+          },
+          "frames": 23,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 41.80000001192093
+        },
+        "selectedIdentity": {
+          "id": "prime-ponytail",
+          "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "deferredHair": false,
+          "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+        }
+      },
+      "reportSha256": "25850034a13ead5ad1d0991b5e61f96993edb74439b5086c8bcf5259fbbb99a8"
+    }
+  ],
+  "after": {
+    "distFiles": 570,
+    "distBytes": 310982964,
+    "productInputs": {
+      "sha256": "648aa45bb6aaf34b3f84f3e4d0362180cefe564ba463465eb56c129424f8ede0",
+      "files": 1142,
+      "uncommitted": 0
+    }
+  },
+  "nativeNetLogCorrelation": {
+    "rows": [
+      {
+        "visit": 1,
+        "targetRequestSources": [
+          254
+        ],
+        "targetNegative": [
+          {
+            "name": "HTTP_CACHE_DOOM_ENTRY",
+            "code": -2
+          }
+        ],
+        "requestEnds": [
+          {
+            "name": "URL_REQUEST_START_JOB",
+            "params": null
+          }
+        ]
+      },
+      {
+        "visit": 2,
+        "targetRequestSources": [
+          244
+        ],
+        "targetNegative": [
+          {
+            "name": "HTTP_CACHE_DOOM_ENTRY",
+            "code": -2
+          }
+        ],
+        "requestEnds": [
+          {
+            "name": "URL_REQUEST_START_JOB",
+            "params": null
+          }
+        ]
+      },
+      {
+        "visit": 3,
+        "targetRequestSources": [
+          255
+        ],
+        "targetNegative": [
+          {
+            "name": "HTTP_CACHE_DOOM_ENTRY",
+            "code": -2
+          }
+        ],
+        "requestEnds": [
+          {
+            "name": "URL_REQUEST_START_JOB",
+            "params": null
+          }
+        ]
+      },
+      {
+        "visit": 4,
+        "targetRequestSources": [
+          244
+        ],
+        "targetNegative": [
+          {
+            "name": "HTTP_CACHE_DOOM_ENTRY",
+            "code": -2
+          }
+        ],
+        "requestEnds": [
+          {
+            "name": "URL_REQUEST_START_JOB",
+            "params": null
+          }
+        ]
+      },
+      {
+        "visit": 5,
+        "targetRequestSources": [
+          243
+        ],
+        "targetNegative": [
+          {
+            "name": "HTTP_CACHE_DOOM_ENTRY",
+            "code": -2
+          }
+        ],
+        "requestEnds": [
+          {
+            "name": "URL_REQUEST_START_JOB",
+            "params": null
+          }
+        ]
+      },
+      {
+        "visit": 6,
+        "targetRequestSources": [
+          255
+        ],
+        "targetNegative": [
+          {
+            "name": "HTTP_CACHE_DOOM_ENTRY",
+            "code": -2
+          }
+        ],
+        "requestEnds": [
+          {
+            "name": "URL_REQUEST_START_JOB",
+            "params": null
+          }
+        ]
+      },
+      {
+        "visit": 7,
+        "targetRequestSources": [
+          243
+        ],
+        "targetNegative": [
+          {
+            "name": "HTTP_CACHE_DOOM_ENTRY",
+            "code": -2
+          }
+        ],
+        "requestEnds": [
+          {
+            "name": "URL_REQUEST_START_JOB",
+            "params": null
+          }
+        ]
+      },
+      {
+        "visit": 8,
+        "targetRequestSources": [
+          244
+        ],
+        "targetNegative": [
+          {
+            "name": "HTTP_CACHE_DOOM_ENTRY",
+            "code": -2
+          }
+        ],
+        "requestEnds": [
+          {
+            "name": "URL_REQUEST_START_JOB",
+            "params": null
+          }
+        ]
+      },
+      {
+        "visit": 9,
+        "targetRequestSources": [
+          243
+        ],
+        "targetNegative": [
+          {
+            "name": "HTTP_CACHE_DOOM_ENTRY",
+            "code": -2
+          }
+        ],
+        "requestEnds": [
+          {
+            "name": "URL_REQUEST_START_JOB",
+            "params": null
+          }
+        ]
+      },
+      {
+        "visit": 10,
+        "targetRequestSources": [
+          243
+        ],
+        "targetNegative": [
+          {
+            "name": "HTTP_CACHE_DOOM_ENTRY",
+            "code": -2
+          }
+        ],
+        "requestEnds": [
+          {
+            "name": "URL_REQUEST_START_JOB",
+            "params": null
+          }
+        ]
+      },
+      {
+        "visit": 11,
+        "targetRequestSources": [
+          244
+        ],
+        "targetNegative": [
+          {
+            "name": "HTTP_CACHE_DOOM_ENTRY",
+            "code": -2
+          }
+        ],
+        "requestEnds": [
+          {
+            "name": "URL_REQUEST_START_JOB",
+            "params": null
+          }
+        ]
+      },
+      {
+        "visit": 12,
+        "targetRequestSources": [
+          244
+        ],
+        "targetNegative": [
+          {
+            "name": "HTTP_CACHE_DOOM_ENTRY",
+            "code": -2
+          }
+        ],
+        "requestEnds": [
+          {
+            "name": "URL_REQUEST_START_JOB",
+            "params": null
+          }
+        ]
+      },
+      {
+        "visit": 13,
+        "targetRequestSources": [
+          254
+        ],
+        "targetNegative": [
+          {
+            "name": "HTTP_CACHE_DOOM_ENTRY",
+            "code": -2
+          }
+        ],
+        "requestEnds": [
+          {
+            "name": "URL_REQUEST_START_JOB",
+            "params": null
+          }
+        ]
+      },
+      {
+        "visit": 14,
+        "targetRequestSources": [
+          250
+        ],
+        "targetNegative": [
+          {
+            "name": "HTTP_CACHE_DOOM_ENTRY",
+            "code": -2
+          }
+        ],
+        "requestEnds": [
+          {
+            "name": "URL_REQUEST_START_JOB",
+            "params": null
+          }
+        ]
+      },
+      {
+        "visit": 15,
+        "targetRequestSources": [
+          244
+        ],
+        "targetNegative": [
+          {
+            "name": "HTTP_CACHE_DOOM_ENTRY",
+            "code": -2
+          }
+        ],
+        "requestEnds": [
+          {
+            "name": "URL_REQUEST_START_JOB",
+            "params": null
+          }
+        ]
+      },
+      {
+        "visit": 16,
+        "targetRequestSources": [
+          244
+        ],
+        "targetNegative": [
+          {
+            "name": "HTTP_CACHE_DOOM_ENTRY",
+            "code": -2
+          }
+        ],
+        "requestEnds": [
+          {
+            "name": "URL_REQUEST_START_JOB",
+            "params": null
+          }
+        ]
+      },
+      {
+        "visit": 17,
+        "targetRequestSources": [
+          254
+        ],
+        "targetNegative": [
+          {
+            "name": "HTTP_CACHE_DOOM_ENTRY",
+            "code": -2
+          }
+        ],
+        "requestEnds": [
+          {
+            "name": "URL_REQUEST_START_JOB",
+            "params": null
+          }
+        ]
+      },
+      {
+        "visit": 18,
+        "targetRequestSources": [
+          243
+        ],
+        "targetNegative": [
+          {
+            "name": "HTTP_CACHE_DOOM_ENTRY",
+            "code": -2
+          }
+        ],
+        "requestEnds": [
+          {
+            "name": "URL_REQUEST_START_JOB",
+            "params": null
+          }
+        ]
+      },
+      {
+        "visit": 19,
+        "targetRequestSources": [
+          243
+        ],
+        "targetNegative": [
+          {
+            "name": "HTTP_CACHE_DOOM_ENTRY",
+            "code": -2
+          }
+        ],
+        "requestEnds": [
+          {
+            "name": "URL_REQUEST_START_JOB",
+            "params": null
+          }
+        ]
+      },
+      {
+        "visit": 20,
+        "targetRequestSources": [
+          255
+        ],
+        "targetNegative": [
+          {
+            "name": "HTTP_CACHE_DOOM_ENTRY",
+            "code": -2
+          }
+        ],
+        "requestEnds": [
+          {
+            "name": "URL_REQUEST_START_JOB",
+            "params": null
+          }
+        ]
+      }
+    ],
+    "negativeCountsByEventName": {
+      "TCP_CONNECT_JOB_CONNECT:-3": 64,
+      "SSL_CONNECT_JOB_CONNECT:-3": 66,
+      "HTTP_CACHE_DOOM_ENTRY:-2": 665,
+      "HTTP2_SESSION_CLOSE:-3": 60,
+      "QUIC_SESSION_CLOSE_ON_ERROR:-3": 74,
+      "QUIC_SESSION_POOL_CLOSE_ALL_SESSIONS:-3": 80,
+      "QUIC_SESSION_POOL_JOB_CONNECT:-3": 20
+    }
+  },
+  "rootAudit": {
+    "allOwnedProcessesClosed": true,
+    "pids": [
+      80447,
+      80448,
+      80454,
+      80504,
+      80525,
+      80529,
+      80583,
+      80584,
+      80588,
+      80636,
+      80657,
+      80661,
+      80709,
+      80710,
+      80733,
+      80787,
+      80788,
+      80812,
+      80860,
+      80861,
+      80865,
+      80916,
+      80921,
+      80925,
+      80993,
+      80994,
+      80998,
+      81046,
+      81047,
+      81051,
+      81105,
+      81126,
+      81130,
+      81178,
+      81179,
+      81183,
+      81315,
+      81317,
+      81346,
+      81394,
+      81395,
+      81399,
+      81448,
+      81449,
+      81517,
+      81571,
+      81572,
+      81596,
+      81709,
+      81710,
+      81714,
+      81762,
+      81783,
+      81787,
+      81841,
+      81842,
+      81846,
+      81894,
+      81915,
+      81919,
+      80387
+    ],
+    "negativeEvents": 1029,
+    "targetEvents": 140
+  },
+  "externalState": {
+    "before": {
+      "at": "2026-10-07T23:03:52.558Z",
+      "canonical": {
+        "id": "5723a4ab-5dfd-4902-959b-7496948ea51f",
+        "url": "https://5723a4ab.fardel.pages.dev",
+        "environment": "production",
+        "stage": "success",
+        "sourceCommit": "7d00c56c06f02899e2319ffdddea97728013c0b1",
+        "aliases": [
+          "https://play.sparkify.dev"
+        ]
+      },
+      "candidate": {
+        "id": "514fe898-2f57-4eae-9ae0-68141e077b6d",
+        "url": "https://514fe898.fardel.pages.dev",
+        "environment": "preview",
+        "stage": "success",
+        "sourceCommit": "4ad2637e7e812e2db144cac6396273c3a7a10082",
+        "aliases": [
+          "https://boot-sole-20261007-4ad2637.fardel.pages.dev"
+        ]
+      },
+      "readonly": true
+    },
+    "after": {
+      "at": "2026-10-07T23:09:16.821Z",
+      "canonical": {
+        "id": "5723a4ab-5dfd-4902-959b-7496948ea51f",
+        "url": "https://5723a4ab.fardel.pages.dev",
+        "environment": "production",
+        "stage": "success",
+        "sourceCommit": "7d00c56c06f02899e2319ffdddea97728013c0b1",
+        "aliases": [
+          "https://play.sparkify.dev"
+        ]
+      },
+      "readonly": true
+    }
+  },
+  "rawEvidence": ".cache/character-mmo/startup-native-capture-2026-10-07",
+  "rootReviewedCapture": "visit-20-1.png",
+  "limits": [
+    "Twenty clean native visits do not explain or clear the failed qualification",
+    "No loader fix, speculative retry, build, reseal, deployment, recording or new startup/FPS acceptance",
+    "Native cache-doom negative codes also occur on successful required texture requests; they do not establish a failed body",
+    "Original14/60 fetch failure cause, 362ms input outlier and physical iPhone acceptance remain open"
+  ],
+  "nextAction": "Do not extend this unchanged campaign. Independent targeted armor-fit work may proceed while boot publication remains on hold.",
+  "conditions": {
+    "requestedRuns": 1,
+    "budgetMs": null,
+    "gpuProbe": false,
+    "traceGpu": false,
+    "disableShaderCache": false,
+    "disableHttpCache": true,
+    "deferCoveredHair": true,
+    "netLog": true,
+    "profile": "50mbps",
+    "savedAppearance": {
+      "schemaVersion": 2,
+      "catalogVersion": "appearance-catalog-v8",
+      "race": "human",
+      "fitFamily": "ashen-human",
+      "fit": {
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "shape": {
+        "family": "ashen-human-shape-v1",
+        "height": 1.15,
+        "build": -0.95
+      },
+      "components": {
+        "head": "human-prime-v1",
+        "hair": "human-ponytail01-v1"
+      },
+      "dyes": {
+        "torso": "oxblood",
+        "legs": "indigo"
+      },
+      "equipment": {
+        "helmet": null,
+        "torso": "duskguardCuirass",
+        "legs": "graveweaverSkirt",
+        "boots": "duskguardGreaves",
+        "gloves": "duskguardVambraces",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": "bastionShoulders"
+      }
+    },
+    "expectedAppearance": {
+      "schemaVersion": 2,
+      "catalogVersion": "appearance-catalog-v8",
+      "race": "human",
+      "fitFamily": "ashen-human",
+      "fit": {
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "shape": {
+        "family": "ashen-human-shape-v1",
+        "height": 1.15,
+        "build": -0.95
+      },
+      "components": {
+        "head": "human-prime-v1",
+        "hair": "human-ponytail01-v1"
+      },
+      "dyes": {
+        "torso": "oxblood",
+        "legs": "indigo"
+      },
+      "equipment": {
+        "helmet": null,
+        "torso": "duskguardCuirass",
+        "legs": "graveweaverSkirt",
+        "boots": "duskguardGreaves",
+        "gloves": "duskguardVambraces",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": "bastionShoulders"
+      }
+    },
+    "identityCatalogue": {
+      "file": "/Users/antbly/dev/wow-clone/dist/ashen-reach/human-identity-v1/manifest.json",
+      "sha256": "a3ae7b53a959a27060ff11aa4a3eb227e4c1d1e6458339ce941d2dd1ee9b5ab6"
+    },
+    "network": {
+      "latency": 40,
+      "downloadThroughput": 6250000,
+      "uploadThroughput": 1250000
+    },
+    "cpu": "Apple M1 Max",
+    "viewport": [
+      1280,
+      720
+    ],
+    "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP; within-visit preload reuse is not independently disabled or proved; OS/DNS/CDN/GPU-driver caches uncontrolled",
+    "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+  },
+  "conditionsIdenticalAcrossAllVisits": true
+}

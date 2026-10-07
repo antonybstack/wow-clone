@@ -90,6 +90,14 @@ The first wrong CSP-event assertion is retained and corrected. One clean visit
 does not clear the rejected preview or establish its cause. Source QA changed;
 the historical dist remains byte-identical and was not rebuilt/resealed/deployed.
 
+The subsequent [bounded native capture](plans/character-mmo/results/startup-native-capture-2026-10-07.md)
+exhausts its twenty declared maximum-uncovered diagnostic visits without an
+application failure. All actual child exits are 0 and owned browsers are closed;
+source/dist are unchanged, production remains **5723a4ab**. Native cache-doom negative
+events also occur on successful texture requests and do not establish a failed
+body. This does not qualify the rejected preview or explain the cause. Do not
+extend this unchanged campaign; proceed with independent targeted fit work.
+
 ### Next five priorities, in execution order
 
 1. **Resolve the startup failure, then release the canonical boot correction.**
