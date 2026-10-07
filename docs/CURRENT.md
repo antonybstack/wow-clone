@@ -17,6 +17,9 @@ qualification alone, repeat unchanged cohorts, or reopen closed optimization tri
    failures remain unexplained. Native asset/Havok URL, operation and original
    cause diagnostics plus abort/corrupt200 controls pass; preserve that evidence
    and patch a demonstrated recurrence rather than adding speculative retries.
+   The canonical boot preview **514fe898 / 4ad2637** now has one new required
+   texture fetch failure (maximum uncovered, 1/20). It is rejected; six clean
+   diagnostic visits do not establish the cause or clear that failure.
 2. **One-second first play:** production passes all four twenty-start cohorts;
    worst 878.2 ms. The fence requires the selected dressed identity, grounded
    Havok, a completed GPU frame, removed loader and working input. This qualifies
@@ -69,16 +72,25 @@ sampled points with zero escapes and zero remaining cache leases. Root has revie
 the actual canonical live MP4, including bare-foot restoration and ordinary Havok
 motion. Canonical motion is delivered as Telegram **880** and identical VE.
 Previously addressed boot files are retained for older manifests.
-This is local canonical acceptance. Sealed preview qualification and production
-publication are the immediate next package; no new FPS or public startup claim.
+This is local canonical acceptance, committed/pushed as **4ad2637**. The sealed
+preview **514fe898** passes 571 delivery checks and three entries, but fails one
+of twenty maximum-uncovered starts; default passes 20/20. Two further cohorts,
+native release phases and FPS windows did not start. Six bounded native fetch/body
+diagnostics are clean, leaving the cause unproved. Release is on hold; production
+was not changed. [Rejected preview and diagnostic receipt](plans/character-mmo/results/boot-sole-preview-2026-10-07.md).
+No new FPS or public startup claim.
 [Canonical result](plans/character-mmo/results/boot-sole-canonical-2026-10-07.md).
 Production remains the qualified **7d00c56 / 5723a4ab** release.
 
 ### Next five priorities, in execution order
 
-1. **Release the canonical boot correction.** Commit/push the prepared assets;
-   seal the existing build, qualify an immutable preview, and promote the same
-   bytes. Verify all served assets/cache headers, three entries, four declared
+1. **Resolve the startup failure, then release the canonical boot correction.**
+   Assets are committed/pushed; sealed preview 514fe898 is rejected after one
+   required texture failure. Close the native request/body diagnostic gap and
+   correct a demonstrated cause. Six clean diagnostics do not clear the failure;
+   do not repeat unchanged cohorts or add speculative retries. A material fix
+   requires a newly declared sealed preview before promoting the same bytes.
+   Verify all served assets/cache headers, three entries, four declared
    cold-start cohorts, native movement/swaps/mobile/WebKit and fifteen separate
    settled route windows. Keep every miss and failed attempt. Production 5723a4ab
    is the rollback target. Require the existing ≤1,000 ms first-play gate and

@@ -5,6 +5,9 @@ boots and Duskguard underlayers, with all derived character assets prepared.
 This is **local canonical acceptance**. Production remains source **7d00c56**,
 Pages **5723a4ab**. Public qualification, promotion and current physical iPhone
 acceptance remain open. [Curated native receipt](../../../baselines/character-mmo/boot-sole-canonical-2026-10-07/receipt.json).
+Subsequent status: committed/pushed **4ad2637**, sealed preview **514fe898**
+rejected on one required texture failure. Production was not changed.
+[Public failure and bounded diagnostics](boot-sole-preview-2026-10-07.md).
 
 ## Implementation
 
@@ -43,7 +46,8 @@ future work. Source comments link the relevant native glTF and immutable-cache d
   Removing boots restores the source foot.
 - One built production bundle: **570 files**, **310,982,964 bytes**, all accepted
   startup flags enabled. Source product fingerprint matches the captured build.
-  This build is not yet sealed or uploaded.
+  At this local checkpoint the build was not yet sealed or uploaded. It was
+  subsequently sealed/uploaded once; public qualification failed as linked above.
 
 The first equipment invocation ran before refreshed native remote publication and
 failed its stale-publication assertion. That failure is preserved under
@@ -76,8 +80,10 @@ folders named in the receipt; durable provenance and the compact receipt are tra
 
 ## Immediate next step
 
-Commit/push this checkpoint, then seal the existing `dist` against that committed
-product fingerprint. Qualify an immutable preview before promoting identical bytes.
+Commit/push and the one sealed preview upload are complete. The failed preview
+remains rejected; first establish the native request/body cause and correct a
+demonstrated defect. Do not repeat unchanged cohorts. A material correction needs
+a newly declared sealed preview before promoting identical bytes.
 Use **5723a4ab-5dfd-4902-959b-7496948ea51f** as the newly recorded rollback target;
 the older e391 deployment remains historical. Compute delivery-check path/count
 expectations from the new seal instead of copying the previous 552-row count.

@@ -55,10 +55,16 @@ seven enemies, three 12-second windows on five routes, no recording/other render
 The subsequent canonical boot integration is locally accepted: 231 character and
 115 equipment tests pass, native bounds cover all 51 pieces with zero escapes,
 and root reviewed actual ten-case canonical motion/bare-foot restoration. Sealed
-preview and production qualification remain next; production stays 5723a4ab.
+preview qualification now rejects **514fe898 / 4ad2637**: 571 delivery checks and
+three entries pass, default starts pass 20/20, maximum uncovered has one required
+texture failure in twenty attempts. The remaining cohorts/native phases/FPS did
+not start. Six diagnostic visits are clean; the request/body cause is unproved.
+Production stays 5723a4ab; no promotion ran. Resolve the demonstrated recurrence
+before release, retaining the failed sample and original goal exits.
+[Rejected preview receipt](results/boot-sole-preview-2026-10-07.md).
 [Canonical checkpoint](results/boot-sole-canonical-2026-10-07.md). The next work
 order is explicit in [CURRENT](../../CURRENT.md#next-five-priorities-in-execution-order):
-boot release, measured loading/audio hitches, mixed armor fit, one authored shield,
+startup diagnosis/boot release, measured loading/audio hitches, mixed armor fit, one authored shield,
 and current physical iPhone acceptance when hardware is available. This order
 does not replace the original goal's acceptance exits.
 

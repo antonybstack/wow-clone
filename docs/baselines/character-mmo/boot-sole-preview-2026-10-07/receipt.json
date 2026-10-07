@@ -1,0 +1,749 @@
+{
+  "sourceCommit": "4ad2637e7e812e2db144cac6396273c3a7a10082",
+  "sealSha256": "fc5bec8da2efc78ef1b60620a271ad27b4e46c46b00a05c2a380381550aabbfb",
+  "deployment": {
+    "head": "4ad2637e7e812e2db144cac6396273c3a7a10082",
+    "sealSha256": "fc5bec8da2efc78ef1b60620a271ad27b4e46c46b00a05c2a380381550aabbfb",
+    "id": "514fe898-2f57-4eae-9ae0-68141e077b6d",
+    "url": "https://514fe898.fardel.pages.dev",
+    "native": {
+      "id": "514fe898-2f57-4eae-9ae0-68141e077b6d",
+      "url": "https://514fe898.fardel.pages.dev",
+      "environment": "preview",
+      "stage": "success",
+      "sourceCommit": "4ad2637e7e812e2db144cac6396273c3a7a10082",
+      "aliases": [
+        "https://boot-sole-20261007-4ad2637.fardel.pages.dev"
+      ]
+    }
+  },
+  "qualified": false,
+  "productionMutated": false,
+  "productionFinalReadOnly": {
+    "at": "2026-10-07T22:36:05.020Z",
+    "canonical": {
+      "id": "5723a4ab-5dfd-4902-959b-7496948ea51f",
+      "url": "https://5723a4ab.fardel.pages.dev",
+      "environment": "production",
+      "stage": "success",
+      "sourceCommit": "7d00c56c06f02899e2319ffdddea97728013c0b1",
+      "aliases": [
+        "https://play.sparkify.dev"
+      ]
+    }
+  },
+  "nativeOperations": [
+    {
+      "name": "preview-upload",
+      "code": 0,
+      "signal": null,
+      "pid": 92714
+    },
+    {
+      "name": "preview-integrity",
+      "code": 0,
+      "signal": null,
+      "pid": 93326
+    },
+    {
+      "name": "preview-entry-run",
+      "code": 0,
+      "signal": null,
+      "pid": 93542
+    },
+    {
+      "name": "preview-cohorts-run",
+      "code": 1,
+      "signal": null,
+      "pid": 93741
+    }
+  ],
+  "integrity": {
+    "expectedRows": 571,
+    "actualRows": 571,
+    "allPassed": true
+  },
+  "entries": {
+    "nativeExit": {
+      "code": 0,
+      "signal": null,
+      "pid": 93682
+    },
+    "aliasesPassed": 3
+  },
+  "conditions": {
+    "machine": "Apple M1 Max",
+    "viewport": [
+      1280,
+      720
+    ],
+    "devicePixelRatio": 1,
+    "browser": "Fresh native Chrome process/profile for each visit",
+    "network": {
+      "downloadMbpsDecimal": 50,
+      "uploadMbpsDecimal": 10,
+      "latencyMs": 40
+    },
+    "httpCacheControl": "Network.setCacheDisabled(true)",
+    "declaredLabel": "CDP disabled, including native prefetch reuse, for comparability with prescribed public release gate",
+    "labelLimitation": "CDP disables HTTP cache; diagnostic evidence does not support claiming that all within-visit preload reuse is disabled. No test settings or historical samples were changed.",
+    "uncontrolledCaches": "OS/DNS/driver/CDN",
+    "recording": false
+  },
+  "cohorts": [
+    {
+      "outfit": "default",
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 93814
+      },
+      "budget": {
+        "maxMs": 1000,
+        "expectedRuns": 20,
+        "recordedRuns": 20,
+        "validRuns": 20,
+        "complete": true,
+        "misses": 0,
+        "p95Ms": 752.1000000238419,
+        "worstMs": 756.8000000119209,
+        "passed": true
+      },
+      "rows": 20,
+      "failed": 0
+    },
+    {
+      "outfit": "maximum-uncovered",
+      "exit": {
+        "code": 1,
+        "signal": null,
+        "pid": 95161
+      },
+      "budget": {
+        "maxMs": 1000,
+        "expectedRuns": 20,
+        "recordedRuns": 20,
+        "validRuns": 19,
+        "complete": false,
+        "misses": 0,
+        "p95Ms": 971.1000000238419,
+        "worstMs": 971.1000000238419,
+        "passed": false
+      },
+      "rows": 20,
+      "failed": 1
+    }
+  ],
+  "allAttemptedSamples": [
+    {
+      "run": 1,
+      "browserPid": "93815",
+      "playableMs": 629.8000000119209,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "default",
+      "inputResponseUpperBoundMs": 26.599999964237213
+    },
+    {
+      "run": 2,
+      "browserPid": "93881",
+      "playableMs": 676.8000000119209,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "default",
+      "inputResponseUpperBoundMs": 27.100000023841858
+    },
+    {
+      "run": 3,
+      "browserPid": "93947",
+      "playableMs": 756.8000000119209,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "default",
+      "inputResponseUpperBoundMs": 30.600000023841858
+    },
+    {
+      "run": 4,
+      "browserPid": "94021",
+      "playableMs": 734.0999999642372,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "default",
+      "inputResponseUpperBoundMs": 29
+    },
+    {
+      "run": 5,
+      "browserPid": "94087",
+      "playableMs": 738.1999999880791,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "default",
+      "inputResponseUpperBoundMs": 27
+    },
+    {
+      "run": 6,
+      "browserPid": "94153",
+      "playableMs": 656.3999999761581,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "default",
+      "inputResponseUpperBoundMs": 29.69999998807907
+    },
+    {
+      "run": 7,
+      "browserPid": "94225",
+      "playableMs": 703.5,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "default",
+      "inputResponseUpperBoundMs": 31.19999998807907
+    },
+    {
+      "run": 8,
+      "browserPid": "94293",
+      "playableMs": 659.6999999880791,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "default",
+      "inputResponseUpperBoundMs": 25.200000047683716
+    },
+    {
+      "run": 9,
+      "browserPid": "94359",
+      "playableMs": 660.3000000119209,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "default",
+      "inputResponseUpperBoundMs": 27.30000001192093
+    },
+    {
+      "run": 10,
+      "browserPid": "94425",
+      "playableMs": 666.3999999761581,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "default",
+      "inputResponseUpperBoundMs": 27.19999998807907
+    },
+    {
+      "run": 11,
+      "browserPid": "94497",
+      "playableMs": 645.2999999523163,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "default",
+      "inputResponseUpperBoundMs": 28.80000001192093
+    },
+    {
+      "run": 12,
+      "browserPid": "94543",
+      "playableMs": 650.5999999642372,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "default",
+      "inputResponseUpperBoundMs": 24.700000047683716
+    },
+    {
+      "run": 13,
+      "browserPid": "94609",
+      "playableMs": 639,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "default",
+      "inputResponseUpperBoundMs": 25.400000035762787
+    },
+    {
+      "run": 14,
+      "browserPid": "94682",
+      "playableMs": 657,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "default",
+      "inputResponseUpperBoundMs": 28.200000047683716
+    },
+    {
+      "run": 15,
+      "browserPid": "94748",
+      "playableMs": 694.5,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "default",
+      "inputResponseUpperBoundMs": 26.5
+    },
+    {
+      "run": 16,
+      "browserPid": "94814",
+      "playableMs": 644.6999999880791,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "default",
+      "inputResponseUpperBoundMs": 29
+    },
+    {
+      "run": 17,
+      "browserPid": "94886",
+      "playableMs": 687.2999999523163,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "default",
+      "inputResponseUpperBoundMs": 31.19999998807907
+    },
+    {
+      "run": 18,
+      "browserPid": "94953",
+      "playableMs": 752.1000000238419,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "default",
+      "inputResponseUpperBoundMs": 29.69999998807907
+    },
+    {
+      "run": 19,
+      "browserPid": "95041",
+      "playableMs": 652.4000000357628,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "default",
+      "inputResponseUpperBoundMs": 27.400000035762787
+    },
+    {
+      "run": 20,
+      "browserPid": "95107",
+      "playableMs": 669.8999999761581,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "default",
+      "inputResponseUpperBoundMs": 30.900000035762787
+    },
+    {
+      "run": 1,
+      "browserPid": "95182",
+      "failed": true,
+      "errors": [
+        "Error: Startup resource /ashen-reach/startup/starter/texture-6dc86c298450.webp: surface Moss and burial earth preparation failed: Failed to fetch\n    at xe (https://514fe898.fardel.pages.dev/assets/v2/store-DhAEhUFt.js:1:15276)\n    at M (https://514fe898.fardel.pages.dev/assets/v2/store-DhAEhUFt.js:1:15416)\n    at async Promise.all (index 0)\n    at async Ga (https://514fe898.fardel.pages.dev/assets/v2/ashen-boot-iC9h3i3_.js:583:1235)\n    at async Nt (https://514fe898.fardel.pages.dev/assets/v2/ashen-reach-BLJPRsjQ.js:4:694)"
+      ],
+      "outfit": "maximum-uncovered",
+      "failure": {
+        "name": "Error",
+        "message": "page.evaluate: Error: Error: Startup resource /ashen-reach/startup/starter/texture-6dc86c298450.webp: surface Moss and burial earth preparation failed: Failed to fetch\n    at xe (https://514fe898.fardel.pages.dev/assets/v2/store-DhAEhUFt.js:1:15276)\n    at M (https://514fe898.fardel.pages.dev/assets/v2/store-DhAEhUFt.js:1:15416)\n    at async Promise.all (index 0)\n    at async Ga (https://514fe898.fardel.pages.dev/assets/v2/ashen-boot-iC9h3i3_.js:583:1235)\n    at async Nt (https://514fe898.fardel.pages.dev/assets/v2/ashen-reach-BLJPRsjQ.js:4:694)\nCaused by: TypeError: Failed to fetch\n    at xe (https://514fe898.fardel.pages.dev/assets/v2/store-DhAEhUFt.js:1:15276)\n    at M (https://514fe898.fardel.pages.dev/assets/v2/store-DhAEhUFt.js:1:15416)\n    at async Promise.all (index 0)\n    at async Ga (https://514fe898.fardel.pages.dev/assets/v2/ashen-boot-iC9h3i3_.js:583:1235)\n    at async Nt (https://514fe898.fardel.pages.dev/assets/v2/ashen-reach-BLJPRsjQ.js:4:694)\nCaused by: TypeError: Failed to fetch\n    at eval (eval at evaluate (:311:30), <anonymous>:3:15)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+      }
+    },
+    {
+      "run": 2,
+      "browserPid": "95228",
+      "playableMs": 794.8000000119209,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "maximum-uncovered",
+      "inputResponseUpperBoundMs": 30.19999998807907
+    },
+    {
+      "run": 3,
+      "browserPid": "95315",
+      "playableMs": 798.3999999761581,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "maximum-uncovered",
+      "inputResponseUpperBoundMs": 31
+    },
+    {
+      "run": 4,
+      "browserPid": "95550",
+      "playableMs": 874.3999999761581,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "maximum-uncovered",
+      "inputResponseUpperBoundMs": 31.30000001192093
+    },
+    {
+      "run": 5,
+      "browserPid": "95636",
+      "playableMs": 785.8999999761581,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "maximum-uncovered",
+      "inputResponseUpperBoundMs": 40.5
+    },
+    {
+      "run": 6,
+      "browserPid": "95722",
+      "playableMs": 791.8999999761581,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "maximum-uncovered",
+      "inputResponseUpperBoundMs": 40
+    },
+    {
+      "run": 7,
+      "browserPid": "95794",
+      "playableMs": 834.6000000238419,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "maximum-uncovered",
+      "inputResponseUpperBoundMs": 33.80000001192093
+    },
+    {
+      "run": 8,
+      "browserPid": "95861",
+      "playableMs": 971.1000000238419,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "maximum-uncovered",
+      "inputResponseUpperBoundMs": 39.30000001192093
+    },
+    {
+      "run": 9,
+      "browserPid": "95929",
+      "playableMs": 803.3000000119209,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "maximum-uncovered",
+      "inputResponseUpperBoundMs": 35.39999997615814
+    },
+    {
+      "run": 10,
+      "browserPid": "96004",
+      "playableMs": 840.8999999761581,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "maximum-uncovered",
+      "inputResponseUpperBoundMs": 29.19999998807907
+    },
+    {
+      "run": 11,
+      "browserPid": "96070",
+      "playableMs": 862.1000000238419,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "maximum-uncovered",
+      "inputResponseUpperBoundMs": 29.5
+    },
+    {
+      "run": 12,
+      "browserPid": "96175",
+      "playableMs": 802.3000000119209,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "maximum-uncovered",
+      "inputResponseUpperBoundMs": 30.19999998807907
+    },
+    {
+      "run": 13,
+      "browserPid": "96247",
+      "playableMs": 782.6000000238419,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "maximum-uncovered",
+      "inputResponseUpperBoundMs": 35.19999998807907
+    },
+    {
+      "run": 14,
+      "browserPid": "96313",
+      "playableMs": 771.0999999642372,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "maximum-uncovered",
+      "inputResponseUpperBoundMs": 31.099999964237213
+    },
+    {
+      "run": 15,
+      "browserPid": "96379",
+      "playableMs": 785.6000000238419,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "maximum-uncovered",
+      "inputResponseUpperBoundMs": 42.700000047683716
+    },
+    {
+      "run": 16,
+      "browserPid": "96453",
+      "playableMs": 798,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "maximum-uncovered",
+      "inputResponseUpperBoundMs": 44.80000001192093
+    },
+    {
+      "run": 17,
+      "browserPid": "96541",
+      "playableMs": 803.2999999523163,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "maximum-uncovered",
+      "inputResponseUpperBoundMs": 44.5
+    },
+    {
+      "run": 18,
+      "browserPid": "96607",
+      "playableMs": 780.6999999880791,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "maximum-uncovered",
+      "inputResponseUpperBoundMs": 43.60000002384186
+    },
+    {
+      "run": 19,
+      "browserPid": "96679",
+      "playableMs": 914.8999999761581,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "maximum-uncovered",
+      "inputResponseUpperBoundMs": 33.5
+    },
+    {
+      "run": 20,
+      "browserPid": "96748",
+      "playableMs": 813,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "gpuErrors": [],
+      "errors": [],
+      "outfit": "maximum-uncovered",
+      "inputResponseUpperBoundMs": 32.5
+    }
+  ],
+  "notStarted": [
+    "prior-maximum-covered cohort",
+    "historical cohort",
+    "native release phases",
+    "settled FPS windows",
+    "production promotion"
+  ],
+  "failure": {
+    "outfit": "maximum-uncovered",
+    "run": 1,
+    "browserPid": "95182",
+    "cause": {
+      "name": "Error",
+      "message": "page.evaluate: Error: Error: Startup resource /ashen-reach/startup/starter/texture-6dc86c298450.webp: surface Moss and burial earth preparation failed: Failed to fetch\n    at xe (https://514fe898.fardel.pages.dev/assets/v2/store-DhAEhUFt.js:1:15276)\n    at M (https://514fe898.fardel.pages.dev/assets/v2/store-DhAEhUFt.js:1:15416)\n    at async Promise.all (index 0)\n    at async Ga (https://514fe898.fardel.pages.dev/assets/v2/ashen-boot-iC9h3i3_.js:583:1235)\n    at async Nt (https://514fe898.fardel.pages.dev/assets/v2/ashen-reach-BLJPRsjQ.js:4:694)\nCaused by: TypeError: Failed to fetch\n    at xe (https://514fe898.fardel.pages.dev/assets/v2/store-DhAEhUFt.js:1:15276)\n    at M (https://514fe898.fardel.pages.dev/assets/v2/store-DhAEhUFt.js:1:15416)\n    at async Promise.all (index 0)\n    at async Ga (https://514fe898.fardel.pages.dev/assets/v2/ashen-boot-iC9h3i3_.js:583:1235)\n    at async Nt (https://514fe898.fardel.pages.dev/assets/v2/ashen-reach-BLJPRsjQ.js:4:694)\nCaused by: TypeError: Failed to fetch\n    at eval (eval at evaluate (:311:30), <anonymous>:3:15)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+    },
+    "onlyRecordedTextureRequest": {
+      "url": "https://514fe898.fardel.pages.dev/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+      "start": 328974.720107,
+      "initiator": "parser",
+      "response": {
+        "status": 200,
+        "mimeType": "image/webp",
+        "protocol": "h2",
+        "remoteIPAddress": "[2606:4700:310c::ac42:2ee0]",
+        "cfRay": "a4704d34fdc42acb-LAX",
+        "cfCacheStatus": null,
+        "cacheControl": "public, max-age=0, must-revalidate",
+        "fromEarlyHints": false,
+        "fromDiskCache": false,
+        "fromPrefetchCache": false
+      },
+      "end": 328974.830108,
+      "bytes": 5294
+    },
+    "qualificationCollectorRecordedLoadingFailed": false,
+    "requestVsBodyStage": "Unresolved. HTTP 200 for parser preload does not prove successful application consumption."
+  },
+  "diagnostics": {
+    "purpose": "Attribute preview maximum-uncovered Failed to fetch of texture-6dc86c298450.webp; diagnostic only, not qualification or FPS",
+    "wrapperExit": 0,
+    "controllerPid": 7911,
+    "url": "https://514fe898.fardel.pages.dev",
+    "sourceCommit": "4ad2637e7e812e2db144cac6396273c3a7a10082",
+    "browser": {
+      "name": "Google Chrome",
+      "version": "154.0.8037.98",
+      "os": "Mac OS X: 26.6.2 (arm64)"
+    },
+    "visitsCompleted": 6,
+    "applicationFailuresCaptured": 0,
+    "cacheDisabledOrder": [
+      true,
+      false,
+      true,
+      false,
+      true,
+      true
+    ],
+    "cdp": {
+      "transportFailuresTotal": 0,
+      "nativeBrowserLogTotal": 0,
+      "Network.loadingFailed": 0
+    },
+    "texture": "/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+    "requestBodyStage": "blob",
+    "requestStatus": 200,
+    "requestType": "basic",
+    "bodyBytesObserved": 4838,
+    "bodyUsedAtObserver": false,
+    "consoleCdpFailureCode": null,
+    "netlog": {
+      "captureMode": "Default (strip private information)",
+      "textureEventTypes": [
+        "CORS_REQUEST",
+        "REQUEST_ALIVE",
+        "URL_REQUEST_START_JOB",
+        "DISK_CACHE_MEM_ENTRY_IMPL",
+        "HTTP_STREAM_JOB_CONTROLLER",
+        "HTTP_TRANSACTION_HTTP2_SEND_REQUEST_HEADERS",
+        "HTTP2_SESSION_SEND_HEADERS"
+      ],
+      "textureUrlRequestNetError": null,
+      "negErrorsOnTextureSources": "HTTP_CACHE_DOOM_ENTRY (-2 ERR_FAILED) and HTTP2_SESSION_CLOSE (-3 ERR_ABORTED) at teardown; not a URL_REQUEST failure",
+      "causalityProved": false
+    },
+    "playableMs": [
+      866.8,
+      711.2,
+      823,
+      720.9,
+      802,
+      813.5
+    ],
+    "doesNotClear": [
+      "preview-cold-maximum-uncovered run 1 Failed to fetch",
+      "historical 14/60 fetch failures"
+    ]
+  },
+  "diagnosticLimitations": [
+    "Promise observers add microtasks; visits are diagnostic only.",
+    "Six clean visits do not clear the failed preview or historical 14/60 failures.",
+    "Native NetLog bookkeeping/teardown errors are not a captured URL_REQUEST failure.",
+    "Encoded transfer accounting and blob body size are not directly comparable."
+  ],
+  "cleanup": {
+    "at": "2026-10-07T22:33:04.278280+00:00",
+    "guard": "__bootReleaseGuardOct7",
+    "guardRemoved": true,
+    "originalPlaying": [
+      2,
+      1,
+      0
+    ],
+    "restoredPlaying": [
+      2,
+      1,
+      0
+    ],
+    "failures": [],
+    "ownedGameTabs": 0,
+    "claimedExistingUserReferenceTabs": 3,
+    "userTabsPreserved": 12
+  },
+  "openOriginalExits": [
+    "current physical iPhone acceptance",
+    "historical 14/60 fetch failures",
+    "362ms post-screenshot input upper-bound outlier"
+  ],
+  "rawEvidence": ".cache/character-mmo/boot-sole-release-2026-10-07"
+}
