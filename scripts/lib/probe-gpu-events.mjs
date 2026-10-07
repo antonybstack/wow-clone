@@ -24,7 +24,12 @@ export function installGpuEventProbe() {
   wrap(GPUDevice.prototype, 'createShaderModule', function (original, args) {
     const start = performance.now(), module = original.apply(this, args);
     if (active()) {
-      const row = {id: log.shaders.length + 1, label: args[0]?.label ?? '', length: args[0]?.code?.length, start, end: performance.now()};
+      const row = {id: log.shaders.length + 1, label: args[0]?.label ?? '', length: args[0]?.code?.length, start, end: performance.now(),
+        // Diagnostic stacks identify the active native material/task caller
+        // when WebGPU descriptors have no label. Keep this inside the opt-in
+        // probe; collection overhead must never enter acceptance cohorts.
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/stack
+        stack: new Error().stack};
       modules.set(module, row.id); log.shaders.push(row);
     }
     return module;
@@ -34,7 +39,8 @@ export function installGpuEventProbe() {
       const descriptor = args[0], start = performance.now();
       const result = original.apply(this, args);
       if (active()) {
-        const row = {method, label: descriptor?.label ?? '', start, callEnd: performance.now(), vertex: modules.get(descriptor?.vertex?.module), fragment: modules.get(descriptor?.fragment?.module), compute: modules.get(descriptor?.compute?.module)};
+        const row = {method, label: descriptor?.label ?? '', start, callEnd: performance.now(), vertex: modules.get(descriptor?.vertex?.module), fragment: modules.get(descriptor?.fragment?.module), compute: modules.get(descriptor?.compute?.module),
+          stack: new Error().stack};
         log.pipelines.push(row);
         if (method.endsWith('Async')) result.then(() => {row.ready = performance.now();}, error => {row.error = String(error);});
       }

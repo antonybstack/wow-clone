@@ -1,0 +1,218 @@
+{
+  "sourceCommit": "ac47654",
+  "purpose": "Single instrumented maximum startup; not acceptance or comparative FPS",
+  "conditions": {
+    "requestedRuns": 1,
+    "budgetMs": null,
+    "gpuProbe": true,
+    "traceGpu": true,
+    "disableShaderCache": false,
+    "disableHttpCache": true,
+    "profile": "50mbps",
+    "savedAppearance": {
+      "schemaVersion": 2,
+      "catalogVersion": "appearance-catalog-v8",
+      "race": "human",
+      "fitFamily": "ashen-human",
+      "fit": {
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "shape": {
+        "family": "ashen-human-shape-v1",
+        "height": 1.15,
+        "build": -0.95
+      },
+      "components": {
+        "head": "human-prime-v1",
+        "hair": "human-ponytail01-v1"
+      },
+      "dyes": {
+        "helmet": "moss",
+        "torso": "oxblood",
+        "legs": "indigo"
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "duskguardCuirass",
+        "legs": "graveweaverSkirt",
+        "boots": "duskguardGreaves",
+        "gloves": "duskguardVambraces",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": "bastionShoulders"
+      }
+    },
+    "expectedAppearance": {
+      "schemaVersion": 2,
+      "catalogVersion": "appearance-catalog-v8",
+      "race": "human",
+      "fitFamily": "ashen-human",
+      "fit": {
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "shape": {
+        "family": "ashen-human-shape-v1",
+        "height": 1.15,
+        "build": -0.95
+      },
+      "components": {
+        "head": "human-prime-v1",
+        "hair": "human-ponytail01-v1"
+      },
+      "dyes": {
+        "helmet": "moss",
+        "torso": "oxblood",
+        "legs": "indigo"
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "duskguardCuirass",
+        "legs": "graveweaverSkirt",
+        "boots": "duskguardGreaves",
+        "gloves": "duskguardVambraces",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": "bastionShoulders"
+      }
+    },
+    "identityCatalogue": {
+      "file": "public/ashen-reach/human-identity-v1/manifest.json",
+      "sha256": "30e8c9754966da4b80ab6e1ffa60262ccc68fcf98f45c79453d375a145215ce8"
+    },
+    "network": {
+      "latency": 40,
+      "downloadThroughput": 6250000,
+      "uploadThroughput": 1250000
+    },
+    "cpu": "Apple M1 Max",
+    "viewport": [
+      1280,
+      720
+    ],
+    "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+    "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+  },
+  "nativeExit": {
+    "code": 0,
+    "signal": null,
+    "pid": 65793
+  },
+  "worker": {
+    "model": "grok-4.6",
+    "effort": "high",
+    "stopReason": "cancelled",
+    "turnCap": 8,
+    "resultMarkdownWritten": false
+  },
+  "readiness": {
+    "playableMs": 779.3999999761581,
+    "physics": true,
+    "grounded": true,
+    "animationGroups": 22,
+    "inputResponseUpperBoundMs": 24.399999976158142,
+    "errors": [],
+    "gpuErrors": []
+  },
+  "marks": {
+    "begin": 198.5,
+    "engine-created": 221.69999998807907,
+    "gpu-probe-end": 227.5999999642372,
+    "world-start": 230.39999997615814,
+    "havok-runtime-available": 263.39999997615814,
+    "world-end": 375.5,
+    "havok-start": 377.19999998807907,
+    "havok-runtime-start": 378,
+    "havok-runtime-end": 378,
+    "havok-world-end": 380,
+    "havok-colliders-end": 386.89999997615814,
+    "havok-controller-end": 388.19999998807907,
+    "havok-end": 389.30000001192093,
+    "prime-world-start": 389.89999997615814,
+    "prime-world-registered": 402.30000001192093,
+    "prime-world-submitted": 406.80000001192093,
+    "prime-world-completed": 466.5999999642372,
+    "body-start": 664,
+    "body-end": 685,
+    "equipment-start": 687.0999999642372,
+    "equipment-end": 705,
+    "register-start": 711.8999999761581,
+    "register-end": 735.1999999880791,
+    "first-render-return": 738.8999999761581,
+    "supported-frame-submitted": 760,
+    "first-gpu-completed": 770.3999999761581,
+    "supported-frame-completed": 778.1999999880791,
+    "playable": 779.3999999761581,
+    "bg-start": 779.5
+  },
+  "gpuEvents": {
+    "beforePlayablePipelineCount": 80,
+    "beforePlayableMethods": {
+      "createRenderPipeline": 80
+    },
+    "recordedShaders": 91,
+    "stacksPresent": true,
+    "primeFenceElapsedMs": 59.799999952316284,
+    "primeCompletedBeforeRegistrationMs": 245.30000001192093
+  },
+  "cleanup": {
+    "browser": {
+      "owner": "probe-playable-startup",
+      "browserPid": "65794",
+      "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1&dev=",
+      "active": false
+    },
+    "preview": {
+      "owner": "grok-headroom-profile",
+      "previewPid": 65772,
+      "previewPort": 7074,
+      "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev",
+      "active": false,
+      "renderingClients": 0,
+      "purpose": "One instrumented native maximum startup; no cohort or FPS claim"
+    },
+    "mediaGuardRemoved": true,
+    "mediaRestoredPlaying": [
+      0,
+      1,
+      1,
+      0
+    ],
+    "gameRenderersRemaining": 0,
+    "portsClear": [
+      7074,
+      10037,
+      7081
+    ]
+  },
+  "artifacts": {
+    "startup-profile.json": {
+      "cachePath": ".cache/character-mmo/startup-headroom-profile-2026-10-07/startup-profile.json",
+      "bytes": 245677,
+      "sha256": "2543877212d2e8fd2e5c1a0ebe1a64d60bcbe3f1b3532524f1f89f07a09f5c36"
+    },
+    "startup-profile-1.trace.json": {
+      "cachePath": ".cache/character-mmo/startup-headroom-profile-2026-10-07/startup-profile-1.trace.json",
+      "bytes": 22773809,
+      "sha256": "270d56ea109329eb8cc8cbdda3ac64e9f73ada3dfb51dfa1493f809193667b14"
+    },
+    "startup-profile-1.png": {
+      "cachePath": ".cache/character-mmo/startup-headroom-profile-2026-10-07/startup-profile-1.png",
+      "bytes": 805539,
+      "sha256": "259cb31f2bad14c586651c6f7eb80fdc99f5ce688ab09b7b7fc70eb343432ad2"
+    },
+    "run-profile.mjs": {
+      "cachePath": ".cache/character-mmo/startup-headroom-profile-2026-10-07/run-profile.mjs",
+      "bytes": 3824,
+      "sha256": "5f5677d5a587125cec0ca42751aa71c21b9306eac6869218f4f12431f5c5c162"
+    },
+    "isolation.json": {
+      "cachePath": ".cache/character-mmo/startup-headroom-profile-2026-10-07/isolation.json",
+      "bytes": 735,
+      "sha256": "86092cbf6a80485778216e7b2ce098a42ae575a1cb9963dbc295f8463a75fdea"
+    }
+  }
+}

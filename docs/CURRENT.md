@@ -5,7 +5,7 @@ controls scope; historical milestones are evidence, not an active queue.
 
 ## Active priorities
 
-Native goal **active**: “resume. complete all 5 priorities autonomously.” The
+Native goal **active**: “next 5 priorities.” The
 [five-priority plan](plans/character-mmo/five-priorities-2026-10-06.md) remains authoritative.
 
 1. **Reliable startup:** retain the original 14/60 failed public starts. They have
@@ -40,6 +40,11 @@ Native goal **active**: “resume. complete all 5 priorities autonomously.” Th
    follow-up. Reviewed motion delivered as Telegram 877/identical VE; inline,
    expanded/direct playback pass, fullscreen/current phone unverified.
    [Camera result](plans/character-mmo/results/startup-camera-2026-10-07.md).
+   One instrumented maximum start passes at 779.4 ms; preparation takes 59.8 ms
+   and finishes 245.3 ms before dressed registration. Native shader/pipeline work
+   is observed, but the retained 210.9 ms wait does not reproduce. Caller stacks
+   are diagnostic-only; no new acceptance cohort or flag default.
+   [Headroom diagnosis](plans/character-mmo/results/startup-headroom-profile-2026-10-07.md).
    Next create material first-play headroom and qualify it.
    [Audio result](plans/character-mmo/results/startup-audio-2026-10-07.md).
 3. **Release accepted improvements:** freeze, commit/push, seal, verify preview
@@ -158,6 +163,10 @@ removed; connected original playback restored (1/1/1/0), observed playing (0/1/1
 after Telegram auto-paused its original media. One original Telegram node detached;
 the new clip is paused. No owned game renderer remains. Repeated launches append
 ownership history. Audit and pause reference media again before any new timing.
+
+The single headroom diagnosis also closes Chrome 65794/probe 65793/preview 65772.
+`__headroomProfileOct7` guards are removed and original reference playback restored
+(0/1/1/0). Ports 7074/10037/7081 are clear; no owned game renderer remains.
 
 [Workflow](reviews/workflow-2026-10-05.md#current-operating-rule--2026-10-06),
 [continuation limits](autonomous-continuation.md).
