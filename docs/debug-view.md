@@ -235,6 +235,50 @@ Use the canonical production root (`https://play.sparkify.dev/?play&clean&pixelR
 
 The cold probe launches a fresh Chromium process/profile for each navigation, measures the actual playable boundary and input response through a subsequent GPU fence, and records completed encoded traffic. It does not clear operating-system, DNS, CDN or GPU-driver caches. Report the machine, viewport and throttling, every run, p50/p95/max, misses and slower profiles. A compressed local preview measures local transport/CPU; it does not establish production CDN performance. `serve-startup-preview.mjs` precomputes compressed HTML/JS/CSS at startup: **restart it after every rebuild**. Otherwise a browser requesting Brotli can receive the previous build while curl receives the current uncompressed files. Before measuring or recording, run `ASHEN_RELEASE_URL=http://127.0.0.1:<preview-port> node scripts/verify-pages.mjs <report.json>`; the verifier negotiates browser compression and compares decoded served bytes against `dist`. Record that receipt with the cohort. Physical iPhone startup remains a separate test.
 
+### Native startup failure diagnostics
+
+`probe-playable-startup.mjs` records native `networkDiagnostics` on successful
+and failed visits, before browser shutdown: transport failures (including unknown
+request IDs), selected browser network/security messages and typed CSP issues.
+Request IDs correlate status and native reasons; a 200 preload does not establish
+successful application body consumption. A CSP-blocked fetch can reject before
+Chrome emits a transport failure. Use [CDP loadingFailed](https://chromedevtools.github.io/devtools-protocol/tot/Network/#event-loadingFailed),
+[browser logs](https://chromedevtools.github.io/devtools-protocol/tot/Log/#event-entryAdded)
+and [policy issues](https://chromedevtools.github.io/devtools-protocol/tot/Audits/#event-issueAdded)
+as distinct evidence. An empty collection does not identify or clear the cause.
+
+`ASHEN_PROBE_DISABLE_HTTP_CACHE=1` calls CDP `Network.setCacheDisabled`. An
+initially empty browser profile is a different condition. Neither label proves
+that all within-visit HTML preload reuse is disabled; retain exact settings and
+observed reuse. Do not rewrite historical declarations or discard failed starts.
+
+For a bounded investigation, add `ASHEN_PROBE_NETLOG=1`, choose a new report path
+under `.cache`, and leave `ASHEN_PROBE_MAX_MS` unset. Chrome writes a separate
+`<report>.run-N.netlog.json` per process using the native default capture mode
+(private information stripped, 64 MB cap). The probe refuses to overwrite a
+previous NetLog and refuses a startup acceptance budget in this mode. Do not use
+these visits as qualification/FPS evidence or wrap application fetch/Response
+promises. Raw logs remain local; share only the compact relevant findings.
+[Chromium native startup logging](https://www.chromium.org/for-testers/providing-network-details/#advanced-logging-on-startup).
+
+```sh
+# Audit game instances first; this creates and closes its own native Chrome.
+ASHEN_TEST_URL='https://<immutable-release>.fardel.pages.dev' \
+ASHEN_PROBE_RUNS=1 ASHEN_PROBE_DISABLE_HTTP_CACHE=1 ASHEN_PROBE_NETLOG=1 \
+node scripts/ashen-reach/probe-playable-startup.mjs .cache/fetch-investigation/visit.json
+
+# Actual local HTTP 200/body truncation, unknown ID, CORS and CSP controls.
+node scripts/ashen-reach/check-startup-network-diagnostics.mjs .cache/fetch-controls/control.json
+
+# Actual CLI failed-visit evidence and browser cleanup after report I/O failure.
+node scripts/ashen-reach/check-startup-failure-report.mjs .cache/fetch-controls/failed-visits
+```
+
+For a saved identity, pass the declared `ASHEN_PROBE_APPEARANCE` fixture and the
+hashed `ASHEN_PROBE_IDENTITY_CATALOGUE` from the release under test. Keep browser
+PID/controller/URL/purpose in the ownership file and confirm cleanup afterward.
+One clean diagnostic does not replace a failed release cohort.
+
 Run `check-progressive-startup.mjs` against a built preview to inject initial body failure, partial worker failure, partial GPU upload failure, early touch/combat/race switching, and disposal. `check-device-loss.mjs --during-startup` checks loss while the region is loading. The visible physical frontier must remain until collision is safe; successful retry must retain the player and avoid duplicate Havok shapes.
 
 `record-progressive-startup.mjs` captures continuous input during the upgrade with a fixed 1280×720 surface and timestamped capture manifest. Encode with `scripts/encode-capture.py`; measure FPS separately. Review first playable, frontier removal, equipment/texture enhancement and completed motion before VE/Telegram delivery. Telegram dimensions are checked by `scripts/tg`; correct API metadata alone does not replace human inline/fullscreen playback review.

@@ -1,0 +1,646 @@
+{
+  "purpose": "Native startup diagnostics and CLI cleanup; QA-only, no release/FPS acceptance",
+  "priorFailedControl": {
+    "nativeExit": 1,
+    "passed": false,
+    "cases": [
+      {
+        "name": "successful response",
+        "application": {
+          "status": 200,
+          "failed": false
+        },
+        "passed": true
+      },
+      {
+        "name": "body fails after 200",
+        "application": {
+          "status": 200,
+          "failed": true,
+          "name": "TypeError",
+          "message": "Failed to fetch"
+        },
+        "failure": {
+          "requestId": "38722.4",
+          "at": 330271.533316,
+          "type": "Fetch",
+          "errorText": "net::ERR_CONTENT_LENGTH_MISMATCH",
+          "canceled": false,
+          "blockedReason": null,
+          "corsErrorStatus": null,
+          "trackedRequest": true,
+          "url": "http://127.0.0.1:55105/body-known",
+          "responseStatus": 200
+        },
+        "passed": true
+      },
+      {
+        "name": "orphan request ID is retained",
+        "application": {
+          "status": 200,
+          "failed": true,
+          "name": "TypeError",
+          "message": "Failed to fetch"
+        },
+        "failure": {
+          "requestId": "38722.5",
+          "at": 330271.617756,
+          "type": "Fetch",
+          "errorText": "net::ERR_CONTENT_LENGTH_MISMATCH",
+          "canceled": false,
+          "blockedReason": null,
+          "corsErrorStatus": null,
+          "trackedRequest": false,
+          "url": null,
+          "responseStatus": null
+        },
+        "passed": true
+      },
+      {
+        "name": "native CORS reason",
+        "application": {
+          "status": null,
+          "failed": true,
+          "name": "TypeError",
+          "message": "Failed to fetch"
+        },
+        "failure": {
+          "requestId": "38722.6",
+          "at": 330271.621022,
+          "type": "Fetch",
+          "errorText": "net::ERR_FAILED",
+          "canceled": false,
+          "blockedReason": null,
+          "corsErrorStatus": {
+            "corsError": "MissingAllowOriginHeader",
+            "failedParameter": ""
+          },
+          "trackedRequest": true,
+          "url": "http://127.0.0.1:55106/cors",
+          "responseStatus": null
+        },
+        "passed": true
+      }
+    ],
+    "failure": "AssertionError [ERR_ASSERTION]: native CSP reason must retain exactly one native failure\n\n0 !== 1\n\n    at collect (file:///Users/antbly/dev/wow-clone/scripts/ashen-reach/check-startup-network-diagnostics.mjs:57:76)\n    at async file:///Users/antbly/dev/wow-clone/scripts/ashen-reach/check-startup-network-diagnostics.mjs:65:3",
+    "sha256": "62a881adfb634942381c8c044a8ce02f6aca900782ff0e7d96710744ea3a4b08"
+  },
+  "correctedControls": {
+    "nativeExit": 0,
+    "passed": true,
+    "cases": [
+      {
+        "name": "successful response",
+        "application": {
+          "status": 200,
+          "failed": false
+        },
+        "passed": true
+      },
+      {
+        "name": "body fails after 200",
+        "application": {
+          "status": 200,
+          "failed": true,
+          "name": "TypeError",
+          "message": "Failed to fetch"
+        },
+        "failure": {
+          "requestId": "52370.4",
+          "at": 330690.314694,
+          "type": "Fetch",
+          "errorText": "net::ERR_CONTENT_LENGTH_MISMATCH",
+          "canceled": false,
+          "blockedReason": null,
+          "corsErrorStatus": null,
+          "trackedRequest": true,
+          "url": "http://127.0.0.1:55537/body-known",
+          "responseStatus": 200
+        },
+        "passed": true
+      },
+      {
+        "name": "orphan request ID is retained",
+        "application": {
+          "status": 200,
+          "failed": true,
+          "name": "TypeError",
+          "message": "Failed to fetch"
+        },
+        "failure": {
+          "requestId": "52370.5",
+          "at": 330690.399185,
+          "type": "Fetch",
+          "errorText": "net::ERR_CONTENT_LENGTH_MISMATCH",
+          "canceled": false,
+          "blockedReason": null,
+          "corsErrorStatus": null,
+          "trackedRequest": false,
+          "url": null,
+          "responseStatus": null
+        },
+        "passed": true
+      },
+      {
+        "name": "native CORS reason",
+        "application": {
+          "status": null,
+          "failed": true,
+          "name": "TypeError",
+          "message": "Failed to fetch"
+        },
+        "failure": {
+          "requestId": "52370.6",
+          "at": 330690.402491,
+          "type": "Fetch",
+          "errorText": "net::ERR_FAILED",
+          "canceled": false,
+          "blockedReason": null,
+          "corsErrorStatus": {
+            "corsError": "MissingAllowOriginHeader",
+            "failedParameter": ""
+          },
+          "trackedRequest": true,
+          "url": "http://127.0.0.1:55538/cors",
+          "responseStatus": null
+        },
+        "passed": true
+      },
+      {
+        "name": "native CSP reason before transport",
+        "application": {
+          "status": null,
+          "failed": true,
+          "name": "TypeError",
+          "message": "Failed to fetch"
+        },
+        "issues": [
+          {
+            "code": "ContentSecurityPolicyIssue",
+            "blockedURL": "http://127.0.0.1:55537/blocked",
+            "violatedDirective": "connect-src",
+            "isReportOnly": false,
+            "violationType": "kURLViolation"
+          }
+        ],
+        "passed": true
+      }
+    ],
+    "networkDiagnostics": {
+      "transportFailures": [
+        {
+          "requestId": "52370.4",
+          "at": 330690.314694,
+          "type": "Fetch",
+          "errorText": "net::ERR_CONTENT_LENGTH_MISMATCH",
+          "canceled": false,
+          "blockedReason": null,
+          "corsErrorStatus": null,
+          "trackedRequest": true,
+          "url": "http://127.0.0.1:55537/body-known",
+          "responseStatus": 200
+        },
+        {
+          "requestId": "52370.5",
+          "at": 330690.399185,
+          "type": "Fetch",
+          "errorText": "net::ERR_CONTENT_LENGTH_MISMATCH",
+          "canceled": false,
+          "blockedReason": null,
+          "corsErrorStatus": null,
+          "trackedRequest": false,
+          "url": null,
+          "responseStatus": null
+        },
+        {
+          "requestId": "52370.6",
+          "at": 330690.402491,
+          "type": "Fetch",
+          "errorText": "net::ERR_FAILED",
+          "canceled": false,
+          "blockedReason": null,
+          "corsErrorStatus": {
+            "corsError": "MissingAllowOriginHeader",
+            "failedParameter": ""
+          },
+          "trackedRequest": true,
+          "url": "http://127.0.0.1:55538/cors",
+          "responseStatus": null
+        }
+      ],
+      "browserLog": [
+        {
+          "source": "network",
+          "level": "error",
+          "text": "Failed to load resource: net::ERR_CONTENT_LENGTH_MISMATCH",
+          "url": "http://127.0.0.1:55537/body-known",
+          "timestamp": 1791413430940.305,
+          "networkRequestId": "52370.4"
+        },
+        {
+          "source": "network",
+          "level": "error",
+          "text": "Failed to load resource: net::ERR_CONTENT_LENGTH_MISMATCH",
+          "url": "http://127.0.0.1:55537/body-orphan",
+          "timestamp": 1791413431024.797,
+          "networkRequestId": "52370.5"
+        },
+        {
+          "source": "network",
+          "level": "error",
+          "text": "Failed to load resource: net::ERR_FAILED",
+          "url": "http://127.0.0.1:55538/cors",
+          "timestamp": 1791413431028.102,
+          "networkRequestId": "52370.6"
+        },
+        {
+          "source": "security",
+          "level": "error",
+          "text": "Connecting to 'http://127.0.0.1:55537/blocked' violates the following Content Security Policy directive: \"connect-src 'none'\". The action has been blocked.",
+          "url": null,
+          "timestamp": 1791413431051.989,
+          "networkRequestId": null
+        }
+      ],
+      "browserIssues": [
+        {
+          "code": "ContentSecurityPolicyIssue",
+          "blockedURL": "http://127.0.0.1:55537/blocked",
+          "violatedDirective": "connect-src",
+          "isReportOnly": false,
+          "violationType": "kURLViolation"
+        }
+      ]
+    },
+    "ownership": {
+      "owner": "grok-startup-network-controls",
+      "browserPid": 52357,
+      "gpuHelperPids": [
+        52363
+      ],
+      "cdpPort": null,
+      "url": "http://127.0.0.1:55537",
+      "purpose": "Native failure collector controls; no game/startup/FPS acceptance",
+      "renderingClients": 0,
+      "active": false,
+      "controllerPid": 52330
+    },
+    "netLogEvents": 2781
+  },
+  "publicSmoke": {
+    "nativeExit": 0,
+    "conditions": {
+      "requestedRuns": 1,
+      "budgetMs": null,
+      "gpuProbe": false,
+      "traceGpu": false,
+      "disableShaderCache": false,
+      "disableHttpCache": true,
+      "deferCoveredHair": false,
+      "netLog": true,
+      "profile": "50mbps",
+      "savedAppearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v8",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {
+          "head": "human-prime-v1",
+          "hair": "human-ponytail01-v1"
+        },
+        "dyes": {
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "graveweaverSkirt",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "bastionShoulders"
+        }
+      },
+      "expectedAppearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v8",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {
+          "head": "human-prime-v1",
+          "hair": "human-ponytail01-v1"
+        },
+        "dyes": {
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "graveweaverSkirt",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "bastionShoulders"
+        }
+      },
+      "identityCatalogue": {
+        "file": "dist/ashen-reach/human-identity-v1/manifest.json",
+        "sha256": "a3ae7b53a959a27060ff11aa4a3eb227e4c1d1e6458339ce941d2dd1ee9b5ab6"
+      },
+      "network": {
+        "latency": 40,
+        "downloadThroughput": 6250000,
+        "uploadThroughput": 1250000
+      },
+      "cpu": "Apple M1 Max",
+      "viewport": [
+        1280,
+        720
+      ],
+      "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP; within-visit preload reuse is not independently disabled or proved; OS/DNS/CDN/GPU-driver caches uncontrolled",
+      "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+    },
+    "row": {
+      "run": 1,
+      "browserPid": 53773,
+      "playableMs": 859.5,
+      "grounded": true,
+      "physics": true,
+      "loader": false,
+      "canvas": [
+        1280,
+        720
+      ],
+      "input": {
+        "keyAt": 1095.800000011921,
+        "observedAt": 1142.699999988079,
+        "position": {
+          "x": -0.00016306322551059188,
+          "z": 0.363712241384177
+        },
+        "frames": 22,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 46.89999997615814
+      },
+      "errors": [],
+      "gpuErrors": [],
+      "selectedIdentity": {
+        "id": "prime-ponytail",
+        "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+        "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+        "deferredHair": false,
+        "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+      },
+      "networkDiagnostics": {
+        "transportFailures": [],
+        "browserLog": [],
+        "browserIssues": [],
+        "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-network-diagnostics-2026-10-07/public-smoke.json.run-1.netlog.json",
+        "diagnosticOnly": true
+      }
+    },
+    "ownership": {
+      "owner": "probe-playable-startup",
+      "browserPid": 53773,
+      "gpuHelperPids": [
+        53779
+      ],
+      "cdpPort": null,
+      "url": "https://514fe898.fardel.pages.dev/?play=&pixelRatio=1",
+      "purpose": "50mbps cold run 1",
+      "renderingClients": 0,
+      "active": false,
+      "controllerPid": 53745
+    },
+    "rootReviewedCapture": "public-smoke-1.png"
+  },
+  "failureReportControls": {
+    "controllerPid": 61618,
+    "fixturePort": 55777,
+    "fixtureClosed": true,
+    "passed": true,
+    "cases": [
+      {
+        "id": "truncated-body",
+        "exit": {
+          "code": 1,
+          "signal": null,
+          "pid": 61619
+        },
+        "ownership": {
+          "owner": "probe-playable-startup",
+          "browserPid": 61645,
+          "gpuHelperPids": [
+            61651
+          ],
+          "cdpPort": null,
+          "url": "http://127.0.0.1:55777/failure?play=&pixelRatio=1",
+          "purpose": "native cold run 1",
+          "renderingClients": 0,
+          "active": false,
+          "controllerPid": 61619
+        },
+        "netLogEvents": 1860,
+        "passed": true,
+        "appFailure": {
+          "failed": true,
+          "failure": {
+            "name": "Error",
+            "message": "page.evaluate: Error: Injected fixture: TypeError: Failed to fetch\n    at eval (eval at evaluate (:311:30), <anonymous>:3:15)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+          },
+          "state": {
+            "url": "http://127.0.0.1:55777/failure?play=&pixelRatio=1",
+            "ashen": "undefined",
+            "playable": false,
+            "errorText": "Injected fixture: TypeError: Failed to fetch"
+          },
+          "networkDiagnostics": {
+            "transportFailures": [
+              {
+                "requestId": "61657.2",
+                "at": 330959.889546,
+                "type": "Fetch",
+                "errorText": "net::ERR_CONTENT_LENGTH_MISMATCH",
+                "canceled": false,
+                "blockedReason": null,
+                "corsErrorStatus": null,
+                "trackedRequest": true,
+                "url": "http://127.0.0.1:55777/body",
+                "responseStatus": 200
+              }
+            ],
+            "browserLog": [
+              {
+                "source": "network",
+                "level": "error",
+                "text": "Failed to load resource: net::ERR_CONTENT_LENGTH_MISMATCH",
+                "url": "http://127.0.0.1:55777/body",
+                "timestamp": 1791413700517.958,
+                "networkRequestId": "61657.2"
+              }
+            ],
+            "browserIssues": [],
+            "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-network-diagnostics-2026-10-07/failure-reports/truncated-body.json.run-1.netlog.json",
+            "diagnosticOnly": true
+          }
+        }
+      },
+      {
+        "id": "policy",
+        "exit": {
+          "code": 1,
+          "signal": null,
+          "pid": 61679
+        },
+        "ownership": {
+          "owner": "probe-playable-startup",
+          "browserPid": 61699,
+          "gpuHelperPids": [
+            61722
+          ],
+          "cdpPort": null,
+          "url": "http://127.0.0.1:55777/policy?play=&pixelRatio=1",
+          "purpose": "native cold run 1",
+          "renderingClients": 0,
+          "active": false,
+          "controllerPid": 61679
+        },
+        "netLogEvents": 1775,
+        "passed": true,
+        "appFailure": {
+          "failed": true,
+          "failure": {
+            "name": "Error",
+            "message": "page.evaluate: Error: Injected fixture: TypeError: Failed to fetch\n    at eval (eval at evaluate (:311:30), <anonymous>:3:15)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+          },
+          "state": {
+            "url": "http://127.0.0.1:55777/policy?play=&pixelRatio=1",
+            "ashen": "undefined",
+            "playable": false,
+            "errorText": "Injected fixture: TypeError: Failed to fetch"
+          },
+          "networkDiagnostics": {
+            "transportFailures": [],
+            "browserLog": [
+              {
+                "source": "security",
+                "level": "error",
+                "text": "Connecting to 'http://127.0.0.1:55777/body' violates the following Content Security Policy directive: \"connect-src 'none'\". The action has been blocked.",
+                "url": "http://127.0.0.1:55777/policy?play=&pixelRatio=1",
+                "timestamp": 1791413701365.136,
+                "networkRequestId": null
+              }
+            ],
+            "browserIssues": [
+              {
+                "code": "ContentSecurityPolicyIssue",
+                "blockedURL": "http://127.0.0.1:55777/body",
+                "violatedDirective": "connect-src",
+                "isReportOnly": false,
+                "violationType": "kURLViolation"
+              }
+            ],
+            "netLogPath": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-network-diagnostics-2026-10-07/failure-reports/policy.json.run-1.netlog.json",
+            "diagnosticOnly": true
+          }
+        }
+      },
+      {
+        "id": "report-write-failure",
+        "exit": {
+          "code": 1,
+          "signal": null,
+          "pid": 61752
+        },
+        "ownership": {
+          "owner": "probe-playable-startup",
+          "browserPid": 61753,
+          "gpuHelperPids": [
+            61757
+          ],
+          "cdpPort": null,
+          "url": "http://127.0.0.1:55777/failure?play=&pixelRatio=1",
+          "purpose": "native cold run 1",
+          "renderingClients": 0,
+          "active": false,
+          "controllerPid": 61752
+        },
+        "netLogEvents": 1892,
+        "passed": true,
+        "actualReportWriteFailure": true
+      }
+    ]
+  },
+  "externalState": {
+    "at": "2026-10-07T22:57:25.465Z",
+    "distBytesUnchanged": true,
+    "distFiles": 570,
+    "distBytes": 310982964,
+    "canonical": {
+      "id": "5723a4ab-5dfd-4902-959b-7496948ea51f",
+      "url": "https://5723a4ab.fardel.pages.dev",
+      "environment": "production",
+      "stage": "success",
+      "sourceCommit": "7d00c56c06f02899e2319ffdddea97728013c0b1",
+      "aliases": [
+        "https://play.sparkify.dev"
+      ]
+    },
+    "sourceSealStatus": "Historical 4ad2637 product seal; new QA scripts change product-input fingerprint. No reseal/build/upload."
+  },
+  "rawEvidence": ".cache/character-mmo/startup-network-diagnostics-2026-10-07",
+  "openExits": [
+    "rejected boot preview maximum-uncovered run1",
+    "historical14/60 fetch failure cause",
+    "362ms input upper-bound cause",
+    "current physical iPhone acceptance"
+  ],
+  "limits": [
+    "One clean public diagnostic does not clear rejected qualification.",
+    "No loader retry, fetch wrapper, rebuild/reseal/promotion or new settled FPS.",
+    "Control CSP has no causal connection established to public failure.",
+    "Raw NetLogs remain cache-only."
+  ],
+  "sourceTools": [
+    {
+      "path": "scripts/lib/probe-network-failures.mjs",
+      "sha256": "e20acfc4fa543856162a03fe36f4c31e881a98b4d2e9a9fc9449130c301a5507"
+    },
+    {
+      "path": "scripts/ashen-reach/probe-playable-startup.mjs",
+      "sha256": "b0c984743f7d91b840a7891b8907b1cf6b15322f92100a2f88d9506d561b2724"
+    },
+    {
+      "path": "scripts/ashen-reach/check-startup-network-diagnostics.mjs",
+      "sha256": "0e9bb87e4acbe9efadf12b5d6b838d4748eaad36a349aecb0111c3cbd6b3cdb4"
+    },
+    {
+      "path": "scripts/ashen-reach/check-startup-failure-report.mjs",
+      "sha256": "ca63193a80eb70203936fafdc2234e2b04418a69275a25846a1db347985b6982"
+    }
+  ]
+}

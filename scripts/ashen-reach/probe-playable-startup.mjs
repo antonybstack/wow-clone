@@ -5,7 +5,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import os from "node:os";
-import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import assert from "node:assert/strict";
 import { chromium } from "playwright";
@@ -15,10 +14,13 @@ import {ASHEN_PLAYABLE_CLIP_NAMES} from '../../src/character/runtime/ashen-playa
 import {EQUIPMENT_ITEMS} from '../../src/ashen-reach/equipment-catalog.js';
 import {installGpuEventProbe} from '../lib/probe-gpu-events.mjs';
 import {startupBudget} from '../lib/startup-budget.mjs';
+import {installNetworkFailureProbe} from '../lib/probe-network-failures.mjs';
+import {browserOwnership} from '../lib/browser-ownership.mjs';
 const gpuProbe = process.env.ASHEN_PROBE_GPU_EVENTS === '1';
 const traceGpu = process.env.ASHEN_PROBE_CHROME_TRACE === '1';
 const disableShaderCache = process.env.ASHEN_PROBE_DISABLE_SHADER_CACHE === '1';
 const disableHttpCache = process.env.ASHEN_PROBE_DISABLE_HTTP_CACHE === '1';
+const netLog = process.env.ASHEN_PROBE_NETLOG === '1';
 const seed=process.env.ASHEN_PROBE_APPEARANCE?JSON.parse(await fs.readFile(process.env.ASHEN_PROBE_APPEARANCE,'utf8')):null;
 const expectedSeed=seed?migrateAppearance(seed):null;
 const identity=expectedSeed?.race==='human'?findHumanIdentityPreset(expectedSeed.components):null;
@@ -47,6 +49,12 @@ assert(Number.isInteger(runs) && runs > 0 && runs <= 30);
 // Opt in for release gates; ordinary investigations remain measurement-only.
 const budgetMs=process.env.ASHEN_PROBE_MAX_MS===undefined?null:Number(process.env.ASHEN_PROBE_MAX_MS);
 assert(budgetMs===null||(Number.isFinite(budgetMs)&&budgetMs>0),'Invalid ASHEN_PROBE_MAX_MS');
+// NetLog is an opt-in investigation, never a replacement release/FPS sample.
+assert(!netLog || budgetMs===null, 'NetLog diagnostics cannot assert a startup acceptance budget');
+if(netLog){
+  const relative=path.relative(path.resolve('.cache'),path.resolve(destination));
+  assert(relative&&!relative.startsWith('..')&&!path.isAbsolute(relative),'Keep raw NetLogs under .cache');
+}
 const conditions = {
   native: { latency: 0, downloadThroughput: -1, uploadThroughput: -1 },
   "50mbps": {
@@ -67,14 +75,14 @@ target.searchParams.set("pixelRatio", "1");
 const report = {
   conditions: {
     requestedRuns:runs, budgetMs,
-    gpuProbe, traceGpu, disableShaderCache, disableHttpCache, deferCoveredHair,
+    gpuProbe, traceGpu, disableShaderCache, disableHttpCache, deferCoveredHair, netLog,
     profile, savedAppearance:seed,expectedAppearance:expectedSeed,
     identityCatalogue:identityCatalogueBytes?{file:identityCatalogueFile,sha256:createHash('sha256').update(identityCatalogueBytes).digest('hex')}:null,
     network: conditions[profile],
     cpu: os.cpus()[0]?.model,
     viewport: [1280, 720],
     cache:
-      `Fresh browser process/profile each run; HTTP cache ${disableHttpCache ? 'disabled through CDP (including prefetch reuse)' : 'initially empty, native prefetch reuse allowed'}; OS and GPU-driver caches uncontrolled`,
+      `Fresh browser process/profile each run; HTTP cache ${disableHttpCache ? 'disabled through CDP' : 'initially empty'}; within-visit preload reuse is not independently disabled or proved; OS/DNS/CDN/GPU-driver caches uncontrolled`,
     timing:
       "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled",
   },
@@ -84,11 +92,20 @@ await fs.mkdir(path.dirname(destination), { recursive: true });
 for (let run = 1; run <= runs; run++) {
   // Diagnostic only; never mix this forced cache policy with acceptance cohorts.
   // https://chromium.googlesource.com/chromium/src/+/HEAD/gpu/config/gpu_switches.cc
-  const browser = await chromium.launch({ channel: "chrome", headless: true, args:disableShaderCache?['--disable-gpu-shader-disk-cache']:[] });
-  const browserPid=execFileSync('ps',['-axo','pid=,ppid=,command='],{encoding:'utf8'}).split('\n').map(line=>/^\s*(\d+)\s+(\d+)\s+(.*)$/.exec(line)).find(m=>m&&Number(m[2])===process.pid&&/Chrome|Chromium/.test(m[3]))?.[1]||null;
-  await fs.writeFile(destination+'.ownership.json',JSON.stringify({owner:'probe-playable-startup',controllerPid:process.pid,browserPid,cdpPort:null,url:target.href,purpose:`${profile} cold run ${run}`,active:true}));
-  const errors=[],pageErrors=[],requests=new Map(),earlyHints=[];let rowRecorded=false, page;
+  // Native startup logging defaults to stripped private information; no raw-byte
+  // or sensitive capture mode. Preserve a distinct file for every fresh process.
+  // https://www.chromium.org/for-testers/providing-network-details/#advanced-logging-on-startup
+  const netLogPath=netLog?path.resolve(`${destination}.run-${run}.netlog.json`):null;
+  if(netLogPath){const reservation=await fs.open(netLogPath,'wx');await reservation.close();}
+  const errors=[],pageErrors=[],requests=new Map(),earlyHints=[];let rowRecorded=false, page, networkProbe, browser, browserPid, ownership;
   try {
+    browser=await chromium.launch({channel:'chrome',headless:true,args:[
+      ...(disableShaderCache?['--disable-gpu-shader-disk-cache']:[]),
+      ...(netLogPath?[`--log-net-log=${netLogPath}`,'--net-log-max-size-mb=64']:[]),
+    ]});
+    ownership={...await browserOwnership(browser,{cdpPort:null,url:target.href,purpose:`${profile} cold run ${run}`,renderingClients:1}),cdpPort:null,owner:'probe-playable-startup',controllerPid:process.pid};
+    browserPid=ownership.browserPid;
+    await fs.writeFile(destination+'.ownership.json',JSON.stringify(ownership));
     const context = await browser.newContext({
         viewport: { width: 1280, height: 720 },
         deviceScaleFactor: 1,
@@ -99,10 +116,11 @@ for (let run = 1; run <= runs; run++) {
     if(gpuProbe)await context.addInitScript(installGpuEventProbe);
     const cdp = await context.newCDPSession(page);
     if(traceGpu)await cdp.send('Tracing.start',{categories:'gpu,gpu.dawn,gpu.dawn.validation,gpu.dawn.recording,gpu.dawn.gpu_work,disabled-by-default-gpu.dawn,disabled-by-default-gpu.service,toplevel,blink.user_timing,devtools.timeline',transferMode:'ReturnAsStream'});
+    networkProbe=await installNetworkFailureProbe(cdp,requests);
     await cdp.send("Network.enable");
-    // An empty profile and a disabled cache are different conditions: disabling
-    // also prevents native prefetch reuse. Record the prescribed policy rather
-    // than silently labelling an empty-profile cohort as cache-disabled.
+    // An empty profile and a disabled HTTP cache are different conditions.
+    // Do not infer that this command disables every within-visit HTML preload
+    // reuse mechanism; our native texture diagnostics observe such consumption.
     // https://chromedevtools.github.io/devtools-protocol/tot/Network/#method-setCacheDisabled
     // Chrome needs cache reuse for 103 preloads, even on a first visit:
     // https://developer.chrome.com/docs/web-platform/early-hints
@@ -141,6 +159,7 @@ for (let run = 1; run <= runs; run++) {
     cdp.on("Network.requestWillBeSent", (e) => {
       clockOffset ??= e.wallTime - e.timestamp;
       requests.set(e.requestId, {
+        requestId: e.requestId,
         url: e.request.url,
         start: e.timestamp,
         initiator: e.initiator.type,
@@ -184,14 +203,6 @@ for (let run = 1; run <= runs; run++) {
     cdp.on("Network.loadingFinished", (e) => {
       const r = requests.get(e.requestId);
       if (r) Object.assign(r, { end: e.timestamp, bytes: e.encodedDataLength });
-    });
-    // A 200 response can still fail while its body is transferred. Preserve
-    // native transport failures as well as the application error, without headers.
-    // https://chromedevtools.github.io/devtools-protocol/tot/Network/#event-loadingFailed
-    cdp.on("Network.loadingFailed", (e) => {
-      const request=requests.get(e.requestId);
-      if(request)request.failure={at:e.timestamp,errorText:e.errorText,
-        canceled:e.canceled??false,blockedReason:e.blockedReason??null};
     });
     await page.goto(target.href, { waitUntil: "domcontentloaded" });
     await page.waitForFunction(() => globalThis.ASHEN?.playableReady ||
@@ -244,6 +255,7 @@ for (let run = 1; run <= runs; run++) {
     row.requests = [...requests.values()]
       .filter((r) => r.start <= boundary)
       .map((r) => ({
+        requestId: r.requestId,
         url: r.url,
         initiator: r.initiator,
         initialPriority: r.initialPriority,
@@ -253,6 +265,7 @@ for (let run = 1; run <= runs; run++) {
         startMs: (r.start + clockOffset) * 1000 - row.origin,
         endMs: r.end===undefined?null:(r.end + clockOffset) * 1000 - row.origin,
         response: r.response,
+        failure: r.failure,
         complete: r.end <= boundary,
         encodedBytesAtBoundary:
           r.end <= boundary
@@ -367,8 +380,22 @@ for (let run = 1; run <= runs; run++) {
     console.log(JSON.stringify({run,failed:true,failure}));
     process.exitCode=1;
   } finally {
-    await browser.close();
-    await fs.writeFile(destination+'.ownership.json',JSON.stringify({owner:'probe-playable-startup',browserPid,url:target.href,active:false}));
+    // Snapshot before closing Chrome so teardown cancellations are not presented
+    // as startup failures. Always retain evidence on success and exception paths.
+    if(report.rows.length){
+      report.rows.at(-1).networkDiagnostics={
+        ...(networkProbe?.snapshot()??{transportFailures:[],browserLog:[],browserIssues:[]}),
+        netLogPath, diagnosticOnly: netLog,
+      };
+    }
+    // Close first even if writing the diagnostic report fails (disk, permissions,
+    // bad output path). Failed evidence persistence must not orphan a renderer.
+    try {
+      await browser?.close();
+      await fs.writeFile(destination+'.ownership.json',JSON.stringify({...ownership,owner:'probe-playable-startup',browserPid,url:target.href,active:false,renderingClients:0}));
+    } finally {
+      await fs.writeFile(destination,JSON.stringify(report,null,2));
+    }
   }
 }
 if(budgetMs!==null){

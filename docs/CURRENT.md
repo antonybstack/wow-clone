@@ -82,12 +82,21 @@ No new FPS or public startup claim.
 [Canonical result](plans/character-mmo/results/boot-sole-canonical-2026-10-07.md).
 Production remains the qualified **7d00c56 / 5723a4ab** release.
 
+The [native diagnostic correction](plans/character-mmo/results/startup-network-diagnostics-2026-10-07.md)
+now retains unknown transport IDs, native security/network logs and typed CSP
+issues, without application fetch/Response wrappers. Five actual browser controls,
+one diagnostic public visit and three actual CLI failure/I/O-cleanup fixtures pass.
+The first wrong CSP-event assertion is retained and corrected. One clean visit
+does not clear the rejected preview or establish its cause. Source QA changed;
+the historical dist remains byte-identical and was not rebuilt/resealed/deployed.
+
 ### Next five priorities, in execution order
 
 1. **Resolve the startup failure, then release the canonical boot correction.**
    Assets are committed/pushed; sealed preview 514fe898 is rejected after one
-   required texture failure. Close the native request/body diagnostic gap and
-   correct a demonstrated cause. Six clean diagnostics do not clear the failure;
+   required texture failure. Native transport/policy reporting is now verified;
+   capture the remaining request/body cause and correct a demonstrated defect.
+   Clean diagnostic visits do not clear the failure;
    do not repeat unchanged cohorts or add speculative retries. A material fix
    requires a newly declared sealed preview before promoting the same bytes.
    Verify all served assets/cache headers, three entries, four declared

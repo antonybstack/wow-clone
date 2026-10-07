@@ -62,6 +62,10 @@ not start. Six diagnostic visits are clean; the request/body cause is unproved.
 Production stays 5723a4ab; no promotion ran. Resolve the demonstrated recurrence
 before release, retaining the failed sample and original goal exits.
 [Rejected preview receipt](results/boot-sole-preview-2026-10-07.md).
+[Native reporting follow-up](results/startup-network-diagnostics-2026-10-07.md)
+passes five actual browser controls, one public diagnostic visit and three CLI
+failure/I/O-cleanup fixtures. It changes QA only; the loading cause, production
+release and original acceptance exits remain open.
 [Canonical checkpoint](results/boot-sole-canonical-2026-10-07.md). The next work
 order is explicit in [CURRENT](../../CURRENT.md#next-five-priorities-in-execution-order):
 startup diagnosis/boot release, measured loading/audio hitches, mixed armor fit, one authored shield,
