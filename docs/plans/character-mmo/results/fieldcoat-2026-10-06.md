@@ -1,5 +1,11 @@
 # Fieldcoat factory and normal-game integration — 2026-10-06
 
+**Production update, 2026-10-07:** Fieldcoat is delivered in source `7d00c56` /
+Pages `5723a4ab`. The [qualified production result](production-delivery-2026-10-07.md)
+records current startup, delivery and native functional/performance gates.
+Physical iPhone acceptance remains unverified. The checkpoint below preserves
+the original local result and its measurements.
+
 Local fit/motion integration is accepted. Production remains `6004840` / Pages
 `e39117b8`; startup, swap/performance and physical-device release gates remain
 open. This result does not mark priority 4 complete before production delivery.

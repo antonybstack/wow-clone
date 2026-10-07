@@ -1,6 +1,6 @@
 # Physical iPhone acceptance receipt
 
-Status: **unverified**. The fresh 2026-10-07 connected-device inventory contained
+Status: **unverified**. The fresh 2026-10-07 19:03:25 UTC connected-device inventory contained
 one Mac and eleven simulators, with no physical iPhone. Desktop WebKit/touch emulation and
 the earlier user report of about 60 FPS are separate evidence.
 
@@ -61,5 +61,9 @@ The qualified 2026-10-07 preview retains portable fixtures for the
 and [previous covered maximum](startup-public-covered-2026-10-07/seed-prior-maximum-covered.json).
 Their exact hashes and source/catalogue/URL are in its
 [startup receipt](startup-public-covered-2026-10-07/receipt.json).
-Use the final production attribution when available; preview success does not
+These unchanged fixtures now have a qualified production attribution: source
+`7d00c56c06f02899e2319ffdddea97728013c0b1`, Pages
+`5723a4ab-5dfd-4902-959b-7496948ea51f`, [play.sparkify.dev](https://play.sparkify.dev).
+The [production receipt](production-delivery-2026-10-07/receipt.json) retains the
+exact source/catalogue/fixture hashes. Desktop production qualification does not
 constitute physical-device acceptance.

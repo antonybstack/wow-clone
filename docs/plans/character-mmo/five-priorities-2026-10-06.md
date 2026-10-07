@@ -9,41 +9,41 @@ pushed. Release gates remain required before production promotion.
 
 ## Current execution order — 2026-10-07
 
-The full five-priority goal remains active. The material next step is production
-delivery, since preview qualification is complete:
+The full five-priority goal remains active. Production **5723a4ab / 7d00c56**
+now delivers the accepted startup/audio/camera work and Fieldcoat: all 552 checks,
+three entries, all 80 cold starts and nine native phases pass. Worst first play
+878.2 ms; fifteen settled route windows 202.6–232.6 FPS, maximum p99 6.2 ms,
+worst 11.7 ms, zero intervals over 16.67 ms/errors/recoveries/pacing hints.
+Conditions remain M1 Max, 1280×720/DPR1; cold starts use fresh processes/disabled
+HTTP cache at decimal 50 Mbit/s down/10 up/40 ms; FPS is uncapped Chromium WebGPU,
+seven enemies, three 12-second windows on five routes, no recording/other renderer.
+[Production result and all samples](results/production-delivery-2026-10-07.md).
 
-1. Diagnose the custom-domain version mismatch observed during promotion
-   5723a4ab; preserve the working rollback e39117b8. Both new immutable hosts pass
-   all 552 delivery checks, while the custom host failed fifteen. Dashboard access
-   works and no cache/Page Rule overrides were found. Do not invent a cache rule
-   or repeat an unchanged promotion without a justified intervention or bounded
-   convergence procedure.
-2. Once delivery is consistent, repeat production integrity, three entry aliases,
-   four predeclared twenty-start cohorts and the native functional/FPS gates.
-   Require every valid start ≤1,000 ms, >120 FPS with the 144 FPS target, zero
-   errors/recoveries and reviewed motion attribution. This ships the accepted
-   startup/audio/camera improvements and the already-built Fieldcoat together.
-3. Keep focused reliability follow-ups: the original rejected 14/60 fetch failures
-   and the new single 362 ms post-screenshot input upper bound remain unexplained.
-   Three instrumented input visits observe first movement at 4.7–4.8 ms and do
-   not reproduce it. Preserve all evidence; make a corrective change only when a
-   demonstrated path supports it.
-4. Run current physical iPhone acceptance when a physical device is available.
-   The prepared receipt and exact covered/uncovered fixtures are ready. The fresh
-   inventory still has zero physical iPhones; desktop emulation is separate.
-5. After the release/device gates, address the concrete mixed-fit and boot
-   silhouette follow-ups in CURRENT. Region, multiplayer and Elf expansion remain
-   parked; do not start another broad fit matrix or engine audit.
+1. **Physical-device exit remains unverified:** run the prepared current-release
+   iPhone receipt when a physical device is available. Latest inventory is still
+   one Mac/eleven simulators/zero physical iPhones. Do not substitute emulation or
+   the historical user report for this exit.
+2. **Retain unexplained reliability tails:** original immutable 14/60 fetch
+   failures and the preview 362 ms post-screenshot input upper bound remain open.
+   The diagnostic first displacement 4.7–4.8 ms and new 80 passing production starts
+   do not explain their causes. Correct a demonstrated recurrence; do not repeat
+   unchanged cohorts or add speculative retries.
+3. **Release and garment production exits now pass.** The original promotion's
+   fifteen mismatches, its rollback checks, the first remediation's parent receipt
+   timeout/late purge and failed immediate rollback smoke stay preserved. The
+   corrected native restore/scoped purge receives HTTP 200/success, then passes
+   every production gate. Purge and alias convergence are not causally isolated.
+4. **Canonical verifier follow-up is corrected after the frozen release:** exact
+   `/assets/v2/<expectedBundle>` matching replaces the stale prefix, with native
+   movement verification. QA changes do not alter deployed runtime 7d00.
+5. While the physical-device exit awaits hardware, independent streaming/fit,
+   release-diagnostic and factory work can proceed in the recommended order in
+   [CURRENT](../../CURRENT.md#recommended-next-packages). Keep the original exits
+   open. Region, multiplayer and Elf expansion remain parked.
 
-Preview **70abd683 / 7d00c56** passes **80/80** declared cold starts with worst
-873.5 ms and all ten native phases. Fifteen separate complete route windows
-observe **199.8–231.9 FPS**, maximum p99 **6.2 ms** and worst **10.1 ms**, with
-no interval over 16.67 ms/errors/recoveries or full-window pacing hints. Conditions:
-M1 Max, native uncapped Chromium WebGPU, 1280×720/DPR1, seven enemies, three
-twelve-second windows on each of five routes, no recording or second renderer.
-Production 5723a4ab was rejected and rolled back before its startup/FPS cohorts.
-Current rollback entry smoke passes; the immediate failed rollback smoke is kept.
-[Qualification and failed-release result](results/startup-public-covered-2026-10-07.md).
+This progress does not redefine the five original priorities or mark the full
+objective complete. The following sections retain their requirements and the
+history of justified/closed trials.
 
 ## 1. Isolate intermittent startup failure
 

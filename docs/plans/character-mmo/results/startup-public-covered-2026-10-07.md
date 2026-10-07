@@ -1,5 +1,10 @@
 # Covered-hair release qualification
 
+**Later outcome:** [production restoration and qualification](production-delivery-2026-10-07.md)
+passes on the same 5723a4ab deployment after a bounded native intervention. The
+following retains the preview qualification and first rejected promotion; its
+failed rows and rollback checks remain historical evidence.
+
 2026-10-07. Source **7d00c56c06f02899e2319ffdddea97728013c0b1**, pushed.
 Immutable preview [70abd683](https://70abd683.fardel.pages.dev).
 Seal `3098125a7ecef760cffe0e1f9dd7aacce232bc9f57b6966b8f41b996239c5876`.

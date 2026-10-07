@@ -93,6 +93,42 @@ rebuilds and uploads unsealed; use it only when no gate evidence depends on the
 bytes. Server-only `ashen-reach/presence-v1` collision is omitted from Pages;
 the browser compares the compiled world release identifier.
 
+## Mixed custom-domain delivery
+
+Check the actual **canonical deployment** through the native Pages project API.
+After rollback, `latest_deployment` can still describe the rejected newer upload;
+deployment-list order alone is not proof of what production serves. Compare the
+custom domain, the production `fardel.pages.dev` alias and both immutable URLs.
+Keep response bytes, hashes, status, MIME/cache directives and request identifiers.
+An API acknowledgement is not proof of working asset delivery or movement.
+
+Cloudflare documents stale custom-domain caching and its native purge remedy in
+[Serving Pages](https://developers.cloudflare.com/pages/configuration/serving-pages/#caching-and-performance).
+First inspect actual routing/cache configuration. Do not add speculative cache
+rules, weaken the DNS proxy or introduce query-based runtime cache busting. Use
+[purge by exact URL](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/)
+for a bounded list of affected game paths when justified. Include final HTML
+routes and mutable manifests, preserve path case, and record the exact list and
+native acknowledgement. A game release does not require purging unrelated VE or
+other zone content. Passing after a purge alone does not prove its causal effect;
+native deployment convergence may occur during the same interval.
+
+The native [Pages rollback operation](https://developers.cloudflare.com/pages/configuration/rollbacks/)
+can also restore a newer successful production deployment after an earlier one
+has been selected. Prefer that existing immutable candidate when it already
+contains the qualified sealed bytes; an unchanged upload or rebuild adds no
+qualification evidence. Verify its production environment, successful deploy
+stage, source commit and exact seal before restoring it. Record the old canonical
+deployment and refuse a rollback that would overwrite another operator's release.
+
+Keep an intervention provisional until every served-byte/cache check and entry
+alias passes, then run the predeclared startup and functional/performance gates
+once. Retain every failed phase and sample; do not retry unchanged cohorts until
+they pass. On a required gate failure, restore the recorded working deployment
+and verify actual entry/movement after delivery converges. Preserve the first
+failed rollback verification as well as a later passing check. A current-device
+or performance claim requires its own corresponding evidence.
+
 Shared-region controls are published as an optional lazy client surface. They
 remain unavailable on the public URL unless `VITE_PRESENCE_URL` selects a
 verified compatible HTTPS backend. The separate Colyseus/Cloudflare Containers

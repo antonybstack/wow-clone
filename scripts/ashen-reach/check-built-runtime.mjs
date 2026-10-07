@@ -52,7 +52,9 @@ try {
   await page.bringToFront();
   await page.waitForFunction(() => !document.hidden, null, {timeout: 10000});
   report.loadedScripts = await page.evaluate(() => [...document.scripts].map(script => script.src).filter(Boolean));
-  assert(report.loadedScripts.some(src => new URL(src).pathname.endsWith(`/assets/${expectedBundle}`)),
+  // Match the exact versioned assetsDir configured in vite.config.js.
+  // https://vite.dev/config/build-options.html#build-assetsdir
+  assert(report.loadedScripts.some(src => new URL(src).pathname === `/assets/v2/${expectedBundle}`),
     `Expected built script ${expectedBundle} was not loaded`);
   assert(report.loadedScripts.every(src => !new URL(src).pathname.startsWith('/src/')),
     'Development source script loaded in built-runtime smoke');
