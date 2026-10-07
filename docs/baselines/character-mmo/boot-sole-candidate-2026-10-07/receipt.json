@@ -1,0 +1,1395 @@
+{
+  "schema": 1,
+  "date": "2026-10-07",
+  "status": "native candidate reviewed; canonical publication and production acceptance pending",
+  "productionUnchanged": {
+    "sourceCommit": "7d00c56c06f02899e2319ffdddea97728013c0b1",
+    "pagesId": "5723a4ab-5dfd-4902-959b-7496948ea51f"
+  },
+  "privateNative": {
+    "sourceCommit": "7d00c56c06f02899e2319ffdddea97728013c0b1",
+    "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev&verifyAssets",
+    "purpose": "PRIVATE authored lower-boot geometry audition in native Lite; inherited coverage proof is not acceptance; no FPS",
+    "passed": true,
+    "cases": [
+      {
+        "profile": {
+          "id": "original",
+          "race": "human",
+          "identity": "starter",
+          "height": 1,
+          "build": 0
+        },
+        "boot": "wayfarerBoots",
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v8",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1,
+            "build": 0
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "bones": 65,
+        "heightScale": 1,
+        "morphs": [
+          {
+            "name": "HumanV1Body",
+            "weights": [
+              0,
+              0
+            ]
+          },
+          {
+            "name": "WayfarerTunic",
+            "weights": [
+              0,
+              0
+            ]
+          },
+          {
+            "name": "WayfarerTrousers",
+            "weights": [
+              0,
+              0
+            ]
+          },
+          {
+            "name": "WayfarerBoots",
+            "weights": [
+              0,
+              0
+            ]
+          }
+        ],
+        "preview": {
+          "id": "run",
+          "time": 0.26706662690639493,
+          "duration": 0.6666666865348816,
+          "paused": false
+        },
+        "footInventoryIncludesParkedHuman": [
+          {
+            "name": "HumanFootCore",
+            "visible": false
+          }
+        ],
+        "visible": [
+          "WayfarerBoots"
+        ],
+        "physics": {
+          "position": {
+            "x": -2.8998445564180972,
+            "y": 0.6306166954040527,
+            "z": -83.3958626933228
+          },
+          "jumps": 1,
+          "landings": 4,
+          "recoveries": 0,
+          "grounded": true,
+          "usingPhysics": true
+        },
+        "gpuErrors": []
+      },
+      {
+        "profile": {
+          "id": "original",
+          "race": "human",
+          "identity": "starter",
+          "height": 1,
+          "build": 0
+        },
+        "boot": "duskguardGreaves",
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v8",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1,
+            "build": 0
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "duskguardGreaves",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "bones": 65,
+        "heightScale": 1,
+        "morphs": [
+          {
+            "name": "HumanV1Body",
+            "weights": [
+              0,
+              0
+            ]
+          },
+          {
+            "name": "WayfarerTunic",
+            "weights": [
+              0,
+              0
+            ]
+          },
+          {
+            "name": "WayfarerTrousers",
+            "weights": [
+              0,
+              0
+            ]
+          },
+          {
+            "name": "DuskguardBootUnderlayer",
+            "weights": [
+              0,
+              0
+            ]
+          },
+          {
+            "name": "DuskguardGreaves",
+            "weights": [
+              0,
+              0
+            ]
+          },
+          {
+            "name": "DuskguardGreaves",
+            "weights": [
+              0,
+              0
+            ]
+          }
+        ],
+        "preview": {
+          "id": "run",
+          "time": 0.2673666269183159,
+          "duration": 0.6666666865348816,
+          "paused": false
+        },
+        "footInventoryIncludesParkedHuman": [
+          {
+            "name": "HumanFootCore",
+            "visible": false
+          }
+        ],
+        "visible": [
+          "DuskguardBootUnderlayer",
+          "DuskguardGreaves",
+          "DuskguardGreaves"
+        ],
+        "physics": {
+          "position": {
+            "x": -2.8998445766932144,
+            "y": 0.630616635799408,
+            "z": -83.39586269563648
+          },
+          "jumps": 1,
+          "landings": 4,
+          "recoveries": 0,
+          "grounded": true,
+          "usingPhysics": true
+        },
+        "gpuErrors": []
+      },
+      {
+        "profile": {
+          "id": "prime-tall-slender",
+          "race": "human",
+          "identity": "prime-ponytail",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "boot": "wayfarerBoots",
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v8",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "bones": 65,
+        "heightScale": 1.15,
+        "morphs": [
+          {
+            "name": "HumanV1Body",
+            "weights": [
+              0.949999988079071,
+              0
+            ]
+          },
+          {
+            "name": "HumanIdentityBrows",
+            "weights": [
+              0.949999988079071,
+              0
+            ]
+          },
+          {
+            "name": "HumanIdentityEyes",
+            "weights": [
+              0.949999988079071,
+              0
+            ]
+          },
+          {
+            "name": "HumanPonytail01",
+            "weights": [
+              0.949999988079071,
+              0
+            ]
+          },
+          {
+            "name": "WayfarerTunic",
+            "weights": [
+              0.949999988079071,
+              0
+            ]
+          },
+          {
+            "name": "WayfarerTrousers",
+            "weights": [
+              0.949999988079071,
+              0
+            ]
+          },
+          {
+            "name": "WayfarerBoots",
+            "weights": [
+              0.949999988079071,
+              0
+            ]
+          }
+        ],
+        "preview": {
+          "id": "run",
+          "time": 0.26736662691831603,
+          "duration": 0.6666666865348816,
+          "paused": false
+        },
+        "footInventoryIncludesParkedHuman": [
+          {
+            "name": "HumanFootCore",
+            "visible": false
+          }
+        ],
+        "visible": [
+          "WayfarerBoots"
+        ],
+        "physics": {
+          "position": {
+            "x": -2.8999468978477445,
+            "y": 0.7617120462417601,
+            "z": -83.39587650175658
+          },
+          "jumps": 1,
+          "landings": 4,
+          "recoveries": 0,
+          "grounded": true,
+          "usingPhysics": true
+        },
+        "gpuErrors": []
+      },
+      {
+        "profile": {
+          "id": "prime-tall-slender",
+          "race": "human",
+          "identity": "prime-ponytail",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "boot": "duskguardGreaves",
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v8",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "duskguardGreaves",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "bones": 65,
+        "heightScale": 1.15,
+        "morphs": [
+          {
+            "name": "HumanV1Body",
+            "weights": [
+              0.949999988079071,
+              0
+            ]
+          },
+          {
+            "name": "HumanIdentityBrows",
+            "weights": [
+              0.949999988079071,
+              0
+            ]
+          },
+          {
+            "name": "HumanIdentityEyes",
+            "weights": [
+              0.949999988079071,
+              0
+            ]
+          },
+          {
+            "name": "HumanPonytail01",
+            "weights": [
+              0.949999988079071,
+              0
+            ]
+          },
+          {
+            "name": "WayfarerTunic",
+            "weights": [
+              0.949999988079071,
+              0
+            ]
+          },
+          {
+            "name": "WayfarerTrousers",
+            "weights": [
+              0.949999988079071,
+              0
+            ]
+          },
+          {
+            "name": "DuskguardBootUnderlayer",
+            "weights": [
+              0.949999988079071,
+              0
+            ]
+          },
+          {
+            "name": "DuskguardGreaves",
+            "weights": [
+              0.949999988079071,
+              0
+            ]
+          },
+          {
+            "name": "DuskguardGreaves",
+            "weights": [
+              0.949999988079071,
+              0
+            ]
+          }
+        ],
+        "preview": {
+          "id": "run",
+          "time": 0.26706662690639504,
+          "duration": 0.6666666865348816,
+          "paused": false
+        },
+        "footInventoryIncludesParkedHuman": [
+          {
+            "name": "HumanFootCore",
+            "visible": false
+          }
+        ],
+        "visible": [
+          "DuskguardBootUnderlayer",
+          "DuskguardGreaves",
+          "DuskguardGreaves"
+        ],
+        "physics": {
+          "position": {
+            "x": -2.89994695353632,
+            "y": 0.7617120462417601,
+            "z": -83.39587650926543
+          },
+          "jumps": 1,
+          "landings": 4,
+          "recoveries": 0,
+          "grounded": true,
+          "usingPhysics": true
+        },
+        "gpuErrors": []
+      },
+      {
+        "profile": {
+          "id": "prime-short-stout",
+          "race": "human",
+          "identity": "prime-ponytail",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "boot": "wayfarerBoots",
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v8",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "bones": 65,
+        "heightScale": 0.9,
+        "morphs": [
+          {
+            "name": "HumanV1Body",
+            "weights": [
+              0,
+              0.949999988079071
+            ]
+          },
+          {
+            "name": "HumanIdentityBrows",
+            "weights": [
+              0,
+              0.949999988079071
+            ]
+          },
+          {
+            "name": "HumanIdentityEyes",
+            "weights": [
+              0,
+              0.949999988079071
+            ]
+          },
+          {
+            "name": "HumanPonytail01",
+            "weights": [
+              0,
+              0.949999988079071
+            ]
+          },
+          {
+            "name": "WayfarerTunic",
+            "weights": [
+              0,
+              0.949999988079071
+            ]
+          },
+          {
+            "name": "WayfarerTrousers",
+            "weights": [
+              0,
+              0.949999988079071
+            ]
+          },
+          {
+            "name": "WayfarerBoots",
+            "weights": [
+              0,
+              0.949999988079071
+            ]
+          }
+        ],
+        "preview": {
+          "id": "run",
+          "time": 0.2670666269659997,
+          "duration": 0.6666666865348816,
+          "paused": false
+        },
+        "footInventoryIncludesParkedHuman": [
+          {
+            "name": "HumanFootCore",
+            "visible": false
+          }
+        ],
+        "visible": [
+          "WayfarerBoots"
+        ],
+        "physics": {
+          "position": {
+            "x": -2.899946976183173,
+            "y": 0.5432120462417602,
+            "z": -83.395876511534
+          },
+          "jumps": 1,
+          "landings": 4,
+          "recoveries": 0,
+          "grounded": true,
+          "usingPhysics": true
+        },
+        "gpuErrors": []
+      },
+      {
+        "profile": {
+          "id": "prime-short-stout",
+          "race": "human",
+          "identity": "prime-ponytail",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "boot": "duskguardGreaves",
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v8",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 0.9,
+            "build": 0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "duskguardGreaves",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "bones": 65,
+        "heightScale": 0.9,
+        "morphs": [
+          {
+            "name": "HumanV1Body",
+            "weights": [
+              0,
+              0.949999988079071
+            ]
+          },
+          {
+            "name": "HumanIdentityBrows",
+            "weights": [
+              0,
+              0.949999988079071
+            ]
+          },
+          {
+            "name": "HumanIdentityEyes",
+            "weights": [
+              0,
+              0.949999988079071
+            ]
+          },
+          {
+            "name": "HumanPonytail01",
+            "weights": [
+              0,
+              0.949999988079071
+            ]
+          },
+          {
+            "name": "WayfarerTunic",
+            "weights": [
+              0,
+              0.949999988079071
+            ]
+          },
+          {
+            "name": "WayfarerTrousers",
+            "weights": [
+              0,
+              0.949999988079071
+            ]
+          },
+          {
+            "name": "DuskguardBootUnderlayer",
+            "weights": [
+              0,
+              0.949999988079071
+            ]
+          },
+          {
+            "name": "DuskguardGreaves",
+            "weights": [
+              0,
+              0.949999988079071
+            ]
+          },
+          {
+            "name": "DuskguardGreaves",
+            "weights": [
+              0,
+              0.949999988079071
+            ]
+          }
+        ],
+        "preview": {
+          "id": "run",
+          "time": 0.26726662695407877,
+          "duration": 0.6666666865348816,
+          "paused": false
+        },
+        "footInventoryIncludesParkedHuman": [
+          {
+            "name": "HumanFootCore",
+            "visible": false
+          }
+        ],
+        "visible": [
+          "DuskguardBootUnderlayer",
+          "DuskguardGreaves",
+          "DuskguardGreaves"
+        ],
+        "physics": {
+          "position": {
+            "x": -2.89994699977717,
+            "y": 0.5432119866371155,
+            "z": -83.3958765138974
+          },
+          "jumps": 1,
+          "landings": 4,
+          "recoveries": 0,
+          "grounded": true,
+          "usingPhysics": true
+        },
+        "gpuErrors": []
+      },
+      {
+        "profile": {
+          "id": "orc",
+          "race": "orc"
+        },
+        "boot": "wayfarerBoots",
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v8",
+          "race": "orc",
+          "fitFamily": "ashen-orc",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "bones": 65,
+        "heightScale": 1,
+        "morphs": [],
+        "preview": {
+          "id": "run",
+          "time": 0.26706662696599986,
+          "duration": 0.6666666865348816,
+          "paused": false
+        },
+        "footInventoryIncludesParkedHuman": [
+          {
+            "name": "HumanFootCore",
+            "visible": false
+          }
+        ],
+        "visible": [
+          "WayfarerBoots"
+        ],
+        "physics": {
+          "position": {
+            "x": -2.899993759003233,
+            "y": 0.6306094832420349,
+            "z": -83.3958818460897
+          },
+          "jumps": 1,
+          "landings": 4,
+          "recoveries": 0,
+          "grounded": true,
+          "usingPhysics": true
+        },
+        "gpuErrors": []
+      },
+      {
+        "profile": {
+          "id": "orc",
+          "race": "orc"
+        },
+        "boot": "duskguardGreaves",
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v8",
+          "race": "orc",
+          "fitFamily": "ashen-orc",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "duskguardGreaves",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "bones": 65,
+        "heightScale": 1,
+        "morphs": [],
+        "preview": {
+          "id": "run",
+          "time": 0.2670666269659998,
+          "duration": 0.6666666865348816,
+          "paused": false
+        },
+        "footInventoryIncludesParkedHuman": [
+          {
+            "name": "HumanFootCore",
+            "visible": false
+          }
+        ],
+        "visible": [
+          "DuskguardBootUnderlayer",
+          "DuskguardGreaves",
+          "DuskguardGreaves"
+        ],
+        "physics": {
+          "position": {
+            "x": -2.899993796791436,
+            "y": 0.6306095428466797,
+            "z": -83.39588185039744
+          },
+          "jumps": 1,
+          "landings": 4,
+          "recoveries": 0,
+          "grounded": true,
+          "usingPhysics": true
+        },
+        "gpuErrors": []
+      },
+      {
+        "profile": {
+          "id": "undead",
+          "race": "undead"
+        },
+        "boot": "wayfarerBoots",
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v8",
+          "race": "undead",
+          "fitFamily": "ashen-undead",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "bones": 65,
+        "heightScale": 1,
+        "morphs": [],
+        "preview": {
+          "id": "run",
+          "time": 0.26726662695407893,
+          "duration": 0.6666666865348816,
+          "paused": false
+        },
+        "footInventoryIncludesParkedHuman": [
+          {
+            "name": "HumanFootCore",
+            "visible": false
+          },
+          {
+            "name": "UndeadFootCore",
+            "visible": false
+          }
+        ],
+        "visible": [
+          "WayfarerBoots"
+        ],
+        "physics": {
+          "position": {
+            "x": -2.899993843940372,
+            "y": 0.6306094832420349,
+            "z": -83.39588185577225
+          },
+          "jumps": 1,
+          "landings": 4,
+          "recoveries": 0,
+          "grounded": true,
+          "usingPhysics": true
+        },
+        "gpuErrors": []
+      },
+      {
+        "profile": {
+          "id": "undead",
+          "race": "undead"
+        },
+        "boot": "duskguardGreaves",
+        "appearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v8",
+          "race": "undead",
+          "fitFamily": "ashen-undead",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {},
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "duskguardGreaves",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          }
+        },
+        "bones": 65,
+        "heightScale": 1,
+        "morphs": [],
+        "preview": {
+          "id": "run",
+          "time": 0.2668666269183161,
+          "duration": 0.6666666865348816,
+          "paused": false
+        },
+        "footInventoryIncludesParkedHuman": [
+          {
+            "name": "HumanFootCore",
+            "visible": false
+          },
+          {
+            "name": "UndeadFootCore",
+            "visible": false
+          }
+        ],
+        "visible": [
+          "DuskguardBootUnderlayer",
+          "DuskguardGreaves",
+          "DuskguardGreaves"
+        ],
+        "physics": {
+          "position": {
+            "x": -2.899993876868458,
+            "y": 0.6306095428466797,
+            "z": -83.39588185952601
+          },
+          "jumps": 1,
+          "landings": 4,
+          "recoveries": 0,
+          "grounded": true,
+          "usingPhysics": true
+        },
+        "gpuErrors": []
+      }
+    ],
+    "errors": [],
+    "candidateResponses": [
+      {
+        "url": "http://127.0.0.1:7074/__boot_audition__/human-neutral-wayfarerBoots-fc34bce54c94.glb",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:7074/__boot_audition__/human-shaped-wayfarerBoots-ae0b3d72db69.glb",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:7074/__boot_audition__/human-shaped-duskguardGreaves-4e5f63949d23.glb",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:7074/__boot_audition__/human-shaped-duskguardGreaves-4e5f63949d23.glb",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:7074/__boot_audition__/human-shaped-wayfarerBoots-ae0b3d72db69.glb",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:7074/__boot_audition__/undead-neutral-wayfarerBoots-6bb30d4db275.glb",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:7074/__boot_audition__/undead-neutral-duskguardGreaves-117d0fc78bdb.glb",
+        "status": 200
+      }
+    ],
+    "bareFootRestored": true,
+    "humanTravel": {
+      "before": {
+        "position": {
+          "x": -0.0036106130321995815,
+          "y": 0.13330617618560797,
+          "z": -99.9982398261425
+        },
+        "jumps": 0,
+        "landings": 3,
+        "recoveries": 0,
+        "grounded": true,
+        "usingPhysics": true
+      },
+      "after": {
+        "position": {
+          "x": -2.8998445279375646,
+          "y": 0.630616635799408,
+          "z": -83.39586269007275
+        },
+        "jumps": 1,
+        "landings": 4,
+        "recoveries": 0,
+        "grounded": true,
+        "usingPhysics": true
+      }
+    },
+    "undeadTravel": {
+      "before": {
+        "position": {
+          "x": -2.8999938923552215,
+          "y": 0.6306094832420349,
+          "z": -83.39588186129143
+        },
+        "jumps": 1,
+        "landings": 4,
+        "recoveries": 0,
+        "grounded": true,
+        "usingPhysics": true
+      },
+      "after": {
+        "position": {
+          "x": -2.993091871443393,
+          "y": 0.5443280944683955,
+          "z": -66.14060183943923
+        },
+        "jumps": 2,
+        "landings": 5,
+        "recoveries": 0,
+        "grounded": true,
+        "usingPhysics": true
+      }
+    }
+  },
+  "undeadWrittenPartition": {
+    "race": "undead",
+    "id": "body",
+    "detail": "full",
+    "source": {
+      "url": "/ashen-reach/equipment-undead/body.glb",
+      "bytes": 8370504,
+      "sha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d",
+      "meshes": [
+        "UndeadV1Body",
+        "UndeadV1Eyes"
+      ]
+    },
+    "output": {
+      "url": "/ashen-reach/equipment-undead/body-coverage-2f778c68a013.glb",
+      "sha256": "2f778c68a0136b35b6ab27679ab1747fdb89b8ae2ad2b80b251d7230220ef784",
+      "bytes": 8372040
+    },
+    "partition": {
+      "source": "UndeadV1Body",
+      "covered": "UndeadTorsoCore",
+      "originalTriangles": 8741,
+      "coveredTriangles": 1352,
+      "exposedTriangles": 7389,
+      "vertexReindexing": false
+    },
+    "landmarks": {
+      "hips": [
+        0.003613085951656103,
+        1.0875619649887085,
+        -0.010839497670531273
+      ],
+      "neck": [
+        0.0036133350804448128,
+        1.5645273923873901,
+        -0.054201822727918625
+      ],
+      "unit": 1.0703889162916886
+    },
+    "partitionPolicy": "conservative-geosets-v1",
+    "footCoverage": {
+      "revision": "undead-ankle-foot-v1",
+      "partition": {
+        "source": "UndeadV1Body",
+        "covered": "UndeadFootCore",
+        "originalTriangles": 7389,
+        "coveredTriangles": 659,
+        "exposedTriangles": 6730,
+        "vertexReindexing": false
+      },
+      "landmarks": {
+        "unit": 1.0703889162916886,
+        "footY": [
+          0.14091013371944427,
+          0.14092031121253967
+        ],
+        "ankleLimitY": 0.15162420037545657
+      }
+    },
+    "verification": {
+      "triangles": 8741,
+      "attributesExact": true,
+      "morphsExact": true,
+      "skinExact": true,
+      "framesExact": true,
+      "sourceAnimationExact": true
+    }
+  },
+  "producer": {
+    "candidateOnly": true,
+    "descriptor": {
+      "path": "blender/characters/wardrobe/boot-sole.json",
+      "sha256": "fd82abef775df20349299b422be6cb2b6eede9ee875da8633ef1414a72968bcb"
+    },
+    "rows": [
+      {
+        "race": "human",
+        "source": {
+          "source": "blender/characters/wardrobe/sources/human-wayfarerBoots-before-sole.glb",
+          "sha256": "a55a9e4cd7b8658b6f2bd51dd3092af576e8d7dd279c9687bb3419a5c858bd98",
+          "body": "public/ashen-reach/equipment/body.glb",
+          "bodySha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+          "bodyMesh": "HumanV1Body"
+        },
+        "artifact": {
+          "file": ".cache/character-mmo/boot-silhouette-2026-10-07/reproduced-sole-final/human/wayfarerBoots.glb",
+          "bytes": 242712,
+          "sha256": "84539c7633fd5b17d7e0ed27e45d74d6dcb8f4c5eb244a6f3e4ff8ba5134aa0c"
+        },
+        "feet": [
+          {
+            "side": "left",
+            "authoredFloor": -0.010363336652517319,
+            "bodyFloor": -6.902833320054924e-06,
+            "changed": 388,
+            "maxDisplacementM": 0.05198354460299015
+          },
+          {
+            "side": "right",
+            "authoredFloor": -0.01039090659469366,
+            "bodyFloor": -2.2622236883762525e-07,
+            "changed": 387,
+            "maxDisplacementM": 0.05477075418457389
+          }
+        ],
+        "verification": {
+          "joints": 65,
+          "meshes": 1,
+          "primitives": 1,
+          "vertices": 3530,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.2892144024372101,
+              -0.006006903015077114,
+              -0.1525457799434662
+            ],
+            "max": [
+              0.2892993092536926,
+              0.40249019861221313,
+              0.1737712025642395
+            ],
+            "frame": "accepted body mesh"
+          }
+        }
+      },
+      {
+        "race": "undead",
+        "source": {
+          "source": "blender/characters/wardrobe/sources/undead-wayfarerBoots-before-sole.glb",
+          "sha256": "ce99e04c73153c47b97b69f94327983e3844d0f24c8a7757e4126f1baabc5c85",
+          "body": "public/ashen-reach/equipment-undead/body.glb",
+          "bodySha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d",
+          "bodyMesh": "UndeadV1Body"
+        },
+        "artifact": {
+          "file": ".cache/character-mmo/boot-silhouette-2026-10-07/reproduced-sole-final/undead/wayfarerBoots.glb",
+          "bytes": 242372,
+          "sha256": "d92d6e57807b91cc19886c634b3ff3c84b21909c63ecaa68fbc5a66af44dbeac"
+        },
+        "feet": [
+          {
+            "side": "left",
+            "authoredFloor": -0.010363336652517319,
+            "bodyFloor": 2.9491869213416066e-07,
+            "changed": 388,
+            "maxDisplacementM": 0.061143459752202034
+          },
+          {
+            "side": "right",
+            "authoredFloor": -0.01039090659469366,
+            "bodyFloor": 6.566178853972815e-06,
+            "changed": 387,
+            "maxDisplacementM": 0.06949268677271903
+          }
+        ],
+        "verification": {
+          "joints": 65,
+          "meshes": 1,
+          "primitives": 1,
+          "vertices": 3530,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.3074204921722412,
+              -0.005999705288559198,
+              -0.1521732658147812
+            ],
+            "max": [
+              0.3116702735424042,
+              0.4573856592178345,
+              0.18858177959918976
+            ],
+            "frame": "accepted body mesh"
+          }
+        }
+      }
+    ]
+  },
+  "reproduction": [
+    {
+      "race": "human",
+      "reproductionBytes": 242712,
+      "liveGeometryAndAttributesExact": true,
+      "pinnedHostByteRepeat": true
+    },
+    {
+      "race": "undead",
+      "reproductionBytes": 242372,
+      "liveGeometryAndAttributesExact": true,
+      "pinnedHostByteRepeat": true
+    }
+  ],
+  "tests": {
+    "command": "node --test scripts/test-human-foot-coverage.mjs scripts/test-coverage-manifest.mjs scripts/test-coverage-partition.mjs",
+    "passed": 17,
+    "failed": 0
+  },
+  "capture": {
+    "localPath": ".cache/character-mmo/boot-silhouette-2026-10-07/audition/audition.mp4",
+    "bytes": 32071135,
+    "sha256": "e062157a79a815ee485bd1099dd2a63d4af5a312324dc3c408361212941f3212",
+    "width": 1280,
+    "height": 720,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264",
+    "frames": 986,
+    "durationSeconds": 32.898064,
+    "elapsedSeconds": 32.898561,
+    "fpsBenchmark": false,
+    "rootReviewedActualMotion": true,
+    "diagnosticCameraAndFill": true,
+    "limitations": [
+      "Residual cuff/strap overlap and aliasing",
+      "Close Armory run phases sometimes outside framing",
+      "No all-animation zero-clipping claim",
+      "Canonical publication and sealed release pending",
+      "No fresh physical iPhone acceptance"
+    ]
+  },
+  "independentReview": {
+    "model": "grok-4.6",
+    "effort": "high",
+    "compiler": "No consequential compiler defect; conservative mixed-influence faces remain exposed; no Undead picked-face fixture",
+    "builder": "No consequential defect on pinned inputs; completed artifact before six-turn CLI cancellation"
+  },
+  "fullLocalEvidenceRoot": ".cache/character-mmo/boot-silhouette-2026-10-07",
+  "mediaDelivery": {
+    "purpose": "PRIVATE boot sole candidate publication; not production qualification or FPS",
+    "localPath": ".cache/character-mmo/boot-silhouette-2026-10-07/audition/audition.mp4",
+    "objectKey": "wow-clone/ashen-reach/boot-sole-candidate-2026-10-07/audition.mp4",
+    "veUrl": "https://ve.sparkify.dev/wow-clone/ashen-reach/boot-sole-candidate-2026-10-07/audition.mp4",
+    "bytes": 32071135,
+    "dimensions": {
+      "width": 1280,
+      "height": 720,
+      "duration": 32.898064,
+      "codec": "h264"
+    },
+    "sha256": {
+      "local": "e062157a79a815ee485bd1099dd2a63d4af5a312324dc3c408361212941f3212",
+      "public": "e062157a79a815ee485bd1099dd2a63d4af5a312324dc3c408361212941f3212",
+      "match": true
+    },
+    "checks": {
+      "remoteUpload": true,
+      "contentType": "video/mp4",
+      "contentTypeOk": true,
+      "httpHead": "HTTP/1.1 200 OK",
+      "acceptRanges": "bytes",
+      "rangeGet": "HTTP/1.1 206 Partial Content",
+      "contentRange": "bytes 0-1/32071135",
+      "rangeOk": true
+    },
+    "commands": [
+      {
+        "command": "bash scripts/ve-upload.sh .cache/character-mmo/boot-silhouette-2026-10-07/audition/audition.mp4 wow-clone/ashen-reach/boot-sole-candidate-2026-10-07/audition.mp4",
+        "exitCode": 0
+      },
+      {
+        "command": "bash scripts/tg file .cache/character-mmo/boot-silhouette-2026-10-07/audition/audition.mp4 <authorized caption with VE URL>",
+        "exitCode": 0
+      }
+    ],
+    "telegram": {
+      "alreadyInLedger": false,
+      "sent": true,
+      "messageId": 879,
+      "verified": "1280x720, 32.898s",
+      "ledgerLine": "2026-10-07T21:29:17.727156+00:00 82ee26839b8d936deb1ec681568915fd0578d1d5 .cache/character-mmo/boot-silhouette-2026-10-07/audition/audition.mp4"
+    },
+    "rootDirectVePlayback": {
+      "width": 1280,
+      "height": 720,
+      "durationSeconds": 32.898064,
+      "paused": false,
+      "error": null,
+      "telegramFullscreenVerified": false
+    }
+  },
+  "cleanup": {
+    "ownedGameBrowsersClosed": true,
+    "ownedReviewTabClosed": true,
+    "ownedPortsFree": [
+      7074,
+      7075,
+      10037,
+      5173
+    ],
+    "nativeOwnedPidsGone": [
+      68355,
+      68362,
+      68363,
+      68369
+    ],
+    "reviewServerPidStopped": 73362,
+    "userEdgePidRetained": 2931,
+    "ownedAgentTabsAfterCleanup": 0
+  }
+}

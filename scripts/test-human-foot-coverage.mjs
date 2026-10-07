@@ -1,14 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {Document,NodeIO} from '@gltf-transform/core';
-import {deriveHumanFootCore,HUMAN_FOOT_COVERAGE_REVISION} from './character-assets/derive-coverage-geosets.mjs';
+import {deriveHumanFootCore,deriveFootCore,HUMAN_FOOT_COVERAGE_REVISION,UNDEAD_FOOT_COVERAGE_REVISION} from './character-assets/derive-coverage-geosets.mjs';
 import {verifyCoveragePartition} from './character-assets/verify-coverage-partition.mjs';
 import fs from 'node:fs/promises';
 import {gunzipSync} from 'node:zlib';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
-import {MeshoptDecoder} from 'meshoptimizer';
+import {MeshoptDecoder,MeshoptEncoder} from 'meshoptimizer';
 
-function fixture(){
+function fixture(race='human'){
  const doc=new Document(),buffer=doc.createBuffer(),scene=doc.createScene(),parent=doc.createNode('Actor').setTranslation([3,4,5]);scene.addChild(parent);
  const rest={Hips:[0,1,0],Neck:[0,1.46,0],LeftFoot:[.18,.13,-.04],RightFoot:[-.18,.13,-.04],LeftToeBase:[.19,.02,.10],RightToeBase:[-.19,.02,.10],LeftLeg:[.18,.5,0]};
  const joints=Object.entries(rest).map(([name,position])=>doc.createNode(`mixamorig:${name}`).setTranslation(position));for(const joint of joints)parent.addChild(joint);
@@ -23,7 +23,8 @@ function fixture(){
  }
  const p=doc.createPrimitive().setAttribute('POSITION',accessor('VEC3',new Float32Array(positions))).setAttribute('JOINTS_0',accessor('VEC4',new Uint16Array(ids))).setAttribute('WEIGHTS_0',accessor('VEC4',new Float32Array(weights))).setIndices(accessor('SCALAR',new Uint16Array(indices)))
   .addTarget(doc.createPrimitiveTarget().setAttribute('POSITION',accessor('VEC3',new Float32Array(positions.length).fill(.01))));
- const mesh=doc.createMesh('HumanV1Body').addPrimitive(p).setWeights([.95]);parent.addChild(doc.createNode('HumanV1Body').setMesh(mesh).setSkin(skin).setWeights([.95]));
+ const name=race==='human'?'HumanV1Body':'UndeadV1Body';
+ const mesh=doc.createMesh(name).addPrimitive(p).setWeights([.95]);parent.addChild(doc.createNode(name).setMesh(mesh).setSkin(skin).setWeights([.95]));
  const sampler=doc.createAnimationSampler().setInput(accessor('SCALAR',new Float32Array([0,1]))).setOutput(accessor('VEC3',new Float32Array([.18,.13,-.04,.18,.14,-.04])));
  doc.createAnimation('Source gait').addSampler(sampler).addChannel(doc.createAnimationChannel().setTargetNode(joints[2]).setTargetPath('translation').setSampler(sampler));
  return doc;
@@ -43,6 +44,37 @@ test('missing native foot landmarks are refused before changing the body',()=>{
  doc.getRoot().listNodes().find(n=>n.getName()==='mixamorig:RightToeBase').setName('Missing');
  assert.throws(()=>deriveHumanFootCore(doc),/Incomplete Human foot/);
  assert.equal(doc.getRoot().listMeshes().length,1);assert.deepEqual(mesh.listPrimitives()[0].getIndices().getArray(),indices);
+});
+
+test('Undead foot split uses its own mesh frame and leaves calf and mixed influences in the restored body',async()=>{
+ const doc=fixture('undead'),io=new NodeIO(),source=(await io.readBinary(await io.writeBinary(doc))).getRoot();
+ const result=deriveFootCore(doc,'undead');assert.equal(result.revision,UNDEAD_FOOT_COVERAGE_REVISION);
+ assert.equal(result.partition.coveredTriangles,2);
+ const actual=(await io.readBinary(await io.writeBinary(doc))).getRoot();
+ assert.deepEqual(Array.from(actual.listMeshes().find(m=>m.getName()==='UndeadFootCore').listPrimitives()[0].getIndices().getArray()),[0,1,2,3,4,5]);
+ assert.deepEqual(Array.from(actual.listMeshes().find(m=>m.getName()==='UndeadV1Body').listPrimitives()[0].getIndices().getArray()),[6,7,8,9,10,11,12,13,14]);
+ assert.equal(verifyCoveragePartition(source,actual,'UndeadV1Body','UndeadFootCore').triangles,5);
+});
+
+test('source foot compiler refuses unsupported races and incomplete Undead landmarks without changing indices',()=>{
+ const doc=fixture('undead'),indices=doc.getRoot().listMeshes()[0].listPrimitives()[0].getIndices().getArray().slice();
+ assert.throws(()=>deriveFootCore(doc,'elf'),/supports Human\/Undead/);
+ doc.getRoot().listNodes().find(n=>n.getName()==='mixamorig:RightToeBase').setName('Missing');
+ assert.throws(()=>deriveFootCore(doc,'undead'),/Incomplete Undead foot/);
+ assert.equal(doc.getRoot().listMeshes().length,1);
+ assert.deepEqual(doc.getRoot().listMeshes()[0].listPrimitives()[0].getIndices().getArray(),indices);
+});
+
+test('actual accepted Undead source retains every oriented triangle, attribute, bind and animation after writing its foot partition',async()=>{
+ await Promise.all([MeshoptDecoder.ready,MeshoptEncoder.ready]);
+ const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder,'meshopt.encoder':MeshoptEncoder});
+ const file='public/ashen-reach/equipment-undead/body.glb',source=(await io.read(file)).getRoot(),doc=await io.read(file);
+ const result=deriveFootCore(doc,'undead');assert(result.partition.coveredTriangles>0);
+ const actual=(await io.readBinary(await io.writeBinary(doc))).getRoot();
+ const proof=verifyCoveragePartition(source,actual,'UndeadV1Body','UndeadFootCore');
+ assert(proof.sourceAnimationExact&&proof.skinExact&&proof.framesExact&&proof.attributesExact);
+ assert.equal(actual.listSkins()[0].listJoints().length,65);
+ assert.equal(actual.listMeshes().find(m=>m.getName()==='UndeadFootCore').listPrimitives()[0].getAttribute('POSITION'),actual.listMeshes().find(m=>m.getName()==='UndeadV1Body').listPrimitives()[0].getAttribute('POSITION'));
 });
 
 test('every published Human body hides the toe faces independently picked in the native renderer',async()=>{

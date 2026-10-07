@@ -56,6 +56,16 @@ per-artifact request/body failures now produce complete failed reports, and abse
 required cache headers fail explicitly. No runtime rebuild/deployment/new settled
 FPS claim. Next progress boot/mixed-fit work, preserving original acceptance exits.
 
+The [boot sole candidate](plans/character-mmo/results/boot-sole-candidate-2026-10-07.md)
+now has a pinned offline builder and an Undead source-foot index partition.
+Seventeen focused tests and ten native fit cases pass, including bare-foot
+restoration and ordinary Human/Undead Havok sprint/jump. Root reviewed the actual
+1280×720 MP4: the large sole folds improve; residual cuff/strap overlap remains.
+Candidate motion is Telegram **879** and identical VE; no candidate FPS claim.
+This is candidate evidence only. Canonical assets, identity/remote derivatives,
+sealed qualification and production publication are the immediate next package.
+Production remains the qualified **7d00c56 / 5723a4ab** release.
+
 1. **Smooth background loading and sound activation.** Attribute the remaining
    streaming p99 around 21.5 ms and first sound-activation cost using the existing
    scheduler/profiling. Preserve the first-play fence; compare complete streaming

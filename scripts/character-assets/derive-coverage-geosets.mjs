@@ -24,6 +24,7 @@ export function coverageLandmarks(doc,meshName){
 
 export const HUMAN_BACK_COVERAGE_REVISION='human-medial-back-v1';
 export const HUMAN_FOOT_COVERAGE_REVISION='human-ankle-foot-v1';
+export const UNDEAD_FOOT_COVERAGE_REVISION='undead-ankle-foot-v1';
 
 // Keep the strict classifier available for reproducing pinned historical source
 // auditions. Production Human compilation explicitly selects the reviewed back
@@ -71,7 +72,7 @@ export function deriveTorsoCore(doc,race,options){
  return {partition,landmarks:policy.landmarks,partitionPolicy:policy.revision};
 }
 
-/** Boots already cover the semantic `foot` segment. Give the actual Human foot
+/** Boots already cover the semantic `foot` segment. Give the actual source foot
  * an index-only visibility boundary, as Orc already has, instead of inflating
  * footwear or changing skinning. All three corners must lie below the source
  * ankle and have >98% native foot/toe influence; the calf stays exposed.
@@ -79,13 +80,15 @@ export function deriveTorsoCore(doc,race,options){
  * https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#meshes
  * https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#skins
  */
-export function deriveHumanFootCore(doc){
- const source='HumanV1Body',covered='HumanFootCore';
+export function deriveFootCore(doc,race){
+ if(!['human','undead'].includes(race))throw Error('Foot compilation supports Human/Undead source topology only');
+ const label=race==='human'?'Human':'Undead';
+ const source=`${label}V1Body`,covered=`${label}FootCore`;
  const {unit,joints}=coverageLandmarks(doc,source);
  const node=doc.getRoot().listNodes().find(n=>n.getMesh()?.getName()===source);
  const inverse=mat4.invert(mat4.create(),node.getWorldMatrix());
  const footIndices=['LeftFoot','RightFoot','LeftToeBase','RightToeBase'].map(name=>joints.findIndex(j=>j.getName()===`mixamorig:${name}`));
- if(footIndices.includes(-1))throw Error('Incomplete Human foot coverage rig');
+ if(footIndices.includes(-1))throw Error(`Incomplete ${label} foot coverage rig`);
  const footY=footIndices.slice(0,2).map(i=>vec3.transformMat4(vec3.create(),[0,0,0],mat4.multiply(mat4.create(),inverse,joints[i].getWorldMatrix()))[1]);
  const ankleLimitY=Math.max(...footY)+.01*unit,allowed=new Set(footIndices);
  const partition=partitionCoverageMesh(doc,source,covered,(p,v)=>{
@@ -94,8 +97,16 @@ export function deriveHumanFootCore(doc){
   let mass=0;for(let k=0;k<4;k++)if(allowed.has(indices[v*4+k]))mass+=weights[v*4+k];
   return mass>.98;
  });
- return {revision:HUMAN_FOOT_COVERAGE_REVISION,partition,landmarks:{unit,footY,ankleLimitY}};
+ return {revision:race==='human'?HUMAN_FOOT_COVERAGE_REVISION:UNDEAD_FOOT_COVERAGE_REVISION,
+  partition,landmarks:{unit,footY,ankleLimitY}};
 }
+
+// Preserve the reviewed Human entry point and its exact classifier. Undead uses
+// its own measured source landmarks; weights still describe deformation only.
+// Index partitions share every native attribute and restore the complete bare
+// body when footwear is removed, rather than rewriting a rig or inflating boots.
+// https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#meshes
+export function deriveHumanFootCore(doc){return deriveFootCore(doc,'human');}
 
 export function deriveUpperTrousers(doc,source='WayfarerTrousers',covered='WayfarerTrousersUnderTorso'){
  const {hips,neck,unit}=coverageLandmarks(doc,source);

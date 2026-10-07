@@ -7,7 +7,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {gzipSync,gunzipSync} from 'node:zlib';
-import {deriveTorsoCore,deriveUpperTrousers,deriveHumanFootCore,HUMAN_BACK_COVERAGE_REVISION} from './derive-coverage-geosets.mjs';
+import {deriveTorsoCore,deriveUpperTrousers,deriveFootCore,HUMAN_BACK_COVERAGE_REVISION} from './derive-coverage-geosets.mjs';
 import {verifyCoveragePartition} from './verify-coverage-partition.mjs';
 import {RACE_BODY_SEGMENTS} from '../../src/ashen-reach/coverage-contract.js';
 import {pilotCoverageForRace} from '../../src/ashen-reach/coverage-pilot.js';
@@ -20,9 +20,10 @@ export async function compileCoverageManifest({io,manifest,race,sourceRoot='publ
  const rules=structuredClone(pilotCoverageForRace(race));
  const segments=structuredClone(RACE_BODY_SEGMENTS[race]);
  if(race!=='orc')segments[race==='human'?'HumanTorsoCore':'UndeadTorsoCore']=['torso.upper','torso.lower','waist'];
- if(race==='human'){
-  segments.HumanV1Body=segments.HumanV1Body.filter(segment=>segment!=='foot');
-  segments.HumanFootCore=['foot'];
+ if(race!=='orc'){
+  const label=race==='human'?'Human':'Undead';
+  segments[`${label}V1Body`]=segments[`${label}V1Body`].filter(segment=>segment!=='foot');
+  segments[`${label}FootCore`]=['foot'];
  }
  for(const [detail,items]of [['full',next.items],['startup',next.compactItems]]){
   if(!items)continue;
@@ -38,7 +39,7 @@ export async function compileCoverageManifest({io,manifest,race,sourceRoot='publ
    if(bytes.length!==original.bytes||sha(bytes)!==original.sha256)throw Error(`Coverage source mismatch: ${race}/${id}/${detail}`);
    const reference=(await io.readBinary(bytes)).getRoot(),doc=await io.readBinary(bytes);
    const derived=body?deriveTorsoCore(doc,race,race==='human'?{revision:HUMAN_BACK_COVERAGE_REVISION}:undefined):deriveUpperTrousers(doc,dusk?'DuskguardTrousers':'WayfarerTrousers',dusk?'DuskguardTrousersUnderTorso':'WayfarerTrousersUnderTorso');
-   if(body&&race==='human')derived.footCoverage=deriveHumanFootCore(doc);
+   if(body)derived.footCoverage=deriveFootCore(doc,race);
    const written=await io.writeBinary(doc),actual=(await io.readBinary(written)).getRoot();
    const verification=verifyCoveragePartition(reference,actual,derived.partition.source,derived.footCoverage?[derived.partition.covered,derived.footCoverage.partition.covered]:derived.partition.covered);
    const packed=original.compression==='gzip'?gzipSync(written,{level:9}):written,ext=original.compression==='gzip'?'bin':'glb';

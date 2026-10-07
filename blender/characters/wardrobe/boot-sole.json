@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "id": "wayfarer-sole",
+  "revision": 1,
+  "status": "native audition reviewed; canonical publication and production acceptance pending",
+  "authored": {
+    "source": "blender/characters/sources/human-catalogue/wayfarerBoots.glb",
+    "sha256": "0f4091ff26d40cf3a3567b8770105f51b79a346caa21ead40577391704f81ae2"
+  },
+  "fits": {
+    "human": {
+      "source": "blender/characters/wardrobe/sources/human-wayfarerBoots-before-sole.glb",
+      "sha256": "a55a9e4cd7b8658b6f2bd51dd3092af576e8d7dd279c9687bb3419a5c858bd98",
+      "body": "public/ashen-reach/equipment/body.glb",
+      "bodySha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+      "bodyMesh": "HumanV1Body"
+    },
+    "undead": {
+      "source": "blender/characters/wardrobe/sources/undead-wayfarerBoots-before-sole.glb",
+      "sha256": "ce99e04c73153c47b97b69f94327983e3844d0f24c8a7757e4126f1baabc5c85",
+      "body": "public/ashen-reach/equipment-undead/body.glb",
+      "bodySha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d",
+      "bodyMesh": "UndeadV1Body"
+    }
+  },
+  "sole": {
+    "fullBelowM": 0.018,
+    "fadeEndM": 0.025,
+    "belowFootM": 0.006,
+    "authoredHeightScale": 1.2
+  },
+  "sourceRights": "Accepted fitted derivatives of vendored CC0 MakeHuman suits02 footwear; preserve the existing native Tripo/Mixamo body/rig grants and documented limitations. No new body or rig."
+}
