@@ -3,28 +3,44 @@
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#dynamic_module_loading
  */
 const pending = new Map();
+function resourceFailure(url, operation, cause) {
+  return new Error(`Startup resource ${url}: ${operation} failed: ${cause?.message??String(cause)}`, {cause});
+}
+/** Attach the fixed asset URL/operation while preserving the native failure.
+ * A body can fail after HTTP 200, so request and decoding failures need distinct
+ * context. The existing error formatter prints this complete cause chain.
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/cause
+ */
+export async function withStartupResource(url, operation, task) {
+  try {return await task();}
+  catch (cause) {throw resourceFailure(url, operation, cause);}
+}
 /** Cache promises, not just completed HTTP responses, so prefetch and equipment
  * installation share one request and one decompression.
  * https://developer.mozilla.org/en-US/docs/Web/API/DecompressionStream
  */
 export function startupAssetBuffer(asset, {priority = 'high'} = {}) {
   if (!pending.has(asset.url)) {
+    let operation = 'request';
     const task = fetch(asset.url, { priority })
       .then(async (response) => {
+        operation = 'response validation';
         if (!response.ok) throw Error(`${asset.url}: HTTP ${response.status}`);
+        operation = 'body decoding';
         const bytes =
           asset.compression === "gzip"
             ? await new Response(
                 response.body.pipeThrough(new DecompressionStream("gzip")),
               ).arrayBuffer()
             : await response.arrayBuffer();
+        operation = 'decoded size validation';
         if (bytes.byteLength !== asset.bytes)
           throw Error(`Unexpected size for ${asset.url}`);
         return bytes;
       })
       .catch((error) => {
         pending.delete(asset.url);
-        throw error;
+        throw resourceFailure(asset.url, operation, error);
       });
     pending.set(asset.url, task);
   }
@@ -41,9 +57,11 @@ export function preloadHumanIdentityCatalogue(){
  return identityCatalogueTask??=(async()=>{
   const embedded=globalThis.document?.getElementById(EMBEDDED_IDENTITY_CATALOGUE_ID);
   if(embedded?.type==='application/json')return JSON.parse(embedded.textContent);
-  const response=await fetch('/ashen-reach/human-identity-v1/manifest.json',{priority:'high'});
-  if(!response.ok)throw Error(`Human identity catalogue: HTTP ${response.status}`);
-  return response.json();
+  return withStartupResource('/ashen-reach/human-identity-v1/manifest.json','catalogue read',async()=>{
+   const response=await fetch('/ashen-reach/human-identity-v1/manifest.json',{priority:'high'});
+   if(!response.ok)throw Error(`Human identity catalogue: HTTP ${response.status}`);
+   return response.json();
+  });
  })().catch(error=>{identityCatalogueTask=null;throw error;});
 }
 export function invalidateHumanIdentityCatalogue(){identityCatalogueTask=null;}
@@ -52,10 +70,11 @@ export function preloadStarterCharacter() {
   return starterManifestTask ??= loadStarterCharacter().catch(error => {starterManifestTask=null;throw error;});
 }
 async function loadStarterCharacter() {
-  const response = await fetch("/ashen-reach/startup/character/manifest.json");
-  if (!response.ok)
-    throw Error(`Starter character manifest: HTTP ${response.status}`);
-  const manifest = await response.json();
+  const manifest = await withStartupResource('/ashen-reach/startup/character/manifest.json','manifest read',async()=>{
+    const response = await fetch('/ashen-reach/startup/character/manifest.json');
+    if (!response.ok) throw Error(`Starter character manifest: HTTP ${response.status}`);
+    return response.json();
+  });
   const expected=import.meta.env?.VITE_STARTER_CHARACTER_SOURCE;
   if(expected&&manifest.provenance?.sha256!==expected)throw Error('The character has been updated. Reload to use the matching starting assets.');
   for (const id of [
@@ -86,9 +105,11 @@ export function preloadSavedHumanPack(appearance,options={}){
  return import('./human-identity-assets.js').then(api=>api.preloadHumanIdentityPack(appearance.components,appearance.equipment,options));
 }
 async function loadHumanShapeManifest() {
-  const response = await fetch('/ashen-reach/human-shape-v1/manifest.json');
-  if (!response.ok) throw Error(`Human body family: HTTP ${response.status}`);
-  const manifest = await response.json();
+  const manifest = await withStartupResource('/ashen-reach/human-shape-v1/manifest.json','manifest read',async()=>{
+    const response = await fetch('/ashen-reach/human-shape-v1/manifest.json');
+    if (!response.ok) throw Error(`Human body family: HTTP ${response.status}`);
+    return response.json();
+  });
   const expected=import.meta.env?.VITE_HUMAN_SHAPE_SOURCE;
   if(expected&&manifest.provenance?.sha256!==expected)throw Error('The character family has been updated. Reload to use matching assets.');
   if (manifest.shapeFamily !== 'ashen-human-shape-v1' || manifest.targetNames?.join('|') !== 'slender|stout')

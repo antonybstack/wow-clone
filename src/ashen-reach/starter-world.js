@@ -28,16 +28,19 @@ import { createFoliage } from "./foliage.js";
 import { createLightShafts } from "./light-shafts.js";
 import { createAshMotes } from "./ash-motes.js";
 import { yieldToFrame } from "./frame-budget.js";
+import {withStartupResource} from './startup-fetch.js';
 
 const ROOT = "/ashen-reach/startup/starter/";
 async function checkedFetch(url) {
-  const response = await fetch(url);
-  if (!response.ok) throw Error(`${url}: HTTP ${response.status}`);
-  return response;
+  return withStartupResource(url,'request',async()=>{
+    const response = await fetch(url);
+    if (!response.ok) throw Error(`${url}: HTTP ${response.status}`);
+    return response;
+  });
 }
 export function preloadStarterWorld() {
   return checkedFetch(ROOT + "manifest.json").then(async (response) => {
-    const manifest = await response.json();
+    const manifest = await withStartupResource(ROOT+'manifest.json','manifest decoding',()=>response.json());
     const expected=import.meta.env.VITE_STARTER_WORLD_SOURCE;
     if(expected&&manifest.provenance?.sha256!==expected)throw Error('The world has been updated. Reload to use the matching starting assets.');
     // HTML already preloads the required maps. Fetching and discarding them here
@@ -47,9 +50,10 @@ export function preloadStarterWorld() {
     // https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/preload
     const bytesReady = (async () => {
       const response2 = await checkedFetch(ROOT + manifest.geometry.file);
-      const bytes = manifest.geometry.compression === 'http-br'
-        ? await response2.arrayBuffer() // Native HTTP Content-Encoding decoding.
-        : await new Response(response2.body.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
+      const bytes = await withStartupResource(ROOT+manifest.geometry.file,'geometry decoding',()=>
+        manifest.geometry.compression === 'http-br'
+          ? response2.arrayBuffer() // Native HTTP Content-Encoding decoding.
+          : new Response(response2.body.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer());
       if (bytes.byteLength !== manifest.geometry.rawBytes)
         throw Error("Starting world geometry is truncated");
       return bytes;
@@ -75,7 +79,8 @@ export async function createStarterWorld(engine, scene, prepared) {
   loadTexture2D(engine, manifest.textureURLs['/ashen-reach/sky-generated.jpg'],
     {invertY:false,mipMaps:true}).catch(()=>{});
   const mats = await Promise.all(
-    manifest.surfaces.map((s) => surface(engine, s.name, s.url, s.options)),
+    manifest.surfaces.map((s) => withStartupResource(manifest.textureURLs[s.url]??s.url,
+      `surface ${s.name} preparation`,()=>surface(engine, s.name, s.url, s.options))),
   );
   mats.forEach((m) => prepareLinearMaterial(scene, m));
   // Material/image preparation needs only the small manifest, so overlap it
@@ -353,7 +358,8 @@ export async function createStarterWorld(engine, scene, prepared) {
     );
   const shafts = await createLightShafts(engine, scene, m.shafts ?? []);
   if (shafts?.mesh) meshes.push(shafts.mesh);
-  const clouds = await sky(engine, scene),
+  const clouds = await withStartupResource(manifest.textureURLs['/ashen-reach/sky-generated.jpg']??'/ashen-reach/sky-generated.jpg',
+    'sky preparation',()=>sky(engine, scene)),
     motes = await createAshMotes(engine, scene, { lights: m.lights });
   if (motes?.mesh) meshes.push(motes.mesh);
   // Functions intentionally do not cross the JSON/worker boundary.

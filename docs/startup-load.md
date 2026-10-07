@@ -56,6 +56,17 @@ Run `node --test scripts/test-startup-prefetch.mjs` for sharing, migrations, ret
 
 Optional `ASHEN_PROBE_GPU_EVENTS=1`, `ASHEN_PROBE_CHROME_TRACE=1` and `ASHEN_PROBE_DISABLE_SHADER_CACHE=1` diagnose startup. Normal acceptance cohorts leave all three unset. API call times and queue acknowledgements do not isolate shader compilation or GPU execution; even fresh profiles do not clear OS/Metal driver caches. Preserve first-use outliers.
 
+When probing an older release with a custom saved Human identity, set
+`ASHEN_PROBE_IDENTITY_CATALOGUE=<verified-release-catalogue.json>`. Obtain and
+verify that release's catalogue before timing; the probe records its SHA-256 and
+checks identity components. The local checkout's content-addressed body filename
+may differ from production and must not turn a valid start into a false failure.
+The default is the local published catalogue, appropriate for the matching build.
+See the [corrected comparison and resource controls](plans/character-mmo/results/startup-resume-2026-10-06.md).
+Startup failure diagnostics retain the exact asset URL, operation and native
+cause, including a body read that fails after HTTP 200. A failed release entry
+halts further cohorts; successful diagnostics do not erase the failed cohort.
+
 ## Historical notes
 
 The [previous startup document](archive/state/startup-load-before-character-vision-2026-09-27.md) preserves older texture optimization and whole-world overlay assumptions. It is useful lineage, not the current readiness contract.

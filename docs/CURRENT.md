@@ -5,6 +5,27 @@ historical milestone documents are evidence, not an active task queue.
 
 ## Immediate target
 
+**Next priorities:** startup reliability and meaningful one-second headroom;
+release accepted improvements through the existing gates; a new skinned
+Fieldcoat through the factory; current physical iPhone acceptance. The
+[five-priority plan](plans/character-mmo/five-priorities-2026-10-06.md) preserves
+the active goal. Progress independent cloth work while the startup release hold
+is open; do not spend another turn repeating unchanged cold cohorts.
+
+**Resumed diagnostic checkpoint:** 29 focused tests, the flag-1 build, all three
+entry aliases, four built-game failure controls and default/maximum full-region
+movement pass. Request/decode errors now name the asset URL and failed operation while retaining
+the native cause, including decoding after HTTP 200. Six correctly pinned
+maximum-outfit diagnostics pass on production/candidate; the original public
+failure remains unexplained. The earlier production probe used the wrong local
+catalogue and is explicitly invalid. Reorder and animation resampling are
+rejected; unpublished position rounding saves only 82,440 maximum-outfit bytes,
+about 13.2 ms of theoretical transfer. No new public release gate or production
+promotion has occurred. [Result and receipt](plans/character-mmo/results/startup-resume-2026-10-06.md).
+Local `dist` is rebuilt from the diagnostic source with `ASHEN_SAVED_BOOTSTRAP=1`;
+old preview seals do not describe it. Current physical-device inventory has no
+connected iPhone.
+
 Restore the **public one-second startup target**. Production remains `6004840`
 with the historical clean failure: p95 **1,219.6 ms**, maximum **1,358.5 ms**,
 14/20 misses. M10 landscape is functionally live; complete release/startup and
@@ -160,11 +181,16 @@ preserve proportions. Physical phone and Telegram Desktop remain unverified.
   found no new gross fit failure. They do not certify all 9,072 valid combinations.
   Boot sole silhouette/aliasing, broader cloth authoring, licensed Elf source and
   physical iPhone startup/memory/thermal checks remain explicit follow-ups.
-- **Browser cleanup complete:** Grok `01a11486-aa20-7f13-b2cb-897cd55c3233`
-  closed slot 7 (Chrome 9841, Vite 9796/9816), all six fresh-process probes and
-  the forced-failure fixture. Root confirmed no owned Chrome, probe or preview
-  process and no listener on 10037 / 5873 / fixture 53472. No game tab is open
-  in Edge. Both modified probes pass syntax checks and twelve focused tests.
+- **Browser cleanup complete:** resumed comparison worker
+  `01a114a1-6ad7-7172-a27e-552436cda52c` closed all six fresh-process probes.
+  Resource worker `01a114b2-9e82-73d3-bc12-794666993e79` owned slot 7: Chrome
+  909/CDP 10037, Vite 857/880 on 5873 and compressed preview 787 on 7074.
+  All live contexts closed. Root audited the remaining about:blank page, stopped
+  that harness and exact preview PID, then confirmed no owned Chrome/probe/preview
+  process or listener on any of those ports. The report-only continuation
+  finished; the independent source review found no consequential defect.
+  Offline position worker
+  `01a114b6-b6d9-7831-a8c2-8ed0716858af` started no renderer and is terminal.
 - VE review tab 1147995772 and wrapper server 5966 remain closed. Temporary
   Telegram/Shadowglass playback guards were removed after diagnostics. Original
   connected media received their prior playback state; Shadowglass is restored,
@@ -176,9 +202,9 @@ preserve proportions. Physical phone and Telegram Desktop remain unverified.
   delegate operations exclusively to Grok; root implements and reviews. Freeze
   product inputs for gates; one worker owns browser/timing. Preserve unrelated
   AGENTS.md edits and caches. Source is committed/pushed; final docs need no rebuild.
-- Native goal reports **usageLimited** on the latest tool read; it is not complete.
-  This user-directed turn continues actionable startup diagnosis. Do not claim
-  the goal has resumed automatically. [Continuation limits](autonomous-continuation.md).
+- Native goal reports **active** on the resumed tool read; all five priorities
+  are not complete. User authorization remains autonomous implementation and
+  verification. [Continuation limits](autonomous-continuation.md).
 
 ## References
 

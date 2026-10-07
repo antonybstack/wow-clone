@@ -1,0 +1,905 @@
+{
+  "date": "2026-10-06",
+  "sourceBase": "cbe8583",
+  "productionSource": "6004840807cb47a908fb47dd87848f49f39f3268",
+  "productionChanged": false,
+  "releaseDecision": "hold; diagnostic success does not replace rejected public cohorts",
+  "comparison": [
+    {
+      "host": "production",
+      "run": 1,
+      "evidence": {
+        "path": ".cache/character-mmo/startup-resume-2026-10-06/compare-corrected-production-1.json",
+        "sha256": "3c2e5a30db572ad8107227eebeaa35c896f73451c8d3ea488bfabf635b91dc21"
+      },
+      "conditions": {
+        "requestedRuns": 1,
+        "budgetMs": null,
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "identityCatalogue": {
+          "file": ".cache/character-mmo/startup-resume-2026-10-06/production-catalogue.json",
+          "sha256": "9c9c025d4bba016a6144c4773c7248892161e1d08bb6ec8c2615ffae50b18c7e"
+        },
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "results": [
+        {
+          "origin": 1791347933864.9,
+          "playableMs": 1005.5999999940395,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "input": {
+            "keyAt": 1244.9000000059605,
+            "observedAt": 1276,
+            "position": {
+              "x": -0.0005158088820942689,
+              "z": 0.22938974912861484
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 31.099999994039536
+          },
+          "errors": [],
+          "run": 1,
+          "browserPid": "73762",
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-bacdc1e12bd0.bin",
+            "bodySha256": "e945fd251487bbe92f881b5a66532c58e7178c0d9889103b0ad75c5e684dc544"
+          }
+        }
+      ]
+    },
+    {
+      "host": "production",
+      "run": 2,
+      "evidence": {
+        "path": ".cache/character-mmo/startup-resume-2026-10-06/compare-corrected-production-2.json",
+        "sha256": "11212c7e80f015f28fd8865535e402040e3b33f0904ac667dab38df3d4b245ef"
+      },
+      "conditions": {
+        "requestedRuns": 1,
+        "budgetMs": null,
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "identityCatalogue": {
+          "file": ".cache/character-mmo/startup-resume-2026-10-06/production-catalogue.json",
+          "sha256": "9c9c025d4bba016a6144c4773c7248892161e1d08bb6ec8c2615ffae50b18c7e"
+        },
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "results": [
+        {
+          "origin": 1791347938141.5,
+          "playableMs": 990.4000000059605,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "input": {
+            "keyAt": 1227.9000000059605,
+            "observedAt": 1262.5,
+            "position": {
+              "x": -0.0005159135795385198,
+              "z": 0.23218956420148903
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 34.599999994039536
+          },
+          "errors": [],
+          "run": 1,
+          "browserPid": "73975",
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-bacdc1e12bd0.bin",
+            "bodySha256": "e945fd251487bbe92f881b5a66532c58e7178c0d9889103b0ad75c5e684dc544"
+          }
+        }
+      ]
+    },
+    {
+      "host": "production",
+      "run": 3,
+      "evidence": {
+        "path": ".cache/character-mmo/startup-resume-2026-10-06/compare-corrected-production-3.json",
+        "sha256": "9485bbfd0a69651c508e9e7621245828b2830663ed0bbef1b53c80ea8acb0c2d"
+      },
+      "conditions": {
+        "requestedRuns": 1,
+        "budgetMs": null,
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "identityCatalogue": {
+          "file": ".cache/character-mmo/startup-resume-2026-10-06/production-catalogue.json",
+          "sha256": "9c9c025d4bba016a6144c4773c7248892161e1d08bb6ec8c2615ffae50b18c7e"
+        },
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "results": [
+        {
+          "origin": 1791347942347.7,
+          "playableMs": 988.8000000119209,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "input": {
+            "keyAt": 1231.2000000178814,
+            "observedAt": 1266.0999999940395,
+            "position": {
+              "x": -0.000590404103692865,
+              "z": 0.23275811051021056
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 34.89999997615814
+          },
+          "errors": [],
+          "run": 1,
+          "browserPid": "74179",
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-bacdc1e12bd0.bin",
+            "bodySha256": "e945fd251487bbe92f881b5a66532c58e7178c0d9889103b0ad75c5e684dc544"
+          }
+        }
+      ]
+    },
+    {
+      "host": "candidate",
+      "run": 1,
+      "evidence": {
+        "path": ".cache/character-mmo/startup-resume-2026-10-06/compare-corrected-candidate-1.json",
+        "sha256": "7590787e7ff99f671826135f58f80e8164d3e79e354c143c6e8ed48f5a4f84e3"
+      },
+      "conditions": {
+        "requestedRuns": 1,
+        "budgetMs": null,
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "identityCatalogue": {
+          "file": "public/ashen-reach/human-identity-v1/manifest.json",
+          "sha256": "f1f31cfa7fce660591aea56030b92243a89f590c55c7b2a9799cfe24fd04c520"
+        },
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "results": [
+        {
+          "origin": 1791347936011.9,
+          "playableMs": 997.0999999940395,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "input": {
+            "keyAt": 1219,
+            "observedAt": 1249,
+            "position": {
+              "x": -0.0005521160328620361,
+              "z": 0.22862567752306792
+            },
+            "frames": 20,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 30
+          },
+          "errors": [],
+          "run": 1,
+          "browserPid": "73873",
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          }
+        }
+      ]
+    },
+    {
+      "host": "candidate",
+      "run": 2,
+      "evidence": {
+        "path": ".cache/character-mmo/startup-resume-2026-10-06/compare-corrected-candidate-2.json",
+        "sha256": "e1c9832438cb31de42af19612c82f8b4292c53aa70782bf86fe6c74333f859e9"
+      },
+      "conditions": {
+        "requestedRuns": 1,
+        "budgetMs": null,
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "identityCatalogue": {
+          "file": "public/ashen-reach/human-identity-v1/manifest.json",
+          "sha256": "f1f31cfa7fce660591aea56030b92243a89f590c55c7b2a9799cfe24fd04c520"
+        },
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "results": [
+        {
+          "origin": 1791347940295.6,
+          "playableMs": 917.4000000059605,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "input": {
+            "keyAt": 1149.5999999940395,
+            "observedAt": 1183.0999999940395,
+            "position": {
+              "x": -0.0005624698485705299,
+              "z": 0.23350740620992916
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 33.5
+          },
+          "errors": [],
+          "run": 1,
+          "browserPid": "74080",
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          }
+        }
+      ]
+    },
+    {
+      "host": "candidate",
+      "run": 3,
+      "evidence": {
+        "path": ".cache/character-mmo/startup-resume-2026-10-06/compare-corrected-candidate-3.json",
+        "sha256": "7171553949f52f46f506bd3ce1d51b4c64c4a61615bdf92322dea7582774bc71"
+      },
+      "conditions": {
+        "requestedRuns": 1,
+        "budgetMs": null,
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "identityCatalogue": {
+          "file": "public/ashen-reach/human-identity-v1/manifest.json",
+          "sha256": "f1f31cfa7fce660591aea56030b92243a89f590c55c7b2a9799cfe24fd04c520"
+        },
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "results": [
+        {
+          "origin": 1791347944532,
+          "playableMs": 927.0999999940395,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "gpuErrors": [],
+          "input": {
+            "keyAt": 1167.5,
+            "observedAt": 1196.5,
+            "position": {
+              "x": -0.0004507243223241188,
+              "z": 0.23300460422748157
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 29
+          },
+          "errors": [],
+          "run": 1,
+          "browserPid": "74284",
+          "selectedIdentity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a"
+          }
+        }
+      ]
+    }
+  ],
+  "invalidOriginalProbe": {
+    "path": ".cache/character-mmo/startup-resume-2026-10-06/compare-production-1.json",
+    "sha256": "b37c061d491cdcd8d934c60ade742ad2e139c45056de1cf88f012cc4dfb00c42"
+  },
+  "liveResourceControls": {
+    "origin": "http://127.0.0.1:7074",
+    "playUrl": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+    "bodyUrl": "/ashen-reach/startup/character/body-coverage-843a7f392521.bin",
+    "geometryUrl": "/ashen-reach/startup/starter/near-ccb9dc565ff6.br",
+    "textureUrl": "/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+    "cases": [
+      {
+        "name": "fail-body-abort",
+        "targetUrl": "/ashen-reach/startup/character/body-coverage-843a7f392521.bin",
+        "startedAt": "2026-10-07T04:56:28.698Z",
+        "state": {
+          "href": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+          "title": "Ashen Reach \u2014 art study",
+          "loadingPresent": true,
+          "loadingFailed": true,
+          "loadingHidden": false,
+          "overlayText": "Error: Startup resource /ashen-reach/startup/character/body-coverage-843a7f392521.bin: request failed: Failed to fetch\n    at be (http://127.0.0.1:7074/assets/v2/store-HjyxEmVt.js:1:14847)\n    at http://127.0.0.1:7074/assets/v2/store-HjyxEmVt.js:1:15483\nCaused by: TypeError: Failed to fetch\n    at M (http://127.0.0.1:7074/assets/v2/store-HjyxEmVt.js:1:15071)\n    at Te (http://127.0.0.1:7074/assets/v2/store-HjyxEmVt.js:1:16577)",
+          "loadingLine": "The gates could not open.",
+          "ashen": "object",
+          "playableReady": false,
+          "regionReady": false,
+          "ready": false,
+          "grounded": false,
+          "usingPhysics": false,
+          "canvas": [
+            1280,
+            720
+          ],
+          "frames": 0,
+          "gpuErrors": [],
+          "position": {
+            "x": 0,
+            "y": 0.8850265603533779,
+            "z": 0
+          }
+        },
+        "timedOut": false,
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:7074/ashen-reach/startup/character/body-coverage-843a7f392521.bin",
+            "error": "net::ERR_FAILED",
+            "method": "GET",
+            "resourceType": "other"
+          }
+        ],
+        "consoleErrors": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Error: Startup resource /ashen-reach/startup/character/body-coverage-843a7f392521.bin: request failed: Failed to fetch\n    at be (http://127.0.0.1:7074/assets/v2/store-HjyxEmVt.js:1:14847)\n    at http://127.0.0.1:7074/assets/v2/store-HjyxEmVt.js:1:15483"
+        ],
+        "affectedFailedRequests": [
+          {
+            "url": "http://127.0.0.1:7074/ashen-reach/startup/character/body-coverage-843a7f392521.bin",
+            "error": "net::ERR_FAILED",
+            "method": "GET",
+            "resourceType": "other"
+          }
+        ],
+        "overlayIncludesUrl": true,
+        "overlayIncludesCausedBy": true,
+        "playable": false,
+        "passed": true
+      },
+      {
+        "name": "fail-body-bad-gzip",
+        "targetUrl": "/ashen-reach/startup/character/body-coverage-843a7f392521.bin",
+        "startedAt": "2026-10-07T04:56:29.160Z",
+        "state": {
+          "href": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+          "title": "Ashen Reach \u2014 art study",
+          "loadingPresent": true,
+          "loadingFailed": true,
+          "loadingHidden": false,
+          "overlayText": "Error: Startup resource /ashen-reach/startup/character/body-coverage-843a7f392521.bin: body decoding failed: Failed to fetch\n    at be (http://127.0.0.1:7074/assets/v2/store-HjyxEmVt.js:1:14847)\n    at http://127.0.0.1:7074/assets/v2/store-HjyxEmVt.js:1:15483\nCaused by: TypeError: Failed to fetch",
+          "loadingLine": "The gates could not open.",
+          "ashen": "object",
+          "playableReady": false,
+          "regionReady": false,
+          "ready": false,
+          "grounded": false,
+          "usingPhysics": false,
+          "canvas": [
+            1280,
+            720
+          ],
+          "frames": 0,
+          "gpuErrors": [],
+          "position": {
+            "x": 0,
+            "y": 0.8850265603533779,
+            "z": 0
+          }
+        },
+        "timedOut": false,
+        "pageErrors": [],
+        "failedRequests": [],
+        "consoleErrors": [
+          "Error: Startup resource /ashen-reach/startup/character/body-coverage-843a7f392521.bin: body decoding failed: Failed to fetch\n    at be (http://127.0.0.1:7074/assets/v2/store-HjyxEmVt.js:1:14847)\n    at http://127.0.0.1:7074/assets/v2/store-HjyxEmVt.js:1:15483"
+        ],
+        "affectedFailedRequests": [],
+        "overlayIncludesUrl": true,
+        "overlayIncludesCausedBy": true,
+        "playable": false,
+        "passed": true
+      },
+      {
+        "name": "fail-near-geometry-abort",
+        "targetUrl": "/ashen-reach/startup/starter/near-ccb9dc565ff6.br",
+        "startedAt": "2026-10-07T04:56:29.596Z",
+        "state": {
+          "href": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+          "title": "Ashen Reach \u2014 art study",
+          "loadingPresent": true,
+          "loadingFailed": true,
+          "loadingHidden": false,
+          "overlayText": "Error: Startup resource /ashen-reach/startup/starter/near-ccb9dc565ff6.br: request failed: Failed to fetch\n    at be (http://127.0.0.1:7074/assets/v2/store-HjyxEmVt.js:1:14847)\n    at j (http://127.0.0.1:7074/assets/v2/store-HjyxEmVt.js:1:14987)\n    at async http://127.0.0.1:7074/assets/v2/ashen-boot-B3iuK7Rz.js:583:648\nCaused by: TypeError: Failed to fetch\n    at http://127.0.0.1:7074/assets/v2/ashen-boot-B3iuK7Rz.js:583:251\n    at j (http://127.0.0.1:7074/assets/v2/store-HjyxEmVt.js:1:14968)\n    at Ua (http://127.0.0.1:7074/assets/v2/ashen-boot-B3iuK7Rz.js:583:214)\n    at http://127.0.0.1:7074/assets/v2/ashen-boot-B3iuK7Rz.js:583:654\n    at http://127.0.0.1:7074/assets/v2/ashen-boot-B3iuK7Rz.js:583:963",
+          "loadingLine": "The gates could not open.",
+          "ashen": "undefined",
+          "playableReady": false,
+          "regionReady": false,
+          "ready": false,
+          "grounded": null,
+          "usingPhysics": null,
+          "canvas": [
+            1280,
+            720
+          ],
+          "frames": null,
+          "gpuErrors": [],
+          "position": null
+        },
+        "timedOut": false,
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/near-ccb9dc565ff6.br",
+            "error": "net::ERR_FAILED",
+            "method": "GET",
+            "resourceType": "other"
+          }
+        ],
+        "consoleErrors": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Error: Startup resource /ashen-reach/startup/starter/near-ccb9dc565ff6.br: request failed: Failed to fetch\n    at be (http://127.0.0.1:7074/assets/v2/store-HjyxEmVt.js:1:14847)\n    at j (http://127.0.0.1:7074/assets/v2/store-HjyxEmVt.js:1:14987)\n    at async http://127.0.0.1:7074/assets/v2/ashen-boot-B3iuK7Rz.js:583:648"
+        ],
+        "affectedFailedRequests": [
+          {
+            "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/near-ccb9dc565ff6.br",
+            "error": "net::ERR_FAILED",
+            "method": "GET",
+            "resourceType": "other"
+          }
+        ],
+        "overlayIncludesUrl": true,
+        "overlayIncludesCausedBy": true,
+        "playable": false,
+        "passed": true
+      },
+      {
+        "name": "fail-surface-texture-abort",
+        "targetUrl": "/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+        "startedAt": "2026-10-07T04:56:29.997Z",
+        "state": {
+          "href": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+          "title": "Ashen Reach \u2014 art study",
+          "loadingPresent": true,
+          "loadingFailed": true,
+          "loadingHidden": false,
+          "overlayText": "Error: Startup resource /ashen-reach/startup/starter/texture-6dc86c298450.webp: surface Moss and burial earth preparation failed: Failed to fetch\n    at be (http://127.0.0.1:7074/assets/v2/store-HjyxEmVt.js:1:14847)\n    at j (http://127.0.0.1:7074/assets/v2/store-HjyxEmVt.js:1:14987)\n    at async Promise.all (index 0)\n    at async Ga (http://127.0.0.1:7074/assets/v2/ashen-boot-B3iuK7Rz.js:583:1235)\n    at async W (http://127.0.0.1:7074/assets/v2/ashen-reach-D3Ih1rRk.js:4:686)\nCaused by: TypeError: Failed to fetch\n    at aa (http://127.0.0.1:7074/assets/v2/lite-runtime-WizfYVCp.js:1:54795)\n    at ia (http://127.0.0.1:7074/assets/v2/lite-runtime-WizfYVCp.js:1:54526)\n    at Ti (http://127.0.0.1:7074/assets/v2/ashen-boot-B3iuK7Rz.js:191:259)\n    at http://127.0.0.1:7074/assets/v2/ashen-boot-B3iuK7Rz.js:583:1338\n    at j (http://127.0.0.1:7074/assets/v2/store-HjyxEmVt.js:1:14968)\n    at http://127.0.0.1:7074/assets/v2/ashen-boot-B3iuK7Rz.js:583:1271\n    at Array.map (<anonymous>)\n    at Ga (http://127.0.0.1:7074/assets/v2/ashen-boot-B3iuK7Rz.js:583:1264)\n    at async W (http://127.0.0.1:7074/assets/v2/ashen-reach-D3Ih1rRk.js:4:686)",
+          "loadingLine": "The gates could not open.",
+          "ashen": "undefined",
+          "playableReady": false,
+          "regionReady": false,
+          "ready": false,
+          "grounded": null,
+          "usingPhysics": null,
+          "canvas": [
+            1280,
+            720
+          ],
+          "frames": null,
+          "gpuErrors": [],
+          "position": null
+        },
+        "timedOut": false,
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+            "error": "net::ERR_FAILED",
+            "method": "GET",
+            "resourceType": "other"
+          }
+        ],
+        "consoleErrors": [
+          "Failed to load resource: net::ERR_FAILED",
+          "Error: Startup resource /ashen-reach/startup/starter/texture-6dc86c298450.webp: surface Moss and burial earth preparation failed: Failed to fetch\n    at be (http://127.0.0.1:7074/assets/v2/store-HjyxEmVt.js:1:14847)\n    at j (http://127.0.0.1:7074/assets/v2/store-HjyxEmVt.js:1:14987)\n    at async Promise.all (index 0)\n    at async Ga (http://127.0.0.1:7074/assets/v2/ashen-boot-B3iuK7Rz.js:583:1235)\n    at async W (http://127.0.0.1:7074/assets/v2/ashen-reach-D3Ih1rRk.js:4:686)"
+        ],
+        "affectedFailedRequests": [
+          {
+            "url": "http://127.0.0.1:7074/ashen-reach/startup/starter/texture-6dc86c298450.webp",
+            "error": "net::ERR_FAILED",
+            "method": "GET",
+            "resourceType": "other"
+          }
+        ],
+        "overlayIncludesUrl": true,
+        "overlayIncludesCausedBy": true,
+        "playable": false,
+        "passed": true
+      },
+      {
+        "name": "default",
+        "seeded": false,
+        "startedAt": "2026-10-07T04:56:30.410Z",
+        "before": {
+          "href": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+          "title": "Ashen Reach \u2014 art study",
+          "loadingPresent": false,
+          "loadingFailed": false,
+          "loadingHidden": null,
+          "overlayText": "",
+          "loadingLine": "",
+          "ashen": "object",
+          "playableReady": true,
+          "regionReady": true,
+          "ready": true,
+          "grounded": true,
+          "usingPhysics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "frames": 1003,
+          "gpuErrors": [],
+          "position": {
+            "x": -0.00033775347557446375,
+            "y": 0.8881540075898016,
+            "z": -0.0005960355070183648
+          }
+        },
+        "after": {
+          "href": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+          "title": "Ashen Reach \u2014 art study",
+          "loadingPresent": false,
+          "loadingFailed": false,
+          "loadingHidden": null,
+          "overlayText": "",
+          "loadingLine": "",
+          "ashen": "object",
+          "playableReady": true,
+          "regionReady": true,
+          "ready": true,
+          "grounded": true,
+          "usingPhysics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "frames": 1005,
+          "gpuErrors": [],
+          "position": {
+            "x": -0.00033775478912550816,
+            "y": 0.9146501001163663,
+            "z": 0.2255039620497808
+          }
+        },
+        "pageErrors": [],
+        "consoleErrors": [],
+        "failedRequests": [],
+        "moved": 0.22609999755679916,
+        "frameDelta": 2,
+        "passed": true
+      },
+      {
+        "name": "maximum",
+        "seeded": true,
+        "startedAt": "2026-10-07T04:56:47.509Z",
+        "before": {
+          "href": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+          "title": "Ashen Reach \u2014 art study",
+          "loadingPresent": false,
+          "loadingFailed": false,
+          "loadingHidden": null,
+          "overlayText": "",
+          "loadingLine": "",
+          "ashen": "object",
+          "playableReady": true,
+          "regionReady": true,
+          "ready": true,
+          "grounded": true,
+          "usingPhysics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "frames": 935,
+          "gpuErrors": [],
+          "position": {
+            "x": -0.0007125201362727597,
+            "y": 1.019530957308613,
+            "z": -0.0012573883961327192
+          }
+        },
+        "after": {
+          "href": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+          "title": "Ashen Reach \u2014 art study",
+          "loadingPresent": false,
+          "loadingFailed": false,
+          "loadingHidden": null,
+          "overlayText": "",
+          "loadingLine": "",
+          "ashen": "object",
+          "playableReady": true,
+          "regionReady": true,
+          "ready": true,
+          "grounded": true,
+          "usingPhysics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "frames": 937,
+          "gpuErrors": [],
+          "position": {
+            "x": -0.0007125210087604937,
+            "y": 1.045780967533087,
+            "z": 0.22274260721809755
+          }
+        },
+        "pageErrors": [],
+        "consoleErrors": [],
+        "failedRequests": [],
+        "moved": 0.22399999561423026,
+        "frameDelta": 2,
+        "passed": true
+      }
+    ]
+  },
+  "unitTests": {
+    "passed": 29,
+    "failed": 0,
+    "evidence": {
+      "path": ".cache/character-mmo/startup-resume-2026-10-06/resource-unit-tests.txt",
+      "sha256": "a5976b989c85799abb1086b5c115401321dd64a1e649c30304b129dd6af05b33"
+    }
+  },
+  "build": {
+    "environment": {
+      "ASHEN_BUILD_ONLY": "1",
+      "ASHEN_SAVED_BOOTSTRAP": "1"
+    },
+    "evidence": {
+      "path": ".cache/character-mmo/startup-resume-2026-10-06/resource-build.txt",
+      "sha256": "174caed1781c81fc79e8a4da00861f87d2a1f6a4962b948ecf3c6a9f8cab0bac"
+    }
+  },
+  "entryAliases": {
+    "passed": 3,
+    "evidence": {
+      "path": ".cache/character-mmo/startup-resume-2026-10-06/resource-entry.txt",
+      "sha256": "29e4342f23e971deabda475886eefa2cafe6346a043b9c7c5b6a1d4d3b134d8d"
+    }
+  },
+  "offlineExperiments": {
+    "reorder": {
+      "path": ".cache/character-mmo/startup-resume-2026-10-06/reorder-table.json",
+      "sha256": "9e8e794dfcb55961c9004ace5af18452ea8f1e41d91c4fa9a31657f183974cf3"
+    },
+    "resample": {
+      "path": ".cache/character-mmo/startup-resume-2026-10-06/resample-table.json",
+      "sha256": "1a33978f347aea7965d310d60751b5858d9dfeb8c927652c3dc9a8717e6f1809"
+    },
+    "positions": {
+      "evidence": {
+        "path": ".cache/character-mmo/startup-resume-2026-10-06/position-table.json",
+        "sha256": "f20faff8ecff9758579da74cbcaceb2692ce9b1405b3330f93db0c89faf21b74"
+      },
+      "summary": [
+        {
+          "bits": 16,
+          "savingBytes": {
+            "maximum": 82440,
+            "historical": 132077
+          },
+          "maximumObjectSpaceBound": 7.649668374215932e-05,
+          "allOtherStreamsExact": true,
+          "scope": "unpublished offline Float32 experiment; no posed-world or live-fit acceptance"
+        },
+        {
+          "bits": 18,
+          "savingBytes": {
+            "maximum": 59943,
+            "historical": 93990
+          },
+          "maximumObjectSpaceBound": 1.891338953941449e-05,
+          "allOtherStreamsExact": true,
+          "scope": "unpublished offline Float32 experiment; no posed-world or live-fit acceptance"
+        }
+      ]
+    }
+  },
+  "sourceInputs": [
+    {
+      "path": "scripts/ashen-reach/probe-playable-startup.mjs",
+      "sha256": "2a6eb7b123e1cdb4a2a0af0d2da55d621356e71f2ed630a859c4b798ada998d2"
+    },
+    {
+      "path": "src/ashen-reach/startup-fetch.js",
+      "sha256": "517b2f3a73243825ffe7344de44ac63a2c3df576eac70cfb9d5d2e798e1a58d7"
+    },
+    {
+      "path": "src/ashen-reach/starter-world.js",
+      "sha256": "7bf0f7ae2b60d8c77a93a3855174ff72c406dbb17464e6681319853cbbc2f44d"
+    },
+    {
+      "path": "scripts/test-startup-resource-errors.mjs",
+      "sha256": "72a6dce1829a3c4e04548644c358b717aac11f15b08c9a590f35eeb140ae3d8d"
+    }
+  ],
+  "physicalDevice": "No connected physical iPhone in the current xctrace inventory; not accepted.",
+  "ownership": {
+    "resourceCheck": {
+      "owner": "grok-resource-verification",
+      "startedAt": "2026-10-07T04:53:43.360Z",
+      "purpose": "Independent review and live resource-failure / default+maximum functional checks against compressed dist on 7074",
+      "instances": [
+        {
+          "kind": "preview",
+          "pid": 787,
+          "port": 7074,
+          "url": "http://127.0.0.1:7074/",
+          "command": "ASHEN_PREVIEW_PORT=7074 node scripts/ashen-reach/serve-startup-preview.mjs dist",
+          "purpose": "compressed dist under test"
+        },
+        {
+          "kind": "vite",
+          "parentPid": 857,
+          "listenerPid": 880,
+          "port": 5873,
+          "url": "http://127.0.0.1:5873/",
+          "purpose": "harness slot 7 infrastructure; not used for live checks"
+        },
+        {
+          "kind": "chrome",
+          "pid": 909,
+          "cdpPort": 10037,
+          "slot": 7,
+          "headless": true,
+          "userDataDir": "/tmp/ashen-cdp-10037",
+          "initialPage": "http://127.0.0.1:5873/ashen-reach.html?play&clean",
+          "parkedAt": "about:blank",
+          "purpose": "sole owned game browser; one context/page at a time"
+        }
+      ],
+      "untouched": [
+        "user Edge",
+        "Orca 98938/98969",
+        "Cloudflare login tab"
+      ],
+      "active": false,
+      "endedAt": "2026-10-07T05:02:21.609924+00:00",
+      "cleanupOwner": "root after complete live report and CDP audit showing only about:blank"
+    },
+    "portsFree": [
+      10037,
+      5873,
+      7074
+    ],
+    "comparisonBrowsersClosed": true,
+    "positionExperimentNoRenderer": true
+  },
+  "reviewedCaptures": [
+    {
+      "path": ".cache/character-mmo/startup-resume-2026-10-06/resource-fail-body-bad-gzip/screenshot.png",
+      "sha256": "8b4395d5d836eb8f667a3007409a549a5fdab30e9966d9e32902b36de755fe14"
+    },
+    {
+      "path": ".cache/character-mmo/startup-resume-2026-10-06/resource-normal-maximum/screenshot.png",
+      "sha256": "73021374d4b522233287fe9df558226929553b45f0862721e604c3465929d6eb"
+    }
+  ],
+  "workerLimits": {
+    "resourceInitial": {
+      "session": "01a114b2-9e82-73d3-bc12-794666993e79",
+      "turns": 22,
+      "exit": "max turns after completed checks, before final report"
+    },
+    "position": {
+      "session": "01a114b6-b6d9-7831-a8c2-8ed0716858af",
+      "turns": 8,
+      "exit": "max turns after complete experiment table, before final report"
+    }
+  },
+  "independentReview": {
+    "reviewer": "Grok 4.6/high",
+    "path": ".cache/character-mmo/startup-resume-2026-10-06/resource-result.md",
+    "sha256": "202e6fddd63659878eac59235607f25da77036e0e4d12f0f5b836aef3d2032a6",
+    "verdict": "No consequential request/cache/cause defect",
+    "followup": "Starter geometry size validation is not URL-wrapped; not the observed fetch/decode failure."
+  }
+}

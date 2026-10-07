@@ -6,6 +6,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import os from "node:os";
 import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
 import assert from "node:assert/strict";
 import { chromium } from "playwright";
 import {migrateAppearance} from '../../src/character/appearance/contract.js';
@@ -21,8 +22,16 @@ const disableHttpCache = process.env.ASHEN_PROBE_DISABLE_HTTP_CACHE === '1';
 const seed=process.env.ASHEN_PROBE_APPEARANCE?JSON.parse(await fs.readFile(process.env.ASHEN_PROBE_APPEARANCE,'utf8')):null;
 const expectedSeed=seed?migrateAppearance(seed):null;
 const identity=expectedSeed?.race==='human'?findHumanIdentityPreset(expectedSeed.components):null;
+// Pin expectations to the build under test. Production may still use older
+// content-addressed bodies than the current checkout; a valid dressed start
+// must not become a false failure merely because its filename changed locally.
+// Download and verify a release catalogue before timing, then pass its path.
+// https://nodejs.org/api/crypto.html#cryptocreatehashalgorithm-options
+const identityCatalogueFile=process.env.ASHEN_PROBE_IDENTITY_CATALOGUE||'public/ashen-reach/human-identity-v1/manifest.json';
+const identityCatalogueBytes=identity&&identity.id!=='starter'?await fs.readFile(identityCatalogueFile):null;
 const identityPack=identity&&identity.id!=='starter'
-  ? JSON.parse(await fs.readFile('public/ashen-reach/human-identity-v1/manifest.json','utf8')).presets[identity.id].manifest:null;
+  ? JSON.parse(identityCatalogueBytes).presets[identity.id].manifest:null;
+if(identityPack)assert.deepEqual(identityPack.identity.components,identity.components,'Probe catalogue differs from the selected identity');
 const destination = process.argv[2];
 assert(destination, "Specify report.json");
 const runs = Number(process.env.ASHEN_PROBE_RUNS || 5),
@@ -53,6 +62,7 @@ const report = {
     requestedRuns:runs, budgetMs,
     gpuProbe, traceGpu, disableShaderCache, disableHttpCache,
     profile, savedAppearance:seed,expectedAppearance:expectedSeed,
+    identityCatalogue:identityCatalogueBytes?{file:identityCatalogueFile,sha256:createHash('sha256').update(identityCatalogueBytes).digest('hex')}:null,
     network: conditions[profile],
     cpu: os.cpus()[0]?.model,
     viewport: [1280, 720],
