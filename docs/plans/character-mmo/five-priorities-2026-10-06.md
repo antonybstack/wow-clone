@@ -101,6 +101,24 @@ maximum headroom from the retained body/fence data and investigate document
 response tails. Do not relabel callback windows as isolated GPU execution or
 repeat unchanged visits until a favourable distribution appears.
 
+Two subsequent bounded checks are closed without publication. The
+[lossless census](results/startup-lossless-census-2026-10-07.md) finds Q11 Brotli
+savings of 154,168 maximum-outfit bytes (24.7 ms ideal transfer, not measured
+startup); native accessor dedup saves nothing on the identity bodies. Default
+dedup saves only 7,845 gzip bytes. No new asset/transport contract is introduced
+for these results alone.
+
+The [sequential pre-Havok trial](results/startup-prime-overlap-2026-10-07.md)
+passes eleven native controls, including real held-WASM release/disposal/device
+loss, but regresses all six declared local pairs by 15.3–23.0 ms. Its prototype
+is removed; main.js is exactly restored to 865cf7d. No public rerun follows.
+The next bounded scheduling hypothesis must preserve native avatar/physics
+initialization: start and immediately observe the original setupPlayer promise,
+permit preparation while Havok is still pending, then require that original
+promise before mounting the body. Keep its scene-disposal cleanup and all
+completed supported-frame/input gates; repeat the held-WASM lifetime controls.
+Do not retain the rejected sequential ordering or reopen it under a new label.
+
 Sources: [pinned native engine API](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/engine/engine.ts),
 [pinned scene registration](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/scene/scene-core.ts).
 

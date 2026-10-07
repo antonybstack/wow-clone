@@ -1,0 +1,2015 @@
+{
+  "kind": "rejected local scheduling experiment; not release qualification",
+  "baseSource": "865cf7d",
+  "prototypeSource": {
+    "src/ashen-reach/main.js": "7cf52f32a7ef912bb9035eefc008f07b52fa6287c6a5734e20f7e5dd9d3ddf31",
+    "src/ashen-reach/prime-starter-world.js": "c56afa2041b50339159d2c6a79562c5dd063c5209abfe3da08c15a74218f8344",
+    "vite.config.js": "b054ebb58ab404a0701749db64329d9bfc028842436a92ddb3f799111ea2865c"
+  },
+  "restoredSource": "1de3121f7751377734fba5824b9a7ca537b3e5240cc2fb32f9ee49deb3265078",
+  "decision": "all six pairs regress; prototype removed; no public cohort or production change",
+  "method": {
+    "kind": "bounded-local-comparison",
+    "createdAt": "2026-10-07T09:43:48.490Z",
+    "builds": {
+      "before": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-prime-early-2026-10-07/build-early",
+      "overlap": "build-overlap"
+    },
+    "outfits": [
+      "default",
+      "maximum"
+    ],
+    "pairs": 3,
+    "orders": [
+      [
+        "before",
+        "overlap"
+      ],
+      [
+        "overlap",
+        "before"
+      ],
+      [
+        "before",
+        "overlap"
+      ]
+    ],
+    "runs": 12,
+    "profile": "50mbps",
+    "httpCache": "fresh process/profile, initially empty with native preload reuse",
+    "viewport": [
+      1280,
+      720
+    ],
+    "shaderCache": "OS/driver caches uncontrolled; no forced cache policy",
+    "maxMs": null,
+    "releaseGate": false
+  },
+  "declaration": {
+    "runs": 12,
+    "pairsPerOutfit": 3,
+    "orders": [
+      [
+        "before",
+        "overlap"
+      ],
+      [
+        "overlap",
+        "before"
+      ],
+      [
+        "before",
+        "overlap"
+      ]
+    ],
+    "outfits": [
+      "default",
+      "maximum"
+    ],
+    "beforeBuild": ".cache/character-mmo/startup-prime-early-2026-10-07/build-early",
+    "overlapBuild": ".cache/character-mmo/startup-prime-overlap-2026-10-07/build-overlap",
+    "conditions": "M1 Max; native Chromium WebGPU1280x720 DPR1; 50 decimal Mbit/s down/10 up/40 ms; fresh process/profile; initially empty HTTP cache with native preload reuse; no tracing/forced shader policy; uncontrolled OS/driver caches",
+    "releaseQualification": false,
+    "maxMs": null,
+    "policy": "stop on any failed visit; retain all attempts; no unchanged retry"
+  },
+  "commands": {
+    "syntax-main": {
+      "code": 0,
+      "signal": null,
+      "pid": 46694
+    },
+    "focused-tests": {
+      "code": 0,
+      "signal": null,
+      "pid": 46695
+    },
+    "build-overlap": {
+      "code": 0,
+      "signal": null,
+      "pid": 46700
+    },
+    "build-off": {
+      "code": 0,
+      "signal": null,
+      "pid": 46866
+    },
+    "native-check": {
+      "code": 0,
+      "signal": null,
+      "pid": 52964
+    },
+    "native-import-failure": {
+      "code": 0,
+      "signal": null,
+      "pid": 54406
+    },
+    "native-flag0": {
+      "code": 0,
+      "signal": null,
+      "pid": 54452
+    },
+    "paired-integrity-before": {
+      "code": 0,
+      "signal": null,
+      "pid": 61220
+    },
+    "paired-integrity-overlap": {
+      "code": 0,
+      "signal": null,
+      "pid": 61243
+    },
+    "paired-run": {
+      "code": 0,
+      "signal": null,
+      "pid": 61181
+    }
+  },
+  "tests": {
+    "passed": 20,
+    "failed": 0
+  },
+  "nativeCases": [
+    {
+      "name": "A-held-then-play",
+      "passed": true,
+      "distance": 0.11544547479672083,
+      "heldFailures": [],
+      "playFailures": []
+    },
+    {
+      "name": "B-gzip",
+      "passed": true,
+      "unexpected": [],
+      "failures": []
+    },
+    {
+      "name": "C-dispose",
+      "passed": true,
+      "unexpected": [],
+      "failures": []
+    },
+    {
+      "name": "D-device-loss",
+      "passed": true,
+      "unexpected": [],
+      "failures": []
+    },
+    {
+      "name": "E-default",
+      "passed": true,
+      "distance": 0.123200000166893,
+      "failures": []
+    },
+    {
+      "name": "F-maximum",
+      "passed": true,
+      "distance": 0.1211000000834465,
+      "failures": []
+    },
+    {
+      "name": "G-havok-release",
+      "passed": true,
+      "distance": 5.244493422897071
+    },
+    {
+      "name": "G-havok-dispose",
+      "passed": true,
+      "unexpected": []
+    },
+    {
+      "name": "G-havok-device-loss",
+      "passed": true,
+      "unexpected": []
+    }
+  ],
+  "nativeHavokCases": [
+    {
+      "name": "G-havok-release",
+      "startedAt": "2026-10-07T09:40:25.839Z",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "havokRequests": [
+        "http://127.0.0.1:7074/physics/HavokPhysics-8f4493dae88a.wasm.br"
+      ],
+      "distance": 5.244493422897071,
+      "passed": true,
+      "held": {
+        "href": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+        "loadingPresent": true,
+        "loadingFailed": false,
+        "loadingOpacity": 1,
+        "loadingDisplay": "flex",
+        "isLoading": true,
+        "overlayText": "",
+        "deviceLossVisible": false,
+        "deviceLossText": "",
+        "canvasInert": true,
+        "canvas": [
+          1280,
+          720
+        ],
+        "playableReady": false,
+        "hasBody": false,
+        "equipment": null,
+        "grounded": null,
+        "usingPhysics": null,
+        "recoveries": null,
+        "position": null,
+        "frames": 1,
+        "gpuErrors": [],
+        "marks": [
+          "begin",
+          "engine-created",
+          "gpu-probe-end",
+          "world-start",
+          "world-end",
+          "prime-world-start",
+          "prime-world-registered",
+          "prime-world-submitted",
+          "havok-start",
+          "havok-runtime-start"
+        ],
+        "inputForward": 0,
+        "loop": {
+          "rendered": 0,
+          "pending": 0,
+          "error": null
+        }
+      },
+      "bodyReleasedHavokHeld": {
+        "href": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+        "loadingPresent": true,
+        "loadingFailed": false,
+        "loadingOpacity": 1,
+        "loadingDisplay": "flex",
+        "isLoading": true,
+        "overlayText": "",
+        "deviceLossVisible": false,
+        "deviceLossText": "",
+        "canvasInert": true,
+        "canvas": [
+          1280,
+          720
+        ],
+        "playableReady": false,
+        "hasBody": false,
+        "equipment": null,
+        "grounded": null,
+        "usingPhysics": null,
+        "recoveries": null,
+        "position": null,
+        "frames": 1,
+        "gpuErrors": [],
+        "marks": [
+          "begin",
+          "engine-created",
+          "gpu-probe-end",
+          "world-start",
+          "world-end",
+          "prime-world-start",
+          "prime-world-registered",
+          "prime-world-submitted",
+          "havok-start",
+          "havok-runtime-start",
+          "prime-world-completed"
+        ],
+        "inputForward": 0,
+        "loop": {
+          "rendered": 0,
+          "pending": 0,
+          "error": null
+        }
+      },
+      "ready": {
+        "href": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+        "loadingPresent": false,
+        "loadingFailed": false,
+        "loadingOpacity": null,
+        "loadingDisplay": null,
+        "isLoading": false,
+        "overlayText": "",
+        "deviceLossVisible": false,
+        "deviceLossText": "",
+        "canvasInert": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "playableReady": true,
+        "hasBody": true,
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        },
+        "grounded": true,
+        "usingPhysics": true,
+        "recoveries": 0,
+        "position": {
+          "x": -0.00020550912903806172,
+          "y": 0.8851624536439776,
+          "z": -0.00036266314694245267
+        },
+        "frames": 6,
+        "gpuErrors": [],
+        "marks": [
+          "begin",
+          "engine-created",
+          "gpu-probe-end",
+          "world-start",
+          "world-end",
+          "prime-world-start",
+          "prime-world-registered",
+          "prime-world-submitted",
+          "havok-start",
+          "havok-runtime-start",
+          "prime-world-completed",
+          "havok-runtime-available",
+          "havok-runtime-end",
+          "havok-world-end",
+          "havok-colliders-end",
+          "havok-controller-end",
+          "havok-end",
+          "body-start",
+          "body-end",
+          "equipment-start",
+          "equipment-end",
+          "register-start",
+          "register-end",
+          "first-render-return",
+          "supported-frame-submitted",
+          "first-gpu-completed",
+          "supported-frame-completed",
+          "playable",
+          "bg-start"
+        ],
+        "inputForward": 0,
+        "loop": {
+          "rendered": 5,
+          "pending": 1,
+          "error": null
+        }
+      },
+      "moved": {
+        "href": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+        "loadingPresent": false,
+        "loadingFailed": false,
+        "loadingOpacity": null,
+        "loadingDisplay": null,
+        "isLoading": false,
+        "overlayText": "",
+        "deviceLossVisible": false,
+        "deviceLossText": "",
+        "canvasInert": false,
+        "canvas": [
+          1280,
+          720
+        ],
+        "playableReady": true,
+        "hasBody": true,
+        "equipment": {
+          "helmet": null,
+          "torso": "wayfarerTunic",
+          "legs": "wayfarerTrousers",
+          "boots": "wayfarerBoots",
+          "gloves": null,
+          "mainHand": "ironSword",
+          "offHand": null
+        },
+        "grounded": true,
+        "usingPhysics": true,
+        "recoveries": 0,
+        "position": {
+          "x": -0.0011294038313711876,
+          "y": 1.243681300176491,
+          "z": 5.244130678371304
+        },
+        "frames": 76,
+        "gpuErrors": [],
+        "marks": [
+          "begin",
+          "engine-created",
+          "gpu-probe-end",
+          "world-start",
+          "world-end",
+          "prime-world-start",
+          "prime-world-registered",
+          "prime-world-submitted",
+          "havok-start",
+          "havok-runtime-start",
+          "prime-world-completed",
+          "havok-runtime-available",
+          "havok-runtime-end",
+          "havok-world-end",
+          "havok-colliders-end",
+          "havok-controller-end",
+          "havok-end",
+          "body-start",
+          "body-end",
+          "equipment-start",
+          "equipment-end",
+          "register-start",
+          "register-end",
+          "first-render-return",
+          "supported-frame-submitted",
+          "first-gpu-completed",
+          "supported-frame-completed",
+          "playable",
+          "bg-start",
+          "bg-imports-end",
+          "bg-dummy-end",
+          "bg-enemies-end",
+          "combat-ready",
+          "late-register-start",
+          "late-register-end",
+          "hostiles-ready"
+        ],
+        "inputForward": 1,
+        "loop": {
+          "rendered": 75,
+          "pending": 1,
+          "error": null
+        }
+      }
+    },
+    {
+      "name": "G-havok-dispose",
+      "startedAt": "2026-10-07T09:40:28.284Z",
+      "pageErrors": [],
+      "consoleErrors": [
+        "Error: Scene disposed during asynchronous loading\n    at http://127.0.0.1:7074/assets/v2/ashen-boot-B3YeEhnd.js:2:1461\n    at http://127.0.0.1:7074/assets/v2/lite-runtime-DlqavT_F.js:1:210307\n    at Array.forEach (<anonymous>)\n    at http://127.0.0.1:7074/assets/v2/lite-runtime-DlqavT_F.js:1:210296\n    at Iu (http://127.0.0.1:7074/assets/v2/lite-runtime-DlqavT_F.js:1:210766)\n    at Object.dispose (http://127.0.0.1:7074/assets/v2/ashen-reach-B21_qn_s.js:4:4192)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:34)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+      ],
+      "failedRequests": [],
+      "havokRequests": [
+        "http://127.0.0.1:7074/physics/HavokPhysics-8f4493dae88a.wasm.br"
+      ],
+      "startAfterStop": "Frame scheduler is terminal",
+      "unexpected": [],
+      "passed": true,
+      "held": {
+        "href": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+        "loadingPresent": true,
+        "loadingFailed": false,
+        "loadingOpacity": 1,
+        "loadingDisplay": "flex",
+        "isLoading": true,
+        "overlayText": "",
+        "deviceLossVisible": false,
+        "deviceLossText": "",
+        "canvasInert": true,
+        "canvas": [
+          1280,
+          720
+        ],
+        "playableReady": false,
+        "hasBody": false,
+        "equipment": null,
+        "grounded": null,
+        "usingPhysics": null,
+        "recoveries": null,
+        "position": null,
+        "frames": 1,
+        "gpuErrors": [],
+        "marks": [
+          "begin",
+          "engine-created",
+          "gpu-probe-end",
+          "world-start",
+          "world-end",
+          "prime-world-start",
+          "prime-world-registered",
+          "prime-world-submitted",
+          "havok-start",
+          "havok-runtime-start"
+        ],
+        "inputForward": 0,
+        "loop": {
+          "rendered": 0,
+          "pending": 0,
+          "error": null
+        }
+      },
+      "terminal": {
+        "href": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+        "loadingPresent": true,
+        "loadingFailed": true,
+        "loadingOpacity": 1,
+        "loadingDisplay": "flex",
+        "isLoading": true,
+        "overlayText": "Error: Scene disposed during asynchronous loading\n    at http://127.0.0.1:7074/assets/v2/ashen-boot-B3YeEhnd.js:2:1461\n    at http://127.0.0.1:7074/assets/v2/lite-runtime-DlqavT_F.js:1:210307\n    at Array.forEach (<anonymous>)\n    at http://127.0.0.1:7074/assets/v2/lite-runtime-DlqavT_F.js:1:210296\n    at Iu (http://127.0.0.1:7074/assets/v2/lite-runtime-DlqavT_F.js:1:210766)\n    at Object.dispose (http://127.0.0.1:7074/assets/v2/ashen-reach-B21_qn_s.js:4:4192)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:34)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+        "deviceLossVisible": false,
+        "deviceLossText": "",
+        "canvasInert": true,
+        "canvas": [
+          1280,
+          720
+        ],
+        "playableReady": false,
+        "hasBody": false,
+        "equipment": null,
+        "grounded": null,
+        "usingPhysics": null,
+        "recoveries": null,
+        "position": null,
+        "frames": 1,
+        "gpuErrors": [],
+        "marks": [
+          "begin",
+          "engine-created",
+          "gpu-probe-end",
+          "world-start",
+          "world-end",
+          "prime-world-start",
+          "prime-world-registered",
+          "prime-world-submitted",
+          "havok-start",
+          "havok-runtime-start",
+          "prime-world-completed"
+        ],
+        "inputForward": 0,
+        "loop": {
+          "rendered": 0,
+          "pending": 0,
+          "error": null
+        }
+      },
+      "afterRelease": {
+        "href": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+        "loadingPresent": true,
+        "loadingFailed": true,
+        "loadingOpacity": 1,
+        "loadingDisplay": "flex",
+        "isLoading": true,
+        "overlayText": "Error: Scene disposed during asynchronous loading\n    at http://127.0.0.1:7074/assets/v2/ashen-boot-B3YeEhnd.js:2:1461\n    at http://127.0.0.1:7074/assets/v2/lite-runtime-DlqavT_F.js:1:210307\n    at Array.forEach (<anonymous>)\n    at http://127.0.0.1:7074/assets/v2/lite-runtime-DlqavT_F.js:1:210296\n    at Iu (http://127.0.0.1:7074/assets/v2/lite-runtime-DlqavT_F.js:1:210766)\n    at Object.dispose (http://127.0.0.1:7074/assets/v2/ashen-reach-B21_qn_s.js:4:4192)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:34)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+        "deviceLossVisible": false,
+        "deviceLossText": "",
+        "canvasInert": true,
+        "canvas": [
+          1280,
+          720
+        ],
+        "playableReady": false,
+        "hasBody": false,
+        "equipment": null,
+        "grounded": null,
+        "usingPhysics": null,
+        "recoveries": null,
+        "position": null,
+        "frames": 1,
+        "gpuErrors": [],
+        "marks": [
+          "begin",
+          "engine-created",
+          "gpu-probe-end",
+          "world-start",
+          "world-end",
+          "prime-world-start",
+          "prime-world-registered",
+          "prime-world-submitted",
+          "havok-start",
+          "havok-runtime-start",
+          "prime-world-completed",
+          "havok-runtime-available",
+          "havok-runtime-end"
+        ],
+        "inputForward": 0,
+        "loop": {
+          "rendered": 0,
+          "pending": 0,
+          "error": null
+        }
+      }
+    },
+    {
+      "name": "G-havok-device-loss",
+      "startedAt": "2026-10-07T09:40:30.027Z",
+      "pageErrors": [],
+      "consoleErrors": [
+        "Error: GPU device lost: Device was destroyed.\n    at http://127.0.0.1:7074/assets/v2/ashen-boot-B3YeEhnd.js:2:6816 GPUDeviceLostInfo",
+        "Error: Scene disposed during asynchronous loading\n    at http://127.0.0.1:7074/assets/v2/ashen-boot-B3YeEhnd.js:2:1461\n    at http://127.0.0.1:7074/assets/v2/lite-runtime-DlqavT_F.js:1:210307\n    at Array.forEach (<anonymous>)\n    at http://127.0.0.1:7074/assets/v2/lite-runtime-DlqavT_F.js:1:210296\n    at Iu (http://127.0.0.1:7074/assets/v2/lite-runtime-DlqavT_F.js:1:210766)\n    at onDeviceLost (http://127.0.0.1:7074/assets/v2/ashen-reach-B21_qn_s.js:4:5268)\n    at http://127.0.0.1:7074/assets/v2/ashen-boot-B3YeEhnd.js:2:6814"
+      ],
+      "failedRequests": [],
+      "havokRequests": [
+        "http://127.0.0.1:7074/physics/HavokPhysics-8f4493dae88a.wasm.br"
+      ],
+      "startAfterStop": "Frame scheduler is terminal",
+      "unexpected": [],
+      "passed": true,
+      "held": {
+        "href": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+        "loadingPresent": true,
+        "loadingFailed": false,
+        "loadingOpacity": 1,
+        "loadingDisplay": "flex",
+        "isLoading": true,
+        "overlayText": "",
+        "deviceLossVisible": false,
+        "deviceLossText": "",
+        "canvasInert": true,
+        "canvas": [
+          1280,
+          720
+        ],
+        "playableReady": false,
+        "hasBody": false,
+        "equipment": null,
+        "grounded": null,
+        "usingPhysics": null,
+        "recoveries": null,
+        "position": null,
+        "frames": 1,
+        "gpuErrors": [],
+        "marks": [
+          "begin",
+          "engine-created",
+          "gpu-probe-end",
+          "world-start",
+          "world-end",
+          "prime-world-start",
+          "prime-world-registered",
+          "prime-world-submitted",
+          "havok-start",
+          "havok-runtime-start"
+        ],
+        "inputForward": 0,
+        "loop": {
+          "rendered": 0,
+          "pending": 0,
+          "error": null
+        }
+      },
+      "terminal": {
+        "href": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+        "loadingPresent": true,
+        "loadingFailed": true,
+        "loadingOpacity": 1,
+        "loadingDisplay": "flex",
+        "isLoading": false,
+        "overlayText": "Error: Scene disposed during asynchronous loading\n    at http://127.0.0.1:7074/assets/v2/ashen-boot-B3YeEhnd.js:2:1461\n    at http://127.0.0.1:7074/assets/v2/lite-runtime-DlqavT_F.js:1:210307\n    at Array.forEach (<anonymous>)\n    at http://127.0.0.1:7074/assets/v2/lite-runtime-DlqavT_F.js:1:210296\n    at Iu (http://127.0.0.1:7074/assets/v2/lite-runtime-DlqavT_F.js:1:210766)\n    at onDeviceLost (http://127.0.0.1:7074/assets/v2/ashen-reach-B21_qn_s.js:4:5268)\n    at http://127.0.0.1:7074/assets/v2/ashen-boot-B3YeEhnd.js:2:6814",
+        "deviceLossVisible": true,
+        "deviceLossText": "Error: GPU device lost: Device was destroyed.\n    at http://127.0.0.1:7074/assets/v2/ashen-boot-B3YeEhnd.js:2:6816",
+        "canvasInert": true,
+        "canvas": [
+          1280,
+          720
+        ],
+        "playableReady": false,
+        "hasBody": false,
+        "equipment": null,
+        "grounded": null,
+        "usingPhysics": null,
+        "recoveries": null,
+        "position": null,
+        "frames": 1,
+        "gpuErrors": [
+          "Device lost (destroyed): Device was destroyed."
+        ],
+        "marks": [
+          "begin",
+          "engine-created",
+          "gpu-probe-end",
+          "world-start",
+          "world-end",
+          "prime-world-start",
+          "prime-world-registered",
+          "prime-world-submitted",
+          "havok-start",
+          "havok-runtime-start",
+          "prime-world-completed"
+        ],
+        "inputForward": 0,
+        "loop": {
+          "rendered": 0,
+          "pending": 0,
+          "error": null
+        }
+      },
+      "afterRelease": {
+        "href": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+        "loadingPresent": true,
+        "loadingFailed": true,
+        "loadingOpacity": 1,
+        "loadingDisplay": "flex",
+        "isLoading": false,
+        "overlayText": "Error: Scene disposed during asynchronous loading\n    at http://127.0.0.1:7074/assets/v2/ashen-boot-B3YeEhnd.js:2:1461\n    at http://127.0.0.1:7074/assets/v2/lite-runtime-DlqavT_F.js:1:210307\n    at Array.forEach (<anonymous>)\n    at http://127.0.0.1:7074/assets/v2/lite-runtime-DlqavT_F.js:1:210296\n    at Iu (http://127.0.0.1:7074/assets/v2/lite-runtime-DlqavT_F.js:1:210766)\n    at onDeviceLost (http://127.0.0.1:7074/assets/v2/ashen-reach-B21_qn_s.js:4:5268)\n    at http://127.0.0.1:7074/assets/v2/ashen-boot-B3YeEhnd.js:2:6814",
+        "deviceLossVisible": true,
+        "deviceLossText": "Error: GPU device lost: Device was destroyed.\n    at http://127.0.0.1:7074/assets/v2/ashen-boot-B3YeEhnd.js:2:6816",
+        "canvasInert": true,
+        "canvas": [
+          1280,
+          720
+        ],
+        "playableReady": false,
+        "hasBody": false,
+        "equipment": null,
+        "grounded": null,
+        "usingPhysics": null,
+        "recoveries": null,
+        "position": null,
+        "frames": 1,
+        "gpuErrors": [
+          "Device lost (destroyed): Device was destroyed."
+        ],
+        "marks": [
+          "begin",
+          "engine-created",
+          "gpu-probe-end",
+          "world-start",
+          "world-end",
+          "prime-world-start",
+          "prime-world-registered",
+          "prime-world-submitted",
+          "havok-start",
+          "havok-runtime-start",
+          "prime-world-completed",
+          "havok-runtime-available",
+          "havok-runtime-end"
+        ],
+        "inputForward": 0,
+        "loop": {
+          "rendered": 0,
+          "pending": 0,
+          "error": null
+        }
+      }
+    }
+  ],
+  "pairedRows": [
+    {
+      "outfit": "default",
+      "pair": 1,
+      "mode": "before",
+      "playableMs": 535.0999999642372,
+      "marks": {
+        "begin": 191,
+        "engine-created": 199.0999999642372,
+        "gpu-probe-end": 200.80000001192093,
+        "world-start": 202.80000001192093,
+        "havok-runtime-available": 256.80000001192093,
+        "world-end": 307.5,
+        "havok-start": 308.5999999642372,
+        "havok-runtime-start": 309.39999997615814,
+        "havok-runtime-end": 309.39999997615814,
+        "havok-world-end": 311.30000001192093,
+        "havok-colliders-end": 318,
+        "havok-controller-end": 319.0999999642372,
+        "havok-end": 320.19999998807907,
+        "prime-world-start": 320.39999997615814,
+        "prime-world-registered": 334.19999998807907,
+        "prime-world-submitted": 341,
+        "prime-world-completed": 426.30000001192093,
+        "body-start": 457.5999999642372,
+        "body-end": 471,
+        "equipment-start": 471.89999997615814,
+        "equipment-end": 482.5999999642372,
+        "register-start": 485,
+        "register-end": 497.69999998807907,
+        "first-render-return": 501.89999997615814,
+        "supported-frame-submitted": 525.6999999880791,
+        "first-gpu-completed": 526.3999999761581,
+        "supported-frame-completed": 534.8000000119209,
+        "playable": 535.0999999642372,
+        "bg-start": 535.3000000119209
+      },
+      "errors": [],
+      "gpuErrors": [],
+      "grounded": true,
+      "physics": true,
+      "canvas": [
+        1280,
+        720
+      ],
+      "loader": false,
+      "equipment": {
+        "helmet": null,
+        "torso": "wayfarerTunic",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "ironSword",
+        "offHand": null
+      },
+      "nativeIdentity": [
+        {
+          "name": "HumanV1Body",
+          "visible": true,
+          "weights": null
+        }
+      ],
+      "input": {
+        "keyAt": 774.5999999642372,
+        "observedAt": 816.5999999642372,
+        "position": {
+          "x": -0.00010458158309502275,
+          "z": 0.23361544452746197
+        },
+        "frames": 21,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 42
+      },
+      "browserOwnership": {
+        "owner": "probe-playable-startup",
+        "browserPid": "61245",
+        "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+        "active": false
+      },
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 61244
+      },
+      "rawSha256": "4578f9bf57d7e6e3185684ed758956c3b1d32729a0800a9abccfad858b055bc6"
+    },
+    {
+      "outfit": "default",
+      "pair": 1,
+      "mode": "overlap",
+      "playableMs": 558.0999999642372,
+      "marks": {
+        "begin": 193.39999997615814,
+        "engine-created": 201.5999999642372,
+        "gpu-probe-end": 203.5,
+        "world-start": 205.5,
+        "havok-runtime-available": 259.89999997615814,
+        "world-end": 310.19999998807907,
+        "prime-world-start": 311.5,
+        "prime-world-registered": 322.5999999642372,
+        "prime-world-submitted": 327.5,
+        "havok-start": 327.5999999642372,
+        "havok-runtime-start": 328.39999997615814,
+        "havok-runtime-end": 328.39999997615814,
+        "havok-world-end": 330.39999997615814,
+        "havok-colliders-end": 337.39999997615814,
+        "havok-controller-end": 338.5999999642372,
+        "havok-end": 339.5999999642372,
+        "prime-world-completed": 409.2999999523163,
+        "body-start": 460.89999997615814,
+        "body-end": 473.7999999523163,
+        "equipment-start": 474.89999997615814,
+        "equipment-end": 485,
+        "register-start": 487.39999997615814,
+        "register-end": 502.69999998807907,
+        "first-render-return": 514.5999999642372,
+        "supported-frame-submitted": 532.1999999880791,
+        "first-gpu-completed": 549.0999999642372,
+        "supported-frame-completed": 557.7999999523163,
+        "playable": 558.0999999642372,
+        "bg-start": 558.2999999523163
+      },
+      "errors": [],
+      "gpuErrors": [],
+      "grounded": true,
+      "physics": true,
+      "canvas": [
+        1280,
+        720
+      ],
+      "loader": false,
+      "equipment": {
+        "helmet": null,
+        "torso": "wayfarerTunic",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "ironSword",
+        "offHand": null
+      },
+      "nativeIdentity": [
+        {
+          "name": "HumanV1Body",
+          "visible": true,
+          "weights": null
+        }
+      ],
+      "input": {
+        "keyAt": 818,
+        "observedAt": 853.1999999880791,
+        "position": {
+          "x": -0.00020475842659773715,
+          "z": 0.2138386613720366
+        },
+        "frames": 23,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 35.19999998807907
+      },
+      "browserOwnership": {
+        "owner": "probe-playable-startup",
+        "browserPid": "61326",
+        "url": "http://127.0.0.1:7075/?play=&clean=&pixelRatio=1",
+        "active": false
+      },
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 61325
+      },
+      "rawSha256": "77506972c2be3577762a824c468e588bda2c2565119d7963b1c3028b459633a7"
+    },
+    {
+      "outfit": "default",
+      "pair": 2,
+      "mode": "overlap",
+      "playableMs": 550.5,
+      "marks": {
+        "begin": 190,
+        "engine-created": 198.60000002384186,
+        "gpu-probe-end": 204.70000004768372,
+        "world-start": 206.60000002384186,
+        "havok-runtime-available": 256,
+        "world-end": 307.2000000476837,
+        "prime-world-start": 308.30000001192093,
+        "prime-world-registered": 319.80000001192093,
+        "prime-world-submitted": 324.7000000476837,
+        "havok-start": 324.7000000476837,
+        "havok-runtime-start": 325.60000002384186,
+        "havok-runtime-end": 325.60000002384186,
+        "havok-world-end": 327.5,
+        "havok-colliders-end": 334.7000000476837,
+        "havok-controller-end": 336,
+        "havok-end": 337,
+        "prime-world-completed": 407.60000002384186,
+        "body-start": 456.4000000357628,
+        "body-end": 469.30000001192093,
+        "equipment-start": 470.30000001192093,
+        "equipment-end": 480.5,
+        "register-start": 483,
+        "register-end": 498,
+        "first-render-return": 509.9000000357628,
+        "supported-frame-submitted": 533.3000000119209,
+        "first-gpu-completed": 543.3000000119209,
+        "supported-frame-completed": 550.2000000476837,
+        "playable": 550.5,
+        "bg-start": 550.6000000238419
+      },
+      "errors": [],
+      "gpuErrors": [],
+      "grounded": true,
+      "physics": true,
+      "canvas": [
+        1280,
+        720
+      ],
+      "loader": false,
+      "equipment": {
+        "helmet": null,
+        "torso": "wayfarerTunic",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "ironSword",
+        "offHand": null
+      },
+      "nativeIdentity": [
+        {
+          "name": "HumanV1Body",
+          "visible": true,
+          "weights": null
+        }
+      ],
+      "input": {
+        "keyAt": 789.1000000238419,
+        "observedAt": 822.2000000476837,
+        "position": {
+          "x": -0.00019848211856400862,
+          "z": 0.23204973779291954
+        },
+        "frames": 21,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 33.10000002384186
+      },
+      "browserOwnership": {
+        "owner": "probe-playable-startup",
+        "browserPid": "61418",
+        "url": "http://127.0.0.1:7075/?play=&clean=&pixelRatio=1",
+        "active": false
+      },
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 61397
+      },
+      "rawSha256": "0762205e5485d9d9aa6a425afc9b3ac14f44a79b125d2255198b108fe6e76756"
+    },
+    {
+      "outfit": "default",
+      "pair": 2,
+      "mode": "before",
+      "playableMs": 533.4000000357628,
+      "marks": {
+        "begin": 190.80000001192093,
+        "engine-created": 198.80000001192093,
+        "gpu-probe-end": 200.60000002384186,
+        "world-start": 202.60000002384186,
+        "havok-runtime-available": 256.80000001192093,
+        "world-end": 307.60000002384186,
+        "havok-start": 308.60000002384186,
+        "havok-runtime-start": 309.60000002384186,
+        "havok-runtime-end": 309.60000002384186,
+        "havok-world-end": 311.5,
+        "havok-colliders-end": 318.30000001192093,
+        "havok-controller-end": 319.5,
+        "havok-end": 320.5,
+        "prime-world-start": 320.7000000476837,
+        "prime-world-registered": 334.9000000357628,
+        "prime-world-submitted": 341.60000002384186,
+        "prime-world-completed": 427.5,
+        "body-start": 458.10000002384186,
+        "body-end": 470.9000000357628,
+        "equipment-start": 471.9000000357628,
+        "equipment-end": 482.2000000476837,
+        "register-start": 484.60000002384186,
+        "register-end": 496.80000001192093,
+        "first-render-return": 501,
+        "supported-frame-submitted": 526.3000000119209,
+        "first-gpu-completed": 527,
+        "supported-frame-completed": 533.2000000476837,
+        "playable": 533.4000000357628,
+        "bg-start": 533.5
+      },
+      "errors": [],
+      "gpuErrors": [],
+      "grounded": true,
+      "physics": true,
+      "canvas": [
+        1280,
+        720
+      ],
+      "loader": false,
+      "equipment": {
+        "helmet": null,
+        "torso": "wayfarerTunic",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "ironSword",
+        "offHand": null
+      },
+      "nativeIdentity": [
+        {
+          "name": "HumanV1Body",
+          "visible": true,
+          "weights": null
+        }
+      ],
+      "input": {
+        "keyAt": 772.4000000357628,
+        "observedAt": 798.1000000238419,
+        "position": {
+          "x": -0.00013003405062804454,
+          "z": 0.23077052816029123
+        },
+        "frames": 20,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 25.69999998807907
+      },
+      "browserOwnership": {
+        "owner": "probe-playable-startup",
+        "browserPid": "61485",
+        "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+        "active": false
+      },
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 61464
+      },
+      "rawSha256": "b0e77399cf7a2226871f52f5a9ed275c98702958abb386b7fec85f84eeb17534"
+    },
+    {
+      "outfit": "default",
+      "pair": 3,
+      "mode": "before",
+      "playableMs": 536.8999999761581,
+      "marks": {
+        "begin": 191.30000001192093,
+        "engine-created": 200.19999998807907,
+        "gpu-probe-end": 201.89999997615814,
+        "world-start": 203.89999997615814,
+        "havok-runtime-available": 256,
+        "world-end": 308.10000002384186,
+        "havok-start": 309.19999998807907,
+        "havok-runtime-start": 310.10000002384186,
+        "havok-runtime-end": 310.10000002384186,
+        "havok-world-end": 311.89999997615814,
+        "havok-colliders-end": 318.69999998807907,
+        "havok-controller-end": 319.89999997615814,
+        "havok-end": 321,
+        "prime-world-start": 321.19999998807907,
+        "prime-world-registered": 335.69999998807907,
+        "prime-world-submitted": 342.69999998807907,
+        "prime-world-completed": 430.19999998807907,
+        "body-start": 457.39999997615814,
+        "body-end": 470.39999997615814,
+        "equipment-start": 471.39999997615814,
+        "equipment-end": 481.80000001192093,
+        "register-start": 484.10000002384186,
+        "register-end": 496.60000002384186,
+        "first-render-return": 500.69999998807907,
+        "first-gpu-completed": 523.8999999761581,
+        "supported-frame-submitted": 529.5,
+        "supported-frame-completed": 536.1999999880791,
+        "playable": 536.8999999761581,
+        "bg-start": 537
+      },
+      "errors": [],
+      "gpuErrors": [],
+      "grounded": true,
+      "physics": true,
+      "canvas": [
+        1280,
+        720
+      ],
+      "loader": false,
+      "equipment": {
+        "helmet": null,
+        "torso": "wayfarerTunic",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "ironSword",
+        "offHand": null
+      },
+      "nativeIdentity": [
+        {
+          "name": "HumanV1Body",
+          "visible": true,
+          "weights": null
+        }
+      ],
+      "input": {
+        "keyAt": 776.6000000238419,
+        "observedAt": 805,
+        "position": {
+          "x": -0.0003049761750296769,
+          "z": 0.23326180703293892
+        },
+        "frames": 20,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 28.399999976158142
+      },
+      "browserOwnership": {
+        "owner": "probe-playable-startup",
+        "browserPid": "61655",
+        "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+        "active": false
+      },
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 61558
+      },
+      "rawSha256": "27c83f18755e70622fb6ccfa5351befc4cfe4d36ac0b5067aec0808193ffc44a"
+    },
+    {
+      "outfit": "default",
+      "pair": 3,
+      "mode": "overlap",
+      "playableMs": 552.1999999880791,
+      "marks": {
+        "begin": 192.5,
+        "engine-created": 200.5,
+        "gpu-probe-end": 202.30000001192093,
+        "world-start": 204.19999998807907,
+        "havok-runtime-available": 257.80000001192093,
+        "world-end": 309.69999998807907,
+        "prime-world-start": 311.10000002384186,
+        "prime-world-registered": 323.30000001192093,
+        "prime-world-submitted": 327.60000002384186,
+        "havok-start": 327.60000002384186,
+        "havok-runtime-start": 328.4000000357628,
+        "havok-runtime-end": 328.4000000357628,
+        "havok-world-end": 330.10000002384186,
+        "havok-colliders-end": 337,
+        "havok-controller-end": 338.30000001192093,
+        "havok-end": 339.4000000357628,
+        "prime-world-completed": 408.80000001192093,
+        "body-start": 458.60000002384186,
+        "body-end": 471.60000002384186,
+        "equipment-start": 472.5,
+        "equipment-end": 483.10000002384186,
+        "register-start": 486.4000000357628,
+        "register-end": 500.5,
+        "first-render-return": 512.6000000238419,
+        "supported-frame-submitted": 529.8000000119209,
+        "first-gpu-completed": 546,
+        "supported-frame-completed": 551.9000000357628,
+        "playable": 552.1999999880791,
+        "bg-start": 552.3000000119209
+      },
+      "errors": [],
+      "gpuErrors": [],
+      "grounded": true,
+      "physics": true,
+      "canvas": [
+        1280,
+        720
+      ],
+      "loader": false,
+      "equipment": {
+        "helmet": null,
+        "torso": "wayfarerTunic",
+        "legs": "wayfarerTrousers",
+        "boots": "wayfarerBoots",
+        "gloves": null,
+        "mainHand": "ironSword",
+        "offHand": null
+      },
+      "nativeIdentity": [
+        {
+          "name": "HumanV1Body",
+          "visible": true,
+          "weights": null
+        }
+      ],
+      "input": {
+        "keyAt": 803.5,
+        "observedAt": 834.4000000357628,
+        "position": {
+          "x": -0.00020108277608609843,
+          "z": 0.2348451482309945
+        },
+        "frames": 22,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 30.900000035762787
+      },
+      "browserOwnership": {
+        "owner": "probe-playable-startup",
+        "browserPid": "61722",
+        "url": "http://127.0.0.1:7075/?play=&clean=&pixelRatio=1",
+        "active": false
+      },
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 61701
+      },
+      "rawSha256": "0ea3ae4a8fa2d9423ea053f60b36cb8babae6b5a87ebbfb5e2f1ef2cf00b0152"
+    },
+    {
+      "outfit": "maximum",
+      "pair": 1,
+      "mode": "before",
+      "playableMs": 778,
+      "marks": {
+        "begin": 190.10000002384186,
+        "engine-created": 200.60000002384186,
+        "gpu-probe-end": 202.39999997615814,
+        "world-start": 204.5,
+        "havok-runtime-available": 255.30000001192093,
+        "world-end": 366.89999997615814,
+        "havok-start": 368,
+        "havok-runtime-start": 368.80000001192093,
+        "havok-runtime-end": 368.80000001192093,
+        "havok-world-end": 370.69999998807907,
+        "havok-colliders-end": 377.60000002384186,
+        "havok-controller-end": 378.80000001192093,
+        "havok-end": 379.69999998807907,
+        "prime-world-start": 380.10000002384186,
+        "prime-world-registered": 394.89999997615814,
+        "prime-world-submitted": 401.39999997615814,
+        "prime-world-completed": 486.30000001192093,
+        "body-start": 657.8000000119209,
+        "body-end": 677.1999999880791,
+        "equipment-start": 679.1000000238419,
+        "equipment-end": 696.8000000119209,
+        "register-start": 703.1000000238419,
+        "register-end": 723.3999999761581,
+        "first-render-return": 728,
+        "supported-frame-submitted": 744.1000000238419,
+        "first-gpu-completed": 768.6000000238419,
+        "supported-frame-completed": 777.8000000119209,
+        "playable": 778,
+        "bg-start": 778.1999999880791
+      },
+      "errors": [],
+      "gpuErrors": [],
+      "grounded": true,
+      "physics": true,
+      "canvas": [
+        1280,
+        720
+      ],
+      "loader": false,
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "duskguardCuirass",
+        "legs": "graveweaverSkirt",
+        "boots": "duskguardGreaves",
+        "gloves": "duskguardVambraces",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": "bastionShoulders"
+      },
+      "nativeIdentity": [
+        {
+          "name": "HumanV1Body",
+          "visible": true,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        },
+        {
+          "name": "HumanIdentityBrows",
+          "visible": true,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        },
+        {
+          "name": "HumanIdentityEyes",
+          "visible": true,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        },
+        {
+          "name": "HumanPonytail01",
+          "visible": false,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        }
+      ],
+      "input": {
+        "keyAt": 1033,
+        "observedAt": 1065.699999988079,
+        "position": {
+          "x": -5.009379727454742e-05,
+          "z": 0.23161159935394868
+        },
+        "frames": 23,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 32.69999998807907
+      },
+      "browserOwnership": {
+        "owner": "probe-playable-startup",
+        "browserPid": "61811",
+        "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+        "active": false
+      },
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 61810
+      },
+      "rawSha256": "71a90812d00cdddad57765b94ca55838beb2e21eb89cf988410aea1f59314d85"
+    },
+    {
+      "outfit": "maximum",
+      "pair": 1,
+      "mode": "overlap",
+      "playableMs": 796.1000000238419,
+      "marks": {
+        "begin": 195.10000002384186,
+        "engine-created": 206.10000002384186,
+        "gpu-probe-end": 211.80000001192093,
+        "world-start": 213.80000001192093,
+        "havok-runtime-available": 260.5,
+        "world-end": 374.10000002384186,
+        "prime-world-start": 375.19999998807907,
+        "prime-world-registered": 386.69999998807907,
+        "prime-world-submitted": 391.5,
+        "havok-start": 391.5,
+        "havok-runtime-start": 392.30000001192093,
+        "havok-runtime-end": 392.30000001192093,
+        "havok-world-end": 394.4000000357628,
+        "havok-colliders-end": 401.60000002384186,
+        "havok-controller-end": 402.9000000357628,
+        "havok-end": 403.9000000357628,
+        "prime-world-completed": 472.69999998807907,
+        "body-start": 664.4000000357628,
+        "body-end": 684.4000000357628,
+        "equipment-start": 685.9000000357628,
+        "equipment-end": 703.6000000238419,
+        "register-start": 710.4000000357628,
+        "register-end": 730.1999999880791,
+        "first-render-return": 747.6999999880791,
+        "supported-frame-submitted": 772.1000000238419,
+        "first-gpu-completed": 789.1999999880791,
+        "supported-frame-completed": 795.9000000357628,
+        "playable": 796.1000000238419,
+        "bg-start": 796.3000000119209
+      },
+      "errors": [],
+      "gpuErrors": [],
+      "grounded": true,
+      "physics": true,
+      "canvas": [
+        1280,
+        720
+      ],
+      "loader": false,
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "duskguardCuirass",
+        "legs": "graveweaverSkirt",
+        "boots": "duskguardGreaves",
+        "gloves": "duskguardVambraces",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": "bastionShoulders"
+      },
+      "nativeIdentity": [
+        {
+          "name": "HumanV1Body",
+          "visible": true,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        },
+        {
+          "name": "HumanIdentityBrows",
+          "visible": true,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        },
+        {
+          "name": "HumanIdentityEyes",
+          "visible": true,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        },
+        {
+          "name": "HumanPonytail01",
+          "visible": false,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        }
+      ],
+      "input": {
+        "keyAt": 1046.1000000238419,
+        "observedAt": 1078.699999988079,
+        "position": {
+          "x": -0.0003367061339092459,
+          "z": 0.2325058128245688
+        },
+        "frames": 22,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 32.59999996423721
+      },
+      "browserOwnership": {
+        "owner": "probe-playable-startup",
+        "browserPid": "61884",
+        "url": "http://127.0.0.1:7075/?play=&clean=&pixelRatio=1",
+        "active": false
+      },
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 61883
+      },
+      "rawSha256": "893cee3cb71fc45319586d7e2de2ae19f6193e586d4493f2ad48b4fdc117d67f"
+    },
+    {
+      "outfit": "maximum",
+      "pair": 2,
+      "mode": "overlap",
+      "playableMs": 797,
+      "marks": {
+        "begin": 194.5,
+        "engine-created": 205.30000001192093,
+        "gpu-probe-end": 211.19999998807907,
+        "world-start": 213,
+        "havok-runtime-available": 260.5,
+        "world-end": 370.30000001192093,
+        "prime-world-start": 371.4000000357628,
+        "prime-world-registered": 383,
+        "prime-world-submitted": 387.69999998807907,
+        "havok-start": 387.69999998807907,
+        "havok-runtime-start": 388.60000002384186,
+        "havok-runtime-end": 388.60000002384186,
+        "havok-world-end": 390.69999998807907,
+        "havok-colliders-end": 397.69999998807907,
+        "havok-controller-end": 399,
+        "havok-end": 400,
+        "prime-world-completed": 469.19999998807907,
+        "body-start": 663,
+        "body-end": 683.1000000238419,
+        "equipment-start": 684.6000000238419,
+        "equipment-end": 702.5,
+        "register-start": 709.3000000119209,
+        "register-end": 730.1000000238419,
+        "first-render-return": 747.6000000238419,
+        "supported-frame-submitted": 772.5,
+        "first-gpu-completed": 789.6000000238419,
+        "supported-frame-completed": 796.4000000357628,
+        "playable": 797,
+        "bg-start": 797.1000000238419
+      },
+      "errors": [],
+      "gpuErrors": [],
+      "grounded": true,
+      "physics": true,
+      "canvas": [
+        1280,
+        720
+      ],
+      "loader": false,
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "duskguardCuirass",
+        "legs": "graveweaverSkirt",
+        "boots": "duskguardGreaves",
+        "gloves": "duskguardVambraces",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": "bastionShoulders"
+      },
+      "nativeIdentity": [
+        {
+          "name": "HumanV1Body",
+          "visible": true,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        },
+        {
+          "name": "HumanIdentityBrows",
+          "visible": true,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        },
+        {
+          "name": "HumanIdentityEyes",
+          "visible": true,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        },
+        {
+          "name": "HumanPonytail01",
+          "visible": false,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        }
+      ],
+      "input": {
+        "keyAt": 1048.300000011921,
+        "observedAt": 1085,
+        "position": {
+          "x": -0.0003244492122485579,
+          "z": 0.23252744268491815
+        },
+        "frames": 22,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 36.69999998807907
+      },
+      "browserOwnership": {
+        "owner": "probe-playable-startup",
+        "browserPid": "61971",
+        "url": "http://127.0.0.1:7075/?play=&clean=&pixelRatio=1",
+        "active": false
+      },
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 61950
+      },
+      "rawSha256": "b014a017849867d2609006c27a2ae6b1a52709fa0ee2fdb817b8ff197f5e2df2"
+    },
+    {
+      "outfit": "maximum",
+      "pair": 2,
+      "mode": "before",
+      "playableMs": 781.6999999880791,
+      "marks": {
+        "begin": 194.0999999642372,
+        "engine-created": 204.5,
+        "gpu-probe-end": 206.0999999642372,
+        "world-start": 208.0999999642372,
+        "havok-runtime-available": 260.0999999642372,
+        "world-end": 370.2999999523163,
+        "havok-start": 371.2999999523163,
+        "havok-runtime-start": 372.0999999642372,
+        "havok-runtime-end": 372.0999999642372,
+        "havok-world-end": 374,
+        "havok-colliders-end": 380.89999997615814,
+        "havok-controller-end": 382.19999998807907,
+        "havok-end": 383.2999999523163,
+        "prime-world-start": 383.5999999642372,
+        "prime-world-registered": 398.89999997615814,
+        "prime-world-submitted": 405.89999997615814,
+        "prime-world-completed": 491.5,
+        "body-start": 662.5999999642372,
+        "body-end": 682.1999999880791,
+        "equipment-start": 684.0999999642372,
+        "equipment-end": 701.3999999761581,
+        "register-start": 707.6999999880791,
+        "register-end": 727.3999999761581,
+        "first-render-return": 731.5999999642372,
+        "supported-frame-submitted": 745.6999999880791,
+        "first-gpu-completed": 774.1999999880791,
+        "supported-frame-completed": 781.3999999761581,
+        "playable": 781.6999999880791,
+        "bg-start": 781.7999999523163
+      },
+      "errors": [],
+      "gpuErrors": [],
+      "grounded": true,
+      "physics": true,
+      "canvas": [
+        1280,
+        720
+      ],
+      "loader": false,
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "duskguardCuirass",
+        "legs": "graveweaverSkirt",
+        "boots": "duskguardGreaves",
+        "gloves": "duskguardVambraces",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": "bastionShoulders"
+      },
+      "nativeIdentity": [
+        {
+          "name": "HumanV1Body",
+          "visible": true,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        },
+        {
+          "name": "HumanIdentityBrows",
+          "visible": true,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        },
+        {
+          "name": "HumanIdentityEyes",
+          "visible": true,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        },
+        {
+          "name": "HumanPonytail01",
+          "visible": false,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        }
+      ],
+      "input": {
+        "keyAt": 1034,
+        "observedAt": 1066.2999999523163,
+        "position": {
+          "x": -4.56681926045398e-05,
+          "z": 0.23301940916051572
+        },
+        "frames": 23,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 32.299999952316284
+      },
+      "browserOwnership": {
+        "owner": "probe-playable-startup",
+        "browserPid": "62047",
+        "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+        "active": false
+      },
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 62041
+      },
+      "rawSha256": "ca9dc525e62598a3354362153c247142e2446d35700ed67e24350dfb7a1e6530"
+    },
+    {
+      "outfit": "maximum",
+      "pair": 3,
+      "mode": "before",
+      "playableMs": 780.1999999880791,
+      "marks": {
+        "begin": 192.5999999642372,
+        "engine-created": 203.39999997615814,
+        "gpu-probe-end": 205.0999999642372,
+        "world-start": 207,
+        "havok-runtime-available": 257.5,
+        "world-end": 372.39999997615814,
+        "havok-start": 373.5,
+        "havok-runtime-start": 374.30000001192093,
+        "havok-runtime-end": 374.30000001192093,
+        "havok-world-end": 376.0999999642372,
+        "havok-colliders-end": 383.0999999642372,
+        "havok-controller-end": 384.30000001192093,
+        "havok-end": 385.39999997615814,
+        "prime-world-start": 385.80000001192093,
+        "prime-world-registered": 400.69999998807907,
+        "prime-world-submitted": 407.30000001192093,
+        "prime-world-completed": 494.5999999642372,
+        "body-start": 661.3999999761581,
+        "body-end": 681.3000000119209,
+        "equipment-start": 683,
+        "equipment-end": 701.0999999642372,
+        "register-start": 707.3000000119209,
+        "register-end": 727.0999999642372,
+        "first-render-return": 731.5999999642372,
+        "supported-frame-submitted": 749.5999999642372,
+        "first-gpu-completed": 772,
+        "supported-frame-completed": 779.8999999761581,
+        "playable": 780.1999999880791,
+        "bg-start": 780.3000000119209
+      },
+      "errors": [],
+      "gpuErrors": [],
+      "grounded": true,
+      "physics": true,
+      "canvas": [
+        1280,
+        720
+      ],
+      "loader": false,
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "duskguardCuirass",
+        "legs": "graveweaverSkirt",
+        "boots": "duskguardGreaves",
+        "gloves": "duskguardVambraces",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": "bastionShoulders"
+      },
+      "nativeIdentity": [
+        {
+          "name": "HumanV1Body",
+          "visible": true,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        },
+        {
+          "name": "HumanIdentityBrows",
+          "visible": true,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        },
+        {
+          "name": "HumanIdentityEyes",
+          "visible": true,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        },
+        {
+          "name": "HumanPonytail01",
+          "visible": false,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        }
+      ],
+      "input": {
+        "keyAt": 1024,
+        "observedAt": 1056.0999999642372,
+        "position": {
+          "x": -4.722762409565429e-05,
+          "z": 0.2323166574734875
+        },
+        "frames": 22,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 32.09999996423721
+      },
+      "browserOwnership": {
+        "owner": "probe-playable-startup",
+        "browserPid": "62136",
+        "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+        "active": false
+      },
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 62114
+      },
+      "rawSha256": "2f54209264cd1ef98b2f7d57d23717eb93ec85c471dc45ca584b4ed2edcd61af"
+    },
+    {
+      "outfit": "maximum",
+      "pair": 3,
+      "mode": "overlap",
+      "playableMs": 795.6000000238419,
+      "marks": {
+        "begin": 195.5,
+        "engine-created": 205.80000001192093,
+        "gpu-probe-end": 207.60000002384186,
+        "world-start": 209.60000002384186,
+        "havok-runtime-available": 260.60000002384186,
+        "world-end": 372.2000000476837,
+        "prime-world-start": 373.4000000357628,
+        "prime-world-registered": 384.5,
+        "prime-world-submitted": 389.2000000476837,
+        "havok-start": 389.2000000476837,
+        "havok-runtime-start": 390.10000002384186,
+        "havok-runtime-end": 390.10000002384186,
+        "havok-world-end": 392,
+        "havok-colliders-end": 399.2000000476837,
+        "havok-controller-end": 400.30000001192093,
+        "havok-end": 401.4000000357628,
+        "prime-world-completed": 471.80000001192093,
+        "body-start": 663.5,
+        "body-end": 683.1000000238419,
+        "equipment-start": 684.8000000119209,
+        "equipment-end": 702.7000000476837,
+        "register-start": 709.6000000238419,
+        "register-end": 729.7000000476837,
+        "first-render-return": 746.9000000357628,
+        "supported-frame-submitted": 775.7000000476837,
+        "first-gpu-completed": 788.5,
+        "supported-frame-completed": 795.2000000476837,
+        "playable": 795.6000000238419,
+        "bg-start": 795.7000000476837
+      },
+      "errors": [],
+      "gpuErrors": [],
+      "grounded": true,
+      "physics": true,
+      "canvas": [
+        1280,
+        720
+      ],
+      "loader": false,
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "duskguardCuirass",
+        "legs": "graveweaverSkirt",
+        "boots": "duskguardGreaves",
+        "gloves": "duskguardVambraces",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": "bastionShoulders"
+      },
+      "nativeIdentity": [
+        {
+          "name": "HumanV1Body",
+          "visible": true,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        },
+        {
+          "name": "HumanIdentityBrows",
+          "visible": true,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        },
+        {
+          "name": "HumanIdentityEyes",
+          "visible": true,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        },
+        {
+          "name": "HumanPonytail01",
+          "visible": false,
+          "weights": [
+            0.949999988079071,
+            0
+          ]
+        }
+      ],
+      "input": {
+        "keyAt": 1053.2000000476837,
+        "observedAt": 1084.5,
+        "position": {
+          "x": -0.00034192078865379776,
+          "z": 0.2345966101594939
+        },
+        "frames": 22,
+        "gpuErrors": [],
+        "responseUpperBoundMs": 31.299999952316284
+      },
+      "browserOwnership": {
+        "owner": "probe-playable-startup",
+        "browserPid": "62203",
+        "url": "http://127.0.0.1:7075/?play=&clean=&pixelRatio=1",
+        "active": false
+      },
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "pid": 62202
+      },
+      "rawSha256": "5effcbd214f14f8cfb8b0e7275e1dd6cd838f497e0706ea8b951b2b38c423484"
+    }
+  ],
+  "ownership": {
+    "ownedNativeProcesses": [],
+    "ownedListeners": [],
+    "nativeOwnership": {
+      "owner": "grok-prime-overlap-native",
+      "browserPid": 52934,
+      "gpuHelperPids": [
+        52960
+      ],
+      "cdpPort": 10037,
+      "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+      "purpose": "Grok early-import native controls; not a benchmark",
+      "renderingClients": 0,
+      "active": false,
+      "previewPid": 54431,
+      "previewPort": 7074,
+      "previewDir": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-prime-overlap-2026-10-07/build-off"
+    },
+    "pairedOwnership": {
+      "owner": "grok-prime-overlap-paired",
+      "active": false,
+      "input": {
+        "src/ashen-reach/main.js": "7cf52f32a7ef912bb9035eefc008f07b52fa6287c6a5734e20f7e5dd9d3ddf31",
+        "src/ashen-reach/prime-starter-world.js": "c56afa2041b50339159d2c6a79562c5dd063c5209abfe3da08c15a74218f8344",
+        "vite.config.js": "b054ebb58ab404a0701749db64329d9bfc028842436a92ddb3f799111ea2865c"
+      },
+      "servers": [
+        {
+          "mode": "before",
+          "port": 7074,
+          "pid": 61184,
+          "dir": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-prime-early-2026-10-07/build-early",
+          "url": "http://127.0.0.1:7074/",
+          "exitCode": null
+        },
+        {
+          "mode": "overlap",
+          "port": 7075,
+          "pid": 61221,
+          "dir": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-prime-overlap-2026-10-07/build-overlap",
+          "url": "http://127.0.0.1:7075/",
+          "exitCode": null
+        }
+      ],
+      "browserOwnership": "all probe browser.close() finally; check retained individual ownership files"
+    },
+    "mediaGuardRemoved": true,
+    "restoredMedia": {
+      "Telegram": [
+        4,
+        3
+      ],
+      "Shadowglass": [
+        2,
+        1
+      ],
+      "XReference": [
+        1,
+        1
+      ],
+      "XOther": [
+        1,
+        0
+      ]
+    },
+    "userSessionsPreserved": [
+      "Edge2931",
+      "Orca98938"
+    ],
+    "restoredMainSha256": "1de3121f7751377734fba5824b9a7ca537b3e5240cc2fb32f9ee49deb3265078"
+  },
+  "rootCaptureReview": {
+    "files": [
+      "native-A-held-then-play/firstplay.png",
+      "native-A-held-then-play/movement.png",
+      "native-F-maximum/screenshot.png",
+      "native-G-havok-release/movement.png"
+    ],
+    "observation": "dressed arms-down idle, running pose on held-Havok release; no persistent T-pose in reviewed stills",
+    "newMotionDelivery": false,
+    "scope": "hidden startup schedule experiment; no asset/art/animation change or new live-motion acceptance claim"
+  }
+}

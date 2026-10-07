@@ -1,0 +1,722 @@
+{
+  "kind": "offline-lossless-census; no load-time or FPS evidence",
+  "sourceCommit": "865cf7d",
+  "productionChanged": false,
+  "assetInputsChanged": false,
+  "commands": {
+    "brotli": {
+      "exit": 0
+    },
+    "dedupFailedFixture": {
+      "exitCode": 1
+    },
+    "dedupCorrected": {
+      "exitCode": 0
+    }
+  },
+  "scripts": {
+    "measure-br.mjs": {
+      "sha256": "a8399902764ee84c239f822ba592097ad0aaeff5968413843f9fe95e2a89c405",
+      "cachePath": ".cache/character-mmo/startup-http-br-2026-10-07/measure-br.mjs"
+    },
+    "measure-dedup.mjs": {
+      "sha256": "29b0e7e552e08b26fb28122151fee0b0ebd73e6a094422dbedcb6bd347006325",
+      "cachePath": ".cache/character-mmo/startup-http-br-2026-10-07/measure-dedup.mjs"
+    }
+  },
+  "brotliProfiles": [
+    {
+      "profile": "default",
+      "gzipBytes": 1032164,
+      "variants": [
+        {
+          "quality": 5,
+          "bytes": 1021910,
+          "savingBytes": 10254
+        },
+        {
+          "quality": 9,
+          "bytes": 1011780,
+          "savingBytes": 20384
+        },
+        {
+          "quality": 11,
+          "bytes": 989413,
+          "savingBytes": 42751
+        }
+      ]
+    },
+    {
+      "profile": "prime-bald",
+      "gzipBytes": 2037273,
+      "variants": [
+        {
+          "quality": 5,
+          "bytes": 2011015,
+          "savingBytes": 26258
+        },
+        {
+          "quality": 9,
+          "bytes": 1979087,
+          "savingBytes": 58186
+        },
+        {
+          "quality": 11,
+          "bytes": 1898777,
+          "savingBytes": 138496
+        }
+      ]
+    },
+    {
+      "profile": "prime-ponytail",
+      "gzipBytes": 2300424,
+      "variants": [
+        {
+          "quality": 5,
+          "bytes": 2274600,
+          "savingBytes": 25824
+        },
+        {
+          "quality": 9,
+          "bytes": 2238826,
+          "savingBytes": 61598
+        },
+        {
+          "quality": 11,
+          "bytes": 2146256,
+          "savingBytes": 154168
+        }
+      ]
+    },
+    {
+      "profile": "weathered-bald",
+      "gzipBytes": 2043747,
+      "variants": [
+        {
+          "quality": 5,
+          "bytes": 2016939,
+          "savingBytes": 26808
+        },
+        {
+          "quality": 9,
+          "bytes": 1984850,
+          "savingBytes": 58897
+        },
+        {
+          "quality": 11,
+          "bytes": 1905257,
+          "savingBytes": 138490
+        }
+      ]
+    }
+  ],
+  "uniqueResources": [
+    {
+      "id": "body",
+      "url": "/ashen-reach/startup/character/body-coverage-843a7f392521.bin",
+      "decodedBytes": 896072,
+      "decodedSha256": "11404f784ddb042b8c92452d6cc0f850de350a422c4e56ab6cd5bc2d390cdd3e",
+      "gzipBytes": 471314,
+      "variants": [
+        {
+          "quality": 5,
+          "bytes": 466267,
+          "savingBytes": 5047,
+          "file": "body-coverage-843a7f392521-q5-da5ea94a36c9.br",
+          "sha256": "da5ea94a36c99e9f97bb16164c596293dba95a90175232c6933468298f107a57"
+        },
+        {
+          "quality": 9,
+          "bytes": 460324,
+          "savingBytes": 10990,
+          "file": "body-coverage-843a7f392521-q9-3a862f0d41b7.br",
+          "sha256": "3a862f0d41b733fcd31c61ee8d2906c55c8cce4f122a801d0cbb78856504cbcf"
+        },
+        {
+          "quality": 11,
+          "bytes": 446220,
+          "savingBytes": 25094,
+          "file": "body-coverage-843a7f392521-q11-86c86c277e24.br",
+          "sha256": "86c86c277e249dc5f27e246d4b2fa3897c5a6c79ca5b1e923e3f12a215e88d78"
+        }
+      ]
+    },
+    {
+      "id": "wayfarerTunic",
+      "url": "/ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+      "decodedBytes": 249636,
+      "decodedSha256": "3b4c929df3708afd760f3f056f0dc706e780552cfe1966d8ef3f5083b8749cd6",
+      "gzipBytes": 218705,
+      "variants": [
+        {
+          "quality": 5,
+          "bytes": 217257,
+          "savingBytes": 1448,
+          "file": "wayfarerTunic-f1e3357c0bba-q5-558299da2d05.br",
+          "sha256": "558299da2d0528a941185a5d83a3410e7f1dcfadd7d32e4d7abba2b3438ed135"
+        },
+        {
+          "quality": 9,
+          "bytes": 215095,
+          "savingBytes": 3610,
+          "file": "wayfarerTunic-f1e3357c0bba-q9-b90eaeaafca6.br",
+          "sha256": "b90eaeaafca61737c53b16c2522a536c7d35a7afbc9c210985d84efbf1d321c9"
+        },
+        {
+          "quality": 11,
+          "bytes": 211844,
+          "savingBytes": 6861,
+          "file": "wayfarerTunic-f1e3357c0bba-q11-373386fc696d.br",
+          "sha256": "373386fc696d07b6ca9b8f2a782ef61fa4f3d435c1b86eb7ddc8406ceb331277"
+        }
+      ]
+    },
+    {
+      "id": "wayfarerTrousers",
+      "url": "/ashen-reach/startup/character/wayfarerTrousers-coverage-18aaf5475c09.bin",
+      "decodedBytes": 146972,
+      "decodedSha256": "48d4f61d94cf7b464890797b479f66408de52a65eeb05e05abbe2730299205b3",
+      "gzipBytes": 129888,
+      "variants": [
+        {
+          "quality": 5,
+          "bytes": 128428,
+          "savingBytes": 1460,
+          "file": "wayfarerTrousers-coverage-18aaf5475c09-q5-1194ec3c22f7.br",
+          "sha256": "1194ec3c22f7bac848020d2ea25822455b89df1ca430474d5a809df802b5964f"
+        },
+        {
+          "quality": 9,
+          "bytes": 127862,
+          "savingBytes": 2026,
+          "file": "wayfarerTrousers-coverage-18aaf5475c09-q9-12fe9e7c07f6.br",
+          "sha256": "12fe9e7c07f61fbbd2b75ced1b9899aeccfeb04fb784435df560a42f3be1d997"
+        },
+        {
+          "quality": 11,
+          "bytes": 126642,
+          "savingBytes": 3246,
+          "file": "wayfarerTrousers-coverage-18aaf5475c09-q11-52a1bc86865a.br",
+          "sha256": "52a1bc86865a6a2d3fb407bf04bdd7bbae9712dba5dfc966ea1f023fa93c0844"
+        }
+      ]
+    },
+    {
+      "id": "wayfarerBoots",
+      "url": "/ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+      "decodedBytes": 242544,
+      "decodedSha256": "a55a9e4cd7b8658b6f2bd51dd3092af576e8d7dd279c9687bb3419a5c858bd98",
+      "gzipBytes": 212257,
+      "variants": [
+        {
+          "quality": 5,
+          "bytes": 209958,
+          "savingBytes": 2299,
+          "file": "wayfarerBoots-6227a92db0c7-q5-5889941f55af.br",
+          "sha256": "5889941f55af231269236eab60aaadaa48f9bb1b28dc4d75b2074d6013c6bca3"
+        },
+        {
+          "quality": 9,
+          "bytes": 208499,
+          "savingBytes": 3758,
+          "file": "wayfarerBoots-6227a92db0c7-q9-8b3fd3c53b92.br",
+          "sha256": "8b3fd3c53b92b4e45446e825762f2821876188d960d584ff69c47a8ed634b501"
+        },
+        {
+          "quality": 11,
+          "bytes": 204707,
+          "savingBytes": 7550,
+          "file": "wayfarerBoots-6227a92db0c7-q11-dbb9ef6f37e1.br",
+          "sha256": "dbb9ef6f37e1e05cc1864d1ef4da112aec9a58ded21cde159f3054749eb4f1e1"
+        }
+      ]
+    },
+    {
+      "id": "body",
+      "url": "/ashen-reach/human-identity-v1/body-compact-bac266faf4f8.bin",
+      "decodedBytes": 1111632,
+      "decodedSha256": "cca5feaedec0db51f4c751454ad6cd792df6fa63cebdb3f64790a3188d06bc2d",
+      "gzipBytes": 750296,
+      "variants": [
+        {
+          "quality": 5,
+          "bytes": 745819,
+          "savingBytes": 4477,
+          "file": "body-compact-bac266faf4f8-q5-ff97339a459b.br",
+          "sha256": "ff97339a459bb8497d3d0e925a1809c46620497a7e5ce3120970b453119afe07"
+        },
+        {
+          "quality": 9,
+          "bytes": 729541,
+          "savingBytes": 20755,
+          "file": "body-compact-bac266faf4f8-q9-e4d3766b1f33.br",
+          "sha256": "e4d3766b1f339fbf74e58c5874cb3c5f8b3344051b712dcadd40fc2262470aa4"
+        },
+        {
+          "quality": 11,
+          "bytes": 696856,
+          "savingBytes": 53440,
+          "file": "body-compact-bac266faf4f8-q11-1e7e4ac76e80.br",
+          "sha256": "1e7e4ac76e8042d4396b28cf4b1165b2f39cc044dd5f3dde9e5deae54b8cc0d4"
+        }
+      ]
+    },
+    {
+      "id": "graveweaverHood",
+      "url": "/ashen-reach/human-identity-v1/graveweaverHood-compact-e35c2fd3b285.bin",
+      "decodedBytes": 218488,
+      "decodedSha256": "cbccc099a1b7fa6924a2fe89f836d32ab1fbb015f51cc4b4b9bf5c7cb71428df",
+      "gzipBytes": 197700,
+      "variants": [
+        {
+          "quality": 5,
+          "bytes": 195699,
+          "savingBytes": 2001,
+          "file": "graveweaverHood-compact-e35c2fd3b285-q5-32d8c07cc0da.br",
+          "sha256": "32d8c07cc0da815a341e51a6e46f0d249dde5a5d6321613ad1c5a30d13807584"
+        },
+        {
+          "quality": 9,
+          "bytes": 194234,
+          "savingBytes": 3466,
+          "file": "graveweaverHood-compact-e35c2fd3b285-q9-cd56dcc8b016.br",
+          "sha256": "cd56dcc8b01691313a6523b66a6caaa9509f770f64365909bdb2ff15937bcf8a"
+        },
+        {
+          "quality": 11,
+          "bytes": 187666,
+          "savingBytes": 10034,
+          "file": "graveweaverHood-compact-e35c2fd3b285-q11-cd1d1ef1cbe2.br",
+          "sha256": "cd1d1ef1cbe21c52a3be816e5defd1d2289fce6327f57622a420552db9e0e51b"
+        }
+      ]
+    },
+    {
+      "id": "duskguardCuirass",
+      "url": "/ashen-reach/human-shape-v1/duskguardCuirass-87f33adb1a29.bin",
+      "decodedBytes": 423932,
+      "decodedSha256": "1b112f45fd3b71733a6fc6acd11df8b4f0d24a061a15984da5a06eeae969e8ec",
+      "gzipBytes": 357832,
+      "variants": [
+        {
+          "quality": 5,
+          "bytes": 355095,
+          "savingBytes": 2737,
+          "file": "duskguardCuirass-87f33adb1a29-q5-205526cd3c74.br",
+          "sha256": "205526cd3c74710616f925faae1bad2631ca8adf125633314faedea76894e7d0"
+        },
+        {
+          "quality": 9,
+          "bytes": 349332,
+          "savingBytes": 8500,
+          "file": "duskguardCuirass-87f33adb1a29-q9-6d5588a5da22.br",
+          "sha256": "6d5588a5da22fff1f544a0c2552a4bb39ba029333352211b518cdfbabd099982"
+        },
+        {
+          "quality": 11,
+          "bytes": 335879,
+          "savingBytes": 21953,
+          "file": "duskguardCuirass-87f33adb1a29-q11-f0a5fd157d16.br",
+          "sha256": "f0a5fd157d164ab86c969a59bd041b16290294c770359a33872e35e49bfe18d0"
+        }
+      ]
+    },
+    {
+      "id": "graveweaverSkirt",
+      "url": "/ashen-reach/human-shape-v1/graveweaverSkirt-compact-f52f181bec28.bin",
+      "decodedBytes": 215056,
+      "decodedSha256": "cb9b2d22585e5daf9176aca0d2dfbe71f53de0bf797f7f11c99e9617deebe680",
+      "gzipBytes": 181723,
+      "variants": [
+        {
+          "quality": 5,
+          "bytes": 180310,
+          "savingBytes": 1413,
+          "file": "graveweaverSkirt-compact-f52f181bec28-q5-75ca48eb9a17.br",
+          "sha256": "75ca48eb9a17056e8105bcf7fd613280ff59fa3ff735df794610a5cef2d3ce8c"
+        },
+        {
+          "quality": 9,
+          "bytes": 177596,
+          "savingBytes": 4127,
+          "file": "graveweaverSkirt-compact-f52f181bec28-q9-641c82effae2.br",
+          "sha256": "641c82effae2342d3cd38a04c99d18e77e25fd768990917366645d9ef2493597"
+        },
+        {
+          "quality": 11,
+          "bytes": 170658,
+          "savingBytes": 11065,
+          "file": "graveweaverSkirt-compact-f52f181bec28-q11-ad7ddd9594ef.br",
+          "sha256": "ad7ddd9594ef7e0d85f3db8ccf1dd1176ef8c0b44222510dc44a7e816f386fa6"
+        }
+      ]
+    },
+    {
+      "id": "duskguardGreaves",
+      "url": "/ashen-reach/human-shape-v1/duskguardGreaves-030d302cbaf6.bin",
+      "decodedBytes": 324384,
+      "decodedSha256": "1a84536b9fd5482c12d1f64a6dbd537e49d71fd613e752cfe2b0bde98abb53b9",
+      "gzipBytes": 271753,
+      "variants": [
+        {
+          "quality": 5,
+          "bytes": 267584,
+          "savingBytes": 4169,
+          "file": "duskguardGreaves-030d302cbaf6-q5-fa9bf1760633.br",
+          "sha256": "fa9bf1760633dbe4a08a6bed977a1f154762878fe7c0713d964bdbfc325005ee"
+        },
+        {
+          "quality": 9,
+          "bytes": 264272,
+          "savingBytes": 7481,
+          "file": "duskguardGreaves-030d302cbaf6-q9-13995a08ec90.br",
+          "sha256": "13995a08ec9072ae4594b3600f0c171e7fec8025f3d9deb018063ba7b0614e3f"
+        },
+        {
+          "quality": 11,
+          "bytes": 253416,
+          "savingBytes": 18337,
+          "file": "duskguardGreaves-030d302cbaf6-q11-1d9e20271ec6.br",
+          "sha256": "1d9e20271ec683ba5331fa860cafaa71796827d19a4a876f105426ddfdd4cfcf"
+        }
+      ]
+    },
+    {
+      "id": "duskguardVambraces",
+      "url": "/ashen-reach/human-shape-v1/duskguardVambraces-b67e2bcbac26.bin",
+      "decodedBytes": 241612,
+      "decodedSha256": "9eb3734747268fd974fe8995e3eef9d5116d332d4dcf7ad6c301231244a4b962",
+      "gzipBytes": 194817,
+      "variants": [
+        {
+          "quality": 5,
+          "bytes": 187687,
+          "savingBytes": 7130,
+          "file": "duskguardVambraces-b67e2bcbac26-q5-195479a95843.br",
+          "sha256": "195479a958438388e84692deede72617583f18ad412a5551b9408f0cdf76747d"
+        },
+        {
+          "quality": 9,
+          "bytes": 186131,
+          "savingBytes": 8686,
+          "file": "duskguardVambraces-b67e2bcbac26-q9-116df69a17f4.br",
+          "sha256": "116df69a17f40fa8f2b25197ecbdf17d06dec5b2421de884273103c7f5b47c39"
+        },
+        {
+          "quality": 11,
+          "bytes": 179818,
+          "savingBytes": 14999,
+          "file": "duskguardVambraces-b67e2bcbac26-q11-71dc4745accb.br",
+          "sha256": "71dc4745accb311c7b6d478b021ee2accebda6547bcbb51af7829f4dafb1f68a"
+        }
+      ]
+    },
+    {
+      "id": "bastionShoulders",
+      "url": "/ashen-reach/human-shape-v1/bastionShoulders-f494b2e91fe7.bin",
+      "decodedBytes": 111928,
+      "decodedSha256": "04799fbd208a7cf9efa8d4775ce5c64551155c529cb94c8425e5888675c60e69",
+      "gzipBytes": 83152,
+      "variants": [
+        {
+          "quality": 5,
+          "bytes": 78821,
+          "savingBytes": 4331,
+          "file": "bastionShoulders-f494b2e91fe7-q5-8d9376c20653.br",
+          "sha256": "8d9376c206539070a32bef2ec99bde0f795f4cfa671b16d34719390c43ca5268"
+        },
+        {
+          "quality": 9,
+          "bytes": 77981,
+          "savingBytes": 5171,
+          "file": "bastionShoulders-f494b2e91fe7-q9-1d94def6fbcf.br",
+          "sha256": "1d94def6fbcf80b22216db4b070231e735b1e0fd49fc431c68d5d07b54e1a7f8"
+        },
+        {
+          "quality": 11,
+          "bytes": 74484,
+          "savingBytes": 8668,
+          "file": "bastionShoulders-f494b2e91fe7-q11-dbefc29195f4.br",
+          "sha256": "dbefc29195f40f00a79bbe6cf57a728847c0dd1ff743f6631a28aafae21074b9"
+        }
+      ]
+    },
+    {
+      "id": "body",
+      "url": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+      "decodedBytes": 1406968,
+      "decodedSha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+      "gzipBytes": 1013447,
+      "variants": [
+        {
+          "quality": 5,
+          "bytes": 1009404,
+          "savingBytes": 4043,
+          "file": "body-compact-cd6850610c02-q5-859706bd9010.br",
+          "sha256": "859706bd901015abd4b2ecca62d3d0aaf0d2e64f6f4acdae5df80098ae8cdc46"
+        },
+        {
+          "quality": 9,
+          "bytes": 989280,
+          "savingBytes": 24167,
+          "file": "body-compact-cd6850610c02-q9-22ed6b18e7d4.br",
+          "sha256": "22ed6b18e7d4e0c0403f2b5c56e1733dcc10033285df58b49fe85026c562eb08"
+        },
+        {
+          "quality": 11,
+          "bytes": 944335,
+          "savingBytes": 69112,
+          "file": "body-compact-cd6850610c02-q11-1872c4b20548.br",
+          "sha256": "1872c4b20548a384aed51c6bd549b1acbf4f3fedd6c2f55e9e99a0ea7d889169"
+        }
+      ]
+    },
+    {
+      "id": "body",
+      "url": "/ashen-reach/human-identity-v1/body-compact-4a8882628c79.bin",
+      "decodedBytes": 1115924,
+      "decodedSha256": "9b66fdb15e4c7996b16e699965a206ba1ebf4f52434f8e6a77bccd250b6a595f",
+      "gzipBytes": 754893,
+      "variants": [
+        {
+          "quality": 5,
+          "bytes": 749933,
+          "savingBytes": 4960,
+          "file": "body-compact-4a8882628c79-q5-dfe816424f7a.br",
+          "sha256": "dfe816424f7a9d3250b4cd409d6508ece5f3ec5909d5114b94f723c2f289b734"
+        },
+        {
+          "quality": 9,
+          "bytes": 733407,
+          "savingBytes": 21486,
+          "file": "body-compact-4a8882628c79-q9-796e80accadb.br",
+          "sha256": "796e80accadbbe7f14258ec8bd6c95acc530ec76508b5e88e484c1fba37ecddd"
+        },
+        {
+          "quality": 11,
+          "bytes": 701303,
+          "savingBytes": 53590,
+          "file": "body-compact-4a8882628c79-q11-0a45c9eefdbb.br",
+          "sha256": "0a45c9eefdbb152991c16187f5e19f40b17d0d0ba90e2ac3e40f0fc9f83e8f3f"
+        }
+      ]
+    },
+    {
+      "id": "graveweaverHood",
+      "url": "/ashen-reach/human-identity-v1/graveweaverHood-compact-d0aac250ac39.bin",
+      "decodedBytes": 220420,
+      "decodedSha256": "9206b0624a51c0c138623d03d6edc860695094c1ca25e03b5cf8447066368e43",
+      "gzipBytes": 199577,
+      "variants": [
+        {
+          "quality": 5,
+          "bytes": 197509,
+          "savingBytes": 2068,
+          "file": "graveweaverHood-compact-d0aac250ac39-q5-b4fbe5bba0bf.br",
+          "sha256": "b4fbe5bba0bff867f3380c7349bedf7c2616dc3fb906296fba96309df670927d"
+        },
+        {
+          "quality": 9,
+          "bytes": 196131,
+          "savingBytes": 3446,
+          "file": "graveweaverHood-compact-d0aac250ac39-q9-1833f972bd70.br",
+          "sha256": "1833f972bd70321369adc8a45abd9466bbc2cca0268326a963ae8fdc7480c3a7"
+        },
+        {
+          "quality": 11,
+          "bytes": 189699,
+          "savingBytes": 9878,
+          "file": "graveweaverHood-compact-d0aac250ac39-q11-10c27fdc48f9.br",
+          "sha256": "10c27fdc48f9fab5200fa50c3f15515bf5db6b1a77e02d40516c625998a5a024"
+        }
+      ]
+    }
+  ],
+  "dedupRows": [
+    {
+      "profile": "default",
+      "url": "/ashen-reach/startup/character/body-coverage-843a7f392521.bin",
+      "originalGzipBytes": 471314,
+      "originalDecodedBytes": 896072,
+      "originalDecodedSha256": "11404f784ddb042b8c92452d6cc0f850de350a422c4e56ab6cd5bc2d390cdd3e",
+      "beforeAccessors": 1633,
+      "variants": [
+        {
+          "mode": "reserialize-control",
+          "accessors": 1633,
+          "decodedBytes": 896072,
+          "decodedSha256": "11404f784ddb042b8c92452d6cc0f850de350a422c4e56ab6cd5bc2d390cdd3e",
+          "gzipBytes": 471314,
+          "brotliBytes": 446220,
+          "gzipSha256": "843a7f3925218185b9cc4930075e7dc663f00a7529693f0efd45235c54275eea",
+          "brotliSha256": "86c86c277e249dc5f27e246d4b2fa3897c5a6c79ca5b1e923e3f12a215e88d78",
+          "gzipSavingVsOriginal": 0,
+          "brotliSavingVsOriginal": 25094,
+          "geometrySha256": "51c7879789afccea85a353d19542277db7ac814ffbb1c1308bc71d445d205e92",
+          "animationsSha256": "f703105d0c5ffb08e6bd041ae08bc7bdc3ff30689f5714423faef589277ac7e2",
+          "proof": {
+            "maxComponentError": 0,
+            "renderedCorners": 15975
+          }
+        },
+        {
+          "mode": "native-accessor-dedup",
+          "accessors": 1161,
+          "decodedBytes": 737348,
+          "decodedSha256": "979afca2e2be3fb5563266b182bced93253bbf606a6041eed8ca0a24c8047343",
+          "gzipBytes": 463469,
+          "brotliBytes": 441513,
+          "gzipSha256": "8b0993851f7b640abdbd94987e37e6ddac87ee3d478ca18028120b2ea926dc90",
+          "brotliSha256": "8f43526e70ae6a7e50cc043559ee19150403856b57bb6e5a29a37894db43ead2",
+          "gzipSavingVsOriginal": 7845,
+          "brotliSavingVsOriginal": 29801,
+          "geometrySha256": "51c7879789afccea85a353d19542277db7ac814ffbb1c1308bc71d445d205e92",
+          "animationsSha256": "f703105d0c5ffb08e6bd041ae08bc7bdc3ff30689f5714423faef589277ac7e2",
+          "proof": {
+            "maxComponentError": 0,
+            "renderedCorners": 15975
+          }
+        }
+      ]
+    },
+    {
+      "profile": "prime-bald",
+      "url": "/ashen-reach/human-identity-v1/body-compact-bac266faf4f8.bin",
+      "originalGzipBytes": 750296,
+      "originalDecodedBytes": 1111632,
+      "originalDecodedSha256": "cca5feaedec0db51f4c751454ad6cd792df6fa63cebdb3f64790a3188d06bc2d",
+      "beforeAccessors": 1184,
+      "variants": [
+        {
+          "mode": "reserialize-control",
+          "accessors": 1184,
+          "decodedBytes": 1111632,
+          "decodedSha256": "cca5feaedec0db51f4c751454ad6cd792df6fa63cebdb3f64790a3188d06bc2d",
+          "gzipBytes": 750296,
+          "brotliBytes": 696856,
+          "gzipSha256": "bac266faf4f81e7186f7afc192e005719e2f4ac27f96cd8d6403efdb0a5af021",
+          "brotliSha256": "1e7e4ac76e8042d4396b28cf4b1165b2f39cc044dd5f3dde9e5deae54b8cc0d4",
+          "gzipSavingVsOriginal": 0,
+          "brotliSavingVsOriginal": 53440,
+          "geometrySha256": "7dbdf8e9fc4168bef5c61adfa5e998384a3258a7157a5c351f244571ad484439",
+          "animationsSha256": "f703105d0c5ffb08e6bd041ae08bc7bdc3ff30689f5714423faef589277ac7e2",
+          "proof": {
+            "maxComponentError": 0,
+            "renderedCorners": 40350
+          }
+        },
+        {
+          "mode": "native-accessor-dedup",
+          "accessors": 1184,
+          "decodedBytes": 1111632,
+          "decodedSha256": "cca5feaedec0db51f4c751454ad6cd792df6fa63cebdb3f64790a3188d06bc2d",
+          "gzipBytes": 750296,
+          "brotliBytes": 696856,
+          "gzipSha256": "bac266faf4f81e7186f7afc192e005719e2f4ac27f96cd8d6403efdb0a5af021",
+          "brotliSha256": "1e7e4ac76e8042d4396b28cf4b1165b2f39cc044dd5f3dde9e5deae54b8cc0d4",
+          "gzipSavingVsOriginal": 0,
+          "brotliSavingVsOriginal": 53440,
+          "geometrySha256": "7dbdf8e9fc4168bef5c61adfa5e998384a3258a7157a5c351f244571ad484439",
+          "animationsSha256": "f703105d0c5ffb08e6bd041ae08bc7bdc3ff30689f5714423faef589277ac7e2",
+          "proof": {
+            "maxComponentError": 0,
+            "renderedCorners": 40350
+          }
+        }
+      ]
+    },
+    {
+      "profile": "prime-ponytail",
+      "url": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+      "originalGzipBytes": 1013447,
+      "originalDecodedBytes": 1406968,
+      "originalDecodedSha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+      "beforeAccessors": 1194,
+      "variants": [
+        {
+          "mode": "reserialize-control",
+          "accessors": 1194,
+          "decodedBytes": 1406968,
+          "decodedSha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "gzipBytes": 1013447,
+          "brotliBytes": 944335,
+          "gzipSha256": "cd6850610c02f7c2d9766d801280c58ea245a99309c33d6e7dbdceb0df3b5325",
+          "brotliSha256": "1872c4b20548a384aed51c6bd549b1acbf4f3fedd6c2f55e9e99a0ea7d889169",
+          "gzipSavingVsOriginal": 0,
+          "brotliSavingVsOriginal": 69112,
+          "geometrySha256": "361f8ea4fe3bd0ae8b2a10e1564982c1b74fb5e0be6f9bb904ef3d4249b0a915",
+          "animationsSha256": "f703105d0c5ffb08e6bd041ae08bc7bdc3ff30689f5714423faef589277ac7e2",
+          "proof": {
+            "maxComponentError": 0,
+            "renderedCorners": 56406
+          }
+        },
+        {
+          "mode": "native-accessor-dedup",
+          "accessors": 1194,
+          "decodedBytes": 1406968,
+          "decodedSha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+          "gzipBytes": 1013447,
+          "brotliBytes": 944335,
+          "gzipSha256": "cd6850610c02f7c2d9766d801280c58ea245a99309c33d6e7dbdceb0df3b5325",
+          "brotliSha256": "1872c4b20548a384aed51c6bd549b1acbf4f3fedd6c2f55e9e99a0ea7d889169",
+          "gzipSavingVsOriginal": 0,
+          "brotliSavingVsOriginal": 69112,
+          "geometrySha256": "361f8ea4fe3bd0ae8b2a10e1564982c1b74fb5e0be6f9bb904ef3d4249b0a915",
+          "animationsSha256": "f703105d0c5ffb08e6bd041ae08bc7bdc3ff30689f5714423faef589277ac7e2",
+          "proof": {
+            "maxComponentError": 0,
+            "renderedCorners": 56406
+          }
+        }
+      ]
+    },
+    {
+      "profile": "weathered-bald",
+      "url": "/ashen-reach/human-identity-v1/body-compact-4a8882628c79.bin",
+      "originalGzipBytes": 754893,
+      "originalDecodedBytes": 1115924,
+      "originalDecodedSha256": "9b66fdb15e4c7996b16e699965a206ba1ebf4f52434f8e6a77bccd250b6a595f",
+      "beforeAccessors": 1184,
+      "variants": [
+        {
+          "mode": "reserialize-control",
+          "accessors": 1184,
+          "decodedBytes": 1115924,
+          "decodedSha256": "9b66fdb15e4c7996b16e699965a206ba1ebf4f52434f8e6a77bccd250b6a595f",
+          "gzipBytes": 754893,
+          "brotliBytes": 701303,
+          "gzipSha256": "4a8882628c7998ca5389e60eef50f981c345c820a12dc27e4c79a79c0153d628",
+          "brotliSha256": "0a45c9eefdbb152991c16187f5e19f40b17d0d0ba90e2ac3e40f0fc9f83e8f3f",
+          "gzipSavingVsOriginal": 0,
+          "brotliSavingVsOriginal": 53590,
+          "geometrySha256": "b198c7ec9f39152617678cf92f0542be793791b45b0d2ef9845d1d4be02f06d8",
+          "animationsSha256": "f703105d0c5ffb08e6bd041ae08bc7bdc3ff30689f5714423faef589277ac7e2",
+          "proof": {
+            "maxComponentError": 0,
+            "renderedCorners": 40710
+          }
+        },
+        {
+          "mode": "native-accessor-dedup",
+          "accessors": 1184,
+          "decodedBytes": 1115924,
+          "decodedSha256": "9b66fdb15e4c7996b16e699965a206ba1ebf4f52434f8e6a77bccd250b6a595f",
+          "gzipBytes": 754893,
+          "brotliBytes": 701303,
+          "gzipSha256": "4a8882628c7998ca5389e60eef50f981c345c820a12dc27e4c79a79c0153d628",
+          "brotliSha256": "0a45c9eefdbb152991c16187f5e19f40b17d0d0ba90e2ac3e40f0fc9f83e8f3f",
+          "gzipSavingVsOriginal": 0,
+          "brotliSavingVsOriginal": 53590,
+          "geometrySha256": "b198c7ec9f39152617678cf92f0542be793791b45b0d2ef9845d1d4be02f06d8",
+          "animationsSha256": "f703105d0c5ffb08e6bd041ae08bc7bdc3ff30689f5714423faef589277ac7e2",
+          "proof": {
+            "maxComponentError": 0,
+            "renderedCorners": 40710
+          }
+        }
+      ]
+    }
+  ],
+  "browserOwnership": "offline only; no game instance opened"
+}

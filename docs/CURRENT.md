@@ -17,7 +17,9 @@ authoritative. Work proceeds without further user approval.
    starting-world experiment is default-off. Preview 43730b3e has 60 valid starts,
    zero recorded runtime/GPU errors, but 2 misses: 1,053.5 ms default/1,036.4 ms maximum.
    Early helper discovery is now checked locally: default gains 30–43 ms, maximum
-   loses 3–15 ms. Keep the flag off; next address maximum/document/native-fence tails.
+   loses 3–15 ms. The subsequent sequential pre-Havok frame trial regresses
+   every pair by 15–23 ms and is removed. Keep the flag off; next address
+   maximum/document/native-fence tails while preserving physics initialization.
 3. **Release accepted improvements:** commit/push, seal, preview integrity/entry/
    startup/traversal/mobile/WebKit/performance gates, then identical production
    bytes and repeated production checks with rollback available.
@@ -155,6 +157,29 @@ that mixed comparison alone. Next: improve maximum headroom before release.
 [Result](plans/character-mmo/results/startup-prime-early-2026-10-07.md).
 Owned Chrome/7074/7075 are closed; media guards removed and playback restored.
 Fresh Grok briefs with prepared operations replace the oversized reused session.
+
+## Closed bounded startup trials
+
+The lossless character transport census saves 154,168 maximum-outfit bytes with
+Brotli Q11 (24.7 ms of ideal transfer at 50 Mbit/s; not measured startup savings).
+Native accessor dedup reproduces all three identity bodies byte-for-byte, saving
+nothing for maximum; default saves only 7,845 gzip bytes. Neither is integrated
+or published. [Census](plans/character-mmo/results/startup-lossless-census-2026-10-07.md).
+
+Submitting the native world frame before calling setupPlayer passes syntax,
+20 focused tests, both builds, eleven native controls and twelve valid local
+starts, but regresses **all six pairs**: default 15.3–23.0 ms, maximum 15.3–18.1 ms.
+The prototype is removed and main.js restored exactly to 865cf7d. Its frame fence
+already finishes before dressed registration; earlier submission does not shorten
+the measured critical path. Root reviewed the actual stills; no new motion or
+public qualification is claimed. Next consider overlapping an already-started
+native physics promise with preparation, rather than delaying physics setup.
+[Result](plans/character-mmo/results/startup-prime-overlap-2026-10-07.md).
+
+Owned native Chrome/10037 and timing previews7074/7075 are closed; final
+process/listener audit and Orca tab inventory are empty. Temporary media guard
+is removed and prior Telegram/Shadowglass/X playback restored. The refreshed
+physical-device inventory still has no iPhone; physical acceptance remains open.
 
 ## Working references
 
