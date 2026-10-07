@@ -58,3 +58,37 @@ test('zero-time placement resolves obstruction and detached sweep returns safely
     rig.update(0, body);
     assert.equal(camera.radius, 8);
 });
+
+test('close-character visibility has hysteresis while preserving native collision distance', () => {
+    const { camera, rig } = setup();
+    let clearance = 1.1;
+    rig.setCollisionSweep(() => ({ hasHit: true, fraction: (clearance + .02) / 8 }));
+    rig.update(0, body);
+    assert.equal(rig.characterVisible, false);
+    assert(Math.abs(camera.radius - clearance) < 1e-8);
+    for (clearance of [1.3, 1.2, 1.5]) {
+        rig.update(0, body);
+        assert.equal(rig.characterVisible, false, 'A close obstruction must not flicker the character');
+    }
+    clearance = 1.6;
+    rig.update(0, body);
+    assert.equal(rig.characterVisible, true);
+    clearance = 1.3;
+    rig.update(0, body);
+    assert.equal(rig.characterVisible, true, 'Approaching and leaving use distinct clearances');
+    assert.equal(rig.distanceTarget, 8, 'Visibility must not replace the requested zoom');
+});
+
+test('close-character clearance follows height and leaves minimum requested zoom visible', () => {
+    for (const scale of [.9, 1, 1.15]) {
+        const { rig } = setup();
+        rig.pivotHeight *= scale;
+        rig.setCollisionSweep(() => ({ hasHit: true, fraction: (1.2 * scale + .02) / 8 }));
+        rig.update(0, body);
+        assert.equal(rig.characterVisible, false);
+        rig.setCollisionSweep(null);
+        rig.distance = rig.distanceTarget = 2.2;
+        rig.update(0, body);
+        assert.equal(rig.characterVisible, true);
+    }
+});

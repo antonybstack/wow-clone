@@ -30,9 +30,17 @@ Native goal **active**: “resume. complete all 5 priorities autonomously.” Th
    no interval >16.67 ms/errors/recoveries; some 240 Hz pacing hints remain.
    First explicit sound activation retains its native context cost. Telegram 876
    and identical VE diagnostic motion are delivered; inline/expanded/direct VE
-   proportions pass, fullscreen unverified. Camera clips into the maximum outfit
-   near a starting fence/tree; correct that reproduced route before clean visual
-   acceptance/promotion. Next create material first-play headroom and qualify it.
+   proportions pass, fullscreen unverified. Close-camera correction now passes
+   both builds/native keyboard, identity/equipment transactions and portrait touch.
+   The actual temporary loading fence retracts the correct Havok sweep inside the
+   outfit; native visibility now hides/restores the local actor with hysteresis.
+   Fifteen settled routes observe 202.5–239.9 FPS, full-window p99≤6.2 ms, worst
+   12.8 ms, no interval>16.67 ms/errors/recoveries. A held-fence turn shows comparable
+   prior/candidate queue pacing (198.2/198.7 FPS; p99 21.1/21.0 ms); retain that
+   follow-up. Reviewed motion delivered as Telegram 877/identical VE; inline,
+   expanded/direct playback pass, fullscreen/current phone unverified.
+   [Camera result](plans/character-mmo/results/startup-camera-2026-10-07.md).
+   Next create material first-play headroom and qualify it.
    [Audio result](plans/character-mmo/results/startup-audio-2026-10-07.md).
 3. **Release accepted improvements:** freeze, commit/push, seal, verify preview
    integrity/entries/startup/traversal/mobile/depth/WebKit/FPS, deploy identical
@@ -142,8 +150,14 @@ removed; remaining connected Telegram/Shadowglass/X playback restored (1/1/1/0).
 Earlier Telegram nodes were virtualized out of the document; initial counts were
 3/1/1/0. The new diagnostic clip is paused. Final audit finds no Chrome/Chromium,
 Grok worker, preview or listeners 10037/7074/7081; Edge 12 nongame/Orca 0 tabs remain.
-No owned game renderer remains. Repeated launches now append ownership history;
-the early paired runner retained only its live snapshot. Audit before timing.
+Camera native/collision/entry/FPS/motion/comparison browsers and previews are also
+closed; review tab 1147995838 and wrapper PID 982:7081 are closed. Fresh final audit
+finds no Chrome/Chromium, Grok worker or listeners 10037/7074/7081. Edge retains
+twelve nongame tabs and Orca zero embedded tabs. The __cameraTimingOct7 guards are
+removed; connected original playback restored (1/1/1/0), observed playing (0/1/1/0)
+after Telegram auto-paused its original media. One original Telegram node detached;
+the new clip is paused. No owned game renderer remains. Repeated launches append
+ownership history. Audit and pause reference media again before any new timing.
 
 [Workflow](reviews/workflow-2026-10-05.md#current-operating-rule--2026-10-06),
 [continuation limits](autonomous-continuation.md).

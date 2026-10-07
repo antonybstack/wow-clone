@@ -1,0 +1,334 @@
+{
+  "date": "2026-10-07",
+  "status": "camera correction accepted locally; public startup and production promotion remain open",
+  "sourceParent": "7fa657a9b765b05f6fbbb21a89c25ce2b72b9ec9",
+  "sourceSha256": {
+    "src/ashen-reach/main.js": "8664d2964e56bdd78a24dc7a932f2efd1a79e00236bd10ae3a7d61d117ccb6e6",
+    "src/camera-rig.js": "109606460efb81806a896fdb2642504f531ff205c6901664d678bcb98dad2a8e",
+    "src/character/body.js": "a65022c840d47b8e7fd0253ecb2acec893a10493f2a8759e012aa5173a9b327a",
+    "src/ashen-reach/equipment-stream.js": "78c5315a04d4f094b32eafbdb910b5fc237006a67d7c2f87a62f04a595e4abfb",
+    "src/player.js": "68854dc2d141ceb8a858ce3405e4d0b9355a4298c18e94f92c629a984bc0f154",
+    "vite.config.js": "f2eced64bd67920df222c308d79d95312b25436895a7b236e4b4313e3256988b"
+  },
+  "checks": {
+    "focused": 41,
+    "nativeCases": 6,
+    "builds": [
+      "default",
+      "lazy-prime"
+    ],
+    "cameraCollisionPassedBoth": true,
+    "entryAliasesPerBuild": 3,
+    "nativeRuntimeGpuErrors": 0,
+    "recoveries": 0
+  },
+  "performance": {
+    "conditions": {
+      "cpu": "Apple M1 Max",
+      "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1&dev=&gpuTiming=",
+      "viewport": [
+        1280,
+        720
+      ],
+      "seconds": 12,
+      "runs": 3,
+      "uncappedRequired": true,
+      "recording": false,
+      "race": "human",
+      "outfit": null,
+      "orcAssetsOverride": null,
+      "routes": [
+        "meadow",
+        "town",
+        "bridge",
+        "cathedral",
+        "forest"
+      ],
+      "recordCapped": true,
+      "savedAppearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v8",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {
+          "head": "human-prime-v1",
+          "hair": "human-ponytail01-v1"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "duskguardCuirass",
+          "legs": "graveweaverSkirt",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "bastionShoulders"
+        }
+      }
+    },
+    "completeWindows": {
+      "windows": 15,
+      "samples": 40205,
+      "fpsRange": [
+        202.53501890417778,
+        239.94601214631362
+      ],
+      "maxP95Ms": 5.899999976158142,
+      "maxP99Ms": 6.199999988079071,
+      "worstMs": 12.800000011920929,
+      "above16_67": 0,
+      "pacingHints": [
+        {
+          "route": "bridge",
+          "run": 1,
+          "capHz": 240
+        },
+        {
+          "route": "bridge",
+          "run": 2,
+          "capHz": 240
+        },
+        {
+          "route": "bridge",
+          "run": 3,
+          "capHz": 240
+        },
+        {
+          "route": "cathedral",
+          "run": 1,
+          "capHz": 240
+        },
+        {
+          "route": "cathedral",
+          "run": 2,
+          "capHz": 240
+        },
+        {
+          "route": "cathedral",
+          "run": 3,
+          "capHz": 240
+        }
+      ]
+    }
+  },
+  "closeFenceComparison": {
+    "conditions": "M1 Max native1280x720/DPR1, seven enemies, uncapped Chromium flags, maximum outfit; actual native region-worker start held, 18-second ordinary KeyA turn, no recording; one previous and one candidate diagnostic",
+    "baselineOriginalCommandFailure": "Empty visibility-event summary after collecting all measurements; raw native frames/physics/errors independently validated. Not rerun. Candidate-only diagnostic after reporting fix exits0.",
+    "rows": {
+      "baseline": {
+        "tails": {
+          "samples": 3570,
+          "meanMs": 5.044313725486857,
+          "meanFps": 198.2430226231585,
+          "p50Ms": 3.200000047683716,
+          "p95Ms": 20.700000047683716,
+          "p99Ms": 21.100000023841858,
+          "maxMs": 21.5,
+          "above6_94": 384,
+          "above8_33": 380,
+          "above16_67": 380,
+          "above33_33": 0
+        },
+        "transitions": 0,
+        "transitionTails": null,
+        "queueWaits": 2171,
+        "observerSlowIntervals": 379,
+        "priorFullQueueOrNewWait": 379,
+        "errors": [],
+        "gpuErrors": [],
+        "recoveries": 0
+      },
+      "candidate": {
+        "tails": {
+          "samples": 3578,
+          "meanMs": 5.033202906638434,
+          "meanFps": 198.68064501851728,
+          "p50Ms": 3.099999964237213,
+          "p95Ms": 20.5,
+          "p99Ms": 21,
+          "maxMs": 21.69999998807907,
+          "above6_94": 417,
+          "above8_33": 413,
+          "above16_67": 413,
+          "above33_33": 0
+        },
+        "transitions": 15,
+        "transitionTails": {
+          "samples": 105,
+          "meanMs": 4.625714285714249,
+          "meanFps": 216.18282890673427,
+          "p50Ms": 3.2000000000007276,
+          "p95Ms": 17.400000000001455,
+          "p99Ms": 17.80000000000109,
+          "maxMs": 17.80000000000291,
+          "above6_94": 10,
+          "above8_33": 10,
+          "above16_67": 9,
+          "above33_33": 0
+        },
+        "queueWaits": 2116,
+        "observerSlowIntervals": 413,
+        "priorFullQueueOrNewWait": 413,
+        "errors": [],
+        "gpuErrors": [],
+        "recoveries": 0
+      }
+    },
+    "interpretation": "Both variants show frequent queue saturation and comparable observed throughput/p99. All long observer intervals coincide with a full queue or a new wait. Does not isolate GPU execution or prove visibility transitions cost zero. Not a public load or settled region benchmark."
+  },
+  "motion": {
+    "rootReviewed": true,
+    "sha256": "ff6d3d9bcd20edf6ccef2715cc522e8f53c2f6b559d9e9f4b49bd8a071fe61af",
+    "width": 1280,
+    "height": 720,
+    "duration": 28.370771,
+    "bytes": 16451410,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "diagnosticRegionWorkerHold": true,
+    "normalControlsHavok": true,
+    "silent": true,
+    "telegram": {
+      "ok": true,
+      "messageId": 877,
+      "expected": {
+        "width": 1280,
+        "height": 720,
+        "duration": 28.370771,
+        "sampleAspectRatio": "1:1",
+        "rotation": 0,
+        "codec": "h264"
+      },
+      "returned": {
+        "width": 1280,
+        "height": 720,
+        "duration": 29
+      },
+      "verified": true,
+      "file": "camera.mp4",
+      "sha256": "ff6d3d9bcd20edf6ccef2715cc522e8f53c2f6b559d9e9f4b49bd8a071fe61af",
+      "sentAt": "2026-10-07T14:22:19.510593+00:00"
+    },
+    "VE": {
+      "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/startup-camera-2026-10-07/ff6d3d9bcd20-camera.mp4",
+      "sha256": "ff6d3d9bcd20edf6ccef2715cc522e8f53c2f6b559d9e9f4b49bd8a071fe61af",
+      "bytes": 16451410,
+      "metadata": {
+        "status": 200,
+        "type": "video/mp4",
+        "length": "16451410"
+      },
+      "range": {
+        "status": 206,
+        "range": "bytes 0-1023/16451410"
+      }
+    },
+    "clientReview": {
+      "browser": "Edge Telegram Web A",
+      "inline": {
+        "video": [
+          1280,
+          720
+        ],
+        "box": [
+          738.1875,
+          415.21875
+        ],
+        "playbackAdvanced": true
+      },
+      "expanded": {
+        "video": [
+          1280,
+          720
+        ],
+        "box": [
+          1280,
+          720
+        ],
+        "playbackAdvanced": true
+      },
+      "directVE": {
+        "video": [
+          1280,
+          720
+        ],
+        "box": [
+          1280,
+          720
+        ],
+        "playbackAdvanced": true
+      },
+      "fullscreen": "actual Telegram fullscreen button clicked; document.fullscreenElement remains absent; unverified",
+      "physicalPhone": "unverified"
+    }
+  },
+  "ownership": {
+    "allOwnedGameBrowsersClosed": true,
+    "cdpPortsClear": [
+      10037
+    ],
+    "previewPortsClear": [
+      7074,
+      7081
+    ],
+    "reviewTab": "1147995838 closed",
+    "reviewServerPid": 982,
+    "reviewServerClosed": true,
+    "EdgeUserTabs": 12,
+    "OrcaEmbeddedTabs": 0,
+    "mediaGuardsRemoved": true,
+    "restoredOriginalConnectedPlayback": [
+      1,
+      1,
+      1,
+      0
+    ],
+    "observedPlayingAfterRestore": [
+      0,
+      1,
+      1,
+      0
+    ],
+    "detachedOriginalMedia": [
+      1,
+      0,
+      0,
+      0
+    ],
+    "note": "Telegram auto-paused its restored original media; new clip remains paused. User sessions preserved."
+  },
+  "limitations": [
+    "Discrete hide/show; hidden local actor also leaves its dynamic shadow pass.",
+    "Prime/lazy options remain default-off.",
+    "Strict public <=1000ms startup remains unqualified.",
+    "Historical 14/60 fetch failure remains unexplained.",
+    "No production promotion or physical-iPhone acceptance."
+  ],
+  "evidenceHashes": {
+    "steady-fps.json": "c903fd70122621cda010cf49c798339d14347d28cf5a160c331d11618b7ed009",
+    "native-default/report.json": "a3e75b6773b37ab5ac3c140b1dfe9f7d0fd7c3b9908a6449d9a5cbfbfa489542",
+    "native-lazy/report.json": "e7710b94b6fd19aca9f6d2d7fb7641a87dfcc0bf2ca5b5485b559a1392a88e58",
+    "collision-default/report.json": "1c9fad70ec9fd372364dfd1d927b4b6ea29337b538c770f7e2892a4ac92052b1",
+    "collision-lazy/report.json": "382476bf63ef3cf2edc74b081c07c8e9644d2f22f8266261b769196b2830e265",
+    "comparison-baseline/report.json": "0bfaba678d5d20a72b61a4645015993227f6a8cb02087b6b73b27d3a872586a9",
+    "comparison-candidate/report.json": "c991f214e67db331ec0ce4c03308018334599468e2e59bb14616f22bbaafcae2",
+    "motion/report.json": "daa2f7900b9b0c74ddc41d1dfd4fcbe8ac813703659ec39dce7356d7d22dc4e4",
+    "motion/capture-manifest.json": "056d99dc93cdf5e4e37b0cfb85977a1517809766ab1a84f21b463f807fed3492",
+    "root-motion-review.json": "e0660915286cc17e6b4711b933e27341481ae310dcb9cfb61bb34ac9984db3ff"
+  }
+}

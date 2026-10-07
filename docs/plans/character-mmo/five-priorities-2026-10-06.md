@@ -144,9 +144,19 @@ streaming p99 remains about 21.5–21.6 ms. Fifteen settled windows observe
 some 240 Hz pacing hints remain. First explicit sound activation retains its
 native context cost. Telegram 876/identical VE diagnostic motion are delivered
 with reviewed inline/expanded/direct VE proportions; fullscreen/current phone
-remain unverified. Live review also reproduces camera clipping into the maximum
-outfit near a starting fence/tree. Correct the actual sweep/radius/pivot behavior
-on that route before clean visual acceptance/promotion, retaining Havok collision.
+remain unverified. Live review reproduces camera clipping into the maximum outfit.
+Native diagnosis identifies the actual temporary loading fence; the sweep/pivot
+remain valid. The close-camera correction preserves Havok and hides/restores the
+local dressed actor with scaled hysteresis, retaining visibility through identity/
+equipment transactions and keeping inspection visible. Both builds, six native
+cases, full-region camera/entries and forty-one focused checks pass. Fifteen
+settled windows observe 202.5–239.9 FPS, p99≤6.2 ms, worst 12.8 ms, no interval
+>16.67 ms/errors/recoveries. A separate held-fence turn shows comparable prior/
+candidate queue pacing (198.2/198.7 FPS; p99 21.1/21.0 ms), retained as a follow-up.
+Reviewed Telegram 877/identical VE motion are delivered with correct inline,
+expanded/direct proportions; fullscreen/current phone remain unverified.
+[Camera result](results/startup-camera-2026-10-07.md). Next create material public
+first-play headroom; the camera checkpoint does not satisfy that gate.
 [Audio result](results/startup-audio-2026-10-07.md). Both flags remain off and
 there is no new public startup qualification. [Checkpoint](results/startup-lazy-world-2026-10-07.md).
 

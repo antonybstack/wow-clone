@@ -114,6 +114,25 @@ node scripts/ashen-reach/measure-armory.mjs --warden
 
 Browser scripts accept `ASHEN_URL` to select an explicitly chosen server and share one CDP target; run them sequentially.
 
+For close-camera changes, use `check-camera.mjs` for normal full-region collision
+and `check-camera-visibility.mjs` for actual loading-fence keyboard/touch and
+identity/equipment transactions. The latter requires `ASHEN_CDP_PORT`,
+`ASHEN_TEST_URL`, `ASHEN_CAPTURE_DIR` and a compatible saved maximum recipe in
+`ASHEN_PROBE_APPEARANCE`; it refuses an already-active owned browser page.
+Run against both the default and opt-in lazy/prime builds. Its held native worker
+start is diagnostic: it keeps the real temporary fence present, then releases
+normal region generation. It cannot establish startup time or traversal performance.
+Both checks read the active camera's public world transform, retaining native
+Havok lens clearance and capsule exclusion without importing another Lite graph.
+Review a live clip of hide/inspection/return/movement separately from timing.
+
+Frame-scheduler `pending`/`waits` describe completion acknowledgements, not GPU
+execution duration. Compare native render intervals and observer RAF intervals
+on their own clocks; a held-region turn can saturate the uncapped queue even when
+settled full-region routes pass. Keep baseline samples and report pacing hints.
+See the [camera correction and retained comparison](plans/character-mmo/results/startup-camera-2026-10-07.md)
+and [pinned Lite camera API](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/02-camera.md).
+
 ## See an image when tool results are OCR'd
 
 In this environment, image tool results (reading a PNG, `browser_take_screenshot`) can arrive as `[OCR from image]` text only, so do not review visuals from them or equate them with acceptance. The active model is multimodal; to actually see an image, run a nested, tool-free call and read its text:

@@ -5,8 +5,8 @@
  * LMB orbits without turning the body; RMB is mouselook.
  * Zoom and outward collision recovery are damped.
  * Lite's camera data, position helper and control split are documented at:
- * https://github.com/BabylonJS/Babylon-Lite/blob/master/docs/lite/architecture/02-camera.md
- * The WoW input and collision choices are explained in docs/camera-lite-audit.md.
+ * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/02-camera.md
+ * The input and collision choices are explained in docs/complete/2026-09/camera-lite-audit.md.
  */
 import { input } from "./input.js";
 import { expDampFactor, getCameraPosition, setCameraLimits } from "@babylonjs/lite";
@@ -19,6 +19,12 @@ const PIVOT_HEIGHT = 0.55;
 // Lite uses a half-life; preserve the existing 14/s zoom response.
 const ZOOM_HALF_LIFE = Math.LN2 / 14;
 const ARM_HALF_LIFE = 0.08;
+// Collision may put the lens inside the dressed actor. Preserve the safe arm
+// length, but omit the local visual until it clears the close view. These are
+// game framing thresholds, scaled with the same height as the follow pivot.
+// Separate thresholds prevent flicker while walking along an obstruction.
+const CHARACTER_HIDE_DISTANCE = 1.25;
+const CHARACTER_SHOW_DISTANCE = 1.55;
 
 function clamp(value, lo, hi) {
     return Math.min(hi, Math.max(lo, value));
@@ -54,6 +60,7 @@ export class CameraRig {
         this.pivotHeight = PIVOT_HEIGHT;
         this.trauma = 0;
         this.armDistance = camera.radius;
+        this.characterVisible = true;
         setCameraLimits(camera, {
             lowerBetaLimit: Math.PI / 2 - PITCH_MAX,
             upperBetaLimit: Math.PI / 2 - PITCH_MIN,
@@ -81,9 +88,9 @@ export class CameraRig {
 
     /**
      * @param {number} dt
-     * @param {{ x: number, y: number, z: number }} feet
+     * @param {{ x: number, y: number, z: number }} bodyPosition Capsule centre, not feet.
      */
-    update(dt, feet) {
+    update(dt, bodyPosition) {
         this.distanceTarget = clamp(
             this.distanceTarget + input.zoomDelta * (this.distanceTarget * 0.35),
             DIST_MIN,
@@ -110,9 +117,9 @@ export class CameraRig {
         } else {
             this.trauma = 0;
         }
-        camera.target.x = feet.x + ox;
-        camera.target.y = feet.y + this.pivotHeight + oy;
-        camera.target.z = feet.z + oz;
+        camera.target.x = bodyPosition.x + ox;
+        camera.target.y = bodyPosition.y + this.pivotHeight + oy;
+        camera.target.z = bodyPosition.z + oz;
         camera.alpha = alphaFromYaw(this.yaw);
         camera.beta = Math.PI / 2 - this.pitch;
         camera.radius = this.distance;
@@ -124,5 +131,8 @@ export class CameraRig {
         this.armDistance = dt <= 0 ? allowed : Math.min(allowed,
             this.armDistance + (allowed - this.armDistance) * expDampFactor(dt, ARM_HALF_LIFE));
         camera.radius = this.armDistance;
+        const clearance = (this.characterVisible ? CHARACTER_HIDE_DISTANCE : CHARACTER_SHOW_DISTANCE)
+            * (this.pivotHeight / PIVOT_HEIGHT);
+        this.characterVisible = camera.radius >= clearance;
     }
 }

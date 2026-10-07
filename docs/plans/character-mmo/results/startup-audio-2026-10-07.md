@@ -57,7 +57,7 @@ pacing hints; retain these as observations, not confirmed hardware-limit proof.
 
 Root reviewed the actual **24.343897-second 1280×720 MP4** and timestamped live cast
 frames. Source elapsed 24.344606 seconds, 1,430 source frames, square pixels, zero
-rotation. Normal controls strafe/walk from the starting area to z70.3, with active
+rotation. Normal controls turn/walk from the starting area to z70.3, with active
 Havok, native spell sound `played: 1`, remuted, seven enemies and no recorded errors/
 recoveries. Diagnostic invulnerability changes damage only. The clip is silent;
 actual native audio playback/mixer checks are separate.
@@ -82,7 +82,7 @@ Failed attempts are retained separately: stale cooldown-test assumption, an earl
 cast assertion, hidden desktop button tapped on mobile, reproduced backdrop click,
 post-dispose physics-test expectation, actual disposed view-key error and a failed
 capture endpoint without a saved position report. The corrected capture saves
-native state before assertions and adds normal strafe. Its passed checks do not
+native state before assertions and adds a normal KeyA turn. Its passed checks do not
 erase the failed capture or earlier cohorts. Disposal tests assert active Havok
 before teardown and retired physics afterward.
 

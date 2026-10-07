@@ -2,7 +2,7 @@ import {sceneLifetime} from './scene-lifetime.js';
 import {BASE_VISIBLE_MESHES, ORC_BASE_VISIBLE_MESHES, ORC_BODY_URL, UNDEAD_BASE_VISIBLE_MESHES, EQUIPMENT_ITEMS} from './equipment-catalog.js';
 import {HUMAN_EQUIPMENT_FIT, ORC_EQUIPMENT_FIT, UNDEAD_EQUIPMENT_FIT} from './equipment-contract.js';
 import {RACE_BODY_SEGMENTS} from './coverage-contract.js';
-import {createEngine,createSceneContext,disposeScene,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,onSceneDispose,onBeforeRender,enableBoneControl,setFog,captureScreenshot,setMeshVisible,isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize,setMeshoptBaseUrl,waitForGpuIdle} from '@babylonjs/lite';
+import {createEngine,createSceneContext,disposeScene,createArcRotateCamera,createFreeCamera,createHemisphericLight,createDirectionalLight,addToScene,registerScene,onSceneDispose,onBeforeRender,enableBoneControl,setFog,captureScreenshot,isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize,setMeshoptBaseUrl,waitForGpuIdle} from '@babylonjs/lite';
 import {createAshenMetrics} from './metrics.js';
 import {createRenderLoop} from './render-loop.js';
 import {createObjective} from './objective.js';
@@ -206,6 +206,7 @@ async function main(){
  let capsule=null;
  let combat=null;
  let equipment=null;
+ let impl=null;
  let armory=null;
  let creator=null;
  let tools={tick(){}};
@@ -216,11 +217,22 @@ async function main(){
  let supportedFramePending=false;
  failStartup=error=>{for(const b of [playableBoundary,combatBoundary,regionBoundary,hostilesBoundary,firstGpuCompleted,supportedGpuCompleted])b.fail(error);};
  let view='reference',elapsed=0;const samples=[];
+ let actorVisible=false,visibilityRoot=null,visibilityEquipment=null;
+ // Reuse the body's native visibility and equipment coverage owners. Only
+ // transitions or owner replacements traverse the hierarchy; the normal frame
+ // does not rebuild materials, collision, or equipment. Inspection has its own
+ // camera and must keep the character visible even after a close gameplay view.
+ // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/02-camera.md
+ const syncPlayerVisibility=(force=false)=>{
+  const show=!!(view==='play'&&dressed&&body&&(armory?.isOpen||rig.characterVisible));
+  if(!force&&show===actorVisible&&visibilityRoot===body?.root&&visibilityEquipment===impl)return;
+  actorVisible=show;visibilityRoot=body?.root;visibilityEquipment=impl;
+  body?.setVisible(show);
+  equipment?.setVisible(show);
+ };
  const setView=v=>{
   view=v;scene.camera=v==='reference'?reference:camera;
-  const show=v==='play'&&dressed&&body;
-  if(body){setMeshVisible(body.root,show);body.hideParked?.();}
-  equipment?.setVisible(show);
+  syncPlayerVisibility(true);
   combat?.setVisible(v==='play');
  };
  const reset=()=>{if(!player||!capsule)return;player.setWorldPos(0,height(0,0)+capsule.height/2,0);player.setFacing(0);rig.yaw=0;rig.pitch=.04;combat?.releaseSpirit?.(true);setView('reference');};
@@ -310,7 +322,7 @@ async function main(){
  setView(params.has('play')||touchControlsWanted()?'play':'reference');
  const metrics=createAshenMetrics({engine,scene,world,canvas,samples,lite:{isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize}});
  if(params.has('gpuTiming'))metrics.setGpuTiming(true);
- onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);if(menu.isOpen){armory?.update(dt);shadows.update();localLights.update(dt,player?.body.position);return;}elapsed+=dt;player?.kinematicStep(dt);if(readyForPlay)combat?.beforeAnimation(dt);tools.tick();body?.update(dt);world.update(elapsed,player?player.body.position:null);if(readyForPlay)combat?.afterAnimation(dt);equipment?.update(dt);armory?.update(dt);shadows.update();localLights.update(dt,player?.body.position);if(readyForPlay&&elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();metrics.sampleGpu();}});
+ onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);if(menu.isOpen){armory?.update(dt);syncPlayerVisibility();shadows.update();localLights.update(dt,player?.body.position);return;}elapsed+=dt;player?.kinematicStep(dt);if(readyForPlay)combat?.beforeAnimation(dt);tools.tick();body?.update(dt);world.update(elapsed,player?player.body.position:null);if(readyForPlay)combat?.afterAnimation(dt);equipment?.update(dt);armory?.update(dt);syncPlayerVisibility();shadows.update();localLights.update(dt,player?.body.position);if(readyForPlay&&elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();metrics.sampleGpu();}});
  const ashen={engine,scene,camera,reference,rig,world,input,setView,reset,metrics,capture:()=>captureScreenshot(engine),hostilesReady:noEnemies,presentMs:0,loadMs:0,ready:false,
   // ready/hostilesReady keep their existing "all of it" meaning for the suites
   // that already assert on them. The three below are the new, narrower claims.
@@ -449,7 +461,7 @@ async function main(){
  setLoadingStage(3,'Gathering your belongings.');
  markStartup('equipment-start');
  const createEquipment=preloadedEquipment?(await import('./equipment.js')).createEquipment:null;
- let impl=preloadedEquipment?createEquipment(engine,scene,body,sockets):await createStreamedEquipment(engine,scene,body,sockets,packs.human);
+ impl=preloadedEquipment?createEquipment(engine,scene,body,sockets):await createStreamedEquipment(engine,scene,body,sockets,packs.human);
  // A settled request is the only safe moment to shape a garment: a cancelled or failed one
  // never added a mesh, and re-applying after it would be shaping whatever is still on.
  const reshaped=request=>Promise.resolve(request).then(result=>{reshapeEquipment?.();return result;},error=>{reshapeEquipment?.();throw error;});
@@ -566,8 +578,8 @@ async function main(){
      if(race==='human'&&currentHumanShape&&writeShapeWeights)
       setHumanShapeLive({weights:[Math.max(0,-currentHumanShape.build),Math.max(0,currentHumanShape.build)],heightScale:currentHumanShape.height});
      else {player.setHeightScale(1);rig.pivotHeight=basePivotHeight??rig.pivotHeight;body.root.position.y=-player.capsuleHeight/2;}
-     next.setVisible(true);
-     return ()=>{restorePalettes?.();next.setVisible(false);impl=previousImpl;currentRace=previousRace;player.setHeightScale(previousHeight);rig.pivotHeight=previousPivot;previousImpl.setVisible(true);};
+     next.setVisible(actorVisible);
+     return ()=>{restorePalettes?.();next.setVisible(false);impl=previousImpl;currentRace=previousRace;player.setHeightScale(previousHeight);rig.pivotHeight=previousPivot;previousImpl.setVisible(actorVisible);};
     },{immediate:!ashen.renderLoop});
     committed=true;
     parkedGarments=pack.garments===false?loadout:null;
@@ -651,7 +663,7 @@ async function main(){
    try {
     next=await createStreamedEquipment(engine,scene,body,sockets,{...packs.human,manifest:full,bootLoadout:previous.getState(),dyes:previous.getDyes(),visible:false});
     lifetime.throwIfAborted();reshapeEquipment?.();
-    previous.setVisible(false);impl=next;next.setVisible(view==='play');
+    previous.setVisible(false);impl=next;next.setVisible(actorVisible);
     packs.human={...packs.human,manifest:full};previous.dispose();
     await next.upgradeTextures?.();
    }catch(error){if(impl!==next)next?.dispose();ashen.appearanceDetailError=error.message;}
@@ -763,8 +775,8 @@ async function main(){
      visit(staged.body.root);
      staged.body.root.scaling.set(-shape.height,shape.height,shape.height);
      await staged.commit(()=>{
-      previous.setVisible(false);const restorePalettes=previous.releasePalettes?.();impl=next;next.setVisible(true);
-      return ()=>{restorePalettes?.();next.setVisible(false);impl=previous;previous.setVisible(true);};
+      previous.setVisible(false);const restorePalettes=previous.releasePalettes?.();impl=next;next.setVisible(actorVisible);
+      return ()=>{restorePalettes?.();next.setVisible(false);impl=previous;previous.setVisible(actorVisible);};
      });
      committed=true;
      previous.dispose();
@@ -809,8 +821,8 @@ async function main(){
     // at the render boundary, not only before an asynchronous file arrives.
     // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#skins
     await staged.commit(()=>{
-     check();previous.setVisible(false);const restorePalettes=previous.releasePalettes?.();impl=next;next.setVisible(true);
-     return ()=>{restorePalettes?.();next.setVisible(false);impl=previous;previous.setVisible(true);};
+     check();previous.setVisible(false);const restorePalettes=previous.releasePalettes?.();impl=next;next.setVisible(actorVisible);
+     return ()=>{restorePalettes?.();next.setVisible(false);impl=previous;previous.setVisible(actorVisible);};
     });
     committed=true;
     packs.human={...packs.human,manifest,loadBuffer:startupAssetBuffer,shapeFamily:manifest.shapeFamily};

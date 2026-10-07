@@ -23,11 +23,7 @@ await page.addInitScript(() => {
 try {
     await page.goto(process.env.ASHEN_TEST_URL || 'http://127.0.0.1:5173/ashen-reach.html?play&clean');
     await page.waitForFunction(() => window.ASHEN?.ready && ASHEN.hostilesReady, null, { timeout: 120000 });
-    await page.evaluate(async () => {
-        const source = await (await fetch('/src/ashen-reach/main.js')).text();
-        const url = source.match(/from\s*["']([^"']*\/@babylonjs_lite\.js[^"']*)["']/)?.[1];
-        if (!url) throw Error('Active Lite module missing');
-        window.cameraLite = await import(url);
+    await page.evaluate(() => {
         ASHEN.dev.god = true;
         ASHEN.metrics.setInternalResolution(1280, 720);
     });
@@ -47,7 +43,12 @@ try {
             if (id === 'tower-turn') await page.evaluate(i => { ASHEN.rig.yaw = i * Math.PI / 12; }, i);
             await page.waitForTimeout(70);
             samples.push(await page.evaluate(() => {
-                const a = ASHEN, c = a.rig.camera, position = cameraLite.getCameraPosition(c);
+                const a = ASHEN, c = a.rig.camera, m = c.worldMatrix;
+                // Read the public active camera transform on Vite and built
+                // releases alike; importing another Lite graph duplicates its
+                // registries. The camera module owns this transform.
+                // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/02-camera.md
+                const position = { x: m[12], y: m[13], z: m[14] };
                 return { radius: c.radius, desired: a.rig.distance, target: { ...c.target }, position: { ...position },
                     sweep: a.rig.collisionSweep(c.target, position), physics: a.player.getDebugState() };
             }));
@@ -86,8 +87,7 @@ try {
     assert.deepEqual(errors, []);
     assert.deepEqual(report.gpuErrors, []);
     report.disposed = await page.evaluate(async () => {
-        cameraLite.unregisterScene(ASHEN.scene);
-        cameraLite.disposeScene(ASHEN.scene);
+        ASHEN.dispose();
         await Promise.all([ASHEN.shadows.gpuRelease, ASHEN.localLights.gpuRelease]);
         return ASHEN.rig.collisionSweep === null;
     });

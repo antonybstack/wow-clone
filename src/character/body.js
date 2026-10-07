@@ -196,6 +196,11 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
     let socketHost = null;
     let commitHook = null;
     let disposed = false;
+    // Native subtree visibility is materialized on each current visual; retain
+    // its owner intent across source promotion/rollback, rather than exposing
+    // an arriving identity while the gameplay camera is inside the actor.
+    // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/scene/scene-node.ts
+    let visible = true;
     let inspection = null;
     const commitWaiters = [];
 
@@ -694,7 +699,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
         }
         visual = candidate;
         if (candidate?.root) candidate.root.name = "BodyRoot";
-        setVisualVisible(candidate, true);
+        setVisualVisible(candidate, visible);
         setVisualVisible(parkedVisual, false);
         if (socketHost?.rebind) socketHost.rebind(facade);
         playLoop(visual.idle);
@@ -710,7 +715,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
         if (staged && staged !== previous) retireVisual(scene, staged);
         visual = previous;
         if (previous?.root) previous.root.name = "BodyRoot";
-        setVisualVisible(previous, true);
+        setVisualVisible(previous, visible);
         if (socketHost?.rebind) socketHost.rebind(facade);
         playLoop(visual.idle);
         state.locoName = visual.idle?.name || state.locoName;
@@ -956,7 +961,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
                 newMeshes: nextMeshes,
             });
             revertHook = typeof hookResult === "function" ? hookResult : null;
-            setVisualVisible(candidate, true);
+            setVisualVisible(candidate, visible);
             if (previous && previous !== candidate) {
                 previous.root.name = "BodyRootRetired";
                 setVisualVisible(previous, false);
@@ -965,7 +970,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
         } catch (error) {
             visual = previous;
             if (switchedVisibility) {
-                setVisualVisible(previous, true);
+                setVisualVisible(previous, visible);
                 setVisualVisible(candidate, false);
                 if (previous?.root) previous.root.name = "BodyRoot";
                 if (candidate?.root) candidate.root.name = "BodyRootStaged";
@@ -1175,6 +1180,12 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
         update,
         swapSource,
         restoreSource,
+        setVisible(value) {
+            if (disposed) return;
+            visible = !!value;
+            setVisualVisible(visual, visible);
+            setVisualVisible(parkedVisual, false);
+        },
         hideParked() { setVisualVisible(parkedVisual, false); },
         get parked() { return !!parkedVisual; },
         get inspection() { return inspection; },
