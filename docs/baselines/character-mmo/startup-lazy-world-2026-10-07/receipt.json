@@ -1,0 +1,3395 @@
+{
+  "schema": 1,
+  "kind": "default-off deferred-world checkpoint; not public startup qualification",
+  "source": {
+    "src/ashen-reach/main.js": "1de3121f7751377734fba5824b9a7ca537b3e5240cc2fb32f9ee49deb3265078",
+    "src/ashen-reach/prime-starter-world.js": "c56afa2041b50339159d2c6a79562c5dd063c5209abfe3da08c15a74218f8344",
+    "vite.config.js": "f2eced64bd67920df222c308d79d95312b25436895a7b236e4b4313e3256988b",
+    "src/ashen-reach/starter-world.js": "73658566e5edc1259a3ff994b05a7fe6186082995b953319f2e8d3766cbaaed6",
+    "src/ashen-reach/baked-woodland.js": "c26559c6ffb2a914d9bcdf1921abe17d47d029159501a846ce99c5174c47f374",
+    "src/ashen-reach/sun-shadows.js": "e58be4feb5ac20b0cc480b8fea454506040b13d881fa658fbf105ac33669d70d",
+    "src/player.js": "68854dc2d141ceb8a858ce3405e4d0b9355a4298c18e94f92c629a984bc0f154"
+  },
+  "initialWorldStorage": {
+    "bytes": 16259292,
+    "records": 5,
+    "baselineBytes": 210049236,
+    "baselineRecords": 71,
+    "meaning": "logical native buffer reservation, not measured residency or isolated GPU execution"
+  },
+  "priorPairedComparison": {
+    "method": {
+      "kind": "bounded-local-comparison",
+      "createdAt": "2026-10-07T10:43:48.570Z",
+      "builds": {
+        "before": "build-eager",
+        "lazy": "build-lazy"
+      },
+      "outfits": [
+        "default",
+        "maximum"
+      ],
+      "pairs": 3,
+      "orders": [
+        [
+          "before",
+          "lazy"
+        ],
+        [
+          "lazy",
+          "before"
+        ],
+        [
+          "before",
+          "lazy"
+        ]
+      ],
+      "runs": 12,
+      "profile": "50mbps",
+      "httpCache": "fresh process/profile, initially empty with native preload reuse",
+      "viewport": [
+        1280,
+        720
+      ],
+      "shaderCache": "OS/driver caches uncontrolled; no forced cache policy",
+      "maxMs": null,
+      "releaseGate": false
+    },
+    "input": {
+      "src/ashen-reach/main.js": "1de3121f7751377734fba5824b9a7ca537b3e5240cc2fb32f9ee49deb3265078",
+      "src/ashen-reach/prime-starter-world.js": "c56afa2041b50339159d2c6a79562c5dd063c5209abfe3da08c15a74218f8344",
+      "vite.config.js": "f2eced64bd67920df222c308d79d95312b25436895a7b236e4b4313e3256988b",
+      "src/ashen-reach/starter-world.js": "297cb1e206222fc7c35effb5ac31e0d332d5c7fcfeaf613485b31e3799b60d35",
+      "src/ashen-reach/baked-woodland.js": "3a6ccfab8975cfd4179ec3423e6599463f4215ce5dd0e335a9df92d38867cf9b"
+    },
+    "rows": [
+      {
+        "outfit": "default",
+        "pair": 1,
+        "mode": "before",
+        "file": "paired-default-1-before",
+        "playableMs": 544.2999999523163,
+        "marks": {
+          "begin": 195.69999998807907,
+          "engine-created": 204.19999998807907,
+          "gpu-probe-end": 210.19999998807907,
+          "world-start": 212.0999999642372,
+          "havok-runtime-available": 261.69999998807907,
+          "world-end": 313.19999998807907,
+          "havok-start": 314.19999998807907,
+          "havok-runtime-start": 315.0999999642372,
+          "havok-runtime-end": 315.0999999642372,
+          "havok-world-end": 317,
+          "havok-colliders-end": 324.19999998807907,
+          "havok-controller-end": 325.5999999642372,
+          "havok-end": 326.69999998807907,
+          "prime-world-start": 327,
+          "prime-world-registered": 342.39999997615814,
+          "prime-world-submitted": 349.0999999642372,
+          "prime-world-completed": 439.39999997615814,
+          "body-start": 462.69999998807907,
+          "body-end": 476.39999997615814,
+          "equipment-start": 477.39999997615814,
+          "equipment-end": 488.69999998807907,
+          "register-start": 491,
+          "register-end": 503.89999997615814,
+          "first-render-return": 507.89999997615814,
+          "first-gpu-completed": 530.2999999523163,
+          "supported-frame-submitted": 536.8999999761581,
+          "supported-frame-completed": 543.3999999761581,
+          "playable": 544.2999999523163,
+          "bg-start": 544.2999999523163
+        },
+        "errors": [],
+        "helperRequests": [
+          {
+            "url": "http://127.0.0.1:7074/assets/v2/prime-starter-world-CUKDVDHB.js",
+            "initiator": "script",
+            "initialPriority": "High",
+            "priorityChanges": [],
+            "startMs": 195.93603515625,
+            "endMs": 268.169921875,
+            "response": {
+              "status": 200,
+              "mimeType": "application/javascript",
+              "protocol": "http/1.1",
+              "remoteIPAddress": "127.0.0.1",
+              "cfRay": null,
+              "cfCacheStatus": null,
+              "cacheControl": "public, max-age=3600",
+              "fromEarlyHints": false,
+              "fromDiskCache": false,
+              "fromPrefetchCache": false
+            },
+            "complete": true,
+            "encodedBytesAtBoundary": 707
+          }
+        ]
+      },
+      {
+        "outfit": "default",
+        "pair": 1,
+        "mode": "lazy",
+        "file": "paired-default-1-lazy",
+        "playableMs": 534.6000000238419,
+        "marks": {
+          "begin": 190,
+          "engine-created": 199,
+          "gpu-probe-end": 200.60000002384186,
+          "world-start": 202.60000002384186,
+          "havok-runtime-available": 256,
+          "world-end": 305.9000000357628,
+          "havok-start": 306.9000000357628,
+          "havok-runtime-start": 307.80000001192093,
+          "havok-runtime-end": 307.80000001192093,
+          "havok-world-end": 309.69999998807907,
+          "havok-colliders-end": 316.5,
+          "havok-controller-end": 317.69999998807907,
+          "havok-end": 318.80000001192093,
+          "prime-world-start": 319,
+          "prime-world-registered": 329.5,
+          "prime-world-submitted": 333.5,
+          "prime-world-completed": 391,
+          "body-start": 456.5,
+          "body-end": 470,
+          "equipment-start": 471,
+          "equipment-end": 481.80000001192093,
+          "register-start": 484,
+          "register-end": 492.80000001192093,
+          "first-render-return": 497.60000002384186,
+          "first-gpu-completed": 521,
+          "supported-frame-submitted": 529.8000000119209,
+          "supported-frame-completed": 534.1999999880791,
+          "playable": 534.6000000238419,
+          "bg-start": 534.6999999880791
+        },
+        "errors": [],
+        "helperRequests": [
+          {
+            "url": "http://127.0.0.1:7075/assets/v2/prime-starter-world-CUKDVDHB.js",
+            "initiator": "script",
+            "initialPriority": "High",
+            "priorityChanges": [],
+            "startMs": 190.39111328125,
+            "endMs": 263.302001953125,
+            "response": {
+              "status": 200,
+              "mimeType": "application/javascript",
+              "protocol": "http/1.1",
+              "remoteIPAddress": "127.0.0.1",
+              "cfRay": null,
+              "cfCacheStatus": null,
+              "cacheControl": "public, max-age=3600",
+              "fromEarlyHints": false,
+              "fromDiskCache": false,
+              "fromPrefetchCache": false
+            },
+            "complete": true,
+            "encodedBytesAtBoundary": 707
+          }
+        ]
+      },
+      {
+        "outfit": "default",
+        "pair": 2,
+        "mode": "lazy",
+        "file": "paired-default-2-lazy",
+        "playableMs": 529.3999999761581,
+        "marks": {
+          "begin": 195.89999997615814,
+          "engine-created": 204,
+          "gpu-probe-end": 205.79999995231628,
+          "world-start": 207.79999995231628,
+          "havok-runtime-available": 261.69999998807907,
+          "world-end": 310.7999999523163,
+          "havok-start": 311.7999999523163,
+          "havok-runtime-start": 312.5999999642372,
+          "havok-runtime-end": 312.5999999642372,
+          "havok-world-end": 314.5,
+          "havok-colliders-end": 321.5,
+          "havok-controller-end": 322.69999998807907,
+          "havok-end": 323.69999998807907,
+          "prime-world-start": 324,
+          "prime-world-registered": 334.2999999523163,
+          "prime-world-submitted": 338.69999998807907,
+          "prime-world-completed": 395.5999999642372,
+          "body-start": 462.5,
+          "body-end": 475.89999997615814,
+          "equipment-start": 476.89999997615814,
+          "equipment-end": 487.5,
+          "register-start": 489.69999998807907,
+          "register-end": 498.39999997615814,
+          "first-render-return": 501.5,
+          "first-gpu-completed": 522.0999999642372,
+          "supported-frame-submitted": 524.2999999523163,
+          "supported-frame-completed": 529,
+          "playable": 529.3999999761581,
+          "bg-start": 529.5
+        },
+        "errors": [],
+        "helperRequests": [
+          {
+            "url": "http://127.0.0.1:7075/assets/v2/prime-starter-world-CUKDVDHB.js",
+            "initiator": "script",
+            "initialPriority": "High",
+            "priorityChanges": [],
+            "startMs": 196.181884765625,
+            "endMs": 268.61572265625,
+            "response": {
+              "status": 200,
+              "mimeType": "application/javascript",
+              "protocol": "http/1.1",
+              "remoteIPAddress": "127.0.0.1",
+              "cfRay": null,
+              "cfCacheStatus": null,
+              "cacheControl": "public, max-age=3600",
+              "fromEarlyHints": false,
+              "fromDiskCache": false,
+              "fromPrefetchCache": false
+            },
+            "complete": true,
+            "encodedBytesAtBoundary": 707
+          }
+        ]
+      },
+      {
+        "outfit": "default",
+        "pair": 2,
+        "mode": "before",
+        "file": "paired-default-2-before",
+        "playableMs": 535.5,
+        "marks": {
+          "begin": 192.9000000357628,
+          "engine-created": 201,
+          "gpu-probe-end": 202.70000004768372,
+          "world-start": 204.60000002384186,
+          "havok-runtime-available": 258.9000000357628,
+          "world-end": 310.4000000357628,
+          "havok-start": 311.4000000357628,
+          "havok-runtime-start": 312.2000000476837,
+          "havok-runtime-end": 312.30000001192093,
+          "havok-world-end": 314.10000002384186,
+          "havok-colliders-end": 321,
+          "havok-controller-end": 322.2000000476837,
+          "havok-end": 323.30000001192093,
+          "prime-world-start": 323.5,
+          "prime-world-registered": 337.7000000476837,
+          "prime-world-submitted": 345.4000000357628,
+          "prime-world-completed": 430.10000002384186,
+          "body-start": 459.5,
+          "body-end": 472.5,
+          "equipment-start": 473.5,
+          "equipment-end": 484.4000000357628,
+          "register-start": 487.7000000476837,
+          "register-end": 498.80000001192093,
+          "first-render-return": 502.9000000357628,
+          "supported-frame-submitted": 526.8000000119209,
+          "first-gpu-completed": 527.5,
+          "supported-frame-completed": 535.2000000476837,
+          "playable": 535.5,
+          "bg-start": 535.6000000238419
+        },
+        "errors": [],
+        "helperRequests": [
+          {
+            "url": "http://127.0.0.1:7074/assets/v2/prime-starter-world-CUKDVDHB.js",
+            "initiator": "script",
+            "initialPriority": "High",
+            "priorityChanges": [],
+            "startMs": 193.219970703125,
+            "endMs": 266.366943359375,
+            "response": {
+              "status": 200,
+              "mimeType": "application/javascript",
+              "protocol": "http/1.1",
+              "remoteIPAddress": "127.0.0.1",
+              "cfRay": null,
+              "cfCacheStatus": null,
+              "cacheControl": "public, max-age=3600",
+              "fromEarlyHints": false,
+              "fromDiskCache": false,
+              "fromPrefetchCache": false
+            },
+            "complete": true,
+            "encodedBytesAtBoundary": 707
+          }
+        ]
+      },
+      {
+        "outfit": "default",
+        "pair": 3,
+        "mode": "before",
+        "file": "paired-default-3-before",
+        "playableMs": 535.8999999761581,
+        "marks": {
+          "begin": 190.39999997615814,
+          "engine-created": 198.80000001192093,
+          "gpu-probe-end": 200.39999997615814,
+          "world-start": 202.30000001192093,
+          "havok-runtime-available": 256.39999997615814,
+          "world-end": 307.5999999642372,
+          "havok-start": 308.5,
+          "havok-runtime-start": 309.5,
+          "havok-runtime-end": 309.5,
+          "havok-world-end": 311.30000001192093,
+          "havok-colliders-end": 318,
+          "havok-controller-end": 319.30000001192093,
+          "havok-end": 320.30000001192093,
+          "prime-world-start": 320.5,
+          "prime-world-registered": 334.80000001192093,
+          "prime-world-submitted": 342.5,
+          "prime-world-completed": 427.39999997615814,
+          "body-start": 457.5,
+          "body-end": 470.5999999642372,
+          "equipment-start": 471.5999999642372,
+          "equipment-end": 482.39999997615814,
+          "register-start": 485.5999999642372,
+          "register-end": 496.5,
+          "first-render-return": 500.5,
+          "first-gpu-completed": 523.5999999642372,
+          "supported-frame-submitted": 528.3000000119209,
+          "supported-frame-completed": 535.0999999642372,
+          "playable": 535.8999999761581,
+          "bg-start": 536
+        },
+        "errors": [],
+        "helperRequests": [
+          {
+            "url": "http://127.0.0.1:7074/assets/v2/prime-starter-world-CUKDVDHB.js",
+            "initiator": "script",
+            "initialPriority": "High",
+            "priorityChanges": [],
+            "startMs": 190.55712890625,
+            "endMs": 263.24609375,
+            "response": {
+              "status": 200,
+              "mimeType": "application/javascript",
+              "protocol": "http/1.1",
+              "remoteIPAddress": "127.0.0.1",
+              "cfRay": null,
+              "cfCacheStatus": null,
+              "cacheControl": "public, max-age=3600",
+              "fromEarlyHints": false,
+              "fromDiskCache": false,
+              "fromPrefetchCache": false
+            },
+            "complete": true,
+            "encodedBytesAtBoundary": 707
+          }
+        ]
+      },
+      {
+        "outfit": "default",
+        "pair": 3,
+        "mode": "lazy",
+        "file": "paired-default-3-lazy",
+        "playableMs": 535,
+        "marks": {
+          "begin": 192.10000002384186,
+          "engine-created": 200.4000000357628,
+          "gpu-probe-end": 202.10000002384186,
+          "world-start": 204.10000002384186,
+          "havok-runtime-available": 256.9000000357628,
+          "world-end": 307.60000002384186,
+          "havok-start": 308.60000002384186,
+          "havok-runtime-start": 309.5,
+          "havok-runtime-end": 309.5,
+          "havok-world-end": 311.4000000357628,
+          "havok-colliders-end": 318.2000000476837,
+          "havok-controller-end": 319.5,
+          "havok-end": 320.5,
+          "prime-world-start": 320.80000001192093,
+          "prime-world-registered": 331,
+          "prime-world-submitted": 335.10000002384186,
+          "prime-world-completed": 391.5,
+          "body-start": 458,
+          "body-end": 471.5,
+          "equipment-start": 472.60000002384186,
+          "equipment-end": 483.7000000476837,
+          "register-start": 486.10000002384186,
+          "register-end": 495,
+          "first-render-return": 498.30000001192093,
+          "first-gpu-completed": 521.2000000476837,
+          "supported-frame-submitted": 529.2000000476837,
+          "supported-frame-completed": 534.6000000238419,
+          "playable": 535,
+          "bg-start": 535.1000000238419
+        },
+        "errors": [],
+        "helperRequests": [
+          {
+            "url": "http://127.0.0.1:7075/assets/v2/prime-starter-world-CUKDVDHB.js",
+            "initiator": "script",
+            "initialPriority": "High",
+            "priorityChanges": [],
+            "startMs": 192.3310546875,
+            "endMs": 264.51806640625,
+            "response": {
+              "status": 200,
+              "mimeType": "application/javascript",
+              "protocol": "http/1.1",
+              "remoteIPAddress": "127.0.0.1",
+              "cfRay": null,
+              "cfCacheStatus": null,
+              "cacheControl": "public, max-age=3600",
+              "fromEarlyHints": false,
+              "fromDiskCache": false,
+              "fromPrefetchCache": false
+            },
+            "complete": true,
+            "encodedBytesAtBoundary": 707
+          }
+        ]
+      },
+      {
+        "outfit": "maximum",
+        "pair": 1,
+        "mode": "before",
+        "file": "paired-maximum-1-before",
+        "playableMs": 781.1000000238419,
+        "marks": {
+          "begin": 194.80000001192093,
+          "engine-created": 205.60000002384186,
+          "gpu-probe-end": 211.19999998807907,
+          "world-start": 213,
+          "havok-runtime-available": 261,
+          "world-end": 372.80000001192093,
+          "havok-start": 373.80000001192093,
+          "havok-runtime-start": 374.60000002384186,
+          "havok-runtime-end": 374.60000002384186,
+          "havok-world-end": 376.60000002384186,
+          "havok-colliders-end": 383.69999998807907,
+          "havok-controller-end": 385,
+          "havok-end": 386,
+          "prime-world-start": 386.39999997615814,
+          "prime-world-registered": 400.60000002384186,
+          "prime-world-submitted": 407.5,
+          "prime-world-completed": 492.19999998807907,
+          "body-start": 663.6999999880791,
+          "body-end": 683.5,
+          "equipment-start": 684.8999999761581,
+          "equipment-end": 703.1999999880791,
+          "register-start": 709.3999999761581,
+          "register-end": 729.6000000238419,
+          "first-render-return": 734.1000000238419,
+          "supported-frame-submitted": 753.6000000238419,
+          "first-gpu-completed": 773.3000000119209,
+          "supported-frame-completed": 780.8000000119209,
+          "playable": 781.1000000238419,
+          "bg-start": 781.3000000119209
+        },
+        "errors": [],
+        "helperRequests": [
+          {
+            "url": "http://127.0.0.1:7074/assets/v2/prime-starter-world-CUKDVDHB.js",
+            "initiator": "script",
+            "initialPriority": "High",
+            "priorityChanges": [],
+            "startMs": 195.323974609375,
+            "endMs": 261.038818359375,
+            "response": {
+              "status": 200,
+              "mimeType": "application/javascript",
+              "protocol": "http/1.1",
+              "remoteIPAddress": "127.0.0.1",
+              "cfRay": null,
+              "cfCacheStatus": null,
+              "cacheControl": "public, max-age=3600",
+              "fromEarlyHints": false,
+              "fromDiskCache": false,
+              "fromPrefetchCache": false
+            },
+            "complete": true,
+            "encodedBytesAtBoundary": 707
+          }
+        ]
+      },
+      {
+        "outfit": "maximum",
+        "pair": 1,
+        "mode": "lazy",
+        "file": "paired-maximum-1-lazy",
+        "playableMs": 772,
+        "marks": {
+          "begin": 196.80000001192093,
+          "engine-created": 207.30000001192093,
+          "gpu-probe-end": 213.80000001192093,
+          "world-start": 215.70000004768372,
+          "havok-runtime-available": 263.9000000357628,
+          "world-end": 370.4000000357628,
+          "havok-start": 371.5,
+          "havok-runtime-start": 372.30000001192093,
+          "havok-runtime-end": 372.30000001192093,
+          "havok-world-end": 374.2000000476837,
+          "havok-colliders-end": 380.9000000357628,
+          "havok-controller-end": 382.10000002384186,
+          "havok-end": 383.10000002384186,
+          "prime-world-start": 383.4000000357628,
+          "prime-world-registered": 393.5,
+          "prime-world-submitted": 397.60000002384186,
+          "prime-world-completed": 455,
+          "body-start": 664.8000000119209,
+          "body-end": 684.8000000119209,
+          "equipment-start": 686.2000000476837,
+          "equipment-end": 704.1000000238419,
+          "register-start": 710.3000000119209,
+          "register-end": 728.2000000476837,
+          "first-render-return": 731.8000000119209,
+          "supported-frame-submitted": 744.7000000476837,
+          "first-gpu-completed": 765.3000000119209,
+          "supported-frame-completed": 771.7000000476837,
+          "playable": 772,
+          "bg-start": 772.1000000238419
+        },
+        "errors": [],
+        "helperRequests": [
+          {
+            "url": "http://127.0.0.1:7075/assets/v2/prime-starter-world-CUKDVDHB.js",
+            "initiator": "script",
+            "initialPriority": "High",
+            "priorityChanges": [],
+            "startMs": 197.13037109375,
+            "endMs": 263.34326171875,
+            "response": {
+              "status": 200,
+              "mimeType": "application/javascript",
+              "protocol": "http/1.1",
+              "remoteIPAddress": "127.0.0.1",
+              "cfRay": null,
+              "cfCacheStatus": null,
+              "cacheControl": "public, max-age=3600",
+              "fromEarlyHints": false,
+              "fromDiskCache": false,
+              "fromPrefetchCache": false
+            },
+            "complete": true,
+            "encodedBytesAtBoundary": 707
+          }
+        ]
+      },
+      {
+        "outfit": "maximum",
+        "pair": 2,
+        "mode": "lazy",
+        "file": "paired-maximum-2-lazy",
+        "playableMs": 765.5,
+        "marks": {
+          "begin": 189.80000001192093,
+          "engine-created": 200.60000002384186,
+          "gpu-probe-end": 206.60000002384186,
+          "world-start": 208.4000000357628,
+          "havok-runtime-available": 255.20000004768372,
+          "world-end": 365.5,
+          "havok-start": 366.5,
+          "havok-runtime-start": 367.30000001192093,
+          "havok-runtime-end": 367.30000001192093,
+          "havok-world-end": 369.30000001192093,
+          "havok-colliders-end": 375.9000000357628,
+          "havok-controller-end": 377,
+          "havok-end": 378.10000002384186,
+          "prime-world-start": 378.30000001192093,
+          "prime-world-registered": 388.5,
+          "prime-world-submitted": 392.80000001192093,
+          "prime-world-completed": 450.5,
+          "body-start": 658.2000000476837,
+          "body-end": 678.6000000238419,
+          "equipment-start": 680.4000000357628,
+          "equipment-end": 698.2000000476837,
+          "register-start": 704.2000000476837,
+          "register-end": 722,
+          "first-render-return": 725.7000000476837,
+          "supported-frame-submitted": 744.2000000476837,
+          "first-gpu-completed": 758.7000000476837,
+          "supported-frame-completed": 765.2000000476837,
+          "playable": 765.5,
+          "bg-start": 765.6000000238419
+        },
+        "errors": [],
+        "helperRequests": [
+          {
+            "url": "http://127.0.0.1:7075/assets/v2/prime-starter-world-CUKDVDHB.js",
+            "initiator": "script",
+            "initialPriority": "High",
+            "priorityChanges": [],
+            "startMs": 190.14599609375,
+            "endMs": 256.118896484375,
+            "response": {
+              "status": 200,
+              "mimeType": "application/javascript",
+              "protocol": "http/1.1",
+              "remoteIPAddress": "127.0.0.1",
+              "cfRay": null,
+              "cfCacheStatus": null,
+              "cacheControl": "public, max-age=3600",
+              "fromEarlyHints": false,
+              "fromDiskCache": false,
+              "fromPrefetchCache": false
+            },
+            "complete": true,
+            "encodedBytesAtBoundary": 707
+          }
+        ]
+      },
+      {
+        "outfit": "maximum",
+        "pair": 2,
+        "mode": "before",
+        "file": "paired-maximum-2-before",
+        "playableMs": 778.5999999642372,
+        "marks": {
+          "begin": 190.19999998807907,
+          "engine-created": 200.39999997615814,
+          "gpu-probe-end": 207.0999999642372,
+          "world-start": 209.0999999642372,
+          "havok-runtime-available": 256.39999997615814,
+          "world-end": 368.39999997615814,
+          "havok-start": 369.5,
+          "havok-runtime-start": 370.19999998807907,
+          "havok-runtime-end": 370.19999998807907,
+          "havok-world-end": 372,
+          "havok-colliders-end": 378.89999997615814,
+          "havok-controller-end": 380.19999998807907,
+          "havok-end": 381.19999998807907,
+          "prime-world-start": 381.5,
+          "prime-world-registered": 396.2999999523163,
+          "prime-world-submitted": 403.7999999523163,
+          "prime-world-completed": 488.5,
+          "body-start": 659.3999999761581,
+          "body-end": 679,
+          "equipment-start": 681,
+          "equipment-end": 699.0999999642372,
+          "register-start": 707.5,
+          "register-end": 725,
+          "first-render-return": 729,
+          "supported-frame-submitted": 744.1999999880791,
+          "first-gpu-completed": 771.3999999761581,
+          "supported-frame-completed": 778.3999999761581,
+          "playable": 778.5999999642372,
+          "bg-start": 778.6999999880791
+        },
+        "errors": [],
+        "helperRequests": [
+          {
+            "url": "http://127.0.0.1:7074/assets/v2/prime-starter-world-CUKDVDHB.js",
+            "initiator": "script",
+            "initialPriority": "High",
+            "priorityChanges": [],
+            "startMs": 190.575927734375,
+            "endMs": 256.953125,
+            "response": {
+              "status": 200,
+              "mimeType": "application/javascript",
+              "protocol": "http/1.1",
+              "remoteIPAddress": "127.0.0.1",
+              "cfRay": null,
+              "cfCacheStatus": null,
+              "cacheControl": "public, max-age=3600",
+              "fromEarlyHints": false,
+              "fromDiskCache": false,
+              "fromPrefetchCache": false
+            },
+            "complete": true,
+            "encodedBytesAtBoundary": 707
+          }
+        ]
+      },
+      {
+        "outfit": "maximum",
+        "pair": 3,
+        "mode": "before",
+        "file": "paired-maximum-3-before",
+        "playableMs": 784.6000000238419,
+        "marks": {
+          "begin": 195.20000004768372,
+          "engine-created": 205.70000004768372,
+          "gpu-probe-end": 207.30000001192093,
+          "world-start": 209.20000004768372,
+          "havok-runtime-available": 260.60000002384186,
+          "world-end": 373.80000001192093,
+          "havok-start": 375,
+          "havok-runtime-start": 375.80000001192093,
+          "havok-runtime-end": 375.80000001192093,
+          "havok-world-end": 377.7000000476837,
+          "havok-colliders-end": 384.60000002384186,
+          "havok-controller-end": 385.80000001192093,
+          "havok-end": 386.80000001192093,
+          "prime-world-start": 387.10000002384186,
+          "prime-world-registered": 402,
+          "prime-world-submitted": 408.4000000357628,
+          "prime-world-completed": 492.80000001192093,
+          "body-start": 663.6000000238419,
+          "body-end": 683.5,
+          "equipment-start": 685.3000000119209,
+          "equipment-end": 702.8000000119209,
+          "register-start": 709,
+          "register-end": 729.2000000476837,
+          "first-render-return": 733.7000000476837,
+          "supported-frame-submitted": 749.5,
+          "first-gpu-completed": 774.5,
+          "supported-frame-completed": 784.3000000119209,
+          "playable": 784.6000000238419,
+          "bg-start": 784.7000000476837
+        },
+        "errors": [],
+        "helperRequests": [
+          {
+            "url": "http://127.0.0.1:7074/assets/v2/prime-starter-world-CUKDVDHB.js",
+            "initiator": "script",
+            "initialPriority": "High",
+            "priorityChanges": [],
+            "startMs": 195.43798828125,
+            "endMs": 261.267822265625,
+            "response": {
+              "status": 200,
+              "mimeType": "application/javascript",
+              "protocol": "http/1.1",
+              "remoteIPAddress": "127.0.0.1",
+              "cfRay": null,
+              "cfCacheStatus": null,
+              "cacheControl": "public, max-age=3600",
+              "fromEarlyHints": false,
+              "fromDiskCache": false,
+              "fromPrefetchCache": false
+            },
+            "complete": true,
+            "encodedBytesAtBoundary": 707
+          }
+        ]
+      },
+      {
+        "outfit": "maximum",
+        "pair": 3,
+        "mode": "lazy",
+        "file": "paired-maximum-3-lazy",
+        "playableMs": 770.6000000238419,
+        "marks": {
+          "begin": 193.30000001192093,
+          "engine-created": 203.4000000357628,
+          "gpu-probe-end": 205.20000004768372,
+          "world-start": 207.30000001192093,
+          "havok-runtime-available": 258.30000001192093,
+          "world-end": 368,
+          "havok-start": 369,
+          "havok-runtime-start": 369.9000000357628,
+          "havok-runtime-end": 369.9000000357628,
+          "havok-world-end": 371.80000001192093,
+          "havok-colliders-end": 378.60000002384186,
+          "havok-controller-end": 379.80000001192093,
+          "havok-end": 380.9000000357628,
+          "prime-world-start": 381.2000000476837,
+          "prime-world-registered": 391.80000001192093,
+          "prime-world-submitted": 396,
+          "prime-world-completed": 452.7000000476837,
+          "body-start": 660.9000000357628,
+          "body-end": 681.9000000357628,
+          "equipment-start": 683.6000000238419,
+          "equipment-end": 701.8000000119209,
+          "register-start": 707.5,
+          "register-end": 726.8000000119209,
+          "first-render-return": 730.5,
+          "supported-frame-submitted": 747,
+          "first-gpu-completed": 764.7000000476837,
+          "supported-frame-completed": 770.3000000119209,
+          "playable": 770.6000000238419,
+          "bg-start": 770.8000000119209
+        },
+        "errors": [],
+        "helperRequests": [
+          {
+            "url": "http://127.0.0.1:7075/assets/v2/prime-starter-world-CUKDVDHB.js",
+            "initiator": "script",
+            "initialPriority": "High",
+            "priorityChanges": [],
+            "startMs": 193.637939453125,
+            "endMs": 258.9990234375,
+            "response": {
+              "status": 200,
+              "mimeType": "application/javascript",
+              "protocol": "http/1.1",
+              "remoteIPAddress": "127.0.0.1",
+              "cfRay": null,
+              "cfCacheStatus": null,
+              "cacheControl": "public, max-age=3600",
+              "fromEarlyHints": false,
+              "fromDiskCache": false,
+              "fromPrefetchCache": false
+            },
+            "complete": true,
+            "encodedBytesAtBoundary": 707
+          }
+        ]
+      }
+    ]
+  },
+  "native": {
+    "exits": {
+      "encode-maximum.exit.json": {
+        "code": 0,
+        "signal": null
+      },
+      "syntax-main.exit.json": {
+        "code": 0,
+        "signal": null,
+        "pid": 30495
+      },
+      "build-lazy.exit.json": {
+        "code": 0,
+        "signal": null,
+        "pid": 30510
+      },
+      "motion-default.exit.json": {
+        "code": 0,
+        "signal": null,
+        "pid": 43451
+      },
+      "havok-failures.exit.json": {
+        "code": 0,
+        "signal": null,
+        "pid": 32178
+      },
+      "native-entry.exit.json": {
+        "code": 0,
+        "signal": null,
+        "pid": 32273
+      },
+      "focused-tests.exit.json": {
+        "code": 0,
+        "signal": null,
+        "pid": 30496
+      },
+      "native-check.exit.json": {
+        "code": 0,
+        "signal": null,
+        "pid": 30848
+      },
+      "streaming-2-lazy.exit.json": {
+        "code": 0,
+        "signal": null,
+        "pid": 36210
+      },
+      "build-eager.exit.json": {
+        "code": 0,
+        "signal": null,
+        "pid": 30667
+      },
+      "native-import-failure.exit.json": {
+        "code": 0,
+        "signal": null,
+        "pid": 32111
+      },
+      "streaming-3-lazy.exit.json": {
+        "code": 0,
+        "signal": null,
+        "pid": 36548
+      },
+      "streaming-1-lazy.exit.json": {
+        "code": 0,
+        "signal": null,
+        "pid": 35895
+      },
+      "encode-default.exit.json": {
+        "code": 0,
+        "signal": null
+      },
+      "motion-maximum.exit.json": {
+        "code": 0,
+        "signal": null,
+        "pid": 44419
+      },
+      "steady-fps.exit.json": {
+        "code": 0,
+        "signal": null,
+        "pid": 36881
+      }
+    },
+    "cases": [
+      {
+        "name": "A-held-then-play",
+        "passed": true,
+        "failure": null
+      },
+      {
+        "name": "B-gzip",
+        "passed": true,
+        "failure": null
+      },
+      {
+        "name": "C-dispose",
+        "passed": true,
+        "failure": null
+      },
+      {
+        "name": "D-device-loss",
+        "passed": true,
+        "failure": null
+      },
+      {
+        "name": "E-default",
+        "passed": true,
+        "failure": null
+      },
+      {
+        "name": "F-maximum",
+        "passed": true,
+        "failure": null
+      }
+    ],
+    "havok": [
+      {
+        "kind": "abort",
+        "pass": true,
+        "requests": [
+          "http://127.0.0.1:7074/physics/HavokPhysics-8f4493dae88a.wasm.br"
+        ],
+        "pageErrors": [],
+        "failure": null
+      },
+      {
+        "kind": "corrupt",
+        "pass": true,
+        "requests": [
+          "http://127.0.0.1:7074/physics/HavokPhysics-8f4493dae88a.wasm.br",
+          "http://127.0.0.1:7074/physics/HavokPhysics-8f4493dae88a.wasm.br"
+        ],
+        "pageErrors": [],
+        "failure": null
+      }
+    ]
+  },
+  "starterRegeneration": {
+    "changed": [
+      "public/ashen-reach/startup/starter/manifest.json"
+    ],
+    "geometryAndTexturesUnchanged": true
+  },
+  "independentReview": {
+    "initialSha256": "c9f8cbd44e23e0f65c5cdbdd3dd99eb55e348a921f7f46b61149f28c46d59572",
+    "correctedSha256": "05e4b9513e252d220bd14c538cfb117b23257c125b8a10c4b3fff3878d5f92e0",
+    "findings": [
+      "late native shadow caster membership",
+      "woodland arrival visibility while world updates paused"
+    ],
+    "correctedVerdict": "no remaining findings; read-only limits retained"
+  },
+  "streaming": [
+    {
+      "conditions": {
+        "kind": "active streaming frame observation; excludes navigation/first supported frame",
+        "viewport": [
+          1280,
+          720
+        ],
+        "network": "50 decimal Mbit/s down / 10 up / 40 ms",
+        "recording": false,
+        "maximumAppearance": true,
+        "uncappedFlags": true,
+        "cache": "fresh process/profile with native preload reuse; OS/driver caches uncontrolled"
+      },
+      "errors": [],
+      "before": {
+        "position": {
+          "x": -2.5077533281039364e-05,
+          "z": -4.425446782392168e-05
+        },
+        "recoveries": 0,
+        "allocatedBytes": 16259292
+      },
+      "after": {
+        "membership": {
+          "revisions": [
+            5,
+            6,
+            7,
+            10,
+            11,
+            12,
+            13,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            32,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71
+          ],
+          "missing": [],
+          "wrongWoodland": []
+        },
+        "position": {
+          "x": 0.2820985000836303,
+          "z": 31.08056720491756
+        },
+        "recoveries": 0,
+        "physics": true,
+        "streaming": {
+          "blocks": 1035,
+          "worstInstallMs": 2.5,
+          "backgroundWorstInstallMs": 1.800000011920929,
+          "backgroundSlowest": {
+            "name": "Earth",
+            "triangles": 512
+          },
+          "totalInstallMs": 854.0000005364418,
+          "allocatedBytes": 210049236,
+          "allocatedRecords": 71,
+          "initialAllocatedBytes": 16259292,
+          "initialAllocatedRecords": 5
+        },
+        "enemies": 7,
+        "resolution": [
+          1280,
+          720
+        ],
+        "marks": {
+          "begin": 197.60000002384186,
+          "engine-created": 209.30000001192093,
+          "gpu-probe-end": 211.60000002384186,
+          "world-start": 213.80000001192093,
+          "havok-runtime-available": 272.2000000476837,
+          "world-end": 363.30000001192093,
+          "havok-start": 364.4000000357628,
+          "havok-runtime-start": 365.30000001192093,
+          "havok-runtime-end": 365.30000001192093,
+          "havok-world-end": 367.5,
+          "havok-colliders-end": 374.60000002384186,
+          "havok-controller-end": 376,
+          "havok-end": 377.10000002384186,
+          "prime-world-start": 377.4000000357628,
+          "prime-world-registered": 388.5,
+          "prime-world-submitted": 392.9000000357628,
+          "prime-world-completed": 454,
+          "body-start": 665.5,
+          "body-end": 687.8000000119209,
+          "equipment-start": 689.7000000476837,
+          "equipment-end": 709.3000000119209,
+          "register-start": 716.1000000238419,
+          "register-end": 736.5,
+          "first-render-return": 740.2000000476837,
+          "supported-frame-submitted": 755.8000000119209,
+          "first-gpu-completed": 776,
+          "supported-frame-completed": 782.6000000238419,
+          "playable": 783,
+          "bg-start": 783.1000000238419,
+          "bg-imports-end": 883.7000000476837,
+          "bg-dummy-end": 1580.4000000357628,
+          "bg-enemies-end": 1632.300000011921,
+          "combat-ready": 2125.600000023842,
+          "late-register-start": 2173.100000023842,
+          "late-register-end": 2174.600000023842,
+          "hostiles-ready": 2216.800000011921,
+          "bg-foliage-end": 9132.600000023842,
+          "ready": 10647.200000047684,
+          "region-ready": 10647.200000047684
+        }
+      },
+      "tails": {
+        "samples": 1707,
+        "meanMs": 5.776157000571856,
+        "meanFps": 173.1254880885331,
+        "p50Ms": 4.100000023841858,
+        "p95Ms": 19.69999998807907,
+        "p99Ms": 21.5,
+        "maxMs": 176.5,
+        "above6_94": 197,
+        "above8_33": 157,
+        "above16_67": 124,
+        "above33_33": 2
+      },
+      "pacing": {
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.776 ms is not locked to a known display interval"
+      }
+    },
+    {
+      "conditions": {
+        "kind": "active streaming frame observation; excludes navigation/first supported frame",
+        "viewport": [
+          1280,
+          720
+        ],
+        "network": "50 decimal Mbit/s down / 10 up / 40 ms",
+        "recording": false,
+        "maximumAppearance": true,
+        "uncappedFlags": true,
+        "cache": "fresh process/profile with native preload reuse; OS/driver caches uncontrolled"
+      },
+      "errors": [],
+      "before": {
+        "position": {
+          "x": -2.370745871923465e-05,
+          "z": -4.1836689320230843e-05
+        },
+        "recoveries": 0,
+        "allocatedBytes": 16259292
+      },
+      "after": {
+        "membership": {
+          "revisions": [
+            5,
+            6,
+            7,
+            10,
+            11,
+            13,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71
+          ],
+          "missing": [],
+          "wrongWoodland": []
+        },
+        "position": {
+          "x": 0.2844105369348059,
+          "z": 31.462037635406535
+        },
+        "recoveries": 0,
+        "physics": true,
+        "streaming": {
+          "blocks": 1035,
+          "worstInstallMs": 3.199999988079071,
+          "backgroundWorstInstallMs": 2.299999952316284,
+          "backgroundSlowest": {
+            "name": "Woodland 2,-1 reduced",
+            "triangles": 4096
+          },
+          "totalInstallMs": 866.499999165535,
+          "allocatedBytes": 210049236,
+          "allocatedRecords": 71,
+          "initialAllocatedBytes": 16259292,
+          "initialAllocatedRecords": 5
+        },
+        "enemies": 7,
+        "resolution": [
+          1280,
+          720
+        ],
+        "marks": {
+          "begin": 193.39999997615814,
+          "engine-created": 205.30000001192093,
+          "gpu-probe-end": 207.5,
+          "world-start": 209.5,
+          "havok-runtime-available": 264.19999998807907,
+          "world-end": 363,
+          "havok-start": 364.30000001192093,
+          "havok-runtime-start": 365.19999998807907,
+          "havok-runtime-end": 365.19999998807907,
+          "havok-world-end": 367.10000002384186,
+          "havok-colliders-end": 374.10000002384186,
+          "havok-controller-end": 375.5,
+          "havok-end": 376.60000002384186,
+          "prime-world-start": 377,
+          "prime-world-registered": 388.60000002384186,
+          "prime-world-submitted": 393.10000002384186,
+          "prime-world-completed": 456.30000001192093,
+          "body-start": 662,
+          "body-end": 685,
+          "equipment-start": 686.8999999761581,
+          "equipment-end": 707.3000000119209,
+          "register-start": 714.5,
+          "register-end": 734.1000000238419,
+          "first-render-return": 737.6000000238419,
+          "supported-frame-submitted": 750.8000000119209,
+          "first-gpu-completed": 777,
+          "supported-frame-completed": 783.1000000238419,
+          "playable": 783.5,
+          "bg-start": 783.6999999880791,
+          "bg-imports-end": 882.6999999880791,
+          "bg-dummy-end": 1578.8999999761581,
+          "bg-enemies-end": 1630.6000000238419,
+          "combat-ready": 2132,
+          "late-register-start": 2184.300000011921,
+          "late-register-end": 2185.899999976158,
+          "hostiles-ready": 2234,
+          "bg-foliage-end": 9283.5,
+          "ready": 10858.5,
+          "region-ready": 10858.600000023842
+        }
+      },
+      "tails": {
+        "samples": 1768,
+        "meanMs": 5.696097285061131,
+        "meanFps": 175.55879928923437,
+        "p50Ms": 4.100000023841858,
+        "p95Ms": 18.899999976158142,
+        "p99Ms": 21.5,
+        "maxMs": 179.4000000357628,
+        "above6_94": 185,
+        "above8_33": 145,
+        "above16_67": 112,
+        "above33_33": 2
+      },
+      "pacing": {
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.696 ms is not locked to a known display interval"
+      }
+    },
+    {
+      "conditions": {
+        "kind": "active streaming frame observation; excludes navigation/first supported frame",
+        "viewport": [
+          1280,
+          720
+        ],
+        "network": "50 decimal Mbit/s down / 10 up / 40 ms",
+        "recording": false,
+        "maximumAppearance": true,
+        "uncappedFlags": true,
+        "cache": "fresh process/profile with native preload reuse; OS/driver caches uncontrolled"
+      },
+      "errors": [],
+      "before": {
+        "position": {
+          "x": -5.831651872626658e-05,
+          "z": -0.00010291149733494328
+        },
+        "recoveries": 0,
+        "allocatedBytes": 16259292
+      },
+      "after": {
+        "membership": {
+          "revisions": [
+            5,
+            6,
+            7,
+            10,
+            11,
+            13,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            32,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71
+          ],
+          "missing": [],
+          "wrongWoodland": []
+        },
+        "position": {
+          "x": 0.27984150645089156,
+          "z": 31.731771263960308
+        },
+        "recoveries": 0,
+        "physics": true,
+        "streaming": {
+          "blocks": 1035,
+          "worstInstallMs": 3.300000011920929,
+          "backgroundWorstInstallMs": 3.300000011920929,
+          "backgroundSlowest": {
+            "name": "Horizon rock",
+            "triangles": 4096
+          },
+          "totalInstallMs": 847.4999994635582,
+          "allocatedBytes": 210049236,
+          "allocatedRecords": 71,
+          "initialAllocatedBytes": 16259292,
+          "initialAllocatedRecords": 5
+        },
+        "enemies": 7,
+        "resolution": [
+          1280,
+          720
+        ],
+        "marks": {
+          "begin": 194.89999997615814,
+          "engine-created": 206.29999995231628,
+          "gpu-probe-end": 208.39999997615814,
+          "world-start": 210.5,
+          "havok-runtime-available": 267.69999998807907,
+          "world-end": 363.5,
+          "havok-start": 364.5,
+          "havok-runtime-start": 365.69999998807907,
+          "havok-runtime-end": 365.7999999523163,
+          "havok-world-end": 367.69999998807907,
+          "havok-colliders-end": 374.69999998807907,
+          "havok-controller-end": 376,
+          "havok-end": 377,
+          "prime-world-start": 377.39999997615814,
+          "prime-world-registered": 388.5999999642372,
+          "prime-world-submitted": 393,
+          "prime-world-completed": 455,
+          "body-start": 663.1999999880791,
+          "body-end": 685.2999999523163,
+          "equipment-start": 687.0999999642372,
+          "equipment-end": 707.5,
+          "register-start": 714.5999999642372,
+          "register-end": 731.6999999880791,
+          "first-render-return": 737.5999999642372,
+          "supported-frame-submitted": 753.7999999523163,
+          "first-gpu-completed": 775.7999999523163,
+          "supported-frame-completed": 781.2999999523163,
+          "playable": 781.5999999642372,
+          "bg-start": 781.6999999880791,
+          "bg-imports-end": 876.5999999642372,
+          "bg-dummy-end": 1591.5999999642372,
+          "bg-enemies-end": 1650.5999999642372,
+          "combat-ready": 2134.5,
+          "late-register-start": 2187.599999964237,
+          "late-register-end": 2188.899999976158,
+          "hostiles-ready": 2221.699999988079,
+          "bg-foliage-end": 9135.799999952316,
+          "ready": 10742.199999988079,
+          "region-ready": 10742.199999988079
+        }
+      },
+      "tails": {
+        "samples": 1734,
+        "meanMs": 5.746539792387543,
+        "meanFps": 174.01776305885895,
+        "p50Ms": 4.099999964237213,
+        "p95Ms": 19.399999976158142,
+        "p99Ms": 21.599999964237213,
+        "maxMs": 175.19999998807907,
+        "above6_94": 194,
+        "above8_33": 156,
+        "above16_67": 123,
+        "above33_33": 2
+      },
+      "pacing": {
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.747 ms is not locked to a known display interval"
+      }
+    }
+  ],
+  "steady": {
+    "conditions": {
+      "cpu": "Apple M1 Max",
+      "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1&gpuTiming=",
+      "viewport": [
+        1280,
+        720
+      ],
+      "seconds": 12,
+      "runs": 3,
+      "uncappedRequired": true,
+      "recording": false,
+      "race": "human",
+      "outfit": null,
+      "orcAssetsOverride": null,
+      "routes": [
+        "meadow",
+        "town",
+        "bridge",
+        "cathedral",
+        "forest"
+      ],
+      "recordCapped": true,
+      "savedAppearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v8",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {
+          "head": "human-prime-v1",
+          "hair": "human-ponytail01-v1"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "duskguardCuirass",
+          "legs": "graveweaverSkirt",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "bastionShoulders"
+        }
+      }
+    },
+    "rows": [
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 196.13611846468692,
+          "meanMs": 5.098500000039737,
+          "medianMs": 4.800000011920929,
+          "p95Ms": 6.099999964237213,
+          "p99Ms": 6.800000011920929,
+          "worstMs": 9.399999976158142,
+          "minMs": 3.600000023841858,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 642,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 759795,
+          "drawBatches": 57,
+          "worldTriangles": 759795,
+          "sceneTriangles": 1090431,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 65,
+          "totalMeshes": 156,
+          "triangleCountMs": 0.19999998807907104,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": true,
+          "gpuTimingReadback": "ok",
+          "gpuMs": 1.0624829475080708,
+          "gpuMeanMs": 1.056081196352456,
+          "gpuP95Ms": 1.1932858927552932,
+          "gpuSamples": 600,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 5.099 ms is not locked to a known display interval"
+        },
+        "x": 0.00041530070936145354,
+        "z": 24.655806932598374,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "meadow",
+        "run": 1,
+        "before": {
+          "x": 0.0009493814144648786,
+          "z": -59.38196636608829,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2527,
+          "fps": 210.48335374051567,
+          "meanMs": 4.750969529081155,
+          "medianMs": 4.600000023841858,
+          "p95Ms": 5.800000011920929,
+          "p99Ms": 6.199999988079071,
+          "worstMs": 9.400000035762787,
+          "minMs": 3.100000023841858,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.751 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2527,
+          "meanMs": 4.750969529081155,
+          "meanFps": 210.48335374051567,
+          "p50Ms": 4.600000023841858,
+          "p95Ms": 5.800000011920929,
+          "p99Ms": 6.199999988079071,
+          "maxMs": 9.400000035762787,
+          "above6_94": 8,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 196.40577433129812,
+          "meanMs": 5.091499999960264,
+          "medianMs": 4.800000011920929,
+          "p95Ms": 6,
+          "p99Ms": 6.599999964237213,
+          "worstMs": 9.299999952316284,
+          "minMs": 3,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 642,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 759795,
+          "drawBatches": 57,
+          "worldTriangles": 759795,
+          "sceneTriangles": 1090433,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 65,
+          "totalMeshes": 156,
+          "triangleCountMs": 0.19999998807907104,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": true,
+          "gpuTimingReadback": "ok",
+          "gpuMs": 1.1099116456942988,
+          "gpuMeanMs": 1.0497593600198671,
+          "gpuP95Ms": 1.1897132268430979,
+          "gpuSamples": 600,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 5.091 ms is not locked to a known display interval"
+        },
+        "x": 0.000346212866059361,
+        "z": 24.65466175048509,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "meadow",
+        "run": 2,
+        "before": {
+          "x": 0.0008628589961721548,
+          "z": -59.36938515784032,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2534,
+          "fps": 211.10157701396375,
+          "meanMs": 4.737056037880063,
+          "medianMs": 4.600000023841858,
+          "p95Ms": 5.800000011920929,
+          "p99Ms": 6,
+          "worstMs": 9.600000023841858,
+          "minMs": 2.800000011920929,
+          "above8_333": 3,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.737 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2534,
+          "meanMs": 4.737056037880063,
+          "meanFps": 211.10157701396375,
+          "p50Ms": 4.600000023841858,
+          "p95Ms": 5.800000011920929,
+          "p99Ms": 6,
+          "maxMs": 9.600000023841858,
+          "above6_94": 3,
+          "above8_33": 3,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 196.2965386361709,
+          "meanMs": 5.094333333373069,
+          "medianMs": 4.800000011920929,
+          "p95Ms": 6,
+          "p99Ms": 6.600000023841858,
+          "worstMs": 9.300000011920929,
+          "minMs": 3.5,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 642,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 759795,
+          "drawBatches": 57,
+          "worldTriangles": 759795,
+          "sceneTriangles": 1090429,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 65,
+          "totalMeshes": 156,
+          "triangleCountMs": 0.09999996423721313,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": true,
+          "gpuTimingReadback": "ok",
+          "gpuMs": 1.019271013159819,
+          "gpuMeanMs": 1.0458662786328208,
+          "gpuP95Ms": 1.175382202631118,
+          "gpuSamples": 600,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 5.094 ms is not locked to a known display interval"
+        },
+        "x": 0.00028502616378425517,
+        "z": 24.655123506142697,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "meadow",
+        "run": 3,
+        "before": {
+          "x": 0.0010037269384991481,
+          "z": -59.37911075178148,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2533,
+          "fps": 210.99190350764164,
+          "meanMs": 4.739518357697467,
+          "medianMs": 4.600000023841858,
+          "p95Ms": 5.800000011920929,
+          "p99Ms": 6.100000023841858,
+          "worstMs": 9.699999988079071,
+          "minMs": 3.300000011920929,
+          "above8_333": 3,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.740 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2533,
+          "meanMs": 4.739518357697467,
+          "meanFps": 210.99190350764164,
+          "p50Ms": 4.600000023841858,
+          "p95Ms": 5.800000011920929,
+          "p99Ms": 6.100000023841858,
+          "maxMs": 9.699999988079071,
+          "above6_94": 3,
+          "above8_33": 3,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 207.36132711249354,
+          "meanMs": 4.8225,
+          "medianMs": 4.699999988079071,
+          "p95Ms": 5.800000011920929,
+          "p99Ms": 6,
+          "worstMs": 9.600000023841858,
+          "minMs": 3.800000011920929,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 672,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 763209,
+          "drawBatches": 57,
+          "worldTriangles": 763209,
+          "sceneTriangles": 1054657,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 65,
+          "totalMeshes": 156,
+          "triangleCountMs": 0.09999996423721313,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": true,
+          "gpuTimingReadback": "ok",
+          "gpuMs": 1.32576244792584,
+          "gpuMeanMs": 1.072607618964499,
+          "gpuP95Ms": 1.231827872646266,
+          "gpuSamples": 600,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.822 ms is not locked to a known display interval"
+        },
+        "x": -0.6707369020214089,
+        "z": 134.77183225773842,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "town",
+        "run": 1,
+        "before": {
+          "x": -0.0005371726940806063,
+          "z": 85.61699492787552,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2433,
+          "fps": 202.69594774746872,
+          "meanMs": 4.933497739411458,
+          "medianMs": 4.800000011920929,
+          "p95Ms": 5.900000035762787,
+          "p99Ms": 6.199999988079071,
+          "worstMs": 9.900000035762787,
+          "minMs": 3.099999964237213,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.933 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2433,
+          "meanMs": 4.933497739411458,
+          "meanFps": 202.69594774746872,
+          "p50Ms": 4.800000011920929,
+          "p95Ms": 5.900000035762787,
+          "p99Ms": 6.199999988079071,
+          "maxMs": 9.900000035762787,
+          "above6_94": 8,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 208.36950859524225,
+          "meanMs": 4.799166666666666,
+          "medianMs": 4.699999988079071,
+          "p95Ms": 5.800000011920929,
+          "p99Ms": 5.900000035762787,
+          "worstMs": 9.5,
+          "minMs": 3.700000047683716,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 671,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 763209,
+          "drawBatches": 57,
+          "worldTriangles": 763209,
+          "sceneTriangles": 1054557,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 65,
+          "totalMeshes": 156,
+          "triangleCountMs": 0.09999996423721313,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": true,
+          "gpuTimingReadback": "ok",
+          "gpuMs": 0.9711004349258855,
+          "gpuMeanMs": 1.0665550250785945,
+          "gpuP95Ms": 1.2356123600405664,
+          "gpuSamples": 600,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.799 ms is not locked to a known display interval"
+        },
+        "x": -0.3248790976839815,
+        "z": 134.76126370030426,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "town",
+        "run": 2,
+        "before": {
+          "x": -0.0007708668031355068,
+          "z": 85.61507780069387,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2438,
+          "fps": 203.0702083169092,
+          "meanMs": 4.924405250224645,
+          "medianMs": 4.700000047683716,
+          "p95Ms": 5.900000035762787,
+          "p99Ms": 6.100000023841858,
+          "worstMs": 9.699999988079071,
+          "minMs": 3.100000023841858,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.924 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2438,
+          "meanMs": 4.924405250224645,
+          "meanFps": 203.0702083169092,
+          "p50Ms": 4.700000047683716,
+          "p95Ms": 5.900000035762787,
+          "p99Ms": 6.100000023841858,
+          "maxMs": 9.699999988079071,
+          "above6_94": 8,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 208.21043134347158,
+          "meanMs": 4.802833333313465,
+          "medianMs": 4.699999988079071,
+          "p95Ms": 5.800000011920929,
+          "p99Ms": 6.100000023841858,
+          "worstMs": 8.900000035762787,
+          "minMs": 3.800000011920929,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 671,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 763209,
+          "drawBatches": 57,
+          "worldTriangles": 763209,
+          "sceneTriangles": 1054493,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 65,
+          "totalMeshes": 156,
+          "triangleCountMs": 0.10000002384185791,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": true,
+          "gpuTimingReadback": "ok",
+          "gpuMs": 1.107806561856256,
+          "gpuMeanMs": 1.0803947297541294,
+          "gpuP95Ms": 1.2595577605501997,
+          "gpuSamples": 600,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.803 ms is not locked to a known display interval"
+        },
+        "x": -0.32212768209608594,
+        "z": 134.76042545883283,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "town",
+        "run": 3,
+        "before": {
+          "x": -0.0005870441530766352,
+          "z": 85.64202409556044,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2437,
+          "fps": 203.03088368797722,
+          "meanMs": 4.925359048019631,
+          "medianMs": 4.799999952316284,
+          "p95Ms": 5.900000035762787,
+          "p99Ms": 6.199999988079071,
+          "worstMs": 10.099999964237213,
+          "minMs": 3.600000023841858,
+          "above8_333": 5,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.925 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2437,
+          "meanMs": 4.925359048019631,
+          "meanFps": 203.03088368797722,
+          "p50Ms": 4.799999952316284,
+          "p95Ms": 5.900000035762787,
+          "p99Ms": 6.199999988079071,
+          "maxMs": 10.099999964237213,
+          "above6_94": 11,
+          "above8_33": 5,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 232.22510353476346,
+          "meanMs": 4.306166666646798,
+          "medianMs": 4.299999952316284,
+          "p95Ms": 5.100000023841858,
+          "p99Ms": 5.5,
+          "worstMs": 9.100000023841858,
+          "minMs": 3.100000023841858,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 546,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 786917,
+          "drawBatches": 57,
+          "worldTriangles": 786917,
+          "sceneTriangles": 1052995,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 65,
+          "totalMeshes": 156,
+          "triangleCountMs": 0.10000002384185791,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": true,
+          "gpuTimingReadback": "ok",
+          "gpuMs": 1.2504184210315907,
+          "gpuMeanMs": 1.1243621003775135,
+          "gpuP95Ms": 1.3384222025974848,
+          "gpuSamples": 600,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.306 ms is not locked to a known display interval"
+        },
+        "x": 0,
+        "z": 299.66869500362736,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "bridge",
+        "run": 1,
+        "before": {
+          "x": 0,
+          "z": 215.64098783219737,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2852,
+          "fps": 237.57163801122616,
+          "meanMs": 4.209256661995765,
+          "medianMs": 4.199999988079071,
+          "p95Ms": 4.800000011920929,
+          "p99Ms": 5.399999976158142,
+          "worstMs": 9.400000035762787,
+          "minMs": 2.800000011920929,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.209 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.400-5.400 ms (full range 2.800-9.400 ms)"
+        },
+        "tails": {
+          "samples": 2852,
+          "meanMs": 4.209256661995765,
+          "meanFps": 237.57163801122616,
+          "p50Ms": 4.199999988079071,
+          "p95Ms": 4.800000011920929,
+          "p99Ms": 5.399999976158142,
+          "maxMs": 9.400000035762787,
+          "above6_94": 4,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 232.49505948106,
+          "meanMs": 4.3011666666467985,
+          "medianMs": 4.299999952316284,
+          "p95Ms": 5.199999988079071,
+          "p99Ms": 5.599999964237213,
+          "worstMs": 8.600000023841858,
+          "minMs": 2.800000011920929,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 546,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 786917,
+          "drawBatches": 57,
+          "worldTriangles": 786917,
+          "sceneTriangles": 1052995,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 65,
+          "totalMeshes": 156,
+          "triangleCountMs": 0.19999998807907104,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": true,
+          "gpuTimingReadback": "ok",
+          "gpuMs": 1.3395272738496233,
+          "gpuMeanMs": 1.1111970132023434,
+          "gpuP95Ms": 1.3472521230867631,
+          "gpuSamples": 600,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.301 ms is not locked to a known display interval"
+        },
+        "x": 0,
+        "z": 299.64783758898295,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "bridge",
+        "run": 2,
+        "before": {
+          "x": 0,
+          "z": 215.62229805448263,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2854,
+          "fps": 237.74417926610855,
+          "meanMs": 4.206201822004204,
+          "medianMs": 4.199999988079071,
+          "p95Ms": 5,
+          "p99Ms": 5.400000035762787,
+          "worstMs": 9.199999988079071,
+          "minMs": 2.700000047683716,
+          "above8_333": 5,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.206 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.400 ms (full range 2.700-9.200 ms)"
+        },
+        "tails": {
+          "samples": 2854,
+          "meanMs": 4.206201822004204,
+          "meanFps": 237.74417926610855,
+          "p50Ms": 4.199999988079071,
+          "p95Ms": 5,
+          "p99Ms": 5.400000035762787,
+          "maxMs": 9.199999988079071,
+          "above6_94": 6,
+          "above8_33": 5,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 232.5942006544884,
+          "meanMs": 4.2993333332737285,
+          "medianMs": 4.299999952316284,
+          "p95Ms": 5.199999988079071,
+          "p99Ms": 5.400000035762787,
+          "worstMs": 8.600000023841858,
+          "minMs": 3.099999964237213,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 546,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 786917,
+          "drawBatches": 57,
+          "worldTriangles": 786917,
+          "sceneTriangles": 1052995,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 65,
+          "totalMeshes": 156,
+          "triangleCountMs": 0.10000002384185791,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": true,
+          "gpuTimingReadback": "ok",
+          "gpuMs": 1.0008230347442533,
+          "gpuMeanMs": 1.081882270249932,
+          "gpuP95Ms": 1.3124813159802566,
+          "gpuSamples": 600,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.299 ms is not locked to a known display interval"
+        },
+        "x": 0,
+        "z": 299.647165987463,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "bridge",
+        "run": 3,
+        "before": {
+          "x": 0,
+          "z": 215.6373092319864,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2856,
+          "fps": 237.96232263272262,
+          "meanMs": 4.202345938367002,
+          "medianMs": 4.199999988079071,
+          "p95Ms": 4.800000011920929,
+          "p99Ms": 5.399999976158142,
+          "worstMs": 9.399999976158142,
+          "minMs": 2.699999988079071,
+          "above8_333": 5,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.202 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.400-5.400 ms (full range 2.700-9.400 ms)"
+        },
+        "tails": {
+          "samples": 2856,
+          "meanMs": 4.202345938367002,
+          "meanFps": 237.96232263272262,
+          "p50Ms": 4.199999988079071,
+          "p95Ms": 4.800000011920929,
+          "p99Ms": 5.399999976158142,
+          "maxMs": 9.399999976158142,
+          "above6_94": 5,
+          "above8_33": 5,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 244.47885258043942,
+          "meanMs": 4.090333333313465,
+          "medianMs": 4.099999964237213,
+          "p95Ms": 5,
+          "p99Ms": 5.199999988079071,
+          "worstMs": 5.599999964237213,
+          "minMs": 3.099999964237213,
+          "above8_333": 0,
+          "above16_667": 0,
+          "drawCalls": 546,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 786917,
+          "drawBatches": 57,
+          "worldTriangles": 786917,
+          "sceneTriangles": 1050779,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 65,
+          "totalMeshes": 156,
+          "triangleCountMs": 0.20000004768371582,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": true,
+          "gpuTimingReadback": "ok",
+          "gpuMs": 1.2011943062127877,
+          "gpuMeanMs": 1.2328775900935751,
+          "gpuP95Ms": 1.376383561413416,
+          "gpuSamples": 600,
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.090 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.200 ms (full range 3.100-5.600 ms)"
+        },
+        "x": 0,
+        "z": 349.50510000009353,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "cathedral",
+        "run": 1,
+        "before": {
+          "x": 0,
+          "z": 285.6371000000844,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2863,
+          "fps": 238.45814280812218,
+          "meanMs": 4.193608103392219,
+          "medianMs": 4.199999988079071,
+          "p95Ms": 5,
+          "p99Ms": 5.400000035762787,
+          "worstMs": 9.199999988079071,
+          "minMs": 2.799999952316284,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.194 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.400 ms (full range 2.800-9.200 ms)"
+        },
+        "tails": {
+          "samples": 2863,
+          "meanMs": 4.193608103392219,
+          "meanFps": 238.45814280812218,
+          "p50Ms": 4.199999988079071,
+          "p95Ms": 5,
+          "p99Ms": 5.400000035762787,
+          "maxMs": 9.199999988079071,
+          "above6_94": 4,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 243.59546912191635,
+          "meanMs": 4.1051666667064035,
+          "medianMs": 4.100000023841858,
+          "p95Ms": 5,
+          "p99Ms": 5.300000011920929,
+          "worstMs": 8.699999988079071,
+          "minMs": 2.899999976158142,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 546,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 786917,
+          "drawBatches": 57,
+          "worldTriangles": 786917,
+          "sceneTriangles": 1050779,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 65,
+          "totalMeshes": 156,
+          "triangleCountMs": 0.19999998807907104,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": true,
+          "gpuTimingReadback": "ok",
+          "gpuMs": 1.2095296325504863,
+          "gpuMeanMs": 1.2295678360258926,
+          "gpuP95Ms": 1.3676827863494638,
+          "gpuSamples": 600,
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.105 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.200-5.300 ms (full range 2.900-8.700 ms)"
+        },
+        "x": 0,
+        "z": 349.5240000000104,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "cathedral",
+        "run": 2,
+        "before": {
+          "x": 0,
+          "z": 285.62660000008447,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2862,
+          "fps": 238.39669476583828,
+          "meanMs": 4.194689028647128,
+          "medianMs": 4.199999988079071,
+          "p95Ms": 5,
+          "p99Ms": 5.300000011920929,
+          "worstMs": 9.300000011920929,
+          "minMs": 2.899999976158142,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.195 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.300 ms (full range 2.900-9.300 ms)"
+        },
+        "tails": {
+          "samples": 2862,
+          "meanMs": 4.194689028647128,
+          "meanFps": 238.39669476583828,
+          "p50Ms": 4.199999988079071,
+          "p95Ms": 5,
+          "p99Ms": 5.300000011920929,
+          "maxMs": 9.300000011920929,
+          "above6_94": 4,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 243.2596797080884,
+          "meanMs": 4.110833333333333,
+          "medianMs": 4.099999964237213,
+          "p95Ms": 5.099999964237213,
+          "p99Ms": 5.399999976158142,
+          "worstMs": 8,
+          "minMs": 3,
+          "above8_333": 0,
+          "above16_667": 0,
+          "drawCalls": 546,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 786917,
+          "drawBatches": 57,
+          "worldTriangles": 786917,
+          "sceneTriangles": 1050775,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 65,
+          "totalMeshes": 156,
+          "triangleCountMs": 0.10000002384185791,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": true,
+          "gpuTimingReadback": "ok",
+          "gpuMs": 1.283858370826457,
+          "gpuMeanMs": 1.2201778143357183,
+          "gpuP95Ms": 1.3787725006970228,
+          "gpuSamples": 600,
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.111 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.200-5.400 ms (full range 3.000-8.000 ms)"
+        },
+        "x": 0,
+        "z": 349.5155999996752,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "cathedral",
+        "run": 3,
+        "before": {
+          "x": 0,
+          "z": 285.63289999991747,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2859,
+          "fps": 238.13093453273365,
+          "meanMs": 4.199370409233998,
+          "medianMs": 4.199999988079071,
+          "p95Ms": 5,
+          "p99Ms": 5.300000011920929,
+          "worstMs": 9.199999988079071,
+          "minMs": 2.899999976158142,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.199 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.300 ms (full range 2.900-9.200 ms)"
+        },
+        "tails": {
+          "samples": 2859,
+          "meanMs": 4.199370409233998,
+          "meanFps": 238.13093453273365,
+          "p50Ms": 4.199999988079071,
+          "p95Ms": 5,
+          "p99Ms": 5.300000011920929,
+          "maxMs": 9.199999988079071,
+          "above6_94": 7,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 221.69671888563093,
+          "meanMs": 4.510666666726271,
+          "medianMs": 4.5,
+          "p95Ms": 5.100000023841858,
+          "p99Ms": 5.700000047683716,
+          "worstMs": 9,
+          "minMs": 3.599999964237213,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 639,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 836895,
+          "drawBatches": 57,
+          "worldTriangles": 836895,
+          "sceneTriangles": 1105339,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 65,
+          "totalMeshes": 156,
+          "triangleCountMs": 0.10000002384185791,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": true,
+          "gpuTimingReadback": "ok",
+          "gpuMs": 1.4243747212239612,
+          "gpuMeanMs": 1.245233447417415,
+          "gpuP95Ms": 1.4107282338802642,
+          "gpuSamples": 600,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.511 ms is not locked to a known display interval"
+        },
+        "x": -135.19740262256047,
+        "z": 203.07776726786224,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "forest",
+        "run": 1,
+        "before": {
+          "x": -85.62865650604034,
+          "z": 180.0010270998,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2630,
+          "fps": 219.10641240303818,
+          "meanMs": 4.563992395441795,
+          "medianMs": 4.5,
+          "p95Ms": 5.400000035762787,
+          "p99Ms": 5.799999952316284,
+          "worstMs": 9.399999976158142,
+          "minMs": 3.099999964237213,
+          "above8_333": 5,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.564 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2630,
+          "meanMs": 4.563992395441795,
+          "meanFps": 219.10641240303818,
+          "p50Ms": 4.5,
+          "p95Ms": 5.400000035762787,
+          "p99Ms": 5.799999952316284,
+          "maxMs": 9.399999976158142,
+          "above6_94": 5,
+          "above8_33": 5,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 222.10705560275983,
+          "meanMs": 4.502333333293597,
+          "medianMs": 4.5,
+          "p95Ms": 5,
+          "p99Ms": 5.699999988079071,
+          "worstMs": 8.700000047683716,
+          "minMs": 3.5,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 642,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 836895,
+          "drawBatches": 57,
+          "worldTriangles": 836895,
+          "sceneTriangles": 1105335,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 65,
+          "totalMeshes": 156,
+          "triangleCountMs": 0.09999996423721313,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": true,
+          "gpuTimingReadback": "ok",
+          "gpuMs": 1.3693940048165976,
+          "gpuMeanMs": 1.2642754730756887,
+          "gpuP95Ms": 1.4233444509113824,
+          "gpuSamples": 600,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.502 ms is not locked to a known display interval"
+        },
+        "x": -135.3248483035565,
+        "z": 203.08072944207572,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "forest",
+        "run": 2,
+        "before": {
+          "x": -85.65024012696121,
+          "z": 180.0012637314052,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2709,
+          "fps": 225.6860556180233,
+          "meanMs": 4.430933923948379,
+          "medianMs": 4.5,
+          "p95Ms": 4.900000035762787,
+          "p99Ms": 5.599999964237213,
+          "worstMs": 9.199999988079071,
+          "minMs": 3.100000023841858,
+          "above8_333": 3,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.431 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2709,
+          "meanMs": 4.430933923948379,
+          "meanFps": 225.6860556180233,
+          "p50Ms": 4.5,
+          "p95Ms": 4.900000035762787,
+          "p99Ms": 5.599999964237213,
+          "maxMs": 9.199999988079071,
+          "above6_94": 4,
+          "above8_33": 3,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 223.43040143193826,
+          "meanMs": 4.47566666662693,
+          "medianMs": 4.5,
+          "p95Ms": 5.100000023841858,
+          "p99Ms": 5.699999988079071,
+          "worstMs": 9.199999988079071,
+          "minMs": 3.5,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 642,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 836895,
+          "drawBatches": 57,
+          "worldTriangles": 836895,
+          "sceneTriangles": 1105339,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 65,
+          "totalMeshes": 156,
+          "triangleCountMs": 0.09999996423721313,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": true,
+          "gpuTimingReadback": "ok",
+          "gpuMs": 1.4229097586990784,
+          "gpuMeanMs": 1.266716709894291,
+          "gpuP95Ms": 1.426512253868056,
+          "gpuSamples": 600,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.476 ms is not locked to a known display interval"
+        },
+        "x": -135.2416484315608,
+        "z": 203.0778705163747,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "forest",
+        "run": 3,
+        "before": {
+          "x": -85.61114034215873,
+          "z": 180.00123468347198,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2740,
+          "fps": 228.259149110326,
+          "meanMs": 4.380985401451152,
+          "medianMs": 4.399999976158142,
+          "p95Ms": 5,
+          "p99Ms": 5.600000023841858,
+          "worstMs": 9.800000011920929,
+          "minMs": 3.099999964237213,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.381 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2740,
+          "meanMs": 4.380985401451152,
+          "meanFps": 228.259149110326,
+          "p50Ms": 4.399999976158142,
+          "p95Ms": 5,
+          "p99Ms": 5.600000023841858,
+          "maxMs": 9.800000011920929,
+          "above6_94": 4,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      }
+    ],
+    "errors": []
+  },
+  "motion": {
+    "default": {
+      "file": ".cache/character-mmo/startup-lazy-world-corrected-2026-10-07/motion-default/default.mp4",
+      "sha256": "3a952b81a8ea21119fb564616ff06c65399d12504af42faa191cf75f14e5837a",
+      "report": {
+        "start": {
+          "x": -7.804504319567148e-05,
+          "z": -0.00013772653850013241,
+          "recoveries": 0
+        },
+        "end": {
+          "x": 0.2855310774922224,
+          "z": 63.88582370679683
+        },
+        "recoveries": 0,
+        "physics": true,
+        "dev": {
+          "enabled": true,
+          "god": true,
+          "flying": false
+        },
+        "marks": {
+          "begin": 192.19999998807907,
+          "engine-created": 200.79999995231628,
+          "gpu-probe-end": 202.5999999642372,
+          "world-start": 204.5999999642372,
+          "havok-runtime-available": 258,
+          "world-end": 307.5999999642372,
+          "havok-start": 308.69999998807907,
+          "havok-runtime-start": 309.5999999642372,
+          "havok-runtime-end": 309.5999999642372,
+          "havok-world-end": 311.69999998807907,
+          "havok-colliders-end": 318.69999998807907,
+          "havok-controller-end": 319.89999997615814,
+          "havok-end": 320.89999997615814,
+          "prime-world-start": 321.2999999523163,
+          "prime-world-registered": 331.89999997615814,
+          "prime-world-submitted": 336.19999998807907,
+          "prime-world-completed": 395,
+          "body-start": 458.5,
+          "body-end": 471.7999999523163,
+          "equipment-start": 472.69999998807907,
+          "equipment-end": 483.39999997615814,
+          "register-start": 485.69999998807907,
+          "register-end": 495.5999999642372,
+          "first-render-return": 498.89999997615814,
+          "first-gpu-completed": 520.0999999642372,
+          "supported-frame-submitted": 522.2999999523163,
+          "supported-frame-completed": 526.3999999761581,
+          "playable": 526.8999999761581,
+          "bg-start": 527,
+          "bg-imports-end": 628.3999999761581,
+          "bg-dummy-end": 1181.7999999523163,
+          "bg-enemies-end": 1240.5999999642372,
+          "combat-ready": 1687.2999999523163,
+          "late-register-start": 1744.699999988079,
+          "late-register-end": 1746,
+          "hostiles-ready": 1791.2999999523163,
+          "bg-foliage-end": 15541.299999952316,
+          "ready": 17021.899999976158,
+          "region-ready": 17021.899999976158
+        },
+        "streaming": {
+          "blocks": 1035,
+          "worstInstallMs": 2.800000011920929,
+          "backgroundWorstInstallMs": 2.100000023841858,
+          "backgroundSlowest": {
+            "name": "Earth",
+            "triangles": 512
+          },
+          "totalInstallMs": 851.800000846386,
+          "allocatedBytes": 210049236,
+          "allocatedRecords": 71,
+          "initialAllocatedBytes": 16259292,
+          "initialAllocatedRecords": 5
+        },
+        "enemies": 7,
+        "foliage": 117242,
+        "recording": true,
+        "errors": []
+      },
+      "rootReview": "actual native1280\u00d7720 live MP4 playback, poses/streaming/Havok walk/camera turn; no persistent T-pose"
+    },
+    "maximum": {
+      "file": ".cache/character-mmo/startup-lazy-world-corrected-2026-10-07/motion-maximum/maximum.mp4",
+      "sha256": "bfb0b3604a694245949cec1ccc59ce0b5ed643241ace3a33bb504b6527eec558",
+      "report": {
+        "start": {
+          "x": -2.481715725235089e-05,
+          "z": -4.379498074221469e-05,
+          "recoveries": 0
+        },
+        "end": {
+          "x": 0.4038199716920689,
+          "z": 69.83796634385844
+        },
+        "recoveries": 0,
+        "physics": true,
+        "dev": {
+          "enabled": true,
+          "god": true,
+          "flying": false
+        },
+        "marks": {
+          "begin": 196,
+          "engine-created": 207.30000001192093,
+          "gpu-probe-end": 209.19999998807907,
+          "world-start": 211.0999999642372,
+          "havok-runtime-available": 262.0999999642372,
+          "world-end": 373.0999999642372,
+          "havok-start": 374.19999998807907,
+          "havok-runtime-start": 375,
+          "havok-runtime-end": 375,
+          "havok-world-end": 377,
+          "havok-colliders-end": 383.89999997615814,
+          "havok-controller-end": 385.0999999642372,
+          "havok-end": 386.19999998807907,
+          "prime-world-start": 386.5,
+          "prime-world-registered": 396.80000001192093,
+          "prime-world-submitted": 401,
+          "prime-world-completed": 459.5,
+          "body-start": 665.3000000119209,
+          "body-end": 685.3999999761581,
+          "equipment-start": 687.0999999642372,
+          "equipment-end": 704.6999999880791,
+          "register-start": 711.0999999642372,
+          "register-end": 729.8999999761581,
+          "first-render-return": 733.5,
+          "supported-frame-submitted": 748.3999999761581,
+          "first-gpu-completed": 769.5,
+          "supported-frame-completed": 775.6999999880791,
+          "playable": 776,
+          "bg-start": 776.0999999642372,
+          "bg-imports-end": 876,
+          "bg-dummy-end": 1572.5,
+          "bg-enemies-end": 1633.300000011921,
+          "combat-ready": 2078.5,
+          "late-register-start": 2134.899999976158,
+          "late-register-end": 2136.5,
+          "hostiles-ready": 2183.5,
+          "bg-foliage-end": 15683.399999976158,
+          "ready": 17320.899999976158,
+          "region-ready": 17321
+        },
+        "streaming": {
+          "blocks": 1035,
+          "worstInstallMs": 3.199999988079071,
+          "backgroundWorstInstallMs": 3.199999988079071,
+          "backgroundSlowest": {
+            "name": "Bare woodland",
+            "triangles": 4096
+          },
+          "totalInstallMs": 842.9999989271164,
+          "allocatedBytes": 210049236,
+          "allocatedRecords": 71,
+          "initialAllocatedBytes": 16259292,
+          "initialAllocatedRecords": 5
+        },
+        "enemies": 7,
+        "foliage": 117242,
+        "recording": true,
+        "errors": []
+      },
+      "rootReview": "actual native1280\u00d7720 live MP4 playback, poses/streaming/Havok walk/camera turn; no persistent T-pose"
+    }
+  },
+  "limitations": [
+    "No new public cache-disabled startup cohort",
+    "No production promotion",
+    "Physical iPhone unavailable in last inventory",
+    "Background frame stalls remain175\u2013179ms",
+    "240Hz pacing hints retained; hardware uncapped limit not confirmed",
+    "Fullscreen, Telegram desktop-app and physical-phone playback unverified"
+  ],
+  "rawCache": ".cache/character-mmo/startup-lazy-world-corrected-2026-10-07",
+  "priorRawCache": ".cache/character-mmo/startup-lazy-world-2026-10-07",
+  "failedAttempts": {
+    "grokBuildBeforeOperation": "initial8-turn cap before command",
+    "staleWorld": {
+      "code": 1,
+      "signal": null,
+      "pid": 25728
+    },
+    "correctedInput": "regenerated prepared world provenance, geometry/textures unchanged"
+  },
+  "publication": {
+    "createdAt": "2026-10-07T11:27:19Z",
+    "publication": true,
+    "ledgerNote": "Root will re-attribute after finished commit. API dimensions are not client playback proof. urllib GET 403; curl verified MIME/bytes/range.",
+    "items": [
+      {
+        "name": "default",
+        "local": ".cache/character-mmo/startup-lazy-world-corrected-2026-10-07/motion-default/default.mp4",
+        "veKey": "wow-clone/ashen-reach/character-mmo/lazy-world-2026-10-07-default.mp4",
+        "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/lazy-world-2026-10-07-default.mp4",
+        "bytes": 13876624,
+        "localSha256": "3a952b81a8ea21119fb564616ff06c65399d12504af42faa191cf75f14e5837a",
+        "remoteSha256": "3a952b81a8ea21119fb564616ff06c65399d12504af42faa191cf75f14e5837a",
+        "head": {
+          "status": 200,
+          "contentType": "video/mp4",
+          "contentLength": "13876624"
+        },
+        "get": {
+          "status": 200,
+          "bytes": 13876624,
+          "shaMatch": true
+        },
+        "range": {
+          "status": 206,
+          "contentRange": "bytes 0-1023/13876624",
+          "bytes": 1024,
+          "prefixMatch": true
+        },
+        "tgExit": 0,
+        "telegramMessageId": 874,
+        "tgVerified": {
+          "width": 1280,
+          "height": 720,
+          "durationS": 24.046915
+        },
+        "telegram": "sent, message_id 874; verified 1280x720, 24.047s",
+        "ledger": "one new line for this path; no prior send",
+        "sanitizedTelegramMetadata": {
+          "ok": true,
+          "messageId": 874,
+          "expected": {
+            "width": 1280,
+            "height": 720,
+            "duration": 24.046915,
+            "sampleAspectRatio": "1:1",
+            "rotation": 0,
+            "codec": "h264"
+          },
+          "returned": {
+            "width": 1280,
+            "height": 720,
+            "duration": 25
+          },
+          "verified": true,
+          "file": "default.mp4",
+          "sha256": "3a952b81a8ea21119fb564616ff06c65399d12504af42faa191cf75f14e5837a",
+          "sentAt": "2026-10-07T11:27:07.678942+00:00"
+        }
+      },
+      {
+        "name": "maximum",
+        "local": ".cache/character-mmo/startup-lazy-world-corrected-2026-10-07/motion-maximum/maximum.mp4",
+        "veKey": "wow-clone/ashen-reach/character-mmo/lazy-world-2026-10-07-maximum.mp4",
+        "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/lazy-world-2026-10-07-maximum.mp4",
+        "bytes": 13943402,
+        "localSha256": "bfb0b3604a694245949cec1ccc59ce0b5ed643241ace3a33bb504b6527eec558",
+        "remoteSha256": "bfb0b3604a694245949cec1ccc59ce0b5ed643241ace3a33bb504b6527eec558",
+        "head": {
+          "status": 200,
+          "contentType": "video/mp4",
+          "contentLength": "13943402"
+        },
+        "get": {
+          "status": 200,
+          "bytes": 13943402,
+          "shaMatch": true
+        },
+        "range": {
+          "status": 206,
+          "contentRange": "bytes 0-1023/13943402",
+          "bytes": 1024,
+          "prefixMatch": true
+        },
+        "tgExit": 0,
+        "telegramMessageId": 875,
+        "tgVerified": {
+          "width": 1280,
+          "height": 720,
+          "durationS": 24.24333
+        },
+        "telegram": "sent, message_id 875; verified 1280x720, 24.243s",
+        "ledger": "one new line for this path; no prior send",
+        "sanitizedTelegramMetadata": {
+          "ok": true,
+          "messageId": 875,
+          "expected": {
+            "width": 1280,
+            "height": 720,
+            "duration": 24.24333,
+            "sampleAspectRatio": "1:1",
+            "rotation": 0,
+            "codec": "h264"
+          },
+          "returned": {
+            "width": 1280,
+            "height": 720,
+            "duration": 25
+          },
+          "verified": true,
+          "file": "maximum.mp4",
+          "sha256": "bfb0b3604a694245949cec1ccc59ce0b5ed643241ace3a33bb504b6527eec558",
+          "sentAt": "2026-10-07T11:27:19.628569+00:00"
+        }
+      }
+    ],
+    "rootClientReview": {
+      "telegramInline": {
+        "default": true,
+        "maximum": true,
+        "sourceDimensions": [
+          1280,
+          720
+        ],
+        "observedDisplayDimensions": [
+          738.1875,
+          415.21875
+        ],
+        "proportionsCorrect": true
+      },
+      "telegramExpanded": {
+        "maximum": true,
+        "sourceDimensions": [
+          1280,
+          720
+        ],
+        "observedDisplayDimensions": [
+          1280,
+          720
+        ],
+        "proportionsCorrect": true
+      },
+      "directVE": {
+        "maximum": true,
+        "sourceDimensions": [
+          1280,
+          720
+        ],
+        "observedDisplayDimensions": [
+          1280,
+          720
+        ],
+        "proportionsCorrect": true
+      },
+      "fullscreen": {
+        "entered": false,
+        "verified": false
+      },
+      "telegramDesktopApp": {
+        "verified": false
+      },
+      "physicalPhone": {
+        "verified": false
+      },
+      "ledgerAttribution": "Run scripts/tg record for both clips after the finished checkpoint commit; no duplicate file send."
+    }
+  },
+  "ownershipFinalAudit": {
+    "auditedAt": "2026-10-07T11:36:19.599553+00:00",
+    "googleChromeOrChromiumProcesses": 0,
+    "grokWorkers": 0,
+    "gamePreviewProcesses": 0,
+    "gameOrDebugListeners": 0,
+    "edge": {
+      "pid": 2931,
+      "nongameTabs": 12,
+      "gameTabs": 0
+    },
+    "orca": {
+      "pid": 98938,
+      "embeddedTabs": 0
+    },
+    "rootReviewTabsClosed": [
+      "1147995825",
+      "1147995829"
+    ],
+    "rootWrapperClosed": {
+      "pid": 47554,
+      "port": 7081
+    },
+    "motionOwnership": {
+      "owner": "grok-lazy-world-motion",
+      "browserPid": 44407,
+      "gpuHelperPids": [
+        44413
+      ],
+      "cdpPort": 10037,
+      "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+      "purpose": "Grok lazy world motion lazy",
+      "renderingClients": 0,
+      "active": false,
+      "previewPid": 44386,
+      "previewPort": 7074,
+      "previewDir": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-lazy-world-corrected-2026-10-07/build-lazy"
+    },
+    "mediaGuardRemoved": "__lazyPerf20261007",
+    "restoredConnectedPlaybackCounts": {
+      "telegram": 3,
+      "shadowglass": 1,
+      "xReference": 1,
+      "xOther": 0
+    },
+    "noOwnedGameRendererRemains": true
+  }
+}

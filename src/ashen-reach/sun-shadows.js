@@ -133,6 +133,7 @@ export function createSunShadows(engine,scene,sun,{depthOnlyFragment=false}={}){
  const data=new Float32Array(80);
  const state={enabled:true,characters:true,cascades:3,mapSize:2048,range:SUN_SHADOW_RANGE,staticCasters:0,dynamicCasters:0,receivers:0,version:0,depthOnlyFragment};
  let worldCasters=[],worldCasterSet=new Set(),farCasters=[],dynamic=[],candidateDynamic=[];
+ let worldSource=null,worldAllocationRevision;
  const updateMaterial=mat=>{
   for(let i=0;i<3;i++)setShaderUniform(mat,`sunCascade${i}`,data.subarray(i*16,i*16+16));
   setShaderUniform(mat,'sunFarMatrix',far._lightMatrix);
@@ -147,10 +148,18 @@ export function createSunShadows(engine,scene,sun,{depthOnlyFragment=false}={}){
   fragmentSource:'@fragment fn mainFragment() {}'});
  controller={state,csm,far,csmTexture,farTexture,data,get gpuRelease(){return gpuRelease;},
   addReceiver(mat){if(disposed)return;receivers.add(mat);setShaderTexture(mat,'sunCascades',csmTexture);setShaderTexture(mat,'sunFar',farTexture);updateMaterial(mat);state.receivers=receivers.size;},
-  setWorld(world){if(disposed)return;worldCasters=(world.shadowMeshes??world.meshes).filter(m=>!['Ash motes','Lamp light shafts'].includes(m.name));worldCasterSet=new Set(worldCasters);for(const mesh of worldCasters)setShadowCasterMaterial(mesh.material,caster);farCasters=worldCasters;state.staticCasters=worldCasters.length;dynamic=[];candidateDynamic=[];controller.update(true);},
+  setWorld(world){if(disposed)return;worldSource=world;worldAllocationRevision=world.streaming?.allocatedRecords;worldCasters=(world.shadowMeshes??world.meshes).filter(m=>!['Ash motes','Lamp light shafts'].includes(m.name));worldCasterSet=new Set(worldCasters);for(const mesh of worldCasters)setShadowCasterMaterial(mesh.material,caster);farCasters=worldCasters;state.staticCasters=worldCasters.length;dynamic=[];candidateDynamic=[];controller.update(true);},
   setFarCasters(meshes){farCasters=meshes;},
   update(force=false){
    if(disposed)return;
+   // Batch arriving storage meshes into the existing caster path once per
+   // render boundary, including while the menu pauses world simulation.
+   // Allocation revision also catches an addition and proxy removal with the
+   // same net array length. setWorld records the revision before its forced update.
+   // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/17-cascaded-shadow.md
+   if(worldSource&&worldSource.streaming?.allocatedRecords!==worldAllocationRevision){
+    controller.setWorld(worldSource);return;
+   }
    // Reconcile loaded/swapped equipment and actors; hidden parked bodies are
    // omitted by Lite's visibility check, preserving source skeletons/materials.
    candidateDynamic.length=0;

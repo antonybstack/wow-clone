@@ -112,12 +112,33 @@ The [sequential pre-Havok trial](results/startup-prime-overlap-2026-10-07.md)
 passes eleven native controls, including real held-WASM release/disposal/device
 loss, but regresses all six declared local pairs by 15.3–23.0 ms. Its prototype
 is removed; main.js is exactly restored to 865cf7d. No public rerun follows.
-The next bounded scheduling hypothesis must preserve native avatar/physics
-initialization: start and immediately observe the original setupPlayer promise,
-permit preparation while Havok is still pending, then require that original
-promise before mounting the body. Keep its scene-disposal cleanup and all
-completed supported-frame/input gates; repeat the held-WASM lifetime controls.
-Do not retain the rejected sequential ordering or reopen it under a new label.
+The [concurrent native-physics trial](results/startup-prime-concurrent-2026-10-07.md)
+also passes twelve native controls and twelve declared local starts, but has no
+material gain (paired change −1.3…+6.4 ms). It is removed; main remains exactly
+865cf7d. Actual held-WASM abort proves a diagnostic gap: add exact WASM URL/runtime
+initialization context, preserving the native cause and one cached promise. This
+does not explain the original public failures; their Havok transfers all finish200.
+
+The [async inline launcher trial](results/startup-inline-facade-2026-10-07.md)
+is removed after valid native/paired checks: maximum gains4–7 ms, default gains
+nothing consistent. Do not repeat either trial unchanged or reopen the sequential
+ordering under another label.
+
+The current default-off ASHEN_LAZY_WORLD_BUFFERS trial uses the existing native
+storage APIs to defer untouched world records until their first real block.
+Initial reservation falls210,049,236→16,259,292 bytes (71→5 world records).
+Twenty-six focused checks, both builds, six native controls/helper abort/three
+entries and twelve local starts pass; final world/shadow membership is complete.
+Default gains0.9–9.7 ms; maximum9.1–14.0 ms before independent review corrections.
+Root corrects arrival shadow membership and immediate woodland visibility. Fresh
+builds/native/real Havok failure controls/entries pass; three corrected streaming
+windows have complete caster/LOD membership throughout; fifteen settled windows
+observe202.7–238.5 FPS,p99≤6.2 ms,worst10.1 ms,no frame>16.67 ms/errors/recoveries.
+Actual default/maximum live MP4s are reviewed and delivered as Telegram874/875
+with identical VE files. Inline/expanded/direct VE proportions pass; fullscreen
+remains unverified. Background175–179 ms stalls remain
+open; profile them with native CPU/GPU evidence next. Both flags remain off and
+there is no new public startup qualification. [Checkpoint](results/startup-lazy-world-2026-10-07.md).
 
 Sources: [pinned native engine API](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/engine/engine.ts),
 [pinned scene registration](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/scene/scene-core.ts).

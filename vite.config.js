@@ -137,6 +137,10 @@ export default defineConfig({
     // Native renderFrame/registration are reused; this never releases the loading overlay.
     // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/engine/engine.ts
     'import.meta.env.VITE_PRIME_STARTER_WORLD':JSON.stringify(process.env.ASHEN_PRIME_STARTER_WORLD==='1'?'1':'0'),
+    // Diagnostic opt-in: defer untouched world storage until its first block.
+    // Exact final meshes/collision still share native allocation/upload paths.
+    // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/mesh/mesh-from-storage.ts
+    'import.meta.env.VITE_LAZY_WORLD_BUFFERS':JSON.stringify(process.env.ASHEN_LAZY_WORLD_BUFFERS==='1'?'1':'0'),
     // Immutable bundles reject a newer deployment's mutable manifest instead
     // of mixing old worker generation with new prepared geometry/materials.
     'import.meta.env.VITE_STARTER_WORLD_SOURCE':JSON.stringify(process.env.NODE_ENV==='production'&&starterBuild?starterWorldManifest.provenance.sha256:''),

@@ -33,11 +33,17 @@ let havokRuntime = null;
 export function loadHavok() {
     // A previous Pages deploy cached an HTML fallback at the old URL under
     // an immutable header. The versioned request bypasses that stale entry.
+    const wasmURL = import.meta.env?.VITE_HAVOK_WASM_URL || "/HavokPhysics.wasm?v=20260923-1";
     havokRuntime ||= HavokPhysics({
         // Production serves these identical bytes as content-addressed HTTP
         // Brotli; correct MIME preserves the package's instantiateStreaming.
         // https://developer.mozilla.org/en-US/docs/WebAssembly/Reference/JavaScript_interface/instantiateStreaming_static
-        locateFile: (file) => file.endsWith(".wasm") ? (import.meta.env?.VITE_HAVOK_WASM_URL || "/HavokPhysics.wasm?v=20260923-1") : file,
+        locateFile: (file) => file.endsWith(".wasm") ? wasmURL : file,
+    }).catch(cause => {
+        // Keep native streaming/fallback and the cached rejection unchanged.
+        // The native fetch error omits its URL; formatGameError retains this cause.
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/cause
+        throw new Error(`Physics runtime ${wasmURL}: initialization failed: ${cause?.message || String(cause)}`, {cause});
     });
     return havokRuntime;
 }

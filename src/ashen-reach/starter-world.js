@@ -99,6 +99,7 @@ export async function createStarterWorld(engine, scene, prepared) {
     shadowByName = new Map();
   let disposed = false,
     worker = null,
+    woodland = null,
     foliage = null,
     regionPromise = null,
     wakeWorker = null,
@@ -118,9 +119,19 @@ export async function createStarterWorld(engine, scene, prepared) {
     backgroundSlowest: null,
     totalInstallMs: 0,
     allocatedBytes: 0,
+    allocatedRecords: 0,
   };
-  const records = manifest.meshes.map((record) => {
-    if (!record.world) return { ...record };
+  const records = manifest.meshes.map((record) => ({...record}));
+  const lazyAllocations = import.meta.env?.VITE_LAZY_WORLD_BUFFERS === '1';
+  // Keep final storage identities/counts, but allocate an untouched record only
+  // when its first real block arrives. The required packet fills five world
+  // records; allocating all 71 before play reserved ~210 MB in the baseline.
+  // Native addToScene handles arriving material builders. The shadow controller
+  // sees allocatedRecords at its render-boundary update, before these meshes draw.
+  // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/mesh/mesh-from-storage.ts
+  // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/scene/scene-runtime-mesh-build.ts
+  function allocateRecord(record) {
+    if (!record.world || record.mesh) return;
     const vertices = createStorageBuffer(engine, record.vertices * 64, {
       vertex: true,
       label: record.name,
@@ -171,18 +182,17 @@ export async function createStarterWorld(engine, scene, prepared) {
     addToScene(shadowScene, shadowMesh);
     shadowMeshes.push(shadowMesh);
     shadowByName.set(record.name, shadowMesh);
-    return {
-      ...record,
+    Object.assign(record, {
       mesh,
       verticesBuffer: vertices,
       indexBuffer: indices,
       shadowVertices,
-    };
-  });
-  streaming.allocatedBytes = allocations.reduce(
-    (sum, buffer) => sum + buffer.byteLength,
-    0,
-  );
+    });
+    streaming.allocatedRecords++;
+    streaming.allocatedBytes += vertices.byteLength + indices.byteLength + shadowVertices.byteLength;
+    woodland?.meshArrived(record.name);
+  }
+  if (!lazyAllocations) records.forEach(allocateRecord);
   function install(block, player) {
     const started = performance.now(),
       key = `${block.meshId}:${block.indexOffset}`;
@@ -214,6 +224,7 @@ export async function createStarterWorld(engine, scene, prepared) {
       installedCollisions.add(key);
     }
     if (record.world) {
+      allocateRecord(record);
       const count = b.positions.length / 3,
         interleaved = new Float32Array(count * 16),
         positions = new Float32Array(count * 4);
@@ -310,6 +321,8 @@ export async function createStarterWorld(engine, scene, prepared) {
   for (const block of manifest.geometry.blocks) {
     install({ ...block, buffers: readBlock(block) });
   }
+  streaming.initialAllocatedBytes = streaming.allocatedBytes;
+  streaming.initialAllocatedRecords = streaming.allocatedRecords;
   function installProxy(block, b) {
     const target=block.target??block.name;
     const requirements=block.requiresBlocks;
@@ -349,8 +362,8 @@ export async function createStarterWorld(engine, scene, prepared) {
     );
   };
   colliders.push(...manifest.boxes.filter(intersectsStart));
-  const m = manifest.metadata,
-    woodland = createBakedWoodland(
+  const m = manifest.metadata;
+  woodland = createBakedWoodland(
       scene,
       manifest.woodland,
       byName,

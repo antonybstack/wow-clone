@@ -1,0 +1,824 @@
+{
+  "result": "rejected-no-material-gain-prototype-removed",
+  "prototypeSources": {
+    "src/ashen-reach/main.js": "27864198775f4d60de9eb31de7eea92e31964b815f7ee7832147dfca47ed88f6",
+    "src/ashen-reach/prime-starter-world.js": "c56afa2041b50339159d2c6a79562c5dd063c5209abfe3da08c15a74218f8344",
+    "vite.config.js": "b054ebb58ab404a0701749db64329d9bfc028842436a92ddb3f799111ea2865c"
+  },
+  "restoredMainSha256": "1de3121f7751377734fba5824b9a7ca537b3e5240cc2fb32f9ee49deb3265078",
+  "method": {
+    "kind": "bounded-local-comparison",
+    "createdAt": "2026-10-07T10:12:20.329Z",
+    "builds": {
+      "before": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-prime-early-2026-10-07/build-early",
+      "concurrent": "build-concurrent"
+    },
+    "outfits": [
+      "default",
+      "maximum"
+    ],
+    "pairs": 3,
+    "orders": [
+      [
+        "before",
+        "concurrent"
+      ],
+      [
+        "concurrent",
+        "before"
+      ],
+      [
+        "before",
+        "concurrent"
+      ]
+    ],
+    "runs": 12,
+    "profile": "50mbps",
+    "httpCache": "fresh process/profile, initially empty with native preload reuse",
+    "viewport": [
+      1280,
+      720
+    ],
+    "shaderCache": "OS/driver caches uncontrolled; no forced cache policy",
+    "maxMs": null,
+    "releaseGate": false
+  },
+  "rows": [
+    {
+      "outfit": "default",
+      "pair": 1,
+      "mode": "before",
+      "playableMs": 529.3999999761581,
+      "marks": {
+        "begin": 190.30000001192093,
+        "engine-created": 198.89999997615814,
+        "gpu-probe-end": 204.69999998807907,
+        "world-start": 206.60000002384186,
+        "havok-runtime-available": 255.80000001192093,
+        "world-end": 306.60000002384186,
+        "havok-start": 307.60000002384186,
+        "havok-runtime-start": 308.39999997615814,
+        "havok-runtime-end": 308.39999997615814,
+        "havok-world-end": 310.39999997615814,
+        "havok-colliders-end": 317.5,
+        "havok-controller-end": 318.80000001192093,
+        "havok-end": 319.80000001192093,
+        "prime-world-start": 320.10000002384186,
+        "prime-world-registered": 334.60000002384186,
+        "prime-world-submitted": 341.5,
+        "prime-world-completed": 427.30000001192093,
+        "body-start": 456.5,
+        "body-end": 469.30000001192093,
+        "equipment-start": 470.30000001192093,
+        "equipment-end": 480.5,
+        "register-start": 482.69999998807907,
+        "register-end": 494.69999998807907,
+        "first-render-return": 498.69999998807907,
+        "supported-frame-submitted": 515.6999999880791,
+        "first-gpu-completed": 521,
+        "supported-frame-completed": 529.1999999880791,
+        "playable": 529.3999999761581,
+        "bg-start": 529.5
+      },
+      "errors": [],
+      "failed": null
+    },
+    {
+      "outfit": "default",
+      "pair": 1,
+      "mode": "concurrent",
+      "playableMs": 535.8000000119209,
+      "marks": {
+        "begin": 194,
+        "engine-created": 202.10000002384186,
+        "gpu-probe-end": 203.9000000357628,
+        "world-start": 205.9000000357628,
+        "havok-runtime-available": 259.60000002384186,
+        "world-end": 311.30000001192093,
+        "havok-start": 312.30000001192093,
+        "havok-runtime-start": 313.19999998807907,
+        "havok-runtime-end": 313.19999998807907,
+        "havok-world-end": 315.19999998807907,
+        "havok-colliders-end": 322.10000002384186,
+        "havok-controller-end": 323.30000001192093,
+        "prime-world-start": 324.60000002384186,
+        "prime-world-registered": 339.4000000357628,
+        "prime-world-submitted": 345.9000000357628,
+        "havok-end": 345.9000000357628,
+        "prime-world-completed": 433.4000000357628,
+        "body-start": 460.9000000357628,
+        "body-end": 473.9000000357628,
+        "equipment-start": 474.9000000357628,
+        "equipment-end": 486.30000001192093,
+        "register-start": 488.60000002384186,
+        "register-end": 500.9000000357628,
+        "first-render-return": 504.9000000357628,
+        "supported-frame-submitted": 529.1000000238419,
+        "first-gpu-completed": 529.8000000119209,
+        "supported-frame-completed": 535.5,
+        "playable": 535.8000000119209,
+        "bg-start": 535.9000000357628
+      },
+      "errors": [],
+      "failed": null
+    },
+    {
+      "outfit": "default",
+      "pair": 2,
+      "mode": "concurrent",
+      "playableMs": 532.9000000357628,
+      "marks": {
+        "begin": 192.60000002384186,
+        "engine-created": 200.9000000357628,
+        "gpu-probe-end": 202.60000002384186,
+        "world-start": 204.60000002384186,
+        "havok-runtime-available": 257.7000000476837,
+        "world-end": 309.10000002384186,
+        "havok-start": 310.30000001192093,
+        "havok-runtime-start": 311,
+        "havok-runtime-end": 311,
+        "havok-world-end": 313,
+        "havok-colliders-end": 319.9000000357628,
+        "havok-controller-end": 321.30000001192093,
+        "prime-world-start": 322.5,
+        "prime-world-registered": 337.4000000357628,
+        "prime-world-submitted": 344.2000000476837,
+        "havok-end": 344.30000001192093,
+        "prime-world-completed": 427.60000002384186,
+        "body-start": 458.2000000476837,
+        "body-end": 471,
+        "equipment-start": 472,
+        "equipment-end": 482.7000000476837,
+        "register-start": 485,
+        "register-end": 497.2000000476837,
+        "first-render-return": 501.2000000476837,
+        "first-gpu-completed": 523.4000000357628,
+        "supported-frame-submitted": 525.9000000357628,
+        "supported-frame-completed": 532.1000000238419,
+        "playable": 532.9000000357628,
+        "bg-start": 532.9000000357628
+      },
+      "errors": [],
+      "failed": null
+    },
+    {
+      "outfit": "default",
+      "pair": 2,
+      "mode": "before",
+      "playableMs": 533.1999999880791,
+      "marks": {
+        "begin": 191.30000001192093,
+        "engine-created": 199.30000001192093,
+        "gpu-probe-end": 200.9000000357628,
+        "world-start": 202.80000001192093,
+        "havok-runtime-available": 256.60000002384186,
+        "world-end": 308.30000001192093,
+        "havok-start": 309.19999998807907,
+        "havok-runtime-start": 310,
+        "havok-runtime-end": 310,
+        "havok-world-end": 311.9000000357628,
+        "havok-colliders-end": 318.69999998807907,
+        "havok-controller-end": 319.9000000357628,
+        "havok-end": 320.9000000357628,
+        "prime-world-start": 321.10000002384186,
+        "prime-world-registered": 334.9000000357628,
+        "prime-world-submitted": 341.80000001192093,
+        "prime-world-completed": 428.69999998807907,
+        "body-start": 457.5,
+        "body-end": 470.5,
+        "equipment-start": 471.5,
+        "equipment-end": 481.80000001192093,
+        "register-start": 484.19999998807907,
+        "register-end": 496.30000001192093,
+        "first-render-return": 500.30000001192093,
+        "supported-frame-submitted": 523.5,
+        "first-gpu-completed": 524.1999999880791,
+        "supported-frame-completed": 533,
+        "playable": 533.1999999880791,
+        "bg-start": 533.4000000357628
+      },
+      "errors": [],
+      "failed": null
+    },
+    {
+      "outfit": "default",
+      "pair": 3,
+      "mode": "before",
+      "playableMs": 536,
+      "marks": {
+        "begin": 189.4000000357628,
+        "engine-created": 198,
+        "gpu-probe-end": 199.5,
+        "world-start": 201.5,
+        "havok-runtime-available": 255,
+        "world-end": 306.9000000357628,
+        "havok-start": 307.9000000357628,
+        "havok-runtime-start": 308.69999998807907,
+        "havok-runtime-end": 308.69999998807907,
+        "havok-world-end": 310.4000000357628,
+        "havok-colliders-end": 317.5,
+        "havok-controller-end": 318.80000001192093,
+        "havok-end": 319.9000000357628,
+        "prime-world-start": 320.19999998807907,
+        "prime-world-registered": 335.4000000357628,
+        "prime-world-submitted": 343.19999998807907,
+        "prime-world-completed": 429.80000001192093,
+        "body-start": 455.5,
+        "body-end": 469.10000002384186,
+        "equipment-start": 470.10000002384186,
+        "equipment-end": 481.5,
+        "register-start": 483.69999998807907,
+        "register-end": 495.4000000357628,
+        "first-render-return": 500.4000000357628,
+        "first-gpu-completed": 523.5,
+        "supported-frame-submitted": 530.1000000238419,
+        "supported-frame-completed": 535.3000000119209,
+        "playable": 536,
+        "bg-start": 536.1000000238419
+      },
+      "errors": [],
+      "failed": null
+    },
+    {
+      "outfit": "default",
+      "pair": 3,
+      "mode": "concurrent",
+      "playableMs": 540.6000000238419,
+      "marks": {
+        "begin": 192.89999997615814,
+        "engine-created": 201.5,
+        "gpu-probe-end": 203.10000002384186,
+        "world-start": 205,
+        "havok-runtime-available": 258.5,
+        "world-end": 309.80000001192093,
+        "havok-start": 310.89999997615814,
+        "havok-runtime-start": 311.69999998807907,
+        "havok-runtime-end": 311.69999998807907,
+        "havok-world-end": 313.60000002384186,
+        "havok-colliders-end": 320.39999997615814,
+        "havok-controller-end": 321.69999998807907,
+        "prime-world-start": 322.89999997615814,
+        "prime-world-registered": 337.30000001192093,
+        "prime-world-submitted": 344.10000002384186,
+        "havok-end": 344.19999998807907,
+        "prime-world-completed": 429.80000001192093,
+        "body-start": 459.60000002384186,
+        "body-end": 472.5,
+        "equipment-start": 473.39999997615814,
+        "equipment-end": 483.39999997615814,
+        "register-start": 485.69999998807907,
+        "register-end": 497.80000001192093,
+        "first-render-return": 501.39999997615814,
+        "first-gpu-completed": 525.8000000119209,
+        "supported-frame-submitted": 533.3000000119209,
+        "supported-frame-completed": 540,
+        "playable": 540.6000000238419,
+        "bg-start": 540.6999999880791
+      },
+      "errors": [],
+      "failed": null
+    },
+    {
+      "outfit": "maximum",
+      "pair": 1,
+      "mode": "before",
+      "playableMs": 779.6999999880791,
+      "marks": {
+        "begin": 193,
+        "engine-created": 203,
+        "gpu-probe-end": 205,
+        "world-start": 207.0999999642372,
+        "havok-runtime-available": 258.2999999523163,
+        "world-end": 371.2999999523163,
+        "havok-start": 372.2999999523163,
+        "havok-runtime-start": 373.19999998807907,
+        "havok-runtime-end": 373.19999998807907,
+        "havok-world-end": 375.19999998807907,
+        "havok-colliders-end": 382.0999999642372,
+        "havok-controller-end": 383.39999997615814,
+        "havok-end": 384.5,
+        "prime-world-start": 384.89999997615814,
+        "prime-world-registered": 399.89999997615814,
+        "prime-world-submitted": 407.5,
+        "prime-world-completed": 491.2999999523163,
+        "body-start": 661.5,
+        "body-end": 681,
+        "equipment-start": 682.8999999761581,
+        "equipment-end": 700.5999999642372,
+        "register-start": 709.7999999523163,
+        "register-end": 726.5,
+        "first-render-return": 731,
+        "supported-frame-submitted": 745.1999999880791,
+        "first-gpu-completed": 772.0999999642372,
+        "supported-frame-completed": 779.2999999523163,
+        "playable": 779.6999999880791,
+        "bg-start": 779.7999999523163
+      },
+      "errors": [],
+      "failed": null
+    },
+    {
+      "outfit": "maximum",
+      "pair": 1,
+      "mode": "concurrent",
+      "playableMs": 780.1000000238419,
+      "marks": {
+        "begin": 192,
+        "engine-created": 202.10000002384186,
+        "gpu-probe-end": 203.80000001192093,
+        "world-start": 205.9000000357628,
+        "havok-runtime-available": 258.30000001192093,
+        "world-end": 371.10000002384186,
+        "havok-start": 372.10000002384186,
+        "havok-runtime-start": 372.9000000357628,
+        "havok-runtime-end": 372.9000000357628,
+        "havok-world-end": 374.9000000357628,
+        "havok-colliders-end": 381.60000002384186,
+        "havok-controller-end": 383,
+        "prime-world-start": 384.10000002384186,
+        "prime-world-registered": 399.19999998807907,
+        "prime-world-submitted": 406.30000001192093,
+        "havok-end": 406.30000001192093,
+        "prime-world-completed": 490.30000001192093,
+        "body-start": 660.9000000357628,
+        "body-end": 680.5,
+        "equipment-start": 682.1999999880791,
+        "equipment-end": 699.6999999880791,
+        "register-start": 705.8000000119209,
+        "register-end": 725.4000000357628,
+        "first-render-return": 729.3000000119209,
+        "supported-frame-submitted": 745.6000000238419,
+        "first-gpu-completed": 771.6999999880791,
+        "supported-frame-completed": 779.6999999880791,
+        "playable": 780.1000000238419,
+        "bg-start": 780.1000000238419
+      },
+      "errors": [],
+      "failed": null
+    },
+    {
+      "outfit": "maximum",
+      "pair": 2,
+      "mode": "concurrent",
+      "playableMs": 779.3999999761581,
+      "marks": {
+        "begin": 191.39999997615814,
+        "engine-created": 201.19999998807907,
+        "gpu-probe-end": 202.89999997615814,
+        "world-start": 204.80000001192093,
+        "havok-runtime-available": 257.30000001192093,
+        "world-end": 368.89999997615814,
+        "havok-start": 369.89999997615814,
+        "havok-runtime-start": 370.80000001192093,
+        "havok-runtime-end": 370.80000001192093,
+        "havok-world-end": 372.80000001192093,
+        "havok-colliders-end": 379.69999998807907,
+        "havok-controller-end": 381,
+        "prime-world-start": 382.19999998807907,
+        "prime-world-registered": 396.89999997615814,
+        "prime-world-submitted": 403.39999997615814,
+        "havok-end": 403.5,
+        "prime-world-completed": 488.69999998807907,
+        "body-start": 659.5999999642372,
+        "body-end": 679.3999999761581,
+        "equipment-start": 681,
+        "equipment-end": 699.3000000119209,
+        "register-start": 705.3999999761581,
+        "register-end": 725.5,
+        "first-render-return": 729.8999999761581,
+        "supported-frame-submitted": 745.8000000119209,
+        "first-gpu-completed": 770.8000000119209,
+        "supported-frame-completed": 779.0999999642372,
+        "playable": 779.3999999761581,
+        "bg-start": 779.3999999761581
+      },
+      "errors": [],
+      "failed": null
+    },
+    {
+      "outfit": "maximum",
+      "pair": 2,
+      "mode": "before",
+      "playableMs": 780.6999999880791,
+      "marks": {
+        "begin": 193.69999998807907,
+        "engine-created": 204.5,
+        "gpu-probe-end": 206.10000002384186,
+        "world-start": 208.10000002384186,
+        "havok-runtime-available": 258.80000001192093,
+        "world-end": 372.5,
+        "havok-start": 373.69999998807907,
+        "havok-runtime-start": 374.5,
+        "havok-runtime-end": 374.5,
+        "havok-world-end": 376.5,
+        "havok-colliders-end": 383.30000001192093,
+        "havok-controller-end": 384.69999998807907,
+        "havok-end": 385.69999998807907,
+        "prime-world-start": 386.10000002384186,
+        "prime-world-registered": 400.89999997615814,
+        "prime-world-submitted": 408.89999997615814,
+        "prime-world-completed": 492.80000001192093,
+        "body-start": 662.6000000238419,
+        "body-end": 682.6999999880791,
+        "equipment-start": 684.3999999761581,
+        "equipment-end": 701.8000000119209,
+        "register-start": 708.8999999761581,
+        "register-end": 727.3000000119209,
+        "first-render-return": 731.8999999761581,
+        "supported-frame-submitted": 747.8999999761581,
+        "first-gpu-completed": 773.3000000119209,
+        "supported-frame-completed": 780.3999999761581,
+        "playable": 780.6999999880791,
+        "bg-start": 780.6999999880791
+      },
+      "errors": [],
+      "failed": null
+    },
+    {
+      "outfit": "maximum",
+      "pair": 3,
+      "mode": "before",
+      "playableMs": 777.6999999880791,
+      "marks": {
+        "begin": 191.30000001192093,
+        "engine-created": 201.80000001192093,
+        "gpu-probe-end": 203.39999997615814,
+        "world-start": 205.39999997615814,
+        "havok-runtime-available": 257.30000001192093,
+        "world-end": 367.19999998807907,
+        "havok-start": 368.19999998807907,
+        "havok-runtime-start": 369.0999999642372,
+        "havok-runtime-end": 369.0999999642372,
+        "havok-world-end": 371.0999999642372,
+        "havok-colliders-end": 377.69999998807907,
+        "havok-controller-end": 378.89999997615814,
+        "havok-end": 379.89999997615814,
+        "prime-world-start": 380.19999998807907,
+        "prime-world-registered": 394.5999999642372,
+        "prime-world-submitted": 401.30000001192093,
+        "prime-world-completed": 486.5999999642372,
+        "body-start": 659.3000000119209,
+        "body-end": 678.8999999761581,
+        "equipment-start": 680.5,
+        "equipment-end": 698.6999999880791,
+        "register-start": 705,
+        "register-end": 724.3000000119209,
+        "first-render-return": 728.3999999761581,
+        "supported-frame-submitted": 744.8000000119209,
+        "first-gpu-completed": 768.8000000119209,
+        "supported-frame-completed": 777.3999999761581,
+        "playable": 777.6999999880791,
+        "bg-start": 777.8000000119209
+      },
+      "errors": [],
+      "failed": null
+    },
+    {
+      "outfit": "maximum",
+      "pair": 3,
+      "mode": "concurrent",
+      "playableMs": 779.3999999761581,
+      "marks": {
+        "begin": 192.10000002384186,
+        "engine-created": 202.60000002384186,
+        "gpu-probe-end": 208.89999997615814,
+        "world-start": 210.80000001192093,
+        "havok-runtime-available": 257.5,
+        "world-end": 369,
+        "havok-start": 370.10000002384186,
+        "havok-runtime-start": 370.80000001192093,
+        "havok-runtime-end": 370.89999997615814,
+        "havok-world-end": 373.10000002384186,
+        "havok-colliders-end": 380.10000002384186,
+        "havok-controller-end": 381.39999997615814,
+        "prime-world-start": 382.60000002384186,
+        "prime-world-registered": 397.19999998807907,
+        "prime-world-submitted": 403.80000001192093,
+        "havok-end": 403.80000001192093,
+        "prime-world-completed": 488.89999997615814,
+        "body-start": 660.6000000238419,
+        "body-end": 681.1000000238419,
+        "equipment-start": 682.6999999880791,
+        "equipment-end": 700.8999999761581,
+        "register-start": 707,
+        "register-end": 727.1000000238419,
+        "first-render-return": 731.6000000238419,
+        "supported-frame-submitted": 747.6000000238419,
+        "first-gpu-completed": 771.6999999880791,
+        "supported-frame-completed": 779,
+        "playable": 779.3999999761581,
+        "bg-start": 779.5
+      },
+      "errors": [],
+      "failed": null
+    }
+  ],
+  "nativeControls": [
+    {
+      "case": "A-held-then-play",
+      "passed": true,
+      "pageErrors": [],
+      "sha256": "025e7671b143cdedfaec02230ec862765044eb1deacf3c875055bb3192e1ecc7"
+    },
+    {
+      "case": "B-gzip",
+      "passed": true,
+      "pageErrors": [],
+      "sha256": "750bf358bd1f7fc9aca669b1888551ea9bfa082db34e171047e2033371171657"
+    },
+    {
+      "case": "C-dispose",
+      "passed": true,
+      "pageErrors": [],
+      "sha256": "2c8a8977190d591ed210667e3476c2c7d59abca80a40b8a4dee9def86104da3e"
+    },
+    {
+      "case": "D-device-loss",
+      "passed": true,
+      "pageErrors": [],
+      "sha256": "5ae70c9ad822d6fc17a6798a95f10e823804fc0b55041f5c93cfeb7a22c6b432"
+    },
+    {
+      "case": "E-default",
+      "passed": true,
+      "pageErrors": [],
+      "sha256": "c5ce177b702fd9ca63c70c83859126179482838361aa07e7cb77998bd1915707"
+    },
+    {
+      "case": "F-maximum",
+      "passed": true,
+      "pageErrors": [],
+      "sha256": "a79736792a5c6de4205e61f360d4150739a79fe464dc0d4f4ace7971663b4eea"
+    },
+    {
+      "case": "G-havok-abort",
+      "passed": true,
+      "pageErrors": [],
+      "sha256": "b9d61404cae2ee4e708ccebf57a99a843cc03026fe86c51af00db2b935517a5c"
+    },
+    {
+      "case": "G-havok-device-loss",
+      "passed": true,
+      "pageErrors": [],
+      "sha256": "c4dc858916488bcf39444faff59dd5b332913b809b8c5eb106cf9fe43f859dfe"
+    },
+    {
+      "case": "G-havok-dispose",
+      "passed": true,
+      "pageErrors": [],
+      "sha256": "3679ac8eeac8c56258308c39bc8c8f6009fdde6cce3d8d65fa8e5b90d2340f03"
+    },
+    {
+      "case": "G-havok-release",
+      "passed": true,
+      "pageErrors": [],
+      "sha256": "2d6985614cefc4b28fa0b7595bc58c189fb2fc78aad6a428147bfb46893d6921"
+    },
+    {
+      "case": "native-flag0",
+      "passed": true,
+      "pageErrors": [],
+      "sha256": "d86aff5fa8deb1268fa8064d53c5e0e23d9b7a7ee1a48a02d24b372aecc8092c"
+    },
+    {
+      "case": "native-import-failure",
+      "passed": true,
+      "pageErrors": [],
+      "sha256": "f42772d15149612ab2cada621c01a31271cef64e0c6bd44f1456d657b3173a29"
+    }
+  ],
+  "exits": {
+    "paired-default-3-concurrent.exit.json": {
+      "code": 0,
+      "signal": null,
+      "pid": 14023
+    },
+    "syntax-main.exit.json": {
+      "code": 0,
+      "signal": null,
+      "pid": 84685
+    },
+    "native-run.exit.json": {
+      "code": 0,
+      "signal": null,
+      "at": "2026-10-07T10:00:49.366932+00:00"
+    },
+    "paired-default-2-before.exit.json": {
+      "code": 0,
+      "signal": null,
+      "pid": 13819
+    },
+    "native-flag0.exit.json": {
+      "code": 0,
+      "signal": null,
+      "pid": 92066
+    },
+    "paired-maximum-3-before.exit.json": {
+      "code": 0,
+      "signal": null,
+      "pid": 14449
+    },
+    "paired-integrity-concurrent.exit.json": {
+      "code": 0,
+      "signal": null,
+      "pid": 13587
+    },
+    "build-concurrent.exit.json": {
+      "code": 0,
+      "signal": null,
+      "pid": 84691
+    },
+    "paired-maximum-1-concurrent.exit.json": {
+      "code": 0,
+      "signal": null,
+      "pid": 14200
+    },
+    "paired-default-2-concurrent.exit.json": {
+      "code": 0,
+      "signal": null,
+      "pid": 13751
+    },
+    "paired-default-3-before.exit.json": {
+      "code": 0,
+      "signal": null,
+      "pid": 13950
+    },
+    "paired-maximum-2-before.exit.json": {
+      "code": 0,
+      "signal": null,
+      "pid": 14361
+    },
+    "paired-integrity-before.exit.json": {
+      "code": 0,
+      "signal": null,
+      "pid": 13565
+    },
+    "focused-tests.exit.json": {
+      "code": 0,
+      "signal": null,
+      "pid": 84686
+    },
+    "native-check.exit.json": {
+      "code": 0,
+      "signal": null,
+      "pid": 90541
+    },
+    "build-off.exit.json": {
+      "code": 0,
+      "signal": null,
+      "pid": 84838
+    },
+    "paired-maximum-2-concurrent.exit.json": {
+      "code": 0,
+      "signal": null,
+      "pid": 14294
+    },
+    "paired-default-1-concurrent.exit.json": {
+      "code": 0,
+      "signal": null,
+      "pid": 13678
+    },
+    "paired-maximum-1-before.exit.json": {
+      "code": 0,
+      "signal": null,
+      "pid": 14093
+    },
+    "run-build.exit.json": {
+      "code": 0
+    },
+    "native-import-failure.exit.json": {
+      "code": 0,
+      "signal": null,
+      "pid": 92015
+    },
+    "paired-maximum-3-concurrent.exit.json": {
+      "code": 0,
+      "signal": null,
+      "pid": 14559
+    },
+    "paired-default-1-before.exit.json": {
+      "code": 0,
+      "signal": null,
+      "pid": 13588
+    }
+  },
+  "pairedRunnerExit": 0,
+  "ownership": {
+    "paired-default-1-before.json.ownership.json": {
+      "owner": "probe-playable-startup",
+      "browserPid": "13609",
+      "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+      "active": false
+    },
+    "paired-maximum-2-before.json.ownership.json": {
+      "owner": "probe-playable-startup",
+      "browserPid": "14382",
+      "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+      "active": false
+    },
+    "paired-maximum-3-concurrent.json.ownership.json": {
+      "owner": "probe-playable-startup",
+      "browserPid": "14571",
+      "url": "http://127.0.0.1:7075/?play=&clean=&pixelRatio=1",
+      "active": false
+    },
+    "paired-maximum-3-before.json.ownership.json": {
+      "owner": "probe-playable-startup",
+      "browserPid": "14450",
+      "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+      "active": false
+    },
+    "paired-default-1-concurrent.json.ownership.json": {
+      "owner": "probe-playable-startup",
+      "browserPid": "13679",
+      "url": "http://127.0.0.1:7075/?play=&clean=&pixelRatio=1",
+      "active": false
+    },
+    "paired-maximum-2-concurrent.json.ownership.json": {
+      "owner": "probe-playable-startup",
+      "browserPid": "14295",
+      "url": "http://127.0.0.1:7075/?play=&clean=&pixelRatio=1",
+      "active": false
+    },
+    "paired-maximum-1-before.json.ownership.json": {
+      "owner": "probe-playable-startup",
+      "browserPid": "14098",
+      "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+      "active": false
+    },
+    "paired-default-2-concurrent.json.ownership.json": {
+      "owner": "probe-playable-startup",
+      "browserPid": "13752",
+      "url": "http://127.0.0.1:7075/?play=&clean=&pixelRatio=1",
+      "active": false
+    },
+    "paired-maximum-1-concurrent.json.ownership.json": {
+      "owner": "probe-playable-startup",
+      "browserPid": "14221",
+      "url": "http://127.0.0.1:7075/?play=&clean=&pixelRatio=1",
+      "active": false
+    },
+    "native-ownership.json": {
+      "owner": "grok-prime-concurrent-native",
+      "browserPid": 90511,
+      "gpuHelperPids": [
+        90537
+      ],
+      "cdpPort": 10037,
+      "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1",
+      "purpose": "Grok early-import native controls; not a benchmark",
+      "renderingClients": 0,
+      "active": false,
+      "previewPid": 92045,
+      "previewPort": 7074,
+      "previewDir": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-prime-concurrent-2026-10-07/build-off"
+    },
+    "paired-default-2-before.json.ownership.json": {
+      "owner": "probe-playable-startup",
+      "browserPid": "13884",
+      "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+      "active": false
+    },
+    "paired-default-3-before.json.ownership.json": {
+      "owner": "probe-playable-startup",
+      "browserPid": "13951",
+      "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+      "active": false
+    },
+    "paired-default-3-concurrent.json.ownership.json": {
+      "owner": "probe-playable-startup",
+      "browserPid": "14027",
+      "url": "http://127.0.0.1:7075/?play=&clean=&pixelRatio=1",
+      "active": false
+    },
+    "paired-ownership.json": {
+      "owner": "grok-prime-concurrent-paired",
+      "active": false,
+      "input": {
+        "src/ashen-reach/main.js": "27864198775f4d60de9eb31de7eea92e31964b815f7ee7832147dfca47ed88f6",
+        "src/ashen-reach/prime-starter-world.js": "c56afa2041b50339159d2c6a79562c5dd063c5209abfe3da08c15a74218f8344",
+        "vite.config.js": "b054ebb58ab404a0701749db64329d9bfc028842436a92ddb3f799111ea2865c"
+      },
+      "servers": [
+        {
+          "mode": "before",
+          "port": 7074,
+          "pid": 13560,
+          "dir": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-prime-early-2026-10-07/build-early",
+          "url": "http://127.0.0.1:7074/",
+          "exitCode": null
+        },
+        {
+          "mode": "concurrent",
+          "port": 7075,
+          "pid": 13566,
+          "dir": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-prime-concurrent-2026-10-07/build-concurrent",
+          "url": "http://127.0.0.1:7075/",
+          "exitCode": null
+        }
+      ],
+      "browserOwnership": "all probe browser.close() finally; check retained individual ownership files"
+    }
+  },
+  "workerLimit": "Paired CLI exhausted five turns after the prepared runner exited 0; script receipts are authoritative. No rerun."
+}
