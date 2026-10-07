@@ -75,6 +75,7 @@ async function main(){
  const pixelRatio=Number(params.get('pixelRatio'));
  const preloadedEquipment=params.has('preloadedEquipment');
  const fastStart=!preloadedEquipment&&!params.has('legacyStart')&&(params.has('fastStart')||import.meta.env.VITE_FAST_START==='1');
+ const primeStartingWorld=fastStart&&import.meta.env.VITE_PRIME_STARTER_WORLD==='1';
  // Read a saved identity only when a record exists. An unsaved neutral boot imports no
  // editor/storage graph and never requests morph assets before its playable boundary.
  const startupAppearance=await loadStartupAppearance(params);
@@ -147,6 +148,8 @@ async function main(){
  const fullBodyManifestP=!fastCharacter&&!shapeCandidate&&!preloadedEquipment?fetch('/ashen-reach/equipment/manifest-coverage-v1.json').then(async response=>{if(!response.ok)throw Error('Human body manifest unavailable');return response.json();}):null;
  const bodyBufP=fastCharacter?starterCharacterP.then(m=>startupAssetBuffer(m.items.body)):fullBodyManifestP?fullBodyManifestP.then(m=>fetchBuffer(m.items.body.url,'high')):fetchBuffer(bodyUrl,'high');
  bodyBufP.catch(()=>{});
+ let bodySettled=false;
+ if(primeStartingWorld)bodyBufP.then(()=>{bodySettled=true;},()=>{bodySettled=true;});
  // Havok's 650 KB WASM gates grounded movement and needs nothing from the scene, so it
  // downloads and compiles alongside the body instead of starting inside setupPlayer once
  // the world is already built. loadHavok() memoises, so setupPlayer's own call is free.
@@ -312,6 +315,40 @@ async function main(){
  ashen.setHumanShapeLive=setHumanShapeLive;
  onBeforeRender(scene,()=>{gpu.frames++;});
  globalThis.ASHEN=ashen;
+ let startingPost=null;
+ const ensureStartingPost=()=>{
+  if(startingPost)return startingPost;
+  const post=params.has('noPost')?buildDirectPipeline(engine,scene):buildPostPipeline(engine,scene,sun,world,shadows,localLights);
+  ashen.post=post.status;
+  ashen.hdr=post;
+  ashen.volumetric=post.volume;
+  ashen.grounding=post.grounding;
+  if(post.status.notes.length)console.warn('ashen post chain:',post.status.notes.join('; '));
+  startingPost=post;return post;
+ };
+ const ensureRenderLoop=()=>{
+  if(ashen.renderLoop)return ashen.renderLoop;
+  ashen.renderLoop=createRenderLoop(engine,scene,{
+   onFrameSubmitted:()=>{
+    if(supportedFramePending||!dressed||!player.getGrounded())return;
+    supportedFramePending=true;
+    markStartup('supported-frame-submitted');
+    // Fence the first actually submitted dressed, grounded frame. An extra
+    // requestAnimationFrame after this fence would add latency without adding
+    // stronger evidence that the starting scene is ready for movement.
+    void waitForGpuIdle(engine).then(()=>{markStartup('supported-frame-completed');supportedGpuCompleted.reach();},error=>supportedGpuCompleted.fail(error));
+   },
+   onError:e=>{console.error(e);const el=document.getElementById('error');el.style.display='block';el.textContent=e?.stack||String(e);void formatGameError(e).then(message=>{el.textContent=message;}).catch(()=>{});},
+   onDeviceLost:(error,info)=>{
+    deviceLost=true;
+    console.error(error,info);
+    lockInputUntilReload();
+    disposeScene(scene);
+    showDeviceLoss(error);
+   },
+  });
+  return ashen.renderLoop;
+ };
  const sourceBody=resolvePlayableBody('?character=human-source');
  const playable={...sourceBody,...ASHEN_PLAYABLE_MOTION,
   assetURL:fastCharacter?(await starterCharacterP).items.body.url:fullBodyManifestP?(await fullBodyManifestP).items.body.url:bodyUrl};
@@ -329,8 +366,23 @@ async function main(){
  // glTF bytes. Cook starting collision while the body transfer finishes; the
  // render loop still starts only after the skinned body and gear are installed.
  // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/42-physics.md
- try {playable.buffer=await bodyBufP;}
- catch(error){disposeScene(scene);throw error;}
+ let preparatoryFrame=null,waitForPrimeWork=null;
+ try {
+  if(primeStartingWorld&&!bodySettled){
+   const {primeStarterWorld,waitForSceneWork}=await import('./prime-starter-world.js');
+   // A transfer may finish during module discovery. Skip rather than adding queue work.
+   if(!bodySettled){
+    // Install the existing loss handler before the first native submission; start() stays late.
+    ensureRenderLoop();waitForPrimeWork=waitForSceneWork;
+    preparatoryFrame=await primeStarterWorld({engine,scene,signal:lifetime,mark:markStartup,
+     prepare(){
+      shadows.setWorld(world);localLights.setWorld(world);ashen.shadows=shadows;ashen.localLights=localLights;
+      ensureStartingPost();attachLinearMaterials();
+     }});
+   }else markStartup('prime-world-skipped');
+  }else if(primeStartingWorld)markStartup('prime-world-skipped');
+  playable.buffer=waitForPrimeWork?await waitForPrimeWork(bodyBufP,lifetime):await bodyBufP;
+ }catch(error){disposeScene(scene);throw error;}
  markStartup('body-start');
  body=await attachBody(engine,scene,player,player.capsuleHeight,playable);
  const starterBodyContainer=body.container;
@@ -529,35 +581,20 @@ async function main(){
  // Bloom is a render-target swap, so it has to exist before the first
  // registerScene. It does not fetch anything. ?noPost skips it.
  shadows.setWorld(world);localLights.setWorld(world);ashen.shadows=shadows;ashen.localLights=localLights;
- const post=params.has('noPost')?buildDirectPipeline(engine,scene):buildPostPipeline(engine,scene,sun,world,shadows,localLights);
- ashen.post=post.status;
- ashen.hdr=post;
- ashen.volumetric=post.volume;
- ashen.grounding=post.grounding;
- if(post.status.notes.length)console.warn('ashen post chain:',post.status.notes.join('; '));
+ ensureStartingPost();
  attachLinearMaterials();
  markStartup('register-start');
- await registerSceneWithShadowSupport(scene);
+ if(preparatoryFrame){
+  try {
+   await waitForPrimeWork(preparatoryFrame.completion,lifetime);
+   await waitForPrimeWork(preparatoryFrame.rebuildCharacter(),lifetime);
+   // Reusing initial registration would return early and omit added skin/material builders.
+   // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/scene/scene-core.ts
+   await waitForPrimeWork(registerLateFeatures(scene,attachLinearMaterials,unregisterScene,registerSceneWithShadowSupport),lifetime);
+  }catch(error){disposeScene(scene);throw error;}
+ }else await registerSceneWithShadowSupport(scene);
  markStartup('register-end');
- ashen.renderLoop=createRenderLoop(engine,scene,{
-  onFrameSubmitted:()=>{
-   if(supportedFramePending||!dressed||!player.getGrounded())return;
-   supportedFramePending=true;
-   markStartup('supported-frame-submitted');
-   // Fence the first actually submitted dressed, grounded frame. An extra
-   // requestAnimationFrame after this fence would add latency without adding
-   // stronger evidence that the starting scene is ready for movement.
-   void waitForGpuIdle(engine).then(()=>{markStartup('supported-frame-completed');supportedGpuCompleted.reach();},error=>supportedGpuCompleted.fail(error));
-  },
-  onError:e=>{console.error(e);const el=document.getElementById('error');el.style.display='block';el.textContent=e?.stack||String(e);void formatGameError(e).then(message=>{el.textContent=message;}).catch(()=>{});},
-  onDeviceLost:(error,info)=>{
-   deviceLost=true;
-   console.error(error,info);
-   lockInputUntilReload();
-   disposeScene(scene);
-   showDeviceLoss(error);
-  },
- });
+ ensureRenderLoop();
  await ashen.renderLoop.start();
  markStartup('first-render-return');
  // Lite's public GPU fence reports completion of already submitted work, not scanout.

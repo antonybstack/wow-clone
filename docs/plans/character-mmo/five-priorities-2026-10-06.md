@@ -65,25 +65,26 @@ Any integration needs an explicit bounded geometry policy, independent written
 proofs and reviewed native motion/fit at the shape endpoints. Do not relax the
 existing normal-only proof to accept arbitrary geometry changes.
 
-Next bounded candidate to investigate after the cloth source freeze: overlap the existing
-starting-world GPU work with a still-pending saved body transfer. A retained candidate visit
-has world ready at 517.7 ms, body transfer ready at 774.9 ms, registration at 846.8 ms and
-supported GPU completion at 996.8 ms. These are navigation-relative stages, not isolated
-GPU execution times. The installed Lite 1.31.1 public `renderFrame` submits a single native
-frame; `registerSceneWithShadowSupport` awaits scene builders, pending material swaps and
-task preload. Reuse those APIs rather than introducing a shader or renderer cache.
+The starting-world scheduling candidate is now implemented behind the default-off
+ASHEN_PRIME_STARTER_WORLD flag. It overlaps an exact native world/post/shadow frame
+and queue fence with a still-pending body transfer; it never releases input or the
+opaque loading overlay. Added skins/morphs require Lite's native PBR group rescan
+before late-feature registration. Root found and corrected a persistent T-pose
+in the first prototype; attached skeletons/advancing clocks alone were inadequate
+visual evidence. All six corrected lifecycle/failure/normal controls pass, and
+root reviewed actual native motion. This does not explain the historical fetch
+failure or isolate GPU execution from navigation-relative marks.
 
-Investigate one opt-in preparatory frame of the exact starting world/post/shadows behind
-the opaque loading overlay while the body is pending, on the same engine/surface. Register
-and fence all added body/equipment pipelines before the actual dressed/grounded first-play
-frame. The preparatory world frame must never satisfy that boundary. No extra render loop,
-quality reduction, hidden saved outfit or relaxed GPU fence. Skip the work when the body
-is already available. First verify scene lifecycle, body/material readiness, device-loss
-and failed-body disposal; then use a small declared paired local comparison with normal
-HTTP throttling. Reject extra queue/registration work if it does not create useful headroom.
-This is a proposed scheduling experiment, not an implemented improvement or an explanation
-of the historical multi-second driver tail. The prior async-compilation/shadow trials remain
-closed unless new evidence supports them.
+The declared twelve local visits retain three alternating pairs each for default
+and catalogue-v8 maximum. Maximum improves 83.3–96.4 ms in all pairs. Default
+improves 49.4/51.3 ms in two pairs and regresses 114.5 ms in the first. Local conditions
+use initially empty HTTP cache with native preload reuse; public release gates
+retain disabled HTTP cache, so these figures do not replace prior public cohorts.
+The material maximum gain supports one new sealed public candidate. Keep every
+default tail and failed attempt, with no unchanged reruns to manufacture a pass.
+Full implementation, correction, raw samples, reviewed motion and limitations:
+[starting-world result](results/startup-prime-2026-10-07.md). Prior shader/shadow
+and precision trials stay closed without material new evidence.
 
 Sources: [pinned native engine API](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/engine/engine.ts),
 [pinned scene registration](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/scene/scene-core.ts).

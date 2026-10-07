@@ -133,6 +133,10 @@ export default defineConfig({
     'import.meta.env.VITE_HUMAN_SHAPE_SOURCE':JSON.stringify(process.env.NODE_ENV==='production'?humanShapeManifest.provenance.sha256:''),
     'import.meta.env.VITE_HUMAN_IDENTITY_SOURCE':JSON.stringify(process.env.NODE_ENV==='production'?humanIdentityManifest.provenance.sha256:''),
     'import.meta.env.VITE_FAST_START':JSON.stringify(starterBuild?'1':'0'),
+    // Bounded scheduling experiment; default builds keep the accepted startup order.
+    // Native renderFrame/registration are reused; this never releases the loading overlay.
+    // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/engine/engine.ts
+    'import.meta.env.VITE_PRIME_STARTER_WORLD':JSON.stringify(process.env.ASHEN_PRIME_STARTER_WORLD==='1'?'1':'0'),
     // Immutable bundles reject a newer deployment's mutable manifest instead
     // of mixing old worker generation with new prepared geometry/materials.
     'import.meta.env.VITE_STARTER_WORLD_SOURCE':JSON.stringify(process.env.NODE_ENV==='production'&&starterBuild?starterWorldManifest.provenance.sha256:''),

@@ -1,250 +1,140 @@
-# Current state and immediate focus — Ashen Reach
+# Ashen Reach — current state
 
-Updated 2026-10-06. Read this before choosing work. Follow the latest user request;
-historical milestone documents are evidence, not an active task queue.
+Updated **2026-10-07**. Read this before choosing work. Follow the latest user
+request; historical milestone documents are evidence, not an active task queue.
 
-## Immediate target
+## Active priorities
 
-**Next priorities:** startup reliability and meaningful one-second headroom;
-release accepted improvements through the existing gates; a new skinned
-Fieldcoat through the factory; current physical iPhone acceptance. The
-[five-priority plan](plans/character-mmo/five-priorities-2026-10-06.md) preserves
-the active goal. Progress independent cloth work while the startup release hold
-is open; do not spend another turn repeating unchanged cold cohorts.
+The native goal is **active**: “resume. complete all 5 priorities autonomously.”
+The [five-priority plan](plans/character-mmo/five-priorities-2026-10-06.md) is
+authoritative. Work proceeds without further user approval.
 
-**Fieldcoat local integration:** schema-2 soft-skin factory and catalogue v8 are
-implemented with three race fits, Human shape transfer, exact source binds and
-frozen historical registries. The latest normal-game check passes **19 cases**
-with no runtime/GPU errors or recovery teleports. An independent review found
-missing upper-trouser coverage; live validation then exposed stale coverage in
-the selected-identity refresh. Both paths now propagate the shared garment rules,
-and Prime shape/race checks retain hidden upper trousers and visible lower trousers.
-Root reviewed the corrected **62.07-second 1280×720** live MP4 and waist captures.
-Factory 31, character 228 and equipment 115 checks pass; the flag-1 build passes.
-Catalogue v8 has 10,584 valid combinations and retains the **2,300,424-byte**
-maximum compact asset payload. Telegram **871** and the identical
-[VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/fieldcoat-2026-10-06.mp4)
-are delivered. Root reviewed correct inline/expanded Telegram and direct VE proportions;
-this browser did not enter requested fullscreen. Twelve cold/resident swap pairs pass:
-157.9 ms worst cold, 4.5 ms resident, 25.4 ms worst frame, with no errors or budget
-breaches at legacy 50 Mibit/s / 40 ms. Fifteen native 1280×720 route windows measure
-**219–257 FPS**, maximum p99 5.9 ms, worst 10.5 ms, no intervals over 16.67 ms or
-errors/recoveries. Forest retains 240 Hz detector hints: the strict detector gate
-failed there; only the two missing forest windows were collected in observation
-mode. This does not establish an uncapped hardware limit. New startup/release gates
-remain open. This garment is **not released to production**.
-[Fieldcoat result](plans/character-mmo/results/fieldcoat-2026-10-06.md).
+1. **Reliable startup:** isolate the original intermittent fetch failure if it
+   recurs, using the URL/operation/native-cause diagnostics already implemented.
+   No speculative retry or replacement of failed cohorts with successful diagnostics.
+2. **One-second headroom:** qualify actual dressed, grounded, GPU-completed,
+   input-ready first play for default and maximum saved appearances. The current
+   starting-world scheduling experiment is default-off and has not qualified.
+3. **Release accepted improvements:** commit/push, seal, preview integrity/entry/
+   startup/traversal/mobile/WebKit/performance gates, then identical production
+   bytes and repeated production checks with rollback available.
+4. **Fieldcoat delivery:** the new skinned factory garment is integrated,
+   committed/pushed and motion delivered. Production acceptance remains behind
+   the startup/release gates.
+5. **Current physical iPhone acceptance:** no connected physical iPhone in the
+   last device inventory. The user's earlier ~60 FPS iPhone 14 Pro Max report is
+   historical; desktop emulation and WebKit do not replace current-device evidence.
 
-**Resumed diagnostic checkpoint:** 29 focused tests, the flag-1 build, all three
-entry aliases, four built-game failure controls and default/maximum full-region
-movement pass. Request/decode errors now name the asset URL and failed operation while retaining
-the native cause, including decoding after HTTP 200. Six correctly pinned
-maximum-outfit diagnostics pass on production/candidate; the original public
-failure remains unexplained. The earlier production probe used the wrong local
-catalogue and is explicitly invalid. Reorder and animation resampling are
-rejected; unpublished position rounding saves only 82,440 maximum-outfit bytes,
-about 13.2 ms of theoretical transfer. No new public release gate or production
-promotion has occurred. [Result and receipt](plans/character-mmo/results/startup-resume-2026-10-06.md).
-Local `dist` is rebuilt from the diagnostic source with `ASHEN_SAVED_BOOTSTRAP=1`;
-old preview seals do not describe it. Current physical-device inventory has no
-connected iPhone.
+Region expansion, multiplayer expansion and Elf-source work remain parked.
+After these gates, return to concrete mixed-fit/boot silhouette follow-ups;
+do not start an exhaustive new combination matrix.
 
-Restore the **public one-second startup target**. Production remains `6004840`
-with the historical clean failure: p95 **1,219.6 ms**, maximum **1,358.5 ms**,
-14/20 misses. M10 landscape is functionally live; complete release/startup and
-physical-device acceptance remain open.
+## Release and holds
 
-The [saved-startup bundling candidate](plans/character-mmo/results/startup-bootstrap-2026-10-06.md)
-uses native Rolldown to co-locate pure saved validation/descriptors and shared
-fetch helpers. Source **`03dfbc7` is pushed**; opt in with
-`ASHEN_SAVED_BOOTSTRAP=1` (default builds retain the released split graph).
-33 tests and ten live functional checks pass; all character assets/Lite bytes
-are unchanged. Local saved starts improve from 873–876 to 829–836 ms, with
-about 3.6 KiB additional modelled gzip code for unsaved starts. Public paired
-results are mixed. Preview **`498be045-42c7-4d89-8ee4-7580b9291ad1`** passes
-537 delivery checks, but its strict twenty-start gate **fails**: p95 **952.3 ms**,
-maximum **1,025.1 ms**, one miss. **Do not promote or claim the target met.**
-Local `dist` contains this experimental flag-1 build, not the production build.
-
-Three production-host diagnostics are **1,265 / 925 / 1,988 ms**. Late HTML and
-one 1,157 ms body-cache MISS dominate. The response headers differ from the
-immutable Pages host. Navigation is h2 while some assets use h3; CF-Ray suffixes
-can identify an origin-facing cache tier, so neither a physical route nor an
-HTTP/3 defect is established. The deployment token's DNS request returns 403.
-The former signed-out Cloudflare dashboard tab **1147995760** is now absent;
-no sign-in task is pending there. Custom-domain cache/origin rules and available
-request logs remain a separate access-dependent investigation. No settings have
-been changed.
-
-The native-priority hypothesis is closed: two instrumented visits show the early
-facade, shared store, renderer and body already request at High priority, without
-priority changes. Do not add ineffective `fetchpriority` attributes or replace the
-failed gate with these diagnostics (968.8/887.6 ms).
-
-**Current candidate:** compact normal precision, source **`cf43894` pushed**,
-preview **`5f312add-f747-477d-bc8a-9b583028e2a0`**
-([immutable preview](https://5f312add.fardel.pages.dev)). Native meshoptimizer
-rounds eligible compact normals offline; the GLB loader is unchanged. Full
-assets, protected hood, rigid pieces and non-normal source attributes remain
-exact. 61 asset/proof tests, ten prefetch checks, eleven compact-identity live
-cases and 536 public delivery checks pass. Reviewed motion is on Telegram **870**
-and [VE](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/startup-normal-2026-10-06-prime-ponytail.mp4).
-Telegram inline/expanded and VE inline playback preserve proportions; this
-browser rejected fullscreen requests, so fullscreen is not re-verified.
-
-The historical hood/cloth/Bastion fixture saves **180,324 bytes** and is now
-**1,986,208 bytes**. It was incorrectly described as the largest outfit.
-The new catalogue-derived fixture enumerates 9,072 valid loadouts across four
-Human profiles: Prime ponytail, hood, Duskguard chest/boots/gloves, Graveweaver
-skirt and Bastion shoulders total **2,300,424 compact asset bytes**. Procedural
-staff/book are retained. Three fixture tests and independent sums pass.
-The maximum payload is not necessarily the slowest rendering workload.
-
-**Latest public gates:** entry, normal traversal, mobile touch/depth and WebKit
-pass. Maximum-outfit routes measure **201–244 FPS**, p99 <=6.2 ms, worst 11.2 ms,
-no >16.67 ms intervals. Possible 240 Hz pacing hints remain explicit; these are
-not confirmed uncapped limits. The two strict twenty-start cold gates fail:
-maximum outfit p95 **1,001 ms**, worst **1,177.1 ms**, 2 misses; historical outfit
-p95 **936.9 ms**, worst **1,220.9 ms**, 1 miss. All forty starts are grounded,
-dressed and responsive without recorded errors. **Do not promote.**
-
-**Latest preview is rejected:** source **`1de0bba`**, immutable
-[05f75b6e](https://05f75b6e.fardel.pages.dev), changes only the two HTML aliases.
-The neutral preload now precedes blocking CSS; 23 focused tests, ten prefetch
-cases and local/public held-CSS discovery checks pass. All 536 delivery checks
-pass. However bare-root entry times out, and cold cohorts record **14 failed
-starts out of 60**, each with `TypeError: Failed to fetch`: default 6, maximum 5,
-historical 3. Valid-row worst times are 1,704.4 / 1,954.9 / 2,227.7 ms respectively;
-these exclude failed starts and do not qualify the cohorts. Production is unchanged.
-
-**Diagnostic checkpoint:** three entry aliases, six alternating fresh contexts
-on the old/new previews and six new browser processes now load successfully.
-The fresh-process diagnostic is **705.7–882.6 ms**, grounded and responsive with
-no recorded errors; it does not replace the failed release cohorts. Root reviewed
-its actual starting-area capture. An intentionally failed local fetch verifies
-that both updated probes retain the failing URL, native network error and loading
-stack, exit nonzero in under one second, and clean up. No runtime patch is justified
-by the current evidence; the public failure has not reproduced and remains unexplained.
-
-**Next bounded investigation:** if the failure recurs, use the retained overlay
-stack and failed-request URL to isolate its actual loader/transport path. Do not
-add speculative retries or claim that subsequent successful diagnostics fix it.
-A new release still requires complete clean entry and declared startup gates;
-production has not changed. Evidence:
-[candidate result](plans/character-mmo/results/startup-normal-release-2026-10-06.md),
-[failed cohorts](baselines/character-mmo/startup-normal-release-2026-10-06/css-public-failure.json),
-[diagnostic receipt](baselines/character-mmo/startup-normal-release-2026-10-06/fetch-diagnostic.json).
-
-Closed investigations: [extra hints/Brotli/accessor dedup](plans/character-mmo/results/startup-transport-2026-10-06.md).
-The [normal investigation](plans/character-mmo/results/startup-normals-2026-10-06.md)
-is historical offline evidence; its integration is reopened because the bundling
-preview's remaining miss is 25 ms, rather than the original 100–220 ms gap. Fixed
-normal quantization would clamp morph offsets and remains rejected.
-
-After startup, return to remaining concrete M6 mixed-fit risks. Elf source/licensing
-and physical-device acceptance remain separate; region/multiplayer plans are parked.
-
-## Current release
-
-Production [play.sparkify.dev](https://play.sparkify.dev) runs source
+Production [play.sparkify.dev](https://play.sparkify.dev) is source
 **6004840807cb47a908fb47dd87848f49f39f3268**, Pages
 **e39117b8-db74-4563-a6c0-b428c8d5d10e**
-([deployment](https://e39117b8.fardel.pages.dev)). Preview
-**b37875cf-20ea-4040-9f96-6e1f1ab3b82f** and production use the same sealed bytes.
-Rollback reference: **578dd30 / b9273b21-5ee5-4d4c-acbe-a7d99f5c1877**.
+([immutable deployment](https://e39117b8.fardel.pages.dev)).
+Rollback: **578dd30 / b9273b21-5ee5-4d4c-acbe-a7d99f5c1877**.
+All 538 served files and two missing-file controls pass; preview and production
+share sealed bytes. Entry aliases, creator/mobile/depth/WebKit and normal Havok
+cathedral traversal pass. See the [release receipt](plans/character-mmo/results/m10-landscape-2026-10-06.md).
 
-All **538 served files** and two missing-file controls pass byte/MIME/cache
-verification on preview and production. Missing assets return **404/no-store**.
-The native Vite `assets/v2` namespace avoids previously polluted bundle URLs;
-a top-level 404 disables Pages' HTML fallback. Early Hints are inserted into
-existing route blocks: duplicate exact paths previously discarded Cache-Control
-in Cloudflare's configuration map. HTML aliases now retain max-age=60 and Link.
-The header-only follow-up changes exactly `_headers` among 539 sealed paths;
-game/HTML/assets are identical to 578dd30. Twenty-three focused unit tests pass.
+The latest clean production 20-start historical outfit cohort fails:
+p95 **1,219.6 ms**, worst **1,358.5 ms**, **14 misses**, no recorded start errors.
+Conditions: M1 Max, native 1280×720/DPR1, fresh browser process/profile, HTTP cache
+disabled, decimal 50 Mbit/s down/10 up/40 ms. OS/driver/CDN caches are uncontrolled.
 
-The creator fix gives a 338×162 preview at 568×320 (previously 338×108), keeps
-camera/motion controls reachable, and preserves Close through scrolling/rotation.
-Native checks cover seven viewports, touch orbit/scroll, keyboard modal navigation,
-identity/race/shape changes, source motion and disposal. Preview entry/creator/
-mobile/depth/WebKit and normal Havok cathedral traversal pass; public entry,
-creator/mobile and traversal pass. No recorded runtime/GPU errors or recoveries.
+Rejected preview **05f75b6e** (1de0bba) records **14 failed starts out of 60**
+with TypeError: Failed to fetch, plus a bare-root entry timeout. Do not promote.
+Correctly pinned later diagnostics and explicit body/geometry/texture failure
+controls pass, but the original public failure has not reproduced or been explained.
+[Resumed diagnostics](plans/character-mmo/results/startup-resume-2026-10-06.md),
+[failed cohorts](baselines/character-mmo/startup-normal-release-2026-10-06/css-public-failure.json).
+Custom-domain Cloudflare cache/request-log investigation needs separate access:
+the deployment token's DNS request returned 403; no dashboard sign-in task or
+settings change is pending.
 
-**Final isolated performance:** M1 Max, uncapped Chromium WebGPU, native
-1280×720/DPR 1, seven enemies, three 12-second bridge runs:
-**244.38 / 246.20 / 250.27 FPS**, maximum p99 **5.4 ms**, worst **10 ms**, no interval
-above 16.7 ms. One tracked game renderer, recording/encoding off, media explicitly
-paused and guarded. Throughput is not physical display-refresh frequency.
-The first final run retains a statistical cap hint despite the uncapped launch;
-raw hints remain in the receipt. The prior five-route baseline remains 209.8–245.7 FPS, maximum p99 6.2 ms.
+Earlier bundling/normal candidates and their failed gates are in the
+[bootstrap](plans/character-mmo/results/startup-bootstrap-2026-10-06.md) and
+[normal release](plans/character-mmo/results/startup-normal-release-2026-10-06.md)
+results. Reorder/resample/position rounding are closed without publication;
+priority hints already arrive High. Do not repeat unchanged cohorts or reopen
+shader/shadow experiments without material new evidence.
 
-**Startup:** the final clean 20-start hood/Bastion cohort has p95 **1,219.6 ms**,
-worst **1,358.5 ms**, **14 misses**, all valid grounded starts without errors.
-Fresh processes/profiles, disabled HTTP cache, 50 Mbit/s down/10 up/40 ms latency;
-OS/GPU-driver/CDN caches are uncontrolled. Earlier failed, disrupted and potentially
-media-contaminated diagnostics remain in the [result and receipt](plans/character-mmo/results/m10-landscape-2026-10-06.md).
-The [older accepted 969.4 ms result](plans/character-mmo/results/startup-catalogue-2026-10-06.md)
-is historical, not today's public claim. New Telegram videos can autoplay after a
-previous audit; final timing must follow delivery/review and a fresh media audit.
+## Fieldcoat checkpoint
 
-Reviewed motion: Telegram **868** ([568×320 VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m10-landscape-2026-10-06-568x320.mp4))
-and **869** ([844×390 VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/m10-landscape-2026-10-06-844x390.mp4)).
-Exact returned dimensions, matching VE hashes and range 206. Native local playback,
-Telegram Web A inline/expanded/VIDEO fullscreen and VE remote playback/fullscreen
-preserve proportions. Physical phone and Telegram Desktop remain unverified.
+**a47b915 is committed and pushed.** Schema-2 soft-skin factory/catalogue v8,
+three race fits, Human shape transfer, exact source binds and frozen historical
+registries are implemented. Factory 31, character 228 and equipment 115 checks
+pass. Nineteen normal-game cases pass with no runtime/GPU errors or recovery
+teleports. Corrected upper-trouser coverage survives identity refresh.
+The derived maximum remains **2,300,424 compact asset bytes**.
 
-## Scope, limits and ownership
+Root reviewed the actual **62.07-second 1280×720** live MP4 and waist captures.
+Telegram **871** and the identical
+[VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/fieldcoat-2026-10-06.mp4)
+are delivered, ledger attributed to a47b915. Inline/expanded Telegram and direct
+VE proportions were reviewed; this browser did not enter requested fullscreen.
+Twelve cold/resident swap pairs pass: worst **157.9 / 4.5 ms**, worst frame
+**25.4 ms**, at legacy 50 Mibit/s / 40 ms.
 
-- Active root `index.html` / `ashen-reach.html`, `src/ashen-reach/main.js`, `ASHEN`.
-  Babylon Lite 1.31.1/WebGPU, Havok 1.3.14, compatible source animation.
-- M5 saved identities and bounded M8 rigid-item factory proof remain implemented.
-  Original/Prime bald/ponytail/Weathered bald, gear and dyes save before dressed
-  first play. Production catalogue v7 includes Bastion shoulders on all supported
-  races; local catalogue v8 adds Fieldcoat without changing the frozen v7 domain.
-  Human height 0.90–1.15/build −0.95…+0.95; Orc/Undead neutral only.
-- M6 [mixed review](plans/character-mmo/results/m6-mixed-fit-2026-10-06.md) and
-  [continuous clearance](plans/character-mmo/results/m6-clearance-2026-10-06.md)
-  found no new gross fit failure. They do not certify all 9,072 valid combinations.
-  Boot sole silhouette/aliasing, broader cloth authoring, licensed Elf source and
-  physical iPhone startup/memory/thermal checks remain explicit follow-ups.
-- **Browser cleanup complete:** resumed comparison worker
-  `01a114a1-6ad7-7172-a27e-552436cda52c` closed all six fresh-process probes.
-  Resource worker `01a114b2-9e82-73d3-bc12-794666993e79` owned slot 7: Chrome
-  909/CDP 10037, Vite 857/880 on 5873 and compressed preview 787 on 7074.
-  All live contexts closed. Root audited the remaining about:blank page, stopped
-  that harness and exact preview PID, then confirmed no owned Chrome/probe/preview
-  process or listener on any of those ports. The report-only continuation
-  finished; the independent source review found no consequential defect.
-  Offline position worker
-  `01a114b6-b6d9-7831-a8c2-8ed0716858af` started no renderer and is terminal.
-- VE review tab 1147995772 and wrapper server 5966 remain closed. Temporary
-  Telegram/Shadowglass playback guards were removed after diagnostics. Original
-  connected media received their prior playback state; Shadowglass is restored,
-  Telegram's own playback behavior leaves two videos playing/two paused. One
-  old Telegram node had detached and was not replaced or manipulated.
-  User Edge 2931 and current Orca 98938 remain intact (old Orca 1889 has exited).
-  Cloudflare tab 1147995760 is absent.
-- Latest Fieldcoat checks owned slot 7, Chrome 58716/CDP 10037 and Vite 58691/58711
-  on 5873. The worker closed all contexts and stopped the harness; exact PIDs and
-  listeners are absent. Root's review tab 1147995805 and server 67708/7081 are
-  closed. The current tests/build worker owns no renderer. User Edge/Orca remain
-  intact. New media must be audited before startup/FPS measurements.
-- Fieldcoat swap/FPS workers also closed slot 7: Chrome 13220 / 22382 / 33734,
-  Vite 13195 / 22337 / 33689, associated listeners 5873/10037 absent. Exact
-  child/server cleanup is in the garment receipt. Root's VE tab 1147995809 is
-  closed. Temporary Telegram/Shadowglass guards were removed after timing and
-  all connected media received their recorded prior playback states. User
-  Edge 2931 / Orca 98938 remain intact.
-- [Grok operations workflow](reviews/workflow-2026-10-05.md#current-operating-rule--2026-10-06):
-  delegate operations exclusively to Grok; root implements and reviews. Freeze
-  product inputs for gates; one worker owns browser/timing. Preserve unrelated
-  AGENTS.md edits and caches. The local Fieldcoat checkpoint includes source,
-  tests and receipts; production acceptance remains on the startup hold. Freeze
-  product inputs again for any subsequent gates; documentation alone needs no rebuild.
-- Native goal reports **active** on the resumed tool read; all five priorities
-  are not complete. User authorization remains autonomous implementation and
-  verification. [Continuation limits](autonomous-continuation.md).
+Fifteen native 1280×720, seven-enemy route windows observe **219–257 FPS**,
+maximum p99 **5.9 ms**, worst **10.5 ms**, no interval above 16.67 ms or recorded
+errors/recoveries. Forest retains 240 Hz detector hints; the strict detector gate
+failed there, and only the two missing windows were collected in observation
+mode. This is not confirmed uncapped hardware-limit evidence.
+[Fieldcoat result](plans/character-mmo/results/fieldcoat-2026-10-06.md).
 
-## References
+## Current startup experiment and ownership
 
-[Character contract](character-system-north-star.md), [equipment authoring](ashen-equipment-authoring.md),
-[startup](startup-load.md), [docs map](README.md), [vision](plans/character-mmo/vision-roadmap.md).
+**ASHEN_PRIME_STARTER_WORLD=1** reuses Lite registration, an exact starting-world/
+post/shadow frame and the existing queue fence while a body transfer is pending.
+It stays default-off. The first native candidate rendered a persistent T-pose
+despite advancing clocks; root rejected it. Native PBR group rebuilding now
+rescans arriving skins/morphs before the dressed frame. All six corrected native
+controls pass, including corrupt gzip, disposal, asynchronously handled device
+loss and default/maximum full-region movement. Root reviewed actual corrected
+first-play/idle/movement captures. Forty focused tests passed on the initial
+candidate; both corrected-source flag builds pass.
+
+The declared twelve-visit local comparison passes all actual playable/identity
+checks. Maximum outfit improves **83.3–96.4 ms** across three pairs (on median
+773.0 ms). Default improves in two pairs but regresses **114.5 ms** in the first.
+Conditions: M1 Max, 1280×720/DPR1, fresh process/profile, decimal 50 Mbit/s/40 ms,
+initially empty HTTP cache with native preload reuse. This justifies a new
+immutable public candidate; it does not qualify the public one-second target.
+The public gate retains disabled HTTP cache for comparability with prior releases.
+No production promotion. Full details, preserved
+failures, source hashes and raw evidence:
+[starting-world result](plans/character-mmo/results/startup-prime-2026-10-07.md).
+
+- All native, paired and recording workers have closed their exact Chrome,
+  Vite/CDP and preview processes. Ports5873/10037/7074/7075 are clear.
+- Root reviewed both recorded live default/maximum MP4s in native1280×720
+  playback. Havok walk and skinning look correct; recordings are excluded from
+  startup timing and FPS. Telegram872/873 and exact VE MP4s are delivered;
+  root reviewed inline proportions, expanded maximum and direct VE maximum.
+  Fullscreen/physical-phone playback remain unverified.
+- Root closed review tabs1147995813/1147995817 and wrapper52880:7081, plus VE review tab1147995821.
+- Temporary Telegram/Shadowglass/X media guards are removed and prior connected
+  playback states restored. Audit media again before public timing.
+- User Edge2931 and Orca98938 are preserved; no owned game renderer remains.
+
+Audit pages/processes before every live check and after cleanup. Only the intended
+game may render during timing. See [browser ownership](debug-view.md#browser-ownership-and-performance-isolation).
+Root implements/accepts; Grok exclusively handles bounded delegated operations.
+Freeze product inputs during gates, one writer per path. Preserve unrelated
+AGENTS.md/next-ten.md edits and caches; no reset/stash/clean.
+[Workflow](reviews/workflow-2026-10-05.md#current-operating-rule--2026-10-06),
+[continuation limits](autonomous-continuation.md).
+
+## Working references
+
+Active root index.html / ashen-reach.html, Vite5173, src/ashen-reach/main.js,
+global ASHEN. Babylon Lite1.31.1/WebGPU and Havok1.3.14, compatible source
+animations. Production catalogue v7; local v8 adds Fieldcoat. Human height
+0.90–1.15/build −0.95…+0.95; Orc/Undead neutral only.
+[Character contract](character-system-north-star.md),
+[equipment authoring](ashen-equipment-authoring.md), [startup](startup-load.md),
+[docs map](README.md), [vision](plans/character-mmo/vision-roadmap.md).
