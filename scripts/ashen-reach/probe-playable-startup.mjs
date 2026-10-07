@@ -29,9 +29,16 @@ const identity=expectedSeed?.race==='human'?findHumanIdentityPreset(expectedSeed
 // https://nodejs.org/api/crypto.html#cryptocreatehashalgorithm-options
 const identityCatalogueFile=process.env.ASHEN_PROBE_IDENTITY_CATALOGUE||'public/ashen-reach/human-identity-v1/manifest.json';
 const identityCatalogueBytes=identity&&identity.id!=='starter'?await fs.readFile(identityCatalogueFile):null;
+const identityCatalogue=identityCatalogueBytes?JSON.parse(identityCatalogueBytes):null;
 const identityPack=identity&&identity.id!=='starter'
-  ? JSON.parse(identityCatalogueBytes).presets[identity.id].manifest:null;
+  ? identityCatalogue.presets[identity.id].manifest:null;
 if(identityPack)assert.deepEqual(identityPack.identity.components,identity.components,'Probe catalogue differs from the selected identity');
+// Independent declared expectation, not the runtime selector: a failed coverage
+// decision must fail this gate rather than teaching the verifier the same mistake.
+const deferCoveredHair=process.env.ASHEN_PROBE_DEFER_COVERED_HAIR==='1';
+const expectDeferredHair=deferCoveredHair&&identity?.id==='prime-ponytail'
+  &&Object.values(expectedSeed.equipment).some(id=>EQUIPMENT_ITEMS[id]?.covers?.includes('head.scalp'));
+const startingIdentityPack=expectDeferredHair?identityCatalogue.presets['prime-bald'].manifest:identityPack;
 const destination = process.argv[2];
 assert(destination, "Specify report.json");
 const runs = Number(process.env.ASHEN_PROBE_RUNS || 5),
@@ -60,7 +67,7 @@ target.searchParams.set("pixelRatio", "1");
 const report = {
   conditions: {
     requestedRuns:runs, budgetMs,
-    gpuProbe, traceGpu, disableShaderCache, disableHttpCache,
+    gpuProbe, traceGpu, disableShaderCache, disableHttpCache, deferCoveredHair,
     profile, savedAppearance:seed,expectedAppearance:expectedSeed,
     identityCatalogue:identityCatalogueBytes?{file:identityCatalogueFile,sha256:createHash('sha256').update(identityCatalogueBytes).digest('hex')}:null,
     network: conditions[profile],
@@ -318,7 +325,8 @@ for (let run = 1; run <= runs; run++) {
       assert.equal(visible.includes('HumanPonytail01'),identity.id==='prime-ponytail'&&!covered,'First-play hair must agree with the selected identity and headwear');
       assert.deepEqual(row.animationGroups,[...ASHEN_PLAYABLE_CLIP_NAMES].sort());
       const paths=row.requests.map(r=>new URL(r.url).pathname);
-      assert(paths.includes(identityPack.compactItems.body.url),'The selected compact body must load before first play');
+      assert(paths.includes(startingIdentityPack.compactItems.body.url),'The declared visible compact body must load before first play');
+      if(expectDeferredHair)assert(!paths.includes(identityPack.compactItems.body.url),'Covered ponytail must not transfer before first play');
       assert(!paths.includes(identityPack.items.body.url),'Unused full motion library must not load before first play');
       const weights=[Math.max(0,-seed.shape.build),Math.max(0,seed.shape.build)];
       assert(row.nativeIdentity.find(m=>m.name==='HumanV1Body')?.weights,'Selected body must declare native morphs');
@@ -326,7 +334,8 @@ for (let run = 1; run <= runs; run++) {
         assert.equal(mesh.weights.length,2);
         mesh.weights.forEach((w,i)=>assert(Math.abs(w-weights[i])<1e-5,`${mesh.name} native morph ${i} differs at first play`));
       }
-      row.selectedIdentity={id:identity.id,bodyUrl:identityPack.compactItems.body.url,bodySha256:identityPack.compactItems.body.sha256};
+      row.selectedIdentity={id:identity.id,bodyUrl:startingIdentityPack.compactItems.body.url,bodySha256:startingIdentityPack.compactItems.body.sha256,
+        deferredHair:expectDeferredHair,selectedBodyUrl:identityPack.compactItems.body.url};
     }
     assert(row.grounded && row.physics && !row.loader);
     assert(row.marks['supported-frame-submitted'] >= row.marks['equipment-end']);

@@ -32,3 +32,16 @@ test('missing or invalid cost metadata cannot silently understate a release fixt
  assert.throws(()=>compactAppearanceBytes(m,{torso:'armor'}),/Missing compact/);
  assert.throws(()=>maximumCompactAppearance([{id:'x',manifest:m}],{items:{missing:{slot:'torso'}},slots:['torso']}),/Missing prepared piece/);
 });
+
+test('coverage-dependent body cost can make an uncovered outfit the maximum',()=>{
+ const m=manifest({body:asset('/hair-body',100),hood:asset('/hood',20),coat:asset('/coat',40)});
+ const profiles=[{id:'selected-hair',manifest:m}];
+ const options={items:{hood:{slot:'helmet',occupies:['helmet']},coat:{slot:'torso',occupies:['torso']}},slots:['helmet','torso']};
+ assert.equal(maximumCompactAppearance(profiles,options).maximum.bytes,160);
+ const report=maximumCompactAppearance(profiles,{...options,resolveCompactItems:(profile,equipment)=>({
+  ...profile.manifest.compactItems,body:equipment.helmet?asset('/covered-body',50):profile.manifest.compactItems.body,
+ })});
+ assert.equal(report.maximum.bytes,140);
+ assert.deepEqual(report.maximum.equipment,{helmet:null,torso:'coat'});
+ assert.equal(report.maximum.resources[0].url,'/hair-body');
+});

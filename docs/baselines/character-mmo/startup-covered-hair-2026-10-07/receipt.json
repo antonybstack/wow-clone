@@ -1,0 +1,631 @@
+{
+  "schema": 1,
+  "date": "2026-10-07",
+  "status": "Default-off verified local candidate; material covered-only gain supports one new sealed public candidate; production unchanged",
+  "source": {
+    "src/ashen-reach/main.js": "d6f1250b142e3769e601f54746006a59879d5f7fd89abdc27d3b21d83b58f054",
+    "src/camera-rig.js": "109606460efb81806a896fdb2642504f531ff205c6901664d678bcb98dad2a8e",
+    "src/character/body.js": "a65022c840d47b8e7fd0253ecb2acec893a10493f2a8759e012aa5173a9b327a",
+    "src/ashen-reach/equipment-stream.js": "78c5315a04d4f094b32eafbdb910b5fc237006a67d7c2f87a62f04a595e4abfb",
+    "src/player.js": "68854dc2d141ceb8a858ce3405e4d0b9355a4298c18e94f92c629a984bc0f154",
+    "vite.config.js": "396d6734ff5e578365d887bb8be3e6d747eff35f1856061dee240f9829147004",
+    "src/ashen-reach/human-identity-assets.js": "75b90cbb56144465a99e80b53a916470c89fe8aa6225960e93df508d3f6be44d",
+    "src/ashen-reach/starter-identity-policy.js": "1efd03898a74cf40fd8f3eff6de5376ddabe10fb814206b60800420c6608a254"
+  },
+  "unitChecks": 12,
+  "appearanceControls": [
+    [
+      "normal",
+      true
+    ],
+    [
+      "failure",
+      true
+    ],
+    [
+      "uncovered",
+      true
+    ]
+  ],
+  "lifecycleControls": [
+    [
+      "rollback",
+      true
+    ],
+    [
+      "dispose",
+      true
+    ],
+    [
+      "race-pending",
+      true
+    ]
+  ],
+  "maximum": {
+    "schema": 1,
+    "scope": "Unique compact body/clothing transfer bytes; excludes common code, world, manifests and procedural props",
+    "enumerated": 12096,
+    "valid": 10584,
+    "profiles": 4,
+    "maximum": {
+      "profile": "prime-ponytail",
+      "components": {
+        "head": "human-prime-v1",
+        "hair": "human-ponytail01-v1"
+      },
+      "equipment": {
+        "helmet": null,
+        "torso": "duskguardCuirass",
+        "legs": "graveweaverSkirt",
+        "boots": "duskguardGreaves",
+        "gloves": "duskguardVambraces",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": "bastionShoulders"
+      },
+      "bytes": 2102724,
+      "resources": [
+        {
+          "id": "body",
+          "url": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bytes": 1013447
+        },
+        {
+          "id": "duskguardCuirass",
+          "url": "/ashen-reach/human-shape-v1/duskguardCuirass-87f33adb1a29.bin",
+          "bytes": 357832
+        },
+        {
+          "id": "graveweaverSkirt",
+          "url": "/ashen-reach/human-shape-v1/graveweaverSkirt-compact-f52f181bec28.bin",
+          "bytes": 181723
+        },
+        {
+          "id": "duskguardGreaves",
+          "url": "/ashen-reach/human-shape-v1/duskguardGreaves-030d302cbaf6.bin",
+          "bytes": 271753
+        },
+        {
+          "id": "duskguardVambraces",
+          "url": "/ashen-reach/human-shape-v1/duskguardVambraces-b67e2bcbac26.bin",
+          "bytes": 194817
+        },
+        {
+          "id": "bastionShoulders",
+          "url": "/ashen-reach/human-shape-v1/bastionShoulders-f494b2e91fe7.bin",
+          "bytes": 83152
+        }
+      ],
+      "worn": 7
+    },
+    "conditions": {
+      "deferCoveredHair": true
+    }
+  },
+  "motion": {
+    "file": "/Users/antbly/dev/wow-clone/.cache/character-mmo/startup-covered-hair-2026-10-07/motion/covered-hair.mp4",
+    "sha256": "8d08666263eea7ef6efab8905a9513e431670d4abaf4de971757e164556e78d3",
+    "reviewed": true,
+    "review": "Root played exact MP4 in Edge, reviewed source restoration at 5-8s, movement/jump at8-12s and final identity/playback to17.926535. Native1280x720 video and displayed1280x720; no persistent bind pose, missing outfit or hair after restore observed. Diagnostic body-transfer hold. No FPS/load acceptance."
+  },
+  "delivery": {
+    "scope": "Authorized publication of reviewed covered-hair motion only. First-play gain not measured. Production unchanged. No inline/fullscreen playback claim from API metadata.",
+    "local": {
+      "path": ".cache/character-mmo/startup-covered-hair-2026-10-07/motion/covered-hair.mp4",
+      "sha256": "8d08666263eea7ef6efab8905a9513e431670d4abaf4de971757e164556e78d3",
+      "bytes": 10597973
+    },
+    "hashVerifiedBeforeUpload": true,
+    "hashVerifiedBeforeTelegram": true,
+    "ledgerBeforeSend": {
+      "matchedThisClip": false,
+      "lastEntries": [
+        "2026-10-07T14:22:19.548074+00:00 7fa657a9b765b05f6fbbb21a89c25ce2b72b9ec9 camera.mp4",
+        "2026-10-07T14:34:28.971677+00:00 ac476545c8c70a93081dc867cbe898ba360dbe0c camera.mp4"
+      ]
+    },
+    "ve": {
+      "key": "wow-clone/ashen-reach/character-mmo/startup-covered-hair-2026-10-07/8d08666263ee-covered-hair.mp4",
+      "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/startup-covered-hair-2026-10-07/8d08666263ee-covered-hair.mp4",
+      "upload": "complete",
+      "head": {
+        "status": 200,
+        "contentType": "video/mp4",
+        "contentLength": 10597973,
+        "acceptRanges": "bytes",
+        "etag": "b98181ae3dde383a1aecbcaf3ac08384",
+        "lastModified": "Wed, 07 Oct 2026 16:28:59 GMT",
+        "cfCacheStatus": "MISS"
+      },
+      "range": [
+        {
+          "request": "bytes=0-1",
+          "status": 206,
+          "contentType": "video/mp4",
+          "contentLength": 2,
+          "contentRange": "bytes 0-1/10597973",
+          "cfCacheStatus": "HIT"
+        },
+        {
+          "request": "bytes=1048576-1048607",
+          "status": 206,
+          "contentType": "video/mp4",
+          "contentLength": 32,
+          "contentRange": "bytes 1048576-1048607/10597973",
+          "cfCacheStatus": "HIT"
+        }
+      ],
+      "downloaded": {
+        "sha256": "8d08666263eea7ef6efab8905a9513e431670d4abaf4de971757e164556e78d3",
+        "bytes": 10597973,
+        "matchesLocal": true
+      }
+    },
+    "telegram": {
+      "ok": true,
+      "messageId": 878,
+      "verified": true,
+      "file": "covered-hair.mp4",
+      "sha256": "8d08666263eea7ef6efab8905a9513e431670d4abaf4de971757e164556e78d3",
+      "sentAt": "2026-10-07T16:29:43.818666+00:00",
+      "expected": {
+        "width": 1280,
+        "height": 720,
+        "duration": 17.926535,
+        "sampleAspectRatio": "1:1",
+        "rotation": 0,
+        "codec": "h264"
+      },
+      "returned": {
+        "width": 1280,
+        "height": 720,
+        "duration": 18
+      },
+      "ledger": "2026-10-07T16:29:43.871941+00:00 a99b73e2f9c11227469d96b18bd41a67ca7489c4 .cache/character-mmo/startup-covered-hair-2026-10-07/motion/covered-hair.mp4"
+    }
+  },
+  "evidence": {
+    ".cache/character-mmo/startup-covered-hair-2026-10-07/candidate-source.json": {
+      "sha256": "ff039ae80b305cef60c94bffebe2cccf2a824aa2a84f541cabdde6d6d8cb38bf",
+      "bytes": 800
+    },
+    ".cache/character-mmo/startup-covered-hair-2026-10-07/variant-proof.json": {
+      "sha256": "7064ad635a918cd22653b7057cf0e066052d624ad9a130782bfab2a4b02efdff",
+      "bytes": 1357
+    },
+    ".cache/character-mmo/startup-covered-hair-2026-10-07/result-2.md": {
+      "sha256": "b07b16992ed25a603a98fcc75386a5b3e2f99e5efef433e86a308734aedda3f1",
+      "bytes": 2394
+    },
+    ".cache/character-mmo/startup-covered-hair-2026-10-07/runtime-review.md": {
+      "sha256": "4bc80175785eea3c53bb59ae5195a0f7be92872b4314cf77743b65bdcdee368d",
+      "bytes": 6201
+    },
+    ".cache/character-mmo/startup-covered-hair-2026-10-07/build-gate-result.md": {
+      "sha256": "19fa2298da45af1792045449c4ccc784008f3865ca82b64b081e65ae1defbb81",
+      "bytes": 5069
+    },
+    ".cache/character-mmo/startup-covered-hair-2026-10-07/native-controls.json": {
+      "sha256": "165b66f7b95a6a66a19dcfa599745da382a21dde9c6b6e16bbcebc42a59a11af",
+      "bytes": 66791
+    },
+    ".cache/character-mmo/startup-covered-hair-2026-10-07/native-controls.exit.json": {
+      "sha256": "ff83beb30427b6a2e8979313d4fe3eb895f3238b8ffd1eaedc52a03336474673",
+      "bytes": 36
+    },
+    ".cache/character-mmo/startup-covered-hair-2026-10-07/lifecycle-controls.json": {
+      "sha256": "9bac568e09c03103dc78bed31c023a95982430729e916895947dd0030436d2b3",
+      "bytes": 109747
+    },
+    ".cache/character-mmo/startup-covered-hair-2026-10-07/lifecycle-controls.exit.json": {
+      "sha256": "4067ee5cca51e224bc78f461dff5bec2f219a580286c7c97130d30383fd57c7a",
+      "bytes": 36
+    },
+    ".cache/character-mmo/startup-covered-hair-2026-10-07/motion/report.json": {
+      "sha256": "63bbaafebdb3f1f4d94da63c3239e2281054e8dba9684788934f405697cd075c",
+      "bytes": 29991
+    },
+    ".cache/character-mmo/startup-covered-hair-2026-10-07/motion/capture-manifest.json": {
+      "sha256": "153440ca0056a7d12ca2574b9ad00266f55042e1d4240081fa9e3d693cd52f8e",
+      "bytes": 161899
+    },
+    ".cache/character-mmo/startup-covered-hair-2026-10-07/root-motion-review.json": {
+      "sha256": "06ea3a15bf86b08b10aa88e6d51f48b8a8da1611e21e9bdf35d54b077c610446",
+      "bytes": 538
+    },
+    ".cache/character-mmo/startup-covered-hair-2026-10-07/publish-result.json": {
+      "sha256": "5cb0d1fce415ca53ce7d9539dcb8a89a1d0482d66ca3b30738811c1f6fe2cdd9",
+      "bytes": 2617
+    },
+    ".cache/character-mmo/startup-covered-hair-2026-10-07/maximum-fixture/maximum-compact-budget.json": {
+      "sha256": "e9d6edd3e16f247a6d127b2054c42f34328e2b11d1d150d57b05fc1aebda3b5d",
+      "bytes": 1687
+    },
+    ".cache/character-mmo/startup-covered-hair-2026-10-07/maximum-fixture/seed-maximum-compact.json": {
+      "sha256": "b11f83f327ab7dbacddf34cdf4fb46aa6477b81014246f9daf0e4dea75a4820e",
+      "bytes": 715
+    },
+    ".cache/character-mmo/startup-covered-hair-2026-10-07/paired-startup-declaration.json": {
+      "sha256": "b7efe95b0df4b09346b2bdb737e94914efbfb1058f10d968afe7faccf98b3588",
+      "bytes": 1760
+    },
+    ".cache/character-mmo/startup-covered-hair-2026-10-07/paired-summary.json": {
+      "sha256": "2ceec4d09149a03dec3e0a61756a715daffc1483061c548d09268079c5797475",
+      "bytes": 8490
+    },
+    ".cache/character-mmo/startup-covered-hair-2026-10-07/pairs-isolation.json": {
+      "sha256": "ebaaa9cf321916704f3acca9b2bb0ac7f1a4cb866f585ae309a518e55afc57e8",
+      "bytes": 599
+    },
+    ".cache/character-mmo/startup-covered-hair-2026-10-07/playback-review.json": {
+      "sha256": "d8d0e6be3644e8e0152f8a699d2e7f104cb07741ef47454845c4421d0468008c",
+      "bytes": 1121
+    }
+  },
+  "remaining": [
+    "sealed public startup/integrity/entry/traversal/mobile/WebKit/FPS gates",
+    "production identical byte promotion",
+    "current physical iPhone acceptance",
+    "historical14/60 fetch failures unexplained"
+  ],
+  "startupComparison": {
+    "rows": [
+      {
+        "profile": "default",
+        "pair": 1,
+        "control": {
+          "ms": 533,
+          "inputMs": 29,
+          "errors": [],
+          "valid": true,
+          "exit": 0,
+          "bytes": 2156352,
+          "identity": null
+        },
+        "covered": {
+          "ms": 527.1,
+          "inputMs": 31.4,
+          "errors": [],
+          "valid": true,
+          "exit": 0,
+          "bytes": 2156360,
+          "identity": null
+        },
+        "differenceMs": -5.9
+      },
+      {
+        "profile": "default",
+        "pair": 2,
+        "control": {
+          "ms": 533.5,
+          "inputMs": 29,
+          "errors": [],
+          "valid": true,
+          "exit": 0,
+          "bytes": 2156352,
+          "identity": null
+        },
+        "covered": {
+          "ms": 531.2,
+          "inputMs": 33.8,
+          "errors": [],
+          "valid": true,
+          "exit": 0,
+          "bytes": 2156360,
+          "identity": null
+        },
+        "differenceMs": -2.3
+      },
+      {
+        "profile": "default",
+        "pair": 3,
+        "control": {
+          "ms": 525.7,
+          "inputMs": 25,
+          "errors": [],
+          "valid": true,
+          "exit": 0,
+          "bytes": 2156352,
+          "identity": null
+        },
+        "covered": {
+          "ms": 526.5,
+          "inputMs": 32.9,
+          "errors": [],
+          "valid": true,
+          "exit": 0,
+          "bytes": 2156360,
+          "identity": null
+        },
+        "differenceMs": 0.8
+      },
+      {
+        "profile": "prior-covered-maximum",
+        "pair": 1,
+        "control": {
+          "ms": 768.7,
+          "inputMs": 26.3,
+          "errors": [],
+          "valid": true,
+          "exit": 0,
+          "bytes": 3420987,
+          "identity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+            "deferredHair": false,
+            "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+          }
+        },
+        "covered": {
+          "ms": 725.3,
+          "inputMs": 27.6,
+          "errors": [],
+          "valid": true,
+          "exit": 0,
+          "bytes": 3157843,
+          "identity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-bac266faf4f8.bin",
+            "bodySha256": "cca5feaedec0db51f4c751454ad6cd792df6fa63cebdb3f64790a3188d06bc2d",
+            "deferredHair": true,
+            "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+          }
+        },
+        "differenceMs": -43.4
+      },
+      {
+        "profile": "prior-covered-maximum",
+        "pair": 2,
+        "control": {
+          "ms": 771.7,
+          "inputMs": 32.8,
+          "errors": [],
+          "valid": true,
+          "exit": 0,
+          "bytes": 3420987,
+          "identity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+            "deferredHair": false,
+            "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+          }
+        },
+        "covered": {
+          "ms": 723.3,
+          "inputMs": 29.8,
+          "errors": [],
+          "valid": true,
+          "exit": 0,
+          "bytes": 3157843,
+          "identity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-bac266faf4f8.bin",
+            "bodySha256": "cca5feaedec0db51f4c751454ad6cd792df6fa63cebdb3f64790a3188d06bc2d",
+            "deferredHair": true,
+            "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+          }
+        },
+        "differenceMs": -48.4
+      },
+      {
+        "profile": "prior-covered-maximum",
+        "pair": 3,
+        "control": {
+          "ms": 763,
+          "inputMs": 35.3,
+          "errors": [],
+          "valid": true,
+          "exit": 0,
+          "bytes": 3420987,
+          "identity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+            "deferredHair": false,
+            "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+          }
+        },
+        "covered": {
+          "ms": 726.7,
+          "inputMs": 32.4,
+          "errors": [],
+          "valid": true,
+          "exit": 0,
+          "bytes": 3157843,
+          "identity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-bac266faf4f8.bin",
+            "bodySha256": "cca5feaedec0db51f4c751454ad6cd792df6fa63cebdb3f64790a3188d06bc2d",
+            "deferredHair": true,
+            "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+          }
+        },
+        "differenceMs": -36.3
+      },
+      {
+        "profile": "current-uncovered-maximum",
+        "pair": 1,
+        "control": {
+          "ms": 732.4,
+          "inputMs": 43.3,
+          "errors": [],
+          "valid": true,
+          "exit": 0,
+          "bytes": 3223060,
+          "identity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+            "deferredHair": false,
+            "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+          }
+        },
+        "covered": {
+          "ms": 739.7,
+          "inputMs": 34.5,
+          "errors": [],
+          "valid": true,
+          "exit": 0,
+          "bytes": 3223068,
+          "identity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+            "deferredHair": false,
+            "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+          }
+        },
+        "differenceMs": 7.3
+      },
+      {
+        "profile": "current-uncovered-maximum",
+        "pair": 2,
+        "control": {
+          "ms": 735.5,
+          "inputMs": 35.3,
+          "errors": [],
+          "valid": true,
+          "exit": 0,
+          "bytes": 3223060,
+          "identity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+            "deferredHair": false,
+            "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+          }
+        },
+        "covered": {
+          "ms": 735,
+          "inputMs": 32.4,
+          "errors": [],
+          "valid": true,
+          "exit": 0,
+          "bytes": 3223068,
+          "identity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+            "deferredHair": false,
+            "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+          }
+        },
+        "differenceMs": -0.5
+      },
+      {
+        "profile": "current-uncovered-maximum",
+        "pair": 3,
+        "control": {
+          "ms": 732.8,
+          "inputMs": 34.2,
+          "errors": [],
+          "valid": true,
+          "exit": 0,
+          "bytes": 3223060,
+          "identity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+            "deferredHair": false,
+            "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+          }
+        },
+        "covered": {
+          "ms": 739.5,
+          "inputMs": 33.3,
+          "errors": [],
+          "valid": true,
+          "exit": 0,
+          "bytes": 3223068,
+          "identity": {
+            "id": "prime-ponytail",
+            "bodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bodySha256": "272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a",
+            "deferredHair": false,
+            "selectedBodyUrl": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin"
+          }
+        },
+        "differenceMs": 6.7
+      }
+    ],
+    "scope": "18 declared local first-play visits; same new source opt-in off/on; not public qualification"
+  },
+  "playback": {
+    "telegramMessage": 878,
+    "telegramInline": {
+      "decoded": [
+        1280,
+        720
+      ],
+      "box": [
+        738.1875,
+        415.21875
+      ],
+      "proportions": "16:9 within CSS pixel rounding"
+    },
+    "telegramExpanded": {
+      "decoded": [
+        1280,
+        720
+      ],
+      "box": [
+        1280,
+        720
+      ],
+      "objectFit": "contain",
+      "proportions": "correct, root visually reviewed"
+    },
+    "telegramFullscreen": {
+      "attempted": true,
+      "actualDocumentFullscreen": false,
+      "status": "unverified; native Fullscreen button did not enter fullscreen"
+    },
+    "veDirectSource": {
+      "width": 1280,
+      "height": 720,
+      "duration": 17.926535,
+      "observedPlaybackTime": 2.025312,
+      "box": [
+        1280,
+        720
+      ],
+      "objectFit": "contain",
+      "status": "native remote-source playback passes; raw binary navigation paused by browser tooling, reviewed through local HTML video wrapper with direct VE src"
+    },
+    "referenceRestoration": {
+      "guardRemoved": "__coveredHairPairsOct7",
+      "restoredPlaying": [
+        1,
+        1,
+        0
+      ],
+      "shadowglass": "discarded and unchanged"
+    }
+  },
+  "ownership": {
+    "nativeAppearanceChrome": 13168,
+    "nativeAppearancePreview": 13166,
+    "lifecycleChrome": 20075,
+    "lifecyclePreview": 20053,
+    "motionChrome": 25085,
+    "motionPreview": 25084,
+    "ownedReviewServers": [
+      27477,
+      56799
+    ],
+    "active": false,
+    "referenceMediaGuard": "removed; original connected playback restored1/1/0",
+    "shadowglass": "discarded and untouched",
+    "lastOwnedPreview": {
+      "owner": "grok-covered-hair-startup",
+      "previewPid": 45405,
+      "previewPort": 7074,
+      "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev",
+      "active": false,
+      "renderingClients": 0,
+      "purpose": "Declared 18 paired startup visits; no capture or GPU/CPU profile; one renderer"
+    }
+  }
+}

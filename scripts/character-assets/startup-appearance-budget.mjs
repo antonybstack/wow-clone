@@ -8,11 +8,11 @@ import assert from 'node:assert/strict';
 import {EQUIPMENT_ITEMS,EQUIPMENT_SLOTS} from '../../src/ashen-reach/equipment-catalog.js';
 import {validateEquipmentSelection} from '../../src/ashen-reach/equipment-contract.js';
 
-export function compactAppearanceBytes(manifest,equipment){
+export function compactAppearanceBytes(manifest,equipment,{compactItems=manifest.compactItems}={}){
  const ids=new Set(['body',...Object.values(equipment).filter(id=>manifest.items[id])]);
  const resources=new Map();
  for(const id of ids){
-  const asset=manifest.compactItems?.[id];assert(asset,`Missing compact asset: ${id}`);
+  const asset=compactItems?.[id];assert(asset,`Missing compact asset: ${id}`);
   const bytes=asset.compression==='gzip'?asset.encodedBytes:asset.bytes;
   assert(Number.isSafeInteger(bytes)&&bytes>0,`Missing encoded byte count: ${id}`);
   assert(typeof asset.url==='string'&&asset.url.length>0,`Missing asset URL: ${id}`);
@@ -22,7 +22,8 @@ export function compactAppearanceBytes(manifest,equipment){
  return {bytes:[...resources.values()].reduce((total,a)=>total+a.bytes,0),resources:[...resources.values()]};
 }
 
-export function maximumCompactAppearance(profiles,{items=EQUIPMENT_ITEMS,slots=EQUIPMENT_SLOTS}={}){
+export function maximumCompactAppearance(profiles,{items=EQUIPMENT_ITEMS,slots=EQUIPMENT_SLOTS,
+ resolveCompactItems=profile=>profile.manifest.compactItems}={}){
  assert(profiles.length>0,'No prepared Human profiles');
  const choices=Object.fromEntries(slots.map(slot=>[slot,[null]]));
  for(const [id,item]of Object.entries(items)){
@@ -43,7 +44,10 @@ export function maximumCompactAppearance(profiles,{items=EQUIPMENT_ITEMS,slots=E
   valid++;
   const worn=Object.values(equipment).filter(Boolean).length;
   for(const profile of profiles){
-   const cost=compactAppearanceBytes(profile.manifest,equipment);
+   // Selection can depend on semantic coverage: omitting hidden hair changes
+   // the heaviest outfit. Enumerate with the same runtime selector rather than
+   // subtracting a fixed saving from the previous maximum.
+   const cost=compactAppearanceBytes(profile.manifest,equipment,{compactItems:resolveCompactItems(profile,equipment)});
    // Procedural held props add no GLB bytes. Prefer a fully equipped tie rather
    // than quietly removing them from the timing fixture.
    if(!best||cost.bytes>best.bytes||(cost.bytes===best.bytes&&worn>best.worn))

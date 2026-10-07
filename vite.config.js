@@ -17,7 +17,7 @@ import {brotliCompressSync} from 'node:zlib';
 const coalesceSavedStartup=process.env.ASHEN_SAVED_BOOTSTRAP==='1';
 const savedStartupModules=new Set([
   'src/ashen-reach/startup-preload.js','src/ashen-reach/startup-fetch.js','src/ashen-reach/startup-appearance.js',
-  'src/ashen-reach/human-identity-assets.js',
+  'src/ashen-reach/human-identity-assets.js','src/ashen-reach/starter-identity-policy.js',
   'src/character/appearance/store.js','src/character/appearance/contract.js',
   'src/character/appearance/codec.js','src/character/appearance/from-equipment.js',
   'src/character/appearance/human-identity.js',
@@ -141,6 +141,10 @@ export default defineConfig({
     // Exact final meshes/collision still share native allocation/upload paths.
     // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/mesh/mesh-from-storage.ts
     'import.meta.env.VITE_LAZY_WORLD_BUFFERS':JSON.stringify(process.env.ASHEN_LAZY_WORLD_BUFFERS==='1'?'1':'0'),
+    // Reuse the proved compact identity only while native coverage hides hair.
+    // Full selected hair is restored transactionally before equipment can reveal it.
+    // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#meshes
+    'import.meta.env.VITE_DEFER_COVERED_HAIR':JSON.stringify(process.env.ASHEN_DEFER_COVERED_HAIR==='1'?'1':'0'),
     // Immutable bundles reject a newer deployment's mutable manifest instead
     // of mixing old worker generation with new prepared geometry/materials.
     'import.meta.env.VITE_STARTER_WORLD_SOURCE':JSON.stringify(process.env.NODE_ENV==='production'&&starterBuild?starterWorldManifest.provenance.sha256:''),

@@ -45,6 +45,18 @@ Native goal **active**: “next 5 priorities.” The
    is observed, but the retained 210.9 ms wait does not reproduce. Caller stacks
    are diagnostic-only; no new acceptance cohort or flag default.
    [Headroom diagnosis](plans/character-mmo/results/startup-headroom-profile-2026-10-07.md).
+   Covered-hair deferral now reuses the proved bald compact only under complete
+   headwear coverage, restoring the saved ponytail through the native source
+   transaction before unhood/race changes. Both coalesced builds, twelve focused
+   checks, three appearance controls and three lifecycle controls pass, including
+   source rollback/retry, pending disposal/race changes and garment morphs.
+   Covered-body saving is 263,151 bytes; the newly derived uncovered maximum is
+   2,102,724 bytes (197,700 below the previous maximum). Eighteen declared local visits are valid/error-free; covered startup improves
+   36.3–48.4 ms, default−5.9…+0.8 ms/uncovered−0.5…+7.3 ms. Default-off;
+   public qualification remains pending. Root-reviewed native motion is delivered as
+   Telegram 878 with identical VE bytes. Inline/expanded and native direct VE
+   proportions pass; actual fullscreen/current phone remain unverified.
+   [Covered-hair result](plans/character-mmo/results/startup-covered-hair-2026-10-07.md).
    Next create material first-play headroom and qualify it.
    [Audio result](plans/character-mmo/results/startup-audio-2026-10-07.md).
 3. **Release accepted improvements:** freeze, commit/push, seal, verify preview
@@ -167,6 +179,14 @@ ownership history. Audit and pause reference media again before any new timing.
 The single headroom diagnosis also closes Chrome 65794/probe 65793/preview 65772.
 `__headroomProfileOct7` guards are removed and original reference playback restored
 (0/1/1/0). Ports 7074/10037/7081 are clear; no owned game renderer remains.
+
+Covered-hair appearance/lifecycle/motion checks and all eighteen paired visits
+close their owned browsers and previews. Review tabs/servers27477 and56799 are
+closed. Native Edge AX identifies Shadowglass as Discarded; it was not activated
+or modified. `__coveredHairPairsOct7` is removed, original connected playback
+restored(1/1/0), and the new Telegram878 clip is paused after UI review. Edge has
+no game/review tab; Orca's latest embedded inventory is empty. Audit again before
+new public timing. Final comparison/ownership receipt is in the covered-hair result.
 
 [Workflow](reviews/workflow-2026-10-05.md#current-operating-rule--2026-10-06),
 [continuation limits](autonomous-continuation.md).

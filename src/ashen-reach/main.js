@@ -255,7 +255,8 @@ async function main(){
  // target is driven; the one-shot M004 route only needed them once a weight was non-zero.
  let writeShapeWeights=null,basePivotHeight=null;
  const installShapeWriters=setMorphTargetWeights=>{
-  const writeWeights=weights=>{let n=0;const visit=node=>{if(node?.morphTargets){setMorphTargetWeights(engine,node.morphTargets,weights);n++;}for(const c of node?.children||[])visit(c);};visit(body.root);return n;};
+  // The same native writer can prepare a staged root before its source commit.
+  const writeWeights=(weights,root=body.root)=>{let n=0;const visit=node=>{if(node?.morphTargets){setMorphTargetWeights(engine,node.morphTargets,weights);n++;}for(const c of node?.children||[])visit(c);};visit(root);return n;};
   ashen.setShapeWeights=writeWeights;writeShapeWeights=writeWeights;
  };
  const applyHumanShape=async request=>{
@@ -371,8 +372,9 @@ async function main(){
   return ashen.renderLoop;
  };
  const sourceBody=resolvePlayableBody('?character=human-source');
+ const initialCharacterManifest=fastCharacter?await starterCharacterP:null;
  const playable={...sourceBody,...ASHEN_PLAYABLE_MOTION,
-  assetURL:fastCharacter?(await starterCharacterP).items.body.url:fullBodyManifestP?(await fullBodyManifestP).items.body.url:bodyUrl};
+  assetURL:initialCharacterManifest?initialCharacterManifest.items.body.url:fullBodyManifestP?(await fullBodyManifestP).items.body.url:bodyUrl};
  capsule=resolveCapsule(playable.capsule);
  // Both near and outer terrain participate in Havok; exploration has no corridor clamp.
  markStartup('havok-start');
@@ -407,6 +409,9 @@ async function main(){
  markStartup('body-start');
  body=await attachBody(engine,scene,player,player.capsuleHeight,playable);
  const starterBodyContainer=body.container;
+ const needsDeferredIdentity=()=>Boolean(initialCharacterManifest?.deferredIdentityBody&&body.container===starterBodyContainer);
+ ashen.startingIdentity={bodyUrl:initialCharacterManifest?.items.body.url??playable.assetURL,
+  get deferred(){return needsDeferredIdentity();}};
  markStartup('body-end');
  if(humanShape)await applyHumanShape(humanShape);
  // Install the live writers at weight 0, so the creator's sliders have something to drive
@@ -506,6 +511,10 @@ async function main(){
   if(key!==undefined&&activeEquip?.key===key)activeEquip.owner.cancelPending?.();
   return actorRequest(async()=>{
   if(key!==undefined&&revision!==equipRevisions.get(key))return {status:'superseded'};
+  // Never reveal an omitted hair mesh after failed/pending background refinement.
+  // Reuse the same actor/source barrier, including rollback and disposal.
+  if(needsDeferredIdentity())await refineStarterCharacter();
+  if(key!==undefined&&revision!==equipRevisions.get(key))return {status:'superseded'};
   const owner={owner:impl,key};activeEquip=owner;
   let result;
   try{result=await reshaped(job());}finally{if(activeEquip===owner)activeEquip=null;}
@@ -543,6 +552,8 @@ async function main(){
   get race(){return currentRace;},
   switchRace:(race,{restoreAppearance=null}={})=>actorRequest(async()=>{
    if(race===currentRace)return;
+   // Park the complete selected Human so a later return restores its actual hair.
+   if(needsDeferredIdentity())await refineStarterCharacter();
    if(identityReview)throw Error('This Human identity audition has no alternate race fit. Use the normal game route to change race.');
    const pack=packs[race];
    if(!pack)throw Error('Unknown race pack');
@@ -592,6 +603,49 @@ async function main(){
   }),
   dispose(){impl.dispose();},
  };
+ /** Refine the existing starter through the same native source transaction as
+  * identity edits. Actor requests serialize this work with clothes/race edits.
+  * Preserve the saved recipe, capsule and mixer; restore hair before revealing it.
+  * https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#morph-targets
+  */
+ async function refineStarterCharacter(){
+  if(!humanFamilyStart||currentRace!=='human')return;
+  const full=initialCharacterManifest.fullManifest,previous=impl;
+  let staged=null,next=null,committed=false;
+  try {
+   if(needsDeferredIdentity()){
+    const bytes=await startupAssetBuffer(initialCharacterManifest.deferredIdentityBody,{priority:'low'});
+    lifetime.throwIfAborted();
+    staged=await body.stageSource(bytes);lifetime.throwIfAborted();
+    const weights=ashen.humanShape?.weights||[0,0];
+    if(writeShapeWeights)writeShapeWeights(weights,staged.body.root);
+    else if(weights.some(weight=>weight!==0))throw Error('Selected body shape writer unavailable');
+   }
+   next=await createStreamedEquipment(engine,scene,staged?.body||body,sockets,
+    {...packs.human,manifest:full,bootLoadout:previous.getState(),dyes:previous.getDyes(),visible:false});
+   lifetime.throwIfAborted();
+   if(staged){
+    attachLinearMaterials();
+    await staged.commit(()=>{
+     lifetime.throwIfAborted();
+     previous.setVisible(false);const restorePalettes=previous.releasePalettes?.();
+     impl=next;next.setVisible(actorVisible);
+     return ()=>{restorePalettes?.();next.setVisible(false);impl=previous;previous.setVisible(actorVisible);};
+    });
+   }else{
+    reshapeEquipment?.();previous.setVisible(false);impl=next;next.setVisible(actorVisible);
+   }
+   committed=true;
+   packs.human={...packs.human,manifest:full};previous.dispose();
+   const detailContainer=body.container,abort=()=>lifetime.aborted||body.container!==detailContainer||impl!==next;
+   if(staged)await upgradeStarterCharacter(engine,scene,detailContainer,full,abort);
+   if(!abort())await next.upgradeTextures?.(abort);
+   if(!abort())delete ashen.appearanceDetailError;
+  }catch(error){
+   if(!committed){next?.dispose();staged?.dispose();}
+   throw error;
+  }
+ }
  if(bootAppearance&&bootAppearance.race!=='human')await equipment.switchRace(bootAppearance.race,{restoreAppearance:bootAppearance});
  markStartup('equipment-end');
  dressed=true;
@@ -657,16 +711,8 @@ async function main(){
    if(!backgroundDisposed&&!deviceLost)shadows.setWorld(world);
   }}).then(()=>{delete ashen.skylineError;}).catch(error=>{if(!backgroundDisposed&&!deviceLost)ashen.skylineError=error.message;});
   void startSkyline();
-  if(humanFamilyStart)void actorRequest(async()=>{
-   const full=(await starterCharacterP).fullManifest,previous=impl;
-   let next=null;
-   try {
-    next=await createStreamedEquipment(engine,scene,body,sockets,{...packs.human,manifest:full,bootLoadout:previous.getState(),dyes:previous.getDyes(),visible:false});
-    lifetime.throwIfAborted();reshapeEquipment?.();
-    previous.setVisible(false);impl=next;next.setVisible(actorVisible);
-    packs.human={...packs.human,manifest:full};previous.dispose();
-    await next.upgradeTextures?.();
-   }catch(error){if(impl!==next)next?.dispose();ashen.appearanceDetailError=error.message;}
+  if(humanFamilyStart)void actorRequest(refineStarterCharacter).catch(error=>{
+   if(!lifetime.aborted)ashen.appearanceDetailError=error.message;
   });
   const nearbyFoliage=world.startNearbyFoliage?.();nearbyFoliage?.catch(error=>{ashen.nearbyError=error.message;});
   // Nearby gameplay must not wait for distant geometry or texture enhancement.

@@ -163,6 +163,18 @@ there is no new public startup qualification. [Checkpoint](results/startup-lazy-
 Sources: [pinned native engine API](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/engine/engine.ts),
 [pinned scene registration](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/scene/scene-core.ts).
 
+Covered-hair deferral reuses an independently proved bald compact when the existing
+coverage policy completely hides the selected ponytail. Native source restoration
+precedes equipment/race edits; rollback, failed-transfer retry, disposal, pending
+race return and garment morph controls pass. The old covered maximum saves 263,151
+bytes, but enumeration makes the new maximum **uncovered**: 2,102,724 bytes, a global
+197,700-byte saving. Do not continue calling the old hooded fixture the maximum.
+Both builds and root-reviewed native MP4/Telegram 878 delivery pass; flags stay
+default-off. The declared 18 local visits are valid/error-free; covered startup improves
+36.3–48.4 ms in all three pairs. Default/uncovered changes are small and retained.
+This justifies one new sealed public candidate; local visits are not qualification.
+[Covered-hair result](results/startup-covered-hair-2026-10-07.md).
+
 After a justified implementation, declare startup cohorts before running them:
 twenty fresh processes each for unsaved default, catalogue-derived maximum outfit
 and historical hood/cloth/Bastion. The current strict gate is all valid starts at
