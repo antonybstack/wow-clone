@@ -1,12 +1,14 @@
 # Starting-world scheduling experiment
 
-Status: implemented locally behind **`ASHEN_PRIME_STARTER_WORLD=1`**, default off;
-**40 targeted tests and both initial flag-off/on builds pass**. Root rejected
-the first native candidate for a persistent T-pose. Native PBR rescan correction
-passes all six corrected native controls. The twelve-visit local comparison
-shows useful maximum-outfit headroom; a public preview/release gate is next. No preview/production release or
-claim that the public one-second goal is met. Fieldcoat checkpoint `a47b915` is
-committed and pushed; production remains `6004840` / Pages `e39117b8`.
+Status: **1503c9b is committed/pushed**, with the experiment default-off.
+Forty focused tests passed on the initial prototype; both corrected-source flag
+builds and six native controls pass after the root-rejected T-pose was corrected.
+The twelve local visits show maximum-outfit headroom. Immutable preview 43730b3e
+passes 552 delivery checks and all entry aliases, but its sixty valid/error-free
+public starts contain **two misses** of the inclusive one-second gate. Production
+promotion is withheld. Production remains 6004840/e39117b8; Fieldcoat a47b915 is
+committed/pushed/motion-delivered and shares these outstanding release gates.
+
 
 The retained maximum-outfit diagnostic had the world available before its body
 transfer. This candidate registers the same starting world, post chain and shadows,
@@ -76,7 +78,7 @@ waiting for the complete region after 15 seconds; the next check uses the existi
 Raw first candidate and checker attempts are retained under the cache, including
 `native-attempt4-pre-skin-rebuild/` and `native-A-held-then-play-attempt3-classic-counter/`.
 Original owned Chrome71715/CDP10037, Vite71690/71710:5873 and preview71492:7074
-are closed. User Edge2931/Orca98938/media remain untouched.
+are closed. User Edge 2931/Orca 98938/media remain untouched.
 
 ## Corrected native controls and paired decision
 
@@ -151,13 +153,76 @@ are preserved. The [tracked receipt](../../../baselines/character-mmo/startup-pr
 retains source hashes, six controls, every local timing row, actual selected
 identity/shape/equipment/input checks, media hashes/delivery and ownership.
 
-The next step is one sealed immutable public preview from committed inputs, with
-full delivery/entry gates before twenty-start default/maximum/historical cohorts.
-The existing strict all-at-or-below 1,000 ms gate and disabled-cache policy remain.
-No production promotion from the small local comparison.
+The immutable public outcome below supersedes the earlier pending gate. No
+production promotion from the small local comparison.
 
 
 Independent Grok 4.6/high source/API/evidence review finds no demonstrated
 consequential defect. It adds no separate live/test acceptance; public qualification
 and the historical fetch cause remain open. Raw bounded review is retained with
 the task evidence and its SHA-256 in the receipt.
+
+
+## Immutable public outcome — release held
+
+Source **1503c9b** is committed/pushed. Exact Pages preview
+**43730b3e-67a1-4a08-b792-5eac94bc52fc**:
+[43730b3e.fardel.pages.dev](https://43730b3e.fardel.pages.dev).
+Configured Pages API confirms preview environment, branch startup-prime-20261007
+and exact source commit. Build/seal/upload exit 0; saved-bootstrap 1/primer 1.
+Seal 551 files/296,649,826 bytes, digest
+2807a09b05f3aa2b5cd6233a8f41bfbf362ec187ca6f30166516f7270f47b02c.
+Public delivery passes **552/552**: 550 served files and two missing 404/no-store
+controls, executable MIME, exact decoded bytes, Havok and catalogue cache rules.
+All three entry aliases pass native Havok streaming, one WASM request and actual
+play camera. These functional entry times are unthrottled and are not cohort rows.
+
+Method declared before all visits: M1 Max, native 1280×720/DPR1, decimal 50 Mbit/s
+down/10 up/40 ms, twenty fresh native Chrome processes/profiles per outfit, HTTP
+cache disabled including native prefetch reuse, GPU tracing/forced shader-cache
+probes unset. OS/driver/DNS/CDN caches are uncontrolled. Source/sealed inputs stay
+frozen. No recording or second game renderer; root guarded reference media after
+inventorying Edge and all Orca embedded tabs (zero). Every attempt is retained.
+
+| Outfit | Valid/attempted | p50 (ms) | p95 (ms) | Worst (ms) | Above 1 s | Primer submitted/skipped |
+| --- | --- | --- | --- | --- | --- | --- |
+| Default | 20/20 | 710.1 | 924.4 | 1,053.5 | 1 | 0/20 |
+| Maximum | 20/20 | 857.5 | 969.2 | 1,036.4 | 1 | 19/1 |
+| Historical | 20/20 | 793.0 | 871.7 | 920.2 | 0 | 20/0 |
+
+All 60 are dressed, grounded, physics-active and input-responsive with zero
+recorded runtime/GPU errors. Maximum selected identity, real morphs, 1.15 height,
+0.95 slender weight and all declared equipment are asserted at first play.
+Root reviewed actual native captures for both miss rows; skins/gear render with
+arms down. The inclusive all-valid-at-or-below 1,000 ms gate **fails** for default
+and maximum. No favourable reruns; historical is collected as originally declared.
+This is a new candidate's cohort, not a replacement for the original 14 failed
+starts. Historical fetch cause remains open. Production remains 6004840/e39117b8.
+
+The default miss (run 12) has document responseStart 377.3 ms against 85.5 ms in the
+representative median visit (run 8). Main begins 740.4/446.4 ms respectively. Every
+default skips world preparation, but six still discover the helper late before
+skipping. The miss requests it at 845.853–889.069 ms, a **43.2 ms** interval before
+body installation. Maximum miss (run 1) similarly discovers it at 619.961–661.053 ms;
+its preparatory frame submission-to-acknowledgement window is 274.4 ms against 86.2 ms
+in representative run 3, while body transfer completion is similar. No duplicate
+requests in those compared rows. Those windows do not isolate GPU execution or
+prove shader compilation, and this change cannot eliminate arbitrary document
+response delay.
+
+Next bounded experiment: begin the existing opt-in native dynamic import earlier,
+observe rejection immediately and retain default-off isolation. Preserve all skin,
+lifetime, body-pending skip and actual playable fences; use Vite's native async
+import machinery rather than a custom loader/cache. Verify failure/disposal/loss
+and default/maximum movement on the changed source, then one small declared paired
+comparison. Public cohorts require a justified gain and a new seal; do not repeat
+43730b3e unchanged. [Vite async chunk loading](https://vite.dev/guide/features#async-chunk-loading-optimization)
+explains its existing dependency preload mechanism. Network/document and native
+fence tails remain separate work, with no relaxed gate or speculative fetch retry.
+
+All owned entry/probe Chrome processes and local listeners are closed. Root
+removed Telegram/Shadowglass/X guards and restored connected prior media states.
+User Edge 2931 and Orca 98938 remain intact. Fresh xctrace inventory still has no
+physical iPhone; emulation is separate. Telegram 872/873 ledger was attributed to
+finished source 1503c9b after commit/push. Public receipt includes every timing row,
+source/build/identity metadata, raw hashes and explicit failed qualification.

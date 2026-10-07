@@ -14,7 +14,9 @@ authoritative. Work proceeds without further user approval.
    No speculative retry or replacement of failed cohorts with successful diagnostics.
 2. **One-second headroom:** qualify actual dressed, grounded, GPU-completed,
    input-ready first play for default and maximum saved appearances. The current
-   starting-world scheduling experiment is default-off and has not qualified.
+   starting-world experiment is default-off. Preview 43730b3e has 60 valid starts,
+   zero recorded runtime/GPU errors, but 2 misses: 1,053.5 ms default/1,036.4 ms maximum.
+   Next: remove observed late helper discovery, then address document/native-fence tails.
 3. **Release accepted improvements:** commit/push, seal, preview integrity/entry/
    startup/traversal/mobile/WebKit/performance gates, then identical production
    bytes and repeated production checks with rollback available.
@@ -102,24 +104,33 @@ The declared twelve-visit local comparison passes all actual playable/identity
 checks. Maximum outfit improves **83.3–96.4 ms** across three pairs (on median
 773.0 ms). Default improves in two pairs but regresses **114.5 ms** in the first.
 Conditions: M1 Max, 1280×720/DPR1, fresh process/profile, decimal 50 Mbit/s/40 ms,
-initially empty HTTP cache with native preload reuse. This justifies a new
-immutable public candidate; it does not qualify the public one-second target.
-The public gate retains disabled HTTP cache for comparability with prior releases.
-No production promotion. Full details, preserved
+initially empty HTTP cache with native preload reuse.
+
+The sealed immutable preview **43730b3e** passes 552/552 delivery checks and
+all three entry routes. Declared 20-start public cohorts retain disabled HTTP cache
+for comparability: default p95/worst 924.4/1,053.5 ms; maximum 969.2/1,036.4 ms;
+historical 871.7/920.2 ms. All 60 valid/error-free, but default/maximum each miss once.
+Strict qualification fails; production is unchanged. Default skips preparation
+in all 20 visits; six pay late helper discovery first. The two miss rows motivate
+a bounded early-import experiment and distinct document/native-fence diagnosis,
+with no repeated unchanged cohort or relaxed gate. Full details, preserved
 failures, source hashes and raw evidence:
 [starting-world result](plans/character-mmo/results/startup-prime-2026-10-07.md).
 
 - All native, paired and recording workers have closed their exact Chrome,
-  Vite/CDP and preview processes. Ports5873/10037/7074/7075 are clear.
-- Root reviewed both recorded live default/maximum MP4s in native1280×720
+  Vite/CDP and preview processes. Ports 5873/10037/7074/7075 are clear.
+- Root reviewed both recorded live default/maximum MP4s in native 1280×720
   playback. Havok walk and skinning look correct; recordings are excluded from
-  startup timing and FPS. Telegram872/873 and exact VE MP4s are delivered;
+  startup timing and FPS. Telegram 872/873 and exact VE MP4s are delivered;
   root reviewed inline proportions, expanded maximum and direct VE maximum.
+  Both ledger entries are attributed to finished source 1503c9b.
   Fullscreen/physical-phone playback remain unverified.
-- Root closed review tabs1147995813/1147995817 and wrapper52880:7081, plus VE review tab1147995821.
+- Root closed review tabs 1147995813/1147995817/1147995821 and
+  wrapper 52880:7081.
 - Temporary Telegram/Shadowglass/X media guards are removed and prior connected
-  playback states restored. Audit media again before public timing.
-- User Edge2931 and Orca98938 are preserved; no owned game renderer remains.
+  playback states restored after both local and public timing. Audit again before
+  the next benchmark. Orca embedded browser inventory: zero tabs.
+- User Edge 2931 and Orca 98938 are preserved; no owned game renderer remains.
 
 Audit pages/processes before every live check and after cleanup. Only the intended
 game may render during timing. See [browser ownership](debug-view.md#browser-ownership-and-performance-isolation).
@@ -131,8 +142,8 @@ AGENTS.md/next-ten.md edits and caches; no reset/stash/clean.
 
 ## Working references
 
-Active root index.html / ashen-reach.html, Vite5173, src/ashen-reach/main.js,
-global ASHEN. Babylon Lite1.31.1/WebGPU and Havok1.3.14, compatible source
+Active root index.html / ashen-reach.html, Vite 5173, src/ashen-reach/main.js,
+global ASHEN. Babylon Lite 1.31.1/WebGPU and Havok 1.3.14, compatible source
 animations. Production catalogue v7; local v8 adds Fieldcoat. Human height
 0.90–1.15/build −0.95…+0.95; Orc/Undead neutral only.
 [Character contract](character-system-north-star.md),

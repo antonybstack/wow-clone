@@ -86,6 +86,16 @@ Full implementation, correction, raw samples, reviewed motion and limitations:
 [starting-world result](results/startup-prime-2026-10-07.md). Prior shader/shadow
 and precision trials stay closed without material new evidence.
 
+The sealed public candidate 43730b3e passes 552 delivery checks and three entry
+aliases. Its declared 60 starts are valid/error-free, but default/maximum each
+exceed one second once (1,053.5/1,036.4 ms). Historical passes 20/20. Production stays
+unchanged. Default skips world preparation on every visit, but six still discover
+the helper late; a miss pays 43.2 ms before skipping. The next bounded change starts
+that existing opt-in import promise earlier, then verifies lifecycle/readiness
+and compares before another public cohort. Investigate document response/native
+fence tails from retained data; do not relabel callback windows as isolated GPU
+execution or repeat unchanged visits until a favourable distribution appears.
+
 Sources: [pinned native engine API](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/engine/engine.ts),
 [pinned scene registration](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/scene/scene-core.ts).
 
