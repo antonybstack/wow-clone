@@ -44,6 +44,15 @@ multiplayer and Elf expansion remain parked.
 
 ### Recommended next packages
 
+Current follow-up: the [native tail diagnosis and QA result](plans/character-mmo/results/streaming-tail-and-verifier-2026-10-07.md)
+confirms the first-sound constructor hitch (179 ms); a native silent-output trial
+still takes 163 ms and is rejected without integration. All 90 long observed render
+gaps coincide with pending=4, narrowing a queue-budget comparison without proving
+GPU/compositor cause. Seven verifier controls and all 552 current production rows
+pass, including five mutable-manifest cache policies. No new runtime build,
+deployment or FPS claim. Next use the written 4-versus-8 diagnostic or progress
+independent boot/mixed-fit work; preserve every original acceptance exit.
+
 1. **Smooth background loading and sound activation.** Attribute the remaining
    streaming p99 around 21.5 ms and first sound-activation cost using the existing
    scheduler/profiling. Preserve the first-play fence; compare complete streaming
@@ -56,6 +65,8 @@ multiplayer and Elf expansion remain parked.
    classify missing responses correctly and retain actual response hashes.
    Preserve the original startup/input failures and investigate a recurrence from
    its native cause rather than adding speculative retries.
+   The bounded cache/error-classification/response-hash correction is now verified;
+   transport-exception report completeness remains a separate limitation.
 4. **Extend the equipment factory from the corrected fits.** Choose one missing
    equipment category and prove one authored piece through existing fit,
    coverage, publication and normal-game transactions. Bulk set production waits

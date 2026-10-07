@@ -36,6 +36,11 @@ seven enemies, three 12-second windows on five routes, no recording/other render
 4. **Canonical verifier follow-up is corrected after the frozen release:** exact
    `/assets/v2/<expectedBundle>` matching replaces the stale prefix, with native
    movement verification. QA changes do not alter deployed runtime 7d00.
+   The later [tail diagnosis and verifier result](results/streaming-tail-and-verifier-2026-10-07.md)
+   adds five mutable-manifest checks, decoded response hashes and independent
+   error-cache classification; seven HTTP controls/all 552 production rows pass.
+   The native silent-output trial is rejected; the sound constructor and streaming
+   queue-tail follow-ups remain open, with a bounded comparison specified.
 5. While the physical-device exit awaits hardware, independent streaming/fit,
    release-diagnostic and factory work can proceed in the recommended order in
    [CURRENT](../../CURRENT.md#recommended-next-packages). Keep the original exits

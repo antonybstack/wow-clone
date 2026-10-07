@@ -1,0 +1,406 @@
+{
+  "schema": 1,
+  "kind": "ashen-streaming-diagnosis-and-verifier-receipt",
+  "at": "2026-10-07T19:52:41.670828+00:00",
+  "scope": "QA implementation and native diagnosis; no runtime build, reseal, deployment or new FPS/startup acceptance",
+  "productionSource": "7d00c56c06f02899e2319ffdddea97728013c0b1",
+  "operatorHeadBeforeTask": "ec8c756",
+  "diagnostics": [
+    {
+      "variant": "original",
+      "rawReport": ".cache/character-mmo/streaming-tail-2026-10-07/current-profile-report.json",
+      "rawReportSha256": "d008174c2838b2ee140fcc6a1ccbec1e7f117eca09fc1b430d888ef3389b861f",
+      "conditions": {
+        "machine": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "httpCache": "disabled; fresh Chrome process/profile; OS/driver/CDN caches uncontrolled",
+        "cpuSamplingUs": 1000,
+        "recording": false,
+        "method": "one current-release uncovered maximum visit; normal W streaming, then first sound click; CPU/GPU API spans are not isolated GPU timings"
+      },
+      "sourceCommit": "7d00c56c06f02899e2319ffdddea97728013c0b1",
+      "url": "https://5723a4ab.fardel.pages.dev/?play&clean&pixelRatio=1&dev&startupMarks",
+      "passed": true,
+      "nativeExit": {
+        "code": 0,
+        "scope": "Native exit text saved by first operations wrapper"
+      },
+      "ownership": {
+        "owner": "grok-streaming-tail-profile",
+        "browserPid": 69835,
+        "gpuHelperPids": [
+          69841
+        ],
+        "cdpPort": 10037,
+        "url": "https://5723a4ab.fardel.pages.dev/?play&clean&pixelRatio=1&dev&startupMarks",
+        "purpose": "Current production streaming and first audio CPU diagnosis; not a benchmark",
+        "renderingClients": 0,
+        "active": false
+      },
+      "streaming": {
+        "blocks": 1035,
+        "worstInstallMs": 2.700000047683716,
+        "backgroundWorstInstallMs": 2.100000023841858,
+        "backgroundSlowest": {
+          "name": "Earth",
+          "triangles": 512
+        },
+        "totalInstallMs": 865.7999994158745,
+        "allocatedBytes": 210049236,
+        "allocatedRecords": 71,
+        "initialAllocatedBytes": 16259292,
+        "initialAllocatedRecords": 5
+      },
+      "streamingTails": {
+        "samples": 1830,
+        "p95Ms": 14.200000047683716,
+        "p99Ms": 21.80000001192093,
+        "worstMs": 25.700000047683716,
+        "above16_667": 90,
+        "scope": "Instrumented diagnosis only; not performance acceptance"
+      },
+      "soundTails": {
+        "samples": 216,
+        "p95Ms": 21.5,
+        "p99Ms": 22,
+        "worstMs": 214,
+        "above16_667": 29,
+        "scope": "Instrumented diagnosis only; not performance acceptance"
+      },
+      "audio": [
+        {
+          "at": 12555.5,
+          "constructorMs": 179.10000002384186,
+          "sampleRate": 48000,
+          "baseLatency": 0.005333333333333333
+        }
+      ],
+      "soundReadyUpperBoundMs": 442.89999997615814,
+      "positionAfterStreaming": {
+        "x": 0.17774429133330935,
+        "z": 31.269220100554325
+      },
+      "positionAfterSound": {
+        "x": 0.17796832310123725,
+        "z": 41.606602850086965
+      },
+      "errors": [],
+      "profileHashes": {
+        "current-background.cpuprofile": "06bd5f8cee9306984cee7440d5853f97f557a3578bfba581817b2ad76edec57c",
+        "current-audio.cpuprofile": "a302f9582c12100931c130cc20ad983332a5e0ed73c6e50a248fa22176f04c6a"
+      }
+    },
+    {
+      "variant": "silent",
+      "rawReport": ".cache/character-mmo/streaming-tail-2026-10-07/silent/current-profile-report.json",
+      "rawReportSha256": "f505c8c85a7209f6eaaad635b539f5f6d729830836669b996392c7635e084e91",
+      "conditions": {
+        "machine": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "httpCache": "disabled; fresh Chrome process/profile; OS/driver/CDN caches uncontrolled",
+        "cpuSamplingUs": 1000,
+        "recording": false,
+        "method": "one current-release uncovered maximum visit; normal W streaming, then first sound click; CPU/GPU API spans are not isolated GPU timings"
+      },
+      "sourceCommit": "7d00c56c06f02899e2319ffdddea97728013c0b1",
+      "url": "https://5723a4ab.fardel.pages.dev/?play&clean&pixelRatio=1&dev&startupMarks",
+      "passed": true,
+      "nativeExit": {
+        "code": 0,
+        "signal": null,
+        "pid": 83640,
+        "at": "2026-10-07T19:39:30.342Z"
+      },
+      "ownership": {
+        "owner": "grok-streaming-tail-profile",
+        "browserPid": 83641,
+        "gpuHelperPids": [
+          83667
+        ],
+        "cdpPort": 10037,
+        "url": "https://5723a4ab.fardel.pages.dev/?play&clean&pixelRatio=1&dev&startupMarks",
+        "purpose": "Current production streaming and first audio CPU diagnosis; not a benchmark",
+        "renderingClients": 0,
+        "active": false
+      },
+      "streaming": {
+        "blocks": 1035,
+        "worstInstallMs": 2.699999988079071,
+        "backgroundWorstInstallMs": 2.099999964237213,
+        "backgroundSlowest": {
+          "name": "Woodland 0,-2 full",
+          "triangles": 4096
+        },
+        "totalInstallMs": 875.9999993443489,
+        "allocatedBytes": 210049236,
+        "allocatedRecords": 71,
+        "initialAllocatedBytes": 16259292,
+        "initialAllocatedRecords": 5
+      },
+      "streamingTails": {
+        "samples": 1839,
+        "p95Ms": 13.599999964237213,
+        "p99Ms": 21.80000001192093,
+        "worstMs": 37.10000002384186,
+        "above16_667": 90,
+        "scope": "Instrumented diagnosis only; not performance acceptance"
+      },
+      "soundTails": {
+        "samples": 215,
+        "p95Ms": 21.700000047683716,
+        "p99Ms": 21.80000001192093,
+        "worstMs": 200.5,
+        "above16_667": 30,
+        "scope": "Instrumented diagnosis only; not performance acceptance"
+      },
+      "audio": [
+        {
+          "at": 12560.5,
+          "constructorMs": 163.10000002384186,
+          "sampleRate": 48000,
+          "baseLatency": 0.005333333333333333,
+          "initialSink": {},
+          "sinkMs": 32.299999952316284,
+          "finalSink": "",
+          "sinkComplete": true
+        }
+      ],
+      "soundReadyUpperBoundMs": 443.5,
+      "positionAfterStreaming": {
+        "x": 0.29565778882121424,
+        "z": 31.07248687753
+      },
+      "positionAfterSound": {
+        "x": 0.29618587128475393,
+        "z": 41.511479381959845
+      },
+      "errors": [],
+      "profileHashes": {
+        "current-background.cpuprofile": "16b561d6dc73ffe27e8ab6acc8efd9c8efae3f71f6c1841dc8713cdcf9726fdc",
+        "current-audio.cpuprofile": "296451f9d3c77b385938da65acb817abce64b3a43ce006b2ccf094197dd39263"
+      }
+    }
+  ],
+  "observedRenderGaps": {
+    "rawSha256": "a77a80412cb40be15fe33722daedbc7574cc71a3a8509fa0a86010b15f4885e7",
+    "scope": "Observed render-count transitions; observer snapshots, not exact render timestamps or isolated GPU execution",
+    "above16_667": 90,
+    "withObservedPending4": 90,
+    "medianObserverCallbacks": 2.0,
+    "cause": "Unproven; counts acknowledgements, not GPU execution"
+  },
+  "qa": {
+    "exits": {
+      "scope": "QA-only verifier correction; no runtime rebuild, deployment or startup/FPS cohort",
+      "rows": [
+        {
+          "name": "qa-syntax",
+          "code": 0,
+          "signal": null,
+          "pid": 91933
+        },
+        {
+          "name": "qa-controls",
+          "code": 0,
+          "signal": null,
+          "pid": 91934
+        },
+        {
+          "name": "qa-production",
+          "code": 0,
+          "signal": null,
+          "pid": 91963
+        }
+      ],
+      "passed": true
+    },
+    "httpControls": {
+      "tests": 7,
+      "pass": 7,
+      "fail": 0,
+      "rawOutputSha256": "cf8486751b4d2574f2b89b6ee33ea6a0bc708a9ccc257aefa1095a27f2820a13"
+    },
+    "productionChecks": 552,
+    "failures": 0,
+    "rawReportSha256": "eddeb4172270f87f07585c30340a2e899d21a974dea426c1b02a823463fdf310",
+    "mutableManifests": [
+      {
+        "file": "ashen-reach/human-identity-v1/manifest.json",
+        "cacheControl": "no-cache",
+        "cacheCorrect": true,
+        "actualSha256": "30e8c9754966da4b80ab6e1ffa60262ccc68fcf98f45c79453d375a145215ce8",
+        "expectedSha256": "30e8c9754966da4b80ab6e1ffa60262ccc68fcf98f45c79453d375a145215ce8"
+      },
+      {
+        "file": "ashen-reach/human-shape-v1/manifest.json",
+        "cacheControl": "no-cache",
+        "cacheCorrect": true,
+        "actualSha256": "a366c69fc7b02972513f6177ac512b22c845e19749096f9af666f5a7ea1bb716",
+        "expectedSha256": "a366c69fc7b02972513f6177ac512b22c845e19749096f9af666f5a7ea1bb716"
+      },
+      {
+        "file": "ashen-reach/region-actors-v1/manifest.json",
+        "cacheControl": "no-cache",
+        "cacheCorrect": true,
+        "actualSha256": "c4353e389005da531b999e33eabea5684d0bd9bbe0d92f48b979ac65975c6b80",
+        "expectedSha256": "c4353e389005da531b999e33eabea5684d0bd9bbe0d92f48b979ac65975c6b80"
+      },
+      {
+        "file": "ashen-reach/startup/character/manifest.json",
+        "cacheControl": "no-cache",
+        "cacheCorrect": true,
+        "actualSha256": "f074b89cda930d3e65071e44a64b36dc3a151529db4464a736985c4b95f4ad33",
+        "expectedSha256": "f074b89cda930d3e65071e44a64b36dc3a151529db4464a736985c4b95f4ad33"
+      },
+      {
+        "file": "ashen-reach/startup/starter/manifest.json",
+        "cacheControl": "no-cache",
+        "cacheCorrect": true,
+        "actualSha256": "d45be20b5010a39859035004fdc16f9e1df40cd2cbbea43994d661ee9955c58f",
+        "expectedSha256": "d45be20b5010a39859035004fdc16f9e1df40cd2cbbea43994d661ee9955c58f"
+      }
+    ],
+    "negativeControls": [
+      {
+        "file": "assets/v2/missing-36f3a622-9c79-4cf4-8e08-775df0f6e00e.js",
+        "status": 404,
+        "cacheControl": "no-store",
+        "cacheCorrect": true,
+        "actualSha256": "528310179e4758b568d36c45bdd2d213f414c291adc20bfa34603df5c4d416d5"
+      },
+      {
+        "file": "missing-defd62fe-5e9e-4075-a485-eb489bd89b9a",
+        "status": 404,
+        "cacheControl": "no-store",
+        "cacheCorrect": true,
+        "actualSha256": "528310179e4758b568d36c45bdd2d213f414c291adc20bfa34603df5c4d416d5"
+      }
+    ],
+    "reviewSha256": "5d1229d467d4eb759ff4a7fcc5f7cfb2ec63edac0e67f45156fb664536cafabe",
+    "reviewVerdict": "No consequential defect in the bounded patch",
+    "verifierSourceSha256": "13c62aca47fd45a6fe19db8cc8e91810fb23581363348003fba161135e737fb1",
+    "testSourceSha256": "eefedbb7fa7aeb65a9a5b0e0322a64aa20ee16d4ec88b0ca644ecef24021d037"
+  },
+  "independentDiagnosis": {
+    "reviewSha256": "683d18d640be619a1c66ee635d35f163a59b0e771632b8b07189a563a95ef69c",
+    "derivedAnalysisSha256": "0bc36cc7bc18ec4943db55f6e199c4b97f77a3e22a414bfc22bb2cde156ab7a2",
+    "scope": "Earlier CPU profiles precede deferral; old interval-to-mark epoch approximate"
+  },
+  "rootReviewedCaptures": [
+    {
+      "rawFile": ".cache/character-mmo/streaming-tail-2026-10-07/current-streaming.png",
+      "sha256": "96c7bb30c310d0904a437634dc1cd899df2ea4f0afcf310d7f03aa73683c6e82",
+      "scope": "Still review of actual unchanged native game; not a new motion acceptance"
+    },
+    {
+      "rawFile": ".cache/character-mmo/streaming-tail-2026-10-07/silent/current-audio.png",
+      "sha256": "bb3c7b85e23e4e9723a21eda591abaee3d80851939bf1a7955c0769e151ce791",
+      "scope": "Still review of actual unchanged native game; not a new motion acceptance"
+    }
+  ],
+  "workers": [
+    {
+      "rawFile": ".cache/character-mmo/streaming-tail-2026-10-07/review-worker.json",
+      "rawSha256": "81121adf0217f555a63242935dd004dd724eb050513fe9eaaaf28a93de0a86e2",
+      "sessionId": "01a117d2-95f0-7340-8a65-2725ff5c6691",
+      "stopReason": "cancelled",
+      "turns": 12,
+      "nativeExit": null
+    },
+    {
+      "rawFile": ".cache/character-mmo/streaming-tail-2026-10-07/review-finish-worker.json",
+      "rawSha256": "699fcd3373a202b18953354d94e45bbac20e99bf93fa5835e2df8cceb7b3d9a4",
+      "sessionId": "01a117d2-95f0-7340-8a65-2725ff5c6691",
+      "stopReason": "end_turn",
+      "turns": 6,
+      "nativeExit": null
+    },
+    {
+      "rawFile": ".cache/character-mmo/streaming-tail-2026-10-07/profile-worker.json",
+      "rawSha256": "26a3a14cde90e37af92734f5b39b096095e0a9aa1f133fa46e98cecad2a78269",
+      "sessionId": "01a117d9-83f4-70b2-a534-9c22da1f4c22",
+      "stopReason": "cancelled",
+      "turns": 6,
+      "nativeExit": 0
+    },
+    {
+      "rawFile": ".cache/character-mmo/streaming-tail-2026-10-07/silent-worker.json",
+      "rawSha256": "8ac68168a819a21b49a7361086e2fb74d74aba56922b42e2387aa9175d514fce",
+      "sessionId": "01a117d9-83f4-70b2-a534-9c22da1f4c22",
+      "stopReason": "cancelled",
+      "turns": 6,
+      "nativeExit": 0
+    },
+    {
+      "rawFile": ".cache/character-mmo/streaming-tail-2026-10-07/qa-worker.json",
+      "rawSha256": "3c22a7ab91fe519dfaa4e62b57e071c13909c853117095f7c2f891001de7c8b9",
+      "sessionId": "01a117d9-83f4-70b2-a534-9c22da1f4c22",
+      "stopReason": "end_turn",
+      "turns": 8,
+      "nativeExit": 0
+    },
+    {
+      "rawFile": ".cache/character-mmo/streaming-tail-2026-10-07/qa-review-worker.json",
+      "rawSha256": "f2d9bc745e44599ac39c90c67d30c1b49650a10ff24be076ddf553fd9af0ac8a",
+      "sessionId": "01a117d2-95f0-7340-8a65-2725ff5c6691",
+      "stopReason": "end_turn",
+      "turns": 7,
+      "nativeExit": null
+    }
+  ],
+  "cleanup": {
+    "at": "2026-10-07T19:51:30.507Z",
+    "ownedChromeGrokHarnessProcesses": 0,
+    "cdp10037Free": true,
+    "edgeTabs": 12,
+    "gameTabs": 0,
+    "orcaEmbeddedTabs": 0,
+    "mediaGuardsRemoved": 3,
+    "originalReferenceRestored": 1,
+    "mediaRestoreErrors": 0,
+    "shadowglass": "Left discarded/unactivated",
+    "edgeAndOrcaPreserved": true
+  },
+  "decisions": {
+    "silentOutput": "Rejected without integration: 163 ms constructor and no sound-readiness gain; one visit per variant is not causal performance proof.",
+    "next": "Bounded 4-versus-8 acknowledgement-budget comparison, default 4 unchanged; native input latency/resource/correctness guards required."
+  },
+  "limitations": [
+    "CPU/API instrumentation contributes cost; these visits are not benchmarks.",
+    "No exact navigation-to-CPU-profile clock anchor; no isolated GPU timing.",
+    "Original recorder had no measurement epoch; old derived mark alignment is approximate.",
+    "Current appearance is seeded and captures reviewed, but entire descriptor/morph family is not independently asserted in this probe.",
+    "Prototype silent sink object serializes as {}; its type getter was not saved.",
+    "No complete audible playback, WebKit or physical-device acceptance for the rejected prototype.",
+    "Original profile script was extended for a separately recorded variant after the first run; original reports and code-control brief are retained.",
+    "Verifier transport/body-read exceptions can interrupt final reporting; further cache classes are explicitly retained follow-ups.",
+    "Original 14/60 fetch failures, 362 ms preview input bound and physical iPhone exit remain open."
+  ],
+  "physicalDeviceInventory": {
+    "at": "2026-10-07T19:54:27.485633+00:00",
+    "physicalIPhones": 0,
+    "devices": 1,
+    "simulators": 11,
+    "rawInventorySha256": "188ecd19ab0f6225bcf0072a568610fdc1d98a5bd4aec99f94e5f2db772f437b",
+    "namesAndIdentifiers": "Local raw inventory only; omitted from tracked evidence",
+    "acceptance": "Unverified"
+  }
+}

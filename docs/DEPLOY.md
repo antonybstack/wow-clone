@@ -60,7 +60,12 @@ and verify its deployment-specific URL. Run
 `node scripts/character-assets/verify-pages-release.mjs dist <URL> <report.json>`
 on both preview and the final custom domain. It checks actual unmodified URLs,
 decoded bytes, executable MIME types, cache policies and two missing-path 404
-controls. A hash match fetched through a cache-busting query does not establish
+controls. Each build row retains actual/expected decoded SHA-256; the missing-path
+rows retain actual hashes. The five runtime manifests include Human shape and
+both starter indices. Non-OK response caching is classified separately from a
+successful immutable asset policy, while missing bytes/status still fail.
+A transport/body-read exception can still interrupt report completion.
+A hash match fetched through a cache-busting query does not establish
 the correctness of URLs used by players. Stop live/performance gates if integrity
 fails; retain failed rows and diagnostic headers. Record the previous deployment
 before promotion and judge rollback against its known delivery state.
