@@ -64,7 +64,13 @@ controls. Each build row retains actual/expected decoded SHA-256; the missing-pa
 rows retain actual hashes. The five runtime manifests include Human shape and
 both starter indices. Non-OK response caching is classified separately from a
 successful immutable asset policy, while missing bytes/status still fail.
-A transport/body-read exception can still interrupt report completion.
+Each artifact and missing-path request retains fetch/body failures as failed rows;
+other checks finish and the report is written before the gate fails. Native
+request/body timeout is 30 seconds (`ASHEN_VERIFY_TIMEOUT_MS` overrides it with
+a positive integer). Rows retain source SHA-256, the known decoded expected hash,
+native failure stage/causes and available response metadata; failed bodies do not
+receive a partial-byte hash. Missing required immutable/Havok cache headers fail
+explicitly. Local directory-walk/output errors can still prevent report creation.
 A hash match fetched through a cache-busting query does not establish
 the correctness of URLs used by players. Stop live/performance gates if integrity
 fails; retain failed rows and diagnostic headers. Record the previous deployment

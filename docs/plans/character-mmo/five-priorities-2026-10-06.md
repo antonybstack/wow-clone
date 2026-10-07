@@ -41,6 +41,12 @@ seven enemies, three 12-second windows on five routes, no recording/other render
    error-cache classification; seven HTTP controls/all 552 production rows pass.
    The native silent-output trial is rejected; the sound constructor and streaming
    queue-tail follow-ups remain open, with a bounded comparison specified.
+   That [queue comparison](results/queue-comparison-and-verifier-2026-10-07.md)
+   now completes all three pairs: p95/mean gains at eight do not satisfy the
+   declared streaming-p99 gate, so source/production stay four. All six functional
+   visits pass. The verifier now retains per-artifact native request/body failures
+   to a complete report and rejects absent required cache headers; thirteen HTTP
+   controls and one 552-row production check pass. No new runtime deployment.
 5. While the physical-device exit awaits hardware, independent streaming/fit,
    release-diagnostic and factory work can proceed in the recommended order in
    [CURRENT](../../CURRENT.md#recommended-next-packages). Keep the original exits
