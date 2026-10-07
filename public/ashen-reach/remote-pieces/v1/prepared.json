@@ -16,7 +16,7 @@
    "human": {
     "sourceManifest": {
      "path": "public/ashen-reach/human-shape-v1/manifest.json",
-     "sha256": "a366c69fc7b02972513f6177ac512b22c845e19749096f9af666f5a7ea1bb716"
+     "sha256": "4fd318f0c2d031f2d60719d0050b4b0cee5aa4ba699e622168d0e46c64a153fe"
     },
     "manifest": {
      "schema": 1,
@@ -431,8 +431,8 @@
        }
       },
       "wayfarerBoots": {
-       "bytes": 313964,
-       "sha256": "a3b7a9391a6bf9874cdff19586ac614c772bd7f16f3328405c3bfc1a7252dd81",
+       "bytes": 314636,
+       "sha256": "008837effe845afe1e325d40aa2568d5da28c9d87b7ebd801bda81365b0c8e20",
        "meshes": [
         "WayfarerBoots"
        ],
@@ -456,11 +456,11 @@
          "bytes": 12498
         }
        ],
-       "file": "wayfarerBoots-a3b7a9391a6bf9874cdff19586ac614c772bd7f16f3328405c3bfc1a7252dd81.glb",
+       "file": "wayfarerBoots-008837effe845afe1e325d40aa2568d5da28c9d87b7ebd801bda81365b0c8e20.glb",
        "source": {
-        "path": "public/ashen-reach/human-shape-v1/wayfarerBoots-14b43ef82011.bin",
-        "sha256": "06fc40ad2225bde2e6c8c43beccaaa47ff029e2e617ef596d08d1740039f8877",
-        "bytes": 310748
+        "path": "public/ashen-reach/human-shape-v1/wayfarerBoots-f6d8919ac353.bin",
+        "sha256": "a7d8083e426e520d612f8d06ab6cd951bc26a960fc994e29c724c203112d7a51",
+        "bytes": 311416
        },
        "verification": {
         "geometryExact": true,
@@ -625,8 +625,8 @@
        }
       },
       "duskguardGreaves": {
-       "bytes": 327600,
-       "sha256": "30524af703a0c2d3e178da20b06019e22453e82e3ec831924923fc128c494d6b",
+       "bytes": 328232,
+       "sha256": "9649079113258dd9315a28c7ff43f0bee7fd1724b96f29252bf7736706042e2e",
        "meshes": [
         "DuskguardBootUnderlayer",
         "DuskguardGreaves"
@@ -651,11 +651,11 @@
          "bytes": 12498
         }
        ],
-       "file": "duskguardGreaves-30524af703a0c2d3e178da20b06019e22453e82e3ec831924923fc128c494d6b.glb",
+       "file": "duskguardGreaves-9649079113258dd9315a28c7ff43f0bee7fd1724b96f29252bf7736706042e2e.glb",
        "source": {
-        "path": "public/ashen-reach/human-shape-v1/duskguardGreaves-030d302cbaf6.bin",
-        "sha256": "1a84536b9fd5482c12d1f64a6dbd537e49d71fd613e752cfe2b0bde98abb53b9",
-        "bytes": 324384
+        "path": "public/ashen-reach/human-shape-v1/duskguardGreaves-f1a97f05f939.bin",
+        "sha256": "65c7a88338858d67c5af3903f9bfddb552ba2e1d631270db6e4b116de0f60b17",
+        "bytes": 325016
        },
        "verification": {
         "geometryExact": true,
@@ -2084,7 +2084,7 @@
    "undead": {
     "sourceManifest": {
      "path": "public/ashen-reach/equipment-undead/manifest-coverage-v1.json",
-     "sha256": "44c2ddc9c0de41d76ddcb358a6b8b911ab5af6fad743f1889d363b96d5d1216a"
+     "sha256": "538546c834f143adf41c841d1fc397cf42c6990f6fd6210a4764dda6c906daf7"
     },
     "manifest": {
      "schema": 1,
@@ -2106,8 +2106,7 @@
         "arm.lower",
         "hand",
         "leg.upper",
-        "leg.lower",
-        "foot"
+        "leg.lower"
        ],
        "UndeadV1Eyes": [
         "head.face"
@@ -2116,6 +2115,9 @@
         "torso.upper",
         "torso.lower",
         "waist"
+       ],
+       "UndeadFootCore": [
+        "foot"
        ]
       }
      },
@@ -2170,19 +2172,20 @@
      },
      "items": {
       "body": {
-       "bytes": 2984256,
-       "sha256": "b2193ae173473e5bfbb8bb056dfc00399945a8895e9d70c13318931094b7f262",
+       "bytes": 2984888,
+       "sha256": "c2b269a2e5e300e451fb917125fddda8da91a277c91902d7e35d8daa744ba520",
        "meshes": [
         "UndeadV1Body",
         "UndeadV1Eyes",
-        "UndeadTorsoCore"
+        "UndeadTorsoCore",
+        "UndeadFootCore"
        ],
        "coverageRevision": "conservative-geosets-v1",
-       "file": "body-b2193ae173473e5bfbb8bb056dfc00399945a8895e9d70c13318931094b7f262.glb",
+       "file": "body-c2b269a2e5e300e451fb917125fddda8da91a277c91902d7e35d8daa744ba520.glb",
        "source": {
-        "path": "public/ashen-reach/equipment-undead/body-coverage-02cb6c3cc877.glb",
-        "sha256": "02cb6c3cc8777b527676959528093a7bc97ad7c24282ca4ec27570c3b7de8038",
-        "bytes": 8371408
+        "path": "public/ashen-reach/equipment-undead/body-coverage-2f778c68a013.glb",
+        "sha256": "2f778c68a0136b35b6ab27679ab1747fdb89b8ae2ad2b80b251d7230220ef784",
+        "bytes": 8372040
        },
        "verification": {
         "geometryExact": true,
@@ -2564,8 +2567,8 @@
        ]
       },
       "wayfarerBoots": {
-       "bytes": 169512,
-       "sha256": "0ee7a31c0ffe5d592ab4bf42b38b6f84c8a6c6ed70a65cc4b7997d6304ca4e60",
+       "bytes": 169740,
+       "sha256": "9f1a4b40c964f46563cb0cad5ef43587b728d2746eb2c3732a67f881e16ff753",
        "meshes": [
         "WayfarerBoots"
        ],
@@ -2575,11 +2578,11 @@
         "bind": 1,
         "shape": 1
        },
-       "file": "wayfarerBoots-0ee7a31c0ffe5d592ab4bf42b38b6f84c8a6c6ed70a65cc4b7997d6304ca4e60.glb",
+       "file": "wayfarerBoots-9f1a4b40c964f46563cb0cad5ef43587b728d2746eb2c3732a67f881e16ff753.glb",
        "source": {
-        "path": "public/ashen-reach/equipment-undead/wayfarerBoots.glb",
-        "sha256": "ce99e04c73153c47b97b69f94327983e3844d0f24c8a7757e4126f1baabc5c85",
-        "bytes": 242148
+        "path": "public/ashen-reach/equipment-undead/wayfarerBoots-d92d6e57807b.glb",
+        "sha256": "d92d6e57807b91cc19886c634b3ff3c84b21909c63ecaa68fbc5a66af44dbeac",
+        "bytes": 242372
        },
        "verification": {
         "geometryExact": true,
@@ -2769,8 +2772,8 @@
        ]
       },
       "duskguardGreaves": {
-       "bytes": 176436,
-       "sha256": "ae5f46bd2066ca25b7e1e514b51b3c6ba18475b5732ac44245ca734753badf10",
+       "bytes": 176624,
+       "sha256": "1675033cddfe5c2208ddd48cc8018f7c494f2e07f040934b1f0d29dc765f6d99",
        "meshes": [
         "DuskguardBootUnderlayer",
         "DuskguardGreaves"
@@ -2781,11 +2784,11 @@
         "bind": 1,
         "shape": 1
        },
-       "file": "duskguardGreaves-ae5f46bd2066ca25b7e1e514b51b3c6ba18475b5732ac44245ca734753badf10.glb",
+       "file": "duskguardGreaves-1675033cddfe5c2208ddd48cc8018f7c494f2e07f040934b1f0d29dc765f6d99.glb",
        "source": {
-        "path": "public/ashen-reach/equipment-undead/duskguardGreaves-65e92cf980bd.glb",
-        "sha256": "65e92cf980bd0a91cd0d9ed37c9964a42ba61472ce424e8254bfb24526fae5a7",
-        "bytes": 249068
+        "path": "public/ashen-reach/equipment-undead/duskguardGreaves-117d0fc78bdb.glb",
+        "sha256": "117d0fc78bdbff35e2b9c23a7ab74ae474a330c6894da43b965e1bc1dc9cda23",
+        "bytes": 249256
        },
        "verification": {
         "geometryExact": true,
@@ -3206,19 +3209,19 @@
      "escaped": 0
     },
     "wayfarerBoots": {
-     "sha256": "a3b7a9391a6bf9874cdff19586ac614c772bd7f16f3328405c3bfc1a7252dd81",
+     "sha256": "008837effe845afe1e325d40aa2568d5da28c9d87b7ebd801bda81365b0c8e20",
      "bounds": [
       {
        "name": "WayfarerBoots",
        "minimum": [
-        -0.7222084576469168,
-        -0.3218173359100378,
-        -1.190820939888514
+        -0.7221921554013313,
+        -0.32181869088631787,
+        -1.1798149370711393
        ],
        "maximum": [
-        0.7280494444580483,
-        1.365277088002896,
-        0.9347779516072722
+        0.7280351874323532,
+        1.3588923466981255,
+        0.9285448012036774
        ]
       }
      ],
@@ -3423,19 +3426,19 @@
      "escaped": 0
     },
     "duskguardGreaves": {
-     "sha256": "30524af703a0c2d3e178da20b06019e22453e82e3ec831924923fc128c494d6b",
+     "sha256": "9649079113258dd9315a28c7ff43f0bee7fd1724b96f29252bf7736706042e2e",
      "bounds": [
       {
        "name": "DuskguardBootUnderlayer",
        "minimum": [
-        -0.7222084576469168,
-        -0.3218173359100378,
-        -1.190820939888514
+        -0.7221921554013313,
+        -0.32181869088631787,
+        -1.1798149370711393
        ],
        "maximum": [
-        0.7280494444580483,
-        1.365277088002896,
-        0.9347779516072722
+        0.7280351874323532,
+        1.3588923466981255,
+        0.9285448012036774
        ]
       },
       {
@@ -5020,7 +5023,7 @@
   "undead": {
    "pieces": {
     "body": {
-     "sha256": "b2193ae173473e5bfbb8bb056dfc00399945a8895e9d70c13318931094b7f262",
+     "sha256": "c2b269a2e5e300e451fb917125fddda8da91a277c91902d7e35d8daa744ba520",
      "bounds": [
       {
        "name": "UndeadV1Body",
@@ -5060,9 +5063,22 @@
         2.4723007113102327,
         1.1219438963417603
        ]
+      },
+      {
+       "name": "UndeadFootCore",
+       "minimum": [
+        -0.970893520350792,
+        -0.2896258395024226,
+        -1.6507639042572724
+       ],
+       "maximum": [
+        0.9569669878498823,
+        2.4723007113102327,
+        1.1219438963417603
+       ]
       }
      ],
-     "points": 7493220,
+     "points": 11165730,
      "escaped": 0
     },
     "graveweaverHood": {
@@ -5297,19 +5313,19 @@
      "escaped": 0
     },
     "wayfarerBoots": {
-     "sha256": "0ee7a31c0ffe5d592ab4bf42b38b6f84c8a6c6ed70a65cc4b7997d6304ca4e60",
+     "sha256": "9f1a4b40c964f46563cb0cad5ef43587b728d2746eb2c3732a67f881e16ff753",
      "bounds": [
       {
        "name": "WayfarerBoots",
        "minimum": [
         -0.7391617028414899,
         -0.25217545618205883,
-        -1.2902269727036264
+        -1.2840083024582134
        ],
        "maximum": [
         0.7496410539318379,
-        1.4458740453219718,
-        0.9857709232382463
+        1.4389805049977165,
+        0.9827173534184497
        ]
       }
      ],
@@ -5514,19 +5530,19 @@
      "escaped": 0
     },
     "duskguardGreaves": {
-     "sha256": "ae5f46bd2066ca25b7e1e514b51b3c6ba18475b5732ac44245ca734753badf10",
+     "sha256": "1675033cddfe5c2208ddd48cc8018f7c494f2e07f040934b1f0d29dc765f6d99",
      "bounds": [
       {
        "name": "DuskguardBootUnderlayer",
        "minimum": [
         -0.7391617028414899,
         -0.25217545618205883,
-        -1.2902269727036264
+        -1.2840083024582134
        ],
        "maximum": [
         0.7496410539318379,
-        1.4458740453219718,
-        0.9857709232382463
+        1.4389805049977165,
+        0.9827173534184497
        ]
       },
       {
@@ -6018,7 +6034,7 @@
    }
   }
  },
- "points": 158945355,
+ "points": 162617865,
  "escaped": 0,
  "finalByteCache": {
   "entries": 0,
@@ -6031,11 +6047,11 @@
  "gpuErrors": [],
  "published": {
   "version": 1,
-  "publishedAt": "2026-10-07T05:35:28.045Z",
+  "publishedAt": "2026-10-07T21:55:56.392Z",
   "sourceCompilerSha256": "e9bb55b8b67195c5fe92cb8ebfc86aa59ee654a614bcec4154ab5c721a531563",
   "pieceCount": 51,
   "uniqueFiles": 51,
-  "totalBytes": 21045504,
+  "totalBytes": 21047856,
   "lite": "1.31.1",
   "catalogVersion": "appearance-catalog-v8"
  }

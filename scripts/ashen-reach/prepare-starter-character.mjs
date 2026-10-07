@@ -4,7 +4,6 @@
  */
 import {
   startupProvenance,
-  pruneStartupAssets,
 } from "./startup-provenance.mjs";
 import fs from "node:fs/promises";
 import { createHash } from "node:crypto";
@@ -119,4 +118,7 @@ console.log(
   ),
 );
 
-await pruneStartupAssets("character");
+// Retain addressed character assets for a client holding the previous starter
+// manifest. Removing them during equipment preparation makes its delayed fetch
+// fail. Garbage collection requires a separate retention/release decision.
+// https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control#immutable

@@ -62,29 +62,43 @@ Seventeen focused tests and ten native fit cases pass, including bare-foot
 restoration and ordinary Human/Undead Havok sprint/jump. Root reviewed the actual
 1280×720 MP4: the large sole folds improve; residual cuff/strap overlap remains.
 Candidate motion is Telegram **879** and identical VE; no candidate FPS claim.
-This is candidate evidence only. Canonical assets, identity/remote derivatives,
-sealed qualification and production publication are the immediate next package.
+That candidate is now integrated into canonical Human/Undead boots and greaves,
+Human shapes, starter, coverage, identity and remote derivatives. All 231 character
+tests and 115 equipment tests pass; native bounds cover 51 pieces and 162,617,865
+sampled points with zero escapes and zero remaining cache leases. Root has reviewed
+the actual canonical live MP4, including bare-foot restoration and ordinary Havok
+motion. Canonical motion is delivered as Telegram **880** and identical VE.
+Previously addressed boot files are retained for older manifests.
+This is local canonical acceptance. Sealed preview qualification and production
+publication are the immediate next package; no new FPS or public startup claim.
+[Canonical result](plans/character-mmo/results/boot-sole-canonical-2026-10-07.md).
 Production remains the qualified **7d00c56 / 5723a4ab** release.
 
-1. **Smooth background loading and sound activation.** Attribute the remaining
+### Next five priorities, in execution order
+
+1. **Release the canonical boot correction.** Commit/push the prepared assets;
+   seal the existing build, qualify an immutable preview, and promote the same
+   bytes. Verify all served assets/cache headers, three entries, four declared
+   cold-start cohorts, native movement/swaps/mobile/WebKit and fifteen separate
+   settled route windows. Keep every miss and failed attempt. Production 5723a4ab
+   is the rollback target. Require the existing ≤1,000 ms first-play gate and
+   report the user's 144 FPS target at 1280×720, with >120 FPS as the floor.
+2. **Smooth background loading and sound activation.** Attribute the remaining
    streaming p99 around 21.5 ms and first sound-activation cost using the existing
    scheduler/profiling. Preserve the first-play fence; compare complete streaming
-   windows separately from settled FPS. Change only demonstrated bottlenecks.
-2. **Finish visible armor fit.** Start with the retained boot sole silhouette,
-   then target unreviewed neck/waist/wrist/ankle combinations at Human shape
-   endpoints and neutral Orc/Undead. Reuse reviewed fixtures; require live motion
-   for clipping, seams, grips and covered-hair restoration.
-3. **Strengthen release diagnostics.** Extend mutable-manifest cache checks,
-   classify missing responses correctly and retain actual response hashes.
-   Preserve the original startup/input failures and investigate a recurrence from
-   its native cause rather than adding speculative retries.
-   Cache/error-classification/response hashes and bounded transport/body failure
-   reporting are verified. Other published cache families remain unclassified;
-   local directory-walk/output errors remain outside the artifact-report guarantee.
-4. **Extend the equipment factory from the corrected fits.** Choose one missing
-   equipment category and prove one authored piece through existing fit,
-   coverage, publication and normal-game transactions. Bulk set production waits
-   for the fit proof; preserve the accepted source rig and animation.
+   windows separately from settled FPS. The measured first-sound constructor cost
+   is 179 ms. Change demonstrated bottlenecks only; queue-eight and silent-output
+   trials remain rejected. A gain must preserve startup, visuals and memory limits.
+3. **Finish mixed armor fit.** Start with retained cuff/strap overlap, then inspect
+   neck/waist/wrist/ankle combinations at Human shape endpoints and neutral
+   Orc/Undead. Fix a demonstrated seam per pass through the existing authored-piece
+   pipeline. Reuse reviewed fixtures; require live motion for clipping, seams,
+   grips and covered-hair restoration before release.
+4. **Prove one authored shield.** The current off-hand catalogue contains a book;
+   shields are a missing category. Reuse native evaluated sockets, grip/stow,
+   occupancy and the equipment factory to prove one shield across supported fits,
+   swaps, failure rollback and ordinary movement/casts. Review/deliver live motion
+   and measure its cost before expanding the catalogue. Preserve the source rig.
 5. **Complete current physical iPhone acceptance when available.** Test exact
    released covered/uncovered identities, creator rotation, swaps, fifteen-minute
    traversal and background/resume. Report device/network/thermal conditions and
@@ -92,6 +106,11 @@ Production remains the qualified **7d00c56 / 5723a4ab** release.
 
 These are recommendations for the next work, not new completion claims or a
 replacement for the original five-priority goal's remaining acceptance exits.
+Release diagnostics run with priority 1: retain the original 14/60 fetch failures
+and 362 ms input outlier, and fix a demonstrated recurrence from its native cause.
+Mutable-cache classification, response hashes and bounded transport/body failure
+reporting are already verified. Other published cache families remain unclassified;
+local directory-walk/output errors remain outside the artifact-report guarantee.
 
 ## Production receipt and rollback
 

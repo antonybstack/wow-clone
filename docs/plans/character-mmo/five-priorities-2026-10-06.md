@@ -52,6 +52,16 @@ seven enemies, three 12-second windows on five routes, no recording/other render
    [CURRENT](../../CURRENT.md#recommended-next-packages). Keep the original exits
    open. Region, multiplayer and Elf expansion remain parked.
 
+The subsequent canonical boot integration is locally accepted: 231 character and
+115 equipment tests pass, native bounds cover all 51 pieces with zero escapes,
+and root reviewed actual ten-case canonical motion/bare-foot restoration. Sealed
+preview and production qualification remain next; production stays 5723a4ab.
+[Canonical checkpoint](results/boot-sole-canonical-2026-10-07.md). The next work
+order is explicit in [CURRENT](../../CURRENT.md#next-five-priorities-in-execution-order):
+boot release, measured loading/audio hitches, mixed armor fit, one authored shield,
+and current physical iPhone acceptance when hardware is available. This order
+does not replace the original goal's acceptance exits.
+
 This progress does not redefine the five original priorities or mark the full
 objective complete. The following sections retain their requirements and the
 history of justified/closed trials.

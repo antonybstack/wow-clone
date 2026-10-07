@@ -1,0 +1,93 @@
+/** Publish the reviewed sole derivative through the existing per-piece tools.
+ * Local source packs only; shape/coverage/identity/remote preparation and a
+ * sealed Pages release remain separate gates. No outfit permutation builder.
+ * https://gltf-transform.dev/modules/extensions/classes/EXTMeshoptCompression
+ * https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#skins
+ */
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import {NodeIO,VertexLayout} from '@gltf-transform/core';
+import {ALL_EXTENSIONS,EXTMeshoptCompression} from '@gltf-transform/extensions';
+import {MeshoptDecoder,MeshoptEncoder} from 'meshoptimizer';
+import {planPublication,executePublication} from './equipment-factory-contract.mjs';
+import {verifyFactoryEquipmentBind} from './verify-factory-equipment-bind.mjs';
+import {EQUIPMENT_ITEMS} from '../../src/ashen-reach/equipment-catalog.js';
+import {FITS_BY_RACE,assertAssetFit} from '../../src/ashen-reach/equipment-contract.js';
+
+assert.deepEqual(process.argv.slice(2),['--publish'],'Use --publish for local source packs; this does not deploy');
+const sha=b=>createHash('sha256').update(b).digest('hex');
+const descriptorPath='blender/characters/wardrobe/boot-sole.json';
+const descriptorBytes=await fs.readFile(descriptorPath),descriptor=JSON.parse(descriptorBytes);
+const races=['human','undead'],directory={human:'equipment',undead:'equipment-undead'};
+await fs.mkdir('.cache/character-mmo/boot-sole',{recursive:true});
+const work=await fs.mkdtemp('.cache/character-mmo/boot-sole/publication-');
+const run=(script,args)=>execFileSync(process.execPath,[script,...args],{stdio:'inherit'});
+await Promise.all([MeshoptDecoder.ready,MeshoptEncoder.ready]);
+const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder,'meshopt.encoder':MeshoptEncoder}).setVertexLayout(VertexLayout.SEPARATE);
+const oldPlates=new Map();
+for(const race of races)oldPlates.set(race,(await io.read(`public/ashen-reach/${directory[race]}/duskguardGreaves.glb`)).getRoot().listMeshes().find(m=>m.getName()==='DuskguardGreaves'));
+run('scripts/character-assets/build-boot-sole.mjs',[`${work}/first`]);
+run('scripts/character-assets/build-boot-sole.mjs',[`${work}/repeat`]);
+const builds={},manifests={},fits={};
+for(const race of races){
+ const bytes=await fs.readFile(`${work}/first/${race}/wayfarerBoots.glb`);
+ assert.deepEqual(bytes,await fs.readFile(`${work}/repeat/${race}/wayfarerBoots.glb`),'Non-repeatable sole build');
+ const root=(await io.readBinary(bytes)).getRoot(),base=(await io.read(descriptor.fits[race].body)).getRoot();
+ const verification=verifyFactoryEquipmentBind(root,base,descriptor.fits[race].bodyMesh);
+ assertAssetFit({fit:FITS_BY_RACE[race]},EQUIPMENT_ITEMS.wayfarerBoots,race);
+ builds[race]={bytes,sha256:sha(bytes),verification};fits[race]={directory:directory[race]};
+ manifests[race]=JSON.parse(await fs.readFile(`public/ashen-reach/${directory[race]}/manifest.json`,'utf8'));
+}
+assert.equal(sha(await fs.readFile(descriptorPath)),sha(descriptorBytes),'Sole descriptor changed');
+const soleReport=JSON.parse(await fs.readFile(`${work}/first/report.json`,'utf8'));
+const provenance={schema:1,generatedBy:'scripts/character-assets/prepare-boot-sole.mjs',localPacksPublished:true,productionReleased:false,byteIdenticalRebuild:true,soleReport};
+// The established publication primitive writes immutable assets and canonical
+// authoring copies first, then atomically replaces each advertised manifest.
+// No game check or release is permitted until the remaining derivatives finish.
+await executePublication(planPublication({id:'wayfarerBoots',mesh:'WayfarerBoots',fits},builds,manifests,provenance));
+
+// The existing Duskguard compiler reads the newly published canonical underlayer
+// and enforces its reviewed descriptor hash. No copied private audition plate.
+run('scripts/character-assets/build-duskguard-armor.mjs',races);
+const armorReport=JSON.parse(await fs.readFile('.cache/character-mmo/wardrobe-v1/duskguard/report.json','utf8'));
+const armorDescriptorPath='blender/characters/wardrobe/duskguard-armor.json';
+assert.equal(armorReport.descriptor.sha256,sha(await fs.readFile(armorDescriptorPath)));
+for(const tool of armorReport.toolSources)assert.equal(sha(await fs.readFile(tool.path)),tool.sha256,'Duskguard tools changed');
+const files=[],manifestWrites=[],rows=[];
+for(const race of races){
+ const source=`.cache/character-mmo/wardrobe-v1/duskguard/${race}/duskguardGreaves.glb`,input=await fs.readFile(source);
+ const row=armorReport.rows.find(r=>r.race===race&&r.id==='duskguardGreaves');assert.equal(sha(input),row.sha256);
+ const doc=await io.readBinary(input),root=doc.getRoot(),plate=root.listMeshes().find(m=>m.getName()==='DuskguardGreaves'),old=oldPlates.get(race);
+ assert.equal(plate.listPrimitives().length,old.listPrimitives().length);
+ for(let i=0;i<old.listPrimitives().length;i++){
+  const p=plate.listPrimitives()[i],before=old.listPrimitives()[i];
+  assert.deepEqual(p.getIndices().getArray(),before.getIndices().getArray(),'Existing plate topology changed');
+  assert.deepEqual(p.listSemantics().sort(),before.listSemantics().sort());
+  for(const semantic of before.listSemantics())assert.deepEqual(p.getAttribute(semantic).getArray(),before.getAttribute(semantic).getArray(),`Existing plate ${semantic} changed`);
+ }
+ const underlayer=root.listMeshes().find(m=>m.getName()==='DuskguardBootUnderlayer').listPrimitives()[0];
+ const sole=(await io.readBinary(builds[race].bytes)).getRoot().listMeshes()[0].listPrimitives()[0];
+ assert.deepEqual(underlayer.getIndices().getArray(),sole.getIndices().getArray());
+ for(const semantic of sole.listSemantics())assert.deepEqual(underlayer.getAttribute(semantic).getArray(),sole.getAttribute(semantic).getArray(),`Underlayer ${semantic} differs from reviewed sole`);
+ for(const extension of root.listExtensionsUsed())if(extension.extensionName==='EXT_meshopt_compression')extension.dispose();
+ doc.createExtension(EXTMeshoptCompression).setRequired(true);
+ const bytes=await io.writeBinary(doc),digest=sha(bytes),id='duskguardGreaves',dir=`public/ashen-reach/${directory[race]}`,name=`${id}-${digest.slice(0,12)}.glb`;
+ const written=(await io.readBinary(bytes)).getRoot(),base=(await io.read(descriptor.fits[race].body)).getRoot();
+ const verification=verifyFactoryEquipmentBind(written,base,descriptor.fits[race].bodyMesh),meshes=EQUIPMENT_ITEMS[id].parts.map(p=>p.mesh).sort();
+ assert.deepEqual(written.listMeshes().map(m=>m.getName()).sort(),meshes);
+ assertAssetFit({fit:FITS_BY_RACE[race]},EQUIPMENT_ITEMS[id],race);
+ const manifest=JSON.parse(await fs.readFile(`${dir}/manifest.json`,'utf8'));
+ manifest.items[id]={url:`/ashen-reach/${directory[race]}/${name}`,bytes:bytes.length,sha256:digest,meshes,fit:FITS_BY_RACE[race]};
+ files.push({path:`${dir}/${name}`,bytes},{path:`${dir}/${id}.glb`,bytes});
+ manifestWrites.push({path:`${dir}/manifest.json`,bytes:Buffer.from(JSON.stringify(manifest,null,2)+'\n')});
+ rows.push({race,id,source:{path:source,sha256:sha(input)},artifact:manifest.items[id],verification,existingPlateArraysExact:true,reviewedUnderlayerArraysExact:true});
+}
+provenance.duskguard={sourceReport:armorReport,rows};
+provenance.tools=await Promise.all(['scripts/character-assets/prepare-boot-sole.mjs','scripts/character-assets/build-boot-sole.mjs','scripts/character-assets/equipment-factory-contract.mjs',descriptorPath,armorDescriptorPath].map(async p=>({path:p,sha256:sha(await fs.readFile(p))})));
+files.push({path:'public/ashen-reach/boot-sole-provenance.json',bytes:Buffer.from(JSON.stringify(provenance,null,2)+'\n')});
+await executePublication({files,manifests:manifestWrites});
+await fs.writeFile(path.join(work,'publication.json'),JSON.stringify(provenance,null,2)+'\n');
+console.log(JSON.stringify({localSourcePacksPublished:true,productionReleased:false,races,work,remaining:['Human shapes','starter compacts','coverage','identity equipment','native remote bounds','live canonical acceptance','sealed release']}));

@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "id": "duskguard",
-  "revision": 1,
+  "revision": 2,
   "status": "reviewed-source; production integration pending",
   "blenderVersion": "5.2.1",
   "items": {
@@ -81,7 +81,7 @@
         },
         "wayfarerBoots": {
           "source": "public/ashen-reach/equipment/wayfarerBoots.glb",
-          "sha256": "a55a9e4cd7b8658b6f2bd51dd3092af576e8d7dd279c9687bb3419a5c858bd98"
+          "sha256": "84539c7633fd5b17d7e0ed27e45d74d6dcb8f4c5eb244a6f3e4ff8ba5134aa0c"
         },
         "graveweaverGloves": {
           "source": "public/ashen-reach/equipment/graveweaverGloves.glb",
@@ -141,7 +141,7 @@
         },
         "wayfarerBoots": {
           "source": "public/ashen-reach/equipment-undead/wayfarerBoots.glb",
-          "sha256": "ce99e04c73153c47b97b69f94327983e3844d0f24c8a7757e4126f1baabc5c85"
+          "sha256": "d92d6e57807b91cc19886c634b3ff3c84b21909c63ecaa68fbc5a66af44dbeac"
         },
         "graveweaverGloves": {
           "source": "public/ashen-reach/equipment-undead/graveweaverGloves.glb",
@@ -201,6 +201,12 @@
     "result": "docs/plans/character-mmo/results/layer-coverage-production-2026-10-01.md",
     "motion": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/duskguard-coverage-motion-2026-10-01.mp4",
     "scope": "Accepted M1 bodies on three races; Human neutral/slender/stout under native source motion with conservative coverage. Mixed-design catalogue and remote gates remain pending.",
-    "limitations": "Inherited coat surface marks remain; steel thigh reflection is confirmed with native body/tassets hiding. M5 identity and physical phone fit are not accepted."
+    "limitations": "Inherited coat surface marks remain; steel thigh reflection is confirmed with native body/tassets hiding. M5 identity and physical phone fit are not accepted.",
+    "bootSole": {
+      "date": "2026-10-07",
+      "result": "docs/plans/character-mmo/results/boot-sole-candidate-2026-10-07.md",
+      "telegramMessageId": 879,
+      "scope": "Reviewed Human/Undead sole derivative; unchanged source plates; canonical release pending"
+    }
   }
 }
