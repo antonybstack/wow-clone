@@ -63,16 +63,32 @@ maximum outfit p95 **1,001 ms**, worst **1,177.1 ms**, 2 misses; historical outf
 p95 **936.9 ms**, worst **1,220.9 ms**, 1 miss. All forty starts are grounded,
 dressed and responsive without recorded errors. **Do not promote.**
 
-**In progress:** the held-stylesheet control confirms an HTML parser barrier:
-the neutral classic preload follows CSS, holding up the saved catalogue/module.
-Original HTML makes zero saved-body requests while CSS is held; moving only that
-script ahead of CSS starts one shared body request and preserves the exact saved
-appearance, Havok and readiness. Root applied the generated-HTML ordering fix;
-23 focused tests, the build, ten prefetch cases and the fixed-page held-CSS
-control pass. Only the two game HTML aliases change among 535 built files.
-A new immutable preview and public timing are next; no speed gain is claimed yet. Evidence:
-[candidate result](plans/character-mmo/results/startup-normal-release-2026-10-06.md)
-and `.cache/character-mmo/startup-normal-release-2026-10-06/`.
+**Latest preview is rejected:** source **`1de0bba`**, immutable
+[05f75b6e](https://05f75b6e.fardel.pages.dev), changes only the two HTML aliases.
+The neutral preload now precedes blocking CSS; 23 focused tests, ten prefetch
+cases and local/public held-CSS discovery checks pass. All 536 delivery checks
+pass. However bare-root entry times out, and cold cohorts record **14 failed
+starts out of 60**, each with `TypeError: Failed to fetch`: default 6, maximum 5,
+historical 3. Valid-row worst times are 1,704.4 / 1,954.9 / 2,227.7 ms respectively;
+these exclude failed starts and do not qualify the cohorts. Production is unchanged.
+
+**Diagnostic checkpoint:** three entry aliases, six alternating fresh contexts
+on the old/new previews and six new browser processes now load successfully.
+The fresh-process diagnostic is **705.7–882.6 ms**, grounded and responsive with
+no recorded errors; it does not replace the failed release cohorts. Root reviewed
+its actual starting-area capture. An intentionally failed local fetch verifies
+that both updated probes retain the failing URL, native network error and loading
+stack, exit nonzero in under one second, and clean up. No runtime patch is justified
+by the current evidence; the public failure has not reproduced and remains unexplained.
+
+**Next bounded investigation:** if the failure recurs, use the retained overlay
+stack and failed-request URL to isolate its actual loader/transport path. Do not
+add speculative retries or claim that subsequent successful diagnostics fix it.
+A new release still requires complete clean entry and declared startup gates;
+production has not changed. Evidence:
+[candidate result](plans/character-mmo/results/startup-normal-release-2026-10-06.md),
+[failed cohorts](baselines/character-mmo/startup-normal-release-2026-10-06/css-public-failure.json),
+[diagnostic receipt](baselines/character-mmo/startup-normal-release-2026-10-06/fetch-diagnostic.json).
 
 Closed investigations: [extra hints/Brotli/accessor dedup](plans/character-mmo/results/startup-transport-2026-10-06.md).
 The [normal investigation](plans/character-mmo/results/startup-normals-2026-10-06.md)
@@ -144,22 +160,25 @@ preserve proportions. Physical phone and Telegram Desktop remain unverified.
   found no new gross fit failure. They do not certify all 9,072 valid combinations.
   Boot sole silhouette/aliasing, broader cloth authoring, licensed Elf source and
   physical iPhone startup/memory/thermal checks remain explicit follow-ups.
-- **Exclusive browser owner:** Grok `01a112eb-107c-7881-b787-9a15f73ffd5a`,
-  slot 7 / CDP 10037 / Vite 5873, `https://5f312add.fardel.pages.dev`.
-  Forty cold processes and the FPS harness are closed. The CSS build/control
-  records its own PIDs and cleanup in `css-build.md` under the candidate
-  evidence directory. No timing/encoding/build runs overlap this check.
-- VE review tab 1147995772 and wrapper server 5966 are closed. Telegram and
-  Shadowglass media are paused and guarded before timing; restore recorded
-  prior playback afterwards (`__ashenPriorityMediaState` / pause handler).
-  User Edge 2931/Orca 1889 remain intact. Cloudflare tab 1147995760 remains
-  signed out for optional user sign-in. No game page is open in Edge.
+- **Browser cleanup complete:** Grok `01a11486-aa20-7f13-b2cb-897cd55c3233`
+  closed slot 7 (Chrome 9841, Vite 9796/9816), all six fresh-process probes and
+  the forced-failure fixture. Root confirmed no owned Chrome, probe or preview
+  process and no listener on 10037 / 5873 / fixture 53472. No game tab is open
+  in Edge. Both modified probes pass syntax checks and twelve focused tests.
+- VE review tab 1147995772 and wrapper server 5966 remain closed. Temporary
+  Telegram/Shadowglass playback guards were removed after diagnostics. Original
+  connected media received their prior playback state; Shadowglass is restored,
+  Telegram's own playback behavior leaves two videos playing/two paused. One
+  old Telegram node had detached and was not replaced or manipulated.
+  User Edge 2931 and current Orca 98938 remain intact (old Orca 1889 has exited).
+  Cloudflare tab 1147995760 remains signed out for optional user sign-in.
 - [Grok operations workflow](reviews/workflow-2026-10-05.md#current-operating-rule--2026-10-06):
   delegate operations exclusively to Grok; root implements and reviews. Freeze
   product inputs for gates; one worker owns browser/timing. Preserve unrelated
   AGENTS.md edits and caches. Source is committed/pushed; final docs need no rebuild.
-- Native goal is **active**, verified 2026-10-06. Continue between checkpoints;
-  do not wait for another proceed. [Continuation limits](autonomous-continuation.md).
+- Native goal reports **usageLimited** on the latest tool read; it is not complete.
+  This user-directed turn continues actionable startup diagnosis. Do not claim
+  the goal has resumed automatically. [Continuation limits](autonomous-continuation.md).
 
 ## References
 

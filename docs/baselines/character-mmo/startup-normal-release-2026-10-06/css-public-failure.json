@@ -1,0 +1,1627 @@
+{
+  "worker": "grok-4.6",
+  "phase": "complete",
+  "promote": false,
+  "production": false,
+  "recording": false,
+  "speedupClaim": false,
+  "head": "1de0bba7bcbec4d1a6d70dedc5ea71a6355e66ac",
+  "seal": {
+    "path": "css-pages-seal.json",
+    "sealSha256": "5e8cf64c7787ed8e8b86bd2a890944b68b0dd4a10bc98648ea6063c6ea165998",
+    "productInputsSha256": "c6cbc4ceb4bd3221b00c06f5e2e2370a6d501e657030a5c650850156c2bc5d5b",
+    "files": 535,
+    "bytes": 290703827,
+    "uncommittedProductInputs": 0
+  },
+  "deploy": {
+    "rebuild": false,
+    "branch": "startup-css-20261006",
+    "immutableUrl": "https://05f75b6e.fardel.pages.dev",
+    "aliasUrl": "https://startup-css-20261006.fardel.pages.dev",
+    "uploadedFiles": 2,
+    "alreadyUploaded": 532,
+    "exit": 0
+  },
+  "integrity": {
+    "checked": 536,
+    "matched": true,
+    "exit": 0,
+    "out": "css-public-integrity.json"
+  },
+  "live": {
+    "slot": 7,
+    "chromePid": 23884,
+    "vitePid": 23859,
+    "viteListenerPid": 23879,
+    "entry": {
+      "exit": 1,
+      "error": "page.waitForFunction Timeout 120000ms on first visit /",
+      "rerun": false
+    },
+    "fixed": {
+      "exit": 0,
+      "passed": true,
+      "rewrites": 0,
+      "beforeReleaseBodyHits": 1,
+      "cataloguePresent": 1,
+      "bodyHitsAfterReady": 1,
+      "physics": true,
+      "out": "css-public-fixed.json"
+    },
+    "down": true
+  },
+  "cold": {
+    "url": "https://05f75b6e.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+    "profile": "50mbps",
+    "rerun": false,
+    "default": {
+      "exit": 1,
+      "out": "css-cold-default.json",
+      "budget": {
+        "expectedRuns": 20,
+        "recordedRuns": 20,
+        "validRuns": 14,
+        "complete": false,
+        "misses": 2,
+        "p95Ms": 1704.4000000059605,
+        "worstMs": 1704.4000000059605,
+        "passed": false
+      },
+      "timeouts": [
+        2,
+        11,
+        14,
+        15,
+        16,
+        18
+      ],
+      "grounded": 14,
+      "physics": 14
+    },
+    "maximum": {
+      "exit": 1,
+      "out": "css-cold-maximum.json",
+      "budget": {
+        "expectedRuns": 20,
+        "recordedRuns": 20,
+        "validRuns": 15,
+        "complete": false,
+        "misses": 9,
+        "p95Ms": 1954.9000000059605,
+        "worstMs": 1954.9000000059605,
+        "passed": false
+      },
+      "timeouts": [
+        5,
+        6,
+        9,
+        11,
+        14
+      ],
+      "grounded": 15,
+      "physics": 15,
+      "sevenCompactUrlsOnValidRuns": true,
+      "recipeApplied": true
+    },
+    "historical": {
+      "exit": 1,
+      "out": "css-cold-historical.json",
+      "budget": {
+        "expectedRuns": 20,
+        "recordedRuns": 20,
+        "validRuns": 17,
+        "complete": false,
+        "misses": 14,
+        "p95Ms": 2227.699999988079,
+        "worstMs": 2227.699999988079,
+        "passed": false
+      },
+      "timeouts": [
+        2,
+        13,
+        16
+      ],
+      "grounded": 17,
+      "physics": 17,
+      "recipeApplied": true
+    }
+  },
+  "cleanup": {
+    "slot7": true,
+    "listenersClosed": [
+      "10037",
+      "5873",
+      "5173",
+      "7074"
+    ],
+    "probeActive": false,
+    "edge2931": true,
+    "orca1889": true
+  },
+  "cohorts": {
+    "default": {
+      "rawPath": ".cache/character-mmo/startup-normal-release-2026-10-06/css-cold-default.json",
+      "sha256": "c4b78188d6a6b6c26e2db94b6e09772468cbaa84e9d742c45d77fe89a59506d2",
+      "conditions": {
+        "requestedRuns": 20,
+        "budgetMs": 1000,
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "savedAppearance": null,
+        "expectedAppearance": null,
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "budget": {
+        "maxMs": 1000,
+        "expectedRuns": 20,
+        "recordedRuns": 20,
+        "validRuns": 14,
+        "complete": false,
+        "misses": 2,
+        "p95Ms": 1704.4000000059605,
+        "worstMs": 1704.4000000059605,
+        "passed": false
+      },
+      "rows": [
+        {
+          "playableMs": 739.1999999880791,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 989.0999999940395,
+            "observedAt": 1028.199999988079,
+            "position": {
+              "x": -0.00027960516192845794,
+              "z": 0.2333065791975754
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 39.099999994039536
+          },
+          "errors": [],
+          "run": 1,
+          "browserPid": "29356"
+        },
+        {
+          "run": 2,
+          "browserPid": "29425",
+          "failed": true,
+          "failure": {
+            "name": "TimeoutError",
+            "message": "page.waitForFunction: Timeout 30000ms exceeded."
+          },
+          "errors": [
+            "TypeError: Failed to fetch"
+          ]
+        },
+        {
+          "playableMs": 689.2999999821186,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 914.5,
+            "observedAt": 946.0999999940395,
+            "position": {
+              "x": -0.0003151545360893874,
+              "z": 0.22974384480381388
+            },
+            "frames": 20,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 31.599999994039536
+          },
+          "errors": [],
+          "run": 3,
+          "browserPid": "30349"
+        },
+        {
+          "playableMs": 713.1999999880791,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 952.8000000119209,
+            "observedAt": 984.9000000059605,
+            "position": {
+              "x": -0.00023902701485368753,
+              "z": 0.2305781876468459
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 32.099999994039536
+          },
+          "errors": [],
+          "run": 4,
+          "browserPid": "30418"
+        },
+        {
+          "playableMs": 1704.4000000059605,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1944.2999999821186,
+            "observedAt": 1975.5,
+            "position": {
+              "x": -0.00026896495340873115,
+              "z": 0.2319253561188369
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 31.200000017881393
+          },
+          "errors": [],
+          "run": 5,
+          "browserPid": "30485"
+        },
+        {
+          "playableMs": 1003,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1233.5999999940395,
+            "observedAt": 1263.199999988079,
+            "position": {
+              "x": -0.0002753088266469472,
+              "z": 0.22981416096516558
+            },
+            "frames": 20,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 29.599999994039536
+          },
+          "errors": [],
+          "run": 6,
+          "browserPid": "30578"
+        },
+        {
+          "playableMs": 716,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 948.1999999880791,
+            "observedAt": 974.2999999821186,
+            "position": {
+              "x": -0.00026570155308282685,
+              "z": 0.22913111480978093
+            },
+            "frames": 20,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 26.099999994039536
+          },
+          "errors": [],
+          "run": 7,
+          "browserPid": "30664"
+        },
+        {
+          "playableMs": 814.0999999940395,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1056.8999999761581,
+            "observedAt": 1095.7999999821186,
+            "position": {
+              "x": -0.0002544310033544093,
+              "z": 0.23895100405576486
+            },
+            "frames": 22,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 38.900000005960464
+          },
+          "errors": [],
+          "run": 8,
+          "browserPid": "30730"
+        },
+        {
+          "playableMs": 716.1999999880791,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 955.2999999821186,
+            "observedAt": 980.0999999940395,
+            "position": {
+              "x": -0.0002360948678156289,
+              "z": 0.2326833621066483
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 24.80000001192093
+          },
+          "errors": [],
+          "run": 9,
+          "browserPid": "30803"
+        },
+        {
+          "playableMs": 706.6999999880791,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 931.1999999880791,
+            "observedAt": 964.0999999940395,
+            "position": {
+              "x": -0.00024757847266555154,
+              "z": 0.23826309679770064
+            },
+            "frames": 20,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 32.900000005960464
+          },
+          "errors": [],
+          "run": 10,
+          "browserPid": "30870"
+        },
+        {
+          "run": 11,
+          "browserPid": "30961",
+          "failed": true,
+          "failure": {
+            "name": "TimeoutError",
+            "message": "page.waitForFunction: Timeout 30000ms exceeded."
+          },
+          "errors": [
+            "TypeError: Failed to fetch"
+          ]
+        },
+        {
+          "playableMs": 713.8000000119209,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 958.8000000119209,
+            "observedAt": 985.6000000238419,
+            "position": {
+              "x": -0.0002398384417894798,
+              "z": 0.23197675563364217
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 26.80000001192093
+          },
+          "errors": [],
+          "run": 12,
+          "browserPid": "31939"
+        },
+        {
+          "playableMs": 719.7000000178814,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 964.8000000119209,
+            "observedAt": 991.0999999940395,
+            "position": {
+              "x": -0.00024454565843322676,
+              "z": 0.23056844886447964
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 26.299999982118607
+          },
+          "errors": [],
+          "run": 13,
+          "browserPid": "32056"
+        },
+        {
+          "run": 14,
+          "browserPid": "32123",
+          "failed": true,
+          "failure": {
+            "name": "TimeoutError",
+            "message": "page.waitForFunction: Timeout 30000ms exceeded."
+          },
+          "errors": [
+            "TypeError: Failed to fetch"
+          ]
+        },
+        {
+          "run": 15,
+          "browserPid": "33037",
+          "failed": true,
+          "failure": {
+            "name": "TimeoutError",
+            "message": "page.waitForFunction: Timeout 30000ms exceeded."
+          },
+          "errors": [
+            "TypeError: Failed to fetch"
+          ]
+        },
+        {
+          "run": 16,
+          "browserPid": "33990",
+          "failed": true,
+          "failure": {
+            "name": "TimeoutError",
+            "message": "page.waitForFunction: Timeout 30000ms exceeded."
+          },
+          "errors": [
+            "TypeError: Failed to fetch"
+          ]
+        },
+        {
+          "playableMs": 713.9000000059605,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 956.4000000059605,
+            "observedAt": 985.1999999880791,
+            "position": {
+              "x": -0.00026172520288764855,
+              "z": 0.23403813202332352
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 28.799999982118607
+          },
+          "errors": [],
+          "run": 17,
+          "browserPid": "34922"
+        },
+        {
+          "run": 18,
+          "browserPid": "34990",
+          "failed": true,
+          "failure": {
+            "name": "TimeoutError",
+            "message": "page.waitForFunction: Timeout 30000ms exceeded."
+          },
+          "errors": [
+            "TypeError: Failed to fetch"
+          ]
+        },
+        {
+          "playableMs": 697,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 941.7999999821186,
+            "observedAt": 970,
+            "position": {
+              "x": -0.0002696352464426606,
+              "z": 0.23332417295718755
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 28.200000017881393
+          },
+          "errors": [],
+          "run": 19,
+          "browserPid": "35863"
+        },
+        {
+          "playableMs": 798.2999999821186,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1039.2999999821186,
+            "observedAt": 1063.4000000059605,
+            "position": {
+              "x": -0.00027577622792216805,
+              "z": 0.23471333605609102
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 24.100000023841858
+          },
+          "errors": [],
+          "run": 20,
+          "browserPid": "35958"
+        }
+      ]
+    },
+    "maximum": {
+      "rawPath": ".cache/character-mmo/startup-normal-release-2026-10-06/css-cold-maximum.json",
+      "sha256": "996ead88d5e69811e40a8b72b3ae31fb0abd8521d901ab1c2fa04ac848e054d7",
+      "conditions": {
+        "requestedRuns": 20,
+        "budgetMs": 1000,
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "savedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "duskguardCuirass",
+            "legs": "graveweaverSkirt",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "expectedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "duskguardCuirass",
+            "legs": "graveweaverSkirt",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "budget": {
+        "maxMs": 1000,
+        "expectedRuns": 20,
+        "recordedRuns": 20,
+        "validRuns": 15,
+        "complete": false,
+        "misses": 9,
+        "p95Ms": 1954.9000000059605,
+        "worstMs": 1954.9000000059605,
+        "passed": false
+      },
+      "rows": [
+        {
+          "playableMs": 937.8000000119209,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1162.0999999940395,
+            "observedAt": 1198.699999988079,
+            "position": {
+              "x": -0.0005744816910984667,
+              "z": 0.23278620867485106
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 36.599999994039536
+          },
+          "errors": [],
+          "run": 1,
+          "browserPid": "36031"
+        },
+        {
+          "playableMs": 1189.2999999821186,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1422.4000000059605,
+            "observedAt": 1459.4000000059605,
+            "position": {
+              "x": -0.0005798375699810142,
+              "z": 0.2306767572497937
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 37
+          },
+          "errors": [],
+          "run": 2,
+          "browserPid": "36098"
+        },
+        {
+          "playableMs": 1352.4000000059605,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1594.300000011921,
+            "observedAt": 1629.5999999940395,
+            "position": {
+              "x": -3.5837307817774893e-05,
+              "z": 0.22846460029744323
+            },
+            "frames": 20,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 35.29999998211861
+          },
+          "errors": [],
+          "run": 3,
+          "browserPid": "36192"
+        },
+        {
+          "playableMs": 966.6999999880791,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1189.4000000059605,
+            "observedAt": 1228.199999988079,
+            "position": {
+              "x": -0.0006636666005981737,
+              "z": 0.23472882363361852
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 38.79999998211861
+          },
+          "errors": [],
+          "run": 4,
+          "browserPid": "36278"
+        },
+        {
+          "run": 5,
+          "browserPid": "36360",
+          "failed": true,
+          "failure": {
+            "name": "TimeoutError",
+            "message": "page.waitForFunction: Timeout 30000ms exceeded."
+          },
+          "errors": [
+            "TypeError: Failed to fetch"
+          ]
+        },
+        {
+          "run": 6,
+          "browserPid": "37225",
+          "failed": true,
+          "failure": {
+            "name": "TimeoutError",
+            "message": "page.waitForFunction: Timeout 30000ms exceeded."
+          },
+          "errors": [
+            "TypeError: Failed to fetch"
+          ]
+        },
+        {
+          "playableMs": 926.2000000178814,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1155.5999999940395,
+            "observedAt": 1187.9000000059605,
+            "position": {
+              "x": -0.0005493411729766632,
+              "z": 0.232130574543086
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 32.30000001192093
+          },
+          "errors": [],
+          "run": 7,
+          "browserPid": "38200"
+        },
+        {
+          "playableMs": 1954.9000000059605,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 2186.0999999940395,
+            "observedAt": 2216.800000011921,
+            "position": {
+              "x": -0.0006849309124224077,
+              "z": 0.23399129842148858
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 30.700000017881393
+          },
+          "errors": [],
+          "run": 8,
+          "browserPid": "38288"
+        },
+        {
+          "run": 9,
+          "browserPid": "38382",
+          "failed": true,
+          "failure": {
+            "name": "TimeoutError",
+            "message": "page.waitForFunction: Timeout 30000ms exceeded."
+          },
+          "errors": [
+            "TypeError: Failed to fetch"
+          ]
+        },
+        {
+          "playableMs": 1065.5,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1279.3999999761581,
+            "observedAt": 1315,
+            "position": {
+              "x": -0.0005201983310746878,
+              "z": 0.23358200300082504
+            },
+            "frames": 20,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 35.60000002384186
+          },
+          "errors": [],
+          "run": 10,
+          "browserPid": "39343"
+        },
+        {
+          "run": 11,
+          "browserPid": "39436",
+          "failed": true,
+          "failure": {
+            "name": "TimeoutError",
+            "message": "page.waitForFunction: Timeout 30000ms exceeded."
+          },
+          "errors": [
+            "TypeError: Failed to fetch"
+          ]
+        },
+        {
+          "playableMs": 964.5,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1204.300000011921,
+            "observedAt": 1237,
+            "position": {
+              "x": -0.0004798902404229055,
+              "z": 0.23015313492114703
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 32.69999998807907
+          },
+          "errors": [],
+          "run": 12,
+          "browserPid": "40306"
+        },
+        {
+          "playableMs": 1334,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1570.4000000059605,
+            "observedAt": 1606.699999988079,
+            "position": {
+              "x": -0.0005050284007472128,
+              "z": 0.23290877350628436
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 36.29999998211861
+          },
+          "errors": [],
+          "run": 13,
+          "browserPid": "40398"
+        },
+        {
+          "run": 14,
+          "browserPid": "40491",
+          "failed": true,
+          "failure": {
+            "name": "TimeoutError",
+            "message": "page.waitForFunction: Timeout 30000ms exceeded."
+          },
+          "errors": [
+            "TypeError: Failed to fetch"
+          ]
+        },
+        {
+          "playableMs": 941.0999999940395,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1179.5,
+            "observedAt": 1213.199999988079,
+            "position": {
+              "x": -0.000563888855822812,
+              "z": 0.23210490216312774
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 33.69999998807907
+          },
+          "errors": [],
+          "run": 15,
+          "browserPid": "41369"
+        },
+        {
+          "playableMs": 1284.699999988079,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1517.199999988079,
+            "observedAt": 1558.5999999940395,
+            "position": {
+              "x": -0.0005744051887049781,
+              "z": 0.2299863438460678
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 41.400000005960464
+          },
+          "errors": [],
+          "run": 16,
+          "browserPid": "41474"
+        },
+        {
+          "playableMs": 958.8999999761581,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1199.3999999761581,
+            "observedAt": 1231.5,
+            "position": {
+              "x": -0.0005046908537511825,
+              "z": 0.232909369177464
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 32.10000002384186
+          },
+          "errors": [],
+          "run": 17,
+          "browserPid": "41566"
+        },
+        {
+          "playableMs": 1577,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1819,
+            "observedAt": 1849.699999988079,
+            "position": {
+              "x": -0.000495049035749242,
+              "z": 0.23222638398264814
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 30.69999998807907
+          },
+          "errors": [],
+          "run": 18,
+          "browserPid": "41633"
+        },
+        {
+          "playableMs": 1913.1000000238419,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 2156.600000023842,
+            "observedAt": 2189,
+            "position": {
+              "x": -0.0005529010226409365,
+              "z": 0.23212429245579247
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 32.39999997615814
+          },
+          "errors": [],
+          "run": 19,
+          "browserPid": "41725"
+        },
+        {
+          "playableMs": 1634.3999999761581,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1870.8999999761581,
+            "observedAt": 1900.199999988079,
+            "position": {
+              "x": -0.0005802984754124575,
+              "z": 0.23137594384568572
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 29.30000001192093
+          },
+          "errors": [],
+          "run": 20,
+          "browserPid": "41835"
+        }
+      ]
+    },
+    "historical": {
+      "rawPath": ".cache/character-mmo/startup-normal-release-2026-10-06/css-cold-historical.json",
+      "sha256": "a59fd4206d84d22d21f26bd9aba8040ef5827a33ad7242dc754fd831a0f32db1",
+      "conditions": {
+        "requestedRuns": 20,
+        "budgetMs": 1000,
+        "gpuProbe": false,
+        "traceGpu": false,
+        "disableShaderCache": false,
+        "disableHttpCache": true,
+        "profile": "50mbps",
+        "savedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "expectedAppearance": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v7",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1.15,
+            "build": -0.95
+          },
+          "components": {
+            "head": "human-prime-v1",
+            "hair": "human-ponytail01-v1"
+          },
+          "dyes": {
+            "helmet": "moss",
+            "torso": "oxblood",
+            "legs": "indigo"
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "pilgrimTunic",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": "bastionShoulders"
+          }
+        },
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "Apple M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+        "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+      },
+      "budget": {
+        "maxMs": 1000,
+        "expectedRuns": 20,
+        "recordedRuns": 20,
+        "validRuns": 17,
+        "complete": false,
+        "misses": 14,
+        "p95Ms": 2227.699999988079,
+        "worstMs": 2227.699999988079,
+        "passed": false
+      },
+      "rows": [
+        {
+          "playableMs": 1917.9000000059605,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 2159.7000000178814,
+            "observedAt": 2187,
+            "position": {
+              "x": -0.00040826318917379443,
+              "z": 0.22887953546715914
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 27.299999982118607
+          },
+          "errors": [],
+          "run": 1,
+          "browserPid": "41935"
+        },
+        {
+          "run": 2,
+          "browserPid": "42064",
+          "failed": true,
+          "failure": {
+            "name": "TimeoutError",
+            "message": "page.waitForFunction: Timeout 30000ms exceeded."
+          },
+          "errors": [
+            "TypeError: Failed to fetch"
+          ]
+        },
+        {
+          "playableMs": 1715.4000000059605,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1951.4000000059605,
+            "observedAt": 1993.9000000059605,
+            "position": {
+              "x": -0.00042183354311786967,
+              "z": 0.22955558795230857
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 42.5
+          },
+          "errors": [],
+          "run": 3,
+          "browserPid": "42917"
+        },
+        {
+          "playableMs": 2212.7999999821186,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 2445.199999988079,
+            "observedAt": 2482,
+            "position": {
+              "x": -0.0004221526845312767,
+              "z": 0.23095502467836349
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 36.80000001192093
+          },
+          "errors": [],
+          "run": 4,
+          "browserPid": "43031"
+        },
+        {
+          "playableMs": 2024.699999988079,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 2259.300000011921,
+            "observedAt": 2297,
+            "position": {
+              "x": -0.0005314660842797153,
+              "z": 0.234262118690005
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 37.69999998807907
+          },
+          "errors": [],
+          "run": 5,
+          "browserPid": "43159"
+        },
+        {
+          "playableMs": 1449.699999988079,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1672.9000000059605,
+            "observedAt": 1701.800000011921,
+            "position": {
+              "x": -0.00039802766255804723,
+              "z": 0.23169759820201086
+            },
+            "frames": 20,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 28.900000005960464
+          },
+          "errors": [],
+          "run": 6,
+          "browserPid": "43251"
+        },
+        {
+          "playableMs": 1559.699999988079,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1799.7999999821186,
+            "observedAt": 1830.2999999821186,
+            "position": {
+              "x": -0.0005318735514133606,
+              "z": 0.2321613997555074
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 30.5
+          },
+          "errors": [],
+          "run": 7,
+          "browserPid": "43344"
+        },
+        {
+          "playableMs": 1698.2999999821186,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1932.199999988079,
+            "observedAt": 1960,
+            "position": {
+              "x": -0.00047491068679857596,
+              "z": 0.23296192220151477
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 27.80000001192093
+          },
+          "errors": [],
+          "run": 8,
+          "browserPid": "43450"
+        },
+        {
+          "playableMs": 876.8999999761581,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1112.5999999940395,
+            "observedAt": 1147.199999988079,
+            "position": {
+              "x": -0.00038113555682538875,
+              "z": 0.2296274077147319
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 34.599999994039536
+          },
+          "errors": [],
+          "run": 9,
+          "browserPid": "43564"
+        },
+        {
+          "playableMs": 999.7000000178814,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1236.800000011921,
+            "observedAt": 1265.7000000178814,
+            "position": {
+              "x": -0.0004272101064723819,
+              "z": 0.2323460997326318
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 28.900000005960464
+          },
+          "errors": [],
+          "run": 10,
+          "browserPid": "43630"
+        },
+        {
+          "playableMs": 1807.0999999940395,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 2042.9000000059605,
+            "observedAt": 2077.9000000059605,
+            "position": {
+              "x": -0.0004407333192616978,
+              "z": 0.23092223532461748
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 35
+          },
+          "errors": [],
+          "run": 11,
+          "browserPid": "43714"
+        },
+        {
+          "playableMs": 1839.6000000238419,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 2071.100000023842,
+            "observedAt": 2100.800000011921,
+            "position": {
+              "x": -0.00040824740488488114,
+              "z": 0.2302795634468851
+            },
+            "frames": 20,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 29.69999998807907
+          },
+          "errors": [],
+          "run": 12,
+          "browserPid": "43827"
+        },
+        {
+          "run": 13,
+          "browserPid": "43915",
+          "failed": true,
+          "failure": {
+            "name": "TimeoutError",
+            "message": "page.waitForFunction: Timeout 30000ms exceeded."
+          },
+          "errors": [
+            "TypeError: Failed to fetch"
+          ]
+        },
+        {
+          "playableMs": 1146.2999999821186,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1379,
+            "observedAt": 1416.699999988079,
+            "position": {
+              "x": -0.0004272266704575271,
+              "z": 0.23024607062724362
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 37.69999998807907
+          },
+          "errors": [],
+          "run": 14,
+          "browserPid": "44774"
+        },
+        {
+          "playableMs": 1125.0999999940395,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1351.0999999940395,
+            "observedAt": 1389.4000000059605,
+            "position": {
+              "x": -0.0004593551167936141,
+              "z": 0.2301893733726611
+            },
+            "frames": 20,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 38.30000001192093
+          },
+          "errors": [],
+          "run": 15,
+          "browserPid": "44863"
+        },
+        {
+          "run": 16,
+          "browserPid": "44949",
+          "failed": true,
+          "failure": {
+            "name": "TimeoutError",
+            "message": "page.waitForFunction: Timeout 30000ms exceeded."
+          },
+          "errors": [
+            "TypeError: Failed to fetch"
+          ]
+        },
+        {
+          "playableMs": 1179.4000000059605,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1417.5,
+            "observedAt": 1451.6000000238419,
+            "position": {
+              "x": -0.0004458966026663533,
+              "z": 0.23301312373184627
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 34.10000002384186
+          },
+          "errors": [],
+          "run": 17,
+          "browserPid": "45911"
+        },
+        {
+          "playableMs": 896.3999999761581,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 1132,
+            "observedAt": 1166.7999999821186,
+            "position": {
+              "x": -0.0004468777206276818,
+              "z": 0.23231139238925236
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 34.79999998211861
+          },
+          "errors": [],
+          "run": 18,
+          "browserPid": "46006"
+        },
+        {
+          "playableMs": 2042.2000000178814,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 2279.7000000178814,
+            "observedAt": 2313.2000000178814,
+            "position": {
+              "x": -0.000389246275992719,
+              "z": 0.23171309476532442
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 33.5
+          },
+          "errors": [],
+          "run": 19,
+          "browserPid": "46074"
+        },
+        {
+          "playableMs": 2227.699999988079,
+          "grounded": true,
+          "physics": true,
+          "canvas": [
+            1280,
+            720
+          ],
+          "input": {
+            "keyAt": 2461.0999999940395,
+            "observedAt": 2496.899999976158,
+            "position": {
+              "x": -0.0004319881214042261,
+              "z": 0.23723766806730096
+            },
+            "frames": 21,
+            "gpuErrors": [],
+            "responseUpperBoundMs": 35.79999998211861
+          },
+          "errors": [],
+          "run": 20,
+          "browserPid": "46193"
+        }
+      ]
+    }
+  },
+  "interpretation": "Rejected preview: entry timeout and 14/60 startup failures. Valid-row percentiles exclude failed visits and are not cohort acceptance. Cause under investigation; production unchanged."
+}

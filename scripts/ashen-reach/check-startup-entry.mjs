@@ -26,6 +26,10 @@ async function visit(label, pathAndQuery) {
   const requests = [];
   const redirects = [];
   const fallbackLogs=[];
+  const pageErrors=[],failedRequests=[],badResponses=[];
+  page.on('pageerror',error=>pageErrors.push(error.message));
+  page.on('requestfailed',request=>failedRequests.push({url:request.url(),error:request.failure()?.errorText}));
+  page.on('response',response=>{if(response.status()>=400)badResponses.push({url:response.url(),status:response.status()});});
   page.on('console',message=>{if(/wasm streaming compile failed|falling back to ArrayBuffer instantiation/.test(message.text()))fallbackLogs.push(message.text());});
   // Functional instrumentation only, never a timing cohort. Observe the native
   // streaming call instead of inferring success from a playable fallback load.
@@ -44,8 +48,15 @@ async function visit(label, pathAndQuery) {
   page.on('framenavigated', frame => { if (frame === page.mainFrame()) redirects.push(frame.url()); });
   try {
     await page.goto(`${origin}${pathAndQuery}`, {waitUntil: 'domcontentloaded', timeout: 120000});
-    await page.waitForFunction(() => globalThis.ASHEN?.whenPlayable, null, {timeout: 120000});
-    const playableMs = await page.evaluate(() => globalThis.ASHEN.whenPlayable);
+    // A visible terminal boot error cannot become playable by waiting two minutes.
+    await page.waitForFunction(() => globalThis.ASHEN?.whenPlayable ||
+      (document.querySelector('#loading.failed') && document.querySelector('#loading-error pre')?.textContent),
+      null, {timeout: 120000});
+    const playableMs = await page.evaluate(() => {
+      if (!globalThis.ASHEN?.whenPlayable)
+        throw Error(document.querySelector('#loading-error pre')?.textContent || 'Startup failed before ASHEN initialization');
+      return globalThis.ASHEN.whenPlayable;
+    });
     const state = await page.evaluate(() => ({
       clean: document.body.classList.contains('clean'),
       // `?play` is what puts the third-person camera behind the character; the reference
@@ -65,15 +76,30 @@ async function visit(label, pathAndQuery) {
       havokURLs: requests.filter(url => /HavokPhysics(?:-[a-f0-9]{12})?\.wasm/.test(url)),fallbackLogs,
       documentRequests: requests.filter(url => /\.html(\?|$)|\/(\?|$)/.test(new URL(url).pathname + (new URL(url).search ? '?' : ''))).length,
     });
+  } catch(error) {
+    // A timeout alone discards the actual loading failure when the context is
+    // closed. Retain game-specific diagnostics before cleanup, without cookies
+    // or complete response headers. This is functional evidence, not a timer.
+    // https://playwright.dev/docs/api/class-page#page-event-pageerror
+    const state=await page.evaluate(()=>({url:location.href,title:document.title,
+      ashen:typeof globalThis.ASHEN,ready:globalThis.ASHEN?.ready??false,
+      errorText:document.querySelector('#loading-error pre')?.textContent||document.querySelector('#error')?.textContent||'',
+      scripts:[...document.scripts].filter(s=>s.src).map(s=>s.src)})).catch(e=>({unavailable:e.message}));
+    console.error(JSON.stringify({entryFailure:{label,requested:pathAndQuery,error:error.message,
+      state,pageErrors,failedRequests,badResponses,requests}}));
+    throw error;
   } finally {
     await context.close();
   }
 }
 
-await visit('root-bare', '/');
-await visit('root-with-query', '/?play&clean&noEnemies');
-await visit('direct-game', '/ashen-reach.html?play&clean');
-await browser.close();
+try {
+  await visit('root-bare', '/');
+  await visit('root-with-query', '/?play&clean&noEnemies');
+  await visit('direct-game', '/ashen-reach.html?play&clean');
+} finally {
+  await browser.close();
+}
 
 console.log(JSON.stringify(results, null, 1));
 

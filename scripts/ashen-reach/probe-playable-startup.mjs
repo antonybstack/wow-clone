@@ -70,14 +70,14 @@ for (let run = 1; run <= runs; run++) {
   const browser = await chromium.launch({ channel: "chrome", headless: true, args:disableShaderCache?['--disable-gpu-shader-disk-cache']:[] });
   const browserPid=execFileSync('ps',['-axo','pid=,ppid=,command='],{encoding:'utf8'}).split('\n').map(line=>/^\s*(\d+)\s+(\d+)\s+(.*)$/.exec(line)).find(m=>m&&Number(m[2])===process.pid&&/Chrome|Chromium/.test(m[3]))?.[1]||null;
   await fs.writeFile(destination+'.ownership.json',JSON.stringify({owner:'probe-playable-startup',controllerPid:process.pid,browserPid,cdpPort:null,url:target.href,purpose:`${profile} cold run ${run}`,active:true}));
-  const errors=[],requests=new Map(),earlyHints=[];let rowRecorded=false;
+  const errors=[],pageErrors=[],requests=new Map(),earlyHints=[];let rowRecorded=false, page;
   try {
     const context = await browser.newContext({
         viewport: { width: 1280, height: 720 },
         deviceScaleFactor: 1,
         serviceWorkers: "block",
-      }),
-      page = await context.newPage();
+      });
+    page = await context.newPage();
     if(seed)await context.addInitScript(recipe=>localStorage.setItem('ashen.appearance.v2',JSON.stringify(recipe)),seed);
     if(gpuProbe)await context.addInitScript(installGpuEventProbe);
     const cdp = await context.newCDPSession(page);
@@ -116,7 +116,7 @@ for (let run = 1; run <= runs; run++) {
         if (e.code === "KeyW") window.__loadKeyAt = performance.now();
       });
     });
-    page.on("pageerror", (e) => errors.push(e.message));
+    page.on("pageerror", (e) => {errors.push(e.message);pageErrors.push({name:e.name,message:e.message,stack:e.stack});});
     page.on("console", (m) => {
       if (m.type() === "error") errors.push(m.text());
     });
@@ -168,9 +168,21 @@ for (let run = 1; run <= runs; run++) {
       const r = requests.get(e.requestId);
       if (r) Object.assign(r, { end: e.timestamp, bytes: e.encodedDataLength });
     });
+    // A 200 response can still fail while its body is transferred. Preserve
+    // native transport failures as well as the application error, without headers.
+    // https://chromedevtools.github.io/devtools-protocol/tot/Network/#event-loadingFailed
+    cdp.on("Network.loadingFailed", (e) => {
+      const request=requests.get(e.requestId);
+      if(request)request.failure={at:e.timestamp,errorText:e.errorText,
+        canceled:e.canceled??false,blockedReason:e.blockedReason??null};
+    });
     await page.goto(target.href, { waitUntil: "domcontentloaded" });
-    await page.waitForFunction(() => globalThis.ASHEN?.playableReady, null, {
-      timeout: 30000,
+    await page.waitForFunction(() => globalThis.ASHEN?.playableReady ||
+      (document.querySelector('#loading.failed') && document.querySelector('#loading-error pre')?.textContent),
+      null, {timeout: 30000});
+    await page.evaluate(() => {
+      if (!globalThis.ASHEN?.playableReady)
+        throw Error(document.querySelector('#loading-error pre')?.textContent || 'Startup failed before playable readiness');
     });
     const row = await page.evaluate(() => ({
       origin: performance.timeOrigin,
@@ -327,8 +339,11 @@ for (let run = 1; run <= runs; run++) {
     // ownership instead of disappearing on the first timeout. Do not count it as
     // a successful start or retry it under the same run number.
     const failure={name:error.name,message:error.message};
-    if(rowRecorded)report.rows.at(-1).validationFailure=failure;
-    else report.rows.push({run,browserPid,failed:true,failure,requests:[...requests.values()],errors});
+    const state=await page?.evaluate(()=>({url:location.href,
+      ashen:typeof globalThis.ASHEN,playable:globalThis.ASHEN?.playableReady??false,
+      errorText:document.querySelector('#loading-error pre')?.textContent||document.querySelector('#error')?.textContent||''})).catch(e=>({unavailable:e.message}));
+    if(rowRecorded)Object.assign(report.rows.at(-1),{validationFailure:failure,state,pageErrors});
+    else report.rows.push({run,browserPid,failed:true,failure,state,pageErrors,requests:[...requests.values()],errors});
     await fs.writeFile(destination,JSON.stringify(report,null,2));
     console.log(JSON.stringify({run,failed:true,failure}));
     process.exitCode=1;

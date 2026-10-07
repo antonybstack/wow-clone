@@ -160,3 +160,58 @@ the catalogue and one saved-body request appear before release, then the exact
 saved appearance and Havok reach readiness without errors. Only `index.html` and
 `ashen-reach.html` differ among 535 build files; every asset/runtime binary is
 unchanged. New public timing remains pending.
+
+
+## CSS candidate public failure — retain, do not promote
+
+Source `1de0bba` was uploaded as preview `05f75b6e.fardel.pages.dev`; production
+remains `6004840`. The sealed build passes all 536 delivery checks and the public
+held-CSS control. Bare-root entry nevertheless times out after 120 seconds.
+The subsequent three declared twenty-start cohorts were completed and retained;
+continuing timing after that functional failure was inefficient. Future release
+operations must stop new cohorts at a failed entry gate and return diagnostics.
+
+| Fixture | Valid starts | Failed starts | Valid-row p95 / worst ms | Valid starts over 1 s |
+|---|---:|---:|---:|---:|
+| Default | 14/20 | 6 | 1,704.4 / 1,704.4 | 2 |
+| Maximum compact | 15/20 | 5 | 1,954.9 / 1,954.9 | 9 |
+| Historical hood/cloth | 17/20 | 3 | 2,227.7 / 2,227.7 | 14 |
+
+Every failed row records `TypeError: Failed to fetch` and a readiness timeout.
+The displayed percentiles exclude failures and **are not passing cohort results**.
+No request in those original failed rows lacks a completed response; the original
+probe omitted `Network.loadingFailed` and full error stacks. Cause is unresolved,
+so neither a CDN failure nor an HTML-order regression is established yet.
+The [failure receipt](../../../baselines/character-mmo/startup-normal-release-2026-10-06/css-public-failure.json)
+retains all sixty outcomes, conditions, raw-file hashes and deployment metadata.
+A bounded comparison diagnostic replaces further timing until this is understood.
+
+
+## Bounded follow-up — failure not reproduced
+
+The unchanged preview passes three entry aliases, then six alternating fresh
+contexts against the old/new hosts with cache disabled and the same 50 Mbit/s /
+40 ms policy. A separate declared six-start diagnostic uses fresh browser
+processes and records **882.6 / 727.5 / 722.0 / 708.9 / 705.7 / 762.3 ms**.
+All six are grounded, use Havok, render at 1280×720 and respond to real keyboard
+input without recorded errors. Root reviewed the actual first-play capture.
+These are diagnostics, **not a replacement release cohort or evidence of a fix**.
+
+The two entry/startup probes now preserve visible loading-error stacks and native
+request failures before cleanup, and exit early once a terminal loading error is
+visible. The entry checker disconnects in `finally`. A socket-aborting local
+fixture verifies both negative paths: startup probe exits 1 in 948 ms, entry
+exits 1 in 458 ms, both retain `/forced-failure.bin`, `net::ERR_EMPTY_RESPONSE`
+and the actual stack. This fixture validates diagnostics only; it does not show
+that the public failure had that cause. No game runtime, asset or bundle changed.
+
+[Diagnostic receipt](../../../baselines/character-mmo/startup-normal-release-2026-10-06/fetch-diagnostic.json)
+retains successful diagnostic outcomes, the negative control and hashes of raw
+records. Cause remains unresolved. Keep production unchanged and use a concrete
+failure stack/URL for any subsequent correction; do not add speculative retry
+logic or silently erase the earlier failures.
+
+Both modified probes pass syntax checks; twelve startup-budget/saved-preload tests
+pass. All owned browsers, probe processes and the local failure fixture are closed.
+Temporary media guards are removed; no game page remains in Edge. The signed-out
+Cloudflare tab is retained for the previously offered optional account check.

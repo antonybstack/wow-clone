@@ -1,0 +1,405 @@
+{
+  "purpose": "Failure diagnosis, not release acceptance or a replacement for the failed 60-start cohort",
+  "runtimeChanged": false,
+  "sharedBrowserVisits": [
+    {
+      "i": 1,
+      "origin": "https://05f75b6e.fardel.pages.dev",
+      "url": "https://05f75b6e.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+      "playable": true,
+      "waitMs": 60000,
+      "pageErrors": [],
+      "requestFailed": [],
+      "badStatus": [],
+      "loadingFailed": [],
+      "windowErrors": [],
+      "rejections": [],
+      "consoleErrors": [],
+      "errorText": "",
+      "ashen": {
+        "type": "object",
+        "ready": false,
+        "playableReady": true,
+        "url": "https://05f75b6e.fardel.pages.dev/?play=&clean=&pixelRatio=1"
+      },
+      "failedBodyTiming": [],
+      "fetchErrorSeen": false,
+      "hasFailedRequest": false
+    },
+    {
+      "i": 2,
+      "origin": "https://5f312add.fardel.pages.dev",
+      "url": "https://5f312add.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+      "playable": true,
+      "waitMs": 60000,
+      "pageErrors": [],
+      "requestFailed": [],
+      "badStatus": [],
+      "loadingFailed": [],
+      "windowErrors": [],
+      "rejections": [],
+      "consoleErrors": [],
+      "errorText": "",
+      "ashen": {
+        "type": "object",
+        "ready": false,
+        "playableReady": true,
+        "url": "https://5f312add.fardel.pages.dev/?play=&clean=&pixelRatio=1"
+      },
+      "failedBodyTiming": [],
+      "fetchErrorSeen": false,
+      "hasFailedRequest": false
+    },
+    {
+      "i": 3,
+      "origin": "https://05f75b6e.fardel.pages.dev",
+      "url": "https://05f75b6e.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+      "playable": true,
+      "waitMs": 60000,
+      "pageErrors": [],
+      "requestFailed": [],
+      "badStatus": [],
+      "loadingFailed": [],
+      "windowErrors": [],
+      "rejections": [],
+      "consoleErrors": [],
+      "errorText": "",
+      "ashen": {
+        "type": "object",
+        "ready": false,
+        "playableReady": true,
+        "url": "https://05f75b6e.fardel.pages.dev/?play=&clean=&pixelRatio=1"
+      },
+      "failedBodyTiming": [],
+      "fetchErrorSeen": false,
+      "hasFailedRequest": false
+    },
+    {
+      "i": 4,
+      "origin": "https://5f312add.fardel.pages.dev",
+      "url": "https://5f312add.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+      "playable": true,
+      "waitMs": 60000,
+      "pageErrors": [],
+      "requestFailed": [],
+      "badStatus": [],
+      "loadingFailed": [],
+      "windowErrors": [],
+      "rejections": [],
+      "consoleErrors": [],
+      "errorText": "",
+      "ashen": {
+        "type": "object",
+        "ready": false,
+        "playableReady": true,
+        "url": "https://5f312add.fardel.pages.dev/?play=&clean=&pixelRatio=1"
+      },
+      "failedBodyTiming": [],
+      "fetchErrorSeen": false,
+      "hasFailedRequest": false
+    },
+    {
+      "i": 5,
+      "origin": "https://05f75b6e.fardel.pages.dev",
+      "url": "https://05f75b6e.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+      "playable": true,
+      "waitMs": 60000,
+      "pageErrors": [],
+      "requestFailed": [],
+      "badStatus": [],
+      "loadingFailed": [],
+      "windowErrors": [],
+      "rejections": [],
+      "consoleErrors": [],
+      "errorText": "",
+      "ashen": {
+        "type": "object",
+        "ready": false,
+        "playableReady": true,
+        "url": "https://05f75b6e.fardel.pages.dev/?play=&clean=&pixelRatio=1"
+      },
+      "failedBodyTiming": [],
+      "fetchErrorSeen": false,
+      "hasFailedRequest": false
+    },
+    {
+      "i": 6,
+      "origin": "https://5f312add.fardel.pages.dev",
+      "url": "https://5f312add.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+      "playable": true,
+      "waitMs": 60000,
+      "pageErrors": [],
+      "requestFailed": [],
+      "badStatus": [],
+      "loadingFailed": [],
+      "windowErrors": [],
+      "rejections": [],
+      "consoleErrors": [],
+      "errorText": "",
+      "ashen": {
+        "type": "object",
+        "ready": false,
+        "playableReady": true,
+        "url": "https://5f312add.fardel.pages.dev/?play=&clean=&pixelRatio=1"
+      },
+      "failedBodyTiming": [],
+      "fetchErrorSeen": false,
+      "hasFailedRequest": false
+    }
+  ],
+  "freshProcesses": {
+    "conditions": {
+      "requestedRuns": 6,
+      "budgetMs": null,
+      "gpuProbe": false,
+      "traceGpu": false,
+      "disableShaderCache": false,
+      "disableHttpCache": true,
+      "profile": "50mbps",
+      "savedAppearance": null,
+      "expectedAppearance": null,
+      "network": {
+        "latency": 40,
+        "downloadThroughput": 6250000,
+        "uploadThroughput": 1250000
+      },
+      "cpu": "Apple M1 Max",
+      "viewport": [
+        1280,
+        720
+      ],
+      "cache": "Fresh browser process/profile each run; HTTP cache disabled through CDP (including prefetch reuse); OS and GPU-driver caches uncontrolled",
+      "timing": "Navigation start to grounded, dressed, GPU-completed frame with overlay removed and input enabled"
+    },
+    "rows": [
+      {
+        "playableMs": 882.5999999940395,
+        "grounded": true,
+        "physics": true,
+        "canvas": [
+          1280,
+          720
+        ],
+        "input": {
+          "keyAt": 1130.2999999821186,
+          "observedAt": 1166.0999999940395,
+          "position": {
+            "x": -0.0002442276000943236,
+            "z": 0.2214690102687739
+          },
+          "frames": 22,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 35.80000001192093
+        },
+        "errors": [],
+        "run": 1,
+        "browserPid": "28705"
+      },
+      {
+        "playableMs": 727.5,
+        "grounded": true,
+        "physics": true,
+        "canvas": [
+          1280,
+          720
+        ],
+        "input": {
+          "keyAt": 962.8999999761581,
+          "observedAt": 994.7999999821186,
+          "position": {
+            "x": -0.000239271556298319,
+            "z": 0.23407775610294024
+          },
+          "frames": 20,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 31.900000005960464
+        },
+        "errors": [],
+        "run": 2,
+        "browserPid": "28775"
+      },
+      {
+        "playableMs": 722,
+        "grounded": true,
+        "physics": true,
+        "canvas": [
+          1280,
+          720
+        ],
+        "input": {
+          "keyAt": 963.4000000059605,
+          "observedAt": 989.1000000238419,
+          "position": {
+            "x": -0.00027203249733986164,
+            "z": 0.2347199426396816
+          },
+          "frames": 21,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 25.700000017881393
+        },
+        "errors": [],
+        "run": 3,
+        "browserPid": "28847"
+      },
+      {
+        "playableMs": 708.9000000059605,
+        "grounded": true,
+        "physics": true,
+        "canvas": [
+          1280,
+          720
+        ],
+        "input": {
+          "keyAt": 968.1999999880791,
+          "observedAt": 1006,
+          "position": {
+            "x": -0.0002512116583501506,
+            "z": 0.23335668537800158
+          },
+          "frames": 23,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 37.80000001192093
+        },
+        "errors": [],
+        "run": 4,
+        "browserPid": "28915"
+      },
+      {
+        "playableMs": 705.6999999880791,
+        "grounded": true,
+        "physics": true,
+        "canvas": [
+          1280,
+          720
+        ],
+        "input": {
+          "keyAt": 942.4000000059605,
+          "observedAt": 969,
+          "position": {
+            "x": -0.0002679711855138516,
+            "z": 0.23262710978517487
+          },
+          "frames": 20,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 26.599999994039536
+        },
+        "errors": [],
+        "run": 5,
+        "browserPid": "28991"
+      },
+      {
+        "playableMs": 762.3000000119209,
+        "grounded": true,
+        "physics": true,
+        "canvas": [
+          1280,
+          720
+        ],
+        "input": {
+          "keyAt": 1014.5999999940395,
+          "observedAt": 1041.5,
+          "position": {
+            "x": -0.00027235623193681716,
+            "z": 0.2326193714683436
+          },
+          "frames": 22,
+          "gpuErrors": [],
+          "responseUpperBoundMs": 26.900000005960464
+        },
+        "errors": [],
+        "run": 6,
+        "browserPid": "29057"
+      }
+    ]
+  },
+  "negativeControl": {
+    "probe": {
+      "exit": 1,
+      "ms": 948,
+      "logTail": "(node:29982) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n{\"run\":1,\"failed\":true,\"failure\":{\"name\":\"Error\",\"message\":\"page.evaluate: Error: TypeError: Failed to fetch\\n    at http://127.0.0.1:53472/?play=&pixelRatio=1:12:1\\n    at http://127.0.0.1:53472/?play=&pixelRatio=1:12:1\\n    at eval (eval at evaluate (:311:30), <anonymous>:3:15)\\n    at UtilityScript.evaluate (<anonymous>:313:16)\\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\"}}\n",
+      "row": {
+        "failed": true,
+        "failure": {
+          "name": "Error",
+          "message": "page.evaluate: Error: TypeError: Failed to fetch\n    at http://127.0.0.1:53472/?play=&pixelRatio=1:12:1\n    at http://127.0.0.1:53472/?play=&pixelRatio=1:12:1\n    at eval (eval at evaluate (:311:30), <anonymous>:3:15)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+        },
+        "state": {
+          "url": "http://127.0.0.1:53472/?play=&pixelRatio=1",
+          "ashen": "undefined",
+          "playable": false,
+          "errorText": "TypeError: Failed to fetch\n    at http://127.0.0.1:53472/?play=&pixelRatio=1:12:1"
+        },
+        "pageErrors": [],
+        "errors": [
+          "Failed to load resource: net::ERR_EMPTY_RESPONSE",
+          "TypeError: Failed to fetch\n    at http://127.0.0.1:53472/?play=&pixelRatio=1:12:1"
+        ],
+        "nativeFailures": [
+          {
+            "url": "http://127.0.0.1:53472/forced-failure.bin",
+            "failure": {
+              "at": 263758.935263,
+              "errorText": "net::ERR_EMPTY_RESPONSE",
+              "canceled": false,
+              "blockedReason": null
+            }
+          }
+        ],
+        "nRequests": 3
+      }
+    },
+    "entry": {
+      "exit": 1,
+      "ms": 458,
+      "entryFailure": {
+        "label": "root-bare",
+        "requested": "/",
+        "error": "page.evaluate: Error: TypeError: Failed to fetch\n    at http://127.0.0.1:53472/:12:1\n    at http://127.0.0.1:53472/:12:1\n    at eval (eval at evaluate (:311:30), <anonymous>:3:15)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+        "state": {
+          "url": "http://127.0.0.1:53472/",
+          "title": "fetch-diagnostic fixture",
+          "ashen": "undefined",
+          "ready": false,
+          "errorText": "TypeError: Failed to fetch\n    at http://127.0.0.1:53472/:12:1",
+          "scripts": []
+        },
+        "pageErrors": [],
+        "failedRequests": [
+          {
+            "url": "http://127.0.0.1:53472/forced-failure.bin",
+            "error": "net::ERR_EMPTY_RESPONSE"
+          }
+        ],
+        "badResponses": [],
+        "nRequests": 2
+      },
+      "waitedOver30s": false
+    },
+    "port": 53472
+  },
+  "rawFiles": {
+    ".cache/character-mmo/startup-normal-release-2026-10-06/fetch-diagnostic-fresh.json": "62b3a04a537b9fdbc72c6f0c9cd56699121f983051d99382632091d6723a0aa8",
+    ".cache/character-mmo/startup-normal-release-2026-10-06/fetch-diagnostic-entry.log": "2ac4080a6a73312ea40805abaf97c67bd8f2494d73eeff6adf8fdc99e14bffcd",
+    ".cache/character-mmo/startup-normal-release-2026-10-06/fetch-diagnostic-fixture.json": "2d002b6b76e717ac6379aca70a105e966fe9d87160638fad13bd617e78f625fb"
+  },
+  "conclusion": "Public failure did not reproduce. Cause remains unresolved; production unchanged.",
+  "verification": {
+    "syntax": "both modified probes pass node --check",
+    "tests": "12/12 startup-budget and saved-preload tests",
+    "review": "Grok reviewed changed scripts; parent retained relevant limitations without speculative runtime edits",
+    "cleanup": {
+      "slot7": false,
+      "activeFreshProcesses": false,
+      "activeFixture": false,
+      "closedPorts": [
+        10037,
+        5873,
+        53472
+      ],
+      "edgeGameTabs": 0,
+      "mediaGuardsRemoved": true,
+      "edgePid": 2931,
+      "orcaPid": 98938
+    }
+  }
+}
