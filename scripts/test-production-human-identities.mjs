@@ -3,6 +3,7 @@ import {characterNormalProof,assertCharacterNormalProof} from './character-asset
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
+import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 import {NodeIO,VertexLayout} from '@gltf-transform/core';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
@@ -14,6 +15,8 @@ import {assertCopiedSkinBind} from '../src/character/runtime/fit-contract.js';
 import {ASHEN_PLAYABLE_CLIP_NAMES,ASHEN_PLAYABLE_MOTION} from '../src/character/runtime/ashen-playable-motion.js';
 import {resolvePlayableBody,resolvePlayableClips} from '../src/character/runtime/playable-body.js';
 import {compactPlayableAnimations} from './character-assets/compact-playable-animations.mjs';
+import {EQUIPMENT_ITEMS} from '../src/ashen-reach/equipment-catalog.js';
+import {resolveGarmentLayerVisibility} from '../src/ashen-reach/garment-layer-coverage.js';
 await MeshoptDecoder.ready;
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder}).setVertexLayout(VertexLayout.SEPARATE);
 const index=JSON.parse(await fs.readFile('public/ashen-reach/human-identity-v1/manifest.json','utf8'));
@@ -46,6 +49,25 @@ test('release guard refuses a stale authoring input and a modified embedded desc
  await assert.rejects(verifyProductionHumanIdentities({readFile:(file,...args)=>file===input?Promise.resolve(Buffer.from('injected mutation')):fs.readFile(file,...args)}),/Stale identity input/);
  const tampered=structuredClone(index);tampered.presets['prime-bald'].manifest.identity.preset='weathered-bald';
  await assert.rejects(verifyProductionHumanIdentities({readFile:(file,...args)=>file.endsWith('human-identity-v1/manifest.json')?Promise.resolve(JSON.stringify(tampered)):fs.readFile(file,...args)}),/Embedded identity descriptor/);
+});
+test('every published identity preserves shared Fieldcoat coverage across equip and unequip',()=>{
+ for(const {manifest} of Object.values(index.presets)){
+  assert.deepEqual(manifest.garmentLayerCoverage,canonical.garmentLayerCoverage);
+  const dressed={torso:'fieldcoat',legs:'wayfarerTrousers'};
+  assert.equal(resolveGarmentLayerVisibility(dressed,EQUIPMENT_ITEMS,manifest.garmentLayerCoverage).WayfarerTrousersUnderTorso,false);
+  assert.equal(resolveGarmentLayerVisibility({...dressed,torso:null},EQUIPMENT_ITEMS,manifest.garmentLayerCoverage).WayfarerTrousersUnderTorso,true);
+ }
+});
+test('release guard rejects stale garment rules even in a correctly addressed identity descriptor',async()=>{
+ for(const mutate of [rules=>delete rules.coversByItem.fieldcoat,rules=>delete rules.partsByItem.wayfarerTrousers]){
+  const tampered=structuredClone(index),entry=tampered.presets['prime-ponytail'];
+  mutate(entry.manifest.garmentLayerCoverage);
+  const bytes=Buffer.from(JSON.stringify(entry.manifest)),hash=createHash('sha256').update(bytes).digest('hex');
+  Object.assign(entry,{url:`/ashen-reach/human-identity-v1/manifest-test-${hash.slice(0,12)}.json`,bytes:bytes.length,sha256:hash});
+  await assert.rejects(verifyProductionHumanIdentities({readFile:(file,...args)=>
+   file==='public/ashen-reach/human-identity-v1/manifest.json'?Promise.resolve(Buffer.from(JSON.stringify(tampered))):
+   file==='public'+entry.url?Promise.resolve(bytes):fs.readFile(file,...args)}),/stale shared garment coverage/);
+ }
 });
 test('playable contract includes directional, channel, carry, hit and all spell layers',()=>{
  const definition={...resolvePlayableBody('?character=human-source'),...ASHEN_PLAYABLE_MOTION};

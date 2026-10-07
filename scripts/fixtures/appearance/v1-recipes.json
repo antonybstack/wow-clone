@@ -3,8 +3,12 @@
   "generation": "appearanceFromEquipment with frozen LEGACY_EQUIPMENT_PRESETS and APPEARANCE_V1_REGISTRY; empty uses {}",
   "source": "M001 active catalogue at bad1087; exact seven-slot fixtures retained through explicit v3/v4 registry migrations",
   "sourceSha256": {
-    "src/ashen-reach/equipment-catalog.js": "47d7bde0ffe0d4d0428f9e5b54e4231593ca4dd25cbdbf18c389335ca44e8caa",
     "src/ashen-reach/equipment-contract.js": "8b210b6b3246238fcb866a898b59303c2a47bbeb7caa64df02c6812567eca395"
+  },
+  "frozenCatalogueSha256": "a368b5801ad2c94ea3d48cb063c28206e854ed3acc6dab45b6d998a572fea72b",
+  "frozenCatalogueEncoding": "JSON.stringify({items:LEGACY_EQUIPMENT_ITEMS,presets:LEGACY_EQUIPMENT_PRESETS,slots:LEGACY_EQUIPMENT_SLOTS}); recipes remain exact",
+  "historicalSourceSha256": {
+    "src/ashen-reach/equipment-catalog.js": "47d7bde0ffe0d4d0428f9e5b54e4231593ca4dd25cbdbf18c389335ca44e8caa"
   },
   "license": "project-authored identity data; no third-party asset bytes",
   "fixtures": {

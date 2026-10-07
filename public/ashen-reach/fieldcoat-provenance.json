@@ -1,0 +1,299 @@
+{
+  "schema": 1,
+  "item": "fieldcoat",
+  "mesh": "Fieldcoat",
+  "slot": "torso",
+  "layer": "cloth",
+  "occupies": [
+    "torso"
+  ],
+  "deformation": "soft-skin",
+  "descriptor": {
+    "path": "blender/characters/wardrobe/fieldcoat.json",
+    "sha256": "4097ca9e7c8afabd0fd3cf2b17e97aba891ed9a8f254db32cdb998516ffd6d80"
+  },
+  "blender": "5.2.1",
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "blenderVersion": "Blender 5.2.1 LTS\n\tbuild date: 2026-08-25\n\tbuild time: 01:35:57\n\tbuild commit date: 2026-08-24\n\tbuild commit time: 16:50\n\tbuild hash: 9e2066aef7ef\n\tbuild branch: blender-v5.2-release\n\tbuild platform: Darwin\n\tbuild type: Release\n\tbuild c flags:  -Wall -Werror=implicit-function-declaration -Werror=return-type -Wno-tautological-compare -Wno-unknown-pragmas -Wno-char-subscripts -Wstrict-prototypes -Wmissing-prototypes -Wunused-parameter -Wundef -Wundef-prefix -Werror=unguarded-availability-new  -mmacosx-version-min=11.2  -std=gnu11  -pipe -funsigned-char -fno-strict-aliasing -ffp-contract=off  \n\tbuild c++ flags:  -Wall -Wno-tautological-compare -Wno-unknown-pragmas -Wno-char-subscripts -Wno-overloaded-virtual -Wno-sign-compare -Wno-invalid-offsetof -Wno-suggest-override -Wundef -Wundef-prefix -Wunused-parameter -Wmismatched-tags -Werror=unguarded-availability-new  -mmacosx-version-min=11.2 -ftemplate-depth=1024   -pipe -funsigned-char -fno-strict-aliasing -ffp-contract=off  \n\tbuild link flags: -fexceptions -framework CoreServices -framework Foundation -framework IOKit -framework AppKit -framework Cocoa -framework Carbon -framework AudioUnit -framework AudioToolbox -framework CoreAudio -framework Metal -framework QuartzCore -framework CoreImage -framework OpenGL -framework Accelerate -liconv -Xlinker -no_warn_duplicate_libraries\n\tbuild system: CMake"
+  },
+  "toolSources": [
+    {
+      "path": "scripts/character-assets/equipment-factory.mjs",
+      "sha256": "7207161894316cc6a601b449beee3362fcb84b6bba4cd5106b5f13d23c99dd1d"
+    },
+    {
+      "path": "scripts/character-assets/equipment-factory-contract.mjs",
+      "sha256": "97ba4cf8691aaaf1c6d96dc7a174283923c02aa001e4168bb89aec1aa83e86b1"
+    },
+    {
+      "path": "scripts/character-assets/normalize-human-bind.mjs",
+      "sha256": "c2781998b91d42fcb3225caa2f7bee0b8309ee30f047916751189a67d7d08f68"
+    },
+    {
+      "path": "scripts/character-assets/verify-factory-equipment-bind.mjs",
+      "sha256": "5994c7a38681514b2b83c3a8b858d181867d160efa349fc95aa84ece34032684"
+    },
+    {
+      "path": "scripts/character-assets/girth-field.mjs",
+      "sha256": "ceeea9466718a30c31593423a67e9b430ed33caf9069092db61f7738ec74b565"
+    },
+    {
+      "path": "scripts/character-assets/startup-geometry-policy.mjs",
+      "sha256": "825433a38683a1800c0f65e6490be7c6d41b764a506e4d81cc11340163d8c7e5"
+    },
+    {
+      "path": "scripts/character-assets/build_fieldcoat.py",
+      "sha256": "5e858591d84835759407c6a30f78d166aacc2e7b05bd4302f4fe5c0611ecba38"
+    }
+  ],
+  "sourceRights": "Native structural tailoring of accepted Lector masters derived from vendored CC0 MakeHuman suits02 cloth; project-authored divided hem and reinforcement seams. Existing Tripo/Mixamo source body/rig grants and limitations remain unchanged.",
+  "materials": [
+    {
+      "revision": 1,
+      "name": "WayfarerTunic",
+      "baseColor": [
+        0.37,
+        0.48,
+        0.64,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.92,
+      "doubleSided": true,
+      "alphaMode": "OPAQUE",
+      "baseColorTextureSha256": "29d4e4e4beced64700aee7723b34dc6f6ac6d5c1b4f684ce2fdd2ba9e60c46f3"
+    },
+    {
+      "revision": 1,
+      "name": "Lector folded wool trim",
+      "baseColor": [
+        0.1599999964237213,
+        0.11500000208616257,
+        0.06499999761581421,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.9200000166893005,
+      "doubleSided": true,
+      "alphaMode": "OPAQUE",
+      "baseColorTextureSha256": null
+    },
+    {
+      "revision": 1,
+      "name": "Lector underarm wool",
+      "baseColor": [
+        0.019999999552965164,
+        0.02500000037252903,
+        0.03500000014901161,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.949999988079071,
+      "doubleSided": true,
+      "alphaMode": "OPAQUE",
+      "baseColorTextureSha256": null
+    }
+  ],
+  "detail": {
+    "revision": 1,
+    "full": "authored-cloth",
+    "compact": "native-simplified-soft-skin",
+    "humanShapeFamily": "ashen-human-shape-v1"
+  },
+  "byteIdenticalRebuild": true,
+  "races": {
+    "human": {
+      "source": {
+        "path": "public/ashen-reach/equipment/body.glb",
+        "sha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0"
+      },
+      "garment": {
+        "source": "public/ashen-reach/equipment/lectorCoat-aa01a6300d3d.glb",
+        "sha256": "aa01a6300d3d8e73efd4eaf1e6832c67a75d6aa9c400aa48946fc7bc2b2101e3",
+        "mesh": "LectorCoat"
+      },
+      "interface": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "artifact": {
+        "sha256": "75c5c4d770f94ed15713f0d7018030dd2876d5255280f0de41cf4c19a9f39d83",
+        "bytes": 558164
+      },
+      "structure": null,
+      "vertices": 7026,
+      "triangles": 11700,
+      "blendedVertices": 6541,
+      "materials": [
+        "Lector folded wool trim",
+        "Lector underarm wool",
+        "WayfarerTunic"
+      ],
+      "bind": {
+        "joints": 65,
+        "meshes": 1,
+        "primitives": 3,
+        "vertices": 7026,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.6867489218711853,
+            0.7940620183944702,
+            -0.1812066286802292
+          ],
+          "max": [
+            0.6913986206054688,
+            1.5149445533752441,
+            0.1520855724811554
+          ],
+          "frame": "accepted body mesh"
+        }
+      }
+    },
+    "orc": {
+      "source": {
+        "path": "public/ashen-reach/equipment-orc/body.glb",
+        "sha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b"
+      },
+      "garment": {
+        "source": "public/ashen-reach/equipment-orc/lectorCoat-6b60897773e6.glb",
+        "sha256": "6b60897773e608d5176b58f5914cb77a87c34ce476d51bd8e3e1611ea86a5b37",
+        "mesh": "LectorCoat"
+      },
+      "interface": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "artifact": {
+        "sha256": "e24f3dcfd8d86875444d5cf4d7c7157850bd91f5b296c597b04a5e64edf87da6",
+        "bytes": 601296
+      },
+      "structure": null,
+      "vertices": 7727,
+      "triangles": 12327,
+      "blendedVertices": 6920,
+      "materials": [
+        "Lector folded wool trim",
+        "Lector underarm wool",
+        "WayfarerTunic"
+      ],
+      "bind": {
+        "joints": 65,
+        "meshes": 1,
+        "primitives": 3,
+        "vertices": 7727,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.9918491244316101,
+            0.9349175095558167,
+            -0.2970220148563385
+          ],
+          "max": [
+            1.0034338235855103,
+            1.9000135660171509,
+            0.23009532690048218
+          ],
+          "frame": "accepted body mesh"
+        }
+      }
+    },
+    "undead": {
+      "source": {
+        "path": "public/ashen-reach/equipment-undead/body.glb",
+        "sha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d"
+      },
+      "garment": {
+        "source": "public/ashen-reach/equipment-undead/lectorCoat-711447547e62.glb",
+        "sha256": "711447547e62bbff736ddb03b66d26075af2f399e0884a32868214807d0f68dd",
+        "mesh": "LectorCoat"
+      },
+      "interface": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "artifact": {
+        "sha256": "c9a2030aad08319b6a7ba1093c062034d9f43bccc560d4f8b970648c8ab48a4c",
+        "bytes": 631988
+      },
+      "structure": null,
+      "vertices": 8249,
+      "triangles": 12596,
+      "blendedVertices": 7560,
+      "materials": [
+        "Lector folded wool trim",
+        "Lector underarm wool",
+        "WayfarerTunic"
+      ],
+      "bind": {
+        "joints": 65,
+        "meshes": 1,
+        "primitives": 3,
+        "vertices": 8249,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.7280418276786804,
+            0.8606520891189575,
+            -0.1928890347480774
+          ],
+          "max": [
+            0.7303486466407776,
+            1.6179379224777222,
+            0.1414114087820053
+          ],
+          "frame": "accepted body mesh"
+        }
+      }
+    }
+  },
+  "humanShape": {
+    "family": "ashen-human-shape-v1",
+    "sha256": "d966d4e51213a4949cb2a10dfa91a6814c4b25cc794fa430078b3580d84ef86e",
+    "bytes": 898896,
+    "targets": [
+      "slender",
+      "stout"
+    ],
+    "body": {
+      "source": "public/ashen-reach/human-shape-v1/body-e69a14d75176.bin",
+      "sha256": "e69a14d75176717920bae9ec438c80a4b842a8f014da256aec97db44ae743d9c",
+      "decodedSha256": "6c552cec7a794fdd7aa7876d6bedcb7f279101f0ca06169f6bc9e53444947417",
+      "compression": "gzip",
+      "bodyMesh": "HumanV1Body"
+    },
+    "bind": {
+      "joints": 65,
+      "meshes": 1,
+      "primitives": 3,
+      "vertices": 7026,
+      "worstPaletteDelta": 0,
+      "inverseBindExact": true,
+      "bounds": {
+        "min": [
+          -0.6867489218711853,
+          0.7940620183944702,
+          -0.1812066286802292
+        ],
+        "max": [
+          0.6913986206054688,
+          1.5149445533752441,
+          0.1520855724811554
+        ],
+        "frame": "accepted body mesh"
+      }
+    }
+  },
+  "generatedBy": "scripts/character-assets/equipment-factory.mjs"
+}

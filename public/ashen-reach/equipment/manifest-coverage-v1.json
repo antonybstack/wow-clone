@@ -280,6 +280,20 @@
         "bind": 1,
         "shape": 1
       }
+    },
+    "fieldcoat": {
+      "url": "/ashen-reach/equipment/fieldcoat-75c5c4d770f9.glb",
+      "bytes": 558164,
+      "sha256": "75c5c4d770f94ed15713f0d7018030dd2876d5255280f0de41cf4c19a9f39d83",
+      "meshes": [
+        "Fieldcoat"
+      ],
+      "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
     }
   },
   "bindSha256": "96bc48fe1c85ecfa78f169cbc0a637a71a8fcb1a8812f4a41b015a621b5522af",
@@ -329,6 +343,9 @@
         "trousers.upper"
       ],
       "duskguardCuirass": [
+        "trousers.upper"
+      ],
+      "fieldcoat": [
         "trousers.upper"
       ]
     },

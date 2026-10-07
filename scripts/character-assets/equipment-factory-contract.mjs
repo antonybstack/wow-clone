@@ -21,9 +21,10 @@ import {EQUIPMENT_SLOTS} from '../../src/ashen-reach/equipment-catalog.js';
 import {normalizeHumanBind} from './normalize-human-bind.mjs';
 import {verifyFactoryEquipmentBind} from './verify-factory-equipment-bind.mjs';
 import {retainFullStartupGeometry} from './startup-geometry-policy.mjs';
-import {trackBodyRigid} from './girth-field.mjs';
+import {trackBodyRigid, trackBodyShape, recomputeNormals} from './girth-field.mjs';
 
 export const FACTORY_SCHEMA = 1;
+export const SOFT_FACTORY_SCHEMA = 2;
 export const PINNED_BLENDER = '5.2.1';
 export const HUMAN_SHAPE_FAMILY = 'ashen-human-shape-v1';
 export const HUMAN_SHAPE_TARGETS = Object.freeze(['slender', 'stout']);
@@ -39,17 +40,23 @@ const relativePath = (p) => typeof p === 'string' && p.length > 0 && !path.isAbs
  * FITS_BY_RACE must be declared: a missing fit is a deliberate refusal, never a fallback. */
 export function validateDescriptor(d) {
     const fail = (message) => { throw Error(`Factory descriptor: ${message}`); };
-    if (!d || typeof d !== 'object' || d.schema !== FACTORY_SCHEMA) fail(`schema must be ${FACTORY_SCHEMA}`);
+    if (!d || typeof d !== 'object' || ![FACTORY_SCHEMA, SOFT_FACTORY_SCHEMA].includes(d.schema)) fail('schema must be 1 (rigid) or 2 (soft-skin)');
+    const soft = d.schema === SOFT_FACTORY_SCHEMA;
     if (!ID.test(d.id ?? '')) fail('invalid logical id');
     if (!MESH.test(d.mesh ?? '')) fail('invalid mesh name');
     if (!EQUIPMENT_SLOTS.includes(d.slot)) fail(`unknown slot ${d.slot}`);
     if (typeof d.layer !== 'string' || !d.layer) fail('missing layer');
     if (!Array.isArray(d.occupies) || !d.occupies.includes(d.slot) || d.occupies.some((s) => !EQUIPMENT_SLOTS.includes(s))
         || new Set(d.occupies).size !== d.occupies.length) fail('occupancy must list known slots including its own');
-    if (d.deformation !== 'rigid-bone') fail('factory v1 supports rigid-bone plates only');
-    if (d.structure && (!Number.isInteger(d.structure.partsPerBone) || d.structure.partsPerBone < 1)) fail('structure partsPerBone must be positive');
-    if (!Array.isArray(d.rigidBones) || !d.rigidBones.length || d.rigidBones.some((b) => typeof b !== 'string' || !b)
-        || new Set(d.rigidBones).size !== d.rigidBones.length) fail('rigidBones must name the intended bones');
+    if (soft) {
+        if (d.deformation !== 'soft-skin' || d.rigidBones !== undefined || d.structure !== undefined)
+            fail('factory v2 supports soft-skin garments without rigid policy');
+    } else {
+        if (d.deformation !== 'rigid-bone') fail('factory v1 supports rigid-bone plates only');
+        if (d.structure && (!Number.isInteger(d.structure.partsPerBone) || d.structure.partsPerBone < 1)) fail('structure partsPerBone must be positive');
+        if (!Array.isArray(d.rigidBones) || !d.rigidBones.length || d.rigidBones.some((b) => typeof b !== 'string' || !b)
+            || new Set(d.rigidBones).size !== d.rigidBones.length) fail('rigidBones must name the intended bones');
+    }
     if (d.blenderVersion !== PINNED_BLENDER) fail(`Blender must be pinned to ${PINNED_BLENDER}`);
     if (!relativePath(d.builder?.path) || !d.builder.path.endsWith('.py') || !HEX.test(d.builder?.sha256 ?? '')) fail('builder path and sha256 required');
     // The builder may import a shared library builder; every transitive file it executes is pinned.
@@ -57,11 +64,18 @@ export function validateDescriptor(d) {
     if (!Array.isArray(dependencies) || dependencies.some((x) => !relativePath(x?.path) || !x.path.endsWith('.py') || !HEX.test(x?.sha256 ?? ''))
         || new Set([d.builder.path, ...dependencies.map((x) => x.path)]).size !== dependencies.length + 1) fail('builder dependencies need unique path and sha256');
     if (typeof d.sourceRights !== 'string' || d.sourceRights.length < 10) fail('sourceRights must state provenance and licence');
-    const m = d.material;
-    if (!m || !Number.isInteger(m.revision) || m.revision < 1 || !isUnitArray(m.baseColor, 4) || !unit(m.metallic) || !unit(m.roughness))
+    const validMaterial = m => m && Number.isInteger(m.revision) && m.revision >= 1 && isUnitArray(m.baseColor, 4) && unit(m.metallic) && unit(m.roughness);
+    if (!soft && !validMaterial(d.material))
         fail('material policy needs a positive revision and baseColor[4], metallic, roughness within 0..1');
-    if (d.detail?.full !== 'authored-shell' || d.detail?.compact !== 'same-rigid-geometry')
+    if (soft && (!Array.isArray(d.materials) || !d.materials.length || d.materials.some(m => !validMaterial(m)
+        || typeof m.name !== 'string' || !m.name || typeof m.doubleSided !== 'boolean' || m.alphaMode !== 'OPAQUE'
+        || !(m.baseColorTextureSha256 === null || HEX.test(m.baseColorTextureSha256 ?? '')))
+        || new Set(d.materials.map(m => m.name)).size !== d.materials.length))
+        fail('soft material policy needs unique names, PBR factors, opaque/culling policy and pinned base textures');
+    if (!soft && (d.detail?.full !== 'authored-shell' || d.detail?.compact !== 'same-rigid-geometry'))
         fail('rigid detail policy is full authored-shell and compact same-rigid-geometry');
+    if (soft && (d.detail?.full !== 'authored-cloth' || d.detail?.compact !== 'native-simplified-soft-skin'))
+        fail('soft detail policy is full authored-cloth and compact native-simplified-soft-skin');
     const races = Object.keys(FITS_BY_RACE), declared = Object.keys(d.fits ?? {});
     for (const race of races) if (!d.fits?.[race]) fail(`missing ${race} fit; refusing to fall back`);
     for (const race of declared) if (!races.includes(race)) fail(`unknown race ${race}`);
@@ -71,14 +85,17 @@ export function validateDescriptor(d) {
             fail(`${race} fit needs directory, bodyMesh, source and sha256`);
         for (const key of ['body', 'rig', 'bind', 'shape'])
             if (fit.interface?.[key] !== FITS_BY_RACE[race][key]) fail(`${race} interface ${key} differs from the accepted fit`);
+        if (soft && (!relativePath(fit.garment?.source) || fit.garment.source.startsWith('.cache')
+            || !HEX.test(fit.garment?.sha256 ?? '') || !MESH.test(fit.garment?.mesh ?? '')))
+            fail(`${race} soft fit needs a separately pinned tracked garment master and mesh`);
     }
     const s = d.humanShape;
     if (s !== undefined) {
         // The shape body is the tracked published gzip coverage source: the encoded file and the
         // decoded GLB are both pinned, and an untracked .cache candidate is never a shape input.
-        if (s.family !== HUMAN_SHAPE_FAMILY || s.mode !== 'trackBodyRigid' || !relativePath(s.body?.source) || s.body.source.startsWith('.cache')
+        if (s.family !== HUMAN_SHAPE_FAMILY || s.mode !== (soft ? 'trackBodyShape' : 'trackBodyRigid') || !relativePath(s.body?.source) || s.body.source.startsWith('.cache')
             || !HEX.test(s.body?.sha256 ?? '') || !HEX.test(s.body?.decodedSha256 ?? '') || s.body?.compression !== 'gzip'
-            || !MESH.test(s.body?.bodyMesh ?? '')) fail('humanShape needs family, trackBodyRigid mode and a pinned tracked gzip shape body');
+            || !MESH.test(s.body?.bodyMesh ?? '')) fail(`humanShape needs family, ${soft ? 'trackBodyShape' : 'trackBodyRigid'} mode and a pinned tracked gzip shape body`);
     }
     return d;
 }
@@ -105,7 +122,10 @@ export async function readPinnedShapeBody(d, read = fs.readFile) {
 export async function verifyPinnedInputs(d, races = Object.keys(FITS_BY_RACE), read = fs.readFile) {
     await readPinned('builder', d.builder.path, d.builder.sha256, read);
     for (const dependency of d.builder.dependencies ?? []) await readPinned('builder dependency', dependency.path, dependency.sha256, read);
-    for (const race of races) await readPinned(`${race} source`, d.fits[race].source, d.fits[race].sha256, read);
+    for (const race of races) {
+        await readPinned(`${race} source`, d.fits[race].source, d.fits[race].sha256, read);
+        if (d.schema === SOFT_FACTORY_SCHEMA) await readPinned(`${race} garment`, d.fits[race].garment.source, d.fits[race].garment.sha256, read);
+    }
     if (d.humanShape && races.includes('human')) await readPinnedShapeBody(d, read);
 }
 
@@ -126,7 +146,76 @@ export function restoreSourceFrame(root, base, d, bodyMesh) {
     const frame = base.listNodes().find((n) => n.getMesh()?.getName() === bodyMesh);
     if (!frame) throw Error(`Accepted body lacks ${bodyMesh}`);
     for (const n of root.listNodes().filter((x) => x.getMesh())) n.setMatrix(frame.getWorldMatrix());
-    for (const p of root.listMeshes()[0].listPrimitives()) p.setExtras({...p.getExtras(), deformation: 'rigid-bone'});
+    for (const p of root.listMeshes()[0].listPrimitives()) p.setExtras({...p.getExtras(), deformation: d.deformation});
+}
+
+/** Reuse the Lector compiler's canonical triangle ordering for new soft items.
+ * Native BMesh exports can permute equal triangles between isolated processes.
+ * Cyclic rotation preserves winding; sorting keeps duplicate triangles and every
+ * vertex/skin/UV stream. V1 plate serialization remains unchanged.
+ * https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#primitiveindices
+ */
+export function canonicalizeFactoryTriangles(root) {
+    for (const mesh of root.listMeshes()) for (const p of mesh.listPrimitives()) {
+        const accessor = p.getIndices(), source = accessor.getArray(), triangles = [];
+        for (let i = 0; i < source.length; i += 3) {
+            const triangle = Array.from(source.subarray(i, i + 3)), start = triangle.indexOf(Math.min(...triangle));
+            triangles.push(triangle.slice(start).concat(triangle.slice(0, start)));
+        }
+        triangles.sort((a,b) => a[0]-b[0] || a[1]-b[1] || a[2]-b[2]);
+        accessor.setArray(new source.constructor(triangles.flat()));
+    }
+}
+
+/** Soft clothing uses the existing four-influence glTF/native bind gate, separately
+ * from v1's strict single-bone plate policy. Texture images are pinned after export;
+ * a material factor alone cannot prove that the intended cloth survived Blender.
+ * https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#skinned-mesh-attributes
+ */
+export function assertEquipmentPolicy(root, d, options = {}) {
+    if (d.schema === FACTORY_SCHEMA) return assertPlatePolicy(root, d, options);
+    if (d.schema !== SOFT_FACTORY_SCHEMA || d.deformation !== 'soft-skin') throw Error('Unsupported equipment policy');
+    if (root.listAnimations().length) throw Error('Equipment must not carry animation clips');
+    if (root.listMeshes().length !== 1 || root.listMeshes()[0].getName() !== d.mesh || root.listSkins().length !== 1)
+        throw Error(`Soft garment must be one skinned mesh named ${d.mesh}`);
+    const seen = new Set(); let vertices = 0, triangles = 0, blendedVertices = 0;
+    for (const mesh of root.listMeshes()) for (const p of mesh.listPrimitives()) {
+        const count = p.getAttribute('POSITION')?.getCount(), w = p.getAttribute('WEIGHTS_0'), j = p.getAttribute('JOINTS_0');
+        if (p.getExtras().deformation !== 'soft-skin' || w?.getType() !== 'VEC4' || j?.getType() !== 'VEC4'
+            || w.getCount() !== count || j.getCount() !== count || p.getAttribute('WEIGHTS_1') || p.getAttribute('JOINTS_1'))
+            throw Error('Soft garment lacks four-influence skin streams');
+        const weights = w.getArray(), joints = j.getArray();
+        for (let i = 0; i < weights.length; i += 4) {
+            let sum = 0, influences = 0;
+            for (let k = 0; k < 4; k++) {
+                if (!Number.isFinite(weights[i+k]) || weights[i+k] < 0 || !Number.isInteger(joints[i+k]) || joints[i+k] < 0 || joints[i+k] >= 65)
+                    throw Error('Invalid soft garment weights');
+                sum += weights[i+k]; if (weights[i+k] > 0) influences++;
+            }
+            if (Math.abs(sum - 1) > 2e-6) throw Error('Unnormalized soft garment weights');
+            if (influences > 1) blendedVertices++;
+        }
+        if (options.allowShapeTargets ? p.listTargets().length !== 2 : p.listTargets().length) throw Error('Unexpected morph targets on soft garment');
+        if (options.allowShapeTargets) {
+            if (JSON.stringify(mesh.getExtras().targetNames) !== JSON.stringify(HUMAN_SHAPE_TARGETS)) throw Error('Human shape target names/order differ from the accepted family');
+            for (const t of p.listTargets()) for (const semantic of ['POSITION','NORMAL']) {
+                const a = t.getAttribute(semantic);
+                if (a?.getType() !== 'VEC3' || a.getCount() !== count || !a.getArray().every(Number.isFinite)) throw Error(`Invalid Human shape ${semantic} stream`);
+            }
+        }
+        const material = p.getMaterial(), policy = d.materials.find(m => m.name === material?.getName());
+        if (!policy) throw Error('Undeclared soft garment material');
+        seen.add(policy.name);
+        const actual = [...material.getBaseColorFactor(), material.getMetallicFactor(), material.getRoughnessFactor()];
+        if (actual.some((v,i) => !Number.isFinite(v) || Math.abs(v - [...policy.baseColor,policy.metallic,policy.roughness][i]) > 1e-6)
+            || material.getDoubleSided() !== policy.doubleSided || material.getAlphaMode() !== policy.alphaMode
+            || (material.getBaseColorTexture() ? sha256(material.getBaseColorTexture().getImage()) : null) !== policy.baseColorTextureSha256
+            || material.getNormalTexture() || material.getOcclusionTexture() || material.getEmissiveTexture() || material.getMetallicRoughnessTexture()
+            || material.getEmissiveFactor().some(v => v !== 0)) throw Error('Soft material/texture differs from its descriptor revision');
+        vertices += count; triangles += p.getIndices().getCount() / 3;
+    }
+    if (seen.size !== d.materials.length || !blendedVertices) throw Error('Soft garment has unused materials or no blended skin');
+    return {vertices, triangles, blendedVertices, materials: [...seen].sort()};
 }
 
 /** Policy gate on a candidate or read-back document: rigid single-bone weights on exactly the
@@ -196,15 +285,17 @@ export async function verifyWrittenPlate(io, bytes, baseRoot, d, bodyMesh) {
     let root;
     assertGlbContainer(bytes);
     try { root = (await io.readBinary(bytes)).getRoot(); } catch (error) { throw Error(`Unreadable factory artifact: ${error.message}`); }
-    const policy = assertPlatePolicy(root, d);
+    const policy = assertEquipmentPolicy(root, d);
     const bind = verifyFactoryEquipmentBind(root, baseRoot, bodyMesh);
     return {...policy, bind};
 }
 
-/** Human shape family: one rigid similarity per bone group per target from the existing
- * `trackBodyRigid`, so a plate rides over a thicker/thinner torso without bending. Normals of
- * a rigid piece are unchanged (zero delta), exactly as build-garment-shape-family does. */
-export function addHumanShapeTargets(doc, shapeBodyRoot, shapeBodyMesh) {
+/** Reuse the existing offline Human shape transfer: trackBodyRigid keeps plates
+ * unbent with zero normal deltas; trackBodyShape and recomputeNormals fit cloth.
+ * Runtime still evaluates the same two native glTF morph targets before skinning.
+ * https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#morph-targets */
+export function addHumanShapeTargets(doc, shapeBodyRoot, shapeBodyMesh, {deformation = 'rigid-bone'} = {}) {
+    if (!['soft-skin','rigid-bone'].includes(deformation)) throw Error('Unsupported Human shape deformation');
     const mesh = shapeBodyRoot.listMeshes().find((m) => m.getName() === shapeBodyMesh);
     const body = mesh?.listPrimitives()[0], names = mesh?.getExtras()?.targetNames;
     if (!body || !Array.isArray(names)) throw Error('Shape body lacks named targets');
@@ -217,14 +308,20 @@ export function addHumanShapeTargets(doc, shapeBodyRoot, shapeBodyMesh) {
             if (p.listTargets().length) throw Error('Plate already has morph targets');
             const positions = p.getAttribute('POSITION').getArray(), count = positions.length / 3;
             for (const name of HUMAN_SHAPE_TARGETS) {
-                const result = trackBodyRigid(positions, bodyPositions, deltas[name],
-                    {jointsArr: p.getAttribute('JOINTS_0').getArray(), weightsArr: p.getAttribute('WEIGHTS_0').getArray()});
-                const delta = new Float32Array(count * 3);
-                for (let i = 0; i < delta.length; i++) delta[i] = result.shaped[i] - positions[i];
+                // Same fit and normal reconstruction as build-garment-shape-family;
+                // all work is offline. Runtime continues using native Lite morphs.
+                const soft = deformation === 'soft-skin';
+                const result = soft ? trackBodyShape(positions, bodyPositions, deltas[name])
+                    : trackBodyRigid(positions, bodyPositions, deltas[name],
+                        {jointsArr: p.getAttribute('JOINTS_0').getArray(), weightsArr: p.getAttribute('WEIGHTS_0').getArray()});
+                const delta = new Float32Array(count * 3), normalDelta = new Float32Array(count * 3);
+                const normals = p.getAttribute('NORMAL').getArray();
+                const shapedNormals = soft ? recomputeNormals(result.shaped, p.getIndices().getArray(), count) : normals;
+                for (let i = 0; i < delta.length; i++) {delta[i] = result.shaped[i] - positions[i]; normalDelta[i] = shapedNormals[i] - normals[i];}
                 p.addTarget(doc.createPrimitiveTarget(name)
                     .setAttribute('POSITION', doc.createAccessor(`${plate.getName()}_${name}_POSITION`).setType('VEC3').setArray(delta).setBuffer(buffer))
-                    .setAttribute('NORMAL', doc.createAccessor(`${plate.getName()}_${name}_NORMAL`).setType('VEC3').setArray(new Float32Array(count * 3)).setBuffer(buffer)));
-                fits[name] = result.fits;
+                    .setAttribute('NORMAL', doc.createAccessor(`${plate.getName()}_${name}_NORMAL`).setType('VEC3').setArray(normalDelta).setBuffer(buffer)));
+                fits[name] = soft ? {moved: result.moved, maxDelta: result.maxDelta, meanDelta: result.meanDelta} : result.fits;
             }
         }
         plate.setWeights(HUMAN_SHAPE_TARGETS.map(() => 0));

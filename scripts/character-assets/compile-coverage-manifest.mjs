@@ -53,6 +53,10 @@ export async function compileCoverageManifest({io,manifest,race,sourceRoot='publ
  }
  if(next.items.lectorCoat)rules.coversByItem.lectorCoat=['trousers.upper'];
  if(next.items.duskguardCuirass)rules.coversByItem.duskguardCuirass=['trousers.upper'];
+ // Fieldcoat retains Lector's waist coverage. Use the existing conditional
+ // trouser geoset: a torso's body mask alone does not hide underlying clothes.
+ // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#meshes
+ if(next.items.fieldcoat)rules.coversByItem.fieldcoat=['trousers.upper'];
  next.coverage={schema:1,revision:COVERAGE_REVISION,race,bodySegments:segments};
  next.garmentLayerCoverage=rules;
  return {manifest:next,writes,reports};

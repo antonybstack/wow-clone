@@ -1,12 +1,12 @@
 {
  "schema": 1,
  "version": 1,
- "publishedAt": "2026-10-06T00:49:42.062Z",
+ "publishedAt": "2026-10-07T05:35:28.045Z",
  "lite": "1.31.1",
- "catalogVersion": "appearance-catalog-v7",
+ "catalogVersion": "appearance-catalog-v8",
  "sourceCompilerSha256": "e9bb55b8b67195c5fe92cb8ebfc86aa59ee654a614bcec4154ab5c721a531563",
- "uniqueFiles": 48,
- "totalBytes": 19642636,
+ "uniqueFiles": 51,
+ "totalBytes": 21045504,
  "pieces": [
   {
    "race": "human",
@@ -133,6 +133,27 @@
    "file": "duskguardVambraces-731fa0e3fb9e94c4b92b51f18b6a7c7717b853ba435a438ace3c6181d4a7e8d4.glb",
    "bytes": 242388,
    "sha256": "731fa0e3fb9e94c4b92b51f18b6a7c7717b853ba435a438ace3c6181d4a7e8d4"
+  },
+  {
+   "race": "undead",
+   "id": "fieldcoat",
+   "file": "fieldcoat-1b19b607a3d43483c6575b8553b5418c508b2dcdf35060e78d877103f32a1a4e.glb",
+   "bytes": 388224,
+   "sha256": "1b19b607a3d43483c6575b8553b5418c508b2dcdf35060e78d877103f32a1a4e"
+  },
+  {
+   "race": "human",
+   "id": "fieldcoat",
+   "file": "fieldcoat-3349d25b6a305faf5db9276e6c6f9f09f0f5cc62c666aa339a59b71c0b9e1de1.glb",
+   "bytes": 641416,
+   "sha256": "3349d25b6a305faf5db9276e6c6f9f09f0f5cc62c666aa339a59b71c0b9e1de1"
+  },
+  {
+   "race": "orc",
+   "id": "fieldcoat",
+   "file": "fieldcoat-f708626ab3e310b8d9afc3229744521e66eb99102273ff16c233909bfffbb529.glb",
+   "bytes": 373228,
+   "sha256": "f708626ab3e310b8d9afc3229744521e66eb99102273ff16c233909bfffbb529"
   },
   {
    "race": "human",

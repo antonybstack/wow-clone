@@ -1,5 +1,8 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {manifestBodyCoverage,PUBLISHED_COVERAGE_REVISION} from '../src/ashen-reach/coverage-manifest.js';
+import {compileCoverageManifest} from './character-assets/compile-coverage-manifest.mjs';
+import {EQUIPMENT_ITEMS} from '../src/ashen-reach/equipment-catalog.js';
+import {resolveGarmentLayerVisibility} from '../src/ashen-reach/garment-layer-coverage.js';
 const fixture=()=>({items:{body:{meshes:['HumanV1Body','HumanTorsoCore'],coverageRevision:PUBLISHED_COVERAGE_REVISION}},coverage:{schema:1,revision:PUBLISHED_COVERAGE_REVISION,race:'human',bodySegments:{HumanV1Body:['head.face','hand'],HumanTorsoCore:['torso.upper','torso.lower','waist']}}});
 test('legacy packs do not pretend to have published body geosets',()=>assert.equal(manifestBodyCoverage({items:{body:{meshes:['HumanV1Body']}}},'human'),null));
 test('published adapter is exact and independent from equipment slot names',()=>{
@@ -7,4 +10,13 @@ test('published adapter is exact and independent from equipment slot names',()=>
 });
 test('wrong revision/race, missing core, unknown semantics and stale body revisions fail closed',()=>{
  for(const mutate of [m=>m.coverage.revision='future',m=>m.coverage.race='undead',m=>m.items.body.meshes.pop(),m=>m.coverage.bodySegments.HumanTorsoCore=['torso'],m=>delete m.items.body.coverageRevision,m=>m.coverage.bodySegments.HumanTorsoCore=['waist','waist']]){const m=fixture();mutate(m);assert.throws(()=>manifestBodyCoverage(m,'human'));}
+});
+test('published Fieldcoat coverage hides upper trousers on every race and removing it restores them',async()=>{
+ for(const race of ['human','orc','undead']){
+  const {manifest}=await compileCoverageManifest({manifest:{items:{fieldcoat:{}}},race});
+  const rules=manifest.garmentLayerCoverage;
+  const dressed={legs:'wayfarerTrousers',torso:'fieldcoat'};
+  assert.equal(resolveGarmentLayerVisibility(dressed,EQUIPMENT_ITEMS,rules).WayfarerTrousersUnderTorso,false);
+  assert.equal(resolveGarmentLayerVisibility({...dressed,torso:null},EQUIPMENT_ITEMS,rules).WayfarerTrousersUnderTorso,true);
+ }
 });

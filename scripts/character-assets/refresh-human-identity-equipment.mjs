@@ -23,6 +23,11 @@ assert.deepEqual(index.targetNames, current.targetNames);
 const sha = bytes => createHash('sha256').update(bytes).digest('hex'), staged = new Map(), accepted = [];
 for (const entry of Object.values(index.presets)) {
     const manifest = entry.manifest;
+    // Garment geosets belong to shared equipment, unlike the identity's body
+    // partition. Refresh them with the pieces so switching heads cannot restore
+    // trousers under a newly published coat. glTF visibility is per mesh:
+    // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#meshes
+    manifest.garmentLayerCoverage = structuredClone(current.garmentLayerCoverage);
     for (const tier of ['items', 'compactItems']) {
         const body = manifest[tier].body, hood = manifest[tier].graveweaverHood;
         accepted.push('public' + body.url, 'public' + hood.url);

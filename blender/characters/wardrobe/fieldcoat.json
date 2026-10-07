@@ -1,0 +1,148 @@
+{
+  "schema": 2,
+  "id": "fieldcoat",
+  "revision": 1,
+  "slot": "torso",
+  "layer": "cloth",
+  "occupies": [
+    "torso"
+  ],
+  "deformation": "soft-skin",
+  "blenderVersion": "5.2.1",
+  "sourceRights": "Native structural tailoring of accepted Lector masters derived from vendored CC0 MakeHuman suits02 cloth; project-authored divided hem and reinforcement seams. Existing Tripo/Mixamo source body/rig grants and limitations remain unchanged.",
+  "fits": {
+    "human": {
+      "directory": "equipment",
+      "bodyMesh": "HumanV1Body",
+      "source": "public/ashen-reach/equipment/body.glb",
+      "sha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+      "interface": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "garment": {
+        "source": "public/ashen-reach/equipment/lectorCoat-aa01a6300d3d.glb",
+        "sha256": "aa01a6300d3d8e73efd4eaf1e6832c67a75d6aa9c400aa48946fc7bc2b2101e3",
+        "mesh": "LectorCoat"
+      }
+    },
+    "orc": {
+      "directory": "equipment-orc",
+      "bodyMesh": "BodyExposed",
+      "source": "public/ashen-reach/equipment-orc/body.glb",
+      "sha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b",
+      "interface": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "garment": {
+        "source": "public/ashen-reach/equipment-orc/lectorCoat-6b60897773e6.glb",
+        "sha256": "6b60897773e608d5176b58f5914cb77a87c34ce476d51bd8e3e1611ea86a5b37",
+        "mesh": "LectorCoat"
+      }
+    },
+    "undead": {
+      "directory": "equipment-undead",
+      "bodyMesh": "UndeadV1Body",
+      "source": "public/ashen-reach/equipment-undead/body.glb",
+      "sha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d",
+      "interface": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      },
+      "garment": {
+        "source": "public/ashen-reach/equipment-undead/lectorCoat-711447547e62.glb",
+        "sha256": "711447547e62bbff736ddb03b66d26075af2f399e0884a32868214807d0f68dd",
+        "mesh": "LectorCoat"
+      }
+    }
+  },
+  "detail": {
+    "revision": 1,
+    "full": "authored-cloth",
+    "compact": "native-simplified-soft-skin",
+    "humanShapeFamily": "ashen-human-shape-v1"
+  },
+  "mesh": "Fieldcoat",
+  "status": "Candidate source descriptor. No live-fit or production acceptance yet.",
+  "builder": {
+    "path": "scripts/character-assets/build_fieldcoat.py",
+    "sha256": "5e858591d84835759407c6a30f78d166aacc2e7b05bd4302f4fe5c0611ecba38"
+  },
+  "design": {
+    "name": "Fieldcoat",
+    "structure": "Shorter mid-thigh hem measured on each actual skeleton, front/back V vents and two raised front reinforcement seams; source collar, sleeves and underarm lining retained.",
+    "hemThighFraction": 0.4,
+    "ventHeight": 0.1,
+    "ventHalfWidth": 0.045,
+    "seamOffset": 0.13,
+    "seamHalfWidth": 0.005,
+    "seamRise": 0.004,
+    "clothMaterial": "WayfarerTunic",
+    "trimMaterial": "Lector folded wool trim"
+  },
+  "humanShape": {
+    "family": "ashen-human-shape-v1",
+    "mode": "trackBodyShape",
+    "body": {
+      "source": "public/ashen-reach/human-shape-v1/body-e69a14d75176.bin",
+      "sha256": "e69a14d75176717920bae9ec438c80a4b842a8f014da256aec97db44ae743d9c",
+      "decodedSha256": "6c552cec7a794fdd7aa7876d6bedcb7f279101f0ca06169f6bc9e53444947417",
+      "compression": "gzip",
+      "bodyMesh": "HumanV1Body"
+    }
+  },
+  "materials": [
+    {
+      "revision": 1,
+      "name": "WayfarerTunic",
+      "baseColor": [
+        0.37,
+        0.48,
+        0.64,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.92,
+      "doubleSided": true,
+      "alphaMode": "OPAQUE",
+      "baseColorTextureSha256": "29d4e4e4beced64700aee7723b34dc6f6ac6d5c1b4f684ce2fdd2ba9e60c46f3"
+    },
+    {
+      "revision": 1,
+      "name": "Lector folded wool trim",
+      "baseColor": [
+        0.1599999964237213,
+        0.11500000208616257,
+        0.06499999761581421,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.9200000166893005,
+      "doubleSided": true,
+      "alphaMode": "OPAQUE",
+      "baseColorTextureSha256": null
+    },
+    {
+      "revision": 1,
+      "name": "Lector underarm wool",
+      "baseColor": [
+        0.019999999552965164,
+        0.02500000037252903,
+        0.03500000014901161,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.949999988079071,
+      "doubleSided": true,
+      "alphaMode": "OPAQUE",
+      "baseColorTextureSha256": null
+    }
+  ]
+}

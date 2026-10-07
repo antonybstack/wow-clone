@@ -18,6 +18,16 @@ const root='public/ashen-reach/human-shape-v1';
 await MeshoptDecoder.ready;
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder});
 const manifest=JSON.parse(await fs.readFile(`${root}/manifest.json`,'utf8'));
+// Preserve triangle order, winding and duplicate membership while accepting the
+// native codec's cyclic first-corner choice. Do not sort triangles or vertices.
+// https://github.com/zeux/meshoptimizer/blob/v0.22/README.md#lossless-index-buffer-compression
+const canonicalCorners=a=>Array.from({length:a.length/3},(_,i)=>{const t=Array.from(a.slice(i*3,i*3+3)),k=t.indexOf(Math.min(...t));return [...t.slice(k),...t.slice(0,k)];});
+test('native index proof accepts cyclic corners but rejects reversed, missing, reordered or duplicate triangles',()=>{
+ const source=canonicalCorners([0,1,2,3,4,5]);
+ assert.deepEqual(canonicalCorners([1,2,0,5,3,4]),source);
+ for(const changed of [[0,2,1,3,4,5],[0,1,2],[3,4,5,0,1,2],[0,1,2,0,1,2]])
+  assert.notDeepEqual(canonicalCorners(changed),source);
+});
 test('published family declares one deformation layout and exactly the catalogued garment artifacts',()=>{
  assert.equal(manifest.shapeFamily,PRODUCTION_HUMAN_FAMILY);assert.deepEqual(manifest.targetNames,['slender','stout']);assert.deepEqual(Object.keys(manifest.items).sort(),['body',...Object.keys(EQUIPMENT_ITEMS).filter(id=>!EQUIPMENT_ITEMS[id].factory)].sort());assert.equal(manifest.reproduction.clips,57);assert.equal(manifest.reproduction.neutralIdentity.matchesShippedBody,true);
 });
@@ -44,7 +54,7 @@ for(const [id,asset] of Object.entries(manifest.items))test(`${id} retains repai
   // Meshopt's triangle codec may rotate a triangle's first corner while retaining
   // its winding, membership and order. Vertex/skin/morph attributes remain exact.
   // https://github.com/zeux/meshoptimizer/blob/v0.22/README.md#lossless-index-buffer-compression
-  if(EQUIPMENT_ITEMS[id]?.deformation==='rigid-bone'){const canonical=a=>Array.from({length:a.length/3},(_,i)=>{const t=Array.from(a.slice(i*3,i*3+3)),k=t.indexOf(Math.min(...t));return [...t.slice(k),...t.slice(0,k)];});assert.deepEqual(canonical(p.getIndices().getArray()),canonical(original.getIndices().getArray()));}
+  if(EQUIPMENT_ITEMS[id]?.deformation==='rigid-bone'||id==='fieldcoat')assert.deepEqual(canonicalCorners(p.getIndices().getArray()),canonicalCorners(original.getIndices().getArray()));
   else assert.deepEqual(p.getIndices().getArray(),original.getIndices().getArray());
   for(const sem of original.listSemantics())assert.deepEqual(p.getAttribute(sem).getArray(),original.getAttribute(sem).getArray(),`${id}/${m.getName()}/${sem}`);
   assert.equal(p.listTargets().length,2);assert.deepEqual(m.getExtras().targetNames,['slender','stout']);

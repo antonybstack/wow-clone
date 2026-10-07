@@ -65,6 +65,29 @@ Any integration needs an explicit bounded geometry policy, independent written
 proofs and reviewed native motion/fit at the shape endpoints. Do not relax the
 existing normal-only proof to accept arbitrary geometry changes.
 
+Next bounded candidate to investigate after the cloth source freeze: overlap the existing
+starting-world GPU work with a still-pending saved body transfer. A retained candidate visit
+has world ready at 517.7 ms, body transfer ready at 774.9 ms, registration at 846.8 ms and
+supported GPU completion at 996.8 ms. These are navigation-relative stages, not isolated
+GPU execution times. The installed Lite 1.31.1 public `renderFrame` submits a single native
+frame; `registerSceneWithShadowSupport` awaits scene builders, pending material swaps and
+task preload. Reuse those APIs rather than introducing a shader or renderer cache.
+
+Investigate one opt-in preparatory frame of the exact starting world/post/shadows behind
+the opaque loading overlay while the body is pending, on the same engine/surface. Register
+and fence all added body/equipment pipelines before the actual dressed/grounded first-play
+frame. The preparatory world frame must never satisfy that boundary. No extra render loop,
+quality reduction, hidden saved outfit or relaxed GPU fence. Skip the work when the body
+is already available. First verify scene lifecycle, body/material readiness, device-loss
+and failed-body disposal; then use a small declared paired local comparison with normal
+HTTP throttling. Reject extra queue/registration work if it does not create useful headroom.
+This is a proposed scheduling experiment, not an implemented improvement or an explanation
+of the historical multi-second driver tail. The prior async-compilation/shadow trials remain
+closed unless new evidence supports them.
+
+Sources: [pinned native engine API](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/engine/engine.ts),
+[pinned scene registration](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/scene/scene-core.ts).
+
 After a justified implementation, declare startup cohorts before running them:
 twenty fresh processes each for unsaved default, catalogue-derived maximum outfit
 and historical hood/cloth/Bastion. The current strict gate is all valid starts at

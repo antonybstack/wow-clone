@@ -12,6 +12,29 @@ Fieldcoat through the factory; current physical iPhone acceptance. The
 the active goal. Progress independent cloth work while the startup release hold
 is open; do not spend another turn repeating unchanged cold cohorts.
 
+**Fieldcoat local integration:** schema-2 soft-skin factory and catalogue v8 are
+implemented with three race fits, Human shape transfer, exact source binds and
+frozen historical registries. The latest normal-game check passes **19 cases**
+with no runtime/GPU errors or recovery teleports. An independent review found
+missing upper-trouser coverage; live validation then exposed stale coverage in
+the selected-identity refresh. Both paths now propagate the shared garment rules,
+and Prime shape/race checks retain hidden upper trousers and visible lower trousers.
+Root reviewed the corrected **62.07-second 1280×720** live MP4 and waist captures.
+Factory 31, character 228 and equipment 115 checks pass; the flag-1 build passes.
+Catalogue v8 has 10,584 valid combinations and retains the **2,300,424-byte**
+maximum compact asset payload. Telegram **871** and the identical
+[VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/fieldcoat-2026-10-06.mp4)
+are delivered. Root reviewed correct inline/expanded Telegram and direct VE proportions;
+this browser did not enter requested fullscreen. Twelve cold/resident swap pairs pass:
+157.9 ms worst cold, 4.5 ms resident, 25.4 ms worst frame, with no errors or budget
+breaches at legacy 50 Mibit/s / 40 ms. Fifteen native 1280×720 route windows measure
+**219–257 FPS**, maximum p99 5.9 ms, worst 10.5 ms, no intervals over 16.67 ms or
+errors/recoveries. Forest retains 240 Hz detector hints: the strict detector gate
+failed there; only the two missing forest windows were collected in observation
+mode. This does not establish an uncapped hardware limit. New startup/release gates
+remain open. This garment is **not released to production**.
+[Fieldcoat result](plans/character-mmo/results/fieldcoat-2026-10-06.md).
+
 **Resumed diagnostic checkpoint:** 29 focused tests, the flag-1 build, all three
 entry aliases, four built-game failure controls and default/maximum full-region
 movement pass. Request/decode errors now name the asset URL and failed operation while retaining
@@ -47,10 +70,11 @@ Three production-host diagnostics are **1,265 / 925 / 1,988 ms**. Late HTML and
 one 1,157 ms body-cache MISS dominate. The response headers differ from the
 immutable Pages host. Navigation is h2 while some assets use h3; CF-Ray suffixes
 can identify an origin-facing cache tier, so neither a physical route nor an
-HTTP/3 defect is established. The deployment token's DNS request returns 403;
-Edge's Cloudflare dashboard is signed out. An optional user sign-in request is
-pending in tab **1147995760**. With access, inspect the custom-domain cache/origin
-rules and available request logs. No settings have been changed.
+HTTP/3 defect is established. The deployment token's DNS request returns 403.
+The former signed-out Cloudflare dashboard tab **1147995760** is now absent;
+no sign-in task is pending there. Custom-domain cache/origin rules and available
+request logs remain a separate access-dependent investigation. No settings have
+been changed.
 
 The native-priority hypothesis is closed: two instrumented visits show the early
 facade, shared store, renderer and body already request at High priority, without
@@ -174,7 +198,8 @@ preserve proportions. Physical phone and Telegram Desktop remain unverified.
   Babylon Lite 1.31.1/WebGPU, Havok 1.3.14, compatible source animation.
 - M5 saved identities and bounded M8 rigid-item factory proof remain implemented.
   Original/Prime bald/ponytail/Weathered bald, gear and dyes save before dressed
-  first play. Catalogue v7 includes Bastion shoulders on all supported races.
+  first play. Production catalogue v7 includes Bastion shoulders on all supported
+  races; local catalogue v8 adds Fieldcoat without changing the frozen v7 domain.
   Human height 0.90–1.15/build −0.95…+0.95; Orc/Undead neutral only.
 - M6 [mixed review](plans/character-mmo/results/m6-mixed-fit-2026-10-06.md) and
   [continuous clearance](plans/character-mmo/results/m6-clearance-2026-10-06.md)
@@ -197,11 +222,24 @@ preserve proportions. Physical phone and Telegram Desktop remain unverified.
   Telegram's own playback behavior leaves two videos playing/two paused. One
   old Telegram node had detached and was not replaced or manipulated.
   User Edge 2931 and current Orca 98938 remain intact (old Orca 1889 has exited).
-  Cloudflare tab 1147995760 remains signed out for optional user sign-in.
+  Cloudflare tab 1147995760 is absent.
+- Latest Fieldcoat checks owned slot 7, Chrome 58716/CDP 10037 and Vite 58691/58711
+  on 5873. The worker closed all contexts and stopped the harness; exact PIDs and
+  listeners are absent. Root's review tab 1147995805 and server 67708/7081 are
+  closed. The current tests/build worker owns no renderer. User Edge/Orca remain
+  intact. New media must be audited before startup/FPS measurements.
+- Fieldcoat swap/FPS workers also closed slot 7: Chrome 13220 / 22382 / 33734,
+  Vite 13195 / 22337 / 33689, associated listeners 5873/10037 absent. Exact
+  child/server cleanup is in the garment receipt. Root's VE tab 1147995809 is
+  closed. Temporary Telegram/Shadowglass guards were removed after timing and
+  all connected media received their recorded prior playback states. User
+  Edge 2931 / Orca 98938 remain intact.
 - [Grok operations workflow](reviews/workflow-2026-10-05.md#current-operating-rule--2026-10-06):
   delegate operations exclusively to Grok; root implements and reviews. Freeze
   product inputs for gates; one worker owns browser/timing. Preserve unrelated
-  AGENTS.md edits and caches. Source is committed/pushed; final docs need no rebuild.
+  AGENTS.md edits and caches. The local Fieldcoat checkpoint includes source,
+  tests and receipts; production acceptance remains on the startup hold. Freeze
+  product inputs again for any subsequent gates; documentation alone needs no rebuild.
 - Native goal reports **active** on the resumed tool read; all five priorities
   are not complete. User authorization remains autonomous implementation and
   verification. [Continuation limits](autonomous-continuation.md).

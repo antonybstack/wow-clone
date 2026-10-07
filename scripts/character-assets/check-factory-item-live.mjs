@@ -1,4 +1,4 @@
-/** Actual Armory integration of a descriptor-built shoulder item. Run one owned
+/** Actual Armory integration of a descriptor-built shoulder or torso item. Run one owned
  * native Lite game at a time. Optional timestamped motion is not an FPS sample.
  * https://chromedevtools.github.io/devtools-protocol/tot/Page/#method-startScreencast
  * https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal
@@ -14,8 +14,27 @@ import {APPEARANCE_V6_REGISTRY, APPEARANCE_CATALOG_VERSION, migrateAppearance} f
 import {appearanceFromEquipment} from '../../src/character/appearance/from-equipment.js';
 const [descriptorPath, out] = process.argv.slice(2), url = process.env.ASHEN_TEST_URL, port = process.env.ASHEN_CDP_PORT;
 assert(descriptorPath && out && url && port, 'Descriptor, output, owned CDP and game URL required');
+// ?creator selects the historical developer garment pack; current content must
+// be checked through the ordinary Armory and its published manifests.
+assert(!new URL(url).searchParams.has('creator'), 'Factory acceptance needs the ordinary game route, without the legacy ?creator diagnostic');
 const descriptor = JSON.parse(await fs.readFile(descriptorPath, 'utf8')), item = EQUIPMENT_ITEMS[descriptor.id];
-assert.equal(item?.slot, 'shoulders');
+assert(['shoulders','torso'].includes(item?.slot));
+const slot = item.slot, adjacentSlot = slot === 'shoulders' ? 'torso' : 'shoulders';
+const expectedParts = descriptor.schema === 2 ? descriptor.materials.length : 1;
+const targetIntent = {slot, id: item.id};
+async function uiEquip(page, id) {
+    await page.locator(`#armory [data-equipment="${slot}"]`).selectOption(id || '');
+    await page.waitForFunction(({slot,id}) => {
+        const status = ASHEN.equipment.getStatus();
+        return !status.pending && (status.error || (ASHEN.equipment.getState()[slot] || null) === (id || null));
+    }, {slot,id});
+    const result = await page.evaluate(slot => ({id: ASHEN.equipment.getState()[slot] || null, ...ASHEN.equipment.getStatus()}),slot);
+    assert.equal(result.id,id || null,result.error || `Armory did not equip ${id || 'nothing'}`);
+}
+function assertParts(state) {
+    assert.equal(state.parts.length, expectedParts);
+    for (const part of state.parts) assert.equal(part.bones,65);
+}
 const record = process.env.ASHEN_FACTORY_CAPTURE === '1';
 await fs.mkdir(out, {recursive: true});
 const browser = await chromium.connectOverCDP(`http://127.0.0.1:${port}`);
@@ -32,6 +51,8 @@ const state = page => page.evaluate(meshName => {
     return {appearance: ASHEN.getAppearance(), equipment: ASHEN.equipment.getState(), dyes: ASHEN.equipment.getDyes(),
         physics: ASHEN.player.getDebugState().usingPhysics, recoveries: ASHEN.player.getDebugState().recoveries,
         parts: ASHEN.scene.meshes.filter(m => m.name === meshName && visible(m)).map(m => ({bones: m.skeleton?.boneCount, morphs: !!m.morphTargets, weights: m.morphTargets ? Array.from(m.morphTargets.weights) : []})),
+        upperTrousers: ASHEN.scene.meshes.filter(m => m.name === 'WayfarerTrousersUnderTorso').map(m => ({visible:visible(m)})),
+        lowerTrousersVisible: ASHEN.scene.meshes.some(m => m.name === 'WayfarerTrousers' && visible(m)),
         partOwners: ASHEN.scene.meshes.filter(m => m.name.includes(meshName)).map(m => {
             const ancestors = []; for (let n = m; n; n = n.parent) ancestors.push({name: String(n.name), visible: n.visible !== false});
             return {name: m.name, ancestors};
@@ -70,12 +91,20 @@ try {
         }
         const mark = name => timeline.push({name, timestamp: Date.now() / 1000});
         try {
+            if (slot === 'torso') {
+                await uiEquip(page,'lectorCoat'); await page.check('#armory [data-light]');
+                await page.evaluate(()=>ASHEN.armory.setFocus({height:1.05,radius:3.3,beta:1.36}));
+                for (const view of ['front','back']) {
+                    await page.locator(`#armory [data-view="${view}"]`).click();
+                    mark(`Lector source control ${view}`); await page.waitForTimeout(record ? 1200 : 180);
+                    await page.screenshot({path:`${out}/source-lector-${view}.png`});
+                }
+            }
             const cases = [['human-neutral', 'human', 0, 1], ['human-short-stout', 'human', .95, .9],
                 ['human-tall-slender', 'human', -.95, 1.15], ['human-short-slender', 'human', -.95, .9],
                 ['human-tall-stout', 'human', .95, 1.15], ['orc-neutral', 'orc', 0, 1], ['undead-neutral', 'undead', 0, 1]];
             for (const [name, race, build, height] of cases) {
-                await page.locator('#armory [data-equipment="shoulders"]').selectOption('');
-                await page.waitForFunction(() => !ASHEN.equipment.getState().shoulders && !ASHEN.equipment.getStatus().pending);
+                await uiEquip(page,null);
                 if (await page.evaluate(() => ASHEN.equipment.race) !== race) {
                     await page.locator('#armory [data-race]').selectOption(race);
                     await page.waitForFunction(r => ASHEN.equipment.race === r && !!ASHEN.creator, race, {timeout: 120000});
@@ -87,14 +116,23 @@ try {
                     }
                     await page.evaluate(async ({build, height}) => {await ASHEN.creator.set('build', build); await ASHEN.creator.set('height', height);}, {build, height});
                 }
-                await page.locator('#armory [data-equipment="shoulders"]').selectOption(item.id);
-                await page.waitForFunction(id => ASHEN.equipment.getState().shoulders === id && !ASHEN.equipment.getStatus().pending, item.id);
+                if (slot === 'torso') {
+                    await page.locator('#armory [data-equipment="legs"]').selectOption('wayfarerTrousers');
+                    await page.waitForFunction(() => ASHEN.equipment.getState().legs === 'wayfarerTrousers' && !ASHEN.equipment.getStatus().pending);
+                }
+                await uiEquip(page,item.id);
                 await page.evaluate(() => ASHEN.creator.settled());
                 await page.check('#armory [data-light]');
-                await page.evaluate(() => ASHEN.armory.setFocus({height: 1.4 * ASHEN.player.heightScale, radius: 2.05 * ASHEN.player.heightScale, beta: 1.38}));
+                await page.evaluate(slot => ASHEN.armory.setFocus({height: (slot === 'torso' ? 1.05 : 1.4) * ASHEN.player.heightScale,
+                    radius: (slot === 'torso' ? 3.3 : 2.05) * ASHEN.player.heightScale, beta: 1.38}),slot);
                 const fitted = await state(page); await fs.writeFile(`${out}/${name}-state.json`, JSON.stringify(fitted, null, 2));
                 assert.equal(fitted.appearance.race, race); assert(fitted.physics); assert.equal(fitted.recoveries, 0);
-                assert.equal(fitted.parts.length, 1); assert.equal(fitted.parts[0].bones, 65); assert.deepEqual(fitted.gpuErrors, []);
+                assertParts(fitted); assert.deepEqual(fitted.gpuErrors, []);
+                if (slot === 'torso') {
+                    assert(fitted.upperTrousers.length > 0, 'The actual upper-trouser geoset was not loaded');
+                    assert(fitted.upperTrousers.every(part => !part.visible), 'Fieldcoat left upper trousers protruding through its waist');
+                    assert(fitted.lowerTrousersVisible, 'The vent must retain the visible lower trousers');
+                }
                 if (race === 'human') {assert.equal(fitted.appearance.shape.height, height); assert.equal(fitted.appearance.shape.build, build); if (build) {assert(fitted.parts[0].morphs); assert.deepEqual(fitted.parts[0].weights, [Math.fround(Math.max(0, -build)), Math.fround(Math.max(0, build))]);}}
                 mark(name);
                 for (const view of ['front', 'side', 'back']) {
@@ -107,14 +145,23 @@ try {
             }
             await page.locator('#armory [data-race]').selectOption('human');
             await page.waitForFunction(() => ASHEN.equipment.race === 'human' && !!ASHEN.creator, null, {timeout: 120000});
-            await page.locator('#armory [data-equipment="shoulders"]').selectOption(item.id);
-            await page.waitForFunction(id => ASHEN.equipment.getState().shoulders === id && !ASHEN.equipment.getStatus().pending, item.id);
+            await page.getByLabel('Face and hair', {exact: true}).selectOption('prime-ponytail');
+            await page.waitForFunction(() => ASHEN.creator.identity.selected === 'prime-ponytail');
+            await uiEquip(page,item.id);
             // Adjacent plate/cloth collars, hair/hood and both hand occupancies.
-            for (const torso of ['lectorCoat', 'duskguardCuirass', 'graveweaverTop']) {
-                await page.locator('#armory [data-equipment="torso"]').selectOption(torso);
-                await page.waitForFunction(id => ASHEN.equipment.getState().torso === id && !ASHEN.equipment.getStatus().pending, torso);
+            for (const adjacent of (slot === 'shoulders' ? ['lectorCoat', 'duskguardCuirass', 'graveweaverTop'] : ['wardenPauldrons','bastionShoulders'])) {
+                await page.locator(`#armory [data-equipment="${adjacentSlot}"]`).selectOption(adjacent);
+                await page.waitForFunction(({slot,id}) => ASHEN.equipment.getState()[slot] === id && !ASHEN.equipment.getStatus().pending, {slot:adjacentSlot,id:adjacent});
                 await page.selectOption('#armory [data-motion]', 'pulse'); await page.waitForTimeout(record ? 1000 : 200);
-                mark(`Adjacent collar ${torso}`); await page.screenshot({path: `${out}/collar-${torso}.png`});
+                mark(`Adjacent collar ${adjacent}`); await page.screenshot({path: `${out}/collar-${adjacent}.png`});
+            }
+            if (slot === 'torso') for (const preset of ['duskguard','graveweaver']) {
+                await page.evaluate(async ({preset,id}) => {const result=await ASHEN.equipment.setLoadout({...ASHEN.equipment.presets[preset].loadout,torso:id});
+                    if(result.status!=='applied')throw Error(`Mixed coat failed: ${result.status}`);}, {preset,id:item.id});
+                await page.selectOption('#armory [data-motion]','run'); mark(`Fieldcoat mixed ${preset}`);
+                await page.waitForTimeout(record ? 1800 : 180); await page.screenshot({path:`${out}/mixed-${preset}.png`});
+                const mixed = await state(page); assertParts(mixed); assert.equal(mixed.equipment.torso,item.id);
+                report.rows.push({case:'mixed-cloth-plate-boundaries',preset,state:mixed});
             }
             for (const helmet of ['graveweaverHood', '']) {
                 await page.locator('#armory [data-equipment="helmet"]').selectOption(helmet);
@@ -122,9 +169,9 @@ try {
                 assert.equal(await page.evaluate(() => ASHEN.scene.meshes.find(m => m.name === 'HumanPonytail01')?.visible !== false), !helmet);
                 await page.screenshot({path: `${out}/${helmet ? 'hood' : 'hair'}-shoulders.png`});
             }
-            await page.getByLabel('Shoulders colour', {exact: true}).selectOption('oxblood');
-            await page.waitForFunction(() => ASHEN.equipment.getDyes().shoulders === 'oxblood');
-            mark('Shoulder dye preserves identity and shape');
+            await page.getByLabel(`${slot[0].toUpperCase()+slot.slice(1)} colour`, {exact: true}).selectOption('oxblood');
+            await page.waitForFunction(slot => ASHEN.equipment.getDyes()[slot] === 'oxblood',slot);
+            mark(`${slot} dye preserves identity and shape`);
             for (const hand of ['ironSword', 'graveweaverGreatstaff']) {
                 await page.locator('#armory [data-equipment="mainHand"]').selectOption(hand);
                 await page.waitForFunction(id => ASHEN.equipment.getState().mainHand === id && !ASHEN.equipment.getStatus().pending, hand);
@@ -164,13 +211,13 @@ try {
             await fs.writeFile(`${out}/movement.json`, JSON.stringify({before, after, distance: Math.hypot(after[0] - before[0], after[1] - before[1]), debug: await page.evaluate(() => ASHEN.player.getDebugState())}, null, 2));
             assert(Math.hypot(after[0] - before[0], after[1] - before[1]) > 10);
             assert((await page.evaluate(() => ASHEN.player.getDebugState().jumps)) > 0, 'Actual Havok jump was not observed');
-            const saved = await state(page); assert.equal(saved.appearance.equipment.shoulders, item.id); assert.deepEqual(saved.gpuErrors, []); assert.equal(saved.recoveries, 0);
+            const saved = await state(page); assert.equal(saved.appearance.equipment[slot], item.id); assert.deepEqual(saved.gpuErrors, []); assert.equal(saved.recoveries, 0);
             assert.equal(JSON.parse(saved.storage).catalogVersion, APPEARANCE_CATALOG_VERSION);
             // The initial seed only fills empty storage. Reload must read the actual
             // Armory save; no second recipe injection manufactures persistence.
             if (record) {recording = false; await cdp.send('Page.stopScreencast'); await Promise.all(writes); await writeCaptureManifest(out, manifest, await captureSurface(page));}
             await page.reload(); await ready(page);
-            const restored = await state(page); assert.deepEqual(restored.appearance, saved.appearance); assert.equal(restored.parts.length, 1); assert.equal(restored.parts[0].bones, 65);
+            const restored = await state(page); assert.deepEqual(restored.appearance, saved.appearance); assertParts(restored);
             report.rows.push({case: 'dye-motion-havok-save-reload', saved, restored, distance: Math.hypot(after[0] - before[0], after[1] - before[1])});
         } finally {
             if (record && cdp) {
@@ -190,22 +237,22 @@ try {
         });
         const before = await state(page);
         try {
-            await page.evaluate(id => {globalThis.__factoryPending = ASHEN.equipment.equip('shoulders', id);}, item.id);
+            await page.evaluate(({slot,id}) => {globalThis.__factoryPending = ASHEN.equipment.equip(slot, id);}, targetIntent);
             for (let i = 0; i < 100 && !hits; i++) await page.waitForTimeout(30); assert(hits > 0);
-            if (failure === 'superseded') await page.evaluate(() => {
-                globalThis.__factorySkipped = ASHEN.equipment.equip('shoulders', 'wardenPauldrons');
-                globalThis.__factoryLatest = ASHEN.equipment.equip('shoulders', null);
-            });
-            if (failure === 'independent-slots') await page.evaluate(() => {globalThis.__factoryLatest = ASHEN.equipment.equip('torso', 'lectorCoat');});
+            if (failure === 'superseded') await page.evaluate(slot => {
+                globalThis.__factorySkipped = ASHEN.equipment.equip(slot, slot === 'shoulders' ? 'wardenPauldrons' : 'lectorCoat');
+                globalThis.__factoryLatest = ASHEN.equipment.equip(slot, null);
+            },slot);
+            if (failure === 'independent-slots') await page.evaluate(slot => {globalThis.__factoryLatest = ASHEN.equipment.equip(slot, slot === 'torso' ? 'lectorCoat' : 'bastionShoulders');},adjacentSlot);
             if (failure === 'disposed') await page.evaluate(() => {ASHEN.equipment.dispose();});
             if (failure === 'admission-refused') {
                 // Isolated admission-bit injection, no multiplayer server or join.
-                const refused = await page.evaluate(async () => {
+                const refused = await page.evaluate(async slot => {
                     const previous = ASHEN.presence; ASHEN.presence = {closed: false, appearanceApplying: false};
-                    try {await ASHEN.equipment.equip('shoulders', null); return null;}
+                    try {await ASHEN.equipment.equip(slot, null); return null;}
                     catch (error) {return error.message;}
                     finally {ASHEN.presence = previous;}
-                });
+                },slot);
                 assert.match(refused, /Use Shared region/);
                 admissionRefusal = refused;
                 assert.equal(await page.evaluate(() => ASHEN.equipment.getStatus().pending), true, 'Refused intent cancelled an admitted fetch');
@@ -217,18 +264,18 @@ try {
             if (failure === 'superseded') assert.equal((await page.evaluate(() => globalThis.__factorySkipped)).status, 'superseded');
             const after = await state(page); assert.deepEqual(after.gpuErrors, []);
             if (failure === 'independent-slots') {
-                assert.equal(after.equipment.shoulders, item.id); assert.equal(after.equipment.torso, 'lectorCoat'); assert.equal(after.parts.length, 1);
+                assert.equal(after.equipment[slot], item.id); assert.equal(after.equipment[adjacentSlot], adjacentSlot === 'torso' ? 'lectorCoat' : 'bastionShoulders'); assertParts(after);
             } else if (failure === 'admission-refused') {
-                assert.equal(after.equipment.shoulders, item.id); assert.equal(after.parts.length, 1);
+                assert.equal(after.equipment[slot], item.id); assertParts(after);
             } else {
-                assert.equal(after.equipment.shoulders ?? null, before.equipment.shoulders ?? null); assert.equal(after.parts.length, 0);
+                assert.equal(after.equipment[slot] ?? null, failure === 'superseded' ? null : before.equipment[slot] ?? null); assert.equal(after.parts.length, 0);
                 assert.equal(after.partOwners.length, 0, 'Refused item left a native scene mesh');
             }
             report.rows.push({case: failure === 'independent-slots' ? 'independent-slot-intents' : failure === 'admission-refused' ? 'admission-refusal-preserves-pending' : 'transaction-refusal', failure, hits, result, admissionRefusal});
             if (failure === 'http' || failure === 'corrupt') {
                 await page.unroute(`**/*${item.id}*`);
-                const retry = await page.evaluate(id => ASHEN.equipment.equip('shoulders', id), item.id);
-                assert.equal(retry.status, 'applied'); assert.equal((await state(page)).parts.length, 1);
+                const retry = await page.evaluate(({slot,id}) => ASHEN.equipment.equip(slot, id), targetIntent);
+                assert.equal(retry.status, 'applied'); assertParts(await state(page));
                 report.rows.push({case: 'transaction-retry', failure, status: retry.status});
             }
         } finally {release(); await page.unroute(`**/*${item.id}*`);}

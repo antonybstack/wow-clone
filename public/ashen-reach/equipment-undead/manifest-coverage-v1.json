@@ -298,6 +298,20 @@
         "bind": 1,
         "shape": 1
       }
+    },
+    "fieldcoat": {
+      "url": "/ashen-reach/equipment-undead/fieldcoat-c9a2030aad08.glb",
+      "bytes": 631988,
+      "sha256": "c9a2030aad08319b6a7ba1093c062034d9f43bccc560d4f8b970648c8ab48a4c",
+      "meshes": [
+        "Fieldcoat"
+      ],
+      "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
     }
   },
   "coverage": {
@@ -344,6 +358,9 @@
         "trousers.upper"
       ],
       "duskguardCuirass": [
+        "trousers.upper"
+      ],
+      "fieldcoat": [
         "trousers.upper"
       ]
     },

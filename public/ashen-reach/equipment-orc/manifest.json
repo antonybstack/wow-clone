@@ -241,6 +241,20 @@
         "bind": 1,
         "shape": 1
       }
+    },
+    "fieldcoat": {
+      "url": "/ashen-reach/equipment-orc/fieldcoat-e24f3dcfd8d8.glb",
+      "bytes": 601296,
+      "sha256": "e24f3dcfd8d86875444d5cf4d7c7157850bd91f5b296c597b04a5e64edf87da6",
+      "meshes": [
+        "Fieldcoat"
+      ],
+      "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+      }
     }
   },
   "bindSha256": "5bdfea1bf692a085205a24fe496c876874fba82aa62ee92597128fcf88ab2079"

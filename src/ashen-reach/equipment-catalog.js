@@ -47,6 +47,7 @@ const authoredItems={
     // M8 factory item (blender/characters/wardrobe/bastion-shoulders.json). Appended last so
     // the released item order, and every frozen registry built from it, is unchanged.
     bastionShoulders:{id:'bastionShoulders',slot:'shoulders',name:'Bastion crested shoulders',parts:[{mesh:'BastionShoulders'}],coverage:[],covers:[],layer:'plate',deformation:'rigid-bone'},
+    fieldcoat:{id:'fieldcoat',slot:'torso',name:'Fieldcoat',parts:[{mesh:'Fieldcoat'}],coverage:['BodyUnderTunic','BodyWaist'],covers:['torso.upper','torso.lower','waist'],layer:'cloth',deformation:'soft-skin'},
 };
 const seamsBySlot={shoulders:['shoulders'],helmet:['neck'],torso:['neck','waist','wrists'],legs:['waist','ankles'],boots:['ankles'],gloves:['wrists'],mainHand:[],offHand:[]};
 export const EQUIPMENT_ITEMS=freezeEquipment(Object.fromEntries(Object.entries(authoredItems).map(([id,item])=>[id,{...item,fit:{...HUMAN_EQUIPMENT_FIT},fits:{human:{...HUMAN_EQUIPMENT_FIT},orc:{...ORC_EQUIPMENT_FIT},undead:{...UNDEAD_EQUIPMENT_FIT}},seams:seamsBySlot[item.slot],occupies:item.occupies||[item.slot]}])));
@@ -61,6 +62,10 @@ export const EQUIPMENT_V3_ITEMS=freezeEquipment(Object.fromEntries([...LEGACY_IT
  * network profile that still declares v6. */
 export const EQUIPMENT_V6_ITEM_IDS=Object.freeze(['lectorCoat','duskguardCuirass','duskguardTassets','duskguardGreaves','duskguardVambraces','wardenPauldrons',...LEGACY_ITEM_IDS]);
 export const EQUIPMENT_V6_ITEMS=freezeEquipment(Object.fromEntries(EQUIPMENT_V6_ITEM_IDS.map(id=>[id,EQUIPMENT_ITEMS[id]])));
+/** V7 is frozen before the soft factory item enters v8. Older saved/network
+ * recipes must never acquire new item membership through the current map. */
+export const EQUIPMENT_V7_ITEM_IDS=Object.freeze([...EQUIPMENT_V6_ITEM_IDS,'bastionShoulders']);
+export const EQUIPMENT_V7_ITEMS=freezeEquipment(Object.fromEntries(EQUIPMENT_V7_ITEM_IDS.map(id=>[id,EQUIPMENT_ITEMS[id]])));
 /**
  * Socket-local hold for a race. Human values stay on the item; a race entry under `grips`
  * is an optional correction.
@@ -96,6 +101,7 @@ export const LEGACY_EQUIPMENT_SLOTS=Object.freeze(['helmet','torso','legs','boot
 export const EQUIPMENT_SLOTS=Object.freeze([...LEGACY_EQUIPMENT_SLOTS,'shoulders']);
 const outfit=items=>({...Object.fromEntries(EQUIPMENT_SLOTS.map(slot=>[slot,null])),...items});
 export const EQUIPMENT_PRESETS={
+    fieldcoat:{name:'Fieldcoat',loadout:outfit({torso:'fieldcoat',legs:'wayfarerTrousers',boots:'wayfarerBoots',mainHand:'ironSword'})},
     lector:{name:'Lector',loadout:outfit({torso:'lectorCoat',legs:'wayfarerTrousers',boots:'wayfarerBoots',mainHand:'graveweaverStaff',offHand:'graveweaverBook'})},
     duskguard:{name:'Duskguard',loadout:outfit({torso:'duskguardCuirass',legs:'duskguardTassets',boots:'duskguardGreaves',gloves:'duskguardVambraces',shoulders:'wardenPauldrons',mainHand:'ironSword'})},
     wayfarer:{name:'Wayfarer',loadout:outfit({torso:'wayfarerTunic',legs:'wayfarerTrousers',boots:'wayfarerBoots',mainHand:'ironSword'})},

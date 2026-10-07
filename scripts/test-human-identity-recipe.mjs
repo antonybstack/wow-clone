@@ -9,10 +9,10 @@ import {createProductionIdentitySession} from '../src/character/creator/producti
 const identity=(id,base=migrateAppearance(defaultAppearance(),candidate))=>validateAppearance({...base,components:HUMAN_IDENTITY_PRESETS.find(p=>p.id===id).components},candidate);
 const storage=()=>{const data=new Map();return {getItem:key=>data.get(key)??null,setItem:(key,value)=>data.set(key,value)};};
 
-test('current v7 (and frozen v6) support authored identity while historical component domains remain closed',()=>{
+test('current v8 (and frozen v6) support authored identity while historical component domains remain closed',()=>{
  assert.equal(APPEARANCE_REGISTRY,candidate);
- assert.equal(APPEARANCE_REGISTRY.catalogVersion,'appearance-catalog-v7');
- assert.equal(candidate.catalogVersion,'appearance-catalog-v7');
+ assert.equal(APPEARANCE_REGISTRY.catalogVersion,'appearance-catalog-v8');
+ assert.equal(candidate.catalogVersion,'appearance-catalog-v8');
  assert.equal(APPEARANCE_V6_REGISTRY.catalogVersion,'appearance-catalog-v6');
  assert.equal(APPEARANCE_V6_REGISTRY.profiles,candidate.profiles);
  for(const registry of [APPEARANCE_V1_REGISTRY,APPEARANCE_V2_REGISTRY,APPEARANCE_V3_REGISTRY,APPEARANCE_V4_REGISTRY,APPEARANCE_V5_REGISTRY]){

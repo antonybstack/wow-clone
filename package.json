@@ -18,7 +18,7 @@
     "prepare:human-shapes": "node scripts/character-assets/prepare-production-human-shapes.mjs",
     "prepare:human-identities": "node scripts/character-assets/prepare-production-human-identities.mjs",
     "prepare:factory": "node scripts/character-assets/prepare-factory-content.mjs",
-    "test:factory": "node --test scripts/test-equipment-factory.mjs scripts/test-appearance-catalog-v7.mjs"
+    "test:factory": "node --test scripts/test-equipment-factory.mjs scripts/test-equipment-factory-soft.mjs scripts/test-appearance-catalog-v7.mjs scripts/test-appearance-catalog-v8.mjs"
   },
   "dependencies": {
     "@babylonjs/havok": "1.3.14",

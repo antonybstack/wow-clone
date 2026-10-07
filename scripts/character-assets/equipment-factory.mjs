@@ -25,7 +25,7 @@ import {MeshoptDecoder} from 'meshoptimizer';
 import {FITS_BY_RACE} from '../../src/ashen-reach/equipment-contract.js';
 import {verifyFactoryEquipmentBind} from './verify-factory-equipment-bind.mjs';
 import {
-    validateDescriptor, verifyPinnedInputs, restoreSourceFrame, assertPlatePolicy, verifyWrittenPlate,
+    validateDescriptor, verifyPinnedInputs, restoreSourceFrame, assertEquipmentPolicy, verifyWrittenPlate, canonicalizeFactoryTriangles,
     addHumanShapeTargets, planPublication, executePublication, readPinnedShapeBody, assertGlbContainer, sha256, PINNED_BLENDER, HUMAN_SHAPE_TARGETS,
 } from './equipment-factory-contract.mjs';
 
@@ -52,13 +52,14 @@ export function parseArguments(argv) {
     return options;
 }
 
-async function runBlender(blender, d, race, work) {
+async function runBlender(blender, d, race, work, garmentSource) {
     const fit = d.fits[race], raw = path.join(work, `${race}-raw.glb`);
     const child = spawn(blender, ['--background', '--factory-startup', '--python-exit-code', '1', '--python', d.builder.path], {
         stdio: ['ignore', 'pipe', 'pipe'],
         timeout: 120000,
         env: {PATH: process.env.PATH, HOME: process.env.HOME, TMPDIR: process.env.TMPDIR,
-            ASHEN_PLATE_SOURCE: fit.source, ASHEN_PLATE_OUT: raw, ASHEN_PLATE_BLEND: path.join(work, `${race}.blend`), ASHEN_PLATE_BODY_MESH: fit.bodyMesh},
+            ASHEN_PLATE_SOURCE: fit.source, ASHEN_PLATE_OUT: raw, ASHEN_PLATE_BLEND: path.join(work, `${race}.blend`), ASHEN_PLATE_BODY_MESH: fit.bodyMesh,
+            ASHEN_GARMENT_SOURCE: garmentSource, ASHEN_FACTORY_DESCRIPTOR: JSON.stringify(d), ASHEN_FACTORY_RACE: race},
     });
     let log = '';
     child.stdout.on('data', (b) => { log += b; }); child.stderr.on('data', (b) => { log += b; });
@@ -76,9 +77,29 @@ async function build(io, d, races, blender, work) {
     const results = {};
     for (const race of races) {
         const fit = d.fits[race], base = (await io.read(fit.source)).getRoot();
-        const doc = await io.read(await runBlender(blender, d, race, work)), root = doc.getRoot();
+        let garmentSource;
+        if (d.schema === 2) {
+            // Native NodeIO decodes the pinned published master into a disposable
+            // Blender input. Blender need not implement the runtime compression.
+            // https://gltf-transform.dev/modules/extensions/classes/EXTMeshoptCompression
+            const garment = await io.read(fit.garment.source);
+            for (const extension of garment.getRoot().listExtensionsUsed())
+                if (extension.extensionName === 'EXT_meshopt_compression') extension.dispose();
+            garmentSource = path.join(work, `${race}-garment-source.glb`);
+            await io.write(garmentSource, garment);
+        }
+        const doc = await io.read(await runBlender(blender, d, race, work, garmentSource)), root = doc.getRoot();
         restoreSourceFrame(root, base, d, fit.bodyMesh);
-        assertPlatePolicy(root, d);
+        if (d.schema === 2) for (const material of root.listMaterials()) {
+            const policy = d.materials.find(m => m.name === material.getName());
+            if (!policy) throw Error(`${race}: undeclared authored material ${material.getName()}`);
+            // Linked Blender textures can discard their diffuse multiplier. Restore
+            // explicit glTF PBR factors, then independently verify the texture image.
+            // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#material-pbrmetallicroughness
+            material.setBaseColorFactor(policy.baseColor).setMetallicFactor(policy.metallic).setRoughnessFactor(policy.roughness);
+        }
+        assertEquipmentPolicy(root, d);
+        if (d.schema === 2) canonicalizeFactoryTriangles(root);
         const bytes = Buffer.from(await io.writeBinary(doc));
         const verification = await verifyWrittenPlate(io, bytes, base, d, fit.bodyMesh);
         await fs.writeFile(path.join(work, `${d.id}-${race}.glb`), bytes);
@@ -96,11 +117,11 @@ async function build(io, d, races, blender, work) {
         if (race === 'human' && d.humanShape) {
             // Re-read and re-verify the pinned gzip shape body for each build, so build-2 proves the same input.
             const shapeDoc = await io.readBinary(bytes), shapeBody = (await io.readBinary(await readPinnedShapeBody(d))).getRoot();
-            const fits = addHumanShapeTargets(shapeDoc, shapeBody, d.humanShape.body.bodyMesh);
+            const fits = addHumanShapeTargets(shapeDoc, shapeBody, d.humanShape.body.bodyMesh, {deformation: d.deformation});
             const shapeBytes = Buffer.from(await io.writeBinary(shapeDoc));
             assertGlbContainer(shapeBytes);
             const check = (await io.readBinary(shapeBytes)).getRoot();
-            assertPlatePolicy(check, d, {allowShapeTargets: true});
+            assertEquipmentPolicy(check, d, {allowShapeTargets: true});
             // Project the freshly parsed artifact to neutral only after validating its
             // exact target streams above. Reuse the stricter neutral bind/geometry gate;
             // removing targets here changes no published bytes, weights or base positions.
@@ -137,9 +158,9 @@ export async function main(argv = process.argv.slice(2)) {
         schema: 1, item: d.id, mesh: d.mesh, slot: d.slot, layer: d.layer, occupies: d.occupies, deformation: d.deformation,
         descriptor: {path: options.descriptor, sha256: sha256(descriptorBytes)}, blender: PINNED_BLENDER,
         host: {platform: process.platform, arch: process.arch, blenderVersion}, toolSources,
-        sourceRights: d.sourceRights, material: d.material, detail: d.detail, byteIdenticalRebuild: repeated,
+        sourceRights: d.sourceRights, material: d.material, materials: d.materials, detail: d.detail, byteIdenticalRebuild: repeated,
         races: Object.fromEntries(options.races.map((r) => [r, {source: {path: d.fits[r].source, sha256: d.fits[r].sha256},
-            interface: d.fits[r].interface, artifact: {sha256: first[r].sha256, bytes: first[r].bytes.length},
+            garment: d.fits[r].garment, interface: d.fits[r].interface, artifact: {sha256: first[r].sha256, bytes: first[r].bytes.length},
             structure: first[r].structure, ...first[r].verification}])),
         humanShape: first.humanShape ? {family: d.humanShape.family, sha256: first.humanShape.sha256, bytes: first.humanShape.bytes.length,
             targets: first.humanShape.targets, body: d.humanShape.body, bind: first.humanShape.bind} : null,

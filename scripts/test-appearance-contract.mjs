@@ -120,6 +120,10 @@ test('decoder bounds UTF-8 bytes and returns controlled parse errors',()=>{
 test('committed seed fixtures stay canonical and document three active families',async()=>{
   const data=JSON.parse(await fs.readFile(new URL('./fixtures/appearance/v1-recipes.json',import.meta.url)));
   assert.equal(data.schema,1);
+  // Pin the frozen v1 data, not its containing module: later catalogue versions
+  // append equipment without changing these historical recipes or registries.
+  // https://nodejs.org/api/crypto.html#hashupdatedata-inputencoding
+  assert.equal(createHash('sha256').update(JSON.stringify({items:EQUIPMENT_ITEMS,presets:EQUIPMENT_PRESETS,slots:EQUIPMENT_SLOTS})).digest('hex'),data.frozenCatalogueSha256);
   for(const [source,digest] of Object.entries(data.sourceSha256)) {
     const bytes=await fs.readFile(new URL(`../${source}`,import.meta.url));
     assert.equal(createHash('sha256').update(bytes).digest('hex'),digest,source);

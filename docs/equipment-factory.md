@@ -1,23 +1,30 @@
-# Equipment factory (M8)
+# Equipment factory
 
-The factory compiles one **rigid-bone** equipment item, such as a pauldron or a plate, for every
-accepted race from a single descriptor. It reuses the reviewed native steps rather than adding new
-rules:
+The factory compiles one descriptor into each supported race fit. Schema 1 remains the rigid
+Bastion plate contract; schema 2 adds a skinned cloth contract. Fieldcoat is the first local
+schema-2 integration: local fit/motion checks pass; performance and release acceptance remain
+open. It reuses the existing steps:
 
 - `normalizeHumanBind`
 - `verifyFactoryEquipmentBind`
 - `retainFullStartupGeometry`
-- `trackBodyRigid`
+- `trackBodyRigid` for plates; `trackBodyShape` and `recomputeNormals` for cloth
 - the existing shape, identity, coverage and remote-piece compilers
 
 | File | Role |
 | --- | --- |
-| `scripts/character-assets/equipment-factory-contract.mjs` | Pure checks: the descriptor, pins, frame restoration, plate policy, GLB framing, Human shape targets, the publication plan. |
+| `scripts/character-assets/equipment-factory-contract.mjs` | Pure checks: the descriptor, pins, frame restoration, rigid/soft policies, GLB framing, Human shape targets, the publication plan. |
 | `scripts/character-assets/equipment-factory.mjs` | The per-item compiler: pinned Blender, independent read-back, repeat build, optional local race-pack publication. |
 | `scripts/character-assets/prepare-factory-content.mjs` | The single content entry point (`npm run prepare:factory`). It runs the factory and then every downstream pack compiler. |
 | `scripts/character-assets/refresh-human-identity-equipment.mjs` | An equipment-only refresh of the Human identity descriptors. |
-| `blender/characters/wardrobe/<item>.json` | The item descriptor (example: `bastion-shoulders.json`). |
-| `scripts/character-assets/build_<item>.py` | The item's Blender builder (example: `build_bastion_shoulders.py`). |
+| `blender/characters/wardrobe/<item>.json` | The item descriptor (examples: `bastion-shoulders.json`, `fieldcoat.json`). |
+| `scripts/character-assets/build_<item>.py` | The item's Blender builder (examples: `build_bastion_shoulders.py`, `build_fieldcoat.py`). |
+
+An equipment-only identity refresh must copy the current `garmentLayerCoverage` as well as
+`items` and `compactItems`, while retaining the identity-specific body partition. Fieldcoat's
+first neutral check passed but a saved Prime body exposed upper trousers because its descriptor
+still carried the previous shared rules. The production-identity verifier now refuses that
+stale metadata; compiler/resolver tests also check upper-trouser hiding and removal restoration.
 
 ## Commands
 
@@ -32,7 +39,8 @@ ASHEN_CDP_PORT=<port> ASHEN_TEST_URL=<owned dev URL> \
 
 # Compiler only, for iterating on one race (never publishable):
 node scripts/character-assets/equipment-factory.mjs <descriptor> --out .cache/<new-run> --races human
-node --test scripts/test-equipment-factory.mjs scripts/test-appearance-catalog-v7.mjs
+node --test scripts/test-equipment-factory.mjs scripts/test-equipment-factory-soft.mjs
+node --test scripts/test-appearance-catalog-v7.mjs scripts/test-appearance-catalog-v8.mjs
 ```
 
 - **Fresh output directory every run:** `--out` must be a subdirectory of `.cache`, and each
@@ -60,36 +68,57 @@ node --test scripts/test-equipment-factory.mjs scripts/test-appearance-catalog-v
 | `structure` | Optional `{partsPerBone}`. The builder's `<race>-raw.structure.json` must report exactly that many non-empty parts for each declared bone. |
 | `sourceRights` | Required provenance and licence statement. |
 
-Other fields, such as `design`, `corrective` and `status`, are for people reading the descriptor;
-the factory doesn't interpret them.
+## Descriptor (schema 2)
+
+Schema 2 shares the id/slot/occupancy, pinned builder, body fit, licence and Blender requirements
+above. It rejects `rigidBones` and `structure`; schema-1 rules are unchanged.
+
+| Field | Rule |
+| --- | --- |
+| `deformation` | `soft-skin`; four normalized influences per vertex, at least some blended vertices, the accepted 65-joint interface, no item animation clips. |
+| `fits.<race>.garment` | Separately pinned `{source, sha256, mesh}` from a tracked neutral garment master. Body/rig pins do not substitute for garment provenance. |
+| `materials` | Unique names; each declares revision, base colour, metallic, roughness, `OPAQUE`, `doubleSided` and exact base-colour image SHA-256 or null. Every declared material is used; extra textures and emission are refused. |
+| `detail` | `full: authored-cloth`, `compact: native-simplified-soft-skin`. The downstream compact compiler uses its existing simplification and normal packing policy. |
+| `humanShape` | Optional pinned body as above; `mode: trackBodyShape`. Derive positional offsets and recompute normal deltas offline; runtime uses existing Lite morphs. |
+
+`design`, `corrective` and `status` are builder-specific or descriptive fields; the generic
+factory does not interpret them. Fieldcoat's pinned builder interprets its `design` fields.
+Changing them changes the descriptor hash and requires a new build/provenance.
+
 
 ## What one compiler run proves
 
 1. **Before anything is written:**
    - the descriptor is valid
-   - the builder, its dependencies, each race's source body and the gzip shape body (encoded and
+   - the builder, its dependencies, each race's source body, each declared garment master and the gzip shape body (encoded and
      decoded) all match their hashes
    - Blender reports `5.2.1`
 2. **Authoring:** each race runs in its own
    `blender --background --factory-startup --python-exit-code 1` process. That process gets a
-   **minimal environment** (`PATH`, `HOME`, `TMPDIR` and the four `ASHEN_PLATE_*` paths) and a
-   120 s timeout.
+   **minimal environment** (`PATH`, `HOME`, `TMPDIR`, the four `ASHEN_PLATE_*` paths,
+   `ASHEN_GARMENT_SOURCE`, serialized `ASHEN_FACTORY_DESCRIPTOR` and `ASHEN_FACTORY_RACE`)
+   and a 120 s timeout. Native glTF Transform decodes a schema-2 master to a disposable
+   uncompressed input; Blender does not need to implement meshopt decoding.
 3. **Bind restoration:** the export is restored to **that** race's joint order, inverse binds,
    rest TRS and body frame. `normalizeHumanBind` first checks the exported rest palette against
    the body to 0.002, so a wrong frame is refused rather than snapped.
 4. **Policy check:** no animation clips, no morph targets, exact single-bone weights on the
    declared bones, the descriptor material factors, and full-geometry retention for compact
-   detail.
+   detail on schema 1. Schema 2 independently checks normalized blended weights, named
+   materials, image hashes, culling and opacity.
 5. **Independent read-back:** a GLB container/chunk framing check, then a fresh parse, then the
    policy again, then the native palette/bounds gate (`verifyFactoryEquipmentBind`). The framing
    check exists because a truncated BIN chunk otherwise parses silently.
 6. **Structure:** when the descriptor declares `structure`, the builder's per-race report must
    match it.
 7. **Human shape proof:** `slender`/`stout` are derived with `trackBodyRigid` as one rigid
-   similarity per arm group, with zero normal deltas. The shaped file then passes the policy
+   similarity per arm group, with zero normal deltas on schema 1. Schema 2 uses the existing
+   body-shape transfer and normal recomputation. The shaped file then passes the policy
    (exactly two targets) and, projected to neutral, the same native bind gate.
 8. **Repeat:** `build-2` must be byte-identical to `build-1` for every artifact, including the
-   shape proof.
+   shape proof. Schema-2 oriented triangle indices are canonicalized by cyclic rotation
+   and sorting, reusing the Lector preparation pattern; winding, duplicates and vertex
+   streams are preserved. This removes Blender serialization-order variance, not geometry.
 9. **Re-check after the build:** the pins are hashed again, so nothing changed while Blender ran.
 10. **Report:** `report.json` records:
     - the descriptor and tool hashes
@@ -104,14 +133,14 @@ and platform are there so that a difference elsewhere can be explained.
 ## The shipped Human shape vs the isolated proof
 
 The factory's `<id>-human-shape.glb` stays in `--out`. It only proves that the pinned item
-accepts rigid slender/stout targets against the pinned body. It is never published, and
+accepts its declared slender/stout transfer against the pinned body. It is never published, and
 `report.humanShape.sha256` is not a shipped asset hash.
 
 The **shipped** shaped item comes from `prepare:human-shapes`:
 - `build-garment-shape-family.mjs` selects every catalogued, non-procedural item present in the
   shipped Human manifest.
-- New rigid-bone items are appended after the released rows, which keep their exact order.
-- That step rebuilds the body, applies the same `trackBodyRigid` rigid fit, meshopt-compresses
+- New factory items are appended after the released rows, which keep their exact order.
+- That step rebuilds the body, applies `trackBodyRigid` or `trackBodyShape` according to deformation, meshopt-compresses
   and gzips the result into `human-shape-v1`.
 
 Expect different bytes from the proof.
@@ -134,6 +163,24 @@ Expect different bytes from the proof.
   whole-weight to the nearer of the two shoulder heads.
 - **Scale:** the builder refuses a non-uniform cap scale.
 
+## Fieldcoat's geometry (`build_fieldcoat.py`)
+
+- Reuse each race's immutable licensed Lector master, collar, sleeves, underarm lining,
+  UVs, skin and three material batches. The garment is structurally tailored rather than
+  being renamed or recoloured alone.
+- Shorten the hem at a declared fraction along that race's upper leg, cut front/back V vents,
+  and extrude two shallow front reinforcement seams into the existing trim batch.
+- Native BMesh bisect/extrude operations interpolate source UV and deform layers. Limit cuts
+  to the intended panels so they do not introduce extra skin influences in sleeves/lining.
+- Measure the fraction discarded by four-influence reduction before invoking Blender's
+  native limiter and normalizer; refuse loss above 3%. The actual build loss is recorded in
+  each `*.tailoring.json`; this is not evidence of good live fit by itself.
+- Published layer coverage hides the existing `trousers.upper` geoset beneath Fieldcoat,
+  as it does for Lector. The body mask alone does not hide another garment. Lower trousers
+  remain visible through the divided hem; verify the actual native parts on every race.
+- Use the established frame restoration and bind checker. No runtime fitter, extra palette,
+  animation clock, cloth simulation or material batch is introduced.
+
 ## Full content integration (`npm run prepare:factory -- … --publish`)
 
 Each step runs only after the previous one succeeds:
@@ -145,7 +192,7 @@ Each step runs only after the previous one succeeds:
    - adds `items[<id>]` to each race's `manifest.json`, by temp file then rename, one race at a
      time
 2. **`shapes`:** `prepare-production-human-shapes.mjs` regenerates `human-shape-v1`, including
-   the new rigid item and its provenance.
+   the new item and its provenance.
 3. **`startup-character`:** the starter character pack.
 4. **`coverage`:** `prepare-coverage-release.mjs --publish` produces `manifest-coverage-v1.json`
    for all races. This is what the Orc, Undead and default Human runtime routes actually read.
@@ -180,17 +227,18 @@ another doesn't. Canonical `<id>.glb` files are also overwritten before the mani
 Recovery is to fix the cause and rerun the whole command into a new `--out`, which rewrites every
 step. Don't release a tree that came from a failed run.
 
-## Catalogue requirement (v7 and frozen history)
+## Catalogue requirement (v8 and frozen history)
 
 `--publish` refuses unless the item is already registered in
 `src/ashen-reach/equipment-catalog.js` with the descriptor's mesh. A new item also needs an
 **explicit catalogue version**:
 
-- **Current version:** `APPEARANCE_CATALOG_VERSION` is `appearance-catalog-v7`, which added
-  `bastionShoulders`.
+- **Current local version:** `APPEARANCE_CATALOG_VERSION` is `appearance-catalog-v8`, which adds
+  `fieldcoat`. Production remains the version recorded in [CURRENT](CURRENT.md).
 - **Frozen history:** v4–v6 are frozen to the 18 released items (`EQUIPMENT_V6_ITEMS`), and
-  v1–v3 to their own sets. A saved or networked older recipe can't carry a newer item.
-  `migrateAppearance` upgrades v1–v6 explicitly while keeping identity, gear, shape and dyes.
+  v1–v3 to their own sets. V7 is closed to `EQUIPMENT_V7_ITEMS` (v6 plus Bastion).
+  A saved or networked older recipe cannot carry Fieldcoat.
+  `migrateAppearance` upgrades v1–v7 explicitly while keeping identity, gear, shape and dyes.
 - **Identity pack version:** `IDENTITY_CATALOG_VERSION` stays v6 because it stamps the
   identity pack index, which an equipment-only change doesn't regenerate.
 - **Presence and remote pieces:** the handshake and the remote-piece catalogue compare against
@@ -198,9 +246,9 @@ step. Don't release a tree that came from a failed run.
 
 ## Known limits
 
-- **Material policy covers factors only:** baseColor, metallic and roughness are compared to
-  1e-6. Textures, `alphaMode`, `doubleSided` and emissive are not gated; the builder hash pin is
-  the only guard.
+- **Schema-1 material policy covers factors only:** baseColor, metallic and roughness are
+  compared to 1e-6. Schema 2 also gates textures, `alphaMode`, `doubleSided` and emission;
+  these stricter rules do not silently change the old descriptor contract.
 - **Operand clearances are recorded, not enforced:** the factory checks the structure counts.
   Whether the final union reads cleanly is a visual and native question.
 - **Bind is proven against the unsplit body:** the bind proof uses each race's unsplit source
@@ -236,8 +284,13 @@ factory and are recorded separately when they are run:
 4. **Register:** append the item to `equipment-catalog.js`. Bump the appearance catalogue with a
    new `APPEARANCE_V<n>_REGISTRY`, freezing the previous item set, and extend the migration and
    presence tests.
-5. **Publish locally:** run `--publish` with the owned harness, then commit nothing until every
-   gate in [Not production acceptance](#not-production-acceptance) has passed.
+5. **Publish locally:** run `--publish` with the owned harness, verify actual live fit/motion
+   and commit/push the verified local work. Record any open startup/release hold explicitly;
+   production promotion requires every gate in [Not production acceptance](#not-production-acceptance).
+
+For a soft item, copy `fieldcoat.json` instead: pin the separate race garment masters, declare
+material/image policies and `trackBodyShape`, then read the schema-2 rules above. Do not convert
+cloth to whole-bone weights to fit the rigid contract.
 
 ## References
 
@@ -245,6 +298,8 @@ factory and are recorded separately when they are run:
 - Blender Solidify modifier: https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/solidify.html
 - Blender Boolean modifier (Exact solver): https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/booleans.html
 - Blender glTF 2.0 exporter: https://docs.blender.org/manual/en/latest/addons/import_export/scene_gltf2.html
+- Blender BMesh operations: https://docs.blender.org/api/current/bmesh.ops.html
+- Blender vertex-group limiter: https://docs.blender.org/api/current/bpy.ops.object.html#bpy.ops.object.vertex_group_limit_total
 - Blender `mathutils.bvhtree`: https://docs.blender.org/api/current/mathutils.bvhtree.html
 - glTF 2.0 skins: https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#skins
 - glTF 2.0 morph targets: https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#morph-targets

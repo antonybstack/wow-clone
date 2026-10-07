@@ -1,7 +1,7 @@
 /** M007 semantic coverage and seams: the rules, exhaustively.
  *
  * The catalogue is small enough that "exhaustive" is literal -- every slot takes every item
- * it accepts or nothing, 1536 loadouts -- so these tests enumerate rather than sample.
+ * it accepts or nothing, 12,096 v8 candidates -- so these tests enumerate rather than sample.
  */
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -58,8 +58,9 @@ test('the migrated proof outfits mean the same thing in both vocabularies', () =
         assert.deepEqual([...item.covers].sort(), legacy, `${item.id} declares a different meaning in each vocabulary`);
     }
     // The original semantic pieces, the five actual Lector/Duskguard fits and, from catalogue
-    // v7, the factory Bastion plate (an explicit empty `covers`, like the Warden plate).
-    assert.equal(migrated, 14);
+    // v7, the factory Bastion plate (an explicit empty `covers`, like the Warden plate),
+    // and v8's Fieldcoat. Every declaration above still proves exact semantic agreement.
+    assert.equal(migrated, 15);
 });
 
 test('the legacy region adapter is total over what the catalogue uses', () => {
@@ -97,8 +98,8 @@ test('two-handed occupancy agrees with the catalogue validator on every combinat
         assert.equal(accepted, !conflict, `${JSON.stringify(loadout)} accepted=${accepted} conflict=${conflict}`);
         checked++;
     }
-    // v7: the shoulder slot has three choices (none, Warden, Bastion) instead of two, x1.5.
-    assert.equal(checked, 10368);
+    // v8: Fieldcoat adds one torso choice to v7's six (including none): 10368 * 7/6.
+    assert.equal(checked, 12096);
 });
 
 test('the Orc adapter retains shipped visibility for every valid loadout', () => {
@@ -232,9 +233,10 @@ test('every valid combination resolves on every race without throwing', () => {
             }
         }
     }
-    // v7: 6,048 valid v6 loadouts x 3/2 shoulder choices. Shoulders are not a garment slot
-    // here, so the pair/triple garment coverage below is unchanged.
-    assert.equal(valid.length, 9072);
-    assert.equal(pairs.size, 63, 'cross-set pair coverage');
-    assert.equal(triples.size, 143, 'three-way coverage');
+    // v8: 9072 * 7/6 torso choices; the added coat has eight neighboring garment
+    // pairs and twenty-three triples (three leg choices). Semantic checks, not live fit.
+    assert.equal(valid.length, 10584);
+    assert.equal(valid.filter(loadout=>loadout.torso==='fieldcoat').length,1512);
+    assert.equal(pairs.size, 71, 'cross-set pair coverage');
+    assert.equal(triples.size, 166, 'three-way coverage');
 });

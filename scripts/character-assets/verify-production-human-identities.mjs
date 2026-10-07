@@ -8,6 +8,8 @@ import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 import {HUMAN_IDENTITY_PRESETS,IDENTITY_CATALOG_VERSION} from '../../src/character/appearance/human-identity.js';
 import {manifestBodyCoverage} from '../../src/ashen-reach/coverage-manifest.js';
+import {validateGarmentLayerCoverage} from '../../src/ashen-reach/garment-layer-coverage.js';
+import {EQUIPMENT_ITEMS} from '../../src/ashen-reach/equipment-catalog.js';
 import {ASHEN_PLAYABLE_CLIP_NAMES} from '../../src/character/runtime/ashen-playable-motion.js';
 import {verifyCompactNormalPolicy} from './compact-normal-policy.mjs';
 import {verifyHumanCoveragePolicy} from './verify-human-coverage-policy.mjs';
@@ -32,7 +34,10 @@ export async function verifyProductionHumanIdentities({readFile=fs.readFile}={})
   assert.equal(descriptor.length,entry.bytes);assert.equal(sha(descriptor),entry.sha256);
   assert.equal(descriptor.toString(),JSON.stringify(entry.manifest),'Embedded identity descriptor differs from immutable file');
   const manifest=entry.manifest;
-  manifestBodyCoverage(manifest,'human');
+  const coverage=manifestBodyCoverage(manifest,'human');
+  validateGarmentLayerCoverage(manifest.garmentLayerCoverage,EQUIPMENT_ITEMS,coverage.baseMeshes);
+  assert.deepEqual(manifest.garmentLayerCoverage,current.garmentLayerCoverage,
+   `${preset.id}: stale shared garment coverage`);
   verifyHumanCoveragePolicy(manifest,{identity:true});
   assert.equal(manifest.identity.preset,preset.id);assert.deepEqual(entry.components,preset.components);assert.deepEqual(manifest.identity.components,preset.components);
   assert.equal(manifest.identity.bind,'canonical-source-65-v1');assert.equal(manifest.fitId,current.fitId);assert.equal(manifest.shapeFamily,current.shapeFamily);assert.deepEqual(manifest.targetNames,current.targetNames);

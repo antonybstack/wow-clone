@@ -40,8 +40,7 @@ test('historical registries v1-v6 are byte-for-byte the pre-v7 registries', () =
         assert.equal(digest(registry), expected, `${version} changed`);
         assert.equal(Object.hasOwn(registry.items, 'bastionShoulders'), false, `${version} admits the v7 item`);
     }
-    assert.equal(APPEARANCE_REGISTRY, APPEARANCE_V7_REGISTRY);
-    assert.equal(APPEARANCE_CATALOG_VERSION, 'appearance-catalog-v7');
+    assert.equal(APPEARANCE_V7_REGISTRY.catalogVersion, 'appearance-catalog-v7');
     // The identity pack index is versioned by the catalogue that introduced identities.
     assert.equal(IDENTITY_CATALOG_VERSION, 'appearance-catalog-v6');
     // v7 changes only the item map: same schema, slots, profiles (identity, shape and dye domains).
@@ -79,7 +78,7 @@ test('a v6 recipe or v6-declared profile cannot carry Bastion', () => {
     }
 });
 
-test('a saved v6 recipe migrates to v7 keeping identity, gear, shape and dyes', () => {
+test('a saved v6 recipe migrates to current keeping identity, gear, shape and dyes', () => {
     for (const preset of HUMAN_IDENTITY_PRESETS) {
         let v6 = appearanceFromEquipment({race: 'human', loadout: v6Loadout}, APPEARANCE_V6_REGISTRY);
         v6 = validateAppearance({...v6, components: preset.components, shape: {...v6.shape, height: 1.12, build: -0.6},
@@ -87,14 +86,14 @@ test('a saved v6 recipe migrates to v7 keeping identity, gear, shape and dyes', 
         const raw = encodeAppearance(v6, APPEARANCE_V6_REGISTRY), s = storage({[APPEARANCE_STORAGE_KEY]: raw});
         const loaded = loadAppearance({storage: s});
         assert.equal(loaded.restored, true); assert.equal(loaded.migrated, true); assert.equal(loaded.warning, null);
-        assert.deepEqual(loaded.appearance, {...v6, catalogVersion: 'appearance-catalog-v7'});
+        assert.deepEqual(loaded.appearance, {...v6, catalogVersion: APPEARANCE_CATALOG_VERSION});
         assert.equal(s.getItem(APPEARANCE_STORAGE_KEY), raw, 'loading never rewrites the saved record');
     }
     for (const race of ['orc', 'undead']) {
         const v6 = validateAppearance({...appearanceFromEquipment({race, loadout: v6Loadout}, APPEARANCE_V6_REGISTRY), dyes: {gloves: 'ash'}}, APPEARANCE_V6_REGISTRY);
-        assert.deepEqual(migrateAppearance(v6), {...v6, catalogVersion: 'appearance-catalog-v7'});
+        assert.deepEqual(migrateAppearance(v6), {...v6, catalogVersion: APPEARANCE_CATALOG_VERSION});
     }
-    assert.throws(() => migrateAppearance({...appearanceFromEquipment({race: 'human', loadout: {}}), catalogVersion: 'appearance-catalog-v8'}), {code: 'UNSUPPORTED_CATALOG'});
+    assert.throws(() => migrateAppearance({...appearanceFromEquipment({race: 'human', loadout: {}}), catalogVersion: 'appearance-catalog-future'}), {code: 'UNSUPPORTED_CATALOG'});
 });
 
 test('v7 round-trips Bastion on every race with a dye, and differs in identity from Warden', () => {
@@ -114,7 +113,7 @@ test('a race without a declared Bastion fit is refused, never given the Human fi
     for (const missing of ['orc', 'undead']) {
         const fits = Object.fromEntries(Object.entries(item.fits).filter(([race]) => race !== missing));
         const registry = {...APPEARANCE_V7_REGISTRY, items: {...APPEARANCE_V7_REGISTRY.items, bastionShoulders: {...item, fits}}};
-        const recipe = appearanceFromEquipment({race: missing, loadout: {}});
+        const recipe = appearanceFromEquipment({race: missing, loadout: {}}, APPEARANCE_V7_REGISTRY);
         assert.throws(() => validateAppearance({...recipe, equipment: {...recipe.equipment, shoulders: 'bastionShoulders'}}, registry), {code: 'UNSUPPORTED_ITEM_FIT'});
     }
 });
@@ -139,10 +138,12 @@ test('live-loader contract: each race manifest either lacks Bastion or carries i
 });
 
 test('shape compiler selects catalogued shipped garments generically and keeps the released rows', () => {
-    const shipped = JSON.parse(fs.readFileSync('public/ashen-reach/equipment/manifest.json', 'utf8'));
+    const current = JSON.parse(fs.readFileSync('public/ashen-reach/equipment/manifest.json', 'utf8'));
+    const shipped = {...current,items:Object.fromEntries(Object.entries(current.items).filter(([id])=>id==='body'||Object.hasOwn(APPEARANCE_V7_REGISTRY.items,id)))};
+    const items = APPEARANCE_V7_REGISTRY.items;
     const released = ['wayfarerTunic', 'wayfarerTrousers', 'wayfarerBoots', 'pilgrimTunic', 'graveweaverTop', 'graveweaverSkirt', 'graveweaverHood',
         'graveweaverGloves', 'lectorCoat', 'duskguardCuirass', 'duskguardTassets', 'duskguardGreaves', 'duskguardVambraces', 'wardenPauldrons'];
-    const production = selectShapeGarments(shipped, EQUIPMENT_ITEMS, {productionPlate: true});
+    const production = selectShapeGarments(shipped, items, {productionPlate: true});
     // Exactly the pre-M8 hardcoded production list: same order, files and rigidity.
     assert.deepEqual(production.garments.filter(g => released.includes(g.item)), released.map((item) => ({item, file: `public/ashen-reach/equipment/${item}.glb`, rigid: item === 'wardenPauldrons'})));
     if (!shipped.items.bastionShoulders) assert.deepEqual(production.awaiting, ['bastionShoulders']);
@@ -151,7 +152,7 @@ test('shape compiler selects catalogued shipped garments generically and keeps t
         out: '.cache/character-mmo/m005/warden-pauldrons-shaped.glb', diagnostic: true});
     // Once root publishes Bastion into the Human manifest it is shaped as a rigid plate, appended.
     const withBastion = {...shipped, items: {...shipped.items, bastionShoulders: {url: '/x'}}};
-    const next = selectShapeGarments(withBastion, EQUIPMENT_ITEMS, {productionPlate: true});
+    const next = selectShapeGarments(withBastion, items, {productionPlate: true});
     assert.deepEqual(next.garments.at(-1), {item: 'bastionShoulders', file: 'public/ashen-reach/equipment/bastionShoulders.glb', rigid: true});
     assert.deepEqual(next.garments.slice(0, -1), production.garments.filter(g => g.item !== 'bastionShoulders'));
     assert.deepEqual(next.awaiting, []);

@@ -1,0 +1,4437 @@
+{
+  "schema": 1,
+  "date": "2026-10-06",
+  "status": "local fit accepted; production release open",
+  "production": {
+    "source": "6004840807cb47a908fb47dd87848f49f39f3268",
+    "pages": "e39117b8-db74-4563-a6c0-b428c8d5d10e"
+  },
+  "factory": {
+    "descriptor": {
+      "path": "blender/characters/wardrobe/fieldcoat.json",
+      "sha256": "4097ca9e7c8afabd0fd3cf2b17e97aba891ed9a8f254db32cdb998516ffd6d80"
+    },
+    "schema": 2,
+    "blender": "5.2.1",
+    "host": {
+      "platform": "darwin",
+      "arch": "arm64"
+    },
+    "byteIdenticalRebuild": true,
+    "races": {
+      "human": {
+        "source": {
+          "path": "public/ashen-reach/equipment/body.glb",
+          "sha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0"
+        },
+        "garment": {
+          "source": "public/ashen-reach/equipment/lectorCoat-aa01a6300d3d.glb",
+          "sha256": "aa01a6300d3d8e73efd4eaf1e6832c67a75d6aa9c400aa48946fc7bc2b2101e3",
+          "mesh": "LectorCoat"
+        },
+        "artifact": {
+          "sha256": "75c5c4d770f94ed15713f0d7018030dd2876d5255280f0de41cf4c19a9f39d83",
+          "bytes": 558164
+        },
+        "vertices": 7026,
+        "triangles": 11700,
+        "blendedVertices": 6541,
+        "bind": {
+          "joints": 65,
+          "meshes": 1,
+          "primitives": 3,
+          "vertices": 7026,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.6867489218711853,
+              0.7940620183944702,
+              -0.1812066286802292
+            ],
+            "max": [
+              0.6913986206054688,
+              1.5149445533752441,
+              0.1520855724811554
+            ],
+            "frame": "accepted body mesh"
+          }
+        }
+      },
+      "orc": {
+        "source": {
+          "path": "public/ashen-reach/equipment-orc/body.glb",
+          "sha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b"
+        },
+        "garment": {
+          "source": "public/ashen-reach/equipment-orc/lectorCoat-6b60897773e6.glb",
+          "sha256": "6b60897773e608d5176b58f5914cb77a87c34ce476d51bd8e3e1611ea86a5b37",
+          "mesh": "LectorCoat"
+        },
+        "artifact": {
+          "sha256": "e24f3dcfd8d86875444d5cf4d7c7157850bd91f5b296c597b04a5e64edf87da6",
+          "bytes": 601296
+        },
+        "vertices": 7727,
+        "triangles": 12327,
+        "blendedVertices": 6920,
+        "bind": {
+          "joints": 65,
+          "meshes": 1,
+          "primitives": 3,
+          "vertices": 7727,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.9918491244316101,
+              0.9349175095558167,
+              -0.2970220148563385
+            ],
+            "max": [
+              1.0034338235855103,
+              1.9000135660171509,
+              0.23009532690048218
+            ],
+            "frame": "accepted body mesh"
+          }
+        }
+      },
+      "undead": {
+        "source": {
+          "path": "public/ashen-reach/equipment-undead/body.glb",
+          "sha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d"
+        },
+        "garment": {
+          "source": "public/ashen-reach/equipment-undead/lectorCoat-711447547e62.glb",
+          "sha256": "711447547e62bbff736ddb03b66d26075af2f399e0884a32868214807d0f68dd",
+          "mesh": "LectorCoat"
+        },
+        "artifact": {
+          "sha256": "c9a2030aad08319b6a7ba1093c062034d9f43bccc560d4f8b970648c8ab48a4c",
+          "bytes": 631988
+        },
+        "vertices": 8249,
+        "triangles": 12596,
+        "blendedVertices": 7560,
+        "bind": {
+          "joints": 65,
+          "meshes": 1,
+          "primitives": 3,
+          "vertices": 8249,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.7280418276786804,
+              0.8606520891189575,
+              -0.1928890347480774
+            ],
+            "max": [
+              0.7303486466407776,
+              1.6179379224777222,
+              0.1414114087820053
+            ],
+            "frame": "accepted body mesh"
+          }
+        }
+      }
+    },
+    "humanShape": {
+      "family": "ashen-human-shape-v1",
+      "sha256": "d966d4e51213a4949cb2a10dfa91a6814c4b25cc794fa430078b3580d84ef86e",
+      "bytes": 898896,
+      "targets": [
+        "slender",
+        "stout"
+      ],
+      "body": {
+        "source": "public/ashen-reach/human-shape-v1/body-e69a14d75176.bin",
+        "sha256": "e69a14d75176717920bae9ec438c80a4b842a8f014da256aec97db44ae743d9c",
+        "decodedSha256": "6c552cec7a794fdd7aa7876d6bedcb7f279101f0ca06169f6bc9e53444947417",
+        "compression": "gzip",
+        "bodyMesh": "HumanV1Body"
+      },
+      "bind": {
+        "joints": 65,
+        "meshes": 1,
+        "primitives": 3,
+        "vertices": 7026,
+        "worstPaletteDelta": 0,
+        "inverseBindExact": true,
+        "bounds": {
+          "min": [
+            -0.6867489218711853,
+            0.7940620183944702,
+            -0.1812066286802292
+          ],
+          "max": [
+            0.6913986206054688,
+            1.5149445533752441,
+            0.1520855724811554
+          ],
+          "frame": "accepted body mesh"
+        }
+      }
+    }
+  },
+  "protectedInputPins": [
+    {
+      "path": "public/ashen-reach/equipment/body.glb",
+      "sha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0"
+    },
+    {
+      "path": "public/ashen-reach/equipment-orc/body.glb",
+      "sha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b"
+    },
+    {
+      "path": "public/ashen-reach/equipment-undead/body.glb",
+      "sha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d"
+    },
+    {
+      "path": "public/ashen-reach/human-identity-v1/body-5f8c401b0968.bin",
+      "sha256": "5f8c401b0968dc11cdf18677ba71605b59eef77528196a8599bab79bbfe46fd8"
+    },
+    {
+      "path": "public/ashen-reach/human-identity-v1/graveweaverHood-9f3b17772a7f.bin",
+      "sha256": "9f3b17772a7f79a657b59c51dbdc12974793f34b2e9a34e39300cfd062313b1a"
+    },
+    {
+      "path": "public/ashen-reach/human-identity-v1/body-compact-bac266faf4f8.bin",
+      "sha256": "bac266faf4f81e7186f7afc192e005719e2f4ac27f96cd8d6403efdb0a5af021"
+    },
+    {
+      "path": "public/ashen-reach/human-identity-v1/graveweaverHood-compact-e35c2fd3b285.bin",
+      "sha256": "e35c2fd3b285192ee13dc1c01250c7c8f4e607a231b78bb1442f39cafe22b515"
+    },
+    {
+      "path": "public/ashen-reach/human-identity-v1/body-24f3d4bacadc.bin",
+      "sha256": "24f3d4bacadc26052c22f358a2b38982d857f45678ee65c56e277741238e5c8a"
+    },
+    {
+      "path": "public/ashen-reach/human-identity-v1/graveweaverHood-9f3b17772a7f.bin",
+      "sha256": "9f3b17772a7f79a657b59c51dbdc12974793f34b2e9a34e39300cfd062313b1a"
+    },
+    {
+      "path": "public/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+      "sha256": "cd6850610c02f7c2d9766d801280c58ea245a99309c33d6e7dbdceb0df3b5325"
+    },
+    {
+      "path": "public/ashen-reach/human-identity-v1/graveweaverHood-compact-e35c2fd3b285.bin",
+      "sha256": "e35c2fd3b285192ee13dc1c01250c7c8f4e607a231b78bb1442f39cafe22b515"
+    },
+    {
+      "path": "public/ashen-reach/human-identity-v1/body-550d028c0a11.bin",
+      "sha256": "550d028c0a1188e642fba1b2d86718d027d194fc0235c5b3d892faaaea3f728a"
+    },
+    {
+      "path": "public/ashen-reach/human-identity-v1/graveweaverHood-a9d24c7d258a.bin",
+      "sha256": "a9d24c7d258a573ae7c8edca8abb5c58dca0474c8d08bbcc4ce421736ace526f"
+    },
+    {
+      "path": "public/ashen-reach/human-identity-v1/body-compact-4a8882628c79.bin",
+      "sha256": "4a8882628c7998ca5389e60eef50f981c345c820a12dc27e4c79a79c0153d628"
+    },
+    {
+      "path": "public/ashen-reach/human-identity-v1/graveweaverHood-compact-d0aac250ac39.bin",
+      "sha256": "d0aac250ac39c9590f1295f83d19b09ff7d8aec209b10abe7ecc866e0bed64a9"
+    }
+  ],
+  "nativeBounds": {
+    "equipment": {
+      "sha256": "3349d25b6a305faf5db9276e6c6f9f09f0f5cc62c666aa339a59b71c0b9e1de1",
+      "bounds": [
+        {
+          "name": "Fieldcoat",
+          "minimum": [
+            -0.7641247927915018,
+            -0.2519954299336138,
+            -1.3829114292814084
+          ],
+          "maximum": [
+            0.7574843113694285,
+            1.907623674640004,
+            0.8965428805546696
+          ]
+        },
+        {
+          "name": "Fieldcoat",
+          "minimum": [
+            -0.3892097834705568,
+            -0.14177657079115535,
+            -1.0741787892897665
+          ],
+          "maximum": [
+            0.40458701689583987,
+            1.660078687853367,
+            0.5847747845561558
+          ]
+        },
+        {
+          "name": "Fieldcoat",
+          "minimum": [
+            -0.5401762965676136,
+            -0.1712325297858831,
+            -1.112984791141668
+          ],
+          "maximum": [
+            0.5771620361446979,
+            1.6403662648013202,
+            0.5580339089414565
+          ]
+        }
+      ],
+      "points": 6007230,
+      "escaped": 0
+    },
+    "human-shape-v1": {
+      "sha256": "3349d25b6a305faf5db9276e6c6f9f09f0f5cc62c666aa339a59b71c0b9e1de1",
+      "bounds": [
+        {
+          "name": "Fieldcoat",
+          "minimum": [
+            -0.7641247927915018,
+            -0.2519954299336138,
+            -1.3829114292814084
+          ],
+          "maximum": [
+            0.7574843113694285,
+            1.907623674640004,
+            0.8965428805546696
+          ]
+        },
+        {
+          "name": "Fieldcoat",
+          "minimum": [
+            -0.3892097834705568,
+            -0.14177657079115535,
+            -1.0741787892897665
+          ],
+          "maximum": [
+            0.40458701689583987,
+            1.660078687853367,
+            0.5847747845561558
+          ]
+        },
+        {
+          "name": "Fieldcoat",
+          "minimum": [
+            -0.5401762965676136,
+            -0.1712325297858831,
+            -1.112984791141668
+          ],
+          "maximum": [
+            0.5771620361446979,
+            1.6403662648013202,
+            0.5580339089414565
+          ]
+        }
+      ],
+      "points": 6007230,
+      "escaped": 0
+    },
+    "equipment-orc": {
+      "sha256": "f708626ab3e310b8d9afc3229744521e66eb99102273ff16c233909bfffbb529",
+      "bounds": [
+        {
+          "name": "Fieldcoat",
+          "minimum": [
+            -1.1100349531697273,
+            -0.3085293454939164,
+            -1.7249936082447799
+          ],
+          "maximum": [
+            1.1230730223725378,
+            2.452040018500814,
+            1.3595035798093622
+          ]
+        },
+        {
+          "name": "Fieldcoat",
+          "minimum": [
+            -0.6279306999843925,
+            -0.10305654688608919,
+            -1.304452273780251
+          ],
+          "maximum": [
+            0.6403848688836562,
+            2.045968921106433,
+            0.8167103052566782
+          ]
+        },
+        {
+          "name": "Fieldcoat",
+          "minimum": [
+            -0.8299291087906775,
+            -0.05941979422748796,
+            -1.368925139244989
+          ],
+          "maximum": [
+            0.9029036336221095,
+            2.0226901437885614,
+            0.803406401328427
+          ]
+        }
+      ],
+      "points": 2202195,
+      "escaped": 0
+    },
+    "equipment-undead": {
+      "sha256": "1b19b607a3d43483c6575b8553b5418c508b2dcdf35060e78d877103f32a1a4e",
+      "bounds": [
+        {
+          "name": "Fieldcoat",
+          "minimum": [
+            -0.7817441739501161,
+            -0.15492998178022277,
+            -1.441809371216275
+          ],
+          "maximum": [
+            0.7831439420904711,
+            2.315261265930857,
+            0.9405687368906681
+          ]
+        },
+        {
+          "name": "Fieldcoat",
+          "minimum": [
+            -0.3635994072203259,
+            -0.060862716970631475,
+            -1.0957110374468255
+          ],
+          "maximum": [
+            0.392842778171831,
+            2.0274248859359387,
+            0.5750971932316999
+          ]
+        },
+        {
+          "name": "Fieldcoat",
+          "minimum": [
+            -0.4508581445148989,
+            -0.08064969076056878,
+            -1.1562653736515156
+          ],
+          "maximum": [
+            0.4382096001339435,
+            2.01774245730812,
+            0.5574322543749028
+          ]
+        }
+      ],
+      "points": 2350965,
+      "escaped": 0
+    }
+  },
+  "live": {
+    "cases": 19,
+    "passed": true,
+    "errors": [],
+    "rows": [
+      {
+        "case": "actual-v6-first-play-migration",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": null,
+              "shoulders": null
+            }
+          },
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          },
+          "dyes": {},
+          "physics": true,
+          "recoveries": 0,
+          "parts": [],
+          "upperTrousers": [
+            {
+              "visible": false
+            }
+          ],
+          "lowerTrousersVisible": true,
+          "partOwners": [],
+          "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v6\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"wayfarerTunic\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+          "gpuErrors": []
+        }
+      },
+      {
+        "case": "native-fit-ui-equip",
+        "name": "human-neutral",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "fieldcoat",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": null,
+              "shoulders": null
+            }
+          },
+          "equipment": {
+            "helmet": null,
+            "torso": "fieldcoat",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          },
+          "dyes": {},
+          "physics": true,
+          "recoveries": 0,
+          "parts": [
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0,
+                0
+              ]
+            },
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0,
+                0
+              ]
+            },
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0,
+                0
+              ]
+            }
+          ],
+          "upperTrousers": [
+            {
+              "visible": false
+            }
+          ],
+          "lowerTrousersVisible": true,
+          "partOwners": [
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            }
+          ],
+          "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v8\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1,\"build\":0},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"fieldcoat\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+          "gpuErrors": []
+        }
+      },
+      {
+        "case": "native-fit-ui-equip",
+        "name": "human-short-stout",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            },
+            "components": {
+              "head": "human-prime-v1",
+              "hair": "human-ponytail01-v1"
+            },
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "fieldcoat",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": null,
+              "shoulders": null
+            }
+          },
+          "equipment": {
+            "helmet": null,
+            "torso": "fieldcoat",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          },
+          "dyes": {},
+          "physics": true,
+          "recoveries": 0,
+          "parts": [
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0,
+                0.949999988079071
+              ]
+            },
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0,
+                0.949999988079071
+              ]
+            },
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0,
+                0.949999988079071
+              ]
+            }
+          ],
+          "upperTrousers": [
+            {
+              "visible": false
+            }
+          ],
+          "lowerTrousersVisible": true,
+          "partOwners": [
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            }
+          ],
+          "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v8\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":0.9,\"build\":0.95},\"components\":{\"head\":\"human-prime-v1\",\"hair\":\"human-ponytail01-v1\"},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"fieldcoat\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+          "gpuErrors": []
+        }
+      },
+      {
+        "case": "native-fit-ui-equip",
+        "name": "human-tall-slender",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "components": {
+              "head": "human-prime-v1",
+              "hair": "human-ponytail01-v1"
+            },
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "fieldcoat",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": null,
+              "shoulders": null
+            }
+          },
+          "equipment": {
+            "helmet": null,
+            "torso": "fieldcoat",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          },
+          "dyes": {},
+          "physics": true,
+          "recoveries": 0,
+          "parts": [
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0.949999988079071,
+                0
+              ]
+            },
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0.949999988079071,
+                0
+              ]
+            },
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0.949999988079071,
+                0
+              ]
+            }
+          ],
+          "upperTrousers": [
+            {
+              "visible": false
+            }
+          ],
+          "lowerTrousersVisible": true,
+          "partOwners": [
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            }
+          ],
+          "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v8\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1.15,\"build\":-0.95},\"components\":{\"head\":\"human-prime-v1\",\"hair\":\"human-ponytail01-v1\"},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"fieldcoat\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+          "gpuErrors": []
+        }
+      },
+      {
+        "case": "native-fit-ui-equip",
+        "name": "human-short-slender",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": -0.95
+            },
+            "components": {
+              "head": "human-prime-v1",
+              "hair": "human-ponytail01-v1"
+            },
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "fieldcoat",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": null,
+              "shoulders": null
+            }
+          },
+          "equipment": {
+            "helmet": null,
+            "torso": "fieldcoat",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          },
+          "dyes": {},
+          "physics": true,
+          "recoveries": 0,
+          "parts": [
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0.949999988079071,
+                0
+              ]
+            },
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0.949999988079071,
+                0
+              ]
+            },
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0.949999988079071,
+                0
+              ]
+            }
+          ],
+          "upperTrousers": [
+            {
+              "visible": false
+            }
+          ],
+          "lowerTrousersVisible": true,
+          "partOwners": [
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            }
+          ],
+          "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v8\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":0.9,\"build\":-0.95},\"components\":{\"head\":\"human-prime-v1\",\"hair\":\"human-ponytail01-v1\"},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"fieldcoat\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+          "gpuErrors": []
+        }
+      },
+      {
+        "case": "native-fit-ui-equip",
+        "name": "human-tall-stout",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": 0.95
+            },
+            "components": {
+              "head": "human-prime-v1",
+              "hair": "human-ponytail01-v1"
+            },
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "fieldcoat",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": null,
+              "shoulders": null
+            }
+          },
+          "equipment": {
+            "helmet": null,
+            "torso": "fieldcoat",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          },
+          "dyes": {},
+          "physics": true,
+          "recoveries": 0,
+          "parts": [
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0,
+                0.949999988079071
+              ]
+            },
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0,
+                0.949999988079071
+              ]
+            },
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0,
+                0.949999988079071
+              ]
+            }
+          ],
+          "upperTrousers": [
+            {
+              "visible": false
+            }
+          ],
+          "lowerTrousersVisible": true,
+          "partOwners": [
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            }
+          ],
+          "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v8\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1.15,\"build\":0.95},\"components\":{\"head\":\"human-prime-v1\",\"hair\":\"human-ponytail01-v1\"},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"fieldcoat\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+          "gpuErrors": []
+        }
+      },
+      {
+        "case": "native-fit-ui-equip",
+        "name": "orc-neutral",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "orc",
+            "fitFamily": "ashen-orc",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {},
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "fieldcoat",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": null,
+              "shoulders": null
+            }
+          },
+          "equipment": {
+            "helmet": null,
+            "torso": "fieldcoat",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": null
+          },
+          "dyes": {},
+          "physics": true,
+          "recoveries": 0,
+          "parts": [
+            {
+              "bones": 65,
+              "morphs": false,
+              "weights": []
+            },
+            {
+              "bones": 65,
+              "morphs": false,
+              "weights": []
+            },
+            {
+              "bones": 65,
+              "morphs": false,
+              "weights": []
+            }
+          ],
+          "upperTrousers": [
+            {
+              "visible": false
+            }
+          ],
+          "lowerTrousersVisible": true,
+          "partOwners": [
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            }
+          ],
+          "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v8\",\"race\":\"orc\",\"fitFamily\":\"ashen-orc\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"fieldcoat\",\"legs\":\"wayfarerTrousers\",\"boots\":\"wayfarerBoots\",\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+          "gpuErrors": []
+        }
+      },
+      {
+        "case": "native-fit-ui-equip",
+        "name": "undead-neutral",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "undead",
+            "fitFamily": "ashen-undead",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {},
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": "graveweaverHood",
+              "torso": "fieldcoat",
+              "legs": "wayfarerTrousers",
+              "boots": null,
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": null,
+              "shoulders": null
+            }
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "fieldcoat",
+            "legs": "wayfarerTrousers",
+            "boots": null,
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": null
+          },
+          "dyes": {},
+          "physics": true,
+          "recoveries": 0,
+          "parts": [
+            {
+              "bones": 65,
+              "morphs": false,
+              "weights": []
+            },
+            {
+              "bones": 65,
+              "morphs": false,
+              "weights": []
+            },
+            {
+              "bones": 65,
+              "morphs": false,
+              "weights": []
+            }
+          ],
+          "upperTrousers": [
+            {
+              "visible": false
+            },
+            {
+              "visible": false
+            }
+          ],
+          "lowerTrousersVisible": true,
+          "partOwners": [
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            }
+          ],
+          "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v8\",\"race\":\"undead\",\"fitFamily\":\"ashen-undead\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{},\"components\":{},\"dyes\":{},\"equipment\":{\"helmet\":\"graveweaverHood\",\"torso\":\"fieldcoat\",\"legs\":\"wayfarerTrousers\",\"boots\":null,\"gloves\":null,\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":null}}",
+          "gpuErrors": []
+        }
+      },
+      {
+        "case": "mixed-cloth-plate-boundaries",
+        "preset": "duskguard",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": 0.95
+            },
+            "components": {
+              "head": "human-prime-v1",
+              "hair": "human-ponytail01-v1"
+            },
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "fieldcoat",
+              "legs": "duskguardTassets",
+              "boots": "duskguardGreaves",
+              "gloves": "duskguardVambraces",
+              "mainHand": "ironSword",
+              "offHand": null,
+              "shoulders": "wardenPauldrons"
+            }
+          },
+          "equipment": {
+            "helmet": null,
+            "torso": "fieldcoat",
+            "legs": "duskguardTassets",
+            "boots": "duskguardGreaves",
+            "gloves": "duskguardVambraces",
+            "mainHand": "ironSword",
+            "offHand": null,
+            "shoulders": "wardenPauldrons"
+          },
+          "dyes": {},
+          "physics": true,
+          "recoveries": 0,
+          "parts": [
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0,
+                0.949999988079071
+              ]
+            },
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0,
+                0.949999988079071
+              ]
+            },
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0,
+                0.949999988079071
+              ]
+            }
+          ],
+          "upperTrousers": [
+            {
+              "visible": false
+            }
+          ],
+          "lowerTrousersVisible": false,
+          "partOwners": [
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            }
+          ],
+          "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v8\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1.15,\"build\":0.95},\"components\":{\"head\":\"human-prime-v1\",\"hair\":\"human-ponytail01-v1\"},\"dyes\":{},\"equipment\":{\"helmet\":null,\"torso\":\"fieldcoat\",\"legs\":\"duskguardTassets\",\"boots\":\"duskguardGreaves\",\"gloves\":\"duskguardVambraces\",\"mainHand\":\"ironSword\",\"offHand\":null,\"shoulders\":\"wardenPauldrons\"}}",
+          "gpuErrors": []
+        }
+      },
+      {
+        "case": "mixed-cloth-plate-boundaries",
+        "preset": "graveweaver",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": 0.95
+            },
+            "components": {
+              "head": "human-prime-v1",
+              "hair": "human-ponytail01-v1"
+            },
+            "dyes": {},
+            "equipment": {
+              "helmet": "graveweaverHood",
+              "torso": "fieldcoat",
+              "legs": "graveweaverSkirt",
+              "boots": "wayfarerBoots",
+              "gloves": "graveweaverGloves",
+              "mainHand": "graveweaverStaff",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "fieldcoat",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverStaff",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          },
+          "dyes": {},
+          "physics": true,
+          "recoveries": 0,
+          "parts": [
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0,
+                0.949999988079071
+              ]
+            },
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0,
+                0.949999988079071
+              ]
+            },
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0,
+                0.949999988079071
+              ]
+            }
+          ],
+          "upperTrousers": [],
+          "lowerTrousersVisible": true,
+          "partOwners": [
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            }
+          ],
+          "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v8\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1.15,\"build\":0.95},\"components\":{\"head\":\"human-prime-v1\",\"hair\":\"human-ponytail01-v1\"},\"dyes\":{},\"equipment\":{\"helmet\":\"graveweaverHood\",\"torso\":\"fieldcoat\",\"legs\":\"graveweaverSkirt\",\"boots\":\"wayfarerBoots\",\"gloves\":\"graveweaverGloves\",\"mainHand\":\"graveweaverStaff\",\"offHand\":\"graveweaverBook\",\"shoulders\":null}}",
+          "gpuErrors": []
+        }
+      },
+      {
+        "case": "dye-motion-havok-save-reload",
+        "saved": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": 0.95
+            },
+            "components": {
+              "head": "human-prime-v1",
+              "hair": "human-ponytail01-v1"
+            },
+            "dyes": {
+              "torso": "oxblood"
+            },
+            "equipment": {
+              "helmet": null,
+              "torso": "fieldcoat",
+              "legs": "graveweaverSkirt",
+              "boots": "wayfarerBoots",
+              "gloves": "graveweaverGloves",
+              "mainHand": "graveweaverGreatstaff",
+              "offHand": null,
+              "shoulders": null
+            }
+          },
+          "equipment": {
+            "helmet": null,
+            "torso": "fieldcoat",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          },
+          "dyes": {
+            "torso": "oxblood"
+          },
+          "physics": true,
+          "recoveries": 0,
+          "parts": [
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0,
+                0.949999988079071
+              ]
+            },
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0,
+                0.949999988079071
+              ]
+            },
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0,
+                0.949999988079071
+              ]
+            }
+          ],
+          "upperTrousers": [],
+          "lowerTrousersVisible": true,
+          "partOwners": [
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            }
+          ],
+          "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v8\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1.15,\"build\":0.95},\"components\":{\"head\":\"human-prime-v1\",\"hair\":\"human-ponytail01-v1\"},\"dyes\":{\"torso\":\"oxblood\"},\"equipment\":{\"helmet\":null,\"torso\":\"fieldcoat\",\"legs\":\"graveweaverSkirt\",\"boots\":\"wayfarerBoots\",\"gloves\":\"graveweaverGloves\",\"mainHand\":\"graveweaverGreatstaff\",\"offHand\":null,\"shoulders\":null}}",
+          "gpuErrors": []
+        },
+        "restored": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": 0.95
+            },
+            "components": {
+              "head": "human-prime-v1",
+              "hair": "human-ponytail01-v1"
+            },
+            "dyes": {
+              "torso": "oxblood"
+            },
+            "equipment": {
+              "helmet": null,
+              "torso": "fieldcoat",
+              "legs": "graveweaverSkirt",
+              "boots": "wayfarerBoots",
+              "gloves": "graveweaverGloves",
+              "mainHand": "graveweaverGreatstaff",
+              "offHand": null,
+              "shoulders": null
+            }
+          },
+          "equipment": {
+            "helmet": null,
+            "torso": "fieldcoat",
+            "legs": "graveweaverSkirt",
+            "boots": "wayfarerBoots",
+            "gloves": "graveweaverGloves",
+            "mainHand": "graveweaverGreatstaff",
+            "offHand": null,
+            "shoulders": null
+          },
+          "dyes": {
+            "torso": "oxblood"
+          },
+          "physics": true,
+          "recoveries": 0,
+          "parts": [
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0,
+                0.949999988079071
+              ]
+            },
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0,
+                0.949999988079071
+              ]
+            },
+            {
+              "bones": 65,
+              "morphs": true,
+              "weights": [
+                0,
+                0.949999988079071
+              ]
+            }
+          ],
+          "upperTrousers": [],
+          "lowerTrousersVisible": true,
+          "partOwners": [
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            },
+            {
+              "name": "Fieldcoat",
+              "ancestors": [
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "Fieldcoat",
+                  "visible": true
+                },
+                {
+                  "name": "__root__",
+                  "visible": true
+                },
+                {
+                  "name": "BodyRoot",
+                  "visible": true
+                },
+                {
+                  "name": "Player",
+                  "visible": false
+                }
+              ]
+            }
+          ],
+          "storage": "{\"schemaVersion\":2,\"catalogVersion\":\"appearance-catalog-v8\",\"race\":\"human\",\"fitFamily\":\"ashen-human\",\"fit\":{\"rig\":\"source-65\",\"bind\":1,\"shape\":1},\"shape\":{\"family\":\"ashen-human-shape-v1\",\"height\":1.15,\"build\":0.95},\"components\":{\"head\":\"human-prime-v1\",\"hair\":\"human-ponytail01-v1\"},\"dyes\":{\"torso\":\"oxblood\"},\"equipment\":{\"helmet\":null,\"torso\":\"fieldcoat\",\"legs\":\"graveweaverSkirt\",\"boots\":\"wayfarerBoots\",\"gloves\":\"graveweaverGloves\",\"mainHand\":\"graveweaverGreatstaff\",\"offHand\":null,\"shoulders\":null}}",
+          "gpuErrors": []
+        },
+        "distance": 16.383229238260927
+      },
+      {
+        "case": "transaction-refusal",
+        "failure": "http",
+        "hits": 1,
+        "result": {
+          "status": "failed",
+          "error": "Startup resource /ashen-reach/equipment/fieldcoat-75c5c4d770f9.glb: response validation failed: /ashen-reach/equipment/fieldcoat-75c5c4d770f9.glb: HTTP 500"
+        },
+        "admissionRefusal": null
+      },
+      {
+        "case": "transaction-retry",
+        "failure": "http",
+        "status": "applied"
+      },
+      {
+        "case": "transaction-refusal",
+        "failure": "corrupt",
+        "hits": 1,
+        "result": {
+          "status": "failed",
+          "error": "Startup resource /ashen-reach/equipment/fieldcoat-75c5c4d770f9.glb: decoded size validation failed: Unexpected size for /ashen-reach/equipment/fieldcoat-75c5c4d770f9.glb"
+        },
+        "admissionRefusal": null
+      },
+      {
+        "case": "transaction-retry",
+        "failure": "corrupt",
+        "status": "applied"
+      },
+      {
+        "case": "transaction-refusal",
+        "failure": "superseded",
+        "hits": 1,
+        "result": {
+          "status": "superseded",
+          "error": null
+        },
+        "admissionRefusal": null
+      },
+      {
+        "case": "transaction-refusal",
+        "failure": "disposed",
+        "hits": 1,
+        "result": {
+          "status": "superseded",
+          "error": null
+        },
+        "admissionRefusal": null
+      },
+      {
+        "case": "independent-slot-intents",
+        "failure": "independent-slots",
+        "hits": 1,
+        "result": {
+          "status": "applied",
+          "error": null
+        },
+        "admissionRefusal": null
+      },
+      {
+        "case": "admission-refusal-preserves-pending",
+        "failure": "admission-refused",
+        "hits": 1,
+        "result": {
+          "status": "applied",
+          "error": null
+        },
+        "admissionRefusal": "Use Shared region to change your online character, or leave to use the Armory."
+      }
+    ]
+  },
+  "rootReview": {
+    "reviewedAt": "2026-10-07T06:22:16.761461+00:00",
+    "clip": "live-4/fieldcoat.mp4",
+    "sha256": "f0573399bd5dfd13f03710d23233cb53ba04411aee933f1e4637168f3f624a27",
+    "localPlayer": {
+      "owner": "root",
+      "edgePid": 2931,
+      "tabId": "1147995805",
+      "serverPid": 67708,
+      "port": 7081,
+      "url": "http://127.0.0.1:7081/fieldcoat-review-4.html",
+      "status": "closed",
+      "portAudit": null
+    },
+    "playbackVerified": {
+      "duration": 62.069977,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "advancingTimes": [
+        0.206352,
+        25.406645,
+        7.656598,
+        22.186513,
+        60.11516,
+        62.069977
+      ],
+      "reachedEnd": true,
+      "chapterSeeking": "native Blob URL for local Python server without byte ranges"
+    },
+    "visualAcceptance": "Local fit/motion accepted and delivered; swap budgets pass, 15 route windows exceed 120/144 FPS with forest pacing limitation retained. Startup/production gates open.",
+    "finding": "Original Human coverage corrected; Prime identity previously retained stale garment rules. Published identity refresh now copies shared equipment layer rules. Live all seven race/shape cases assert upper trousers hidden with lower trousers retained; waist bulge absent in new backs. Coat remains fitted and reaches upper/mid thigh with divided hem; Orc has the source close-fitting silhouette. Prior broad vent-cut hypothesis was falsified by exact artifact hashes. Existing boot sole aliasing remains outside this cloth slice.",
+    "evidence": [
+      "live-4/report.json",
+      "live-4/human-short-stout-back.png",
+      "live-4/human-tall-slender-back.png",
+      "live-4/orc-neutral-back.png",
+      "live-4/undead-neutral-front.png"
+    ],
+    "limits": [
+      "No new FPS or startup claim from recording",
+      "No physical phone check",
+      "No claim of all combinations or simulation of cloth"
+    ]
+  },
+  "maximumAppearance": {
+    "schema": 1,
+    "scope": "Unique compact body/clothing transfer bytes; excludes common code, world, manifests and procedural props",
+    "enumerated": 12096,
+    "valid": 10584,
+    "profiles": 4,
+    "maximum": {
+      "profile": "prime-ponytail",
+      "components": {
+        "head": "human-prime-v1",
+        "hair": "human-ponytail01-v1"
+      },
+      "equipment": {
+        "helmet": "graveweaverHood",
+        "torso": "duskguardCuirass",
+        "legs": "graveweaverSkirt",
+        "boots": "duskguardGreaves",
+        "gloves": "duskguardVambraces",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": "bastionShoulders"
+      },
+      "bytes": 2300424,
+      "resources": [
+        {
+          "id": "body",
+          "url": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bytes": 1013447
+        },
+        {
+          "id": "graveweaverHood",
+          "url": "/ashen-reach/human-identity-v1/graveweaverHood-compact-e35c2fd3b285.bin",
+          "bytes": 197700
+        },
+        {
+          "id": "duskguardCuirass",
+          "url": "/ashen-reach/human-shape-v1/duskguardCuirass-87f33adb1a29.bin",
+          "bytes": 357832
+        },
+        {
+          "id": "graveweaverSkirt",
+          "url": "/ashen-reach/human-shape-v1/graveweaverSkirt-compact-f52f181bec28.bin",
+          "bytes": 181723
+        },
+        {
+          "id": "duskguardGreaves",
+          "url": "/ashen-reach/human-shape-v1/duskguardGreaves-030d302cbaf6.bin",
+          "bytes": 271753
+        },
+        {
+          "id": "duskguardVambraces",
+          "url": "/ashen-reach/human-shape-v1/duskguardVambraces-b67e2bcbac26.bin",
+          "bytes": 194817
+        },
+        {
+          "id": "bastionShoulders",
+          "url": "/ashen-reach/human-shape-v1/bastionShoulders-f494b2e91fe7.bin",
+          "bytes": 83152
+        }
+      ],
+      "worn": 8
+    }
+  },
+  "verification": {
+    "factory": {
+      "passed": 31,
+      "failed": 0
+    },
+    "character": {
+      "passed": 228,
+      "failed": 0
+    },
+    "equipment": {
+      "passed": 115,
+      "failed": 0,
+      "note": "102 unaffected tests pass in gates-2; corrected coverage-contract 13 pass in gates-4"
+    },
+    "build": {
+      "savedBootstrap": "1",
+      "exit": 0
+    }
+  },
+  "open": [
+    "Complete cold-start gates",
+    "Preview/production release",
+    "Physical iPhone",
+    "Confirmed uncapped forest hardware limit (240Hz detector hint retained)"
+  ],
+  "mediaDelivery": {
+    "file": ".cache/character-mmo/fieldcoat-2026-10-06/live-4/fieldcoat.mp4",
+    "sha256": "f0573399bd5dfd13f03710d23233cb53ba04411aee933f1e4637168f3f624a27",
+    "bytes": 17629726,
+    "localProbe": {
+      "width": 1280,
+      "height": 720,
+      "durationSec": 62.07,
+      "codecNote": "h264 from prior encode-capture"
+    },
+    "ve": {
+      "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/fieldcoat-2026-10-06.mp4",
+      "key": "wow-clone/ashen-reach/character-mmo/fieldcoat-2026-10-06.mp4",
+      "headStatus": 200,
+      "contentType": "video/mp4",
+      "contentLength": "17629726",
+      "rangeStatus": 206,
+      "contentRange": "bytes 0-1023/17629726",
+      "remoteSha256": "f0573399bd5dfd13f03710d23233cb53ba04411aee933f1e4637168f3f624a27",
+      "shaMatch": true
+    },
+    "telegram": {
+      "exit": 0,
+      "messageId": 871,
+      "verifiedWidth": 1280,
+      "verifiedHeight": 720,
+      "verifiedDurationSec": 62.07,
+      "note": "API dimensions are not client playback acceptance",
+      "ledger": "2026-10-07T06:34:14.979277+00:00 582cbae844768dd0de5dbb8b530916dc87300395 .cache/character-mmo/fieldcoat-2026-10-06/live-4/fieldcoat.mp4"
+    },
+    "clientReview": {
+      "reviewer": "root",
+      "browser": "Edge 154",
+      "telegramTab": "1147992685",
+      "inline": {
+        "width": 738.1875,
+        "height": 415.21875,
+        "intrinsic": [
+          1280,
+          720
+        ],
+        "objectFit": "contain",
+        "advancingTimeSec": 10.724389,
+        "accepted": true
+      },
+      "expanded": {
+        "width": 1280,
+        "height": 720,
+        "intrinsic": [
+          1280,
+          720
+        ],
+        "objectFit": "contain",
+        "advancingTimeSec": [
+          6.349815,
+          32.979212
+        ],
+        "accepted": true
+      },
+      "fullscreen": {
+        "requested": true,
+        "entered": false,
+        "accepted": false,
+        "note": "Visible Fullscreen button did not set document.fullscreenElement; no fullscreen claim."
+      },
+      "ve": {
+        "tab": "1147995809",
+        "intrinsic": [
+          1280,
+          720
+        ],
+        "durationSec": 62.069977,
+        "advancingTimeSec": [
+          7.143168,
+          13.728628
+        ],
+        "objectFit": "contain",
+        "accepted": true,
+        "tabClosed": true
+      }
+    }
+  },
+  "swaps": {
+    "races": {
+      "url": "http://127.0.0.1:5873/ashen-reach.html?play&clean&pixelRatio=1",
+      "network": {
+        "downloadThroughput": 6553600,
+        "uploadThroughput": 6553600,
+        "latency": 40,
+        "offline": false,
+        "note": "Legacy swap budget uses 50 Mibit/s (50*1024*1024), 40 ms; startup uses decimal 50 Mbit/s."
+      },
+      "requestedItems": [
+        "fieldcoat"
+      ],
+      "savedAppearance": null,
+      "conditions": "One owned rendering client at a time. Each cold row is a fresh context with the HTTP cache disabled against a piece that context has never loaded. Hand slots are excluded: a factory prop is built in the page and has no response to fetch.",
+      "slots": [
+        "torso"
+      ],
+      "repeats": 3,
+      "rows": [
+        {
+          "race": "human",
+          "slot": "torso",
+          "item": "fieldcoat",
+          "repeat": 1,
+          "bytes": 558164,
+          "contentEncoding": null,
+          "hits": 1,
+          "coldMs": 141.5,
+          "coldWorstFrameMs": 23.1,
+          "coldFrames": 24,
+          "residentMs": 0.6
+        },
+        {
+          "race": "human",
+          "slot": "torso",
+          "item": "fieldcoat",
+          "repeat": 2,
+          "bytes": 558164,
+          "contentEncoding": null,
+          "hits": 1,
+          "coldMs": 145,
+          "coldWorstFrameMs": 23.1,
+          "coldFrames": 24,
+          "residentMs": 0.5
+        },
+        {
+          "race": "human",
+          "slot": "torso",
+          "item": "fieldcoat",
+          "repeat": 3,
+          "bytes": 558164,
+          "contentEncoding": null,
+          "hits": 1,
+          "coldMs": 146,
+          "coldWorstFrameMs": 7.3,
+          "coldFrames": 24,
+          "residentMs": 0.5
+        },
+        {
+          "race": "orc",
+          "slot": "torso",
+          "item": "fieldcoat",
+          "repeat": 1,
+          "bytes": 601296,
+          "contentEncoding": null,
+          "hits": 1,
+          "coldMs": 147.8,
+          "coldWorstFrameMs": 8.3,
+          "coldFrames": 23,
+          "residentMs": 4.5
+        },
+        {
+          "race": "orc",
+          "slot": "torso",
+          "item": "fieldcoat",
+          "repeat": 2,
+          "bytes": 601296,
+          "contentEncoding": null,
+          "hits": 1,
+          "coldMs": 143.3,
+          "coldWorstFrameMs": 7,
+          "coldFrames": 22,
+          "residentMs": 0.5
+        },
+        {
+          "race": "orc",
+          "slot": "torso",
+          "item": "fieldcoat",
+          "repeat": 3,
+          "bytes": 601296,
+          "contentEncoding": null,
+          "hits": 1,
+          "coldMs": 148.4,
+          "coldWorstFrameMs": 9.1,
+          "coldFrames": 23,
+          "residentMs": 0.5
+        },
+        {
+          "race": "undead",
+          "slot": "torso",
+          "item": "fieldcoat",
+          "repeat": 1,
+          "bytes": 631988,
+          "contentEncoding": null,
+          "hits": 1,
+          "coldMs": 155.2,
+          "coldWorstFrameMs": 25.1,
+          "coldFrames": 25,
+          "residentMs": 4.4
+        },
+        {
+          "race": "undead",
+          "slot": "torso",
+          "item": "fieldcoat",
+          "repeat": 2,
+          "bytes": 631988,
+          "contentEncoding": null,
+          "hits": 1,
+          "coldMs": 157.9,
+          "coldWorstFrameMs": 8.6,
+          "coldFrames": 26,
+          "residentMs": 0.4
+        },
+        {
+          "race": "undead",
+          "slot": "torso",
+          "item": "fieldcoat",
+          "repeat": 3,
+          "bytes": 631988,
+          "contentEncoding": null,
+          "hits": 1,
+          "coldMs": 150.7,
+          "coldWorstFrameMs": 25.4,
+          "coldFrames": 24,
+          "residentMs": 0.6
+        }
+      ],
+      "skipped": [],
+      "errors": [],
+      "budget": {
+        "profile": "50 Mbit/s, 40 ms",
+        "coldLatencyMs": 200,
+        "worstFrameMs": 33.33,
+        "warmSwapMs": 60,
+        "pieceBytes": 917504,
+        "measuredAt": "2026-10-02"
+      },
+      "breaches": [],
+      "passed": true,
+      "summary": {
+        "rows": 9,
+        "skipped": 0,
+        "breaches": 0,
+        "consoleErrors": 0
+      }
+    },
+    "maximum-human": {
+      "url": "http://127.0.0.1:5873/ashen-reach.html?play&clean&pixelRatio=1",
+      "network": {
+        "downloadThroughput": 6553600,
+        "uploadThroughput": 6553600,
+        "latency": 40,
+        "offline": false,
+        "note": "Legacy swap budget uses 50 Mibit/s (50*1024*1024), 40 ms; startup uses decimal 50 Mbit/s."
+      },
+      "requestedItems": [
+        "fieldcoat"
+      ],
+      "savedAppearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v8",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {
+          "head": "human-prime-v1",
+          "hair": "human-ponytail01-v1"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "duskguardCuirass",
+          "legs": "graveweaverSkirt",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "bastionShoulders"
+        }
+      },
+      "conditions": "One owned rendering client at a time. Each cold row is a fresh context with the HTTP cache disabled against a piece that context has never loaded. Hand slots are excluded: a factory prop is built in the page and has no response to fetch.",
+      "slots": [
+        "torso"
+      ],
+      "repeats": 3,
+      "rows": [
+        {
+          "race": "human",
+          "slot": "torso",
+          "item": "fieldcoat",
+          "repeat": 1,
+          "bytes": 573440,
+          "contentEncoding": null,
+          "hits": 1,
+          "coldMs": 152.9,
+          "coldWorstFrameMs": 7.2,
+          "coldFrames": 25,
+          "residentMs": 0.7
+        },
+        {
+          "race": "human",
+          "slot": "torso",
+          "item": "fieldcoat",
+          "repeat": 2,
+          "bytes": 573440,
+          "contentEncoding": null,
+          "hits": 1,
+          "coldMs": 145.7,
+          "coldWorstFrameMs": 25.3,
+          "coldFrames": 23,
+          "residentMs": 0.7
+        },
+        {
+          "race": "human",
+          "slot": "torso",
+          "item": "fieldcoat",
+          "repeat": 3,
+          "bytes": 573440,
+          "contentEncoding": null,
+          "hits": 1,
+          "coldMs": 151.1,
+          "coldWorstFrameMs": 23.6,
+          "coldFrames": 24,
+          "residentMs": 0.7
+        }
+      ],
+      "skipped": [],
+      "errors": [],
+      "budget": {
+        "profile": "50 Mbit/s, 40 ms",
+        "coldLatencyMs": 200,
+        "worstFrameMs": 33.33,
+        "warmSwapMs": 60,
+        "pieceBytes": 917504,
+        "measuredAt": "2026-10-02"
+      },
+      "breaches": [],
+      "passed": true,
+      "summary": {
+        "rows": 3,
+        "skipped": 0,
+        "breaches": 0,
+        "consoleErrors": 0
+      }
+    },
+    "status": "Both cohorts passed; 12 cold+resident pairs, fresh contexts and actual requests.",
+    "mediaIsolation": {
+      "telegramTab": "1147992685",
+      "shadowglassTab": "1147995306",
+      "guard": "__fieldcoatMediaGuard20261007",
+      "restoration": "Guards removed, all six connected media restored to their recorded prior playback states after final timing.",
+      "rootVeTab": "1147995809 closed before timing"
+    },
+    "ownership": {
+      "owner": "grok-session fieldcoat swaps-1",
+      "purpose": "slot7 headless uncapped owned renderer for Fieldcoat swap-budget measure; parked about:blank",
+      "status": "inactive",
+      "recordedAt": "2026-10-06T23:40:41.974998",
+      "slot": 7,
+      "cdpPort": 10037,
+      "vitePort": 5873,
+      "intendedUrl": "http://127.0.0.1:5873/ashen-reach.html?play&clean&pixelRatio=1",
+      "headless": true,
+      "uncapped": true,
+      "pageUrl": null,
+      "chromePid": 13220,
+      "vitePid": 13195,
+      "preserved": {
+        "userEdgePid": 2931,
+        "orcaPid": 98938,
+        "pausedTelegramTab": "1147992685",
+        "pausedShadowglassTab": "1147995306"
+      },
+      "preUpAudit": {
+        "listen5173": null,
+        "listen5873": null,
+        "listen10037": null,
+        "listen9337": null,
+        "googleChrome": null,
+        "edge": "2931 /Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+        "slot7State": false
+      },
+      "parkedAt": "2026-10-06T23:41:07.037117",
+      "userDataDir": "/tmp/ashen-cdp-10037",
+      "instances": [
+        {
+          "owner": "grok-session fieldcoat swaps-1",
+          "browserPid": 13220,
+          "cdpPort": 10037,
+          "vitePort": 5873,
+          "vitePid": 13195,
+          "pageUrl": "about:blank",
+          "purpose": "slot7 headless uncapped Fieldcoat swap-budget measure"
+        }
+      ],
+      "closed": {
+        "status": "inactive",
+        "downAt": "2026-10-06T23:43:43.007464",
+        "listen5873": null,
+        "listen10037": null,
+        "aliveOwnedPids": [],
+        "edge": "2931 /Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+        "googleChrome": null,
+        "slot7StateExists": false
+      }
+    }
+  },
+  "fps": {
+    "first": {
+      "conditions": {
+        "cpu": "Apple M1 Max",
+        "url": "http://127.0.0.1:5873/ashen-reach.html?play=&clean=&pixelRatio=1&gpuTiming=",
+        "viewport": [
+          1280,
+          720
+        ],
+        "seconds": 12,
+        "runs": 3,
+        "uncappedRequired": true,
+        "recording": false,
+        "race": "human",
+        "outfit": "fieldcoat",
+        "orcAssetsOverride": null,
+        "routes": [
+          "meadow",
+          "town",
+          "bridge",
+          "cathedral",
+          "forest"
+        ],
+        "recordCapped": false,
+        "savedAppearance": null
+      },
+      "rows": [
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 208.10932676460695,
+            "meanMs": 4.805166666706403,
+            "medianMs": 4.5,
+            "p95Ms": 5.699999988079071,
+            "p99Ms": 6.399999976158142,
+            "worstMs": 9,
+            "minMs": 3,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 526,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 759795,
+            "drawBatches": 57,
+            "worldTriangles": 759795,
+            "sceneTriangles": 1090379,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 51,
+            "totalMeshes": 142,
+            "triangleCountMs": 0.20000004768371582,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.3140154582677814,
+            "gpuMeanMs": 1.1052265734738511,
+            "gpuP95Ms": 1.2334364868799166,
+            "gpuSamples": 600,
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.805 ms is not locked to a known display interval"
+          },
+          "x": 0.00012375742942404998,
+          "z": 24.68536878024818,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "meadow",
+          "run": 1,
+          "before": {
+            "x": 0.0010458017821914473,
+            "z": -59.360218960368215,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2631,
+            "fps": 219.12582869685411,
+            "meanMs": 4.56358798936219,
+            "medianMs": 4.300000011920929,
+            "p95Ms": 5.599999964237213,
+            "p99Ms": 5.800000011920929,
+            "worstMs": 10.100000023841858,
+            "minMs": 2.899999976158142,
+            "above8_333": 4,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.564 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2631,
+            "meanMs": 4.56358798936219,
+            "meanFps": 219.12582869685411,
+            "p50Ms": 4.300000011920929,
+            "p95Ms": 5.599999964237213,
+            "p99Ms": 5.800000011920929,
+            "maxMs": 10.100000023841858,
+            "above6_94": 6,
+            "above8_33": 4,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 208.27547903273992,
+            "meanMs": 4.801333333353202,
+            "medianMs": 4.600000023841858,
+            "p95Ms": 5.600000023841858,
+            "p99Ms": 6.299999952316284,
+            "worstMs": 9,
+            "minMs": 3,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 526,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 759795,
+            "drawBatches": 57,
+            "worldTriangles": 759795,
+            "sceneTriangles": 1090453,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 51,
+            "totalMeshes": 142,
+            "triangleCountMs": 0.10000002384185791,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.03481512327719,
+            "gpuMeanMs": 1.0746930581964,
+            "gpuP95Ms": 1.1987573765242707,
+            "gpuSamples": 600,
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.801 ms is not locked to a known display interval"
+          },
+          "x": 0.00027841974792986704,
+          "z": 24.657622041593495,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "meadow",
+          "run": 2,
+          "before": {
+            "x": 0.0009003767597527047,
+            "z": -59.38056536284015,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2641,
+            "fps": 219.97701111107776,
+            "meanMs": 4.5459295721362825,
+            "medianMs": 4.300000011920929,
+            "p95Ms": 5.5,
+            "p99Ms": 5.899999976158142,
+            "worstMs": 9.100000023841858,
+            "minMs": 2.899999976158142,
+            "above8_333": 4,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.546 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2641,
+            "meanMs": 4.5459295721362825,
+            "meanFps": 219.97701111107776,
+            "p50Ms": 4.300000011920929,
+            "p95Ms": 5.5,
+            "p99Ms": 5.899999976158142,
+            "maxMs": 9.100000023841858,
+            "above6_94": 5,
+            "above8_33": 4,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 208.4491384119545,
+            "meanMs": 4.797333333293597,
+            "medianMs": 4.5,
+            "p95Ms": 5.600000023841858,
+            "p99Ms": 6.5,
+            "worstMs": 8.800000011920929,
+            "minMs": 3.199999988079071,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 526,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 759795,
+            "drawBatches": 57,
+            "worldTriangles": 759795,
+            "sceneTriangles": 1090525,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 51,
+            "totalMeshes": 142,
+            "triangleCountMs": 0.09999996423721313,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.1653503957960165,
+            "gpuMeanMs": 1.1001406124485857,
+            "gpuP95Ms": 1.2385988483788308,
+            "gpuSamples": 600,
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.797 ms is not locked to a known display interval"
+          },
+          "x": 0.00028350573033740495,
+          "z": 24.658860713479953,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "meadow",
+          "run": 3,
+          "before": {
+            "x": 0.0010578514127803933,
+            "z": -59.362314376805216,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2637,
+            "fps": 219.68958536380669,
+            "meanMs": 4.551877133110323,
+            "medianMs": 4.300000011920929,
+            "p95Ms": 5.5,
+            "p99Ms": 5.900000035762787,
+            "worstMs": 9,
+            "minMs": 2.799999952316284,
+            "above8_333": 4,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.552 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2637,
+            "meanMs": 4.551877133110323,
+            "meanFps": 219.68958536380669,
+            "p50Ms": 4.300000011920929,
+            "p95Ms": 5.5,
+            "p99Ms": 5.900000035762787,
+            "maxMs": 9,
+            "above6_94": 4,
+            "above8_33": 4,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 226.70596236987365,
+            "meanMs": 4.410999999940396,
+            "medianMs": 4.299999952316284,
+            "p95Ms": 5.399999976158142,
+            "p99Ms": 5.600000023841858,
+            "worstMs": 9.100000023841858,
+            "minMs": 3.099999964237213,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 539,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 763209,
+            "drawBatches": 57,
+            "worldTriangles": 763209,
+            "sceneTriangles": 1054665,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 51,
+            "totalMeshes": 142,
+            "triangleCountMs": 0,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.1161133822391498,
+            "gpuMeanMs": 1.1206286800571685,
+            "gpuP95Ms": 1.2894970983724392,
+            "gpuSamples": 600,
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.411 ms is not locked to a known display interval"
+          },
+          "x": -0.28479495539447774,
+          "z": 134.81003740953116,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "town",
+          "run": 1,
+          "before": {
+            "x": -0.02252553779775185,
+            "z": 85.61425105594003,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2653,
+            "fps": 220.98941283353767,
+            "meanMs": 4.525103656224741,
+            "medianMs": 4.300000011920929,
+            "p95Ms": 5.5,
+            "p99Ms": 5.700000047683716,
+            "worstMs": 9.199999988079071,
+            "minMs": 3,
+            "above8_333": 4,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.525 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2653,
+            "meanMs": 4.525103656224741,
+            "meanFps": 220.98941283353767,
+            "p50Ms": 4.300000011920929,
+            "p95Ms": 5.5,
+            "p99Ms": 5.700000047683716,
+            "maxMs": 9.199999988079071,
+            "above6_94": 5,
+            "above8_33": 4,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 227.76449151474202,
+            "meanMs": 4.390500000019868,
+            "medianMs": 4.299999952316284,
+            "p95Ms": 5.399999976158142,
+            "p99Ms": 5.600000023841858,
+            "worstMs": 8.5,
+            "minMs": 3.100000023841858,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 539,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 763209,
+            "drawBatches": 57,
+            "worldTriangles": 763209,
+            "sceneTriangles": 1054613,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 51,
+            "totalMeshes": 142,
+            "triangleCountMs": 0,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.0494712204815007,
+            "gpuMeanMs": 1.0906206577882882,
+            "gpuP95Ms": 1.2469146840844487,
+            "gpuSamples": 600,
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.391 ms is not locked to a known display interval"
+          },
+          "x": -0.2878039840450909,
+          "z": 134.81024878097622,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "town",
+          "run": 2,
+          "before": {
+            "x": -0.18811964518980426,
+            "z": 85.52272502979194,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2658,
+            "fps": 221.40405824164856,
+            "meanMs": 4.516629044389797,
+            "medianMs": 4.300000011920929,
+            "p95Ms": 5.5,
+            "p99Ms": 5.699999988079071,
+            "worstMs": 10.5,
+            "minMs": 2.699999988079071,
+            "above8_333": 4,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.517 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2658,
+            "meanMs": 4.516629044389797,
+            "meanFps": 221.40405824164856,
+            "p50Ms": 4.300000011920929,
+            "p95Ms": 5.5,
+            "p99Ms": 5.699999988079071,
+            "maxMs": 10.5,
+            "above6_94": 6,
+            "above8_33": 4,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 227.71262666720904,
+            "meanMs": 4.3914999999602635,
+            "medianMs": 4.300000011920929,
+            "p95Ms": 5.399999976158142,
+            "p99Ms": 5.600000023841858,
+            "worstMs": 8.800000011920929,
+            "minMs": 2.899999976158142,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 540,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 763209,
+            "drawBatches": 57,
+            "worldTriangles": 763209,
+            "sceneTriangles": 1054655,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 51,
+            "totalMeshes": 142,
+            "triangleCountMs": 0.10000002384185791,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.0290508485486596,
+            "gpuMeanMs": 1.1026816280343164,
+            "gpuP95Ms": 1.302123763881418,
+            "gpuSamples": 600,
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.391 ms is not locked to a known display interval"
+          },
+          "x": -0.2841786148530403,
+          "z": 134.8184617489803,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "town",
+          "run": 3,
+          "before": {
+            "x": -0.18676624163206793,
+            "z": 84.66065567233971,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2656,
+            "fps": 221.21903683119032,
+            "meanMs": 4.5204066265015355,
+            "medianMs": 4.300000011920929,
+            "p95Ms": 5.5,
+            "p99Ms": 5.699999988079071,
+            "worstMs": 9.100000023841858,
+            "minMs": 2.899999976158142,
+            "above8_333": 3,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.520 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2656,
+            "meanMs": 4.5204066265015355,
+            "meanFps": 221.21903683119032,
+            "p50Ms": 4.300000011920929,
+            "p95Ms": 5.5,
+            "p99Ms": 5.699999988079071,
+            "maxMs": 9.100000023841858,
+            "above6_94": 3,
+            "above8_33": 3,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 252.37654580887403,
+            "meanMs": 3.962333333293597,
+            "medianMs": 3.900000035762787,
+            "p95Ms": 4.899999976158142,
+            "p99Ms": 5.199999988079071,
+            "worstMs": 8.700000047683716,
+            "minMs": 2.800000011920929,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 430,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 786917,
+            "drawBatches": 57,
+            "worldTriangles": 786917,
+            "sceneTriangles": 1052995,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 51,
+            "totalMeshes": 142,
+            "triangleCountMs": 0.09999996423721313,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.3039833811124297,
+            "gpuMeanMs": 1.05586285979203,
+            "gpuP95Ms": 1.3095366099527515,
+            "gpuSamples": 600,
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 3.962 ms is not locked to a known display interval"
+          },
+          "x": 0,
+          "z": 299.6454800179434,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "bridge",
+          "run": 1,
+          "before": {
+            "x": 0,
+            "z": 215.62760749016851,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 3040,
+            "fps": 253.27001582937598,
+            "meanMs": 3.948355263157895,
+            "medianMs": 3.900000035762787,
+            "p95Ms": 5,
+            "p99Ms": 5.300000011920929,
+            "worstMs": 8.700000047683716,
+            "minMs": 2.399999976158142,
+            "above8_333": 3,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 3.948 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 3040,
+            "meanMs": 3.948355263157895,
+            "meanFps": 253.27001582937598,
+            "p50Ms": 3.900000035762787,
+            "p95Ms": 5,
+            "p99Ms": 5.300000011920929,
+            "maxMs": 8.700000047683716,
+            "above6_94": 3,
+            "above8_33": 3,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 253.83931971190339,
+            "meanMs": 3.9394999999801317,
+            "medianMs": 3.900000035762787,
+            "p95Ms": 4.600000023841858,
+            "p99Ms": 5,
+            "worstMs": 5.800000011920929,
+            "minMs": 3.199999988079071,
+            "above8_333": 0,
+            "above16_667": 0,
+            "drawCalls": 430,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 786917,
+            "drawBatches": 57,
+            "worldTriangles": 786917,
+            "sceneTriangles": 1053003,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 51,
+            "totalMeshes": 142,
+            "triangleCountMs": 0.10000002384185791,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.046515643419799,
+            "gpuMeanMs": 1.0531559870649594,
+            "gpuP95Ms": 1.270390802129788,
+            "gpuSamples": 600,
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 3.939 ms is not locked to a known display interval"
+          },
+          "x": 0,
+          "z": 299.65161527001567,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "bridge",
+          "run": 2,
+          "before": {
+            "x": 0,
+            "z": 215.61898431877927,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 3045,
+            "fps": 253.64008929489083,
+            "meanMs": 3.942594417073261,
+            "medianMs": 3.900000035762787,
+            "p95Ms": 4.900000035762787,
+            "p99Ms": 5.300000011920929,
+            "worstMs": 8.600000023841858,
+            "minMs": 2.300000011920929,
+            "above8_333": 3,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 3.943 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 3045,
+            "meanMs": 3.942594417073261,
+            "meanFps": 253.64008929489083,
+            "p50Ms": 3.900000035762787,
+            "p95Ms": 4.900000035762787,
+            "p99Ms": 5.300000011920929,
+            "maxMs": 8.600000023841858,
+            "above6_94": 3,
+            "above8_33": 3,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 252.6315789473684,
+            "meanMs": 3.9583333333333335,
+            "medianMs": 3.900000035762787,
+            "p95Ms": 4.800000011920929,
+            "p99Ms": 5.199999988079071,
+            "worstMs": 8.5,
+            "minMs": 2.800000011920929,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 430,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 786917,
+            "drawBatches": 57,
+            "worldTriangles": 786917,
+            "sceneTriangles": 1053003,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 51,
+            "totalMeshes": 142,
+            "triangleCountMs": 0.10000002384185791,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.2197807783915935,
+            "gpuMeanMs": 1.056711001829906,
+            "gpuP95Ms": 1.3063204242856905,
+            "gpuSamples": 600,
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 3.958 ms is not locked to a known display interval"
+          },
+          "x": 0,
+          "z": 299.6704632058033,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "bridge",
+          "run": 3,
+          "before": {
+            "x": 0,
+            "z": 215.6475171057748,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 3042,
+            "fps": 253.42186159292726,
+            "meanMs": 3.9459894806009466,
+            "medianMs": 3.899999976158142,
+            "p95Ms": 5,
+            "p99Ms": 5.300000011920929,
+            "worstMs": 9,
+            "minMs": 2.399999976158142,
+            "above8_333": 3,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 3.946 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 3042,
+            "meanMs": 3.9459894806009466,
+            "meanFps": 253.42186159292726,
+            "p50Ms": 3.899999976158142,
+            "p95Ms": 5,
+            "p99Ms": 5.300000011920929,
+            "maxMs": 9,
+            "above6_94": 4,
+            "above8_33": 3,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 261.5974886613895,
+            "meanMs": 3.8226666667064033,
+            "medianMs": 3.800000011920929,
+            "p95Ms": 4.199999988079071,
+            "p99Ms": 5,
+            "worstMs": 8.199999988079071,
+            "minMs": 2.700000047683716,
+            "above8_333": 0,
+            "above16_667": 0,
+            "drawCalls": 430,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 786917,
+            "drawBatches": 57,
+            "worldTriangles": 786917,
+            "sceneTriangles": 1050771,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 51,
+            "totalMeshes": 142,
+            "triangleCountMs": 0.19999998807907104,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.38933429038735,
+            "gpuMeanMs": 1.237763370247419,
+            "gpuP95Ms": 1.3778412947611607,
+            "gpuSamples": 600,
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 3.823 ms is not locked to a known display interval"
+          },
+          "x": 0,
+          "z": 349.55900000309856,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "cathedral",
+          "run": 1,
+          "before": {
+            "x": 0,
+            "z": 285.6315000000012,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 3085,
+            "fps": 257.0255025955047,
+            "meanMs": 3.890664505668745,
+            "medianMs": 3.899999976158142,
+            "p95Ms": 4.600000023841858,
+            "p99Ms": 5.100000023841858,
+            "worstMs": 8.5,
+            "minMs": 2.5,
+            "above8_333": 2,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 3.891 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 3085,
+            "meanMs": 3.890664505668745,
+            "meanFps": 257.0255025955047,
+            "p50Ms": 3.899999976158142,
+            "p95Ms": 4.600000023841858,
+            "p99Ms": 5.100000023841858,
+            "maxMs": 8.5,
+            "above6_94": 4,
+            "above8_33": 2,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 261.5290733166758,
+            "meanMs": 3.8236666666467984,
+            "medianMs": 3.800000011920929,
+            "p95Ms": 4,
+            "p99Ms": 5.100000023841858,
+            "worstMs": 8.399999976158142,
+            "minMs": 2.699999988079071,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 430,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 786917,
+            "drawBatches": 57,
+            "worldTriangles": 786917,
+            "sceneTriangles": 1050779,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 51,
+            "totalMeshes": 142,
+            "triangleCountMs": 0.10000002384185791,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.277502102619219,
+            "gpuMeanMs": 1.2622800304898272,
+            "gpuP95Ms": 1.375007510508164,
+            "gpuSamples": 600,
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 3.824 ms is not locked to a known display interval"
+          },
+          "x": 0,
+          "z": 349.5555000029332,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "cathedral",
+          "run": 2,
+          "before": {
+            "x": 0,
+            "z": 285.62310000008455,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 3081,
+            "fps": 256.7307451946205,
+            "meanMs": 3.895131450819915,
+            "medianMs": 3.899999976158142,
+            "p95Ms": 4.5,
+            "p99Ms": 5,
+            "worstMs": 8.799999952316284,
+            "minMs": 2.5,
+            "above8_333": 4,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 3.895 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 3081,
+            "meanMs": 3.895131450819915,
+            "meanFps": 256.7307451946205,
+            "p50Ms": 3.899999976158142,
+            "p95Ms": 4.5,
+            "p99Ms": 5,
+            "maxMs": 8.799999952316284,
+            "above6_94": 4,
+            "above8_33": 4,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 262.2033824222673,
+            "meanMs": 3.8138333333532017,
+            "medianMs": 3.800000011920929,
+            "p95Ms": 4,
+            "p99Ms": 4.900000035762787,
+            "worstMs": 5.100000023841858,
+            "minMs": 2.699999988079071,
+            "above8_333": 0,
+            "above16_667": 0,
+            "drawCalls": 430,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 786917,
+            "drawBatches": 57,
+            "worldTriangles": 786917,
+            "sceneTriangles": 1050775,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 51,
+            "totalMeshes": 142,
+            "triangleCountMs": 0.09999996423721313,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.2506861319311653,
+            "gpuMeanMs": 1.2885992550723917,
+            "gpuP95Ms": 1.3947683080535378,
+            "gpuSamples": 600,
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 3.814 ms is not locked to a known display interval"
+          },
+          "x": 0,
+          "z": 349.5611000032641,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "cathedral",
+          "run": 3,
+          "before": {
+            "x": 0,
+            "z": 285.6266000000844,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 3083,
+            "fps": 256.8267772948686,
+            "meanMs": 3.8936749918871487,
+            "medianMs": 3.899999976158142,
+            "p95Ms": 4.5,
+            "p99Ms": 5.100000023841858,
+            "worstMs": 8.600000023841858,
+            "minMs": 2.699999988079071,
+            "above8_333": 3,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 3.894 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 3083,
+            "meanMs": 3.8936749918871487,
+            "meanFps": 256.8267772948686,
+            "p50Ms": 3.899999976158142,
+            "p95Ms": 4.5,
+            "p99Ms": 5.100000023841858,
+            "maxMs": 8.600000023841858,
+            "above6_94": 4,
+            "above8_33": 3,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 237.74616634419073,
+            "meanMs": 4.206166666646799,
+            "medianMs": 4.199999988079071,
+            "p95Ms": 5.099999964237213,
+            "p99Ms": 5.400000035762787,
+            "worstMs": 6.699999988079071,
+            "minMs": 3.299999952316284,
+            "above8_333": 0,
+            "above16_667": 0,
+            "drawCalls": 523,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 836895,
+            "drawBatches": 57,
+            "worldTriangles": 836895,
+            "sceneTriangles": 1105339,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 51,
+            "totalMeshes": 142,
+            "triangleCountMs": 0,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.24616835195584,
+            "gpuMeanMs": 1.2732278887990358,
+            "gpuP95Ms": 1.4643704803657553,
+            "gpuSamples": 600,
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.206 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.400-5.400 ms (full range 3.300-6.700 ms)"
+          },
+          "x": -135.37043287761213,
+          "z": 203.03582270192857,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "forest",
+          "run": 1,
+          "before": {
+            "x": -85.6128357540303,
+            "z": 180.00114905681397,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2837,
+            "fps": 236.35757727234858,
+            "meanMs": 4.230877687698273,
+            "medianMs": 4.199999988079071,
+            "p95Ms": 5.100000023841858,
+            "p99Ms": 5.400000035762787,
+            "worstMs": 8.700000047683716,
+            "minMs": 2.899999976158142,
+            "above8_333": 3,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.231 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.400 ms (full range 2.900-8.700 ms)"
+          },
+          "tails": {
+            "samples": 2837,
+            "meanMs": 4.230877687698273,
+            "meanFps": 236.35757727234858,
+            "p50Ms": 4.199999988079071,
+            "p95Ms": 5.100000023841858,
+            "p99Ms": 5.400000035762787,
+            "maxMs": 8.700000047683716,
+            "above6_94": 3,
+            "above8_33": 3,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        }
+      ],
+      "errors": []
+    },
+    "ownership": {
+      "owner": "grok-session fieldcoat fps-1",
+      "purpose": "slot7 headless uncapped owned renderer for Fieldcoat measure-region-fps; parked about:blank",
+      "status": "inactive",
+      "recordedAt": "2026-10-06T23:45:12.964968",
+      "slot": 7,
+      "cdpPort": 10037,
+      "vitePort": 5873,
+      "intendedUrl": "http://127.0.0.1:5873/ashen-reach.html?play&clean&pixelRatio=1",
+      "headless": true,
+      "uncapped": true,
+      "preserved": {
+        "userEdgePid": 2931,
+        "orcaPid": 98938,
+        "pausedTelegramTab": "1147992685",
+        "pausedShadowglassTab": "1147995306",
+        "guard": "__fieldcoatMediaGuard20261007"
+      },
+      "preUpAudit": {
+        "listen5173": null,
+        "listen5873": null,
+        "listen10037": null,
+        "listen9337": null,
+        "googleChrome": null,
+        "edge": "2931 /Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+        "slot7State": false
+      },
+      "chromePid": 22382,
+      "vitePid": 22337,
+      "pageUrl": null,
+      "parkedAt": "2026-10-06T23:45:40.851339",
+      "instances": [
+        {
+          "owner": "grok-session fieldcoat fps-1",
+          "browserPid": 22382,
+          "cdpPort": 10037,
+          "vitePort": 5873,
+          "vitePid": 22337,
+          "pageUrl": "about:blank",
+          "purpose": "slot7 headless uncapped Fieldcoat region FPS"
+        }
+      ],
+      "closed": {
+        "status": "inactive",
+        "downAt": "2026-10-06T23:49:21.721940",
+        "listen5873": null,
+        "listen10037": null,
+        "aliveOwnedPids": [],
+        "edge": "2931 /Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+        "googleChrome": null,
+        "slot7StateExists": false
+      }
+    },
+    "strictGate": "failed on forest row1 pacing detector; 13 measured windows retained",
+    "continuation": "Exactly two remaining forest windows completed in a fresh process; recordCapped=1. All three forest windows retain 240 Hz detector hint; strict original invocation stays failed.",
+    "forestTail": {
+      "conditions": {
+        "cpu": "Apple M1 Max",
+        "url": "http://127.0.0.1:5873/ashen-reach.html?play=&clean=&pixelRatio=1&gpuTiming=",
+        "viewport": [
+          1280,
+          720
+        ],
+        "seconds": 12,
+        "runs": 2,
+        "uncappedRequired": true,
+        "recording": false,
+        "race": "human",
+        "outfit": "fieldcoat",
+        "orcAssetsOverride": null,
+        "routes": [
+          "forest"
+        ],
+        "recordCapped": true,
+        "savedAppearance": null
+      },
+      "rows": [
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 241.3224470084556,
+            "meanMs": 4.143833333353202,
+            "medianMs": 4.100000023841858,
+            "p95Ms": 5,
+            "p99Ms": 5.399999976158142,
+            "worstMs": 8.900000035762787,
+            "minMs": 2.400000035762787,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 478,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 836895,
+            "drawBatches": 57,
+            "worldTriangles": 836895,
+            "sceneTriangles": 1105343,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 51,
+            "totalMeshes": 142,
+            "triangleCountMs": 0.30000001192092896,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.211557151168216,
+            "gpuMeanMs": 1.2744627881855568,
+            "gpuP95Ms": 1.4591079703257193,
+            "gpuSamples": 600,
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.144 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.000-5.400 ms (full range 2.400-8.900 ms)"
+          },
+          "x": -135.48616880176405,
+          "z": 203.0357596264476,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "forest",
+          "run": 1,
+          "before": {
+            "x": -85.6480646916616,
+            "z": 180.00108269819773,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2860,
+            "fps": 238.21422622022322,
+            "meanMs": 4.197902097902098,
+            "medianMs": 4.199999988079071,
+            "p95Ms": 5.099999964237213,
+            "p99Ms": 5.399999976158142,
+            "worstMs": 9.300000011920929,
+            "minMs": 2.400000035762787,
+            "above8_333": 4,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.198 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.100-5.400 ms (full range 2.400-9.300 ms)"
+          },
+          "tails": {
+            "samples": 2860,
+            "meanMs": 4.197902097902098,
+            "meanFps": 238.21422622022322,
+            "p50Ms": 4.199999988079071,
+            "p95Ms": 5.099999964237213,
+            "p99Ms": 5.399999976158142,
+            "maxMs": 9.300000011920929,
+            "above6_94": 4,
+            "above8_33": 4,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 240.22100332420374,
+            "meanMs": 4.162833333313465,
+            "medianMs": 4.100000023841858,
+            "p95Ms": 5,
+            "p99Ms": 5.5,
+            "worstMs": 8.900000035762787,
+            "minMs": 2.699999988079071,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 526,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 836895,
+            "drawBatches": 57,
+            "worldTriangles": 836895,
+            "sceneTriangles": 1105343,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 51,
+            "totalMeshes": 142,
+            "triangleCountMs": 0.09999996423721313,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.183650297947028,
+            "gpuMeanMs": 1.2496064850822612,
+            "gpuP95Ms": 1.433758969714265,
+            "gpuSamples": 600,
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.163 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.500 ms (full range 2.700-8.900 ms)"
+          },
+          "x": -135.37629639740655,
+          "z": 203.03831574036747,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "forest",
+          "run": 2,
+          "before": {
+            "x": -85.62673143180892,
+            "z": 180.00117929514056,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2914,
+            "fps": 242.70591272890957,
+            "meanMs": 4.120212765961537,
+            "medianMs": 4.100000023841858,
+            "p95Ms": 5,
+            "p99Ms": 5.300000011920929,
+            "worstMs": 8.900000035762787,
+            "minMs": 2.599999964237213,
+            "above8_333": 3,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.120 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.100-5.300 ms (full range 2.600-8.900 ms)"
+          },
+          "tails": {
+            "samples": 2914,
+            "meanMs": 4.120212765961537,
+            "meanFps": 242.70591272890957,
+            "p50Ms": 4.100000023841858,
+            "p95Ms": 5,
+            "p99Ms": 5.300000011920929,
+            "maxMs": 8.900000035762787,
+            "above6_94": 3,
+            "above8_33": 3,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        }
+      ],
+      "errors": []
+    },
+    "forestTailOwnership": {
+      "owner": "grok-session fieldcoat fps-2",
+      "purpose": "slot7 headless uncapped forest tail ASHEN_RECORD_CAPPED=1; parked about:blank",
+      "status": "inactive",
+      "recordedAt": "2026-10-06T23:51:18.125833",
+      "slot": 7,
+      "cdpPort": 10037,
+      "vitePort": 5873,
+      "intendedUrl": "http://127.0.0.1:5873/ashen-reach.html?play&clean&pixelRatio=1",
+      "headless": true,
+      "uncapped": true,
+      "preserved": {
+        "userEdgePid": 2931,
+        "orcaPid": 98938
+      },
+      "preUpAudit": {
+        "listen5173": null,
+        "listen5873": null,
+        "listen10037": null,
+        "listen9337": null,
+        "googleChrome": null,
+        "edge": "2931 /Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+        "slot7State": false
+      },
+      "chromePid": 33734,
+      "vitePid": 33689,
+      "pageUrl": null,
+      "parkedAt": "2026-10-06T23:51:43.593381",
+      "instances": [
+        {
+          "owner": "grok-session fieldcoat fps-2",
+          "browserPid": 33734,
+          "cdpPort": 10037,
+          "vitePort": 5873,
+          "vitePid": 33689,
+          "pageUrl": "about:blank",
+          "purpose": "slot7 headless uncapped forest-tail FPS RECORD_CAPPED"
+        }
+      ],
+      "closed": {
+        "status": "inactive",
+        "downAt": "2026-10-06T23:52:36.005119",
+        "listen5873": null,
+        "listen10037": null,
+        "aliveOwnedPids": [],
+        "edge": "2931 /Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+        "googleChrome": null,
+        "slot7StateExists": false
+      }
+    }
+  }
+}

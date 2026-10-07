@@ -1,12 +1,12 @@
 {
  "schema": 1,
  "lite": "1.31.1",
- "catalogVersion": "appearance-catalog-v7",
+ "catalogVersion": "appearance-catalog-v8",
  "candidateOnly": false,
  "manifest": {
   "schema": 1,
   "lite": "1.31.1",
-  "catalogVersion": "appearance-catalog-v7",
+  "catalogVersion": "appearance-catalog-v8",
   "candidateOnly": false,
   "texturePolicy": {
    "human": "at most 512px from published full texture masters; WebP quality 90",
@@ -16,7 +16,7 @@
    "human": {
     "sourceManifest": {
      "path": "public/ashen-reach/human-shape-v1/manifest.json",
-     "sha256": "e3280fcec469fbf62fa1cdce19907477abbcbf0876effabef89b6575b1606071"
+     "sha256": "a366c69fc7b02972513f6177ac512b22c845e19749096f9af666f5a7ea1bb716"
     },
     "manifest": {
      "schema": 1,
@@ -66,6 +66,9 @@
         "trousers.upper"
        ],
        "duskguardCuirass": [
+        "trousers.upper"
+       ],
+       "fieldcoat": [
         "trousers.upper"
        ]
       },
@@ -730,6 +733,46 @@
         "sourceCurvesExact": true,
         "triangleWindingExact": true
        }
+      },
+      "fieldcoat": {
+       "bytes": 641416,
+       "sha256": "3349d25b6a305faf5db9276e6c6f9f09f0f5cc62c666aa339a59b71c0b9e1de1",
+       "meshes": [
+        "Fieldcoat"
+       ],
+       "fit": {
+        "body": "ashen-human",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "shapeFamily": "ashen-human-shape-v1",
+       "textures": [
+        {
+         "name": "WayfarerTunic",
+         "sourceSha256": "29d4e4e4beced64700aee7723b34dc6f6ac6d5c1b4f684ce2fdd2ba9e60c46f3",
+         "sha256": "3c7081b7ddad683f66b1fab333b30bd7f3474661484cde3e70c567122fd189be",
+         "normalMap": false,
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8738
+        }
+       ],
+       "file": "fieldcoat-3349d25b6a305faf5db9276e6c6f9f09f0f5cc62c666aa339a59b71c0b9e1de1.glb",
+       "source": {
+        "path": "public/ashen-reach/human-shape-v1/fieldcoat-7ddd737b7b0b.bin",
+        "sha256": "fe48ad1e164ae4b54d3b13e5d496b1b2727072efb0424dc2360e8a244dc06600",
+        "bytes": 639448
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       }
       }
      }
     }
@@ -737,7 +780,7 @@
    "orc": {
     "sourceManifest": {
      "path": "public/ashen-reach/equipment-orc/manifest-coverage-v1.json",
-     "sha256": "27610dfe63fb3a7af10ee9bb83c5dee4c2a9520541eefe74354767e3c3495c98"
+     "sha256": "4f10390474776dbccee950bc047fd3b3e916e250a4b70a19a9b956c500097f4e"
     },
     "manifest": {
      "schema": 1,
@@ -803,6 +846,9 @@
         "trousers.upper"
        ],
        "duskguardCuirass": [
+        "trousers.upper"
+       ],
+       "fieldcoat": [
         "trousers.upper"
        ]
       },
@@ -1988,6 +2034,49 @@
         "triangleWindingExact": true
        },
        "textures": []
+      },
+      "fieldcoat": {
+       "bytes": 373228,
+       "sha256": "f708626ab3e310b8d9afc3229744521e66eb99102273ff16c233909bfffbb529",
+       "meshes": [
+        "Fieldcoat"
+       ],
+       "fit": {
+        "body": "ashen-orc",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "fieldcoat-f708626ab3e310b8d9afc3229744521e66eb99102273ff16c233909bfffbb529.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-orc/fieldcoat-e24f3dcfd8d8.glb",
+        "sha256": "e24f3dcfd8d86875444d5cf4d7c7157850bd91f5b296c597b04a5e64edf87da6",
+        "bytes": 601296
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "WayfarerTunic",
+         "sourceSha256": "29d4e4e4beced64700aee7723b34dc6f6ac6d5c1b4f684ce2fdd2ba9e60c46f3",
+         "sha256": "3c7081b7ddad683f66b1fab333b30bd7f3474661484cde3e70c567122fd189be",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8738
+        }
+       ]
       }
      }
     }
@@ -1995,7 +2084,7 @@
    "undead": {
     "sourceManifest": {
      "path": "public/ashen-reach/equipment-undead/manifest-coverage-v1.json",
-     "sha256": "8b5808f1027d620f75b3cd27b72eb15d533c175a5626380014c206ae71e1f115"
+     "sha256": "44c2ddc9c0de41d76ddcb358a6b8b911ab5af6fad743f1889d363b96d5d1216a"
     },
     "manifest": {
      "schema": 1,
@@ -2046,6 +2135,9 @@
         "trousers.upper"
        ],
        "duskguardCuirass": [
+        "trousers.upper"
+       ],
+       "fieldcoat": [
         "trousers.upper"
        ]
       },
@@ -2790,6 +2882,49 @@
         "triangleWindingExact": true
        },
        "textures": []
+      },
+      "fieldcoat": {
+       "bytes": 388224,
+       "sha256": "1b19b607a3d43483c6575b8553b5418c508b2dcdf35060e78d877103f32a1a4e",
+       "meshes": [
+        "Fieldcoat"
+       ],
+       "fit": {
+        "body": "ashen-undead",
+        "rig": "source-65",
+        "bind": 1,
+        "shape": 1
+       },
+       "file": "fieldcoat-1b19b607a3d43483c6575b8553b5418c508b2dcdf35060e78d877103f32a1a4e.glb",
+       "source": {
+        "path": "public/ashen-reach/equipment-undead/fieldcoat-c9a2030aad08.glb",
+        "sha256": "c9a2030aad08319b6a7ba1093c062034d9f43bccc560d4f8b970648c8ab48a4c",
+        "bytes": 631988
+       },
+       "verification": {
+        "geometryExact": true,
+        "morphsExact": true,
+        "bindAndFramesExact": true,
+        "sourceCurvesExact": true,
+        "triangleWindingExact": true
+       },
+       "textures": [
+        {
+         "name": "WayfarerTunic",
+         "sourceSha256": "29d4e4e4beced64700aee7723b34dc6f6ac6d5c1b4f684ce2fdd2ba9e60c46f3",
+         "sha256": "3c7081b7ddad683f66b1fab333b30bd7f3474661484cde3e70c567122fd189be",
+         "normalMap": false,
+         "sourceSize": [
+          256,
+          256
+         ],
+         "size": [
+          256,
+          256
+         ],
+         "bytes": 8738
+        }
+       ]
       }
      }
     }
@@ -3397,6 +3532,52 @@
       }
      ],
      "points": 2407680,
+     "escaped": 0
+    },
+    "fieldcoat": {
+     "sha256": "3349d25b6a305faf5db9276e6c6f9f09f0f5cc62c666aa339a59b71c0b9e1de1",
+     "bounds": [
+      {
+       "name": "Fieldcoat",
+       "minimum": [
+        -0.7641247927915018,
+        -0.2519954299336138,
+        -1.3829114292814084
+       ],
+       "maximum": [
+        0.7574843113694285,
+        1.907623674640004,
+        0.8965428805546696
+       ]
+      },
+      {
+       "name": "Fieldcoat",
+       "minimum": [
+        -0.3892097834705568,
+        -0.14177657079115535,
+        -1.0741787892897665
+       ],
+       "maximum": [
+        0.40458701689583987,
+        1.660078687853367,
+        0.5847747845561558
+       ]
+      },
+      {
+       "name": "Fieldcoat",
+       "minimum": [
+        -0.5401762965676136,
+        -0.1712325297858831,
+        -1.112984791141668
+       ],
+       "maximum": [
+        0.5771620361446979,
+        1.6403662648013202,
+        0.5580339089414565
+       ]
+      }
+     ],
+     "points": 6007230,
      "escaped": 0
     }
    },
@@ -4443,6 +4624,52 @@
      ],
      "points": 695970,
      "escaped": 0
+    },
+    "fieldcoat": {
+     "sha256": "f708626ab3e310b8d9afc3229744521e66eb99102273ff16c233909bfffbb529",
+     "bounds": [
+      {
+       "name": "Fieldcoat",
+       "minimum": [
+        -1.1100349531697273,
+        -0.3085293454939164,
+        -1.7249936082447799
+       ],
+       "maximum": [
+        1.1230730223725378,
+        2.452040018500814,
+        1.3595035798093622
+       ]
+      },
+      {
+       "name": "Fieldcoat",
+       "minimum": [
+        -0.6279306999843925,
+        -0.10305654688608919,
+        -1.304452273780251
+       ],
+       "maximum": [
+        0.6403848688836562,
+        2.045968921106433,
+        0.8167103052566782
+       ]
+      },
+      {
+       "name": "Fieldcoat",
+       "minimum": [
+        -0.8299291087906775,
+        -0.05941979422748796,
+        -1.368925139244989
+       ],
+       "maximum": [
+        0.9029036336221095,
+        2.0226901437885614,
+        0.803406401328427
+       ]
+      }
+     ],
+     "points": 2202195,
+     "escaped": 0
     }
    },
    "clips": {
@@ -5397,6 +5624,52 @@
      ],
      "points": 361950,
      "escaped": 0
+    },
+    "fieldcoat": {
+     "sha256": "1b19b607a3d43483c6575b8553b5418c508b2dcdf35060e78d877103f32a1a4e",
+     "bounds": [
+      {
+       "name": "Fieldcoat",
+       "minimum": [
+        -0.7817441739501161,
+        -0.15492998178022277,
+        -1.441809371216275
+       ],
+       "maximum": [
+        0.7831439420904711,
+        2.315261265930857,
+        0.9405687368906681
+       ]
+      },
+      {
+       "name": "Fieldcoat",
+       "minimum": [
+        -0.3635994072203259,
+        -0.060862716970631475,
+        -1.0957110374468255
+       ],
+       "maximum": [
+        0.392842778171831,
+        2.0274248859359387,
+        0.5750971932316999
+       ]
+      },
+      {
+       "name": "Fieldcoat",
+       "minimum": [
+        -0.4508581445148989,
+        -0.08064969076056878,
+        -1.1562653736515156
+       ],
+       "maximum": [
+        0.4382096001339435,
+        2.01774245730812,
+        0.5574322543749028
+       ]
+      }
+     ],
+     "points": 2350965,
+     "escaped": 0
     }
    },
    "clips": {
@@ -5745,7 +6018,7 @@
    }
   }
  },
- "points": 148384965,
+ "points": 158945355,
  "escaped": 0,
  "finalByteCache": {
   "entries": 0,
@@ -5758,12 +6031,12 @@
  "gpuErrors": [],
  "published": {
   "version": 1,
-  "publishedAt": "2026-10-06T00:49:42.062Z",
+  "publishedAt": "2026-10-07T05:35:28.045Z",
   "sourceCompilerSha256": "e9bb55b8b67195c5fe92cb8ebfc86aa59ee654a614bcec4154ab5c721a531563",
-  "pieceCount": 48,
-  "uniqueFiles": 48,
-  "totalBytes": 19642636,
+  "pieceCount": 51,
+  "uniqueFiles": 51,
+  "totalBytes": 21045504,
   "lite": "1.31.1",
-  "catalogVersion": "appearance-catalog-v7"
+  "catalogVersion": "appearance-catalog-v8"
  }
 }
