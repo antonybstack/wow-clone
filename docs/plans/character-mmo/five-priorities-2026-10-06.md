@@ -7,6 +7,44 @@ Root implements and accepts changes. Grok 4.6/high owns bounded verification and
 operations, with one tracked game renderer. Completed changes are committed and
 pushed. Release gates remain required before production promotion.
 
+## Current execution order — 2026-10-07
+
+The full five-priority goal remains active. The material next step is production
+delivery, since preview qualification is complete:
+
+1. Diagnose the custom-domain version mismatch observed during promotion
+   5723a4ab; preserve the working rollback e39117b8. Both new immutable hosts pass
+   all 552 delivery checks, while the custom host failed fifteen. Dashboard access
+   works and no cache/Page Rule overrides were found. Do not invent a cache rule
+   or repeat an unchanged promotion without a justified intervention or bounded
+   convergence procedure.
+2. Once delivery is consistent, repeat production integrity, three entry aliases,
+   four predeclared twenty-start cohorts and the native functional/FPS gates.
+   Require every valid start ≤1,000 ms, >120 FPS with the 144 FPS target, zero
+   errors/recoveries and reviewed motion attribution. This ships the accepted
+   startup/audio/camera improvements and the already-built Fieldcoat together.
+3. Keep focused reliability follow-ups: the original rejected 14/60 fetch failures
+   and the new single 362 ms post-screenshot input upper bound remain unexplained.
+   Three instrumented input visits observe first movement at 4.7–4.8 ms and do
+   not reproduce it. Preserve all evidence; make a corrective change only when a
+   demonstrated path supports it.
+4. Run current physical iPhone acceptance when a physical device is available.
+   The prepared receipt and exact covered/uncovered fixtures are ready. The fresh
+   inventory still has zero physical iPhones; desktop emulation is separate.
+5. After the release/device gates, address the concrete mixed-fit and boot
+   silhouette follow-ups in CURRENT. Region, multiplayer and Elf expansion remain
+   parked; do not start another broad fit matrix or engine audit.
+
+Preview **70abd683 / 7d00c56** passes **80/80** declared cold starts with worst
+873.5 ms and all ten native phases. Fifteen separate complete route windows
+observe **199.8–231.9 FPS**, maximum p99 **6.2 ms** and worst **10.1 ms**, with
+no interval over 16.67 ms/errors/recoveries or full-window pacing hints. Conditions:
+M1 Max, native uncapped Chromium WebGPU, 1280×720/DPR1, seven enemies, three
+twelve-second windows on each of five routes, no recording or second renderer.
+Production 5723a4ab was rejected and rolled back before its startup/FPS cohorts.
+Current rollback entry smoke passes; the immediate failed rollback smoke is kept.
+[Qualification and failed-release result](results/startup-public-covered-2026-10-07.md).
+
 ## 1. Isolate intermittent startup failure
 
 Keep the original rejected preview and all 14 failed starts. The initial resumed
@@ -175,6 +213,14 @@ default-off. The declared 18 local visits are valid/error-free; covered startup 
 This justifies one new sealed public candidate; local visits are not qualification.
 [Covered-hair result](results/startup-covered-hair-2026-10-07.md).
 
+That new candidate is now qualified as 70abd683: four declared twenty-start
+cohorts (default, new uncovered maximum, previous covered maximum and historical)
+all pass with no errors or budget misses. Default p95/worst 751.5/758.7 ms;
+uncovered 841.5/873.5 ms; covered 836.1/857.4 ms; historical 798.5/805.9 ms.
+All native release gates and fifteen settled performance windows also pass.
+See the current execution order for the failed custom-domain promotion and
+production work remaining; earlier candidate misses/failures stay preserved.
+
 After a justified implementation, declare startup cohorts before running them:
 twenty fresh processes each for unsaved default, catalogue-derived maximum outfit
 and historical hood/cloth/Bastion. The current strict gate is all valid starts at
@@ -268,4 +314,7 @@ Raw resumed evidence: `.cache/character-mmo/startup-resume-2026-10-06/`.
 [receipt](../../baselines/character-mmo/startup-resume-2026-10-06/receipt.json)
 follow the existing startup baseline convention. The
 original invalid probe, corrected six visits and rejected optimization tables
-remain distinct. No production promotion has occurred during this checkpoint.
+remain distinct. This was the original resumed checkpoint. The later
+[covered-hair public result](results/startup-public-covered-2026-10-07.md) records
+the complete preview qualification, attempted production promotion, retained
+delivery failure, rollback and subsequent passing entry smoke.

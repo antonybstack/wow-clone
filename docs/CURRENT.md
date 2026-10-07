@@ -8,6 +8,15 @@ controls scope; historical milestones are evidence, not an active queue.
 Native goal **active**: “next 5 priorities.” The
 [five-priority plan](plans/character-mmo/five-priorities-2026-10-06.md) remains authoritative.
 
+**Next action: resolve the production custom-domain version mismatch.** Sealed
+preview **70abd683 / 7d00c56** now passes 80/80 declared cold starts (worst
+873.5 ms), all native release gates and fifteen separate 720p route windows
+(199.8–231.9 FPS, p99≤6.2 ms, worst 10.1 ms). Promotion **5723a4ab** passes
+immutable delivery but fails 15/552 checks on `play.sparkify.dev`; it was rolled
+back to **e39117b8 / 6004840**. The current rollback passes all three entry
+checks. Production qualification and Fieldcoat delivery are still pending.
+[Full result and retained receipt](plans/character-mmo/results/startup-public-covered-2026-10-07.md).
+
 1. **Reliable startup:** retain the original 14/60 failed public starts. They have
    not reproduced or been explained. Existing asset URL/operation/native-cause
    diagnostics and failure controls pass. A real Havok abort exposes one remaining
@@ -53,11 +62,14 @@ Native goal **active**: “next 5 priorities.” The
    Covered-body saving is 263,151 bytes; the newly derived uncovered maximum is
    2,102,724 bytes (197,700 below the previous maximum). Eighteen declared local visits are valid/error-free; covered startup improves
    36.3–48.4 ms, default−5.9…+0.8 ms/uncovered−0.5…+7.3 ms. Default-off;
-   public qualification remains pending. Root-reviewed native motion is delivered as
+   immutable public qualification now passes (80/80 across four outfits); production
+   qualification remains pending. Root-reviewed native motion is delivered as
    Telegram 878 with identical VE bytes. Inline/expanded and native direct VE
    proportions pass; actual fullscreen/current phone remain unverified.
    [Covered-hair result](plans/character-mmo/results/startup-covered-hair-2026-10-07.md).
-   Next create material first-play headroom and qualify it.
+   Retain the one 362 ms post-screenshot input upper-bound outlier; three separate
+   diagnostics do not reproduce it and do not establish its cause. Next qualify
+   the same release on production after resolving delivery integrity.
    [Audio result](plans/character-mmo/results/startup-audio-2026-10-07.md).
 3. **Release accepted improvements:** freeze, commit/push, seal, verify preview
    integrity/entries/startup/traversal/mobile/depth/WebKit/FPS, deploy identical
@@ -94,9 +106,23 @@ body/geometry/texture failure controls pass; they do not replace that cohort.
 All retained failed Havok transfers finish HTTP 200; generic historical error text
 cannot identify the failed operation. [Resumed diagnostics](plans/character-mmo/results/startup-resume-2026-10-06.md),
 [original failures](baselines/character-mmo/startup-normal-release-2026-10-06/css-public-failure.json).
-Cloudflare custom-domain request-log/cache investigation needs separate access:
-DNS request with the deployment token returned 403. No dashboard sign-in or settings
-change is pending. Production has not been promoted during the startup trials.
+The new immutable preview 70abd683 passes 80/80 starts with no errors/misses and
+all release gates. Production promotion 5723a4ab uploads identical sealed bytes;
+its immutable URL passes 552 checks, but the custom domain serves new HTML with
+fourteen missing new assets/modules and an older manifest. The gate stops before
+production startup/functional/FPS cohorts. Native rollback succeeds; immediate
+entry verification still times out at 120 s. Later HTTP comparison confirms the old
+root bytes, and all three native entry aliases pass. Both verification attempts
+are retained; do not treat rollback acknowledgement alone as working delivery.
+
+Read-only API/dashboard investigation confirms no matching Worker route, Tiered
+Cache off, zero Cache Rules/Cache Response Rules/legacy Page Rules, and the
+correct proxied `play` CNAME to `fardel.pages.dev`. The deployment token returns
+403 for cache/DNS reads, but existing saved dashboard sign-in succeeds; access
+is not the current blocker. No configuration, purge, credential or grant changes
+were made. The mixed-version cause remains unproven. Diagnose it narrowly before
+another promotion, then repeat exact production gates. The original 14/60 failed
+immutable starts remain a distinct open cause.
 
 ## Accepted character checkpoint
 
@@ -187,6 +213,14 @@ or modified. `__coveredHairPairsOct7` is removed, original connected playback
 restored(1/1/0), and the new Telegram878 clip is paused after UI review. Edge has
 no game/review tab; Orca's latest embedded inventory is empty. Audit again before
 new public timing. Final comparison/ownership receipt is in the covered-hair result.
+
+Public qualification and rollback checks close all owned browsers/workers. Root's
+dashboard tab 1147995868 is closed and its original expanded sidebar restored.
+The `__coveredPublicOct7` guards are removed; connected original playback is
+restored (0/1/0), with Shadowglass Discarded and untouched. Final inventory finds
+Edge's twelve nongame tabs, no Edge game tab and no Chrome/Chromium/Grok process.
+No game renderer was opened for the priorities/status update. Browser ownership
+and actual phase exits are retained in the public qualification receipt.
 
 [Workflow](reviews/workflow-2026-10-05.md#current-operating-rule--2026-10-06),
 [continuation limits](autonomous-continuation.md).
