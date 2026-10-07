@@ -43,6 +43,8 @@ Treat every open game page as GPU work, including a page in a detached headless 
 
 Repeated live checks should use a fresh owned Playwright `browser.newContext()` and close it in `finally`. Navigating the same page to `about:blank` can retain earlier game documents/renderers in Chromium's back/forward history; detaching CDP does not dispose them. Keep the harness's default page blank, audit targets before the next check, and restart only the owned harness if retained history/processes make isolation uncertain.
 
+For repeated browser launches in one task, append each start and close record to an ownership history with its actual parent/helper PIDs and ports. A mutable slot snapshot is useful for the currently live instance; it must not erase the earlier instances' cleanup records.
+
 Cold-start and FPS isolation also require an audit of known video playback. Closing
 Telegram's viewer can restart inline autoplay after an immediate pause check. Record
 the initial playback state, finish motion review before measurements, and check for
@@ -139,6 +141,8 @@ Record errors and failure evidence, not just successful assertions. Never replac
 Capture elapsed time comes from CDP timestamps. Do not use `setpts=N/(60*TB)` to turn a slow capture into nominal 60 FPS: that changes action speed. Keep variable frame timing and assess performance in a separate unrecorded run. Historical fixed-rate clips are not valid timing evidence.
 
 CDP screencast includes the DOM HUD; `canvas.captureStream()` alone does not. The spell recorder captures Lite's actual audio mix through `createAudioEngineMediaStream`, not microphone audio or a staged soundtrack. It writes JPEG frames, `frames.ffconcat`, `audio.webm` and `recording.json`. Align audio using the recorded offset when encoding H.264/AAC. Review representative frames across the whole action and a useful second angle. Keep caster and target visible for projectile review.
+
+Audio is deferred while sound is muted. Recorders must `await ASHEN.combat.audio.prepare()` before synchronous `audio.capture()`; updated existing recorders use this boundary. For audible gameplay checks activate the actual desktop Sound button, or **Menu → Sound** on touch, and wait for `audio.status.ready && audio.status.state === 'running'`. Movement alone never prepares audio. Retain loading/failure states and the one-time first-activation cost. `check-deferred-audio.mjs <report.json>` uses an owned isolated CDP browser for native playback, touch, failure and disposal controls; it is not a benchmark. See [the measured audio checkpoint](plans/character-mmo/results/startup-audio-2026-10-07.md).
 
 Measure foreground frame times separately from recording, after warm-up. Report actual buffer resolution, sample count, average, tails/stalls and whether other GPU work was active. Do not discard slow frames or call unsupported GPU timing zero. The current 960×540 buffer is an intentional pixel-art presentation; don't claim its ~144 FPS as native-resolution performance.
 

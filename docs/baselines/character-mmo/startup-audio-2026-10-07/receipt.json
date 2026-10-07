@@ -1,0 +1,2056 @@
+{
+  "schema": 1,
+  "kind": "deferred native audio local checkpoint; not public one-second/release qualification",
+  "baselineCommit": "b0ed867d8cdeb39c0a0a795acf13bbd9ed0a544b",
+  "source": {
+    "src/ashen-reach/main.js": "35d66e573e9fa61a0e1d8dd3214156c68f4ba7f042f1e39c3a0afa290df2df07",
+    "src/ashen-reach/prime-starter-world.js": "c56afa2041b50339159d2c6a79562c5dd063c5209abfe3da08c15a74218f8344",
+    "vite.config.js": "f2eced64bd67920df222c308d79d95312b25436895a7b236e4b4313e3256988b",
+    "src/ashen-reach/starter-world.js": "73658566e5edc1259a3ff994b05a7fe6186082995b953319f2e8d3766cbaaed6",
+    "src/ashen-reach/baked-woodland.js": "c26559c6ffb2a914d9bcdf1921abe17d47d029159501a846ce99c5174c47f374",
+    "src/ashen-reach/sun-shadows.js": "e58be4feb5ac20b0cc480b8fea454506040b13d881fa658fbf105ac33669d70d",
+    "src/player.js": "68854dc2d141ceb8a858ce3405e4d0b9355a4298c18e94f92c629a984bc0f154",
+    "src/ashen-reach/fire-blast-audio.js": "d0011098f2c9bc393c49b7d31a30ab770ed7b035703168d57cada52355e84471",
+    "src/ashen-reach/combat.js": "849342459e539796fa54db485a49dcebc9e4386d7c39976e13bdd6f06c8ab7cc",
+    "src/ashen-reach/menu.js": "eadfecfbb1178923d526b11755bc4beb15652537ab8b8e132703ec747341c3a8",
+    "src/ashen-reach/touch-controls.js": "134d132568504ef985c55aa95fd2516ac5631f90ae14f4479f9f814ba50955de"
+  },
+  "rawEvidence": ".cache/character-mmo/background-stall-2026-10-07",
+  "nativeCpuAttribution": {
+    "default": {
+      "diagnosticOnly": true,
+      "longTask": {
+        "startMs": 1357.8999999761581,
+        "durationMs": 178,
+        "selfTop": [
+          {
+            "sampledMs": 176.617,
+            "stack": [
+              {
+                "functionName": "an",
+                "scriptId": "25",
+                "url": "http://127.0.0.1:7074/assets/v2/lite-runtime-DlqavT_F.js",
+                "lineNumber": 0,
+                "columnNumber": 20778
+              },
+              {
+                "functionName": "Me",
+                "scriptId": "39",
+                "url": "http://127.0.0.1:7074/assets/v2/combat-C3xJHRM5.js",
+                "lineNumber": 0,
+                "columnNumber": 12234
+              },
+              {
+                "functionName": "_t",
+                "scriptId": "39",
+                "url": "http://127.0.0.1:7074/assets/v2/combat-C3xJHRM5.js",
+                "lineNumber": 26,
+                "columnNumber": 13550
+              },
+              {
+                "functionName": "(root)",
+                "scriptId": "0",
+                "url": "",
+                "lineNumber": -1,
+                "columnNumber": -1
+              }
+            ]
+          }
+        ]
+      },
+      "interpretation": "native createAudioEngineAsync during muted createCombat; sampled function time is not isolated GPU execution"
+    },
+    "maximum": {
+      "diagnosticOnly": true,
+      "longTask": {
+        "startMs": 1797.199999988079,
+        "durationMs": 195,
+        "selfTop": [
+          {
+            "sampledMs": 192.778,
+            "stack": [
+              {
+                "functionName": "an",
+                "scriptId": "26",
+                "url": "http://127.0.0.1:7074/assets/v2/lite-runtime-DlqavT_F.js",
+                "lineNumber": 0,
+                "columnNumber": 20778
+              },
+              {
+                "functionName": "Me",
+                "scriptId": "40",
+                "url": "http://127.0.0.1:7074/assets/v2/combat-C3xJHRM5.js",
+                "lineNumber": 0,
+                "columnNumber": 12234
+              },
+              {
+                "functionName": "_t",
+                "scriptId": "40",
+                "url": "http://127.0.0.1:7074/assets/v2/combat-C3xJHRM5.js",
+                "lineNumber": 26,
+                "columnNumber": 13550
+              },
+              {
+                "functionName": "(root)",
+                "scriptId": "0",
+                "url": "",
+                "lineNumber": -1,
+                "columnNumber": -1
+              }
+            ]
+          }
+        ]
+      },
+      "interpretation": "native createAudioEngineAsync during muted createCombat; sampled function time is not isolated GPU execution"
+    }
+  },
+  "verification": {
+    "focusedTests": 32,
+    "builds": [
+      "default",
+      "lazy-prime"
+    ],
+    "native": {
+      "default": {
+        "cases": [
+          {
+            "name": "muted movement/cast; pointer sound; capture; remute/keyboard resume",
+            "passed": true,
+            "errors": [],
+            "final": {
+              "audio": {
+                "ready": true,
+                "initializing": false,
+                "state": "running",
+                "played": 1,
+                "lavaPlayed": 0,
+                "error": null,
+                "duration": 1.9623958333333333
+              },
+              "muted": false,
+              "contexts": 1,
+              "contextStates": [
+                "running"
+              ],
+              "constructorMs": [
+                160.5
+              ],
+              "closeCalls": 0,
+              "sourceStarts": 1,
+              "physics": true,
+              "recoveries": 0
+            }
+          },
+          {
+            "name": "first request through keyboard activation",
+            "passed": true,
+            "errors": [],
+            "final": {
+              "audio": {
+                "ready": true,
+                "initializing": false,
+                "state": "running",
+                "played": 0,
+                "lavaPlayed": 0,
+                "error": null,
+                "duration": 1.9623958333333333
+              },
+              "muted": false,
+              "contexts": 1,
+              "contextStates": [
+                "running"
+              ],
+              "constructorMs": [
+                1.100000023841858
+              ],
+              "closeCalls": 0,
+              "sourceStarts": 0,
+              "physics": true,
+              "recoveries": 0
+            }
+          },
+          {
+            "name": "first request through mobile menu touch activation",
+            "passed": true,
+            "errors": [],
+            "final": {
+              "audio": {
+                "ready": true,
+                "initializing": false,
+                "state": "running",
+                "played": 0,
+                "lavaPlayed": 0,
+                "error": null,
+                "duration": 1.9623958333333333
+              },
+              "muted": false,
+              "contexts": 1,
+              "contextStates": [
+                "running"
+              ],
+              "constructorMs": [
+                0.7999999523162842
+              ],
+              "closeCalls": 0,
+              "sourceStarts": 0,
+              "physics": true,
+              "recoveries": 0
+            }
+          },
+          {
+            "name": "explicit capture preparation shares one native engine",
+            "passed": true,
+            "errors": [],
+            "final": {
+              "audio": {
+                "ready": true,
+                "initializing": false,
+                "state": "running",
+                "played": 0,
+                "lavaPlayed": 0,
+                "error": null,
+                "duration": 1.9623958333333333
+              },
+              "muted": false,
+              "contexts": 1,
+              "contextStates": [
+                "running"
+              ],
+              "constructorMs": [
+                0.8999999761581421
+              ],
+              "closeCalls": 0,
+              "sourceStarts": 0,
+              "physics": true,
+              "recoveries": 0
+            }
+          },
+          {
+            "name": "construction failure disables sound; movement remains live",
+            "passed": true,
+            "errors": [],
+            "final": {
+              "audio": {
+                "ready": false,
+                "initializing": false,
+                "played": 0,
+                "lavaPlayed": 0,
+                "error": "Error: Controlled AudioContext construction failure"
+              },
+              "muted": false,
+              "contexts": 0,
+              "contextStates": [],
+              "constructorMs": [],
+              "closeCalls": 0,
+              "sourceStarts": 0,
+              "physics": true,
+              "recoveries": 0
+            }
+          },
+          {
+            "name": "dispose during held native sound fetch",
+            "passed": true,
+            "errors": [],
+            "final": {
+              "audio": {
+                "ready": false,
+                "initializing": false,
+                "played": 0,
+                "lavaPlayed": 0,
+                "error": null
+              },
+              "muted": false,
+              "contexts": 1,
+              "contextStates": [
+                "closed"
+              ],
+              "constructorMs": [
+                4.300000011920929
+              ],
+              "closeCalls": 1,
+              "sourceStarts": 0,
+              "physics": false,
+              "recoveries": 0
+            }
+          },
+          {
+            "name": "dispose without any sound request creates nothing",
+            "passed": true,
+            "errors": [],
+            "final": {
+              "audio": {
+                "ready": false,
+                "initializing": false,
+                "played": 0,
+                "lavaPlayed": 0,
+                "error": null
+              },
+              "muted": true,
+              "contexts": 0,
+              "contextStates": [],
+              "constructorMs": [],
+              "closeCalls": 0,
+              "sourceStarts": 0,
+              "physics": false,
+              "recoveries": 0
+            }
+          }
+        ],
+        "entryExit": 0,
+        "ownership": {
+          "owner": "grok-deferred-audio-native",
+          "browserPid": 71554,
+          "gpuHelperPids": [
+            71560
+          ],
+          "cdpPort": 10037,
+          "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev",
+          "purpose": "Deferred audio native controls default; not a benchmark",
+          "renderingClients": 0,
+          "active": false,
+          "previewPid": 71553,
+          "previewPort": 7074,
+          "previewDir": "/Users/antbly/dev/wow-clone/.cache/character-mmo/background-stall-2026-10-07/build-default"
+        }
+      },
+      "lazy": {
+        "cases": [
+          {
+            "name": "muted movement/cast; pointer sound; capture; remute/keyboard resume",
+            "passed": true,
+            "errors": [],
+            "final": {
+              "audio": {
+                "ready": true,
+                "initializing": false,
+                "state": "running",
+                "played": 1,
+                "lavaPlayed": 0,
+                "error": null,
+                "duration": 1.9623958333333333
+              },
+              "muted": false,
+              "contexts": 1,
+              "contextStates": [
+                "running"
+              ],
+              "constructorMs": [
+                157.30000001192093
+              ],
+              "closeCalls": 0,
+              "sourceStarts": 1,
+              "physics": true,
+              "recoveries": 0
+            }
+          },
+          {
+            "name": "first request through keyboard activation",
+            "passed": true,
+            "errors": [],
+            "final": {
+              "audio": {
+                "ready": true,
+                "initializing": false,
+                "state": "running",
+                "played": 0,
+                "lavaPlayed": 0,
+                "error": null,
+                "duration": 1.9623958333333333
+              },
+              "muted": false,
+              "contexts": 1,
+              "contextStates": [
+                "running"
+              ],
+              "constructorMs": [
+                1
+              ],
+              "closeCalls": 0,
+              "sourceStarts": 0,
+              "physics": true,
+              "recoveries": 0
+            }
+          },
+          {
+            "name": "first request through mobile menu touch activation",
+            "passed": true,
+            "errors": [],
+            "final": {
+              "audio": {
+                "ready": true,
+                "initializing": false,
+                "state": "running",
+                "played": 0,
+                "lavaPlayed": 0,
+                "error": null,
+                "duration": 1.9623958333333333
+              },
+              "muted": false,
+              "contexts": 1,
+              "contextStates": [
+                "running"
+              ],
+              "constructorMs": [
+                0.8999999761581421
+              ],
+              "closeCalls": 0,
+              "sourceStarts": 0,
+              "physics": true,
+              "recoveries": 0
+            }
+          },
+          {
+            "name": "explicit capture preparation shares one native engine",
+            "passed": true,
+            "errors": [],
+            "final": {
+              "audio": {
+                "ready": true,
+                "initializing": false,
+                "state": "running",
+                "played": 0,
+                "lavaPlayed": 0,
+                "error": null,
+                "duration": 1.9623958333333333
+              },
+              "muted": false,
+              "contexts": 1,
+              "contextStates": [
+                "running"
+              ],
+              "constructorMs": [
+                1
+              ],
+              "closeCalls": 0,
+              "sourceStarts": 0,
+              "physics": true,
+              "recoveries": 0
+            }
+          },
+          {
+            "name": "construction failure disables sound; movement remains live",
+            "passed": true,
+            "errors": [],
+            "final": {
+              "audio": {
+                "ready": false,
+                "initializing": false,
+                "played": 0,
+                "lavaPlayed": 0,
+                "error": "Error: Controlled AudioContext construction failure"
+              },
+              "muted": false,
+              "contexts": 0,
+              "contextStates": [],
+              "constructorMs": [],
+              "closeCalls": 0,
+              "sourceStarts": 0,
+              "physics": true,
+              "recoveries": 0
+            }
+          },
+          {
+            "name": "dispose during held native sound fetch",
+            "passed": true,
+            "errors": [],
+            "final": {
+              "audio": {
+                "ready": false,
+                "initializing": false,
+                "played": 0,
+                "lavaPlayed": 0,
+                "error": null
+              },
+              "muted": false,
+              "contexts": 1,
+              "contextStates": [
+                "closed"
+              ],
+              "constructorMs": [
+                0.9000000357627869
+              ],
+              "closeCalls": 1,
+              "sourceStarts": 0,
+              "physics": false,
+              "recoveries": 0
+            }
+          },
+          {
+            "name": "dispose without any sound request creates nothing",
+            "passed": true,
+            "errors": [],
+            "final": {
+              "audio": {
+                "ready": false,
+                "initializing": false,
+                "played": 0,
+                "lavaPlayed": 0,
+                "error": null
+              },
+              "muted": true,
+              "contexts": 0,
+              "contextStates": [],
+              "constructorMs": [],
+              "closeCalls": 0,
+              "sourceStarts": 0,
+              "physics": false,
+              "recoveries": 0
+            }
+          }
+        ],
+        "entryExit": 0,
+        "ownership": {
+          "owner": "grok-deferred-audio-native",
+          "browserPid": 72826,
+          "gpuHelperPids": [
+            72852
+          ],
+          "cdpPort": 10037,
+          "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev",
+          "purpose": "Deferred audio native controls lazy; not a benchmark",
+          "renderingClients": 0,
+          "active": false,
+          "previewPid": 72825,
+          "previewPort": 7074,
+          "previewDir": "/Users/antbly/dev/wow-clone/.cache/character-mmo/background-stall-2026-10-07/build-lazy"
+        }
+      }
+    },
+    "independentReviews": [
+      "review.md",
+      "review-menu.md",
+      "review-touch.md",
+      "review-lifetime.md"
+    ]
+  },
+  "performanceMethod": {
+    "kind": "bounded native comparison and steady gate",
+    "streamingTrials": 3,
+    "streamingOrders": [
+      [
+        "baseline",
+        "candidate"
+      ],
+      [
+        "candidate",
+        "baseline"
+      ],
+      [
+        "baseline",
+        "candidate"
+      ]
+    ],
+    "baseline": "b0ed867 verified lazy/prime build versus identical settings with deferred native audio; three fresh-process alternating pairs",
+    "steadyRuns": 3,
+    "steadyRoutes": [
+      "meadow",
+      "town",
+      "bridge",
+      "cathedral",
+      "forest"
+    ],
+    "steadySeconds": 12,
+    "viewport": [
+      1280,
+      720
+    ],
+    "recording": false,
+    "flags": [
+      "--disable-gpu-vsync",
+      "--disable-frame-rate-limit"
+    ],
+    "pacing": "retain detected hints as observation; not confirmed hardware limit"
+  },
+  "streamingComparison": [
+    {
+      "pair": 1,
+      "mode": "baseline",
+      "conditions": {
+        "kind": "active streaming frame observation; excludes navigation/first supported frame",
+        "viewport": [
+          1280,
+          720
+        ],
+        "network": "50 decimal Mbit/s down / 10 up / 40 ms",
+        "recording": false,
+        "maximumAppearance": true,
+        "uncappedFlags": true,
+        "cache": "fresh process/profile with native preload reuse; OS/driver caches uncontrolled"
+      },
+      "tails": {
+        "samples": 1742,
+        "meanMs": 5.787256027575065,
+        "meanFps": 172.79346122501045,
+        "p50Ms": 4.100000023841858,
+        "p95Ms": 20.19999998807907,
+        "p99Ms": 21.5,
+        "maxMs": 181.29999995231628,
+        "above6_94": 198,
+        "above8_33": 156,
+        "above16_67": 131,
+        "above33_33": 2
+      },
+      "pacing": {
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.787 ms is not locked to a known display interval"
+      },
+      "audio": {
+        "ready": true,
+        "state": "running",
+        "played": 0,
+        "lavaPlayed": 0,
+        "error": null,
+        "duration": 1.9623958333333333
+      },
+      "errors": [],
+      "physics": true,
+      "recoveries": 0,
+      "enemies": 7,
+      "membership": {
+        "revisions": [
+          5,
+          6,
+          7,
+          8,
+          10,
+          11,
+          13,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          32,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71
+        ],
+        "missing": [],
+        "wrongWoodland": []
+      }
+    },
+    {
+      "pair": 1,
+      "mode": "candidate",
+      "conditions": {
+        "kind": "active streaming frame observation; excludes navigation/first supported frame",
+        "viewport": [
+          1280,
+          720
+        ],
+        "network": "50 decimal Mbit/s down / 10 up / 40 ms",
+        "recording": false,
+        "maximumAppearance": true,
+        "uncappedFlags": true,
+        "cache": "fresh process/profile with native preload reuse; OS/driver caches uncontrolled"
+      },
+      "tails": {
+        "samples": 1776,
+        "meanMs": 5.600506756756757,
+        "meanFps": 178.55527069823555,
+        "p50Ms": 4,
+        "p95Ms": 20.200000047683716,
+        "p99Ms": 21.600000023841858,
+        "maxMs": 37.69999998807907,
+        "above6_94": 192,
+        "above8_33": 154,
+        "above16_67": 122,
+        "above33_33": 1
+      },
+      "pacing": {
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.601 ms is not locked to a known display interval"
+      },
+      "audio": {
+        "ready": false,
+        "initializing": false,
+        "played": 0,
+        "lavaPlayed": 0,
+        "error": null
+      },
+      "errors": [],
+      "physics": true,
+      "recoveries": 0,
+      "enemies": 7,
+      "membership": {
+        "revisions": [
+          5,
+          6,
+          7,
+          10,
+          11,
+          13,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          32,
+          34,
+          35,
+          36,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71
+        ],
+        "missing": [],
+        "wrongWoodland": []
+      }
+    },
+    {
+      "pair": 2,
+      "mode": "baseline",
+      "conditions": {
+        "kind": "active streaming frame observation; excludes navigation/first supported frame",
+        "viewport": [
+          1280,
+          720
+        ],
+        "network": "50 decimal Mbit/s down / 10 up / 40 ms",
+        "recording": false,
+        "maximumAppearance": true,
+        "uncappedFlags": true,
+        "cache": "fresh process/profile with native preload reuse; OS/driver caches uncontrolled"
+      },
+      "tails": {
+        "samples": 1701,
+        "meanMs": 5.818106995863749,
+        "meanFps": 171.87721035569254,
+        "p50Ms": 4.100000023841858,
+        "p95Ms": 20.399999976158142,
+        "p99Ms": 21.599999964237213,
+        "maxMs": 186.10000002384186,
+        "above6_94": 199,
+        "above8_33": 160,
+        "above16_67": 128,
+        "above33_33": 3
+      },
+      "pacing": {
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.818 ms is not locked to a known display interval"
+      },
+      "audio": {
+        "ready": true,
+        "state": "running",
+        "played": 0,
+        "lavaPlayed": 0,
+        "error": null,
+        "duration": 1.9623958333333333
+      },
+      "errors": [],
+      "physics": true,
+      "recoveries": 0,
+      "enemies": 7,
+      "membership": {
+        "revisions": [
+          5,
+          6,
+          7,
+          10,
+          11,
+          13,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          32,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71
+        ],
+        "missing": [],
+        "wrongWoodland": []
+      }
+    },
+    {
+      "pair": 2,
+      "mode": "candidate",
+      "conditions": {
+        "kind": "active streaming frame observation; excludes navigation/first supported frame",
+        "viewport": [
+          1280,
+          720
+        ],
+        "network": "50 decimal Mbit/s down / 10 up / 40 ms",
+        "recording": false,
+        "maximumAppearance": true,
+        "uncappedFlags": true,
+        "cache": "fresh process/profile with native preload reuse; OS/driver caches uncontrolled"
+      },
+      "tails": {
+        "samples": 1742,
+        "meanMs": 5.633065442027509,
+        "meanFps": 177.523234958206,
+        "p50Ms": 4.099999964237213,
+        "p95Ms": 20.30000001192093,
+        "p99Ms": 21.5,
+        "maxMs": 38.39999997615814,
+        "above6_94": 187,
+        "above8_33": 150,
+        "above16_67": 123,
+        "above33_33": 1
+      },
+      "pacing": {
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.633 ms is not locked to a known display interval"
+      },
+      "audio": {
+        "ready": false,
+        "initializing": false,
+        "played": 0,
+        "lavaPlayed": 0,
+        "error": null
+      },
+      "errors": [],
+      "physics": true,
+      "recoveries": 0,
+      "enemies": 7,
+      "membership": {
+        "revisions": [
+          5,
+          6,
+          7,
+          10,
+          11,
+          13,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          32,
+          34,
+          35,
+          36,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71
+        ],
+        "missing": [],
+        "wrongWoodland": []
+      }
+    },
+    {
+      "pair": 3,
+      "mode": "baseline",
+      "conditions": {
+        "kind": "active streaming frame observation; excludes navigation/first supported frame",
+        "viewport": [
+          1280,
+          720
+        ],
+        "network": "50 decimal Mbit/s down / 10 up / 40 ms",
+        "recording": false,
+        "maximumAppearance": true,
+        "uncappedFlags": true,
+        "cache": "fresh process/profile with native preload reuse; OS/driver caches uncontrolled"
+      },
+      "tails": {
+        "samples": 1744,
+        "meanMs": 5.75,
+        "meanFps": 173.91304347826087,
+        "p50Ms": 4.099999964237213,
+        "p95Ms": 19.700000047683716,
+        "p99Ms": 21.69999998807907,
+        "maxMs": 186.5,
+        "above6_94": 194,
+        "above8_33": 156,
+        "above16_67": 126,
+        "above33_33": 3
+      },
+      "pacing": {
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.750 ms is not locked to a known display interval"
+      },
+      "audio": {
+        "ready": true,
+        "state": "running",
+        "played": 0,
+        "lavaPlayed": 0,
+        "error": null,
+        "duration": 1.9623958333333333
+      },
+      "errors": [],
+      "physics": true,
+      "recoveries": 0,
+      "enemies": 7,
+      "membership": {
+        "revisions": [
+          5,
+          6,
+          7,
+          10,
+          11,
+          13,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          32,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71
+        ],
+        "missing": [],
+        "wrongWoodland": []
+      }
+    },
+    {
+      "pair": 3,
+      "mode": "candidate",
+      "conditions": {
+        "kind": "active streaming frame observation; excludes navigation/first supported frame",
+        "viewport": [
+          1280,
+          720
+        ],
+        "network": "50 decimal Mbit/s down / 10 up / 40 ms",
+        "recording": false,
+        "maximumAppearance": true,
+        "uncappedFlags": true,
+        "cache": "fresh process/profile with native preload reuse; OS/driver caches uncontrolled"
+      },
+      "tails": {
+        "samples": 1756,
+        "meanMs": 5.616059225519317,
+        "meanFps": 178.06080025937226,
+        "p50Ms": 4,
+        "p95Ms": 20.19999998807907,
+        "p99Ms": 21.599999964237213,
+        "maxMs": 36.39999997615814,
+        "above6_94": 198,
+        "above8_33": 161,
+        "above16_67": 125,
+        "above33_33": 1
+      },
+      "pacing": {
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.616 ms is not locked to a known display interval"
+      },
+      "audio": {
+        "ready": false,
+        "initializing": false,
+        "played": 0,
+        "lavaPlayed": 0,
+        "error": null
+      },
+      "errors": [],
+      "physics": true,
+      "recoveries": 0,
+      "enemies": 7,
+      "membership": {
+        "revisions": [
+          5,
+          6,
+          7,
+          10,
+          11,
+          13,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          32,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71
+        ],
+        "missing": [],
+        "wrongWoodland": []
+      }
+    }
+  ],
+  "settled": {
+    "conditions": {
+      "cpu": "Apple M1 Max",
+      "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1&gpuTiming=",
+      "viewport": [
+        1280,
+        720
+      ],
+      "seconds": 12,
+      "runs": 3,
+      "uncappedRequired": true,
+      "recording": false,
+      "race": "human",
+      "outfit": null,
+      "orcAssetsOverride": null,
+      "routes": [
+        "meadow",
+        "town",
+        "bridge",
+        "cathedral",
+        "forest"
+      ],
+      "recordCapped": true,
+      "savedAppearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v8",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {
+          "head": "human-prime-v1",
+          "hair": "human-ponytail01-v1"
+        },
+        "dyes": {
+          "helmet": "moss",
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "equipment": {
+          "helmet": "graveweaverHood",
+          "torso": "duskguardCuirass",
+          "legs": "graveweaverSkirt",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "bastionShoulders"
+        }
+      }
+    },
+    "errors": [],
+    "rows": [
+      {
+        "route": "meadow",
+        "run": 1,
+        "tails": {
+          "samples": 2532,
+          "meanMs": 4.740165876763127,
+          "meanFps": 210.96308146137295,
+          "p50Ms": 4.5,
+          "p95Ms": 5.799999952316284,
+          "p99Ms": 6.300000011920929,
+          "maxMs": 11.199999988079071,
+          "above6_94": 7,
+          "above8_33": 3,
+          "above16_67": 0,
+          "above33_33": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.740 ms is not locked to a known display interval"
+        },
+        "physics": true,
+        "recoveries": 0,
+        "enemies": 7
+      },
+      {
+        "route": "meadow",
+        "run": 2,
+        "tails": {
+          "samples": 2535,
+          "meanMs": 4.735542406321042,
+          "meanFps": 211.16905186303293,
+          "p50Ms": 4.5,
+          "p95Ms": 5.700000047683716,
+          "p99Ms": 6.099999964237213,
+          "maxMs": 9.600000023841858,
+          "above6_94": 5,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.736 ms is not locked to a known display interval"
+        },
+        "physics": true,
+        "recoveries": 0,
+        "enemies": 7
+      },
+      {
+        "route": "meadow",
+        "run": 3,
+        "tails": {
+          "samples": 2533,
+          "meanMs": 4.738926174491938,
+          "meanFps": 211.01826936715474,
+          "p50Ms": 4.5,
+          "p95Ms": 5.700000047683716,
+          "p99Ms": 6.199999988079071,
+          "maxMs": 9.5,
+          "above6_94": 7,
+          "above8_33": 5,
+          "above16_67": 0,
+          "above33_33": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.739 ms is not locked to a known display interval"
+        },
+        "physics": true,
+        "recoveries": 0,
+        "enemies": 7
+      },
+      {
+        "route": "town",
+        "run": 1,
+        "tails": {
+          "samples": 2431,
+          "meanMs": 4.938872891804261,
+          "meanFps": 202.4753464822784,
+          "p50Ms": 4.699999988079071,
+          "p95Ms": 5.899999976158142,
+          "p99Ms": 6.199999988079071,
+          "maxMs": 10,
+          "above6_94": 5,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.939 ms is not locked to a known display interval"
+        },
+        "physics": true,
+        "recoveries": 0,
+        "enemies": 7
+      },
+      {
+        "route": "town",
+        "run": 2,
+        "tails": {
+          "samples": 2435,
+          "meanMs": 4.929815195057182,
+          "meanFps": 202.8473604857719,
+          "p50Ms": 4.699999988079071,
+          "p95Ms": 5.899999976158142,
+          "p99Ms": 6.100000023841858,
+          "maxMs": 9.799999952316284,
+          "above6_94": 4,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.930 ms is not locked to a known display interval"
+        },
+        "physics": true,
+        "recoveries": 0,
+        "enemies": 7
+      },
+      {
+        "route": "town",
+        "run": 3,
+        "tails": {
+          "samples": 2435,
+          "meanMs": 4.929938398371976,
+          "meanFps": 202.84229115930376,
+          "p50Ms": 4.699999988079071,
+          "p95Ms": 5.899999976158142,
+          "p99Ms": 6.100000023841858,
+          "maxMs": 10,
+          "above6_94": 8,
+          "above8_33": 5,
+          "above16_67": 0,
+          "above33_33": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.930 ms is not locked to a known display interval"
+        },
+        "physics": true,
+        "recoveries": 0,
+        "enemies": 7
+      },
+      {
+        "route": "bridge",
+        "run": 1,
+        "tails": {
+          "samples": 2867,
+          "meanMs": 4.187164283231197,
+          "meanFps": 238.8251170379943,
+          "p50Ms": 4.100000023841858,
+          "p95Ms": 4.899999976158142,
+          "p99Ms": 5.400000035762787,
+          "maxMs": 9.699999988079071,
+          "above6_94": 5,
+          "above8_33": 5,
+          "above16_67": 0,
+          "above33_33": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.187 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.500-5.400 ms (full range 2.900-9.700 ms)"
+        },
+        "physics": true,
+        "recoveries": 0,
+        "enemies": 7
+      },
+      {
+        "route": "bridge",
+        "run": 2,
+        "tails": {
+          "samples": 2866,
+          "meanMs": 4.1886601535199155,
+          "meanFps": 238.73982690136748,
+          "p50Ms": 4.199999988079071,
+          "p95Ms": 5,
+          "p99Ms": 5.5,
+          "maxMs": 9.399999976158142,
+          "above6_94": 4,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.189 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.400-5.500 ms (full range 3.000-9.400 ms)"
+        },
+        "physics": true,
+        "recoveries": 0,
+        "enemies": 7
+      },
+      {
+        "route": "bridge",
+        "run": 3,
+        "tails": {
+          "samples": 2874,
+          "meanMs": 4.177383437721614,
+          "meanFps": 239.38429758926074,
+          "p50Ms": 4.100000023841858,
+          "p95Ms": 4.899999976158142,
+          "p99Ms": 5.400000035762787,
+          "maxMs": 9.400000035762787,
+          "above6_94": 4,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.177 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.500-5.400 ms (full range 3.000-9.400 ms)"
+        },
+        "physics": true,
+        "recoveries": 0,
+        "enemies": 7
+      },
+      {
+        "route": "cathedral",
+        "run": 1,
+        "tails": {
+          "samples": 2882,
+          "meanMs": 4.1652671755766555,
+          "meanFps": 240.0806377712268,
+          "p50Ms": 4.100000023841858,
+          "p95Ms": 4.900000035762787,
+          "p99Ms": 5.399999976158142,
+          "maxMs": 9.399999976158142,
+          "above6_94": 5,
+          "above8_33": 5,
+          "above16_67": 0,
+          "above33_33": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.165 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.400-5.400 ms (full range 3.000-9.400 ms)"
+        },
+        "physics": true,
+        "recoveries": 0,
+        "enemies": 7
+      },
+      {
+        "route": "cathedral",
+        "run": 2,
+        "tails": {
+          "samples": 2883,
+          "meanMs": 4.163371488033299,
+          "meanFps": 240.18995251187204,
+          "p50Ms": 4.100000023841858,
+          "p95Ms": 5,
+          "p99Ms": 5.399999976158142,
+          "maxMs": 9.5,
+          "above6_94": 6,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.163 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.500-5.400 ms (full range 2.700-9.500 ms)"
+        },
+        "physics": true,
+        "recoveries": 0,
+        "enemies": 7
+      },
+      {
+        "route": "cathedral",
+        "run": 3,
+        "tails": {
+          "samples": 2880,
+          "meanMs": 4.168159722205665,
+          "meanFps": 239.914030806581,
+          "p50Ms": 4.100000023841858,
+          "p95Ms": 4.899999976158142,
+          "p99Ms": 5.399999976158142,
+          "maxMs": 9.699999988079071,
+          "above6_94": 7,
+          "above8_33": 5,
+          "above16_67": 0,
+          "above33_33": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.168 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.500-5.400 ms (full range 2.800-9.700 ms)"
+        },
+        "physics": true,
+        "recoveries": 0,
+        "enemies": 7
+      },
+      {
+        "route": "forest",
+        "run": 1,
+        "tails": {
+          "samples": 2637,
+          "meanMs": 4.5515737580583995,
+          "meanFps": 219.7042282857738,
+          "p50Ms": 4.5,
+          "p95Ms": 5.5,
+          "p99Ms": 5.700000047683716,
+          "maxMs": 9.599999964237213,
+          "above6_94": 5,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.552 ms is not locked to a known display interval"
+        },
+        "physics": true,
+        "recoveries": 0,
+        "enemies": 7
+      },
+      {
+        "route": "forest",
+        "run": 2,
+        "tails": {
+          "samples": 2720,
+          "meanMs": 4.412794117651441,
+          "meanFps": 226.61379011541462,
+          "p50Ms": 4.399999976158142,
+          "p95Ms": 5.300000011920929,
+          "p99Ms": 5.600000023841858,
+          "maxMs": 9.800000011920929,
+          "above6_94": 5,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.413 ms is not locked to a known display interval"
+        },
+        "physics": true,
+        "recoveries": 0,
+        "enemies": 7
+      },
+      {
+        "route": "forest",
+        "run": 3,
+        "tails": {
+          "samples": 2750,
+          "meanMs": 4.365745454549789,
+          "meanFps": 229.0559562875668,
+          "p50Ms": 4.300000011920929,
+          "p95Ms": 5.300000011920929,
+          "p99Ms": 5.600000023841858,
+          "maxMs": 9.599999964237213,
+          "above6_94": 4,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.366 ms is not locked to a known display interval"
+        },
+        "physics": true,
+        "recoveries": 0,
+        "enemies": 7
+      }
+    ]
+  },
+  "motion": {
+    "messageId": 876,
+    "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/startup-audio-2026-10-07/991cbc03fcf0-maximum.mp4",
+    "sha256": "991cbc03fcf038d8b8134e807c516177bd352081ca41fc5f291dec461f066314",
+    "bytes": 13996382,
+    "sourceElapsedSeconds": 24.344606161117554,
+    "frames": 1430,
+    "encoded": {
+      "width": 1280,
+      "height": 720,
+      "duration": 24.343897,
+      "sampleAspectRatio": "1:1",
+      "rotation": 0,
+      "codec": "h264"
+    },
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "canvas": {
+      "width": 1280,
+      "height": 720,
+      "cssWidth": 1280,
+      "cssHeight": 720
+    },
+    "nativeGame": {
+      "start": {
+        "x": -2.5839146291945884e-05,
+        "z": -4.559849058165337e-05,
+        "recoveries": 0
+      },
+      "end": {
+        "x": -12.657419428058196,
+        "z": 70.284856025947
+      },
+      "recoveries": 0,
+      "physics": true,
+      "dev": {
+        "enabled": true,
+        "god": true,
+        "flying": false
+      },
+      "marks": {
+        "begin": 190.39999997615814,
+        "engine-created": 201.10000002384186,
+        "gpu-probe-end": 203,
+        "world-start": 204.89999997615814,
+        "havok-runtime-available": 255.5,
+        "world-end": 364.60000002384186,
+        "havok-start": 365.80000001192093,
+        "havok-runtime-start": 366.60000002384186,
+        "havok-runtime-end": 366.60000002384186,
+        "havok-world-end": 368.39999997615814,
+        "havok-colliders-end": 375.30000001192093,
+        "havok-controller-end": 376.5,
+        "havok-end": 377.69999998807907,
+        "prime-world-start": 378.19999998807907,
+        "prime-world-registered": 388.89999997615814,
+        "prime-world-submitted": 393.19999998807907,
+        "prime-world-completed": 449.69999998807907,
+        "body-start": 658.5,
+        "body-end": 679.1000000238419,
+        "equipment-start": 681.1000000238419,
+        "equipment-end": 699.6000000238419,
+        "register-start": 706.3000000119209,
+        "register-end": 724.6999999880791,
+        "first-render-return": 728.3999999761581,
+        "supported-frame-submitted": 748,
+        "first-gpu-completed": 764.6000000238419,
+        "supported-frame-completed": 769.1000000238419,
+        "playable": 769.3999999761581,
+        "bg-start": 769.6000000238419,
+        "bg-imports-end": 870.6000000238419,
+        "bg-dummy-end": 1567.199999988079,
+        "bg-enemies-end": 1632.3999999761581,
+        "combat-ready": 1725.6000000238419,
+        "late-register-start": 1785.300000011921,
+        "late-register-end": 1786.699999988079,
+        "hostiles-ready": 1832.8999999761581,
+        "bg-foliage-end": 15747.600000023842,
+        "ready": 17388.5,
+        "region-ready": 17388.5
+      },
+      "streaming": {
+        "blocks": 1035,
+        "worstInstallMs": 3.199999988079071,
+        "backgroundWorstInstallMs": 3.199999988079071,
+        "backgroundSlowest": {
+          "name": "Vaelmark masonry",
+          "triangles": 3934
+        },
+        "totalInstallMs": 842.9000001549721,
+        "allocatedBytes": 210049236,
+        "allocatedRecords": 71,
+        "initialAllocatedBytes": 16259292,
+        "initialAllocatedRecords": 5
+      },
+      "enemies": 7,
+      "foliage": 117242,
+      "audio": {
+        "ready": true,
+        "initializing": false,
+        "state": "running",
+        "played": 1,
+        "lavaPlayed": 0,
+        "error": null,
+        "duration": 1.9623958333333333
+      },
+      "muted": true,
+      "player": {
+        "facing": -3.654405000060792,
+        "grounded": true,
+        "vy": 0,
+        "support": 2,
+        "speed": 0,
+        "vx": 0,
+        "vz": 0,
+        "castBlend": 0,
+        "jumps": 0,
+        "landings": 1,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": -12.657419428058196,
+          "y": 2.8985387562782123,
+          "z": 70.284856025947
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 2.0101999999999998,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": 3.211418528357213,
+              "y": 1.3460163861531553,
+              "z": 16.434149290232476
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -9.467758055451212,
+              "y": 1.221172488138966,
+              "z": 51.16331627253634
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": -9.923250344871912,
+              "y": 2.1507332084198763,
+              "z": 61.42984725350159
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": -12.021702359619036,
+              "y": 2.47341025391781,
+              "z": 68.21852763412471
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": 1.9212848798394613,
+              "y": 5.264219776648709,
+              "z": 88.42477066914604
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": -2.838135992545781,
+              "y": 5.819089012592746,
+              "z": 107.72770824816153
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": 0.6174125105266939,
+              "y": 8.461318480287105,
+              "z": 123.41590709240864
+            }
+          }
+        ]
+      },
+      "input": {
+        "forward": 0,
+        "turn": 0,
+        "strafe": 0,
+        "lookX": 0,
+        "lookY": 0,
+        "zoomDelta": 0,
+        "looking": false,
+        "lmb": false,
+        "rmb": false,
+        "lmbDrag": false,
+        "rmbDrag": false,
+        "walk": false,
+        "jump": false,
+        "autorun": false,
+        "pointerLocked": false,
+        "castInstant": false,
+        "castHold": false,
+        "spellPressed": 0,
+        "attackPressed": false,
+        "spellHeld2": false,
+        "tabPressed": false,
+        "tabBack": false,
+        "toggleBag": false,
+        "togglePaper": false,
+        "toggleHint": false,
+        "heightUp": false,
+        "heightDown": false,
+        "cycleSkin": false,
+        "toggleHelm": false,
+        "unequipHelm": false,
+        "escape": false,
+        "clicked": false,
+        "clickX": 0,
+        "clickY": 0,
+        "faceCamera": false,
+        "castSpell": null
+      },
+      "body": {
+        "phase": "loco",
+        "jump": "",
+        "castingShoot": false,
+        "melee": false,
+        "meleeElapsed": 0,
+        "meleeRelease": 0.5,
+        "holdWeapon": false,
+        "castElapsed": 1.4005999999642356,
+        "castReleaseTime": 0.55,
+        "castLegWeight": 1,
+        "channeling": false,
+        "channelPhase": "",
+        "channelBlocked": false,
+        "gaitPhase": 0.5990991775363863,
+        "gaitFrequency": 0,
+        "locoName": "Idle_Loop",
+        "backing": false,
+        "strafing": false
+      },
+      "recording": true,
+      "errors": []
+    },
+    "publication": {
+      "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/character-mmo/startup-audio-2026-10-07/991cbc03fcf0-maximum.mp4",
+      "sha256": "991cbc03fcf038d8b8134e807c516177bd352081ca41fc5f291dec461f066314",
+      "bytes": 13996382,
+      "metadata": {
+        "status": 200,
+        "type": "video/mp4",
+        "length": "13996382"
+      },
+      "range": {
+        "status": 206,
+        "range": "bytes 0-1023/13996382"
+      },
+      "client": "curl",
+      "priorClientFailure": "Python urllib publicGET HTTP403 retained; no second upload or Telegram send"
+    },
+    "rootReview": {
+      "nativeMp4Playback": true,
+      "timestampedCastFramesReviewed": true,
+      "cameraClipsIntoOutfitNearFenceTree": true,
+      "wholeGameVisualAcceptance": false,
+      "telegramInline": {
+        "native": [
+          1280,
+          720
+        ],
+        "rendered": [
+          738.1875,
+          415.21875
+        ],
+        "advancing": true,
+        "proportionsReviewed": true
+      },
+      "telegramExpanded": {
+        "native": [
+          1280,
+          720
+        ],
+        "rendered": [
+          1280,
+          720
+        ],
+        "advancing": true,
+        "proportionsReviewed": true
+      },
+      "vePlayback": {
+        "native": [
+          1280,
+          720
+        ],
+        "duration": 24.343897,
+        "advancing": true,
+        "proportionsReviewed": true
+      },
+      "fullscreenEntered": false,
+      "physicalPhone": false
+    }
+  },
+  "productionPromoted": false,
+  "limits": [
+    "Explicit first audio activation retains one-time native context cost",
+    "Streaming p99 remains about21.5-21.6ms and worst36.4-38.4ms",
+    "240Hz pacing hints retained; not confirmed uncapped hardware-limit proof",
+    "No public startup qualification",
+    "Original fetch root cause remains unresolved",
+    "Current physical iPhone, WebKit audio and requested fullscreen playback not verified",
+    "Camera clips into maximum outfit for several seconds near a starting fence/tree; reproduce and correct before clean visual acceptance/production promotion"
+  ],
+  "ownership": {
+    "controlsClosed": true,
+    "performanceClosed": true,
+    "motionClosed": true,
+    "rootReview": {
+      "owner": "root",
+      "browserPid": 2931,
+      "tab": 1147995833,
+      "purpose": "Review recorded diagnostic MP4; no live game",
+      "url": "http://127.0.0.1:7081/review-motion.html",
+      "wrapperPid": 98495,
+      "wrapperPort": 7081,
+      "active": false,
+      "tabClosed": true,
+      "wrapperStopped": true,
+      "mediaGuardRemoved": true,
+      "restoredConnectedPlaying": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "initialPlaying": [
+        3,
+        1,
+        1,
+        0
+      ]
+    },
+    "latestTaskHistory": "ownership-history.jsonl",
+    "limitation": "Early paired runner reused a single live ownership snapshot; individual historical parent PIDs not retained. Each parent was tracked while alive and explicitly closed sequentially; final audit required.",
+    "finalAudit": {
+      "matchingProcesses": [],
+      "listeners": {
+        "10037": "",
+        "7074": "",
+        "7081": ""
+      },
+      "ownedGameRenderers": 0,
+      "edgePid": 2931,
+      "edgeTabs": 12,
+      "edgeGamePages": [],
+      "orcaPid": 98938,
+      "orcaEmbeddedTabs": 0,
+      "mediaGuardsRemoved": true
+    }
+  }
+}

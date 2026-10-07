@@ -302,7 +302,10 @@ async function main(){
  };
 
  const menu=createGameMenu({onArmory:()=>armory?.open(),onDev:on=>tools.setEnabled?.(on)});
- document.addEventListener('keydown',e=>{if(armory?.isOpen||menu.isOpen)return;if(e.code==='KeyV'){setView(view==='reference'?'play':'reference');}if(e.code==='KeyR'){if(combat?.releaseSpirit?.())return;reset();}if(e.code==='KeyH')document.body.classList.toggle('clean');if(['KeyW','KeyA','KeyS','KeyD','Space','Tab','Digit1','Digit2','Digit3','KeyF'].includes(e.code))setView('play');});
+ // Reuse scene cancellation to remove the DOM handler before disposed body
+ // meshes can be reached by later movement/view keys.
+ // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#signal
+ document.addEventListener('keydown',e=>{if(armory?.isOpen||menu.isOpen)return;if(e.code==='KeyV'){setView(view==='reference'?'play':'reference');}if(e.code==='KeyR'){if(combat?.releaseSpirit?.())return;reset();}if(e.code==='KeyH')document.body.classList.toggle('clean');if(['KeyW','KeyA','KeyS','KeyD','Space','Tab','Digit1','Digit2','Digit3','KeyF'].includes(e.code))setView('play');},{signal:lifetime});
  if(params.has('clean'))document.body.classList.add('clean');
  setView(params.has('play')||touchControlsWanted()?'play':'reference');
  const metrics=createAshenMetrics({engine,scene,world,canvas,samples,lite:{isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize}});
@@ -721,7 +724,7 @@ async function main(){
   if(nearbyFoliage)await nearbyFoliage.catch(()=>regionP);
   else await foliageP; // The diagnostic full-world path creates its pools later.
   lifetime.throwIfAborted();
-  combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig,churchyardEnemies,createObjective(),{sockets});
+  combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig,churchyardEnemies,createObjective(),{sockets,onAudioStatusChange:()=>menu.refreshSound()});
   lifetime.throwIfAborted();
   markStartup('combat-ready');
   ashen.combatReady=true;

@@ -162,7 +162,11 @@ body.armory-open #touch-controls,body.game-menu-open #touch-controls{display:non
         input.tabPressed = true;
         event.preventDefault();
     });
-    root.querySelector(".touch-menu").addEventListener("pointerup", (event) => {
+    // Native button activation covers touch/keyboard/mouse. Opening on pointerup
+    // hides this control before the following click, retargeting it to the menu
+    // backdrop and immediately closing the menu.
+    // https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event
+    root.querySelector(".touch-menu").addEventListener("click", (event) => {
         event.preventDefault();
         const menu = globalThis.ASHEN?.menu;
         if (!menu) return;

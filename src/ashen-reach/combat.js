@@ -162,19 +162,22 @@ export async function createCombat(
     },
   });
   const paintMute = () => {
-    if (!audio.status.ready) {
-      hud.soundToggle.textContent = "Sound unavailable";
-      hud.soundToggle.disabled = true;
-      return;
-    }
-    hud.soundToggle.textContent = audio.muted ? "Muted" : "Sound on";
+    const status = audio.status;
+    hud.soundToggle.disabled = !!status.error || status.initializing;
+    hud.soundToggle.textContent = status.error ? "Sound unavailable" : status.initializing ? "Loading sound…" : audio.muted ? "Muted" : "Sound on";
     hud.soundToggle.setAttribute("aria-pressed", String(audio.muted));
-    hud.soundToggle.setAttribute("aria-label", audio.muted ? "Unmute sound" : "Mute sound");
+    hud.soundToggle.setAttribute("aria-label", status.error ? "Sound unavailable" : status.initializing ? "Loading sound" : audio.muted ? "Unmute sound" : "Mute sound");
+    options.onAudioStatusChange?.();
   };
-  hud.soundToggle.onclick = () => {
-    audio.setMuted(!audio.muted);
+  hud.soundToggle.onclick = async () => {
+    if (lifetime.aborted) return;
+    const pending = audio.setMuted(!audio.muted);
     paintMute();
     canvas.focus();
+    // Keep the button usable before lazy audio exists; a native loading failure
+    // disables sound without delaying combat or leaving an unhandled rejection.
+    try { await pending; } catch {}
+    if (!lifetime.aborted) paintMute();
   };
   paintMute();
   let hitAge = 10,

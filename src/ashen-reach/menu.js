@@ -114,7 +114,16 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics } = {}) {
   function paintSound() {
     const toggle = soundToggleButton();
     if (!toggle) {
+      soundBtn.disabled = true;
       soundBtn.textContent = "Sound";
+      return;
+    }
+    // Mobile reaches sound through this menu. Mirror the existing HUD control's
+    // native disabled state while decoded audio is pending or unavailable.
+    // https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/disabled
+    soundBtn.disabled = toggle.disabled;
+    if (toggle.disabled) {
+      soundBtn.textContent = toggle.textContent;
       return;
     }
     const muted = toggle.getAttribute("aria-pressed") === "true" || /mute/i.test(toggle.textContent || "");
@@ -289,5 +298,6 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics } = {}) {
       return visible;
     },
     element: root,
+    refreshSound: paintSound,
   };
 }

@@ -8,7 +8,8 @@ let cdp,recording=false;const frames=[],writes=[],errors=[],timeline=[];page.on(
 const wait=ms=>page.waitForTimeout(ms),key=k=>page.keyboard.press(k);
 try{
  await page.bringToFront();await page.goto((process.env.ASHEN_URL||'http://127.0.0.1:5173/ashen-reach.html?play&clean'),{waitUntil:'commit'});await page.waitForFunction(()=>window.ASHEN?.ready,null,{timeout:60000});await wait(1500);await key('Tab');
- const audioStart=await page.evaluate(()=>{
+ const audioStart=await page.evaluate(async ()=>{
+  await ASHEN.combat.audio.prepare();
   const capture=ASHEN.combat.audio.capture(),recorder=new MediaRecorder(capture.stream,{mimeType:'audio/webm;codecs=opus'}),chunks=[];
   const done=new Promise(resolve=>recorder.onstop=resolve);recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data);};
   window.__spellAudio={capture,recorder,chunks,done};recorder.start(250);return Date.now()/1000;

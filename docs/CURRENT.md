@@ -18,19 +18,22 @@ Native goal **active**: “resume. complete all 5 priorities autonomously.” Th
    a completed GPU frame and working input. Preview 43730b3e has 60 valid/error-free
    starts but two misses (default 1,053.5 ms; maximum 1,036.4 ms). Early helper
    discovery is retained default-off. Concurrent physics and inline launcher trials
-   are closed without material gain. Current deferred-buffer trial reserves
-   16.3 MB/5 world records before play rather than 210.0 MB/71; all native controls,
-   final geometry/shadow membership and twelve local starts pass. Local gains are
-   0.9–9.7 ms default and 9.1–14.0 ms maximum before review corrections. Root fixes
-   arriving shadow membership and immediate woodland selection; independent
-   follow-up has no findings. Corrected native controls, three streaming membership
-   windows and fifteen steady walks pass (202.7–238.5 FPS, p99≤6.2 ms, worst10.1 ms,
-   no frame>16.67 ms/errors/recoveries). Background175–179 ms stalls remain open.
-   Reviewed live MP4s are delivered as Telegram874/875 and identical VE files;
-   inline/expanded and direct VE proportions pass; fullscreen remains unverified.
-   Keep both flags default-off; these local observations
-   do not qualify the public one-second gate. Next profile the demonstrated stall,
-   then qualify a material candidate. [Checkpoint](plans/character-mmo/results/startup-lazy-world-2026-10-07.md).
+   are closed without material gain. Deferred buffers reserve 16.3 MB/5 initial
+   world records rather than 210.0 MB/71; native controls, final geometry/shadow
+   membership and local starts pass. Keep prime/lazy flags default-off; their
+   [checkpoint](plans/character-mmo/results/startup-lazy-world-2026-10-07.md) does
+   not qualify public one-second startup. Native CPU profiles now attribute the
+   large post-play pause to muted audio initialization. Deferred native audio
+   passes 14 live cases/six entries; three alternating pairs reduce worst background
+   intervals 181–187→36–38 ms, while streaming p99 remains about 21.5–21.6 ms.
+   Fifteen separate settled walks observe 202.5–240.2 FPS, p99≤6.3 ms, worst 11.2 ms,
+   no interval >16.67 ms/errors/recoveries; some 240 Hz pacing hints remain.
+   First explicit sound activation retains its native context cost. Telegram 876
+   and identical VE diagnostic motion are delivered; inline/expanded/direct VE
+   proportions pass, fullscreen unverified. Camera clips into the maximum outfit
+   near a starting fence/tree; correct that reproduced route before clean visual
+   acceptance/promotion. Next create material first-play headroom and qualify it.
+   [Audio result](plans/character-mmo/results/startup-audio-2026-10-07.md).
 3. **Release accepted improvements:** freeze, commit/push, seal, verify preview
    integrity/entries/startup/traversal/mobile/depth/WebKit/FPS, deploy identical
    bytes, repeat production checks and retain rollback. Target 144 FPS at native
@@ -131,14 +134,16 @@ renderer and pause owned review/reference media. Track owner/browserPID/CDP/URL/
 purpose, close exact owned contexts/browser/harness afterwards and restore media.
 [Ownership procedure](debug-view.md#browser-ownership-and-performance-isolation).
 User Edge 2931/Orca 98938 are preserved; latest inventory: Edge 12 nongame tabs,
-Orca 0 embedded tabs. Prior native/paired trials are closed. Corrected deferred-buffer
-native Chrome30837/helper30844/preview30816 and final motion Chrome44407/helper44413/
-preview44386 are closed; performance receipts retain intermediate owned PIDs.
-Root review tabs1147995825/1147995829 and wrapper47554:7081 are closed. The __lazyPerf20261007
-media guard is removed; prior connected Telegram/Shadowglass/X playback restored
-(3/1/1/0). Final audit finds no Chrome/Chromium, Grok worker, game preview or
-game/debug listener; Edge12 nongame/Orca0 tabs remain. No owned game renderer
-remains. Audit again before the next benchmark.
+Orca 0 embedded tabs. Prior trials are closed. Audio controls Chrome 71554/72826,
+final performance Chrome 80086/helper 80110/preview 80085 and corrected motion
+Chrome 95510/helper 95536/preview 95509 are closed. Root review tab 1147995833 and
+wrapper 98495:7081 are closed. The __backgroundProfile20261007 media guards are
+removed; remaining connected Telegram/Shadowglass/X playback restored (1/1/1/0).
+Earlier Telegram nodes were virtualized out of the document; initial counts were
+3/1/1/0. The new diagnostic clip is paused. Final audit finds no Chrome/Chromium,
+Grok worker, preview or listeners 10037/7074/7081; Edge 12 nongame/Orca 0 tabs remain.
+No owned game renderer remains. Repeated launches now append ownership history;
+the early paired runner retained only its live snapshot. Audit before timing.
 
 [Workflow](reviews/workflow-2026-10-05.md#current-operating-rule--2026-10-06),
 [continuation limits](autonomous-continuation.md).

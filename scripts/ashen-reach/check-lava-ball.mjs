@@ -6,7 +6,7 @@ const checks=[],errors=[];let serial=0;
 page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
 const check=(name,ok)=>{checks.push({name,ok:!!ok});assert.ok(ok,name);console.log('PASS',name);};
 const read=()=>page.evaluate(()=>({hp:ASHEN.combat.dummy.hp,lava:ASHEN.combat.lava.casts,fire:ASHEN.combat.spell.casts,cooldown:ASHEN.combat.lava.cooldown,pending:ASHEN.combat.pendingSpell,flight:!!ASHEN.combat.lava.flight,stage:ASHEN.combat.lavaFx.stage,state:ASHEN.body.getState(),audio:ASHEN.combat.audio.status,bar:!document.querySelector('.cast-progress').hidden,result:ASHEN.combat.lava.lastResult}));
-async function reset(target=true){await page.goto('http://127.0.0.1:5173/ashen-reach.html?play&clean&lavaCheck='+Date.now()+'-'+serial++,{waitUntil:'commit'});await page.waitForFunction(()=>window.ASHEN?.ready,null,{timeout:60000});await page.waitForTimeout(650);if(target)await page.keyboard.press('Tab');}
+async function reset(target=true){await page.goto('http://127.0.0.1:5173/ashen-reach.html?play&clean&lavaCheck='+Date.now()+'-'+serial++,{waitUntil:'commit'});await page.waitForFunction(()=>window.ASHEN?.ready,null,{timeout:60000});await page.locator('.sound-toggle').click();await page.waitForFunction(()=>ASHEN.combat.audio.status.ready&&ASHEN.combat.audio.status.state==='running');await page.waitForTimeout(650);if(target)await page.keyboard.press('Tab');}
 try{
  await page.bringToFront();await reset(false);await page.keyboard.press('Digit2');await page.waitForTimeout(100);let s=await read();
  check('No target rejects lava without animation, charge, cooldown or damage',!s.pending&&!s.state.castingShoot&&s.stage==='idle'&&s.cooldown===0&&s.hp===600);

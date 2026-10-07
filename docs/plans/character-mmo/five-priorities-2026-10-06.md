@@ -136,8 +136,18 @@ windows have complete caster/LOD membership throughout; fifteen settled windows
 observe202.7–238.5 FPS,p99≤6.2 ms,worst10.1 ms,no frame>16.67 ms/errors/recoveries.
 Actual default/maximum live MP4s are reviewed and delivered as Telegram874/875
 with identical VE files. Inline/expanded/direct VE proportions pass; fullscreen
-remains unverified. Background175–179 ms stalls remain
-open; profile them with native CPU/GPU evidence next. Both flags remain off and
+remains unverified. Native CPU profiles now attribute the large background pause
+to muted audio initialization. Deferred audio passes 14 native cases/six entries
+and reduces worst background intervals 181–187→36–38 ms in three alternating pairs;
+streaming p99 remains about 21.5–21.6 ms. Fifteen settled windows observe
+202.5–240.2 FPS, p99≤6.3 ms, worst 11.2 ms and no interval >16.67 ms/errors/recoveries;
+some 240 Hz pacing hints remain. First explicit sound activation retains its
+native context cost. Telegram 876/identical VE diagnostic motion are delivered
+with reviewed inline/expanded/direct VE proportions; fullscreen/current phone
+remain unverified. Live review also reproduces camera clipping into the maximum
+outfit near a starting fence/tree. Correct the actual sweep/radius/pivot behavior
+on that route before clean visual acceptance/promotion, retaining Havok collision.
+[Audio result](results/startup-audio-2026-10-07.md). Both flags remain off and
 there is no new public startup qualification. [Checkpoint](results/startup-lazy-world-2026-10-07.md).
 
 Sources: [pinned native engine API](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/engine/engine.ts),

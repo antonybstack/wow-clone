@@ -23,7 +23,8 @@ try {
     await wait(900);
     let audioStart = Date.now() / 1000;
     try {
-        audioStart = await page.evaluate(() => {
+        audioStart = await page.evaluate(async () => {
+            await ASHEN.combat.audio.prepare();
             const capture = ASHEN.combat.audio.capture();
             const recorder = new MediaRecorder(capture.stream, {mimeType: 'audio/webm;codecs=opus'});
             const chunks = [];
