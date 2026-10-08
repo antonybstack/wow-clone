@@ -46,11 +46,10 @@ Further sets, Elf, additional regions, multiplayer and crowd expansion stay park
 
 ## Next priorities, in execution order
 
-The next executable slice is the single private native GPU-timer diagnostic in
-priority 2. End that arm after its declared visit; an inconclusive result is not
-permission to repeat it. If it provides no actionable bottleneck, move directly
-to one demonstrated armor-fit correction in priority 3. The release outcome stays
-first, but unchanged startup campaigns are exhausted until a material lead exists.
+The next executable slice is one demonstrated armor-fit correction in priority 3.
+The native GPU-timer arm in priority 2 is complete and closed; it does not justify
+a shader/geometry/scheduler change or another unchanged visit. The release outcome
+stays first, but unchanged startup campaigns are exhausted until a material lead exists.
 
 1. **Resolve the startup failure, then release the accepted batch.** Canonical
    boot preview **514fe898 / 4ad2637 is rejected**: one required texture fetch
@@ -78,11 +77,17 @@ first, but unchanged startup campaigns are exhausted until a material lead exist
    from acknowledgement-to-RAF delivery; they do not measure hardware GPU time.
    Two captured gaps retain 14.8/16.1 ms after acknowledgement with only
    0.189/0.226 ms recorded main-thread work. Independent review confirms them;
-   an adjacent-RAF matching error is corrected. Next use the existing native
-   timer for one private raw timestamp/readback diagnostic, keyed to preceding
-   fenced work with skipped/missing coverage explicit.
-   [Native trace result and bounded next step](plans/character-mmo/results/completion-native-trace-2026-10-08.md).
-   No further repeats of that tracing approach or scheduler arm. Preserve the
+   an adjacent-RAF matching error is corrected.
+   [Native trace result](plans/character-mmo/results/completion-native-trace-2026-10-08.md).
+   The single native timer visit now resolves all 1,652 raw readbacks. Three long
+   gaps have complete preceding-work coverage: twelve marked GPU frames report
+   0.918–1.442 ms while render resumes 17.1–17.2 ms after acknowledgement. This
+   narrows expensive marked GPU frame execution for those cases; GPU/JS span
+   disagreement prevents wall-time calibration, and outside-marker uploads,
+   queue/presentation/OS cause remains unproved. The diagnostic uses the
+   preserved uncovered recipe, not every outfit/current maximum. No runtime change.
+   [Raw GPU result](plans/character-mmo/results/completion-gpu-raw-2026-10-08.md).
+   No further repeats of either diagnostic or scheduler arm. Preserve the
    first-play fence, input/resources and independent unprofiled acceptance.
 3. **Finish demonstrated armor seams.** Boot corrections and focused mixed
    neck/waist/wrist motion are locally accepted. Knot/cuff/plate-edge overlap,

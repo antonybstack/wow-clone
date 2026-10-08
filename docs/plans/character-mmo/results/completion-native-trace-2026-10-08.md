@@ -73,6 +73,12 @@ post-timing game still. No visual product change or new motion acceptance claim.
 
 ## Next bounded diagnostic
 
+**Completed and closed:** the following one-visit recipe now has
+[raw native GPU evidence](completion-gpu-raw-2026-10-08.md). It resolves all
+1,652 readbacks and finds short marked GPU frames before three long gaps. No
+runtime change follows; do not repeat this historical recipe. Next work is a
+demonstrated armor-fit correction.
+
 Stop this native tracing approach; no further same-policy trace, queue-eight,
 RAF-poll or immediate-completion bypass. Use the existing public
 `ASHEN.metrics.setGpuTiming` and pinned Lite [native frame timer](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/engine/gpu-timer.ts)

@@ -99,6 +99,15 @@ An inconclusive visit closes this arm; move to a demonstrated armor-fit correcti
 if no actionable bottleneck emerges. Successful device inventory again finds no
 physical iPhone. Preserve the rejected preview, production 5723a4ab and the
 physical-device/reliability exits; no unchanged release campaign follows.
+The subsequent [single native timer visit](results/completion-gpu-raw-2026-10-08.md)
+is now complete and closed. All 1,652 raw readbacks resolve; twelve preceding
+outstanding marked frames for three long gaps report 0.918–1.442 ms, with
+17.1–17.2 ms from acknowledgement to render. No marked expensive frame is
+demonstrated for those cases; outside-marker work/queue/presentation/OS remains
+unproved, and GPU/JS span disagreement prevents wall-time calibration. No runtime
+change, quality reduction or additional timing arm follows.
+Next implement one demonstrated armor-fit correction, preserving the original
+release/device/reliability exits.
 
 ## 1. Isolate intermittent startup failure
 

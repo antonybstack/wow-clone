@@ -1,0 +1,494 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-08",
+  "sourceCommit": "afbe0c33cb8adba650fce0a8da583a39d4200536",
+  "productFingerprint": "11242a3e03fa872af60e887a40cee135673d8b143650ec891bf44ca12f8c6301",
+  "diagnosticOnly": true,
+  "productUnchanged": true,
+  "runtimeChanged": false,
+  "schedulerPolicyChanged": false,
+  "armClosed": true,
+  "visits": 1,
+  "production": "7d00c56 / Pages5723a4ab",
+  "publicStartupOrFpsAcceptance": false,
+  "releaseHoldRemains": true,
+  "conditions": {
+    "network": {
+      "latency": 40,
+      "downloadThroughput": 6250000.0,
+      "uploadThroughput": 1250000.0
+    },
+    "cpu": "M1 Max",
+    "viewport": [
+      1280,
+      720
+    ],
+    "freshNativeChrome": true,
+    "httpCache": "disabled",
+    "recording": false,
+    "ackBypassIsNotQueueSafety": true
+  },
+  "recipe": {
+    "schemaVersion": 2,
+    "catalogVersion": "appearance-catalog-v9",
+    "race": "human",
+    "fitFamily": "ashen-human",
+    "fit": {
+      "rig": "source-65",
+      "bind": 1,
+      "shape": 1
+    },
+    "shape": {
+      "family": "ashen-human-shape-v1",
+      "height": 1.15,
+      "build": -0.95
+    },
+    "components": {
+      "head": "human-prime-v1",
+      "hair": "human-ponytail01-v1"
+    },
+    "dyes": {
+      "torso": "oxblood",
+      "legs": "indigo"
+    },
+    "equipment": {
+      "helmet": null,
+      "torso": "duskguardCuirass",
+      "legs": "graveweaverSkirt",
+      "boots": "duskguardGreaves",
+      "gloves": "duskguardVambraces",
+      "mainHand": "graveweaverStaff",
+      "offHand": null,
+      "shoulders": "bastionShoulders"
+    }
+  },
+  "recipeSha256": "9f6d950ccae7443ba1b75d6893618604ef55b4c89dd53673aef0b58e8b8020a3",
+  "fixtureLimit": "Same preserved uncovered v9 Human recipe as prior completion diagnostics, offhand empty; not current maximum/all outfits.",
+  "privateBuild": {
+    "files": 722,
+    "onlyChangedAgainstExactSchedulerHookBaseline": "assets/v2/lite-runtime-jiMw178y.js",
+    "baseRuntimeSha256": "ca63f8d9c80d39ccbfcb3298ee0fd592cbb926e36fb505f6d7ab3bd3a9953f4d",
+    "privateRuntimeSha256": "b809c0cde22e23ae621cc74b8e65eb72120777445abf7a49a8aa09a84d88e741",
+    "schedulerSourceSha256": "3c13e4e1f345f3a0ff3cf8dd047ecd268131a2d902948a4a6172bfbe6b75af47",
+    "nativeTimerSourceSha256": "c6f2f037e223fa2fcd0777de4b3252a808d0caccee8fa4e387f54347f39fe499",
+    "gpuApiWrappers": false,
+    "chromeTracing": false,
+    "nativeMarkersQueryPoolCapResolveRetirementUnchanged": true
+  },
+  "nativeExit": {
+    "exitCode": 0,
+    "passed": true,
+    "controllerPid": 61942,
+    "finishedAt": "2026-10-08T07:39:16.226Z"
+  },
+  "workers": [
+    {
+      "role": "operator",
+      "sessionId": "01a119b2-566d-7af1-b67f-6ce8191e432e",
+      "stopReason": "cancelled",
+      "num_turns": 12,
+      "requestedModel": "grok-4.6",
+      "requestedEffort": "high",
+      "actualCliExitCode": 1,
+      "modelUsageNames": [
+        "grok-4.6-build"
+      ],
+      "cliExitEvidence": "Parent-observed completed exec session.",
+      "limit": "Twelve-turn cap after native report/result finished; child0 remains distinct from CLI1. No rerun."
+    },
+    {
+      "role": "review",
+      "sessionId": "01a11a78-ac5c-71a3-909d-b0f84e3c2c8e",
+      "stopReason": "end_turn",
+      "num_turns": 18,
+      "requestedModel": "grok-4.6",
+      "requestedEffort": "high",
+      "actualCliExitCode": 0,
+      "modelUsageNames": [
+        "grok-4.6-build"
+      ],
+      "cliExitEvidence": "Parent-observed completed exec session."
+    }
+  ],
+  "nativeTimerEnableAt": 780.8999999761581,
+  "support": {
+    "requested": true,
+    "supported": true
+  },
+  "installed": {
+    "at": 793.3999999761581,
+    "rendered": 11,
+    "inFlight": 3
+  },
+  "trigger": {
+    "at": 8660.199999988079,
+    "worldRecords": 71,
+    "ready": false,
+    "hostilesReady": true,
+    "longs": [
+      {
+        "submission": 1458,
+        "at": 8556.800000011921,
+        "delta": 21.80000001192093
+      },
+      {
+        "submission": 1466,
+        "at": 8607.699999988079,
+        "delta": 21.899999976158142
+      },
+      {
+        "submission": 1473,
+        "at": 8653.100000023842,
+        "delta": 21.700000047683716
+      }
+    ]
+  },
+  "rawWindow": {
+    "begin": {
+      "at": 8664.600000023842,
+      "origin": 1791445144461.7,
+      "rendered": 1475,
+      "pending": 3,
+      "worldRecords": 71,
+      "ready": false,
+      "hostilesReady": true
+    },
+    "end": {
+      "at": 9668.399999976158,
+      "origin": 1791445144461.7,
+      "rendered": 1659,
+      "pending": 4,
+      "worldRecords": 71,
+      "ready": false,
+      "hostilesReady": true
+    }
+  },
+  "timerDisable": {
+    "at": 9669.600000023842,
+    "result": {
+      "requested": false,
+      "supported": true
+    },
+    "inFlight": 4
+  },
+  "markerCountedRenders": 184,
+  "completeInteriorIntervals": 183,
+  "coverage": {
+    "requested": 1652,
+    "resolved": 1652,
+    "skipped": 0,
+    "rejected": 0,
+    "pending": 0,
+    "invalid": 0,
+    "lateAfterWindowEnd": 4,
+    "unmatchedSubmission": [],
+    "outsideRenderSpan": []
+  },
+  "queryValuesNsStepObserved": 65536,
+  "clockSpans": {
+    "gpuFirstBeginToLastEndNativeMs": 14420.803584,
+    "resolveRequestedAtSpanMs": 8883.699999988079,
+    "firstSubmission": 8,
+    "lastSubmission": 1659,
+    "absoluteMappingOrRateCalibrationEstablished": false,
+    "arbitraryRateRescalingAllowed": false
+  },
+  "windowMarkedGpuMs": {
+    "samples": 184,
+    "minMs": 0.65536,
+    "meanMs": 1.0802754782608692,
+    "p50Ms": 0.98304,
+    "p95Ms": 1.507328,
+    "p99Ms": 1.835008,
+    "maxMs": 2.818048
+  },
+  "longPrecedingMarkedGpuMs": {
+    "samples": 12,
+    "minMs": 0.917504,
+    "meanMs": 1.0704213333333332,
+    "p50Ms": 1.048576,
+    "p95Ms": 1.441792,
+    "p99Ms": 1.441792,
+    "maxMs": 1.441792
+  },
+  "longReleaseFenceMarkedGpuMs": {
+    "samples": 3,
+    "minMs": 1.048576,
+    "meanMs": 1.0922666666666665,
+    "p50Ms": 1.048576,
+    "p95Ms": 1.179648,
+    "p99Ms": 1.179648,
+    "maxMs": 1.179648
+  },
+  "longIntervals": [
+    {
+      "submission": 1623,
+      "previousSubmission": 1622,
+      "delta": 22,
+      "capSaturated": true,
+      "blockedMs": 1.5,
+      "ackToRenderMs": 17.19999998807907,
+      "outstandingBeforeGap": [
+        1619,
+        1620,
+        1621,
+        1622
+      ],
+      "precedingCoverageComplete": true,
+      "followingFrameExcludedFromCause": true,
+      "releaseSubmission": 1619,
+      "releaseFenceRawGpuMs": 1.048576,
+      "precedingWorkRawGpuMs": [
+        {
+          "submission": 1619,
+          "rawMs": 1.048576
+        },
+        {
+          "submission": 1620,
+          "rawMs": 0.917504
+        },
+        {
+          "submission": 1621,
+          "rawMs": 0.917504
+        },
+        {
+          "submission": 1622,
+          "rawMs": 0.98304
+        }
+      ]
+    },
+    {
+      "submission": 1633,
+      "previousSubmission": 1632,
+      "delta": 21.600000023841858,
+      "capSaturated": true,
+      "blockedMs": 1.5999999642372131,
+      "ackToRenderMs": 17.100000023841858,
+      "outstandingBeforeGap": [
+        1629,
+        1630,
+        1631,
+        1632
+      ],
+      "precedingCoverageComplete": true,
+      "followingFrameExcludedFromCause": true,
+      "releaseSubmission": 1629,
+      "releaseFenceRawGpuMs": 1.048576,
+      "precedingWorkRawGpuMs": [
+        {
+          "submission": 1629,
+          "rawMs": 1.048576
+        },
+        {
+          "submission": 1630,
+          "rawMs": 1.441792
+        },
+        {
+          "submission": 1631,
+          "rawMs": 1.048576
+        },
+        {
+          "submission": 1632,
+          "rawMs": 1.048576
+        }
+      ]
+    },
+    {
+      "submission": 1646,
+      "previousSubmission": 1645,
+      "delta": 21.600000023841858,
+      "capSaturated": true,
+      "blockedMs": 1.300000011920929,
+      "ackToRenderMs": 17.19999998807907,
+      "outstandingBeforeGap": [
+        1642,
+        1643,
+        1644,
+        1645
+      ],
+      "precedingCoverageComplete": true,
+      "followingFrameExcludedFromCause": true,
+      "releaseSubmission": 1642,
+      "releaseFenceRawGpuMs": 1.179648,
+      "precedingWorkRawGpuMs": [
+        {
+          "submission": 1642,
+          "rawMs": 1.179648
+        },
+        {
+          "submission": 1643,
+          "rawMs": 1.048576
+        },
+        {
+          "submission": 1644,
+          "rawMs": 0.917504
+        },
+        {
+          "submission": 1645,
+          "rawMs": 1.245184
+        }
+      ]
+    }
+  ],
+  "controls": {
+    "passed": true,
+    "cases": [
+      {
+        "name": "raw-before-EMA-and-captured-identity",
+        "passed": true
+      },
+      {
+        "name": "native-allows-fourth-readback",
+        "passed": true
+      },
+      {
+        "name": "native-skips-over-four",
+        "passed": true
+      },
+      {
+        "name": "rejected-map",
+        "passed": true
+      },
+      {
+        "name": "invalid-negative-timestamp",
+        "passed": true
+      },
+      {
+        "name": "inactive-logging",
+        "passed": true
+      }
+    ]
+  },
+  "nativeFunctional": {
+    "identityAndMorphs": "pass",
+    "actualSourceLocomotionClocks": "pass",
+    "heldW": "pass",
+    "havok": true,
+    "recoveries": 0,
+    "enemies": 7,
+    "worldRecords": 71,
+    "allocatedWorldBytes": 210049236,
+    "canvas": [
+      1280,
+      720
+    ],
+    "shadowAndWoodlandChecks": {
+      "revisions": [
+        5,
+        6,
+        7,
+        8,
+        10,
+        11,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        32,
+        34,
+        35,
+        36,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71
+      ],
+      "missing": [],
+      "wrongWoodland": []
+    },
+    "errors": [],
+    "timerInFlightAtEnd": 0
+  },
+  "parentAdjudication": {
+    "accepted": "The three gaps have complete short raw marked-frame coverage for preceding outstanding work; no 16\u201321ms marked frame is observed in those sets.",
+    "causalLimits": "Do not exclude outside-marker uploads, queue backlog, presentation/compositor/OS or all GPU-related causes. GPU and JS total spans disagree; no absolute mapping/rate calibration or arbitrary scaling. Report the native /1e6 readings, not calibrated wall execution cost. Following-frame duration cannot explain its preceding gap.",
+    "decision": "Close this one-visit arm; no source/runtime/quality/scheduler change, cap raise, repeat or new acceptance claim. Next correct a demonstrated armor-fit defect; full goal/release/device/reliability exits remain open.",
+    "fixtureLimit": "Same preserved uncovered v9 Human recipe as prior completion diagnostics, offhand empty; not current maximum/all outfits."
+  },
+  "cleanup": {
+    "checkedAt": "2026-10-08T07:46:08Z",
+    "ownedPids": [
+      61942,
+      61949,
+      61950,
+      61976
+    ],
+    "psExitCode": 1,
+    "ownedProcessesRemaining": [],
+    "ports": [
+      7074,
+      10037
+    ],
+    "portAuditExitCode": 1,
+    "listeners": [],
+    "allOwnedProcessesGone": true,
+    "portsFree": true,
+    "userEdgePid": 2931,
+    "userOrcaPid": 98938,
+    "edgeNonGameTabs": 12,
+    "edgeGameTabs": 0,
+    "orcaEmbeddedTabs": 0,
+    "referenceMedia": {
+      "allThreePausedDuringTiming": true,
+      "viewerClosed": true,
+      "originalInline947And948PlayingRestored": true,
+      "proof": "Parent CUA DOM observations before/during/after native visit; user tabs preserved."
+    }
+  },
+  "rootCaptureReview": {
+    "file": ".cache/character-mmo/completion-gpu-raw-2026-10-08/run-1-budget-raw.png",
+    "sha256": "76d60545a844f3a095d2b54dc6fada3afc7c082857eb7fcd8261bdd3ae024ec8",
+    "bytes": 1226531,
+    "reviewedByRoot": true,
+    "postTiming": true,
+    "visualProductChanged": false,
+    "newMotionAcceptanceClaim": false
+  },
+  "evidence": {
+    "file": "evidence.json.gz",
+    "bytes": 272243,
+    "sha256": "ec66d2899514837a90219d6d961553dd499656dcd19a41416f0c4a1bae2350d9",
+    "decodedBytes": 2172564,
+    "decodedSha256": "0d8a2f40cd95e98f727c8ca0c312d310a4d8fcf83d7e8d51defd709491816c1b",
+    "includesAllRawQueriesAndActualIntervals": true,
+    "privateThoughtsOrCredentialsIncluded": false
+  }
+}
