@@ -1,7 +1,7 @@
 /** M007 semantic coverage and seams: the rules, exhaustively.
  *
  * The catalogue is small enough that "exhaustive" is literal -- every slot takes every item
- * it accepts or nothing, 12,096 v8 candidates -- so these tests enumerate rather than sample.
+ * it accepts or nothing, 18,144 v9 candidates -- so these tests enumerate rather than sample.
  */
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -98,8 +98,8 @@ test('two-handed occupancy agrees with the catalogue validator on every combinat
         assert.equal(accepted, !conflict, `${JSON.stringify(loadout)} accepted=${accepted} conflict=${conflict}`);
         checked++;
     }
-    // v8: Fieldcoat adds one torso choice to v7's six (including none): 10368 * 7/6.
-    assert.equal(checked, 12096);
+    // v9 adds a third off-hand choice (empty/book/shield) to the frozen v8 domain.
+    assert.equal(checked, 18144);
 });
 
 test('the Orc adapter retains shipped visibility for every valid loadout', () => {
@@ -233,10 +233,10 @@ test('every valid combination resolves on every race without throwing', () => {
             }
         }
     }
-    // v8: 9072 * 7/6 torso choices; the added coat has eight neighboring garment
-    // pairs and twenty-three triples (three leg choices). Semantic checks, not live fit.
-    assert.equal(valid.length, 10584);
-    assert.equal(valid.filter(loadout=>loadout.torso==='fieldcoat').length,1512);
+    // v9 has ten valid hand combinations; shield adds no body coverage or seams.
+    // Semantic checks, not live fit.
+    assert.equal(valid.length, 15120);
+    assert.equal(valid.filter(loadout=>loadout.torso==='fieldcoat').length,2160);
     assert.equal(pairs.size, 71, 'cross-set pair coverage');
     assert.equal(triples.size, 166, 'three-way coverage');
 });

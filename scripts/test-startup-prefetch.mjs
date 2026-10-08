@@ -101,7 +101,7 @@ test('gzip size mismatch releases its promise and missing compact pieces fail ex
     const api=await import('../src/ashen-reach/startup-fetch.js?gzip'),asset={url:'/gzip.bin',bytes:2,compression:'gzip'};
     await assert.rejects(api.startupAssetBuffer(asset),/Unexpected size/);
     assert.deepEqual(new Uint8Array(await api.startupAssetBuffer(asset)),new Uint8Array([1,2]));assert.equal(calls,2);
-    await assert.rejects(api.preloadHumanShapePack({}, {compact:true}),/Missing compact Human piece: body/);
+    await assert.rejects(api.preloadHumanShapePack({}, {compact:true}),/Missing selected body resource/);
   } finally {globalThis.fetch=original;}
 });
 

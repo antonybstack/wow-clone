@@ -14,6 +14,7 @@ import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
 import {MeshoptDecoder} from 'meshoptimizer';
 import {EQUIPMENT_ITEMS} from '../../src/ashen-reach/equipment-catalog.js';
 import {HUMAN_EQUIPMENT_FIT,ORC_EQUIPMENT_FIT,UNDEAD_EQUIPMENT_FIT} from '../../src/ashen-reach/equipment-contract.js';
+import {verifyPublishedAuthoredProps} from './publish-authored-prop.mjs';
 
 export const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 export const matrixTolerance = 1e-5; // Existing streamed-asset validator uses exact generated matrices; this permits float serialization noise.
@@ -112,7 +113,9 @@ export async function audit(repo=path.resolve(fileURLToPath(new URL('../..', imp
   const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder});
   const main=await readFile(path.join(repo,'src/ashen-reach/main.js'),'utf8');
   if (!main.includes("const UNDEAD_PACK_DIR='equipment-undead'")) throw Error('Active Undead pack route changed; review census roots');
-  const report={schema:1,source:'src/ashen-reach/main.js packs',packs:{},proceduralProps:Object.entries(EQUIPMENT_ITEMS).filter(([,v])=>v.factory).map(([id,v])=>({id,factory:v.factory,slot:v.slot,occupies:v.occupies})),errors:[],warnings:[]};
+  const report={schema:1,source:'src/ashen-reach/main.js packs',packs:{},proceduralProps:Object.entries(EQUIPMENT_ITEMS).filter(([,v])=>v.factory&&!v.asset).map(([id,v])=>({id,factory:v.factory,slot:v.slot,occupies:v.occupies})),authoredProps:[],errors:[],warnings:[]};
+  try{report.authoredProps=await verifyPublishedAuthoredProps({readFile:(file,...args)=>readFile(path.join(repo,file),...args)});}
+  catch(error){report.errors.push(`authored props: ${error.message}`);}
   for(const [race,dir] of Object.entries(packs)) {
     const manifestPath=`public/ashen-reach/${dir}/manifest.json`;
     const raw=await readFile(path.join(repo,manifestPath));

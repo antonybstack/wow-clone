@@ -107,3 +107,38 @@ Use native Lite `setBonePoseDeferred` **before** the native animation-manager ev
 Regenerate the source samples with `node scripts/ashen-reach/prepare-hand-poses.mjs` if the reviewed source asset changes. These translations/rotations fit **Human source-65, bind 1 / shape 1**. Factory props declare an optional `grips.orc` hold (`gripHold(item, race)`): a short palm nudge plus ×1.16 scale so the print-sculpt fist does not swallow a Human-sized shaft. Socket palm-push also scales ×1.25 when the live mesh is `OrcV1*`. Two-handed shaft contact on Orc after the correction is right ~0.6 cm, left ~1.6 cm (budget 2 cm). Print-sculpt fingers still read as a mitten at close range; the Mixamo carry clip still lays the greatstaff across the chest. The book has a raised rear leather strap to provide a real surface for the fingers to enclose; staff/sword grip thicknesses are fitted to the Human hand.
 
 `node scripts/ashen-reach/check-grips.mjs` checks contact stability through idle/walk/run/jump/land, cast release/regrip, empty hands and glove removal in streamed and preloaded modes. `record-grips.mjs` captures close-ups plus actual gameplay. Both accept `ASHEN_URL`; captures accept `ASHEN_CAPTURE_DIR`. Contact stability checks do not establish visual contact by themselves: review the actual capture.
+
+## Authored rigid props (catalogue v9)
+
+`bastionShield` is an original rigid GLB with three material primitives. Its
+Blender descriptor and builder live in `blender/characters/props/` and
+`scripts/character-assets/author-bastion-shield.py`. Reproduce/validate with
+`prepare-authored-prop.mjs`; publish the reviewed bytes with
+`node scripts/character-assets/publish-authored-prop.mjs`. The build independently
+checks the source, builder pin, resource hash, byte count and public copy. The
+asset has no skin, morphs, animation, texture or external-resource downloads.
+
+`factory:'authored'` selects the existing hand attachment rules while `asset`
+selects a real immutable resource. `equipment-resources.js` shares this distinction
+between startup prefetch and installation; payload enumeration includes the actual
+67,352 bytes. Procedural sword/staff/book retain their existing factories. The
+appearance catalogue advances to v9, with v8 membership frozen; the separate
+Human identity asset index remains v6. Remote descriptors and the presence
+catalogue must be republished together before promising the new item.
+
+Load through native Lite `loadGltf` and the existing equipment transaction. Stage
+hidden and detached, preserve the native PBR material, await the public PBR build
+fence, then attach and expose at commit. The rigid container owns its meshes and
+materials; it never borrows the actor palette or body morphs. Retain Lite's
+`__root__` X reflection when setting grip/stow scale: the evaluated socket is
+already in scene space, and replacing the reflection with positive scale changes
+single-sided face winding. Skinned garments use a different parent relationship;
+the body already owns their reflection. See the
+[pinned Lite loader](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/loader-gltf/load-gltf.ts)
+and [glTF coordinate and mesh conventions](https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#coordinate-system-and-units).
+
+If downstream SHA validation rejects a shared startup buffer, invalidate only
+that exact cached buffer generation. The next explicit equipment request retries;
+there is no automatic retry. A stale consumer cannot evict a newer transfer.
+References: [Web Crypto digest](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest),
+[implementation and fit values](plans/character-mmo/authored-shield.md).

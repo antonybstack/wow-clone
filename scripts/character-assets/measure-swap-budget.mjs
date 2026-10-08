@@ -22,14 +22,13 @@ assert(url && port && out, 'ASHEN_TEST_URL, ASHEN_CDP_PORT and an output path ar
 const RACES = (process.env.ASHEN_RACES || 'human,orc,undead').split(',');
 const REPEATS = Number(process.env.ASHEN_REPEATS || 3);
 const requestedItems = (process.env.ASHEN_SWAP_ITEMS || '').split(',').filter(Boolean);
-for (const id of requestedItems) assert(EQUIPMENT_ITEMS[id]?.parts?.length, `Unknown or procedural swap item ${id}`);
+for (const id of requestedItems) assert(EQUIPMENT_ITEMS[id]?.parts?.length||EQUIPMENT_ITEMS[id]?.asset, `Unknown or procedural swap item ${id}`);
 const savedAppearance = process.env.ASHEN_SWAP_APPEARANCE ? JSON.parse(await fs.readFile(process.env.ASHEN_SWAP_APPEARANCE, 'utf8')) : null;
 assert(!savedAppearance || RACES.length === 1 && RACES[0] === 'human', 'Saved Human swap cohort must run separately');
 // The shared acceptance profile's network condition, so this figure sits beside the cold-start one.
 const NETWORK = { downloadThroughput: 50 * 1024 * 1024 / 8, uploadThroughput: 50 * 1024 * 1024 / 8, latency: 40, offline: false };
-// A factory prop is built in the page with no response to fetch, so it has no cold cost to
-// measure. Excluded by its catalogue shape rather than by name.
-const NETWORK_SLOTS = EQUIPMENT_SLOTS.filter(slot => Object.values(EQUIPMENT_ITEMS).some(i => i.slot === slot && i.parts?.length && (!requestedItems.length || requestedItems.includes(i.id))));
+// Authored hand props have real responses; only procedural props have no cold transfer.
+const NETWORK_SLOTS = EQUIPMENT_SLOTS.filter(slot => Object.values(EQUIPMENT_ITEMS).some(i => i.slot === slot && (i.parts?.length||i.asset) && (!requestedItems.length || requestedItems.includes(i.id))));
 const ROTATION = Object.fromEntries(EQUIPMENT_SLOTS.map(slot =>
     [slot, Object.entries(EQUIPMENT_ITEMS).filter(([, i]) => i.slot === slot).map(([id]) => id)]));
 const isPieceRequest = (requestUrl, id) => {
@@ -45,7 +44,7 @@ const rows = [], errors = [], skipped = [];
 const report = {
     url, network: { ...NETWORK, note: 'Legacy swap budget uses 50 Mibit/s (50*1024*1024), 40 ms; startup uses decimal 50 Mbit/s.' },
     requestedItems, savedAppearance,
-    conditions: 'One owned rendering client at a time. Each cold row is a fresh context with the HTTP cache disabled against a piece that context has never loaded. Hand slots are excluded: a factory prop is built in the page and has no response to fetch.',
+    conditions: 'One owned rendering client at a time. Each cold row is a fresh context with the HTTP cache disabled against a piece that context has never loaded. Only procedural props are excluded; authored hands have real network cost.',
     slots: NETWORK_SLOTS,
     repeats: REPEATS, rows, skipped, errors,
 };
@@ -75,7 +74,7 @@ try {
                     await cdp.send('Network.emulateNetworkConditions', NETWORK);
                     const booted = new Set(await page.evaluate(() => ASHEN.equipment.getStatus().cached));
                     const worn = await page.evaluate(s => ASHEN.equipment.getState()[s] ?? null, slot);
-                    const target = ROTATION[slot].find(id => (!requestedItems.length || requestedItems.includes(id)) && id !== worn && !booted.has(id)) ?? null;
+                    const target = ROTATION[slot].find(id => (EQUIPMENT_ITEMS[id].parts?.length||EQUIPMENT_ITEMS[id].asset) && (!requestedItems.length || requestedItems.includes(id)) && id !== worn && !booted.has(id)) ?? null;
                     if (!target) {
                         assert(!requestedItems.length, `Explicit target ${requestedItems.join(',')} is already loaded; no cold measurement is possible`);
                         skipped.push({ race, slot, repeat, reason: 'every item in this slot is loaded at boot on this race' });

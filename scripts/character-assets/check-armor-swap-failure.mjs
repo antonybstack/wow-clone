@@ -34,9 +34,9 @@ const isPieceRequest = (requestUrl, id) => {
     const file = new URL(requestUrl).pathname.split('/').pop();
     return file.startsWith(id) && /^[-.]/.test(file.slice(id.length) || '.');
 };
-// The hand props are built by a factory, so they have no response to corrupt; they get the
-// unknown-item and storm cases instead.
-const GEOMETRY_SLOTS = EQUIPMENT_SLOTS.filter(slot => Object.values(EQUIPMENT_ITEMS).some(item => item.slot === slot && item.parts?.length));
+// Rigid authored hand props have real delivery; only procedural props have no
+// response to corrupt. Keep all items in the storm rotation below.
+const GEOMETRY_SLOTS = EQUIPMENT_SLOTS.filter(slot => Object.values(EQUIPMENT_ITEMS).some(item => item.slot === slot && (item.parts?.length||item.asset)));
 const ROTATION = Object.fromEntries(EQUIPMENT_SLOTS.map(slot =>
     [slot, Object.entries(EQUIPMENT_ITEMS).filter(([, i]) => i.slot === slot).map(([id]) => id)]));
 
@@ -106,7 +106,7 @@ try {
                 const hits = {}, seen = {}, targets = {};
                 for (const slot of GEOMETRY_SLOTS) {
                     const worn = await page.evaluate(s => ASHEN.equipment.getState()[s] ?? null, slot);
-                    const target = ROTATION[slot].find(id => id !== worn && !booted.has(id)) ?? null;
+                    const target = ROTATION[slot].find(id => (EQUIPMENT_ITEMS[id].parts?.length||EQUIPMENT_ITEMS[id].asset) && id !== worn && !booted.has(id)) ?? null;
                     targets[slot] = target;
                     if (target) hits[target] = 0;
                 }

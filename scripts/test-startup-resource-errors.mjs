@@ -53,3 +53,41 @@ test('native preparation errors preserve their complete formatted cause chain',a
   assert.match(text,/Startup resource \/sky\.webp: sky preparation failed/);
   assert.match(text,/Caused by: TypeError: Image fetch failed/);
 });
+
+test('a size-valid corrupt buffer is released only by its validating consumer',async()=>{
+  const previous=globalThis.fetch;let calls=0;
+  globalThis.fetch=async()=>new Response(new Uint8Array(++calls===1?[9,9]:[1,2]));
+  try{
+    const api=await import('../src/ashen-reach/startup-fetch.js?resource-integrity');
+    const asset={url:'/corrupt-rigid.glb',bytes:2};
+    const bad=await api.startupAssetBuffer(asset);
+    assert.equal(await api.startupAssetBuffer(asset),bad);
+    assert.equal(calls,1);
+    assert.equal(await api.startupAssetBuffer.invalidate(asset,bad.slice(0)),false,'another buffer must not evict the owner');
+    assert.equal(await api.startupAssetBuffer.invalidate(asset,bad),true);
+    assert.equal(calls,1,'invalidation must not start a retry');
+    const good=await api.startupAssetBuffer(asset);
+    assert.deepEqual(new Uint8Array(good),new Uint8Array([1,2]));
+    assert.equal(calls,2);
+    assert.equal(await api.startupAssetBuffer.invalidate(asset,bad),false,'a stale consumer must not evict the replacement');
+    assert.equal(await api.startupAssetBuffer(asset),good);
+    assert.equal(calls,2);
+  }finally{globalThis.fetch=previous;}
+});
+
+test('a cleared old transfer cannot delete a newer cache generation when it fails',async()=>{
+  const previous=globalThis.fetch;let rejectFirst,calls=0;
+  globalThis.fetch=()=>++calls===1?new Promise((resolve,reject)=>{rejectFirst=reject;}):Promise.resolve(new Response(new Uint8Array([7])));
+  try{
+    const api=await import('../src/ashen-reach/startup-fetch.js?resource-generation');
+    const asset={url:'/replaced-transfer.bin',bytes:1};
+    const old=api.startupAssetBuffer(asset);
+    api.clearStartupBuffers();
+    const fresh=api.startupAssetBuffer(asset);
+    rejectFirst(new TypeError('Old transfer failed'));
+    await assert.rejects(old,/Old transfer failed/);
+    await fresh;
+    assert.equal(api.startupAssetBuffer(asset),fresh);
+    assert.equal(calls,2);
+  }finally{globalThis.fetch=previous;}
+});

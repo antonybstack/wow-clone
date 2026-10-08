@@ -184,12 +184,30 @@ rendering, then canonical motion and separate performance/release gates.
 No new FPS/public startup claim or Pages promotion. Production and original
 reliability/physical-device exits remain unchanged.
 
-### Next five priorities, in execution order
+The [canonical shield integration](plans/character-mmo/results/authored-shield-canonical-2026-10-07.md)
+now completes that local package: catalogue v9 with frozen v8, exact rigid resource
+publication, native staging/handedness, transaction rollback/retry, saved prefetch,
+payload enumeration and shared remote rendering. Character 231/231, equipment
+116/116, factory 42/42, native prop refusals 12/12 and focused QA 35/35 pass.
+Seven fits complete 35 native motion chapters, three remote fixtures complete nine
+chapters, and three races pass ordinary Havok run/jump with zero recoveries/errors.
+Root reviewed the actual normal/half-speed MP4. Telegram **887** and identical VE
+are delivered with matching API dimensions. Telegram Web inline/expanded and
+direct VE playback preserve 16:9; actual app fullscreen is unverified.
+Separate M1 Max 1280×720 shield route windows observe **203.1–237.9 FPS**,
+p99≤6.2 ms, worst 13.5 ms. Six of fifteen windows retain possible pacing flags;
+they do not qualify clean uncapped maximum throughput. Nine swaps pass, cold
+109.2–118.3 ms, resident 8.8–12.6 ms, worst swap frame 24.4 ms. Maximum compact
+payload is **2,170,524 bytes**, adding the exact 67,352-byte shield. No public
+startup qualification or Pages promotion; production and reliability hold remain.
+This checkpoint supersedes the prototype's remaining canonical steps above.
+
+### Next priorities, in execution order
 
 1. **Resolve the startup failure, then release the canonical boot correction.**
    Assets are committed/pushed; sealed preview 514fe898 is rejected after one
    required texture failure. Native transport/policy reporting is now verified;
-   capture the remaining request/body cause and correct a demonstrated defect.
+   pursue a material new request/body lead and correct a demonstrated defect.
    Clean diagnostic visits do not clear the failure;
    do not repeat unchanged cohorts or add speculative retries. A material fix
    requires a newly declared sealed preview before promoting the same bytes.
@@ -210,15 +228,16 @@ reliability/physical-device exits remain unchanged.
    Orc/Undead. Fix a demonstrated seam per pass through the existing authored-piece
    pipeline. Reuse reviewed fixtures; require live motion for clipping, seams,
    grips and covered-hair restoration before release.
-4. **Prove one authored shield.** The current off-hand catalogue contains a book;
-   shields are a missing category. Reuse native evaluated sockets, grip/stow,
-   occupancy and the equipment factory to prove one shield across supported fits,
-   swaps, failure rollback and ordinary movement/casts. Review/deliver live motion
-   and measure its cost before expanding the catalogue. Preserve the source rig.
-5. **Complete current physical iPhone acceptance when available.** Test exact
+4. **Complete current physical iPhone acceptance when available.** Test exact
    released covered/uncovered identities, creator rotation, swaps, fifteen-minute
    traversal and background/resume. Report device/network/thermal conditions and
-   frame-time tails. No physical iPhone is currently connected.
+  frame-time tails. No physical iPhone is currently connected.
+
+The first canonical authored shield is locally complete. Include it in the next
+qualified release batch; further shield sets, Elf, regions and crowd expansion
+stay parked until this slice's release and device exits are qualified. While the
+startup cause lacks a material lead, the next executable investigation is the
+measured streaming/audio tail, with a focused armor seam pass available in parallel.
 
 These are recommendations for the next work, not new completion claims or a
 replacement for the original five-priority goal's remaining acceptance exits.

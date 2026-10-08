@@ -3,16 +3,16 @@
  * See the current glTF skinning contract for why bind/shape identity is explicit:
  * https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#skins
  */
-import {EQUIPMENT_ITEMS, EQUIPMENT_SLOTS,LEGACY_EQUIPMENT_SLOTS,LEGACY_EQUIPMENT_ITEMS,EQUIPMENT_V3_ITEMS,EQUIPMENT_V6_ITEMS,EQUIPMENT_V7_ITEMS} from '../../ashen-reach/equipment-catalog.js';
+import {EQUIPMENT_ITEMS, EQUIPMENT_SLOTS,LEGACY_EQUIPMENT_SLOTS,LEGACY_EQUIPMENT_ITEMS,EQUIPMENT_V3_ITEMS,EQUIPMENT_V6_ITEMS,EQUIPMENT_V7_ITEMS,EQUIPMENT_V8_ITEMS} from '../../ashen-reach/equipment-catalog.js';
 import {declaredFitForRace, freezeEquipment, validateEquipmentSelection} from '../../ashen-reach/equipment-contract.js';
 import {isDyeId} from '../../ashen-reach/dye-palette.js';
 import {IDENTITY_CATALOG_VERSION,findHumanIdentityPreset} from './human-identity.js';
 
 export const APPEARANCE_SCHEMA_VERSION=2;
-/** v8 adds the skinned factory Fieldcoat; every older catalogue keeps its exact item
+/** v9 adds an authored shield; every older catalogue keeps its exact item
  * domain. The wire handshake (`PRESENCE_CATALOG`) and the published remote-piece catalogue
- * compare against this value, so they refuse loudly until they are republished as v8. */
-export const APPEARANCE_CATALOG_VERSION='appearance-catalog-v8';
+ * compare against this value, so they refuse loudly until they are republished as v9. */
+export const APPEARANCE_CATALOG_VERSION='appearance-catalog-v9';
 export const MAX_APPEARANCE_BYTES=16*1024;
 const TOP_FIELDS=['schemaVersion','catalogVersion','race','fitFamily','fit','shape','components','dyes','equipment'];
 const FIT_FIELDS=['rig','bind','shape'];
@@ -84,12 +84,14 @@ export const APPEARANCE_V6_REGISTRY=Object.freeze({...APPEARANCE_V5_REGISTRY,
 export const APPEARANCE_V7_REGISTRY=Object.freeze({...APPEARANCE_V6_REGISTRY,
  catalogVersion:'appearance-catalog-v7',items:EQUIPMENT_V7_ITEMS});
 export const APPEARANCE_V8_REGISTRY=Object.freeze({...APPEARANCE_V7_REGISTRY,
+ catalogVersion:'appearance-catalog-v8',items:EQUIPMENT_V8_ITEMS});
+export const APPEARANCE_V9_REGISTRY=Object.freeze({...APPEARANCE_V8_REGISTRY,
  catalogVersion:APPEARANCE_CATALOG_VERSION,items:EQUIPMENT_ITEMS});
-/** v1–v7 never inherit identity capabilities or items when the current catalogue advances.
+/** v1–v8 never inherit identity capabilities or items when the current catalogue advances.
  * `APPEARANCE_IDENTITY_REGISTRY` remains the name existing importers use for "current".
  */
-export const APPEARANCE_IDENTITY_REGISTRY=APPEARANCE_V8_REGISTRY;
-export const APPEARANCE_REGISTRY=APPEARANCE_V8_REGISTRY;
+export const APPEARANCE_IDENTITY_REGISTRY=APPEARANCE_V9_REGISTRY;
+export const APPEARANCE_REGISTRY=APPEARANCE_V9_REGISTRY;
 
 export class AppearanceError extends Error {
   constructor(code,path,message){super(`${message} at ${path}`);this.name='AppearanceError';this.code=code;this.path=path;}
@@ -227,7 +229,7 @@ export function migrateAppearance(input,registry=APPEARANCE_REGISTRY) {
   if(input.schemaVersion===registry.schemaVersion && input.catalogVersion===registry.catalogVersion) return validateAppearance(input,registry);
   // One allowlist drives storage and direct migration. The previous decoder
   // duplicated it and omitted v4, turning a valid saved character into fallback.
-  const legacy=[APPEARANCE_V1_REGISTRY,APPEARANCE_V2_REGISTRY,APPEARANCE_V3_REGISTRY,APPEARANCE_V4_REGISTRY,APPEARANCE_V5_REGISTRY,APPEARANCE_V6_REGISTRY,APPEARANCE_V7_REGISTRY]
+  const legacy=[APPEARANCE_V1_REGISTRY,APPEARANCE_V2_REGISTRY,APPEARANCE_V3_REGISTRY,APPEARANCE_V4_REGISTRY,APPEARANCE_V5_REGISTRY,APPEARANCE_V6_REGISTRY,APPEARANCE_V7_REGISTRY,APPEARANCE_V8_REGISTRY]
     .find(r=>r.schemaVersion===input.schemaVersion&&r.catalogVersion===input.catalogVersion);
   if(!legacy)error('UNSUPPORTED_CATALOG','$.catalogVersion','No known migration for this schema and catalogue');
   if(registry!==APPEARANCE_REGISTRY&&registry!==APPEARANCE_IDENTITY_REGISTRY)

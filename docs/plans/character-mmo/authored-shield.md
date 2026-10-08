@@ -89,10 +89,30 @@ catalogue membership, occupancy, resource ownership or transaction acceptance.
 The original appended movement assertion failed at its end fixture; its failed
 receipt remains alongside the separately passed movement operation.
 
-Continue steps 3–5 above. In particular, count the shield's real transfer bytes;
+At this prototype checkpoint, continue steps 3–5 above. Count the shield's real transfer bytes;
 current hand-factory branches incorrectly imply procedural construction and
 zero network cost for an authored item. Preserve v8's exact membership/hash,
 keep the Human identity index at v6, and give the rigid native meshes their own
 container/disposal and pre-visibility PBR fence. Add the resource to selected
 startup preloads, maximum outfit enumeration, delivery coverage and remote
 catalogue publication. Use the existing transaction/grip/stow owners.
+
+## Canonical checkpoint — 2026-10-07
+
+Steps 3–5 are now locally complete. See the
+[canonical result](results/authored-shield-canonical-2026-10-07.md) and its receipt
+for exact source fingerprints, preparation proofs, retained first failures and
+measurement conditions. Catalogue v9 freezes v8; the rigid asset owns its native
+container/materials, retains glTF handedness and uses the existing PBR fence,
+buffer/transaction and evaluated socket owners. Saved startup and remote rendering
+include the real content-addressed resource.
+
+Seven canonical fits, nine remote source chapters, three ordinary Havok cases
+and all nine fault/retry cases pass. Root reviewed normal/half-speed live motion;
+Telegram 887 and identical VE are delivered. Separate M1 Max 1280×720 settled
+shield windows observe 203.1–237.9 FPS, p99≤6.2 ms, worst 13.5 ms; six possible
+pacing flags limit clean uncapped throughput claims. Nine swaps pass their budgets.
+
+The public startup/release hold and current physical iPhone exit remain open.
+Do not repeat prototype/canonical acceptance or broaden the shield catalogue to
+avoid those exits. No Pages promotion occurred.

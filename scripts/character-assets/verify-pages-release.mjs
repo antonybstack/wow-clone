@@ -88,9 +88,10 @@ await Promise.all(Array.from({length:8},async()=>{
   if(response.ok&&mutableManifests.has(file)){
     row.cacheControl=response.headers.get('cache-control');row.cachePolicy='mutable-manifest';
     row.cacheCorrect=row.cacheControl==='no-cache';
-  }else if(response.ok&&(file.includes('/region-actors-v1/')||(file.includes('/human-identity-v1/')&&!file.endsWith('/preparation.json')))){
+  }else if(response.ok&&(file.includes('/props/')||file.includes('/region-actors-v1/')||(file.includes('/human-identity-v1/')&&!file.endsWith('/preparation.json')))){
     row.cacheControl=response.headers.get('cache-control');row.cachePolicy='immutable-asset';
     row.cacheCorrect=Boolean(row.cacheControl?.includes('immutable')&&!row.cacheControl.includes('no-cache'));
+    if(file.includes('/props/'))row.match&&=type==='model/gltf-binary';
   }
   }catch(error){row.match=false;row.failure=failure(error,stage);}
   rows.push(row);

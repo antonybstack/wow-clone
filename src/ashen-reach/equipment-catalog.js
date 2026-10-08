@@ -48,6 +48,17 @@ const authoredItems={
     // the released item order, and every frozen registry built from it, is unchanged.
     bastionShoulders:{id:'bastionShoulders',slot:'shoulders',name:'Bastion crested shoulders',parts:[{mesh:'BastionShoulders'}],coverage:[],covers:[],layer:'plate',deformation:'rigid-bone'},
     fieldcoat:{id:'fieldcoat',slot:'torso',name:'Fieldcoat',parts:[{mesh:'Fieldcoat'}],coverage:['BodyUnderTunic','BodyWaist'],covers:['torso.upper','torso.lower','waist'],layer:'cloth',deformation:'soft-skin'},
+    // Rigid native glTF, sharing evaluated source-65 sockets with existing props.
+    // `factory: authored` selects the hand attachment, never procedural geometry.
+    // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/loader-gltf/load-gltf.ts
+    bastionShield:{id:'bastionShield',factory:'authored',slot:'offHand',name:'Bastion heater shield',gripPose:'shaft',
+      gripPosition:[.005,-.080,.020],gripRotation:[0,1,0,0],
+      stow:{position:[0,.18,-.17],rotation:[.985426,.015120,-.114652,-.124749]},
+      grips:{orc:{position:[.0176,-.0956,.0192],scale:1.12}},
+      gripGeometry:{origin:[0,0,0],axis:[1,0,0],length:.19,radius:.018},
+      asset:{url:'/ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb',
+        sha256:'926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c',bytes:67352,
+        meshes:['BastionShield','BastionShield','BastionShield']}},
 };
 const seamsBySlot={shoulders:['shoulders'],helmet:['neck'],torso:['neck','waist','wrists'],legs:['waist','ankles'],boots:['ankles'],gloves:['wrists'],mainHand:[],offHand:[]};
 export const EQUIPMENT_ITEMS=freezeEquipment(Object.fromEntries(Object.entries(authoredItems).map(([id,item])=>[id,{...item,fit:{...HUMAN_EQUIPMENT_FIT},fits:{human:{...HUMAN_EQUIPMENT_FIT},orc:{...ORC_EQUIPMENT_FIT},undead:{...UNDEAD_EQUIPMENT_FIT}},seams:seamsBySlot[item.slot],occupies:item.occupies||[item.slot]}])));
@@ -66,11 +77,14 @@ export const EQUIPMENT_V6_ITEMS=freezeEquipment(Object.fromEntries(EQUIPMENT_V6_
  * recipes must never acquire new item membership through the current map. */
 export const EQUIPMENT_V7_ITEM_IDS=Object.freeze([...EQUIPMENT_V6_ITEM_IDS,'bastionShoulders']);
 export const EQUIPMENT_V7_ITEMS=freezeEquipment(Object.fromEntries(EQUIPMENT_V7_ITEM_IDS.map(id=>[id,EQUIPMENT_ITEMS[id]])));
+/** Freeze v8 before the authored off-hand resource enters v9. */
+export const EQUIPMENT_V8_ITEM_IDS=Object.freeze([...EQUIPMENT_V7_ITEM_IDS,'fieldcoat']);
+export const EQUIPMENT_V8_ITEMS=freezeEquipment(Object.fromEntries(EQUIPMENT_V8_ITEM_IDS.map(id=>[id,EQUIPMENT_ITEMS[id]])));
 /**
  * Socket-local hold for a race. Human values stay on the item; a race entry under `grips`
  * is an optional correction.
  *
- * This is a pose offset, not a fit identity: the prop is procedural, binds to no body, and
+ * This is a pose offset, not a fit identity: the rigid prop binds to no body, and
  * an absent correction means "the authored hold is already right", which is why it may fall
  * back where `declaredFitForRace` must not. The Undead has no measured correction yet -- it
  * needs one taken against the real bony hand once that body lands.

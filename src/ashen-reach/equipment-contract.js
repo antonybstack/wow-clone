@@ -78,6 +78,19 @@ export function validateEquipmentCatalogue(items, {slots, baseMeshes, fit = HUMA
         }
         if (Boolean(item.factory) === Boolean(item.parts?.length)) throw Error(`Item needs one attachment type: ${id}`);
         if (item.factory && !HANDS.includes(item.slot)) throw Error(`Invalid prop slot: ${id}`);
+        if (item.factory && !['staff','greatstaff','book','sword','authored'].includes(item.factory)) throw Error(`Unknown prop factory: ${id}`);
+        if (item.factory === 'authored') {
+            const asset=item.asset;
+            if (!asset || !/^[a-f0-9]{64}$/.test(asset.sha256) ||
+                asset.url!==`/ashen-reach/props/${id}-${asset.sha256}.glb` ||
+                !Number.isSafeInteger(asset.bytes) || asset.bytes<1 || asset.bytes>96*1024 ||
+                asset.compression || !Array.isArray(asset.meshes) || !asset.meshes.length || asset.meshes.length>3 ||
+                asset.meshes.some(name=>typeof name!=='string'||!name)) throw Error(`Invalid authored prop resource: ${id}`);
+            const grip=item.gripGeometry;
+            if (!grip || ![grip.origin,grip.axis].every(v=>Array.isArray(v)&&v.length===3&&v.every(Number.isFinite)) ||
+                Math.abs(Math.hypot(...grip.axis)-1)>1e-6 || !Number.isFinite(grip.length) || grip.length<=0 ||
+                !Number.isFinite(grip.radius) || grip.radius<=0) throw Error(`Invalid authored grip geometry: ${id}`);
+        } else if (item.asset) throw Error(`Unexpected authored prop resource: ${id}`);
         for (const mask of item.coverage || []) {
             if (!masks.has(mask)) throw Error(`Unknown coverage mask: ${id}/${mask}`);
         }

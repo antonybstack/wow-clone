@@ -30,6 +30,7 @@ import { installEquipmentGrips, spellStowsWeapon } from "./equipment-grips.js";
 import { createEquipmentLoader } from "./equipment-loader.js";
 import {dyeFactor,isDyeId} from './dye-palette.js';
 import { createMageProp } from "./mage-props.js";
+import {equipmentAsset} from './equipment-resources.js';
 import {
   advancePropTransition,
   beginPropTransition,
@@ -174,7 +175,11 @@ export async function createStreamedEquipment(
         rotation: [q.x, q.y, q.z, q.w],
       };
     entry.attachment = where;
-    entry.root.scaling.set(hold.scale, hold.scale, hold.scale);
+    // Lite's glTF __root__ owns the RH-to-LH X reflection. Socket TRS is
+    // already in scene space; retain this reflection when sizing a rigid GLB
+    // so native single-sided triangle winding and normals stay consistent.
+    // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/loader-gltf/load-gltf.ts
+    entry.root.scaling.set(item.asset ? -hold.scale : hold.scale, hold.scale, hold.scale);
     if (first) {
       entry.root.position.set(...target.position);
       entry.root.rotationQuaternion.set(...target.rotation);
@@ -191,7 +196,7 @@ export async function createStreamedEquipment(
       meshes,
       owned = [];
     try {
-      if (item.factory) {
+      if (item.factory && !item.asset) {
         const prop =
           item.factory === "sword"
             ? createArmingSword(
@@ -203,9 +208,9 @@ export async function createStreamedEquipment(
             : createMageProp(engine, scene, item.factory);
         ({ root, meshes } = prop);
       } else {
-        const asset = manifest.items[id];
+        const asset = equipmentAsset(item,manifest), rigid=!!item.asset;
         textureEntries = asset?.textures || [];
-        if (options.shapeFamily && asset?.shapeFamily !== options.shapeFamily)
+        if (!rigid && options.shapeFamily && asset?.shapeFamily !== options.shapeFamily)
           throw Error(`The ${race} ${item.name} has no compatible ${options.shapeFamily} deformation`);
         // An item this pack does not carry is an unsupported combination, not a cue to
         // reach for the Human asset. Say which race is missing it.
@@ -214,7 +219,7 @@ export async function createStreamedEquipment(
           throw Error("Equipment asset exceeds supported size");
         // Throws unless the manifest entry's fit is the one this item declares for this
         // race. No Human default: see declaredFitForRace in equipment-contract.js.
-        assertAssetFit(asset, item, race);
+        if(!rigid)assertAssetFit(asset, item, race);
         const lease=options.acquireBuffer?.(asset,signal);
         try {
         const response = lease||options.loadBuffer?null:await fetch(asset.url, { signal });
@@ -228,7 +233,7 @@ export async function createStreamedEquipment(
             `The ${race} ${item.name} is ${bytes.byteLength} bytes, not the ${asset.bytes} its manifest declares`,
           );
         const verify =
-          import.meta.env?.DEV !== false ||
+          rigid || import.meta.env?.DEV !== false ||
           new URLSearchParams(globalThis.location?.search || "").has(
             "verifyAssets",
           );
@@ -237,10 +242,12 @@ export async function createStreamedEquipment(
             new Uint8Array(await crypto.subtle.digest("SHA-256", bytes)),
             (n) => n.toString(16).padStart(2, "0"),
           ).join("");
-          if (digest !== asset.sha256)
+          if (digest !== asset.sha256) {
+            await options.loadBuffer?.invalidate?.(asset, bytes);
             throw Error(
               `The ${race} ${item.name} at ${asset.url} does not match its manifest hash`,
             );
+          }
         }
         signal.throwIfAborted();
         container = await loadGltf(engine, bytes);
@@ -253,6 +260,14 @@ export async function createStreamedEquipment(
         root = container.entities[0];
         meshes = getContainerMeshes(container);
         signal.throwIfAborted();
+        if(rigid){
+          // This verified prop owns its native container. A rigid socket item
+          // neither borrows the actor's palette nor receives body morphs.
+          // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#skins
+          if(meshes.length!==asset.meshes.length||meshes.some((m,i)=>m.name!==asset.meshes[i]||m.skeleton||m.morphTargets))
+            throw Error('Authored prop mesh/rig ownership mismatch');
+          for(const mesh of meshes)mesh.receiveShadows=true;
+        } else {
         for (const part of item.parts)
           if (!meshes.some((m) => m.name === part.mesh))
             throw Error("Missing garment part: " + part.mesh);
@@ -287,21 +302,26 @@ export async function createStreamedEquipment(
         root.position.set(0, 0, 0);
         root.rotationQuaternion.set(0, 0, 0, 1);
         root.scaling.set(1, 1, 1);
+        }
         setMeshVisible(root, false);
         for (const mesh of meshes) setMeshVisible(mesh, false);
         // The dye is applied here and nowhere else. `baseColorFactor` is honoured when the
         // material is built into the scene, so this is the one window where it takes: mutating
         // it on a live material does nothing, and replacing the material loses the ORM, normal
         // and emissive maps and the ashen plugins. See the M7 mechanism note.
-        const dye = context?.dyes?.[item.slot]
+        const dye = rigid ? null : context?.dyes?.[item.slot]
           ? dyeFactor(context.dyes[item.slot]) : options.getDye?.(item.id) ?? null;
         for (const mesh of meshes) {
           if (dye && mesh.material) mesh.material.baseColorFactor = dye;
           prepareLinearMaterial(scene, mesh.material);
         }
         addToScene(scene, container);
+        // Keep an uncommitted rigid container detached. apply() owns the first
+        // socket attachment after the native pipeline fence has succeeded.
+        // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/loader-gltf/load-gltf.ts
       }
       setMeshVisible(root, false);
+      if(item.asset)for(const mesh of meshes)setMeshVisible(mesh,false);
       let dead = false, textureUpgrade = null;
       const entry = {
         item,
@@ -359,7 +379,8 @@ export async function createStreamedEquipment(
       const equipped = next[entry.item.slot] === entry.item.id && cache.get(entry.item.id)===entry;
       if (equipped) setAttachment(entry, casting);
       setMeshVisible(entry.root, visible && equipped);
-      if (equipped && entry.item.parts)
+      if (entry.item.asset)for(const mesh of entry.meshes)setMeshVisible(mesh,visible&&equipped);
+      else if (equipped && entry.item.parts)
         for (const mesh of entry.meshes)
           setMeshVisible(mesh, visible && !!mask[mesh.name]);
     }
@@ -386,7 +407,8 @@ export async function createStreamedEquipment(
     beforeCommit:(next,cache,signal,context)=>{
       if(options.beforeCommit)return options.beforeCommit(next,[...cache.values()],signal);
       const liveRecolour=context?.recolour&&Object.values(next).some(id=>id&&liveEntries.has(id)&&cache.get(id)!==liveEntries.get(id));
-      if(!liveRecolour||!scene._built)return;
+      const newAuthored=Object.values(next).some(id=>id&&cache.get(id)?.item.asset&&cache.get(id)!==liveEntries.get(id));
+      if((!liveRecolour&&!newAuthored)||!scene._built)return;
       // Lite builds runtime PBR meshes asynchronously. Retain the old visible
       // piece until the replacement has a native renderable, not just GLB bytes.
       // Reuse the pinned staging adapter and public pipeline fence used by exact

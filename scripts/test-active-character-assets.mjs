@@ -39,6 +39,12 @@ test('animation payload identity does not change bind compatibility',()=>{
   assert.notEqual(a.animationSha256,b.animationSha256);
   assert.equal(compareRig(a,b).status,'valid');
 });
+test('authored hand resources cannot be silently classified as zero-byte procedural geometry',async()=>{
+ const read=(file,...args)=>file.includes('/props/bastionShield-')?Promise.reject(Error('missing authored prop fixture')):fs.readFile(file,...args);
+ const report=await audit(undefined,read);
+ assert(!report.proceduralProps.some(row=>row.id==='bastionShield'));
+ assert.match(report.errors.join(),/authored props: missing authored prop fixture/);
+});
 test('nearest-rank tails and counts agree with raw intervals',()=>{
   const raw=[5,10,7,6,20];
   const s=summarizeFrameIntervals(raw);
@@ -51,7 +57,9 @@ test('nearest-rank tails and counts agree with raw intervals',()=>{
 test('missing active file fails while preserving prior valid report rows',async()=>{
   const source=await fs.readFile('src/ashen-reach/main.js','utf8');
   assert.match(source,/const UNDEAD_PACK_DIR='equipment-undead'/);
-  const read=async (file,...args)=>file.endsWith('/equipment-orc/wayfarerBoots.glb')?Promise.reject(Object.assign(new Error('missing fixture'),{code:'ENOENT'})):fs.readFile(file,...args);
+  const manifest=JSON.parse(await fs.readFile('public/ashen-reach/equipment-orc/manifest.json'));
+  const bootPath='public'+manifest.items.wayfarerBoots.url;
+  const read=async (file,...args)=>file.endsWith(bootPath)?Promise.reject(Object.assign(new Error('missing fixture'),{code:'ENOENT'})):fs.readFile(file,...args);
   const report=await audit(undefined,read);
   assert.equal(Object.keys(report.packs).length,4);
   assert.equal(report.packs.human.items.body.status,'valid');

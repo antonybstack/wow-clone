@@ -3,6 +3,7 @@
 import assert from 'node:assert/strict';import test from 'node:test';
 import fs from 'node:fs/promises';import path from 'node:path';import {createHash} from 'node:crypto';
 import {APPEARANCE_CATALOG_VERSION} from '../src/character/appearance/contract.js';
+import {EQUIPMENT_ITEMS} from '../src/ashen-reach/equipment-catalog.js';
 
 // Read the runtime's published-contract version from source rather than importing the
 // renderer: it is browser-only and pulls the whole engine graph, which Node will not load.
@@ -17,6 +18,17 @@ const sha=b=>createHash('sha256').update(b).digest('hex');
 const descriptor=JSON.parse(await fs.readFile(path.join(DIR,'prepared.json'),'utf8'));
 const index=JSON.parse(await fs.readFile(path.join(DIR,'index.json'),'utf8'));
 const lite=JSON.parse(await fs.readFile('node_modules/@babylonjs/lite/package.json','utf8')).version;
+
+test('shared rigid resources are source-addressed and published before network support',async()=>{
+ const expected=Object.fromEntries(Object.values(EQUIPMENT_ITEMS).filter(item=>item.asset).map(item=>[item.id,item.asset]));
+ assert.deepEqual(descriptor.manifest.authoredProps,expected);
+ assert.deepEqual(index.authoredProps,descriptor.published.authoredProps);
+ for(const row of index.authoredProps) {
+  const asset=expected[row.id];assert(asset,'Unknown authored prop publication');
+  const bytes=await fs.readFile('public'+asset.url);assert.equal(bytes.length,asset.bytes);assert.equal(sha(bytes),asset.sha256);
+  assert.equal(row.bytes,asset.bytes);assert.equal(row.sha256,asset.sha256);
+ }
+});
 
 test('the published descriptor declares a version the runtime accepts',()=>{
     assert.equal(descriptor.candidateOnly,false);

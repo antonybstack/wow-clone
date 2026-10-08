@@ -2,16 +2,16 @@
  *
  * What the shared region can actually render, derived from the published remote-piece set.
  * The presence server validates seat appearances against this, so authority can never accept
- * a race or a piece that was never published. Factory items are generated at runtime and
- * carry no per-race fit, so they appear under every race.
+ * a race or a piece that was never published. Hand props are procedural or verified
+ * shared rigid assets; their declared socket fits are supported on every current race.
  */
 export const PRESENCE_PIECE_CATALOGUE=Object.freeze({
  publishVersion:1,
- catalogVersion:"appearance-catalog-v8",
- sourceCompilerSha256:"e9bb55b8b67195c5fe92cb8ebfc86aa59ee654a614bcec4154ab5c721a531563",
+ catalogVersion:"appearance-catalog-v9",
+ sourceCompilerSha256:"10e465898c8e04283e2bd8bf78520375a257356e32ae9bff058ff5b633d1e1f8",
  races:Object.freeze({
-  human:Object.freeze(["bastionShoulders","duskguardCuirass","duskguardGreaves","duskguardTassets","duskguardVambraces","fieldcoat","graveweaverBook","graveweaverGloves","graveweaverGreatstaff","graveweaverHood","graveweaverSkirt","graveweaverStaff","graveweaverTop","ironSword","lectorCoat","pilgrimTunic","wardenPauldrons","wayfarerBoots","wayfarerTrousers","wayfarerTunic"]),
-  orc:Object.freeze(["bastionShoulders","duskguardCuirass","duskguardGreaves","duskguardTassets","duskguardVambraces","fieldcoat","graveweaverBook","graveweaverGloves","graveweaverGreatstaff","graveweaverHood","graveweaverSkirt","graveweaverStaff","graveweaverTop","ironSword","lectorCoat","pilgrimTunic","wardenPauldrons","wayfarerBoots","wayfarerTrousers","wayfarerTunic"]),
-  undead:Object.freeze(["bastionShoulders","duskguardCuirass","duskguardGreaves","duskguardTassets","duskguardVambraces","fieldcoat","graveweaverBook","graveweaverGloves","graveweaverGreatstaff","graveweaverHood","graveweaverSkirt","graveweaverStaff","graveweaverTop","ironSword","lectorCoat","pilgrimTunic","wardenPauldrons","wayfarerBoots","wayfarerTrousers","wayfarerTunic"]),
+  human:Object.freeze(["bastionShield","bastionShoulders","duskguardCuirass","duskguardGreaves","duskguardTassets","duskguardVambraces","fieldcoat","graveweaverBook","graveweaverGloves","graveweaverGreatstaff","graveweaverHood","graveweaverSkirt","graveweaverStaff","graveweaverTop","ironSword","lectorCoat","pilgrimTunic","wardenPauldrons","wayfarerBoots","wayfarerTrousers","wayfarerTunic"]),
+  orc:Object.freeze(["bastionShield","bastionShoulders","duskguardCuirass","duskguardGreaves","duskguardTassets","duskguardVambraces","fieldcoat","graveweaverBook","graveweaverGloves","graveweaverGreatstaff","graveweaverHood","graveweaverSkirt","graveweaverStaff","graveweaverTop","ironSword","lectorCoat","pilgrimTunic","wardenPauldrons","wayfarerBoots","wayfarerTrousers","wayfarerTunic"]),
+  undead:Object.freeze(["bastionShield","bastionShoulders","duskguardCuirass","duskguardGreaves","duskguardTassets","duskguardVambraces","fieldcoat","graveweaverBook","graveweaverGloves","graveweaverGreatstaff","graveweaverHood","graveweaverSkirt","graveweaverStaff","graveweaverTop","ironSword","lectorCoat","pilgrimTunic","wardenPauldrons","wayfarerBoots","wayfarerTrousers","wayfarerTunic"]),
  }),
 });

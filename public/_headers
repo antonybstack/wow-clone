@@ -44,6 +44,12 @@
 /ashen-reach/human-shape-v1/*.bin
   Cache-Control: public, max-age=31536000, immutable
 
+# Authored rigid props use content-addressed URLs shared by all supported fits.
+# https://developers.cloudflare.com/pages/configuration/headers/
+/ashen-reach/props/*.glb
+  Content-Type: model/gltf-binary
+  Cache-Control: public, max-age=31536000, immutable
+
 /ashen-reach/human-shape-v1/manifest.json
   Cache-Control: no-cache
 

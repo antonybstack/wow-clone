@@ -1,5 +1,6 @@
 import {verifyProductionHumanShapes} from './scripts/character-assets/verify-production-human-shapes.mjs';
 import {verifyProductionHumanIdentities} from './scripts/character-assets/verify-production-human-identities.mjs';
+import {verifyPublishedAuthoredProps} from './scripts/character-assets/publish-authored-prop.mjs';
 import {verifyStartupAssets} from './scripts/ashen-reach/startup-provenance.mjs';
 import {verifyStarterGeometry} from './scripts/ashen-reach/verify-starter-geometry.mjs';
 import {writeEarlyHints} from './scripts/ashen-reach/early-hints.mjs';
@@ -21,7 +22,7 @@ const savedStartupModules=new Set([
   'src/character/appearance/store.js','src/character/appearance/contract.js',
   'src/character/appearance/codec.js','src/character/appearance/from-equipment.js',
   'src/character/appearance/human-identity.js',
-  ...['equipment-catalog','equipment-contract','dye-palette','coverage-contract','coverage-manifest'].map(name=>`src/ashen-reach/${name}.js`),
+  ...['equipment-catalog','equipment-contract','equipment-resources','dye-palette','coverage-contract','coverage-manifest'].map(name=>`src/ashen-reach/${name}.js`),
 ].map(file=>resolve(file)));
 
 const pages = process.env.ASHEN_PAGES === "1";
@@ -206,7 +207,7 @@ export default defineConfig({
     // Prepared inputs are allowed to change while authoring. Enforce sealed
     // descriptors on release builds, without terminating dev during regeneration.
     // https://vite.dev/guide/api-plugin.html#conditional-application
-    {name: "verify-prepared-startup", apply:'build', async buildStart(){if(starterBuild){await verifyStartupAssets();await verifyStarterGeometry(starterWorldManifest,file=>readFileSync('public/ashen-reach/startup/starter/'+file));}await verifyProductionHumanShapes();await verifyProductionHumanIdentities();}},
+    {name: "verify-prepared-startup", apply:'build', async buildStart(){if(starterBuild){await verifyStartupAssets();await verifyStarterGeometry(starterWorldManifest,file=>readFileSync('public/ashen-reach/startup/starter/'+file));}await verifyProductionHumanShapes();await verifyProductionHumanIdentities();await verifyPublishedAuthoredProps();}},
     // Pages skips crossorigin/fetchpriority links when generating Early Hints, so hint the
     // built startup module graph with explicit Link headers in the copied _headers. Runs
     // after the HTML (including the early saved-character entry) is final.

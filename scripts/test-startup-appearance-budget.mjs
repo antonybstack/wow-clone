@@ -4,6 +4,19 @@ import {compactAppearanceBytes,maximumCompactAppearance} from './character-asset
 const asset=(url,encodedBytes)=>({url,encodedBytes,bytes:10000,compression:'gzip'});
 const manifest=compactItems=>({items:Object.fromEntries(Object.keys(compactItems).map(id=>[id,{}])),compactItems});
 
+test('authored off-hand transfer enters the maximum even without race garment entries',()=>{
+ const shared={url:'/shield.glb',bytes:67352};
+ const items={sword:{slot:'mainHand',factory:'sword',occupies:['mainHand']},
+  shield:{slot:'offHand',factory:'authored',asset:shared,occupies:['offHand']},
+  book:{slot:'offHand',factory:'book',occupies:['offHand']}};
+ const m=manifest({body:asset('/body',100)});
+ const cost=compactAppearanceBytes(m,{mainHand:'sword',offHand:'shield'},{items});
+ assert.equal(cost.bytes,67452);assert.equal(cost.resources[1].url,shared.url);
+ const report=maximumCompactAppearance([{id:'body',manifest:m}],{items,slots:['mainHand','offHand']});
+ assert.deepEqual(report.maximum.equipment,{mainHand:'sword',offHand:'shield'});
+ assert.equal(report.maximum.bytes,67452);
+});
+
 test('payload cost uses encoded bytes and the runtime shared URL cache',()=>{
  const m=manifest({body:asset('/body',100),a:asset('/shared',50),b:asset('/shared',50)});
  assert.equal(compactAppearanceBytes(m,{torso:'a',legs:'b',mainHand:'procedural'}).bytes,150);

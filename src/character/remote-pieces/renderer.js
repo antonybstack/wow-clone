@@ -77,6 +77,8 @@ export async function createRemotePieceActors(game,{root='/__remote_pieces__',ca
   &&/^[0-9a-f]{64}$/.test(prepared.published?.sourceCompilerSha256||'')
   &&prepared.published?.lite===VERSION&&prepared.published?.catalogVersion===APPEARANCE_CATALOG_VERSION;
  if(prepared.schema!==1||prepared.lite!==VERSION||prepared.catalogVersion!==APPEARANCE_CATALOG_VERSION||prepared.escaped!==0||source?.schema!==1||source.catalogVersion!==APPEARANCE_CATALOG_VERSION||source.lite!==VERSION||!(candidate||release))throw Error('Remote piece contract mismatch');
+ const authoredResources=Object.fromEntries(Object.values(EQUIPMENT_ITEMS).filter(item=>item.asset).map(item=>[item.id,item.asset]));
+ if(JSON.stringify(source.authoredProps)!==JSON.stringify(authoredResources))throw Error('Remote authored prop resource identity mismatch');
  const manifests=new Map();
  for(const [race,data]of Object.entries(source.races)){
   if(!FITS_BY_RACE[race]||data.manifest.fitId!==FITS_BY_RACE[race].body||!prepared.races[race]?.clips)throw Error('Unsupported remote race fit');

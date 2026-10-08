@@ -45,6 +45,7 @@ const meshNamesFor = (id, sceneNames) => {
     const item = id ? EQUIPMENT_ITEMS[id] : null;
     if (!item) return [];
     if (item.parts?.length) return item.parts.map(part => part.mesh);
+    if (item.asset) return [...item.asset.meshes];
     if (!item.factory) return [];
     const prefix = item.factory.toLowerCase();
     return sceneNames.filter(name => name.toLowerCase().startsWith(prefix));

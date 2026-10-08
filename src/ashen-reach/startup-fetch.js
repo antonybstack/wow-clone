@@ -2,6 +2,8 @@
  * saved-character entry can start the same requests while Lite is downloading.
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#dynamic_module_loading
  */
+import {EQUIPMENT_ITEMS} from './equipment-catalog.js';
+import {selectedEquipmentResources} from './equipment-resources.js';
 const pending = new Map();
 function resourceFailure(url, operation, cause) {
   return new Error(`Startup resource ${url}: ${operation} failed: ${cause?.message??String(cause)}`, {cause});
@@ -39,13 +41,30 @@ export function startupAssetBuffer(asset, {priority = 'high'} = {}) {
         return bytes;
       })
       .catch((error) => {
-        pending.delete(asset.url);
+        if (pending.get(asset.url) === task) pending.delete(asset.url);
         throw resourceFailure(asset.url, operation, error);
       });
     pending.set(asset.url, task);
   }
   return pending.get(asset.url);
 }
+/** A size-valid response can still fail the consumer's SHA-256 check. Release
+ * only that exact buffer generation so the next explicit request can fetch it
+ * again; a late consumer must not evict a newer, valid transfer.
+ * https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest
+ */
+startupAssetBuffer.invalidate = async (asset, bytes) => {
+  const task = pending.get(asset.url);
+  if (!task) return false;
+  try {
+    if (await task !== bytes || pending.get(asset.url) !== task) return false;
+    pending.delete(asset.url);
+    return true;
+  } catch {
+    // Failed transfers already release their own cache generation above.
+    return false;
+  }
+};
 export const EMBEDDED_IDENTITY_CATALOGUE_ID='ashen-human-identity-catalogue';
 let starterManifestTask, shapeManifestTask, identityCatalogueTask;
 /** Production HTML can carry the exact build-verified catalogue as inert JSON.
@@ -92,9 +111,8 @@ async function loadStarterCharacter() {
 export async function preloadHumanShapePack(loadout = {}, {compact = false} = {}) {
   const manifest = await (shapeManifestTask ??= loadHumanShapeManifest().catch(error => {shapeManifestTask=null;throw error;}));
   const selected=compact?{...manifest,items:manifest.compactItems,fullManifest:manifest}:manifest;
-  const ids=new Set(['body', ...Object.values(loadout).filter(id => manifest.items[id])]);
-  for(const id of ids)if(!selected.items?.[id])throw Error(`Missing ${compact?'compact':'full'} Human piece: ${id}`);
-  for(const id of ids)startupAssetBuffer(selected.items[id]).catch(() => {});
+  const resources=selectedEquipmentResources(selected,loadout,EQUIPMENT_ITEMS);
+  for(const asset of resources.values())startupAssetBuffer(asset).catch(() => {});
   return selected;
 }
 export function preloadSavedHumanPack(appearance,options={}){

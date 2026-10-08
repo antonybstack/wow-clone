@@ -9,6 +9,7 @@ import {createHash} from 'node:crypto';import {gunzipSync} from 'node:zlib';
 import {NodeIO,VertexLayout} from '@gltf-transform/core';import {ALL_EXTENSIONS,EXTMeshoptCompression} from '@gltf-transform/extensions';
 import {MeshoptDecoder,MeshoptEncoder} from 'meshoptimizer';import sharp from 'sharp';
 import {APPEARANCE_CATALOG_VERSION} from '../../src/character/appearance/contract.js';
+import {EQUIPMENT_ITEMS} from '../../src/ashen-reach/equipment-catalog.js';
 const out=process.env.ASHEN_REMOTE_PIECES_OUT||'.cache/character-mmo/remote-pieces-v1';
 assert(!path.resolve(out).startsWith(path.resolve('public')+path.sep),'Native remote review must precede publication');
 const sha=b=>createHash('sha256').update(b).digest('hex');
@@ -31,7 +32,9 @@ function verify(source,actual){
  }
  return {geometryExact:true,morphsExact:true,bindAndFramesExact:true,sourceCurvesExact:true,triangleWindingExact:true};
 }
-await fs.mkdir(out,{recursive:true});const result={schema:1,lite:'1.31.1',catalogVersion:APPEARANCE_CATALOG_VERSION,candidateOnly:true,texturePolicy:{human:'at most 512px from published full texture masters; WebP quality 90',otherRaces:'at most 512px; WebP quality 90 for color/data, lossless encoding for resized normal maps'},races:{}};
+await fs.mkdir(out,{recursive:true});const result={schema:1,lite:'1.31.1',catalogVersion:APPEARANCE_CATALOG_VERSION,candidateOnly:true,
+ authoredProps:Object.fromEntries(Object.values(EQUIPMENT_ITEMS).filter(item=>item.asset).map(item=>[item.id,item.asset])),
+ texturePolicy:{human:'at most 512px from published full texture masters; WebP quality 90',otherRaces:'at most 512px; WebP quality 90 for color/data, lossless encoding for resized normal maps'},races:{}};
 for(const [race,directory]of [['human','human-shape-v1'],['orc','equipment-orc'],['undead','equipment-undead']]){
  const manifestPath=`public/ashen-reach/${directory}/${race==='human'?'manifest.json':'manifest-coverage-v1.json'}`,manifestBytes=await fs.readFile(manifestPath),manifest=JSON.parse(manifestBytes),items={};
  for(const [id,entry]of Object.entries(manifest.items)){

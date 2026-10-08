@@ -17,7 +17,7 @@ import { EQUIPMENT_ITEMS } from '../../src/ashen-reach/equipment-catalog.js';
 
 const url = process.env.ASHEN_TEST_URL, port = process.env.ASHEN_CDP_PORT, out = process.argv[2];
 assert(url && port && out, 'ASHEN_TEST_URL, ASHEN_CDP_PORT and an output path are required');
-const WEAPONS = (process.env.ASHEN_WEAPONS || 'ironSword,graveweaverStaff,graveweaverGreatstaff').split(',');
+const WEAPONS = (process.env.ASHEN_WEAPONS || 'ironSword,graveweaverStaff,graveweaverGreatstaff,bastionShield').split(',');
 const RACES = (process.env.ASHEN_RACES || 'human,orc,undead').split(',');
 
 const browser = await chromium.connectOverCDP(`http://127.0.0.1:${port}`);
@@ -42,14 +42,15 @@ try {
             await page.evaluate(() => ASHEN.whenRest);
         }
         for (const weapon of WEAPONS) {
-            const applied = await page.evaluate(w => ASHEN.equipment.equip('mainHand', w), weapon);
+            const item=EQUIPMENT_ITEMS[weapon];assert(item?.factory,'Unknown hand item');
+            const applied = await page.evaluate(([slot,w]) => ASHEN.equipment.equip(slot, w), [item.slot,weapon]);
             assert.equal(applied.status, 'applied', `${race}/${weapon}: ${applied.error}`);
             await page.waitForTimeout(700);
             // One frozen pose, so the measurement is not the frame the gait happened to be on.
             await page.evaluate(() => { for (const g of ASHEN.body.animationGroups) if (g.isPlaying && g.weight > 0.01) { g.currentTime = 0; g.speedRatio = 0; } });
             await page.waitForTimeout(400);
             const factory = EQUIPMENT_ITEMS[weapon].factory;
-            const row = await page.evaluate(async ([w, prefix]) => {
+            const row = await page.evaluate(async ({prefix,meshNames,grip,slot}) => {
                 const samples = (await import('/src/character/runtime/source-hand-poses.json', { with: { type: 'json' } })).default;
                 const sockets = ASHEN.sockets, skeleton = sockets.skeleton;
                 const centre = ASHEN.player.getDebugState().position;
@@ -62,7 +63,7 @@ try {
                 // cached rather than disposed when unequipped, so a loose name match returned
                 // the stale sword for every weapon and produced three identical rows.
                 const owned = ASHEN.scene.meshes.filter(m =>
-                    m.name.toLowerCase().startsWith(prefix) && m.visible !== false);
+                    (meshNames?meshNames.includes(m.name):m.name.toLowerCase().startsWith(prefix)) && m.visible !== false);
                 if (!owned.length) return { error: `no visible ${prefix} mesh` };
                 // The handle is the part with the smallest cross-section: picking the longest
                 // part instead selected a sword's blade, whose half-width is reported as a
@@ -73,7 +74,7 @@ try {
                     const axis = spans.indexOf(Math.max(...spans));
                     return Math.max(...spans.filter((_, i) => i !== axis));
                 };
-                const mesh = owned.reduce((a, m) => (cross(m) < cross(a) ? m : a));
+                const mesh = grip?owned[0]:owned.reduce((a, m) => (cross(m) < cross(a) ? m : a));
                 const M = mesh.worldMatrix;
                 const toCapsulePoint = p => ({ x: p.x - centre.x, y: p.y - centre.y, z: p.z - centre.z });
                 const local = (x, y, z) => toCapsulePoint({
@@ -88,8 +89,14 @@ try {
                 const mid = [0, 1, 2].map(i => (min[i] + max[i]) / 2);
                 const endA = mid.slice(), endB = mid.slice();
                 endA[axisIndex] = min[axisIndex]; endB[axisIndex] = max[axisIndex];
-                const A = local(...endA), B = local(...endB);
-                const radius = Math.max(...spans.filter((_, i) => i !== axisIndex)) / 2;
+                // A whole shield material group is not a cylindrical handle.
+                // Transform declared authored grip endpoints through the same
+                // native socket-driven mesh used for the visible prop.
+                // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#transformations
+                const gripEnd=sign=>grip.origin.map((v,i)=>v+sign*grip.axis[i]*grip.length/2);
+                const A = local(...(grip?gripEnd(-1):endA)), B = local(...(grip?gripEnd(1):endB));
+                const scale=Math.hypot(M[0],M[1],M[2]);
+                const radius = grip?grip.radius*scale:Math.max(...spans.filter((_, i) => i !== axisIndex)) / 2;
                 const d = { x: B.x - A.x, y: B.y - A.y, z: B.z - A.z };
                 const len2 = d.x * d.x + d.y * d.y + d.z * d.z;
                 const perpendicular = p => {
@@ -97,7 +104,7 @@ try {
                     const q = { x: A.x + d.x * t, y: A.y + d.y * t, z: A.z + d.z * t };
                     return Math.hypot(p.x - q.x, p.y - q.y, p.z - q.z);
                 };
-                const side = ASHEN.equipment.getState().mainHand ? 'Right' : 'Right';
+                const side = slot==='offHand'?'Left':'Right';
                 const joints = {};
                 for (const s of samples) {
                     if (!s.name.includes(side)) continue;
@@ -105,9 +112,9 @@ try {
                     if (p) joints[s.name.replace(`mixamorig:${side}`, '')] = +perpendicular(p).toFixed(4);
                 }
                 return { mesh: mesh.name, gripRadius: +radius.toFixed(4), gripLength: +Math.sqrt(len2).toFixed(4), joints };
-            }, [weapon, factory]);
+            }, {prefix:factory,meshNames:item.asset?.meshes,grip:item.gripGeometry,slot:item.slot});
             assert(!row.error, `${race}/${weapon}: ${row.error}`);
-            assert(row.mesh.toLowerCase().startsWith(factory), `${race}/${weapon} measured ${row.mesh}, which is not a ${factory}`);
+            assert(item.asset?item.asset.meshes.includes(row.mesh):row.mesh.toLowerCase().startsWith(factory), `${race}/${weapon} measured foreign mesh ${row.mesh}`);
             rows.push({ race, weapon, ...row });
             console.log(JSON.stringify({ race, weapon, mesh: row.mesh, radius: row.gripRadius, joints: row.joints }));
         }

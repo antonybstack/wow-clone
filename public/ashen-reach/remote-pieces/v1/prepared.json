@@ -1,13 +1,25 @@
 {
  "schema": 1,
  "lite": "1.31.1",
- "catalogVersion": "appearance-catalog-v8",
+ "catalogVersion": "appearance-catalog-v9",
  "candidateOnly": false,
  "manifest": {
   "schema": 1,
   "lite": "1.31.1",
-  "catalogVersion": "appearance-catalog-v8",
+  "catalogVersion": "appearance-catalog-v9",
   "candidateOnly": false,
+  "authoredProps": {
+   "bastionShield": {
+    "url": "/ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb",
+    "sha256": "926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c",
+    "bytes": 67352,
+    "meshes": [
+     "BastionShield",
+     "BastionShield",
+     "BastionShield"
+    ]
+   }
+  },
   "texturePolicy": {
    "human": "at most 512px from published full texture masters; WebP quality 90",
    "otherRaces": "at most 512px; WebP quality 90 for color/data, lossless encoding for resized normal maps"
@@ -16,7 +28,7 @@
    "human": {
     "sourceManifest": {
      "path": "public/ashen-reach/human-shape-v1/manifest.json",
-     "sha256": "f29026c07a84687844bcbff631b84439712f533fa9813e469b180f643139dbac"
+     "sha256": "ce19d150c61fb81803b0e4c2f60b6543f24f9ef00982b74d5291435966d92180"
     },
     "manifest": {
      "schema": 1,
@@ -2939,7 +2951,7 @@
    "meshoptimizer": "0.22.0",
    "sharp": "0.35.4"
   },
-  "compilerSha256": "e9bb55b8b67195c5fe92cb8ebfc86aa59ee654a614bcec4154ab5c721a531563"
+  "compilerSha256": "10e465898c8e04283e2bd8bf78520375a257356e32ae9bff058ff5b633d1e1f8"
  },
  "races": {
   "human": {
@@ -6047,12 +6059,22 @@
  "gpuErrors": [],
  "published": {
   "version": 1,
-  "publishedAt": "2026-10-08T02:57:11.436Z",
-  "sourceCompilerSha256": "e9bb55b8b67195c5fe92cb8ebfc86aa59ee654a614bcec4154ab5c721a531563",
+  "publishedAt": "2026-10-08T04:59:51.051Z",
+  "sourceCompilerSha256": "10e465898c8e04283e2bd8bf78520375a257356e32ae9bff058ff5b633d1e1f8",
   "pieceCount": 51,
   "uniqueFiles": 51,
   "totalBytes": 21062924,
+  "authoredProps": [
+   {
+    "id": "bastionShield",
+    "url": "/ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb",
+    "sha256": "926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c",
+    "bytes": 67352,
+    "triangles": 1104,
+    "draws": 3
+   }
+  ],
   "lite": "1.31.1",
-  "catalogVersion": "appearance-catalog-v8"
+  "catalogVersion": "appearance-catalog-v9"
  }
 }

@@ -8,11 +8,11 @@ import assert from 'node:assert/strict';
 import {EQUIPMENT_ITEMS,EQUIPMENT_SLOTS} from '../../src/ashen-reach/equipment-catalog.js';
 import {validateEquipmentSelection} from '../../src/ashen-reach/equipment-contract.js';
 
-export function compactAppearanceBytes(manifest,equipment,{compactItems=manifest.compactItems}={}){
- const ids=new Set(['body',...Object.values(equipment).filter(id=>manifest.items[id])]);
+export function compactAppearanceBytes(manifest,equipment,{compactItems=manifest.compactItems,items=EQUIPMENT_ITEMS}={}){
+ const ids=new Set(['body',...Object.values(equipment).filter(id=>manifest.items[id]||items[id]?.asset)]);
  const resources=new Map();
  for(const id of ids){
-  const asset=compactItems?.[id];assert(asset,`Missing compact asset: ${id}`);
+  const asset=items[id]?.asset??compactItems?.[id];assert(asset,`Missing compact asset: ${id}`);
   const bytes=asset.compression==='gzip'?asset.encodedBytes:asset.bytes;
   assert(Number.isSafeInteger(bytes)&&bytes>0,`Missing encoded byte count: ${id}`);
   assert(typeof asset.url==='string'&&asset.url.length>0,`Missing asset URL: ${id}`);
@@ -47,7 +47,7 @@ export function maximumCompactAppearance(profiles,{items=EQUIPMENT_ITEMS,slots=E
    // Selection can depend on semantic coverage: omitting hidden hair changes
    // the heaviest outfit. Enumerate with the same runtime selector rather than
    // subtracting a fixed saving from the previous maximum.
-   const cost=compactAppearanceBytes(profile.manifest,equipment,{compactItems:resolveCompactItems(profile,equipment)});
+   const cost=compactAppearanceBytes(profile.manifest,equipment,{compactItems:resolveCompactItems(profile,equipment),items});
    // Procedural held props add no GLB bytes. Prefer a fully equipped tie rather
    // than quietly removing them from the timing fixture.
    if(!best||cost.bytes>best.bytes||(cost.bytes===best.bytes&&worn>best.worn))
@@ -55,5 +55,5 @@ export function maximumCompactAppearance(profiles,{items=EQUIPMENT_ITEMS,slots=E
   }
  }
  assert(best,'No valid prepared appearance');
- return {schema:1,scope:'Unique compact body/clothing transfer bytes; excludes common code, world, manifests and procedural props',enumerated,valid,profiles:profiles.length,maximum:best};
+ return {schema:1,scope:'Unique compact body/clothing and authored prop transfer bytes; excludes common code, world, manifests and procedural props',enumerated,valid,profiles:profiles.length,maximum:best};
 }

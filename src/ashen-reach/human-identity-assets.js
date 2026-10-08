@@ -7,6 +7,8 @@ import {startupAssetBuffer,preloadHumanShapePack,preloadHumanIdentityCatalogue,i
 import {findHumanIdentityPreset} from '../character/appearance/human-identity.js';
 import {manifestBodyCoverage} from './coverage-manifest.js';
 import {compactStarterIdentity} from './starter-identity-policy.js';
+import {EQUIPMENT_ITEMS} from './equipment-catalog.js';
+import {selectedEquipmentResources} from './equipment-resources.js';
 let indexTask;
 async function loadIndex(){
  const index=await preloadHumanIdentityCatalogue(),expected=import.meta.env?.VITE_HUMAN_IDENTITY_SOURCE;
@@ -23,12 +25,11 @@ export async function preloadHumanIdentityPack(components,loadout={}, {compact=f
  if(full?.identity?.preset!==preset.id||full.fitId!=='ashen-human'||full.shapeFamily!==index.shapeFamily||full.targetNames?.join('|')!=='slender|stout'||JSON.stringify(full.identity.components)!==JSON.stringify(preset.components))throw Error('Identity descriptor differs from the saved preset');
  manifestBodyCoverage(full,'human');
  const selected=compact?compactStarterIdentity(full,index.presets['prime-bald']?.manifest,loadout,deferCoveredHair):full;
- const ids=new Set(['body',...Object.values(loadout).filter(id=>full.items[id])]);
- for(const id of ids)if(!selected.items?.[id])throw Error(`Missing selected Human piece ${id}`);
+ const resources=selectedEquipmentResources(selected,loadout,EQUIPMENT_ITEMS);
  // The body gates skinning and collision attachment; independent gear transfers
  // can overlap at lower priority. All pieces still gate the dressed first frame,
  // and equipment installation reuses these exact fetch/decompression promises.
  // https://developer.mozilla.org/en-US/docs/Web/API/RequestInit#priority
- for(const id of ids)startupAssetBuffer(selected.items[id],{priority:id==='body'?'high':'low'}).catch(()=>{});
+ for(const [id,asset]of resources)startupAssetBuffer(asset,{priority:id==='body'?'high':'low'}).catch(()=>{});
  return selected;
 }

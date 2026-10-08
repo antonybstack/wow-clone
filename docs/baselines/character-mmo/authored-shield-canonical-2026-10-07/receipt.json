@@ -1,0 +1,4390 @@
+{
+  "schema": 1,
+  "status": "locally accepted; production unchanged",
+  "task": "canonical authored shield",
+  "localDate": "2026-10-07",
+  "sourceHeadBeforeCommit": "994576fc8b6aea276a7a796465d7310e7d29b8b3",
+  "sourceFingerprint": {
+    "blender/characters/props/bastion-shield.glb": "926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c",
+    "blender/characters/props/bastion-shield.json": "73d40e24cde45ada62bd32b86450d02d1d855dca3d7843c24882e2b1dfc1f2b6",
+    "package.json": "bc07beea1d53eb6cdcd59a05d0a975f89369d92f2bd8da135af6a3764e710c29",
+    "public/_headers": "1730d56eb6dbcb831cadd8e89f56abb29e53c39a607c28c4870c80f33b0550ac",
+    "public/ashen-reach/human-identity-v1/manifest.json": "8fc20b7955a6c8901ec26571a0952765ba64b97bff505d3a59b11ba070e31033",
+    "public/ashen-reach/human-shape-v1/manifest.json": "ce19d150c61fb81803b0e4c2f60b6543f24f9ef00982b74d5291435966d92180",
+    "public/ashen-reach/remote-pieces/v1/index.json": "30ba48cecdf20d61fc4566686e793be8c41ff6f4cde3a3ece43df768a57a3e4f",
+    "public/ashen-reach/remote-pieces/v1/prepared.json": "0255a1e2396f1435027f83566d65eadd5df9026f48195344c5d95ed30551e9e1",
+    "scripts/character-assets/audit-active-character-assets.mjs": "54e9bc52d15562cf930d5d21b55a7f0808985588573e7742fee1c0259a38fdc7",
+    "scripts/character-assets/author-bastion-shield.py": "5ef74e39c9aade4f43c112a13219388f0911e1eb9c260f572f489b17af5b9192",
+    "scripts/character-assets/check-armor-swap-failure.mjs": "90460b6c1f6ca611f9e25fdff5b9ea0cb9275c04b9d2c53c2e890ff247e125b8",
+    "scripts/character-assets/check-armor-swap-motion.mjs": "bb47001314966dc2abd09744bf51a2d7d2082a6672bd0f7c31fc6360a9b8b206",
+    "scripts/character-assets/measure-swap-budget.mjs": "d25bbd06ffc875767e2214463b6b2abaa49b3c8e31d42d808b74e07d6f8dd661",
+    "scripts/character-assets/measure-weapon-grip.mjs": "d262e7b62ced12a3ee3c6724267d676f8ee5ff459d6de842ad9ec8858b7168fb",
+    "scripts/character-assets/prepare-remote-pieces.mjs": "10e465898c8e04283e2bd8bf78520375a257356e32ae9bff058ff5b633d1e1f8",
+    "scripts/character-assets/publish-authored-prop.mjs": "9226738bf27672a302f3f171cf1195ea2d9402436f6cc07bfcb60dbee2f5a34e",
+    "scripts/character-assets/publish-remote-pieces.mjs": "7ccb06cf54e0510eabbbd96e976d8f2c00de03d030b0998cfef93d9019d25197",
+    "scripts/character-assets/startup-appearance-budget.mjs": "0db2a375eed1a8b1c1a52429dd948ce5c4cf285456f243cd77a66de1fc4ab88d",
+    "scripts/character-assets/verify-pages-release.mjs": "9aaaaed8983861af535518f50626eadba77d0eca3825937f0a024a9626b3ccd6",
+    "scripts/fixtures/appearance/v1-recipes.json": "7e8465b97032fb233224c92ad435d02467256a2920dc3e0c05241b7a4b8743c6",
+    "scripts/test-active-character-assets.mjs": "8dc85d0198166ee95448bd13e63d05ca87c9599714773e222a22b290a204aafe",
+    "scripts/test-appearance-catalog-v8.mjs": "5e014871e46253aa30b1a0484d98858b0d0a4bf3dc692b8c0f712bb3533b73c8",
+    "scripts/test-appearance-catalog-v9.mjs": "1c36aa07dc59d66d83dafa0d151f9da0fb263c0f6693444061ba47a70779245f",
+    "scripts/test-coverage-contract.mjs": "2876c8dd2c4b47d56758c19c59ccf9fc5f00ca10da92a00160837234f4a2f045",
+    "scripts/test-human-identity-recipe.mjs": "34b761f52d3c1a9d0791c790a1c361675b46b800f24ff8d19008bc607f7e45d1",
+    "scripts/test-remote-pieces-publication.mjs": "d9edc36f66056944e295842901cdcaf05171f4f4c26464d662eb00c522a779ac",
+    "scripts/test-startup-appearance-budget.mjs": "2f42f888afc9e0d8c2bf35854d967cf6b2dfe03e5bf48b81552634c38f28ae13",
+    "scripts/test-startup-prefetch.mjs": "7e29b97cbd8c7fe0d4b68e9d6df0c9d5ed9475d8cf127d937ab4a2ca119eeaa1",
+    "scripts/test-startup-resource-errors.mjs": "68db80014f12e8624ee8a0ede728db78bd0e353579733a91098f6cfc3e12da66",
+    "src/ashen-reach/equipment-catalog.js": "0231e1b4b03b3d0180cb87a6d808290c007cba772e4e71f19c9cb8594351c790",
+    "src/ashen-reach/equipment-contract.js": "caa82b71344a37184dc46b9ceddc24b6c53d886d02dd82139da075c25f8fbd4d",
+    "src/ashen-reach/equipment-resources.js": "c47180c69fb8415d527f7d56eaba949c4d8231773ed7c6b5feee2a4818e3457f",
+    "src/ashen-reach/equipment-stream.js": "22fe3ae2dcad056ca4daa11378458b254f06a3bc3bb78e620ce8a859a35ae1e4",
+    "src/ashen-reach/human-identity-assets.js": "eb72ea1fd9b9859691d5ac5b6cbeda268d7beba07cf647430410b3bf05acd277",
+    "src/ashen-reach/startup-fetch.js": "743a5a3cdba47ccf7ff54dcf7e946f574b3a3410923fe2a34de298d0a76e5405",
+    "src/character/appearance/contract.js": "5f04dfaec99843a98da6efffc5397d283dd9d68b5a5ce68b4726af4c2a9e08e5",
+    "src/character/remote-pieces/renderer.js": "8f10e65d91038823505410e7162b2f735830001d095e52828209ab60559632f0",
+    "src/multiplayer/presence-catalogue.js": "99230dd4cc83cf9bde2a385440c67b8603fd8d65d714ba2344ded940b969396d",
+    "vite.config.js": "6bd2f1c9528ae5f9334d262b1724df83812866948673de531fed294cbb38ca8f",
+    "public/ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb": "926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c"
+  },
+  "production": {
+    "source": "7d00c56c06f02899e2319ffdddea97728013c0b1",
+    "pages": "5723a4ab-5dfd-4902-959b-7496948ea51f",
+    "changed": false,
+    "releaseHold": true
+  },
+  "asset": {
+    "id": "bastionShield",
+    "sha256": "926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c",
+    "bytes": 67352,
+    "triangles": 1104,
+    "vertices": 2412,
+    "nativeMaterialGroups": 3,
+    "skin": false,
+    "textures": 0
+  },
+  "catalogue": {
+    "current": "appearance-catalog-v9",
+    "frozenV8Sha256": "3794c321247f812ba99caa03626849f3d4c96bcbf07df8d35a3cfd65b480a379",
+    "identityIndex": "appearance-catalog-v6"
+  },
+  "tests": {
+    "character": 231,
+    "equipment": 116,
+    "factory": 42,
+    "authoredPropRefusals": 12,
+    "focused": 35,
+    "passed": true
+  },
+  "build": {
+    "purpose": "Canonical shield metadata reproduction, byte-exact native bounds reuse, contracts and local build; no live page/FPS/Pages",
+    "steps": [
+      {
+        "name": "build-pages",
+        "childPid": 5461,
+        "code": 0,
+        "signal": null,
+        "seconds": 4.970452708000001
+      }
+    ],
+    "passed": true,
+    "completedPreparationAndSuites": {
+      "report": "package-v3/report.json",
+      "preservedFailure": true,
+      "shape": {
+        "reusedReproduction": true,
+        "proof": "package-v2/report.json",
+        "allAssetDescriptorsExact": true,
+        "nonProvenanceFieldsExact": true
+      },
+      "identity": {
+        "presets": 3,
+        "allNonProvenanceFieldsExact": true,
+        "oldSource": "2a4056c01f963dfaeddcd10ed17807873d8307534b0c4e42d5c83c7ea0eb8052",
+        "newSource": "d0519891751e22a571248b098586571ee2086077faec7bafc4c88fe6fe3e80b8"
+      },
+      "nativeBounds": {
+        "reused": true,
+        "reason": "Only source manifest provenance changed; compiler, Lite, catalogue, coverage, every asset descriptor and all 51 native GLB hashes/bytes stay exact.",
+        "pieces": 51,
+        "originalPoints": 162782025,
+        "escaped": 0,
+        "negativeControls": 4,
+        "oldEvidence": "/Users/antbly/dev/wow-clone/.cache/character-mmo/authored-shield-canonical-2026-10-07/package-v3/before-native.json"
+      }
+    }
+  },
+  "preparation": {
+    "shape": {
+      "items": 17,
+      "allAssetDescriptorsExact": true,
+      "nonProvenanceFieldsExact": true,
+      "oldSource": "4ed965f027820851865b5019d171b9218171d28ebeaef79ece5513c86f34bf57",
+      "newSource": "f5e4cfde1aef560302176c1779df7fcbc7baf52b1c0078937c82560d2ae9693a"
+    },
+    "identity": {
+      "presets": 3,
+      "allNonProvenanceFieldsExact": true,
+      "oldSource": "2a4056c01f963dfaeddcd10ed17807873d8307534b0c4e42d5c83c7ea0eb8052",
+      "newSource": "d0519891751e22a571248b098586571ee2086077faec7bafc4c88fe6fe3e80b8"
+    },
+    "nativeBounds": {
+      "reused": true,
+      "reason": "Only source manifest provenance changed; compiler, Lite, catalogue, coverage, every asset descriptor and all 51 native GLB hashes/bytes stay exact.",
+      "pieces": 51,
+      "originalPoints": 162782025,
+      "escaped": 0,
+      "negativeControls": 4,
+      "oldEvidence": "/Users/antbly/dev/wow-clone/.cache/character-mmo/authored-shield-canonical-2026-10-07/package-v3/before-native.json"
+    }
+  },
+  "maximumPayloadBytes": 2170524,
+  "addedPayloadBytes": 67352,
+  "transactions": {
+    "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+    "purpose": "Native authored shield failed delivery/explicit retry/latest intent/saved reload; fresh contexts, no FPS",
+    "rows": [
+      {
+        "race": "orc",
+        "mode": "http500",
+        "hits": 1,
+        "console": [
+          "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+        ],
+        "before": {
+          "status": {
+            "pending": false,
+            "error": null,
+            "cached": [
+              "wayfarerTunic",
+              "wayfarerTrousers",
+              "wayfarerBoots",
+              "ironSword",
+              "graveweaverBook"
+            ],
+            "desired": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "visibleShield": 0,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": []
+        },
+        "result": {
+          "status": "failed",
+          "error": "Could not load the orc Bastion heater shield from /ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb"
+        },
+        "after": {
+          "status": {
+            "pending": false,
+            "error": "Could not load the orc Bastion heater shield from /ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb",
+            "cached": [
+              "wayfarerTunic",
+              "wayfarerTrousers",
+              "wayfarerBoots",
+              "ironSword",
+              "graveweaverBook"
+            ],
+            "desired": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "visibleShield": 0,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": []
+        },
+        "retry": {
+          "status": "applied"
+        },
+        "retried": {
+          "status": {
+            "pending": false,
+            "error": null,
+            "cached": [
+              "wayfarerTunic",
+              "wayfarerTrousers",
+              "wayfarerBoots",
+              "ironSword",
+              "graveweaverBook",
+              "bastionShield"
+            ],
+            "desired": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "bastionShield",
+              "shoulders": null
+            }
+          },
+          "visibleShield": 3,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "bastionShield",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": [
+            {
+              "name": "__root__",
+              "scale": [
+                -1.12,
+                1.12,
+                1.12
+              ],
+              "parent": "offHandSocket"
+            },
+            {
+              "name": "__root__",
+              "scale": [
+                -1.12,
+                1.12,
+                1.12
+              ],
+              "parent": "offHandSocket"
+            },
+            {
+              "name": "__root__",
+              "scale": [
+                -1.12,
+                1.12,
+                1.12
+              ],
+              "parent": "offHandSocket"
+            }
+          ]
+        }
+      },
+      {
+        "race": "orc",
+        "mode": "truncated",
+        "hits": 1,
+        "console": [],
+        "before": {
+          "status": {
+            "pending": false,
+            "error": null,
+            "cached": [
+              "wayfarerTunic",
+              "wayfarerTrousers",
+              "wayfarerBoots",
+              "ironSword",
+              "graveweaverBook"
+            ],
+            "desired": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "visibleShield": 0,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": []
+        },
+        "result": {
+          "status": "failed",
+          "error": "The orc Bastion heater shield is 100 bytes, not the 67352 its manifest declares"
+        },
+        "after": {
+          "status": {
+            "pending": false,
+            "error": "The orc Bastion heater shield is 100 bytes, not the 67352 its manifest declares",
+            "cached": [
+              "wayfarerTunic",
+              "wayfarerTrousers",
+              "wayfarerBoots",
+              "ironSword",
+              "graveweaverBook"
+            ],
+            "desired": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "visibleShield": 0,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": []
+        },
+        "retry": {
+          "status": "applied"
+        },
+        "retried": {
+          "status": {
+            "pending": false,
+            "error": null,
+            "cached": [
+              "wayfarerTunic",
+              "wayfarerTrousers",
+              "wayfarerBoots",
+              "ironSword",
+              "graveweaverBook",
+              "bastionShield"
+            ],
+            "desired": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "bastionShield",
+              "shoulders": null
+            }
+          },
+          "visibleShield": 3,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "bastionShield",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": [
+            {
+              "name": "__root__",
+              "scale": [
+                -1.12,
+                1.12,
+                1.12
+              ],
+              "parent": "offHandSocket"
+            },
+            {
+              "name": "__root__",
+              "scale": [
+                -1.12,
+                1.12,
+                1.12
+              ],
+              "parent": "offHandSocket"
+            },
+            {
+              "name": "__root__",
+              "scale": [
+                -1.12,
+                1.12,
+                1.12
+              ],
+              "parent": "offHandSocket"
+            }
+          ]
+        }
+      },
+      {
+        "race": "orc",
+        "mode": "same-length-corrupt",
+        "hits": 1,
+        "console": [],
+        "before": {
+          "status": {
+            "pending": false,
+            "error": null,
+            "cached": [
+              "wayfarerTunic",
+              "wayfarerTrousers",
+              "wayfarerBoots",
+              "ironSword",
+              "graveweaverBook"
+            ],
+            "desired": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "visibleShield": 0,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": []
+        },
+        "result": {
+          "status": "failed",
+          "error": "The orc Bastion heater shield at /ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb does not match its manifest hash"
+        },
+        "after": {
+          "status": {
+            "pending": false,
+            "error": "The orc Bastion heater shield at /ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb does not match its manifest hash",
+            "cached": [
+              "wayfarerTunic",
+              "wayfarerTrousers",
+              "wayfarerBoots",
+              "ironSword",
+              "graveweaverBook"
+            ],
+            "desired": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "visibleShield": 0,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": []
+        },
+        "retry": {
+          "status": "applied"
+        },
+        "retried": {
+          "status": {
+            "pending": false,
+            "error": null,
+            "cached": [
+              "wayfarerTunic",
+              "wayfarerTrousers",
+              "wayfarerBoots",
+              "ironSword",
+              "graveweaverBook",
+              "bastionShield"
+            ],
+            "desired": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "bastionShield",
+              "shoulders": null
+            }
+          },
+          "visibleShield": 3,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "bastionShield",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": [
+            {
+              "name": "__root__",
+              "scale": [
+                -1.12,
+                1.12,
+                1.12
+              ],
+              "parent": "offHandSocket"
+            },
+            {
+              "name": "__root__",
+              "scale": [
+                -1.12,
+                1.12,
+                1.12
+              ],
+              "parent": "offHandSocket"
+            },
+            {
+              "name": "__root__",
+              "scale": [
+                -1.12,
+                1.12,
+                1.12
+              ],
+              "parent": "offHandSocket"
+            }
+          ]
+        }
+      },
+      {
+        "race": "undead",
+        "mode": "http500",
+        "hits": 1,
+        "console": [
+          "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+        ],
+        "before": {
+          "status": {
+            "pending": false,
+            "error": null,
+            "cached": [
+              "graveweaverHood",
+              "graveweaverTop",
+              "graveweaverSkirt",
+              "ironSword",
+              "graveweaverBook"
+            ],
+            "desired": {
+              "helmet": "graveweaverHood",
+              "torso": "graveweaverTop",
+              "legs": "graveweaverSkirt",
+              "boots": null,
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook"
+            }
+          },
+          "visibleShield": 0,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": null,
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": []
+        },
+        "result": {
+          "status": "failed",
+          "error": "Could not load the undead Bastion heater shield from /ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb"
+        },
+        "after": {
+          "status": {
+            "pending": false,
+            "error": "Could not load the undead Bastion heater shield from /ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb",
+            "cached": [
+              "graveweaverHood",
+              "graveweaverTop",
+              "graveweaverSkirt",
+              "ironSword",
+              "graveweaverBook"
+            ],
+            "desired": {
+              "helmet": "graveweaverHood",
+              "torso": "graveweaverTop",
+              "legs": "graveweaverSkirt",
+              "boots": null,
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook"
+            }
+          },
+          "visibleShield": 0,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": null,
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": []
+        },
+        "retry": {
+          "status": "applied"
+        },
+        "retried": {
+          "status": {
+            "pending": false,
+            "error": null,
+            "cached": [
+              "graveweaverHood",
+              "graveweaverTop",
+              "graveweaverSkirt",
+              "ironSword",
+              "graveweaverBook",
+              "bastionShield"
+            ],
+            "desired": {
+              "helmet": "graveweaverHood",
+              "torso": "graveweaverTop",
+              "legs": "graveweaverSkirt",
+              "boots": null,
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "bastionShield"
+            }
+          },
+          "visibleShield": 3,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": null,
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "bastionShield",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": [
+            {
+              "name": "__root__",
+              "scale": [
+                -1,
+                1,
+                1
+              ],
+              "parent": "offHandSocket"
+            },
+            {
+              "name": "__root__",
+              "scale": [
+                -1,
+                1,
+                1
+              ],
+              "parent": "offHandSocket"
+            },
+            {
+              "name": "__root__",
+              "scale": [
+                -1,
+                1,
+                1
+              ],
+              "parent": "offHandSocket"
+            }
+          ]
+        }
+      },
+      {
+        "race": "undead",
+        "mode": "truncated",
+        "hits": 1,
+        "console": [],
+        "before": {
+          "status": {
+            "pending": false,
+            "error": null,
+            "cached": [
+              "graveweaverHood",
+              "graveweaverTop",
+              "graveweaverSkirt",
+              "ironSword",
+              "graveweaverBook"
+            ],
+            "desired": {
+              "helmet": "graveweaverHood",
+              "torso": "graveweaverTop",
+              "legs": "graveweaverSkirt",
+              "boots": null,
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook"
+            }
+          },
+          "visibleShield": 0,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": null,
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": []
+        },
+        "result": {
+          "status": "failed",
+          "error": "The undead Bastion heater shield is 100 bytes, not the 67352 its manifest declares"
+        },
+        "after": {
+          "status": {
+            "pending": false,
+            "error": "The undead Bastion heater shield is 100 bytes, not the 67352 its manifest declares",
+            "cached": [
+              "graveweaverHood",
+              "graveweaverTop",
+              "graveweaverSkirt",
+              "ironSword",
+              "graveweaverBook"
+            ],
+            "desired": {
+              "helmet": "graveweaverHood",
+              "torso": "graveweaverTop",
+              "legs": "graveweaverSkirt",
+              "boots": null,
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook"
+            }
+          },
+          "visibleShield": 0,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": null,
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": []
+        },
+        "retry": {
+          "status": "applied"
+        },
+        "retried": {
+          "status": {
+            "pending": false,
+            "error": null,
+            "cached": [
+              "graveweaverHood",
+              "graveweaverTop",
+              "graveweaverSkirt",
+              "ironSword",
+              "graveweaverBook",
+              "bastionShield"
+            ],
+            "desired": {
+              "helmet": "graveweaverHood",
+              "torso": "graveweaverTop",
+              "legs": "graveweaverSkirt",
+              "boots": null,
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "bastionShield"
+            }
+          },
+          "visibleShield": 3,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": null,
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "bastionShield",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": [
+            {
+              "name": "__root__",
+              "scale": [
+                -1,
+                1,
+                1
+              ],
+              "parent": "offHandSocket"
+            },
+            {
+              "name": "__root__",
+              "scale": [
+                -1,
+                1,
+                1
+              ],
+              "parent": "offHandSocket"
+            },
+            {
+              "name": "__root__",
+              "scale": [
+                -1,
+                1,
+                1
+              ],
+              "parent": "offHandSocket"
+            }
+          ]
+        }
+      },
+      {
+        "race": "undead",
+        "mode": "same-length-corrupt",
+        "hits": 1,
+        "console": [],
+        "before": {
+          "status": {
+            "pending": false,
+            "error": null,
+            "cached": [
+              "graveweaverHood",
+              "graveweaverTop",
+              "graveweaverSkirt",
+              "ironSword",
+              "graveweaverBook"
+            ],
+            "desired": {
+              "helmet": "graveweaverHood",
+              "torso": "graveweaverTop",
+              "legs": "graveweaverSkirt",
+              "boots": null,
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook"
+            }
+          },
+          "visibleShield": 0,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": null,
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": []
+        },
+        "result": {
+          "status": "failed",
+          "error": "The undead Bastion heater shield at /ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb does not match its manifest hash"
+        },
+        "after": {
+          "status": {
+            "pending": false,
+            "error": "The undead Bastion heater shield at /ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb does not match its manifest hash",
+            "cached": [
+              "graveweaverHood",
+              "graveweaverTop",
+              "graveweaverSkirt",
+              "ironSword",
+              "graveweaverBook"
+            ],
+            "desired": {
+              "helmet": "graveweaverHood",
+              "torso": "graveweaverTop",
+              "legs": "graveweaverSkirt",
+              "boots": null,
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook"
+            }
+          },
+          "visibleShield": 0,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": null,
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": []
+        },
+        "retry": {
+          "status": "applied"
+        },
+        "retried": {
+          "status": {
+            "pending": false,
+            "error": null,
+            "cached": [
+              "graveweaverHood",
+              "graveweaverTop",
+              "graveweaverSkirt",
+              "ironSword",
+              "graveweaverBook",
+              "bastionShield"
+            ],
+            "desired": {
+              "helmet": "graveweaverHood",
+              "torso": "graveweaverTop",
+              "legs": "graveweaverSkirt",
+              "boots": null,
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "bastionShield"
+            }
+          },
+          "visibleShield": 3,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": "graveweaverHood",
+            "torso": "graveweaverTop",
+            "legs": "graveweaverSkirt",
+            "boots": null,
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "bastionShield",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": [
+            {
+              "name": "__root__",
+              "scale": [
+                -1,
+                1,
+                1
+              ],
+              "parent": "offHandSocket"
+            },
+            {
+              "name": "__root__",
+              "scale": [
+                -1,
+                1,
+                1
+              ],
+              "parent": "offHandSocket"
+            },
+            {
+              "name": "__root__",
+              "scale": [
+                -1,
+                1,
+                1
+              ],
+              "parent": "offHandSocket"
+            }
+          ]
+        }
+      },
+      {
+        "mode": "held transfer superseded by book",
+        "console": [],
+        "before": {
+          "status": {
+            "pending": false,
+            "error": null,
+            "cached": [
+              "wayfarerTunic",
+              "wayfarerTrousers",
+              "wayfarerBoots",
+              "ironSword",
+              "graveweaverBook"
+            ],
+            "desired": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "visibleShield": 0,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": []
+        },
+        "hits": 1,
+        "pending": {
+          "status": {
+            "pending": true,
+            "error": null,
+            "cached": [
+              "wayfarerTunic",
+              "wayfarerTrousers",
+              "wayfarerBoots",
+              "ironSword",
+              "graveweaverBook"
+            ],
+            "desired": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "bastionShield",
+              "shoulders": null
+            }
+          },
+          "visibleShield": 0,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": []
+        },
+        "results": [
+          {
+            "status": "superseded"
+          },
+          {
+            "status": "applied"
+          }
+        ],
+        "after": {
+          "status": {
+            "pending": false,
+            "error": null,
+            "cached": [
+              "wayfarerTunic",
+              "wayfarerTrousers",
+              "wayfarerBoots",
+              "ironSword",
+              "graveweaverBook"
+            ],
+            "desired": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "visibleShield": 0,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "graveweaverBook",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": []
+        },
+        "saved": {
+          "schemaVersion": 2,
+          "catalogVersion": "appearance-catalog-v9",
+          "race": "human",
+          "fitFamily": "ashen-human",
+          "fit": {
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          },
+          "shape": {
+            "family": "ashen-human-shape-v1",
+            "height": 1,
+            "build": 0
+          },
+          "components": {},
+          "dyes": {},
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "bastionShield",
+            "shoulders": null
+          }
+        },
+        "reloadShieldRequests": [
+          {
+            "url": "http://127.0.0.1:5173/ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb",
+            "type": "fetch"
+          }
+        ],
+        "reloaded": {
+          "status": {
+            "pending": false,
+            "error": null,
+            "cached": [
+              "wayfarerTunic",
+              "wayfarerTrousers",
+              "wayfarerBoots",
+              "ironSword",
+              "bastionShield"
+            ],
+            "desired": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "bastionShield",
+              "shoulders": null
+            }
+          },
+          "visibleShield": 3,
+          "bones": 65,
+          "gpuErrors": [],
+          "recoveries": 0,
+          "equipment": {
+            "helmet": null,
+            "torso": "wayfarerTunic",
+            "legs": "wayfarerTrousers",
+            "boots": "wayfarerBoots",
+            "gloves": null,
+            "mainHand": "ironSword",
+            "offHand": "bastionShield",
+            "shoulders": null
+          },
+          "catalogVersion": "appearance-catalog-v9",
+          "shieldRoots": [
+            {
+              "name": "__root__",
+              "scale": [
+                -1,
+                1,
+                1
+              ],
+              "parent": "offHandSocket"
+            },
+            {
+              "name": "__root__",
+              "scale": [
+                -1,
+                1,
+                1
+              ],
+              "parent": "offHandSocket"
+            },
+            {
+              "name": "__root__",
+              "scale": [
+                -1,
+                1,
+                1
+              ],
+              "parent": "offHandSocket"
+            }
+          ]
+        }
+      }
+    ],
+    "errors": [],
+    "passed": true,
+    "passedHumanFaults": {
+      "report": "transactions-v2/report.json",
+      "rows": 3
+    }
+  },
+  "motionCases": {
+    "fits": {
+      "passed": true,
+      "rows": 35,
+      "fixtures": [
+        {
+          "id": "human-neutral",
+          "race": "human",
+          "height": 1,
+          "build": 0,
+          "outfit": "duskguard"
+        },
+        {
+          "id": "human-short-slender",
+          "race": "human",
+          "height": 0.9,
+          "build": -0.95
+        },
+        {
+          "id": "human-tall-slender",
+          "race": "human",
+          "height": 1.15,
+          "build": -0.95
+        },
+        {
+          "id": "human-short-stout",
+          "race": "human",
+          "height": 0.9,
+          "build": 0.95
+        },
+        {
+          "id": "human-tall-stout",
+          "race": "human",
+          "height": 1.15,
+          "build": 0.95
+        },
+        {
+          "id": "orc-neutral",
+          "race": "orc",
+          "outfit": "fieldcoat"
+        },
+        {
+          "id": "undead-neutral",
+          "race": "undead",
+          "outfit": "graveweaver"
+        }
+      ],
+      "errors": []
+    },
+    "remote": {
+      "rows": 9,
+      "before": 154,
+      "after": {
+        "meshes": 154,
+        "streaming": {
+          "limits": {
+            "pending": 32,
+            "exact": 1,
+            "idleExact": 0,
+            "idleGarments": 0
+          },
+          "queue": {
+            "submitted": 3,
+            "superseded": 0,
+            "rejected": 0,
+            "peakPending": 1,
+            "completed": 3,
+            "pending": 0,
+            "active": 0,
+            "uniqueIds": 0,
+            "limit": 32,
+            "closed": true
+          },
+          "immutable": {
+            "entries": 0,
+            "reservedBytes": 0,
+            "peakReservedBytes": 4496592,
+            "ceilingBytes": 8388608,
+            "leases": 0
+          },
+          "owned": 0,
+          "activeExact": 0,
+          "pendingBuilds": 0,
+          "allocation": {
+            "buffers": 0,
+            "textures": 0,
+            "bufferBytes": 0,
+            "textureBytes": 0,
+            "unknownTextureFormats": 0,
+            "knownCpuBytes": 0,
+            "scope": "Owned mesh geometry/skin/morph/thin/VAT/material handles only; total GPU/driver memory unknown"
+          },
+          "stats": {
+            "bodyLoads": 3,
+            "liveEquipmentChanges": 0,
+            "peakOwned": 2,
+            "uncomposedMotions": 0,
+            "preparations": [
+              70,
+              87.09999996423721,
+              80.19999998807907
+            ]
+          }
+        },
+        "gpuErrors": []
+      }
+    },
+    "movement": {
+      "sourceCommit": "994576fc8b6aea276a7a796465d7310e7d29b8b3",
+      "canonicalEquipment": true,
+      "assetSha256": "926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c",
+      "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+      "purpose": "Canonical v9 shield on normal Havok run/jump, no recovery teleports between successful cases; no FPS or release claim",
+      "errors": [],
+      "rows": [
+        {
+          "fixture": {
+            "id": "human-neutral",
+            "race": "human",
+            "height": 1,
+            "build": 0
+          },
+          "before": {
+            "debug": {
+              "facing": 0,
+              "grounded": true,
+              "vy": 0,
+              "support": 2,
+              "speed": 0,
+              "vx": 0,
+              "vz": 0,
+              "castBlend": 0,
+              "jumps": 0,
+              "landings": 3,
+              "recoveries": 0,
+              "jumpInFlight": false,
+              "airTime": 0,
+              "position": {
+                "x": -0.01071057361102725,
+                "y": 2.9829602546691896,
+                "z": -129.98529490944765
+              },
+              "usingPhysics": true,
+              "colliders": {
+                "meshCount": 717,
+                "boxCount": 678,
+                "skipped": 0,
+                "animatedCount": 7
+              },
+              "capsuleHeight": 1.748,
+              "animated": [
+                {
+                  "id": "grave-shade-1",
+                  "enabled": true,
+                  "radius": 0.4368,
+                  "pose": {
+                    "x": 2.7670841235816206,
+                    "y": 1.2898359882708592,
+                    "z": 13.76028399238419
+                  }
+                },
+                {
+                  "id": "grave-shade-2",
+                  "enabled": true,
+                  "radius": 0.40319999999999995,
+                  "pose": {
+                    "x": -1.2466793229975035,
+                    "y": 1.3743412111589564,
+                    "z": 30.67499245282316
+                  }
+                },
+                {
+                  "id": "grave-shade-3",
+                  "enabled": true,
+                  "radius": 0.462,
+                  "pose": {
+                    "x": 0.6466416942431428,
+                    "y": 1.5039534139316926,
+                    "z": 49.08040294233167
+                  }
+                },
+                {
+                  "id": "grave-shade-4",
+                  "enabled": true,
+                  "radius": 0.42,
+                  "pose": {
+                    "x": -5.388333510365601,
+                    "y": 2.4253021681104996,
+                    "z": 62.26170874120242
+                  }
+                },
+                {
+                  "id": "town-wraith-1",
+                  "enabled": true,
+                  "radius": 0.4326,
+                  "pose": {
+                    "x": 3.0335368703241405,
+                    "y": 5.071548537138734,
+                    "z": 85.53221848255424
+                  }
+                },
+                {
+                  "id": "town-wraith-2",
+                  "enabled": true,
+                  "radius": 0.4074,
+                  "pose": {
+                    "x": -1.5061916396475488,
+                    "y": 6.6175332757369265,
+                    "z": 110.59643049216358
+                  }
+                },
+                {
+                  "id": "town-wraith-3",
+                  "enabled": true,
+                  "radius": 0.441,
+                  "pose": {
+                    "x": -2.687946361539366,
+                    "y": 8.766917777789873,
+                    "z": 126.26554223961895
+                  }
+                }
+              ]
+            },
+            "activeElement": "renderCanvas",
+            "armoryOpen": false
+          },
+          "moving": {
+            "debug": {
+              "facing": 0,
+              "grounded": true,
+              "vy": -0.7314453339155501,
+              "support": 2,
+              "speed": 7.000000000000089,
+              "vx": 0,
+              "vz": 7.000000000000089,
+              "castBlend": 0,
+              "jumps": 0,
+              "landings": 3,
+              "recoveries": 0,
+              "jumpInFlight": false,
+              "airTime": 0,
+              "position": {
+                "x": -0.01149852693020304,
+                "y": 2.070765789027711,
+                "z": -122.98174598427764
+              },
+              "usingPhysics": true,
+              "colliders": {
+                "meshCount": 717,
+                "boxCount": 678,
+                "skipped": 0,
+                "animatedCount": 7
+              },
+              "capsuleHeight": 1.748,
+              "animated": [
+                {
+                  "id": "grave-shade-1",
+                  "enabled": true,
+                  "radius": 0.4368,
+                  "pose": {
+                    "x": 2.7670841235816206,
+                    "y": 1.2898359882708592,
+                    "z": 13.76028399238419
+                  }
+                },
+                {
+                  "id": "grave-shade-2",
+                  "enabled": true,
+                  "radius": 0.40319999999999995,
+                  "pose": {
+                    "x": -2.2721320086721177,
+                    "y": 1.474876108824996,
+                    "z": 31.553858245169085
+                  }
+                },
+                {
+                  "id": "grave-shade-3",
+                  "enabled": true,
+                  "radius": 0.462,
+                  "pose": {
+                    "x": -0.5300289265858297,
+                    "y": 1.4759854813774647,
+                    "z": 48.41752697988393
+                  }
+                },
+                {
+                  "id": "grave-shade-4",
+                  "enabled": true,
+                  "radius": 0.42,
+                  "pose": {
+                    "x": -4.601727419045378,
+                    "y": 2.4143965138908423,
+                    "z": 61.58752320506926
+                  }
+                },
+                {
+                  "id": "town-wraith-1",
+                  "enabled": true,
+                  "radius": 0.4326,
+                  "pose": {
+                    "x": 3.0616767872695383,
+                    "y": 5.090678236483842,
+                    "z": 85.56813842096976
+                  }
+                },
+                {
+                  "id": "town-wraith-2",
+                  "enabled": true,
+                  "radius": 0.4074,
+                  "pose": {
+                    "x": -1.705076856602427,
+                    "y": 6.556576768649537,
+                    "z": 110.32375684019695
+                  }
+                },
+                {
+                  "id": "town-wraith-3",
+                  "enabled": true,
+                  "radius": 0.441,
+                  "pose": {
+                    "x": -2.687946361539366,
+                    "y": 8.766917777789873,
+                    "z": 126.26554223961895
+                  }
+                }
+              ]
+            }
+          },
+          "after": {
+            "debug": {
+              "facing": 0,
+              "grounded": true,
+              "vy": 0,
+              "support": 2,
+              "speed": 0,
+              "vx": 0,
+              "vz": 0,
+              "castBlend": 0,
+              "jumps": 1,
+              "landings": 4,
+              "recoveries": 0,
+              "jumpInFlight": false,
+              "airTime": 0,
+              "position": {
+                "x": -0.018168903411765056,
+                "y": 0.27171591223691915,
+                "z": -114.08518172917296
+              },
+              "usingPhysics": true,
+              "colliders": {
+                "meshCount": 717,
+                "boxCount": 678,
+                "skipped": 0,
+                "animatedCount": 7
+              },
+              "capsuleHeight": 1.748,
+              "animated": [
+                {
+                  "id": "grave-shade-1",
+                  "enabled": true,
+                  "radius": 0.4368,
+                  "pose": {
+                    "x": 2.7670841235816206,
+                    "y": 1.2898359882708592,
+                    "z": 13.76028399238419
+                  }
+                },
+                {
+                  "id": "grave-shade-2",
+                  "enabled": true,
+                  "radius": 0.40319999999999995,
+                  "pose": {
+                    "x": -3.484962494245909,
+                    "y": 1.5803957335687993,
+                    "z": 32.593316467450485
+                  }
+                },
+                {
+                  "id": "grave-shade-3",
+                  "enabled": true,
+                  "radius": 0.462,
+                  "pose": {
+                    "x": -0.8044364194486526,
+                    "y": 1.4699649790447373,
+                    "z": 48.26293985268416
+                  }
+                },
+                {
+                  "id": "grave-shade-4",
+                  "enabled": true,
+                  "radius": 0.42,
+                  "pose": {
+                    "x": -2.380902871839133,
+                    "y": 2.3435228479878623,
+                    "z": 59.68409554980777
+                  }
+                },
+                {
+                  "id": "town-wraith-1",
+                  "enabled": true,
+                  "radius": 0.4326,
+                  "pose": {
+                    "x": 2.233799910110894,
+                    "y": 5.229891303968014,
+                    "z": 87.73262657859851
+                  }
+                },
+                {
+                  "id": "town-wraith-2",
+                  "enabled": true,
+                  "radius": 0.4074,
+                  "pose": {
+                    "x": -3.0837491805336446,
+                    "y": 5.815109634774142,
+                    "z": 108.43358308476438
+                  }
+                },
+                {
+                  "id": "town-wraith-3",
+                  "enabled": true,
+                  "radius": 0.441,
+                  "pose": {
+                    "x": -1.2052834810700424,
+                    "y": 8.575435090183552,
+                    "z": 124.98745107194807
+                  }
+                }
+              ]
+            },
+            "gpuErrors": []
+          }
+        },
+        {
+          "fixture": {
+            "id": "orc-neutral",
+            "race": "orc"
+          },
+          "before": {
+            "debug": {
+              "facing": 0,
+              "grounded": true,
+              "vy": 0,
+              "support": 2,
+              "speed": 0,
+              "vx": 0,
+              "vz": 0,
+              "castBlend": 0,
+              "jumps": 1,
+              "landings": 4,
+              "recoveries": 0,
+              "jumpInFlight": false,
+              "airTime": 0,
+              "position": {
+                "x": -0.018168903411765056,
+                "y": 0.27171591223691915,
+                "z": -114.08518172917296
+              },
+              "usingPhysics": true,
+              "colliders": {
+                "meshCount": 717,
+                "boxCount": 678,
+                "skipped": 0,
+                "animatedCount": 7
+              },
+              "capsuleHeight": 1.748,
+              "animated": [
+                {
+                  "id": "grave-shade-1",
+                  "enabled": true,
+                  "radius": 0.4368,
+                  "pose": {
+                    "x": 2.7670841235816206,
+                    "y": 1.2898359882708592,
+                    "z": 13.76028399238419
+                  }
+                },
+                {
+                  "id": "grave-shade-2",
+                  "enabled": true,
+                  "radius": 0.40319999999999995,
+                  "pose": {
+                    "x": -3.5242498668020814,
+                    "y": 1.5863730955688644,
+                    "z": 32.571189324345546
+                  }
+                },
+                {
+                  "id": "grave-shade-3",
+                  "enabled": true,
+                  "radius": 0.462,
+                  "pose": {
+                    "x": -0.30925274849836193,
+                    "y": 1.4846638093429345,
+                    "z": 47.838097930235094
+                  }
+                },
+                {
+                  "id": "grave-shade-4",
+                  "enabled": true,
+                  "radius": 0.42,
+                  "pose": {
+                    "x": -2.056174164844918,
+                    "y": 2.3277432627817833,
+                    "z": 59.405776579438104
+                  }
+                },
+                {
+                  "id": "town-wraith-1",
+                  "enabled": true,
+                  "radius": 0.4326,
+                  "pose": {
+                    "x": 1.960975752245194,
+                    "y": 5.273354439640439,
+                    "z": 88.44592667805541
+                  }
+                },
+                {
+                  "id": "town-wraith-2",
+                  "enabled": true,
+                  "radius": 0.4074,
+                  "pose": {
+                    "x": -3.0837491805336446,
+                    "y": 5.815109634774142,
+                    "z": 108.43358308476438
+                  }
+                },
+                {
+                  "id": "town-wraith-3",
+                  "enabled": true,
+                  "radius": 0.441,
+                  "pose": {
+                    "x": -0.2169097291410802,
+                    "y": 8.507633720783438,
+                    "z": 124.13544905629209
+                  }
+                }
+              ]
+            },
+            "activeElement": "renderCanvas",
+            "armoryOpen": false
+          },
+          "moving": {
+            "debug": {
+              "facing": 0,
+              "grounded": true,
+              "vy": 0.1777343652081024,
+              "support": 2,
+              "speed": 6.999999999980192,
+              "vx": -7.497494444368756e-11,
+              "vz": 6.999999999980192,
+              "castBlend": 0,
+              "jumps": 1,
+              "landings": 4,
+              "recoveries": 0,
+              "jumpInFlight": false,
+              "airTime": 0,
+              "position": {
+                "x": -0.018544157858571,
+                "y": 0.22655426730933084,
+                "z": -107.08539382939921
+              },
+              "usingPhysics": true,
+              "colliders": {
+                "meshCount": 717,
+                "boxCount": 678,
+                "skipped": 0,
+                "animatedCount": 7
+              },
+              "capsuleHeight": 1.748,
+              "animated": [
+                {
+                  "id": "grave-shade-1",
+                  "enabled": true,
+                  "radius": 0.4368,
+                  "pose": {
+                    "x": 2.7670841235816206,
+                    "y": 1.2898359882708592,
+                    "z": 13.76028399238419
+                  }
+                },
+                {
+                  "id": "grave-shade-2",
+                  "enabled": true,
+                  "radius": 0.40319999999999995,
+                  "pose": {
+                    "x": -4.700518504948962,
+                    "y": 1.7582442952518353,
+                    "z": 31.908700010535792
+                  }
+                },
+                {
+                  "id": "grave-shade-3",
+                  "enabled": true,
+                  "radius": 0.462,
+                  "pose": {
+                    "x": 0.7153358526563689,
+                    "y": 1.5106287654984683,
+                    "z": 46.95905401871307
+                  }
+                },
+                {
+                  "id": "grave-shade-4",
+                  "enabled": true,
+                  "radius": 0.42,
+                  "pose": {
+                    "x": -1.78049549261853,
+                    "y": 2.354981287746216,
+                    "z": 59.56113276151674
+                  }
+                },
+                {
+                  "id": "town-wraith-1",
+                  "enabled": true,
+                  "radius": 0.4326,
+                  "pose": {
+                    "x": 1.960975752245194,
+                    "y": 5.273354439640439,
+                    "z": 88.44592667805541
+                  }
+                },
+                {
+                  "id": "town-wraith-2",
+                  "enabled": true,
+                  "radius": 0.4074,
+                  "pose": {
+                    "x": -3.0837491805336446,
+                    "y": 5.815109634774142,
+                    "z": 108.43358308476438
+                  }
+                },
+                {
+                  "id": "town-wraith-3",
+                  "enabled": true,
+                  "radius": 0.441,
+                  "pose": {
+                    "x": 0.6181873566945199,
+                    "y": 8.461330495300665,
+                    "z": 123.41557522413926
+                  }
+                }
+              ]
+            }
+          },
+          "after": {
+            "debug": {
+              "facing": 0,
+              "grounded": true,
+              "vy": 0,
+              "support": 2,
+              "speed": 0,
+              "vx": 0,
+              "vz": 0,
+              "castBlend": 0,
+              "jumps": 2,
+              "landings": 5,
+              "recoveries": 0,
+              "jumpInFlight": false,
+              "airTime": 0,
+              "position": {
+                "x": -0.024891942220147446,
+                "y": 0.19703041064532967,
+                "z": -98.2262865638832
+              },
+              "usingPhysics": true,
+              "colliders": {
+                "meshCount": 717,
+                "boxCount": 678,
+                "skipped": 0,
+                "animatedCount": 7
+              },
+              "capsuleHeight": 1.748,
+              "animated": [
+                {
+                  "id": "grave-shade-1",
+                  "enabled": true,
+                  "radius": 0.4368,
+                  "pose": {
+                    "x": 2.7670841235816206,
+                    "y": 1.2898359882708592,
+                    "z": 13.76028399238419
+                  }
+                },
+                {
+                  "id": "grave-shade-2",
+                  "enabled": true,
+                  "radius": 0.40319999999999995,
+                  "pose": {
+                    "x": -7.2490221363159275,
+                    "y": 2.0580702263403725,
+                    "z": 30.47335066325933
+                  }
+                },
+                {
+                  "id": "grave-shade-3",
+                  "enabled": true,
+                  "radius": 0.462,
+                  "pose": {
+                    "x": 2.5244519457031114,
+                    "y": 1.5356079556746247,
+                    "z": 45.40692618414922
+                  }
+                },
+                {
+                  "id": "grave-shade-4",
+                  "enabled": true,
+                  "radius": 0.42,
+                  "pose": {
+                    "x": 0.767650459364004,
+                    "y": 2.4757845743197184,
+                    "z": 60.99711699374655
+                  }
+                },
+                {
+                  "id": "town-wraith-1",
+                  "enabled": true,
+                  "radius": 0.4326,
+                  "pose": {
+                    "x": -0.00446941247698952,
+                    "y": 5.0146561039250725,
+                    "z": 87.35060580889301
+                  }
+                },
+                {
+                  "id": "town-wraith-2",
+                  "enabled": true,
+                  "radius": 0.4074,
+                  "pose": {
+                    "x": -2.120181209901145,
+                    "y": 5.935466031840839,
+                    "z": 105.6719467448768
+                  }
+                },
+                {
+                  "id": "town-wraith-3",
+                  "enabled": true,
+                  "radius": 0.441,
+                  "pose": {
+                    "x": 1.54135580370946,
+                    "y": 8.814963167044779,
+                    "z": 124.2732388099669
+                  }
+                }
+              ]
+            },
+            "gpuErrors": []
+          }
+        },
+        {
+          "fixture": {
+            "id": "undead-neutral",
+            "race": "undead"
+          },
+          "before": {
+            "debug": {
+              "facing": 0,
+              "grounded": true,
+              "vy": 0,
+              "support": 2,
+              "speed": 0,
+              "vx": 0,
+              "vz": 0,
+              "castBlend": 0,
+              "jumps": 2,
+              "landings": 5,
+              "recoveries": 0,
+              "jumpInFlight": false,
+              "airTime": 0,
+              "position": {
+                "x": -0.024891942220147446,
+                "y": 0.19703041064532967,
+                "z": -98.2262865638832
+              },
+              "usingPhysics": true,
+              "colliders": {
+                "meshCount": 717,
+                "boxCount": 678,
+                "skipped": 0,
+                "animatedCount": 7
+              },
+              "capsuleHeight": 1.748,
+              "animated": [
+                {
+                  "id": "grave-shade-1",
+                  "enabled": true,
+                  "radius": 0.4368,
+                  "pose": {
+                    "x": 2.7670841235816206,
+                    "y": 1.2898359882708592,
+                    "z": 13.76028399238419
+                  }
+                },
+                {
+                  "id": "grave-shade-2",
+                  "enabled": true,
+                  "radius": 0.40319999999999995,
+                  "pose": {
+                    "x": -7.620605399148592,
+                    "y": 2.0919838407746467,
+                    "z": 30.264070289003136
+                  }
+                },
+                {
+                  "id": "grave-shade-3",
+                  "enabled": true,
+                  "radius": 0.462,
+                  "pose": {
+                    "x": 2.5244519457031114,
+                    "y": 1.5356079556746247,
+                    "z": 45.40692618414922
+                  }
+                },
+                {
+                  "id": "grave-shade-4",
+                  "enabled": true,
+                  "radius": 0.42,
+                  "pose": {
+                    "x": 1.8848312218117584,
+                    "y": 2.4611413934869493,
+                    "z": 61.62669394485381
+                  }
+                },
+                {
+                  "id": "town-wraith-1",
+                  "enabled": true,
+                  "radius": 0.4326,
+                  "pose": {
+                    "x": -1.1246328264406522,
+                    "y": 4.8259925464757965,
+                    "z": 86.72635111778845
+                  }
+                },
+                {
+                  "id": "town-wraith-2",
+                  "enabled": true,
+                  "radius": 0.4074,
+                  "pose": {
+                    "x": -2.083356956240493,
+                    "y": 5.942928466626779,
+                    "z": 105.56640650257117
+                  }
+                },
+                {
+                  "id": "town-wraith-3",
+                  "enabled": true,
+                  "radius": 0.441,
+                  "pose": {
+                    "x": 2.480843384462481,
+                    "y": 9.562792023227358,
+                    "z": 125.14606357987171
+                  }
+                }
+              ]
+            },
+            "activeElement": "renderCanvas",
+            "armoryOpen": false
+          },
+          "moving": {
+            "debug": {
+              "facing": 0,
+              "grounded": true,
+              "vy": 0.4511718512870877,
+              "support": 2,
+              "speed": 6.999999999999736,
+              "vx": 0,
+              "vz": 6.999999999999736,
+              "castBlend": 0,
+              "jumps": 2,
+              "landings": 5,
+              "recoveries": 0,
+              "jumpInFlight": false,
+              "airTime": 0,
+              "position": {
+                "x": -2.7846547869723293,
+                "y": 0.4522788531780243,
+                "z": -93.15935806819049
+              },
+              "usingPhysics": true,
+              "colliders": {
+                "meshCount": 717,
+                "boxCount": 678,
+                "skipped": 0,
+                "animatedCount": 7
+              },
+              "capsuleHeight": 1.748,
+              "animated": [
+                {
+                  "id": "grave-shade-1",
+                  "enabled": true,
+                  "radius": 0.4368,
+                  "pose": {
+                    "x": 2.7670841235816206,
+                    "y": 1.2898359882708592,
+                    "z": 13.76028399238419
+                  }
+                },
+                {
+                  "id": "grave-shade-2",
+                  "enabled": true,
+                  "radius": 0.40319999999999995,
+                  "pose": {
+                    "x": -7.620605399148592,
+                    "y": 2.0919838407746467,
+                    "z": 30.264070289003136
+                  }
+                },
+                {
+                  "id": "grave-shade-3",
+                  "enabled": true,
+                  "radius": 0.462,
+                  "pose": {
+                    "x": 3.6419241543966607,
+                    "y": 1.5875145780355795,
+                    "z": 46.036260842973576
+                  }
+                },
+                {
+                  "id": "grave-shade-4",
+                  "enabled": true,
+                  "radius": 0.42,
+                  "pose": {
+                    "x": 2.0805348525493867,
+                    "y": 2.4553741195159584,
+                    "z": 61.736980927320694
+                  }
+                },
+                {
+                  "id": "town-wraith-1",
+                  "enabled": true,
+                  "radius": 0.4326,
+                  "pose": {
+                    "x": -1.9501032862206522,
+                    "y": 4.581657489647035,
+                    "z": 86.26632555324825
+                  }
+                },
+                {
+                  "id": "town-wraith-2",
+                  "enabled": true,
+                  "radius": 0.4074,
+                  "pose": {
+                    "x": -1.5327106470642726,
+                    "y": 6.086593245672002,
+                    "z": 105.87258511759303
+                  }
+                },
+                {
+                  "id": "town-wraith-3",
+                  "enabled": true,
+                  "radius": 0.441,
+                  "pose": {
+                    "x": 3.0082975656940865,
+                    "y": 9.925814233811158,
+                    "z": 125.63609142462502
+                  }
+                }
+              ]
+            }
+          },
+          "after": {
+            "debug": {
+              "facing": 0,
+              "grounded": true,
+              "vy": 0.04722559088211406,
+              "support": 2,
+              "speed": 0,
+              "vx": 0,
+              "vz": 0,
+              "castBlend": 0,
+              "jumps": 3,
+              "landings": 6,
+              "recoveries": 0,
+              "jumpInFlight": false,
+              "airTime": 0,
+              "position": {
+                "x": -2.8398762778562814,
+                "y": 0.5342599160671234,
+                "z": -84.5393399952219
+              },
+              "usingPhysics": true,
+              "colliders": {
+                "meshCount": 717,
+                "boxCount": 678,
+                "skipped": 0,
+                "animatedCount": 7
+              },
+              "capsuleHeight": 1.748,
+              "animated": [
+                {
+                  "id": "grave-shade-1",
+                  "enabled": true,
+                  "radius": 0.4368,
+                  "pose": {
+                    "x": 2.7670841235816206,
+                    "y": 1.2898359882708592,
+                    "z": 13.76028399238419
+                  }
+                },
+                {
+                  "id": "grave-shade-2",
+                  "enabled": true,
+                  "radius": 0.40319999999999995,
+                  "pose": {
+                    "x": -6.186741617115256,
+                    "y": 1.8718921977840774,
+                    "z": 29.032756090850235
+                  }
+                },
+                {
+                  "id": "grave-shade-3",
+                  "enabled": true,
+                  "radius": 0.462,
+                  "pose": {
+                    "x": 6.190466562097163,
+                    "y": 1.6187358533900666,
+                    "z": 47.47154133959078
+                  }
+                },
+                {
+                  "id": "grave-shade-4",
+                  "enabled": true,
+                  "radius": 0.42,
+                  "pose": {
+                    "x": 0.4436658356782639,
+                    "y": 2.516390034175337,
+                    "z": 63.14135748615343
+                  }
+                },
+                {
+                  "id": "town-wraith-1",
+                  "enabled": true,
+                  "radius": 0.4326,
+                  "pose": {
+                    "x": -1.8986550580100912,
+                    "y": 4.581780603360465,
+                    "z": 86.22200660875292
+                  }
+                },
+                {
+                  "id": "town-wraith-2",
+                  "enabled": true,
+                  "radius": 0.4074,
+                  "pose": {
+                    "x": 1.0236002449854815,
+                    "y": 6.4175264887416645,
+                    "z": 107.29398341891664
+                  }
+                },
+                {
+                  "id": "town-wraith-3",
+                  "enabled": true,
+                  "radius": 0.441,
+                  "pose": {
+                    "x": 2.164697208525165,
+                    "y": 9.536893043303984,
+                    "z": 127.04545032652224
+                  }
+                }
+              ]
+            },
+            "gpuErrors": []
+          }
+        }
+      ],
+      "passed": true
+    }
+  },
+  "performance": {
+    "conditions": {
+      "machine": "M1 Max",
+      "engine": "Babylon Lite 1.31.1 / WebGPU",
+      "browser": "Native Chromium, uncapped launch flags",
+      "viewport": [
+        1280,
+        720
+      ],
+      "dpr": 1,
+      "enemies": 7,
+      "routes": [
+        "meadow",
+        "town",
+        "bridge",
+        "cathedral",
+        "forest"
+      ],
+      "runsPerRoute": 3,
+      "secondsPerWindow": 12,
+      "recording": false,
+      "singleActiveGame": true,
+      "parallelBuildEncode": false,
+      "publicStartupQualification": false,
+      "possiblePacingFlagsRetained": true,
+      "saveWithout": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v9",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {
+          "head": "human-prime-v1",
+          "hair": "human-ponytail01-v1"
+        },
+        "dyes": {
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "graveweaverSkirt",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "graveweaverStaff",
+          "offHand": null,
+          "shoulders": "bastionShoulders"
+        }
+      },
+      "saveWith": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v9",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {
+          "head": "human-prime-v1",
+          "hair": "human-ponytail01-v1"
+        },
+        "dyes": {
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "graveweaverSkirt",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "graveweaverStaff",
+          "offHand": "bastionShield",
+          "shoulders": "bastionShoulders"
+        }
+      }
+    },
+    "summary": {
+      "purpose": "Canonical shield isolated settled FPS and cold/resident swap cost; no recording/Pages",
+      "steps": [
+        {
+          "name": "without-shield-fps",
+          "pid": 35931,
+          "code": 0,
+          "signal": null,
+          "seconds": 138.684286333
+        },
+        {
+          "name": "with-shield-fps",
+          "pid": 39781,
+          "code": 0,
+          "signal": null,
+          "seconds": 222.701162334
+        },
+        {
+          "name": "swap-budget",
+          "pid": 46002,
+          "code": 0,
+          "signal": null,
+          "seconds": 81.06322866600001
+        }
+      ],
+      "passed": true,
+      "without-shield": {
+        "windows": 15,
+        "minFps": 212.43272963540443,
+        "maxFps": 246.2204822789555,
+        "maxP99": 6.300000011920929,
+        "worst": 14.299999952316284,
+        "possiblePacingWindows": [
+          {
+            "route": "bridge",
+            "run": 1,
+            "cap": {
+              "vsyncCapped": true,
+              "capHz": 240,
+              "capMs": 4.166666666666667,
+              "capReason": "mean 4.117 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.300 ms (full range 2.800-9.600 ms)"
+            }
+          },
+          {
+            "route": "bridge",
+            "run": 2,
+            "cap": {
+              "vsyncCapped": true,
+              "capHz": 240,
+              "capMs": 4.166666666666667,
+              "capReason": "mean 4.116 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.100-5.300 ms (full range 2.600-9.000 ms)"
+            }
+          },
+          {
+            "route": "cathedral",
+            "run": 1,
+            "cap": {
+              "vsyncCapped": true,
+              "capHz": 240,
+              "capMs": 4.166666666666667,
+              "capReason": "mean 4.091 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.200 ms (full range 2.800-8.700 ms)"
+            }
+          },
+          {
+            "route": "cathedral",
+            "run": 2,
+            "cap": {
+              "vsyncCapped": true,
+              "capHz": 240,
+              "capMs": 4.166666666666667,
+              "capReason": "mean 4.092 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.100 ms (full range 2.700-8.900 ms)"
+            }
+          }
+        ],
+        "uncappedClaim": "Flagged windows are invalid as clean uncapped throughput; measured FPS remains an observed lower bound."
+      },
+      "with-shield": {
+        "windows": 15,
+        "minFps": 203.0702083169092,
+        "maxFps": 237.90087463556853,
+        "maxP99": 6.199999988079071,
+        "worst": 13.5,
+        "possiblePacingWindows": [
+          {
+            "route": "bridge",
+            "run": 1,
+            "cap": {
+              "vsyncCapped": true,
+              "capHz": 240,
+              "capMs": 4.166666666666667,
+              "capReason": "mean 4.229 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.400-5.500 ms (full range 3.000-9.400 ms)"
+            }
+          },
+          {
+            "route": "bridge",
+            "run": 2,
+            "cap": {
+              "vsyncCapped": true,
+              "capHz": 240,
+              "capMs": 4.166666666666667,
+              "capReason": "mean 4.229 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.400-5.500 ms (full range 2.800-12.800 ms)"
+            }
+          },
+          {
+            "route": "bridge",
+            "run": 3,
+            "cap": {
+              "vsyncCapped": true,
+              "capHz": 240,
+              "capMs": 4.166666666666667,
+              "capReason": "mean 4.224 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.400-5.500 ms (full range 2.600-9.600 ms)"
+            }
+          },
+          {
+            "route": "cathedral",
+            "run": 1,
+            "cap": {
+              "vsyncCapped": true,
+              "capHz": 240,
+              "capMs": 4.166666666666667,
+              "capReason": "mean 4.203 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.500-5.400 ms (full range 2.900-8.800 ms)"
+            }
+          },
+          {
+            "route": "cathedral",
+            "run": 2,
+            "cap": {
+              "vsyncCapped": true,
+              "capHz": 240,
+              "capMs": 4.166666666666667,
+              "capReason": "mean 4.207 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.500-5.400 ms (full range 2.900-9.100 ms)"
+            }
+          },
+          {
+            "route": "cathedral",
+            "run": 3,
+            "cap": {
+              "vsyncCapped": true,
+              "capHz": 240,
+              "capMs": 4.166666666666667,
+              "capReason": "mean 4.205 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.500-5.400 ms (full range 2.800-9.000 ms)"
+            }
+          }
+        ],
+        "uncappedClaim": "Flagged windows are invalid as clean uncapped throughput; measured FPS remains an observed lower bound."
+      },
+      "swaps": {
+        "rows": 9,
+        "maximumColdMs": 118.3,
+        "maximumResidentMs": 12.6,
+        "worstFrameMs": 24.4
+      }
+    },
+    "withoutShield": [
+      {
+        "x": 0.0004049302217931356,
+        "z": 24.676677445328238,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "meadow",
+        "run": 1,
+        "before": {
+          "x": 0.0010376036540665947,
+          "z": -59.35811918421374,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2618,
+          "fps": 218.07216872710157,
+          "meanMs": 4.585637891515691,
+          "medianMs": 4.5,
+          "p95Ms": 5.699999988079071,
+          "p99Ms": 6.300000011920929,
+          "worstMs": 13.199999988079071,
+          "minMs": 3.100000023841858,
+          "above8_333": 9,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.586 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2618,
+          "meanMs": 4.585637891515691,
+          "meanFps": 218.07216872710157,
+          "p50Ms": 4.5,
+          "p95Ms": 5.699999988079071,
+          "p99Ms": 6.300000011920929,
+          "maxMs": 13.199999988079071,
+          "above6_94": 12,
+          "above8_33": 9,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": 0.0004082687413393321,
+        "z": 24.67208245077846,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "meadow",
+        "run": 2,
+        "before": {
+          "x": 0.0009683134478332242,
+          "z": -59.37003025187804,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2626,
+          "fps": 218.71850611740442,
+          "meanMs": 4.572086824071562,
+          "medianMs": 4.5,
+          "p95Ms": 5.699999988079071,
+          "p99Ms": 6,
+          "worstMs": 11.199999988079071,
+          "minMs": 3.099999964237213,
+          "above8_333": 5,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.572 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2626,
+          "meanMs": 4.572086824071562,
+          "meanFps": 218.71850611740442,
+          "p50Ms": 4.5,
+          "p95Ms": 5.699999988079071,
+          "p99Ms": 6,
+          "maxMs": 11.199999988079071,
+          "above6_94": 5,
+          "above8_33": 5,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": 0.0004205538025433981,
+        "z": 24.652420523522373,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "meadow",
+        "run": 3,
+        "before": {
+          "x": 0.0010150404538126433,
+          "z": -59.381931294104874,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2625,
+          "fps": 218.65524939214728,
+          "meanMs": 4.573409523804982,
+          "medianMs": 4.5,
+          "p95Ms": 5.699999988079071,
+          "p99Ms": 5.900000035762787,
+          "worstMs": 12.400000035762787,
+          "minMs": 3.299999952316284,
+          "above8_333": 5,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.573 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2625,
+          "meanMs": 4.573409523804982,
+          "meanFps": 218.65524939214728,
+          "p50Ms": 4.5,
+          "p95Ms": 5.699999988079071,
+          "p99Ms": 5.900000035762787,
+          "maxMs": 12.400000035762787,
+          "above6_94": 6,
+          "above8_33": 5,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": -0.6712634925467184,
+        "z": 134.76386883818265,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "town",
+        "run": 1,
+        "before": {
+          "x": -0.0006729789786477577,
+          "z": 85.63378925774877,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2550,
+          "fps": 212.43272963540443,
+          "meanMs": 4.707372549024282,
+          "medianMs": 4.600000023841858,
+          "p95Ms": 5.699999988079071,
+          "p99Ms": 6,
+          "worstMs": 14.299999952316284,
+          "minMs": 3.199999988079071,
+          "above8_333": 6,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.707 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2550,
+          "meanMs": 4.707372549024282,
+          "meanFps": 212.43272963540443,
+          "p50Ms": 4.600000023841858,
+          "p95Ms": 5.699999988079071,
+          "p99Ms": 6,
+          "maxMs": 14.299999952316284,
+          "above6_94": 9,
+          "above8_33": 6,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": -0.32424345174791347,
+        "z": 134.77786146692105,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "town",
+        "run": 2,
+        "before": {
+          "x": -0.06146512069046882,
+          "z": 84.69933957938663,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2556,
+          "fps": 212.90241972429305,
+          "meanMs": 4.696987480438184,
+          "medianMs": 4.599999964237213,
+          "p95Ms": 5.699999988079071,
+          "p99Ms": 6,
+          "worstMs": 9.600000023841858,
+          "minMs": 3.300000011920929,
+          "above8_333": 5,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.697 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2556,
+          "meanMs": 4.696987480438184,
+          "meanFps": 212.90241972429305,
+          "p50Ms": 4.599999964237213,
+          "p95Ms": 5.699999988079071,
+          "p99Ms": 6,
+          "maxMs": 9.600000023841858,
+          "above6_94": 6,
+          "above8_33": 5,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": -0.31858881038131504,
+        "z": 134.7705704017874,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "town",
+        "run": 3,
+        "before": {
+          "x": -0.13725192647266773,
+          "z": 84.67969569554455,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2559,
+          "fps": 213.1398777300512,
+          "meanMs": 4.6917545916327,
+          "medianMs": 4.599999964237213,
+          "p95Ms": 5.699999988079071,
+          "p99Ms": 5.900000035762787,
+          "worstMs": 9.5,
+          "minMs": 3.5,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.692 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2559,
+          "meanMs": 4.6917545916327,
+          "meanFps": 213.1398777300512,
+          "p50Ms": 4.599999964237213,
+          "p95Ms": 5.699999988079071,
+          "p99Ms": 5.900000035762787,
+          "maxMs": 9.5,
+          "above6_94": 6,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": 0,
+        "z": 299.68423817129,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "bridge",
+        "run": 1,
+        "before": {
+          "x": 0,
+          "z": 215.6335460170343,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2917,
+          "fps": 242.92340875517888,
+          "meanMs": 4.116523825860734,
+          "medianMs": 4.099999964237213,
+          "p95Ms": 4.899999976158142,
+          "p99Ms": 5.300000011920929,
+          "worstMs": 9.599999964237213,
+          "minMs": 2.799999952316284,
+          "above8_333": 3,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.117 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.300 ms (full range 2.800-9.600 ms)"
+        },
+        "tails": {
+          "samples": 2917,
+          "meanMs": 4.116523825860734,
+          "meanFps": 242.92340875517888,
+          "p50Ms": 4.099999964237213,
+          "p95Ms": 4.899999976158142,
+          "p99Ms": 5.300000011920929,
+          "maxMs": 9.599999964237213,
+          "above6_94": 5,
+          "above8_33": 3,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": 0,
+        "z": 299.6324843262873,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "bridge",
+        "run": 2,
+        "before": {
+          "x": 0,
+          "z": 215.6161266835149,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2916,
+          "fps": 242.93724121220416,
+          "meanMs": 4.1162894375939105,
+          "medianMs": 4.099999964237213,
+          "p95Ms": 4.900000035762787,
+          "p99Ms": 5.300000011920929,
+          "worstMs": 9,
+          "minMs": 2.599999964237213,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.116 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.100-5.300 ms (full range 2.600-9.000 ms)"
+        },
+        "tails": {
+          "samples": 2916,
+          "meanMs": 4.1162894375939105,
+          "meanFps": 242.93724121220416,
+          "p50Ms": 4.099999964237213,
+          "p95Ms": 4.900000035762787,
+          "p99Ms": 5.300000011920929,
+          "maxMs": 9,
+          "above6_94": 6,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": 0,
+        "z": 299.6566900167165,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "bridge",
+        "run": 3,
+        "before": {
+          "x": 0,
+          "z": 215.62348841198016,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2956,
+          "fps": 246.2204822789555,
+          "meanMs": 4.061400541271989,
+          "medianMs": 4,
+          "p95Ms": 4.800000011920929,
+          "p99Ms": 5.200000047683716,
+          "worstMs": 12.199999988079071,
+          "minMs": 2.800000011920929,
+          "above8_333": 8,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.061 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2956,
+          "meanMs": 4.061400541271989,
+          "meanFps": 246.2204822789555,
+          "p50Ms": 4,
+          "p95Ms": 4.800000011920929,
+          "p99Ms": 5.200000047683716,
+          "maxMs": 12.199999988079071,
+          "above6_94": 10,
+          "above8_33": 8,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": 0,
+        "z": 349.50369999977306,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "cathedral",
+        "run": 1,
+        "before": {
+          "x": 0,
+          "z": 285.6202999998349,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2934,
+          "fps": 244.42667199791498,
+          "meanMs": 4.091206543975407,
+          "medianMs": 4.099999964237213,
+          "p95Ms": 4.700000047683716,
+          "p99Ms": 5.199999988079071,
+          "worstMs": 8.699999988079071,
+          "minMs": 2.800000011920929,
+          "above8_333": 3,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.091 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.200 ms (full range 2.800-8.700 ms)"
+        },
+        "tails": {
+          "samples": 2934,
+          "meanMs": 4.091206543975407,
+          "meanFps": 244.42667199791498,
+          "p50Ms": 4.099999964237213,
+          "p95Ms": 4.700000047683716,
+          "p99Ms": 5.199999988079071,
+          "maxMs": 8.699999988079071,
+          "above6_94": 6,
+          "above8_33": 3,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": 0,
+        "z": 349.5057999998554,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "cathedral",
+        "run": 2,
+        "before": {
+          "x": 0,
+          "z": 285.61679999983545,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2934,
+          "fps": 244.3717048547085,
+          "meanMs": 4.092126789370116,
+          "medianMs": 4.099999964237213,
+          "p95Ms": 4.799999952316284,
+          "p99Ms": 5.100000023841858,
+          "worstMs": 8.900000035762787,
+          "minMs": 2.699999988079071,
+          "above8_333": 2,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.092 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.100 ms (full range 2.700-8.900 ms)"
+        },
+        "tails": {
+          "samples": 2934,
+          "meanMs": 4.092126789370116,
+          "meanFps": 244.3717048547085,
+          "p50Ms": 4.099999964237213,
+          "p95Ms": 4.799999952316284,
+          "p99Ms": 5.100000023841858,
+          "maxMs": 8.900000035762787,
+          "above6_94": 6,
+          "above8_33": 2,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": 0,
+        "z": 349.5212000001899,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "cathedral",
+        "run": 3,
+        "before": {
+          "x": 0,
+          "z": 285.6272999998354,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2945,
+          "fps": 245.31036550730536,
+          "meanMs": 4.07646859084811,
+          "medianMs": 4.099999964237213,
+          "p95Ms": 4.699999988079071,
+          "p99Ms": 5.100000023841858,
+          "worstMs": 12.5,
+          "minMs": 2.699999988079071,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.076 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2945,
+          "meanMs": 4.07646859084811,
+          "meanFps": 245.31036550730536,
+          "p50Ms": 4.099999964237213,
+          "p95Ms": 4.699999988079071,
+          "p99Ms": 5.100000023841858,
+          "maxMs": 12.5,
+          "above6_94": 6,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": -135.25824313441018,
+        "z": 203.07974513496413,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "forest",
+        "run": 1,
+        "before": {
+          "x": -85.61851444697375,
+          "z": 180.00092334879943,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2768,
+          "fps": 230.55907243240682,
+          "meanMs": 4.337283237002833,
+          "medianMs": 4.300000011920929,
+          "p95Ms": 5.100000023841858,
+          "p99Ms": 5.5,
+          "worstMs": 9.800000011920929,
+          "minMs": 2.899999976158142,
+          "above8_333": 5,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.337 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2768,
+          "meanMs": 4.337283237002833,
+          "meanFps": 230.55907243240682,
+          "p50Ms": 4.300000011920929,
+          "p95Ms": 5.100000023841858,
+          "p99Ms": 5.5,
+          "maxMs": 9.800000011920929,
+          "above6_94": 7,
+          "above8_33": 5,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": -135.14754652464353,
+        "z": 203.0789511975564,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "forest",
+        "run": 2,
+        "before": {
+          "x": -85.61785364540523,
+          "z": 180.00111488549587,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2806,
+          "fps": 233.73010253781362,
+          "meanMs": 4.278439059163193,
+          "medianMs": 4.299999952316284,
+          "p95Ms": 5.099999964237213,
+          "p99Ms": 5.5,
+          "worstMs": 12.900000035762787,
+          "minMs": 2.899999976158142,
+          "above8_333": 5,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.278 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2806,
+          "meanMs": 4.278439059163193,
+          "meanFps": 233.73010253781362,
+          "p50Ms": 4.299999952316284,
+          "p95Ms": 5.099999964237213,
+          "p99Ms": 5.5,
+          "maxMs": 12.900000035762787,
+          "above6_94": 7,
+          "above8_33": 5,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": -135.19067448295976,
+        "z": 203.07983299257867,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "forest",
+        "run": 3,
+        "before": {
+          "x": -85.63435448871626,
+          "z": 180.00120159753575,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2802,
+          "fps": 233.4085816390899,
+          "meanMs": 4.284332619553204,
+          "medianMs": 4.300000011920929,
+          "p95Ms": 5,
+          "p99Ms": 5.5,
+          "worstMs": 9.399999976158142,
+          "minMs": 2.800000011920929,
+          "above8_333": 3,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.284 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2802,
+          "meanMs": 4.284332619553204,
+          "meanFps": 233.4085816390899,
+          "p50Ms": 4.300000011920929,
+          "p95Ms": 5,
+          "p99Ms": 5.5,
+          "maxMs": 9.399999976158142,
+          "above6_94": 5,
+          "above8_33": 3,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      }
+    ],
+    "withShield": [
+      {
+        "x": 0.00024911296282763827,
+        "z": 24.635141999574206,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "meadow",
+        "run": 1,
+        "before": {
+          "x": 0.0009745949253850504,
+          "z": -59.36932959345375,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2527,
+          "fps": 210.5675407681941,
+          "meanMs": 4.749070043520442,
+          "medianMs": 4.599999964237213,
+          "p95Ms": 5.800000011920929,
+          "p99Ms": 6.100000023841858,
+          "worstMs": 9.300000011920929,
+          "minMs": 3.399999976158142,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.749 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2527,
+          "meanMs": 4.749070043520442,
+          "meanFps": 210.5675407681941,
+          "p50Ms": 4.599999964237213,
+          "p95Ms": 5.800000011920929,
+          "p99Ms": 6.100000023841858,
+          "maxMs": 9.300000011920929,
+          "above6_94": 7,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": 0.0008452723820598889,
+        "z": 24.648802928790815,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "meadow",
+        "run": 2,
+        "before": {
+          "x": 0.0009995097782865712,
+          "z": -59.37563958069803,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2528,
+          "fps": 210.60173113310984,
+          "meanMs": 4.748299050628196,
+          "medianMs": 4.599999964237213,
+          "p95Ms": 5.800000011920929,
+          "p99Ms": 6.199999988079071,
+          "worstMs": 9.100000023841858,
+          "minMs": 3.5,
+          "above8_333": 3,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.748 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2528,
+          "meanMs": 4.748299050628196,
+          "meanFps": 210.60173113310984,
+          "p50Ms": 4.599999964237213,
+          "p95Ms": 5.800000011920929,
+          "p99Ms": 6.199999988079071,
+          "maxMs": 9.100000023841858,
+          "above6_94": 9,
+          "above8_33": 3,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": 0.0007757067290806259,
+        "z": 24.674870816967964,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "meadow",
+        "run": 3,
+        "before": {
+          "x": 0.0010236087836621726,
+          "z": -59.36862983068739,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2530,
+          "fps": 210.71919377004122,
+          "meanMs": 4.745652173913044,
+          "medianMs": 4.599999964237213,
+          "p95Ms": 5.800000011920929,
+          "p99Ms": 6.199999988079071,
+          "worstMs": 13.5,
+          "minMs": 3,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.746 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2530,
+          "meanMs": 4.745652173913044,
+          "meanFps": 210.71919377004122,
+          "p50Ms": 4.599999964237213,
+          "p95Ms": 5.800000011920929,
+          "p99Ms": 6.199999988079071,
+          "maxMs": 13.5,
+          "above6_94": 8,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": -0.6685636506095545,
+        "z": 134.76069721427777,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "town",
+        "run": 1,
+        "before": {
+          "x": -0.0005577208311802811,
+          "z": 85.59795942502393,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2438,
+          "fps": 203.09219952724354,
+          "meanMs": 4.923872026241246,
+          "medianMs": 4.700000047683716,
+          "p95Ms": 5.900000035762787,
+          "p99Ms": 6.199999988079071,
+          "worstMs": 10.600000023841858,
+          "minMs": 3.599999964237213,
+          "above8_333": 6,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.924 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2438,
+          "meanMs": 4.923872026241246,
+          "meanFps": 203.09219952724354,
+          "p50Ms": 4.700000047683716,
+          "p95Ms": 5.900000035762787,
+          "p99Ms": 6.199999988079071,
+          "maxMs": 10.600000023841858,
+          "above6_94": 8,
+          "above8_33": 6,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": -0.3370929863556766,
+        "z": 134.74123055087995,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "town",
+        "run": 2,
+        "before": {
+          "x": -0.0004650233302131506,
+          "z": 85.61876438303236,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2438,
+          "fps": 203.09727509828002,
+          "meanMs": 4.92374897455465,
+          "medianMs": 4.699999988079071,
+          "p95Ms": 5.899999976158142,
+          "p99Ms": 6.100000023841858,
+          "worstMs": 11.5,
+          "minMs": 3.300000011920929,
+          "above8_333": 5,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.924 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2438,
+          "meanMs": 4.92374897455465,
+          "meanFps": 203.09727509828002,
+          "p50Ms": 4.699999988079071,
+          "p95Ms": 5.899999976158142,
+          "p99Ms": 6.100000023841858,
+          "maxMs": 11.5,
+          "above6_94": 6,
+          "above8_33": 5,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": -0.33990825359415655,
+        "z": 134.74236506571538,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "town",
+        "run": 3,
+        "before": {
+          "x": -0.00045595109978078656,
+          "z": 85.64610158647923,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2438,
+          "fps": 203.0702083169092,
+          "meanMs": 4.924405250224645,
+          "medianMs": 4.699999988079071,
+          "p95Ms": 5.899999976158142,
+          "p99Ms": 6.100000023841858,
+          "worstMs": 11.600000023841858,
+          "minMs": 3.399999976158142,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.924 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2438,
+          "meanMs": 4.924405250224645,
+          "meanFps": 203.0702083169092,
+          "p50Ms": 4.699999988079071,
+          "p95Ms": 5.899999976158142,
+          "p99Ms": 6.100000023841858,
+          "maxMs": 11.600000023841858,
+          "above6_94": 5,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": 0,
+        "z": 299.6531675180917,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "bridge",
+        "run": 1,
+        "before": {
+          "x": 0,
+          "z": 215.62061382855296,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2839,
+          "fps": 236.48085829497376,
+          "meanMs": 4.228672067625248,
+          "medianMs": 4.199999988079071,
+          "p95Ms": 5,
+          "p99Ms": 5.5,
+          "worstMs": 9.400000035762787,
+          "minMs": 3,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.229 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.400-5.500 ms (full range 3.000-9.400 ms)"
+        },
+        "tails": {
+          "samples": 2839,
+          "meanMs": 4.228672067625248,
+          "meanFps": 236.48085829497376,
+          "p50Ms": 4.199999988079071,
+          "p95Ms": 5,
+          "p99Ms": 5.5,
+          "maxMs": 9.400000035762787,
+          "above6_94": 5,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": 0,
+        "z": 299.62449761730073,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "bridge",
+        "run": 2,
+        "before": {
+          "x": 0,
+          "z": 215.61058465917284,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2838,
+          "fps": 236.44679947035408,
+          "meanMs": 4.229281183928146,
+          "medianMs": 4.199999988079071,
+          "p95Ms": 5.099999964237213,
+          "p99Ms": 5.5,
+          "worstMs": 12.800000011920929,
+          "minMs": 2.800000011920929,
+          "above8_333": 5,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.229 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.400-5.500 ms (full range 2.800-12.800 ms)"
+        },
+        "tails": {
+          "samples": 2838,
+          "meanMs": 4.229281183928146,
+          "meanFps": 236.44679947035408,
+          "p50Ms": 4.199999988079071,
+          "p95Ms": 5.099999964237213,
+          "p99Ms": 5.5,
+          "maxMs": 12.800000011920929,
+          "above6_94": 5,
+          "above8_33": 5,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": 0,
+        "z": 299.63668014611244,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "bridge",
+        "run": 3,
+        "before": {
+          "x": 0,
+          "z": 215.61329243632372,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2842,
+          "fps": 236.75047066883445,
+          "meanMs": 4.22385643912318,
+          "medianMs": 4.199999988079071,
+          "p95Ms": 5,
+          "p99Ms": 5.5,
+          "worstMs": 9.600000023841858,
+          "minMs": 2.599999964237213,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.224 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.400-5.500 ms (full range 2.600-9.600 ms)"
+        },
+        "tails": {
+          "samples": 2842,
+          "meanMs": 4.22385643912318,
+          "meanFps": 236.75047066883445,
+          "p50Ms": 4.199999988079071,
+          "p95Ms": 5,
+          "p99Ms": 5.5,
+          "maxMs": 9.600000023841858,
+          "above6_94": 8,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": 0,
+        "z": 349.5051000001025,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "cathedral",
+        "run": 1,
+        "before": {
+          "x": 0,
+          "z": 285.62729999983435,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2856,
+          "fps": 237.90087463556853,
+          "meanMs": 4.203431372549019,
+          "medianMs": 4.199999988079071,
+          "p95Ms": 5,
+          "p99Ms": 5.399999976158142,
+          "worstMs": 8.800000011920929,
+          "minMs": 2.899999976158142,
+          "above8_333": 1,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.203 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.500-5.400 ms (full range 2.900-8.800 ms)"
+        },
+        "tails": {
+          "samples": 2856,
+          "meanMs": 4.203431372549019,
+          "meanFps": 237.90087463556853,
+          "p50Ms": 4.199999988079071,
+          "p95Ms": 5,
+          "p99Ms": 5.399999976158142,
+          "maxMs": 8.800000011920929,
+          "above6_94": 4,
+          "above8_33": 1,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": 0,
+        "z": 349.50720000018663,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "cathedral",
+        "run": 2,
+        "before": {
+          "x": 0,
+          "z": 285.63780000025156,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2854,
+          "fps": 237.7164560762348,
+          "meanMs": 4.206692361589404,
+          "medianMs": 4.199999988079071,
+          "p95Ms": 5,
+          "p99Ms": 5.399999976158142,
+          "worstMs": 9.099999964237213,
+          "minMs": 2.900000035762787,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.207 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.500-5.400 ms (full range 2.900-9.100 ms)"
+        },
+        "tails": {
+          "samples": 2854,
+          "meanMs": 4.206692361589404,
+          "meanFps": 237.7164560762348,
+          "p50Ms": 4.199999988079071,
+          "p95Ms": 5,
+          "p99Ms": 5.399999976158142,
+          "maxMs": 9.099999964237213,
+          "above6_94": 6,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": 0,
+        "z": 349.50650000001957,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "cathedral",
+        "run": 3,
+        "before": {
+          "x": 0,
+          "z": 285.6482999998343,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2855,
+          "fps": 237.78984541506998,
+          "meanMs": 4.205394045546677,
+          "medianMs": 4.199999988079071,
+          "p95Ms": 5,
+          "p99Ms": 5.399999976158142,
+          "worstMs": 9,
+          "minMs": 2.800000011920929,
+          "above8_333": 3,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": true,
+          "capHz": 240,
+          "capMs": 4.166666666666667,
+          "capReason": "mean 4.205 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.500-5.400 ms (full range 2.800-9.000 ms)"
+        },
+        "tails": {
+          "samples": 2855,
+          "meanMs": 4.205394045546677,
+          "meanFps": 237.78984541506998,
+          "p50Ms": 4.199999988079071,
+          "p95Ms": 5,
+          "p99Ms": 5.399999976158142,
+          "maxMs": 9,
+          "above6_94": 4,
+          "above8_33": 3,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": -135.23863147155072,
+        "z": 203.0807639402772,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "forest",
+        "run": 1,
+        "before": {
+          "x": -85.63391897871522,
+          "z": 180.00112493383656,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2624,
+          "fps": 218.62840669614639,
+          "meanMs": 4.573971036571737,
+          "medianMs": 4.5,
+          "p95Ms": 5.5,
+          "p99Ms": 5.800000011920929,
+          "worstMs": 9.5,
+          "minMs": 3.300000011920929,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.574 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2624,
+          "meanMs": 4.573971036571737,
+          "meanFps": 218.62840669614639,
+          "p50Ms": 4.5,
+          "p95Ms": 5.5,
+          "p99Ms": 5.800000011920929,
+          "maxMs": 9.5,
+          "above6_94": 7,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": -135.22436799666755,
+        "z": 203.07963359096138,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "forest",
+        "run": 2,
+        "before": {
+          "x": -85.62373853039253,
+          "z": 180.00123520864585,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2709,
+          "fps": 225.63342273181274,
+          "meanMs": 4.431967515684045,
+          "medianMs": 4.400000035762787,
+          "p95Ms": 5.200000047683716,
+          "p99Ms": 5.600000023841858,
+          "worstMs": 9.200000047683716,
+          "minMs": 3,
+          "above8_333": 5,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.432 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2709,
+          "meanMs": 4.431967515684045,
+          "meanFps": 225.63342273181274,
+          "p50Ms": 4.400000035762787,
+          "p95Ms": 5.200000047683716,
+          "p99Ms": 5.600000023841858,
+          "maxMs": 9.200000047683716,
+          "above6_94": 7,
+          "above8_33": 5,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "x": -135.18581982614424,
+        "z": 203.07861211898975,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "forest",
+        "run": 3,
+        "before": {
+          "x": -85.61195094568399,
+          "z": 180.00120262452583,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2735,
+          "fps": 227.80086789283337,
+          "meanMs": 4.3897989030947855,
+          "medianMs": 4.399999976158142,
+          "p95Ms": 5.199999988079071,
+          "p99Ms": 5.600000023841858,
+          "worstMs": 9.100000023841858,
+          "minMs": 3.100000023841858,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.390 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2735,
+          "meanMs": 4.3897989030947855,
+          "meanFps": 227.80086789283337,
+          "p50Ms": 4.399999976158142,
+          "p95Ms": 5.199999988079071,
+          "p99Ms": 5.600000023841858,
+          "maxMs": 9.100000023841858,
+          "above6_94": 8,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      }
+    ],
+    "swaps": {
+      "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev&verifyAssets",
+      "network": {
+        "downloadThroughput": 6553600,
+        "uploadThroughput": 6553600,
+        "latency": 40,
+        "offline": false,
+        "note": "Legacy swap budget uses 50 Mibit/s (50*1024*1024), 40 ms; startup uses decimal 50 Mbit/s."
+      },
+      "requestedItems": [
+        "bastionShield"
+      ],
+      "savedAppearance": null,
+      "conditions": "One owned rendering client at a time. Each cold row is a fresh context with the HTTP cache disabled against a piece that context has never loaded. Only procedural props are excluded; authored hands have real network cost.",
+      "slots": [
+        "offHand"
+      ],
+      "repeats": 3,
+      "rows": [
+        {
+          "race": "human",
+          "slot": "offHand",
+          "item": "bastionShield",
+          "repeat": 1,
+          "bytes": 67352,
+          "contentEncoding": null,
+          "hits": 1,
+          "coldMs": 118.3,
+          "coldWorstFrameMs": 20.5,
+          "coldFrames": 18,
+          "residentMs": 8.8
+        },
+        {
+          "race": "human",
+          "slot": "offHand",
+          "item": "bastionShield",
+          "repeat": 2,
+          "bytes": 67352,
+          "contentEncoding": null,
+          "hits": 1,
+          "coldMs": 116,
+          "coldWorstFrameMs": 21.3,
+          "coldFrames": 18,
+          "residentMs": 9.1
+        },
+        {
+          "race": "human",
+          "slot": "offHand",
+          "item": "bastionShield",
+          "repeat": 3,
+          "bytes": 67352,
+          "contentEncoding": null,
+          "hits": 1,
+          "coldMs": 112.2,
+          "coldWorstFrameMs": 22.9,
+          "coldFrames": 18,
+          "residentMs": 8.9
+        },
+        {
+          "race": "orc",
+          "slot": "offHand",
+          "item": "bastionShield",
+          "repeat": 1,
+          "bytes": 67352,
+          "contentEncoding": null,
+          "hits": 1,
+          "coldMs": 111.9,
+          "coldWorstFrameMs": 20.4,
+          "coldFrames": 17,
+          "residentMs": 9.5
+        },
+        {
+          "race": "orc",
+          "slot": "offHand",
+          "item": "bastionShield",
+          "repeat": 2,
+          "bytes": 67352,
+          "contentEncoding": null,
+          "hits": 1,
+          "coldMs": 112.7,
+          "coldWorstFrameMs": 20.4,
+          "coldFrames": 16,
+          "residentMs": 9.5
+        },
+        {
+          "race": "orc",
+          "slot": "offHand",
+          "item": "bastionShield",
+          "repeat": 3,
+          "bytes": 67352,
+          "contentEncoding": null,
+          "hits": 1,
+          "coldMs": 109.2,
+          "coldWorstFrameMs": 20.8,
+          "coldFrames": 16,
+          "residentMs": 9.9
+        },
+        {
+          "race": "undead",
+          "slot": "offHand",
+          "item": "bastionShield",
+          "repeat": 1,
+          "bytes": 67352,
+          "contentEncoding": null,
+          "hits": 1,
+          "coldMs": 112.2,
+          "coldWorstFrameMs": 20.3,
+          "coldFrames": 16,
+          "residentMs": 12.6
+        },
+        {
+          "race": "undead",
+          "slot": "offHand",
+          "item": "bastionShield",
+          "repeat": 2,
+          "bytes": 67352,
+          "contentEncoding": null,
+          "hits": 1,
+          "coldMs": 117.8,
+          "coldWorstFrameMs": 24.4,
+          "coldFrames": 18,
+          "residentMs": 9.5
+        },
+        {
+          "race": "undead",
+          "slot": "offHand",
+          "item": "bastionShield",
+          "repeat": 3,
+          "bytes": 67352,
+          "contentEncoding": null,
+          "hits": 1,
+          "coldMs": 115.1,
+          "coldWorstFrameMs": 20.8,
+          "coldFrames": 17,
+          "residentMs": 9.9
+        }
+      ],
+      "skipped": [],
+      "errors": [],
+      "budget": {
+        "profile": "50 Mbit/s, 40 ms",
+        "coldLatencyMs": 200,
+        "worstFrameMs": 33.33,
+        "warmSwapMs": 60,
+        "pieceBytes": 917504,
+        "measuredAt": "2026-10-02"
+      },
+      "breaches": [],
+      "passed": true,
+      "summary": {
+        "rows": 9,
+        "skipped": 0,
+        "breaches": 0,
+        "consoleErrors": 0
+      }
+    },
+    "firstRejectedAttempt": {
+      "purpose": "Canonical shield isolated settled FPS and cold/resident swap cost; no recording/Pages",
+      "steps": [
+        {
+          "name": "without-shield-fps",
+          "pid": 26065,
+          "code": 1,
+          "signal": null,
+          "seconds": 110.49019100000001
+        }
+      ],
+      "passed": false,
+      "failure": "AssertionError [ERR_ASSERTION]: without-shield-fps failed\n\n1 !== 0\n\n    at run (file:///Users/antbly/dev/wow-clone/.cache/character-mmo/authored-shield-canonical-2026-10-07/performance-package.mjs:9:630)\n    at async file:///Users/antbly/dev/wow-clone/.cache/character-mmo/authored-shield-canonical-2026-10-07/performance-package.mjs:14:97"
+    }
+  },
+  "media": {
+    "file": "/Users/antbly/dev/wow-clone/.cache/character-mmo/authored-shield-canonical-2026-10-07/motion.mp4",
+    "sha256": "21e676eeb6a9c6a17a2ffdb72cd24a92ea8ccd9dcb6126732319cefae3da6665",
+    "sourceMetadata": [
+      {
+        "width": 1280,
+        "height": 720,
+        "duration": 85.059105,
+        "sampleAspectRatio": "1:1",
+        "rotation": 0,
+        "codec": "h264"
+      },
+      {
+        "width": 1280,
+        "height": 720,
+        "duration": 11.999625,
+        "sampleAspectRatio": "1:1",
+        "rotation": 0,
+        "codec": "h264"
+      }
+    ],
+    "encoded": {
+      "width": 1280,
+      "height": 720,
+      "duration": 97.05873,
+      "sampleAspectRatio": "1:1",
+      "rotation": 0,
+      "codec": "h264"
+    },
+    "method": "Existing timestamp-aware encodings concatenated by packet copy; no resize or retiming."
+  },
+  "parentReview": {
+    "acceptedLocal": true,
+    "fileSha256": "21e676eeb6a9c6a17a2ffdb72cd24a92ea8ccd9dcb6126732319cefae3da6665",
+    "playback": [
+      "normal",
+      "half speed"
+    ],
+    "observations": [
+      "Outward shield face and native single-sided material remain visible.",
+      "Grip and back stow remain attached during reviewed Human and Orc cast sections.",
+      "Ordinary Human/Orc/Undead Havok tail plays at normal speed, with shield held and restored.",
+      "Remote source pose sections use actual canonical resource and native sockets.",
+      "No new gross shield/body intersection observed in these bounded fits."
+    ],
+    "limitations": [
+      "Retained armor cuff/knot/plate edge overlap and aliasing.",
+      "No crowd or physical iPhone acceptance.",
+      "Recording at 60 FPS is separate from settled performance windows.",
+      "Playback observation is bounded, not a proof of every possible outfit and animation."
+    ]
+  },
+  "delivery": {
+    "sha256": "21e676eeb6a9c6a17a2ffdb72cd24a92ea8ccd9dcb6126732319cefae3da6665",
+    "file": ".cache/character-mmo/authored-shield-canonical-2026-10-07/motion.mp4",
+    "bytes": 28956116,
+    "ve": "https://ve.sparkify.dev/wow-clone/ashen-reach/authored-shield-canonical-2026-10-07/21e676eeb6a9-motion.mp4",
+    "key": "wow-clone/ashen-reach/authored-shield-canonical-2026-10-07/21e676eeb6a9-motion.mp4",
+    "probe": {
+      "width": 1280,
+      "height": 720,
+      "sampleAspectRatio": "1:1",
+      "rotation": 0,
+      "duration": 97.05873,
+      "codec": "h264"
+    },
+    "steps": [
+      {
+        "name": "ve-upload",
+        "childPid": 70277,
+        "exitCode": 0,
+        "elapsedSeconds": 9.553274833015166
+      },
+      {
+        "name": "public-head",
+        "childPid": 70540,
+        "exitCode": 0,
+        "elapsedSeconds": 0.3672734170104377
+      },
+      {
+        "name": "public-get",
+        "childPid": 70541,
+        "exitCode": 0,
+        "elapsedSeconds": 0.8804411670425907
+      },
+      {
+        "name": "public-range",
+        "childPid": 70582,
+        "exitCode": 0,
+        "elapsedSeconds": 0.10090508300345391
+      },
+      {
+        "name": "telegram-send",
+        "childPid": 70583,
+        "exitCode": 0,
+        "elapsedSeconds": 22.20086858299328
+      }
+    ],
+    "head": {
+      "status": 200,
+      "contentType": "video/mp4",
+      "bytes": 28956116
+    },
+    "fullGet": {
+      "status": 200,
+      "bytes": 28956116,
+      "sha256": "21e676eeb6a9c6a17a2ffdb72cd24a92ea8ccd9dcb6126732319cefae3da6665"
+    },
+    "range": {
+      "status": 206,
+      "bytes": 1024,
+      "contentRange": "bytes 0-1023/28956116"
+    },
+    "telegram": {
+      "log": "sent, message_id 887; verified 1280x720, 97.059s",
+      "messageId": 887
+    },
+    "playback": {
+      "telegramMessageId": 887,
+      "telegramWebInline": {
+        "source": [
+          1280,
+          720
+        ],
+        "display": [
+          738.1875,
+          415.21875
+        ],
+        "aspect": "16:9",
+        "reviewed": true
+      },
+      "telegramWebExpanded": {
+        "source": [
+          1280,
+          720
+        ],
+        "display": [
+          1280,
+          720
+        ],
+        "objectFit": "contain",
+        "reviewed": true
+      },
+      "telegramFullscreen": {
+        "verified": false,
+        "reason": "Fullscreen button toggled UI, but document.fullscreenElement remained null; expanded mode is the verified claim."
+      },
+      "veDirect": {
+        "source": [
+          1280,
+          720
+        ],
+        "display": [
+          1280,
+          720
+        ],
+        "ended": true,
+        "time": 97.05873,
+        "reviewed": true
+      },
+      "cleanup": {
+        "closedOwnedMediaTabs": [
+          "1147995964",
+          "1147995968"
+        ],
+        "ownedMediaServer7075Stopped": true,
+        "telegramUserTabPreserved": true,
+        "viewerClosed": true,
+        "unintendedVoiceDraftCancelled": true,
+        "voiceMessageSent": false
+      }
+    }
+  },
+  "operationWrapper": {
+    "publishGrokCliExit": 1,
+    "reason": "max turns reached after successful delivery; no retry",
+    "sessionId": "01a119b2-566d-7af1-b67f-6ce8191e432e",
+    "allDeliveryChildExits": 0,
+    "telegramMessageId": 887,
+    "appFullscreenVerified": false
+  },
+  "retainedFailures": [
+    "stale shape/identity/validator provenance",
+    "stale diagnostic clothing audition",
+    "obsolete Orc asset filename in negative control",
+    "new pure selector missing from strict saved-entry allowlist",
+    "same-length corrupt response stayed in startup cache before targeted invalidation",
+    "operator expected status object from successful void race switch",
+    "first bridge possible-pacing rejection"
+  ],
+  "evidence": {
+    "file": "evidence.json.gz",
+    "sha256": "01ba5bbfda2b899c7769cda47d17fdcbde9f79e76f46b4528507ec5cab999397",
+    "bytes": 191379,
+    "uncompressedBytes": 1913002,
+    "contents": "Actual native reports, first failures, raw frame intervals, preparation proof, operators, independent source review and ownership journal; no worker thought/session blobs"
+  },
+  "remaining": [
+    "Public release hold and original fetch/input outliers",
+    "Current physical iPhone",
+    "Streaming and native first audio constructor hitches",
+    "Retained cuff/knot/plate-edge overlap and aliasing",
+    "No crowd acceptance or shield combat"
+  ],
+  "cleanup": {
+    "activeOwnedGameInstances": 0,
+    "ownedPortsIdle": [
+      5173,
+      7074,
+      7075,
+      10037
+    ],
+    "userEdgePid": 2931,
+    "userEdgeNonGameTabs": 12,
+    "userOrcaPreserved": true,
+    "ownedGrokWorkerExited": true,
+    "mediaReviewTabsClosed": true
+  }
+}

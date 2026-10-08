@@ -1,12 +1,22 @@
 {
  "schema": 1,
  "version": 1,
- "publishedAt": "2026-10-08T02:57:11.436Z",
+ "publishedAt": "2026-10-08T04:59:51.051Z",
  "lite": "1.31.1",
- "catalogVersion": "appearance-catalog-v8",
- "sourceCompilerSha256": "e9bb55b8b67195c5fe92cb8ebfc86aa59ee654a614bcec4154ab5c721a531563",
+ "catalogVersion": "appearance-catalog-v9",
+ "sourceCompilerSha256": "10e465898c8e04283e2bd8bf78520375a257356e32ae9bff058ff5b633d1e1f8",
  "uniqueFiles": 51,
  "totalBytes": 21062924,
+ "authoredProps": [
+  {
+   "id": "bastionShield",
+   "url": "/ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb",
+   "sha256": "926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c",
+   "bytes": 67352,
+   "triangles": 1104,
+   "draws": 3
+  }
+ ],
  "pieces": [
   {
    "race": "human",
