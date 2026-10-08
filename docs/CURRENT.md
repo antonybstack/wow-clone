@@ -149,6 +149,11 @@ mutable-cache classification and bounded request/body failure reports pass.
 Declared cache families, entry aliases and world response encoding/MIME are now
 covered. Nondeclared default cache policies and local directory-walk/output
 failures remain follow-ups.
+The [default-cache observation](plans/character-mmo/results/default-cache-investigation-2026-10-08.md)
+finds 213 zero-second and 57 four-hour responses among the 270 unclassified rows,
+all with exact decoded bytes. Native zone inventory confirms a 14,400-second
+browser TTL; rule/transform reads are forbidden, so effective policy attribution
+remains incomplete. No cache mutation or new delivery/startup campaign follows.
 Shader/shadow, precision, reorder/resample, concurrent physics and inline-launcher
 trials stay closed without material new evidence. No diagnostic is completion of
 the full goal. While release cause and hardware are unavailable, independent

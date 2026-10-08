@@ -1,0 +1,137 @@
+{
+  "scope": "Read-only zone policy and retained delivery report; no new delivery/game/performance campaign",
+  "head": "d8acd7cab960b8f873caedb1240b5fa770ce8a38",
+  "zone": {
+    "at": "2026-10-08T12:49:57.023Z",
+    "zone": {
+      "name": "sparkify.dev",
+      "status": "active",
+      "plan": "Free Website"
+    },
+    "requests": [
+      {
+        "kind": "browserTTL",
+        "status": 200,
+        "success": true,
+        "codes": [],
+        "result": {
+          "id": "browser_cache_ttl",
+          "value": 14400,
+          "editable": true
+        }
+      },
+      {
+        "kind": "cacheRules",
+        "status": 403,
+        "success": false,
+        "codes": [
+          10000
+        ],
+        "result": null
+      },
+      {
+        "kind": "pageRules",
+        "status": 403,
+        "success": false,
+        "codes": [
+          9109
+        ],
+        "result": null
+      },
+      {
+        "kind": "responseTransforms",
+        "status": 403,
+        "success": false,
+        "codes": [
+          10000
+        ],
+        "result": null
+      }
+    ]
+  },
+  "delivery": {
+    "at": "2026-10-08T12:51:10.943Z",
+    "source": ".cache/character-mmo/release-policy-coverage-2026-10-08/production.json",
+    "sourceSha256": "ca38099d7cd0094932960d984c8ffcc2ce30d0d1177f16dbdac3127a19c62ca1",
+    "totalRows": 554,
+    "unclassified": 270,
+    "unclassifiedBytesMatch": true,
+    "counts": {
+      "public, max-age=0, must-revalidate": 213,
+      "public, max-age=14400, must-revalidate": 57
+    },
+    "extensions": {
+      ".html": {
+        "public, max-age=0, must-revalidate": 1
+      },
+      ".json": {
+        "public, max-age=0, must-revalidate": 32
+      },
+      ".md": {
+        "public, max-age=0, must-revalidate": 6
+      },
+      ".glb": {
+        "public, max-age=0, must-revalidate": 169
+      },
+      ".png": {
+        "public, max-age=14400, must-revalidate": 33
+      },
+      ".wav": {
+        "public, max-age=0, must-revalidate": 2
+      },
+      ".txt": {
+        "public, max-age=0, must-revalidate": 2
+      },
+      ".jpg": {
+        "public, max-age=14400, must-revalidate": 7
+      },
+      ".hdr": {
+        "public, max-age=0, must-revalidate": 1
+      },
+      ".bin": {
+        "public, max-age=14400, must-revalidate": 6
+      },
+      ".gz": {
+        "public, max-age=14400, must-revalidate": 1
+      },
+      ".webp": {
+        "public, max-age=14400, must-revalidate": 9
+      },
+      ".js": {
+        "public, max-age=14400, must-revalidate": 1
+      }
+    },
+    "decoder": {
+      "file": "meshopt_decoder.js",
+      "status": 200,
+      "bytes": 25486,
+      "actualSha256": "a706bbac4cfbea66798936a2c35d1036f594fec955514508e9c14ec329f020fd",
+      "expectedSha256": "a706bbac4cfbea66798936a2c35d1036f594fec955514508e9c14ec329f020fd",
+      "match": true,
+      "sourceSha256": "a706bbac4cfbea66798936a2c35d1036f594fec955514508e9c14ec329f020fd",
+      "resolvedUrl": "https://play.sparkify.dev/meshopt_decoder.js",
+      "responseType": "application/javascript",
+      "cacheControl": "public, max-age=14400, must-revalidate",
+      "contentEncoding": "br",
+      "cfRay": "a47507f6d99e4ba2-LAX",
+      "cfCacheStatus": "REVALIDATED",
+      "age": null
+    }
+  },
+  "physicalDeviceInventory": {
+    "command": "xcrun devicectl list devices",
+    "physicalDevices": 0,
+    "simulatedDevices": [
+      {
+        "name": "iPhone 18 Pro",
+        "state": "shutdown"
+      }
+    ]
+  },
+  "changes": {
+    "runtime": false,
+    "deployment": false,
+    "zoneConfiguration": false
+  },
+  "effectiveRuleAttribution": "Incomplete: rules and response transforms returned HTTP 403"
+}
