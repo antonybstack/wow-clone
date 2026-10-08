@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "3bb7e86767514d031a3ba2895dcddbe2d6d66e43",
+  "decision": "rejected: no established visible improvement",
+  "canonicalProductChanged": false,
+  "productionChanged": false,
+  "clearance": {
+    "additionalRadialM": 0.003,
+    "before": {
+      "human": 0,
+      "undead": 0,
+      "orc": 5
+    },
+    "candidate": {
+      "human": 0,
+      "undead": 0,
+      "orc": 2
+    },
+    "limit": "Rest-space vertex rays only; not complete triangle intersections, visibility or continuous-motion fit"
+  },
+  "native": {
+    "purpose": "Private Orc strap-only audition motion; no benchmark, canonical publication or deployment",
+    "command": "node .cache/character-mmo/boot-seams-2026-10-08/run-capture.mjs",
+    "ranOnce": true,
+    "nativeExit": 0,
+    "controllerPid": 27243,
+    "controllerExited": true,
+    "report": {
+      "passed": true,
+      "failure": null,
+      "steps": [
+        {
+          "name": "record",
+          "childPid": 27244,
+          "code": 0,
+          "signal": null,
+          "elapsedMs": 51801.511166000004
+        },
+        {
+          "name": "encode",
+          "childPid": 29774,
+          "code": 0,
+          "signal": null,
+          "elapsedMs": 7667.439334000002
+        }
+      ]
+    },
+    "recordNativeExit": {
+      "exitCode": 0,
+      "passed": true,
+      "cases": 10,
+      "controllerPid": 27244,
+      "errors": []
+    },
+    "pids": {
+      "controller": 27243,
+      "record": 27244,
+      "encode": 29774,
+      "previewServer": 27304,
+      "browser": 27305,
+      "gpuHelper": [
+        27313
+      ]
+    },
+    "ports": {
+      "preview": 7074,
+      "cdp": 10037,
+      "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev&verifyAssets"
+    },
+    "cleanup": {
+      "browserClosed": true,
+      "previewClosed": true,
+      "ownedPidsAlive": [],
+      "portsIdle": [
+        5173,
+        7074,
+        7075,
+        10037
+      ],
+      "chromeMain": 0,
+      "viteOrPreviewAlive": false,
+      "preserved": {
+        "edgePid": 2931,
+        "orcaPid": 98938
+      }
+    },
+    "encoded": {
+      "path": ".cache/character-mmo/boot-seams-2026-10-08/candidate-motion/motion.mp4",
+      "width": 1280,
+      "height": 720,
+      "duration": 33.330448,
+      "sampleAspectRatio": "1:1",
+      "rotation": 0,
+      "codec": "h264",
+      "bytes": 31615479,
+      "receivedFrames": 996,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "devicePixelRatio": 1
+    },
+    "sourceCommit": "3bb7e86767514d031a3ba2895dcddbe2d6d66e43"
+  },
+  "rootReview": {
+    "at": "2026-10-08T11:04:30.015803+00:00",
+    "decision": "reject private +3 mm Orc strap candidate; no established visible improvement",
+    "normalPlaybackPreviouslyReviewed": true,
+    "slowPlayback": {
+      "rate": 0.5,
+      "observedAdvancingTimesSeconds": [
+        21.467496,
+        26.253152
+      ]
+    },
+    "scope": "Native captured motion, diagnostic framing/fill light; not FPS or complete catalogue acceptance",
+    "tab": {
+      "owner": "root",
+      "id": "1147995988",
+      "browserPid": 2931,
+      "url": "http://127.0.0.1:7075/",
+      "closed": true
+    },
+    "server": {
+      "pid": 33564,
+      "port": 7075,
+      "exited": true,
+      "exitCode": 143,
+      "termination": "intentional SIGTERM"
+    },
+    "canonicalProductChanged": false,
+    "productionChanged": false,
+    "publication": "Private rejected experiment; no new visual milestone accepted or published",
+    "media": {
+      "path": ".cache/character-mmo/boot-seams-2026-10-08/candidate-motion/motion.mp4",
+      "sha256": "74a6946ce8c3502d4ee4933d1c3496f2f476015ccbd98f976ddc45bb1b8a4e66",
+      "bytes": 31615479
+    }
+  },
+  "evidence": {
+    "path": "evidence.json.gz",
+    "sha256": "f4303f9b435f8cc96be584424da4c88c6ae5130582c864ec95f4b6be7f66c885",
+    "bytes": 29076,
+    "uncompressedBytes": 181002
+  }
+}

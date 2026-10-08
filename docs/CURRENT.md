@@ -62,7 +62,10 @@ Further sets, Elf, additional regions, multiplayer and crowd expansion stay park
 ## Next priorities, in execution order
 
 The current demonstrated forefoot/ankle correction is locally complete and
-delivered. The next executable slice is another reproduced armor seam in priority 3.
+delivered. A subsequent private Orc strap trial is rejected: fewer rest-space
+ray hits do not establish a visible improvement. Canonical assets remain unchanged;
+the blind offset trial is closed. Further fit work requires a reproduced visible
+defect. [Strap trial result](plans/character-mmo/results/boot-strap-clearance-trial-2026-10-08.md).
 The native GPU-timer arm in priority 2 is complete and closed; it does not justify
 a shader/geometry/scheduler change or another unchanged visit. The release outcome
 stays first, but unchanged startup campaigns are exhausted until a material lead exists.
@@ -106,8 +109,11 @@ stays first, but unchanged startup campaigns are exhausted until a material lead
    No further repeats of either diagnostic or scheduler arm. Preserve the
    first-play fence, input/resources and independent unprofiled acceptance.
 3. **Finish demonstrated armor seams.** Boot/forefoot/anatomical ankle corrections and focused mixed
-   neck/waist/wrist motion are locally accepted. Knot/cuff/plate-edge overlap,
-   leather pleats, proud straps and aliasing remain. Inspect a specific defect
+   neck/waist/wrist motion are locally accepted. Source leather pleats and tied
+   bows are intentional; proud straps and thin-edge aliasing alone are not an
+   established fit defect. Plate-edge standoff remains a separate review limit.
+   The private Orc +3 mm strap trial reduces five rest-ray hits to two but has no
+   established visible gain and is rejected. Inspect a specific visible defect
    at Human shape endpoints and neutral Orc/Undead, correct it through the
    existing authored-piece pipeline and review live motion. Reuse accepted
    fixtures; preserve grips and covered-hair restoration. The first canonical
