@@ -1,7 +1,10 @@
 # Gothic region and cathedral exploration
 
 The user selected this direction on **2026-10-08** and deferred mobile diagnosis.
-The active slice is **G01: Vaelmark undercroft**. Existing chapels, upper gallery,
+**G01 is complete locally and on a sealed preview; G02 is next.**
+[Actual result, reviewed motion and every frame interval](results/undercroft-2026-10-08.md).
+Production promotion remains under its separate recorded startup gates.
+Existing chapels, upper gallery,
 both bell stairs and exterior parapet are already built; adding them again is not
 progress. Historical character release work remains recorded in CURRENT.
 
@@ -45,6 +48,16 @@ changes. Production promotion requires the existing sealed delivery gates.
 the cliff-cathedral and fortified-entrance references. Improve masonry hierarchy,
 portal depth and distinct roof/stone trim where live views demonstrate the gap.
 Retain bridge clearance, skyline and existing lighting budget.
+Start with the actual bridge, portal and side-silhouette views and the preserved
+`02-cliff-cathedral.png` / `03-fortified-entrance.png`. Identify one visible
+composition gap before changing geometry. Reuse the Gothic arch, prism, batch,
+materials and existing camera; replace weak geometry rather than stacking detail.
+G01 leaves only 174 render triangles and 400 collision triangles beneath the
+cathedral's current guards, so establish geometry savings before additions.
+Keep the undercroft hole, terrain clearance and all six return routes intact.
+Freeze/regenerate prepared inputs, play the approach and interior, review live
+motion and run the same separate unprofiled performance gate. No new textures or
+lighting system unless a demonstrated visual gap warrants their load cost.
 
 **G03 — Regional exploration circuit.** Review the side keeps, detached towers and
 Hollowmere chapel as distinct destinations. Strengthen readable entrances and

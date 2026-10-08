@@ -1,0 +1,16 @@
+{
+  "source": "7698295",
+  "scope": "G01 sealed desktop exploration preview; NOT production/cold-start/mobile/FPS qualification",
+  "stage": "passed",
+  "at": "2026-10-08T15:37:32.008Z",
+  "url": "https://f51c7bcb.fardel.pages.dev",
+  "browserPid": 24817,
+  "vitePid": 24772,
+  "cdpPort": 10037,
+  "vitePort": 5873,
+  "passed": true,
+  "cleanedUp": true,
+  "runnerPid": 23362,
+  "gpuHelperPid": 24823,
+  "sealSha256": "7b366bd57343545f69a51b4b9148dda699e8774ce87b8ef3630935a89841ccaf"
+}

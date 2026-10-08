@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "devicePixelRatio": 1,
+  "canvas": {
+    "width": 1280,
+    "height": 720,
+    "cssWidth": 1280,
+    "cssHeight": 720
+  },
+  "frames": {
+    "count": 1759,
+    "first": {
+      "name": "frame-00000.jpg",
+      "timestamp": 1791469215.452875,
+      "arrivalIndex": 0,
+      "width": 1280,
+      "height": 720
+    },
+    "last": {
+      "name": "frame-01758.jpg",
+      "timestamp": 1791469248.01706,
+      "arrivalIndex": 1758,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "reorderedFrames": 0,
+  "receivedFrames": 1759,
+  "elapsedSeconds": 32.56418514251709,
+  "sourceFrame": {
+    "width": 1280,
+    "height": 720
+  },
+  "encoded": {
+    "width": 1280,
+    "height": 720,
+    "duration": 32.563339,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "fileBytes": 14664093,
+  "sha256": "2f4e7565087b73c119b2d8c2f7644c6a34789599129b34232e4e6235836da3b1"
+}

@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 890,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 32.563339,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 33
+  },
+  "verified": true,
+  "file": "undercroft.mp4",
+  "sha256": "2f4e7565087b73c119b2d8c2f7644c6a34789599129b34232e4e6235836da3b1",
+  "sentAt": "2026-10-08T14:56:13.552389+00:00"
+}

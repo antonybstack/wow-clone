@@ -1,0 +1,23 @@
+{
+  "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-08/undercroft-ce0fd03.mp4",
+  "status": 200,
+  "contentType": "video/mp4",
+  "bytes": 14664093,
+  "sha256": "2f4e7565087b73c119b2d8c2f7644c6a34789599129b34232e4e6235836da3b1",
+  "localExact": true,
+  "range": {
+    "status": 206,
+    "contentRange": "bytes 1000-1999/14664093",
+    "bytes": 1000,
+    "exact": true
+  },
+  "telegram": {
+    "messageId": 890,
+    "verifiedDimensions": [
+      1280,
+      720
+    ],
+    "durationS": 32.563,
+    "rootReview": "Telegram Web inline and expanded preserve proportions; direct VE video plays at 1280x720. Actual Telegram application fullscreen remains unverified."
+  }
+}

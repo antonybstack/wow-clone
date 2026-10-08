@@ -3,10 +3,22 @@
 Updated **2026-10-08**. Read this before choosing work. The latest user request
 controls scope; historical milestones are evidence, not an active task queue.
 **Latest user direction: Gothic region and cathedral exploration; mobile is backlogged.**
-The active slice is [G01: Vaelmark undercroft](plans/gothic-exploration/plan.md):
-a connected lower chamber, guarded descent from the west chapel and a normal-control
-return route. Existing chapels/gallery/towers/parapet already exist. Root is
-implementing against the preserved Gothic references and a reviewed live baseline.
+[G01: Vaelmark undercroft](plans/gothic-exploration/results/undercroft-2026-10-08.md)
+is complete locally and on the [sealed desktop preview](https://f51c7bcb.fardel.pages.dev/?play&clean):
+guarded west-chapel descent, pointed vault, memorial circuit and ordinary-control
+return. Implementation **ce0fd03**, benchmark correction **7698295**, committed/pushed.
+All 22 CPU checks, six local Havok return routes, 646 served preview checks and
+the native preview circuit pass. Reviewed live motion is Telegram **890** and
+[identical VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-08/undercroft-ce0fd03.mp4).
+Separate unprofiled M1 Max/1280×720/DPR1/seven-enemy windows observe **195.3–235.0 FPS**
+across five region routes and **198.4–198.8 FPS** in the undercroft, three 12-second
+runs each, no pacing flags, p99≤6.5 ms. One undercroft interval is **21.3 ms**;
+all other worst frames≤13.6 ms. It is retained as a tail follow-up, not hidden.
+Required near packet remains exact; optional skyline grows 89 bytes.
+Production remains unchanged under the separate startup release hold.
+The next focused slice is **G02: bridge/portal composition and masonry hierarchy**
+against the preserved Gothic references. Existing chapels/gallery/towers/parapet
+already exist; the [Gothic plan](plans/gothic-exploration/plan.md) owns this direction.
 The [mobile backlog](backlog/mobile-2026-10-08.md) preserves the user's known
 iPhone 14 Pro Max / iOS 26.7.1 / Safari / Low Power Mode off specifications,
 successful startup/walking/rotation/background-resume checks and the newly reported
@@ -40,6 +52,11 @@ windows each on meadow/town/bridge/cathedral/forest, no recording or other game.
 Cold starts use fresh native Chrome processes/profiles, disabled HTTP cache and
 decimal 50 Mbit/s down/10 up/40 ms. OS/DNS/driver/CDN caches are uncontrolled.
 Desktop mobile/depth fallback/WebKit are separate from physical iPhone acceptance.
+Measurement correction on October 8: the historical region helper inserted an
+empty `gpuTiming` parameter, which enables timestamp queries. Recorded receipts
+with that URL remain observed throughput with queries enabled. The corrected
+helper removes it and asserts disabled queries; the accepted unprofiled G01
+measurements are recorded separately and are not a controlled old/new build pair.
 [Release result and mixed-domain failure history](plans/character-mmo/results/production-delivery-2026-10-07.md),
 [all samples](baselines/character-mmo/production-delivery-2026-10-07/receipt.json),
 [native release procedure](DEPLOY.md#mixed-custom-domain-delivery).
@@ -181,8 +198,15 @@ HEAD changes do not change the product fingerprint. Preserve unrelated
 **AGENTS.md / docs/plans/character-mmo/next-ten.md** edits; no reset/stash/clean.
 Commit/push completed owned changes. A visual cycle requires root-reviewed live
 MP4/GIF on Telegram with verified VE delivery. Telegram Web inline/expanded and
-direct VE proportions pass for the latest forefoot/restoration clips; actual app
+direct VE proportions pass for the undercroft and forefoot/restoration clips; actual app
 fullscreen is unverified.
+
+G01 preview source **7698295 / f51c7bcb**, seal
+`7b366bd57343545f69a51b4b9148dda699e8774ce87b8ef3630935a89841ccaf`.
+All owned G01 game browsers, controllers, Vite servers and review tabs are closed.
+Grok's final preview owned Chrome **24817**, Vite **24772** (CDP10037/Vite5873),
+now stopped. Freeze source **and prepared public inputs** throughout native checks;
+run preparation before build, not concurrently. [Full receipt and ownership](plans/gothic-exploration/results/undercroft-2026-10-08.md).
 
 Before live work, audit pages/processes and own every browser/PID/CDP/URL. Use one
 game for timing; pause reference media and exclude recording/builds/other timing

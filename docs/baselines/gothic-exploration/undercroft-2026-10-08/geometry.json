@@ -1,0 +1,27 @@
+{
+  "hashes": {
+    "stone": "29cd5c343d68d501ab7853d4a658531e9e687ecc445c944939c7340a9c929b92",
+    "roof": "a2b5818c5f08318bf0722ac4f022a9a57c8c3bf999b58559101343009e334ceb",
+    "glow": "390a8e75d051436bb52bff084287abcbed97648c791b5dc405f60af324bc3eae",
+    "rock": "7ec1b4be1ca9212f98845e650ab9ab0832c3b973ec44b225f2d2b8f5a6eefdf4",
+    "collision": "b3b8aba887a68829a216754555abd3b7fc7321f588596fd41c81675385c31b14"
+  },
+  "triangles": 59826,
+  "collisionTriangles": 14600,
+  "terrainClearance": 0.6591245484973527,
+  "dependencyLockExact": true,
+  "implementation": "ce0fd03",
+  "verificationHelperCorrection": "7698295",
+  "nearPacket": {
+    "encodedBytes": 149963,
+    "sha256": "ccb9dc565ff6a8ad4796f63d88dba6998214e61c9894b538523a95481291969a",
+    "byteExactBeforeAfter": true,
+    "texturesExact": true
+  },
+  "skylinePacket": {
+    "encodedBytesBefore": 593607,
+    "encodedBytesAfter": 593696,
+    "increaseBytes": 89
+  },
+  "characterManifestExact": true
+}

@@ -177,6 +177,13 @@ Audio is deferred while sound is muted. Recorders must `await ASHEN.combat.audio
 
 Measure foreground frame times separately from recording, after warm-up. Report actual buffer resolution, sample count, average, tails/stalls and whether other GPU work was active. Do not discard slow frames or call unsupported GPU timing zero. The current 960×540 buffer is an intentional pixel-art presentation; don't claim its ~144 FPS as native-resolution performance.
 
+For unprofiled throughput, remove the `gpuTiming` URL parameter entirely and
+assert `ASHEN.metrics.summary().gpuTimingEnabled === false`. An empty value still
+enables timestamp queries because the game checks parameter presence. On October 8,
+the region helper was corrected to delete that flag and enforce the runtime
+assertion. Earlier receipts containing `gpuTiming=` remain observed measurements
+with queries enabled; they do not establish unprofiled maximum throughput.
+
 Runtime evidence goes under `ve-capture/ashen-reach/<pass>/`. A visual cycle is not delivered until a reviewed live **GIF or MP4** is on Telegram (`bash scripts/tg file <clip.mp4> "<caption>"`; `scripts/ashen-reach/record-vistas.mjs` records the world/lighting route, the `record-*.mjs` scripts cover character and spell work). Run `bash scripts/tg record <clip.mp4>` after committing so `.claude/telegram-deliveries.log` points at the finished commit and the Stop gate stops asking. Stills are for review and may accompany the clip; they are not the deliverable. Do not expose credentials. Poll at sensible boundaries while active; no monitoring persists after the turn ends. R2 publication is optional when separately useful/authorized, not a substitute for the Telegram motion file.
 
 ### Review an MP4 locally

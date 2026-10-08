@@ -1,0 +1,2753 @@
+{
+  "source": "7698295",
+  "implementation": "ce0fd03",
+  "executedBy": "Grok 4.6/high, supervised and accepted by root",
+  "region": {
+    "conditions": {
+      "cpu": "Apple M1 Max",
+      "url": "http://127.0.0.1:5873/ashen-reach.html?play=&clean=&dev=&fastStart=&pixelRatio=1",
+      "viewport": [
+        1280,
+        720
+      ],
+      "seconds": 12,
+      "runs": 3,
+      "uncappedRequired": true,
+      "recording": false,
+      "gpuTimestampQueries": false,
+      "race": "human",
+      "outfit": null,
+      "orcAssetsOverride": null,
+      "routes": [
+        "meadow",
+        "town",
+        "bridge",
+        "cathedral",
+        "forest"
+      ],
+      "recordCapped": true,
+      "savedAppearance": null
+    },
+    "rows": [
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 182.71514708834658,
+          "meanMs": 5.472999999920527,
+          "medianMs": 5.300000011920929,
+          "p95Ms": 6.399999976158142,
+          "p99Ms": 6.700000047683716,
+          "worstMs": 13.599999964237213,
+          "minMs": 3,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 517,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 764171,
+          "drawBatches": 57,
+          "worldTriangles": 764171,
+          "sceneTriangles": 1094743,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 48,
+          "totalMeshes": 139,
+          "triangleCountMs": 0,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 5.473 ms is not locked to a known display interval"
+        },
+        "x": 0.000652138630912199,
+        "z": 24.656865925732035,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "meadow",
+        "run": 1,
+        "before": {
+          "x": 0.0011056085614481374,
+          "z": -59.37485457477952,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2345,
+          "fps": 195.33853125494088,
+          "meanMs": 5.119317697207811,
+          "medianMs": 5.199999988079071,
+          "p95Ms": 6.199999988079071,
+          "p99Ms": 6.400000035762787,
+          "worstMs": 13.599999964237213,
+          "minMs": 3,
+          "above8_333": 1,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 5.119 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2345,
+          "meanMs": 5.119317697207811,
+          "meanFps": 195.33853125494088,
+          "p50Ms": 5.199999988079071,
+          "p95Ms": 6.199999988079071,
+          "p99Ms": 6.400000035762787,
+          "maxMs": 13.599999964237213,
+          "above6_94": 4,
+          "above8_33": 1,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 183.1893261679285,
+          "meanMs": 5.458833333353201,
+          "medianMs": 5.300000011920929,
+          "p95Ms": 6.399999976158142,
+          "p99Ms": 6.5,
+          "worstMs": 6.600000023841858,
+          "minMs": 4.099999964237213,
+          "above8_333": 0,
+          "above16_667": 0,
+          "drawCalls": 517,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 764171,
+          "drawBatches": 57,
+          "worldTriangles": 764171,
+          "sceneTriangles": 1094697,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 48,
+          "totalMeshes": 139,
+          "triangleCountMs": 0.10000002384185791,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 5.459 ms is not locked to a known display interval"
+        },
+        "x": 0.0006491130322407798,
+        "z": 24.672641722771985,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "meadow",
+        "run": 2,
+        "before": {
+          "x": 0.0013088750733433472,
+          "z": -59.34888498107708,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2346,
+          "fps": 195.44462402261112,
+          "meanMs": 5.116538789444059,
+          "medianMs": 5.199999988079071,
+          "p95Ms": 6.199999988079071,
+          "p99Ms": 6.400000035762787,
+          "worstMs": 10.200000047683716,
+          "minMs": 3,
+          "above8_333": 2,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 5.117 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2346,
+          "meanMs": 5.116538789444059,
+          "meanFps": 195.44462402261112,
+          "p50Ms": 5.199999988079071,
+          "p95Ms": 6.199999988079071,
+          "p99Ms": 6.400000035762787,
+          "maxMs": 10.200000047683716,
+          "above6_94": 3,
+          "above8_33": 2,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 182.90452383656225,
+          "meanMs": 5.467333333392938,
+          "medianMs": 5.300000011920929,
+          "p95Ms": 6.399999976158142,
+          "p99Ms": 6.600000023841858,
+          "worstMs": 8.300000011920929,
+          "minMs": 3.699999988079071,
+          "above8_333": 0,
+          "above16_667": 0,
+          "drawCalls": 517,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 764171,
+          "drawBatches": 57,
+          "worldTriangles": 764171,
+          "sceneTriangles": 1094691,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 48,
+          "totalMeshes": 139,
+          "triangleCountMs": 0.10000002384185791,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 5.467 ms is not locked to a known display interval"
+        },
+        "x": 0.0008068390026065123,
+        "z": 24.633844095501814,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "meadow",
+        "run": 3,
+        "before": {
+          "x": 0.0013808759046422601,
+          "z": -59.38735029316221,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2345,
+          "fps": 195.36294185746178,
+          "meanMs": 5.118678038384615,
+          "medianMs": 5.199999988079071,
+          "p95Ms": 6.199999988079071,
+          "p99Ms": 6.5,
+          "worstMs": 8.5,
+          "minMs": 3.100000023841858,
+          "above8_333": 2,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 5.119 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2345,
+          "meanMs": 5.118678038384615,
+          "meanFps": 195.36294185746178,
+          "p50Ms": 5.199999988079071,
+          "p95Ms": 6.199999988079071,
+          "p99Ms": 6.5,
+          "maxMs": 8.5,
+          "above6_94": 5,
+          "above8_33": 2,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 201.85029436501262,
+          "meanMs": 4.954166666666667,
+          "medianMs": 5.100000023841858,
+          "p95Ms": 5.599999964237213,
+          "p99Ms": 5.700000047683716,
+          "worstMs": 6.399999976158142,
+          "minMs": 3.899999976158142,
+          "above8_333": 0,
+          "above16_667": 0,
+          "drawCalls": 528,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 767585,
+          "drawBatches": 57,
+          "worldTriangles": 767585,
+          "sceneTriangles": 1058941,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 48,
+          "totalMeshes": 139,
+          "triangleCountMs": 0.09999996423721313,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.954 ms is not locked to a known display interval"
+        },
+        "x": -0.28296959968948027,
+        "z": 134.79616531935207,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "town",
+        "run": 1,
+        "before": {
+          "x": -0.026435960884903808,
+          "z": 85.60186460266219,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2351,
+          "fps": 195.89707695916536,
+          "meanMs": 5.104721395145929,
+          "medianMs": 5.199999988079071,
+          "p95Ms": 5.600000023841858,
+          "p99Ms": 6.399999976158142,
+          "worstMs": 8.899999976158142,
+          "minMs": 3,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 5.105 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2351,
+          "meanMs": 5.104721395145929,
+          "meanFps": 195.89707695916536,
+          "p50Ms": 5.199999988079071,
+          "p95Ms": 5.600000023841858,
+          "p99Ms": 6.399999976158142,
+          "maxMs": 8.899999976158142,
+          "above6_94": 6,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 201.55872077317832,
+          "meanMs": 4.961333333353202,
+          "medianMs": 5.100000023841858,
+          "p95Ms": 5.5,
+          "p99Ms": 6.100000023841858,
+          "worstMs": 8.399999976158142,
+          "minMs": 3.399999976158142,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 529,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 767585,
+          "drawBatches": 57,
+          "worldTriangles": 767585,
+          "sceneTriangles": 1058981,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 48,
+          "totalMeshes": 139,
+          "triangleCountMs": 0,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.961 ms is not locked to a known display interval"
+        },
+        "x": -0.2841067165907849,
+        "z": 134.7993234634169,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "town",
+        "run": 2,
+        "before": {
+          "x": -0.18401428864391303,
+          "z": 84.67519686617707,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2352,
+          "fps": 195.8955223884487,
+          "meanMs": 5.104761904751768,
+          "medianMs": 5.199999988079071,
+          "p95Ms": 5.699999988079071,
+          "p99Ms": 6.300000011920929,
+          "worstMs": 8.900000035762787,
+          "minMs": 3.200000047683716,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 5.105 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2352,
+          "meanMs": 5.104761904751768,
+          "meanFps": 195.8955223884487,
+          "p50Ms": 5.199999988079071,
+          "p95Ms": 5.699999988079071,
+          "p99Ms": 6.300000011920929,
+          "maxMs": 8.900000035762787,
+          "above6_94": 4,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 201.70779264681426,
+          "meanMs": 4.957666666607062,
+          "medianMs": 5.100000023841858,
+          "p95Ms": 5.5,
+          "p99Ms": 5.699999988079071,
+          "worstMs": 9,
+          "minMs": 3.400000035762787,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 529,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 767585,
+          "drawBatches": 57,
+          "worldTriangles": 767585,
+          "sceneTriangles": 1058929,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 48,
+          "totalMeshes": 139,
+          "triangleCountMs": 0.09999996423721313,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.958 ms is not locked to a known display interval"
+        },
+        "x": -0.28361285289608185,
+        "z": 134.80527695020015,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "town",
+        "run": 3,
+        "before": {
+          "x": -0.18801723838103854,
+          "z": 84.6649227851831,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2350,
+          "fps": 195.78275612191865,
+          "meanMs": 5.107702127644356,
+          "medianMs": 5.199999988079071,
+          "p95Ms": 5.600000023841858,
+          "p99Ms": 6.399999976158142,
+          "worstMs": 9,
+          "minMs": 3.200000047683716,
+          "above8_333": 2,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 5.108 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2350,
+          "meanMs": 5.107702127644356,
+          "meanFps": 195.78275612191865,
+          "p50Ms": 5.199999988079071,
+          "p95Ms": 5.600000023841858,
+          "p99Ms": 6.399999976158142,
+          "maxMs": 9,
+          "above6_94": 4,
+          "above8_33": 2,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 223.6052621761765,
+          "meanMs": 4.472166666686535,
+          "medianMs": 4.799999952316284,
+          "p95Ms": 5.100000023841858,
+          "p99Ms": 5.200000047683716,
+          "worstMs": 9.200000047683716,
+          "minMs": 3.199999988079071,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 421,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 791293,
+          "drawBatches": 57,
+          "worldTriangles": 791293,
+          "sceneTriangles": 1057371,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 48,
+          "totalMeshes": 139,
+          "triangleCountMs": 0.10000002384185791,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.472 ms is not locked to a known display interval"
+        },
+        "x": 0,
+        "z": 299.65593862801,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "bridge",
+        "run": 1,
+        "before": {
+          "x": 0,
+          "z": 215.62490304108428,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2817,
+          "fps": 234.65418287579192,
+          "meanMs": 4.261590344329485,
+          "medianMs": 4,
+          "p95Ms": 5.100000023841858,
+          "p99Ms": 5.399999976158142,
+          "worstMs": 9.200000047683716,
+          "minMs": 2.699999988079071,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.262 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2817,
+          "meanMs": 4.261590344329485,
+          "meanFps": 234.65418287579192,
+          "p50Ms": 4,
+          "p95Ms": 5.100000023841858,
+          "p99Ms": 5.399999976158142,
+          "maxMs": 9.200000047683716,
+          "above6_94": 4,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 223.87224357100945,
+          "meanMs": 4.46683333337307,
+          "medianMs": 4.799999952316284,
+          "p95Ms": 5.100000023841858,
+          "p99Ms": 5.200000047683716,
+          "worstMs": 5.800000011920929,
+          "minMs": 3.300000011920929,
+          "above8_333": 0,
+          "above16_667": 0,
+          "drawCalls": 421,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 791293,
+          "drawBatches": 57,
+          "worldTriangles": 791293,
+          "sceneTriangles": 1057363,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 48,
+          "totalMeshes": 139,
+          "triangleCountMs": 0.09999996423721313,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.467 ms is not locked to a known display interval"
+        },
+        "x": 0,
+        "z": 299.64286977247036,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "bridge",
+        "run": 2,
+        "before": {
+          "x": 0,
+          "z": 215.6115163318645,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2821,
+          "fps": 234.98150801226097,
+          "meanMs": 4.255654023412862,
+          "medianMs": 4,
+          "p95Ms": 5.100000023841858,
+          "p99Ms": 5.399999976158142,
+          "worstMs": 9.699999988079071,
+          "minMs": 2.5,
+          "above8_333": 3,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.256 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2821,
+          "meanMs": 4.255654023412862,
+          "meanFps": 234.98150801226097,
+          "p50Ms": 4,
+          "p95Ms": 5.100000023841858,
+          "p99Ms": 5.399999976158142,
+          "maxMs": 9.699999988079071,
+          "above6_94": 3,
+          "above8_33": 3,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 223.68028630778429,
+          "meanMs": 4.470666666726271,
+          "medianMs": 4.799999952316284,
+          "p95Ms": 5.100000023841858,
+          "p99Ms": 5.200000047683716,
+          "worstMs": 8.599999964237213,
+          "minMs": 3.100000023841858,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 421,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 791293,
+          "drawBatches": 57,
+          "worldTriangles": 791293,
+          "sceneTriangles": 1057371,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 48,
+          "totalMeshes": 139,
+          "triangleCountMs": 0.10000002384185791,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.471 ms is not locked to a known display interval"
+        },
+        "x": 0,
+        "z": 299.64405789899985,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "bridge",
+        "run": 3,
+        "before": {
+          "x": 0,
+          "z": 215.61486911455899,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2820,
+          "fps": 234.90995118491242,
+          "meanMs": 4.256950354618383,
+          "medianMs": 4,
+          "p95Ms": 5.199999988079071,
+          "p99Ms": 5.400000035762787,
+          "worstMs": 11.100000023841858,
+          "minMs": 2.899999976158142,
+          "above8_333": 3,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.257 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2820,
+          "meanMs": 4.256950354618383,
+          "meanFps": 234.90995118491242,
+          "p50Ms": 4,
+          "p95Ms": 5.199999988079071,
+          "p99Ms": 5.400000035762787,
+          "maxMs": 11.100000023841858,
+          "above6_94": 3,
+          "above8_33": 3,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 237.6896565373238,
+          "meanMs": 4.207166666686535,
+          "medianMs": 4.5,
+          "p95Ms": 4.900000035762787,
+          "p99Ms": 5.100000023841858,
+          "worstMs": 5.200000047683716,
+          "minMs": 3.300000011920929,
+          "above8_333": 0,
+          "above16_667": 0,
+          "drawCalls": 421,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 791293,
+          "drawBatches": 57,
+          "worldTriangles": 791293,
+          "sceneTriangles": 1055147,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 48,
+          "totalMeshes": 139,
+          "triangleCountMs": 0,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.207 ms is not locked to a known display interval"
+        },
+        "x": 0,
+        "z": 349.56249999999295,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "cathedral",
+        "run": 1,
+        "before": {
+          "x": 0,
+          "z": 285.6161000000824,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2687,
+          "fps": 223.8681618989224,
+          "meanMs": 4.466914774828521,
+          "medianMs": 4.799999952316284,
+          "p95Ms": 5.199999988079071,
+          "p99Ms": 5.400000035762787,
+          "worstMs": 9.799999952316284,
+          "minMs": 2.699999988079071,
+          "above8_333": 3,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.467 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2687,
+          "meanMs": 4.466914774828521,
+          "meanFps": 223.8681618989224,
+          "p50Ms": 4.799999952316284,
+          "p95Ms": 5.199999988079071,
+          "p99Ms": 5.400000035762787,
+          "maxMs": 9.799999952316284,
+          "above6_94": 4,
+          "above8_33": 3,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 237.51088591672524,
+          "meanMs": 4.210333333313465,
+          "medianMs": 3.900000035762787,
+          "p95Ms": 5,
+          "p99Ms": 5.100000023841858,
+          "worstMs": 8.300000011920929,
+          "minMs": 2.699999988079071,
+          "above8_333": 0,
+          "above16_667": 0,
+          "drawCalls": 421,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 791293,
+          "drawBatches": 57,
+          "worldTriangles": 791293,
+          "sceneTriangles": 1055147,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 48,
+          "totalMeshes": 139,
+          "triangleCountMs": 0.20000004768371582,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.210 ms is not locked to a known display interval"
+        },
+        "x": 0,
+        "z": 349.5617999998228,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "cathedral",
+        "run": 2,
+        "before": {
+          "x": 0,
+          "z": 285.6174999999988,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2690,
+          "fps": 224.1386493354997,
+          "meanMs": 4.4615241635687735,
+          "medianMs": 4.799999952316284,
+          "p95Ms": 5.199999988079071,
+          "p99Ms": 5.399999976158142,
+          "worstMs": 10.699999988079071,
+          "minMs": 2.300000011920929,
+          "above8_333": 2,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.462 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2690,
+          "meanMs": 4.4615241635687735,
+          "meanFps": 224.1386493354997,
+          "p50Ms": 4.799999952316284,
+          "p95Ms": 5.199999988079071,
+          "p99Ms": 5.399999976158142,
+          "maxMs": 10.699999988079071,
+          "above6_94": 3,
+          "above8_33": 2,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 237.2479240806643,
+          "meanMs": 4.215,
+          "medianMs": 4.599999964237213,
+          "p95Ms": 4.899999976158142,
+          "p99Ms": 5,
+          "worstMs": 9.400000035762787,
+          "minMs": 2.699999988079071,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 421,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 791293,
+          "drawBatches": 57,
+          "worldTriangles": 791293,
+          "sceneTriangles": 1055147,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 48,
+          "totalMeshes": 139,
+          "triangleCountMs": 0.09999996423721313,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.215 ms is not locked to a known display interval"
+        },
+        "x": 0,
+        "z": 349.5478000039198,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "cathedral",
+        "run": 3,
+        "before": {
+          "x": 0,
+          "z": 285.6356999997491,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2682,
+          "fps": 223.46648002777385,
+          "meanMs": 4.4749440715928115,
+          "medianMs": 4.699999988079071,
+          "p95Ms": 5.200000047683716,
+          "p99Ms": 5.400000035762787,
+          "worstMs": 10,
+          "minMs": 2.699999988079071,
+          "above8_333": 4,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.475 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2682,
+          "meanMs": 4.4749440715928115,
+          "meanFps": 223.46648002777385,
+          "p50Ms": 4.699999988079071,
+          "p95Ms": 5.200000047683716,
+          "p99Ms": 5.400000035762787,
+          "maxMs": 10,
+          "above6_94": 4,
+          "above8_33": 4,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 213.56873353922256,
+          "meanMs": 4.682333333293597,
+          "medianMs": 5,
+          "p95Ms": 5.5,
+          "p99Ms": 5.599999964237213,
+          "worstMs": 5.600000023841858,
+          "minMs": 3.600000023841858,
+          "above8_333": 0,
+          "above16_667": 0,
+          "drawCalls": 514,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 841271,
+          "drawBatches": 57,
+          "worldTriangles": 841271,
+          "sceneTriangles": 1109707,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 48,
+          "totalMeshes": 139,
+          "triangleCountMs": 0.09999996423721313,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.682 ms is not locked to a known display interval"
+        },
+        "x": -135.41959141114972,
+        "z": 203.0393689434856,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "forest",
+        "run": 1,
+        "before": {
+          "x": -85.6039255552788,
+          "z": 180.00109404193228,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2535,
+          "fps": 211.1356348644484,
+          "meanMs": 4.73629191321499,
+          "medianMs": 5,
+          "p95Ms": 5.5,
+          "p99Ms": 5.600000023841858,
+          "worstMs": 10.899999976158142,
+          "minMs": 2.900000035762787,
+          "above8_333": 2,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.736 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2535,
+          "meanMs": 4.73629191321499,
+          "meanFps": 211.1356348644484,
+          "p50Ms": 5,
+          "p95Ms": 5.5,
+          "p99Ms": 5.600000023841858,
+          "maxMs": 10.899999976158142,
+          "above6_94": 5,
+          "above8_33": 2,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 215.2234737059453,
+          "meanMs": 4.646333333353201,
+          "medianMs": 4.900000035762787,
+          "p95Ms": 5.400000035762787,
+          "p99Ms": 5.5,
+          "worstMs": 9.699999988079071,
+          "minMs": 3.199999988079071,
+          "above8_333": 1,
+          "above16_667": 0,
+          "drawCalls": 517,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 841271,
+          "drawBatches": 57,
+          "worldTriangles": 841271,
+          "sceneTriangles": 1109711,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 48,
+          "totalMeshes": 139,
+          "triangleCountMs": 0,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.646 ms is not locked to a known display interval"
+        },
+        "x": -135.4369163213988,
+        "z": 203.0379267013104,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "forest",
+        "run": 2,
+        "before": {
+          "x": -85.60503614280546,
+          "z": 180.00117792970678,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2632,
+          "fps": 219.25659352581712,
+          "meanMs": 4.560866261393647,
+          "medianMs": 4.800000011920929,
+          "p95Ms": 5.399999976158142,
+          "p99Ms": 5.5,
+          "worstMs": 9.699999988079071,
+          "minMs": 2.900000035762787,
+          "above8_333": 3,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.561 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2632,
+          "meanMs": 4.560866261393647,
+          "meanFps": 219.25659352581712,
+          "p50Ms": 4.800000011920929,
+          "p95Ms": 5.399999976158142,
+          "p99Ms": 5.5,
+          "maxMs": 9.699999988079071,
+          "above6_94": 4,
+          "above8_33": 3,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      },
+      {
+        "summary": {
+          "samples": 600,
+          "fps": 215.46306604035212,
+          "meanMs": 4.641166666646798,
+          "medianMs": 4.900000035762787,
+          "p95Ms": 5.5,
+          "p99Ms": 5.600000023841858,
+          "worstMs": 5.700000047683716,
+          "minMs": 3.599999964237213,
+          "above8_333": 0,
+          "above16_667": 0,
+          "drawCalls": 517,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 125642,
+          "farTriangles": 289206,
+          "scatterTrees": 599,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117242,
+          "triangles": 841271,
+          "drawBatches": 57,
+          "worldTriangles": 841271,
+          "sceneTriangles": 1109711,
+          "drawnMeshes": 91,
+          "hiddenMeshes": 48,
+          "totalMeshes": 139,
+          "triangleCountMs": 0.10000002384185791,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.641 ms is not locked to a known display interval"
+        },
+        "x": -135.37751015779745,
+        "z": 203.03550471158945,
+        "recoveries": 0,
+        "enemies": 7,
+        "physics": true,
+        "route": "forest",
+        "run": 3,
+        "before": {
+          "x": -85.64143300224565,
+          "z": 180.00117883998988,
+          "recoveries": 0
+        },
+        "fullWindow": {
+          "samples": 2657,
+          "fps": 221.38714838087566,
+          "meanMs": 4.516974030848415,
+          "medianMs": 4.699999988079071,
+          "p95Ms": 5.399999976158142,
+          "p99Ms": 5.5,
+          "worstMs": 9.800000011920929,
+          "minMs": 2.899999976158142,
+          "above8_333": 3,
+          "above16_667": 0
+        },
+        "fullWindowCap": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 4.517 ms is not locked to a known display interval"
+        },
+        "tails": {
+          "samples": 2657,
+          "meanMs": 4.516974030848415,
+          "meanFps": 221.38714838087566,
+          "p50Ms": 4.699999988079071,
+          "p95Ms": 5.399999976158142,
+          "p99Ms": 5.5,
+          "maxMs": 9.800000011920929,
+          "above6_94": 3,
+          "above8_33": 3,
+          "above16_67": 0,
+          "above33_33": 0
+        }
+      }
+    ],
+    "errors": []
+  },
+  "undercroft": {
+    "at": "2026-10-08T15:31:26.860Z",
+    "ownership": {
+      "owner": "root",
+      "browserPid": 8850,
+      "gpuHelperPids": [
+        8856
+      ],
+      "cdpPort": 10037,
+      "url": "http://127.0.0.1:5873/ashen-reach.html?play=&clean=&dev=&fastStart=&pixelRatio=1",
+      "purpose": "Undercroft performance; no recording/builds/other game",
+      "renderingClients": 0,
+      "active": false
+    },
+    "conditions": {
+      "cpu": "Apple M1 Max",
+      "browser": "154.0.8037.98",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "enemyCount": 7,
+      "runSeconds": 12,
+      "recording": false,
+      "gpuTimestampQueries": false,
+      "controller": "Real W/A/D, native Havok; sampled keyboard steering adds driver overhead"
+    },
+    "rows": [
+      {
+        "run": 1,
+        "samples": 2383,
+        "fps": 198.43450745274376,
+        "meanMs": 5.039446076374318,
+        "medianMs": 5.099999964237213,
+        "p95Ms": 6.199999988079071,
+        "p99Ms": 6.400000035762787,
+        "worstMs": 21.30000001192093,
+        "minMs": 2.699999988079071,
+        "above8_333": 5,
+        "above16_667": 1,
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.039 ms is not locked to a known display interval",
+        "distanceM": 52.8296999993335,
+        "before": {
+          "p": {
+            "x": -7,
+            "y": 40.204265625000005,
+            "z": 337
+          },
+          "facing": -2.356194490192345,
+          "physics": {
+            "facing": -2.356194490192345,
+            "grounded": true,
+            "vy": 0,
+            "support": 2,
+            "speed": 0,
+            "vx": 0,
+            "vz": 0,
+            "castBlend": 0,
+            "jumps": 0,
+            "landings": 3,
+            "recoveries": 0,
+            "jumpInFlight": false,
+            "airTime": 0,
+            "position": {
+              "x": -7,
+              "y": 40.204265625000005,
+              "z": 337
+            },
+            "usingPhysics": true,
+            "colliders": {
+              "meshCount": 721,
+              "boxCount": 678,
+              "skipped": 0,
+              "animatedCount": 7
+            },
+            "capsuleHeight": 1.748,
+            "animated": [
+              {
+                "id": "grave-shade-1",
+                "enabled": true,
+                "radius": 0.4368,
+                "pose": {
+                  "x": -0.14733863521516166,
+                  "y": 1.5387522502337414,
+                  "z": 16.268792141479153
+                }
+              },
+              {
+                "id": "grave-shade-2",
+                "enabled": true,
+                "radius": 0.40319999999999995,
+                "pose": {
+                  "x": -4.918296775977118,
+                  "y": 1.6759748479619092,
+                  "z": 27.90054678412542
+                }
+              },
+              {
+                "id": "grave-shade-3",
+                "enabled": true,
+                "radius": 0.462,
+                "pose": {
+                  "x": 6.616285680566789,
+                  "y": 1.6126270875334603,
+                  "z": 47.76188222891217
+                }
+              },
+              {
+                "id": "grave-shade-4",
+                "enabled": true,
+                "radius": 0.42,
+                "pose": {
+                  "x": -1.2271547797600417,
+                  "y": 2.581181459427918,
+                  "z": 64.59751663999431
+                }
+              },
+              {
+                "id": "town-wraith-1",
+                "enabled": true,
+                "radius": 0.4326,
+                "pose": {
+                  "x": -1.952246687074495,
+                  "y": 4.582042891246993,
+                  "z": 86.27097446810528
+                }
+              },
+              {
+                "id": "town-wraith-2",
+                "enabled": true,
+                "radius": 0.4074,
+                "pose": {
+                  "x": -0.14510159573766843,
+                  "y": 6.268937148587411,
+                  "z": 106.63501260779836
+                }
+              },
+              {
+                "id": "town-wraith-3",
+                "enabled": true,
+                "radius": 0.441,
+                "pose": {
+                  "x": 2.348872081569142,
+                  "y": 9.615558730771733,
+                  "z": 126.72844830746267
+                }
+              }
+            ]
+          },
+          "enemies": 7,
+          "canvas": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "after": {
+          "p": {
+            "x": -4.1771957279783845,
+            "y": 40.204265625000005,
+            "z": 327.9042833025621
+          },
+          "facing": -12.54497449055722,
+          "physics": {
+            "facing": -12.54497449055722,
+            "grounded": true,
+            "vy": 0,
+            "support": 2,
+            "speed": 6.999999999997633,
+            "vx": 0.14976143935237796,
+            "vz": 6.998397781724755,
+            "castBlend": 0,
+            "jumps": 0,
+            "landings": 3,
+            "recoveries": 0,
+            "jumpInFlight": false,
+            "airTime": 0,
+            "position": {
+              "x": -4.1771957279783845,
+              "y": 40.204265625000005,
+              "z": 327.9042833025621
+            },
+            "usingPhysics": true,
+            "colliders": {
+              "meshCount": 721,
+              "boxCount": 678,
+              "skipped": 0,
+              "animatedCount": 7
+            },
+            "capsuleHeight": 1.748,
+            "animated": [
+              {
+                "id": "grave-shade-1",
+                "enabled": true,
+                "radius": 0.4368,
+                "pose": {
+                  "x": 2.7736437590450573,
+                  "y": 1.2897287861724762,
+                  "z": 13.762359650913309
+                }
+              },
+              {
+                "id": "grave-shade-2",
+                "enabled": true,
+                "radius": 0.40319999999999995,
+                "pose": {
+                  "x": -4.918296775977118,
+                  "y": 1.6759748479619092,
+                  "z": 27.90054678412542
+                }
+              },
+              {
+                "id": "grave-shade-3",
+                "enabled": true,
+                "radius": 0.462,
+                "pose": {
+                  "x": 0.23846610507851995,
+                  "y": 1.499429289481344,
+                  "z": 47.37677672196423
+                }
+              },
+              {
+                "id": "grave-shade-4",
+                "enabled": true,
+                "radius": 0.42,
+                "pose": {
+                  "x": -2.06847175825779,
+                  "y": 2.3285473357800344,
+                  "z": 59.41798540351072
+                }
+              },
+              {
+                "id": "town-wraith-1",
+                "enabled": true,
+                "radius": 0.4326,
+                "pose": {
+                  "x": 1.966424853038536,
+                  "y": 5.27331515347784,
+                  "z": 88.43234160342465
+                }
+              },
+              {
+                "id": "town-wraith-2",
+                "enabled": true,
+                "radius": 0.4074,
+                "pose": {
+                  "x": -3.0772904319237475,
+                  "y": 5.817914559994723,
+                  "z": 108.437899641489
+                }
+              },
+              {
+                "id": "town-wraith-3",
+                "enabled": true,
+                "radius": 0.441,
+                "pose": {
+                  "x": 0.2113231697788497,
+                  "y": 8.482838312577444,
+                  "z": 123.76582845067117
+                }
+              }
+            ]
+          },
+          "enemies": 7,
+          "canvas": {
+            "width": 1280,
+            "height": 720
+          }
+        }
+      },
+      {
+        "run": 2,
+        "samples": 2387,
+        "fps": 198.76428071831342,
+        "meanMs": 5.031085043983276,
+        "medianMs": 5.099999964237213,
+        "p95Ms": 6.099999964237213,
+        "p99Ms": 6.400000035762787,
+        "worstMs": 8.900000035762787,
+        "minMs": 3.100000023841858,
+        "above8_333": 2,
+        "above16_667": 0,
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.031 ms is not locked to a known display interval",
+        "distanceM": 51.97220000058393,
+        "before": {
+          "p": {
+            "x": -7,
+            "y": 40.204265625000005,
+            "z": 337
+          },
+          "facing": -2.356194490192345,
+          "physics": {
+            "facing": -2.356194490192345,
+            "grounded": true,
+            "vy": 0,
+            "support": 2,
+            "speed": 0,
+            "vx": 0,
+            "vz": 0,
+            "castBlend": 0,
+            "jumps": 0,
+            "landings": 5,
+            "recoveries": 0,
+            "jumpInFlight": false,
+            "airTime": 0,
+            "position": {
+              "x": -7,
+              "y": 40.204265625000005,
+              "z": 337
+            },
+            "usingPhysics": true,
+            "colliders": {
+              "meshCount": 721,
+              "boxCount": 678,
+              "skipped": 0,
+              "animatedCount": 7
+            },
+            "capsuleHeight": 1.748,
+            "animated": [
+              {
+                "id": "grave-shade-1",
+                "enabled": true,
+                "radius": 0.4368,
+                "pose": {
+                  "x": 2.7736437590450573,
+                  "y": 1.2897287861724762,
+                  "z": 13.762359650913309
+                }
+              },
+              {
+                "id": "grave-shade-2",
+                "enabled": true,
+                "radius": 0.40319999999999995,
+                "pose": {
+                  "x": -4.918296775977118,
+                  "y": 1.6759748479619092,
+                  "z": 27.90054678412542
+                }
+              },
+              {
+                "id": "grave-shade-3",
+                "enabled": true,
+                "radius": 0.462,
+                "pose": {
+                  "x": 1.782028765643372,
+                  "y": 1.5291463740292597,
+                  "z": 46.04754971978148
+                }
+              },
+              {
+                "id": "grave-shade-4",
+                "enabled": true,
+                "radius": 0.42,
+                "pose": {
+                  "x": -0.5497884505617109,
+                  "y": 2.4435594387713393,
+                  "z": 60.26752824140968
+                }
+              },
+              {
+                "id": "town-wraith-1",
+                "enabled": true,
+                "radius": 0.4326,
+                "pose": {
+                  "x": 1.3971161739917983,
+                  "y": 5.161027942859503,
+                  "z": 88.11722556454053
+                }
+              },
+              {
+                "id": "town-wraith-2",
+                "enabled": true,
+                "radius": 0.4074,
+                "pose": {
+                  "x": -2.6573823045781024,
+                  "y": 5.827140705417026,
+                  "z": 107.22623254284449
+                }
+              },
+              {
+                "id": "town-wraith-3",
+                "enabled": true,
+                "radius": 0.441,
+                "pose": {
+                  "x": 0.6163592529122247,
+                  "y": 8.461386666581356,
+                  "z": 123.41691165348328
+                }
+              }
+            ]
+          },
+          "enemies": 7,
+          "canvas": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "after": {
+          "p": {
+            "x": -4.209781577181869,
+            "y": 40.204265625000005,
+            "z": 326.86875929298304
+          },
+          "facing": -12.543699490101247,
+          "physics": {
+            "facing": -12.543699490101247,
+            "grounded": true,
+            "vy": 0,
+            "support": 2,
+            "speed": 7.000000000004251,
+            "vx": 0.15868427556955636,
+            "vz": 6.998201147491152,
+            "castBlend": 0,
+            "jumps": 0,
+            "landings": 5,
+            "recoveries": 0,
+            "jumpInFlight": false,
+            "airTime": 0,
+            "position": {
+              "x": -4.209781577181869,
+              "y": 40.204265625000005,
+              "z": 326.86875929298304
+            },
+            "usingPhysics": true,
+            "colliders": {
+              "meshCount": 721,
+              "boxCount": 678,
+              "skipped": 0,
+              "animatedCount": 7
+            },
+            "capsuleHeight": 1.748,
+            "animated": [
+              {
+                "id": "grave-shade-1",
+                "enabled": true,
+                "radius": 0.4368,
+                "pose": {
+                  "x": 2.7736437590450573,
+                  "y": 1.2897287861724762,
+                  "z": 13.762359650913309
+                }
+              },
+              {
+                "id": "grave-shade-2",
+                "enabled": true,
+                "radius": 0.40319999999999995,
+                "pose": {
+                  "x": -4.918296775977118,
+                  "y": 1.6759748479619092,
+                  "z": 27.90054678412542
+                }
+              },
+              {
+                "id": "grave-shade-3",
+                "enabled": true,
+                "radius": 0.462,
+                "pose": {
+                  "x": 3.3431991108173382,
+                  "y": 1.5919542174614434,
+                  "z": 50.58348579379042
+                }
+              },
+              {
+                "id": "grave-shade-4",
+                "enabled": true,
+                "radius": 0.42,
+                "pose": {
+                  "x": -5.071005064007466,
+                  "y": 2.4496151562817845,
+                  "z": 62.437733404028116
+                }
+              },
+              {
+                "id": "town-wraith-1",
+                "enabled": true,
+                "radius": 0.4326,
+                "pose": {
+                  "x": 3.0611715909477555,
+                  "y": 5.091341765593858,
+                  "z": 85.5705715422184
+                }
+              },
+              {
+                "id": "town-wraith-2",
+                "enabled": true,
+                "radius": 0.4074,
+                "pose": {
+                  "x": -1.4900850504073537,
+                  "y": 6.616604490708112,
+                  "z": 110.58137676719747
+                }
+              },
+              {
+                "id": "town-wraith-3",
+                "enabled": true,
+                "radius": 0.441,
+                "pose": {
+                  "x": -2.6902237670589852,
+                  "y": 8.766957253757267,
+                  "z": 126.26452782591984
+                }
+              }
+            ]
+          },
+          "enemies": 7,
+          "canvas": {
+            "width": 1280,
+            "height": 720
+          }
+        }
+      },
+      {
+        "run": 3,
+        "samples": 2384,
+        "fps": 198.56242139622265,
+        "meanMs": 5.036199664409529,
+        "medianMs": 5.099999964237213,
+        "p95Ms": 6.199999988079071,
+        "p99Ms": 6.5,
+        "worstMs": 9,
+        "minMs": 3,
+        "above8_333": 2,
+        "above16_667": 0,
+        "vsyncCapped": false,
+        "capHz": null,
+        "capMs": null,
+        "capReason": "mean 5.036 ms is not locked to a known display interval",
+        "distanceM": 52.957099998412694,
+        "before": {
+          "p": {
+            "x": -7,
+            "y": 40.204265625000005,
+            "z": 337
+          },
+          "facing": -2.356194490192345,
+          "physics": {
+            "facing": -2.356194490192345,
+            "grounded": true,
+            "vy": 0,
+            "support": 2,
+            "speed": 0,
+            "vx": 0,
+            "vz": 0,
+            "castBlend": 0,
+            "jumps": 0,
+            "landings": 7,
+            "recoveries": 0,
+            "jumpInFlight": false,
+            "airTime": 0,
+            "position": {
+              "x": -7,
+              "y": 40.204265625000005,
+              "z": 337
+            },
+            "usingPhysics": true,
+            "colliders": {
+              "meshCount": 721,
+              "boxCount": 678,
+              "skipped": 0,
+              "animatedCount": 7
+            },
+            "capsuleHeight": 1.748,
+            "animated": [
+              {
+                "id": "grave-shade-1",
+                "enabled": true,
+                "radius": 0.4368,
+                "pose": {
+                  "x": 2.7736437590450573,
+                  "y": 1.2897287861724762,
+                  "z": 13.762359650913309
+                }
+              },
+              {
+                "id": "grave-shade-2",
+                "enabled": true,
+                "radius": 0.40319999999999995,
+                "pose": {
+                  "x": -4.918296775977118,
+                  "y": 1.6759748479619092,
+                  "z": 27.90054678412542
+                }
+              },
+              {
+                "id": "grave-shade-3",
+                "enabled": true,
+                "radius": 0.462,
+                "pose": {
+                  "x": 1.7453169710662806,
+                  "y": 1.5349130253548013,
+                  "z": 49.688868113946455
+                }
+              },
+              {
+                "id": "grave-shade-4",
+                "enabled": true,
+                "radius": 0.42,
+                "pose": {
+                  "x": -5.377378772132805,
+                  "y": 2.42608183010676,
+                  "z": 62.26617892516752
+                }
+              },
+              {
+                "id": "town-wraith-1",
+                "enabled": true,
+                "radius": 0.4326,
+                "pose": {
+                  "x": 2.9551365580815223,
+                  "y": 5.144640371989064,
+                  "z": 85.84770916996781
+                }
+              },
+              {
+                "id": "town-wraith-2",
+                "enabled": true,
+                "radius": 0.4074,
+                "pose": {
+                  "x": -2.288544009734686,
+                  "y": 6.255025754483887,
+                  "z": 109.50220651010932
+                }
+              },
+              {
+                "id": "town-wraith-3",
+                "enabled": true,
+                "radius": 0.441,
+                "pose": {
+                  "x": -2.6902237670589852,
+                  "y": 8.766957253757267,
+                  "z": 126.26452782591984
+                }
+              }
+            ]
+          },
+          "enemies": 7,
+          "canvas": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "after": {
+          "p": {
+            "x": -4.118843277363077,
+            "y": 40.204265625000005,
+            "z": 327.8877337525243
+          },
+          "facing": -12.517944490496408,
+          "physics": {
+            "facing": -12.517944490496408,
+            "grounded": true,
+            "vy": 0,
+            "support": 2,
+            "speed": 6.99999999999748,
+            "vx": 0.3388503917149066,
+            "vz": 6.991793790723477,
+            "castBlend": 0,
+            "jumps": 0,
+            "landings": 7,
+            "recoveries": 0,
+            "jumpInFlight": false,
+            "airTime": 0,
+            "position": {
+              "x": -4.118843277363077,
+              "y": 40.204265625000005,
+              "z": 327.8877337525243
+            },
+            "usingPhysics": true,
+            "colliders": {
+              "meshCount": 721,
+              "boxCount": 678,
+              "skipped": 0,
+              "animatedCount": 7
+            },
+            "capsuleHeight": 1.748,
+            "animated": [
+              {
+                "id": "grave-shade-1",
+                "enabled": true,
+                "radius": 0.4368,
+                "pose": {
+                  "x": 2.7736437590450573,
+                  "y": 1.2897287861724762,
+                  "z": 13.762359650913309
+                }
+              },
+              {
+                "id": "grave-shade-2",
+                "enabled": true,
+                "radius": 0.40319999999999995,
+                "pose": {
+                  "x": -4.918296775977118,
+                  "y": 1.6759748479619092,
+                  "z": 27.90054678412542
+                }
+              },
+              {
+                "id": "grave-shade-3",
+                "enabled": true,
+                "radius": 0.462,
+                "pose": {
+                  "x": 5.842505949758129,
+                  "y": 1.620924993736776,
+                  "z": 47.279398040685024
+                }
+              },
+              {
+                "id": "grave-shade-4",
+                "enabled": true,
+                "radius": 0.42,
+                "pose": {
+                  "x": 0.7240030428567844,
+                  "y": 2.506116560716472,
+                  "z": 62.89230645877814
+                }
+              },
+              {
+                "id": "town-wraith-1",
+                "enabled": true,
+                "radius": 0.4326,
+                "pose": {
+                  "x": 0.4605854864944081,
+                  "y": 4.623820590994882,
+                  "z": 84.19039065437747
+                }
+              },
+              {
+                "id": "town-wraith-2",
+                "enabled": true,
+                "radius": 0.4074,
+                "pose": {
+                  "x": 1.5178649145368308,
+                  "y": 6.556954914784298,
+                  "z": 107.99017823096389
+                }
+              },
+              {
+                "id": "town-wraith-3",
+                "enabled": true,
+                "radius": 0.441,
+                "pose": {
+                  "x": 1.3098687321406983,
+                  "y": 9.197450684093715,
+                  "z": 128.47033502935452
+                }
+              }
+            ]
+          },
+          "enemies": 7,
+          "canvas": {
+            "width": 1280,
+            "height": 720
+          }
+        }
+      }
+    ],
+    "errors": [],
+    "gpuErrors": [],
+    "passed": true
+  },
+  "profiledAborted": {
+    "reason": "Root interrupted after five windows because the helper enabled GPU queries; not unprofiled acceptance.",
+    "report": {
+      "conditions": {
+        "cpu": "Apple M1 Max",
+        "url": "http://127.0.0.1:5873/ashen-reach.html?play=&clean=&dev=&fastStart=&pixelRatio=1&gpuTiming=",
+        "viewport": [
+          1280,
+          720
+        ],
+        "seconds": 12,
+        "runs": 3,
+        "uncappedRequired": true,
+        "recording": false,
+        "race": "human",
+        "outfit": null,
+        "orcAssetsOverride": null,
+        "routes": [
+          "meadow",
+          "town",
+          "bridge",
+          "cathedral",
+          "forest"
+        ],
+        "recordCapped": true,
+        "savedAppearance": null
+      },
+      "rows": [
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 207.94343938620563,
+            "meanMs": 4.808999999960264,
+            "medianMs": 5.099999964237213,
+            "p95Ms": 5.5,
+            "p99Ms": 6.300000011920929,
+            "worstMs": 9.100000023841858,
+            "minMs": 3.099999964237213,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 517,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 764171,
+            "drawBatches": 57,
+            "worldTriangles": 764171,
+            "sceneTriangles": 1094741,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 48,
+            "totalMeshes": 139,
+            "triangleCountMs": 0.20000004768371582,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 0.9961930871433247,
+            "gpuMeanMs": 1.0735553616177755,
+            "gpuP95Ms": 1.184889410119304,
+            "gpuSamples": 600,
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.809 ms is not locked to a known display interval"
+          },
+          "x": 0.00055620635646284,
+          "z": 24.65991861516392,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "meadow",
+          "run": 1,
+          "before": {
+            "x": 0.0008904905262397098,
+            "z": -59.360973645289484,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2635,
+            "fps": 219.52479338864777,
+            "meanMs": 4.555294117642535,
+            "medianMs": 4.300000011920929,
+            "p95Ms": 5.5,
+            "p99Ms": 5.899999976158142,
+            "worstMs": 9.100000023841858,
+            "minMs": 2.899999976158142,
+            "above8_333": 3,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.555 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2635,
+            "meanMs": 4.555294117642535,
+            "meanFps": 219.52479338864777,
+            "p50Ms": 4.300000011920929,
+            "p95Ms": 5.5,
+            "p99Ms": 5.899999976158142,
+            "maxMs": 9.100000023841858,
+            "above6_94": 4,
+            "above8_33": 3,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 208.1382037681622,
+            "meanMs": 4.804499999980131,
+            "medianMs": 5.100000023841858,
+            "p95Ms": 5.5,
+            "p99Ms": 6.099999964237213,
+            "worstMs": 12.699999988079071,
+            "minMs": 2.900000035762787,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 517,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 764171,
+            "drawBatches": 57,
+            "worldTriangles": 764171,
+            "sceneTriangles": 1094879,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 48,
+            "totalMeshes": 139,
+            "triangleCountMs": 0.10000002384185791,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.0306168250833978,
+            "gpuMeanMs": 1.0488105870332949,
+            "gpuP95Ms": 1.1793341136889857,
+            "gpuSamples": 600,
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.804 ms is not locked to a known display interval"
+          },
+          "x": 0.00034494791005518514,
+          "z": 24.665784522032524,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "meadow",
+          "run": 2,
+          "before": {
+            "x": 0.00099448207980628,
+            "z": -59.35951352599371,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2644,
+            "fps": 220.26174826558463,
+            "meanMs": 4.540052950066626,
+            "medianMs": 4.200000047683716,
+            "p95Ms": 5.400000035762787,
+            "p99Ms": 5.899999976158142,
+            "worstMs": 12.699999988079071,
+            "minMs": 2.900000035762787,
+            "above8_333": 3,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.540 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2644,
+            "meanMs": 4.540052950066626,
+            "meanFps": 220.26174826558463,
+            "p50Ms": 4.200000047683716,
+            "p95Ms": 5.400000035762787,
+            "p99Ms": 5.899999976158142,
+            "maxMs": 12.699999988079071,
+            "above6_94": 5,
+            "above8_33": 3,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 208.21765685557872,
+            "meanMs": 4.802666666706403,
+            "medianMs": 5.100000023841858,
+            "p95Ms": 5.599999964237213,
+            "p99Ms": 6.099999964237213,
+            "worstMs": 6.400000035762787,
+            "minMs": 3.399999976158142,
+            "above8_333": 0,
+            "above16_667": 0,
+            "drawCalls": 517,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 764171,
+            "drawBatches": 57,
+            "worldTriangles": 764171,
+            "sceneTriangles": 1094735,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 48,
+            "totalMeshes": 139,
+            "triangleCountMs": 0.09999996423721313,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.1836358511342047,
+            "gpuMeanMs": 1.0289196818533985,
+            "gpuP95Ms": 1.1612741826547737,
+            "gpuSamples": 600,
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.803 ms is not locked to a known display interval"
+          },
+          "x": 0.0006904042497684448,
+          "z": 24.635058901593172,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "meadow",
+          "run": 3,
+          "before": {
+            "x": 0.0009941096985192346,
+            "z": -59.37983884140224,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2634,
+            "fps": 219.4561087786803,
+            "meanMs": 4.556719817758602,
+            "medianMs": 4.299999952316284,
+            "p95Ms": 5.5,
+            "p99Ms": 5.800000011920929,
+            "worstMs": 13,
+            "minMs": 2.800000011920929,
+            "above8_333": 4,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.557 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2634,
+            "meanMs": 4.556719817758602,
+            "meanFps": 219.4561087786803,
+            "p50Ms": 4.299999952316284,
+            "p95Ms": 5.5,
+            "p99Ms": 5.800000011920929,
+            "maxMs": 13,
+            "above6_94": 4,
+            "above8_33": 4,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 226.26994003948312,
+            "meanMs": 4.419499999980132,
+            "medianMs": 4.199999988079071,
+            "p95Ms": 5.399999976158142,
+            "p99Ms": 5.5,
+            "worstMs": 9.099999964237213,
+            "minMs": 3.199999988079071,
+            "above8_333": 1,
+            "above16_667": 0,
+            "drawCalls": 529,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 767585,
+            "drawBatches": 57,
+            "worldTriangles": 767585,
+            "sceneTriangles": 1059105,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 48,
+            "totalMeshes": 139,
+            "triangleCountMs": 0,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.2167239567571713,
+            "gpuMeanMs": 1.119464188999267,
+            "gpuP95Ms": 1.2322709662983207,
+            "gpuSamples": 600,
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.419 ms is not locked to a known display interval"
+          },
+          "x": -0.28405655706228294,
+          "z": 134.8083968180555,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "town",
+          "run": 1,
+          "before": {
+            "x": -0.021874141918015334,
+            "z": 84.74439945302987,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2641,
+            "fps": 219.9971677761729,
+            "meanMs": 4.54551306322911,
+            "medianMs": 4.299999952316284,
+            "p95Ms": 5.5,
+            "p99Ms": 5.699999988079071,
+            "worstMs": 9.400000035762787,
+            "minMs": 3.199999988079071,
+            "above8_333": 4,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.546 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2641,
+            "meanMs": 4.54551306322911,
+            "meanFps": 219.9971677761729,
+            "p50Ms": 4.299999952316284,
+            "p95Ms": 5.5,
+            "p99Ms": 5.699999988079071,
+            "maxMs": 9.400000035762787,
+            "above6_94": 5,
+            "above8_33": 4,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        },
+        {
+          "summary": {
+            "samples": 600,
+            "fps": 226.3296869105998,
+            "meanMs": 4.418333333333333,
+            "medianMs": 4.199999988079071,
+            "p95Ms": 5.300000011920929,
+            "p99Ms": 5.5,
+            "worstMs": 8.300000011920929,
+            "minMs": 3.099999964237213,
+            "above8_333": 0,
+            "above16_667": 0,
+            "drawCalls": 527,
+            "resolution": [
+              1280,
+              720
+            ],
+            "viewport": [
+              1280,
+              720
+            ],
+            "dpr": 1,
+            "maxDevicePixelRatio": 1,
+            "horizonTriangles": 125642,
+            "farTriangles": 289206,
+            "scatterTrees": 599,
+            "scatterRocks": 139,
+            "shafts": 0,
+            "shaftTriangles": 0,
+            "motes": 4200,
+            "moteTriangles": 8400,
+            "foliageInstances": 117242,
+            "triangles": 767585,
+            "drawBatches": 57,
+            "worldTriangles": 767585,
+            "sceneTriangles": 1058829,
+            "drawnMeshes": 91,
+            "hiddenMeshes": 48,
+            "totalMeshes": 139,
+            "triangleCountMs": 0,
+            "gpuTimingSupported": true,
+            "gpuTimingEnabled": true,
+            "gpuTimingReadback": "ok",
+            "gpuMs": 1.0954087682369746,
+            "gpuMeanMs": 1.1308004764384914,
+            "gpuP95Ms": 1.2435320163043624,
+            "gpuSamples": 600,
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.418 ms is not locked to a known display interval"
+          },
+          "x": -0.28700448119113386,
+          "z": 134.7919886183242,
+          "recoveries": 0,
+          "enemies": 7,
+          "physics": true,
+          "route": "town",
+          "run": 2,
+          "before": {
+            "x": -0.18427331918235837,
+            "z": 85.54187888741676,
+            "recoveries": 0
+          },
+          "fullWindow": {
+            "samples": 2646,
+            "fps": 220.39164077705584,
+            "meanMs": 4.537377173082448,
+            "medianMs": 4.200000047683716,
+            "p95Ms": 5.400000035762787,
+            "p99Ms": 5.600000023841858,
+            "worstMs": 9.199999988079071,
+            "minMs": 3.099999964237213,
+            "above8_333": 3,
+            "above16_667": 0
+          },
+          "fullWindowCap": {
+            "vsyncCapped": false,
+            "capHz": null,
+            "capMs": null,
+            "capReason": "mean 4.537 ms is not locked to a known display interval"
+          },
+          "tails": {
+            "samples": 2646,
+            "meanMs": 4.537377173082448,
+            "meanFps": 220.39164077705584,
+            "p50Ms": 4.200000047683716,
+            "p95Ms": 5.400000035762787,
+            "p99Ms": 5.600000023841858,
+            "maxMs": 9.199999988079071,
+            "above6_94": 6,
+            "above8_33": 3,
+            "above16_67": 0,
+            "above33_33": 0
+          }
+        }
+      ],
+      "errors": []
+    }
+  },
+  "nativeCleanup": "Chrome8850/GPU8856/Vite8805/listener8825/controller8758 terminated, slot7 registry removed, CDP10037/Vite5873 idle. Root will audit again after preview."
+}
