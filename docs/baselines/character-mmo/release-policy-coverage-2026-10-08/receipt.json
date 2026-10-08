@@ -1,0 +1,268 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-08",
+  "outcome": "Declared policy checker and header correction accepted locally; production metadata issue remains until qualified release",
+  "sourceBaseCommit": "4496808d0c57271459643761cc156f717642cbe4",
+  "sourceHashes": {
+    "scripts/character-assets/verify-pages-release.mjs": "b94967f0bd67430783e92192752eb2222e6fa925851b721e267249be416a8d03",
+    "scripts/test-pages-release-verifier.mjs": "5d192326e54da9addefc10754b952fb97ed974beabd58e6bf43de9b8cf21f5e7",
+    "public/_headers": "fde1a89ed333aa6b4224ab75836a279960512f641a224e0dfc4e0b446c009565"
+  },
+  "production": {
+    "url": "https://play.sparkify.dev",
+    "source": "7d00c56c06f02899e2319ffdddea97728013c0b1",
+    "deployment": "5723a4ab-5dfd-4902-959b-7496948ea51f",
+    "matchingHistoricalBuild": {
+      "dist": ".cache/character-mmo/queue-comparison-2026-10-07/budget-4",
+      "sourceCommit": "7d00c56c06f02899e2319ffdddea97728013c0b1",
+      "sealFile": ".cache/character-mmo/production-delivery-2026-10-07/seal.json",
+      "sealSha256": "3098125a7ecef760cffe0e1f9dd7aacce232bc9f57b6966b8f41b996239c5876",
+      "files": 551,
+      "bytes": 296653100,
+      "everyFileHashMatchesHistoricalSeal": true,
+      "sourceFingerprintIsHistoricalNotCurrent": true
+    },
+    "nativeVerifierExit": 1,
+    "rows": 554,
+    "matchingDecodedPositiveResponses": 552,
+    "correct404Controls": 2,
+    "policyFailure": {
+      "file": "assets/v2/HavokPhysics-BqNY-4N9.wasm",
+      "status": 200,
+      "bytes": 2094563,
+      "actualSha256": "026917766f534c156286f07975850978dabf17c42e742bbfaaebbcb2215e4e11",
+      "expectedSha256": "026917766f534c156286f07975850978dabf17c42e742bbfaaebbcb2215e4e11",
+      "match": true,
+      "sourceSha256": "026917766f534c156286f07975850978dabf17c42e742bbfaaebbcb2215e4e11",
+      "resolvedUrl": "https://play.sparkify.dev/assets/v2/HavokPhysics-BqNY-4N9.wasm",
+      "responseType": "application/wasm",
+      "cacheControl": "public, max-age=31536000, immutable, public, max-age=60, must-revalidate",
+      "contentEncoding": "br",
+      "cfRay": "a47507e848cb284e-LAX",
+      "cfCacheStatus": "DYNAMIC",
+      "age": null,
+      "cachePolicy": "legacy-wasm",
+      "expectedCacheControl": "public, max-age=60, must-revalidate",
+      "cacheCorrect": false
+    },
+    "mutableManifestPoliciesChecked": 5,
+    "entryPoliciesChecked": 4,
+    "unclassifiedSuccessfulPolicies": 270,
+    "presenceFilesOmittedFromRelease": true,
+    "retry": false
+  },
+  "legacyCounterexample": {
+    "nodeTestExit": 1,
+    "legacyVerifierExit": 0,
+    "outcome": "Wrong JS cache header passed old CLI despite matching bytes; expected regression test fails."
+  },
+  "finalValidation": {
+    "nativeExit": 0,
+    "focusedTests": 32,
+    "pagesTests": 29,
+    "havokTests": 3,
+    "defaultBuildExit": 0,
+    "releaseFlagsBuildExit": 0,
+    "sourceHashesStable": true,
+    "nativePagesMatcher": {
+      "purpose": "Actual local Pages rule matching only; no game, compressed .br timing or CDN qualification",
+      "controllerPid": 86377,
+      "tool": {
+        "cli": "/Users/antbly/.npm/_npx/c943b712072b77c4/node_modules/wrangler/bin/wrangler.js",
+        "version": "4.146.0"
+      },
+      "fixture": "/Users/antbly/dev/wow-clone/.cache/character-mmo/release-policy-coverage-2026-10-08/attempt-2/header-fixture",
+      "port": 7078,
+      "rows": [
+        {
+          "file": "HavokPhysics.wasm",
+          "status": 200,
+          "type": "application/wasm",
+          "cacheControl": "public, max-age=60, must-revalidate",
+          "expectedCacheControl": "public, max-age=60, must-revalidate",
+          "bytes": 2094563,
+          "actualSha256": "026917766f534c156286f07975850978dabf17c42e742bbfaaebbcb2215e4e11",
+          "expectedSha256": "026917766f534c156286f07975850978dabf17c42e742bbfaaebbcb2215e4e11"
+        },
+        {
+          "file": "assets/v2/HavokPhysics-BqNY-4N9.wasm",
+          "status": 200,
+          "type": "application/wasm",
+          "cacheControl": "public, max-age=31536000, immutable",
+          "expectedCacheControl": "public, max-age=31536000, immutable",
+          "bytes": 2094563,
+          "actualSha256": "026917766f534c156286f07975850978dabf17c42e742bbfaaebbcb2215e4e11",
+          "expectedSha256": "026917766f534c156286f07975850978dabf17c42e742bbfaaebbcb2215e4e11"
+        }
+      ],
+      "passed": true,
+      "server": {
+        "owner": "grok-release-policy",
+        "pid": 86378,
+        "processGroup": 86378,
+        "url": "http://127.0.0.1:7078",
+        "purpose": "Actual local Pages rule matching only; no game, compressed .br timing or CDN qualification",
+        "exit": {
+          "code": 143,
+          "signal": null
+        }
+      },
+      "ownedProcessGroup": [
+        {
+          "pid": 86378,
+          "command": "/Users/antbly/.nvm/versions/node/v22.18.0/bin/node"
+        },
+        {
+          "pid": 86379,
+          "command": "/Users/antbly/.nvm/versions/node/v22.18.0/bin/node"
+        },
+        {
+          "pid": 86400,
+          "command": "/Users/antbly/.npm/_npx/c943b712072b77c4/node_modules/@esbuild/darwin-arm64/bin/esbuild"
+        },
+        {
+          "pid": 86404,
+          "command": "/Users/antbly/.npm/_npx/c943b712072b77c4/node_modules/@esbuild/darwin-arm64/bin/esbuild"
+        },
+        {
+          "pid": 86425,
+          "command": "/Users/antbly/.npm/_npx/c943b712072b77c4/node_modules/@cloudflare/workerd-darwin-arm64/bin/workerd"
+        },
+        {
+          "pid": 86426,
+          "command": "/Users/antbly/.npm/_npx/c943b712072b77c4/node_modules/@cloudflare/workerd-darwin-arm64/bin/workerd"
+        }
+      ],
+      "remainingProcessGroup": [],
+      "closed": true
+    }
+  },
+  "operations": [
+    {
+      "attempt": 1,
+      "passed": false,
+      "controllerPid": 64666,
+      "steps": [
+        {
+          "name": "legacy-blind-policy",
+          "pid": 64683,
+          "code": 1,
+          "signal": null,
+          "expectedExit": 1
+        },
+        {
+          "name": "http-controls",
+          "pid": 64707,
+          "code": 0,
+          "signal": null,
+          "expectedExit": 0
+        },
+        {
+          "name": "production-readonly",
+          "pid": 64820,
+          "code": 1,
+          "signal": null,
+          "expectedExit": 0
+        }
+      ]
+    },
+    {
+      "attempt": 2,
+      "passed": true,
+      "controllerPid": 85775,
+      "steps": [
+        {
+          "name": "focused-tests",
+          "pid": 85778,
+          "code": 0,
+          "signal": null,
+          "expectedExit": 0
+        },
+        {
+          "name": "default-build",
+          "pid": 86081,
+          "code": 0,
+          "signal": null,
+          "expectedExit": 0
+        },
+        {
+          "name": "release-build",
+          "pid": 86249,
+          "code": 0,
+          "signal": null,
+          "expectedExit": 0
+        },
+        {
+          "name": "native-pages-headers",
+          "pid": 86377,
+          "code": 0,
+          "signal": null,
+          "expectedExit": 0
+        }
+      ]
+    }
+  ],
+  "worker": {
+    "model": "grok-4.6",
+    "effort": "high",
+    "session": "01a11b3a-83e0-7773-81ed-283aca951eea",
+    "sourceWrites": false,
+    "furtherAgents": false,
+    "cliExits": [
+      0,
+      0
+    ]
+  },
+  "evidence": {
+    "file": "evidence.json.gz",
+    "compressedBytes": 81311,
+    "compressedSha256": "f5db70cf59aa24ce2924bc10438574cc7b0a7afa9ce66ab139716e0b9c6fcca2",
+    "decodedSha256": "9101b0328c6aa85be7357999ca170085ce0841d2762751335c5a303da30e0146"
+  },
+  "limits": [
+    "Local Pages matcher is not CDN or full-runtime/startup/FPS qualification.",
+    "The compressed.br emulator double-encoding limitation is outside this two-uncompressed-WASM fixture.",
+    "No established relationship between the mixed-TTL bundled WASM header and historical texture/body/startup/input failures.",
+    "Files without an explicitly declared custom cache policy remain unclassified; report exposes their count.",
+    "Local directory-walk/output-file failures can still prevent report creation."
+  ],
+  "openExits": [
+    "Known conflicting bundled WASM policy on production; source correction unreleased",
+    "Rejected boot preview required-map failure",
+    "Original14/60startup failures and362msinput upper-bound cause",
+    "Current physical iPhone acceptance"
+  ],
+  "cleanup": {
+    "at": "2026-10-08T12:29:29.939268+00:00",
+    "ownedPidsChecked": [
+      64666,
+      64683,
+      64707,
+      64820,
+      85775,
+      85778,
+      86081,
+      86249,
+      86377,
+      86378,
+      86379,
+      86400,
+      86404,
+      86425,
+      86426
+    ],
+    "ownedActivePids": [],
+    "nativePagesGroupEmpty": true,
+    "chromeProcesses": 0,
+    "preservedEdgePid": 2931,
+    "preservedOrcaPid": 98938,
+    "noGameInstancesStarted": true,
+    "portsIdle": [
+      5173,
+      7074,
+      7076,
+      7078,
+      10037
+    ]
+  }
+}

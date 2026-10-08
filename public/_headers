@@ -18,6 +18,12 @@
 
 /*.wasm
   Content-Type: application/wasm
+
+# Keep the short cache lifetime on the unhashed legacy root binary. A splat also
+# matches /assets/v2/*.wasm; Pages concatenates matching headers, which would put
+# two max-age values on a content-addressed bundle asset.
+# https://developers.cloudflare.com/pages/configuration/headers/
+/HavokPhysics.wasm
   Cache-Control: public, max-age=60, must-revalidate
 
 # Exact pinned WASM, compressed during build. Preserve native streaming compilation.

@@ -28,7 +28,7 @@ Vite-owned. Do not add timestamp queries or a custom runtime loader.
 and [Vite assetsDir](https://vite.dev/config/build-options.html#build-assetsdir)
 describe the native mechanisms. This change does not purge old browser/CDN rows.
 
-The staged root must include `HavokPhysics.wasm`. Without it, Cloudflare Pages can return the app HTML at that URL, leaving the game without a collision world and making spells report every target as blocked. The deploy script compares the built WebAssembly file with the source before publishing. An older deployment cached that HTML fallback for a year, so the client now requests a versioned WebAssembly URL and `.wasm` responses revalidate after 60 seconds. Production builds now use a content-addressed, build-time Brotli copy with native HTTP decoding; the versioned endpoint remains available for legacy/development consumers. Verify that the generated `/physics/HavokPhysics-<hash>.wasm.br` response decodes to the exact original binary, has `application/wasm` / `Content-Encoding: br`, and that the game reports `ASHEN.player.getDebugState().usingPhysics === true`. The full release verifier enforces these checks. See [Havok delivery](startup-load.md#havok-delivery) for the local Pages emulator limitation.
+The staged root must include `HavokPhysics.wasm`. Without it, Cloudflare Pages can return the app HTML at that URL, leaving the game without a collision world and making spells report every target as blocked. The deploy script compares the built WebAssembly file with the source before publishing. An older deployment cached that HTML fallback for a year, so the client now requests a versioned WebAssembly URL and the legacy root WASM revalidates after 60 seconds. Keep this cache rule specific to `/HavokPhysics.wasm`: a `/*.wasm` cache rule also matches bundled `/assets/` WASM and combines contradictory lifetimes. The broad MIME rule remains valid. Production builds now use a content-addressed, build-time Brotli copy with native HTTP decoding; the versioned endpoint remains available for legacy/development consumers. Verify that the generated `/physics/HavokPhysics-<hash>.wasm.br` response decodes to the exact original binary, has `application/wasm` / `Content-Encoding: br`, and that the game reports `ASHEN.player.getDebugState().usingPhysics === true`. The asset verifier checks HTTP delivery; the native movement gate checks active Havok. See [Havok delivery](startup-load.md#havok-delivery) for the local Pages emulator limitation.
 
 ```bash
 export CLOUDFLARE_API_TOKEN=…   # already in the Mac Studio shell
@@ -77,8 +77,9 @@ and verify its deployment-specific URL. Run
 on both preview and the final custom domain. It checks actual unmodified URLs,
 decoded bytes, executable MIME types, cache policies and two missing-path 404
 controls. Each build row retains actual/expected decoded SHA-256; the missing-path
-rows retain actual hashes. The five runtime manifests include Human shape and
-both starter indices. Non-OK response caching is classified separately from a
+rows retain actual hashes. The mutable indices include Human shape, both starter
+indices and presence when actually published; the current production build omits
+server-only presence. Non-OK response caching is classified separately from a
 successful immutable asset policy, while missing bytes/status still fail.
 Each artifact and missing-path request retains fetch/body failures as failed rows;
 other checks finish and the report is written before the gate fails. Native
@@ -87,6 +88,14 @@ a positive integer). Rows retain source SHA-256, the known decoded expected hash
 native failure stage/causes and available response metadata; failed bodies do not
 receive a partial-byte hash. Missing required immutable/Havok cache headers fail
 explicitly. Local directory-walk/output errors can still prevent report creation.
+Declared policies also cover bundled assets, shape/identity textures, presence
+collision, compressed world packets and legacy root WASM. Complete directive-set
+checks reject conflicting lifetimes and missing headers. Root `/` and
+extensionless `/ashen-reach` receive independent decoded-byte/MIME/cache checks
+against their HTML files. World packets require native Brotli and binary MIME.
+The summary reports successful policy coverage and unclassified files with no
+declared custom rule; metadata collection alone is not cache qualification.
+[Expanded gate and retained production conflict](plans/character-mmo/results/release-policy-coverage-2026-10-08.md).
 A hash match fetched through a cache-busting query does not establish
 the correctness of URLs used by players. Stop live/performance gates if integrity
 fails; retain failed rows and diagnostic headers. Record the previous deployment

@@ -14,9 +14,9 @@ Pages **5723a4ab-5dfd-4902-959b-7496948ea51f**
 **6004840807cb47a908fb47dd87848f49f39f3268 / e39117b8-db74-4563-a6c0-b428c8d5d10e**.
 Seal `3098125a7ecef760cffe0e1f9dd7aacce232bc9f57b6966b8f41b996239c5876`.
 
-Accepted startup/audio/camera improvements and Fieldcoat are released. All 552
-delivery checks, three entries, nine native phases and **80/80 declared cold
-starts** pass. Worst first play **878.2 ms**. The fence requires selected dressed
+Accepted startup/audio/camera improvements and Fieldcoat are released. Original
+qualification passed 552 delivery checks, three entries, nine native phases and
+**80/80 declared cold starts**. Worst first play **878.2 ms**. The fence requires selected dressed
 identity, grounded Havok, a completed GPU frame, removed loader and working input;
 the remaining region loads behind the temporary movement fence.
 
@@ -90,6 +90,14 @@ stays first, but unchanged startup campaigns are exhausted until a material lead
    are exact. Historical failed-map/request/body cause remains unproved, so this
    does not reopen unchanged qualification or lift the release hold.
    [Attribution result](plans/character-mmo/results/material-texture-attribution-2026-10-08.md).
+   The expanded delivery gate separately finds one deployed cache conflict:
+   bundled WASM inherits both one-year and 60-second lifetimes. Source now limits
+   the short rule to the legacy root binary. Thirty-two checks, both builds and
+   native local Pages matching pass. The public check retains 552 decoded matches,
+   two valid 404 controls and this one failed policy; production is unchanged.
+   No link to the historical texture failure is established. Include the header
+   correction in the qualified batch; local matching does not qualify a release.
+   [Policy result](plans/character-mmo/results/release-policy-coverage-2026-10-08.md).
 2. **Smooth background loading and explicit sound activation.** Streaming p99
    around 21.5 ms and first AudioContext construction 151–179 ms remain distinct
    from settled FPS. Parallel buffer fetch/decode saves 45.6–58.1 ms readiness,
@@ -138,7 +146,9 @@ upper-bound outlier stay open. Later passing starts/4.7–4.8 ms diagnostic move
 and production's worst 61.2 ms input upper bound do not establish their causes.
 Native asset/Havok cause reporting, transport/policy controls, response hashes,
 mutable-cache classification and bounded request/body failure reports pass.
-Other cache families and local directory-walk/output failures remain follow-ups.
+Declared cache families, entry aliases and world response encoding/MIME are now
+covered. Nondeclared default cache policies and local directory-walk/output
+failures remain follow-ups.
 Shader/shadow, precision, reorder/resample, concurrent physics and inline-launcher
 trials stay closed without material new evidence. No diagnostic is completion of
 the full goal. While release cause and hardware are unavailable, independent
