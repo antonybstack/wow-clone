@@ -1,0 +1,20 @@
+{
+  "at": 1791424762.4459698,
+  "gameBrowsersStartedThisPass": 0,
+  "gameServersStartedThisPass": 0,
+  "parentProcesses": [
+    {
+      "pid": 2931,
+      "ppid": 1,
+      "command": "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge"
+    }
+  ],
+  "knownTaskPorts": {
+    "5173": [],
+    "10037": [],
+    "7074": [],
+    "7075": []
+  },
+  "unrelatedBrowserPreserved": 2931,
+  "limits": "No live FPS or startup measurements in this source/comment pass; process inventory alone does not prove user tab inactivity."
+}

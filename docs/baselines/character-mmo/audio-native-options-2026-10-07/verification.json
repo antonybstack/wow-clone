@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "officialTagMatches": true,
+  "hashChecks": [
+    {
+      "path": "third_party/blink/renderer/platform/audio/audio_destination.cc",
+      "hashMatches": true
+    },
+    {
+      "path": "third_party/blink/renderer/modules/webaudio/realtime_audio_destination_handler.cc",
+      "hashMatches": true
+    },
+    {
+      "path": "third_party/blink/renderer/modules/webaudio/audio_context.cc",
+      "hashMatches": true
+    },
+    {
+      "path": "content/renderer/renderer_blink_platform_impl.cc",
+      "hashMatches": true
+    },
+    {
+      "path": "content/renderer/media/renderer_webaudiodevice_impl.cc",
+      "hashMatches": true
+    },
+    {
+      "path": "third_party/blink/renderer/modules/media/audio/audio_device_factory.cc",
+      "hashMatches": true
+    },
+    {
+      "path": "node_modules/@babylonjs/lite/lib/audio/audio-engine.js",
+      "hashMatches": true
+    },
+    {
+      "path": "node_modules/@babylonjs/lite/index.d.ts",
+      "hashMatches": true
+    }
+  ],
+  "runtimeBehaviorChange": false,
+  "codeDiff": "exact insertion of four comment lines; remaining bytes identical to HEAD",
+  "nodeSyntaxExit": 0,
+  "diffWhitespaceExit": 0
+}

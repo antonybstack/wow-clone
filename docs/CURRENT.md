@@ -49,7 +49,10 @@ multiplayer and Elf expansion remain parked.
 
 The [native tail diagnosis](plans/character-mmo/results/streaming-tail-and-verifier-2026-10-07.md)
 confirms the first-sound constructor hitch (179 ms); the silent-output trial is
-rejected. The subsequent [four/eight queue comparison and QA correction](plans/character-mmo/results/queue-comparison-and-verifier-2026-10-07.md)
+rejected. [Pinned native audio options review](plans/character-mmo/results/audio-native-options-2026-10-07.md)
+also rules out adding an explicit sample rate as a way to bypass Chrome's device
+parameter query; no new game trial or runtime behavior change was warranted.
+The subsequent [four/eight queue comparison and QA correction](plans/character-mmo/results/queue-comparison-and-verifier-2026-10-07.md)
 complete all three declared pairs. Eight improves streaming p95/mean throughput,
 but p99 improves only 1.86–3.69%, missing the declared >10% threshold; sampled
 transient JS heap peaks are higher and every visit retains a >33.33 ms interval.

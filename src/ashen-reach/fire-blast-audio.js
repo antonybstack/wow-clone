@@ -19,6 +19,10 @@ export async function createFireBlastAudio(scene){
   if(preparation)return preparation;
   initializing=true;
   preparation=(async()=>{
+   // Chrome 154 still queries device parameters for a silent sink + explicit
+   // sampleRate. These options do not bypass that query; keep native defaults
+   // until a materially different path proves a gain (see the audio options receipt).
+   // https://chromium.googlesource.com/chromium/src/+/b859317bf11f6be47f9b7799ec690a0a42a1fb33/content/renderer/media/renderer_webaudiodevice_impl.cc#237
    const created=await createAudioEngineAsync({volume:0});
    if(lifetime.aborted){disposeAudioEngine(created);lifetime.throwIfAborted();}
    engine=created;

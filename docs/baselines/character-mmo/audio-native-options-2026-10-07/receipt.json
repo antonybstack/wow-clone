@@ -1,0 +1,120 @@
+{
+  "requestedTag": "154.0.8037.98",
+  "revision": "b859317bf11f6be47f9b7799ec690a0a42a1fb33",
+  "files": [
+    {
+      "path": "third_party/blink/renderer/platform/audio/audio_destination.cc",
+      "url": "https://chromium.googlesource.com/chromium/src/+/b859317bf11f6be47f9b7799ec690a0a42a1fb33/third_party/blink/renderer/platform/audio/audio_destination.cc?format=TEXT",
+      "bytes": 35592,
+      "sha256": "0d22eca8967d74437ed409181ccb5b4ec98b0c2dd6b0ddb52a86f4892194d26f"
+    },
+    {
+      "path": "third_party/blink/renderer/modules/webaudio/realtime_audio_destination_handler.cc",
+      "url": "https://chromium.googlesource.com/chromium/src/+/b859317bf11f6be47f9b7799ec690a0a42a1fb33/third_party/blink/renderer/modules/webaudio/realtime_audio_destination_handler.cc?format=TEXT",
+      "bytes": 22347,
+      "sha256": "8b2a30ca6eee49295983b831e023cc30f3f20d0e68a892d1000bc8e2b3b72c15"
+    },
+    {
+      "path": "third_party/blink/renderer/modules/webaudio/audio_context.cc",
+      "url": "https://chromium.googlesource.com/chromium/src/+/b859317bf11f6be47f9b7799ec690a0a42a1fb33/third_party/blink/renderer/modules/webaudio/audio_context.cc?format=TEXT",
+      "bytes": 90558,
+      "sha256": "a3c32a989f5ec0881c25013afd85507b4d54099f8e9a1d4153a4c7c0129ead47"
+    },
+    {
+      "path": "content/renderer/renderer_blink_platform_impl.cc",
+      "url": "https://chromium.googlesource.com/chromium/src/+/b859317bf11f6be47f9b7799ec690a0a42a1fb33/content/renderer/renderer_blink_platform_impl.cc?format=TEXT",
+      "bytes": 45715,
+      "sha256": "de4826258f62ab6689a6e4ff3dbb68851d2eceaf7a1dafd2ff7c6db71665fbab"
+    },
+    {
+      "path": "content/renderer/media/renderer_webaudiodevice_impl.cc",
+      "url": "https://chromium.googlesource.com/chromium/src/+/b859317bf11f6be47f9b7799ec690a0a42a1fb33/content/renderer/media/renderer_webaudiodevice_impl.cc?format=TEXT",
+      "bytes": 19631,
+      "sha256": "831c749300813c6543bf0a3918e4166659fe7243a75347d3bed08a787f5834bd"
+    },
+    {
+      "path": "third_party/blink/renderer/modules/media/audio/audio_device_factory.cc",
+      "url": "https://chromium.googlesource.com/chromium/src/+/b859317bf11f6be47f9b7799ec690a0a42a1fb33/third_party/blink/renderer/modules/media/audio/audio_device_factory.cc?format=TEXT",
+      "bytes": 8164,
+      "sha256": "57c759f873983ea090ebacc7a48a7e60db2edfbd5bfa67164010a8896a08fadb"
+    }
+  ],
+  "kind": "source inspection; no runtime experiment",
+  "sourceCommit": "85a9b74",
+  "production": {
+    "sourceCommit": "7d00c56c06f02899e2319ffdddea97728013c0b1",
+    "pages": "5723a4ab-5dfd-4902-959b-7496948ea51f"
+  },
+  "retrieval": {
+    "tlsVerification": true,
+    "tool": "system curl",
+    "earlierAttempts": [
+      "web reader failed to access Chromium source URLs",
+      "Python urllib failed local certificate verification; no TLS bypass used"
+    ]
+  },
+  "installedLite": {
+    "version": "1.31.1",
+    "files": [
+      {
+        "path": "node_modules/@babylonjs/lite/lib/audio/audio-engine.js",
+        "bytes": 7024,
+        "sha256": "4d4eef19ed3b14ddafff1f5c5a67f50a61db1072f922cffedf80b50629ff6955"
+      },
+      {
+        "path": "node_modules/@babylonjs/lite/index.d.ts",
+        "bytes": 822930,
+        "sha256": "772f809a54ba733901ac3c0196ad95f47a0e07bb08f3f0ffd631b9234b82c925"
+      }
+    ]
+  },
+  "ownership": {
+    "gameBrowsersStarted": 0,
+    "gameServersStarted": 0,
+    "benchmarksRun": 0,
+    "capturesMade": 0,
+    "result": "ownership.json",
+    "reviewProcessesClosed": [
+      {
+        "pid": 10806,
+        "active": false
+      },
+      {
+        "pid": 18917,
+        "active": false
+      }
+    ]
+  },
+  "rawSourceDirectory": ".cache/character-mmo/audio-native-output-2026-10-07/source",
+  "review": {
+    "status": "accepted after parent review",
+    "model": "grok-4.6",
+    "effort": "high",
+    "result": "review.md",
+    "sessionId": "01a1193b-be1e-70e2-82b4-127770231ed4",
+    "attempts": [
+      {
+        "exitCode": 1,
+        "stopReason": "cancelled",
+        "numTurns": 8,
+        "reason": "max turns reached before result; resumed the same review with finish-only scope"
+      },
+      {
+        "exitCode": 0,
+        "stopReason": "end_turn",
+        "numTurns": 4,
+        "reason": "same session finish-only review completed"
+      }
+    ],
+    "verdict": "specific constructor-query bypass claim valid; no consequential corrections",
+    "resultSha256": "fbcdad923a1af51b186188c3538d8d9f1d28d9b77fcd84347847ced05536d5a9",
+    "nativeExit": 0
+  },
+  "verification": {
+    "result": "verification.json",
+    "passed": true,
+    "sourceHashChecks": 8,
+    "runtimeBehaviorChange": false,
+    "localDocumentationLinks": 3
+  }
+}
