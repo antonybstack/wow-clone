@@ -1,7 +1,8 @@
 # Authored forefoot and anatomical ankle coverage — 2026-10-08
 
 Canonical preparation, written source proofs, fresh built-game motion and separate
-performance measurement pass. Media publication is being finished.
+performance measurement pass. Implementation **989ab52** is committed/pushed,
+and reviewed motion is delivered as Telegram **888 / 889** with identical VE.
 Production remains **5723a4ab / 7d00c56**; this work does not qualify a release or
 complete the five-priority goal.
 
@@ -125,7 +126,14 @@ Independent Grok review confirms both corrected producer proofs and the new stri
 covered-hair pins; no established new defect remains in those changes.
 [Tracked receipt and raw compressed evidence](../../../baselines/character-mmo/boot-forefoot-2026-10-08/receipt.json)
 retain both measured recipes, failures, native exits, proofs and ownership.
-VE/Telegram publication remains to be recorded. Public startup qualification
+[Forefoot live MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/boot-forefoot-2026-10-08/4286fb475f5c-forefoot.mp4)
+and [covered-hair restoration MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/boot-forefoot-2026-10-08/fad37c061a8a-covered-hair.mp4)
+are byte-identical on VE with `video/mp4`, matching length and HTTP 206 seeking.
+Telegram **888 / 889** return exact 1280×720 dimensions. Root reviews actual
+Telegram Web inline/expanded and direct VE playback: the videos advance with
+correct 16:9 proportions. Owned review tabs/servers are closed; prior reference
+playback is restored. Actual Telegram desktop application fullscreen remains
+unverified. Public startup qualification
 stays held on its unexplained required-texture failure; unchanged cohorts will
 not be rerun. Current physical iPhone acceptance remains open.
 

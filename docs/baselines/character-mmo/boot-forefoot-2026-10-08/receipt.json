@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "status": "local functional, fit and performance gates pass; media publication pending; production unchanged",
+  "status": "locally accepted, committed/pushed and delivered; production unchanged",
   "task": "authored forefoot and anatomical foot coverage v2",
   "localDate": "2026-10-08",
   "sourceHeadBeforeCommit": "76af7c90b6269e02ea49acd1bb1c349c60c4785a",
@@ -233,7 +233,259 @@
     }
   ],
   "delivery": {
-    "status": "pending"
+    "status": "passed",
+    "nativeOperations": {
+      "sourceCommit": "989ab528d536afc9789c002faf31ab9e17be2dbe",
+      "purpose": "Publish only the two root-reviewed local clips; no Pages deployment or benchmark",
+      "rows": [
+        {
+          "label": "forefoot",
+          "clip": ".cache/character-mmo/armor-fit-2026-10-08/canonical-motion/motion.mp4",
+          "sha256": "4286fb475f5c6d1f8a5f5973867aafd1e5cacc04f793b5da89796928ed606e59",
+          "bytes": 31220990,
+          "ve": {
+            "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/boot-forefoot-2026-10-08/4286fb475f5c-forefoot.mp4",
+            "mime": "video/mp4",
+            "fullBodySha256": "4286fb475f5c6d1f8a5f5973867aafd1e5cacc04f793b5da89796928ed606e59",
+            "headLengthMatched": true,
+            "rangeStatus": 206
+          },
+          "telegram": {
+            "ok": true,
+            "messageId": 888,
+            "expected": {
+              "width": 1280,
+              "height": 720,
+              "duration": 32.930136,
+              "sampleAspectRatio": "1:1",
+              "rotation": 0,
+              "codec": "h264"
+            },
+            "returned": {
+              "width": 1280,
+              "height": 720,
+              "duration": 33
+            },
+            "verified": true,
+            "file": "motion.mp4",
+            "sha256": "4286fb475f5c6d1f8a5f5973867aafd1e5cacc04f793b5da89796928ed606e59",
+            "sentAt": "2026-10-08T10:34:21.062041+00:00"
+          }
+        },
+        {
+          "label": "covered-hair",
+          "clip": ".cache/character-mmo/armor-fit-2026-10-08/covered-hair-current/motion/covered-hair.mp4",
+          "sha256": "fad37c061a8ae55a6c497eff1eb73b4474f6b25602b898baa7d4ffd6230891af",
+          "bytes": 10591438,
+          "ve": {
+            "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/boot-forefoot-2026-10-08/fad37c061a8a-covered-hair.mp4",
+            "mime": "video/mp4",
+            "fullBodySha256": "fad37c061a8ae55a6c497eff1eb73b4474f6b25602b898baa7d4ffd6230891af",
+            "headLengthMatched": true,
+            "rangeStatus": 206
+          },
+          "telegram": {
+            "ok": true,
+            "messageId": 889,
+            "expected": {
+              "width": 1280,
+              "height": 720,
+              "duration": 17.944797,
+              "sampleAspectRatio": "1:1",
+              "rotation": 0,
+              "codec": "h264"
+            },
+            "returned": {
+              "width": 1280,
+              "height": 720,
+              "duration": 18
+            },
+            "verified": true,
+            "file": "covered-hair.mp4",
+            "sha256": "fad37c061a8ae55a6c497eff1eb73b4474f6b25602b898baa7d4ffd6230891af",
+            "sentAt": "2026-10-08T10:34:31.425069+00:00"
+          }
+        }
+      ],
+      "passed": true,
+      "steps": [
+        {
+          "name": "forefoot-ve-upload",
+          "childPid": 89034,
+          "exitCode": 0,
+          "elapsedSeconds": 9.482777750003152
+        },
+        {
+          "name": "forefoot-ve-head",
+          "childPid": 89314,
+          "exitCode": 0,
+          "elapsedSeconds": 0.5056838330347091
+        },
+        {
+          "name": "forefoot-ve-full",
+          "childPid": 89315,
+          "exitCode": 0,
+          "elapsedSeconds": 1.5784770000027493
+        },
+        {
+          "name": "forefoot-ve-range",
+          "childPid": 89400,
+          "exitCode": 0,
+          "elapsedSeconds": 0.0943025840097107
+        },
+        {
+          "name": "forefoot-telegram",
+          "childPid": 89401,
+          "exitCode": 0,
+          "elapsedSeconds": 12.972191874985583
+        },
+        {
+          "name": "covered-hair-ve-upload",
+          "childPid": 89740,
+          "exitCode": 0,
+          "elapsedSeconds": 4.162582499964628
+        },
+        {
+          "name": "covered-hair-ve-head",
+          "childPid": 89877,
+          "exitCode": 0,
+          "elapsedSeconds": 0.1850826249574311
+        },
+        {
+          "name": "covered-hair-ve-full",
+          "childPid": 89878,
+          "exitCode": 0,
+          "elapsedSeconds": 0.492323916987516
+        },
+        {
+          "name": "covered-hair-ve-range",
+          "childPid": 89899,
+          "exitCode": 0,
+          "elapsedSeconds": 0.08798712497809902
+        },
+        {
+          "name": "covered-hair-telegram",
+          "childPid": 89900,
+          "exitCode": 0,
+          "elapsedSeconds": 5.416086875018664
+        }
+      ]
+    },
+    "rootPlayback": {
+      "reviewer": "root",
+      "surface": "Edge Telegram Web and direct VE native HTML video",
+      "telegram": {
+        "888": {
+          "domMessage": "message-949",
+          "inline": {
+            "native": [
+              1280,
+              720
+            ],
+            "box": [
+              738.1875,
+              415.21875
+            ],
+            "time": 0.730116,
+            "paused": false
+          },
+          "expanded": {
+            "native": [
+              1280,
+              720
+            ],
+            "box": [
+              1280,
+              720
+            ],
+            "time": 4.055672,
+            "paused": false,
+            "objectFit": "contain"
+          },
+          "visual": "Reviewed moving forefoot inspection/gameplay at correct 16:9 proportions"
+        },
+        "889": {
+          "domMessage": "message-950",
+          "inline": {
+            "native": [
+              1280,
+              720
+            ],
+            "box": [
+              738.1875,
+              415.21875
+            ],
+            "time": 0.839699,
+            "paused": false
+          },
+          "expanded": {
+            "native": [
+              1280,
+              720
+            ],
+            "box": [
+              1280,
+              720
+            ],
+            "time": 16.382745,
+            "paused": false,
+            "objectFit": "contain"
+          },
+          "visual": "Reviewed restored ponytail and native motion at correct 16:9 proportions"
+        }
+      },
+      "directVe": {
+        "forefoot": {
+          "tab": "1147995984",
+          "native": [
+            1280,
+            720
+          ],
+          "box": [
+            1280,
+            720
+          ],
+          "objectFit": "contain",
+          "times": [
+            8.547895,
+            31.600378
+          ],
+          "paused": false
+        },
+        "coveredHair": {
+          "tab": "1147995984",
+          "native": [
+            1280,
+            720
+          ],
+          "box": [
+            1280,
+            720
+          ],
+          "objectFit": "contain",
+          "times": [
+            12.756328,
+            17.944797
+          ],
+          "ended": true
+        }
+      },
+      "cleanup": {
+        "ownedVeTab": "1147995984 closed",
+        "telegramViewerClosed": true,
+        "priorReferenceMessages": [
+          947,
+          948
+        ],
+        "referenceMediaRestoredToPlaying": true,
+        "newReviewAutoplayPaused": true
+      },
+      "limits": [
+        "Actual Telegram desktop application fullscreen not tested",
+        "Physical iPhone unavailable",
+        "Recording HUD is not benchmark evidence"
+      ]
+    }
   },
   "retainedFailures": [
     "Attempt 1 stale v1/448 identity coverage guard",
@@ -253,12 +505,46 @@
     "ownedGameProcesses": 0,
     "ownedReviewTab": "1147995980 closed",
     "ownedReviewServer": "76762 SIGTERM; terminal 143 expected",
-    "referenceTelegramMedia": "messages 947/948 restored to playing after FPS; currentTime 16.437933/8.467322"
+    "referenceTelegramMedia": "947/948 restored to playing after publication; newly activated review autoplay paused",
+    "finalAudit": {
+      "time": "2026-10-08T10:40:49.542731+00:00",
+      "owner": "root",
+      "event": "final ownership audit",
+      "ownedGameProcesses": 0,
+      "ownedReviewTabs": 0,
+      "ownedReviewServers": 0,
+      "ports": {
+        "5173": "idle",
+        "7074": "idle",
+        "7075": "idle",
+        "10037": "idle"
+      },
+      "chromeMainProcesses": 0,
+      "userEdge": {
+        "pid": 2931,
+        "tabs": 12,
+        "gameTabs": 0,
+        "reference947": {
+          "playing": true,
+          "time": 26.651435
+        },
+        "reference948": {
+          "playing": true,
+          "time": 17.052092
+        }
+      },
+      "userOrca": {
+        "pid": 98938,
+        "tabs": 0
+      },
+      "discardedShadowglass": "unactivated"
+    }
   },
   "evidence": {
     "file": "evidence.json.gz",
-    "sha256": "d4e8f3d61eefa688d193c18dc99a4d2cecf93bc30393755c789017fa536bb40d",
-    "bytes": 221735,
+    "sha256": "af597cca1395bd285293dd7be83d0fd6535bfc74a588cfacd8eaf14ed7d162ed",
+    "bytes": 223425,
     "contents": "Raw native controls, preparation attempts, bounds, decoded proof, capture manifests, both retained performance runs, root reviews and independent reviews"
-  }
+  },
+  "implementationCommit": "989ab528d536afc9789c002faf31ab9e17be2dbe"
 }

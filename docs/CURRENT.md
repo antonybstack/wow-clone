@@ -54,13 +54,15 @@ p99≤6.1 ms, worst 14.4 ms, zero intervals over 16.67 ms/errors/recoveries, und
 the same M1 Max/1280×720/DPR1/seven-enemy conditions. Six possible 240 Hz pacing
 flags remain; this is observed throughput, not clean maximum throughput.
 [Forefoot result](plans/character-mmo/results/boot-forefoot-2026-10-08.md).
-Media publication and the implementation checkpoint are being finished.
+Implementation **989ab52** is committed/pushed; root-reviewed motion is Telegram
+**888 / 889** and identical VE. Inline/expanded Telegram Web and direct VE
+proportions pass; actual application fullscreen remains unverified.
 Further sets, Elf, additional regions, multiplayer and crowd expansion stay parked.
 
 ## Next priorities, in execution order
 
-The current demonstrated forefoot/ankle correction is verified locally. Finish its
-publication/checkpoint, then choose another reproduced armor seam in priority 3.
+The current demonstrated forefoot/ankle correction is locally complete and
+delivered. The next executable slice is another reproduced armor seam in priority 3.
 The native GPU-timer arm in priority 2 is complete and closed; it does not justify
 a shader/geometry/scheduler change or another unchanged visit. The release outcome
 stays first, but unchanged startup campaigns are exhausted until a material lead exists.
@@ -137,7 +139,8 @@ HEAD changes do not change the product fingerprint. Preserve unrelated
 **AGENTS.md / docs/plans/character-mmo/next-ten.md** edits; no reset/stash/clean.
 Commit/push completed owned changes. A visual cycle requires root-reviewed live
 MP4/GIF on Telegram with verified VE delivery. Telegram Web inline/expanded and
-direct VE proportions pass for the latest shield; actual app fullscreen is unverified.
+direct VE proportions pass for the latest forefoot/restoration clips; actual app
+fullscreen is unverified.
 
 Before live work, audit pages/processes and own every browser/PID/CDP/URL. Use one
 game for timing; pause reference media and exclude recording/builds/other timing
