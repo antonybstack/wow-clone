@@ -1,0 +1,75 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {spawn,execFileSync} from 'node:child_process';
+import {chromium} from 'playwright';
+import {browserOwnership} from '../../../scripts/lib/browser-ownership.mjs';
+import {captureSurface,appendFrame,writeCaptureManifest} from '../../../scripts/lib/capture-manifest.mjs';
+import {defaultAppearance} from '../../../src/character/appearance/store.js';
+const base=path.dirname(new URL(import.meta.url).pathname),out=path.join(base,'candidate-movement');
+const origin='http://127.0.0.1:5173',url=origin+'/?play&clean&pixelRatio=1&dev&verifyAssets';
+const asset=path.join(base,'asset-no-uv/build-1/bastionShield.glb');
+const bytes=await fs.readFile(asset),report={sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),candidateOnly:true,assetSha256:'926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c',url,purpose:'Private authored shield on native evaluated sockets; existing book identity supplies grip mask; no FPS/catalogue/release acceptance',errors:[],rows:[],passed:false};
+await fs.mkdir(out);await fs.mkdir(path.join(out,'frames'));
+let server,browser,context,page,cdp,ownership,manifest,recording=false,captureError;const writes=[];
+const history=r=>fs.appendFile(path.join(base,'ownership.jsonl'),JSON.stringify({at:new Date().toISOString(),...r})+'\n');
+try{
+ server=spawn(process.execPath,['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port','5173','--strictPort'],{stdio:['ignore','pipe','pipe']});
+ await history({owner:'grok-private-shield',serverPid:server.pid,vitePort:5173,url,active:true,purpose:report.purpose});
+ await new Promise((resolve,reject)=>{let s='';const t=setTimeout(()=>reject(Error('Vite readiness timeout')),30000);server.stdout.on('data',d=>{s+=d;if(s.includes('http://127.0.0.1:5173')){clearTimeout(t);resolve()}});server.once('error',reject);server.once('exit',code=>reject(Error('Vite exited '+code)));});
+ browser=await chromium.launch({channel:'chrome',headless:true,args:['--remote-debugging-port=10037']});ownership={...await browserOwnership(browser,{cdpPort:10037,url,purpose:report.purpose,renderingClients:1}),owner:'grok-private-shield'};await history(ownership);
+ context=await browser.newContext({viewport:{width:1280,height:720},deviceScaleFactor:1});page=await context.newPage();cdp=await context.newCDPSession(page);
+ await context.addInitScript(s=>localStorage.setItem('ashen.appearance.v2',JSON.stringify(s)),defaultAppearance());
+ await page.route('**/__bastion-shield.glb',r=>r.fulfill({status:200,contentType:'model/gltf-binary',body:bytes}));
+ page.on('pageerror',e=>report.errors.push(e.message));page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text())});
+ await page.goto(url);await page.waitForFunction(()=>globalThis.ASHEN?.ready&&ASHEN.hostilesReady,null,{timeout:90000});
+ const transformed=await (await fetch(origin+'/src/ashen-reach/equipment-stream.js')).text();
+ const modulePath=transformed.match(/from\s*["']([^"']*babylonjs_lite[^"']*)["']/)?.[1];assert(modulePath,'Actual game optimized Lite import is missing');report.nativeLiteModule=modulePath;
+ await page.evaluate(()=>{ASHEN.dev.god=true;ASHEN.player.setFlying(false);ASHEN.player.setWorldPos(0,ASHEN.world.groundHeight(0,-130)+1.7,-130);ASHEN.player.setFacing(0);ASHEN.rig.yaw=0;ASHEN.armory.open()});
+ await page.locator('#armory [data-equipment="offHand"]').selectOption('graveweaverBook');
+ await page.waitForFunction(()=>!ASHEN.equipment.getStatus().pending&&ASHEN.equipment.getState().offHand==='graveweaverBook');await page.evaluate(()=>ASHEN.creator.settled());await page.check('#armory [data-light]');
+ const install=async race=>page.evaluate(async ({modulePath,origin,race})=>{
+  const lite=await import(new URL(modulePath,origin).href),{prepareLinearMaterial}=await import(origin+'/src/ashen-reach/linear-materials.js'),{claimQueuedBuilds}=await import(origin+'/src/ashen-reach/native-material-staging.js');
+  const {beginPropTransition,advancePropTransition}=await import(origin+'/src/ashen-reach/prop-transition.js'),{spellStowsWeapon}=await import(origin+'/src/ashen-reach/equipment-grips.js');
+  const container=await lite.loadGltf(ASHEN.engine,await (await fetch(origin+'/__bastion-shield.glb')).arrayBuffer()),root=container.entities[0],meshes=lite.getContainerMeshes(container);
+  if(meshes.length!==3||meshes.some(m=>m.skeleton||m.morphTargets))throw Error('Private shield native mesh ownership mismatch');
+  for(const m of meshes){prepareLinearMaterial(ASHEN.scene,m.material);m.receiveShadows=true;}
+  lite.addToScene(ASHEN.scene,container);claimQueuedBuilds(ASHEN.scene,meshes);await lite.rebuildScenePbrPipelines(ASHEN.scene,true);
+  const entry={root,attachment:null,transition:null},held={position:race==='orc'?[.0176,-.0956,.0192]:[.005,-.080,.020],rotation:[0,1,0,0],scale:race==='orc'?1.12:1},stowed={position:[0,.18,-.17],rotation:[.985426,.015120,-.114652,-.124749]};
+  const bookRoot=ASHEN.sockets.sockets.offHand.node.children.find(n=>n.name==='book');if(!bookRoot)throw Error('Committed native book root is absent');const book=ASHEN.scene.meshes.filter(m=>{for(let n=m;n;n=n.parent)if(n===bookRoot)return true;return false;});if(book.length!==3)throw Error('Committed book mesh ownership mismatch');
+  let active=true;
+  lite.onBeforeRender(ASHEN.scene,ms=>{
+   if(!active)return;
+   for(const m of book)lite.setMeshVisible(m,false);
+   const where=spellStowsWeapon(ASHEN.body)?'back':'hand',target=where==='back'?stowed:held;
+   if(entry.attachment!==where){const first=entry.attachment===null;lite.setParent(root,ASHEN.sockets.sockets[where==='back'?'back':'offHand'].node);const q=root.rotationQuaternion,from={position:[root.position.x,root.position.y,root.position.z],rotation:[q.x,q.y,q.z,q.w]};entry.attachment=where;root.scaling.set(held.scale,held.scale,held.scale);if(first){root.position.set(...target.position);root.rotationQuaternion.set(...target.rotation);}else beginPropTransition(entry,from.position,from.rotation,target);}
+   advancePropTransition(entry,Math.min(.05,ms/1000));
+  });
+  globalThis.__shield={entry,meshes,held,stowed,state:()=>({attachment:entry.attachment,meshes:meshes.map(m=>({name:m.name,bones:m.skeleton?.boneCount||0,morphs:!!m.morphTargets,visible:m.visible!==false})),hold:held,stow:stowed,world:Array.from(root.worldMatrix),socket:ASHEN.sockets.sockets[entry.attachment==='back'?'back':'offHand'].node.worldMatrix&&Array.from(ASHEN.sockets.sockets[entry.attachment==='back'?'back':'offHand'].node.worldMatrix)}),dispose:()=>{if(!active)return;active=false;lite.setParent(root,null);lite.removeFromScene(ASHEN.scene,container);for(const m of book)lite.setMeshVisible(m,true)}};
+ },{modulePath,origin,race});
+ await page.evaluate(()=>ASHEN.whenNextGpuFrame());
+ manifest={version:1,...await captureSurface(page),frames:[],timeline:[],purpose:report.purpose};
+ cdp.on('Page.screencastFrame',e=>{void cdp.send('Page.screencastFrameAck',{sessionId:e.sessionId}).catch(()=>{});if(!recording||captureError)return;try{const name=`frame-${String(manifest.frames.length).padStart(6,'0')}.jpg`,data=Buffer.from(e.data,'base64');if(appendFrame(manifest,{name,timestamp:e.metadata.timestamp,bytes:data})!==false)writes.push(fs.writeFile(path.join(out,'frames',name),data).catch(e=>{captureError=e}));}catch(e){captureError=e}});
+ const mark=async text=>{await page.evaluate(t=>{let el=document.getElementById('capture-note');if(!el){el=document.createElement('p');el.id='capture-note';el.style='position:fixed;left:12px;bottom:6px;z-index:99999;background:#171b16e8;color:#eee2ac;padding:6px 10px;font:12px Georgia;pointer-events:none';document.body.append(el)}el.textContent=t},text);manifest.timeline.push({label:text,timestamp:manifest.frames.at(-1)?.timestamp});};
+ recording=true;await cdp.send('Page.startScreencast',{format:'jpeg',quality:90,maxWidth:1280,maxHeight:720,everyNthFrame:4});
+ const fixtures=[{id:'human-neutral',race:'human',height:1,build:0},{id:'orc-neutral',race:'orc'},{id:'undead-neutral',race:'undead'}];
+ for(const fixture of fixtures){
+  if(await page.evaluate(()=>!!globalThis.__shield))await page.evaluate(()=>__shield.dispose());
+  await page.evaluate(()=>ASHEN.armory.open());
+  if(await page.evaluate(()=>ASHEN.equipment.race)!==fixture.race){await page.selectOption('#armory [data-race]',fixture.race);await page.waitForFunction(r=>ASHEN.equipment.race===r,fixture.race,{timeout:120000});}
+  const selected=await page.evaluate(()=>ASHEN.equipment.setLoadout({helmet:null,torso:'wayfarerTunic',legs:'wayfarerTrousers',boots:'wayfarerBoots',gloves:null,mainHand:'ironSword',offHand:'graveweaverBook',shoulders:null}));assert.equal(selected.status,'applied',selected.error);
+  await install(fixture.race);await page.evaluate(()=>{ASHEN.armory.close();ASHEN.setView('play')});await page.focus('#renderCanvas');await page.waitForTimeout(600);
+  await mark('Private authored shield — '+fixture.id+' ordinary Havok run / jump; invulnerable, no recovery teleport');
+  const before=await page.evaluate(()=>({debug:ASHEN.player.getDebugState(),motion:{...ASHEN.player.getMotion()},activeElement:document.activeElement?.id,armoryOpen:ASHEN.armory.isOpen}));
+  await page.keyboard.down('KeyW');await page.waitForTimeout(1000);
+  const moving=await page.evaluate(()=>({debug:ASHEN.player.getDebugState(),motion:{...ASHEN.player.getMotion()}}));
+  await page.keyboard.down('Space');await page.waitForTimeout(150);await page.keyboard.up('Space');await page.waitForTimeout(1100);await page.keyboard.up('KeyW');await page.waitForTimeout(900);
+  const after=await page.evaluate(()=>({debug:ASHEN.player.getDebugState(),motion:{...ASHEN.player.getMotion()},gpuErrors:ASHEN.gpu.errors.slice(),appearance:ASHEN.getAppearance(),prop:__shield.state()}));
+  report.rows.push({fixture,before,moving,after});
+  assert.equal(before.armoryOpen,false);assert.equal(before.activeElement,'renderCanvas');assert(moving.motion.forward>0);assert(moving.motion.speed>1);assert(after.debug.usingPhysics);assert.equal(after.debug.recoveries,0);assert(after.debug.jumps>before.debug.jumps);assert(after.debug.grounded);assert.deepEqual(after.gpuErrors,[]);assert(Math.hypot(after.debug.position.x-before.debug.position.x,after.debug.position.z-before.debug.position.z)>3);assert.equal(after.appearance.race,fixture.race);
+  await page.screenshot({path:path.join(out,fixture.id+'-movement.png')});
+ }
+ await cdp.send('Page.stopScreencast');recording=false;await Promise.all(writes);if(captureError)throw captureError;await writeCaptureManifest(out,manifest,await captureSurface(page));await page.evaluate(()=>__shield.dispose());assert.deepEqual(report.errors,[]);report.passed=true;
+}catch(e){report.failure=String(e.stack||e);process.exitCode=1;}
+finally{if(recording)await cdp?.send('Page.stopScreencast').catch(()=>{});await Promise.all(writes);if(manifest?.frames.length)await writeCaptureManifest(out,manifest,await captureSurface(page)).catch(e=>{report.manifestFailure=e.message});await fs.writeFile(path.join(out,'report.json'),JSON.stringify(report,null,2)+'\n');await context?.close();await browser?.close();if(ownership)await history({...ownership,renderingClients:0,active:false});if(server){const closed=new Promise(r=>server.once('close',r));server.kill('SIGTERM');await closed;await history({owner:'grok-private-shield',serverPid:server.pid,vitePort:5173,active:false})}}
+console.log(JSON.stringify({passed:report.passed,rows:report.rows.length,errors:report.errors,failure:report.failure}));

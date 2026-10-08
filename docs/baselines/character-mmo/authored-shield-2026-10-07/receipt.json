@@ -1,0 +1,6750 @@
+{
+  "schema": 1,
+  "scope": "Authored rigid shield and private native fit proof; not canonical equipment integration or release",
+  "sourceCommit": "1c1c5ee04c86dc5419af7f78c3e5886c7e09cd42",
+  "asset": {
+    "schema": 1,
+    "item": "bastionShield",
+    "candidateOnly": true,
+    "published": false,
+    "descriptor": {
+      "path": "blender/characters/props/bastion-shield.json",
+      "sha256": "73d40e24cde45ada62bd32b86450d02d1d855dca3d7843c24882e2b1dfc1f2b6"
+    },
+    "sourceRights": {
+      "kind": "original-project-geometry",
+      "description": "Original Ashen Reach heater silhouette, binding, split-arrow crest and grip authored by this builder; no external mesh or texture."
+    },
+    "builder": {
+      "path": "scripts/character-assets/author-bastion-shield.py",
+      "sha256": "5ef74e39c9aade4f43c112a13219388f0911e1eb9c260f572f489b17af5b9192"
+    },
+    "tool": {
+      "path": "scripts/character-assets/prepare-authored-prop.mjs",
+      "sha256": "f1a3119737b4b07709e6722ac11eedfb4e378b8f04e33d75a8263542ea2fdd1d"
+    },
+    "host": {
+      "platform": "darwin",
+      "arch": "arm64",
+      "blenderVersion": "Blender 5.2.1 LTS\n\tbuild date: 2026-08-25\n\tbuild time: 01:35:57\n\tbuild commit date: 2026-08-24\n\tbuild commit time: 16:50\n\tbuild hash: 9e2066aef7ef\n\tbuild branch: blender-v5.2-release\n\tbuild platform: Darwin\n\tbuild type: Release\n\tbuild c flags:  -Wall -Werror=implicit-function-declaration -Werror=return-type -Wno-tautological-compare -Wno-unknown-pragmas -Wno-char-subscripts -Wstrict-prototypes -Wmissing-prototypes -Wunused-parameter -Wundef -Wundef-prefix -Werror=unguarded-availability-new  -mmacosx-version-min=11.2  -std=gnu11  -pipe -funsigned-char -fno-strict-aliasing -ffp-contract=off  \n\tbuild c++ flags:  -Wall -Wno-tautological-compare -Wno-unknown-pragmas -Wno-char-subscripts -Wno-overloaded-virtual -Wno-sign-compare -Wno-invalid-offsetof -Wno-suggest-override -Wundef -Wundef-prefix -Wunused-parameter -Wmismatched-tags -Werror=unguarded-availability-new  -mmacosx-version-min=11.2 -ftemplate-depth=1024   -pipe -funsigned-char -fno-strict-aliasing -ffp-contract=off  \n\tbuild link flags: -fexceptions -framework CoreServices -framework Foundation -framework IOKit -framework AppKit -framework Cocoa -framework Carbon -framework AudioUnit -framework AudioToolbox -framework CoreAudio -framework Metal -framework QuartzCore -framework CoreImage -framework OpenGL -framework Accelerate -liconv -Xlinker -no_warn_duplicate_libraries\n\tbuild system: CMake"
+    },
+    "byteIdenticalRebuild": true,
+    "artifacts": [
+      {
+        "path": ".cache/character-mmo/authored-shield-2026-10-07/asset-closed-policy/build-1/bastionShield.glb",
+        "mesh": "BastionShield",
+        "vertices": 2412,
+        "triangles": 1104,
+        "materialGroups": [
+          "BastionShieldPaint",
+          "BastionShieldSteel",
+          "BastionShieldLeather"
+        ],
+        "bounds": {
+          "min": [
+            -0.2639000117778778,
+            -0.3996017575263977,
+            -0.019999999552965164
+          ],
+          "max": [
+            0.2639000117778778,
+            0.3958500027656555,
+            0.13300000131130219
+          ],
+          "size": [
+            0.5278000235557556,
+            0.7954517602920532,
+            0.15300000086426735
+          ]
+        },
+        "skins": 0,
+        "animations": 0,
+        "textures": 0,
+        "bytes": 67352,
+        "sha256": "926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c"
+      },
+      {
+        "path": ".cache/character-mmo/authored-shield-2026-10-07/asset-closed-policy/build-2/bastionShield.glb",
+        "mesh": "BastionShield",
+        "vertices": 2412,
+        "triangles": 1104,
+        "materialGroups": [
+          "BastionShieldPaint",
+          "BastionShieldSteel",
+          "BastionShieldLeather"
+        ],
+        "bounds": {
+          "min": [
+            -0.2639000117778778,
+            -0.3996017575263977,
+            -0.019999999552965164
+          ],
+          "max": [
+            0.2639000117778778,
+            0.3958500027656555,
+            0.13300000131130219
+          ],
+          "size": [
+            0.5278000235557556,
+            0.7954517602920532,
+            0.15300000086426735
+          ]
+        },
+        "skins": 0,
+        "animations": 0,
+        "textures": 0,
+        "bytes": 67352,
+        "sha256": "926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c"
+      }
+    ],
+    "remaining": [
+      "Native fit/grip/stow motion",
+      "Canonical catalogue/streaming/startup integration",
+      "Failure/cancellation/save/reload/disposal",
+      "Separate performance and sealed release gates"
+    ]
+  },
+  "tests": {
+    "passed": 12,
+    "failed": 0,
+    "nativeExits": [
+      {
+        "name": "final-rigid-tests",
+        "command": [
+          "node",
+          "--test",
+          "scripts/test-authored-prop.mjs"
+        ],
+        "childPid": 85515,
+        "exitCode": 0,
+        "elapsedSeconds": 0.16150583396665752
+      }
+    ],
+    "logSha256": "c516f84adde60dcb1814f79d6fbfebf0848647fa0c1506c7ddb46e8b60943f6c"
+  },
+  "fit": {
+    "sourceCommit": "1c1c5ee04c86dc5419af7f78c3e5886c7e09cd42",
+    "candidateOnly": true,
+    "assetSha256": "926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c",
+    "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+    "purpose": "Private authored shield on native evaluated sockets; existing book identity supplies grip mask; no FPS/catalogue/release acceptance",
+    "errors": [],
+    "rows": [
+      {
+        "fixture": {
+          "id": "human-neutral",
+          "race": "human",
+          "height": 1,
+          "build": 0
+        },
+        "motion": "run",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.8105989694595337,
+              0.5532256960868835,
+              0.1920173019170761,
+              0,
+              -0.18679213523864746,
+              0.5550348162651062,
+              -0.8105831742286682,
+              0,
+              -0.5550117492675781,
+              0.6211905479431152,
+              0.5532488226890564,
+              0,
+              -0.2958250343799591,
+              0.16758352518081665,
+              -99.67643737792969,
+              1
+            ],
+            "socket": [
+              -0.8105989694595337,
+              -0.5532256960868835,
+              -0.1920173019170761,
+              0,
+              -0.18679213523864746,
+              0.5550348162651062,
+              -0.8105831742286682,
+              0,
+              0.5550117492675781,
+              -0.6211905479431152,
+              -0.5532488226890564,
+              0,
+              -0.3178156316280365,
+              0.2271762490272522,
+              -99.72925567626953,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "run",
+            "time": 0.1505333134531974,
+            "duration": 0.6666666865348816,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-neutral",
+          "race": "human",
+          "height": 1,
+          "build": 0
+        },
+        "motion": "jump",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.45139580965042114,
+              0.6287896037101746,
+              0.6331393718719482,
+              0,
+              -0.07856690138578415,
+              0.7347906827926636,
+              -0.673728346824646,
+              0,
+              -0.8888583183288574,
+              0.25437435507774353,
+              0.38108348846435547,
+              0,
+              -0.2403837889432907,
+              0.056485384702682495,
+              -99.85672760009766,
+              1
+            ],
+            "socket": [
+              -0.45139580965042114,
+              -0.6287896037101746,
+              -0.6331393718719482,
+              0,
+              -0.07856690138578415,
+              0.7347906827926636,
+              -0.673728346824646,
+              0,
+              0.8888583183288574,
+              -0.25437435507774353,
+              -0.38108348846435547,
+              0,
+              -0.2621893286705017,
+              0.12350007146596909,
+              -99.89984130859375,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "jump",
+            "time": 0.15016662693023566,
+            "duration": 1.3333333730697632,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-neutral",
+          "race": "human",
+          "height": 1,
+          "build": 0
+        },
+        "motion": "fire",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "back",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              -0.9932670593261719,
+              0.11381447315216064,
+              -0.02160351164638996,
+              0,
+              0.11273960769176483,
+              0.9925713539123535,
+              0.04575450345873833,
+              0,
+              0.026650365442037582,
+              0.0430108867585659,
+              -0.9987198710441589,
+              0,
+              -0.09216383844614029,
+              0.34662100672721863,
+              -100.28011322021484,
+              1
+            ],
+            "socket": [
+              -0.9726877212524414,
+              0.10207414627075195,
+              0.2084692120552063,
+              0,
+              -0.1607305258512497,
+              -0.9441505074501038,
+              -0.2876552641391754,
+              0,
+              0.16746415197849274,
+              -0.31330612301826477,
+              0.9347700476646423,
+              0,
+              -0.034763436764478683,
+              0.4633060693740845,
+              -100.06942749023438,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "fire",
+            "time": 0.1505000238418574,
+            "duration": 1.399999976158142,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-neutral",
+          "race": "human",
+          "height": 1,
+          "build": 0
+        },
+        "motion": "lava",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "back",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              -0.9986208081245422,
+              0.0519486702978611,
+              -0.007605540566146374,
+              0,
+              0.05182112380862236,
+              0.9985272288322449,
+              0.01611142046749592,
+              0,
+              0.008431131951510906,
+              0.01569509133696556,
+              -0.9998420476913452,
+              0,
+              -0.08114379644393921,
+              0.38152921199798584,
+              -100.27896881103516,
+              1
+            ],
+            "socket": [
+              -0.973785400390625,
+              0.04814558103680611,
+              0.22231519222259521,
+              0,
+              -0.1064649298787117,
+              -0.9601526856422424,
+              -0.25840285420417786,
+              0,
+              0.20101557672023773,
+              -0.27529770135879517,
+              0.9401084780693054,
+              0,
+              -0.027807462960481644,
+              0.5075560808181763,
+              -100.07263946533203,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "lava",
+            "time": 0.14970004767179157,
+            "duration": 2.299999952316284,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-neutral",
+          "race": "human",
+          "height": 1,
+          "build": 0
+        },
+        "motion": "pulse",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.746054470539093,
+              0.36901170015335083,
+              0.5542861223220825,
+              0,
+              0.33460038900375366,
+              0.5119346380233765,
+              -0.7911798357963562,
+              0,
+              -0.5757128596305847,
+              0.7757275700569153,
+              0.2584596872329712,
+              0,
+              -0.45208853483200073,
+              0.15511155128479004,
+              -99.64305877685547,
+              1
+            ],
+            "socket": [
+              -0.746054470539093,
+              -0.36901170015335083,
+              -0.5542861223220825,
+              0,
+              0.33460038900375366,
+              0.5119346380233765,
+              -0.7911798357963562,
+              0,
+              0.5757128596305847,
+              -0.7757275700569153,
+              -0.2584596872329712,
+              0,
+              -0.4331044852733612,
+              0.21342593431472778,
+              -99.69841003417969,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "pulse",
+            "time": 0.15000002384185537,
+            "duration": 1.899999976158142,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-short-slender",
+          "race": "human",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "motion": "run",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": -0.95
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.7300926446914673,
+              0.49613404273986816,
+              0.17554406821727753,
+              0,
+              -0.1649760603904724,
+              0.5008335113525391,
+              -0.7293481230735779,
+              0,
+              -0.49974754452705383,
+              0.5594790577888489,
+              0.49722790718078613,
+              0,
+              -0.26759788393974304,
+              0.07677716761827469,
+              -99.71304321289062,
+              1
+            ],
+            "socket": [
+              -0.7300926446914673,
+              -0.49613404273986816,
+              -0.17554406821727753,
+              0,
+              -0.1649760603904724,
+              0.5008335113525391,
+              -0.7293481230735779,
+              0,
+              0.49974754452705383,
+              -0.5594790577888489,
+              -0.49722790718078613,
+              0,
+              -0.28714045882225037,
+              0.13051410019397736,
+              -99.76056671142578,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "run",
+            "time": 0.14983331346511852,
+            "duration": 0.6666666865348816,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-short-slender",
+          "race": "human",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "motion": "jump",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": -0.95
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.40683603286743164,
+              0.5646963119506836,
+              0.5706158876419067,
+              0,
+              -0.06994061172008514,
+              0.6622049808502197,
+              -0.6054691672325134,
+              0,
+              -0.7997454404830933,
+              0.22935272753238678,
+              0.34322673082351685,
+              0,
+              -0.2154058814048767,
+              -0.021818857640028,
+              -99.87394714355469,
+              1
+            ],
+            "socket": [
+              -0.40683603286743164,
+              -0.5646963119506836,
+              -0.5706158876419067,
+              0,
+              -0.06994061172008514,
+              0.6622049808502197,
+              -0.6054691672325134,
+              0,
+              0.7997454404830933,
+              -0.22935272753238678,
+              -0.34322673082351685,
+              0,
+              -0.2349618524312973,
+              0.038568075746297836,
+              -99.91266632080078,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "jump",
+            "time": 0.14956662696599857,
+            "duration": 1.3333333730697632,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-short-slender",
+          "race": "human",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "motion": "fire",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": -0.95
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "back",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              -0.8939470648765564,
+              0.10237930715084076,
+              -0.019418172538280487,
+              0,
+              0.10141199082136154,
+              0.8933184742927551,
+              0.0412188284099102,
+              0,
+              0.023962702602148056,
+              0.038753584027290344,
+              -0.8988465666770935,
+              0,
+              -0.08328070491552353,
+              0.23795992136001587,
+              -100.25194549560547,
+              1
+            ],
+            "socket": [
+              -0.875420331954956,
+              0.0918044000864029,
+              0.18764635920524597,
+              0,
+              -0.1446113884449005,
+              -0.8497321009635925,
+              -0.25892648100852966,
+              0,
+              0.1507539302110672,
+              -0.2820059061050415,
+              0.8412763476371765,
+              0,
+              -0.03162248432636261,
+              0.34297069907188416,
+              -100.06232452392578,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "fire",
+            "time": 0.1499000238180151,
+            "duration": 1.399999976158142,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-short-slender",
+          "race": "human",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "motion": "lava",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": -0.95
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "back",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              -0.8987537622451782,
+              0.04684554040431976,
+              -0.006863443646579981,
+              0,
+              0.04673029109835625,
+              0.898669421672821,
+              0.014519239775836468,
+              0,
+              0.007608874700963497,
+              0.014142774045467377,
+              -0.8998574018478394,
+              0,
+              -0.07339077442884445,
+              0.2692506015300751,
+              -100.25090789794922,
+              1
+            ],
+            "socket": [
+              -0.876406729221344,
+              0.043416351079940796,
+              0.20006562769412994,
+              0,
+              -0.0959014892578125,
+              -0.8641229867935181,
+              -0.23258189857006073,
+              0,
+              0.18087050318717957,
+              -0.24780325591564178,
+              0.8460965752601624,
+              0,
+              -0.025380520150065422,
+              0.3826662003993988,
+              -100.0652084350586,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "lava",
+            "time": 0.14990004771947799,
+            "duration": 2.299999952316284,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-short-slender",
+          "race": "human",
+          "height": 0.9,
+          "build": -0.95
+        },
+        "motion": "pulse",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": -0.95
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.6716007590293884,
+              0.3323119580745697,
+              0.4985189437866211,
+              0,
+              0.3010765314102173,
+              0.46024733781814575,
+              -0.7124081254005432,
+              0,
+              -0.5179819464683533,
+              0.6983846426010132,
+              0.23227906227111816,
+              0,
+              -0.4053250253200531,
+              0.06607801467180252,
+              -99.68104553222656,
+              1
+            ],
+            "socket": [
+              -0.6716007590293884,
+              -0.3323119580745697,
+              -0.4985189437866211,
+              0,
+              0.3010765314102173,
+              0.46024733781814575,
+              -0.7124081254005432,
+              0,
+              0.5179819464683533,
+              -0.6983846426010132,
+              -0.23227906227111816,
+              0,
+              -0.3882405459880829,
+              0.11852705478668213,
+              -99.73090362548828,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "pulse",
+            "time": 0.15010002380609283,
+            "duration": 1.899999976158142,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-tall-slender",
+          "race": "human",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "motion": "run",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.9321888089179993,
+              0.6362095475196838,
+              0.22081990540027618,
+              0,
+              -0.21481095254421234,
+              0.6382899880409241,
+              -0.9321706295013428,
+              0,
+              -0.638263463973999,
+              0.7143691182136536,
+              0.6362361907958984,
+              0,
+              -0.3400924503803253,
+              0.30272376537323,
+              -99.62326049804688,
+              1
+            ],
+            "socket": [
+              -0.9321888089179993,
+              -0.6362095475196838,
+              -0.22081990540027618,
+              0,
+              -0.21481095254421234,
+              0.6382899880409241,
+              -0.9321706295013428,
+              0,
+              0.638263463973999,
+              -0.7143691182136536,
+              -0.6362361907958984,
+              0,
+              -0.36538165807724,
+              0.37125539779663086,
+              -99.68400573730469,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "run",
+            "time": 0.15053331351280205,
+            "duration": 0.6666666865348816,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-tall-slender",
+          "race": "human",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "motion": "jump",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.5192283391952515,
+              0.72284996509552,
+              0.7282787561416626,
+              0,
+              -0.09018776565790176,
+              0.8451993465423584,
+              -0.7745993733406067,
+              0,
+              -1.0221389532089233,
+              0.2926192283630371,
+              0.4382988214492798,
+              0,
+              -0.2775348722934723,
+              0.17323818802833557,
+              -99.83170318603516,
+              1
+            ],
+            "socket": [
+              -0.5192283391952515,
+              -0.72284996509552,
+              -0.7282787561416626,
+              0,
+              -0.09018776565790176,
+              0.8451993465423584,
+              -0.7745993733406067,
+              0,
+              1.0221389532089233,
+              -0.2926192283630371,
+              -0.4382988214492798,
+              0,
+              -0.3025965392589569,
+              0.25032076239585876,
+              -99.88126373291016,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "jump",
+            "time": 0.15006662690639425,
+            "duration": 1.3333333730697632,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-tall-slender",
+          "race": "human",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "motion": "fire",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "back",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              -1.142256498336792,
+              0.13089139759540558,
+              -0.02484755404293537,
+              0,
+              0.12965546548366547,
+              1.141456961631775,
+              0.052605729550123215,
+              0,
+              0.030650274828076363,
+              0.04945012181997299,
+              -1.1485283374786377,
+              0,
+              -0.10547490417957306,
+              0.5097060799598694,
+              -100.3223876953125,
+              1
+            ],
+            "socket": [
+              -1.1185908317565918,
+              0.11739274114370346,
+              0.23973627388477325,
+              0,
+              -0.1848442703485489,
+              -1.0857757329940796,
+              -0.33079230785369873,
+              0,
+              0.1925801932811737,
+              -0.36029139161109924,
+              1.0749897956848145,
+              0,
+              -0.03946429863572121,
+              0.6438961625099182,
+              -100.08009338378906,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "fire",
+            "time": 0.15060002386569826,
+            "duration": 1.399999976158142,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-tall-slender",
+          "race": "human",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "motion": "lava",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "back",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              -1.1483949422836304,
+              0.06009504199028015,
+              -0.008817552588880062,
+              0,
+              0.059946589171886444,
+              1.1482868194580078,
+              0.018601607531309128,
+              0,
+              0.009776283986866474,
+              0.01811598800122738,
+              -1.149816632270813,
+              0,
+              -0.09287168085575104,
+              0.5496405363082886,
+              -100.32107543945312,
+              1
+            ],
+            "socket": [
+              -1.1198527812957764,
+              0.05569668859243393,
+              0.25559288263320923,
+              0,
+              -0.12275522202253342,
+              -1.104119896888733,
+              -0.29723817110061646,
+              0,
+              0.23099999129772186,
+              -0.31672897934913635,
+              1.0811206102371216,
+              0,
+              -0.03150574117898941,
+              0.6945381760597229,
+              -100.08377838134766,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "lava",
+            "time": 0.15030004769563296,
+            "duration": 2.299999952316284,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-tall-slender",
+          "race": "human",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "motion": "pulse",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": -0.95
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.8587379455566406,
+              0.42539432644844055,
+              0.6356955766677856,
+              0,
+              0.3844611644744873,
+              0.5861977338790894,
+              -0.9116259217262268,
+              0,
+              -0.6612554788589478,
+              0.8932591676712036,
+              0.2955153286457062,
+              0,
+              -0.5220261216163635,
+              0.28983622789382935,
+              -99.5841064453125,
+              1
+            ],
+            "socket": [
+              -0.8587379455566406,
+              -0.42539432644844055,
+              -0.6356955766677856,
+              0,
+              0.3844611644744873,
+              0.5861977338790894,
+              -0.9116259217262268,
+              0,
+              0.6612554788589478,
+              -0.8932591676712036,
+              -0.2955153286457062,
+              0,
+              -0.500200629234314,
+              0.35672420263290405,
+              -99.64794921875,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "pulse",
+            "time": 0.15040002387761806,
+            "duration": 1.899999976158142,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-short-stout",
+          "race": "human",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "motion": "run",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.7300147414207458,
+              0.4963865578174591,
+              0.17515383660793304,
+              0,
+              -0.1654244065284729,
+              0.5006479620933533,
+              -0.7293739914894104,
+              0,
+              -0.4997131824493408,
+              0.5594211220741272,
+              0.497327595949173,
+              0,
+              -0.2674146890640259,
+              0.07687917351722717,
+              -99.71287536621094,
+              1
+            ],
+            "socket": [
+              -0.7300147414207458,
+              -0.4963865578174591,
+              -0.17515383660793304,
+              0,
+              -0.1654244065284729,
+              0.5006479620933533,
+              -0.7293739914894104,
+              0,
+              0.4997131824493408,
+              -0.5594211220741272,
+              -0.497327595949173,
+              0,
+              -0.2869928181171417,
+              0.13060136139392853,
+              -99.76040649414062,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "run",
+            "time": 0.14993331348896025,
+            "duration": 0.6666666865348816,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-short-stout",
+          "race": "human",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "motion": "jump",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.40606340765953064,
+              0.5663145780563354,
+              0.5695615410804749,
+              0,
+              -0.07096757739782333,
+              0.6610139608383179,
+              -0.6066499352455139,
+              0,
+              -0.8000475764274597,
+              0.22879771888256073,
+              0.3428928256034851,
+              0,
+              -0.2156522125005722,
+              -0.021271919831633568,
+              -99.87333679199219,
+              1
+            ],
+            "socket": [
+              -0.40606340765953064,
+              -0.5663145780563354,
+              -0.5695615410804749,
+              0,
+              -0.07096757739782333,
+              0.6610139608383179,
+              -0.6066499352455139,
+              0,
+              0.8000475764274597,
+              -0.22879771888256073,
+              -0.3428928256034851,
+              0,
+              -0.23530025780200958,
+              0.0390167236328125,
+              -99.91216278076172,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "jump",
+            "time": 0.1503666269183147,
+            "duration": 1.3333333730697632,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-short-stout",
+          "race": "human",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "motion": "fire",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "back",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              -0.8939470648765564,
+              0.10237930715084076,
+              -0.019418172538280487,
+              0,
+              0.10141199082136154,
+              0.8933184742927551,
+              0.0412188284099102,
+              0,
+              0.023962702602148056,
+              0.038753584027290344,
+              -0.8988465666770935,
+              0,
+              -0.08328070491552353,
+              0.23795992136001587,
+              -100.25194549560547,
+              1
+            ],
+            "socket": [
+              -0.875420331954956,
+              0.0918044000864029,
+              0.18764635920524597,
+              0,
+              -0.1446113884449005,
+              -0.8497321009635925,
+              -0.25892648100852966,
+              0,
+              0.1507539302110672,
+              -0.2820059061050415,
+              0.8412763476371765,
+              0,
+              -0.03162248432636261,
+              0.34297069907188416,
+              -100.06232452392578,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "fire",
+            "time": 0.14990002387761994,
+            "duration": 1.399999976158142,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-short-stout",
+          "race": "human",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "motion": "lava",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "back",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              -0.8983114957809448,
+              0.05445142462849617,
+              -0.00845483597368002,
+              0,
+              0.054293885827064514,
+              0.898216724395752,
+              0.016130480915308,
+              0,
+              0.009413867257535458,
+              0.015590154565870762,
+              -0.8998163938522339,
+              0,
+              -0.0748939961194992,
+              0.26444119215011597,
+              -100.2510757446289,
+              1
+            ],
+            "socket": [
+              -0.8763819336891174,
+              0.05048574507236481,
+              0.1985093057155609,
+              0,
+              -0.1027628555893898,
+              -0.8628895282745361,
+              -0.23422525823116302,
+              0,
+              0.17718505859375,
+              -0.25074461102485657,
+              0.8460097908973694,
+              0,
+              -0.02627521939575672,
+              0.3771347403526306,
+              -100.06509399414062,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "lava",
+            "time": 0.1663000476956338,
+            "duration": 2.299999952316284,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-short-stout",
+          "race": "human",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "motion": "pulse",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 0.9,
+              "build": 0.95
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.6953359842300415,
+              0.367556095123291,
+              0.43750467896461487,
+              0,
+              0.28491806983947754,
+              0.3742987811565399,
+              -0.7672823071479797,
+              0,
+              -0.4953075051307678,
+              0.7313022017478943,
+              0.1728222668170929,
+              0,
+              -0.3966858685016632,
+              0.09681649506092072,
+              -99.63231658935547,
+              1
+            ],
+            "socket": [
+              -0.6953359842300415,
+              -0.367556095123291,
+              -0.43750467896461487,
+              0,
+              0.28491806983947754,
+              0.3742987811565399,
+              -0.7672823071479797,
+              0,
+              0.4953075051307678,
+              -0.7313022017478943,
+              -0.1728222668170929,
+              0,
+              -0.3803218901157379,
+              0.14322422444820404,
+              -99.68805694580078,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "pulse",
+            "time": 0.16710002380609323,
+            "duration": 1.899999976158142,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-tall-stout",
+          "race": "human",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "motion": "run",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": 0.95
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.9318780899047852,
+              0.6371798515319824,
+              0.21932849287986755,
+              0,
+              -0.2165275365114212,
+              0.6375738978385925,
+              -0.9322636127471924,
+              0,
+              -0.6381371021270752,
+              0.7141438126564026,
+              0.6366157531738281,
+              0,
+              -0.33937394618988037,
+              0.3031187057495117,
+              -99.62262725830078,
+              1
+            ],
+            "socket": [
+              -0.9318780899047852,
+              -0.6371798515319824,
+              -0.21932849287986755,
+              0,
+              -0.2165275365114212,
+              0.6375738978385925,
+              -0.9322636127471924,
+              0,
+              0.6381371021270752,
+              -0.7141438126564026,
+              -0.6366157531738281,
+              0,
+              -0.36479949951171875,
+              0.3715933859348297,
+              -99.68338012695312,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "run",
+            "time": 0.15083331346511847,
+            "duration": 0.6666666865348816,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-tall-stout",
+          "race": "human",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "motion": "jump",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": 0.95
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.5184898972511292,
+              0.7243973016738892,
+              0.7272666692733765,
+              0,
+              -0.09117495268583298,
+              0.8440585136413574,
+              -0.7757270336151123,
+              0,
+              -1.0224262475967407,
+              0.29208534955978394,
+              0.43798497319221497,
+              0,
+              -0.27776387333869934,
+              0.17376944422721863,
+              -99.83110809326172,
+              1
+            ],
+            "socket": [
+              -0.5184898972511292,
+              -0.7243973016738892,
+              -0.7272666692733765,
+              0,
+              -0.09117495268583298,
+              0.8440585136413574,
+              -0.7757270336151123,
+              0,
+              1.0224262475967407,
+              -0.29208534955978394,
+              -0.43798497319221497,
+              0,
+              -0.30291393399238586,
+              0.2507578134536743,
+              -99.88076782226562,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "jump",
+            "time": 0.15066662693023536,
+            "duration": 1.3333333730697632,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-tall-stout",
+          "race": "human",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "motion": "fire",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": 0.95
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "back",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              -1.1422584056854248,
+              0.1308770626783371,
+              -0.02483702264726162,
+              0,
+              0.12964065372943878,
+              1.1414570808410645,
+              0.05264144763350487,
+              0,
+              0.030643241479992867,
+              0.049487192183732986,
+              -1.148526906967163,
+              0,
+              -0.10547187924385071,
+              0.509738028049469,
+              -100.3223876953125,
+              1
+            ],
+            "socket": [
+              -1.118591070175171,
+              0.11737028509378433,
+              0.23974622786045074,
+              0,
+              -0.18483173847198486,
+              -1.0857676267623901,
+              -0.33082592487335205,
+              0,
+              0.19259093701839447,
+              -0.3603231608867645,
+              1.074977159500122,
+              0,
+              -0.03946170583367348,
+              0.6439212560653687,
+              -100.08009338378906,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "fire",
+            "time": 0.15030002379417326,
+            "duration": 1.399999976158142,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-tall-stout",
+          "race": "human",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "motion": "lava",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": 0.95
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "back",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              -1.1483980417251587,
+              0.060035645961761475,
+              -0.008805607445538044,
+              0,
+              0.05988749489188194,
+              1.1482900381088257,
+              0.018589263781905174,
+              0,
+              0.00976274162530899,
+              0.01810482330620289,
+              -1.1498169898986816,
+              0,
+              -0.09285978972911835,
+              0.5496775507926941,
+              -100.3210678100586,
+              1
+            ],
+            "socket": [
+              -1.1198527812957764,
+              0.055641449987888336,
+              0.2556045651435852,
+              0,
+              -0.12270145863294601,
+              -1.1041291952133179,
+              -0.29722559452056885,
+              0,
+              0.23102818429470062,
+              -0.3167060613632202,
+              1.0811213254928589,
+              0,
+              -0.031498733907938004,
+              0.6945807933807373,
+              -100.08377838134766,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "lava",
+            "time": 0.15020004767179096,
+            "duration": 2.299999952316284,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "human-tall-stout",
+          "race": "human",
+          "height": 1.15,
+          "build": 0.95
+        },
+        "motion": "pulse",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1.15,
+              "build": 0.95
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.8585442900657654,
+              0.42513635754585266,
+              0.6361295580863953,
+              0,
+              0.3845442235469818,
+              0.5868300795555115,
+              -0.9111839532852173,
+              0,
+              -0.6614586114883423,
+              0.8929666876792908,
+              0.2959442436695099,
+              0,
+              -0.5220672488212585,
+              0.28960761427879333,
+              -99.58448791503906,
+              1
+            ],
+            "socket": [
+              -0.8585442900657654,
+              -0.42513635754585266,
+              -0.6361295580863953,
+              0,
+              0.3845442235469818,
+              0.5868300795555115,
+              -0.9111839532852173,
+              0,
+              0.6614586114883423,
+              -0.8929666876792908,
+              -0.2959442436695099,
+              0,
+              -0.5002401471138,
+              0.3565390408039093,
+              -99.64828491210938,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "pulse",
+            "time": 0.1503000238537765,
+            "duration": 1.899999976158142,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "orc-neutral",
+          "race": "orc"
+        },
+        "motion": "run",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "orc",
+            "fitFamily": "ashen-orc",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {},
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.0176,
+                -0.0956,
+                0.0192
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1.12
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.9080701470375061,
+              0.618983268737793,
+              0.21602866053581238,
+              0,
+              -0.20809224247932434,
+              0.6221030354499817,
+              -0.9077915549278259,
+              0,
+              -0.6216962933540344,
+              0.6958790421485901,
+              0.6193917393684387,
+              0,
+              -0.47687435150146484,
+              0.22439740598201752,
+              -99.51639556884766,
+              1
+            ],
+            "socket": [
+              -0.8107768893241882,
+              -0.5526636242866516,
+              -0.1928827315568924,
+              0,
+              -0.18579664826393127,
+              0.5554491281509399,
+              -0.8105281591415405,
+              0,
+              0.5550859570503235,
+              -0.6213205456733704,
+              -0.5530283451080322,
+              0,
+              -0.4910244941711426,
+              0.2991545796394348,
+              -99.57987213134766,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "run",
+            "time": 0.15033331346511838,
+            "duration": 0.6666666865348816,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "orc-neutral",
+          "race": "orc"
+        },
+        "motion": "jump",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "orc",
+            "fitFamily": "ashen-orc",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {},
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.0176,
+                -0.0956,
+                0.0192
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1.12
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.5053233504295349,
+              0.7047469615936279,
+              0.708787739276886,
+              0,
+              -0.0883152112364769,
+              0.8225951194763184,
+              -0.7549421787261963,
+              0,
+              -0.995614767074585,
+              0.2847260534763336,
+              0.4267110824584961,
+              0,
+              -0.3861863613128662,
+              0.17056488990783691,
+              -99.72592163085938,
+              1
+            ],
+            "socket": [
+              -0.451181560754776,
+              -0.6292383670806885,
+              -0.6328461766242981,
+              0,
+              -0.07885286957025528,
+              0.7344599366188049,
+              -0.6740555167198181,
+              0,
+              0.888941764831543,
+              -0.2542196810245514,
+              -0.38099202513694763,
+              0,
+              -0.40285158157348633,
+              0.2567348778247833,
+              -99.77191162109375,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "jump",
+            "time": 0.15036662691831543,
+            "duration": 1.3333333730697632,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "orc-neutral",
+          "race": "orc"
+        },
+        "motion": "fire",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "orc",
+            "fitFamily": "ashen-orc",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {},
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "back",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.0176,
+                -0.0956,
+                0.0192
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1.12
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              -0.9932670593261719,
+              0.11381447315216064,
+              -0.02160351164638996,
+              0,
+              0.11273960769176483,
+              0.9925713539123535,
+              0.04575450345873833,
+              0,
+              0.026650365442037582,
+              0.0430108867585659,
+              -0.9987198710441589,
+              0,
+              -0.09561897814273834,
+              0.6220481395721436,
+              -100.34333038330078,
+              1
+            ],
+            "socket": [
+              -0.9726877212524414,
+              0.10207414627075195,
+              0.2084692120552063,
+              0,
+              -0.1607305258512497,
+              -0.9441505074501038,
+              -0.2876552641391754,
+              0,
+              0.16746415197849274,
+              -0.31330612301826477,
+              0.9347700476646423,
+              0,
+              -0.03821857273578644,
+              0.738733172416687,
+              -100.13264465332031,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "fire",
+            "time": 0.15050002384185643,
+            "duration": 1.399999976158142,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "orc-neutral",
+          "race": "orc"
+        },
+        "motion": "lava",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "orc",
+            "fitFamily": "ashen-orc",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {},
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "back",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.0176,
+                -0.0956,
+                0.0192
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1.12
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              -0.998601496219635,
+              0.052308231592178345,
+              -0.007677831687033176,
+              0,
+              0.05217887833714485,
+              0.9985073804855347,
+              0.016186103224754333,
+              0,
+              0.008512857370078564,
+              0.015762854367494583,
+              -0.9998403191566467,
+              0,
+              -0.08444105088710785,
+              0.6655169129371643,
+              -100.3269271850586,
+              1
+            ],
+            "socket": [
+              -0.9737849235534668,
+              0.04847993329167366,
+              0.2222445160150528,
+              0,
+              -0.1067904457449913,
+              -0.9600960612297058,
+              -0.25847896933555603,
+              0,
+              0.20084504783153534,
+              -0.27543652057647705,
+              0.9401042461395264,
+              0,
+              -0.031075114384293556,
+              0.7915099859237671,
+              -100.1205825805664,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "lava",
+            "time": 0.1504000476598711,
+            "duration": 2.299999952316284,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "orc-neutral",
+          "race": "orc"
+        },
+        "motion": "pulse",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "orc",
+            "fitFamily": "ashen-orc",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {},
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.0176,
+                -0.0956,
+                0.0192
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1.12
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.7463917136192322,
+              0.36945971846580505,
+              0.553533136844635,
+              0,
+              0.33445805311203003,
+              0.5108364820480347,
+              -0.791949450969696,
+              0,
+              -0.5753583312034607,
+              0.7762380838394165,
+              0.2577153444290161,
+              0,
+              -0.6106151342391968,
+              0.25221383571624756,
+              -99.47001647949219,
+              1
+            ],
+            "socket": [
+              -0.7463917136192322,
+              -0.36945971846580505,
+              -0.553533136844635,
+              0,
+              0.33445805311203003,
+              0.5108364820480347,
+              -0.791949450969696,
+              0,
+              0.5753583312034607,
+              -0.7762380838394165,
+              -0.2577153444290161,
+              0,
+              -0.5765513181686401,
+              0.3224560618400574,
+              -99.53103637695312,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "pulse",
+            "time": 0.1502000238895397,
+            "duration": 1.899999976158142,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "undead-neutral",
+          "race": "undead"
+        },
+        "motion": "run",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "undead",
+            "fitFamily": "ashen-undead",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {},
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.8113858699798584,
+              0.5506992340087891,
+              0.19591662287712097,
+              0,
+              -0.1823102980852127,
+              0.5568935871124268,
+              -0.8103286623954773,
+              0,
+              -0.5553520321846008,
+              0.6217715740203857,
+              0.5522537231445312,
+              0,
+              -0.29913267493247986,
+              0.24280031025409698,
+              -99.67008972167969,
+              1
+            ],
+            "socket": [
+              -0.8113858699798584,
+              -0.5506992340087891,
+              -0.19591662287712097,
+              0,
+              -0.1823102980852127,
+              0.5568935871124268,
+              -0.8103286623954773,
+              0,
+              0.5553520321846008,
+              -0.6217715740203857,
+              -0.5522537231445312,
+              0,
+              -0.3207676112651825,
+              0.30254071950912476,
+              -99.72289276123047,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "run",
+            "time": 0.14963331347703943,
+            "duration": 0.6666666865348816,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "undead-neutral",
+          "race": "undead"
+        },
+        "motion": "jump",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "undead",
+            "fitFamily": "ashen-undead",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {},
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.45139580965042114,
+              0.6287896037101746,
+              0.6331393718719482,
+              0,
+              -0.07856690138578415,
+              0.7347906827926636,
+              -0.673728346824646,
+              0,
+              -0.8888583183288574,
+              0.25437435507774353,
+              0.38108348846435547,
+              0,
+              -0.23970170319080353,
+              0.13068753480911255,
+              -99.83457946777344,
+              1
+            ],
+            "socket": [
+              -0.45139580965042114,
+              -0.6287896037101746,
+              -0.6331393718719482,
+              0,
+              -0.07856690138578415,
+              0.7347906827926636,
+              -0.673728346824646,
+              0,
+              0.8888583183288574,
+              -0.25437435507774353,
+              -0.38108348846435547,
+              0,
+              -0.2615072429180145,
+              0.19770222902297974,
+              -99.87769317626953,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "jump",
+            "time": 0.15016662693023564,
+            "duration": 1.3333333730697632,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "undead-neutral",
+          "race": "undead"
+        },
+        "motion": "fire",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "undead",
+            "fitFamily": "ashen-undead",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {},
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "back",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              -0.9932681918144226,
+              0.11380614340305328,
+              -0.02159743197262287,
+              0,
+              0.11273100227117538,
+              0.9925713539123535,
+              0.045775141566991806,
+              0,
+              0.026646316051483154,
+              0.04303232580423355,
+              -0.9987190365791321,
+              0,
+              -0.08885318040847778,
+              0.45762908458709717,
+              -100.28363037109375,
+              1
+            ],
+            "socket": [
+              -0.9726879000663757,
+              0.10206111520528793,
+              0.20847496390342712,
+              0,
+              -0.1607232391834259,
+              -0.9441457986831665,
+              -0.2876746952533722,
+              0,
+              0.16747036576271057,
+              -0.3133244812488556,
+              0.9347627758979797,
+              0,
+              -0.03145303204655647,
+              0.5743101835250854,
+              -100.07293701171875,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "fire",
+            "time": 0.15030002385377825,
+            "duration": 1.399999976158142,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "undead-neutral",
+          "race": "undead"
+        },
+        "motion": "lava",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "undead",
+            "fitFamily": "ashen-undead",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {},
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "back",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              -0.9985875487327576,
+              0.05256657302379608,
+              -0.007729838136583567,
+              0,
+              0.05243591219186783,
+              0.9984930753707886,
+              0.016240309923887253,
+              0,
+              0.008571717888116837,
+              0.015812044963240623,
+              -0.9998390078544617,
+              0,
+              -0.07748488336801529,
+              0.4896329641342163,
+              -100.2782974243164,
+              1
+            ],
+            "socket": [
+              -0.9737845659255981,
+              0.04872004687786102,
+              0.2221936732530594,
+              0,
+              -0.10702428221702576,
+              -0.9600551724433899,
+              -0.25853419303894043,
+              0,
+              0.20072238147258759,
+              -0.2755367159843445,
+              0.9401010870933533,
+              0,
+              -0.024097707122564316,
+              0.615601658821106,
+              -100.07194519042969,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "lava",
+            "time": 0.15090004771947454,
+            "duration": 2.299999952316284,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      },
+      {
+        "fixture": {
+          "id": "undead-neutral",
+          "race": "undead"
+        },
+        "motion": "pulse",
+        "state": {
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "undead",
+            "fitFamily": "ashen-undead",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {},
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.7449039816856384,
+              0.3676994740962982,
+              0.5567002296447754,
+              0,
+              0.334995836019516,
+              0.5154686570167542,
+              -0.7887140512466431,
+              0,
+              -0.5769712328910828,
+              0.7740085124969482,
+              0.2607968747615814,
+              0,
+              -0.46308135986328125,
+              0.23390351235866547,
+              -99.60791778564453,
+              1
+            ],
+            "socket": [
+              -0.7449039816856384,
+              -0.3676994740962982,
+              -0.5567002296447754,
+              0,
+              0.334995836019516,
+              0.5154686570167542,
+              -0.7887140512466431,
+              0,
+              0.5769712328910828,
+              -0.7740085124969482,
+              -0.2607968747615814,
+              0,
+              -0.4440965950489044,
+              0.2924596667289734,
+              -99.66301727294922,
+              1
+            ]
+          },
+          "bodyBones": 65,
+          "pose": {
+            "id": "pulse",
+            "time": 0.14940002387761897,
+            "duration": 1.899999976158142,
+            "paused": false
+          },
+          "physics": true,
+          "recoveries": 0,
+          "gpuErrors": []
+        }
+      }
+    ],
+    "passed": false,
+    "nativeLiteModule": "/node_modules/.vite/deps/@babylonjs_lite.js?v=6f5d5cbd",
+    "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(Math.hypot(gameplay.position.x-before.x,gameplay.position.z-before.z)>1)\n\n    at file:///Users/antbly/dev/wow-clone/.cache/character-mmo/authored-shield-2026-10-07/capture-fits-v2.mjs:72:324"
+  },
+  "movement": {
+    "sourceCommit": "1c1c5ee04c86dc5419af7f78c3e5886c7e09cd42",
+    "candidateOnly": true,
+    "assetSha256": "926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c",
+    "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+    "purpose": "Private authored shield on native evaluated sockets; existing book identity supplies grip mask; no FPS/catalogue/release acceptance",
+    "errors": [],
+    "rows": [
+      {
+        "fixture": {
+          "id": "human-neutral",
+          "race": "human",
+          "height": 1,
+          "build": 0
+        },
+        "before": {
+          "debug": {
+            "facing": 0,
+            "grounded": true,
+            "vy": 0,
+            "support": 2,
+            "speed": 0,
+            "vx": 0,
+            "vz": 0,
+            "castBlend": 0,
+            "jumps": 0,
+            "landings": 3,
+            "recoveries": 0,
+            "jumpInFlight": false,
+            "airTime": 0,
+            "position": {
+              "x": -0.011119923882524701,
+              "y": 2.9828305549621583,
+              "z": -129.98473289166702
+            },
+            "usingPhysics": true,
+            "colliders": {
+              "meshCount": 717,
+              "boxCount": 678,
+              "skipped": 0,
+              "animatedCount": 7
+            },
+            "capsuleHeight": 1.748,
+            "animated": [
+              {
+                "id": "grave-shade-1",
+                "enabled": true,
+                "radius": 0.4368,
+                "pose": {
+                  "x": 2.767767938163665,
+                  "y": 1.2897870128903242,
+                  "z": 13.759868129009153
+                }
+              },
+              {
+                "id": "grave-shade-2",
+                "enabled": true,
+                "radius": 0.40319999999999995,
+                "pose": {
+                  "x": -1.4695043927135738,
+                  "y": 1.3969314114976366,
+                  "z": 30.865962760768078
+                }
+              },
+              {
+                "id": "grave-shade-3",
+                "enabled": true,
+                "radius": 0.462,
+                "pose": {
+                  "x": 0.371953863628388,
+                  "y": 1.4970342789277133,
+                  "z": 48.925275441458155
+                }
+              },
+              {
+                "id": "grave-shade-4",
+                "enabled": true,
+                "radius": 0.42,
+                "pose": {
+                  "x": -5.371686706220351,
+                  "y": 2.425094700143184,
+                  "z": 62.246783661787376
+                }
+              },
+              {
+                "id": "town-wraith-1",
+                "enabled": true,
+                "radius": 0.4326,
+                "pose": {
+                  "x": 3.061722784333649,
+                  "y": 5.090748201968999,
+                  "z": 85.56831449196237
+                }
+              },
+              {
+                "id": "town-wraith-2",
+                "enabled": true,
+                "radius": 0.4074,
+                "pose": {
+                  "x": -1.4897477429654291,
+                  "y": 6.616708681713845,
+                  "z": 110.58203226789264
+                }
+              },
+              {
+                "id": "town-wraith-3",
+                "enabled": true,
+                "radius": 0.441,
+                "pose": {
+                  "x": -2.688546903617082,
+                  "y": 8.766913107693565,
+                  "z": 126.26504022599974
+                }
+              }
+            ]
+          },
+          "motion": {
+            "speed": 0,
+            "forward": 0,
+            "strafe": 0,
+            "grounded": true,
+            "vy": 0,
+            "walk": false,
+            "castBlend": 0,
+            "jumpInFlight": false,
+            "airTime": 0
+          },
+          "activeElement": "renderCanvas",
+          "armoryOpen": false
+        },
+        "moving": {
+          "debug": {
+            "facing": 0,
+            "grounded": true,
+            "vy": -0.731445342564136,
+            "support": 2,
+            "speed": 7.000000000000089,
+            "vx": 0,
+            "vz": 7.000000000000089,
+            "castBlend": 0,
+            "jumps": 0,
+            "landings": 3,
+            "recoveries": 0,
+            "jumpInFlight": false,
+            "airTime": 0,
+            "position": {
+              "x": -0.011890666403978433,
+              "y": 2.0715272637902884,
+              "z": -122.98750022665016
+            },
+            "usingPhysics": true,
+            "colliders": {
+              "meshCount": 717,
+              "boxCount": 678,
+              "skipped": 0,
+              "animatedCount": 7
+            },
+            "capsuleHeight": 1.748,
+            "animated": [
+              {
+                "id": "grave-shade-1",
+                "enabled": true,
+                "radius": 0.4368,
+                "pose": {
+                  "x": 2.767767938163665,
+                  "y": 1.2897870128903242,
+                  "z": 13.759868129009153
+                }
+              },
+              {
+                "id": "grave-shade-2",
+                "enabled": true,
+                "radius": 0.40319999999999995,
+                "pose": {
+                  "x": -2.494034067496435,
+                  "y": 1.495363243712573,
+                  "z": 31.744038441512178
+                }
+              },
+              {
+                "id": "grave-shade-3",
+                "enabled": true,
+                "radius": 0.462,
+                "pose": {
+                  "x": -0.8037751830917347,
+                  "y": 1.4699800192127603,
+                  "z": 48.263203568982384
+                }
+              },
+              {
+                "id": "grave-shade-4",
+                "enabled": true,
+                "radius": 0.42,
+                "pose": {
+                  "x": -4.347082246068724,
+                  "y": 2.409372470605467,
+                  "z": 61.3687952473636
+                }
+              },
+              {
+                "id": "town-wraith-1",
+                "enabled": true,
+                "radius": 0.4326,
+                "pose": {
+                  "x": 3.061722784333649,
+                  "y": 5.090748201968999,
+                  "z": 85.56831449196237
+                }
+              },
+              {
+                "id": "town-wraith-2",
+                "enabled": true,
+                "radius": 0.4074,
+                "pose": {
+                  "x": -1.9180228143812015,
+                  "y": 6.4553730834148,
+                  "z": 110.0031453434788
+                }
+              },
+              {
+                "id": "town-wraith-3",
+                "enabled": true,
+                "radius": 0.441,
+                "pose": {
+                  "x": -2.688546903617082,
+                  "y": 8.766913107693565,
+                  "z": 126.26504022599974
+                }
+              }
+            ]
+          },
+          "motion": {
+            "speed": 7.000000000000089,
+            "forward": 1,
+            "strafe": 0,
+            "grounded": true,
+            "vy": -0.731445342564136,
+            "walk": false,
+            "castBlend": 0,
+            "jumpInFlight": false,
+            "airTime": 0
+          }
+        },
+        "after": {
+          "debug": {
+            "facing": 0,
+            "grounded": true,
+            "vy": 0,
+            "support": 2,
+            "speed": 0,
+            "vx": 0,
+            "vz": 0,
+            "castBlend": 0,
+            "jumps": 1,
+            "landings": 4,
+            "recoveries": 0,
+            "jumpInFlight": false,
+            "airTime": 0,
+            "position": {
+              "x": -0.018565258136741324,
+              "y": 0.2770536637031096,
+              "z": -114.20292332486326
+            },
+            "usingPhysics": true,
+            "colliders": {
+              "meshCount": 717,
+              "boxCount": 678,
+              "skipped": 0,
+              "animatedCount": 7
+            },
+            "capsuleHeight": 1.748,
+            "animated": [
+              {
+                "id": "grave-shade-1",
+                "enabled": true,
+                "radius": 0.4368,
+                "pose": {
+                  "x": 2.767767938163665,
+                  "y": 1.2897870128903242,
+                  "z": 13.759868129009153
+                }
+              },
+              {
+                "id": "grave-shade-2",
+                "enabled": true,
+                "radius": 0.40319999999999995,
+                "pose": {
+                  "x": -3.4849423582421686,
+                  "y": 1.5803941389867218,
+                  "z": 32.59329883227243
+                }
+              },
+              {
+                "id": "grave-shade-3",
+                "enabled": true,
+                "radius": 0.462,
+                "pose": {
+                  "x": -0.8037751830917347,
+                  "y": 1.4699800192127603,
+                  "z": 48.263203568982384
+                }
+              },
+              {
+                "id": "grave-shade-4",
+                "enabled": true,
+                "radius": 0.42,
+                "pose": {
+                  "x": -2.126063713413485,
+                  "y": 2.331248517880897,
+                  "z": 59.46559394800244
+                }
+              },
+              {
+                "id": "town-wraith-1",
+                "enabled": true,
+                "radius": 0.4326,
+                "pose": {
+                  "x": 2.113203913535962,
+                  "y": 5.25572235668695,
+                  "z": 88.04800379911607
+                }
+              },
+              {
+                "id": "town-wraith-2",
+                "enabled": true,
+                "radius": 0.4074,
+                "pose": {
+                  "x": -3.082330427988104,
+                  "y": 5.815218540806973,
+                  "z": 108.42938469641487
+                }
+              },
+              {
+                "id": "town-wraith-3",
+                "enabled": true,
+                "radius": 0.441,
+                "pose": {
+                  "x": -0.9500167909757775,
+                  "y": 8.554405702291444,
+                  "z": 124.76686198311921
+                }
+              }
+            ]
+          },
+          "motion": {
+            "speed": 0,
+            "forward": 0,
+            "strafe": 0,
+            "grounded": true,
+            "vy": 0,
+            "walk": false,
+            "castBlend": 0,
+            "jumpInFlight": false,
+            "airTime": 0
+          },
+          "gpuErrors": [],
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "human",
+            "fitFamily": "ashen-human",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {
+              "family": "ashen-human-shape-v1",
+              "height": 1,
+              "build": 0
+            },
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.5547271966934204,
+              0.4278310239315033,
+              0.7136093974113464,
+              0,
+              0.05694429576396942,
+              0.8361374139785767,
+              -0.5455562472343445,
+              0,
+              -0.8300813436508179,
+              0.343270868062973,
+              0.43946561217308044,
+              0,
+              -0.29600954055786133,
+              0.19522617757320404,
+              -114.10250091552734,
+              1
+            ],
+            "socket": [
+              -0.5547271966934204,
+              -0.4278310239315033,
+              -0.7136093974113464,
+              0,
+              0.05694429576396942,
+              0.8361374139785767,
+              -0.5455562472343445,
+              0,
+              0.8300813436508179,
+              -0.343270868062973,
+              -0.43946561217308044,
+              0,
+              -0.30528199672698975,
+              0.2711217403411865,
+              -114.1337890625,
+              1
+            ]
+          }
+        }
+      },
+      {
+        "fixture": {
+          "id": "orc-neutral",
+          "race": "orc"
+        },
+        "before": {
+          "debug": {
+            "facing": 0,
+            "grounded": true,
+            "vy": 0,
+            "support": 2,
+            "speed": 0,
+            "vx": 0,
+            "vz": 0,
+            "castBlend": 0,
+            "jumps": 1,
+            "landings": 4,
+            "recoveries": 0,
+            "jumpInFlight": false,
+            "airTime": 0,
+            "position": {
+              "x": -0.018565258136741324,
+              "y": 0.2770536637031096,
+              "z": -114.20292332486326
+            },
+            "usingPhysics": true,
+            "colliders": {
+              "meshCount": 717,
+              "boxCount": 678,
+              "skipped": 0,
+              "animatedCount": 7
+            },
+            "capsuleHeight": 1.748,
+            "animated": [
+              {
+                "id": "grave-shade-1",
+                "enabled": true,
+                "radius": 0.4368,
+                "pose": {
+                  "x": 2.767767938163665,
+                  "y": 1.2897870128903242,
+                  "z": 13.759868129009153
+                }
+              },
+              {
+                "id": "grave-shade-2",
+                "enabled": true,
+                "radius": 0.40319999999999995,
+                "pose": {
+                  "x": -3.77912793617406,
+                  "y": 1.6248517099542343,
+                  "z": 32.42761166038131
+                }
+              },
+              {
+                "id": "grave-shade-3",
+                "enabled": true,
+                "radius": 0.462,
+                "pose": {
+                  "x": -0.05365394822612896,
+                  "y": 1.4917664208727746,
+                  "z": 47.61947142447514
+                }
+              },
+              {
+                "id": "grave-shade-4",
+                "enabled": true,
+                "radius": 0.42,
+                "pose": {
+                  "x": -2.0576884082810207,
+                  "y": 2.327812309497599,
+                  "z": 59.40700282520944
+                }
+              },
+              {
+                "id": "town-wraith-1",
+                "enabled": true,
+                "radius": 0.4326,
+                "pose": {
+                  "x": 1.9684132265641716,
+                  "y": 5.2732190046069025,
+                  "z": 88.4265264930899
+                }
+              },
+              {
+                "id": "town-wraith-2",
+                "enabled": true,
+                "radius": 0.4074,
+                "pose": {
+                  "x": -3.082330427988104,
+                  "y": 5.815218540806973,
+                  "z": 108.42938469641487
+                }
+              },
+              {
+                "id": "town-wraith-3",
+                "enabled": true,
+                "radius": 0.441,
+                "pose": {
+                  "x": 0.03869551068234629,
+                  "y": 8.4925913178022,
+                  "z": 123.91483920362208
+                }
+              }
+            ]
+          },
+          "motion": {
+            "speed": 0,
+            "forward": 0,
+            "strafe": 0,
+            "grounded": true,
+            "vy": 0,
+            "walk": false,
+            "castBlend": 0,
+            "jumpInFlight": false,
+            "airTime": 0
+          },
+          "activeElement": "renderCanvas",
+          "armoryOpen": false
+        },
+        "moving": {
+          "debug": {
+            "facing": 0,
+            "grounded": true,
+            "vy": 0.17773436520810243,
+            "support": 2,
+            "speed": 6.999999999918398,
+            "vx": -3.101579624090137e-10,
+            "vz": 6.999999999918398,
+            "castBlend": 0,
+            "jumps": 1,
+            "landings": 4,
+            "recoveries": 0,
+            "jumpInFlight": false,
+            "airTime": 0,
+            "position": {
+              "x": -0.018933851385036515,
+              "y": 0.22346711866153918,
+              "z": -107.20313166002377
+            },
+            "usingPhysics": true,
+            "colliders": {
+              "meshCount": 717,
+              "boxCount": 678,
+              "skipped": 0,
+              "animatedCount": 7
+            },
+            "capsuleHeight": 1.748,
+            "animated": [
+              {
+                "id": "grave-shade-1",
+                "enabled": true,
+                "radius": 0.4368,
+                "pose": {
+                  "x": 2.767767938163665,
+                  "y": 1.2897870128903242,
+                  "z": 13.759868129009153
+                }
+              },
+              {
+                "id": "grave-shade-2",
+                "enabled": true,
+                "radius": 0.40319999999999995,
+                "pose": {
+                  "x": -4.955399739348618,
+                  "y": 1.7931821280947116,
+                  "z": 31.765127966199728
+                }
+              },
+              {
+                "id": "grave-shade-3",
+                "enabled": true,
+                "radius": 0.462,
+                "pose": {
+                  "x": 0.9708219256851262,
+                  "y": 1.515937024401382,
+                  "z": 46.74029613832692
+                }
+              },
+              {
+                "id": "grave-shade-4",
+                "enabled": true,
+                "radius": 0.42,
+                "pose": {
+                  "x": -1.469523062038961,
+                  "y": 2.38260077384494,
+                  "z": 59.73819238645793
+                }
+              },
+              {
+                "id": "town-wraith-1",
+                "enabled": true,
+                "radius": 0.4326,
+                "pose": {
+                  "x": 1.9684132265641716,
+                  "y": 5.2732190046069025,
+                  "z": 88.4265264930899
+                }
+              },
+              {
+                "id": "town-wraith-2",
+                "enabled": true,
+                "radius": 0.4074,
+                "pose": {
+                  "x": -2.9637148255467864,
+                  "y": 5.820454967112616,
+                  "z": 108.0894394936676
+                }
+              },
+              {
+                "id": "town-wraith-3",
+                "enabled": true,
+                "radius": 0.441,
+                "pose": {
+                  "x": 0.6182396371039985,
+                  "y": 8.461310577854846,
+                  "z": 123.41541707990939
+                }
+              }
+            ]
+          },
+          "motion": {
+            "speed": 6.999999999918398,
+            "forward": 1,
+            "strafe": 0,
+            "grounded": true,
+            "vy": 0.17773436520810243,
+            "walk": false,
+            "castBlend": 0,
+            "jumpInFlight": false,
+            "airTime": 0
+          }
+        },
+        "after": {
+          "debug": {
+            "facing": 0,
+            "grounded": true,
+            "vy": 0,
+            "support": 2,
+            "speed": 0,
+            "vx": 0,
+            "vz": 0,
+            "castBlend": 0,
+            "jumps": 2,
+            "landings": 5,
+            "recoveries": 0,
+            "jumpInFlight": false,
+            "airTime": 0,
+            "position": {
+              "x": -0.025057149673169247,
+              "y": 0.18524705813987086,
+              "z": -98.33635123514678
+            },
+            "usingPhysics": true,
+            "colliders": {
+              "meshCount": 717,
+              "boxCount": 678,
+              "skipped": 0,
+              "animatedCount": 7
+            },
+            "capsuleHeight": 1.748,
+            "animated": [
+              {
+                "id": "grave-shade-1",
+                "enabled": true,
+                "radius": 0.4368,
+                "pose": {
+                  "x": 2.767767938163665,
+                  "y": 1.2897870128903242,
+                  "z": 13.759868129009153
+                }
+              },
+              {
+                "id": "grave-shade-2",
+                "enabled": true,
+                "radius": 0.40319999999999995,
+                "pose": {
+                  "x": -7.504733618382863,
+                  "y": 2.0816765521393252,
+                  "z": 30.329327055792074
+                }
+              },
+              {
+                "id": "grave-shade-3",
+                "enabled": true,
+                "radius": 0.462,
+                "pose": {
+                  "x": 2.5246444836951856,
+                  "y": 1.5356121885310945,
+                  "z": 45.40685098178402
+                }
+              },
+              {
+                "id": "grave-shade-4",
+                "enabled": true,
+                "radius": 0.42,
+                "pose": {
+                  "x": 1.079938447795882,
+                  "y": 2.475197102576841,
+                  "z": 61.17376665865343
+                }
+              },
+              {
+                "id": "town-wraith-1",
+                "enabled": true,
+                "radius": 0.4326,
+                "pose": {
+                  "x": -0.2976920023963545,
+                  "y": 4.98264608165376,
+                  "z": 87.17578723273783
+                }
+              },
+              {
+                "id": "town-wraith-2",
+                "enabled": true,
+                "radius": 0.4074,
+                "pose": {
+                  "x": -2.081636369102135,
+                  "y": 5.943274868539289,
+                  "z": 105.56145553925113
+                }
+              },
+              {
+                "id": "town-wraith-3",
+                "enabled": true,
+                "radius": 0.441,
+                "pose": {
+                  "x": 1.789118816636031,
+                  "y": 8.99888088376704,
+                  "z": 124.50330170479404
+                }
+              }
+            ]
+          },
+          "motion": {
+            "speed": 0,
+            "forward": 0,
+            "strafe": 0,
+            "grounded": true,
+            "vy": 0,
+            "walk": false,
+            "castBlend": 0,
+            "jumpInFlight": false,
+            "airTime": 0
+          },
+          "gpuErrors": [],
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "orc",
+            "fitFamily": "ashen-orc",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {},
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.0176,
+                -0.0956,
+                0.0192
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1.12
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.6197512745857239,
+              0.48029959201812744,
+              0.7997628450393677,
+              0,
+              0.0639665275812149,
+              0.9360201358795166,
+              -0.6116980910301208,
+              0,
+              -0.930707573890686,
+              0.3841596245765686,
+              0.4905148446559906,
+              0,
+              -0.45741698145866394,
+              0.19647334516048431,
+              -98.12205505371094,
+              1
+            ],
+            "socket": [
+              -0.5533493757247925,
+              -0.42883890867233276,
+              -0.7140739560127258,
+              0,
+              0.05711297318339348,
+              0.8357322812080383,
+              -0.546159029006958,
+              0,
+              0.830988883972168,
+              -0.342999666929245,
+              -0.4379596710205078,
+              0,
+              -0.458173006772995,
+              0.29050251841545105,
+              -98.15328979492188,
+              1
+            ]
+          }
+        }
+      },
+      {
+        "fixture": {
+          "id": "undead-neutral",
+          "race": "undead"
+        },
+        "before": {
+          "debug": {
+            "facing": 0,
+            "grounded": true,
+            "vy": 0,
+            "support": 2,
+            "speed": 0,
+            "vx": 0,
+            "vz": 0,
+            "castBlend": 0,
+            "jumps": 2,
+            "landings": 5,
+            "recoveries": 0,
+            "jumpInFlight": false,
+            "airTime": 0,
+            "position": {
+              "x": -0.025057149673169247,
+              "y": 0.18524705813987086,
+              "z": -98.33635123514678
+            },
+            "usingPhysics": true,
+            "colliders": {
+              "meshCount": 717,
+              "boxCount": 678,
+              "skipped": 0,
+              "animatedCount": 7
+            },
+            "capsuleHeight": 1.748,
+            "animated": [
+              {
+                "id": "grave-shade-1",
+                "enabled": true,
+                "radius": 0.4368,
+                "pose": {
+                  "x": 2.767767938163665,
+                  "y": 1.2897870128903242,
+                  "z": 13.759868129009153
+                }
+              },
+              {
+                "id": "grave-shade-2",
+                "enabled": true,
+                "radius": 0.40319999999999995,
+                "pose": {
+                  "x": -7.621655035660483,
+                  "y": 2.0920759786326055,
+                  "z": 30.263476176566737
+                }
+              },
+              {
+                "id": "grave-shade-3",
+                "enabled": true,
+                "radius": 0.462,
+                "pose": {
+                  "x": 2.799185079099828,
+                  "y": 1.5504698533281058,
+                  "z": 45.56147688373637
+                }
+              },
+              {
+                "id": "grave-shade-4",
+                "enabled": true,
+                "radius": 0.42,
+                "pose": {
+                  "x": 2.07911373803394,
+                  "y": 2.455420092464983,
+                  "z": 61.73639148532602
+                }
+              },
+              {
+                "id": "town-wraith-1",
+                "enabled": true,
+                "radius": 0.4326,
+                "pose": {
+                  "x": -1.459288111005113,
+                  "y": 4.71011340860732,
+                  "z": 86.53466349358317
+                }
+              },
+              {
+                "id": "town-wraith-2",
+                "enabled": true,
+                "radius": 0.4074,
+                "pose": {
+                  "x": -2.081636369102135,
+                  "y": 5.943274868539289,
+                  "z": 105.56145553925113
+                }
+              },
+              {
+                "id": "town-wraith-3",
+                "enabled": true,
+                "radius": 0.441,
+                "pose": {
+                  "x": 2.7611097429652864,
+                  "y": 9.769476557093766,
+                  "z": 125.40639572402809
+                }
+              }
+            ]
+          },
+          "motion": {
+            "speed": 0,
+            "forward": 0,
+            "strafe": 0,
+            "grounded": true,
+            "vy": 0,
+            "walk": false,
+            "castBlend": 0,
+            "jumpInFlight": false,
+            "airTime": 0
+          },
+          "activeElement": "renderCanvas",
+          "armoryOpen": false
+        },
+        "moving": {
+          "debug": {
+            "facing": 0,
+            "grounded": true,
+            "vy": 0.4511718512870877,
+            "support": 2,
+            "speed": 6.746180199601327,
+            "vx": -1.8001705937655148,
+            "vz": 6.501563897927554,
+            "castBlend": 0,
+            "jumps": 2,
+            "landings": 5,
+            "recoveries": 0,
+            "jumpInFlight": false,
+            "airTime": 0,
+            "position": {
+              "x": -2.7860027142062456,
+              "y": 0.44413292479515076,
+              "z": -93.284659821795
+            },
+            "usingPhysics": true,
+            "colliders": {
+              "meshCount": 717,
+              "boxCount": 678,
+              "skipped": 0,
+              "animatedCount": 7
+            },
+            "capsuleHeight": 1.748,
+            "animated": [
+              {
+                "id": "grave-shade-1",
+                "enabled": true,
+                "radius": 0.4368,
+                "pose": {
+                  "x": 2.767767938163665,
+                  "y": 1.2897870128903242,
+                  "z": 13.759868129009153
+                }
+              },
+              {
+                "id": "grave-shade-2",
+                "enabled": true,
+                "radius": 0.40319999999999995,
+                "pose": {
+                  "x": -7.621655035660483,
+                  "y": 2.0920759786326055,
+                  "z": 30.263476176566737
+                }
+              },
+              {
+                "id": "grave-shade-3",
+                "enabled": true,
+                "radius": 0.462,
+                "pose": {
+                  "x": 3.9754515548182776,
+                  "y": 1.5984275370137346,
+                  "z": 46.22397003698463
+                }
+              },
+              {
+                "id": "grave-shade-4",
+                "enabled": true,
+                "radius": 0.42,
+                "pose": {
+                  "x": 2.07911373803394,
+                  "y": 2.455420092464983,
+                  "z": 61.73639148532602
+                }
+              },
+              {
+                "id": "town-wraith-1",
+                "enabled": true,
+                "radius": 0.4326,
+                "pose": {
+                  "x": -1.9516781586935863,
+                  "y": 4.581055764366894,
+                  "z": 86.26289695945222
+                }
+              },
+              {
+                "id": "town-wraith-2",
+                "enabled": true,
+                "radius": 0.4074,
+                "pose": {
+                  "x": -1.1775474200643077,
+                  "y": 6.146007713610336,
+                  "z": 106.06538145068997
+                }
+              },
+              {
+                "id": "town-wraith-3",
+                "enabled": true,
+                "radius": 0.441,
+                "pose": {
+                  "x": 3.0083601820977313,
+                  "y": 9.925848923361986,
+                  "z": 125.63612049489272
+                }
+              }
+            ]
+          },
+          "motion": {
+            "speed": 6.746180199601327,
+            "forward": 1,
+            "strafe": 0,
+            "grounded": true,
+            "vy": 0.4511718512870877,
+            "walk": false,
+            "castBlend": 0,
+            "jumpInFlight": false,
+            "airTime": 0
+          }
+        },
+        "after": {
+          "debug": {
+            "facing": 0,
+            "grounded": true,
+            "vy": 0.046523677522771104,
+            "support": 2,
+            "speed": 2.6160258642204754e-08,
+            "vx": -2.5797115410776823e-08,
+            "vz": -4.343727513335688e-09,
+            "castBlend": 0,
+            "jumps": 3,
+            "landings": 6,
+            "recoveries": 0,
+            "jumpInFlight": false,
+            "airTime": 0,
+            "position": {
+              "x": -2.8460862091110326,
+              "y": 0.5235927708148956,
+              "z": -84.663103851507
+            },
+            "usingPhysics": true,
+            "colliders": {
+              "meshCount": 717,
+              "boxCount": 678,
+              "skipped": 0,
+              "animatedCount": 7
+            },
+            "capsuleHeight": 1.748,
+            "animated": [
+              {
+                "id": "grave-shade-1",
+                "enabled": true,
+                "radius": 0.4368,
+                "pose": {
+                  "x": 2.767767938163665,
+                  "y": 1.2897870128903242,
+                  "z": 13.759868129009153
+                }
+              },
+              {
+                "id": "grave-shade-2",
+                "enabled": true,
+                "radius": 0.40319999999999995,
+                "pose": {
+                  "x": -5.948516779871039,
+                  "y": 1.8349639614038198,
+                  "z": 28.82735816988697
+                }
+              },
+              {
+                "id": "grave-shade-3",
+                "enabled": true,
+                "radius": 0.462,
+                "pose": {
+                  "x": 6.50442447761289,
+                  "y": 1.6152725972955946,
+                  "z": 47.6483303164685
+                }
+              },
+              {
+                "id": "grave-shade-4",
+                "enabled": true,
+                "radius": 0.42,
+                "pose": {
+                  "x": 0.14998434968009697,
+                  "y": 2.5270891048177453,
+                  "z": 63.39245224209074
+                }
+              },
+              {
+                "id": "town-wraith-1",
+                "enabled": true,
+                "radius": 0.4326,
+                "pose": {
+                  "x": -1.6105530422233656,
+                  "y": 4.603716556522017,
+                  "z": 85.969480605183
+                }
+              },
+              {
+                "id": "town-wraith-2",
+                "enabled": true,
+                "radius": 0.4074,
+                "pose": {
+                  "x": 1.3577222296833804,
+                  "y": 6.463575744822293,
+                  "z": 107.47850354487298
+                }
+              },
+              {
+                "id": "town-wraith-3",
+                "enabled": true,
+                "radius": 0.441,
+                "pose": {
+                  "x": 1.979881769846223,
+                  "y": 9.464092162875884,
+                  "z": 127.35427595427986
+                }
+              }
+            ]
+          },
+          "motion": {
+            "speed": 2.6160258642204754e-08,
+            "forward": 0,
+            "strafe": 0,
+            "grounded": true,
+            "vy": 0.046523677522771104,
+            "walk": false,
+            "castBlend": 0,
+            "jumpInFlight": false,
+            "airTime": 0
+          },
+          "gpuErrors": [],
+          "appearance": {
+            "schemaVersion": 2,
+            "catalogVersion": "appearance-catalog-v8",
+            "race": "undead",
+            "fitFamily": "ashen-undead",
+            "fit": {
+              "rig": "source-65",
+              "bind": 1,
+              "shape": 1
+            },
+            "shape": {},
+            "components": {},
+            "dyes": {},
+            "equipment": {
+              "helmet": null,
+              "torso": "wayfarerTunic",
+              "legs": "wayfarerTrousers",
+              "boots": "wayfarerBoots",
+              "gloves": null,
+              "mainHand": "ironSword",
+              "offHand": "graveweaverBook",
+              "shoulders": null
+            }
+          },
+          "prop": {
+            "attachment": "hand",
+            "meshes": [
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              },
+              {
+                "name": "BastionShield",
+                "bones": 0,
+                "morphs": false,
+                "visible": true
+              }
+            ],
+            "hold": {
+              "position": [
+                0.005,
+                -0.08,
+                0.02
+              ],
+              "rotation": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "scale": 1
+            },
+            "stow": {
+              "position": [
+                0,
+                0.18,
+                -0.17
+              ],
+              "rotation": [
+                0.985426,
+                0.01512,
+                -0.114652,
+                -0.124749
+              ]
+            },
+            "world": [
+              0.5532956719398499,
+              0.42887797951698303,
+              0.7140921354293823,
+              0,
+              0.0571196973323822,
+              0.8357165455818176,
+              -0.5461823344230652,
+              0,
+              -0.8310242295265198,
+              0.342989057302475,
+              0.43790099024772644,
+              0,
+              -3.1155474185943604,
+              0.5058257579803467,
+              -84.53455352783203,
+              1
+            ],
+            "socket": [
+              -0.5532956719398499,
+              -0.42887797951698303,
+              -0.7140921354293823,
+              0,
+              0.0571196973323822,
+              0.8357165455818176,
+              -0.5461823344230652,
+              0,
+              0.8310242295265198,
+              -0.342989057302475,
+              -0.43790099024772644,
+              0,
+              -3.1248319149017334,
+              0.5816872715950012,
+              -84.56591796875,
+              1
+            ]
+          }
+        }
+      }
+    ],
+    "passed": true,
+    "nativeLiteModule": "/node_modules/.vite/deps/@babylonjs_lite.js?v=6f5d5cbd"
+  },
+  "motion": {
+    "schema": 1,
+    "episodes": [
+      {
+        "file": ".cache/character-mmo/authored-shield-2026-10-07/candidate-fits-v2/motion.mp4",
+        "sha256": "39de98776ac321d690ea3823ae514f179bf6842283c10b1116c0158eae248725",
+        "captureManifestSha256": "eba6b14201b55905e6021186609631f7ccebb73c14d5134026c72b5c576c1d3f",
+        "encoded": {
+          "width": 1280,
+          "height": 720,
+          "duration": 73.129496,
+          "sampleAspectRatio": "1:1",
+          "rotation": 0,
+          "codec": "h264"
+        },
+        "elapsedSeconds": 73.130047082901,
+        "recordedSourceFrame": {
+          "width": 1280,
+          "height": 720
+        }
+      },
+      {
+        "file": ".cache/character-mmo/authored-shield-2026-10-07/candidate-movement/motion.mp4",
+        "sha256": "439f58d7af50e964c03e33c281c5b18789feddd544934e33004d63b2da8176b2",
+        "captureManifestSha256": "ddc3348d491a5d245367e5fe42d0636f254c4ee1e417ad6a28148edd1cde91e2",
+        "encoded": {
+          "width": 1280,
+          "height": 720,
+          "duration": 12.230263,
+          "sampleAspectRatio": "1:1",
+          "rotation": 0,
+          "codec": "h264"
+        },
+        "elapsedSeconds": 12.230350971221924,
+        "recordedSourceFrame": {
+          "width": 1280,
+          "height": 720
+        }
+      }
+    ],
+    "assembly": {
+      "childPid": 92851,
+      "exitCode": 0,
+      "elapsedSeconds": 0.09199391602305695,
+      "method": "Native ffmpeg packet copy; no geometry/image editing or timing acceleration; two labelled recorded episodes"
+    },
+    "file": ".cache/character-mmo/authored-shield-2026-10-07/candidate-proof.mp4",
+    "candidateOnly": true,
+    "notes": [
+      "First episode retains failed appended movement assertion; all35completed native fit rows are retained",
+      "Second episode independently passes native three-race run/jump; no recovery teleports",
+      "Existingbookidentity supplies grip mask; canonical item/transaction/startup/performance integration stillpending"
+    ],
+    "encoded": {
+      "width": 1280,
+      "height": 720,
+      "duration": 85.359759,
+      "sampleAspectRatio": "1:1",
+      "rotation": 0,
+      "codec": "h264"
+    },
+    "bytes": 18025140,
+    "sha256": "f863cf9e1ed25c0e4a96961e1e6ee57a156580745f5cf5ec5031bced29e00f97"
+  },
+  "nativeExits": {
+    "firstFit": [
+      {
+        "name": "capture",
+        "command": [
+          "node",
+          ".cache/character-mmo/authored-shield-2026-10-07/capture-fits.mjs"
+        ],
+        "childPid": 53769,
+        "exitCode": 1,
+        "elapsedSeconds": 89.58014458295656
+      }
+    ],
+    "secondFit": [
+      {
+        "name": "rigid-refusal-tests",
+        "command": [
+          "node",
+          "--test",
+          "scripts/test-authored-prop.mjs"
+        ],
+        "childPid": 68752,
+        "exitCode": 0,
+        "elapsedSeconds": 0.16082074999576434
+      },
+      {
+        "name": "repeat-source",
+        "command": [
+          "node",
+          "scripts/character-assets/prepare-authored-prop.mjs",
+          "blender/characters/props/bastion-shield.json",
+          "--out",
+          ".cache/character-mmo/authored-shield-2026-10-07/asset-closed-policy",
+          "--repeat"
+        ],
+        "childPid": 68755,
+        "exitCode": 0,
+        "elapsedSeconds": 2.475774749997072
+      },
+      {
+        "name": "capture",
+        "command": [
+          "node",
+          ".cache/character-mmo/authored-shield-2026-10-07/capture-fits-v2.mjs"
+        ],
+        "childPid": 68827,
+        "exitCode": 1,
+        "elapsedSeconds": 91.92260183399776
+      }
+    ],
+    "movementAndAssembly": [
+      {
+        "name": "preserved-fit-encode",
+        "command": [
+          "python3",
+          "scripts/encode-capture.py",
+          ".cache/character-mmo/authored-shield-2026-10-07/candidate-fits-v2",
+          ".cache/character-mmo/authored-shield-2026-10-07/candidate-fits-v2/motion.mp4",
+          "2500"
+        ],
+        "childPid": 78907,
+        "exitCode": 0,
+        "elapsedSeconds": 6.008941499982029
+      },
+      {
+        "name": "capture",
+        "command": [
+          "node",
+          ".cache/character-mmo/authored-shield-2026-10-07/capture-movement.mjs"
+        ],
+        "childPid": 79058,
+        "exitCode": 0,
+        "elapsedSeconds": 31.0127364579821
+      },
+      {
+        "name": "encode",
+        "command": [
+          "python3",
+          "scripts/encode-capture.py",
+          ".cache/character-mmo/authored-shield-2026-10-07/candidate-movement",
+          ".cache/character-mmo/authored-shield-2026-10-07/candidate-movement/motion.mp4",
+          "2500"
+        ],
+        "childPid": 79977,
+        "exitCode": 0,
+        "elapsedSeconds": 1.6801092500099912
+      }
+    ]
+  },
+  "ownership": [
+    {
+      "at": "2026-10-08T03:48:49.771Z",
+      "owner": "grok-private-shield",
+      "serverPid": 23318,
+      "vitePort": 5173,
+      "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+      "active": true,
+      "purpose": "Private authored shield on native evaluated sockets; existing book identity supplies grip mask; no FPS/catalogue/release acceptance"
+    },
+    {
+      "at": "2026-10-08T03:48:50.382Z",
+      "owner": "grok-private-shield",
+      "browserPid": 23341,
+      "gpuHelperPids": [
+        23347
+      ],
+      "cdpPort": 10037,
+      "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+      "purpose": "Private authored shield on native evaluated sockets; existing book identity supplies grip mask; no FPS/catalogue/release acceptance",
+      "renderingClients": 1,
+      "active": true
+    },
+    {
+      "at": "2026-10-08T03:49:08.272Z",
+      "owner": "grok-private-shield",
+      "browserPid": 23341,
+      "gpuHelperPids": [
+        23347
+      ],
+      "cdpPort": 10037,
+      "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+      "purpose": "Private authored shield on native evaluated sockets; existing book identity supplies grip mask; no FPS/catalogue/release acceptance",
+      "renderingClients": 0,
+      "active": false
+    },
+    {
+      "at": "2026-10-08T03:49:08.282Z",
+      "owner": "grok-private-shield",
+      "serverPid": 23318,
+      "vitePort": 5173,
+      "active": false
+    },
+    {
+      "at": "2026-10-08T03:52:17.177Z",
+      "owner": "grok-private-shield",
+      "serverPid": 31436,
+      "vitePort": 5173,
+      "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+      "active": true,
+      "purpose": "Private authored shield on native evaluated sockets; existing book identity supplies grip mask; no FPS/catalogue/release acceptance"
+    },
+    {
+      "at": "2026-10-08T03:52:17.720Z",
+      "owner": "grok-private-shield",
+      "browserPid": 31437,
+      "gpuHelperPids": [
+        31443
+      ],
+      "cdpPort": 10037,
+      "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+      "purpose": "Private authored shield on native evaluated sockets; existing book identity supplies grip mask; no FPS/catalogue/release acceptance",
+      "renderingClients": 1,
+      "active": true
+    },
+    {
+      "at": "2026-10-08T03:52:43.871Z",
+      "owner": "grok-private-shield",
+      "browserPid": 31437,
+      "gpuHelperPids": [
+        31443
+      ],
+      "cdpPort": 10037,
+      "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+      "purpose": "Private authored shield on native evaluated sockets; existing book identity supplies grip mask; no FPS/catalogue/release acceptance",
+      "renderingClients": 0,
+      "active": false
+    },
+    {
+      "at": "2026-10-08T03:52:43.878Z",
+      "owner": "grok-private-shield",
+      "serverPid": 31436,
+      "vitePort": 5173,
+      "active": false
+    },
+    {
+      "at": "2026-10-08T04:00:36.138Z",
+      "owner": "grok-private-shield",
+      "serverPid": 47281,
+      "vitePort": 5173,
+      "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+      "active": true,
+      "purpose": "Private authored shield on native evaluated sockets; existing book identity supplies grip mask; no FPS/catalogue/release acceptance"
+    },
+    {
+      "at": "2026-10-08T04:00:36.727Z",
+      "owner": "grok-private-shield",
+      "browserPid": 47282,
+      "gpuHelperPids": [
+        47288
+      ],
+      "cdpPort": 10037,
+      "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+      "purpose": "Private authored shield on native evaluated sockets; existing book identity supplies grip mask; no FPS/catalogue/release acceptance",
+      "renderingClients": 1,
+      "active": true
+    },
+    {
+      "at": "2026-10-08T04:01:03.150Z",
+      "owner": "grok-private-shield",
+      "browserPid": 47282,
+      "gpuHelperPids": [
+        47288
+      ],
+      "cdpPort": 10037,
+      "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+      "purpose": "Private authored shield on native evaluated sockets; existing book identity supplies grip mask; no FPS/catalogue/release acceptance",
+      "renderingClients": 0,
+      "active": false
+    },
+    {
+      "at": "2026-10-08T04:01:03.157Z",
+      "owner": "grok-private-shield",
+      "serverPid": 47281,
+      "vitePort": 5173,
+      "active": false
+    },
+    {
+      "at": "2026-10-08T04:03:40.762Z",
+      "owner": "grok-private-shield",
+      "serverPid": 53789,
+      "vitePort": 5173,
+      "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+      "active": true,
+      "purpose": "Private authored shield on native evaluated sockets; existing book identity supplies grip mask; no FPS/catalogue/release acceptance"
+    },
+    {
+      "at": "2026-10-08T04:03:41.287Z",
+      "owner": "grok-private-shield",
+      "browserPid": 53790,
+      "gpuHelperPids": [
+        53796
+      ],
+      "cdpPort": 10037,
+      "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+      "purpose": "Private authored shield on native evaluated sockets; existing book identity supplies grip mask; no FPS/catalogue/release acceptance",
+      "renderingClients": 1,
+      "active": true
+    },
+    {
+      "at": "2026-10-08T04:05:10.105Z",
+      "owner": "grok-private-shield",
+      "browserPid": 53790,
+      "gpuHelperPids": [
+        53796
+      ],
+      "cdpPort": 10037,
+      "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+      "purpose": "Private authored shield on native evaluated sockets; existing book identity supplies grip mask; no FPS/catalogue/release acceptance",
+      "renderingClients": 0,
+      "active": false
+    },
+    {
+      "at": "2026-10-08T04:05:10.112Z",
+      "owner": "grok-private-shield",
+      "serverPid": 53789,
+      "vitePort": 5173,
+      "active": false
+    },
+    {
+      "at": "2026-10-08T04:10:29.791Z",
+      "owner": "grok-private-shield",
+      "serverPid": 68861,
+      "vitePort": 5173,
+      "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+      "active": true,
+      "purpose": "Private authored shield on native evaluated sockets; existing book identity supplies grip mask; no FPS/catalogue/release acceptance"
+    },
+    {
+      "at": "2026-10-08T04:10:30.287Z",
+      "owner": "grok-private-shield",
+      "browserPid": 68862,
+      "gpuHelperPids": [
+        68868
+      ],
+      "cdpPort": 10037,
+      "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+      "purpose": "Private authored shield on native evaluated sockets; existing book identity supplies grip mask; no FPS/catalogue/release acceptance",
+      "renderingClients": 1,
+      "active": true
+    },
+    {
+      "at": "2026-10-08T04:12:01.455Z",
+      "owner": "grok-private-shield",
+      "browserPid": 68862,
+      "gpuHelperPids": [
+        68868
+      ],
+      "cdpPort": 10037,
+      "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+      "purpose": "Private authored shield on native evaluated sockets; existing book identity supplies grip mask; no FPS/catalogue/release acceptance",
+      "renderingClients": 0,
+      "active": false
+    },
+    {
+      "at": "2026-10-08T04:12:01.464Z",
+      "owner": "grok-private-shield",
+      "serverPid": 68861,
+      "vitePort": 5173,
+      "active": false
+    },
+    {
+      "at": "2026-10-08T04:15:45.245Z",
+      "owner": "grok-private-shield",
+      "serverPid": 79072,
+      "vitePort": 5173,
+      "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+      "active": true,
+      "purpose": "Private authored shield on native evaluated sockets; existing book identity supplies grip mask; no FPS/catalogue/release acceptance"
+    },
+    {
+      "at": "2026-10-08T04:15:45.776Z",
+      "owner": "grok-private-shield",
+      "browserPid": 79093,
+      "gpuHelperPids": [
+        79099
+      ],
+      "cdpPort": 10037,
+      "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+      "purpose": "Private authored shield on native evaluated sockets; existing book identity supplies grip mask; no FPS/catalogue/release acceptance",
+      "renderingClients": 1,
+      "active": true
+    },
+    {
+      "at": "2026-10-08T04:16:16.005Z",
+      "owner": "grok-private-shield",
+      "browserPid": 79093,
+      "gpuHelperPids": [
+        79099
+      ],
+      "cdpPort": 10037,
+      "url": "http://127.0.0.1:5173/?play&clean&pixelRatio=1&dev&verifyAssets",
+      "purpose": "Private authored shield on native evaluated sockets; existing book identity supplies grip mask; no FPS/catalogue/release acceptance",
+      "renderingClients": 0,
+      "active": false
+    },
+    {
+      "at": "2026-10-08T04:16:16.014Z",
+      "owner": "grok-private-shield",
+      "serverPid": 79072,
+      "vitePort": 5173,
+      "active": false
+    }
+  ],
+  "remaining": [
+    "Canonical v9 item and frozen v8 migration",
+    "Transactional asset load, cancellation/rollback/disposal",
+    "Saved startup/preload/payload/delivery coverage",
+    "Remote rendering and material/shadow staging",
+    "Mixed plate/cloth neighbours and canonical live motion",
+    "Separate native performance and full sealed release gates",
+    "Original startup cause and current physical iPhone acceptance"
+  ],
+  "delivery": {
+    "sha256": "f863cf9e1ed25c0e4a96961e1e6ee57a156580745f5cf5ec5031bced29e00f97",
+    "file": ".cache/character-mmo/authored-shield-2026-10-07/candidate-proof.mp4",
+    "ve": "https://ve.sparkify.dev/wow-clone/ashen-reach/authored-shield-2026-10-07/f863cf9e1ed2-motion.mp4",
+    "steps": [
+      {
+        "name": "public-head",
+        "childPid": 8653,
+        "exitCode": 0,
+        "elapsedSeconds": 0.20814729103585705
+      },
+      {
+        "name": "public-get",
+        "childPid": 8654,
+        "exitCode": 0,
+        "elapsedSeconds": 0.38898054097080603
+      },
+      {
+        "name": "public-range",
+        "childPid": 8675,
+        "exitCode": 0,
+        "elapsedSeconds": 0.10770866699749604
+      },
+      {
+        "name": "telegram-send",
+        "childPid": 8676,
+        "exitCode": 0,
+        "elapsedSeconds": 19.217550083005335
+      }
+    ],
+    "previousFailure": "delivery-first-failed.json",
+    "veUploadAlreadyCompleted": true,
+    "head": {
+      "status": 200,
+      "contentType": "video/mp4",
+      "bytes": 18025140
+    },
+    "fullGet": {
+      "bytes": 18025140,
+      "sha256": "f863cf9e1ed25c0e4a96961e1e6ee57a156580745f5cf5ec5031bced29e00f97"
+    },
+    "range": {
+      "status": 206,
+      "bytes": 1024,
+      "contentRange": "bytes 0-1023/18025140"
+    },
+    "firstFailedAttempt": {
+      "sha256": "f863cf9e1ed25c0e4a96961e1e6ee57a156580745f5cf5ec5031bced29e00f97",
+      "file": ".cache/character-mmo/authored-shield-2026-10-07/candidate-proof.mp4",
+      "ve": "https://ve.sparkify.dev/wow-clone/ashen-reach/authored-shield-2026-10-07/f863cf9e1ed2-motion.mp4",
+      "steps": [
+        {
+          "name": "ve-upload",
+          "childPid": 2157,
+          "exitCode": 0,
+          "elapsedSeconds": 8.074479417002294
+        }
+      ],
+      "failedAttempt": {
+        "operatorExit": 1,
+        "phase": "public HEAD",
+        "status": 403,
+        "client": "Python urllib default client",
+        "telegramStarted": false
+      }
+    },
+    "telegram": {
+      "ok": true,
+      "messageId": 886,
+      "expected": {
+        "width": 1280,
+        "height": 720,
+        "duration": 85.359759,
+        "sampleAspectRatio": "1:1",
+        "rotation": 0,
+        "codec": "h264"
+      },
+      "returned": {
+        "width": 1280,
+        "height": 720,
+        "duration": 86
+      },
+      "verified": true,
+      "file": "candidate-proof.mp4",
+      "sha256": "f863cf9e1ed25c0e4a96961e1e6ee57a156580745f5cf5ec5031bced29e00f97",
+      "sentAt": "2026-10-08T04:30:46.694726+00:00"
+    }
+  },
+  "review": {
+    "parent": "root",
+    "sources": "Actual original MP4s at normal and half speed, sampled unprocessed frames, assembled packet-copy proof and join",
+    "directVE": {
+      "observedTimes": [
+        43.775825,
+        85.359759
+      ],
+      "duration": 85.359759,
+      "width": 1280,
+      "height": 720,
+      "error": null
+    },
+    "telegramPlayback": "API dimensions verified; inline/fullscreen and physical phone not newly tested"
+  },
+  "cleanup": {
+    "ownedPidsAbsent": [
+      23318,
+      23341,
+      23347,
+      31436,
+      31437,
+      31443,
+      42270,
+      47281,
+      47282,
+      47288,
+      53789,
+      53790,
+      53796,
+      68861,
+      68862,
+      68868,
+      79072,
+      79093,
+      79099,
+      81073,
+      89479,
+      97083
+    ],
+    "rootTabsClosed": [
+      "1147995944",
+      "1147995948",
+      "1147995952",
+      "1147995956",
+      "1147995960"
+    ],
+    "userEdgePid": 2931,
+    "userOrcaPid": 98938,
+    "userTabsPreserved": 12
+  }
+}

@@ -167,6 +167,23 @@ Telegram **885** and identical VE with matching dimensions. Production and the
 release hold remain unchanged. Next independent feature work is one authored
 shield through the existing evaluated sockets and equipment transactions.
 
+The [authored shield prototype](plans/character-mmo/results/authored-shield-2026-10-07.md)
+now has original pinned Blender source and a byte-identical rigid export:
+**1,104 triangles, three material groups, 67,352 bytes**, no rig/texture requests.
+Twelve native-GLB refusal controls pass. Corrected outward grip/stow removes the
+first demonstrated torso intersection in reviewed motion. Seven fits have
+35 completed native motion rows; separately all three neutral races pass normal
+Havok run/jump with zero recoveries/errors. Both earlier appended movement
+failures are retained; the private book identity supplies the grip mask.
+Root reviewed normal/half-speed actual MP4s; Telegram **886** and identical VE
+are delivered, with matching dimensions and direct VE playback to the end.
+This is an asset/socket prototype, not canonical shield catalogue/transaction
+acceptance. Next implement v9 with frozen v8, authored resource loading and
+staging, swaps/rollback/disposal, saved startup/payload coverage and remote
+rendering, then canonical motion and separate performance/release gates.
+No new FPS/public startup claim or Pages promotion. Production and original
+reliability/physical-device exits remain unchanged.
+
 ### Next five priorities, in execution order
 
 1. **Resolve the startup failure, then release the canonical boot correction.**
