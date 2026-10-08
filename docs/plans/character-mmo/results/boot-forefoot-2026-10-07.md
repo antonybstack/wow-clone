@@ -4,7 +4,7 @@ The canonical offline builder now repairs the collapsed Human/Undead forefoot
 above the accepted sole. Native preparation, functional checks and root's actual
 live MP4 review pass. Reviewed motion is delivered as Telegram **881** and
 [identical VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/boot-forefoot-2026-10-07/motion.mp4).
-This is local work; production remains
+Implementation is committed/pushed as **833ab62**. This is local work; production remains
 **7d00c56 / 5723a4ab**, with the startup reliability release hold unchanged.
 
 ## Change and evidence
@@ -73,6 +73,8 @@ Telegram returned matching 1280×720 dimensions and a 33-second integer duration
 VE serves identical bytes as `video/mp4`, with a successful 206 byte-range check.
 API dimensions do not establish new inline/fullscreen or physical iPhone acceptance.
 All owned game and media-review tabs/servers are closed; user Edge/Orca remain intact.
+The media worker reached its turn cap after successful upload/send; root checked
+the actual exits and sanitized receipts without repeating delivery.
 
 No Pages upload/promotion, new startup cohort or new FPS measurement ran. The
 rejected preview's required-texture failure, original 14/60 fetch failures,

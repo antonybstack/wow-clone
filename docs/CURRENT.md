@@ -108,7 +108,8 @@ local focused acceptance. Maximum compact payload increases by 673 bytes to
 2,103,397 bytes. No new public startup or independent FPS result, and no Pages
 promotion. Production stays **7d00c56 / 5723a4ab** with the reliability hold open.
 Reviewed motion is Telegram **881** and identical VE, with matching API dimensions.
-The source fingerprint and native evidence are in the result receipt.
+Implementation is committed/pushed as **833ab62**; source fingerprint and native
+evidence are in the result receipt.
 
 ### Next five priorities, in execution order
 

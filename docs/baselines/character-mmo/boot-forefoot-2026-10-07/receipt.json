@@ -451,7 +451,16 @@
       ]
     },
     "newClientInlineFullscreenAcceptance": false,
-    "currentPhysicalIphoneAcceptance": false
+    "currentPhysicalIphoneAcceptance": false,
+    "worker": {
+      "sessionId": "01a118cf-4cbb-75c3-9e5f-695ddeeaf780",
+      "model": "grok-4.6",
+      "effort": "high",
+      "nativeCliExitCode": 1,
+      "stopReason": "cancelled",
+      "turns": 12,
+      "note": "Turn cap occurred after successful VE and Telegram child operations. Root checked native exits/metadata and completed the portable receipt; no resend or resumed worker."
+    }
   },
   "rootVisualReview": {
     "actualMp4Reviewed": true,
@@ -686,5 +695,6 @@
     "current physical iPhone acceptance"
   ],
   "rawEvidenceCache": ".cache/character-mmo/boot-forefoot-2026-10-07",
-  "operationsCliNote": "Initial operations CLI reached its turn cap after successful capture; encoding/cleanup resumed only. All declared native child operations exit 0."
+  "operationsCliNote": "Initial operations CLI reached its turn cap after successful capture; encoding/cleanup resumed only. All declared native child operations exit 0.",
+  "implementationCommit": "833ab62fe44a3d37d8602f4c2b15b1cb91638748"
 }
