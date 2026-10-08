@@ -1,6 +1,6 @@
 # Ashen Reach — current state
 
-Updated **2026-10-07**. Read this before choosing work. The latest user request
+Updated **2026-10-08**. Read this before choosing work. The latest user request
 controls scope; historical milestones are evidence, not an active queue.
 
 ## Active goal and next work
@@ -205,6 +205,16 @@ intervals are retained in the receipt. This checkpoint supersedes the prototype'
 remaining canonical steps above.
 
 ### Next priorities, in execution order
+
+The [exact completion diagnosis and bounded RAF trial](plans/character-mmo/results/frame-completion-2026-10-08.md)
+now close one additional scheduling hypothesis. All 136 long diagnostic intervals
+follow saturation; median slot-release delay is 1.5 ms and subsequent render delay
+16.4 ms. Keeping one RAF scheduled with the same real four-slot bound does not
+materially improve p99 in three declared pairs (+0.46%, +1.38%, −0.93%). Reject it;
+runtime/production stay unchanged. All seven native visits pass functional checks
+and close their owned browsers. Next performance work needs a bounded native
+Chrome task/presentation/GPU trace before another code arm, not another queue or
+RAF polling trial. This is separate from qualified settled FPS/public startup.
 
 1. **Resolve the startup failure, then release the canonical boot correction.**
    Assets are committed/pushed; sealed preview 514fe898 is rejected after one

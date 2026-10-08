@@ -1,0 +1,915 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "ca6024271da41d1052e28c63261bb0b1a07ddea5",
+  "productUnchanged": true,
+  "runtimeChanged": false,
+  "production": "7d00c56 / Pages5723a4ab",
+  "bypassRan": false,
+  "trace": {
+    "diagnosticOnly": true,
+    "conditions": {
+      "network": {
+        "latency": 40,
+        "downloadThroughput": 6250000,
+        "uploadThroughput": 1250000
+      },
+      "cpu": "M1 Max",
+      "viewport": [
+        1280,
+        720
+      ],
+      "freshNativeChrome": true,
+      "httpCache": "disabled",
+      "recording": false,
+      "ackBypassIsNotQueueSafety": true
+    },
+    "epochs": {
+      "begin": 772.1000000238419,
+      "end": 10927.199999988079
+    },
+    "counts": {
+      "renders": 1781,
+      "raf": 1781,
+      "requests": 1781,
+      "skips": 690,
+      "completions": 1781
+    },
+    "nativeTails": {
+      "samples": 1781,
+      "meanMs": 5.702189781035284,
+      "meanFps": 175.37122375790884,
+      "p50Ms": 4,
+      "p95Ms": 20.399999976158142,
+      "p99Ms": 21.5,
+      "maxMs": 36.5,
+      "above6_94": 214,
+      "above8_33": 168,
+      "above16_67": 136,
+      "above33_33": 1
+    },
+    "interiorTails": {
+      "samples": 1780,
+      "meanMs": 5.702247191011236,
+      "meanFps": 175.3694581280788,
+      "p50Ms": 4,
+      "p95Ms": 20.399999976158142,
+      "p99Ms": 21.5,
+      "maxMs": 36.5,
+      "above6_94": 214,
+      "above8_33": 168,
+      "above16_67": 136,
+      "above33_33": 1
+    },
+    "syncRenderMs": {
+      "samples": 1781,
+      "meanMs": 2.9609769791582203,
+      "meanFps": 337.7263676951285,
+      "p50Ms": 2.899999976158142,
+      "p95Ms": 4,
+      "p99Ms": 5.800000011920929,
+      "maxMs": 7.800000011920929,
+      "above6_94": 2,
+      "above8_33": 0,
+      "above16_67": 0,
+      "above33_33": 0
+    },
+    "long": {
+      "count": 136,
+      "capSaturated": 136,
+      "blockedMajority": 3,
+      "blockedMs": {
+        "samples": 136,
+        "meanMs": 2.1749999996493843,
+        "meanFps": 459.77011501664487,
+        "p50Ms": 1.5,
+        "p95Ms": 5.699999988079071,
+        "p99Ms": 16.69999998807907,
+        "maxMs": 25,
+        "above6_94": 5,
+        "above8_33": 3,
+        "above16_67": 2,
+        "above33_33": 0
+      },
+      "ackToRenderMs": {
+        "samples": 136,
+        "meanMs": 16.010294114842136,
+        "meanFps": 62.459814468552636,
+        "p50Ms": 16.399999976158142,
+        "p95Ms": 17.69999998807907,
+        "p99Ms": 20.30000001192093,
+        "maxMs": 20.69999998807907,
+        "above6_94": 134,
+        "above8_33": 134,
+        "above16_67": 59,
+        "above33_33": 0
+      }
+    },
+    "p99Tail": {
+      "count": 18,
+      "capSaturated": 18,
+      "blockedMajority": 1,
+      "blockedMs": {
+        "samples": 18,
+        "meanMs": 3.2277777757909565,
+        "meanFps": 309.8106714471548,
+        "p50Ms": 1.800000011920929,
+        "p95Ms": 25,
+        "p99Ms": 25,
+        "maxMs": 25,
+        "above6_94": 1,
+        "above8_33": 1,
+        "above16_67": 1,
+        "above33_33": 0
+      },
+      "ackToRenderMs": {
+        "samples": 18,
+        "meanMs": 16.711111115084755,
+        "meanFps": 59.840425517685766,
+        "p50Ms": 16.69999998807907,
+        "p95Ms": 20.69999998807907,
+        "p99Ms": 20.69999998807907,
+        "maxMs": 20.69999998807907,
+        "above6_94": 18,
+        "above8_33": 18,
+        "above16_67": 11,
+        "above33_33": 0
+      }
+    },
+    "boundary": {
+      "submission": 8,
+      "delta": 5.600000023841858,
+      "boundaryRemainder": true
+    },
+    "limitations": [
+      "Injected trace adds timestamp and array overhead; not unprofiled performance acceptance.",
+      "Pending is acknowledgement count; promise age is not GPU execution time or compositor attribution.",
+      "First interval includes a premeasurement remainder; interior statistics omit it.",
+      "Single anchored visit establishes observed epochs; cannot establish reproducibility or qualify a scheduler change."
+    ]
+  },
+  "comparison": {
+    "declaration": {
+      "purpose": "Three native alternating pairs; gated vs continuously scheduled single RAF at maxPending4; real waitForGpuIdle and skip-submit bound remain in both. No diagnostic trace hooks.",
+      "sourceCommit": "ca6024271da41d1052e28c63261bb0b1a07ddea5",
+      "recipeFile": ".cache/character-mmo/raf-poll-comparison-2026-10-08/seed.json",
+      "recipeSha256": "9f6d950ccae7443ba1b75d6893618604ef55b4c89dd53673aef0b58e8b8020a3",
+      "order": [
+        "gated",
+        "poll",
+        "poll",
+        "gated",
+        "gated",
+        "poll"
+      ],
+      "onlyDifferentFile": "assets/v2/ashen-boot-CJJjszsw.js",
+      "baselineSha256": "fb2e9786b72a877d8b33e871a99911b68ce386e0a9e2a4130f353c5b758b518f",
+      "candidateSha256": "9e98898708d45cc06aacebf010540ce6c830fba17e0c2fb37439f938712198cf",
+      "buildFingerprint": "11242a3e03fa872af60e887a40cee135673d8b143650ec891bf44ca12f8c6301",
+      "conditions": {
+        "network": {
+          "latency": 40,
+          "downloadThroughput": 6250000,
+          "uploadThroughput": 1250000
+        },
+        "cpu": "M1 Max",
+        "viewport": [
+          1280,
+          720
+        ],
+        "freshNativeChrome": true,
+        "httpCache": "disabled",
+        "recording": false,
+        "ackBypassIsNotQueueSafety": true,
+        "schedulerTraceHooks": false,
+        "cpuProfiling": false,
+        "apiWrappers": false,
+        "parallelTimingWorkloads": false
+      },
+      "decision": "Require >10% streaming p99 reduction in every pair; lower worst interval in every pair; first displacement within max(5ms,20%) of baseline; exact world/shadow/identity/native movement correctness; no sampled heap peak increase over20% per pair; exact final world storage/mesh/caster counts. This local experiment is not public startup/release acceptance.",
+      "status": "declared, not yet run",
+      "schedulingSourceSha256": "3c13e4e1f345f3a0ff3cf8dd047ecd268131a2d902948a4a6172bfbe6b75af47",
+      "pairs": 3,
+      "mechanism": "Only schedule() stops returning at saturation; renderNow still refuses submission at pending4. Completions request at most the same one RAF and never render directly.",
+      "traceSource": "frame-completion-review-2026-10-08/report.json",
+      "candidateSchedulerSha256": "7bedc4423e2ae1687a2da0fce6c8c6cfcab01570cf9057a2118ab83b0c3fec8d",
+      "changedBytes": -2,
+      "replacement": {
+        "before": "if(c.pending>=a){d||c.waits++,d=!0;return}d=!1;",
+        "after": "if(c.pending>=a){d||c.waits++,d=!0}else d=!1;"
+      },
+      "preparationFailure": "esbuild was unavailable; no operator or game started. Used the verified unique minified control-flow replacement; no dependency installed."
+    },
+    "rows": [
+      {
+        "number": 1,
+        "pair": 1,
+        "arm": "gated",
+        "passed": true,
+        "samples": 1809,
+        "meanMs": 5.687285793262532,
+        "meanFps": 175.8307980908317,
+        "p50Ms": 4.199999988079071,
+        "p95Ms": 20.400000035762787,
+        "p99Ms": 21.600000023841858,
+        "maxMs": 37,
+        "above6_94": 197,
+        "above8_33": 165,
+        "above16_67": 129,
+        "above33_33": 1,
+        "inputMs": 3,
+        "worldMs": 10288.600000023842,
+        "firstPlayMs": 756,
+        "heapPeakBytes": 186784177,
+        "heapFinalBytes": 149164034,
+        "worldBytes": 210049236,
+        "worldRecords": 71,
+        "meshCount": 152,
+        "casters": 71,
+        "pacing": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 5.687 ms is not locked to a known display interval"
+        }
+      },
+      {
+        "number": 2,
+        "pair": 1,
+        "arm": "poll",
+        "passed": true,
+        "samples": 1796,
+        "meanMs": 5.610913140338354,
+        "meanFps": 178.22410987094645,
+        "p50Ms": 4,
+        "p95Ms": 20.30000001192093,
+        "p99Ms": 21.5,
+        "maxMs": 36.80000001192093,
+        "above6_94": 202,
+        "above8_33": 159,
+        "above16_67": 126,
+        "above33_33": 1,
+        "inputMs": 4.300000011920929,
+        "worldMs": 10077.100000023842,
+        "firstPlayMs": 744,
+        "heapPeakBytes": 189006707,
+        "heapFinalBytes": 140356940,
+        "worldBytes": 210049236,
+        "worldRecords": 71,
+        "meshCount": 152,
+        "casters": 71,
+        "pacing": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 5.611 ms is not locked to a known display interval"
+        }
+      },
+      {
+        "number": 3,
+        "pair": 2,
+        "arm": "poll",
+        "passed": true,
+        "samples": 1794,
+        "meanMs": 5.626198439261852,
+        "meanFps": 177.7399092469974,
+        "p50Ms": 4,
+        "p95Ms": 20.399999976158142,
+        "p99Ms": 21.400000035762787,
+        "maxMs": 24.80000001192093,
+        "above6_94": 205,
+        "above8_33": 157,
+        "above16_67": 131,
+        "above33_33": 0,
+        "inputMs": 3.5,
+        "worldMs": 10093.199999988079,
+        "firstPlayMs": 740.2999999523163,
+        "heapPeakBytes": 183232162,
+        "heapFinalBytes": 127974128,
+        "worldBytes": 210049236,
+        "worldRecords": 71,
+        "meshCount": 152,
+        "casters": 71,
+        "pacing": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 5.626 ms is not locked to a known display interval"
+        }
+      },
+      {
+        "number": 4,
+        "pair": 2,
+        "arm": "gated",
+        "passed": true,
+        "samples": 1778,
+        "meanMs": 5.684251968517346,
+        "meanFps": 175.92464330198146,
+        "p50Ms": 4.100000023841858,
+        "p95Ms": 20.30000001192093,
+        "p99Ms": 21.69999998807907,
+        "maxMs": 35.90000003576279,
+        "above6_94": 211,
+        "above8_33": 161,
+        "above16_67": 124,
+        "above33_33": 1,
+        "inputMs": 4,
+        "worldMs": 10106.900000035763,
+        "firstPlayMs": 742.0999999642372,
+        "heapPeakBytes": 175006233,
+        "heapFinalBytes": 141515966,
+        "worldBytes": 210049236,
+        "worldRecords": 71,
+        "meshCount": 152,
+        "casters": 71,
+        "pacing": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 5.684 ms is not locked to a known display interval"
+        }
+      },
+      {
+        "number": 5,
+        "pair": 3,
+        "arm": "gated",
+        "passed": true,
+        "samples": 1783,
+        "meanMs": 5.6222097588200555,
+        "meanFps": 177.86600694348195,
+        "p50Ms": 4.099999964237213,
+        "p95Ms": 20.100000023841858,
+        "p99Ms": 21.5,
+        "maxMs": 36.19999998807907,
+        "above6_94": 203,
+        "above8_33": 153,
+        "above16_67": 125,
+        "above33_33": 1,
+        "inputMs": 4.100000023841858,
+        "worldMs": 10024.699999988079,
+        "firstPlayMs": 746.0999999642372,
+        "heapPeakBytes": 182442405,
+        "heapFinalBytes": 137952930,
+        "worldBytes": 210049236,
+        "worldRecords": 71,
+        "meshCount": 152,
+        "casters": 71,
+        "pacing": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 5.622 ms is not locked to a known display interval"
+        }
+      },
+      {
+        "number": 6,
+        "pair": 3,
+        "arm": "poll",
+        "passed": true,
+        "samples": 1756,
+        "meanMs": 5.69652619591335,
+        "meanFps": 175.5455808695119,
+        "p50Ms": 4,
+        "p95Ms": 20.5,
+        "p99Ms": 21.69999998807907,
+        "maxMs": 36.09999996423721,
+        "above6_94": 200,
+        "above8_33": 160,
+        "above16_67": 131,
+        "above33_33": 1,
+        "inputMs": 4,
+        "worldMs": 10002.5,
+        "firstPlayMs": 744.1000000238419,
+        "heapPeakBytes": 195521651,
+        "heapFinalBytes": 134968044,
+        "worldBytes": 210049236,
+        "worldRecords": 71,
+        "meshCount": 152,
+        "casters": 71,
+        "pacing": {
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 5.697 ms is not locked to a known display interval"
+        }
+      }
+    ],
+    "pairs": [
+      {
+        "pair": 1,
+        "baseline": 1,
+        "candidate": 2,
+        "p99GainPct": 0.46296307283092086,
+        "heapPeakRatio": 1.0118989201103474,
+        "gates": {
+          "p99": false,
+          "worst": true,
+          "input": true,
+          "heap": true,
+          "correctness": true
+        },
+        "passed": false
+      },
+      {
+        "pair": 2,
+        "baseline": 4,
+        "candidate": 3,
+        "p99GainPct": 1.382488260281519,
+        "heapPeakRatio": 1.047003634436266,
+        "gates": {
+          "p99": false,
+          "worst": true,
+          "input": true,
+          "heap": true,
+          "correctness": true
+        },
+        "passed": false
+      },
+      {
+        "pair": 3,
+        "baseline": 5,
+        "candidate": 6,
+        "p99GainPct": -0.9302325026933537,
+        "heapPeakRatio": 1.0716897258617042,
+        "gates": {
+          "p99": false,
+          "worst": true,
+          "input": true,
+          "heap": true,
+          "correctness": true
+        },
+        "passed": false
+      }
+    ],
+    "passed": false,
+    "limits": [
+      "Local maximum-Human streaming comparison; not public startup qualification or settled route FPS.",
+      "Heap samples approximate JavaScript heap; not GPU memory/depth.",
+      "First frame interval can contain a premeasurement remainder.",
+      "Real native acknowledgement bound remains4; completions never render."
+    ]
+  },
+  "nativeChildren": {
+    "trace": {
+      "exitCode": 0,
+      "passed": true,
+      "controllerPid": 19585,
+      "finishedAt": "2026-10-08T06:20:50.756Z"
+    },
+    "comparison": {
+      "exitCode": 0,
+      "passed": true,
+      "controllerPid": 29145,
+      "finishedAt": "2026-10-08T06:26:36.663Z"
+    },
+    "unit": {
+      "name": "unit",
+      "childPid": 28905,
+      "exitCode": 0,
+      "elapsedSeconds": 0.08663379197241738
+    }
+  },
+  "workers": [
+    {
+      "task": "frame-completion-review-2026-10-08/review-worker.stdout.json",
+      "sessionId": "01a11a1f-4beb-7cb0-a41b-34bd50754c43",
+      "stopReason": "end_turn",
+      "num_turns": 13,
+      "actualCliExitCode": 0,
+      "requestedModel": "grok-4.6",
+      "requestedEffort": "high",
+      "subagents": false
+    },
+    {
+      "task": "frame-completion-review-2026-10-08/operator-worker.stdout.json",
+      "sessionId": "01a119b2-566d-7af1-b67f-6ce8191e432e",
+      "stopReason": "end_turn",
+      "num_turns": 10,
+      "actualCliExitCode": 0,
+      "requestedModel": "grok-4.6",
+      "requestedEffort": "high",
+      "subagents": false
+    },
+    {
+      "task": "raf-poll-comparison-2026-10-08/operator-worker.stdout.json",
+      "sessionId": "01a119b2-566d-7af1-b67f-6ce8191e432e",
+      "stopReason": "end_turn",
+      "num_turns": 8,
+      "actualCliExitCode": 0,
+      "requestedModel": "grok-4.6",
+      "requestedEffort": "high",
+      "subagents": false
+    }
+  ],
+  "ownershipHistory": {
+    "frame-completion-review-2026-10-08": [
+      {
+        "at": "2026-10-08T06:20:38.254Z",
+        "event": "preview-opened",
+        "pid": 19613,
+        "port": 7074,
+        "root": "/Users/antbly/dev/wow-clone/.cache/character-mmo/frame-completion-review-2026-10-08/budget-trace",
+        "purpose": "queue comparison run 1",
+        "owner": "grok-completion-trace",
+        "active": true
+      },
+      {
+        "at": "2026-10-08T06:20:38.936Z",
+        "event": "opened",
+        "owner": "grok-completion-trace",
+        "browserPid": 19614,
+        "gpuHelperPids": [
+          19622
+        ],
+        "cdpPort": 10037,
+        "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev&startupMarks",
+        "purpose": "Anchored completion trace trace, pair 1; unprofiled native streaming and input",
+        "renderingClients": 1,
+        "active": true
+      },
+      {
+        "at": "2026-10-08T06:20:50.751Z",
+        "event": "closed",
+        "owner": "grok-completion-trace",
+        "browserPid": 19614,
+        "gpuHelperPids": [
+          19622
+        ],
+        "cdpPort": 10037,
+        "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev&startupMarks",
+        "purpose": "Anchored completion trace trace, pair 1; unprofiled native streaming and input",
+        "renderingClients": 0,
+        "active": false
+      },
+      {
+        "at": "2026-10-08T06:20:50.755Z",
+        "event": "preview-closed",
+        "pid": 19613,
+        "port": 7074,
+        "active": false
+      }
+    ],
+    "raf-poll-comparison-2026-10-08": [
+      {
+        "at": "2026-10-08T06:25:24.616Z",
+        "event": "preview-opened",
+        "pid": 29166,
+        "port": 7074,
+        "root": "/Users/antbly/dev/wow-clone/.cache/character-mmo/raf-poll-comparison-2026-10-08/budget-gated",
+        "purpose": "bounded RAF comparison run 1",
+        "owner": "grok-raf-poll-comparison",
+        "active": true
+      },
+      {
+        "at": "2026-10-08T06:25:25.192Z",
+        "event": "opened",
+        "owner": "grok-raf-poll-comparison",
+        "browserPid": 29167,
+        "gpuHelperPids": [
+          29173
+        ],
+        "cdpPort": 10037,
+        "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev&startupMarks",
+        "purpose": "Bounded RAF gated, pair 1; unprofiled native streaming and input",
+        "renderingClients": 1,
+        "active": true
+      },
+      {
+        "at": "2026-10-08T06:25:36.896Z",
+        "event": "closed",
+        "owner": "grok-raf-poll-comparison",
+        "browserPid": 29167,
+        "gpuHelperPids": [
+          29173
+        ],
+        "cdpPort": 10037,
+        "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev&startupMarks",
+        "purpose": "Bounded RAF gated, pair 1; unprofiled native streaming and input",
+        "renderingClients": 0,
+        "active": false
+      },
+      {
+        "at": "2026-10-08T06:25:36.900Z",
+        "event": "preview-closed",
+        "pid": 29166,
+        "port": 7074,
+        "active": false
+      },
+      {
+        "at": "2026-10-08T06:25:36.904Z",
+        "event": "preview-opened",
+        "pid": 29539,
+        "port": 7074,
+        "root": "/Users/antbly/dev/wow-clone/.cache/character-mmo/raf-poll-comparison-2026-10-08/budget-poll",
+        "purpose": "bounded RAF comparison run 2",
+        "owner": "grok-raf-poll-comparison",
+        "active": true
+      },
+      {
+        "at": "2026-10-08T06:25:37.405Z",
+        "event": "opened",
+        "owner": "grok-raf-poll-comparison",
+        "browserPid": 29540,
+        "gpuHelperPids": [
+          29544
+        ],
+        "cdpPort": 10037,
+        "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev&startupMarks",
+        "purpose": "Bounded RAF poll, pair 1; unprofiled native streaming and input",
+        "renderingClients": 1,
+        "active": true
+      },
+      {
+        "at": "2026-10-08T06:25:48.868Z",
+        "event": "closed",
+        "owner": "grok-raf-poll-comparison",
+        "browserPid": 29540,
+        "gpuHelperPids": [
+          29544
+        ],
+        "cdpPort": 10037,
+        "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev&startupMarks",
+        "purpose": "Bounded RAF poll, pair 1; unprofiled native streaming and input",
+        "renderingClients": 0,
+        "active": false
+      },
+      {
+        "at": "2026-10-08T06:25:48.872Z",
+        "event": "preview-closed",
+        "pid": 29539,
+        "port": 7074,
+        "active": false
+      },
+      {
+        "at": "2026-10-08T06:25:48.875Z",
+        "event": "preview-opened",
+        "pid": 29913,
+        "port": 7074,
+        "root": "/Users/antbly/dev/wow-clone/.cache/character-mmo/raf-poll-comparison-2026-10-08/budget-poll",
+        "purpose": "bounded RAF comparison run 3",
+        "owner": "grok-raf-poll-comparison",
+        "active": true
+      },
+      {
+        "at": "2026-10-08T06:25:49.407Z",
+        "event": "opened",
+        "owner": "grok-raf-poll-comparison",
+        "browserPid": 29934,
+        "gpuHelperPids": [
+          29944
+        ],
+        "cdpPort": 10037,
+        "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev&startupMarks",
+        "purpose": "Bounded RAF poll, pair 2; unprofiled native streaming and input",
+        "renderingClients": 1,
+        "active": true
+      },
+      {
+        "at": "2026-10-08T06:26:00.879Z",
+        "event": "closed",
+        "owner": "grok-raf-poll-comparison",
+        "browserPid": 29934,
+        "gpuHelperPids": [
+          29944
+        ],
+        "cdpPort": 10037,
+        "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev&startupMarks",
+        "purpose": "Bounded RAF poll, pair 2; unprofiled native streaming and input",
+        "renderingClients": 0,
+        "active": false
+      },
+      {
+        "at": "2026-10-08T06:26:00.881Z",
+        "event": "preview-closed",
+        "pid": 29913,
+        "port": 7074,
+        "active": false
+      },
+      {
+        "at": "2026-10-08T06:26:00.884Z",
+        "event": "preview-opened",
+        "pid": 30273,
+        "port": 7074,
+        "root": "/Users/antbly/dev/wow-clone/.cache/character-mmo/raf-poll-comparison-2026-10-08/budget-gated",
+        "purpose": "bounded RAF comparison run 4",
+        "owner": "grok-raf-poll-comparison",
+        "active": true
+      },
+      {
+        "at": "2026-10-08T06:26:01.403Z",
+        "event": "opened",
+        "owner": "grok-raf-poll-comparison",
+        "browserPid": 30274,
+        "gpuHelperPids": [
+          30303
+        ],
+        "cdpPort": 10037,
+        "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev&startupMarks",
+        "purpose": "Bounded RAF gated, pair 2; unprofiled native streaming and input",
+        "renderingClients": 1,
+        "active": true
+      },
+      {
+        "at": "2026-10-08T06:26:12.871Z",
+        "event": "closed",
+        "owner": "grok-raf-poll-comparison",
+        "browserPid": 30274,
+        "gpuHelperPids": [
+          30303
+        ],
+        "cdpPort": 10037,
+        "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev&startupMarks",
+        "purpose": "Bounded RAF gated, pair 2; unprofiled native streaming and input",
+        "renderingClients": 0,
+        "active": false
+      },
+      {
+        "at": "2026-10-08T06:26:12.873Z",
+        "event": "preview-closed",
+        "pid": 30273,
+        "port": 7074,
+        "active": false
+      },
+      {
+        "at": "2026-10-08T06:26:12.877Z",
+        "event": "preview-opened",
+        "pid": 30650,
+        "port": 7074,
+        "root": "/Users/antbly/dev/wow-clone/.cache/character-mmo/raf-poll-comparison-2026-10-08/budget-gated",
+        "purpose": "bounded RAF comparison run 5",
+        "owner": "grok-raf-poll-comparison",
+        "active": true
+      },
+      {
+        "at": "2026-10-08T06:26:13.388Z",
+        "event": "opened",
+        "owner": "grok-raf-poll-comparison",
+        "browserPid": 30651,
+        "gpuHelperPids": [
+          30655
+        ],
+        "cdpPort": 10037,
+        "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev&startupMarks",
+        "purpose": "Bounded RAF gated, pair 3; unprofiled native streaming and input",
+        "renderingClients": 1,
+        "active": true
+      },
+      {
+        "at": "2026-10-08T06:26:24.801Z",
+        "event": "closed",
+        "owner": "grok-raf-poll-comparison",
+        "browserPid": 30651,
+        "gpuHelperPids": [
+          30655
+        ],
+        "cdpPort": 10037,
+        "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev&startupMarks",
+        "purpose": "Bounded RAF gated, pair 3; unprofiled native streaming and input",
+        "renderingClients": 0,
+        "active": false
+      },
+      {
+        "at": "2026-10-08T06:26:24.803Z",
+        "event": "preview-closed",
+        "pid": 30650,
+        "port": 7074,
+        "active": false
+      },
+      {
+        "at": "2026-10-08T06:26:24.807Z",
+        "event": "preview-opened",
+        "pid": 31046,
+        "port": 7074,
+        "root": "/Users/antbly/dev/wow-clone/.cache/character-mmo/raf-poll-comparison-2026-10-08/budget-poll",
+        "purpose": "bounded RAF comparison run 6",
+        "owner": "grok-raf-poll-comparison",
+        "active": true
+      },
+      {
+        "at": "2026-10-08T06:26:25.299Z",
+        "event": "opened",
+        "owner": "grok-raf-poll-comparison",
+        "browserPid": 31053,
+        "gpuHelperPids": [
+          31077
+        ],
+        "cdpPort": 10037,
+        "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev&startupMarks",
+        "purpose": "Bounded RAF poll, pair 3; unprofiled native streaming and input",
+        "renderingClients": 1,
+        "active": true
+      },
+      {
+        "at": "2026-10-08T06:26:36.660Z",
+        "event": "closed",
+        "owner": "grok-raf-poll-comparison",
+        "browserPid": 31053,
+        "gpuHelperPids": [
+          31077
+        ],
+        "cdpPort": 10037,
+        "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev&startupMarks",
+        "purpose": "Bounded RAF poll, pair 3; unprofiled native streaming and input",
+        "renderingClients": 0,
+        "active": false
+      },
+      {
+        "at": "2026-10-08T06:26:36.662Z",
+        "event": "preview-closed",
+        "pid": 31046,
+        "port": 7074,
+        "active": false
+      }
+    ]
+  },
+  "cleanup": {
+    "at": "2026-10-08T06:30:36.520995+00:00",
+    "ownedPids": [
+      19613,
+      19614,
+      19622,
+      29166,
+      29167,
+      29173,
+      29539,
+      29540,
+      29544,
+      29913,
+      29934,
+      29944,
+      30273,
+      30274,
+      30303,
+      30650,
+      30651,
+      30655,
+      31046,
+      31053,
+      31077
+    ],
+    "remainingOwnedPids": [],
+    "ownedPorts": [
+      7074,
+      10037
+    ],
+    "remainingOwnedListeners": [],
+    "psExit": 1,
+    "lsofExit": 1,
+    "userEdgePid": 2931,
+    "userOrcaPid": 98938,
+    "media": {
+      "userEdgePid": 2931,
+      "browser": "1",
+      "nonGameTabs": 12,
+      "gameTabsBefore": 0,
+      "referenceTab": "1147992685",
+      "initialInlinePlaying": [
+        "947",
+        "948"
+      ],
+      "allThreeVideosPausedBefore": true,
+      "parentOwnsViewerPause": true,
+      "restoreAfterByClosingViewer": true,
+      "allThreePausedAfterTiming": true,
+      "viewerClosedAfter": true,
+      "initialInlinePlaybackRestored": [
+        "947",
+        "948"
+      ],
+      "finalUserEdgeTabs": 12,
+      "finalUserEdgeGameTabs": 0
+    }
+  },
+  "review": [
+    {
+      "file": ".cache/character-mmo/frame-completion-review-2026-10-08/run-1-budget-trace.png",
+      "sha256": "6083db7ae532bca5180c48a626e64a3221628aa343f9f5ea25136698cd651c40",
+      "rootReviewed": true,
+      "purpose": "Post-timing still review; no new motion acceptance"
+    },
+    {
+      "file": ".cache/character-mmo/raf-poll-comparison-2026-10-08/run-1-budget-gated.png",
+      "sha256": "bd406e2f5d3cc9266bb6ce76590aa72fcddb9123b19cf5db0e87ef0d07d8a1a1",
+      "rootReviewed": true,
+      "purpose": "Post-timing still review; no new motion acceptance"
+    },
+    {
+      "file": ".cache/character-mmo/raf-poll-comparison-2026-10-08/run-6-budget-poll.png",
+      "sha256": "6e12d7b744e51600795f265827f8840976fd15fedcbf45fd2948263eeaa32a69",
+      "rootReviewed": true,
+      "purpose": "Post-timing still review; no new motion acceptance"
+    }
+  ],
+  "decision": {
+    "nativeFunctionalChecksPassed": true,
+    "candidateIntegrationAccepted": false,
+    "reason": "All three pairs fail the declared >10% streaming p99 gain gate; simple bounded RAF polling is closed.",
+    "next": "Bounded native Chrome task/presentation/GPU trace to distinguish remaining mechanism before another code arm. Preserve release hold and original device/reliability exits."
+  },
+  "evidence": {
+    "file": "evidence.json.gz",
+    "sha256": "3c7e13d3807188252acd905dd656323c626602e1d56eb4f80d52ba1f454497e1",
+    "gzipBytes": 328889,
+    "decodedBytes": 4393414,
+    "decodedSha256": "3eee039eaa38e842e9922ecb859945d6a81246333b21332fbd4422d39d62a44b"
+  }
+}

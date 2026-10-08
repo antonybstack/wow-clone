@@ -72,7 +72,7 @@ It preserves all actual exits and native diagnostics; source/dist/production are
 unchanged. That campaign is exhausted, not qualification or cause resolution.
 Do not extend it; independent targeted fit work may proceed.
 [Canonical checkpoint](results/boot-sole-canonical-2026-10-07.md). The next work
-order is explicit in [CURRENT](../../CURRENT.md#next-five-priorities-in-execution-order):
+order is explicit in [CURRENT](../../CURRENT.md#next-priorities-in-execution-order):
 startup diagnosis/boot release, measured loading/audio hitches, mixed armor fit, one authored shield,
 and current physical iPhone acceptance when hardware is available. This order
 does not replace the original goal's acceptance exits.
@@ -80,6 +80,15 @@ does not replace the original goal's acceptance exits.
 This progress does not redefine the five original priorities or mark the full
 objective complete. The following sections retain their requirements and the
 history of justified/closed trials.
+
+**2026-10-08 checkpoint:** the canonical authored shield is locally complete,
+committed/pushed and delivered as Telegram 887/identical VE; include it in the next
+qualified release batch rather than repeating its prototype steps. The subsequent
+[exact completion diagnosis and bounded RAF comparison](results/frame-completion-2026-10-08.md)
+rejects simple polling after all three pairs miss the declared material p99 gate.
+Runtime remains unchanged. Next performance work is a bounded native Chrome
+task/presentation/GPU trace before another code arm. Preserve the rejected preview,
+production 5723a4ab and the physical-device/reliability exits.
 
 ## 1. Isolate intermittent startup failure
 
