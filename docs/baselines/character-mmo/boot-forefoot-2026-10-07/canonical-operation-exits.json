@@ -1,0 +1,90 @@
+[
+  {
+    "name": "prepare-boot-sole",
+    "command": [
+      "node",
+      "scripts/character-assets/prepare-boot-sole.mjs",
+      "--publish"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 4.968,
+    "pid": 40826,
+    "wrapperPid": 40825,
+    "log": ".cache/character-mmo/boot-forefoot-2026-10-07/prepare-boot-sole.log"
+  },
+  {
+    "name": "prepare-derived",
+    "command": [
+      "python3",
+      ".cache/character-mmo/boot-forefoot-2026-10-07/prepare-derived.py"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 40.93,
+    "pid": 41538,
+    "wrapperPid": 41537,
+    "log": ".cache/character-mmo/boot-forefoot-2026-10-07/prepare-derived.log"
+  },
+  {
+    "name": "test-character",
+    "command": [
+      "npm",
+      "run",
+      "test:character"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 25.732,
+    "pid": 43013,
+    "wrapperPid": 43012,
+    "log": ".cache/character-mmo/boot-forefoot-2026-10-07/test-character.log"
+  },
+  {
+    "name": "prepare-native",
+    "command": [
+      "node",
+      ".cache/character-mmo/boot-forefoot-2026-10-07/prepare-native.mjs"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 477.576,
+    "pid": 46110,
+    "wrapperPid": 46108,
+    "log": ".cache/character-mmo/boot-forefoot-2026-10-07/prepare-native.log"
+  },
+  {
+    "name": "build-only",
+    "command": [
+      "bash",
+      "scripts/deploy-pages.sh"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 6.446,
+    "pid": 60804,
+    "wrapperPid": 60803,
+    "log": ".cache/character-mmo/boot-forefoot-2026-10-07/build-only.log"
+  },
+  {
+    "name": "canonical-motion",
+    "command": [
+      "node",
+      "scripts/character-assets/record-boot-fit-motion.mjs"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 51.936,
+    "pid": 62186,
+    "wrapperPid": 62183,
+    "log": ".cache/character-mmo/boot-forefoot-2026-10-07/canonical-motion.log"
+  },
+  {
+    "name": "encode",
+    "command": [
+      "python3",
+      "scripts/encode-capture.py",
+      ".cache/character-mmo/boot-forefoot-2026-10-07/canonical-motion",
+      ".cache/character-mmo/boot-forefoot-2026-10-07/canonical-motion/motion.mp4"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 7.578,
+    "pid": 67622,
+    "wrapperPid": 67619,
+    "log": ".cache/character-mmo/boot-forefoot-2026-10-07/encode.log"
+  }
+]

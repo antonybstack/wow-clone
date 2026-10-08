@@ -8,7 +8,7 @@
     "candidateOnly": true,
     "descriptor": {
       "path": "blender/characters/wardrobe/boot-sole.json",
-      "sha256": "fd82abef775df20349299b422be6cb2b6eede9ee875da8633ef1414a72968bcb"
+      "sha256": "45594ea7cf2f379af4cdd41fa7ca6233d57f742a8346d5f2640b49ae836451fa"
     },
     "rows": [
       {
@@ -21,9 +21,9 @@
           "bodyMesh": "HumanV1Body"
         },
         "artifact": {
-          "file": ".cache/character-mmo/boot-sole/publication-RlZYyq/first/human/wayfarerBoots.glb",
-          "bytes": 242712,
-          "sha256": "84539c7633fd5b17d7e0ed27e45d74d6dcb8f4c5eb244a6f3e4ff8ba5134aa0c"
+          "file": ".cache/character-mmo/boot-sole/publication-oG5LUk/first/human/wayfarerBoots.glb",
+          "bytes": 242684,
+          "sha256": "dfce594f2e2187f25703b185f843d9f47c43481aa18ff320f940b6fe651dd8a4"
         },
         "feet": [
           {
@@ -31,14 +31,18 @@
             "authoredFloor": -0.010363336652517319,
             "bodyFloor": -0.000006902833320054924,
             "changed": 388,
-            "maxDisplacementM": 0.05198354460299015
+            "maxDisplacementM": 0.05198354460299015,
+            "forefootChanged": 121,
+            "forefootMaxDisplacementM": 0.05303531978279352
           },
           {
             "side": "right",
             "authoredFloor": -0.01039090659469366,
             "bodyFloor": -2.2622236883762525e-7,
             "changed": 387,
-            "maxDisplacementM": 0.05477075418457389
+            "maxDisplacementM": 0.05477075418457389,
+            "forefootChanged": 53,
+            "forefootMaxDisplacementM": 0.045904992148280144
           }
         ],
         "verification": {
@@ -73,9 +77,9 @@
           "bodyMesh": "UndeadV1Body"
         },
         "artifact": {
-          "file": ".cache/character-mmo/boot-sole/publication-RlZYyq/first/undead/wayfarerBoots.glb",
-          "bytes": 242372,
-          "sha256": "d92d6e57807b91cc19886c634b3ff3c84b21909c63ecaa68fbc5a66af44dbeac"
+          "file": ".cache/character-mmo/boot-sole/publication-oG5LUk/first/undead/wayfarerBoots.glb",
+          "bytes": 242348,
+          "sha256": "a2e61858969e38dc07e895c2127a9fef9924bea8373d1b659f21bb2711bdac62"
         },
         "feet": [
           {
@@ -83,14 +87,18 @@
             "authoredFloor": -0.010363336652517319,
             "bodyFloor": 2.9491869213416066e-7,
             "changed": 388,
-            "maxDisplacementM": 0.061143459752202034
+            "maxDisplacementM": 0.061143459752202034,
+            "forefootChanged": 32,
+            "forefootMaxDisplacementM": 0.03892083279788494
           },
           {
             "side": "right",
             "authoredFloor": -0.01039090659469366,
             "bodyFloor": 0.000006566178853972815,
             "changed": 387,
-            "maxDisplacementM": 0.06949268677271903
+            "maxDisplacementM": 0.06949268677271903,
+            "forefootChanged": 20,
+            "forefootMaxDisplacementM": 0.02547575533390045
           }
         ],
         "verification": {

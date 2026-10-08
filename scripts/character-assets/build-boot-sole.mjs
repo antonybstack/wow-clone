@@ -1,4 +1,4 @@
-/** Restore the authored sole height after a body fit folded its lower band.
+/** Restore authored sole and collapsed forefoot height after the body fit.
  * Candidate-only: source masters are pinned; the existing garment compiler owns
  * Human morphs and the Duskguard builder owns its copied boot underlayer.
  * No runtime fitter, animation edits, normal-only proof exceptions or skin edits.
@@ -26,6 +26,11 @@ assert.deepEqual(Object.keys(descriptor.fits).sort(),['human','undead']);
 const {fullBelowM,fadeEndM,belowFootM,authoredHeightScale}=descriptor.sole;
 assert([fullBelowM,fadeEndM,belowFootM,authoredHeightScale].every(Number.isFinite));
 assert(fullBelowM>0&&fadeEndM>fullBelowM&&fadeEndM<=.05&&belowFootM>=0&&belowFootM<=.01&&authoredHeightScale>0&&authoredHeightScale<=2);
+const forefoot=descriptor.forefoot;
+assert.equal(descriptor.revision,2);
+assert(forefoot&&Object.values(forefoot).every(Number.isFinite),'Invalid forefoot region');
+assert.deepEqual(Object.keys(forefoot).sort(),['fullFromY','fullFromZ','fullToY','maxY','minY','minZ']);
+assert(forefoot.minY===fullBelowM&&forefoot.fullFromY===fadeEndM&&forefoot.fullFromY<forefoot.fullToY&&forefoot.fullToY<forefoot.maxY&&forefoot.maxY<=.1&&forefoot.minZ>=0&&forefoot.minZ<forefoot.fullFromZ);
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 async function pinned(file,expected){const bytes=await fs.readFile(file);assert.equal(sha(bytes),expected,`Unreviewed input ${file}`);return bytes;}
 await Promise.all([MeshoptDecoder.ready,MeshoptEncoder.ready]);
@@ -35,6 +40,7 @@ assert.equal(authored.listMeshes().length,1);
 const sourcePrimitive=authored.listMeshes()[0].listPrimitives()[0];
 const S=sourcePrimitive.getAttribute('POSITION').getArray();
 const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
+const forefootBlend=(y,z)=>smooth((y-forefoot.minY)/(forefoot.fullFromY-forefoot.minY))*(1-smooth((y-forefoot.fullToY)/(forefoot.maxY-forefoot.fullToY)))*smooth((z-forefoot.minZ)/(forefoot.fullFromZ-forefoot.minZ));
 const rows=[];
 for(const [race,fit]of Object.entries(descriptor.fits)){
  const input=await pinned(fit.source,fit.sha256),body=(await io.readBinary(await pinned(fit.body,fit.bodySha256))).getRoot();
@@ -61,7 +67,25 @@ for(const [race,fit]of Object.entries(descriptor.fits)){
    if(output[v*3+1]!==P[v*3+1])changed++;
    maxDisplacementM=Math.max(maxDisplacementM,Math.abs(output[v*3+1]-P[v*3+1]));
   }
-  feet.push({side:sign===1?'left':'right',authoredFloor,bodyFloor,changed,maxDisplacementM});
+  let forefootChanged=0,forefootMaxDisplacementM=0;
+  // The native audition shows a collapsed vamp above the repaired sole. Lift
+  // that authored-coordinate window only; keep an already-higher roof intact.
+  // Run after the sole pass so its Float32 result is the blend's exact baseline.
+  // Reuse native accessor arrays and normal reconstruction, preserving skin/UVs:
+  // https://gltf-transform.dev/modules/core/classes/Accessor
+  // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#skinned-mesh-attributes
+  for(let v=0;v<S.length/3;v++){
+   if(S[v*3]*sign<=0)continue;
+   const blend=forefootBlend(S[v*3+1],S[v*3+2]);
+   if(blend<=0)continue;
+   const height=bodyFloor-belowFootM+(S[v*3+1]-authoredFloor)*authoredHeightScale;
+   const before=output[v*3+1];
+   if(height<=before)continue;
+   output[v*3+1]=before+blend*(height-before);
+   if(output[v*3+1]!==before)forefootChanged++;
+   forefootMaxDisplacementM=Math.max(forefootMaxDisplacementM,output[v*3+1]-before);
+  }
+  feet.push({side:sign===1?'left':'right',authoredFloor,bodyFloor,changed,maxDisplacementM,forefootChanged,forefootMaxDisplacementM});
  }
  p.getAttribute('POSITION').setArray(output);
  p.getAttribute('NORMAL').setArray(vertexNormals(output,p.getIndices().getArray()));
@@ -73,9 +97,13 @@ for(const [race,fit]of Object.entries(descriptor.fits)){
  assert.deepEqual(check.getIndices().getArray(),before.getIndices().getArray());
  for(const semantic of before.listSemantics().filter(s=>!['POSITION','NORMAL'].includes(s)))assert.deepEqual(check.getAttribute(semantic).getArray(),before.getAttribute(semantic).getArray(),`${race}/${semantic}`);
  const actual=check.getAttribute('POSITION').getArray();
+ assert.deepEqual(actual,output,'Authored positions changed during glTF readback');
  for(let v=0;v<P.length/3;v++){
   assert.equal(actual[v*3],P[v*3]);assert.equal(actual[v*3+2],P[v*3+2]);
-  if(S[v*3+1]>=fadeEndM)assert.equal(actual[v*3+1],P[v*3+1],'Upper boot changed');
+  if(S[v*3+1]>=fadeEndM){
+   if(forefootBlend(S[v*3+1],S[v*3+2])===0)assert.equal(actual[v*3+1],P[v*3+1],'Upper boot changed outside the reviewed forefoot');
+   else assert(actual[v*3+1]>=P[v*3+1],'Already-higher forefoot lowered');
+  }
  }
  const verification=verifyFactoryEquipmentBind(written,body,fit.bodyMesh);
  const directory=path.join(out,race);await fs.mkdir(directory,{recursive:true});

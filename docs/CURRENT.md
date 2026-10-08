@@ -98,6 +98,18 @@ events also occur on successful texture requests and do not establish a failed
 body. This does not qualify the rejected preview or explain the cause. Do not
 extend this unchanged campaign; proceed with independent targeted fit work.
 
+The [focused forefoot correction](plans/character-mmo/results/boot-forefoot-2026-10-07.md)
+now repairs the collapsed Human toe cavity and Undead vamp above the accepted
+sole. Pinned offline publication and all existing derivatives are prepared;
+231 character tests, 115 equipment tests, native bounds for 51 pieces and ten
+live fit cases pass. Root reviewed the actual canonical 1280×720 MP4 at normal
+and half speed. Cuff/strap overlap, leather pleats and aliasing remain; this is
+local focused acceptance. Maximum compact payload increases by 673 bytes to
+2,103,397 bytes. No new public startup or independent FPS result, and no Pages
+promotion. Production stays **7d00c56 / 5723a4ab** with the reliability hold open.
+Reviewed motion is Telegram **881** and identical VE, with matching API dimensions.
+The source fingerprint and native evidence are in the result receipt.
+
 ### Next five priorities, in execution order
 
 1. **Resolve the startup failure, then release the canonical boot correction.**

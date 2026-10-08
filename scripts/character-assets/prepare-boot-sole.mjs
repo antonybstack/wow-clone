@@ -32,6 +32,8 @@ for(const race of races)oldPlates.set(race,(await io.read(`public/ashen-reach/${
 run('scripts/character-assets/build-boot-sole.mjs',[`${work}/first`]);
 run('scripts/character-assets/build-boot-sole.mjs',[`${work}/repeat`]);
 const builds={},manifests={},fits={};
+const armorDescriptorPath='blender/characters/wardrobe/duskguard-armor.json';
+const armorDescriptor=JSON.parse(await fs.readFile(armorDescriptorPath,'utf8'));
 for(const race of races){
  const bytes=await fs.readFile(`${work}/first/${race}/wayfarerBoots.glb`);
  assert.deepEqual(bytes,await fs.readFile(`${work}/repeat/${race}/wayfarerBoots.glb`),'Non-repeatable sole build');
@@ -39,6 +41,7 @@ for(const race of races){
  const verification=verifyFactoryEquipmentBind(root,base,descriptor.fits[race].bodyMesh);
  assertAssetFit({fit:FITS_BY_RACE[race]},EQUIPMENT_ITEMS.wayfarerBoots,race);
  builds[race]={bytes,sha256:sha(bytes),verification};fits[race]={directory:directory[race]};
+ assert.equal(armorDescriptor.fits[race].underlayers.wayfarerBoots.sha256,sha(bytes),'Pin the reviewed Duskguard underlayer before any publication');
  manifests[race]=JSON.parse(await fs.readFile(`public/ashen-reach/${directory[race]}/manifest.json`,'utf8'));
 }
 assert.equal(sha(await fs.readFile(descriptorPath)),sha(descriptorBytes),'Sole descriptor changed');
@@ -53,7 +56,6 @@ await executePublication(planPublication({id:'wayfarerBoots',mesh:'WayfarerBoots
 // and enforces its reviewed descriptor hash. No copied private audition plate.
 run('scripts/character-assets/build-duskguard-armor.mjs',races);
 const armorReport=JSON.parse(await fs.readFile('.cache/character-mmo/wardrobe-v1/duskguard/report.json','utf8'));
-const armorDescriptorPath='blender/characters/wardrobe/duskguard-armor.json';
 assert.equal(armorReport.descriptor.sha256,sha(await fs.readFile(armorDescriptorPath)));
 for(const tool of armorReport.toolSources)assert.equal(sha(await fs.readFile(tool.path)),tool.sha256,'Duskguard tools changed');
 const files=[],manifestWrites=[],rows=[];

@@ -20,7 +20,7 @@ const relative=path.relative(path.resolve('.cache'),dir);assert(relative&&!relat
 const cache=path.dirname(dir),root=path.resolve(process.env.ASHEN_CAPTURE_DIST||'dist');
 const url='http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev&verifyAssets';
 await fs.mkdir(cache,{recursive:true});await fs.mkdir(dir);await fs.mkdir(path.join(dir,'frames'));
-const report={url,sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),productInputs:await productInputsSha256(process.cwd(),await productPaths(process.cwd())),purpose:'Canonical boot sole and Undead source-foot coverage in native Lite; diagnostic Armory + ordinary Havok traversal; no FPS',errors:[],cases:[],passed:false};
+const report={url,sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),productInputs:await productInputsSha256(process.cwd(),await productPaths(process.cwd())),purpose:'Canonical boot sole/forefoot and Undead source-foot coverage in native Lite; diagnostic Armory + ordinary Havok traversal; no FPS',errors:[],cases:[],passed:false};
 const expected={};
 for(const [key,folder,file]of [['human','equipment','manifest-coverage-v1.json'],['shaped','human-shape-v1','manifest.json'],['undead','equipment-undead','manifest-coverage-v1.json'],['starter','startup/character','manifest.json']]){
  const m=JSON.parse(await fs.readFile(`public/ashen-reach/${folder}/${file}`,'utf8'));
@@ -71,7 +71,9 @@ try{
    await page.evaluate(()=>ASHEN.armory.setFocus({alpha:Math.PI/2}));await page.evaluate(()=>ASHEN.whenNextGpuFrame());
    await label(`${profile.id} · ${boot} · front / idle · native inspection + fill light`);
    await page.screenshot({path:path.join(dir,`${profile.id}-${boot}-front.png`)});
-   await page.selectOption('#armory [data-motion]','run');await page.evaluate(()=>{ASHEN.armory.setFocus({alpha:0});ASHEN.body.inspection.seek(0);ASHEN.body.inspection.setPaused(false);});
+   // Retain the old idle comparison camera, but give the moving feet headroom.
+   // Native camera/framing only; neither the source curves nor movement changes.
+   await page.selectOption('#armory [data-motion]','run');await page.evaluate(()=>{const s=ASHEN.equipment.race==='human'?ASHEN.player.heightScale:1;ASHEN.armory.setFocus({alpha:0,height:.28*s,radius:1.45*s});ASHEN.body.inspection.seek(0);ASHEN.body.inspection.setPaused(false);});
    await label(`${profile.id} · ${boot} · native run preview · diagnostic foot framing`);await page.waitForTimeout(1600);
    const state=await page.evaluate(()=>({appearance:ASHEN.getAppearance(),physics:ASHEN.player.getDebugState(),preview:ASHEN.body.inspection.getState(),bones:ASHEN.body.boneCount,heightScale:ASHEN.player.heightScale,morphs:ASHEN.scene.meshes.filter(m=>m.visible!==false&&m.morphTargets).map(m=>({name:m.name,weights:Array.from(m.morphTargets.weights)})),gpuErrors:ASHEN.gpu.errors,foot:ASHEN.scene.meshes.filter(m=>/^(Human|Undead)FootCore$/.test(m.name)).map(m=>({name:m.name,visible:m.visible!==false})),visible:ASHEN.scene.meshes.filter(m=>m.visible!==false&&/Boot|Greave/.test(m.name)).map(m=>m.name)}));
    assert(state.physics.usingPhysics);assert.equal(state.physics.recoveries,0);assert.equal(state.bones,65);if(profile.race==='undead'){const activeFoot=state.foot.filter(m=>m.name==='UndeadFootCore');assert.equal(activeFoot.length,1);assert.equal(activeFoot[0].visible,false);}assert.equal(state.preview.paused,false);assert.deepEqual(state.gpuErrors,[]);if(profile.race==='human'){assert(Math.abs(state.heightScale-profile.height)<1e-5);for(const mesh of state.morphs)for(let i=0;i<2;i++)assert(Math.abs(mesh.weights[i]-[Math.max(0,-profile.build),Math.max(0,profile.build)][i])<1e-5);if(profile.build!==0)assert(state.morphs.some(m=>/Boot/.test(m.name)));}report.cases.push({profile,boot,state});

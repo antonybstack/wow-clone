@@ -1,0 +1,147 @@
+{
+  "descriptor": {
+    "revision": 2,
+    "sha256": "45594ea7cf2f379af4cdd41fa7ca6233d57f742a8346d5f2640b49ae836451fa",
+    "expectedIntegratedReportSha": "45594ea7cf2f379af4cdd41fa7ca6233d57f742a8346d5f2640b49ae836451fa",
+    "sole": {
+      "fullBelowM": 0.018,
+      "fadeEndM": 0.025,
+      "belowFootM": 0.006,
+      "authoredHeightScale": 1.2
+    },
+    "forefoot": {
+      "minY": 0.018,
+      "fullFromY": 0.025,
+      "fullToY": 0.06,
+      "maxY": 0.08,
+      "minZ": 0.1,
+      "fullFromZ": 0.14
+    },
+    "authoredSha": "0f4091ff26d40cf3a3567b8770105f51b79a346caa21ead40577391704f81ae2",
+    "authoredPinned": true
+  },
+  "races": {
+    "human": {
+      "hashes": {
+        "before": "a55a9e4cd7b8658b6f2bd51dd3092af576e8d7dd279c9687bb3419a5c858bd98",
+        "soleOnly": "84539c7633fd5b17d7e0ed27e45d74d6dcb8f4c5eb244a6f3e4ff8ba5134aa0c",
+        "candidate": "dfce594f2e2187f25703b185f843d9f47c43481aa18ff320f940b6fe651dd8a4",
+        "integrated": "dfce594f2e2187f25703b185f843d9f47c43481aa18ff320f940b6fe651dd8a4",
+        "duskguardPin": "dfce594f2e2187f25703b185f843d9f47c43481aa18ff320f940b6fe651dd8a4"
+      },
+      "beforePinned": true,
+      "soleOnlyExpected": true,
+      "candidateEqualsIntegrated": true,
+      "integratedEqualsDuskguardPin": true,
+      "vertexCount": 3530,
+      "semanticEqual": {
+        "TEXCOORD_0": {
+          "integrated": true,
+          "candidate": true,
+          "soleOnly": true
+        },
+        "JOINTS_0": {
+          "integrated": true,
+          "candidate": true,
+          "soleOnly": true
+        },
+        "WEIGHTS_0": {
+          "integrated": true,
+          "candidate": true,
+          "soleOnly": true
+        }
+      },
+      "indexEqual": {
+        "integrated": true,
+        "candidate": true,
+        "soleOnly": true
+      },
+      "xChanged": 0,
+      "zChanged": 0,
+      "yLoweredVsSole": 0,
+      "yLoweredVsBefore": 655,
+      "forefootRaised": 174,
+      "forefootLowered": 0,
+      "outsideWindowYChangedVsSole": 0,
+      "soleBandForefootBlend0YMismatch": 0,
+      "xZero": 0,
+      "xZeroInWindow": 0,
+      "windowVerts": 384,
+      "raisedInWindow": 174,
+      "maxRaiseVsSole": 0.05303531978279352,
+      "maxLowerVsSole": 0,
+      "soleXZVsBefore": 0,
+      "soleYChangedAboveFade": 0,
+      "extraUnique": [],
+      "meshNames": {
+        "before": [
+          "WayfarerBoots"
+        ],
+        "integ": [
+          "WayfarerBoots"
+        ]
+      }
+    },
+    "undead": {
+      "hashes": {
+        "before": "ce99e04c73153c47b97b69f94327983e3844d0f24c8a7757e4126f1baabc5c85",
+        "soleOnly": "d92d6e57807b91cc19886c634b3ff3c84b21909c63ecaa68fbc5a66af44dbeac",
+        "candidate": "a2e61858969e38dc07e895c2127a9fef9924bea8373d1b659f21bb2711bdac62",
+        "integrated": "a2e61858969e38dc07e895c2127a9fef9924bea8373d1b659f21bb2711bdac62",
+        "duskguardPin": "a2e61858969e38dc07e895c2127a9fef9924bea8373d1b659f21bb2711bdac62"
+      },
+      "beforePinned": true,
+      "soleOnlyExpected": true,
+      "candidateEqualsIntegrated": true,
+      "integratedEqualsDuskguardPin": true,
+      "vertexCount": 3530,
+      "semanticEqual": {
+        "TEXCOORD_0": {
+          "integrated": true,
+          "candidate": true,
+          "soleOnly": true
+        },
+        "JOINTS_0": {
+          "integrated": true,
+          "candidate": true,
+          "soleOnly": true
+        },
+        "WEIGHTS_0": {
+          "integrated": true,
+          "candidate": true,
+          "soleOnly": true
+        }
+      },
+      "indexEqual": {
+        "integrated": true,
+        "candidate": true,
+        "soleOnly": true
+      },
+      "xChanged": 0,
+      "zChanged": 0,
+      "yLoweredVsSole": 0,
+      "yLoweredVsBefore": 674,
+      "forefootRaised": 52,
+      "forefootLowered": 0,
+      "outsideWindowYChangedVsSole": 0,
+      "soleBandForefootBlend0YMismatch": 0,
+      "xZero": 0,
+      "xZeroInWindow": 0,
+      "windowVerts": 384,
+      "raisedInWindow": 52,
+      "maxRaiseVsSole": 0.03892083279788494,
+      "maxLowerVsSole": 0,
+      "soleXZVsBefore": 0,
+      "soleYChangedAboveFade": 0,
+      "extraUnique": [],
+      "meshNames": {
+        "before": [
+          "WayfarerBoots"
+        ],
+        "integ": [
+          "WayfarerBoots"
+        ]
+      }
+    }
+  }
+}

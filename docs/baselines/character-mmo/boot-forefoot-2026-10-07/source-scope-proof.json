@@ -1,0 +1,71 @@
+{
+  "comparedAgainst": "602f52b",
+  "manifests": [
+    {
+      "manifest": "public/ashen-reach/equipment/manifest.json",
+      "changedEntries": {
+        "items": [
+          "wayfarerBoots",
+          "duskguardGreaves"
+        ]
+      },
+      "bodySha256Unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-undead/manifest.json",
+      "changedEntries": {
+        "items": [
+          "wayfarerBoots",
+          "duskguardGreaves"
+        ]
+      },
+      "bodySha256Unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/equipment-orc/manifest.json",
+      "changedEntries": {
+        "items": []
+      },
+      "bodySha256Unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/human-shape-v1/manifest.json",
+      "changedEntries": {
+        "items": [
+          "wayfarerBoots",
+          "duskguardGreaves"
+        ],
+        "compactItems": [
+          "wayfarerBoots",
+          "duskguardGreaves"
+        ]
+      },
+      "bodySha256Unchanged": true
+    },
+    {
+      "manifest": "public/ashen-reach/startup/character/manifest.json",
+      "changedEntries": {
+        "items": [
+          "wayfarerBoots",
+          "duskguardGreaves"
+        ]
+      },
+      "bodySha256Unchanged": true
+    }
+  ],
+  "identities": [
+    {
+      "preset": "prime-bald",
+      "bodyAndHoodAssetsExact": true
+    },
+    {
+      "preset": "prime-ponytail",
+      "bodyAndHoodAssetsExact": true
+    },
+    {
+      "preset": "weathered-bald",
+      "bodyAndHoodAssetsExact": true
+    }
+  ],
+  "deletedTrackedFiles": []
+}

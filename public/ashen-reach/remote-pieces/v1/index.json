@@ -1,12 +1,12 @@
 {
  "schema": 1,
  "version": 1,
- "publishedAt": "2026-10-07T21:55:56.392Z",
+ "publishedAt": "2026-10-07T23:46:35.389Z",
  "lite": "1.31.1",
  "catalogVersion": "appearance-catalog-v8",
  "sourceCompilerSha256": "e9bb55b8b67195c5fe92cb8ebfc86aa59ee654a614bcec4154ab5c721a531563",
  "uniqueFiles": 51,
- "totalBytes": 21047856,
+ "totalBytes": 21047560,
  "pieces": [
   {
    "race": "human",
@@ -72,11 +72,11 @@
    "sha256": "b9db83552771c3582b2e60d5abab1f2970b1b4b9bbd04999ec6e9a14ba46e7ac"
   },
   {
-   "race": "undead",
+   "race": "human",
    "id": "duskguardGreaves",
-   "file": "duskguardGreaves-1675033cddfe5c2208ddd48cc8018f7c494f2e07f040934b1f0d29dc765f6d99.glb",
-   "bytes": 176624,
-   "sha256": "1675033cddfe5c2208ddd48cc8018f7c494f2e07f040934b1f0d29dc765f6d99"
+   "file": "duskguardGreaves-1b2cdb7021d90f82dc427f3420b86df2aaa90152efdff94471da36679fd5a3dc.glb",
+   "bytes": 328108,
+   "sha256": "1b2cdb7021d90f82dc427f3420b86df2aaa90152efdff94471da36679fd5a3dc"
   },
   {
    "race": "orc",
@@ -86,11 +86,11 @@
    "sha256": "57fb78844549c2c0cfab87917dd274c6fc39adecf66260969c712f66cd320c7c"
   },
   {
-   "race": "human",
+   "race": "undead",
    "id": "duskguardGreaves",
-   "file": "duskguardGreaves-9649079113258dd9315a28c7ff43f0bee7fd1724b96f29252bf7736706042e2e.glb",
-   "bytes": 328232,
-   "sha256": "9649079113258dd9315a28c7ff43f0bee7fd1724b96f29252bf7736706042e2e"
+   "file": "duskguardGreaves-dcf5c67aedd8ff11cab2d8cfbaeef6be7f0de0bbaba5d47abb7c32e1d1e41230.glb",
+   "bytes": 176600,
+   "sha256": "dcf5c67aedd8ff11cab2d8cfbaeef6be7f0de0bbaba5d47abb7c32e1d1e41230"
   },
   {
    "race": "undead",
@@ -305,9 +305,9 @@
   {
    "race": "human",
    "id": "wayfarerBoots",
-   "file": "wayfarerBoots-008837effe845afe1e325d40aa2568d5da28c9d87b7ebd801bda81365b0c8e20.glb",
-   "bytes": 314636,
-   "sha256": "008837effe845afe1e325d40aa2568d5da28c9d87b7ebd801bda81365b0c8e20"
+   "file": "wayfarerBoots-2b40841ebb0da2415a655cd00acd5c3cdc9247efe9dbb7f06c456e59245b20e0.glb",
+   "bytes": 314512,
+   "sha256": "2b40841ebb0da2415a655cd00acd5c3cdc9247efe9dbb7f06c456e59245b20e0"
   },
   {
    "race": "orc",
@@ -319,9 +319,9 @@
   {
    "race": "undead",
    "id": "wayfarerBoots",
-   "file": "wayfarerBoots-9f1a4b40c964f46563cb0cad5ef43587b728d2746eb2c3732a67f881e16ff753.glb",
-   "bytes": 169740,
-   "sha256": "9f1a4b40c964f46563cb0cad5ef43587b728d2746eb2c3732a67f881e16ff753"
+   "file": "wayfarerBoots-ff50c61ef80d214e7eea53d67c226506002dfe4e8711c7e532a79d18c1e00b05.glb",
+   "bytes": 169716,
+   "sha256": "ff50c61ef80d214e7eea53d67c226506002dfe4e8711c7e532a79d18c1e00b05"
   },
   {
    "race": "orc",

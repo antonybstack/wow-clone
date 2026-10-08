@@ -1,0 +1,690 @@
+{
+  "schema": 1,
+  "date": "2026-10-07",
+  "scope": "Local canonical focused forefoot correction; no production promotion, public startup cohort or independent FPS measurement",
+  "sourceAtCapture": {
+    "head": "602f52b33afbbd7c06bd09309c9da777b0fddac9",
+    "productInputs": {
+      "sha256": "38875fe66c005e0188ec4e906fea8961836c8386a743677ada9dd1484abdfa77",
+      "files": 1157,
+      "uncommitted": 34
+    },
+    "note": "Capture includes uncommitted product inputs later committed; fingerprint is authoritative"
+  },
+  "bounds": {
+    "points": 162617865,
+    "escaped": 0,
+    "finalByteCache": {
+      "entries": 0,
+      "reservedBytes": 0,
+      "peakReservedBytes": 4496592,
+      "ceilingBytes": 8388608,
+      "leases": 0
+    },
+    "errors": [],
+    "gpuErrors": [],
+    "published": {
+      "version": 1,
+      "publishedAt": "2026-10-07T23:46:35.389Z",
+      "sourceCompilerSha256": "e9bb55b8b67195c5fe92cb8ebfc86aa59ee654a614bcec4154ab5c721a531563",
+      "pieceCount": 51,
+      "uniqueFiles": 51,
+      "totalBytes": 21047560,
+      "lite": "1.31.1",
+      "catalogVersion": "appearance-catalog-v8"
+    }
+  },
+  "tests": {
+    "character": {
+      "total": 231,
+      "passed": 231,
+      "exitCode": 0
+    },
+    "equipment": {
+      "total": 115,
+      "passed": 115,
+      "exitCode": 0
+    }
+  },
+  "nativeMotion": {
+    "passed": true,
+    "errors": [],
+    "cases": [
+      {
+        "profile": {
+          "id": "original",
+          "race": "human",
+          "identity": "starter",
+          "height": 1,
+          "build": 0
+        },
+        "boot": "wayfarerBoots",
+        "bones": 65,
+        "heightScale": 1,
+        "usingPhysics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "sourceFoot": [
+          {
+            "name": "HumanFootCore",
+            "visible": false
+          }
+        ]
+      },
+      {
+        "profile": {
+          "id": "original",
+          "race": "human",
+          "identity": "starter",
+          "height": 1,
+          "build": 0
+        },
+        "boot": "duskguardGreaves",
+        "bones": 65,
+        "heightScale": 1,
+        "usingPhysics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "sourceFoot": [
+          {
+            "name": "HumanFootCore",
+            "visible": false
+          }
+        ]
+      },
+      {
+        "profile": {
+          "id": "prime-tall-slender",
+          "race": "human",
+          "identity": "prime-ponytail",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "boot": "wayfarerBoots",
+        "bones": 65,
+        "heightScale": 1.15,
+        "usingPhysics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "sourceFoot": [
+          {
+            "name": "HumanFootCore",
+            "visible": false
+          }
+        ]
+      },
+      {
+        "profile": {
+          "id": "prime-tall-slender",
+          "race": "human",
+          "identity": "prime-ponytail",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "boot": "duskguardGreaves",
+        "bones": 65,
+        "heightScale": 1.15,
+        "usingPhysics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "sourceFoot": [
+          {
+            "name": "HumanFootCore",
+            "visible": false
+          }
+        ]
+      },
+      {
+        "profile": {
+          "id": "prime-short-stout",
+          "race": "human",
+          "identity": "prime-ponytail",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "boot": "wayfarerBoots",
+        "bones": 65,
+        "heightScale": 0.9,
+        "usingPhysics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "sourceFoot": [
+          {
+            "name": "HumanFootCore",
+            "visible": false
+          }
+        ]
+      },
+      {
+        "profile": {
+          "id": "prime-short-stout",
+          "race": "human",
+          "identity": "prime-ponytail",
+          "height": 0.9,
+          "build": 0.95
+        },
+        "boot": "duskguardGreaves",
+        "bones": 65,
+        "heightScale": 0.9,
+        "usingPhysics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "sourceFoot": [
+          {
+            "name": "HumanFootCore",
+            "visible": false
+          }
+        ]
+      },
+      {
+        "profile": {
+          "id": "orc",
+          "race": "orc"
+        },
+        "boot": "wayfarerBoots",
+        "bones": 65,
+        "heightScale": 1,
+        "usingPhysics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "sourceFoot": [
+          {
+            "name": "HumanFootCore",
+            "visible": false
+          }
+        ]
+      },
+      {
+        "profile": {
+          "id": "orc",
+          "race": "orc"
+        },
+        "boot": "duskguardGreaves",
+        "bones": 65,
+        "heightScale": 1,
+        "usingPhysics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "sourceFoot": [
+          {
+            "name": "HumanFootCore",
+            "visible": false
+          }
+        ]
+      },
+      {
+        "profile": {
+          "id": "undead",
+          "race": "undead"
+        },
+        "boot": "wayfarerBoots",
+        "bones": 65,
+        "heightScale": 1,
+        "usingPhysics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "sourceFoot": [
+          {
+            "name": "HumanFootCore",
+            "visible": false
+          },
+          {
+            "name": "UndeadFootCore",
+            "visible": false
+          }
+        ]
+      },
+      {
+        "profile": {
+          "id": "undead",
+          "race": "undead"
+        },
+        "boot": "duskguardGreaves",
+        "bones": 65,
+        "heightScale": 1,
+        "usingPhysics": true,
+        "recoveries": 0,
+        "gpuErrors": [],
+        "sourceFoot": [
+          {
+            "name": "HumanFootCore",
+            "visible": false
+          },
+          {
+            "name": "UndeadFootCore",
+            "visible": false
+          }
+        ]
+      }
+    ],
+    "travel": {
+      "travel": {
+        "before": {
+          "usingPhysics": true,
+          "grounded": true,
+          "jumps": 0,
+          "recoveries": 0,
+          "position": {
+            "x": -0.0035970670957384465,
+            "y": 0.13330689144134522,
+            "z": -99.99824642982087
+          }
+        },
+        "after": {
+          "usingPhysics": true,
+          "grounded": true,
+          "jumps": 1,
+          "recoveries": 0,
+          "position": {
+            "x": -2.897195891478753,
+            "y": 0.6223473258018494,
+            "z": -83.48903243079313
+          }
+        }
+      },
+      "undeadTravel": {
+        "before": {
+          "usingPhysics": true,
+          "grounded": true,
+          "jumps": 1,
+          "recoveries": 0,
+          "position": {
+            "x": -2.897339283990522,
+            "y": 0.6223398156166077,
+            "z": -83.48905112571452
+          }
+        },
+        "after": {
+          "usingPhysics": true,
+          "grounded": true,
+          "jumps": 2,
+          "recoveries": 0,
+          "position": {
+            "x": -2.970652486941336,
+            "y": 0.545445400220385,
+            "z": -66.22765682207546
+          }
+        }
+      }
+    },
+    "bareFootRestored": true,
+    "assetResponses": [
+      {
+        "url": "http://127.0.0.1:7074/ashen-reach/startup/character/wayfarerBoots-9dd7133af9dc.bin",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:7074/ashen-reach/human-shape-v1/wayfarerBoots-daa3552b9c57.bin",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:7074/ashen-reach/human-shape-v1/duskguardGreaves-7fec0024072b.bin",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:7074/ashen-reach/human-shape-v1/duskguardGreaves-7fec0024072b.bin",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:7074/ashen-reach/human-shape-v1/wayfarerBoots-daa3552b9c57.bin",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:7074/ashen-reach/equipment-orc/duskguardGreaves-5c047b0fbea0.glb",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:7074/ashen-reach/equipment-undead/wayfarerBoots-a2e61858969e.glb",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:7074/ashen-reach/equipment-undead/duskguardGreaves-979dad0c170c.glb",
+        "status": 200
+      }
+    ],
+    "expectedCanonicalAssets": {
+      "human/wayfarerBoots": [
+        {
+          "url": "/ashen-reach/equipment/wayfarerBoots-dfce594f2e21.glb",
+          "sha256": "dfce594f2e2187f25703b185f843d9f47c43481aa18ff320f940b6fe651dd8a4"
+        }
+      ],
+      "human/duskguardGreaves": [
+        {
+          "url": "/ashen-reach/equipment/duskguardGreaves-2f96cb31cf35.glb",
+          "sha256": "2f96cb31cf3523920a25a5ba53efe526c191ed50c59ef0f69b7b7b043f815b18"
+        }
+      ],
+      "shaped/wayfarerBoots": [
+        {
+          "url": "/ashen-reach/human-shape-v1/wayfarerBoots-daa3552b9c57.bin",
+          "sha256": "3e1d65205082141884106075680f045d7b2373e9602c82fa4f874f8984aa6a0b"
+        },
+        {
+          "url": "/ashen-reach/human-shape-v1/wayfarerBoots-compact-badc235310a5.bin",
+          "sha256": "74d72e1130e5fc27914b4f0c956f463a653ef66363c5975d26279ec90a530ca6"
+        }
+      ],
+      "shaped/duskguardGreaves": [
+        {
+          "url": "/ashen-reach/human-shape-v1/duskguardGreaves-7fec0024072b.bin",
+          "sha256": "091ef609dbf2dd5b9c9d7f6c662eb66a00f0d9262bab6753bdeaa2f196663c1e"
+        },
+        {
+          "url": "/ashen-reach/human-shape-v1/duskguardGreaves-7fec0024072b.bin",
+          "sha256": "091ef609dbf2dd5b9c9d7f6c662eb66a00f0d9262bab6753bdeaa2f196663c1e"
+        }
+      ],
+      "undead/wayfarerBoots": [
+        {
+          "url": "/ashen-reach/equipment-undead/wayfarerBoots-a2e61858969e.glb",
+          "sha256": "a2e61858969e38dc07e895c2127a9fef9924bea8373d1b659f21bb2711bdac62"
+        }
+      ],
+      "undead/duskguardGreaves": [
+        {
+          "url": "/ashen-reach/equipment-undead/duskguardGreaves-979dad0c170c.glb",
+          "sha256": "979dad0c170cfa19c37fd371de4fa3533d6f41cd6134cd5c14db5fdcb2c0f9ba"
+        }
+      ],
+      "starter/wayfarerBoots": [
+        {
+          "url": "/ashen-reach/startup/character/wayfarerBoots-9dd7133af9dc.bin",
+          "sha256": "dfce594f2e2187f25703b185f843d9f47c43481aa18ff320f940b6fe651dd8a4"
+        }
+      ],
+      "starter/duskguardGreaves": [
+        {
+          "url": "/ashen-reach/equipment/duskguardGreaves-2f96cb31cf35.glb",
+          "sha256": "2f96cb31cf3523920a25a5ba53efe526c191ed50c59ef0f69b7b7b043f815b18"
+        }
+      ]
+    }
+  },
+  "capture": {
+    "version": 1,
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "devicePixelRatio": 1,
+    "canvas": {
+      "width": 1280,
+      "height": 720,
+      "cssWidth": 1280,
+      "cssHeight": 720
+    },
+    "sourceFrame": {
+      "width": 1280,
+      "height": 720
+    },
+    "elapsedSeconds": 32.98112607002258,
+    "encoded": {
+      "width": 1280,
+      "height": 720,
+      "duration": 32.980638,
+      "sampleAspectRatio": "1:1",
+      "rotation": 0,
+      "codec": "h264"
+    },
+    "receivedFrames": 985,
+    "reorderedFrames": 0
+  },
+  "media": {
+    "file": ".cache/character-mmo/boot-forefoot-2026-10-07/canonical-motion/motion.mp4",
+    "bytes": 31443153,
+    "sha256": "6892cdd6662369a254a9e2e29e4335ef65d678b137566e08d1ba417b4addf7a1",
+    "deliveryPending": false,
+    "ve": {
+      "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/boot-forefoot-2026-10-07/motion.mp4",
+      "checks": "ve-checks.json",
+      "uploadExitCode": 0,
+      "identicalBytes": true
+    },
+    "telegram": {
+      "messageId": 881,
+      "checks": "telegram.json",
+      "sendExitCode": 0,
+      "verifiedDimensions": [
+        1280,
+        720
+      ]
+    },
+    "newClientInlineFullscreenAcceptance": false,
+    "currentPhysicalIphoneAcceptance": false
+  },
+  "rootVisualReview": {
+    "actualMp4Reviewed": true,
+    "normalAndHalfSpeed": true,
+    "sameCameraComparisons": [
+      "prime-tall-slender-wayfarerBoots-front",
+      "undead-wayfarerBoots-side"
+    ],
+    "accepted": "Focused reduction of Human toe cavity and Undead vamp gap",
+    "remaining": [
+      "leather pleats",
+      "cuff/strap overlap",
+      "aliasing"
+    ],
+    "notCompleteMixedFitAcceptance": true
+  },
+  "startupPayload": {
+    "maximumCompactBytes": 2103397,
+    "qualifiedProductionCompactBytes": 2102724,
+    "deltaBytes": 673,
+    "fixture": {
+      "schema": 1,
+      "scope": "Unique compact body/clothing transfer bytes; excludes common code, world, manifests and procedural props",
+      "enumerated": 12096,
+      "valid": 10584,
+      "profiles": 4,
+      "maximum": {
+        "profile": "prime-ponytail",
+        "components": {
+          "head": "human-prime-v1",
+          "hair": "human-ponytail01-v1"
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "graveweaverSkirt",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "graveweaverStaff",
+          "offHand": "graveweaverBook",
+          "shoulders": "bastionShoulders"
+        },
+        "bytes": 2103397,
+        "resources": [
+          {
+            "id": "body",
+            "url": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+            "bytes": 1013447
+          },
+          {
+            "id": "duskguardCuirass",
+            "url": "/ashen-reach/human-shape-v1/duskguardCuirass-87f33adb1a29.bin",
+            "bytes": 357832
+          },
+          {
+            "id": "graveweaverSkirt",
+            "url": "/ashen-reach/human-shape-v1/graveweaverSkirt-compact-f52f181bec28.bin",
+            "bytes": 181723
+          },
+          {
+            "id": "duskguardGreaves",
+            "url": "/ashen-reach/human-shape-v1/duskguardGreaves-7fec0024072b.bin",
+            "bytes": 272426
+          },
+          {
+            "id": "duskguardVambraces",
+            "url": "/ashen-reach/human-shape-v1/duskguardVambraces-b67e2bcbac26.bin",
+            "bytes": 194817
+          },
+          {
+            "id": "bastionShoulders",
+            "url": "/ashen-reach/human-shape-v1/bastionShoulders-f494b2e91fe7.bin",
+            "bytes": 83152
+          }
+        ],
+        "worn": 7
+      },
+      "conditions": {
+        "deferCoveredHair": true
+      }
+    },
+    "notTimingEvidence": true
+  },
+  "cleanup": {
+    "auditedAt": "2026-10-08T00:00:59.217327+00:00",
+    "ownedProcesses": [
+      {
+        "pid": 12439,
+        "gone": true,
+        "remainingCommand": null
+      },
+      {
+        "pid": 12440,
+        "gone": true,
+        "remainingCommand": null
+      },
+      {
+        "pid": 12441,
+        "gone": true,
+        "remainingCommand": null
+      },
+      {
+        "pid": 12447,
+        "gone": true,
+        "remainingCommand": null
+      },
+      {
+        "pid": 17120,
+        "gone": true,
+        "remainingCommand": null
+      },
+      {
+        "pid": 40826,
+        "gone": true,
+        "remainingCommand": null
+      },
+      {
+        "pid": 41538,
+        "gone": true,
+        "remainingCommand": null
+      },
+      {
+        "pid": 43013,
+        "gone": true,
+        "remainingCommand": null
+      },
+      {
+        "pid": 46110,
+        "gone": true,
+        "remainingCommand": null
+      },
+      {
+        "pid": 46119,
+        "gone": true,
+        "remainingCommand": null
+      },
+      {
+        "pid": 46166,
+        "gone": true,
+        "remainingCommand": null
+      },
+      {
+        "pid": 46295,
+        "gone": true,
+        "remainingCommand": null
+      },
+      {
+        "pid": 46300,
+        "gone": true,
+        "remainingCommand": null
+      },
+      {
+        "pid": 59782,
+        "gone": true,
+        "remainingCommand": null
+      },
+      {
+        "pid": 59784,
+        "gone": true,
+        "remainingCommand": null
+      },
+      {
+        "pid": 60804,
+        "gone": true,
+        "remainingCommand": null
+      },
+      {
+        "pid": 62186,
+        "gone": true,
+        "remainingCommand": null
+      },
+      {
+        "pid": 62244,
+        "gone": true,
+        "remainingCommand": null
+      },
+      {
+        "pid": 62265,
+        "gone": true,
+        "remainingCommand": null
+      },
+      {
+        "pid": 62271,
+        "gone": true,
+        "remainingCommand": null
+      },
+      {
+        "pid": 67622,
+        "gone": true,
+        "remainingCommand": null
+      },
+      {
+        "pid": 69912,
+        "gone": true,
+        "remainingCommand": null
+      }
+    ],
+    "portsFree": [
+      5173,
+      10037,
+      7074,
+      7075
+    ],
+    "rootMediaReview": {
+      "owner": "root",
+      "browserPid": 2931,
+      "tabId": "1147995892",
+      "url": "http://127.0.0.1:7075/motion.mp4",
+      "serverPid": 69912,
+      "port": 7075,
+      "purpose": "Canonical actual MP4 review only; no game renderer/no FPS",
+      "active": false,
+      "openedAfterGameCleanup": true,
+      "tabClosed": true,
+      "serverTermination": "SIGTERM after reviewed canonical MP4",
+      "closedAt": "2026-10-07T23:59:29.033195+00:00"
+    },
+    "ownedGameTabsClosed": true,
+    "ownedMediaTabClosed": true,
+    "userEdgeAndOrcaPreserved": true
+  },
+  "production": {
+    "unchangedByThisPass": true,
+    "source": "7d00c56c06f02899e2319ffdddea97728013c0b1",
+    "pages": "5723a4ab-5dfd-4902-959b-7496948ea51f",
+    "releaseHold": "Rejected 514fe898 canonical sole preview required-texture failure"
+  },
+  "remainingGoalExits": [
+    "required-texture failure in rejected canonical sole preview",
+    "original 14/60 preview fetch failures",
+    "original 362 ms post-screenshot input upper-bound cause",
+    "current physical iPhone acceptance"
+  ],
+  "rawEvidenceCache": ".cache/character-mmo/boot-forefoot-2026-10-07",
+  "operationsCliNote": "Initial operations CLI reached its turn cap after successful capture; encoding/cleanup resumed only. All declared native child operations exit 0."
+}

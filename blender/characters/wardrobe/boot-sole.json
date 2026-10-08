@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "id": "wayfarer-sole",
-  "revision": 1,
-  "status": "native audition reviewed; canonical publication and production acceptance pending",
+  "revision": 2,
+  "status": "sole and focused forefoot native auditions reviewed; canonical forefoot publication and production acceptance pending",
   "authored": {
     "source": "blender/characters/sources/human-catalogue/wayfarerBoots.glb",
     "sha256": "0f4091ff26d40cf3a3567b8770105f51b79a346caa21ead40577391704f81ae2"
@@ -28,6 +28,14 @@
     "fadeEndM": 0.025,
     "belowFootM": 0.006,
     "authoredHeightScale": 1.2
+  },
+  "forefoot": {
+    "minY": 0.018,
+    "fullFromY": 0.025,
+    "fullToY": 0.06,
+    "maxY": 0.08,
+    "minZ": 0.1,
+    "fullFromZ": 0.14
   },
   "sourceRights": "Accepted fitted derivatives of vendored CC0 MakeHuman suits02 footwear; preserve the existing native Tripo/Mixamo body/rig grants and documented limitations. No new body or rig."
 }

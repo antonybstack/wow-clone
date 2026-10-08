@@ -1,0 +1,46 @@
+{
+  "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/boot-forefoot-2026-10-07/motion.mp4",
+  "get200": {
+    "statusLine": "HTTP/2 200 ",
+    "headers": {
+      "content-type": "video/mp4",
+      "content-length": "31443153",
+      "accept-ranges": "bytes",
+      "etag": "\"3de8bd64b1633254a5897cff64d74e76\""
+    }
+  },
+  "range206": {
+    "statusLine": "HTTP/2 206 ",
+    "headers": {
+      "content-type": "video/mp4",
+      "content-length": "1024",
+      "content-range": "bytes 0-1023/31443153",
+      "etag": "\"3de8bd64b1633254a5897cff64d74e76\""
+    },
+    "bodyBytes": 1024
+  },
+  "fullGet": {
+    "statusLine": "HTTP/2 200 ",
+    "headers": {
+      "content-type": "video/mp4",
+      "content-length": "31443153",
+      "accept-ranges": "bytes",
+      "etag": "\"3de8bd64b1633254a5897cff64d74e76\""
+    },
+    "bytes": 31443153,
+    "sha256": "6892cdd6662369a254a9e2e29e4335ef65d678b137566e08d1ba417b4addf7a1"
+  },
+  "local": {
+    "bytes": 31443153,
+    "sha256": "6892cdd6662369a254a9e2e29e4335ef65d678b137566e08d1ba417b4addf7a1"
+  },
+  "pass": {
+    "http200": true,
+    "contentType": true,
+    "contentLength": true,
+    "shaMatch": true,
+    "range206": true,
+    "contentRange": true,
+    "rangeBodyBytes": true
+  }
+}
