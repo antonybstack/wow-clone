@@ -9,7 +9,11 @@ pushed. Release gates remain required before production promotion.
 
 ## Current execution order — 2026-10-08
 
-The full five-priority goal remains active. Production **5723a4ab / 7d00c56**
+The full five-priority goal is **blocked, not complete**, as of 2026-10-08
+12:57 UTC after three consecutive no-action audits. Physical-device acceptance
+and the unproved startup/body failure cause remain open; bounded performance/fit
+arms offer no new actionable lead. No owned renderer or operation is running.
+The original requirements below remain unchanged. Production **5723a4ab / 7d00c56**
 now delivers the accepted startup/audio/camera work and Fieldcoat: all 552 checks,
 three entries, all 80 cold starts and nine native phases pass. Worst first play
 878.2 ms; fifteen settled route windows 202.6–232.6 FPS, maximum p99 6.2 ms,

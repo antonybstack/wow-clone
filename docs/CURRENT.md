@@ -2,9 +2,14 @@
 
 Updated **2026-10-08**. Read this before choosing work. The latest user request
 controls scope; historical milestones are evidence, not an active task queue.
-The native goal **“next 5 priorities” remains active**. Its original acceptance
+The native goal **“next 5 priorities” is blocked**, not complete. Its original acceptance
 requirements remain in the [five-priority plan](plans/character-mmo/five-priorities-2026-10-06.md).
 Current physical-device acceptance and unexplained reliability tails are open.
+Three consecutive no-action audits conclude on 2026-10-08 at 12:57 UTC: no
+physical iPhone, no new actionable startup failure or demonstrated fit/performance
+lead, and no owned live job or renderer. Native Pages inventory confirms production
+5723a4ab / 7d00c56 unchanged. Resume from actual failure evidence or available
+physical hardware; do not repeat exhausted campaigns to keep the goal active.
 
 ## Production and accepted work
 
