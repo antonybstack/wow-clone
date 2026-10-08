@@ -1,0 +1,67 @@
+[
+  {
+    "name": "ve-upload",
+    "command": [
+      "bash",
+      "scripts/ve-upload.sh",
+      "/Users/antbly/dev/wow-clone/.cache/character-mmo/boot-ankle-2026-10-07/canonical-motion/motion.mp4",
+      "wow-clone/ashen-reach/boot-straps-2026-10-07/75a371ad847b-motion.mp4"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 9.271,
+    "pid": 86489,
+    "wrapperPid": 86487,
+    "log": ".cache/character-mmo/boot-ankle-2026-10-07/ve-upload.log"
+  },
+  {
+    "name": "ve-full-get",
+    "command": [
+      "curl",
+      "-sS",
+      "-D",
+      "/Users/antbly/dev/wow-clone/.cache/character-mmo/boot-ankle-2026-10-07/ve-get.headers",
+      "-o",
+      "/Users/antbly/dev/wow-clone/.cache/character-mmo/boot-ankle-2026-10-07/ve-full-get.mp4",
+      "https://ve.sparkify.dev/wow-clone/ashen-reach/boot-straps-2026-10-07/75a371ad847b-motion.mp4"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 1.165,
+    "pid": 86772,
+    "wrapperPid": 86487,
+    "log": ".cache/character-mmo/boot-ankle-2026-10-07/ve-full-get.log"
+  },
+  {
+    "name": "ve-range-get",
+    "command": [
+      "curl",
+      "-sS",
+      "-D",
+      "/Users/antbly/dev/wow-clone/.cache/character-mmo/boot-ankle-2026-10-07/ve-range.headers",
+      "-o",
+      "/Users/antbly/dev/wow-clone/.cache/character-mmo/boot-ankle-2026-10-07/ve-range-1024.bin",
+      "-H",
+      "Range: bytes=0-1023",
+      "https://ve.sparkify.dev/wow-clone/ashen-reach/boot-straps-2026-10-07/75a371ad847b-motion.mp4"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 0.13,
+    "pid": 86793,
+    "wrapperPid": 86487,
+    "log": ".cache/character-mmo/boot-ankle-2026-10-07/ve-range-get.log"
+  },
+  {
+    "name": "tg-file",
+    "command": [
+      "bash",
+      "scripts/tg",
+      "file",
+      "/Users/antbly/dev/wow-clone/.cache/character-mmo/boot-ankle-2026-10-07/canonical-motion/motion.mp4",
+      "Boot strap clearance \u2014 local canonical build. Four authored straps per boot gain 6 mm radial clearance; leather shells, source rig and weights are preserved. Human endpoints + neutral Orc/Undead, Wayfarer/Duskguard; ordinary Havok sprint/jump and Undead foot restoration. Root reviewed normal/half-speed motion. Cuff/knot overlap, pleats and the Orc ankle shell cavity remain. 1280\u00d7720, square pixels. No new FPS/startup claim; production 5723a4ab is unchanged and release hold stays open.\nVE: https://ve.sparkify.dev/wow-clone/ashen-reach/boot-straps-2026-10-07/75a371ad847b-motion.mp4"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 16.38,
+    "pid": 86794,
+    "wrapperPid": 86487,
+    "log": ".cache/character-mmo/boot-ankle-2026-10-07/tg-file.log"
+  }
+]

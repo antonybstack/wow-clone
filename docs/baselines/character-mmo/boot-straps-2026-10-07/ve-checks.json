@@ -1,0 +1,46 @@
+{
+  "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/boot-straps-2026-10-07/75a371ad847b-motion.mp4",
+  "get200": {
+    "statusLine": "HTTP/2 200 ",
+    "headers": {
+      "content-type": "video/mp4",
+      "content-length": "31686914",
+      "accept-ranges": "bytes",
+      "etag": "\"62ecde3fbf04f598f4ee89f96d88087e\""
+    }
+  },
+  "range206": {
+    "statusLine": "HTTP/2 206 ",
+    "headers": {
+      "content-type": "video/mp4",
+      "content-length": "1024",
+      "content-range": "bytes 0-1023/31686914",
+      "etag": "\"62ecde3fbf04f598f4ee89f96d88087e\""
+    },
+    "bodyBytes": 1024
+  },
+  "fullGet": {
+    "statusLine": "HTTP/2 200 ",
+    "headers": {
+      "content-type": "video/mp4",
+      "content-length": "31686914",
+      "accept-ranges": "bytes",
+      "etag": "\"62ecde3fbf04f598f4ee89f96d88087e\""
+    },
+    "bytes": 31686914,
+    "sha256": "75a371ad847b3aa8649f250eba76fdf22e9657a4f03c3c0cccbbdfbada304cfc"
+  },
+  "local": {
+    "bytes": 31686914,
+    "sha256": "75a371ad847b3aa8649f250eba76fdf22e9657a4f03c3c0cccbbdfbada304cfc"
+  },
+  "pass": {
+    "http200": true,
+    "contentType": true,
+    "contentLength": true,
+    "shaMatch": true,
+    "range206": true,
+    "contentRange": true,
+    "rangeBodyBytes": true
+  }
+}

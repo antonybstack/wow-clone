@@ -125,6 +125,19 @@ only: production stays **5723a4ab**, release hold
 and all original exits remain open. Next productive feature package is the
 retained cuff/strap fit while startup cause evidence remains unresolved.
 
+The [focused strap clearance](plans/character-mmo/results/boot-straps-2026-10-07.md)
+now moves four authored straps per boot 6 mm radially on Human/Undead/Orc through
+the existing offline pipeline. Shell geometry, weights and source rigs remain
+exact; greave underlayers and all derivatives are prepared. Character 231/231,
+equipment 115/115, native codec controls 2/2 and complete 51-piece native bounds
+pass. Root reviewed the actual canonical MP4 at normal/half speed and matching
+Human idle frames. Telegram **883** and identical VE are delivered; direct VE
+playback passes. Maximum compact payload is **2,103,172 bytes**. Knot/cuff overlap,
+pleats, aliasing and the inherited Orc ankle shell cavity remain. Local focused
+acceptance only: no new public startup/FPS result or Pages promotion; production
+and the reliability hold are unchanged. Next fit work should address remaining
+shell/cuff and plate fit, then neck/waist/wrist combinations.
+
 ### Next five priorities, in execution order
 
 1. **Resolve the startup failure, then release the canonical boot correction.**
@@ -145,7 +158,7 @@ retained cuff/strap fit while startup cause evidence remains unresolved.
    windows separately from settled FPS. The measured first-sound constructor cost
    is 179 ms. Change demonstrated bottlenecks only; queue-eight and silent-output
    trials remain rejected. A gain must preserve startup, visuals and memory limits.
-3. **Finish mixed armor fit.** Start with retained cuff/strap overlap, then inspect
+3. **Finish mixed armor fit.** Start with retained shell/cuff and plate fit, then inspect
    neck/waist/wrist/ankle combinations at Human shape endpoints and neutral
    Orc/Undead. Fix a demonstrated seam per pass through the existing authored-piece
    pipeline. Reuse reviewed fixtures; require live motion for clipping, seams,

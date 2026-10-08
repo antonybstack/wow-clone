@@ -1,0 +1,181 @@
+{
+  "ownedPids": [
+    {
+      "pid": 10534,
+      "alive": false
+    },
+    {
+      "pid": 10547,
+      "alive": false
+    },
+    {
+      "pid": 10548,
+      "alive": false
+    },
+    {
+      "pid": 10574,
+      "alive": false
+    },
+    {
+      "pid": 12254,
+      "alive": false
+    },
+    {
+      "pid": 13918,
+      "alive": false
+    },
+    {
+      "pid": 14409,
+      "alive": false
+    },
+    {
+      "pid": 18577,
+      "alive": false
+    },
+    {
+      "pid": 42977,
+      "alive": false
+    },
+    {
+      "pid": 46656,
+      "alive": false
+    },
+    {
+      "pid": 46657,
+      "alive": false
+    },
+    {
+      "pid": 46840,
+      "alive": false
+    },
+    {
+      "pid": 46841,
+      "alive": false
+    },
+    {
+      "pid": 48031,
+      "alive": false
+    },
+    {
+      "pid": 48032,
+      "alive": false
+    },
+    {
+      "pid": 50195,
+      "alive": false
+    },
+    {
+      "pid": 50196,
+      "alive": false
+    },
+    {
+      "pid": 50198,
+      "alive": false
+    },
+    {
+      "pid": 50239,
+      "alive": false
+    },
+    {
+      "pid": 50245,
+      "alive": false
+    },
+    {
+      "pid": 50250,
+      "alive": false
+    },
+    {
+      "pid": 64128,
+      "alive": false
+    },
+    {
+      "pid": 64132,
+      "alive": false
+    },
+    {
+      "pid": 65325,
+      "alive": false
+    },
+    {
+      "pid": 65333,
+      "alive": false
+    },
+    {
+      "pid": 66277,
+      "alive": false
+    },
+    {
+      "pid": 66278,
+      "alive": false
+    },
+    {
+      "pid": 66357,
+      "alive": false
+    },
+    {
+      "pid": 66358,
+      "alive": false
+    },
+    {
+      "pid": 66402,
+      "alive": false
+    },
+    {
+      "pid": 68765,
+      "alive": false
+    },
+    {
+      "pid": 68771,
+      "alive": false
+    },
+    {
+      "pid": 70749,
+      "alive": false
+    },
+    {
+      "pid": 81546,
+      "alive": false
+    },
+    {
+      "pid": 86487,
+      "alive": false
+    },
+    {
+      "pid": 86489,
+      "alive": false
+    },
+    {
+      "pid": 86772,
+      "alive": false
+    },
+    {
+      "pid": 86793,
+      "alive": false
+    },
+    {
+      "pid": 86794,
+      "alive": false
+    }
+  ],
+  "ports": {
+    "5173": [],
+    "10037": [],
+    "7074": [],
+    "7075": []
+  },
+  "googleChromeParents": [],
+  "edge": {
+    "pid": 2931,
+    "alive": true,
+    "userTabs": 12,
+    "ownedReviewTabsPresent": [],
+    "ashenPages": []
+  },
+  "orca": {
+    "pid": 98938,
+    "alive": true,
+    "preserved": true
+  },
+  "allOwnedInstancesClosed": true,
+  "performanceMeasurementMade": false
+}

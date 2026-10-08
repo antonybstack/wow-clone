@@ -167,6 +167,22 @@ Measure foreground frame times separately from recording, after warm-up. Report 
 
 Runtime evidence goes under `ve-capture/ashen-reach/<pass>/`. A visual cycle is not delivered until a reviewed live **GIF or MP4** is on Telegram (`bash scripts/tg file <clip.mp4> "<caption>"`; `scripts/ashen-reach/record-vistas.mjs` records the world/lighting route, the `record-*.mjs` scripts cover character and spell work). Run `bash scripts/tg record <clip.mp4>` after committing so `.claude/telegram-deliveries.log` points at the finished commit and the Stop gate stops asking. Stills are for review and may accompany the clip; they are not the deliverable. Do not expose credentials. Poll at sensible boundaries while active; no monitoring persists after the turn ends. R2 publication is optional when separately useful/authorized, not a substitute for the Telegram motion file.
 
+### Review an MP4 locally
+
+Reuse the installed [Vite preview command](https://vite.dev/guide/cli.html#vite-preview)
+for a capture directory containing only media and receipts:
+
+```sh
+node node_modules/vite/bin/vite.js preview --host 127.0.0.1 --port 7075 --strictPort --outDir .cache/<task>/<capture>
+```
+
+Open the exact MP4 URL, record the server PID and owned review tab, and close both
+after review. Check advancing playback and seekability before reviewing chapters.
+In the October 7 strap trial, Python's basic HTTP server delivered the whole file
+but reported an empty seekable interval: clicking the timeline left a stale frame.
+Installed Vite preview restored byte-range seeking. Do not mistake a moved scrubber
+for a decoded frame, or leave the video playing during a benchmark.
+
 ## Share a public video URL
 
 The VE host is **`https://ve.sparkify.dev`**, backed by Cloudflare R2 bucket `fardel-ve`. A Telegram attachment does not automatically create a URL there. When public sharing is authorized, upload the reviewed video with the existing helper from `the repository root`:

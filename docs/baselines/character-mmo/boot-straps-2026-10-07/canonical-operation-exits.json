@@ -1,0 +1,91 @@
+[
+  {
+    "name": "prepare-boot-sole",
+    "command": [
+      "node",
+      "scripts/character-assets/prepare-boot-sole.mjs",
+      "--publish",
+      "--straps"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 6.147,
+    "pid": 46657,
+    "wrapperPid": 46656,
+    "log": ".cache/character-mmo/boot-ankle-2026-10-07/prepare-boot-straps-corrected.log"
+  },
+  {
+    "name": "prepare-derived",
+    "command": [
+      "python3",
+      ".cache/character-mmo/boot-ankle-2026-10-07/prepare-derived.py"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 40.838,
+    "pid": 46841,
+    "wrapperPid": 46840,
+    "log": ".cache/character-mmo/boot-ankle-2026-10-07/prepare-derived-corrected.log"
+  },
+  {
+    "name": "test-character",
+    "command": [
+      "npm",
+      "run",
+      "test:character"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 25.591,
+    "pid": 48032,
+    "wrapperPid": 48031,
+    "log": ".cache/character-mmo/boot-ankle-2026-10-07/test-character-corrected.log"
+  },
+  {
+    "name": "prepare-native",
+    "command": [
+      "node",
+      ".cache/character-mmo/boot-ankle-2026-10-07/prepare-native.mjs"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 472.631,
+    "pid": 50196,
+    "wrapperPid": 50195,
+    "log": ".cache/character-mmo/boot-ankle-2026-10-07/prepare-native-corrected.log"
+  },
+  {
+    "name": "build-only",
+    "command": [
+      "bash",
+      "scripts/deploy-pages.sh"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 6.697,
+    "pid": 65333,
+    "wrapperPid": 65325,
+    "log": ".cache/character-mmo/boot-ankle-2026-10-07/build-only-corrected.log"
+  },
+  {
+    "name": "canonical-motion",
+    "command": [
+      "node",
+      "scripts/character-assets/record-boot-fit-motion.mjs"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 52.011,
+    "pid": 66278,
+    "wrapperPid": 66277,
+    "log": ".cache/character-mmo/boot-ankle-2026-10-07/canonical-motion-corrected.log"
+  },
+  {
+    "name": "encode",
+    "command": [
+      "python3",
+      "scripts/encode-capture.py",
+      ".cache/character-mmo/boot-ankle-2026-10-07/canonical-motion",
+      ".cache/character-mmo/boot-ankle-2026-10-07/canonical-motion/motion.mp4"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 7.59,
+    "pid": 68771,
+    "wrapperPid": 68765,
+    "log": ".cache/character-mmo/boot-ankle-2026-10-07/encode-corrected.log"
+  }
+]

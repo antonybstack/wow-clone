@@ -1,0 +1,1173 @@
+{
+  "schema": 1,
+  "date": "2026-10-07",
+  "scope": "Focused offline 6 mm XZ boot-strap clearance; local canonical acceptance",
+  "captureSource": {
+    "headAtCapture": "50248001c7caacb0bcdf2ac59b9ffcd3866d599b",
+    "productInputs": {
+      "sha256": "55ea4549acdf72b917983b36a05220afd924fa98dbb8687ba80386968e83d722",
+      "files": 1180,
+      "uncommitted": 43
+    },
+    "mustMatchFinishedProductInputs": true
+  },
+  "tests": {
+    "character": {
+      "passed": 231,
+      "failed": 0,
+      "commandLog": "test-character-corrected.log"
+    },
+    "equipment": {
+      "passed": 115,
+      "failed": 0,
+      "commandLog": "equipment-tests-native.log"
+    },
+    "triangleCodec": {
+      "passed": 2,
+      "failed": 0,
+      "commandLog": "triangle-contract-tests-corrected.log"
+    }
+  },
+  "operations": [
+    {
+      "name": "prepare-boot-sole",
+      "command": [
+        "node",
+        "scripts/character-assets/prepare-boot-sole.mjs",
+        "--publish",
+        "--straps"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 6.147,
+      "pid": 46657,
+      "wrapperPid": 46656,
+      "log": ".cache/character-mmo/boot-ankle-2026-10-07/prepare-boot-straps-corrected.log"
+    },
+    {
+      "name": "prepare-derived",
+      "command": [
+        "python3",
+        ".cache/character-mmo/boot-ankle-2026-10-07/prepare-derived.py"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 40.838,
+      "pid": 46841,
+      "wrapperPid": 46840,
+      "log": ".cache/character-mmo/boot-ankle-2026-10-07/prepare-derived-corrected.log"
+    },
+    {
+      "name": "test-character",
+      "command": [
+        "npm",
+        "run",
+        "test:character"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 25.591,
+      "pid": 48032,
+      "wrapperPid": 48031,
+      "log": ".cache/character-mmo/boot-ankle-2026-10-07/test-character-corrected.log"
+    },
+    {
+      "name": "prepare-native",
+      "command": [
+        "node",
+        ".cache/character-mmo/boot-ankle-2026-10-07/prepare-native.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 472.631,
+      "pid": 50196,
+      "wrapperPid": 50195,
+      "log": ".cache/character-mmo/boot-ankle-2026-10-07/prepare-native-corrected.log"
+    },
+    {
+      "name": "build-only",
+      "command": [
+        "bash",
+        "scripts/deploy-pages.sh"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 6.697,
+      "pid": 65333,
+      "wrapperPid": 65325,
+      "log": ".cache/character-mmo/boot-ankle-2026-10-07/build-only-corrected.log"
+    },
+    {
+      "name": "canonical-motion",
+      "command": [
+        "node",
+        "scripts/character-assets/record-boot-fit-motion.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 52.011,
+      "pid": 66278,
+      "wrapperPid": 66277,
+      "log": ".cache/character-mmo/boot-ankle-2026-10-07/canonical-motion-corrected.log"
+    },
+    {
+      "name": "encode",
+      "command": [
+        "python3",
+        "scripts/encode-capture.py",
+        ".cache/character-mmo/boot-ankle-2026-10-07/canonical-motion",
+        ".cache/character-mmo/boot-ankle-2026-10-07/canonical-motion/motion.mp4"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 7.59,
+      "pid": 68771,
+      "wrapperPid": 68765,
+      "log": ".cache/character-mmo/boot-ankle-2026-10-07/encode-corrected.log"
+    }
+  ],
+  "builder": {
+    "descriptor": {
+      "path": "blender/characters/wardrobe/boot-straps.json",
+      "sha256": "634c4345e3e0928ac4e9ed166d7699c0863e617953b81b6002b63e0edf4dbe02"
+    },
+    "fits": [
+      {
+        "race": "human",
+        "artifact": {
+          "file": ".cache/character-mmo/boot-ankle-2026-10-07/pinned-verified/human/wayfarerBoots.glb",
+          "bytes": 242740,
+          "sha256": "52c5c2f6df2b0234f4920d08635556469167446ef18e913a38adc41416d3e680"
+        },
+        "joints": 65,
+        "paletteDelta": 0,
+        "inverseBindExact": true,
+        "shellArraysExact": true,
+        "skinAndUvArraysExact": true,
+        "strapVertices": 856,
+        "maxDisplacementM": 0.006000007367359827
+      },
+      {
+        "race": "undead",
+        "artifact": {
+          "file": ".cache/character-mmo/boot-ankle-2026-10-07/pinned-verified/undead/wayfarerBoots.glb",
+          "bytes": 242344,
+          "sha256": "96df888598dd48ea09871a605d573a1538581225d690cb95a4f3bca646590da5"
+        },
+        "joints": 65,
+        "paletteDelta": 0,
+        "inverseBindExact": true,
+        "shellArraysExact": true,
+        "skinAndUvArraysExact": true,
+        "strapVertices": 856,
+        "maxDisplacementM": 0.006000013920260351
+      },
+      {
+        "race": "orc",
+        "artifact": {
+          "file": ".cache/character-mmo/boot-ankle-2026-10-07/pinned-verified/orc/wayfarerBoots.glb",
+          "bytes": 339080,
+          "sha256": "e07c5fab32bc1a6403c4cd482b136e859d82b1d622a3af7f3667277b6bbfabf0"
+        },
+        "joints": 65,
+        "paletteDelta": 0,
+        "inverseBindExact": true,
+        "shellArraysExact": true,
+        "skinAndUvArraysExact": true,
+        "strapVertices": 856,
+        "maxDisplacementM": 0.006000014357144803
+      }
+    ]
+  },
+  "canonicalPublication": {
+    "byteIdenticalRebuild": true,
+    "productionReleased": false,
+    "greaveCompiler": [
+      {
+        "race": "human",
+        "id": "duskguardGreaves",
+        "source": {
+          "path": ".cache/character-mmo/wardrobe-v1/duskguard/human/duskguardGreaves.glb",
+          "sha256": "171f8518a8718dedfbc6c8efe9b96ec36fc698a4930a1ed7072aeac65aed3953"
+        },
+        "artifact": {
+          "url": "/ashen-reach/equipment/duskguardGreaves-171f8518a871.glb",
+          "bytes": 249784,
+          "sha256": "171f8518a8718dedfbc6c8efe9b96ec36fc698a4930a1ed7072aeac65aed3953",
+          "meshes": [
+            "DuskguardBootUnderlayer",
+            "DuskguardGreaves"
+          ],
+          "fit": {
+            "body": "ashen-human",
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          }
+        },
+        "verification": {
+          "joints": 65,
+          "meshes": 2,
+          "primitives": 3,
+          "vertices": 3642,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.2892144024372101,
+              -0.006006903015077114,
+              -0.1525457799434662
+            ],
+            "max": [
+              0.2892993092536926,
+              0.4542638063430786,
+              0.1737712025642395
+            ],
+            "frame": "accepted body mesh"
+          }
+        },
+        "existingPlateArraysExact": true,
+        "reviewedUnderlayerArraysExact": true,
+        "existingPlateSemanticArraysExact": true,
+        "orderedWoundTrianglesExact": true,
+        "encodedReadbackArraysAndTrianglesVerified": true
+      },
+      {
+        "race": "undead",
+        "id": "duskguardGreaves",
+        "source": {
+          "path": ".cache/character-mmo/wardrobe-v1/duskguard/undead/duskguardGreaves.glb",
+          "sha256": "20cffe52ddaff4ddaea0da596f506e47e1c45dcb794d59943d42a04b03c7a1a2"
+        },
+        "artifact": {
+          "url": "/ashen-reach/equipment-undead/duskguardGreaves-20cffe52ddaf.glb",
+          "bytes": 249228,
+          "sha256": "20cffe52ddaff4ddaea0da596f506e47e1c45dcb794d59943d42a04b03c7a1a2",
+          "meshes": [
+            "DuskguardBootUnderlayer",
+            "DuskguardGreaves"
+          ],
+          "fit": {
+            "body": "ashen-undead",
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          }
+        },
+        "verification": {
+          "joints": 65,
+          "meshes": 2,
+          "primitives": 3,
+          "vertices": 3634,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.3074204921722412,
+              -0.005999705288559198,
+              -0.1521732658147812
+            ],
+            "max": [
+              0.3116702735424042,
+              0.5287650227546692,
+              0.18858177959918976
+            ],
+            "frame": "accepted body mesh"
+          }
+        },
+        "existingPlateArraysExact": true,
+        "reviewedUnderlayerArraysExact": true,
+        "existingPlateSemanticArraysExact": true,
+        "orderedWoundTrianglesExact": true,
+        "encodedReadbackArraysAndTrianglesVerified": true
+      },
+      {
+        "race": "orc",
+        "id": "duskguardGreaves",
+        "source": {
+          "path": ".cache/character-mmo/wardrobe-v1/duskguard/orc/duskguardGreaves.glb",
+          "sha256": "101e92bff2ca4f85d1abd4ecc653129e373df33ecd5d706904929b3bbdcce7cf"
+        },
+        "artifact": {
+          "url": "/ashen-reach/equipment-orc/duskguardGreaves-c35cde232655.glb",
+          "bytes": 249448,
+          "sha256": "c35cde232655dbf10a6bf1e86691c44368b5cdffb14327b855ea56cb1f0a2d5f",
+          "meshes": [
+            "DuskguardBootUnderlayer",
+            "DuskguardGreaves"
+          ],
+          "fit": {
+            "body": "ashen-orc",
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          }
+        },
+        "verification": {
+          "joints": 65,
+          "meshes": 2,
+          "primitives": 3,
+          "vertices": 3624,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.42377692461013794,
+              -0.030208483338356018,
+              -0.23749586939811707
+            ],
+            "max": [
+              0.42012640833854675,
+              0.5436902046203613,
+              0.31497976183891296
+            ],
+            "frame": "accepted body mesh"
+          }
+        },
+        "existingPlateArraysExact": false,
+        "reviewedUnderlayerArraysExact": true,
+        "existingPlateSemanticArraysExact": true,
+        "orderedWoundTrianglesExact": true,
+        "encodedReadbackArraysAndTrianglesVerified": true
+      }
+    ],
+    "publicationIsGlobalTransaction": false
+  },
+  "nativeBounds": {
+    "pieces": 51,
+    "completed": true,
+    "points": 162617865,
+    "escaped": 0,
+    "byteCache": {
+      "entries": 0,
+      "reservedBytes": 0,
+      "peakReservedBytes": 4496592,
+      "ceilingBytes": 8388608,
+      "leases": 0
+    }
+  },
+  "nativeMotion": {
+    "passed": true,
+    "cases": 10,
+    "errors": [],
+    "bareFootRestored": true,
+    "humanHavok": {
+      "before": {
+        "facing": 0,
+        "grounded": true,
+        "vy": 0,
+        "support": 2,
+        "speed": 0,
+        "vx": 0,
+        "vz": 0,
+        "castBlend": 0,
+        "jumps": 0,
+        "landings": 3,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": 0,
+          "y": 0.13344743919372556,
+          "z": -99.99809307349302
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 1.748,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": 2.7673559080997276,
+              "y": 1.2898030908246736,
+              "z": 13.759894220503877
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -1.0269028841686398,
+              "y": 1.351705111185955,
+              "z": 30.4862078904004
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": 0.8599520794270952,
+              "y": 1.5095350510988417,
+              "z": 49.20011134784317
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": -5.389581898504098,
+              "y": 2.4252037262148622,
+              "z": 62.26105215266974
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": 2.8821412658919043,
+              "y": 4.974048048428667,
+              "z": 85.33925485455715
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": -1.5061459627125848,
+              "y": 6.617532832511235,
+              "z": 110.59640503577555
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": -2.6894664896170557,
+              "y": 8.766932638085096,
+              "z": 126.26468660626493
+            }
+          }
+        ]
+      },
+      "after": {
+        "facing": 0,
+        "grounded": true,
+        "vy": 0.0207573305671234,
+        "support": 2,
+        "speed": 0,
+        "vx": 0,
+        "vz": 0,
+        "castBlend": 0,
+        "jumps": 1,
+        "landings": 4,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": -2.8749732047317553,
+          "y": 0.6284745044708252,
+          "z": -83.43025427708102
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 1.748,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": 2.7673559080997276,
+              "y": 1.2898030908246736,
+              "z": 13.759894220503877
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -3.485287442303366,
+              "y": 1.5804248227520348,
+              "z": 32.59353498056691
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": -0.804877540925271,
+              "y": 1.4699560502638425,
+              "z": 48.2625907537846
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": -2.3659831705914183,
+              "y": 2.3427942176219325,
+              "z": 59.6709786047941
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": 2.217851344137207,
+              "y": 5.23325209751366,
+              "z": 87.77316905211659
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": -3.083658879521832,
+              "y": 5.815153564105861,
+              "z": 108.43369217588108
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": -1.1896023918989134,
+              "y": 8.573659269725704,
+              "z": 124.97264085713338
+            }
+          }
+        ]
+      }
+    },
+    "undeadHavok": {
+      "before": {
+        "facing": 0,
+        "grounded": true,
+        "vy": 0.020716933969711193,
+        "support": 2,
+        "speed": 0,
+        "vx": 0,
+        "vz": 0,
+        "castBlend": 0,
+        "jumps": 1,
+        "landings": 4,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": -2.875059774570332,
+          "y": 0.6284698553085327,
+          "z": -83.43026761749051
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 1.748,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": 2.7673559080997276,
+              "y": 1.2898030908246736,
+              "z": 13.759894220503877
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -4.860485962719844,
+              "y": 1.670235948329382,
+              "z": 27.91833829052778
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": 3.1025761930590616,
+              "y": 1.565647357617284,
+              "z": 45.745734115250016
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": 2.0797187146586946,
+              "y": 2.4554000812596364,
+              "z": 61.73656446620113
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": -1.8146342394267436,
+              "y": 4.584399731011301,
+              "z": 86.14744535133588
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": 1.2270058129143862,
+              "y": 6.4444877065975765,
+              "z": 107.4065394303042
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": 2.546199574891673,
+              "y": 9.706906075777502,
+              "z": 126.40820503135255
+            }
+          }
+        ]
+      },
+      "after": {
+        "facing": 0,
+        "grounded": true,
+        "vy": 0,
+        "support": 2,
+        "speed": 0,
+        "vx": 0,
+        "vz": 0,
+        "castBlend": 0,
+        "jumps": 2,
+        "landings": 5,
+        "recoveries": 0,
+        "jumpInFlight": false,
+        "airTime": 0,
+        "position": {
+          "x": -2.968359862208276,
+          "y": 0.5471718318462372,
+          "z": -66.3025905620801
+        },
+        "usingPhysics": true,
+        "colliders": {
+          "meshCount": 717,
+          "boxCount": 678,
+          "skipped": 0,
+          "animatedCount": 7
+        },
+        "capsuleHeight": 1.748,
+        "animated": [
+          {
+            "id": "grave-shade-1",
+            "enabled": true,
+            "radius": 0.4368,
+            "pose": {
+              "x": 2.7673559080997276,
+              "y": 1.2898030908246736,
+              "z": 13.759894220503877
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "enabled": true,
+            "radius": 0.40319999999999995,
+            "pose": {
+              "x": -4.860485962719844,
+              "y": 1.670235948329382,
+              "z": 27.91833829052778
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "enabled": true,
+            "radius": 0.462,
+            "pose": {
+              "x": 6.65582247980993,
+              "y": 1.6131291989423406,
+              "z": 47.735172352872844
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "enabled": true,
+            "radius": 0.42,
+            "pose": {
+              "x": -0.12167574599065288,
+              "y": 2.537119726593642,
+              "z": 63.62594279217522
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "enabled": true,
+            "radius": 0.4326,
+            "pose": {
+              "x": 1.3562673674884669,
+              "y": 4.582786201036383,
+              "z": 83.41787220408355
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "enabled": true,
+            "radius": 0.4074,
+            "pose": {
+              "x": 0.5390904406593319,
+              "y": 6.540161962033559,
+              "z": 108.83489028983179
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "enabled": true,
+            "radius": 0.441,
+            "pose": {
+              "x": 1.30956796935664,
+              "y": 9.197022771205756,
+              "z": 128.4740903011137
+            }
+          }
+        ]
+      }
+    },
+    "assetResponses": [
+      {
+        "url": "http://127.0.0.1:7074/ashen-reach/startup/character/wayfarerBoots-90cd70fd0378.bin",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:7074/ashen-reach/human-shape-v1/wayfarerBoots-3c95286d7d35.bin",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:7074/ashen-reach/human-shape-v1/duskguardGreaves-e6a997aabb25.bin",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:7074/ashen-reach/human-shape-v1/duskguardGreaves-e6a997aabb25.bin",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:7074/ashen-reach/human-shape-v1/wayfarerBoots-3c95286d7d35.bin",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:7074/ashen-reach/equipment-orc/duskguardGreaves-c35cde232655.glb",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:7074/ashen-reach/equipment-orc/wayfarerBoots-e07c5fab32bc.glb",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:7074/ashen-reach/equipment-undead/wayfarerBoots-96df888598dd.glb",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:7074/ashen-reach/equipment-undead/duskguardGreaves-20cffe52ddaf.glb",
+        "status": 200
+      }
+    ]
+  },
+  "capture": {
+    "version": 1,
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "devicePixelRatio": 1,
+    "canvas": {
+      "width": 1280,
+      "height": 720,
+      "cssWidth": 1280,
+      "cssHeight": 720
+    },
+    "purpose": "Canonical boot sole/forefoot and Undead source-foot coverage in native Lite; diagnostic Armory + ordinary Havok traversal; no FPS",
+    "reorderedFrames": 2,
+    "receivedFrames": 999,
+    "elapsedSeconds": 33.33260989189148,
+    "sourceFrame": {
+      "width": 1280,
+      "height": 720
+    },
+    "encoded": {
+      "width": 1280,
+      "height": 720,
+      "duration": 33.332118,
+      "sampleAspectRatio": "1:1",
+      "rotation": 0,
+      "codec": "h264"
+    },
+    "frames": 999,
+    "media": {
+      "path": ".cache/character-mmo/boot-ankle-2026-10-07/canonical-motion/motion.mp4",
+      "bytes": 31686914,
+      "sha256": "75a371ad847b3aa8649f250eba76fdf22e9657a4f03c3c0cccbbdfbada304cfc"
+    }
+  },
+  "visualAcceptance": {
+    "artifactSha256": "75a371ad847b3aa8649f250eba76fdf22e9657a4f03c3c0cccbbdfbada304cfc",
+    "reviewedActualMp4": true,
+    "rates": [
+      1,
+      0.5
+    ],
+    "decodedChapters": [
+      "Human normal Havok sprint/jump",
+      "Human endpoint boot run",
+      "Orc Wayfarer/Duskguard run",
+      "Undead Duskguard run",
+      "Undead source-foot restoration at 29.071216s"
+    ],
+    "matchingIdleCameraComparison": [
+      "original-wayfarerBoots-side"
+    ],
+    "decision": "Accept focused 6 mm radial strap clearance locally. Remaining knot/cuff overlap, leather pleats, aliasing and inherited Orc shell cavity are not complete mixed-fit acceptance. No startup or FPS acceptance."
+  },
+  "startupPayload": {
+    "maximumCompactBytes": 2103172,
+    "priorLocalCompactBytes": 2103397,
+    "qualifiedProductionCompactBytes": 2102724,
+    "deltaFromPriorBytes": -225,
+    "deltaFromProductionBytes": 448,
+    "isTimingMeasurement": false
+  },
+  "heldGates": {
+    "production": "7d00c56 / 5723a4ab",
+    "pagesPromoted": false,
+    "newPublicStartupCohorts": false,
+    "newFpsMeasurements": false,
+    "startupReliabilityHoldCleared": false,
+    "physicalIphoneAccepted": false,
+    "allMixedFitAccepted": false
+  },
+  "failuresRetained": [
+    {
+      "evidence": "pinned-first.log",
+      "reason": "Incorrect guessed Orc body mesh; corrected to BodyExposed"
+    },
+    {
+      "evidence": "pinned-corrected.log",
+      "reason": "Older Orc primitive lacked factory deformation extras; declared its existing soft skin before unchanged strict checker"
+    },
+    {
+      "evidence": "pinned-final.log",
+      "reason": "Authored/current cyclic triangle representation mismatch; compare on existing independent canonical copy"
+    },
+    {
+      "evidence": "preview-receipt.json",
+      "nativeExit": 1,
+      "reason": "Final private preparation receipt path absent after assets written; verified all eight files and saved failure, without rewriting"
+    },
+    {
+      "evidence": "triangle-contract-tests.log",
+      "nativeExit": 1,
+      "reason": "Already-compressed idempotent fixture did not expose rotation; corrected to tracked pre-encoding source"
+    },
+    {
+      "evidence": "failed-first-publication-exits.json",
+      "nativeExit": 1,
+      "reason": "Compiler Orc triangle rotation failed exact indices after partial boot publication; strict codec allowance fixed, no game QA during partial state"
+    }
+  ],
+  "rawEvidence": ".cache/character-mmo/boot-ankle-2026-10-07",
+  "independentReviewer": "Grok 4.6/high; fresh read-only session; stills/reports only; root owns motion acceptance",
+  "delivery": {
+    "telegram": {
+      "ok": true,
+      "messageId": 883,
+      "expected": {
+        "width": 1280,
+        "height": 720,
+        "duration": 33.332118,
+        "sampleAspectRatio": "1:1",
+        "rotation": 0,
+        "codec": "h264"
+      },
+      "returned": {
+        "width": 1280,
+        "height": 720,
+        "duration": 34
+      },
+      "verified": true,
+      "file": "motion.mp4",
+      "sha256": "75a371ad847b3aa8649f250eba76fdf22e9657a4f03c3c0cccbbdfbada304cfc",
+      "sentAt": "2026-10-08T01:45:12.682720+00:00"
+    },
+    "ve": {
+      "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/boot-straps-2026-10-07/75a371ad847b-motion.mp4",
+      "get200": {
+        "statusLine": "HTTP/2 200 ",
+        "headers": {
+          "content-type": "video/mp4",
+          "content-length": "31686914",
+          "accept-ranges": "bytes",
+          "etag": "\"62ecde3fbf04f598f4ee89f96d88087e\""
+        }
+      },
+      "range206": {
+        "statusLine": "HTTP/2 206 ",
+        "headers": {
+          "content-type": "video/mp4",
+          "content-length": "1024",
+          "content-range": "bytes 0-1023/31686914",
+          "etag": "\"62ecde3fbf04f598f4ee89f96d88087e\""
+        },
+        "bodyBytes": 1024
+      },
+      "fullGet": {
+        "statusLine": "HTTP/2 200 ",
+        "headers": {
+          "content-type": "video/mp4",
+          "content-length": "31686914",
+          "accept-ranges": "bytes",
+          "etag": "\"62ecde3fbf04f598f4ee89f96d88087e\""
+        },
+        "bytes": 31686914,
+        "sha256": "75a371ad847b3aa8649f250eba76fdf22e9657a4f03c3c0cccbbdfbada304cfc"
+      },
+      "local": {
+        "bytes": 31686914,
+        "sha256": "75a371ad847b3aa8649f250eba76fdf22e9657a4f03c3c0cccbbdfbada304cfc"
+      },
+      "pass": {
+        "http200": true,
+        "contentType": true,
+        "contentLength": true,
+        "shaMatch": true,
+        "range206": true,
+        "contentRange": true,
+        "rangeBodyBytes": true
+      }
+    },
+    "directPlayback": {
+      "owner": "root",
+      "browser": "Edge",
+      "browserPid": 2931,
+      "tab": "1147995912",
+      "cdpPort": null,
+      "serverPid": null,
+      "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/boot-straps-2026-10-07/75a371ad847b-motion.mp4",
+      "purpose": "Direct published MP4 playback; no game/FPS",
+      "native": {
+        "width": 1280,
+        "height": 720,
+        "duration": 33.332118
+      },
+      "rendered": {
+        "width": 1280,
+        "height": 720
+      },
+      "times": [
+        8.579475,
+        20.843911
+      ],
+      "advancing": true,
+      "videoError": null,
+      "reviewedDecodedFrame": true,
+      "closed": true,
+      "active": false
+    },
+    "telegramInlineFullscreenNewlyVerified": false
+  },
+  "independentReviewDisposition": "No material code defect. Review cutoff preceded finished derivative/native checks; those remaining local steps are proved in this final receipt. Compiler Orc index arrays differ cyclically; final decoded canonical plates match previous canonical indices exactly.",
+  "cleanup": {
+    "ownedPids": [
+      {
+        "pid": 10534,
+        "alive": false
+      },
+      {
+        "pid": 10547,
+        "alive": false
+      },
+      {
+        "pid": 10548,
+        "alive": false
+      },
+      {
+        "pid": 10574,
+        "alive": false
+      },
+      {
+        "pid": 12254,
+        "alive": false
+      },
+      {
+        "pid": 13918,
+        "alive": false
+      },
+      {
+        "pid": 14409,
+        "alive": false
+      },
+      {
+        "pid": 18577,
+        "alive": false
+      },
+      {
+        "pid": 42977,
+        "alive": false
+      },
+      {
+        "pid": 46656,
+        "alive": false
+      },
+      {
+        "pid": 46657,
+        "alive": false
+      },
+      {
+        "pid": 46840,
+        "alive": false
+      },
+      {
+        "pid": 46841,
+        "alive": false
+      },
+      {
+        "pid": 48031,
+        "alive": false
+      },
+      {
+        "pid": 48032,
+        "alive": false
+      },
+      {
+        "pid": 50195,
+        "alive": false
+      },
+      {
+        "pid": 50196,
+        "alive": false
+      },
+      {
+        "pid": 50198,
+        "alive": false
+      },
+      {
+        "pid": 50239,
+        "alive": false
+      },
+      {
+        "pid": 50245,
+        "alive": false
+      },
+      {
+        "pid": 50250,
+        "alive": false
+      },
+      {
+        "pid": 64128,
+        "alive": false
+      },
+      {
+        "pid": 64132,
+        "alive": false
+      },
+      {
+        "pid": 65325,
+        "alive": false
+      },
+      {
+        "pid": 65333,
+        "alive": false
+      },
+      {
+        "pid": 66277,
+        "alive": false
+      },
+      {
+        "pid": 66278,
+        "alive": false
+      },
+      {
+        "pid": 66357,
+        "alive": false
+      },
+      {
+        "pid": 66358,
+        "alive": false
+      },
+      {
+        "pid": 66402,
+        "alive": false
+      },
+      {
+        "pid": 68765,
+        "alive": false
+      },
+      {
+        "pid": 68771,
+        "alive": false
+      },
+      {
+        "pid": 70749,
+        "alive": false
+      },
+      {
+        "pid": 81546,
+        "alive": false
+      },
+      {
+        "pid": 86487,
+        "alive": false
+      },
+      {
+        "pid": 86489,
+        "alive": false
+      },
+      {
+        "pid": 86772,
+        "alive": false
+      },
+      {
+        "pid": 86793,
+        "alive": false
+      },
+      {
+        "pid": 86794,
+        "alive": false
+      }
+    ],
+    "ports": {
+      "5173": [],
+      "10037": [],
+      "7074": [],
+      "7075": []
+    },
+    "googleChromeParents": [],
+    "edge": {
+      "pid": 2931,
+      "alive": true,
+      "userTabs": 12,
+      "ownedReviewTabsPresent": [],
+      "ashenPages": []
+    },
+    "orca": {
+      "pid": 98938,
+      "alive": true,
+      "preserved": true
+    },
+    "allOwnedInstancesClosed": true,
+    "performanceMeasurementMade": false
+  }
+}

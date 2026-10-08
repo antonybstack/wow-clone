@@ -1,0 +1,20 @@
+{
+  "source": "canonical-motion/report.json assetResponses already saved; no new visit",
+  "required": [
+    "wayfarerBoots",
+    "duskguardGreaves"
+  ],
+  "orcResponses": [
+    {
+      "url": "http://127.0.0.1:7074/ashen-reach/equipment-orc/duskguardGreaves-c35cde232655.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:7074/ashen-reach/equipment-orc/wayfarerBoots-e07c5fab32bc.glb",
+      "status": 200
+    }
+  ],
+  "all200": true,
+  "hasWayfarer": true,
+  "hasGreaves": true
+}

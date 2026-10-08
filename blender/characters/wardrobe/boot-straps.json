@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "id": "wayfarer-straps",
+  "revision": 1,
+  "sourceRights": "Accepted fitted derivatives of vendored CC0 MakeHuman suits02 footwear; preserve the existing native Tripo/Mixamo body/rig grants and documented limitations. No new body or rig.",
+  "authored": {
+    "source": "blender/characters/sources/human-catalogue/wayfarerBoots.glb",
+    "sha256": "0f4091ff26d40cf3a3567b8770105f51b79a346caa21ead40577391704f81ae2"
+  },
+  "fits": {
+    "human": {
+      "source": "blender/characters/wardrobe/sources/human-wayfarerBoots-before-straps.glb",
+      "sha256": "dfce594f2e2187f25703b185f843d9f47c43481aa18ff320f940b6fe651dd8a4",
+      "body": "public/ashen-reach/equipment/body.glb",
+      "bodySha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+      "bodyMesh": "HumanV1Body"
+    },
+    "undead": {
+      "source": "blender/characters/wardrobe/sources/undead-wayfarerBoots-before-straps.glb",
+      "sha256": "a2e61858969e38dc07e895c2127a9fef9924bea8373d1b659f21bb2711bdac62",
+      "body": "public/ashen-reach/equipment-undead/body.glb",
+      "bodySha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d",
+      "bodyMesh": "UndeadV1Body"
+    },
+    "orc": {
+      "source": "blender/characters/wardrobe/sources/orc-wayfarerBoots-before-straps.glb",
+      "sha256": "800fc2b7cb43a30a4b103dcf607ddae68692b1bd9ee8f64325199fd043583be6",
+      "body": "public/ashen-reach/equipment-orc/body.glb",
+      "bodySha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b",
+      "bodyMesh": "BodyExposed"
+    }
+  },
+  "clearanceM": 0.006,
+  "straps": [
+    {
+      "first": 1337,
+      "last": 1550,
+      "bone": "mixamorig:RightFoot"
+    },
+    {
+      "first": 1551,
+      "last": 1764,
+      "bone": "mixamorig:RightFoot"
+    },
+    {
+      "first": 3102,
+      "last": 3315,
+      "bone": "mixamorig:LeftFoot"
+    },
+    {
+      "first": 3316,
+      "last": 3529,
+      "bone": "mixamorig:LeftFoot"
+    }
+  ],
+  "scope": "Four authored ankle strap components only. Preserve both leather shells, Y, sole/forefoot, indices, UVs, materials, weights and source bind. Local candidate until native motion reviewed."
+}

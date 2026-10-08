@@ -1,50 +1,101 @@
 {
   "schema": 1,
   "generatedBy": "scripts/character-assets/prepare-boot-sole.mjs",
+  "arguments": [
+    "--publish",
+    "--straps"
+  ],
   "localPacksPublished": true,
   "productionReleased": false,
   "byteIdenticalRebuild": true,
-  "soleReport": {
+  "strapReport": {
     "candidateOnly": true,
     "descriptor": {
-      "path": "blender/characters/wardrobe/boot-sole.json",
-      "sha256": "45594ea7cf2f379af4cdd41fa7ca6233d57f742a8346d5f2640b49ae836451fa"
+      "path": "blender/characters/wardrobe/boot-straps.json",
+      "sha256": "634c4345e3e0928ac4e9ed166d7699c0863e617953b81b6002b63e0edf4dbe02"
     },
     "rows": [
       {
         "race": "human",
         "source": {
-          "source": "blender/characters/wardrobe/sources/human-wayfarerBoots-before-sole.glb",
-          "sha256": "a55a9e4cd7b8658b6f2bd51dd3092af576e8d7dd279c9687bb3419a5c858bd98",
+          "source": "blender/characters/wardrobe/sources/human-wayfarerBoots-before-straps.glb",
+          "sha256": "dfce594f2e2187f25703b185f843d9f47c43481aa18ff320f940b6fe651dd8a4",
           "body": "public/ashen-reach/equipment/body.glb",
           "bodySha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
           "bodyMesh": "HumanV1Body"
         },
         "artifact": {
-          "file": ".cache/character-mmo/boot-sole/publication-oG5LUk/first/human/wayfarerBoots.glb",
-          "bytes": 242684,
-          "sha256": "dfce594f2e2187f25703b185f843d9f47c43481aa18ff320f940b6fe651dd8a4"
+          "file": ".cache/character-mmo/boot-straps/publication-G9U0Zu/first/human/wayfarerBoots.glb",
+          "bytes": 242740,
+          "sha256": "52c5c2f6df2b0234f4920d08635556469167446ef18e913a38adc41416d3e680"
         },
-        "feet": [
+        "straps": [
           {
-            "side": "left",
-            "authoredFloor": -0.010363336652517319,
-            "bodyFloor": -0.000006902833320054924,
-            "changed": 388,
-            "maxDisplacementM": 0.05198354460299015,
-            "forefootChanged": 121,
-            "forefootMaxDisplacementM": 0.05303531978279352
+            "first": 1337,
+            "last": 1550,
+            "bone": "mixamorig:RightFoot",
+            "center": [
+              -0.18218427896499634,
+              -0.04468736797571182
+            ],
+            "vertices": 214,
+            "maxDisplacementM": 0.006000007288164015
           },
           {
-            "side": "right",
-            "authoredFloor": -0.01039090659469366,
-            "bodyFloor": -2.2622236883762525e-7,
-            "changed": 387,
-            "maxDisplacementM": 0.05477075418457389,
-            "forefootChanged": 53,
-            "forefootMaxDisplacementM": 0.045904992148280144
+            "first": 1551,
+            "last": 1764,
+            "bone": "mixamorig:RightFoot",
+            "center": [
+              -0.18218427896499634,
+              -0.04468736797571182
+            ],
+            "vertices": 214,
+            "maxDisplacementM": 0.006000007367359827
+          },
+          {
+            "first": 3102,
+            "last": 3315,
+            "bone": "mixamorig:LeftFoot",
+            "center": [
+              0.18906305730342865,
+              -0.04469072446227074
+            ],
+            "vertices": 214,
+            "maxDisplacementM": 0.006000006557985053
+          },
+          {
+            "first": 3316,
+            "last": 3529,
+            "bone": "mixamorig:LeftFoot",
+            "center": [
+              0.18906305730342865,
+              -0.04469072446227074
+            ],
+            "vertices": 214,
+            "maxDisplacementM": 0.0060000068147053375
           }
         ],
+        "verificationBefore": {
+          "joints": 65,
+          "meshes": 1,
+          "primitives": 1,
+          "vertices": 3530,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.2892144024372101,
+              -0.006006903015077114,
+              -0.1525457799434662
+            ],
+            "max": [
+              0.2892993092536926,
+              0.40249019861221313,
+              0.1737712025642395
+            ],
+            "frame": "accepted body mesh"
+          }
+        },
         "verification": {
           "joints": 65,
           "meshes": 1,
@@ -65,42 +116,91 @@
             ],
             "frame": "accepted body mesh"
           }
-        }
+        },
+        "shellArraysExact": true,
+        "skinAndUvArraysExact": true
       },
       {
         "race": "undead",
         "source": {
-          "source": "blender/characters/wardrobe/sources/undead-wayfarerBoots-before-sole.glb",
-          "sha256": "ce99e04c73153c47b97b69f94327983e3844d0f24c8a7757e4126f1baabc5c85",
+          "source": "blender/characters/wardrobe/sources/undead-wayfarerBoots-before-straps.glb",
+          "sha256": "a2e61858969e38dc07e895c2127a9fef9924bea8373d1b659f21bb2711bdac62",
           "body": "public/ashen-reach/equipment-undead/body.glb",
           "bodySha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d",
           "bodyMesh": "UndeadV1Body"
         },
         "artifact": {
-          "file": ".cache/character-mmo/boot-sole/publication-oG5LUk/first/undead/wayfarerBoots.glb",
-          "bytes": 242348,
-          "sha256": "a2e61858969e38dc07e895c2127a9fef9924bea8373d1b659f21bb2711bdac62"
+          "file": ".cache/character-mmo/boot-straps/publication-G9U0Zu/first/undead/wayfarerBoots.glb",
+          "bytes": 242344,
+          "sha256": "96df888598dd48ea09871a605d573a1538581225d690cb95a4f3bca646590da5"
         },
-        "feet": [
+        "straps": [
           {
-            "side": "left",
-            "authoredFloor": -0.010363336652517319,
-            "bodyFloor": 2.9491869213416066e-7,
-            "changed": 388,
-            "maxDisplacementM": 0.061143459752202034,
-            "forefootChanged": 32,
-            "forefootMaxDisplacementM": 0.03892083279788494
+            "first": 1337,
+            "last": 1550,
+            "bone": "mixamorig:RightFoot",
+            "center": [
+              -0.19149838387966156,
+              -0.05419763922691345
+            ],
+            "vertices": 214,
+            "maxDisplacementM": 0.006000011616953776
           },
           {
-            "side": "right",
-            "authoredFloor": -0.01039090659469366,
-            "bodyFloor": 0.000006566178853972815,
-            "changed": 387,
-            "maxDisplacementM": 0.06949268677271903,
-            "forefootChanged": 20,
-            "forefootMaxDisplacementM": 0.02547575533390045
+            "first": 1551,
+            "last": 1764,
+            "bone": "mixamorig:RightFoot",
+            "center": [
+              -0.19149838387966156,
+              -0.05419763922691345
+            ],
+            "vertices": 214,
+            "maxDisplacementM": 0.006000013068474875
+          },
+          {
+            "first": 3102,
+            "last": 3315,
+            "bone": "mixamorig:LeftFoot",
+            "center": [
+              0.20595408976078033,
+              -0.05420040339231491
+            ],
+            "vertices": 214,
+            "maxDisplacementM": 0.006000013614866453
+          },
+          {
+            "first": 3316,
+            "last": 3529,
+            "bone": "mixamorig:LeftFoot",
+            "center": [
+              0.20595408976078033,
+              -0.05420040339231491
+            ],
+            "vertices": 214,
+            "maxDisplacementM": 0.006000013920260351
           }
         ],
+        "verificationBefore": {
+          "joints": 65,
+          "meshes": 1,
+          "primitives": 1,
+          "vertices": 3530,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.3074204921722412,
+              -0.005999705288559198,
+              -0.1521732658147812
+            ],
+            "max": [
+              0.3116702735424042,
+              0.4573856592178345,
+              0.18858177959918976
+            ],
+            "frame": "accepted body mesh"
+          }
+        },
         "verification": {
           "joints": 65,
           "meshes": 1,
@@ -121,7 +221,114 @@
             ],
             "frame": "accepted body mesh"
           }
-        }
+        },
+        "shellArraysExact": true,
+        "skinAndUvArraysExact": true
+      },
+      {
+        "race": "orc",
+        "source": {
+          "source": "blender/characters/wardrobe/sources/orc-wayfarerBoots-before-straps.glb",
+          "sha256": "800fc2b7cb43a30a4b103dcf607ddae68692b1bd9ee8f64325199fd043583be6",
+          "body": "public/ashen-reach/equipment-orc/body.glb",
+          "bodySha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b",
+          "bodyMesh": "BodyExposed"
+        },
+        "artifact": {
+          "file": ".cache/character-mmo/boot-straps/publication-G9U0Zu/first/orc/wayfarerBoots.glb",
+          "bytes": 339080,
+          "sha256": "e07c5fab32bc1a6403c4cd482b136e859d82b1d622a3af7f3667277b6bbfabf0"
+        },
+        "straps": [
+          {
+            "first": 1337,
+            "last": 1550,
+            "bone": "mixamorig:RightFoot",
+            "center": [
+              -0.22477644681930542,
+              0.011109650135040283
+            ],
+            "vertices": 214,
+            "maxDisplacementM": 0.006000013325851963
+          },
+          {
+            "first": 1551,
+            "last": 1764,
+            "bone": "mixamorig:RightFoot",
+            "center": [
+              -0.22477644681930542,
+              0.011109650135040283
+            ],
+            "vertices": 214,
+            "maxDisplacementM": 0.006000012479165124
+          },
+          {
+            "first": 3102,
+            "last": 3315,
+            "bone": "mixamorig:LeftFoot",
+            "center": [
+              0.22477570176124573,
+              0.011110596358776093
+            ],
+            "vertices": 214,
+            "maxDisplacementM": 0.006000013959395622
+          },
+          {
+            "first": 3316,
+            "last": 3529,
+            "bone": "mixamorig:LeftFoot",
+            "center": [
+              0.22477570176124573,
+              0.011110596358776093
+            ],
+            "vertices": 214,
+            "maxDisplacementM": 0.006000014357144803
+          }
+        ],
+        "verificationBefore": {
+          "joints": 65,
+          "meshes": 1,
+          "primitives": 1,
+          "vertices": 3530,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.42377692461013794,
+              -0.030208483338356018,
+              -0.23749586939811707
+            ],
+            "max": [
+              0.42012640833854675,
+              0.4586201012134552,
+              0.31497976183891296
+            ],
+            "frame": "accepted body mesh"
+          }
+        },
+        "verification": {
+          "joints": 65,
+          "meshes": 1,
+          "primitives": 1,
+          "vertices": 3530,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.42377692461013794,
+              -0.030208483338356018,
+              -0.23749586939811707
+            ],
+            "max": [
+              0.42012640833854675,
+              0.4586201012134552,
+              0.31497976183891296
+            ],
+            "frame": "accepted body mesh"
+          }
+        },
+        "shellArraysExact": true,
+        "skinAndUvArraysExact": true
       }
     ]
   }

@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 883,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 33.332118,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 34
+  },
+  "verified": true,
+  "file": "motion.mp4",
+  "sha256": "75a371ad847b3aa8649f250eba76fdf22e9657a4f03c3c0cccbbdfbada304cfc",
+  "sentAt": "2026-10-08T01:45:12.682720+00:00"
+}

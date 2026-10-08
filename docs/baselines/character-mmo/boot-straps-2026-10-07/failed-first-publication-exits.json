@@ -1,0 +1,16 @@
+[
+  {
+    "name": "prepare-boot-sole",
+    "command": [
+      "node",
+      "scripts/character-assets/prepare-boot-sole.mjs",
+      "--publish",
+      "--straps"
+    ],
+    "exitCode": 1,
+    "elapsedSeconds": 6.772,
+    "pid": 31867,
+    "wrapperPid": 31866,
+    "log": ".cache/character-mmo/boot-ankle-2026-10-07/prepare-boot-sole.log"
+  }
+]

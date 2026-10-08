@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "scope": "Unique compact body/clothing transfer bytes; excludes common code, world, manifests and procedural props",
+  "enumerated": 12096,
+  "valid": 10584,
+  "profiles": 4,
+  "maximum": {
+    "profile": "prime-ponytail",
+    "components": {
+      "head": "human-prime-v1",
+      "hair": "human-ponytail01-v1"
+    },
+    "equipment": {
+      "helmet": null,
+      "torso": "duskguardCuirass",
+      "legs": "graveweaverSkirt",
+      "boots": "duskguardGreaves",
+      "gloves": "duskguardVambraces",
+      "mainHand": "graveweaverStaff",
+      "offHand": "graveweaverBook",
+      "shoulders": "bastionShoulders"
+    },
+    "bytes": 2103172,
+    "resources": [
+      {
+        "id": "body",
+        "url": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+        "bytes": 1013447
+      },
+      {
+        "id": "duskguardCuirass",
+        "url": "/ashen-reach/human-shape-v1/duskguardCuirass-87f33adb1a29.bin",
+        "bytes": 357832
+      },
+      {
+        "id": "graveweaverSkirt",
+        "url": "/ashen-reach/human-shape-v1/graveweaverSkirt-compact-f52f181bec28.bin",
+        "bytes": 181723
+      },
+      {
+        "id": "duskguardGreaves",
+        "url": "/ashen-reach/human-shape-v1/duskguardGreaves-e6a997aabb25.bin",
+        "bytes": 272201
+      },
+      {
+        "id": "duskguardVambraces",
+        "url": "/ashen-reach/human-shape-v1/duskguardVambraces-b67e2bcbac26.bin",
+        "bytes": 194817
+      },
+      {
+        "id": "bastionShoulders",
+        "url": "/ashen-reach/human-shape-v1/bastionShoulders-f494b2e91fe7.bin",
+        "bytes": 83152
+      }
+    ],
+    "worn": 7
+  },
+  "conditions": {
+    "deferCoveredHair": true
+  }
+}

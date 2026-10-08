@@ -1,0 +1,36 @@
+[
+  {
+    "name": "native-bounds",
+    "cmd": [
+      "node",
+      "scripts/character-assets/prepare-remote-pieces-native.mjs"
+    ],
+    "exitCode": 0,
+    "elapsedMs": 470280,
+    "controllerPid": 50196,
+    "childPid": 50250
+  },
+  {
+    "name": "remote-publication",
+    "cmd": [
+      "node",
+      "scripts/character-assets/publish-remote-pieces.mjs"
+    ],
+    "exitCode": 0,
+    "elapsedMs": 99,
+    "controllerPid": 50196,
+    "childPid": 64128
+  },
+  {
+    "name": "equipment-tests",
+    "cmd": [
+      "npm",
+      "run",
+      "test:equipment"
+    ],
+    "exitCode": 0,
+    "elapsedMs": 994,
+    "controllerPid": 50196,
+    "childPid": 64132
+  }
+]

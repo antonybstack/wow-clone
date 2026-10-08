@@ -1,0 +1,49 @@
+[
+  {
+    "name": "human-shapes",
+    "command": [
+      "node",
+      "scripts/character-assets/prepare-production-human-shapes.mjs"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 36.73131804203149
+  },
+  {
+    "name": "starter-character",
+    "command": [
+      "node",
+      "scripts/ashen-reach/prepare-starter-character.mjs"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 0.5079129579826258
+  },
+  {
+    "name": "coverage",
+    "command": [
+      "node",
+      "scripts/character-assets/prepare-coverage-release.mjs",
+      "--publish"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 1.1173266249825247
+  },
+  {
+    "name": "identity-equipment",
+    "command": [
+      "node",
+      "scripts/character-assets/refresh-human-identity-equipment.mjs",
+      "blender/characters/wardrobe/fieldcoat.json"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 0.17270900000585243
+  },
+  {
+    "name": "remote-offline",
+    "command": [
+      "node",
+      "scripts/character-assets/prepare-remote-pieces.mjs"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 2.2773259169771336
+  }
+]

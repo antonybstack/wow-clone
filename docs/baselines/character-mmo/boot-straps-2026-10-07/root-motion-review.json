@@ -1,0 +1,33 @@
+{
+  "owner": "root",
+  "browserPid": 2931,
+  "browser": "Edge",
+  "tab": "1147995908",
+  "url": "http://127.0.0.1:7075/motion.mp4",
+  "serverPid": 70749,
+  "serverPort": 7075,
+  "cdpPort": null,
+  "purpose": "canonical live MP4 review only; no active game",
+  "active": false,
+  "review": {
+    "artifactSha256": "75a371ad847b3aa8649f250eba76fdf22e9657a4f03c3c0cccbbdfbada304cfc",
+    "reviewedActualMp4": true,
+    "rates": [
+      1,
+      0.5
+    ],
+    "decodedChapters": [
+      "Human normal Havok sprint/jump",
+      "Human endpoint boot run",
+      "Orc Wayfarer/Duskguard run",
+      "Undead Duskguard run",
+      "Undead source-foot restoration at 29.071216s"
+    ],
+    "matchingIdleCameraComparison": [
+      "original-wayfarerBoots-side"
+    ],
+    "decision": "Accept focused 6 mm radial strap clearance locally. Remaining knot/cuff overlap, leather pleats, aliasing and inherited Orc shell cavity are not complete mixed-fit acceptance. No startup or FPS acceptance."
+  },
+  "closed": true,
+  "serverNativeExit": 143
+}

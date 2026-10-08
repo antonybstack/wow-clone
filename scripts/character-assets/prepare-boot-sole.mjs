@@ -16,27 +16,32 @@ import {planPublication,executePublication} from './equipment-factory-contract.m
 import {verifyFactoryEquipmentBind} from './verify-factory-equipment-bind.mjs';
 import {EQUIPMENT_ITEMS} from '../../src/ashen-reach/equipment-catalog.js';
 import {FITS_BY_RACE,assertAssetFit} from '../../src/ashen-reach/equipment-contract.js';
+import {assertTriangleRotations} from './triangle-index-contract.mjs';
 
-assert.deepEqual(process.argv.slice(2),['--publish'],'Use --publish for local source packs; this does not deploy');
+const args=process.argv.slice(2),strapPass=args.length===2&&args[0]==='--publish'&&args[1]==='--straps';
+assert(strapPass||JSON.stringify(args)===JSON.stringify(['--publish']),'Use --publish [--straps] for local source packs; this does not deploy');
 const sha=b=>createHash('sha256').update(b).digest('hex');
-const descriptorPath='blender/characters/wardrobe/boot-sole.json';
+// Reuse the same immutable-file/manifest publication and Duskguard compiler
+// for the reviewed strap derivative; do not introduce another asset publisher.
+const pass=strapPass?'straps':'sole',builder=`scripts/character-assets/build-boot-${pass}.mjs`;
+const descriptorPath=`blender/characters/wardrobe/boot-${pass}.json`;
 const descriptorBytes=await fs.readFile(descriptorPath),descriptor=JSON.parse(descriptorBytes);
-const races=['human','undead'],directory={human:'equipment',undead:'equipment-undead'};
-await fs.mkdir('.cache/character-mmo/boot-sole',{recursive:true});
-const work=await fs.mkdtemp('.cache/character-mmo/boot-sole/publication-');
+const races=strapPass?['human','undead','orc']:['human','undead'],directory={human:'equipment',undead:'equipment-undead',orc:'equipment-orc'};
+await fs.mkdir(`.cache/character-mmo/boot-${pass}`,{recursive:true});
+const work=await fs.mkdtemp(`.cache/character-mmo/boot-${pass}/publication-`);
 const run=(script,args)=>execFileSync(process.execPath,[script,...args],{stdio:'inherit'});
 await Promise.all([MeshoptDecoder.ready,MeshoptEncoder.ready]);
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder,'meshopt.encoder':MeshoptEncoder}).setVertexLayout(VertexLayout.SEPARATE);
 const oldPlates=new Map();
 for(const race of races)oldPlates.set(race,(await io.read(`public/ashen-reach/${directory[race]}/duskguardGreaves.glb`)).getRoot().listMeshes().find(m=>m.getName()==='DuskguardGreaves'));
-run('scripts/character-assets/build-boot-sole.mjs',[`${work}/first`]);
-run('scripts/character-assets/build-boot-sole.mjs',[`${work}/repeat`]);
+run(builder,[`${work}/first`]);
+run(builder,[`${work}/repeat`]);
 const builds={},manifests={},fits={};
 const armorDescriptorPath='blender/characters/wardrobe/duskguard-armor.json';
 const armorDescriptor=JSON.parse(await fs.readFile(armorDescriptorPath,'utf8'));
 for(const race of races){
  const bytes=await fs.readFile(`${work}/first/${race}/wayfarerBoots.glb`);
- assert.deepEqual(bytes,await fs.readFile(`${work}/repeat/${race}/wayfarerBoots.glb`),'Non-repeatable sole build');
+ assert.deepEqual(bytes,await fs.readFile(`${work}/repeat/${race}/wayfarerBoots.glb`),'Non-repeatable boot build');
  const root=(await io.readBinary(bytes)).getRoot(),base=(await io.read(descriptor.fits[race].body)).getRoot();
  const verification=verifyFactoryEquipmentBind(root,base,descriptor.fits[race].bodyMesh);
  assertAssetFit({fit:FITS_BY_RACE[race]},EQUIPMENT_ITEMS.wayfarerBoots,race);
@@ -44,9 +49,9 @@ for(const race of races){
  assert.equal(armorDescriptor.fits[race].underlayers.wayfarerBoots.sha256,sha(bytes),'Pin the reviewed Duskguard underlayer before any publication');
  manifests[race]=JSON.parse(await fs.readFile(`public/ashen-reach/${directory[race]}/manifest.json`,'utf8'));
 }
-assert.equal(sha(await fs.readFile(descriptorPath)),sha(descriptorBytes),'Sole descriptor changed');
-const soleReport=JSON.parse(await fs.readFile(`${work}/first/report.json`,'utf8'));
-const provenance={schema:1,generatedBy:'scripts/character-assets/prepare-boot-sole.mjs',localPacksPublished:true,productionReleased:false,byteIdenticalRebuild:true,soleReport};
+assert.equal(sha(await fs.readFile(descriptorPath)),sha(descriptorBytes),'Boot descriptor changed');
+const buildReport=JSON.parse(await fs.readFile(`${work}/first/report.json`,'utf8'));
+const provenance={schema:1,generatedBy:'scripts/character-assets/prepare-boot-sole.mjs',...(strapPass?{arguments:args}:{}),localPacksPublished:true,productionReleased:false,byteIdenticalRebuild:true,[strapPass?'strapReport':'soleReport']:buildReport};
 // The established publication primitive writes immutable assets and canonical
 // authoring copies first, then atomically replaces each advertised manifest.
 // No game check or release is permitted until the remaining derivatives finish.
@@ -64,20 +69,37 @@ for(const race of races){
  const row=armorReport.rows.find(r=>r.race===race&&r.id==='duskguardGreaves');assert.equal(sha(input),row.sha256);
  const doc=await io.readBinary(input),root=doc.getRoot(),plate=root.listMeshes().find(m=>m.getName()==='DuskguardGreaves'),old=oldPlates.get(race);
  assert.equal(plate.listPrimitives().length,old.listPrimitives().length);
+ let plateIndicesExact=true;
  for(let i=0;i<old.listPrimitives().length;i++){
   const p=plate.listPrimitives()[i],before=old.listPrimitives()[i];
-  assert.deepEqual(p.getIndices().getArray(),before.getIndices().getArray(),'Existing plate topology changed');
+  const actual=p.getIndices().getArray(),expected=before.getIndices().getArray();
+  if(strapPass)assertTriangleRotations(actual,expected,'Existing plate topology');
+  else assert.deepEqual(actual,expected,'Existing plate topology changed');
+  plateIndicesExact&&=actual.every((v,i)=>v===expected[i]);
   assert.deepEqual(p.listSemantics().sort(),before.listSemantics().sort());
   for(const semantic of before.listSemantics())assert.deepEqual(p.getAttribute(semantic).getArray(),before.getAttribute(semantic).getArray(),`Existing plate ${semantic} changed`);
  }
  const underlayer=root.listMeshes().find(m=>m.getName()==='DuskguardBootUnderlayer').listPrimitives()[0];
  const sole=(await io.readBinary(builds[race].bytes)).getRoot().listMeshes()[0].listPrimitives()[0];
- assert.deepEqual(underlayer.getIndices().getArray(),sole.getIndices().getArray());
+ if(strapPass)assertTriangleRotations(underlayer.getIndices().getArray(),sole.getIndices().getArray(),'Reviewed underlayer topology');
+ else assert.deepEqual(underlayer.getIndices().getArray(),sole.getIndices().getArray());
+ const underlayerIndicesExact=underlayer.getIndices().getArray().every((v,i)=>v===sole.getIndices().getArray()[i]);
  for(const semantic of sole.listSemantics())assert.deepEqual(underlayer.getAttribute(semantic).getArray(),sole.getAttribute(semantic).getArray(),`Underlayer ${semantic} differs from reviewed sole`);
  for(const extension of root.listExtensionsUsed())if(extension.extensionName==='EXT_meshopt_compression')extension.dispose();
  doc.createExtension(EXTMeshoptCompression).setRequired(true);
  const bytes=await io.writeBinary(doc),digest=sha(bytes),id='duskguardGreaves',dir=`public/ashen-reach/${directory[race]}`,name=`${id}-${digest.slice(0,12)}.glb`;
  const written=(await io.readBinary(bytes)).getRoot(),base=(await io.read(descriptor.fits[race].body)).getRoot();
+ // Compression is independently read back. Cyclic rotations are documented
+ // by the codec; actual vertex attributes and ordered wound faces stay exact.
+ // https://github.com/zeux/meshoptimizer#index-compression
+ if(strapPass)for(const mesh of root.listMeshes()){
+  const check=written.listMeshes().find(m=>m.getName()===mesh.getName());assert(check);assert.equal(check.listPrimitives().length,mesh.listPrimitives().length);
+  for(const [i,p]of mesh.listPrimitives().entries()){
+   const q=check.listPrimitives()[i];assertTriangleRotations(q.getIndices().getArray(),p.getIndices().getArray(),`Written ${mesh.getName()}`);
+   assert.deepEqual(q.listSemantics().sort(),p.listSemantics().sort());
+   for(const semantic of p.listSemantics())assert.deepEqual(q.getAttribute(semantic).getArray(),p.getAttribute(semantic).getArray(),`Written ${mesh.getName()}/${semantic}`);
+  }
+ }
  const verification=verifyFactoryEquipmentBind(written,base,descriptor.fits[race].bodyMesh),meshes=EQUIPMENT_ITEMS[id].parts.map(p=>p.mesh).sort();
  assert.deepEqual(written.listMeshes().map(m=>m.getName()).sort(),meshes);
  assertAssetFit({fit:FITS_BY_RACE[race]},EQUIPMENT_ITEMS[id],race);
@@ -85,11 +107,11 @@ for(const race of races){
  manifest.items[id]={url:`/ashen-reach/${directory[race]}/${name}`,bytes:bytes.length,sha256:digest,meshes,fit:FITS_BY_RACE[race]};
  files.push({path:`${dir}/${name}`,bytes},{path:`${dir}/${id}.glb`,bytes});
  manifestWrites.push({path:`${dir}/manifest.json`,bytes:Buffer.from(JSON.stringify(manifest,null,2)+'\n')});
- rows.push({race,id,source:{path:source,sha256:sha(input)},artifact:manifest.items[id],verification,existingPlateArraysExact:true,reviewedUnderlayerArraysExact:true});
+ rows.push({race,id,source:{path:source,sha256:sha(input)},artifact:manifest.items[id],verification,existingPlateArraysExact:plateIndicesExact,reviewedUnderlayerArraysExact:underlayerIndicesExact,...(strapPass?{existingPlateSemanticArraysExact:true,orderedWoundTrianglesExact:true,encodedReadbackArraysAndTrianglesVerified:true}: {})});
 }
 provenance.duskguard={sourceReport:armorReport,rows};
-provenance.tools=await Promise.all(['scripts/character-assets/prepare-boot-sole.mjs','scripts/character-assets/build-boot-sole.mjs','scripts/character-assets/equipment-factory-contract.mjs',descriptorPath,armorDescriptorPath].map(async p=>({path:p,sha256:sha(await fs.readFile(p))})));
-files.push({path:'public/ashen-reach/boot-sole-provenance.json',bytes:Buffer.from(JSON.stringify(provenance,null,2)+'\n')});
+provenance.tools=await Promise.all(['scripts/character-assets/prepare-boot-sole.mjs',builder,'scripts/character-assets/equipment-factory-contract.mjs',...(strapPass?['scripts/character-assets/triangle-index-contract.mjs']:[]),descriptorPath,armorDescriptorPath].map(async p=>({path:p,sha256:sha(await fs.readFile(p))})));
+files.push({path:`public/ashen-reach/boot-${pass}-provenance.json`,bytes:Buffer.from(JSON.stringify(provenance,null,2)+'\n')});
 await executePublication({files,manifests:manifestWrites});
 await fs.writeFile(path.join(work,'publication.json'),JSON.stringify(provenance,null,2)+'\n');
 console.log(JSON.stringify({localSourcePacksPublished:true,productionReleased:false,races,work,remaining:['Human shapes','starter compacts','coverage','identity equipment','native remote bounds','live canonical acceptance','sealed release']}));

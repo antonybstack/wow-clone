@@ -1,0 +1,420 @@
+{
+  "sourceCommit": "50248001c7caacb0bcdf2ac59b9ffcd3866d599b",
+  "rows": [
+    {
+      "race": "human",
+      "otherManifestItemsExact": 15,
+      "beforeStrapsMasterMatchesPriorCanonical": true,
+      "prototypeAndCanonicalBytesExact": true,
+      "hashedAssetsExact": true,
+      "plateSemanticArraysExact": true,
+      "orderedWoundTrianglesExact": true,
+      "plateIndexArraysExact": true,
+      "reviewedUnderlayerSemanticArraysExact": true,
+      "boots": {
+        "bytes": 242740,
+        "sha256": "52c5c2f6df2b0234f4920d08635556469167446ef18e913a38adc41416d3e680"
+      },
+      "greaves": {
+        "bytes": 249784,
+        "sha256": "171f8518a8718dedfbc6c8efe9b96ec36fc698a4930a1ed7072aeac65aed3953"
+      }
+    },
+    {
+      "race": "undead",
+      "otherManifestItemsExact": 15,
+      "beforeStrapsMasterMatchesPriorCanonical": true,
+      "prototypeAndCanonicalBytesExact": true,
+      "hashedAssetsExact": true,
+      "plateSemanticArraysExact": true,
+      "orderedWoundTrianglesExact": true,
+      "plateIndexArraysExact": true,
+      "reviewedUnderlayerSemanticArraysExact": true,
+      "boots": {
+        "bytes": 242344,
+        "sha256": "96df888598dd48ea09871a605d573a1538581225d690cb95a4f3bca646590da5"
+      },
+      "greaves": {
+        "bytes": 249228,
+        "sha256": "20cffe52ddaff4ddaea0da596f506e47e1c45dcb794d59943d42a04b03c7a1a2"
+      }
+    },
+    {
+      "race": "orc",
+      "otherManifestItemsExact": 15,
+      "beforeStrapsMasterMatchesPriorCanonical": true,
+      "prototypeAndCanonicalBytesExact": true,
+      "hashedAssetsExact": true,
+      "plateSemanticArraysExact": true,
+      "orderedWoundTrianglesExact": true,
+      "plateIndexArraysExact": true,
+      "reviewedUnderlayerSemanticArraysExact": true,
+      "boots": {
+        "bytes": 339080,
+        "sha256": "e07c5fab32bc1a6403c4cd482b136e859d82b1d622a3af7f3667277b6bbfabf0"
+      },
+      "greaves": {
+        "bytes": 249448,
+        "sha256": "c35cde232655dbf10a6bf1e86691c44368b5cdffb14327b855ea56cb1f0a2d5f"
+      }
+    }
+  ],
+  "clearance": {
+    "baseline": {
+      "scope": "Existing parity/distance helpers; open cuff can limit volume inference, inspect native motion separately",
+      "coincidenceM": 0.001,
+      "rows": [
+        {
+          "race": "authored",
+          "pose": "bind",
+          "inside": 55,
+          "near": 148
+        },
+        {
+          "race": "human",
+          "pose": "bind",
+          "inside": 65,
+          "near": 106
+        },
+        {
+          "race": "human",
+          "pose": "Idle_Loop",
+          "time": 0.2,
+          "inside": 67,
+          "near": 107
+        },
+        {
+          "race": "human",
+          "pose": "Walk_Loop",
+          "time": 0.25,
+          "inside": 88,
+          "near": 101
+        },
+        {
+          "race": "human",
+          "pose": "Sprint_Loop",
+          "time": 0,
+          "inside": 123,
+          "near": 102
+        },
+        {
+          "race": "human",
+          "pose": "Sprint_Loop",
+          "time": 0.2,
+          "inside": 107,
+          "near": 112
+        },
+        {
+          "race": "human",
+          "pose": "Sprint_Loop",
+          "time": 0.4,
+          "inside": 119,
+          "near": 103
+        },
+        {
+          "race": "human",
+          "pose": "Sprint_Loop",
+          "time": 0.6,
+          "inside": 113,
+          "near": 102
+        },
+        {
+          "race": "human",
+          "pose": "Sprint_Loop",
+          "time": 0.8,
+          "inside": 123,
+          "near": 102
+        },
+        {
+          "race": "undead",
+          "pose": "bind",
+          "inside": 122,
+          "near": 92
+        },
+        {
+          "race": "undead",
+          "pose": "Idle_Loop",
+          "time": 0.2,
+          "inside": 128,
+          "near": 98
+        },
+        {
+          "race": "undead",
+          "pose": "Walk_Loop",
+          "time": 0.25,
+          "inside": 147,
+          "near": 88
+        },
+        {
+          "race": "undead",
+          "pose": "Sprint_Loop",
+          "time": 0,
+          "inside": 168,
+          "near": 95
+        },
+        {
+          "race": "undead",
+          "pose": "Sprint_Loop",
+          "time": 0.2,
+          "inside": 138,
+          "near": 97
+        },
+        {
+          "race": "undead",
+          "pose": "Sprint_Loop",
+          "time": 0.4,
+          "inside": 171,
+          "near": 98
+        },
+        {
+          "race": "undead",
+          "pose": "Sprint_Loop",
+          "time": 0.6,
+          "inside": 151,
+          "near": 101
+        },
+        {
+          "race": "undead",
+          "pose": "Sprint_Loop",
+          "time": 0.8,
+          "inside": 168,
+          "near": 95
+        },
+        {
+          "race": "orc",
+          "pose": "bind",
+          "inside": 133,
+          "near": 78
+        },
+        {
+          "race": "orc",
+          "pose": "Idle_Loop",
+          "time": 0.2,
+          "inside": 163,
+          "near": 108
+        },
+        {
+          "race": "orc",
+          "pose": "Walk_Loop",
+          "time": 0.25,
+          "inside": 168,
+          "near": 90
+        },
+        {
+          "race": "orc",
+          "pose": "Sprint_Loop",
+          "time": 0,
+          "inside": 160,
+          "near": 92
+        },
+        {
+          "race": "orc",
+          "pose": "Sprint_Loop",
+          "time": 0.2,
+          "inside": 169,
+          "near": 84
+        },
+        {
+          "race": "orc",
+          "pose": "Sprint_Loop",
+          "time": 0.4,
+          "inside": 201,
+          "near": 80
+        },
+        {
+          "race": "orc",
+          "pose": "Sprint_Loop",
+          "time": 0.6,
+          "inside": 166,
+          "near": 80
+        },
+        {
+          "race": "orc",
+          "pose": "Sprint_Loop",
+          "time": 0.8,
+          "inside": 160,
+          "near": 92
+        }
+      ]
+    },
+    "candidate": {
+      "scope": "Existing parity/distance helpers; open cuff can limit volume inference, inspect native motion separately",
+      "coincidenceM": 0.001,
+      "rows": [
+        {
+          "race": "authored",
+          "pose": "bind",
+          "inside": 55,
+          "near": 148
+        },
+        {
+          "race": "human",
+          "pose": "bind",
+          "inside": 0,
+          "near": 1
+        },
+        {
+          "race": "human",
+          "pose": "Idle_Loop",
+          "time": 0.2,
+          "inside": 0,
+          "near": 3
+        },
+        {
+          "race": "human",
+          "pose": "Walk_Loop",
+          "time": 0.25,
+          "inside": 45,
+          "near": 1
+        },
+        {
+          "race": "human",
+          "pose": "Sprint_Loop",
+          "time": 0,
+          "inside": 70,
+          "near": 1
+        },
+        {
+          "race": "human",
+          "pose": "Sprint_Loop",
+          "time": 0.2,
+          "inside": 42,
+          "near": 1
+        },
+        {
+          "race": "human",
+          "pose": "Sprint_Loop",
+          "time": 0.4,
+          "inside": 54,
+          "near": 1
+        },
+        {
+          "race": "human",
+          "pose": "Sprint_Loop",
+          "time": 0.6,
+          "inside": 65,
+          "near": 1
+        },
+        {
+          "race": "human",
+          "pose": "Sprint_Loop",
+          "time": 0.8,
+          "inside": 70,
+          "near": 1
+        },
+        {
+          "race": "undead",
+          "pose": "bind",
+          "inside": 15,
+          "near": 16
+        },
+        {
+          "race": "undead",
+          "pose": "Idle_Loop",
+          "time": 0.2,
+          "inside": 23,
+          "near": 22
+        },
+        {
+          "race": "undead",
+          "pose": "Walk_Loop",
+          "time": 0.25,
+          "inside": 49,
+          "near": 16
+        },
+        {
+          "race": "undead",
+          "pose": "Sprint_Loop",
+          "time": 0,
+          "inside": 78,
+          "near": 11
+        },
+        {
+          "race": "undead",
+          "pose": "Sprint_Loop",
+          "time": 0.2,
+          "inside": 40,
+          "near": 12
+        },
+        {
+          "race": "undead",
+          "pose": "Sprint_Loop",
+          "time": 0.4,
+          "inside": 67,
+          "near": 11
+        },
+        {
+          "race": "undead",
+          "pose": "Sprint_Loop",
+          "time": 0.6,
+          "inside": 69,
+          "near": 12
+        },
+        {
+          "race": "undead",
+          "pose": "Sprint_Loop",
+          "time": 0.8,
+          "inside": 78,
+          "near": 11
+        },
+        {
+          "race": "orc",
+          "pose": "bind",
+          "inside": 27,
+          "near": 23
+        },
+        {
+          "race": "orc",
+          "pose": "Idle_Loop",
+          "time": 0.2,
+          "inside": 25,
+          "near": 26
+        },
+        {
+          "race": "orc",
+          "pose": "Walk_Loop",
+          "time": 0.25,
+          "inside": 101,
+          "near": 21
+        },
+        {
+          "race": "orc",
+          "pose": "Sprint_Loop",
+          "time": 0,
+          "inside": 95,
+          "near": 24
+        },
+        {
+          "race": "orc",
+          "pose": "Sprint_Loop",
+          "time": 0.2,
+          "inside": 99,
+          "near": 31
+        },
+        {
+          "race": "orc",
+          "pose": "Sprint_Loop",
+          "time": 0.4,
+          "inside": 91,
+          "near": 27
+        },
+        {
+          "race": "orc",
+          "pose": "Sprint_Loop",
+          "time": 0.6,
+          "inside": 98,
+          "near": 25
+        },
+        {
+          "race": "orc",
+          "pose": "Sprint_Loop",
+          "time": 0.8,
+          "inside": 95,
+          "near": 24
+        }
+      ]
+    },
+    "volumeParityIsDiagnostic": true,
+    "zeroClippingClaim": false
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "owner": "root-strap-media-review",
+  "browserPid": 2931,
+  "tabId": "1147995904",
+  "url": "http://127.0.0.1:7075/audition.mp4",
+  "purpose": "Actual local native MP4 review; no game/FPS",
+  "mediaServerPid": 18577,
+  "mediaServerPort": 7075,
+  "active": false,
+  "previousMediaServer": {
+    "pid": 14409,
+    "closed": true,
+    "limitation": "Python SimpleHTTP seekable empty; replaced with installed Vite preview"
+  },
+  "closed": true,
+  "review": {
+    "artifactSha256": "d37f534f22edd4e9c6a3981b45df7704414e902b44781c02fa5a2a23b809d24b",
+    "reviewedActualMp4": true,
+    "rates": [
+      1,
+      0.5
+    ],
+    "decision": "Focused strap clearance accepted for local canonical integration; retain pleats/cuff overlap/aliasing/Orc shell cavity. Not universal clipping-free fit or release.",
+    "cameraLimit": "Private idle is wider than previous canonical idle; run framing matches. Do not infer an idle aliasing gain from different framing."
+  }
+}
