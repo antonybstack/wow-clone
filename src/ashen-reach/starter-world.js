@@ -79,8 +79,12 @@ export async function createStarterWorld(engine, scene, prepared) {
   loadTexture2D(engine, manifest.textureURLs['/ashen-reach/sky-generated.jpg'],
     {invertY:false,mipMaps:true}).catch(()=>{});
   const mats = await Promise.all(
-    manifest.surfaces.map((s) => withStartupResource(manifest.textureURLs[s.url]??s.url,
-      `surface ${s.name} preparation`,()=>surface(engine, s.name, s.url, s.options))),
+    // Keep material context for shader/preparation errors, while surface() names
+    // the actual failed sampler. Its primary map may have completed successfully.
+    manifest.surfaces.map(async(s)=>{
+      try{return await surface(engine,s.name,s.url,s.options);}
+      catch(cause){throw new Error(`Surface ${s.name} preparation failed: ${cause?.message??String(cause)}`,{cause});}
+    }),
   );
   mats.forEach((m) => prepareLinearMaterial(scene, m));
   // Material/image preparation needs only the small manifest, so overlap it
@@ -635,13 +639,14 @@ export async function createStarterWorld(engine, scene, prepared) {
   api.upgradeTextures = async () => {
     for (const { mat, slots } of engine.ashenTextureUpgrades) {
       for (const [slot, url, filter, srgb = false] of slots) {
-        const texture = await loadTexture2D(engine, url, {
+        const texture = await withStartupResource(url,
+          `material ${mat.name} sampler ${slot} enhancement`,()=>loadTexture2D(engine, url, {
           invertY: false,
           srgb,
           mipMaps: true,
           minFilter: filter,
           magFilter: filter,
-        });
+        }));
         if (disposed) throw Error("Scene disposed during texture load");
         setShaderTexture(mat, slot, texture);
         await yieldToFrame();

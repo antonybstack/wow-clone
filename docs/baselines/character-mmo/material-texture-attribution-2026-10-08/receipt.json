@@ -1,0 +1,468 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-08",
+  "outcome": "Reporting correction accepted locally; production unchanged",
+  "sourceBaseCommit": "086687dab9a7ae8b48d4b0b48c94fe0c5cc0ef0a",
+  "sourceHashes": {
+    "src/ashen-reach/materials.js": "18c171ef61cc84829fd185d0094c13fe196535387e62d0cbc521b5460601b635",
+    "src/ashen-reach/starter-world.js": "2f5e127bfb615bc7c11d868ac2a98d5fce4c40d8a4c8bf40fed1938c8960232c",
+    "src/ashen-reach/startup-fetch.js": "cabad506ea072b97a5f686866b31b76cb26030b81e6513cb1e7ca3e082c37862",
+    "src/ashen-reach/startup-resource-error.js": "cde53e09151283c1ac841c6398e1c7a8440b73574dbc71826e7d40cda692f561",
+    "vite.config.js": "3ab1e9b3fec8c77fc3b0296feea8220dc353341b1d22b3ce04e21e6fc12dd0d9",
+    "public/ashen-reach/startup/starter/manifest.json": "47aaa789334108bfa5ee636ba708608f14fb59de9069f79c22ee04c5a45e0bc1",
+    "scripts/ashen-reach/check-material-texture-errors.mjs": "eb08f2cbcac0e43ca35769b5d79c739a8b4989c5456ed326bb774a0141bfbdb6"
+  },
+  "production": {
+    "source": "7d00c56c06f02899e2319ffdddea97728013c0b1",
+    "deployment": "5723a4ab-5dfd-4902-959b-7496948ea51f"
+  },
+  "tests": {
+    "nativeExit": 0,
+    "passed": 20,
+    "failed": 0,
+    "scripts": [
+      "scripts/test-startup-resource-errors.mjs",
+      "scripts/test-startup-assets.mjs",
+      "scripts/test-startup-prefetch.mjs"
+    ]
+  },
+  "builds": {
+    "defaultFlags0": 0,
+    "releaseFlags1": 0,
+    "evidenceAttempt": 5,
+    "strictEarlyGraphGuardsRetained": true
+  },
+  "native": {
+    "exit": 0,
+    "evidenceAttempt": 6,
+    "cases": [
+      {
+        "name": "legacy-shared-detail",
+        "passed": true,
+        "gpuErrors": []
+      },
+      {
+        "name": "albedo",
+        "passed": true,
+        "gpuErrors": []
+      },
+      {
+        "name": "shared-detail",
+        "passed": true,
+        "gpuErrors": []
+      },
+      {
+        "name": "shared-paving",
+        "passed": true,
+        "gpuErrors": []
+      },
+      {
+        "name": "sky",
+        "passed": true,
+        "gpuErrors": []
+      },
+      {
+        "name": "enhancement",
+        "passed": true,
+        "gpuErrors": []
+      },
+      {
+        "name": "normal-movement",
+        "passed": true,
+        "gpuErrors": []
+      }
+    ],
+    "conditions": {
+      "viewport": [
+        1280,
+        720
+      ],
+      "devicePixelRatio": 1,
+      "browser": "Fresh native Chrome process/profile per case",
+      "recording": false
+    },
+    "normalMovementMeters": 4.886466,
+    "normalUsingPhysics": true,
+    "normalRecoveries": 0,
+    "normalPageErrors": [],
+    "normalConsoleErrors": [],
+    "productFingerprintBefore": "e483292800300ceca1ac25767bd87b1359519c871c01b32db9df0d611dc67de3",
+    "productFingerprintAfter": "e483292800300ceca1ac25767bd87b1359519c871c01b32db9df0d611dc67de3",
+    "candidateReusedFromSuccessfulBuild": ".cache/character-mmo/material-texture-attribution-2026-10-08/attempt-5/candidate-dist"
+  },
+  "world": {
+    "files": 13,
+    "geometryTexturePayloadsExact": true,
+    "sceneManifestExcludingProvenanceExact": true,
+    "changedFiles": [
+      "manifest.json"
+    ]
+  },
+  "history": [
+    {
+      "attempt": 1,
+      "passed": false,
+      "failure": "Error: build native exit 1, null",
+      "steps": [
+        {
+          "name": "resource-tests",
+          "pid": 74306,
+          "code": 0,
+          "signal": null
+        },
+        {
+          "name": "build",
+          "pid": 74309,
+          "code": 1,
+          "signal": null
+        }
+      ]
+    },
+    {
+      "attempt": 2,
+      "passed": false,
+      "failure": "Error: build native exit 1, null",
+      "steps": [
+        {
+          "name": "resource-tests",
+          "pid": 88978,
+          "code": 0,
+          "signal": null
+        },
+        {
+          "name": "build",
+          "pid": 88988,
+          "code": 1,
+          "signal": null
+        }
+      ]
+    },
+    {
+      "attempt": 3,
+      "passed": true,
+      "failure": null,
+      "steps": [
+        {
+          "name": "resource-tests",
+          "pid": 96180,
+          "code": 0,
+          "signal": null
+        },
+        {
+          "name": "build",
+          "pid": 96211,
+          "code": 0,
+          "signal": null
+        },
+        {
+          "name": "baseline-server",
+          "pid": 96390,
+          "code": null,
+          "signal": "SIGTERM"
+        },
+        {
+          "name": "candidate-server",
+          "pid": 96392,
+          "code": null,
+          "signal": "SIGTERM"
+        },
+        {
+          "name": "native-controls",
+          "pid": 96414,
+          "code": 0,
+          "signal": null
+        }
+      ]
+    },
+    {
+      "attempt": 4,
+      "passed": false,
+      "failure": "Error: default-build native exit 1, null",
+      "steps": [
+        {
+          "name": "resource-tests",
+          "pid": 5953,
+          "code": 0,
+          "signal": null
+        },
+        {
+          "name": "default-build",
+          "pid": 5979,
+          "code": 1,
+          "signal": null
+        }
+      ]
+    },
+    {
+      "attempt": 5,
+      "passed": false,
+      "failure": "Error: native-controls native exit 1, null",
+      "steps": [
+        {
+          "name": "resource-tests",
+          "pid": 14927,
+          "code": 0,
+          "signal": null
+        },
+        {
+          "name": "default-build",
+          "pid": 14932,
+          "code": 0,
+          "signal": null
+        },
+        {
+          "name": "build",
+          "pid": 15110,
+          "code": 0,
+          "signal": null
+        },
+        {
+          "name": "baseline-server",
+          "pid": 15279,
+          "code": null,
+          "signal": "SIGTERM"
+        },
+        {
+          "name": "candidate-server",
+          "pid": 15286,
+          "code": null,
+          "signal": "SIGTERM"
+        },
+        {
+          "name": "native-controls",
+          "pid": 15308,
+          "code": 1,
+          "signal": null
+        }
+      ]
+    },
+    {
+      "attempt": 6,
+      "passed": true,
+      "failure": null,
+      "steps": [
+        {
+          "name": "baseline-server",
+          "pid": 29034,
+          "code": null,
+          "signal": "SIGTERM"
+        },
+        {
+          "name": "candidate-server",
+          "pid": 29056,
+          "code": null,
+          "signal": "SIGTERM"
+        },
+        {
+          "name": "native-controls",
+          "pid": 29058,
+          "code": 0,
+          "signal": null
+        }
+      ]
+    }
+  ],
+  "ownership": [
+    {
+      "case": "legacy-shared-detail",
+      "owner": "grok-material-attribution",
+      "browserPid": 29072,
+      "gpuHelperPids": [
+        29078
+      ],
+      "cdpPort": 0,
+      "url": "http://127.0.0.1:7076/?play=&clean=&pixelRatio=1",
+      "purpose": "Controlled native material texture attribution and normal game movement; no timing acceptance",
+      "transport": "native pipe; no listening CDP port",
+      "openedAt": "2026-10-08T11:47:58.332Z",
+      "active": false,
+      "closedAt": "2026-10-08T11:47:58.976Z"
+    },
+    {
+      "case": "albedo",
+      "owner": "grok-material-attribution",
+      "browserPid": 29107,
+      "gpuHelperPids": [
+        29131
+      ],
+      "cdpPort": 0,
+      "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+      "purpose": "Controlled native material texture attribution and normal game movement; no timing acceptance",
+      "transport": "native pipe; no listening CDP port",
+      "openedAt": "2026-10-08T11:47:59.238Z",
+      "active": false,
+      "closedAt": "2026-10-08T11:47:59.937Z"
+    },
+    {
+      "case": "shared-detail",
+      "owner": "grok-material-attribution",
+      "browserPid": 29169,
+      "gpuHelperPids": [
+        29173
+      ],
+      "cdpPort": 0,
+      "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+      "purpose": "Controlled native material texture attribution and normal game movement; no timing acceptance",
+      "transport": "native pipe; no listening CDP port",
+      "openedAt": "2026-10-08T11:48:00.181Z",
+      "active": false,
+      "closedAt": "2026-10-08T11:48:00.792Z"
+    },
+    {
+      "case": "shared-paving",
+      "owner": "grok-material-attribution",
+      "browserPid": 29201,
+      "gpuHelperPids": [
+        29206
+      ],
+      "cdpPort": 0,
+      "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+      "purpose": "Controlled native material texture attribution and normal game movement; no timing acceptance",
+      "transport": "native pipe; no listening CDP port",
+      "openedAt": "2026-10-08T11:48:01.050Z",
+      "active": false,
+      "closedAt": "2026-10-08T11:48:01.664Z"
+    },
+    {
+      "case": "sky",
+      "owner": "grok-material-attribution",
+      "browserPid": 29239,
+      "gpuHelperPids": [
+        29243
+      ],
+      "cdpPort": 0,
+      "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+      "purpose": "Controlled native material texture attribution and normal game movement; no timing acceptance",
+      "transport": "native pipe; no listening CDP port",
+      "openedAt": "2026-10-08T11:48:01.917Z",
+      "active": false,
+      "closedAt": "2026-10-08T11:48:02.534Z"
+    },
+    {
+      "case": "enhancement",
+      "owner": "grok-material-attribution",
+      "browserPid": 29271,
+      "gpuHelperPids": [
+        29275
+      ],
+      "cdpPort": 0,
+      "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+      "purpose": "Controlled native material texture attribution and normal game movement; no timing acceptance",
+      "transport": "native pipe; no listening CDP port",
+      "openedAt": "2026-10-08T11:48:02.791Z",
+      "active": false,
+      "closedAt": "2026-10-08T11:48:20.030Z"
+    },
+    {
+      "case": "normal-movement",
+      "owner": "grok-material-attribution",
+      "browserPid": 29813,
+      "gpuHelperPids": [
+        29817
+      ],
+      "cdpPort": 0,
+      "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1",
+      "purpose": "Controlled native material texture attribution and normal game movement; no timing acceptance",
+      "transport": "native pipe; no listening CDP port",
+      "openedAt": "2026-10-08T11:48:20.300Z",
+      "active": false,
+      "closedAt": "2026-10-08T11:48:38.326Z"
+    }
+  ],
+  "servers": [
+    {
+      "owner": "grok-material-attribution",
+      "pid": 29034,
+      "port": 7076,
+      "dist": "dist",
+      "purpose": "Exact material sampler attribution; bounded local native controls only"
+    },
+    {
+      "owner": "grok-material-attribution",
+      "pid": 29056,
+      "port": 7074,
+      "dist": ".cache/character-mmo/material-texture-attribution-2026-10-08/attempt-5/candidate-dist",
+      "purpose": "Exact material sampler attribution; bounded local native controls only"
+    }
+  ],
+  "worker": {
+    "model": "grok-4.6",
+    "effort": "high",
+    "session": "01a11b3a-83e0-7773-81ed-283aca951eea",
+    "sourceWrites": false,
+    "furtherAgents": false
+  },
+  "rootReview": {
+    "reviewedImages": [
+      "legacy-shared-detail.png",
+      "shared-detail.png",
+      "normal-movement.png"
+    ],
+    "failureUI": "Expanded technical details and retry remain present. Long preformatted lines exceed the visible width; exact URL/sampler assertions use the complete native DOM text retained here.",
+    "normalGame": "Ordinary churchyard running pose, visible loaded world/materials, removed loader; real W input displacement 4.886 m, grounded Havok and no recoveries.",
+    "acceptance": "Accept reporting correction only; historical request/body cause and release/device exits remain open."
+  },
+  "images": {
+    "legacy-shared-detail.png": {
+      "sha256": "6b2decdaae95ed449d7c39e4f1fdec1672175f5396a587d47b1ad397b0e503dc",
+      "bytes": 327997,
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    "shared-detail.png": {
+      "sha256": "15a243031ed27dc8fceaef4c86c68ee9a6abacb7bfa3d5febac3bec5860253e7",
+      "bytes": 322438,
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    "normal-movement.png": {
+      "sha256": "eae188d78656f3b1008821786966c8aa83c13d2dafb7e5822fcfec46c3a4b229",
+      "bytes": 1230691,
+      "dimensions": [
+        1280,
+        720
+      ]
+    }
+  },
+  "evidence": {
+    "file": "evidence.json.gz",
+    "compressedBytes": 83409,
+    "compressedSha256": "34f8f2176b439b7ad6be0fffb0b5d748d7c8a557dc65c957709ad7bb175548a4",
+    "decodedSha256": "e6078b6d3d5c956ff45fa87b64e027410982548171d20d2d5bf1d8562b3e6019"
+  },
+  "limits": [
+    "Historical required-map failure URL/request/body cause remains unproved; old wrapper named the primary map by convention.",
+    "All three historical ground-map parser preloads returned HTTP 200; that does not establish application body consumption.",
+    "Controlled aborts do not fix transport or qualify a release.",
+    "No cold-start budget, new FPS, deployment, visual art change or physical iPhone acceptance.",
+    "Sky retains two same-URL context layers; this is wording only and does not issue another request."
+  ],
+  "openExits": [
+    "Rejected boot preview maximum-uncovered start",
+    "Historical 14/60 fetch failures",
+    "362 ms input upper-bound outlier",
+    "Current physical iPhone acceptance"
+  ],
+  "cleanup": {
+    "at": "2026-10-08T11:53:07.077000+00:00",
+    "allRetainedAttemptOwnedPidsTerminal": true,
+    "retainedOwnedPidsChecked": 56,
+    "chromeProcesses": 0,
+    "portsIdle": [
+      5173,
+      7074,
+      7076,
+      10037
+    ],
+    "workerCliExit": 0,
+    "preservedEdgePid": 2931,
+    "preservedOrcaPid": 98938,
+    "preservedEdgeTabs": 12,
+    "discardedShadowglassUntouched": true,
+    "officialOrcaTabInventory": []
+  }
+}

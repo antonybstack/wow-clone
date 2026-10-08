@@ -67,6 +67,17 @@ Startup failure diagnostics retain the exact asset URL, operation and native
 cause, including a body read that fails after HTTP 200. A failed release entry
 halts further cohorts; successful diagnostics do not erase the failed cohort.
 
+Material texture preparation now names the actual failed sampler URL (`albedo`,
+shared detail, paving or cloud); an older surface-wide wrapper could misattribute
+a secondary-map failure to its primary albedo. Full-resolution enhancements name
+their original source URL. The native Lite loader/cache and complete cause chain
+are preserved. [Controlled attribution result](plans/character-mmo/results/material-texture-attribution-2026-10-08.md).
+On audited local builds, run
+`ASHEN_TEST_URL=<candidate URL> ASHEN_MATERIAL_BASELINE_URL=<preserved old build URL> node scripts/ashen-reach/check-material-texture-errors.mjs <report.json>`
+for seven sequential native failure/movement controls. The old-build URL is
+optional; without it the six candidate controls run. This is functional evidence,
+not cold-start/FPS qualification or an explanation of a historical failed read.
+
 ## Historical notes
 
 The [previous startup document](archive/state/startup-load-before-character-vision-2026-09-27.md) preserves older texture optimization and whole-world overlay assumptions. It is useful lineage, not the current readiness contract.

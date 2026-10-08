@@ -18,6 +18,7 @@ import {brotliCompressSync} from 'node:zlib';
 const coalesceSavedStartup=process.env.ASHEN_SAVED_BOOTSTRAP==='1';
 const savedStartupModules=new Set([
   'src/ashen-reach/startup-preload.js','src/ashen-reach/startup-fetch.js','src/ashen-reach/startup-appearance.js',
+  'src/ashen-reach/startup-resource-error.js',
   'src/ashen-reach/human-identity-assets.js','src/ashen-reach/starter-identity-policy.js',
   'src/character/appearance/store.js','src/character/appearance/contract.js',
   'src/character/appearance/codec.js','src/character/appearance/from-equipment.js',
@@ -172,11 +173,11 @@ export default defineConfig({
         ...(coalesceSavedStartup?[{name:'startup-bootstrap',test:id=>savedStartupModules.has(id),priority:90,includeDependenciesRecursively:false}]:[]),
         // Keep the early entry self-contained; otherwise its tiny shared helper
         // requests queue behind Lite and recreate the serial discovery delay.
-        {name:'startup-bootstrap',test:/src\/ashen-reach\/startup-(?:preload|fetch|appearance)\.js$/,includeDependenciesRecursively:false},
+        {name:'startup-bootstrap',test:/src\/ashen-reach\/startup-(?:preload|fetch|appearance|resource-error)\.js$/,includeDependenciesRecursively:false},
         {name:'appearance-storage',test:/src\/character\/appearance\//,includeDependenciesRecursively:false},
         // These pure values also serve the optional saved decoder. Putting them
         // in the GPU-dependent boot chunk would delay validation until Lite loads.
-        {name:'appearance-common',test:/src\/ashen-reach\/(?:equipment-catalog|equipment-contract|dye-palette|coverage-contract|coverage-manifest)\.js$/,includeDependenciesRecursively:false},
+        {name:'appearance-common',test:/src\/ashen-reach\/(?:equipment-catalog|equipment-contract|equipment-resources|dye-palette|coverage-contract|coverage-manifest)\.js$/,includeDependenciesRecursively:false},
         ...(process.env.ASHEN_BOOT_BUNDLE!=='0'?[{name:bootDependencyChunk,includeDependenciesRecursively:false}]:[]),
       ]}},
       input: pages
@@ -228,7 +229,8 @@ export default defineConfig({
         const pending=[entry],seen=new Set();
         while(pending.length) {
           const chunk=pending.pop();if(seen.has(chunk.fileName))continue;seen.add(chunk.fileName);
-          if(Object.keys(chunk.modules).some(id=>id.includes('/node_modules/@babylonjs/lite/')||(!coalesceSavedStartup&&id.includes('/src/character/appearance/'))))throw Error('Early character entry eagerly imports optional renderer/storage code');
+          const eagerModules=Object.keys(chunk.modules).filter(id=>id.includes('/node_modules/@babylonjs/lite/')||(!coalesceSavedStartup&&id.includes('/src/character/appearance/')));
+          if(eagerModules.length)throw Error(`Early character entry eagerly imports optional renderer/storage code: ${chunk.fileName} (${eagerModules.slice(0,3).join(', ')})`);
           if(coalesceSavedStartup&&Object.keys(chunk.modules).some(id=>id.includes('/src/')&&!savedStartupModules.has(id)))throw Error('Early character entry exceeds its pure saved-module allowlist');
           for(const name of chunk.imports){const dependency=bundle[name];if(dependency?.type==='chunk')pending.push(dependency);}
         }

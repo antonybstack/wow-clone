@@ -4,19 +4,9 @@
  */
 import {EQUIPMENT_ITEMS} from './equipment-catalog.js';
 import {selectedEquipmentResources} from './equipment-resources.js';
+import {resourceFailure,withStartupResource} from './startup-resource-error.js';
+export {withStartupResource} from './startup-resource-error.js';
 const pending = new Map();
-function resourceFailure(url, operation, cause) {
-  return new Error(`Startup resource ${url}: ${operation} failed: ${cause?.message??String(cause)}`, {cause});
-}
-/** Attach the fixed asset URL/operation while preserving the native failure.
- * A body can fail after HTTP 200, so request and decoding failures need distinct
- * context. The existing error formatter prints this complete cause chain.
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/cause
- */
-export async function withStartupResource(url, operation, task) {
-  try {return await task();}
-  catch (cause) {throw resourceFailure(url, operation, cause);}
-}
 /** Cache promises, not just completed HTTP responses, so prefetch and equipment
  * installation share one request and one decompression.
  * https://developer.mozilla.org/en-US/docs/Web/API/DecompressionStream

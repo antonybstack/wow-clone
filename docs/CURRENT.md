@@ -83,6 +83,13 @@ stays first, but unchanged startup campaigns are exhausted until a material lead
    1280×720 and >120 FPS floor; retain every miss. Production 5723a4ab is rollback.
    [Rejected preview](plans/character-mmo/results/boot-sole-preview-2026-10-07.md),
    [native diagnostic campaign](plans/character-mmo/results/startup-native-capture-2026-10-07.md).
+   A demonstrated reporting defect is now corrected locally: a failed secondary
+   texture could be named as its surface's primary albedo. The correction names
+   the actual sampler URL and retains Lite's native cache/cause. Twenty tests,
+   both build configurations and seven native controls pass; all world payloads
+   are exact. Historical failed-map/request/body cause remains unproved, so this
+   does not reopen unchanged qualification or lift the release hold.
+   [Attribution result](plans/character-mmo/results/material-texture-attribution-2026-10-08.md).
 2. **Smooth background loading and explicit sound activation.** Streaming p99
    around 21.5 ms and first AudioContext construction 151–179 ms remain distinct
    from settled FPS. Parallel buffer fetch/decode saves 45.6–58.1 ms readiness,
