@@ -7,7 +7,7 @@ Root implements and accepts changes. Grok 4.6/high owns bounded verification and
 operations, with one tracked game renderer. Completed changes are committed and
 pushed. Release gates remain required before production promotion.
 
-## Current execution order — 2026-10-07
+## Current execution order — 2026-10-08
 
 The full five-priority goal remains active. Production **5723a4ab / 7d00c56**
 now delivers the accepted startup/audio/camera work and Fieldcoat: all 552 checks,
@@ -49,7 +49,7 @@ seven enemies, three 12-second windows on five routes, no recording/other render
    controls and one 552-row production check pass. No new runtime deployment.
 5. While the physical-device exit awaits hardware, independent streaming/fit,
    release-diagnostic and factory work can proceed in the recommended order in
-   [CURRENT](../../CURRENT.md#recommended-next-packages). Keep the original exits
+   [CURRENT](../../CURRENT.md#next-priorities-in-execution-order). Keep the original exits
    open. Region, multiplayer and Elf expansion remain parked.
 
 The subsequent canonical boot integration is locally accepted: 231 character and
@@ -86,9 +86,19 @@ committed/pushed and delivered as Telegram 887/identical VE; include it in the n
 qualified release batch rather than repeating its prototype steps. The subsequent
 [exact completion diagnosis and bounded RAF comparison](results/frame-completion-2026-10-08.md)
 rejects simple polling after all three pairs miss the declared material p99 gate.
-Runtime remains unchanged. Next performance work is a bounded native Chrome
-task/presentation/GPU trace before another code arm. Preserve the rejected preview,
-production 5723a4ab and the physical-device/reliability exits.
+Runtime remains unchanged. The subsequent
+[native completion trace](results/completion-native-trace-2026-10-08.md) completes
+three actual traced game visits and retains the initial pre-navigation inventory
+failure. Two captured ~21 ms intervals retain 14.8/16.1 ms after acknowledgement
+with only 0.189/0.226 ms recorded main-thread tasks. Independent review confirms
+the narrow observation and corrects adjacent-RAF matching. Hardware GPU,
+compositor/OS cause and the full streaming tail remain unproved. Stop that native
+tracing approach; next use the existing Lite timer for one private raw readback
+visit, keyed to preceding fenced work with missing/skipped coverage explicit.
+An inconclusive visit closes this arm; move to a demonstrated armor-fit correction
+if no actionable bottleneck emerges. Successful device inventory again finds no
+physical iPhone. Preserve the rejected preview, production 5723a4ab and the
+physical-device/reliability exits; no unchanged release campaign follows.
 
 ## 1. Isolate intermittent startup failure
 

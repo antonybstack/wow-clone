@@ -1,0 +1,1374 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-08",
+  "sourceCommit": "5250e7e148fd932ff7c0eeb782740dd1bcbb8219",
+  "productUnchanged": true,
+  "runtimeChanged": false,
+  "production": "7d00c56 / Pages5723a4ab",
+  "releaseHoldRemains": true,
+  "performanceAcceptance": false,
+  "diagnosticOnly": true,
+  "attempts": [
+    {
+      "name": "initial",
+      "nativeExitCode": 1,
+      "passed": false,
+      "worker": {
+        "sessionId": "01a119b2-566d-7af1-b67f-6ce8191e432e",
+        "stopReason": "end_turn",
+        "num_turns": 6,
+        "requestedModel": "grok-4.6",
+        "requestedEffort": "high",
+        "actualCliExitCode": 0,
+        "cliExitEvidence": "Parent-observed completed exec session, preserved through task summary."
+      },
+      "sourceCommit": "5250e7e148fd932ff7c0eeb782740dd1bcbb8219",
+      "finding": "Empty category inventory stopped an overly strict gate before navigation/Tracing.start; trace capability was not disproved."
+    },
+    {
+      "name": "early",
+      "nativeExitCode": 0,
+      "passed": true,
+      "worker": {
+        "sessionId": "01a119b2-566d-7af1-b67f-6ce8191e432e",
+        "stopReason": "end_turn",
+        "num_turns": 9,
+        "requestedModel": "grok-4.6",
+        "requestedEffort": "high",
+        "actualCliExitCode": 0,
+        "cliExitEvidence": "Parent-observed completed exec session, preserved through task summary."
+      },
+      "sourceCommit": "5250e7e148fd932ff7c0eeb782740dd1bcbb8219",
+      "nativeTrace": {
+        "file": "native-early.trace.json.gz",
+        "bytes": 4039750,
+        "sha256": "a900c524f6d7cdf66b2ca4c33d6de30f1a46aa532c8bbbe9acb7d4b6d51c4ca8",
+        "decodedBytes": 41273115,
+        "decodedSha256": "fc363ed2546e3699701999529937fd80aa167ac23f01f5c1be4400b3de803781",
+        "events": 224241,
+        "dataLossOccurred": false
+      },
+      "nativeWindow": {
+        "begin": {
+          "at": 2283.699999988079,
+          "origin": 1791441831933.4,
+          "rendered": 393,
+          "pending": 3,
+          "worldRecords": 6
+        },
+        "end": {
+          "at": 3286.800000011921,
+          "origin": 1791441831933.4,
+          "rendered": 659,
+          "pending": 3,
+          "worldRecords": 6
+        }
+      },
+      "clock": {
+        "offsetUs": 359091360260,
+        "endOffsetUs": 359091360261,
+        "driftUs": 1,
+        "main": {
+          "pid": 62971,
+          "tid": 19743137
+        }
+      },
+      "metadata": [
+        {
+          "args": {
+            "name": "swapper"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 0,
+          "tid": 0,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "Compositor"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62971,
+          "tid": 19743199,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "VizCompositorThread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62963,
+          "tid": 19743089,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "CrRendererMain"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62971,
+          "tid": 19743137,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "PerfettoTrace"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62971,
+          "tid": 19743178,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "PerfettoTrace"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62963,
+          "tid": 19743044,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "PerfettoTrace"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62937,
+          "tid": 19742985,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "CrBrowserMain"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62937,
+          "tid": 19742913,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "Chrome_ChildIOThread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62971,
+          "tid": 19743185,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "Chrome_ChildIOThread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62963,
+          "tid": 19743088,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "CrGpuMain"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62963,
+          "tid": 19743009,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "DevToolsPipeHandlerWriteThread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62937,
+          "tid": 19743059,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62971,
+          "tid": 19743183,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "Chrome_IOThread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62937,
+          "tid": 19742993,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62971,
+          "tid": 19743186,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62971,
+          "tid": 19743230,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "DedicatedWorker thread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62971,
+          "tid": 19743269,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolServiceThread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62971,
+          "tid": 19743182,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62971,
+          "tid": 19743232,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62971,
+          "tid": 19743236,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62971,
+          "tid": 19743235,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62971,
+          "tid": 19743233,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62971,
+          "tid": 19743231,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolServiceThread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62937,
+          "tid": 19742986,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 62937,
+          "tid": 19742987,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "Renderer"
+          },
+          "cat": "__metadata",
+          "name": "process_name",
+          "ph": "M",
+          "pid": 62971,
+          "tid": 0,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "GPU Process"
+          },
+          "cat": "__metadata",
+          "name": "process_name",
+          "ph": "M",
+          "pid": 62963,
+          "tid": 0,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "Browser"
+          },
+          "cat": "__metadata",
+          "name": "process_name",
+          "ph": "M",
+          "pid": 62937,
+          "tid": 0,
+          "ts": 0
+        }
+      ],
+      "markerCountedRenders": 266,
+      "completeInteriorIntervals": 265,
+      "uniqueNativeRafMatches": 265,
+      "longIntervals": [],
+      "functional": {
+        "havok": true,
+        "recoveries": 0,
+        "enemies": 7,
+        "worldRecords": 71,
+        "allocatedWorldBytes": 210049236,
+        "errors": [],
+        "shadowAndWoodlandChecks": "pass",
+        "sourceMotionAndActualMovement": "pass"
+      }
+    },
+    {
+      "name": "late",
+      "nativeExitCode": 0,
+      "passed": true,
+      "worker": {
+        "sessionId": "01a119b2-566d-7af1-b67f-6ce8191e432e",
+        "stopReason": "end_turn",
+        "num_turns": 7,
+        "requestedModel": "grok-4.6",
+        "requestedEffort": "high",
+        "actualCliExitCode": 0,
+        "cliExitEvidence": "Parent-observed completed exec session, preserved through task summary."
+      },
+      "sourceCommit": "5250e7e148fd932ff7c0eeb782740dd1bcbb8219",
+      "nativeTrace": {
+        "file": "native-late.trace.json.gz",
+        "bytes": 3177571,
+        "sha256": "93fd3a6b10e6e21d470ff700b6c71ed2aa64208b42ae85d0083f821de746d255",
+        "decodedBytes": 42606331,
+        "decodedSha256": "3c5d20cc3b833baad9a767ec73a0354b19f862cc719aca57cb55d65c4f9417fd",
+        "events": 226511,
+        "dataLossOccurred": false
+      },
+      "nativeWindow": {
+        "begin": {
+          "at": 7901.400000035763,
+          "origin": 1791442220184.1,
+          "rendered": 1352,
+          "pending": 3,
+          "worldRecords": 71
+        },
+        "end": {
+          "at": 8904.300000011921,
+          "origin": 1791442220184.1,
+          "rendered": 1521,
+          "pending": 4,
+          "worldRecords": 71
+        }
+      },
+      "clock": {
+        "offsetUs": 359479613862.99994,
+        "endOffsetUs": 359479613863,
+        "driftUs": 6.103515625e-05,
+        "main": {
+          "pid": 75190,
+          "tid": 19764474
+        }
+      },
+      "metadata": [
+        {
+          "args": {
+            "name": "swapper"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 0,
+          "tid": 0,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "Compositor"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75190,
+          "tid": 19764517,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "CrRendererMain"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75190,
+          "tid": 19764474,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "VizCompositorThread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75163,
+          "tid": 19764408,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "PerfettoTrace"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75157,
+          "tid": 19764305,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "PerfettoTrace"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75190,
+          "tid": 19764499,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "PerfettoTrace"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75163,
+          "tid": 19764362,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "CrBrowserMain"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75157,
+          "tid": 19764251,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "Chrome_ChildIOThread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75190,
+          "tid": 19764509,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "Chrome_ChildIOThread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75163,
+          "tid": 19764407,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "DedicatedWorker thread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75190,
+          "tid": 19764588,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "CrGpuMain"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75163,
+          "tid": 19764329,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "DevToolsPipeHandlerWriteThread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75157,
+          "tid": 19764378,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "Chrome_IOThread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75157,
+          "tid": 19764313,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75190,
+          "tid": 19764505,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolServiceThread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75190,
+          "tid": 19764503,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75190,
+          "tid": 19764511,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75190,
+          "tid": 19764550,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75190,
+          "tid": 19764551,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75190,
+          "tid": 19764558,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75190,
+          "tid": 19764553,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75190,
+          "tid": 19764552,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75190,
+          "tid": 19764556,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75190,
+          "tid": 19764557,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolServiceThread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75157,
+          "tid": 19764306,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 75157,
+          "tid": 19764307,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "Renderer"
+          },
+          "cat": "__metadata",
+          "name": "process_name",
+          "ph": "M",
+          "pid": 75190,
+          "tid": 0,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "GPU Process"
+          },
+          "cat": "__metadata",
+          "name": "process_name",
+          "ph": "M",
+          "pid": 75163,
+          "tid": 0,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "Browser"
+          },
+          "cat": "__metadata",
+          "name": "process_name",
+          "ph": "M",
+          "pid": 75157,
+          "tid": 0,
+          "ts": 0
+        }
+      ],
+      "markerCountedRenders": 169,
+      "completeInteriorIntervals": 168,
+      "uniqueNativeRafMatches": 168,
+      "longIntervals": [],
+      "functional": {
+        "havok": true,
+        "recoveries": 0,
+        "enemies": 7,
+        "worldRecords": 71,
+        "allocatedWorldBytes": 210049236,
+        "errors": [],
+        "shadowAndWoodlandChecks": "pass",
+        "sourceMotionAndActualMovement": "pass"
+      }
+    },
+    {
+      "name": "triggered",
+      "nativeExitCode": 0,
+      "passed": true,
+      "worker": {
+        "sessionId": "01a119b2-566d-7af1-b67f-6ce8191e432e",
+        "stopReason": "end_turn",
+        "num_turns": 7,
+        "requestedModel": "grok-4.6",
+        "requestedEffort": "high",
+        "actualCliExitCode": 0,
+        "cliExitEvidence": "Parent-observed completed exec session, preserved through task summary."
+      },
+      "sourceCommit": "5250e7e148fd932ff7c0eeb782740dd1bcbb8219",
+      "nativeTrace": {
+        "file": "native-triggered.trace.json.gz",
+        "bytes": 3625919,
+        "sha256": "5d9e30225c22bb0faec285e412aec1e9a19b3635e09ca54b862064633c1ba9ae",
+        "decodedBytes": 54703840,
+        "decodedSha256": "72d33922780cfaf31a4f5103204eb83b1aaf2158ffc4aa3e4d08b1d4892cc354",
+        "events": 289071,
+        "dataLossOccurred": false
+      },
+      "nativeWindow": {
+        "begin": {
+          "at": 8583.300000011921,
+          "origin": 1791442655987.9,
+          "rendered": 1470,
+          "pending": 4,
+          "worldRecords": 71,
+          "ready": false,
+          "hostilesReady": true
+        },
+        "end": {
+          "at": 9586.5,
+          "origin": 1791442655987.9,
+          "rendered": 1643,
+          "pending": 4,
+          "worldRecords": 71,
+          "ready": false,
+          "hostilesReady": true
+        }
+      },
+      "clock": {
+        "offsetUs": 359915420987,
+        "endOffsetUs": 359915420987,
+        "driftUs": 0,
+        "main": {
+          "pid": 88224,
+          "tid": 19786785
+        }
+      },
+      "metadata": [
+        {
+          "args": {
+            "name": "swapper"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 0,
+          "tid": 0,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "Compositor"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88224,
+          "tid": 19786818,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "CrRendererMain"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88224,
+          "tid": 19786785,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "VizCompositorThread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88218,
+          "tid": 19786742,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "PerfettoTrace"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88192,
+          "tid": 19786641,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "PerfettoTrace"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88224,
+          "tid": 19786802,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "PerfettoTrace"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88218,
+          "tid": 19786696,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "CrBrowserMain"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88192,
+          "tid": 19786572,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "CrGpuMain"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88218,
+          "tid": 19786665,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "Chrome_ChildIOThread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88224,
+          "tid": 19786813,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "Chrome_ChildIOThread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88218,
+          "tid": 19786741,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "DevToolsPipeHandlerWriteThread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88192,
+          "tid": 19786712,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88224,
+          "tid": 19786811,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "Chrome_IOThread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88192,
+          "tid": 19786649,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "DedicatedWorker thread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88224,
+          "tid": 19786891,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88224,
+          "tid": 19786814,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88224,
+          "tid": 19786855,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88224,
+          "tid": 19786854,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolServiceThread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88192,
+          "tid": 19786642,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88192,
+          "tid": 19786643,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88224,
+          "tid": 19786856,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88224,
+          "tid": 19786858,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88224,
+          "tid": 19786857,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolServiceThread"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88224,
+          "tid": 19786810,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolSingleThreadSharedForeground"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88192,
+          "tid": 19786677,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88224,
+          "tid": 19786859,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88224,
+          "tid": 19786860,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "ThreadPoolForegroundWorker"
+          },
+          "cat": "__metadata",
+          "name": "thread_name",
+          "ph": "M",
+          "pid": 88224,
+          "tid": 19786892,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "Renderer"
+          },
+          "cat": "__metadata",
+          "name": "process_name",
+          "ph": "M",
+          "pid": 88224,
+          "tid": 0,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "GPU Process"
+          },
+          "cat": "__metadata",
+          "name": "process_name",
+          "ph": "M",
+          "pid": 88218,
+          "tid": 0,
+          "ts": 0
+        },
+        {
+          "args": {
+            "name": "Browser"
+          },
+          "cat": "__metadata",
+          "name": "process_name",
+          "ph": "M",
+          "pid": 88192,
+          "tid": 0,
+          "ts": 0
+        }
+      ],
+      "markerCountedRenders": 173,
+      "completeInteriorIntervals": 172,
+      "uniqueNativeRafMatches": 172,
+      "longIntervals": [
+        {
+          "submission": 1608,
+          "delta": 21.30000001192093,
+          "blockedMs": 3.199999988079071,
+          "ackToRenderMs": 14.800000011920929,
+          "mainThreadBusyAfterAckMs": 0.18900000000212458,
+          "mainThreadBusyAfterAckShare": 0.012770270260127777,
+          "release": {
+            "at": 9363.699999988079,
+            "submission": 1604,
+            "requestedAt": 9346.699999988079,
+            "ageMs": 17,
+            "pendingBefore": 4,
+            "rendered": 1607,
+            "rejected": false
+          },
+          "nativeRafDurationMs": 3.749,
+          "compositorBeginFrameSpacingMs": 16.91400000000067
+        },
+        {
+          "submission": 1625,
+          "delta": 21.5,
+          "blockedMs": 2.300000011920929,
+          "ackToRenderMs": 16.100000023841858,
+          "mainThreadBusyAfterAckMs": 0.22600002384388063,
+          "mainThreadBusyAfterAckShare": 0.014037268540944475,
+          "release": {
+            "at": 9467.5,
+            "submission": 1621,
+            "requestedAt": 9447.800000011921,
+            "ageMs": 19.69999998807907,
+            "pendingBefore": 4,
+            "rendered": 1624,
+            "rejected": false
+          },
+          "nativeRafDurationMs": 3.652,
+          "compositorBeginFrameSpacingMs": 17.318999999999505
+        }
+      ],
+      "functional": {
+        "havok": true,
+        "recoveries": 0,
+        "enemies": 7,
+        "worldRecords": 71,
+        "allocatedWorldBytes": 210049236,
+        "errors": [],
+        "shadowAndWoodlandChecks": "pass",
+        "sourceMotionAndActualMovement": "pass"
+      }
+    }
+  ],
+  "conditions": {
+    "network": {
+      "latency": 40,
+      "downloadThroughput": 6250000.0,
+      "uploadThroughput": 1250000.0
+    },
+    "cpu": "M1 Max",
+    "viewport": [
+      1280,
+      720
+    ],
+    "freshNativeChrome": true,
+    "httpCache": "disabled",
+    "recording": false,
+    "ackBypassIsNotQueueSafety": true
+  },
+  "buildFingerprint": "11242a3e03fa872af60e887a40cee135673d8b143650ec891bf44ca12f8c6301",
+  "privateBundle": {
+    "onlyDifferentFile": "assets/v2/ashen-boot-CJJjszsw.js",
+    "baselineSha256": "fb2e9786b72a877d8b33e871a99911b68ce386e0a9e2a4130f353c5b758b518f",
+    "candidateSha256": "77945152d181c6dba827b13d1b69b0dbbfc24b0ed235e0a6160a97d5834233d8"
+  },
+  "schedulerSourceSha256": "3c13e4e1f345f3a0ff3cf8dd047ecd268131a2d902948a4a6172bfbe6b75af47",
+  "recipeSha256": "9f6d950ccae7443ba1b75d6893618604ef55b4c89dd53673aef0b58e8b8020a3",
+  "scheduler": {
+    "maxPending": 4,
+    "realGpuCompletion": true,
+    "policyChanged": false,
+    "immediateBypassRan": false,
+    "rafPollRemainsRejected": true
+  },
+  "independentReview": {
+    "sessionId": "01a11a51-99e9-7963-b59f-b86801e4faf5",
+    "stopReason": "end_turn",
+    "num_turns": 15,
+    "requestedModel": "grok-4.6",
+    "requestedEffort": "high",
+    "actualCliExitCode": 0,
+    "cliExitEvidence": "Parent-observed completed exec session, preserved through task summary."
+  },
+  "analysisCorrection": {
+    "oldRule": "Shortest FireAnimationFrame within +/-0.2ms of scheduler entry.",
+    "newRule": "Unique FireAnimationFrame containing entry and returnedAt within +/-0.2ms.",
+    "ambiguousOldTriggeredMatches": 15,
+    "correctedTwoLongNativeRafMs": [
+      3.749,
+      3.652
+    ],
+    "gapAndMainThreadTaskStatisticsUnchanged": true,
+    "oldAnalysesRetained": true
+  },
+  "finding": "Two observed long intervals retain 14.8/16.1ms after acknowledgement with only 0.189/0.226ms recorded main-thread tasks. This narrows those cases away from long JS render/world-install work; hardware GPU/compositor/OS cause and overall streaming p99 remain unproved.",
+  "nextDiagnostic": {
+    "existingApi": "ASHEN.metrics.setGpuTiming",
+    "nativeLiteVersion": "1.31.1",
+    "privateOnly": true,
+    "visits": 1,
+    "rawBeforeEma": true,
+    "timestampReadbackSubmissionIdentity": true,
+    "nativeQueryPoolInflightLimitMarkersAndRetirementUnchanged": true,
+    "precedingFencedWorkCorrelationRequired": true,
+    "skippedMissingLateRejectedReadbacksExplicit": true,
+    "noChromeTracingOrGpuApiWrappers": true,
+    "shortFramePassTimesDoNotExcludeOutsideMarkerWork": true,
+    "missingCoverageIsInconclusive": true,
+    "noInflightCapRaiseOrUnchangedRepeat": true,
+    "actualOptimizationNeedsSeparateUnprofiledAcceptance": true
+  },
+  "device": {
+    "command": "xcrun xctrace list devices",
+    "actualChildExitCode": 0,
+    "physicalIphones": 0,
+    "hosts": 1,
+    "simulators": 11,
+    "identifiersOmitted": true,
+    "noSettingsPairingPermissionChanges": true,
+    "acceptanceOpen": true,
+    "worker": {
+      "sessionId": "01a119b2-566d-7af1-b67f-6ce8191e432e",
+      "stopReason": "end_turn",
+      "num_turns": 4,
+      "requestedModel": "grok-4.6",
+      "requestedEffort": "high",
+      "actualCliExitCode": 0,
+      "cliExitEvidence": "Parent-observed completed exec session, preserved through task summary."
+    }
+  },
+  "cleanup": {
+    "checkedAt": "2026-10-08T07:24:19Z",
+    "ownedPids": [
+      53648,
+      53652,
+      53680,
+      62936,
+      62937,
+      62963,
+      75156,
+      75157,
+      75163,
+      88191,
+      88192,
+      88218
+    ],
+    "psExitCode": 1,
+    "ownedProcessesRemaining": "",
+    "portAuditExitCode": 1,
+    "portListeners": "",
+    "allOwnedProcessesGone": true,
+    "portsFree": true,
+    "mediaRestore": {
+      "proof": "Parent CUA verification from completed checks; preserved through context summary.",
+      "userEdgePid": 2931,
+      "userOrcaPid": 98938,
+      "nonGameTabs": 12,
+      "gameTabs": 0,
+      "pausedDuringAllTiming": true,
+      "viewerClosed": true,
+      "originalInline947And948PlayingRestored": true,
+      "userTabsPreserved": true
+    }
+  },
+  "rootCaptureReview": {
+    "file": ".cache/character-mmo/completion-native-trace-triggered-2026-10-08/run-1-budget-trace.png",
+    "sha256": "268ffa21ee3d769854a4cb6e9260fdac3f8a63bdb5ad39ac5f835a5d8bcb5cb2",
+    "bytes": 1231696,
+    "reviewedByRoot": true,
+    "postTiming": true,
+    "visualProductChanged": false,
+    "newMotionAcceptanceClaim": false
+  },
+  "evidence": {
+    "file": "evidence.json.gz",
+    "sha256": "8a3774091534cc6024a1c7822756252ed28f5095d699cbcc8779b70a235e688b",
+    "bytes": 646785,
+    "decodedSha256": "1e9dd316ce11e514c52a2a6b5d3970db644a047a1065f4cb2e5e7e99ffb3296e",
+    "decodedBytes": 5813786,
+    "privateThoughtOrCredentialsIncluded": false,
+    "rawDeviceIdentifierInventoryIncluded": false
+  }
+}
