@@ -1,0 +1,58 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {spawn,execFileSync} from 'node:child_process';
+import {chromium} from 'playwright';
+import {browserOwnership} from '../../../scripts/lib/browser-ownership.mjs';
+import {captureSurface,appendFrame,writeCaptureManifest} from '../../../scripts/lib/capture-manifest.mjs';
+import {productPaths,productInputsSha256} from '../../../scripts/character-assets/pages-seal.mjs';
+import {MIXED_FIT_CASES} from '../../../scripts/character-assets/mixed-fit-cases.mjs';
+import {defaultAppearance} from '../../../src/character/appearance/store.js';
+const base=path.dirname(new URL(import.meta.url).pathname),out=path.join(base,'baseline');
+const url='http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev&verifyAssets';
+await fs.mkdir(out);await fs.mkdir(path.join(out,'frames'));
+const report={sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),productInputs:await productInputsSha256(process.cwd(),await productPaths(process.cwd())),url,purpose:'Current Orc/Undead mixed neck/waist/wrist baseline; native full-cycle previews, no FPS',errors:[],rows:[],assetResponses:[],passed:false};
+let server,browser,context,page,cdp,ownership,manifest,recording=false,captureError;
+const writes=[],history=r=>fs.appendFile(path.join(base,'ownership.jsonl'),JSON.stringify({at:new Date().toISOString(),...r})+'\n');
+try{
+ server=spawn(process.execPath,['scripts/ashen-reach/serve-startup-preview.mjs','dist'],{env:{...process.env,ASHEN_PREVIEW_PORT:'7074'},stdio:['ignore','pipe','pipe']});
+ await history({owner:'grok-mixed-seams',serverPid:server.pid,port:7074,url,active:true,purpose:report.purpose});
+ await new Promise((resolve,reject)=>{let s='';const t=setTimeout(()=>reject(Error('Preview readiness timeout')),30000);server.stdout.on('data',d=>{s+=d;if(s.includes('Serving ')){clearTimeout(t);resolve()}});server.once('error',reject);server.once('exit',code=>reject(Error('Preview exited '+code)));});
+ browser=await chromium.launch({channel:'chrome',headless:true,args:['--remote-debugging-port=10037']});
+ ownership={...await browserOwnership(browser,{cdpPort:10037,url,purpose:report.purpose,renderingClients:1}),owner:'grok-mixed-seams'};await history(ownership);
+ context=await browser.newContext({viewport:{width:1280,height:720},deviceScaleFactor:1});page=await context.newPage();cdp=await context.newCDPSession(page);
+ await context.addInitScript(s=>localStorage.setItem('ashen.appearance.v2',JSON.stringify(s)),defaultAppearance());
+ page.on('pageerror',e=>report.errors.push(e.message));page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text())});
+ page.on('response',r=>{if(/\/ashen-reach\/(equipment|human-)/.test(r.url()))report.assetResponses.push({url:r.url(),status:r.status()})});
+ await page.goto(url);await page.waitForFunction(()=>globalThis.ASHEN?.ready&&ASHEN.hostilesReady,null,{timeout:90000});
+ await page.evaluate(()=>{ASHEN.dev.god=true;ASHEN.player.setFlying(false);ASHEN.player.setWorldPos(0,ASHEN.world.groundHeight(0,-100)+1.7,-100);ASHEN.player.setFacing(0);ASHEN.rig.yaw=0;});
+ manifest={version:1,...await captureSurface(page),frames:[],timeline:[],purpose:report.purpose};
+ cdp.on('Page.screencastFrame',e=>{void cdp.send('Page.screencastFrameAck',{sessionId:e.sessionId}).catch(()=>{});if(!recording||captureError)return;try{const name=`frame-${String(manifest.frames.length).padStart(6,'0')}.jpg`,bytes=Buffer.from(e.data,'base64');if(appendFrame(manifest,{name,timestamp:e.metadata.timestamp,bytes})!==false)writes.push(fs.writeFile(path.join(out,'frames',name),bytes).catch(e=>{captureError=e}));}catch(e){captureError=e}});
+ recording=true;await cdp.send('Page.startScreencast',{format:'jpeg',quality:90,maxWidth:1280,maxHeight:720,everyNthFrame:4});
+ const mark=async text=>{await page.evaluate(t=>{let el=document.getElementById('capture-note');if(!el){el=document.createElement('p');el.id='capture-note';el.style='position:fixed;left:12px;bottom:6px;z-index:99999;background:#171b16e8;color:#eee2ac;padding:6px 10px;font:12px Georgia;pointer-events:none';document.body.append(el)}el.textContent=t},text);manifest.timeline.push({label:text,timestamp:manifest.frames.at(-1)?.timestamp});};
+ const snapshot=()=>page.evaluate(()=>({appearance:ASHEN.getAppearance(),gear:ASHEN.equipment.getState(),pose:ASHEN.body.inspection.getState(),bones:ASHEN.body.boneCount,heightScale:ASHEN.player.heightScale,physics:ASHEN.player.getDebugState().usingPhysics,recoveries:ASHEN.player.getDebugState().recoveries,gpuErrors:ASHEN.gpu.errors.slice(),visible:ASHEN.scene.meshes.filter(m=>m.visible!==false).map(m=>m.name)}));
+ for(const race of ['orc','undead']){
+  await page.evaluate(()=>ASHEN.armory.open());await page.selectOption('#armory [data-race]',race);await page.waitForFunction(r=>ASHEN.equipment.race===r,race);await page.check('#armory [data-light]');
+  for(const id of ['hood-coat-robe','coat-plate']){
+   const loadout=MIXED_FIT_CASES.find(c=>c.id===id).loadout;const result=await page.evaluate(l=>ASHEN.equipment.setLoadout(l),loadout);assert.equal(result.status,'applied',result.error);
+   await page.evaluate(()=>{ASHEN.armory.close();ASHEN.armory.open()});await page.check('#armory [data-light]');
+   assert.deepEqual(await page.locator('#armory [data-equipment]').evaluateAll(ns=>Object.fromEntries(ns.map(n=>[n.dataset.equipment,n.value||null]))),loadout);
+   const views=[{id:'neck-front',height:1.5,radius:1.65,alpha:Math.PI/2,beta:1.48},{id:'waist-back',height:1.0,radius:1.65,alpha:-Math.PI/2,beta:1.45},{id:'cuff-side',height:1.14,radius:1.7,alpha:0,beta:1.47}];
+   await page.selectOption('#armory [data-motion]','idle');await page.evaluate(()=>{ASHEN.body.inspection.setPaused(true);ASHEN.body.inspection.seek(.2)});
+   for(const view of views){await page.evaluate(v=>ASHEN.armory.setFocus(v),view);await page.evaluate(()=>ASHEN.whenNextGpuFrame());await mark(`${race} · ${id} · ${view.id} · idle · native inspection + fill light`);await page.screenshot({path:path.join(out,`${race}-${id}-${view.id}-idle.png`)});}
+   for(const motion of ['run','fire'])for(const view of views){
+    await page.selectOption('#armory [data-motion]',motion);const before=await page.evaluate(v=>{ASHEN.armory.setFocus(v);ASHEN.body.inspection.seek(0);ASHEN.body.inspection.setPaused(false);return ASHEN.body.inspection.getState()},view);assert(before.duration>0&&before.duration<8);
+    await mark(`${race} · ${id} · ${view.id} · ${motion} full native cycle · diagnostic preview`);await page.waitForTimeout((before.duration+.15)*1000);
+    const state=await snapshot();assert(state.physics);assert.equal(state.recoveries,0);assert.equal(state.bones,65);assert.deepEqual(state.gpuErrors,[]);assert.equal(state.pose.id,motion);assert.equal(state.pose.paused,false);assert.deepEqual(state.gear,loadout);assert.equal(state.appearance.race,race);
+    await page.screenshot({path:path.join(out,`${race}-${id}-${view.id}-${motion}.png`)});report.rows.push({race,id,motion,view,before,state});
+   }
+  }
+ }
+ await cdp.send('Page.stopScreencast');recording=false;await Promise.all(writes);if(captureError)throw captureError;await writeCaptureManifest(out,manifest,await captureSurface(page));assert.deepEqual(report.errors,[]);report.passed=true;
+}catch(e){report.failure=String(e.stack||e);process.exitCode=1;}
+finally{
+ if(recording)await cdp?.send('Page.stopScreencast').catch(()=>{});await Promise.all(writes);if(manifest?.frames.length)await writeCaptureManifest(out,manifest,await captureSurface(page)).catch(e=>{report.manifestFailure=e.message});
+ await fs.writeFile(path.join(out,'report.json'),JSON.stringify(report,null,2)+'\n');await context?.close();await browser?.close();if(ownership)await history({...ownership,renderingClients:0,active:false});
+ if(server){const closed=new Promise(r=>server.once('close',r));server.kill('SIGTERM');await closed;await history({owner:'grok-mixed-seams',serverPid:server.pid,port:7074,active:false})}
+}
+console.log(JSON.stringify({passed:report.passed,rows:report.rows.length,errors:report.errors,failure:report.failure}));

@@ -1,0 +1,262 @@
+{
+  "result.json": {
+    "command": "python3 .cache/character-mmo/mixed-seams-2026-10-07/operations.py",
+    "opsExit": 0,
+    "exits": [
+      {
+        "name": "capture",
+        "childPid": 63679,
+        "exitCode": 0,
+        "elapsedSeconds": 52.38665345899062
+      },
+      {
+        "name": "encode",
+        "childPid": 65311,
+        "exitCode": 0,
+        "elapsedSeconds": 3.206409292004537
+      }
+    ],
+    "report": {
+      "passed": true,
+      "rows": 24,
+      "errors": [],
+      "sourceCommit": "722c4084da98548d8848d22d100929e0b53366d7",
+      "productInputsSha256": "22b7d4883138937b2e8e8d49ffd8d18c4ceff139eb171c52a3cd87aba65bb438",
+      "races": [
+        "orc",
+        "undead"
+      ],
+      "mixes": [
+        "hood-coat-robe",
+        "coat-plate"
+      ],
+      "motions": [
+        "run",
+        "fire"
+      ],
+      "views": [
+        "neck-front",
+        "waist-back",
+        "cuff-side"
+      ],
+      "bones": 65,
+      "recoveries": 0,
+      "gpuErrors": [],
+      "physics": true,
+      "assetResponses": 25,
+      "assetResponseStatuses": [
+        200
+      ]
+    },
+    "mp4": {
+      "path": ".cache/character-mmo/mixed-seams-2026-10-07/baseline/motion.mp4",
+      "bytes": 9723762,
+      "sha256": "b221d6cbc5644c54c8647259807b5d20c839aaaeea8430070e5bc4e1c60708f7",
+      "width": 1280,
+      "height": 720,
+      "sampleAspectRatio": "1:1",
+      "rotation": 0,
+      "duration": 34.264954,
+      "elapsedSecondsFromManifest": 34.26521706581116,
+      "frames": 515,
+      "codec": "h264"
+    },
+    "ownership": {
+      "owner": "grok-mixed-seams",
+      "previewPid": 63725,
+      "previewPort": 7074,
+      "browserPid": 63747,
+      "gpuHelperPids": [
+        63758
+      ],
+      "cdpPort": 10037,
+      "historyClosed": true,
+      "pidsGone": {
+        "63679": true,
+        "63725": true,
+        "63747": true,
+        "63758": true,
+        "65311": true
+      },
+      "portsFree": {
+        "5173": true,
+        "7074": true,
+        "7075": true,
+        "10037": true
+      },
+      "chromeParents": [],
+      "edge2931": "alive-untouched"
+    },
+    "note": "Baseline capture only. No FPS. Root owns actual motion review."
+  },
+  "root-motion-review.json": {
+    "verdict": "focused-local-acceptance",
+    "sha256": "b221d6cbc5644c54c8647259807b5d20c839aaaeea8430070e5bc4e1c60708f7",
+    "sourceCommit": "722c4084da98548d8848d22d100929e0b53366d7",
+    "productInputsSha256": "22b7d4883138937b2e8e8d49ffd8d18c4ceff139eb171c52a3cd87aba65bb438",
+    "review": "Root played unchanged actual live MP4 in native Edge at normal and half speed; observed time advancement and completion, no media error. Root inspected fifteen unprocessed extracted MP4 frames plus four original capture stills. No new gross neck gap, waist skin breakthrough or open cuff in these fixtures. Existing tattered hems, plate bulk/edge overlap, cloth pleats and aliasing remain. This is a bounded sample, not exhaustive outfit/phase acceptance.",
+    "samplesSeconds": [
+      1.05,
+      2.05,
+      3,
+      4.3,
+      6,
+      7.7,
+      9.65,
+      11.55,
+      16.3,
+      18.25,
+      21.4,
+      24.9,
+      26.8,
+      28.7,
+      33.3
+    ],
+    "nativePlayback": {
+      "browser": "Edge",
+      "pid": 2931,
+      "ownedTab": "1147995936",
+      "intrinsic": [
+        1280,
+        720
+      ],
+      "rendered": [
+        1280,
+        720
+      ],
+      "completedTime": 34.264954,
+      "error": null,
+      "closed": true
+    },
+    "idlePhaseCaveat": "First idle frame showed stale Armory UI/full-body framing. No exact idle phase or close-framing claim is made for that first frame. Later run/fire chapters show actual close framing/source phase.",
+    "scope": "Orc/Undead neutral only, two existing mixes, run/fire across neck-front/waist-back/cuff-side. Prior Human continuous-clearance evidence remains separate.",
+    "fpsClaim": false,
+    "runtimeOrGeometryEdits": false
+  },
+  "grok-native-exit.json": {
+    "exitCode": 0,
+    "elapsedSeconds": 137.7621051670285
+  },
+  "grok-deliver-native-exit.json": {
+    "exitCode": 0,
+    "elapsedSeconds": 41.025790750049055
+  },
+  "ve-checks.json": {
+    "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/mixed-seams-2026-10-07/b221d6cbc564-motion.mp4",
+    "get200": {
+      "statusLine": "HTTP/2 200 ",
+      "headers": {
+        "content-type": "video/mp4",
+        "content-length": "9723762",
+        "accept-ranges": "bytes",
+        "etag": "\"48abacc99fab65d1c9fd86a5e61d06f6\""
+      }
+    },
+    "range206": {
+      "statusLine": "HTTP/2 206 ",
+      "headers": {
+        "content-type": "video/mp4",
+        "content-length": "1024",
+        "content-range": "bytes 0-1023/9723762",
+        "etag": "\"48abacc99fab65d1c9fd86a5e61d06f6\""
+      },
+      "bodyBytes": 1024
+    },
+    "fullGet": {
+      "statusLine": "HTTP/2 200 ",
+      "headers": {
+        "content-type": "video/mp4",
+        "content-length": "9723762",
+        "accept-ranges": "bytes",
+        "etag": "\"48abacc99fab65d1c9fd86a5e61d06f6\""
+      },
+      "bytes": 9723762,
+      "sha256": "b221d6cbc5644c54c8647259807b5d20c839aaaeea8430070e5bc4e1c60708f7"
+    },
+    "local": {
+      "bytes": 9723762,
+      "sha256": "b221d6cbc5644c54c8647259807b5d20c839aaaeea8430070e5bc4e1c60708f7"
+    },
+    "pass": {
+      "http200": true,
+      "contentType": true,
+      "contentLength": true,
+      "shaMatch": true,
+      "range206": true,
+      "contentRange": true,
+      "rangeBodyBytes": true
+    }
+  },
+  "baseline/motion.mp4.telegram.json": {
+    "ok": true,
+    "messageId": 885,
+    "expected": {
+      "width": 1280,
+      "height": 720,
+      "duration": 34.264954,
+      "sampleAspectRatio": "1:1",
+      "rotation": 0,
+      "codec": "h264"
+    },
+    "returned": {
+      "width": 1280,
+      "height": 720,
+      "duration": 35
+    },
+    "verified": true,
+    "file": "motion.mp4",
+    "sha256": "b221d6cbc5644c54c8647259807b5d20c839aaaeea8430070e5bc4e1c60708f7",
+    "sentAt": "2026-10-08T03:28:11.871213+00:00"
+  },
+  "captureScript": {
+    "rawPath": ".cache/character-mmo/mixed-seams-2026-10-07/capture.mjs",
+    "sha256": "c1d7e160d4686ea9726d2492c6981d2b5092f756fc8f298f8806be0623733b2d"
+  },
+  "deliveryOperations": [
+    {
+      "name": "ve-upload",
+      "exitCode": 0,
+      "elapsedSeconds": 4.644,
+      "pid": 82550
+    },
+    {
+      "name": "ve-full-get",
+      "exitCode": 0,
+      "elapsedSeconds": 0.95,
+      "pid": 82703
+    },
+    {
+      "name": "ve-range-get",
+      "exitCode": 0,
+      "elapsedSeconds": 0.118,
+      "pid": 82724
+    },
+    {
+      "name": "tg-file",
+      "exitCode": 0,
+      "elapsedSeconds": 11.152,
+      "pid": 82725
+    }
+  ],
+  "reviewServerExit": 143,
+  "directVEPlayback": {
+    "owner": "root",
+    "browser": "Edge",
+    "browserPid": 2931,
+    "ownedTab": "1147995940",
+    "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/mixed-seams-2026-10-07/b221d6cbc564-motion.mp4",
+    "intrinsic": [
+      1280,
+      720
+    ],
+    "rendered": [
+      1280,
+      720
+    ],
+    "initialTime": 11.267281,
+    "completedTime": 34.264954,
+    "duration": 34.264954,
+    "mediaError": null,
+    "tabClosed": true
+  }
+}

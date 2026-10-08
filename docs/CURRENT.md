@@ -156,6 +156,17 @@ promotion. Production 5723a4ab and the reliability hold remain unchanged.
 Next independent development work is mixed neck/waist/wrist fit, then an authored
 shield. Do not extend the exhausted unchanged startup diagnostic campaign.
 
+The [focused mixed seam review](plans/character-mmo/results/mixed-seams-2026-10-07.md)
+now closes the neutral Orc/Undead close-view gap for two existing outfits:
+24 full native run/fire chapters at neck, waist and cuff views, retaining the
+prior Human shape endpoint evidence. Root reviewed actual normal/half-speed MP4
+and its unprocessed sampled frames; no new gross seam failure was observed in
+these bounded fixtures. Tattered hems, plate bulk/edge overlap and aliasing remain.
+No geometry/runtime change or new FPS/startup qualification. Reviewed motion is
+Telegram **885** and identical VE with matching dimensions. Production and the
+release hold remain unchanged. Next independent feature work is one authored
+shield through the existing evaluated sockets and equipment transactions.
+
 ### Next five priorities, in execution order
 
 1. **Resolve the startup failure, then release the canonical boot correction.**
