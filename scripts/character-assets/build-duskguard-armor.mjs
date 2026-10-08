@@ -31,7 +31,15 @@ for(const [race,fit]of Object.entries(descriptor.fits)){
  for(const source of [{source:fit.source,sha256:fit.sha256},...Object.values(fit.underlayers)])
   if(sha(await fs.readFile(source.source))!==source.sha256)throw Error(`Unreviewed changed source: ${source.source}`);
  const start=performance.now();
- const log=execFileSync(blender,['--background','--factory-startup','--python-exit-code','1','--python','scripts/character-assets/author-duskguard-plates.py','--',fit.source,fit.bodyMesh,work],{encoding:'utf8'});
+ const authorArgs=[fit.source,fit.bodyMesh,work];
+ if(fit.greaveEnvelope){
+  if(race!=='orc'||fit.greaveEnvelope!=='wayfarerBoots')throw Error('Unreviewed greave envelope policy');
+  // This underlayer was hash-checked above; Blender uses its rest surface for
+  // the native convex hull/Solidify envelope rather than a joint-radius guess.
+  // https://docs.blender.org/api/current/bmesh.ops.html#bmesh.ops.convex_hull
+  authorArgs.push(fit.underlayers[fit.greaveEnvelope].source);
+ }
+ const log=execFileSync(blender,['--background','--factory-startup','--python-exit-code','1','--python','scripts/character-assets/author-duskguard-plates.py','--',...authorArgs],{encoding:'utf8'});
  await fs.writeFile(`${work}/blender.log`,log);
  const base=(await io.read(fit.source)).getRoot(),baseSkin=base.listSkins()[0],names=baseSkin.listJoints().map(n=>n.getName());
  const native=JSON.parse(await fs.readFile(`${work}/native-report.json`,'utf8'));

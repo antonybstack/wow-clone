@@ -1,12 +1,12 @@
 {
  "schema": 1,
  "version": 1,
- "publishedAt": "2026-10-08T01:33:17.958Z",
+ "publishedAt": "2026-10-08T02:57:11.436Z",
  "lite": "1.31.1",
  "catalogVersion": "appearance-catalog-v8",
  "sourceCompilerSha256": "e9bb55b8b67195c5fe92cb8ebfc86aa59ee654a614bcec4154ab5c721a531563",
  "uniqueFiles": 51,
- "totalBytes": 21047388,
+ "totalBytes": 21062924,
  "pieces": [
   {
    "race": "human",
@@ -72,13 +72,6 @@
    "sha256": "b9db83552771c3582b2e60d5abab1f2970b1b4b9bbd04999ec6e9a14ba46e7ac"
   },
   {
-   "race": "orc",
-   "id": "duskguardGreaves",
-   "file": "duskguardGreaves-69330bee9418b0df0581427b5f94590845afd311fafa350081f856ad430696df.glb",
-   "bytes": 176816,
-   "sha256": "69330bee9418b0df0581427b5f94590845afd311fafa350081f856ad430696df"
-  },
-  {
    "race": "human",
    "id": "duskguardGreaves",
    "file": "duskguardGreaves-7211138162dbea7a60cb8b2016ab8908e059baa128024859ee3edea424be804b.glb",
@@ -91,6 +84,13 @@
    "file": "duskguardGreaves-7995745f32c575de68a2e6c73df41b28fdcd75f526051cd7e25296c1a4ca4caa.glb",
    "bytes": 176596,
    "sha256": "7995745f32c575de68a2e6c73df41b28fdcd75f526051cd7e25296c1a4ca4caa"
+  },
+  {
+   "race": "orc",
+   "id": "duskguardGreaves",
+   "file": "duskguardGreaves-ce8257db5af8391b73d667118aa0cc3085333c0b3776abf80efc7c50a70ef07b.glb",
+   "bytes": 191804,
+   "sha256": "ce8257db5af8391b73d667118aa0cc3085333c0b3776abf80efc7c50a70ef07b"
   },
   {
    "race": "undead",
@@ -305,9 +305,9 @@
   {
    "race": "orc",
    "id": "wayfarerBoots",
-   "file": "wayfarerBoots-1f3858575227b1bf7a98f374baff75e3f6c7b34c1e8c99e6611279d65848413d.glb",
-   "bytes": 170244,
-   "sha256": "1f3858575227b1bf7a98f374baff75e3f6c7b34c1e8c99e6611279d65848413d"
+   "file": "wayfarerBoots-3848ef25168a2ef44c3a6f12ab7805732e2f68942509dff84ada7df54aacfacf.glb",
+   "bytes": 170792,
+   "sha256": "3848ef25168a2ef44c3a6f12ab7805732e2f68942509dff84ada7df54aacfacf"
   },
   {
    "race": "undead",

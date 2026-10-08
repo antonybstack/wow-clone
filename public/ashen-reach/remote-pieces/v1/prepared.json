@@ -780,7 +780,7 @@
    "orc": {
     "sourceManifest": {
      "path": "public/ashen-reach/equipment-orc/manifest-coverage-v1.json",
-     "sha256": "29e3ded0d7f253b3175ac9dbdea9632f7bf1bac7effe29370103f4539c82c963"
+     "sha256": "d5273fd6a68d6b5372cb40c1b5f164d307400d9af952c26d81bac521431dd50a"
     },
     "manifest": {
      "schema": 1,
@@ -1716,8 +1716,8 @@
        ]
       },
       "wayfarerBoots": {
-       "bytes": 170244,
-       "sha256": "1f3858575227b1bf7a98f374baff75e3f6c7b34c1e8c99e6611279d65848413d",
+       "bytes": 170792,
+       "sha256": "3848ef25168a2ef44c3a6f12ab7805732e2f68942509dff84ada7df54aacfacf",
        "meshes": [
         "WayfarerBoots"
        ],
@@ -1727,10 +1727,10 @@
         "bind": 1,
         "shape": 1
        },
-       "file": "wayfarerBoots-1f3858575227b1bf7a98f374baff75e3f6c7b34c1e8c99e6611279d65848413d.glb",
+       "file": "wayfarerBoots-3848ef25168a2ef44c3a6f12ab7805732e2f68942509dff84ada7df54aacfacf.glb",
        "source": {
-        "path": "public/ashen-reach/equipment-orc/wayfarerBoots-e07c5fab32bc.glb",
-        "sha256": "e07c5fab32bc1a6403c4cd482b136e859d82b1d622a3af7f3667277b6bbfabf0",
+        "path": "public/ashen-reach/equipment-orc/wayfarerBoots-1880f480f1bf.glb",
+        "sha256": "1880f480f1bf985202cefd4cae3b239b33c0688408cb86a3090affb5cfae5913",
         "bytes": 339080
        },
        "verification": {
@@ -1921,8 +1921,8 @@
        ]
       },
       "duskguardGreaves": {
-       "bytes": 176816,
-       "sha256": "69330bee9418b0df0581427b5f94590845afd311fafa350081f856ad430696df",
+       "bytes": 191804,
+       "sha256": "ce8257db5af8391b73d667118aa0cc3085333c0b3776abf80efc7c50a70ef07b",
        "meshes": [
         "DuskguardBootUnderlayer",
         "DuskguardGreaves"
@@ -1933,11 +1933,11 @@
         "bind": 1,
         "shape": 1
        },
-       "file": "duskguardGreaves-69330bee9418b0df0581427b5f94590845afd311fafa350081f856ad430696df.glb",
+       "file": "duskguardGreaves-ce8257db5af8391b73d667118aa0cc3085333c0b3776abf80efc7c50a70ef07b.glb",
        "source": {
-        "path": "public/ashen-reach/equipment-orc/duskguardGreaves-c35cde232655.glb",
-        "sha256": "c35cde232655dbf10a6bf1e86691c44368b5cdffb14327b855ea56cb1f0a2d5f",
-        "bytes": 249448
+        "path": "public/ashen-reach/equipment-orc/duskguardGreaves-64595d16f60d.glb",
+        "sha256": "64595d16f60d4404e63c0a1c2c1346ff3d3fca0864a5871eb74f8d820b9acfc1",
+        "bytes": 264440
        },
        "verification": {
         "geometryExact": true,
@@ -4300,19 +4300,19 @@
      "escaped": 0
     },
     "wayfarerBoots": {
-     "sha256": "1f3858575227b1bf7a98f374baff75e3f6c7b34c1e8c99e6611279d65848413d",
+     "sha256": "3848ef25168a2ef44c3a6f12ab7805732e2f68942509dff84ada7df54aacfacf",
      "bounds": [
       {
        "name": "WayfarerBoots",
        "minimum": [
-        -0.9576101716630594,
-        -0.3601840040200095,
-        -1.3858748078870284
+        -0.9839437642306563,
+        -0.38238441577507687,
+        -1.3815701964051335
        ],
        "maximum": [
-        0.9569010937552338,
-        1.5557217218805193,
-        1.1715282671672458
+        0.9900481702671946,
+        1.5900695477618565,
+        1.1613627793459858
        ]
       }
      ],
@@ -4517,49 +4517,49 @@
      "escaped": 0
     },
     "duskguardGreaves": {
-     "sha256": "69330bee9418b0df0581427b5f94590845afd311fafa350081f856ad430696df",
+     "sha256": "ce8257db5af8391b73d667118aa0cc3085333c0b3776abf80efc7c50a70ef07b",
      "bounds": [
       {
        "name": "DuskguardBootUnderlayer",
        "minimum": [
-        -0.9576101716630594,
-        -0.3601840040200095,
-        -1.3858748078870284
+        -0.9839437642306563,
+        -0.38238441577507687,
+        -1.3815701964051335
        ],
        "maximum": [
-        0.9569010937552338,
-        1.5557217218805193,
-        1.1715282671672458
+        0.9900481702671946,
+        1.5900695477618565,
+        1.1613627793459858
        ]
       },
       {
        "name": "DuskguardGreaves",
        "minimum": [
-        -0.726156449828504,
-        -0.12074216089096741,
-        -1.0381453129842997
+        -0.7818317867880871,
+        -0.14021536168138615,
+        -1.0385970635167447
        ],
        "maximum": [
-        0.7277136104191915,
-        1.2735251052325949,
-        0.8806897961392662
+        0.7910172734574286,
+        1.4128344750357482,
+        0.8808103171397439
        ]
       },
       {
        "name": "DuskguardGreaves",
        "minimum": [
-        -0.726156449828504,
-        -0.12074216089096741,
-        -1.0375681655666236
+        -0.7818317867880871,
+        -0.14021536168138615,
+        -1.0385494021910167
        ],
        "maximum": [
-        0.7277136104191915,
-        1.2674252578735454,
-        0.8806897961392662
+        0.7871926810134291,
+        1.4121530196854608,
+        0.8808103171397439
        ]
       }
      ],
-     "points": 1032840,
+     "points": 1197000,
      "escaped": 0
     },
     "duskguardVambraces": {
@@ -6034,7 +6034,7 @@
    }
   }
  },
- "points": 162617865,
+ "points": 162782025,
  "escaped": 0,
  "finalByteCache": {
   "entries": 0,
@@ -6047,11 +6047,11 @@
  "gpuErrors": [],
  "published": {
   "version": 1,
-  "publishedAt": "2026-10-08T01:33:17.958Z",
+  "publishedAt": "2026-10-08T02:57:11.436Z",
   "sourceCompilerSha256": "e9bb55b8b67195c5fe92cb8ebfc86aa59ee654a614bcec4154ab5c721a531563",
   "pieceCount": 51,
   "uniqueFiles": 51,
-  "totalBytes": 21047388,
+  "totalBytes": 21062924,
   "lite": "1.31.1",
   "catalogVersion": "appearance-catalog-v8"
  }

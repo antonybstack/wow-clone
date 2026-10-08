@@ -15,6 +15,7 @@ from mathutils import Vector, Matrix
 
 args = sys.argv[sys.argv.index('--') + 1:]
 source, body_name, directory = Path(args[0]), args[1], Path(args[2])
+greave_boot = Path(args[3]) if len(args) > 3 else None
 if not directory.resolve().is_relative_to(Path('.cache').resolve()):
     raise ValueError('Only isolated armor output is allowed')
 directory.mkdir(parents=True, exist_ok=True)
@@ -27,6 +28,22 @@ body = next(o for o in bpy.data.objects if o.type == 'MESH' and o.name == body_n
 regions = [o for o in bpy.data.objects if o.type == 'MESH' and
            (o.name.startswith('Body') if body_name == 'BodyExposed' else o is body)]
 points = [o.matrix_world @ v.co for o in regions for v in o.data.vertices]
+boot_points = None
+if greave_boot:
+    # A fitted Orc calf sits behind its rest joint. A joint-centred front cutoff
+    # selected only a thin sliver and did not account for the boot's thickness.
+    # Reuse the authored leather surface for this rigid envelope, with native
+    # world matrices; keep the accepted body's armature as the sole skin owner.
+    # https://docs.blender.org/api/current/bpy.types.Object.html#bpy.types.Object.matrix_world
+    existing = set(bpy.data.objects)
+    bpy.ops.import_scene.gltf(filepath=str(greave_boot.resolve()))
+    imported = set(bpy.data.objects) - existing
+    boots = [o for o in imported if o.type == 'MESH' and o.name.startswith('WayfarerBoots')]
+    if len(boots) != 1:
+        raise ValueError('Expected one authored boot underlayer')
+    boot_points = [boots[0].matrix_world @ v.co for v in boots[0].data.vertices]
+    for ob in imported:
+        bpy.data.objects.remove(ob, do_unlink=True)
 
 def bone(name):
     return arm.matrix_world @ arm.data.bones['mixamorig:' + name].head_local
@@ -153,9 +170,27 @@ for side in ['Left', 'Right']:
     selected, axis = limb_points(top, knee, .18, .67, .14, True)
     plate(side + 'Tasset', 'DuskguardTassets', side + 'UpLeg', selected,
           remove_caps=lambda f:f.normal.y > .45 or abs(f.normal.dot(axis)) > .78, standoff=.032)
-    selected, axis = limb_points(knee, ankle, .18, .84, .105, True)
-    plate(side + 'Greave', 'DuskguardGreaves', side + 'Leg', selected,
-          remove_caps=lambda f:f.normal.y > .45 or abs(f.normal.dot(axis)) > .78, standoff=.030)
+    if boot_points is None:
+        selected, axis = limb_points(knee, ankle, .18, .84, .105, True)
+        plate(side + 'Greave', 'DuskguardGreaves', side + 'Leg', selected,
+              remove_caps=lambda f:f.normal.y > .45 or abs(f.normal.dot(axis)) > .78, standoff=.030)
+    else:
+        # Match the complete boot shaft instead of guessing a radius around a
+        # differently placed joint. Front is Blender -Y / glTF +Z. Cross-section
+        # centers follow the actual leather and cannot pick the opposite leg.
+        sign = 1 if side == 'Left' else -1
+        shaft = [p for p in boot_points if p.x * sign > 0 and .19 <= p.z <= .44]
+        selected = []
+        for p in shaft:
+            ring = [q.y for q in shaft if abs(q.z - p.z) <= .025]
+            center = (min(ring) + max(ring)) / 2
+            if p.y <= center + .015:
+                selected.append(p)
+        plate(side + 'Greave', 'DuskguardGreaves', side + 'Leg', selected,
+              remove_caps=lambda f:f.normal.y > .45 or abs(f.normal.z) > .78,
+              standoff=.012,
+              clips=[(Vector((0, 0, .195)), Vector((0, 0, 1)), True),
+                     (Vector((0, 0, .435)), Vector((0, 0, 1)), False)])
     forearm, hand = bone(side + 'ForeArm'), bone(side + 'Hand')
     selected, axis = limb_points(forearm, hand, .20, .85, .105)
     plate(side + 'Vambrace', 'DuskguardVambraces', side + 'ForeArm', selected,
@@ -178,5 +213,6 @@ for mesh_name, parts in items.items():
         export_skins=True, export_all_influences=False, export_cameras=False, export_lights=False)
 bpy.ops.wm.save_as_mainfile(filepath=str((directory / 'duskguard-plates.blend').resolve()))
 (directory / 'native-report.json').write_text(json.dumps({'source':str(source),'bodyMesh':body_name,
+    'greaveBootEnvelope':str(greave_boot) if greave_boot else None,
     'heightUnit':unit,'halfTorsoWidth':width,'pieces':rows,'blenderVersion':bpy.app.version_string,
     'candidateOnly':True}, indent=2) + '\n')

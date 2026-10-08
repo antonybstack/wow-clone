@@ -1,0 +1,1605 @@
+{
+  "schema": 1,
+  "scope": "Focused local Orc boot last and greave envelope; no deployment, new startup or FPS claim",
+  "production": {
+    "commit": "7d00c56c06f02899e2319ffdddea97728013c0b1",
+    "deployment": "5723a4ab-5dfd-4902-959b-7496948ea51f",
+    "reliabilityHold": true
+  },
+  "inputs": {
+    "current": {
+      "sha256": "22b7d4883138937b2e8e8d49ffd8d18c4ceff139eb171c52a3cd87aba65bb438",
+      "files": 1186,
+      "uncommitted": 17
+    },
+    "captured": {
+      "sha256": "22b7d4883138937b2e8e8d49ffd8d18c4ceff139eb171c52a3cd87aba65bb438",
+      "files": 1186,
+      "uncommitted": 17
+    },
+    "exact": true
+  },
+  "operations": {
+    "verdict": "local-focused-acceptance-candidate",
+    "noFpsClaim": true,
+    "noStartupClaim": true,
+    "publication": "root-owns-later",
+    "command": "python3 .cache/character-mmo/boot-last-2026-10-07/canonical-operations.py",
+    "opsExit": 0,
+    "elapsedSeconds": 610.45,
+    "sourceCommitAtCapture": "d1681abafaef7654003c0f80083bd85098c41219",
+    "exits": [
+      {
+        "name": "derived",
+        "exitCode": 0,
+        "childPid": 6564,
+        "elapsedSeconds": 45.459709207993
+      },
+      {
+        "name": "character",
+        "exitCode": 0,
+        "childPid": 7953,
+        "elapsedSeconds": 25.530134333006572,
+        "tests": 231,
+        "pass": 231,
+        "fail": 0
+      },
+      {
+        "name": "native",
+        "exitCode": 0,
+        "childPid": 8727,
+        "elapsedSeconds": 472.84752337500686
+      },
+      {
+        "name": "build",
+        "exitCode": 0,
+        "childPid": 24089,
+        "elapsedSeconds": 6.64546904200688,
+        "buildOnly": true,
+        "flags": [
+          "ASHEN_BUILD_ONLY",
+          "ASHEN_SAVED_BOOTSTRAP",
+          "ASHEN_PRIME_STARTER_WORLD",
+          "ASHEN_LAZY_WORLD_BUFFERS",
+          "ASHEN_DEFER_COVERED_HAIR"
+        ]
+      },
+      {
+        "name": "motion",
+        "exitCode": 0,
+        "childPid": 24315,
+        "elapsedSeconds": 52.37804933299776,
+        "passed": true,
+        "cases": 10,
+        "errors": []
+      },
+      {
+        "name": "encode",
+        "exitCode": 0,
+        "childPid": 25929,
+        "elapsedSeconds": 7.544645624991972
+      }
+    ],
+    "derivedChildren": [
+      {
+        "name": "human-shapes",
+        "exitCode": 0
+      },
+      {
+        "name": "starter-character",
+        "exitCode": 0
+      },
+      {
+        "name": "coverage",
+        "exitCode": 0
+      },
+      {
+        "name": "identity-equipment",
+        "exitCode": 0
+      },
+      {
+        "name": "remote-offline",
+        "exitCode": 0
+      }
+    ],
+    "nativeChildren": [
+      {
+        "name": "native-bounds",
+        "exitCode": 0,
+        "controllerPid": 8727,
+        "childPid": 8811,
+        "elapsedMs": 470534
+      },
+      {
+        "name": "remote-publication",
+        "exitCode": 0,
+        "childPid": 24002,
+        "elapsedMs": 93
+      },
+      {
+        "name": "equipment-tests",
+        "exitCode": 0,
+        "childPid": 24007,
+        "elapsedMs": 985,
+        "tests": 115,
+        "pass": 115,
+        "fail": 0
+      }
+    ],
+    "nativeBounds": {
+      "pieces": 51,
+      "completed": true,
+      "points": 162782025,
+      "escaped": 0,
+      "byteCache": {
+        "entries": 0,
+        "reservedBytes": 0,
+        "peakReservedBytes": 4496592,
+        "ceilingBytes": 8388608,
+        "leases": 0
+      }
+    },
+    "motion": {
+      "passed": true,
+      "cases": 10,
+      "errors": [],
+      "racesPresent": [
+        "human-original",
+        "human-prime-tall-slender",
+        "human-prime-short-stout",
+        "orc",
+        "undead"
+      ],
+      "boots": [
+        "wayfarerBoots",
+        "duskguardGreaves"
+      ],
+      "recoveries": 0,
+      "gpuErrors": [],
+      "bones": 65,
+      "bareFootRestored": true,
+      "travel": {
+        "jumps": "0->1",
+        "landings": "3->4",
+        "recoveries": 0,
+        "groundedAfter": true
+      },
+      "undeadTravel": {
+        "jumps": "1->2",
+        "landings": "4->5",
+        "recoveries": 0,
+        "groundedAfter": true
+      }
+    },
+    "orcAssetResponses": [
+      {
+        "url": "http://127.0.0.1:7074/ashen-reach/equipment-orc/wayfarerBoots-1880f480f1bf.glb",
+        "status": 200,
+        "manifestUrl": "/ashen-reach/equipment-orc/wayfarerBoots-1880f480f1bf.glb",
+        "manifestMatch": true
+      },
+      {
+        "url": "http://127.0.0.1:7074/ashen-reach/equipment-orc/duskguardGreaves-64595d16f60d.glb",
+        "status": 200,
+        "manifestUrl": "/ashen-reach/equipment-orc/duskguardGreaves-64595d16f60d.glb",
+        "manifestMatch": true
+      }
+    ],
+    "recorderNote": "record-boot-fit-motion expectedCanonicalAssets lists Human/Undead/starter/shaped explicitly; Orc boot/greave URLs were still requested, returned 200, and match current public equipment-orc manifest items.",
+    "mp4": {
+      "path": ".cache/character-mmo/boot-last-2026-10-07/canonical-motion/motion.mp4",
+      "bytes": 31349613,
+      "sha256": "f8e0cf9d32c7609e0fc7a8326669865e26d16289ae9c934f36f8d8bed1082bbf",
+      "width": 1280,
+      "height": 720,
+      "sampleAspectRatio": "1:1",
+      "rotation": 0,
+      "duration": 32.961498,
+      "elapsedSecondsFromManifest": 32.961989879608154,
+      "frames": 985,
+      "codec": "h264",
+      "probe": "bundled /Applications/BabylonJS Editor.app/Contents/bin/ffprobe"
+    },
+    "paths": {
+      "exits": ".cache/character-mmo/boot-last-2026-10-07/canonical-exits.json",
+      "nativeExits": ".cache/character-mmo/boot-last-2026-10-07/native-preparation-exits.json",
+      "boundsLog": ".cache/character-mmo/boot-last-2026-10-07/native-bounds-native.log",
+      "motionReport": ".cache/character-mmo/boot-last-2026-10-07/canonical-motion/report.json",
+      "mp4": ".cache/character-mmo/boot-last-2026-10-07/canonical-motion/motion.mp4"
+    }
+  },
+  "publication": {
+    "byteIdenticalRebuild": true,
+    "bootBuilder": {
+      "candidateOnly": true,
+      "descriptor": {
+        "path": "blender/characters/wardrobe/boot-last.json",
+        "sha256": "59800ff27d47cf08103e66aa118b7870f377c1637d5572754b6bbe17f5be98a3"
+      },
+      "rows": [
+        {
+          "race": "orc",
+          "source": {
+            "source": "blender/characters/wardrobe/sources/orc-wayfarerBoots-before-last.glb",
+            "sha256": "e07c5fab32bc1a6403c4cd482b136e859d82b1d622a3af7f3667277b6bbfabf0",
+            "body": "public/ashen-reach/equipment-orc/body.glb",
+            "bodySha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b",
+            "bodyMesh": "BodyExposed"
+          },
+          "artifact": {
+            "file": ".cache/character-mmo/boot-last/publication-iq6UdB/first/orc/wayfarerBoots.glb",
+            "bytes": 339080,
+            "sha256": "1880f480f1bf985202cefd4cae3b239b33c0688408cb86a3090affb5cfae5913"
+          },
+          "feet": [
+            {
+              "side": "Left",
+              "stations": [
+                {
+                  "sy": 0.015,
+                  "ty": 0.02,
+                  "source": {
+                    "count": 12045,
+                    "center": [
+                      0.022912227523786695,
+                      0.06953020333146268
+                    ],
+                    "half": [
+                      0.055364968953228365,
+                      0.13115176288410704
+                    ]
+                  },
+                  "target": {
+                    "count": 634,
+                    "center": [
+                      0.07234047731541539,
+                      0.01581668988234751
+                    ],
+                    "half": [
+                      0.1471901244882305,
+                      0.2425202076391047
+                    ]
+                  },
+                  "sc": [
+                    0.022912227523786695,
+                    0.06953020333146268
+                  ],
+                  "tc": [
+                    0.07234047731541539,
+                    0.01581668988234751
+                  ],
+                  "ratio": [
+                    2.6585425273619294,
+                    1.84915705520031
+                  ]
+                },
+                {
+                  "sy": 0.08,
+                  "ty": 0.12,
+                  "source": {
+                    "count": 1177,
+                    "center": [
+                      0.00758415764355725,
+                      0.020728445914844663
+                    ],
+                    "half": [
+                      0.03463437279736478,
+                      0.07751115255666377
+                    ]
+                  },
+                  "target": {
+                    "count": 144,
+                    "center": [
+                      0.04874851120502455,
+                      -0.03402734597441706
+                    ],
+                    "half": [
+                      0.10733595763537773,
+                      0.18549199663395577
+                    ]
+                  },
+                  "sc": [
+                    0.00758415764355725,
+                    0.020728445914844663
+                  ],
+                  "tc": [
+                    0.04874851120502455,
+                    -0.03402734597441706
+                  ],
+                  "ratio": [
+                    3.0991165413437076,
+                    2.3931007411914518
+                  ]
+                },
+                {
+                  "sy": 0.14,
+                  "ty": 0.2,
+                  "source": {
+                    "count": 517,
+                    "center": [
+                      -0.00315028016807844,
+                      -0.006278875001123143
+                    ],
+                    "half": [
+                      0.03284737414189008,
+                      0.046986185244122
+                    ]
+                  },
+                  "target": {
+                    "count": 66,
+                    "center": [
+                      0.010055329837234457,
+                      -0.08970450805638108
+                    ],
+                    "half": [
+                      0.08486142716546399,
+                      0.10743724795641416
+                    ]
+                  },
+                  "sc": [
+                    -0.00315028016807844,
+                    -0.006278875001123143
+                  ],
+                  "tc": [
+                    0.010055329837234457,
+                    -0.08970450805638108
+                  ],
+                  "ratio": [
+                    2.583507186872532,
+                    2.2865709867317783
+                  ]
+                },
+                {
+                  "sy": 0.22,
+                  "ty": 0.3,
+                  "source": {
+                    "count": 231,
+                    "center": [
+                      -0.010129979045408286,
+                      -0.014330195265620894
+                    ],
+                    "half": [
+                      0.04151839856343209,
+                      0.04688244498513455
+                    ]
+                  },
+                  "target": {
+                    "count": 76,
+                    "center": [
+                      -0.004901693425469783,
+                      -0.10772563749261634
+                    ],
+                    "half": [
+                      0.08600022258863413,
+                      0.10359566828635487
+                    ]
+                  },
+                  "sc": [
+                    -0.010129979045408286,
+                    -0.014330195265620894
+                  ],
+                  "tc": [
+                    -0.004901693425469783,
+                    -0.10772563749261634
+                  ],
+                  "ratio": [
+                    2.0713761986084895,
+                    2.209689966451257
+                  ]
+                },
+                {
+                  "sy": 0.35,
+                  "ty": 0.455,
+                  "source": {
+                    "count": 374,
+                    "center": [
+                      -0.02864353541896053,
+                      -0.0199902844310262
+                    ],
+                    "half": [
+                      0.06552578649876337,
+                      0.06519875554112402
+                    ]
+                  },
+                  "target": {
+                    "count": 90,
+                    "center": [
+                      -0.01721727662832901,
+                      -0.10176456956852838
+                    ],
+                    "half": [
+                      0.11622586621687434,
+                      0.1335775224260312
+                    ]
+                  },
+                  "sc": [
+                    -0.02864353541896053,
+                    -0.0199902844310262
+                  ],
+                  "tc": [
+                    -0.01721727662832901,
+                    -0.10176456956852838
+                  ],
+                  "ratio": [
+                    1.7737424062673068,
+                    2.0487741110607143
+                  ]
+                }
+              ],
+              "vertices": 1765,
+              "maxMoveM": 0.12802556550888566
+            },
+            {
+              "side": "Right",
+              "stations": [
+                {
+                  "sy": 0.015,
+                  "ty": 0.02,
+                  "source": {
+                    "count": 12045,
+                    "center": [
+                      -0.02291220164837801,
+                      0.06952996397986613
+                    ],
+                    "half": [
+                      0.055364930667855874,
+                      0.13115171185262992
+                    ]
+                  },
+                  "target": {
+                    "count": 618,
+                    "center": [
+                      -0.07442017517455554,
+                      0.01375722829637191
+                    ],
+                    "half": [
+                      0.14445675670374103,
+                      0.24435744938704726
+                    ]
+                  },
+                  "sc": [
+                    -0.02291220164837801,
+                    0.06952996397986613
+                  ],
+                  "tc": [
+                    -0.07442017517455554,
+                    0.01375722829637191
+                  ],
+                  "ratio": [
+                    2.609174344863953,
+                    1.863166297528943
+                  ]
+                },
+                {
+                  "sy": 0.08,
+                  "ty": 0.12,
+                  "source": {
+                    "count": 1177,
+                    "center": [
+                      -0.00758412464216968,
+                      0.020728236907374836
+                    ],
+                    "half": [
+                      0.03463436041312065,
+                      0.07751113030096338
+                    ]
+                  },
+                  "target": {
+                    "count": 186,
+                    "center": [
+                      -0.04839734235565743,
+                      -0.02996992166980096
+                    ],
+                    "half": [
+                      0.10814169383072,
+                      0.1820498128522421
+                    ]
+                  },
+                  "sc": [
+                    -0.00758412464216968,
+                    0.020728236907374836
+                  ],
+                  "tc": [
+                    -0.04839734235565743,
+                    -0.02996992166980096
+                  ],
+                  "ratio": [
+                    3.1223817197950137,
+                    2.348692531580583
+                  ]
+                },
+                {
+                  "sy": 0.14,
+                  "ty": 0.2,
+                  "source": {
+                    "count": 517,
+                    "center": [
+                      0.0031503190828415205,
+                      -0.006279075764236183
+                    ],
+                    "half": [
+                      0.03284735592312851,
+                      0.046986168714842805
+                    ]
+                  },
+                  "target": {
+                    "count": 71,
+                    "center": [
+                      -0.005676755402828804,
+                      -0.0912979120421887
+                    ],
+                    "half": [
+                      0.08147138837361773,
+                      0.10755557502857635
+                    ]
+                  },
+                  "sc": [
+                    0.0031503190828415205,
+                    -0.006279075764236183
+                  ],
+                  "tc": [
+                    -0.005676755402828804,
+                    -0.0912979120421887
+                  ],
+                  "ratio": [
+                    2.480302784926808,
+                    2.289090129508683
+                  ]
+                },
+                {
+                  "sy": 0.22,
+                  "ty": 0.3,
+                  "source": {
+                    "count": 231,
+                    "center": [
+                      0.010130056286681819,
+                      -0.014330393380898292
+                    ],
+                    "half": [
+                      0.04151837689878608,
+                      0.04688242284361398
+                    ]
+                  },
+                  "target": {
+                    "count": 79,
+                    "center": [
+                      0.006807515057665983,
+                      -0.10711433766393158
+                    ],
+                    "half": [
+                      0.08696223734277181,
+                      0.10327194228105033
+                    ]
+                  },
+                  "sc": [
+                    0.010130056286681819,
+                    -0.014330393380898292
+                  ],
+                  "tc": [
+                    0.006807515057665983,
+                    -0.10711433766393158
+                  ],
+                  "ratio": [
+                    2.0945480974549953,
+                    2.202785948702678
+                  ]
+                },
+                {
+                  "sy": 0.35,
+                  "ty": 0.455,
+                  "source": {
+                    "count": 374,
+                    "center": [
+                      0.02864361788810779,
+                      -0.01999049369252012
+                    ],
+                    "half": [
+                      0.06552578328755476,
+                      0.06519873347207218
+                    ]
+                  },
+                  "target": {
+                    "count": 94,
+                    "center": [
+                      0.017099228182776184,
+                      -0.10103349220275534
+                    ],
+                    "half": [
+                      0.1164569226696173,
+                      0.1346110993784484
+                    ]
+                  },
+                  "sc": [
+                    0.02864361788810779,
+                    -0.01999049369252012
+                  ],
+                  "tc": [
+                    0.017099228182776184,
+                    -0.10103349220275534
+                  ],
+                  "ratio": [
+                    1.777268684581079,
+                    2.0646275197371575
+                  ]
+                }
+              ],
+              "vertices": 1765,
+              "maxMoveM": 0.12576283566675106
+            }
+          ],
+          "verificationBefore": {
+            "joints": 65,
+            "meshes": 1,
+            "primitives": 1,
+            "vertices": 3530,
+            "worstPaletteDelta": 0,
+            "inverseBindExact": true,
+            "bounds": {
+              "min": [
+                -0.42377692461013794,
+                -0.030208483338356018,
+                -0.23749586939811707
+              ],
+              "max": [
+                0.42012640833854675,
+                0.4586201012134552,
+                0.31497976183891296
+              ],
+              "frame": "accepted body mesh"
+            }
+          },
+          "verification": {
+            "joints": 65,
+            "meshes": 1,
+            "primitives": 1,
+            "vertices": 3530,
+            "worstPaletteDelta": 0,
+            "inverseBindExact": true,
+            "bounds": {
+              "min": [
+                -0.4371406137943268,
+                -0.006000000052154064,
+                -0.27327775955200195
+              ],
+              "max": [
+                0.43955349922180176,
+                0.45800620317459106,
+                0.30583226680755615
+              ],
+              "frame": "accepted body mesh"
+            }
+          },
+          "skinAndUvExact": true,
+          "orderedWoundTrianglesExact": true
+        }
+      ]
+    },
+    "greaves": [
+      {
+        "race": "orc",
+        "id": "duskguardGreaves",
+        "source": {
+          "path": ".cache/character-mmo/wardrobe-v1/duskguard/orc/duskguardGreaves.glb",
+          "sha256": "cc6593cd2195719f32754b978c14ae57790d611f5ca2e91c3f249370e5c4677b"
+        },
+        "artifact": {
+          "url": "/ashen-reach/equipment-orc/duskguardGreaves-64595d16f60d.glb",
+          "bytes": 264440,
+          "sha256": "64595d16f60d4404e63c0a1c2c1346ff3d3fca0864a5871eb74f8d820b9acfc1",
+          "meshes": [
+            "DuskguardBootUnderlayer",
+            "DuskguardGreaves"
+          ],
+          "fit": {
+            "body": "ashen-orc",
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          }
+        },
+        "verification": {
+          "joints": 65,
+          "meshes": 2,
+          "primitives": 3,
+          "vertices": 4200,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.4371406137943268,
+              -0.006000000052154064,
+              -0.27327775955200195
+            ],
+            "max": [
+              0.43955349922180176,
+              0.45800620317459106,
+              0.30583226680755615
+            ],
+            "frame": "accepted body mesh"
+          }
+        },
+        "existingPlateArraysExact": false,
+        "reviewedUnderlayerArraysExact": true,
+        "existingPlateSemanticArraysExact": false,
+        "orderedWoundTrianglesExact": true,
+        "encodedReadbackArraysAndTrianglesVerified": true,
+        "reviewedGreaveGeometrySha256": "f370f46d3d8a23abf354020f59264960d2f28e8168d036f7acf9cacc2f81e6e8"
+      }
+    ]
+  },
+  "sourcePreservation": {
+    "passed": true,
+    "textures": 1,
+    "textureBytesExact": true,
+    "materialFactorsExact": true,
+    "originalRigTrsAndAncestryExact": true,
+    "inverseBindExact": true,
+    "animationsBefore": 0,
+    "animationsAfter": 0
+  },
+  "decodedCanonicalComparison": {
+    "passed": true,
+    "rows": [
+      {
+        "id": "wayfarerBoots",
+        "privateCanonicalSemanticAndOrderedWoundTriangleEquality": true,
+        "vertices": 3530,
+        "triangles": 6320
+      },
+      {
+        "id": "duskguardGreaves",
+        "privateCanonicalSemanticAndOrderedWoundTriangleEquality": true,
+        "vertices": 4200,
+        "triangles": 7128
+      },
+      {
+        "dir": "equipment",
+        "otherEntriesExact": true
+      },
+      {
+        "dir": "equipment-undead",
+        "otherEntriesExact": true
+      },
+      {
+        "dir": "equipment-orc",
+        "otherEntriesExact": true
+      }
+    ]
+  },
+  "nativeBoundsRows": [
+    {
+      "race": "human",
+      "id": "body",
+      "points": 8397810,
+      "escaped": 0
+    },
+    {
+      "race": "human",
+      "id": "graveweaverHood",
+      "points": 4038165,
+      "escaped": 0
+    },
+    {
+      "race": "human",
+      "id": "graveweaverTop",
+      "points": 3051495,
+      "escaped": 0
+    },
+    {
+      "race": "human",
+      "id": "graveweaverSkirt",
+      "points": 5320665,
+      "escaped": 0
+    },
+    {
+      "race": "human",
+      "id": "graveweaverGloves",
+      "points": 2219580,
+      "escaped": 0
+    },
+    {
+      "race": "human",
+      "id": "wayfarerTunic",
+      "points": 3228480,
+      "escaped": 0
+    },
+    {
+      "race": "human",
+      "id": "pilgrimTunic",
+      "points": 7660800,
+      "escaped": 0
+    },
+    {
+      "race": "human",
+      "id": "wayfarerTrousers",
+      "points": 3539700,
+      "escaped": 0
+    },
+    {
+      "race": "human",
+      "id": "wayfarerBoots",
+      "points": 3018150,
+      "escaped": 0
+    },
+    {
+      "race": "human",
+      "id": "wardenPauldrons",
+      "points": 201780,
+      "escaped": 0
+    },
+    {
+      "race": "human",
+      "id": "lectorCoat",
+      "points": 5174460,
+      "escaped": 0
+    },
+    {
+      "race": "human",
+      "id": "duskguardCuirass",
+      "points": 4460535,
+      "escaped": 0
+    },
+    {
+      "race": "human",
+      "id": "duskguardTassets",
+      "points": 3691890,
+      "escaped": 0
+    },
+    {
+      "race": "human",
+      "id": "duskguardGreaves",
+      "points": 3113910,
+      "escaped": 0
+    },
+    {
+      "race": "human",
+      "id": "duskguardVambraces",
+      "points": 2354670,
+      "escaped": 0
+    },
+    {
+      "race": "human",
+      "id": "bastionShoulders",
+      "points": 2407680,
+      "escaped": 0
+    },
+    {
+      "race": "human",
+      "id": "fieldcoat",
+      "points": 6007230,
+      "escaped": 0
+    },
+    {
+      "race": "orc",
+      "id": "body",
+      "points": 41574375,
+      "escaped": 0
+    },
+    {
+      "race": "orc",
+      "id": "graveweaverHood",
+      "points": 1346055,
+      "escaped": 0
+    },
+    {
+      "race": "orc",
+      "id": "graveweaverTop",
+      "points": 1017165,
+      "escaped": 0
+    },
+    {
+      "race": "orc",
+      "id": "graveweaverSkirt",
+      "points": 2166855,
+      "escaped": 0
+    },
+    {
+      "race": "orc",
+      "id": "graveweaverGloves",
+      "points": 780900,
+      "escaped": 0
+    },
+    {
+      "race": "orc",
+      "id": "wayfarerTunic",
+      "points": 1076160,
+      "escaped": 0
+    },
+    {
+      "race": "orc",
+      "id": "pilgrimTunic",
+      "points": 2553600,
+      "escaped": 0
+    },
+    {
+      "race": "orc",
+      "id": "wayfarerTrousers",
+      "points": 1179900,
+      "escaped": 0
+    },
+    {
+      "race": "orc",
+      "id": "wayfarerBoots",
+      "points": 1006050,
+      "escaped": 0
+    },
+    {
+      "race": "orc",
+      "id": "wardenPauldrons",
+      "points": 56430,
+      "escaped": 0
+    },
+    {
+      "race": "orc",
+      "id": "lectorCoat",
+      "points": 1903515,
+      "escaped": 0
+    },
+    {
+      "race": "orc",
+      "id": "duskguardCuirass",
+      "points": 2023785,
+      "escaped": 0
+    },
+    {
+      "race": "orc",
+      "id": "duskguardTassets",
+      "points": 1317840,
+      "escaped": 0
+    },
+    {
+      "race": "orc",
+      "id": "duskguardGreaves",
+      "points": 1197000,
+      "escaped": 0
+    },
+    {
+      "race": "orc",
+      "id": "duskguardVambraces",
+      "points": 842460,
+      "escaped": 0
+    },
+    {
+      "race": "orc",
+      "id": "bastionShoulders",
+      "points": 695970,
+      "escaped": 0
+    },
+    {
+      "race": "orc",
+      "id": "fieldcoat",
+      "points": 2202195,
+      "escaped": 0
+    },
+    {
+      "race": "undead",
+      "id": "body",
+      "points": 11165730,
+      "escaped": 0
+    },
+    {
+      "race": "undead",
+      "id": "graveweaverHood",
+      "points": 1346055,
+      "escaped": 0
+    },
+    {
+      "race": "undead",
+      "id": "graveweaverTop",
+      "points": 1017165,
+      "escaped": 0
+    },
+    {
+      "race": "undead",
+      "id": "graveweaverSkirt",
+      "points": 2166855,
+      "escaped": 0
+    },
+    {
+      "race": "undead",
+      "id": "graveweaverGloves",
+      "points": 739860,
+      "escaped": 0
+    },
+    {
+      "race": "undead",
+      "id": "wayfarerTunic",
+      "points": 1076160,
+      "escaped": 0
+    },
+    {
+      "race": "undead",
+      "id": "pilgrimTunic",
+      "points": 2553600,
+      "escaped": 0
+    },
+    {
+      "race": "undead",
+      "id": "wayfarerTrousers",
+      "points": 1179900,
+      "escaped": 0
+    },
+    {
+      "race": "undead",
+      "id": "wayfarerBoots",
+      "points": 1006050,
+      "escaped": 0
+    },
+    {
+      "race": "undead",
+      "id": "wardenPauldrons",
+      "points": 39900,
+      "escaped": 0
+    },
+    {
+      "race": "undead",
+      "id": "lectorCoat",
+      "points": 2005260,
+      "escaped": 0
+    },
+    {
+      "race": "undead",
+      "id": "duskguardCuirass",
+      "points": 1858770,
+      "escaped": 0
+    },
+    {
+      "race": "undead",
+      "id": "duskguardTassets",
+      "points": 1243740,
+      "escaped": 0
+    },
+    {
+      "race": "undead",
+      "id": "duskguardGreaves",
+      "points": 1035690,
+      "escaped": 0
+    },
+    {
+      "race": "undead",
+      "id": "duskguardVambraces",
+      "points": 807120,
+      "escaped": 0
+    },
+    {
+      "race": "undead",
+      "id": "bastionShoulders",
+      "points": 361950,
+      "escaped": 0
+    },
+    {
+      "race": "undead",
+      "id": "fieldcoat",
+      "points": 2350965,
+      "escaped": 0
+    },
+    {
+      "completed": true,
+      "points": 162782025,
+      "escaped": 0,
+      "byteCache": {
+        "entries": 0,
+        "reservedBytes": 0,
+        "peakReservedBytes": 4496592,
+        "ceilingBytes": 8388608,
+        "leases": 0
+      }
+    }
+  ],
+  "motionCases": [
+    {
+      "profile": {
+        "id": "original",
+        "race": "human",
+        "identity": "starter",
+        "height": 1,
+        "build": 0
+      },
+      "boot": "wayfarerBoots",
+      "bones": 65,
+      "recoveries": 0,
+      "gpuErrors": [],
+      "visible": [
+        "WayfarerBoots"
+      ],
+      "footVisibility": [
+        {
+          "name": "HumanFootCore",
+          "visible": false
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "original",
+        "race": "human",
+        "identity": "starter",
+        "height": 1,
+        "build": 0
+      },
+      "boot": "duskguardGreaves",
+      "bones": 65,
+      "recoveries": 0,
+      "gpuErrors": [],
+      "visible": [
+        "DuskguardBootUnderlayer",
+        "DuskguardGreaves",
+        "DuskguardGreaves"
+      ],
+      "footVisibility": [
+        {
+          "name": "HumanFootCore",
+          "visible": false
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "prime-tall-slender",
+        "race": "human",
+        "identity": "prime-ponytail",
+        "height": 1.15,
+        "build": -0.95
+      },
+      "boot": "wayfarerBoots",
+      "bones": 65,
+      "recoveries": 0,
+      "gpuErrors": [],
+      "visible": [
+        "WayfarerBoots"
+      ],
+      "footVisibility": [
+        {
+          "name": "HumanFootCore",
+          "visible": false
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "prime-tall-slender",
+        "race": "human",
+        "identity": "prime-ponytail",
+        "height": 1.15,
+        "build": -0.95
+      },
+      "boot": "duskguardGreaves",
+      "bones": 65,
+      "recoveries": 0,
+      "gpuErrors": [],
+      "visible": [
+        "DuskguardBootUnderlayer",
+        "DuskguardGreaves",
+        "DuskguardGreaves"
+      ],
+      "footVisibility": [
+        {
+          "name": "HumanFootCore",
+          "visible": false
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "prime-short-stout",
+        "race": "human",
+        "identity": "prime-ponytail",
+        "height": 0.9,
+        "build": 0.95
+      },
+      "boot": "wayfarerBoots",
+      "bones": 65,
+      "recoveries": 0,
+      "gpuErrors": [],
+      "visible": [
+        "WayfarerBoots"
+      ],
+      "footVisibility": [
+        {
+          "name": "HumanFootCore",
+          "visible": false
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "prime-short-stout",
+        "race": "human",
+        "identity": "prime-ponytail",
+        "height": 0.9,
+        "build": 0.95
+      },
+      "boot": "duskguardGreaves",
+      "bones": 65,
+      "recoveries": 0,
+      "gpuErrors": [],
+      "visible": [
+        "DuskguardBootUnderlayer",
+        "DuskguardGreaves",
+        "DuskguardGreaves"
+      ],
+      "footVisibility": [
+        {
+          "name": "HumanFootCore",
+          "visible": false
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "orc",
+        "race": "orc"
+      },
+      "boot": "wayfarerBoots",
+      "bones": 65,
+      "recoveries": 0,
+      "gpuErrors": [],
+      "visible": [
+        "WayfarerBoots"
+      ],
+      "footVisibility": [
+        {
+          "name": "HumanFootCore",
+          "visible": false
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "orc",
+        "race": "orc"
+      },
+      "boot": "duskguardGreaves",
+      "bones": 65,
+      "recoveries": 0,
+      "gpuErrors": [],
+      "visible": [
+        "DuskguardBootUnderlayer",
+        "DuskguardGreaves",
+        "DuskguardGreaves"
+      ],
+      "footVisibility": [
+        {
+          "name": "HumanFootCore",
+          "visible": false
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "undead",
+        "race": "undead"
+      },
+      "boot": "wayfarerBoots",
+      "bones": 65,
+      "recoveries": 0,
+      "gpuErrors": [],
+      "visible": [
+        "WayfarerBoots"
+      ],
+      "footVisibility": [
+        {
+          "name": "HumanFootCore",
+          "visible": false
+        },
+        {
+          "name": "UndeadFootCore",
+          "visible": false
+        }
+      ]
+    },
+    {
+      "profile": {
+        "id": "undead",
+        "race": "undead"
+      },
+      "boot": "duskguardGreaves",
+      "bones": 65,
+      "recoveries": 0,
+      "gpuErrors": [],
+      "visible": [
+        "DuskguardBootUnderlayer",
+        "DuskguardGreaves",
+        "DuskguardGreaves"
+      ],
+      "footVisibility": [
+        {
+          "name": "HumanFootCore",
+          "visible": false
+        },
+        {
+          "name": "UndeadFootCore",
+          "visible": false
+        }
+      ]
+    }
+  ],
+  "rootReview": {
+    "at": "2026-10-08T03:06:34.986450+00:00",
+    "owner": "root",
+    "path": ".cache/character-mmo/boot-last-2026-10-07/canonical-motion/motion.mp4",
+    "sha256": "f8e0cf9d32c7609e0fc7a8326669865e26d16289ae9c934f36f8d8bed1082bbf",
+    "verdict": "focused-local-acceptance",
+    "review": "Actual MP4 native browser playback at normal and half speed; advancing Orc boot/greave run chapters; source idle PNGs; ordinary Human/Undead Havok and Undead source foot restoration. Private corrected same-array Orc boot/greave motion also reviewed. Canonical actual Orc URLs returned200 and match manifests.",
+    "limits": [
+      "Remaining knot/cuff/plate-edge overlap, proud straps, pleats and aliasing",
+      "No new startup/FPS qualification, complete mixed-fit acceptance or zero-clipping claim",
+      "Private Orc gameplay sprint/jump is separate from canonical Human/Undead gameplay capture",
+      "Production5723a4ab and reliability hold unchanged"
+    ],
+    "playback": {
+      "tab": "1147995928",
+      "browserPid": 2931,
+      "url": "http://127.0.0.1:7075/",
+      "nativeWidth": 1280,
+      "nativeHeight": 720,
+      "duration": 32.961498,
+      "normalEnded": true,
+      "orcHalfSpeedTimes": [
+        19.580038,
+        21.837633
+      ],
+      "error": null
+    }
+  },
+  "maximumCompactBudget": {
+    "schema": 1,
+    "scope": "Unique compact body/clothing transfer bytes; excludes common code, world, manifests and procedural props",
+    "enumerated": 12096,
+    "valid": 10584,
+    "profiles": 4,
+    "maximum": {
+      "profile": "prime-ponytail",
+      "components": {
+        "head": "human-prime-v1",
+        "hair": "human-ponytail01-v1"
+      },
+      "equipment": {
+        "helmet": null,
+        "torso": "duskguardCuirass",
+        "legs": "graveweaverSkirt",
+        "boots": "duskguardGreaves",
+        "gloves": "duskguardVambraces",
+        "mainHand": "graveweaverStaff",
+        "offHand": "graveweaverBook",
+        "shoulders": "bastionShoulders"
+      },
+      "bytes": 2103172,
+      "resources": [
+        {
+          "id": "body",
+          "url": "/ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+          "bytes": 1013447
+        },
+        {
+          "id": "duskguardCuirass",
+          "url": "/ashen-reach/human-shape-v1/duskguardCuirass-87f33adb1a29.bin",
+          "bytes": 357832
+        },
+        {
+          "id": "graveweaverSkirt",
+          "url": "/ashen-reach/human-shape-v1/graveweaverSkirt-compact-f52f181bec28.bin",
+          "bytes": 181723
+        },
+        {
+          "id": "duskguardGreaves",
+          "url": "/ashen-reach/human-shape-v1/duskguardGreaves-e6a997aabb25.bin",
+          "bytes": 272201
+        },
+        {
+          "id": "duskguardVambraces",
+          "url": "/ashen-reach/human-shape-v1/duskguardVambraces-b67e2bcbac26.bin",
+          "bytes": 194817
+        },
+        {
+          "id": "bastionShoulders",
+          "url": "/ashen-reach/human-shape-v1/bastionShoulders-f494b2e91fe7.bin",
+          "bytes": 83152
+        }
+      ],
+      "worn": 7
+    },
+    "conditions": {
+      "deferCoveredHair": true
+    }
+  },
+  "reviewWorker": {
+    "model": "grok-4.6",
+    "effort": "high",
+    "initialExit": {
+      "exitCode": 1,
+      "elapsedSeconds": 616.4063022080227
+    },
+    "finishExit": {
+      "exitCode": 0,
+      "elapsedSeconds": 116.3584545829799
+    },
+    "artifact": "independent-review.md",
+    "consequentialFindings": 0,
+    "independentMotionAcceptance": false
+  },
+  "cleanup": {
+    "at": "2026-10-08T03:08:04.098040+00:00",
+    "owner": "root",
+    "browserPid": 2931,
+    "tab": "1147995928",
+    "serverPid": 33633,
+    "port": 7075,
+    "active": false,
+    "action": "Closed owned canonical review tab and stopped ranged media server; original Python review server also stopped. No game browser remains; user Edge and Orca preserved.",
+    "mediaTabsClosed": [
+      "1147995928",
+      "1147995932"
+    ],
+    "reviewServerClosed": true,
+    "ownedGameBrowsersClosed": true,
+    "portsFree": {
+      "5173": true,
+      "7074": true,
+      "7075": true,
+      "10037": true
+    }
+  },
+  "rawEvidence": ".cache/character-mmo/boot-last-2026-10-07",
+  "media": {
+    "telegram": {
+      "ok": true,
+      "messageId": 884,
+      "expected": {
+        "width": 1280,
+        "height": 720,
+        "duration": 32.961498,
+        "sampleAspectRatio": "1:1",
+        "rotation": 0,
+        "codec": "h264"
+      },
+      "returned": {
+        "width": 1280,
+        "height": 720,
+        "duration": 33
+      },
+      "verified": true,
+      "file": "motion.mp4",
+      "sha256": "f8e0cf9d32c7609e0fc7a8326669865e26d16289ae9c934f36f8d8bed1082bbf",
+      "sentAt": "2026-10-08T03:07:20.812221+00:00"
+    },
+    "ve": {
+      "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/boot-last-2026-10-07/f8e0cf9d32c7-motion.mp4",
+      "get200": {
+        "statusLine": "HTTP/2 200 ",
+        "headers": {
+          "content-type": "video/mp4",
+          "content-length": "31349613",
+          "accept-ranges": "bytes",
+          "etag": "\"786bf5abb08967b17ba916d0a194c5a7\""
+        }
+      },
+      "range206": {
+        "statusLine": "HTTP/2 206 ",
+        "headers": {
+          "content-type": "video/mp4",
+          "content-length": "1024",
+          "content-range": "bytes 0-1023/31349613",
+          "etag": "\"786bf5abb08967b17ba916d0a194c5a7\""
+        },
+        "bodyBytes": 1024
+      },
+      "fullGet": {
+        "statusLine": "HTTP/2 200 ",
+        "headers": {
+          "content-type": "video/mp4",
+          "content-length": "31349613",
+          "accept-ranges": "bytes",
+          "etag": "\"786bf5abb08967b17ba916d0a194c5a7\""
+        },
+        "bytes": 31349613,
+        "sha256": "f8e0cf9d32c7609e0fc7a8326669865e26d16289ae9c934f36f8d8bed1082bbf"
+      },
+      "local": {
+        "bytes": 31349613,
+        "sha256": "f8e0cf9d32c7609e0fc7a8326669865e26d16289ae9c934f36f8d8bed1082bbf"
+      },
+      "pass": {
+        "http200": true,
+        "contentType": true,
+        "contentLength": true,
+        "shaMatch": true,
+        "range206": true,
+        "contentRange": true,
+        "rangeBodyBytes": true
+      }
+    },
+    "exits": [
+      {
+        "name": "ve-upload",
+        "command": [
+          "bash",
+          "scripts/ve-upload.sh",
+          "/Users/antbly/dev/wow-clone/.cache/character-mmo/boot-last-2026-10-07/canonical-motion/motion.mp4",
+          "wow-clone/ashen-reach/boot-last-2026-10-07/f8e0cf9d32c7-motion.mp4"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 9.523,
+        "pid": 43472,
+        "wrapperPid": 43444,
+        "log": ".cache/character-mmo/boot-last-2026-10-07/ve-upload.log"
+      },
+      {
+        "name": "ve-full-get",
+        "command": [
+          "curl",
+          "-sS",
+          "-D",
+          "/Users/antbly/dev/wow-clone/.cache/character-mmo/boot-last-2026-10-07/ve-get.headers",
+          "-o",
+          "/Users/antbly/dev/wow-clone/.cache/character-mmo/boot-last-2026-10-07/ve-full-get.mp4",
+          "https://ve.sparkify.dev/wow-clone/ashen-reach/boot-last-2026-10-07/f8e0cf9d32c7-motion.mp4"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 1.188,
+        "pid": 43754,
+        "wrapperPid": 43444,
+        "log": ".cache/character-mmo/boot-last-2026-10-07/ve-full-get.log"
+      },
+      {
+        "name": "ve-range-get",
+        "command": [
+          "curl",
+          "-sS",
+          "-D",
+          "/Users/antbly/dev/wow-clone/.cache/character-mmo/boot-last-2026-10-07/ve-range.headers",
+          "-o",
+          "/Users/antbly/dev/wow-clone/.cache/character-mmo/boot-last-2026-10-07/ve-range-1024.bin",
+          "-H",
+          "Range: bytes=0-1023",
+          "https://ve.sparkify.dev/wow-clone/ashen-reach/boot-last-2026-10-07/f8e0cf9d32c7-motion.mp4"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 0.129,
+        "pid": 43775,
+        "wrapperPid": 43444,
+        "log": ".cache/character-mmo/boot-last-2026-10-07/ve-range-get.log"
+      },
+      {
+        "name": "tg-file",
+        "command": [
+          "bash",
+          "scripts/tg",
+          "file",
+          "/Users/antbly/dev/wow-clone/.cache/character-mmo/boot-last-2026-10-07/canonical-motion/motion.mp4",
+          "Orc boot last + greave envelope \u2014 local canonical correction. The authored leather shell is graded from the source boot onto the accepted Orc foot/calf; native Blender plates fit that underlayer. Source rig, weights, UVs and boot topology stay exact. Five profiles/two boots, native run previews and Human/Undead Havok sprint/jump; restored Undead source feet. Root reviewed actual normal/half-speed motion. Cuff/knot/plate-edge overlap and aliasing remain. 1280\u00d7720, square pixels. No new FPS/startup claim; production 5723a4ab and reliability hold unchanged.\nVE: https://ve.sparkify.dev/wow-clone/ashen-reach/boot-last-2026-10-07/f8e0cf9d32c7-motion.mp4"
+        ],
+        "exitCode": 0,
+        "elapsedSeconds": 21.789,
+        "pid": 43796,
+        "wrapperPid": 43444,
+        "log": ".cache/character-mmo/boot-last-2026-10-07/tg-file.log"
+      }
+    ],
+    "directPlayback": {
+      "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/boot-last-2026-10-07/f8e0cf9d32c7-motion.mp4",
+      "browser": "user Edge PID2931",
+      "ownedTab": "1147995932",
+      "normalSpeed": 1,
+      "firstTime": 0.155826,
+      "finalTime": 32.961498,
+      "duration": 32.961498,
+      "nativeWidth": 1280,
+      "nativeHeight": 720,
+      "renderedWidth": 1280,
+      "renderedHeight": 720,
+      "videoError": null,
+      "closed": true
+    },
+    "workerExit": {
+      "exitCode": 0,
+      "elapsedSeconds": 78.37671429198235
+    }
+  },
+  "nativeCodecControls": {
+    "tests": 2,
+    "pass": 2,
+    "fail": 0,
+    "actualExitCode": 0
+  }
+}

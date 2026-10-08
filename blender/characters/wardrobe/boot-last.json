@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "id": "wayfarer-last",
+  "revision": 1,
+  "sourceRights": "Existing vendored CC0 MakeHuman suits02 footwear on accepted Orc native source-65 skin; retain existing documented body/rig grants. No new body or rig.",
+  "authored": {
+    "source": "blender/characters/sources/human-catalogue/wayfarerBoots.glb",
+    "sha256": "0f4091ff26d40cf3a3567b8770105f51b79a346caa21ead40577391704f81ae2",
+    "body": "blender/characters/sources/human-catalogue/body.glb",
+    "bodySha256": "e813a40bbb00a9a8499cbabf3a042dd781ef806e69d8c2378756330428dae92d"
+  },
+  "fits": {
+    "orc": {
+      "source": "blender/characters/wardrobe/sources/orc-wayfarerBoots-before-last.glb",
+      "sha256": "e07c5fab32bc1a6403c4cd482b136e859d82b1d622a3af7f3667277b6bbfabf0",
+      "body": "public/ashen-reach/equipment-orc/body.glb",
+      "bodySha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b",
+      "bodyMesh": "BodyExposed"
+    }
+  },
+  "sections": [
+    [
+      0.015,
+      0.02,
+      0.025
+    ],
+    [
+      0.08,
+      0.12,
+      0.025
+    ],
+    [
+      0.14,
+      0.2,
+      0.03
+    ],
+    [
+      0.22,
+      0.3,
+      0.04
+    ],
+    [
+      0.35,
+      0.455,
+      0.035
+    ]
+  ],
+  "heightKnots": [
+    [
+      -0.01036334,
+      -0.006
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      0.08,
+      0.12
+    ],
+    [
+      0.14,
+      0.2
+    ],
+    [
+      0.22,
+      0.3
+    ],
+    [
+      0.36039552,
+      0.458
+    ]
+  ],
+  "strapClearanceM": 0.006,
+  "scope": "Orc boot leather and authored straps only; original topology, UVs, materials, native skin and source clips exact. Separate native greave envelope is fitted to this underlayer. Local candidate until canonical checks and reviewed motion.",
+  "reviewedGreaveGeometrySha256": "f370f46d3d8a23abf354020f59264960d2f28e8168d036f7acf9cacc2f81e6e8"
+}

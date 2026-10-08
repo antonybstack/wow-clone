@@ -141,6 +141,21 @@ acceptance only: no new public startup/FPS result or Pages promotion; production
 and the reliability hold are unchanged. Next fit work should address remaining
 shell/cuff and plate fit, then neck/waist/wrist combinations.
 
+The [Orc boot last and greave envelope](plans/character-mmo/results/boot-last-2026-10-07.md)
+now grade the original authored leather onto the accepted Orc foot/calf and use
+the existing native Blender plate tools around that underlayer. Original boot
+topology, UVs, weights, textures and source rig remain exact. Character 231/231,
+equipment 115/115, native codec controls 2/2, all 51 native bounds and ten live
+fit cases pass. Root reviewed actual canonical normal/half-speed motion; the
+ankle cavity improves and the plates remain visible during leg bends. Reviewed
+motion is Telegram **884** and identical VE with matching dimensions. Remaining
+knot/cuff/plate-edge overlap, proud straps and aliasing are retained limitations.
+Human/Undead assets and the 2,103,172-byte maximum compact outfit are unchanged.
+This is local focused acceptance; no new public startup/FPS claim or Pages
+promotion. Production 5723a4ab and the reliability hold remain unchanged.
+Next independent development work is mixed neck/waist/wrist fit, then an authored
+shield. Do not extend the exhausted unchanged startup diagnostic campaign.
+
 ### Next five priorities, in execution order
 
 1. **Resolve the startup failure, then release the canonical boot correction.**
@@ -161,7 +176,8 @@ shell/cuff and plate fit, then neck/waist/wrist combinations.
    windows separately from settled FPS. The measured first-sound constructor cost
    is 179 ms. Change demonstrated bottlenecks only; queue-eight and silent-output
    trials remain rejected. A gain must preserve startup, visuals and memory limits.
-3. **Finish mixed armor fit.** Start with retained shell/cuff and plate fit, then inspect
+3. **Finish mixed armor fit.** The focused Orc shell/plate correction is locally
+   accepted with residuals documented above. Inspect
    neck/waist/wrist/ankle combinations at Human shape endpoints and neutral
    Orc/Undead. Fix a demonstrated seam per pass through the existing authored-piece
    pipeline. Reuse reviewed fixtures; require live motion for clipping, seams,

@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "id": "duskguard",
-  "revision": 2,
+  "revision": 3,
   "status": "reviewed-source; production integration pending",
   "blenderVersion": "5.2.1",
   "items": {
@@ -111,13 +111,14 @@
         },
         "wayfarerBoots": {
           "source": "public/ashen-reach/equipment-orc/wayfarerBoots.glb",
-          "sha256": "e07c5fab32bc1a6403c4cd482b136e859d82b1d622a3af7f3667277b6bbfabf0"
+          "sha256": "1880f480f1bf985202cefd4cae3b239b33c0688408cb86a3090affb5cfae5913"
         },
         "graveweaverGloves": {
           "source": "public/ashen-reach/equipment-orc/graveweaverGloves.glb",
           "sha256": "ae551225a6ceb06388b491342070e00a5c7ac2a377df1bac8ffcff13930331af"
         }
-      }
+      },
+      "greaveEnvelope": "wayfarerBoots"
     },
     "undead": {
       "directory": "equipment-undead",
