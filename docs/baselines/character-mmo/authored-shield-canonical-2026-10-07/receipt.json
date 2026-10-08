@@ -147,133 +147,31 @@
         "race": "orc",
         "mode": "http500",
         "hits": 1,
-        "console": [
-          "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
-        ],
-        "before": {
-          "status": {
-            "pending": false,
-            "error": null,
-            "cached": [
-              "wayfarerTunic",
-              "wayfarerTrousers",
-              "wayfarerBoots",
-              "ironSword",
-              "graveweaverBook"
-            ],
-            "desired": {
-              "helmet": null,
-              "torso": "wayfarerTunic",
-              "legs": "wayfarerTrousers",
-              "boots": "wayfarerBoots",
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "graveweaverBook",
-              "shoulders": null
-            }
-          },
-          "visibleShield": 0,
-          "bones": 65,
-          "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": null,
-            "torso": "wayfarerTunic",
-            "legs": "wayfarerTrousers",
-            "boots": "wayfarerBoots",
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "graveweaverBook",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": []
-        },
         "result": {
           "status": "failed",
           "error": "Could not load the orc Bastion heater shield from /ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb"
         },
-        "after": {
-          "status": {
-            "pending": false,
-            "error": "Could not load the orc Bastion heater shield from /ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb",
-            "cached": [
-              "wayfarerTunic",
-              "wayfarerTrousers",
-              "wayfarerBoots",
-              "ironSword",
-              "graveweaverBook"
-            ],
-            "desired": {
-              "helmet": null,
-              "torso": "wayfarerTunic",
-              "legs": "wayfarerTrousers",
-              "boots": "wayfarerBoots",
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "graveweaverBook",
-              "shoulders": null
-            }
-          },
-          "visibleShield": 0,
-          "bones": 65,
-          "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": null,
-            "torso": "wayfarerTunic",
-            "legs": "wayfarerTrousers",
-            "boots": "wayfarerBoots",
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "graveweaverBook",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": []
-        },
         "retry": {
           "status": "applied"
         },
-        "retried": {
-          "status": {
-            "pending": false,
-            "error": null,
-            "cached": [
-              "wayfarerTunic",
-              "wayfarerTrousers",
-              "wayfarerBoots",
-              "ironSword",
-              "graveweaverBook",
-              "bastionShield"
-            ],
-            "desired": {
-              "helmet": null,
-              "torso": "wayfarerTunic",
-              "legs": "wayfarerTrousers",
-              "boots": "wayfarerBoots",
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "bastionShield",
-              "shoulders": null
-            }
-          },
-          "visibleShield": 3,
-          "bones": 65,
+        "before": {
+          "offHand": "graveweaverBook",
+          "visibleShield": 0,
+          "roots": [],
           "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": null,
-            "torso": "wayfarerTunic",
-            "legs": "wayfarerTrousers",
-            "boots": "wayfarerBoots",
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "bastionShield",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": [
+          "recoveries": 0
+        },
+        "after": {
+          "offHand": "graveweaverBook",
+          "visibleShield": 0,
+          "roots": [],
+          "gpuErrors": [],
+          "recoveries": 0
+        },
+        "retried": {
+          "offHand": "bastionShield",
+          "visibleShield": 3,
+          "roots": [
             {
               "name": "__root__",
               "scale": [
@@ -301,138 +199,40 @@
               ],
               "parent": "offHandSocket"
             }
-          ]
+          ],
+          "gpuErrors": [],
+          "recoveries": 0
         }
       },
       {
         "race": "orc",
         "mode": "truncated",
         "hits": 1,
-        "console": [],
-        "before": {
-          "status": {
-            "pending": false,
-            "error": null,
-            "cached": [
-              "wayfarerTunic",
-              "wayfarerTrousers",
-              "wayfarerBoots",
-              "ironSword",
-              "graveweaverBook"
-            ],
-            "desired": {
-              "helmet": null,
-              "torso": "wayfarerTunic",
-              "legs": "wayfarerTrousers",
-              "boots": "wayfarerBoots",
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "graveweaverBook",
-              "shoulders": null
-            }
-          },
-          "visibleShield": 0,
-          "bones": 65,
-          "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": null,
-            "torso": "wayfarerTunic",
-            "legs": "wayfarerTrousers",
-            "boots": "wayfarerBoots",
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "graveweaverBook",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": []
-        },
         "result": {
           "status": "failed",
           "error": "The orc Bastion heater shield is 100 bytes, not the 67352 its manifest declares"
         },
-        "after": {
-          "status": {
-            "pending": false,
-            "error": "The orc Bastion heater shield is 100 bytes, not the 67352 its manifest declares",
-            "cached": [
-              "wayfarerTunic",
-              "wayfarerTrousers",
-              "wayfarerBoots",
-              "ironSword",
-              "graveweaverBook"
-            ],
-            "desired": {
-              "helmet": null,
-              "torso": "wayfarerTunic",
-              "legs": "wayfarerTrousers",
-              "boots": "wayfarerBoots",
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "graveweaverBook",
-              "shoulders": null
-            }
-          },
-          "visibleShield": 0,
-          "bones": 65,
-          "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": null,
-            "torso": "wayfarerTunic",
-            "legs": "wayfarerTrousers",
-            "boots": "wayfarerBoots",
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "graveweaverBook",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": []
-        },
         "retry": {
           "status": "applied"
         },
-        "retried": {
-          "status": {
-            "pending": false,
-            "error": null,
-            "cached": [
-              "wayfarerTunic",
-              "wayfarerTrousers",
-              "wayfarerBoots",
-              "ironSword",
-              "graveweaverBook",
-              "bastionShield"
-            ],
-            "desired": {
-              "helmet": null,
-              "torso": "wayfarerTunic",
-              "legs": "wayfarerTrousers",
-              "boots": "wayfarerBoots",
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "bastionShield",
-              "shoulders": null
-            }
-          },
-          "visibleShield": 3,
-          "bones": 65,
+        "before": {
+          "offHand": "graveweaverBook",
+          "visibleShield": 0,
+          "roots": [],
           "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": null,
-            "torso": "wayfarerTunic",
-            "legs": "wayfarerTrousers",
-            "boots": "wayfarerBoots",
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "bastionShield",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": [
+          "recoveries": 0
+        },
+        "after": {
+          "offHand": "graveweaverBook",
+          "visibleShield": 0,
+          "roots": [],
+          "gpuErrors": [],
+          "recoveries": 0
+        },
+        "retried": {
+          "offHand": "bastionShield",
+          "visibleShield": 3,
+          "roots": [
             {
               "name": "__root__",
               "scale": [
@@ -460,138 +260,40 @@
               ],
               "parent": "offHandSocket"
             }
-          ]
+          ],
+          "gpuErrors": [],
+          "recoveries": 0
         }
       },
       {
         "race": "orc",
         "mode": "same-length-corrupt",
         "hits": 1,
-        "console": [],
-        "before": {
-          "status": {
-            "pending": false,
-            "error": null,
-            "cached": [
-              "wayfarerTunic",
-              "wayfarerTrousers",
-              "wayfarerBoots",
-              "ironSword",
-              "graveweaverBook"
-            ],
-            "desired": {
-              "helmet": null,
-              "torso": "wayfarerTunic",
-              "legs": "wayfarerTrousers",
-              "boots": "wayfarerBoots",
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "graveweaverBook",
-              "shoulders": null
-            }
-          },
-          "visibleShield": 0,
-          "bones": 65,
-          "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": null,
-            "torso": "wayfarerTunic",
-            "legs": "wayfarerTrousers",
-            "boots": "wayfarerBoots",
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "graveweaverBook",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": []
-        },
         "result": {
           "status": "failed",
           "error": "The orc Bastion heater shield at /ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb does not match its manifest hash"
         },
-        "after": {
-          "status": {
-            "pending": false,
-            "error": "The orc Bastion heater shield at /ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb does not match its manifest hash",
-            "cached": [
-              "wayfarerTunic",
-              "wayfarerTrousers",
-              "wayfarerBoots",
-              "ironSword",
-              "graveweaverBook"
-            ],
-            "desired": {
-              "helmet": null,
-              "torso": "wayfarerTunic",
-              "legs": "wayfarerTrousers",
-              "boots": "wayfarerBoots",
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "graveweaverBook",
-              "shoulders": null
-            }
-          },
-          "visibleShield": 0,
-          "bones": 65,
-          "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": null,
-            "torso": "wayfarerTunic",
-            "legs": "wayfarerTrousers",
-            "boots": "wayfarerBoots",
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "graveweaverBook",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": []
-        },
         "retry": {
           "status": "applied"
         },
-        "retried": {
-          "status": {
-            "pending": false,
-            "error": null,
-            "cached": [
-              "wayfarerTunic",
-              "wayfarerTrousers",
-              "wayfarerBoots",
-              "ironSword",
-              "graveweaverBook",
-              "bastionShield"
-            ],
-            "desired": {
-              "helmet": null,
-              "torso": "wayfarerTunic",
-              "legs": "wayfarerTrousers",
-              "boots": "wayfarerBoots",
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "bastionShield",
-              "shoulders": null
-            }
-          },
-          "visibleShield": 3,
-          "bones": 65,
+        "before": {
+          "offHand": "graveweaverBook",
+          "visibleShield": 0,
+          "roots": [],
           "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": null,
-            "torso": "wayfarerTunic",
-            "legs": "wayfarerTrousers",
-            "boots": "wayfarerBoots",
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "bastionShield",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": [
+          "recoveries": 0
+        },
+        "after": {
+          "offHand": "graveweaverBook",
+          "visibleShield": 0,
+          "roots": [],
+          "gpuErrors": [],
+          "recoveries": 0
+        },
+        "retried": {
+          "offHand": "bastionShield",
+          "visibleShield": 3,
+          "roots": [
             {
               "name": "__root__",
               "scale": [
@@ -619,137 +321,40 @@
               ],
               "parent": "offHandSocket"
             }
-          ]
+          ],
+          "gpuErrors": [],
+          "recoveries": 0
         }
       },
       {
         "race": "undead",
         "mode": "http500",
         "hits": 1,
-        "console": [
-          "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
-        ],
-        "before": {
-          "status": {
-            "pending": false,
-            "error": null,
-            "cached": [
-              "graveweaverHood",
-              "graveweaverTop",
-              "graveweaverSkirt",
-              "ironSword",
-              "graveweaverBook"
-            ],
-            "desired": {
-              "helmet": "graveweaverHood",
-              "torso": "graveweaverTop",
-              "legs": "graveweaverSkirt",
-              "boots": null,
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "graveweaverBook"
-            }
-          },
-          "visibleShield": 0,
-          "bones": 65,
-          "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": "graveweaverHood",
-            "torso": "graveweaverTop",
-            "legs": "graveweaverSkirt",
-            "boots": null,
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "graveweaverBook",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": []
-        },
         "result": {
           "status": "failed",
           "error": "Could not load the undead Bastion heater shield from /ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb"
         },
-        "after": {
-          "status": {
-            "pending": false,
-            "error": "Could not load the undead Bastion heater shield from /ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb",
-            "cached": [
-              "graveweaverHood",
-              "graveweaverTop",
-              "graveweaverSkirt",
-              "ironSword",
-              "graveweaverBook"
-            ],
-            "desired": {
-              "helmet": "graveweaverHood",
-              "torso": "graveweaverTop",
-              "legs": "graveweaverSkirt",
-              "boots": null,
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "graveweaverBook"
-            }
-          },
-          "visibleShield": 0,
-          "bones": 65,
-          "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": "graveweaverHood",
-            "torso": "graveweaverTop",
-            "legs": "graveweaverSkirt",
-            "boots": null,
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "graveweaverBook",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": []
-        },
         "retry": {
           "status": "applied"
         },
-        "retried": {
-          "status": {
-            "pending": false,
-            "error": null,
-            "cached": [
-              "graveweaverHood",
-              "graveweaverTop",
-              "graveweaverSkirt",
-              "ironSword",
-              "graveweaverBook",
-              "bastionShield"
-            ],
-            "desired": {
-              "helmet": "graveweaverHood",
-              "torso": "graveweaverTop",
-              "legs": "graveweaverSkirt",
-              "boots": null,
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "bastionShield"
-            }
-          },
-          "visibleShield": 3,
-          "bones": 65,
+        "before": {
+          "offHand": "graveweaverBook",
+          "visibleShield": 0,
+          "roots": [],
           "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": "graveweaverHood",
-            "torso": "graveweaverTop",
-            "legs": "graveweaverSkirt",
-            "boots": null,
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "bastionShield",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": [
+          "recoveries": 0
+        },
+        "after": {
+          "offHand": "graveweaverBook",
+          "visibleShield": 0,
+          "roots": [],
+          "gpuErrors": [],
+          "recoveries": 0
+        },
+        "retried": {
+          "offHand": "bastionShield",
+          "visibleShield": 3,
+          "roots": [
             {
               "name": "__root__",
               "scale": [
@@ -777,135 +382,40 @@
               ],
               "parent": "offHandSocket"
             }
-          ]
+          ],
+          "gpuErrors": [],
+          "recoveries": 0
         }
       },
       {
         "race": "undead",
         "mode": "truncated",
         "hits": 1,
-        "console": [],
-        "before": {
-          "status": {
-            "pending": false,
-            "error": null,
-            "cached": [
-              "graveweaverHood",
-              "graveweaverTop",
-              "graveweaverSkirt",
-              "ironSword",
-              "graveweaverBook"
-            ],
-            "desired": {
-              "helmet": "graveweaverHood",
-              "torso": "graveweaverTop",
-              "legs": "graveweaverSkirt",
-              "boots": null,
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "graveweaverBook"
-            }
-          },
-          "visibleShield": 0,
-          "bones": 65,
-          "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": "graveweaverHood",
-            "torso": "graveweaverTop",
-            "legs": "graveweaverSkirt",
-            "boots": null,
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "graveweaverBook",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": []
-        },
         "result": {
           "status": "failed",
           "error": "The undead Bastion heater shield is 100 bytes, not the 67352 its manifest declares"
         },
-        "after": {
-          "status": {
-            "pending": false,
-            "error": "The undead Bastion heater shield is 100 bytes, not the 67352 its manifest declares",
-            "cached": [
-              "graveweaverHood",
-              "graveweaverTop",
-              "graveweaverSkirt",
-              "ironSword",
-              "graveweaverBook"
-            ],
-            "desired": {
-              "helmet": "graveweaverHood",
-              "torso": "graveweaverTop",
-              "legs": "graveweaverSkirt",
-              "boots": null,
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "graveweaverBook"
-            }
-          },
-          "visibleShield": 0,
-          "bones": 65,
-          "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": "graveweaverHood",
-            "torso": "graveweaverTop",
-            "legs": "graveweaverSkirt",
-            "boots": null,
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "graveweaverBook",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": []
-        },
         "retry": {
           "status": "applied"
         },
-        "retried": {
-          "status": {
-            "pending": false,
-            "error": null,
-            "cached": [
-              "graveweaverHood",
-              "graveweaverTop",
-              "graveweaverSkirt",
-              "ironSword",
-              "graveweaverBook",
-              "bastionShield"
-            ],
-            "desired": {
-              "helmet": "graveweaverHood",
-              "torso": "graveweaverTop",
-              "legs": "graveweaverSkirt",
-              "boots": null,
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "bastionShield"
-            }
-          },
-          "visibleShield": 3,
-          "bones": 65,
+        "before": {
+          "offHand": "graveweaverBook",
+          "visibleShield": 0,
+          "roots": [],
           "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": "graveweaverHood",
-            "torso": "graveweaverTop",
-            "legs": "graveweaverSkirt",
-            "boots": null,
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "bastionShield",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": [
+          "recoveries": 0
+        },
+        "after": {
+          "offHand": "graveweaverBook",
+          "visibleShield": 0,
+          "roots": [],
+          "gpuErrors": [],
+          "recoveries": 0
+        },
+        "retried": {
+          "offHand": "bastionShield",
+          "visibleShield": 3,
+          "roots": [
             {
               "name": "__root__",
               "scale": [
@@ -933,135 +443,40 @@
               ],
               "parent": "offHandSocket"
             }
-          ]
+          ],
+          "gpuErrors": [],
+          "recoveries": 0
         }
       },
       {
         "race": "undead",
         "mode": "same-length-corrupt",
         "hits": 1,
-        "console": [],
-        "before": {
-          "status": {
-            "pending": false,
-            "error": null,
-            "cached": [
-              "graveweaverHood",
-              "graveweaverTop",
-              "graveweaverSkirt",
-              "ironSword",
-              "graveweaverBook"
-            ],
-            "desired": {
-              "helmet": "graveweaverHood",
-              "torso": "graveweaverTop",
-              "legs": "graveweaverSkirt",
-              "boots": null,
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "graveweaverBook"
-            }
-          },
-          "visibleShield": 0,
-          "bones": 65,
-          "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": "graveweaverHood",
-            "torso": "graveweaverTop",
-            "legs": "graveweaverSkirt",
-            "boots": null,
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "graveweaverBook",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": []
-        },
         "result": {
           "status": "failed",
           "error": "The undead Bastion heater shield at /ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb does not match its manifest hash"
         },
-        "after": {
-          "status": {
-            "pending": false,
-            "error": "The undead Bastion heater shield at /ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb does not match its manifest hash",
-            "cached": [
-              "graveweaverHood",
-              "graveweaverTop",
-              "graveweaverSkirt",
-              "ironSword",
-              "graveweaverBook"
-            ],
-            "desired": {
-              "helmet": "graveweaverHood",
-              "torso": "graveweaverTop",
-              "legs": "graveweaverSkirt",
-              "boots": null,
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "graveweaverBook"
-            }
-          },
-          "visibleShield": 0,
-          "bones": 65,
-          "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": "graveweaverHood",
-            "torso": "graveweaverTop",
-            "legs": "graveweaverSkirt",
-            "boots": null,
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "graveweaverBook",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": []
-        },
         "retry": {
           "status": "applied"
         },
-        "retried": {
-          "status": {
-            "pending": false,
-            "error": null,
-            "cached": [
-              "graveweaverHood",
-              "graveweaverTop",
-              "graveweaverSkirt",
-              "ironSword",
-              "graveweaverBook",
-              "bastionShield"
-            ],
-            "desired": {
-              "helmet": "graveweaverHood",
-              "torso": "graveweaverTop",
-              "legs": "graveweaverSkirt",
-              "boots": null,
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "bastionShield"
-            }
-          },
-          "visibleShield": 3,
-          "bones": 65,
+        "before": {
+          "offHand": "graveweaverBook",
+          "visibleShield": 0,
+          "roots": [],
           "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": "graveweaverHood",
-            "torso": "graveweaverTop",
-            "legs": "graveweaverSkirt",
-            "boots": null,
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "bastionShield",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": [
+          "recoveries": 0
+        },
+        "after": {
+          "offHand": "graveweaverBook",
+          "visibleShield": 0,
+          "roots": [],
+          "gpuErrors": [],
+          "recoveries": 0
+        },
+        "retried": {
+          "offHand": "bastionShield",
+          "visibleShield": 3,
+          "roots": [
             {
               "name": "__root__",
               "scale": [
@@ -1089,91 +504,14 @@
               ],
               "parent": "offHandSocket"
             }
-          ]
+          ],
+          "gpuErrors": [],
+          "recoveries": 0
         }
       },
       {
         "mode": "held transfer superseded by book",
-        "console": [],
-        "before": {
-          "status": {
-            "pending": false,
-            "error": null,
-            "cached": [
-              "wayfarerTunic",
-              "wayfarerTrousers",
-              "wayfarerBoots",
-              "ironSword",
-              "graveweaverBook"
-            ],
-            "desired": {
-              "helmet": null,
-              "torso": "wayfarerTunic",
-              "legs": "wayfarerTrousers",
-              "boots": "wayfarerBoots",
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "graveweaverBook",
-              "shoulders": null
-            }
-          },
-          "visibleShield": 0,
-          "bones": 65,
-          "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": null,
-            "torso": "wayfarerTunic",
-            "legs": "wayfarerTrousers",
-            "boots": "wayfarerBoots",
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "graveweaverBook",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": []
-        },
         "hits": 1,
-        "pending": {
-          "status": {
-            "pending": true,
-            "error": null,
-            "cached": [
-              "wayfarerTunic",
-              "wayfarerTrousers",
-              "wayfarerBoots",
-              "ironSword",
-              "graveweaverBook"
-            ],
-            "desired": {
-              "helmet": null,
-              "torso": "wayfarerTunic",
-              "legs": "wayfarerTrousers",
-              "boots": "wayfarerBoots",
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "bastionShield",
-              "shoulders": null
-            }
-          },
-          "visibleShield": 0,
-          "bones": 65,
-          "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": null,
-            "torso": "wayfarerTunic",
-            "legs": "wayfarerTrousers",
-            "boots": "wayfarerBoots",
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "graveweaverBook",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": []
-        },
         "results": [
           {
             "status": "superseded"
@@ -1182,146 +520,68 @@
             "status": "applied"
           }
         ],
-        "after": {
-          "status": {
-            "pending": false,
-            "error": null,
-            "cached": [
-              "wayfarerTunic",
-              "wayfarerTrousers",
-              "wayfarerBoots",
-              "ironSword",
-              "graveweaverBook"
-            ],
-            "desired": {
-              "helmet": null,
-              "torso": "wayfarerTunic",
-              "legs": "wayfarerTrousers",
-              "boots": "wayfarerBoots",
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "graveweaverBook",
-              "shoulders": null
-            }
-          },
+        "before": {
+          "offHand": "graveweaverBook",
           "visibleShield": 0,
-          "bones": 65,
+          "roots": [],
           "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": null,
-            "torso": "wayfarerTunic",
-            "legs": "wayfarerTrousers",
-            "boots": "wayfarerBoots",
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "graveweaverBook",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": []
+          "recoveries": 0
         },
-        "saved": {
-          "schemaVersion": 2,
-          "catalogVersion": "appearance-catalog-v9",
-          "race": "human",
-          "fitFamily": "ashen-human",
-          "fit": {
-            "rig": "source-65",
-            "bind": 1,
-            "shape": 1
-          },
-          "shape": {
-            "family": "ashen-human-shape-v1",
-            "height": 1,
-            "build": 0
-          },
-          "components": {},
-          "dyes": {},
-          "equipment": {
-            "helmet": null,
-            "torso": "wayfarerTunic",
-            "legs": "wayfarerTrousers",
-            "boots": "wayfarerBoots",
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "bastionShield",
-            "shoulders": null
-          }
+        "after": {
+          "offHand": "graveweaverBook",
+          "visibleShield": 0,
+          "roots": [],
+          "gpuErrors": [],
+          "recoveries": 0
+        },
+        "pending": {
+          "offHand": "graveweaverBook",
+          "visibleShield": 0,
+          "roots": [],
+          "gpuErrors": [],
+          "recoveries": 0
+        },
+        "reloaded": {
+          "offHand": "bastionShield",
+          "visibleShield": 3,
+          "roots": [
+            {
+              "name": "__root__",
+              "scale": [
+                -1,
+                1,
+                1
+              ],
+              "parent": "offHandSocket"
+            },
+            {
+              "name": "__root__",
+              "scale": [
+                -1,
+                1,
+                1
+              ],
+              "parent": "offHandSocket"
+            },
+            {
+              "name": "__root__",
+              "scale": [
+                -1,
+                1,
+                1
+              ],
+              "parent": "offHandSocket"
+            }
+          ],
+          "gpuErrors": [],
+          "recoveries": 0
         },
         "reloadShieldRequests": [
           {
             "url": "http://127.0.0.1:5173/ashen-reach/props/bastionShield-926794f63951f6295c2bbd8624c13c5e8f7ba91aebefd538d3323371579b8f3c.glb",
             "type": "fetch"
           }
-        ],
-        "reloaded": {
-          "status": {
-            "pending": false,
-            "error": null,
-            "cached": [
-              "wayfarerTunic",
-              "wayfarerTrousers",
-              "wayfarerBoots",
-              "ironSword",
-              "bastionShield"
-            ],
-            "desired": {
-              "helmet": null,
-              "torso": "wayfarerTunic",
-              "legs": "wayfarerTrousers",
-              "boots": "wayfarerBoots",
-              "gloves": null,
-              "mainHand": "ironSword",
-              "offHand": "bastionShield",
-              "shoulders": null
-            }
-          },
-          "visibleShield": 3,
-          "bones": 65,
-          "gpuErrors": [],
-          "recoveries": 0,
-          "equipment": {
-            "helmet": null,
-            "torso": "wayfarerTunic",
-            "legs": "wayfarerTrousers",
-            "boots": "wayfarerBoots",
-            "gloves": null,
-            "mainHand": "ironSword",
-            "offHand": "bastionShield",
-            "shoulders": null
-          },
-          "catalogVersion": "appearance-catalog-v9",
-          "shieldRoots": [
-            {
-              "name": "__root__",
-              "scale": [
-                -1,
-                1,
-                1
-              ],
-              "parent": "offHandSocket"
-            },
-            {
-              "name": "__root__",
-              "scale": [
-                -1,
-                1,
-                1
-              ],
-              "parent": "offHandSocket"
-            },
-            {
-              "name": "__root__",
-              "scale": [
-                -1,
-                1,
-                1
-              ],
-              "parent": "offHandSocket"
-            }
-          ]
-        }
+        ]
       }
     ],
     "errors": [],
@@ -2675,19 +1935,6 @@
           "capHz": null,
           "capMs": null,
           "capReason": "mean 4.586 ms is not locked to a known display interval"
-        },
-        "tails": {
-          "samples": 2618,
-          "meanMs": 4.585637891515691,
-          "meanFps": 218.07216872710157,
-          "p50Ms": 4.5,
-          "p95Ms": 5.699999988079071,
-          "p99Ms": 6.300000011920929,
-          "maxMs": 13.199999988079071,
-          "above6_94": 12,
-          "above8_33": 9,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -2720,19 +1967,6 @@
           "capHz": null,
           "capMs": null,
           "capReason": "mean 4.572 ms is not locked to a known display interval"
-        },
-        "tails": {
-          "samples": 2626,
-          "meanMs": 4.572086824071562,
-          "meanFps": 218.71850611740442,
-          "p50Ms": 4.5,
-          "p95Ms": 5.699999988079071,
-          "p99Ms": 6,
-          "maxMs": 11.199999988079071,
-          "above6_94": 5,
-          "above8_33": 5,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -2765,19 +1999,6 @@
           "capHz": null,
           "capMs": null,
           "capReason": "mean 4.573 ms is not locked to a known display interval"
-        },
-        "tails": {
-          "samples": 2625,
-          "meanMs": 4.573409523804982,
-          "meanFps": 218.65524939214728,
-          "p50Ms": 4.5,
-          "p95Ms": 5.699999988079071,
-          "p99Ms": 5.900000035762787,
-          "maxMs": 12.400000035762787,
-          "above6_94": 6,
-          "above8_33": 5,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -2810,19 +2031,6 @@
           "capHz": null,
           "capMs": null,
           "capReason": "mean 4.707 ms is not locked to a known display interval"
-        },
-        "tails": {
-          "samples": 2550,
-          "meanMs": 4.707372549024282,
-          "meanFps": 212.43272963540443,
-          "p50Ms": 4.600000023841858,
-          "p95Ms": 5.699999988079071,
-          "p99Ms": 6,
-          "maxMs": 14.299999952316284,
-          "above6_94": 9,
-          "above8_33": 6,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -2855,19 +2063,6 @@
           "capHz": null,
           "capMs": null,
           "capReason": "mean 4.697 ms is not locked to a known display interval"
-        },
-        "tails": {
-          "samples": 2556,
-          "meanMs": 4.696987480438184,
-          "meanFps": 212.90241972429305,
-          "p50Ms": 4.599999964237213,
-          "p95Ms": 5.699999988079071,
-          "p99Ms": 6,
-          "maxMs": 9.600000023841858,
-          "above6_94": 6,
-          "above8_33": 5,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -2900,19 +2095,6 @@
           "capHz": null,
           "capMs": null,
           "capReason": "mean 4.692 ms is not locked to a known display interval"
-        },
-        "tails": {
-          "samples": 2559,
-          "meanMs": 4.6917545916327,
-          "meanFps": 213.1398777300512,
-          "p50Ms": 4.599999964237213,
-          "p95Ms": 5.699999988079071,
-          "p99Ms": 5.900000035762787,
-          "maxMs": 9.5,
-          "above6_94": 6,
-          "above8_33": 4,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -2945,19 +2127,6 @@
           "capHz": 240,
           "capMs": 4.166666666666667,
           "capReason": "mean 4.117 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.300 ms (full range 2.800-9.600 ms)"
-        },
-        "tails": {
-          "samples": 2917,
-          "meanMs": 4.116523825860734,
-          "meanFps": 242.92340875517888,
-          "p50Ms": 4.099999964237213,
-          "p95Ms": 4.899999976158142,
-          "p99Ms": 5.300000011920929,
-          "maxMs": 9.599999964237213,
-          "above6_94": 5,
-          "above8_33": 3,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -2990,19 +2159,6 @@
           "capHz": 240,
           "capMs": 4.166666666666667,
           "capReason": "mean 4.116 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.100-5.300 ms (full range 2.600-9.000 ms)"
-        },
-        "tails": {
-          "samples": 2916,
-          "meanMs": 4.1162894375939105,
-          "meanFps": 242.93724121220416,
-          "p50Ms": 4.099999964237213,
-          "p95Ms": 4.900000035762787,
-          "p99Ms": 5.300000011920929,
-          "maxMs": 9,
-          "above6_94": 6,
-          "above8_33": 4,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -3035,19 +2191,6 @@
           "capHz": null,
           "capMs": null,
           "capReason": "mean 4.061 ms is not locked to a known display interval"
-        },
-        "tails": {
-          "samples": 2956,
-          "meanMs": 4.061400541271989,
-          "meanFps": 246.2204822789555,
-          "p50Ms": 4,
-          "p95Ms": 4.800000011920929,
-          "p99Ms": 5.200000047683716,
-          "maxMs": 12.199999988079071,
-          "above6_94": 10,
-          "above8_33": 8,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -3080,19 +2223,6 @@
           "capHz": 240,
           "capMs": 4.166666666666667,
           "capReason": "mean 4.091 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.200 ms (full range 2.800-8.700 ms)"
-        },
-        "tails": {
-          "samples": 2934,
-          "meanMs": 4.091206543975407,
-          "meanFps": 244.42667199791498,
-          "p50Ms": 4.099999964237213,
-          "p95Ms": 4.700000047683716,
-          "p99Ms": 5.199999988079071,
-          "maxMs": 8.699999988079071,
-          "above6_94": 6,
-          "above8_33": 3,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -3125,19 +2255,6 @@
           "capHz": 240,
           "capMs": 4.166666666666667,
           "capReason": "mean 4.092 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.300-5.100 ms (full range 2.700-8.900 ms)"
-        },
-        "tails": {
-          "samples": 2934,
-          "meanMs": 4.092126789370116,
-          "meanFps": 244.3717048547085,
-          "p50Ms": 4.099999964237213,
-          "p95Ms": 4.799999952316284,
-          "p99Ms": 5.100000023841858,
-          "maxMs": 8.900000035762787,
-          "above6_94": 6,
-          "above8_33": 2,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -3170,19 +2287,6 @@
           "capHz": null,
           "capMs": null,
           "capReason": "mean 4.076 ms is not locked to a known display interval"
-        },
-        "tails": {
-          "samples": 2945,
-          "meanMs": 4.07646859084811,
-          "meanFps": 245.31036550730536,
-          "p50Ms": 4.099999964237213,
-          "p95Ms": 4.699999988079071,
-          "p99Ms": 5.100000023841858,
-          "maxMs": 12.5,
-          "above6_94": 6,
-          "above8_33": 4,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -3215,19 +2319,6 @@
           "capHz": null,
           "capMs": null,
           "capReason": "mean 4.337 ms is not locked to a known display interval"
-        },
-        "tails": {
-          "samples": 2768,
-          "meanMs": 4.337283237002833,
-          "meanFps": 230.55907243240682,
-          "p50Ms": 4.300000011920929,
-          "p95Ms": 5.100000023841858,
-          "p99Ms": 5.5,
-          "maxMs": 9.800000011920929,
-          "above6_94": 7,
-          "above8_33": 5,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -3260,19 +2351,6 @@
           "capHz": null,
           "capMs": null,
           "capReason": "mean 4.278 ms is not locked to a known display interval"
-        },
-        "tails": {
-          "samples": 2806,
-          "meanMs": 4.278439059163193,
-          "meanFps": 233.73010253781362,
-          "p50Ms": 4.299999952316284,
-          "p95Ms": 5.099999964237213,
-          "p99Ms": 5.5,
-          "maxMs": 12.900000035762787,
-          "above6_94": 7,
-          "above8_33": 5,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -3305,19 +2383,6 @@
           "capHz": null,
           "capMs": null,
           "capReason": "mean 4.284 ms is not locked to a known display interval"
-        },
-        "tails": {
-          "samples": 2802,
-          "meanMs": 4.284332619553204,
-          "meanFps": 233.4085816390899,
-          "p50Ms": 4.300000011920929,
-          "p95Ms": 5,
-          "p99Ms": 5.5,
-          "maxMs": 9.399999976158142,
-          "above6_94": 5,
-          "above8_33": 3,
-          "above16_67": 0,
-          "above33_33": 0
         }
       }
     ],
@@ -3352,19 +2417,6 @@
           "capHz": null,
           "capMs": null,
           "capReason": "mean 4.749 ms is not locked to a known display interval"
-        },
-        "tails": {
-          "samples": 2527,
-          "meanMs": 4.749070043520442,
-          "meanFps": 210.5675407681941,
-          "p50Ms": 4.599999964237213,
-          "p95Ms": 5.800000011920929,
-          "p99Ms": 6.100000023841858,
-          "maxMs": 9.300000011920929,
-          "above6_94": 7,
-          "above8_33": 4,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -3397,19 +2449,6 @@
           "capHz": null,
           "capMs": null,
           "capReason": "mean 4.748 ms is not locked to a known display interval"
-        },
-        "tails": {
-          "samples": 2528,
-          "meanMs": 4.748299050628196,
-          "meanFps": 210.60173113310984,
-          "p50Ms": 4.599999964237213,
-          "p95Ms": 5.800000011920929,
-          "p99Ms": 6.199999988079071,
-          "maxMs": 9.100000023841858,
-          "above6_94": 9,
-          "above8_33": 3,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -3442,19 +2481,6 @@
           "capHz": null,
           "capMs": null,
           "capReason": "mean 4.746 ms is not locked to a known display interval"
-        },
-        "tails": {
-          "samples": 2530,
-          "meanMs": 4.745652173913044,
-          "meanFps": 210.71919377004122,
-          "p50Ms": 4.599999964237213,
-          "p95Ms": 5.800000011920929,
-          "p99Ms": 6.199999988079071,
-          "maxMs": 13.5,
-          "above6_94": 8,
-          "above8_33": 4,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -3487,19 +2513,6 @@
           "capHz": null,
           "capMs": null,
           "capReason": "mean 4.924 ms is not locked to a known display interval"
-        },
-        "tails": {
-          "samples": 2438,
-          "meanMs": 4.923872026241246,
-          "meanFps": 203.09219952724354,
-          "p50Ms": 4.700000047683716,
-          "p95Ms": 5.900000035762787,
-          "p99Ms": 6.199999988079071,
-          "maxMs": 10.600000023841858,
-          "above6_94": 8,
-          "above8_33": 6,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -3532,19 +2545,6 @@
           "capHz": null,
           "capMs": null,
           "capReason": "mean 4.924 ms is not locked to a known display interval"
-        },
-        "tails": {
-          "samples": 2438,
-          "meanMs": 4.92374897455465,
-          "meanFps": 203.09727509828002,
-          "p50Ms": 4.699999988079071,
-          "p95Ms": 5.899999976158142,
-          "p99Ms": 6.100000023841858,
-          "maxMs": 11.5,
-          "above6_94": 6,
-          "above8_33": 5,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -3577,19 +2577,6 @@
           "capHz": null,
           "capMs": null,
           "capReason": "mean 4.924 ms is not locked to a known display interval"
-        },
-        "tails": {
-          "samples": 2438,
-          "meanMs": 4.924405250224645,
-          "meanFps": 203.0702083169092,
-          "p50Ms": 4.699999988079071,
-          "p95Ms": 5.899999976158142,
-          "p99Ms": 6.100000023841858,
-          "maxMs": 11.600000023841858,
-          "above6_94": 5,
-          "above8_33": 4,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -3622,19 +2609,6 @@
           "capHz": 240,
           "capMs": 4.166666666666667,
           "capReason": "mean 4.229 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.400-5.500 ms (full range 3.000-9.400 ms)"
-        },
-        "tails": {
-          "samples": 2839,
-          "meanMs": 4.228672067625248,
-          "meanFps": 236.48085829497376,
-          "p50Ms": 4.199999988079071,
-          "p95Ms": 5,
-          "p99Ms": 5.5,
-          "maxMs": 9.400000035762787,
-          "above6_94": 5,
-          "above8_33": 4,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -3667,19 +2641,6 @@
           "capHz": 240,
           "capMs": 4.166666666666667,
           "capReason": "mean 4.229 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.400-5.500 ms (full range 2.800-12.800 ms)"
-        },
-        "tails": {
-          "samples": 2838,
-          "meanMs": 4.229281183928146,
-          "meanFps": 236.44679947035408,
-          "p50Ms": 4.199999988079071,
-          "p95Ms": 5.099999964237213,
-          "p99Ms": 5.5,
-          "maxMs": 12.800000011920929,
-          "above6_94": 5,
-          "above8_33": 5,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -3712,19 +2673,6 @@
           "capHz": 240,
           "capMs": 4.166666666666667,
           "capReason": "mean 4.224 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.400-5.500 ms (full range 2.600-9.600 ms)"
-        },
-        "tails": {
-          "samples": 2842,
-          "meanMs": 4.22385643912318,
-          "meanFps": 236.75047066883445,
-          "p50Ms": 4.199999988079071,
-          "p95Ms": 5,
-          "p99Ms": 5.5,
-          "maxMs": 9.600000023841858,
-          "above6_94": 8,
-          "above8_33": 4,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -3757,19 +2705,6 @@
           "capHz": 240,
           "capMs": 4.166666666666667,
           "capReason": "mean 4.203 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.500-5.400 ms (full range 2.900-8.800 ms)"
-        },
-        "tails": {
-          "samples": 2856,
-          "meanMs": 4.203431372549019,
-          "meanFps": 237.90087463556853,
-          "p50Ms": 4.199999988079071,
-          "p95Ms": 5,
-          "p99Ms": 5.399999976158142,
-          "maxMs": 8.800000011920929,
-          "above6_94": 4,
-          "above8_33": 1,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -3802,19 +2737,6 @@
           "capHz": 240,
           "capMs": 4.166666666666667,
           "capReason": "mean 4.207 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.500-5.400 ms (full range 2.900-9.100 ms)"
-        },
-        "tails": {
-          "samples": 2854,
-          "meanMs": 4.206692361589404,
-          "meanFps": 237.7164560762348,
-          "p50Ms": 4.199999988079071,
-          "p95Ms": 5,
-          "p99Ms": 5.399999976158142,
-          "maxMs": 9.099999964237213,
-          "above6_94": 6,
-          "above8_33": 4,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -3847,19 +2769,6 @@
           "capHz": 240,
           "capMs": 4.166666666666667,
           "capReason": "mean 4.205 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.500-5.400 ms (full range 2.800-9.000 ms)"
-        },
-        "tails": {
-          "samples": 2855,
-          "meanMs": 4.205394045546677,
-          "meanFps": 237.78984541506998,
-          "p50Ms": 4.199999988079071,
-          "p95Ms": 5,
-          "p99Ms": 5.399999976158142,
-          "maxMs": 9,
-          "above6_94": 4,
-          "above8_33": 3,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -3892,19 +2801,6 @@
           "capHz": null,
           "capMs": null,
           "capReason": "mean 4.574 ms is not locked to a known display interval"
-        },
-        "tails": {
-          "samples": 2624,
-          "meanMs": 4.573971036571737,
-          "meanFps": 218.62840669614639,
-          "p50Ms": 4.5,
-          "p95Ms": 5.5,
-          "p99Ms": 5.800000011920929,
-          "maxMs": 9.5,
-          "above6_94": 7,
-          "above8_33": 4,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -3937,19 +2833,6 @@
           "capHz": null,
           "capMs": null,
           "capReason": "mean 4.432 ms is not locked to a known display interval"
-        },
-        "tails": {
-          "samples": 2709,
-          "meanMs": 4.431967515684045,
-          "meanFps": 225.63342273181274,
-          "p50Ms": 4.400000035762787,
-          "p95Ms": 5.200000047683716,
-          "p99Ms": 5.600000023841858,
-          "maxMs": 9.200000047683716,
-          "above6_94": 7,
-          "above8_33": 5,
-          "above16_67": 0,
-          "above33_33": 0
         }
       },
       {
@@ -3982,19 +2865,6 @@
           "capHz": null,
           "capMs": null,
           "capReason": "mean 4.390 ms is not locked to a known display interval"
-        },
-        "tails": {
-          "samples": 2735,
-          "meanMs": 4.3897989030947855,
-          "meanFps": 227.80086789283337,
-          "p50Ms": 4.399999976158142,
-          "p95Ms": 5.199999988079071,
-          "p99Ms": 5.600000023841858,
-          "maxMs": 9.100000023841858,
-          "above6_94": 8,
-          "above8_33": 4,
-          "above16_67": 0,
-          "above33_33": 0
         }
       }
     ],
@@ -4386,5 +3256,6 @@
     "userOrcaPreserved": true,
     "ownedGrokWorkerExited": true,
     "mediaReviewTabsClosed": true
-  }
+  },
+  "implementationCommit": "421a88913a82ae46d80ddf612841bfd09e717d1c"
 }

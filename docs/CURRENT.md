@@ -200,7 +200,9 @@ they do not qualify clean uncapped maximum throughput. Nine swaps pass, cold
 109.2–118.3 ms, resident 8.8–12.6 ms, worst swap frame 24.4 ms. Maximum compact
 payload is **2,170,524 bytes**, adding the exact 67,352-byte shield. No public
 startup qualification or Pages promotion; production and reliability hold remain.
-This checkpoint supersedes the prototype's remaining canonical steps above.
+Implementation is committed as **421a889**; exact source fingerprints and raw
+intervals are retained in the receipt. This checkpoint supersedes the prototype's
+remaining canonical steps above.
 
 ### Next priorities, in execution order
 
