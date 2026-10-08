@@ -1,20 +1,26 @@
 # Physical iPhone acceptance receipt
 
-Status: **unverified**. The fresh 2026-10-07 19:03:25 UTC connected-device inventory contained
-one Mac and eleven simulators, with no physical iPhone. Desktop WebKit/touch emulation and
-the earlier user report of about 60 FPS are separate evidence.
+Status: **partial user-run physical checks; device-loss failure; mobile work deferred**.
+The 2026-10-08 user report identifies **iPhone 14 Pro Max, iOS 26.7.1, Safari,
+Low Power Mode off**. Startup, walking, rotation and background/resume work;
+hood → dye → ponytail → unequip loses the graphics device. Preserve these known
+specifications rather than repeatedly asking for the device model.
+[Report, original screenshots and deferred findings](../../backlog/mobile-2026-10-08.md).
+The Mac's absent connected device does not negate the user's physical-device
+evidence. Desktop emulation and historical ~60 FPS remain separate evidence;
+the complete acceptance matrix below is still unverified.
 
 Use this receipt for the exact release under test. Record failures and every
 attempt; do not replace a failed visit with a favorable retry.
 
 | Condition | Actual value |
 |---|---|
-| Date / operator | Pending |
-| Physical model / iOS / Safari | Pending |
-| Production or immutable preview URL / source / deployment | Pending |
+| Date / operator | 2026-10-08 / user; partial manual checks |
+| Physical model / iOS / Safari | iPhone 14 Pro Max / iOS 26.7.1 / Safari |
+| Production or immutable preview URL / source / deployment | play.sparkify.dev shown in screenshots; exact on-device build not instrumented |
 | Network / measured latency and throughput | Pending |
-| CSS viewport / canvas / DPR / portrait or landscape | Pending |
-| Power, battery, Low Power Mode, thermal state | Pending |
+| CSS viewport / canvas / DPR / portrait or landscape | Portrait screenshots; HUD canvas 322×581; CSS viewport/DPR unmeasured; rotation works per user |
+| Power, battery, Low Power Mode, thermal state | Low Power Mode off; screenshots show 100% battery; power source/thermal state unmeasured |
 | HTTP cache policy / saved appearance | Pending |
 | Other active game pages | Pending; one intended renderer |
 

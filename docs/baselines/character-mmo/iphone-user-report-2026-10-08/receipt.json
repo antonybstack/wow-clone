@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-08",
+  "operator": "User",
+  "device": {
+    "model": "iPhone 14 Pro Max",
+    "os": "iOS 26.7.1",
+    "browser": "Safari",
+    "lowPowerMode": false,
+    "authority": "Explicit user report; not connected-device instrumentation"
+  },
+  "url": "https://play.sparkify.dev",
+  "qualification": "Partial user-run physical checks; failed equipment/identity sequence; mobile work deferred by user",
+  "checks": {
+    "startup": "User reports no startup failure",
+    "walking": "User reports works",
+    "rotation": "User reports works",
+    "backgroundResume": "User reports works",
+    "equipment": "Ordinary swaps work; specified hood/dye/ponytail/unequip sequence fails"
+  },
+  "failure": {
+    "sequence": [
+      "Equip hood helmet",
+      "Change hood colour",
+      "Change appearance to ponytail",
+      "Unequip hood"
+    ],
+    "overlayTitle": "The lantern has gone out",
+    "message": "The graphics device stopped responding.",
+    "scope": "Actual user-reported production device loss; underlying GPUDeviceLostInfo and driver cause unavailable"
+  },
+  "hudSnapshots": [
+    {
+      "image": "armory.png",
+      "fps": 48,
+      "meanMs": 21.03,
+      "p95Ms": 32,
+      "resolution": [
+        322,
+        581
+      ]
+    },
+    {
+      "image": "gameplay.png",
+      "fps": 42,
+      "meanMs": 23.66,
+      "p95Ms": 35,
+      "resolution": [
+        322,
+        581
+      ]
+    },
+    {
+      "image": "device-loss.png",
+      "fps": 60,
+      "meanMs": 16.55,
+      "p95Ms": 24,
+      "resolution": [
+        322,
+        581
+      ],
+      "note": "Frozen background HUD at failure; not recovery or sustained-performance evidence"
+    }
+  ],
+  "unmeasured": [
+    "Cold navigation time/cache state/network",
+    "Sustained route frame times/thermal state",
+    "Memory/resource growth",
+    "Runtime/GPUDeviceLostInfo details",
+    "Exact hood/dye/ponytail preset and prior swap count",
+    "Largest saved identity/covered-hair restoration acceptance"
+  ],
+  "originalScreenshots": [
+    {
+      "name": "armory.png",
+      "originalPath": "/var/folders/l5/6pks4y5j1kz2mt4fw5gxxz380000gn/T/orca-paste-1791466252293-b2771401-adc9-4485-93b6-0dc3c8b9b194.png",
+      "sha256": "e193ad82d147a54ab637698f24aced5eca8ebc32414c3343e0877730755bc1d7",
+      "bytes": 1255406,
+      "width": 1290,
+      "height": 2796
+    },
+    {
+      "name": "gameplay.png",
+      "originalPath": "/var/folders/l5/6pks4y5j1kz2mt4fw5gxxz380000gn/T/orca-paste-1791466257029-c4afd831-d474-4129-a5b6-1fde2dbbb5bd.png",
+      "sha256": "f2e44303b14c0539ab2d332b180f5af75459aef30bf7ed31728e9baf9c161748",
+      "bytes": 3349435,
+      "width": 1290,
+      "height": 2796
+    },
+    {
+      "name": "device-loss.png",
+      "originalPath": "/var/folders/l5/6pks4y5j1kz2mt4fw5gxxz380000gn/T/orca-paste-1791466616794-cff8fc63-eb09-4715-9a1a-ea3ee9090782.png",
+      "sha256": "135ed8cb58c0f864591bc47287cd5637dc13bec5f00cc88a20f60f4784045a7d",
+      "bytes": 414513,
+      "width": 1290,
+      "height": 2796
+    }
+  ]
+}

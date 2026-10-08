@@ -2,14 +2,18 @@
 
 Updated **2026-10-08**. Read this before choosing work. The latest user request
 controls scope; historical milestones are evidence, not an active task queue.
-The native goal **“next 5 priorities” is blocked**, not complete. Its original acceptance
+**Latest user direction: backlog mobile work and focus on substantial game progress.**
+The [mobile backlog](backlog/mobile-2026-10-08.md) preserves the user's known
+iPhone 14 Pro Max / iOS 26.7.1 / Safari / Low Power Mode off specifications,
+successful startup/walking/rotation/background-resume checks and the newly reported
+hood → dye → ponytail → unequip graphics-device loss. Full physical acceptance
+is unverified. Mobile diagnosis, performance work and overlay correction are deferred;
+they do not prevent independent desktop gameplay development.
+
+The earlier native **“next 5 priorities”** goal still reports blocked; its original
 requirements remain in the [five-priority plan](plans/character-mmo/five-priorities-2026-10-06.md).
-Current physical-device acceptance and unexplained reliability tails are open.
-Three consecutive no-action audits conclude on 2026-10-08 at 12:57 UTC: no
-physical iPhone, no new actionable startup failure or demonstrated fit/performance
-lead, and no owned live job or renderer. Native Pages inventory confirms production
-5723a4ab / 7d00c56 unchanged. Resume from actual failure evidence or available
-physical hardware; do not repeat exhausted campaigns to keep the goal active.
+That historical package is not the active task queue. Production 5723a4ab / 7d00c56
+and the accepted local batch remain intact. Do not repeat exhausted campaigns.
 
 ## Production and accepted work
 
@@ -64,7 +68,7 @@ Implementation **989ab52** is committed/pushed; root-reviewed motion is Telegram
 proportions pass; actual application fullscreen remains unverified.
 Further sets, Elf, additional regions, multiplayer and crowd expansion stay parked.
 
-## Next priorities, in execution order
+## Accepted batch and deferred follow-ups
 
 The current demonstrated forefoot/ankle correction is locally complete and
 delivered. A subsequent private Orc strap trial is rejected: fewer rest-space
@@ -138,10 +142,11 @@ stays first, but unchanged startup campaigns are exhausted until a material lead
    existing authored-piece pipeline and review live motion. Reuse accepted
    fixtures; preserve grips and covered-hair restoration. The first canonical
    authored shield is complete locally and belongs in the qualified release batch.
-4. **Complete current physical iPhone acceptance when available.** Successful
-   2026-10-08 inventory finds one Mac, eleven simulators and no physical iPhone.
-   The user's historical iPhone 14 Pro Max ~60 FPS report does not qualify this
-   current release. Test exact released covered/uncovered identities, creator
+4. **Physical iPhone acceptance — backlogged by the user.** The current user-run
+   Safari report proves successful startup/walking/rotation/background-resume but
+   also reports graphics-device loss during hood/dye/ponytail changes. See the
+   [deferred findings and retained specifications](backlog/mobile-2026-10-08.md).
+   When resumed, test exact released covered/uncovered identities, creator
    rotation, swaps, fifteen-minute traversal and background/resume; record
    device/network/thermal conditions and frame-time tails using the
    [prepared receipt](baselines/character-mmo/iphone-acceptance.md).

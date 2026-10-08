@@ -3,6 +3,11 @@
 User objective: **resume and complete all five priorities autonomously**. Read
 [CURRENT](../../CURRENT.md) for deployed state. This plan preserves the five
 priorities; an internal checkpoint or successful diagnostic is not completion.
+**2026-10-08 direction change:** the user backlogs mobile work and requests
+substantial game progress. This earlier package is not the active execution
+queue. The [mobile backlog](../../backlog/mobile-2026-10-08.md) records current
+physical Safari evidence and the reported device-loss sequence; deferred exits
+remain unachieved rather than silently waived.
 Root implements and accepts changes. Grok 4.6/high owns bounded verification and
 operations, with one tracked game renderer. Completed changes are committed and
 pushed. Release gates remain required before production promotion.

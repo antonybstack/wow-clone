@@ -2,9 +2,10 @@
 
 Start with **[CURRENT.md](CURRENT.md)** for the shipped game and current initiative.
 
-## Active plan
+## Current direction and plans
 
-- **[Next 12 hours: release the creator and prove the equipment factory](plans/character-mmo/next-12-hours-2026-10-05.md)**
+- **[Deferred mobile findings and known iPhone specifications](backlog/mobile-2026-10-08.md)** — backlogged at the user's request; substantial game progress is the current direction.
+- **[Previous release and factory execution plan](plans/character-mmo/next-12-hours-2026-10-05.md)** — retained requirements and evidence; follow CURRENT for the latest focus.
 - **[Workflow review and immediate changes](reviews/workflow-2026-10-05.md)**
 
 - **[Long-term vision: 100 milestones, ten categories](plans/character-mmo/vision-roadmap.md)**
